@@ -1,0 +1,20 @@
+{
+  "purpose": "Preserve a valid thousands-separated number alias as one mathematical number rather than normalize it to two math groups",
+  "before": [
+    {
+      "expected": "$2300$",
+      "equivalents": [
+        "$2$,$300$"
+      ]
+    }
+  ],
+  "patch": {
+    "id": "e3-1-5-2-xc2",
+    "inputProposalFingerprint": "65e97feb84b1aa297eda844c315406d49a797d8cbc42daa09be1ecca85abbc6b",
+    "cSlotEquivalents": [
+      [
+        "$2,300$"
+      ]
+    ]
+  }
+}

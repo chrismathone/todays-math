@@ -1,0 +1,470 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-6-4-xc3",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "높이를 밑변이나 그 늘인 선까지 수직으로 잰다는 점을 확인한다.",
+      "bReason": "평행사변형은 c2, 삼각형은 xc4의 B가 같은 내용을 묻고 있어 중복이다.",
+      "exclusionReason": "B 중복: e5-1-6-4-c2, e5-1-6-4-xc4로 대체.",
+      "cDecision": "revise",
+      "cAfter": "삼각형에서는 밑변 맞은편 꼭짓점에서, 평행사변형에서는 밑변과 마주 보는 변 위의 점에서 밑변이나 밑변을 늘인 선까지 {수직}으로 잰 길이가 높이이다.",
+      "cReason": "원문 빈칸은 긴 구절 암기이고 '연장선'도 낯설어, 핵심 낱말 하나만 묻고 말을 풀었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직",
+            "직각"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1000-1030.json",
+      "codexFinalAmendedFromFingerprint": "be6099b6082f7bb45b38eb79ea9b82b76eb3a7986fa136b896f85ff37afa1267",
+      "sourceIndex": 1004,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc3",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "밑변과 높이의 관계",
+        "kind": "성질",
+        "level": "하",
+        "definition": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 {밑변이나 그 연장선까지 수직으로} 잰 거리이다.",
+        "studentC": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 □ 잰 거리이다.",
+        "answers": [
+          "밑변이나 그 연장선까지 수직으로"
+        ]
+      },
+      "sourceFingerprint": "18b5da2fe79728533671a6abb5e2f89efcee5089940b2d4d19f199435ae15f68",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "삼각형에서는 밑변 맞은편 꼭짓점에서, 평행사변형에서는 밑변과 마주 보는 변 위의 점에서 밑변이나 밑변을 늘인 선까지 □으로 잰 길이가 높이이다.",
+      "cMarkedSentence": "삼각형에서는 밑변 맞은편 꼭짓점에서, 평행사변형에서는 밑변과 마주 보는 변 위의 점에서 밑변이나 밑변을 늘인 선까지 {수직}으로 잰 길이가 높이이다.",
+      "cStudentSentence": "삼각형에서는 밑변 맞은편 꼭짓점에서, 평행사변형에서는 밑변과 마주 보는 변 위의 점에서 밑변이나 밑변을 늘인 선까지 □으로 잰 길이가 높이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": [
+            "직각"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "삼각형에서는 밑변 맞은편 꼭짓점에서, 평행사변형에서는 밑변과 마주 보는 변 위의 점에서 밑변이나 밑변을 늘인 선까지 {수직}으로 잰 길이가 높이이다.",
+        "acceptedAnswers": [
+          [
+            "수직",
+            "직각"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-1-6-4-c2, e5-1-6-4-xc4로 대체."
+      },
+      "proposalFingerprint": "d94fdc56d2a747def8e43a9488a896a334e4283eca52653c1b9c39bf8c6acb8e",
+      "questionRevision": "planning-e5e6-20261006-d94fdc56d2a7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "평행사변형의 넓이와 밑변의 길이를 알 때 높이를 구하는 방법을 넓이 구하는 식과 관련지어 설명하세요. 넓이가 $35\\,\\mathrm{cm} ^2$, 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이도 구하세요.",
+      "bAnswer": "(밑변)$\\times$(높이)$=$(넓이)이므로 넓이를 밑변으로 나누면 높이가 된다. $35 \\div 7 = 5$이므로 $5\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑변$\\times$높이$=$넓이이므로넓이를밑변으로나누면높이이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "넓이 식을 거꾸로 써서 높이를 구한다.",
+      "bReason": "원문 방법을 곱셈과 나눗셈의 관계로 설명하게 하고 원문 예시를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35${$\\div$}$7 =${$5$}($\\mathrm{cm}$)이다.",
+      "cReason": "'밑변으로 나누면'이라는 구절 빈칸 대신 실제 식에서 연산과 값을 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\div$",
+            "나누기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1000-1030.json",
+      "codexFinalAmendedFromFingerprint": "bcc078c318bf7d7a0a19050f5ebcdea191db7978d78836c4ab10b47176370bda",
+      "sourceIndex": 1010,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc9",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "평행사변형의 넓이로 높이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "평행사변형의 넓이를 {밑변으로 나누면} 높이가 된다.",
+        "example": {
+          "prompt": "넓이 $35\\,\\mathrm{cm}^2$, 밑변 $7\\,\\mathrm{cm}$인 평행사변형의 높이는?",
+          "answer": "$5\\,\\mathrm{cm}$"
+        },
+        "studentC": "평행사변형의 넓이를 □ 높이가 된다.",
+        "answers": [
+          "밑변으로 나누면"
+        ]
+      },
+      "sourceFingerprint": "7b954845039575fdad9bfaf7a93046d6b48e90dc01bd2af2c74defe2cb2c7f98",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\div$",
+        "$5$"
+      ],
+      "cStudentAfter": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35$□$7 =$□($\\mathrm{cm}$)이다.",
+      "cMarkedSentence": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35${$\\div$}$7 =${$5$}($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35$□$7 =$□($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\div$",
+          "equivalents": [
+            "나누기"
+          ]
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평행사변형의 넓이와 밑변의 길이를 알 때 높이를 구하는 방법을 넓이 구하는 식과 관련지어 설명하세요. 넓이가 $35\\,\\mathrm{cm} ^2$, 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이도 구하세요.",
+        "answer": "(밑변)$\\times$(높이)$=$(넓이)이므로 넓이를 밑변으로 나누면 높이가 된다. $35 \\div 7 = 5$이므로 $5\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑변$\\times$높이$=$넓이이므로넓이를밑변으로나누면높이이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35${$\\div$}$7 =${$5$}($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$\\div$",
+            "나누기"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "97fc6712306d7a72ceaeb8df2d18ddd652ee6ada75b22c72a52bd5bd9014f863",
+      "questionRevision": "planning-e5e6-20261006-97fc6712306d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc22",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "넓이 구하는 식을 배우지 않은 사각형이 있습니다. 사각형의 안쪽에 대각선 하나를 그어 두 부분으로 나눌 수 있을 때, 그 사각형의 넓이를 구하는 방법을 설명하세요.",
+      "bAnswer": "대각선으로 사각형을 삼각형 $2$개로 나누고, 두 삼각형의 넓이를 각각 구해 더한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대각선으로 삼각형 $2$개로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 삼각형의 넓이를 더한다",
+            "두 넓이의 합을 구한다"
+          ]
+        }
+      ],
+      "bGoal": "사각형을 두 삼각형으로 나누어 넓이를 구하는 방법을 말한다.",
+      "bReason": "편집용 제목 대신 어떤 상황에서 쓰는 방법인지 조건을 밝혀 물었다.",
+      "cDecision": "revise",
+      "cAfter": "사각형의 안쪽에 대각선 하나를 그어 나누면 {삼각형} $2$개가 되므로, 두 도형의 넓이를 {더하면} 사각형의 넓이가 된다.",
+      "cReason": "원문 빈칸은 긴 구절이라 나뉘는 도형과 연산 두 낱말로 쪼갰다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "더하면",
+            "합하면"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1000-1030.json",
+      "codexFinalAmendedFromFingerprint": "cac313823364bf33b53b4895a89bc8c9caa50e7a51800d0ae1368e42d8ca33e0",
+      "sourceIndex": 1023,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc22",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "대각선으로 나누어 넓이 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "사각형을 대각선으로 나누어 {두 삼각형의 넓이를 더하면} 전체 넓이를 구할 수 있다.",
+        "studentC": "사각형을 대각선으로 나누어 □ 전체 넓이를 구할 수 있다.",
+        "answers": [
+          "두 삼각형의 넓이를 더하면"
+        ]
+      },
+      "sourceFingerprint": "59dd4dcabbcb90b468d75f3fada7f84aa2d71b717810d489f2974bb8623faf8d",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "삼각형",
+        "더하면"
+      ],
+      "cStudentAfter": "사각형의 안쪽에 대각선 하나를 그어 나누면 □ $2$개가 되므로, 두 도형의 넓이를 □ 사각형의 넓이가 된다.",
+      "cMarkedSentence": "사각형의 안쪽에 대각선 하나를 그어 나누면 {삼각형} $2$개가 되므로, 두 도형의 넓이를 {더하면} 사각형의 넓이가 된다.",
+      "cStudentSentence": "사각형의 안쪽에 대각선 하나를 그어 나누면 □ $2$개가 되므로, 두 도형의 넓이를 □ 사각형의 넓이가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형",
+          "equivalents": []
+        },
+        {
+          "key": "더하면",
+          "equivalents": [
+            "합하면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "넓이 구하는 식을 배우지 않은 사각형이 있습니다. 사각형의 안쪽에 대각선 하나를 그어 두 부분으로 나눌 수 있을 때, 그 사각형의 넓이를 구하는 방법을 설명하세요.",
+        "answer": "대각선으로 사각형을 삼각형 $2$개로 나누고, 두 삼각형의 넓이를 각각 구해 더한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대각선으로 삼각형 $2$개로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 삼각형의 넓이를 더한다",
+              "두 넓이의 합을 구한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사각형의 안쪽에 대각선 하나를 그어 나누면 {삼각형} $2$개가 되므로, 두 도형의 넓이를 {더하면} 사각형의 넓이가 된다.",
+        "acceptedAnswers": [
+          [
+            "삼각형"
+          ],
+          [
+            "더하면",
+            "합하면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "393091562268a62f08594d525e00985bade8cfbca89d538ef417b7ce5a8f939f",
+      "questionRevision": "planning-e5e6-20261006-393091562268",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc25",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "밑변은 $\\mathrm{m}$, 높이는 $\\mathrm{cm}$처럼 두 길이의 단위가 다를 때 넓이를 구하려면 먼저 무엇을 해야 하나요? 밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하세요.",
+      "bAnswer": "두 길이를 같은 단위로 맞춘다. $2\\,\\mathrm{m} = 200\\,\\mathrm{cm}$이므로 $200 \\times 50 = 10000$, 넓이는 $10000\\,\\mathrm{cm} ^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 길이를 같은 단위로 맞춘다",
+            "$\\mathrm{m}$를 $\\mathrm{cm}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10000\\,\\mathrm{cm} ^2$"
+          ]
+        }
+      ],
+      "bGoal": "단위를 맞춘 뒤 넓이를 구한다.",
+      "bReason": "원문은 일반 방법만 말해, 단위를 맞추지 않으면 틀리는 실제 수치 예를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm}^2$로 구하려면 밑변을 {$200$}$\\,\\mathrm{cm}$로 바꾼다. 밑변과 높이를 곱하면 넓이는 {$10000$}$\\,\\mathrm{cm}^2$이다.",
+      "cReason": "뒤계산식의200을첫빈칸에그대로옮겨쓰지않도록밑변변환과넓이곱셈만연결하여묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1000-1030.json",
+      "codexFinalAmendedFromFingerprint": "c423f47e4e89ed91d31314d200b6b72e17a20a79c8a6be503537333dc38e9268",
+      "sourceIndex": 1026,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc25",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "단위를 바꾸어 넓이 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑변과 높이의 단위가 다르면 {같은 길이 단위로 맞춘} 뒤 넓이를 구한다.",
+        "studentC": "밑변과 높이의 단위가 다르면 □ 뒤 넓이를 구한다.",
+        "answers": [
+          "같은 길이 단위로 맞춘"
+        ]
+      },
+      "sourceFingerprint": "700760417512ba65cc31e4ac6e108ab1f652111acc68ca99663d0540621f8497",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$200$",
+        "$10000$"
+      ],
+      "cStudentAfter": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm}^2$로 구하려면 밑변을 □$\\,\\mathrm{cm}$로 바꾼다. 밑변과 높이를 곱하면 넓이는 □$\\,\\mathrm{cm}^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$200$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10000$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm}^2$로 구하려면 밑변을 {$200$}$\\,\\mathrm{cm}$로 바꾼다. 밑변과 높이를 곱하면 넓이는 {$10000$}$\\,\\mathrm{cm}^2$이다.",
+      "cStudentSentence": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm}^2$로 구하려면 밑변을 □$\\,\\mathrm{cm}$로 바꾼다. 밑변과 높이를 곱하면 넓이는 □$\\,\\mathrm{cm}^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$200$",
+          "equivalents": []
+        },
+        {
+          "key": "$10000$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑변은 $\\mathrm{m}$, 높이는 $\\mathrm{cm}$처럼 두 길이의 단위가 다를 때 넓이를 구하려면 먼저 무엇을 해야 하나요? 밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하세요.",
+        "answer": "두 길이를 같은 단위로 맞춘다. $2\\,\\mathrm{m} = 200\\,\\mathrm{cm}$이므로 $200 \\times 50 = 10000$, 넓이는 $10000\\,\\mathrm{cm} ^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 길이를 같은 단위로 맞춘다",
+              "$\\mathrm{m}$를 $\\mathrm{cm}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10000\\,\\mathrm{cm} ^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm}^2$로 구하려면 밑변을 {$200$}$\\,\\mathrm{cm}$로 바꾼다. 밑변과 높이를 곱하면 넓이는 {$10000$}$\\,\\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$200$"
+          ],
+          [
+            "$10000$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dbbcf77e9c86ecff96d673e32b1c496edbfb659edbbf1b909f93903ad392bdb0",
+      "questionRevision": "planning-e5e6-20261006-dbbcf77e9c86",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc5",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "둘러싼 직사각형의 가로·세로와 대각선의 관계는 xc14의 설명에 들어 있다.",
+      "bReason": "마름모를 네 꼭짓점에 꼭 맞게 둘러싼 직사각형이 어떤 모양인지 실제 그림 없이 복원해야 한다. 연결되는 xc14도 그림이 필요하여 B/C에서 제외한 상태이므로 이 B도 그림 제공 전까지 제외한다.",
+      "cDecision": "exclude",
+      "cAfter": "두 대각선이 가로로 8 cm, 세로로 6 cm 놓인 마름모를 네 꼭짓점에 꼭 맞게 둘러싼 직사각형은 가로가 {8} cm, 세로가 {6} cm이다.",
+      "cReason": "가로대각선8·세로대각선6을직사각형가로세로에그대로복사하는C는그관계를이해했는지확인하기어렵다. 실제마름모와바깥직사각형그림을제공해꼭짓점·변대응을볼수있을때다시작성한다.",
+      "exclusionReason": "마름모와 이를 둘러싼 직사각형의 위치 관계를 보여 주는 그림이 필요하다. ID와 일반 설명은 보존하고 현재 글·수식 B/C에서만 제외한다.",
+      "exampleNeeded": true,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1000-1030.json",
+      "codexFinalAmendedFromFingerprint": "9ab523cd5243684ecc97c5624d0bd7ad9edd39dac4852cf9e647ab2579c81ceb",
+      "sourceIndex": 1029,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc5",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "마름모를 둘러싼 직사각형",
+        "kind": "방법",
+        "level": "하",
+        "definition": "마름모의 네 꼭짓점을 지나고 변이 두 대각선과 평행한 직사각형의 가로와 세로는 마름모의 {두 대각선}과 길이가 같다.",
+        "studentC": "마름모의 네 꼭짓점을 지나고 변이 두 대각선과 평행한 직사각형의 가로와 세로는 마름모의 □과 길이가 같다.",
+        "answers": [
+          "두 대각선"
+        ]
+      },
+      "sourceFingerprint": "d626f7e75193c4716140b15ee22fb59b02c9fae98dba7fa372b41074ffd0dcf5",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "마름모와 이를 둘러싼 직사각형의 위치 관계를 보여 주는 그림이 필요하다. ID와 일반 설명은 보존하고 현재 글·수식 B/C에서만 제외한다.",
+        "cloze": "마름모와 이를 둘러싼 직사각형의 위치 관계를 보여 주는 그림이 필요하다. ID와 일반 설명은 보존하고 현재 글·수식 B/C에서만 제외한다."
+      },
+      "proposalFingerprint": "70af007e331be6a948abf6f1def46f787102f385486ba0c6ddcb0fed0b6d69b8",
+      "questionRevision": "planning-e5e6-20261006-70af007e331b",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,919 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:45:18.752Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-07-05-c1",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "뿔의 겉넓이",
+        "kind": "공식",
+        "level": "하",
+        "definition": "뿔의 겉넓이는 {밑넓이}와 {옆넓이}를 더한 값이다. 뿔은 밑면이 {하나}뿐이다.",
+        "studentC": "뿔의 겉넓이는 □와 □를 더한 값이다. 뿔은 밑면이 □뿐이다.",
+        "answers": [
+          "밑넓이",
+          "옆넓이",
+          "하나"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "뿔의 겉넓이는 어떤 넓이들을 더해서 구하는가? 기둥의 겉넓이를 구할 때와 달라지는 점을 까닭과 함께 쓰시오.",
+        "bAnswer": "밑넓이와 옆넓이를 더한다. 기둥은 밑면이 $2$개라 밑넓이를 두 번 더하지만, 뿔은 밑면이 $1$개뿐이라 밑넓이를 한 번만 더한다.",
+        "bGoal": "뿔의 겉넓이를 이루는 넓이와 밑면의 개수 연결",
+        "bReason": "더하는 넓이와 기둥과의 차이를 답하도록 범위를 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑넓이와 옆넓이를 더한다",
+              "(밑넓이)$+$(옆넓이)"
+            ]
+          },
+          {
+            "anyOf": [
+              "뿔은 밑면이 $1$개뿐이다",
+              "밑넓이를 한 번만 더한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "합의 인수 순서가 바뀌어도 맞는 칸에서 밑넓이를 보여 주고 옆넓이·밑면 수만 묻는다.",
+        "learningRole": "procedure",
+        "roleReason": "겉넓이를 구할 때 더할 넓이 정하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "cAfter": "뿔의 겉넓이는 밑넓이에 {옆넓이}를 더한 값이다. 뿔의 밑면은 {하나}이다.",
+        "cAnswers": [
+          "옆넓이",
+          "하나"
+        ],
+        "sourceIndex": 312,
+        "part": "m1",
+        "sourceFingerprint": "183d4b4c6ee93242e3f5e8c13e2c6f8c13ee93ce3b71b4940916297085a6e6e5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 312
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-07-05-c1"
+        },
+        "cMarkedSentence": "뿔의 겉넓이는 밑넓이에 {옆넓이}를 더한 값이다. 뿔의 밑면은 {하나}이다.",
+        "cSlotAnswers": [
+          "옆넓이",
+          "하나"
+        ],
+        "cStudentSentence": "뿔의 겉넓이는 밑넓이에 □를 더한 값이다. 뿔의 밑면은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "옆넓이",
+            "equivalentAnswers": [
+              "옆넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "하나",
+            "equivalentAnswers": [
+              "하나",
+              "$1$개",
+              "한 개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "하나",
+            "accept": [
+              "$1$개",
+              "한 개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "옆넓이"
+          ],
+          [
+            "하나",
+            "$1$개",
+            "한 개"
+          ]
+        ],
+        "proposalFingerprint": "ca4b29eabff36c3f618871e2aa21f9937194f3b996157f67ceb15675b7fa0174"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-08-01-c6",
+        "section": "중1::8. 통계::대푯값",
+        "term": "변량이 짝수 개일 때의 중앙값",
+        "kind": "방법",
+        "level": "중",
+        "definition": "변량이 짝수 개이면 {크기순}으로 늘어놓은 뒤 한가운데 놓인 {두 값의 평균}을 중앙값으로 한다.",
+        "example": {
+          "prompt": "$1$, $3$, $5$, $9$의 중앙값",
+          "answer": "$4$"
+        },
+        "studentC": "변량이 짝수 개이면 □으로 늘어놓은 뒤 한가운데 놓인 □을 중앙값으로 한다.",
+        "answers": [
+          "크기순",
+          "두 값의 평균"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "변량이 짝수 개인 자료에서 중앙값을 구하는 방법을 쓰고, $1$, $9$, $3$, $5$의 중앙값을 구하시오.",
+        "bAnswer": "자료를 크기순으로 늘어놓은 뒤 가운데 두 값의 평균을 구한다. $1$, $3$, $5$, $9$로 정리하면 가운데는 $3$과 $5$이므로 $(3+5)\\div2=4$이다.",
+        "bGoal": "짝수 개 자료의 중앙값 구하기",
+        "bReason": "이미 정렬된 예에서는 자료를 정리하지 않는 잘못된 방법도 드러나지 않아 순서를 섞고 크기순 정리 기준을 넣는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 자료를 크기순으로 늘어놓는다",
+              "먼저 자료를 작은 것부터 또는 큰 것부터 차례로 정리한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가운데 두 값의 평균을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "중앙값은 $4$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "짝수 개 조건과 구하는 방법이 분명하게 드러남",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "짝수 개일 때 가운데 두 값의 평균 내기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 329,
+        "part": "m1",
+        "sourceFingerprint": "2d1abaa4666dd6e9794a4bb48dc9ad34ecc86c1dfb32c30035dd716c0ca3d11d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 329
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-08-01-c6"
+        },
+        "cFrozenSentence": "변량이 짝수 개이면 □으로 늘어놓은 뒤 한가운데 놓인 □을 중앙값으로 한다.",
+        "cFrozenDefinition": "변량이 짝수 개이면 {크기순}으로 늘어놓은 뒤 한가운데 놓인 {두 값의 평균}을 중앙값으로 한다.",
+        "cFrozenAnswers": [
+          "크기순",
+          "두 값의 평균"
+        ],
+        "cMarkedSentence": "변량이 짝수 개이면 {크기순}으로 늘어놓은 뒤 한가운데 놓인 {두 값의 평균}을 중앙값으로 한다.",
+        "cSlotAnswers": [
+          "크기순",
+          "두 값의 평균"
+        ],
+        "cStudentSentence": "변량이 짝수 개이면 □으로 늘어놓은 뒤 한가운데 놓인 □을 중앙값으로 한다.",
+        "cAnswers": [
+          "크기순",
+          "두 값의 평균"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "크기순",
+            "equivalentAnswers": [
+              "크기순",
+              "작은 값부터 크기순",
+              "크기 순서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "두 값의 평균",
+            "equivalentAnswers": [
+              "두 값의 평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "크기순",
+            "accept": [
+              "작은 값부터 크기순",
+              "크기 순서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "크기순",
+            "작은 값부터 크기순",
+            "크기 순서"
+          ],
+          [
+            "두 값의 평균"
+          ]
+        ],
+        "proposalFingerprint": "d158236f2341f71811b4286596ee7de58fafc6aea3f9c8cac1f40c797fe3b545"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-08-02-c3",
+        "section": "중1::8. 통계::줄기와 잎 그림",
+        "term": "줄기와 잎 그림 그리기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "줄기는 작은 수부터 {세로}로 쓰고, 잎은 같은 값이 여러 번 나와도 {모두} 크기순으로 가로로 쓴다.",
+        "studentC": "줄기는 작은 수부터 □로 쓰고, 잎은 같은 값이 여러 번 나와도 □ 크기순으로 가로로 쓴다.",
+        "answers": [
+          "세로",
+          "모두"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-02-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "자료 $12$, $15$, $12$, $21$을 줄기와 잎 그림으로 그리려고 한다(잎은 일의 자리 숫자). 줄기 $1$의 잎을 쓰는 순서대로 쓰고, $12$가 두 번 나온 것을 어떻게 나타내는지 쓰시오.",
+        "bAnswer": "줄기 $1$의 잎은 $2$, $2$, $5$이다. 같은 값이 여러 번 나오면 잎도 나온 횟수만큼 모두 쓴다.",
+        "bGoal": "줄기와 잎 그림에서 잎 쓰는 규칙 알기",
+        "bReason": "중복된 값이 있는 자료를 주어 '모두, 크기순으로' 쓰는 규칙을 확인하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "줄기 $1$의 잎은 $2$, $2$, $5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 잎도 나온 횟수만큼 모두 쓴다",
+              "$2$를 두 번 쓴다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "줄기의 방향과 중복 잎 처리라는 두 규칙을 짧게 확인함",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "줄기와 잎을 써 넣는 규칙",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 334,
+        "part": "m1",
+        "sourceFingerprint": "0b1d9debb752b3f091aceb03a3d765576e3a758e5a751de6fa76b2b883ad5221",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 334
+        },
+        "directReview": null,
+        "cFrozenSentence": "줄기는 작은 수부터 □로 쓰고, 잎은 같은 값이 여러 번 나와도 □ 크기순으로 가로로 쓴다.",
+        "cFrozenDefinition": "줄기는 작은 수부터 {세로}로 쓰고, 잎은 같은 값이 여러 번 나와도 {모두} 크기순으로 가로로 쓴다.",
+        "cFrozenAnswers": [
+          "세로",
+          "모두"
+        ],
+        "cMarkedSentence": "줄기는 작은 수부터 {세로}로 쓰고, 잎은 같은 값이 여러 번 나와도 {모두} 크기순으로 가로로 쓴다.",
+        "cSlotAnswers": [
+          "세로",
+          "모두"
+        ],
+        "cStudentSentence": "줄기는 작은 수부터 □로 쓰고, 잎은 같은 값이 여러 번 나와도 □ 크기순으로 가로로 쓴다.",
+        "cAnswers": [
+          "세로",
+          "모두"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "세로",
+            "equivalentAnswers": [
+              "세로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "모두",
+            "equivalentAnswers": [
+              "모두"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "세로"
+          ],
+          [
+            "모두"
+          ]
+        ],
+        "proposalFingerprint": "c9f04dbdc805871949c7414a236fb55da788db16bbe551dd72220391b07b59c1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-07-c11",
+        "section": "중2::5. 도형의 성질::직사각형, 마름모, 정사각형",
+        "term": "정사각형이 가진 두 가지 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정사각형은 {직사각형}의 성질과 {마름모}의 성질을 모두 가진다.",
+        "studentC": "정사각형은 □의 성질과 □의 성질을 모두 가진다.",
+        "answers": [
+          "직사각형",
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-07-c11",
+        "learningRole": "naming",
+        "roleReason": "정사각형이 성질을 물려받는 두 사각형",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 한 종류인 사각형 가운데, 정사각형이 그 성질을 모두 가지는 두 사각형의 이름을 쓰시오.",
+        "bAnswer": "직사각형, 마름모",
+        "bGoal": "정사각형이 속하는 두 사각형 말하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "마름모"
+            ]
+          }
+        ],
+        "bReason": "평행사변형도 답이 될 수 있어 그 아래 종류로 범위를 좁혔다.",
+        "cDecision": "exclude",
+        "cReason": "같은 두 답을 까닭과 함께 묻는 08-xc7 C가 더 유용하다.",
+        "exclusionReason": "C 제외: '직사각형', '마름모' 빈칸이 m2-05-08-xc7 C와 그대로 중복된다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 634,
+        "part": "m2",
+        "sourceFingerprint": "14080a5e648dd1a4cb574d42f7978b62f62a45377c5931fbd1f56fd8c83c332f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 634
+        },
+        "directReview": null,
+        "proposalFingerprint": "123356dae452ab93709b5ec7675ca717390fb35f7fd6767f2eac628814fb7779"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c5",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "여러 가지 사각형 사이의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형과 마름모는 모두 {평행사변형}에 들고, 정사각형은 직사각형에도 {마름모}에도 든다.",
+        "studentC": "직사각형과 마름모는 모두 □에 들고, 정사각형은 직사각형에도 □에도 든다.",
+        "answers": [
+          "평행사변형",
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c5",
+        "learningRole": "naming",
+        "roleReason": "평행사변형·정사각형 포함 관계",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "같은 포함 관계를 다른 문항들이 근거와 함께 묻는다.",
+        "cDecision": "exclude",
+        "cReason": "두 빈칸 모두 다른 문항 C에서 같은 답으로 나온다.",
+        "exclusionReason": "B 제외: 직사각형·마름모의 평행사변형 포함은 07-xc1·07-xc2 B, 정사각형의 포함은 07-c11·08-xc7 B와 목표가 중복된다. C 제외: '평행사변형' 빈칸은 07-xc1·07-xc2·08-c7 C, '마름모' 빈칸은 08-xc7 C와 중복된다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 639,
+        "part": "m2",
+        "sourceFingerprint": "f81e3d3e6f8d3ee2a277b280ac1020e21be32cd3b8d8a42f21d2a39b7eb517c4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 639
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-01-c10",
+        "section": "중3::7. 통계::대푯값과 산포도",
+        "term": "변화된 변량에 대한 평균, 분산, 표준편차의 변화",
+        "kind": "공식",
+        "level": "상",
+        "definition": "모든 변량에 같은 수를 더하면 평균은 {그 수만큼 변하고} 분산과 표준편차는 그대로이다 — 모든 변량을 $a$배 하면 분산은 {$a^2$}배, 표준편차는 {$|a|$}배가 된다.",
+        "studentC": "모든 변량에 같은 수를 더하면 평균은 □ 분산과 표준편차는 그대로이다 — 모든 변량을 $a$배 하면 분산은 □배, 표준편차는 □배가 된다.",
+        "answers": [
+          "그 수만큼 변하고",
+          "$a^2$",
+          "$|a|$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-01-c10",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 자료의 평균이 $m$, 분산이 $V$, 표준편차가 $s$이다. ($1$) 모든 변량에 $b$를 더한 자료의 평균, 분산, 표준편차 ($2$) 모든 변량에 $a$를 곱한 자료의 분산, 표준편차를 각각 $m$, $V$, $s$를 써서 나타내시오.",
+        "bAnswer": "($1$) 평균 $m+b$, 분산 $V$, 표준편차 $s$ ($2$) 분산 $a^2V$, 표준편차 $|a|s$",
+        "bGoal": "변량 변환에 따른 평균·분산·표준편차 변화",
+        "bReason": "더하기와 곱하기 두 변환을 기호로 구분해 변화를 각각 쓰게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평균 $m+b$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산 $V$, 표준편차 $s$로 그대로",
+              "분산과 표준편차는 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산 $a^2V$"
+            ]
+          },
+          {
+            "anyOf": [
+              "표준편차 $|a|s$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "모든 변량에 같은 수 $b$를 더하면 평균에도 {$b$}가 더해지고 분산과 표준편차는 그대로이다. 모든 변량을 $a$배 하면 분산은 {$a^2$}배, 표준편차는 {$|a|$}배가 된다.",
+        "cAnswers": [
+          "$b$",
+          "$a^2$",
+          "$|a|$"
+        ],
+        "cReason": "'그 수만큼 변하고'라는 구절 빈칸이 어색해 더한 수를 $b$로 이름 붙임",
+        "studentLabel": "변량을 바꿀 때 평균·분산·표준편차",
+        "learningRole": "procedure",
+        "roleReason": "변환 뒤 값을 규칙으로 구함",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 906,
+        "part": "m3",
+        "sourceFingerprint": "3b112e6febaa9248a18060682d609765c3eb6342040a6b5d2ef3068bffca3521",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 906
+        },
+        "directReview": null,
+        "cMarkedSentence": "모든 변량에 같은 수 $b$를 더하면 평균에도 {$b$}가 더해지고 분산과 표준편차는 그대로이다. 모든 변량을 $a$배 하면 분산은 {$a^2$}배, 표준편차는 {$|a|$}배가 된다.",
+        "cSlotAnswers": [
+          "$b$",
+          "$a^2$",
+          "$|a|$"
+        ],
+        "cStudentSentence": "모든 변량에 같은 수 $b$를 더하면 평균에도 □가 더해지고 분산과 표준편차는 그대로이다. 모든 변량을 $a$배 하면 분산은 □배, 표준편차는 □배가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$b$",
+            "equivalentAnswers": [
+              "$b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a^2$",
+            "equivalentAnswers": [
+              "$a^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$|a|$",
+            "equivalentAnswers": [
+              "$|a|$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$b$"
+          ],
+          [
+            "$a^2$"
+          ],
+          [
+            "$|a|$"
+          ]
+        ],
+        "proposalFingerprint": "d7bfdf830fc4a9f0ae2c644033013c313519764159c46cbefcce356841d1d2b8"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c8",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "여러 가지 사각형의 대각선의 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형, 정사각형, {등변사다리꼴}은 두 대각선의 길이가 같고, 마름모와 {정사각형}은 두 대각선이 수직이다.",
+        "studentC": "직사각형, 정사각형, □은 두 대각선의 길이가 같고, 마름모와 □은 두 대각선이 수직이다.",
+        "answers": [
+          "등변사다리꼴",
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c8",
+        "learningRole": "naming",
+        "roleReason": "대각선 성질별 사각형 분류",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형, 마름모, 정사각형, 등변사다리꼴 가운데 ($1$) 두 대각선의 길이가 항상 같은 것과 ($2$) 두 대각선이 항상 수직인 것을 각각 모두 고르시오.",
+        "bAnswer": "($1$) 직사각형, 정사각형, 등변사다리꼴 ($2$) 마름모, 정사각형",
+        "bGoal": "대각선 성질로 사각형 비교하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "($1$) 직사각형, 정사각형, 등변사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "($2$) 마름모, 정사각형"
+            ]
+          }
+        ],
+        "bReason": "후보와 두 성질을 나누어 제시해 비교 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "두 성질에서 빠진 도형을 채우는 짧은 비교 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 642,
+        "part": "m2",
+        "sourceFingerprint": "d3130a47a5256761a0dfd5d40dd930e2407632e153e589fcacf7a653f05a5054",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 642
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형, 정사각형, □은 두 대각선의 길이가 같고, 마름모와 □은 두 대각선이 수직이다.",
+        "cFrozenDefinition": "직사각형, 정사각형, {등변사다리꼴}은 두 대각선의 길이가 같고, 마름모와 {정사각형}은 두 대각선이 수직이다.",
+        "cFrozenAnswers": [
+          "등변사다리꼴",
+          "정사각형"
+        ],
+        "cMarkedSentence": "직사각형, 정사각형, {등변사다리꼴}은 두 대각선의 길이가 같고, 마름모와 {정사각형}은 두 대각선이 수직이다.",
+        "cSlotAnswers": [
+          "등변사다리꼴",
+          "정사각형"
+        ],
+        "cStudentSentence": "직사각형, 정사각형, □은 두 대각선의 길이가 같고, 마름모와 □은 두 대각선이 수직이다.",
+        "cAnswers": [
+          "등변사다리꼴",
+          "정사각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "등변사다리꼴",
+            "equivalentAnswers": [
+              "등변사다리꼴"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "등변사다리꼴"
+          ],
+          [
+            "정사각형"
+          ]
+        ],
+        "proposalFingerprint": "6934cb9b66d97444cc18f0413a6d95aa558e684d6a1341c8048518ccb5e8b669"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc8",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "지수가 $1$ 커질 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 {밑}을 한 번 더 {곱한} 것이 된다.",
+        "example": {
+          "prompt": "$2^5$은 $2^4$의 몇 배인가?",
+          "answer": "$2$배"
+        },
+        "studentC": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 □을 한 번 더 □ 것이 된다.",
+        "answers": [
+          "밑",
+          "곱한"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^4$과 $2^5$을 곱셈식으로 풀어 써서 비교하고, 밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값이 어떻게 달라지는지 설명하세요.",
+        "bAnswer": "$2^4=2\\times2\\times2\\times2$, $2^5=2\\times2\\times2\\times2\\times2=2^4\\times2$이다. 지수가 $1$ 커지면 처음 값에 밑을 한 번 더 곱한 값이 된다. 그래서 $2^5$은 $2^4$의 $2$배이다.",
+        "bGoal": "지수가 $1$ 커지는 것은 밑을 한 번 더 곱하는 것임을 설명한다.",
+        "bReason": "제목 '지수가 $1$ 커질 때'는 문장이 끝나지 않아 무엇을 답할지 알 수 없다. 견줄 두 거듭제곱을 주고 값의 변화를 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 처음 값에 {밑}을 한 번 더 곱한 것이 된다.",
+        "cAnswers": [
+          "밑"
+        ],
+        "cReason": "원문은 '□을 한 번 더 □ 것'으로 결론이 통째로 가려져 있고, 무엇에 곱하는지도 없다. '처음 값에'를 넣고 곱하는 대상 하나만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2^4=2\\times2\\times2\\times2$, $2^5=2\\times2\\times2\\times2\\times2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "지수가 $1$ 커지면 밑을 한 번 더 곱한 값이 된다($2^5=2^4\\times2$, 곧 $2$배)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "밑을 한 번 더 곱함",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 932,
+        "part": "m1plus",
+        "sourceFingerprint": "9515d7d2c6fc5d3e265630cffd12e647dc5c7738100e4204fb2e0f1b4f9afb76",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 932
+        },
+        "directReview": null,
+        "cMarkedSentence": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 처음 값에 {밑}을 한 번 더 곱한 것이 된다.",
+        "cSlotAnswers": [
+          "밑"
+        ],
+        "cStudentSentence": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 처음 값에 □을 한 번 더 곱한 것이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑",
+            "equivalentAnswers": [
+              "밑"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑"
+          ]
+        ],
+        "proposalFingerprint": "12178038d6573da7dcd5b5875b244cbd57b09c8d95cfa36499937b0d212567bb"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc3",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "정수와 유리수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$-2$, $-1$, $0$, $1$, $2$처럼 소수 부분이 없는 수가 {정수}이고, 정수는 분모가 $1$인 분수로 쓸 수 있어 모두 {유리수}이다.",
+        "studentC": "$-2$, $-1$, $0$, $1$, $2$처럼 소수 부분이 없는 수가 □이고, 정수는 분모가 $1$인 분수로 쓸 수 있어 모두 □이다.",
+        "answers": [
+          "정수",
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$-3$, $0$, $5$ 같은 정수가 모두 유리수인 까닭을 분수와 관련지어 쓰시오.",
+        "bAnswer": "정수 $n$은 $\\frac{n}{1}$처럼 분자와 분모가 정수이고 분모가 $0$이 아닌 분수로 나타낼 수 있기 때문이다. 예: $-3=\\frac{-3}{1}$",
+        "bGoal": "정수가 유리수에 포함되는 까닭 설명하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 $1$인 분수로 쓸 수 있다",
+              "$n=\\frac{n}{1}$ 꼴의 식",
+              "$5=\\frac{10}{2}$처럼 정수를 정수끼리의 분수로 직접 나타낸 식"
+            ]
+          }
+        ],
+        "bReason": "정수와 유리수의 포함 관계를 분수 표현으로 설명하게 특정했다.",
+        "cDecision": "keep",
+        "cReason": "정수의 예와 분모 $1$ 근거가 있어 두 빈칸이 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "분모가 $1$인 분수로 정수가 유리수임을 보이기",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3291,
+        "part": "m3plus",
+        "sourceFingerprint": "bb073d5eac9a33b128d1b095c944087a628ac3ac9860af0f88a34b0d23aa97b1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3291
+        },
+        "directReview": null,
+        "cFrozenSentence": "$-2$, $-1$, $0$, $1$, $2$처럼 소수 부분이 없는 수가 □이고, 정수는 분모가 $1$인 분수로 쓸 수 있어 모두 □이다.",
+        "cFrozenDefinition": "$-2$, $-1$, $0$, $1$, $2$처럼 소수 부분이 없는 수가 {정수}이고, 정수는 분모가 $1$인 분수로 쓸 수 있어 모두 {유리수}이다.",
+        "cFrozenAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cMarkedSentence": "$-2$, $-1$, $0$, $1$, $2$처럼 소수 부분이 없는 수가 {정수}이고, 정수는 분모가 $1$인 분수로 쓸 수 있어 모두 {유리수}이다.",
+        "cSlotAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cStudentSentence": "$-2$, $-1$, $0$, $1$, $2$처럼 소수 부분이 없는 수가 □이고, 정수는 분모가 $1$인 분수로 쓸 수 있어 모두 □이다.",
+        "cAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "03ef698cbf08816450238faf082472e671843cb7f01e505acf8e4d2192b59bf5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc18",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "거듭제곱의 크기 비교",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 {지수}가 큰 쪽이, 지수가 같으면 {밑}이 큰 쪽이 크다.",
+        "example": {
+          "prompt": "$2^{10}$, $4^4$ 가운데 큰 것은?",
+          "answer": "$2^{10}$"
+        },
+        "studentC": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 □가 큰 쪽이, 지수가 같으면 □이 큰 쪽이 크다.",
+        "answers": [
+          "지수",
+          "밑"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "밑이 $1$보다 큰 자연수인 두 거듭제곱의 크기를 비교하는 방법을, 밑이 같을 때와 지수가 같을 때로 나누어 설명하세요. 또 $2^{10}$과 $4^4$ 가운데 어느 쪽이 큰지 밑을 같게 만들어 비교하세요.",
+        "bAnswer": "밑이 같으면 지수가 큰 쪽이 크고, 지수가 같으면 밑이 큰 쪽이 크다. $4^4=(2\\times2)\\times(2\\times2)\\times(2\\times2)\\times(2\\times2)=2^8$이므로 $2^{10}$이 더 크다.",
+        "bGoal": "밑이나 지수를 같게 맞추어 거듭제곱의 크기를 비교한다.",
+        "bReason": "제목 '거듭제곱의 크기 비교'는 어떤 조건의 두 수를 견주는지 없다. 밑의 조건과 두 경우를 질문에 밝히고, 밑이 다른 실제 예를 하나 넣었다.",
+        "cDecision": "keep",
+        "cReason": "밑의 조건이 문장에 있고, 경우마다 무엇이 큰 쪽이 큰지 고르는 짧은 비교 빈칸이다. 문장에 '밑', '지수'가 보이지만 조건으로 쓰인 말이라 답이 미리 드러나지는 않는다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑이 같으면 지수가 큰 쪽이 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지수가 같으면 밑이 큰 쪽이 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4^4=2^8$이므로 $2^{10}$이 더 크다($2^{10}=4^5$으로 맞춘 비교도 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "밑이나 지수 맞춰 비교",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 942,
+        "part": "m1plus",
+        "sourceFingerprint": "8f8820883294c8286b7b2491f94a01ef6a3b949b35496b7d01b6f08b12a497f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 942
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 □가 큰 쪽이, 지수가 같으면 □이 큰 쪽이 크다.",
+        "cFrozenDefinition": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 {지수}가 큰 쪽이, 지수가 같으면 {밑}이 큰 쪽이 크다.",
+        "cFrozenAnswers": [
+          "지수",
+          "밑"
+        ],
+        "cMarkedSentence": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 {지수}가 큰 쪽이, 지수가 같으면 {밑}이 큰 쪽이 크다.",
+        "cSlotAnswers": [
+          "지수",
+          "밑"
+        ],
+        "cStudentSentence": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 □가 큰 쪽이, 지수가 같으면 □이 큰 쪽이 크다.",
+        "cAnswers": [
+          "지수",
+          "밑"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지수",
+            "equivalentAnswers": [
+              "지수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "밑",
+            "equivalentAnswers": [
+              "밑"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지수"
+          ],
+          [
+            "밑"
+          ]
+        ],
+        "proposalFingerprint": "78d4757a02456b11d71b84a4852c5c0048067bbb0340f4e3ca66ec3959ede31d"
+      }
+    }
+  ]
+}

@@ -1,0 +1,953 @@
+diff --git a/scripts/qa/concept-blank/student-clear/application.ts b/scripts/qa/concept-blank/student-clear/application.ts
+index a8a8bf42c..8de7a965f 100644
+--- a/scripts/qa/concept-blank/student-clear/application.ts
++++ b/scripts/qa/concept-blank/student-clear/application.ts
+@@ -13,6 +13,11 @@ import {
+   type EditorialScope,
+ } from "./editorial";
+ import type { IndependentEvidence } from "./independent";
++import {
++  validateExamplePromptChanges,
++  withExamplePromptChange,
++  type ExamplePromptChange,
++} from "./example-corrections";
+ import {
+   contentHash,
+   normalizeProposal,
+@@ -41,6 +46,8 @@ export type ContentApplicationPlan = {
+     reason: string;
+     contentHash: string;
+   }[];
++  /** Separate grammar-only source corrections; omitted when empty for compatibility. */
++  examplePromptChanges?: ExamplePromptChange[];
+   reviewedRows: {
+     id: string;
+     part: string;
+@@ -56,6 +63,7 @@ export function compileContentApplicationPlan(input: {
+   current: BankParts;
+   scopes: ApplicationScope[];
+   independent: IndependentEvidence[];
++  exampleCorrections?: unknown;
+ }): ContentApplicationPlan {
+   const baselineHash = contentHash(input.baseline);
+   if (baselineHash !== input.expectedBaselineHash)
+@@ -70,6 +78,13 @@ export function compileContentApplicationPlan(input: {
+   const byId = new Map(originals.map((row) => [row.entry.id, row]));
+   if (byId.size !== originals.length || !originals.length)
+     throw new Error("원천 ID가 중복되거나 은행이 비었습니다.");
++  const examplePromptChanges = validateExamplePromptChanges(
++    input.baseline,
++    input.exampleCorrections,
++  );
++  const examples = new Map(
++    examplePromptChanges.map((change) => [change.id, change]),
++  );
+   const roles = new Set([
+     "definition",
+     "procedure",
+@@ -96,7 +111,10 @@ export function compileContentApplicationPlan(input: {
+         throw new Error(`범위 사이 중복 ID: ${raw.id}`);
+       const proposal = normalizeProposal(raw, original.entry);
+       if (!proposal) throw new Error(`미완 문항: ${raw.id}`);
+-      const entry = proposedEntry(proposal);
++      const entry = withExamplePromptChange(
++        proposedEntry(proposal),
++        examples.get(raw.id),
++      );
+       candidates.set(raw.id, entry);
+       const issues = verifyEditorialRow(
+         scope.scope,
+@@ -189,6 +207,7 @@ export function compileContentApplicationPlan(input: {
+         originals.findIndex((row) => row.entry.id === a.id) -
+         originals.findIndex((row) => row.entry.id === b.id),
+     ),
++    ...(examplePromptChanges.length ? { examplePromptChanges } : {}),
+     reviewedRows: originals.map((row) =>
+       reviewed.find((item) => item.id === row.entry.id)!,
+     ),
+diff --git a/scripts/qa/concept-blank/student-clear/source-plan.ts b/scripts/qa/concept-blank/student-clear/source-plan.ts
+index a2c196af6..bdbd6c02c 100644
+--- a/scripts/qa/concept-blank/student-clear/source-plan.ts
++++ b/scripts/qa/concept-blank/student-clear/source-plan.ts
+@@ -4,6 +4,11 @@ import { withAssessments } from "@/lib/concept-blank/bank/assessment";
+ import type { ContentApplicationPlan } from "./application";
+ import { attachAssessmentSource } from "./bank-source";
+ import { definitionLiterals, replaceDefinitions } from "./definition-source";
++import {
++  validateExamplePromptChanges,
++  withExamplePromptChange,
++} from "./example-corrections";
++import { replaceExamplePrompts } from "./example-source";
+ import { contentHash } from "./proposals";
+ 
+ export type BankSourceChange = {
+@@ -71,21 +76,33 @@ export function prepareBankSourceChanges(input: {
+     )
+       throw new Error(`일반 설명의 출처가 다릅니다: ${change.id}`);
+   }
++  const examplePromptChanges = validateExamplePromptChanges(
++    baseline,
++    plan.examplePromptChanges,
++  );
++  const examples = new Map(
++    examplePromptChanges.map((change) => [change.id, change]),
++  );
+   const candidateParts: Record<string, ConceptBlankBank> = {};
+   for (const [part, bank] of Object.entries(baseline)) {
+     candidateParts[part] = withAssessments(
+       {
+         ...bank,
+-        concepts: bank.concepts.map((entry) => ({
+-          ...entry,
+-          definition: definitions.get(entry.id)?.after ?? entry.definition,
+-        })),
++        concepts: bank.concepts.map((entry) =>
++          withExamplePromptChange(
++            {
++              ...entry,
++              definition: definitions.get(entry.id)?.after ?? entry.definition,
++            },
++            examples.get(entry.id),
++          ),
++        ),
+       },
+       plan.assessmentTables[part]!,
+     );
+   }
+   if (contentHash(candidateParts) !== plan.candidateBankHash)
+-    throw new Error("질문 표·일반 설명이 검토 후보 은행과 다릅니다.");
++    throw new Error("질문 표·일반 설명·예문이 검토 후보 은행과 다릅니다.");
+   const changes: BankSourceChange[] = [];
+   for (const part of parts) {
+     const grade = part.replace(/plus$/, "");
+@@ -107,7 +124,16 @@ export function prepareBankSourceChanges(input: {
+       file: `src/lib/concept-blank/bank/${name}.ts`,
+       before,
+       after: attachAssessmentSource(
+-        replaceDefinitions(before, grade, definitionsForPart),
++        replaceExamplePrompts(
++          replaceDefinitions(before, grade, definitionsForPart),
++          grade,
++          examplePromptChanges
++            .filter((row) => row.part === part)
++            .map((row) => ({
++              ...row,
++              answer: originalById.get(row.id)!.entry.example!.answer,
++            })),
++        ),
+         part,
+       ),
+     });
+diff --git a/scripts/qa/concept-blank/student-clear/compile.ts b/scripts/qa/concept-blank/student-clear/compile.ts
+index 50e777ed2..2862315ee 100644
+--- a/scripts/qa/concept-blank/student-clear/compile.ts
++++ b/scripts/qa/concept-blank/student-clear/compile.ts
+@@ -11,7 +11,7 @@ import {
+ import { canonicalProposalFile } from "./files";
+ import { readIndependentEvidence } from "./independent";
+ 
+-const names = new Set([
++const requiredNames = new Set([
+   "baseline",
+   "baseline-hash",
+   "e3e4",
+@@ -20,6 +20,7 @@ const names = new Set([
+   "reviews",
+   "out",
+ ]);
++const names = new Set([...requiredNames, "example-corrections"]);
+ const args: Record<string, string> = {};
+ for (let index = 2; index < process.argv.length; index += 2) {
+   const key = process.argv[index]?.replace(/^--/, "");
+@@ -28,7 +29,8 @@ for (let index = 2; index < process.argv.length; index += 2) {
+     throw new Error(`명령행 옵션을 확인하세요: ${process.argv[index]}`);
+   args[key] = value;
+ }
+-for (const key of names) if (!args[key]) throw new Error(`옵션 필요: --${key}`);
++for (const key of requiredNames)
++  if (!args[key]) throw new Error(`옵션 필요: --${key}`);
+ if (!/^[a-f0-9]{64}$/.test(args["baseline-hash"]!))
+   throw new Error("기준 지문은 SHA256입니다.");
+ const read = <T>(file: string): T =>
+@@ -56,12 +58,20 @@ for (const [scope, ledger] of [
+   });
+ }
+ const independent = readIndependentEvidence(resolve(args.reviews!));
++const exampleCorrectionPath = args["example-corrections"]
++  ? resolve(args["example-corrections"]!)
++  : undefined;
++const exampleCorrections = exampleCorrectionPath
++  ? read<unknown>(exampleCorrectionPath)
++  : undefined;
++if (exampleCorrectionPath) sourceFiles.push(exampleCorrectionPath);
+ const plan = compileContentApplicationPlan({
+   baseline: baseline.parts,
+   expectedBaselineHash: args["baseline-hash"]!,
+   current: BANK_PARTS,
+   scopes,
+   independent: independent.evidence,
++  exampleCorrections,
+ });
+ const capturedSources = sourceFiles.map((file) => ({
+   file,
+@@ -89,6 +99,9 @@ console.log(
+       baselineHash: plan.baselineHash,
+       candidateBankHash: plan.candidateBankHash,
+       changedDefinitions: plan.definitionChanges.length,
++      ...(plan.examplePromptChanges?.length
++        ? { changedExamplePrompts: plan.examplePromptChanges.length }
++        : {}),
+       studentRecordsWritten: false,
+       productionBankWritten: false,
+     },
+diff --git a/scripts/qa/concept-blank/student-clear/README.md b/scripts/qa/concept-blank/student-clear/README.md
+index f6d10024b..ebb3f470b 100644
+--- a/scripts/qa/concept-blank/student-clear/README.md
++++ b/scripts/qa/concept-blank/student-clear/README.md
+@@ -32,4 +32,8 @@ node node_modules/tsx/dist/cli.mjs scripts/qa/concept-blank/student-clear/invent
+ 
+ `source-plan.ts`는 새로 검증한 내용 계획·실제 기준 은행·현재 코드의 대응을 확인하고14개 코드와 별도 질문 표의 파일 내용을 준비한다. 파일은 쓰지 않는다. 실제 적용자는 준비된 모든 `before` 값과 현재 파일을 다시 대조하고, 기존 질문 표가 뜻밖에 존재하면 덮어쓰지 않는다.
+ 
++원천 사례의 수식 뒤 조사만 틀린 경우 `compile.ts`의 선택 옵션 `--example-corrections <교정 배열.json>`을 쓸 수 있다. 기존 필수 옵션은 그대로다. 배열 각 행은 정확히 `{ part, id, before, after, reason }`이며 `before`는 불변 기준의 `example.prompt` 전체 문자열이다. ID 중복, 다른 part·이전 prompt, 빈 이유, 추가 필드(답·일반 설명 등), 수식이나 다른 문구 변경은 거절한다. 원래 prompt에 `josaFaults` 결함이 정확히 하나 있고, 그 수식 뒤 조사 하나를 올바른 짝으로 바꾼 뒤 결함이 없어야 한다. 답은 원래 그대로다. 교정 파일도 `capturedSources`에 SHA256을 남긴다.
++
++이 경로는 `normalizeProposal`이나 B/C 검토 지문을 바꾸지 않는다. 후보에만 교정을 적용한 뒤 전체 표기 검사와 `candidateBankHash`를 계산하고, 별도 `examplePromptChanges`를 계획에 싣는다. 교정이 없으면 이 필드가 없어서 기존 계획 모양을 보존한다. `source-plan.ts`도 같은 검증과 교정을 해 후보 지문을 대조한다. `example-source.ts`는 `definitionLiterals`의 ID 결합 위치로 사례 prompt를 찾는다(plusSection 개념 튜플은 일반 설명이 요소 3, `[prompt, answer]`가 요소 4). 해당 prompt 리터럴만 고치며 답·다른 ID·순서·helper·OX·적용·그림은 그대로 남긴다. 원천 코드의 prompt나 답이 이동·변경되면 거절하고, 파일 쓰기는 계속 호출자 소유다. 교정 목록은 전체 독립 검토나 인쇄·복습 활성화를 대신하지 않는다.
++
+ `opening-source.ts`는 기존 도입부의 핵심 원천 ID·순서·학습 내용 지문을 먼저 확인하고, 교정 일반 설명에 해당하는 소단원·대단원의 출처 지문만 갱신할 계획을 만든다. 도입 질문·설명·목표·기존 검토자와 날짜는 바꾸지 않는다. 바뀐 일반 설명과 기존 목표를 실제로 다시 읽은 기록이 있어야 적용한다. 학습 내용 지문에서 `questionRevision`, `bQuestion`, `clozeQuestion`, `questionExclusions`를 제외하여 평가 물음만 바뀐 경우 원래 목표의 출처를 바꾸지 않는다. 학생 질문의 정확한 동결 대응은 별도의 전체 payload 검사로 유지한다.
+diff --git a/scripts/qa/concept-blank/student-clear/example-corrections.ts b/scripts/qa/concept-blank/student-clear/example-corrections.ts
+new file mode 100644
+--- /dev/null
++++ b/scripts/qa/concept-blank/student-clear/example-corrections.ts
+@@ -0,0 +1,110 @@
++/** Separate source grammar corrections; never part of B/C proposal normalization. */
++import type {
++  ConceptBlankBank,
++  ConceptEntry,
++} from "@/contracts/conceptBlank.contract";
++import { josaFaults } from "@/lib/elementary/rules";
++
++export type ExamplePromptChange = {
++  part: string;
++  id: string;
++  before: string;
++  after: string;
++  reason: string;
++};
++
++const opposite: Record<string, string> = {
++  을: "를",
++  를: "을",
++  이: "가",
++  가: "이",
++  과: "와",
++  와: "과",
++  은: "는",
++  는: "은",
++  로: "으로",
++  으로: "로",
++};
++
++/** Exactly one measured math-following particle may change; every other character stays. */
++export function validateExampleParticleChange(
++  before: string,
++  after: string,
++): void {
++  const faults = josaFaults(before);
++  if (faults.length !== 1 || josaFaults(after).length !== 0)
++    throw new Error("예문 교정은 조사 결함 하나만 없애야 합니다.");
++  const fault = faults[0]!;
++  const match = fault.match(/^(\$[^$]*\$ ?)(으로|로|을|를|이|가|과|와|은|는)$/);
++  if (!match) throw new Error("예문 조사 결함의 위치를 확인할 수 없습니다.");
++  const position = before.indexOf(fault);
++  const expected =
++    before.slice(0, position) +
++    match[1] +
++    opposite[match[2]!] +
++    before.slice(position + fault.length);
++  if (position < 0 || after !== expected)
++    throw new Error("예문 교정에 조사 이외의 문구나 수식 변경이 있습니다.");
++}
++
++/** Accept a strict array, bound to immutable original ID/part/prompt, in bank order. */
++export function validateExamplePromptChanges(
++  baseline: Readonly<Record<string, ConceptBlankBank>>,
++  input: unknown = [],
++): ExamplePromptChange[] {
++  if (!Array.isArray(input)) throw new Error("예문 교정 배열이 없습니다.");
++  const originals = Object.entries(baseline).flatMap(([part, bank]) =>
++    bank.concepts.map((entry) => ({ part, entry })),
++  );
++  const byId = new Map(originals.map((row) => [row.entry.id, row]));
++  if (byId.size !== originals.length)
++    throw new Error("원천 예문 ID가 중복됩니다.");
++  const seen = new Set<string>();
++  const fields = ["part", "id", "before", "after", "reason"];
++  const changes = input.map((value: unknown): ExamplePromptChange => {
++    if (!value || typeof value !== "object" || Array.isArray(value))
++      throw new Error("예문 교정 행의 형식 오류");
++    const row = value as Record<string, unknown>;
++    if (
++      Object.keys(row).length !== fields.length ||
++      Object.keys(row).some((key) => !fields.includes(key)) ||
++      fields.some(
++        (key) => typeof row[key] !== "string" || !(row[key] as string).trim(),
++      )
++    )
++      throw new Error("예문 교정은 part·id·before·after·reason만 필요합니다.");
++    const change = row as ExamplePromptChange;
++    if (seen.has(change.id)) throw new Error(`중복 예문 교정 ID: ${change.id}`);
++    seen.add(change.id);
++    const original = byId.get(change.id);
++    if (
++      !original ||
++      original.part !== change.part ||
++      original.entry.example?.prompt !== change.before
++    )
++      throw new Error(
++        `예문 교정의 원천 ID·part·before가 다릅니다: ${change.id}`,
++      );
++    validateExampleParticleChange(change.before, change.after);
++    return {
++      part: change.part,
++      id: change.id,
++      before: change.before,
++      after: change.after,
++      reason: change.reason,
++    };
++  });
++  const order = new Map(originals.map((row, index) => [row.entry.id, index]));
++  return changes.sort((a, b) => order.get(a.id)! - order.get(b.id)!);
++}
++
++/** Retain the answer and all non-prompt fields exactly. */
++export function withExamplePromptChange(
++  entry: ConceptEntry,
++  change?: ExamplePromptChange,
++): ConceptEntry {
++  if (!change) return entry;
++  if (entry.id !== change.id || entry.example?.prompt !== change.before)
++    throw new Error(`후보 예문이 교정 기준과 다릅니다: ${change.id}`);
++  return { ...entry, example: { ...entry.example, prompt: change.after } };
++}
+diff --git a/scripts/qa/concept-blank/student-clear/example-source.ts b/scripts/qa/concept-blank/student-clear/example-source.ts
+new file mode 100644
+--- /dev/null
++++ b/scripts/qa/concept-blank/student-clear/example-source.ts
+@@ -0,0 +1,161 @@
++/** Bind example prompts to existing definition locations, never search/replace by text. */
++import ts from "typescript";
++import { definitionLiterals } from "./definition-source";
++import { validateExampleParticleChange } from "./example-corrections";
++
++type PromptLiteral = {
++  id: string;
++  start: number;
++  end: number;
++  value: string;
++  answer: string;
++};
++type SourceExampleChange = {
++  id: string;
++  before: string;
++  after: string;
++  answer: string;
++};
++
++function property(
++  node: ts.ObjectLiteralExpression,
++  name: string,
++): ts.Expression | undefined {
++  const item = node.properties.find(
++    (item) =>
++      ts.isPropertyAssignment(item) &&
++      item.name.getText().replace(/["']/g, "") === name,
++  );
++  return item && ts.isPropertyAssignment(item) ? item.initializer : undefined;
++}
++
++function literal(
++  expression: ts.Expression | undefined,
++  source: ts.SourceFile,
++): string | undefined {
++  if (!expression) return undefined;
++  if (ts.isStringLiteralLike(expression)) return expression.text;
++  if (
++    ts.isTaggedTemplateExpression(expression) &&
++    ["r", "String.raw"].includes(expression.tag.getText(source)) &&
++    ts.isNoSubstitutionTemplateLiteral(expression.template)
++  )
++    return expression.template
++      .getText(source)
++      .slice(1, -1)
++      .replace(/\r\n?/g, "\n");
++  return undefined;
++}
++
++/** Definition element 3 binds the ID; example element 4 is [prompt, answer]. */
++export function examplePromptLiterals(
++  text: string,
++  grade: string,
++  ids: string[],
++): Map<string, PromptLiteral> {
++  if (new Set(ids).size !== ids.length) throw new Error("중복 예문 원천 ID");
++  const definitions = definitionLiterals(text, grade);
++  const selected = new Map(
++    ids.map((id) => {
++      const definition = definitions.get(id);
++      if (!definition) throw new Error(`예문 원천 ID 없음: ${id}`);
++      return [definition.start, { id, end: definition.end }] as const;
++    }),
++  );
++  const source = ts.createSourceFile(
++    `${grade}.ts`,
++    text,
++    ts.ScriptTarget.Latest,
++    true,
++  );
++  const found = new Map<string, PromptLiteral>();
++  const visit = (node: ts.Node) => {
++    const binding = selected.get(node.getStart(source));
++    if (binding && node.getEnd() === binding.end && ts.isExpression(node)) {
++      const { id } = binding;
++      const parent = node.parent;
++      let example: ts.Expression | undefined;
++      if (ts.isArrayLiteralExpression(parent) && parent.elements[3] === node)
++        example = parent.elements[4];
++      else if (
++        ts.isPropertyAssignment(parent) &&
++        ts.isObjectLiteralExpression(parent.parent)
++      )
++        example = property(parent.parent, "example");
++      const prompt =
++        example && ts.isArrayLiteralExpression(example)
++          ? example.elements[0]
++          : example && ts.isObjectLiteralExpression(example)
++            ? property(example, "prompt")
++            : undefined;
++      const answerExpression =
++        example && ts.isArrayLiteralExpression(example)
++          ? example.elements[1]
++          : example && ts.isObjectLiteralExpression(example)
++            ? property(example, "answer")
++            : undefined;
++      const value = literal(prompt, source);
++      const answer = literal(answerExpression, source);
++      if (!prompt || value === undefined || answer === undefined)
++        throw new Error(
++          `${id}: 예문의 prompt·answer 리터럴을 찾을 수 없습니다.`,
++        );
++      if (found.has(id)) throw new Error(`중복 예문 원천 위치: ${id}`);
++      found.set(id, {
++        id,
++        start: prompt.getStart(source),
++        end: prompt.getEnd(),
++        value,
++        answer,
++      });
++    }
++    ts.forEachChild(node, visit);
++  };
++  visit(source);
++  if (found.size !== ids.length)
++    throw new Error("예문 ID와 코드 위치가 다릅니다.");
++  return found;
++}
++
++/** Writes nothing; only approved prompt literals are replaced, with unchanged answers. */
++export function replaceExamplePrompts(
++  text: string,
++  grade: string,
++  changes: SourceExampleChange[],
++): string {
++  if (!changes.length) return text;
++  const locations = examplePromptLiterals(
++    text,
++    grade,
++    changes.map((change) => change.id),
++  );
++  const edits = changes
++    .map((change) => {
++      validateExampleParticleChange(change.before, change.after);
++      const location = locations.get(change.id)!;
++      if (location.value !== change.before || location.answer !== change.answer)
++        throw new Error(`예문 원천 prompt·answer가 바뀌었습니다: ${change.id}`);
++      const original = text.slice(location.start, location.end);
++      const raw = /^(r|String\.raw)`/.exec(original);
++      const replacement =
++        raw && !change.after.includes("`") && !change.after.includes("${")
++          ? raw[1] + "`" + change.after + "`"
++          : JSON.stringify(change.after);
++      return { ...location, replacement };
++    })
++    .sort((a, b) => b.start - a.start);
++  let next = text;
++  for (const edit of edits)
++    next = next.slice(0, edit.start) + edit.replacement + next.slice(edit.end);
++  const updated = examplePromptLiterals(
++    next,
++    grade,
++    changes.map((change) => change.id),
++  );
++  for (const change of changes) {
++    const location = updated.get(change.id)!;
++    if (location.value !== change.after || location.answer !== change.answer)
++      throw new Error(`예문 교정 범위를 벗어난 변경: ${change.id}`);
++  }
++  return next;
++}
+diff --git a/src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts b/src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts
+new file mode 100644
+--- /dev/null
++++ b/src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts
+@@ -0,0 +1,452 @@
++/** Synthetic approvals below are TEST DATA, never actual independent review or activation. */
++import { readFileSync } from "node:fs";
++import { runInNewContext } from "node:vm";
++import { spawnSync } from "node:child_process";
++import { resolve } from "node:path";
++import ts from "typescript";
++import { describe, expect, it } from "vitest";
++import { BANK_PARTS } from "@/lib/concept-blank/bank";
++import { plusSection, joinBanks, RETIRED } from "@/lib/concept-blank/bank/plus";
++import { withAssessments } from "@/lib/concept-blank/bank/assessment";
++import {
++  blankKeywords,
++  type ConceptBlankBank,
++} from "@/contracts/conceptBlank.contract";
++import { josaFaults } from "@/lib/elementary/rules";
++import { compileContentApplicationPlan } from "../../../scripts/qa/concept-blank/student-clear/application";
++import { prepareBankSourceChanges } from "../../../scripts/qa/concept-blank/student-clear/source-plan";
++import {
++  validateExampleParticleChange,
++  validateExamplePromptChanges,
++  type ExamplePromptChange,
++} from "../../../scripts/qa/concept-blank/student-clear/example-corrections";
++import {
++  examplePromptLiterals,
++  replaceExamplePrompts,
++} from "../../../scripts/qa/concept-blank/student-clear/example-source";
++import { definitionLiterals } from "../../../scripts/qa/concept-blank/student-clear/definition-source";
++import { workerFingerprint } from "../../../scripts/qa/concept-blank/student-clear/editorial";
++import {
++  contentHash,
++  normalizeProposal,
++  type ProposalRecord,
++} from "../../../scripts/qa/concept-blank/student-clear/proposals";
++import type { IndependentEvidence } from "../../../scripts/qa/concept-blank/student-clear/independent";
++
++// The isolated harness points reads at Root; ordinary repository tests use their cwd.
++const root = process.env.CONCEPT_EXAMPLE_SOURCE_ROOT ?? process.cwd();
++const genuine = BANK_PARTS.m2plus!.concepts.find(
++  (entry) => entry.id === "m2-01-01-xc20",
++)!;
++const correction: ExamplePromptChange = {
++  part: "m2plus",
++  id: genuine.id,
++  before: String.raw`$\frac{3}{2\times a}$가 유한소수인 한 자리 자연수 $a$`,
++  after: String.raw`$\frac{3}{2\times a}$이 유한소수인 한 자리 자연수 $a$`,
++  reason: "분수는 분모 다음 분자를 읽으므로 마지막 삼 뒤 조사 이가 맞다.",
++};
++const bank = (concepts = [genuine]): ConceptBlankBank => ({
++  concepts,
++  ox: [],
++  apply: [],
++  figures: [],
++});
++function fixture(correctedOriginal = false) {
++  const entry = structuredClone(genuine);
++  if (correctedOriginal) entry.example!.prompt = correction.after;
++  const baseline = { m2plus: bank([entry]) };
++  const raw: ProposalRecord = {
++    id: entry.id,
++    sourceIndex: 0,
++    learningRole: "procedure",
++    bDecision: "rewrite",
++    cDecision: "keep",
++    bPrompt: "분모에 미지수가 있을 때 유한소수가 되는 조건을 설명하세요.",
++    bAnswer: "약분한 뒤의 분모에 남는 소인수가 조건에 맞아야 한다.",
++    bRequiredIdeas: [{ anyOf: ["약분한 뒤의 분모"] }],
++    cMarkedSentence: entry.definition,
++    cAcceptedAnswers: blankKeywords(entry.definition).map((key) => [key]),
++  };
++  raw.proposalFingerprint = workerFingerprint("middle", raw);
++  const normalized = normalizeProposal(raw, entry)!;
++  const evidence: IndependentEvidence = {
++    id: entry.id,
++    contentHash: normalized.hash,
++    packet: "TEST-ONLY-SYNTHETIC-APPROVAL",
++    inputHash: "fixture",
++    blindProvider: "claude",
++    blindModel: "sonnet",
++    keyProvider: "claude",
++    keyModel: "sonnet",
++    accepted: true,
++    issues: [],
++  };
++  const input = {
++    baseline,
++    current: baseline,
++    expectedBaselineHash: contentHash(baseline),
++    scopes: [
++      {
++        scope: "middle" as const,
++        proposals: { rows: [raw] },
++        editorial: {
++          rows: [
++            {
++              id: entry.id,
++              sourceIndex: 0,
++              learningRole: "procedure",
++              proposalFingerprint: raw.proposalFingerprint,
++              bVerdict: "keep",
++              cVerdict: "keep",
++              bReason: "TEST DATA",
++              cReason: "TEST DATA",
++              reader: "Codex TEST FIXTURE",
++              readAt: "2026-10-07T00:00:00Z",
++            },
++          ],
++        },
++      },
++    ],
++    independent: [evidence],
++  };
++  return { input, raw, normalized, entry };
++}
++
++describe("bounded source-example grammar corrections", () => {
++  it("uses the genuine original example, preserves answer/math, and does not weaken the guard", () => {
++    expect(genuine.example).toEqual({
++      prompt: correction.before,
++      answer: "$1$, $2$, $3$, $4$, $5$, $6$, $8$",
++    });
++    expect(josaFaults(correction.before)).toEqual([
++      String.raw`$\frac{3}{2\times a}$가`,
++    ]);
++    expect(josaFaults(correction.after)).toEqual([]);
++    expect(
++      validateExamplePromptChanges({ m2plus: bank() }, [correction]),
++    ).toEqual([correction]);
++    expect(josaFaults(String.raw`$\frac12$는 같은 수입니다.`)).toEqual([
++      String.raw`$\frac12$는`,
++    ]);
++  });
++
++  it.each([
++    ["stale before", { before: correction.after }],
++    ["wrong ID", { id: "m2-01-01-xc19" }],
++    ["wrong part", { part: "m2" }],
++    ["empty reason", { reason: " " }],
++    ["answer override", { answer: "$9$" }],
++    [
++      "nonparticle wording",
++      { after: correction.after.replace("한 자리", "두 자리") },
++    ],
++    ["changed math", { after: correction.after.replace("{3}", "{6}") }],
++    ["changed variable", { after: correction.after.replace("$a$", "$b$") }],
++    [
++      "wrong particle family",
++      { after: correction.after.replace("$이 ", "$은 ") },
++    ],
++    ["added whitespace", { after: correction.after.replace("$이 ", "$ 이 ") }],
++  ])("rejects %s", (_label, override) => {
++    expect(() =>
++      validateExamplePromptChanges({ m2plus: bank() }, [
++        { ...correction, ...override },
++      ]),
++    ).toThrow();
++  });
++
++  it("rejects duplicate IDs, malformed containers, zero/two initial errors, and an error left after", () => {
++    expect(() =>
++      validateExamplePromptChanges({ m2plus: bank() }, [
++        correction,
++        correction,
++      ]),
++    ).toThrow("중복");
++    expect(() =>
++      validateExamplePromptChanges({ m2plus: bank() }, null),
++    ).toThrow("배열");
++    expect(() =>
++      validateExampleParticleChange(correction.after, correction.after),
++    ).toThrow("하나");
++    expect(() =>
++      validateExampleParticleChange(
++        correction.before + " $3$로 나눈다.",
++        correction.after + " $3$으로 나눈다.",
++      ),
++    ).toThrow("하나");
++    expect(() =>
++      validateExampleParticleChange(correction.before, correction.before),
++    ).toThrow("하나");
++  });
++
++  it("corrects before whole-bank notation/hash, preserving baseline and proposal/review hashes", () => {
++    const { input, raw, normalized } = fixture();
++    const before = JSON.stringify(input);
++    expect(() => compileContentApplicationPlan(input)).toThrow("표기 결함");
++    const plan = compileContentApplicationPlan({
++      ...input,
++      exampleCorrections: [correction],
++    });
++    expect(plan.examplePromptChanges).toEqual([correction]);
++    expect(plan.baselineHash).toBe(input.expectedBaselineHash);
++    expect(plan.reviewedRows[0]!.contentHash).toBe(normalized.hash);
++    expect(
++      normalizeProposal(raw, input.baseline.m2plus.concepts[0]!)!.hash,
++    ).toBe(normalized.hash);
++    expect(JSON.stringify(input)).toBe(before);
++    const candidate = withAssessments(
++      bank([
++        {
++          ...genuine,
++          example: { ...genuine.example!, prompt: correction.after },
++        },
++      ]),
++      plan.assessmentTables.m2plus!,
++    );
++    expect(plan.candidateBankHash).toBe(contentHash({ m2plus: candidate }));
++    expect(candidate.concepts[0]!.example!.answer).toBe(
++      genuine.example!.answer,
++    );
++  });
++
++  it("omits corrections and gives identical plan/hash for absent or empty option", () => {
++    const { input } = fixture(true);
++    const absent = compileContentApplicationPlan(input);
++    expect(
++      compileContentApplicationPlan({ ...input, exampleCorrections: [] }),
++    ).toEqual(absent);
++    expect(Object.hasOwn(absent, "examplePromptChanges")).toBe(false);
++  });
++
++  it("source-plan produces the exact compiler hash and refuses tampered correction/hash/source", () => {
++    const { input } = fixture();
++    const plan = compileContentApplicationPlan({
++      ...input,
++      exampleCorrections: [correction],
++    });
++    const tuple = JSON.stringify([
++      genuine.level,
++      genuine.term,
++      genuine.kind,
++      genuine.definition,
++      [genuine.example!.prompt, genuine.example!.answer],
++    ]);
++    const sources = {
++      m2plus: `import {plusSection,joinBanks,RETIRED} from "./plus";\nexport const bank = joinBanks([plusSection(${JSON.stringify(genuine.section)},"m2-01-01",{concepts:[${Array(19).fill("RETIRED").join(",")},${tuple}],ox:[],apply:[]})]);\n// retained helper\n`,
++    };
++    const saved = JSON.stringify({ plan, baseline: input.baseline, sources });
++    const result = prepareBankSourceChanges({
++      plan,
++      baseline: input.baseline,
++      sources,
++    });
++    expect(contentHash(result.candidateParts)).toBe(plan.candidateBankHash);
++    expect(result.candidateParts.m2plus!.concepts[0]!.example).toEqual({
++      ...genuine.example!,
++      prompt: correction.after,
++    });
++    expect(JSON.stringify({ plan, baseline: input.baseline, sources })).toBe(
++      saved,
++    );
++    const plannedSource = result.changes.find((change) =>
++      change.file.endsWith("/m2-plus.ts"),
++    )!.after;
++    expect(
++      examplePromptLiterals(plannedSource, "m2", [genuine.id]).get(genuine.id)!
++        .value,
++    ).toBe(correction.after);
++    expect(() =>
++      prepareBankSourceChanges({
++        plan: { ...plan, examplePromptChanges: [correction, correction] },
++        baseline: input.baseline,
++        sources,
++      }),
++    ).toThrow("중복");
++    expect(() =>
++      prepareBankSourceChanges({
++        plan: {
++          ...plan,
++          examplePromptChanges: [{ ...correction, before: correction.after }],
++        },
++        baseline: input.baseline,
++        sources,
++      }),
++    ).toThrow("before");
++    expect(() =>
++      prepareBankSourceChanges({
++        plan: { ...plan, examplePromptChanges: [] },
++        baseline: input.baseline,
++        sources,
++      }),
++    ).toThrow("후보 은행");
++    expect(() =>
++      prepareBankSourceChanges({
++        plan,
++        baseline: input.baseline,
++        sources: {
++          m2plus: sources.m2plus.replace(genuine.example!.answer, "$9$"),
++        },
++      }),
++    ).toThrow("prompt·answer");
++  });
++
++  it("still requires independent evidence after a valid source correction", () => {
++    const { input } = fixture();
++    expect(() =>
++      compileContentApplicationPlan({
++        ...input,
++        independent: [],
++        exampleCorrections: [correction],
++      }),
++    ).toThrow("독립 검토");
++  });
++});
++
++describe("ID-bound source prompt editing", () => {
++  const realSource = readFileSync(
++    resolve(root, "src/lib/concept-blank/bank/m2-plus.ts"),
++    "utf8",
++  );
++  const sourceChange = { ...correction, answer: genuine.example!.answer };
++  it("edits the exact real plusSection tuple and retains every byte outside its prompt literal", () => {
++    const location = examplePromptLiterals(realSource, "m2", [genuine.id]).get(
++      genuine.id,
++    )!;
++    const expected =
++      realSource.slice(0, location.start) +
++      "r`" +
++      correction.after +
++      "`" +
++      realSource.slice(location.end);
++    const after = replaceExamplePrompts(realSource, "m2", [sourceChange]);
++    expect(after).toBe(expected);
++    expect(definitionLiterals(after, "m2")).toEqual(
++      new Map(
++        [...definitionLiterals(realSource, "m2")].map(([id, loc]) => [
++          id,
++          { ...loc, start: loc.start, end: loc.end },
++        ]),
++      ),
++    );
++    const beforeSibling = examplePromptLiterals(realSource, "m2", [
++      "m2-01-01-xc19",
++    ]);
++    const afterSibling = examplePromptLiterals(after, "m2", ["m2-01-01-xc19"]);
++    expect(afterSibling).toEqual(beforeSibling);
++    const emitted = ts.transpileModule(after, {
++      compilerOptions: {
++        module: ts.ModuleKind.CommonJS,
++        target: ts.ScriptTarget.ES2022,
++      },
++    }).outputText;
++    const exports = {} as { bank: ConceptBlankBank };
++    runInNewContext(emitted, {
++      exports,
++      require: (name: string) => {
++        if (name === "./plus") return { plusSection, joinBanks, RETIRED };
++        throw Error("Unexpected dependency " + name);
++      },
++    });
++    const expectedBank = structuredClone(BANK_PARTS.m2plus!);
++    expectedBank.concepts.find(
++      (entry) => entry.id === genuine.id,
++    )!.example!.prompt = correction.after;
++    expect(exports.bank).toEqual(expectedBank);
++  });
++  it("keeps retired indices and identical sibling text, even when another ID has the same prompt", () => {
++    const tuple = `["상","이름","방법","설명 {값}",[${JSON.stringify(correction.before)},"$1$"]]`;
++    const text = `const r=String.raw; plusSection("단원","m2-01-01",{concepts:[${tuple},RETIRED,${tuple}],ox:[],apply:[]});`;
++    const after = replaceExamplePrompts(text, "m2", [
++      { ...sourceChange, id: "m2-01-01-xc3", answer: "$1$" },
++    ]);
++    const prompts = examplePromptLiterals(after, "m2", [
++      "m2-01-01-xc1",
++      "m2-01-01-xc3",
++    ]);
++    expect([...definitionLiterals(after, "m2").keys()]).toEqual([
++      "m2-01-01-xc1",
++      "m2-01-01-xc3",
++    ]);
++    expect(prompts.get("m2-01-01-xc1")!.value).toBe(correction.before);
++    expect(prompts.get("m2-01-01-xc3")!.value).toBe(correction.after);
++    expect(after).toContain("RETIRED");
++  });
++  it("refuses stale literals, unknown/duplicate IDs, dynamic examples and changed answers", () => {
++    expect(() =>
++      replaceExamplePrompts(realSource, "m2", [
++        { ...sourceChange, before: correction.after },
++      ]),
++    ).toThrow();
++    expect(() =>
++      replaceExamplePrompts(realSource, "m2", [
++        { ...sourceChange, id: "m2-01-01-xc999" },
++      ]),
++    ).toThrow();
++    expect(() =>
++      replaceExamplePrompts(realSource, "m2", [sourceChange, sourceChange]),
++    ).toThrow("중복");
++    expect(() =>
++      replaceExamplePrompts(realSource, "m2", [
++        { ...sourceChange, answer: "$9$" },
++      ]),
++    ).toThrow("answer");
++    const text = `export const bank = {concepts:[{id:"m2-01-01-c1",definition:"설명",example:getExample()}]};`;
++    expect(() =>
++      replaceExamplePrompts(text, "m2", [
++        { ...sourceChange, id: "m2-01-01-c1" },
++      ]),
++    ).toThrow("리터럴");
++    expect(replaceExamplePrompts(realSource, "m2", [])).toBe(realSource);
++  });
++  it("retains every required CLI flag while the correction flag remains optional", () => {
++    const helper = process.cwd();
++    const compile = resolve(
++      helper,
++      "scripts/qa/concept-blank/student-clear/compile.ts",
++    );
++    const run = (args: string[]) =>
++      spawnSync(
++        process.execPath,
++        [
++          resolve(root, "node_modules/tsx/dist/cli.mjs"),
++          "--tsconfig",
++          resolve(helper, "tsconfig.json"),
++          compile,
++          ...args,
++        ],
++        { cwd: helper, encoding: "utf8" },
++      );
++    const required = [
++      "baseline",
++      "baseline-hash",
++      "e3e4",
++      "e5e6",
++      "middle",
++      "reviews",
++      "out",
++    ];
++    for (const missing of required) {
++      const args = required
++        .filter((key) => key !== missing)
++        .flatMap((key) => [
++          "--" + key,
++          key === "baseline-hash" ? "0".repeat(64) : "unused-test-path",
++        ]);
++      const result = run(args);
++      expect(result.status).not.toBe(0);
++      expect(result.stderr).toContain("옵션 필요: --" + missing);
++    }
++    const args = required.flatMap((key) => [
++      "--" + key,
++      key === "baseline-hash" ? "0".repeat(64) : "unused-test-path",
++    ]);
++    expect(run(args).stderr).toContain("ENOENT");
++    expect(
++      run([...args, "--example-corrections", "unused-test-corrections"]).stderr,
++    ).toContain("ENOENT");
++    expect(
++      run([...args, "--example-corrections", "a", "--example-corrections", "b"])
++        .stderr,
++    ).toContain("명령행 옵션");
++  }, 60000);
++});

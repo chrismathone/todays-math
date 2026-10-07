@@ -1,0 +1,1564 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+  "changes": [
+    {
+      "id": "m2-09-01-xc11",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "서로 구별되는 두 주사위 $A$, $B$를 동시에 던진다. 두 눈의 합이 $4$인 결과를 ($A$의 눈, $B$의 눈)의 꼴로 모두 쓰고 경우의 수를 구하시오. 또 $(1,3)$과 $(3,1)$이 다른 결과인 까닭을 쓰시오.",
+      "bAnswer": "$(1,3)$, $(2,2)$, $(3,1)$의 $3$가지이다. 주사위가 구별되어 $A$가 $1$, $B$가 $3$인 결과와 $A$가 $3$, $B$가 $1$인 결과는 다르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(1,3)$, $(2,2)$, $(3,1)$을 빠짐없이 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$가지"
+          ]
+        },
+        {
+          "anyOf": [
+            "주사위가 구별되어 $A$와 $B$의 눈이 각각 다르다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "{서로 다른} 주사위 둘은 눈의 합이 같아도 각각의 눈이 다르면 다른 결과로 센다.",
+      "cAfter": "{서로 다른} 주사위 둘은 눈의 합이 같아도 각각의 눈이 다르면 다른 결과로 센다.",
+      "cAcceptedAnswers": [
+        [
+          "서로 다른",
+          "서로 구별되는",
+          "구별되는"
+        ]
+      ],
+      "cSlotAnswers": [
+        "서로 다른"
+      ],
+      "cStudentSentence": "□ 주사위 둘은 눈의 합이 같아도 각각의 눈이 다르면 다른 결과로 센다.",
+      "bReason": "주사위를 구별하고 세 결과의 목록 개수와 서로 다른 이유를 묻는다.",
+      "cReason": "서로 다른과 구별되는 주사위는 같은 조건을 표현한다."
+    },
+    {
+      "id": "m2-09-01-xc18",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "서로 구별되는 동전 $3$개를 동시에 던질 때, 적어도 한 개는 앞면인 경우의 수를 전체 경우의 수에서 빼는 방법으로 구하시오. 전체에서 무엇을 뺐는지도 쓰시오.",
+      "bAnswer": "전체 경우의 수 $2\\times2\\times2=8$에서 세 동전이 모두 뒷면인 $1$가지를 빼면 $7$가지이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7$가지"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 $8$가지에서 모두 뒷면인 $1$가지를 뺀다",
+            "전체 경우에서 앞면이 하나도 없는 경우를 뺀다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "적어도 하나의 조건을 만족하는 결과는 전체에서 {어느 조건도 만족하지 않는} 결과를 제외해 셀 수 있다.",
+      "cAcceptedAnswers": [
+        [
+          "어느 조건도 만족하지 않는"
+        ]
+      ],
+      "cSlotAnswers": [
+        "어느 조건도 만족하지 않는"
+      ],
+      "cStudentSentence": "적어도 하나의 조건을 만족하는 결과는 전체에서 □ 결과를 제외해 셀 수 있다.",
+      "bReason": "구별되는 세 동전의8경우에서 모두 뒷면1경우를 뺀다.",
+      "cReason": "적어도 하나의 반대가 어느 조건도 만족하지 않음이다."
+    },
+    {
+      "id": "m2-09-02-xc9",
+      "cDecision": "rewrite",
+      "bDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "숫자 $3$과 $5$가 하나씩 적힌 카드 두 장으로 두 자리 수를 만든다. $35$와 $53$을 같은 경우로 세는지, 다른 경우로 세는지 쓰고 그 이유를 쓰시오.",
+      "bAnswer": "다른 경우로 센다. 두 숫자가 십의 자리와 일의 자리를 서로 바꾸면 다른 수가 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 경우로 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "십의 자리와 일의 자리의 숫자가 바뀌면 다른 수가 된다",
+            "$35$와 $53$은 서로 다른 수이다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "두 자리 수 $35$에서 숫자 $3$은 {십의 자리}, 숫자 $5$는 {일의 자리}에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다.",
+      "cAfter": "두 자리 수 $35$에서 숫자 $3$은 {십의 자리}, 숫자 $5$는 {일의 자리}에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다.",
+      "cAcceptedAnswers": [
+        [
+          "십의 자리"
+        ],
+        [
+          "일의 자리"
+        ]
+      ],
+      "cSlotAnswers": [
+        "십의 자리",
+        "일의 자리"
+      ],
+      "cStudentSentence": "두 자리 수 $35$에서 숫자 $3$은 □, 숫자 $5$는 □에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다.",
+      "cReason": "각 숫자를 지정해 십의 자리와 일의 자리 순서를 정한다.",
+      "bReason": "35와53의 자리 변화로 서로 다른 결과를 설명한다."
+    },
+    {
+      "id": "m2-09-02-xc14",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 중 서로 다른 두 장을 골라 두 자리 짝수를 만든다. 어느 자리부터 정하는 것이 편한지와 그 자리에 올 수 있는 카드를 쓰고, 만들 수 있는 짝수의 개수를 구하시오.",
+      "bAnswer": "일의 자리부터 정하며, 일의 자리에는 $2$ 또는 $4$가 온다. 각각 십의 자리는 남은 $3$장 중 하나이므로 $2\\times3=6$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일의 자리부터 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "일의 자리에는 $2$ 또는 $4$가 온다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개"
+          ]
+        }
+      ],
+      "cMarkedSentence": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 {일의 자리}에 올 카드를 짝수 카드로 먼저 제한한다.",
+      "cAfter": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 {일의 자리}에 올 카드를 짝수 카드로 먼저 제한한다.",
+      "cAcceptedAnswers": [
+        [
+          "일의 자리"
+        ]
+      ],
+      "cSlotAnswers": [
+        "일의 자리"
+      ],
+      "cStudentSentence": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 □에 올 카드를 짝수 카드로 먼저 제한한다.",
+      "bReason": "정할 자리 허용 카드 개수라는 질문의 세 요구를 모두 기준에 둔다.",
+      "cReason": "양의 카드로 짝수를 만드는 일의 자리를 묻는다."
+    },
+    {
+      "id": "m2-09-03-xc2",
+      "coreAfter": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분모에는 {전체 경우의 수}를 넣는다.",
+      "coreReason": "약분한 분모가 전체 경우 수와 달라지는 경우를 배제하도록 약분 전을 명시한다.",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "cMarkedSentence": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분모에는 {전체 경우의 수}를 넣는다.",
+      "cAfter": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분모에는 {전체 경우의 수}를 넣는다.",
+      "cAcceptedAnswers": [
+        [
+          "전체 경우의 수",
+          "모든 경우의 수"
+        ]
+      ],
+      "cSlotAnswers": [
+        "전체 경우의 수"
+      ],
+      "cStudentSentence": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분모에는 □를 넣는다.",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "exclusionReason": "B 제외: c2 B의 '모든 경우의 수로 나눈다'와 중복된다.",
+      "cReason": "약분 전 분모와 전체 경우 수를 연결한다.",
+      "bReason": "확률 전체 설명의 분모 부분 중복 제외를 유지한다."
+    },
+    {
+      "id": "m2-09-03-xc3",
+      "coreAfter": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분자에는 주어진 사건에 {맞는 경우의 수}를 넣는다.",
+      "coreReason": "약분 후 분자는 사건 경우 수와 다를 수 있어 약분 전을 명시한다.",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "cMarkedSentence": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분자에는 주어진 사건에 {맞는 경우의 수}를 넣는다.",
+      "cAfter": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분자에는 주어진 사건에 {맞는 경우의 수}를 넣는다.",
+      "cAcceptedAnswers": [
+        [
+          "맞는 경우의 수",
+          "해당하는 경우의 수",
+          "속하는 경우의 수"
+        ]
+      ],
+      "cSlotAnswers": [
+        "맞는 경우의 수"
+      ],
+      "cStudentSentence": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분자에는 주어진 사건에 □를 넣는다.",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "exclusionReason": "B 제외: c2 B의 '사건 $A$가 일어나는 경우의 수'와 중복된다.",
+      "cReason": "약분 전 분자와 사건에 맞는 경우 수를 연결한다.",
+      "bReason": "확률 전체 설명의 분자 부분 중복 제외를 유지한다."
+    },
+    {
+      "id": "m2-09-03-xc5",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "눈이 $1$부터 $6$까지이고 각 눈이 나올 가능성이 같은 주사위 한 개를 던진다. $4$의 눈이 나올 확률을 구하고, 그 분수에서 분자와 분모가 나타내는 경우의 수를 쓰시오.",
+      "bAnswer": "$\\frac{1}{6}$이다. 약분 전 분자는 $4$의 눈이라는 결과 $1$가지, 분모는 전체 결과 $6$가지이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 해당 결과 $1$가지, 분모는 전체 $6$가지"
+          ]
+        }
+      ],
+      "cMarkedSentence": "공정한 주사위에서 특정한 눈 하나가 나올 확률은 {$\\frac{1}{6}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{6}$"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$\\frac{1}{6}$"
+      ],
+      "cStudentSentence": "공정한 주사위에서 특정한 눈 하나가 나올 확률은 □이다.",
+      "bReason": "등가능한6결과의 한 눈 확률과 분자 분모의 뜻을 묻는다.",
+      "cReason": "공정한 주사위 한 눈의1/6은 짧고 명확하다.",
+      "bGoal": "등가능한 전체 결과와 특정 결과의 개수로 한 눈의 확률을 설명한다.",
+      "exclusionReason": null
+    },
+    {
+      "id": "m2-09-03-xc8",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "사건 $A$의 확률은 $0.2$, 사건 $B$의 확률은 $0.6$이다. 어느 사건이 일어날 가능성이 더 높은지 고르고, 확률값으로 그 까닭을 쓰시오.",
+      "bAnswer": "사건 $B$이다. $0.6>0.2$로 $B$의 확률이 더 크기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사건 $B$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.6>0.2$로 확률이 더 크다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "두 사건 중 확률의 값이 {더 큰} 쪽을 일어날 가능성이 더 높은 사건으로 판단한다.",
+      "cAcceptedAnswers": [
+        [
+          "더 큰"
+        ]
+      ],
+      "cSlotAnswers": [
+        "더 큰"
+      ],
+      "cStudentSentence": "두 사건 중 확률의 값이 □ 쪽을 일어날 가능성이 더 높은 사건으로 판단한다.",
+      "bReason": "0.2와0.6의 확률 대소로 사건 B를 판단한다.",
+      "cReason": "확률이 더 크면 가능성이 더 높다는 비교를 유지한다.",
+      "bGoal": "두 사건의 확률값을 비교하여 일어날 가능성을 판단한다.",
+      "exclusionReason": null
+    },
+    {
+      "id": "m2-09-03-xc10",
+      "coreAfter": "같은 가능성의 결과를 세어 얻은 확률 분수는 분자와 분모를 공약수로 나누어 {약분}해도 확률값이 변하지 않는다.",
+      "coreReason": "정수 분자·분모의 약분이 성립하는 나눗수인 공약수를 명시한다.",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bPrompt": "전체 결과 $6$가지가 같은 가능성으로 나오고 사건 $A$에 해당하는 결과는 $2$가지이다. 확률을 경우의 수로 만든 분수와 약분한 분수로 각각 쓰고, 두 분수의 확률값이 같은 이유를 쓰시오.",
+      "bAnswer": "약분 전 분수는 $\\frac{2}{6}$, 약분한 분수는 $\\frac{1}{3}$이다. 분자와 분모를 같은 공약수 $2$로 나누어도 분수의 값은 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분 전 $\\frac{2}{6}$, 약분 후 $\\frac{1}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자와 분모를 같은 공약수로 나누어도 분수의 값은 같다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "같은 가능성의 결과를 세어 얻은 확률 분수는 분자와 분모를 공약수로 나누어 {약분}해도 확률값이 변하지 않는다.",
+      "cAfter": "같은 가능성의 결과를 세어 얻은 확률 분수는 분자와 분모를 공약수로 나누어 {약분}해도 확률값이 변하지 않는다.",
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ]
+      ],
+      "cSlotAnswers": [
+        "약분"
+      ],
+      "cStudentSentence": "같은 가능성의 결과를 세어 얻은 확률 분수는 분자와 분모를 공약수로 나누어 □해도 확률값이 변하지 않는다.",
+      "bReason": "2/6과1/3의 값 보존을 공약수 나눗셈으로 설명한다.",
+      "cReason": "공약수로 나누는 약분이라는 절차를 묻는다.",
+      "bGoal": "경우의 수로 만든 확률 분수와 약분한 확률의 값이 같음을 설명한다.",
+      "exclusionReason": null
+    },
+    {
+      "id": "m2-09-03-xc13",
+      "cDecision": "rewrite",
+      "bDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "공정한 동전을 $10$번 던질 때 앞면이 반드시 $5$번 나온다고 할 수 있는지 쓰시오. 또 앞면이 나올 확률 $\\frac{1}{2}$의 뜻을 이용해 그 이유를 쓰시오.",
+      "bAnswer": "반드시 $5$번 나온다고 할 수 없다. 확률 $\\frac{1}{2}$은 아주 많이 되풀이할 때 상대도수가 가까워지는 값일 뿐이다. 따라서 $10$번처럼 적은 횟수에서는 다르게 나올 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반드시 $5$번이라고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "확률은 아주 많이 되풀이할 때 상대도수가 가까워지는 값이다",
+            "적은 횟수에서는 확률과 다르게 나올 수 있다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 {$5$}번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 {아니다}.",
+      "cAfter": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 {$5$}번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 {아니다}.",
+      "cAcceptedAnswers": [
+        [
+          "$5$",
+          "다섯"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$5$",
+        "아니다"
+      ],
+      "cStudentSentence": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 □번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 □.",
+      "cReason": "확률 곱의 값5와 실제 횟수의 비보장을 나누어 묻는다.",
+      "bReason": "확률1/2은10회에서 앞면5회를 보장하지 않는다고 설명한다."
+    },
+    {
+      "id": "m2-09-03-xc19",
+      "cDecision": "rewrite",
+      "bDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "어떤 주사위를 $30$번 던졌더니 $1$의 눈이 $8$번 나왔다. 상대도수 $\\frac{8}{30}$은 공정한 주사위에서 $1$의 눈이 나올 확률 $\\frac{1}{6}$과 다르다. 이 결과만으로 주사위가 불공정하다고 단정할 수 있는지 쓰고 이유를 쓰시오.",
+      "bAnswer": "단정할 수 없다. 공정한 주사위라도 시행 횟수가 아주 많지 않으면 상대도수가 확률과 다르게 나올 수 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "단정할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "공정한 주사위라도 실험의 상대도수는 확률과 다르게 나올 수 있다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "주사위를 $30$번 던져 $1$의 눈이 $8$번 나왔다. 상대도수가 이론상 확률 $\\frac{1}{6}$과 다르다는 사실만으로 이 주사위가 불공정하다고 {단정할 수 없다}.",
+      "cAfter": "주사위를 $30$번 던져 $1$의 눈이 $8$번 나왔다. 상대도수가 이론상 확률 $\\frac{1}{6}$과 다르다는 사실만으로 이 주사위가 불공정하다고 {단정할 수 없다}.",
+      "cAcceptedAnswers": [
+        [
+          "단정할 수 없다",
+          "확정할 수 없다"
+        ]
+      ],
+      "cSlotAnswers": [
+        "단정할 수 없다"
+      ],
+      "cStudentSentence": "주사위를 $30$번 던져 $1$의 눈이 $8$번 나왔다. 상대도수가 이론상 확률 $\\frac{1}{6}$과 다르다는 사실만으로 이 주사위가 불공정하다고 □.",
+      "cReason": "불공정이라는 판단을 고정하고 단정 가능성을 묻는다.",
+      "bReason": "30회 중8회의 관찰만으로 불공정을 단정하지 못한다."
+    },
+    {
+      "id": "m2-09-04-xc1",
+      "bDecision": "rewrite",
+      "cDecision": "exclude",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+      "bAnswer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$의 눈이 두 사건에 모두 속한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그대로 더하면 겹친 결과를 두 번 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "cAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cAnswers": null,
+      "cSlotAnswers": null,
+      "cAcceptedAnswers": null,
+      "cSlots": null,
+      "exclusionReason": "배타 사건 합 조건의 C 중복 제외다.",
+      "bReason": "공정한 주사위의 눈6 중복을 빼어2/3을 구한다.",
+      "cReason": "같은 배타 사건 조건의 C 중복 제외를 유지한다."
+    },
+    {
+      "id": "m2-09-04-xc2",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "(가) 공정한 동전과 주사위를 서로 영향 없이 던져 앞면과 $6$의 눈이 나올 확률. (나) 흰 공 $3$개, 검은 공 $2$개에서 매번 남은 각 공을 같은 가능성으로, 다시 넣지 않고 두 번 뽑아 모두 흰 공일 확률. 각 처음 확률끼리 그대로 곱할 수 있는 쪽과 다른 쪽에서 안 되는 이유를 쓰시오.",
+      "bAnswer": "(가)이다. (나)는 첫 흰 공을 빼면 흰 공 $2$개, 전체 $4$개가 남아 다음 흰 공 확률이 $\\frac{3}{5}$에서 $\\frac{2}{4}$로 바뀐다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(가)"
+          ]
+        },
+        {
+          "anyOf": [
+            "(나)는 첫 결과에 따라 다음 확률이 바뀐다",
+            "첫 흰 공 뒤 둘째 흰 공 확률이 $\\frac{2}{4}$이다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "두 확률을 그대로 곱해 둘 다 일어날 확률을 구하려면 한 결과가 다른 사건의 {가능성}을 바꾸지 않는지 살핀다.",
+      "cAfter": "두 확률을 그대로 곱해 둘 다 일어날 확률을 구하려면 한 결과가 다른 사건의 {가능성}을 바꾸지 않는지 살핀다.",
+      "cAcceptedAnswers": [
+        [
+          "가능성",
+          "확률"
+        ]
+      ],
+      "cSlotAnswers": [
+        "가능성"
+      ],
+      "cStudentSentence": "두 확률을 그대로 곱해 둘 다 일어날 확률을 구하려면 한 결과가 다른 사건의 □을 바꾸지 않는지 살핀다.",
+      "bReason": "영향 없는 시행과 비복원 추출을 비교해 처음 확률의 곱을 판단한다.",
+      "cReason": "앞 결과가 다음 가능성이나 확률을 바꾸는지를 묻는다."
+    },
+    {
+      "id": "m2-09-04-xc8",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "빨간 공 $3$개, 파란 공 $2$개가 든 주머니에서 빨간 공 한 개를 꺼내 다시 넣지 않았다. 남은 빨간 공·파란 공·전체 공의 수를 쓰시오. 이어 남은 각 공을 같은 가능성으로 하나 더 뽑을 때 빨강과 파랑의 확률을 각각 구하시오.",
+      "bAnswer": "빨강 $2$개, 파랑 $2$개, 전체 $4$개이다. 빨강의 확률과 파랑의 확률은 각각 $\\frac{2}{4}=\\frac{1}{2}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빨강 $2$개, 파랑 $2$개, 전체 $4$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "빨강의 확률 $\\frac{1}{2}$, 파랑의 확률 $\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cMarkedSentence": "공 한 개를 꺼내 되돌리지 않으면 꺼낸 색의 공 개수는 {$1$}개 줄고 다른 색의 개수는 그대로이다.",
+      "cAfter": "공 한 개를 꺼내 되돌리지 않으면 꺼낸 색의 공 개수는 {$1$}개 줄고 다른 색의 개수는 그대로이다.",
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$1$"
+      ],
+      "cStudentSentence": "공 한 개를 꺼내 되돌리지 않으면 꺼낸 색의 공 개수는 □개 줄고 다른 색의 개수는 그대로이다.",
+      "bReason": "각 남은 공의 등가능 조건 아래 두 색의 남은 수와 확률을 구한다.",
+      "cReason": "되돌리지 않은 색의 공 한 개 감소를 묻는다."
+    },
+    {
+      "id": "m2-09-04-xc9",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "빨간 공 $1$개와 파란 공 $1$개가 든 주머니에서 공을 하나 꺼내 색을 확인하고 다시 넣는 일을 두 번 한다. 가능한 결과를 (첫 번째, 두 번째) 꼴로 모두 쓰고, 빨강과 파랑이 한 번씩인 결과의 수를 쓰시오.",
+      "bAnswer": "(빨강, 빨강), (빨강, 파랑), (파랑, 빨강), (파랑, 파랑)이다. 빨강과 파랑이 한 번씩인 결과는 (빨강, 파랑), (파랑, 빨강)의 $2$가지이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 차례를 구별한 네 결과를 빠짐없이 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 번씩인 결과의 수는 $2$이다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "공을 두 번 뽑은 결과를 적을 때는 (빨강, 파랑)과 (파랑, 빨강)처럼 첫 번째와 두 번째의 {순서}를 구별하여 적는다.",
+      "cAfter": "공을 두 번 뽑은 결과를 적을 때는 (빨강, 파랑)과 (파랑, 빨강)처럼 첫 번째와 두 번째의 {순서}를 구별하여 적는다.",
+      "cAcceptedAnswers": [
+        [
+          "순서",
+          "차례"
+        ]
+      ],
+      "cSlotAnswers": [
+        "순서"
+      ],
+      "cStudentSentence": "공을 두 번 뽑은 결과를 적을 때는 (빨강, 파랑)과 (파랑, 빨강)처럼 첫 번째와 두 번째의 □를 구별하여 적는다.",
+      "bReason": "복원 추출의 네 순서 결과와 한 번씩 나온2경우를 구한다.",
+      "cReason": "동일한 두 색도 순서가 다르면 다른 결과임을 확인한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-09-01-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "서로 구별되는 두 주사위 $A$, $B$를 동시에 던진다. 두 눈의 합이 $4$인 결과를 ($A$의 눈, $B$의 눈)의 꼴로 모두 쓰고 경우의 수를 구하시오. 또 $(1,3)$과 $(3,1)$이 다른 결과인 까닭을 쓰시오.",
+      "bAnswer": "$(1,3)$, $(2,2)$, $(3,1)$의 $3$가지이다. 주사위가 구별되어 $A$가 $1$, $B$가 $3$인 결과와 $A$가 $3$, $B$가 $1$인 결과는 다르다.",
+      "bGoal": "서로 다른 주사위의 결과를 순서쌍으로 세기",
+      "bReason": "주사위를 구별하고 세 결과의 목록 개수와 서로 다른 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(1,3)$, $(2,2)$, $(3,1)$을 빠짐없이 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$가지"
+          ]
+        },
+        {
+          "anyOf": [
+            "주사위가 구별되어 $A$와 $B$의 눈이 각각 다르다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "서로 다른과 구별되는 주사위는 같은 조건을 표현한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "구별되는 주사위의 결과를 순서쌍으로 세기",
+      "authorBatch": 50,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3183,
+      "part": "m2plus",
+      "sourceFingerprint": "22d123ca50813a385b9d56781d6dffa779e88241520236a1741ba9c1fee25f38",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3183
+      },
+      "directReview": null,
+      "cMarkedSentence": "{서로 다른} 주사위 둘은 눈의 합이 같아도 각각의 눈이 다르면 다른 결과로 센다.",
+      "cSlotAnswers": [
+        "서로 다른"
+      ],
+      "cStudentSentence": "□ 주사위 둘은 눈의 합이 같아도 각각의 눈이 다르면 다른 결과로 센다.",
+      "cAnswers": [
+        "서로 다른"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "서로 다른",
+          "equivalentAnswers": [
+            "서로 다른",
+            "서로 구별되는",
+            "구별되는"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "서로 다른",
+          "서로 구별되는",
+          "구별되는"
+        ]
+      ],
+      "proposalFingerprint": "1be9a5c6d81cb0970709b51f6b36f7ee467a68a68909c4669fddc378b5e1657f",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": "{서로 다른} 주사위 둘은 눈의 합이 같아도 각각의 눈이 다르면 다른 결과로 센다."
+    },
+    {
+      "id": "m2-09-01-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "서로 구별되는 동전 $3$개를 동시에 던질 때, 적어도 한 개는 앞면인 경우의 수를 전체 경우의 수에서 빼는 방법으로 구하시오. 전체에서 무엇을 뺐는지도 쓰시오.",
+      "bAnswer": "전체 경우의 수 $2\\times2\\times2=8$에서 세 동전이 모두 뒷면인 $1$가지를 빼면 $7$가지이다.",
+      "bGoal": "적어도 하나를 여사건으로 세기",
+      "bReason": "구별되는 세 동전의8경우에서 모두 뒷면1경우를 뺀다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7$가지"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 $8$가지에서 모두 뒷면인 $1$가지를 뺀다",
+            "전체 경우에서 앞면이 하나도 없는 경우를 뺀다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "적어도 하나의 반대가 어느 조건도 만족하지 않음이다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "전체에서 반대 경우를 빼서 세기",
+      "authorBatch": 50,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3190,
+      "part": "m2plus",
+      "sourceFingerprint": "b6c1139790da806fa8acbce37e7e5a7c48137a0f7900e94f2023392037a98e77",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3190
+      },
+      "directReview": null,
+      "cFrozenSentence": "적어도 하나의 조건을 만족하는 결과는 전체에서 □ 결과를 제외해 셀 수 있다.",
+      "cFrozenDefinition": "적어도 하나의 조건을 만족하는 결과는 전체에서 {어느 조건도 만족하지 않는} 결과를 제외해 셀 수 있다.",
+      "cFrozenAnswers": [
+        "어느 조건도 만족하지 않는"
+      ],
+      "cMarkedSentence": "적어도 하나의 조건을 만족하는 결과는 전체에서 {어느 조건도 만족하지 않는} 결과를 제외해 셀 수 있다.",
+      "cSlotAnswers": [
+        "어느 조건도 만족하지 않는"
+      ],
+      "cStudentSentence": "적어도 하나의 조건을 만족하는 결과는 전체에서 □ 결과를 제외해 셀 수 있다.",
+      "cAnswers": [
+        "어느 조건도 만족하지 않는"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "어느 조건도 만족하지 않는",
+          "equivalentAnswers": [
+            "어느 조건도 만족하지 않는"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "어느 조건도 만족하지 않는"
+        ]
+      ],
+      "proposalFingerprint": "e2b86c7efb73db1ca560d90b617992631cbc3ff17e45405b44fd7a09b51e986d",
+      "coreAfter": null,
+      "coreReason": null
+    },
+    {
+      "id": "m2-09-02-xc9",
+      "learningRole": "reason",
+      "roleReason": "두 자리 수에서 자리를 바꾸면 다른 수가 되는 이유",
+      "bDecision": "rewrite",
+      "bPrompt": "숫자 $3$과 $5$가 하나씩 적힌 카드 두 장으로 두 자리 수를 만든다. $35$와 $53$을 같은 경우로 세는지, 다른 경우로 세는지 쓰고 그 이유를 쓰시오.",
+      "bAnswer": "다른 경우로 센다. 두 숫자가 십의 자리와 일의 자리를 서로 바꾸면 다른 수가 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 경우로 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "십의 자리와 일의 자리의 숫자가 바뀌면 다른 수가 된다",
+            "$35$와 $53$은 서로 다른 수이다"
+          ]
+        }
+      ],
+      "bGoal": "카드로 만든 두 자리 수에서 자리 구별하기",
+      "bReason": "35와53의 자리 변화로 서로 다른 결과를 설명한다.",
+      "exampleNeeded": true,
+      "cDecision": "rewrite",
+      "cReason": "각 숫자를 지정해 십의 자리와 일의 자리 순서를 정한다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3204,
+      "part": "m2plus",
+      "sourceFingerprint": "d645ac37e4eacf9e38478fd780052fdff071814cfc885f412f068ef65ffc8b45",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3204
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 자리 수 $35$에서 숫자 $3$은 {십의 자리}, 숫자 $5$는 {일의 자리}에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다.",
+      "cSlotAnswers": [
+        "십의 자리",
+        "일의 자리"
+      ],
+      "cStudentSentence": "두 자리 수 $35$에서 숫자 $3$은 □, 숫자 $5$는 □에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다.",
+      "cAnswers": [
+        "십의 자리",
+        "일의 자리"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "십의 자리",
+          "equivalentAnswers": [
+            "십의 자리"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "일의 자리",
+          "equivalentAnswers": [
+            "일의 자리"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "십의 자리"
+        ],
+        [
+          "일의 자리"
+        ]
+      ],
+      "proposalFingerprint": "3c7761be4fa00df6e5d73f3d663d47e841cc390dcb7a190e7d1a4e855c92e3ca",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": "두 자리 수 $35$에서 숫자 $3$은 {십의 자리}, 숫자 $5$는 {일의 자리}에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다."
+    },
+    {
+      "id": "m2-09-02-xc14",
+      "learningRole": "procedure",
+      "roleReason": "짝수 조건을 일의 자리에서 먼저 처리하기",
+      "bDecision": "rewrite",
+      "bPrompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 중 서로 다른 두 장을 골라 두 자리 짝수를 만든다. 어느 자리부터 정하는 것이 편한지와 그 자리에 올 수 있는 카드를 쓰고, 만들 수 있는 짝수의 개수를 구하시오.",
+      "bAnswer": "일의 자리부터 정하며, 일의 자리에는 $2$ 또는 $4$가 온다. 각각 십의 자리는 남은 $3$장 중 하나이므로 $2\\times3=6$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일의 자리부터 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "일의 자리에는 $2$ 또는 $4$가 온다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개"
+          ]
+        }
+      ],
+      "bGoal": "짝수 조건이 있는 두 자리 수 세기",
+      "bReason": "정할 자리 허용 카드 개수라는 질문의 세 요구를 모두 기준에 둔다.",
+      "exampleNeeded": true,
+      "cDecision": "rewrite",
+      "cAfter": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 {일의 자리}에 올 카드를 짝수 카드로 먼저 제한한다.",
+      "cAnswers": [
+        "일의 자리"
+      ],
+      "cReason": "양의 카드로 짝수를 만드는 일의 자리를 묻는다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3209,
+      "part": "m2plus",
+      "sourceFingerprint": "ad901527131fa0b1fcd59b751d3328a765faeafc287ca93e65105e6815607add",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3209
+      },
+      "directReview": null,
+      "cMarkedSentence": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 {일의 자리}에 올 카드를 짝수 카드로 먼저 제한한다.",
+      "cSlotAnswers": [
+        "일의 자리"
+      ],
+      "cStudentSentence": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 □에 올 카드를 짝수 카드로 먼저 제한한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "일의 자리",
+          "equivalentAnswers": [
+            "일의 자리"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "일의 자리"
+        ]
+      ],
+      "proposalFingerprint": "f8b39658f41b727968460e89fc5d3934877c1ba78ac5f4e52fc44a46a9378384",
+      "coreAfter": null,
+      "coreReason": null
+    },
+    {
+      "id": "m2-09-03-xc2",
+      "learningRole": "procedure",
+      "roleReason": "확률 분수의 분모 정하기",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "확률 전체 설명의 분모 부분 중복 제외를 유지한다.",
+      "exclusionReason": "B 제외: c2 B의 '모든 경우의 수로 나눈다'와 중복된다.",
+      "cDecision": "rewrite",
+      "cReason": "약분 전 분모와 전체 경우 수를 연결한다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3224,
+      "part": "m2plus",
+      "sourceFingerprint": "e4aca94ab1a3f7fff98f872a136cec9cc3c8c87b635a14b8515c8f0af3f06545",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3224
+      },
+      "directReview": null,
+      "bRequiredIdeas": [],
+      "cMarkedSentence": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분모에는 {전체 경우의 수}를 넣는다.",
+      "cSlotAnswers": [
+        "전체 경우의 수"
+      ],
+      "cStudentSentence": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분모에는 □를 넣는다.",
+      "cAnswers": [
+        "전체 경우의 수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "전체 경우의 수",
+          "equivalentAnswers": [
+            "전체 경우의 수",
+            "모든 경우의 수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "전체 경우의 수",
+          "accept": [
+            "모든 경우의 수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "전체 경우의 수",
+          "모든 경우의 수"
+        ]
+      ],
+      "proposalFingerprint": "a0c2b2a357b1a62efde9fc49fff98061123a9212711dd6d9de97eedb2f7e8c70",
+      "coreAfter": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분모에는 {전체 경우의 수}를 넣는다.",
+      "coreReason": "약분한 분모가 전체 경우 수와 달라지는 경우를 배제하도록 약분 전을 명시한다.",
+      "cAfter": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분모에는 {전체 경우의 수}를 넣는다."
+    },
+    {
+      "id": "m2-09-03-xc3",
+      "learningRole": "procedure",
+      "roleReason": "확률 분수의 분자 정하기",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "확률 전체 설명의 분자 부분 중복 제외를 유지한다.",
+      "exclusionReason": "B 제외: c2 B의 '사건 $A$가 일어나는 경우의 수'와 중복된다.",
+      "cDecision": "rewrite",
+      "cReason": "약분 전 분자와 사건에 맞는 경우 수를 연결한다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3225,
+      "part": "m2plus",
+      "sourceFingerprint": "57d925e7f5d56a8a22523b4f1ef565cbb9992d5b36d5254eda9d834c6a1f6e94",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3225
+      },
+      "directReview": null,
+      "bRequiredIdeas": [],
+      "cMarkedSentence": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분자에는 주어진 사건에 {맞는 경우의 수}를 넣는다.",
+      "cSlotAnswers": [
+        "맞는 경우의 수"
+      ],
+      "cStudentSentence": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분자에는 주어진 사건에 □를 넣는다.",
+      "cAnswers": [
+        "맞는 경우의 수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "맞는 경우의 수",
+          "equivalentAnswers": [
+            "맞는 경우의 수",
+            "해당하는 경우의 수",
+            "속하는 경우의 수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "맞는 경우의 수",
+          "accept": [
+            "해당하는 경우의 수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "맞는 경우의 수",
+          "해당하는 경우의 수",
+          "속하는 경우의 수"
+        ]
+      ],
+      "proposalFingerprint": "90aa39ebf86092b4f79316c3cf2e6190756d0303fd4594b0a410a1d192326b31",
+      "coreAfter": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분자에는 주어진 사건에 {맞는 경우의 수}를 넣는다.",
+      "coreReason": "약분 후 분자는 사건 경우 수와 다를 수 있어 약분 전을 명시한다.",
+      "cAfter": "각 결과의 가능성이 같을 때, 경우의 수로 만든 약분 전 확률 분수의 분자에는 주어진 사건에 {맞는 경우의 수}를 넣는다."
+    },
+    {
+      "id": "m2-09-03-xc5",
+      "learningRole": "application",
+      "roleReason": "공정한 주사위에서 한 눈이 나올 확률",
+      "bDecision": "rewrite",
+      "bPrompt": "눈이 $1$부터 $6$까지이고 각 눈이 나올 가능성이 같은 주사위 한 개를 던진다. $4$의 눈이 나올 확률을 구하고, 그 분수에서 분자와 분모가 나타내는 경우의 수를 쓰시오.",
+      "bAnswer": "$\\frac{1}{6}$이다. 약분 전 분자는 $4$의 눈이라는 결과 $1$가지, 분모는 전체 결과 $6$가지이다.",
+      "bGoal": "등가능한 전체 결과와 특정 결과의 개수로 한 눈의 확률을 설명한다.",
+      "bReason": "등가능한6결과의 한 눈 확률과 분자 분모의 뜻을 묻는다.",
+      "exclusionReason": null,
+      "cDecision": "keep",
+      "cReason": "공정한 주사위 한 눈의1/6은 짧고 명확하다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3227,
+      "part": "m2plus",
+      "sourceFingerprint": "e13571cdb48ea0b3433c4af241b142f2d05e1e1aa84c6072311acb2e3f5c33a7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3227
+      },
+      "directReview": null,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 해당 결과 $1$가지, 분모는 전체 $6$가지"
+          ]
+        }
+      ],
+      "cFrozenSentence": "공정한 주사위에서 특정한 눈 하나가 나올 확률은 □이다.",
+      "cFrozenDefinition": "공정한 주사위에서 특정한 눈 하나가 나올 확률은 {$\\frac{1}{6}$}이다.",
+      "cFrozenAnswers": [
+        "$\\frac{1}{6}$"
+      ],
+      "cMarkedSentence": "공정한 주사위에서 특정한 눈 하나가 나올 확률은 {$\\frac{1}{6}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{6}$"
+      ],
+      "cStudentSentence": "공정한 주사위에서 특정한 눈 하나가 나올 확률은 □이다.",
+      "cAnswers": [
+        "$\\frac{1}{6}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{6}$",
+          "equivalentAnswers": [
+            "$\\frac{1}{6}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{6}$"
+        ]
+      ],
+      "proposalFingerprint": "f2eb5733e7caeea79a221029cb6c21d105cab800eb3ab487ddf5dc7f5b8fcba8",
+      "coreAfter": null,
+      "coreReason": null
+    },
+    {
+      "id": "m2-09-03-xc8",
+      "learningRole": "procedure",
+      "roleReason": "확률의 크기로 가능성 비교하기",
+      "bDecision": "rewrite",
+      "bPrompt": "사건 $A$의 확률은 $0.2$, 사건 $B$의 확률은 $0.6$이다. 어느 사건이 일어날 가능성이 더 높은지 고르고, 확률값으로 그 까닭을 쓰시오.",
+      "bAnswer": "사건 $B$이다. $0.6>0.2$로 $B$의 확률이 더 크기 때문이다.",
+      "bGoal": "두 사건의 확률값을 비교하여 일어날 가능성을 판단한다.",
+      "bReason": "0.2와0.6의 확률 대소로 사건 B를 판단한다.",
+      "exclusionReason": null,
+      "cDecision": "keep",
+      "cReason": "확률이 더 크면 가능성이 더 높다는 비교를 유지한다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3230,
+      "part": "m2plus",
+      "sourceFingerprint": "afaf2d5d216c65eb56fa077b48b105cffb71c82c8fc2f0b63a4dc2d06dd34c3d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3230
+      },
+      "directReview": null,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사건 $B$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.6>0.2$로 확률이 더 크다"
+          ]
+        }
+      ],
+      "cFrozenSentence": "두 사건 중 확률의 값이 □ 쪽을 일어날 가능성이 더 높은 사건으로 판단한다.",
+      "cFrozenDefinition": "두 사건 중 확률의 값이 {더 큰} 쪽을 일어날 가능성이 더 높은 사건으로 판단한다.",
+      "cFrozenAnswers": [
+        "더 큰"
+      ],
+      "cMarkedSentence": "두 사건 중 확률의 값이 {더 큰} 쪽을 일어날 가능성이 더 높은 사건으로 판단한다.",
+      "cSlotAnswers": [
+        "더 큰"
+      ],
+      "cStudentSentence": "두 사건 중 확률의 값이 □ 쪽을 일어날 가능성이 더 높은 사건으로 판단한다.",
+      "cAnswers": [
+        "더 큰"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "더 큰",
+          "equivalentAnswers": [
+            "더 큰"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "더 큰"
+        ]
+      ],
+      "proposalFingerprint": "334c7ae3cbdea7b49d1cfa2785728eb0e07e43060d9e31ff90d4705953866e3f",
+      "coreAfter": null,
+      "coreReason": null
+    },
+    {
+      "id": "m2-09-03-xc10",
+      "learningRole": "procedure",
+      "roleReason": "확률 분수를 약분해도 값이 같다는 점",
+      "bDecision": "rewrite",
+      "bPrompt": "전체 결과 $6$가지가 같은 가능성으로 나오고 사건 $A$에 해당하는 결과는 $2$가지이다. 확률을 경우의 수로 만든 분수와 약분한 분수로 각각 쓰고, 두 분수의 확률값이 같은 이유를 쓰시오.",
+      "bAnswer": "약분 전 분수는 $\\frac{2}{6}$, 약분한 분수는 $\\frac{1}{3}$이다. 분자와 분모를 같은 공약수 $2$로 나누어도 분수의 값은 같기 때문이다.",
+      "bGoal": "경우의 수로 만든 확률 분수와 약분한 확률의 값이 같음을 설명한다.",
+      "bReason": "2/6과1/3의 값 보존을 공약수 나눗셈으로 설명한다.",
+      "exclusionReason": null,
+      "cDecision": "rewrite",
+      "cReason": "공약수로 나누는 약분이라는 절차를 묻는다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3232,
+      "part": "m2plus",
+      "sourceFingerprint": "437aaa7ba23da0f59ed29f3e278d6dd38d04c88d564df6d6a10f8277f3d43ac8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3232
+      },
+      "directReview": null,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분 전 $\\frac{2}{6}$, 약분 후 $\\frac{1}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자와 분모를 같은 공약수로 나누어도 분수의 값은 같다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "같은 가능성의 결과를 세어 얻은 확률 분수는 분자와 분모를 공약수로 나누어 {약분}해도 확률값이 변하지 않는다.",
+      "cSlotAnswers": [
+        "약분"
+      ],
+      "cStudentSentence": "같은 가능성의 결과를 세어 얻은 확률 분수는 분자와 분모를 공약수로 나누어 □해도 확률값이 변하지 않는다.",
+      "cAnswers": [
+        "약분"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ]
+      ],
+      "proposalFingerprint": "93c2003d60630fa638c632e6895e1d822e9052dba3d9521d27fab2a43735070f",
+      "coreAfter": "같은 가능성의 결과를 세어 얻은 확률 분수는 분자와 분모를 공약수로 나누어 {약분}해도 확률값이 변하지 않는다.",
+      "coreReason": "정수 분자·분모의 약분이 성립하는 나눗수인 공약수를 명시한다.",
+      "cAfter": "같은 가능성의 결과를 세어 얻은 확률 분수는 분자와 분모를 공약수로 나누어 {약분}해도 확률값이 변하지 않는다."
+    },
+    {
+      "id": "m2-09-03-xc13",
+      "learningRole": "reason",
+      "roleReason": "적은 횟수의 실험이 확률과 다를 수 있는 이유",
+      "bDecision": "rewrite",
+      "bPrompt": "공정한 동전을 $10$번 던질 때 앞면이 반드시 $5$번 나온다고 할 수 있는지 쓰시오. 또 앞면이 나올 확률 $\\frac{1}{2}$의 뜻을 이용해 그 이유를 쓰시오.",
+      "bAnswer": "반드시 $5$번 나온다고 할 수 없다. 확률 $\\frac{1}{2}$은 아주 많이 되풀이할 때 상대도수가 가까워지는 값일 뿐이다. 따라서 $10$번처럼 적은 횟수에서는 다르게 나올 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반드시 $5$번이라고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "확률은 아주 많이 되풀이할 때 상대도수가 가까워지는 값이다",
+            "적은 횟수에서는 확률과 다르게 나올 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "확률과 적은 횟수의 실험 결과 구별하기",
+      "bReason": "확률1/2은10회에서 앞면5회를 보장하지 않는다고 설명한다.",
+      "exampleNeeded": true,
+      "cDecision": "rewrite",
+      "cReason": "확률 곱의 값5와 실제 횟수의 비보장을 나누어 묻는다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3235,
+      "part": "m2plus",
+      "sourceFingerprint": "c395cd0559140786a6df71a67a1a8ec6dc0070f3e6dfeb3dfd7fb57a198cb0bd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3235
+      },
+      "directReview": null,
+      "cMarkedSentence": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 {$5$}번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 {아니다}.",
+      "cSlotAnswers": [
+        "$5$",
+        "아니다"
+      ],
+      "cStudentSentence": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 □번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 □.",
+      "cAnswers": [
+        "$5$",
+        "아니다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$5$",
+          "equivalentAnswers": [
+            "$5$",
+            "다섯"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "아니다",
+          "equivalentAnswers": [
+            "아니다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$5$",
+          "다섯"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "proposalFingerprint": "088b7743e4bb8a67ef53e06b344b0e9b55ce43398c7d0cb09a7be6eab1d200ee",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 {$5$}번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 {아니다}."
+    },
+    {
+      "id": "m2-09-03-xc19",
+      "learningRole": "reason",
+      "roleReason": "실험값만으로 불공정하다고 단정할 수 없는 이유",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 주사위를 $30$번 던졌더니 $1$의 눈이 $8$번 나왔다. 상대도수 $\\frac{8}{30}$은 공정한 주사위에서 $1$의 눈이 나올 확률 $\\frac{1}{6}$과 다르다. 이 결과만으로 주사위가 불공정하다고 단정할 수 있는지 쓰고 이유를 쓰시오.",
+      "bAnswer": "단정할 수 없다. 공정한 주사위라도 시행 횟수가 아주 많지 않으면 상대도수가 확률과 다르게 나올 수 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "단정할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "공정한 주사위라도 실험의 상대도수는 확률과 다르게 나올 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "실험값과 확률의 차이 해석하기",
+      "bReason": "30회 중8회의 관찰만으로 불공정을 단정하지 못한다.",
+      "exampleNeeded": true,
+      "cDecision": "rewrite",
+      "cReason": "불공정이라는 판단을 고정하고 단정 가능성을 묻는다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3241,
+      "part": "m2plus",
+      "sourceFingerprint": "9228de73153db050b97c347abe27a4516816e4ab7e38e1dfbe25a02520415ea1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3241
+      },
+      "directReview": null,
+      "cMarkedSentence": "주사위를 $30$번 던져 $1$의 눈이 $8$번 나왔다. 상대도수가 이론상 확률 $\\frac{1}{6}$과 다르다는 사실만으로 이 주사위가 불공정하다고 {단정할 수 없다}.",
+      "cSlotAnswers": [
+        "단정할 수 없다"
+      ],
+      "cStudentSentence": "주사위를 $30$번 던져 $1$의 눈이 $8$번 나왔다. 상대도수가 이론상 확률 $\\frac{1}{6}$과 다르다는 사실만으로 이 주사위가 불공정하다고 □.",
+      "cAnswers": [
+        "단정할 수 없다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "단정할 수 없다",
+          "equivalentAnswers": [
+            "단정할 수 없다",
+            "확정할 수 없다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "단정할 수 없다",
+          "확정할 수 없다"
+        ]
+      ],
+      "proposalFingerprint": "2303c791f07a3e974a22499124a082a12faf381efb40c990a8b032d1ea02f0af",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": "주사위를 $30$번 던져 $1$의 눈이 $8$번 나왔다. 상대도수가 이론상 확률 $\\frac{1}{6}$과 다르다는 사실만으로 이 주사위가 불공정하다고 {단정할 수 없다}."
+    },
+    {
+      "id": "m2-09-04-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+      "bAnswer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+      "bGoal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+      "bReason": "공정한 주사위의 눈6 중복을 빼어2/3을 구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$의 눈이 두 사건에 모두 속한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그대로 더하면 겹친 결과를 두 번 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cReason": "같은 배타 사건 조건의 C 중복 제외를 유지한다.",
+      "exclusionReason": "배타 사건 합 조건의 C 중복 제외다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "겹치는 경우 먼저 확인",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 3246,
+      "part": "m2plus",
+      "sourceFingerprint": "eeede5a987f3d08a87a635d2b692d7efe1d0c858d9826817b944e27922db3982",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3246
+      },
+      "directReview": null,
+      "proposalFingerprint": "48f224d4e52e5095ad3e9a2c12582592abdafbdb00e6e9b956ee1a176c02e939",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cAnswers": null,
+      "cSlotAnswers": null,
+      "cAcceptedAnswers": null,
+      "cSlots": null
+    },
+    {
+      "id": "m2-09-04-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "(가) 공정한 동전과 주사위를 서로 영향 없이 던져 앞면과 $6$의 눈이 나올 확률. (나) 흰 공 $3$개, 검은 공 $2$개에서 매번 남은 각 공을 같은 가능성으로, 다시 넣지 않고 두 번 뽑아 모두 흰 공일 확률. 각 처음 확률끼리 그대로 곱할 수 있는 쪽과 다른 쪽에서 안 되는 이유를 쓰시오.",
+      "bAnswer": "(가)이다. (나)는 첫 흰 공을 빼면 흰 공 $2$개, 전체 $4$개가 남아 다음 흰 공 확률이 $\\frac{3}{5}$에서 $\\frac{2}{4}$로 바뀐다.",
+      "bGoal": "그대로 곱해도 되는 상황 가려내기",
+      "bReason": "영향 없는 시행과 비복원 추출을 비교해 처음 확률의 곱을 판단한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(가)"
+          ]
+        },
+        {
+          "anyOf": [
+            "(나)는 첫 결과에 따라 다음 확률이 바뀐다",
+            "첫 흰 공 뒤 둘째 흰 공 확률이 $\\frac{2}{4}$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 확률을 그대로 곱해 둘 다 일어날 확률을 구하려면 한 결과가 다른 사건의 {가능성}을 바꾸지 않는지 살핀다.",
+      "cAnswers": [
+        "가능성"
+      ],
+      "cReason": "앞 결과가 다음 가능성이나 확률을 바꾸는지를 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "앞 결과의 영향 확인",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "notationReason": "삼분의오가 아닌 오분의삼 곱 뒤 로/으로는 곱을 쓴다는 문장으로 정리하고 남은 공·조건부 확률은 보존한다.",
+      "sourceIndex": 3247,
+      "part": "m2plus",
+      "sourceFingerprint": "c46acf6ddcfec834a6f9a224d59048e717195cfaf081cd3983d89d4010218d05",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3247
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-09-04-xc2"
+      },
+      "cMarkedSentence": "두 확률을 그대로 곱해 둘 다 일어날 확률을 구하려면 한 결과가 다른 사건의 {가능성}을 바꾸지 않는지 살핀다.",
+      "cSlotAnswers": [
+        "가능성"
+      ],
+      "cStudentSentence": "두 확률을 그대로 곱해 둘 다 일어날 확률을 구하려면 한 결과가 다른 사건의 □을 바꾸지 않는지 살핀다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "가능성",
+          "equivalentAnswers": [
+            "가능성",
+            "확률"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "가능성",
+          "accept": [
+            "확률"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "가능성",
+          "확률"
+        ]
+      ],
+      "proposalFingerprint": "7e0962e7a3fe81b8e1c833feefaafa0d6d5a12e289b471e4930243c7d019e03a",
+      "coreAfter": null,
+      "coreReason": null
+    },
+    {
+      "id": "m2-09-04-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "빨간 공 $3$개, 파란 공 $2$개가 든 주머니에서 빨간 공 한 개를 꺼내 다시 넣지 않았다. 남은 빨간 공·파란 공·전체 공의 수를 쓰시오. 이어 남은 각 공을 같은 가능성으로 하나 더 뽑을 때 빨강과 파랑의 확률을 각각 구하시오.",
+      "bAnswer": "빨강 $2$개, 파랑 $2$개, 전체 $4$개이다. 빨강의 확률과 파랑의 확률은 각각 $\\frac{2}{4}=\\frac{1}{2}$이다.",
+      "bGoal": "꺼낸 뒤 남은 개수로 확률 구하기",
+      "bReason": "각 남은 공의 등가능 조건 아래 두 색의 남은 수와 확률을 구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빨강 $2$개, 파랑 $2$개, 전체 $4$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "빨강의 확률 $\\frac{1}{2}$, 파랑의 확률 $\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "공 한 개를 꺼내 되돌리지 않으면 꺼낸 색의 공 개수는 {$1$}개 줄고 다른 색의 개수는 그대로이다.",
+      "cAnswers": [
+        "$1$"
+      ],
+      "cReason": "되돌리지 않은 색의 공 한 개 감소를 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "definition",
+      "roleReason": "꺼낸 색만 1개 줄어듦",
+      "enrichmentEvidence": "enrichment/enrich-009",
+      "sourceIndex": 3253,
+      "part": "m2plus",
+      "sourceFingerprint": "c767658ff0d6169ef4f6ebae0bc1118805bf5bb7292f9a89da29d4a0257e646e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3253
+      },
+      "directReview": null,
+      "cMarkedSentence": "공 한 개를 꺼내 되돌리지 않으면 꺼낸 색의 공 개수는 {$1$}개 줄고 다른 색의 개수는 그대로이다.",
+      "cSlotAnswers": [
+        "$1$"
+      ],
+      "cStudentSentence": "공 한 개를 꺼내 되돌리지 않으면 꺼낸 색의 공 개수는 □개 줄고 다른 색의 개수는 그대로이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ]
+      ],
+      "proposalFingerprint": "c7e0c0dcc0fb32f56b3a4dad77098dbd591fb88c160b53cd7a89937c17ae0af4",
+      "coreAfter": null,
+      "coreReason": null
+    },
+    {
+      "id": "m2-09-04-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "빨간 공 $1$개와 파란 공 $1$개가 든 주머니에서 공을 하나 꺼내 색을 확인하고 다시 넣는 일을 두 번 한다. 가능한 결과를 (첫 번째, 두 번째) 꼴로 모두 쓰고, 빨강과 파랑이 한 번씩인 결과의 수를 쓰시오.",
+      "bAnswer": "(빨강, 빨강), (빨강, 파랑), (파랑, 빨강), (파랑, 파랑)이다. 빨강과 파랑이 한 번씩인 결과는 (빨강, 파랑), (파랑, 빨강)의 $2$가지이다.",
+      "bGoal": "두 번 뽑은 결과를 순서대로 적기",
+      "bReason": "복원 추출의 네 순서 결과와 한 번씩 나온2경우를 구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 차례를 구별한 네 결과를 빠짐없이 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 번씩인 결과의 수는 $2$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "공을 두 번 뽑은 결과를 적을 때는 (빨강, 파랑)과 (파랑, 빨강)처럼 첫 번째와 두 번째의 {순서}를 구별하여 적는다.",
+      "cAnswers": [
+        "순서"
+      ],
+      "cReason": "동일한 두 색도 순서가 다르면 다른 결과임을 확인한다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "첫째·둘째 순서 구별해 적기",
+      "enrichmentEvidence": "enrichment/enrich-009",
+      "sourceIndex": 3254,
+      "part": "m2plus",
+      "sourceFingerprint": "ef61ece3895d8a0120335d5b9164d779867b865f7b1fe8f02e7ca572b2ea74cd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3254
+      },
+      "directReview": null,
+      "cMarkedSentence": "공을 두 번 뽑은 결과를 적을 때는 (빨강, 파랑)과 (파랑, 빨강)처럼 첫 번째와 두 번째의 {순서}를 구별하여 적는다.",
+      "cSlotAnswers": [
+        "순서"
+      ],
+      "cStudentSentence": "공을 두 번 뽑은 결과를 적을 때는 (빨강, 파랑)과 (파랑, 빨강)처럼 첫 번째와 두 번째의 □를 구별하여 적는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "순서",
+          "equivalentAnswers": [
+            "순서",
+            "차례"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "순서",
+          "accept": [
+            "차례"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "순서",
+          "차례"
+        ]
+      ],
+      "proposalFingerprint": "eb8f12c2e0bd34c2ebbfd95ce2687392f7a5238e2c06e403a706dc9866cbea48",
+      "coreAfter": null,
+      "coreReason": null
+    }
+  ]
+}

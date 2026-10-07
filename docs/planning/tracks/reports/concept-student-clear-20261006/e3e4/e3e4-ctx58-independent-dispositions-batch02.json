@@ -1,0 +1,3214 @@
+{
+  "sourceCommit": "13bf05dce",
+  "status": "direct-planning-response-not-independent-pass",
+  "rows": [
+    {
+      "id": "e4-1-1-7-xc15",
+      "sourceIndex": 1482,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-1-7-xc15",
+          "grade": "초4",
+          "reviewedHash": "c7b4f67f6a340732f7acd970146811387cb6a6dc39051061b7770707d2345bfa",
+          "inputHash": "9937ef71bc6d776b03e0531203e8a3e2f40ba3fba6f9637f5beb890190fd1ce3",
+          "evidence": "cohort-2026-10-06T16-09-43-277Z-0",
+          "blind": [
+            [
+              "e4-1-1-7-xc15",
+              "C",
+              "네 자리씩(또는 세 자리씩)",
+              "revise",
+              "오른쪽부터 몇 자리씩 끊는지 3과 4 모두 가능해 답이 정해지지 않음(읽기 목적이 제시되지 않음)"
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-1-7-xc15",
+              "excluded",
+              "revise",
+              "none",
+              "C는 오른쪽부터 몇 자리씩 끊는지가 네 자리와 세 자리 모두 가능해 답이 정해지지 않는다. 읽기 목적(만·억·조 단위)이 문장에 없다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-1-7-xc15",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-1-7-xc15",
+              "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+              "term": "$0$이 많은 수의 자릿수 세기",
+              "kind": "방법",
+              "level": "중",
+              "definition": "$0$이 많은 큰 수는 오른쪽부터 {네 자리씩} 끊어 세면 자릿수를 틀리지 않는다."
+            },
+            "B": {
+              "excluded": "네 자리씩 끊는다는 한 가지 방법만 답하게 됨"
+            },
+            "C": {
+              "sentence": "$0$이 많은 큰 수는 오른쪽부터 {네 자리씩} 끊어 세면 자릿수를 틀리지 않는다.",
+              "acceptedAnswers": [
+                [
+                  "네 자리씩",
+                  "$4$자리씩",
+                  "네 칸씩"
+                ]
+              ]
+            },
+            "goal": "B 없음: $0$ 많은 수 자릿수 세기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "c7b4f67f6a340732f7acd970146811387cb6a6dc39051061b7770707d2345bfa"
+          },
+          "currentNormalizedHash": "c7b4f67f6a340732f7acd970146811387cb6a6dc39051061b7770707d2345bfa",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "3f6d90b93199409bdec149b8063698647f6cd6516134a0ca9aeb2f25117bdd16",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "72c2756e82f7fee2eb7662476fe30f9d0f69d87cb6d45582349935dd5879d788",
+      "currentProposal": {
+        "sourceIndex": 1482,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+        "sourceFingerprint": "40325852d71805825b1e40d32cc80ad9ef53bd9ac44050186bcc9e3046d98c5c",
+        "proposalFingerprint": "72c2756e82f7fee2eb7662476fe30f9d0f69d87cb6d45582349935dd5879d788",
+        "reviewStatus": "draft",
+        "id": "e4-1-1-7-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "B 없음: $0$ 많은 수 자릿수 세기",
+        "bReason": "네 자리씩 끊는다는 한 가지 방법만 답하게 됨",
+        "cDecision": "rewrite",
+        "cReason": "끊는 자리 수를 묻는 짧고 분명한 빈칸임",
+        "cSlotEquivalents": [
+          [
+            "$4$자리씩"
+          ]
+        ],
+        "exclusionReason": "네 자리씩 끊는 방법과 그 까닭은 e4-1-1-4-xc11 B에서 이미 설명하게 한다.",
+        "answerNotes": "만, 억 단위에 맞춘 '네 자리씩'이 기준 답이다. '세 자리씩'도 자릿수를 세는 데는 쓸 수 있으나 기준 답과는 다르다.",
+        "cAfter": "$0$이 많은 큰 수를 만, 억, 조 단위로 읽으려면 오른쪽부터 {네 자리씩} 끊어 읽는다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$0$이 많은 수의 자릿수 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0$이 많은 큰 수를 만, 억, 조 단위로 읽으려면 오른쪽부터 {네 자리씩} 끊어 읽는다.",
+        "cStudentSentence": "$0$이 많은 큰 수를 만, 억, 조 단위로 읽으려면 오른쪽부터 □ 끊어 읽는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "네 자리씩",
+            "equivalents": [
+              "$4$자리씩"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$0$이 많은 큰 수를 만, 억, 조 단위로 읽으려면 오른쪽부터 {네 자리씩} 끊어 읽는다.",
+          "acceptedAnswers": [
+            [
+              "네 자리씩",
+              "$4$자리씩"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "네 자리씩 끊는다는 한 가지 방법만 답하게 됨"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-1-7-xc15",
+        "sourceIndex": 1482,
+        "proposalFingerprint": "72c2756e82f7fee2eb7662476fe30f9d0f69d87cb6d45582349935dd5879d788",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "네 자리 끊기의 B 중복 제외는 유지한다.",
+        "cReason": "만 억 조로 읽을 목적을 밝혀 세 자리 끊기와 구별했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "만 억 조 단위로 읽을 목적을 밝혀 네 자리 끊기의 범위를 정했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-1-7-xc19",
+      "sourceIndex": 1486,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-1-7-xc19",
+          "grade": "초4",
+          "reviewedHash": "95275171ce88786a9571ec0263631873f7be51d54a534fabaf03e9e9d8af0889",
+          "inputHash": "99935fe8d6f3a75332dca56f770e02630fe93311fe04728fff56c5cf2febad90",
+          "evidence": "cohort-2026-10-06T16-09-43-300Z-1",
+          "blind": [
+            [
+              "e4-1-1-7-xc19",
+              "C",
+              "6, 같으면 십의 자리(다음 자리)를 비교한다. 단 끝 두 자리가 21로 같아 결국 두 수가 같다.",
+              "revise",
+              "첫 빈칸 □이 이미 쓰인 기호(백의 자리 숫자 □)와 겹쳐 무엇을 묻는지 불분명하다. '그 □의 자리'도 모호하고, 숫자가 같으면 나머지 자리도 같아 더 비교할 것이 없다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-1-7-xc19",
+              "pass",
+              "pass",
+              "none",
+              ""
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-1-7-xc19",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-1-7-xc19",
+              "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+              "term": "$\\square$가 있는 수 비교하기",
+              "kind": "방법",
+              "level": "상",
+              "definition": "$45\\square21$과 $45621$은 $\\square$와 $6$을 비교하고, 같으면 {그 뒤의 자리}를 비교한다."
+            },
+            "B": {
+              "prompt": "$45\\square21$과 $45621$의 크기를 비교하려고 합니다. $\\square$ 안의 숫자에 따라 어느 자리를 어떻게 비교해야 하는지 설명하세요.",
+              "answer": "만, 천의 자리 숫자가 같으므로 $\\square$와 백의 자리 숫자 $6$을 비교합니다. 같으면 그 뒤의 자리를 비교하는데, 여기서는 $21$로 같아 두 수가 같습니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$\\square$와 $6$을 비교한다",
+                    "백의 자리 숫자를 비교한다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "같으면 그 뒤의 자리를 비교한다",
+                    "$\\square$가 $6$이면 두 수가 같다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자가 가려진 다섯 자리 수를 $45621$과 비교한다. 먼저 가려진 숫자와 $45621$의 백의 자리 숫자 {$6$}을 비교하고, 두 숫자가 같으면 그 {뒤}의 자리를 비교한다.",
+              "acceptedAnswers": [
+                [
+                  "$6$",
+                  "육"
+                ],
+                [
+                  "뒤",
+                  "아래",
+                  "다음",
+                  "오른쪽"
+                ]
+              ]
+            },
+            "goal": "모르는 숫자가 있는 수 비교",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "95275171ce88786a9571ec0263631873f7be51d54a534fabaf03e9e9d8af0889"
+          },
+          "currentNormalizedHash": "95275171ce88786a9571ec0263631873f7be51d54a534fabaf03e9e9d8af0889",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "c2fbc685436599660e7b2621d6ffbcb7c6ed244080b52117528e03b27bed3496",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "2141a48903cf2e15e681e54d6da7b178da0f297d65bf4daa7ee8a6585c0af9b0",
+      "currentProposal": {
+        "sourceIndex": 1486,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+        "sourceFingerprint": "09f9d39f0b7268791b66965fe29f33574598548b4ea28162924976cbb2bb8cb1",
+        "proposalFingerprint": "2141a48903cf2e15e681e54d6da7b178da0f297d65bf4daa7ee8a6585c0af9b0",
+        "reviewStatus": "draft",
+        "id": "e4-1-1-7-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$45\\square21$과 $45621$의 크기를 비교하려고 합니다. $\\square$ 안의 숫자에 따라 어느 자리를 어떻게 비교해야 하는지 설명하세요.",
+        "bAnswer": "만, 천의 자리 숫자가 같으므로 $\\square$와 백의 자리 숫자 $6$을 비교합니다. 같으면 그 뒤의 자리를 비교하는데, 여기서는 $21$로 같아 두 수가 같습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\square$와 $6$을 비교한다",
+              "백의 자리 숫자를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같으면 그 뒤의 자리를 비교한다",
+              "$\\square$가 $6$이면 두 수가 같다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모르는 숫자가 있는 수 비교",
+        "bReason": "원문의 두 수로 비교할 자리와 같을 때의 처리를 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 {$6$}을 비교한다. 비교한 두 숫자가 같으면 두 수의 크기는 {같다}.",
+        "cReason": "수식의 $\\square$와 빈칸 □가 같은 모양이라 어느 것이 답 칸인지 헷갈림",
+        "cSlotEquivalents": [
+          [
+            "육"
+          ],
+          [
+            "서로 같다",
+            "똑같다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$\\square$가 있는 수 비교하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 {$6$}을 비교한다. 비교한 두 숫자가 같으면 두 수의 크기는 {같다}.",
+        "cStudentSentence": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 □을 비교한다. 비교한 두 숫자가 같으면 두 수의 크기는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": [
+              "육"
+            ]
+          },
+          {
+            "expected": "같다",
+            "equivalents": [
+              "서로 같다",
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$45\\square21$과 $45621$의 크기를 비교하려고 합니다. $\\square$ 안의 숫자에 따라 어느 자리를 어떻게 비교해야 하는지 설명하세요.",
+          "answer": "만, 천의 자리 숫자가 같으므로 $\\square$와 백의 자리 숫자 $6$을 비교합니다. 같으면 그 뒤의 자리를 비교하는데, 여기서는 $21$로 같아 두 수가 같습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\square$와 $6$을 비교한다",
+                "백의 자리 숫자를 비교한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같으면 그 뒤의 자리를 비교한다",
+                "$\\square$가 $6$이면 두 수가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 {$6$}을 비교한다. 비교한 두 숫자가 같으면 두 수의 크기는 {같다}.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "육"
+            ],
+            [
+              "같다",
+              "서로 같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-1-7-xc19",
+        "sourceIndex": 1486,
+        "proposalFingerprint": "2141a48903cf2e15e681e54d6da7b178da0f297d65bf4daa7ee8a6585c0af9b0",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "백의 자리 가림 숫자와 6을 비교하고 같을 때 뒤도 같다는 설명이 맞다.",
+        "cReason": "백의 자리 숫자 6을 찾고 나머지도 같을 때 수가 같다는 결론을 묻는다. 뒤의 문장에 정답 숫자를 다시 쓰지 않았다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "숫자 가림과 답 칸을 구별하고 두 숫자가 같으면 원래 두 수가 같다는 결과를 확인한다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-1-7-xc22",
+      "sourceIndex": 1489,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-1-7-xc22",
+          "grade": "초4",
+          "reviewedHash": "152778f2f9a84408bc9dfd65535e8f8af411e1d8a3b7befb7046a4444360cec5",
+          "inputHash": "99935fe8d6f3a75332dca56f770e02630fe93311fe04728fff56c5cf2febad90",
+          "evidence": "cohort-2026-10-06T16-09-43-300Z-1",
+          "blind": [
+            [
+              "e4-1-1-7-xc22",
+              "C",
+              "자리 수",
+              "revise",
+              "'□부터 센다'의 답이 자리 수, 가장 높은 자리, 일의 자리 등으로 갈려 구체적이지 않다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-1-7-xc22",
+              "pass",
+              "revise",
+              "none",
+              "C의 '맨 앞 숫자만 보고 비교하면 틀리기 쉬워 □부터 센다'는 '자릿수' 외에 '일의 자리', '끝자리', '오른쪽 끝' 등도 가능해 답이 하나로 정해지지 않는다. '자릿수가 다르면 자릿수가 □ 수가 더 크다'처럼 구체화해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-1-7-xc22",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-1-7-xc22",
+              "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+              "term": "맨 앞 숫자만 보는 잘못",
+              "kind": "성질",
+              "level": "상",
+              "definition": "$909900$과 $99990$을 맨 앞 숫자만 보고 비교하면 틀리기 쉬워 {자릿수}부터 센다."
+            },
+            "B": {
+              "prompt": "$909900$과 $99990$ 중 어느 수가 더 큰지 쓰고, 앞쪽 숫자만 보고 비교하면 안 되는 까닭을 설명하세요.",
+              "answer": "$909900$이 더 큽니다. $909900$은 여섯 자리 수이고 $99990$은 다섯 자리 수라서 자릿수부터 비교해야 하기 때문입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$909900$"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "여섯 자리 수와 다섯 자리 수",
+                    "자릿수가 더 많다",
+                    "자릿수부터 비교해야 한다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$909900$과 $99990$을 맨 앞 숫자만 보고 비교하면 틀리기 쉬워 {자릿수}부터 센다.",
+              "acceptedAnswers": [
+                [
+                  "자릿수",
+                  "자리 수",
+                  "자리의 개수"
+                ]
+              ]
+            },
+            "goal": "앞 숫자만 보는 잘못 바로잡기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "152778f2f9a84408bc9dfd65535e8f8af411e1d8a3b7befb7046a4444360cec5"
+          },
+          "currentNormalizedHash": "152778f2f9a84408bc9dfd65535e8f8af411e1d8a3b7befb7046a4444360cec5",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "6f143959337fabdc182a1061d3480572800578e300781c113bab5cc3b5cd9fff",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "1b514a4a11dcabba7cf7c6841aece7d8bcaa3a6978821a97e112cd54de2e4f69",
+      "currentProposal": {
+        "sourceIndex": 1489,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+        "sourceFingerprint": "0692028b6dd02d64646d1399cb1178d61a2210df76b3c8ae94d25bb317adcc70",
+        "proposalFingerprint": "1b514a4a11dcabba7cf7c6841aece7d8bcaa3a6978821a97e112cd54de2e4f69",
+        "reviewStatus": "draft",
+        "id": "e4-1-1-7-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$909900$과 $99990$ 중 어느 수가 더 큰지 쓰고, 앞쪽 숫자만 보고 비교하면 안 되는 까닭을 설명하세요.",
+        "bAnswer": "$909900$이 더 큽니다. $909900$은 여섯 자리 수이고 $99990$은 다섯 자리 수라서 자릿수부터 비교해야 하기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$909900$"
+            ]
+          },
+          {
+            "anyOf": [
+              "여섯 자리 수와 다섯 자리 수",
+              "자릿수가 더 많다",
+              "자릿수부터 비교해야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "앞 숫자만 보는 잘못 바로잡기",
+        "bReason": "원문의 두 수로 자릿수를 먼저 봐야 하는 까닭을 말하게 함",
+        "cDecision": "rewrite",
+        "cReason": "두 수가 보이고 먼저 세는 것을 낱말 하나로 쓰면 됨",
+        "cSlotEquivalents": [
+          []
+        ],
+        "cAfter": "$909900$은 여섯 자리 수이고 $99990$은 다섯 자리 수이다. 자연수의 자릿수가 다르면 자릿수가 더 {많은} 수가 크다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "맨 앞 숫자만 보는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$909900$은 여섯 자리 수이고 $99990$은 다섯 자리 수이다. 자연수의 자릿수가 다르면 자릿수가 더 {많은} 수가 크다.",
+        "cStudentSentence": "$909900$은 여섯 자리 수이고 $99990$은 다섯 자리 수이다. 자연수의 자릿수가 다르면 자릿수가 더 □ 수가 크다.",
+        "cSlotAnswers": [
+          {
+            "expected": "많은",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$909900$과 $99990$ 중 어느 수가 더 큰지 쓰고, 앞쪽 숫자만 보고 비교하면 안 되는 까닭을 설명하세요.",
+          "answer": "$909900$이 더 큽니다. $909900$은 여섯 자리 수이고 $99990$은 다섯 자리 수라서 자릿수부터 비교해야 하기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$909900$"
+              ]
+            },
+            {
+              "anyOf": [
+                "여섯 자리 수와 다섯 자리 수",
+                "자릿수가 더 많다",
+                "자릿수부터 비교해야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$909900$은 여섯 자리 수이고 $99990$은 다섯 자리 수이다. 자연수의 자릿수가 다르면 자릿수가 더 {많은} 수가 크다.",
+          "acceptedAnswers": [
+            [
+              "많은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-1-7-xc22",
+        "sourceIndex": 1489,
+        "proposalFingerprint": "1b514a4a11dcabba7cf7c6841aece7d8bcaa3a6978821a97e112cd54de2e4f69",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "두 수의 자릿수 차이로 큰 수를 판단하는 이유가 맞다.",
+        "cReason": "무엇부터 센다는 모호한 문장 대신 자릿수가 많은 수가 크다는 비교로 바꿨다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "열린 부사 빈칸 대신 자릿수가 많은 자연수가 크다는 조건 비교로 고쳤다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-3-xc9",
+      "sourceIndex": 670,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-3-xc9",
+          "grade": "초3",
+          "reviewedHash": "7ea7dda9f5432adcdad302d23686e5ee17f2be58d76c5952f1923715095996a2",
+          "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+          "evidence": "cohort-2026-10-06T16-21-22-274Z-0",
+          "blind": [
+            [
+              "e3-1-4-3-xc9",
+              "C",
+              "십의 묶음 / 십 / 120",
+              "revise",
+              "빈칸 두 개가 같은 답인지 다른 답인지 알 수 없다. 두 번째 □은 '120'인지 '십의 자리 수'인지 정해지지 않는다."
+            ]
+          ],
+          "key": [
+            [
+              "e3-1-4-3-xc9",
+              "revise",
+              "pass",
+              "none",
+              "B 제외 사유 '앞 절과 같은 목표'가 어느 항목인지 밝히지 않아 검증할 수 없다. 십의 자리 곱이 십의 묶음 수라는 점은 xc13의 올림 조건과 목표가 다르다. 제외하려면 겹치는 항목을 지목해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-3-xc9",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-3-xc9",
+              "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "십의 자리 곱이 나타내는 값",
+              "kind": "성질",
+              "level": "하",
+              "definition": "십의 자리 숫자에 곱하는 수를 곱한 값은 일이 아니라 {십의 묶음}이 몇 개인지를 나타낸다.",
+              "example": {
+                "prompt": "$42\\times3$에서 $4\\times3=12$의 $12$는 무엇이 $12$개라는 뜻인가?",
+                "answer": "십의 묶음($120$)"
+              }
+            },
+            "B": {
+              "excluded": "앞 절과 같은 목표"
+            },
+            "C": {
+              "sentence": "$42\\times3$에서 $4\\times3=12$는 낱개 $12$개가 아니라 {십}의 묶음 $12$개이므로 {$120$}을 나타낸다.",
+              "acceptedAnswers": [
+                [
+                  "십"
+                ],
+                [
+                  "$120$"
+                ]
+              ]
+            },
+            "goal": "십의 자리 곱이 십의 묶음 수임",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "7ea7dda9f5432adcdad302d23686e5ee17f2be58d76c5952f1923715095996a2"
+          },
+          "currentNormalizedHash": "7ea7dda9f5432adcdad302d23686e5ee17f2be58d76c5952f1923715095996a2",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "23923258c6fb7ac2208fd4fe62c21849c510fc9c06804b8831e01201ce9fccf1",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "23923258c6fb7ac2208fd4fe62c21849c510fc9c06804b8831e01201ce9fccf1",
+      "currentProposal": {
+        "sourceIndex": 670,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "d2bd2ef6c076160a3ca391a7a072bd5ec29ec635c81dd50a88d88cb220be5d52",
+        "proposalFingerprint": "23923258c6fb7ac2208fd4fe62c21849c510fc9c06804b8831e01201ce9fccf1",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-3-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "십의 자리 곱이 십의 묶음 수임",
+        "bReason": "십의 자리 숫자의 곱이 십의 묶음 수라는 설명은 e3-1-4-2-xc3에서 이미 묻는다. 여기서는 C로 12묶음의 실제 값 120을 확인한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$42\\times3$에서 $4\\times3=12$는 낱개 $12$개가 아니라 {십}의 묶음 $12$개이므로 {$120$}을 나타낸다.",
+        "cReason": "식이 없어 무엇의 곱인지 가려져 있으므로 원문 예의 식을 넣고 짧은 답과 값을 쓰게 함",
+        "exclusionReason": "B: e3-1-4-2-xc3의 십의 자리 곱과 실제 값 구별과 중복한다.",
+        "reviewerEdited": true,
+        "learningRole": "application",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "십의 자리 곱이 나타내는 값",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$42\\times3$에서 $4\\times3=12$는 낱개 $12$개가 아니라 {십}의 묶음 $12$개이므로 {$120$}을 나타낸다.",
+        "cStudentSentence": "$42\\times3$에서 $4\\times3=12$는 낱개 $12$개가 아니라 □의 묶음 $12$개이므로 □을 나타낸다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "십",
+            "equivalents": []
+          },
+          {
+            "expected": "$120$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$42\\times3$에서 $4\\times3=12$는 낱개 $12$개가 아니라 {십}의 묶음 $12$개이므로 {$120$}을 나타낸다.",
+          "acceptedAnswers": [
+            [
+              "십"
+            ],
+            [
+              "$120$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "십의 자리 숫자의 곱이 십의 묶음 수라는 설명은 e3-1-4-2-xc3에서 이미 묻는다. 여기서는 C로 12묶음의 실제 값 120을 확인한다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-1-4-3-xc9",
+        "sourceIndex": 670,
+        "proposalFingerprint": "23923258c6fb7ac2208fd4fe62c21849c510fc9c06804b8831e01201ce9fccf1",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "십의 자리 곱의 실제 값 설명 e3-1-4-2-xc3을 중복 근거로 밝혔다.",
+        "cReason": "십의 묶음 12개가 120이라는 두 빈칸 역할은 각기 단위와 값으로 문맥상 구별된다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "중복 B의 실제 ID e3-1-4-2-xc3을 밝혔다. C는 십의 묶음과 120이라는 값으로 문맥상 단위와 값이 정해지므로 유지했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-3-xc13",
+      "sourceIndex": 671,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-3-xc13",
+          "grade": "초3",
+          "reviewedHash": "237516bfd114982d154e060664d60638c6069570ef267d6321f020292dbdf68b",
+          "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+          "evidence": "cohort-2026-10-06T16-21-22-274Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-4-3-xc13",
+              "revise",
+              "pass",
+              "none",
+              "B 참고답이 '10보다 작아 올림이 없고 / 10보다 커서 올림이 있다'로 쓰여 경계값 10을 처리하지 못한다. 원문 조건은 '10 이상'이므로 맞춰야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-3-xc13",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-3-xc13",
+              "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "십의 자리에서만 올림이 있는 조건",
+              "kind": "성질",
+              "level": "중",
+              "definition": "일의 자리 곱은 $10$보다 작고 {십의 자리 곱}만 $10$ 이상이면 십의 자리에서만 올림이 있다."
+            },
+            "B": {
+              "prompt": "$42\\times3$은 십의 자리에서만 올림이 있습니다. 일의 자리 곱과 십의 자리 곱을 각각 구해 그 까닭을 설명해 보세요.",
+              "answer": "일의 자리 곱 $2\\times3=6$은 $10$보다 작아 올림이 없고, 십의 자리 곱 $4\\times3=12$는 $10$보다 커서 올림이 있다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "일의 자리 곱 $6$은 올림 없음"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "십의 자리 곱 $12$는 올림 있음"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$42\\times3$은 일의 자리 곱이 $2\\times3=6$, 십의 자리 곱이 $4\\times3=${$12$}이다. 그래서 올림은 {십}의 자리에서만 있다.",
+              "acceptedAnswers": [
+                [
+                  "$12$"
+                ],
+                [
+                  "십"
+                ]
+              ]
+            },
+            "goal": "십의 자리에서만 올림이 있는 조건",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "237516bfd114982d154e060664d60638c6069570ef267d6321f020292dbdf68b"
+          },
+          "currentNormalizedHash": "237516bfd114982d154e060664d60638c6069570ef267d6321f020292dbdf68b",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "e13c2c76273abe82c163d793b530a1aa49a6dc839dcef756e84ddd4cbc9b01b8",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "e13c2c76273abe82c163d793b530a1aa49a6dc839dcef756e84ddd4cbc9b01b8",
+      "currentProposal": {
+        "sourceIndex": 671,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "07208ab4549452524f9819a5c4cd5ac49442c71bf8c99907c3acd7b9640a2898",
+        "proposalFingerprint": "e13c2c76273abe82c163d793b530a1aa49a6dc839dcef756e84ddd4cbc9b01b8",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$42\\times3$은 십의 자리에서만 올림이 있습니다. 일의 자리 곱과 십의 자리 곱을 각각 구해 그 까닭을 설명해 보세요.",
+        "bAnswer": "일의 자리 곱 $2\\times3=6$은 $10$보다 작아 올림이 없고, 십의 자리 곱 $4\\times3=12$는 $10$보다 커서 올림이 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리 곱 $6$은 올림 없음"
+            ]
+          },
+          {
+            "anyOf": [
+              "십의 자리 곱 $12$는 올림 있음"
+            ]
+          }
+        ],
+        "bGoal": "십의 자리에서만 올림이 있는 조건",
+        "bReason": "원문에 예가 없어 42×3을 주고 자리별 곱으로 판단하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$42\\times3$은 일의 자리 곱이 $2\\times3=6$, 십의 자리 곱이 $4\\times3=${$12$}이다. 그래서 올림은 {십}의 자리에서만 있다.",
+        "cReason": "식 없이 '□만 10 이상이면'이라 대상이 가려져 있어 실제 식의 곱과 자리 이름을 쓰게 함",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "십의 자리에서만 올림이 있는 조건",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$42\\times3$은 일의 자리 곱이 $2\\times3=6$, 십의 자리 곱이 $4\\times3=${$12$}이다. 그래서 올림은 {십}의 자리에서만 있다.",
+        "cStudentSentence": "$42\\times3$은 일의 자리 곱이 $2\\times3=6$, 십의 자리 곱이 $4\\times3=$□이다. 그래서 올림은 □의 자리에서만 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$12$",
+            "equivalents": []
+          },
+          {
+            "expected": "십",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$42\\times3$은 십의 자리에서만 올림이 있습니다. 일의 자리 곱과 십의 자리 곱을 각각 구해 그 까닭을 설명해 보세요.",
+          "answer": "일의 자리 곱 $2\\times3=6$은 $10$보다 작아 올림이 없고, 십의 자리 곱 $4\\times3=12$는 $10$보다 커서 올림이 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "일의 자리 곱 $6$은 올림 없음"
+              ]
+            },
+            {
+              "anyOf": [
+                "십의 자리 곱 $12$는 올림 있음"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$42\\times3$은 일의 자리 곱이 $2\\times3=6$, 십의 자리 곱이 $4\\times3=${$12$}이다. 그래서 올림은 {십}의 자리에서만 있다.",
+          "acceptedAnswers": [
+            [
+              "$12$"
+            ],
+            [
+              "십"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-4-3-xc13",
+          "sourceIndex": 671,
+          "proposalFingerprint": "e13c2c76273abe82c163d793b530a1aa49a6dc839dcef756e84ddd4cbc9b01b8",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "일 곱 6과 십 곱 12 각각으로 올림 위치 차이를 설명한다.",
+          "cReason": "12와 올리는 십 자리라는 실제 대응이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-1-4-3-xc13",
+        "sourceIndex": 671,
+        "proposalFingerprint": "e13c2c76273abe82c163d793b530a1aa49a6dc839dcef756e84ddd4cbc9b01b8",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "42 곱하기 3의 실제 십 자리 곱 12가 10보다 크다는 설명은 사실이다. 모든 올림 조건을 10 초과로 정의한 문장이 아니므로 유지한다.",
+        "cReason": "12라는 곱과 십의 자리 올림의 적용이 맞다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "실제 곱 12가 10보다 커서 올림한다는 예시 설명은 맞다. 전체 올림 조건의 정의를 10 초과로 잘못 적은 문장이 아니다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-2-1-xc20",
+      "sourceIndex": 1512,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-2-1-xc20",
+          "grade": "초4",
+          "reviewedHash": "afd172d984d7de9ebe7d44427a0e73b7c2fdf2ae8ad51be876e42d623bb19678",
+          "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+          "evidence": "cohort-2026-10-06T16-21-22-274Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-2-1-xc20",
+              "revise",
+              "pass",
+              "none",
+              "B 제외 사유 '다른 항목 B에서 이미 다룸'이 어느 항목인지 밝히지 않았다. 같은 단위 각을 써야 하는 까닭은 xc17(횟수의 차)이 다루는 내용이 아니라서 근거가 부족하다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-2-1-xc20",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-2-1-xc20",
+              "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+              "term": "같은 단위 각을 써야 하는 까닭",
+              "kind": "성질",
+              "level": "상",
+              "definition": "단위 각이 들어간 {횟수만으로} 두 각의 크기를 견주려면 모두가 {같은 단위 각}을 써야 한다."
+            },
+            "B": {
+              "excluded": "횟수 비교 조건은 다른 항목 B에서 까닭으로 이미 다룸"
+            },
+            "C": {
+              "sentence": "단위 각이 들어간 횟수만으로 두 각의 크기를 견주려면 두 각을 모두 {같은} 단위 각으로 재어야 한다.",
+              "acceptedAnswers": [
+                [
+                  "같은",
+                  "똑같은"
+                ]
+              ]
+            },
+            "goal": "같은 단위 각을 써야 함",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "afd172d984d7de9ebe7d44427a0e73b7c2fdf2ae8ad51be876e42d623bb19678"
+          },
+          "currentNormalizedHash": "afd172d984d7de9ebe7d44427a0e73b7c2fdf2ae8ad51be876e42d623bb19678",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "432b04ea5fed38e8b2c98878a58d4c92146615aa63aab57fdb9c6ac72c12a958",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "432b04ea5fed38e8b2c98878a58d4c92146615aa63aab57fdb9c6ac72c12a958",
+      "currentProposal": {
+        "sourceIndex": 1512,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+        "sourceFingerprint": "9913e59d29ab0b5e323603db75b4f63888f68ad7ce24cc00f990809201e28c32",
+        "proposalFingerprint": "432b04ea5fed38e8b2c98878a58d4c92146615aa63aab57fdb9c6ac72c12a958",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-1-xc20",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "같은 단위 각을 써야 함",
+        "bReason": "서로 다른 단위 각의 횟수만으로 비교할 수 없는 까닭은 e4-1-2-1-xc11에서 이미 묻는다.",
+        "cDecision": "rewrite",
+        "cAfter": "단위 각이 들어간 횟수만으로 두 각의 크기를 견주려면 두 각을 모두 {같은} 단위 각으로 재어야 한다.",
+        "cReason": "두 구절 빈칸이 문장 복원이라 '같은' 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "exclusionReason": "B: e4-1-2-1-xc11의 동일 단위가 필요한 이유와 중복한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 단위 각을 써야 하는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "단위 각이 들어간 횟수만으로 두 각의 크기를 견주려면 두 각을 모두 {같은} 단위 각으로 재어야 한다.",
+        "cStudentSentence": "단위 각이 들어간 횟수만으로 두 각의 크기를 견주려면 두 각을 모두 □ 단위 각으로 재어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "단위 각이 들어간 횟수만으로 두 각의 크기를 견주려면 두 각을 모두 {같은} 단위 각으로 재어야 한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "서로 다른 단위 각의 횟수만으로 비교할 수 없는 까닭은 e4-1-2-1-xc11에서 이미 묻는다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-1-xc20",
+          "sourceIndex": 1512,
+          "proposalFingerprint": "432b04ea5fed38e8b2c98878a58d4c92146615aa63aab57fdb9c6ac72c12a958",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "서로 다른 기준으로 횟수를 비교할 수 없는 이유를 맡는 기존 B와 중복되는 제외를 유지한다.",
+          "cReason": "횟수 비교에 필요한 같은 기준 각 조건을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-2-1-xc20",
+        "sourceIndex": 1512,
+        "proposalFingerprint": "432b04ea5fed38e8b2c98878a58d4c92146615aa63aab57fdb9c6ac72c12a958",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "다른 단위의 횟수만으로 비교할 수 없다는 e4-1-2-1-xc11을 중복 근거로 밝혔다.",
+        "cReason": "횟수 비교의 같은 단위 조건을 확인하는 짧은 빈칸을 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "동일 단위가 필요한 이유를 다룬 e4-1-2-1-xc11을 명시했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-3-xc19",
+      "sourceIndex": 674,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-3-xc19",
+          "grade": "초3",
+          "reviewedHash": "afdf86b2bf3fd7236abe083f6c3e976c0e1f91d7610dcfd6bfc83b97329abd01",
+          "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+          "evidence": "cohort-2026-10-06T16-21-22-274Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-4-3-xc19",
+              "revise",
+              "pass",
+              "none",
+              "B 필수 관념 '10개를 넘으면 올림'은 경계값 10을 빠뜨려 부정확하다. 10개일 때도 올림이 생긴다. '10개 이상'이어야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-3-xc19",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-3-xc19",
+              "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "곱하는 수가 커지면 생기는 올림",
+              "kind": "성질",
+              "level": "상",
+              "definition": "곱해지는 수가 같아도 {곱하는 수가 커지면} 올림이 없던 자리에 올림이 생길 수 있다.",
+              "example": {
+                "prompt": "$32\\times3$에는 십의 자리 올림이 없고 $32\\times4$에는 있는 까닭은?",
+                "answer": "십의 묶음이 $9$개와 $12$개라서"
+              }
+            },
+            "B": {
+              "prompt": "$32\\times3$에는 십의 자리에서 올림이 없는데 $32\\times4$에는 있습니다. 곱해지는 수가 같은데 달라지는 까닭을 십의 묶음 수로 설명해 보세요.",
+              "answer": "$32\\times3$은 십의 묶음이 $3\\times3=9$개라 $10$개가 안 되지만, $32\\times4$는 $3\\times4=12$개로 $10$개를 넘어 백의 묶음 $1$개로 올린다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "십의 묶음 $9$개와 $12$개"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$10$개를 넘으면 올림"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$32\\times3$은 십의 자리 곱이 $9$라서 올림이 없지만, $32\\times4$는 십의 자리 곱이 {$12$}라서 올림이 {있다}.",
+              "acceptedAnswers": [
+                [
+                  "$12$"
+                ],
+                [
+                  "있다"
+                ]
+              ]
+            },
+            "goal": "곱하는 수가 커지면 올림이 생길 수 있음",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "afdf86b2bf3fd7236abe083f6c3e976c0e1f91d7610dcfd6bfc83b97329abd01"
+          },
+          "currentNormalizedHash": "afdf86b2bf3fd7236abe083f6c3e976c0e1f91d7610dcfd6bfc83b97329abd01",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "3e76330772c0f745cab1a50aae0f059e1f59eaf2264a9b469746ecd5835bd9a1",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "f0dd9703ba129324acf1acf49875dbba4fc010a004f7545ffccf31b3a4ad1eb3",
+      "currentProposal": {
+        "sourceIndex": 674,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "8a3132cfb93196c1374c2aa978da4e2514ad9d21f003f3047abff0f89c05dd20",
+        "proposalFingerprint": "f0dd9703ba129324acf1acf49875dbba4fc010a004f7545ffccf31b3a4ad1eb3",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-3-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$32\\times3$에는 십의 자리에서 올림이 없는데 $32\\times4$에는 있습니다. 곱해지는 수가 같은데 달라지는 까닭을 십의 묶음 수로 설명해 보세요.",
+        "bAnswer": "$32\\times3$은 십의 묶음이 $3\\times3=9$개라 $10$개가 안 되지만, $32\\times4$는 $3\\times4=12$개로 $10$개를 넘어 백의 묶음 $1$개로 올린다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십의 묶음이 각각 $9$개와 $12$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "십의 묶음이 $10$개이거나 더 많으면 백의 묶음으로 바꾸어 올린다"
+            ]
+          }
+        ],
+        "bGoal": "곱하는 수가 커지면 올림이 생길 수 있음",
+        "bReason": "원문 예의 두 식을 써서 달라지는 까닭을 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$32\\times3$은 십의 자리 곱이 $9$라서 올림이 없지만, $32\\times4$는 십의 자리 곱이 {$12$}라서 올림이 {있다}.",
+        "cReason": "조건 구절 '곱하는 수가 커지면'을 통째로 가려 복원이 어려워 두 식의 비교로 바꿈",
+        "answerNotes": "둘째 빈칸은 '있다', '생긴다' 인정",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "곱하는 수가 커지면 생기는 올림",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$32\\times3$은 십의 자리 곱이 $9$라서 올림이 없지만, $32\\times4$는 십의 자리 곱이 {$12$}라서 올림이 {있다}.",
+        "cStudentSentence": "$32\\times3$은 십의 자리 곱이 $9$라서 올림이 없지만, $32\\times4$는 십의 자리 곱이 □라서 올림이 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$12$",
+            "equivalents": []
+          },
+          {
+            "expected": "있다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$32\\times3$에는 십의 자리에서 올림이 없는데 $32\\times4$에는 있습니다. 곱해지는 수가 같은데 달라지는 까닭을 십의 묶음 수로 설명해 보세요.",
+          "answer": "$32\\times3$은 십의 묶음이 $3\\times3=9$개라 $10$개가 안 되지만, $32\\times4$는 $3\\times4=12$개로 $10$개를 넘어 백의 묶음 $1$개로 올린다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 묶음이 각각 $9$개와 $12$개이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "십의 묶음이 $10$개이거나 더 많으면 백의 묶음으로 바꾸어 올린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$32\\times3$은 십의 자리 곱이 $9$라서 올림이 없지만, $32\\times4$는 십의 자리 곱이 {$12$}라서 올림이 {있다}.",
+          "acceptedAnswers": [
+            [
+              "$12$"
+            ],
+            [
+              "있다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-1-4-3-xc19",
+        "sourceIndex": 674,
+        "proposalFingerprint": "f0dd9703ba129324acf1acf49875dbba4fc010a004f7545ffccf31b3a4ad1eb3",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "일반 조건을 말하는 기준에서는 10과 같은 경우도 포함하도록 고쳤다.",
+        "cReason": "9와 12라는 두 경우에서 올림의 유무를 계산해 판단한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "일반 올림 조건을 10개이거나 더 많으면으로 고쳐 경계값을 포함했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-3-xc21",
+      "sourceIndex": 675,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-3-xc21",
+          "grade": "초3",
+          "reviewedHash": "521d5721df04ed067322bb7feca9056a236d178e7e5660d7bbff8e6ffca39cc1",
+          "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+          "evidence": "cohort-2026-10-06T16-21-22-274Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-4-3-xc21",
+              "revise",
+              "pass",
+              "none",
+              "B 제외 사유 '앞 두 절과 문장까지 같은 성질'이 어느 절인지 밝히지 않았다. 곱하는 수가 1 늘면 곱이 곱해지는 수만큼 느는 성질은 xc19(올림 발생)나 xc24(70×7 비교)와 같지 않아 근거가 부족하다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-3-xc21",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-3-xc21",
+              "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "곱하는 수가 $1$ 커질 때의 곱",
+              "kind": "성질",
+              "level": "상",
+              "definition": "곱하는 수가 $1$ 커지면 곱은 {곱해지는 수만큼} 커진다.",
+              "example": {
+                "prompt": "$62\\times5$가 $62\\times4$보다 $62$만큼 큰 까닭은?",
+                "answer": "$62$씩 한 묶음이 더 늘어서"
+              }
+            },
+            "B": {
+              "excluded": "앞 두 절과 문장까지 같은 성질"
+            },
+            "C": {
+              "sentence": "$62\\times5$는 $62\\times4$보다 {$62$}만큼 크다.",
+              "acceptedAnswers": [
+                [
+                  "$62$"
+                ]
+              ]
+            },
+            "goal": "곱하는 수가 1 커지면 곱이 곱해지는 수만큼 커짐",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "521d5721df04ed067322bb7feca9056a236d178e7e5660d7bbff8e6ffca39cc1"
+          },
+          "currentNormalizedHash": "521d5721df04ed067322bb7feca9056a236d178e7e5660d7bbff8e6ffca39cc1",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "1f39758e3d182562a1007f8a70118c80f34058f5c88393cced64128a67a24474",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "1f39758e3d182562a1007f8a70118c80f34058f5c88393cced64128a67a24474",
+      "currentProposal": {
+        "sourceIndex": 675,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "012d90a49f890a7eb6df2d6b6a1634a0383d155780c996376d4457ed3895f945",
+        "proposalFingerprint": "1f39758e3d182562a1007f8a70118c80f34058f5c88393cced64128a67a24474",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-3-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "곱하는 수가 1 커지면 곱이 곱해지는 수만큼 커짐",
+        "bReason": "곱하는 수가 하나 늘면 한 묶음만큼 늘어나는 이유는 e3-1-4-1-xc25와 e3-1-4-2-xc25에서 이미 설명한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$62\\times5$는 $62\\times4$보다 {$62$}만큼 크다.",
+        "cReason": "'곱해지는 수만큼'은 수 이름 복원형 구절이고 식이 없어 실제 두 식의 차를 쓰게 함",
+        "exclusionReason": "B: e3-1-4-1-xc25 및 e3-1-4-2-xc25의 곱하는 수 하나 증가와 중복한다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "곱하는 수가 $1$ 커질 때의 곱",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$62\\times5$는 $62\\times4$보다 {$62$}만큼 크다.",
+        "cStudentSentence": "$62\\times5$는 $62\\times4$보다 □만큼 크다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$62$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$62\\times5$는 $62\\times4$보다 {$62$}만큼 크다.",
+          "acceptedAnswers": [
+            [
+              "$62$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "곱하는 수가 하나 늘면 한 묶음만큼 늘어나는 이유는 e3-1-4-1-xc25와 e3-1-4-2-xc25에서 이미 설명한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-4-3-xc21",
+          "sourceIndex": 675,
+          "proposalFingerprint": "1f39758e3d182562a1007f8a70118c80f34058f5c88393cced64128a67a24474",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "곱하는 수 하나 증가의 이유·활용이 앞 두 절과 같아 B를 제외한다.",
+          "cReason": "62 한 묶음 증가의 차 62를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-1-4-3-xc21",
+        "sourceIndex": 675,
+        "proposalFingerprint": "1f39758e3d182562a1007f8a70118c80f34058f5c88393cced64128a67a24474",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한 묶음 추가의 이유를 설명하는 e3-1-4-1-xc25 및 e3-1-4-2-xc25를 중복 근거로 밝혔다.",
+        "cReason": "62 한 묶음 차이를 묻는 구체 C는 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "e3-1-4-1-xc25 및 e3-1-4-2-xc25의 한 묶음 추가와 중복함을 밝혔다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-3-xc24",
+      "sourceIndex": 678,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-3-xc24",
+          "grade": "초3",
+          "reviewedHash": "de3b36a3cff11c828ceb4d5ee61781adbc2366259f63cac41d42646ac15537c1",
+          "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+          "evidence": "cohort-2026-10-06T16-21-22-274Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-4-3-xc24",
+              "revise",
+              "pass",
+              "none",
+              "B 제외 사유 '앞 절과 같은 성질을 수만 바꾼 항목'이 어느 절인지 밝히지 않았다. 바로 앞 xc23(순서 바꾸기)과는 다른 성질이므로 근거를 확인할 수 없다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-3-xc24",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-3-xc24",
+              "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "몇십만 곱한 값과 실제 곱의 차",
+              "kind": "성질",
+              "level": "상",
+              "definition": "몇십몇 대신 일의 자리 수를 뺀 몇십에 곱하면 실제 곱보다 {일의 자리 곱만큼} 작게 나온다.",
+              "example": {
+                "prompt": "$71\\times7$이 $70\\times7$보다 $7$만큼 큰 까닭은?",
+                "answer": "$1$씩 $7$묶음이 더 있어서"
+              }
+            },
+            "B": {
+              "excluded": "앞 절과 같은 성질을 수만 바꾼 항목"
+            },
+            "C": {
+              "sentence": "$71\\times7$을 $70\\times7$로 계산하면 실제 곱보다 $1\\times7=${$7$}만큼 작다.",
+              "acceptedAnswers": [
+                [
+                  "$7$"
+                ]
+              ]
+            },
+            "goal": "몇십에만 곱하면 일의 자리 곱만큼 작아짐",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "de3b36a3cff11c828ceb4d5ee61781adbc2366259f63cac41d42646ac15537c1"
+          },
+          "currentNormalizedHash": "de3b36a3cff11c828ceb4d5ee61781adbc2366259f63cac41d42646ac15537c1",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "d76fe9e65475a245780f923fc1b8fc1a66a56577d35438b9326c6afc687a3b96",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "d76fe9e65475a245780f923fc1b8fc1a66a56577d35438b9326c6afc687a3b96",
+      "currentProposal": {
+        "sourceIndex": 678,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-3 십의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "d0619ebdf05f9d08ce6ce5c671b2d43d919da19851c7a2f6aed555e6fbfeaa36",
+        "proposalFingerprint": "d76fe9e65475a245780f923fc1b8fc1a66a56577d35438b9326c6afc687a3b96",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-3-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "몇십에만 곱하면 일의 자리 곱만큼 작아짐",
+        "bReason": "일의 자리 곱을 빼먹었을 때 차이는 e3-1-4-2-xc15에서 이미 설명한다. C에서 71과 70의 구체 차이를 확인한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$71\\times7$을 $70\\times7$로 계산하면 실제 곱보다 $1\\times7=${$7$}만큼 작다.",
+        "cReason": "'일의 자리 곱만큼'은 구절 복원형이고 식이 없어 실제 식의 차를 쓰게 함",
+        "exclusionReason": "B: e3-1-4-2-xc15의 일의 자리 곱 누락과 중복한다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몇십만 곱한 값과 실제 곱의 차",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$71\\times7$을 $70\\times7$로 계산하면 실제 곱보다 $1\\times7=${$7$}만큼 작다.",
+        "cStudentSentence": "$71\\times7$을 $70\\times7$로 계산하면 실제 곱보다 $1\\times7=$□만큼 작다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$7$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$71\\times7$을 $70\\times7$로 계산하면 실제 곱보다 $1\\times7=${$7$}만큼 작다.",
+          "acceptedAnswers": [
+            [
+              "$7$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "일의 자리 곱을 빼먹었을 때 차이는 e3-1-4-2-xc15에서 이미 설명한다. C에서 71과 70의 구체 차이를 확인한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-4-3-xc24",
+          "sourceIndex": 678,
+          "proposalFingerprint": "d76fe9e65475a245780f923fc1b8fc1a66a56577d35438b9326c6afc687a3b96",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "몇십만 곱해 빠진 일의 값 설명은 655와 겹친다.",
+          "cReason": "빠뜨린 1×7=7이라는 실제 차를 구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-1-4-3-xc24",
+        "sourceIndex": 678,
+        "proposalFingerprint": "d76fe9e65475a245780f923fc1b8fc1a66a56577d35438b9326c6afc687a3b96",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "일의 자리 곱 누락을 설명하는 e3-1-4-2-xc15를 중복 근거로 밝혔다.",
+        "cReason": "71과 70의 차 한 개를 7번 더한 부족분을 구한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "일의 자리 곱 누락을 다룬 e3-1-4-2-xc15를 명시했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-2-2-xc5",
+      "sourceIndex": 1525,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-2-2-xc5",
+          "grade": "초4",
+          "reviewedHash": "9093d3d6a00dd14f595164e1aeecdbe215325270d349b348fe599a97fa23477d",
+          "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+          "evidence": "cohort-2026-10-06T16-21-22-274Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-2-2-xc5",
+              "revise",
+              "pass",
+              "none",
+              "B 제외 사유 '까닭은 다른 항목이 맡음'이 어느 항목인지 밝히지 않았다. 눈금이 두 줄인 까닭이 다른 곳에서 다뤄지는지 확인할 수 없다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-2-2-xc5",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-2-2-xc5",
+              "section": "초4::1-2 각도::1-2-2 각의 크기 재기",
+              "term": "각도기의 두 줄 눈금",
+              "kind": "성질",
+              "level": "하",
+              "definition": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 {두} 줄이다."
+            },
+            "B": {
+              "excluded": "눈금 줄 수 사실 하나이고 까닭은 다른 항목이 맡음"
+            },
+            "C": {
+              "sentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 {두} 줄이다.",
+              "acceptedAnswers": [
+                [
+                  "두",
+                  "$2$"
+                ]
+              ]
+            },
+            "goal": "각도기 눈금은 두 줄",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "9093d3d6a00dd14f595164e1aeecdbe215325270d349b348fe599a97fa23477d"
+          },
+          "currentNormalizedHash": "9093d3d6a00dd14f595164e1aeecdbe215325270d349b348fe599a97fa23477d",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "d227d182dc57bb3dbdd7f0c6a52e6e16dd1585481286d6084f2992f2fa589d0b",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "d227d182dc57bb3dbdd7f0c6a52e6e16dd1585481286d6084f2992f2fa589d0b",
+      "currentProposal": {
+        "sourceIndex": 1525,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-2 각의 크기 재기",
+        "sourceFingerprint": "ed91b1eab6c246957a73637fb9c27a076cba2946732392afdda4e59c3747b531",
+        "proposalFingerprint": "d227d182dc57bb3dbdd7f0c6a52e6e16dd1585481286d6084f2992f2fa589d0b",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-2-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "각도기 눈금은 두 줄",
+        "bReason": "눈금 두 줄의 까닭은 e4-1-2-2-xc18에서 이미 묻는다. C는 양쪽 끝에서 시작하는 두 줄을 확인한다.",
+        "cDecision": "keep",
+        "cReason": "두 방향에서 시작하는 눈금 설명 뒤 줄 수만 쓰는 쉬운 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "exclusionReason": "B: e4-1-2-2-xc18의 양쪽 방향 눈금 설명과 중복한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "각도기의 두 줄 눈금",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 {두} 줄이다.",
+        "cStudentSentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 □ 줄이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 □ 줄이다.",
+          "answers": [
+            "두"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 {두} 줄이다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "눈금 두 줄의 까닭은 e4-1-2-2-xc18에서 이미 묻는다. C는 양쪽 끝에서 시작하는 두 줄을 확인한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-2-xc5",
+          "sourceIndex": 1525,
+          "proposalFingerprint": "d227d182dc57bb3dbdd7f0c6a52e6e16dd1585481286d6084f2992f2fa589d0b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "눈금의 두 줄 구조를 설명하는 실제 대응 B가 있어 이 반복은 제외한다.",
+          "cReason": "서로 반대쪽에서 시작하는 두 줄의 구조를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-2-2-xc5",
+        "sourceIndex": 1525,
+        "proposalFingerprint": "d227d182dc57bb3dbdd7f0c6a52e6e16dd1585481286d6084f2992f2fa589d0b",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "눈금 두 줄의 이유를 묻는 e4-1-2-2-xc18을 실제 대체 ID로 밝혔다.",
+        "cReason": "두 방향 눈금이 두 줄이라는 구조 확인을 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "각도기 두 줄 눈금의 이유를 다룬 e4-1-2-2-xc18을 명시했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-2-2-xc23",
+      "sourceIndex": 1541,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-2-2-xc23",
+          "grade": "초4",
+          "reviewedHash": "71ba5c5023b240d693fbd8f284695db965a2ddb67f8e3895bbcf205b073177c9",
+          "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+          "evidence": "cohort-2026-10-06T16-21-22-274Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-2-2-xc23",
+              "pass",
+              "revise",
+              "none",
+              "C 빈칸 '같은'은 같은 문장의 '같은 단위'를 그대로 옮기면 정답이 된다. 이해가 아니라 복사로 충족된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-2-2-xc23",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-2-2-xc23",
+              "section": "초4::1-2 각도::1-2-2 각의 크기 재기",
+              "term": "도를 같은 단위로 쓰는 까닭",
+              "kind": "성질",
+              "level": "상",
+              "definition": "$1^\\circ$라는 같은 단위가 있어 누가 재어도 각의 크기를 {같은 수}로 나타낼 수 있다."
+            },
+            "B": {
+              "prompt": "각의 크기를 나타낼 때 사람마다 다른 단위 각을 쓰지 않고 모두 $1^\\circ$를 단위로 쓰면 어떤 점이 좋은지 쓰세요.",
+              "answer": "누가 재어도 같은 각은 같은 수로 나타낼 수 있어서 각의 크기를 서로 정확히 알리고 비교할 수 있다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "누가 재어도 같은 수로 나타낼 수 있다",
+                    "서로 비교할 수 있다",
+                    "누구나 똑같이 알 수 있다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$1^\\circ$라는 같은 단위가 있어 누가 재어도 각의 크기를 {같은} 수로 나타낼 수 있다.",
+              "acceptedAnswers": [
+                [
+                  "같은",
+                  "똑같은"
+                ]
+              ]
+            },
+            "goal": "$1^\\circ$를 함께 쓰는 좋은 점",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "71ba5c5023b240d693fbd8f284695db965a2ddb67f8e3895bbcf205b073177c9"
+          },
+          "currentNormalizedHash": "71ba5c5023b240d693fbd8f284695db965a2ddb67f8e3895bbcf205b073177c9",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "baf3fd9d5087014a28d7e541374a0577e39f01d45a2f48e4ea08ca3ba36e5a83",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "0f979432adc2304ade1e1be78af034bf805dc762be1b6e82b5d7cf82c9fa8497",
+      "currentProposal": {
+        "sourceIndex": 1541,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-2 각의 크기 재기",
+        "sourceFingerprint": "22f8d4bbbf9724b83f324a41ee75d147fe2069b04ff3d7b3b73c91f20dead3a6",
+        "proposalFingerprint": "0f979432adc2304ade1e1be78af034bf805dc762be1b6e82b5d7cf82c9fa8497",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-2-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "각의 크기를 나타낼 때 사람마다 다른 단위 각을 쓰지 않고 모두 $1^\\circ$를 단위로 쓰면 어떤 점이 좋은지 쓰세요.",
+        "bAnswer": "누가 재어도 같은 각은 같은 수로 나타낼 수 있어서 각의 크기를 서로 정확히 알리고 비교할 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "누가 재어도 같은 수로 나타낼 수 있다",
+              "서로 비교할 수 있다",
+              "누구나 똑같이 알 수 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$1^\\circ$를 함께 쓰는 좋은 점",
+        "bReason": "서로 다른 단위 각과 견주어 좋은 점을 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "누가 재더라도 같은 각의 크기를 {같은} 수로 나타낼 수 있도록 $1^\\circ$를 단위로 정하여 쓴다.",
+        "cReason": "단위의 통일이 같은 크기를 같은 수로 표현하게 한다는 성질을 보존한다. 서로 다른 각까지 같아진다는 오해가 없도록 같은 각이라는 대상을 명시한다.",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "도를 같은 단위로 쓰는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "누가 재더라도 같은 각의 크기를 {같은} 수로 나타낼 수 있도록 $1^\\circ$를 단위로 정하여 쓴다.",
+        "cStudentSentence": "누가 재더라도 같은 각의 크기를 □ 수로 나타낼 수 있도록 $1^\\circ$를 단위로 정하여 쓴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "각의 크기를 나타낼 때 사람마다 다른 단위 각을 쓰지 않고 모두 $1^\\circ$를 단위로 쓰면 어떤 점이 좋은지 쓰세요.",
+          "answer": "누가 재어도 같은 각은 같은 수로 나타낼 수 있어서 각의 크기를 서로 정확히 알리고 비교할 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "누가 재어도 같은 수로 나타낼 수 있다",
+                "서로 비교할 수 있다",
+                "누구나 똑같이 알 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "누가 재더라도 같은 각의 크기를 {같은} 수로 나타낼 수 있도록 $1^\\circ$를 단위로 정하여 쓴다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-2-2-xc23",
+        "sourceIndex": 1541,
+        "proposalFingerprint": "0f979432adc2304ade1e1be78af034bf805dc762be1b6e82b5d7cf82c9fa8497",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "공통 단위로 각 크기를 비교하고 전달할 수 있는 까닭을 받는다.",
+        "cReason": "같은 각의 크기를 대상으로 명시해 서로 다른 각도 같은 수가 된다는 오해를 없앴다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "공통 단위의 대상이 같은 각임을 밝혀 같은 크기가 같은 수로 표현되는 의미를 보존했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-4-xc22",
+      "sourceIndex": 693,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-4-xc22",
+          "grade": "초3",
+          "reviewedHash": "94be4b4cc8433590014d0223150ed5d42137fe6499dadfa24348505dd6828c67",
+          "inputHash": "b485d2619edb83cb587969cf86c15ffc58f9f9a2e7d51b1d1308d42556a3bcb1",
+          "evidence": "cohort-2026-10-06T16-21-22-297Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-4-4-xc22",
+              "revise",
+              "pass",
+              "none",
+              "B 제외 사유 '앞 절의 올림 조건과 같은 내용'은 어느 항목과 중복인지 밝히지 않았다. 앞 절은 올림이 없는 단원이라 해당 내용이 있는지도 불분명하다. 중복되는 항목 ID와 겹치는 내용을 명시해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-4-xc22",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-4-xc22",
+              "section": "초3::1-4 곱셈::1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "올림이 있는지 미리 알기",
+              "kind": "방법",
+              "level": "상",
+              "definition": "일의 자리 숫자와 곱하는 수의 곱이 {$10$ 이상}이면 일의 자리에서 올림이 생긴다."
+            },
+            "B": {
+              "excluded": "앞 절의 올림 조건과 같은 내용"
+            },
+            "C": {
+              "sentence": "$37\\times2$는 일의 자리 숫자와 곱하는 수의 곱이 $7\\times2=${$14$}로 $10$보다 크므로 일의 자리에서 올림이 {있다}.",
+              "acceptedAnswers": [
+                [
+                  "$14$"
+                ],
+                [
+                  "있다"
+                ]
+              ]
+            },
+            "goal": "일의 자리 올림이 있는지 미리 알기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "94be4b4cc8433590014d0223150ed5d42137fe6499dadfa24348505dd6828c67"
+          },
+          "currentNormalizedHash": "94be4b4cc8433590014d0223150ed5d42137fe6499dadfa24348505dd6828c67",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "924829bf48be99eb1fc32df3e6d097a1bc7b9e0d18bfffe406bad618bb458325",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "924829bf48be99eb1fc32df3e6d097a1bc7b9e0d18bfffe406bad618bb458325",
+      "currentProposal": {
+        "sourceIndex": 693,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "1a00890c55b9c890d29b9131479a4737085cab698bac940e6e8c724fe36064d5",
+        "proposalFingerprint": "924829bf48be99eb1fc32df3e6d097a1bc7b9e0d18bfffe406bad618bb458325",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-4-xc22",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "일의 자리 올림이 있는지 미리 알기",
+        "bReason": "일의 자리 곱이 10개를 이루어 올림이 생기는 조건은 e3-1-4-2-xc19의 두 곱 비교에서 이미 묻는다.",
+        "cDecision": "rewrite",
+        "cAfter": "$37\\times2$는 일의 자리 숫자와 곱하는 수의 곱이 $7\\times2=${$14$}로 $10$보다 크므로 일의 자리에서 올림이 {있다}.",
+        "cReason": "답 '10 이상'은 수와 '이상'을 함께 써야 하고 '이상'은 초5 용어라 실제 곱과 '있다'를 쓰게 함",
+        "exclusionReason": "B: e3-1-4-2-xc19의 일의 자리 곱과 올림 비교와 중복한다.",
+        "answerNotes": "둘째 빈칸은 '있다', '생긴다' 인정",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "올림이 있는지 미리 알기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$37\\times2$는 일의 자리 숫자와 곱하는 수의 곱이 $7\\times2=${$14$}로 $10$보다 크므로 일의 자리에서 올림이 {있다}.",
+        "cStudentSentence": "$37\\times2$는 일의 자리 숫자와 곱하는 수의 곱이 $7\\times2=$□로 $10$보다 크므로 일의 자리에서 올림이 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$14$",
+            "equivalents": []
+          },
+          {
+            "expected": "있다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$37\\times2$는 일의 자리 숫자와 곱하는 수의 곱이 $7\\times2=${$14$}로 $10$보다 크므로 일의 자리에서 올림이 {있다}.",
+          "acceptedAnswers": [
+            [
+              "$14$"
+            ],
+            [
+              "있다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "일의 자리 곱이 10개를 이루어 올림이 생기는 조건은 e3-1-4-2-xc19의 두 곱 비교에서 이미 묻는다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-4-4-xc22",
+          "sourceIndex": 693,
+          "proposalFingerprint": "924829bf48be99eb1fc32df3e6d097a1bc7b9e0d18bfffe406bad618bb458325",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "일의 올림 판단은 657과 같아 B를 제외한다.",
+          "cReason": "7×2=14와 일에서 올림 있음의 실제 조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-1-4-4-xc22",
+        "sourceIndex": 693,
+        "proposalFingerprint": "924829bf48be99eb1fc32df3e6d097a1bc7b9e0d18bfffe406bad618bb458325",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "올림 비교 e3-1-4-2-xc19를 대체 B로 명시했다.",
+        "cReason": "14에서 올림이 있다는 구체 계산을 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "올림 비교를 다룬 e3-1-4-2-xc19를 명시했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-4-xc26",
+      "sourceIndex": 695,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-4-xc26",
+          "grade": "초3",
+          "reviewedHash": "4807aec0d7137769ec165421cd36db4af26a8d3beb7ea7e14a9b72cc8fa22e83",
+          "inputHash": "b485d2619edb83cb587969cf86c15ffc58f9f9a2e7d51b1d1308d42556a3bcb1",
+          "evidence": "cohort-2026-10-06T16-21-22-297Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-4-4-xc26",
+              "revise",
+              "pass",
+              "none",
+              "B 둘째 필수 '십의 묶음 수인 십의 자리 곱에 더함'은 물음에 이미 주어진 '이 1을 십의 자리 곱에 더하는'을 복사해도 충족된다. 독립 필수는 첫째 '올린 1은 십의 묶음 1개(10)'뿐이다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-4-xc26",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-4-xc26",
+              "section": "초3::1-4 곱셈::1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "올린 수를 더하는 자리",
+              "kind": "방법",
+              "level": "상",
+              "definition": "일의 자리에서 올린 수는 일의 자리 곱이 아니라 {십의 자리} 곱에 더한다."
+            },
+            "B": {
+              "prompt": "$26\\times3$에서 일의 자리 곱 $18$의 $1$을 올렸습니다. 이 $1$을 십의 자리 곱에 더하는 까닭을 설명해 보세요.",
+              "answer": "올린 $1$은 십의 묶음 $1$개이다. 그래서 십의 묶음 수인 $2\\times3=6$에 더해 십의 묶음 $7$개로 계산한다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "올린 $1$은 십의 묶음 $1$개"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "십의 묶음 수인 십의 자리 곱에 더함"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "일의 자리에서 올린 수는 일의 자리 곱이 아니라 {십의 자리} 곱에 더한다.",
+              "acceptedAnswers": [
+                [
+                  "십의 자리"
+                ]
+              ]
+            },
+            "goal": "올린 수를 십의 자리 곱에 더하는 까닭",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "4807aec0d7137769ec165421cd36db4af26a8d3beb7ea7e14a9b72cc8fa22e83"
+          },
+          "currentNormalizedHash": "4807aec0d7137769ec165421cd36db4af26a8d3beb7ea7e14a9b72cc8fa22e83",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "a3a0eda454180c40f498ffdad4bacb0c750af1d6e642d0458f4247ed83dfb8d1",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "93275bc5e3890da144fa51c34b3c2e3035754d5ab1bee867374206ac3e4cb437",
+      "currentProposal": {
+        "sourceIndex": 695,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-4 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "15ace71e736a08a46c4a90ed3f810fc4ffcbef41365b04f0a7376fcf29417049",
+        "proposalFingerprint": "93275bc5e3890da144fa51c34b3c2e3035754d5ab1bee867374206ac3e4cb437",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-4-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$26\\times3$에서 일의 자리 곱 $18$의 $1$을 올렸습니다. 이 $1$을 십의 자리 곱에 더하는 까닭을 설명해 보세요.",
+        "bAnswer": "올린 $1$은 십의 묶음 $1$개이다. 그래서 십의 묶음 수인 $2\\times3=6$에 더해 십의 묶음 $7$개로 계산한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "올린 $1$은 십의 묶음 한 개이고, 십의 자리 곱도 십의 묶음 개수이므로 같은 단위끼리 더한다"
+            ]
+          }
+        ],
+        "bGoal": "올린 수를 십의 자리 곱에 더하는 까닭",
+        "bReason": "원문에 예가 없어 26×3을 주고 더하는 자리의 까닭을 묻게 함",
+        "cDecision": "keep",
+        "cReason": "'일의 자리 곱이 아니라 □ 곱'으로 대비가 분명해 '십의 자리'를 쓸 수 있음",
+        "answerNotes": "'십의 자리', '십' 인정",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "올린 수를 더하는 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "일의 자리에서 올린 수는 일의 자리 곱이 아니라 {십의 자리} 곱에 더한다.",
+        "cStudentSentence": "일의 자리에서 올린 수는 일의 자리 곱이 아니라 □ 곱에 더한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "십의 자리",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "일의 자리에서 올린 수는 일의 자리 곱이 아니라 □ 곱에 더한다.",
+          "answers": [
+            "십의 자리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$26\\times3$에서 일의 자리 곱 $18$의 $1$을 올렸습니다. 이 $1$을 십의 자리 곱에 더하는 까닭을 설명해 보세요.",
+          "answer": "올린 $1$은 십의 묶음 $1$개이다. 그래서 십의 묶음 수인 $2\\times3=6$에 더해 십의 묶음 $7$개로 계산한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "올린 $1$은 십의 묶음 한 개이고, 십의 자리 곱도 십의 묶음 개수이므로 같은 단위끼리 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "일의 자리에서 올린 수는 일의 자리 곱이 아니라 {십의 자리} 곱에 더한다.",
+          "acceptedAnswers": [
+            [
+              "십의 자리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-1-4-4-xc26",
+        "sourceIndex": 695,
+        "proposalFingerprint": "93275bc5e3890da144fa51c34b3c2e3035754d5ab1bee867374206ac3e4cb437",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "올린 1과 십의 자리 곱이 같은 십 묶음 단위라는 이유를 하나의 기준으로 분명히 했다.",
+        "cReason": "일의 자리에서 올린 수를 십의 자리 곱에 더하는 원리를 묻는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "두 값이 같은 십 묶음 단위라는 실제 이유를 요구하는 기준으로 정리했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-5-xc17",
+      "sourceIndex": 705,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-5-xc17",
+          "grade": "초3",
+          "reviewedHash": "b79f357e03ffb8ab06ebac625e2c85c491181fed4d989065e0b30fe7f78776ce",
+          "inputHash": "c1baf0a566594aae91d92391d1fe7a4f36205fcd0711d9eff65996f36f0e69c8",
+          "evidence": "cohort-2026-10-06T16-29-47-782Z-0",
+          "blind": [
+            [
+              "e3-1-4-5-xc17",
+              "C",
+              "식(또는 곱셈식)",
+              "revise",
+              "빈칸에 들어갈 말이 '식/경우/것' 중 무엇인지 정해지지 않고, 답이 되는 99×9가 문장에 이미 주어져 있어 빈칸은 낱말 복원에 그친다."
+            ]
+          ],
+          "key": [
+            [
+              "e3-1-4-5-xc17",
+              "pass",
+              "pass",
+              "none",
+              ""
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-5-xc17",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-5-xc17",
+              "section": "초3::1-4 곱셈::1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "(몇십몇)$\\times$(몇)의 가장 큰 곱",
+              "kind": "성질",
+              "level": "중",
+              "definition": "(몇십몇)$\\times$(몇) 가운데 곱이 가장 큰 것은 $99\\times9$인 {$891$}이다."
+            },
+            "B": {
+              "prompt": "두 자리 수에 한 자리 수를 곱하는 곱셈식 중에서 곱이 가장 큰 식은 무엇인지 쓰고, 그 식의 곱이 가장 큰 까닭을 설명해 보세요.",
+              "answer": "$99\\times9$이다. 가장 큰 두 자리 수 $99$와 가장 큰 한 자리 수 $9$를 곱했기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$99\\times 9$"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "가장 큰 두 자리 수와 가장 큰 한 자리 수의 곱"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "(몇십몇)$\\times$(몇) 가운데 곱이 가장 큰 것은 $99\\times9$인 {$891$}이다.",
+              "acceptedAnswers": [
+                [
+                  "$891$"
+                ]
+              ]
+            },
+            "goal": "곱이 가장 큰 식을 찾는 까닭 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "b79f357e03ffb8ab06ebac625e2c85c491181fed4d989065e0b30fe7f78776ce"
+          },
+          "currentNormalizedHash": "b79f357e03ffb8ab06ebac625e2c85c491181fed4d989065e0b30fe7f78776ce",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "51ebe3b22b0907ef4333881c2da8916241845a3bf1071f6c8a6632e38b372a8a",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "c3b212f8a0c705a9893825be92b5fdf571a88f49bf382df013dd40020f725420",
+      "currentProposal": {
+        "sourceIndex": 705,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "47e40f21bdeca07c50ff288374e564b40d13b639d22bf1f115589bf4bc11dd92",
+        "proposalFingerprint": "c3b212f8a0c705a9893825be92b5fdf571a88f49bf382df013dd40020f725420",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-5-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자리 수에 한 자리 수를 곱하는 곱셈식 중에서 곱이 가장 큰 식은 무엇인지 쓰고, 그 식의 곱이 가장 큰 까닭을 설명해 보세요.",
+        "bAnswer": "$99\\times9$이다. 가장 큰 두 자리 수 $99$와 가장 큰 한 자리 수 $9$를 곱했기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$99\\times 9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 큰 두 자리 수와 가장 큰 한 자리 수의 곱"
+            ]
+          }
+        ],
+        "bGoal": "곱이 가장 큰 식을 찾는 까닭 설명",
+        "bReason": "891이라는 값은 C에서 확인하고 B는 식을 고르는 까닭을 묻게 함",
+        "cDecision": "rewrite",
+        "cReason": "식 99×9가 주어져 곱 891을 계산해 쓰는 선명한 빈칸",
+        "cAfter": "두 자리 수에 한 자리 수를 곱할 때 가장 큰 곱은 $99\\times9$를 계산한 {$891$}이다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "(몇십몇)$\\times$(몇)의 가장 큰 곱",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 자리 수에 한 자리 수를 곱할 때 가장 큰 곱은 $99\\times9$를 계산한 {$891$}이다.",
+        "cStudentSentence": "두 자리 수에 한 자리 수를 곱할 때 가장 큰 곱은 $99\\times9$를 계산한 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$891$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "두 자리 수에 한 자리 수를 곱하는 곱셈식 중에서 곱이 가장 큰 식은 무엇인지 쓰고, 그 식의 곱이 가장 큰 까닭을 설명해 보세요.",
+          "answer": "$99\\times9$이다. 가장 큰 두 자리 수 $99$와 가장 큰 한 자리 수 $9$를 곱했기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$99\\times 9$"
+              ]
+            },
+            {
+              "anyOf": [
+                "가장 큰 두 자리 수와 가장 큰 한 자리 수의 곱"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 자리 수에 한 자리 수를 곱할 때 가장 큰 곱은 $99\\times9$를 계산한 {$891$}이다.",
+          "acceptedAnswers": [
+            [
+              "$891$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-1-4-5-xc17",
+        "sourceIndex": 705,
+        "proposalFingerprint": "c3b212f8a0c705a9893825be92b5fdf571a88f49bf382df013dd40020f725420",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "최대 두 자리 수와 최대 한 자리 수의 곱이라는 B 목표가 맞다.",
+        "cReason": "어색한 식인 빈칸을 고쳐 실제 곱 891을 구하는 문장으로 했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "수식 뒤 식인이라는 어색한 말을 없애 실제 곱 891을 구하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-2-3-xc17",
+      "sourceIndex": 1561,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-2-3-xc17",
+          "grade": "초4",
+          "reviewedHash": "030f1152255b8ed0b3c4bd8acbc9cadf7e062febb1a62d983da1f859871dfa3b",
+          "inputHash": "c1baf0a566594aae91d92391d1fe7a4f36205fcd0711d9eff65996f36f0e69c8",
+          "evidence": "cohort-2026-10-06T16-29-47-782Z-0",
+          "blind": [
+            [
+              "e4-1-2-3-xc17",
+              "C",
+              "하나(한 가지)",
+              "revise",
+              "'세 가지', '하나', 특정 각 이름 등 여러 읽기가 가능하다. '정확히 하나의 종류'라는 요구가 문장에 드러나지 않는다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-2-3-xc17",
+              "pass",
+              "pass",
+              "none",
+              ""
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-2-3-xc17",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-2-3-xc17",
+              "section": "초4::1-2 각도::1-2-3 각의 크기에 따라 분류하기",
+              "term": "한 각은 한 갈래",
+              "kind": "성질",
+              "level": "중",
+              "definition": "$0^\\circ$보다 크고 $180^\\circ$보다 작은 각은 예각, 직각, 둔각 가운데 {한 가지}로만 분류된다."
+            },
+            "B": {
+              "prompt": "한 각이 예각이면서 동시에 둔각일 수는 없는 까닭을 쓰세요.",
+              "answer": "예각은 $90^\\circ$보다 작고 둔각은 $90^\\circ$보다 큰데, 한 각의 크기가 $90^\\circ$보다 작으면서 동시에 클 수는 없기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "예각은 $90^\\circ$보다 작고 둔각은 $90^\\circ$보다 크다",
+                    "예각은 직각보다 작고 둔각은 직각보다 크다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "한 각이 $90^\\circ$보다 작으면서 클 수는 없다",
+                    "한 각의 크기는 하나뿐이다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$0^\\circ$보다 크고 $180^\\circ$보다 작은 각은 예각, 직각, 둔각 가운데 {한 가지}로만 분류된다.",
+              "acceptedAnswers": [
+                [
+                  "한 가지",
+                  "하나",
+                  "한 종류"
+                ]
+              ]
+            },
+            "goal": "한 각은 한 갈래인 까닭",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "030f1152255b8ed0b3c4bd8acbc9cadf7e062febb1a62d983da1f859871dfa3b"
+          },
+          "currentNormalizedHash": "030f1152255b8ed0b3c4bd8acbc9cadf7e062febb1a62d983da1f859871dfa3b",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "c6339d95ba916495ebae5221fb9f453415c466635a8ece36480967b09df2b5c9",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "c6339d95ba916495ebae5221fb9f453415c466635a8ece36480967b09df2b5c9",
+      "currentProposal": {
+        "sourceIndex": 1561,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-3 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "6ecfb7f1694c11d42f0ae22c88a763fde42b64e73e2208d091b2ba10143960af",
+        "proposalFingerprint": "c6339d95ba916495ebae5221fb9f453415c466635a8ece36480967b09df2b5c9",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-3-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "한 각이 예각이면서 동시에 둔각일 수는 없는 까닭을 쓰세요.",
+        "bAnswer": "예각은 $90^\\circ$보다 작고 둔각은 $90^\\circ$보다 큰데, 한 각의 크기가 $90^\\circ$보다 작으면서 동시에 클 수는 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예각은 $90^\\circ$보다 작고 둔각은 $90^\\circ$보다 크다",
+              "예각은 직각보다 작고 둔각은 직각보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 각이 $90^\\circ$보다 작으면서 클 수는 없다",
+              "한 각의 크기는 하나뿐이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한 각은 한 갈래인 까닭",
+        "bReason": "예각·둔각이 겹칠 수 없는 까닭으로 좁혀 묻게 함",
+        "cDecision": "keep",
+        "cReason": "세 갈래가 보이고 몇 가지인지 쓰는 쉬운 빈칸",
+        "cSlotEquivalents": [
+          [
+            "하나",
+            "한 종류"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 각은 한 갈래",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0^\\circ$보다 크고 $180^\\circ$보다 작은 각은 예각, 직각, 둔각 가운데 {한 가지}로만 분류된다.",
+        "cStudentSentence": "$0^\\circ$보다 크고 $180^\\circ$보다 작은 각은 예각, 직각, 둔각 가운데 □로만 분류된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "한 가지",
+            "equivalents": [
+              "하나",
+              "한 종류"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0^\\circ$보다 크고 $180^\\circ$보다 작은 각은 예각, 직각, 둔각 가운데 □로만 분류된다.",
+          "answers": [
+            "한 가지"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 각이 예각이면서 동시에 둔각일 수는 없는 까닭을 쓰세요.",
+          "answer": "예각은 $90^\\circ$보다 작고 둔각은 $90^\\circ$보다 큰데, 한 각의 크기가 $90^\\circ$보다 작으면서 동시에 클 수는 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예각은 $90^\\circ$보다 작고 둔각은 $90^\\circ$보다 크다",
+                "예각은 직각보다 작고 둔각은 직각보다 크다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 각이 $90^\\circ$보다 작으면서 클 수는 없다",
+                "한 각의 크기는 하나뿐이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0^\\circ$보다 크고 $180^\\circ$보다 작은 각은 예각, 직각, 둔각 가운데 {한 가지}로만 분류된다.",
+          "acceptedAnswers": [
+            [
+              "한 가지",
+              "하나",
+              "한 종류"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-3-xc17",
+          "sourceIndex": 1561,
+          "proposalFingerprint": "c6339d95ba916495ebae5221fb9f453415c466635a8ece36480967b09df2b5c9",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "한 각이 동시에 90도보다 작고 클 수 없다는 이유를 설명한다.",
+          "cReason": "0도와 180도 사이의 각이 한 범주에만 속한다는 목표가 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-2-3-xc17",
+        "sourceIndex": 1561,
+        "proposalFingerprint": "c6339d95ba916495ebae5221fb9f453415c466635a8ece36480967b09df2b5c9",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한 각이 90도보다 동시에 크고 작을 수 없다는 이유가 맞다.",
+        "cReason": "세 종류 가운데 한 가지로만 분류된다는 뜻이 문장에 드러나며 같은 뜻의 하나와 한 종류를 허용한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "0도 초과 180도 미만의 한 각은 예각 직각 둔각 가운데 한 가지로만 분류된다. 한 가지와 하나 및 한 종류는 같은 뜻이며 의미가 열려 있지 않다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-4-5-xc19",
+      "sourceIndex": 706,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-4-5-xc19",
+          "grade": "초3",
+          "reviewedHash": "90ebdb803f1e1922a8cb1ad345a7550bc8b869090d4917b447c6cbf668bcf9d8",
+          "inputHash": "c1baf0a566594aae91d92391d1fe7a4f36205fcd0711d9eff65996f36f0e69c8",
+          "evidence": "cohort-2026-10-06T16-29-47-782Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-4-5-xc19",
+              "pass",
+              "pass",
+              "revise",
+              "원문이 이미 '10 이상'이라 10인 경우를 포함한다. coreAfter의 '10이거나 10보다 커지면'은 같은 뜻의 재서술이어서 수학 교정이 아니다. coreReason의 '10과 같은 경우도 포함한다'는 원문에 결함이 있었다는 잘못된 근거다. coreAfter는 null이 맞다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-4-5-xc19",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-4-5-xc19",
+              "section": "초3::1-4 곱셈::1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+              "term": "올린 수 때문에 생기는 올림",
+              "kind": "성질",
+              "level": "상",
+              "definition": "십의 자리 곱이 $10$보다 작아도 일의 자리에서 {올린 수를 더해} $10$ 이상이 되면 백의 자리로 올린다.",
+              "example": {
+                "prompt": "$16\\times7$은 십의 자리 곱이 $7$인데도 백의 자리가 생기는 까닭은?",
+                "answer": "올린 $4$를 더해 십이 $11$개라서"
+              }
+            },
+            "B": {
+              "prompt": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$로 $10$보다 작습니다. 그런데도 곱 $112$에 백의 자리가 생기는 까닭을 설명해 보세요.",
+              "answer": "일의 자리 곱 $6\\times7=42$에서 $4$를 올려 $7+4=11$이 되고, 십이 $11$개가 되어 백의 자리로 $1$을 올리기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "일의 자리에서 $4$를 올림"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$7+4=11$이라 백의 자리로 올림"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$이지만, 일의 자리 곱 $42$에서 올린 {$4$}를 더하면 $11$이 되어 백의 자리로 올린다.",
+              "acceptedAnswers": [
+                [
+                  "$4$"
+                ]
+              ]
+            },
+            "goal": "올린 수 때문에 백의 자리로 올림이 생기는 까닭 설명",
+            "coreAfter": "십의 자리 곱이 $10$보다 작아도 일의 자리에서 {올린 수를 더해} $10$이거나 $10$보다 커지면 백의 자리로 올린다.",
+            "coreReason": "올린 수를 더해라는 원래 원인 표적을 보존하며10과같은 경우도 포함한다.",
+            "hash": "90ebdb803f1e1922a8cb1ad345a7550bc8b869090d4917b447c6cbf668bcf9d8"
+          },
+          "currentNormalizedHash": "90ebdb803f1e1922a8cb1ad345a7550bc8b869090d4917b447c6cbf668bcf9d8",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "b397749e00e37883682de535658961757d399e6591ba0ddd5bd6274634ac1cf3",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "b397749e00e37883682de535658961757d399e6591ba0ddd5bd6274634ac1cf3",
+      "currentProposal": {
+        "sourceIndex": 706,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-5 십의 자리와 일의 자리에서 올림이 있는 (몇십몇)×(몇)",
+        "sourceFingerprint": "f2a37c67450c5f287e01940075d9d0c22225f48f25cf970de288a2149b3661a9",
+        "proposalFingerprint": "b397749e00e37883682de535658961757d399e6591ba0ddd5bd6274634ac1cf3",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-5-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$로 $10$보다 작습니다. 그런데도 곱 $112$에 백의 자리가 생기는 까닭을 설명해 보세요.",
+        "bAnswer": "일의 자리 곱 $6\\times7=42$에서 $4$를 올려 $7+4=11$이 되고, 십이 $11$개가 되어 백의 자리로 $1$을 올리기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리에서 $4$를 올림"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7+4=11$이라 백의 자리로 올림"
+            ]
+          }
+        ],
+        "bGoal": "올린 수 때문에 백의 자리로 올림이 생기는 까닭 설명",
+        "bReason": "원문 예제 16×7을 써서 까닭을 스스로 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$이지만, 일의 자리 곱 $42$에서 올린 {$4$}를 더하면 $11$이 되어 백의 자리로 올린다.",
+        "cReason": "원문 빈칸 '올린 수를 더해'는 구절 복원이어서 16×7에서 올린 수를 숫자로 답하게 함",
+        "coreAfter": "십의 자리 곱이 $10$보다 작아도 일의 자리에서 {올린 수를 더해} $10$이거나 $10$보다 커지면 백의 자리로 올린다.",
+        "coreReason": "원문의 10 이상과 10이거나 10보다 크다는 같은 조건이다. 수학 오류 수정이 아니라 초3에서 아직 배우지 않은 이상이라는 범위 용어를 쉬운 말로 풀어 쓴 교정이며 원래 원인 표적 올린 수를 더해는 보존한다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "올린 수 때문에 생기는 올림",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$이지만, 일의 자리 곱 $42$에서 올린 {$4$}를 더하면 $11$이 되어 백의 자리로 올린다.",
+        "cStudentSentence": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$이지만, 일의 자리 곱 $42$에서 올린 □를 더하면 $11$이 되어 백의 자리로 올린다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$로 $10$보다 작습니다. 그런데도 곱 $112$에 백의 자리가 생기는 까닭을 설명해 보세요.",
+          "answer": "일의 자리 곱 $6\\times7=42$에서 $4$를 올려 $7+4=11$이 되고, 십이 $11$개가 되어 백의 자리로 $1$을 올리기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "일의 자리에서 $4$를 올림"
+              ]
+            },
+            {
+              "anyOf": [
+                "$7+4=11$이라 백의 자리로 올림"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$이지만, 일의 자리 곱 $42$에서 올린 {$4$}를 더하면 $11$이 되어 백의 자리로 올린다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-4-5-xc19",
+          "sourceIndex": 706,
+          "proposalFingerprint": "b397749e00e37883682de535658961757d399e6591ba0ddd5bd6274634ac1cf3",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "십 곱 7에 일에서 올린 4를 더한 11로 백이 생기는 까닭을 묻는다.",
+          "cReason": "42에서 올릴 4를 확인하고 일반 설명도 올린 수를 포함한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-1-4-5-xc19",
+        "sourceIndex": 706,
+        "proposalFingerprint": "b397749e00e37883682de535658961757d399e6591ba0ddd5bd6274634ac1cf3",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "일의 자리에서 올린 4를 더해 십이 11개가 되는 이유와 기준이 맞다.",
+        "cReason": "core의 이상을 풀어 쓴 것은 학년 언어 교정이며 원문 수학 오류가 아니라는 이유로 바로잡았다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "coreReason을 수학 오류가 아니라 초3에서 이상의 의미를 쉬운 말로 풀어 쓴 학년 언어 교정으로 바로잡았다. 원문도 10을 포함한다는 사실을 명시했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-2-3-xc24",
+      "sourceIndex": 1568,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-2-3-xc24",
+          "grade": "초4",
+          "reviewedHash": "cd4dc36d5709608a143ba9dd45a2365105f029487f7d1edf3e6278aacd7ee56d",
+          "inputHash": "c1baf0a566594aae91d92391d1fe7a4f36205fcd0711d9eff65996f36f0e69c8",
+          "evidence": "cohort-2026-10-06T16-29-47-782Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-2-3-xc24",
+              "revise",
+              "pass",
+              "none",
+              "B requiredIdeas의 첫째 anyOf 중 '90°보다 커서 둔각이다'는 50°→100°라는 예만 확인해도 충족된다. 45°보다 큰 모든 예각의 두 배가 둔각인 까닭, 곧 45°의 두 배가 90°라는 연결을 필수로 요구하지 않는다. 일반적인 까닭을 필수로 요구하도록 고쳐야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-2-3-xc24",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-2-3-xc24",
+              "section": "초4::1-2 각도::1-2-3 각의 크기에 따라 분류하기",
+              "term": "$45^\\circ$보다 큰 예각을 두 배 한 각의 종류",
+              "kind": "성질",
+              "level": "상",
+              "definition": "$45^\\circ$보다 큰 예각을 두 배 하면 {둔각}이 된다."
+            },
+            "B": {
+              "prompt": "$45^\\circ$보다 큰 예각을 두 배 하면 둔각이 되는 까닭을 $50^\\circ$를 예로 들어 설명하세요.",
+              "answer": "$50^\\circ$를 두 배 하면 $100^\\circ$이다. $45^\\circ$의 두 배가 $90^\\circ$이므로 그보다 큰 예각의 두 배는 $90^\\circ$보다 크고 $180^\\circ$보다 작아 둔각이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$50^\\circ$의 두 배는 $100^\\circ$이다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$90^\\circ$보다 커서 둔각이다",
+                    "$45^\\circ$의 두 배인 $90^\\circ$보다 크다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$45^\\circ$보다 큰 예각을 두 배 하면 {둔각}이 된다.",
+              "acceptedAnswers": [
+                [
+                  "둔각"
+                ]
+              ]
+            },
+            "goal": "큰 예각의 두 배가 둔각인 까닭",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "cd4dc36d5709608a143ba9dd45a2365105f029487f7d1edf3e6278aacd7ee56d"
+          },
+          "currentNormalizedHash": "cd4dc36d5709608a143ba9dd45a2365105f029487f7d1edf3e6278aacd7ee56d",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "366c0af17d48035394ef755187fe821c345a62bdb0a6367cc01f79a810ea68ad",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "db4cf4d320dd0d9d4462cd8c96b7cd164e543bc61d88571b6cd15cb2d72fae18",
+      "currentProposal": {
+        "sourceIndex": 1568,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-3 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "92666fd3f3630200ea29a7cec5ff5790356a75558fd04bec13b252ea419dc76b",
+        "proposalFingerprint": "db4cf4d320dd0d9d4462cd8c96b7cd164e543bc61d88571b6cd15cb2d72fae18",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-3-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$45^\\circ$보다 큰 예각을 두 배 하면 둔각이 되는 까닭을 $50^\\circ$를 예로 들어 설명하세요.",
+        "bAnswer": "$50^\\circ$를 두 배 하면 $100^\\circ$이다. $45^\\circ$의 두 배가 $90^\\circ$이므로 그보다 큰 예각의 두 배는 $90^\\circ$보다 크고 $180^\\circ$보다 작아 둔각이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$50^\\circ$의 두 배는 $100^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$45^\\circ$의 두 배가 $90^\\circ$이므로 그보다 큰 예각의 두 배는 $90^\\circ$보다 크고 $180^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "큰 예각의 두 배가 둔각인 까닭",
+        "bReason": "$50^\\circ$라는 예를 정해 주어 까닭을 쓰기 쉽게 함",
+        "cDecision": "keep",
+        "cReason": "조건이 수로 분명하고 각 이름 하나만 쓰면 됨",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$45^\\circ$보다 큰 예각을 두 배 한 각의 종류",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$45^\\circ$보다 큰 예각을 두 배 하면 {둔각}이 된다.",
+        "cStudentSentence": "$45^\\circ$보다 큰 예각을 두 배 하면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "둔각",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$45^\\circ$보다 큰 예각을 두 배 하면 □이 된다.",
+          "answers": [
+            "둔각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$45^\\circ$보다 큰 예각을 두 배 하면 둔각이 되는 까닭을 $50^\\circ$를 예로 들어 설명하세요.",
+          "answer": "$50^\\circ$를 두 배 하면 $100^\\circ$이다. $45^\\circ$의 두 배가 $90^\\circ$이므로 그보다 큰 예각의 두 배는 $90^\\circ$보다 크고 $180^\\circ$보다 작아 둔각이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$50^\\circ$의 두 배는 $100^\\circ$이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$45^\\circ$의 두 배가 $90^\\circ$이므로 그보다 큰 예각의 두 배는 $90^\\circ$보다 크고 $180^\\circ$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$45^\\circ$보다 큰 예각을 두 배 하면 {둔각}이 된다.",
+          "acceptedAnswers": [
+            [
+              "둔각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-2-3-xc24",
+        "sourceIndex": 1568,
+        "proposalFingerprint": "db4cf4d320dd0d9d4462cd8c96b7cd164e543bc61d88571b6cd15cb2d72fae18",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "50도 사례뿐 아니라 45도의 두 배 90도 경계 및 180도 미만이라는 일반 이유를 필수로 받는다.",
+        "cReason": "45도보다 큰 예각의 두 배가 둔각이라는 조건이 맞다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "예시 100도뿐 아니라 45도의 두 배인 90도 및 예각의 두 배 180도 미만 경계를 기준에 포함했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-5-1-xc7",
+      "sourceIndex": 717,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-5-1-xc7",
+          "grade": "초3",
+          "reviewedHash": "2fd4ee4ca730e49cd23f65d7ad9ecd6dc451873db893f52bea06653093b7b0a2",
+          "inputHash": "c1baf0a566594aae91d92391d1fe7a4f36205fcd0711d9eff65996f36f0e69c8",
+          "evidence": "cohort-2026-10-06T16-29-47-782Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-5-1-xc7",
+              "excluded",
+              "revise",
+              "none",
+              "C 문장이 'cm와 mm 중 {mm}'로 정답 mm를 선택지로 이미 보여 주어 답이 노출된다. 1cm보다 짧다는 단서와 함께 둘 중 하나를 고르는 문항이 된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-5-1-xc7",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-5-1-xc7",
+              "section": "초3::1-5 길이와 시간::1-5-1 1cm보다 작은 단위",
+              "term": "아주 짧은 길이의 단위",
+              "kind": "단위",
+              "level": "하",
+              "definition": "개미나 단추처럼 아주 짧은 길이는 {$\\mathrm{mm}$}를 써서 나타내면 편리하다."
+            },
+            "B": {
+              "excluded": "cm와 mm 중 알맞은 단위를 고르고 까닭을 말하는 질문은 e3-1-5-1-xc24에서 다룸"
+            },
+            "C": {
+              "sentence": "개미의 몸길이처럼 $1\\,\\mathrm{cm}$보다 짧은 길이는 $\\mathrm{cm}$와 $\\mathrm{mm}$ 중 {$\\mathrm{mm}$} 단위로 나타내면 편리하다.",
+              "acceptedAnswers": [
+                [
+                  "$\\mathrm{mm}$"
+                ]
+              ]
+            },
+            "goal": "없음(xc24와 중복)",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "2fd4ee4ca730e49cd23f65d7ad9ecd6dc451873db893f52bea06653093b7b0a2"
+          },
+          "currentNormalizedHash": "2fd4ee4ca730e49cd23f65d7ad9ecd6dc451873db893f52bea06653093b7b0a2",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "d5351833802b1a6e590f120d26abf8f94b9b63538398067cda1f24a66b080220",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "d5351833802b1a6e590f120d26abf8f94b9b63538398067cda1f24a66b080220",
+      "currentProposal": {
+        "sourceIndex": 717,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-5 길이와 시간::1-5-1 1cm보다 작은 단위",
+        "sourceFingerprint": "7af61c0cc9f164c4ba54fac65d8015e97b5454ad05a5045fc917a5e89419494e",
+        "proposalFingerprint": "d5351833802b1a6e590f120d26abf8f94b9b63538398067cda1f24a66b080220",
+        "reviewStatus": "draft",
+        "id": "e3-1-5-1-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "없음(xc24와 중복)",
+        "bReason": "cm와 mm 중 알맞은 단위를 고르고 까닭을 말하는 질문은 e3-1-5-1-xc24에서 다룸",
+        "exclusionReason": "짧은 길이에 mm가 알맞은 까닭은 e3-1-5-1-xc24의 B(연필 길이와 연필심 굵기)에서 함께 묻는 같은 목표임",
+        "cDecision": "rewrite",
+        "cAfter": "개미의 몸길이처럼 $1\\,\\mathrm{cm}$보다 짧은 길이는 $\\mathrm{cm}$와 $\\mathrm{mm}$ 중 {$\\mathrm{mm}$} 단위로 나타내면 편리하다.",
+        "cReason": "원문 '□를 써서'는 자 같은 도구로도 읽히고 단추는 cm로도 나타낼 수 있어 답이 흔들리므로, 1cm보다 짧다는 조건과 고를 단위를 밝힘",
+        "answerNotes": "'밀리미터' 인정. 'cm'는 오답.",
+        "learningRole": "naming",
+        "roleEvidence": {
+          "sourceKind": "단위",
+          "sourceTerm": "아주 짧은 길이의 단위",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "개미의 몸길이처럼 $1\\,\\mathrm{cm}$보다 짧은 길이는 $\\mathrm{cm}$와 $\\mathrm{mm}$ 중 {$\\mathrm{mm}$} 단위로 나타내면 편리하다.",
+        "cStudentSentence": "개미의 몸길이처럼 $1\\,\\mathrm{cm}$보다 짧은 길이는 $\\mathrm{cm}$와 $\\mathrm{mm}$ 중 □ 단위로 나타내면 편리하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$\\mathrm{mm}$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "개미의 몸길이처럼 $1\\,\\mathrm{cm}$보다 짧은 길이는 $\\mathrm{cm}$와 $\\mathrm{mm}$ 중 {$\\mathrm{mm}$} 단위로 나타내면 편리하다.",
+          "acceptedAnswers": [
+            [
+              "$\\mathrm{mm}$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "cm와 mm 중 알맞은 단위를 고르고 까닭을 말하는 질문은 e3-1-5-1-xc24에서 다룸"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-5-1-xc7",
+          "sourceIndex": 717,
+          "proposalFingerprint": "d5351833802b1a6e590f120d26abf8f94b9b63538398067cda1f24a66b080220",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "728에서 짧은 길이에 mm를 고르는 이유를 묻는다.",
+          "cReason": "1cm보다 짧다는 조건을 보여 mm를 고르게 한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-1-5-1-xc7",
+        "sourceIndex": 717,
+        "proposalFingerprint": "d5351833802b1a6e590f120d26abf8f94b9b63538398067cda1f24a66b080220",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "naming",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한 단위 선택은 B에서 제외한다.",
+        "cReason": "선택지가 보인다는 것과 정답이 노출됐다는 것은 다르다. 1cm보다 짧은 양에 맞는 단위를 골라야 하므로 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "단위 선택지가 보인다는 것과 정답 노출은 다르다. 길이 상황에서 둘 중 맞는 단위를 고르는 유효한 판단이다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-2-4-xc4",
+      "sourceIndex": 1575,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-2-4-xc4",
+          "grade": "초4",
+          "reviewedHash": "744299a4dad23b6419f5215554c3a1b3a054870b256c0840a0f4539b0bdf99b7",
+          "inputHash": "c1baf0a566594aae91d92391d1fe7a4f36205fcd0711d9eff65996f36f0e69c8",
+          "evidence": "cohort-2026-10-06T16-29-47-782Z-0",
+          "blind": [
+            [
+              "e4-1-2-4-xc4",
+              "C",
+              "재어",
+              "revise",
+              "'각도기로 □ 본'에서 빈칸이 동사 어미 복원에 가까워 개념을 알아야만 답할 수 있는 문항이 아니다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-2-4-xc4",
+              "excluded",
+              "revise",
+              "none",
+              "C의 '각도기로 □ 본 각도'는 빈칸이 동사 어미 활용('재어/재/측정해')의 복원에 가까워, 개념을 알아야만 답할 수 있는 문항이 아니다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-2-4-xc4",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-2-4-xc4",
+              "section": "초4::1-2 각도::1-2-4 각의 크기를 어림하고 각도의 합과 차 계산하기",
+              "term": "어림한 각도 확인하기",
+              "kind": "방법",
+              "level": "하",
+              "definition": "어림한 각도가 잘 맞았는지는 각도기로 {재어 보고} 견주어 본다."
+            },
+            "B": {
+              "excluded": "재어 견주는 일은 어림 평가 항목 B에 들어 있음"
+            },
+            "C": {
+              "sentence": "어림한 각도가 잘 맞았는지는 각도기로 {재어} 본 각도와 견주어 본다.",
+              "acceptedAnswers": [
+                [
+                  "재어",
+                  "재",
+                  "측정해"
+                ]
+              ]
+            },
+            "goal": "어림을 재어 확인하기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "744299a4dad23b6419f5215554c3a1b3a054870b256c0840a0f4539b0bdf99b7"
+          },
+          "currentNormalizedHash": "744299a4dad23b6419f5215554c3a1b3a054870b256c0840a0f4539b0bdf99b7",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "449304be8a8a82d776e8371bd1c57db2bfbaf0929a2b98494485864dcb223512",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+      "currentProposal": {
+        "sourceIndex": 1575,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-4 각의 크기를 어림하고 각도의 합과 차 계산하기",
+        "sourceFingerprint": "5417ba4587d023913f1254fbb4e574c075660acd407467614ffaa56ec395af17",
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-4-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "어림을 재어 확인하기",
+        "bReason": "재어 견주는 일은 어림 평가 항목 B에 들어 있음",
+        "cDecision": "exclude",
+        "cReason": "각도기로 재어 본다는 일반 동작 복원만으로는 어림과 실측 비교의 수학적 판단을 확인하지 못한다.",
+        "exclusionReason": "B/C: 어림한 값과 실제 잰 값을 비교하는 활동은 다른 각도 어림 문항에서 다루고, 이 항목의 재어라는 동작 복원은 제외한다. 일반 설명은 보존한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "어림한 각도 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": null,
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "term": "재어 견주는 일은 어림 평가 항목 B에 들어 있음",
+          "cloze": "각도기로 재어 본다는 일반 동작 복원만으로는 어림과 실측 비교의 수학적 판단을 확인하지 못한다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-2-4-xc4",
+        "sourceIndex": 1575,
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "단순히 재어 본다는 확인 동작의 B 제외를 유지한다.",
+        "cReason": "각도기로 재어라는 동작 복원은 수학 판단이 약해 C에서도 제외한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "재어라는 동작 복원 C를 제외하고 일반 설명은 보존했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-1-5-1-xc24",
+      "sourceIndex": 728,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-1-5-1-xc24",
+          "grade": "초3",
+          "reviewedHash": "67bfb6bee60439c46aa819171df582a9d1c046df28d641468b45138d85652b82",
+          "inputHash": "a4bcbede22785addf614c4421aac04ef3ac09f900d4f47688c23ec962fbbfb48",
+          "evidence": "cohort-2026-10-06T16-29-47-805Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-1-5-1-xc24",
+              "pass",
+              "revise",
+              "none",
+              "C의 문장 '㎝와 ㎜ 중에서 연필의 길이는 □, 연필심의 굵기는 □'는 나열 순서가 그대로 답 순서(cm, mm)라서, 길이 감각이 없어도 순서만 보고 맞힐 수 있다. 다른 단위를 섞거나 대상 순서를 뒤섞어 순서 단서를 없애야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-1-5-1-xc24",
+            "grade": "초3",
+            "source": {
+              "id": "e3-1-5-1-xc24",
+              "section": "초3::1-5 길이와 시간::1-5-1 1cm보다 작은 단위",
+              "term": "연필의 길이와 연필심의 굵기에 알맞은 단위",
+              "kind": "방법",
+              "level": "상",
+              "definition": "연필의 길이는 {$\\mathrm{cm}$}, 연필심의 굵기는 {$\\mathrm{mm}$}로 나타내기 알맞다."
+            },
+            "B": {
+              "prompt": "연필의 길이와 연필심의 굵기를 나타낼 때 각각 $\\mathrm{cm}$와 $\\mathrm{mm}$ 중 어느 단위가 알맞은지 고르고, 그렇게 고른 까닭을 설명해 보세요.",
+              "answer": "연필의 길이는 $1\\,\\mathrm{cm}$보다 훨씬 길어서 $\\mathrm{cm}$가 알맞고, 연필심의 굵기는 $1\\,\\mathrm{cm}$보다 짧아서 $\\mathrm{mm}$가 알맞다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "연필의 길이는 cm"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "연필심의 굵기는 mm"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$1$cm보다 긴지 짧은지로 판단"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$\\mathrm{cm}$와 $\\mathrm{mm}$ 중에서 연필의 길이는 {$\\mathrm{cm}$}, 연필심의 굵기는 {$\\mathrm{mm}$} 단위로 나타내기 알맞다.",
+              "acceptedAnswers": [
+                [
+                  "$\\mathrm{cm}$"
+                ],
+                [
+                  "$\\mathrm{mm}$"
+                ]
+              ]
+            },
+            "goal": "길이에 알맞은 단위(cm, mm)를 고르는 까닭 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "67bfb6bee60439c46aa819171df582a9d1c046df28d641468b45138d85652b82"
+          },
+          "currentNormalizedHash": "67bfb6bee60439c46aa819171df582a9d1c046df28d641468b45138d85652b82",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "3fffe2f20934df2a8fb1d41b53603c33fca4db2f89678fdc96d153602daaf284",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "3fffe2f20934df2a8fb1d41b53603c33fca4db2f89678fdc96d153602daaf284",
+      "currentProposal": {
+        "sourceIndex": 728,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-5 길이와 시간::1-5-1 1cm보다 작은 단위",
+        "sourceFingerprint": "6313ecc75ea2391bdd61c4ea06b14a11ec722d4fbd48b7308172baf10eaa8560",
+        "proposalFingerprint": "3fffe2f20934df2a8fb1d41b53603c33fca4db2f89678fdc96d153602daaf284",
+        "reviewStatus": "draft",
+        "id": "e3-1-5-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "연필의 길이와 연필심의 굵기를 나타낼 때 각각 $\\mathrm{cm}$와 $\\mathrm{mm}$ 중 어느 단위가 알맞은지 고르고, 그렇게 고른 까닭을 설명해 보세요.",
+        "bAnswer": "연필의 길이는 $1\\,\\mathrm{cm}$보다 훨씬 길어서 $\\mathrm{cm}$가 알맞고, 연필심의 굵기는 $1\\,\\mathrm{cm}$보다 짧아서 $\\mathrm{mm}$가 알맞다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "연필의 길이는 cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "연필심의 굵기는 mm"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$cm보다 긴지 짧은지로 판단"
+            ]
+          }
+        ],
+        "bGoal": "길이에 알맞은 단위(cm, mm)를 고르는 까닭 설명",
+        "bReason": "단위만 답하는 원문에 고른 까닭을 더해 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$\\mathrm{cm}$와 $\\mathrm{mm}$ 중에서 연필의 길이는 {$\\mathrm{cm}$}, 연필심의 굵기는 {$\\mathrm{mm}$} 단위로 나타내기 알맞다.",
+        "cReason": "원문 첫 빈칸은 단위를 쓰라는 것인지 알 수 없어 고를 두 단위를 밝힘",
+        "answerNotes": "'센티미터', '밀리미터' 인정. 두 답의 순서가 바뀌면 오답.",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "연필의 길이와 연필심의 굵기에 알맞은 단위",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\mathrm{cm}$와 $\\mathrm{mm}$ 중에서 연필의 길이는 {$\\mathrm{cm}$}, 연필심의 굵기는 {$\\mathrm{mm}$} 단위로 나타내기 알맞다.",
+        "cStudentSentence": "$\\mathrm{cm}$와 $\\mathrm{mm}$ 중에서 연필의 길이는 □, 연필심의 굵기는 □ 단위로 나타내기 알맞다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$\\mathrm{cm}$",
+            "equivalents": []
+          },
+          {
+            "expected": "$\\mathrm{mm}$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "연필의 길이와 연필심의 굵기를 나타낼 때 각각 $\\mathrm{cm}$와 $\\mathrm{mm}$ 중 어느 단위가 알맞은지 고르고, 그렇게 고른 까닭을 설명해 보세요.",
+          "answer": "연필의 길이는 $1\\,\\mathrm{cm}$보다 훨씬 길어서 $\\mathrm{cm}$가 알맞고, 연필심의 굵기는 $1\\,\\mathrm{cm}$보다 짧아서 $\\mathrm{mm}$가 알맞다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "연필의 길이는 cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "연필심의 굵기는 mm"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1$cm보다 긴지 짧은지로 판단"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\mathrm{cm}$와 $\\mathrm{mm}$ 중에서 연필의 길이는 {$\\mathrm{cm}$}, 연필심의 굵기는 {$\\mathrm{mm}$} 단위로 나타내기 알맞다.",
+          "acceptedAnswers": [
+            [
+              "$\\mathrm{cm}$"
+            ],
+            [
+              "$\\mathrm{mm}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-5-1-xc24",
+          "sourceIndex": 728,
+          "proposalFingerprint": "3fffe2f20934df2a8fb1d41b53603c33fca4db2f89678fdc96d153602daaf284",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "연필 길이cm·심 굵기mm와1cm 기준의 크기 이유를 각각 묻는다.",
+          "cReason": "두 실제 측정 대상에 알맞은 단위를 대응시킨다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-1-5-1-xc24",
+        "sourceIndex": 728,
+        "proposalFingerprint": "3fffe2f20934df2a8fb1d41b53603c33fca4db2f89678fdc96d153602daaf284",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "길이와 굵기를 1cm 기준으로 비교해 단위를 선택하는 이유가 맞다.",
+        "cReason": "두 선택지 순서와 답 순서가 같아도 대상에 맞는 단위를 판단하는 문제이다. 학생의 추측 가능성만으로 명확한 단위 선택을 불허하지 않는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "선택지의 나열 순서가 답 순서와 같다는 이유만으로 단위 선택 문제가 무효가 되지 않는다. 두 대상의 길이 감각을 판단하는 명확한 문제이다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    }
+  ]
+}

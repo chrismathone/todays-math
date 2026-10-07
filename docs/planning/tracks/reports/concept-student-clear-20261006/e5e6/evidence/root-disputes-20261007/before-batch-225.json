@@ -1,0 +1,2546 @@
+[
+  {
+    "id": "e6-2-4-3-xc14",
+    "sourceIndex": 2455,
+    "actualRow": {
+      "id": "e6-2-4-3-xc14",
+      "bDecision": "revise",
+      "bPrompt": "소수나 분수가 들어 있는 두 비도 비례식으로 이을 수 있는가? 어떤 경우인지 쓰고 $0.5:1$과 $1:2$로 확인하시오.",
+      "bAnswer": "비율이 같으면 이을 수 있다. $0.5:1$의 비율은 $0.5$이고 $1:2$의 비율은 $\\frac{1}{2}=0.5$로 같으므로 $0.5:1=1:2$로 쓸 수 있다.",
+      "bGoal": "소수·분수 비도 비율이 같으면 비례식이 됨을 확인한다.",
+      "bReason": "조건(비율이 같을 때)과 예 확인을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다.",
+      "cReason": "조건 '비율이 같으면'이 핵심인 짧은 문장이라 그대로 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율이 같으면 이을 수 있다",
+            "비율이 같을 때 비례식이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5:1=1:2$",
+            "두 비율이 모두 $0.5$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 2455,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-3-xc14",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "term": "소수나 분수가 있는 비례식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다.",
+        "studentC": "소수나 분수가 있는 비도 □ 비례식으로 이을 수 있다.",
+        "answers": [
+          "비율이 같으면"
+        ]
+      },
+      "sourceFingerprint": "88520474e432bb2c1bf32721a6a93f5b49380dacca718be3fe33afc8752a6bd7",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "cFrozenDefinition": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다.",
+      "cFrozenStudentSentence": "소수나 분수가 있는 비도 □ 비례식으로 이을 수 있다.",
+      "cProposedAnswers": [
+        "비율이 같으면"
+      ],
+      "cStudentAfter": "소수나 분수가 있는 비도 □ 비례식으로 이을 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비율이 같으면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다.",
+      "cStudentSentence": "소수나 분수가 있는 비도 □ 비례식으로 이을 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "비율이 같으면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수나 분수가 들어 있는 두 비도 비례식으로 이을 수 있는가? 어떤 경우인지 쓰고 $0.5:1$과 $1:2$로 확인하시오.",
+        "answer": "비율이 같으면 이을 수 있다. $0.5:1$의 비율은 $0.5$이고 $1:2$의 비율은 $\\frac{1}{2}=0.5$로 같으므로 $0.5:1=1:2$로 쓸 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 같으면 이을 수 있다",
+              "비율이 같을 때 비례식이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5:1=1:2$",
+              "두 비율이 모두 $0.5$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "비율이 같으면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "582d41a47c2c5fa500e6b154471a0c17c78fb90baa8fa0b9a24b59e4d4b97177",
+      "questionRevision": "planning-e5e6-20261006-582d41a47c2c",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-4-3-xc14",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "소수나 분수로 된 비도 비율이 같으면 비례식으로 이을 수 있다. 0.5:1=1:2의 두 비율 0.5가 맞다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2455,
+        "proposalFingerprintReviewed": "582d41a47c2c5fa500e6b154471a0c17c78fb90baa8fa0b9a24b59e4d4b97177",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2420-2460.json",
+        "learningRole": "application",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "keep",
+        "bSourceReason": "조건(비율이 같을 때)과 예 확인을 함께 묻는다.",
+        "cSourceReason": "조건 '비율이 같으면'이 핵심인 짧은 문장이라 그대로 유지한다.",
+        "recordedAfterDirectReading": "2026-10-07T09:00:57.386184+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-4-3-xc14",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "소수나 분수로 된 비도 비율이 같으면 비례식으로 이을 수 있다. 0.5:1=1:2의 두 비율 0.5가 맞다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2455,
+      "proposalFingerprintReviewed": "582d41a47c2c5fa500e6b154471a0c17c78fb90baa8fa0b9a24b59e4d4b97177",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2420-2460.json",
+      "learningRole": "application",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "keep",
+      "bSourceReason": "조건(비율이 같을 때)과 예 확인을 함께 묻는다.",
+      "cSourceReason": "조건 '비율이 같으면'이 핵심인 짧은 문장이라 그대로 유지한다.",
+      "recordedAfterDirectReading": "2026-10-07T09:00:57.386184+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-4-3-xc14",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-4-3-xc14",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "term": "소수나 분수가 있는 비례식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다."
+      },
+      "B": {
+        "prompt": "소수나 분수가 들어 있는 두 비도 비례식으로 이을 수 있는가? 어떤 경우인지 쓰고 $0.5:1$과 $1:2$로 확인하시오.",
+        "answer": "비율이 같으면 이을 수 있다. $0.5:1$의 비율은 $0.5$이고 $1:2$의 비율은 $\\frac{1}{2}=0.5$로 같으므로 $0.5:1=1:2$로 쓸 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 같으면 이을 수 있다",
+              "비율이 같을 때 비례식이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5:1=1:2$",
+              "두 비율이 모두 $0.5$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "비율이 같으면"
+          ]
+        ]
+      },
+      "goal": "소수·분수 비도 비율이 같으면 비례식이 됨을 확인한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "83c428ad086910e77e77d240e74f06a4dee7be57b12de8ff4d2d4b0617891e80"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-4-3-xc14",
+        "grade": "초6",
+        "reviewedHash": "83c428ad086910e77e77d240e74f06a4dee7be57b12de8ff4d2d4b0617891e80",
+        "inputHash": "ce233d79b41ebbc7dedf5b313744d8fb6fea720bb8d6a943d8f6e3103edc450c",
+        "evidence": "cohort-2026-10-07T08-02-45-178Z-0",
+        "blind": [
+          [
+            "e6-2-4-3-xc14",
+            "C",
+            "비율이 같으면",
+            "revise",
+            "'비도 □ 비례식으로'만으로는 빈칸의 조건(비율이 같으면)이 정해지지 않는다. '자연수 비처럼' 등도 가능하다"
+          ]
+        ],
+        "key": [
+          [
+            "e6-2-4-3-xc14",
+            "pass",
+            "revise",
+            "none",
+            "C: '소수나 분수가 있는 비도 {비율이 같으면}'의 빈칸이 '자연수 비로 바꾸어 같으면', '간단히 하여 같으면' 등으로도 채워져 정답이 하나로 정해지지 않는다. 문맥에 '비율'이 단서로 나오지 않는다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-4-3-xc14",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-4-3-xc14",
+            "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+            "term": "소수나 분수가 있는 비례식",
+            "kind": "성질",
+            "level": "중",
+            "definition": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다."
+          },
+          "B": {
+            "prompt": "소수나 분수가 들어 있는 두 비도 비례식으로 이을 수 있는가? 어떤 경우인지 쓰고 $0.5:1$과 $1:2$로 확인하시오.",
+            "answer": "비율이 같으면 이을 수 있다. $0.5:1$의 비율은 $0.5$이고 $1:2$의 비율은 $\\frac{1}{2}=0.5$로 같으므로 $0.5:1=1:2$로 쓸 수 있다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "비율이 같으면 이을 수 있다",
+                  "비율이 같을 때 비례식이 된다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "$0.5:1=1:2$",
+                  "두 비율이 모두 $0.5$이다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "소수나 분수가 있는 비도 {비율이 같으면} 비례식으로 이을 수 있다.",
+            "acceptedAnswers": [
+              [
+                "비율이 같으면"
+              ]
+            ]
+          },
+          "goal": "소수·분수 비도 비율이 같으면 비례식이 됨을 확인한다.",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "83c428ad086910e77e77d240e74f06a4dee7be57b12de8ff4d2d4b0617891e80"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-4-3-xc14",
+        "contentHash": "83c428ad086910e77e77d240e74f06a4dee7be57b12de8ff4d2d4b0617891e80",
+        "packet": "cohort-2026-10-07T08-02-45-178Z-0",
+        "inputHash": "ce233d79b41ebbc7dedf5b313744d8fb6fea720bb8d6a943d8f6e3103edc450c",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '비도 □ 비례식으로'만으로는 빈칸의 조건(비율이 같으면)이 정해지지 않는다. '자연수 비처럼' 등도 가능하다",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '소수나 분수가 있는 비도 {비율이 같으면}'의 빈칸이 '자연수 비로 바꾸어 같으면', '간단히 하여 같으면' 등으로도 채워져 정답이 하나로 정해지지 않는다. 문맥에 '비율'이 단서로 나오지 않는다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-4-4-xc14",
+    "sourceIndex": 2468,
+    "actualRow": {
+      "id": "e6-2-4-4-xc14",
+      "bDecision": "revise",
+      "bPrompt": "$3:5=\\square:20$을 비의 성질로 풀어도, 양 끝의 곱과 가운데의 곱이 같다는 성질로 풀어도 $\\square=12$가 나온다. 두 풀이가 같은 수를 내는 까닭을 비율을 이용해 설명하시오.",
+      "bAnswer": "두 풀이 모두 $\\square:20$의 비율이 $3:5$의 비율 $\\frac{3}{5}$과 같아지는 수를 찾는 것이다. 비율이 같은 두 비는 두 곱도 같고, 그런 수는 $12$ 하나뿐이다.",
+      "bGoal": "두 풀이가 모두 같은 비율을 만드는 수를 찾는 것임을 이해하기",
+      "bReason": "비의 성질과 곱의 성질을 비율로 연결하는 이유를 묻는 문항이다.",
+      "cDecision": "revise",
+      "cAfter": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 {비율}이 같다.",
+      "cReason": "원문의 두 긴 구절을 외우게 하는 대신 비의 성질과 비율의 연결만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비율",
+            "비의 값"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 풀이 모두 앞의 비와 비율이 같은 비가 되게 하는 수를 찾는다",
+            "비의 성질로 만든 비도 비율이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비율이 같으면 양 끝의 곱과 가운데의 곱도 같다",
+            "그런 수는 $12$ 하나뿐이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2468,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc14",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "두 풀이가 같은 수를 내는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "비의 성질로 만든 비는 {비율이 같은 비}이고, 비율이 같은 두 비는 {양 끝의 곱과 가운데의 곱도 같아} 두 풀이가 같은 수를 낸다.",
+        "studentC": "비의 성질로 만든 비는 □이고, 비율이 같은 두 비는 □ 두 풀이가 같은 수를 낸다.",
+        "answers": [
+          "비율이 같은 비",
+          "양 끝의 곱과 가운데의 곱도 같아"
+        ]
+      },
+      "sourceFingerprint": "b56fceb9d68f83f477058274a70fa57d5817963c6d9c1ac01ca6a9022945a8f9",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "비율"
+      ],
+      "cStudentAfter": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 □이 같다.",
+      "cMarkedSentence": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 {비율}이 같다.",
+      "cStudentSentence": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 □이 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "비율",
+          "equivalents": [
+            "비의 값"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3:5=\\square:20$을 비의 성질로 풀어도, 양 끝의 곱과 가운데의 곱이 같다는 성질로 풀어도 $\\square=12$가 나온다. 두 풀이가 같은 수를 내는 까닭을 비율을 이용해 설명하시오.",
+        "answer": "두 풀이 모두 $\\square:20$의 비율이 $3:5$의 비율 $\\frac{3}{5}$과 같아지는 수를 찾는 것이다. 비율이 같은 두 비는 두 곱도 같고, 그런 수는 $12$ 하나뿐이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 풀이 모두 앞의 비와 비율이 같은 비가 되게 하는 수를 찾는다",
+              "비의 성질로 만든 비도 비율이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 같으면 양 끝의 곱과 가운데의 곱도 같다",
+              "그런 수는 $12$ 하나뿐이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 {비율}이 같다.",
+        "acceptedAnswers": [
+          [
+            "비율",
+            "비의 값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "243f4e4bc7200cbc0342f6bba644d62dd422ca20a7648b150f2173c9d5956df0",
+      "questionRevision": "planning-e5e6-20261006-243f4e4bc720",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-4-4-xc14",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "두 풀이 모두 비율 3/5를 만드는 같은 수 12를 찾는다는 설명이 적절하다. C는 0 아닌 같은 배에서 비율 보존을 확인한다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2468,
+        "proposalFingerprintReviewed": "243f4e4bc7200cbc0342f6bba644d62dd422ca20a7648b150f2173c9d5956df0",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2460-2500.json",
+        "learningRole": "reason",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "비의 성질과 곱의 성질을 비율로 연결하는 이유를 묻는 문항이다.",
+        "cSourceReason": "원문의 두 긴 구절을 외우게 하는 대신 비의 성질과 비율의 연결만 묻는다.",
+        "recordedAfterDirectReading": "2026-10-07T09:06:13.655349+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-4-4-xc14",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "두 풀이 모두 비율 3/5를 만드는 같은 수 12를 찾는다는 설명이 적절하다. C는 0 아닌 같은 배에서 비율 보존을 확인한다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2468,
+      "proposalFingerprintReviewed": "243f4e4bc7200cbc0342f6bba644d62dd422ca20a7648b150f2173c9d5956df0",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2460-2500.json",
+      "learningRole": "reason",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "revise",
+      "bSourceReason": "비의 성질과 곱의 성질을 비율로 연결하는 이유를 묻는 문항이다.",
+      "cSourceReason": "원문의 두 긴 구절을 외우게 하는 대신 비의 성질과 비율의 연결만 묻는다.",
+      "recordedAfterDirectReading": "2026-10-07T09:06:13.655349+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-4-4-xc14",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-4-4-xc14",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "두 풀이가 같은 수를 내는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "비의 성질로 만든 비는 {비율이 같은 비}이고, 비율이 같은 두 비는 {양 끝의 곱과 가운데의 곱도 같아} 두 풀이가 같은 수를 낸다."
+      },
+      "B": {
+        "prompt": "$3:5=\\square:20$을 비의 성질로 풀어도, 양 끝의 곱과 가운데의 곱이 같다는 성질로 풀어도 $\\square=12$가 나온다. 두 풀이가 같은 수를 내는 까닭을 비율을 이용해 설명하시오.",
+        "answer": "두 풀이 모두 $\\square:20$의 비율이 $3:5$의 비율 $\\frac{3}{5}$과 같아지는 수를 찾는 것이다. 비율이 같은 두 비는 두 곱도 같고, 그런 수는 $12$ 하나뿐이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 풀이 모두 앞의 비와 비율이 같은 비가 되게 하는 수를 찾는다",
+              "비의 성질로 만든 비도 비율이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 같으면 양 끝의 곱과 가운데의 곱도 같다",
+              "그런 수는 $12$ 하나뿐이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 {비율}이 같다.",
+        "acceptedAnswers": [
+          [
+            "비율",
+            "비의 값"
+          ]
+        ]
+      },
+      "goal": "두 풀이가 모두 같은 비율을 만드는 수를 찾는 것임을 이해하기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "6e3520578763f916228792e0f49d971934d048ac5ee949ce13d92448dc3689dd"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-4-4-xc14",
+        "grade": "초6",
+        "reviewedHash": "6e3520578763f916228792e0f49d971934d048ac5ee949ce13d92448dc3689dd",
+        "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+        "evidence": "cohort-2026-10-07T08-02-45-202Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e6-2-4-4-xc14",
+            "revise",
+            "pass",
+            "none",
+            "B 둘째 requiredIdeas anyOf가 서로 다른 내용을 묶고 있다. '비율이 같으면 두 곱도 같다'와 '그런 수는 12 하나뿐'은 같은 뜻의 대안이 아니다. 두 개의 독립 기준으로 나누거나 하나만 남겨야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-4-4-xc14",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-4-4-xc14",
+            "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+            "term": "두 풀이가 같은 수를 내는 까닭",
+            "kind": "성질",
+            "level": "중",
+            "definition": "비의 성질로 만든 비는 {비율이 같은 비}이고, 비율이 같은 두 비는 {양 끝의 곱과 가운데의 곱도 같아} 두 풀이가 같은 수를 낸다."
+          },
+          "B": {
+            "prompt": "$3:5=\\square:20$을 비의 성질로 풀어도, 양 끝의 곱과 가운데의 곱이 같다는 성질로 풀어도 $\\square=12$가 나온다. 두 풀이가 같은 수를 내는 까닭을 비율을 이용해 설명하시오.",
+            "answer": "두 풀이 모두 $\\square:20$의 비율이 $3:5$의 비율 $\\frac{3}{5}$과 같아지는 수를 찾는 것이다. 비율이 같은 두 비는 두 곱도 같고, 그런 수는 $12$ 하나뿐이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "두 풀이 모두 앞의 비와 비율이 같은 비가 되게 하는 수를 찾는다",
+                  "비의 성질로 만든 비도 비율이 같다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "비율이 같으면 양 끝의 곱과 가운데의 곱도 같다",
+                  "그런 수는 $12$ 하나뿐이다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 {비율}이 같다.",
+            "acceptedAnswers": [
+              [
+                "비율",
+                "비의 값"
+              ]
+            ]
+          },
+          "goal": "두 풀이가 모두 같은 비율을 만드는 수를 찾는 것임을 이해하기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "6e3520578763f916228792e0f49d971934d048ac5ee949ce13d92448dc3689dd"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-4-4-xc14",
+        "contentHash": "6e3520578763f916228792e0f49d971934d048ac5ee949ce13d92448dc3689dd",
+        "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+        "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B 둘째 requiredIdeas anyOf가 서로 다른 내용을 묶고 있다. '비율이 같으면 두 곱도 같다'와 '그런 수는 12 하나뿐'은 같은 뜻의 대안이 아니다. 두 개의 독립 기준으로 나누거나 하나만 남겨야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-4-4-xc18",
+    "sourceIndex": 2470,
+    "actualRow": {
+      "id": "e6-2-4-4-xc18",
+      "bDecision": "revise",
+      "bPrompt": "$2:3=4:6$은 비례식이다. 네 수는 모두 $0$이 아니다. 가운데 두 수를 서로 바꾼 $2:4=3:6$도 비례식인지 두 곱을 이용해 판단하고 그 까닭을 쓰시오.",
+      "bAnswer": "양 끝의 곱은 $2\\times6=12$, 가운데의 곱은 $4\\times3=12$로 같으므로 비례식이다. 가운데 두 수의 곱은 곱하는 순서만 바뀌어 값이 변하지 않기 때문이다.",
+      "bGoal": "가운데 두 수를 바꿔도 두 곱이 같아 비례식임을 알기",
+      "bReason": "예의 계산과 곱셈 순서를 바꿔도 같다는 이유를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 {비례식}이다.",
+      "cReason": "원문 빈칸은 문장 끝에 붙어 있어 답이 어색하므로 낱말 하나로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비례식"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 곱이 $12$와 $12$로 같다",
+            "$2\\times6=12$, $4\\times3=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "비례식이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가운데 두 수의 곱은 순서만 바뀌어 같다",
+            "곱셈은 순서를 바꿔도 값이 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2470,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc18",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "가운데 두 수를 바꾼 비례식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "네 수가 모두 $0$이 아닌 비례식은 가운데 두 수를 서로 바꾸어도 두 곱이 같아 {비례식이다}.",
+        "studentC": "네 수가 모두 $0$이 아닌 비례식은 가운데 두 수를 서로 바꾸어도 두 곱이 같아 □.",
+        "answers": [
+          "비례식이다"
+        ]
+      },
+      "sourceFingerprint": "8b6e8f6301d7bcf846a639d5e6aea7502017ff161e9145b21068edc32d0f923d",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "비례식"
+      ],
+      "cStudentAfter": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 □이다.",
+      "cMarkedSentence": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 {비례식}이다.",
+      "cStudentSentence": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "비례식",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2:3=4:6$은 비례식이다. 네 수는 모두 $0$이 아니다. 가운데 두 수를 서로 바꾼 $2:4=3:6$도 비례식인지 두 곱을 이용해 판단하고 그 까닭을 쓰시오.",
+        "answer": "양 끝의 곱은 $2\\times6=12$, 가운데의 곱은 $4\\times3=12$로 같으므로 비례식이다. 가운데 두 수의 곱은 곱하는 순서만 바뀌어 값이 변하지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 곱이 $12$와 $12$로 같다",
+              "$2\\times6=12$, $4\\times3=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비례식이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가운데 두 수의 곱은 순서만 바뀌어 같다",
+              "곱셈은 순서를 바꿔도 값이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 {비례식}이다.",
+        "acceptedAnswers": [
+          [
+            "비례식"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "64f4d621ddaa7aad083192e18a288f47673275982caae5d4a0e00420ea380262",
+      "questionRevision": "planning-e5e6-20261006-64f4d621ddaa",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-4-4-xc18",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "가운데 두 수 교환은 곱셈 순서만 바꿔 안쪽 곱이 유지된다. 네 수가 모두 0이 아니어서 바꾼 비도 정의되며 C가 정확하다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2470,
+        "proposalFingerprintReviewed": "64f4d621ddaa7aad083192e18a288f47673275982caae5d4a0e00420ea380262",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2460-2500.json",
+        "learningRole": "reason",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "예의 계산과 곱셈 순서를 바꿔도 같다는 이유를 함께 묻는다.",
+        "cSourceReason": "원문 빈칸은 문장 끝에 붙어 있어 답이 어색하므로 낱말 하나로 바꾼다.",
+        "recordedAfterDirectReading": "2026-10-07T09:06:13.655349+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-4-4-xc18",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "가운데 두 수 교환은 곱셈 순서만 바꿔 안쪽 곱이 유지된다. 네 수가 모두 0이 아니어서 바꾼 비도 정의되며 C가 정확하다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2470,
+      "proposalFingerprintReviewed": "64f4d621ddaa7aad083192e18a288f47673275982caae5d4a0e00420ea380262",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2460-2500.json",
+      "learningRole": "reason",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "revise",
+      "bSourceReason": "예의 계산과 곱셈 순서를 바꿔도 같다는 이유를 함께 묻는다.",
+      "cSourceReason": "원문 빈칸은 문장 끝에 붙어 있어 답이 어색하므로 낱말 하나로 바꾼다.",
+      "recordedAfterDirectReading": "2026-10-07T09:06:13.655349+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-4-4-xc18",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-4-4-xc18",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "가운데 두 수를 바꾼 비례식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "네 수가 모두 $0$이 아닌 비례식은 가운데 두 수를 서로 바꾸어도 두 곱이 같아 {비례식이다}."
+      },
+      "B": {
+        "prompt": "$2:3=4:6$은 비례식이다. 네 수는 모두 $0$이 아니다. 가운데 두 수를 서로 바꾼 $2:4=3:6$도 비례식인지 두 곱을 이용해 판단하고 그 까닭을 쓰시오.",
+        "answer": "양 끝의 곱은 $2\\times6=12$, 가운데의 곱은 $4\\times3=12$로 같으므로 비례식이다. 가운데 두 수의 곱은 곱하는 순서만 바뀌어 값이 변하지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 곱이 $12$와 $12$로 같다",
+              "$2\\times6=12$, $4\\times3=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비례식이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가운데 두 수의 곱은 순서만 바뀌어 같다",
+              "곱셈은 순서를 바꿔도 값이 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 {비례식}이다.",
+        "acceptedAnswers": [
+          [
+            "비례식"
+          ]
+        ]
+      },
+      "goal": "가운데 두 수를 바꿔도 두 곱이 같아 비례식임을 알기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "854282456d2ffac621cac1777e6a5e34ebe010a293b36d5b47c6133aaa363c44"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-4-4-xc18",
+        "grade": "초6",
+        "reviewedHash": "854282456d2ffac621cac1777e6a5e34ebe010a293b36d5b47c6133aaa363c44",
+        "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+        "evidence": "cohort-2026-10-07T08-02-45-202Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e6-2-4-4-xc18",
+            "pass",
+            "revise",
+            "none",
+            "C 빈칸 '비례식'은 같은 문장의 '비례식에서'를 그대로 베끼면 정답이 된다. 가운데 두 수를 바꿔도 두 곱이 같다는 이해를 묻지 못한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-4-4-xc18",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-4-4-xc18",
+            "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+            "term": "가운데 두 수를 바꾼 비례식",
+            "kind": "성질",
+            "level": "중",
+            "definition": "네 수가 모두 $0$이 아닌 비례식은 가운데 두 수를 서로 바꾸어도 두 곱이 같아 {비례식이다}."
+          },
+          "B": {
+            "prompt": "$2:3=4:6$은 비례식이다. 네 수는 모두 $0$이 아니다. 가운데 두 수를 서로 바꾼 $2:4=3:6$도 비례식인지 두 곱을 이용해 판단하고 그 까닭을 쓰시오.",
+            "answer": "양 끝의 곱은 $2\\times6=12$, 가운데의 곱은 $4\\times3=12$로 같으므로 비례식이다. 가운데 두 수의 곱은 곱하는 순서만 바뀌어 값이 변하지 않기 때문이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "두 곱이 $12$와 $12$로 같다",
+                  "$2\\times6=12$, $4\\times3=12$"
+                ]
+              },
+              {
+                "anyOf": [
+                  "비례식이다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "가운데 두 수의 곱은 순서만 바뀌어 같다",
+                  "곱셈은 순서를 바꿔도 값이 같다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 {비례식}이다.",
+            "acceptedAnswers": [
+              [
+                "비례식"
+              ]
+            ]
+          },
+          "goal": "가운데 두 수를 바꿔도 두 곱이 같아 비례식임을 알기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "854282456d2ffac621cac1777e6a5e34ebe010a293b36d5b47c6133aaa363c44"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-4-4-xc18",
+        "contentHash": "854282456d2ffac621cac1777e6a5e34ebe010a293b36d5b47c6133aaa363c44",
+        "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+        "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C 빈칸 '비례식'은 같은 문장의 '비례식에서'를 그대로 베끼면 정답이 된다. 가운데 두 수를 바꿔도 두 곱이 같다는 이해를 묻지 못한다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-4-5-xc6",
+    "sourceIndex": 2476,
+    "actualRow": {
+      "id": "e6-2-4-5-xc6",
+      "bDecision": "revise",
+      "bPrompt": "전체 $20$을 $2:3$으로 비례배분해 두 몫 $8$과 $12$를 얻었다. 두 몫의 비를 간단히 한 결과를 구하고, 처음 비와 어떤 관계인지 말하세요.",
+      "bAnswer": "$8:12$를 간단히 하면 $2:3$이고 처음 비와 같다.",
+      "bGoal": "나눈 몫의 비로 비례배분 결과를 확인할 수 있음을 안다.",
+      "bReason": "몫의 비를 직접 간단히 해 처음 비와 비교하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "두 양의 비가 $8:12$일 때, 가장 간단한 자연수의 비로 나타내면 {$2:3$}이다.",
+      "cReason": "'처음 비와 같다'는 막연한 문구 대신 실제 간단히 한 비를 쓰게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "간단히 하면 $2:3$이다",
+            "$8:12=2:3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 비와 같다",
+            "주어진 비와 같다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2:3$",
+            "$2$ 대 $3$"
+          ]
+        }
+      ],
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2460-patch.json",
+      "codexFinalAmendedFromFingerprint": "c57bc33296488ee944606a9af2d1da0f232d56c89620d45ea0b9fc05c188af23",
+      "sourceIndex": 2476,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc6",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "나눈 몫의 비 확인",
+        "kind": "성질",
+        "level": "하",
+        "definition": "비례배분한 두 몫의 비를 간단히 하면 {처음 비와 같다}.",
+        "studentC": "비례배분한 두 몫의 비를 간단히 하면 □.",
+        "answers": [
+          "처음 비와 같다"
+        ]
+      },
+      "sourceFingerprint": "588efa82739c103918d5cbd58a1609f3f341bb9ca44fb15389d3d4b54f7501ae",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2:3$"
+      ],
+      "cStudentAfter": "두 양의 비가 $8:12$일 때, 가장 간단한 자연수의 비로 나타내면 □이다.",
+      "cMarkedSentence": "두 양의 비가 $8:12$일 때, 가장 간단한 자연수의 비로 나타내면 {$2:3$}이다.",
+      "cStudentSentence": "두 양의 비가 $8:12$일 때, 가장 간단한 자연수의 비로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2:3$",
+          "equivalents": [
+            "$2$ 대 $3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체 $20$을 $2:3$으로 비례배분해 두 몫 $8$과 $12$를 얻었다. 두 몫의 비를 간단히 한 결과를 구하고, 처음 비와 어떤 관계인지 말하세요.",
+        "answer": "$8:12$를 간단히 하면 $2:3$이고 처음 비와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "간단히 하면 $2:3$이다",
+              "$8:12=2:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 비와 같다",
+              "주어진 비와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 양의 비가 $8:12$일 때, 가장 간단한 자연수의 비로 나타내면 {$2:3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2:3$",
+            "$2$ 대 $3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f5f6ce85df93eaa72df4ab5cc007fcedb78113dfc417f1be463a7d0d19b7b760",
+      "questionRevision": "planning-e5e6-20261006-f5f6ce85df93",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-4-5-xc6",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "미리 주어진 2:3을 복사하지 않도록 8:12 자체를 간단히 하게 한 C를 읽었다. B의 나눈 몫 비를 확인하는 목표는 유지된다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2476,
+        "proposalFingerprintReviewed": "f5f6ce85df93eaa72df4ab5cc007fcedb78113dfc417f1be463a7d0d19b7b760",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-final2460-patch-corrected-input.json",
+        "learningRole": "application",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "몫의 비를 직접 간단히 해 처음 비와 비교하게 한다.",
+        "cSourceReason": "'처음 비와 같다'는 막연한 문구 대신 실제 간단히 한 비를 쓰게 했다.",
+        "recordedAfterDirectReading": "2026-10-07T09:06:17.695658+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-4-5-xc6",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "미리 주어진 2:3을 복사하지 않도록 8:12 자체를 간단히 하게 한 C를 읽었다. B의 나눈 몫 비를 확인하는 목표는 유지된다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2476,
+      "proposalFingerprintReviewed": "f5f6ce85df93eaa72df4ab5cc007fcedb78113dfc417f1be463a7d0d19b7b760",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-final2460-patch-corrected-input.json",
+      "learningRole": "application",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "revise",
+      "bSourceReason": "몫의 비를 직접 간단히 해 처음 비와 비교하게 한다.",
+      "cSourceReason": "'처음 비와 같다'는 막연한 문구 대신 실제 간단히 한 비를 쓰게 했다.",
+      "recordedAfterDirectReading": "2026-10-07T09:06:17.695658+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-4-5-xc6",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-4-5-xc6",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "나눈 몫의 비 확인",
+        "kind": "성질",
+        "level": "하",
+        "definition": "비례배분한 두 몫의 비를 간단히 하면 {처음 비와 같다}."
+      },
+      "B": {
+        "prompt": "전체 $20$을 $2:3$으로 비례배분해 두 몫 $8$과 $12$를 얻었다. 두 몫의 비를 간단히 한 결과를 구하고, 처음 비와 어떤 관계인지 말하세요.",
+        "answer": "$8:12$를 간단히 하면 $2:3$이고 처음 비와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "간단히 하면 $2:3$이다",
+              "$8:12=2:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 비와 같다",
+              "주어진 비와 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 양의 비가 $8:12$일 때, 가장 간단한 자연수의 비로 나타내면 {$2:3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2:3$",
+            "$2$ 대 $3$"
+          ]
+        ]
+      },
+      "goal": "나눈 몫의 비로 비례배분 결과를 확인할 수 있음을 안다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "1a16e89b3e396827a7e332942e3d0ba36ede661b80bab2ce5e25abe0b022fbc5"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-4-5-xc6",
+        "grade": "초6",
+        "reviewedHash": "1a16e89b3e396827a7e332942e3d0ba36ede661b80bab2ce5e25abe0b022fbc5",
+        "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+        "evidence": "cohort-2026-10-07T09-13-59-191Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e6-2-4-5-xc6",
+            "pass",
+            "revise",
+            "none",
+            "C: 문장이 '비가 8:12일 때 가장 간단한 비'만 묻는 단순 약분이다. 비례배분, 처음 비와 같다는 원 개념이 전혀 나오지 않아 목표를 확인하지 못한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-4-5-xc6",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-4-5-xc6",
+            "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+            "term": "나눈 몫의 비 확인",
+            "kind": "성질",
+            "level": "하",
+            "definition": "비례배분한 두 몫의 비를 간단히 하면 {처음 비와 같다}."
+          },
+          "B": {
+            "prompt": "전체 $20$을 $2:3$으로 비례배분해 두 몫 $8$과 $12$를 얻었다. 두 몫의 비를 간단히 한 결과를 구하고, 처음 비와 어떤 관계인지 말하세요.",
+            "answer": "$8:12$를 간단히 하면 $2:3$이고 처음 비와 같다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "간단히 하면 $2:3$이다",
+                  "$8:12=2:3$"
+                ]
+              },
+              {
+                "anyOf": [
+                  "처음 비와 같다",
+                  "주어진 비와 같다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "두 양의 비가 $8:12$일 때, 가장 간단한 자연수의 비로 나타내면 {$2:3$}이다.",
+            "acceptedAnswers": [
+              [
+                "$2:3$",
+                "$2$ 대 $3$"
+              ]
+            ]
+          },
+          "goal": "나눈 몫의 비로 비례배분 결과를 확인할 수 있음을 안다.",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "1a16e89b3e396827a7e332942e3d0ba36ede661b80bab2ce5e25abe0b022fbc5"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-4-5-xc6",
+        "contentHash": "1a16e89b3e396827a7e332942e3d0ba36ede661b80bab2ce5e25abe0b022fbc5",
+        "packet": "cohort-2026-10-07T09-13-59-191Z-0",
+        "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: 문장이 '비가 8:12일 때 가장 간단한 비'만 묻는 단순 약분이다. 비례배분, 처음 비와 같다는 원 개념이 전혀 나오지 않아 목표를 확인하지 못한다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-4-5-xc13",
+    "sourceIndex": 2479,
+    "actualRow": {
+      "id": "e6-2-4-5-xc13",
+      "bDecision": "revise",
+      "bPrompt": "$20$을 $2:3$으로 비례배분할 때, 두 몫을 각각 구하지 않고 두 몫의 차를 구하는 방법을 설명하고 값을 구하세요. 두 항이 같은 비로 나누면 차는 얼마인가요?",
+      "bAnswer": "한 부분의 크기 $20\\div5=4$에 두 항의 차 $3-2=1$을 곱해 차는 $4$이다. 두 항이 같으면 차는 $0$이다.",
+      "bGoal": "한 부분의 크기에 두 항의 차를 곱해 몫의 차를 구한다.",
+      "bReason": "몫을 따로 구하지 않는 지름길을 묻고 두 항이 같은 경우도 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ {$1$}부분이므로 {$4$}이다.",
+      "cReason": "빈칸 '차'는 낱말 맞히기라 항의 차와 몫의 차를 계산하게 바꿨다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 부분의 크기에 두 항의 차를 곱한다",
+            "전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 값을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 몫의 차는 $4$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 항이 같으면 차는 $0$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "sourceIndex": 2479,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc13",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "두 몫의 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전체를 두 자연수의 비로 비례배분할 때 두 항이 같으면 받은 두 양의 차는 $0$이다. 두 항이 다르면 전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 {차}를 곱해 두 양의 차를 구한다.",
+        "studentC": "전체를 두 자연수의 비로 비례배분할 때 두 항이 같으면 받은 두 양의 차는 $0$이다. 두 항이 다르면 전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 □를 곱해 두 양의 차를 구한다.",
+        "answers": [
+          "차"
+        ]
+      },
+      "sourceFingerprint": "4c5f8f5075884e56db96dfaba85fc54eb02e440cdcace071d08e79f79f0b55d4",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$4$"
+      ],
+      "cStudentAfter": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ □부분이므로 □이다.",
+      "cMarkedSentence": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ {$1$}부분이므로 {$4$}이다.",
+      "cStudentSentence": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ □부분이므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$20$을 $2:3$으로 비례배분할 때, 두 몫을 각각 구하지 않고 두 몫의 차를 구하는 방법을 설명하고 값을 구하세요. 두 항이 같은 비로 나누면 차는 얼마인가요?",
+        "answer": "한 부분의 크기 $20\\div5=4$에 두 항의 차 $3-2=1$을 곱해 차는 $4$이다. 두 항이 같으면 차는 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 부분의 크기에 두 항의 차를 곱한다",
+              "전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 값을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫의 차는 $4$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 항이 같으면 차는 $0$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ {$1$}부분이므로 {$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "86efa6c5c239209a542c8d4398da3b29dc06785a17fb3e53ff60bfae240a66ae",
+      "questionRevision": "planning-e5e6-20261006-86efa6c5c239",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-4-5-xc13",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "20÷5인 한 부분에 항의 차 1을 곱해 두 몫의 차 4를 구한다. 항이 같으면 차가 0이라는 특수 경우도 맞다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2479,
+        "proposalFingerprintReviewed": "86efa6c5c239209a542c8d4398da3b29dc06785a17fb3e53ff60bfae240a66ae",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2460-2500.json",
+        "learningRole": "procedure",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "몫을 따로 구하지 않는 지름길을 묻고 두 항이 같은 경우도 확인한다.",
+        "cSourceReason": "빈칸 '차'는 낱말 맞히기라 항의 차와 몫의 차를 계산하게 바꿨다.",
+        "recordedAfterDirectReading": "2026-10-07T09:06:13.655349+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-4-5-xc13",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "20÷5인 한 부분에 항의 차 1을 곱해 두 몫의 차 4를 구한다. 항이 같으면 차가 0이라는 특수 경우도 맞다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2479,
+      "proposalFingerprintReviewed": "86efa6c5c239209a542c8d4398da3b29dc06785a17fb3e53ff60bfae240a66ae",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2460-2500.json",
+      "learningRole": "procedure",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "revise",
+      "bSourceReason": "몫을 따로 구하지 않는 지름길을 묻고 두 항이 같은 경우도 확인한다.",
+      "cSourceReason": "빈칸 '차'는 낱말 맞히기라 항의 차와 몫의 차를 계산하게 바꿨다.",
+      "recordedAfterDirectReading": "2026-10-07T09:06:13.655349+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-4-5-xc13",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-4-5-xc13",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "두 몫의 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전체를 두 자연수의 비로 비례배분할 때 두 항이 같으면 받은 두 양의 차는 $0$이다. 두 항이 다르면 전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 {차}를 곱해 두 양의 차를 구한다."
+      },
+      "B": {
+        "prompt": "$20$을 $2:3$으로 비례배분할 때, 두 몫을 각각 구하지 않고 두 몫의 차를 구하는 방법을 설명하고 값을 구하세요. 두 항이 같은 비로 나누면 차는 얼마인가요?",
+        "answer": "한 부분의 크기 $20\\div5=4$에 두 항의 차 $3-2=1$을 곱해 차는 $4$이다. 두 항이 같으면 차는 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 부분의 크기에 두 항의 차를 곱한다",
+              "전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 값을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫의 차는 $4$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 항이 같으면 차는 $0$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ {$1$}부분이므로 {$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "goal": "한 부분의 크기에 두 항의 차를 곱해 몫의 차를 구한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "3a326259251648d4b6d951f2274a133a1f122195bb29e34d0d3a9676697c67b9"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-4-5-xc13",
+        "grade": "초6",
+        "reviewedHash": "3a326259251648d4b6d951f2274a133a1f122195bb29e34d0d3a9676697c67b9",
+        "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+        "evidence": "cohort-2026-10-07T08-02-45-202Z-1",
+        "blind": [
+          [
+            "e6-2-4-5-xc13",
+            "B",
+            "20÷5=4; 차는 1부분이므로 4",
+            "revise",
+            "마지막 문장 '두 항이 같은 비로 나누면 차는 얼마인가요?'가 뜻이 불분명하고 앞 요구와 겹침."
+          ]
+        ],
+        "key": [
+          [
+            "e6-2-4-5-xc13",
+            "revise",
+            "pass",
+            "none",
+            "B 마지막 문장 '두 항이 같은 비로 나누면 차는 얼마인가요?'는 뜻이 불분명하다. 20을 2:3으로 나누는 앞 요구와 다른 개념(1:1일 때 차 0)을 한 문제에 섞고 있다. 한 개념으로 정리해야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-4-5-xc13",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-4-5-xc13",
+            "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+            "term": "두 몫의 차",
+            "kind": "성질",
+            "level": "중",
+            "definition": "전체를 두 자연수의 비로 비례배분할 때 두 항이 같으면 받은 두 양의 차는 $0$이다. 두 항이 다르면 전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 {차}를 곱해 두 양의 차를 구한다."
+          },
+          "B": {
+            "prompt": "$20$을 $2:3$으로 비례배분할 때, 두 몫을 각각 구하지 않고 두 몫의 차를 구하는 방법을 설명하고 값을 구하세요. 두 항이 같은 비로 나누면 차는 얼마인가요?",
+            "answer": "한 부분의 크기 $20\\div5=4$에 두 항의 차 $3-2=1$을 곱해 차는 $4$이다. 두 항이 같으면 차는 $0$이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "한 부분의 크기에 두 항의 차를 곱한다",
+                  "전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 값을 곱한다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "두 몫의 차는 $4$이다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "두 항이 같으면 차는 $0$이다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ {$1$}부분이므로 {$4$}이다.",
+            "acceptedAnswers": [
+              [
+                "$1$"
+              ],
+              [
+                "$4$"
+              ]
+            ]
+          },
+          "goal": "한 부분의 크기에 두 항의 차를 곱해 몫의 차를 구한다.",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "3a326259251648d4b6d951f2274a133a1f122195bb29e34d0d3a9676697c67b9"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-4-5-xc13",
+        "contentHash": "3a326259251648d4b6d951f2274a133a1f122195bb29e34d0d3a9676697c67b9",
+        "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+        "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-B: 마지막 문장 '두 항이 같은 비로 나누면 차는 얼마인가요?'가 뜻이 불분명하고 앞 요구와 겹침.",
+          "B의 실제 결정과 2차 판정이 다름",
+          "B 마지막 문장 '두 항이 같은 비로 나누면 차는 얼마인가요?'는 뜻이 불분명하다. 20을 2:3으로 나누는 앞 요구와 다른 개념(1:1일 때 차 0)을 한 문제에 섞고 있다. 한 개념으로 정리해야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-5-3-xc6",
+    "sourceIndex": 2517,
+    "actualRow": {
+      "id": "e6-2-5-3-xc6",
+      "bDecision": "revise",
+      "bPrompt": "모눈종이 위의 원에서 '테두리에 걸친 칸'은 어떤 칸인지 설명하시오.",
+      "bAnswer": "칸의 일부는 원 안에 있고 나머지는 원 밖에 있는 칸이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "칸의 일부만 원 안에 있다",
+            "칸의 일부는 원 안, 나머지는 원 밖에 있다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "걸친 칸의 뜻을 말로 설명한다.",
+      "bReason": "걸친 칸은 어림에서 오차의 원인이 되는 기본 낱말이다.",
+      "cDecision": "revise",
+      "cAfter": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 {나머지}는 원 밖에 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나머지",
+            "남은 부분",
+            "다른 부분"
+          ]
+        }
+      ],
+      "cReason": "'일부만'은 말투 암기에 가까워 안과 밖의 관계를 쓰는 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2517,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc6",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "걸친 모눈",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원의 테두리에 걸친 칸은 칸의 {일부만} 원 안에 들어 있다.",
+        "studentC": "원의 테두리에 걸친 칸은 칸의 □ 원 안에 들어 있다.",
+        "answers": [
+          "일부만"
+        ]
+      },
+      "sourceFingerprint": "b6b2bdee782cf9822f6e54e0e5c82c045cce3250269cf1ace902293c772c4c8c",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "나머지"
+      ],
+      "cStudentAfter": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 □는 원 밖에 있다.",
+      "cMarkedSentence": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 {나머지}는 원 밖에 있다.",
+      "cStudentSentence": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 □는 원 밖에 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "나머지",
+          "equivalents": [
+            "남은 부분",
+            "다른 부분"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모눈종이 위의 원에서 '테두리에 걸친 칸'은 어떤 칸인지 설명하시오.",
+        "answer": "칸의 일부는 원 안에 있고 나머지는 원 밖에 있는 칸이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "칸의 일부만 원 안에 있다",
+              "칸의 일부는 원 안, 나머지는 원 밖에 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 {나머지}는 원 밖에 있다.",
+        "acceptedAnswers": [
+          [
+            "나머지",
+            "남은 부분",
+            "다른 부분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "63745b250a11dafc2cd791c61b52d12cbf8590d19c48d01bb7bdc3894399e42b",
+      "questionRevision": "planning-e5e6-20261006-63745b250a11",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-5-3-xc6",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "테두리에 걸친 칸은 일부가 원 안에 나머지가 밖에 있는 칸이다. 정의와 자연스럽게 연결되는 C 답이 맞다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2517,
+        "proposalFingerprintReviewed": "63745b250a11dafc2cd791c61b52d12cbf8590d19c48d01bb7bdc3894399e42b",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2500-2540.json",
+        "learningRole": "definition",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "걸친 칸은 어림에서 오차의 원인이 되는 기본 낱말이다.",
+        "cSourceReason": "'일부만'은 말투 암기에 가까워 안과 밖의 관계를 쓰는 빈칸으로 바꾼다.",
+        "recordedAfterDirectReading": "2026-10-07T09:10:58.456034+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-5-3-xc6",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "테두리에 걸친 칸은 일부가 원 안에 나머지가 밖에 있는 칸이다. 정의와 자연스럽게 연결되는 C 답이 맞다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2517,
+      "proposalFingerprintReviewed": "63745b250a11dafc2cd791c61b52d12cbf8590d19c48d01bb7bdc3894399e42b",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2500-2540.json",
+      "learningRole": "definition",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "revise",
+      "bSourceReason": "걸친 칸은 어림에서 오차의 원인이 되는 기본 낱말이다.",
+      "cSourceReason": "'일부만'은 말투 암기에 가까워 안과 밖의 관계를 쓰는 빈칸으로 바꾼다.",
+      "recordedAfterDirectReading": "2026-10-07T09:10:58.456034+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-5-3-xc6",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-5-3-xc6",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "걸친 모눈",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원의 테두리에 걸친 칸은 칸의 {일부만} 원 안에 들어 있다."
+      },
+      "B": {
+        "prompt": "모눈종이 위의 원에서 '테두리에 걸친 칸'은 어떤 칸인지 설명하시오.",
+        "answer": "칸의 일부는 원 안에 있고 나머지는 원 밖에 있는 칸이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "칸의 일부만 원 안에 있다",
+              "칸의 일부는 원 안, 나머지는 원 밖에 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 {나머지}는 원 밖에 있다.",
+        "acceptedAnswers": [
+          [
+            "나머지",
+            "남은 부분",
+            "다른 부분"
+          ]
+        ]
+      },
+      "goal": "걸친 칸의 뜻을 말로 설명한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "240e6a082932ef12d0776d3c4ceb7ebdab1722f35727c7236aa3f7ffb524f56c"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-5-3-xc6",
+        "grade": "초6",
+        "reviewedHash": "240e6a082932ef12d0776d3c4ceb7ebdab1722f35727c7236aa3f7ffb524f56c",
+        "inputHash": "6790f2886088b4b5bd160d17af4d1fda53ae058dde07352d616be86fbf27f853",
+        "evidence": "cohort-2026-10-07T08-17-44-212Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e6-2-5-3-xc6",
+            "pass",
+            "revise",
+            "none",
+            "C 빈칸 '나머지'는 '일부는 … 있고 □는 … 있다'의 짝 어휘 복원에 그쳐 걸친 칸의 개념을 확인하지 못한다. 예: '테두리 선이 칸 안을 □ 칸이 걸친 칸이다'처럼 개념을 묻도록 고친다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-5-3-xc6",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-5-3-xc6",
+            "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+            "term": "걸친 모눈",
+            "kind": "성질",
+            "level": "하",
+            "definition": "원의 테두리에 걸친 칸은 칸의 {일부만} 원 안에 들어 있다."
+          },
+          "B": {
+            "prompt": "모눈종이 위의 원에서 '테두리에 걸친 칸'은 어떤 칸인지 설명하시오.",
+            "answer": "칸의 일부는 원 안에 있고 나머지는 원 밖에 있는 칸이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "칸의 일부만 원 안에 있다",
+                  "칸의 일부는 원 안, 나머지는 원 밖에 있다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 {나머지}는 원 밖에 있다.",
+            "acceptedAnswers": [
+              [
+                "나머지",
+                "남은 부분",
+                "다른 부분"
+              ]
+            ]
+          },
+          "goal": "걸친 칸의 뜻을 말로 설명한다.",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "240e6a082932ef12d0776d3c4ceb7ebdab1722f35727c7236aa3f7ffb524f56c"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-5-3-xc6",
+        "contentHash": "240e6a082932ef12d0776d3c4ceb7ebdab1722f35727c7236aa3f7ffb524f56c",
+        "packet": "cohort-2026-10-07T08-17-44-212Z-0",
+        "inputHash": "6790f2886088b4b5bd160d17af4d1fda53ae058dde07352d616be86fbf27f853",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C 빈칸 '나머지'는 '일부는 … 있고 □는 … 있다'의 짝 어휘 복원에 그쳐 걸친 칸의 개념을 확인하지 못한다. 예: '테두리 선이 칸 안을 □ 칸이 걸친 칸이다'처럼 개념을 묻도록 고친다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-6-2-xc6",
+    "sourceIndex": 2571,
+    "actualRow": {
+      "id": "e6-2-6-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 전개도에서 두 원은 옆면 직사각형의 어느 두 변에 붙어야 하나요? 그 두 변의 길이는 밑면의 어떤 길이와 같아야 하는지도 쓰세요.",
+      "bAnswer": "밑면 둘레와 길이가 같은, 서로 마주 보는 두 변에 원을 하나씩 붙인다.",
+      "bGoal": "두 밑면이 옆면의 마주 보는 변에 하나씩 붙는 배치를 안다.",
+      "bReason": "아무 마주 보는 두 변을 고르는 것으로 끝내지 않고 밑면 원주와 같은 길이라는 필요한 조건을 질문과 기준에 함께 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 마주 보는 두 변",
+            "맞은편 변",
+            "반대쪽 두 변"
+          ]
+        },
+        {
+          "anyOf": [
+            "하나씩",
+            "변마다 한 개씩",
+            "각 변에 원 하나"
+          ]
+        },
+        {
+          "anyOf": [
+            "원을 붙이는 변의 길이가 밑면의 둘레와 같다",
+            "그 두 변의 길이는 밑면의 원주와 같다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+      "cReason": "원이 옆면의 마주 보는 두 변에 하나씩 붙는다는 배치 조건을 묻는다.",
+      "synonymNotes": "마주 보는, 맞은편, 반대쪽은 같은 뜻으로 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "7b8bfdc984726afa6696fb1373ac80379421864e7c455274e43233e1ad3c3517",
+      "sourceIndex": 2571,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc6",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "두 원이 붙는 자리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+        "studentC": "원기둥의 전개도에서 두 원은 옆면의 □ 두 변에 하나씩 붙는다.",
+        "answers": [
+          "서로 마주 보는"
+        ]
+      },
+      "sourceFingerprint": "d1f139ab4cba723e164d1bf5c6489d41a4e79a6d4f14dfd35776fb6954be1ffb",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "서로 마주 보는"
+      ],
+      "cStudentAfter": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 □ 두 변에 하나씩 붙는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "서로 마주 보는"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+      "cStudentSentence": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 □ 두 변에 하나씩 붙는다.",
+      "cSlotAnswers": [
+        {
+          "key": "서로 마주 보는",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 전개도에서 두 원은 옆면 직사각형의 어느 두 변에 붙어야 하나요? 그 두 변의 길이는 밑면의 어떤 길이와 같아야 하는지도 쓰세요.",
+        "answer": "밑면 둘레와 길이가 같은, 서로 마주 보는 두 변에 원을 하나씩 붙인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 마주 보는 두 변",
+              "맞은편 변",
+              "반대쪽 두 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "하나씩",
+              "변마다 한 개씩",
+              "각 변에 원 하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "원을 붙이는 변의 길이가 밑면의 둘레와 같다",
+              "그 두 변의 길이는 밑면의 원주와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+        "acceptedAnswers": [
+          [
+            "서로 마주 보는"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "854597a572664e05078546a2da797d2c56a0f1d0d713041e76158e4aabd1f040",
+      "questionRevision": "planning-e5e6-20261006-854597a57266",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-6-2-xc6",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "원을 붙이는 마주 보는 두 변의 길이가 밑면 원주와 같다는 질문·기준·C를 읽었다. 다른 길이의 마주 보는 변을 고르는 답은 허용하지 않는다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2571,
+        "proposalFingerprintReviewed": "854597a572664e05078546a2da797d2c56a0f1d0d713041e76158e4aabd1f040",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch-corrected-input.json",
+        "learningRole": "procedure",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "아무 마주 보는 두 변을 고르는 것으로 끝내지 않고 밑면 원주와 같은 길이라는 필요한 조건을 질문과 기준에 함께 넣었다.",
+        "cSourceReason": "원이 옆면의 마주 보는 두 변에 하나씩 붙는다는 배치 조건을 묻는다.",
+        "recordedAfterDirectReading": "2026-10-07T09:14:46.672504+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-6-2-xc6",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "원을 붙이는 마주 보는 두 변의 길이가 밑면 원주와 같다는 질문·기준·C를 읽었다. 다른 길이의 마주 보는 변을 고르는 답은 허용하지 않는다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2571,
+      "proposalFingerprintReviewed": "854597a572664e05078546a2da797d2c56a0f1d0d713041e76158e4aabd1f040",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch-corrected-input.json",
+      "learningRole": "procedure",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "revise",
+      "bSourceReason": "아무 마주 보는 두 변을 고르는 것으로 끝내지 않고 밑면 원주와 같은 길이라는 필요한 조건을 질문과 기준에 함께 넣었다.",
+      "cSourceReason": "원이 옆면의 마주 보는 두 변에 하나씩 붙는다는 배치 조건을 묻는다.",
+      "recordedAfterDirectReading": "2026-10-07T09:14:46.672504+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-6-2-xc6",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-6-2-xc6",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "두 원이 붙는 자리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다."
+      },
+      "B": {
+        "prompt": "원기둥의 전개도에서 두 원은 옆면 직사각형의 어느 두 변에 붙어야 하나요? 그 두 변의 길이는 밑면의 어떤 길이와 같아야 하는지도 쓰세요.",
+        "answer": "밑면 둘레와 길이가 같은, 서로 마주 보는 두 변에 원을 하나씩 붙인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 마주 보는 두 변",
+              "맞은편 변",
+              "반대쪽 두 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "하나씩",
+              "변마다 한 개씩",
+              "각 변에 원 하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "원을 붙이는 변의 길이가 밑면의 둘레와 같다",
+              "그 두 변의 길이는 밑면의 원주와 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+        "acceptedAnswers": [
+          [
+            "서로 마주 보는"
+          ]
+        ]
+      },
+      "goal": "두 밑면이 옆면의 마주 보는 변에 하나씩 붙는 배치를 안다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "7b9deaaf67faf6f0dd4bf963cac7740167b0f5285f1297ede1bb1794317a0705"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-6-2-xc6",
+        "grade": "초6",
+        "reviewedHash": "7b9deaaf67faf6f0dd4bf963cac7740167b0f5285f1297ede1bb1794317a0705",
+        "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+        "evidence": "cohort-2026-10-07T09-22-15-400Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e6-2-6-2-xc6",
+            "revise",
+            "pass",
+            "none",
+            "B의 두 번째 필수 요소 '하나씩'은 질문이 요구하지 않은 내용이다. 질문은 '어느 두 변에 붙는가'와 '그 변의 길이'만 묻는다. '마주 보는 두 변에 붙고 길이는 밑면 둘레와 같다'만 써도 의미가 옳으므로 '하나씩'은 독립 필수가 아니다. 필수 요소에서 빼거나 질문에 명시해야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-6-2-xc6",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-6-2-xc6",
+            "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+            "term": "두 원이 붙는 자리",
+            "kind": "성질",
+            "level": "하",
+            "definition": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다."
+          },
+          "B": {
+            "prompt": "원기둥의 전개도에서 두 원은 옆면 직사각형의 어느 두 변에 붙어야 하나요? 그 두 변의 길이는 밑면의 어떤 길이와 같아야 하는지도 쓰세요.",
+            "answer": "밑면 둘레와 길이가 같은, 서로 마주 보는 두 변에 원을 하나씩 붙인다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "서로 마주 보는 두 변",
+                  "맞은편 변",
+                  "반대쪽 두 변"
+                ]
+              },
+              {
+                "anyOf": [
+                  "하나씩",
+                  "변마다 한 개씩",
+                  "각 변에 원 하나"
+                ]
+              },
+              {
+                "anyOf": [
+                  "원을 붙이는 변의 길이가 밑면의 둘레와 같다",
+                  "그 두 변의 길이는 밑면의 원주와 같다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+            "acceptedAnswers": [
+              [
+                "서로 마주 보는"
+              ]
+            ]
+          },
+          "goal": "두 밑면이 옆면의 마주 보는 변에 하나씩 붙는 배치를 안다.",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "7b9deaaf67faf6f0dd4bf963cac7740167b0f5285f1297ede1bb1794317a0705"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-6-2-xc6",
+        "contentHash": "7b9deaaf67faf6f0dd4bf963cac7740167b0f5285f1297ede1bb1794317a0705",
+        "packet": "cohort-2026-10-07T09-22-15-400Z-0",
+        "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B의 두 번째 필수 요소 '하나씩'은 질문이 요구하지 않은 내용이다. 질문은 '어느 두 변에 붙는가'와 '그 변의 길이'만 묻는다. '마주 보는 두 변에 붙고 길이는 밑면 둘레와 같다'만 써도 의미가 옳으므로 '하나씩'은 독립 필수가 아니다. 필수 요소에서 빼거나 질문에 명시해야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-6-3-xc11",
+    "sourceIndex": 2591,
+    "actualRow": {
+      "id": "e6-2-6-3-xc11",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 원뿔의 어떤 선분과 같은지 쓰시오.",
+      "bAnswer": "모선과 같다. 꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분이다.",
+      "bGoal": "삼각형의 두 변을 모선으로 연결한다.",
+      "bReason": "삼각형의 변과 원뿔의 선분을 연결해 모선의 뜻을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모선",
+            "꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "원뿔의 꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 그은 선분을 {모선}이라고 한다.",
+      "cReason": "앞에서 본 모양의 두 변만 보여 주고 모르는 명칭을 요구하지 않고, 해당 선분의 양 끝과 위치를 직접 정의해 통상 이름을 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2580-patch.json",
+      "codexFinalAmendedFromFingerprint": "bf828d89a968ad581c6f912a857de906f2539d1d105b38491393267aa7ff0747",
+      "sourceIndex": 2591,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc11",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "앞에서 본 삼각형의 두 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 {모선}이다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 □이다.",
+        "answers": [
+          "모선"
+        ]
+      },
+      "sourceFingerprint": "98660bf4d12c48e86c618356b1ee036bc0941d3eeae31514ff0bc16fa6579662",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "모선"
+      ],
+      "cStudentAfter": "원뿔의 꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 그은 선분을 □이라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모선"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원뿔의 꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 그은 선분을 {모선}이라고 한다.",
+      "cStudentSentence": "원뿔의 꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 그은 선분을 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "모선",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 원뿔의 어떤 선분과 같은지 쓰시오.",
+        "answer": "모선과 같다. 꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모선",
+              "꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원뿔의 꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 그은 선분을 {모선}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "모선"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "805c2420386802f7aa6f6d965d52ad4e476a4f549452f2fd6bb9a62ebfc03d22",
+      "questionRevision": "planning-e5e6-20261006-805c24203868",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-6-3-xc11",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "C가 선분의 양 끝과 옆면 위라는 위치를 정의한 뒤 모선이라는 통상 이름을 묻는지 확인했다. B는 앞에서 본 두 변을 직접 설명하는 답도 허용한다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2591,
+        "proposalFingerprintReviewed": "805c2420386802f7aa6f6d965d52ad4e476a4f549452f2fd6bb9a62ebfc03d22",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-final2580-patch-corrected-input.json",
+        "learningRole": "application",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "삼각형의 변과 원뿔의 선분을 연결해 모선의 뜻을 확인한다.",
+        "cSourceReason": "앞에서 본 모양의 두 변만 보여 주고 모르는 명칭을 요구하지 않고, 해당 선분의 양 끝과 위치를 직접 정의해 통상 이름을 확인한다.",
+        "recordedAfterDirectReading": "2026-10-07T09:18:45.962996+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-6-3-xc11",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "C가 선분의 양 끝과 옆면 위라는 위치를 정의한 뒤 모선이라는 통상 이름을 묻는지 확인했다. B는 앞에서 본 두 변을 직접 설명하는 답도 허용한다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2591,
+      "proposalFingerprintReviewed": "805c2420386802f7aa6f6d965d52ad4e476a4f549452f2fd6bb9a62ebfc03d22",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-final2580-patch-corrected-input.json",
+      "learningRole": "application",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "revise",
+      "bSourceReason": "삼각형의 변과 원뿔의 선분을 연결해 모선의 뜻을 확인한다.",
+      "cSourceReason": "앞에서 본 모양의 두 변만 보여 주고 모르는 명칭을 요구하지 않고, 해당 선분의 양 끝과 위치를 직접 정의해 통상 이름을 확인한다.",
+      "recordedAfterDirectReading": "2026-10-07T09:18:45.962996+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-6-3-xc11",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-6-3-xc11",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "앞에서 본 삼각형의 두 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 {모선}이다."
+      },
+      "B": {
+        "prompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 원뿔의 어떤 선분과 같은지 쓰시오.",
+        "answer": "모선과 같다. 꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모선",
+              "꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원뿔의 꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 그은 선분을 {모선}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "모선"
+          ]
+        ]
+      },
+      "goal": "삼각형의 두 변을 모선으로 연결한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "67a6b1e96a7df5f796118a2e1dd07ea73b3b14d5e96c67a36b99b3abb8c4dac7"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-6-3-xc11",
+        "grade": "초6",
+        "reviewedHash": "67a6b1e96a7df5f796118a2e1dd07ea73b3b14d5e96c67a36b99b3abb8c4dac7",
+        "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+        "evidence": "cohort-2026-10-07T09-22-15-400Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e6-2-6-3-xc11",
+            "pass",
+            "revise",
+            "none",
+            "C는 모선의 정의 문장에서 이름 '모선'을 묻는 용어 회상이다. 원문 개념인 '세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변이 모선이다'를 전혀 다루지 않아 ID의 목표와 어긋난다. 앞에서 본 삼각형의 맥락을 넣어 그 두 변이 무엇인지 묻도록 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-6-3-xc11",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-6-3-xc11",
+            "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+            "term": "앞에서 본 삼각형의 두 변",
+            "kind": "성질",
+            "level": "중",
+            "definition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 {모선}이다."
+          },
+          "B": {
+            "prompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 원뿔의 어떤 선분과 같은지 쓰시오.",
+            "answer": "모선과 같다. 꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "모선",
+                  "꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "원뿔의 꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 그은 선분을 {모선}이라고 한다.",
+            "acceptedAnswers": [
+              [
+                "모선"
+              ]
+            ]
+          },
+          "goal": "삼각형의 두 변을 모선으로 연결한다.",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "67a6b1e96a7df5f796118a2e1dd07ea73b3b14d5e96c67a36b99b3abb8c4dac7"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-6-3-xc11",
+        "contentHash": "67a6b1e96a7df5f796118a2e1dd07ea73b3b14d5e96c67a36b99b3abb8c4dac7",
+        "packet": "cohort-2026-10-07T09-22-15-400Z-0",
+        "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C는 모선의 정의 문장에서 이름 '모선'을 묻는 용어 회상이다. 원문 개념인 '세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변이 모선이다'를 전혀 다루지 않아 ID의 목표와 어긋난다. 앞에서 본 삼각형의 맥락을 넣어 그 두 변이 무엇인지 묻도록 바꿔야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-6-4-xc7",
+    "sourceIndex": 2606,
+    "actualRow": {
+      "id": "e6-2-6-4-xc7",
+      "bDecision": "revise",
+      "bPrompt": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 굴러갑니다. 그 까닭을 구의 중심과 바닥에 닿는 점 사이의 거리로 설명하시오.",
+      "bAnswer": "구가 구르는 동안 바닥에 닿는 점은 계속 바뀌지만 중심에서 그 점까지의 거리가 늘 같아 중심의 높이가 변하지 않기 때문이다.",
+      "bGoal": "구가 잘 구르는 까닭을 중심에서 표면까지 거리가 같다는 성질로 연결한다.",
+      "bReason": "굴러감이라는 일상 현상을 구의 정의와 이어 생각하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바닥에 닿는 점이 바뀌어도 중심에서 그 점까지 거리가 같다",
+            "중심의 높이가 변하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+      "cReason": "어느 방향으로 밀어도라는 조건이 있어 굴러간다 낱말을 쉽게 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2606,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc7",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "잘 굴러가는 구",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+        "studentC": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 □.",
+        "answers": [
+          "굴러간다"
+        ]
+      },
+      "sourceFingerprint": "2fc68c12e3c532fd0f0d2875fb88872e817662ca29708f52e462ffd6e85b8023",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+      "cFrozenStudentSentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 □.",
+      "cProposedAnswers": [
+        "굴러간다"
+      ],
+      "cStudentAfter": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "굴러간다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+      "cStudentSentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 □.",
+      "cSlotAnswers": [
+        {
+          "key": "굴러간다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 굴러갑니다. 그 까닭을 구의 중심과 바닥에 닿는 점 사이의 거리로 설명하시오.",
+        "answer": "구가 구르는 동안 바닥에 닿는 점은 계속 바뀌지만 중심에서 그 점까지의 거리가 늘 같아 중심의 높이가 변하지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바닥에 닿는 점이 바뀌어도 중심에서 그 점까지 거리가 같다",
+              "중심의 높이가 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+        "acceptedAnswers": [
+          [
+            "굴러간다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d8ac72cc264e8578c8af02dc76bbf35540e1e2c351d95c882818de68478ecbcc",
+      "questionRevision": "planning-e5e6-20261006-d8ac72cc264e",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-6-4-xc7",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "굴러가도 중심에서 접점까지 거리인 반지름이 일정해 중심 높이가 유지된다는 이유를 구체적으로 묻는다. C의 구르기 동작도 명확하다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2606,
+        "proposalFingerprintReviewed": "d8ac72cc264e8578c8af02dc76bbf35540e1e2c351d95c882818de68478ecbcc",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2580-2621.json",
+        "learningRole": "reason",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "keep",
+        "bSourceReason": "굴러감이라는 일상 현상을 구의 정의와 이어 생각하게 한다.",
+        "cSourceReason": "어느 방향으로 밀어도라는 조건이 있어 굴러간다 낱말을 쉽게 확인한다.",
+        "recordedAfterDirectReading": "2026-10-07T09:18:41.991225+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-6-4-xc7",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "굴러가도 중심에서 접점까지 거리인 반지름이 일정해 중심 높이가 유지된다는 이유를 구체적으로 묻는다. C의 구르기 동작도 명확하다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2606,
+      "proposalFingerprintReviewed": "d8ac72cc264e8578c8af02dc76bbf35540e1e2c351d95c882818de68478ecbcc",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2580-2621.json",
+      "learningRole": "reason",
+      "bSourceDecision": "revise",
+      "cSourceDecision": "keep",
+      "bSourceReason": "굴러감이라는 일상 현상을 구의 정의와 이어 생각하게 한다.",
+      "cSourceReason": "어느 방향으로 밀어도라는 조건이 있어 굴러간다 낱말을 쉽게 확인한다.",
+      "recordedAfterDirectReading": "2026-10-07T09:18:41.991225+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-6-4-xc7",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-6-4-xc7",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "잘 굴러가는 구",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}."
+      },
+      "B": {
+        "prompt": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 굴러갑니다. 그 까닭을 구의 중심과 바닥에 닿는 점 사이의 거리로 설명하시오.",
+        "answer": "구가 구르는 동안 바닥에 닿는 점은 계속 바뀌지만 중심에서 그 점까지의 거리가 늘 같아 중심의 높이가 변하지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바닥에 닿는 점이 바뀌어도 중심에서 그 점까지 거리가 같다",
+              "중심의 높이가 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+        "acceptedAnswers": [
+          [
+            "굴러간다"
+          ]
+        ]
+      },
+      "goal": "구가 잘 구르는 까닭을 중심에서 표면까지 거리가 같다는 성질로 연결한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "e94722c8c7eb67ff87b127173a60bf9ee29114a4786a2ca309787c41fe9c0295"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-6-4-xc7",
+        "grade": "초6",
+        "reviewedHash": "e94722c8c7eb67ff87b127173a60bf9ee29114a4786a2ca309787c41fe9c0295",
+        "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+        "evidence": "cohort-2026-10-07T09-22-15-421Z-1",
+        "blind": [
+          [
+            "e6-2-6-4-xc7",
+            "C",
+            "굴러간다",
+            "revise",
+            "빈칸이 앞 문장의 서술어를 복원하는 것뿐이어서 수학적 관계를 적용하지 않는다."
+          ]
+        ],
+        "key": [
+          [
+            "e6-2-6-4-xc7",
+            "pass",
+            "revise",
+            "none",
+            "C: '어느 방향으로 밀어도 잘 {굴러간다}'는 앞 문장의 서술어를 복원할 뿐이다. 중심에서 닿는 점까지 거리가 같다는 구의 성질을 적용하지 않아도 채워진다. 수학적 관계를 묻는 빈칸(예: 중심에서 바닥에 닿는 점까지의 거리가 □)으로 바꾸어야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-6-4-xc7",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-6-4-xc7",
+            "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+            "term": "잘 굴러가는 구",
+            "kind": "성질",
+            "level": "하",
+            "definition": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}."
+          },
+          "B": {
+            "prompt": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 굴러갑니다. 그 까닭을 구의 중심과 바닥에 닿는 점 사이의 거리로 설명하시오.",
+            "answer": "구가 구르는 동안 바닥에 닿는 점은 계속 바뀌지만 중심에서 그 점까지의 거리가 늘 같아 중심의 높이가 변하지 않기 때문이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "바닥에 닿는 점이 바뀌어도 중심에서 그 점까지 거리가 같다",
+                  "중심의 높이가 변하지 않는다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+            "acceptedAnswers": [
+              [
+                "굴러간다"
+              ]
+            ]
+          },
+          "goal": "구가 잘 구르는 까닭을 중심에서 표면까지 거리가 같다는 성질로 연결한다.",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "e94722c8c7eb67ff87b127173a60bf9ee29114a4786a2ca309787c41fe9c0295"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-6-4-xc7",
+        "contentHash": "e94722c8c7eb67ff87b127173a60bf9ee29114a4786a2ca309787c41fe9c0295",
+        "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+        "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: 빈칸이 앞 문장의 서술어를 복원하는 것뿐이어서 수학적 관계를 적용하지 않는다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '어느 방향으로 밀어도 잘 {굴러간다}'는 앞 문장의 서술어를 복원할 뿐이다. 중심에서 닿는 점까지 거리가 같다는 구의 성질을 적용하지 않아도 채워진다. 수학적 관계를 묻는 빈칸(예: 중심에서 바닥에 닿는 점까지의 거리가 □)으로 바꾸어야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e6-2-6-4-xc25",
+    "sourceIndex": 2620,
+    "actualRow": {
+      "id": "e6-2-6-4-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "구에 밑면이 없음을 안다.",
+      "bReason": "평평한 면 비교 문항과 중복된다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "exclusionReason": "구에 평평한 면이 없다는 내용(e6-2-6-4-xc10)과 중복되어 대체 ID는 e6-2-6-4-xc10이다.",
+      "cDecision": "keep",
+      "cAfter": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+      "cReason": "원기둥, 원뿔과 대비해 구에 밑면이 없음을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "없다, 밑면이 없다 모두 정답이다.",
+      "sourceIndex": 2620,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc25",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "밑면이 없는 구",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+        "studentC": "원기둥과 원뿔은 밑면이 있지만 구는 □.",
+        "answers": [
+          "밑면이 없다"
+        ]
+      },
+      "sourceFingerprint": "bed44212214c1d4c362ff8ac71e14f8d225a9d3f72829c87a4e58fff6b78157d",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+      "cFrozenStudentSentence": "원기둥과 원뿔은 밑면이 있지만 구는 □.",
+      "cProposedAnswers": [
+        "밑면이 없다"
+      ],
+      "cStudentAfter": "원기둥과 원뿔은 밑면이 있지만 구는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면이 없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+      "cStudentSentence": "원기둥과 원뿔은 밑면이 있지만 구는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면이 없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+        "acceptedAnswers": [
+          [
+            "밑면이 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "구에 평평한 면이 없다는 내용(e6-2-6-4-xc10)과 중복되어 대체 ID는 e6-2-6-4-xc10이다."
+      },
+      "proposalFingerprint": "b167573646495127eecf57613d09e61a078bed96da099bc69f85b924e3437f9a",
+      "questionRevision": "planning-e5e6-20261006-b16757364649",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-6-4-xc25",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "구에는 평평한 밑면이 없다는 짧은 C를 원기둥·원뿔과 비교하여 확인한다. 비교 B의 중복 제외를 유지한다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 2620,
+        "proposalFingerprintReviewed": "b167573646495127eecf57613d09e61a078bed96da099bc69f85b924e3437f9a",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2580-2621.json",
+        "learningRole": "naming",
+        "bSourceDecision": "exclude",
+        "cSourceDecision": "keep",
+        "bSourceReason": "평평한 면 비교 문항과 중복된다.",
+        "cSourceReason": "원기둥, 원뿔과 대비해 구에 밑면이 없음을 묻는 짧은 문장이다.",
+        "recordedAfterDirectReading": "2026-10-07T09:18:41.991225+00:00"
+      }
+    },
+    "ledger": {
+      "id": "e6-2-6-4-xc25",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "구에는 평평한 밑면이 없다는 짧은 C를 원기둥·원뿔과 비교하여 확인한다. 비교 B의 중복 제외를 유지한다.",
+      "reader": "Codex worker final direct reading",
+      "sourceIndex": 2620,
+      "proposalFingerprintReviewed": "b167573646495127eecf57613d09e61a078bed96da099bc69f85b924e3437f9a",
+      "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-input-2580-2621.json",
+      "learningRole": "naming",
+      "bSourceDecision": "exclude",
+      "cSourceDecision": "keep",
+      "bSourceReason": "평평한 면 비교 문항과 중복된다.",
+      "cSourceReason": "원기둥, 원뿔과 대비해 구에 밑면이 없음을 묻는 짧은 문장이다.",
+      "recordedAfterDirectReading": "2026-10-07T09:18:41.991225+00:00"
+    },
+    "normalized": {
+      "id": "e6-2-6-4-xc25",
+      "grade": "초6",
+      "source": {
+        "id": "e6-2-6-4-xc25",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "밑면이 없는 구",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}."
+      },
+      "B": {
+        "excluded": "구에 평평한 면이 없다는 내용(e6-2-6-4-xc10)과 중복되어 대체 ID는 e6-2-6-4-xc10이다."
+      },
+      "C": {
+        "sentence": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+        "acceptedAnswers": [
+          [
+            "밑면이 없다"
+          ]
+        ]
+      },
+      "goal": "구에 밑면이 없음을 안다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "d8f60155b88d47e50660f41e360a821bf9748f3c69ee4fe8b18199af287a5f55"
+    },
+    "negatives": [
+      {
+        "id": "e6-2-6-4-xc25",
+        "grade": "초6",
+        "reviewedHash": "d8f60155b88d47e50660f41e360a821bf9748f3c69ee4fe8b18199af287a5f55",
+        "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+        "evidence": "cohort-2026-10-07T09-22-15-421Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e6-2-6-4-xc25",
+            "excluded",
+            "revise",
+            "none",
+            "C: '원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}'의 빈칸은 앞 절의 '밑면이 있다'를 부정해 붙인 것이다. 구의 성질을 몰라도 대조 구조만으로 채워지는 문법 복원이다. B도 제외되어 이 ID에서 남은 평가가 이것뿐이므로, 구에 평평한 면·꼭짓점이 없다는 점과 연결한 빈칸으로 바꾸어야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e6-2-6-4-xc25",
+          "grade": "초6",
+          "source": {
+            "id": "e6-2-6-4-xc25",
+            "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+            "term": "밑면이 없는 구",
+            "kind": "성질",
+            "level": "상",
+            "definition": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}."
+          },
+          "B": {
+            "excluded": "구에 평평한 면이 없다는 내용(e6-2-6-4-xc10)과 중복되어 대체 ID는 e6-2-6-4-xc10이다."
+          },
+          "C": {
+            "sentence": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+            "acceptedAnswers": [
+              [
+                "밑면이 없다"
+              ]
+            ]
+          },
+          "goal": "구에 밑면이 없음을 안다.",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "d8f60155b88d47e50660f41e360a821bf9748f3c69ee4fe8b18199af287a5f55"
+        },
+        "currentHashMatch": true
+      }
+    ],
+    "currentIndependent": [
+      {
+        "id": "e6-2-6-4-xc25",
+        "contentHash": "d8f60155b88d47e50660f41e360a821bf9748f3c69ee4fe8b18199af287a5f55",
+        "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+        "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}'의 빈칸은 앞 절의 '밑면이 있다'를 부정해 붙인 것이다. 구의 성질을 몰라도 대조 구조만으로 채워지는 문법 복원이다. B도 제외되어 이 ID에서 남은 평가가 이것뿐이므로, 구에 평평한 면·꼭짓점이 없다는 점과 연결한 빈칸으로 바꾸어야 한다."
+        ]
+      }
+    ]
+  }
+]

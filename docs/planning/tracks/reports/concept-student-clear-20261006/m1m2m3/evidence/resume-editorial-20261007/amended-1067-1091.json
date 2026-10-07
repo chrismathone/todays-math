@@ -1,0 +1,2101 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-20261007/input-1067-1091.json",
+  "changes": [
+    {
+      "id": "m1-02-02-xc11",
+      "cAfter": "$-1<x\\le3$은 $-1<x$와 $x\\le3$이라는 두 조건을 {모두} 만족한다는 뜻이다.",
+      "cAcceptedAnswers": [
+        [
+          "모두",
+          "동시에",
+          "둘 다"
+        ]
+      ],
+      "coreAfter": "한 수가 두 경계 사이에 있는 범위를 부등호로 이어 쓰면 양쪽의 {두 조건을 모두} 만족한다는 뜻이다. 작은 경계, 그 사이의 수, 큰 경계의 순서로 쓰거나 그 반대로 쓰면, 두 부등호가 {같은 쪽}으로 벌어진다.",
+      "coreReason": "임의의부등호연결은모두같은방향이어야한다는주장이아닌두경계사이범위의표기임을명시한다. C는이미보이는기호방향을베끼기보다두조건의동시만족에집중한다."
+    },
+    {
+      "id": "m1-02-02-xc12",
+      "coreAfter": "$a$가 양수일 때, 절댓값이 $a$보다 작은 정수는 원점으로부터 거리가 $a$보다 {작은} 정수이다. 원점을 {가운데} 두고 양쪽에 있는 정수의 개수가 같다.",
+      "coreReason": "a가0이하이면조건을만족하는정수가없어원점을가운데포함하는분포설명이성립하지않으므로양수조건을넣는다."
+    },
+    {
+      "id": "m1-02-02-xc16",
+      "cAcceptedAnswers": [
+        [
+          "$-a<x<a$",
+          "$a>x>-a$"
+        ]
+      ],
+      "cReason": "같은두경계를거꾸로쓰되같은범위를나타내는부등식만추가인정한다."
+    },
+    {
+      "id": "m1-02-02-xc21",
+      "coreAfter": "절댓값이 가장 작은 수는 {$0$}이다. 주어진 여러 수 가운데 $0$이 없으면 원점에 가장 {가까운} 수의 절댓값이 가장 작다.",
+      "coreReason": "0없는모든수전체에는최소절댓값이없으므로비교대상을주어진여러수로밝힌다."
+    },
+    {
+      "id": "m1-02-02-xc23",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 조건은 절댓값이 $3$ 이하이고 음의 정수라는 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 조건에 공통인 수만 고른다",
+            "한 조건에 맞는 수 가운데 다른 조건에도 맞는 수를 고른다",
+            "절댓값이 $3$ 이하인 정수 중에서 음의 정수만 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-3$, $-2$, $-1$"
+          ]
+        }
+      ],
+      "bReason": "질문이두조건각각도쓰라고요구하므로방법·결과뿐아니라요청된조건분리의의미를기준에넣는다."
+    },
+    {
+      "id": "m1-02-02-xc24",
+      "cAfter": "주어진 여러 수 가운데 원점에서 가장 먼 수는 {부호}와 상관없이 절댓값이 가장 {큰} 수이다.",
+      "coreAfter": "주어진 여러 수 가운데 원점에서 가장 먼 수는 {부호}와 상관없이 절댓값이 가장 {큰} 수이다.",
+      "coreReason": "모든수전체에가장먼수가있다고읽히지않게비교대상을주어진여러수로정한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-02-02-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "양수의 절댓값은 그 양수에서 무엇을 떼어 낸 수인지 쓰고, $|+8|$의 값을 구하시오.",
+      "bAnswer": "양수의 절댓값은 양의 부호 $+$를 떼어 낸 수이다. $|+8|=8$",
+      "bGoal": "양수의 절댓값을 바로 구할 수 있다.",
+      "bReason": "제목만으로는 구하는 방법인지 값인지 알 수 없다. 방법과 구체 값을 묻도록 했다.",
+      "cDecision": "keep",
+      "cReason": "'양의 부호' 하나만 채우며 문장에 필요한 조건(양수)이 모두 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양의 부호 $+$를 떼어 낸 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$|+8|=8$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "양의 부호를 떼면 절댓값",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1067,
+      "part": "m1plus",
+      "sourceFingerprint": "8082f4d9aa0f2e91ca5a9858fcfe6dbd23f836c621172b2c509352acb24da4ff",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1067
+      },
+      "directReview": null,
+      "cFrozenSentence": "양수는 □만 떼어 내면 바로 그 절댓값이 된다.",
+      "cFrozenDefinition": "양수는 {양의 부호}만 떼어 내면 바로 그 절댓값이 된다.",
+      "cFrozenAnswers": [
+        "양의 부호"
+      ],
+      "cMarkedSentence": "양수는 {양의 부호}만 떼어 내면 바로 그 절댓값이 된다.",
+      "cSlotAnswers": [
+        "양의 부호"
+      ],
+      "cStudentSentence": "양수는 □만 떼어 내면 바로 그 절댓값이 된다.",
+      "cAnswers": [
+        "양의 부호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양의 부호",
+          "equivalentAnswers": [
+            "양의 부호",
+            "$+$ 부호",
+            "양의 부호 $+$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "양의 부호",
+          "accept": [
+            "$+$ 부호",
+            "양의 부호 $+$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "양의 부호",
+          "$+$ 부호",
+          "양의 부호 $+$"
+        ]
+      ],
+      "proposalFingerprint": "73c23fa2c77ac26fb05adb0d2355bdd39751856d923167c1ff4a8f5f17b19559"
+    },
+    {
+      "id": "m1-02-02-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "음수의 절댓값은 어떻게 구하는지 쓰고, 그 값이 양수, $0$, 음수 중 어느 것인지 쓰시오. 또 $\\left|-\\frac{2}{5}\\right|$의 값을 구하시오.",
+      "bAnswer": "음수에서 음의 부호 $-$를 떼어 내면 절댓값이 되고, 그 값은 항상 양수이다. $\\left|-\\frac{2}{5}\\right|=\\frac{2}{5}$",
+      "bGoal": "음수의 절댓값을 구하고 그 값이 양수임을 말할 수 있다.",
+      "bReason": "제목 '음수의 절댓값'에는 구하는 방법과 결과의 부호를 묻는다는 정보가 없다. 두 가지와 분수 예를 넣었다.",
+      "cDecision": "keep",
+      "cReason": "방법(음의 부호)과 결과(양수)를 하나씩 채우며, 조건인 '음수에서'가 문장에 남아 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음의 부호 $-$를 떼어 낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 값은 양수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\left|-\\frac{2}{5}\\right|=\\frac{2}{5}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "음의 부호를 떼면 양수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1068,
+      "part": "m1plus",
+      "sourceFingerprint": "bf46f6c60997874a244e12607e6eafa32c9142506d2fdb248d5e174ecae9cdd6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1068
+      },
+      "directReview": null,
+      "cFrozenSentence": "음수에서 □를 떼어 내면 그 절댓값이 되고, 이 값은 언제나 □이다.",
+      "cFrozenDefinition": "음수에서 {음의 부호}를 떼어 내면 그 절댓값이 되고, 이 값은 언제나 {양수}이다.",
+      "cFrozenAnswers": [
+        "음의 부호",
+        "양수"
+      ],
+      "cMarkedSentence": "음수에서 {음의 부호}를 떼어 내면 그 절댓값이 되고, 이 값은 언제나 {양수}이다.",
+      "cSlotAnswers": [
+        "음의 부호",
+        "양수"
+      ],
+      "cStudentSentence": "음수에서 □를 떼어 내면 그 절댓값이 되고, 이 값은 언제나 □이다.",
+      "cAnswers": [
+        "음의 부호",
+        "양수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음의 부호",
+          "equivalentAnswers": [
+            "음의 부호",
+            "$-$ 부호",
+            "음의 부호 $-$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "음의 부호",
+          "accept": [
+            "$-$ 부호",
+            "음의 부호 $-$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "음의 부호",
+          "$-$ 부호",
+          "음의 부호 $-$"
+        ],
+        [
+          "양수"
+        ]
+      ],
+      "proposalFingerprint": "6a2c0ddd9a85c387131d97afbf0f091656e66770e4cd8524b299c4a8bfdce761"
+    },
+    {
+      "id": "m1-02-02-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "양수 하나와 음수 하나의 크기를 비교하면 항상 어느 쪽이 더 큰지 쓰고, 그 까닭을 두 수를 각각 $0$과 비교하여 설명하시오. 또 $-100$과 $+1$ 중 큰 수를 쓰시오.",
+      "bAnswer": "양수가 항상 더 크다. 양수는 $0$보다 크고 음수는 $0$보다 작기 때문이다. $-100$과 $+1$ 중 큰 수는 $+1$이다.",
+      "bGoal": "절댓값과 상관없이 양수가 음수보다 큼을 까닭과 함께 말할 수 있다.",
+      "bReason": "제목만으로는 양수끼리·음수끼리 비교와 구별되지 않는다. 양수 하나와 음수 하나의 비교임을 밝히고 $0$을 기준으로 한 까닭까지 요구했다.",
+      "cDecision": "keep",
+      "cReason": "한 낱말 빈칸이고 '언제나, 어떤 음수보다도'로 범위가 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양수가 항상 더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양수는 $0$보다 크고 음수는 $0$보다 작기 때문"
+          ]
+        },
+        {
+          "anyOf": [
+            "$+1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "reason",
+      "roleReason": "0보다 큰 수와 작은 수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1069,
+      "part": "m1plus",
+      "sourceFingerprint": "6239be8d55eb36e3841e07874b396c7ec61988795451789b2d1f44bbc5820526",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1069
+      },
+      "directReview": null,
+      "cFrozenSentence": "양수는 언제나 어떤 음수보다도 □.",
+      "cFrozenDefinition": "양수는 언제나 어떤 음수보다도 {크다}.",
+      "cFrozenAnswers": [
+        "크다"
+      ],
+      "cMarkedSentence": "양수는 언제나 어떤 음수보다도 {크다}.",
+      "cSlotAnswers": [
+        "크다"
+      ],
+      "cStudentSentence": "양수는 언제나 어떤 음수보다도 □.",
+      "cAnswers": [
+        "크다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "크다",
+          "equivalentAnswers": [
+            "크다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "크다"
+        ]
+      ],
+      "proposalFingerprint": "40d93d423c0c2f45c083d1ab406443dd24513dec82e492b22867469429eaa8aa"
+    },
+    {
+      "id": "m1-02-02-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$a<b$와 $a>b$가 각각 $a$와 $b$의 크기에 대해 무엇을 나타내는지 말로 쓰시오. 또 '$x$는 $5$보다 크다'를 부등호로 나타내시오.",
+      "bAnswer": "$a<b$는 '$a$는 $b$보다 작다', $a>b$는 '$a$는 $b$보다 크다'를 나타낸다. '$x$는 $5$보다 크다'는 $x>5$이다.",
+      "bGoal": "부등호 $<$, $>$의 뜻을 말과 기호로 서로 옮길 수 있다.",
+      "bReason": "제목이 기호 두 개뿐이다. 각 식의 뜻을 말로 쓰게 하고 말에서 기호로 옮기는 예를 더했다.",
+      "cDecision": "keep",
+      "cReason": "두 기호의 뜻을 대비해 채우는 짧은 빈칸이고 $a$, $b$의 자리가 문장에 드러난다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a<b$: $a$가 $b$보다 작다는 뜻"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a>b$: $a$가 $b$보다 크다는 뜻"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x>5$ (같은 뜻인 $5<x$도 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "<는 작다, >는 크다",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1070,
+      "part": "m1plus",
+      "sourceFingerprint": "d4bcbc88a02b2624c9f1d426d90eeb783e10561a955e885b6d2f447715387e5d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1070
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a<b$는 '$a$는 $b$보다 □', $a>b$는 '$a$는 $b$보다 □'를 나타낸다.",
+      "cFrozenDefinition": "$a<b$는 '$a$는 $b$보다 {작다}', $a>b$는 '$a$는 $b$보다 {크다}'를 나타낸다.",
+      "cFrozenAnswers": [
+        "작다",
+        "크다"
+      ],
+      "cMarkedSentence": "$a<b$는 '$a$는 $b$보다 {작다}', $a>b$는 '$a$는 $b$보다 {크다}'를 나타낸다.",
+      "cSlotAnswers": [
+        "작다",
+        "크다"
+      ],
+      "cStudentSentence": "$a<b$는 '$a$는 $b$보다 □', $a>b$는 '$a$는 $b$보다 □'를 나타낸다.",
+      "cAnswers": [
+        "작다",
+        "크다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작다",
+          "equivalentAnswers": [
+            "작다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "크다",
+          "equivalentAnswers": [
+            "크다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작다"
+        ],
+        [
+          "크다"
+        ]
+      ],
+      "proposalFingerprint": "4cf4b224c618693f9f7c3b443d9c4a38c4a89da471b8a8cf1b50493b0d55e437"
+    },
+    {
+      "id": "m1-02-02-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "'$a$ 이상인 수'와 '$a$ 이하인 수'는 각각 어떤 수를 말하는지, $a$ 자신이 포함되는지를 밝혀 쓰시오. 또 $-2$ 이상 $1$ 이하인 정수를 모두 쓰시오.",
+      "bAnswer": "'$a$ 이상'은 $a$와 같거나 $a$보다 큰 수, '$a$ 이하'는 $a$와 같거나 $a$보다 작은 수이며 두 경우 모두 $a$가 포함된다. $-2$ 이상 $1$ 이하인 정수는 $-2$, $-1$, $0$, $1$이다.",
+      "bGoal": "이상과 이하의 뜻을 경계의 수 포함 여부와 함께 설명할 수 있다.",
+      "bReason": "'같거나'라고 쓰면 a 포함이 이미 드러나므로 포함 여부를 따로 요구하지 않음",
+      "cDecision": "keep",
+      "cReason": "'큰/작은'을 대비해 채우며 '$a$와 같거나'가 보여 초과·미만과 헷갈리지 않는다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "'$a$ 이상'은 $a$와 같거나 $a$보다 큰 수",
+            "'$a$ 이상'은 $a$와 $a$보다 큰 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "'$a$ 이하'는 $a$와 같거나 $a$보다 작은 수",
+            "'$a$ 이하'는 $a$와 $a$보다 작은 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-2$, $-1$, $0$, $1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "같거나 큰 수, 같거나 작은 수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1071,
+      "part": "m1plus",
+      "sourceFingerprint": "86d5a802221318c331b752e938e7c657a3df9db4563d392437a7879d29e04567",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1071
+      },
+      "directReview": null,
+      "cFrozenSentence": "'$a$ 이상'은 $a$와 같거나 □ 수, '$a$ 이하'는 $a$와 같거나 □ 수를 말한다.",
+      "cFrozenDefinition": "'$a$ 이상'은 $a$와 같거나 {큰} 수, '$a$ 이하'는 $a$와 같거나 {작은} 수를 말한다.",
+      "cFrozenAnswers": [
+        "큰",
+        "작은"
+      ],
+      "cMarkedSentence": "'$a$ 이상'은 $a$와 같거나 {큰} 수, '$a$ 이하'는 $a$와 같거나 {작은} 수를 말한다.",
+      "cSlotAnswers": [
+        "큰",
+        "작은"
+      ],
+      "cStudentSentence": "'$a$ 이상'은 $a$와 같거나 □ 수, '$a$ 이하'는 $a$와 같거나 □ 수를 말한다.",
+      "cAnswers": [
+        "큰",
+        "작은"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "작은",
+          "equivalentAnswers": [
+            "작은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "큰"
+        ],
+        [
+          "작은"
+        ]
+      ],
+      "proposalFingerprint": "8a6d0029daad8e51ce741e5aad1f5d3d2b734ee2a9b1bf78039d5d97e59acea5"
+    },
+    {
+      "id": "m1-02-02-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "'$a$ 초과인 수'와 '$a$ 미만인 수'는 각각 어떤 수를 말하는지, $a$ 자신이 포함되는지를 밝혀 쓰시오. 또 $-3$ 초과 $0$ 미만인 정수를 모두 쓰시오.",
+      "bAnswer": "'$a$ 초과'는 $a$보다 큰 수, '$a$ 미만'은 $a$보다 작은 수이며 두 경우 모두 $a$는 포함되지 않는다. $-3$ 초과 $0$ 미만인 정수는 $-2$, $-1$이다.",
+      "bGoal": "초과와 미만의 뜻을 경계의 수 포함 여부와 함께 설명할 수 있다.",
+      "bReason": "제목만으로는 뜻을 묻는지 이상·이하와의 차이를 묻는지 알 수 없다. 뜻, $a$ 포함 여부, 구체 범위를 요구했다.",
+      "cDecision": "rewrite",
+      "cAfter": "'$a$ 초과'는 $a$보다 {큰} 수, '$a$ 미만'은 $a$보다 {작은} 수이며, 두 경우 모두 $a$ 자신은 포함되지 않는다.",
+      "cAnswers": [
+        "큰",
+        "작은"
+      ],
+      "cReason": "셋째 빈칸 '들지 않는다'는 '포함되지 않는다', '속하지 않는다' 등 표현이 여럿이라 정답이 하나로 정해지지 않는다. 그 사실은 문장에 남기고 빈칸에서 뺐다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "'$a$ 초과'는 $a$보다 큰 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "'$a$ 미만'은 $a$보다 작은 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 경우 모두 $a$ 자신은 포함되지 않음"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-2$, $-1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "a를 뺀 큰 수, 작은 수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1072,
+      "part": "m1plus",
+      "sourceFingerprint": "58a1dece531f2ef1cac43a2f9ef41e22b2544185c522529da93d8174d6d63bde",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1072
+      },
+      "directReview": null,
+      "cMarkedSentence": "'$a$ 초과'는 $a$보다 {큰} 수, '$a$ 미만'은 $a$보다 {작은} 수이며, 두 경우 모두 $a$ 자신은 포함되지 않는다.",
+      "cSlotAnswers": [
+        "큰",
+        "작은"
+      ],
+      "cStudentSentence": "'$a$ 초과'는 $a$보다 □ 수, '$a$ 미만'은 $a$보다 □ 수이며, 두 경우 모두 $a$ 자신은 포함되지 않는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "작은",
+          "equivalentAnswers": [
+            "작은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "큰"
+        ],
+        [
+          "작은"
+        ]
+      ],
+      "proposalFingerprint": "0f4c2080b570100ac4feb6946344f523ca7eb852d6240ff4e68107b67cb988b7"
+    },
+    {
+      "id": "m1-02-02-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "두 음수 $-\\frac{1}{2}$과 $-\\frac{1}{3}$ 중 어느 수가 더 큰지 두 수의 절댓값을 비교하여 구하시오. 또 음수끼리 크기를 비교하는 방법을 수직선에서 원점까지의 거리와 관련지어 쓰시오.",
+      "bAnswer": "$\\left|-\\frac{1}{2}\\right|=\\frac{1}{2}$, $\\left|-\\frac{1}{3}\\right|=\\frac{1}{3}$이고 $\\frac{1}{3}<\\frac{1}{2}$이므로 $-\\frac{1}{3}$이 더 크다. 음수끼리는 절댓값이 작은 수, 곧 수직선에서 원점에 더 가까운 수가 더 크다.",
+      "bGoal": "음수끼리의 크기를 절댓값과 원점까지의 거리로 비교할 수 있다.",
+      "bReason": "m1-02-02-c5와 주제가 가깝다. 이 문항은 '절댓값이 작은 쪽이 크다, 원점에 가까운 쪽'이라는 방향으로 서술되어 있어 분수 예를 실제로 비교하는 질문으로 구체화했다.",
+      "cDecision": "keep",
+      "cReason": "'작은'과 '가까운'은 같은 사실을 절댓값과 수직선 두 관점으로 확인하는 짧은 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "절댓값 $\\frac{1}{2}$과 $\\frac{1}{3}$을 비교하면 $\\frac{1}{3}$이 더 작음 (통분·소수 등 비교 표현 자유)"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 큰 수는 $-\\frac{1}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수끼리는 절댓값이 작은 수, 곧 원점에 더 가까운 수가 더 크다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "절댓값 작은 음수가 더 큼",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1073,
+      "part": "m1plus",
+      "sourceFingerprint": "d5b598fdcc0707cd02bb2c7d20712d457ae1f3a8721c6a4c2548bd664e95343c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1073
+      },
+      "directReview": null,
+      "cFrozenSentence": "음수끼리는 절댓값이 □ 수가 더 크다. 수직선에서 원점에 □ 쪽이다.",
+      "cFrozenDefinition": "음수끼리는 절댓값이 {작은} 수가 더 크다. 수직선에서 원점에 {가까운} 쪽이다.",
+      "cFrozenAnswers": [
+        "작은",
+        "가까운"
+      ],
+      "cMarkedSentence": "음수끼리는 절댓값이 {작은} 수가 더 크다. 수직선에서 원점에 {가까운} 쪽이다.",
+      "cSlotAnswers": [
+        "작은",
+        "가까운"
+      ],
+      "cStudentSentence": "음수끼리는 절댓값이 □ 수가 더 크다. 수직선에서 원점에 □ 쪽이다.",
+      "cAnswers": [
+        "작은",
+        "가까운"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작은",
+          "equivalentAnswers": [
+            "작은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "가까운",
+          "equivalentAnswers": [
+            "가까운"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작은"
+        ],
+        [
+          "가까운"
+        ]
+      ],
+      "proposalFingerprint": "f1c849709f236b7a470c4fc618ca72edc751220f500366b2d337cc97aac8e808"
+    },
+    {
+      "id": "m1-02-02-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "분모가 다른 두 분수, 또는 분수와 소수의 크기를 비교하려면 먼저 수를 어떻게 고쳐야 하는지 쓰시오. 또 두 수가 모두 음수일 때는 어떻게 판단하는지 쓰고, $-\\frac{3}{4}$과 $-0.7$ 중 작은 수를 구하시오.",
+      "bAnswer": "통분하거나 소수로 고쳐서 비교한다. 두 수가 모두 음수이면 절댓값이 큰 쪽이 더 작다. $-\\frac{3}{4}=-0.75$이고 $0.75>0.7$이므로 작은 수는 $-\\frac{3}{4}$이다.",
+      "bGoal": "꼴이 다른 유리수를 같은 꼴로 고쳐 크기를 비교할 수 있다.",
+      "bReason": "'분수의 대소 비교'에는 분모가 다르다는 조건과 음수일 때의 주의가 드러나지 않는다. 두 조건을 질문에 넣고 분수와 소수를 비교하는 예를 넣었다.",
+      "cDecision": "rewrite",
+      "cAfter": "분모가 다른 두 분수는 {통분}하거나 소수로 고쳐 크기를 비교한다. 두 수가 모두 음수이면 절댓값이 큰 쪽이 더 {작다}.",
+      "cAnswers": [
+        "통분",
+        "작다"
+      ],
+      "cReason": "'음수이면'이 한 수만 음수인 경우인지 둘 다 음수인 경우인지 모호하다. '두 수가 모두 음수이면'으로 밝히고 '견준다'를 '비교한다'로 바꿨다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분하거나 소수로 고쳐 같은 꼴로 만든 뒤 비교 (한 가지 방법만 써도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수가 모두 음수이면 절댓값이 큰 수가 더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은 수는 $-\\frac{3}{4}$ ($0.75>0.7$ 또는 $\\frac{15}{20}>\\frac{14}{20}$ 등 근거 표현 자유)"
+          ]
+        }
+      ],
+      "coreAfter": "분모가 다른 분수는 {통분}하거나 소수로 고쳐 크기를 견준다. 두 수가 모두 음수이면 절댓값이 큰 쪽이 {작다}.",
+      "coreReason": "'음수이면'만으로는 비교하는 두 수가 모두 음수인 경우임이 드러나지 않아 조건을 밝혔다.",
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "통분·소수로 고쳐 비교",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1074,
+      "part": "m1plus",
+      "sourceFingerprint": "10c558d409ca9aa12ee365877de199e628a823e7cf53d55c62a97e9b260f6be7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1074
+      },
+      "directReview": null,
+      "coreBeforeRepair": "분모가 다른 분수는 {통분}하거나 소수로 고쳐 크기를 견준다. 두 수가 모두 음수이면 절댓값이 큰 쪽이 {작다}.",
+      "coreRepairReason": "원본 핵심어 {통분}, {작다}를 유지했다. 이미 좋은 교정이라 보존했다.",
+      "coreRepairEvidence": "core-repair/core-000",
+      "cMarkedSentence": "분모가 다른 두 분수는 {통분}하거나 소수로 고쳐 크기를 비교한다. 두 수가 모두 음수이면 절댓값이 큰 쪽이 더 {작다}.",
+      "cSlotAnswers": [
+        "통분",
+        "작다"
+      ],
+      "cStudentSentence": "분모가 다른 두 분수는 □하거나 소수로 고쳐 크기를 비교한다. 두 수가 모두 음수이면 절댓값이 큰 쪽이 더 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "통분",
+          "equivalentAnswers": [
+            "통분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "작다",
+          "equivalentAnswers": [
+            "작다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "통분"
+        ],
+        [
+          "작다"
+        ]
+      ],
+      "proposalFingerprint": "a6d776c7d2327496f92a900262ce8c4f42593f89a9f261b7e3eeedd1ce6178e9"
+    },
+    {
+      "id": "m1-02-02-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "'$x$는 $-1$보다 크고 $3$ 이하이다'를 부등호를 이어 쓴 하나의 식으로 나타내시오. 또 그 식이 $x$에 대한 어떤 두 조건을 뜻하는지 각각 부등호로 쓰시오.",
+      "bAnswer": "$-1<x\\le3$. 이 식은 $-1<x$와 $x\\le3$을 모두 만족한다는 뜻이다.",
+      "bGoal": "두 조건을 이어 쓴 부등식으로 나타내고 그 뜻을 풀어 쓸 수 있다.",
+      "bReason": "제목에는 어떤 범위를 어떻게 쓰라는 것인지 정보가 없다. 구체적인 말을 주고 식으로 옮긴 뒤 다시 두 조건으로 풀어 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$-1<x\\le3$은 $-1<x$와 $x\\le3$이라는 두 조건을 {모두} 만족한다는 뜻이다.",
+      "cAnswers": [
+        "모두"
+      ],
+      "cReason": "'이어 쓴 부등식', '양쪽의'가 가리키는 식이 문장에 없고 답 '두 조건을 모두'가 긴 구절이다. 실제 식을 넣고 한 낱말 빈칸으로 줄였다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-1<x\\le3$ (같은 뜻인 $3\\ge x>-1$도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 조건 $-1<x$($x>-1$)와 $x\\le3$을 함께 만족한다는 뜻"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "두 조건을 한 식으로 이어 씀",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1075,
+      "part": "m1plus",
+      "sourceFingerprint": "bb1b350f9da7ab0a60ae0101ccc1bfe5a7e35a08711b0b261f37949458048199",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1075
+      },
+      "directReview": null,
+      "cMarkedSentence": "$-1<x\\le3$은 $-1<x$와 $x\\le3$이라는 두 조건을 {모두} 만족한다는 뜻이다.",
+      "cSlotAnswers": [
+        "모두"
+      ],
+      "cStudentSentence": "$-1<x\\le3$은 $-1<x$와 $x\\le3$이라는 두 조건을 □ 만족한다는 뜻이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "모두",
+          "equivalentAnswers": [
+            "모두",
+            "동시에",
+            "둘 다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "모두",
+          "accept": [
+            "동시에",
+            "둘 다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "모두",
+          "동시에",
+          "둘 다"
+        ]
+      ],
+      "proposalFingerprint": "89ec241cc1e29ef4282e8497ded291620bd48e2e06c32650fc604180cfcd90e0",
+      "coreAfter": "한 수가 두 경계 사이에 있는 범위를 부등호로 이어 쓰면 양쪽의 {두 조건을 모두} 만족한다는 뜻이다. 작은 경계, 그 사이의 수, 큰 경계의 순서로 쓰거나 그 반대로 쓰면, 두 부등호가 {같은 쪽}으로 벌어진다.",
+      "coreReason": "임의의부등호연결은모두같은방향이어야한다는주장이아닌두경계사이범위의표기임을명시한다. C는이미보이는기호방향을베끼기보다두조건의동시만족에집중한다."
+    },
+    {
+      "id": "m1-02-02-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "절댓값이 $4$ 미만인 정수를 모두 쓰고 그 개수를 구하시오. 또 이 정수들이 수직선에서 원점을 기준으로 어떻게 놓여 있는지 쓰시오.",
+      "bAnswer": "원점으로부터의 거리가 $4$보다 작은 정수이므로 $-3$, $-2$, $-1$, $0$, $1$, $2$, $3$의 $7$개이다. $0$을 가운데 두고 양쪽에 $3$개씩 같은 개수가 있다.",
+      "bGoal": "절댓값의 범위를 원점으로부터의 거리로 바꾸어 정수를 빠짐없이 찾을 수 있다.",
+      "bReason": "제목의 '어떤 수'가 정해지지 않아 답을 쓸 수 없다. 기준을 $4$로 정하고 나열, 개수, 수직선에서의 배치를 묻도록 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$a$가 양수일 때, 절댓값이 $a$보다 작은 정수는 수직선에서 {원점}으로부터의 거리가 $a$보다 작은 정수이다. 이런 정수는 $0$과, $0$의 양쪽에 {같은} 개수씩 있는 양의 정수와 음의 정수이다.",
+      "cAnswers": [
+        "원점",
+        "같은"
+      ],
+      "cReason": "첫 빈칸 '작은'이 바로 앞 '$a$보다 작은'에 그대로 있고 $a$가 양수라는 조건도 빠져 있다. 조건을 넣고 기준점과 대칭 개수를 묻게 했다.",
+      "studentLabel": "절댓값이 $a$보다 작은 정수",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-3$, $-2$, $-1$, $0$, $1$, $2$, $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$(원점)을 가운데 두고 양쪽에 $3$개씩 같은 개수로 놓임 (원점에 대하여 대칭이라는 표현도 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "원점 거리로 정수 찾기",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1076,
+      "part": "m1plus",
+      "sourceFingerprint": "ec9ba7cbd47e4df574e369e023ba66e7b726ec507ed2a50ccc36d7a72ac6e81c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1076
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a$가 양수일 때, 절댓값이 $a$보다 작은 정수는 수직선에서 {원점}으로부터의 거리가 $a$보다 작은 정수이다. 이런 정수는 $0$과, $0$의 양쪽에 {같은} 개수씩 있는 양의 정수와 음의 정수이다.",
+      "cSlotAnswers": [
+        "원점",
+        "같은"
+      ],
+      "cStudentSentence": "$a$가 양수일 때, 절댓값이 $a$보다 작은 정수는 수직선에서 □으로부터의 거리가 $a$보다 작은 정수이다. 이런 정수는 $0$과, $0$의 양쪽에 □ 개수씩 있는 양의 정수와 음의 정수이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "원점",
+          "equivalentAnswers": [
+            "원점"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "같은",
+          "equivalentAnswers": [
+            "같은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "원점"
+        ],
+        [
+          "같은"
+        ]
+      ],
+      "proposalFingerprint": "2cd79f04c303e652a3493232ecde9a991997fc260ce7ce89753ca46d5f1f6b90",
+      "coreAfter": "$a$가 양수일 때, 절댓값이 $a$보다 작은 정수는 원점으로부터 거리가 $a$보다 {작은} 정수이다. 원점을 {가운데} 두고 양쪽에 있는 정수의 개수가 같다.",
+      "coreReason": "a가0이하이면조건을만족하는정수가없어원점을가운데포함하는분포설명이성립하지않으므로양수조건을넣는다."
+    },
+    {
+      "id": "m1-02-02-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "'두 수 중 절댓값이 큰 수가 항상 더 큰 수이다'라는 말이 옳은지, $-9$와 $2$의 절댓값과 크기를 각각 비교하여 판단하시오. 또 음수는 절댓값이 커질수록 수의 크기가 어떻게 되는지 쓰시오.",
+      "bAnswer": "옳지 않다. $|-9|=9$, $|2|=2$로 절댓값은 $-9$가 더 크지만 수의 크기는 $-9<2$이다. 음수는 절댓값이 클수록 작다.",
+      "bGoal": "절댓값의 크기와 수의 크기를 구별하고 반례를 들 수 있다.",
+      "bReason": "'절댓값과 크기의 구별'은 무엇과 무엇을 구별하는지 드러나지 않는다. 흔한 잘못된 말을 주고 구체적인 두 수로 판단하게 했다.",
+      "cDecision": "exclude",
+      "cReason": "빈칸 '작다'는 m1-02-02-c5의 C('음수끼리는 절댓값이 큰 수가 작다')와 같은 사실을 같은 답으로 묻는다.",
+      "exclusionReason": "C 제외: m1-02-02-c5 C의 둘째 빈칸과 내용·답이 같은 반복 빈칸이다. B는 반례 판단 질문으로 구별되므로 유지한다.",
+      "studentLabel": "절댓값의 크기와 수의 크기 구별",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옳지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$|-9|=9$, $|2|=2$로 절댓값은 $-9$가 크지만 수의 크기는 $-9<2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수는 절댓값이 클수록 작다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "음수는 절댓값 클수록 작음",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1077,
+      "part": "m1plus",
+      "sourceFingerprint": "3c924ab6210fb5836f52fb089a4a731f53248873e9a39d848ca73f8870ce5e1d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1077
+      },
+      "directReview": null,
+      "proposalFingerprint": "597118e523dbce558edd5bd16707d89287dfbbd86b2b9197c08c875ac05c83be"
+    },
+    {
+      "id": "m1-02-02-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "$-3$, $2$, $-\\frac{1}{2}$을 절댓값이 작은 수부터 차례로 쓰시오. 또 절댓값의 크기를 비교할 때 각 수를 어떻게 한 뒤 비교하는지 쓰시오.",
+      "bAnswer": "각 수에서 부호를 떼면 $3$, $2$, $\\frac{1}{2}$이므로 절댓값이 작은 수부터 $-\\frac{1}{2}$, $2$, $-3$이다. 부호를 떼어 낸 수의 크기를 비교한다.",
+      "bGoal": "여러 수를 절댓값의 크기 순서로 늘어놓을 수 있다.",
+      "bReason": "제목에는 늘어놓을 수가 없어 답할 수 없다. 양수와 음수가 섞인 세 수를 주고 순서와 방법을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "여러 수를 절댓값이 작은 것부터 차례로 쓰려면 각 수에서 {부호}를 떼어 낸 수의 크기를 비교한다.",
+      "cAnswers": [
+        "부호"
+      ],
+      "cReason": "무엇을 늘어놓는지, 어디에서 떼는지가 문장에 없다. '여러 수', '각 수에서'를 넣고 '견준다'를 쉬운 말로 바꿨다. 빈칸은 그대로 유지했다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-\\frac{1}{2}$, $2$, $-3$의 순서"
+          ]
+        },
+        {
+          "anyOf": [
+            "부호를 떼어 낸 수의 크기를 비교 ('절댓값을 구하여 비교'라는 표현도 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "부호 떼고 크기 비교",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1078,
+      "part": "m1plus",
+      "sourceFingerprint": "c3804ac3cc1a80c8a9f175cbdc9ea07d14fee2b18df557d49f2221c69c992ddb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1078
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 수를 절댓값이 작은 것부터 차례로 쓰려면 각 수에서 {부호}를 떼어 낸 수의 크기를 비교한다.",
+      "cSlotAnswers": [
+        "부호"
+      ],
+      "cStudentSentence": "여러 수를 절댓값이 작은 것부터 차례로 쓰려면 각 수에서 □를 떼어 낸 수의 크기를 비교한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ]
+      ],
+      "proposalFingerprint": "e36507a7ee2acbf7f88dfc21319dadff4be3ba7939bda88fa225e9e366f89909"
+    },
+    {
+      "id": "m1-02-02-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$-4$, $3$, $-\\frac{9}{2}$, $0$ 중에서 가장 큰 수와 가장 작은 수를 각각 구하시오. 또 양수와 음수가 섞인 여러 수에서 가장 큰 수와 가장 작은 수를 절댓값을 이용해 찾는 방법을 쓰시오.",
+      "bAnswer": "가장 큰 수는 $3$, 가장 작은 수는 $-\\frac{9}{2}$이다. 가장 큰 수는 양수 가운데 절댓값이 가장 큰 수이고, 가장 작은 수는 음수 가운데 절댓값이 가장 큰 수이다.",
+      "bGoal": "여러 수에서 가장 큰 수와 가장 작은 수를 부호와 절댓값으로 찾을 수 있다.",
+      "bReason": "제목은 어떤 수들 가운데인지 밝히지 않는다. 양수·음수·$0$이 섞인 네 수를 주고 값과 일반 방법을 함께 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "양수와 음수가 섞여 있는 여러 수 중에서 가장 큰 수는 {양수} 가운데 절댓값이 가장 큰 수이고, 가장 작은 수는 음수 가운데 절댓값이 가장 {큰} 수이다.",
+      "cAnswers": [
+        "양수",
+        "큰"
+      ],
+      "cReason": "두 빈칸의 답이 모두 '큰'이라 첫 답을 되풀이하게 되고, 무엇이 섞여 있는지 주어도 없다. 주어를 넣고 부호 선택과 음수 쪽 판단을 하나씩 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 수 $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은 수 $-\\frac{9}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 큰 수는 양수 가운데 절댓값이 가장 큰 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은 수는 음수 가운데 절댓값이 가장 큰 수"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "부호 나눠 절댓값으로 최대·최소",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1079,
+      "part": "m1plus",
+      "sourceFingerprint": "b48f19fc7adb1487325195e9289de6493a21e30e5c182ec65a4cf8ecb03e8755",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1079
+      },
+      "directReview": null,
+      "cMarkedSentence": "양수와 음수가 섞여 있는 여러 수 중에서 가장 큰 수는 {양수} 가운데 절댓값이 가장 큰 수이고, 가장 작은 수는 음수 가운데 절댓값이 가장 {큰} 수이다.",
+      "cSlotAnswers": [
+        "양수",
+        "큰"
+      ],
+      "cStudentSentence": "양수와 음수가 섞여 있는 여러 수 중에서 가장 큰 수는 □ 가운데 절댓값이 가장 큰 수이고, 가장 작은 수는 음수 가운데 절댓값이 가장 □ 수이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ],
+        [
+          "큰"
+        ]
+      ],
+      "proposalFingerprint": "79d8a34e4566b50cdc961679c7a71f125f3b5e5a97ed1776455f28dfae2a4031"
+    },
+    {
+      "id": "m1-02-02-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$a$가 양수일 때 $|x|<a$를 만족하는 $x$의 범위를 절댓값 기호 없이 부등호로 나타내고, 그 까닭을 원점으로부터의 거리로 설명하시오. 또 $|x|<3$을 $x<3$으로만 쓰면 빠지는 조건을 쓰시오.",
+      "bAnswer": "$-a<x<a$. $|x|<a$는 $x$를 나타내는 점이 원점에서 $a$보다 가까이 있다는 뜻이므로 $x$는 $-a$와 $a$ 사이에 있다. $|x|<3$은 $-3<x<3$이므로 $x<3$으로만 쓰면 $x>-3$이 빠진다.",
+      "bGoal": "절댓값이 어떤 양수보다 작다는 조건을 이어 쓴 부등식으로 바꿀 수 있다.",
+      "bReason": "제목에 식의 꼴과 $a$가 양수라는 조건이 없다. 식과 조건을 직접 주고, 원문 예시가 다루는 '음수 쪽 조건 빠뜨리기'도 확인하게 했다.",
+      "cDecision": "keep",
+      "cReason": "같은두경계를거꾸로쓰되같은범위를나타내는부등식만추가인정한다.",
+      "studentLabel": "$|x|<a$를 부등호로 나타내기",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-a<x<a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 원점으로부터의 거리가 $a$보다 작으므로 $x$가 $-a$와 $a$ 사이에 있음"
+          ]
+        },
+        {
+          "anyOf": [
+            "빠지는 조건 $x>-3$ ($-3<x$도 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "reason",
+      "roleReason": "원점 거리 a 미만이라 사이",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1080,
+      "part": "m1plus",
+      "sourceFingerprint": "7485bab6f2a8e0c028ae49d3b05b3a0d557c4702f4054267ec57f550802eee86",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1080
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a$가 양수일 때 $|x|<a$는 $x$가 원점에서 $a$보다 가까이 있다는 뜻이므로 □와 같다.",
+      "cFrozenDefinition": "$a$가 양수일 때 $|x|<a$는 $x$가 원점에서 $a$보다 가까이 있다는 뜻이므로 {$-a<x<a$}와 같다.",
+      "cFrozenAnswers": [
+        "$-a<x<a$"
+      ],
+      "cMarkedSentence": "$a$가 양수일 때 $|x|<a$는 $x$가 원점에서 $a$보다 가까이 있다는 뜻이므로 {$-a<x<a$}와 같다.",
+      "cSlotAnswers": [
+        "$-a<x<a$"
+      ],
+      "cStudentSentence": "$a$가 양수일 때 $|x|<a$는 $x$가 원점에서 $a$보다 가까이 있다는 뜻이므로 □와 같다.",
+      "cAnswers": [
+        "$-a<x<a$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-a<x<a$",
+          "equivalentAnswers": [
+            "$-a<x<a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-a<x<a$",
+          "$a>x>-a$"
+        ]
+      ],
+      "proposalFingerprint": "a158ceaa5798e65a0d41a9408f5dc2b1525638150f20bc792deb40d8c1ebe2f7"
+    },
+    {
+      "id": "m1-02-02-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "절댓값이 같고 부호가 반대인 두 수를 수직선 위에 점으로 나타냈을 때, 두 점은 원점을 기준으로 어떤 위치에 있는지 쓰고, 두 점 사이의 거리는 그 절댓값의 몇 배인지 쓰시오. 또 이런 두 수를 나타내는 두 점 사이의 거리가 $10$일 때 두 수를 구하시오.",
+      "bAnswer": "두 점은 원점의 양쪽으로 같은 거리에 있다(원점을 가운데 두고 대칭이다). 두 점 사이의 거리는 절댓값의 $2$배이다. 거리가 $10$이면 절댓값이 $5$이므로 두 수는 $5$, $-5$이다.",
+      "bGoal": "절댓값이 같고 부호가 반대인 두 수 사이의 거리와 절댓값의 관계를 이용할 수 있다.",
+      "bReason": "제목에 '절댓값이 같다'는 조건이 빠져 있어 일반적인 두 수의 거리로 읽힌다. 조건, 위치 관계, 배수 관계, 거꾸로 구하는 예를 넣었다.",
+      "cDecision": "rewrite",
+      "cAfter": "절댓값이 같고 부호가 반대인 두 수를 나타내는 두 점은 수직선에서 {원점}의 양쪽으로 같은 거리에 있으므로, 두 점 사이의 거리는 그 절댓값의 {$2$배}이다.",
+      "cAnswers": [
+        "원점",
+        "$2$배"
+      ],
+      "cReason": "'원점을 가운데 두고 □'의 답 '대칭'은 이 단원에서 쓰지 않던 낱말이라 떠올리기 어렵다. 같은 사실을 '양쪽으로 같은 거리'로 풀어 쓰고 기준점을 묻게 했다.",
+      "studentLabel": "절댓값이 같고 부호가 반대인 두 수 사이의 거리",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원점의 양쪽으로 같은 거리에 있음 (원점에 대하여 대칭)"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 점 사이의 거리는 절댓값의 $2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$와 $-5$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "원점 대칭, 거리는 절댓값 2배",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1081,
+      "part": "m1plus",
+      "sourceFingerprint": "9fcfaf1aa3feca387c37779fd9c08760400c70908516886f57866d73a0cad112",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1081
+      },
+      "directReview": null,
+      "cMarkedSentence": "절댓값이 같고 부호가 반대인 두 수를 나타내는 두 점은 수직선에서 {원점}의 양쪽으로 같은 거리에 있으므로, 두 점 사이의 거리는 그 절댓값의 {$2$배}이다.",
+      "cSlotAnswers": [
+        "원점",
+        "$2$배"
+      ],
+      "cStudentSentence": "절댓값이 같고 부호가 반대인 두 수를 나타내는 두 점은 수직선에서 □의 양쪽으로 같은 거리에 있으므로, 두 점 사이의 거리는 그 절댓값의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "원점",
+          "equivalentAnswers": [
+            "원점"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$배",
+          "equivalentAnswers": [
+            "$2$배",
+            "두 배",
+            "$2$배"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$2$배",
+          "accept": [
+            "두 배",
+            "2배"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "원점"
+        ],
+        [
+          "$2$배",
+          "두 배"
+        ]
+      ],
+      "proposalFingerprint": "7ddb9ea4ff4ee5c11c677e1fa4ba70c797cbafcfcb8e50a959d7e2cb18a6df1d"
+    },
+    {
+      "id": "m1-02-02-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$a$가 음수일 때 $|a|$를 절댓값 기호 없이 $a$를 사용한 식으로 나타내시오. 또 $a=-7$일 때 그 식의 값을 구하여 $|-7|$과 같은지 확인하시오.",
+      "bAnswer": "$a$가 음수이면 $|a|=-a$이다. $a=-7$이면 $-a=-(-7)=7$이고 $|-7|=7$이므로 같다.",
+      "bGoal": "음수 $a$의 절댓값을 $-a$로 나타내고, $-a$가 양수임을 확인할 수 있다.",
+      "bReason": "제목은 수의 절댓값 구하기와 구별되지 않는다. 문자식으로 나타내는 것이 핵심이므로 그 요구를 밝히고, $-a$를 음수로 오해하지 않도록 값을 확인하게 했다.",
+      "cDecision": "keep",
+      "cReason": "조건($a$가 음수)과 힌트(부호를 바꾼)가 문장에 있고 식 하나만 채운다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$|a|=-a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=-7$일 때 $-a=-(-7)=7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$|-7|=7$과 같음"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "음수 a는 |a|=-a",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1082,
+      "part": "m1plus",
+      "sourceFingerprint": "72aef38027f6b5e616efc7f3646e6fecfc25ad7c1b4f7ae230d2af8c711fce07",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1082
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a$가 음수이면 $|a|$는 $a$의 부호를 바꾼 □이다.",
+      "cFrozenDefinition": "$a$가 음수이면 $|a|$는 $a$의 부호를 바꾼 {$-a$}이다.",
+      "cFrozenAnswers": [
+        "$-a$"
+      ],
+      "cMarkedSentence": "$a$가 음수이면 $|a|$는 $a$의 부호를 바꾼 {$-a$}이다.",
+      "cSlotAnswers": [
+        "$-a$"
+      ],
+      "cStudentSentence": "$a$가 음수이면 $|a|$는 $a$의 부호를 바꾼 □이다.",
+      "cAnswers": [
+        "$-a$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-a$",
+          "equivalentAnswers": [
+            "$-a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-a$"
+        ]
+      ],
+      "proposalFingerprint": "540af1059ae75f690349403e11cfc38a57d54fd25f24018b178db5be85bda9fc"
+    },
+    {
+      "id": "m1-02-02-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$a<b$와 $b>a$는 서로 어떤 관계인지 쓰고, 부등호의 벌어진 쪽과 뾰족한 쪽에 각각 큰 수와 작은 수 중 어느 것이 오는지 쓰시오. 또 $-2>x$를 $x$가 왼쪽에 오도록 고쳐 쓰시오.",
+      "bAnswer": "$a<b$와 $b>a$는 같은 뜻이다. 부등호의 벌어진 쪽에 큰 수, 뾰족한 쪽에 작은 수가 온다. $-2>x$는 $x<-2$와 같다.",
+      "bGoal": "부등식의 좌우를 바꾸어 같은 뜻의 식으로 고쳐 쓸 수 있다.",
+      "bReason": "'방향 바꿔 읽기'가 무엇을 바꾸는지 학생은 알기 어렵다. 두 식의 관계, 부등호 모양의 뜻, 실제로 고쳐 쓰기로 나누어 물었다.",
+      "cDecision": "rewrite",
+      "cAfter": "$a<b$와 $b>a$는 {같은} 뜻이다. 부등호 $<$, $>$에서 벌어진 쪽에는 {큰} 수가 온다.",
+      "cAnswers": [
+        "같은",
+        "큰"
+      ],
+      "cReason": "답 '같은 뜻', '벌어진 쪽'이 정해진 용어가 아닌 구절이라 학생이 같은 말을 쓰기 어렵다. 한 낱말로 답하도록 빈칸 위치를 옮겼다.",
+      "studentLabel": "부등식의 좌우 바꾸어 쓰기",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a<b$와 $b>a$는 같은 뜻"
+          ]
+        },
+        {
+          "anyOf": [
+            "벌어진 쪽에 큰 수, 뾰족한 쪽에 작은 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x<-2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "a<b와 b>a는 같은 뜻",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1083,
+      "part": "m1plus",
+      "sourceFingerprint": "c7fa833220d0dbfb047ac4cfeaaf01494037150a30bb0af8370ad6bf6627d175",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1083
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a<b$와 $b>a$는 {같은} 뜻이다. 부등호 $<$, $>$에서 벌어진 쪽에는 {큰} 수가 온다.",
+      "cSlotAnswers": [
+        "같은",
+        "큰"
+      ],
+      "cStudentSentence": "$a<b$와 $b>a$는 □ 뜻이다. 부등호 $<$, $>$에서 벌어진 쪽에는 □ 수가 온다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같은",
+          "equivalentAnswers": [
+            "같은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같은"
+        ],
+        [
+          "큰"
+        ]
+      ],
+      "proposalFingerprint": "26238b2117f9045b203cdd1243ca7d7f28b02a1822e3c2921f578987fd323956"
+    },
+    {
+      "id": "m1-02-02-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 범위에 속하는 정수의 개수를 셀 때, 범위의 끝 수가 정수이면 '이상·이하'인 경우와 '초과·미만'인 경우에 그 끝 수를 각각 어떻게 다루는지 쓰시오. 또 $-\\frac{5}{2}<x\\le3$을 만족하는 정수 $x$의 개수를 구하시오.",
+      "bAnswer": "'이상·이하'이면 끝 수를 포함하여 세고, '초과·미만'이면 끝 수를 빼고 센다. $-\\frac{5}{2}<x\\le3$인 정수는 $-2$, $-1$, $0$, $1$, $2$, $3$의 $6$개이다.",
+      "bGoal": "범위의 끝 수 포함 여부를 따져 정수의 개수를 정확히 셀 수 있다.",
+      "bReason": "제목에 범위가 주어지지 않아 셀 수 없다. 끝 수를 다루는 규칙을 묻고, 끝이 분수인 쪽과 정수인 쪽이 섞인 범위를 주었다.",
+      "cDecision": "rewrite",
+      "cAfter": "범위에 속하는 정수를 셀 때, 범위의 끝 수가 정수이면 '이상', '이하'에서는 그 수를 {포함하여} 세고, '초과', '미만'에서는 그 수를 {빼고} 센다.",
+      "cAnswers": [
+        "포함하여",
+        "빼고"
+      ],
+      "cReason": "'끝의 정수', '끝'이 무엇의 끝인지 문장에 없다. 범위의 끝 수라는 상황을 밝혔다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "'이상·이하'는 끝 수를 포함하여 셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "'초과·미만'은 끝 수를 빼고 셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개 ($-2$, $-1$, $0$, $1$, $2$, $3$)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "끝 수 포함 여부 따져 세기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1084,
+      "part": "m1plus",
+      "sourceFingerprint": "0b71b03dc86f436a813dfe5241b48d3aff8729d4406f3235e6ddc438edcaab9d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1084
+      },
+      "directReview": null,
+      "cMarkedSentence": "범위에 속하는 정수를 셀 때, 범위의 끝 수가 정수이면 '이상', '이하'에서는 그 수를 {포함하여} 세고, '초과', '미만'에서는 그 수를 {빼고} 센다.",
+      "cSlotAnswers": [
+        "포함하여",
+        "빼고"
+      ],
+      "cStudentSentence": "범위에 속하는 정수를 셀 때, 범위의 끝 수가 정수이면 '이상', '이하'에서는 그 수를 □ 세고, '초과', '미만'에서는 그 수를 □ 센다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "포함하여",
+          "equivalentAnswers": [
+            "포함하여",
+            "포함해",
+            "넣어"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "빼고",
+          "equivalentAnswers": [
+            "빼고",
+            "제외하고"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "포함하여",
+          "accept": [
+            "포함해",
+            "넣어"
+          ]
+        },
+        {
+          "answer": "빼고",
+          "accept": [
+            "제외하고"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "포함하여",
+          "포함해",
+          "넣어"
+        ],
+        [
+          "빼고",
+          "제외하고"
+        ]
+      ],
+      "proposalFingerprint": "5f3249878683d0606878bd51054acbbbcad2254ca7801bca8db8e55e897d03fe"
+    },
+    {
+      "id": "m1-02-02-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "모든 수 가운데 절댓값이 가장 작은 수는 무엇인지 쓰시오. 또 $-0.3$, $\\frac{1}{4}$, $-\\frac{1}{5}$처럼 그 수가 들어 있지 않은 수들 중에서 절댓값이 가장 작은 수를 찾는 방법을 쓰고, 이 세 수 중에서 찾으시오.",
+      "bAnswer": "절댓값이 가장 작은 수는 $0$이다. $0$이 없으면 원점에 가장 가까운 수를 찾는다. 절댓값이 $0.3$, $0.25$, $0.2$이므로 $-\\frac{1}{5}$이다.",
+      "bGoal": "절댓값이 가장 작은 수를 원점까지의 거리로 판단할 수 있다.",
+      "bReason": "제목은 '어떤 수들 중에서'가 없어 답이 달라진다. 모든 수 가운데의 경우와 주어진 수들 가운데의 경우를 나누어 묻고 수를 제시했다.",
+      "cDecision": "rewrite",
+      "cAfter": "절댓값이 가장 작은 수는 {$0$}이다. 주어진 수들 가운데 이 수가 없으면 원점에 가장 {가까운} 수의 절댓값이 가장 작다.",
+      "cAnswers": [
+        "$0$",
+        "가까운"
+      ],
+      "cReason": "첫 빈칸의 답 $0$이 뒤의 '$0$이 없으면'에 그대로 보인다. 뒤 문장을 '이 수가 없으면'으로 바꿔 답이 드러나지 않게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "절댓값이 가장 작은 수는 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$이 없으면 원점에 가장 가까운 수를 찾음 (절댓값을 비교한다는 표현도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{1}{5}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "0 또는 원점에 가장 가까운 수",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1085,
+      "part": "m1plus",
+      "sourceFingerprint": "4ca7f23e212e06f66c70a5c2f93cf1c7c4157a2a9462e32f4681e59e9270ac2b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1085
+      },
+      "directReview": null,
+      "cMarkedSentence": "절댓값이 가장 작은 수는 {$0$}이다. 주어진 수들 가운데 이 수가 없으면 원점에 가장 {가까운} 수의 절댓값이 가장 작다.",
+      "cSlotAnswers": [
+        "$0$",
+        "가까운"
+      ],
+      "cStudentSentence": "절댓값이 가장 작은 수는 □이다. 주어진 수들 가운데 이 수가 없으면 원점에 가장 □ 수의 절댓값이 가장 작다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "가까운",
+          "equivalentAnswers": [
+            "가까운"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "가까운"
+        ]
+      ],
+      "proposalFingerprint": "17bb49211e34768fd1d087edcdc9ce4047af608e6c2491cb4f69d427f0f5eb89",
+      "coreAfter": "절댓값이 가장 작은 수는 {$0$}이다. 주어진 여러 수 가운데 $0$이 없으면 원점에 가장 {가까운} 수의 절댓값이 가장 작다.",
+      "coreReason": "0없는모든수전체에는최소절댓값이없으므로비교대상을주어진여러수로밝힌다."
+    },
+    {
+      "id": "m1-02-02-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "'절댓값이 $3$ 이하인 음의 정수'에는 조건이 두 가지 들어 있다. 두 조건을 각각 쓰고, 두 조건을 함께 만족하는 수를 찾는 방법을 쓴 뒤 그 수를 모두 구하시오.",
+      "bAnswer": "조건은 '절댓값이 $3$ 이하인 정수'와 '음의 정수'이다. 절댓값이 $3$ 이하인 정수 $-3$, $-2$, $-1$, $0$, $1$, $2$, $3$ 가운데 음의 정수인 것, 곧 두 조건에 공통인 수만 고르면 $-3$, $-2$, $-1$이다.",
+      "bGoal": "두 조건을 나누어 따진 뒤 공통인 수를 고를 수 있다.",
+      "bReason": "질문이두조건각각도쓰라고요구하므로방법·결과뿐아니라요청된조건분리의의미를기준에넣는다.",
+      "cDecision": "keep",
+      "cReason": "구체적인 조건 예가 문장에 있어 상황이 분명하고, '공통인' 한 낱말로 방법의 핵심을 확인한다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 조건은 절댓값이 $3$ 이하이고 음의 정수라는 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 조건에 공통인 수만 고른다",
+            "한 조건에 맞는 수 가운데 다른 조건에도 맞는 수를 고른다",
+            "절댓값이 $3$ 이하인 정수 중에서 음의 정수만 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-3$, $-2$, $-1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "두 조건의 공통인 수 고르기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1086,
+      "part": "m1plus",
+      "sourceFingerprint": "0489006fd809a0024dfc43da2f9f4c63b8ffeea39dd8130d05d37c2c3e3139ff",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1086
+      },
+      "directReview": null,
+      "cFrozenSentence": "'절댓값이 $3$ 이하인 음의 정수'처럼 조건이 둘이면 각 조건에 맞는 수를 구한 뒤 □ 것만 고른다.",
+      "cFrozenDefinition": "'절댓값이 $3$ 이하인 음의 정수'처럼 조건이 둘이면 각 조건에 맞는 수를 구한 뒤 {공통인} 것만 고른다.",
+      "cFrozenAnswers": [
+        "공통인"
+      ],
+      "cMarkedSentence": "'절댓값이 $3$ 이하인 음의 정수'처럼 조건이 둘이면 각 조건에 맞는 수를 구한 뒤 {공통인} 것만 고른다.",
+      "cSlotAnswers": [
+        "공통인"
+      ],
+      "cStudentSentence": "'절댓값이 $3$ 이하인 음의 정수'처럼 조건이 둘이면 각 조건에 맞는 수를 구한 뒤 □ 것만 고른다.",
+      "cAnswers": [
+        "공통인"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "공통인",
+          "equivalentAnswers": [
+            "공통인",
+            "겹치는",
+            "공통으로 들어 있는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "공통인",
+          "accept": [
+            "겹치는",
+            "공통으로 들어 있는"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "공통인",
+          "겹치는",
+          "공통으로 들어 있는"
+        ]
+      ],
+      "proposalFingerprint": "b7c96eb1d8024eb34123abbb1e946ff03df6720a50071f98748f99874dfddb74"
+    },
+    {
+      "id": "m1-02-02-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "$-6$, $5$, $-\\frac{13}{2}$ 중에서 수직선의 원점에서 가장 멀리 떨어진 수를 구하시오. 또 그 수를 찾을 때 각 수의 무엇을 비교하는지, 수의 부호가 판단에 영향을 주는지 쓰시오.",
+      "bAnswer": "절댓값이 $6$, $5$, $\\frac{13}{2}$이고 그중 $\\frac{13}{2}$이 가장 크므로 $-\\frac{13}{2}$이다. 부호와 상관없이 절댓값을 비교하여 가장 큰 수를 고른다.",
+      "bGoal": "원점에서 먼 정도를 절댓값의 크기로 판단할 수 있다.",
+      "bReason": "제목에 비교할 수가 없다. 음수가 답이 되는 세 수를 주고, '가장 큰 수'와 혼동하지 않도록 비교 대상과 부호의 영향을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "'부호'와 '큰'은 짧은 낱말이고, 원점에서의 거리가 절댓값이라는 관계를 문장 안에서 확인할 수 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-\\frac{13}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 수의 절댓값(원점까지의 거리)을 비교"
+          ]
+        },
+        {
+          "anyOf": [
+            "부호는 판단에 영향을 주지 않음"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "부호 무관, 절댓값 최대 고르기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1087,
+      "part": "m1plus",
+      "sourceFingerprint": "de39d700168954cb834b159da0bdd64e0f1416578bd190e2534ac0dd28121514",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1087
+      },
+      "directReview": null,
+      "cMarkedSentence": "주어진 여러 수 가운데 원점에서 가장 먼 수는 {부호}와 상관없이 절댓값이 가장 {큰} 수이다.",
+      "cSlotAnswers": [
+        "부호",
+        "큰"
+      ],
+      "cStudentSentence": "주어진 여러 수 가운데 원점에서 가장 먼 수는 □와 상관없이 절댓값이 가장 □ 수이다.",
+      "cAnswers": [
+        "부호",
+        "큰"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "큰"
+        ]
+      ],
+      "proposalFingerprint": "038aa7afd4720fc89234f657d376270c7ab81812293ca67e48f2a0cfc203f090",
+      "cAfter": "주어진 여러 수 가운데 원점에서 가장 먼 수는 {부호}와 상관없이 절댓값이 가장 {큰} 수이다.",
+      "coreAfter": "주어진 여러 수 가운데 원점에서 가장 먼 수는 {부호}와 상관없이 절댓값이 가장 {큰} 수이다.",
+      "coreReason": "모든수전체에가장먼수가있다고읽히지않게비교대상을주어진여러수로정한다."
+    },
+    {
+      "id": "m1-02-03-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 수 $a$에 $0$을 더한 결과와 $a$에서 $0$을 뺀 결과를 각각 식으로 쓰시오. 또 $(-7)+0$의 값을 구하시오.",
+      "bAnswer": "$a+0=a$, $a-0=a$로 그 수 그대로이다. $(-7)+0=-7$",
+      "bGoal": "$0$을 더하거나 빼도 수가 변하지 않음을 식으로 나타낼 수 있다.",
+      "bReason": "제목은 덧셈만 말하지만 원문은 $0$을 빼는 경우도 포함한다. 두 경우를 모두 식으로 쓰게 하고 음수 예를 넣었다.",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 수에 {$0$}을 더하거나 빼도 결과는 처음 수 그대로이다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cReason": "첫 빈칸의 답 $0$이 뒤의 '$0$을 빼도'에 그대로 보이고, 둘째 답 '그대로'는 표현이 정해지지 않은 말이다. 답이 드러나지 않는 한 칸으로 줄였다.",
+      "studentLabel": "$0$을 더하거나 빼기",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a+0=a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a-0=a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-7$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "0을 더하거나 빼도 그대로",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1088,
+      "part": "m1plus",
+      "sourceFingerprint": "f328108ad7868fad0b117de240394a5735b3ef5fba4411d291a3348c23cd94a7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1088
+      },
+      "directReview": null,
+      "cMarkedSentence": "어떤 수에 {$0$}을 더하거나 빼도 결과는 처음 수 그대로이다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "어떤 수에 □을 더하거나 빼도 결과는 처음 수 그대로이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "bd5c7fec2c1939ae9494a84a534f229df897a755005635bb678572fbbba87425"
+    },
+    {
+      "id": "m1-02-03-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "수직선에서 어떤 수에 양수를 더할 때와 음수를 더할 때, 그 수를 나타내는 점에서 각각 어느 방향으로 얼마만큼 옮겨 가는지 쓰시오. 또 $-2$에 $+5$를 더하면 수직선에서 어떤 수의 자리에 오는지 구하시오.",
+      "bAnswer": "양수를 더하면 오른쪽으로, 음수를 더하면 왼쪽으로 더하는 수의 절댓값만큼 옮겨 간다. $-2$에서 오른쪽으로 $5$만큼 가면 $3$이다.",
+      "bGoal": "덧셈을 수직선 위의 이동으로 설명할 수 있다.",
+      "bReason": "제목에는 방향과 이동 거리를 써야 한다는 정보가 없다. 더하는 수의 부호별 방향과 거리를 묻고 음수에서 출발하는 예를 넣었다.",
+      "cDecision": "keep",
+      "cReason": "방향 낱말 두 개를 대비해 채우며 '그 절댓값만큼'으로 이동 거리도 문장에 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양수를 더하면 오른쪽으로 이동"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수를 더하면 왼쪽으로 이동"
+          ]
+        },
+        {
+          "anyOf": [
+            "이동하는 거리는 더하는 수의 절댓값만큼"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "양수는 오른쪽, 음수는 왼쪽",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1089,
+      "part": "m1plus",
+      "sourceFingerprint": "065d304c61d120da0cc7bc8b39c8b53548b252d1cbb01759653287c1fb45636a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1089
+      },
+      "directReview": null,
+      "cFrozenSentence": "수직선에서 양수를 더하면 □으로, 음수를 더하면 □으로 그 절댓값만큼 옮겨 간다.",
+      "cFrozenDefinition": "수직선에서 양수를 더하면 {오른쪽}으로, 음수를 더하면 {왼쪽}으로 그 절댓값만큼 옮겨 간다.",
+      "cFrozenAnswers": [
+        "오른쪽",
+        "왼쪽"
+      ],
+      "cMarkedSentence": "수직선에서 양수를 더하면 {오른쪽}으로, 음수를 더하면 {왼쪽}으로 그 절댓값만큼 옮겨 간다.",
+      "cSlotAnswers": [
+        "오른쪽",
+        "왼쪽"
+      ],
+      "cStudentSentence": "수직선에서 양수를 더하면 □으로, 음수를 더하면 □으로 그 절댓값만큼 옮겨 간다.",
+      "cAnswers": [
+        "오른쪽",
+        "왼쪽"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "오른쪽",
+          "equivalentAnswers": [
+            "오른쪽"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "왼쪽",
+          "equivalentAnswers": [
+            "왼쪽"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "오른쪽"
+        ],
+        [
+          "왼쪽"
+        ]
+      ],
+      "proposalFingerprint": "997ce407ab756726f97515c7d5e8e62923524ecc6be27ef83c18725f16552f84"
+    },
+    {
+      "id": "m1-02-03-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "음수끼리의 합을 수직선 위의 위치로 설명할 수 있다.",
+      "bReason": "음수끼리의 덧셈은 '부호가 같은 두 수의 덧셈'의 한 경우이다. m1-02-03-c1의 B가 이미 $(-3)+(-5)$로 같은 방법을 쓰게 하므로 백지 질문으로는 답이 거의 같아진다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 음수를 더한 결과는 수직선에서 원점으로부터 {왼쪽}으로 두 수의 절댓값의 {합}만큼 떨어진 음수이다.",
+      "cAnswers": [
+        "왼쪽",
+        "합"
+      ],
+      "cReason": "'원점에서 □ 간 □가 된다'는 '왼쪽으로 간 음수'라는 같은 말의 반복이라 둘째 빈칸이 의미가 없다. 방향과 '절댓값의 합'을 묻도록 고쳤다.",
+      "exclusionReason": "B 제외: m1-02-03-c1의 B(부호가 같은 두 수의 덧셈 방법과 음수끼리 계산 예)와 답이 겹치는 특수 경우이다. 수직선 관점을 확인하는 C 빈칸만 남긴다.",
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "절댓값 합에 음의 부호",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1090,
+      "part": "m1plus",
+      "sourceFingerprint": "c9ddc13bc393a4a915184e54e6168e0734fbba6af1e7f818db902e9f14cfd4ce",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1090
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 음수를 더한 결과는 수직선에서 원점으로부터 {왼쪽}으로 두 수의 절댓값의 {합}만큼 떨어진 음수이다.",
+      "cSlotAnswers": [
+        "왼쪽",
+        "합"
+      ],
+      "cStudentSentence": "두 음수를 더한 결과는 수직선에서 원점으로부터 □으로 두 수의 절댓값의 □만큼 떨어진 음수이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "왼쪽",
+          "equivalentAnswers": [
+            "왼쪽"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "합",
+          "equivalentAnswers": [
+            "합"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "왼쪽"
+        ],
+        [
+          "합"
+        ]
+      ],
+      "proposalFingerprint": "c4228cdae76084ebc7e0533f214b66f16eef5331fed040b6d59b7eb16f3d6ef1"
+    },
+    {
+      "id": "m1-02-03-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "절댓값이 같고 부호가 반대인 두 수를 더하면 합이 얼마인지 쓰고, 그 까닭을 부호가 다른 두 수의 덧셈 방법으로 설명하시오. 또 $\\left(+\\frac{2}{3}\\right)+\\left(-\\frac{2}{3}\\right)$의 값을 구하시오.",
+      "bAnswer": "합은 $0$이다. 부호가 다른 두 수의 합은 절댓값의 차로 구하는데, 절댓값이 같으면 그 차가 $0$이기 때문이다. $\\left(+\\frac{2}{3}\\right)+\\left(-\\frac{2}{3}\\right)=0$",
+      "bGoal": "절댓값이 같고 부호가 반대인 두 수의 합이 $0$임을 까닭과 함께 말할 수 있다.",
+      "bReason": "제목 '반대인 두 수'는 무엇이 반대인지 불분명하다. '절댓값이 같고 부호가 반대'라는 조건을 밝히고 까닭까지 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 모두 있고 결론 $0$ 하나만 채우는 분명한 빈칸이다.",
+      "studentLabel": "절댓값이 같고 부호가 반대인 두 수의 합",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합은 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 부호가 다른 두 수의 합은 절댓값의 차로 구하는데 절댓값이 같아 차가 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\left(+\\frac{2}{3}\\right)+\\left(-\\frac{2}{3}\\right)=0$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "절댓값 같고 부호 반대면 합 0",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1091,
+      "part": "m1plus",
+      "sourceFingerprint": "46bfc3d3e2448b5b55b864c8db1daeb19133b48b55245bc618ec0835c370c57e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1091
+      },
+      "directReview": null,
+      "cFrozenSentence": "절댓값이 같고 부호가 반대인 두 수를 더하면 □이 된다.",
+      "cFrozenDefinition": "절댓값이 같고 부호가 반대인 두 수를 더하면 {$0$}이 된다.",
+      "cFrozenAnswers": [
+        "$0$"
+      ],
+      "cMarkedSentence": "절댓값이 같고 부호가 반대인 두 수를 더하면 {$0$}이 된다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "절댓값이 같고 부호가 반대인 두 수를 더하면 □이 된다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "ec94acf0c2a221617db2ba3432472d88b3bd98c4b48ff7b8e8e39d745aee1592"
+    }
+  ]
+}

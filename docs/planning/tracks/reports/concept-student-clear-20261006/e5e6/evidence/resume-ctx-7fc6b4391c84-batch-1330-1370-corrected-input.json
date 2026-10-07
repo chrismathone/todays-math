@@ -1,0 +1,1224 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-3-4-xc19",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 한 직선 위에 있지 않은 두 대응변은 서로 어떤 위치 관계에 있습니까? 두 변을 길게 늘였을 때 만나는지를 넣어 설명하시오.",
+      "bAnswer": "서로 평행하다. 두 변을 아무리 늘여도 만나지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두변을아무리늘여도만나지않는다"
+          ]
+        }
+      ],
+      "bGoal": "대응변끼리는 길이가 같을 뿐 아니라 평행함을 안다.",
+      "bReason": "'한 직선 위에 있지 않은'이라는 조건을 지키고 평행을 스스로 말하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+      "cReason": "한 직선 위에 놓이는 경우를 뺀 조건이 정확하고 답이 초4에서 배운 낱말이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'서로 평행'과 함께 '평행'도 인정.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "bdea6e9042173ad2bfb3bcd6fe2f5a9b94694360fd6c60e340373f744398d1df",
+      "sourceIndex": 1330,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc19",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "대응변끼리의 평행",
+        "kind": "성질",
+        "level": "상",
+        "definition": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+        "studentC": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 □하다.",
+        "answers": [
+          "서로 평행"
+        ]
+      },
+      "sourceFingerprint": "8c399b1c67cdb3672f31f20e72048ca181dbdb9c65599c58bcee866a0fe8b273",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+      "cFrozenStudentSentence": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 □하다.",
+      "cProposedAnswers": [
+        "서로 평행"
+      ],
+      "cStudentAfter": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 □하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "서로 평행"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+      "cStudentSentence": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 □하다.",
+      "cSlotAnswers": [
+        {
+          "key": "서로 평행",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형에서 한 직선 위에 있지 않은 두 대응변은 서로 어떤 위치 관계에 있습니까? 두 변을 길게 늘였을 때 만나는지를 넣어 설명하시오.",
+        "answer": "서로 평행하다. 두 변을 아무리 늘여도 만나지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두변을아무리늘여도만나지않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+        "acceptedAnswers": [
+          [
+            "서로 평행"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4b880874de9efbf95b472a3963624924bc4833b026aca51d6877eb2ab5f546ef",
+      "questionRevision": "planning-e5e6-20261006-4b880874de9e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc20",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대칭의 중심이 표시되어 있지 않을 때, 대응점을 이용하여 대칭의 중심을 찾는 방법을 설명하시오.",
+      "bAnswer": "한 직선 위에 있지 않은 대응점 두 쌍을 골라 각각 선분으로 잇고, 두 선분이 만나는 점을 찾는다. 또는 서로 다른 두 대응점을 이은 선분 하나의 한가운데 점을 찾아도 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한직선위에있지않은대응점두쌍을각각이은선분의교점을찾는다",
+            "서로다른대응점둘을이은선분의한가운데점을찾는다"
+          ]
+        }
+      ],
+      "bGoal": "대응점을 이은 선분으로 대칭의 중심을 찾는 방법을 말한다.",
+      "bReason": "두 선분의 교점과 한 선분의 한가운데가 모두 옳은 방법이라 둘 다 인정한다.",
+      "cDecision": "keep",
+      "cAfter": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+      "cReason": "'한 직선 위에 있지 않은 두 쌍'이라는 조건이 있어 답이 짧게 정해진다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'만나는 점'과 함께 '만나는 곳', '서로 만나는 점'도 인정.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "e17123d4428fd6d41dbad34d9765766d467a16bb44c98760e78bcd2ef9ad0a02",
+      "sourceIndex": 1331,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc20",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "대칭의 중심 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+        "studentC": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 □이 대칭의 중심이다.",
+        "answers": [
+          "만나는 점"
+        ]
+      },
+      "sourceFingerprint": "e227a7a142bb41421fd87b9a0290d6e1bede5d5d0981f9f0ecaa522ef0d2a324",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+      "cFrozenStudentSentence": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 □이 대칭의 중심이다.",
+      "cProposedAnswers": [
+        "만나는 점"
+      ],
+      "cStudentAfter": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 □이 대칭의 중심이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "만나는 점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+      "cStudentSentence": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 □이 대칭의 중심이다.",
+      "cSlotAnswers": [
+        {
+          "key": "만나는 점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형에서 대칭의 중심이 표시되어 있지 않을 때, 대응점을 이용하여 대칭의 중심을 찾는 방법을 설명하시오.",
+        "answer": "한 직선 위에 있지 않은 대응점 두 쌍을 골라 각각 선분으로 잇고, 두 선분이 만나는 점을 찾는다. 또는 서로 다른 두 대응점을 이은 선분 하나의 한가운데 점을 찾아도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한직선위에있지않은대응점두쌍을각각이은선분의교점을찾는다",
+              "서로다른대응점둘을이은선분의한가운데점을찾는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+        "acceptedAnswers": [
+          [
+            "만나는 점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e2b7318ffb7ac2c597fc9ec6a9ae437ae275b5c1210503ac46161e844cd0bb56",
+      "questionRevision": "planning-e5e6-20261006-e2b7318ffb7a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형을 대칭의 중심을 지나는 직선으로 자르면, 나누어진 두 부분의 넓이는 어떤 관계입니까? 넓이가 $24\\,\\mathrm{cm} ^2$인 평행사변형을 대칭의 중심을 지나는 직선으로 잘랐을 때 한 부분의 넓이도 구하시오.",
+      "bAnswer": "두 부분의 넓이는 서로 같다. 한 부분의 넓이는 $24 \\div 2 = 12$ ($\\mathrm{cm} ^2$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 부분의 넓이가 서로 같다",
+            "넓이가 반씩 나누어진다",
+            "두 부분의 모양과 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\,\\mathrm{cm} ^2$"
+          ]
+        }
+      ],
+      "bGoal": "대칭의 중심을 지나는 직선이 넓이를 반으로 나눔을 말하고 적용한다.",
+      "bReason": "넓이 관계를 묻고 평행사변형으로 값을 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이}가 같은 두 부분으로 나눈다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "넓이"
+          ]
+        }
+      ],
+      "cReason": "'넓이가 같은 두 부분'이라는 긴 구절 대신 핵심 낱말만 비웠다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "d317e33349b7989f82d229893e4dbabcbc52fa0652ae4a9addfa2afbacdcef96",
+      "sourceIndex": 1332,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc21",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "중심을 지나는 직선과 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이가 같은 두 부분}으로 나눈다.",
+        "studentC": "대칭의 중심을 지나는 직선은 점대칭도형을 □으로 나눈다.",
+        "answers": [
+          "넓이가 같은 두 부분"
+        ]
+      },
+      "sourceFingerprint": "db65cb7a4aeac700eae613591cd7e5c0b6bd42fabe041ad3dbdddae680724057",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "넓이"
+      ],
+      "cStudentAfter": "대칭의 중심을 지나는 직선은 점대칭도형을 □가 같은 두 부분으로 나눈다.",
+      "cMarkedSentence": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이}가 같은 두 부분으로 나눈다.",
+      "cStudentSentence": "대칭의 중심을 지나는 직선은 점대칭도형을 □가 같은 두 부분으로 나눈다.",
+      "cSlotAnswers": [
+        {
+          "key": "넓이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형을 대칭의 중심을 지나는 직선으로 자르면, 나누어진 두 부분의 넓이는 어떤 관계입니까? 넓이가 $24\\,\\mathrm{cm} ^2$인 평행사변형을 대칭의 중심을 지나는 직선으로 잘랐을 때 한 부분의 넓이도 구하시오.",
+        "answer": "두 부분의 넓이는 서로 같다. 한 부분의 넓이는 $24 \\div 2 = 12$ ($\\mathrm{cm} ^2$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 부분의 넓이가 서로 같다",
+              "넓이가 반씩 나누어진다",
+              "두 부분의 모양과 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\,\\mathrm{cm} ^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이}가 같은 두 부분으로 나눈다.",
+        "acceptedAnswers": [
+          [
+            "넓이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a739bec19357b7e6a4246c77b13362f33129d33326e8c779b61ca08148ca92d8",
+      "questionRevision": "planning-e5e6-20261006-a739bec19357",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 도형을 한 점을 중심으로 한 바퀴 돌렸더니 처음 도형과 완전히 겹쳤습니다. 이것만으로 점대칭도형이라고 할 수 있는지 답하고, 그 까닭을 돌리는 양과 관련지어 설명하시오.",
+      "bAnswer": "할 수 없다. 한 바퀴 돌리면 어떤 도형이든 처음과 겹치므로, 반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점대칭도형이라고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 바퀴 돌리면 모든 도형이 처음 도형과 겹친다",
+            "반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다"
+          ]
+        }
+      ],
+      "bGoal": "점대칭의 기준이 한 바퀴가 아니라 반 바퀴임을 까닭과 함께 구별한다.",
+      "bReason": "흔한 오개념을 상황으로 주고 판단과 까닭의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 점을 중심으로 {반 바퀴} 돌렸을 때 처음 도형과 완전히 겹쳐야 점대칭도형이다. 한 바퀴 돌려 겹치는 것은 모든 도형에서 같다.",
+      "cReason": "한 바퀴와 대비해 판단 기준이 되는 회전량을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'반 바퀴'와 함께 '180°', '180도'도 인정.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반 바퀴",
+            "$180°$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "9c0303060bbb1c0e80cfa63d9c61a9d1996b38a4bf13e4ab4e114dc457efb2ed",
+      "sourceIndex": 1334,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc23",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "반 바퀴와 한 바퀴",
+        "kind": "성질",
+        "level": "상",
+        "definition": "점대칭인지는 {반 바퀴}로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+        "studentC": "점대칭인지는 □로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+        "answers": [
+          "반 바퀴"
+        ]
+      },
+      "sourceFingerprint": "619e3fb01dc80ded2701651fa3de196ce000848fcb0428d216d83246a2e5ff11",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "반 바퀴"
+      ],
+      "cStudentAfter": "어떤 점을 중심으로 □ 돌렸을 때 처음 도형과 완전히 겹쳐야 점대칭도형이다. 한 바퀴 돌려 겹치는 것은 모든 도형에서 같다.",
+      "cMarkedSentence": "어떤 점을 중심으로 {반 바퀴} 돌렸을 때 처음 도형과 완전히 겹쳐야 점대칭도형이다. 한 바퀴 돌려 겹치는 것은 모든 도형에서 같다.",
+      "cStudentSentence": "어떤 점을 중심으로 □ 돌렸을 때 처음 도형과 완전히 겹쳐야 점대칭도형이다. 한 바퀴 돌려 겹치는 것은 모든 도형에서 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "반 바퀴",
+          "equivalents": [
+            "$180°$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 도형을 한 점을 중심으로 한 바퀴 돌렸더니 처음 도형과 완전히 겹쳤습니다. 이것만으로 점대칭도형이라고 할 수 있는지 답하고, 그 까닭을 돌리는 양과 관련지어 설명하시오.",
+        "answer": "할 수 없다. 한 바퀴 돌리면 어떤 도형이든 처음과 겹치므로, 반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "점대칭도형이라고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 바퀴 돌리면 모든 도형이 처음 도형과 겹친다",
+              "반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 점을 중심으로 {반 바퀴} 돌렸을 때 처음 도형과 완전히 겹쳐야 점대칭도형이다. 한 바퀴 돌려 겹치는 것은 모든 도형에서 같다.",
+        "acceptedAnswers": [
+          [
+            "반 바퀴",
+            "$180°$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a23e395c98bd87c9efdd3464c149c88097798ab93cb6de4849af13de33ae3d88",
+      "questionRevision": "planning-e5e6-20261006-a23e395c98bd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc1",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "같은 $0$보다 큰 소수에 곱하는 자연수가 $1$ 커지면 곱은 얼마만큼 커지는지 쓰고, $0.7\\times5$와 $0.7\\times6$의 값을 구해 확인하시오.",
+      "bAnswer": "곱은 그 소수만큼 커진다. $0.7\\times5=3.5$, $0.7\\times6=4.2$이고 차는 $0.7$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱해지는 소수만큼 커진다",
+            "그 소수를 한 번 더 더한 만큼 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.5$와 $4.2$",
+            "$4.2-3.5=0.7$"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 수가 $1$ 늘면 소수를 한 번 더 더한 것임을 안다.",
+      "bReason": "늘어나는 양을 답으로 남겨 두고 두 곱의 차로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+      "cReason": "'그 소수만큼'은 가리키는 대상이 모호해 실제 두 식의 차를 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.7$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "f1c833e66a8de7fe7ab42ef6c393a1f28b7231ce292bff214e95b02733b6f02d",
+      "sourceIndex": 1335,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc1",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱하는 수가 하나 늘 때",
+        "kind": "정의",
+        "level": "하",
+        "definition": "같은 소수에 곱하는 자연수가 $1$ 커지면 곱은 {그 소수만큼} 커진다.",
+        "studentC": "같은 소수에 곱하는 자연수가 $1$ 커지면 곱은 □ 커진다.",
+        "answers": [
+          "그 소수만큼"
+        ]
+      },
+      "sourceFingerprint": "ed89a8dd214432c65740bf97285c13328f82bec9cd6e2619988a6c6a0796428c",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0.7$"
+      ],
+      "cStudentAfter": "$0.7\\times6$은 $0.7\\times5$보다 □만큼 크다.",
+      "cMarkedSentence": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+      "cStudentSentence": "$0.7\\times6$은 $0.7\\times5$보다 □만큼 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 $0$보다 큰 소수에 곱하는 자연수가 $1$ 커지면 곱은 얼마만큼 커지는지 쓰고, $0.7\\times5$와 $0.7\\times6$의 값을 구해 확인하시오.",
+        "answer": "곱은 그 소수만큼 커진다. $0.7\\times5=3.5$, $0.7\\times6=4.2$이고 차는 $0.7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱해지는 소수만큼 커진다",
+              "그 소수를 한 번 더 더한 만큼 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.5$와 $4.2$",
+              "$4.2-3.5=0.7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+        "acceptedAnswers": [
+          [
+            "$0.7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aa5ee584d2241f54ea61e30609b57682942b6fa1204c28cbcf5a4e213852c4c6",
+      "questionRevision": "planning-e5e6-20261006-aa5ee584d224",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "소수 한 자리 수를 분수로 고쳐서 자연수와 곱하는 방법을 설명하고, $0.7\\times3$을 그 방법으로 계산하시오.",
+      "bAnswer": "소수 한 자리 수를 분모가 $10$인 분수로 고친 뒤 분자에 자연수를 곱하고 다시 소수로 쓴다. $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}=2.1$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 $10$인 분수로 고친다",
+            "$0.7=\\frac{7}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.1$",
+            "$\\frac{21}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수$\\frac{7}{10}$의분자에$3$을곱해$\\frac{21}{10}$을구하는과정"
+          ]
+        }
+      ],
+      "bGoal": "소수 한 자리 수를 분모 $10$인 분수로 고쳐 곱하는 절차를 설명한다.",
+      "bReason": "분모를 질문에서 밝히지 않고 방법을 묻고, 원문 예의 $0.7$을 계산 예로 썼다.",
+      "cDecision": "revise",
+      "cAfter": "$0.7×3$을 분모가 $10$인 분수로 계산하면 곱은 분자가 {$21$}인 분수이다. 이를 소수로 나타내면 {$2.1$}이다.",
+      "cReason": "'분모가 $10$인 분수' 구절 대신 분모와 계산 결과를 짧게 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$21$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.1$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "62168c22d6017fedbc68c1c193bf1bb1be56bd5a35c372b1bdc0315abe47b33b",
+      "sourceIndex": 1336,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc4",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "소수 한 자리 수를 분수로 고쳐 곱하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 한 자리 수는 {분모가 $10$인 분수}로 고쳐 자연수를 곱할 수 있다.",
+        "example": {
+          "prompt": "$0.7$과 $\\frac{7}{10}$이 같은 크기인 까닭은?",
+          "answer": "둘 다 $0.1$이 $7$개"
+        },
+        "studentC": "소수 한 자리 수는 □로 고쳐 자연수를 곱할 수 있다.",
+        "answers": [
+          "분모가 $10$인 분수"
+        ]
+      },
+      "sourceFingerprint": "fc311076c5709afb9b04efb41757594011ae6b6f62bc6baf498fb6958efbf2a5",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$21$",
+        "$2.1$"
+      ],
+      "cStudentAfter": "$0.7×3$을 분모가 $10$인 분수로 계산하면 곱은 분자가 □인 분수이다. 이를 소수로 나타내면 □이다.",
+      "cMarkedSentence": "$0.7×3$을 분모가 $10$인 분수로 계산하면 곱은 분자가 {$21$}인 분수이다. 이를 소수로 나타내면 {$2.1$}이다.",
+      "cStudentSentence": "$0.7×3$을 분모가 $10$인 분수로 계산하면 곱은 분자가 □인 분수이다. 이를 소수로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$21$",
+          "equivalents": []
+        },
+        {
+          "key": "$2.1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 한 자리 수를 분수로 고쳐서 자연수와 곱하는 방법을 설명하고, $0.7\\times3$을 그 방법으로 계산하시오.",
+        "answer": "소수 한 자리 수를 분모가 $10$인 분수로 고친 뒤 분자에 자연수를 곱하고 다시 소수로 쓴다. $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}=2.1$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 $10$인 분수로 고친다",
+              "$0.7=\\frac{7}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.1$",
+              "$\\frac{21}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수$\\frac{7}{10}$의분자에$3$을곱해$\\frac{21}{10}$을구하는과정"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.7×3$을 분모가 $10$인 분수로 계산하면 곱은 분자가 {$21$}인 분수이다. 이를 소수로 나타내면 {$2.1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$21$"
+          ],
+          [
+            "$2.1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e0fe8e4411cb9a35cd014a0f24ff2e7a1338b686662743ad86267759638f3192",
+      "questionRevision": "planning-e5e6-20261006-e0fe8e4411cb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc16",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱하는 자연수가 커지면 곱도 커짐을 안다.",
+      "bReason": "xc1이 '얼마만큼 커지는지'까지 물어 이 성질을 포함하므로 따로 서술할 내용이 없다.",
+      "cDecision": "revise",
+      "cAfter": "같은 $0$보다 큰 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+      "cReason": "'같은 소수'라는 조건이 있는 짧은 크기 비교 문장이고 답 '커진다'가 분명하다.",
+      "exclusionReason": "B만 제외: e5-2-4-1-xc1의 B와 중복.",
+      "exampleNeeded": false,
+      "synonymNotes": "'커집니다', '늘어난다' 인정.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "614aaaa03512602bdd8750b71c03a0b728db21c5daaadcbed97b771f6f84e0cd",
+      "sourceIndex": 1341,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc16",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱하는 자연수가 커질 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+        "studentC": "같은 소수에 곱하는 자연수가 커지면 곱도 □.",
+        "answers": [
+          "커진다"
+        ]
+      },
+      "sourceFingerprint": "41b2173c5743709b1c7bb099f6ea8e24f9ffc664c34d98d2459f146ebf92c88b",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "커진다"
+      ],
+      "cStudentAfter": "같은 $0$보다 큰 소수에 곱하는 자연수가 커지면 곱도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 $0$보다 큰 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+      "cStudentSentence": "같은 $0$보다 큰 소수에 곱하는 자연수가 커지면 곱도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "커진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "같은 $0$보다 큰 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: e5-2-4-1-xc1의 B와 중복."
+      },
+      "proposalFingerprint": "c9764e9344e86c3e36e749b8f371491d13067c8f72d30aaf85de8d60e9c9aaca",
+      "questionRevision": "planning-e5e6-20261006-c9764e9344e8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc23",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "길이가 $0.35\\,\\mathrm{m}$인 끈 $4$개를 겹치지 않게 이은 길이를 $\\mathrm{cm}$ 단위로 바꾸어 구하는 방법을 설명하고, 답을 $\\mathrm{m}$ 단위로 쓰시오.",
+      "bAnswer": "$0.35\\,\\mathrm{m}=35\\,\\mathrm{cm}$로 바꾸어 $35\\times4=140(\\mathrm{cm})$를 구하고, 다시 $\\mathrm{m}$로 고치면 $1.4\\,\\mathrm{m}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$35\\,\\mathrm{cm}$로 바꾸어 $35\\times4=140(\\mathrm{cm})$를 구한다",
+            "$\\mathrm{cm}$로 바꾸어 자연수끼리 곱한 뒤 $\\mathrm{m}$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.4\\,\\mathrm{m}$",
+            "$1.40\\,\\mathrm{m}$"
+          ]
+        }
+      ],
+      "bGoal": "단위를 바꾸어 자연수 곱셈으로 계산한 뒤 처음 단위로 되돌린다.",
+      "bReason": "원문 예의 $0.35\\,\\mathrm{m}=35\\,\\mathrm{cm}$를 살려 바꾸기, 곱하기, 되돌리기를 모두 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.35$ $\\mathrm{m}$는 {$35$} $\\mathrm{cm}$이다. 이 길이의 끈 $4$개를 겹치지 않게 이으면 전체 길이는 {$1.4$} $\\mathrm{m}$이다.",
+      "cReason": "'자연수끼리 곱한'이라는 구절 대신 단위를 바꾼 값과 되돌린 값을 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$35$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.4$",
+            "$1.40$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "71ecb645b6a360f0f770096dd801f126fa752096d04da3c3060b46e8c108908f",
+      "sourceIndex": 1347,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc23",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "단위를 바꾸어 곱하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수로 나타낸 길이를 작은 단위로 바꾸어 자연수가 되면, {자연수끼리 곱한} 뒤 처음 단위로 다시 나타내도 된다.",
+        "example": {
+          "prompt": "$0.35\\,\\mathrm{m}$를 $35\\,\\mathrm{cm}$로 바꾸어 곱해도 되는 까닭은?",
+          "answer": "단위만 바꾼 같은 길이"
+        },
+        "studentC": "소수로 나타낸 길이를 작은 단위로 바꾸어 자연수가 되면, □ 뒤 처음 단위로 다시 나타내도 된다.",
+        "answers": [
+          "자연수끼리 곱한"
+        ]
+      },
+      "sourceFingerprint": "30f9eedb4ba3faaee519618a855791054f97a7c0ddf4e6a77e73588865124308",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$35$",
+        "$1.4$"
+      ],
+      "cStudentAfter": "$0.35$ $\\mathrm{m}$는 □ $\\mathrm{cm}$이다. 이 길이의 끈 $4$개를 겹치지 않게 이으면 전체 길이는 □ $\\mathrm{m}$이다.",
+      "cMarkedSentence": "$0.35$ $\\mathrm{m}$는 {$35$} $\\mathrm{cm}$이다. 이 길이의 끈 $4$개를 겹치지 않게 이으면 전체 길이는 {$1.4$} $\\mathrm{m}$이다.",
+      "cStudentSentence": "$0.35$ $\\mathrm{m}$는 □ $\\mathrm{cm}$이다. 이 길이의 끈 $4$개를 겹치지 않게 이으면 전체 길이는 □ $\\mathrm{m}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$35$",
+          "equivalents": []
+        },
+        {
+          "key": "$1.4$",
+          "equivalents": [
+            "$1.40$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "길이가 $0.35\\,\\mathrm{m}$인 끈 $4$개를 겹치지 않게 이은 길이를 $\\mathrm{cm}$ 단위로 바꾸어 구하는 방법을 설명하고, 답을 $\\mathrm{m}$ 단위로 쓰시오.",
+        "answer": "$0.35\\,\\mathrm{m}=35\\,\\mathrm{cm}$로 바꾸어 $35\\times4=140(\\mathrm{cm})$를 구하고, 다시 $\\mathrm{m}$로 고치면 $1.4\\,\\mathrm{m}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$35\\,\\mathrm{cm}$로 바꾸어 $35\\times4=140(\\mathrm{cm})$를 구한다",
+              "$\\mathrm{cm}$로 바꾸어 자연수끼리 곱한 뒤 $\\mathrm{m}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.4\\,\\mathrm{m}$",
+              "$1.40\\,\\mathrm{m}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.35$ $\\mathrm{m}$는 {$35$} $\\mathrm{cm}$이다. 이 길이의 끈 $4$개를 겹치지 않게 이으면 전체 길이는 {$1.4$} $\\mathrm{m}$이다.",
+        "acceptedAnswers": [
+          [
+            "$35$"
+          ],
+          [
+            "$1.4$",
+            "$1.40$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2b39b2f4915aaae6ab6f3c2e7584c2281a0a868a01fbf4c53132224c7f33d783",
+      "questionRevision": "planning-e5e6-20261006-2b39b2f4915a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$1$보다 크고 소수 부분이 $0$이 아닌 수에 자연수를 곱한 값이 자연수가 되려면 소수 부분에 그 자연수를 곱한 값이 어떤 수여야 하는지 쓰고, $2.5\\times4$를 자연수 부분과 소수 부분으로 나누어 계산해 확인하시오.",
+      "bAnswer": "소수 부분에 곱한 값이 자연수여야 한다. $2\\times4=8$, $0.5\\times4=2$로 소수 부분의 곱이 자연수이므로 $2.5\\times4=8+2=10$도 자연수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수 부분에 곱한 값이 자연수여야 한다",
+            "소수 부분의 곱에 소수점 아래 수가 남지 않아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5\\times4=2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "bGoal": "소수 부분의 곱이 자연수일 때 전체 곱도 자연수가 됨을 부분 곱으로 설명한다.",
+      "bReason": "원문 성질을 조건을 묻는 질문으로 바꾸고, 부분 곱으로 확인하는 예를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=${$2$}가 자연수이므로 $2.5\\times4=${$10$}도 자연수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '소수 부분의 곱'은 편집용 구절이라, 실제 식에서 소수 부분의 곱과 전체 곱을 쓰게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "b70a5b0cda900f33bd5869ab28f0f328092368f80b212df7d42b1840547fa8be",
+      "sourceIndex": 1356,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc14",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "곱이 자연수인 소수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1$보다 큰 소수에 자연수를 곱할 때 {소수 부분의 곱}이 자연수가 되면 곱도 자연수가 된다.",
+        "studentC": "$1$보다 큰 소수에 자연수를 곱할 때 □이 자연수가 되면 곱도 자연수가 된다.",
+        "answers": [
+          "소수 부분의 곱"
+        ]
+      },
+      "sourceFingerprint": "a74dd4c4f53e30828c8a95519bdc3b3bd7a99242b2e037b00d0095f270470847",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$10$"
+      ],
+      "cStudentAfter": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=$□가 자연수이므로 $2.5\\times4=$□도 자연수이다.",
+      "cMarkedSentence": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=${$2$}가 자연수이므로 $2.5\\times4=${$10$}도 자연수이다.",
+      "cStudentSentence": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=$□가 자연수이므로 $2.5\\times4=$□도 자연수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$보다 크고 소수 부분이 $0$이 아닌 수에 자연수를 곱한 값이 자연수가 되려면 소수 부분에 그 자연수를 곱한 값이 어떤 수여야 하는지 쓰고, $2.5\\times4$를 자연수 부분과 소수 부분으로 나누어 계산해 확인하시오.",
+        "answer": "소수 부분에 곱한 값이 자연수여야 한다. $2\\times4=8$, $0.5\\times4=2$로 소수 부분의 곱이 자연수이므로 $2.5\\times4=8+2=10$도 자연수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수 부분에 곱한 값이 자연수여야 한다",
+              "소수 부분의 곱에 소수점 아래 수가 남지 않아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5\\times4=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=${$2$}가 자연수이므로 $2.5\\times4=${$10$}도 자연수이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4fb429b2b6be920cd838799a56e847e82305c596c1fe9a0d4511f1c298d8b5b0",
+      "questionRevision": "planning-e5e6-20261006-4fb429b2b6be",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc25",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "소수 두 자리 수에 자연수를 곱한 값은 소수 몇 자리 수가 되는지, 자리 수가 줄어드는 때는 언제인지 설명하고, $1.25\\times3$과 $1.25\\times4$를 계산하여 확인하시오.",
+      "bAnswer": "곱은 소수 둘째 자리까지 나타낼 수 있다. 다만 소수점 아래 끝의 숫자가 $0$이면 그 $0$을 지워 자리 수가 줄어든다. $1.25×3=3.75$는 소수 두 자리 수이고, $1.25×4=5.00$은 끝의 $0$을 지워 자연수 $5$로 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은소수둘째자리까지나타낼수있다",
+            "소수점아래필요한자리수는최대두자리다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱의 소수 끝자리가 $0$이면 $0$을 지워 자리 수가 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.75$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$",
+            "$5.00$"
+          ]
+        }
+      ],
+      "bGoal": "곱의 소수 자리 수가 보통 그대로이고 끝자리가 0이면 줄어듦을 예로 확인한다.",
+      "bReason": "원문 성질에는 두 경우가 섞여 있어, 각 경우를 보여 주는 계산 두 개로 구별하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1.25\\times3=${$3.75$}는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 {$2.5$}로 쓴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3.75$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.5$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '두 자리 수'는 바로 앞의 '소수 두 자리 수'를 베끼면 되므로, 두 경우의 실제 곱을 쓰게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "3d34cdba02d4794d8af169da00465fd2942bb34c97fcde825bbf1f1cb7aa6f8e",
+      "sourceIndex": 1361,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc25",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "곱의 소수 자리 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 두 자리 수에 자연수를 곱한 값은 소수 {두 자리 수}이거나 끝의 $0$이 지워져 더 짧아진다.",
+        "studentC": "소수 두 자리 수에 자연수를 곱한 값은 소수 □이거나 끝의 $0$이 지워져 더 짧아진다.",
+        "answers": [
+          "두 자리 수"
+        ]
+      },
+      "sourceFingerprint": "abf8fe3b838ac7dbaff493d790991a4424b233a624039693bf5597f33e6bab3f",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3.75$",
+        "$2.5$"
+      ],
+      "cStudentAfter": "$1.25\\times3=$□는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 □로 쓴다.",
+      "cMarkedSentence": "$1.25\\times3=${$3.75$}는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 {$2.5$}로 쓴다.",
+      "cStudentSentence": "$1.25\\times3=$□는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 □로 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3.75$",
+          "equivalents": []
+        },
+        {
+          "key": "$2.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 두 자리 수에 자연수를 곱한 값은 소수 몇 자리 수가 되는지, 자리 수가 줄어드는 때는 언제인지 설명하고, $1.25\\times3$과 $1.25\\times4$를 계산하여 확인하시오.",
+        "answer": "곱은 소수 둘째 자리까지 나타낼 수 있다. 다만 소수점 아래 끝의 숫자가 $0$이면 그 $0$을 지워 자리 수가 줄어든다. $1.25×3=3.75$는 소수 두 자리 수이고, $1.25×4=5.00$은 끝의 $0$을 지워 자연수 $5$로 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은소수둘째자리까지나타낼수있다",
+              "소수점아래필요한자리수는최대두자리다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱의 소수 끝자리가 $0$이면 $0$을 지워 자리 수가 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.75$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$",
+              "$5.00$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.25\\times3=${$3.75$}는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 {$2.5$}로 쓴다.",
+        "acceptedAnswers": [
+          [
+            "$3.75$"
+          ],
+          [
+            "$2.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ea9ee681c21f4845b008e8406c906b26e674910fd25c8c28de68390cf9a7684e",
+      "questionRevision": "planning-e5e6-20261006-ea9ee681c21f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc26",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "2 이상의 자연수를 곱하면 곱이 처음 소수보다 커짐을 안다.",
+      "bReason": "처음소수와곱의크기관계는xc7등설명문항과겹쳐B반복을줄인다. C에는1을곱하는경우와2이상을곱하는경우의짧은비교를남긴다.",
+      "cDecision": "revise",
+      "cAfter": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 {같고}, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같고",
+            "같으며"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다",
+            "커진다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '처음 소수보다'는 답하기 어색한 구절이라, '$2$ 이상'이라는 조건이 왜 붙는지 드러나게 $1$을 곱한 경우와 견주도록 했다.",
+      "exclusionReason": "B 제외: 자명한 사실이고 xc7과 중복(대체 ID e5-2-4-2-xc7).",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "660a28809948f937ff9636e7b0656348fd6c35b8185d9604addfa7dbe4e177c8",
+      "sourceIndex": 1362,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc26",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "곱과 처음 소수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1$보다 큰 소수에 $2$ 이상의 자연수를 곱하면 곱은 {처음 소수보다} 크다.",
+        "studentC": "$1$보다 큰 소수에 $2$ 이상의 자연수를 곱하면 곱은 □ 크다.",
+        "answers": [
+          "처음 소수보다"
+        ]
+      },
+      "sourceFingerprint": "453f3ac5ad63bbf572bf1e90af4fe5c116b1d0559a83355103a288155d84e073",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같고",
+        "크다"
+      ],
+      "cStudentAfter": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 □, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 □.",
+      "cMarkedSentence": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 {같고}, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 {크다}.",
+      "cStudentSentence": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 □, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같고",
+          "equivalents": [
+            "같으며"
+          ]
+        },
+        {
+          "key": "크다",
+          "equivalents": [
+            "커진다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 {같고}, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "같고",
+            "같으며"
+          ],
+          [
+            "크다",
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 자명한 사실이고 xc7과 중복(대체 ID e5-2-4-2-xc7)."
+      },
+      "proposalFingerprint": "660a28809948f937ff9636e7b0656348fd6c35b8185d9604addfa7dbe4e177c8",
+      "questionRevision": "planning-e5e6-20261006-660a28809948",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc4",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱하는 순서를 바꾸어도 곱이 같음을 확인한다.",
+      "bReason": "곱하는순서를바꿔도같다는설명은앞절의성질문항과겹쳐B반복을줄이고C관계확인은유지한다.",
+      "exclusionReason": "B는 한 낱말 답으로 끝나는 자명한 성질이라 서술형 가치가 낮다. 같은 내용은 이 행의 C로 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+      "cReason": "자연수와 소수의 곱에서 순서를 바꾼 두 곱의 관계를 한 낱말로 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1330-1370.json",
+      "codexFinalAmendedFromFingerprint": "a81fa7155b4ea6ce95fdb6b9b2be0c0f03630f2710c10d9c2c22be89c03f4b3d",
+      "sourceIndex": 1364,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc4",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "곱하는 순서 바꾸기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+        "studentC": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "eb1257f47d0151013e18abe0e93e8526d084a289031620ac102bb138fe02a834",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+      "cFrozenStudentSentence": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+      "cStudentSentence": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 한 낱말 답으로 끝나는 자명한 성질이라 서술형 가치가 낮다. 같은 내용은 이 행의 C로 확인한다."
+      },
+      "proposalFingerprint": "a81fa7155b4ea6ce95fdb6b9b2be0c0f03630f2710c10d9c2c22be89c03f4b3d",
+      "questionRevision": "planning-e5e6-20261006-a81fa7155b4e",
+      "requiresIndependentReview": true
+    }
+  ]
+}

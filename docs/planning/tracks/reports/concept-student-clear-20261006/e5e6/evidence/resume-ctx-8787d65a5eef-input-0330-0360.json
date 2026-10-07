@@ -1,0 +1,3074 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T05:12:19.365016+00:00",
+  "rows": [
+    {
+      "id": "e6-2-3-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양은 쌓기나무가 가로로 $2$칸 놓인 모양입니다. 앞에서 보니 왼쪽 줄은 $2$층, 오른쪽 줄은 $1$층입니다. 쌓기나무는 모두 몇 개인지 구하고, 위에서 본 모양과 앞에서 본 모양을 각각 어떻게 사용했는지 설명하시오.",
+      "bAnswer": "$3$개이다. 위에서 본 모양으로 쌓기나무가 놓인 자리를 알고, 앞에서 본 모양으로 각 자리의 층수를 알아 $2+1=3$으로 구한다.",
+      "bGoal": "위에서 본 모양은 놓인 자리, 앞에서 본 모양은 높이를 알려 줌을 함께 활용한다.",
+      "bReason": "추상적인 '조건 맞추기' 대신 두 방향 정보의 역할을 구분하는 문항으로 바꾼다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위에서 본 모양으로 놓인 자리를 안다",
+            "위에서 본 모양은 쌓기나무가 놓인 칸을 알려 준다"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞에서 본 모양으로 높이를 안다",
+            "앞에서 본 모양은 각 줄의 층수를 알려 준다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$개"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "위에서 본 모양은 쌓기나무가 놓인 {자리}를, 앞에서 본 모양은 각 줄의 {높이}를 알려 준다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자리",
+            "칸",
+            "위치"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이",
+            "층수"
+          ]
+        }
+      ],
+      "cReason": "'모든 방향의 조건'은 긴 추상 구절이라 두 방향이 알려 주는 정보를 묻는 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 330,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-3-c3",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "level": "상",
+        "kind": "방법",
+        "term": "여러 방향의 조건 맞추기",
+        "definition": "위·앞·옆에서 본 모양을 함께 써서 {모든 방향의 조건}을 만족하는 쌓기를 찾는다.",
+        "studentC": "위·앞·옆에서 본 모양을 함께 써서 □을 만족하는 쌓기를 찾는다.",
+        "answers": [
+          "모든 방향의 조건"
+        ]
+      },
+      "sourceFingerprint": "765fa6bcaa0eaa3bd9c713d34b4675323191558e66f0f578d4815614e6195b3d",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "cProposedAnswers": [
+        "자리",
+        "높이"
+      ],
+      "cStudentAfter": "위에서 본 모양은 쌓기나무가 놓인 □를, 앞에서 본 모양은 각 줄의 □를 알려 준다.",
+      "cMarkedSentence": "위에서 본 모양은 쌓기나무가 놓인 {자리}를, 앞에서 본 모양은 각 줄의 {높이}를 알려 준다.",
+      "cStudentSentence": "위에서 본 모양은 쌓기나무가 놓인 □를, 앞에서 본 모양은 각 줄의 □를 알려 준다.",
+      "cSlotAnswers": [
+        {
+          "key": "자리",
+          "equivalents": [
+            "칸",
+            "위치"
+          ]
+        },
+        {
+          "key": "높이",
+          "equivalents": [
+            "층수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양은 쌓기나무가 가로로 $2$칸 놓인 모양입니다. 앞에서 보니 왼쪽 줄은 $2$층, 오른쪽 줄은 $1$층입니다. 쌓기나무는 모두 몇 개인지 구하고, 위에서 본 모양과 앞에서 본 모양을 각각 어떻게 사용했는지 설명하시오.",
+        "answer": "$3$개이다. 위에서 본 모양으로 쌓기나무가 놓인 자리를 알고, 앞에서 본 모양으로 각 자리의 층수를 알아 $2+1=3$으로 구한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위에서 본 모양으로 놓인 자리를 안다",
+              "위에서 본 모양은 쌓기나무가 놓인 칸을 알려 준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞에서 본 모양으로 높이를 안다",
+              "앞에서 본 모양은 각 줄의 층수를 알려 준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "위에서 본 모양은 쌓기나무가 놓인 {자리}를, 앞에서 본 모양은 각 줄의 {높이}를 알려 준다.",
+        "acceptedAnswers": [
+          [
+            "자리",
+            "칸",
+            "위치"
+          ],
+          [
+            "높이",
+            "층수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6f9b2bf97c45c324ac7b6da0370e4305afde222115c190c13386d5a960e0c456",
+      "questionRevision": "planning-e5e6-20261006-6f9b2bf97c45",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 위에서 본 모양에서, 각 칸에 적힌 수는 무엇을 나타내는지 쓰시오.",
+      "bAnswer": "그 칸 자리에 쌓은 쌓기나무의 개수를 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 칸 자리에 쌓인 쌓기나무의 개수",
+            "그 자리에 쌓은 쌓기나무의 수",
+            "그 자리의 쌓기나무 높이(층수)"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "위에서 본 모양에 적힌 수가 칸마다 쌓은 쌓기나무 개수임을 말한다.",
+      "bReason": "수의 의미는 이후 모든 문항의 바탕이라 질문으로 직접 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 {쌓기나무의 개수}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "쌓기나무의 개수",
+            "쌓기나무의 수",
+            "쌓은 개수"
+          ]
+        }
+      ],
+      "cReason": "원문의 '블록'은 초등 수업의 낱말인 쌓기나무와 달라 바꾼다.",
+      "coreAfter": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 {쌓기나무의 개수}이다.",
+      "coreReason": "'블록'은 학생이 배운 '쌓기나무'와 다른 낱말이라 통일한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원문 블록을 교육과정의 쌓기나무로 통일하고 개수라는 같은 표적 역할을 유지한다. 숫자가 뜻하는 자리도 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 331,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-4-c1",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "level": "하",
+        "kind": "정의",
+        "term": "위에서 본 모양의 수",
+        "definition": "위에서 본 칸에 적힌 수는 그 자리에서 {쌓아 올린 블록의 개수}이다.",
+        "studentC": "위에서 본 칸에 적힌 수는 그 자리에서 □이다.",
+        "answers": [
+          "쌓아 올린 블록의 개수"
+        ]
+      },
+      "sourceFingerprint": "ed7bfaa77423161673822332a7031c2bba6f599543e0cef94897af917c10b1d9",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "쌓기나무의 개수"
+      ],
+      "cStudentAfter": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 □이다.",
+      "cMarkedSentence": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 {쌓기나무의 개수}이다.",
+      "cStudentSentence": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "쌓기나무의 개수",
+          "equivalents": [
+            "쌓기나무의 수",
+            "쌓은 개수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무로 쌓은 모양을 위에서 본 모양에서, 각 칸에 적힌 수는 무엇을 나타내는지 쓰시오.",
+        "answer": "그 칸 자리에 쌓은 쌓기나무의 개수를 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 칸 자리에 쌓인 쌓기나무의 개수",
+              "그 자리에 쌓은 쌓기나무의 수",
+              "그 자리의 쌓기나무 높이(층수)"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 {쌓기나무의 개수}이다.",
+        "acceptedAnswers": [
+          [
+            "쌓기나무의 개수",
+            "쌓기나무의 수",
+            "쌓은 개수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "38a3d7b26937a09c15729039a69c39eec667d3ede83dbafd0ce3c543429d9465",
+      "questionRevision": "planning-e5e6-20261006-38a3d7b26937",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양의 각 칸에 쌓인 쌓기나무 개수가 적혀 있다. 쌓기나무의 전체 개수를 구하는 방법을 쓰시오.",
+      "bAnswer": "각 칸에 적힌 수를 모두 더한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 칸의 수를 모두 더한다",
+            "적힌 수의 합을 구한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "칸마다 쌓은 개수를 합해 전체 개수를 구하는 방법을 말한다.",
+      "bReason": "수의 의미를 전체 개수 계산에 연결하는 기본 방법이다.",
+      "cDecision": "revise",
+      "cAfter": "위에서 본 모양의 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 {$6$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$",
+            "$6$개"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 '모두 더하면'이라 문장에서 답이 거의 드러나 값을 구하는 문장으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 332,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-4-c2",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "level": "중",
+        "kind": "방법",
+        "term": "높이 수로 전체 개수 구하기",
+        "definition": "위에서 본 각 칸의 수를 {모두 더하면} 쌓기나무의 전체 개수를 알 수 있다.",
+        "studentC": "위에서 본 각 칸의 수를 □ 쌓기나무의 전체 개수를 알 수 있다.",
+        "answers": [
+          "모두 더하면"
+        ]
+      },
+      "sourceFingerprint": "4c875edc0e75d7472223bffa35458287fc2a27f727081f7ce94f7f0bba672e10",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "cProposedAnswers": [
+        "$6$"
+      ],
+      "cStudentAfter": "위에서 본 모양의 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 □개이다.",
+      "cMarkedSentence": "위에서 본 모양의 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 {$6$}개이다.",
+      "cStudentSentence": "위에서 본 모양의 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": [
+            "$6$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양의 각 칸에 쌓인 쌓기나무 개수가 적혀 있다. 쌓기나무의 전체 개수를 구하는 방법을 쓰시오.",
+        "answer": "각 칸에 적힌 수를 모두 더한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 칸의 수를 모두 더한다",
+              "적힌 수의 합을 구한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "위에서 본 모양의 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 {$6$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$6$",
+            "$6$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a31fc3d062d637e9bca822b14df0638614104ee12faebf8b2344dcff67cff74f",
+      "questionRevision": "planning-e5e6-20261006-a31fc3d062d6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양의 각 칸에 쌓인 쌓기나무 개수가 적혀 있다. 이 모양을 앞에서 볼 때, 앞뒤로 겹치는 칸들이 있으면 그 줄의 높이를 어떻게 정하는지 설명하시오.",
+      "bAnswer": "앞뒤로 겹치는 칸들에 적힌 수 중 가장 큰 수만큼의 높이로 그린다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "겹치는 칸들 중 가장 큰 수",
+            "겹치는 칸 중 가장 높은 쌓기나무의 높이",
+            "겹치는 칸 수들의 최댓값"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "겹치는 칸 중 가장 높은 것으로 앞이나 옆에서 본 높이를 정하는 방법을 말한다.",
+      "bReason": "앞·옆 모양 그리기의 중심 방법이라 일반 규칙으로 묻고 xc10, xc11 B를 대신한다.",
+      "cDecision": "keep",
+      "cAfter": "바라보는 방향으로 겹치는 칸들에서 {가장 큰 수}를 골라, 그만큼의 높이를 그린다.",
+      "cReason": "빈칸 '가장 큰 수'가 짧고 겹치는 방향의 조건도 문장에 있어 목표가 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 333,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-4-c3",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "level": "상",
+        "kind": "방법",
+        "term": "위에서 본 모양에 수를 쓴 것으로 앞·옆 모양 그리기",
+        "definition": "바라보는 방향으로 겹치는 칸들에서 {가장 큰 수}를 골라, 그만큼의 높이를 그린다.",
+        "studentC": "바라보는 방향으로 겹치는 칸들에서 □를 골라, 그만큼의 높이를 그린다.",
+        "answers": [
+          "가장 큰 수"
+        ]
+      },
+      "sourceFingerprint": "9a5d6c843391405daa8f623a8d0e68e694e3d672d3d1eaa95de17844c4fb8315",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "cFrozenDefinition": "바라보는 방향으로 겹치는 칸들에서 {가장 큰 수}를 골라, 그만큼의 높이를 그린다.",
+      "cFrozenStudentSentence": "바라보는 방향으로 겹치는 칸들에서 □를 골라, 그만큼의 높이를 그린다.",
+      "cProposedAnswers": [
+        "가장 큰 수"
+      ],
+      "cStudentAfter": "바라보는 방향으로 겹치는 칸들에서 □를 골라, 그만큼의 높이를 그린다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 큰 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "바라보는 방향으로 겹치는 칸들에서 {가장 큰 수}를 골라, 그만큼의 높이를 그린다.",
+      "cStudentSentence": "바라보는 방향으로 겹치는 칸들에서 □를 골라, 그만큼의 높이를 그린다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 큰 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양의 각 칸에 쌓인 쌓기나무 개수가 적혀 있다. 이 모양을 앞에서 볼 때, 앞뒤로 겹치는 칸들이 있으면 그 줄의 높이를 어떻게 정하는지 설명하시오.",
+        "answer": "앞뒤로 겹치는 칸들에 적힌 수 중 가장 큰 수만큼의 높이로 그린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겹치는 칸들 중 가장 큰 수",
+              "겹치는 칸 중 가장 높은 쌓기나무의 높이",
+              "겹치는 칸 수들의 최댓값"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "바라보는 방향으로 겹치는 칸들에서 {가장 큰 수}를 골라, 그만큼의 높이를 그린다.",
+        "acceptedAnswers": [
+          [
+            "가장 큰 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "19d724c94a4ccae0c6a0d75058262288ae5ca99c7db59b41b9d42c039c6aa1ac",
+      "questionRevision": "planning-e5e6-20261006-19d724c94a4c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 층별로 나타낼 때, 그림 한 장에는 어떤 쌓기나무의 자리를 모아 그리는가?",
+      "bAnswer": "같은 높이(같은 층)에 놓인 쌓기나무의 자리끼리 모아 그린다.",
+      "bGoal": "층별로 나타낸 그림 한 장이 무엇을 모은 것인지 설명한다.",
+      "bReason": "'블록'과 정답 낱말 맞히기 대신 같은 층의 자리를 모은다는 뜻을 직접 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 높이에 놓인 쌓기나무의 자리를 모은다",
+            "같은 층에 있는 쌓기나무의 자리를 그린다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "한 층의 모양은 {같은 높이}에 놓인 쌓기나무의 자리끼리 모아 그린 것이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은 높이",
+            "같은 층"
+          ]
+        }
+      ],
+      "cReason": "학생에게 낯선 '블록'을 쌓기나무로 바꾸고, 핵심인 같은 높이를 빈칸으로 삼는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 334,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-5-c1",
+        "section": "초6::2-3 공간과 입체::2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4)",
+        "level": "하",
+        "kind": "정의",
+        "term": "층별 모양",
+        "definition": "같은 높이에 놓인 블록 자리끼리 모아 그린 것이 {한 층의 모양}이다.",
+        "studentC": "같은 높이에 놓인 블록 자리끼리 모아 그린 것이 □이다.",
+        "answers": [
+          "한 층의 모양"
+        ]
+      },
+      "sourceFingerprint": "1595cc1c31bb36c6ec9864a4ebbf3435920bb25497723dfccd40e7bd8a36c7ac",
+      "draftEvidence": "evidence/section-097-draft.json",
+      "cProposedAnswers": [
+        "같은 높이"
+      ],
+      "cStudentAfter": "한 층의 모양은 □에 놓인 쌓기나무의 자리끼리 모아 그린 것이다.",
+      "cMarkedSentence": "한 층의 모양은 {같은 높이}에 놓인 쌓기나무의 자리끼리 모아 그린 것이다.",
+      "cStudentSentence": "한 층의 모양은 □에 놓인 쌓기나무의 자리끼리 모아 그린 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은 높이",
+          "equivalents": [
+            "같은 층"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무로 쌓은 모양을 층별로 나타낼 때, 그림 한 장에는 어떤 쌓기나무의 자리를 모아 그리는가?",
+        "answer": "같은 높이(같은 층)에 놓인 쌓기나무의 자리끼리 모아 그린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 높이에 놓인 쌓기나무의 자리를 모은다",
+              "같은 층에 있는 쌓기나무의 자리를 그린다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 층의 모양은 {같은 높이}에 놓인 쌓기나무의 자리끼리 모아 그린 것이다.",
+        "acceptedAnswers": [
+          [
+            "같은 높이",
+            "같은 층"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1050085fe56e0d894f9d0a01da66b8a7ebf008259ae3e339589cb15156918626",
+      "questionRevision": "planning-e5e6-20261006-1050085fe56e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-5-c2",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 층별로 나타낼 때, 각 층의 그림에는 쌓기나무의 무엇을 표시하는가?",
+      "bAnswer": "그 층에서 쌓기나무가 놓인 자리를 칸으로 표시한다. 칸 한 개가 쌓기나무 한 개이다.",
+      "bGoal": "층별 그림에 무엇을 나타내는지 설명한다.",
+      "bReason": "그리는 내용을 묻되 '자리와 개수'라는 짝 낱말을 외우게 하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓기나무가 놓인 자리를 칸으로 표시한다",
+            "그 층에 쌓기나무가 있는 위치를 그린다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "층별로 나타낼 때는 아래부터 층을 나누고, 각 층에 쌓기나무가 놓인 {자리}를 평면에 칸으로 표시한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자리",
+            "위치"
+          ]
+        }
+      ],
+      "cReason": "'블록의 □'는 답이 막연하므로 표시하는 대상을 쌓기나무 자리로 분명히 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 335,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-5-c2",
+        "section": "초6::2-3 공간과 입체::2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4)",
+        "level": "중",
+        "kind": "방법",
+        "term": "층별로 나타낸 모양 그리기",
+        "definition": "아래부터 층을 나누고, 각 층에 있는 블록의 {자리와 개수}를 평면에 표시한다.",
+        "studentC": "아래부터 층을 나누고, 각 층에 있는 블록의 □를 평면에 표시한다.",
+        "answers": [
+          "자리와 개수"
+        ]
+      },
+      "sourceFingerprint": "a1426e9798d6e38d71db9d759625d43381a2c0eb5c4158209c26430ce43790e2",
+      "draftEvidence": "evidence/section-097-draft.json",
+      "cProposedAnswers": [
+        "자리"
+      ],
+      "cStudentAfter": "층별로 나타낼 때는 아래부터 층을 나누고, 각 층에 쌓기나무가 놓인 □를 평면에 칸으로 표시한다.",
+      "cMarkedSentence": "층별로 나타낼 때는 아래부터 층을 나누고, 각 층에 쌓기나무가 놓인 {자리}를 평면에 칸으로 표시한다.",
+      "cStudentSentence": "층별로 나타낼 때는 아래부터 층을 나누고, 각 층에 쌓기나무가 놓인 □를 평면에 칸으로 표시한다.",
+      "cSlotAnswers": [
+        {
+          "key": "자리",
+          "equivalents": [
+            "위치"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무로 쌓은 모양을 층별로 나타낼 때, 각 층의 그림에는 쌓기나무의 무엇을 표시하는가?",
+        "answer": "그 층에서 쌓기나무가 놓인 자리를 칸으로 표시한다. 칸 한 개가 쌓기나무 한 개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓기나무가 놓인 자리를 칸으로 표시한다",
+              "그 층에 쌓기나무가 있는 위치를 그린다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "층별로 나타낼 때는 아래부터 층을 나누고, 각 층에 쌓기나무가 놓인 {자리}를 평면에 칸으로 표시한다.",
+        "acceptedAnswers": [
+          [
+            "자리",
+            "위치"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5f1519610d5e10ac59356401b0bc250fda4447f69fdfbcb2155c912a4d72d474",
+      "questionRevision": "planning-e5e6-20261006-5f1519610d5e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-5-c3",
+      "bDecision": "revise",
+      "bPrompt": "공중에 뜬 쌓기나무 없이 쌓을 때, 위층에 쌓기나무가 놓인 자리의 바로 아래에는 무엇이 있어야 하는가?",
+      "bAnswer": "바로 아래층에도 쌓기나무가 있어야 한다.",
+      "bGoal": "위층 쌓기나무를 받치는 조건을 설명한다.",
+      "bReason": "쌓는 규칙을 일반 조건으로 묻고, 정답을 질문에서 말하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바로 아래층에 쌓기나무가 있다",
+            "바로 아래 칸이 비어 있지 않고 쌓기나무가 받친다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "위층 칸이 아래층 칸 위에 있어야 한다는 같은 생각을 xc10의 C가 더 분명히 묻는다.",
+      "exclusionReason": "e6-2-3-5-xc10의 C와 중복이다.",
+      "exampleNeeded": false,
+      "coreAfter": "공중에 뜬 쌓기나무 없이 쌓으면, 위층에 쌓기나무가 놓인 모든 자리에는 {바로 아래층의 쌓기나무}가 있어야 한다.",
+      "coreReason": "원문은 위층의 모든 자리에 아래층 블록이 있어야 하는 것처럼 읽혀 조건이 불분명하다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원문 바로 아래층 블록 표적의 역할을 보존하면서 명칭만 쌓기나무로 통일한다. 모든 빈 자리까지 받쳐야 한다는 오독을 피하도록 실제 놓인 자리로 조건을 좁힌다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 336,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-5-c3",
+        "section": "초6::2-3 공간과 입체::2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4)",
+        "level": "상",
+        "kind": "성질",
+        "term": "위층을 받치는 자리",
+        "definition": "공중에 뜬 블록 없이 쌓으면 위층의 모든 자리에는 {바로 아래층의 블록}이 있어야 한다.",
+        "studentC": "공중에 뜬 블록 없이 쌓으면 위층의 모든 자리에는 □이 있어야 한다.",
+        "answers": [
+          "바로 아래층의 블록"
+        ]
+      },
+      "sourceFingerprint": "ecc0ef3cc46c16d0a70d7f64bc0cc9d6688f20f87f639b5ced28db0764c9dcff",
+      "draftEvidence": "evidence/section-097-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "공중에 뜬 쌓기나무 없이 쌓을 때, 위층에 쌓기나무가 놓인 자리의 바로 아래에는 무엇이 있어야 하는가?",
+        "answer": "바로 아래층에도 쌓기나무가 있어야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바로 아래층에 쌓기나무가 있다",
+              "바로 아래 칸이 비어 있지 않고 쌓기나무가 받친다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "e6-2-3-5-xc10의 C와 중복이다."
+      },
+      "proposalFingerprint": "0faafe8f6b81cb7edc673709124722d31d97d02a8f88da633d8c5ddf54f6081e",
+      "questionRevision": "planning-e5e6-20261006-0faafe8f6b81",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-6-c1",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $2$개로는 모양이 한 가지뿐입니다. 쌓기나무 개수를 그대로 두고 다른 모양을 만들 수 있으려면 쌓기나무가 적어도 몇 개 필요합니까? 또 다른 모양은 어떻게 만듭니까?",
+      "bAnswer": "쌓기나무가 $3$개 이상 필요하다. 개수는 그대로 두고 붙이는 위치를 바꾸어 만든다.",
+      "bGoal": "모양을 바꾸려면 개수가 아니라 붙이는 위치를 바꾼다는 것과 최소 개수 $3$개를 이해한다.",
+      "bReason": "원문 두 빈칸을 '몇 개 이상'과 '어떻게'로 나누어 물으면 암기 구절이 아닌 방법 이해를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$개 이상"
+          ]
+        },
+        {
+          "anyOf": [
+            "붙이는 위치를 바꾼다",
+            "붙이는 자리를 바꾼다",
+            "붙이는 방법을 바꾼다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $2$개로는 모양이 한 가지뿐이지만, {$3$}개 이상이면 개수를 그대로 두고 붙이는 {위치}를 바꾸어 다른 모양을 만들 수 있다.",
+      "cReason": "'붙이는 위치를 바꾸어'는 긴 구절이라 핵심어 '위치'만 빈칸으로 하고 $2$개와 비교해 $3$의 의미를 살렸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "위치",
+            "자리",
+            "붙이는 위치"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 337,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-6-c1",
+        "section": "초6::2-3 공간과 입체::2-3-6 여러 가지 모양 만들기",
+        "level": "하",
+        "kind": "방법",
+        "term": "쌓기나무 모양 바꾸기",
+        "definition": "쌓기나무가 {$3$개 이상}이면, 개수를 그대로 두고 {붙이는 위치를 바꾸어} 다른 모양을 만들 수 있다.",
+        "studentC": "쌓기나무가 □이면, 개수를 그대로 두고 □ 다른 모양을 만들 수 있다.",
+        "answers": [
+          "$3$개 이상",
+          "붙이는 위치를 바꾸어"
+        ]
+      },
+      "sourceFingerprint": "7fc3fb4e921a8cc7a0735b62c330a6db4ff1633ed3f8072453215378fc037239",
+      "draftEvidence": "evidence/section-098-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "위치"
+      ],
+      "cStudentAfter": "쌓기나무 $2$개로는 모양이 한 가지뿐이지만, □개 이상이면 개수를 그대로 두고 붙이는 □를 바꾸어 다른 모양을 만들 수 있다.",
+      "cMarkedSentence": "쌓기나무 $2$개로는 모양이 한 가지뿐이지만, {$3$}개 이상이면 개수를 그대로 두고 붙이는 {위치}를 바꾸어 다른 모양을 만들 수 있다.",
+      "cStudentSentence": "쌓기나무 $2$개로는 모양이 한 가지뿐이지만, □개 이상이면 개수를 그대로 두고 붙이는 □를 바꾸어 다른 모양을 만들 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "위치",
+          "equivalents": [
+            "자리",
+            "붙이는 위치"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무 $2$개로는 모양이 한 가지뿐입니다. 쌓기나무 개수를 그대로 두고 다른 모양을 만들 수 있으려면 쌓기나무가 적어도 몇 개 필요합니까? 또 다른 모양은 어떻게 만듭니까?",
+        "answer": "쌓기나무가 $3$개 이상 필요하다. 개수는 그대로 두고 붙이는 위치를 바꾸어 만든다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개 이상"
+            ]
+          },
+          {
+            "anyOf": [
+              "붙이는 위치를 바꾼다",
+              "붙이는 자리를 바꾼다",
+              "붙이는 방법을 바꾼다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무 $2$개로는 모양이 한 가지뿐이지만, {$3$}개 이상이면 개수를 그대로 두고 붙이는 {위치}를 바꾸어 다른 모양을 만들 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "위치",
+            "자리",
+            "붙이는 위치"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2d22cd73795358e4c40b3bfcf27c6e9b3527722ed9d8a250eecb4b330b0ca6fd",
+      "questionRevision": "planning-e5e6-20261006-2d22cd737953",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-6-c2",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무끼리 겹치지 않게 두 덩어리를 붙였을 때 전체 쌓기나무 수는 어떻게 구합니까? 한 덩어리가 $3$개, 다른 덩어리가 $4$개일 때 전체 개수도 구하시오.",
+      "bAnswer": "두 덩어리의 쌓기나무 수를 더한다. $3+4=7$이므로 $7$개이다.",
+      "bGoal": "겹치지 않게 붙인 전체 개수는 두 덩어리 개수의 합임을 알고 적용한다.",
+      "bReason": "일반 방법을 묻고 작은 예의 답까지 확인하므로 계산값 하나만 묻는 문항이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 덩어리의 개수를 더한다",
+            "두 덩어리 개수의 합"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$개",
+            "$7$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 {합}이다.",
+      "cReason": "겹치지 않는다는 조건이 문장에 있고 '합'이라는 낱말 하나만 묻는 짧고 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 338,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-6-c2",
+        "section": "초6::2-3 공간과 입체::2-3-6 여러 가지 모양 만들기",
+        "level": "중",
+        "kind": "성질",
+        "term": "합친 모양의 블록 수",
+        "definition": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 {합}이다.",
+        "studentC": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 □이다.",
+        "answers": [
+          "합"
+        ]
+      },
+      "sourceFingerprint": "395ccff762c97eb17c8b402139c2a78b6e260e6f958c99f49261d93df68b54ef",
+      "draftEvidence": "evidence/section-098-draft.json",
+      "cFrozenDefinition": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 {합}이다.",
+      "cFrozenStudentSentence": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 □이다.",
+      "cProposedAnswers": [
+        "합"
+      ],
+      "cStudentAfter": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 {합}이다.",
+      "cStudentSentence": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무끼리 겹치지 않게 두 덩어리를 붙였을 때 전체 쌓기나무 수는 어떻게 구합니까? 한 덩어리가 $3$개, 다른 덩어리가 $4$개일 때 전체 개수도 구하시오.",
+        "answer": "두 덩어리의 쌓기나무 수를 더한다. $3+4=7$이므로 $7$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 덩어리의 개수를 더한다",
+              "두 덩어리 개수의 합"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$개",
+              "$7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 덩어리를 블록끼리 겹치지 않게 붙이면 전체 개수는 두 덩어리 개수의 {합}이다.",
+        "acceptedAnswers": [
+          [
+            "합"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "41bcddc86c90bd76d890a86047f688439c92962d5b0f88b3cac9fcf865964d2c",
+      "questionRevision": "planning-e5e6-20261006-41bcddc86c90",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-6-c3",
+      "bDecision": "revise",
+      "bPrompt": "놓인 방향이 다른 쌓기나무 덩어리 두 개가 같은 모양인지 알아보려면 어떻게 확인합니까?",
+      "bAnswer": "한 덩어리를 돌려서 다른 덩어리와 꼭 맞게 겹쳐지는지 본다. 겹쳐지면 같은 모양이다.",
+      "bGoal": "돌려서 겹쳐 보는 방법으로 같은 모양인지 판단한다.",
+      "bReason": "방향이 달라 보여도 같은 모양일 수 있다는 판단 기준을 방법으로 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 덩어리를 돌려 본다",
+            "돌려서 겹쳐 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭 맞게 겹쳐지면 같은 모양이다",
+            "완전히 포개어지면 같다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "놓인 방향이 달라도 한 덩어리를 돌려 다른 덩어리와 {꼭 맞게} 겹쳐지면 같은 모양이다.",
+      "cReason": "'꼭 맞게 겹칠 수 있으면'은 긴 구절이므로 핵심 조건인 '꼭 맞게'만 빈칸으로 줄였다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭 맞게",
+            "딱 맞게",
+            "완전히",
+            "똑같이"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 339,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-6-c3",
+        "section": "초6::2-3 공간과 입체::2-3-6 여러 가지 모양 만들기",
+        "level": "상",
+        "kind": "방법",
+        "term": "돌려서 모양 비교하기",
+        "definition": "놓인 방향이 달라도 한 덩어리를 돌려 다른 덩어리와 {꼭 맞게 겹칠 수 있으면} 같은 모양이다.",
+        "studentC": "놓인 방향이 달라도 한 덩어리를 돌려 다른 덩어리와 □ 같은 모양이다.",
+        "answers": [
+          "꼭 맞게 겹칠 수 있으면"
+        ]
+      },
+      "sourceFingerprint": "5093c4114221f90bb6a28a1a262563abb2221a40bd6f24cb08a718e160b7a4cb",
+      "draftEvidence": "evidence/section-098-draft.json",
+      "cProposedAnswers": [
+        "꼭 맞게"
+      ],
+      "cStudentAfter": "놓인 방향이 달라도 한 덩어리를 돌려 다른 덩어리와 □ 겹쳐지면 같은 모양이다.",
+      "cMarkedSentence": "놓인 방향이 달라도 한 덩어리를 돌려 다른 덩어리와 {꼭 맞게} 겹쳐지면 같은 모양이다.",
+      "cStudentSentence": "놓인 방향이 달라도 한 덩어리를 돌려 다른 덩어리와 □ 겹쳐지면 같은 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "꼭 맞게",
+          "equivalents": [
+            "딱 맞게",
+            "완전히",
+            "똑같이"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "놓인 방향이 다른 쌓기나무 덩어리 두 개가 같은 모양인지 알아보려면 어떻게 확인합니까?",
+        "answer": "한 덩어리를 돌려서 다른 덩어리와 꼭 맞게 겹쳐지는지 본다. 겹쳐지면 같은 모양이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 덩어리를 돌려 본다",
+              "돌려서 겹쳐 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭 맞게 겹쳐지면 같은 모양이다",
+              "완전히 포개어지면 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "놓인 방향이 달라도 한 덩어리를 돌려 다른 덩어리와 {꼭 맞게} 겹쳐지면 같은 모양이다.",
+        "acceptedAnswers": [
+          [
+            "꼭 맞게",
+            "딱 맞게",
+            "완전히",
+            "똑같이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "16cf2b5846680a58562a3e212a4213b9339e19602f5b5809f16e2d145cbb09be",
+      "questionRevision": "planning-e5e6-20261006-16cf2b584668",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "비의 두 항에 어떤 수를 곱하거나 어떤 수로 나눌 때 두 양의 비율이 변하지 않으려면, 두 항에 어떻게 해야 하는지 쓰시오. 곱하거나 나누는 수의 조건도 쓰시오.",
+      "bAnswer": "두 항에 똑같은 수를 곱하거나 똑같은 수로 나누어야 하고, 그 수는 $0$이 아니어야 한다. 예: $2:3$의 두 항에 $4$를 곱한 $8:12$.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 항에 똑같은 수를 곱하거나 나눈다",
+            "두 항에 같은 수로 곱셈이나 나눗셈을 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 수는 $0$이 아니어야 한다",
+            "$0$은 안 된다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "비의 성질의 핵심 조건인 두 항에 같은 수, 그리고 $0$ 제외를 말한다.",
+      "bReason": "원문은 비의 성질의 정의 그대로이며 조건이 둘이라 일반 관계로 물을 수 있다.",
+      "cDecision": "keep",
+      "cAfter": "비의 두 항을 {$0$이 아닌 같은 수}로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+      "cReason": "두 항에 곱하거나 나누는 수의 조건을 묻는 짧고 명확한 문장이라 그대로 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 340,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-1-c3",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "level": "중",
+        "kind": "성질",
+        "term": "비의 성질",
+        "definition": "비의 두 항을 {$0$이 아닌 같은 수}로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+        "studentC": "비의 두 항을 □로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+        "answers": [
+          "$0$이 아닌 같은 수"
+        ]
+      },
+      "sourceFingerprint": "7ccd255a5a77e9a233bfe290feb51bf10a6e722704c36c9c3c36545e0f1f07fb",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "cFrozenDefinition": "비의 두 항을 {$0$이 아닌 같은 수}로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+      "cFrozenStudentSentence": "비의 두 항을 □로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+      "cProposedAnswers": [
+        "$0$이 아닌 같은 수"
+      ],
+      "cStudentAfter": "비의 두 항을 □로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$이 아닌 같은 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "비의 두 항을 {$0$이 아닌 같은 수}로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+      "cStudentSentence": "비의 두 항을 □로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$이 아닌 같은 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비의 두 항에 어떤 수를 곱하거나 어떤 수로 나눌 때 두 양의 비율이 변하지 않으려면, 두 항에 어떻게 해야 하는지 쓰시오. 곱하거나 나누는 수의 조건도 쓰시오.",
+        "answer": "두 항에 똑같은 수를 곱하거나 똑같은 수로 나누어야 하고, 그 수는 $0$이 아니어야 한다. 예: $2:3$의 두 항에 $4$를 곱한 $8:12$.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 항에 똑같은 수를 곱하거나 나눈다",
+              "두 항에 같은 수로 곱셈이나 나눗셈을 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 수는 $0$이 아니어야 한다",
+              "$0$은 안 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비의 두 항을 {$0$이 아닌 같은 수}로 곱하거나 나누면 두 양의 배 관계는 유지된다.",
+        "acceptedAnswers": [
+          [
+            "$0$이 아닌 같은 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d8827532e6d1b8d804ab4dc6e2c92b763a3eb39780d48ff2f415c15a0eac3327",
+      "questionRevision": "planning-e5e6-20261006-d8827532e6d1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-c4",
+      "bDecision": "revise",
+      "bPrompt": "비 $3:5$의 두 항에 $0$을 곱하면 어떤 비가 되는지 쓰고, 이 비가 처음 비의 비율을 나타내지 못하는 까닭을 설명하시오.",
+      "bAnswer": "$0:0$이 된다. 두 항이 모두 $0$이라서 처음 비율 $\\frac{3}{5}$을 구하거나 나타낼 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0:0$이 된다",
+            "두 항이 모두 $0$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비율을 구할 수 없다",
+            "처음 비의 비율 $\\frac{3}{5}$을 나타낼 수 없다",
+            "처음 비와 같은 관계가 아니다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "$0$을 곱하면 비의 정보가 사라져 비의 성질에 쓸 수 없음을 설명한다.",
+      "bReason": "원문의 기준이 되는 양도 $0$이라는 말은 어려워 구체적인 비 $3:5$로 바꾸어 결과와 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "비 $3:5$의 두 항에 $0$을 곱하면 {$0:0$}이 되어 처음 비의 비율을 {구할 수 없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0:0$",
+            "$0$ 대 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "구할 수 없다",
+            "나타낼 수 없다",
+            "알 수 없다"
+          ]
+        }
+      ],
+      "cReason": "기준이 되는 양이라는 맥락 없는 빈칸을 실제 비의 결과와 결론으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 341,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-1-c4",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "$0$으로 곱하면 안 되는 까닭",
+        "definition": "비의 두 항에 $0$을 곱하면 {기준이 되는 양도 $0$}이 되어 원래의 비율을 나타낼 수 없다.",
+        "studentC": "비의 두 항에 $0$을 곱하면 □이 되어 원래의 비율을 나타낼 수 없다.",
+        "answers": [
+          "기준이 되는 양도 $0$"
+        ]
+      },
+      "sourceFingerprint": "8c3ac157166b21a098990b95f07bb73ddf3db20ebabef53d364a05a832b3a97e",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "cProposedAnswers": [
+        "$0:0$",
+        "구할 수 없다"
+      ],
+      "cStudentAfter": "비 $3:5$의 두 항에 $0$을 곱하면 □이 되어 처음 비의 비율을 □.",
+      "cMarkedSentence": "비 $3:5$의 두 항에 $0$을 곱하면 {$0:0$}이 되어 처음 비의 비율을 {구할 수 없다}.",
+      "cStudentSentence": "비 $3:5$의 두 항에 $0$을 곱하면 □이 되어 처음 비의 비율을 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$0:0$",
+          "equivalents": [
+            "$0$ 대 $0$"
+          ]
+        },
+        {
+          "key": "구할 수 없다",
+          "equivalents": [
+            "나타낼 수 없다",
+            "알 수 없다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $3:5$의 두 항에 $0$을 곱하면 어떤 비가 되는지 쓰고, 이 비가 처음 비의 비율을 나타내지 못하는 까닭을 설명하시오.",
+        "answer": "$0:0$이 된다. 두 항이 모두 $0$이라서 처음 비율 $\\frac{3}{5}$을 구하거나 나타낼 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0:0$이 된다",
+              "두 항이 모두 $0$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율을 구할 수 없다",
+              "처음 비의 비율 $\\frac{3}{5}$을 나타낼 수 없다",
+              "처음 비와 같은 관계가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비 $3:5$의 두 항에 $0$을 곱하면 {$0:0$}이 되어 처음 비의 비율을 {구할 수 없다}.",
+        "acceptedAnswers": [
+          [
+            "$0:0$",
+            "$0$ 대 $0$"
+          ],
+          [
+            "구할 수 없다",
+            "나타낼 수 없다",
+            "알 수 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0d48e709cd8c1fb9591e895323503798442f02c67efe72bd651f4a55590f5695",
+      "questionRevision": "planning-e5e6-20261006-0d48e709cd8c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-c5",
+      "bDecision": "revise",
+      "bPrompt": "비율이 같은 두 비 $2:3$과 $6:9$에서 앞의 수는 몇 배가 되었는지 쓰시오. 뒤의 수는 몇 배가 되어야 하는지, 그 까닭은 무엇인지도 쓰시오.",
+      "bAnswer": "앞의 수 $2$가 $6$이 되어 $3$배이다. 뒤의 수도 같은 $3$배가 되어야 하고($3\\times3=9$), 두 수가 같은 배로 변해야 두 양의 관계가 유지되어 비율이 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 수는 $3$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒤의 수도 $3$배가 되어야 한다",
+            "뒤의 수도 앞의 수와 같은 배가 되어야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 배로 변해야 두 양의 관계가 유지된다",
+            "같은 배로 변해야 비율이 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "비율이 같으려면 두 수가 같은 배로 변해야 함을 설명한다.",
+      "bReason": "원문의 배수 관계를 비 $2:3$과 $6:9$의 구체적 비교로 바꾸되 일반적인 까닭도 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "비율이 같은 두 비 $2:3$과 $8:\\square$에서 앞의 수가 $4$배가 되었다. 뒤의 수도 {같은} 배가 되어야 하므로 $\\square$는 {$12$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은",
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cReason": "긴 빈칸 구절 대신 실제 비로 같은 배 관계와 값을 짧게 답하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 342,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-1-c5",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "비율이 같은 비의 배 관계",
+        "definition": "비율이 같은 두 비에서 서로 대응하는 $0$이 아닌 두 수로 배수를 알면, {나머지 두 수도 같은 배}로 바뀐다. 그래야 {두 양의 배 관계가 유지된다}.",
+        "studentC": "비율이 같은 두 비에서 서로 대응하는 $0$이 아닌 두 수로 배수를 알면, □로 바뀐다. 그래야 □.",
+        "answers": [
+          "나머지 두 수도 같은 배",
+          "두 양의 배 관계가 유지된다"
+        ]
+      },
+      "sourceFingerprint": "7991c9d01357b610e5fac18f629f47e63117e35c479c6b70d5a201363ff6ffab",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "cProposedAnswers": [
+        "같은",
+        "$12$"
+      ],
+      "cStudentAfter": "비율이 같은 두 비 $2:3$과 $8:\\square$에서 앞의 수가 $4$배가 되었다. 뒤의 수도 □ 배가 되어야 하므로 $\\square$는 □이다.",
+      "cMarkedSentence": "비율이 같은 두 비 $2:3$과 $8:\\square$에서 앞의 수가 $4$배가 되었다. 뒤의 수도 {같은} 배가 되어야 하므로 $\\square$는 {$12$}이다.",
+      "cStudentSentence": "비율이 같은 두 비 $2:3$과 $8:\\square$에서 앞의 수가 $4$배가 되었다. 뒤의 수도 □ 배가 되어야 하므로 $\\square$는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은",
+            "$4$"
+          ]
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비율이 같은 두 비 $2:3$과 $6:9$에서 앞의 수는 몇 배가 되었는지 쓰시오. 뒤의 수는 몇 배가 되어야 하는지, 그 까닭은 무엇인지도 쓰시오.",
+        "answer": "앞의 수 $2$가 $6$이 되어 $3$배이다. 뒤의 수도 같은 $3$배가 되어야 하고($3\\times3=9$), 두 수가 같은 배로 변해야 두 양의 관계가 유지되어 비율이 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞의 수는 $3$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒤의 수도 $3$배가 되어야 한다",
+              "뒤의 수도 앞의 수와 같은 배가 되어야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 배로 변해야 두 양의 관계가 유지된다",
+              "같은 배로 변해야 비율이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비율이 같은 두 비 $2:3$과 $8:\\square$에서 앞의 수가 $4$배가 되었다. 뒤의 수도 {같은} 배가 되어야 하므로 $\\square$는 {$12$}이다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은",
+            "$4$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "237a4fc5e5e2cb250f33617b120abd349319d021136c414aa4f7bd35219b473f",
+      "questionRevision": "planning-e5e6-20261006-237a4fc5e5e2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-c6",
+      "bDecision": "revise",
+      "bPrompt": "자연수의 비 $12:18$을 가장 간단한 자연수의 비로 나타내려면 두 수를 어떻게 해야 하는지 쓰시오. 간단히 한 비와 이때 비율이 어떻게 되는지도 쓰시오.",
+      "bAnswer": "두 수를 둘 다 나누어떨어지게 하는 $1$보다 큰 수, 곧 공약수 $6$으로 나눈다. $2:3$이 되고 비율은 변하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수를 공약수로 나눈다",
+            "두 수를 둘 다 나누어떨어지는 같은 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "비율은 같다",
+            "비율은 변하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "공약수로 나누어 비를 간단히 하고 비율이 같음을 안다.",
+      "bReason": "원문의 공약수로 나누기를 실제 비 $12:18$을 간단히 하는 방법으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$12:18$의 두 수를 $6$으로 나누면 {$2:3$}이 된다. 두 비의 비율은 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2:3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "세 빈칸의 긴 설명 대신 실제 식으로 결과 비와 비율 관계만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 343,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-1-c6",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "공약수로 나누기",
+        "definition": "두 자연수의 비에서 두 수를 {$1$보다 큰 공약수}로 나누면, {비율은 같고} 두 수는 각각 {작아진다}.",
+        "studentC": "두 자연수의 비에서 두 수를 □로 나누면, □ 두 수는 각각 □.",
+        "answers": [
+          "$1$보다 큰 공약수",
+          "비율은 같고",
+          "작아진다"
+        ]
+      },
+      "sourceFingerprint": "d29231591209845bf8893dcceb3ba3fa350e29152eea29350170ad94c06c2a71",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "cProposedAnswers": [
+        "$2:3$",
+        "같다"
+      ],
+      "cStudentAfter": "$12:18$의 두 수를 $6$으로 나누면 □이 된다. 두 비의 비율은 □.",
+      "cMarkedSentence": "$12:18$의 두 수를 $6$으로 나누면 {$2:3$}이 된다. 두 비의 비율은 {같다}.",
+      "cStudentSentence": "$12:18$의 두 수를 $6$으로 나누면 □이 된다. 두 비의 비율은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$2:3$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수의 비 $12:18$을 가장 간단한 자연수의 비로 나타내려면 두 수를 어떻게 해야 하는지 쓰시오. 간단히 한 비와 이때 비율이 어떻게 되는지도 쓰시오.",
+        "answer": "두 수를 둘 다 나누어떨어지게 하는 $1$보다 큰 수, 곧 공약수 $6$으로 나눈다. $2:3$이 되고 비율은 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수를 공약수로 나눈다",
+              "두 수를 둘 다 나누어떨어지는 같은 수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율은 같다",
+              "비율은 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12:18$의 두 수를 $6$으로 나누면 {$2:3$}이 된다. 두 비의 비율은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$2:3$"
+          ],
+          [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8006de9bb56fd4311843efafdf9875b9345210b031491c92c6221852676be45f",
+      "questionRevision": "planning-e5e6-20261006-8006de9bb56f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "두 항이 자연수인 비 $12:18$을 가장 간단한 자연수의 비로 정리하려고 한다. 두 항을 어떤 수로 나누어야 하는지, 언제 더 나누지 않아도 되는지 설명하고 결과를 쓰시오.",
+      "bAnswer": "두 항을 $1$이 아닌 공약수로 함께 나눈다. 나눈 두 수의 공약수가 $1$뿐이면 더 나누지 않는다. $12:18=2:3$이다.",
+      "bGoal": "자연수의 비를 공약수로 함께 나누어 정리하고 멈출 때를 아는 방법을 설명한다.",
+      "bReason": "제목만 묻지 않고 나누는 수와 끝내는 조건, 예의 결과를 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 항을 같은 공약수로 나눈다",
+            "두 항을 둘 다 나누어떨어지는 같은 수로 나눈다",
+            "두 항의 최대공약수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눈 두 수의 공약수가 $1$뿐이면 끝난다",
+            "더 나눌 공약수가 없으면 끝난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "비 $12:18$의 두 항을 $6$으로 함께 나누면 {$2:3$}이 된다. $2$와 $3$의 공약수는 {$1$}뿐이므로 더 간단히 할 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2:3$",
+            "$2 : 3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cReason": "원문은 빈칸 답 '공약수'가 바로 뒤 문장에 나와 베끼게 되므로 실제 비로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 344,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-2-c1",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "level": "하",
+        "kind": "방법",
+        "term": "간단한 자연수의 비",
+        "definition": "두 항을 자연수로 나타내고 {공약수}로 함께 나누어 더 작은 수의 비로 정리한다. 공약수가 $1$뿐이면 가장 간단하다.",
+        "studentC": "두 항을 자연수로 나타내고 □로 함께 나누어 더 작은 수의 비로 정리한다. 공약수가 $1$뿐이면 가장 간단하다.",
+        "answers": [
+          "공약수"
+        ]
+      },
+      "sourceFingerprint": "e8434d66ce774b4b4aa26c2a2a19f363b659317a82bb1446b956cf568d34aa69",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "cProposedAnswers": [
+        "$2:3$",
+        "$1$"
+      ],
+      "cStudentAfter": "비 $12:18$의 두 항을 $6$으로 함께 나누면 □이 된다. $2$와 $3$의 공약수는 □뿐이므로 더 간단히 할 수 없다.",
+      "cMarkedSentence": "비 $12:18$의 두 항을 $6$으로 함께 나누면 {$2:3$}이 된다. $2$와 $3$의 공약수는 {$1$}뿐이므로 더 간단히 할 수 없다.",
+      "cStudentSentence": "비 $12:18$의 두 항을 $6$으로 함께 나누면 □이 된다. $2$와 $3$의 공약수는 □뿐이므로 더 간단히 할 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2:3$",
+          "equivalents": [
+            "$2 : 3$"
+          ]
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 항이 자연수인 비 $12:18$을 가장 간단한 자연수의 비로 정리하려고 한다. 두 항을 어떤 수로 나누어야 하는지, 언제 더 나누지 않아도 되는지 설명하고 결과를 쓰시오.",
+        "answer": "두 항을 $1$이 아닌 공약수로 함께 나눈다. 나눈 두 수의 공약수가 $1$뿐이면 더 나누지 않는다. $12:18=2:3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 항을 같은 공약수로 나눈다",
+              "두 항을 둘 다 나누어떨어지는 같은 수로 나눈다",
+              "두 항의 최대공약수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눈 두 수의 공약수가 $1$뿐이면 끝난다",
+              "더 나눌 공약수가 없으면 끝난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비 $12:18$의 두 항을 $6$으로 함께 나누면 {$2:3$}이 된다. $2$와 $3$의 공약수는 {$1$}뿐이므로 더 간단히 할 수 없다.",
+        "acceptedAnswers": [
+          [
+            "$2:3$",
+            "$2 : 3$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "347e95d7112414d09fbc2fbf623b2ecd9c02856b2641b4eb7ef01ae730a8f91f",
+      "questionRevision": "planning-e5e6-20261006-347e95d71124",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "두 항이 소수인 비 $0.6:0.9$를 간단한 자연수의 비로 나타내려고 한다. 소수를 없애기 위해 두 항에 어떻게 해야 하는지, 그다음 무엇을 해야 하는지 설명하고 결과를 쓰시오.",
+      "bAnswer": "두 항에 같은 수 $10$을 곱해 $6:9$로 만든 뒤, 두 수를 최대공약수 $3$으로 나누어 $2:3$으로 나타낸다.",
+      "bGoal": "소수의 비를 같은 수 곱하기와 약분으로 자연수의 비로 바꾸는 과정을 설명한다.",
+      "bReason": "'소수점을 옮긴다'는 암기보다 같은 수를 두 항에 곱하는 과정을 묻는 것이 더 낫다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 항에 같은 수 $10$을 곱한다",
+            "두 항에 $10$을 곱해 자연수로 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수가 된 두 수를 공약수로 나눈다",
+            "자연수가 된 두 수를 최대공약수 $3$으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$0.6:0.9$의 두 항에 같은 수 {$10$}을 곱하면 $6:9$가 되고, 최대공약수 {$3$}으로 나누면 {$2:3$}이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$",
+            "$2 : 3$"
+          ]
+        }
+      ],
+      "cReason": "'오른쪽' 한 낱말보다 실제 곱셈과 약분의 값을 채우게 하는 편이 과정 이해에 맞다.",
+      "exampleNeeded": false,
+      "sourceIndex": 345,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-2-c2",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "level": "중",
+        "kind": "방법",
+        "term": "소수의 비 고치기",
+        "definition": "두 항이 $0$보다 큰 소수인 비를 간단한 자연수의 비로 고치려면 두 항에 같은 $10$, $100$, $1000$ 등을 곱해 소수점을 {오른쪽}으로 옮겨 모두 자연수로 만든 뒤, 최대공약수로 나눈다.",
+        "studentC": "두 항이 $0$보다 큰 소수인 비를 간단한 자연수의 비로 고치려면 두 항에 같은 $10$, $100$, $1000$ 등을 곱해 소수점을 □으로 옮겨 모두 자연수로 만든 뒤, 최대공약수로 나눈다.",
+        "answers": [
+          "오른쪽"
+        ]
+      },
+      "sourceFingerprint": "ade976f41a99526c3adeea6c8838245a2dd012b45cdbc0a3f714cb6e7b25e3cb",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$3$",
+        "$2:3$"
+      ],
+      "cStudentAfter": "$0.6:0.9$의 두 항에 같은 수 □을 곱하면 $6:9$가 되고, 최대공약수 □으로 나누면 □이 된다.",
+      "cMarkedSentence": "$0.6:0.9$의 두 항에 같은 수 {$10$}을 곱하면 $6:9$가 되고, 최대공약수 {$3$}으로 나누면 {$2:3$}이 된다.",
+      "cStudentSentence": "$0.6:0.9$의 두 항에 같은 수 □을 곱하면 $6:9$가 되고, 최대공약수 □으로 나누면 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$2:3$",
+          "equivalents": [
+            "$2 : 3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 항이 소수인 비 $0.6:0.9$를 간단한 자연수의 비로 나타내려고 한다. 소수를 없애기 위해 두 항에 어떻게 해야 하는지, 그다음 무엇을 해야 하는지 설명하고 결과를 쓰시오.",
+        "answer": "두 항에 같은 수 $10$을 곱해 $6:9$로 만든 뒤, 두 수를 최대공약수 $3$으로 나누어 $2:3$으로 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 항에 같은 수 $10$을 곱한다",
+              "두 항에 $10$을 곱해 자연수로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수가 된 두 수를 공약수로 나눈다",
+              "자연수가 된 두 수를 최대공약수 $3$으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.6:0.9$의 두 항에 같은 수 {$10$}을 곱하면 $6:9$가 되고, 최대공약수 {$3$}으로 나누면 {$2:3$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$2:3$",
+            "$2 : 3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8eaf5b64e34a566191710033add9fb2bd29e38b40d2f3a770746c96cff48f4c4",
+      "questionRevision": "planning-e5e6-20261006-8eaf5b64e34a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "분수로 된 비 $\\frac{1}{2}:\\frac{2}{3}$를 자연수의 비로 바꾸려면 두 항에 어떤 수를 곱하면 되는지, 그 수를 분모와 관련지어 설명하고 결과를 쓰시오.",
+      "bAnswer": "두 분모 $2$와 $3$의 공배수인 $6$을 두 항에 곱한다. $\\frac{1}{2}:\\frac{2}{3}=3:4$이다.",
+      "bGoal": "분모의 공배수를 곱해 분수의 비를 자연수의 비로 바꾸는 방법을 안다.",
+      "bReason": "곱하는 수가 왜 분모들과 관련되는지와 구체적인 결과를 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분모의 공배수를 두 항에 곱한다",
+            "분모 $2$와 $3$의 공배수 $6$을 곱한다",
+            "두 분모의 최소공배수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3:4$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 {$3:4$}가 된다. $6$은 분모 $2$와 $3$의 {공배수}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3:4$",
+            "$3 : 4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "공배수",
+            "최소공배수"
+          ]
+        }
+      ],
+      "cReason": "맥락 없는 '□를 곱한다'를 실제 분수의 비와 곱셈으로 바꾸어 판단 근거를 준다.",
+      "exampleNeeded": false,
+      "sourceIndex": 346,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-2-c3",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "level": "상",
+        "kind": "방법",
+        "term": "분수의 비 고치기",
+        "definition": "분수로 된 두 항에 분모들의 {공배수}를 함께 곱하면 자연수의 비로 바꿀 수 있다.",
+        "studentC": "분수로 된 두 항에 분모들의 □를 함께 곱하면 자연수의 비로 바꿀 수 있다.",
+        "answers": [
+          "공배수"
+        ]
+      },
+      "sourceFingerprint": "5aa06f0bc34776b6b5e76a24f7336c813a57a7f2147b8ec5f3c23aa6eb4750fb",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "cProposedAnswers": [
+        "$3:4$",
+        "공배수"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 □가 된다. $6$은 분모 $2$와 $3$의 □이다.",
+      "cMarkedSentence": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 {$3:4$}가 된다. $6$은 분모 $2$와 $3$의 {공배수}이다.",
+      "cStudentSentence": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 □가 된다. $6$은 분모 $2$와 $3$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3:4$",
+          "equivalents": [
+            "$3 : 4$"
+          ]
+        },
+        {
+          "key": "공배수",
+          "equivalents": [
+            "최소공배수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수로 된 비 $\\frac{1}{2}:\\frac{2}{3}$를 자연수의 비로 바꾸려면 두 항에 어떤 수를 곱하면 되는지, 그 수를 분모와 관련지어 설명하고 결과를 쓰시오.",
+        "answer": "두 분모 $2$와 $3$의 공배수인 $6$을 두 항에 곱한다. $\\frac{1}{2}:\\frac{2}{3}=3:4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 분모의 공배수를 두 항에 곱한다",
+              "분모 $2$와 $3$의 공배수 $6$을 곱한다",
+              "두 분모의 최소공배수를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3:4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 {$3:4$}가 된다. $6$은 분모 $2$와 $3$의 {공배수}이다.",
+        "acceptedAnswers": [
+          [
+            "$3:4$",
+            "$3 : 4$"
+          ],
+          [
+            "공배수",
+            "최소공배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2bbc6cc7d8164ea38fae0190e387f7f67eef5a6008c1c9a8e82a6db913a124fb",
+      "questionRevision": "planning-e5e6-20261006-2bbc6cc7d816",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "비례식이란 어떤 식인지 설명하시오. 그리고 비 $2:3$과 $4:6$으로 비례식을 만들어 쓰시오.",
+      "bAnswer": "비율이 같은 두 비를 등호로 연결한 식이다. 예: $2:3=4:6$",
+      "bGoal": "비례식의 뜻을 '비율이 같은 두 비'와 '등호'로 말하고 예를 만든다.",
+      "bReason": "제목만 보고 설명하는 문제를 피하고 뜻과 간단한 예 만들기를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "서로 같은 비율을 나타내는 두 비를 {등호로 연결한 식}이 비례식이다.",
+      "cReason": "비례식의 뜻 문장으로 빈칸이 하나이고 조건이 명확해 그대로 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'등호로 이은 식', '=로 연결한 식'도 같은 뜻이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율이 같은 두 비",
+            "같은 비율을 나타내는 두 비"
+          ]
+        },
+        {
+          "anyOf": [
+            "등호로 연결한 식",
+            "등호로 이은 식",
+            "$=$로 연결한 식"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3=4:6$",
+            "$4:6=2:3$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "sourceIndex": 347,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-3-c1",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "비례식",
+        "definition": "서로 같은 비율을 나타내는 두 비를 {등호로 연결한 식}이 비례식이다.",
+        "studentC": "서로 같은 비율을 나타내는 두 비를 □이 비례식이다.",
+        "answers": [
+          "등호로 연결한 식"
+        ]
+      },
+      "sourceFingerprint": "0a7753c00d3969e02e2ead39f928d36e04bf5d5c89913c6129cb95c1943bf06d",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "cFrozenDefinition": "서로 같은 비율을 나타내는 두 비를 {등호로 연결한 식}이 비례식이다.",
+      "cFrozenStudentSentence": "서로 같은 비율을 나타내는 두 비를 □이 비례식이다.",
+      "cProposedAnswers": [
+        "등호로 연결한 식"
+      ],
+      "cStudentAfter": "서로 같은 비율을 나타내는 두 비를 □이 비례식이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "등호로 연결한 식"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 같은 비율을 나타내는 두 비를 {등호로 연결한 식}이 비례식이다.",
+      "cStudentSentence": "서로 같은 비율을 나타내는 두 비를 □이 비례식이다.",
+      "cSlotAnswers": [
+        {
+          "key": "등호로 연결한 식",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식이란 어떤 식인지 설명하시오. 그리고 비 $2:3$과 $4:6$으로 비례식을 만들어 쓰시오.",
+        "answer": "비율이 같은 두 비를 등호로 연결한 식이다. 예: $2:3=4:6$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 같은 두 비",
+              "같은 비율을 나타내는 두 비"
+            ]
+          },
+          {
+            "anyOf": [
+              "등호로 연결한 식",
+              "등호로 이은 식",
+              "$=$로 연결한 식"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:3=4:6$",
+              "$4:6=2:3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서로 같은 비율을 나타내는 두 비를 {등호로 연결한 식}이 비례식이다.",
+        "acceptedAnswers": [
+          [
+            "등호로 연결한 식"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "97cc6b73fe3b322142eb409dae9772f891e1928c64a18005d40de7017b6b7ae8",
+      "questionRevision": "planning-e5e6-20261006-97cc6b73fe3b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "비례식에서 왼쪽 비의 비율과 오른쪽 비의 비율은 서로 어떤 관계인가? $3:4=6:8$에서 두 비의 비율을 각각 분수로 쓰시오.",
+      "bAnswer": "두 비의 비율은 서로 같다. $3:4$의 비율은 $\\frac{3}{4}$이고, $6:8$의 비율은 $\\frac{6}{8}=\\frac{3}{4}$이다.",
+      "bGoal": "비례식의 두 비율이 같다는 관계를 예로 확인한다.",
+      "bReason": "원문의 '기준량의 몇 배인지' 표현을 비율 비교로 풀어 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 {같다}.",
+      "cReason": "원문 빈칸 '몇 배인지'는 맥락 없이 어색해 구체적인 두 비율 비교로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "서로 같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 비의 비율이 같다",
+            "두 비율이 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$",
+            "$0.75$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "sourceIndex": 348,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-3-c2",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "level": "중",
+        "kind": "정의",
+        "term": "비율",
+        "definition": "비례식의 양쪽 비에서 비교하는 양이 기준량의 {몇 배인지} 나타낸 값은 서로 같다.",
+        "studentC": "비례식의 양쪽 비에서 비교하는 양이 기준량의 □ 나타낸 값은 서로 같다.",
+        "answers": [
+          "몇 배인지"
+        ]
+      },
+      "sourceFingerprint": "dff0fefeddecee4b0e30cba5da9f150351d6f352680e513b03662006378c32e9",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 □.",
+      "cMarkedSentence": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 {같다}.",
+      "cStudentSentence": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "서로 같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식에서 왼쪽 비의 비율과 오른쪽 비의 비율은 서로 어떤 관계인가? $3:4=6:8$에서 두 비의 비율을 각각 분수로 쓰시오.",
+        "answer": "두 비의 비율은 서로 같다. $3:4$의 비율은 $\\frac{3}{4}$이고, $6:8$의 비율은 $\\frac{6}{8}=\\frac{3}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 비의 비율이 같다",
+              "두 비율이 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$",
+              "$0.75$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "서로 같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "060d6da564a2a7e49d0a3e3b8352a31b03f2a4b54dc8c6716a942e441c186325",
+      "questionRevision": "planning-e5e6-20261006-060d6da564a2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "비 $3:5$의 비율을 구하려면 비교하는 양과 기준량 중 어느 것을 어느 것으로 나누어야 하는지 설명하시오. 그리고 $3:5$의 비율을 분수로 쓰시오.",
+      "bAnswer": "비교하는 양을 기준량으로 나눈다. $3:5$에서 기준량은 $5$이므로 비율은 $\\frac{3}{5}$이다.",
+      "bGoal": "비율을 구하는 나눗셈의 방향을 설명하고 적용한다.",
+      "bReason": "계산값만 묻지 않고 어느 수를 나누는지 방법을 말하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+      "cReason": "비율 구하는 방법을 묻는 짧은 문장이고 '기준량으로 나눈'이 핵심 방법이라 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'기준량으로 나눈', '기준량으로 나누어 구한'은 같은 뜻이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비교하는 양을 기준량으로 나눈다",
+            "비교하는 양$\\div$기준량",
+            "기준량으로 비교하는 양을 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$",
+            "$0.6$",
+            "$3\\div5$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 349,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-3-c3",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "level": "중",
+        "kind": "공식",
+        "term": "비율을 구하는 식",
+        "definition": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+        "studentC": "각 비의 비율은 비교하는 양을 □ 값으로 확인한다.",
+        "answers": [
+          "기준량으로 나눈"
+        ]
+      },
+      "sourceFingerprint": "9d6869478dc495f6c4ef849fd8ff6c27d675d86b1a875cf4e4a9d6fc669df9df",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "cFrozenDefinition": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+      "cFrozenStudentSentence": "각 비의 비율은 비교하는 양을 □ 값으로 확인한다.",
+      "cProposedAnswers": [
+        "기준량으로 나눈"
+      ],
+      "cStudentAfter": "각 비의 비율은 비교하는 양을 □ 값으로 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "기준량으로 나눈"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+      "cStudentSentence": "각 비의 비율은 비교하는 양을 □ 값으로 확인한다.",
+      "cSlotAnswers": [
+        {
+          "key": "기준량으로 나눈",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $3:5$의 비율을 구하려면 비교하는 양과 기준량 중 어느 것을 어느 것으로 나누어야 하는지 설명하시오. 그리고 $3:5$의 비율을 분수로 쓰시오.",
+        "answer": "비교하는 양을 기준량으로 나눈다. $3:5$에서 기준량은 $5$이므로 비율은 $\\frac{3}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양을 기준량으로 나눈다",
+              "비교하는 양$\\div$기준량",
+              "기준량으로 비교하는 양을 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{5}$",
+              "$0.6$",
+              "$3\\div5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+        "acceptedAnswers": [
+          [
+            "기준량으로 나눈"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "58145d850410a3f11ef6565bffe3d1962619d65211d57eddfee9e08d780a1e40",
+      "questionRevision": "planning-e5e6-20261006-58145d850410",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-c6",
+      "bDecision": "revise",
+      "bPrompt": "두 비 $4:6$과 $10:15$를 비례식으로 나타낼 수 있는지 알아보는 방법을 설명하고, 실제로 확인한 결과를 쓰시오.",
+      "bAnswer": "두 비를 각각 나눗셈으로 바꾸어 비율을 구하고 같은지 비교한다. $\\frac{4}{6}=\\frac{2}{3}$, $\\frac{10}{15}=\\frac{2}{3}$로 같으므로 $4:6=10:15$로 나타낼 수 있다.",
+      "bGoal": "두 비의 비율을 구해 비교해 비례식 여부를 판별한다.",
+      "bReason": "판별 방법과 예의 결과를 함께 묻는 절차 문항이다.",
+      "cDecision": "keep",
+      "cAfter": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 {같은지} 확인하면 비례식인지 판단할 수 있다.",
+      "cReason": "비율을 구해 같은지 보는 판별 방법을 묻는 짧은 문장으로 조건이 충분하다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 비의 비율을 구해 비교한다",
+            "두 비를 나눗셈으로 바꾸어 값을 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 비율이 $\\frac{2}{3}$로 같다",
+            "비율이 같으므로 비례식이다",
+            "$4:6=10:15$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 350,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-3-c6",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "level": "상",
+        "kind": "방법",
+        "term": "비례식 판별",
+        "definition": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 {같은지} 확인하면 비례식인지 판단할 수 있다.",
+        "studentC": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 □ 확인하면 비례식인지 판단할 수 있다.",
+        "answers": [
+          "같은지"
+        ]
+      },
+      "sourceFingerprint": "67aa01b8e4271872d075d560b172e917a1288aa49e2460202181250ca352f684",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "cFrozenDefinition": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 {같은지} 확인하면 비례식인지 판단할 수 있다.",
+      "cFrozenStudentSentence": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 □ 확인하면 비례식인지 판단할 수 있다.",
+      "cProposedAnswers": [
+        "같은지"
+      ],
+      "cStudentAfter": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 □ 확인하면 비례식인지 판단할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은지"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 {같은지} 확인하면 비례식인지 판단할 수 있다.",
+      "cStudentSentence": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 □ 확인하면 비례식인지 판단할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은지",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 비 $4:6$과 $10:15$를 비례식으로 나타낼 수 있는지 알아보는 방법을 설명하고, 실제로 확인한 결과를 쓰시오.",
+        "answer": "두 비를 각각 나눗셈으로 바꾸어 비율을 구하고 같은지 비교한다. $\\frac{4}{6}=\\frac{2}{3}$, $\\frac{10}{15}=\\frac{2}{3}$로 같으므로 $4:6=10:15$로 나타낼 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 비의 비율을 구해 비교한다",
+              "두 비를 나눗셈으로 바꾸어 값을 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 비율이 $\\frac{2}{3}$로 같다",
+              "비율이 같으므로 비례식이다",
+              "$4:6=10:15$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 비를 각각 나눗셈으로 바꾸어 구한 값이 {같은지} 확인하면 비례식인지 판단할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "같은지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "074683b8e4c96662751554dd35431713b903ff3499bf786723fe8c9f8377d30b",
+      "questionRevision": "planning-e5e6-20261006-074683b8e4c9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-c1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "양 끝의 곱과 가운데의 곱을 각각 구하는 절차를 알기",
+      "bReason": "'각각 곱을 구한다'는 한 낱말뿐인 절차 설명이라 c2의 성질 문항과 xc1·xc2의 위치 문항에 이미 포함된다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '곱'은 문장만 보고도 쉽게 짐작되어 개념 확인 가치가 낮고 c2 C와 겹친다.",
+      "exclusionReason": "c2(두 곱의 관계), xc1·xc2(양 끝/가운데 위치)가 같은 내용을 더 구체적으로 다룬다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "sourceIndex": 351,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-4-c1",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "양 끝의 곱과 가운데의 곱",
+        "definition": "비례식에서는 양 끝 두 수끼리, 가운데 두 수끼리 각각 {곱}을 구한다.",
+        "studentC": "비례식에서는 양 끝 두 수끼리, 가운데 두 수끼리 각각 □을 구한다.",
+        "answers": [
+          "곱"
+        ]
+      },
+      "sourceFingerprint": "e48d4389fc20119b55553347d81d4f1d3cf7e65918cad7a6d49e999c35e0195d",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c2(두 곱의 관계), xc1·xc2(양 끝/가운데 위치)가 같은 내용을 더 구체적으로 다룬다.",
+        "cloze": "c2(두 곱의 관계), xc1·xc2(양 끝/가운데 위치)가 같은 내용을 더 구체적으로 다룬다."
+      },
+      "proposalFingerprint": "f8420de12f112942f58a9a8ea2c6947b88143fd2f3891714d9d6de20f5ce3e3c",
+      "questionRevision": "planning-e5e6-20261006-f8420de12f11",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "비례식이 성립할 때 양 끝 두 수의 곱과 가운데 두 수의 곱 사이에는 어떤 관계가 있는지 쓰시오. 또 $3:4=6:8$에서 두 곱을 각각 구하시오.",
+      "bAnswer": "두 곱은 서로 같다. $3\\times8=24$, $4\\times6=24$이다.",
+      "bGoal": "비례식의 핵심 성질을 일반 관계와 예로 말하기",
+      "bReason": "일반 관계를 먼저 묻고 예의 두 곱을 함께 확인하게 하여 성질의 의미를 점검한다.",
+      "cDecision": "keep",
+      "cAfter": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 {같다}.",
+      "cReason": "'두 곱이 같다'는 비례식 성질의 핵심 비교 문장이고 조건(비례식이 성립)도 문장에 들어 있다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 곱이 같다",
+            "양 끝의 곱과 가운데의 곱이 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱이 모두 $24$이다",
+            "$3\\times8=24$, $4\\times6=24$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "sourceIndex": 352,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-4-c2",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "level": "중",
+        "kind": "성질",
+        "term": "비례식의 성질",
+        "definition": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 {같다}.",
+        "studentC": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "6d31cbe934ee59d59cc0655fc425f6afa69dc15aa9714b5bb4248275f5afa758",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cFrozenDefinition": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 {같다}.",
+      "cFrozenStudentSentence": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 {같다}.",
+      "cStudentSentence": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식이 성립할 때 양 끝 두 수의 곱과 가운데 두 수의 곱 사이에는 어떤 관계가 있는지 쓰시오. 또 $3:4=6:8$에서 두 곱을 각각 구하시오.",
+        "answer": "두 곱은 서로 같다. $3\\times8=24$, $4\\times6=24$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 곱이 같다",
+              "양 끝의 곱과 가운데의 곱이 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 곱이 모두 $24$이다",
+              "$3\\times8=24$, $4\\times6=24$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비례식이 성립하면 양 끝 두 수의 곱과 가운데 두 수의 곱이 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0eff5e681241885f646c477812863fe208f1a9f056798879e5161911e9f1ff45",
+      "questionRevision": "planning-e5e6-20261006-0eff5e681241",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "비례식에서 빈칸이 있을 때, 양 끝의 곱과 가운데의 곱이 같다는 것을 이용해 빈칸을 구하는 방법을 설명하시오. $3:5=\\square:20$에서 $\\square$는 얼마입니까?",
+      "bAnswer": "두 곱을 식으로 쓰면 $5\\times\\square=3\\times20=60$이다. 빈칸에 곱해진 $5$가 $0$이 아니므로 $60$을 $5$로 나누어 $\\square=12$이다.",
+      "bGoal": "두 곱이 같다는 식을 세워 곱셈식에서 빈칸을 나눗셈으로 구하기",
+      "bReason": "절차(곱 식 세우기→나누기)를 설명하게 하고 예의 정확한 값도 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 {나누어} $\\square$를 구한다. 이때 $\\square$는 {$12$}이다.",
+      "cReason": "원문은 '그 수로 □'만 보여 맥락이 약하므로 실제 곱셈식과 구할 값을 제시해 나눗셈 사용을 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어",
+            "나누면",
+            "나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빈칸이 들어간 곱과 다른 쪽 곱이 같다는 식을 세운다",
+            "$5\\times\\square=3\\times20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱해진 수 $5$로 나눈다",
+            "$60$을 $5$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square=12$",
+            "$12$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 353,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-4-c3",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "level": "상",
+        "kind": "방법",
+        "term": "비례식의 빈칸",
+        "definition": "곱의 같음을 이용해 빈칸과 한 수의 곱을 구한 뒤, 그 수가 $0$이 아니면 그 수로 {나누어} 빈칸을 찾는다.",
+        "studentC": "곱의 같음을 이용해 빈칸과 한 수의 곱을 구한 뒤, 그 수가 $0$이 아니면 그 수로 □ 빈칸을 찾는다.",
+        "answers": [
+          "나누어"
+        ]
+      },
+      "sourceFingerprint": "2da338df4c0cca146b6e8251465034bcc1dbaca5a96e856605c8ff140cd01013",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "나누어",
+        "$12$"
+      ],
+      "cStudentAfter": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 □ $\\square$를 구한다. 이때 $\\square$는 □이다.",
+      "cMarkedSentence": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 {나누어} $\\square$를 구한다. 이때 $\\square$는 {$12$}이다.",
+      "cStudentSentence": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 □ $\\square$를 구한다. 이때 $\\square$는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어",
+          "equivalents": [
+            "나누면",
+            "나눈다"
+          ]
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식에서 빈칸이 있을 때, 양 끝의 곱과 가운데의 곱이 같다는 것을 이용해 빈칸을 구하는 방법을 설명하시오. $3:5=\\square:20$에서 $\\square$는 얼마입니까?",
+        "answer": "두 곱을 식으로 쓰면 $5\\times\\square=3\\times20=60$이다. 빈칸에 곱해진 $5$가 $0$이 아니므로 $60$을 $5$로 나누어 $\\square=12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "빈칸이 들어간 곱과 다른 쪽 곱이 같다는 식을 세운다",
+              "$5\\times\\square=3\\times20$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱해진 수 $5$로 나눈다",
+              "$60$을 $5$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square=12$",
+              "$12$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 {나누어} $\\square$를 구한다. 이때 $\\square$는 {$12$}이다.",
+        "acceptedAnswers": [
+          [
+            "나누어",
+            "나누면",
+            "나눈다"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3aab117e420c4707ef3805dbbe7f28bc93dd7c2ab57a95d8fa7c06a39c133976",
+      "questionRevision": "planning-e5e6-20261006-3aab117e420c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "정해진 전체 양을 주어진 비로 나누는 일을 비례배분이라고 한다. 사탕 $20$개를 $2:3$으로 비례배분할 때, 나눈 두 몫이 만족해야 하는 조건을 설명하고 두 몫을 구하세요.",
+      "bAnswer": "나눈 두 몫의 비가 주어진 비 $2:3$과 같아야 한다. 두 몫은 $8$개와 $12$개이다.",
+      "bGoal": "비례배분은 몫들의 비가 주어진 비와 같게 전체를 나누는 일임을 이해한다.",
+      "bReason": "제목만 설명하라는 형태를 버리고, 몫의 비라는 핵심 조건을 예로 확인하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+      "cReason": "짧은 정의 문장이고 몫의 비가 주어진 비와 같다는 조건만 묻는 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눈 두 몫의 비가 주어진 비 $2:3$과 같다",
+            "몫을 간단히 하면 $2:3$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 몫은 $8$개와 $12$개이다",
+            "$8$개, $12$개"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "synonymNotes": "C 답은 '주어진 비와 같게'와 같은 뜻이면 인정한다.",
+      "sourceIndex": 354,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-5-c1",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "level": "하",
+        "kind": "정의",
+        "term": "비례배분",
+        "definition": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+        "studentC": "정해진 전체 양을 나눈 몫들의 비가 □ 나누는 일이 비례배분이다.",
+        "answers": [
+          "주어진 비와 같게"
+        ]
+      },
+      "sourceFingerprint": "7c01e50e25dcdfa40dabe88853471f4d1b5272311b6a5f08923eb293e3d113a4",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cFrozenDefinition": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+      "cFrozenStudentSentence": "정해진 전체 양을 나눈 몫들의 비가 □ 나누는 일이 비례배분이다.",
+      "cProposedAnswers": [
+        "주어진 비와 같게"
+      ],
+      "cStudentAfter": "정해진 전체 양을 나눈 몫들의 비가 □ 나누는 일이 비례배분이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "주어진 비와 같게"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+      "cStudentSentence": "정해진 전체 양을 나눈 몫들의 비가 □ 나누는 일이 비례배분이다.",
+      "cSlotAnswers": [
+        {
+          "key": "주어진 비와 같게",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정해진 전체 양을 주어진 비로 나누는 일을 비례배분이라고 한다. 사탕 $20$개를 $2:3$으로 비례배분할 때, 나눈 두 몫이 만족해야 하는 조건을 설명하고 두 몫을 구하세요.",
+        "answer": "나눈 두 몫의 비가 주어진 비 $2:3$과 같아야 한다. 두 몫은 $8$개와 $12$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눈 두 몫의 비가 주어진 비 $2:3$과 같다",
+              "몫을 간단히 하면 $2:3$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫은 $8$개와 $12$개이다",
+              "$8$개, $12$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+        "acceptedAnswers": [
+          [
+            "주어진 비와 같게"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d70bca426451ca9d5d10b05fe9c5b8b6a5f9a8c7fae8d0441bc0bd719cd12164",
+      "questionRevision": "planning-e5e6-20261006-d70bca426451",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-c2",
+      "bDecision": "revise",
+      "bPrompt": "전체를 두 항의 비로 비례배분할 때, 한 항에 해당하는 몫을 구하는 방법을 설명하세요. 예를 들어 $20$을 $2:3$으로 비례배분할 때 $2$에 해당하는 몫도 구하세요.",
+      "bAnswer": "전체에 (그 항)$\\div$(두 항의 합)을 곱한다. 예에서는 $20\\times\\frac{2}{5}=8$이다.",
+      "bGoal": "한 항에 해당하는 몫을 전체와 두 항의 합으로 구하는 방법을 안다.",
+      "bReason": "기호식을 외우는 대신 구하는 방법을 말하고 예에 적용하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$20$을 $2:3$으로 비례배분할 때, $2$에 해당하는 몫은 $20$에 $2$를 {$5$}로 나눈 값을 곱해 {$8$}이다.",
+      "cReason": "문자식 빈칸은 맥락 없이 어려워 구체 계산으로 바꿨고, 합 $5$와 몫 $8$을 확인하게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체에 $\\frac{\\text{그 항}}{\\text{두 항의 합}}$을 곱한다",
+            "전체를 두 항의 합으로 나눈 뒤 그 항을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$에 해당하는 몫은 $8$이다",
+            "$20\\times\\frac{2}{5}=8$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "sourceIndex": 355,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-5-c2",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "level": "중",
+        "kind": "공식",
+        "term": "비례배분하는 식",
+        "definition": "전체를 비로 나누면 각 몫은 전체에 {(그 항)$\\div$(두 항의 합)}을 곱한 값이다.",
+        "studentC": "전체를 비로 나누면 각 몫은 전체에 □을 곱한 값이다.",
+        "answers": [
+          "(그 항)$\\div$(두 항의 합)"
+        ]
+      },
+      "sourceFingerprint": "18375a1ac6312f99cdb56b75a49a6c7dca08506897571d8667a284433ad2ec8f",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$8$"
+      ],
+      "cStudentAfter": "$20$을 $2:3$으로 비례배분할 때, $2$에 해당하는 몫은 $20$에 $2$를 □로 나눈 값을 곱해 □이다.",
+      "cMarkedSentence": "$20$을 $2:3$으로 비례배분할 때, $2$에 해당하는 몫은 $20$에 $2$를 {$5$}로 나눈 값을 곱해 {$8$}이다.",
+      "cStudentSentence": "$20$을 $2:3$으로 비례배분할 때, $2$에 해당하는 몫은 $20$에 $2$를 □로 나눈 값을 곱해 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체를 두 항의 비로 비례배분할 때, 한 항에 해당하는 몫을 구하는 방법을 설명하세요. 예를 들어 $20$을 $2:3$으로 비례배분할 때 $2$에 해당하는 몫도 구하세요.",
+        "answer": "전체에 (그 항)$\\div$(두 항의 합)을 곱한다. 예에서는 $20\\times\\frac{2}{5}=8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체에 $\\frac{\\text{그 항}}{\\text{두 항의 합}}$을 곱한다",
+              "전체를 두 항의 합으로 나눈 뒤 그 항을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$에 해당하는 몫은 $8$이다",
+              "$20\\times\\frac{2}{5}=8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20$을 $2:3$으로 비례배분할 때, $2$에 해당하는 몫은 $20$에 $2$를 {$5$}로 나눈 값을 곱해 {$8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ab9e5910d25d408a29158a06b3a2cc671202c9bb33b712e9f4f63bd5d04aec42",
+      "questionRevision": "planning-e5e6-20261006-ab9e5910d25d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-c3",
+      "bDecision": "revise",
+      "bPrompt": "전체 $20$을 $2:3$으로 비례배분하려 한다. 전체를 같은 크기의 몇 부분으로 나누어 생각하면 되는지, 두 사람이 각각 몇 부분씩 갖는지 설명하고 한 부분의 크기를 구하세요.",
+      "bAnswer": "전체를 $2+3=5$부분으로 똑같이 나누어 한 사람이 $2$부분, 다른 사람이 $3$부분을 갖는다. 한 부분은 $20\\div5=4$이다.",
+      "bGoal": "비의 두 항의 합이 전체를 나눈 같은 부분의 수임을 설명한다.",
+      "bReason": "'몫'이라는 낯선 표현을 같은 크기 부분으로 풀어 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$2:3$으로 비례배분하면 전체를 똑같이 {$5$}부분으로 나누어 한쪽이 $2$부분, 다른 쪽이 $3$부분을 가진다.",
+      "cReason": "긴 키워드 구절을 외우게 하지 않고 합 $5$를 고르는 계산형 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체를 $5$부분으로 나눈다",
+            "두 항의 합 $2+3=5$부분으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각각 $2$부분과 $3$부분을 갖는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 부분은 $4$이다",
+            "$20\\div5=4$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "sourceIndex": 356,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-5-c3",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "level": "상",
+        "kind": "성질",
+        "term": "전체를 몇 몫으로 보기",
+        "definition": "주어진 비를 자연수의 비로 나타내면, 전체를 {두 항의 합만큼의 같은 크기 몫}으로 보고 각 항만큼 몫을 가진다.",
+        "studentC": "주어진 비를 자연수의 비로 나타내면, 전체를 □으로 보고 각 항만큼 몫을 가진다.",
+        "answers": [
+          "두 항의 합만큼의 같은 크기 몫"
+        ]
+      },
+      "sourceFingerprint": "7b02b6545c01ead47d18e688528adf223f563f1d5e37957fb3ea4d613240bdb8",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "$2:3$으로 비례배분하면 전체를 똑같이 □부분으로 나누어 한쪽이 $2$부분, 다른 쪽이 $3$부분을 가진다.",
+      "cMarkedSentence": "$2:3$으로 비례배분하면 전체를 똑같이 {$5$}부분으로 나누어 한쪽이 $2$부분, 다른 쪽이 $3$부분을 가진다.",
+      "cStudentSentence": "$2:3$으로 비례배분하면 전체를 똑같이 □부분으로 나누어 한쪽이 $2$부분, 다른 쪽이 $3$부분을 가진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체 $20$을 $2:3$으로 비례배분하려 한다. 전체를 같은 크기의 몇 부분으로 나누어 생각하면 되는지, 두 사람이 각각 몇 부분씩 갖는지 설명하고 한 부분의 크기를 구하세요.",
+        "answer": "전체를 $2+3=5$부분으로 똑같이 나누어 한 사람이 $2$부분, 다른 사람이 $3$부분을 갖는다. 한 부분은 $20\\div5=4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체를 $5$부분으로 나눈다",
+              "두 항의 합 $2+3=5$부분으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각각 $2$부분과 $3$부분을 갖는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 부분은 $4$이다",
+              "$20\\div5=4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2:3$으로 비례배분하면 전체를 똑같이 {$5$}부분으로 나누어 한쪽이 $2$부분, 다른 쪽이 $3$부분을 가진다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8de6d99542c48d89d77badc68ae1908ae56682409e7c71895d584b494132bbfc",
+      "questionRevision": "planning-e5e6-20261006-8de6d99542c4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "원에서 '원주'는 어떤 길이를 말하는지 설명하시오.",
+      "bAnswer": "원의 테두리를 한 바퀴 돈 길이이다.",
+      "bGoal": "원주가 원의 테두리 한 바퀴 길이임을 설명한다.",
+      "bReason": "원주의 뜻을 말로 풀어 쓰게 해야 '길이' 한 낱말 채우기보다 개념 이해를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원의 테두리를 한 바퀴 돈 길이",
+            "원의 둘레의 길이",
+            "원의 테두리 한 바퀴의 길이"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "원의 테두리를 한 바퀴 따라 잰 길이를 {원주}라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원주"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '길이'는 자명하므로 용어 자체를 묻도록 바꿔 원주의 뜻과 이름을 연결한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 357,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-5-1-c1",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "원주",
+        "definition": "원의 테두리를 한 바퀴 따라 잰 {길이}를 원주라 한다.",
+        "studentC": "원의 테두리를 한 바퀴 따라 잰 □를 원주라 한다.",
+        "answers": [
+          "길이"
+        ]
+      },
+      "sourceFingerprint": "31b051c6765f2db6d2db2984f614722297d4d80b7c2258a37e090075c8a6226b",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "원주"
+      ],
+      "cStudentAfter": "원의 테두리를 한 바퀴 따라 잰 길이를 □라 한다.",
+      "cMarkedSentence": "원의 테두리를 한 바퀴 따라 잰 길이를 {원주}라 한다.",
+      "cStudentSentence": "원의 테두리를 한 바퀴 따라 잰 길이를 □라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "원주",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원에서 '원주'는 어떤 길이를 말하는지 설명하시오.",
+        "answer": "원의 테두리를 한 바퀴 돈 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원의 테두리를 한 바퀴 돈 길이",
+              "원의 둘레의 길이",
+              "원의 테두리 한 바퀴의 길이"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 테두리를 한 바퀴 따라 잰 길이를 {원주}라 한다.",
+        "acceptedAnswers": [
+          [
+            "원주"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "39df4c3d34921c260906be2217d900ba387d1723fce062c64fe550e0eef97823",
+      "questionRevision": "planning-e5e6-20261006-39df4c3d3492",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "원에서 지름은 어떤 선분인지 설명하시오.",
+      "bAnswer": "원의 중심을 지나 원 위의 두 점을 잇는 선분이다.",
+      "bGoal": "지름의 두 조건(중심을 지남, 원 위의 두 점을 이음)을 설명한다.",
+      "bReason": "중심을 지나야 한다는 조건이 지름과 다른 현을 구별하는 핵심이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원의 중심을 지난다",
+            "중심을 지나는"
+          ]
+        },
+        {
+          "anyOf": [
+            "원 위의 두 점을 잇는 선분",
+            "테두리의 양쪽을 잇는 선분"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "원 안에서 {원의 중심}을 지나 테두리의 양쪽을 잇는 선분이 지름이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원의 중심",
+            "중심"
+          ]
+        }
+      ],
+      "cReason": "'선분'은 거의 자명하므로 지름을 정하는 핵심 조건인 중심 통과를 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 358,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-5-1-c2",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "지름",
+        "definition": "원 안에서 중심을 지나 테두리의 양쪽을 잇는 {선분}이 지름이다.",
+        "studentC": "원 안에서 중심을 지나 테두리의 양쪽을 잇는 □이 지름이다.",
+        "answers": [
+          "선분"
+        ]
+      },
+      "sourceFingerprint": "a3f6b0451afc58f7adcb0c68adebc724de8e05df29c58a443401706816d0dca5",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "원의 중심"
+      ],
+      "cStudentAfter": "원 안에서 □을 지나 테두리의 양쪽을 잇는 선분이 지름이다.",
+      "cMarkedSentence": "원 안에서 {원의 중심}을 지나 테두리의 양쪽을 잇는 선분이 지름이다.",
+      "cStudentSentence": "원 안에서 □을 지나 테두리의 양쪽을 잇는 선분이 지름이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원의 중심",
+          "equivalents": [
+            "중심"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원에서 지름은 어떤 선분인지 설명하시오.",
+        "answer": "원의 중심을 지나 원 위의 두 점을 잇는 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원의 중심을 지난다",
+              "중심을 지나는"
+            ]
+          },
+          {
+            "anyOf": [
+              "원 위의 두 점을 잇는 선분",
+              "테두리의 양쪽을 잇는 선분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원 안에서 {원의 중심}을 지나 테두리의 양쪽을 잇는 선분이 지름이다.",
+        "acceptedAnswers": [
+          [
+            "원의 중심",
+            "중심"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b936ec16c5491b2e44d8edd4f7f380cb7ae0de7c23f1deea0a2790751da9bc0b",
+      "questionRevision": "planning-e5e6-20261006-b936ec16c549",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "원에서 반지름은 어떤 선분인지 쓰고, 같은 원에서 반지름과 지름의 길이 사이에는 어떤 관계가 있는지 설명하시오.",
+      "bAnswer": "반지름은 원의 중심에서 원 위의 한 점까지 이은 선분이고, 지름의 길이는 반지름의 $2$배이다.",
+      "bGoal": "반지름의 뜻과 지름과의 $2$배 관계를 연결한다.",
+      "bReason": "뜻만 묻기보다 이후 원주 계산에서 필요한 지름과 반지름의 관계까지 함께 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원의 중심에서 원 위의 한 점까지 이은 선분",
+            "중심에서 테두리의 한 점까지 곧게 이은 선분"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름은 반지름의 $2$배",
+            "반지름은 지름의 반",
+            "반지름의 길이는 지름의 $\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "한 원에서 지름의 길이는 반지름의 길이의 {$2$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "'선분' 채우기는 가치가 낮아, 같은 원이라는 조건 아래 지름과 반지름의 배 관계를 묻는 문장으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 359,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-5-1-c3",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "반지름",
+        "definition": "원의 중심부터 테두리의 한 점까지 곧게 이은 {선분}이 반지름이다.",
+        "studentC": "원의 중심부터 테두리의 한 점까지 곧게 이은 □이 반지름이다.",
+        "answers": [
+          "선분"
+        ]
+      },
+      "sourceFingerprint": "537661cc2f7c47d117e69f0ddf5878cdbc6200a419ff33cdf8afdad1f2f8f9b6",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "한 원에서 지름의 길이는 반지름의 길이의 □배이다.",
+      "cMarkedSentence": "한 원에서 지름의 길이는 반지름의 길이의 {$2$}배이다.",
+      "cStudentSentence": "한 원에서 지름의 길이는 반지름의 길이의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원에서 반지름은 어떤 선분인지 쓰고, 같은 원에서 반지름과 지름의 길이 사이에는 어떤 관계가 있는지 설명하시오.",
+        "answer": "반지름은 원의 중심에서 원 위의 한 점까지 이은 선분이고, 지름의 길이는 반지름의 $2$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원의 중심에서 원 위의 한 점까지 이은 선분",
+              "중심에서 테두리의 한 점까지 곧게 이은 선분"
+            ]
+          },
+          {
+            "anyOf": [
+              "지름은 반지름의 $2$배",
+              "반지름은 지름의 반",
+              "반지름의 길이는 지름의 $\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 원에서 지름의 길이는 반지름의 길이의 {$2$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "274a108d8fe325c4d9d80bc26db664c60e88bb83817b6fef5f20b395213b8a1e",
+      "questionRevision": "planning-e5e6-20261006-274a108d8fe3",
+      "requiresIndependentReview": true
+    }
+  ]
+}

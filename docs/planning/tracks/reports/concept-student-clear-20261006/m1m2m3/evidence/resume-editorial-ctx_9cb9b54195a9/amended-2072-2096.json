@@ -1,0 +1,1802 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-2072-2096.json",
+  "changes": [
+    {
+      "id": "m1-08-04-xc24",
+      "cAcceptedAnswers": [
+        [
+          "합"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "cReason": "계급의 도수와 직사각형의 높이는 대응하지만 직사각형의 도수라는 말은 성립하지 않아 높이만 받는다."
+    },
+    {
+      "id": "m1-08-05-xc4",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "도수가 가장 큰 계급",
+            "자료가 가장 많이 속한 계급"
+          ]
+        },
+        {
+          "anyOf": [
+            "점의 높이는 그 계급의 도수를 뜻한다"
+          ]
+        }
+      ],
+      "bReason": "질문에서 요구한 점의 높이와 도수의 연결도 기준에 포함한다."
+    },
+    {
+      "id": "m1-08-05-xc9",
+      "cAcceptedAnswers": [
+        [
+          "계급의 크기",
+          "구간의 너비",
+          "계급의 폭",
+          "계급의 너비"
+        ]
+      ],
+      "cReason": "같은 구간의 가로길이를 뜻하는 크기·너비·폭을 인정한다."
+    },
+    {
+      "id": "m1-08-05-xc15",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "계급을 똑같이 나눈다",
+            "계급의 양 끝 값을 같게 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "세로축의 눈금을 같게 한다"
+          ]
+        }
+      ],
+      "bReason": "가로축 눈금만 같아도 계급 경계가 다를 수 있으므로 계급을 같게 나눈다는 조건을 직접 확인한다."
+    },
+    {
+      "id": "m1-08-05-xc16",
+      "cAfter": "도수분포다각형을 가로축에 닿게 하려고 양 끝에 덧붙인 도수 $0$인 계급은 원래 도수분포표의 계급 수를 셀 때 {세지 않는다}.",
+      "cAcceptedAnswers": [
+        [
+          "세지 않는다",
+          "넣지 않는다",
+          "포함하지 않는다"
+        ]
+      ],
+      "cReason": "원래 표의 계급 수라는 범위를 밝혀 덧붙인 계급과 구별한다."
+    },
+    {
+      "id": "m1-08-05-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": null,
+      "bReason": "삼각형의 위치와 잘리고 더해지는 면적을 글만으로 재구성해야 하므로 그림 없는 B에서는 제외한다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cAnswers": null,
+      "cSlotAnswers": null,
+      "cAcceptedAnswers": null,
+      "cSlots": null,
+      "cReason": "실제 도형 없이 잘린 삼각형을 지칭하는 빈칸이며 넓이 같음 문항과도 중복된다.",
+      "exclusionReason": "B·C 제외 제안: 히스토그램과 다각형을 겹친 그림에 잘린 부분과 더한 부분을 표시한 예시가 필요하다. 도형을 제공하는 확장 형식에서 삼각형의 밑변·높이와 넓이 보존을 물을 수 있다.",
+      "exampleNeeded": "같은 폭, 서로 다른 높이의 이웃한 두 직사각형과 윗변의 중점을 잇는 선분을 그리고, 짝을 이루는 두 삼각형을 각각 표시한다.",
+      "coreAfter": "계급의 크기가 같은 히스토그램에 도수분포다각형을 겹치면, 높이가 다른 이웃한 두 계급 사이에서 잘려 나가는 삼각형과 더해지는 삼각형의 넓이는 {같다}. 따라서 다각형과 가로축으로 둘러싸인 넓이는 {직사각형의 넓이의 합}과 같다.",
+      "coreReason": "높이가 같은 경우 삼각형이 생기지 않으므로 서로 다른 높이의 두 계급 사이로 한정한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-08-04-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "히스토그램에서 두 계급의 직사각형만 지워져 있다. 두 계급의 도수의 비가 $2:3$이고 두 도수의 합이 $20$일 때, 두 직사각형의 높이를 구하는 과정과 답을 쓰시오.",
+      "bAnswer": "$2+3=5$이므로 비의 $1$에 해당하는 도수는 $20\\div 5=4$이다. 따라서 두 높이는 $2\\times 4=8$, $3\\times 4=12$이다.",
+      "bGoal": "도수의 비와 합으로 지워진 직사각형의 높이 구하기",
+      "bReason": "'비의 한 몫'이 낯선 말이라 비와 합을 수로 주고 과정을 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$8$과 $12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20\\div 5=4$",
+            "합 $20$을 $2+3$으로 나눈다",
+            "$20\\times\\dfrac{2}{5}$",
+            "$2k+3k=20$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "몇 개 계급의 도수의 비와 그 도수의 합을 알면, 도수의 합을 비의 각 수의 {합}으로 나누어 비의 $1$에 해당하는 도수를 구한 뒤 각 직사각형의 {높이}를 정한다.",
+      "cAnswers": [
+        "합",
+        "높이"
+      ],
+      "cReason": "계급의 도수와 직사각형의 높이는 대응하지만 직사각형의 도수라는 말은 성립하지 않아 높이만 받는다.",
+      "studentLabel": "도수의 비로 높이 구하기",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "도수의 비와 합으로 높이를 구하는 방법",
+      "coreAfter": "히스토그램에서 몇 개 계급의 도수의 비와 그 도수의 합을 알면, 도수의 합을 {비의 각 수의 합}으로 나누어 {비의 $1$}에 해당하는 도수를 구한 뒤 각 계급의 도수(직사각형의 높이)를 정할 수 있다.",
+      "coreReason": "'비의 한 몫'이 중학교 $1$학년 수준에서 뜻이 불분명해 구하는 과정을 풀어 쓴다.",
+      "authorBatch": 24,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2072,
+      "part": "m1plus",
+      "sourceFingerprint": "9ae359ccb10f1f48d49f06f556a74533acb51b0e7646c487b5b015b4dc8e008a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2072
+      },
+      "directReview": null,
+      "coreBeforeRepair": "히스토그램에서 몇 개 계급의 도수의 비와 그 도수의 합을 알면, 도수의 합을 비의 각 수를 더한 값으로 나누어 비의 $1$에 해당하는 도수를 구한 뒤 각 계급의 도수(직사각형의 높이)를 정할 수 있다.",
+      "coreRepairReason": "표지가 없어서 추가함. 원래 핵심어 '비의 한 몫'의 실제 뜻을 {비의 $1$}에 해당하는 도수로 살렸고, 그것을 구하는 나눗수 {비의 각 수의 합}도 표지로 함. 높이가 도수라는 연결은 유지함.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "cMarkedSentence": "몇 개 계급의 도수의 비와 그 도수의 합을 알면, 도수의 합을 비의 각 수의 {합}으로 나누어 비의 $1$에 해당하는 도수를 구한 뒤 각 직사각형의 {높이}를 정한다.",
+      "cSlotAnswers": [
+        "합",
+        "높이"
+      ],
+      "cStudentSentence": "몇 개 계급의 도수의 비와 그 도수의 합을 알면, 도수의 합을 비의 각 수의 □으로 나누어 비의 $1$에 해당하는 도수를 구한 뒤 각 직사각형의 □를 정한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "합",
+          "equivalentAnswers": [
+            "합"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "높이",
+          "accept": [
+            "도수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "합"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "proposalFingerprint": "cf7a3fbd6951947b08dd25fd446b70ee9fba176095c729d3dbfabb7b26ab8b53"
+    },
+    {
+      "id": "m1-08-04-xc25",
+      "bDecision": "rewrite",
+      "bPrompt": "히스토그램에서 가운데에 있는 도수 $0$인 계급을 가로축에서 아예 없애고 양옆의 직사각형을 붙여 그리면 왜 안 되는지 쓰시오.",
+      "bAnswer": "실제로는 떨어져 있는 두 계급이 이어진 것처럼 보이고 가로축에서 계급의 위치가 달라져, 자료의 분포를 잘못 나타내기 때문이다.",
+      "bGoal": "도수가 없는 계급도 가로축에 남겨야 하는 이유 말하기",
+      "bReason": "'보존'이 어려운 말이라 계급을 없애고 붙여 그린 상황의 문제를 묻게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "떨어져 있는 계급이 이어진 것처럼 보인다",
+            "계급의 위치가 달라진다",
+            "가로축의 값이 맞지 않게 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분포를 잘못 나타낸다",
+            "자료가 없는 구간이 있다는 것이 보이지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "히스토그램에서 중간에 있는 도수 {$0$}인 계급을 가로축에서 없애면, 떨어져 있던 양옆 계급이 {붙어} 보여 분포를 잘못 나타내게 된다.",
+      "cAnswers": [
+        "$0$",
+        "붙어"
+      ],
+      "cReason": "'위치 관계'는 통째로 맞히기 어려운 말이라 붙어 보인다는 결과로 바꿨다.",
+      "learningRole": "reason",
+      "roleReason": "도수가 없는 계급을 없애면 안 되는 까닭",
+      "authorBatch": 24,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2073,
+      "part": "m1plus",
+      "sourceFingerprint": "8a48a35fa643c760b6c8b3cf6bf8758d908d18cdffe7f50d0d40cca8ee4f0148",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2073
+      },
+      "directReview": null,
+      "cMarkedSentence": "히스토그램에서 중간에 있는 도수 {$0$}인 계급을 가로축에서 없애면, 떨어져 있던 양옆 계급이 {붙어} 보여 분포를 잘못 나타내게 된다.",
+      "cSlotAnswers": [
+        "$0$",
+        "붙어"
+      ],
+      "cStudentSentence": "히스토그램에서 중간에 있는 도수 □인 계급을 가로축에서 없애면, 떨어져 있던 양옆 계급이 □ 보여 분포를 잘못 나타내게 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "붙어",
+          "equivalentAnswers": [
+            "붙어",
+            "이어져",
+            "맞닿아"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "붙어",
+          "accept": [
+            "이어져",
+            "맞닿아"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "붙어",
+          "이어져",
+          "맞닿아"
+        ]
+      ],
+      "proposalFingerprint": "c63196db04d495e0a140cfdc9c4d0cc91d947569e04c820ea7f6b86eecd29dbc"
+    },
+    {
+      "id": "m1-08-05-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "도수분포다각형에서 한 계급을 나타내는 점의 가로 좌표는 그 계급의 양 끝 값으로 어떻게 구하는지 쓰고, $10$ 이상 $20$ 미만인 계급의 점의 가로 좌표를 구하시오.",
+      "bAnswer": "양 끝 값의 합을 $2$로 나눈다. $(10+20)\\div 2=15$",
+      "bGoal": "계급의 양 끝 값으로 점의 가로 좌표 구하기",
+      "bReason": "어떤 점의 가로 좌표인지 밝히고 구체적인 계급 하나로 확인하게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양 끝 값을 더해 $2$로 나눈다",
+            "양 끝 값의 평균을 구한다",
+            "양 끝 값의 한가운데 값을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 한 계급을 나타내는 점의 가로 좌표는 그 계급의 양 끝 값의 {합}을 {$2$}로 나눈 수이다.",
+      "cAnswers": [
+        "합",
+        "$2$"
+      ],
+      "cReason": "'구간 양 경계'가 중$1$ 용어가 아니고 어떤 그래프의 점인지 없음",
+      "coreAfter": "도수분포다각형에서 한 계급을 나타내는 점의 가로 좌표는 그 계급의 양 끝 값의 {합}을 {$2$}로 나눈 수로 정한다.",
+      "coreReason": "'구간 양 경계'를 학년 용어인 '계급의 양 끝 값'으로 바꾸고 그래프를 밝힘",
+      "studentLabel": "점의 가로 좌표 구하기",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "양 끝 값의 합을 $2$로 나누는 계산 절차",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2074,
+      "part": "m1plus",
+      "sourceFingerprint": "fcc7959dba4cf81ae462d0be31087016e152b48dd794986fc91ce4d6040819ca",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2074
+      },
+      "directReview": null,
+      "coreBeforeRepair": "도수분포다각형에서 한 계급을 나타내는 점의 가로 좌표는 그 계급의 양 끝 값의 합을 $2$로 나눈 수로 정한다.",
+      "coreRepairReason": "표지가 없어서 원래 핵심어 {합}, {$2$}를 되살림. 계급의 가운데 값을 구하는 일반 방법은 그대로 둠.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "cMarkedSentence": "도수분포다각형에서 한 계급을 나타내는 점의 가로 좌표는 그 계급의 양 끝 값의 {합}을 {$2$}로 나눈 수이다.",
+      "cSlotAnswers": [
+        "합",
+        "$2$"
+      ],
+      "cStudentSentence": "도수분포다각형에서 한 계급을 나타내는 점의 가로 좌표는 그 계급의 양 끝 값의 □을 □로 나눈 수이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "합",
+          "equivalentAnswers": [
+            "합"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "합"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "a534a4fbec2fa292edec1a144a18d21f7b268258a31f78939babb8ceb9c8a007"
+    },
+    {
+      "id": "m1-08-05-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "점의 세로 위치가 도수라는 내용이 m1-08-05-c2의 물음과 같음",
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 한 계급의 도수는 그 계급을 나타내는 점의 높이를 {세로축}의 눈금으로 읽어 구한다.",
+      "cAnswers": [
+        "세로축"
+      ],
+      "cReason": "그래프 이름이 없고 답 '높이'는 뜻 없는 낱말 채우기라 읽는 축을 묻게 함",
+      "exclusionReason": "B 제외: m1-08-05-c2(점의 세로 위치=도수)와 학습 목표가 중복됨",
+      "learningRole": "procedure",
+      "roleReason": "점의 높이를 세로축 눈금으로 읽어 도수를 아는 방법",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2075,
+      "part": "m1plus",
+      "sourceFingerprint": "fc5065325b043d3adc78f93f80ebcc30d714bd518c3485c475bb39bb7e36c29c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2075
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "도수분포다각형에서 한 계급의 도수는 그 계급을 나타내는 점의 높이를 {세로축}의 눈금으로 읽어 구한다.",
+      "cSlotAnswers": [
+        "세로축"
+      ],
+      "cStudentSentence": "도수분포다각형에서 한 계급의 도수는 그 계급을 나타내는 점의 높이를 □의 눈금으로 읽어 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "세로축",
+          "equivalentAnswers": [
+            "세로축"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "세로축"
+        ]
+      ],
+      "proposalFingerprint": "1fbe7fafaff444bafa3fa7f9ae97da5564b4688b471b6d0cf112a6a2620864e3"
+    },
+    {
+      "id": "m1-08-05-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "이웃한 점을 선분으로 잇는 내용이 m1-08-05-c1에 이미 들어 있음",
+      "cDecision": "exclude",
+      "cReason": "답 '차례대로'는 수학 내용이 아닌 임의 부사이고 c1 빈칸과 겹침",
+      "exclusionReason": "B 제외: m1-08-05-c1의 그리기 방법과 목표 중복인 조각 제목. C 제외: '차례대로'라는 임의 부사 빈칸이며 c1의 '이웃한 점끼리 선분' 빈칸과 중복",
+      "learningRole": "procedure",
+      "roleReason": "점을 왼쪽부터 선분으로 잇는 그리기 순서",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2076,
+      "part": "m1plus",
+      "sourceFingerprint": "f8b1a9012f65fcc1227bd1747f9d9c5b95c6b8ca1d057d5bb557db43c3e97c9c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2076
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+    },
+    {
+      "id": "m1-08-05-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "도수분포다각형에서 가장 높이 찍힌 점이 나타내는 계급은 자료 전체에서 어떤 계급인지, 점의 높이가 뜻하는 것을 이용해 쓰시오.",
+      "bAnswer": "점의 높이는 그 계급의 도수이므로, 가장 높은 점이 나타내는 계급은 도수가 가장 큰 계급이다.",
+      "bGoal": "가장 높은 점을 도수가 가장 큰 계급으로 해석하기",
+      "bReason": "질문에서 요구한 점의 높이와 도수의 연결도 기준에 포함한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "도수가 가장 큰 계급",
+            "자료가 가장 많이 속한 계급"
+          ]
+        },
+        {
+          "anyOf": [
+            "점의 높이는 그 계급의 도수를 뜻한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 가장 높은 점이 나타내는 계급은 도수가 가장 {큰} 계급이다.",
+      "cAnswers": [
+        "큰"
+      ],
+      "cReason": "어떤 그래프의 점인지가 문장에 없어 그래프 이름만 보탬",
+      "learningRole": "application",
+      "roleReason": "점의 높이를 도수로 읽어 가장 큰 계급을 찾는 해석",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2077,
+      "part": "m1plus",
+      "sourceFingerprint": "98d714a651add0c645eee32e201cac32a3bc75dc44f262b4858d3ed319b94571",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2077
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형에서 가장 높은 점이 나타내는 계급은 도수가 가장 {큰} 계급이다.",
+      "cSlotAnswers": [
+        "큰"
+      ],
+      "cStudentSentence": "도수분포다각형에서 가장 높은 점이 나타내는 계급은 도수가 가장 □ 계급이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰",
+            "많은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "큰",
+          "accept": [
+            "많은"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "큰",
+          "많은"
+        ]
+      ],
+      "proposalFingerprint": "e9840a3aee9a2367f91c6918c1e360db2cadd4c4848d7862033ce5585f0ba13a"
+    },
+    {
+      "id": "m1-08-05-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "높이=도수에서 바로 나오는 사실로 xc4, c2와 같은 것을 다시 묻게 됨",
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 두 계급을 나타내는 점의 높이가 같으면 두 계급의 도수는 서로 {같다}.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cReason": "'한 그래프'가 무엇인지 없어 도수분포다각형임을 밝힘",
+      "exclusionReason": "B 제외: m1-08-05-c2, xc4(점의 높이=도수 해석)와 목표 중복인 단순 확인",
+      "learningRole": "application",
+      "roleReason": "높이가 같은 두 점을 같은 도수로 읽는 해석",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2078,
+      "part": "m1plus",
+      "sourceFingerprint": "f2606f85154b8bdd7d9ab0b05d37fcc7a63e6ab85dd724760233c4d6ce0d4553",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2078
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "도수분포다각형에서 두 계급을 나타내는 점의 높이가 같으면 두 계급의 도수는 서로 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "도수분포다각형에서 두 계급을 나타내는 점의 높이가 같으면 두 계급의 도수는 서로 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "2e681cea26dba5d7d489785e027858ab495584d1525007eff7e10e9ea4a3c3ce"
+    },
+    {
+      "id": "m1-08-05-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "도수분포표에 도수가 $0$인 계급이 있다. 도수분포다각형에서 이 계급을 나타내는 점은 어디에 찍히는지 쓰고, 그 까닭을 쓰시오.",
+      "bAnswer": "가로축 위(그 계급의 한가운데 위치)에 찍힌다. 점의 높이가 그 계급의 도수인데 도수가 $0$이기 때문이다.",
+      "bGoal": "도수가 $0$인 계급의 점의 위치와 까닭 말하기",
+      "bReason": "'자료가 없는 계급'을 도수 $0$인 계급으로 밝히고 위치와 까닭을 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로축 위에 찍힌다",
+            "높이가 $0$인 곳에 찍힌다"
+          ]
+        },
+        {
+          "anyOf": [
+            "점의 높이가 도수이고 도수가 $0$이기 때문"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 도수가 $0$인 계급을 나타내는 점은 {가로축} 위에 찍힌다.",
+      "cAnswers": [
+        "가로축"
+      ],
+      "cReason": "조건($0$)과 결론(가로축)이 모두 빈칸이라 결론만 남김",
+      "learningRole": "application",
+      "roleReason": "도수 $0$을 가로축 위의 점으로 연결하는 해석",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2079,
+      "part": "m1plus",
+      "sourceFingerprint": "401c588484222e5aaa394e1201965e26096e91d50ecfc17cbfc8ffcf8da8f612",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2079
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형에서 도수가 $0$인 계급을 나타내는 점은 {가로축} 위에 찍힌다.",
+      "cSlotAnswers": [
+        "가로축"
+      ],
+      "cStudentSentence": "도수분포다각형에서 도수가 $0$인 계급을 나타내는 점은 □ 위에 찍힌다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "가로축",
+          "equivalentAnswers": [
+            "가로축"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "가로축"
+        ]
+      ],
+      "proposalFingerprint": "c628427e7e51a1ce6ebc626bb2c505cc20a670db7edf396b1de5b3a6109324ea"
+    },
+    {
+      "id": "m1-08-05-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "윗변의 가운데에 점을 찍는 내용은 m1-08-05-c1 물음의 일부임",
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형을 그릴 때 히스토그램의 각 직사각형에서는 윗변의 {가운데}에 점을 찍는다.",
+      "cAnswers": [
+        "가운데"
+      ],
+      "cReason": "'대응하는 점'이 무엇을 위한 점인지 없어 그리는 상황을 밝힘",
+      "exclusionReason": "B 제외: m1-08-05-c1(윗변의 가운데 점 찍기)과 목표 중복인 조각 제목",
+      "learningRole": "procedure",
+      "roleReason": "직사각형 윗변의 가운데에 점을 찍는 그리기 단계",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2080,
+      "part": "m1plus",
+      "sourceFingerprint": "c723d9ced16527958e5aefcf6c83a6c6f1080f62e48e9bf6b91a1df58a2bac29",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2080
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "도수분포다각형을 그릴 때 히스토그램의 각 직사각형에서는 윗변의 {가운데}에 점을 찍는다.",
+      "cSlotAnswers": [
+        "가운데"
+      ],
+      "cStudentSentence": "도수분포다각형을 그릴 때 히스토그램의 각 직사각형에서는 윗변의 □에 점을 찍는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "가운데",
+          "equivalentAnswers": [
+            "가운데",
+            "한가운데",
+            "중점"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "가운데",
+          "accept": [
+            "한가운데",
+            "중점"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "가운데",
+          "한가운데",
+          "중점"
+        ]
+      ],
+      "proposalFingerprint": "5844dd357949ae1f84a20bef273a7d5c268d5d2b18f8c1108810a69114175735"
+    },
+    {
+      "id": "m1-08-05-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "점=도수는 c2, 선분은 도수가 아님은 xc20에서 각각 묻고 있음",
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 각 계급의 도수를 나타내는 것은 {점}의 높이이고, 그 사이를 이은 선분은 분포의 모양을 보여 줄 뿐이다.",
+      "cAnswers": [
+        "점"
+      ],
+      "cReason": "뒤의 '점들을 이은'에서 답을 그대로 베낄 수 있고 그래프 이름도 없음",
+      "exclusionReason": "B 제외: m1-08-05-c2와 m1-08-05-xc20의 물음을 합친 것과 같아 목표 중복",
+      "learningRole": "definition",
+      "roleReason": "도수는 점이, 분포의 모양은 선분이 나타낸다는 구별",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2081,
+      "part": "m1plus",
+      "sourceFingerprint": "b3a81b89114542836a1c482f514d7e5645504b1ed3d666f45c83a1257f79b21e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2081
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "도수분포다각형에서 각 계급의 도수를 나타내는 것은 {점}의 높이이고, 그 사이를 이은 선분은 분포의 모양을 보여 줄 뿐이다.",
+      "cSlotAnswers": [
+        "점"
+      ],
+      "cStudentSentence": "도수분포다각형에서 각 계급의 도수를 나타내는 것은 □의 높이이고, 그 사이를 이은 선분은 분포의 모양을 보여 줄 뿐이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "점",
+          "equivalentAnswers": [
+            "점"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "점"
+        ]
+      ],
+      "proposalFingerprint": "9235a7755df3076200fadd4cd4d311a405147dba4c29ae187bb4970e9d08dd59"
+    },
+    {
+      "id": "m1-08-05-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "각 계급의 구간의 너비가 모두 같은 도수분포다각형에서 이웃한 두 계급을 나타내는 점 사이의 가로 간격은 무엇과 같은지 쓰고, 그 까닭을 쓰시오.",
+      "bAnswer": "계급의 크기와 같다. 각 점은 계급의 한가운데에 있으므로 이웃한 두 계급의 한가운데 사이의 거리는 계급의 크기만큼이다.",
+      "bGoal": "이웃한 점의 가로 간격이 계급의 크기임을 까닭과 함께 말하기",
+      "bReason": "어떤 점 사이의 간격인지 밝히고 낱말 복사를 막으려 까닭을 요구함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "계급의 크기와 같다",
+            "구간의 너비와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 점이 계급의 한가운데에 있기 때문",
+            "이웃한 계급의 가운데끼리는 계급의 크기만큼 떨어져 있다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 각 계급의 구간의 너비가 모두 같으면 이웃한 두 점 사이의 가로 간격은 {계급의 크기}와 같다.",
+      "cAnswers": [
+        "계급의 크기"
+      ],
+      "cReason": "같은 구간의 가로길이를 뜻하는 크기·너비·폭을 인정한다.",
+      "learningRole": "reason",
+      "roleReason": "점이 계급의 가운데라서 간격이 계급의 크기가 되는 까닭",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2082,
+      "part": "m1plus",
+      "sourceFingerprint": "dbb60559ff9f7ae229553cba6a08b74df007fec228b9f525e6f93969cf34b6cf",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2082
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형에서 각 계급의 구간의 너비가 모두 같으면 이웃한 두 점 사이의 가로 간격은 {계급의 크기}와 같다.",
+      "cSlotAnswers": [
+        "계급의 크기"
+      ],
+      "cStudentSentence": "도수분포다각형에서 각 계급의 구간의 너비가 모두 같으면 이웃한 두 점 사이의 가로 간격은 □와 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계급의 크기",
+          "equivalentAnswers": [
+            "계급의 크기",
+            "구간의 너비",
+            "계급의 폭",
+            "계급의 너비"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "계급의 크기",
+          "accept": [
+            "구간의 너비"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "계급의 크기",
+          "구간의 너비",
+          "계급의 폭",
+          "계급의 너비"
+        ]
+      ],
+      "proposalFingerprint": "b823862542c09ee7d9716d56becb6362bfdeb8c4c3be6146ea8c20bfc3602003"
+    },
+    {
+      "id": "m1-08-05-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "계급의 크기가 $10$인 도수분포다각형에서 첫 계급 $20$ 이상 $30$ 미만을 나타내는 점의 가로 위치는 $25$이다. 그래프의 왼쪽 끝을 마무리하려고 더 찍는 점의 가로 위치와 높이를 구하고, 그렇게 정하는 까닭을 쓰시오.",
+      "bAnswer": "가로 위치 $15$, 높이 $0$이다. 첫 계급 앞에 도수가 $0$인 계급 $10$ 이상 $20$ 미만이 있다고 보고 그 가운데에 점을 찍기 때문이다.",
+      "bGoal": "왼쪽 끝 마무리 점의 위치를 구하고 근거 말하기",
+      "bReason": "c3의 일반 방법과 겹치지 않게 구체적인 계급에서 위치를 구하게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로 위치는 $15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이는 $0$",
+            "가로축 위의 점"
+          ]
+        },
+        {
+          "anyOf": [
+            "첫 계급 앞에 도수가 $0$인 계급이 하나 더 있다고 본다",
+            "첫 점에서 계급의 크기 $10$만큼 왼쪽으로 간다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형의 왼쪽 끝은 첫 계급을 나타내는 점에서 {계급의 크기}만큼 왼쪽으로 간 곳에 높이가 {$0$}인 점을 찍어 잇는다.",
+      "cAnswers": [
+        "계급의 크기",
+        "$0$"
+      ],
+      "cReason": "그래프 이름이 없고 답 '계급 폭'이 학년 용어가 아님",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "양 끝 처리 방법을 실제 계급에 적용해 점의 위치 구하기",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2083,
+      "part": "m1plus",
+      "sourceFingerprint": "7a760b2e44051fa1b6a96cdb75e5f48c66fdee5c2f0fefc88e5896c915a4fd3c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2083
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형의 왼쪽 끝은 첫 계급을 나타내는 점에서 {계급의 크기}만큼 왼쪽으로 간 곳에 높이가 {$0$}인 점을 찍어 잇는다.",
+      "cSlotAnswers": [
+        "계급의 크기",
+        "$0$"
+      ],
+      "cStudentSentence": "도수분포다각형의 왼쪽 끝은 첫 계급을 나타내는 점에서 □만큼 왼쪽으로 간 곳에 높이가 □인 점을 찍어 잇는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계급의 크기",
+          "equivalentAnswers": [
+            "계급의 크기",
+            "계급 폭",
+            "계급의 너비"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "계급의 크기",
+          "accept": [
+            "계급 폭",
+            "계급의 너비"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "계급의 크기",
+          "계급 폭",
+          "계급의 너비"
+        ],
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "b98002a2644c247d66b4f79eba9e3397f72f993cfcc9464351fa9038ecad9c7a"
+    },
+    {
+      "id": "m1-08-05-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "xc10의 왼쪽을 오른쪽으로만 바꾼 내용이라 따로 물을 것이 없음",
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형의 오른쪽 끝은 마지막 계급을 나타내는 점에서 {계급의 크기}만큼 오른쪽으로 간 곳에 높이가 {$0$}인 점을 찍어 마무리한다.",
+      "cAnswers": [
+        "계급의 크기",
+        "$0$"
+      ],
+      "cReason": "그래프 이름이 없고 답 '계급 폭'이 학년 용어가 아님",
+      "exclusionReason": "B 제외: m1-08-05-xc10(왼쪽 마무리 점)과 방향만 다른 중복이며 일반 방법은 c3에 있음",
+      "learningRole": "procedure",
+      "roleReason": "마지막 점 오른쪽에 높이 $0$인 점을 더하는 절차",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2084,
+      "part": "m1plus",
+      "sourceFingerprint": "1cf94e48992c57ad6958d324b2b11db3854340f7ca742c3fb0071d7b4d14f29e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2084
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "도수분포다각형의 오른쪽 끝은 마지막 계급을 나타내는 점에서 {계급의 크기}만큼 오른쪽으로 간 곳에 높이가 {$0$}인 점을 찍어 마무리한다.",
+      "cSlotAnswers": [
+        "계급의 크기",
+        "$0$"
+      ],
+      "cStudentSentence": "도수분포다각형의 오른쪽 끝은 마지막 계급을 나타내는 점에서 □만큼 오른쪽으로 간 곳에 높이가 □인 점을 찍어 마무리한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계급의 크기",
+          "equivalentAnswers": [
+            "계급의 크기",
+            "계급 폭",
+            "계급의 너비"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "계급의 크기",
+          "accept": [
+            "계급 폭",
+            "계급의 너비"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "계급의 크기",
+          "계급 폭",
+          "계급의 너비"
+        ],
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "461ff36081c38c7ae7e3a3fd7a7cc7c8df35e6465514a8e519b56fd3d77d85e1"
+    },
+    {
+      "id": "m1-08-05-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "도수분포다각형만 보고 그 자료의 도수의 총합을 구하는 방법을 쓰시오.",
+      "bAnswer": "각 계급을 나타내는 점의 높이(세로 좌표)를 읽어 모두 더한다.",
+      "bGoal": "도수분포다각형에서 도수의 총합 구하는 방법 말하기",
+      "bReason": "'전체 도수 읽기'를 어떤 그래프에서 무엇을 구하는 방법인지로 특정함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 점의 높이를 읽는다",
+            "각 점의 세로 좌표를 읽는다",
+            "각 계급의 도수를 읽는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "읽은 값을 모두 더한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 각 계급을 나타내는 점의 {세로 좌표}를 모두 더하면 도수의 총합이 된다.",
+      "cAnswers": [
+        "세로 좌표"
+      ],
+      "cReason": "어떤 그래프의 점인지가 없어 그래프 이름을 보탬",
+      "learningRole": "procedure",
+      "roleReason": "점의 높이를 모두 더해 도수의 총합을 구하는 방법",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2085,
+      "part": "m1plus",
+      "sourceFingerprint": "ab55850088c73e073393c2c48aaab0e7d8525a39aaf6864874a711868eff47c7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2085
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형에서 각 계급을 나타내는 점의 {세로 좌표}를 모두 더하면 도수의 총합이 된다.",
+      "cSlotAnswers": [
+        "세로 좌표"
+      ],
+      "cStudentSentence": "도수분포다각형에서 각 계급을 나타내는 점의 □를 모두 더하면 도수의 총합이 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "세로 좌표",
+          "equivalentAnswers": [
+            "세로 좌표",
+            "높이",
+            "세로 위치"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "세로 좌표",
+          "accept": [
+            "높이",
+            "세로 위치"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "세로 좌표",
+          "높이",
+          "세로 위치"
+        ]
+      ],
+      "proposalFingerprint": "c51bf44c44b578779bf00d2c04c1aa09ecd1088b80cd87b076d8c45470727212"
+    },
+    {
+      "id": "m1-08-05-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "도수분포다각형에서 이웃한 두 계급의 점을 이은 선분이 오른쪽 아래로 내려가면, 두 계급의 도수에 대해 무엇을 알 수 있는지 쓰시오.",
+      "bAnswer": "오른쪽 계급의 도수가 왼쪽 계급의 도수보다 작다.",
+      "bGoal": "선분의 기울어진 방향으로 두 계급의 도수 비교하기",
+      "bReason": "'내려가는 선분'이 어느 그래프의 어떤 선분인지 밝혀 비교 대상을 특정함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "오른쪽 계급의 도수가 왼쪽 계급의 도수보다 작다",
+            "왼쪽 계급의 도수가 더 크다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 이웃한 두 계급의 점을 이은 선분이 오른쪽 아래로 내려가면 오른쪽 계급의 도수가 왼쪽 계급의 도수보다 {작다}.",
+      "cAnswers": [
+        "작다"
+      ],
+      "cReason": "'뒤 계급'이 어느 쪽인지 모호하여 왼쪽·오른쪽으로 밝힘",
+      "learningRole": "application",
+      "roleReason": "선분의 방향을 두 도수의 크기 비교로 읽는 해석",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2086,
+      "part": "m1plus",
+      "sourceFingerprint": "e3d3f07797e65814fc3c50d3a4bf01a2a3883bd47fc9857235428ce9bccbd8e2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2086
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형에서 이웃한 두 계급의 점을 이은 선분이 오른쪽 아래로 내려가면 오른쪽 계급의 도수가 왼쪽 계급의 도수보다 {작다}.",
+      "cSlotAnswers": [
+        "작다"
+      ],
+      "cStudentSentence": "도수분포다각형에서 이웃한 두 계급의 점을 이은 선분이 오른쪽 아래로 내려가면 오른쪽 계급의 도수가 왼쪽 계급의 도수보다 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작다",
+          "equivalentAnswers": [
+            "작다",
+            "더 작다",
+            "적다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "작다",
+          "accept": [
+            "더 작다",
+            "적다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작다",
+          "더 작다",
+          "적다"
+        ]
+      ],
+      "proposalFingerprint": "bbb80eab624eb24d47d4d40b78019ad7144806690139d2d68b8db8bde5bf3b48"
+    },
+    {
+      "id": "m1-08-05-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "계급의 크기가 $10$인 도수분포다각형에서 어떤 점의 가로 위치가 $35$이다. 이 점이 나타내는 계급의 양 끝 값을 찾는 방법을 쓰고, 그 계급을 구하시오.",
+      "bAnswer": "점의 가로 위치에서 계급의 크기의 절반인 $5$를 빼고 더한다. $35-5=30$, $35+5=40$이므로 $30$ 이상 $40$ 미만이다.",
+      "bGoal": "점의 가로 위치로 계급의 양 끝 값 찾기",
+      "bReason": "방법이 추상적이어서 계급의 크기와 점의 위치를 준 예로 확인하게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "계급의 크기의 절반을 빼고 더한다",
+            "$5$를 빼고 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30$ 이상 $40$ 미만",
+            "양 끝 값은 $30$과 $40$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 점의 가로 좌표에 계급의 크기의 {절반}을 빼고 더하면 그 점이 나타내는 계급의 양 끝 값을 알 수 있다.",
+      "cAnswers": [
+        "절반"
+      ],
+      "cReason": "'계급 폭', '양 경계'가 학년 용어가 아니고 그래프 이름이 없음",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "가로 위치에서 계급의 크기의 절반을 빼고 더하는 절차",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2087,
+      "part": "m1plus",
+      "sourceFingerprint": "7e27f5fc6b8f7359ee3c3b6f2d6797db64f3eb49cc8ca1acb53633c2723c6cab",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2087
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형에서 점의 가로 좌표에 계급의 크기의 {절반}을 빼고 더하면 그 점이 나타내는 계급의 양 끝 값을 알 수 있다.",
+      "cSlotAnswers": [
+        "절반"
+      ],
+      "cStudentSentence": "도수분포다각형에서 점의 가로 좌표에 계급의 크기의 □을 빼고 더하면 그 점이 나타내는 계급의 양 끝 값을 알 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "절반",
+          "equivalentAnswers": [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "절반",
+          "accept": [
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "절반",
+          "반",
+          "$\\frac{1}{2}$"
+        ]
+      ],
+      "proposalFingerprint": "64eb73c56a2d44a089f0b99e80c7d9d9c9f8c9ce928738ad9f880200ea8967ed"
+    },
+    {
+      "id": "m1-08-05-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "두 자료의 도수분포다각형을 한 그래프에 겹쳐 그려 분포를 비교하려고 한다. 두 그래프에서 서로 같게 맞추어야 하는 것 두 가지를 쓰시오.",
+      "bAnswer": "계급(계급의 양 끝 값)을 똑같이 나누고, 세로축의 눈금을 같게 맞춘다.",
+      "bGoal": "두 분포를 겹쳐 비교할 때 맞출 조건 말하기",
+      "bReason": "가로축 눈금만 같아도 계급 경계가 다를 수 있으므로 계급을 같게 나눈다는 조건을 직접 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "계급을 똑같이 나눈다",
+            "계급의 양 끝 값을 같게 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "세로축의 눈금을 같게 한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 자료의 도수분포다각형을 한 그래프에 겹쳐 비교할 때는 두 자료의 {계급}을 똑같이 나누고 {세로축}의 눈금도 같게 맞춘다.",
+      "cAnswers": [
+        "계급",
+        "세로축"
+      ],
+      "cReason": "'계급의 □'에 크기·경계가 모두 들어갈 수 있어 답이 갈림",
+      "learningRole": "procedure",
+      "roleReason": "겹쳐 그리기 전에 계급과 세로축 눈금을 맞추는 준비",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2088,
+      "part": "m1plus",
+      "sourceFingerprint": "970f5e08b04771a345f809d24f9cb333067d4400b8b0fa7ce548c3400a76fc0f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2088
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 자료의 도수분포다각형을 한 그래프에 겹쳐 비교할 때는 두 자료의 {계급}을 똑같이 나누고 {세로축}의 눈금도 같게 맞춘다.",
+      "cSlotAnswers": [
+        "계급",
+        "세로축"
+      ],
+      "cStudentSentence": "두 자료의 도수분포다각형을 한 그래프에 겹쳐 비교할 때는 두 자료의 □을 똑같이 나누고 □의 눈금도 같게 맞춘다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계급",
+          "equivalentAnswers": [
+            "계급"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "세로축",
+          "equivalentAnswers": [
+            "세로축"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "계급"
+        ],
+        [
+          "세로축"
+        ]
+      ],
+      "proposalFingerprint": "433654e08fbf92f5bcf00e75729591cc7989d53f310e4d73bfe66daa112eba6e"
+    },
+    {
+      "id": "m1-08-05-xc16",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "덧붙인 계급을 세지 않는다는 내용을 xc19가 함께 다루고 있음",
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형을 가로축에 닿게 하려고 양 끝에 덧붙인 도수 $0$인 계급은 원래 도수분포표의 계급 수를 셀 때 {세지 않는다}.",
+      "cAnswers": [
+        "세지 않는다"
+      ],
+      "cReason": "원래 표의 계급 수라는 범위를 밝혀 덧붙인 계급과 구별한다.",
+      "exclusionReason": "B 제외: m1-08-05-xc19(계급의 개수 세기)가 같은 내용을 포함해 목표 중복",
+      "learningRole": "definition",
+      "roleReason": "덧붙인 양 끝 계급은 계급의 개수에 넣지 않는다는 약속",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2089,
+      "part": "m1plus",
+      "sourceFingerprint": "6171e7f2397e4631269a1ef05a6f01d9cf266891f3f638849a585297d4139e79",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2089
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "도수분포다각형을 가로축에 닿게 하려고 양 끝에 덧붙인 도수 $0$인 계급은 원래 도수분포표의 계급 수를 셀 때 {세지 않는다}.",
+      "cSlotAnswers": [
+        "세지 않는다"
+      ],
+      "cStudentSentence": "도수분포다각형을 가로축에 닿게 하려고 양 끝에 덧붙인 도수 $0$인 계급은 원래 도수분포표의 계급 수를 셀 때 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "세지 않는다",
+          "equivalentAnswers": [
+            "세지 않는다",
+            "넣지 않는다",
+            "포함하지 않는다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "세지 않는다",
+          "accept": [
+            "넣지 않는다",
+            "포함하지 않는다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "세지 않는다",
+          "넣지 않는다",
+          "포함하지 않는다"
+        ]
+      ],
+      "proposalFingerprint": "57857be3a00fb8825650c462ffa8c4826984cdb029b0f97e17522635eb6afac4"
+    },
+    {
+      "id": "m1-08-05-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "두 넓이가 같은 까닭을 삼각형의 넓이로 설명하기",
+      "bReason": "삼각형의 위치와 잘리고 더해지는 면적을 글만으로 재구성해야 하므로 그림 없는 B에서는 제외한다.",
+      "bRequiredIdeas": null,
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cAnswers": null,
+      "cReason": "실제 도형 없이 잘린 삼각형을 지칭하는 빈칸이며 넓이 같음 문항과도 중복된다.",
+      "coreAfter": "계급의 크기가 같은 히스토그램에 도수분포다각형을 겹치면, 높이가 다른 이웃한 두 계급 사이에서 잘려 나가는 삼각형과 더해지는 삼각형의 넓이는 {같다}. 따라서 다각형과 가로축으로 둘러싸인 넓이는 {직사각형의 넓이의 합}과 같다.",
+      "coreReason": "높이가 같은 경우 삼각형이 생기지 않으므로 서로 다른 높이의 두 계급 사이로 한정한다.",
+      "learningRole": "reason",
+      "roleReason": "잘린 삼각형과 생긴 삼각형의 넓이가 같다는 근거",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2090,
+      "part": "m1plus",
+      "sourceFingerprint": "c9d832f84dd2f571315c51e7a52a126a0c71bb1a63db2253af22052fc2db786b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2090
+      },
+      "directReview": null,
+      "coreBeforeRepair": "계급의 크기가 같은 히스토그램에 도수분포다각형을 겹쳐 그리면, 선분 위로 잘려 나가는 삼각형과 선분 아래에 새로 생기는 삼각형의 넓이가 서로 같아서 도수분포다각형과 가로축으로 둘러싸인 넓이는 직사각형의 넓이의 합과 같다.",
+      "coreRepairReason": "표지가 없어서 원래 핵심어 {같아서}를 되살림. '보존된다'의 실제 뜻인 {직사각형의 넓이의 합}과 같다는 결론을 표지로 더함. 삼각형이 맞으려면 필요한 계급의 크기 조건은 유지함.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "cMarkedSentence": null,
+      "cSlotAnswers": null,
+      "cStudentSentence": null,
+      "cSlots": null,
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": null,
+      "proposalFingerprint": "2dd83f91a4791f7803a1d6f5458c2f24a0871378af515659bdf31194ad734bd8",
+      "exclusionReason": "B·C 제외 제안: 히스토그램과 다각형을 겹친 그림에 잘린 부분과 더한 부분을 표시한 예시가 필요하다. 도형을 제공하는 확장 형식에서 삼각형의 밑변·높이와 넓이 보존을 물을 수 있다.",
+      "exampleNeeded": "같은 폭, 서로 다른 높이의 이웃한 두 직사각형과 윗변의 중점을 잇는 선분을 그리고, 짝을 이루는 두 삼각형을 각각 표시한다."
+    },
+    {
+      "id": "m1-08-05-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "계급의 크기가 모두 같은 도수분포다각형에서 그래프와 가로축으로 둘러싸인 부분의 넓이를 알고 있다. 이 넓이로 도수의 총합을 구하는 방법을 쓰고, 그 까닭을 쓰시오.",
+      "bAnswer": "넓이를 계급의 크기로 나눈다. 이 넓이는 히스토그램의 직사각형의 넓이의 합과 같고, 그 합은 (계급의 크기)$\\times$(도수의 총합)이기 때문이다.",
+      "bGoal": "넓이에서 도수의 총합을 구하는 방법과 근거 말하기",
+      "bReason": "어떤 그래프의 넓이인지와 계급의 크기 조건을 밝히고 근거까지 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이를 계급의 크기로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이는 계급의 크기와 도수의 총합의 곱이다",
+            "직사각형의 넓이의 합이 (계급의 크기)$\\times$(도수의 총합)이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "계급의 크기가 모두 같은 도수분포다각형과 가로축으로 둘러싸인 부분의 넓이를 계급의 크기로 나누면 {도수의 총합}을 구할 수 있다.",
+      "cAnswers": [
+        "도수의 총합"
+      ],
+      "cReason": "'양 끝을 가로축에 이은 그래프'가 무엇인지와 조건이 없어 밝힘",
+      "coreAfter": "계급의 크기가 모두 같을 때, 도수분포다각형과 가로축으로 둘러싸인 부분의 넓이를 {계급의 크기}로 나누면 {도수의 총합}을 구할 수 있다.",
+      "coreReason": "그래프 이름과 계급의 크기가 같다는 조건이 빠져 있어 보충함",
+      "learningRole": "procedure",
+      "roleReason": "넓이를 계급의 크기로 나누어 도수의 총합을 구하는 방법",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2091,
+      "part": "m1plus",
+      "sourceFingerprint": "284f45bfb67f5644bfd75fc17e2fed1f3286660997c6274e28c1728694bb8104",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2091
+      },
+      "directReview": null,
+      "coreBeforeRepair": "계급의 크기가 모두 같은 도수분포다각형과 가로축으로 둘러싸인 부분의 넓이를 계급의 크기로 나누면 도수의 총합을 구할 수 있다.",
+      "coreRepairReason": "표지가 없어서 원래 핵심어 {계급의 크기}를 되살림. 구하는 대상인 '전체 도수'는 학년 용어 {도수의 총합}으로 표시함.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "cMarkedSentence": "계급의 크기가 모두 같은 도수분포다각형과 가로축으로 둘러싸인 부분의 넓이를 계급의 크기로 나누면 {도수의 총합}을 구할 수 있다.",
+      "cSlotAnswers": [
+        "도수의 총합"
+      ],
+      "cStudentSentence": "계급의 크기가 모두 같은 도수분포다각형과 가로축으로 둘러싸인 부분의 넓이를 계급의 크기로 나누면 □을 구할 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "도수의 총합",
+          "equivalentAnswers": [
+            "도수의 총합",
+            "전체 도수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "도수의 총합",
+          "accept": [
+            "전체 도수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "도수의 총합",
+          "전체 도수"
+        ]
+      ],
+      "proposalFingerprint": "b8f89e4254fb9583cae3e73526841bed04367c8b261dc9634d801f7d6f1f67af"
+    },
+    {
+      "id": "m1-08-05-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "도수분포다각형에 점이 모두 $7$개 찍혀 있다. 양 끝의 두 점은 그래프를 가로축에 닿게 하려고 덧붙인 점이고, 그 사이의 점 가운데 하나는 높이가 $0$이다. 이 자료의 도수분포표에 있는 계급의 개수를 구하고, 까닭을 쓰시오.",
+      "bAnswer": "$5$개이다. 양 끝에 덧붙인 두 계급은 표에 없으므로 세지 않고, 사이에 있는 도수가 $0$인 계급은 표에 있는 계급이므로 센다.",
+      "bGoal": "덧붙인 계급과 실제 도수 $0$인 계급을 구별해 계급의 개수 세기",
+      "bReason": "두 종류의 높이 $0$인 점이 섞인 상황을 주어야 구별을 확인할 수 있음",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "양 끝에 덧붙인 계급은 세지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "표에 있는 도수가 $0$인 계급은 센다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 계급의 개수를 셀 때, 양 끝에 덧붙인 계급은 빼지만 도수분포표에 원래 있는 도수가 $0$인 계급은 {센다}.",
+      "cAnswers": [
+        "센다"
+      ],
+      "cReason": "조건($0$)과 결론이 모두 빈칸이고 무엇을 세는지도 문장에 없음",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "덧붙인 점과 실제 빈 계급을 구별해 계급의 개수 세기",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2092,
+      "part": "m1plus",
+      "sourceFingerprint": "d99f8948c8889e8f1cc19c9e17b304da11aef840d5623c1be39c742386ec7394",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2092
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형에서 계급의 개수를 셀 때, 양 끝에 덧붙인 계급은 빼지만 도수분포표에 원래 있는 도수가 $0$인 계급은 {센다}.",
+      "cSlotAnswers": [
+        "센다"
+      ],
+      "cStudentSentence": "도수분포다각형에서 계급의 개수를 셀 때, 양 끝에 덧붙인 계급은 빼지만 도수분포표에 원래 있는 도수가 $0$인 계급은 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "센다",
+          "equivalentAnswers": [
+            "센다",
+            "포함한다",
+            "넣는다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "센다",
+          "accept": [
+            "포함한다",
+            "넣는다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "센다",
+          "포함한다",
+          "넣는다"
+        ]
+      ],
+      "proposalFingerprint": "bd9c857b083a03cfa7d635e86a81986f6a51d469f11a17128ee3a91774e94d06"
+    },
+    {
+      "id": "m1-08-05-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "도수분포다각형에서 이웃한 두 계급의 점의 높이가 각각 $4$, $8$이다. 두 점을 이은 선분의 한가운데 높이는 $6$인데, 이를 보고 도수가 $6$인 계급이 있다고 할 수 있는지 판단하고 까닭을 쓰시오.",
+      "bAnswer": "할 수 없다. 도수를 나타내는 것은 각 계급의 점뿐이고, 선분은 점을 이어 분포의 모양을 보여 줄 뿐이어서 선분 중간의 높이는 어떤 계급의 도수도 아니다.",
+      "bGoal": "선분 위의 높이를 도수로 읽지 않는 까닭 설명하기",
+      "bReason": "'선분 위의 중간 점'을 구체적인 높이로 주어 오해를 직접 판단하게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "도수를 나타내는 것은 각 계급의 점뿐이다",
+            "선분 중간의 높이는 어떤 계급의 도수도 아니다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "도수분포다각형에서 이웃한 두 점을 이은 선분의 중간 높이는 어떤 계급의 {도수}도 나타내지 않는다.",
+      "cAnswers": [
+        "도수"
+      ],
+      "cReason": "'새로 조사한 도수'가 어려운 표현이고 답 '읽지 않는다'가 임의 구절임",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "선분은 점을 이은 것일 뿐 도수가 아니라는 근거",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2093,
+      "part": "m1plus",
+      "sourceFingerprint": "a899abfecd5fc18fc686636e74f6671d24cd00cf039050e96af45366baf52e23",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2093
+      },
+      "directReview": null,
+      "cMarkedSentence": "도수분포다각형에서 이웃한 두 점을 이은 선분의 중간 높이는 어떤 계급의 {도수}도 나타내지 않는다.",
+      "cSlotAnswers": [
+        "도수"
+      ],
+      "cStudentSentence": "도수분포다각형에서 이웃한 두 점을 이은 선분의 중간 높이는 어떤 계급의 □도 나타내지 않는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "도수",
+          "equivalentAnswers": [
+            "도수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "도수"
+        ]
+      ],
+      "proposalFingerprint": "59dae6d4aecfbe1f5e8a3e1d01663c92f9d50c085baf16a4c5e1ed1ae98dec9c"
+    },
+    {
+      "id": "m1-08-05-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "두 반 $A$, $B$의 도수분포다각형을 겹쳐 그렸더니 가장 높은 점은 $A$반이 $B$반보다 높았다. 이것만으로 $A$반의 도수의 총합이 $B$반보다 크다고 할 수 있는지 판단하고 까닭을 쓰시오.",
+      "bAnswer": "할 수 없다. 도수의 총합은 모든 계급의 도수를 더한 값이므로, $A$반의 다른 계급들의 도수가 작으면 총합은 $B$반보다 작을 수 있다.",
+      "bGoal": "가장 높은 점만으로 도수의 총합을 비교할 수 없음을 설명하기",
+      "bReason": "'꼭대기'가 무엇이고 무엇을 비교하는지 두 반의 상황으로 밝힘",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "도수의 총합은 모든 계급의 도수를 더한 값이다",
+            "다른 계급들의 도수가 작으면 총합이 더 작을 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 도수분포다각형을 비교할 때 가장 높은 점이 더 높은 쪽이라도 다른 계급들의 도수가 작으면 도수의 총합은 더 {작을} 수 있다.",
+      "cAnswers": [
+        "작을"
+      ],
+      "cReason": "두 그래프를 비교하는 상황이 문장에 없어 '더 높아도'의 대상이 없음",
+      "learningRole": "reason",
+      "roleReason": "총합은 모든 계급의 도수의 합이라는 근거로 판단",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2094,
+      "part": "m1plus",
+      "sourceFingerprint": "53f5088fde4d980d4acf4e400f36c4365b8a582e3a2febf2cf5fbeb987c1145a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2094
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 도수분포다각형을 비교할 때 가장 높은 점이 더 높은 쪽이라도 다른 계급들의 도수가 작으면 도수의 총합은 더 {작을} 수 있다.",
+      "cSlotAnswers": [
+        "작을"
+      ],
+      "cStudentSentence": "두 도수분포다각형을 비교할 때 가장 높은 점이 더 높은 쪽이라도 다른 계급들의 도수가 작으면 도수의 총합은 더 □ 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작을",
+          "equivalentAnswers": [
+            "작을"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작을"
+        ]
+      ],
+      "proposalFingerprint": "f113d70f9e0f3417751c9acb8750a8e07ffa59be39ec151bc18ee22027f37928"
+    },
+    {
+      "id": "m1-08-05-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "두 자료는 계급의 크기가 같고 도수의 총합도 같지만 각 계급의 도수는 서로 다르다. 두 자료의 도수분포다각형이 각각 가로축과 둘러싸는 부분의 넓이를 비교하고, 그 까닭을 쓰시오.",
+      "bAnswer": "두 넓이는 같다. 넓이는 (계급의 크기)$\\times$(도수의 총합)인데 두 값이 모두 같기 때문이다.",
+      "bGoal": "계급의 크기와 도수의 총합이 같을 때 넓이 비교하기",
+      "bReason": "무엇의 넓이를 비교하는지와 같은 조건·다른 조건을 질문에 밝힘",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 넓이는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이는 계급의 크기와 도수의 총합의 곱이다",
+            "넓이는 계급의 크기와 도수의 총합으로 정해진다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 도수분포다각형에서 계급의 크기와 도수의 총합이 각각 같으면, 각 계급의 도수가 달라도 그래프와 가로축으로 둘러싸인 넓이는 서로 {같다}.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cReason": "'그래프 아래의 전체 넓이'가 어떤 그래프의 어느 부분인지 없음",
+      "learningRole": "application",
+      "roleReason": "넓이가 계급의 크기와 도수의 총합의 곱임을 써서 비교",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2095,
+      "part": "m1plus",
+      "sourceFingerprint": "101de8c8dd751e9a40cb32c60f834dd781f1e69b7f0662a52fdd2f39e1b5672c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2095
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 도수분포다각형에서 계급의 크기와 도수의 총합이 각각 같으면, 각 계급의 도수가 달라도 그래프와 가로축으로 둘러싸인 넓이는 서로 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "두 도수분포다각형에서 계급의 크기와 도수의 총합이 각각 같으면, 각 계급의 도수가 달라도 그래프와 가로축으로 둘러싸인 넓이는 서로 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "bc42deaab767bd87a9964a18d35f15a63fb82e45f9ea4740af385aa991354956"
+    },
+    {
+      "id": "m1-08-05-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "계급의 크기는 그대로 두고 모든 계급의 도수를 $2$배로 하면, 도수분포다각형에서 각 점의 높이와 그래프가 가로축과 둘러싸는 부분의 넓이는 각각 몇 배가 되는지 쓰고, 넓이가 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "점의 높이와 넓이 모두 $2$배가 된다. 넓이는 (계급의 크기)$\\times$(도수의 총합)인데 도수의 총합이 $2$배가 되기 때문이다.",
+      "bGoal": "도수를 같은 배로 늘릴 때 높이와 넓이의 변화 말하기",
+      "bReason": "'그림의 높이 확대'가 무엇을 바꾸는 상황인지 $2$배의 예로 밝힘",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 점의 높이가 $2$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이가 $2$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "도수의 총합이 $2$배가 되기 때문",
+            "가로는 그대로이고 높이만 $2$배가 되기 때문"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "계급의 크기는 그대로 두고 모든 계급의 도수를 같은 배로 늘리면, 도수분포다각형의 각 점의 {높이}와 그래프가 가로축과 둘러싸는 {넓이}도 그와 같은 배가 된다.",
+      "cAnswers": [
+        "높이",
+        "넓이"
+      ],
+      "cReason": "답 '같은 배'가 앞의 '같은 배로'에 그대로 나와 베껴 쓸 수 있음",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "도수의 변화가 점의 높이와 넓이에 주는 영향 따지기",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2096,
+      "part": "m1plus",
+      "sourceFingerprint": "436f0c15ab8da1d54c2a9c550e27781e88e6325d064f6fbb382c8787ffc73556",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2096
+      },
+      "directReview": null,
+      "cMarkedSentence": "계급의 크기는 그대로 두고 모든 계급의 도수를 같은 배로 늘리면, 도수분포다각형의 각 점의 {높이}와 그래프가 가로축과 둘러싸는 {넓이}도 그와 같은 배가 된다.",
+      "cSlotAnswers": [
+        "높이",
+        "넓이"
+      ],
+      "cStudentSentence": "계급의 크기는 그대로 두고 모든 계급의 도수를 같은 배로 늘리면, 도수분포다각형의 각 점의 □와 그래프가 가로축과 둘러싸는 □도 그와 같은 배가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "넓이",
+          "equivalentAnswers": [
+            "넓이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "높이"
+        ],
+        [
+          "넓이"
+        ]
+      ],
+      "proposalFingerprint": "894f9895519bfe309846b90c083e3dfd66a4277d98fabefcbf6f44292e894192"
+    }
+  ]
+}

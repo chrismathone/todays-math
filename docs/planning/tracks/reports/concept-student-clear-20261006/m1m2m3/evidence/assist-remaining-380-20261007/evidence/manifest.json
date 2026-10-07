@@ -1,0 +1,51 @@
+{
+  "createdAt": "2026-10-07T10:02:57.007Z",
+  "algorithm": "SHA-256 of exact file bytes; manifest excluded from self-hash",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 26,
+      "sha256": "40f0e6dc36dcbad9f5e6f0350406df192ee1f7342965ab445ae9b16ce2f777c7"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 5951,
+      "sha256": "d3cd5091cbc17117f7a616687822a778fcb56253835fdac4579e467b79841369"
+    },
+    {
+      "path": "reviews.json",
+      "bytes": 695828,
+      "sha256": "222e9326dd1a0d34327e608a86c3f3902330ffea1ecfbf237ab4c51258f45f73"
+    },
+    {
+      "path": "evidence/inputs.json",
+      "bytes": 2214084,
+      "sha256": "d91050aaa9576d2abecea0b027e81768e5bbf44899a49d5170b3268d3bf3f73b"
+    },
+    {
+      "path": "evidence/reading-batches.txt",
+      "bytes": 363650,
+      "sha256": "ed02bb4064d809db240893d9bb710939a4fb937204e9d56265923dc4cd905046"
+    },
+    {
+      "path": "evidence/manual-decisions.jsonl",
+      "bytes": 660937,
+      "sha256": "b5c801cb88eb7834ec167b1eba7cb5da32f3640d484fcaeecea50aeb3015db9a"
+    },
+    {
+      "path": "evidence/proposal-reread.txt",
+      "bytes": 109750,
+      "sha256": "0754369dc8665170876737bd3bb9260a0b0f255f98e42d40b64b45bbe57e678c"
+    },
+    {
+      "path": "evidence/validation.json",
+      "bytes": 19760,
+      "sha256": "80d0e317cbf6dad61737cb7fe01758307eb3a285cac0726ae5de0e211ee3c990"
+    },
+    {
+      "path": "evidence/current-comparison.json",
+      "bytes": 249559,
+      "sha256": "9b8c7d52623de89247b07e176753205cbeaa9d0fb570b555071d5bfae3f83974"
+    }
+  ]
+}

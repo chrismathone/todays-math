@@ -1,0 +1,327 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Codex explicitly authored corrections after direct question/answer/criteria reading; pending corrected-field reread",
+  "patches": [
+    {
+      "id": "e4-1-6-3-xc25",
+      "sourceIndex": 2043,
+      "inputProposalFingerprint": "10c1afcfb35c9ff621a1b2c2950faf64821debb35aa8913086d2af993b256778",
+      "cDecision": "rewrite",
+      "cAfter": "$1+3=2\\times2$, $1+3+5=3\\times3$처럼 $1$부터 홀수를 차례로 더한다. $1+3+5+7$의 합은 {$16$}이다.",
+      "cReason": "네 홀수의 합을 실제로 구하며 정답을 다른 곳에 제공하지 않는다.",
+      "cSlotEquivalents": []
+    },
+    {
+      "id": "e4-1-6-3-xc27",
+      "sourceIndex": 2044,
+      "inputProposalFingerprint": "884fb0e034c1aab48c04267081b87fda0cc1a22f38c0e29e675d791d122a7583",
+      "cDecision": "rewrite",
+      "cAfter": "$100\\div4=25$일 때 $200\\div4$의 몫은 {$50$}이다. 나누는 수가 같고 나눌 전체가 두 배가 된 것이다.",
+      "cReason": "두 배로 커진 전체의 같은 나누는 수와 실제 몫50을 묻는다.",
+      "cSlotEquivalents": []
+    },
+    {
+      "id": "e4-1-6-3-xc28",
+      "sourceIndex": 2045,
+      "inputProposalFingerprint": "b98f34435366a954e6c6fecfd5cdbe58f894df8e7f7dd71923dde87e3d7e84e7",
+      "cDecision": "rewrite",
+      "cAfter": "$37\\times3=111$일 때 $37\\times6$의 곱은 {$222$}이다. 같은 $37$을 더하는 횟수가 두 배가 된 것이다.",
+      "cReason": "같은 크기 묶음의 횟수 두 배에 따른 실제 곱222를 묻는다.",
+      "cSlotEquivalents": []
+    },
+    {
+      "id": "e4-1-6-4-xc10",
+      "sourceIndex": 2054,
+      "inputProposalFingerprint": "521ce9eef4ee1688b82f1bb660633d971a39d049fab9e0f86a25ec9ea37f144e",
+      "bReason": "요청한 세 뺄셈식과 공통 차4의 규칙을 각각 받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7-3=4$, $11-7=4$, $15-11=4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "차가 $4$로 일정하다",
+            "$4$씩 커진다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-1-6-4-xc15",
+      "sourceIndex": 2056,
+      "inputProposalFingerprint": "3bf32ebf31a0c99331e45afa030ff4c4376342a6e393e5dade2a2115ba65858c",
+      "bReason": "합이 일정하다는 결론을 미리 주지 않고 두 수의 반대 변화로 동일 합을 설명하게 한다.",
+      "bPrompt": "$3+7=10$입니다. $5+5$의 합을 쓰고, 앞의 수와 뒤의 수가 각각 어떻게 바뀌었는지 이용해 두 합의 관계를 설명하세요.",
+      "bAnswer": "$10$이다. 앞의 수는 $2$ 커지고 뒤의 수는 $2$ 작아져, 한쪽에서 덜어 낸 $2$를 다른 쪽에 옮긴 것이므로 합은 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞의 수는 $2$ 커지고 뒤의 수는 $2$ 작아져 합은 같다",
+            "한쪽에서 $2$를 덜어 다른 쪽에 보태어 합은 같다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-1-6-4-xc15",
+      "sourceIndex": 2056,
+      "inputProposalFingerprint": "3bf32ebf31a0c99331e45afa030ff4c4376342a6e393e5dade2a2115ba65858c",
+      "cDecision": "rewrite",
+      "cAfter": "$3+7$을 $5+5$로 바꾸면 앞의 수는 $2$ 커지고 뒤의 수는 {$2$} 작아져 두 합은 같다.",
+      "cReason": "같은 합을 만드는 두 수의 짝지은 변화량을 구한다.",
+      "cSlotEquivalents": []
+    },
+    {
+      "id": "e4-1-6-4-xc25",
+      "sourceIndex": 2065,
+      "inputProposalFingerprint": "b06f704f29ff4e2cde6cf753513f92821686bb980cdd4ebec87064a6a60a45b5",
+      "bReason": "곱2323과 이유뿐 아니라 질문이 요청한23 두 번의 반복 규칙도 받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2323$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$23$이 두 번 이어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$23$의 $100$배에 $23$을 더한다",
+            "$2300+23$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-1-6-5-xc2",
+      "sourceIndex": 2069,
+      "inputProposalFingerprint": "b9fd55e0ef3eadbc21e6361c30c5e84a49a60dac84c02fd86a55e19108e2a382",
+      "cDecision": "rewrite",
+      "cAfter": "등호 양쪽에는 $10$ 같은 {수}나 $4+6$ 같은 {식}이 올 수 있다.",
+      "cReason": "수와 식의 역할을 구별하며 숫자를 수의 동의어로 두지 않는다.",
+      "cSlotEquivalents": [
+        [],
+        [
+          "계산식"
+        ]
+      ]
+    },
+    {
+      "id": "e4-1-6-5-xc8",
+      "sourceIndex": 2075,
+      "inputProposalFingerprint": "78be550525a26fd58b3383e90f3918832ff10a7293061c84023004bdbd1d664b",
+      "cDecision": "rewrite",
+      "cAfter": "$4+5=9$와 $4+5=10$ 중 등호 양쪽 값이 같은 식의 오른쪽 수는 {$9$}이다.",
+      "cReason": "두 실제 등식의 값을 비교하여 같은 값을 가진 쪽을 고른다.",
+      "cSlotEquivalents": []
+    },
+    {
+      "id": "e4-1-6-5-xc11",
+      "sourceIndex": 2078,
+      "inputProposalFingerprint": "d005d5f2f4fa74aec8ec9b4ef9f329ff121013f6adbba6ab45b84a18d8d8b99f",
+      "bReason": "잘못13을 넣었을 때 오른쪽19와 왼쪽13이 다름을 이유로 받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13$을 넣으면 오른쪽은 $19$여서 왼쪽 $13$과 다르다",
+            "$\\square+6$이 $13$이어야 하므로 $\\square$를 $13$으로 쓰면 안 된다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-1-6-5-xc12",
+      "sourceIndex": 2079,
+      "inputProposalFingerprint": "d96022aa84447c8d0c83d6849a31f64cbdbb724bfef30b5d907a607c87ec9d9b",
+      "bReason": "모범답에 있는 변화 방법을 학생에게도 요청하도록 질문 범위를 맞춘다.",
+      "bPrompt": "$6+9=7+\\square$에서 $\\square$에 알맞은 수를 구하고, 앞의 수와 뒤의 수가 어떻게 바뀌는지 이용한 방법을 쓰세요."
+    },
+    {
+      "id": "e4-1-6-5-xc18",
+      "sourceIndex": 2084,
+      "inputProposalFingerprint": "ee0e5a55fac979355d8dc40532160ec0c8913f27b1ae8575fb31808818d40125",
+      "bReason": "동전의 액면과 개수·전체 금액을 구분하고 각300원인 이유를 받는다.",
+      "bPrompt": "$100$원짜리 동전 $3$개와 $50$원짜리 동전 $6$개가 있습니다. $100\\times3=50\\times6$에서 양쪽이 같은 것은 동전 개수인가, 전체 금액인가요? 각 금액을 구해 까닭을 쓰세요.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 금액이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100\\times3=300$, $50\\times6=300$으로 모두 $300$원이다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-1-6-5-xc19",
+      "sourceIndex": 2085,
+      "inputProposalFingerprint": "9268178cc37481fc555e1f620c3aa40f235a8ea037a1622ab803f3a5fbbdb2cf",
+      "bReason": "같은g단위의 두 접시 무게를 명시해 저울 모형의 수를 해석할 수 있게 한다.",
+      "bPrompt": "저울 한쪽 접시에 무게가 $3\\,\\mathrm{g}$과 $4\\,\\mathrm{g}$인 물건을, 다른 쪽에는 $7\\,\\mathrm{g}$인 물건을 올렸습니다. 양쪽 무게의 관계를 식으로 쓰고, 저울이 어떻게 놓이는지 쓰세요."
+    },
+    {
+      "id": "e4-1-6-5-xc20",
+      "sourceIndex": 2086,
+      "inputProposalFingerprint": "8b02138487e53f8123fcfdf6803bc0a26e2ca433e59629ff0905cf9fa501ac89",
+      "bReason": "요청한 양쪽에2를 더한 실제 식과 바른 식인지의 판단을 받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3+4+2=7+2$",
+            "$9=9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "바른 식이다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-1-6-5-xc20",
+      "sourceIndex": 2086,
+      "inputProposalFingerprint": "8b02138487e53f8123fcfdf6803bc0a26e2ca433e59629ff0905cf9fa501ac89",
+      "cDecision": "rewrite",
+      "cAfter": "$3+4=7$의 양쪽에 $2$를 더한 $3+4+2=7+2$는 양쪽 값이 모두 {$9$}인 바른 식이다.",
+      "cReason": "등식과 바른 식이라는 다른 이름을 동의어로 두지 않고 실제 같은 값을 구한다.",
+      "cSlotEquivalents": []
+    },
+    {
+      "id": "e4-1-6-5-xc22",
+      "sourceIndex": 2088,
+      "inputProposalFingerprint": "6b773d9cdb17404d46b5c8fa0c492ea3f671e8ed17d7f3a5c4bc05fac5b1b89d",
+      "bReason": "요청한 잘못의 이유와 실제 바른 수정식을 받으며 괄호를 써 한 식으로 고치는 방법도 허용한다.",
+      "bAnswer": "$40+20$의 값은 $60$이고 $60-10$의 값은 $50$이라 두 값이 다르다. $40+20=60$, $60-10=50$으로 나누어 쓰거나, $(40+20)-10=50$으로 고쳐 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$40+20$은 $60$인데 $60-10$은 $50$으로 두 값이 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40+20=60$, $60-10=50$으로 나누어 쓴다",
+            "$(40+20)-10=50$으로 쓴다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-1-6-5-xc22",
+      "sourceIndex": 2088,
+      "inputProposalFingerprint": "6b773d9cdb17404d46b5c8fa0c492ea3f671e8ed17d7f3a5c4bc05fac5b1b89d",
+      "cDecision": "rewrite",
+      "cAfter": "$40+20=60-10$에서 왼쪽 값은 $60$이고 오른쪽 값은 {$50$}이므로 두 값이 같지 않다.",
+      "cReason": "등호를 잘못 썼다는 표현 대신 서로 다른 양쪽 실제 값을 구한다.",
+      "cSlotEquivalents": []
+    },
+    {
+      "id": "e4-2-1-1-xc4",
+      "sourceIndex": 2094,
+      "inputProposalFingerprint": "68acbb78d40db47bae07575f0d91e424f6e226b148d62a416c41f8290d828da8",
+      "bReason": "분자끼리 더한다는 절차 대신 같은1/7조각 크기가 그대로라는 이유를 받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{5}{7}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{7}$ 조각의 크기가 그대로이므로 분모는 $7$이다",
+            "같은 크기의 $\\frac{1}{7}$ 조각의 개수만 더한다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-2-1-1-xc5",
+      "sourceIndex": 2095,
+      "inputProposalFingerprint": "fbd5baf305f97b00d3237e38e59ae2c655c6632005a9616e6db95740523bd5ef",
+      "bReason": "존재하지 않는 그림의 칸을 찾게 하지 않고 같은 크기 빵의 조각으로 질문을 자립시킨다.",
+      "bPrompt": "크기가 같은 빵 두 개를 각각 같은 크기 $5$조각으로 나눴습니다. 한 빵의 $\\frac{2}{5}$와 다른 빵의 $\\frac{1}{5}$을 합한 양은 한 빵의 얼마인가요? 한 조각의 크기와 조각 수로 설명하세요.",
+      "bAnswer": "$\\frac{3}{5}$이다. 한 조각은 같은 $\\frac{1}{5}$ 크기이고 $2$조각과 $1$조각을 모으면 $3$조각이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 조각의 크기는 모두 $\\frac{1}{5}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2+1=3$조각이다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-2-1-1-xc7",
+      "sourceIndex": 2097,
+      "inputProposalFingerprint": "157247c63ce6452ebbe5617a2e3c962b1baaa1f9df8dff0846685fc7318d9e0c",
+      "bReason": "방향·칸 수·도착점만 요청하므로 별도 이유 설명을 필수로 강제하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "오른쪽으로 $3$칸"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{6}$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e4-2-1-1-xc9",
+      "sourceIndex": 2098,
+      "inputProposalFingerprint": "1b2c397fc5406cf1863c63f3293ccfae2b3ffd77fdf945f180f6a6f4aa6b5176",
+      "cDecision": "rewrite",
+      "cAfter": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$를 더한 합도 단위는 {$\\mathrm{L}$}이다.",
+      "cReason": "단위라는 상위 이름과 구체 리터를 같은 답으로 두지 않는다.",
+      "cSlotEquivalents": [
+        [
+          "리터"
+        ]
+      ]
+    },
+    {
+      "id": "e4-2-1-1-xc11",
+      "sourceIndex": 2100,
+      "inputProposalFingerprint": "ede48db2c77bc4db0544d8ac4dad23dfcd2f4acaaf0772d829355014e34f249c",
+      "bReason": "6/6=1이라는 질문의 사실 반복 대신1/6조각 여섯 개가 전체를 채우는 뜻을 받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$ 조각 여섯 개가 전체 $1$을 채운다",
+            "전체를 똑같이 여섯으로 나눈 조각이 여섯 개라 전체가 된다"
+          ]
+        }
+      ]
+    }
+  ]
+}

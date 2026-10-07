@@ -1,0 +1,808 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-3-1-xc1",
+      "bDecision": "revise",
+      "bPrompt": "세발자전거가 $1$대, $2$대, $3$대로 늘어날 때 따라서 변하는 양을 하나 찾아 쓰고, 그 양이 각각 얼마가 되는지와 $1$대 늘 때마다 얼마씩 변하는지 말해 보세요.",
+      "bAnswer": "예: 바퀴 수. $3$개, $6$개, $9$개가 되고 세발자전거가 $1$대 늘 때마다 $3$개씩 늘어난다. (페달 수 $2$, $4$, $6$처럼 세발자전거 수에 따라 변하는 다른 양도 정답이다. 탄 사람의 이름처럼 수로 따라 변하지 않는 것은 답이 아니다.)",
+      "bGoal": "한 양이 변할 때 함께 변하는 양을 찾고 변하는 모습을 수로 말한다.",
+      "bReason": "원 예시는 둘 중 고르기라 너무 쉽다. 스스로 양을 찾고 값의 변화를 말하게 했다.",
+      "studentLabel": "함께 변하는 두 양 찾기",
+      "cDecision": "revise",
+      "cAfter": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 {$4$}개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+      "cReason": "빈칸 '따라 변하는'은 표현을 맞히는 문제가 된다. 함께 변하는 모습을 수로 확인하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B는 열린 답이다. 세발자전거 수에 따라 일정하게 변하는 양이면 인정한다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세발자전거 수에 따라 일정하게 변하는 양을 하나 제시한다",
+            "바퀴 수",
+            "페달 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "고른 양이 세발자전거 $1$대, $2$대, $3$대에서 가지는 값을 일관되게 제시한다",
+            "바퀴 $3$개, $6$개, $9$개",
+            "페달 $2$개, $4$개, $6$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "세발자전거 $1$대가 늘 때 고른 양이 얼마나 늘어나는지 앞의 값에 맞게 설명한다",
+            "바퀴는 $3$개씩 늘어난다",
+            "페달은 $2$개씩 늘어난다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0630-0660.json",
+      "codexFinalAmendedFromFingerprint": "85501bdde1f55eea2b5bd2d885bc2b5f4ecb854324869c3dbc985c9cf123d953",
+      "sourceIndex": 630,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc1",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "함께 변하는 두 양",
+        "kind": "정의",
+        "level": "하",
+        "definition": "의자 수와 다리 수처럼 한쪽이 변하면 다른 쪽도 {따라 변하는} 두 양을 살펴본다.",
+        "example": {
+          "prompt": "세발자전거 수가 늘 때 함께 느는 것은? (바퀴 수, 탄 사람의 이름)",
+          "answer": "바퀴 수"
+        },
+        "studentC": "의자 수와 다리 수처럼 한쪽이 변하면 다른 쪽도 □ 두 양을 살펴본다.",
+        "answers": [
+          "따라 변하는"
+        ]
+      },
+      "sourceFingerprint": "9f4be5a68e2ef38173dc0c415211f2e4fb4b3bf9a950172cf513dffa933ad992",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 □개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+      "cMarkedSentence": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 {$4$}개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+      "cStudentSentence": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 □개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세발자전거가 $1$대, $2$대, $3$대로 늘어날 때 따라서 변하는 양을 하나 찾아 쓰고, 그 양이 각각 얼마가 되는지와 $1$대 늘 때마다 얼마씩 변하는지 말해 보세요.",
+        "answer": "예: 바퀴 수. $3$개, $6$개, $9$개가 되고 세발자전거가 $1$대 늘 때마다 $3$개씩 늘어난다. (페달 수 $2$, $4$, $6$처럼 세발자전거 수에 따라 변하는 다른 양도 정답이다. 탄 사람의 이름처럼 수로 따라 변하지 않는 것은 답이 아니다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세발자전거 수에 따라 일정하게 변하는 양을 하나 제시한다",
+              "바퀴 수",
+              "페달 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "고른 양이 세발자전거 $1$대, $2$대, $3$대에서 가지는 값을 일관되게 제시한다",
+              "바퀴 $3$개, $6$개, $9$개",
+              "페달 $2$개, $4$개, $6$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "세발자전거 $1$대가 늘 때 고른 양이 얼마나 늘어나는지 앞의 값에 맞게 설명한다",
+              "바퀴는 $3$개씩 늘어난다",
+              "페달은 $2$개씩 늘어난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 {$4$}개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "40107705d3e6568bb11b410b9b758ee95a4ddc5f6108bfb7b3c257bf94b85428",
+      "questionRevision": "planning-e5e6-20261006-40107705d3e6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "대응표에서 $\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙을 쓰고 있습니다. $\\square$가 $2$, $3$, $5$이고 그 아래 $\\triangle$가 차례로 $8$, $12$, (빈칸)입니다. 다른 짝을 이용해 빈칸을 채우는 방법을 설명하고 빈칸의 수를 구해 보세요.",
+      "bAnswer": "다른 짝들에서 규칙을 찾은 뒤, 빈칸과 짝인 $\\square$의 값에 그 규칙을 적용한다. $2 \\times 4 = 8$, $3 \\times 4 = 12$이므로 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이고, 빈칸은 짝인 $5$에 $4$를 곱한 $20$이다.",
+      "bGoal": "빈칸을 옆 칸의 흐름이 아니라 짝인 값에 규칙을 적용해 채운다.",
+      "bReason": "학생에게 같은 수를 곱하는 규칙이라는 조건을 보여 주어 여러 임의 규칙 중 하나를 숨겨 요구하지 않는다.",
+      "studentLabel": "대응표의 빈칸 채우기",
+      "cDecision": "revise",
+      "cAfter": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 {$5$}에 $4$를 곱한 {$20$}이다.",
+      "cReason": "빈칸 '짝이 되는 값'은 추상적인 말이다. 짝인 값을 실제로 고르고 계산하게 바꿨다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 짝에서 규칙을 찾아 빈칸과 짝인 $\\square$의 값에 적용한다",
+            "빈칸과 짝인 값에 규칙을 적용해 채운다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$",
+            "$5\\times4=20$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0630-0660.json",
+      "codexFinalAmendedFromFingerprint": "ea44061349d3df0162335602746c23a6d8c1832bf4185dd0ed5f3081ee7b4fa6",
+      "sourceIndex": 643,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc16",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "대응표의 빈칸 채우기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "대응표의 빈칸은 찾은 규칙을 그 칸의 {짝이 되는 값}에 적용해 채운다.",
+        "example": {
+          "prompt": "대응표의 빈칸을 채울 때 찾은 규칙을 빈칸과 짝이 되는 값에 적용하는 까닭은?",
+          "answer": "규칙이 짝인 두 값의 관계라서"
+        },
+        "studentC": "대응표의 빈칸은 찾은 규칙을 그 칸의 □에 적용해 채운다.",
+        "answers": [
+          "짝이 되는 값"
+        ]
+      },
+      "sourceFingerprint": "11f0a90b5b5e8ae4e3f95a3d7672e4307783bb505740157bcaad1a1b7b3cb1ae",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$20$"
+      ],
+      "cStudentAfter": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 □에 $4$를 곱한 □이다.",
+      "cMarkedSentence": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 {$5$}에 $4$를 곱한 {$20$}이다.",
+      "cStudentSentence": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 □에 $4$를 곱한 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대응표에서 $\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙을 쓰고 있습니다. $\\square$가 $2$, $3$, $5$이고 그 아래 $\\triangle$가 차례로 $8$, $12$, (빈칸)입니다. 다른 짝을 이용해 빈칸을 채우는 방법을 설명하고 빈칸의 수를 구해 보세요.",
+        "answer": "다른 짝들에서 규칙을 찾은 뒤, 빈칸과 짝인 $\\square$의 값에 그 규칙을 적용한다. $2 \\times 4 = 8$, $3 \\times 4 = 12$이므로 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이고, 빈칸은 짝인 $5$에 $4$를 곱한 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다른 짝에서 규칙을 찾아 빈칸과 짝인 $\\square$의 값에 적용한다",
+              "빈칸과 짝인 값에 규칙을 적용해 채운다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$",
+              "$5\\times4=20$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 {$5$}에 $4$를 곱한 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ecb56775d0f001007f709fe20ae0fd3ccf00de27544cdec7febcece713a3135a",
+      "questionRevision": "planning-e5e6-20261006-ecb56775d0f0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "나이와 키는 둘 다 자라면서 변합니다. 나이와 키 사이의 관계가 의자 수와 다리 수(의자 하나에 다리 $4$개) 사이의 관계와 어떻게 다른지, 한 양을 알 때 다른 양을 계산으로 구할 수 있는지를 따져 설명해 보세요.",
+      "bAnswer": "의자마다 다리가 $4$개이면 의자 수에 $4$를 곱해 다리 수를 구할 수 있다. 키는 사람마다, 해마다 늘어나는 양이 달라서 나이만으로 그 사람의 키를 정확히 계산해 구할 수 없다. 나이와 키가 함께 변한다는 것만으로 두 양 사이에 이런 계산 규칙이 있다고 할 수는 없다.",
+      "bGoal": "함께 변해도 일정한 규칙이 없으면 대응 관계로 다루지 않음을 구별한다.",
+      "bReason": "대응 관계가 아닌 예를 다루는 유일한 문항이다. 판단할 기준을 질문에 주고 두 상황을 비교하게 했다.",
+      "studentLabel": "함께 변하지만 규칙이 없는 두 양",
+      "cDecision": "revise",
+      "cAfter": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 {규칙}이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+      "cReason": "'이 단원의 대응 관계로 다루지 않는다'는 학생 지면에 맞지 않는 편집자 말투다. 규칙이 없다는 것이 무슨 뜻인지 풀어 썼다. 빈칸은 c1과 같지만 대응 관계가 아닌 예에서 묻는 것이라 남겼다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'규칙', '일정한 규칙' 모두 정답.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "의자 수에 $4$를 곱해 다리 수를 언제나 구할 수 있다",
+            "의자 수를 알면 다리 수가 계산으로 정해진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나이를 알아도 키를 일정한 규칙으로 계산해 구할 수 없다",
+            "키가 늘어나는 양이 사람마다 해마다 달라 일정한 규칙이 없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "규칙",
+            "일정한 규칙"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0630-0660.json",
+      "codexFinalAmendedFromFingerprint": "e3491a99bd31bb1b2c15fa7227b241600933b32e2936d7c4c74d121950fad5c2",
+      "sourceIndex": 644,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc17",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "규칙이 없는 두 양",
+        "kind": "성질",
+        "level": "중",
+        "definition": "키와 나이처럼 함께 변해도 {일정한 규칙}이 없으면 이 단원의 대응 관계로 다루지 않는다.",
+        "studentC": "키와 나이처럼 함께 변해도 □이 없으면 이 단원의 대응 관계로 다루지 않는다.",
+        "answers": [
+          "일정한 규칙"
+        ]
+      },
+      "sourceFingerprint": "3e4199ab2e570a45b9f42339d4bf702adebd1916b3b449e5c722c1adc36976be",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "규칙"
+      ],
+      "cStudentAfter": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 □이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+      "cMarkedSentence": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 {규칙}이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+      "cStudentSentence": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 □이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "규칙",
+          "equivalents": [
+            "일정한 규칙"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나이와 키는 둘 다 자라면서 변합니다. 나이와 키 사이의 관계가 의자 수와 다리 수(의자 하나에 다리 $4$개) 사이의 관계와 어떻게 다른지, 한 양을 알 때 다른 양을 계산으로 구할 수 있는지를 따져 설명해 보세요.",
+        "answer": "의자마다 다리가 $4$개이면 의자 수에 $4$를 곱해 다리 수를 구할 수 있다. 키는 사람마다, 해마다 늘어나는 양이 달라서 나이만으로 그 사람의 키를 정확히 계산해 구할 수 없다. 나이와 키가 함께 변한다는 것만으로 두 양 사이에 이런 계산 규칙이 있다고 할 수는 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "의자 수에 $4$를 곱해 다리 수를 언제나 구할 수 있다",
+              "의자 수를 알면 다리 수가 계산으로 정해진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나이를 알아도 키를 일정한 규칙으로 계산해 구할 수 없다",
+              "키가 늘어나는 양이 사람마다 해마다 달라 일정한 규칙이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 {규칙}이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+        "acceptedAnswers": [
+          [
+            "규칙",
+            "일정한 규칙"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8ba5a34c757d0d0f9dbac3f0c7b49d86d1b5375a5cfc5ea90f1f44994bb778f5",
+      "questionRevision": "planning-e5e6-20261006-8ba5a34c757d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "대응표는 $\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙을 나타냅니다. $\\square$의 값은 $3$, $1$, $5$이고 그 아래 $\\triangle$가 차례로 $9$, $3$, $15$입니다. 어떤 수끼리 비교해야 곱하는 수를 찾을 수 있는지 설명하고 규칙을 말해 보세요.",
+      "bAnswer": "옆 칸의 수끼리 얼마씩 변하는지 보지 말고, 위아래로 짝인 $\\square$와 $\\triangle$끼리 비교한다. $3$과 $9$, $1$과 $3$, $5$와 $15$를 보면 규칙은 '$\\square$에 $3$을 곱하면 $\\triangle$'이다.",
+      "bGoal": "순서가 섞인 표에서도 짝인 값끼리 비교해 규칙을 찾는다.",
+      "bReason": "원 예시의 수를 썼다. 규칙만 묻지 않고 '어떤 수끼리 비교하는지'를 먼저 설명하게 했다.",
+      "studentLabel": "순서가 섞인 대응표에서 규칙 찾기",
+      "cDecision": "revise",
+      "cAfter": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 {$3$}을 곱하면 $\\triangle$'이다.",
+      "cReason": "빈칸 '같은 칸끼리'는 뜻이 부정확하다(같은 칸이 아니라 같은 세로줄의 위아래 칸). 짝끼리 비교해 규칙의 수를 구하게 바꿨다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위아래로 짝인 $\\square$와 $\\triangle$끼리 비교한다",
+            "순서와 상관없이 짝인 두 수끼리 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square$에 $3$을 곱하면 $\\triangle$이다",
+            "$\\triangle$ $=$ $\\square$ $\\times3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0630-0660.json",
+      "codexFinalAmendedFromFingerprint": "c9e552d36e306031d0bec05e37c1cdc0ed2290839dcea88257440589c896030d",
+      "sourceIndex": 646,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc19",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "차례가 뒤섞인 대응표",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대응표의 값이 차례대로 놓여 있지 않아도 {같은 칸끼리} 짝지어 규칙을 찾는다.",
+        "example": {
+          "prompt": "$\\square$가 $3,\\ 1,\\ 5$일 때 $\\triangle$가 $9,\\ 3,\\ 15$이면 규칙은?",
+          "answer": "$\\square$에 $3$을 곱한다"
+        },
+        "studentC": "대응표의 값이 차례대로 놓여 있지 않아도 □ 짝지어 규칙을 찾는다.",
+        "answers": [
+          "같은 칸끼리"
+        ]
+      },
+      "sourceFingerprint": "0ee90e963fa6feca1f2fec5063372dc35e8d6461627765e7baa35b2bb5d50f53",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 □을 곱하면 $\\triangle$'이다.",
+      "cMarkedSentence": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 {$3$}을 곱하면 $\\triangle$'이다.",
+      "cStudentSentence": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 □을 곱하면 $\\triangle$'이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대응표는 $\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙을 나타냅니다. $\\square$의 값은 $3$, $1$, $5$이고 그 아래 $\\triangle$가 차례로 $9$, $3$, $15$입니다. 어떤 수끼리 비교해야 곱하는 수를 찾을 수 있는지 설명하고 규칙을 말해 보세요.",
+        "answer": "옆 칸의 수끼리 얼마씩 변하는지 보지 말고, 위아래로 짝인 $\\square$와 $\\triangle$끼리 비교한다. $3$과 $9$, $1$과 $3$, $5$와 $15$를 보면 규칙은 '$\\square$에 $3$을 곱하면 $\\triangle$'이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위아래로 짝인 $\\square$와 $\\triangle$끼리 비교한다",
+              "순서와 상관없이 짝인 두 수끼리 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square$에 $3$을 곱하면 $\\triangle$이다",
+              "$\\triangle$ $=$ $\\square$ $\\times3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 {$3$}을 곱하면 $\\triangle$'이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0acf3f4c86bc33d7a5be54cdaf1890e63935eb817c8e829b026980e03603fc20",
+      "questionRevision": "planning-e5e6-20261006-0acf3f4c86bc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc24",
+      "bDecision": "revise",
+      "bPrompt": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같습니다. 서울 시각으로 그 도시의 시각을 구하는 규칙을 말하고, 서울이 오후 $8$시일 때와 밤 $12$시 $30$분(자정에서 $30$분 지난 때)일 때 그 도시의 시각을 구해 보세요.",
+      "bAnswer": "서울 시각에서 $1$시간을 빼면 그 도시의 시각이다. 서울이 오후 $8$시이면 그 도시는 오후 $7$시이다. 서울이 자정에서 $30$분 지난 때이면 그 도시는 전날 밤 $11$시 $30$분이다. 자정을 지나 시간을 거꾸로 셀 때에는 전날이 된다.",
+      "bGoal": "시각 차가 일정한 두 도시의 시각을 뺄셈 규칙으로 구하고 날짜가 바뀌는 경우를 안다.",
+      "bReason": "원 예시의 규칙 말하기를 살렸다. 원문의 '날짜가 달라질 수도 있다'는 자정 무렵의 한 경우로 확인하게 했다.",
+      "studentLabel": "두 도시의 시각",
+      "cDecision": "revise",
+      "cAfter": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 {$7$}시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 {뺀} 시각이다.",
+      "cReason": "빈칸 '그 차만큼 더하거나 뺀'은 길고 줄표 뒤 덧붙임까지 있어 읽기 어렵다. 한 도시 예로 줄였다. 날짜가 바뀌는 경우는 B에서 다루고 C는 같은 날 안으로 한정했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'뺀'만 정답이다. '늦은'은 뜻이 두 가지로 읽혀 쓰지 않았다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서울 시각에서 $1$시간을 빼면 그 도시의 시각이다",
+            "서울보다 $1$시간 이른 시각이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "오후 $7$시"
+          ]
+        },
+        {
+          "anyOf": [
+            "전날 밤 $11$시 $30$분"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "뺀",
+            "빼서 얻은"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0630-0660.json",
+      "codexFinalAmendedFromFingerprint": "88e9c27e5da75926b736b8d5b7261babb28c0d1f907689c9f2c2933af3e9771a",
+      "sourceIndex": 651,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc24",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "두 도시의 시각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 도시의 시각 차가 일정하면 한 도시의 시각은 다른 도시의 시각에 {그 차만큼 더하거나 뺀} 값이다 — 날짜가 달라질 수도 있다.",
+        "example": {
+          "prompt": "서울이 오후 $3$시일 때 오후 $2$시인 도시의 시각을 서울 시각으로 나타내는 말은?",
+          "answer": "서울 시각에서 $1$시간을 뺀다"
+        },
+        "studentC": "두 도시의 시각 차가 일정하면 한 도시의 시각은 다른 도시의 시각에 □ 값이다 — 날짜가 달라질 수도 있다.",
+        "answers": [
+          "그 차만큼 더하거나 뺀"
+        ]
+      },
+      "sourceFingerprint": "cb8b06ba0ee69abf22e02be6fed591eb9f4ba7e74e94c817d336aa98f34fe115",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$7$",
+        "뺀"
+      ],
+      "cStudentAfter": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 □시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 □ 시각이다.",
+      "cMarkedSentence": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 {$7$}시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 {뺀} 시각이다.",
+      "cStudentSentence": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 □시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 □ 시각이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "뺀",
+          "equivalents": [
+            "빼서 얻은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같습니다. 서울 시각으로 그 도시의 시각을 구하는 규칙을 말하고, 서울이 오후 $8$시일 때와 밤 $12$시 $30$분(자정에서 $30$분 지난 때)일 때 그 도시의 시각을 구해 보세요.",
+        "answer": "서울 시각에서 $1$시간을 빼면 그 도시의 시각이다. 서울이 오후 $8$시이면 그 도시는 오후 $7$시이다. 서울이 자정에서 $30$분 지난 때이면 그 도시는 전날 밤 $11$시 $30$분이다. 자정을 지나 시간을 거꾸로 셀 때에는 전날이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서울 시각에서 $1$시간을 빼면 그 도시의 시각이다",
+              "서울보다 $1$시간 이른 시각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "오후 $7$시"
+            ]
+          },
+          {
+            "anyOf": [
+              "전날 밤 $11$시 $30$분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 {$7$}시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 {뺀} 시각이다.",
+        "acceptedAnswers": [
+          [
+            "$7$"
+          ],
+          [
+            "뺀",
+            "빼서 얻은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "537a9032f337163272dfc8e53b5bb53fb49aa65af6dbed067a52b8f3b53d5de9",
+      "questionRevision": "planning-e5e6-20261006-537a9032f337",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "첫 짝이 같아도 규칙이 다를 수 있다는 내용은 xc20의 '한 짝에 맞는 규칙이 둘'과 같은 생각이다.",
+      "bReason": "첫 짝이 같아도 규칙이 다를 수 있다는 생각은 xc20의 '한 짝에 맞는 규칙이 여럿'과 같다.",
+      "cDecision": "revise",
+      "cAfter": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 $2$를 {더한다}이고 나의 규칙은 $2$를 {곱한다}이다.",
+      "cReason": "한 짝은 같지만 둘째 짝에서 덧셈과 곱셈을 구별하는 목적을 유지하고 찾는 규칙의 범위를 학생에게 명시했다.",
+      "exclusionReason": "B만 제외한다. 대체: e5-1-3-1-xc20.",
+      "exampleNeeded": false,
+      "synonymNotes": "'더한다/더하면 △', '곱한다/곱하면 △' 모두 인정.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더한다",
+            "더하면"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한다",
+            "곱하면"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0630-0660.json",
+      "codexFinalAmendedFromFingerprint": "a4ca4f35b749d9b5fe346208ba1c6eaf7e838d5ac7f64649dfecd49507819877",
+      "sourceIndex": 652,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc25",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "첫 짝이 같은 두 대응표",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 표의 첫 짝이 같아도 {같은 수에 대응하는 다음 값}이 다르면 규칙이 다르다.",
+        "example": {
+          "prompt": "가: $2\\to4$, $3\\to5$ / 나: $2\\to4$, $3\\to6$의 규칙이 다른 까닭은?",
+          "answer": "$3$에 대응하는 값이 달라서"
+        },
+        "studentC": "두 표의 첫 짝이 같아도 □이 다르면 규칙이 다르다.",
+        "answers": [
+          "같은 수에 대응하는 다음 값"
+        ]
+      },
+      "sourceFingerprint": "054ff5f269e18cb890bd72bc6e530d6d124e798914a3efc69d975e5acb2add6c",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "더한다",
+        "곱한다"
+      ],
+      "cStudentAfter": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 $2$를 □이고 나의 규칙은 $2$를 □이다.",
+      "cMarkedSentence": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 $2$를 {더한다}이고 나의 규칙은 $2$를 {곱한다}이다.",
+      "cStudentSentence": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 $2$를 □이고 나의 규칙은 $2$를 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "더한다",
+          "equivalents": [
+            "더하면"
+          ]
+        },
+        {
+          "key": "곱한다",
+          "equivalents": [
+            "곱하면"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 $2$를 {더한다}이고 나의 규칙은 $2$를 {곱한다}이다.",
+        "acceptedAnswers": [
+          [
+            "더한다",
+            "더하면"
+          ],
+          [
+            "곱한다",
+            "곱하면"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체: e5-1-3-1-xc20."
+      },
+      "proposalFingerprint": "f9f9b94a44565541d5e374fd4588a3380c23f09897af8e882a915095b50eebe0",
+      "questionRevision": "planning-e5e6-20261006-f9f9b94a4456",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc26",
+      "bDecision": "revise",
+      "bPrompt": "의자 수에 같은 수를 곱해 다리 수를 구하는 규칙을 나타낸 표에서 의자 수 $1$, $2$, $3$에 다리 수 $4$, $8$, $12$가 짝지어져 있습니다. 의자 $25$개에도 같은 규칙을 쓸 수 있다면, 표를 끝까지 이어 쓰지 않고 다리 수를 구하는 방법을 설명하고 답을 구하세요. 이 규칙을 쓰려면 $25$개의 의자가 모두 어떠해야 하는지도 말해 보세요.",
+      "bAnswer": "표에서 찾은 규칙 '의자 수에 $4$를 곱하면 다리 수'를 $25$에 적용한다. $25 \\times 4 = 100$이므로 $100$개이다. $25$개의 의자도 모두 다리가 $4$개씩이어서 같은 규칙이 계속 성립해야 한다.",
+      "bGoal": "찾은 규칙을 표 밖의 값에 적용하고, 규칙이 계속 성립한다는 조건을 안다.",
+      "bReason": "예시가 없던 행이다. 표와 큰 값을 주고 원문 조건 '같은 관계가 성립하면'을 학생이 말하게 했다.",
+      "studentLabel": "표에 없는 값 구하기",
+      "cDecision": "revise",
+      "cAfter": "$\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이다. 이 규칙은 표에 없는 수에도 성립한다. $\\square$가 $25$일 때 $\\triangle$는 $25$에 {$4$}를 곱해 {$100$}으로 구한다.",
+      "cReason": "빈칸 '같은 관계가 성립하면'은 조건을 통째로 외우게 한다. 조건은 문장에 남기고 실제 적용을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "표에서 찾은 규칙 '의자 수에 $4$를 곱하면 다리 수'를 $25$에 적용한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25\\times4=100$이므로 $100$개이다",
+            "$100$개",
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25$개의 의자도 같은 규칙이 계속 성립해야 한다",
+            "의자마다 다리가 $4$개씩이어야 한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0630-0660.json",
+      "codexFinalAmendedFromFingerprint": "58a478cc5169d604e2316a88cc0e4c5cc1e94e18a9f19009bc0aae7878007255",
+      "sourceIndex": 653,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc26",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "표에 없는 큰 값 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "표에 없는 값에도 {같은 관계가 성립하면} 찾은 규칙을 적용해 구할 수 있다.",
+        "studentC": "표에 없는 값에도 □ 찾은 규칙을 적용해 구할 수 있다.",
+        "answers": [
+          "같은 관계가 성립하면"
+        ]
+      },
+      "sourceFingerprint": "7e0e6c3bdc929980e3e3dfd21ff117853ed4d5de358f0c119849266d564ffe07",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$100$"
+      ],
+      "cStudentAfter": "$\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이다. 이 규칙은 표에 없는 수에도 성립한다. $\\square$가 $25$일 때 $\\triangle$는 $25$에 □를 곱해 □으로 구한다.",
+      "cMarkedSentence": "$\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이다. 이 규칙은 표에 없는 수에도 성립한다. $\\square$가 $25$일 때 $\\triangle$는 $25$에 {$4$}를 곱해 {$100$}으로 구한다.",
+      "cStudentSentence": "$\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이다. 이 규칙은 표에 없는 수에도 성립한다. $\\square$가 $25$일 때 $\\triangle$는 $25$에 □를 곱해 □으로 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$100$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "의자 수에 같은 수를 곱해 다리 수를 구하는 규칙을 나타낸 표에서 의자 수 $1$, $2$, $3$에 다리 수 $4$, $8$, $12$가 짝지어져 있습니다. 의자 $25$개에도 같은 규칙을 쓸 수 있다면, 표를 끝까지 이어 쓰지 않고 다리 수를 구하는 방법을 설명하고 답을 구하세요. 이 규칙을 쓰려면 $25$개의 의자가 모두 어떠해야 하는지도 말해 보세요.",
+        "answer": "표에서 찾은 규칙 '의자 수에 $4$를 곱하면 다리 수'를 $25$에 적용한다. $25 \\times 4 = 100$이므로 $100$개이다. $25$개의 의자도 모두 다리가 $4$개씩이어서 같은 규칙이 계속 성립해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "표에서 찾은 규칙 '의자 수에 $4$를 곱하면 다리 수'를 $25$에 적용한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25\\times4=100$이므로 $100$개이다",
+              "$100$개",
+              "$100$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25$개의 의자도 같은 규칙이 계속 성립해야 한다",
+              "의자마다 다리가 $4$개씩이어야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이다. 이 규칙은 표에 없는 수에도 성립한다. $\\square$가 $25$일 때 $\\triangle$는 $25$에 {$4$}를 곱해 {$100$}으로 구한다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a60e422f375b61592a89479d0ff44b2a6dc3c82bcce9a7c3b5165f5186b5128a",
+      "questionRevision": "planning-e5e6-20261006-a60e422f375b",
+      "requiresIndependentReview": true
+    }
+  ]
+}

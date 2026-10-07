@@ -1,0 +1,200 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-1-5-6-xc6",
+      "sourceIndex": 805,
+      "beforeProposal": {
+        "sourceIndex": 805,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-5 길이와 시간::1-5-6 시간의 뺄셈",
+        "sourceFingerprint": "b1e9292a53667e436f12a5067bdb32a239fa22a06eee4cdc9c9ad82709a6ffd5",
+        "proposalFingerprint": "892071b445975e2f37ce9cabf0fcc6cb64fff780e54fba43968c793854e88db8",
+        "reviewStatus": "draft",
+        "id": "e3-1-5-6-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 날 오후 $2$시와 오후 $5$시가 있습니다. 늦은 시각 $5$시에서 앞선 시각 $2$시를 빼어 $3$이 나왔습니다. 이 $3$은 '$3$시'인지 '$3$시간'인지 쓰고, 그 까닭을 설명해 보세요.",
+        "bAnswer": "$3$시간이다. 오후 $2$시부터 오후 $5$시까지 흐른 시간의 길이를 나타내기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$시간이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 시각 사이에 흐른 시간이다",
+              "$2$시부터 $5$시까지 지난 시간의 길이이다",
+              "시각이 아니라 시간의 길이를 나타낸다"
+            ]
+          }
+        ],
+        "bGoal": "같은 날 같은 낮 동안의 두 시각을 뺀 결과가 두 시각 사이의 시간임을 설명",
+        "bReason": "같은 날 오후라는 범위와 늦은 시각에서 앞선 시각을 뺀다는 조건을 명시하여 날짜나 오전·오후에 따른 다른 해석이 생기지 않게 함",
+        "cDecision": "rewrite",
+        "cReason": "같은 날 같은 오후의 구체 두 시각을 제공해 시각3시와 시간길이3시간을 구별한다. 오후12시를 포함하는 추상 범위에서 숫자만 빼는 것으로 오해하지 않게 한다.",
+        "answerNotes": "'시간', '걸린 시간' 인정. '시각'은 오답.",
+        "cAfter": "같은 날 오후 $2$시에 공부를 시작해 오후 $5$시에 마쳤다. 공부한 동안을 나타내는 $5-2=3$에서 $3$의 단위를 쓰면 $3${시간}이다.",
+        "cSlotEquivalents": [],
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "시각에서 시각을 뺀 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 날 오후 $2$시에 공부를 시작해 오후 $5$시에 마쳤다. 공부한 동안을 나타내는 $5-2=3$에서 $3$의 단위를 쓰면 $3${시간}이다.",
+        "cStudentSentence": "같은 날 오후 $2$시에 공부를 시작해 오후 $5$시에 마쳤다. 공부한 동안을 나타내는 $5-2=3$에서 $3$의 단위를 쓰면 $3$□이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "시간",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 날 오후 $2$시와 오후 $5$시가 있습니다. 늦은 시각 $5$시에서 앞선 시각 $2$시를 빼어 $3$이 나왔습니다. 이 $3$은 '$3$시'인지 '$3$시간'인지 쓰고, 그 까닭을 설명해 보세요.",
+          "answer": "$3$시간이다. 오후 $2$시부터 오후 $5$시까지 흐른 시간의 길이를 나타내기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$시간이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 시각 사이에 흐른 시간이다",
+                "$2$시부터 $5$시까지 지난 시간의 길이이다",
+                "시각이 아니라 시간의 길이를 나타낸다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 날 오후 $2$시에 공부를 시작해 오후 $5$시에 마쳤다. 공부한 동안을 나타내는 $5-2=3$에서 $3$의 단위를 쓰면 $3${시간}이다.",
+          "acceptedAnswers": [
+            [
+              "시간"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cAfter": "같은 날 오후 $2$시에 공부를 시작해 오후 $5$시에 마쳤다. $5-2=3$이므로 공부하는 데 $3${시간}이 걸렸다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-2-4-xc2",
+      "sourceIndex": 1031,
+      "beforeProposal": {
+        "sourceIndex": 1031,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-2 나눗셈::2-2-4 (세 자리 수)÷(한 자리 수)",
+        "sourceFingerprint": "69fae35fe01daaf2a7c1685cfa31280164fddbe0933d927210046133292a22ba",
+        "proposalFingerprint": "075d05a1bad4d2bddf206c1bd40eb747249f5a6277effd32120279ff75989537",
+        "reviewStatus": "draft",
+        "id": "e3-2-2-4-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$648\\div4$와 $248\\div4$ 가운데 몫이 세 자리 수인 것을 고르고, 계산을 끝까지 하지 않고 그렇게 판단한 까닭을 쓰세요.",
+        "bAnswer": "$648\\div4$이다. 백의 자리 숫자 $6$은 $4$보다 커서 몫의 백의 자리에 수를 쓸 수 있다. $248\\div4$는 $2$가 $4$보다 작아 몫이 두 자리 수이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$648\\div 4$를 고름"
+            ]
+          },
+          {
+            "anyOf": [
+              "백의 자리 숫자와 나누는 수 $4$를 비교"
+            ]
+          }
+        ],
+        "bGoal": "백의 자리 숫자와 나누는 수의 비교로 몫의 자릿수 판단",
+        "bReason": "세 자리·두 자리 두 경우를 한 번에 견주게 함",
+        "cDecision": "rewrite",
+        "cAfter": "세 자리 수를 한 자리 수로 나눌 때 백의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 {세} 자리 수이다.",
+        "cReason": "'작지 않으면'을 '같거나 크면'으로 풀고 빈칸 '세'는 유지",
+        "coreAfter": "세 자리 수를 한 자리 수로 나눌 때 백의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 {세} 자리 수이다.",
+        "coreReason": "세자리라는 원래표적을보존하며 작지않다를 같은또는큰조건으로푼다.",
+        "answerNotes": "'3'도 정답",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몫이 세 자리 수인 경우",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 자리 수를 한 자리 수로 나눌 때 백의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 {세} 자리 수이다.",
+        "cStudentSentence": "세 자리 수를 한 자리 수로 나눌 때 백의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 □ 자리 수이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "세",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$648\\div4$와 $248\\div4$ 가운데 몫이 세 자리 수인 것을 고르고, 계산을 끝까지 하지 않고 그렇게 판단한 까닭을 쓰세요.",
+          "answer": "$648\\div4$이다. 백의 자리 숫자 $6$은 $4$보다 커서 몫의 백의 자리에 수를 쓸 수 있다. $248\\div4$는 $2$가 $4$보다 작아 몫이 두 자리 수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$648\\div 4$를 고름"
+              ]
+            },
+            {
+              "anyOf": [
+                "백의 자리 숫자와 나누는 수 $4$를 비교"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세 자리 수를 한 자리 수로 나눌 때 백의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 {세} 자리 수이다.",
+          "acceptedAnswers": [
+            [
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-2-4-xc2",
+          "sourceIndex": 1031,
+          "proposalFingerprint": "075d05a1bad4d2bddf206c1bd40eb747249f5a6277effd32120279ff75989537",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "백숫자와4를비교해648쪽의세자리몫을판단하는범위가 분명하다.",
+          "cReason": "백숫자같거나큰경계에서세자리몫이며일반정의도 정확하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$648\\div4$를 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "백의 자리 숫자 $6$이 $4$보다 커서 백의 자리부터 나눌 수 있다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

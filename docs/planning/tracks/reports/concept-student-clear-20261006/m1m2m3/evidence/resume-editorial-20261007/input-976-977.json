@@ -1,0 +1,164 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:47:32.032Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc7",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공약수와 최대공약수의 차이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "공약수는 공통인 약수 {모두}이고, 최대공약수는 그 가운데 {가장 큰} 하나이다.",
+        "example": {
+          "prompt": "$10$과 $15$의 공약수와 최대공약수는?",
+          "answer": "공약수 $1$, $5$ · 최대공약수 $5$"
+        },
+        "studentC": "공약수는 공통인 약수 □이고, 최대공약수는 그 가운데 □ 하나이다.",
+        "answers": [
+          "모두",
+          "가장 큰"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 '공약수'와 '최대공약수'는 어떻게 다른지 설명하고, $10$과 $15$의 공약수와 최대공약수를 각각 쓰시오.",
+        "bAnswer": "공약수는 두 수에 공통인 약수 전부를 말하고, 최대공약수는 그 가운데 가장 큰 수 하나를 말한다. $10$과 $15$의 공약수는 $1, 5$이고 최대공약수는 $5$이다.",
+        "bGoal": "공약수(여러 개일 수 있음)와 최대공약수(하나)를 구별할 수 있다.",
+        "bReason": "제목이 '차이'라고만 해서 무엇을 기준으로 견주는지 없다. 두 용어의 뜻을 견주어 쓰고 같은 두 수에서 각각 구하도록 했다.",
+        "cDecision": "exclude",
+        "cReason": "'공통'은 c1에서, '가장 큰'은 c2에서 이미 같은 빈칸으로 묻는다. '모두'는 '전부', '들'도 들어가는 임의 낱말이다.",
+        "exclusionReason": "C 제외: m1-01-03-c1과 m1-01-03-c2의 정의 빈칸을 한 문장에 합친 중복이다. 차이 비교는 B 서술형으로만 다룬다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "공약수: 두 수에 공통인 약수 모두"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수: 공약수 가운데 가장 큰 수 하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$과 $15$의 공약수는 $1$, $5$이고 최대공약수는 $5$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "공통 약수 전부와 그중 최대",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 976,
+        "part": "m1plus",
+        "sourceFingerprint": "50f3e47d0e9645deaf1063f442311916affe6f548797f6405cf3955014f3423b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 976
+        },
+        "directReview": null,
+        "proposalFingerprint": "dff168f6f049ddc0a65a01d6892d733e867213a4036a010067dc7d9790ef5ed5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc8",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공통인 소인수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 {공통인 소인수}라 한다.",
+        "example": {
+          "prompt": "$2^2\\times3$과 $2\\times5$의 공통인 소인수는?",
+          "answer": "$2$"
+        },
+        "studentC": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 □라 한다.",
+        "answers": [
+          "공통인 소인수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수를 소인수분해했을 때 '공통인 소인수'란 어떤 수를 말하는지 쓰고, $2^2\\times3$과 $2\\times5$의 공통인 소인수를 구하시오.",
+        "bAnswer": "두 수의 소인수분해에 모두 나오는 소인수를 공통인 소인수라 한다. $2^2\\times3$의 소인수는 $2, 3$, $2\\times5$의 소인수는 $2, 5$이므로 공통인 소인수는 $2$이다.",
+        "bGoal": "소인수분해 꼴에서 공통인 소인수를 찾을 수 있다.",
+        "bReason": "제목은 낱말뿐이라 뜻을 묻는지 찾으라는지 알 수 없다. 지수가 달라도 같은 소수이면 공통임을 볼 수 있는 예와 함께 뜻을 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "'양쪽에 모두 나오는 소수'라는 설명이 분명하고, 교과서에서 쓰는 말 '공통인 소인수'를 답하게 한다. 줄인 표현만 같은 답으로 인정한다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 소인수분해에 모두 나오는 소인수(소수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^2\\times3$과 $2\\times5$의 공통인 소인수: $2$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "양쪽에 모두 나오는 소수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 977,
+        "part": "m1plus",
+        "sourceFingerprint": "de2e090543a19667e4fae0edde1ea8a188cec32fcbe75c2b79592d826c33e2a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 977
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 □라 한다.",
+        "cFrozenDefinition": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 {공통인 소인수}라 한다.",
+        "cFrozenAnswers": [
+          "공통인 소인수"
+        ],
+        "cMarkedSentence": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 {공통인 소인수}라 한다.",
+        "cSlotAnswers": [
+          "공통인 소인수"
+        ],
+        "cStudentSentence": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 □라 한다.",
+        "cAnswers": [
+          "공통인 소인수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공통인 소인수",
+            "equivalentAnswers": [
+              "공통인 소인수",
+              "공통 소인수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "공통인 소인수",
+            "accept": [
+              "공통 소인수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공통인 소인수",
+            "공통 소인수"
+          ]
+        ],
+        "proposalFingerprint": "58b99b118765a5de1c35eaba193a942e43145d2b43d1782fb78f926f06c5c1ec"
+      }
+    }
+  ]
+}

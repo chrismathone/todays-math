@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-10-07T12:06:56.392Z",
+  "sourceCommit": "13bf05dce",
+  "id": "m2-01-01-xc20",
+  "sourceIndex": 2140,
+  "sourceFingerprint": "84e7464bbc8ce55912c95c5e24a85de2fad2e145bd09e3ee910d22fdb711a89a",
+  "sourceEvidence": "evidence/source.json",
+  "originalExample": {
+    "prompt": "$\\frac{3}{2\\times a}$가 유한소수인 한 자리 자연수 $a$",
+    "answer": "$1$, $2$, $3$, $4$, $5$, $6$, $8$"
+  },
+  "proposedExample": {
+    "prompt": "$\\frac{3}{2\\times a}$이 유한소수인 한 자리 자연수 $a$",
+    "answer": "$1$, $2$, $3$, $4$, $5$, $6$, $8$"
+  },
+  "reason": "분수는 분모 다음 분자를 읽으므로 마지막 삼 뒤 조사 이가 맞다.",
+  "status": "Planning-only source example correction; original source preserved. Existing normalizeProposal/proposedEntry does not apply an example override; Root owns integration decision."
+}

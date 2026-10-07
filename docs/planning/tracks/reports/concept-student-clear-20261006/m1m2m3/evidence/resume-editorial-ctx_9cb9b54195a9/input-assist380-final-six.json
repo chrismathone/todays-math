@@ -1,0 +1,570 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:32:29.387Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-06-01-xc1",
+        "section": "중2::6. 도형의 닮음::닮은 도형",
+        "term": "닮음비 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대응변 한 쌍의 길이를 {비}로 쓰고 가장 간단한 {자연수}의 비로 고친다.",
+        "example": {
+          "prompt": "대응변이 $8$과 $12$일 때 닮음비",
+          "answer": "$2:3$"
+        },
+        "studentC": "대응변 한 쌍의 길이를 □로 쓰고 가장 간단한 □의 비로 고친다.",
+        "answers": [
+          "비",
+          "자연수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-01-xc1",
+        "learningRole": "procedure",
+        "roleReason": "대응변 길이를 간단한 자연수의 비로",
+        "bDecision": "rewrite",
+        "bPrompt": "닮은 두 삼각형에서 대응변 한 쌍의 길이가 $8$, $12$이다. 닮음비를 구하고, 구하는 과정을 쓰시오.",
+        "bAnswer": "$8:12$로 쓴 뒤 두 수를 $4$로 나누어 $2:3$으로 고친다.",
+        "bGoal": "닮음비 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8:12$를 간단히 한다",
+              "두 수를 $4$로 나눈다"
+            ]
+          }
+        ],
+        "bReason": "8:12를2:3으로 약분하는 과정을 쓴다.",
+        "cDecision": "rewrite",
+        "cReason": "정수 길이를 주어 가장 간단한 자연수 비를 구한다.",
+        "exampleNeeded": true,
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2954,
+        "part": "m2plus",
+        "sourceFingerprint": "92545d001f058b577348b34a006a1b1f1105f2fd485a14870df24a5be251735f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2954
+        },
+        "directReview": null,
+        "cMarkedSentence": "닮은 두 삼각형에서 대응변 한 쌍의 길이가 $8$, $12$이면 닮음비 $8:12$를 가장 간단한 자연수의 비로 고친 값은 {$2:3$}이다.",
+        "cSlotAnswers": [
+          "$2:3$"
+        ],
+        "cStudentSentence": "닮은 두 삼각형에서 대응변 한 쌍의 길이가 $8$, $12$이면 닮음비 $8:12$를 가장 간단한 자연수의 비로 고친 값은 □이다.",
+        "cAnswers": [
+          "$2:3$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2:3$",
+            "equivalentAnswers": [
+              "$2:3$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2:3$"
+          ]
+        ],
+        "proposalFingerprint": "847a84d3b230e0dad79844253cfeadb0fd6bf8af6cfc32d146e78b50d99e23c3",
+        "coreAfter": "닮은 두 도형의 대응변 한 쌍의 길이를 {비}로 나타낸다. {자연수}의 비로 나타낼 수 있는 경우에는 가장 간단한 자연수의 비로 고친다.",
+        "coreReason": "무리수 길이비도 가능하므로 자연수 비로 나타낼 수 있을 때로 한정한다.",
+        "cAfter": "닮은 두 삼각형에서 대응변 한 쌍의 길이가 $8$, $12$이면 닮음비 $8:12$를 가장 간단한 자연수의 비로 고친 값은 {$2:3$}이다."
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc1",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "빗변을 고르는 위치",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직각 표시가 있는 꼭짓점과 {마주 보는 변}을 빗변으로 고른다.",
+        "studentC": "직각 표시가 있는 꼭짓점과 □을 빗변으로 고른다.",
+        "answers": [
+          "마주 보는 변"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc1",
+        "learningRole": "definition",
+        "roleReason": "빗변은 직각인 꼭짓점과 마주 보는 변",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 빗변은 직각인 꼭짓점과 어떤 위치 관계에 있는 변인가?",
+        "bAnswer": "직각인 꼭짓점과 마주 보는 변이다.",
+        "bGoal": "빗변의 위치 찾기",
+        "bReason": "빗변과 직각 꼭짓점의 위치 관계에 집중한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각과 마주 보는 변",
+              "직각의 맞은편 변"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "직각삼각형을 명시하고 맞은편 변을 묻는다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3131,
+        "part": "m2plus",
+        "sourceFingerprint": "15d97a25dae296f1d18043bd3f65b32be193d5ed91e9337343078dfc35d51a0c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3131
+        },
+        "directReview": null,
+        "cMarkedSentence": "직각삼각형에서 직각 표시가 있는 꼭짓점과 {마주 보는 변}을 빗변으로 고른다.",
+        "cSlotAnswers": [
+          "마주 보는 변"
+        ],
+        "cStudentSentence": "직각삼각형에서 직각 표시가 있는 꼭짓점과 □을 빗변으로 고른다.",
+        "cAnswers": [
+          "마주 보는 변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마주 보는 변",
+            "equivalentAnswers": [
+              "마주 보는 변",
+              "맞은편 변",
+              "대변"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "마주 보는 변",
+            "accept": [
+              "맞은편 변",
+              "대변"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "마주 보는 변",
+            "맞은편 변",
+            "대변"
+          ]
+        ],
+        "proposalFingerprint": "ff432bee0830294ae54cf8a47bd1160f279359c8f915bbda39121603871f2ca5",
+        "coreAfter": "직각삼각형에서 직각 표시가 있는 꼭짓점과 {마주 보는 변}을 빗변으로 고른다.",
+        "coreReason": "빗변을 갖는 직각삼각형이라는 대상을 명시한다.",
+        "cAfter": "직각삼각형에서 직각 표시가 있는 꼭짓점과 {마주 보는 변}을 빗변으로 고른다."
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-02-xc14",
+        "section": "중2::9. 확률::여러 가지 경우의 수",
+        "term": "짝수의 끝자리",
+        "kind": "방법",
+        "level": "중",
+        "definition": "양의 한 자리 숫자 카드로 짝수를 만들려면 일의 자리를 {짝수 카드}로 먼저 제한한다.",
+        "studentC": "양의 한 자리 숫자 카드로 짝수를 만들려면 일의 자리를 □로 먼저 제한한다.",
+        "answers": [
+          "짝수 카드"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-02-xc14",
+        "learningRole": "procedure",
+        "roleReason": "짝수 조건을 일의 자리에서 먼저 처리하기",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 중 서로 다른 두 장을 골라 두 자리 짝수를 만든다. 어느 자리부터 정하는 것이 편한지와 그 자리에 올 수 있는 카드를 쓰고, 만들 수 있는 짝수의 개수를 구하시오.",
+        "bAnswer": "일의 자리부터 정하며, 일의 자리에는 $2$ 또는 $4$가 온다. 각각 십의 자리는 남은 $3$장 중 하나이므로 $2\\times3=6$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리부터 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "일의 자리에는 $2$ 또는 $4$가 온다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$개"
+            ]
+          }
+        ],
+        "bGoal": "짝수 조건이 있는 두 자리 수 세기",
+        "bReason": "정할 자리 허용 카드 개수라는 질문의 세 요구를 모두 기준에 둔다.",
+        "exampleNeeded": true,
+        "cDecision": "rewrite",
+        "cAfter": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 {일의 자리}에 올 카드를 짝수 카드로 먼저 제한한다.",
+        "cAnswers": [
+          "일의 자리"
+        ],
+        "cReason": "양의 카드로 짝수를 만드는 일의 자리를 묻는다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3209,
+        "part": "m2plus",
+        "sourceFingerprint": "ad901527131fa0b1fcd59b751d3328a765faeafc287ca93e65105e6815607add",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3209
+        },
+        "directReview": null,
+        "cMarkedSentence": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 {일의 자리}에 올 카드를 짝수 카드로 먼저 제한한다.",
+        "cSlotAnswers": [
+          "일의 자리"
+        ],
+        "cStudentSentence": "양의 한 자리 숫자 카드로 두 자리 짝수를 만들려면 □에 올 카드를 짝수 카드로 먼저 제한한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "일의 자리",
+            "equivalentAnswers": [
+              "일의 자리"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "일의 자리"
+          ]
+        ],
+        "proposalFingerprint": "f8b39658f41b727968460e89fc5d3934877c1ba78ac5f4e52fc44a46a9378384",
+        "coreAfter": null,
+        "coreReason": null
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-04-xc14",
+        "section": "중2::9. 확률::확률의 계산",
+        "term": "비복원 추출의 둘째 분모",
+        "kind": "방법",
+        "level": "중",
+        "definition": "공 한 개를 되돌리지 않고 남은 공을 각각 같은 가능성으로 뽑을 때, 둘째 확률의 분모는 {남은 전체 공의 수}이다.",
+        "studentC": "공 한 개를 되돌리지 않고 남은 공을 각각 같은 가능성으로 뽑을 때, 둘째 확률의 분모는 □이다.",
+        "answers": [
+          "남은 전체 공의 수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-04-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "공 한 개를 뽑아 다시 넣지 않고, 남은 각 공을 같은 가능성으로 한 개 더 뽑는다. 첫째 공의 색을 알 때 둘째 공이 어떤 색일 확률을 경우의 수로 만든 약분 전 분수의 분모와 분자에는 각각 어떤 수를 쓰는가?",
+        "bAnswer": "분모는 남은 전체 공의 수, 분자는 남은 공 중 그 색 공의 수이다.",
+        "bGoal": "다시 넣지 않을 때 둘째 확률의 분모·분자",
+        "bReason": "등가능 비복원의 약분 전 분자 분모를 함께 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 남은 전체 공의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 남은 그 색 공의 수"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "각 공을 같은 가능성으로 뽑되 공 하나를 되돌리지 않은 뒤의 두 번째 확률을 약분 전 분수로 쓰면, 분모는 처음보다 {$1$} 작은 {남은} 전체 공의 수이다.",
+        "cAnswers": [
+          "$1$",
+          "남은"
+        ],
+        "cReason": "약분 전이라는 범위에서 남은 공의 수를 묻는다.",
+        "studentLabel": "다시 넣지 않고 뽑을 때 두 번째 확률의 분모",
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "둘째 분모는 남은 전체 수",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3259,
+        "part": "m2plus",
+        "sourceFingerprint": "4f0a36a63c1a6a40ada90f786deb4ed3054f696604dfd2d1cf61d2dc0641bec6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3259
+        },
+        "directReview": null,
+        "cMarkedSentence": "각 공을 같은 가능성으로 뽑되 공 하나를 되돌리지 않은 뒤의 두 번째 확률을 약분 전 분수로 쓰면, 분모는 처음보다 {$1$} 작은 {남은} 전체 공의 수이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "남은"
+        ],
+        "cStudentSentence": "각 공을 같은 가능성으로 뽑되 공 하나를 되돌리지 않은 뒤의 두 번째 확률을 약분 전 분수로 쓰면, 분모는 처음보다 □ 작은 □ 전체 공의 수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "남은",
+            "equivalentAnswers": [
+              "남은"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "남은"
+          ]
+        ],
+        "proposalFingerprint": "f6e010d4b9361bde1745ff318bb5d4036dfcf6e3f6951a8bdc6cfebde65c5788",
+        "coreAfter": "각 공을 같은 가능성으로 뽑되 공 하나를 되돌리지 않으면, 두 번째 색의 확률을 경우의 수로 만든 약분 전 분수의 분모는 {남은 전체 공의 수}이다.",
+        "coreReason": "약분 전 계수 분모와 남은 공 수의 대응을 한정한다."
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-04-xc17",
+        "section": "중2::9. 확률::확률의 계산",
+        "term": "서로 다른 색의 두 순서 합",
+        "kind": "방법",
+        "level": "상",
+        "definition": "공 두 개의 색이 다를 확률은 {빨강 뒤 파랑}과 {파랑 뒤 빨강}처럼 서로 겹치지 않는 순서별 확률을 더해 구한다.",
+        "studentC": "공 두 개의 색이 다를 확률은 □과 □처럼 서로 겹치지 않는 순서별 확률을 더해 구한다.",
+        "answers": [
+          "빨강 뒤 파랑",
+          "파랑 뒤 빨강"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "빨간 공 $2$개, 파란 공 $3$개에서 매번 남은 각 공을 같은 가능성으로 두 번 뽑되 다시 넣지 않는다. 두 공의 색이 다를 확률을 구할 두 순서를 쓰고, 각 순서의 확률과 전체 답을 구하시오.",
+        "bAnswer": "빨강 다음 파랑은 $\\frac{2}{5}\\times\\frac{3}{4}=\\frac{3}{10}$, 파랑 다음 빨강은 $\\frac{3}{5}\\times\\frac{2}{4}=\\frac{3}{10}$이다. 두 확률을 더하면 $\\frac{3}{5}$이다.",
+        "bGoal": "색이 다른 경우를 두 순서로 나누어 더하기",
+        "bReason": "다른 두 색의 각 순서3/10과 전체3/5를 모두 구한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빨강 다음 파랑과 파랑 다음 빨강"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 순서의 확률은 $\\frac{3}{10}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 확률은 $\\frac{3}{5}$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "빨간 공과 파란 공이 든 주머니에서 공을 차례로 두 개 뽑을 때 두 공의 색이 다를 확률은, '빨강 다음 파랑'일 확률과 '파랑 다음 {빨강}'일 확률을 {더해} 구한다.",
+        "cAnswers": [
+          "빨강",
+          "더해"
+        ],
+        "cReason": "두 색을 명시하고 고정된 첫 순서와 나머지 순서를 더한다.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "두 순서 확률을 더하기",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3262,
+        "part": "m2plus",
+        "sourceFingerprint": "42eac34b6de23e5dea02f1ea38a9e2f0d7472d6d8e816a73eea6f6e25cd27005",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3262
+        },
+        "directReview": null,
+        "cMarkedSentence": "빨간 공과 파란 공이 든 주머니에서 공을 차례로 두 개 뽑을 때 두 공의 색이 다를 확률은, '빨강 다음 파랑'일 확률과 '파랑 다음 {빨강}'일 확률을 {더해} 구한다.",
+        "cSlotAnswers": [
+          "빨강",
+          "더해"
+        ],
+        "cStudentSentence": "빨간 공과 파란 공이 든 주머니에서 공을 차례로 두 개 뽑을 때 두 공의 색이 다를 확률은, '빨강 다음 파랑'일 확률과 '파랑 다음 □'일 확률을 □ 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빨강",
+            "equivalentAnswers": [
+              "빨강"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더해",
+            "equivalentAnswers": [
+              "더해",
+              "더하여",
+              "더해서"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더해",
+            "accept": [
+              "더하여",
+              "더해서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빨강"
+          ],
+          [
+            "더해",
+            "더하여",
+            "더해서"
+          ]
+        ],
+        "proposalFingerprint": "0d0adc1e53e3cefc1b91b414753edf16a57b4c924241e7f93c76ffe2804a1371",
+        "coreAfter": null,
+        "coreReason": null
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-02-xc9",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "다항식이 공통인 인수일 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "공통인 인수는 문자 하나가 아니라 {다항식}일 수도 있다 — 같은 괄호 식이 모든 항에 곱해져 있으면 그 괄호를 {한 덩어리}로 묶어 낸다.",
+        "studentC": "공통인 인수는 문자 하나가 아니라 □일 수도 있다 — 같은 괄호 식이 모든 항에 곱해져 있으면 그 괄호를 □로 묶어 낸다.",
+        "answers": [
+          "다항식",
+          "한 덩어리"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-xc9",
+        "learningRole": "procedure",
+        "roleReason": "공통 괄호식을 한 덩어리로 묶음",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 항에 같은 괄호 식이 곱해져 있을 때 어떻게 인수분해하는지 말하고, $a(x+1)+b(x+1)$을 인수분해하시오.",
+        "bAnswer": "그 괄호 식을 한 덩어리의 공통인 인수로 보고 묶어 낸다. $a(x+1)+b(x+1)=(x+1)(a+b)$",
+        "bGoal": "다항식인 공통인 인수 묶기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 식을 한 덩어리 공통인 인수로 묶는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x+1)(a+b)$",
+              "$(a+b)(x+1)$"
+            ]
+          }
+        ],
+        "bReason": "공통 괄호식 x+1을 묶어 두 인수의 곱을 구한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$a(x+1)+b(x+1)$에서 두 항의 공통인 다항식 {$x+1$}을 한 덩어리로 묶으면, {$(x+1)(a+b)$}로 인수분해된다.",
+        "cAnswers": [
+          "$x+1$",
+          "$(x+1)(a+b)$"
+        ],
+        "cReason": "실제 공통 다항식과 인수분해 결과를 연결한다.",
+        "exampleNeeded": true,
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3361,
+        "part": "m3plus",
+        "sourceFingerprint": "921198a17f6e1aa938d5a8f2c9a7725eb33fa2c3353df50c73914f98565c57a8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3361
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a(x+1)+b(x+1)$에서 두 항의 공통인 다항식 {$x+1$}을 한 덩어리로 묶으면, {$(x+1)(a+b)$}로 인수분해된다.",
+        "cSlotAnswers": [
+          "$x+1$",
+          "$(x+1)(a+b)$"
+        ],
+        "cStudentSentence": "$a(x+1)+b(x+1)$에서 두 항의 공통인 다항식 □을 한 덩어리로 묶으면, □로 인수분해된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x+1$",
+            "equivalentAnswers": [
+              "$x+1$",
+              "$1+x$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(x+1)(a+b)$",
+            "equivalentAnswers": [
+              "$(x+1)(a+b)$",
+              "$(a+b)(x+1)$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$(x+1)(a+b)$",
+            "accept": [
+              "$(a+b)(x+1)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$x+1$",
+            "$1+x$"
+          ],
+          [
+            "$(x+1)(a+b)$",
+            "$(a+b)(x+1)$"
+          ]
+        ],
+        "proposalFingerprint": "e4509a71e3686a56a28194e359199b867baef49ce5894b32793e9acc635f10d4",
+        "coreAfter": null,
+        "coreReason": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,1997 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-20261007/input-1192-1216.json",
+  "changes": [
+    {
+      "id": "m1-03-02-xc12",
+      "cAfter": "$\\frac{x+1}{2}$은 $\\frac12x+\\frac12$로 나타낼 수 있어 $x$에 대한 차수가 {$1$}이다. $\\frac2x$는 분모에 문자가 있어 다항식이 {아니다}.",
+      "cReason": "일차식 외에 다항식이라고 답해도 참인 열린 분류 빈칸을 실제 최고차수1과 다항식 아님이라는 판단으로 명확히 한다."
+    },
+    {
+      "id": "m1-03-02-xc13",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2a$와 $-b$의 차수는 각각 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$의 차수는 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "차수가 가장 높은 항의 차수가 $1$이므로 일차식이다"
+          ]
+        }
+      ],
+      "bReason": "질문이 각 항의 차수를 요구하므로 상수항이라는 이름만으로 차수0 답을 대신 인정하지 않도록 요청된 의미를 기준에 분리한다."
+    },
+    {
+      "id": "m1-03-03-xc1",
+      "cAfter": "두 항이 동류항인지 알아볼 때에는 {계수}가 달라도 상관없고, 곱해진 문자와 각 문자의 {차수}가 같은지를 비교한다.",
+      "coreAfter": "두 항이 동류항인지 알아볼 때는 계수는 보지 않고, 곱해진 {문자}와 각 문자의 {차수}가 같은지를 비교한다.",
+      "coreReason": "문자가 여럿이면 전체 차수만 같아도 동류항이라고 잘못 판단할 수 있으므로 각 문자의 차수를 비교한다고 명시한다."
+    },
+    {
+      "id": "m1-03-03-xc8",
+      "cDecision": "exclude",
+      "cReason": "x와-x의 생략 계수1·-1은 m1-03-02-xc3 C와 같은 확인이다. 이 문항의 실제 동류항 계산 적용은 B에 보존한다.",
+      "exclusionReason": "C 제외: $x$, $-x$의 계수 $1$, $-1$ 확인은 m1-03-02-xc3 C와 같은 내용이다. $x-5x$의 계산 적용은 B로 유지하며 ID와 일반 설명을 삭제하지 않는다."
+    },
+    {
+      "id": "m1-03-03-xc13",
+      "cAfter": "수가 곱해진 괄호가 둘 이상 있는 일차식은 각 괄호를 {분배법칙}으로 먼저 푼 뒤 {동류항}끼리 모아 계산한다.",
+      "coreAfter": "수가 곱해진 괄호가 둘 이상 있는 일차식은 각 괄호를 {분배법칙}으로 먼저 푼 뒤 {동류항}끼리 모아 계산한다.",
+      "coreReason": "제곱이나 분모의 괄호까지 무조건 분배법칙으로 푼다는 지시가 아니도록 수가 곱해진 일차식의 괄호라는 대상을 밝힌다."
+    },
+    {
+      "id": "m1-03-03-xc15",
+      "cAfter": "여러 항이 섞인 식을 정리할 때에는 곱해진 문자와 각 문자의 {차수}가 같은 항끼리, 수만 있는 {상수항}끼리 따로 모아 계산한다.",
+      "coreAfter": "식을 정리할 때는 곱해진 {문자}와 각 문자의 {차수}가 같은 항끼리 모아 계산한다. 수만 있는 {상수항}은 상수항끼리 모아 계산한다.",
+      "coreReason": "동류항을 문자별 차수가 같은 항이라고 정확히 밝히고 긴 임의 문구 대신 문자·차수·상수항의 표준 이름을 핵심어로 쓴다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-03-02-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "$a$, $b$가 수일 때 $x$에 대한 일차식을 $a$, $b$, $x$를 사용한 일반적인 꼴로 쓰고, 이때 $a$가 만족해야 하는 조건과 그 까닭을 쓰시오.",
+      "bAnswer": "$ax+b$ 꼴이고 $a\\neq0$이어야 한다. $a=0$이면 $x$가 든 항이 없어져 $b$만 남으므로 일차식이 아니다.",
+      "bGoal": "일차식의 일반적인 꼴과 계수의 조건을 말한다.",
+      "bReason": "'일차식의 꼴'은 어떤 문자를 써서 나타낼지 정해 주지 않으면 답이 여러 가지라 $a$, $b$, $x$의 구실을 밝혔다.",
+      "cDecision": "rewrite",
+      "cAfter": "$a$, $b$가 수일 때 $x$에 대한 일차식은 {$ax+b$} 꼴이고, 이때 $x$의 계수 $a$는 {$0$}이 아니어야 한다.",
+      "cAnswers": [
+        "$ax+b$",
+        "$0$"
+      ],
+      "cReason": "원문은 첫 빈칸을 채우기 전에는 '$a$'가 무엇인지 알 수 없고 둘째 빈칸이 구절이다. $a$, $b$의 뜻을 밝히고 둘째 빈칸을 수 하나로 줄였다.",
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$ax+b$ 꼴"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a\\neq0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: $a=0$이면 $x$가 든 항이 없어져 일차식이 아님"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "definition",
+      "roleReason": "ax+b 꼴, a는 0이 아님",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1192,
+      "part": "m1plus",
+      "sourceFingerprint": "68d98f77bb1d5efcac2ac2c352ab4beac20e470ea775efb95dd8ff0728959464",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1192
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a$, $b$가 수일 때 $x$에 대한 일차식은 {$ax+b$} 꼴이고, 이때 $x$의 계수 $a$는 {$0$}이 아니어야 한다.",
+      "cSlotAnswers": [
+        "$ax+b$",
+        "$0$"
+      ],
+      "cStudentSentence": "$a$, $b$가 수일 때 $x$에 대한 일차식은 □ 꼴이고, 이때 $x$의 계수 $a$는 □이 아니어야 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$ax+b$",
+          "equivalentAnswers": [
+            "$ax+b$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$ax+b$"
+        ],
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "e4cc05ef6b2731abdbfb153b6e7c07112a78c9efde0dd17eec6566d624ea9ed3"
+    },
+    {
+      "id": "m1-03-02-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{3x}{4}$와 $\\frac{4}{3x}$ 가운데 일차식인 것을 고르고, 문자가 분수의 어디에 있는지를 근거로 각각 까닭을 쓰시오.",
+      "bAnswer": "일차식은 $\\frac{3x}{4}$이다. $\\frac{3x}{4}=\\frac{3}{4}x$는 분자에만 문자가 있어 차수가 $1$인 다항식이다. $\\frac{4}{3x}$는 분모에 문자가 있어 다항식이 아니므로 일차식도 아니다.",
+      "bGoal": "분수 꼴의 식에서 문자의 위치로 일차식 여부를 판단한다.",
+      "bReason": "묻지 않은 $\\frac{3}{4}x$ 변형과 '다항식' 용어 없이 문자 위치만으로 답해도 맞음",
+      "cDecision": "rewrite",
+      "cAfter": "$\\frac{x+1}{2}$은 $\\frac12x+\\frac12$로 나타낼 수 있어 $x$에 대한 차수가 {$1$}이다. $\\frac2x$는 분모에 문자가 있어 다항식이 {아니다}.",
+      "cAnswers": [
+        "$1$",
+        "아니다"
+      ],
+      "cReason": "일차식 외에 다항식이라고 답해도 참인 열린 분류 빈칸을 실제 최고차수1과 다항식 아님이라는 판단으로 명확히 한다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일차식은 $\\frac{3x}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3x}{4}$는 문자가 분자에만 있음",
+            "$\\frac{3x}{4}=\\frac{3}{4}x$로 수와 $x$의 곱임"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{3x}$는 분모에 문자가 있어 일차식이 아님",
+            "$\\frac{4}{3x}$는 분모에 문자가 있어 다항식이 아님"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "문자 위치로 일차식 판별",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1193,
+      "part": "m1plus",
+      "sourceFingerprint": "9f616494c4b94a04e5740a0a532d91cf2c0fc3e59eeafe3727d3a0a4455154f1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1193
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\frac{x+1}{2}$은 $\\frac12x+\\frac12$로 나타낼 수 있어 $x$에 대한 차수가 {$1$}이다. $\\frac2x$는 분모에 문자가 있어 다항식이 {아니다}.",
+      "cSlotAnswers": [
+        "$1$",
+        "아니다"
+      ],
+      "cStudentSentence": "$\\frac{x+1}{2}$은 $\\frac12x+\\frac12$로 나타낼 수 있어 $x$에 대한 차수가 □이다. $\\frac2x$는 분모에 문자가 있어 다항식이 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "아니다",
+          "equivalentAnswers": [
+            "아니다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "proposalFingerprint": "197fac2c3e8ae6b92c8a3088abadb3adda48e870a3c37df8476d8d7436782bdb"
+    },
+    {
+      "id": "m1-03-02-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$2a-b+5$처럼 문자가 두 개인 식이 일차식인지 판단하려고 한다. 이 식의 각 항의 차수를 쓰고, 일차식인지 까닭과 함께 답하시오.",
+      "bAnswer": "$2a$의 차수는 $1$, $-b$의 차수는 $1$, $5$의 차수는 $0$이다. 차수가 가장 높은 항의 차수가 $1$이므로 일차식이다.",
+      "bGoal": "문자가 여럿인 식도 가장 높은 차수가 $1$이면 일차식임을 판단한다.",
+      "bReason": "질문이 각 항의 차수를 요구하므로 상수항이라는 이름만으로 차수0 답을 대신 인정하지 않도록 요청된 의미를 기준에 분리한다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x+2y-1$처럼 문자가 여럿이어도 차수가 가장 {높은} 항의 차수가 {$1$}이면 일차식이다.",
+      "cAnswers": [
+        "높은",
+        "$1$"
+      ],
+      "cReason": "원문의 첫 빈칸 '차수가 가장 높은 항'은 긴 구절이라 그대로 쓰기 어렵다. 한 낱말 '높은'만 가리도록 줄였다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2a$와 $-b$의 차수는 각각 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$의 차수는 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "차수가 가장 높은 항의 차수가 $1$이므로 일차식이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "definition",
+      "roleReason": "문자 여럿이어도 최고차 1",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1194,
+      "part": "m1plus",
+      "sourceFingerprint": "701d4007beea9f13fe12695a102cc5aa91eaa76dcff94e6d3ca506ce6b5e21ae",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1194
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x+2y-1$처럼 문자가 여럿이어도 차수가 가장 {높은} 항의 차수가 {$1$}이면 일차식이다.",
+      "cSlotAnswers": [
+        "높은",
+        "$1$"
+      ],
+      "cStudentSentence": "$x+2y-1$처럼 문자가 여럿이어도 차수가 가장 □ 항의 차수가 □이면 일차식이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "높은",
+          "equivalentAnswers": [
+            "높은",
+            "큰"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "높은",
+          "accept": [
+            "큰"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "높은",
+          "큰"
+        ],
+        [
+          "$1$"
+        ]
+      ],
+      "proposalFingerprint": "b4125ce14e19f4163074776ccca2e90406df6f60f2e6dc96dea566cbfba532cd"
+    },
+    {
+      "id": "m1-03-02-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "항 $xy$의 차수를 까닭과 함께 쓰고, $xy+1$이 일차식인지 답하시오.",
+      "bAnswer": "$xy=x\\times y$로 문자가 두 번 곱해졌으므로 차수는 $2$이다. 따라서 $xy+1$은 차수가 $2$여서 일차식이 아니다.",
+      "bGoal": "서로 다른 문자의 곱인 항의 차수를 구하고 일차식 여부를 판단한다.",
+      "bReason": "제목 '두 문자의 곱인 항'은 대상만 가리켜, 차수와 일차식 여부라는 답의 범위를 구체 식으로 정했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$xy$처럼 서로 다른 두 문자가 곱해진 항의 차수는 {$2$}이므로 $xy+1$은 일차식이 {아니다}.",
+      "cAnswers": [
+        "$2$",
+        "아니다"
+      ],
+      "cReason": "원문의 끝 빈칸은 '일차식이 아니다'와 '이차식이다'가 모두 들어갈 수 있어 답이 갈린다. '일차식이'를 드러내 판단만 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$xy$의 차수는 $2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: $x\\times y$로 문자가 두 번 곱해짐"
+          ]
+        },
+        {
+          "anyOf": [
+            "$xy+1$은 일차식이 아님"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "reason",
+      "roleReason": "두 문자 곱은 차수 2",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1195,
+      "part": "m1plus",
+      "sourceFingerprint": "e57a601e3f8383f1a8bb7b9c11fb992bf8cfa8e865e7ebaa0cdcf432d7a2812a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1195
+      },
+      "directReview": null,
+      "cMarkedSentence": "$xy$처럼 서로 다른 두 문자가 곱해진 항의 차수는 {$2$}이므로 $xy+1$은 일차식이 {아니다}.",
+      "cSlotAnswers": [
+        "$2$",
+        "아니다"
+      ],
+      "cStudentSentence": "$xy$처럼 서로 다른 두 문자가 곱해진 항의 차수는 □이므로 $xy+1$은 일차식이 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "아니다",
+          "equivalentAnswers": [
+            "아니다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "proposalFingerprint": "517a0c4bb8564eb6c8a7fbc412b792e3ead21c057e48f21bea4723cf1f958644"
+    },
+    {
+      "id": "m1-03-02-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$a$가 수일 때 $(a+1)x^2-4x$가 $x$에 대한 일차식이 되려고 한다. $x^2$의 계수와 $x$의 계수가 각각 어떤 조건을 만족해야 하는지 쓰고, $a$의 값을 구하시오.",
+      "bAnswer": "$x^2$의 계수는 $0$이어야 하고 $x$의 계수는 $0$이 아니어야 한다. $a+1=0$에서 $a=-1$이고, $x$의 계수 $-4$는 $0$이 아니므로 조건에 맞는다.",
+      "bGoal": "식이 일차식이 되도록 하는 계수의 조건을 세워 문자의 값을 정한다.",
+      "bReason": "제목은 어떤 식의 어떤 계수인지 없어 답할 수 없으므로 식과 $a$의 뜻을 주고 두 계수의 조건을 나누어 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x$에 대한 식이 일차식이 되려면 차수가 $2$ 이상인 항의 계수는 모두 {$0$}이어야 하고, $x$의 계수는 {$0$이 아니어야} 한다.",
+      "cAnswers": [
+        "$0$",
+        "$0$이 아니어야"
+      ],
+      "cReason": "원문의 '$x^2$ 이상의 항'은 뜻이 불분명하고 '계수는 □, … □ 한다'는 문장이 어색하다. '차수가 $2$ 이상인 항'으로 바꾸고 문장을 다듬었다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x^2$의 계수는 $0$이어야 함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$의 계수는 $0$이 아니어야 함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a+1=0$에서 $a=-1$($x$의 계수 $-4$는 $0$이 아님)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "이차항 계수 0으로 a 정하기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1196,
+      "part": "m1plus",
+      "sourceFingerprint": "77fa964a89e0d1916cf75ce83d7c175c9270ff1688e53c28b897c962475c1d51",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1196
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x$에 대한 식이 일차식이 되려면 차수가 $2$ 이상인 항의 계수는 모두 {$0$}이어야 하고, $x$의 계수는 {$0$이 아니어야} 한다.",
+      "cSlotAnswers": [
+        "$0$",
+        "$0$이 아니어야"
+      ],
+      "cStudentSentence": "$x$에 대한 식이 일차식이 되려면 차수가 $2$ 이상인 항의 계수는 모두 □이어야 하고, $x$의 계수는 □ 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$이 아니어야",
+          "equivalentAnswers": [
+            "$0$이 아니어야"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "$0$이 아니어야"
+        ]
+      ],
+      "proposalFingerprint": "4f02b3f8790bd515dada9e8d48ec594bda878b62fa68964881ed8301eba4b47a"
+    },
+    {
+      "id": "m1-03-02-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$x^2+x+1$의 차수를 각 항의 차수 $2$, $1$, $0$을 더해 $3$이라고 답한 친구가 있다. 이 답이 틀린 까닭을 쓰고, 바른 차수를 구하시오.",
+      "bAnswer": "다항식의 차수는 각 항의 차수를 더한 값이 아니라 차수가 가장 높은 항의 차수이다. 가장 높은 항은 $x^2$이므로 차수는 $2$이다.",
+      "bGoal": "다항식의 차수와 항의 차수의 합을 구별한다.",
+      "bReason": "'다항식의 차수' 질문과 겹치지 않도록, 원문이 겨냥한 오답(차수를 더함)을 상황으로 주어 고치게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "정리한 다항식의 차수는 각 항의 차수 가운데 가장 {높은} 것이지, 각 항의 차수를 모두 {더한} 값이 아니다.",
+      "cAnswers": [
+        "높은",
+        "더한"
+      ],
+      "cReason": "원문의 첫 답 '항의 차수'는 뒤의 '항의 차수를 모두'에서 그대로 베낄 수 있다. 비교의 핵심인 '높은'과 '더한'을 가리도록 바꾸었다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "틀린 까닭: 다항식의 차수는 각 항의 차수의 합이 아니라 차수가 가장 높은 항의 차수임"
+          ]
+        },
+        {
+          "anyOf": [
+            "바른 차수 $2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "definition",
+      "roleReason": "식의 차수는 최고차항 차수",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1197,
+      "part": "m1plus",
+      "sourceFingerprint": "437e764b202e7785f935a9d976aadf079daa49159aea51b80543c849b0aca68e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1197
+      },
+      "directReview": null,
+      "cMarkedSentence": "정리한 다항식의 차수는 각 항의 차수 가운데 가장 {높은} 것이지, 각 항의 차수를 모두 {더한} 값이 아니다.",
+      "cSlotAnswers": [
+        "높은",
+        "더한"
+      ],
+      "cStudentSentence": "정리한 다항식의 차수는 각 항의 차수 가운데 가장 □ 것이지, 각 항의 차수를 모두 □ 값이 아니다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "높은",
+          "equivalentAnswers": [
+            "높은",
+            "큰"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "더한",
+          "equivalentAnswers": [
+            "더한",
+            "합한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "높은",
+          "accept": [
+            "큰"
+          ]
+        },
+        {
+          "answer": "더한",
+          "accept": [
+            "합한"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "높은",
+          "큰"
+        ],
+        [
+          "더한",
+          "합한"
+        ]
+      ],
+      "proposalFingerprint": "236581dae3cf15578244018df715dd4be8cbbd9f9cb38e6bf6acb0fbed75a39b"
+    },
+    {
+      "id": "m1-03-02-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$3x-y+\\frac{z}{2}$에서 $x$, $y$, $z$의 계수를 각각 쓰고, 세 계수의 합을 구하시오.",
+      "bAnswer": "$x$의 계수는 $3$, $y$의 계수는 $-1$, $z$의 계수는 $\\frac{1}{2}$이다. 합은 $3+(-1)+\\frac{1}{2}=\\frac{5}{2}$",
+      "bGoal": "각 계수를 부호와 생략된 수까지 읽어 합을 구한다.",
+      "bReason": "계수의 합은 식이 있어야 구할 수 있으므로, 음의 부호·생략된 $1$·분수 꼴이 모두 든 식을 주었다.",
+      "cDecision": "rewrite",
+      "cAfter": "여러 항의 계수의 합을 구할 때는 각 계수를 앞에 붙은 {부호}까지 포함해 읽은 뒤 더한다.",
+      "cAnswers": [
+        "부호"
+      ],
+      "cReason": "둘째 빈칸 '더한다'는 문장 앞의 '더할 때는'을 되풀이할 뿐이라 묻는 뜻이 없어, 핵심인 '부호'만 남겼다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$의 계수 $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y$의 계수 $-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$z$의 계수 $\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "합 $\\frac{5}{2}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "부호째 계수 읽어 더하기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1198,
+      "part": "m1plus",
+      "sourceFingerprint": "b7bdc9c88a027df859b3029b8dca51c0da68ddfa7764ef31569310c3312ac057",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1198
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 항의 계수의 합을 구할 때는 각 계수를 앞에 붙은 {부호}까지 포함해 읽은 뒤 더한다.",
+      "cSlotAnswers": [
+        "부호"
+      ],
+      "cStudentSentence": "여러 항의 계수의 합을 구할 때는 각 계수를 앞에 붙은 □까지 포함해 읽은 뒤 더한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ]
+      ],
+      "proposalFingerprint": "520c75819338f0a0133b837326c5400e3b90445661217db5767a75693c923f42"
+    },
+    {
+      "id": "m1-03-02-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{a-3}{4}$이 단항식인지 판단하려고 한다. 분자의 각 항을 분모 $4$로 나누어 이 식의 항을 모두 쓰고, 단항식인지 까닭과 함께 답하시오.",
+      "bAnswer": "$\\frac{a-3}{4}=\\frac{a}{4}-\\frac{3}{4}$이므로 항은 $\\frac{a}{4}$, $-\\frac{3}{4}$이다. 항이 두 개이므로 단항식이 아니다.",
+      "bGoal": "분수 하나로 쓰인 식을 항의 합으로 풀어 항의 개수를 판단한다.",
+      "bReason": "제목 '분수 꼴로 묶인 다항식'은 어떤 식인지 떠올리기 어려워 구체 식을 주고 항으로 나누는 방법을 안내했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$\\frac{a-3}{4}$처럼 분모가 $0$이 아닌 수이고 분자가 문자가 든 항 하나와 $0$이 아닌 상수항으로 이루어진 분수 꼴의 식은, 분자의 각 항을 분모로 나누면 항이 {두} 개인 식이 되므로 {단항식}이 아니다.",
+      "cAnswers": [
+        "두",
+        "단항식"
+      ],
+      "cReason": "원문의 두 빈칸은 '단항식이 아니다', '각 항을 분모로 나눈'이라는 긴 구절이고 결론과 까닭을 모두 가린다. 예를 넣고 항의 개수와 용어만 묻게 했다.",
+      "studentLabel": "분수 하나로 쓰인 다항식",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{a-3}{4}=\\frac{a}{4}-\\frac{3}{4}$이므로 항은 $\\frac{a}{4}$, $-\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "단항식이 아님: 항이 두 개이기 때문"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "reason",
+      "roleReason": "분자 각 항 나누면 두 항",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1199,
+      "part": "m1plus",
+      "sourceFingerprint": "e7ce56c99a3d0657e2d41af04669c97a31cae7f0c725aa29954104781fd34c12",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1199
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\frac{a-3}{4}$처럼 분모가 $0$이 아닌 수이고 분자가 문자가 든 항 하나와 $0$이 아닌 상수항으로 이루어진 분수 꼴의 식은, 분자의 각 항을 분모로 나누면 항이 {두} 개인 식이 되므로 {단항식}이 아니다.",
+      "cSlotAnswers": [
+        "두",
+        "단항식"
+      ],
+      "cStudentSentence": "$\\frac{a-3}{4}$처럼 분모가 $0$이 아닌 수이고 분자가 문자가 든 항 하나와 $0$이 아닌 상수항으로 이루어진 분수 꼴의 식은, 분자의 각 항을 분모로 나누면 항이 □ 개인 식이 되므로 □이 아니다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "두",
+          "equivalentAnswers": [
+            "두",
+            "$2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "단항식",
+          "equivalentAnswers": [
+            "단항식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "두",
+          "accept": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "두",
+          "$2$"
+        ],
+        [
+          "단항식"
+        ]
+      ],
+      "proposalFingerprint": "c74c99af71484c95819efcc91027243d70005fbc7944940424a32709aa8b8040"
+    },
+    {
+      "id": "m1-03-02-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$2x-7x^2$처럼 문자가 없는 항이 보이지 않는 식에서 상수항은 얼마로 보는지 쓰시오.",
+      "bAnswer": "$0$. 문자 없는 항이 없으면 상수항은 $0$으로 본다.",
+      "bGoal": "상수항이 보이지 않는 식의 상수항을 $0$으로 본다.",
+      "bReason": "제목만으로는 '상수항이 없다'고 답하면 되는지 값을 묻는지 알 수 없어, 구체 식을 주고 '얼마'를 묻는다고 밝혔다.",
+      "cDecision": "keep",
+      "cReason": "예 $5x$가 문장에 있고 답이 수 하나로 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "상수항은 $0$으로 봄"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "definition",
+      "roleReason": "상수항 없으면 0으로 봄",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1200,
+      "part": "m1plus",
+      "sourceFingerprint": "bfc9ce464191794913262c4d40103208c160cde3037b2fbef494a4e7921ec5d1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1200
+      },
+      "directReview": null,
+      "cFrozenSentence": "$5x$처럼 문자 없는 항이 없으면 상수항은 □으로 본다.",
+      "cFrozenDefinition": "$5x$처럼 문자 없는 항이 없으면 상수항은 {$0$}으로 본다.",
+      "cFrozenAnswers": [
+        "$0$"
+      ],
+      "cMarkedSentence": "$5x$처럼 문자 없는 항이 없으면 상수항은 {$0$}으로 본다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "$5x$처럼 문자 없는 항이 없으면 상수항은 □으로 본다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "92c428977436869327789d9b2f28d9b6c8729d424ada03075934b1e9a92bcf6f"
+    },
+    {
+      "id": "m1-03-02-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "다항식은 차수에 따라 이름을 붙인다. 차수가 $1$인 다항식과 차수가 $2$인 다항식의 이름을 각각 쓰고, $4-x^2$은 몇 차식인지 까닭과 함께 답하시오.",
+      "bAnswer": "차수가 $1$이면 일차식, $2$이면 이차식이다. $4-x^2$은 차수가 가장 높은 항 $-x^2$의 차수가 $2$이므로 이차식이다.",
+      "bGoal": "다항식을 차수에 따라 일차식, 이차식으로 부른다.",
+      "bReason": "제목은 이름 붙이는 방법이 있다는 것만 말해, 차수별 이름과 구체 식에 적용하기로 범위를 정했다.",
+      "cDecision": "rewrite",
+      "cAfter": "다항식은 차수에 따라 이름을 붙인다. 차수가 $1$이면 일차식, 차수가 $2$이면 {이차식}이라 한다.",
+      "cAnswers": [
+        "이차식"
+      ],
+      "cReason": "원문은 두 빈칸의 답이 모두 '이차식'이라 같은 것을 두 번 쓰게 한다. 빈칸을 하나로 줄이고 차수와 이름의 대응이 보이게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차수가 $1$이면 일차식, $2$이면 이차식"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4-x^2$은 이차식"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 차수가 가장 높은 항 $-x^2$의 차수가 $2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "naming",
+      "roleReason": "차수 2면 이차식이라 부름",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1201,
+      "part": "m1plus",
+      "sourceFingerprint": "b19a0eba950aff282bb94d7d1005d7975e96ef4f948dcb64a4cbd82d06d8daa4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1201
+      },
+      "directReview": null,
+      "cMarkedSentence": "다항식은 차수에 따라 이름을 붙인다. 차수가 $1$이면 일차식, 차수가 $2$이면 {이차식}이라 한다.",
+      "cSlotAnswers": [
+        "이차식"
+      ],
+      "cStudentSentence": "다항식은 차수에 따라 이름을 붙인다. 차수가 $1$이면 일차식, 차수가 $2$이면 □이라 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "이차식",
+          "equivalentAnswers": [
+            "이차식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "이차식"
+        ]
+      ],
+      "proposalFingerprint": "bae95456361a4618890e4110bd3d2a1991c1aa94c9828a17b3e84d188e758dcf"
+    },
+    {
+      "id": "m1-03-03-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "$-4a$와 $\\frac{a}{2}$는 동류항인가? 두 항이 동류항인지 알아볼 때 비교해야 하는 것과 달라도 상관없는 것을 밝혀 이유를 쓰시오.",
+      "bAnswer": "동류항이다. 계수 $-4$와 $\\frac{1}{2}$은 달라도 상관없다. 문자가 $a$로 같고 차수가 $1$로 같으므로 동류항이다. 동류항인지는 문자와 차수만 비교한다.",
+      "bGoal": "계수가 달라도 문자와 차수가 같으면 동류항임을 판단한다.",
+      "bReason": "m1-03-03-c1의 B가 정의를 묻는다. 이 문항은 계수가 음수와 분수로 달라 보여도 동류항이라는 판단 기준에 집중해 서로 겹치지 않게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 항이 동류항인지 알아볼 때에는 {계수}가 달라도 상관없고, 곱해진 문자와 각 문자의 {차수}가 같은지를 비교한다.",
+      "cAnswers": [
+        "계수",
+        "차수"
+      ],
+      "cReason": "원문은 '□와 □'가 붙어 있어 순서를 바꿔 써도 맞고, 이 문항만의 요점인 '계수는 상관없다'가 빈칸이 아니다. '견주어 가린다'도 낯선 말이라 '비교한다'로 바꾸었다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "동류항임"
+          ]
+        },
+        {
+          "anyOf": [
+            "비교할 것: 문자와 차수(문자 $a$, 차수 $1$로 같음)"
+          ]
+        },
+        {
+          "anyOf": [
+            "계수는 달라도 상관없음"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "문자와 차수만 비교",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1202,
+      "part": "m1plus",
+      "sourceFingerprint": "83ee21b8167189b86af235104a91d6f1d4139d2cfa05fc3e50e6baf81caad7a0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1202
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 항이 동류항인지 알아볼 때에는 {계수}가 달라도 상관없고, 곱해진 문자와 각 문자의 {차수}가 같은지를 비교한다.",
+      "cSlotAnswers": [
+        "계수",
+        "차수"
+      ],
+      "cStudentSentence": "두 항이 동류항인지 알아볼 때에는 □가 달라도 상관없고, 곱해진 문자와 각 문자의 □가 같은지를 비교한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계수",
+          "equivalentAnswers": [
+            "계수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "차수",
+          "equivalentAnswers": [
+            "차수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "계수"
+        ],
+        [
+          "차수"
+        ]
+      ],
+      "proposalFingerprint": "f113faa91cac51c2588a63cfd6078539c9c4e82b22231b595a7aeac8ba45adb7",
+      "coreAfter": "두 항이 동류항인지 알아볼 때는 계수는 보지 않고, 곱해진 {문자}와 각 문자의 {차수}가 같은지를 비교한다.",
+      "coreReason": "문자가 여럿이면 전체 차수만 같아도 동류항이라고 잘못 판단할 수 있으므로 각 문자의 차수를 비교한다고 명시한다."
+    },
+    {
+      "id": "m1-03-03-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "동류항의 덧셈에서 계수끼리 더하고 문자는 그대로 둔다.",
+      "bReason": "m1-03-03-c2의 B가 같은 방법을 $5x-8x$로 이미 묻는다. 예시의 수와 연산만 바꾼 같은 질문이 되어 B에서는 뺀다. 연습량이 더 필요할 때는 위 제안을 쓸 수 있다.",
+      "cDecision": "keep",
+      "cReason": "m1-03-03-c2의 C는 분배법칙과 계수를, 이 문장은 문자를 빈칸으로 두어 서로 다른 낱말을 확인한다. 문장도 짧고 분명하다.",
+      "exclusionReason": "B 제외: m1-03-03-c2의 B(동류항은 계수끼리 계산하고 문자는 그대로 둔다)와 같은 방법을 덧셈 예로만 바꾼 중복 질문이다. C는 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "계수끼리 더하고 문자 유지",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1203,
+      "part": "m1plus",
+      "sourceFingerprint": "dac38d8093eb7aea5657a680c99973921381e061b4e45ed11cfcb73254565548",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1203
+      },
+      "directReview": null,
+      "cFrozenSentence": "동류항끼리 더할 때는 계수끼리 더하고 □는 그대로 둔다.",
+      "cFrozenDefinition": "동류항끼리 더할 때는 계수끼리 더하고 {문자}는 그대로 둔다.",
+      "cFrozenAnswers": [
+        "문자"
+      ],
+      "cMarkedSentence": "동류항끼리 더할 때는 계수끼리 더하고 {문자}는 그대로 둔다.",
+      "cSlotAnswers": [
+        "문자"
+      ],
+      "cStudentSentence": "동류항끼리 더할 때는 계수끼리 더하고 □는 그대로 둔다.",
+      "cAnswers": [
+        "문자"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "문자",
+          "equivalentAnswers": [
+            "문자"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "문자"
+        ]
+      ],
+      "proposalFingerprint": "e2577137ee1007999aae0e2b28b929b7a535a07112dd0bc837dd2a76735a31ef"
+    },
+    {
+      "id": "m1-03-03-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "$2x+3y$는 더 간단히 할 수 있는가? 할 수 있으면 계산하고, 할 수 없으면 두 항의 문자와 차수를 살펴 그 이유를 쓰시오.",
+      "bAnswer": "더 간단히 할 수 없다. $2x$와 $3y$는 문자가 달라 동류항이 아니므로 더해서 한 항으로 만들 수 없다.",
+      "bGoal": "동류항이 아닌 항끼리는 한 항으로 합칠 수 없음을 이유와 함께 말한다.",
+      "bReason": "용어 '동류항' 없이 문자가 다름만 밝혀도 맞는 이유임",
+      "cDecision": "rewrite",
+      "cAfter": "$2x$와 $3y$처럼 {동류항}이 아닌 항끼리는 더하거나 빼서 한 항으로 만들 수 없으므로, $2x+3y$는 그대로 둔다.",
+      "cAnswers": [
+        "동류항"
+      ],
+      "cReason": "원문의 '□으로 만들 수 □'는 결론 전체가 비어 있고 '한 항'은 학생이 떠올리기 어려운 임의의 구이다. 결론은 보이게 두고 조건의 핵심어만 빈칸으로 하였으며 구체 예를 붙였다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "더 간단히 할 수 없음"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 항의 문자가 $x$와 $y$로 서로 다름",
+            "문자가 달라 동류항이 아님"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "reason",
+      "roleReason": "문자 다르면 한 항 불가",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1204,
+      "part": "m1plus",
+      "sourceFingerprint": "87bffbe99ec21aacb060932121490abfdd6cee2dac6b7078a7feb6a3e77b62b4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1204
+      },
+      "directReview": null,
+      "cMarkedSentence": "$2x$와 $3y$처럼 {동류항}이 아닌 항끼리는 더하거나 빼서 한 항으로 만들 수 없으므로, $2x+3y$는 그대로 둔다.",
+      "cSlotAnswers": [
+        "동류항"
+      ],
+      "cStudentSentence": "$2x$와 $3y$처럼 □이 아닌 항끼리는 더하거나 빼서 한 항으로 만들 수 없으므로, $2x+3y$는 그대로 둔다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "6804b38a7107e79ee5fef8703e976272e55dc18e215a48059bc5f62b64fd8df0"
+    },
+    {
+      "id": "m1-03-03-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$4x\\times(-3)$을 계산하고, 단항식에 수를 곱할 때 수와 문자를 각각 어떻게 처리하는지 쓰시오.",
+      "bAnswer": "수끼리 곱한 $4\\times(-3)=-12$를 계수로 쓰고 문자 $x$는 그대로 써서 $-12x$이다.",
+      "bGoal": "단항식과 수의 곱셈에서 수끼리 곱해 계수로 쓴다.",
+      "bReason": "제목 '단항식과 수의 곱'은 계산 대상이 없다. 음수를 곱하는 원문 예시를 넣고 수와 문자의 처리를 나누어 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "'수끼리 곱해 □로 쓰고 문자는 그대로'에서 수가 놓이는 자리의 이름인 계수가 답으로 정해진다. 단항식과 계수는 중1에서 배운 용어다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-12x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "수끼리 곱해 계수로 쓰고 문자는 그대로 씀"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "수끼리 곱해 계수로 쓰기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1205,
+      "part": "m1plus",
+      "sourceFingerprint": "51a2d2364d6f0677d5e037b79e99c86753027992e9c97da8b43724cfd96daef3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1205
+      },
+      "directReview": null,
+      "cFrozenSentence": "단항식에 수를 곱할 때는 수끼리 곱해 □로 쓰고 문자는 그대로 쓴다.",
+      "cFrozenDefinition": "단항식에 수를 곱할 때는 수끼리 곱해 {계수}로 쓰고 문자는 그대로 쓴다.",
+      "cFrozenAnswers": [
+        "계수"
+      ],
+      "cMarkedSentence": "단항식에 수를 곱할 때는 수끼리 곱해 {계수}로 쓰고 문자는 그대로 쓴다.",
+      "cSlotAnswers": [
+        "계수"
+      ],
+      "cStudentSentence": "단항식에 수를 곱할 때는 수끼리 곱해 □로 쓰고 문자는 그대로 쓴다.",
+      "cAnswers": [
+        "계수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계수",
+          "equivalentAnswers": [
+            "계수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "계수"
+        ]
+      ],
+      "proposalFingerprint": "0ddb91ebdcb1065d9ca67d84bb4c1816412679deeb5b0d6f1f45bf2f1cac0dba"
+    },
+    {
+      "id": "m1-03-03-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$10a\\div5$를 ($1$) 나눗셈을 곱셈으로 바꾸는 방법과 ($2$) 분수 꼴로 나타내는 방법으로 각각 풀이 과정을 쓰시오.",
+      "bAnswer": "($1$) $5$의 역수 $\\frac{1}{5}$을 곱한다. $10a\\times\\frac{1}{5}=2a$ ($2$) $\\frac{10a}{5}=2a$",
+      "bGoal": "단항식을 수로 나누는 두 가지 방법(역수 곱하기, 분수 꼴로 나타내기)을 쓴다.",
+      "bReason": "원문 정의는 두 방법을 담고 있으나 제목에는 드러나지 않는다. 두 방법을 각각 과정으로 쓰게 하되 핵심어 '역수'는 질문에서 말하지 않았다.",
+      "cDecision": "rewrite",
+      "cAfter": "단항식을 $0$이 아닌 수로 나눌 때는 나누는 수의 {역수}를 곱하거나, 나눗셈을 {분수} 꼴로 나타내어 계산한다.",
+      "cAnswers": [
+        "역수",
+        "분수"
+      ],
+      "cReason": "원문의 '□로 나타내어'는 무엇을 나타내는지 대상이 없어 둘째 빈칸이 모호하다. '나눗셈을 … 꼴로'를 넣어 대상을 밝혔다. 답은 그대로다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "($1$) $5$의 역수를 곱함: $10a\\times\\frac{1}{5}=2a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "($2$) 분수 꼴: $\\frac{10a}{5}=2a$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "역수 곱하거나 분수 꼴로",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1206,
+      "part": "m1plus",
+      "sourceFingerprint": "e0c520b07ec0a87208d801a4276a816c351c760b65324890bdd3d937053b5039",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1206
+      },
+      "directReview": null,
+      "cMarkedSentence": "단항식을 $0$이 아닌 수로 나눌 때는 나누는 수의 {역수}를 곱하거나, 나눗셈을 {분수} 꼴로 나타내어 계산한다.",
+      "cSlotAnswers": [
+        "역수",
+        "분수"
+      ],
+      "cStudentSentence": "단항식을 $0$이 아닌 수로 나눌 때는 나누는 수의 □를 곱하거나, 나눗셈을 □ 꼴로 나타내어 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "역수",
+          "equivalentAnswers": [
+            "역수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "역수"
+        ],
+        [
+          "분수"
+        ]
+      ],
+      "proposalFingerprint": "f15ab80d7259960ac96f0e377392e0bafdb9dee135469f94804dc984129d0b84"
+    },
+    {
+      "id": "m1-03-03-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$x+4-9$를 간단히 하고, $4$와 $-9$를 서로 계산할 수 있는 이유를 쓰시오.",
+      "bAnswer": "$x-5$이다. $4$와 $-9$는 상수항이고, 상수항끼리는 동류항이므로 수끼리 계산할 수 있다.",
+      "bGoal": "상수항끼리 동류항이므로 서로 계산할 수 있음을 말한다.",
+      "bReason": "질문이 요구하지 않은 '동류항' 용어 없이 문자가 없는 수끼리임을 밝혀도 맞음",
+      "cDecision": "keep",
+      "cReason": "빈칸 하나가 이유의 핵심어(동류항)이고 문장이 짧고 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x-5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$와 $-9$는 둘 다 상수항이어서 동류항임",
+            "$4$와 $-9$는 둘 다 문자가 없는 수여서 수끼리 계산할 수 있음"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "reason",
+      "roleReason": "상수항끼리는 동류항",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1207,
+      "part": "m1plus",
+      "sourceFingerprint": "575a43d980c685a51f14dc2c4a6b731ca0c4c97044a02713d896aa3cc31b8afb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1207
+      },
+      "directReview": null,
+      "cFrozenSentence": "상수항은 서로 □이므로 수끼리 더하거나 뺀다.",
+      "cFrozenDefinition": "상수항은 서로 {동류항}이므로 수끼리 더하거나 뺀다.",
+      "cFrozenAnswers": [
+        "동류항"
+      ],
+      "cMarkedSentence": "상수항은 서로 {동류항}이므로 수끼리 더하거나 뺀다.",
+      "cSlotAnswers": [
+        "동류항"
+      ],
+      "cStudentSentence": "상수항은 서로 □이므로 수끼리 더하거나 뺀다.",
+      "cAnswers": [
+        "동류항"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "1748cd8d577b41fb02381079d66f38578ab8bfcc318ed0eb73a086a78902e8ef"
+    },
+    {
+      "id": "m1-03-03-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "괄호 앞이 $+$일 때 부호를 그대로 두고 괄호를 푼다.",
+      "bReason": "m1-03-03-c5의 B가 괄호 앞이 $+$일 때와 $-$일 때를 한 질문에서 비교해 묻는다. $+$의 경우만 따로 물으면 그 절반을 되풀이하게 되어 B에서는 뺀다.",
+      "cDecision": "rewrite",
+      "cAfter": "괄호 앞이 {$+$}이면 괄호 안 각 항의 부호를 그대로 두고 괄호를 없앨 수 있다.",
+      "cAnswers": [
+        "$+$"
+      ],
+      "cReason": "원문의 둘째 빈칸 '없앤다'는 '푼다' 등으로도 쓸 수 있는 임의의 말이고, 첫 빈칸 '그대로'는 m1-03-03-c5의 C와 겹친다. 조건인 부호를 묻는 방향으로 바꾸어 겹치지 않게 했다.",
+      "exclusionReason": "B 제외: m1-03-03-c5의 B(괄호 앞이 $+$일 때와 $-$일 때 부호 비교)에서 $+$의 경우를 이미 묻는 중복 질문이다. C는 고쳐서 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "+ 괄호는 부호 그대로 풀기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1208,
+      "part": "m1plus",
+      "sourceFingerprint": "06ab6df3bcd11b3e74f5fc9e7ef0617c44dc36bc5838ced6060b6044f11abcef",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1208
+      },
+      "directReview": null,
+      "cMarkedSentence": "괄호 앞이 {$+$}이면 괄호 안 각 항의 부호를 그대로 두고 괄호를 없앨 수 있다.",
+      "cSlotAnswers": [
+        "$+$"
+      ],
+      "cStudentSentence": "괄호 앞이 □이면 괄호 안 각 항의 부호를 그대로 두고 괄호를 없앨 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$+$",
+          "equivalentAnswers": [
+            "$+$",
+            "+"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$+$",
+          "accept": [
+            "+"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$+$",
+          "+"
+        ]
+      ],
+      "proposalFingerprint": "4022ce704d2c027fefc0bbf55d62ff19b79a3d739f70b856e7198fd0ba5115cb"
+    },
+    {
+      "id": "m1-03-03-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$x-5x$를 간단히 하시오. 이때 $x$의 계수를 얼마로 보고 계산했는지 쓰고, $-x$의 계수는 얼마인지도 쓰시오.",
+      "bAnswer": "$x$의 계수는 $1$이므로 $x-5x=(1-5)x=-4x$이다. $-x$의 계수는 $-1$이다.",
+      "bGoal": "생략된 계수 $1$, $-1$을 살려 동류항을 계산한다.",
+      "bReason": "제목 '계수가 생략된 동류항'은 어떤 항을 말하는지 예 없이는 알 수 없다. $x$를 계수 $0$으로 보거나 빠뜨리는 실수를 겨냥해 계수를 직접 쓰게 했다.",
+      "cDecision": "exclude",
+      "cAfter": "$x$는 계수 {$1$}이, $-x$는 계수 {$-1$}이 생략된 항이므로, 동류항을 계산할 때 이 계수를 살려서 계산한다.",
+      "cAnswers": [
+        "$1$",
+        "$-1$"
+      ],
+      "cReason": "x와-x의 생략 계수1·-1은 m1-03-02-xc3 C와 같은 확인이다. 이 문항의 실제 동류항 계산 적용은 B에 보존한다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$의 계수를 $1$로 봄"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x-5x=(1-5)x=-4x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-x$의 계수는 $-1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "생략된 계수 1, -1 살리기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1209,
+      "part": "m1plus",
+      "sourceFingerprint": "d65c0f400ac4ddbbf3d90e6081ba6788e2328f68198c779bb7688d9c9a8559ec",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1209
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x$는 계수 {$1$}이, $-x$는 계수 {$-1$}이 생략된 항이므로, 동류항을 계산할 때 이 계수를 살려서 계산한다.",
+      "cSlotAnswers": [
+        "$1$",
+        "$-1$"
+      ],
+      "cStudentSentence": "$x$는 계수 □이, $-x$는 계수 □이 생략된 항이므로, 동류항을 계산할 때 이 계수를 살려서 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-1$",
+          "equivalentAnswers": [
+            "$-1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "$-1$"
+        ]
+      ],
+      "proposalFingerprint": "9e4f13191dcafe3a8811d7f0e28b136904da8ff0e8138633fec9e8636227eade",
+      "exclusionReason": "C 제외: $x$, $-x$의 계수 $1$, $-1$ 확인은 m1-03-02-xc3 C와 같은 내용이다. $x-5x$의 계산 적용은 B로 유지하며 ID와 일반 설명을 삭제하지 않는다."
+    },
+    {
+      "id": "m1-03-03-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$x^2+x$를 더 간단히 할 수 있는가? $x^2$과 $x$에서 무엇이 같고 무엇이 다른지 밝혀 이유를 쓰시오.",
+      "bAnswer": "더 간단히 할 수 없다. 두 항은 문자가 $x$로 같지만 차수가 $2$와 $1$로 달라 동류항이 아니다.",
+      "bGoal": "문자가 같아도 차수가 다르면 동류항이 아님을 판단한다.",
+      "bReason": "제목 '같은 문자 다른 차수'는 문장이 아니어서 무엇을 답할지 알 수 없다. $x^2+x$를 합치려는 실수를 겨냥해 같은 점과 다른 점을 나누어 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x$와 $x^2$은 문자는 같지만 {차수}가 달라 동류항이 아니다.",
+      "cAnswers": [
+        "차수"
+      ],
+      "cReason": "원문은 이유(차수)와 결론(동류항)을 한 문장에서 모두 가려 무엇에 대한 문장인지 읽기 어렵다. 결론은 보이게 두고 이유만 빈칸으로 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "더 간단히 할 수 없음"
+          ]
+        },
+        {
+          "anyOf": [
+            "문자는 $x$로 같음"
+          ]
+        },
+        {
+          "anyOf": [
+            "차수가 $2$와 $1$로 달라 동류항이 아님"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "reason",
+      "roleReason": "차수 다르면 동류항 아님",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1210,
+      "part": "m1plus",
+      "sourceFingerprint": "b055fce88f6d068f35d75cc1db0889eba8ff7c3f278110b4f12db6fb5516c819",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1210
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x$와 $x^2$은 문자는 같지만 {차수}가 달라 동류항이 아니다.",
+      "cSlotAnswers": [
+        "차수"
+      ],
+      "cStudentSentence": "$x$와 $x^2$은 문자는 같지만 □가 달라 동류항이 아니다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "차수",
+          "equivalentAnswers": [
+            "차수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "차수"
+        ]
+      ],
+      "proposalFingerprint": "9e3f4a5d3b90ac3073dc2371106615a0241b0a1429f34ab1461cc49c7302e017"
+    },
+    {
+      "id": "m1-03-03-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$-3(2x-5)$를 계산하시오. 또 이 식을 $-6x-15$라고 계산했다면 어느 항에서 무엇을 잘못했는지 쓰시오.",
+      "bAnswer": "$-3(2x-5)=(-3)\\times2x+(-3)\\times(-5)=-6x+15$이다. 음수를 곱하면 괄호 안 모든 항의 부호가 바뀌는데, 둘째 항 $-5$의 부호를 바꾸지 않아 $-15$로 잘못 썼다.",
+      "bGoal": "일차식에 음수를 곱할 때 모든 항의 부호가 바뀜을 적용하고 오류를 찾는다.",
+      "bReason": "m1-03-03-c3의 B가 곱셈 방법 자체를 묻는다. 이 문항은 둘째 항의 부호를 놓치는 흔한 오답을 주고 고치게 해 겹치지 않게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$-3(2x-5)$처럼 괄호로 묶인 일차식에 음수를 곱하면 괄호 안 모든 항의 {부호}가 바뀐다.",
+      "cAnswers": [
+        "부호"
+      ],
+      "cReason": "원문은 괄호가 나온 적이 없는데 '괄호 안'이라 하여 가리키는 대상이 없고, '□가 □'로 주어와 서술어를 모두 가렸다. 예를 넣어 괄호를 밝히고 빈칸을 하나로 줄였다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-6x+15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "잘못: $-5$에 $-3$을 곱한 항의 부호를 바꾸지 않음($(-3)\\times(-5)=+15$인데 $-15$로 씀)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "음수 분배 시 모든 부호 바뀜",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1211,
+      "part": "m1plus",
+      "sourceFingerprint": "1796c4b2489c5b44194dd20ece95254aa406566165ea5c2fbea4a4886fb4e37d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1211
+      },
+      "directReview": null,
+      "cMarkedSentence": "$-3(2x-5)$처럼 괄호로 묶인 일차식에 음수를 곱하면 괄호 안 모든 항의 {부호}가 바뀐다.",
+      "cSlotAnswers": [
+        "부호"
+      ],
+      "cStudentSentence": "$-3(2x-5)$처럼 괄호로 묶인 일차식에 음수를 곱하면 괄호 안 모든 항의 □가 바뀐다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ]
+      ],
+      "proposalFingerprint": "2fc414a681614b81a8117f669ae7df49c8c72161ccd8061213a22a4a32123c6e"
+    },
+    {
+      "id": "m1-03-03-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{2}{3}(6x-9)$를 풀이 과정을 쓰며 간단히 하시오. 분수를 어느 항에 곱했는지와 계수를 어떻게 간단히 했는지가 드러나게 쓰시오.",
+      "bAnswer": "분수를 각 항에 곱한 뒤 약분한다. $\\frac{2}{3}\\times6x-\\frac{2}{3}\\times9=4x-6$",
+      "bGoal": "일차식에 분수를 곱할 때 각 항에 곱하고 약분한다.",
+      "bReason": "제목 '분수를 곱하는 일차식'은 어순이 어색하고 묻는 것이 없다. 각 항에 곱하는 단계와 약분 단계가 보이도록 과정을 요구했다.",
+      "cDecision": "rewrite",
+      "cAfter": "일차식에 분수를 곱할 때는 그 분수를 각 항에 곱한 뒤 {약분}하여 계수를 간단히 한다.",
+      "cAnswers": [
+        "약분"
+      ],
+      "cReason": "원문 '분수를 곱할 때는'에는 무엇에 곱하는지가 없어 가려진 제목을 모르면 상황을 알 수 없다. '일차식에'를 넣어 대상을 밝혔다. 답은 그대로다.",
+      "studentLabel": "일차식에 분수 곱하기",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$를 각 항($6x$, $-9$)에 곱함"
+          ]
+        },
+        {
+          "anyOf": [
+            "약분하여 계수를 간단히 함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4x-6$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "각 항에 곱한 뒤 약분",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1212,
+      "part": "m1plus",
+      "sourceFingerprint": "bccabfcbf14867d7fada2ee2f392504d30917df8af9e72aa1f38942343fd1ac4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1212
+      },
+      "directReview": null,
+      "cMarkedSentence": "일차식에 분수를 곱할 때는 그 분수를 각 항에 곱한 뒤 {약분}하여 계수를 간단히 한다.",
+      "cSlotAnswers": [
+        "약분"
+      ],
+      "cStudentSentence": "일차식에 분수를 곱할 때는 그 분수를 각 항에 곱한 뒤 □하여 계수를 간단히 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ]
+      ],
+      "proposalFingerprint": "a9b0c3fb10d3001c29d06e720ecae13cb5da33ef7ad901032d3b6ad71acd9406"
+    },
+    {
+      "id": "m1-03-03-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$5-(x-2)$를 간단히 하시오. 괄호 앞의 $-$가 괄호 안의 식에 어떤 수를 곱한다는 뜻인지 밝혀, 괄호를 풀 때 부호가 바뀌는 이유를 쓰시오.",
+      "bAnswer": "괄호 앞의 $-$는 괄호 안의 식 전체에 $-1$을 곱한다는 뜻이다. 그래서 모든 항의 부호가 바뀐다. $5-(x-2)=5-x+2=-x+7$",
+      "bGoal": "괄호 앞의 $-$를 $-1$의 곱으로 이해해 부호가 바뀌는 이유를 설명한다.",
+      "bReason": "m1-03-03-c5의 B는 부호가 어떻게 되는지만 묻는다. 이 문항은 원문 정의의 고유 내용인 '$-1$을 곱한다'는 이유를 묻도록 초점을 달리했다.",
+      "cDecision": "keep",
+      "cReason": "이유($-1$을 곱함)와 범위(모든 항)를 각각 짧은 답으로 확인하며, 문장만 읽어도 상황이 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 앞의 $-$는 괄호 안의 식에 $-1$을 곱한다는 뜻임"
+          ]
+        },
+        {
+          "anyOf": [
+            "그래서 괄호 안 모든 항의 부호가 바뀜"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5-x+2=-x+7$($7-x$ 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "reason",
+      "roleReason": "괄호 앞 -는 -1의 곱",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1213,
+      "part": "m1plus",
+      "sourceFingerprint": "5fc58115f3cdf41c4b261ef933cef1b4e7ac2811fb539d49f2e73a9708c33e38",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1213
+      },
+      "directReview": null,
+      "cFrozenSentence": "괄호 앞의 $-$는 괄호 안의 식 전체에 □을 곱한다는 뜻이므로, □ 항의 부호를 바꾸어 괄호를 푼다.",
+      "cFrozenDefinition": "괄호 앞의 $-$는 괄호 안의 식 전체에 {$-1$}을 곱한다는 뜻이므로, {모든} 항의 부호를 바꾸어 괄호를 푼다.",
+      "cFrozenAnswers": [
+        "$-1$",
+        "모든"
+      ],
+      "cMarkedSentence": "괄호 앞의 $-$는 괄호 안의 식 전체에 {$-1$}을 곱한다는 뜻이므로, {모든} 항의 부호를 바꾸어 괄호를 푼다.",
+      "cSlotAnswers": [
+        "$-1$",
+        "모든"
+      ],
+      "cStudentSentence": "괄호 앞의 $-$는 괄호 안의 식 전체에 □을 곱한다는 뜻이므로, □ 항의 부호를 바꾸어 괄호를 푼다.",
+      "cAnswers": [
+        "$-1$",
+        "모든"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-1$",
+          "equivalentAnswers": [
+            "$-1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "모든",
+          "equivalentAnswers": [
+            "모든",
+            "각"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "모든",
+          "accept": [
+            "각"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-1$"
+        ],
+        [
+          "모든",
+          "각"
+        ]
+      ],
+      "proposalFingerprint": "32ad2dc422f0ce2226d5e4912701788ba8111bea2237f114bbe07337d333efe6"
+    },
+    {
+      "id": "m1-03-03-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$2(x+3)+3(x-1)$처럼 수가 곱해진 괄호가 둘 이상 있는 식을 간단히 할 때 무엇을 먼저 하고 무엇을 나중에 하는지 쓰고, 이 식을 계산하시오.",
+      "bAnswer": "각 괄호를 분배법칙으로 먼저 풀고, 그다음 동류항끼리 모은다. $2x+6+3x-3=5x+3$",
+      "bGoal": "괄호가 둘 이상인 식을 분배법칙으로 푼 뒤 동류항을 정리한다.",
+      "bReason": "순서만 물었으므로 '분배법칙', '동류항' 용어 없이 같은 뜻으로 써도 맞음",
+      "cDecision": "rewrite",
+      "cReason": "먼저 쓰는 법칙과 나중에 모으는 대상이 한 낱말씩으로 정해지고 문장이 분명하다.",
+      "studentLabel": "괄호가 둘 이상인 식의 계산",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 각 괄호를 분배법칙으로 풂",
+            "먼저 괄호 앞의 수를 괄호 안 각 항에 곱해 괄호를 풂"
+          ]
+        },
+        {
+          "anyOf": [
+            "나중에 동류항끼리 모아 계산함",
+            "나중에 $x$의 항끼리, 수끼리 모아 계산함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5x+3$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "분배로 푼 뒤 동류항 정리",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1214,
+      "part": "m1plus",
+      "sourceFingerprint": "e2949dbbda2dccd8589f55a96db5aa9f073cfd78f03197fcc2e022483d4f03e3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1214
+      },
+      "directReview": null,
+      "cMarkedSentence": "수가 곱해진 괄호가 둘 이상 있는 일차식은 각 괄호를 {분배법칙}으로 먼저 푼 뒤 {동류항}끼리 모아 계산한다.",
+      "cSlotAnswers": [
+        "분배법칙",
+        "동류항"
+      ],
+      "cStudentSentence": "수가 곱해진 괄호가 둘 이상 있는 일차식은 각 괄호를 □으로 먼저 푼 뒤 □끼리 모아 계산한다.",
+      "cAnswers": [
+        "분배법칙",
+        "동류항"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분배법칙",
+          "equivalentAnswers": [
+            "분배법칙"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분배법칙"
+        ],
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "5c9b1c543398e7af483e4696d90bb9dd69b6eb4c39b61e9ffb3856ddcd1fca6b",
+      "cAfter": "수가 곱해진 괄호가 둘 이상 있는 일차식은 각 괄호를 {분배법칙}으로 먼저 푼 뒤 {동류항}끼리 모아 계산한다.",
+      "coreAfter": "수가 곱해진 괄호가 둘 이상 있는 일차식은 각 괄호를 {분배법칙}으로 먼저 푼 뒤 {동류항}끼리 모아 계산한다.",
+      "coreReason": "제곱이나 분모의 괄호까지 무조건 분배법칙으로 푼다는 지시가 아니도록 수가 곱해진 일차식의 괄호라는 대상을 밝힌다."
+    },
+    {
+      "id": "m1-03-03-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "$(4x-2)\\div\\frac{2}{3}$를 간단히 하시오. 나누는 분수를 어떤 수로 바꾸어 어느 항에 곱했는지 과정에 드러나게 쓰시오.",
+      "bAnswer": "$\\frac{2}{3}$의 역수 $\\frac{3}{2}$을 모든 항에 곱한다. $4x\\times\\frac{3}{2}-2\\times\\frac{3}{2}=6x-3$",
+      "bGoal": "일차식을 분수로 나눌 때 그 분수의 역수를 모든 항에 곱한다.",
+      "bReason": "m1-03-03-c4의 B는 정수로 나누는 경우다. 이 문항은 분수의 역수를 실제로 구해 모든 항에 곱하는 과정에 초점을 두었다.",
+      "cDecision": "keep",
+      "cReason": "역수와 곱하는 대상이 분명히 정해지고 $0$이 아니라는 조건도 문장에 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$를 역수 $\\frac{3}{2}$으로 바꿈"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 항에 곱함: $4x\\times\\frac{3}{2}-2\\times\\frac{3}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6x-3$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "역수를 모든 항에 곱하기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1215,
+      "part": "m1plus",
+      "sourceFingerprint": "82e567409da91c164eb2d92f7a8594ff3cd083c330822ce21d324e29a1a709e5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1215
+      },
+      "directReview": null,
+      "cFrozenSentence": "일차식을 $0$이 아닌 분수로 나눌 때는 그 분수의 □를 □에 곱한다.",
+      "cFrozenDefinition": "일차식을 $0$이 아닌 분수로 나눌 때는 그 분수의 {역수}를 {모든 항}에 곱한다.",
+      "cFrozenAnswers": [
+        "역수",
+        "모든 항"
+      ],
+      "cMarkedSentence": "일차식을 $0$이 아닌 분수로 나눌 때는 그 분수의 {역수}를 {모든 항}에 곱한다.",
+      "cSlotAnswers": [
+        "역수",
+        "모든 항"
+      ],
+      "cStudentSentence": "일차식을 $0$이 아닌 분수로 나눌 때는 그 분수의 □를 □에 곱한다.",
+      "cAnswers": [
+        "역수",
+        "모든 항"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "역수",
+          "equivalentAnswers": [
+            "역수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "모든 항",
+          "equivalentAnswers": [
+            "모든 항",
+            "각 항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "모든 항",
+          "accept": [
+            "각 항"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "역수"
+        ],
+        [
+          "모든 항",
+          "각 항"
+        ]
+      ],
+      "proposalFingerprint": "a18116f12076c07aa9dae5de42078f9f8acb8e3883ab760996bbf68fccccfaf5"
+    },
+    {
+      "id": "m1-03-03-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$3a-2+a+5$를 간단히 하시오. 네 항을 어떤 항끼리 묶어 계산했는지 두 묶음으로 나누어 쓰시오.",
+      "bAnswer": "문자와 차수가 같은 항 $3a$와 $a$를 묶어 $4a$, 상수항 $-2$와 $5$를 묶어 $3$이다. 결과는 $4a+3$이다.",
+      "bGoal": "문자가 있는 동류항과 상수항을 따로 모아 식을 정리한다.",
+      "bReason": "제목 '문자 항과 수 따로 모으기'는 방법의 이름일 뿐 질문이 아니다. 묶음을 직접 쓰게 해 동류항 판단이 답에 드러나게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "여러 항이 섞인 식을 정리할 때에는 곱해진 문자와 각 문자의 {차수}가 같은 항끼리, 수만 있는 {상수항}끼리 따로 모아 계산한다.",
+      "cAnswers": [
+        "차수",
+        "상수항"
+      ],
+      "cReason": "원문 첫 답 '문자와 차수가 같은 항'은 빈칸으로 쓰기에 너무 긴 구이고, 둘째 답 '상수항'은 바로 앞의 '상수항은'을 베끼면 된다. 한 낱말 답으로 줄이고 베낄 말을 없앴다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3a$와 $a$를 묶어 $4a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "상수항 $-2$와 $5$를 묶어 $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4a+3$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "문자 항·상수항 따로 모으기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1216,
+      "part": "m1plus",
+      "sourceFingerprint": "f8a7872e19ad51be3549991d6696de0afb03dbd42756018cbbecc514ba2fa986",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1216
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 항이 섞인 식을 정리할 때에는 곱해진 문자와 각 문자의 {차수}가 같은 항끼리, 수만 있는 {상수항}끼리 따로 모아 계산한다.",
+      "cSlotAnswers": [
+        "차수",
+        "상수항"
+      ],
+      "cStudentSentence": "여러 항이 섞인 식을 정리할 때에는 곱해진 문자와 각 문자의 □가 같은 항끼리, 수만 있는 □끼리 따로 모아 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "차수",
+          "equivalentAnswers": [
+            "차수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "상수항",
+          "equivalentAnswers": [
+            "상수항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "차수"
+        ],
+        [
+          "상수항"
+        ]
+      ],
+      "proposalFingerprint": "be3e64dc53fa1f5eb615deb3090b23b136411f295c983024999044bd29a0b0f6",
+      "coreAfter": "식을 정리할 때는 곱해진 {문자}와 각 문자의 {차수}가 같은 항끼리 모아 계산한다. 수만 있는 {상수항}은 상수항끼리 모아 계산한다.",
+      "coreReason": "동류항을 문자별 차수가 같은 항이라고 정확히 밝히고 긴 임의 문구 대신 문자·차수·상수항의 표준 이름을 핵심어로 쓴다."
+    }
+  ]
+}

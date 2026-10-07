@@ -1,0 +1,1210 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-1-1-3-c2",
+      "sourceIndex": 7,
+      "beforeProposal": {
+        "sourceIndex": 7,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::1-1 덧셈과 뺄셈::1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+        "sourceFingerprint": "0d40dfeb135d395472be80adf09b0bc8d4b0d51209d6cedacba6413efb2ad52e",
+        "proposalFingerprint": "3f842b7d19b19dda39020be3f23f64608131824cb0bd351c383e6dce0c340c5e",
+        "reviewStatus": "draft",
+        "id": "e3-1-1-3-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "$485-32$를 세로로 쓸 때 $32$의 $3$과 $2$를 각각 $485$의 어느 숫자 아래에 써야 하는지 말하고, $3$을 $4$ 아래에 쓰면 왜 틀리는지 설명하세요.",
+        "bAnswer": "$3$은 십의 자리 숫자 $8$ 아래에, $2$는 일의 자리 숫자 $5$ 아래에 쓴다. $3$을 $4$ 아래에 쓰면 $30$이 아니라 $300$을 빼는 것이 되어 틀린다. 바르게 계산하면 $453$이다.",
+        "bGoal": "세로 뺄셈에서 같은 자리끼리 맞추어야 하는 까닭 설명",
+        "bReason": "덧셈 항목과 겹치지 않게 잘못 맞춘 경우를 따져 보게 함",
+        "studentLabel": "세로 뺄셈에서 자리 맞추기",
+        "cDecision": "keep",
+        "cReason": "'일·십·백의 자리를 각각'이라는 단서가 있어 '같은 자리'를 쉽게 쓸 수 있음",
+        "answerNotes": "같은 자리, 같은 자릿값 인정.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$은 십의 자리 숫자 $8$ 아래에, $2$는 일의 자리 숫자 $5$ 아래에 쓴다",
+              "같은 자리끼리 맞추어 $32$의 $3$은 십의 자리, $2$는 일의 자리에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$을 $4$ 아래(백의 자리)에 쓰면 $3$이 $30$이 아니라 $300$을 뜻하게 되어 다른 수를 빼게 되므로 틀린다",
+              "자릿값이 달라져 $3$이 $300$을 나타내게 되기 때문이다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "뺄셈의 자리 맞추기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세로 뺄셈에서는 일·십·백의 자리를 각각 {같은 자리}끼리 맞춘다.",
+        "cStudentSentence": "세로 뺄셈에서는 일·십·백의 자리를 각각 □끼리 맞춘다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같은 자리",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세로 뺄셈에서는 일·십·백의 자리를 각각 □끼리 맞춘다.",
+          "answers": [
+            "같은 자리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$485-32$를 세로로 쓸 때 $32$의 $3$과 $2$를 각각 $485$의 어느 숫자 아래에 써야 하는지 말하고, $3$을 $4$ 아래에 쓰면 왜 틀리는지 설명하세요.",
+          "answer": "$3$은 십의 자리 숫자 $8$ 아래에, $2$는 일의 자리 숫자 $5$ 아래에 쓴다. $3$을 $4$ 아래에 쓰면 $30$이 아니라 $300$을 빼는 것이 되어 틀린다. 바르게 계산하면 $453$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$은 십의 자리 숫자 $8$ 아래에, $2$는 일의 자리 숫자 $5$ 아래에 쓴다",
+                "같은 자리끼리 맞추어 $32$의 $3$은 십의 자리, $2$는 일의 자리에 맞춘다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3$을 $4$ 아래(백의 자리)에 쓰면 $3$이 $30$이 아니라 $300$을 뜻하게 되어 다른 수를 빼게 되므로 틀린다",
+                "자릿값이 달라져 $3$이 $300$을 나타내게 되기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세로 뺄셈에서는 일·십·백의 자리를 각각 {같은 자리}끼리 맞춘다.",
+          "acceptedAnswers": [
+            [
+              "같은 자리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-1-3-c2",
+          "sourceIndex": 7,
+          "proposalFingerprint": "3f842b7d19b19dda39020be3f23f64608131824cb0bd351c383e6dce0c340c5e",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "자리맞춤과30이300으로잘못되는원인을 설명한다.",
+          "cReason": "일·십·백의같은자리끼리라는 의미이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$485-32$를 세로로 쓰면, $32$의 $3$은 $485$의 {$8$} 아래에, $2$는 {$5$} 아래에 쓴다. 같은 자리끼리 맞추어야 바르게 뺄 수 있다.",
+        "cSlotEquivalents": [],
+        "cReason": "같은자리·숫자·수등으로열린말슬롯대신실제십·일자리숫자의위아래대응을묻는다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-5-3-c2",
+      "sourceIndex": 73,
+      "beforeProposal": {
+        "sourceIndex": 73,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::1-5 길이와 시간::1-5-3 길이와 거리를 어림하고 재어 보기",
+        "sourceFingerprint": "29ba8bff51b8b2adc89d92ed31ace4a23b8552fb45bb547da85b6830c2a275a8",
+        "proposalFingerprint": "43569c41cb76aee907e55ef5c7b1dec3102acf65eb6aebb5135f2a091d0eca32",
+        "reviewStatus": "draft",
+        "id": "e3-1-5-3-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "자가 없을 때 교실 문의 높이를 어림하는 방법을 설명하세요. 내 키처럼 이미 알고 있는 길이를 어떻게 이용하는지 넣어 쓰세요.",
+        "bAnswer": "내 키나 양팔을 벌린 길이처럼 잘 아는 길이를 기준으로 정하고, 문의 높이에 그 길이가 몇 번쯤 들어가는지 생각한다. 예를 들어 약 $1\\,\\mathrm{m}$인 길이가 $2$번쯤 들어가면 약 $2\\,\\mathrm{m}$라고 어림한다.",
+        "bGoal": "잘 아는 길이를 기준으로 몇 번 들어가는지로 어림하는 방법 설명",
+        "bReason": "구체적인 대상을 주고 기준 길이의 쓰임을 답하도록 범위를 정함",
+        "studentLabel": "자 없이 길이 어림하기",
+        "cDecision": "rewrite",
+        "cAfter": "한 뼘의 길이가 약 $10\\,\\mathrm{cm}$일 때, 책상의 가로가 $6$뼘이면 책상의 가로는 약 {$60$}$\\,\\mathrm{cm}$라고 어림할 수 있다.",
+        "cReason": "빈칸 '몇 번쯤'은 문장을 복원해야 하는 어색한 답이라 기준 길이로 어림하는 실제 계산으로 바꿈",
+        "answerNotes": "60만 정답. 16은 더한 오답.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "내 키나 양팔을 벌린 길이처럼 알고 있는 길이를 기준으로 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "문의 높이에 그 기준 길이가 몇 번쯤 들어가는지 생각하여 어림한다(예: 약 $1\\,\\mathrm{m}$가 $2$번쯤이면 약 $2\\,\\mathrm{m}$)"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "기준 길이로 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 뼘의 길이가 약 $10\\,\\mathrm{cm}$일 때, 책상의 가로가 $6$뼘이면 책상의 가로는 약 {$60$}$\\,\\mathrm{cm}$라고 어림할 수 있다.",
+        "cStudentSentence": "한 뼘의 길이가 약 $10\\,\\mathrm{cm}$일 때, 책상의 가로가 $6$뼘이면 책상의 가로는 약 □$\\,\\mathrm{cm}$라고 어림할 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$60$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "자가 없을 때 교실 문의 높이를 어림하는 방법을 설명하세요. 내 키처럼 이미 알고 있는 길이를 어떻게 이용하는지 넣어 쓰세요.",
+          "answer": "내 키나 양팔을 벌린 길이처럼 잘 아는 길이를 기준으로 정하고, 문의 높이에 그 길이가 몇 번쯤 들어가는지 생각한다. 예를 들어 약 $1\\,\\mathrm{m}$인 길이가 $2$번쯤 들어가면 약 $2\\,\\mathrm{m}$라고 어림한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "내 키나 양팔을 벌린 길이처럼 알고 있는 길이를 기준으로 정한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "문의 높이에 그 기준 길이가 몇 번쯤 들어가는지 생각하여 어림한다(예: 약 $1\\,\\mathrm{m}$가 $2$번쯤이면 약 $2\\,\\mathrm{m}$)"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 뼘의 길이가 약 $10\\,\\mathrm{cm}$일 때, 책상의 가로가 $6$뼘이면 책상의 가로는 약 {$60$}$\\,\\mathrm{cm}$라고 어림할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$60$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-5-3-c2",
+          "sourceIndex": 73,
+          "proposalFingerprint": "43569c41cb76aee907e55ef5c7b1dec3102acf65eb6aebb5135f2a091d0eca32",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "알고 있는 길이가 문 높이에 몇 번 들어가는지 이용한다.",
+          "cReason": "10cm인 한 뼘6개라는 조건으로60cm를 구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "문의 높이에 이미 알고 있는 기준 길이가 몇 번쯤 들어가는지 생각하여 어림한다."
+            ]
+          }
+        ],
+        "bReason": "이미알고있는길이를이용하라는입력만되풀이하는기준을따로필수로두지않고실제몇번들어가는지세는방법을평가한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-1-1-c3",
+      "sourceIndex": 110,
+      "beforeProposal": {
+        "sourceIndex": 110,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
+        "sourceFingerprint": "8d87b7d6888121756a8226c3df0a667bbba5218696ff92ceaad35088fa19319b",
+        "proposalFingerprint": "35a4bb8259b74714318e24df4f86c6b609a719a4beaebb0c4ebd59d58e81a024",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-1-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "$201\\times4$의 곱을 $84$가 아니라 $804$로 써야 하는 까닭을 백, 십, 일의 자리 곱이 각각 얼마인지 밝혀 설명하시오.",
+        "bAnswer": "$200\\times4=800$, $0\\times4=0$, $1\\times4=4$이다. $8$은 백이 $8$개라는 뜻이고 십은 $0$개이므로, 십의 자리에 $0$을 써서 $804$로 나타낸다.",
+        "bGoal": "곱의 십의 자리에 0을 쓰는 까닭 설명",
+        "bReason": "원문 예시를 살리고 답할 범위를 자리별 곱으로 정함",
+        "studentLabel": "$201 \\times  4$의 곱 쓰기",
+        "cDecision": "rewrite",
+        "cAfter": "$201\\times4$처럼 세 자리 수의 십의 자리 숫자가 $0$이고 일의 자리 곱에서 올림이 없으면, 곱의 십의 자리 숫자도 {$0$}이다.",
+        "cReason": "조건이 길고 '곱해지는 수'가 어려워 $201\\times4$를 넣고 문장을 줄임. 조건과 결론은 그대로 둠.",
+        "answerNotes": "$0$만 정답.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "백의 자리 곱은 $200\\times4=800$, 십의 자리 곱은 $0\\times4=0$, 일의 자리 곱은 $1\\times4=4$이다."
+            ]
+          },
+          {
+            "anyOf": [
+              "십의 자리 곱이 $0$이므로 십의 자리에 $0$을 써야 하며, 그래야 $804$가 된다.",
+              "십의 자리에 $0$을 쓰지 않으면 $84$가 되어 자리가 달라져 틀린다."
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "곱해지는 수의 십의 자리가 $0$일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$201\\times4$처럼 세 자리 수의 십의 자리 숫자가 $0$이고 일의 자리 곱에서 올림이 없으면, 곱의 십의 자리 숫자도 {$0$}이다.",
+        "cStudentSentence": "$201\\times4$처럼 세 자리 수의 십의 자리 숫자가 $0$이고 일의 자리 곱에서 올림이 없으면, 곱의 십의 자리 숫자도 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$201\\times4$의 곱을 $84$가 아니라 $804$로 써야 하는 까닭을 백, 십, 일의 자리 곱이 각각 얼마인지 밝혀 설명하시오.",
+          "answer": "$200\\times4=800$, $0\\times4=0$, $1\\times4=4$이다. $8$은 백이 $8$개라는 뜻이고 십은 $0$개이므로, 십의 자리에 $0$을 써서 $804$로 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "백의 자리 곱은 $200\\times4=800$, 십의 자리 곱은 $0\\times4=0$, 일의 자리 곱은 $1\\times4=4$이다."
+              ]
+            },
+            {
+              "anyOf": [
+                "십의 자리 곱이 $0$이므로 십의 자리에 $0$을 써야 하며, 그래야 $804$가 된다.",
+                "십의 자리에 $0$을 쓰지 않으면 $84$가 되어 자리가 달라져 틀린다."
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$201\\times4$처럼 세 자리 수의 십의 자리 숫자가 $0$이고 일의 자리 곱에서 올림이 없으면, 곱의 십의 자리 숫자도 {$0$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-1-1-c3",
+          "sourceIndex": 110,
+          "proposalFingerprint": "35a4bb8259b74714318e24df4f86c6b609a719a4beaebb0c4ebd59d58e81a024",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "200·0·1의부분곱과십0이자릿값을지키는이유를 묻는다.",
+          "cReason": "일의올림이없는조건에서 곱의십0을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$201\\times4$에서 백끼리 곱하면 $200\\times4=800$, 일끼리 곱하면 $1\\times4=4$이다. 두 곱을 모아 나타낸 수의 백의 자리 숫자는 {$8$}, 십의 자리 숫자는 {$0$}, 일의 자리 숫자는 {$4$}이다.",
+        "cSlotEquivalents": [],
+        "cReason": "십자리0이라는조건에서0을그대로베끼기보다계산한백·일양을자리값으로모아십자리0까지표기하게한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-1-2-c1",
+      "sourceIndex": 111,
+      "beforeProposal": {
+        "sourceIndex": 111,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::2-1 곱셈::2-1-2 (세 자리 수)×(한 자리 수) (2)",
+        "sourceFingerprint": "4d51f557cacaf5f8ba830522707a87ba41313c93c20d9e67eb4677b037831871",
+        "proposalFingerprint": "4168caea58ba9bf41a64e386c1f615504b4f130a32200ddf311afeb48baec57b",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-2-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "$236\\times4$를 세로로 계산할 때 일의 자리 곱 $6\\times4=24$에서 $2$와 $4$를 각각 어디에 쓰는지 쓰고, $2$를 그 자리로 옮기는 까닭을 설명하시오.",
+        "bAnswer": "$4$는 일의 자리에 쓰고 $2$는 십의 자리로 올려 쓴다. $24$는 십이 $2$개, 일이 $4$개인 수이기 때문이다.",
+        "bGoal": "곱셈에서 올림의 뜻(10이 되면 윗자리로) 설명",
+        "bReason": "원문 예시 $236\\times4$로 올리는 수와 까닭만 묻게 좁힘",
+        "studentLabel": "곱셈에서 올림",
+        "cDecision": "rewrite",
+        "cAfter": "$236\\times4$에서 일의 자리 곱 $6\\times4=24$처럼 한 자리의 곱이 $10$보다 크면, $24$의 $2$는 바로 윗자리인 {십}의 자리로 올린다.",
+        "cReason": "'묶음 $10$개가 생길 때마다 □로 옮긴다'는 추상적이고 답 '바로 윗자리'를 떠올리기 어려워 실제 계산식으로 바꿈",
+        "answerNotes": "'십', '10' 인정. '백'은 오답.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$는 일의 자리에 쓰고 $2$는 십의 자리로 올려 쓴다."
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$는 십이 $2$개, 일이 $4$개인 수이므로 $2$는 십의 자리에 해당한다.",
+              "$24=20+4$이므로 $2$는 $20$을 뜻해 십의 자리로 올린다."
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "올림",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$236\\times4$에서 일의 자리 곱 $6\\times4=24$처럼 한 자리의 곱이 $10$보다 크면, $24$의 $2$는 바로 윗자리인 {십}의 자리로 올린다.",
+        "cStudentSentence": "$236\\times4$에서 일의 자리 곱 $6\\times4=24$처럼 한 자리의 곱이 $10$보다 크면, $24$의 $2$는 바로 윗자리인 □의 자리로 올린다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "십",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$236\\times4$를 세로로 계산할 때 일의 자리 곱 $6\\times4=24$에서 $2$와 $4$를 각각 어디에 쓰는지 쓰고, $2$를 그 자리로 옮기는 까닭을 설명하시오.",
+          "answer": "$4$는 일의 자리에 쓰고 $2$는 십의 자리로 올려 쓴다. $24$는 십이 $2$개, 일이 $4$개인 수이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$는 일의 자리에 쓰고 $2$는 십의 자리로 올려 쓴다."
+              ]
+            },
+            {
+              "anyOf": [
+                "$24$는 십이 $2$개, 일이 $4$개인 수이므로 $2$는 십의 자리에 해당한다.",
+                "$24=20+4$이므로 $2$는 $20$을 뜻해 십의 자리로 올린다."
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$236\\times4$에서 일의 자리 곱 $6\\times4=24$처럼 한 자리의 곱이 $10$보다 크면, $24$의 $2$는 바로 윗자리인 {십}의 자리로 올린다.",
+          "acceptedAnswers": [
+            [
+              "십"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-1-2-c1",
+          "sourceIndex": 111,
+          "proposalFingerprint": "4168caea58ba9bf41a64e386c1f615504b4f130a32200ddf311afeb48baec57b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "24의2와4의자리 및십2·일4의이유를 요청한다.",
+          "cReason": "일에서바로윗자리십으로 올리는관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$236\\times4$에서 일의 자리 곱 $6\\times4=24$처럼 한 자리의 곱이 $10$이거나 $10$보다 크면 올림을 한다. $24$의 $2$는 바로 윗자리인 {십}의 자리로 올린다.",
+        "cSlotEquivalents": [],
+        "cReason": "곱이정확히10일때의올림도일반조건에포함하고실제24의십묶음올림을확인한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-4-c1",
+      "sourceIndex": 218,
+      "beforeProposal": {
+        "sourceIndex": 218,
+        "grade": "e4",
+        "part": "e4",
+        "section": "초4::1-2 각도::1-2-4 각의 크기를 어림하고 각도의 합과 차 계산하기",
+        "sourceFingerprint": "51ce54f78d43437c1bf90385156fcf9470e75fb8dedda2fc6135e6e526d3dbe8",
+        "proposalFingerprint": "b8ead078f1168467cfd805c4e018cf4a0001c90d3e93f28566c93f11e07c06e3",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-4-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "각도기 없이 어떤 각의 크기를 어림하려고 합니다. 어떤 각과 비교하면 좋은지 쓰고, 직각보다 조금 작아 보이는 각은 약 몇 도쯤으로 어림할 수 있는지 예를 들어 쓰세요.",
+        "bAnswer": "크기를 아는 직각($90^\\circ$)이나 직각의 절반인 $45^\\circ$와 비교한다. 직각보다 조금 작아 보이면 약 $80^\\circ$쯤으로 어림할 수 있다.",
+        "bGoal": "직각을 기준으로 각도를 어림하는 방법 설명하기",
+        "bReason": "기준이 되는 각과 어림한 예를 함께 쓰게 하여 방법을 실제로 쓸 수 있는지 확인",
+        "studentLabel": "각도 어림하기",
+        "cDecision": "exclude",
+        "cReason": "직각의 절반이라는 뒷말에 정답 직각이 이미 보인다. 각의 어림에는 실제 각이나 기준과의 비교가 필요하므로 B의 방법·예 설명으로 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "크기를 알고 있는 각(직각 $90^\\circ$, 직각의 절반 $45^\\circ$ 등)과 비교하여 어림한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각보다 조금 작아 보이는 각은 $90^\\circ$보다 조금 작은 값(예: 약 $80^\\circ$, $85^\\circ$)으로 어림한다"
+            ]
+          }
+        ],
+        "exclusionReason": "C: 직각의 절반이라는 뒷말에 정답 직각이 이미 보인다. 각의 어림에는 실제 각이나 기준과의 비교가 필요하므로 B의 방법·예 설명으로 확인한다.",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "각도 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "각도기 없이 어떤 각의 크기를 어림하려고 합니다. 어떤 각과 비교하면 좋은지 쓰고, 직각보다 조금 작아 보이는 각은 약 몇 도쯤으로 어림할 수 있는지 예를 들어 쓰세요.",
+          "answer": "크기를 아는 직각($90^\\circ$)이나 직각의 절반인 $45^\\circ$와 비교한다. 직각보다 조금 작아 보이면 약 $80^\\circ$쯤으로 어림할 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "크기를 알고 있는 각(직각 $90^\\circ$, 직각의 절반 $45^\\circ$ 등)과 비교하여 어림한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "직각보다 조금 작아 보이는 각은 $90^\\circ$보다 조금 작은 값(예: 약 $80^\\circ$, $85^\\circ$)으로 어림한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "직각의 절반이라는 뒷말에 정답 직각이 이미 보인다. 각의 어림에는 실제 각이나 기준과의 비교가 필요하므로 B의 방법·예 설명으로 확인한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-4-c1",
+          "sourceIndex": 218,
+          "proposalFingerprint": "b8ead078f1168467cfd805c4e018cf4a0001c90d3e93f28566c93f11e07c06e3",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "알고있는각기준과90보다조금작은유효한예를설명한다.",
+          "cReason": "뒤의직각의절반에서답이노출되어C는제외한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "각도기 없이 어떤 각을 종이의 직각 모서리와 비교했더니 그 모서리보다 조금 작아 보입니다. 종이 모서리의 각도를 이용해 이 각을 어림하는 방법을 설명하고, 가능한 어림값을 한 가지 쓰세요.",
+        "bAnswer": "종이의 직각 모서리는 $90^\\circ$이므로 그보다 조금 작은 각도로 어림합니다. 예를 들어 약 $80^\\circ$나 약 $85^\\circ$로 어림할 수 있습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각 모서리의 $90^\\circ$보다 조금 작은 값으로 어림한다. 예를 들어 약 $80^\\circ$ 또는 $85^\\circ$이다."
+            ]
+          }
+        ],
+        "bGoal": "크기를아는직각모서리를기준으로더작아보이는각을어림하는방법과값을설명한다.",
+        "bReason": "참조각이름을이미준질문에서같은이름복원을별도필수로두지않는다. 실제기준각90도와그보다작은가능한어림값을연결하는방법만평가한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-5-c2",
+      "sourceIndex": 233,
+      "beforeProposal": {
+        "sourceIndex": 233,
+        "grade": "e4",
+        "part": "e4",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-5 몇십몇으로 나누기 (1)",
+        "sourceFingerprint": "c817fe882b0717d302c4428631d237a7bcd714ecc1825cf40e059b670b713c81",
+        "proposalFingerprint": "5ab3b66d51eb62930c9347d05be937274d5990929841714b776f9f64fcf6737f",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-5-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "$91\\div13$의 몫을 $7$이라고 구했습니다. 이 몫이 맞는지 곱셈으로 확인하는 방법을 쓰고, 맞는지 판단하세요.",
+        "bAnswer": "나누는 수 $13$에 몫 $7$을 곱한 값이 처음 수 $91$과 같은지 확인한다. $13\\times7=91$이므로 몫 $7$은 맞다.",
+        "bGoal": "나누어떨어지는 나눗셈의 몫을 곱셈으로 확인하는 방법 설명하기",
+        "bReason": "수의 이름을 되살리게 하지 않고 실제 식에서 무엇과 무엇을 곱해 무엇과 비교하는지 쓰게 함",
+        "studentLabel": "몫이 맞는지 곱셈으로 확인하기",
+        "cDecision": "exclude",
+        "cReason": "처음 나눗셈식의 전체84를 확인식에 그대로 옮길 수 있다. B에서 실제 곱셈 확인 방법과 판정을 설명한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수 $13$에 몫 $7$을 곱하여 나누어지는 수 $91$과 같은지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$13\\times7=91$이므로 몫 $7$은 맞다"
+            ]
+          }
+        ],
+        "exclusionReason": "C: 처음 나눗셈식의 전체84를 확인식에 그대로 옮길 수 있다. B에서 실제 곱셈 확인 방법과 판정을 설명한다.",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몫 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "$91\\div13$의 몫을 $7$이라고 구했습니다. 이 몫이 맞는지 곱셈으로 확인하는 방법을 쓰고, 맞는지 판단하세요.",
+          "answer": "나누는 수 $13$에 몫 $7$을 곱한 값이 처음 수 $91$과 같은지 확인한다. $13\\times7=91$이므로 몫 $7$은 맞다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나누는 수 $13$에 몫 $7$을 곱하여 나누어지는 수 $91$과 같은지 확인한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$13\\times7=91$이므로 몫 $7$은 맞다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "처음 나눗셈식의 전체84를 확인식에 그대로 옮길 수 있다. B에서 실제 곱셈 확인 방법과 판정을 설명한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-5-c2",
+          "sourceIndex": 233,
+          "proposalFingerprint": "5ab3b66d51eb62930c9347d05be937274d5990929841714b776f9f64fcf6737f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "13×7로91복원을확인하고판정하는범위이다.",
+          "cReason": "앞의전체84복사C는제외한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$91\\div13$의 몫 $7$이 맞는지 확인하려면 $13\\times7$을 계산한다. 이 곱이 처음 나눌 수인 {$91$}과 같으면 몫이 맞다.",
+        "cSlotEquivalents": [],
+        "cReason": "잘못기록된84제외사유를바로잡고실제13×7의곱91과원래전체가같은검산관계를묻는다. 원래91과계산결과91은검산의다른역할이다.",
+        "exclusionReason": null
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-2-4-c3",
+      "sourceIndex": 133,
+      "beforeProposal": {
+        "sourceIndex": 133,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::2-2 나눗셈::2-2-4 (세 자리 수)÷(한 자리 수)",
+        "sourceFingerprint": "0b008984e8890163ad57f1683c4195894bf3f6e8c1cfe311061424177f9691bf",
+        "proposalFingerprint": "fea9dc9e139f6816b143c1263f65c8910840afbf422eb01179f94fa70ded8d20",
+        "reviewStatus": "draft",
+        "id": "e3-2-2-4-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "$125\\div4$를 계산하여 몫 $31$, 나머지 $1$을 얻었다. 이 계산이 맞는지 확인하는 방법 두 가지를 실제 계산과 함께 설명하시오.",
+        "bAnswer": "첫째, $4\\times31=124$에 나머지 $1$을 더하면 $125$로 처음 수와 같다. 둘째, 나머지 $1$이 나누는 수 $4$보다 작다. 두 가지가 모두 맞으므로 바르게 계산했다.",
+        "bGoal": "나눗셈 검산 방법(곱하고 더하기, 나머지 크기) 설명",
+        "bReason": "수 이름 대신 실제 식을 주어 확인 과정을 쓰게 함",
+        "studentLabel": "나눗셈 계산 확인하기",
+        "cDecision": "exclude",
+        "cReason": "확인식의 값 $125$가 처음 나눗셈식에 이미 보인다. B에서 곱하고 나머지를 더하는 관계와 나머지 크기를 함께 설명한다.",
+        "answerNotes": "$125$만 정답. $124$는 나머지를 더하지 않은 오답.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4\\times31=124$에 나머지 $1$을 더하면 $125$가 되어 처음 수와 같음을 확인한다. (나누는 수 $\\times$ 몫 $+$ 나머지 $=$ 나누어지는 수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 $1$이 나누는 수 $4$보다 작은지 확인한다."
+            ]
+          }
+        ],
+        "exclusionReason": "C: 앞의 전체 수를 그대로 채우는 확인식 빈칸이라 원리를 확인하지 못한다.",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "나눗셈을 맞게 계산했는지 확인하는 방법",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "$125\\div4$를 계산하여 몫 $31$, 나머지 $1$을 얻었다. 이 계산이 맞는지 확인하는 방법 두 가지를 실제 계산과 함께 설명하시오.",
+          "answer": "첫째, $4\\times31=124$에 나머지 $1$을 더하면 $125$로 처음 수와 같다. 둘째, 나머지 $1$이 나누는 수 $4$보다 작다. 두 가지가 모두 맞으므로 바르게 계산했다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4\\times31=124$에 나머지 $1$을 더하면 $125$가 되어 처음 수와 같음을 확인한다. (나누는 수 $\\times$ 몫 $+$ 나머지 $=$ 나누어지는 수)"
+              ]
+            },
+            {
+              "anyOf": [
+                "나머지 $1$이 나누는 수 $4$보다 작은지 확인한다."
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "확인식의 값 $125$가 처음 나눗셈식에 이미 보인다. B에서 곱하고 나머지를 더하는 관계와 나머지 크기를 함께 설명한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-2-4-c3",
+          "sourceIndex": 133,
+          "proposalFingerprint": "fea9dc9e139f6816b143c1263f65c8910840afbf422eb01179f94fa70ded8d20",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "곱+나머지의전체복원과나머지범위두확인을설명한다.",
+          "cReason": "앞의전체125를복사하는C는제외한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$125\\div4$의 몫이 $31$이면, 나머지는 $125-4\\times31=${$1$}이다. 이 나머지는 나누는 수 $4$보다 {작다}.",
+        "cSlotEquivalents": [],
+        "cReason": "원래나머지표적과무관한125복사라는제외사유를고치고나머지1의실제복원및나누는수보다작은관계를묻는다.",
+        "exclusionReason": null
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-1-3-xc15",
+      "sourceIndex": 405,
+      "beforeProposal": {
+        "sourceIndex": 405,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-1 덧셈과 뺄셈::1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+        "sourceFingerprint": "8daedc43c4e33712c5fbdce4532fa45d95caf3d93372718eff39d60c851edde0",
+        "proposalFingerprint": "382815503d63b5e71bb4219be96d4455de9be0a18e46d71440dd866708f0841b",
+        "reviewStatus": "draft",
+        "id": "e3-1-1-3-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$568-243$을 백, 십, 일로 나누어 빼는 방법으로 계산하는 과정을 설명해 보세요.",
+        "bAnswer": "백끼리 $500-200=300$, 십끼리 $60-40=20$, 일끼리 $8-3=5$를 따로 뺀 뒤 모으면 $300+20+5=325$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$500-200=300$, $60-40=20$, $8-3=5$로 자리별로 뺀다."
+            ]
+          },
+          {
+            "anyOf": [
+              "$300+20+5=325$로 모은다."
+            ]
+          }
+        ],
+        "bGoal": "받아내림 없는 뺄셈을 자리별로 나누어 빼는 방법 설명",
+        "bReason": "받아내림이 없는 568-243을 새로 만들어 과정 설명으로 자립",
+        "cDecision": "keep",
+        "cReason": "'백끼리, 십끼리' 다음에 오는 익숙한 낱말 빈칸",
+        "answerNotes": "일끼리, 일의 자리끼리, 낱개끼리 허용",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자리별로 나누어 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "받아내림이 없는 뺄셈은 백끼리, 십끼리, {일끼리} 따로 뺀 뒤 모은다.",
+        "cStudentSentence": "받아내림이 없는 뺄셈은 백끼리, 십끼리, □ 따로 뺀 뒤 모은다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "일끼리",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "받아내림이 없는 뺄셈은 백끼리, 십끼리, □ 따로 뺀 뒤 모은다.",
+          "answers": [
+            "일끼리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$568-243$을 백, 십, 일로 나누어 빼는 방법으로 계산하는 과정을 설명해 보세요.",
+          "answer": "백끼리 $500-200=300$, 십끼리 $60-40=20$, 일끼리 $8-3=5$를 따로 뺀 뒤 모으면 $300+20+5=325$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$500-200=300$, $60-40=20$, $8-3=5$로 자리별로 뺀다."
+              ]
+            },
+            {
+              "anyOf": [
+                "$300+20+5=325$로 모은다."
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "받아내림이 없는 뺄셈은 백끼리, 십끼리, {일끼리} 따로 뺀 뒤 모은다.",
+          "acceptedAnswers": [
+            [
+              "일끼리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-1-3-xc15",
+          "sourceIndex": 405,
+          "proposalFingerprint": "382815503d63b5e71bb4219be96d4455de9be0a18e46d71440dd866708f0841b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "각 자리의 실제 차와 모은 325까지 과정과 기준이 맞는다.",
+          "cReason": "받아내림 없는 조건에서 일끼리도 따로 빼는 방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$568-243$을 백끼리, 십끼리, 일끼리 따로 빼면 $500-200=300$, $60-40=20$, $8-3=5$이다. 이렇게 뺀 수를 모으면 $300+20+5=${$325$}이다.",
+        "cSlotEquivalents": [],
+        "cReason": "백·십다음일끼리의나열복원대신자리별뺀양을모으는실제결과를구한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-1-3-xc25",
+      "sourceIndex": 415,
+      "beforeProposal": {
+        "sourceIndex": 415,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-1 덧셈과 뺄셈::1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+        "sourceFingerprint": "e9b0f7c2c76cf89cb9f694afa07e22d3355941fb028ea08c581422c13ceb5ec4",
+        "proposalFingerprint": "e8ebd58881e8a7882002e612e02354fce9245d7de1a5a0004a60c914008703fb",
+        "reviewStatus": "draft",
+        "id": "e3-1-1-3-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$463-127$을 계산하기 전에 받아내림이 한 번뿐인지 알아보려고 합니다. 일의 자리와 십의 자리를 차례로 살펴 어떻게 알 수 있는지 설명해 보세요.",
+        "bAnswer": "일의 자리는 $3$에서 $7$을 뺄 수 없어 받아내림이 필요하다. 십의 자리는 $1$을 내려 주고 남은 $5$에서 $2$를 뺄 수 있어 받아내림이 더 필요 없다. 그래서 받아내림은 한 번뿐이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리에서 받아내림 필요"
+            ]
+          },
+          {
+            "anyOf": [
+              "내려 주고 남은 $5$에서 $2$를 뺄 수 있음"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 번뿐"
+            ]
+          }
+        ],
+        "bGoal": "받아내림이 한 번인지 미리 판단하는 방법 설명",
+        "bReason": "조건이 긴 일반문을 463-127 살펴보기로 구체화",
+        "cDecision": "rewrite",
+        "cAfter": "$463-127$에서 일의 자리로 $1$을 내려 주면 십의 자리에 {$5$}가 남는다. 남은 수에서 $2$를 뺄 수 있으므로 받아내림은 {한} 번뿐이다.",
+        "cReason": "두 문장에 걸친 긴 조건문은 초3이 읽기 어려워 실제 식의 남은 수와 횟수를 쓰게 함",
+        "coreAfter": "세 자리 수에서 더 작은 세 자리 수를 빼고 큰 수의 십의 자리 숫자는 $0$이 아니라고 하자. 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자에서 빼는 수의 십의 자리 숫자를 뺄 수 있으면 받아내림은 {한} 번뿐이다.",
+        "coreReason": "한 번이라는 원래 표적과 큰 수·십의0아님 조건을 보존한다. 작지 않으면을 뺄 수 있으면으로 푼다.",
+        "answerNotes": "한, 1 허용",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "받아내림이 한 번뿐인지 미리 알기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$463-127$에서 일의 자리로 $1$을 내려 주면 십의 자리에 {$5$}가 남는다. 남은 수에서 $2$를 뺄 수 있으므로 받아내림은 {한} 번뿐이다.",
+        "cStudentSentence": "$463-127$에서 일의 자리로 $1$을 내려 주면 십의 자리에 □가 남는다. 남은 수에서 $2$를 뺄 수 있으므로 받아내림은 □ 번뿐이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": []
+          },
+          {
+            "expected": "한",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$463-127$을 계산하기 전에 받아내림이 한 번뿐인지 알아보려고 합니다. 일의 자리와 십의 자리를 차례로 살펴 어떻게 알 수 있는지 설명해 보세요.",
+          "answer": "일의 자리는 $3$에서 $7$을 뺄 수 없어 받아내림이 필요하다. 십의 자리는 $1$을 내려 주고 남은 $5$에서 $2$를 뺄 수 있어 받아내림이 더 필요 없다. 그래서 받아내림은 한 번뿐이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "일의 자리에서 받아내림 필요"
+              ]
+            },
+            {
+              "anyOf": [
+                "내려 주고 남은 $5$에서 $2$를 뺄 수 있음"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 번뿐"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$463-127$에서 일의 자리로 $1$을 내려 주면 십의 자리에 {$5$}가 남는다. 남은 수에서 $2$를 뺄 수 있으므로 받아내림은 {한} 번뿐이다.",
+          "acceptedAnswers": [
+            [
+              "$5$"
+            ],
+            [
+              "한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-1-3-xc25",
+          "sourceIndex": 415,
+          "proposalFingerprint": "e8ebd58881e8a7882002e612e02354fce9245d7de1a5a0004a60c914008703fb",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "십을 먼저 1 줄인 실제 5에서 2를 뺄 수 있어 한 번임을 설명한다.",
+          "cReason": "십에 남은 5와 한 번을 확인하고 일반 정의의 큰 수·십 0 아님 조건도 맞다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리에서 받아내림이 필요하다."
+            ]
+          },
+          {
+            "anyOf": [
+              "내려 주고 남은 십의 자리 $5$에서 $2$를 뺄 수 있어 더 받아내릴 필요가 없다."
+            ]
+          }
+        ],
+        "bReason": "물음에이미준한번뿐결론을별도필수로반복시키지않고일자리필요및남은십자리의충분함이라는근거를평가한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-2-4-xc7",
+      "sourceIndex": 522,
+      "beforeProposal": {
+        "sourceIndex": 522,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-2 평면도형::1-2-4 직사각형 알아보기",
+        "sourceFingerprint": "f7a0a85f42e16a3a2bc5154e9de9dfe0791343665866f4eb10a8d924ae84d4f9",
+        "proposalFingerprint": "113e3bda8a278842b4c75905f81ed903ff87c26f33bcca8ed58d268d96e0e51e",
+        "reviewStatus": "draft",
+        "id": "e3-1-2-4-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형에서 '마주 보는 변'은 어떤 두 변을 말하는지 쓰세요. 두 변이 서로 만나는지 만나지 않는지가 드러나게 쓰세요.",
+        "bAnswer": "서로 만나지 않고 마주하고 있는 두 변입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 만나지 않는 두 변이다."
+            ]
+          }
+        ],
+        "bGoal": "마주 보는 변의 뜻 말하기",
+        "bReason": "낱말의 뜻을 묻되 답할 성질(만나는지 여부)을 좁힘",
+        "cDecision": "keep",
+        "cReason": "뜻풀이가 다 있고 이름을 답하는 익숙한 낱말 빈칸임",
+        "answerNotes": "'마주 보는 두 변' 허용. '이웃한 변'은 오답",
+        "reviewerEdited": true,
+        "learningRole": "definition",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "마주 보는 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형에서 서로 만나지 않고 마주하는 두 변을 {마주 보는 변}이라 한다.",
+        "cStudentSentence": "사각형에서 서로 만나지 않고 마주하는 두 변을 □이라 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "마주 보는 변",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형에서 서로 만나지 않고 마주하는 두 변을 □이라 한다.",
+          "answers": [
+            "마주 보는 변"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사각형에서 '마주 보는 변'은 어떤 두 변을 말하는지 쓰세요. 두 변이 서로 만나는지 만나지 않는지가 드러나게 쓰세요.",
+          "answer": "서로 만나지 않고 마주하고 있는 두 변입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 만나지 않는 두 변이다."
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형에서 서로 만나지 않고 마주하는 두 변을 {마주 보는 변}이라 한다.",
+          "acceptedAnswers": [
+            [
+              "마주 보는 변"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-2-4-xc7",
+          "sourceIndex": 522,
+          "proposalFingerprint": "113e3bda8a278842b4c75905f81ed903ff87c26f33bcca8ed58d268d96e0e51e",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두 변의 만남 여부로 마주 보는 변의 뜻을 집중해서 묻는다.",
+          "cReason": "서로 안 만나고 마주하는 두 변이라는 뜻이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "사각형에서 '마주 보는 변'은 어떤 두 변을 말하는지 설명하세요.",
+        "bReason": "서로만나는지라는판별기준힌트를물음에서빼고익숙한도형용어의뜻을초점있게설명하게한다.",
+        "cDecision": "rewrite",
+        "cAfter": "사각형의 네 꼭짓점이 둘레를 따라 ㄱ, ㄴ, ㄷ, ㄹ 차례로 놓여 있다. 변 ㄱㄴ과 마주 보는 변은 변 {ㄷㄹ}이다.",
+        "cSlotEquivalents": [
+          [
+            "ㄷㄹ",
+            "ㄹㄷ"
+          ]
+        ],
+        "cReason": "뜻풀이속마주한다는말을복사하는이름빈칸대신둘레순서가명시된사각형의실제변관계를묻는다.",
+        "exampleNeeded": "둘레순서ㄱㄴㄷㄹ을표시한사각형그림은도움이된다. 그림이없어도학생문장이꼭짓점순서를모두제시한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-2-5-xc17",
+      "sourceIndex": 557,
+      "beforeProposal": {
+        "sourceIndex": 557,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+        "sourceFingerprint": "92cd59933dd2914f86dab8fad85034969c7849192dfa3c264288805086fc76cd",
+        "proposalFingerprint": "d210b58a8f7784958e2059d30d679e198c41a0c6d64392f122e9957ecef6b244",
+        "reviewStatus": "draft",
+        "id": "e3-1-2-5-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "똑같은 정사각형 두 개를 한 변끼리 꼭 맞게 붙였습니다. 어떤 사각형이 되는지 쓰고, 그렇게 말할 수 있는 까닭을 각을 보고 쓰세요.",
+        "bAnswer": "직사각형이 됩니다. 붙인 도형의 네 각이 모두 직각이기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각이 모두 직각"
+            ]
+          }
+        ],
+        "bGoal": "정사각형 두 개를 붙인 도형이 직사각형임을 설명하기",
+        "bReason": "붙이는 방법을 주고 도형 이름과 까닭을 묻게 함(정사각형이 아닌 까닭은 xc26에서 물음)",
+        "cDecision": "keep",
+        "cReason": "붙이는 방법이 분명하고 답이 익숙한 도형 이름임",
+        "answerNotes": "'사각형'만 쓰면 불완전한 답. '정사각형'은 오답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형 두 개 붙이기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "똑같은 정사각형 두 개를 한 변끼리 붙이면 {직사각형}이 된다.",
+        "cStudentSentence": "똑같은 정사각형 두 개를 한 변끼리 붙이면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직사각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "똑같은 정사각형 두 개를 한 변끼리 붙이면 □이 된다.",
+          "answers": [
+            "직사각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "똑같은 정사각형 두 개를 한 변끼리 꼭 맞게 붙였습니다. 어떤 사각형이 되는지 쓰고, 그렇게 말할 수 있는 까닭을 각을 보고 쓰세요.",
+          "answer": "직사각형이 됩니다. 붙인 도형의 네 각이 모두 직각이기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "네 각이 모두 직각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "똑같은 정사각형 두 개를 한 변끼리 붙이면 {직사각형}이 된다.",
+          "acceptedAnswers": [
+            [
+              "직사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-2-5-xc17",
+          "sourceIndex": 557,
+          "proposalFingerprint": "d210b58a8f7784958e2059d30d679e198c41a0c6d64392f122e9957ecef6b244",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "동일 정사각형 둘의 변 결합 결과와 네 직각이라는 분류 까닭을 묻는다.",
+          "cReason": "두 정사각형을 변끼리 붙인 직사각형 결과다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "똑같은 정사각형 두 개를 한 변 전체가 꼭 맞게 붙이고 겹치지 않게 놓았다. 붙인 도형의 네 각은 모두 {직각}이다.",
+        "cSlotEquivalents": [],
+        "cReason": "붙이는한변전체일치조건을보완한다. 사각형·직사각형처럼여러포함이름이참인빈칸대신새도형의각성질을직접묻는다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-2-5-xc24",
+      "sourceIndex": 563,
+      "beforeProposal": {
+        "sourceIndex": 563,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+        "sourceFingerprint": "7c20f16230ab5844bdb88331838215b6a0196e51e995bbd76f93938bb0ab56c7",
+        "proposalFingerprint": "8ff89dcfb54023e05f17d83ecd9b0e7c524ada05306b7a466d950944484f87ba",
+        "reviewStatus": "draft",
+        "id": "e3-1-2-5-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 같은 철사 두 개를 각각 남김없이 구부려 정사각형 하나와 직사각형 하나를 만들었습니다. 두 도형에서 서로 같은 것은 무엇인지 쓰고, 그 까닭을 쓰세요.",
+        "bAnswer": "네 변의 길이의 합이 같습니다. 두 도형 모두 철사 전체의 길이가 네 변의 길이의 합이 되기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 변의 길이의 합이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "철사 길이가 네 변의 길이의 합"
+            ]
+          }
+        ],
+        "bGoal": "같은 철사로 만든 두 도형에서 같은 것 설명하기",
+        "bReason": "상황을 주고 같은 것과 까닭을 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "길이가 같은 철사를 각각 남김없이 써서 정사각형과 직사각형을 만들면 두 도형의 네 변의 길이의 합은 서로 {같다}.",
+        "cReason": "원문 빈칸 '네 변의 길이의 합'은 긴 이름 복원이라 대상을 보여 주고 비교 낱말만 답하게 함",
+        "answerNotes": "B에서는 '둘레', '둘레의 길이'도 같은 뜻으로 인정",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 철사로 만든 두 도형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "길이가 같은 철사를 각각 남김없이 써서 정사각형과 직사각형을 만들면 두 도형의 네 변의 길이의 합은 서로 {같다}.",
+        "cStudentSentence": "길이가 같은 철사를 각각 남김없이 써서 정사각형과 직사각형을 만들면 두 도형의 네 변의 길이의 합은 서로 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "길이가 같은 철사 두 개를 각각 남김없이 구부려 정사각형 하나와 직사각형 하나를 만들었습니다. 두 도형에서 서로 같은 것은 무엇인지 쓰고, 그 까닭을 쓰세요.",
+          "answer": "네 변의 길이의 합이 같습니다. 두 도형 모두 철사 전체의 길이가 네 변의 길이의 합이 되기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 변의 길이의 합이 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "철사 길이가 네 변의 길이의 합"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "길이가 같은 철사를 각각 남김없이 써서 정사각형과 직사각형을 만들면 두 도형의 네 변의 길이의 합은 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-2-5-xc24",
+          "sourceIndex": 563,
+          "proposalFingerprint": "8ff89dcfb54023e05f17d83ecd9b0e7c524ada05306b7a466d950944484f87ba",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "철사 길이를 남김없이 사용한 조건으로 같은 전체 변 길이를 설명한다.",
+          "cReason": "같은 철사를 모두 쓴 두 도형의 전체 길이 보존이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "길이가 같은 철사 두 개를 각각 남김없이 구부려 정사각형 하나와 직사각형 하나를 만들었습니다. 각 도형의 네 변의 길이를 모두 더한 값은 어떤 관계인지 쓰고, 그 까닭을 설명하세요.",
+        "bGoal": "같은철사로만든도형의변길이합이모양을바꾸어도보존됨을설명한다.",
+        "bReason": "서로같은것이라는열린속성질문을네변길이합의관계로지정해변개수·각개수같은다른정답과구별한다.",
+        "cDecision": "rewrite",
+        "cAfter": "길이 $24\\,\\mathrm{cm}$인 철사를 남김없이 구부려 직사각형을 만들었다. 짧은 변이 $4\\,\\mathrm{cm}$이면 긴 변은 {$8$}$\\,\\mathrm{cm}$이다.",
+        "cSlotEquivalents": [],
+        "cReason": "같은철사에서같은길이라는낱말을복사하는문장대신철사전체길이와네변길이합의관계를이용하는구체문제로바꾼다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

@@ -1,0 +1,2327 @@
+{
+  "resolvedAt": "2026-10-07T12:08:08.290Z",
+  "sourceCommit": "13bf05dce",
+  "importRecord": "import-record.json",
+  "supplementalCommit": "3e429e20738a3cccce1f5be4f1a1869780f7484a",
+  "adoptedUnchangedCount": 285,
+  "primaryResolvedCount": 95,
+  "unresolvedIds": [],
+  "disclosure": "Original corrections and later negative-finding amendments remain a traceable chain of actual recorded readings; current attribution is not substituted for the earlier reader.",
+  "rows": [
+    {
+      "id": "m2-05-07-xc8",
+      "sourceIndex": 2902,
+      "originalReviewFingerprint": "4a132ee51ba9c948319e82b5f806f82226f8f7b2e1959810b62f406b52105465",
+      "resolvedFingerprint": "9977bb7b27eb108830dc390259aecbddb36a614fb700d9aa716080c3d517b664",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "4a132ee51ba9c948319e82b5f806f82226f8f7b2e1959810b62f406b52105465",
+          "to": "9977bb7b27eb108830dc390259aecbddb36a614fb700d9aa716080c3d517b664",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.715Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "대각선 등길이와 이등분으로 110도를 구한다.",
+      "cReason": "ABCD와 O를 정의해 이등변삼각형을 판단한다.",
+      "coreReason": "교점과 꼭짓점 소속을 함께 밝힌다."
+    },
+    {
+      "id": "m2-05-07-xc14",
+      "sourceIndex": 2908,
+      "originalReviewFingerprint": "ea072b332e8f34621b35f3092335e7ee1199a94e5a9a22e990ed41f7fdd5432b",
+      "resolvedFingerprint": "8ee203e1bdbfeb53fbd078f33e13073214bd7ee6d8ae7d08bda7829ec5b972e5",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "ea072b332e8f34621b35f3092335e7ee1199a94e5a9a22e990ed41f7fdd5432b",
+          "to": "8ee203e1bdbfeb53fbd078f33e13073214bd7ee6d8ae7d08bda7829ec5b972e5",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.718Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "수직이등분에서 마름모를 판단하며 평행사변형 성질과 네 합동삼각형의 근거를 모두 허용한다.",
+      "cReason": "네 직각과 네 같은 변으로 정사각형을 특정한다."
+    },
+    {
+      "id": "m2-05-07-xc16",
+      "sourceIndex": 2910,
+      "originalReviewFingerprint": "5d2a10ab2f8ce5ed94f3ad1d845644a6e35d030ec1d03e921dac9469efb07b33",
+      "resolvedFingerprint": "c2151bfd7ab2fc2758f33758e270ebd8eecbd6d83ca357b24b9e272ebc8c43f3",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5d2a10ab2f8ce5ed94f3ad1d845644a6e35d030ec1d03e921dac9469efb07b33",
+          "to": "c2151bfd7ab2fc2758f33758e270ebd8eecbd6d83ca357b24b9e272ebc8c43f3",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.719Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "네 반대각선 길이가 같다는 원 위의 근거를 묻는다.",
+      "cReason": "원과 원주는 이 문장에서 같은 위치를 나타낸다."
+    },
+    {
+      "id": "m2-05-07-xc17",
+      "sourceIndex": 2911,
+      "originalReviewFingerprint": "9cfd49d02e4a1d2dc4f4ed38797f4f6e597e74990d57b0a4486b764a524836ea",
+      "resolvedFingerprint": "6ef762fc51541cfd1745326c1362f57c555f768829be55efcec6b37d3b90c6ff",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "9cfd49d02e4a1d2dc4f4ed38797f4f6e597e74990d57b0a4486b764a524836ea",
+          "to": "6ef762fc51541cfd1745326c1362f57c555f768829be55efcec6b37d3b90c6ff",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.721Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "대각선 넓이24와 밑변5의 높이24/5가 일치한다.",
+      "cReason": "두 넓이 식을 직접 주어 같게 놓는 관계를 묻는다."
+    },
+    {
+      "id": "m2-05-07-xc18",
+      "sourceIndex": 2912,
+      "originalReviewFingerprint": "baff537511297765c6e01b6512caa213e7d2998fad63b195595875ca87dc0927",
+      "resolvedFingerprint": "c2718fc4a566d39d7fa29dccfe21e5ab7e270f59ba25be01f12f5e0a17d5d04b",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "baff537511297765c6e01b6512caa213e7d2998fad63b195595875ca87dc0927",
+          "to": "c2718fc4a566d39d7fa29dccfe21e5ab7e270f59ba25be01f12f5e0a17d5d04b",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.722Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "사용할 두 변과 끼인각을 정해 SAS 기준과 질문을 맞춘다.",
+      "cReason": "점 P의 위치와 SAS에 사용할 관계를 밝힌다."
+    },
+    {
+      "id": "m2-05-08-xc4",
+      "sourceIndex": 2916,
+      "originalReviewFingerprint": "4a2d7d703d126c81598a6bb033b62b5069082e4f47c73eda8d97767fde6fe889",
+      "resolvedFingerprint": "19918f0474ff54656438b4b326687c9d9fbc60d49462d48716bc32e2b77afd01",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "4a2d7d703d126c81598a6bb033b62b5069082e4f47c73eda8d97767fde6fe889",
+          "to": "19918f0474ff54656438b4b326687c9d9fbc60d49462d48716bc32e2b77afd01",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.723Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "평행한 두 밑변의 같은 쪽 각으로 110도를 구한다.",
+      "cReason": "윗변과 아랫변 모두 가능한 낱말 대신 실제 각을 구한다."
+    },
+    {
+      "id": "m2-05-08-xc7",
+      "sourceIndex": 2917,
+      "originalReviewFingerprint": "299c312cdad185bb3f09f7c4ae51e93d90e90ae39c36de9f246179ccc9d741d1",
+      "resolvedFingerprint": "f84a834ac314c102a253dbaad801e96f90aadfc1c695039cda99a6c1b2f0cf82",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "299c312cdad185bb3f09f7c4ae51e93d90e90ae39c36de9f246179ccc9d741d1",
+          "to": "f84a834ac314c102a253dbaad801e96f90aadfc1c695039cda99a6c1b2f0cf82",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.724Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "네 직각과 네 같은 변으로 두 포함 관계를 설명한다.",
+      "cReason": "각각의 정의에 해당하는 표준 도형 이름을 묻는다."
+    },
+    {
+      "id": "m2-05-08-xc9",
+      "sourceIndex": 2919,
+      "originalReviewFingerprint": "751d09cb20c28d0b60e3377f6b90ebba5e051064f7cf996e18a6ec42a7ae88a0",
+      "resolvedFingerprint": "49f80b2ec57a99fdcc0c7b9161ccf0909c05862f23987af6e665e147e0a3ecb0",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "751d09cb20c28d0b60e3377f6b90ebba5e051064f7cf996e18a6ec42a7ae88a0",
+          "to": "49f80b2ec57a99fdcc0c7b9161ccf0909c05862f23987af6e665e147e0a3ecb0",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.724Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "110도와 두 각의 합180도 및 평행선 근거를 함께 요구한다.",
+      "cReason": "사다리꼴 이름을 밝혀 각 A와 B를 연결한다.",
+      "coreReason": "ABCD 이름을 추가하고 합180도는 유지한다."
+    },
+    {
+      "id": "m2-05-08-xc10",
+      "sourceIndex": 2920,
+      "originalReviewFingerprint": "0f57bb15d0b6ec32b917bf7bcb68d10781f5a52248996c84c0169e58893ccaef",
+      "resolvedFingerprint": "a9df6f546a350913ed49bb8b2e675846b7d92015575e252765f8a310b24608fb",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "0f57bb15d0b6ec32b917bf7bcb68d10781f5a52248996c84c0169e58893ccaef",
+          "to": "a9df6f546a350913ed49bb8b2e675846b7d92015575e252765f8a310b24608fb",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.725Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "등변사다리꼴 합동 증명의 B 중복 제외를 유지한다.",
+      "cReason": "두 변과 끼인각을 지정해 다른 합동 증명과 구별한다."
+    },
+    {
+      "id": "m2-05-08-xc21",
+      "sourceIndex": 2931,
+      "originalReviewFingerprint": "3043ef670c8619b1fa78b036f8dd3e34c66afdff0014d871ea61541b1b18d153",
+      "resolvedFingerprint": "9b3f7380b8c048590e59f9efea6bcca027095e6ada1f3ac8f01895f77a0caed8",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "3043ef670c8619b1fa78b036f8dd3e34c66afdff0014d871ea61541b1b18d153",
+          "to": "9b3f7380b8c048590e59f9efea6bcca027095e6ada1f3ac8f01895f77a0caed8",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.725Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "같은 변의 밑각과 엇각으로 40도를 얻는다.",
+      "cReason": "ABCD 소속을 밝히고 이등분과 엇각을 묻는다.",
+      "coreReason": "사각형 이름 외 일반 증명은 유지한다."
+    },
+    {
+      "id": "m2-05-09-xc6",
+      "sourceIndex": 2936,
+      "originalReviewFingerprint": "7f520d0cae5b54a8ccb04d1f7577235f89d2614c695fb78dbe2cd40f6a9c98fa",
+      "resolvedFingerprint": "ad68e6250fd2423b83459689956f68f6106e93d468e88b1c23884e3f8eef0223",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "7f520d0cae5b54a8ccb04d1f7577235f89d2614c695fb78dbe2cd40f6a9c98fa",
+          "to": "ad68e6250fd2423b83459689956f68f6106e93d468e88b1c23884e3f8eef0223",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.726Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "일반 높이 비에서 다룬 절반 사례는 B에서 제외한다.",
+      "cReason": "삼각형의 높이를 절반으로 줄인 상황을 명시한다.",
+      "coreReason": "비례가 적용되는 도형이 삼각형임을 보충한다."
+    },
+    {
+      "id": "m2-05-09-xc7",
+      "sourceIndex": 2937,
+      "originalReviewFingerprint": "fe6ee4043283093ecd08d479724b272b35f93b0e501d8bf3749a3840edb27173",
+      "resolvedFingerprint": "a42f1876a2894057375eb68fb4896454cf66fa9c6d3a5c73e757abc3e630ad6c",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "fe6ee4043283093ecd08d479724b272b35f93b0e501d8bf3749a3840edb27173",
+          "to": "a42f1876a2894057375eb68fb4896454cf66fa9c6d3a5c73e757abc3e630ad6c",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.727Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "일반 밑변 비의 두 배 사례는 B에서 제외한다.",
+      "cReason": "삼각형 밑변을 두 배로 하는 상황을 명시한다.",
+      "coreReason": "삼각형이라는 일반 적용 대상을 보충한다."
+    },
+    {
+      "id": "m2-05-09-xc10",
+      "sourceIndex": 2940,
+      "originalReviewFingerprint": "b984a891c052a0fa79b60e9f550d6becc68bb351769c41c6fff28810271ee82b",
+      "resolvedFingerprint": "2153a54be9a8fbab3045220fede7b755b0cf15b15f9011436e7bc63a1f74637d",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "b984a891c052a0fa79b60e9f550d6becc68bb351769c41c6fff28810271ee82b",
+          "to": "2153a54be9a8fbab3045220fede7b755b0cf15b15f9011436e7bc63a1f74637d",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.727Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "1:3 분할에서 전체24의 3/4인18을 구한다.",
+      "cReason": "삼각형 이름과 내부점 및 넓이의 비를 명시한다.",
+      "coreReason": "도형 자체가 아니라 전체 넓이를 나눈다고 쓴다."
+    },
+    {
+      "id": "m2-05-09-xc11",
+      "sourceIndex": 2941,
+      "originalReviewFingerprint": "defdb960cb15dc72d5e5b3230f86fd3045b0b2ff156552f8aa76654fc72e09c6",
+      "resolvedFingerprint": "c8e06fc287231ba17b12cc2e3bdf1394b9a3e3a70583504f54ac451f06308440",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "defdb960cb15dc72d5e5b3230f86fd3045b0b2ff156552f8aa76654fc72e09c6",
+          "to": "c8e06fc287231ba17b12cc2e3bdf1394b9a3e3a70583504f54ac451f06308440",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.728Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "공통 밑변과 높이가 같은 넓이 설명의 중복 제외다.",
+      "cReason": "ABCD라는 사다리꼴을 밝혀 두 삼각형을 정의한다.",
+      "coreReason": "일반 넓이 관계는 유지하고 도형 이름을 보충한다."
+    },
+    {
+      "id": "m2-05-09-xc12",
+      "sourceIndex": 2942,
+      "originalReviewFingerprint": "34747c69a550bc299c606d2f4f095139645e43dd66c63b9f6296e836fe503d0e",
+      "resolvedFingerprint": "ba44b56874a2e40a58796ed0fefb49e03ca1c089dcc7770bdb6f7fe6e6e27409",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "34747c69a550bc299c606d2f4f095139645e43dd66c63b9f6296e836fe503d0e",
+          "to": "ba44b56874a2e40a58796ed0fefb49e03ca1c089dcc7770bdb6f7fe6e6e27409",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-0-14.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-0-14.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:29:47.729Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+      "bReason": "같은 두 넓이에서 공통 OBC의 넓이를 뺀다.",
+      "cReason": "공통 부분을 뺀 나머지 넓이의 같음은 명확하다."
+    },
+    {
+      "id": "m2-05-09-xc13",
+      "sourceIndex": 2943,
+      "originalReviewFingerprint": "c951c0af7473f57cfe1646622214f92b39abc9f1f148373614da4d9c98229f93",
+      "resolvedFingerprint": "1d5cc1a74a61216151dffa46c119910c6c27aea28a3f161e34a5064f6217f58c",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "c951c0af7473f57cfe1646622214f92b39abc9f1f148373614da4d9c98229f93",
+          "to": "1d5cc1a74a61216151dffa46c119910c6c27aea28a3f161e34a5064f6217f58c",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.505Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "밑변 등길이와 높이 합으로 전체 넓이의 절반을 설명한다.",
+      "cReason": "삼각형 기호의 합을 넓이의 합으로 풀어 쓴다.",
+      "coreReason": "두 넓이의 합과 전체 넓이의 관계를 명시한다."
+    },
+    {
+      "id": "m2-05-09-xc17",
+      "sourceIndex": 2947,
+      "originalReviewFingerprint": "f8a18cdc40351bf3d47a7bad58930f06deeb602329a8b03c72f476be7410a658",
+      "resolvedFingerprint": "71412cf9dc6deef5b041fc48d38603fafcdb39f48ce89319af37553e4ee50bc1",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "f8a18cdc40351bf3d47a7bad58930f06deeb602329a8b03c72f476be7410a658",
+          "to": "71412cf9dc6deef5b041fc48d38603fafcdb39f48ce89319af37553e4ee50bc1",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.508Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "네 꼭짓점으로 만든 삼각형 중에서 찾아 답 범위를 정한다.",
+      "cReason": "AD 공통 밑변과 평행선 위 꼭짓점의 높이를 묻는다."
+    },
+    {
+      "id": "m2-05-09-xc18",
+      "sourceIndex": 2948,
+      "originalReviewFingerprint": "abf443ef44439eccad9c8fec8deb3c58054d021d1a07f41f5856c460dba085e4",
+      "resolvedFingerprint": "9a86b34e06f491b8b52d8bb838bba98bc88b4f9398a78d0d733171bcffe7ffe9",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "abf443ef44439eccad9c8fec8deb3c58054d021d1a07f41f5856c460dba085e4",
+          "to": "9a86b34e06f491b8b52d8bb838bba98bc88b4f9398a78d0d733171bcffe7ffe9",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.510Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "36에 2/3과 1/2을 차례로 곱해12를 구한다.",
+      "cReason": "ABC와 두 내부점을 정의해 연속 넓이비를 묻는다.",
+      "coreReason": "전체 삼각형과 두 분할 선분을 명시한다."
+    },
+    {
+      "id": "m2-05-09-xc19",
+      "sourceIndex": 2949,
+      "originalReviewFingerprint": "ae0d033f5328aeb8f937a5dee4e9d06e9ea29acacecd6e197a7c55ee9b6b983c",
+      "resolvedFingerprint": "9772a1bf6b8f786466e95d0a9cfb1ded80aea83a2aa95591eed3b347654b7d74",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "ae0d033f5328aeb8f937a5dee4e9d06e9ea29acacecd6e197a7c55ee9b6b983c",
+          "to": "9772a1bf6b8f786466e95d0a9cfb1ded80aea83a2aa95591eed3b347654b7d74",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.512Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "마주 보는 넓이 합이 같아3+7을 적용한다.",
+      "cReason": "마주 보는 위치와 두 합의 같음을 확인한다."
+    },
+    {
+      "id": "m2-05-09-xc22",
+      "sourceIndex": 2952,
+      "originalReviewFingerprint": "135ec6238c7882341cec4796faebb40c2e47cac761dc8f36444b1e91abad7a05",
+      "resolvedFingerprint": "ec87a1a98f2ecb619f5fc66e120ccc557b7a07772cf0f17c714b192b93edfaed",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "135ec6238c7882341cec4796faebb40c2e47cac761dc8f36444b1e91abad7a05",
+          "to": "ec87a1a98f2ecb619f5fc66e120ccc557b7a07772cf0f17c714b192b93edfaed",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.514Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "C 쪽 연장에서 같은 밑변과 공통 높이를 설명한다.",
+      "cReason": "삼각형 자체와 넓이를 비교하던 문장을 고친다.",
+      "coreReason": "연장 방향과 넓이끼리의 비교를 명시한다."
+    },
+    {
+      "id": "m2-05-09-xc23",
+      "sourceIndex": 2953,
+      "originalReviewFingerprint": "2c9c2ca68e7cc349ed4f1817253c4419fdb7f56dcff28bc58ec009df34137e3f",
+      "resolvedFingerprint": "0d0ae58a354a7fa9900ba984fe597b97d0f73a0907395349f697148d7f65cfd1",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "2c9c2ca68e7cc349ed4f1817253c4419fdb7f56dcff28bc58ec009df34137e3f",
+          "to": "0d0ae58a354a7fa9900ba984fe597b97d0f73a0907395349f697148d7f65cfd1",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.516Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "공통 높이에서 순서대로3:7의 넓이비를 구한다.",
+      "cReason": "윗변 AD와 아랫변 BC를 표시해 허용 답의 대상을 맞춘다."
+    },
+    {
+      "id": "m2-06-01-xc1",
+      "sourceIndex": 2954,
+      "originalReviewFingerprint": "9f3faea8ad99f3573b4cab6d67c73ca3f868d26c2d962e08e526c510b355dd53",
+      "resolvedFingerprint": "5d6eb2504266e633069504f5be06df16550a921eb7268670744e17742a734605",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json",
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "9f3faea8ad99f3573b4cab6d67c73ca3f868d26c2d962e08e526c510b355dd53",
+          "to": "847a84d3b230e0dad79844253cfeadb0fd6bf8af6cfc32d146e78b50d99e23c3",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        },
+        {
+          "from": "847a84d3b230e0dad79844253cfeadb0fd6bf8af6cfc32d146e78b50d99e23c3",
+          "to": "5d6eb2504266e633069504f5be06df16550a921eb7268670744e17742a734605",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-final-six.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:33:50.101Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+      "bReason": "8인 대응변 도형부터12인 대응변 도형까지의 순서를 정해2:3을 구한다.",
+      "cReason": "8:12를 가장 간단한 자연수 비로 쓰는 C는 명확하다.",
+      "coreReason": "자연수 비로 나타낼 수 있을 때의 조건을 유지한다."
+    },
+    {
+      "id": "m2-06-01-xc8",
+      "sourceIndex": 2961,
+      "originalReviewFingerprint": "3dfd91a55bb2f4b810290f6699c3cf4d17763f734f7b3dd6192affcd0864d431",
+      "resolvedFingerprint": "7f1ccfbee5d4e3899d8c8541378a4332bda3f5e6ce8088ae534aa96166d7c14a",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "3dfd91a55bb2f4b810290f6699c3cf4d17763f734f7b3dd6192affcd0864d431",
+          "to": "7f1ccfbee5d4e3899d8c8541378a4332bda3f5e6ce8088ae534aa96166d7c14a",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.519Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "비례식뿐 아니라 같은 관계의 곱셈식도 허용하여15를 구한다.",
+      "cReason": "두 비가 같다는 등식의 이름을 물어 비례식을 특정한다."
+    },
+    {
+      "id": "m2-06-01-xc11",
+      "sourceIndex": 2964,
+      "originalReviewFingerprint": "14d83aa5ce8a642196c1768fb449b90f06b02ef3ca656ade41a2671b4e344e6d",
+      "resolvedFingerprint": "913ced785ef0de82c3ee326d2e69f546f325b87e724f1e74c949e15a32ac140c",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "14d83aa5ce8a642196c1768fb449b90f06b02ef3ca656ade41a2671b4e344e6d",
+          "to": "913ced785ef0de82c3ee326d2e69f546f325b87e724f1e74c949e15a32ac140c",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.521Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "반지름과 높이의 대상을 정의하고 두 비와 닮음비를 연결한다.",
+      "cReason": "중심에서 원까지, 밑면 사이 거리로 두 길이를 특정한다."
+    },
+    {
+      "id": "m2-06-01-xc12",
+      "sourceIndex": 2965,
+      "originalReviewFingerprint": "0b1e3794050ce4458f544e6e16a793029e0d992524acc6c4d045a9d3cf2dd33c",
+      "resolvedFingerprint": "394046110bdb6f22dd58a5ae588e2a959d41ef2bfb6a9754b2d401f286d652e4",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "0b1e3794050ce4458f544e6e16a793029e0d992524acc6c4d045a9d3cf2dd33c",
+          "to": "394046110bdb6f22dd58a5ae588e2a959d41ef2bfb6a9754b2d401f286d652e4",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.522Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "중심에서 원까지 거리의 비와 둘레비를 연결한다.",
+      "cReason": "반지름 대상을 정의해 다른 길이비와 구분한다."
+    },
+    {
+      "id": "m2-06-01-xc16",
+      "sourceIndex": 2969,
+      "originalReviewFingerprint": "978212b7d6c5a062725c710816d526a3c20a65408f12ad153e4222479e546ce4",
+      "resolvedFingerprint": "9b254e820a41401a2ccbd54debe5be8502529ccf49a94bf9b8c1f040f23525b4",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "978212b7d6c5a062725c710816d526a3c20a65408f12ad153e4222479e546ce4",
+          "to": "9b254e820a41401a2ccbd54debe5be8502529ccf49a94bf9b8c1f040f23525b4",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.524Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "공통 Q항을 맞추거나 두 닮음비를 곱하는 올바른 방법을 허용한다.",
+      "cReason": "P Q R가 도형임을 밝히고 공통 항 맞추기를 묻는다.",
+      "coreReason": "닮음 관계를 나타내는 세 이름의 대상을 보충한다."
+    },
+    {
+      "id": "m2-06-01-xc17",
+      "sourceIndex": 2970,
+      "originalReviewFingerprint": "71f4725a0ec8ae2aa91e0722ca43d50883e7b680e6b77a804ce565dc7f8d5cb7",
+      "resolvedFingerprint": "103cedf4e84b40c79b761186c5c3cd3826fbbb0fc1447a43667144d8e97bc89c",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "71f4725a0ec8ae2aa91e0722ca43d50883e7b680e6b77a804ce565dc7f8d5cb7",
+          "to": "103cedf4e84b40c79b761186c5c3cd3826fbbb0fc1447a43667144d8e97bc89c",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.525Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "중심각이 같은 부채꼴과 중심에서 호까지 거리를 묻는다.",
+      "cReason": "반지름을 지정해 호 길이비도 가능한 모호함을 없앤다."
+    },
+    {
+      "id": "m2-06-01-xc20",
+      "sourceIndex": 2973,
+      "originalReviewFingerprint": "add3c6f4ac3c3a5720ec62f987254b68f02f2edd6988a4d8593297f34b2ccf0f",
+      "resolvedFingerprint": "7a6331cc15f064d8b8e1b37fd82ab11e2c42a9e163d6fed79ce26d430e15c7cc",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "add3c6f4ac3c3a5720ec62f987254b68f02f2edd6988a4d8593297f34b2ccf0f",
+          "to": "7a6331cc15f064d8b8e1b37fd82ab11e2c42a9e163d6fed79ce26d430e15c7cc",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.527Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "고정된 대응의 실패와 60도 마름모의 비닮음을 구분한다.",
+      "cReason": "대응각 크기와 변의 비 일정이라는 두 조건을 묻는다.",
+      "coreReason": "임의의 잘못된 짝짓기만으로 모든 닮음을 부정하지 않는다."
+    },
+    {
+      "id": "m2-06-02-xc3",
+      "sourceIndex": 2976,
+      "originalReviewFingerprint": "fdec5a10a981554bfab5a288f3192c573c09364c31f23b8e95b7d157448bad84",
+      "resolvedFingerprint": "d994f33b6e73e4a26d1af5ceb809d5092a06b2d84e7dd3e6b3f6ba16906dc713",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "fdec5a10a981554bfab5a288f3192c573c09364c31f23b8e95b7d157448bad84",
+          "to": "d994f33b6e73e4a26d1af5ceb809d5092a06b2d84e7dd3e6b3f6ba16906dc713",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.529Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "다른 SAS 닮음 B와의 중복 제외를 유지한다.",
+      "cReason": "두 삼각형과 사용할 변비 및 끼인각을 명시한다.",
+      "coreReason": "ABC DEF를 일반 명제의 대상으로 보충한다."
+    },
+    {
+      "id": "m2-06-02-xc7",
+      "sourceIndex": 2980,
+      "originalReviewFingerprint": "463a753c6cb3d3a64a4ac75534fc8707787e953ad03846a1f3782e037abc74d8",
+      "resolvedFingerprint": "3658f44a957c0bc424a5a8e20edf279231f3f442441c4db4e1d11bf048806335",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "463a753c6cb3d3a64a4ac75534fc8707787e953ad03846a1f3782e037abc74d8",
+          "to": "3658f44a957c0bc424a5a8e20edf279231f3f442441c4db4e1d11bf048806335",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-15-29.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-15-29.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:20.531Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-15-29.json",
+      "bReason": "AA SSS뿐 아니라 두 변비와60도 끼인각의 SAS도 허용한다.",
+      "cReason": "대응각 두 쌍을 이용하는 조건으로 AA를 특정한다."
+    },
+    {
+      "id": "m2-06-02-xc13",
+      "sourceIndex": 2986,
+      "originalReviewFingerprint": "0a8e37033d8bbef29b85d713282b9227561c94b4b9ed4abc384b60a093b8f1d4",
+      "resolvedFingerprint": "99a9d1faf0647e48d3e6130e8c0fea8db7cd3db1ecc11eb6398fc20d56079c94",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "0a8e37033d8bbef29b85d713282b9227561c94b4b9ed4abc384b60a093b8f1d4",
+          "to": "99a9d1faf0647e48d3e6130e8c0fea8db7cd3db1ecc11eb6398fc20d56079c94",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.435Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "주어진 네 점으로 만든 두 삼각형과 각각의 공통각을 설명한다.",
+      "cReason": "수선의 발을 정의하고 B C 공통각을 순서대로 묻는다."
+    },
+    {
+      "id": "m2-07-01-xc4",
+      "sourceIndex": 2998,
+      "originalReviewFingerprint": "5aef804b62ae95a7d9dc52cff5342eecbf55610b295a8d9a2899d95a52787fdb",
+      "resolvedFingerprint": "71e1a6d0d5d8d264a2a2ef3f4fb3026b312a3b96adee72dbe3f10772edf04f8f",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5aef804b62ae95a7d9dc52cff5342eecbf55610b295a8d9a2899d95a52787fdb",
+          "to": "71e1a6d0d5d8d264a2a2ef3f4fb3026b312a3b96adee72dbe3f10772edf04f8f",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.440Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "1:2라는 비를 주어 순서를 뒤집은 식이 실제로 다르게 한다.",
+      "cReason": "밑변 쪽부터라는 차례로 EC와 AE가 정해진다."
+    },
+    {
+      "id": "m2-07-06-xc13",
+      "sourceIndex": 3121,
+      "originalReviewFingerprint": "baa9ba138873d86332a338adffc109c6d729f0ea1da7b845cd7e49fe31f500af",
+      "resolvedFingerprint": "9fdde98a30e56b99f370c66d6b914756758672324af0e5ae20e05e4cf9b955a7",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "baa9ba138873d86332a338adffc109c6d729f0ea1da7b845cd7e49fe31f500af",
+          "to": "9fdde98a30e56b99f370c66d6b914756758672324af0e5ae20e05e4cf9b955a7",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.442Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "평면인 각 면의 넓이 합 논증을 다면체로 한정한다.",
+      "cReason": "각 면의 넓이 배율과 겉넓이를 연결한다.",
+      "coreReason": "각 면을 평면도형으로 설명하는 일반 대상을 다면체로 정한다."
+    },
+    {
+      "id": "m2-08-01-xc1",
+      "sourceIndex": 3131,
+      "originalReviewFingerprint": "976c21a1fef3b363bad30ab8dd2d5e2cff367d313103d126021eb0e15ef81d76",
+      "resolvedFingerprint": "5d036bfe51638e5658b578be451535fc66aa8cf61bfdb161f76e8d4255798ecc",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json",
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "976c21a1fef3b363bad30ab8dd2d5e2cff367d313103d126021eb0e15ef81d76",
+          "to": "ff432bee0830294ae54cf8a47bd1160f279359c8f915bbda39121603871f2ca5",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        },
+        {
+          "from": "ff432bee0830294ae54cf8a47bd1160f279359c8f915bbda39121603871f2ca5",
+          "to": "5d036bfe51638e5658b578be451535fc66aa8cf61bfdb161f76e8d4255798ecc",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-final-six.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:33:50.104Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+      "bReason": "직각과 빗변의 위치 관계에 집중한 정의 질문이다.",
+      "cReason": "빗변이 마주 보는 각은 직각이라는 관계를 짧게 묻는다.",
+      "coreReason": "직각삼각형에서 빗변의 위치라는 일반 뜻은 유지한다."
+    },
+    {
+      "id": "m2-08-01-xc9",
+      "sourceIndex": 3139,
+      "originalReviewFingerprint": "e0e3b2a1af2cd3b8e7f168ab2ecba821b2b770390ca24e300759ffe2ffaf4d5b",
+      "resolvedFingerprint": "eba97412baf1ac9ecbc27c7623b9395ba4f24acc0b64bca3a0989a0728699748",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "e0e3b2a1af2cd3b8e7f168ab2ecba821b2b770390ca24e300759ffe2ffaf4d5b",
+          "to": "eba97412baf1ac9ecbc27c7623b9395ba4f24acc0b64bca3a0989a0728699748",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.447Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "가장 긴 변을 고르는 이유를 빗변 성질로 설명한다.",
+      "cReason": "삼각형의 직각 판별이라는 목적을 보충한다.",
+      "coreReason": "세 변의 제곱 비교 대상을 밝힌다."
+    },
+    {
+      "id": "m2-08-01-xc10",
+      "sourceIndex": 3140,
+      "originalReviewFingerprint": "bee9f350ef5b91cc0b61024075b16adb7ff5f40b687b5fd2905f576afea6dc18",
+      "resolvedFingerprint": "c7d8af8bc184c84cf5bde941fdef28ae202598792b197203618804567c99d513",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "bee9f350ef5b91cc0b61024075b16adb7ff5f40b687b5fd2905f576afea6dc18",
+          "to": "c7d8af8bc184c84cf5bde941fdef28ae202598792b197203618804567c99d513",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.450Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "공통 배수와 제곱 관계의 일반 B와 중복이다.",
+      "cReason": "3 4 5를 두 배로 계산하되 뒤 문장에서6 8 10을 미리 보여 주지 않는다."
+    },
+    {
+      "id": "m2-08-01-xc11",
+      "sourceIndex": 3141,
+      "originalReviewFingerprint": "9c0464dfb099e709fe5ca405da12fc31bab8cf31e2dec28c40f79c81195b5ce9",
+      "resolvedFingerprint": "e64a3cd7a18dd8b35b4831e613cebfc4a01825f0749dcacdd44755fe1e96b5ea",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "9c0464dfb099e709fe5ca405da12fc31bab8cf31e2dec28c40f79c81195b5ce9",
+          "to": "e64a3cd7a18dd8b35b4831e613cebfc4a01825f0749dcacdd44755fe1e96b5ea",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.452Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "5 12 13의 제곱 관계와 각 B를 모두 확인한다.",
+      "cReason": "가장 긴 변의 제곱과 나머지 합을 명시한다.",
+      "coreReason": "막연한 제곱 관계를 정확한 판별 조건으로 바꾼다."
+    },
+    {
+      "id": "m2-08-01-xc13",
+      "sourceIndex": 3143,
+      "originalReviewFingerprint": "6ac83e10ec87593598b699980d469ade69f9b5fe65d593042be4ad088ea98c73",
+      "resolvedFingerprint": "662cd21c62625ca13171621e6b5233239754831e59d753fa22ec6b067be37884",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "6ac83e10ec87593598b699980d469ade69f9b5fe65d593042be4ad088ea98c73",
+          "to": "662cd21c62625ca13171621e6b5233239754831e59d753fa22ec6b067be37884",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.454Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "소수인 직각변에도 정리를 적용하여 빗변1을 구한다.",
+      "cReason": "분수 소수라는 분류 나열 대신 실제 길이를 계산한다."
+    },
+    {
+      "id": "m2-08-01-xc18",
+      "sourceIndex": 3148,
+      "originalReviewFingerprint": "ae01f01d3c1ecb6ee2cbfd150b117307a0d8b430fa5281117bd0b391e9c56cf7",
+      "resolvedFingerprint": "30c6951d4c9fa46ed6e4b5a22052cd72467f6d1098a00df946dc15c8458a37a9",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "ae01f01d3c1ecb6ee2cbfd150b117307a0d8b430fa5281117bd0b391e9c56cf7",
+          "to": "30c6951d4c9fa46ed6e4b5a22052cd72467f6d1098a00df946dc15c8458a37a9",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.456Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "빗변 미지정에서25와7 두 제곱값을 모두 구한다.",
+      "cReason": "각 경우를 먼저 정해 두 답의 순서를 고정한다.",
+      "coreReason": "빗변의 두 경우를 나누는 직각삼각형 대상을 보충한다."
+    },
+    {
+      "id": "m2-08-01-xc19",
+      "sourceIndex": 3149,
+      "originalReviewFingerprint": "5449472281702ecadfb0313d17b9f913abf7e6940bdcb6328ae64f6d63536ede",
+      "resolvedFingerprint": "b906d9cd00d27d09c62ffb05caac0b52b75603999ded0338800687491f084589",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5449472281702ecadfb0313d17b9f913abf7e6940bdcb6328ae64f6d63536ede",
+          "to": "b906d9cd00d27d09c62ffb05caac0b52b75603999ded0338800687491f084589",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.458Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "넓이 재배열의 B 증명 중복 제외를 유지한다.",
+      "cReason": "전체 넓이와 합동 삼각형 수 및 비겹침 조건을 준다.",
+      "coreReason": "같은 전체에서 같은 삼각형 넓이 합을 빼는 조건을 완결한다."
+    },
+    {
+      "id": "m2-08-01-xc21",
+      "sourceIndex": 3151,
+      "originalReviewFingerprint": "fd826d558eb2a9de88ca9fbbe8ae51bb85d96ae790ed68b39bb1dd84265c16c9",
+      "resolvedFingerprint": "96cbb6fe9a110f7d3b84b0db81877af25e6e1cb936b5ef44e8a0f19d804331e8",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "fd826d558eb2a9de88ca9fbbe8ae51bb85d96ae790ed68b39bb1dd84265c16c9",
+          "to": "96cbb6fe9a110f7d3b84b0db81877af25e6e1cb936b5ef44e8a0f19d804331e8",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.460Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "식으로 설명하라는 질문에 실제 k제곱 식을 필수 기준으로 둔다.",
+      "cReason": "양의 k배와 길이 제곱의 k제곱 배를 묻는다.",
+      "coreReason": "길이 배율과 제곱 배율을 구별한다."
+    },
+    {
+      "id": "m2-08-02-xc9",
+      "sourceIndex": 3160,
+      "originalReviewFingerprint": "7fd0a52ef4d4b860a8f7a14c4c01fba517b0daf76dd171a9e8e0d93bccfc0b80",
+      "resolvedFingerprint": "23059e79e520408a87b0f3fa2adb9f2877171a0a22276c6ade5c45d896eefdf3",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "7fd0a52ef4d4b860a8f7a14c4c01fba517b0daf76dd171a9e8e0d93bccfc0b80",
+          "to": "23059e79e520408a87b0f3fa2adb9f2877171a0a22276c6ade5c45d896eefdf3",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.462Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "cm나 m로 단위를 통일한 계산을 모두 허용하고 답은 m로 쓴다.",
+      "cReason": "길이 제곱 계산 전 단위 통일의 짧은 절차를 유지한다."
+    },
+    {
+      "id": "m2-09-01-xc2",
+      "sourceIndex": 3174,
+      "originalReviewFingerprint": "12d0e4c34ce1e4100fb58426e0240e850d5425d2378ceb48edbb7f21b0e2ed54",
+      "resolvedFingerprint": "33d25acc4869fda8d561dd6b16c6419c6b5f1c1e1c0dc8eaec91cd21c0790f27",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "12d0e4c34ce1e4100fb58426e0240e850d5425d2378ceb48edbb7f21b0e2ed54",
+          "to": "33d25acc4869fda8d561dd6b16c6419c6b5f1c1e1c0dc8eaec91cd21c0790f27",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.464Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "동전 결과를 질문에 나열하지 않고 학생이 가능한 기록과 개수를 쓰게 한다.",
+      "cReason": "순서 없는 두 낱말 대신 결과 수2를 묻는다."
+    },
+    {
+      "id": "m2-09-01-xc3",
+      "sourceIndex": 3175,
+      "originalReviewFingerprint": "5a547993a7ebdda45fec9457a1981616de7c16bd02e4efc0e65e16e0c1cb6265",
+      "resolvedFingerprint": "66fe10f46e4afe9ebbad3c43a39521c62f442f18eaab13c3a884848b528a44df",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5a547993a7ebdda45fec9457a1981616de7c16bd02e4efc0e65e16e0c1cb6265",
+          "to": "f111419cae1fafb4e12f280801badfc3b70d82223b08085f61d889c3ab9e6a4b",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        },
+        {
+          "from": "f111419cae1fafb4e12f280801badfc3b70d82223b08085f61d889c3ab9e6a4b",
+          "to": "66fe10f46e4afe9ebbad3c43a39521c62f442f18eaab13c3a884848b528a44df",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.818Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "bReason": "전체 눈 여섯과 짝수 눈 세 개를 명확히 구한다.",
+      "cReason": "중복없이 같은 부사가 아니라 실제 가능한 눈1부터6을 쓰라고 한다."
+    },
+    {
+      "id": "m2-09-01-xc8",
+      "sourceIndex": 3180,
+      "originalReviewFingerprint": "75e5c67e4302bfce610d33151526b55fd78bf7f236d75316bd92d35d2cbfe2ba",
+      "resolvedFingerprint": "27605b606de78aa4dbe6839a52671e0275011a968405daf069e565d5aa6fabd6",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "75e5c67e4302bfce610d33151526b55fd78bf7f236d75316bd92d35d2cbfe2ba",
+          "to": "27605b606de78aa4dbe6839a52671e0275011a968405daf069e565d5aa6fabd6",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-30-44.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-30-44.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:30:47.467Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-30-44.json",
+      "bReason": "없는7의 눈의 경우 수0과 불가능함을 연결한다.",
+      "cReason": "빈 결과의 개수0은 유용한 짧은 판단이다."
+    },
+    {
+      "id": "m2-09-01-xc11",
+      "sourceIndex": 3183,
+      "originalReviewFingerprint": "8d394133e927a041d1f081051b242a84c7f21347be9df24cef7014068e247c80",
+      "resolvedFingerprint": "1be9a5c6d81cb0970709b51f6b36f7ee467a68a68909c4669fddc378b5e1657f",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "8d394133e927a041d1f081051b242a84c7f21347be9df24cef7014068e247c80",
+          "to": "1be9a5c6d81cb0970709b51f6b36f7ee467a68a68909c4669fddc378b5e1657f",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.565Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "주사위를 구별하고 세 결과의 목록 개수와 서로 다른 이유를 묻는다.",
+      "cReason": "서로 다른과 구별되는 주사위는 같은 조건을 표현한다."
+    },
+    {
+      "id": "m2-09-01-xc18",
+      "sourceIndex": 3190,
+      "originalReviewFingerprint": "e3f22d2c76bad2b16bfbf21cc82d8e37d664cceb34273668c61e3abe5e0f90f2",
+      "resolvedFingerprint": "e2b86c7efb73db1ca560d90b617992631cbc3ff17e45405b44fd7a09b51e986d",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "e3f22d2c76bad2b16bfbf21cc82d8e37d664cceb34273668c61e3abe5e0f90f2",
+          "to": "e2b86c7efb73db1ca560d90b617992631cbc3ff17e45405b44fd7a09b51e986d",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.568Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "구별되는 세 동전의8경우에서 모두 뒷면1경우를 뺀다.",
+      "cReason": "적어도 하나의 반대가 어느 조건도 만족하지 않음이다."
+    },
+    {
+      "id": "m2-09-02-xc9",
+      "sourceIndex": 3204,
+      "originalReviewFingerprint": "b3c514b3ca604852535bf1b4c6a805c390672866473fa4fa8a73034ecb4bb0da",
+      "resolvedFingerprint": "a37076592c5ab77ff18407ed0e099e597d6af22e0d02615d632642ddb853579b",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "b3c514b3ca604852535bf1b4c6a805c390672866473fa4fa8a73034ecb4bb0da",
+          "to": "3c7761be4fa00df6e5d73f3d663d47e841cc390dcb7a190e7d1a4e855c92e3ca",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        },
+        {
+          "from": "3c7761be4fa00df6e5d73f3d663d47e841cc390dcb7a190e7d1a4e855c92e3ca",
+          "to": "a37076592c5ab77ff18407ed0e099e597d6af22e0d02615d632642ddb853579b",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.836Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "bReason": "35와53이 다른 이유인 자리값의 차이를 필수로 남긴다.",
+      "cReason": "숫자3의 십의자리와5의 일의자리라는 서로 다른 역할을 정한 빈칸이다."
+    },
+    {
+      "id": "m2-09-02-xc14",
+      "sourceIndex": 3209,
+      "originalReviewFingerprint": "f08a5d1af440f71be7ce3a76d790062a64350b6e4234057b30617318b8af059c",
+      "resolvedFingerprint": "e16e5893dafdf71c10aeec2ec8b15e37154a8061fd49385866c41332bfba4ede",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json",
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "f08a5d1af440f71be7ce3a76d790062a64350b6e4234057b30617318b8af059c",
+          "to": "f8b39658f41b727968460e89fc5d3934877c1ba78ac5f4e52fc44a46a9378384",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        },
+        {
+          "from": "f8b39658f41b727968460e89fc5d3934877c1ba78ac5f4e52fc44a46a9378384",
+          "to": "e16e5893dafdf71c10aeec2ec8b15e37154a8061fd49385866c41332bfba4ede",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-final-six.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:33:50.106Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+      "bReason": "짝수 조건이 제한하는 자리와 카드2 4 및 전체6을 구한다.",
+      "cReason": "일의 자리의 짝수 조건은 그대로 유효하다."
+    },
+    {
+      "id": "m2-09-03-xc2",
+      "sourceIndex": 3224,
+      "originalReviewFingerprint": "9e001691b9f9123b8a208ea2c52b14aacef27f0f1da57f526f0f84e17201a4a4",
+      "resolvedFingerprint": "a0c2b2a357b1a62efde9fc49fff98061123a9212711dd6d9de97eedb2f7e8c70",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "9e001691b9f9123b8a208ea2c52b14aacef27f0f1da57f526f0f84e17201a4a4",
+          "to": "a0c2b2a357b1a62efde9fc49fff98061123a9212711dd6d9de97eedb2f7e8c70",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.573Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "확률 전체 설명의 분모 부분 중복 제외를 유지한다.",
+      "cReason": "약분 전 분모와 전체 경우 수를 연결한다.",
+      "coreReason": "등가능 계수법의 약분 전 분수임을 명시한다."
+    },
+    {
+      "id": "m2-09-03-xc3",
+      "sourceIndex": 3225,
+      "originalReviewFingerprint": "f7314f694a7668a5b75d59a8081d58f2c8b7eb3eb25f5ef2a46ac7ee8089436b",
+      "resolvedFingerprint": "90aa39ebf86092b4f79316c3cf2e6190756d0303fd4594b0a410a1d192326b31",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "f7314f694a7668a5b75d59a8081d58f2c8b7eb3eb25f5ef2a46ac7ee8089436b",
+          "to": "90aa39ebf86092b4f79316c3cf2e6190756d0303fd4594b0a410a1d192326b31",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.575Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "확률 전체 설명의 분자 부분 중복 제외를 유지한다.",
+      "cReason": "약분 전 분자와 사건에 맞는 경우 수를 연결한다.",
+      "coreReason": "약분 후 숫자와 사건의 실제 경우 수를 구분한다."
+    },
+    {
+      "id": "m2-09-03-xc5",
+      "sourceIndex": 3227,
+      "originalReviewFingerprint": "364c7249b2d2e5c4eb4fb64aa0102e04bdc3697cd62b949f9d01819c8fadbc2e",
+      "resolvedFingerprint": "f2eb5733e7caeea79a221029cb6c21d105cab800eb3ab487ddf5dc7f5b8fcba8",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "364c7249b2d2e5c4eb4fb64aa0102e04bdc3697cd62b949f9d01819c8fadbc2e",
+          "to": "f2eb5733e7caeea79a221029cb6c21d105cab800eb3ab487ddf5dc7f5b8fcba8",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.578Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "등가능한6결과의 한 눈 확률과 분자 분모의 뜻을 묻는다.",
+      "cReason": "공정한 주사위 한 눈의1/6은 짧고 명확하다."
+    },
+    {
+      "id": "m2-09-03-xc8",
+      "sourceIndex": 3230,
+      "originalReviewFingerprint": "a1ffc176eecc7efb4ee18fea09c3de90e7a675681a0ddaa638da3908227a7bd9",
+      "resolvedFingerprint": "334c7ae3cbdea7b49d1cfa2785728eb0e07e43060d9e31ff90d4705953866e3f",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "a1ffc176eecc7efb4ee18fea09c3de90e7a675681a0ddaa638da3908227a7bd9",
+          "to": "334c7ae3cbdea7b49d1cfa2785728eb0e07e43060d9e31ff90d4705953866e3f",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.580Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "0.2와0.6의 확률 대소로 사건 B를 판단한다.",
+      "cReason": "확률이 더 크면 가능성이 더 높다는 비교를 유지한다."
+    },
+    {
+      "id": "m2-09-03-xc10",
+      "sourceIndex": 3232,
+      "originalReviewFingerprint": "73cca41c233414cf3268d8e4772ca398ba0a0ba203fd400e0673dcb1347b6e13",
+      "resolvedFingerprint": "93c2003d60630fa638c632e6895e1d822e9052dba3d9521d27fab2a43735070f",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "73cca41c233414cf3268d8e4772ca398ba0a0ba203fd400e0673dcb1347b6e13",
+          "to": "93c2003d60630fa638c632e6895e1d822e9052dba3d9521d27fab2a43735070f",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.581Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "2/6과1/3의 값 보존을 공약수 나눗셈으로 설명한다.",
+      "cReason": "공약수로 나누는 약분이라는 절차를 묻는다.",
+      "coreReason": "분자 분모의 공약수라는 나누는 수의 조건을 보충한다."
+    },
+    {
+      "id": "m2-09-03-xc13",
+      "sourceIndex": 3235,
+      "originalReviewFingerprint": "5493481a346e8c50d17380a00fb619393d307db8a948bff5d8bd0b235b837762",
+      "resolvedFingerprint": "91eae378be66524122aa3f87e421524036a32c4686c1e90d163be214d225afb0",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5493481a346e8c50d17380a00fb619393d307db8a948bff5d8bd0b235b837762",
+          "to": "088b7743e4bb8a67ef53e06b344b0e9b55ce43398c7d0cb09a7be6eab1d200ee",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        },
+        {
+          "from": "088b7743e4bb8a67ef53e06b344b0e9b55ce43398c7d0cb09a7be6eab1d200ee",
+          "to": "91eae378be66524122aa3f87e421524036a32c4686c1e90d163be214d225afb0",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.864Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "bReason": "적은횟수 결과가 확정되지 않는 결론과 반복 실험의 상대도수 의미를 분리한다.",
+      "cReason": "10×1/2의값5가 매번 보장되지 않는다는 쉬운 수량 해석을 유지한다."
+    },
+    {
+      "id": "m2-09-03-xc19",
+      "sourceIndex": 3241,
+      "originalReviewFingerprint": "075101fa2a90c0fb198e15f3051ca59ce08415fe2cf03aac5bd4d91533756e5d",
+      "resolvedFingerprint": "2303c791f07a3e974a22499124a082a12faf381efb40c990a8b032d1ea02f0af",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "075101fa2a90c0fb198e15f3051ca59ce08415fe2cf03aac5bd4d91533756e5d",
+          "to": "2303c791f07a3e974a22499124a082a12faf381efb40c990a8b032d1ea02f0af",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.584Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "30회 중8회의 관찰만으로 불공정을 단정하지 못한다.",
+      "cReason": "불공정이라는 판단을 고정하고 단정 가능성을 묻는다."
+    },
+    {
+      "id": "m2-09-04-xc1",
+      "sourceIndex": 3246,
+      "originalReviewFingerprint": "b025041359dfab57cde8bba0bfc8977186de89a0affb93cad5aef054a9f2c440",
+      "resolvedFingerprint": "8ef7ac568318454f75c3dec34f687310ed0f047ff21066140575ed994fd1544a",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "b025041359dfab57cde8bba0bfc8977186de89a0affb93cad5aef054a9f2c440",
+          "to": "48f224d4e52e5095ad3e9a2c12582592abdafbdb00e6e9b956ee1a176c02e939",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        },
+        {
+          "from": "48f224d4e52e5095ad3e9a2c12582592abdafbdb00e6e9b956ee1a176c02e939",
+          "to": "8ef7ac568318454f75c3dec34f687310ed0f047ff21066140575ed994fd1544a",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.870Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "bReason": "6의눈 중복 때문에 합5/6이 틀리고 바른확률은4/6=2/3이다. 중복과이중계산 기준을 합친다.",
+      "cReason": "배타사건의 조건을 묻는 중복 문항 제외를 유지한다."
+    },
+    {
+      "id": "m2-09-04-xc2",
+      "sourceIndex": 3247,
+      "originalReviewFingerprint": "029e71cf8bb1637492140f08c9d76c76cf15bb1f2adb4d0c2f67dba159b06844",
+      "resolvedFingerprint": "aa6d7bf90b90a11bb53a86fdad73e29345ccd3fbed6097c6f5e195269c5215c1",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "029e71cf8bb1637492140f08c9d76c76cf15bb1f2adb4d0c2f67dba159b06844",
+          "to": "7e0962e7a3fe81b8e1c833feefaafa0d6d5a12e289b471e4930243c7d019e03a",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        },
+        {
+          "from": "7e0962e7a3fe81b8e1c833feefaafa0d6d5a12e289b471e4930243c7d019e03a",
+          "to": "aa6d7bf90b90a11bb53a86fdad73e29345ccd3fbed6097c6f5e195269c5215c1",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.873Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "bReason": "서로영향없는 동전·주사위만 처음확률을 그대로 곱할 수 있고 비복원추출은 흰공확률3/5→2/4로 바뀐다.",
+      "cReason": "두확률을 곱하는 조건인 다른확률의 불변을 빈칸에 넣는다."
+    },
+    {
+      "id": "m2-09-04-xc8",
+      "sourceIndex": 3253,
+      "originalReviewFingerprint": "3793e4bf871ac7be3cc804e1ac965c7bed5ddfe66acd62a3308bba34c5702963",
+      "resolvedFingerprint": "c7e0c0dcc0fb32f56b3a4dad77098dbd591fb88c160b53cd7a89937c17ae0af4",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "3793e4bf871ac7be3cc804e1ac965c7bed5ddfe66acd62a3308bba34c5702963",
+          "to": "c7e0c0dcc0fb32f56b3a4dad77098dbd591fb88c160b53cd7a89937c17ae0af4",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.588Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "각 남은 공의 등가능 조건 아래 두 색의 남은 수와 확률을 구한다.",
+      "cReason": "되돌리지 않은 색의 공 한 개 감소를 묻는다."
+    },
+    {
+      "id": "m2-09-04-xc9",
+      "sourceIndex": 3254,
+      "originalReviewFingerprint": "7bb01f5db0d5810fb3b929c6f27ad872ba7cbc1506615d76427f2083d6d799d3",
+      "resolvedFingerprint": "eb8f12c2e0bd34c2ebbfd95ce2687392f7a5238e2c06e403a706dc9866cbea48",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "7bb01f5db0d5810fb3b929c6f27ad872ba7cbc1506615d76427f2083d6d799d3",
+          "to": "eb8f12c2e0bd34c2ebbfd95ce2687392f7a5238e2c06e403a706dc9866cbea48",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-45-59.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-45-59.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:09.590Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-45-59.json",
+      "bReason": "복원 추출의 네 순서 결과와 한 번씩 나온2경우를 구한다.",
+      "cReason": "동일한 두 색도 순서가 다르면 다른 결과임을 확인한다."
+    },
+    {
+      "id": "m2-09-04-xc12",
+      "sourceIndex": 3257,
+      "originalReviewFingerprint": "44f17224ef7b5eadf2eaeb027e13563a59373d826e7cd29fac35ed680df910be",
+      "resolvedFingerprint": "5ed3b00f47a4b4b0e7bf2ecb91e0c29f8fecd0b9ebaca7159e5d8f441beac31c",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "44f17224ef7b5eadf2eaeb027e13563a59373d826e7cd29fac35ed680df910be",
+          "to": "5ed3b00f47a4b4b0e7bf2ecb91e0c29f8fecd0b9ebaca7159e5d8f441beac31c",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.614Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "빨강 뒤 파랑의3/10과 둘째 전체 수4를 연결한다.",
+      "cReason": "정한 순서의 다음 색 조건부 확률을 곱한다."
+    },
+    {
+      "id": "m2-09-04-xc14",
+      "sourceIndex": 3259,
+      "originalReviewFingerprint": "5e8c90b507d2b02e9fea5319051f5b8dab2c92cdd6d83fdf7f363baefe8393bd",
+      "resolvedFingerprint": "ca89c4b9687ae32940964d95c681d50aadd2fc2b8337bb88140fb404494aab22",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json",
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5e8c90b507d2b02e9fea5319051f5b8dab2c92cdd6d83fdf7f363baefe8393bd",
+          "to": "f6e010d4b9361bde1745ff318bb5d4036dfcf6e3f6951a8bdc6cfebde65c5788",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        },
+        {
+          "from": "f6e010d4b9361bde1745ff318bb5d4036dfcf6e3f6951a8bdc6cfebde65c5788",
+          "to": "ca89c4b9687ae32940964d95c681d50aadd2fc2b8337bb88140fb404494aab22",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-final-six.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:33:50.107Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+      "bReason": "등가능 비복원에서 약분 전 분자 분모의 의미를 설명한다.",
+      "cReason": "5개 중 하나가 빠진 둘째 전체 수4를 구한다.",
+      "coreReason": "둘째 약분 전 분모가 남은 전체 수라는 일반 관계는 유지한다."
+    },
+    {
+      "id": "m2-09-04-xc15",
+      "sourceIndex": 3260,
+      "originalReviewFingerprint": "e77f86ba4e3a48f3a926e4c5be5ba8d0b7d967d569646fd5e27a51a58e65e08d",
+      "resolvedFingerprint": "bb9f724dc60a5d46f5f25de12f35581ebf620aab62d8924d20cafd35817d25f2",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "e77f86ba4e3a48f3a926e4c5be5ba8d0b7d967d569646fd5e27a51a58e65e08d",
+          "to": "bb9f724dc60a5d46f5f25de12f35581ebf620aab62d8924d20cafd35817d25f2",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.620Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "둘째 분자와 분모를 함께 다루는 B의 중복 제외다.",
+      "cReason": "동일 색 둘째 분자에서1을 빼는 약분 전 조건을 밝힌다.",
+      "coreReason": "처음 그 색의 수와 남은 수의 관계를 보존한다."
+    },
+    {
+      "id": "m2-09-04-xc17",
+      "sourceIndex": 3262,
+      "originalReviewFingerprint": "0e41b306f0aa121246b882b268fab3c8cc4b73ea63aa916a39f92a122f93f8c4",
+      "resolvedFingerprint": "f1b845f42fda2eba6b43ca088c3d3dda36d0a56bbc55f9a407d3e7d627db5cd1",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json",
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "0e41b306f0aa121246b882b268fab3c8cc4b73ea63aa916a39f92a122f93f8c4",
+          "to": "0d0adc1e53e3cefc1b91b414753edf16a57b4c924241e7f93c76ffe2804a1371",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        },
+        {
+          "from": "0d0adc1e53e3cefc1b91b414753edf16a57b4c924241e7f93c76ffe2804a1371",
+          "to": "f1b845f42fda2eba6b43ca088c3d3dda36d0a56bbc55f9a407d3e7d627db5cd1",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-final-six.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:33:50.110Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+      "bReason": "등가능한 남은 공에서 서로 다른 두 색의 순서별 확률을 더한다.",
+      "cReason": "두 색만 있다는 조건 아래 빨강 파랑과 파랑 빨강을 더한다."
+    },
+    {
+      "id": "m2-09-04-xc21",
+      "sourceIndex": 3266,
+      "originalReviewFingerprint": "dcda761eec62b9e6b04fbcb7c4712364752df745508354f66ecf09d84d513407",
+      "resolvedFingerprint": "8a953835ffba6b074dca2e6ace818d6d17e7d111ab3af9e6a7f32cafb45e4ef5",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "dcda761eec62b9e6b04fbcb7c4712364752df745508354f66ecf09d84d513407",
+          "to": "8a953835ffba6b074dca2e6ace818d6d17e7d111ab3af9e6a7f32cafb45e4ef5",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.624Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "복원9/25와 비복원3/10 및 둘째 분수의 변화가 맞다.",
+      "cReason": "개수의 역할을 정해 분자 분모의 순서를 특정한다.",
+      "coreReason": "둘째 분수의 개수 대응은 약분 전임을 명시한다."
+    },
+    {
+      "id": "m2-09-04-xc22",
+      "sourceIndex": 3267,
+      "originalReviewFingerprint": "765dd81499fd1966171a8f64dda1ce07a6596afb0ef5a15681244f7afce5e9cf",
+      "resolvedFingerprint": "5c4fed23ba61a2570b1aa00f2888fda38a4076cfed2e12bbd278cb711deeda79",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "765dd81499fd1966171a8f64dda1ce07a6596afb0ef5a15681244f7afce5e9cf",
+          "to": "5c4fed23ba61a2570b1aa00f2888fda38a4076cfed2e12bbd278cb711deeda79",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.875Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "bReason": "모두빨강3/10과모두파랑1/10을 더해2/5를 구한다.",
+      "cReason": "두가지색에서 같은색이 되는 남은 경우가 모두파랑임을 찾는 것은 사건 분할 그 자체다. 계산을 하지 않는 짧은 분류라고 제외하지 않고 유지한다."
+    },
+    {
+      "id": "m3-01-01-xc7",
+      "sourceIndex": 3275,
+      "originalReviewFingerprint": "2375958a495bc1ad44f960f79e8ce427d526f5f47f774ee21a545cf9f47b0e8b",
+      "resolvedFingerprint": "2344cdcfb3c46068c745b89b4e85f5c6ab2aa11ad87c69147e77d39c24c600db",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json",
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-fraction-josa.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "2375958a495bc1ad44f960f79e8ce427d526f5f47f774ee21a545cf9f47b0e8b",
+          "to": "1c25a7c7856b9ad2e7c30a1f92e1a387a4e87e1fdd9afc873bfb435e05e6e4de",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        },
+        {
+          "from": "1c25a7c7856b9ad2e7c30a1f92e1a387a4e87e1fdd9afc873bfb435e05e6e4de",
+          "to": "2344cdcfb3c46068c745b89b4e85f5c6ab2aa11ad87c69147e77d39c24c600db",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-fraction-josa.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-fraction-josa.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-fraction-josa.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:36:09.210Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-fraction-josa.json",
+      "bReason": "사분의 삼은 받침으로 끝나므로 은을 쓰며,3/4의 제곱 확인과 제곱수 조건은 같다.",
+      "cReason": "각 자연수의 양의 근 조건과 실제9/16의 양의 근을 묻는다.",
+      "coreReason": "자연수의 제곱인 분자 분모의 양의 근을 각각 구한다."
+    },
+    {
+      "id": "m3-01-01-xc11",
+      "sourceIndex": 3279,
+      "originalReviewFingerprint": "8f3bc82f3c43e5a86c3e28351eb770ecdd2d90abc7a2423ad9bdf83dfeb1d201",
+      "resolvedFingerprint": "1a101a42e37198a3e33806a1c2824c80032f9a0fe4a92f5e29497063a9ed2f32",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "8f3bc82f3c43e5a86c3e28351eb770ecdd2d90abc7a2423ad9bdf83dfeb1d201",
+          "to": "1a101a42e37198a3e33806a1c2824c80032f9a0fe4a92f5e29497063a9ed2f32",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.628Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "4가 양수이고 제곱이16인 이유까지 기준에 둔다.",
+      "cReason": "양의 정수를 근호 안의 수로 바꾸어 비교한다."
+    },
+    {
+      "id": "m3-01-02-xc2",
+      "sourceIndex": 3290,
+      "originalReviewFingerprint": "d99a66c8b72c5f0a7ef93b1f323fe1207d35aa0d01c0aef7bc4f41104d40dfa8",
+      "resolvedFingerprint": "fc9f8190d5abad65abfaa5172bb5b143f6e155f62635651d55a0716b99365508",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "d99a66c8b72c5f0a7ef93b1f323fe1207d35aa0d01c0aef7bc4f41104d40dfa8",
+          "to": "fc9f8190d5abad65abfaa5172bb5b143f6e155f62635651d55a0716b99365508",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.630Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "sqrt9=3이라는 유리수 반례로 주장을 반박한다.",
+      "cReason": "유리수와 무리수의 분류 범주를 지정한다."
+    },
+    {
+      "id": "m3-01-02-xc9",
+      "sourceIndex": 3297,
+      "originalReviewFingerprint": "9ec5dd316011d547df2f4a650f5e357a3115094b0ef9e8512376589e32dff53e",
+      "resolvedFingerprint": "e7518d6b2bf45c2030380eb4c78f4e8ebc85ec9e317680b3d8ac8616a5d12e85",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "9ec5dd316011d547df2f4a650f5e357a3115094b0ef9e8512376589e32dff53e",
+          "to": "e7518d6b2bf45c2030380eb4c78f4e8ebc85ec9e317680b3d8ac8616a5d12e85",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.632Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "주어진 소수 구간으로2.5보다 작음을 확인한다.",
+      "cReason": "어림값의 임의 명칭을 빼고 실제 대소만 묻는다."
+    },
+    {
+      "id": "m3-01-02-xc12",
+      "sourceIndex": 3300,
+      "originalReviewFingerprint": "28fc81a2408066a4142e7ed0aff13fce854f61dee3942f5cd554991349afb1f4",
+      "resolvedFingerprint": "88bb8f2a3ce33f75e626f0cb642c4b7026b15b0ae623fe74d61d319f9e5619c6",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "28fc81a2408066a4142e7ed0aff13fce854f61dee3942f5cd554991349afb1f4",
+          "to": "88bb8f2a3ce33f75e626f0cb642c4b7026b15b0ae623fe74d61d319f9e5619c6",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.633Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "b=c-a가 유리수라는 모순으로 합이 무리수임을 보인다.",
+      "cReason": "가정과 차의 식을 보여 유리수 및 모순을 묻는다."
+    },
+    {
+      "id": "m3-01-02-xc17",
+      "sourceIndex": 3305,
+      "originalReviewFingerprint": "24e36189cdf574a2c38d213069848d9423d4996d1a07d980b80cd303c5736c27",
+      "resolvedFingerprint": "779605f7d629e2f0dd229a39f0e45dc33629e0b92c9de23ce8ff9b07d1711c66",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "24e36189cdf574a2c38d213069848d9423d4996d1a07d980b80cd303c5736c27",
+          "to": "779605f7d629e2f0dd229a39f0e45dc33629e0b92c9de23ce8ff9b07d1711c66",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.635Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "양의 거리 d와 좌표 p를 정의해 좌우 이동 및 실제 예를 구한다.",
+      "cReason": "p는 점 이름이 아니라 좌표값이라고 밝힌다.",
+      "coreReason": "좌표와 양의 이동 거리 조건을 일반 설명에 둔다."
+    },
+    {
+      "id": "m3-01-03-xc6",
+      "sourceIndex": 3314,
+      "originalReviewFingerprint": "064c7fc924424ab78a63356aea1f0135282413e6c611a110dbd3b7c8bcec48ee",
+      "resolvedFingerprint": "d5dbd40553af80d7c7e21e9fbcf305cdbee284e712e1178ee1f49b20f1d9c322",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "064c7fc924424ab78a63356aea1f0135282413e6c611a110dbd3b7c8bcec48ee",
+          "to": "d5dbd40553af80d7c7e21e9fbcf305cdbee284e712e1178ee1f49b20f1d9c322",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.636Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "분배법칙의 이름 일반식과5sqrt5를 모두 답한다.",
+      "cReason": "실수 근호의 비음수 조건을 보충한다.",
+      "coreReason": "a가0 이상인 일반 식의 범위를 명시한다."
+    },
+    {
+      "id": "m3-01-03-xc8",
+      "sourceIndex": 3316,
+      "originalReviewFingerprint": "5093004eecdba85dcb0443adeaf403ea45ec37fae92e7d0697d1a35d0ce5a2bf",
+      "resolvedFingerprint": "6c423ec5be88d44549777e7b6d7fdc9677ceb33776f8d723dfabbf297b6570aa",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5093004eecdba85dcb0443adeaf403ea45ec37fae92e7d0697d1a35d0ce5a2bf",
+          "to": "6c423ec5be88d44549777e7b6d7fdc9677ceb33776f8d723dfabbf297b6570aa",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.638Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "분자 분모의 같은 비영수 곱이1의 곱임을 설명한다.",
+      "cReason": "크기와 값은 이 문장에서 같은 불변량이다."
+    },
+    {
+      "id": "m3-01-03-xc9",
+      "sourceIndex": 3317,
+      "originalReviewFingerprint": "79b018b056a2bbbfe0fe7fc2ea06604a45c533af806d0c1fbd23b49fe3d45bde",
+      "resolvedFingerprint": "ef75d4db2087cc98452345d9701982385cc9997bcda266e47de858c304597e42",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "79b018b056a2bbbfe0fe7fc2ea06604a45c533af806d0c1fbd23b49fe3d45bde",
+          "to": "ef75d4db2087cc98452345d9701982385cc9997bcda266e47de858c304597e42",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-60-74.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-60-74.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:31:51.639Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-60-74.json",
+      "bReason": "sqrt9=3이므로 분모를 밖으로 쓰는 이유를 설명한다.",
+      "cReason": "분모9 자체가 아니라 양의 근3을 밖으로 쓴다.",
+      "coreReason": "분모의 양의 제곱근을 밖에 쓴다는 일반 절차를 명시한다."
+    },
+    {
+      "id": "m3-01-03-xc10",
+      "sourceIndex": 3318,
+      "originalReviewFingerprint": "2be5d24915c68cbc028e2c2973c2f60d812dfc71a9670b58578ed3a31a9d4117",
+      "resolvedFingerprint": "105a62debd24635e73ed8358ca8d406920843f7b2d3208583ead0e319d17be8a",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "2be5d24915c68cbc028e2c2973c2f60d812dfc71a9670b58578ed3a31a9d4117",
+          "to": "105a62debd24635e73ed8358ca8d406920843f7b2d3208583ead0e319d17be8a",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.019Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "7/100의 제곱수 분모에서 sqrt7/10을 구한다.",
+      "cReason": "자연수의 제곱이라는 조건과 실제 계산값을 묻는다.",
+      "coreReason": "유한소수도 실수 근호를 위해0 이상이어야 한다."
+    },
+    {
+      "id": "m3-01-03-xc11",
+      "sourceIndex": 3319,
+      "originalReviewFingerprint": "80e726427da679ff4f6c5577722f9aa7e4f81049fb3f754d96571bc41b043105",
+      "resolvedFingerprint": "445d58df3db9c23dce9205c56843de91f0c426828e54e2fec58e2b350ea6b299",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "80e726427da679ff4f6c5577722f9aa7e4f81049fb3f754d96571bc41b043105",
+          "to": "445d58df3db9c23dce9205c56843de91f0c426828e54e2fec58e2b350ea6b299",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.021Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "역수의 곱으로 바꾼 뒤 실제 근호 계산2를 구한다.",
+      "cReason": "교환과 결합 법칙을 각각 식에 연결한다."
+    },
+    {
+      "id": "m3-01-03-xc13",
+      "sourceIndex": 3321,
+      "originalReviewFingerprint": "5d49ba89140bba7e2e9c5f87439b150b96f1f385ea64daf4494a696a0c8980a7",
+      "resolvedFingerprint": "291c8d1da0a7202eb30ba1927d8e5d2ece431562ccd0411679af015ac0afb926",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5d49ba89140bba7e2e9c5f87439b150b96f1f385ea64daf4494a696a0c8980a7",
+          "to": "291c8d1da0a7202eb30ba1927d8e5d2ece431562ccd0411679af015ac0afb926",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.023Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "분모의 근호 부분만 곱하도록 범위를 지정한다.",
+      "cReason": "곱할 수가 여러 개인 문제를 근호 부분으로 한정한다."
+    },
+    {
+      "id": "m3-01-03-xc14",
+      "sourceIndex": 3322,
+      "originalReviewFingerprint": "f8bba3f6093a0e2aad01682ef3a2b157e0e5d412973405535012f9223e724f5d",
+      "resolvedFingerprint": "97320bff4f8c42f41d1d8cd8373b4bd03e952d2b5ce2ce889c9d7e816da96366",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "f8bba3f6093a0e2aad01682ef3a2b157e0e5d412973405535012f9223e724f5d",
+          "to": "97320bff4f8c42f41d1d8cd8373b4bd03e952d2b5ce2ce889c9d7e816da96366",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.024Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "먼저 간단히 한 근호 부분 sqrt3과 유리화 결과를 묻는다.",
+      "cReason": "제곱인수의 양의 근을 밖으로 꺼내는 절차를 유지한다."
+    },
+    {
+      "id": "m3-01-03-xc22",
+      "sourceIndex": 3330,
+      "originalReviewFingerprint": "7ad590bd35482581b462c28d4bd12a61c63ec2128af88bd1d0b558c8977ffd13",
+      "resolvedFingerprint": "de2777f56058d38b44e232bffe82fa40d283233e3f8fca49fe31101e2e2b805e",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "7ad590bd35482581b462c28d4bd12a61c63ec2128af88bd1d0b558c8977ffd13",
+          "to": "de2777f56058d38b44e232bffe82fa40d283233e3f8fca49fe31101e2e2b805e",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.025Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "10배와1/10배로17.32와0.1732를 구한다.",
+      "cReason": "양의 r과 sqrtk는 같은 배율이므로 둘 다 인정한다."
+    },
+    {
+      "id": "m3-02-01-xc7",
+      "sourceIndex": 3338,
+      "originalReviewFingerprint": "50b8f27f4b09a2117df3b4cf28d7009457524ab73909703a486d8020aae6c9e8",
+      "resolvedFingerprint": "825a4483791cc5c0f8e6b9c73940f6386ddbe013eba6b3aa1cb5d0ad48fd5471",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "50b8f27f4b09a2117df3b4cf28d7009457524ab73909703a486d8020aae6c9e8",
+          "to": "825a4483791cc5c0f8e6b9c73940f6386ddbe013eba6b3aa1cb5d0ad48fd5471",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.027Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "ab가0이어도 성립하는 전개의 교차항을 설명한다.",
+      "cReason": "두 번 나온 ab와2ab라는 일반 관계를 유지한다."
+    },
+    {
+      "id": "m3-02-01-xc14",
+      "sourceIndex": 3345,
+      "originalReviewFingerprint": "6a7c7607463b49431ae45423fa90bad80fdf07432f3cd46757beabc4f682fae8",
+      "resolvedFingerprint": "0f9ba19e9d70409a59abefed30dfb58c22327bd1f870dabec370daa58e792a61",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "6a7c7607463b49431ae45423fa90bad80fdf07432f3cd46757beabc4f682fae8",
+          "to": "0f9ba19e9d70409a59abefed30dfb58c22327bd1f870dabec370daa58e792a61",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.029Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "교차 계수 곱의 합과 실제 계수-5를 함께 쓴다.",
+      "cReason": "두 일차식을 주어 ad+bc와 상수항0을 정한다."
+    },
+    {
+      "id": "m3-02-01-xc19",
+      "sourceIndex": 3350,
+      "originalReviewFingerprint": "df73a3fdb61b75cbef2fc4ad2203c6c4ebf14426f7f1b7d8b9b59ab054fcb871",
+      "resolvedFingerprint": "c53354843bab808f599ba91fc50c036f942b0c5a60e0b51484058d762470cc1c",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "df73a3fdb61b75cbef2fc4ad2203c6c4ebf14426f7f1b7d8b9b59ab054fcb871",
+          "to": "c53354843bab808f599ba91fc50c036f942b0c5a60e0b51484058d762470cc1c",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.030Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "비영 x에서 교차항2를 빼는 이유를 설명한다.",
+      "cReason": "분모 x의 비영 조건을 보충한다.",
+      "coreReason": "일반 제곱의 합 식에도 x가0이 아닌 조건을 둔다."
+    },
+    {
+      "id": "m3-02-02-xc1",
+      "sourceIndex": 3353,
+      "originalReviewFingerprint": "2839161942e62ef123819574002858a9c122b271094f959814d92ee996e265f4",
+      "resolvedFingerprint": "0da3ee4bd42a0d954314433d027f46d22217e052985720287a4c2798e9705c74",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "2839161942e62ef123819574002858a9c122b271094f959814d92ee996e265f4",
+          "to": "0da3ee4bd42a0d954314433d027f46d22217e052985720287a4c2798e9705c74",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.032Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "정수 계수 최대공약수와 공통 문자 최소 지수로 인수분해한다.",
+      "cReason": "최대공약수를 사용하는 계수가 정수임을 밝힌다.",
+      "coreReason": "정수 계수 다항식이라는 일반 범위를 명시한다."
+    },
+    {
+      "id": "m3-02-02-xc6",
+      "sourceIndex": 3358,
+      "originalReviewFingerprint": "95658c6d7daa0e95d6dd8473d233509ef800e44a7a102400ed0f3d1690d9e105",
+      "resolvedFingerprint": "004988ec4f9801a0aa92e02681779022dbaf22b7778eaf793299deac3d46a235",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "95658c6d7daa0e95d6dd8473d233509ef800e44a7a102400ed0f3d1690d9e105",
+          "to": "004988ec4f9801a0aa92e02681779022dbaf22b7778eaf793299deac3d46a235",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.033Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "다항식의 제곱 범위에서 x제곱+4를 구별한다.",
+      "cReason": "근호식까지 포함하는 임의 식 대신 다항식으로 한정한다.",
+      "coreReason": "제곱으로 쓸 식의 범위를 다항식으로 정한다."
+    },
+    {
+      "id": "m3-02-02-xc8",
+      "sourceIndex": 3360,
+      "originalReviewFingerprint": "df4404e597d42dba55b6c0b4c895c1ec526a9e64d9d9abf043c49332e9c2663f",
+      "resolvedFingerprint": "be23dd8447b1d62fe4c437df9a4eabcc35731ad866300c4307c8e02c05264bb9",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "df4404e597d42dba55b6c0b4c895c1ec526a9e64d9d9abf043c49332e9c2663f",
+          "to": "be23dd8447b1d62fe4c437df9a4eabcc35731ad866300c4307c8e02c05264bb9",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.035Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "1과P가 인수인 이유를 곱으로 설명한다.",
+      "cReason": "보이는1과P를 복사하는 빈칸 대신 두 수식의 관계인 인수를 묻는다."
+    },
+    {
+      "id": "m3-02-02-xc9",
+      "sourceIndex": 3361,
+      "originalReviewFingerprint": "ffcb92e19101978b0bff771880caeff84fa5713720cb266ded925ff0ba57057f",
+      "resolvedFingerprint": "c93f27cc4ac8f1b5931b421e327be67a4e57b3045b8001dc8a88dcbc11a77930",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json",
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "ffcb92e19101978b0bff771880caeff84fa5713720cb266ded925ff0ba57057f",
+          "to": "e4509a71e3686a56a28194e359199b867baef49ce5894b32793e9acc635f10d4",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        },
+        {
+          "from": "e4509a71e3686a56a28194e359199b867baef49ce5894b32793e9acc635f10d4",
+          "to": "c93f27cc4ac8f1b5931b421e327be67a4e57b3045b8001dc8a88dcbc11a77930",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-final-six.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-final-six.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:33:50.112Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-final-six.json",
+      "bReason": "공통 괄호식 전체를 묶는 일반 절차와 실제 인수분해를 함께 묻는다.",
+      "cReason": "공통식 x+1을 지정하고 남는 인수 a+b를 계산한다."
+    },
+    {
+      "id": "m3-02-02-xc19",
+      "sourceIndex": 3371,
+      "originalReviewFingerprint": "3159fa2ada787e76c25b498bec1bbecceb32cd3c245f26e1194ed5adb8e5c6cb",
+      "resolvedFingerprint": "ac82606249cd4192469edfc14be0c6a6db329812db3acff43bf5c52344e1182a",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "3159fa2ada787e76c25b498bec1bbecceb32cd3c245f26e1194ed5adb8e5c6cb",
+          "to": "ac82606249cd4192469edfc14be0c6a6db329812db3acff43bf5c52344e1182a",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.037Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "상수항 곱으로 b=3 뒤 일차계수로 a=1을 구한다.",
+      "cReason": "일차항 자체가 아니라 계수끼리의 곱을 비교한다.",
+      "coreReason": "첫 항 곱을 계수와 혼동한 일반 설명을 바로잡는다."
+    },
+    {
+      "id": "m3-02-03-xc1",
+      "sourceIndex": 3374,
+      "originalReviewFingerprint": "35c69746c947bcfd462482529568b4d701a70076d0ad8c90788a8f68abf560a4",
+      "resolvedFingerprint": "611925f018cbd76c58697749bbf3c74329b274cbf3616d1ab0b1468f2a7f4dce",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "35c69746c947bcfd462482529568b4d701a70076d0ad8c90788a8f68abf560a4",
+          "to": "611925f018cbd76c58697749bbf3c74329b274cbf3616d1ab0b1468f2a7f4dce",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.038Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "추상적 장점 두 개 대신 실제 동류항 정리 후 완전제곱 인수분해를 묻는다.",
+      "cReason": "큰 차수부터라는 정의를 주어 내림차순을 특정한다."
+    },
+    {
+      "id": "m3-02-03-xc9",
+      "sourceIndex": 3382,
+      "originalReviewFingerprint": "e65dcdf9248cc4f87e7adc5c1e94a1e3f22c4d828898c2180bde81baac9b5964",
+      "resolvedFingerprint": "aa7c25592a5bfe76e548482141a1fe901406aaea518cb0ded9d50878331a4c99",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "e65dcdf9248cc4f87e7adc5c1e94a1e3f22c4d828898c2180bde81baac9b5964",
+          "to": "aa7c25592a5bfe76e548482141a1fe901406aaea518cb0ded9d50878331a4c99",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.039Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "가운데 항 조건까지 주고 공식 이름이나 식으로 답하게 한다.",
+      "cReason": "완전제곱식의 충분한 가운데 항 조건을 준다."
+    },
+    {
+      "id": "m3-02-03-xc18",
+      "sourceIndex": 3390,
+      "originalReviewFingerprint": "f9c0687711b12f108dc7c0d606b57d607a1a54fd2d12de627b1f6dc51ade656f",
+      "resolvedFingerprint": "700928fd7bb89e37f7d51b70939a9e3855c22d7de65c860f51391a68d79579dc",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "f9c0687711b12f108dc7c0d606b57d607a1a54fd2d12de627b1f6dc51ade656f",
+          "to": "700928fd7bb89e37f7d51b70939a9e3855c22d7de65c860f51391a68d79579dc",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.040Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "y의 차수가 낮다는 명시된 기준으로 정리하고 공통인수를 찾는다.",
+      "cReason": "일차식으로 보기 쉬울 수 있다는 낮은 차수 전략을 유지한다."
+    },
+    {
+      "id": "m3-02-03-xc23",
+      "sourceIndex": 3394,
+      "originalReviewFingerprint": "5a16e8cec84620887fada5e63cc131626e02dbebeafe6395817122b04bbba7b8",
+      "resolvedFingerprint": "3574a695d64bc63059df52440ff758055f454bedeae8a04f204e333e47ddf43b",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "5a16e8cec84620887fada5e63cc131626e02dbebeafe6395817122b04bbba7b8",
+          "to": "3574a695d64bc63059df52440ff758055f454bedeae8a04f204e333e47ddf43b",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.042Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "36과16의 제곱수 곱으로24를 구한다.",
+      "cReason": "근호 안 비음수와 두 양의 제곱수 조건을 보충한다.",
+      "coreReason": "실수 근호의 일반 적용 범위를 보충한다."
+    },
+    {
+      "id": "m3-02-03-xc25",
+      "sourceIndex": 3395,
+      "originalReviewFingerprint": "b0ec6329529844aec2525103d3c1e965b4fe1cd2e3c07b49fe7b6d23e5435870",
+      "resolvedFingerprint": "ad25b115c4454e49e8b788efb63c1c3f3017788d0a8114c6e6257ce634acd5d2",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "b0ec6329529844aec2525103d3c1e965b4fe1cd2e3c07b49fe7b6d23e5435870",
+          "to": "ad25b115c4454e49e8b788efb63c1c3f3017788d0a8114c6e6257ce634acd5d2",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.043Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "넓이 차를 합과 차의 곱으로 써야 하므로 전개된4a+4만으로 통과시키지 않는다.",
+      "cReason": "안쪽 도형의 전체 포함 조건을 명시한다.",
+      "coreReason": "큰 도형에서 작은 도형 넓이를 빼는 전제를 보충한다."
+    },
+    {
+      "id": "m3-03-01-xc2",
+      "sourceIndex": 3397,
+      "originalReviewFingerprint": "9f7e4e4ecc666d47167b2cbc75c1c70ddda23d525a7b1b01ee8131487f2b7697",
+      "resolvedFingerprint": "3e4dfc4883df9b3b771bb9b23ed9a1b09da35354b67add443420f76488dc1f44",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "9f7e4e4ecc666d47167b2cbc75c1c70ddda23d525a7b1b01ee8131487f2b7697",
+          "to": "3e4dfc4883df9b3b771bb9b23ed9a1b09da35354b67add443420f76488dc1f44",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.044Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "두 식의 최고차수2와 비영 계수로 이차방정식을 판단한다.",
+      "cReason": "2x제곱의 최고차항도 x제곱이라는 오류를 차수가2라는 말로 바로잡는다.",
+      "coreReason": "비영 이차항을 가진 표준형에서 빠진 항을 설명한다."
+    },
+    {
+      "id": "m3-03-01-xc4",
+      "sourceIndex": 3399,
+      "originalReviewFingerprint": "b057879789ebeaa1a52b8e00cc6fd9941ac73cee3aa8d2ffad060b79484f35be",
+      "resolvedFingerprint": "a68bb44bb725ac4abdcbb92ad85cf31749168b6c1a0f91a66647462eb6eeb9ff",
+      "originalPrimaryResolutionEvidence": [
+        "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+      ],
+      "correctionChain": [
+        {
+          "from": "b057879789ebeaa1a52b8e00cc6fd9941ac73cee3aa8d2ffad060b79484f35be",
+          "to": "a68bb44bb725ac4abdcbb92ad85cf31749168b6c1a0f91a66647462eb6eeb9ff",
+          "inputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+          "amendedEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-assist380-75-94.json",
+          "verdictEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-assist380-75-94.json"
+        }
+      ],
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T10:32:27.045Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-75-94.json",
+      "bReason": "각 인수를0으로 놓는 방법과 -2 5의 해를 묻는다.",
+      "cReason": "각 인수의 방정식과 해를 연결해 순서를 정한다."
+    }
+  ]
+}

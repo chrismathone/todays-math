@@ -1,0 +1,1520 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:20:31.147Z",
+  "supplementalVerdicts": "evidence/assist-remaining-380-20261007/reviews.json",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-04-xc12",
+        "section": "중2::9. 확률::확률의 계산",
+        "term": "서로 다른 색의 한 순서",
+        "kind": "방법",
+        "level": "중",
+        "definition": "빨강 다음 파랑처럼 순서를 정한 사건은 첫 색의 확률에 그 색을 뽑은 뒤의 {다음 색의 확률}을 곱한다.",
+        "studentC": "빨강 다음 파랑처럼 순서를 정한 사건은 첫 색의 확률에 그 색을 뽑은 뒤의 □을 곱한다.",
+        "answers": [
+          "다음 색의 확률"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-04-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "주머니에 빨간 공 $3$개, 파란 공 $2$개가 있다. 공을 한 개씩 두 번 꺼내되 꺼낸 공은 다시 넣지 않는다. '첫 번째는 빨강, 두 번째는 파랑'일 확률을 곱셈식으로 구하고, 두 번째 분수가 $\\frac{2}{5}$가 아닌 이유를 쓰시오.",
+        "bAnswer": "$\\frac{3}{5}\\times\\frac{2}{4}=\\frac{3}{10}$. 빨간 공 한 개가 빠진 뒤에는 전체 $4$개 중 파란 공이 $2$개이므로 두 번째 확률은 $\\frac{2}{4}$이다.",
+        "bGoal": "순서가 정해진 두 색의 확률 구하기",
+        "bReason": "'한 순서'가 무엇인지 몰라 빨강 다음 파랑이라는 순서와 공의 개수를 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "첫 색의 확률에 그 뒤의 둘째 색 확률을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘째 확률은 남은 $4$개로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값 $\\frac{3}{10}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "공을 차례로 뽑을 때, 빨강 다음 파랑처럼 순서를 정한 사건의 확률은 첫 색을 뽑을 확률에 그 색을 뽑은 뒤 {다음 색}을 뽑을 확률을 {곱한다}.",
+        "cAnswers": [
+          "다음 색",
+          "곱한다"
+        ],
+        "cReason": "공을 차례로 뽑는 상황이 문장에 없어 밝히고 빈칸을 짧은 말로 나눔.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "첫 색 뒤 다음 색 확률 곱",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3257,
+        "part": "m2plus",
+        "sourceFingerprint": "ab845a161fa2e4f6d4138a8ad23914592c6cff3780fe274df7e7157c2f25f6cb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3257
+        },
+        "directReview": null,
+        "cMarkedSentence": "공을 차례로 뽑을 때, 빨강 다음 파랑처럼 순서를 정한 사건의 확률은 첫 색을 뽑을 확률에 그 색을 뽑은 뒤 {다음 색}을 뽑을 확률을 {곱한다}.",
+        "cSlotAnswers": [
+          "다음 색",
+          "곱한다"
+        ],
+        "cStudentSentence": "공을 차례로 뽑을 때, 빨강 다음 파랑처럼 순서를 정한 사건의 확률은 첫 색을 뽑을 확률에 그 색을 뽑은 뒤 □을 뽑을 확률을 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다음 색",
+            "equivalentAnswers": [
+              "다음 색",
+              "두 번째 색",
+              "둘째 색"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱한다",
+            "equivalentAnswers": [
+              "곱한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "다음 색",
+            "accept": [
+              "두 번째 색",
+              "둘째 색"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다음 색",
+            "두 번째 색",
+            "둘째 색"
+          ],
+          [
+            "곱한다"
+          ]
+        ],
+        "proposalFingerprint": "44f17224ef7b5eadf2eaeb027e13563a59373d826e7cd29fac35ed680df910be"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-04-xc14",
+        "section": "중2::9. 확률::확률의 계산",
+        "term": "비복원 추출의 둘째 분모",
+        "kind": "방법",
+        "level": "중",
+        "definition": "공 한 개를 되돌리지 않고 남은 공을 각각 같은 가능성으로 뽑을 때, 둘째 확률의 분모는 {남은 전체 공의 수}이다.",
+        "studentC": "공 한 개를 되돌리지 않고 남은 공을 각각 같은 가능성으로 뽑을 때, 둘째 확률의 분모는 □이다.",
+        "answers": [
+          "남은 전체 공의 수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-04-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "주머니에서 공을 한 개 꺼내 다시 넣지 않고 한 개를 더 꺼낸다(각 공이 뽑힐 가능성은 같다). 두 번째에 어떤 색의 공을 뽑을 확률을 분수로 쓸 때 분모와 분자에 각각 어떤 수를 쓰는지 설명하시오.",
+        "bAnswer": "분모는 남은 전체 공의 수(처음보다 $1$ 작은 수), 분자는 남은 공 중 그 색 공의 수이다. 첫 번째에 같은 색을 꺼냈으면 분자도 처음보다 $1$ 작고, 다른 색을 꺼냈으면 분자는 처음과 같다.",
+        "bGoal": "다시 넣지 않을 때 둘째 확률의 분모·분자",
+        "bReason": "'비복원 추출', '둘째 분모'는 학생이 모르는 말이라 분모·분자가 나타내는 수를 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 남은 전체 공의 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 남은 공 중 그 색 공의 수이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "공 한 개를 꺼내 되돌리지 않고 한 개를 더 뽑을 때(각 공이 뽑힐 가능성은 같다), 두 번째 확률의 분모는 처음 전체 공의 수보다 {$1$} 작은, {남은} 공 전체의 수이다.",
+        "cAnswers": [
+          "$1$",
+          "남은"
+        ],
+        "cReason": "문장에 '남은 공'이 보여 답을 베끼게 되고 '둘째 확률'이 막연해 다시 씀.",
+        "studentLabel": "다시 넣지 않고 뽑을 때 두 번째 확률의 분모",
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "둘째 분모는 남은 전체 수",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3259,
+        "part": "m2plus",
+        "sourceFingerprint": "4f0a36a63c1a6a40ada90f786deb4ed3054f696604dfd2d1cf61d2dc0641bec6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3259
+        },
+        "directReview": null,
+        "cMarkedSentence": "공 한 개를 꺼내 되돌리지 않고 한 개를 더 뽑을 때(각 공이 뽑힐 가능성은 같다), 두 번째 확률의 분모는 처음 전체 공의 수보다 {$1$} 작은, {남은} 공 전체의 수이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "남은"
+        ],
+        "cStudentSentence": "공 한 개를 꺼내 되돌리지 않고 한 개를 더 뽑을 때(각 공이 뽑힐 가능성은 같다), 두 번째 확률의 분모는 처음 전체 공의 수보다 □ 작은, □ 공 전체의 수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "남은",
+            "equivalentAnswers": [
+              "남은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "남은"
+          ]
+        ],
+        "proposalFingerprint": "5e8c90b507d2b02e9fea5319051f5b8dab2c92cdd6d83fdf7f363baefe8393bd"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-04-xc15",
+        "section": "중2::9. 확률::확률의 계산",
+        "term": "비복원 추출의 둘째 분자",
+        "kind": "방법",
+        "level": "중",
+        "definition": "매번 각 공을 같은 가능성으로 뽑되 처음 공을 되돌리지 않고 같은 색을 두 번 뽑으면, 둘째 확률의 분자는 그 색의 개수에서 {$1$을 뺀 수}이다.",
+        "studentC": "매번 각 공을 같은 가능성으로 뽑되 처음 공을 되돌리지 않고 같은 색을 두 번 뽑으면, 둘째 확률의 분자는 그 색의 개수에서 □이다.",
+        "answers": [
+          "$1$을 뺀 수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-04-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "xc14 질문이 둘째 확률의 분모와 분자를 함께 묻고 있어 분자만 따로 묻는 것은 겹침.",
+        "cDecision": "rewrite",
+        "cAfter": "꺼낸 공을 되돌리지 않고 같은 색을 두 번 연속 뽑을 확률을 구할 때(각 공이 뽑힐 가능성은 같다), 두 번째 확률의 분자는 처음 그 색 공의 개수에서 {$1$}을 뺀 수이다.",
+        "cAnswers": [
+          "$1$"
+        ],
+        "cReason": "'둘째 확률', '그 색의 개수'가 언제의 개수인지 흐려 처음 개수 기준으로 밝힘.",
+        "exclusionReason": "B 제외: xc14(분모·분자 설명)와 xc8(남은 개수 계산)에 포함되는 조각 항목.",
+        "studentLabel": "다시 넣지 않고 뽑을 때 두 번째 확률의 분자",
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "같은 색이면 분자도 1 감소",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3260,
+        "part": "m2plus",
+        "sourceFingerprint": "d76587671159d377175e57f1007a52de32b1a8f74ee40bb5713df7c670727650",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3260
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "꺼낸 공을 되돌리지 않고 같은 색을 두 번 연속 뽑을 확률을 구할 때(각 공이 뽑힐 가능성은 같다), 두 번째 확률의 분자는 처음 그 색 공의 개수에서 {$1$}을 뺀 수이다.",
+        "cSlotAnswers": [
+          "$1$"
+        ],
+        "cStudentSentence": "꺼낸 공을 되돌리지 않고 같은 색을 두 번 연속 뽑을 확률을 구할 때(각 공이 뽑힐 가능성은 같다), 두 번째 확률의 분자는 처음 그 색 공의 개수에서 □을 뺀 수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "e77f86ba4e3a48f3a926e4c5be5ba8d0b7d967d569646fd5e27a51a58e65e08d"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-04-xc17",
+        "section": "중2::9. 확률::확률의 계산",
+        "term": "서로 다른 색의 두 순서 합",
+        "kind": "방법",
+        "level": "상",
+        "definition": "공 두 개의 색이 다를 확률은 {빨강 뒤 파랑}과 {파랑 뒤 빨강}처럼 서로 겹치지 않는 순서별 확률을 더해 구한다.",
+        "studentC": "공 두 개의 색이 다를 확률은 □과 □처럼 서로 겹치지 않는 순서별 확률을 더해 구한다.",
+        "answers": [
+          "빨강 뒤 파랑",
+          "파랑 뒤 빨강"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "주머니에 빨간 공 $2$개, 파란 공 $3$개가 있다. 공을 한 개씩 두 번 꺼내되 꺼낸 공은 다시 넣지 않는다. 두 공의 색이 서로 다를 확률을 구하기 위해 어떤 두 경우로 나누는지 쓰고, 각 경우의 확률과 답을 구하시오.",
+        "bAnswer": "빨강 다음 파랑: $\\frac{2}{5}\\times\\frac{3}{4}=\\frac{3}{10}$. 파랑 다음 빨강: $\\frac{3}{5}\\times\\frac{2}{4}=\\frac{3}{10}$. 두 경우는 함께 일어나지 않으므로 $\\frac{3}{10}+\\frac{3}{10}=\\frac{3}{5}$.",
+        "bGoal": "색이 다른 경우를 두 순서로 나누어 더하기",
+        "bReason": "'두 순서 합'이 무엇인지 몰라 색이 다를 확률을 순서별로 나누는 문제로 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빨강 다음 파랑과 파랑 다음 빨강으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 순서의 확률은 곱으로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 확률을 더해 $\\frac{3}{5}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "빨간 공과 파란 공이 든 주머니에서 공을 차례로 두 개 뽑을 때 두 공의 색이 다를 확률은, '빨강 다음 파랑'일 확률과 '파랑 다음 {빨강}'일 확률을 {더해} 구한다.",
+        "cAnswers": [
+          "빨강",
+          "더해"
+        ],
+        "cReason": "공의 색이 문장에 없어 빈칸 답 '빨강 뒤 파랑'을 떠올릴 근거가 없었음.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "두 순서 확률을 더하기",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3262,
+        "part": "m2plus",
+        "sourceFingerprint": "42eac34b6de23e5dea02f1ea38a9e2f0d7472d6d8e816a73eea6f6e25cd27005",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3262
+        },
+        "directReview": null,
+        "cMarkedSentence": "빨간 공과 파란 공이 든 주머니에서 공을 차례로 두 개 뽑을 때 두 공의 색이 다를 확률은, '빨강 다음 파랑'일 확률과 '파랑 다음 {빨강}'일 확률을 {더해} 구한다.",
+        "cSlotAnswers": [
+          "빨강",
+          "더해"
+        ],
+        "cStudentSentence": "빨간 공과 파란 공이 든 주머니에서 공을 차례로 두 개 뽑을 때 두 공의 색이 다를 확률은, '빨강 다음 파랑'일 확률과 '파랑 다음 □'일 확률을 □ 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빨강",
+            "equivalentAnswers": [
+              "빨강"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더해",
+            "equivalentAnswers": [
+              "더해",
+              "더하여",
+              "더해서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더해",
+            "accept": [
+              "더하여",
+              "더해서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빨강"
+          ],
+          [
+            "더해",
+            "더하여",
+            "더해서"
+          ]
+        ],
+        "proposalFingerprint": "0e41b306f0aa121246b882b268fab3c8cc4b73ea63aa916a39f92a122f93f8c4"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-04-xc21",
+        "section": "중2::9. 확률::확률의 계산",
+        "term": "꺼낸 공을 돌려놓는 조건의 차이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 색을 연속해 뽑는 확률은 공을 돌려놓는지에 따라 둘째 시행의 {분자와 분모}가 달라질 수 있다.",
+        "studentC": "같은 색을 연속해 뽑는 확률은 공을 돌려놓는지에 따라 둘째 시행의 □가 달라질 수 있다.",
+        "answers": [
+          "분자와 분모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-04-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "주머니에 빨간 공 $3$개, 파란 공 $2$개가 있다. 공을 한 개씩 두 번 뽑아 두 번 모두 빨간 공일 확률을 ($1$) 꺼낸 공을 다시 넣을 때, ($2$) 다시 넣지 않을 때로 나누어 구하고, 두 번째 분수에서 무엇이 달라지는지 쓰시오.",
+        "bAnswer": "($1$) $\\frac{3}{5}\\times\\frac{3}{5}=\\frac{9}{25}$. ($2$) $\\frac{3}{5}\\times\\frac{2}{4}=\\frac{3}{10}$. 다시 넣지 않으면 두 번째 분수의 분자가 $3$에서 $2$로, 분모가 $5$에서 $4$로 달라진다.",
+        "bGoal": "다시 넣는지에 따른 둘째 확률 비교",
+        "bReason": "묻지 않은 일반 진술 대신 두 값과 둘째 분수의 변화만 요구",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{9}{25}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "다시 넣지 않으면 둘째 분수의 분자와 분모가 모두 $1$씩 줄어든다",
+              "둘째 분수가 $\\frac{3}{5}$에서 $\\frac{2}{4}$로 바뀐다",
+              "분자는 $3$에서 $2$로, 분모는 $5$에서 $4$로 달라진다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "같은 색을 연속해 뽑을 확률은 꺼낸 공을 돌려놓는지에 따라 두 번째 확률의 {분자}와 {분모}가 달라질 수 있다.",
+        "cAnswers": [
+          "분자",
+          "분모"
+        ],
+        "cReason": "'둘째 시행의 분자와 분모'는 시행에 분자가 있는 듯해 '두 번째 확률'로 고침(답 순서 무관).",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "복원 여부로 둘째 분수 변화",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3266,
+        "part": "m2plus",
+        "sourceFingerprint": "6413bc7e0bcb149447383c7e42b68814cce02ba73740b744505b112e3773d265",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3266
+        },
+        "directReview": null,
+        "cMarkedSentence": "같은 색을 연속해 뽑을 확률은 꺼낸 공을 돌려놓는지에 따라 두 번째 확률의 {분자}와 {분모}가 달라질 수 있다.",
+        "cSlotAnswers": [
+          "분자",
+          "분모"
+        ],
+        "cStudentSentence": "같은 색을 연속해 뽑을 확률은 꺼낸 공을 돌려놓는지에 따라 두 번째 확률의 □와 □가 달라질 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분자",
+            "equivalentAnswers": [
+              "분자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분모",
+            "equivalentAnswers": [
+              "분모"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분자"
+          ],
+          [
+            "분모"
+          ]
+        ],
+        "proposalFingerprint": "dcda761eec62b9e6b04fbcb7c4712364752df745508354f66ecf09d84d513407"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-04-xc22",
+        "section": "중2::9. 확률::확률의 계산",
+        "term": "두 색이 같은 사건의 분할",
+        "kind": "방법",
+        "level": "상",
+        "definition": "빨강과 파랑만 있는 주머니에서 두 색이 같다는 사건을 {모두 빨강}과 {모두 파랑}으로 나누어 계산한다.",
+        "studentC": "빨강과 파랑만 있는 주머니에서 두 색이 같다는 사건을 □과 □으로 나누어 계산한다.",
+        "answers": [
+          "모두 빨강",
+          "모두 파랑"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-04-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "주머니에 빨간 공 $3$개, 파란 공 $2$개가 있다. 공을 한 개씩 두 번 꺼내되 꺼낸 공은 다시 넣지 않는다. 두 공의 색이 같을 확률을 구하기 위해 어떤 두 경우로 나누는지 쓰고, 각 경우의 확률과 답을 구하시오.",
+        "bAnswer": "모두 빨강: $\\frac{3}{5}\\times\\frac{2}{4}=\\frac{3}{10}$. 모두 파랑: $\\frac{2}{5}\\times\\frac{1}{4}=\\frac{1}{10}$. 두 경우는 함께 일어나지 않으므로 $\\frac{3}{10}+\\frac{1}{10}=\\frac{2}{5}$.",
+        "bGoal": "색이 같은 경우를 색별로 나누어 더하기",
+        "bReason": "'사건의 분할'은 학생에게 낯선 말이라 색이 같을 확률을 두 경우로 나누는 문제로 바꿈.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모두 빨강과 모두 파랑으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 경우는 남은 개수를 써서 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 확률을 더해 $\\frac{2}{5}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "빨간 공과 파란 공만 든 주머니에서 공을 두 개 뽑을 때, 두 공의 색이 같은 사건은 {모두 빨강}인 경우와 {모두 파랑}인 경우로 나누어 계산한다.",
+        "cAnswers": [
+          "모두 빨강",
+          "모두 파랑"
+        ],
+        "cReason": "공을 두 개 뽑는다는 말이 없어 '두 색이 같다'가 무엇의 색인지 알 수 없었음(답 순서 무관).",
+        "exampleNeeded": true,
+        "studentLabel": "두 공의 색이 같은 경우 나누기",
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "모두 빨강·모두 파랑 분할",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3267,
+        "part": "m2plus",
+        "sourceFingerprint": "bb5aeab25aa4fbcbc29dd804bc0a81707c16b49ca5dab26df134431686ecda14",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3267
+        },
+        "directReview": null,
+        "cMarkedSentence": "빨간 공과 파란 공만 든 주머니에서 공을 두 개 뽑을 때, 두 공의 색이 같은 사건은 {모두 빨강}인 경우와 {모두 파랑}인 경우로 나누어 계산한다.",
+        "cSlotAnswers": [
+          "모두 빨강",
+          "모두 파랑"
+        ],
+        "cStudentSentence": "빨간 공과 파란 공만 든 주머니에서 공을 두 개 뽑을 때, 두 공의 색이 같은 사건은 □인 경우와 □인 경우로 나누어 계산한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두 빨강",
+            "equivalentAnswers": [
+              "모두 빨강",
+              "둘 다 빨강"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "모두 파랑",
+            "equivalentAnswers": [
+              "모두 파랑",
+              "둘 다 파랑"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모두 빨강",
+            "accept": [
+              "둘 다 빨강"
+            ]
+          },
+          {
+            "answer": "모두 파랑",
+            "accept": [
+              "둘 다 파랑"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두 빨강",
+            "둘 다 빨강"
+          ],
+          [
+            "모두 파랑",
+            "둘 다 파랑"
+          ]
+        ],
+        "proposalFingerprint": "765dd81499fd1966171a8f64dda1ce07a6596afb0ef5a15681244f7afce5e9cf"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-01-xc7",
+        "section": "중3::1. 실수와 그 계산::제곱근의 뜻과 성질",
+        "term": "분수의 제곱근을 근호 없이 쓰기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분자와 분모가 모두 {제곱인 수}인 분수의 양의 제곱근은 분자와 분모의 양의 제곱근을 {각각} 구한 분수이다.",
+        "example": {
+          "prompt": "$\\frac{9}{16}$의 양의 제곱근이 $\\frac{3}{4}$인 까닭은?",
+          "answer": "양수 $\\frac{3}{4}$의 제곱이 $\\frac{9}{16}$라서"
+        },
+        "studentC": "분자와 분모가 모두 □인 분수의 양의 제곱근은 분자와 분모의 양의 제곱근을 □ 구한 분수이다.",
+        "answers": [
+          "제곱인 수",
+          "각각"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{9}{16}$의 양의 제곱근을 근호 없이 구하고, 제곱하여 맞는지 확인하시오. 또 분자와 분모가 자연수인 분수에서 두 수의 양의 제곱근을 각각 근호 없이 자연수로 구할 수 있으려면 분자와 분모가 각각 어떤 수여야 하는지 쓰시오.",
+        "bAnswer": "$\\frac{3}{4}$. $\\left(\\frac{3}{4}\\right)^2=\\frac{9}{16}$이고 $\\frac{3}{4}$은 양수이므로 맞다. 분자와 분모가 모두 자연수의 제곱인 수일 때 쓸 수 있다.",
+        "bGoal": "분수의 양의 제곱근을 근호 없이 구하기",
+        "bReason": "제곱근을 분자·분모에 각각 쓰는 일반 법칙이 아니라 두 제곱근이 근호 없는 자연수가 되는 조건을 명시한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{9}{16}$의 양의 제곱근은 $\\frac{3}{4}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\left(\\frac{3}{4}\\right)^2=\\frac{9}{16}$",
+              "$\\frac{3}{4}\\times\\frac{3}{4}=\\frac{9}{16}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자와 분모가 모두 자연수의 제곱인 수일 때",
+              "분자와 분모가 모두 제곱수일 때"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분자와 분모가 모두 {제곱인 수}인 분수의 양의 제곱근은 분자와 분모의 양의 제곱근을 각각 구한 분수이다. 예를 들어 $\\frac{9}{16}$의 양의 제곱근은 {$\\frac{3}{4}$}이다.",
+        "cAnswers": [
+          "제곱인 수",
+          "$\\frac{3}{4}$"
+        ],
+        "cReason": "'각각'은 확인할 내용이 없는 빈칸이라 빼고 방법을 적용하는 짧은 계산을 넣음.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분자·분모 각각 제곱근",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3275,
+        "part": "m3plus",
+        "sourceFingerprint": "ea21f78ca75c922e7cb885542629a2482f54935f895020b7e02a6c484ccf9a5f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3275
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-01-01-xc7"
+        },
+        "cMarkedSentence": "분자와 분모가 모두 {제곱인 수}인 분수의 양의 제곱근은 분자와 분모의 양의 제곱근을 각각 구한 분수이다. 예를 들어 $\\frac{9}{16}$의 양의 제곱근은 {$\\frac{3}{4}$}이다.",
+        "cSlotAnswers": [
+          "제곱인 수",
+          "$\\frac{3}{4}$"
+        ],
+        "cStudentSentence": "분자와 분모가 모두 □인 분수의 양의 제곱근은 분자와 분모의 양의 제곱근을 각각 구한 분수이다. 예를 들어 $\\frac{9}{16}$의 양의 제곱근은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱인 수",
+            "equivalentAnswers": [
+              "제곱인 수",
+              "제곱수",
+              "자연수의 제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{3}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{3}{4}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제곱인 수",
+            "accept": [
+              "제곱수",
+              "자연수의 제곱"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱인 수",
+            "제곱수",
+            "자연수의 제곱"
+          ],
+          [
+            "$\\frac{3}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "2375958a495bc1ad44f960f79e8ce427d526f5f47f774ee21a545cf9f47b0e8b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-01-xc11",
+        "section": "중3::1. 실수와 그 계산::제곱근의 뜻과 성질",
+        "term": "정수와 제곱근의 크기 비교",
+        "kind": "방법",
+        "level": "중",
+        "definition": "양의 정수 $n$과 양의 제곱근의 크기를 비교할 때는 $n$을 {$\\sqrt{n^2}$}으로 바꾸어 {근호 안의 수}끼리 비교한다.",
+        "example": {
+          "prompt": "$4$를 $\\sqrt{16}$으로 바꾸어 $\\sqrt{15}$와 비교해도 되는 까닭은?",
+          "answer": "$4$와 $\\sqrt{16}$이 같은 수라서"
+        },
+        "studentC": "양의 정수 $n$과 양의 제곱근의 크기를 비교할 때는 $n$을 □으로 바꾸어 □끼리 비교한다.",
+        "answers": [
+          "$\\sqrt{n^2}$",
+          "근호 안의 수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$4$와 $\\sqrt{15}$의 크기를 비교하려고 한다. $4$를 근호를 사용한 수로 바꾸어 비교하는 과정을 쓰고, 그렇게 바꾸어도 되는 이유를 쓰시오.",
+        "bAnswer": "$4=\\sqrt{16}$이고 $15<16$이므로 $\\sqrt{15}<\\sqrt{16}$, 곧 $\\sqrt{15}<4$이다. $4$는 양수이고 $4^2=16$이라 $16$의 양의 제곱근과 같은 수이므로 바꾸어도 된다.",
+        "bGoal": "정수를 근호 꼴로 바꾸어 크기 비교하기",
+        "bReason": "어떤 정수와 제곱근인지 없어 $4$와 $\\sqrt{15}$로 정하고 바꾸는 근거까지 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4=\\sqrt{16}$으로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "근호 안의 수 $15$와 $16$을 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sqrt{15}<4$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "방법의 두 단계를 식과 짧은 말로 채우는 빈칸이라 분명함.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "정수를 근호 꼴로 바꿔 비교",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3279,
+        "part": "m3plus",
+        "sourceFingerprint": "42d8e716b5caa7093b9298e5dd06858b3e2a5e99c33ee99bf0d65379a1ff7f77",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3279
+        },
+        "directReview": null,
+        "cFrozenSentence": "양의 정수 $n$과 양의 제곱근의 크기를 비교할 때는 $n$을 □으로 바꾸어 □끼리 비교한다.",
+        "cFrozenDefinition": "양의 정수 $n$과 양의 제곱근의 크기를 비교할 때는 $n$을 {$\\sqrt{n^2}$}으로 바꾸어 {근호 안의 수}끼리 비교한다.",
+        "cFrozenAnswers": [
+          "$\\sqrt{n^2}$",
+          "근호 안의 수"
+        ],
+        "cMarkedSentence": "양의 정수 $n$과 양의 제곱근의 크기를 비교할 때는 $n$을 {$\\sqrt{n^2}$}으로 바꾸어 {근호 안의 수}끼리 비교한다.",
+        "cSlotAnswers": [
+          "$\\sqrt{n^2}$",
+          "근호 안의 수"
+        ],
+        "cStudentSentence": "양의 정수 $n$과 양의 제곱근의 크기를 비교할 때는 $n$을 □으로 바꾸어 □끼리 비교한다.",
+        "cAnswers": [
+          "$\\sqrt{n^2}$",
+          "근호 안의 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\sqrt{n^2}$",
+            "equivalentAnswers": [
+              "$\\sqrt{n^2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "근호 안의 수",
+            "equivalentAnswers": [
+              "근호 안의 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\sqrt{n^2}$"
+          ],
+          [
+            "근호 안의 수"
+          ]
+        ],
+        "proposalFingerprint": "8f3bc82f3c43e5a86c3e28351eb770ecdd2d90abc7a2423ad9bdf83dfeb1d201"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc2",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "근호로 쓴 수의 분류",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$\\sqrt{9}=3$처럼 {유리수}도 근호를 써서 나타낼 수 있으므로, 근호가 있다는 것만으로 {무리수}라고 판단할 수 없다.",
+        "studentC": "$\\sqrt{9}=3$처럼 □도 근호를 써서 나타낼 수 있으므로, 근호가 있다는 것만으로 □라고 판단할 수 없다.",
+        "answers": [
+          "유리수",
+          "무리수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "'근호가 있는 수는 모두 무리수이다'라는 말이 옳은지 판단하고, $\\sqrt{9}$를 이용하여 까닭을 쓰시오.",
+        "bAnswer": "옳지 않다. $\\sqrt{9}=3$은 근호로 썼지만 유리수이므로, 근호가 있다는 것만으로 무리수라고 할 수 없다.",
+        "bGoal": "근호 표기와 무리수를 구별하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "옳지 않다",
+              "틀렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sqrt{9}=3$",
+              "$\\sqrt{9}$는 $3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "유리수",
+              "무리수가 아니다"
+            ]
+          }
+        ],
+        "bReason": "흔한 오개념 문장과 반례 $\\sqrt{9}$를 함께 주어 판단과 근거를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "$\\sqrt{9}=3$ 예와 두 빈칸이 대비되어 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "근호만으로 무리수라 판단할 수 없는 까닭",
+        "exampleNeeded": true,
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3290,
+        "part": "m3plus",
+        "sourceFingerprint": "b42e9ffa698f43461b0584c1ae9c8bb7fb4d6ee9190513e8215058285797617e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3290
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\sqrt{9}=3$처럼 □도 근호를 써서 나타낼 수 있으므로, 근호가 있다는 것만으로 □라고 판단할 수 없다.",
+        "cFrozenDefinition": "$\\sqrt{9}=3$처럼 {유리수}도 근호를 써서 나타낼 수 있으므로, 근호가 있다는 것만으로 {무리수}라고 판단할 수 없다.",
+        "cFrozenAnswers": [
+          "유리수",
+          "무리수"
+        ],
+        "cMarkedSentence": "$\\sqrt{9}=3$처럼 {유리수}도 근호를 써서 나타낼 수 있으므로, 근호가 있다는 것만으로 {무리수}라고 판단할 수 없다.",
+        "cSlotAnswers": [
+          "유리수",
+          "무리수"
+        ],
+        "cStudentSentence": "$\\sqrt{9}=3$처럼 □도 근호를 써서 나타낼 수 있으므로, 근호가 있다는 것만으로 □라고 판단할 수 없다.",
+        "cAnswers": [
+          "유리수",
+          "무리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "무리수",
+            "equivalentAnswers": [
+              "무리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ],
+          [
+            "무리수"
+          ]
+        ],
+        "proposalFingerprint": "d99a66c8b72c5f0a7ef93b1f323fe1207d35aa0d01c0aef7bc4f41104d40dfa8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc9",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "어림값으로 크기 가르기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$\\sqrt{2}=1.414\\cdots$를 쓰면 $\\sqrt{2}+1=2.414\\cdots$이므로 $2.5$보다 {작다} — {어림값}으로도 두 실수의 크기를 가릴 수 있다.",
+        "studentC": "$\\sqrt{2}=1.414\\cdots$를 쓰면 $\\sqrt{2}+1=2.414\\cdots$이므로 $2.5$보다 □ — □으로도 두 실수의 크기를 가릴 수 있다.",
+        "answers": [
+          "작다",
+          "어림값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\sqrt{2}=1.414\\cdots$임을 이용하여 $\\sqrt{2}+1$과 $2.5$의 대소를 비교하고 그 근거를 쓰시오.",
+        "bAnswer": "$\\sqrt{2}<1.415$이므로 $\\sqrt{2}+1<2.415<2.5$이다. 따라서 $\\sqrt{2}+1<2.5$이다.",
+        "bGoal": "어림값으로 실수의 대소 비교하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sqrt{2}+1=2.414\\cdots$",
+              "$\\sqrt{2}+1<2.415$",
+              "$\\sqrt{2}<1.5$이므로 $\\sqrt{2}+1<2.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sqrt{2}+1<2.5$",
+              "$2.5>\\sqrt{2}+1$"
+            ]
+          }
+        ],
+        "bReason": "원문 예가 곧 내용이라 같은 두 수를 주고 어림값 비교를 적용하게 했다.",
+        "cDecision": "keep",
+        "cReason": "'작다'는 짧은 비교, '어림값'은 방법 이름으로 각각 분명하다.",
+        "learningRole": "application",
+        "roleReason": "어림값을 이용한 무리수와 소수의 비교",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3297,
+        "part": "m3plus",
+        "sourceFingerprint": "06e4ba4c9894966df88be41e171bb1f501b1e7d706c1869d285373ecb6a0a85e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3297
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\sqrt{2}=1.414\\cdots$를 쓰면 $\\sqrt{2}+1=2.414\\cdots$이므로 $2.5$보다 □ — □으로도 두 실수의 크기를 가릴 수 있다.",
+        "cFrozenDefinition": "$\\sqrt{2}=1.414\\cdots$를 쓰면 $\\sqrt{2}+1=2.414\\cdots$이므로 $2.5$보다 {작다} — {어림값}으로도 두 실수의 크기를 가릴 수 있다.",
+        "cFrozenAnswers": [
+          "작다",
+          "어림값"
+        ],
+        "cMarkedSentence": "$\\sqrt{2}=1.414\\cdots$를 쓰면 $\\sqrt{2}+1=2.414\\cdots$이므로 $2.5$보다 {작다} — {어림값}으로도 두 실수의 크기를 가릴 수 있다.",
+        "cSlotAnswers": [
+          "작다",
+          "어림값"
+        ],
+        "cStudentSentence": "$\\sqrt{2}=1.414\\cdots$를 쓰면 $\\sqrt{2}+1=2.414\\cdots$이므로 $2.5$보다 □ — □으로도 두 실수의 크기를 가릴 수 있다.",
+        "cAnswers": [
+          "작다",
+          "어림값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작다",
+            "equivalentAnswers": [
+              "작다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "어림값",
+            "equivalentAnswers": [
+              "어림값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작다"
+          ],
+          [
+            "어림값"
+          ]
+        ],
+        "proposalFingerprint": "9ec5dd316011d547df2f4a650f5e357a3115094b0ef9e8512376589e32dff53e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc12",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "유리수와 무리수의 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "유리수와 무리수를 더하거나 빼면 언제나 {무리수}이다 — 결과가 유리수라면 원래 무리수가 두 {유리수의 합이나 차}로 나타나 유리수가 되므로 맞지 않는다.",
+        "studentC": "유리수와 무리수를 더하거나 빼면 언제나 □이다 — 결과가 유리수라면 원래 무리수가 두 □로 나타나 유리수가 되므로 맞지 않는다.",
+        "answers": [
+          "무리수",
+          "유리수의 합이나 차"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "유리수 $a$와 무리수 $b$의 합 $a+b$가 언제나 무리수인 까닭을 쓰시오. $a+b$가 유리수 $c$라고 가정하면 $b$를 $a$, $c$로 어떻게 나타낼 수 있는지 이용하시오.",
+        "bAnswer": "$a+b=c$라 하면 $b=c-a$이다. 유리수끼리의 차는 유리수이므로 $b$가 유리수가 되어 $b$가 무리수라는 것과 맞지 않는다. 따라서 $a+b$는 무리수이다.",
+        "bGoal": "유리수와 무리수의 합이 무리수인 까닭 설명하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b=c-a$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b$가 유리수가 되어 무리수라는 조건과 맞지 않는다",
+              "유리수끼리의 차는 유리수라 $b$도 유리수가 된다"
+            ]
+          }
+        ],
+        "bReason": "가정할 내용을 기호로 주어 귀류의 흐름을 중3 수준으로 따라가게 했다.",
+        "cDecision": "keep",
+        "cReason": "결론 '무리수'와 근거 '유리수의 합이나 차'가 각각 한 칸이다.",
+        "learningRole": "reason",
+        "roleReason": "가정하면 모순이 생겨 합이 무리수인 까닭",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3300,
+        "part": "m3plus",
+        "sourceFingerprint": "e71e5a34b9012d78b9937e91217be65be5368a07d89d933e31481aed8c349805",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3300
+        },
+        "directReview": null,
+        "cFrozenSentence": "유리수와 무리수를 더하거나 빼면 언제나 □이다 — 결과가 유리수라면 원래 무리수가 두 □로 나타나 유리수가 되므로 맞지 않는다.",
+        "cFrozenDefinition": "유리수와 무리수를 더하거나 빼면 언제나 {무리수}이다 — 결과가 유리수라면 원래 무리수가 두 {유리수의 합이나 차}로 나타나 유리수가 되므로 맞지 않는다.",
+        "cFrozenAnswers": [
+          "무리수",
+          "유리수의 합이나 차"
+        ],
+        "cMarkedSentence": "유리수와 무리수를 더하거나 빼면 언제나 {무리수}이다 — 결과가 유리수라면 원래 무리수가 두 {유리수의 합이나 차}로 나타나 유리수가 되므로 맞지 않는다.",
+        "cSlotAnswers": [
+          "무리수",
+          "유리수의 합이나 차"
+        ],
+        "cStudentSentence": "유리수와 무리수를 더하거나 빼면 언제나 □이다 — 결과가 유리수라면 원래 무리수가 두 □로 나타나 유리수가 되므로 맞지 않는다.",
+        "cAnswers": [
+          "무리수",
+          "유리수의 합이나 차"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "무리수",
+            "equivalentAnswers": [
+              "무리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유리수의 합이나 차",
+            "equivalentAnswers": [
+              "유리수의 합이나 차"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "무리수"
+          ],
+          [
+            "유리수의 합이나 차"
+          ]
+        ],
+        "proposalFingerprint": "28fc81a2408066a4142e7ed0aff13fce854f61dee3942f5cd554991349afb1f4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc17",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "기준점에서 길이를 옮겨 찍은 점의 좌표",
+        "kind": "방법",
+        "level": "상",
+        "definition": "수직선 위의 점 $p$에서 길이 $d$만큼 오른쪽으로 옮긴 점의 좌표는 {$p+d$}이고, 왼쪽으로 옮긴 점의 좌표는 {$p-d$}이다.",
+        "example": {
+          "prompt": "$-1$에서 오른쪽으로 $\\sqrt{2}$만큼 간 점의 좌표가 $\\sqrt{2}$가 아닌 까닭은?",
+          "answer": "$-1$에서 재어서 $-1+\\sqrt{2}$"
+        },
+        "studentC": "수직선 위의 점 $p$에서 길이 $d$만큼 오른쪽으로 옮긴 점의 좌표는 □이고, 왼쪽으로 옮긴 점의 좌표는 □이다.",
+        "answers": [
+          "$p+d$",
+          "$p-d$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "수직선 위에서 좌표가 $p$인 점에서 길이 $d$($d>0$)만큼 오른쪽으로 옮긴 점과 왼쪽으로 옮긴 점의 좌표를 각각 쓰시오. 또 좌표가 $-1$인 점에서 오른쪽으로 $\\sqrt{2}$만큼 옮긴 점의 좌표를 구하시오.",
+        "bAnswer": "오른쪽은 $p+d$, 왼쪽은 $p-d$이다. $-1$에서 오른쪽으로 $\\sqrt{2}$만큼 옮긴 점의 좌표는 $-1+\\sqrt{2}$이다.",
+        "bGoal": "기준점과 이동 거리로 좌표 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$p+d$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$p-d$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-1+\\sqrt{2}$",
+              "$\\sqrt{2}-1$"
+            ]
+          }
+        ],
+        "bReason": "원점이 아닌 기준점을 써야 하는 경우를 $-1$로 지정해 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "오른쪽·왼쪽 좌표 두 칸이 짧은 식 빈칸으로 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "기준점에 거리를 더하거나 빼 좌표 구하기",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3305,
+        "part": "m3plus",
+        "sourceFingerprint": "96380bcc9d0570ca144cf03350de516d100acc2155edb940fc3c35cf6fa26877",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3305
+        },
+        "directReview": null,
+        "cFrozenSentence": "수직선 위의 점 $p$에서 길이 $d$만큼 오른쪽으로 옮긴 점의 좌표는 □이고, 왼쪽으로 옮긴 점의 좌표는 □이다.",
+        "cFrozenDefinition": "수직선 위의 점 $p$에서 길이 $d$만큼 오른쪽으로 옮긴 점의 좌표는 {$p+d$}이고, 왼쪽으로 옮긴 점의 좌표는 {$p-d$}이다.",
+        "cFrozenAnswers": [
+          "$p+d$",
+          "$p-d$"
+        ],
+        "cMarkedSentence": "수직선 위의 점 $p$에서 길이 $d$만큼 오른쪽으로 옮긴 점의 좌표는 {$p+d$}이고, 왼쪽으로 옮긴 점의 좌표는 {$p-d$}이다.",
+        "cSlotAnswers": [
+          "$p+d$",
+          "$p-d$"
+        ],
+        "cStudentSentence": "수직선 위의 점 $p$에서 길이 $d$만큼 오른쪽으로 옮긴 점의 좌표는 □이고, 왼쪽으로 옮긴 점의 좌표는 □이다.",
+        "cAnswers": [
+          "$p+d$",
+          "$p-d$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$p+d$",
+            "equivalentAnswers": [
+              "$p+d$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$p-d$",
+            "equivalentAnswers": [
+              "$p-d$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$p+d$"
+          ],
+          [
+            "$p-d$"
+          ]
+        ],
+        "proposalFingerprint": "24e36189cdf574a2c38d213069848d9423d4996d1a07d980b80cd303c5736c27"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc6",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "근호 안이 같은 항을 합칠 수 있는 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "근호 안이 같은 항끼리는 {분배법칙}으로 묶을 수 있다 — $m\\sqrt{a}+n\\sqrt{a}$는 {$(m+n)\\sqrt{a}$}와 같다.",
+        "example": {
+          "prompt": "$3\\sqrt{5}+2\\sqrt{5}$가 $5\\sqrt{5}$인 까닭은?",
+          "answer": "$\\sqrt{5}$가 모두 $5$개라서"
+        },
+        "studentC": "근호 안이 같은 항끼리는 □으로 묶을 수 있다 — $m\\sqrt{a}+n\\sqrt{a}$는 □와 같다.",
+        "answers": [
+          "분배법칙",
+          "$(m+n)\\sqrt{a}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$a>0$일 때 $m\\sqrt{a}+n\\sqrt{a}$를 한 항으로 묶을 수 있는 까닭을 법칙 이름과 함께 쓰고, $3\\sqrt{5}+2\\sqrt{5}$에 적용하시오.",
+        "bAnswer": "분배법칙에 의해 $m\\sqrt{a}+n\\sqrt{a}=(m+n)\\sqrt{a}$이다. $3\\sqrt{5}+2\\sqrt{5}=5\\sqrt{5}$",
+        "bGoal": "동류항 계산의 근거를 분배법칙으로 설명하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분배법칙"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(m+n)\\sqrt{a}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\sqrt{5}$"
+            ]
+          }
+        ],
+        "bReason": "c5의 절차와 구분해 묶을 수 있는 근거 법칙을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "법칙 이름과 결과식 두 칸이 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "분배법칙으로 근호 동류항을 묶는 근거",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3314,
+        "part": "m3plus",
+        "sourceFingerprint": "a5f20ab364a23169a44a6421315e2856eb615b07c6663c126b0c381d2e31e974",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3314
+        },
+        "directReview": null,
+        "cFrozenSentence": "근호 안이 같은 항끼리는 □으로 묶을 수 있다 — $m\\sqrt{a}+n\\sqrt{a}$는 □와 같다.",
+        "cFrozenDefinition": "근호 안이 같은 항끼리는 {분배법칙}으로 묶을 수 있다 — $m\\sqrt{a}+n\\sqrt{a}$는 {$(m+n)\\sqrt{a}$}와 같다.",
+        "cFrozenAnswers": [
+          "분배법칙",
+          "$(m+n)\\sqrt{a}$"
+        ],
+        "cMarkedSentence": "근호 안이 같은 항끼리는 {분배법칙}으로 묶을 수 있다 — $m\\sqrt{a}+n\\sqrt{a}$는 {$(m+n)\\sqrt{a}$}와 같다.",
+        "cSlotAnswers": [
+          "분배법칙",
+          "$(m+n)\\sqrt{a}$"
+        ],
+        "cStudentSentence": "근호 안이 같은 항끼리는 □으로 묶을 수 있다 — $m\\sqrt{a}+n\\sqrt{a}$는 □와 같다.",
+        "cAnswers": [
+          "분배법칙",
+          "$(m+n)\\sqrt{a}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분배법칙",
+            "equivalentAnswers": [
+              "분배법칙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(m+n)\\sqrt{a}$",
+            "equivalentAnswers": [
+              "$(m+n)\\sqrt{a}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분배법칙"
+          ],
+          [
+            "$(m+n)\\sqrt{a}$"
+          ]
+        ],
+        "proposalFingerprint": "064c7fc924424ab78a63356aea1f0135282413e6c611a110dbd3b7c8bcec48ee"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc8",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "분모를 유리화해도 값이 같은 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분자와 분모에 $0$이 아닌 수를 똑같이 곱하는 것은 {$1$}을 곱하는 것과 같으므로, 분모를 유리화해도 수의 {크기}는 변하지 않는다.",
+        "example": {
+          "prompt": "$\\frac{1}{\\sqrt{3}}$과 $\\frac{\\sqrt{3}}{3}$이 같은 수인 까닭은?",
+          "answer": "$\\frac{\\sqrt{3}}{\\sqrt{3}}$, 곧 $1$을 곱했을 뿐이다"
+        },
+        "studentC": "분자와 분모에 $0$이 아닌 수를 똑같이 곱하는 것은 □을 곱하는 것과 같으므로, 분모를 유리화해도 수의 □는 변하지 않는다.",
+        "answers": [
+          "$1$",
+          "크기"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{\\sqrt{3}}$의 분모를 유리화한 $\\frac{\\sqrt{3}}{3}$이 원래 수와 같은 까닭을 쓰시오.",
+        "bAnswer": "분자와 분모에 똑같이 $\\sqrt{3}$을 곱한 것은 $\\frac{\\sqrt{3}}{\\sqrt{3}}=1$을 곱한 것과 같아 값이 변하지 않기 때문이다.",
+        "bGoal": "유리화해도 값이 같은 까닭 설명하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{\\sqrt{3}}{\\sqrt{3}}=1$을 곱한 것",
+              "$1$을 곱한 것과 같다"
+            ]
+          }
+        ],
+        "bReason": "구체 분수를 주어 곱한 수가 사실상 $1$임을 말하게 했다.",
+        "cDecision": "keep",
+        "cReason": "'$1$'과 '크기' 두 칸이 근거와 결론을 분명히 나눈다.",
+        "learningRole": "reason",
+        "roleReason": "$1$을 곱하는 것이라 값이 불변",
+        "exampleNeeded": true,
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3316,
+        "part": "m3plus",
+        "sourceFingerprint": "b05c83c41ddab0339278eb17243b7fbed6f83dd3d0584d82d04ccd5eac953b2a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3316
+        },
+        "directReview": null,
+        "cFrozenSentence": "분자와 분모에 $0$이 아닌 수를 똑같이 곱하는 것은 □을 곱하는 것과 같으므로, 분모를 유리화해도 수의 □는 변하지 않는다.",
+        "cFrozenDefinition": "분자와 분모에 $0$이 아닌 수를 똑같이 곱하는 것은 {$1$}을 곱하는 것과 같으므로, 분모를 유리화해도 수의 {크기}는 변하지 않는다.",
+        "cFrozenAnswers": [
+          "$1$",
+          "크기"
+        ],
+        "cMarkedSentence": "분자와 분모에 $0$이 아닌 수를 똑같이 곱하는 것은 {$1$}을 곱하는 것과 같으므로, 분모를 유리화해도 수의 {크기}는 변하지 않는다.",
+        "cSlotAnswers": [
+          "$1$",
+          "크기"
+        ],
+        "cStudentSentence": "분자와 분모에 $0$이 아닌 수를 똑같이 곱하는 것은 □을 곱하는 것과 같으므로, 분모를 유리화해도 수의 □는 변하지 않는다.",
+        "cAnswers": [
+          "$1$",
+          "크기"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크기",
+            "equivalentAnswers": [
+              "크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "크기"
+          ]
+        ],
+        "proposalFingerprint": "5093004eecdba85dcb0443adeaf403ea45ec37fae92e7d0697d1a35d0ce5a2bf"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc9",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "분모가 제곱인 수인 근호 안 분수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$\\sqrt{\\frac{5}{9}}=\\frac{\\sqrt{5}}{3}$처럼 근호 안의 분모가 {제곱인 수}이면 그 분모를 근호 {밖}으로 꺼낸다.",
+        "studentC": "$\\sqrt{\\frac{5}{9}}=\\frac{\\sqrt{5}}{3}$처럼 근호 안의 분모가 □이면 그 분모를 근호 □으로 꺼낸다.",
+        "answers": [
+          "제곱인 수",
+          "밖"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\sqrt{\\frac{5}{9}}$를 분모에 근호가 없는 꼴로 나타내고, 분모를 근호 밖으로 꺼낼 수 있었던 까닭을 쓰시오.",
+        "bAnswer": "$\\sqrt{\\frac{5}{9}}=\\frac{\\sqrt{5}}{\\sqrt{9}}=\\frac{\\sqrt{5}}{3}$이다. 분모 $9$가 $3^2$인 제곱인 수라서 $\\sqrt{9}=3$이 되기 때문이다.",
+        "bGoal": "근호 안 분수의 제곱인 분모 꺼내기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{\\sqrt{5}}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9=3^2$",
+              "$9$가 제곱인 수",
+              "$\\sqrt{9}=3$"
+            ]
+          }
+        ],
+        "bReason": "변형 결과와 분모가 제곱인 수라는 조건을 함께 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "조건 '제곱인 수'와 방향 '밖' 두 칸이 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "제곱인 분모를 근호 밖으로 꺼내기",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3317,
+        "part": "m3plus",
+        "sourceFingerprint": "5b84c90f306ab2302bf2f7270e747f4384906c84530bb7ee9a34d16e86836f0f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3317
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\sqrt{\\frac{5}{9}}=\\frac{\\sqrt{5}}{3}$처럼 근호 안의 분모가 □이면 그 분모를 근호 □으로 꺼낸다.",
+        "cFrozenDefinition": "$\\sqrt{\\frac{5}{9}}=\\frac{\\sqrt{5}}{3}$처럼 근호 안의 분모가 {제곱인 수}이면 그 분모를 근호 {밖}으로 꺼낸다.",
+        "cFrozenAnswers": [
+          "제곱인 수",
+          "밖"
+        ],
+        "cMarkedSentence": "$\\sqrt{\\frac{5}{9}}=\\frac{\\sqrt{5}}{3}$처럼 근호 안의 분모가 {제곱인 수}이면 그 분모를 근호 {밖}으로 꺼낸다.",
+        "cSlotAnswers": [
+          "제곱인 수",
+          "밖"
+        ],
+        "cStudentSentence": "$\\sqrt{\\frac{5}{9}}=\\frac{\\sqrt{5}}{3}$처럼 근호 안의 분모가 □이면 그 분모를 근호 □으로 꺼낸다.",
+        "cAnswers": [
+          "제곱인 수",
+          "밖"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱인 수",
+            "equivalentAnswers": [
+              "제곱인 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "밖",
+            "equivalentAnswers": [
+              "밖"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱인 수"
+          ],
+          [
+            "밖"
+          ]
+        ],
+        "proposalFingerprint": "79b018b056a2bbbfe0fe7fc2ea06604a45c533af806d0c1fbd23b49fe3d45bde"
+      }
+    }
+  ]
+}

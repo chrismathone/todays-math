@@ -1,0 +1,1105 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-e5e6-final-1900-1930-input.json",
+  "rows": [
+    {
+      "id": "e6-1-4-1-xc13",
+      "sourceIndex": 1900,
+      "proposalFingerprint": "2cf8c543983fe2d9ef043e8cd0b374be634b3fb50b83dd5bf58503b04b49acf5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "두 수의 차를 구할 때 큰 수에서 작은 수를 빼는 까닭을 설명하시오. $9$와 $4$의 차도 구하시오.",
+        "answer": "큰 수에서 작은 수만큼을 덜어 내면 남은 양이 더 많은 만큼이기 때문이다. $9$와 $4$의 차는 $9-4=5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 수에서 작은 수만큼을 덜어 내고 남은 양이 차이다",
+              "작은 수만큼 빼고 남은 것이 더 많은 양이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$9$와 $4$의 차는 $9$에서 $4$만큼을 {덜어 내고} 남은 양인 {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "덜어 내고",
+            "빼고",
+            "없애고"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "왜 큰 수에서 작은 수를 빼는지 의미를 묻고 예의 값도 확인한다.",
+      "cReason": "긴 구절 암기 대신 예를 두고 짧은 동작어와 값을 답하게 했다."
+    },
+    {
+      "id": "e6-1-4-1-xc14",
+      "sourceIndex": 1901,
+      "proposalFingerprint": "4b55f0d7ad9364d48d36b08b5cd4e53dff2fdeab15cd9b6d711d1293f728d00b",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "$4$가 $8$의 몇 배인지와 $8$이 $4$의 몇 배인지는 {다르다}.",
+        "acceptedAnswers": [
+          [
+            "다르다"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "e6-1-4-1-xc27에서 순서에 따른 차와 몇 배를 함께 묻는다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc27의 B가 같은 내용을 차와 비교하며 더 넓게 다룬다.",
+      "cReason": "$4$와 $8$ 비교 문장이 짧고 '다르다/같지 않다'로 명확해 원문 유지."
+    },
+    {
+      "id": "e6-1-4-1-xc16",
+      "sourceIndex": 1902,
+      "proposalFingerprint": "d4d61770a9bac5a6ab86d9c15700f496464f0ded83fd853c1fab9cdd102252be",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "e6-1-4-1-c2, e6-1-4-1-c3과 중복.",
+        "cloze": "e6-1-4-1-c2, e6-1-4-1-c3과 중복."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c2와 c3의 성질을 숫자만 바꿔 되풀이한다.",
+      "cReason": "뒤 숫자를 이미 읽은 뒤 '차'라는 낱말만 채우는 자명한 문장이다."
+    },
+    {
+      "id": "e6-1-4-1-xc17",
+      "sourceIndex": 1903,
+      "proposalFingerprint": "c1ab639411bd392d785efa795ea6d938fc7a5634e404f752b2c347731467ee8f",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "앞 수가 뒤 수의 몇 배인지를 구할 때 앞 수를 뒤 수로 나누는 까닭을, 뒤 수를 어떻게 보는지와 무엇을 세는지를 넣어 설명하시오. $12$는 $4$의 몇 배인지도 구하시오.",
+        "answer": "뒤 수를 한 묶음으로 보고 앞 수 안에 그 묶음이 몇 번 들어 있는지 세므로 나눗셈을 한다. $12\\div4=3$이므로 $12$는 $4$의 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "뒤 수를 한 묶음(기준)으로 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞 수에 그 묶음이 몇 번 들어 있는지 구하므로 나눗셈이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$배"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$20$은 $5$씩 $4$묶음이므로 $20$은 $5$의 {$4$}배이고, 이를 구하는 계산은 {나눗셈}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "나눗셈",
+            "나누기",
+            "$20\\div5$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원문의 핵심 의미를 묻고 예의 답도 함께 확인한다.",
+      "cReason": "긴 빈칸 구절을 없애고 묶음 관계와 계산 방법을 짧게 답하게 했다."
+    },
+    {
+      "id": "e6-1-4-1-xc18",
+      "sourceIndex": 1904,
+      "proposalFingerprint": "f9b67a3c9b4f2f6e0d7de48fde8ad7219e04de2a7f1e0183e8a4bf46a101d9b9",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$0$이 아닌 두 수가 같을 때 두 수의 차와 한 수를 다른 수로 나눈 값은 각각 얼마인지 말하고, 그 까닭을 설명하시오.",
+        "answer": "차는 $0$이고 나눈 값은 $1$이다. 같은 수를 빼면 남는 것이 없고, 한 수 안에 같은 수가 꼭 한 번 들어 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "차는 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눈 값은 $1$이다",
+              "$1$배이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "뺄셈과 나눗셈 두 비교의 결과를 대응해 묻는다.",
+      "cReason": "$0$이 아니라는 조건이 있고 값 하나를 채우는 짧은 문장이라 원문 유지."
+    },
+    {
+      "id": "e6-1-4-1-xc19",
+      "sourceIndex": 1905,
+      "proposalFingerprint": "aeca9f581425c9b89d1a227761580da0b9551150e1b29453efd7a40962730988",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "연필 한 자루는 $2000$원이고 가방은 $6000$원이다. 가방이 연필보다 얼마나 더 비싼지와 몇 배 비싼지를 각각 어떤 계산으로 알아보는지 쓰고 값도 구하시오.",
+        "answer": "얼마나 더 비싼지는 뺄셈으로 $6000-2000=4000$이므로 $4000$원이고, 몇 배 비싼지는 나눗셈으로 $6000\\div2000=3$이므로 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "더 비싼 정도는 뺄셈으로 구한다",
+              "차를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몇 배는 나눗셈으로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4000$원",
+              "$3$배"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "물건을 몇 개 더 사야 하는지는 {뺄셈}으로, 몇 배 비싼지는 {나눗셈}으로 비교한다.",
+        "acceptedAnswers": [
+          [
+            "뺄셈",
+            "빼기"
+          ],
+          [
+            "나눗셈",
+            "나누기"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "가격 장면으로 두 비교를 한 문제에서 구별하게 한다.",
+      "cReason": "뒤 문장에서 답을 읽지 않도록 두 비교를 모두 빈칸으로 만들었다."
+    },
+    {
+      "id": "e6-1-4-1-xc20",
+      "sourceIndex": 1906,
+      "proposalFingerprint": "454c805ee7aac7a450b6ecc6182a5b8ae01af4742fafb858c7c6c857c44fa649",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "학생 $3$명마다 공 $1$개를 줄 때 학생이 $3$명, $6$명, $9$명으로 늘면 학생 수와 공 수의 차와 학생 수가 공 수의 몇 배인지는 각각 어떻게 변하는지 설명하시오.",
+        "answer": "차는 $2$, $4$, $6$으로 점점 커지고, 학생 수는 공 수의 항상 $3$배로 일정하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "차는 점점 커진다",
+              "차는 $2,4,6$으로 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몇 배는 항상 $3$배로 일정하다",
+              "몇 배는 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "학생 $3$명마다 공 $1$개를 주면 학생이 많아질수록 학생 수와 공 수의 차는 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "커진다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원문 장면을 살려 차와 배의 변화를 모두 묻는다.",
+      "cReason": "학생 $3$명당 공 $1$개 조건이 분명하고 '커진다'로 답이 명확해 원문 유지."
+    },
+    {
+      "id": "e6-1-4-1-xc21",
+      "sourceIndex": 1907,
+      "proposalFingerprint": "5e0a61403b1fa982bec0a30cfaeeb3fb08df8b4e57c2efe884e9351bde667a2b",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "학생 $4$명과 공 $2$개를 한 모둠으로 하여 모둠이 $1$개, $2$개, $3$개로 늘 때, 학생 수가 공 수의 몇 배인지 구하고 모둠 수가 달라도 그 값이 같은 까닭과 나눗셈 비교의 좋은 점을 설명하시오.",
+        "answer": "학생 수는 $4,8,12$, 공 수는 $2,4,6$이고 $4\\div2$, $8\\div4$, $12\\div6$이 모두 $2$이다. 모둠 수가 늘면 두 수가 같은 배로 늘어 몇 배가 같고, 이 일정한 관계를 하나의 수 $2$배로 나타낼 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 $2$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수가 같은 배로 늘어 몇 배가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "일정한 관계를 한 수로 나타낼 수 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "학생 $4$명과 공 $2$개를 한 모둠으로 하면 모둠 수가 달라도 학생 수는 공 수의 항상 {$2$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원문 장면을 구체적 수로 바꾸어 나눗셈 비교의 쓸모를 묻는다.",
+      "cReason": "긴 키워드 빈칸 대신 모둠 장면에서 일정한 배를 직접 구하게 했다."
+    },
+    {
+      "id": "e6-1-4-1-xc25",
+      "sourceIndex": 1908,
+      "proposalFingerprint": "fe6628c402e45d4d1e6ed493614f2a056fbd542ae8ab7b2dae81a42b664f7622",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "큰 수가 작은 수의 몇 배일 때 두 수의 차는 작은 수의 몇 배가 되는지 몇 배와 연결해 설명하시오. $15$는 $5$의 $3$배인 경우에 차도 구하시오.",
+        "answer": "차는 작은 수의 (그 배보다 $1$ 작은) 배이다. 작은 수 하나만큼을 빼고 남기 때문이다. $15-5=10$이므로 $5$의 $2$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 배보다 $1$ 작은 배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "작은 수 하나만큼을 빼고 남기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$은 $5$의 $2$배이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$15$는 $5$의 $3$배이므로 $15$와 $5$의 차는 $5$의 {$2$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어려운 관계라 이유와 확인 예를 질문에서 함께 묻는다.",
+      "cReason": "추상 구절 대신 $3$배에서 $1$ 작은 $2$배를 확인하게 했다."
+    },
+    {
+      "id": "e6-1-4-1-xc27",
+      "sourceIndex": 1909,
+      "proposalFingerprint": "53acced4350bbba3904f6acea1e63f842ddffcd9ed336ff35cecb820a490594f",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$4$와 $12$를 비교할 때 순서를 바꿔도 두 수의 차는 같은지, $12$는 $4$의 몇 배이고 $4$는 $12$의 몇 배인지 구하고 이 결과로 차와 몇 배의 비교 순서에 대해 알 수 있는 점을 설명하시오.",
+        "answer": "차는 어느 순서로 해도 $8$로 같다. $12$는 $4$의 $3$배, $4$는 $12$의 $\\frac{1}{3}$배로 달라서, 몇 배는 기준으로 삼는 수에 따라 달라진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "차는 순서와 관계없이 $8$로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$배와 $\\frac{1}{3}$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "몇 배는 기준이 되는 수에 따라 달라진다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "서로 다르고 $0$이 아닌 두 수의 차는 비교 순서를 바꿔도 {같다}. 그러나 $12$는 $4$의 {$3$}배이고 $4$는 $12$의 {$\\frac{1}{3}$}배이므로 몇 배는 기준에 따라 달라진다.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "변하지 않는다"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "차와 배의 비교 순서를 한 쌍으로 비교하게 한다.",
+      "cReason": "긴 구절 대신 순서를 바꾼 값을 계산해 기준의 영향을 확인한다."
+    },
+    {
+      "id": "e6-1-4-2-xc2",
+      "sourceIndex": 1910,
+      "proposalFingerprint": "81394d897779bfce412bda259bb1c65332a5e12e8cb5b3335dee5ad14d582fdd",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "'$2$와 $7$의 비'를 $:$를 사용하여 비로 쓰고, 이 비에서 기준이 되는 수를 말하시오.",
+        "answer": "'$2$와 $7$의 비'는 말한 순서대로 $2:7$이다. 기준이 되는 수는 뒤에 쓰는 $7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2:7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준이 되는 수는 $7$이다",
+              "$7$이 기준이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "'$2$와 $7$의 비'를 비로 나타내면 {$2:7$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2:7$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원문 예를 질문에 넣어 쓰기와 기준 찾기를 함께 묻는다.",
+      "cReason": "앞/뒤 둘 중 고르는 빈칸을 실제 비를 쓰는 짧은 적용 빈칸으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-2-xc4",
+      "sourceIndex": 1911,
+      "proposalFingerprint": "01245640398b66752ca94ac4502f5d787acfa6ba68bbae3ab0a503f9ed9cf05f",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "revise",
+      "B": null,
+      "C": {
+        "sentence": "'$4$의 $9$에 대한 비'를 쓸 때 기준이 되는 수는 {$9$}이다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "e6-1-4-2-xc22 B와 같은 읽기 규칙이 중복된다. 대체 ID는 e6-1-4-2-xc22이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 읽기를 e6-1-4-2-xc22 B가 두 표현을 대비해 더 깊게 묻는다.",
+      "cReason": "가, 나 문자 규칙을 실제 수로 바꾸고 '~에 대한'이 붙은 수를 찾게 한다."
+    },
+    {
+      "id": "e6-1-4-2-xc6",
+      "sourceIndex": 1912,
+      "proposalFingerprint": "734b05adefb36d6ee25b774a633e4cc0a8a2232ba1130c12cc8e1b1d2b90f1d8",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비 $3:8$에서 비교하는 수와 기준이 되는 수는 각각 어느 수이며, 기호 $:$의 어느 쪽에 쓰는가?",
+        "answer": "비교하는 수는 $3$이고 왼쪽에 쓴다. 기준이 되는 수는 $8$이고 오른쪽에 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 수는 $3$이고 왼쪽에 있다",
+              "$3$은 왼쪽 비교하는 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준이 되는 수는 $8$이고 오른쪽에 있다",
+              "$8$은 오른쪽 기준이 되는 수이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비 $3:8$에서 오른쪽의 $8$은 {기준}이 되는 수이고, 왼쪽의 $3$은 {비교하는} 수이다.",
+        "acceptedAnswers": [
+          [
+            "기준"
+          ],
+          [
+            "비교하는"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "e6-1-4-2-xc7의 왼쪽 위치까지 한 질문에 묶어 중복을 줄인다.",
+      "cReason": "한 가지 위치만 묻던 빈칸을 비교하는 수와 기준 수의 역할 구분으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-2-xc7",
+      "sourceIndex": 1913,
+      "proposalFingerprint": "1d7c4d0acd0b86fb41afa11c53604260e200754aeda6848a7b47aeed4e00e373",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "위치 하나만 묻는 사소한 문장이고 e6-1-4-2-xc6에 합쳐졌다. 대체 ID는 e6-1-4-2-xc6이다.",
+        "cloze": "위치 하나만 묻는 사소한 문장이고 e6-1-4-2-xc6에 합쳐졌다. 대체 ID는 e6-1-4-2-xc6이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc6에서 같은 위치 관계를 이미 묻는다.",
+      "cReason": "왼쪽이라는 한 낱말을 고르는 중복 빈칸이다."
+    },
+    {
+      "id": "e6-1-4-2-xc9",
+      "sourceIndex": 1914,
+      "proposalFingerprint": "5f7d668f71ee892aedfbfa8e163c985c8112603bc4ed3a0335cec7125a963256",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비 $5:3$과 $3:5$는 같은 비인가, 다른 비인가? 비교하는 수와 기준이 되는 수를 이용하여 까닭을 설명하시오.",
+        "answer": "서로 다른 비이다. $5:3$은 $5$를 $3$과 비교하고 $3:5$는 $3$을 $5$와 비교하여 비교하는 수와 기준이 되는 수가 서로 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 다른 비이다",
+              "다른 비이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 수와 기준이 되는 수가 서로 다르다",
+              "기준이 되는 수가 $3$과 $5$로 다르다",
+              "자리가 서로 바뀌었다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비 $5:3$에서 기준이 되는 수는 {$3$}이고, 비 $3:5$에서 기준이 되는 수는 {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "결론과 함께 까닭을 요구해 단순 낱말 맞히기를 피한다.",
+      "cReason": "서로 다른 비라는 낱말 대신 두 비의 기준 수를 직접 찾게 한다."
+    },
+    {
+      "id": "e6-1-4-2-xc10",
+      "sourceIndex": 1915,
+      "proposalFingerprint": "e00d08a94205aa0562a347b78edb6a7394599ccea91023a8168a6a7a92eebb05",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "'$4$에 대한 $9$의 비'를 $:$를 사용하여 쓰시오. $4$와 $9$ 중 어느 수를 앞에 쓰고 어느 수를 뒤에 쓰는지, 기준이 되는 수의 위치를 이용해 설명하시오.",
+        "answer": "$9:4$이다. '$4$에 대한'이므로 $4$가 기준이라 뒤에 쓰고, 비교하는 $9$를 앞에 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$9:4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준인 $4$를 뒤에 쓴다",
+              "$4$가 기준이므로 뒤에 온다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "'$4$에 대한 $9$의 비'를 비로 나타내면 {$9:4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$9:4$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "쓰는 결과와 기준 위치의 까닭을 함께 묻는다.",
+      "cReason": "기준이 뒤에 오는 규칙을 짧은 비 쓰기로 확인한다."
+    },
+    {
+      "id": "e6-1-4-2-xc11",
+      "sourceIndex": 1916,
+      "proposalFingerprint": "b356d5fb4745bbaedfa63373cf299cee1b5fe502fc0316b2ac106618a3ece58d",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "비 $6:2$는 $6$과 $2$를 뺄셈으로 비교한 것인가, 다른 방법으로 비교한 것인가? 어떤 방법인지 설명하고 결과도 쓰시오.",
+        "answer": "뺄셈으로 구한 차를 나타내는 것이 아니다. $6$이 $2$의 몇 배인지 비교한 것이고, $6$은 $2$의 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "뺄셈의 차가 아니라 몇 배인지 비교한 것이다",
+              "차가 아니라 배 관계를 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$은 $2$의 $3$배이다",
+              "$3$배이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비 $6:2$는 $6$이 $2$의 몇 배인지를 보는 것이지, 두 수를 빼서 구한 {차}를 나타내는 것이 아니다.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "뺄셈과 비의 혼동을 막으면서 배 값까지 구하게 한다.",
+      "cReason": "비와 차를 대비하는 짧은 문장으로 조건이 완결되고 빈칸 답이 차 하나로 분명하다."
+    },
+    {
+      "id": "e6-1-4-2-xc12",
+      "sourceIndex": 1917,
+      "proposalFingerprint": "c5c466df7c4ac569f474e8f96302f4365f4d2d994aa99c96dc93d7313f90335e",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "전체에 대한 부분의 비를 쓸 때 기준이 되는 양은 무엇이고 두 수를 어떤 순서로 쓰는가? 전체가 $10$명이고 그중 $4$명이 안경을 썼을 때, 전체에 대한 안경을 쓴 학생 수의 비를 쓰시오.",
+        "answer": "전체가 기준이므로 부분의 수를 앞에, 전체의 수를 뒤에 쓴다. 따라서 $4:10$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준은 전체이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "부분을 앞에 전체를 뒤에 쓴다",
+              "$4:10$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "전체가 $10$명이고 안경을 쓴 학생이 $4$명일 때, 전체에 대한 안경을 쓴 학생 수의 비는 {$4:10$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4:10$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 규칙을 먼저 묻고 구체적인 수로 확인한다.",
+      "cReason": "기준 낱말 빈칸을 실제 비 쓰기로 바꾸어 순서까지 확인한다."
+    },
+    {
+      "id": "e6-1-4-2-xc13",
+      "sourceIndex": 1918,
+      "proposalFingerprint": "73dc7464acad40414f669601db9eeeefbbecd62eb7bf8f369a1f75414727cae0",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "전체가 $10$명이고 그중 $4$명이 안경을 썼다. 안경을 쓰지 않은 나머지 학생 수에 대한 안경을 쓴 학생 수의 비를 쓰고, 기준이 되는 수를 말하시오.",
+        "answer": "나머지 학생 수 $6$명이 기준이므로 비는 $4:6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준은 나머지 학생 수 $6$명이다",
+              "$6$이 기준이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4:6$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "전체가 $10$명이고 안경을 쓴 학생이 $4$명일 때, 안경을 쓰지 않은 나머지 학생 수에 대한 안경을 쓴 학생 수의 비는 {$4:6$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4:6$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "전체에 대한 비와 달리 나머지를 구해야 해서 구별이 필요하다.",
+      "cReason": "기준이 나머지의 수라는 말을 값을 구하는 문제로 풀어 쓴다."
+    },
+    {
+      "id": "e6-1-4-2-xc15",
+      "sourceIndex": 1919,
+      "proposalFingerprint": "b0555bb31d48998a73e1bceb8729cebf4845a9e96f3c6c28a37ff221b3c51002",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "같은 단위로 잰 $6\\,\\text{cm}$과 $2\\,\\text{cm}$의 비를 쓸 때 단위를 쓰지 않고 수만 쓰는 까닭을 설명하고, 비를 쓰시오.",
+        "answer": "비는 두 양이 몇 배인지의 관계만 나타내므로 단위를 쓰지 않아도 된다. 비는 $6:2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비는 몇 배인지의 관계만 나타낸다",
+              "단위 없이 배 관계만 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6:2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "같은 단위로 잰 $6\\,\\text{cm}$과 $2\\,\\text{cm}$의 비를 쓸 때는 단위를 쓰지 않고 {$6:2$}로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$6:2$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "까닭을 구체적으로 지정하고 구체적인 비도 함께 쓰게 한다.",
+      "cReason": "긴 구절 외우기를 단위 없는 비 쓰기로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-2-xc16",
+      "sourceIndex": 1920,
+      "proposalFingerprint": "577fae4708e6e83db96bf83ce3d03bb6de1bfa4d06816e01884f515cdbc11e2b",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$2\\,\\text{m}$와 $50\\,\\text{cm}$의 비를 쓰려고 한다. 비를 쓰기 전에 어떻게 해야 하는지 말하고, 비를 쓰시오.",
+        "answer": "두 길이를 같은 단위로 바꾼 뒤 비를 쓴다. $2\\,\\text{m}=200\\,\\text{cm}$이므로 $200:50$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 단위로 바꾼다",
+              "단위를 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$200:50$",
+              "$2:0.5$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$2\\,\\text{m}$와 $50\\,\\text{cm}$의 비는 단위를 $\\text{cm}$로 같게 하면 {$200:50$}이다.",
+        "acceptedAnswers": [
+          [
+            "$200:50$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위 맞추기와 수 변환을 한 문항에서 확인한다.",
+      "cReason": "같은 종류의 양이라는 낱말 대신 단위 변환을 직접 계산하게 한다."
+    },
+    {
+      "id": "e6-1-4-2-xc17",
+      "sourceIndex": 1921,
+      "proposalFingerprint": "d79ad185c76f15e1c3dc62177e3506567c854a9d06e4570702b94f7e6f7f71ec",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비 $3:5$를 '$3$ 대 $5$', '$3$과 $5$의 비', '$5$에 대한 $3$의 비', '$3$의 $5$에 대한 비'로 읽을 수 있다. 각 읽기에서 비교하는 수와 기준이 되는 수는 각각 어느 수인지, 읽는 방법이 달라도 같은지 다른지 쓰시오.",
+        "answer": "모든 읽기에서 비교하는 수는 $3$이고 기준이 되는 수는 $5$이다. 읽는 방법이 달라도 두 수의 자리는 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 수는 $3$이고 기준이 되는 수는 $5$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "읽는 방법이 달라도 같다",
+              "모든 읽기에서 같은 자리이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비 $3:5$를 '$3$ 대 $5$', '$3$과 $5$의 비', '$5$에 대한 $3$의 비'로 읽어도 기준이 되는 수는 모두 {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "읽기를 모두 질문에 주고 기준 위치의 변하지 않음을 판단하게 한다.",
+      "cReason": "긴 낱말 구절을 하나의 수 빈칸으로 바꾸어 확인한다."
+    },
+    {
+      "id": "e6-1-4-2-xc21",
+      "sourceIndex": 1922,
+      "proposalFingerprint": "4e221f7bbea0bc6b2045a1b72ecafae6f808c6ff2c59eb73ceec5f52806b0789",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "xc10과 같은 실수를 반복한다. 대체 ID는 e6-1-4-2-xc10이다.",
+        "cloze": "xc10과 같은 실수를 반복한다. 대체 ID는 e6-1-4-2-xc10이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc10이 같은 오류를 일반 규칙과 함께 다룬다.",
+      "cReason": "기준이 되는 수와 비교하는 수를 바꾼 잘못이라는 긴 구절을 외우게 한다."
+    },
+    {
+      "id": "e6-1-4-2-xc22",
+      "sourceIndex": 1923,
+      "proposalFingerprint": "95abeb1005b22537d58f2c7ae56ca61b864a1c144c35930a6dadf47dbefdcb9e",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "exclude",
+      "B": {
+        "prompt": "'$3$의 $8$에 대한 비'와 '$3$에 대한 $8$의 비'에서 각각 기준이 되는 수는 어느 수이며, 각각 비를 어떻게 쓰는가?",
+        "answer": "'$3$의 $8$에 대한 비'는 기준이 $8$이고 $3:8$이다. '$3$에 대한 $8$의 비'는 기준이 $3$이고 $8:3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "'$3$의 $8$에 대한 비'는 기준 $8$이고 $3:8$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "'$3$에 대한 $8$의 비'는 기준 $3$이고 $8:3$이다"
+            ]
+          }
+        ]
+      },
+      "C": null,
+      "exclusions": {
+        "cloze": "C는 xc4와 xc10에 같은 규칙이 있다. 대체 ID는 e6-1-4-2-xc4, e6-1-4-2-xc10이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 표현을 한 질문에 대비해 순서 혼동을 직접 다룬다.",
+      "cReason": "같은 규칙을 xc4와 xc10 C가 수로 이미 묻는다."
+    },
+    {
+      "id": "e6-1-4-2-xc25",
+      "sourceIndex": 1924,
+      "proposalFingerprint": "f118c99a13d291114e99340aa075100f563ccd9a806cab17032d31aaea212f51",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비 $5:5$는 비교하는 수와 기준이 되는 수가 어떤 관계라는 뜻인가? 이때 비교하는 수는 기준이 되는 수의 몇 배인지 쓰시오.",
+        "answer": "비교하는 수와 기준이 되는 수가 같다는 뜻이다. 비교하는 수는 기준이 되는 수의 $1$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$배이다",
+              "$1$배"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비 $5:5$에서 비교하는 수는 기준이 되는 수의 {$1$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "자명한 낱말 빈칸을 같음과 배 관계로 나누어 묻는다.",
+      "cReason": "같다는 낱말 대신 값 1배를 확인한다."
+    },
+    {
+      "id": "e6-1-4-2-xc27",
+      "sourceIndex": 1925,
+      "proposalFingerprint": "b12844570d078ee5184f1d26acae2515b415acdfceb9fc4ac82c75095fff40ac",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "어떤 두 양의 비가 $2:3$이라고만 알려 주었다. 이 비만으로 알 수 있는 것과 알 수 없는 것을 각각 쓰시오.",
+        "answer": "두 양이 서로 몇 배인지의 관계는 알 수 있지만, 각 양의 실제 크기는 알 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 양의 배 관계는 알 수 있다",
+              "한 양이 다른 양의 몇 배인지 알 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 양의 실제 크기는 알 수 없다",
+              "각각 얼마인지는 알 수 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비 $2:3$만으로는 두 양이 각각 얼마인지, 즉 {실제 크기}는 알 수 없다.",
+        "acceptedAnswers": [
+          [
+            "실제 크기",
+            "실제 양",
+            "각각의 크기"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "알 수 있는 것과 없는 것을 대비해 비의 의미를 확인한다.",
+      "cReason": "두 빈칸의 긴 낱말을 하나의 의미 있는 빈칸으로 줄인다."
+    },
+    {
+      "id": "e6-1-4-3-xc3",
+      "sourceIndex": 1926,
+      "proposalFingerprint": "f52cc5564623018302b2758221dfa3d9e46fe4844a02947b3f8f7cf2051ed0dc",
+      "learningRole": "naming",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "비 $3:5$에서 기준량과 비교하는 양은 각각 어느 수인지 쓰고, 비에서 기준량이 놓이는 자리를 설명하시오.",
+        "answer": "기준량은 $5$, 비교하는 양은 $3$이다. 기호 $:$의 오른쪽 수가 기준량이고 왼쪽 수가 비교하는 양이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량은 $5$",
+              "$5$가 기준량"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 양은 $3$",
+              "$3$이 비교하는 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "기호 $:$의 오른쪽이 기준량",
+              "오른쪽 수가 기준량"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비에서 기호 $:$의 {오른쪽 수}가 기준량, 왼쪽 수가 비교하는 양이다.",
+        "acceptedAnswers": [
+          [
+            "오른쪽 수"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "약속이지만 비율 계산의 출발점이라 예와 함께 묻는다.",
+      "cReason": "오른쪽/왼쪽 약속을 묻는 짧은 낱말 문장으로 조건이 명확해 그대로 둔다."
+    },
+    {
+      "id": "e6-1-4-3-xc8",
+      "sourceIndex": 1927,
+      "proposalFingerprint": "62fdb09467c5da0d594a42081e79bf0d90178f7f0b5ce71ce8750891ea8fb0bd",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "기준량이 $0$보다 클 때, 비교하는 양과 기준량의 크기가 어떠하면 비율이 $1$인지 쓰고, 비 $7:7$의 비율을 구하시오.",
+        "answer": "비교하는 양과 기준량이 같으면 비율이 $1$이다. $7:7$의 비율은 $\\frac{7}{7}=1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양과 기준량이 같다",
+              "두 양이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$",
+              "$\\frac{7}{7}=1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "기준량이 $0$보다 클 때, 비교하는 양과 기준량이 {같으면} 비율은 $1$이다.",
+        "acceptedAnswers": [
+          [
+            "같으면"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "조건과 결과를 일반적으로 묻고 예로 확인한다.",
+      "cReason": "같다/작다/크다 비교가 명확하고 기준량 0 초과 조건도 있어 그대로 둔다."
+    },
+    {
+      "id": "e6-1-4-3-xc9",
+      "sourceIndex": 1928,
+      "proposalFingerprint": "e0a3cd90992e369105e45df709ebc0407cf83c9df94ab22a498bcf5a23226017",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "기준량이 $0$보다 클 때, 비율이 $1$보다 작으면 비교하는 양과 기준량 중 어느 쪽이 더 큰지, 비율이 $1$보다 크면 어느 쪽이 더 큰지 각각 쓰시오.",
+        "answer": "비율이 $1$보다 작으면 비교하는 양이 기준량보다 작다. 비율이 $1$보다 크면 비교하는 양이 기준량보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 $1$보다 작으면 비교하는 양이 기준량보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 $1$보다 크면 비교하는 양이 기준량보다 크다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "기준량이 $0$보다 클 때, 비교하는 양이 기준량보다 {작으면} 비율은 $1$보다 작다.",
+        "acceptedAnswers": [
+          [
+            "작으면",
+            "작다면"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": "기준량이 $0$보다 클 때, 비교하는 양이 기준량보다 {작으면} 비율은 $1$보다 작다.",
+      "coreReason": "원문 일반 설명에 기준량이 $0$보다 크다는 조건이 빠져 있다.",
+      "bReason": "xc10과 같은 내용이라 한 문항에서 양쪽을 함께 묻는다.",
+      "cReason": "원문에 빠진 기준량 0 초과 조건을 넣어 비교 문장을 정확히 했다."
+    },
+    {
+      "id": "e6-1-4-3-xc10",
+      "sourceIndex": 1929,
+      "proposalFingerprint": "f88527b2c397b7aad5c5d79158c07af7f3445f586c7d7882763237cd12b3202d",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "기준량이 $0$보다 클 때, 비교하는 양이 기준량보다 {크면} 비율은 $1$보다 크다.",
+        "acceptedAnswers": [
+          [
+            "크면"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "xc9 B와 중복이며 대체 ID는 e6-1-4-3-xc9이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc9 B가 작은 경우와 큰 경우를 함께 묻는 거울 문항이라 중복이다.",
+      "cReason": "기준량 0 초과 조건이 있는 명확한 크기 비교 문장이라 그대로 둔다."
+    }
+  ]
+}

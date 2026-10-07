@@ -1,0 +1,1091 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-middle-final-3500-3525-input.json",
+  "rows": [
+    {
+      "id": "m3-04-03-xc3",
+      "sourceIndex": 3500,
+      "proposalFingerprint": "fae8ddc42c08ed8376dfd29931949d4676efbcb8366a8b23f8caf44516d11835",
+      "normalizedHash": "0e03321d05d69eb3934395135c67d63ca68dbe94269d34a4667d6905fca4ec76",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$a>0$일 때 $y=ax^2$의 최솟값과 그 값을 갖는 $x$의 값을 쓰고, 최댓값이 있는지 답하시오.",
+        "answer": "$x=0$일 때 최솟값 $0$을 갖고, 최댓값은 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "최솟값 $0$",
+              "최솟값은 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최댓값은 없다",
+              "최댓값이 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$a>0$일 때 $y=ax^2$은 $x=0$에서 최솟값 {$0$}을 가지며 {최댓값}을 갖지 않는다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "최댓값"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$a$의 조건을 밝히고 최솟값, 그때의 $x$, 최댓값 유무를 함께 묻게 했다.",
+      "cReason": "$a>0$ 조건이 보이고 최솟값과 없는 값을 채우는 짧은 빈칸이다."
+    },
+    {
+      "id": "m3-04-03-xc5",
+      "sourceIndex": 3501,
+      "proposalFingerprint": "d85ddc611f3350e326eea1b9929e9b171c3ed437304d43b19248da09ce3adda3",
+      "normalizedHash": "9fc5fb03cf1e72e84438e685bcdf9d70f181df908631c36dc0bb53a75b1efe70",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$y=(x-2)^2+1$의 최솟값을 $2$라고 답한 것이 틀린 까닭을 쓰고, 최솟값과 그 값을 갖는 $x$의 값을 바르게 쓰시오.",
+        "answer": "$2$는 최솟값을 갖게 하는 $x$의 값이고, 최솟값은 꼭짓점 $(2,\\ 1)$의 $y$좌표인 $1$이다. 즉 $x=2$일 때 최솟값 $1$을 갖는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$는 $x$의 값",
+              "$2$는 꼭짓점의 $x$좌표"
+            ]
+          },
+          {
+            "anyOf": [
+              "최솟값은 $1$",
+              "최솟값 $1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이차함수의 최솟값(최댓값)은 {$y$}의 값이다. 꼭짓점이 $(p,\\ q)$이면 최솟값(최댓값)은 {$q$}이고, 그 값을 갖게 하는 $x$의 값은 {$p$}이다.",
+        "acceptedAnswers": [
+          [
+            "$y$"
+          ],
+          [
+            "$q$"
+          ],
+          [
+            "$p$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$x$의 값과 최솟값을 혼동하는 오류를 구체 식으로 드러내야 해 예를 넣었다.",
+      "cReason": "원문 뒤 절이 '$q$가 최솟값'이라고 답을 보여 주어 꼭짓점 좌표로 묻도록 고쳤다."
+    },
+    {
+      "id": "m3-04-03-xc6",
+      "sourceIndex": 3502,
+      "proposalFingerprint": "799efd66ed9766f3b8d0622ac8660d5e051c30c49a2998c444fdc8a0b557726f",
+      "normalizedHash": "08225dffd24c0c7f6db97886921305eb67f369619d378dd8c7eceefb74575fca",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "최솟값이 $m$인 이차함수의 함숫값은 $m$과 비교하여 어떤 범위에 있는지 쓰고, 그 까닭을 최솟값의 뜻으로 쓰시오.",
+        "answer": "모든 함숫값은 $m$ 이상이다. 최솟값은 함숫값 가운데 가장 작은 값이므로 $m$보다 작은 함숫값은 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$m$ 이상",
+              "$m$보다 크거나 같다",
+              "$y\\ge m$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최솟값이 가장 작은 함숫값",
+              "$m$보다 작은 함숫값이 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "최솟값이 $m$인 이차함수의 함숫값은 모두 {$m$ 이상}이다 — 최솟값은 함숫값 가운데 가장 {작은} 값이기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$m$ 이상"
+          ],
+          [
+            "작은"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "범위와 그 근거인 최솟값의 뜻을 함께 답하게 해 단순 암기를 피했다.",
+      "cReason": "범위와 이유를 하나씩 채우는 짧은 빈칸이며 지칭이 분명하다."
+    },
+    {
+      "id": "m3-04-03-xc7",
+      "sourceIndex": 3503,
+      "proposalFingerprint": "b42219358797cc4180bcbadb2dcb1f71c3f1326fb4a97f861e89eaf364965c6b",
+      "normalizedHash": "f4f33ceb2da9152373d1d5297fe6e81c7eb2447356a6ddb3e51d7cd93ae0f5fb",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$y=a(x-p)^2+q$에서 $(x-p)^2$의 값의 범위를 이용하여, $y$가 가장 크거나 가장 작아지는 $x$의 값과 그때의 $y$의 값을 까닭과 함께 쓰시오.",
+        "answer": "$(x-p)^2$은 늘 $0$ 이상이고 $x=p$일 때 가장 작은 값 $0$이 되므로, 이때 $a(x-p)^2=0$이 되어 $y=q$이다. 따라서 $x=p$일 때 $y$가 $q$로 가장 크거나 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x=p$일 때 $(x-p)^2=0$",
+              "$(x-p)^2$의 가장 작은 값이 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=q$",
+              "그때 $y$의 값은 $q$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$y=a(x-p)^2+q$에서 $(x-p)^2$은 늘 $0$ 이상이므로 {$x=p$}일 때 $y$가 {$q$}가 되어 가장 크거나 작다.",
+        "acceptedAnswers": [
+          [
+            "$x=p$"
+          ],
+          [
+            "$q$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c3의 결과를 제곱이 $0$ 이상이라는 근거로 설명하게 하여 목표를 구분했다.",
+      "cReason": "제곱이 $0$ 이상이라는 근거가 보여 $x=p$, $q$를 추론하는 빈칸이 된다."
+    },
+    {
+      "id": "m3-04-03-xc8",
+      "sourceIndex": 3504,
+      "proposalFingerprint": "addc6cd5fd1abded702c7935f9dd08a9fd2063cf998620edb2a856b6d275fd10",
+      "normalizedHash": "4e18aefdcabb1e6330be4db4924c9fb4abf2d04fe00c188dbcf6f07d0e50d7bd",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "볼록 방향에 따른 최댓값·최솟값 유무는 c3·c4에서 묻고, 여기서는 '하나만'이라는 개수만 남는다."
+      },
+      "C": {
+        "sentence": "$x$의 범위가 실수 전체일 때, 이차함수는 볼록한 방향에 따라 최댓값과 최솟값 가운데 {하나만} 갖는다.",
+        "acceptedAnswers": [
+          [
+            "하나만"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "볼록 방향에 따른 최댓값·최솟값 유무는 c3·c4에서 묻고, 여기서는 '하나만'이라는 개수만 남는다.",
+      "cReason": "$x$의 범위 조건이 보이는 한 칸짜리 짧은 정리 빈칸으로 유용하다."
+    },
+    {
+      "id": "m3-04-03-xc9",
+      "sourceIndex": 3505,
+      "proposalFingerprint": "85bef27a9bee01a358dbecfc4e2c3e76bed89b9a3918441659f4a8545269594b",
+      "normalizedHash": "a413eff1f445759f1246049661f5b4eea25eddd5568c12dfe64757988e71f11c",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$a>0$인 $y=a(x-p)^2+q$에서 $p$, $q$는 그대로 두고 $a$의 값만 바꾸면 최솟값은 어떻게 되는가? $a$가 그래프의 무엇을 바꾸는지와 함께 까닭을 쓰시오.",
+        "answer": "최솟값은 $a$와 상관없이 $q$로 그대로이다. $a$는 그래프의 폭만 바꾸고 꼭짓점 $(p,\\ q)$는 바꾸지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "최솟값은 $q$로 그대로",
+              "최솟값은 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$는 폭만 바꾼다",
+              "$a$는 그래프의 폭을 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점은 그대로",
+              "꼭짓점의 $y$좌표가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$y=a(x-p)^2+q$($a>0$)의 최솟값은 $a$의 크기와 상관없이 {$q$}이다 — $a$는 그래프의 {폭}만 바꾼다.",
+        "acceptedAnswers": [
+          [
+            "$q$"
+          ],
+          [
+            "폭"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "폭과 최솟값의 관계를 $a$만 바뀌는 상황으로 특정해 이유를 묻게 했다.",
+      "cReason": "$a>0$ 조건이 있고 $q$와 '폭'을 채우는 빈칸이 분명하다."
+    },
+    {
+      "id": "m3-04-03-xc10",
+      "sourceIndex": 3506,
+      "proposalFingerprint": "d88c5aaa486e0289b74decaf08ceedd84aa0b023efb46c950b38c001e54f808e",
+      "normalizedHash": "dbbc2b649f02927de8011c0e7fe1ac1a9a3bd1634a6036662d1e75d386c4ce36",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$y=x^2-6x+10$의 최솟값이 상수항 $10$이 아닌 까닭을 쓰시오. 이 식에서 $10$은 $x$가 어떤 값일 때의 함숫값인지도 쓰시오.",
+        "answer": "$10$은 $x=0$일 때의 함숫값이다. $y=(x-3)^2+1$이므로 꼭짓점의 $x$좌표는 $0$이 아닌 $3$이고, 최솟값은 꼭짓점의 $y$좌표인 $1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$은 $x=0$일 때의 함숫값",
+              "$x=0$일 때 $y=10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최솟값은 $1$",
+              "꼭짓점의 $y$좌표 $1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$a>0$인 $y=ax^2+bx+c$에서 $c$는 {$x=0$일 때의 함숫값}이다 — 최솟값은 {꼭짓점의 $y$좌표}이고, 꼭짓점의 $x$좌표가 $0$일 때만 $c$와 같다.",
+        "acceptedAnswers": [
+          [
+            "$x=0$일 때의 함숫값"
+          ],
+          [
+            "꼭짓점의 $y$좌표"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "상수항을 최솟값으로 착각하는 오류는 구체 식이 있어야 드러나 예를 넣었다.",
+      "cReason": "$c$의 뜻과 최솟값의 위치를 대비하는 빈칸이며 조건 $a>0$이 보인다."
+    },
+    {
+      "id": "m3-04-03-xc11",
+      "sourceIndex": 3507,
+      "proposalFingerprint": "70afde1d74ed3d1b2505567d792c16caeadd48e40f8ba0ecf96c2c834def8e02",
+      "normalizedHash": "82c0057aef44bb10f1858a49a2ef56b54505e7fd30e831c220e420448cfba077",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$y=-(x-1)^2+k$의 최댓값이 $5$일 때 상수 $k$의 값을 구하고, 그렇게 구할 수 있는 까닭을 꼭짓점과 관련지어 쓰시오.",
+        "answer": "$k=5$이다. 위로 볼록한 그래프의 꼭짓점 $(1,\\ k)$의 $y$좌표 $k$가 최댓값이므로 $k=5$로 놓는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$k=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 $y$좌표가 최댓값",
+              "꼭짓점의 $y$좌표 $k$가 최댓값"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이차함수의 최댓값이나 최솟값이 주어지면 {꼭짓점의 $y$좌표}를 그 값과 같게 놓아 식 속의 모르는 {상수}를 구한다.",
+        "acceptedAnswers": [
+          [
+            "꼭짓점의 $y$좌표"
+          ],
+          [
+            "상수"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'꼭짓점의 $y$좌표=최댓값'으로 식을 세우는 절차를 구체 식으로 보여야 해 예를 넣었다.",
+      "cReason": "'모르는 상수' 빈칸은 미지수·문자 등으로 답이 갈려 핵심 낱말만 비웠다."
+    },
+    {
+      "id": "m3-04-03-xc13",
+      "sourceIndex": 3508,
+      "proposalFingerprint": "07331c0c5ff0b95589358fa88cc27cfc1fb4bd058dd54867407d53267a9ff840",
+      "normalizedHash": "07df452fce42add62d6b42b16b8903f8de20ddd79757196a92b969d83f161440",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "차가 $6$인 두 수를 $x$, $x+6$이라 하면 두 수의 곱은 $x(x+6)=(x+3)^2-9$이다. 곱이 가장 작아지는 $x$의 값과 그때의 곱을 구하고, 그때 두 수의 합을 쓰시오.",
+        "answer": "$x=-3$일 때 $(x+3)^2=0$이 되어 곱이 가장 작은 값 $-9$가 된다. 두 수는 $-3$, $3$이고 합은 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x=-3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱의 최솟값 $-9$",
+              "가장 작은 곱은 $-9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "합은 $0$",
+              "합이 $0$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "차가 일정한 두 수의 곱은 한 수를 $x$로 놓으면 $x$의 {이차함수}가 되고, 두 수의 합이 {$0$}일 때 가장 작다.",
+        "acceptedAnswers": [
+          [
+            "이차함수"
+          ],
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "합이 $0$일 때 곱이 가장 작다는 일반 사실을 구체 식으로 확인하게 했다.",
+      "cReason": "'합이 $0$일 때'를 통째로 비워 문장 범위가 모호해 수만 비웠다."
+    },
+    {
+      "id": "m3-04-03-xc14",
+      "sourceIndex": 3509,
+      "proposalFingerprint": "4587fb59977e38238632f0336c5e4dc87be6cd1d470e1bf80725d0afdf01801d",
+      "normalizedHash": "efceb70bc461f85bc175b9e6cfe8d6a85d91ff2c0224c5283beb2b856077de6b",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "어떤 함수에서 수 $M$이 최댓값이 되려면 만족해야 할 조건을 모두 쓰시오.",
+        "answer": "모든 함숫값이 $M$ 이하이고, 함숫값이 실제로 $M$이 되는 $x$의 값이 있어야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모든 함숫값이 $M$ 이하",
+              "$M$보다 큰 함숫값이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "함숫값이 $M$이 되는 $x$가 있다",
+              "실제로 $M$을 갖는 $x$의 값이 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$M$이 최댓값이려면 모든 함숫값이 {$M$ 이하}이고, 실제로 함숫값이 $M$이 되는 {$x$의 값}이 있어야 한다.",
+        "acceptedAnswers": [
+          [
+            "$M$ 이하"
+          ],
+          [
+            "$x$의 값"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "제목이 조건 개수를 드러내어 조건 자체를 답하게 바꾸었다.",
+      "cReason": "두 조건을 하나씩 채우는 짧은 빈칸이며 $M$의 뜻이 문장 안에 있다."
+    },
+    {
+      "id": "m3-04-03-xc15",
+      "sourceIndex": 3510,
+      "proposalFingerprint": "e5372c4ca3aafce69974993b8b56d004b64a06f27dd360db6399a5862fc1617d",
+      "normalizedHash": "59ea2136113ecb9565b92b4333f85e0cf54a933372faff5ea35be3ae13da7614",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "최솟값이 $m$인 함수의 모든 함숫값에 $-1$을 곱하여 새 함수를 만들었다. 새 함수의 최댓값은 얼마인지 쓰고, 그 까닭을 함숫값의 대소 관계로 쓰시오.",
+        "answer": "$-m$이다. $-1$을 곱하면 대소 관계가 반대가 되어 원래 가장 작던 함숫값 $m$이 새 함수에서 가장 큰 값 $-m$이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$-m$"
+            ]
+          },
+          {
+            "anyOf": [
+              "대소 관계가 반대가 된다",
+              "가장 작은 값이 가장 큰 값이 된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "최솟값이 $m$인 함수의 모든 함숫값에 {$-1$}을 곱하면 대소 관계가 반대가 되어, 새 함수의 {최댓값}이 $-m$이다.",
+        "acceptedAnswers": [
+          [
+            "$-1$"
+          ],
+          [
+            "최댓값"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "대소 관계가 뒤집히는 이유를 요구해 값만 맞히는 문제를 피했다.",
+      "cReason": "'$-1$을 곱하면'을 통째로 비워 범위가 모호해 곱하는 수만 비웠다."
+    },
+    {
+      "id": "m3-04-03-xc16",
+      "sourceIndex": 3511,
+      "proposalFingerprint": "d503045672af0214ce3397d75588fb44f7d3369c7ead683c16bbb481ad08d324",
+      "normalizedHash": "f40ce52ad15e4748e1da37c7b426d2b18addd7b750213c0dae388b6f86840f02",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "아래로 볼록한 이차함수의 그래프를 $y$축 방향으로 $n$만큼 평행이동할 때와 $x$축 방향으로 평행이동할 때, 최솟값은 각각 어떻게 되는지 까닭과 함께 쓰시오.",
+        "answer": "$y$축 방향으로 $n$만큼 옮기면 꼭짓점의 $y$좌표가 $n$만큼 바뀌므로 최솟값도 $n$만큼 바뀐다. $x$축 방향으로 옮기면 꼭짓점의 $y$좌표가 그대로이므로 최솟값도 그대로이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$y$축 방향이면 최솟값이 $n$만큼 바뀐다",
+              "$y$축 방향이면 최솟값에 $n$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$축 방향이면 최솟값은 그대로",
+              "$x$축 방향이면 최솟값이 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 $y$좌표",
+              "함숫값이 $n$만큼 바뀐다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "그래프를 $y$축 방향으로 $n$만큼 옮기면 최솟값도 {$n$}만큼 바뀌지만, $x$축 방향으로 옮기면 최솟값은 {그대로}이다.",
+        "acceptedAnswers": [
+          [
+            "$n$"
+          ],
+          [
+            "그대로"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 방향의 이동을 대비하고 꼭짓점의 $y$좌표를 근거로 쓰게 했다.",
+      "cReason": "이동 방향이 문장에 있어 $n$과 '그대로'를 대비하는 짧은 빈칸이다."
+    },
+    {
+      "id": "m3-04-03-xc17",
+      "sourceIndex": 3512,
+      "proposalFingerprint": "4c36d07f15a30e2812a38abcf4689e1b87cf889ed43d4e18a986dd4bfac254ac",
+      "normalizedHash": "1f0e07ceea2dc9c26bcad0d06768ae34aa724c99bd1a59e562baee9ec4cffab9",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "둘레가 $20$인 직사각형의 가로를 $x$라 할 때, 넓이를 $x$의 식으로 나타내고 넓이가 가장 클 때의 가로와 세로의 길이를 구하시오. 그때 가로와 세로는 어떤 관계인가?",
+        "answer": "세로는 $10-x$이므로 넓이는 $y=x(10-x)=-(x-5)^2+25$이다. $x=5$일 때 넓이가 가장 크고, 가로와 세로가 모두 $5$로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$y=x(10-x)$",
+              "$y=-x^2+10x$",
+              "$y=-(x-5)^2+25$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로 $5$, 세로 $5$",
+              "$x=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로와 세로가 같다",
+              "정사각형"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "둘레가 정해진 직사각형은 가로를 $x$로 놓아 넓이를 {$x$의 이차함수}로 나타내면, 넓이가 가장 클 때 가로와 세로가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$x$의 이차함수"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "넓이를 이차함수로 세우는 과정이 보이도록 둘레가 정해진 구체 직사각형을 주었다.",
+      "cReason": "식의 종류와 결론 관계를 채우는 빈칸이며 둘레 조건이 보인다."
+    },
+    {
+      "id": "m3-04-03-xc18",
+      "sourceIndex": 3513,
+      "proposalFingerprint": "fe8dbab4f4d12a2240d4953626a9a160e0d8fe45b42738074580825a10acb373",
+      "normalizedHash": "305e516ee622f6a0b5d5a8841fccbb3fd508e07381442a40df7b9b0e54b2e62a",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "던져 올린 공의 $t$초 뒤 높이가 $y=a(t-p)^2+q$ ($\\mathrm{m}$)이고, $p$는 공이 실제로 움직이는 동안의 시각이다. 높이가 최댓값을 가지려면 $a$의 부호는 어떠해야 하며, 최고 높이와 그 높이에 이르는 시각은 각각 무엇인가?",
+        "answer": "$a<0$이어야 한다. 이때 꼭짓점의 $t$좌표인 $p$초에 최고 높이에 이르고, 최고 높이는 꼭짓점의 $y$좌표인 $q$ $\\mathrm{m}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$a<0$",
+              "$a$가 음수"
+            ]
+          },
+          {
+            "anyOf": [
+              "시각은 $p$",
+              "$t=p$일 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "최고 높이는 $q$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "높이가 $y=a(t-p)^2+q$이고 {$a<0$}이며 $p$가 실제로 움직이는 동안의 시각이면, 꼭짓점의 {$t$좌표} $p$가 최고 높이에 이르는 시각이고 $y$좌표 $q$가 최고 높이이다.",
+        "acceptedAnswers": [
+          [
+            "$a<0$"
+          ],
+          [
+            "$t$좌표"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$a$의 조건과 $t$·$y$좌표의 뜻을 구분해 읽도록 상황과 범위를 밝혔다.",
+      "cReason": "부호 조건과 꼭짓점의 좌표 이름을 하나씩 채우며 결론은 보이게 두었다."
+    },
+    {
+      "id": "m3-04-03-xc19",
+      "sourceIndex": 3514,
+      "proposalFingerprint": "8b8b7a94996eb83e4d350745a88d052c280ae6c3e13644b2c50cfe066c0cc2de",
+      "normalizedHash": "4e630ab91f734baa1cba7c532617d7edcb4ea8752d0de67394eb790e9e56c64f",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$y=x^2-2ax+a^2+3$을 $y=a(x-p)^2+q$ 꼴의 표준형으로 고치고, 이 함수의 최솟값이 $a$의 값과 상관없이 일정한 까닭을 쓰시오.",
+        "answer": "$y=(x-a)^2+3$이다. 꼭짓점이 $(a,\\ 3)$이고 그 $y$좌표가 $a$와 상관없이 늘 $3$이므로 최솟값은 항상 $3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$y=(x-a)^2+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 $y$좌표가 늘 $3$",
+              "꼭짓점의 $y$좌표에 $a$가 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 {양수}이고 표준형으로 고친 식의 {꼭짓점}의 $y$좌표가 $a$를 포함하지 않는 상수이면, 최솟값은 $a$의 값과 상관없이 일정하다.",
+        "acceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'문자'가 무엇인지 구체 식이 있어야 알 수 있어 $a$가 들어간 식을 주었다.",
+      "cReason": "'문자'의 지칭이 없고 빈칸이 긴 구절이라 문자를 밝히고 핵심 낱말만 비웠다."
+    },
+    {
+      "id": "m3-04-03-xc20",
+      "sourceIndex": 3515,
+      "proposalFingerprint": "4419458fca8625f9c86b8ef4d7384946b808f3fee7e5259fe56c17c1bb5717fa",
+      "normalizedHash": "653c91b4285b909f39b4f1e618877bfde542ecc5a0e5b24bd27894ab76335a08",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$y=x^2-2kx+5$를 $y=(x-k)^2+5-k^2$으로 고쳤다. 이 함수의 최솟값을 $k$의 식으로 쓰고, 최솟값이 $1$이 되도록 하는 $k$의 값을 모두 구하시오.",
+        "answer": "최솟값은 꼭짓점의 $y$좌표인 $5-k^2$이다. $5-k^2=1$에서 $k^2=4$이므로 $k=2$ 또는 $k=-2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "최솟값은 $5-k^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$k=2$ 또는 $k=-2$",
+              "$k=\\pm 2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이차항의 계수가 {양수}인 이차함수에서 꼭짓점의 $y$좌표가 $k$의 식이면 그 식이 최솟값이고, 최솟값이 주어진 값과 같다는 조건은 $k$에 대한 {방정식}이 된다.",
+        "acceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "방정식"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "최솟값이 $k$의 식이 되고 조건이 방정식이 되는 과정을 구체 식으로 묻게 했다.",
+      "cReason": "첫 빈칸이 '이차항의 계수가 양수' 전체라 길어 '양수'만 비웠다."
+    },
+    {
+      "id": "m3-04-03-xc22",
+      "sourceIndex": 3516,
+      "proposalFingerprint": "f9a591455d3266c9c4f6dc0f37743e62a20aab98aa58f73f28df255dfb28f6e6",
+      "normalizedHash": "90ddf5dbf87f076b03252e09dc29d5d5bb903be308ed9772679757cde670b1e3",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "물건 한 개의 가격이 $(1000+100x)$원일 때 하루 판매 개수가 $(200-10x)$개이다 (단, $0\\le x\\le 20$). 하루 판매 금액이 가장 클 때의 $x$의 값과 그 금액을 구하고, 꼭짓점에서 금액이 가장 크다고 할 수 있는 까닭을 쓰시오.",
+        "answer": "판매 금액은 $y=(1000+100x)(200-10x)=-1000(x-5)^2+225000$이다. 이차항의 계수가 음수라 위로 볼록하고 $x=5$가 $0\\le x\\le 20$ 안에 있으므로, $x=5$일 때 금액이 가장 크고 그 금액은 $225000$원이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$225000$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "이차항의 계수가 음수",
+              "위로 볼록"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=5$가 범위 안에 있다",
+              "$x=5$가 될 수 있는 값"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가격과 판매 개수가 각각 $x$의 일차식이면 판매 금액은 두 식의 {곱}이다. 이 이차식의 이차항의 계수가 {음수}이고 꼭짓점의 $x$의 값이 문제에서 실제로 될 수 있는 값이면, 꼭짓점에서 금액이 가장 크다.",
+        "acceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "음수"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "가격·개수의 곱과 꼭짓점 사용 조건이 함께 보이도록 구체 수와 범위를 주었다.",
+      "cReason": "'실제로 될 수 있는 값' 빈칸은 표현이 갈려 조건은 보이게 두고 부호를 비웠다."
+    },
+    {
+      "id": "m3-04-03-xc23",
+      "sourceIndex": 3517,
+      "proposalFingerprint": "4defc7a1d72662be9a02294c63e398d6a554e3adb110aecb13c1ab297b648949",
+      "normalizedHash": "f4a0b1f9d6e9d76dbbf26b1c45a621a42d0ca4d324fdaf06b138d9ea246cfce4",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "합이 $8$인 두 수를 $x$, $8-x$라 하면 두 수의 제곱의 합은 $2(x-4)^2+32$이다. 제곱의 합이 가장 작을 때의 두 수와 그 값을 구하고, 그때 두 수는 어떤 관계인지 쓰시오.",
+        "answer": "$x=4$일 때 $2(x-4)^2=0$이 되어 제곱의 합이 가장 작은 값 $32$가 된다. 두 수는 $4$, $4$로 서로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수는 $4$, $4$",
+              "$x=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최솟값 $32$",
+              "가장 작은 값은 $32$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "합이 일정한 두 수의 제곱의 합은 두 수가 {같을 때} 가장 {작다} — 한 수를 $x$로 놓으면 $x$의 이차함수가 된다.",
+        "acceptedAnswers": [
+          [
+            "같을 때"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 수가 같을 때 가장 작다는 일반 사실을 구체 식으로 확인하게 했다.",
+      "cReason": "조건 '같을 때'와 결론 '작다'를 채우는 짧은 비교 빈칸이다."
+    },
+    {
+      "id": "m3-04-03-xc24",
+      "sourceIndex": 3518,
+      "proposalFingerprint": "529e6d50d39721ec591f30def7a79520e1545f30148179b63238908d7a4867e4",
+      "normalizedHash": "0403f1e882b15f2ba4dec748ed0461050f3a770122ee8e0778d355aaaca2df28",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "벽을 한 변으로 하는 직사각형 모양 밭의 나머지 세 변에 길이 $20$ $\\mathrm{m}$인 울타리를 모두 두른다. 벽에 수직인 변의 길이를 $x$ $\\mathrm{m}$라 할 때, 벽과 마주 보는 변의 길이와 밭의 넓이를 $x$의 식으로 나타내고, 넓이가 가장 클 때의 $x$의 값과 넓이를 구하시오.",
+        "answer": "벽과 마주 보는 변은 $(20-2x)$ $\\mathrm{m}$이고, 넓이는 $y=x(20-2x)=-2(x-5)^2+50$이다. $x=5$일 때 넓이가 가장 크고 그 넓이는 $50$ $\\mathrm{m}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$20-2x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=x(20-2x)$",
+              "$y=-2x^2+20x$",
+              "$y=-2(x-5)^2+50$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50$ $\\mathrm{m}^2$",
+              "넓이 $50$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "울타리의 길이가 정해져 있으면 한 변을 $x$로 놓고 나머지 변을 $x$의 식으로 나타내어 넓이를 {이차함수}로 만든다. 벽을 한 변으로 쓰면 울타리는 {세 변}에만 든다.",
+        "acceptedAnswers": [
+          [
+            "이차함수"
+          ],
+          [
+            "세 변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "벽이 한 변이라 울타리가 세 변에만 드는 점이 드러나도록 변의 위치를 밝혔다.",
+      "cReason": "'$x$의 식' 빈칸은 답이 막연해 넓이가 되는 함수의 종류를 비웠다."
+    },
+    {
+      "id": "m3-05-01-xc1",
+      "sourceIndex": 3519,
+      "proposalFingerprint": "1e3ad4adc0fd66fb77e876d591fa9db93ac2948cce33422fecc6d6c0c8a1653e",
+      "normalizedHash": "da777c0dc1cba8b60e29374b0d226700d546a837630328a7677ff5b829babafd",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "높이·밑변의 정의는 c6, 기준각 교체는 xc7이 구체 삼각형으로 묻는다."
+      },
+      "C": {
+        "sentence": "삼각비는 직각삼각형의 한 {예각}을 기준으로 정하므로, 어느 각을 기준으로 하느냐에 따라 {높이}와 밑변이 바뀐다.",
+        "acceptedAnswers": [
+          [
+            "예각"
+          ],
+          [
+            "높이"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "높이·밑변의 정의는 c6, 기준각 교체는 xc7이 구체 삼각형으로 묻는다.",
+      "cReason": "'예각'과 '높이'를 채우는 짧은 빈칸으로 문장 범위가 분명하다."
+    },
+    {
+      "id": "m3-05-01-xc2",
+      "sourceIndex": 3520,
+      "proposalFingerprint": "b4bc08e29a083ef95cc47017a940ee0b66ebba318e46854adcf6178b6fc2e723",
+      "normalizedHash": "daec0dbd3000a2682d8686137885c9c9cda310287f1056b2c352e030fc71b515",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직각삼각형에서 빗변은 어떤 변인지 직각과의 위치로 쓰고, 세 변 가운데 그 길이가 어떠한지 쓰시오.",
+        "answer": "직각과 마주 보는 변이고, 세 변 가운데 가장 길다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각과 마주 보는 변",
+              "직각의 맞은편 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 길다",
+              "가장 긴 변"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직각삼각형에서 직각과 {마주 보는} 변이 빗변이고, 세 변 가운데 가장 {길다}.",
+        "acceptedAnswers": [
+          [
+            "마주 보는",
+            "마주보는"
+          ],
+          [
+            "길다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "빗변의 위치와 길이 성질을 각각 답하도록 범위를 정했다.",
+      "cReason": "위치와 길이 성질을 하나씩 채우는 짧은 빈칸이다."
+    },
+    {
+      "id": "m3-05-01-xc3",
+      "sourceIndex": 3521,
+      "proposalFingerprint": "ca95a12b75eee232ba769928bbfc025c720e6c6766bdfad95aa2cfed01b90697",
+      "normalizedHash": "2249bc1e5b8cb0901ab9f649b0cbbc5a1b9c5710b78ba02708746f19c82cf56a",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "'빗변의 길이에 대한 높이의 비'를 분수로 나타낼 때 빗변과 높이는 각각 분모와 분자 중 어디에 오는가? '~에 대한'의 '~'이 무엇을 뜻하는지와 함께 쓰시오.",
+        "answer": "빗변이 분모, 높이가 분자에 온다. '~에 대한'의 '~'인 빗변이 기준이 되는 양이라 분모에 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "빗변이 분모"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 분자"
+            ]
+          },
+          {
+            "anyOf": [
+              "'~'이 기준이 되는 양",
+              "'~에 대한' 앞의 양이 기준"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "'빗변의 길이에 대한 높이의 비'는 {빗변}을 분모에, {높이}를 분자에 쓴 분수이다 — '~에 대한'의 '~'이 기준이 되는 양이다.",
+        "acceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "높이"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "분모·분자 위치와 '기준이 되는 양'이라는 이유를 함께 답하게 했다.",
+      "cReason": "인용된 말에서 분모·분자 자리를 고르는 것이 평가 목표라 그대로 둔다."
+    },
+    {
+      "id": "m3-05-01-xc4",
+      "sourceIndex": 3522,
+      "proposalFingerprint": "596b4f55c6d0ce2512feae473710c802ce1d437772133c34278983c530b3481c",
+      "normalizedHash": "9ae80cd2060c3fcdf3662be2ae8ceae6b48f1bda10f6ba7c0b2d6ff0913ad9ac",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직각삼각형의 한 예각을 기준으로 사인과 코사인을 분수로 쓸 때, 분모와 분자는 각각 어떤 변인지 두 삼각비를 비교하여 쓰시오.",
+        "answer": "분모는 둘 다 빗변이다. 분자는 사인이 기준각과 마주 보는 변(높이), 코사인이 기준각에 붙은 두 변 가운데 빗변이 아닌 변(밑변)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 둘 다 빗변"
+            ]
+          },
+          {
+            "anyOf": [
+              "사인의 분자는 마주 보는 변",
+              "사인의 분자는 높이"
+            ]
+          },
+          {
+            "anyOf": [
+              "코사인의 분자는 붙은 변 가운데 빗변이 아닌 변",
+              "코사인의 분자는 밑변"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "사인과 코사인은 분모가 모두 {빗변}이고, 분자가 사인은 기준각과 {마주 보는 변}, 코사인은 기준각에 붙은 두 변 가운데 {빗변이 아닌 변}이다.",
+        "acceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "마주 보는 변"
+          ],
+          [
+            "빗변이 아닌 변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 정의를 따로 외우지 않고 분모 공통·분자 차이로 비교하게 했다.",
+      "cReason": "분모와 두 분자를 채우는 비교 빈칸으로 범위가 분명하다."
+    },
+    {
+      "id": "m3-05-01-xc5",
+      "sourceIndex": 3523,
+      "proposalFingerprint": "db85c55359681ba2147f8a8964951d847b07d262c5acebc664327a426ae03130",
+      "normalizedHash": "019185454747aef3900f014ef9b2fddf0ecdbe561cffac85512e101ef289db6e",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "c3에서 탄젠트가 밑변에 대한 높이의 비임을 이미 묻는다."
+      },
+      "C": {
+        "sentence": "탄젠트는 직각을 낀 {두 변}의 비이다 — 기준각과 마주 보는 변을 기준각에 붙은 변으로 나누고, {빗변}은 쓰지 않는다.",
+        "acceptedAnswers": [
+          [
+            "두 변"
+          ],
+          [
+            "빗변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c3에서 탄젠트가 밑변에 대한 높이의 비임을 이미 묻는다.",
+      "cReason": "'두 변'과 '빗변'을 채우는 짧은 빈칸으로 지칭이 분명하다."
+    },
+    {
+      "id": "m3-05-01-xc6",
+      "sourceIndex": 3524,
+      "proposalFingerprint": "c0a8bfdf3323b17bef3da0347fbc08e710f0e8fe2739eba6e34a4ec9d507d38a",
+      "normalizedHash": "d3c42476c6e8d9419fd56090e01138a5bb0db94a92eba5fb60c667be47ff2355",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "기호를 읽는 법은 단순 이름 암기이며 기호의 뜻은 c5에서 묻는다."
+      },
+      "C": {
+        "sentence": "$\\sin A$는 {사인} $A$, $\\cos A$는 코사인 $A$, $\\tan A$는 {탄젠트} $A$라고 읽는다.",
+        "acceptedAnswers": [
+          [
+            "사인"
+          ],
+          [
+            "탄젠트"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "기호를 읽는 법은 단순 이름 암기이며 기호의 뜻은 c5에서 묻는다.",
+      "cReason": "코사인의 읽기가 본보기로 보여 두 읽기를 채우는 짧은 빈칸이다."
+    }
+  ]
+}

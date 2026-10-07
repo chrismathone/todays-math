@@ -1,0 +1,2130 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-1-6-4-xc2",
+      "sourceIndex": 2047,
+      "beforeProposal": {
+        "sourceIndex": 2047,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "d0a41d8d80776fe9a5543ddeeb75fc4a1594136ba93fafd4acff03916d0272c2",
+        "proposalFingerprint": "ea9f8b6a9e3151a9d2bff038b03ef7d801315c2e098f8b581b4e1613164d9e38",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$10-5$와 $11-6$의 차가 같은 까닭은?",
+        "bAnswer": "빼어지는 수가 $1$ 늘어난 만큼 빼는 수도 $1$ 늘어서 차가 그대로이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수가 똑같이 $1$ 늘었다",
+              "늘린 만큼 더 뺐다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차가 그대로인 까닭",
+        "bReason": "똑같이 늘면 차가 그대로인 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$10-5$와 $11-6$처럼 두 수가 똑같이 $1$씩 커지면 늘어난 {$1$}을 다시 덜어 내므로 차가 그대로이다.",
+        "cReason": "긴 구절 빈칸을 구체 식과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 그대로인 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$10-5$와 $11-6$처럼 두 수가 똑같이 $1$씩 커지면 늘어난 {$1$}을 다시 덜어 내므로 차가 그대로이다.",
+        "cStudentSentence": "$10-5$와 $11-6$처럼 두 수가 똑같이 $1$씩 커지면 늘어난 □을 다시 덜어 내므로 차가 그대로이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$10-5$와 $11-6$의 차가 같은 까닭은?",
+          "answer": "빼어지는 수가 $1$ 늘어난 만큼 빼는 수도 $1$ 늘어서 차가 그대로이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 수가 똑같이 $1$ 늘었다",
+                "늘린 만큼 더 뺐다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$10-5$와 $11-6$처럼 두 수가 똑같이 $1$씩 커지면 늘어난 {$1$}을 다시 덜어 내므로 차가 그대로이다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-4-xc2",
+          "sourceIndex": 2047,
+          "proposalFingerprint": "ea9f8b6a9e3151a9d2bff038b03ef7d801315c2e098f8b581b4e1613164d9e38",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두 수를 함께1 늘릴 때 늘린 만큼 더 빼는 차 보존 이유이다.",
+          "cReason": "10-5와11-6의 변화량1을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$10-5$를 $11-6$으로 바꾸면 앞의 수에서 늘어난 {$1$}을 뒤에서 다시 덜어 내므로 차가 그대로이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-4-xc8",
+      "sourceIndex": 2053,
+      "beforeProposal": {
+        "sourceIndex": 2053,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "4c6ab2d0b2435a45b4c7c8ccd5f9f1734e1105357f873e79f40c69c99ebe5161",
+        "proposalFingerprint": "5e719756f225c701b0b2b7b607a431efac524fc49fd541bda4364ab48eb6452c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$3\\times8=24$에서 앞의 수 $3$을 $2$배인 $6$으로 바꾸어 곱을 $24$로 지키려면 뒤의 수는 얼마이며, 어떻게 구하는가?",
+        "bAnswer": "$4$. 앞의 수가 $2$배가 되었으므로 $8$을 $2$로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$로 나눈다",
+              "반으로 줄인다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "곱을 지키는 뒤의 수",
+        "bReason": "곱 유지하며 반대로 나누는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "곱셈식 조건이 분명한 짧은 계산 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "반으로 줄인다",
+            "$2$로 나누어야 한다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "곱을 지키며 앞의 수를 $2$배 할 때 뒤의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 {$2$로 나눈다}.",
+        "cStudentSentence": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$로 나눈다",
+            "equivalents": [
+              "반으로 줄인다",
+              "$2$로 나누어야 한다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 □.",
+          "answers": [
+            "$2$로 나눈다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3\\times8=24$에서 앞의 수 $3$을 $2$배인 $6$으로 바꾸어 곱을 $24$로 지키려면 뒤의 수는 얼마이며, 어떻게 구하는가?",
+          "answer": "$4$. 앞의 수가 $2$배가 되었으므로 $8$을 $2$로 나눈다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$2$로 나눈다",
+                "반으로 줄인다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 {$2$로 나눈다}.",
+          "acceptedAnswers": [
+            [
+              "$2$로 나눈다",
+              "반으로 줄인다",
+              "$2$로 나누어야 한다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-4-xc8",
+          "sourceIndex": 2053,
+          "proposalFingerprint": "5e719756f225c701b0b2b7b607a431efac524fc49fd541bda4364ab48eb6452c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "곱24를 지키는 뒤의 수4와 반으로 줄이는 방법을 요청한다.",
+          "cReason": "앞의 수를 두 배 하면 뒤의 수를 반으로 하는 관계가 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "곱이 계속 $24$가 되도록 곱셈식을 바꾼다. 앞의 수를 $2$배 하면 뒤의 수는 {$2$}로 나누어야 한다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-4-xc14",
+      "sourceIndex": 2055,
+      "beforeProposal": {
+        "sourceIndex": 2055,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "3eaa98f92e4ccb47b24837d7e64ec4a5467170512761032bcbe1cf7df567d0e1",
+        "proposalFingerprint": "faca7c6492a934e64109d8a899ebee415acc5e1fc4c0f8774b20b5333e247eb4",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "몫이 같은 식 만들기",
+        "bReason": "1-6-3 xc13의 몫이 그대로와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "$40\\div8=5$에서 두 수를 똑같이 반으로 나눈 $20\\div4$의 몫은 {$5$}로 같다.",
+        "cReason": "문법이 어색한 긴 빈칸을 숫자 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exclusionReason": "두 수에 같은 수를 곱하거나 나누어도 몫이 같다는 내용이 xc13과 같다",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몫이 같은 식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$40\\div8=5$에서 두 수를 똑같이 반으로 나눈 $20\\div4$의 몫은 {$5$}로 같다.",
+        "cStudentSentence": "$40\\div8=5$에서 두 수를 똑같이 반으로 나눈 $20\\div4$의 몫은 □로 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$40\\div8=5$에서 두 수를 똑같이 반으로 나눈 $20\\div4$의 몫은 {$5$}로 같다.",
+          "acceptedAnswers": [
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "1-6-3 xc13의 몫이 그대로와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-4-xc14",
+          "sourceIndex": 2055,
+          "proposalFingerprint": "faca7c6492a934e64109d8a899ebee415acc5e1fc4c0f8774b20b5333e247eb4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두 수를 같은 비로 줄이는 몫 보존은 기존 B와 중복이다.",
+          "cReason": "40÷8을20÷4로 바꾸어 몫5를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$40\\div8$의 두 수를 똑같이 반으로 나눈 식은 $20\\div4$이다. 이 식의 몫은 {$5$}이다.",
+        "exclusionReason": "B: 두 수를 같은 수로 곱하거나 나누어도 몫이 같다는 설명은 e4-1-6-3-xc13 B와 중복된다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-4-xc15",
+      "sourceIndex": 2056,
+      "beforeProposal": {
+        "sourceIndex": 2056,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "6b547fe7f003c33ae83cd3d59f986244c2cbf51e1914fc8967e95691a64ebf33",
+        "proposalFingerprint": "927e50dbc9cf472458b2899be1a1f928d9d320622ca8cbd68c1b985af0d0f712",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$3+7=10$입니다. $5+5$의 합을 쓰고, 앞의 수와 뒤의 수가 각각 어떻게 바뀌었는지 이용해 두 합의 관계를 설명하세요.",
+        "bAnswer": "$10$이다. 앞의 수는 $2$ 커지고 뒤의 수는 $2$ 작아져, 한쪽에서 덜어 낸 $2$를 다른 쪽에 옮긴 것이므로 합은 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 수는 $2$ 커지고 뒤의 수는 $2$ 작아져 합은 같다",
+              "한쪽에서 $2$를 덜어 다른 쪽에 보태어 합은 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "계산 없이 결과 알기",
+        "bReason": "합이 일정하다는 결론을 미리 주지 않고 두 수의 반대 변화로 동일 합을 설명하게 한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$3+7$을 $5+5$로 바꾸면 앞의 수는 $2$ 커지고 뒤의 수는 {$2$} 작아져 두 합은 같다.",
+        "cReason": "같은 합을 만드는 두 수의 짝지은 변화량을 구한다.",
+        "cSlotEquivalents": [],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "계산하지 않고 결과 알기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3+7$을 $5+5$로 바꾸면 앞의 수는 $2$ 커지고 뒤의 수는 {$2$} 작아져 두 합은 같다.",
+        "cStudentSentence": "$3+7$을 $5+5$로 바꾸면 앞의 수는 $2$ 커지고 뒤의 수는 □ 작아져 두 합은 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3+7=10$입니다. $5+5$의 합을 쓰고, 앞의 수와 뒤의 수가 각각 어떻게 바뀌었는지 이용해 두 합의 관계를 설명하세요.",
+          "answer": "$10$이다. 앞의 수는 $2$ 커지고 뒤의 수는 $2$ 작아져, 한쪽에서 덜어 낸 $2$를 다른 쪽에 옮긴 것이므로 합은 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$10$"
+              ]
+            },
+            {
+              "anyOf": [
+                "앞의 수는 $2$ 커지고 뒤의 수는 $2$ 작아져 합은 같다",
+                "한쪽에서 $2$를 덜어 다른 쪽에 보태어 합은 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3+7$을 $5+5$로 바꾸면 앞의 수는 $2$ 커지고 뒤의 수는 {$2$} 작아져 두 합은 같다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-4-xc15",
+          "sourceIndex": 2056,
+          "proposalFingerprint": "927e50dbc9cf472458b2899be1a1f928d9d320622ca8cbd68c1b985af0d0f712",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두수의+2와-2변화로합10보존을설명하며같은합을미리단정하지않는다.",
+          "cReason": "앞의증가량과뒤의감소량을맞추는짧은변화관계를확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$3+7$을 $5+5$로 바꿀 때 앞의 수는 커지고 뒤의 수는 {$2$} 작아져 두 합은 같다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-5-5-xc25",
+      "sourceIndex": 1275,
+      "beforeProposal": {
+        "sourceIndex": 1275,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-5 무게의 단위",
+        "sourceFingerprint": "a2370ab9920c2566bd3c63f71f8a2b908cf27f3a55060782ccd12b8fe0f3ee5a",
+        "proposalFingerprint": "2c6ff76f8fb7a952b4b6716362d2f7f96f489acaa845389517f420f7705c6d0f",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-5-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "버스나 컨테이너의 무게를 $\\mathrm{kg}$이 아니라 $\\mathrm{t}$으로 나타내면 좋은 까닭을 쓰세요.",
+        "bAnswer": "아주 무거워서 $\\mathrm{kg}$으로 쓰면 수가 너무 커지기 때문입니다. $1\\,\\mathrm{t}$은 $1000\\,\\mathrm{kg}$이므로 $\\mathrm{t}$으로 쓰면 작은 수로 간단히 나타낼 수 있습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아주 무거운 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{t}$으로 쓰면 수가 작아져 간단하다"
+            ]
+          }
+        ],
+        "bGoal": "아주 무거운 것에 t을 쓰는 까닭 설명",
+        "bReason": "kg과 견주어 t을 쓰는 이유만 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "배에 싣는 컨테이너나 버스처럼 아주 무거운 것의 무게는 $\\mathrm{g}$, $\\mathrm{kg}$, $\\mathrm{t}$ 중에서 {$\\mathrm{t}$}으로 나타내면 간단하다.",
+        "cReason": "원문 답 '아주 무거운 것'은 긴 구절이고 '큰 물건', '무거운 차' 등 답이 흩어짐. 세 단위 중 하나를 고르게 바꿈",
+        "answerNotes": "'t', '톤' 허용. 'kg', 'g'은 오답",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$\\mathrm{t}$이 쓰이는 곳",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "배에 싣는 컨테이너나 버스처럼 아주 무거운 것의 무게는 $\\mathrm{g}$, $\\mathrm{kg}$, $\\mathrm{t}$ 중에서 {$\\mathrm{t}$}으로 나타내면 간단하다.",
+        "cStudentSentence": "배에 싣는 컨테이너나 버스처럼 아주 무거운 것의 무게는 $\\mathrm{g}$, $\\mathrm{kg}$, $\\mathrm{t}$ 중에서 □으로 나타내면 간단하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$\\mathrm{t}$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "버스나 컨테이너의 무게를 $\\mathrm{kg}$이 아니라 $\\mathrm{t}$으로 나타내면 좋은 까닭을 쓰세요.",
+          "answer": "아주 무거워서 $\\mathrm{kg}$으로 쓰면 수가 너무 커지기 때문입니다. $1\\,\\mathrm{t}$은 $1000\\,\\mathrm{kg}$이므로 $\\mathrm{t}$으로 쓰면 작은 수로 간단히 나타낼 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아주 무거운 것이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\mathrm{t}$으로 쓰면 수가 작아져 간단하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "배에 싣는 컨테이너나 버스처럼 아주 무거운 것의 무게는 $\\mathrm{g}$, $\\mathrm{kg}$, $\\mathrm{t}$ 중에서 {$\\mathrm{t}$}으로 나타내면 간단하다.",
+          "acceptedAnswers": [
+            [
+              "$\\mathrm{t}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-5-xc25",
+          "sourceIndex": 1275,
+          "proposalFingerprint": "2c6ff76f8fb7a952b4b6716362d2f7f96f489acaa845389517f420f7705c6d0f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "큰kg수를작은톤수로간단히표현하는단위선택이유다.",
+          "cReason": "주어진무거운대상과세단위중톤을 선택한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{t}$으로 쓰면 나타내는 수가 작아져 간단하기 때문이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-1-1-xc12",
+      "sourceIndex": 350,
+      "beforeProposal": {
+        "sourceIndex": 350,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+        "sourceFingerprint": "f17ce678eba56d397fb1070188997f45fb48c87fc2b8a70c05d443831793f60e",
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reviewStatus": "draft",
+        "id": "e3-1-1-1-xc12",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": null,
+        "bReason": "세로 덧셈의 자리 맞추기와 그 까닭은 e3-1-1-1-c2에서 이미 묻는다.",
+        "studentLabel": "가로로 쓴 덧셈식 계산하기",
+        "cDecision": "exclude",
+        "cReason": "맞추어라는 동작만 복원하는 문항이며 같은 자리끼리의 배치는 e3-1-1-1-c2가 확인한다.",
+        "exclusionReason": "B/C: e3-1-1-1-c2의 같은 자리끼리 배치하는 목표와 중복한다. 원래 일반 설명은 유지한다.",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가로셈을 세로셈으로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": null,
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "term": "세로 덧셈의 자리 맞추기와 그 까닭은 e3-1-1-1-c2에서 이미 묻는다.",
+          "cloze": "맞추어라는 동작만 복원하는 문항이며 같은 자리끼리의 배치는 e3-1-1-1-c2가 확인한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-1-1-xc12",
+          "sourceIndex": 350,
+          "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "e3-1-1-1-c2를 대체 문항 ID로 밝혀 자리 맞추기 중복을 기록했다.",
+          "cReason": "맞추어 동작 복원도 같은 목표 중복으로 제외하고 일반 설명은 보존한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cReason": "원문은 세로로라는 배치 이름을 묻고 이전 후보는 맞추어라는 동작을 물었다. 어느 쪽도 같은 자리끼리 놓는 이유를 더 확인하지 못하므로 e3-1-1-1-c2에서 배치와 이유를 설명하도록 남긴다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-2-1-xc18",
+      "sourceIndex": 459,
+      "beforeProposal": {
+        "sourceIndex": 459,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-2 평면도형::1-2-1 선분, 반직선, 직선",
+        "sourceFingerprint": "d0249bbdf0d3073ed5871e4ca27e57b8c638d07b411b1669fb598e565b28006c",
+        "proposalFingerprint": "158e4fc5ae5535030dc1452b5b6e4601a365fddaa71bf4adc6d1c890267eac1d",
+        "reviewStatus": "draft",
+        "id": "e3-1-2-1-xc18",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": null,
+        "bReason": "두 반직선의 시작점과 뻗는 쪽이 다른 이유를 e3-1-2-1-xc6에서 이미 묻는다. 이 항목은 C에서 두 개를 세는 적용을 맡는다.",
+        "exclusionReason": "B: e3-1-2-1-xc6의 두 시작점과 뻗는 방향 비교와 중복한다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 점 ㄱ, ㄴ을 이용해 그을 수 있는 반직선은 모두 {$2$}개이다. 반직선 ㄱㄴ과 반직선 ㄴㄱ은 {시작점}이 서로 다르다.",
+        "cReason": "첫 답의 개수를 바로 앞에 나열하지 않고 두 점에서 가능한 반직선을 판단한다.",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ],
+          [
+            "시작하는 점",
+            "출발점"
+          ]
+        ],
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 점으로 정하는 반직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 점 ㄱ, ㄴ을 이용해 그을 수 있는 반직선은 모두 {$2$}개이다. 반직선 ㄱㄴ과 반직선 ㄴㄱ은 {시작점}이 서로 다르다.",
+        "cStudentSentence": "두 점 ㄱ, ㄴ을 이용해 그을 수 있는 반직선은 모두 □개이다. 반직선 ㄱㄴ과 반직선 ㄴㄱ은 □이 서로 다르다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          },
+          {
+            "expected": "시작점",
+            "equivalents": [
+              "시작하는 점",
+              "출발점"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 점 ㄱ, ㄴ을 이용해 그을 수 있는 반직선은 모두 {$2$}개이다. 반직선 ㄱㄴ과 반직선 ㄴㄱ은 {시작점}이 서로 다르다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ],
+            [
+              "시작점",
+              "시작하는 점",
+              "출발점"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "두 반직선의 시작점과 뻗는 쪽이 다른 이유를 e3-1-2-1-xc6에서 이미 묻는다. 이 항목은 C에서 두 개를 세는 적용을 맡는다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-2-1-xc18",
+          "sourceIndex": 459,
+          "proposalFingerprint": "158e4fc5ae5535030dc1452b5b6e4601a365fddaa71bf4adc6d1c890267eac1d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "실제 확인한 e3-1-2-1-xc6의 시작점과 뻗는 방향 비교를 중복 근거로 명시했다.",
+          "cReason": "두 점에서 반직선 두 개를 세고 서로 다른 시작점을 찾는 적용은 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "서로 다른 두 점 ㄱ, ㄴ 중 한 점에서 시작해 다른 점을 지나는 반직선은 모두 {$2$}개이다. 반직선 ㄱㄴ과 반직선 ㄴㄱ이 시작하는 점은 서로 {다르다}.",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ],
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-2-xc5",
+      "sourceIndex": 1525,
+      "beforeProposal": {
+        "sourceIndex": 1525,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-2 각의 크기 재기",
+        "sourceFingerprint": "ed91b1eab6c246957a73637fb9c27a076cba2946732392afdda4e59c3747b531",
+        "proposalFingerprint": "d227d182dc57bb3dbdd7f0c6a52e6e16dd1585481286d6084f2992f2fa589d0b",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-2-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "각도기 눈금은 두 줄",
+        "bReason": "눈금 두 줄의 까닭은 e4-1-2-2-xc18에서 이미 묻는다. C는 양쪽 끝에서 시작하는 두 줄을 확인한다.",
+        "cDecision": "keep",
+        "cReason": "두 방향에서 시작하는 눈금 설명 뒤 줄 수만 쓰는 쉬운 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "exclusionReason": "B: e4-1-2-2-xc18의 양쪽 방향 눈금 설명과 중복한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "각도기의 두 줄 눈금",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 {두} 줄이다.",
+        "cStudentSentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 □ 줄이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 □ 줄이다.",
+          "answers": [
+            "두"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "각도기에는 한쪽 끝에서 시작하는 눈금과 반대쪽 끝에서 시작하는 눈금이 있어 눈금이 {두} 줄이다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "눈금 두 줄의 까닭은 e4-1-2-2-xc18에서 이미 묻는다. C는 양쪽 끝에서 시작하는 두 줄을 확인한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-2-xc5",
+          "sourceIndex": 1525,
+          "proposalFingerprint": "d227d182dc57bb3dbdd7f0c6a52e6e16dd1585481286d6084f2992f2fa589d0b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "눈금 두 줄의 이유를 묻는 e4-1-2-2-xc18을 실제 대체 ID로 밝혔다.",
+          "cReason": "두 방향 눈금이 두 줄이라는 구조 확인을 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "양쪽 끝에서 시작하는 두 눈금을 나열한 뒤 개수를 세는 데 그친다. 두 눈금의 까닭은 e4-1-2-2-xc18 B에서 설명한다.",
+        "exclusionReason": "B/C: 두 줄 눈금의 까닭은 e4-1-2-2-xc18 B에 남기고 이미 나열된 두 눈금을 세는 문항은 제외한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-4-xc4",
+      "sourceIndex": 1575,
+      "beforeProposal": {
+        "sourceIndex": 1575,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-4 각의 크기를 어림하고 각도의 합과 차 계산하기",
+        "sourceFingerprint": "5417ba4587d023913f1254fbb4e574c075660acd407467614ffaa56ec395af17",
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-4-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "어림을 재어 확인하기",
+        "bReason": "재어 견주는 일은 어림 평가 항목 B에 들어 있음",
+        "cDecision": "exclude",
+        "cReason": "각도기로 재어 본다는 일반 동작 복원만으로는 어림과 실측 비교의 수학적 판단을 확인하지 못한다.",
+        "exclusionReason": "B/C: 어림한 값과 실제 잰 값을 비교하는 활동은 다른 각도 어림 문항에서 다루고, 이 항목의 재어라는 동작 복원은 제외한다. 일반 설명은 보존한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "어림한 각도 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": null,
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "term": "재어 견주는 일은 어림 평가 항목 B에 들어 있음",
+          "cloze": "각도기로 재어 본다는 일반 동작 복원만으로는 어림과 실측 비교의 수학적 판단을 확인하지 못한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-4-xc4",
+          "sourceIndex": 1575,
+          "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "단순히 재어 본다는 확인 동작의 B 제외를 유지한다.",
+          "cReason": "각도기로 재어라는 동작 복원은 수학 판단이 약해 C에서도 제외한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "어림한 각도와 실제 잰 각도의 차를 비교하여 어림을 평가하는 목표는 e4-1-2-4-xc12 B에서 다룬다.",
+        "exclusionReason": "B/C: 어림한 값과 잰 값의 비교는 e4-1-2-4-xc12 B에서 다루며 재어라는 동작 표현만 복원하는 C는 제외한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-5-xc12",
+      "sourceIndex": 2079,
+      "beforeProposal": {
+        "sourceIndex": 2079,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "1262bacaffdd5601bfe6938afb6ad93a680123555c7cbe4464c436b1fb8e6b9c",
+        "proposalFingerprint": "9e4b578d55e2f221d9b73404f4f65aecb3ef26284aac0ab2537f00d1def53247",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$6+9=7+\\square$에서 $\\square$에 알맞은 수를 구하고, 앞의 수와 뒤의 수가 어떻게 바뀌는지 이용한 방법을 쓰세요.",
+        "bAnswer": "$8$. $6$이 $1$ 커졌으니 $9$를 $1$ 줄인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "커진 만큼 다른 수를 줄인다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "덧셈식 빈칸 구하기",
+        "bReason": "모범답에 있는 변화 방법을 학생에게도 요청하도록 질문 범위를 맞춘다.",
+        "cDecision": "rewrite",
+        "cAfter": "$6+9=7+8$처럼 합이 같은 두 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ {작아져야} 등호가 성립한다.",
+        "cReason": "긴 구절 빈칸을 예시 식과 짧은 서술어로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "줄어야",
+            "작아진다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "계산하지 않고 빈칸 구하기 — 덧셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$6+9=7+8$처럼 합이 같은 두 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ {작아져야} 등호가 성립한다.",
+        "cStudentSentence": "$6+9=7+8$처럼 합이 같은 두 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ □ 등호가 성립한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아져야",
+            "equivalents": [
+              "줄어야",
+              "작아진다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$6+9=7+\\square$에서 $\\square$에 알맞은 수를 구하고, 앞의 수와 뒤의 수가 어떻게 바뀌는지 이용한 방법을 쓰세요.",
+          "answer": "$8$. $6$이 $1$ 커졌으니 $9$를 $1$ 줄인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$8$"
+              ]
+            },
+            {
+              "anyOf": [
+                "커진 만큼 다른 수를 줄인다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$6+9=7+8$처럼 합이 같은 두 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ {작아져야} 등호가 성립한다.",
+          "acceptedAnswers": [
+            [
+              "작아져야",
+              "줄어야",
+              "작아진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-5-xc12",
+          "sourceIndex": 2079,
+          "proposalFingerprint": "9e4b578d55e2f221d9b73404f4f65aecb3ef26284aac0ab2537f00d1def53247",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "수8과한쪽+1·다른쪽-1의방법을이제질문에도요청한다.",
+          "cReason": "인쇄답작아져야는문장에맞고입력작아진다도동일감소의뜻으로허용한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          [
+            "줄어야"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-6-1-xc11",
+      "sourceIndex": 1294,
+      "beforeProposal": {
+        "sourceIndex": 1294,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+        "sourceFingerprint": "0ce156b06631c297343f555cf7303330db14dfe59c82525fbe447f50adb1f735",
+        "proposalFingerprint": "3405f0575274ffa431eeb524d4a5c2e977e6f7f9767bd3ece3b0cf63961c3156",
+        "reviewStatus": "draft",
+        "id": "e3-2-6-1-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "큰 그림은 $10$명, 작은 그림은 $1$명을 나타냅니다. 가 마을은 큰 그림 $2$개, 나 마을은 작은 그림 $5$개로 그렸습니다. 그림이 더 많은 나 마을의 사람 수가 더 많다고 하면 왜 틀린지 설명하세요.",
+        "bAnswer": "그림마다 나타내는 수가 다르기 때문입니다. 가 마을은 $20$명, 나 마을은 $5$명이므로 가 마을이 더 많습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "큰 그림과 작은 그림이 나타내는 수가 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가 마을 $20$명, 나 마을 $5$명"
+            ]
+          }
+        ],
+        "bGoal": "그림 개수만 세면 안 되는 까닭 설명",
+        "bReason": "개수는 적지만 수는 큰 상황을 만들어 잘못된 판단을 바로잡게 함",
+        "cDecision": "rewrite",
+        "cAfter": "큰 그림이 $10$, 작은 그림이 $1$을 나타낼 때 큰 그림 $2$개는 {$20$}을, 작은 그림 $5$개는 {$5$}를 나타낸다. 그래서 그림의 개수만 세어서는 수를 비교할 수 없다.",
+        "cReason": "원문 빈칸 '나타내는 수가 달라'는 까닭 구절 전체를 복원해야 해 어려움. 두 경우의 수를 계산하게 바꿈",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "그림 개수만 세는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "큰 그림이 $10$, 작은 그림이 $1$을 나타낼 때 큰 그림 $2$개는 {$20$}을, 작은 그림 $5$개는 {$5$}를 나타낸다. 그래서 그림의 개수만 세어서는 수를 비교할 수 없다.",
+        "cStudentSentence": "큰 그림이 $10$, 작은 그림이 $1$을 나타낼 때 큰 그림 $2$개는 □을, 작은 그림 $5$개는 □를 나타낸다. 그래서 그림의 개수만 세어서는 수를 비교할 수 없다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$20$",
+            "equivalents": []
+          },
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "큰 그림은 $10$명, 작은 그림은 $1$명을 나타냅니다. 가 마을은 큰 그림 $2$개, 나 마을은 작은 그림 $5$개로 그렸습니다. 그림이 더 많은 나 마을의 사람 수가 더 많다고 하면 왜 틀린지 설명하세요.",
+          "answer": "그림마다 나타내는 수가 다르기 때문입니다. 가 마을은 $20$명, 나 마을은 $5$명이므로 가 마을이 더 많습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "큰 그림과 작은 그림이 나타내는 수가 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "가 마을 $20$명, 나 마을 $5$명"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "큰 그림이 $10$, 작은 그림이 $1$을 나타낼 때 큰 그림 $2$개는 {$20$}을, 작은 그림 $5$개는 {$5$}를 나타낸다. 그래서 그림의 개수만 세어서는 수를 비교할 수 없다.",
+          "acceptedAnswers": [
+            [
+              "$20$"
+            ],
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-6-1-xc11",
+          "sourceIndex": 1294,
+          "proposalFingerprint": "3405f0575274ffa431eeb524d4a5c2e977e6f7f9767bd3ece3b0cf63961c3156",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "다른그림단위의20·5로단순그림개수비교오류를 설명한다.",
+          "cReason": "큰둘20·작은다섯5의실제나타내는수를 구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "큰 그림은 $10$명, 작은 그림은 $1$명을 나타냅니다. 가 마을은 큰 그림 $2$개, 나 마을은 작은 그림 $5$개로 그렸습니다. 각 마을의 사람 수를 구하고, 그림이 더 많은 나 마을의 사람 수가 더 많다고 하면 왜 틀린지 설명하세요."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-5-xc17",
+      "sourceIndex": 2083,
+      "beforeProposal": {
+        "sourceIndex": 2083,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "9354be1971c48174c7047581a96d224e1c68b2665d82b4f1958cab14c8a8294d",
+        "proposalFingerprint": "10119396f74b5af9dd80cb20c38cfd5df93c9bcb68a39d982c1179c1a619f485",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "등호 양쪽 바꾸기",
+        "bReason": "xc10의 같음 관계와 같은 목표",
+        "cDecision": "keep",
+        "cReason": "예시가 있는 짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "같은 의미",
+            "똑같은 뜻"
+          ]
+        ],
+        "exclusionReason": "등호가 양쪽이 같다는 관계라서 순서를 바꿔도 같다는 내용이 xc10과 같다",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "등호 양쪽 바꾸기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$7=3+4$와 $3+4=7$은 {같은 뜻}이다.",
+        "cStudentSentence": "$7=3+4$와 $3+4=7$은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 뜻",
+            "equivalents": [
+              "같은 의미",
+              "똑같은 뜻"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$7=3+4$와 $3+4=7$은 □이다.",
+          "answers": [
+            "같은 뜻"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$7=3+4$와 $3+4=7$은 {같은 뜻}이다.",
+          "acceptedAnswers": [
+            [
+              "같은 뜻",
+              "같은 의미",
+              "똑같은 뜻"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc10의 같음 관계와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-5-xc17",
+          "sourceIndex": 2083,
+          "proposalFingerprint": "10119396f74b5af9dd80cb20c38cfd5df93c9bcb68a39d982c1179c1a619f485",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "양쪽 순서를 바꾸는 등호 관계의 B는 중복이다.",
+          "cReason": "같은 양의 순서를 바꾸어도 같은 뜻임을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$7=3+4$에서 등호의 왼쪽과 오른쪽을 바꾸어 $3+4=7$로 써도 양쪽의 값은 서로 {같다}.",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-6-1-xc21",
+      "sourceIndex": 1302,
+      "beforeProposal": {
+        "sourceIndex": 1302,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+        "sourceFingerprint": "e4f3acb9f51eb6e710537d8e11ad56164bb4bbb10262bcdc985287ade0684f6a",
+        "proposalFingerprint": "11aec2d55f69e57350c53a5b4ac4dfb8f16d9a5c9f1de4aa2c520f1d96298cc3",
+        "reviewStatus": "draft",
+        "id": "e3-2-6-1-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "가 그래프는 그림 하나가 $10$명을, 나 그래프는 그림 하나가 $5$명을 나타냅니다. 가에는 그림이 $3$개, 나에는 그림이 $4$개 있습니다. '그림이 더 많은 나가 더 많다'고 말하면 왜 틀리는지 설명하세요.",
+        "bAnswer": "가는 $10$명씩 $3$개라 $30$명, 나는 $5$명씩 $4$개라 $20$명이다. 그림 하나가 나타내는 수가 달라서 그림 개수만으로는 견줄 수 없다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그림 하나가 나타내는 수가 서로 다름"
+            ]
+          },
+          {
+            "anyOf": [
+              "수로 바꾸면 가 $30$명, 나 $20$명"
+            ]
+          }
+        ],
+        "bGoal": "그림 값이 다른 두 그래프는 수로 바꾸어 견주어야 하는 까닭",
+        "bReason": "원문은 일반 문장뿐이라 두 그래프의 그림 값과 개수를 새로 정해 혼자 판단할 수 있게 했다.",
+        "studentLabel": "그림 값이 다른 두 그래프 견주기",
+        "cDecision": "rewrite",
+        "cAfter": "가 그래프는 그림 하나가 $10$명, 나 그래프는 그림 하나가 $5$명을 나타낸다. 가의 그림 $3$개는 {$30$}명, 나의 그림 $4$개는 {$20$}명이므로 그림이 더 많은 나가 나타내는 수가 더 {작다}.",
+        "cReason": "문장 끝 '잘못 판단할 수 있다'를 통째로 가려 답 범위가 열려 있었다. 실제 수를 계산해 견주게 바꾸었다.",
+        "exampleNeeded": "그림 하나의 값이 $10$명인 그래프(그림 $3$개)와 $5$명인 그래프(그림 $4$개)를 나란히 놓은 그림",
+        "answerNotes": "셋째 빈칸은 작다, 적다 인정.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "그림 값이 다른 두 그래프",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가 그래프는 그림 하나가 $10$명, 나 그래프는 그림 하나가 $5$명을 나타낸다. 가의 그림 $3$개는 {$30$}명, 나의 그림 $4$개는 {$20$}명이므로 그림이 더 많은 나가 나타내는 수가 더 {작다}.",
+        "cStudentSentence": "가 그래프는 그림 하나가 $10$명, 나 그래프는 그림 하나가 $5$명을 나타낸다. 가의 그림 $3$개는 □명, 나의 그림 $4$개는 □명이므로 그림이 더 많은 나가 나타내는 수가 더 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$30$",
+            "equivalents": []
+          },
+          {
+            "expected": "$20$",
+            "equivalents": []
+          },
+          {
+            "expected": "작다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "가 그래프는 그림 하나가 $10$명을, 나 그래프는 그림 하나가 $5$명을 나타냅니다. 가에는 그림이 $3$개, 나에는 그림이 $4$개 있습니다. '그림이 더 많은 나가 더 많다'고 말하면 왜 틀리는지 설명하세요.",
+          "answer": "가는 $10$명씩 $3$개라 $30$명, 나는 $5$명씩 $4$개라 $20$명이다. 그림 하나가 나타내는 수가 달라서 그림 개수만으로는 견줄 수 없다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "그림 하나가 나타내는 수가 서로 다름"
+              ]
+            },
+            {
+              "anyOf": [
+                "수로 바꾸면 가 $30$명, 나 $20$명"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가 그래프는 그림 하나가 $10$명, 나 그래프는 그림 하나가 $5$명을 나타낸다. 가의 그림 $3$개는 {$30$}명, 나의 그림 $4$개는 {$20$}명이므로 그림이 더 많은 나가 나타내는 수가 더 {작다}.",
+          "acceptedAnswers": [
+            [
+              "$30$"
+            ],
+            [
+              "$20$"
+            ],
+            [
+              "작다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-6-1-xc21",
+          "sourceIndex": 1302,
+          "proposalFingerprint": "11aec2d55f69e57350c53a5b4ac4dfb8f16d9a5c9f1de4aa2c520f1d96298cc3",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "다른그림단위의30·20으로개수큰나가실제로작은이유를 묻는다.",
+          "cReason": "각실제값30·20과작다는역비교를 구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "가 그래프는 그림 하나가 $10$명을, 나 그래프는 그림 하나가 $5$명을 나타냅니다. 가에는 그림이 $3$개, 나에는 그림이 $4$개 있습니다. 각각 나타내는 사람 수를 구하고, 그림이 더 많은 나가 나타내는 사람 수도 더 많다고 말하면 왜 틀리는지 설명하세요."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-3-4-xc24",
+      "sourceIndex": 628,
+      "beforeProposal": {
+        "sourceIndex": 628,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
+        "sourceFingerprint": "5484355feb929b31166ad5f99821d9a1bac0c4a2218686300ed2a2532bc74d5d",
+        "proposalFingerprint": "2a71adeb42846b048478adf277e4490d6fa0488345f79e1df9eeb01a4896320c",
+        "reviewStatus": "draft",
+        "id": "e3-1-3-4-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "단에 없으면 남김없이 나눌 수 없음을 판단",
+        "bReason": "같은 절 항목과 설명이 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "$5$단 곱셈구구에서 $40$ 다음 수는 $45$이다. $42$는 이 단에 {없는} 수이므로 $42$를 $5$로 남김없이 나눌 수 없다.",
+        "cReason": "답 '남김없이'는 '똑같이', '나머지 없이' 등으로도 쓸 수 있어 답이 흔들림. 제목의 목표인 '어느 단을 살피는지'를 수로 묻게 함",
+        "exclusionReason": "e3-1-3-4-xc15가 25÷4로 '단에 없어서 남김없이 나눌 수 없다'는 같은 까닭을 묻는다",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단에 있는지 살피기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5$단 곱셈구구에서 $40$ 다음 수는 $45$이다. $42$는 이 단에 {없는} 수이므로 $42$를 $5$로 남김없이 나눌 수 없다.",
+        "cStudentSentence": "$5$단 곱셈구구에서 $40$ 다음 수는 $45$이다. $42$는 이 단에 □ 수이므로 $42$를 $5$로 남김없이 나눌 수 없다.",
+        "cSlotAnswers": [
+          {
+            "expected": "없는",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$5$단 곱셈구구에서 $40$ 다음 수는 $45$이다. $42$는 이 단에 {없는} 수이므로 $42$를 $5$로 남김없이 나눌 수 없다.",
+          "acceptedAnswers": [
+            [
+              "없는"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "같은 절 항목과 설명이 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-3-4-xc24",
+          "sourceIndex": 628,
+          "proposalFingerprint": "2a71adeb42846b048478adf277e4490d6fa0488345f79e1df9eeb01a4896320c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "구구에 있는지를 보는 B 중복 제외를 유지한다.",
+          "cReason": "40 다음 45라는 구구에서 42가 없음을 판단하도록 했다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "e3-1-3-4-xc15 B가 $25\\div4$로 단에 없어서 남김없이 나눌 수 없다는 같은 까닭을 설명한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-2-xc25",
+      "sourceIndex": 1684,
+      "beforeProposal": {
+        "sourceIndex": 1684,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+        "sourceFingerprint": "d732701e42ab03436f6d4b61932b79dfcc3a6f0d7b4b419aea1e9a5876dc4b69",
+        "proposalFingerprint": "8246b6fd3e4881a229983e23883f750baa635fc2319bcf08c1a5b82cf3c8176d",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-2-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$251\\times43$을 끝까지 계산하지 않고 곱이 다섯 자리 수임을 알아보려고 한다. 두 수를 더 작게 바꾼 곱과 더 크게 바꾼 곱을 각각 이용하여 그 까닭을 설명하시오.",
+        "bAnswer": "$250\\times40=10000$보다 크고, $300\\times50=15000$보다 작다. 따라서 실제 곱은 $10000$보다 크고 $15000$보다 작아서 다섯 자리 수이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$250\\times40=10000$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$300\\times50=15000$보다 작다",
+              "$1000\\times100=100000$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "따라서 다섯 자리 수이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "곱의 자릿수 미리 알기",
+        "bReason": "원문 예제로 더 작은 곱과 견주는 근거를 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$251\\times43$은 $250\\times40=10000$보다 크고 $300\\times50=15000$보다 작다. 따라서 이 곱은 {다섯} 자리 수이다.",
+        "cReason": "추상 조건문을 원문 예제의 구체 식으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "$5$"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "곱의 자릿수 미리 알기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$251\\times43$은 $250\\times40=10000$보다 크고 $300\\times50=15000$보다 작다. 따라서 이 곱은 {다섯} 자리 수이다.",
+        "cStudentSentence": "$251\\times43$은 $250\\times40=10000$보다 크고 $300\\times50=15000$보다 작다. 따라서 이 곱은 □ 자리 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "다섯",
+            "equivalents": [
+              "$5$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$251\\times43$을 끝까지 계산하지 않고 곱이 다섯 자리 수임을 알아보려고 한다. 두 수를 더 작게 바꾼 곱과 더 크게 바꾼 곱을 각각 이용하여 그 까닭을 설명하시오.",
+          "answer": "$250\\times40=10000$보다 크고, $300\\times50=15000$보다 작다. 따라서 실제 곱은 $10000$보다 크고 $15000$보다 작아서 다섯 자리 수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$250\\times40=10000$보다 크다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$300\\times50=15000$보다 작다",
+                "$1000\\times100=100000$보다 작다"
+              ]
+            },
+            {
+              "anyOf": [
+                "따라서 다섯 자리 수이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$251\\times43$은 $250\\times40=10000$보다 크고 $300\\times50=15000$보다 작다. 따라서 이 곱은 {다섯} 자리 수이다.",
+          "acceptedAnswers": [
+            [
+              "다섯",
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-2-xc25",
+          "sourceIndex": 1684,
+          "proposalFingerprint": "8246b6fd3e4881a229983e23883f750baa635fc2319bcf08c1a5b82cf3c8176d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "더 작은 곱의 하한뿐 아니라 더 큰 곱의 상한까지 제시해 다섯 자리임을 설명한다.",
+          "cReason": "10000보다 크고 15000보다 작다는 두 경계에서 다섯 자리를 판단한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$250\\times40=10000$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$300\\times50=15000$보다 작다",
+              "$1000\\times100=100000$보다 작다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-5-xc9",
+      "sourceIndex": 1739,
+      "beforeProposal": {
+        "sourceIndex": 1739,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-5 몇십몇으로 나누기 (1)",
+        "sourceFingerprint": "a5dc87088daf029e22bfae68b3b7f4faa0ea3d86af54e8df349309d8f2afc80a",
+        "proposalFingerprint": "0a3dc35e245c897adf6e2f11b6a7879c62261ebf31b0999d6347dc7df8fab586",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-5-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$75\\div25$의 몫을 곱셈으로 어떻게 찾을 수 있는지 식과 함께 쓰시오.",
+        "bAnswer": "$25\\times3=75$이므로 몫은 $3$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$25\\times3=75$",
+              "$25$에 $3$을 곱하면 $75$"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $3$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "곱셈으로 몫 찾기",
+        "bReason": "곱셈식을 직접 세우는지 확인",
+        "cDecision": "rewrite",
+        "cReason": "익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "곱하기",
+            "곱셈식"
+          ]
+        ],
+        "cAfter": "$75\\div25$의 몫을 찾으려고 $25$에 어떤 수를 곱하면 $75$가 되는지 생각했다. 이렇게 {곱셈}을 이용해 몫을 구할 수 있다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 자리 수끼리의 나눗셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$75\\div25$의 몫을 찾으려고 $25$에 어떤 수를 곱하면 $75$가 되는지 생각했다. 이렇게 {곱셈}을 이용해 몫을 구할 수 있다.",
+        "cStudentSentence": "$75\\div25$의 몫을 찾으려고 $25$에 어떤 수를 곱하면 $75$가 되는지 생각했다. 이렇게 □을 이용해 몫을 구할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "곱셈",
+            "equivalents": [
+              "곱하기",
+              "곱셈식"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$75\\div25$의 몫을 곱셈으로 어떻게 찾을 수 있는지 식과 함께 쓰시오.",
+          "answer": "$25\\times3=75$이므로 몫은 $3$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$25\\times3=75$",
+                "$25$에 $3$을 곱하면 $75$"
+              ]
+            },
+            {
+              "anyOf": [
+                "몫은 $3$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$75\\div25$의 몫을 찾으려고 $25$에 어떤 수를 곱하면 $75$가 되는지 생각했다. 이렇게 {곱셈}을 이용해 몫을 구할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "곱셈",
+              "곱하기",
+              "곱셈식"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-5-xc9",
+          "sourceIndex": 1739,
+          "proposalFingerprint": "0a3dc35e245c897adf6e2f11b6a7879c62261ebf31b0999d6347dc7df8fab586",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "25 곱하기 3이 75이므로 몫 3이라는 식과 답이 맞다.",
+          "cReason": "어떤 수를 곱하는 상황을 주어 뺄셈과 어림 등 다른 풀이 이름과 구별했다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$75\\div25$의 몫은 $25$에 어떤 수를 곱하면 $75$가 되는지 생각하여 찾을 수 있다. $25\\times$ {$3$} $=75$이므로 그 수가 몫이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-6-2-xc18",
+      "sourceIndex": 1318,
+      "beforeProposal": {
+        "sourceIndex": 1318,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
+        "sourceFingerprint": "7ba6af61db6b3d56c1f6782eeb1e7c54740d72ba37f39a3175ad7ef8aeea705f",
+        "proposalFingerprint": "c95ac08ac298be2b2695aef503e4275b9675bdc018d0f62f886d6f0357fae48c",
+        "reviewStatus": "draft",
+        "id": "e3-2-6-2-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "그림그래프에서 그림을 여기저기 흩어지게 그리지 않고 왼쪽부터 줄을 맞추어 그리면 어떤 점이 좋은지 쓰세요.",
+        "bAnswer": "어느 쪽 그림이 더 많고 적은지 한눈에 견주기 쉽다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "많고 적음을 견주기 쉬움"
+            ]
+          }
+        ],
+        "bGoal": "그림을 줄 맞추어 그리는 까닭",
+        "bReason": "그리는 방법은 문제에 주고 좋은 점만 답하게 했다.",
+        "studentLabel": "그림을 가지런히 그리기",
+        "cDecision": "rewrite",
+        "cAfter": "항목마다 그림을 왼쪽부터 {줄}을 맞추어 그리면 어느 쪽 그림이 더 많은지 한눈에 보인다.",
+        "cReason": "'줄을 맞추어' 대신 '차례로', '나란히'도 들어갈 수 있어 답이 흔들렸다. '□을 맞추어'로 좁혔다.",
+        "answerNotes": "줄, 칸 인정.",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그림 줄 맞추기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "항목마다 그림을 왼쪽부터 {줄}을 맞추어 그리면 어느 쪽 그림이 더 많은지 한눈에 보인다.",
+        "cStudentSentence": "항목마다 그림을 왼쪽부터 □을 맞추어 그리면 어느 쪽 그림이 더 많은지 한눈에 보인다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "줄",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "그림그래프에서 그림을 여기저기 흩어지게 그리지 않고 왼쪽부터 줄을 맞추어 그리면 어떤 점이 좋은지 쓰세요.",
+          "answer": "어느 쪽 그림이 더 많고 적은지 한눈에 견주기 쉽다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "많고 적음을 견주기 쉬움"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "항목마다 그림을 왼쪽부터 {줄}을 맞추어 그리면 어느 쪽 그림이 더 많은지 한눈에 보인다.",
+          "acceptedAnswers": [
+            [
+              "줄"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-6-2-xc18",
+          "sourceIndex": 1318,
+          "proposalFingerprint": "c95ac08ac298be2b2695aef503e4275b9675bdc018d0f62f886d6f0357fae48c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "왼쪽기준정렬로항목별그림많고적음을쉽게비교하는장점을 묻는다.",
+          "cReason": "왼쪽부터줄맞추는그림그래프의표현방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "줄 위치 간격 등 여러 표현이 가능한 배치 동작 빈칸이다. B에서 줄을 맞추면 비교하기 쉽다는 목적을 설명하도록 남긴다.",
+        "exclusionReason": "C: 배치 동작의 낱말 복원만 제외하고 줄을 맞춘 그림그래프의 이점을 설명하는 B는 유지한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-4-1-xc6",
+      "sourceIndex": 1796,
+      "beforeProposal": {
+        "sourceIndex": 1796,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "a20094550442c2d2e98dbad8ab69dc50a28674eb3d9adfe5bfc9495d5e7f0c95",
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "처음 위치와 옮긴 위치",
+        "bReason": "두 낱말 이름 확인",
+        "exclusionReason": "B/C: 이동 전후 자리를 부르는 임의 용어 암기는 제외한다. 원래 일반 설명은 보존한다.",
+        "cDecision": "exclude",
+        "cReason": "처음 위치와 옮긴 위치는 이 수업의 임의 표현으로 여러 일상말이 가능하며 이동의 수학적 성질을 확인하지 못한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "처음 위치와 옮긴 위치",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": null,
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "term": "두 낱말 이름 확인",
+          "cloze": "처음 위치와 옮긴 위치는 이 수업의 임의 표현으로 여러 일상말이 가능하며 이동의 수학적 성질을 확인하지 못한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-1-xc6",
+          "sourceIndex": 1796,
+          "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "이동 전후의 임의 이름을 외우는 B 제외를 유지한다.",
+          "cReason": "처음 위치와 옮긴 위치라는 명칭 복원 C도 제외하고 이동 자체 설명은 보존한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "이동 전후의 자리를 부르는 임의 이름 두 개를 맞히는 내용으로 수학적 성질이나 방법을 설명할 독립 목표가 없다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-1-1-xc25",
+      "sourceIndex": 2112,
+      "beforeProposal": {
+        "sourceIndex": 2112,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "4c1f8b132d40462b3d497738d523963948472aabe445c98fff9351dcb7c0181a",
+        "proposalFingerprint": "81a4704b1667f552a6610833a753d8e8a1e551ec639eb74e2e3c149a9799c05a",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{9}+\\frac{3}{9}$에서 분모는 더하지 않고 분자끼리만 더하는 까닭을 $\\frac{1}{9}$을 이용해 설명하시오.",
+        "bAnswer": "$\\frac{2}{9}$는 $\\frac{1}{9}$이 $2$개, $\\frac{3}{9}$은 $\\frac{1}{9}$이 $3$개로 조각의 크기가 같아서 개수 $2+3$만 더하면 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{9}$짜리 조각으로 크기가 같다",
+              "단위분수의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각의 개수만 더한다",
+              "$2+3$만 더한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분자만 더하는 까닭",
+        "bReason": "단위분수의 개수를 더한다는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같으면 단위분수의 크기가 같아서 단위분수의 {개수}만 더하면 된다.",
+        "cReason": "'단위분수의 개수'를 '개수' 하나만 묻는 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          [
+            "수",
+            "조각 수"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분자끼리만 더하는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같으면 단위분수의 크기가 같아서 단위분수의 {개수}만 더하면 된다.",
+        "cStudentSentence": "분모가 같으면 단위분수의 크기가 같아서 단위분수의 □만 더하면 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "개수",
+            "equivalents": [
+              "수",
+              "조각 수"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{2}{9}+\\frac{3}{9}$에서 분모는 더하지 않고 분자끼리만 더하는 까닭을 $\\frac{1}{9}$을 이용해 설명하시오.",
+          "answer": "$\\frac{2}{9}$는 $\\frac{1}{9}$이 $2$개, $\\frac{3}{9}$은 $\\frac{1}{9}$이 $3$개로 조각의 크기가 같아서 개수 $2+3$만 더하면 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{1}{9}$짜리 조각으로 크기가 같다",
+                "단위분수의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각의 개수만 더한다",
+                "$2+3$만 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같으면 단위분수의 크기가 같아서 단위분수의 {개수}만 더하면 된다.",
+          "acceptedAnswers": [
+            [
+              "개수",
+              "수",
+              "조각 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-1-1-xc25",
+          "sourceIndex": 2112,
+          "proposalFingerprint": "81a4704b1667f552a6610833a753d8e8a1e551ec639eb74e2e3c149a9799c05a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "동일한 크기1/9 조각의 개수만 더하는 이유를 설명한다.",
+          "cReason": "단위분수 자체의 분자와 그 개수는 다른 대상을 가리켜 구분했다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 분수가 같은 크기의 $\\frac{1}{9}$ 조각으로 이루어져 조각 크기는 그대로이고 그 개수만 합하기 때문이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-4-4-xc22",
+      "sourceIndex": 1887,
+      "beforeProposal": {
+        "sourceIndex": 1887,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+        "sourceFingerprint": "965e932e9df0b1463c5d082b81cd13b9b2bdd12a2b9b9498833a18652e6baca7",
+        "proposalFingerprint": "1ca41864d465c6b9d7536774163d2010ac19aefa92b34802fe08d81917475740",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-4-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 $180^\\circ$ 돌려도 처음과 같게 되는 까닭을 쓰시오.",
+        "bAnswer": "위아래 두 원이 서로 자리를 바꾸지만 두 원의 크기와 모양이 같아서 처음과 같게 됩니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 같은 두 원이 서로 자리를 바꾸어도 같은 모양이기 때문이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "반 바퀴 돌려도 같은 까닭",
+        "bReason": "구체적으로 같은 원 두 개가 서로 자리를 바꾸는 경우를 설명한다. 모든 반 바퀴 대칭 모양이 반드시 좌우와 위아래 각각 대칭일 필요는 없다.",
+        "exampleNeeded": "크기가 같은 원 두 개를 위아래로 붙인 $8$ 모양 그림",
+        "cDecision": "rewrite",
+        "cAfter": "$180^\\circ$는 {반} 바퀴이다. 크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 이만큼 돌리면 두 원의 자리가 바뀌어도 처음과 같은 모양이 된다.",
+        "cReason": "긴 조건 구절 빈칸을 반 바퀴 한 낱말로 바꿈",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "반 바퀴 돌려도 같은 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$180^\\circ$는 {반} 바퀴이다. 크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 이만큼 돌리면 두 원의 자리가 바뀌어도 처음과 같은 모양이 된다.",
+        "cStudentSentence": "$180^\\circ$는 □ 바퀴이다. 크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 이만큼 돌리면 두 원의 자리가 바뀌어도 처음과 같은 모양이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "반",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 $180^\\circ$ 돌려도 처음과 같게 되는 까닭을 쓰시오.",
+          "answer": "위아래 두 원이 서로 자리를 바꾸지만 두 원의 크기와 모양이 같아서 처음과 같게 됩니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "크기가 같은 두 원이 서로 자리를 바꾸어도 같은 모양이기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$180^\\circ$는 {반} 바퀴이다. 크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 이만큼 돌리면 두 원의 자리가 바뀌어도 처음과 같은 모양이 된다.",
+          "acceptedAnswers": [
+            [
+              "반"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-4-xc22",
+          "sourceIndex": 1887,
+          "proposalFingerprint": "1ca41864d465c6b9d7536774163d2010ac19aefa92b34802fe08d81917475740",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은 두 원이 자리를 바꿔도 일치한다는 구체적인 이유만 요구한다.",
+          "cReason": "180도에 직접 반 바퀴를 연결하여 한 바퀴라는 다른 답을 배제했다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 $180^\\circ$ 돌렸다. 두 원의 자리가 서로 바뀌지만 전체 모양은 처음과 {같다}.",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc20",
+      "sourceIndex": 1963,
+      "beforeProposal": {
+        "sourceIndex": 1963,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "c9561ea4cbfb74b32f63c385312a69465b97ba6b24c5bdd993985a04b042d891",
+        "proposalFingerprint": "d0eefd8ec27d32c210372c8a44ab96c9253ddaabc4374827c0d3468b61a09791",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "막대그래프에서 가장 긴 막대가 두 개이다. 수량이 가장 많은 항목은 몇 개인지, 이유와 함께 쓰라.",
+        "bAnswer": "두 개이다. 두 막대의 길이가 같으면 수량이 같고 가장 많기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 항목의 수량이 같고 다른 모든 항목보다 많으므로 가장 많은 항목은 두 개이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가장 긴 막대가 둘일 때",
+        "bReason": "가장 큰 수량이 같은 항목이 둘임을 설명하게 함",
+        "cDecision": "rewrite",
+        "cReason": "가장 긴 막대 수와 항목 수를 잇는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$개",
+            "둘"
+          ]
+        ],
+        "cAfter": "막대그래프에 막대가 세 개 있고, 눈금으로 읽은 수량이 각각 $5$명, $7$명, $7$명이다. 수량이 가장 많은 항목은 {두 개}이다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "가장 긴 막대가 둘일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대그래프에 막대가 세 개 있고, 눈금으로 읽은 수량이 각각 $5$명, $7$명, $7$명이다. 수량이 가장 많은 항목은 {두 개}이다.",
+        "cStudentSentence": "막대그래프에 막대가 세 개 있고, 눈금으로 읽은 수량이 각각 $5$명, $7$명, $7$명이다. 수량이 가장 많은 항목은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 개",
+            "equivalents": [
+              "$2$개",
+              "둘"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "막대그래프에서 가장 긴 막대가 두 개이다. 수량이 가장 많은 항목은 몇 개인지, 이유와 함께 쓰라.",
+          "answer": "두 개이다. 두 막대의 길이가 같으면 수량이 같고 가장 많기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 항목의 수량이 같고 다른 모든 항목보다 많으므로 가장 많은 항목은 두 개이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "막대그래프에 막대가 세 개 있고, 눈금으로 읽은 수량이 각각 $5$명, $7$명, $7$명이다. 수량이 가장 많은 항목은 {두 개}이다.",
+          "acceptedAnswers": [
+            [
+              "두 개",
+              "$2$개",
+              "둘"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc20",
+          "sourceIndex": 1963,
+          "proposalFingerprint": "d0eefd8ec27d32c210372c8a44ab96c9253ddaabc4374827c0d3468b61a09791",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은 양이고 가장 많다는 까닭을 결론과 합친 기준으로 삼았다.",
+          "cReason": "실제 세 수량을 견주어 최댓값인 두 항목을 센다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "막대그래프에 막대가 세 개 있고, 눈금으로 읽은 수량이 각각 $5$명, $7$명, $7$명이다. 수량이 가장 많은 항목의 개수는 {$2$}개이다.",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-1-4-xc13",
+      "sourceIndex": 2154,
+      "beforeProposal": {
+        "sourceIndex": 2154,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "533ca7c51799ec6b897fcb8aeddfd09ee2af26d768c2ce0fddd474010148f436",
+        "proposalFingerprint": "2f7c11a3987dff7cfb7676bc50296a19cdde10a33dea12ea17f05918a53a9c82",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 확인",
+        "bReason": "2-1-2-xc11과 같은 검산 목표",
+        "exclusionReason": "덧셈으로 뺄셈을 확인하는 2-1-2-xc11과 같은 목표라 B 중복",
+        "cDecision": "rewrite",
+        "cReason": "두 식이 보이고 '확인한다'만 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "잘못되었다",
+            "잘못됐다"
+          ]
+        ],
+        "cAfter": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$를 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 {틀렸다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$를 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 {틀렸다}.",
+        "cStudentSentence": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$를 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "틀렸다",
+            "equivalents": [
+              "잘못되었다",
+              "잘못됐다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$를 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 {틀렸다}.",
+          "acceptedAnswers": [
+            [
+              "틀렸다",
+              "잘못되었다",
+              "잘못됐다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-1-2-xc11과 같은 검산 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-1-4-xc13",
+          "sourceIndex": 2154,
+          "proposalFingerprint": "2f7c11a3987dff7cfb7676bc50296a19cdde10a33dea12ea17f05918a53a9c82",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "동일 검산 목표의 B 중복 제외는 유지한다.",
+          "cReason": "뺄셈식 끝 육분의 사 뒤 를로 고친 뒤 실제 차와 검산이 어긋나 틀렸다는 판단을 다시 읽었다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "구한 차에 빼는 수를 더하여 처음 수와 같은지 확인하는 역연산 방법은 e4-2-1-2-xc11 B에서 설명한다. 진분수에서 대분수로 수만 바뀐 검산 설명은 반복하지 않고 이 항목 C에서 실제 대분수 검산 결과를 판단한다.",
+        "exclusionReason": "B: 역연산 검산의 방법은 e4-2-1-2-xc11 B와 같아 제외한다. 대분수의 실제 검산 적용은 이 항목 C에 보존한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-1-4-xc14",
+      "sourceIndex": 2155,
+      "beforeProposal": {
+        "sourceIndex": 2155,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "509480338cbdbbb352c0ed3ee6ec74f36a521d76c7e61cd2e27694812a1563f2",
+        "proposalFingerprint": "0909743623625a641081948a293bb6b40e614896850e97bb0d5dd53a7112747d",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$3\\frac{2}{7}-1\\frac{5}{7}$를 계산하면서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 뺐다. 잘못된 점을 설명하시오.",
+        "bAnswer": "처음 수의 분수 부분 $\\frac{2}{7}$에서 빼는 수의 분수 부분 $\\frac{5}{7}$를 빼야 하는데 빼는 순서를 바꾸었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빼는 순서를 바꾸었다",
+              "처음 수에서 빼야 하는데 거꾸로 뺐다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "거꾸로 빼는 오류 진단",
+        "bReason": "뺄셈의 순서가 중요하다는 점 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 빼는 {순서}를 바꾼 잘못이다.",
+        "cReason": "긴 구절 빈칸을 '순서' 한 낱말로 축소",
+        "cSlotEquivalents": [
+          [
+            "차례"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 거꾸로 빼는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 빼는 {순서}를 바꾼 잘못이다.",
+        "cStudentSentence": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 빼는 □를 바꾼 잘못이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "순서",
+            "equivalents": [
+              "차례"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3\\frac{2}{7}-1\\frac{5}{7}$를 계산하면서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 뺐다. 잘못된 점을 설명하시오.",
+          "answer": "처음 수의 분수 부분 $\\frac{2}{7}$에서 빼는 수의 분수 부분 $\\frac{5}{7}$를 빼야 하는데 빼는 순서를 바꾸었다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "빼는 순서를 바꾸었다",
+                "처음 수에서 빼야 하는데 거꾸로 뺐다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 빼는 {순서}를 바꾼 잘못이다.",
+          "acceptedAnswers": [
+            [
+              "순서",
+              "차례"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-1-4-xc14",
+          "sourceIndex": 2155,
+          "proposalFingerprint": "0909743623625a641081948a293bb6b40e614896850e97bb0d5dd53a7112747d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "처음분수에서빼야하는순서를거꾸로한오류를설명한다.",
+          "cReason": "두분수부분의빼는차례를바꾼오류를확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$3\\frac{2}{7}-1\\frac{5}{7}$을 계산하면서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 뺐다. 무엇이 잘못되었는지 쓰고, 바르게 빼려면 처음 수 $3\\frac{2}{7}$을 먼저 어떻게 고쳐야 하는지 쓰시오.",
+        "bAnswer": "빼는 순서를 거꾸로 바꾼 것이 잘못입니다. $\\frac{2}{7}$에서 $\\frac{5}{7}$을 바로 뺄 수 없으므로 자연수 $1$을 $\\frac{7}{7}$로 바꾸어 처음 수를 $2\\frac{9}{7}$로 고친 뒤 빼야 합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빼는 순서를 거꾸로 바꾸었다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수 $1$을 $\\frac{7}{7}$로 바꾸어 $3\\frac{2}{7}$을 $2\\frac{9}{7}$로 고친다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

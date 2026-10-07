@@ -1,0 +1,2974 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:25:56.172Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-03-xc22",
+        "section": "중2::2. 부등식::일차부등식의 응용",
+        "term": "음수 계수가 든 두 부등식의 해가 같을 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "해가 같은 두 부등식에서 미지의 상수가 든 쪽의 $x$의 계수가 음수이면, 나눌 때 부등호가 {바뀐} 뒤의 경계값을 다른 부등식의 {경계값}과 같게 놓는다.",
+        "example": {
+          "prompt": "$-2x+3<a$와 $x-1>2$의 해가 같을 때 $a$의 값",
+          "answer": "$-3$"
+        },
+        "studentC": "해가 같은 두 부등식에서 미지의 상수가 든 쪽의 $x$의 계수가 음수이면, 나눌 때 부등호가 □ 뒤의 경계값을 다른 부등식의 □과 같게 놓는다.",
+        "answers": [
+          "바뀐",
+          "경계값"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-03-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "두 부등식 $-2x+3<a$와 $x-1>2$의 해가 같을 때 상수 $a$의 값을 구하고, $-2x+3<a$를 풀 때 부등호의 방향이 어떻게 되는지 쓰시오.",
+        "bAnswer": "$x-1>2$의 해는 $x>3$이다. $-2x<a-3$의 양변을 $-2$로 나누면 부등호가 바뀌어 $x>\\frac{3-a}{2}$이다. $\\frac{3-a}{2}=3$이므로 $a=-3$이다.",
+        "bGoal": "음수 계수가 든 쪽의 바뀐 부등호로 두 해 맞추기",
+        "bReason": "c3에 음수 계수가 더해진 경우라 부등호가 바뀌는 단계를 따로 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x>3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-2$로 나누어 부등호가 바뀐다",
+              "음수로 나누면 부등호 방향이 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>\\frac{3-a}{2}$",
+              "$\\frac{3-a}{2}=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=-3$"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "xc11 C와 같은 '바뀐 뒤 경계값을 같게 놓기' 빈칸이고, 둘째 답이 앞에 보인다.",
+        "exclusionReason": "C 제외: xc11 C와 '부등호가 바뀐 뒤 경계값 맞추기' 내용이 중복되고, 둘째 답 '경계값'이 같은 문장 앞부분에 그대로 나온다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "음수 계수로 나누어 두 해 맞추기",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2367,
+        "part": "m2plus",
+        "sourceFingerprint": "6a0d0157b7d03b47f8f8d29848f32bf26c5a22f4fb44da0b9641fd3d79c65be0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2367
+        },
+        "directReview": null,
+        "proposalFingerprint": "d79f3b487e6ea0031ce82301487126b9fc5edc7436c5ae7cbe1877860aec6ba1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-03-xc25",
+        "section": "중2::2. 부등식::일차부등식의 응용",
+        "term": "해의 꼴로 계수의 부호 알기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$a\\ne0$인 $ax+b>0$의 해가 $x<c$ 꼴이면 $a$로 나눌 때 부등호가 {바뀌었다}는 뜻이므로 $x$의 계수 $a$의 {부호}가 음수임을 알 수 있다.",
+        "studentC": "$a\\ne0$인 $ax+b>0$의 해가 $x<c$ 꼴이면 $a$로 나눌 때 부등호가 □는 뜻이므로 $x$의 계수 $a$의 □가 음수임을 알 수 있다.",
+        "answers": [
+          "바뀌었다",
+          "부호"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-03-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$a\\ne0$인 상수 $a$, $b$에 대하여 부등식 $ax+b>0$의 해가 $x<2$이다. $a$가 양수인지 음수인지 쓰고, 그렇게 판단한 까닭을 쓰시오.",
+        "bAnswer": "음수이다. $ax>-b$의 양변을 $a$로 나누었더니 $>$가 $<$로 바뀌었으므로 음수로 나눈 것이다.",
+        "bGoal": "해의 부등호 방향으로 계수의 부호 추론하기",
+        "bReason": "거꾸로 추론하는 성질이라 해 $x<2$를 주고 부호와 근거를 함께 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "음수",
+              "$a<0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$로 나눌 때 부등호 방향이 바뀌었다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$a\\ne0$인 $ax+b>0$의 해가 $x<c$ 꼴이면 $a$로 나눌 때 부등호의 방향이 {바뀌었다}는 뜻이므로 $a$는 {음수}이다.",
+        "cAnswers": [
+          "바뀌었다",
+          "음수"
+        ],
+        "cReason": "'$a$의 □가 음수'에서 '부호'가 바로 보여 결론인 $a$의 부호를 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "해의 방향에서 계수 부호 추론",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2368,
+        "part": "m2plus",
+        "sourceFingerprint": "a927e253f7cc76635f5dab4edbec3f50c9e3eb567381ce72f6a180086324a842",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2368
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a\\ne0$인 $ax+b>0$의 해가 $x<c$ 꼴이면 $a$로 나눌 때 부등호의 방향이 {바뀌었다}는 뜻이므로 $a$는 {음수}이다.",
+        "cSlotAnswers": [
+          "바뀌었다",
+          "음수"
+        ],
+        "cStudentSentence": "$a\\ne0$인 $ax+b>0$의 해가 $x<c$ 꼴이면 $a$로 나눌 때 부등호의 방향이 □는 뜻이므로 $a$는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "바뀌었다",
+            "equivalentAnswers": [
+              "바뀌었다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "음수",
+            "equivalentAnswers": [
+              "음수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "바뀌었다"
+          ],
+          [
+            "음수"
+          ]
+        ],
+        "proposalFingerprint": "0fbf9a3bfbcc06788fbabd9cbbad8785689885a76132d47832ce9983acfafc76"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc1",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "미지수 정하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "활용 문제에서는 구하려는 {양}을 {$x$}로 놓는 것에서 시작한다.",
+        "example": {
+          "prompt": "어떤 수의 $2$배에 $3$을 더한 값",
+          "answer": "$2x+3$"
+        },
+        "studentC": "활용 문제에서는 구하려는 □을 □로 놓는 것에서 시작한다.",
+        "answers": [
+          "양",
+          "$x$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c1 풀이 순서 B의 첫 단계와 같은 목표라 B를 따로 두지 않는다.",
+        "cDecision": "exclude",
+        "cReason": "c1 C의 '구하려는 것을 □로 놓고'와 같은 내용의 빈칸이다.",
+        "exclusionReason": "B 제외: c1 B에 '구하려는 양을 $x$로 놓기'가 포함되어 목표가 중복된다. C 제외: c1 C의 '미지수' 빈칸과 같은 내용이다.",
+        "learningRole": "procedure",
+        "roleReason": "구하려는 양을 $x$로 놓기",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2369,
+        "part": "m2plus",
+        "sourceFingerprint": "a97eff4157e7d371d9f9f95dde6c0cbfd69d96d87202145f0159eeef3230204d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2369
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc2",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "크다와 이상을 부등식으로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "「$A$는 $B$보다 크다」는 {$A>B$}, 「$A$는 $B$ 이상이다」는 {$A\\ge B$}로 쓴다.",
+        "example": {
+          "prompt": "「$x$의 $3$배는 $15$보다 크다」",
+          "answer": "$3x>15$"
+        },
+        "studentC": "「$A$는 $B$보다 크다」는 □, 「$A$는 $B$ 이상이다」는 □로 쓴다.",
+        "answers": [
+          "$A>B$",
+          "$A\\ge B$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "다음 문장을 부등식으로 나타내고, 두 부등식의 차이를 쓰시오. ($1$) $x$의 $3$배는 $15$보다 크다. ($2$) $x$의 $3$배는 $15$ 이상이다.",
+        "bAnswer": "($1$) $3x>15$ ($2$) $3x\\ge15$이다. '이상'은 $15$와 같은 경우도 포함하므로 등호가 붙는다.",
+        "bGoal": "'크다'와 '이상'을 부등호로 구별하기",
+        "bReason": "두 표현의 차이가 등호뿐이라 같은 수량으로 나란히 옮기게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3x>15$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3x\\ge15$"
+            ]
+          },
+          {
+            "anyOf": [
+              "'이상'은 같은 경우를 포함한다",
+              "등호 유무가 다르다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 표현을 기호로 옮기는 짧은 비교 빈칸이라 그대로 쓴다.",
+        "exampleNeeded": true,
+        "learningRole": "naming",
+        "roleReason": "말을 부등호 기호로 옮기기",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2370,
+        "part": "m2plus",
+        "sourceFingerprint": "f047fa55244b19c5a1d299512cc9b0164644c087a262fd96e702dc969425b145",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2370
+        },
+        "directReview": null,
+        "cFrozenSentence": "「$A$는 $B$보다 크다」는 □, 「$A$는 $B$ 이상이다」는 □로 쓴다.",
+        "cFrozenDefinition": "「$A$는 $B$보다 크다」는 {$A>B$}, 「$A$는 $B$ 이상이다」는 {$A\\ge B$}로 쓴다.",
+        "cFrozenAnswers": [
+          "$A>B$",
+          "$A\\ge B$"
+        ],
+        "cMarkedSentence": "「$A$는 $B$보다 크다」는 {$A>B$}, 「$A$는 $B$ 이상이다」는 {$A\\ge B$}로 쓴다.",
+        "cSlotAnswers": [
+          "$A>B$",
+          "$A\\ge B$"
+        ],
+        "cStudentSentence": "「$A$는 $B$보다 크다」는 □, 「$A$는 $B$ 이상이다」는 □로 쓴다.",
+        "cAnswers": [
+          "$A>B$",
+          "$A\\ge B$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$A>B$",
+            "equivalentAnswers": [
+              "$A>B$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$A\\ge B$",
+            "equivalentAnswers": [
+              "$A\\ge B$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$A>B$"
+          ],
+          [
+            "$A\\ge B$"
+          ]
+        ],
+        "proposalFingerprint": "f30999ed7c085ba4a9c161ae8a1f1117269cf518390061911f9795be425e897d"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc3",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "어떤 수에 관한 부등식",
+        "kind": "방법",
+        "level": "하",
+        "definition": "어떤 수를 $x$로 놓고 문장에 나온 {계산}을 차례로 식으로 옮긴 뒤 {부등호}로 잇는다.",
+        "example": {
+          "prompt": "어떤 수에서 $4$를 뺀 값이 $6$ 이하",
+          "answer": "$x-4\\le6$"
+        },
+        "studentC": "어떤 수를 $x$로 놓고 문장에 나온 □을 차례로 식으로 옮긴 뒤 □로 잇는다.",
+        "answers": [
+          "계산",
+          "부등호"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "「어떤 수의 $2$배에서 $4$를 뺀 값은 $10$ 이하이다」를 어떤 수를 $x$로 놓아 부등식으로 나타내고, 어떤 수의 범위를 구하시오.",
+        "bAnswer": "$2x-4\\le10$이므로 $2x\\le14$, $x\\le7$이다.",
+        "bGoal": "문장의 계산 순서를 식으로 옮겨 부등식 세우기",
+        "bReason": "계산 순서와 '이하'를 함께 옮기도록 두 단계 계산이 있는 문장을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2x-4\\le10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x\\le7$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "「어떤 수에서 $4$를 뺀 값은 $6$ 이하이다」를 어떤 수를 $x$로 놓아 나타내면 {$x-4$} {$\\le$} $6$이다.",
+        "cAnswers": [
+          "$x-4$",
+          "$\\le$"
+        ],
+        "cReason": "답 '계산'이 '연산', '내용' 등과 구별되지 않아 실제로 식으로 옮기는 빈칸으로 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "문장을 식으로 옮기는 절차",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2371,
+        "part": "m2plus",
+        "sourceFingerprint": "d754e245deb2443852e1ae256ef706d28aeff39eb36dfc66a61456c19adc158a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2371
+        },
+        "directReview": null,
+        "cMarkedSentence": "「어떤 수에서 $4$를 뺀 값은 $6$ 이하이다」를 어떤 수를 $x$로 놓아 나타내면 {$x-4$} {$\\le$} $6$이다.",
+        "cSlotAnswers": [
+          "$x-4$",
+          "$\\le$"
+        ],
+        "cStudentSentence": "「어떤 수에서 $4$를 뺀 값은 $6$ 이하이다」를 어떤 수를 $x$로 놓아 나타내면 □ □ $6$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x-4$",
+            "equivalentAnswers": [
+              "$x-4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\le$",
+            "equivalentAnswers": [
+              "$\\le$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x-4$"
+          ],
+          [
+            "$\\le$"
+          ]
+        ],
+        "proposalFingerprint": "063e88eeddd81c72ecb31bf7aab99532ae1e82e782c10c3a85984682184ed7c3"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc4",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "해가 뜻에 맞는지",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구한 해가 개수나 사람 수이면 $0$ 이상의 {정수}여야 한다. 실제 길이나 가격이면 문제 상황에 따라 $0$을 허용하는지도 확인하고, $0$을 허용하지 않으면 {양수}여야 한다.",
+        "studentC": "구한 해가 개수나 사람 수이면 $0$ 이상의 □여야 한다. 실제 길이나 가격이면 문제 상황에 따라 $0$을 허용하는지도 확인하고, $0$을 허용하지 않으면 □여야 한다.",
+        "answers": [
+          "정수",
+          "양수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 일차부등식을 풀었더니 $x\\le4.5$였다. $x$가 ($1$) 살 수 있는 사과의 개수일 때, ($2$) 자를 끈의 길이($\\mathrm{cm}$)일 때 문제의 뜻에 맞는 $x$를 각각 쓰시오. 단, 끈의 길이는 $0$이 될 수 없다.",
+        "bAnswer": "($1$) 개수는 $0$ 이상의 정수이므로 $0$, $1$, $2$, $3$, $4$이다. ($2$) 길이는 양수여야 하므로 $0<x\\le4.5$이다.",
+        "bGoal": "해를 문제 상황의 수 범위에 맞게 고르기",
+        "bReason": "개수와 길이에서 허용하는 수가 달라 같은 해를 두 상황에 적용하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0$, $1$, $2$, $3$, $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0<x\\le4.5$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "개수와 길이의 조건을 구별해 '정수', '양수'를 묻는 분명한 문장이다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "개수와 길이에 맞는 해의 조건",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2372,
+        "part": "m2plus",
+        "sourceFingerprint": "6a4a0d1796fe75a5bc864275b863e23d20891a236e3e8535654fd6e080934e61",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2372
+        },
+        "directReview": null,
+        "cFrozenSentence": "구한 해가 개수나 사람 수이면 $0$ 이상의 □여야 한다. 실제 길이나 가격이면 문제 상황에 따라 $0$을 허용하는지도 확인하고, $0$을 허용하지 않으면 □여야 한다.",
+        "cFrozenDefinition": "구한 해가 개수나 사람 수이면 $0$ 이상의 {정수}여야 한다. 실제 길이나 가격이면 문제 상황에 따라 $0$을 허용하는지도 확인하고, $0$을 허용하지 않으면 {양수}여야 한다.",
+        "cFrozenAnswers": [
+          "정수",
+          "양수"
+        ],
+        "cMarkedSentence": "구한 해가 개수나 사람 수이면 $0$ 이상의 {정수}여야 한다. 실제 길이나 가격이면 문제 상황에 따라 $0$을 허용하는지도 확인하고, $0$을 허용하지 않으면 {양수}여야 한다.",
+        "cSlotAnswers": [
+          "정수",
+          "양수"
+        ],
+        "cStudentSentence": "구한 해가 개수나 사람 수이면 $0$ 이상의 □여야 한다. 실제 길이나 가격이면 문제 상황에 따라 $0$을 허용하는지도 확인하고, $0$을 허용하지 않으면 □여야 한다.",
+        "cAnswers": [
+          "정수",
+          "양수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "양수"
+          ]
+        ],
+        "proposalFingerprint": "4c6e7fa2723f94caa7b8cf283060658447b52286114e6a3d17ff876d6c878600"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc5",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "연속하는 두 자연수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "연속하는 두 자연수는 작은 수를 $x$로 놓아 $x$, {$x+1$}로 쓴다.",
+        "example": {
+          "prompt": "작은 수가 $x$인 연속하는 두 자연수의 합",
+          "answer": "$2x+1$"
+        },
+        "studentC": "연속하는 두 자연수는 작은 수를 $x$로 놓아 $x$, □로 쓴다.",
+        "answers": [
+          "$x+1$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "연속하는 두 자연수의 합이 $25$보다 작다. 작은 수를 $x$로 놓아 두 수를 나타내고 부등식을 세워, 작은 수가 될 수 있는 가장 큰 자연수를 구하시오.",
+        "bAnswer": "두 수는 $x$, $x+1$이므로 $x+(x+1)<25$, $2x<24$, $x<12$이다. 작은 수가 될 수 있는 가장 큰 자연수는 $11$이다.",
+        "bGoal": "작은 수를 $x$로 놓아 연속하는 두 자연수 나타내기",
+        "bReason": "두 수의 표현이 부등식에 쓰이도록 합의 조건과 가장 큰 값을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$, $x+1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2x+1<25$",
+              "$x+(x+1)<25$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'작은 수를 $x$로'라는 조건이 있어 $x+1$을 묻는 짧은 빈칸으로 충분하다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "연속하는 두 자연수 표현 방법",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2373,
+        "part": "m2plus",
+        "sourceFingerprint": "ba7e63b9e8e6454caa373152ae9393c5ff23f9e62e4859c38db4c274549b804b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2373
+        },
+        "directReview": null,
+        "cFrozenSentence": "연속하는 두 자연수는 작은 수를 $x$로 놓아 $x$, □로 쓴다.",
+        "cFrozenDefinition": "연속하는 두 자연수는 작은 수를 $x$로 놓아 $x$, {$x+1$}로 쓴다.",
+        "cFrozenAnswers": [
+          "$x+1$"
+        ],
+        "cMarkedSentence": "연속하는 두 자연수는 작은 수를 $x$로 놓아 $x$, {$x+1$}로 쓴다.",
+        "cSlotAnswers": [
+          "$x+1$"
+        ],
+        "cStudentSentence": "연속하는 두 자연수는 작은 수를 $x$로 놓아 $x$, □로 쓴다.",
+        "cAnswers": [
+          "$x+1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x+1$",
+            "equivalentAnswers": [
+              "$x+1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x+1$"
+          ]
+        ],
+        "proposalFingerprint": "7f11374c90907fddcd36edd9017d845d36e316ee491c49fd1b7c93e41c6295c6"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc6",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "연속하는 두 홀수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "연속하는 두 홀수는 차가 {$2$}이므로 $x$, {$x+2$}로 놓는다.",
+        "example": {
+          "prompt": "작은 홀수가 $x$인 연속하는 두 홀수의 합이 $20$보다 작다",
+          "answer": "$2x+2<20$"
+        },
+        "studentC": "연속하는 두 홀수는 차가 □이므로 $x$, □로 놓는다.",
+        "answers": [
+          "$2$",
+          "$x+2$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "연속하는 두 홀수의 합이 $20$보다 작다. 작은 홀수를 $x$로 놓아 두 홀수를 나타내고 부등식을 세워, 작은 홀수가 될 수 있는 가장 큰 수를 구하시오.",
+        "bAnswer": "두 홀수는 차가 $2$이므로 $x$, $x+2$이고, $2x+2<20$에서 $x<9$이다. $9$보다 작은 가장 큰 홀수는 $7$이다.",
+        "bGoal": "차가 $2$인 연속하는 두 홀수 나타내기",
+        "bReason": "$x+1$로 쓰는 실수와 홀수 조건 확인이 드러나도록 가장 큰 홀수를 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$, $x+2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2x+2<20$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "차와 둘째 수를 묻는 두 빈칸이 짧고 홀수라는 조건이 문장에 있다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "연속하는 두 홀수 표현 방법",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2374,
+        "part": "m2plus",
+        "sourceFingerprint": "617e2960ad345321739514a43aea90d024feabb835a2a09cda91f817d5f7c8b2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2374
+        },
+        "directReview": null,
+        "cFrozenSentence": "연속하는 두 홀수는 차가 □이므로 $x$, □로 놓는다.",
+        "cFrozenDefinition": "연속하는 두 홀수는 차가 {$2$}이므로 $x$, {$x+2$}로 놓는다.",
+        "cFrozenAnswers": [
+          "$2$",
+          "$x+2$"
+        ],
+        "cMarkedSentence": "연속하는 두 홀수는 차가 {$2$}이므로 $x$, {$x+2$}로 놓는다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$x+2$"
+        ],
+        "cStudentSentence": "연속하는 두 홀수는 차가 □이므로 $x$, □로 놓는다.",
+        "cAnswers": [
+          "$2$",
+          "$x+2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+2$",
+            "equivalentAnswers": [
+              "$x+2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$x+2$"
+          ]
+        ],
+        "proposalFingerprint": "531c492f2a3b477ca720788b11aef57aa6005e641a8b428b85545e5d445f06cb"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc7",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "세 수의 평균",
+        "kind": "공식",
+        "level": "하",
+        "definition": "$a$, $b$, $c$의 평균은 세 수의 {합}을 {$3$}으로 나눈 $\\frac{a+b+c}{3}$이다.",
+        "example": {
+          "prompt": "$70$, $90$, $x$의 평균",
+          "answer": "$\\frac{160+x}{3}$"
+        },
+        "studentC": "$a$, $b$, $c$의 평균은 세 수의 □을 □으로 나눈 $\\frac{a+b+c}{3}$이다.",
+        "answers": [
+          "합",
+          "$3$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c3 평균 B와 같은 '합을 개수로 나누기' 목표를 세 수로만 바꾼 것이다.",
+        "cDecision": "exclude",
+        "cReason": "답 '합', '$3$'이 문장 끝의 식 $\\frac{a+b+c}{3}$에 그대로 보인다.",
+        "exclusionReason": "B 제외: c3 평균 B와 목표 중복. C 제외: c3 C와 같은 정의이고 답이 같은 문장의 식 $\\frac{a+b+c}{3}$에 드러난다.",
+        "learningRole": "definition",
+        "roleReason": "세 수의 평균의 뜻",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2375,
+        "part": "m2plus",
+        "sourceFingerprint": "d194ec2b588ad4a15f56037bc29d4a57988923984ca5a0128dba7480a11fbcc0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2375
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc8",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "이익",
+        "kind": "정의",
+        "level": "하",
+        "definition": "이익은 판 가격에서 {원가}를 {뺀} 값이다.",
+        "example": {
+          "prompt": "원가 $3000$원짜리를 $3500$원에 팔 때 이익",
+          "answer": "$500$원"
+        },
+        "studentC": "이익은 판 가격에서 □를 □ 값이다.",
+        "answers": [
+          "원가",
+          "뺀"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c5 B가 이미 이익을 판매 가격에서 원가를 빼서 구하게 해 목표가 겹친다.",
+        "cDecision": "exclude",
+        "cReason": "c5 C의 '이익은 판매 가격에서 □를 뺀 값'과 같은 빈칸이다.",
+        "exclusionReason": "B 제외: c5 B에 이익 계산이 포함되어 목표가 중복된다. C 제외: c5 C 둘째 빈칸과 같은 정의 중복이다.",
+        "learningRole": "definition",
+        "roleReason": "이익의 뜻",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2376,
+        "part": "m2plus",
+        "sourceFingerprint": "80dff22841004b49b1e3ecaec01b4754d8f2d29e9e27dd5e020a88656a799d53",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2376
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc9",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "할인액과 판매 가격",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정가에 할인율을 곱한 값은 {할인액}이고, 판매 가격은 정가에서 할인액을 {뺀} 값이다.",
+        "example": {
+          "prompt": "할인율이 $30\\%$이면 판매 가격은 정가의 몇 $\\%$인가?",
+          "answer": "$70\\%$ — 깎은 만큼을 빼서"
+        },
+        "studentC": "정가에 할인율을 곱한 값은 □이고, 판매 가격은 정가에서 할인액을 □ 값이다.",
+        "answers": [
+          "할인액",
+          "뺀"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "할인액과 판매 가격의 관계는 c5 B와 xc13 B가 이미 다루어 목표가 겹친다.",
+        "cDecision": "rewrite",
+        "cAfter": "할인액은 정가에 {할인율}을 곱한 값이므로, 정가의 $30\\%$를 할인하면 판매 가격은 정가의 {$70\\%$}이다.",
+        "cAnswers": [
+          "할인율",
+          "$70\\%$"
+        ],
+        "cReason": "첫 답 '할인액'이 같은 문장 뒤에 보이고 c5 C와 겹쳐 비율 관계를 묻게 고쳤다.",
+        "exclusionReason": "B 제외: c5 B(할인액과 판매 가격)와 xc13 B(할인한 판매 가격의 식)와 목표가 중복된다.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "할인액과 판매 가격 비율의 뜻",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2377,
+        "part": "m2plus",
+        "sourceFingerprint": "d281f64d6c849ff087023e4758cd5be97df90c627007fa4b96d49f8b2b36cbb7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2377
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "할인액은 정가에 {할인율}을 곱한 값이므로, 정가의 $30\\%$를 할인하면 판매 가격은 정가의 {$70\\%$}이다.",
+        "cSlotAnswers": [
+          "할인율",
+          "$70\\%$"
+        ],
+        "cStudentSentence": "할인액은 정가에 □을 곱한 값이므로, 정가의 $30\\%$를 할인하면 판매 가격은 정가의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "할인율",
+            "equivalentAnswers": [
+              "할인율"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$70\\%$",
+            "equivalentAnswers": [
+              "$70\\%$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "할인율"
+          ],
+          [
+            "$70\\%$"
+          ]
+        ],
+        "proposalFingerprint": "2972bfebf9c799396506817f3f67df3bb1591ccf3d5a4437dce182684d389706"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc10",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "가운데를 $x$로 놓은 연속하는 세 짝수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "연속하는 세 짝수는 가운데를 $x$로 놓아 {$x-2$}, $x$, {$x+2$}로 쓰면 합이 $3x$가 된다.",
+        "example": {
+          "prompt": "합이 $54$ 이하일 때 가운데 짝수의 가장 큰 값",
+          "answer": "$18$"
+        },
+        "studentC": "연속하는 세 짝수는 가운데를 $x$로 놓아 □, $x$, □로 쓰면 합이 $3x$가 된다.",
+        "answers": [
+          "$x-2$",
+          "$x+2$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc10",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c2 B와 같은 '가운데를 $x$로 놓아 합 $3x$' 목표를 짝수로만 바꾼 것이다.",
+        "cDecision": "keep",
+        "cReason": "짝수끼리 차가 $2$임을 $x-2$, $x+2$로 쓰게 하는 분명한 빈칸이다.",
+        "exclusionReason": "B 제외: c2 B와 가운데 수를 $x$로 놓는 목표가 중복된다.",
+        "studentLabel": "연속하는 세 짝수",
+        "learningRole": "procedure",
+        "roleReason": "연속하는 세 짝수 표현 방법",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2378,
+        "part": "m2plus",
+        "sourceFingerprint": "027952758634e7b158574103627aeedc9f8724fcadc884f828be01cd482a7189",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2378
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "연속하는 세 짝수는 가운데를 $x$로 놓아 □, $x$, □로 쓰면 합이 $3x$가 된다.",
+        "cFrozenDefinition": "연속하는 세 짝수는 가운데를 $x$로 놓아 {$x-2$}, $x$, {$x+2$}로 쓰면 합이 $3x$가 된다.",
+        "cFrozenAnswers": [
+          "$x-2$",
+          "$x+2$"
+        ],
+        "cMarkedSentence": "연속하는 세 짝수는 가운데를 $x$로 놓아 {$x-2$}, $x$, {$x+2$}로 쓰면 합이 $3x$가 된다.",
+        "cSlotAnswers": [
+          "$x-2$",
+          "$x+2$"
+        ],
+        "cStudentSentence": "연속하는 세 짝수는 가운데를 $x$로 놓아 □, $x$, □로 쓰면 합이 $3x$가 된다.",
+        "cAnswers": [
+          "$x-2$",
+          "$x+2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x-2$",
+            "equivalentAnswers": [
+              "$x-2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+2$",
+            "equivalentAnswers": [
+              "$x+2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x-2$"
+          ],
+          [
+            "$x+2$"
+          ]
+        ],
+        "proposalFingerprint": "3af64ab51e05e403eb7370758fab4e55606cf385286680773321e6d98e347797"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc11",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "평균 조건을 합의 조건으로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "평균이 $m$ 이상이려면 자료의 {합}이 $m$에 자료의 {개수}를 곱한 값 이상이어야 한다.",
+        "example": {
+          "prompt": "$3$과목 평균이 $80$점 이상일 때 합",
+          "answer": "$240$점 이상"
+        },
+        "studentC": "평균이 $m$ 이상이려면 자료의 □이 $m$에 자료의 □를 곱한 값 이상이어야 한다.",
+        "answers": [
+          "합",
+          "개수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "세 과목 점수의 합을 $S$점이라 하자. 세 과목의 평균이 $80$점 이상이 되는 조건을 $S$에 관한 부등식으로 나타내고, 그렇게 바꿀 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{S}{3}\\ge80$의 양변에 양수 $3$을 곱해도 부등호 방향은 그대로이므로 $S\\ge240$이다.",
+        "bGoal": "평균 조건을 합의 조건으로 바꾸기",
+        "bReason": "평균과 합 사이 변환의 근거를 보도록 합을 $S$로 두고 부등식을 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$S\\ge240$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변에 양수 $3$을 곱한다",
+              "평균에 개수를 곱하면 합이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'합'과 '개수'로 평균 조건을 합의 조건으로 바꾸는 관계가 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "평균 조건을 합으로 바꾸는 이유",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2379,
+        "part": "m2plus",
+        "sourceFingerprint": "2ffdecd810460988d18a294bdefab5b24d0c62197400489c22880d6aa74df414",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2379
+        },
+        "directReview": null,
+        "cFrozenSentence": "평균이 $m$ 이상이려면 자료의 □이 $m$에 자료의 □를 곱한 값 이상이어야 한다.",
+        "cFrozenDefinition": "평균이 $m$ 이상이려면 자료의 {합}이 $m$에 자료의 {개수}를 곱한 값 이상이어야 한다.",
+        "cFrozenAnswers": [
+          "합",
+          "개수"
+        ],
+        "cMarkedSentence": "평균이 $m$ 이상이려면 자료의 {합}이 $m$에 자료의 {개수}를 곱한 값 이상이어야 한다.",
+        "cSlotAnswers": [
+          "합",
+          "개수"
+        ],
+        "cStudentSentence": "평균이 $m$ 이상이려면 자료의 □이 $m$에 자료의 □를 곱한 값 이상이어야 한다.",
+        "cAnswers": [
+          "합",
+          "개수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "개수",
+            "equivalentAnswers": [
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "개수"
+          ]
+        ],
+        "proposalFingerprint": "836444976172aaa03381abd429ced2d600242ee0426943254eaf47ae40716eee"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc12",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "원가 $a$원에 $x\\%$의 이익을 붙인 정가",
+        "kind": "공식",
+        "level": "중",
+        "definition": "원가 $a$원에 $x\\%$의 이익을 붙이면 정가는 {$a\\left(1+\\frac{x}{100}\\right)$}원이다.",
+        "example": {
+          "prompt": "원가 $2000$원에 $25\\%$ 이익을 붙인 정가",
+          "answer": "$2500$원"
+        },
+        "studentC": "원가 $a$원에 $x\\%$의 이익을 붙이면 정가는 □원이다.",
+        "answers": [
+          "$a\\left(1+\\frac{x}{100}\\right)$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "원가가 $a$원인 물건에 원가의 $x\\%$만큼 이익을 붙여 정가를 정했다. 정가를 $a$와 $x$로 나타내고, 그 식이 나오는 까닭을 쓰시오.",
+        "bAnswer": "이익은 $a\\times\\frac{x}{100}$원이고 정가는 원가에 이익을 더한 값이므로 $a+\\frac{ax}{100}=a\\left(1+\\frac{x}{100}\\right)$원이다.",
+        "bGoal": "이익률로 정가를 나타내는 식 만들기",
+        "bReason": "공식 암기가 아니라 원가에 이익을 더하는 과정에서 식을 만들게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a\\left(1+\\frac{x}{100}\\right)$",
+              "$a+\\frac{ax}{100}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "이익은 $\\frac{ax}{100}$원이다",
+              "원가에 원가의 $x\\%$를 더한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 모두 있는 짧은 식 빈칸이며 동치인 식만 허용하면 된다.",
+        "learningRole": "reason",
+        "roleReason": "이익을 더해 정가 식을 만드는 이유",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2380,
+        "part": "m2plus",
+        "sourceFingerprint": "f0ed452c002aca41a06200d4fb4fbb5c7deb06042da043c7b38fd06a7ea9a433",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2380
+        },
+        "directReview": null,
+        "cFrozenSentence": "원가 $a$원에 $x\\%$의 이익을 붙이면 정가는 □원이다.",
+        "cFrozenDefinition": "원가 $a$원에 $x\\%$의 이익을 붙이면 정가는 {$a\\left(1+\\frac{x}{100}\\right)$}원이다.",
+        "cFrozenAnswers": [
+          "$a\\left(1+\\frac{x}{100}\\right)$"
+        ],
+        "cMarkedSentence": "원가 $a$원에 $x\\%$의 이익을 붙이면 정가는 {$a\\left(1+\\frac{x}{100}\\right)$}원이다.",
+        "cSlotAnswers": [
+          "$a\\left(1+\\frac{x}{100}\\right)$"
+        ],
+        "cStudentSentence": "원가 $a$원에 $x\\%$의 이익을 붙이면 정가는 □원이다.",
+        "cAnswers": [
+          "$a\\left(1+\\frac{x}{100}\\right)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a\\left(1+\\frac{x}{100}\\right)$",
+            "equivalentAnswers": [
+              "$a\\left(1+\\frac{x}{100}\\right)$",
+              "$a+\\frac{ax}{100}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$a\\left(1+\\frac{x}{100}\\right)$",
+            "accept": [
+              "$a+\\frac{ax}{100}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$a\\left(1+\\frac{x}{100}\\right)$",
+            "$a+\\frac{ax}{100}$"
+          ]
+        ],
+        "proposalFingerprint": "1fb74595e919de0d4cf1898280c1cf326bf79b4588e022d560d5a70703c1652d"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc13",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "정가 $A$원을 $x\\%$ 할인한 판매 가격",
+        "kind": "공식",
+        "level": "중",
+        "definition": "정가 $A$원을 $x\\%$ 할인한 판매 가격은 {$A\\left(1-\\frac{x}{100}\\right)$}원이다.",
+        "example": {
+          "prompt": "정가 $8000$원을 $15\\%$ 할인한 가격",
+          "answer": "$6800$원"
+        },
+        "studentC": "정가 $A$원을 $x\\%$ 할인한 판매 가격은 □원이다.",
+        "answers": [
+          "$A\\left(1-\\frac{x}{100}\\right)$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "정가가 $A$원인 물건을 정가의 $x\\%$만큼 할인해 판다. 판매 가격을 $A$와 $x$로 나타내고, 그 식이 나오는 까닭을 쓰시오.",
+        "bAnswer": "할인액은 $A\\times\\frac{x}{100}$원이고 판매 가격은 정가에서 할인액을 뺀 값이므로 $A-\\frac{Ax}{100}=A\\left(1-\\frac{x}{100}\\right)$원이다.",
+        "bGoal": "할인율로 판매 가격을 나타내는 식 만들기",
+        "bReason": "정가에서 할인액을 빼는 과정이 보이도록 식과 까닭을 함께 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A\\left(1-\\frac{x}{100}\\right)$",
+              "$A-\\frac{Ax}{100}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "할인액은 $\\frac{Ax}{100}$원이다",
+              "정가에서 정가의 $x\\%$를 뺀다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 모두 있는 짧은 식 빈칸이며 동치인 식만 허용하면 된다.",
+        "learningRole": "reason",
+        "roleReason": "할인액을 빼 판매 가격 식을 만드는 이유",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2381,
+        "part": "m2plus",
+        "sourceFingerprint": "6ca77b848096f3909de231d180109d5b8a0573c78111b9c9e6d66500210b51e6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2381
+        },
+        "directReview": null,
+        "cFrozenSentence": "정가 $A$원을 $x\\%$ 할인한 판매 가격은 □원이다.",
+        "cFrozenDefinition": "정가 $A$원을 $x\\%$ 할인한 판매 가격은 {$A\\left(1-\\frac{x}{100}\\right)$}원이다.",
+        "cFrozenAnswers": [
+          "$A\\left(1-\\frac{x}{100}\\right)$"
+        ],
+        "cMarkedSentence": "정가 $A$원을 $x\\%$ 할인한 판매 가격은 {$A\\left(1-\\frac{x}{100}\\right)$}원이다.",
+        "cSlotAnswers": [
+          "$A\\left(1-\\frac{x}{100}\\right)$"
+        ],
+        "cStudentSentence": "정가 $A$원을 $x\\%$ 할인한 판매 가격은 □원이다.",
+        "cAnswers": [
+          "$A\\left(1-\\frac{x}{100}\\right)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$A\\left(1-\\frac{x}{100}\\right)$",
+            "equivalentAnswers": [
+              "$A\\left(1-\\frac{x}{100}\\right)$",
+              "$A-\\frac{Ax}{100}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$A\\left(1-\\frac{x}{100}\\right)$",
+            "accept": [
+              "$A-\\frac{Ax}{100}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$A\\left(1-\\frac{x}{100}\\right)$",
+            "$A-\\frac{Ax}{100}$"
+          ]
+        ],
+        "proposalFingerprint": "8c45b1cd746a6897d5fdc1eaab19624536b06c996f75446d026279a9cb85ea22"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc14",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "해를 자연수에 맞게 고치기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수여야 하는 양은 부등식의 해 가운데 {자연수인 값만} 고른다. 경계가 자연수가 아니면 「이상」은 경계보다 큰 {가장 작은 자연수}부터이다.",
+        "example": {
+          "prompt": "자연수 점수만 있는 시험에서 $x\\ge91.5$의 가장 낮은 점수가 $92$점인 까닭은?",
+          "answer": "$91.5$ 이상인 첫 자연수라서"
+        },
+        "studentC": "자연수여야 하는 양은 부등식의 해 가운데 □ 고른다. 경계가 자연수가 아니면 「이상」은 경계보다 큰 □부터이다.",
+        "answers": [
+          "자연수인 값만",
+          "가장 작은 자연수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "시험 점수는 자연수만 나온다. 원하는 결과를 얻기 위한 점수 $x$의 조건이 $x\\ge91.5$일 때 받아야 할 가장 낮은 점수를 구하고, 그 까닭을 쓰시오.",
+        "bAnswer": "$92$점이다. $91.5$ 이상인 자연수 가운데 가장 작은 수가 $92$이기 때문이다.",
+        "bGoal": "자연수여야 하는 양에서 해를 자연수로 고르기",
+        "bReason": "경계가 자연수가 아닌 경우의 처리가 핵심이라 $91.5$를 주고 까닭을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$92$점"
+            ]
+          },
+          {
+            "anyOf": [
+              "$91.5$ 이상인 가장 작은 자연수이다",
+              "$91.5$보다 큰 첫 자연수이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "점수처럼 자연수여야 하는 양에서 해가 $x\\ge12.4$이면 가능한 가장 작은 값은 {$13$}이고, 해가 $x\\le7.5$이면 가능한 가장 큰 값은 {$7$}이다.",
+        "cAnswers": [
+          "$13$",
+          "$7$"
+        ],
+        "cReason": "첫 답 '자연수인 값만'이 앞의 '자연수여야'를 베끼면 되어 경계가 소수인 두 경우로 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "해를 자연수 상황에 적용",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2382,
+        "part": "m2plus",
+        "sourceFingerprint": "17a05787874f0f3fa045df98f8f4f83f34fe3fe013ef754ca64768e9d24a2569",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2382
+        },
+        "directReview": null,
+        "cMarkedSentence": "점수처럼 자연수여야 하는 양에서 해가 $x\\ge12.4$이면 가능한 가장 작은 값은 {$13$}이고, 해가 $x\\le7.5$이면 가능한 가장 큰 값은 {$7$}이다.",
+        "cSlotAnswers": [
+          "$13$",
+          "$7$"
+        ],
+        "cStudentSentence": "점수처럼 자연수여야 하는 양에서 해가 $x\\ge12.4$이면 가능한 가장 작은 값은 □이고, 해가 $x\\le7.5$이면 가능한 가장 큰 값은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$13$",
+            "equivalentAnswers": [
+              "$13$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$7$",
+            "equivalentAnswers": [
+              "$7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$13$"
+          ],
+          [
+            "$7$"
+          ]
+        ],
+        "proposalFingerprint": "76f03f41b2042a4e46c0d99f075999a99b1eb264ca9727d350611d9874abdbb2"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc15",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "십의 자리 숫자 $a$, 일의 자리 숫자 $b$인 두 자리 자연수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 {$10a+b$}이다.",
+        "example": {
+          "prompt": "십의 자리 $3$, 일의 자리 $x$인 수",
+          "answer": "$30+x$"
+        },
+        "studentC": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 □이다.",
+        "answers": [
+          "$10a+b$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수를 $a$, $b$로 나타내고, $47$을 예로 들어 그렇게 나타내는 까닭을 쓰시오.",
+        "bAnswer": "$10a+b$이다. $47$은 $10$이 $4$개, $1$이 $7$개이므로 $10\\times4+7$이기 때문이다.",
+        "bGoal": "자릿값으로 두 자리 수를 식으로 나타내기",
+        "bReason": "$ab$로 쓰는 실수를 막도록 자릿값 근거를 구체 수로 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10a+b$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$47=10\\times4+7$",
+              "십의 자리 숫자는 $10$배의 값을 나타낸다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "자리 숫자 조건이 모두 있어 $10a+b$ 한 칸으로 핵심을 묻는다.",
+        "studentLabel": "두 자리 자연수를 문자로 나타내기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "자릿값으로 수 나타내기",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2383,
+        "part": "m2plus",
+        "sourceFingerprint": "16037506816e192c0d4a15ff634a43f8733cab5d997248235261bf9147cf6e3c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2383
+        },
+        "directReview": null,
+        "cFrozenSentence": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 □이다.",
+        "cFrozenDefinition": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 {$10a+b$}이다.",
+        "cFrozenAnswers": [
+          "$10a+b$"
+        ],
+        "cMarkedSentence": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 {$10a+b$}이다.",
+        "cSlotAnswers": [
+          "$10a+b$"
+        ],
+        "cStudentSentence": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 □이다.",
+        "cAnswers": [
+          "$10a+b$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10a+b$",
+            "equivalentAnswers": [
+              "$10a+b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10a+b$"
+          ]
+        ],
+        "proposalFingerprint": "89e2c3966c38ba35cb0c3096fed62d275ff12e97a95d7eb6b41d65d427d55e50"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc16",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "남기는 돈의 조건",
+        "kind": "방법",
+        "level": "중",
+        "definition": "얼마 이상 남겨야 하면 (가진 돈)$-$(쓴 돈) {$\\ge$} (남길 돈)으로 세운다.",
+        "example": {
+          "prompt": "$10000$원으로 $1200$원짜리 $x$개를 사고 $2000$원 이상 남긴다",
+          "answer": "$10000-1200x\\ge2000$"
+        },
+        "studentC": "얼마 이상 남겨야 하면 (가진 돈)$-$(쓴 돈) □ (남길 돈)으로 세운다.",
+        "answers": [
+          "$\\ge$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$10000$원으로 한 개에 $1200$원인 빵을 $x$개 사고 $2000$원 이상 남기려 한다. 부등식을 세우고, 살 수 있는 빵의 최대 개수를 구하시오.",
+        "bAnswer": "$10000-1200x\\ge2000$이므로 $1200x\\le8000$, $x\\le\\frac{20}{3}$이다. 빵의 개수는 자연수이므로 최대 $6$개이다.",
+        "bGoal": "남기는 돈의 조건을 부등식으로 세워 풀기",
+        "bReason": "'이상 남긴다'를 식으로 옮기고 개수로 해석까지 하도록 구체 금액을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10000-1200x\\ge2000$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$개"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'이상 남겨야'에서 $\\ge$를 고르는 짧고 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "남는 돈 조건을 상황에 적용",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2384,
+        "part": "m2plus",
+        "sourceFingerprint": "62ffbd5892f305116880f590626f2cda4194ba9bd1be9ef31e9e32aab9233601",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2384
+        },
+        "directReview": null,
+        "cFrozenSentence": "얼마 이상 남겨야 하면 (가진 돈)$-$(쓴 돈) □ (남길 돈)으로 세운다.",
+        "cFrozenDefinition": "얼마 이상 남겨야 하면 (가진 돈)$-$(쓴 돈) {$\\ge$} (남길 돈)으로 세운다.",
+        "cFrozenAnswers": [
+          "$\\ge$"
+        ],
+        "cMarkedSentence": "얼마 이상 남겨야 하면 (가진 돈)$-$(쓴 돈) {$\\ge$} (남길 돈)으로 세운다.",
+        "cSlotAnswers": [
+          "$\\ge$"
+        ],
+        "cStudentSentence": "얼마 이상 남겨야 하면 (가진 돈)$-$(쓴 돈) □ (남길 돈)으로 세운다.",
+        "cAnswers": [
+          "$\\ge$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\ge$",
+            "equivalentAnswers": [
+              "$\\ge$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\ge$"
+          ]
+        ],
+        "proposalFingerprint": "c1976c734199ad4522d23f1f7925702750f66aa2cce9252aea66bb9edc92eac6"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc17",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "할인해도 이익이 남는 조건",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정가를 할인해 팔아 원하는 이익을 얻으려면 (판매 가격) {$-$} (원가)가 원하는 {이익} 이상이어야 한다.",
+        "studentC": "정가를 할인해 팔아 원하는 이익을 얻으려면 (판매 가격) □ (원가)가 원하는 □ 이상이어야 한다.",
+        "answers": [
+          "$-$",
+          "이익"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "원가 $4000$원인 물건의 정가를 $6000$원으로 정했다. 정가의 $x\\%$를 할인해 팔아도 이익이 $800$원 이상이 되게 하려 한다. 부등식을 세우고 할인율 $x$의 범위를 구하시오.",
+        "bAnswer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $60x\\le1200$, $x\\le20$이다. 할인율은 $0$ 이상이므로 $0\\le x\\le20$이다.",
+        "bGoal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "bReason": "판매 가격, 원가, 원하는 이익 세 값의 관계가 모두 필요한 구체 상황을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6000-60x-4000\\ge800$",
+              "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x\\le20$",
+              "$0\\le x\\le20$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정가를 할인해 팔아도 원하는 이익만큼은 꼭 남기려면 (판매 가격) {$-$} (원가) {$\\ge$} (원하는 이익)이어야 한다.",
+        "cAnswers": [
+          "$-$",
+          "$\\ge$"
+        ],
+        "cReason": "둘째 답 '이익'이 앞 구절 '원하는 이익'을 베끼면 되어 부등호를 묻게 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "할인과 이익 조건을 상황에 적용",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2385,
+        "part": "m2plus",
+        "sourceFingerprint": "bdb32b13f121e991abb1ff58f78ad65dd40d8648d8797d9ff043fc17e5cf3b16",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2385
+        },
+        "directReview": null,
+        "cMarkedSentence": "정가를 할인해 팔아도 원하는 이익만큼은 꼭 남기려면 (판매 가격) {$-$} (원가) {$\\ge$} (원하는 이익)이어야 한다.",
+        "cSlotAnswers": [
+          "$-$",
+          "$\\ge$"
+        ],
+        "cStudentSentence": "정가를 할인해 팔아도 원하는 이익만큼은 꼭 남기려면 (판매 가격) □ (원가) □ (원하는 이익)이어야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-$",
+            "equivalentAnswers": [
+              "$-$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\ge$",
+            "equivalentAnswers": [
+              "$\\ge$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-$"
+          ],
+          [
+            "$\\ge$"
+          ]
+        ],
+        "proposalFingerprint": "6711d10dc12a49e3f62d2690fb6859f0d1e6f509efcfbb50a93fbb2d354b9a32"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc18",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "원가의 몇 $\\%$ 이상인 이익",
+        "kind": "성질",
+        "level": "상",
+        "definition": "「원가의 $p\\,\\%$ 이상의 이익」은 이익이 {원가}에 $\\frac{p}{100}$을 곱한 값 {이상}이라는 뜻이다. 기준은 정가가 아니라 원가이다.",
+        "example": {
+          "prompt": "원가 $5000$원, 정가 $7000$원일 때 «원가의 $10\\%$ 이상인 이익»에서 $10\\%$의 기준은 무엇인가?",
+          "answer": "원가 — 이익률의 기준이라서"
+        },
+        "studentC": "「원가의 $p\\,\\%$ 이상의 이익」은 이익이 □에 $\\frac{p}{100}$을 곱한 값 □이라는 뜻이다. 기준은 정가가 아니라 원가이다.",
+        "answers": [
+          "원가",
+          "이상"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc18",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "이익률의 기준이 원가임은 xc24 B가 원가와 정가를 대비해 더 분명히 묻는다.",
+        "cDecision": "rewrite",
+        "cAfter": "「원가의 $p\\,\\%$ 이상의 이익」을 식으로 나타내면 (이익) {$\\ge$} (원가)$\\times${$\\frac{p}{100}$}이다.",
+        "cAnswers": [
+          "$\\ge$",
+          "$\\frac{p}{100}$"
+        ],
+        "cReason": "첫 답 '원가'가 '원가의'와 마지막 문장에 그대로 보여 식으로 옮기는 빈칸으로 바꿨다.",
+        "exclusionReason": "B 제외: xc24 B의 '이익률은 원가 기준' 목표와 중복된다.",
+        "learningRole": "definition",
+        "roleReason": "'원가의 $p\\%$ 이상 이익'의 뜻",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2386,
+        "part": "m2plus",
+        "sourceFingerprint": "db1035f382779e20619eb0d10f3f83c408588e14adf18e2b8b35737c58fb3ebc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2386
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "「원가의 $p\\,\\%$ 이상의 이익」을 식으로 나타내면 (이익) {$\\ge$} (원가)$\\times${$\\frac{p}{100}$}이다.",
+        "cSlotAnswers": [
+          "$\\ge$",
+          "$\\frac{p}{100}$"
+        ],
+        "cStudentSentence": "「원가의 $p\\,\\%$ 이상의 이익」을 식으로 나타내면 (이익) □ (원가)$\\times$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\ge$",
+            "equivalentAnswers": [
+              "$\\ge$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{p}{100}$",
+            "equivalentAnswers": [
+              "$\\frac{p}{100}$",
+              "$0.01p$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{p}{100}$",
+            "accept": [
+              "$0.01p$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\ge$"
+          ],
+          [
+            "$\\frac{p}{100}$",
+            "$0.01p$"
+          ]
+        ],
+        "proposalFingerprint": "f5ba9a0a6c6e8b45af7c278ae0cf0f7f7e8901fb5efbe1329ed008eb93c53fdb"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc19",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "다음 시험 점수 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "지금까지의 점수 합에 다음 점수 $x$를 더해 {전체 개수}로 나눈 값을 {평균 조건}과 비교한다.",
+        "studentC": "지금까지의 점수 합에 다음 점수 $x$를 더해 □로 나눈 값을 □과 비교한다.",
+        "answers": [
+          "전체 개수",
+          "평균 조건"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "지금까지 본 시험 $3$번의 점수 합이 $246$점이다. $4$번째 시험까지의 평균이 $84$점 이상이 되려면 $4$번째 시험에서 몇 점 이상 받아야 하는지 부등식을 세워 구하시오.",
+        "bAnswer": "$4$번째 점수를 $x$점이라 하면 $\\frac{246+x}{4}\\ge84$이므로 $246+x\\ge336$, $x\\ge90$이다. $90$점 이상 받아야 한다.",
+        "bGoal": "다음 점수를 미지수로 놓아 평균 조건 부등식 세우기",
+        "bReason": "나누는 수가 다음 시험까지 포함한 횟수임이 드러나도록 기존 합과 목표 평균을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{246+x}{4}\\ge84$",
+              "$246+x\\ge336$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90$점 이상",
+              "$x\\ge90$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "지금까지 본 시험의 점수 합에 다음 점수 $x$를 더한 뒤, 다음 시험까지 포함한 전체 시험 {횟수}로 나누면 새 {평균}이 된다. 이 값이 목표 점수 이상이 되도록 부등식을 세운다.",
+        "cAnswers": [
+          "횟수",
+          "평균"
+        ],
+        "cReason": "'전체 개수', '평균 조건'이 무엇의 개수와 조건인지 흐려 나누는 수와 새 평균을 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "평균 조건을 시험 상황에 적용",
+        "coreAfter": "지금까지의 점수 합에 다음 점수 $x$를 더해 다음 시험까지 포함한 {전체 시험 횟수}로 나눈 값이 목표 {평균 조건}(이상, 초과 등)을 만족하도록 부등식을 세운다.",
+        "coreReason": "'평균 조건과 비교'만으로는 무엇과 어떻게 비교하는지 학생이 알기 어렵다.",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2387,
+        "part": "m2plus",
+        "sourceFingerprint": "6e6d0c641c6692535061bad03026d2730401f5addc065c4721394808cb727c09",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2387
+        },
+        "directReview": null,
+        "coreBeforeRepair": "지금까지의 점수 합에 다음 점수 $x$를 더해 다음 시험까지 포함한 전체 시험 횟수로 나눈 값이 목표 평균 조건(이상, 초과 등)을 만족하도록 부등식을 세운다.",
+        "coreRepairReason": "'부등식을 세운다'는 교정 내용은 유지했다. 원본 핵심어 '전체 개수'는 같은 뜻을 더 분명히 한 {전체 시험 횟수}로 표시했고, {평균 조건}은 그대로 표시했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "cMarkedSentence": "지금까지 본 시험의 점수 합에 다음 점수 $x$를 더한 뒤, 다음 시험까지 포함한 전체 시험 {횟수}로 나누면 새 {평균}이 된다. 이 값이 목표 점수 이상이 되도록 부등식을 세운다.",
+        "cSlotAnswers": [
+          "횟수",
+          "평균"
+        ],
+        "cStudentSentence": "지금까지 본 시험의 점수 합에 다음 점수 $x$를 더한 뒤, 다음 시험까지 포함한 전체 시험 □로 나누면 새 □이 된다. 이 값이 목표 점수 이상이 되도록 부등식을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "횟수",
+            "equivalentAnswers": [
+              "횟수",
+              "개수",
+              "시험 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "횟수",
+            "accept": [
+              "개수",
+              "시험 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "횟수",
+            "개수",
+            "시험 수"
+          ],
+          [
+            "평균"
+          ]
+        ],
+        "proposalFingerprint": "3446f516a9fae93a9adacb1dce03ff2d681dc101657488a261cbb59e8b071e22"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc21",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "두 자리 수 $10a+b$에서 숫자를 바꾼 수를 뺀 값",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 자리 수 $10a+b$의 두 숫자를 바꾼 수는 $10b+a$이므로, 처음 수에서 바꾼 수를 뺀 값은 {$9(a-b)$}이다.",
+        "example": {
+          "prompt": "$52$와 숫자를 바꾼 수의 차",
+          "answer": "$27$"
+        },
+        "studentC": "두 자리 수 $10a+b$의 두 숫자를 바꾼 수는 $10b+a$이므로, 처음 수에서 바꾼 수를 뺀 값은 □이다.",
+        "answers": [
+          "$9(a-b)$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 수에서 두 숫자의 자리를 바꾼 수를 뺀 값을 $a$, $b$로 간단히 나타내고, $52$에 적용하여 확인하시오.",
+        "bAnswer": "$(10a+b)-(10b+a)=9a-9b=9(a-b)$이다. $52-25=27$이고 $9\\times(5-2)=27$이다.",
+        "bGoal": "자리를 바꾼 수와의 차를 식으로 간단히 하기",
+        "bReason": "바꾼 수 $10b+a$를 쓰는 과정과 결과를 구체 수로 확인하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9(a-b)$",
+              "$9a-9b$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$52-25=27$",
+              "$9\\times3=27$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "바꾼 수 $10b+a$가 주어져 차를 간단히 하는 한 칸 계산이 의미 있다.",
+        "studentLabel": "자리를 바꾼 두 자리 수의 차",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "자리를 바꾼 차가 $9$의 배수인 이유",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2388,
+        "part": "m2plus",
+        "sourceFingerprint": "f0efa9ac1e806800adf318b2cfa1b06b1ff99efaaada745185ea40bd3e34b71f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2388
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 자리 수 $10a+b$의 두 숫자를 바꾼 수는 $10b+a$이므로, 처음 수에서 바꾼 수를 뺀 값은 □이다.",
+        "cFrozenDefinition": "두 자리 수 $10a+b$의 두 숫자를 바꾼 수는 $10b+a$이므로, 처음 수에서 바꾼 수를 뺀 값은 {$9(a-b)$}이다.",
+        "cFrozenAnswers": [
+          "$9(a-b)$"
+        ],
+        "cMarkedSentence": "두 자리 수 $10a+b$의 두 숫자를 바꾼 수는 $10b+a$이므로, 처음 수에서 바꾼 수를 뺀 값은 {$9(a-b)$}이다.",
+        "cSlotAnswers": [
+          "$9(a-b)$"
+        ],
+        "cStudentSentence": "두 자리 수 $10a+b$의 두 숫자를 바꾼 수는 $10b+a$이므로, 처음 수에서 바꾼 수를 뺀 값은 □이다.",
+        "cAnswers": [
+          "$9(a-b)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$9(a-b)$",
+            "equivalentAnswers": [
+              "$9(a-b)$",
+              "$9a-9b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$9(a-b)$",
+            "accept": [
+              "$9a-9b$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$9(a-b)$",
+            "$9a-9b$"
+          ]
+        ],
+        "proposalFingerprint": "b1badcc5a0f4a95c8690feb48c925144e92ef704a80884c428eb28b7684b1f87"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc22",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "평균이 오르는 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "새 점수를 더해 평균이 오르려면 새 점수가 지금까지의 {평균}보다 {커야} 한다.",
+        "example": {
+          "prompt": "평균 $80$점인 뒤 평균이 오르는 다음 점수",
+          "answer": "$80$점 초과"
+        },
+        "studentC": "새 점수를 더해 평균이 오르려면 새 점수가 지금까지의 □보다 □ 한다.",
+        "answers": [
+          "평균",
+          "커야"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "지금까지 본 시험 $4$번의 평균이 $80$점이다. $5$번째 시험 점수를 $x$점이라 할 때 평균이 오르는 조건을 부등식으로 세워 풀고, 그 결과가 무엇을 뜻하는지 쓰시오.",
+        "bAnswer": "$\\frac{320+x}{5}>80$이므로 $320+x>400$, $x>80$이다. 새 점수가 지금까지의 평균보다 커야 평균이 오른다는 뜻이다.",
+        "bGoal": "평균이 오르는 조건을 부등식으로 확인하기",
+        "bReason": "결론을 외우지 않도록 구체 평균으로 부등식을 풀어 일반 결론을 읽게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{320+x}{5}>80$",
+              "$320+x>400$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>80$"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 점수가 지금까지의 평균보다 커야 한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'평균'과 '커야'를 묻는 짧은 비교 빈칸으로 조건이 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "평균이 오르는 조건의 이유",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2389,
+        "part": "m2plus",
+        "sourceFingerprint": "efb6465a170813db5dbb60edcc570c0e87439478824e461ec3cb2ef06533b80f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2389
+        },
+        "directReview": null,
+        "cFrozenSentence": "새 점수를 더해 평균이 오르려면 새 점수가 지금까지의 □보다 □ 한다.",
+        "cFrozenDefinition": "새 점수를 더해 평균이 오르려면 새 점수가 지금까지의 {평균}보다 {커야} 한다.",
+        "cFrozenAnswers": [
+          "평균",
+          "커야"
+        ],
+        "cMarkedSentence": "새 점수를 더해 평균이 오르려면 새 점수가 지금까지의 {평균}보다 {커야} 한다.",
+        "cSlotAnswers": [
+          "평균",
+          "커야"
+        ],
+        "cStudentSentence": "새 점수를 더해 평균이 오르려면 새 점수가 지금까지의 □보다 □ 한다.",
+        "cAnswers": [
+          "평균",
+          "커야"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "커야",
+            "equivalentAnswers": [
+              "커야",
+              "높아야"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "커야",
+            "accept": [
+              "높아야"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평균"
+          ],
+          [
+            "커야",
+            "높아야"
+          ]
+        ],
+        "proposalFingerprint": "ae6d71469f00b1e58b655902a1c004632e72f3a7fe4842e749c18184fbac7fb0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc23",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "손해를 보지 않는 할인율",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정가가 원가보다 클 때, 할인율이 클수록 판매 가격은 {작아지므로} 손해를 보지 않는 할인율에는 {가장 큰 값}이 있다.",
+        "example": {
+          "prompt": "원가 $4500$원, 정가 $6000$원일 때 손해 없는 가장 큰 할인율",
+          "answer": "$25\\%$"
+        },
+        "studentC": "정가가 원가보다 클 때, 할인율이 클수록 판매 가격은 □ 손해를 보지 않는 할인율에는 □이 있다.",
+        "answers": [
+          "작아지므로",
+          "가장 큰 값"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "원가 $4500$원, 정가 $6000$원인 물건을 정가의 $x\\%$만큼 할인해 판다. 손해를 보지 않으려면 할인율은 최대 몇 $\\%$인지 부등식을 세워 구하고, 할인율에 최댓값이 생기는 까닭을 쓰시오.",
+        "bAnswer": "$6000\\left(1-\\frac{x}{100}\\right)\\ge4500$이므로 $60x\\le1500$, $x\\le25$이고 최대 $25\\%$이다. 할인율이 클수록 판매 가격이 작아져 원가보다 낮아지는 지점이 있기 때문이다.",
+        "bGoal": "손해 없는 조건으로 최대 할인율 구하기",
+        "bReason": "'손해 없음'을 판매 가격 $\\ge$ 원가로 옮기도록 구체 원가와 정가를 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6000\\left(1-\\frac{x}{100}\\right)\\ge4500$",
+              "$6000-60x\\ge4500$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "할인율이 클수록 판매 가격이 작아진다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "할인율과 판매 가격의 증감, 최댓값이 있음을 묻는 짧은 관계 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "최대 할인율을 상황에 적용",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2390,
+        "part": "m2plus",
+        "sourceFingerprint": "90e0c6cef8929fbd6a72712f7b44d06e1850dc87bc1e5eec74df0d6039df7eb1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2390
+        },
+        "directReview": null,
+        "cFrozenSentence": "정가가 원가보다 클 때, 할인율이 클수록 판매 가격은 □ 손해를 보지 않는 할인율에는 □이 있다.",
+        "cFrozenDefinition": "정가가 원가보다 클 때, 할인율이 클수록 판매 가격은 {작아지므로} 손해를 보지 않는 할인율에는 {가장 큰 값}이 있다.",
+        "cFrozenAnswers": [
+          "작아지므로",
+          "가장 큰 값"
+        ],
+        "cMarkedSentence": "정가가 원가보다 클 때, 할인율이 클수록 판매 가격은 {작아지므로} 손해를 보지 않는 할인율에는 {가장 큰 값}이 있다.",
+        "cSlotAnswers": [
+          "작아지므로",
+          "가장 큰 값"
+        ],
+        "cStudentSentence": "정가가 원가보다 클 때, 할인율이 클수록 판매 가격은 □ 손해를 보지 않는 할인율에는 □이 있다.",
+        "cAnswers": [
+          "작아지므로",
+          "가장 큰 값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작아지므로",
+            "equivalentAnswers": [
+              "작아지므로",
+              "작아지니까",
+              "줄어들므로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "가장 큰 값",
+            "equivalentAnswers": [
+              "가장 큰 값",
+              "최댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작아지므로",
+            "accept": [
+              "작아지니까",
+              "줄어들므로"
+            ]
+          },
+          {
+            "answer": "가장 큰 값",
+            "accept": [
+              "최댓값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작아지므로",
+            "작아지니까",
+            "줄어들므로"
+          ],
+          [
+            "가장 큰 값",
+            "최댓값"
+          ]
+        ],
+        "proposalFingerprint": "dfd1bc1df3129224857559c8cf57d5dfb17b52581650277dc17c443f836aa9dd"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc24",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "이익률과 할인율의 기준",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이익률은 {원가}를 기준으로, 할인율은 {정가}를 기준으로 계산한다. 기준을 섞으면 틀린다.",
+        "studentC": "이익률은 □를 기준으로, 할인율은 □를 기준으로 계산한다. 기준을 섞으면 틀린다.",
+        "answers": [
+          "원가",
+          "정가"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "원가 $4000$원, 정가 $5000$원인 물건이 있다. 이익률 $20\\%$에 해당하는 이익과 할인율 $20\\%$에 해당하는 할인액을 각각 구하고, 각각 어느 가격을 기준으로 계산했는지 쓰시오.",
+        "bAnswer": "이익률은 원가가 기준이므로 이익은 $4000\\times0.2=800$원이고, 할인율은 정가가 기준이므로 할인액은 $5000\\times0.2=1000$원이다.",
+        "bGoal": "이익률과 할인율의 기준 가격 구별하기",
+        "bReason": "같은 $20\\%$라도 기준에 따라 금액이 달라짐을 보도록 원가와 정가를 함께 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이익은 $800$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "이익률은 원가가 기준"
+            ]
+          },
+          {
+            "anyOf": [
+              "할인액은 $1000$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "할인율은 정가가 기준"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 비율의 기준을 대비해 '원가', '정가'를 묻는 분명한 짧은 비교 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "이익률과 할인율의 기준의 뜻",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2391,
+        "part": "m2plus",
+        "sourceFingerprint": "3cad73032a8d84bb44c355ca69f6a3366c5b6249e0243a3703ef8989a6c35aca",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2391
+        },
+        "directReview": null,
+        "cFrozenSentence": "이익률은 □를 기준으로, 할인율은 □를 기준으로 계산한다. 기준을 섞으면 틀린다.",
+        "cFrozenDefinition": "이익률은 {원가}를 기준으로, 할인율은 {정가}를 기준으로 계산한다. 기준을 섞으면 틀린다.",
+        "cFrozenAnswers": [
+          "원가",
+          "정가"
+        ],
+        "cMarkedSentence": "이익률은 {원가}를 기준으로, 할인율은 {정가}를 기준으로 계산한다. 기준을 섞으면 틀린다.",
+        "cSlotAnswers": [
+          "원가",
+          "정가"
+        ],
+        "cStudentSentence": "이익률은 □를 기준으로, 할인율은 □를 기준으로 계산한다. 기준을 섞으면 틀린다.",
+        "cAnswers": [
+          "원가",
+          "정가"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "원가",
+            "equivalentAnswers": [
+              "원가"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정가",
+            "equivalentAnswers": [
+              "정가"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "원가"
+          ],
+          [
+            "정가"
+          ]
+        ],
+        "proposalFingerprint": "858e0b2daa2b5793aa05d9642580a1446c447c4a5c687435c508c21ef475540f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-04-xc25",
+        "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+        "term": "합이 일정한 두 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합이 $s$인 두 수 가운데 큰 수를 $x$로 놓으면 작은 수는 {$s-x$}이고, 크다는 조건 {$x>s-x$}를 함께 쓴다.",
+        "example": {
+          "prompt": "합이 $20$인 서로 다른 두 자연수 가운데 큰 수를 $x$라 할 때 $x>20-x$를 풀면?",
+          "answer": "$x>10$"
+        },
+        "studentC": "합이 $s$인 두 수 가운데 큰 수를 $x$로 놓으면 작은 수는 □이고, 크다는 조건 □를 함께 쓴다.",
+        "answers": [
+          "$s-x$",
+          "$x>s-x$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-04-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "합이 $20$인 서로 다른 두 자연수 가운데 큰 수를 $x$라 하자. 작은 수를 $x$로 나타내고, 큰 수라는 조건을 부등식으로 세워 풀어 $x$의 범위를 구하시오.",
+        "bAnswer": "작은 수는 $20-x$이고, $x>20-x$에서 $2x>20$, $x>10$이다.",
+        "bGoal": "합이 일정한 두 수를 한 문자로 나타내고 크기 조건 쓰기",
+        "bReason": "크다는 조건을 빠뜨리기 쉬워 작은 수의 표현과 조건식을 모두 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20-x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>20-x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>10$",
+              "$11\\le x\\le19$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "작은 수의 식과 크기 조건식을 묻는 두 빈칸이 겹치지 않고 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "합이 일정한 두 수 표현 방법",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2392,
+        "part": "m2plus",
+        "sourceFingerprint": "de71ce1f23ca074fa8d1b50ccbb27e04abcef33235dbbd4f05443cfeed62c1fc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2392
+        },
+        "directReview": null,
+        "cFrozenSentence": "합이 $s$인 두 수 가운데 큰 수를 $x$로 놓으면 작은 수는 □이고, 크다는 조건 □를 함께 쓴다.",
+        "cFrozenDefinition": "합이 $s$인 두 수 가운데 큰 수를 $x$로 놓으면 작은 수는 {$s-x$}이고, 크다는 조건 {$x>s-x$}를 함께 쓴다.",
+        "cFrozenAnswers": [
+          "$s-x$",
+          "$x>s-x$"
+        ],
+        "cMarkedSentence": "합이 $s$인 두 수 가운데 큰 수를 $x$로 놓으면 작은 수는 {$s-x$}이고, 크다는 조건 {$x>s-x$}를 함께 쓴다.",
+        "cSlotAnswers": [
+          "$s-x$",
+          "$x>s-x$"
+        ],
+        "cStudentSentence": "합이 $s$인 두 수 가운데 큰 수를 $x$로 놓으면 작은 수는 □이고, 크다는 조건 □를 함께 쓴다.",
+        "cAnswers": [
+          "$s-x$",
+          "$x>s-x$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$s-x$",
+            "equivalentAnswers": [
+              "$s-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x>s-x$",
+            "equivalentAnswers": [
+              "$x>s-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$s-x$"
+          ],
+          [
+            "$x>s-x$"
+          ]
+        ],
+        "proposalFingerprint": "a0d4cee3a5aefcd068b97e605ec1f776ce9ecafe95ec67cafc8a277cb52975a4"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-05-xc1",
+        "section": "중2::2. 부등식::일차부등식의 활용(개수, 예금액, 유리한 방법)",
+        "term": "물건값의 식",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 개에 $a$원인 물건 $x$개의 값은 {$ax$}원이다.",
+        "example": {
+          "prompt": "$700$원짜리 $x$개의 값",
+          "answer": "$700x$원"
+        },
+        "studentC": "한 개에 $a$원인 물건 $x$개의 값은 □원이다.",
+        "answers": [
+          "$ax$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-05-xc1",
+        "learningRole": "procedure",
+        "roleReason": "단가와 개수의 곱으로 물건값 쓰기",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "단순 곱셈식 하나라 B 설명 질문으로 쓸 내용이 없다.",
+        "cDecision": "keep",
+        "cReason": "$ax$를 쓰는 짧은 식 빈칸으로 유용하다.",
+        "exclusionReason": "B 제외: '$a$원짜리 $x$개의 값 $ax$'는 C 빈칸과 같은 단순 식이며, 물건값 식 세우기는 xc2·xc3 B에서 평가된다.",
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2393,
+        "part": "m2plus",
+        "sourceFingerprint": "292017d22ad10d169f9a4e6d0b7a8862334da26895abb58b481a7c4bd3a67a69",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2393
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "한 개에 $a$원인 물건 $x$개의 값은 □원이다.",
+        "cFrozenDefinition": "한 개에 $a$원인 물건 $x$개의 값은 {$ax$}원이다.",
+        "cFrozenAnswers": [
+          "$ax$"
+        ],
+        "cMarkedSentence": "한 개에 $a$원인 물건 $x$개의 값은 {$ax$}원이다.",
+        "cSlotAnswers": [
+          "$ax$"
+        ],
+        "cStudentSentence": "한 개에 $a$원인 물건 $x$개의 값은 □원이다.",
+        "cAnswers": [
+          "$ax$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$ax$",
+            "equivalentAnswers": [
+              "$ax$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$ax$"
+          ]
+        ],
+        "proposalFingerprint": "f694ba1c1aa94218bf4893c5c45d57407650d85d4e4e7f28f81caad562e89aba"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-05-xc2",
+        "section": "중2::2. 부등식::일차부등식의 활용(개수, 예금액, 유리한 방법)",
+        "term": "두 물건을 섞어 살 때의 값",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$a$원짜리 $x$개와 $b$원짜리 $(n-x)$개의 값은 {$ax+b(n-x)$}원이다.",
+        "example": {
+          "prompt": "$500$원짜리 $x$개와 $300$원짜리 $(10-x)$개의 값",
+          "answer": "$(200x+3000)$원"
+        },
+        "studentC": "$a$원짜리 $x$개와 $b$원짜리 $(n-x)$개의 값은 □원이다.",
+        "answers": [
+          "$ax+b(n-x)$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-05-xc2",
+        "learningRole": "procedure",
+        "roleReason": "두 단가와 $(n-x)$개를 써서 전체 값 나타내기",
+        "bDecision": "rewrite",
+        "bPrompt": "한 개에 $a$원인 물건과 한 개에 $b$원인 물건을 합해서 모두 $n$개 산다. $a$원짜리를 $x$개 살 때 전체 값을 $a$, $b$, $n$, $x$로 나타내시오.",
+        "bAnswer": "$\\{ax+b(n-x)\\}$원",
+        "bGoal": "섞어 살 때의 전체 값 식 세우기",
+        "bReason": "$b$원짜리의 개수를 직접 주지 않고 $n$에서 구하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$ax+b(n-x)$",
+              "$(a-b)x+bn$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "개수를 이미 준 상태에서 값 식만 묻는 짧은 계산 빈칸이다.",
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2394,
+        "part": "m2plus",
+        "sourceFingerprint": "a6ebe82d0e4221c9594d04597a668f14c4f6b9c231c92d0381e0681ed0653693",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2394
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a$원짜리 $x$개와 $b$원짜리 $(n-x)$개의 값은 □원이다.",
+        "cFrozenDefinition": "$a$원짜리 $x$개와 $b$원짜리 $(n-x)$개의 값은 {$ax+b(n-x)$}원이다.",
+        "cFrozenAnswers": [
+          "$ax+b(n-x)$"
+        ],
+        "cMarkedSentence": "$a$원짜리 $x$개와 $b$원짜리 $(n-x)$개의 값은 {$ax+b(n-x)$}원이다.",
+        "cSlotAnswers": [
+          "$ax+b(n-x)$"
+        ],
+        "cStudentSentence": "$a$원짜리 $x$개와 $b$원짜리 $(n-x)$개의 값은 □원이다.",
+        "cAnswers": [
+          "$ax+b(n-x)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$ax+b(n-x)$",
+            "equivalentAnswers": [
+              "$ax+b(n-x)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$ax+b(n-x)$"
+          ]
+        ],
+        "proposalFingerprint": "1d50bfae440617d81db35445c69042b96ea935f63a327b0a6bc503474909d730"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-05-xc3",
+        "section": "중2::2. 부등식::일차부등식의 활용(개수, 예금액, 유리한 방법)",
+        "term": "가진 돈 안에서 사기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "가진 돈으로 사려면 물건값이 가진 돈 {이하}여야 하므로 부등호 {$\\le$}를 쓴다.",
+        "example": {
+          "prompt": "$5000$원으로 $700$원짜리 $x$개를 산다",
+          "answer": "$700x\\le5000$"
+        },
+        "studentC": "가진 돈으로 사려면 물건값이 가진 돈 □여야 하므로 부등호 □를 쓴다.",
+        "answers": [
+          "이하",
+          "$\\le$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-05-xc3",
+        "learningRole": "procedure",
+        "roleReason": "가진 돈 이하라는 조건을 $\\le$로 쓰기",
+        "bDecision": "rewrite",
+        "bPrompt": "가진 돈이 $5000$원이고 한 개에 $700$원인 물건을 $x$개 사려고 한다. 살 수 있는 조건을 부등식으로 쓰고, 그 부등호를 고른 이유를 쓰시오.",
+        "bAnswer": "$700x\\le5000$. 물건값이 가진 돈과 같아도 살 수 있으므로 가진 돈 이하이면 된다.",
+        "bGoal": "예산 조건을 부등식으로 쓰기",
+        "bReason": "구체 금액으로 상황을 주고 등호 포함 이유까지 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$700x\\le5000$",
+              "$5000\\ge700x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같아도 살 수 있다",
+              "가진 돈과 딱 맞아도 된다",
+              "가진 돈 이하이면 된다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'이하'와 $\\le$를 짝짓는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2395,
+        "part": "m2plus",
+        "sourceFingerprint": "5c9559ddbe82ed7415b555c5cc4554ce7e6fb33030a3db2d95efb32471244473",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2395
+        },
+        "directReview": null,
+        "cFrozenSentence": "가진 돈으로 사려면 물건값이 가진 돈 □여야 하므로 부등호 □를 쓴다.",
+        "cFrozenDefinition": "가진 돈으로 사려면 물건값이 가진 돈 {이하}여야 하므로 부등호 {$\\le$}를 쓴다.",
+        "cFrozenAnswers": [
+          "이하",
+          "$\\le$"
+        ],
+        "cMarkedSentence": "가진 돈으로 사려면 물건값이 가진 돈 {이하}여야 하므로 부등호 {$\\le$}를 쓴다.",
+        "cSlotAnswers": [
+          "이하",
+          "$\\le$"
+        ],
+        "cStudentSentence": "가진 돈으로 사려면 물건값이 가진 돈 □여야 하므로 부등호 □를 쓴다.",
+        "cAnswers": [
+          "이하",
+          "$\\le$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이하",
+            "equivalentAnswers": [
+              "이하"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\le$",
+            "equivalentAnswers": [
+              "$\\le$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이하"
+          ],
+          [
+            "$\\le$"
+          ]
+        ],
+        "proposalFingerprint": "86d0ec3236806080b30d1304c4f56f618f1f4bcd572c2aad25dc34e186980fe1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-05-xc5",
+        "section": "중2::2. 부등식::일차부등식의 활용(개수, 예금액, 유리한 방법)",
+        "term": "매달 저금한 돈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "매달 $a$원씩 $x$개월 동안 저금하면 모은 돈은 {$ax$}원이다.",
+        "example": {
+          "prompt": "매달 $2000$원씩 $5$개월 모은 돈",
+          "answer": "$10000$원"
+        },
+        "studentC": "매달 $a$원씩 $x$개월 동안 저금하면 모은 돈은 □원이다.",
+        "answers": [
+          "$ax$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-05-xc5",
+        "learningRole": "procedure",
+        "roleReason": "매달 금액과 개월 수의 곱으로 모은 돈 쓰기",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "단순 곱 하나이며 c2 B의 $bx$ 의미와 겹친다.",
+        "cDecision": "keep",
+        "cReason": "$ax$를 쓰는 짧은 식 빈칸으로 충분하다.",
+        "exclusionReason": "B 제외: 매달 저금한 돈 $ax$는 c2 B에서 '$x$가 곱해진 부분의 뜻'으로 이미 요구되는 목표 중복이다.",
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2396,
+        "part": "m2plus",
+        "sourceFingerprint": "507a34b752c3c10f885bbab660d61f592c44500ee45a721a64f6276e735e7415",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2396
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "매달 $a$원씩 $x$개월 동안 저금하면 모은 돈은 □원이다.",
+        "cFrozenDefinition": "매달 $a$원씩 $x$개월 동안 저금하면 모은 돈은 {$ax$}원이다.",
+        "cFrozenAnswers": [
+          "$ax$"
+        ],
+        "cMarkedSentence": "매달 $a$원씩 $x$개월 동안 저금하면 모은 돈은 {$ax$}원이다.",
+        "cSlotAnswers": [
+          "$ax$"
+        ],
+        "cStudentSentence": "매달 $a$원씩 $x$개월 동안 저금하면 모은 돈은 □원이다.",
+        "cAnswers": [
+          "$ax$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$ax$",
+            "equivalentAnswers": [
+              "$ax$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$ax$"
+          ]
+        ],
+        "proposalFingerprint": "d7121eb46a20eb584c3747d06dd6d4a1f79a92752b6c6cc20b3ef9bb2de72c80"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-05-xc6",
+        "section": "중2::2. 부등식::일차부등식의 활용(개수, 예금액, 유리한 방법)",
+        "term": "초과인 해와 「몇 개월 뒤부터」",
+        "kind": "방법",
+        "level": "하",
+        "definition": "「몇 개월 뒤부터」를 묻는 문제의 해가 $x>n$($n$은 자연수)이면 답은 {$(n+1)$개월} 뒤부터이다. 경계인 $n$개월째에는 아직 조건을 {만족하지 않는다}.",
+        "example": {
+          "prompt": "해가 $x>8$일 때 «$8$개월 뒤부터»가 답이 아닌 까닭은?",
+          "answer": "$8$은 $8$보다 크지 않아 해가 아니다"
+        },
+        "studentC": "「몇 개월 뒤부터」를 묻는 문제의 해가 $x>n$($n$은 자연수)이면 답은 □ 뒤부터이다. 경계인 $n$개월째에는 아직 조건을 □.",
+        "answers": [
+          "$(n+1)$개월",
+          "만족하지 않는다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-05-xc6",
+        "learningRole": "procedure",
+        "roleReason": "$x>n$에서 답을 $(n+1)$개월로 정하기",
+        "bDecision": "rewrite",
+        "bPrompt": "'몇 개월 뒤부터 조건을 만족하는가'를 묻는 문제에서 부등식의 해가 $x>8$로 나왔다($x$는 개월 수). 답은 몇 개월 뒤부터인지 쓰고, 경계인 $8$개월째에는 조건을 만족하는지 이유와 함께 쓰시오.",
+        "bAnswer": "$9$개월 뒤부터. $x=8$은 $8>8$이 성립하지 않아 해가 아니므로 $8$개월째에는 아직 조건을 만족하지 않는다.",
+        "bGoal": "초과 해의 경계 처리",
+        "bReason": "구체 해 $x>8$을 주어 경계 달을 판단하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9$개월 뒤부터",
+              "$9$개월"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$은 해가 아니다",
+              "$8>8$이 성립하지 않는다",
+              "$8$은 $8$보다 크지 않다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$(n+1)$개월과 경계 불만족을 묻는 빈칸이 분명하다.",
+        "studentLabel": "「몇 개월 뒤부터」의 답",
+        "exampleNeeded": true,
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2397,
+        "part": "m2plus",
+        "sourceFingerprint": "441e24754f1e8be61fa0358f72460150009bc3542b350e4d17722e55b4f80934",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2397
+        },
+        "directReview": null,
+        "cFrozenSentence": "「몇 개월 뒤부터」를 묻는 문제의 해가 $x>n$($n$은 자연수)이면 답은 □ 뒤부터이다. 경계인 $n$개월째에는 아직 조건을 □.",
+        "cFrozenDefinition": "「몇 개월 뒤부터」를 묻는 문제의 해가 $x>n$($n$은 자연수)이면 답은 {$(n+1)$개월} 뒤부터이다. 경계인 $n$개월째에는 아직 조건을 {만족하지 않는다}.",
+        "cFrozenAnswers": [
+          "$(n+1)$개월",
+          "만족하지 않는다"
+        ],
+        "cMarkedSentence": "「몇 개월 뒤부터」를 묻는 문제의 해가 $x>n$($n$은 자연수)이면 답은 {$(n+1)$개월} 뒤부터이다. 경계인 $n$개월째에는 아직 조건을 {만족하지 않는다}.",
+        "cSlotAnswers": [
+          "$(n+1)$개월",
+          "만족하지 않는다"
+        ],
+        "cStudentSentence": "「몇 개월 뒤부터」를 묻는 문제의 해가 $x>n$($n$은 자연수)이면 답은 □ 뒤부터이다. 경계인 $n$개월째에는 아직 조건을 □.",
+        "cAnswers": [
+          "$(n+1)$개월",
+          "만족하지 않는다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(n+1)$개월",
+            "equivalentAnswers": [
+              "$(n+1)$개월"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "만족하지 않는다",
+            "equivalentAnswers": [
+              "만족하지 않는다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$(n+1)$개월"
+          ],
+          [
+            "만족하지 않는다"
+          ]
+        ],
+        "proposalFingerprint": "690f1dd52d42ef264309a0001a8842b2bbadea4585386083526e0624635edb01"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-05-xc7",
+        "section": "중2::2. 부등식::일차부등식의 활용(개수, 예금액, 유리한 방법)",
+        "term": "유리하다",
+        "kind": "정의",
+        "level": "하",
+        "definition": "같은 것을 얻는 데 비용이 {더 적게} 드는 쪽을 {유리하다}고 한다.",
+        "studentC": "같은 것을 얻는 데 비용이 □ 드는 쪽을 □고 한다.",
+        "answers": [
+          "더 적게",
+          "유리하다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-05-xc7",
+        "learningRole": "definition",
+        "roleReason": "비용이 더 적게 드는 쪽이 유리하다는 뜻",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "뜻 자체가 c4 B의 부등호 방향 이유로 요구된다.",
+        "cDecision": "rewrite",
+        "cAfter": "같은 것을 얻는 데 비용이 {더 적게} 드는 쪽을 유리하다고 한다.",
+        "cAnswers": [
+          "더 적게"
+        ],
+        "cReason": "용어와 뜻을 모두 가리면 조건과 결론이 함께 숨어 뜻만 묻게 했다.",
+        "exclusionReason": "B 제외: '비용이 더 적게 드는 쪽이 유리'라는 정의는 c4 B의 이유 답과 같은 목표 중복이다.",
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2398,
+        "part": "m2plus",
+        "sourceFingerprint": "ec1b0ee73898f6ac12ff08fe2d3ca2aab57a59d530689da627a59ee6354608ec",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2398
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "같은 것을 얻는 데 비용이 {더 적게} 드는 쪽을 유리하다고 한다.",
+        "cSlotAnswers": [
+          "더 적게"
+        ],
+        "cStudentSentence": "같은 것을 얻는 데 비용이 □ 드는 쪽을 유리하다고 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "더 적게",
+            "equivalentAnswers": [
+              "더 적게",
+              "적게",
+              "덜"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더 적게",
+            "accept": [
+              "적게",
+              "덜"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "더 적게",
+            "적게",
+            "덜"
+          ]
+        ],
+        "proposalFingerprint": "ab8f369c0b1e1b1437ae0ca944112011acf351dc314821ac4871bf8888b94baa"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-05-xc8",
+        "section": "중2::2. 부등식::일차부등식의 활용(개수, 예금액, 유리한 방법)",
+        "term": "합해서 $n$개를 섞어 살 때 개수 $x$의 범위",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합해서 $n$개를 살 때 한 물건이 $x$개이면 나머지는 {$(n-x)$}개이고, $x$는 {$0$ 이상 $n$ 이하}의 정수이다.",
+        "studentC": "합해서 $n$개를 살 때 한 물건이 $x$개이면 나머지는 □개이고, $x$는 □의 정수이다.",
+        "answers": [
+          "$(n-x)$",
+          "$0$ 이상 $n$ 이하"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-05-xc8",
+        "learningRole": "procedure",
+        "roleReason": "나머지 개수 $(n-x)$와 $x$의 범위",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "나머지 개수와 범위가 각각 c1 B, xc24 B와 겹친다.",
+        "cDecision": "keep",
+        "cReason": "$(n-x)$와 $0$ 이상 $n$ 이하를 함께 확인하는 짧은 빈칸이다.",
+        "exclusionReason": "B 제외: 나머지 개수 $(n-x)$는 c1 B, $x$의 범위 제한은 xc24 B에서 구체 예로 평가되는 목표 중복이다.",
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2399,
+        "part": "m2plus",
+        "sourceFingerprint": "3e1d5ebc6caae8c8171a25a2f0c9aabaec40a32d9d5ea3fdcc8ff04ee4898f0a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2399
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "합해서 $n$개를 살 때 한 물건이 $x$개이면 나머지는 □개이고, $x$는 □의 정수이다.",
+        "cFrozenDefinition": "합해서 $n$개를 살 때 한 물건이 $x$개이면 나머지는 {$(n-x)$}개이고, $x$는 {$0$ 이상 $n$ 이하}의 정수이다.",
+        "cFrozenAnswers": [
+          "$(n-x)$",
+          "$0$ 이상 $n$ 이하"
+        ],
+        "cMarkedSentence": "합해서 $n$개를 살 때 한 물건이 $x$개이면 나머지는 {$(n-x)$}개이고, $x$는 {$0$ 이상 $n$ 이하}의 정수이다.",
+        "cSlotAnswers": [
+          "$(n-x)$",
+          "$0$ 이상 $n$ 이하"
+        ],
+        "cStudentSentence": "합해서 $n$개를 살 때 한 물건이 $x$개이면 나머지는 □개이고, $x$는 □의 정수이다.",
+        "cAnswers": [
+          "$(n-x)$",
+          "$0$ 이상 $n$ 이하"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(n-x)$",
+            "equivalentAnswers": [
+              "$(n-x)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0$ 이상 $n$ 이하",
+            "equivalentAnswers": [
+              "$0$ 이상 $n$ 이하"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$(n-x)$"
+          ],
+          [
+            "$0$ 이상 $n$ 이하"
+          ]
+        ],
+        "proposalFingerprint": "2f3c4ed2bfdb3c10d246c0fd280106ab7a7bd640dd84b276295a626af9751e88"
+      }
+    }
+  ]
+}

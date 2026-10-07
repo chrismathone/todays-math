@@ -1,0 +1,4367 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T08:06:53.949300+00:00",
+  "rows": [
+    {
+      "id": "e6-1-1-1-xc26",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "(자연수)$\\div$(자연수)의 몫이 $1$보다 큰지 작은지를 계산하지 않고 알아내는 방법을 설명하고, $9\\div8$과 $8\\div9$ 중 몫이 $1$보다 큰 것을 고르세요.",
+      "bAnswer": "나누어지는 수와 나누는 수의 크기를 견주어, 나누어지는 수가 더 크면 몫이 $1$보다 크고 더 작으면 $1$보다 작다. 몫이 $1$보다 큰 것은 $9\\div8$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수가 나누는 수보다 크면 몫이 $1$보다 크다",
+            "나누어지는 수가 나누는 수보다 작으면 몫이 $1$보다 작다",
+            "분수로 쓸 때 분자가 분모보다 크면 $1$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9\\div8$"
+          ]
+        }
+      ],
+      "bGoal": "두 수의 크기 비교만으로 몫이 $1$보다 큰지 판단한다.",
+      "bReason": "xc10·xc11이 유형별 까닭을 묻는 것과 달리 판단 방법 자체와 적용을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$9\\div8$의 몫은 $1$보다 {크고}, $8\\div9$의 몫은 $1$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크고",
+            "더 크고"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        }
+      ],
+      "cReason": "큰/작은 비교를 삭제하지 않고 실제 수로 판단하게 하여 바로 뒤 말의 어미만 맞추는 복원을 줄인다. 사용자 인정 분수 비교 xc11/xc12는 변경하지 않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "independentFeedbackEvidence": {
+        "file": "evidence/independent-amendments-e5e6.json",
+        "capturedReviewedHash": "711dfaddceb4cb4f977c7d6177f4d92dd168a5f51454284372487ac3def50606",
+        "capturedInputHash": "57bd6a478e9bb2fb96ce99ef524c4ef2dd442327f8a1785b452edb5f5fca371d",
+        "cohort": "cohort-2026-10-06T13-13-14-351Z-1",
+        "resolution": "큰/작은 비교를 삭제하지 않고 실제 수로 판단하게 하여 바로 뒤 말의 어미만 맞추는 복원을 줄인다. 사용자 인정 분수 비교 xc11/xc12는 변경하지 않는다.",
+        "laterProposalNeedsNewReview": true
+      },
+      "sourceIndex": 1650,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc26",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "계산 없이 몫과 $1$ 견주기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "몫이 $1$보다 큰지는 계산하지 않아도 {나누는 수}와 {나누어지는 수}의 크기를 견주면 알 수 있다.",
+        "studentC": "몫이 $1$보다 큰지는 계산하지 않아도 □와 □의 크기를 견주면 알 수 있다.",
+        "answers": [
+          "나누는 수",
+          "나누어지는 수"
+        ]
+      },
+      "sourceFingerprint": "2608d040f9a862f4eddb31e2c44cd8272cbedfe6f40b0db7fb0919f11e5921e2",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "크고",
+        "작다"
+      ],
+      "cStudentAfter": "$9\\div8$의 몫은 $1$보다 □, $8\\div9$의 몫은 $1$보다 □.",
+      "cMarkedSentence": "$9\\div8$의 몫은 $1$보다 {크고}, $8\\div9$의 몫은 $1$보다 {작다}.",
+      "cStudentSentence": "$9\\div8$의 몫은 $1$보다 □, $8\\div9$의 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크고",
+          "equivalents": [
+            "더 크고"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "(자연수)$\\div$(자연수)의 몫이 $1$보다 큰지 작은지를 계산하지 않고 알아내는 방법을 설명하고, $9\\div8$과 $8\\div9$ 중 몫이 $1$보다 큰 것을 고르세요.",
+        "answer": "나누어지는 수와 나누는 수의 크기를 견주어, 나누어지는 수가 더 크면 몫이 $1$보다 크고 더 작으면 $1$보다 작다. 몫이 $1$보다 큰 것은 $9\\div8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수가 나누는 수보다 크면 몫이 $1$보다 크다",
+              "나누어지는 수가 나누는 수보다 작으면 몫이 $1$보다 작다",
+              "분수로 쓸 때 분자가 분모보다 크면 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9\\div8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$9\\div8$의 몫은 $1$보다 {크고}, $8\\div9$의 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "크고",
+            "더 크고"
+          ],
+          [
+            "작다",
+            "더 작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2ee3552fc5a1b5a7f143fa2ec268e818191f7cbdc869f67e2a2835ccb619a3b6",
+      "questionRevision": "planning-e5e6-20261006-2ee3552fc5a1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc27",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "주스 $2$ $\\mathrm{L}$를 $5$명이 똑같이 나누어 마실 때 한 명이 마시는 양을 구하는 나눗셈식을 세우고, 어느 수를 나누어지는 수로 두었는지 까닭과 함께 쓰세요.",
+      "bAnswer": "$2\\div5$이다. 나누어 줄 전체 양이 $2$ $\\mathrm{L}$이므로 $2$를 나누어지는 수로, 사람 수 $5$를 나누는 수로 둔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2\\div5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 양 $2$가 나누어지는 수",
+            "나눌 주스의 양 $2$를 앞에 쓴다"
+          ]
+        }
+      ],
+      "bGoal": "똑같이 나누는 상황에서 전체 양과 사람 수로 나눗셈식을 세운다.",
+      "bReason": "xc2가 식에서 뜻을 읽는 것과 반대로 상황에서 식을 세우게 해 겹치지 않게 했다.",
+      "cDecision": "revise",
+      "cAfter": "주스 $2$ $\\mathrm{L}$를 $5$명이 똑같이 나누어 마실 때 한 명이 마시는 양을 구하는 식은 {$2$}$\\div${$5$}이다.",
+      "cReason": "원문은 앞 구절의 '전체 양'과 '사람'을 그대로 베끼면 되어 실제 상황에서 식을 완성하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1651,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc27",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나눗셈 식 세우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "전체 양을 몇 사람에게 똑같이 나누는 상황에서는 {전체 양}을 나누어지는 수로, {사람 수}를 나누는 수로 둔다.",
+        "studentC": "전체 양을 몇 사람에게 똑같이 나누는 상황에서는 □을 나누어지는 수로, □를 나누는 수로 둔다.",
+        "answers": [
+          "전체 양",
+          "사람 수"
+        ]
+      },
+      "sourceFingerprint": "f3aae575022b41707358446ea9fa3a059233784cd194bd4c2aebf034fc4e692d",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$5$"
+      ],
+      "cStudentAfter": "주스 $2$ $\\mathrm{L}$를 $5$명이 똑같이 나누어 마실 때 한 명이 마시는 양을 구하는 식은 □$\\div$□이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "주스 $2$ $\\mathrm{L}$를 $5$명이 똑같이 나누어 마실 때 한 명이 마시는 양을 구하는 식은 {$2$}$\\div${$5$}이다.",
+      "cStudentSentence": "주스 $2$ $\\mathrm{L}$를 $5$명이 똑같이 나누어 마실 때 한 명이 마시는 양을 구하는 식은 □$\\div$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "주스 $2$ $\\mathrm{L}$를 $5$명이 똑같이 나누어 마실 때 한 명이 마시는 양을 구하는 나눗셈식을 세우고, 어느 수를 나누어지는 수로 두었는지 까닭과 함께 쓰세요.",
+        "answer": "$2\\div5$이다. 나누어 줄 전체 양이 $2$ $\\mathrm{L}$이므로 $2$를 나누어지는 수로, 사람 수 $5$를 나누는 수로 둔다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2\\div5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 양 $2$가 나누어지는 수",
+              "나눌 주스의 양 $2$를 앞에 쓴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주스 $2$ $\\mathrm{L}$를 $5$명이 똑같이 나누어 마실 때 한 명이 마시는 양을 구하는 식은 {$2$}$\\div${$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "43ff6366db97dbb83b3b70931d2685cf538a0d593652eb758845564c20c0326b",
+      "questionRevision": "planning-e5e6-20261006-43ff6366db97",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc1",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{5}\\,\\mathrm{L}$의 물을 $4$명이 똑같이 나누어 마신다. 한 명이 마신 양을 구하는 식 $\\frac{3}{5}\\div4$는 무엇의 크기를 나타내는지 설명하시오.",
+      "bAnswer": "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$개로 똑같이 나눈 한 몫, 곧 한 명이 마신 양의 크기이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$로 똑같이 나눈다",
+            "물을 $4$명이 똑같이 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 몫의 크기",
+            "한 명이 마신 양"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "(분수)÷(자연수)를 똑같이 나눈 한 몫으로 해석한다.",
+      "bReason": "뜻을 상황 속 한 몫으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$명이 똑같이 나눌 때 한 명 몫을 식으로 쓰면 $\\frac{3}{5}$ {$\\div$} {$4$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\div$",
+            "나누기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "'자연수의 개수만큼'이라는 어색한 구절을 실제 식 기호로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1652,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc1",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "(분수)$\\div$(자연수)의 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "(분수)$\\div$(자연수)는 분수만큼의 양을 {자연수의 개수만큼} 똑같이 나눈 한 몫의 크기이다.",
+        "studentC": "(분수)$\\div$(자연수)는 분수만큼의 양을 □ 똑같이 나눈 한 몫의 크기이다.",
+        "answers": [
+          "자연수의 개수만큼"
+        ]
+      },
+      "sourceFingerprint": "2764194408f4237b8abdb10d1d2d42e28da0ef5da3b6d1ace9d198891aa9ac80",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$\\div$",
+        "$4$"
+      ],
+      "cStudentAfter": "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$명이 똑같이 나눌 때 한 명 몫을 식으로 쓰면 $\\frac{3}{5}$ □ □이다.",
+      "cMarkedSentence": "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$명이 똑같이 나눌 때 한 명 몫을 식으로 쓰면 $\\frac{3}{5}$ {$\\div$} {$4$}이다.",
+      "cStudentSentence": "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$명이 똑같이 나눌 때 한 명 몫을 식으로 쓰면 $\\frac{3}{5}$ □ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\div$",
+          "equivalents": [
+            "나누기"
+          ]
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{5}\\,\\mathrm{L}$의 물을 $4$명이 똑같이 나누어 마신다. 한 명이 마신 양을 구하는 식 $\\frac{3}{5}\\div4$는 무엇의 크기를 나타내는지 설명하시오.",
+        "answer": "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$개로 똑같이 나눈 한 몫, 곧 한 명이 마신 양의 크기이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$로 똑같이 나눈다",
+              "물을 $4$명이 똑같이 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 몫의 크기",
+              "한 명이 마신 양"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{5}\\,\\mathrm{L}$를 $4$명이 똑같이 나눌 때 한 명 몫을 식으로 쓰면 $\\frac{3}{5}$ {$\\div$} {$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\div$",
+            "나누기"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e3df90072535df0062c9f07bc2f1c6cfce06504d5fe736c2581e15854b461029",
+      "questionRevision": "planning-e5e6-20261006-e3df90072535",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc2",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{8}{9}\\div4$처럼 분자 $8$이 $4$로 나누어떨어질 때 쉽게 계산하는 방법을 쓰고, 몫을 구하시오.",
+      "bAnswer": "분모 $9$는 그대로 두고 분자 $8$만 $4$로 나눈다. 몫은 $\\frac{2}{9}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모는 그대로 두고 분자만 나눈다",
+            "분자 $8$을 $4$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{9}$",
+            "$9$분의 $2$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "분자가 나누어떨어질 때 분자만 나누는 계산 방법을 적용한다.",
+      "bReason": "기계 계산이 아니라 방법을 말하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{9}{10}\\div3$은 분모 $10$은 그대로 두고 분자 $9$를 $3$으로 나누면 몫은 {$\\frac{3}{10}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{10}$",
+            "$10$분의 $3$"
+          ]
+        }
+      ],
+      "cReason": "'분자만' 낱말 암기 대신 같은 방법을 값으로 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1653,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc2",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "분자가 나누어떨어질 때",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$\\frac{4}{5}\\div2$처럼 분자가 나누는 수로 나누어떨어지면 {분자만} 나누어 $\\frac{2}{5}$를 얻는다.",
+        "studentC": "$\\frac{4}{5}\\div2$처럼 분자가 나누는 수로 나누어떨어지면 □ 나누어 $\\frac{2}{5}$를 얻는다.",
+        "answers": [
+          "분자만"
+        ]
+      },
+      "sourceFingerprint": "67cb4b5706e1d6207eea7d34b49ed43253c8f1ca6b77370306814529922ea998",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{10}$"
+      ],
+      "cStudentAfter": "$\\frac{9}{10}\\div3$은 분모 $10$은 그대로 두고 분자 $9$를 $3$으로 나누면 몫은 □이다.",
+      "cMarkedSentence": "$\\frac{9}{10}\\div3$은 분모 $10$은 그대로 두고 분자 $9$를 $3$으로 나누면 몫은 {$\\frac{3}{10}$}이다.",
+      "cStudentSentence": "$\\frac{9}{10}\\div3$은 분모 $10$은 그대로 두고 분자 $9$를 $3$으로 나누면 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{10}$",
+          "equivalents": [
+            "$10$분의 $3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{8}{9}\\div4$처럼 분자 $8$이 $4$로 나누어떨어질 때 쉽게 계산하는 방법을 쓰고, 몫을 구하시오.",
+        "answer": "분모 $9$는 그대로 두고 분자 $8$만 $4$로 나눈다. 몫은 $\\frac{2}{9}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 그대로 두고 분자만 나눈다",
+              "분자 $8$을 $4$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{9}$",
+              "$9$분의 $2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{9}{10}\\div3$은 분모 $10$은 그대로 두고 분자 $9$를 $3$으로 나누면 몫은 {$\\frac{3}{10}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{10}$",
+            "$10$분의 $3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b8bf0b6cc02dd2bf96fee5fac84bb098498529179e73fbba1259c469975e4352",
+      "questionRevision": "planning-e5e6-20261006-b8bf0b6cc02d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc3",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}\\div2$는 분자 $3$이 $2$로 나누어떨어지지 않는다. 몫을 구하는 한 가지 방법을 쓰고 몫을 쓰시오.",
+      "bAnswer": "분자는 그대로 두고 분모 $4$에 $2$를 곱하면 $\\frac{3}{8}$이다. $\\frac{3}{4}=\\frac{6}{8}$으로 바꾸어 분자를 나누어도 $\\frac{3}{8}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자는 그대로 두고 분모에 $2$를 곱한다",
+            "$\\frac{3}{4}=\\frac{6}{8}$으로 바꾸어 분자를 $2$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{8}$",
+            "$8$분의 $3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "분자가 나누어떨어지지 않을 때의 계산 방법을 선택하여 몫을 구한다.",
+      "bReason": "방법 하나만 강요하지 않고 동치 방법을 허용한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{6}\\div4$는 분자 $5$가 $4$로 나누어떨어지지 않으므로 분모 $6$에 $4$를 곱하여 몫 {$\\frac{5}{24}$}를 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{5}{24}$",
+            "$24$분의 $5$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 구체적 식과 몫을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1654,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc3",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "분자가 나누어떨어지지 않을 때",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분자가 나누는 수로 나누어떨어지지 않아도, 분자는 그대로 두고 {분모에 나누는 수를 곱해} 몫을 구할 수 있다.",
+        "studentC": "분자가 나누는 수로 나누어떨어지지 않아도, 분자는 그대로 두고 □ 몫을 구할 수 있다.",
+        "answers": [
+          "분모에 나누는 수를 곱해"
+        ]
+      },
+      "sourceFingerprint": "2a9d0f877c8c96d4e79b494099c2cc4fdac46948d47f1e36ec4fb8ba1171a167",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[0].anyOf[1]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{5}{24}$"
+      ],
+      "cStudentAfter": "$\\frac{5}{6}\\div4$는 분자 $5$가 $4$로 나누어떨어지지 않으므로 분모 $6$에 $4$를 곱하여 몫 □를 구한다.",
+      "cMarkedSentence": "$\\frac{5}{6}\\div4$는 분자 $5$가 $4$로 나누어떨어지지 않으므로 분모 $6$에 $4$를 곱하여 몫 {$\\frac{5}{24}$}를 구한다.",
+      "cStudentSentence": "$\\frac{5}{6}\\div4$는 분자 $5$가 $4$로 나누어떨어지지 않으므로 분모 $6$에 $4$를 곱하여 몫 □를 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{5}{24}$",
+          "equivalents": [
+            "$24$분의 $5$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}\\div2$는 분자 $3$이 $2$로 나누어떨어지지 않는다. 몫을 구하는 한 가지 방법을 쓰고 몫을 쓰시오.",
+        "answer": "분자는 그대로 두고 분모 $4$에 $2$를 곱하면 $\\frac{3}{8}$이다. $\\frac{3}{4}=\\frac{6}{8}$으로 바꾸어 분자를 나누어도 $\\frac{3}{8}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자는 그대로 두고 분모에 $2$를 곱한다",
+              "$\\frac{3}{4}=\\frac{6}{8}$으로 바꾸어 분자를 $2$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{8}$",
+              "$8$분의 $3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{6}\\div4$는 분자 $5$가 $4$로 나누어떨어지지 않으므로 분모 $6$에 $4$를 곱하여 몫 {$\\frac{5}{24}$}를 구한다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{5}{24}$",
+            "$24$분의 $5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f9c1a9d16fe0d1418118a32cd1e17a43da2cd23c040ae4111f061080d52e4024",
+      "questionRevision": "planning-e5e6-20261006-f9c1a9d16fe0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc4",
+      "bDecision": "revise",
+      "bPrompt": "(분수)$\\div$(자연수)는 어떤 곱셈으로 바꾸어 계산할 수 있는지 쓰고, $\\frac{2}{3}\\div5$를 곱셈식으로 나타내 몫을 구하시오.",
+      "bAnswer": "나누는 자연수를 분모로 하는 단위분수를 곱한다. $\\frac{2}{3}\\div5=\\frac{2}{3}\\times\\frac{1}{5}=\\frac{2}{15}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누는 수를 분모로 하는 단위분수를 곱한다",
+            "나누는 수의 $\\frac{1}{(\\text{나누는 수})}$을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}\\times\\frac{1}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "나눗셈을 단위분수 곱셈으로 바꾸는 방법을 적용한다.",
+      "bReason": "까닭은 c2에서 묻고 여기서는 방법과 식에 초점을 둔다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}\\div5=\\frac{2}{3}\\times$ {$\\frac{1}{5}$} $=$ {$\\frac{2}{15}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{5}$",
+            "$5$분의 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        }
+      ],
+      "cReason": "긴 낱말구 대신 실제 곱셈식을 완성한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1655,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc4",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "단위분수를 곱하는 방법",
+        "kind": "방법",
+        "level": "하",
+        "definition": "(분수)$\\div$(자연수)는 {그 자연수를 분모로 하는} 단위분수를 곱한 것과 같다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}\\div5$를 곱셈식으로 쓰고, 등분의 뜻으로 까닭을 설명하면?",
+          "answer": "$\\frac{2}{3}\\times\\frac{1}{5}$ — 다섯 등분한 한 몫"
+        },
+        "studentC": "(분수)$\\div$(자연수)는 □ 단위분수를 곱한 것과 같다.",
+        "answers": [
+          "그 자연수를 분모로 하는"
+        ]
+      },
+      "sourceFingerprint": "ed1b7921ec37b76d200dbc8de02564f8c68ab06f9ba6f239460d1f8f96cdb930",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{5}$",
+        "$\\frac{2}{15}$"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}\\div5=\\frac{2}{3}\\times$ □ $=$ □이다.",
+      "cMarkedSentence": "$\\frac{2}{3}\\div5=\\frac{2}{3}\\times$ {$\\frac{1}{5}$} $=$ {$\\frac{2}{15}$}이다.",
+      "cStudentSentence": "$\\frac{2}{3}\\div5=\\frac{2}{3}\\times$ □ $=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{5}$",
+          "equivalents": [
+            "$5$분의 $1$"
+          ]
+        },
+        {
+          "key": "$\\frac{2}{15}$",
+          "equivalents": [
+            "$15$분의 $2$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "(분수)$\\div$(자연수)는 어떤 곱셈으로 바꾸어 계산할 수 있는지 쓰고, $\\frac{2}{3}\\div5$를 곱셈식으로 나타내 몫을 구하시오.",
+        "answer": "나누는 자연수를 분모로 하는 단위분수를 곱한다. $\\frac{2}{3}\\div5=\\frac{2}{3}\\times\\frac{1}{5}=\\frac{2}{15}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수를 분모로 하는 단위분수를 곱한다",
+              "나누는 수의 $\\frac{1}{(\\text{나누는 수})}$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{3}\\times\\frac{1}{5}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{15}$",
+              "$15$분의 $2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}\\div5=\\frac{2}{3}\\times$ {$\\frac{1}{5}$} $=$ {$\\frac{2}{15}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{5}$",
+            "$5$분의 $1$"
+          ],
+          [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "47f0a88fc9e83ed45f67b1ea17966166a7e5be3ac5d9570a0097919ad185e2fd",
+      "questionRevision": "planning-e5e6-20261006-47f0a88fc9e8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc5",
+      "bDecision": "revise",
+      "bPrompt": "분자가 분모보다 큰 분수 $\\frac{9}{4}$를 $3$으로 나누려 한다. 진분수와 같은 방법을 쓸 수 있는지 말하고, 몫을 구하시오.",
+      "bAnswer": "쓸 수 있다. 분모는 그대로 두고 분자 $9$를 $3$으로 나누어 $\\frac{3}{4}$을 얻는다. 분모에 $3$을 곱해 $\\frac{9}{12}=\\frac{3}{4}$으로 구해도 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "진분수와 같은 방법을 쓸 수 있다",
+            "가분수도 같은 방법으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$",
+            "$4$분의 $3$",
+            "$\\frac{9}{12}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "가분수에도 진분수와 같은 나눗셈 방법이 통함을 계산으로 확인한다.",
+      "bReason": "예시를 질문에 담아 판단과 몫을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{9}{4}\\div3$처럼 가분수도 분자 $9$를 $3$으로 나누어 몫 {$\\frac{3}{4}$}을 구할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$",
+            "$4$분의 $3$",
+            "$\\frac{9}{12}$"
+          ]
+        }
+      ],
+      "cReason": "'같은 방법' 막연한 답 대신 구체적 몫으로 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1656,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc5",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "가분수를 자연수로 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "가분수도 진분수와 {같은 방법}으로 자연수로 나눈다. 분자를 나누거나 분모에 나누는 수를 곱한다.",
+        "example": {
+          "prompt": "$\\frac{9}{4}\\div3$에서 분자 $9$를 $3$으로 나눌 수 있는 까닭은?",
+          "answer": "$\\frac{1}{4}$짜리 $9$조각을 셋으로 나눠서"
+        },
+        "studentC": "가분수도 진분수와 □으로 자연수로 나눈다. 분자를 나누거나 분모에 나누는 수를 곱한다.",
+        "answers": [
+          "같은 방법"
+        ]
+      },
+      "sourceFingerprint": "effef83c69536da977a4f06b61929f43597aa7ab06d42231506c35902888ab73",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "$\\frac{9}{4}\\div3$처럼 가분수도 분자 $9$를 $3$으로 나누어 몫 □을 구할 수 있다.",
+      "cMarkedSentence": "$\\frac{9}{4}\\div3$처럼 가분수도 분자 $9$를 $3$으로 나누어 몫 {$\\frac{3}{4}$}을 구할 수 있다.",
+      "cStudentSentence": "$\\frac{9}{4}\\div3$처럼 가분수도 분자 $9$를 $3$으로 나누어 몫 □을 구할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": [
+            "$4$분의 $3$",
+            "$\\frac{9}{12}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분자가 분모보다 큰 분수 $\\frac{9}{4}$를 $3$으로 나누려 한다. 진분수와 같은 방법을 쓸 수 있는지 말하고, 몫을 구하시오.",
+        "answer": "쓸 수 있다. 분모는 그대로 두고 분자 $9$를 $3$으로 나누어 $\\frac{3}{4}$을 얻는다. 분모에 $3$을 곱해 $\\frac{9}{12}=\\frac{3}{4}$으로 구해도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "진분수와 같은 방법을 쓸 수 있다",
+              "가분수도 같은 방법으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$",
+              "$4$분의 $3$",
+              "$\\frac{9}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{9}{4}\\div3$처럼 가분수도 분자 $9$를 $3$으로 나누어 몫 {$\\frac{3}{4}$}을 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{4}$",
+            "$4$분의 $3$",
+            "$\\frac{9}{12}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "46b57970323da1adfb56ac52d4e4b7525556014e61bc25b31fc534742f3339b3",
+      "questionRevision": "planning-e5e6-20261006-46b57970323d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나눈 몫은 처음 분수보다 큰가, 작은가? $\\frac{3}{4}\\div2$로 확인하고 그 까닭을 한 몫의 뜻으로 설명하시오.",
+      "bAnswer": "처음 분수보다 작다. $\\frac{3}{4}\\div2=\\frac{3}{8}$이고 $\\frac{3}{8}<\\frac{3}{4}$이다. 전체를 $2$개 이상으로 똑같이 나눈 한 몫은 전체보다 작기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 분수보다 작다",
+            "몫이 더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "똑같이 나눈 한 몫은 전체의 일부이다",
+            "여러 개로 나누면 한 몫은 전체보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{8}$",
+            "$8$분의 $3$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "분수를 $1$보다 큰 자연수로 나눈 몫이 작아짐을 한 몫의 뜻으로 설명한다.",
+      "bReason": "크기 비교와 이유를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 {작다}.",
+      "cReason": "양수·$1$보다 큰 자연수 조건이 있고 작다 하나만 고르는 명확한 비교다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1657,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc6",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "나눈 뒤 몫의 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 {작다}.",
+        "studentC": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "af02a65da2be739a9fdd8c4b901d27783b55b10883f4d3cbfebae520b24a5a2b",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cFrozenDefinition": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 {작다}.",
+      "cFrozenStudentSentence": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 □.",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 {작다}.",
+      "cStudentSentence": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나눈 몫은 처음 분수보다 큰가, 작은가? $\\frac{3}{4}\\div2$로 확인하고 그 까닭을 한 몫의 뜻으로 설명하시오.",
+        "answer": "처음 분수보다 작다. $\\frac{3}{4}\\div2=\\frac{3}{8}$이고 $\\frac{3}{8}<\\frac{3}{4}$이다. 전체를 $2$개 이상으로 똑같이 나눈 한 몫은 전체보다 작기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 분수보다 작다",
+              "몫이 더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "똑같이 나눈 한 몫은 전체의 일부이다",
+              "여러 개로 나누면 한 몫은 전체보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{8}$",
+              "$8$분의 $3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 분수를 $1$보다 큰 자연수로 나누면 몫은 처음 분수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "195807064df72746e606da4e3a58969265d128678a36adf8e5e33e58500e638a",
+      "questionRevision": "planning-e5e6-20261006-195807064df7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc7",
+      "bDecision": "revise",
+      "bPrompt": "분수를 $1$로 나눈 몫은 처음 분수와 어떤 관계인지 쓰고, 한 몫의 뜻으로 까닭을 설명하시오.",
+      "bAnswer": "처음 분수와 같다. $1$부분으로 똑같이 나누면 전체가 곧 한 몫이기 때문이다. 예: $\\frac{3}{5}\\div1=\\frac{3}{5}$.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 분수와 같다",
+            "그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 부분으로 나누면 전체가 한 몫이다",
+            "$1$로 나누어도 나누지 않은 것과 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "$1$로 나누면 변하지 않음을 한 몫의 뜻으로 이해한다.",
+      "bReason": "사소하지만 등분의 뜻을 확인하는 짧은 확인용으로 둔다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 분수를 {$1$}로 나누면 몫은 처음 분수와 같다.",
+      "cReason": "짧고 명확한 성질 문장이며 답이 $1$ 하나다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1658,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc7",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "$1$로 나누기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "어떤 분수를 {$1$}로 나누면 몫은 처음 분수와 같다.",
+        "studentC": "어떤 분수를 □로 나누면 몫은 처음 분수와 같다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "6d624ff819d4ce6b6570a05dbd4dd12efe949ffab1851fe96553e34b62811a35",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cFrozenDefinition": "어떤 분수를 {$1$}로 나누면 몫은 처음 분수와 같다.",
+      "cFrozenStudentSentence": "어떤 분수를 □로 나누면 몫은 처음 분수와 같다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "어떤 분수를 □로 나누면 몫은 처음 분수와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 분수를 {$1$}로 나누면 몫은 처음 분수와 같다.",
+      "cStudentSentence": "어떤 분수를 □로 나누면 몫은 처음 분수와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수를 $1$로 나눈 몫은 처음 분수와 어떤 관계인지 쓰고, 한 몫의 뜻으로 까닭을 설명하시오.",
+        "answer": "처음 분수와 같다. $1$부분으로 똑같이 나누면 전체가 곧 한 몫이기 때문이다. 예: $\\frac{3}{5}\\div1=\\frac{3}{5}$.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 분수와 같다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 부분으로 나누면 전체가 한 몫이다",
+              "$1$로 나누어도 나누지 않은 것과 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 분수를 {$1$}로 나누면 몫은 처음 분수와 같다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aaed2ab1836a29287200f7e7c6b3a1233bbda471238ad78cdcccb656b749dafb",
+      "questionRevision": "planning-e5e6-20261006-aaed2ab1836a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc8",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{5}\\div6$의 몫을 기약분수로 나타내고, 약분해도 값이 변하지 않는 까닭을 설명하시오.",
+      "bAnswer": "$\\frac{4}{5}\\div6=\\frac{4}{30}=\\frac{2}{15}$이다. 분모와 분자를 같은 공약수 $2$로 나누어도 크기가 같은 분수이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "약분하면 크기가 같은 분수이다",
+            "분모와 분자를 같은 수로 나누어도 크기가 변하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "몫을 기약분수로 쓰고 약분이 크기를 바꾸지 않음을 설명한다.",
+      "bReason": "계산값만 묻지 않고 약분의 근거도 요구한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{4}{30}$의 분모와 분자를 공약수 $2$로 나누면 기약분수 {$\\frac{2}{15}$}가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 약분 결과를 짧게 답한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1659,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc8",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "몫을 기약분수로 쓰기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "(분수)$\\div$(자연수)의 몫은 약분할 수 있으면 {분모와 분자를 공약수로 나누어} 기약분수로 나타낸다.",
+        "example": {
+          "prompt": "$\\frac{4}{5}\\div6$의 몫 $\\frac{4}{30}$를 $\\frac{2}{15}$로 고쳐도 되는 까닭은?",
+          "answer": "크기가 같은 분수라서"
+        },
+        "studentC": "(분수)$\\div$(자연수)의 몫은 약분할 수 있으면 □ 기약분수로 나타낸다.",
+        "answers": [
+          "분모와 분자를 공약수로 나누어"
+        ]
+      },
+      "sourceFingerprint": "c797f2641cbb4d7b0fc94683d1072cf06aeb602c13f60d9c42ff24e3ad26fbc5",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{2}{15}$"
+      ],
+      "cStudentAfter": "$\\frac{4}{30}$의 분모와 분자를 공약수 $2$로 나누면 기약분수 □가 된다.",
+      "cMarkedSentence": "$\\frac{4}{30}$의 분모와 분자를 공약수 $2$로 나누면 기약분수 {$\\frac{2}{15}$}가 된다.",
+      "cStudentSentence": "$\\frac{4}{30}$의 분모와 분자를 공약수 $2$로 나누면 기약분수 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{2}{15}$",
+          "equivalents": [
+            "$15$분의 $2$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{5}\\div6$의 몫을 기약분수로 나타내고, 약분해도 값이 변하지 않는 까닭을 설명하시오.",
+        "answer": "$\\frac{4}{5}\\div6=\\frac{4}{30}=\\frac{2}{15}$이다. 분모와 분자를 같은 공약수 $2$로 나누어도 크기가 같은 분수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{15}$",
+              "$15$분의 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "약분하면 크기가 같은 분수이다",
+              "분모와 분자를 같은 수로 나누어도 크기가 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{4}{30}$의 분모와 분자를 공약수 $2$로 나누면 기약분수 {$\\frac{2}{15}$}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7d3fec30037012144b665de622b3a0c55e81a8b6b6cc1a239aaf415c6f9da6e6",
+      "questionRevision": "planning-e5e6-20261006-7d3fec300370",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "색칠한 부분을 나누는 그림 표현을 안다.",
+      "bReason": "색칠된 그림이 없으면 상황을 알 수 없고 뜻은 xc1·c3와 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "그림 설명 낱말만 외우게 되고 xc1과 같다.",
+      "exclusionReason": "그림이 필요하며 xc1, c3로 대체 가능하다.",
+      "exampleNeeded": true,
+      "exampleReason": "필요 시 직사각형을 $4$칸으로 나누어 $3$칸 색칠한 그림이 필요하다.",
+      "sourceIndex": 1660,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc9",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "그림으로 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "(분수)$\\div$(자연수)를 그림으로 나타내려면 분수만큼 색칠한 부분을 {나누는 수만큼 똑같이} 다시 나누어 그 가운데 한 몫을 본다.",
+        "studentC": "(분수)$\\div$(자연수)를 그림으로 나타내려면 분수만큼 색칠한 부분을 □ 다시 나누어 그 가운데 한 몫을 본다.",
+        "answers": [
+          "나누는 수만큼 똑같이"
+        ]
+      },
+      "sourceFingerprint": "9b0a66eb490004ec2b222948ef4723e280828ebb5cae323ecae7eec55c1cd161",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "그림이 필요하며 xc1, c3로 대체 가능하다.",
+        "cloze": "그림이 필요하며 xc1, c3로 대체 가능하다."
+      },
+      "proposalFingerprint": "64bd3772a5525f0279359ab0c5594b749218c3f69300661ff2ef6f76011ccfbf",
+      "questionRevision": "planning-e5e6-20261006-64bd3772a552",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc10",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\div4$에서 분자 $2$는 $4$로 나누어떨어지지 않는다. $\\frac{2}{3}$와 크기가 같은 분수로 바꾸어 계산하려면 어떻게 하는지 쓰고 몫을 구하시오.",
+      "bAnswer": "분자와 분모에 같은 수 $2$를 곱해 $\\frac{4}{6}$로 바꾸면 분자가 $4$의 배수가 된다. $\\frac{4}{6}\\div4=\\frac{1}{6}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모에 같은 수를 곱해 분자를 $4$의 배수로 만든다",
+            "$\\frac{2}{3}=\\frac{4}{6}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "$6$분의 $1$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "분자가 나누는 수의 배수가 되도록 크기가 같은 분수로 바꿔 계산한다.",
+      "bReason": "바꾸는 방법과 몫을 함께 묻고 다른 배수도 허용한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}\\div4$는 $\\frac{2}{3}=\\frac{4}{6}$로 바꾸면 분자를 나누어 몫은 {$\\frac{1}{6}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "$6$분의 $1$"
+          ]
+        }
+      ],
+      "cReason": "'배수가 되도록' 구절 대신 같은 분수 변환의 결과를 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1661,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc10",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "크기가 같은 분수로 바꾸어 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분자가 나누는 수의 {배수가 되도록} 분자와 분모에 같은 자연수를 곱하면, 크기를 유지하면서 분자를 나누는 방법을 쓸 수 있다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}\\div4$에서 $\\frac{2}{3}$를 $\\frac{4}{6}$로 바꾸는 까닭은?",
+          "answer": "분자가 $4$의 배수가 되어서"
+        },
+        "studentC": "분자가 나누는 수의 □ 분자와 분모에 같은 자연수를 곱하면, 크기를 유지하면서 분자를 나누는 방법을 쓸 수 있다.",
+        "answers": [
+          "배수가 되도록"
+        ]
+      },
+      "sourceFingerprint": "7c96717cf4ee1e9c939885486c77c74da99f336a279b8c5a31c1feea1afd9c84",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bRequiredIdeas[0].anyOf[1]",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{1}{6}$"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}\\div4$는 $\\frac{2}{3}=\\frac{4}{6}$로 바꾸면 분자를 나누어 몫은 □이다.",
+      "cMarkedSentence": "$\\frac{2}{3}\\div4$는 $\\frac{2}{3}=\\frac{4}{6}$로 바꾸면 분자를 나누어 몫은 {$\\frac{1}{6}$}이다.",
+      "cStudentSentence": "$\\frac{2}{3}\\div4$는 $\\frac{2}{3}=\\frac{4}{6}$로 바꾸면 분자를 나누어 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{6}$",
+          "equivalents": [
+            "$6$분의 $1$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}\\div4$에서 분자 $2$는 $4$로 나누어떨어지지 않는다. $\\frac{2}{3}$와 크기가 같은 분수로 바꾸어 계산하려면 어떻게 하는지 쓰고 몫을 구하시오.",
+        "answer": "분자와 분모에 같은 수 $2$를 곱해 $\\frac{4}{6}$로 바꾸면 분자가 $4$의 배수가 된다. $\\frac{4}{6}\\div4=\\frac{1}{6}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자와 분모에 같은 수를 곱해 분자를 $4$의 배수로 만든다",
+              "$\\frac{2}{3}=\\frac{4}{6}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$",
+              "$6$분의 $1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}\\div4$는 $\\frac{2}{3}=\\frac{4}{6}$로 바꾸면 분자를 나누어 몫은 {$\\frac{1}{6}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{6}$",
+            "$6$분의 $1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "604e62035483057a4e5c2d207fdf356be000d9e1a96492fe99d5b7e04412da84",
+      "questionRevision": "planning-e5e6-20261006-604e62035483",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{6}\\div2$를 분자를 나누는 방법과 분모에 $2$를 곱하는 방법으로 각각 계산하고, 두 결과가 같은 까닭을 설명하시오.",
+      "bAnswer": "분자를 나누면 $\\frac{2}{6}$, 분모에 곱하면 $\\frac{4}{12}$이다. 둘 다 약분하면 $\\frac{1}{3}$로 크기가 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{6}$와 $\\frac{4}{12}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "약분하면 같은 분수 $\\frac{1}{3}$이다",
+            "두 분수의 크기가 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "두 계산법의 결과가 약분하면 같음을 확인한다.",
+      "bReason": "두 방법을 직접 비교하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 {같다}. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+      "cReason": "사용자 인정 문장이므로 원문 그대로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1662,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc11",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "두 방법의 같은 결과",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 {같다}. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+        "studentC": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 □. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "ba9eb901f56b2322cd30a2edda41ffd01c40b1a2aefc11bf086f8f5f4a9109ab",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cFrozenDefinition": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 {같다}. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+      "cFrozenStudentSentence": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 □. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 □. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 {같다}. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+      "cStudentSentence": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 □. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{6}\\div2$를 분자를 나누는 방법과 분모에 $2$를 곱하는 방법으로 각각 계산하고, 두 결과가 같은 까닭을 설명하시오.",
+        "answer": "분자를 나누면 $\\frac{2}{6}$, 분모에 곱하면 $\\frac{4}{12}$이다. 둘 다 약분하면 $\\frac{1}{3}$로 크기가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{6}$와 $\\frac{4}{12}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "약분하면 같은 분수 $\\frac{1}{3}$이다",
+              "두 분수의 크기가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분자가 나누어떨어질 때에는 분자를 나누어도, 분모에 나누는 수를 곱해도 몫의 크기가 {같다}. 분모에 곱한 쪽을 약분하면 같은 분수가 된다.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9de66b0aa00b6faf3467f6b0e1f00ec1b35812cfd9d789605beb0b13fffd2941",
+      "questionRevision": "planning-e5e6-20261006-9de66b0aa00b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{5}\\div6$을 $\\frac{4}{5}\\times\\frac{1}{6}$로 바꾼 뒤 계산 도중 약분해도 몫이 같은 까닭을 설명하고 몫을 구하시오.",
+      "bAnswer": "분자와 분모를 같은 공약수 $2$로 나누어도 분수의 크기가 같기 때문이다. 몫은 $\\frac{4}{30}=\\frac{2}{15}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모를 같은 수로 나누면 크기가 같다",
+            "약분해도 분수의 크기가 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "곱셈식에서 약분이 허용되는 까닭을 크기 같음으로 설명한다.",
+      "bReason": "까닭과 구체적 몫을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 {같은 공약수}로 나누어도 {분수의 크기가 같으므로} 약분한 뒤 계산해도 몫은 같다.",
+      "cReason": "사용자 인정 문장이므로 원문 그대로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1663,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc12",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "곱셈으로 바꾼 뒤 약분해도 되는 까닭",
+        "kind": "방법",
+        "level": "중",
+        "definition": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 {같은 공약수}로 나누어도 {분수의 크기가 같으므로} 약분한 뒤 계산해도 몫은 같다.",
+        "studentC": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 □로 나누어도 □ 약분한 뒤 계산해도 몫은 같다.",
+        "answers": [
+          "같은 공약수",
+          "분수의 크기가 같으므로"
+        ]
+      },
+      "sourceFingerprint": "89105ea2a9295c5f989c67e09351e63b11fedd68c523d9b6a59b1070574f4d94",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cFrozenDefinition": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 {같은 공약수}로 나누어도 {분수의 크기가 같으므로} 약분한 뒤 계산해도 몫은 같다.",
+      "cFrozenStudentSentence": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 □로 나누어도 □ 약분한 뒤 계산해도 몫은 같다.",
+      "cProposedAnswers": [
+        "같은 공약수",
+        "분수의 크기가 같으므로"
+      ],
+      "cStudentAfter": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 □로 나누어도 □ 약분한 뒤 계산해도 몫은 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은 공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수의 크기가 같으므로"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 {같은 공약수}로 나누어도 {분수의 크기가 같으므로} 약분한 뒤 계산해도 몫은 같다.",
+      "cStudentSentence": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 □로 나누어도 □ 약분한 뒤 계산해도 몫은 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은 공약수",
+          "equivalents": []
+        },
+        {
+          "key": "분수의 크기가 같으므로",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{5}\\div6$을 $\\frac{4}{5}\\times\\frac{1}{6}$로 바꾼 뒤 계산 도중 약분해도 몫이 같은 까닭을 설명하고 몫을 구하시오.",
+        "answer": "분자와 분모를 같은 공약수 $2$로 나누어도 분수의 크기가 같기 때문이다. 몫은 $\\frac{4}{30}=\\frac{2}{15}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자와 분모를 같은 수로 나누면 크기가 같다",
+              "약분해도 분수의 크기가 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{15}$",
+              "$15$분의 $2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 {같은 공약수}로 나누어도 {분수의 크기가 같으므로} 약분한 뒤 계산해도 몫은 같다.",
+        "acceptedAnswers": [
+          [
+            "같은 공약수"
+          ],
+          [
+            "분수의 크기가 같으므로"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7f85aa67f3ee2596d6fadbffa20ae33f11de72f652643cfb3c12c3ff2274dbf3",
+      "questionRevision": "planning-e5e6-20261006-7f85aa67f3ee",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc13",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}$을 $2$로 나눈 몫과 $4$로 나눈 몫 중 어느 쪽이 더 큰지 쓰고, 나누는 자연수가 커질수록 몫이 어떻게 되는지 말하시오.",
+      "bAnswer": "$\\frac{3}{4}\\div2=\\frac{3}{8}$이 $\\frac{3}{4}\\div4=\\frac{3}{16}$보다 크다. 나누는 자연수가 클수록 몫은 작아진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$로 나눈 몫이 더 크다",
+            "$\\frac{3}{8}>\\frac{3}{16}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수가 클수록 몫은 작아진다",
+            "더 많이 나눌수록 한 몫이 작다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "나누는 수의 크기와 몫의 크기 관계를 비교로 알아낸다.",
+      "bReason": "비교 예와 일반 관계를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 {작아진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작아진다",
+            "작다",
+            "줄어든다"
+          ]
+        }
+      ],
+      "cReason": "원문에 $0$보다 큰 분수라는 조건이 빠져 있어 보완했다.",
+      "coreAfter": "$0$보다 큰 같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 {작아진다}.",
+      "coreReason": "분수가 $0$이면 몫이 모두 $0$이라 조건이 필요하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "작아진다라는 원문 표적을 보존하고 분수가0이면 모두 같은 몫이 되는 예외를 제외한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1664,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc13",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "나누는 수가 커질 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 {작아진다}.",
+        "studentC": "같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 □.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "sourceFingerprint": "390c12266a493617ec571f307ab6999b2f2876b1fe33391bc75a0910d7ce4af7",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작아진다"
+      ],
+      "cStudentAfter": "$0$보다 큰 같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 □.",
+      "cMarkedSentence": "$0$보다 큰 같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 {작아진다}.",
+      "cStudentSentence": "$0$보다 큰 같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아진다",
+          "equivalents": [
+            "작다",
+            "줄어든다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}$을 $2$로 나눈 몫과 $4$로 나눈 몫 중 어느 쪽이 더 큰지 쓰고, 나누는 자연수가 커질수록 몫이 어떻게 되는지 말하시오.",
+        "answer": "$\\frac{3}{4}\\div2=\\frac{3}{8}$이 $\\frac{3}{4}\\div4=\\frac{3}{16}$보다 크다. 나누는 자연수가 클수록 몫은 작아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$로 나눈 몫이 더 크다",
+              "$\\frac{3}{8}>\\frac{3}{16}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 클수록 몫은 작아진다",
+              "더 많이 나눌수록 한 몫이 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다",
+            "작다",
+            "줄어든다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "70406e122ef378df3de2527fcc83229dfeca794afb7684df731637dc0c21b51d",
+      "questionRevision": "planning-e5e6-20261006-70406e122ef3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc14",
+      "bDecision": "revise",
+      "bPrompt": "(분수)$\\div$(자연수)의 몫에 나눈 자연수를 곱하면 어떤 수가 되는지 쓰고, $\\frac{2}{3}\\div3$의 몫으로 확인하시오. 한 몫의 뜻으로 까닭도 설명하시오.",
+      "bAnswer": "처음 분수가 된다. $\\frac{2}{3}\\div3=\\frac{2}{9}$이고 $\\frac{2}{9}\\times3=\\frac{6}{9}=\\frac{2}{3}$이다. 똑같이 나눈 $3$개의 몫을 모으면 처음 양이 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 분수가 된다",
+            "나누어지는 수가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{9}\\times3=\\frac{2}{3}$",
+            "$\\frac{6}{9}=\\frac{2}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눈 몫을 모두 모으면 처음 양이다",
+            "한 몫을 나눈 개수만큼 모으면 전체이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "몫과 나누는 수의 곱이 처음 분수가 됨을 한 몫의 뜻으로 설명한다.",
+      "bReason": "검산 원리를 구체 예로 확인하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{4}{5}\\div2=\\frac{2}{5}$이다. 몫에 나눈 수를 곱한 $\\frac{2}{5}\\times2$는 {$\\frac{4}{5}$}가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{4}{5}$",
+            "$5$분의 $4$"
+          ]
+        }
+      ],
+      "cReason": "실제 나눗셈식과 확인 곱셈식을 보여 주고 짧은 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1665,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc14",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "몫에 나누는 수를 곱하면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "(분수)$\\div$(자연수)의 몫에 그 자연수를 곱하면 {처음 분수}가 된다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}\\div3$의 몫 $\\frac{2}{9}$에 $3$을 곱하면 처음 분수가 되는 까닭은?",
+          "answer": "세 몫을 모으면 처음 양이라서"
+        },
+        "studentC": "(분수)$\\div$(자연수)의 몫에 그 자연수를 곱하면 □가 된다.",
+        "answers": [
+          "처음 분수"
+        ]
+      },
+      "sourceFingerprint": "77eccd88261ce703bf09b6a39773bb21e77ea710553ebf14582976660c96cc27",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{4}{5}$"
+      ],
+      "cStudentAfter": "$\\frac{4}{5}\\div2=\\frac{2}{5}$이다. 몫에 나눈 수를 곱한 $\\frac{2}{5}\\times2$는 □가 된다.",
+      "cMarkedSentence": "$\\frac{4}{5}\\div2=\\frac{2}{5}$이다. 몫에 나눈 수를 곱한 $\\frac{2}{5}\\times2$는 {$\\frac{4}{5}$}가 된다.",
+      "cStudentSentence": "$\\frac{4}{5}\\div2=\\frac{2}{5}$이다. 몫에 나눈 수를 곱한 $\\frac{2}{5}\\times2$는 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{4}{5}$",
+          "equivalents": [
+            "$5$분의 $4$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "(분수)$\\div$(자연수)의 몫에 나눈 자연수를 곱하면 어떤 수가 되는지 쓰고, $\\frac{2}{3}\\div3$의 몫으로 확인하시오. 한 몫의 뜻으로 까닭도 설명하시오.",
+        "answer": "처음 분수가 된다. $\\frac{2}{3}\\div3=\\frac{2}{9}$이고 $\\frac{2}{9}\\times3=\\frac{6}{9}=\\frac{2}{3}$이다. 똑같이 나눈 $3$개의 몫을 모으면 처음 양이 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 분수가 된다",
+              "나누어지는 수가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{9}\\times3=\\frac{2}{3}$",
+              "$\\frac{6}{9}=\\frac{2}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눈 몫을 모두 모으면 처음 양이다",
+              "한 몫을 나눈 개수만큼 모으면 전체이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{4}{5}\\div2=\\frac{2}{5}$이다. 몫에 나눈 수를 곱한 $\\frac{2}{5}\\times2$는 {$\\frac{4}{5}$}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{4}{5}$",
+            "$5$분의 $4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3ed1184be2883138b1b0e333bdf2d7d7d4292d394be7bfa1608fce19a0c7a394",
+      "questionRevision": "planning-e5e6-20261006-3ed1184be288",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc15",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{10}{3}\\div2$의 몫을 구하고, 몫이 가분수이면 대분수로 어떻게 바꾸는지 설명하시오.",
+      "bAnswer": "몫은 $\\frac{5}{3}$이다. 분자 $5$를 분모 $3$으로 나눈 몫 $1$이 자연수 부분이고 나머지 $2$가 분자이므로 $1\\frac{2}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{5}{3}$",
+            "$3$분의 $5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자를 분모로 나눈 몫이 자연수 부분이다",
+            "나머지가 분수 부분의 분자이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{2}{3}$",
+            "$1$과 $3$분의 $2$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "가분수 몫을 대분수로 바꾸는 방법을 적용한다.",
+      "bReason": "몫 계산과 변환 과정을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{3}$를 대분수로 바꾸려면 분자 $5$를 분모 $3$으로 나눈 몫 $1$은 자연수 부분으로 쓰고, 나머지 {$2$}는 분자로 쓴다. 따라서 $\\frac{5}{3}=$ {$1\\frac{2}{3}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{2}{3}$",
+            "$1$과 $3$분의 $2$"
+          ]
+        }
+      ],
+      "cReason": "'분모의 배수가 아니면' 구절 대신 실제 변환 값을 답한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1666,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc15",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "가분수인 몫을 대분수로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$\\frac{10}{3}\\div2=\\frac{5}{3}$처럼 몫이 가분수일 때 분자가 분모의 {배수가 아니면} 대분수로 바꾸어 쓸 수 있다.",
+        "studentC": "$\\frac{10}{3}\\div2=\\frac{5}{3}$처럼 몫이 가분수일 때 분자가 분모의 □ 대분수로 바꾸어 쓸 수 있다.",
+        "answers": [
+          "배수가 아니면"
+        ]
+      },
+      "sourceFingerprint": "602732404c475226f872541590673b7a0ee2a0eff92518a699b12df881457a30",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$1\\frac{2}{3}$"
+      ],
+      "cStudentAfter": "$\\frac{5}{3}$를 대분수로 바꾸려면 분자 $5$를 분모 $3$으로 나눈 몫 $1$은 자연수 부분으로 쓰고, 나머지 □는 분자로 쓴다. 따라서 $\\frac{5}{3}=$ □이다.",
+      "cMarkedSentence": "$\\frac{5}{3}$를 대분수로 바꾸려면 분자 $5$를 분모 $3$으로 나눈 몫 $1$은 자연수 부분으로 쓰고, 나머지 {$2$}는 분자로 쓴다. 따라서 $\\frac{5}{3}=$ {$1\\frac{2}{3}$}이다.",
+      "cStudentSentence": "$\\frac{5}{3}$를 대분수로 바꾸려면 분자 $5$를 분모 $3$으로 나눈 몫 $1$은 자연수 부분으로 쓰고, 나머지 □는 분자로 쓴다. 따라서 $\\frac{5}{3}=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$1\\frac{2}{3}$",
+          "equivalents": [
+            "$1$과 $3$분의 $2$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{10}{3}\\div2$의 몫을 구하고, 몫이 가분수이면 대분수로 어떻게 바꾸는지 설명하시오.",
+        "answer": "몫은 $\\frac{5}{3}$이다. 분자 $5$를 분모 $3$으로 나눈 몫 $1$이 자연수 부분이고 나머지 $2$가 분자이므로 $1\\frac{2}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{5}{3}$",
+              "$3$분의 $5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자를 분모로 나눈 몫이 자연수 부분이다",
+              "나머지가 분수 부분의 분자이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\frac{2}{3}$",
+              "$1$과 $3$분의 $2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{3}$를 대분수로 바꾸려면 분자 $5$를 분모 $3$으로 나눈 몫 $1$은 자연수 부분으로 쓰고, 나머지 {$2$}는 분자로 쓴다. 따라서 $\\frac{5}{3}=$ {$1\\frac{2}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$1\\frac{2}{3}$",
+            "$1$과 $3$분의 $2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aaa5975e6c60d329ab4b691bdce28d2a6d8dc471e48e7908f509eb2bd2308aa4",
+      "questionRevision": "planning-e5e6-20261006-aaa5975e6c60",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc16",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{6}{7}\\div3$에서 분모는 그대로 두고 분자 $6$만 $3$으로 나누어도 되는 까닭을 설명하시오.",
+      "bAnswer": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 $6$개 모인 수이다. $6$개를 $3$으로 똑같이 나누면 한 몫은 $\\frac{1}{7}$이 $2$개이므로 $\\frac{2}{7}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{6}{7}$은 $\\frac{1}{7}$이 $6$개이다",
+            "분자는 $\\frac{1}{7}$의 개수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개를 $3$으로 나누면 $2$개씩이다",
+            "$\\frac{1}{7}$이 $2$개이므로 $\\frac{2}{7}$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "분자를 나눌 수 있는 까닭을 단위분수의 개수로 이해한다.",
+      "bReason": "구체적 수로 분자의 의미를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 {$6$}개 모인 수이다. 이것을 $3$으로 나눈 한 몫은 $\\frac{1}{7}$이 {$2$}개이므로 $\\frac{6}{7}\\div3=\\frac{2}{7}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "추상 '개수' 낱말 대신 개수 값 두 개를 답한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1667,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc16",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "분자를 나눌 수 있는 까닭",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분자는 단위분수 조각의 {개수}이므로, 그 개수가 나누는 수로 나누어떨어지면 조각을 똑같이 나누어 가질 수 있다.",
+        "example": {
+          "prompt": "$\\frac{6}{7}\\div3$에서 분자 $6$만 $3$으로 나누는 까닭은?",
+          "answer": "$6$조각을 셋으로 나누면 $2$조각씩"
+        },
+        "studentC": "분자는 단위분수 조각의 □이므로, 그 개수가 나누는 수로 나누어떨어지면 조각을 똑같이 나누어 가질 수 있다.",
+        "answers": [
+          "개수"
+        ]
+      },
+      "sourceFingerprint": "53a962f715e3a4b7aa0fb493e414ac4d6e671edd0d35c282053bde74db5e8f8b",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$2$"
+      ],
+      "cStudentAfter": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 □개 모인 수이다. 이것을 $3$으로 나눈 한 몫은 $\\frac{1}{7}$이 □개이므로 $\\frac{6}{7}\\div3=\\frac{2}{7}$이다.",
+      "cMarkedSentence": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 {$6$}개 모인 수이다. 이것을 $3$으로 나눈 한 몫은 $\\frac{1}{7}$이 {$2$}개이므로 $\\frac{6}{7}\\div3=\\frac{2}{7}$이다.",
+      "cStudentSentence": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 □개 모인 수이다. 이것을 $3$으로 나눈 한 몫은 $\\frac{1}{7}$이 □개이므로 $\\frac{6}{7}\\div3=\\frac{2}{7}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{6}{7}\\div3$에서 분모는 그대로 두고 분자 $6$만 $3$으로 나누어도 되는 까닭을 설명하시오.",
+        "answer": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 $6$개 모인 수이다. $6$개를 $3$으로 똑같이 나누면 한 몫은 $\\frac{1}{7}$이 $2$개이므로 $\\frac{2}{7}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{6}{7}$은 $\\frac{1}{7}$이 $6$개이다",
+              "분자는 $\\frac{1}{7}$의 개수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$개를 $3$으로 나누면 $2$개씩이다",
+              "$\\frac{1}{7}$이 $2$개이므로 $\\frac{2}{7}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 {$6$}개 모인 수이다. 이것을 $3$으로 나눈 한 몫은 $\\frac{1}{7}$이 {$2$}개이므로 $\\frac{6}{7}\\div3=\\frac{2}{7}$이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "135cbffb80fc633c89f1db1925a894b1678ddf5b845fa9cfc2a25824e282676f",
+      "questionRevision": "planning-e5e6-20261006-135cbffb80fc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc17",
+      "bDecision": "revise",
+      "bPrompt": "어떤 양을 $4$등분한다는 것은 무슨 뜻인지 쓰고, 한 부분을 나눗셈으로 어떻게 나타내는지 쓰시오.",
+      "bAnswer": "어떤 양을 크기가 같은 $4$개의 부분으로 나눈다는 뜻이다. 한 부분은 그 양을 $4$로 나눈 몫이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "크기가 같은 $4$부분으로 나눈다",
+            "똑같이 $4$개로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 부분은 그 양을 $4$로 나눈 몫",
+            "$(\\text{양})\\div4$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "등분의 뜻과 한 부분을 나눗셈으로 나타내는 것을 연결한다.",
+      "bReason": "정식 낱말 등분의 뜻을 구체 수로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 양을 $4$등분하면 {크기가 같은} $4$개의 부분이 되고, 한 부분은 그 양을 {$4$}로 나눈 몫이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크기가 같은",
+            "똑같은",
+            "같은 크기의"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "어색한 '그 수만큼 나눈다'를 구체 수로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1668,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc17",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "등분",
+        "kind": "정의",
+        "level": "중",
+        "definition": "어떤 양을 몇 등분한다는 것은 그 양을 {크기가 같은 부분}으로 그 수만큼 나눈다는 뜻이고, 한 부분은 그 수로 나눈 몫이다.",
+        "studentC": "어떤 양을 몇 등분한다는 것은 그 양을 □으로 그 수만큼 나눈다는 뜻이고, 한 부분은 그 수로 나눈 몫이다.",
+        "answers": [
+          "크기가 같은 부분"
+        ]
+      },
+      "sourceFingerprint": "d435233d49ca23d54766c22d2ff55ef5437ce79364d0738f99e828fae15b01f4",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "크기가 같은",
+        "$4$"
+      ],
+      "cStudentAfter": "어떤 양을 $4$등분하면 □ $4$개의 부분이 되고, 한 부분은 그 양을 □로 나눈 몫이다.",
+      "cMarkedSentence": "어떤 양을 $4$등분하면 {크기가 같은} $4$개의 부분이 되고, 한 부분은 그 양을 {$4$}로 나눈 몫이다.",
+      "cStudentSentence": "어떤 양을 $4$등분하면 □ $4$개의 부분이 되고, 한 부분은 그 양을 □로 나눈 몫이다.",
+      "cSlotAnswers": [
+        {
+          "key": "크기가 같은",
+          "equivalents": [
+            "똑같은",
+            "같은 크기의"
+          ]
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 양을 $4$등분한다는 것은 무슨 뜻인지 쓰고, 한 부분을 나눗셈으로 어떻게 나타내는지 쓰시오.",
+        "answer": "어떤 양을 크기가 같은 $4$개의 부분으로 나눈다는 뜻이다. 한 부분은 그 양을 $4$로 나눈 몫이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 같은 $4$부분으로 나눈다",
+              "똑같이 $4$개로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 부분은 그 양을 $4$로 나눈 몫",
+              "$(\\text{양})\\div4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 양을 $4$등분하면 {크기가 같은} $4$개의 부분이 되고, 한 부분은 그 양을 {$4$}로 나눈 몫이다.",
+        "acceptedAnswers": [
+          [
+            "크기가 같은",
+            "똑같은",
+            "같은 크기의"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e1767a3bcf9788cda783275e7a57491af20704593b4c947d7dadd52633172989",
+      "questionRevision": "planning-e5e6-20261006-e1767a3bcf97",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc18",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{5}\\div3$을 계산하며 분자 $2$에 $3$을 곱해 $\\frac{6}{5}$으로 답했다. 이 답이 틀렸음을 크기를 비교해 설명하고, 바른 몫을 구하시오.",
+      "bAnswer": "$\\frac{6}{5}$은 처음 분수 $\\frac{2}{5}$보다 큰데, $1$보다 큰 수로 나누면 작아져야 하므로 틀렸다. 바른 몫은 $\\frac{2}{15}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{6}{5}$이 $\\frac{2}{5}$보다 커졌다",
+            "답이 처음 분수보다 커서 틀렸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누면 작아져야 한다",
+            "$1$보다 큰 수로 나누면 몫이 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "몫의 크기 어림으로 잘못된 계산을 찾아 바로잡는다.",
+      "bReason": "오류 원인을 크기 비교로 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 {커져} 잘못된 답이 된다.",
+      "cReason": "나눈 몫이 커졌다는 오류를 묻는 짧고 명확한 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1669,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc18",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "분자에 곱하는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 {커져} 잘못된 답이 된다.",
+        "studentC": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 □ 잘못된 답이 된다.",
+        "answers": [
+          "커져"
+        ]
+      },
+      "sourceFingerprint": "eb2de4b643cff3e919e0defb0604c46db1e9888fde47bc94e75723706023bb87",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cFrozenDefinition": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 {커져} 잘못된 답이 된다.",
+      "cFrozenStudentSentence": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 □ 잘못된 답이 된다.",
+      "cProposedAnswers": [
+        "커져"
+      ],
+      "cStudentAfter": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 □ 잘못된 답이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커져"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 {커져} 잘못된 답이 된다.",
+      "cStudentSentence": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 □ 잘못된 답이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "커져",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{5}\\div3$을 계산하며 분자 $2$에 $3$을 곱해 $\\frac{6}{5}$으로 답했다. 이 답이 틀렸음을 크기를 비교해 설명하고, 바른 몫을 구하시오.",
+        "answer": "$\\frac{6}{5}$은 처음 분수 $\\frac{2}{5}$보다 큰데, $1$보다 큰 수로 나누면 작아져야 하므로 틀렸다. 바른 몫은 $\\frac{2}{15}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{6}{5}$이 $\\frac{2}{5}$보다 커졌다",
+              "답이 처음 분수보다 커서 틀렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누면 작아져야 한다",
+              "$1$보다 큰 수로 나누면 몫이 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{15}$",
+              "$15$분의 $2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{5}\\div3$을 계산할 때 분자에 $3$을 곱하면 몫이 {커져} 잘못된 답이 된다.",
+        "acceptedAnswers": [
+          [
+            "커져"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6aa7d0680258dc036300417c478f515d4a2d72b95013bc051a98f6cc5e66ff67",
+      "questionRevision": "planning-e5e6-20261006-6aa7d0680258",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}$의 분자와 분모에 $2$를 곱한 $\\frac{4}{6}$는 $\\frac{2}{3}$와 크기가 같은 까닭을 설명하시오.",
+      "bAnswer": "전체를 $3$등분한 것을 각각 $2$등분하면 조각이 $6$개가 되고 색칠한 조각도 $2$배인 $4$개가 되어 크기가 같다. 또는 $\\frac{4}{6}$를 공약수 $2$로 약분하면 $\\frac{2}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "조각을 $2$배로 잘게 나누면 개수도 $2$배라 크기가 같다",
+            "$\\frac{4}{6}$를 $2$로 약분하면 $\\frac{2}{3}$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "분자와 분모에 같은 수를 곱해도 분수의 크기가 변하지 않는 까닭을 설명한다.",
+      "bReason": "여러 가지 타당한 설명을 모두 허용한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}$의 분자와 분모에 $2$를 곱한 $\\frac{4}{6}$는 $\\frac{2}{3}$와 크기가 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "어색한 빈칸 구조를 구체 수의 비교로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1670,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc19",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "분자와 분모에 같은 수를 곱해도 되는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분자와 분모에 같은 수를 곱해도 분수의 {크기는 변하지 않으므로}, 나누기 쉬운 분수로 바꾸어 나눌 수 있다.",
+        "studentC": "분자와 분모에 같은 수를 곱해도 분수의 □, 나누기 쉬운 분수로 바꾸어 나눌 수 있다.",
+        "answers": [
+          "크기는 변하지 않으므로"
+        ]
+      },
+      "sourceFingerprint": "c4c19d491384027494cc9db42facaaa33ab80d1c152f1648609f347abc083570",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[0].anyOf[1]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}$의 분자와 분모에 $2$를 곱한 $\\frac{4}{6}$는 $\\frac{2}{3}$와 크기가 □.",
+      "cMarkedSentence": "$\\frac{2}{3}$의 분자와 분모에 $2$를 곱한 $\\frac{4}{6}$는 $\\frac{2}{3}$와 크기가 {같다}.",
+      "cStudentSentence": "$\\frac{2}{3}$의 분자와 분모에 $2$를 곱한 $\\frac{4}{6}$는 $\\frac{2}{3}$와 크기가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}$의 분자와 분모에 $2$를 곱한 $\\frac{4}{6}$는 $\\frac{2}{3}$와 크기가 같은 까닭을 설명하시오.",
+        "answer": "전체를 $3$등분한 것을 각각 $2$등분하면 조각이 $6$개가 되고 색칠한 조각도 $2$배인 $4$개가 되어 크기가 같다. 또는 $\\frac{4}{6}$를 공약수 $2$로 약분하면 $\\frac{2}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "조각을 $2$배로 잘게 나누면 개수도 $2$배라 크기가 같다",
+              "$\\frac{4}{6}$를 $2$로 약분하면 $\\frac{2}{3}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}$의 분자와 분모에 $2$를 곱한 $\\frac{4}{6}$는 $\\frac{2}{3}$와 크기가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e31bc4942152e59c476f77e5d20d7119afaf3d71c3be2726d2298cad226d37aa",
+      "questionRevision": "planning-e5e6-20261006-e31bc4942152",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc20",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{6}{7}\\div3$과 $\\frac{3}{7}\\div2$ 중 분자만 바로 나누어 계산할 수 있는 것은 어느 것이며 그 까닭은? 다른 하나는 어떻게 계산할 수 있는지 쓰고, 두 몫을 구하시오.",
+      "bAnswer": "$\\frac{6}{7}\\div3$은 분자 $6$이 $3$으로 나누어떨어지므로 분자만 나누어 $\\frac{2}{7}$이다. $\\frac{3}{7}\\div2$는 분모 $7$에 $2$를 곱하거나 $\\frac{6}{14}$으로 바꾸어 $\\frac{3}{14}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{6}{7}\\div3$이고 $6$이 $3$으로 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모에 $2$를 곱한다",
+            "크기가 같은 분수 $\\frac{6}{14}$으로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{7}$와 $\\frac{3}{14}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "분자의 배수 여부로 계산 방법을 고른다.",
+      "bReason": "방법 선택을 구체적 두 식으로 판단하게 한다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "방법 이름 두 개를 암기하는 문장이며 xc2와 xc3에서 값으로 확인한다.",
+      "exclusionReason": "C는 xc2·xc3과 중복이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1671,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc20",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "방법 고르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분자가 나누는 수의 배수이면 {분자를 나누는} 방법을 바로 쓸 수 있고, 아니면 {분모에 곱하는} 방법이나 크기가 같은 분수로 바꾸는 방법을 쓴다.",
+        "studentC": "분자가 나누는 수의 배수이면 □ 방법을 바로 쓸 수 있고, 아니면 □ 방법이나 크기가 같은 분수로 바꾸는 방법을 쓴다.",
+        "answers": [
+          "분자를 나누는",
+          "분모에 곱하는"
+        ]
+      },
+      "sourceFingerprint": "8467da2cd20beb17f32d75defe62d6511854cc03cb24ca3073ceb762f2f04d5e",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bRequiredIdeas[2].anyOf[0]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "$\\frac{6}{7}\\div3$과 $\\frac{3}{7}\\div2$ 중 분자만 바로 나누어 계산할 수 있는 것은 어느 것이며 그 까닭은? 다른 하나는 어떻게 계산할 수 있는지 쓰고, 두 몫을 구하시오.",
+        "answer": "$\\frac{6}{7}\\div3$은 분자 $6$이 $3$으로 나누어떨어지므로 분자만 나누어 $\\frac{2}{7}$이다. $\\frac{3}{7}\\div2$는 분모 $7$에 $2$를 곱하거나 $\\frac{6}{14}$으로 바꾸어 $\\frac{3}{14}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{6}{7}\\div3$이고 $6$이 $3$으로 나누어떨어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모에 $2$를 곱한다",
+              "크기가 같은 분수 $\\frac{6}{14}$으로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{7}$와 $\\frac{3}{14}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 xc2·xc3과 중복이다."
+      },
+      "proposalFingerprint": "f3f53378c8f0d0a42b1a6a17e031b43c814029e6b8f5ffbb5fc69ec2e15e4ab7",
+      "questionRevision": "planning-e5e6-20261006-f3f53378c8f0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc21",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{5}$을 $2$로 나눈 몫을 다시 $4$로 나누면, $\\frac{3}{5}$을 어떤 수로 한 번에 나눈 것과 같은지 쓰고 그 몫을 구하시오. 까닭도 한 몫의 뜻으로 설명하시오.",
+      "bAnswer": "$8$로 나눈 것과 같다. $2$로 나눈 한 몫을 다시 $4$로 나누면 처음 양을 $2\\times4=8$개로 똑같이 나눈 것이기 때문이다. 몫은 $\\frac{3}{40}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$8$로 나눈 것과 같다",
+            "$2\\times4$로 나눈 것과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$개 부분을 각각 $4$개로 나누면 $8$개 부분이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{40}$",
+            "$40$분의 $3$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "연속 나눗셈이 곱한 수로 한 번에 나누는 것과 같음을 설명한다.",
+      "bReason": "구체 수와 까닭을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "분수를 $2$로 나눈 몫을 다시 $4$로 나누면 처음 분수를 $2\\times4=$ {$8$}로 한 번에 나눈 것과 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cReason": "'두 자연수의 곱' 낱말 대신 곱셈 값을 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1672,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc21",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "자연수로 두 번 나누기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분수를 자연수로 나눈 몫을 다시 자연수로 나누면, 처음 분수를 {두 자연수의 곱}으로 한 번에 나눈 것과 같다.",
+        "example": {
+          "prompt": "어떤 분수를 $2$로 나눈 뒤 다시 $4$로 나누면 $8$로 나눈 것과 같은 까닭은?",
+          "answer": "두 몫이 넷씩 나뉘어 여덟 몫"
+        },
+        "studentC": "분수를 자연수로 나눈 몫을 다시 자연수로 나누면, 처음 분수를 □으로 한 번에 나눈 것과 같다.",
+        "answers": [
+          "두 자연수의 곱"
+        ]
+      },
+      "sourceFingerprint": "2c467976dbbc65e8c81833b7dfbf9748fc706c6e3f1423787cb91970ba5be8fd",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$8$"
+      ],
+      "cStudentAfter": "분수를 $2$로 나눈 몫을 다시 $4$로 나누면 처음 분수를 $2\\times4=$ □로 한 번에 나눈 것과 같다.",
+      "cMarkedSentence": "분수를 $2$로 나눈 몫을 다시 $4$로 나누면 처음 분수를 $2\\times4=$ {$8$}로 한 번에 나눈 것과 같다.",
+      "cStudentSentence": "분수를 $2$로 나눈 몫을 다시 $4$로 나누면 처음 분수를 $2\\times4=$ □로 한 번에 나눈 것과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{5}$을 $2$로 나눈 몫을 다시 $4$로 나누면, $\\frac{3}{5}$을 어떤 수로 한 번에 나눈 것과 같은지 쓰고 그 몫을 구하시오. 까닭도 한 몫의 뜻으로 설명하시오.",
+        "answer": "$8$로 나눈 것과 같다. $2$로 나눈 한 몫을 다시 $4$로 나누면 처음 양을 $2\\times4=8$개로 똑같이 나눈 것이기 때문이다. 몫은 $\\frac{3}{40}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$8$로 나눈 것과 같다",
+              "$2\\times4$로 나눈 것과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$개 부분을 각각 $4$개로 나누면 $8$개 부분이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{40}$",
+              "$40$분의 $3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분수를 $2$로 나눈 몫을 다시 $4$로 나누면 처음 분수를 $2\\times4=$ {$8$}로 한 번에 나눈 것과 같다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "71dcc8f510eb7c5424b8179aad47c0e4dad72899143eaa3d0b7d3887cc7199d1",
+      "questionRevision": "planning-e5e6-20261006-71dcc8f510eb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc22",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{5}\\div3$과 $\\frac{4}{5}\\div6$의 몫을 각각 구해 비교하고, 나누어지는 분수와 나누는 수를 같은 수만큼 곱하면 몫이 어떻게 되는지 설명하시오.",
+      "bAnswer": "두 몫은 모두 $\\frac{2}{15}$로 같다. 나누어지는 분수와 나누는 수에 $0$이 아닌 같은 수를 곱해도 몫은 변하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 몫이 모두 $\\frac{2}{15}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 수를 곱해도 몫은 변하지 않는다",
+            "몫이 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "나눗셈에서 나누어지는 수와 나누는 수를 같은 배로 바꿔도 몫이 같음을 비교로 안다.",
+      "bReason": "구체 두 식으로 일반 성질을 이끌어 낸다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{5}\\div3$의 나누어지는 분수와 나누는 수를 모두 $2$배 한 $\\frac{4}{5}\\div6$의 몫은 $\\frac{2}{5}\\div3$의 몫과 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "'같은 배' 낱말 대신 구체 식으로 몫 비교를 묻는다.",
+      "coreAfter": "나누어지는 분수와 나누는 자연수에 $0$보다 큰 {같은 수}를 곱해도 몫은 변하지 않는다.",
+      "coreReason": "'늘리거나 줄여도'는 $0$배와 자연수가 아닌 경우를 배제하지 않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "같은 배라는 표적을 곱할 같은 수로 분명히 한다.0보다 큰 수 조건으로 몫을 유지하는 일반 관계를 설명하며0배는 제외한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1673,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc22",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "몫이 같은 두 나눗셈",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누어지는 분수와 나누는 자연수를 {같은 배}로 늘리거나 줄여도 몫은 변하지 않는다.",
+        "studentC": "나누어지는 분수와 나누는 자연수를 □로 늘리거나 줄여도 몫은 변하지 않는다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "sourceFingerprint": "b0a467cdbc1c21331d17a3bf64ffcf5922fa81cde96ca958f74eef62ec82be73",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "$\\frac{2}{5}\\div3$의 나누어지는 분수와 나누는 수를 모두 $2$배 한 $\\frac{4}{5}\\div6$의 몫은 $\\frac{2}{5}\\div3$의 몫과 □.",
+      "cMarkedSentence": "$\\frac{2}{5}\\div3$의 나누어지는 분수와 나누는 수를 모두 $2$배 한 $\\frac{4}{5}\\div6$의 몫은 $\\frac{2}{5}\\div3$의 몫과 {같다}.",
+      "cStudentSentence": "$\\frac{2}{5}\\div3$의 나누어지는 분수와 나누는 수를 모두 $2$배 한 $\\frac{4}{5}\\div6$의 몫은 $\\frac{2}{5}\\div3$의 몫과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{5}\\div3$과 $\\frac{4}{5}\\div6$의 몫을 각각 구해 비교하고, 나누어지는 분수와 나누는 수를 같은 수만큼 곱하면 몫이 어떻게 되는지 설명하시오.",
+        "answer": "두 몫은 모두 $\\frac{2}{15}$로 같다. 나누어지는 분수와 나누는 수에 $0$이 아닌 같은 수를 곱해도 몫은 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 몫이 모두 $\\frac{2}{15}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 수를 곱해도 몫은 변하지 않는다",
+              "몫이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{5}\\div3$의 나누어지는 분수와 나누는 수를 모두 $2$배 한 $\\frac{4}{5}\\div6$의 몫은 $\\frac{2}{5}\\div3$의 몫과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6fca8df91a824017a4fd3a718667e923c7b9679b5f952a6912c7a79eda3f1997",
+      "questionRevision": "planning-e5e6-20261006-6fca8df91a82",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc23",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\div4$를 계산하며 분자와 분모에 $4$를 곱해 $\\frac{8}{12}$이라고 답했다. 틀린 까닭을 처음 분수와 비교해 설명하고 바른 몫을 구하시오.",
+      "bAnswer": "$\\frac{8}{12}$은 $\\frac{2}{3}$와 크기가 같은 분수일 뿐이어서 나눈 것이 아니다. 바른 몫은 $\\frac{2}{12}=\\frac{1}{6}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{8}{12}$은 $\\frac{2}{3}$와 크기가 같다",
+            "크기가 같은 분수가 될 뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "$\\frac{2}{12}$",
+            "$6$분의 $1$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "분자와 분모에 같은 수를 곱하는 오류를 크기 비교로 판별한다.",
+      "bReason": "흔한 오개념을 구체 식으로 바로잡는다.",
+      "cDecision": "keep",
+      "cAfter": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 {크기가 같은 분수}가 될 뿐 나눈 것이 아니다.",
+      "cReason": "$1$보다 큰 자연수 조건이 명확하고 답이 크기가 같은 분수로 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1674,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc23",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "분자와 분모를 함께 바꾸는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 {크기가 같은 분수}가 될 뿐 나눈 것이 아니다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}\\div4$를 $\\frac{8}{12}$이라 하면 왜 틀린가?",
+          "answer": "$\\frac{2}{3}$와 크기가 같아서"
+        },
+        "studentC": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 □가 될 뿐 나눈 것이 아니다.",
+        "answers": [
+          "크기가 같은 분수"
+        ]
+      },
+      "sourceFingerprint": "048332c9833969e07374b77e9b0ac9da89879d3335fae71b3662c131e69b6a3d",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cFrozenDefinition": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 {크기가 같은 분수}가 될 뿐 나눈 것이 아니다.",
+      "cFrozenStudentSentence": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 □가 될 뿐 나눈 것이 아니다.",
+      "cProposedAnswers": [
+        "크기가 같은 분수"
+      ],
+      "cStudentAfter": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 □가 될 뿐 나눈 것이 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크기가 같은 분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 {크기가 같은 분수}가 될 뿐 나눈 것이 아니다.",
+      "cStudentSentence": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 □가 될 뿐 나눈 것이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "크기가 같은 분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}\\div4$를 계산하며 분자와 분모에 $4$를 곱해 $\\frac{8}{12}$이라고 답했다. 틀린 까닭을 처음 분수와 비교해 설명하고 바른 몫을 구하시오.",
+        "answer": "$\\frac{8}{12}$은 $\\frac{2}{3}$와 크기가 같은 분수일 뿐이어서 나눈 것이 아니다. 바른 몫은 $\\frac{2}{12}=\\frac{1}{6}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{8}{12}$은 $\\frac{2}{3}$와 크기가 같다",
+              "크기가 같은 분수가 될 뿐이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$",
+              "$\\frac{2}{12}$",
+              "$6$분의 $1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$보다 큰 자연수로 나눌 때, 분자와 분모에 그 수를 함께 곱하면 {크기가 같은 분수}가 될 뿐 나눈 것이 아니다.",
+        "acceptedAnswers": [
+          [
+            "크기가 같은 분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ae3a037066c4392b0bd61bb6be47896561e6aa87b6834a9bce12cf299342838e",
+      "questionRevision": "planning-e5e6-20261006-ae3a037066c4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "분수를 자연수로 나눈 몫이 $1$보다 크려면 나누어지는 분수와 나누는 수의 크기가 어떠해야 하는지 쓰고, $\\frac{15}{2}\\div3$으로 확인하시오.",
+      "bAnswer": "나누어지는 분수가 나누는 수보다 커야 한다. $\\frac{15}{2}=7\\frac{1}{2}$은 $3$보다 크고 $\\frac{15}{2}\\div3=\\frac{5}{2}=2\\frac{1}{2}$로 $1$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 분수가 나누는 수보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{15}{2}\\div3=\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "몫과 $1$의 크기를 나누어지는 수와 나누는 수의 비교로 판단한다.",
+      "bReason": "비교 조건과 구체 확인을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "분수를 자연수로 나눌 때 나누어지는 분수가 나누는 자연수보다 {작으면} 몫은 $1$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작으면",
+            "작은 경우"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 작으면·작다 비교를 묻도록 다듬었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1675,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc24",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "몫이 $1$보다 클 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분수를 자연수로 나누어도, 나누어지는 분수가 {나누는 수보다 크면} 몫은 $1$보다 크다.",
+        "example": {
+          "prompt": "$\\frac{15}{2}\\div3$의 몫이 $1$보다 큰 까닭은?",
+          "answer": "$\\frac{15}{2}$가 $3$보다 커서"
+        },
+        "studentC": "분수를 자연수로 나누어도, 나누어지는 분수가 □ 몫은 $1$보다 크다.",
+        "answers": [
+          "나누는 수보다 크면"
+        ]
+      },
+      "sourceFingerprint": "e304d3d158a3345f550be634bee09c390d63f573f30cd93b089cb493dcd72d28",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "작으면",
+        "작다"
+      ],
+      "cStudentAfter": "분수를 자연수로 나눌 때 나누어지는 분수가 나누는 자연수보다 □ 몫은 $1$보다 □.",
+      "cMarkedSentence": "분수를 자연수로 나눌 때 나누어지는 분수가 나누는 자연수보다 {작으면} 몫은 $1$보다 {작다}.",
+      "cStudentSentence": "분수를 자연수로 나눌 때 나누어지는 분수가 나누는 자연수보다 □ 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작으면",
+          "equivalents": [
+            "작은 경우"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수를 자연수로 나눈 몫이 $1$보다 크려면 나누어지는 분수와 나누는 수의 크기가 어떠해야 하는지 쓰고, $\\frac{15}{2}\\div3$으로 확인하시오.",
+        "answer": "나누어지는 분수가 나누는 수보다 커야 한다. $\\frac{15}{2}=7\\frac{1}{2}$은 $3$보다 크고 $\\frac{15}{2}\\div3=\\frac{5}{2}=2\\frac{1}{2}$로 $1$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 분수가 나누는 수보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{15}{2}\\div3=\\frac{5}{2}$",
+              "$2\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분수를 자연수로 나눌 때 나누어지는 분수가 나누는 자연수보다 {작으면} 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작으면",
+            "작은 경우"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "20292f0365630b91a7392b79767957fa794b8cc995241bd718e6832fed476223",
+      "questionRevision": "planning-e5e6-20261006-20292f036563",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "단위분수 $\\frac{1}{5}$을 $2$로 나눈 몫을 구하고, 일반적으로 단위분수 $\\frac{1}{a}$을 자연수 $n$으로 나눈 몫은 어떤 분수인지 쓰시오.",
+      "bAnswer": "$\\frac{1}{5}\\div2=\\frac{1}{10}$이다. 일반적으로 $\\frac{1}{a}\\div n=\\frac{1}{a\\times n}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{10}$",
+            "$10$분의 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{a\\times n}$",
+            "분모에 $n$을 곱한 단위분수"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "단위분수를 나눈 몫이 분모끼리의 곱인 단위분수임을 안다.",
+      "bReason": "몫이 단위분수가 되는 일반 규칙을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{3}\\div4$의 몫은 분자가 $1$이고 분모가 $3\\times4$인 단위분수 {$\\frac{1}{12}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{12}$",
+            "$12$분의 $1$"
+          ]
+        }
+      ],
+      "cReason": "어색한 '배가 된' 표현 대신 구체 곱을 쓴다.",
+      "coreAfter": "단위분수를 자연수로 나누면, 원래 분모와 그 자연수를 {곱한 값}이 몫의 분모가 된다. 몫의 분자는 $1$이다.",
+      "coreReason": "'분모가 그 자연수만큼 배'는 초등 학생에게 어색하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "그 자연수만큼 배라는 어색한 표적을 두 수의 곱한 값으로 바꾼다. 원래 분모와 나누는 자연수를 지목하고 분자1인 일반 단위분수 결과를 보존한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1676,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc25",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "단위분수를 자연수로 나누기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "단위분수를 자연수로 나누면 몫은 분모가 {그 자연수만큼 배}가 된 단위분수이다. $\\frac{1}{5}\\div2=\\frac{1}{10}$이다.",
+        "studentC": "단위분수를 자연수로 나누면 몫은 분모가 □가 된 단위분수이다. $\\frac{1}{5}\\div2=\\frac{1}{10}$이다.",
+        "answers": [
+          "그 자연수만큼 배"
+        ]
+      },
+      "sourceFingerprint": "2eb3b1552531632f5f55ae08b70ca7d96fd0bb1a3326a55f363188fcc5733636",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{12}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{3}\\div4$의 몫은 분자가 $1$이고 분모가 $3\\times4$인 단위분수 □이다.",
+      "cMarkedSentence": "$\\frac{1}{3}\\div4$의 몫은 분자가 $1$이고 분모가 $3\\times4$인 단위분수 {$\\frac{1}{12}$}이다.",
+      "cStudentSentence": "$\\frac{1}{3}\\div4$의 몫은 분자가 $1$이고 분모가 $3\\times4$인 단위분수 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{12}$",
+          "equivalents": [
+            "$12$분의 $1$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "단위분수 $\\frac{1}{5}$을 $2$로 나눈 몫을 구하고, 일반적으로 단위분수 $\\frac{1}{a}$을 자연수 $n$으로 나눈 몫은 어떤 분수인지 쓰시오.",
+        "answer": "$\\frac{1}{5}\\div2=\\frac{1}{10}$이다. 일반적으로 $\\frac{1}{a}\\div n=\\frac{1}{a\\times n}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{10}$",
+              "$10$분의 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{a\\times n}$",
+              "분모에 $n$을 곱한 단위분수"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{3}\\div4$의 몫은 분자가 $1$이고 분모가 $3\\times4$인 단위분수 {$\\frac{1}{12}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{12}$",
+            "$12$분의 $1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "423d0bccb989a7028e74333f911c866a854bd0546a9a8e5032c4a29a490dd9a9",
+      "questionRevision": "planning-e5e6-20261006-423d0bccb989",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-xc27",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{5}\\,\\mathrm{L}$의 물을 $2$병에 똑같이 나누어 담았다. 한 병의 물은 처음 물의 얼마이고, $1\\,\\mathrm{L}$의 얼마인지 각각 분수로 쓰시오.",
+      "bAnswer": "처음 물의 $\\frac{1}{2}$이고, $1\\,\\mathrm{L}$의 $\\frac{2}{5}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 물의 $\\frac{1}{2}$",
+            "$\\frac{4}{5}\\,\\mathrm{L}$의 $\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{L}$의 $\\frac{2}{5}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "기준량에 따라 한 몫을 다르게 분수로 말하는 것을 구분한다.",
+      "bReason": "처음 양과 $1$이라는 두 기준을 구체적으로 구분하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{4}{5}\\,\\mathrm{L}$를 $2$병에 똑같이 나눈 한 병은 {처음 양}의 $\\frac{1}{2}$이고, {$1\\,\\mathrm{L}$}의 $\\frac{2}{5}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "처음 양",
+            "처음 물의 양",
+            "$\\frac{4}{5}\\,\\mathrm{L}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{L}$",
+            "$1$리터"
+          ]
+        }
+      ],
+      "cReason": "추상적 '기준' 말을 실제 양으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1677,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc27",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "한 몫을 두 가지로 말하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분수만큼의 양을 자연수로 나눈 한 몫은 {처음 양}의 몇 분의 일로도, 기준이 되는 {$1$}의 몇 분의 몇으로도 말할 수 있다.",
+        "example": {
+          "prompt": "$\\frac{4}{5}\\,\\mathrm{L}$를 $2$병에 똑같이 나눈 한 병은 처음 양의 얼마이고, $1\\,\\mathrm{L}$의 얼마인가?",
+          "answer": "처음 양의 $\\frac{1}{2}$, $1\\,\\mathrm{L}$의 $\\frac{2}{5}$"
+        },
+        "studentC": "분수만큼의 양을 자연수로 나눈 한 몫은 □의 몇 분의 일로도, 기준이 되는 □의 몇 분의 몇으로도 말할 수 있다.",
+        "answers": [
+          "처음 양",
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "4ffdf6ea3e7ede44bea8c1b9c724f919eb51c6be4e2ab61fc7800436ccba9f39",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "처음 양",
+        "$1\\,\\mathrm{L}$"
+      ],
+      "cStudentAfter": "$\\frac{4}{5}\\,\\mathrm{L}$를 $2$병에 똑같이 나눈 한 병은 □의 $\\frac{1}{2}$이고, □의 $\\frac{2}{5}$이다.",
+      "cMarkedSentence": "$\\frac{4}{5}\\,\\mathrm{L}$를 $2$병에 똑같이 나눈 한 병은 {처음 양}의 $\\frac{1}{2}$이고, {$1\\,\\mathrm{L}$}의 $\\frac{2}{5}$이다.",
+      "cStudentSentence": "$\\frac{4}{5}\\,\\mathrm{L}$를 $2$병에 똑같이 나눈 한 병은 □의 $\\frac{1}{2}$이고, □의 $\\frac{2}{5}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "처음 양",
+          "equivalents": [
+            "처음 물의 양",
+            "$\\frac{4}{5}\\,\\mathrm{L}$"
+          ]
+        },
+        {
+          "key": "$1\\,\\mathrm{L}$",
+          "equivalents": [
+            "$1$리터"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{5}\\,\\mathrm{L}$의 물을 $2$병에 똑같이 나누어 담았다. 한 병의 물은 처음 물의 얼마이고, $1\\,\\mathrm{L}$의 얼마인지 각각 분수로 쓰시오.",
+        "answer": "처음 물의 $\\frac{1}{2}$이고, $1\\,\\mathrm{L}$의 $\\frac{2}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 물의 $\\frac{1}{2}$",
+              "$\\frac{4}{5}\\,\\mathrm{L}$의 $\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{L}$의 $\\frac{2}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{4}{5}\\,\\mathrm{L}$를 $2$병에 똑같이 나눈 한 병은 {처음 양}의 $\\frac{1}{2}$이고, {$1\\,\\mathrm{L}$}의 $\\frac{2}{5}$이다.",
+        "acceptedAnswers": [
+          [
+            "처음 양",
+            "처음 물의 양",
+            "$\\frac{4}{5}\\,\\mathrm{L}$"
+          ],
+          [
+            "$1\\,\\mathrm{L}$",
+            "$1$리터"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7518040a5e66514b14b10685f9dd840d5bac82d5e6bf5bf18375cfb52e39b16a",
+      "questionRevision": "planning-e5e6-20261006-7518040a5e66",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc1",
+      "bDecision": "revise",
+      "bPrompt": "$2\\frac{1}{3}$을 가분수로 고칠 때 자연수 $2$를 어떤 분수로 바꾸어야 분수 부분과 더할 수 있나요? 그렇게 바꾸는 까닭과 가분수도 쓰세요.",
+      "bAnswer": "$2=\\frac{6}{3}$으로 바꾼다. $2$는 $\\frac{1}{3}$이 $6$개이고, 분모가 같아야 더할 수 있다. 그래서 $\\frac{6}{3}+\\frac{1}{3}=\\frac{7}{3}$이다.",
+      "bGoal": "자연수를 같은 분모의 분수로 바꾸어 더하는 까닭을 안다.",
+      "bReason": "원문 예를 질문에 담아 바꾸는 값과 까닭을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{6}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모를 같게 해야 더할 수 있다",
+            "$2$는 $\\frac{1}{3}$이 $6$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{3}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{3}$에서 $2$를 분모가 $3$인 분수로 바꾸면 {$\\frac{6}{3}$}이고, 분수 부분과 더하면 {$\\frac{7}{3}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{6}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{3}$"
+          ]
+        }
+      ],
+      "cReason": "'분모가 같은 분수'라는 막연한 말 대신 실제 값을 구하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1678,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc1",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "자연수 부분을 분수로 바꾸기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수를 가분수로 고칠 때 자연수 부분은 {분모가 같은 분수}로 바꾸어 분수 부분과 더한다.",
+        "example": {
+          "prompt": "$2\\frac{1}{3}$을 가분수로 고칠 때 $2$를 $\\frac{6}{3}$으로 바꾸는 까닭은?",
+          "answer": "$2$는 $\\frac{1}{3}$이 $6$개라서"
+        },
+        "studentC": "대분수를 가분수로 고칠 때 자연수 부분은 □로 바꾸어 분수 부분과 더한다.",
+        "answers": [
+          "분모가 같은 분수"
+        ]
+      },
+      "sourceFingerprint": "60e31eef7a4e13efd08965b41f5e0f6f13ca51140604d4a8db955146c0b3ca5c",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{6}{3}$",
+        "$\\frac{7}{3}$"
+      ],
+      "cStudentAfter": "$2\\frac{1}{3}$에서 $2$를 분모가 $3$인 분수로 바꾸면 □이고, 분수 부분과 더하면 □이다.",
+      "cMarkedSentence": "$2\\frac{1}{3}$에서 $2$를 분모가 $3$인 분수로 바꾸면 {$\\frac{6}{3}$}이고, 분수 부분과 더하면 {$\\frac{7}{3}$}이다.",
+      "cStudentSentence": "$2\\frac{1}{3}$에서 $2$를 분모가 $3$인 분수로 바꾸면 □이고, 분수 부분과 더하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{6}{3}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{7}{3}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2\\frac{1}{3}$을 가분수로 고칠 때 자연수 $2$를 어떤 분수로 바꾸어야 분수 부분과 더할 수 있나요? 그렇게 바꾸는 까닭과 가분수도 쓰세요.",
+        "answer": "$2=\\frac{6}{3}$으로 바꾼다. $2$는 $\\frac{1}{3}$이 $6$개이고, 분모가 같아야 더할 수 있다. 그래서 $\\frac{6}{3}+\\frac{1}{3}=\\frac{7}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{6}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모를 같게 해야 더할 수 있다",
+              "$2$는 $\\frac{1}{3}$이 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{3}$에서 $2$를 분모가 $3$인 분수로 바꾸면 {$\\frac{6}{3}$}이고, 분수 부분과 더하면 {$\\frac{7}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{6}{3}$"
+          ],
+          [
+            "$\\frac{7}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e735f1368fbd066666fe18b312c2e9ca9fb23a98f3cc3ae9ff173c42263b93c5",
+      "questionRevision": "planning-e5e6-20261006-e735f1368fbd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc2",
+      "bDecision": "revise",
+      "bPrompt": "가분수는 분자와 분모의 크기가 어떤 분수인가요? $\\frac{4}{7}$, $\\frac{5}{5}$, $\\frac{7}{4}$ 중 가분수를 모두 고르세요.",
+      "bAnswer": "분자가 분모보다 크거나 분자와 분모가 같은 분수이다. 가분수는 $\\frac{5}{5}$, $\\frac{7}{4}$이다.",
+      "bGoal": "분모와 분자의 크기 비교로 가분수를 구별한다.",
+      "bReason": "분자와 분모가 같은 경우까지 포함해 판별하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자가 분모보다 크거나 같다",
+            "분자가 분모 이상이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{5}$와 $\\frac{7}{4}$",
+            "$\\frac{7}{4}$과 $\\frac{5}{5}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 {가분수}라 한다.",
+      "cReason": "정의에서 이름을 답하는 짧은 낱말 문항이고 조건(같은 경우 포함)이 문장에 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1679,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc2",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "가분수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 {가분수}라 한다.",
+        "studentC": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 □라 한다.",
+        "answers": [
+          "가분수"
+        ]
+      },
+      "sourceFingerprint": "adc3b58b16018ed30249b3b4be7b7f7e2f997b5a7a895b4436a733fc6d60f9d0",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bRequiredIdeas[1].anyOf[1]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 {가분수}라 한다.",
+      "cFrozenStudentSentence": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 □라 한다.",
+      "cProposedAnswers": [
+        "가분수"
+      ],
+      "cStudentAfter": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 □라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 {가분수}라 한다.",
+      "cStudentSentence": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 □라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "가분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가분수는 분자와 분모의 크기가 어떤 분수인가요? $\\frac{4}{7}$, $\\frac{5}{5}$, $\\frac{7}{4}$ 중 가분수를 모두 고르세요.",
+        "answer": "분자가 분모보다 크거나 분자와 분모가 같은 분수이다. 가분수는 $\\frac{5}{5}$, $\\frac{7}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자가 분모보다 크거나 같다",
+              "분자가 분모 이상이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{5}$와 $\\frac{7}{4}$",
+              "$\\frac{7}{4}$과 $\\frac{5}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모보다 분자가 크거나, 분모와 분자가 똑같은 분수를 {가분수}라 한다.",
+        "acceptedAnswers": [
+          [
+            "가분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "91658b2bb7231fa7aa32e82541394baaf8cc0596d06b6c1713752bbfb7ffce9a",
+      "questionRevision": "planning-e5e6-20261006-91658b2bb723",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "대분수의 자연수 부분과 분수 부분 이름을 안다.",
+      "bReason": "두 용어를 외우는 것이 전부라 B 질문으로 삼을 학습 가치가 낮다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "keep",
+      "cAfter": "$3\\frac{2}{7}$에서 $3$을 {자연수 부분}, $\\frac{2}{7}$를 {분수 부분}이라 한다.",
+      "cReason": "$3\\frac{2}{7}$에서 두 부분의 이름을 묻는 짧은 낱말 문항이라 C에서 확인하기 적당하다.",
+      "exclusionReason": "용어 암기뿐이고 c1과 xc10 등에서 대분수 구성을 다루므로 B는 제외한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1680,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc3",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "대분수의 두 부분",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$3\\frac{2}{7}$에서 $3$을 {자연수 부분}, $\\frac{2}{7}$를 {분수 부분}이라 한다.",
+        "studentC": "$3\\frac{2}{7}$에서 $3$을 □, $\\frac{2}{7}$를 □이라 한다.",
+        "answers": [
+          "자연수 부분",
+          "분수 부분"
+        ]
+      },
+      "sourceFingerprint": "310864927b3faedd906e336fb736990a416bed3b05fc2a307480a28df5ee6cae",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cFrozenDefinition": "$3\\frac{2}{7}$에서 $3$을 {자연수 부분}, $\\frac{2}{7}$를 {분수 부분}이라 한다.",
+      "cFrozenStudentSentence": "$3\\frac{2}{7}$에서 $3$을 □, $\\frac{2}{7}$를 □이라 한다.",
+      "cProposedAnswers": [
+        "자연수 부분",
+        "분수 부분"
+      ],
+      "cStudentAfter": "$3\\frac{2}{7}$에서 $3$을 □, $\\frac{2}{7}$를 □이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자연수 부분"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수 부분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$3\\frac{2}{7}$에서 $3$을 {자연수 부분}, $\\frac{2}{7}$를 {분수 부분}이라 한다.",
+      "cStudentSentence": "$3\\frac{2}{7}$에서 $3$을 □, $\\frac{2}{7}$를 □이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "자연수 부분",
+          "equivalents": []
+        },
+        {
+          "key": "분수 부분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$3\\frac{2}{7}$에서 $3$을 {자연수 부분}, $\\frac{2}{7}$를 {분수 부분}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "자연수 부분"
+          ],
+          [
+            "분수 부분"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "용어 암기뿐이고 c1과 xc10 등에서 대분수 구성을 다루므로 B는 제외한다."
+      },
+      "proposalFingerprint": "e707f8999ffb2c7eb4deb872aaa9b587294aa6c0e060062f5e364d0e7ced0518",
+      "questionRevision": "planning-e5e6-20261006-e707f8999ffb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc4",
+      "bDecision": "revise",
+      "bPrompt": "$1\\frac{1}{2}\\div3$을 (분수)$\\div$(자연수) 꼴로 바꾸려면 대분수를 어떻게 고쳐야 하나요? 고쳐도 나누는 양이 달라지지 않는 까닭과 몫도 쓰세요.",
+      "bAnswer": "$1\\frac{1}{2}$을 같은 양의 가분수 $\\frac{3}{2}$으로 고쳐 $\\frac{3}{2}\\div3$으로 계산한다. 모양만 바꾸고 양은 그대로이므로 몫은 같고, 몫은 $\\frac{1}{2}$이다.",
+      "bGoal": "대분수를 같은 양의 가분수로 바꾸어 계산하는 차례를 안다.",
+      "bReason": "고치는 방법과 양이 변하지 않는다는 점을 한 질문에서 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가분수로 고친다",
+            "$\\frac{3}{2}$으로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 양을 다르게 나타낸 것이다",
+            "양은 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{2}$을 같은 양의 가분수로 고치면 {$\\frac{3}{2}$}이므로 $1\\frac{1}{2}\\div3$의 몫은 $\\frac{3}{2}\\div3={}$ {$\\frac{1}{2}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "cReason": "실제 식에서 가분수와 몫을 구하게 하여 순서를 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1681,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc4",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "계산하는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "(대분수)$\\div$(자연수)는 대분수를 {같은 양의 가분수}로 고친 다음 (분수)$\\div$(자연수)로 나눌 수 있다. 고쳐도 나누는 양은 그대로이다.",
+        "studentC": "(대분수)$\\div$(자연수)는 대분수를 □로 고친 다음 (분수)$\\div$(자연수)로 나눌 수 있다. 고쳐도 나누는 양은 그대로이다.",
+        "answers": [
+          "같은 양의 가분수"
+        ]
+      },
+      "sourceFingerprint": "7a121d0f3ae29936107e82b04d2e4682e7810da3c1a02e2a6969113cee199cda",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{3}{2}$",
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{2}$을 같은 양의 가분수로 고치면 □이므로 $1\\frac{1}{2}\\div3$의 몫은 $\\frac{3}{2}\\div3={}$ □이다.",
+      "cMarkedSentence": "$1\\frac{1}{2}$을 같은 양의 가분수로 고치면 {$\\frac{3}{2}$}이므로 $1\\frac{1}{2}\\div3$의 몫은 $\\frac{3}{2}\\div3={}$ {$\\frac{1}{2}$}이다.",
+      "cStudentSentence": "$1\\frac{1}{2}$을 같은 양의 가분수로 고치면 □이므로 $1\\frac{1}{2}\\div3$의 몫은 $\\frac{3}{2}\\div3={}$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{2}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\frac{1}{2}\\div3$을 (분수)$\\div$(자연수) 꼴로 바꾸려면 대분수를 어떻게 고쳐야 하나요? 고쳐도 나누는 양이 달라지지 않는 까닭과 몫도 쓰세요.",
+        "answer": "$1\\frac{1}{2}$을 같은 양의 가분수 $\\frac{3}{2}$으로 고쳐 $\\frac{3}{2}\\div3$으로 계산한다. 모양만 바꾸고 양은 그대로이므로 몫은 같고, 몫은 $\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가분수로 고친다",
+              "$\\frac{3}{2}$으로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 양을 다르게 나타낸 것이다",
+              "양은 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{2}$을 같은 양의 가분수로 고치면 {$\\frac{3}{2}$}이므로 $1\\frac{1}{2}\\div3$의 몫은 $\\frac{3}{2}\\div3={}$ {$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$"
+          ],
+          [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e7164c4af12ab3e41d014d762265a83a3513477d2e4df90f0f879c2a111cee94",
+      "questionRevision": "planning-e5e6-20261006-e7164c4af12a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc5",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{6}{5}\\div3$처럼 분자 $6$이 나누는 수 $3$의 배수일 때, $\\frac{1}{5}$ 조각을 이용해 한 몫을 어떻게 구하나요? 몫도 쓰세요.",
+      "bAnswer": "$\\frac{6}{5}$은 $\\frac{1}{5}$ 조각 $6$개이다. 조각의 크기는 그대로 두고 $6$개를 $3$묶음으로 똑같이 나누면 한 몫은 $2$개이다. 몫은 $\\frac{2}{5}$이다.",
+      "bGoal": "분자를 나누는 수로 나누어 한 몫의 조각 수를 구하는 방법을 안다.",
+      "bReason": "단위분수 조각을 구체적으로 제시해 조각 크기와 개수를 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "조각 크기는 그대로이다",
+            "$\\frac{1}{5}$ 조각 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "조각 $6$개를 $3$으로 나눈다",
+            "한 몫은 $\\frac{1}{5}$이 $2$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{6}{5}\\div3$에서 $\\frac{1}{5}$ 조각 $6$개를 $3$묶음으로 똑같이 나누면 한 몫은 $\\frac{1}{5}$이 {$2$}개이므로 몫은 {$\\frac{2}{5}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$"
+          ]
+        }
+      ],
+      "cReason": "'크기는 같고' 같은 구절 대신 조각 수와 몫의 값을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1682,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc5",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "고친 가분수의 분자 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분자가 나누는 수의 배수이면 단위분수 조각을 똑같이 나누어 묶을 수 있다. 한 몫은 조각의 {크기는 같고}, 개수는 분자를 {나누는 수로 나눈} 만큼이다.",
+        "studentC": "분자가 나누는 수의 배수이면 단위분수 조각을 똑같이 나누어 묶을 수 있다. 한 몫은 조각의 □, 개수는 분자를 □ 만큼이다.",
+        "answers": [
+          "크기는 같고",
+          "나누는 수로 나눈"
+        ]
+      },
+      "sourceFingerprint": "c51a0bad988a16862bc18c5c8e31c08ba56473a123c99af6078e06bf95d5c446",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$2$",
+        "$\\frac{2}{5}$"
+      ],
+      "cStudentAfter": "$\\frac{6}{5}\\div3$에서 $\\frac{1}{5}$ 조각 $6$개를 $3$묶음으로 똑같이 나누면 한 몫은 $\\frac{1}{5}$이 □개이므로 몫은 □이다.",
+      "cMarkedSentence": "$\\frac{6}{5}\\div3$에서 $\\frac{1}{5}$ 조각 $6$개를 $3$묶음으로 똑같이 나누면 한 몫은 $\\frac{1}{5}$이 {$2$}개이므로 몫은 {$\\frac{2}{5}$}이다.",
+      "cStudentSentence": "$\\frac{6}{5}\\div3$에서 $\\frac{1}{5}$ 조각 $6$개를 $3$묶음으로 똑같이 나누면 한 몫은 $\\frac{1}{5}$이 □개이므로 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{2}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{6}{5}\\div3$처럼 분자 $6$이 나누는 수 $3$의 배수일 때, $\\frac{1}{5}$ 조각을 이용해 한 몫을 어떻게 구하나요? 몫도 쓰세요.",
+        "answer": "$\\frac{6}{5}$은 $\\frac{1}{5}$ 조각 $6$개이다. 조각의 크기는 그대로 두고 $6$개를 $3$묶음으로 똑같이 나누면 한 몫은 $2$개이다. 몫은 $\\frac{2}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "조각 크기는 그대로이다",
+              "$\\frac{1}{5}$ 조각 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각 $6$개를 $3$으로 나눈다",
+              "한 몫은 $\\frac{1}{5}$이 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{6}{5}\\div3$에서 $\\frac{1}{5}$ 조각 $6$개를 $3$묶음으로 똑같이 나누면 한 몫은 $\\frac{1}{5}$이 {$2$}개이므로 몫은 {$\\frac{2}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$\\frac{2}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9df02fac5f1a49027e303af6564c1309c7b51965e06521bb3608a914103246ac",
+      "questionRevision": "planning-e5e6-20261006-9df02fac5f1a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc6",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{3}\\div3$에서 $\\frac{1}{3}$ 조각 $4$개를 각각 $3$등분하여 한 몫씩 모을 때, 조각의 크기와 한 몫의 조각 수는 얼마인가요? 몫과, 분모에 나누는 수를 곱하는 까닭도 설명하세요.",
+      "bAnswer": "$\\frac{1}{3}$ 조각을 $3$등분하면 한 조각은 $\\frac{1}{9}$이다. 한 몫은 각 조각에서 하나씩 모은 $4$개이므로 $\\frac{4}{9}$이다. 조각이 나누는 수만큼 작아져 분모에 곱한다.",
+      "bGoal": "조각을 더 작게 나누어 분모에 나누는 수를 곱하는 까닭을 안다.",
+      "bReason": "분자가 배수가 아닌 경우를 구체적으로 보이고 분모에 곱하는 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 조각의 크기는 $\\frac{1}{9}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 몫은 $\\frac{1}{9}$이 $4$개이다",
+            "각 조각에서 하나씩 모은다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{9}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "조각이 나누는 수만큼 작아져서 분모에 곱한다",
+            "분모가 $3$배가 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{3}$ 조각 하나를 $3$등분하면 한 조각의 크기는 {$\\frac{1}{9}$}이다. 한 몫은 이 조각 $4$개이므로 $\\frac{4}{3}\\div3={}$ {$\\frac{4}{9}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{9}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{9}$"
+          ]
+        }
+      ],
+      "cReason": "조각의 크기와 몫을 구체적으로 계산하게 하여 막연한 낱말 빈칸을 없앤다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1683,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc6",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "고친 가분수의 분모에 곱하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "각 단위분수 조각을 나누는 수만큼 똑같이 나누면 {조각의 크기}가 그만큼 작아진다. 각 조각에서 한 몫씩 모으면 분자는 같고 분모는 나누는 수를 곱한 분수가 된다.",
+        "studentC": "각 단위분수 조각을 나누는 수만큼 똑같이 나누면 □가 그만큼 작아진다. 각 조각에서 한 몫씩 모으면 분자는 같고 분모는 나누는 수를 곱한 분수가 된다.",
+        "answers": [
+          "조각의 크기"
+        ]
+      },
+      "sourceFingerprint": "cd286f630ed46a2ee6d33ce1071d083f90cfa1fc92627dc2e42f9a595a140423",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{9}$",
+        "$\\frac{4}{9}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{3}$ 조각 하나를 $3$등분하면 한 조각의 크기는 □이다. 한 몫은 이 조각 $4$개이므로 $\\frac{4}{3}\\div3={}$ □이다.",
+      "cMarkedSentence": "$\\frac{1}{3}$ 조각 하나를 $3$등분하면 한 조각의 크기는 {$\\frac{1}{9}$}이다. 한 몫은 이 조각 $4$개이므로 $\\frac{4}{3}\\div3={}$ {$\\frac{4}{9}$}이다.",
+      "cStudentSentence": "$\\frac{1}{3}$ 조각 하나를 $3$등분하면 한 조각의 크기는 □이다. 한 몫은 이 조각 $4$개이므로 $\\frac{4}{3}\\div3={}$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{9}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{4}{9}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{3}\\div3$에서 $\\frac{1}{3}$ 조각 $4$개를 각각 $3$등분하여 한 몫씩 모을 때, 조각의 크기와 한 몫의 조각 수는 얼마인가요? 몫과, 분모에 나누는 수를 곱하는 까닭도 설명하세요.",
+        "answer": "$\\frac{1}{3}$ 조각을 $3$등분하면 한 조각은 $\\frac{1}{9}$이다. 한 몫은 각 조각에서 하나씩 모은 $4$개이므로 $\\frac{4}{9}$이다. 조각이 나누는 수만큼 작아져 분모에 곱한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 조각의 크기는 $\\frac{1}{9}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 몫은 $\\frac{1}{9}$이 $4$개이다",
+              "각 조각에서 하나씩 모은다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{9}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각이 나누는 수만큼 작아져서 분모에 곱한다",
+              "분모가 $3$배가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{3}$ 조각 하나를 $3$등분하면 한 조각의 크기는 {$\\frac{1}{9}$}이다. 한 몫은 이 조각 $4$개이므로 $\\frac{4}{3}\\div3={}$ {$\\frac{4}{9}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{9}$"
+          ],
+          [
+            "$\\frac{4}{9}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3418f4c06ec1e647350468e1ad901ff89aebfbfc9d7dedf9537be3f1662b48dc",
+      "questionRevision": "planning-e5e6-20261006-3418f4c06ec1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc7",
+      "bDecision": "revise",
+      "bPrompt": "몫이 $\\frac{7}{4}$처럼 가분수일 때 대분수로 바꾸는 방법을 설명하고, $\\frac{7}{4}$을 대분수로 쓰세요.",
+      "bAnswer": "$\\frac{4}{4}$가 몇 번 들어가는지 구해 자연수 부분으로 하고, 남은 양을 분수 부분으로 쓴다. $\\frac{7}{4}=1\\frac{3}{4}$이다.",
+      "bGoal": "가분수를 자연수와 진분수로 나누어 대분수로 바꾸는 방법을 안다.",
+      "bReason": "몫을 대분수로 나타내는 절차를 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자를 분모로 나눈 몫이 자연수 부분이다",
+            "$1$이 되는 묶음 수가 자연수 부분이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지가 분수 부분의 분자이다",
+            "남은 양이 분수 부분이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{11}{4}$에서 $1$이 되는 $\\frac{4}{4}$ 묶음이 {$2$}개이고 $\\frac{3}{4}$이 남으므로 대분수로 나타내면 {$2\\frac{3}{4}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "cReason": "'가분수이면 대분수' 같은 자명한 문장 대신 실제 변환 계산을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1684,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc7",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "몫을 대분수로 다시 쓰기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "(대분수)$\\div$(자연수)의 몫이 {가분수}이면 대분수로 바꾸어 나타낼 수 있다.",
+        "studentC": "(대분수)$\\div$(자연수)의 몫이 □이면 대분수로 바꾸어 나타낼 수 있다.",
+        "answers": [
+          "가분수"
+        ]
+      },
+      "sourceFingerprint": "5fd789df680ee50c5bf18e1ff2efcc6bc22ade9f728f2f34671a6d6a3aaba1a8",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$2\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "$\\frac{11}{4}$에서 $1$이 되는 $\\frac{4}{4}$ 묶음이 □개이고 $\\frac{3}{4}$이 남으므로 대분수로 나타내면 □이다.",
+      "cMarkedSentence": "$\\frac{11}{4}$에서 $1$이 되는 $\\frac{4}{4}$ 묶음이 {$2$}개이고 $\\frac{3}{4}$이 남으므로 대분수로 나타내면 {$2\\frac{3}{4}$}이다.",
+      "cStudentSentence": "$\\frac{11}{4}$에서 $1$이 되는 $\\frac{4}{4}$ 묶음이 □개이고 $\\frac{3}{4}$이 남으므로 대분수로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$2\\frac{3}{4}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "몫이 $\\frac{7}{4}$처럼 가분수일 때 대분수로 바꾸는 방법을 설명하고, $\\frac{7}{4}$을 대분수로 쓰세요.",
+        "answer": "$\\frac{4}{4}$가 몇 번 들어가는지 구해 자연수 부분으로 하고, 남은 양을 분수 부분으로 쓴다. $\\frac{7}{4}=1\\frac{3}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자를 분모로 나눈 몫이 자연수 부분이다",
+              "$1$이 되는 묶음 수가 자연수 부분이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지가 분수 부분의 분자이다",
+              "남은 양이 분수 부분이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\frac{3}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{11}{4}$에서 $1$이 되는 $\\frac{4}{4}$ 묶음이 {$2$}개이고 $\\frac{3}{4}$이 남으므로 대분수로 나타내면 {$2\\frac{3}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$2\\frac{3}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "34b18bd37899d623dbe21170e7d9dca1fbc9027873644f4311056b81d43ce2d8",
+      "questionRevision": "planning-e5e6-20261006-34b18bd37899",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc8",
+      "bDecision": "revise",
+      "bPrompt": "$1\\frac{1}{2}\\div3$을 곱셈식으로 바꾸어 계산하는 방법을 설명하고 몫을 구하세요.",
+      "bAnswer": "$1\\frac{1}{2}$을 가분수 $\\frac{3}{2}$으로 고친다. $3$으로 똑같이 나눈 한 몫은 $\\frac{3}{2}$의 $\\frac{1}{3}$이므로 $\\frac{3}{2}\\times\\frac{1}{3}=\\frac{1}{2}$이다.",
+      "bGoal": "자연수로 나누기를 그 수를 분모로 하는 단위분수 곱하기로 바꾸는 방법을 안다.",
+      "bReason": "이미 식이 주어져 예가 완결되었고 곱셈으로 바꾸는 방법과 까닭을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가분수로 고친다",
+            "$\\frac{3}{2}$으로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$으로 나누는 것은 $\\frac{1}{3}$을 곱하는 것이다",
+            "한 몫은 전체의 $\\frac{1}{3}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{2}\\div3$은 $\\frac{3}{2}\\div3$이므로 $\\frac{3}{2}\\times$ {$\\frac{1}{3}$}$={}$ {$\\frac{1}{2}$}로 계산한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸 대신 실제 곱셈식의 값을 채우게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1685,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc8",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "(대분수)$\\div$(자연수)를 곱셈으로 나타내기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "대분수를 자연수로 나누는 것은, {가분수로 고친} 뒤 나누는 수를 {분모로 하는 단위분수}를 곱한 것과 같다.",
+        "example": {
+          "prompt": "$1\\frac{1}{2}\\div3$을 $\\frac{3}{2}\\times\\frac{1}{3}$로 쓸 수 있는 까닭은?",
+          "answer": "한 몫이 $\\frac{3}{2}$의 $\\frac{1}{3}$이라서"
+        },
+        "studentC": "대분수를 자연수로 나누는 것은, □ 뒤 나누는 수를 □를 곱한 것과 같다.",
+        "answers": [
+          "가분수로 고친",
+          "분모로 하는 단위분수"
+        ]
+      },
+      "sourceFingerprint": "fa96e25888b9a5d9421d9513220fe27eb723383095c7f65926121f6a65130446",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{1}{3}$",
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{2}\\div3$은 $\\frac{3}{2}\\div3$이므로 $\\frac{3}{2}\\times$ □$={}$ □로 계산한다.",
+      "cMarkedSentence": "$1\\frac{1}{2}\\div3$은 $\\frac{3}{2}\\div3$이므로 $\\frac{3}{2}\\times$ {$\\frac{1}{3}$}$={}$ {$\\frac{1}{2}$}로 계산한다.",
+      "cStudentSentence": "$1\\frac{1}{2}\\div3$은 $\\frac{3}{2}\\div3$이므로 $\\frac{3}{2}\\times$ □$={}$ □로 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{3}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\frac{1}{2}\\div3$을 곱셈식으로 바꾸어 계산하는 방법을 설명하고 몫을 구하세요.",
+        "answer": "$1\\frac{1}{2}$을 가분수 $\\frac{3}{2}$으로 고친다. $3$으로 똑같이 나눈 한 몫은 $\\frac{3}{2}$의 $\\frac{1}{3}$이므로 $\\frac{3}{2}\\times\\frac{1}{3}=\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가분수로 고친다",
+              "$\\frac{3}{2}$으로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$으로 나누는 것은 $\\frac{1}{3}$을 곱하는 것이다",
+              "한 몫은 전체의 $\\frac{1}{3}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{2}\\div3$은 $\\frac{3}{2}\\div3$이므로 $\\frac{3}{2}\\times$ {$\\frac{1}{3}$}$={}$ {$\\frac{1}{2}$}로 계산한다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{3}$"
+          ],
+          [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f986d2ea9e8f54013308ba163ac9c6550c7a47245b5ac067ddb7a4aa60e3fbac",
+      "questionRevision": "planning-e5e6-20261006-f986d2ea9e8f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc9",
+      "bDecision": "revise",
+      "bPrompt": "양수인 대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 큰가요, 작은가요? 까닭도 설명하세요.",
+      "bAnswer": "작다. 전체를 둘 이상으로 똑같이 나눈 한 몫이므로 전체보다 작다.",
+      "bGoal": "나눈 몫이 처음 양보다 작아지는 까닭을 안다.",
+      "bReason": "비교 결과와 한 몫이라는 근거를 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "똑같이 나눈 한 몫이라서",
+            "전체를 여러 몫으로 나눈 것 중 하나라서"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 {작다}.",
+      "cReason": "$1$보다 큰 자연수 조건이 있는 명확한 크기 비교라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1686,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc9",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "처음 대분수보다 작은 몫",
+        "kind": "성질",
+        "level": "하",
+        "definition": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 {작다}.",
+        "studentC": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "6794014776a0edacc15cf25064f36ee48a23345fb6b247d6a0693265481a7cf0",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cFrozenDefinition": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 {작다}.",
+      "cFrozenStudentSentence": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 □.",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 {작다}.",
+      "cStudentSentence": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "양수인 대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 큰가요, 작은가요? 까닭도 설명하세요.",
+        "answer": "작다. 전체를 둘 이상으로 똑같이 나눈 한 몫이므로 전체보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "작다",
+              "더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "똑같이 나눈 한 몫이라서",
+              "전체를 여러 몫으로 나눈 것 중 하나라서"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수를 $1$보다 큰 자연수로 나누면 몫은 처음 대분수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "53e5e005b588446505a3f4a46e2aafbcf1c625b1c6b32704db74647ecaecbea2",
+      "questionRevision": "planning-e5e6-20261006-53e5e005b588",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc10",
+      "bDecision": "revise",
+      "bPrompt": "$3\\frac{2}{5}$를 가분수로 고칠 때 $\\frac{1}{5}$이 몇 개인지를 이용해 방법을 설명하고, 가분수를 쓰세요.",
+      "bAnswer": "$3$은 $\\frac{1}{5}$이 $15$개이고 $\\frac{2}{5}$는 $\\frac{1}{5}$이 $2$개이므로 모두 $17$개이다. 가분수는 $\\frac{17}{5}$이다.",
+      "bGoal": "자연수 부분을 단위분수의 개수로 바꾸어 더하는 방법을 안다.",
+      "bReason": "분자가 단위분수 개수의 합이라는 의미를 계산과 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$은 $\\frac{1}{5}$이 $15$개이다",
+            "$3=\\frac{15}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$와 $2$를 더한다",
+            "단위분수 $17$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{17}{5}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{2}{5}$에서 $3$은 $\\frac{1}{5}$이 {$15$}개이고, $\\frac{2}{5}$는 $\\frac{1}{5}$이 $2$개이므로 모두 $\\frac{1}{5}$이 {$17$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17$"
+          ]
+        }
+      ],
+      "cReason": "'같은 단위분수의 개수'라는 말 대신 개수를 직접 구하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1687,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc10",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "대분수를 가분수로 고치는 방법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수 부분을 {같은 단위분수의 개수}로 바꾸고 분수 부분의 개수와 더하면, 전체를 나타내는 가분수의 분자가 된다.",
+        "studentC": "자연수 부분을 □로 바꾸고 분수 부분의 개수와 더하면, 전체를 나타내는 가분수의 분자가 된다.",
+        "answers": [
+          "같은 단위분수의 개수"
+        ]
+      },
+      "sourceFingerprint": "38010b5f3772340fc91a7154861b63fe853a7526d4f2b7406bd6a1d0e18bc006",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$15$",
+        "$17$"
+      ],
+      "cStudentAfter": "$3\\frac{2}{5}$에서 $3$은 $\\frac{1}{5}$이 □개이고, $\\frac{2}{5}$는 $\\frac{1}{5}$이 $2$개이므로 모두 $\\frac{1}{5}$이 □개이다.",
+      "cMarkedSentence": "$3\\frac{2}{5}$에서 $3$은 $\\frac{1}{5}$이 {$15$}개이고, $\\frac{2}{5}$는 $\\frac{1}{5}$이 $2$개이므로 모두 $\\frac{1}{5}$이 {$17$}개이다.",
+      "cStudentSentence": "$3\\frac{2}{5}$에서 $3$은 $\\frac{1}{5}$이 □개이고, $\\frac{2}{5}$는 $\\frac{1}{5}$이 $2$개이므로 모두 $\\frac{1}{5}$이 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        },
+        {
+          "key": "$17$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\frac{2}{5}$를 가분수로 고칠 때 $\\frac{1}{5}$이 몇 개인지를 이용해 방법을 설명하고, 가분수를 쓰세요.",
+        "answer": "$3$은 $\\frac{1}{5}$이 $15$개이고 $\\frac{2}{5}$는 $\\frac{1}{5}$이 $2$개이므로 모두 $17$개이다. 가분수는 $\\frac{17}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$은 $\\frac{1}{5}$이 $15$개이다",
+              "$3=\\frac{15}{5}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15$와 $2$를 더한다",
+              "단위분수 $17$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{17}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\frac{2}{5}$에서 $3$은 $\\frac{1}{5}$이 {$15$}개이고, $\\frac{2}{5}$는 $\\frac{1}{5}$이 $2$개이므로 모두 $\\frac{1}{5}$이 {$17$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ],
+          [
+            "$17$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "75de5c2dce2a9f7ed470d1849bad1bc87b78bc8b7c43a60ea35377fd41bf6c07",
+      "questionRevision": "planning-e5e6-20261006-75de5c2dce2a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$3\\frac{1}{2}\\div3$을 $1\\frac{1}{2}$이라고 계산했습니다. 왜 틀렸는지 설명하고 맞는 몫을 구하세요.",
+      "bAnswer": "자연수 부분 $3$만 나누고 분수 부분 $\\frac{1}{2}$은 나누지 않았다. $\\frac{1}{2}\\div3=\\frac{1}{6}$이므로 맞는 몫은 $1\\frac{1}{6}$이다.",
+      "bGoal": "분수 부분도 함께 나누어야 전체의 한 몫이 됨을 안다.",
+      "bReason": "흔한 오류를 직접 보여 주고 틀린 까닭을 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분도 나누어야 한다",
+            "분수 부분을 나누지 않았다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{6}$",
+            "$\\frac{7}{6}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{1}{2}\\div3$에서 분수 부분 $\\frac{1}{2}$도 $3$으로 나누면 {$\\frac{1}{6}$}이므로 몫은 {$1\\frac{1}{6}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{6}$",
+            "$\\frac{7}{6}$"
+          ]
+        }
+      ],
+      "cReason": "문장 암기 대신 오류 계산을 바로잡는 값을 구하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1688,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc12",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "자연수 부분만 나누는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수 부분만 나누면 분수 부분은 나누지 않은 채 남는다. 따라서 {전체를 똑같이 나눈 한 몫}이 아니다.",
+        "studentC": "자연수 부분만 나누면 분수 부분은 나누지 않은 채 남는다. 따라서 □이 아니다.",
+        "answers": [
+          "전체를 똑같이 나눈 한 몫"
+        ]
+      },
+      "sourceFingerprint": "9bcd2b3d5dc8c9de7027ef64a06f18b9952907af5c4161d6a52fe1175483c186",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{6}$",
+        "$1\\frac{1}{6}$"
+      ],
+      "cStudentAfter": "$3\\frac{1}{2}\\div3$에서 분수 부분 $\\frac{1}{2}$도 $3$으로 나누면 □이므로 몫은 □이다.",
+      "cMarkedSentence": "$3\\frac{1}{2}\\div3$에서 분수 부분 $\\frac{1}{2}$도 $3$으로 나누면 {$\\frac{1}{6}$}이므로 몫은 {$1\\frac{1}{6}$}이다.",
+      "cStudentSentence": "$3\\frac{1}{2}\\div3$에서 분수 부분 $\\frac{1}{2}$도 $3$으로 나누면 □이므로 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{6}$",
+          "equivalents": []
+        },
+        {
+          "key": "$1\\frac{1}{6}$",
+          "equivalents": [
+            "$\\frac{7}{6}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\frac{1}{2}\\div3$을 $1\\frac{1}{2}$이라고 계산했습니다. 왜 틀렸는지 설명하고 맞는 몫을 구하세요.",
+        "answer": "자연수 부분 $3$만 나누고 분수 부분 $\\frac{1}{2}$은 나누지 않았다. $\\frac{1}{2}\\div3=\\frac{1}{6}$이므로 맞는 몫은 $1\\frac{1}{6}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분도 나누어야 한다",
+              "분수 부분을 나누지 않았다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\frac{1}{6}$",
+              "$\\frac{7}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\frac{1}{2}\\div3$에서 분수 부분 $\\frac{1}{2}$도 $3$으로 나누면 {$\\frac{1}{6}$}이므로 몫은 {$1\\frac{1}{6}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{6}$"
+          ],
+          [
+            "$1\\frac{1}{6}$",
+            "$\\frac{7}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c60d729068de86ea364968ea6dc635364ee9aadffa456be9d27db165d5f0eb2",
+      "questionRevision": "planning-e5e6-20261006-5c60d729068d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc13",
+      "bDecision": "revise",
+      "bPrompt": "대분수를 자연수로 나눌 때 몫이 $1$보다 작아지려면 나누는 수와 대분수의 크기가 어떠해야 하나요? $1\\frac{1}{2}\\div2$의 몫도 쓰세요.",
+      "bAnswer": "나누는 수가 대분수보다 커야 한다(자연수 부분보다 큰 자연수로 나누는 경우). $1\\frac{1}{2}\\div2=\\frac{3}{4}$이다.",
+      "bGoal": "나누는 수가 더 크면 몫이 $1$보다 작아짐을 안다.",
+      "bReason": "크기 비교 조건을 일반 관계로 묻고 예의 몫도 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누는 수가 대분수보다 크다",
+            "나누는 수가 자연수 부분보다 큰 자연수이다",
+            "대분수가 나누는 수보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{2}\\div2$처럼 대분수가 나누는 자연수보다 {작으면} 몫은 $1$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작으면",
+            "더 작으면"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "작아진다"
+          ]
+        }
+      ],
+      "cReason": "'자연수 부분보다 큰 자연수'라는 긴 구절 대신 명확한 크기 비교를 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "나누는 수가 자연수 부분보다 큰 경우와 대분수보다 큰 경우는 같은 조건이다.",
+      "sourceIndex": 1689,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc13",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "몫이 $1$보다 작아지는 경우",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대분수를 {그 자연수 부분보다 큰 자연수}로 나누면 몫은 $1$보다 작다. $1\\frac{1}{2}\\div2=\\frac{3}{4}$이다.",
+        "studentC": "대분수를 □로 나누면 몫은 $1$보다 작다. $1\\frac{1}{2}\\div2=\\frac{3}{4}$이다.",
+        "answers": [
+          "그 자연수 부분보다 큰 자연수"
+        ]
+      },
+      "sourceFingerprint": "fe0cce407afce7efc6e4196aace83d2a04b97bd3f13c9e427bcd76bd4a991dde",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "작으면",
+        "작다"
+      ],
+      "cStudentAfter": "$1\\frac{1}{2}\\div2$처럼 대분수가 나누는 자연수보다 □ 몫은 $1$보다 □.",
+      "cMarkedSentence": "$1\\frac{1}{2}\\div2$처럼 대분수가 나누는 자연수보다 {작으면} 몫은 $1$보다 {작다}.",
+      "cStudentSentence": "$1\\frac{1}{2}\\div2$처럼 대분수가 나누는 자연수보다 □ 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작으면",
+          "equivalents": [
+            "더 작으면"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "작아진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수를 자연수로 나눌 때 몫이 $1$보다 작아지려면 나누는 수와 대분수의 크기가 어떠해야 하나요? $1\\frac{1}{2}\\div2$의 몫도 쓰세요.",
+        "answer": "나누는 수가 대분수보다 커야 한다(자연수 부분보다 큰 자연수로 나누는 경우). $1\\frac{1}{2}\\div2=\\frac{3}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수가 대분수보다 크다",
+              "나누는 수가 자연수 부분보다 큰 자연수이다",
+              "대분수가 나누는 수보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{2}\\div2$처럼 대분수가 나누는 자연수보다 {작으면} 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작으면",
+            "더 작으면"
+          ],
+          [
+            "작다",
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b5c382ec21908ca6c7cbfd80b00ccae2488f5786686981a95afd1e57353c75c5",
+      "questionRevision": "planning-e5e6-20261006-b5c382ec2190",
+      "requiresIndependentReview": true
+    }
+  ]
+}

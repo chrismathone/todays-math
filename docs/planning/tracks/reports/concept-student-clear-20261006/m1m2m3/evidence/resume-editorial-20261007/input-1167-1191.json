@@ -1,0 +1,2486 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T06:21:46.386Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc9",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "속력 · 시간 · 거리를 문자로 나타내기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "일정한 속력으로 움직일 때 거리는 속력과 시간의 {곱}이고, 속력이 $0$보다 클 때 시간은 거리를 속력으로 {나눈} 값이다.",
+        "example": {
+          "prompt": "시속 $a\\,\\mathrm{km}$로 $2$시간 간 거리가 $2a\\,\\mathrm{km}$인 까닭은?",
+          "answer": "한 시간에 가는 $a\\,\\mathrm{km}$의 두 배여서"
+        },
+        "studentC": "일정한 속력으로 움직일 때 거리는 속력과 시간의 □이고, 속력이 $0$보다 클 때 시간은 거리를 속력으로 □ 값이다.",
+        "answers": [
+          "곱",
+          "나눈"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "일정한 속력으로 움직일 때 ($1$) 거리를 속력과 시간으로 구하는 방법, ($2$) 시간을 거리와 속력으로 구하는 방법을 쓰시오(단, 속력은 $0$보다 크다). 이를 이용하여 시속 $a\\,\\mathrm{km}$로 $2$시간 동안 간 거리와, $10\\,\\mathrm{km}$를 시속 $a\\,\\mathrm{km}$로 갈 때 걸리는 시간을 $a$를 사용한 식으로 쓰시오.",
+        "bAnswer": "($1$) (거리)$=$(속력)$\\times$(시간) ($2$) (시간)$=$(거리)$\\div$(속력). 거리는 $2a\\,\\mathrm{km}$, 걸리는 시간은 $\\frac{10}{a}$시간",
+        "bGoal": "속력·시간·거리의 관계를 말하고 문자를 사용한 식으로 나타낸다.",
+        "bReason": "제목은 세 양을 나열할 뿐 어떤 관계를 묻는지 없어, 거리와 시간을 구하는 두 관계로 특정하고 속력의 조건을 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "'곱'과 '나눈'이 두 관계를 짧게 구별하고 속력 조건도 문장에 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(거리)$=$(속력)$\\times$(시간)"
+            ]
+          },
+          {
+            "anyOf": [
+              "(시간)$=$(거리)$\\div$(속력)(분수 꼴 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "간 거리 $2a\\,\\mathrm{km}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "걸리는 시간 $\\frac{10}{a}$시간"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "application",
+        "roleReason": "거리=속력×시간을 식으로",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1167,
+        "part": "m1plus",
+        "sourceFingerprint": "29eb5d8c9aad13aa2a073afcf741a721130e4718adb937285f7fdde7f73dd304",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1167
+        },
+        "directReview": null,
+        "cFrozenSentence": "일정한 속력으로 움직일 때 거리는 속력과 시간의 □이고, 속력이 $0$보다 클 때 시간은 거리를 속력으로 □ 값이다.",
+        "cFrozenDefinition": "일정한 속력으로 움직일 때 거리는 속력과 시간의 {곱}이고, 속력이 $0$보다 클 때 시간은 거리를 속력으로 {나눈} 값이다.",
+        "cFrozenAnswers": [
+          "곱",
+          "나눈"
+        ],
+        "cMarkedSentence": "일정한 속력으로 움직일 때 거리는 속력과 시간의 {곱}이고, 속력이 $0$보다 클 때 시간은 거리를 속력으로 {나눈} 값이다.",
+        "cSlotAnswers": [
+          "곱",
+          "나눈"
+        ],
+        "cStudentSentence": "일정한 속력으로 움직일 때 거리는 속력과 시간의 □이고, 속력이 $0$보다 클 때 시간은 거리를 속력으로 □ 값이다.",
+        "cAnswers": [
+          "곱",
+          "나눈"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "나눈",
+            "equivalentAnswers": [
+              "나눈"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "나눈"
+          ]
+        ],
+        "proposalFingerprint": "7bc9ce57ecf1b4ef9b5c252a0457eef3b3c170b45460dd8975c2c140aeed71d3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc10",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "세 수 $a$, $b$, $c$의 평균을 식으로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$a$, $b$, $c$의 평균은 세 수의 합을 {$3$}으로 나눈 {$\\frac{a+b+c}{3}$}이다.",
+        "example": {
+          "prompt": "두 수 $x$, $y$의 평균은?",
+          "answer": "$\\frac{x+y}{2}$"
+        },
+        "studentC": "$a$, $b$, $c$의 평균은 세 수의 합을 □으로 나눈 □이다.",
+        "answers": [
+          "$3$",
+          "$\\frac{a+b+c}{3}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "세 수 $a$, $b$, $c$의 평균을 구하는 방법을 말로 쓰고 식으로 나타내시오. 같은 방법으로 두 수 $x$, $y$의 평균도 식으로 쓰시오.",
+        "bAnswer": "세 수의 합을 $3$으로 나눈다. $\\frac{a+b+c}{3}$. 두 수의 평균은 $\\frac{x+y}{2}$",
+        "bGoal": "평균의 뜻(합을 개수로 나눔)을 문자를 사용한 식으로 나타낸다.",
+        "bReason": "제목에 대상은 있으나 식만 쓰라는 것인지 방법도 쓰라는 것인지 없어, 방법과 식을 모두 요구하고 개수가 다른 경우를 덧붙였다.",
+        "cDecision": "keep",
+        "cReason": "나누는 수와 완성된 식을 차례로 묻는 구성이 자연스럽다.",
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 수의 합을 $3$으로 나눔"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{a+b+c}{3}$(같은 식 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{x+y}{2}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "application",
+        "roleReason": "평균을 문자식으로 나타내기",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1168,
+        "part": "m1plus",
+        "sourceFingerprint": "459e519d7eb06be773c3fc240a2e88a3560f257bef83c37eca3d268de718f37c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1168
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a$, $b$, $c$의 평균은 세 수의 합을 □으로 나눈 □이다.",
+        "cFrozenDefinition": "$a$, $b$, $c$의 평균은 세 수의 합을 {$3$}으로 나눈 {$\\frac{a+b+c}{3}$}이다.",
+        "cFrozenAnswers": [
+          "$3$",
+          "$\\frac{a+b+c}{3}$"
+        ],
+        "cMarkedSentence": "$a$, $b$, $c$의 평균은 세 수의 합을 {$3$}으로 나눈 {$\\frac{a+b+c}{3}$}이다.",
+        "cSlotAnswers": [
+          "$3$",
+          "$\\frac{a+b+c}{3}$"
+        ],
+        "cStudentSentence": "$a$, $b$, $c$의 평균은 세 수의 합을 □으로 나눈 □이다.",
+        "cAnswers": [
+          "$3$",
+          "$\\frac{a+b+c}{3}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{a+b+c}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{a+b+c}{3}$",
+              "$\\frac{1}{3}(a+b+c)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{a+b+c}{3}$",
+            "accept": [
+              "$\\frac{1}{3}(a+b+c)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$\\frac{a+b+c}{3}$",
+            "$\\frac{1}{3}(a+b+c)$"
+          ]
+        ],
+        "proposalFingerprint": "4770c92a25bb53a9fb4dd52ba4f9c3cc4c6a9c3bd2ee28e3a25b1af916932fb7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc11",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "분수를 대입할 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분수를 대입할 때도 {괄호}를 쳐서 넣고, 문자 앞의 수와의 곱을 {약분}하며 계산한다.",
+        "example": {
+          "prompt": "$x=\\frac{2}{3}$일 때 $6x-1$의 값은?",
+          "answer": "$3$"
+        },
+        "studentC": "분수를 대입할 때도 □를 쳐서 넣고, 문자 앞의 수와의 곱을 □하며 계산한다.",
+        "answers": [
+          "괄호",
+          "약분"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$x=\\frac{2}{3}$일 때 $6x-1$의 값을 구하려고 한다. 분수를 대입할 때 주의할 점을 쓰고, 계산 과정을 써서 값을 구하시오.",
+        "bAnswer": "분수도 괄호를 쳐서 넣고, 문자 앞의 수와 곱할 때 약분한다. $6\\times\\left(\\frac{2}{3}\\right)-1=4-1=3$",
+        "bGoal": "분수를 대입할 때 괄호를 쓰고 약분하며 계산한다.",
+        "bReason": "'분수를 대입할 때'는 끝나지 않은 말이라 무엇을 답할지 없어, 식과 대입할 분수를 주고 주의점과 과정을 요구했다.",
+        "cDecision": "keep",
+        "cReason": "'괄호'와 '약분'은 배운 용어이고 문장 길이도 적당하다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "주의할 점: 분수를 괄호로 묶어(한 덩어리로) 대입하고 $6$과 곱할 때 약분함(계산 과정에 드러나면 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\times\\frac{2}{3}-1=4-1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "값 $3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "분수는 괄호로 대입해 약분",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1169,
+        "part": "m1plus",
+        "sourceFingerprint": "fd9c80154c023e2e1dcffc0823af503a30ed89dccf9dad618b91290696561d5a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1169
+        },
+        "directReview": null,
+        "cFrozenSentence": "분수를 대입할 때도 □를 쳐서 넣고, 문자 앞의 수와의 곱을 □하며 계산한다.",
+        "cFrozenDefinition": "분수를 대입할 때도 {괄호}를 쳐서 넣고, 문자 앞의 수와의 곱을 {약분}하며 계산한다.",
+        "cFrozenAnswers": [
+          "괄호",
+          "약분"
+        ],
+        "cMarkedSentence": "분수를 대입할 때도 {괄호}를 쳐서 넣고, 문자 앞의 수와의 곱을 {약분}하며 계산한다.",
+        "cSlotAnswers": [
+          "괄호",
+          "약분"
+        ],
+        "cStudentSentence": "분수를 대입할 때도 □를 쳐서 넣고, 문자 앞의 수와의 곱을 □하며 계산한다.",
+        "cAnswers": [
+          "괄호",
+          "약분"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ],
+          [
+            "약분"
+          ]
+        ],
+        "proposalFingerprint": "f525591f5bfb9e9d2fa76738a6dc12f4e77c57bbb15472927061990fb3c9873c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc12",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "문자가 둘인 식의 값",
+        "kind": "방법",
+        "level": "중",
+        "definition": "문자가 둘 이상이면 각 문자에 주어진 수를 {빠짐없이} 대입하고 {부호}에 주의해 계산한다.",
+        "example": {
+          "prompt": "$x=-1$, $y=3$일 때 $xy-2y$의 값은?",
+          "answer": "$-9$"
+        },
+        "studentC": "문자가 둘 이상이면 각 문자에 주어진 수를 □ 대입하고 □에 주의해 계산한다.",
+        "answers": [
+          "빠짐없이",
+          "부호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$x=-1$, $y=3$일 때 $xy-2y$의 값을 구하려고 한다. 문자가 둘 이상인 식에 수를 대입할 때 주의할 점 두 가지를 쓰고, 계산 과정을 써서 값을 구하시오.",
+        "bAnswer": "각 문자에 주어진 수를 빠짐없이 대입하고, 부호에 주의해 계산한다. $(-1)\\times3-2\\times3=-3-6=-9$",
+        "bGoal": "문자가 둘 이상인 식의 값을 빠짐없이 대입해 구한다.",
+        "bReason": "식의 값은 식과 각 문자의 값이 있어야 정해지므로 둘 다 제시했다. $y$가 두 번 나오는 식으로 '빠짐없이'의 뜻이 드러나게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "문자가 둘 이상인 식의 값을 구할 때는 각 문자에 주어진 수를 빠짐없이 {대입}하고 {부호}에 주의해 계산한다.",
+        "cAnswers": [
+          "대입",
+          "부호"
+        ],
+        "cReason": "원문의 빈칸 '빠짐없이'는 '모두', '각각' 등으로도 쓸 수 있는 임의 낱말이라 문장에 드러내고 용어인 '대입'을 가렸다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "주의할 점 두 가지: 각 문자에 주어진 수를 빠짐없이 대입함, 부호에 주의함(음수를 괄호로 묶는다 등 같은 취지의 맞는 주의점 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(-1)\\times3-2\\times3=-3-6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "값 $-9$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "모든 문자에 대입, 부호 주의",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1170,
+        "part": "m1plus",
+        "sourceFingerprint": "80c894742a532d788d7bae1674ce4097691a57d153a6e4976c69888669b3ba37",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1170
+        },
+        "directReview": null,
+        "cMarkedSentence": "문자가 둘 이상인 식의 값을 구할 때는 각 문자에 주어진 수를 빠짐없이 {대입}하고 {부호}에 주의해 계산한다.",
+        "cSlotAnswers": [
+          "대입",
+          "부호"
+        ],
+        "cStudentSentence": "문자가 둘 이상인 식의 값을 구할 때는 각 문자에 주어진 수를 빠짐없이 □하고 □에 주의해 계산한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "부호"
+          ]
+        ],
+        "proposalFingerprint": "24dddf38a5c145f48a4cf7662750a53166f74835155175912e26afa3b484fcc2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc13",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "$-a$의 뜻",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$-a$는 $a$에 {$-1$}을 곱한 것으로, $a$가 음수이면 $-a$는 {양수}이다.",
+        "example": {
+          "prompt": "$a=-5$일 때 $-a$의 값은?",
+          "answer": "$5$"
+        },
+        "studentC": "$-a$는 $a$에 □을 곱한 것으로, $a$가 음수이면 $-a$는 □이다.",
+        "answers": [
+          "$-1$",
+          "양수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$-a$는 $a$에 어떤 수를 곱한 것인지 쓰시오. 또 $a=-5$일 때 $-a$의 값을 구하고, 이를 근거로 '$-a$는 항상 음수이다'라는 말이 옳은지 답하시오.",
+        "bAnswer": "$-a=(-1)\\times a$. $a=-5$이면 $-a=(-1)\\times(-5)=5$. $a$가 음수이면 $-a$는 양수이므로 옳지 않다.",
+        "bGoal": "$-a$를 $(-1)\\times a$로 이해하고 $a$의 부호에 따라 $-a$의 부호가 달라짐을 안다.",
+        "bReason": "제목 '$-a$의 뜻'만으로는 흔한 오해($-a$는 음수)까지 다루어야 함이 드러나지 않아 음수를 대입하는 경우를 넣었다.",
+        "cDecision": "keep",
+        "cReason": "곱하는 수와 부호 판단을 한 문장에서 분명히 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-a=(-1)\\times a$($a$에 $-1$을 곱한 것)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=-5$일 때 $-a=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "옳지 않음: $a$가 음수이면 $-a$는 양수이기 때문"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "definition",
+        "roleReason": "-a는 a에 -1을 곱한 수",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1171,
+        "part": "m1plus",
+        "sourceFingerprint": "eadfc54fec7857d2e18991f2d80d08b92bc3c1a2a641d8a8ed8d093a696b7462",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1171
+        },
+        "directReview": null,
+        "cFrozenSentence": "$-a$는 $a$에 □을 곱한 것으로, $a$가 음수이면 $-a$는 □이다.",
+        "cFrozenDefinition": "$-a$는 $a$에 {$-1$}을 곱한 것으로, $a$가 음수이면 $-a$는 {양수}이다.",
+        "cFrozenAnswers": [
+          "$-1$",
+          "양수"
+        ],
+        "cMarkedSentence": "$-a$는 $a$에 {$-1$}을 곱한 것으로, $a$가 음수이면 $-a$는 {양수}이다.",
+        "cSlotAnswers": [
+          "$-1$",
+          "양수"
+        ],
+        "cStudentSentence": "$-a$는 $a$에 □을 곱한 것으로, $a$가 음수이면 $-a$는 □이다.",
+        "cAnswers": [
+          "$-1$",
+          "양수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-1$",
+            "equivalentAnswers": [
+              "$-1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-1$"
+          ],
+          [
+            "양수"
+          ]
+        ],
+        "proposalFingerprint": "59aa8fc752b1efdc43f01246051863cc0a23d6b3fe41c91910674f5bfa57e23a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc14",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "음의 부호가 붙은 거듭제곱에 대입",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$-a^2$에 음수를 대입할 때는 지수가 괄호 안의 수 {전체}에 걸리게 넣고, 앞의 음의 부호는 {나중에} 붙인다.",
+        "example": {
+          "prompt": "$a=-3$일 때 $-a^2$의 값은?",
+          "answer": "$-9$"
+        },
+        "studentC": "$-a^2$에 음수를 대입할 때는 지수가 괄호 안의 수 □에 걸리게 넣고, 앞의 음의 부호는 □ 붙인다.",
+        "answers": [
+          "전체",
+          "나중에"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$a=-3$일 때 $-a^2$의 값을 구하려고 한다. $-3$을 식에 어떻게 넣어야 하는지, 제곱과 앞의 음의 부호 가운데 무엇을 먼저 계산하는지 쓰고 값을 구하시오.",
+        "bAnswer": "$-3$을 괄호로 묶어 $-(-3)^2$으로 넣는다. 제곱을 먼저 계산하여 $(-3)^2=9$를 구하고, 앞의 음의 부호를 나중에 붙여 $-9$이다.",
+        "bGoal": "$-a^2$에 음수를 대입할 때 제곱과 음의 부호의 계산 차례를 지킨다.",
+        "bReason": "제목이 길고 추상적이어서 어떤 식에 어떤 수를 넣는지 알 수 없다. 식과 값을 주고 넣는 방법과 계산 차례를 물었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$-a^2$에 음수를 대입할 때는 그 수를 {괄호}로 묶어 넣어 지수 $2$가 음수 전체에 걸리게 하고, {제곱}을 먼저 계산한 뒤 앞의 음의 부호를 붙인다.",
+        "cAnswers": [
+          "괄호",
+          "제곱"
+        ],
+        "cReason": "원문의 '괄호 안의 수 □에 걸리게'는 어떤 괄호인지 가리키는 것이 없고, '전체'와 '나중에'는 임의 낱말이다. 방법의 핵심인 '괄호'와 '제곱'을 묻도록 고쳤다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-3$을 괄호로 묶어 $-(-3)^2$으로 대입함"
+            ]
+          },
+          {
+            "anyOf": [
+              "제곱을 먼저 계산하고($(-3)^2=9$) 앞의 음의 부호는 나중에 붙임"
+            ]
+          },
+          {
+            "anyOf": [
+              "값 $-9$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "괄호로 대입, 제곱 뒤 부호",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1172,
+        "part": "m1plus",
+        "sourceFingerprint": "2fec142d2dcf388d685676a97f999eada6e71f6dd7f0830bdd114d9961637c39",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1172
+        },
+        "directReview": null,
+        "cMarkedSentence": "$-a^2$에 음수를 대입할 때는 그 수를 {괄호}로 묶어 넣어 지수 $2$가 음수 전체에 걸리게 하고, {제곱}을 먼저 계산한 뒤 앞의 음의 부호를 붙인다.",
+        "cSlotAnswers": [
+          "괄호",
+          "제곱"
+        ],
+        "cStudentSentence": "$-a^2$에 음수를 대입할 때는 그 수를 □로 묶어 넣어 지수 $2$가 음수 전체에 걸리게 하고, □을 먼저 계산한 뒤 앞의 음의 부호를 붙인다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ],
+          [
+            "제곱"
+          ]
+        ],
+        "proposalFingerprint": "fff4d0699e1fd88af37a8b17898d0fea7446a3cacc9a76a54f81c9f28c735035"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc15",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "역수 꼴에 대입하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$\\frac{1}{x}$에 $0$이 아닌 분수 $x=\\frac{a}{b}$를 대입하면 그 {역수} $\\frac{b}{a}$가 된다.",
+        "example": {
+          "prompt": "$x=-\\frac{1}{3}$일 때 $\\frac{2}{x}$의 값은?",
+          "answer": "$-6$"
+        },
+        "studentC": "$\\frac{1}{x}$에 $0$이 아닌 분수 $x=\\frac{a}{b}$를 대입하면 그 □ $\\frac{b}{a}$가 된다.",
+        "answers": [
+          "역수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{x}$은 $1\\div x$이다. $x$에 $0$이 아닌 분수를 대입하면 $\\frac{1}{x}$의 값은 대입한 분수와 어떤 관계인 수가 되는지 쓰고, $x=-\\frac{1}{3}$일 때 $\\frac{2}{x}$의 값을 계산 과정과 함께 구하시오.",
+        "bAnswer": "대입한 분수의 역수가 된다. $x=-\\frac{1}{3}$이면 $\\frac{1}{x}=-3$이므로 $\\frac{2}{x}=2\\times(-3)=-6$",
+        "bGoal": "$\\frac{1}{x}$에 분수를 대입하면 그 역수가 됨을 이용해 식의 값을 구한다.",
+        "bReason": "'역수 꼴'은 교과서 용어가 아니라 학생이 뜻을 알기 어렵다. 식 $\\frac{1}{x}$과 대입할 수의 조건을 직접 보였다.",
+        "cDecision": "keep",
+        "cReason": "조건($0$이 아닌 분수)과 결과 식이 문장에 있고 관계의 이름 '역수'만 묻는다.",
+        "studentLabel": "$\\frac{1}{x}$ 꼴의 식에 분수 대입하기",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{x}$의 값은 대입한 분수의 역수가 됨"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{x}=-3$이므로 $\\frac{2}{x}=2\\times(-3)$($2\\div\\left(-\\frac{1}{3}\\right)$로 계산해도 됨)"
+            ]
+          },
+          {
+            "anyOf": [
+              "값 $-6$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "1/x에 분수 대입은 역수",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1173,
+        "part": "m1plus",
+        "sourceFingerprint": "fdcb0a955eb72329369c57e99b46f41d231da44a095e581d2ff7c1a991f0f86a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1173
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\frac{1}{x}$에 $0$이 아닌 분수 $x=\\frac{a}{b}$를 대입하면 그 □ $\\frac{b}{a}$가 된다.",
+        "cFrozenDefinition": "$\\frac{1}{x}$에 $0$이 아닌 분수 $x=\\frac{a}{b}$를 대입하면 그 {역수} $\\frac{b}{a}$가 된다.",
+        "cFrozenAnswers": [
+          "역수"
+        ],
+        "cMarkedSentence": "$\\frac{1}{x}$에 $0$이 아닌 분수 $x=\\frac{a}{b}$를 대입하면 그 {역수} $\\frac{b}{a}$가 된다.",
+        "cSlotAnswers": [
+          "역수"
+        ],
+        "cStudentSentence": "$\\frac{1}{x}$에 $0$이 아닌 분수 $x=\\frac{a}{b}$를 대입하면 그 □ $\\frac{b}{a}$가 된다.",
+        "cAnswers": [
+          "역수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "역수",
+            "equivalentAnswers": [
+              "역수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "역수"
+          ]
+        ],
+        "proposalFingerprint": "67a93b527ebfcd76947e408dcf3f902e555f8796d02486a69e0a8dfac6f17d07"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc16",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "공식에 대입하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "공식에 들어 있는 문자에 주어진 값을 {대입}하면 실제 상황의 {값}을 구할 수 있다.",
+        "example": {
+          "prompt": "기온이 $x^\\circ\\mathrm{C}$일 때 소리는 초속 $(331+0.6x)\\,\\mathrm{m}$로 간다. $15^\\circ\\mathrm{C}$일 때는?",
+          "answer": "초속 $340\\,\\mathrm{m}$"
+        },
+        "studentC": "공식에 들어 있는 문자에 주어진 값을 □하면 실제 상황의 □을 구할 수 있다.",
+        "answers": [
+          "대입",
+          "값"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "기온이 $x^\\circ\\mathrm{C}$일 때 소리의 속력은 초속 $(331+0.6x)\\,\\mathrm{m}$이다. 기온이 $15^\\circ\\mathrm{C}$일 때 소리의 속력을 구하려면 이 식에서 무엇을 해야 하는지 쓰고, 계산 과정과 함께 구하시오.",
+        "bAnswer": "$x$에 $15$를 대입한다. $331+0.6\\times15=331+9=340$이므로 초속 $340\\,\\mathrm{m}$이다.",
+        "bGoal": "공식의 문자에 값을 대입해 실제 상황의 값을 구한다.",
+        "bReason": "'공식에 대입하기'는 어떤 공식인지 없으면 답할 수 없으므로 소리의 속력 공식과 문자 $x$의 뜻, 구할 기온을 모두 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "공식의 문자에 주어진 수를 {대입}하여 계산하면 그 상황에서 구하려는 양을 알 수 있다. 예를 들어 소리의 속력이 초속 $(331+0.6x)\\,\\mathrm{m}$일 때 $x$에 $15$를 넣으면 기온 $15^\\circ\\mathrm{C}$에서의 속력이 나온다.",
+        "cAnswers": [
+          "대입"
+        ],
+        "cReason": "둘째 빈칸 '값'은 같은 문장의 '주어진 값'에서 그대로 베낄 수 있고 '실제 상황'이 무엇인지 가리키는 것이 없다. 빈칸을 하나로 줄이고 구체 상황을 붙였다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$에 $15$를 대입함"
+            ]
+          },
+          {
+            "anyOf": [
+              "$331+0.6\\times15=331+9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "초속 $340\\,\\mathrm{m}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "application",
+        "roleReason": "공식 문자에 값 대입",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1174,
+        "part": "m1plus",
+        "sourceFingerprint": "c7c696817693775914ca9646a56fd4d8023215f064a3a433714c5595370a0689",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1174
+        },
+        "directReview": null,
+        "cMarkedSentence": "공식의 문자에 주어진 수를 {대입}하여 계산하면 그 상황에서 구하려는 양을 알 수 있다. 예를 들어 소리의 속력이 초속 $(331+0.6x)\\,\\mathrm{m}$일 때 $x$에 $15$를 넣으면 기온 $15^\\circ\\mathrm{C}$에서의 속력이 나온다.",
+        "cSlotAnswers": [
+          "대입"
+        ],
+        "cStudentSentence": "공식의 문자에 주어진 수를 □하여 계산하면 그 상황에서 구하려는 양을 알 수 있다. 예를 들어 소리의 속력이 초속 $(331+0.6x)\\,\\mathrm{m}$일 때 $x$에 $15$를 넣으면 기온 $15^\\circ\\mathrm{C}$에서의 속력이 나온다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ]
+        ],
+        "proposalFingerprint": "023be0fd995c2620bb63c0216be23f1a971da6e31063e39cceeb4195fc141543"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc17",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "말을 식으로 옮길 때의 괄호",
+        "kind": "방법",
+        "level": "상",
+        "definition": "'합의 몇 배'처럼 먼저 구한 합이나 차 {전체}에 다시 연산을 하면 그 합이나 차를 {괄호}로 묶어 쓴다.",
+        "example": {
+          "prompt": "'$a$와 $b$의 합의 $3$배'와 '$a$의 $3$배와 $b$의 합'을 차례로 식으로 쓰면?",
+          "answer": "$3(a+b)$, $3a+b$"
+        },
+        "studentC": "'합의 몇 배'처럼 먼저 구한 합이나 차 □에 다시 연산을 하면 그 합이나 차를 □로 묶어 쓴다.",
+        "answers": [
+          "전체",
+          "괄호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "'$a$와 $b$의 합의 $3$배'와 '$a$의 $3$배와 $b$의 합'을 차례로 식으로 쓰시오. 두 식 가운데 괄호가 필요한 것은 어느 것이며 그 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "$3(a+b)$, $3a+b$. 첫째 식은 먼저 구한 합 $a+b$ 전체를 $3$배 하는 것이므로 합을 괄호로 묶어야 한다.",
+        "bGoal": "말로 된 표현에서 계산 차례를 읽어 괄호를 바르게 쓴다.",
+        "bReason": "제목만으로는 어떤 말을 옮기는지 없어, 괄호가 필요한 표현과 필요 없는 표현을 나란히 주어 차이를 말하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "'합의 몇 배'처럼 먼저 구한 합이나 차 전체를 다시 계산에 쓸 때는 그 합이나 차를 {괄호}로 묶어 쓴다. 그래서 '$a$와 $b$의 합의 $3$배'는 {$3(a+b)$}이다.",
+        "cAnswers": [
+          "괄호",
+          "$3(a+b)$"
+        ],
+        "cReason": "'□에 다시 연산을 하면'은 중1에게 어려운 말이고 '전체'는 임의 낱말이다. '괄호'를 묻고 구체 표현을 식으로 옮기는 빈칸으로 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3(a+b)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3a+b$"
+            ]
+          },
+          {
+            "anyOf": [
+              "괄호가 필요한 것은 첫째 식: 합 $a+b$ 전체를 $3$배 하기 때문"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "합·차 전체는 괄호로 묶기",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1175,
+        "part": "m1plus",
+        "sourceFingerprint": "326b162cbedb5a1279b7004535c995b994a1ecf5b95b752d34b99e5828cb828c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1175
+        },
+        "directReview": null,
+        "cMarkedSentence": "'합의 몇 배'처럼 먼저 구한 합이나 차 전체를 다시 계산에 쓸 때는 그 합이나 차를 {괄호}로 묶어 쓴다. 그래서 '$a$와 $b$의 합의 $3$배'는 {$3(a+b)$}이다.",
+        "cSlotAnswers": [
+          "괄호",
+          "$3(a+b)$"
+        ],
+        "cStudentSentence": "'합의 몇 배'처럼 먼저 구한 합이나 차 전체를 다시 계산에 쓸 때는 그 합이나 차를 □로 묶어 쓴다. 그래서 '$a$와 $b$의 합의 $3$배'는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3(a+b)$",
+            "equivalentAnswers": [
+              "$3(a+b)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ],
+          [
+            "$3(a+b)$"
+          ]
+        ],
+        "proposalFingerprint": "6a85361ff41bf3e397e7bf56ee73b445a1bfdf042d84c3082f8aba8ec1307d65"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc18",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "정가 $a$원에서 $x\\%$를 할인한 가격을 식으로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정가 $a$원에서 $x\\%$를 할인한 가격은 $a$에서 $a$의 $x\\%$를 뺀 {$a-\\frac{ax}{100}$}원이다.",
+        "example": {
+          "prompt": "$5000$원에서 $20\\%$ 할인한 가격은?",
+          "answer": "$4000$원"
+        },
+        "studentC": "정가 $a$원에서 $x\\%$를 할인한 가격은 $a$에서 $a$의 $x\\%$를 뺀 □원이다.",
+        "answers": [
+          "$a-\\frac{ax}{100}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "정가가 $a$원인 물건을 $x\\%$ 할인하여 판다. ($1$) 할인받는 금액을 식으로 쓰고, ($2$) 할인한 가격을 식으로 쓰시오. ($3$) 이 식을 이용해 정가 $5000$원에서 $20\\%$ 할인한 가격을 구하시오.",
+        "bAnswer": "($1$) $a\\times\\frac{x}{100}=\\frac{ax}{100}$(원) ($2$) $a-\\frac{ax}{100}$(원) ($3$) $5000-\\frac{5000\\times20}{100}=5000-1000=4000$(원)",
+        "bGoal": "할인한 가격을 '정가에서 할인 금액을 뺀 것'으로 식을 세운다.",
+        "bReason": "제목에 조건은 있으나 식이 만들어지는 단계(할인 금액 → 뺀 가격)를 쓰게 해야 외운 식이 아닌 이해를 확인할 수 있다.",
+        "cDecision": "keep",
+        "cReason": "문장에 '$a$에서 $a$의 $x\\%$를 뺀'이라는 과정이 있어 식을 스스로 세워 채울 수 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "($1$) 할인 금액 $\\frac{ax}{100}$원($a\\times\\frac{x}{100}$ 등 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "($2$) 할인한 가격 $a-\\frac{ax}{100}$원($a\\left(1-\\frac{x}{100}\\right)$ 등 같은 식 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "($3$) $5000-1000=4000$(원)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "application",
+        "roleReason": "정가에서 할인액 빼는 식",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1176,
+        "part": "m1plus",
+        "sourceFingerprint": "ee529cdfca7d660daf6199163ecd7feecd7ebeae9390470fbb3a27959789fe75",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1176
+        },
+        "directReview": null,
+        "cFrozenSentence": "정가 $a$원에서 $x\\%$를 할인한 가격은 $a$에서 $a$의 $x\\%$를 뺀 □원이다.",
+        "cFrozenDefinition": "정가 $a$원에서 $x\\%$를 할인한 가격은 $a$에서 $a$의 $x\\%$를 뺀 {$a-\\frac{ax}{100}$}원이다.",
+        "cFrozenAnswers": [
+          "$a-\\frac{ax}{100}$"
+        ],
+        "cMarkedSentence": "정가 $a$원에서 $x\\%$를 할인한 가격은 $a$에서 $a$의 $x\\%$를 뺀 {$a-\\frac{ax}{100}$}원이다.",
+        "cSlotAnswers": [
+          "$a-\\frac{ax}{100}$"
+        ],
+        "cStudentSentence": "정가 $a$원에서 $x\\%$를 할인한 가격은 $a$에서 $a$의 $x\\%$를 뺀 □원이다.",
+        "cAnswers": [
+          "$a-\\frac{ax}{100}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a-\\frac{ax}{100}$",
+            "equivalentAnswers": [
+              "$a-\\frac{ax}{100}$",
+              "$a-\\frac{x}{100}a$",
+              "$a\\left(1-\\frac{x}{100}\\right)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$a-\\frac{ax}{100}$",
+            "accept": [
+              "$a-\\frac{x}{100}a$",
+              "$a\\left(1-\\frac{x}{100}\\right)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$a-\\frac{ax}{100}$",
+            "$a-\\frac{x}{100}a$",
+            "$a\\left(1-\\frac{x}{100}\\right)$"
+          ]
+        ],
+        "proposalFingerprint": "889532d01443f2d703107e6c2bc87b2bbbb095437cf5be66af52c283c4a12950"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc19",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "분모에 문자가 있는 식의 값",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모에 문자가 있는 식의 값은 분모가 {$0$}이 되지 않는지 보고, 분자와 분모를 {따로} 계산한 뒤 나눈다.",
+        "example": {
+          "prompt": "$x=2$일 때 $\\frac{x+4}{x-3}$의 값은?",
+          "answer": "$-6$"
+        },
+        "studentC": "분모에 문자가 있는 식의 값은 분모가 □이 되지 않는지 보고, 분자와 분모를 □ 계산한 뒤 나눈다.",
+        "answers": [
+          "$0$",
+          "따로"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$x=2$일 때 $\\frac{x+4}{x-3}$의 값을 구하려고 한다. 대입할 때 분모에서 먼저 확인해야 할 것을 쓰고, 분자와 분모의 값을 각각 구한 뒤 식의 값을 구하시오.",
+        "bAnswer": "분모가 $0$이 되지 않는지 확인한다. 분모는 $2-3=-1$로 $0$이 아니다. 분자는 $2+4=6$이므로 식의 값은 $6\\div(-1)=-6$",
+        "bGoal": "분모에 문자가 있는 식의 값을 분모 확인 후 분자·분모를 따로 계산해 구한다.",
+        "bReason": "식의 값은 식과 $x$의 값이 있어야 하므로 둘 다 주고, 분모 확인이라는 절차를 답의 범위로 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "문장이 절차를 차례로 말하고 빈칸이 짧다. '각각'은 '따로'와 같은 뜻이라 인정한다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 $0$이 되지 않는지 확인함"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모 $2-3=-1$, 분자 $2+4=6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "값 $6\\div(-1)=-6$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "분모 0 확인 후 따로 계산",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1177,
+        "part": "m1plus",
+        "sourceFingerprint": "7d2ba75d742f85c9b08258fd23abf7c50cfc80a78cbeeb4904f16bdab8cedd3f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1177
+        },
+        "directReview": null,
+        "cFrozenSentence": "분모에 문자가 있는 식의 값은 분모가 □이 되지 않는지 보고, 분자와 분모를 □ 계산한 뒤 나눈다.",
+        "cFrozenDefinition": "분모에 문자가 있는 식의 값은 분모가 {$0$}이 되지 않는지 보고, 분자와 분모를 {따로} 계산한 뒤 나눈다.",
+        "cFrozenAnswers": [
+          "$0$",
+          "따로"
+        ],
+        "cMarkedSentence": "분모에 문자가 있는 식의 값은 분모가 {$0$}이 되지 않는지 보고, 분자와 분모를 {따로} 계산한 뒤 나눈다.",
+        "cSlotAnswers": [
+          "$0$",
+          "따로"
+        ],
+        "cStudentSentence": "분모에 문자가 있는 식의 값은 분모가 □이 되지 않는지 보고, 분자와 분모를 □ 계산한 뒤 나눈다.",
+        "cAnswers": [
+          "$0$",
+          "따로"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "따로",
+            "equivalentAnswers": [
+              "따로",
+              "각각",
+              "따로따로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "따로",
+            "accept": [
+              "각각",
+              "따로따로"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "따로",
+            "각각",
+            "따로따로"
+          ]
+        ],
+        "proposalFingerprint": "cc49b6c2a5ad21ce5185c7ffef182fdd6771c9d2441b2fe7cbc454ea6f4bcc80"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc20",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "윗변 $a$, 아랫변 $b$, 높이 $h$인 사다리꼴의 넓이를 식으로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "넓이 공식에 문자로 나타낸 길이를 넣으면 넓이를 {식}으로 나타낼 수 있다. 윗변 $a$, 아랫변 $b$, 높이 $h$인 사다리꼴은 {$\\frac{(a+b)h}{2}$}이다.",
+        "example": {
+          "prompt": "윗변 $3$, 아랫변 $x$, 높이 $4$인 사다리꼴의 넓이는?",
+          "answer": "$2(3+x)$"
+        },
+        "studentC": "넓이 공식에 문자로 나타낸 길이를 넣으면 넓이를 □으로 나타낼 수 있다. 윗변 $a$, 아랫변 $b$, 높이 $h$인 사다리꼴은 □이다.",
+        "answers": [
+          "식",
+          "$\\frac{(a+b)h}{2}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "윗변의 길이가 $a$, 아랫변의 길이가 $b$, 높이가 $h$인 사다리꼴의 넓이를 $a$, $b$, $h$를 사용한 식으로 쓰시오. 또 윗변의 길이가 $3$, 아랫변의 길이가 $x$, 높이가 $4$인 사다리꼴의 넓이를 $x$를 사용한 식으로 쓰시오.",
+        "bAnswer": "$\\frac{(a+b)h}{2}$. $\\frac{(3+x)\\times4}{2}=2(3+x)$",
+        "bGoal": "넓이 공식에 문자로 나타낸 길이를 넣어 넓이를 식으로 나타낸다.",
+        "bReason": "제목에 조건은 있으나 그림이 없으므로 각 문자가 어느 길이인지 문장으로 밝히고, 수와 문자가 섞인 경우도 요구했다.",
+        "cDecision": "rewrite",
+        "cAfter": "윗변의 길이가 $a$, 아랫변의 길이가 $b$, 높이가 $h$인 사다리꼴의 넓이는 (윗변$+$아랫변)$\\times$(높이)$\\div2$에 문자를 넣어 {$\\frac{(a+b)h}{2}$}로 나타낸다.",
+        "cAnswers": [
+          "$\\frac{(a+b)h}{2}$"
+        ],
+        "cReason": "원문의 '사다리꼴은 □이다'는 무엇(넓이)을 묻는지 빠져 있고, 첫 빈칸 '식'은 정보가 없는 낱말이다. 넓이임을 밝히고 식 하나만 묻게 했다.",
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{(a+b)h}{2}$($\\frac{1}{2}(a+b)h$ 등 같은 식 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{(3+x)\\times4}{2}=2(3+x)$($2x+6$ 등 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "application",
+        "roleReason": "넓이 공식에 문자 넣기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1178,
+        "part": "m1plus",
+        "sourceFingerprint": "7af80d30eb118e7275d45180c3e5f4c0c6c49dbe2a73c6d62e72da15dc173e8a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1178
+        },
+        "directReview": null,
+        "cMarkedSentence": "윗변의 길이가 $a$, 아랫변의 길이가 $b$, 높이가 $h$인 사다리꼴의 넓이는 (윗변$+$아랫변)$\\times$(높이)$\\div2$에 문자를 넣어 {$\\frac{(a+b)h}{2}$}로 나타낸다.",
+        "cSlotAnswers": [
+          "$\\frac{(a+b)h}{2}$"
+        ],
+        "cStudentSentence": "윗변의 길이가 $a$, 아랫변의 길이가 $b$, 높이가 $h$인 사다리꼴의 넓이는 (윗변$+$아랫변)$\\times$(높이)$\\div2$에 문자를 넣어 □로 나타낸다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{(a+b)h}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{(a+b)h}{2}$",
+              "$\\frac{1}{2}(a+b)h$",
+              "$\\frac{h(a+b)}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{(a+b)h}{2}$",
+            "accept": [
+              "$\\frac{1}{2}(a+b)h$",
+              "$\\frac{h(a+b)}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{(a+b)h}{2}$",
+            "$\\frac{1}{2}(a+b)h$",
+            "$\\frac{h(a+b)}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "02ba156fcebbfc5d2de37db96c931fe8417d9753f2106ea96b7cfa5cc3aef280"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc21",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "수를 넣어 식의 크기 견주기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "범위가 정해진 문자의 여러 식은 그 범위의 수 하나를 {대입}해 보면 크기의 {차례}를 짐작할 수 있다. 짐작일 뿐이므로 범위 전체에서 맞는지 따로 확인한다.",
+        "example": {
+          "prompt": "$x=-\\frac{1}{2}$일 때 $x$, $x^2$, $\\frac{1}{x}$ 가운데 가장 작은 것은?",
+          "answer": "$\\frac{1}{x}$"
+        },
+        "studentC": "범위가 정해진 문자의 여러 식은 그 범위의 수 하나를 □해 보면 크기의 □를 짐작할 수 있다. 짐작일 뿐이므로 범위 전체에서 맞는지 따로 확인한다.",
+        "answers": [
+          "대입",
+          "차례"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$-1<x<0$일 때 $x$, $x^2$, $\\frac{1}{x}$의 크기를 비교하려고 한다. $x=-\\frac{1}{2}$을 대입하여 세 식의 값을 구하고 가장 작은 것을 고르시오. 또 수 하나만 대입해 얻은 결과를 바로 결론으로 삼으면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$x=-\\frac{1}{2}$, $x^2=\\frac{1}{4}$, $\\frac{1}{x}=-2$이므로 가장 작은 것은 $\\frac{1}{x}$이다. 수 하나를 넣은 결과는 짐작일 뿐이어서, 범위 안의 다른 수에서도 같은 순서인지 따로 확인해야 한다.",
+        "bGoal": "범위 안의 수를 대입해 식의 크기 순서를 짐작하고 그 한계를 안다.",
+        "bReason": "제목 '수를 넣어 식의 크기 견주기'는 문자의 범위와 비교할 식이 없으면 뜻을 알 수 없어 범위·식·대입할 수를 모두 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$-1<x<0$처럼 $x$의 범위가 주어졌을 때 $x$, $x^2$, $\\frac{1}{x}$의 크기를 비교하려면 그 범위에 있는 수 하나를 {대입}해 크기 순서를 {짐작}할 수 있다. 이것만으로는 확실하지 않으므로 범위 전체에서 맞는지 따로 확인한다.",
+        "cAnswers": [
+          "대입",
+          "짐작"
+        ],
+        "cReason": "'범위가 정해진 문자의 여러 식'은 중1에게 어려운 메타 표현이고 '차례'는 임의 낱말이다. 구체적인 범위와 식을 넣고 방법의 한계를 드러내는 '짐작'을 가렸다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=-\\frac{1}{2}$, $x^2=\\frac{1}{4}$, $\\frac{1}{x}=-2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 것은 $\\frac{1}{x}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 수 하나를 넣은 결과는 짐작일 뿐이어서 범위 안의 다른 수에서도 같은지 확인해야 함(같은 취지 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "수 대입으로 크기 순서 짐작",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1179,
+        "part": "m1plus",
+        "sourceFingerprint": "0df903032fb196baf3ff6688d45dc637898fe92f05a90f5698bb967cd7aec4f5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1179
+        },
+        "directReview": null,
+        "cMarkedSentence": "$-1<x<0$처럼 $x$의 범위가 주어졌을 때 $x$, $x^2$, $\\frac{1}{x}$의 크기를 비교하려면 그 범위에 있는 수 하나를 {대입}해 크기 순서를 {짐작}할 수 있다. 이것만으로는 확실하지 않으므로 범위 전체에서 맞는지 따로 확인한다.",
+        "cSlotAnswers": [
+          "대입",
+          "짐작"
+        ],
+        "cStudentSentence": "$-1<x<0$처럼 $x$의 범위가 주어졌을 때 $x$, $x^2$, $\\frac{1}{x}$의 크기를 비교하려면 그 범위에 있는 수 하나를 □해 크기 순서를 □할 수 있다. 이것만으로는 확실하지 않으므로 범위 전체에서 맞는지 따로 확인한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "짐작",
+            "equivalentAnswers": [
+              "짐작",
+              "예상",
+              "추측"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "짐작",
+            "accept": [
+              "예상",
+              "추측"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "짐작",
+            "예상",
+            "추측"
+          ]
+        ],
+        "proposalFingerprint": "5a04180eb8e2ecab97e6ba12b26a687b5ec232f2423882b8d101a50349bf59eb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc22",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "대입할 때 숫자를 이어 붙이는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "수와 문자가 붙어 있는 것은 {곱}을 뜻한다. 대입은 문자 자리를 주어진 수로 바꾸는 것이지 숫자를 {이어 붙이는} 것이 아니다.",
+        "example": {
+          "prompt": "$x=3$일 때 $4x$를 $43$이라 하면 안 되는 까닭은?",
+          "answer": "$4x$는 $4\\times x$여서"
+        },
+        "studentC": "수와 문자가 붙어 있는 것은 □을 뜻한다. 대입은 문자 자리를 주어진 수로 바꾸는 것이지 숫자를 □ 것이 아니다.",
+        "answers": [
+          "곱",
+          "이어 붙이는"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$x=3$일 때 $4x$의 값을 $43$이라고 답한 친구가 있다. 이 답이 틀린 까닭을 $4x$의 뜻을 써서 설명하고, 바른 값을 구하시오.",
+        "bAnswer": "$4x$는 $4\\times x$, 곧 $4$와 $x$의 곱이다. 대입은 $x$ 자리를 $3$으로 바꾸는 것이지 숫자를 이어 붙이는 것이 아니므로 $4\\times3=12$이다.",
+        "bGoal": "수와 문자가 붙은 식이 곱임을 근거로 잘못된 대입을 고친다.",
+        "bReason": "제목은 잘못의 이름만 말해 무엇을 쓸지 알 수 없어, 실제 오답 상황을 주고 까닭과 바른 값을 요구했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$4x$처럼 수와 문자가 붙어 있는 것은 두 수의 {곱}을 뜻한다. 그래서 $x=3$을 대입한 $4x$는 숫자를 이어 붙인 $43$이 아니라 $4\\times3$이다.",
+        "cAnswers": [
+          "곱"
+        ],
+        "cReason": "둘째 빈칸 '이어 붙이는'은 길고 임의적인 표현이라 학생이 그대로 쓰기 어렵다. 그 말은 문장에 드러내고 핵심 개념인 '곱'만 가렸다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4x$는 $4\\times x$($4$와 $x$의 곱)이지 숫자를 이어 붙인 것이 아님"
+            ]
+          },
+          {
+            "anyOf": [
+              "바른 값 $4\\times3=12$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "reason",
+        "roleReason": "4x는 곱이라 43이 아님",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1180,
+        "part": "m1plus",
+        "sourceFingerprint": "93ca045d37d415bd46f0343008787301fc28133a1ebe3b75850eb329b00f0e07",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1180
+        },
+        "directReview": null,
+        "cMarkedSentence": "$4x$처럼 수와 문자가 붙어 있는 것은 두 수의 {곱}을 뜻한다. 그래서 $x=3$을 대입한 $4x$는 숫자를 이어 붙인 $43$이 아니라 $4\\times3$이다.",
+        "cSlotAnswers": [
+          "곱"
+        ],
+        "cStudentSentence": "$4x$처럼 수와 문자가 붙어 있는 것은 두 수의 □을 뜻한다. 그래서 $x=3$을 대입한 $4x$는 숫자를 이어 붙인 $43$이 아니라 $4\\times3$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱",
+              "곱셈"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "곱",
+            "accept": [
+              "곱셈"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱",
+            "곱셈"
+          ]
+        ],
+        "proposalFingerprint": "3b8236affe96ca2b7b45332b6944de171696135c4dc0dd9c4c99e97a1b9bee95"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-01-xc23",
+        "section": "중1::3. 방정식::문자의 사용과 식의 값",
+        "term": "가운데 수가 $n$인 연속하는 세 자연수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "연속하는 세 자연수는 가운데 수를 $n$으로 놓아 {$n-1$}, $n$, {$n+1$}로 나타낸다.",
+        "example": {
+          "prompt": "연속하는 세 짝수 가운데 가장 작은 수가 $2n$이면 가장 큰 수는?",
+          "answer": "$2n+4$"
+        },
+        "studentC": "연속하는 세 자연수는 가운데 수를 $n$으로 놓아 □, $n$, □로 나타낸다.",
+        "answers": [
+          "$n-1$",
+          "$n+1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-01-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "연속하는 세 자연수 가운데 가운데 수를 $n$이라 할 때, 나머지 두 수를 $n$을 사용한 식으로 쓰시오. 또 연속하는 세 짝수 가운데 가장 작은 수가 $2n$일 때 가장 큰 수를 식으로 쓰시오.",
+        "bAnswer": "$n-1$, $n+1$. 짝수는 $2$씩 커지므로 세 짝수는 $2n$, $2n+2$, $2n+4$이고 가장 큰 수는 $2n+4$이다.",
+        "bGoal": "연속하는 수를 한 문자로 나타낸다.",
+        "bReason": "제목에 조건은 있으나 나머지 두 수를 식으로 쓰라는 요구가 없고, 짝수로 바뀌면 간격이 달라지는 점까지 물어야 일반적 방법이 된다.",
+        "cDecision": "keep",
+        "cReason": "가운데 수가 $n$이라는 조건이 문장에 있고 두 빈칸의 자리가 순서로 구별된다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 두 수: $n-1$, $n+1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 큰 짝수: $2n+4$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "application",
+        "roleReason": "연속한 수를 n으로 나타냄",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1181,
+        "part": "m1plus",
+        "sourceFingerprint": "045aed2ac3b52da89773f305f908921931a8adff345a48a3e582a5d4e6e8ca1e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1181
+        },
+        "directReview": null,
+        "cFrozenSentence": "연속하는 세 자연수는 가운데 수를 $n$으로 놓아 □, $n$, □로 나타낸다.",
+        "cFrozenDefinition": "연속하는 세 자연수는 가운데 수를 $n$으로 놓아 {$n-1$}, $n$, {$n+1$}로 나타낸다.",
+        "cFrozenAnswers": [
+          "$n-1$",
+          "$n+1$"
+        ],
+        "cMarkedSentence": "연속하는 세 자연수는 가운데 수를 $n$으로 놓아 {$n-1$}, $n$, {$n+1$}로 나타낸다.",
+        "cSlotAnswers": [
+          "$n-1$",
+          "$n+1$"
+        ],
+        "cStudentSentence": "연속하는 세 자연수는 가운데 수를 $n$으로 놓아 □, $n$, □로 나타낸다.",
+        "cAnswers": [
+          "$n-1$",
+          "$n+1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n-1$",
+            "equivalentAnswers": [
+              "$n-1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$n+1$",
+            "equivalentAnswers": [
+              "$n+1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n-1$"
+          ],
+          [
+            "$n+1$"
+          ]
+        ],
+        "proposalFingerprint": "adeded7e993056b5d9a2f5444a917edb12deb83f591530e139b487ed5e00ef65"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc1",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "뺄셈이 있는 식에서 항 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "식에 뺄셈이 있으면 빼는 수의 {부호를 바꾸어 더하는} 꼴로 고친다. {덧셈}으로 이어진 하나하나가 항이다.",
+        "example": {
+          "prompt": "$x-3$에서 $3$이 아니라 $-3$이 항인 까닭은?",
+          "answer": "$x+(-3)$으로 고쳐지므로"
+        },
+        "studentC": "식에 뺄셈이 있으면 빼는 수의 □ 꼴로 고친다. □으로 이어진 하나하나가 항이다.",
+        "answers": [
+          "부호를 바꾸어 더하는",
+          "덧셈"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$x-3$의 항을 $x$와 $3$이라고 답하면 틀린다. $x-3$을 덧셈으로 이어진 식으로 고쳐 쓰고, 이 식의 항을 바르게 쓰시오.",
+        "bAnswer": "$x-3=x+(-3)$이므로 항은 $x$, $-3$이다. 뺄셈은 빼는 수의 부호를 바꾸어 더하는 꼴로 고친 뒤, 덧셈으로 이어진 하나하나를 항으로 본다.",
+        "bGoal": "뺄셈을 덧셈으로 고쳐 부호까지 포함한 항을 찾는다.",
+        "bReason": "제목은 방법의 이름일 뿐이라, 흔한 오답을 보여 주고 덧셈으로 고치는 과정을 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "식에 뺄셈이 있으면 빼는 수의 {부호}를 바꾸어 더하는 꼴로 고친다. 이렇게 {덧셈}으로 이어진 하나하나가 항이다.",
+        "cAnswers": [
+          "부호",
+          "덧셈"
+        ],
+        "cReason": "첫 빈칸 '부호를 바꾸어 더하는'은 긴 구절이라 그대로 쓰기 어렵다. 한 낱말 '부호'로 줄이고 나머지는 문장에 드러냈다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+(-3)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "항: $x$, $-3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "뺄셈을 덧셈으로 고쳐 항 찾기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1182,
+        "part": "m1plus",
+        "sourceFingerprint": "76f1d3be9edfeddbbb3a1fdab11cc7078d2bd538d72008f441f54b8d81a82656",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1182
+        },
+        "directReview": null,
+        "cMarkedSentence": "식에 뺄셈이 있으면 빼는 수의 {부호}를 바꾸어 더하는 꼴로 고친다. 이렇게 {덧셈}으로 이어진 하나하나가 항이다.",
+        "cSlotAnswers": [
+          "부호",
+          "덧셈"
+        ],
+        "cStudentSentence": "식에 뺄셈이 있으면 빼는 수의 □를 바꾸어 더하는 꼴로 고친다. 이렇게 □으로 이어진 하나하나가 항이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "덧셈",
+            "equivalentAnswers": [
+              "덧셈"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부호"
+          ],
+          [
+            "덧셈"
+          ]
+        ],
+        "proposalFingerprint": "db004e96b33e61b4f71d225723814435a37b5728f2fbe41c235210d697a5c85a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc2",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "항의 부호",
+        "kind": "성질",
+        "level": "하",
+        "definition": "항은 앞에 붙은 부호까지 {포함}해서 쓴다.",
+        "example": {
+          "prompt": "$a-4b$에서 $b$가 있는 항은?",
+          "answer": "$-4b$"
+        },
+        "studentC": "항은 앞에 붙은 부호까지 □해서 쓴다.",
+        "answers": [
+          "포함"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "항을 부호까지 포함해 쓴다.",
+        "bReason": "바로 앞 '뺄셈이 있는 식에서 항 찾기'의 B가 뺄셈을 덧셈으로 고쳐 부호까지 포함한 항을 까닭과 함께 쓰게 하므로, 식만 $a-4b$로 바꾼 같은 회상이 된다.",
+        "cDecision": "keep",
+        "cReason": "한 문장에 빈칸 하나로 규칙을 확인하는 C는 짧은 점검으로 쓸모가 있다.",
+        "exclusionReason": "B 제외: 백지 쓰기 형식에서 m1-03-02-xc1의 B(뺄셈식의 항을 부호 포함으로 찾기)와 같은 내용을 식만 바꿔 반복한다. 제안한 질문은 xc1을 쓰지 않을 때의 대체용이다. C는 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "definition",
+        "roleReason": "항은 부호까지 포함",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1183,
+        "part": "m1plus",
+        "sourceFingerprint": "a85007970c4286b13df0557676a961dfc9bbb415afbe55423e63bcc08e83b38f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1183
+        },
+        "directReview": null,
+        "cFrozenSentence": "항은 앞에 붙은 부호까지 □해서 쓴다.",
+        "cFrozenDefinition": "항은 앞에 붙은 부호까지 {포함}해서 쓴다.",
+        "cFrozenAnswers": [
+          "포함"
+        ],
+        "cMarkedSentence": "항은 앞에 붙은 부호까지 {포함}해서 쓴다.",
+        "cSlotAnswers": [
+          "포함"
+        ],
+        "cStudentSentence": "항은 앞에 붙은 부호까지 □해서 쓴다.",
+        "cAnswers": [
+          "포함"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "포함",
+            "equivalentAnswers": [
+              "포함"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "포함"
+          ]
+        ],
+        "proposalFingerprint": "4789d6b21e70a33f478f14d662b87d72e4d8853416c6a6b8e56c6911c3e9f740"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc3",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "$x$와 $-x$의 계수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$x$의 계수는 {$1$}, $-x$의 계수는 {$-1$}이다. $1$이 생략되어 있을 뿐이다.",
+        "example": {
+          "prompt": "$-y+2$에서 $y$의 계수는?",
+          "answer": "$-1$"
+        },
+        "studentC": "$x$의 계수는 □, $-x$의 계수는 □이다. $1$이 생략되어 있을 뿐이다.",
+        "answers": [
+          "$1$",
+          "$-1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "항 $x$에서 $x$의 계수와 항 $-x$에서 $x$의 계수를 각각 쓰고, 수가 보이지 않는데도 계수를 말할 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$1$, $-1$. $x=1\\times x$, $-x=(-1)\\times x$에서 $1$이 생략되어 있기 때문이다.",
+        "bGoal": "생략된 $1$을 되살려 $x$, $-x$의 계수를 읽는다.",
+        "bReason": "제목에 대상은 있으나 값만 쓰면 외우기에 그치므로 $1$이 생략되었다는 까닭까지 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "두 값을 나란히 비교하는 짧은 빈칸이고 뒤 문장이 까닭을 보충한다.",
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$의 계수 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-x$의 계수 $-1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: $x=1\\times x$, $-x=(-1)\\times x$에서 $1$이 생략됨"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "reason",
+        "roleReason": "생략된 1로 계수 읽기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1184,
+        "part": "m1plus",
+        "sourceFingerprint": "7772bcf23fba88c24b3585b10416bbb20f227b26020bab6c215dc56291ec0c4a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1184
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x$의 계수는 □, $-x$의 계수는 □이다. $1$이 생략되어 있을 뿐이다.",
+        "cFrozenDefinition": "$x$의 계수는 {$1$}, $-x$의 계수는 {$-1$}이다. $1$이 생략되어 있을 뿐이다.",
+        "cFrozenAnswers": [
+          "$1$",
+          "$-1$"
+        ],
+        "cMarkedSentence": "$x$의 계수는 {$1$}, $-x$의 계수는 {$-1$}이다. $1$이 생략되어 있을 뿐이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "$-1$"
+        ],
+        "cStudentSentence": "$x$의 계수는 □, $-x$의 계수는 □이다. $1$이 생략되어 있을 뿐이다.",
+        "cAnswers": [
+          "$1$",
+          "$-1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-1$",
+            "equivalentAnswers": [
+              "$-1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$-1$"
+          ]
+        ],
+        "proposalFingerprint": "e5bc54a2ada81a8a0fcf1af4fd7d2e3a1db3a31619fe8e53a23fb3224e61cfa2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc4",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "분수 꼴 항의 계수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "문자가 분자에 있는 분수 꼴의 항은 {수와 문자의 곱}으로 고쳐 쓰면 문자 앞의 {분수}가 계수이다.",
+        "example": {
+          "prompt": "$\\frac{x}{3}$에서 $x$의 계수가 $\\frac{1}{3}$인 까닭은?",
+          "answer": "$\\frac{1}{3}\\times x$여서"
+        },
+        "studentC": "문자가 분자에 있는 분수 꼴의 항은 □으로 고쳐 쓰면 문자 앞의 □가 계수이다.",
+        "answers": [
+          "수와 문자의 곱",
+          "분수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{x}{3}$에서 $x$의 계수를 구하려고 한다. $\\frac{x}{3}$을 수와 $x$의 곱으로 고쳐 쓰고, $x$의 계수를 쓰시오.",
+        "bAnswer": "$\\frac{x}{3}=\\frac{1}{3}\\times x$이므로 $x$의 계수는 $\\frac{1}{3}$이다.",
+        "bGoal": "분수 꼴의 항을 수와 문자의 곱으로 고쳐 계수를 찾는다.",
+        "bReason": "'분수 꼴 항'이 어떤 모양인지 제목만으로는 알 수 없어 $\\frac{x}{3}$을 직접 보이고 고쳐 쓰는 과정을 요구했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{x}{3}$처럼 문자가 분자에 있는 분수 꼴의 항은 $\\frac{1}{3}\\times x$와 같이 수와 문자의 {곱}으로 고쳐 쓰면, 문자 앞에 있는 분수가 그 문자의 {계수}이다.",
+        "cAnswers": [
+          "곱",
+          "계수"
+        ],
+        "cReason": "뒤의 '곱해진'에 첫 빈칸의 답 '곱'이 드러나 그 표현만 고침",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{x}{3}=\\frac{1}{3}\\times x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "계수 $\\frac{1}{3}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "곱으로 고쳐 분수 계수 찾기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1185,
+        "part": "m1plus",
+        "sourceFingerprint": "b17520a2107f3b48e17e70c42991d67eea3b381d01f273369902d06281a3ed88",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1185
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\frac{x}{3}$처럼 문자가 분자에 있는 분수 꼴의 항은 $\\frac{1}{3}\\times x$와 같이 수와 문자의 {곱}으로 고쳐 쓰면, 문자 앞에 있는 분수가 그 문자의 {계수}이다.",
+        "cSlotAnswers": [
+          "곱",
+          "계수"
+        ],
+        "cStudentSentence": "$\\frac{x}{3}$처럼 문자가 분자에 있는 분수 꼴의 항은 $\\frac{1}{3}\\times x$와 같이 수와 문자의 □으로 고쳐 쓰면, 문자 앞에 있는 분수가 그 문자의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "계수",
+            "equivalentAnswers": [
+              "계수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "계수"
+          ]
+        ],
+        "proposalFingerprint": "c85abbe4d00b6462d21c5dc2abe84c8a020ab6cf3165512e0a2fd45590da2f6f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc5",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "상수항 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "식에서 문자가 붙지 않은 항을 찾으면 그것이 {상수항}이고, 부호까지 {포함}한다.",
+        "example": {
+          "prompt": "$3x^2-x-8$의 상수항은?",
+          "answer": "$-8$"
+        },
+        "studentC": "식에서 문자가 붙지 않은 항을 찾으면 그것이 □이고, 부호까지 □한다.",
+        "answers": [
+          "상수항",
+          "포함"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "식에서 상수항을 부호까지 포함해 찾는다.",
+        "bReason": "'상수항'의 B가 이미 뜻을 쓰고 식에서 찾게 하며, 부호를 포함하는 까닭은 '뺄셈이 있는 식에서 항 찾기'의 B가 다룬다. 따로 쓰게 할 새 내용이 없다.",
+        "cDecision": "keep",
+        "cReason": "용어와 부호 포함을 짧게 확인하는 빈칸이라 C로는 쓸모가 있다.",
+        "exclusionReason": "B 제외: 백지 쓰기 형식에서 m1-03-02-c2(상수항의 뜻과 찾기)의 B와 식만 다른 같은 회상이다. 제안한 질문은 c2를 뜻만 묻는 형태로 줄일 때 대신 쓸 수 있다. C는 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "definition",
+        "roleReason": "문자 없는 항이 상수항",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1186,
+        "part": "m1plus",
+        "sourceFingerprint": "d5d7e69c23e54fe8f09543f142c61fe44a3fd1a1e58a8891c88fca5ecf223db2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1186
+        },
+        "directReview": null,
+        "cFrozenSentence": "식에서 문자가 붙지 않은 항을 찾으면 그것이 □이고, 부호까지 □한다.",
+        "cFrozenDefinition": "식에서 문자가 붙지 않은 항을 찾으면 그것이 {상수항}이고, 부호까지 {포함}한다.",
+        "cFrozenAnswers": [
+          "상수항",
+          "포함"
+        ],
+        "cMarkedSentence": "식에서 문자가 붙지 않은 항을 찾으면 그것이 {상수항}이고, 부호까지 {포함}한다.",
+        "cSlotAnswers": [
+          "상수항",
+          "포함"
+        ],
+        "cStudentSentence": "식에서 문자가 붙지 않은 항을 찾으면 그것이 □이고, 부호까지 □한다.",
+        "cAnswers": [
+          "상수항",
+          "포함"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상수항",
+            "equivalentAnswers": [
+              "상수항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "포함",
+            "equivalentAnswers": [
+              "포함"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상수항"
+          ],
+          [
+            "포함"
+          ]
+        ],
+        "proposalFingerprint": "0b3885296d7d9cc66d365ee76ec054996527941cc4295f4d5f0c030f340b53b8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc6",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "일차식 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "더 간단히 할 수 없게 정리한 식에서 차수가 가장 높은 항이 {일차}이면 그 식은 일차식이다.",
+        "example": {
+          "prompt": "$4-x$는 일차식인가?",
+          "answer": "일차식이다"
+        },
+        "studentC": "더 간단히 할 수 없게 정리한 식에서 차수가 가장 높은 항이 □이면 그 식은 일차식이다.",
+        "answers": [
+          "일차"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$4-x$가 일차식인지 판단하려고 한다. 이 식에서 차수가 가장 높은 항과 그 차수를 쓰고, 일차식인지 까닭과 함께 답하시오.",
+        "bAnswer": "차수가 가장 높은 항은 $-x$이고 그 차수는 $1$이다. 정리한 식에서 차수가 가장 높은 항이 일차이므로 일차식이다.",
+        "bGoal": "차수가 가장 높은 항을 찾아 일차식인지 판단한다.",
+        "bReason": "'일차식'의 정의 질문과 겹치지 않게, 문자 항이 뒤에 놓인 식에서 판단 절차를 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "더 간단히 할 수 없게 정리한 식에서 차수가 가장 높은 항의 차수가 {$1$}이면 그 식은 일차식이다.",
+        "cAnswers": [
+          "$1$"
+        ],
+        "cReason": "원문의 답 '일차'는 문장 끝의 '일차식'에서 그대로 베낄 수 있어, 차수의 값을 묻는 빈칸으로 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "차수가 가장 높은 항은 $-x$, 그 차수는 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "일차식임: 차수가 가장 높은 항의 차수가 $1$이기 때문"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "최고차항 차수로 일차식 판별",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1187,
+        "part": "m1plus",
+        "sourceFingerprint": "37a4971a8ddf3b0c9676428850c616225ed79b7f4705aaa380b6521a92fec261",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1187
+        },
+        "directReview": null,
+        "cMarkedSentence": "더 간단히 할 수 없게 정리한 식에서 차수가 가장 높은 항의 차수가 {$1$}이면 그 식은 일차식이다.",
+        "cSlotAnswers": [
+          "$1$"
+        ],
+        "cStudentSentence": "더 간단히 할 수 없게 정리한 식에서 차수가 가장 높은 항의 차수가 □이면 그 식은 일차식이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "ab2025d8d44a4c902f896bfd3f36b688c793656e3927fdd54e6196c7e795dac7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc7",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "항의 개수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "다항식의 항의 개수는 덧셈으로 이어진 {덩어리}의 수와 같다.",
+        "example": {
+          "prompt": "$x^2-2x+1$의 항은 몇 개?",
+          "answer": "$3$개"
+        },
+        "studentC": "다항식의 항의 개수는 덧셈으로 이어진 □의 수와 같다.",
+        "answers": [
+          "덩어리"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2-2x+1$의 항의 개수를 세려고 한다. 이 식을 덧셈으로 이어진 식으로 고쳐 쓰고, 항을 모두 쓴 뒤 몇 개인지 답하시오.",
+        "bAnswer": "$x^2+(-2x)+1$이므로 항은 $x^2$, $-2x$, $1$의 $3$개이다.",
+        "bGoal": "식을 덧셈으로 고쳐 항의 개수를 센다.",
+        "bReason": "제목만으로는 어떤 식의 항을 세는지 없어, 뺄셈이 섞인 식을 주고 세는 과정을 쓰게 했다.",
+        "cDecision": "exclude",
+        "cReason": "빈칸 '덩어리'는 수학 용어가 아닌 임의의 비유라 학생이 떠올릴 근거가 없다. 다른 낱말을 가리면 '항'의 정의 빈칸과 같은 문장이 된다.",
+        "exclusionReason": "C 제외: 답 '덩어리'가 비유 낱말이라 채점할 수 없고, 고쳐 쓰면 m1-03-02-c1(항의 정의)의 C와 같아진다. B는 항을 세는 과정을 쓰게 하는 질문으로 살린다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2+(-2x)+1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "항: $x^2$, $-2x$, $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "procedure",
+        "roleReason": "덧셈 덩어리로 항 세기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1188,
+        "part": "m1plus",
+        "sourceFingerprint": "f948faf8223c9ba42da050f6d4d45de0ab45a79a94ca75342bd2f68c5ec81366",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1188
+        },
+        "directReview": null,
+        "proposalFingerprint": "3477eab79a252b6ec5bcf1eddd48cbcb7d1e1db7a002d25d988303a1b4140144"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc8",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "단항식과 다항식의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "단항식은 항이 {하나}인 다항식이므로, 모든 단항식은 {다항식}이다.",
+        "example": {
+          "prompt": "$7$은 단항식인가?",
+          "answer": "단항식이다"
+        },
+        "studentC": "단항식은 항이 □인 다항식이므로, 모든 단항식은 □이다.",
+        "answers": [
+          "하나",
+          "다항식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "'모든 단항식은 다항식이다'라는 말이 옳은지 까닭과 함께 쓰시오. 또 수 $7$은 단항식인지 답하시오.",
+        "bAnswer": "옳다. 단항식은 항이 하나인 다항식이기 때문이다. $7$은 항이 하나뿐이므로 단항식이다.",
+        "bGoal": "단항식이 다항식에 포함되는 관계를 설명한다.",
+        "bReason": "제목은 두 개념의 관계를 말하라는 것인데 어떤 관계(포함)를 묻는지 없어, 판단할 문장을 주어 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "단항식은 항이 {하나}뿐인 식이므로, 모든 단항식은 {다항식}에 속한다.",
+        "cAnswers": [
+          "하나",
+          "다항식"
+        ],
+        "cReason": "원문은 둘째 빈칸의 답 '다항식'이 앞의 '다항식이므로'에 그대로 나와 베낄 수 있다. 앞부분에서 그 낱말을 뺐다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "옳음"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 단항식은 항이 하나인 다항식임"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$은 단항식임"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "definition",
+        "roleReason": "단항식은 항 하나인 다항식",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1189,
+        "part": "m1plus",
+        "sourceFingerprint": "606b9ecf7bd6ae341c85e5b4b417245875a1ac5deffd3dcc4a6e787765faaa45",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1189
+        },
+        "directReview": null,
+        "cMarkedSentence": "단항식은 항이 {하나}뿐인 식이므로, 모든 단항식은 {다항식}에 속한다.",
+        "cSlotAnswers": [
+          "하나",
+          "다항식"
+        ],
+        "cStudentSentence": "단항식은 항이 □뿐인 식이므로, 모든 단항식은 □에 속한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "하나",
+            "equivalentAnswers": [
+              "하나",
+              "한 개",
+              "$1$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "다항식",
+            "equivalentAnswers": [
+              "다항식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "하나",
+            "accept": [
+              "한 개",
+              "$1$개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "하나",
+            "한 개",
+            "$1$개"
+          ],
+          [
+            "다항식"
+          ]
+        ],
+        "proposalFingerprint": "3568f6470ec4f31ae71c977a10daa64a85580b5877b74e576685258edd0ece9a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc9",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "한 문자에 대한 차수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "'$x$에 대한 차수'를 물으면 {$x$}가 곱해진 횟수만 센다.",
+        "example": {
+          "prompt": "$3x^2y$에서 $x$에 대한 차수는?",
+          "answer": "$2$"
+        },
+        "studentC": "'$x$에 대한 차수'를 물으면 □가 곱해진 횟수만 센다.",
+        "answers": [
+          "$x$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$3x^2y$에서 '$x$에 대한 차수'를 구하려고 한다. 무엇이 곱해진 횟수를 세는지 쓰고, $x$에 대한 차수와 $y$에 대한 차수를 각각 구하시오.",
+        "bAnswer": "$x$에 대한 차수는 $x$가 곱해진 횟수만 센다. $x$에 대한 차수는 $2$, $y$에 대한 차수는 $1$이다.",
+        "bGoal": "문자가 여럿인 항에서 한 문자에 대한 차수를 구한다.",
+        "bReason": "'한 문자에 대한 차수'는 문자가 둘 이상인 항이 있어야 뜻이 드러나므로 $3x^2y$를 주고 두 문자에 대해 각각 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "'$x$에 대한 차수'는 그 항에서 $x$가 곱해진 횟수만 센 것이고, $x$가 아닌 다른 {문자}가 곱해진 횟수는 세지 않는다.",
+        "cAnswers": [
+          "문자"
+        ],
+        "cReason": "원문의 답 '$x$'는 같은 문장의 '$x$에 대한 차수'에서 그대로 베낄 수 있다. 다른 문자는 세지 않는다는 점을 묻도록 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$가 곱해진 횟수만 셈"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$에 대한 차수 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$에 대한 차수 $1$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "definition",
+        "roleReason": "지정한 문자의 곱한 횟수만",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1190,
+        "part": "m1plus",
+        "sourceFingerprint": "737c5c3080e5130a0c0ad98337a9a8519aeadc67e562bc46354c9ef1c5e6981b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1190
+        },
+        "directReview": null,
+        "cMarkedSentence": "'$x$에 대한 차수'는 그 항에서 $x$가 곱해진 횟수만 센 것이고, $x$가 아닌 다른 {문자}가 곱해진 횟수는 세지 않는다.",
+        "cSlotAnswers": [
+          "문자"
+        ],
+        "cStudentSentence": "'$x$에 대한 차수'는 그 항에서 $x$가 곱해진 횟수만 센 것이고, $x$가 아닌 다른 □가 곱해진 횟수는 세지 않는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "문자",
+            "equivalentAnswers": [
+              "문자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "문자"
+          ]
+        ],
+        "proposalFingerprint": "328b76a8c6330eca4111bfc55210800e6947a31b056ba7326f79172f34d97e5a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-02-xc10",
+        "section": "중1::3. 방정식::일차식의 뜻Ⅰ",
+        "term": "계수와 차수의 구별",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$5x^3$에서 $5$는 {계수}, $3$은 {차수}이다.",
+        "example": {
+          "prompt": "$-2x^2$의 계수와 차수는?",
+          "answer": "계수 $-2$, 차수 $2$"
+        },
+        "studentC": "$5x^3$에서 $5$는 □, $3$은 □이다.",
+        "answers": [
+          "계수",
+          "차수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$-2x^2$에서 $x^2$의 계수와 이 항의 차수를 각각 쓰고, 계수와 차수가 각각 무엇을 나타내는 수인지 구별하여 쓰시오.",
+        "bAnswer": "계수는 $-2$, 차수는 $2$이다. 계수는 문자 앞에 곱해진 수이고, 차수는 문자가 곱해진 횟수이다.",
+        "bGoal": "한 항에서 계수와 차수를 구별한다.",
+        "bReason": "제목은 구별하라는 뜻만 있어, 두 수가 헷갈리기 쉬운 항을 주고 값과 뜻을 함께 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "한 항의 두 수에 이름을 붙이는 짧은 비교 빈칸으로 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 5,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "계수 $-2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "차수 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "구별: 계수는 문자 앞에 곱해진 수, 차수는 문자가 곱해진 횟수"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-003",
+        "learningRole": "naming",
+        "roleReason": "앞의 수는 계수, 지수는 차수",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1191,
+        "part": "m1plus",
+        "sourceFingerprint": "2dceabba203e50db25f14c0963be42a8b10371e5f45843cce040a19b2c311443",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1191
+        },
+        "directReview": null,
+        "cFrozenSentence": "$5x^3$에서 $5$는 □, $3$은 □이다.",
+        "cFrozenDefinition": "$5x^3$에서 $5$는 {계수}, $3$은 {차수}이다.",
+        "cFrozenAnswers": [
+          "계수",
+          "차수"
+        ],
+        "cMarkedSentence": "$5x^3$에서 $5$는 {계수}, $3$은 {차수}이다.",
+        "cSlotAnswers": [
+          "계수",
+          "차수"
+        ],
+        "cStudentSentence": "$5x^3$에서 $5$는 □, $3$은 □이다.",
+        "cAnswers": [
+          "계수",
+          "차수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "계수",
+            "equivalentAnswers": [
+              "계수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "차수",
+            "equivalentAnswers": [
+              "차수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "계수"
+          ],
+          [
+            "차수"
+          ]
+        ],
+        "proposalFingerprint": "8ec3cab5cc02cf5cf8e1821bb3931d8b9cd864ce8e4c347477ae7209d20664d7"
+      }
+    }
+  ]
+}

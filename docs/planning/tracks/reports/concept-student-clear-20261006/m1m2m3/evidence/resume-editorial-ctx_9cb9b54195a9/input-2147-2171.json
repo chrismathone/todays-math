@@ -1,0 +1,2490 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:51:51.181Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc3",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수점 아래에서 {되풀이}가 시작되는 자리부터 {가장 짧게} 반복되는 숫자 묶음을 찾는다.",
+        "example": {
+          "prompt": "$1.3636\\cdots$의 순환마디는?",
+          "answer": "$36$"
+        },
+        "studentC": "소수점 아래에서 □가 시작되는 자리부터 □ 반복되는 숫자 묶음을 찾는다.",
+        "answers": [
+          "되풀이",
+          "가장 짧게"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.5121212\\cdots$의 순환마디를 찾으려고 한다. 어느 자리부터 어떤 숫자 묶음을 찾아야 하는지 설명하고, 순환마디를 쓰시오.",
+        "bAnswer": "소수점 아래에서 되풀이가 처음 시작되는 자리(둘째 자리)부터 가장 짧게 반복되는 숫자 묶음을 찾는다. 순환마디는 $12$이다.",
+        "bGoal": "되풀이가 시작되는 자리부터 순환마디 찾기",
+        "bReason": "되풀이되지 않는 앞자리가 있는 예로 찾는 기준을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "되풀이가 처음 시작되는 자리부터 찾는다",
+              "소수점 아래 둘째 자리부터 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 짧게 반복되는 숫자 묶음"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "순환소수의 {순환마디}를 찾으려면 소수점 아래에서 되풀이가 처음 시작되는 자리부터 가장 {짧게} 반복되는 숫자 묶음을 찾는다.",
+        "cAnswers": [
+          "순환마디",
+          "짧게"
+        ],
+        "cReason": "문장에 무엇을 찾는 방법인지가 없어 순환마디를 드러냄.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "순환마디 찾는 기준",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2147,
+        "part": "m2plus",
+        "sourceFingerprint": "eeb49279e08b5319e508093b912d250fc5a9e1a85d750bea55c4486c308f103e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2147
+        },
+        "directReview": null,
+        "cMarkedSentence": "순환소수의 {순환마디}를 찾으려면 소수점 아래에서 되풀이가 처음 시작되는 자리부터 가장 {짧게} 반복되는 숫자 묶음을 찾는다.",
+        "cSlotAnswers": [
+          "순환마디",
+          "짧게"
+        ],
+        "cStudentSentence": "순환소수의 □를 찾으려면 소수점 아래에서 되풀이가 처음 시작되는 자리부터 가장 □ 반복되는 숫자 묶음을 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "순환마디",
+            "equivalentAnswers": [
+              "순환마디"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "짧게",
+            "equivalentAnswers": [
+              "짧게"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "순환마디"
+          ],
+          [
+            "짧게"
+          ]
+        ],
+        "proposalFingerprint": "25549699ac5dce8e76ce0fe68e866d7a3faf93c570695e794919092e97d44b32"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc4",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "나눗셈에서 생기는 순환",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분자를 분모로 나누다가 같은 {나머지}가 다시 나오면 그 뒤로 몫의 숫자가 {되풀이}된다.",
+        "example": {
+          "prompt": "$\\frac{1}{3}$을 소수로 고치면?",
+          "answer": "$0.\\dot{3}$"
+        },
+        "studentC": "분자를 분모로 나누다가 같은 □가 다시 나오면 그 뒤로 몫의 숫자가 □된다.",
+        "answers": [
+          "나머지",
+          "되풀이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\div3$을 세로셈으로 계산하면 몫에 $3$이 끝없이 되풀이된다. 계산할 때마다 나오는 나머지에 주목하여 그 까닭을 설명하시오.",
+        "bAnswer": "나눌 때마다 나머지가 계속 $1$로 같게 나오므로, 같은 계산이 반복되어 몫의 숫자 $3$이 되풀이된다.",
+        "bGoal": "같은 나머지가 반복되어 순환이 생기는 까닭 설명하기",
+        "bReason": "구체적인 나눗셈에서 나머지와 몫의 관계를 묻는 까닭 질문으로 바꿈.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지가 계속 $1$이 나온다",
+              "같은 나머지가 다시 나온다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "원인(나머지)과 결과(되풀이)를 하나씩 묻는 분명한 빈칸임.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "나머지 반복과 순환",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2148,
+        "part": "m2plus",
+        "sourceFingerprint": "5b319d7978087325aa255a357a9994d04fc9cb5edfe2b0338e6f6f38833e8fa2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2148
+        },
+        "directReview": null,
+        "cFrozenSentence": "분자를 분모로 나누다가 같은 □가 다시 나오면 그 뒤로 몫의 숫자가 □된다.",
+        "cFrozenDefinition": "분자를 분모로 나누다가 같은 {나머지}가 다시 나오면 그 뒤로 몫의 숫자가 {되풀이}된다.",
+        "cFrozenAnswers": [
+          "나머지",
+          "되풀이"
+        ],
+        "cMarkedSentence": "분자를 분모로 나누다가 같은 {나머지}가 다시 나오면 그 뒤로 몫의 숫자가 {되풀이}된다.",
+        "cSlotAnswers": [
+          "나머지",
+          "되풀이"
+        ],
+        "cStudentSentence": "분자를 분모로 나누다가 같은 □가 다시 나오면 그 뒤로 몫의 숫자가 □된다.",
+        "cAnswers": [
+          "나머지",
+          "되풀이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나머지",
+            "equivalentAnswers": [
+              "나머지"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "되풀이",
+            "equivalentAnswers": [
+              "되풀이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나머지"
+          ],
+          [
+            "되풀이"
+          ]
+        ],
+        "proposalFingerprint": "ee0fca3806b1751b2ad0c336760f2142d2f389a12c58bfc78882e6727c1d8dfc"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc5",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환하지 않는 무한소수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "무한소수 가운데 일정한 숫자 묶음이 {되풀이되지 않는} 것은 {순환소수가 아니다}.",
+        "example": {
+          "prompt": "$\\pi$는 순환소수인가?",
+          "answer": "아니다"
+        },
+        "studentC": "무한소수 가운데 일정한 숫자 묶음이 □ 것은 □.",
+        "answers": [
+          "되풀이되지 않는",
+          "순환소수가 아니다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\pi=3.141592\\cdots$는 무한소수이지만 순환소수가 아니다. 순환소수와 무엇이 다른지 소수점 아래 숫자의 특징으로 설명하시오.",
+        "bAnswer": "소수점 아래 숫자가 끝없이 이어지지만, 일정한 숫자 배열이 되풀이되지 않는다.",
+        "bGoal": "순환하지 않는 무한소수의 특징 말하기",
+        "bReason": "구체적인 수를 주고 순환소수와의 차이를 답하도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일정한 숫자 배열이 되풀이되지 않는다",
+              "순환마디가 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "무한소수 가운데 $\\pi=3.141592\\cdots$처럼 일정한 숫자 묶음이 {되풀이}되지 않는 것은 {순환소수}가 아니며, 순환하지 않는 무한소수라 한다.",
+        "cAnswers": [
+          "되풀이",
+          "순환소수"
+        ],
+        "cReason": "조건과 결론이 모두 긴 구절 빈칸이어서 핵심 낱말만 남김.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "순환하지 않는 무한소수의 뜻",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2149,
+        "part": "m2plus",
+        "sourceFingerprint": "9b4c0c8c616e26a1e5d7c3d391005e34a0fa6a96473cc5ce9fac951975526afd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2149
+        },
+        "directReview": null,
+        "cMarkedSentence": "무한소수 가운데 $\\pi=3.141592\\cdots$처럼 일정한 숫자 묶음이 {되풀이}되지 않는 것은 {순환소수}가 아니며, 순환하지 않는 무한소수라 한다.",
+        "cSlotAnswers": [
+          "되풀이",
+          "순환소수"
+        ],
+        "cStudentSentence": "무한소수 가운데 $\\pi=3.141592\\cdots$처럼 일정한 숫자 묶음이 □되지 않는 것은 □가 아니며, 순환하지 않는 무한소수라 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "되풀이",
+            "equivalentAnswers": [
+              "되풀이",
+              "반복"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "순환소수",
+            "equivalentAnswers": [
+              "순환소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "되풀이",
+            "accept": [
+              "반복"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "되풀이",
+            "반복"
+          ],
+          [
+            "순환소수"
+          ]
+        ],
+        "proposalFingerprint": "1d5236373d5edd0b8e338dab5f555bc8dc8e9de399d18dba1c080be1ab5ef2a0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc6",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환소수의 정수 부분",
+        "kind": "성질",
+        "level": "하",
+        "definition": "순환소수에서 소수점 왼쪽은 {정수 부분}이고, 점은 소수점 {아래} 숫자에만 찍는다.",
+        "example": {
+          "prompt": "$3.222\\cdots$를 점을 찍어 쓰면?",
+          "answer": "$3.\\dot{2}$"
+        },
+        "studentC": "순환소수에서 소수점 왼쪽은 □이고, 점은 소수점 □ 숫자에만 찍는다.",
+        "answers": [
+          "정수 부분",
+          "아래"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$3.2323\\cdots$을 점을 찍어 나타낼 때 $\\dot{3}.\\dot{2}$로 쓰면 안 되는 까닭을 말하고, 바르게 나타내시오.",
+        "bAnswer": "점은 소수점 아래 숫자에만 찍기 때문이다. 소수점 아래에서 되풀이되는 것은 $23$이므로 $3.\\dot{2}\\dot{3}$으로 쓴다.",
+        "bGoal": "정수 부분에는 점을 찍지 않고 소수점 아래 마디로 표기하기",
+        "bReason": "정수 부분과 소수 부분의 숫자가 같아 헷갈리는 예로 규칙을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "점은 소수점 아래 숫자에만 찍는다",
+              "정수 부분에는 점을 찍지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.\\dot{2}\\dot{3}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "소수점 왼쪽과 아래를 대비하는 짧고 분명한 빈칸임.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "정수 부분과 점의 위치",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2150,
+        "part": "m2plus",
+        "sourceFingerprint": "bf3c207fa7d4bfb00af8a43b0dba06e9d8173593fec127db80d7dec6e70e01f8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2150
+        },
+        "directReview": null,
+        "cFrozenSentence": "순환소수에서 소수점 왼쪽은 □이고, 점은 소수점 □ 숫자에만 찍는다.",
+        "cFrozenDefinition": "순환소수에서 소수점 왼쪽은 {정수 부분}이고, 점은 소수점 {아래} 숫자에만 찍는다.",
+        "cFrozenAnswers": [
+          "정수 부분",
+          "아래"
+        ],
+        "cMarkedSentence": "순환소수에서 소수점 왼쪽은 {정수 부분}이고, 점은 소수점 {아래} 숫자에만 찍는다.",
+        "cSlotAnswers": [
+          "정수 부분",
+          "아래"
+        ],
+        "cStudentSentence": "순환소수에서 소수점 왼쪽은 □이고, 점은 소수점 □ 숫자에만 찍는다.",
+        "cAnswers": [
+          "정수 부분",
+          "아래"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수 부분",
+            "equivalentAnswers": [
+              "정수 부분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "아래",
+            "equivalentAnswers": [
+              "아래"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수 부분"
+          ],
+          [
+            "아래"
+          ]
+        ],
+        "proposalFingerprint": "4a5c048e88071186c69b36b80f8d304ca02be9af512364b4dc590130efa22e40"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc7",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디가 시작되는 자리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "순환마디는 소수점 바로 아래에서 시작할 수도 있고 몇 자리 {뒤에서} 시작할 수도 있다.",
+        "example": {
+          "prompt": "$0.1222\\cdots$의 순환마디는?",
+          "answer": "$2$"
+        },
+        "studentC": "순환마디는 소수점 바로 아래에서 시작할 수도 있고 몇 자리 □ 시작할 수도 있다.",
+        "answers": [
+          "뒤에서"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "되풀이가 시작되는 자리부터 찾는다는 xc3의 기준에 들어 있는 사실임.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-xc3(순환마디 찾기)과 m2-01-02-xc10(순환하지 않는 앞자리와 점)에 포함되는 조각 항목임.",
+        "cDecision": "rewrite",
+        "cAfter": "$0.1222\\cdots$에서 소수점 아래 첫째 자리 숫자 $1$은 되풀이되지 않고 순환마디 {$2$}는 {둘째} 자리에서 시작한다. 이처럼 순환마디는 소수점 바로 아래가 아닌 자리에서 시작할 수도 있다.",
+        "cAnswers": [
+          "$2$",
+          "둘째"
+        ],
+        "cReason": "'뒤에서'라는 빈칸만으로는 묻는 내용이 약해 예에서 읽어 내게 함.",
+        "learningRole": "definition",
+        "roleReason": "순환마디의 시작 위치",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2151,
+        "part": "m2plus",
+        "sourceFingerprint": "4f86c8142133aac1d94005c9f13cb47c5573ab064cbce691879c2bdfd79bc2b5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2151
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$0.1222\\cdots$에서 소수점 아래 첫째 자리 숫자 $1$은 되풀이되지 않고 순환마디 {$2$}는 {둘째} 자리에서 시작한다. 이처럼 순환마디는 소수점 바로 아래가 아닌 자리에서 시작할 수도 있다.",
+        "cSlotAnswers": [
+          "$2$",
+          "둘째"
+        ],
+        "cStudentSentence": "$0.1222\\cdots$에서 소수점 아래 첫째 자리 숫자 $1$은 되풀이되지 않고 순환마디 □는 □ 자리에서 시작한다. 이처럼 순환마디는 소수점 바로 아래가 아닌 자리에서 시작할 수도 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "둘째",
+            "equivalentAnswers": [
+              "둘째",
+              "두 번째",
+              "$2$번째"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "둘째",
+            "accept": [
+              "두 번째",
+              "$2$번째"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "둘째",
+            "두 번째",
+            "$2$번째"
+          ]
+        ],
+        "proposalFingerprint": "b6f03908eab7103e66d2bf9bb36919087ab08a7b4ad99b3b30c5d2b0e6200b8a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc8",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환소수의 두 가지 표기",
+        "kind": "정의",
+        "level": "하",
+        "definition": "순환소수는 숫자를 몇 번 풀어 쓴 뒤 {$\\cdots$}을 붙이거나, 순환마디 위에 {점}을 찍어 쓴다.",
+        "example": {
+          "prompt": "$0.\\dot{6}$을 풀어 쓰면?",
+          "answer": "$0.666\\cdots$"
+        },
+        "studentC": "순환소수는 숫자를 몇 번 풀어 쓴 뒤 □을 붙이거나, 순환마디 위에 □을 찍어 쓴다.",
+        "answers": [
+          "$\\cdots$",
+          "점"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "점 표기는 c3에서 다루고 $\\cdots$ 표기는 따로 설명할 내용이 적음.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c3(순환소수의 표현)의 표기 질문과 목표가 중복됨.",
+        "cDecision": "keep",
+        "cReason": "두 표기를 나란히 채우는 짧은 빈칸으로 분명함.",
+        "learningRole": "naming",
+        "roleReason": "두 가지 표기 방법",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2152,
+        "part": "m2plus",
+        "sourceFingerprint": "e54266efb6bf91708ef55f04642619d66fb4e79a98ef7c2e9af1e48bc9853fa8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2152
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "순환소수는 숫자를 몇 번 풀어 쓴 뒤 □을 붙이거나, 순환마디 위에 □을 찍어 쓴다.",
+        "cFrozenDefinition": "순환소수는 숫자를 몇 번 풀어 쓴 뒤 {$\\cdots$}을 붙이거나, 순환마디 위에 {점}을 찍어 쓴다.",
+        "cFrozenAnswers": [
+          "$\\cdots$",
+          "점"
+        ],
+        "cMarkedSentence": "순환소수는 숫자를 몇 번 풀어 쓴 뒤 {$\\cdots$}을 붙이거나, 순환마디 위에 {점}을 찍어 쓴다.",
+        "cSlotAnswers": [
+          "$\\cdots$",
+          "점"
+        ],
+        "cStudentSentence": "순환소수는 숫자를 몇 번 풀어 쓴 뒤 □을 붙이거나, 순환마디 위에 □을 찍어 쓴다.",
+        "cAnswers": [
+          "$\\cdots$",
+          "점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\cdots$",
+            "equivalentAnswers": [
+              "$\\cdots$",
+              "…",
+              "줄임표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "점",
+            "equivalentAnswers": [
+              "점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\cdots$",
+            "accept": [
+              "…",
+              "줄임표"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\cdots$",
+            "…",
+            "줄임표"
+          ],
+          [
+            "점"
+          ]
+        ],
+        "proposalFingerprint": "547086ec49f2fe5954bb9b4652760fd92c40f1383b583e553ff6eaa712803548"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc9",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디가 세 자리 이상일 때의 점",
+        "kind": "방법",
+        "level": "중",
+        "definition": "순환마디가 세 자리 이상이면 마디의 {첫 숫자}와 {끝 숫자} 위에만 점을 찍는다.",
+        "example": {
+          "prompt": "$0.123123\\cdots$을 점을 찍어 쓰면?",
+          "answer": "$0.\\dot{1}2\\dot{3}$"
+        },
+        "studentC": "순환마디가 세 자리 이상이면 마디의 □와 □ 위에만 점을 찍는다.",
+        "answers": [
+          "첫 숫자",
+          "끝 숫자"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c3의 질문이 이미 세 자리 순환마디의 점 표기를 다룸.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c3(순환소수의 표현)과 같은 규칙·같은 유형의 예로 중복됨.",
+        "cDecision": "keep",
+        "cReason": "세 자리 이상이라는 조건이 있고 점의 위치 두 곳을 묻는 분명한 빈칸임.",
+        "learningRole": "procedure",
+        "roleReason": "세 자리 이상 마디의 점 표기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2153,
+        "part": "m2plus",
+        "sourceFingerprint": "8bc211fb02993f6f063df48dc3ca2960012a0c2e9bc38d85c58acabcfd87adab",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2153
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "순환마디가 세 자리 이상이면 마디의 □와 □ 위에만 점을 찍는다.",
+        "cFrozenDefinition": "순환마디가 세 자리 이상이면 마디의 {첫 숫자}와 {끝 숫자} 위에만 점을 찍는다.",
+        "cFrozenAnswers": [
+          "첫 숫자",
+          "끝 숫자"
+        ],
+        "cMarkedSentence": "순환마디가 세 자리 이상이면 마디의 {첫 숫자}와 {끝 숫자} 위에만 점을 찍는다.",
+        "cSlotAnswers": [
+          "첫 숫자",
+          "끝 숫자"
+        ],
+        "cStudentSentence": "순환마디가 세 자리 이상이면 마디의 □와 □ 위에만 점을 찍는다.",
+        "cAnswers": [
+          "첫 숫자",
+          "끝 숫자"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "첫 숫자",
+            "equivalentAnswers": [
+              "첫 숫자",
+              "처음 숫자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "끝 숫자",
+            "equivalentAnswers": [
+              "끝 숫자",
+              "마지막 숫자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "첫 숫자",
+            "accept": [
+              "처음 숫자"
+            ]
+          },
+          {
+            "answer": "끝 숫자",
+            "accept": [
+              "마지막 숫자"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "첫 숫자",
+            "처음 숫자"
+          ],
+          [
+            "끝 숫자",
+            "마지막 숫자"
+          ]
+        ],
+        "proposalFingerprint": "f7f6c0c62b753b6157070cc2bfb6d64c004a5e5f22ebbbf10f481b82d357db95"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc10",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환하지 않는 앞자리와 점",
+        "kind": "방법",
+        "level": "중",
+        "definition": "순환마디 앞에 되풀이되지 않는 숫자가 있으면 그 숫자에는 점을 찍지 {않고}, {순환마디}의 숫자에만 점을 찍는다.",
+        "example": {
+          "prompt": "$0.2353535\\cdots$를 $0.\\dot{2}3\\dot{5}$로 쓰면 안 되는 까닭은?",
+          "answer": "$235$의 되풀이가 되어서"
+        },
+        "studentC": "순환마디 앞에 되풀이되지 않는 숫자가 있으면 그 숫자에는 점을 찍지 □, □의 숫자에만 점을 찍는다.",
+        "answers": [
+          "않고",
+          "순환마디"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.2353535\\cdots$를 점을 찍어 나타낼 때 $0.\\dot{2}3\\dot{5}$로 쓰면 안 되는 까닭을 설명하고, 바르게 나타내시오.",
+        "bAnswer": "$0.\\dot{2}3\\dot{5}$는 $235$가 되풀이되는 $0.235235\\cdots$를 뜻한다. 실제로는 $2$는 되풀이되지 않고 $35$만 되풀이되므로 $0.2\\dot{3}\\dot{5}$로 쓴다.",
+        "bGoal": "되풀이되지 않는 앞자리를 빼고 순환마디에만 점 찍기",
+        "bReason": "잘못된 표기와 대비시켜 점을 찍는 범위의 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.\\dot{2}3\\dot{5}$는 $235$가 되풀이된다는 뜻이다",
+              "$2$는 되풀이되지 않는다",
+              "되풀이되는 것은 $35$뿐이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.2\\dot{3}\\dot{5}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$0.2353535\\cdots$의 $2$처럼 소수점 아래 앞쪽에 {되풀이되지 않는} 숫자가 있으면 그 숫자에는 점을 찍지 않고, 그 뒤의 {순환마디}에만 점을 찍는다.",
+        "cAnswers": [
+          "되풀이되지 않는",
+          "순환마디"
+        ],
+        "cReason": "'않고'가 빈칸이고 '순환마디'가 문장 앞에 그대로 보였음.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "앞자리에 점을 찍지 않는 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2154,
+        "part": "m2plus",
+        "sourceFingerprint": "416a2a622ea88f009b8244a23546c6c78e2264c2f009d82956f16faf1062e6d8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2154
+        },
+        "directReview": null,
+        "cMarkedSentence": "$0.2353535\\cdots$의 $2$처럼 소수점 아래 앞쪽에 {되풀이되지 않는} 숫자가 있으면 그 숫자에는 점을 찍지 않고, 그 뒤의 {순환마디}에만 점을 찍는다.",
+        "cSlotAnswers": [
+          "되풀이되지 않는",
+          "순환마디"
+        ],
+        "cStudentSentence": "$0.2353535\\cdots$의 $2$처럼 소수점 아래 앞쪽에 □ 숫자가 있으면 그 숫자에는 점을 찍지 않고, 그 뒤의 □에만 점을 찍는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "되풀이되지 않는",
+            "equivalentAnswers": [
+              "되풀이되지 않는",
+              "순환하지 않는",
+              "반복되지 않는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "순환마디",
+            "equivalentAnswers": [
+              "순환마디"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "되풀이되지 않는",
+            "accept": [
+              "순환하지 않는",
+              "반복되지 않는"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "되풀이되지 않는",
+            "순환하지 않는",
+            "반복되지 않는"
+          ],
+          [
+            "순환마디"
+          ]
+        ],
+        "proposalFingerprint": "4db0c919f16d96e277090126453a9964d00a61b9cdaa6ea7d517a4f11185204b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc11",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "점 표기가 하나로 정해지는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "순환마디를 되풀이가 처음 시작되는 자리부터 {가장 짧게} 잡기로 약속하므로 한 순환소수의 점 표기는 {하나}로 정해진다.",
+        "example": {
+          "prompt": "$0.\\dot{3}\\dot{3}$과 $0.\\dot{3}$ 가운데 바른 표기와 그 까닭은?",
+          "answer": "$0.\\dot{3}$ — 가장 짧은 마디가 $3$"
+        },
+        "studentC": "순환마디를 되풀이가 처음 시작되는 자리부터 □ 잡기로 약속하므로 한 순환소수의 점 표기는 □로 정해진다.",
+        "answers": [
+          "가장 짧게",
+          "하나"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.333\\cdots$을 $0.\\dot{3}\\dot{3}$으로 쓰지 않고 $0.\\dot{3}$으로만 쓰는 까닭을, 순환마디를 잡는 약속으로 설명하시오.",
+        "bAnswer": "순환마디는 되풀이되는 숫자 배열 가운데 가장 짧은 것으로 잡기로 약속했기 때문이다. $33$도 되풀이되지만 가장 짧은 것은 $3$이므로 표기는 $0.\\dot{3}$ 하나로 정해진다.",
+        "bGoal": "가장 짧은 마디 약속으로 표기가 하나로 정해짐을 설명하기",
+        "bReason": "두 표기를 비교하는 구체적인 예로 약속의 역할을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "순환마디는 가장 짧은 묶음으로 잡는다",
+              "$3$이 $33$보다 짧은 되풀이 묶음이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "약속과 그 결과를 하나씩 묻고 문장만으로 상황이 분명함.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "표기가 하나로 정해지는 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2155,
+        "part": "m2plus",
+        "sourceFingerprint": "b6c7fdb30c612c0fc3d8948f17f1f03f0cd8ead7545d2e540516de9fbce72f7c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2155
+        },
+        "directReview": null,
+        "cFrozenSentence": "순환마디를 되풀이가 처음 시작되는 자리부터 □ 잡기로 약속하므로 한 순환소수의 점 표기는 □로 정해진다.",
+        "cFrozenDefinition": "순환마디를 되풀이가 처음 시작되는 자리부터 {가장 짧게} 잡기로 약속하므로 한 순환소수의 점 표기는 {하나}로 정해진다.",
+        "cFrozenAnswers": [
+          "가장 짧게",
+          "하나"
+        ],
+        "cMarkedSentence": "순환마디를 되풀이가 처음 시작되는 자리부터 {가장 짧게} 잡기로 약속하므로 한 순환소수의 점 표기는 {하나}로 정해진다.",
+        "cSlotAnswers": [
+          "가장 짧게",
+          "하나"
+        ],
+        "cStudentSentence": "순환마디를 되풀이가 처음 시작되는 자리부터 □ 잡기로 약속하므로 한 순환소수의 점 표기는 □로 정해진다.",
+        "cAnswers": [
+          "가장 짧게",
+          "하나"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가장 짧게",
+            "equivalentAnswers": [
+              "가장 짧게"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "하나",
+            "equivalentAnswers": [
+              "하나",
+              "한 가지"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "하나",
+            "accept": [
+              "한 가지"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가장 짧게"
+          ],
+          [
+            "하나",
+            "한 가지"
+          ]
+        ],
+        "proposalFingerprint": "bb041c43087c63dccccdcc087206794c4920a393364ad9df7ca42c47b9f8507c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc12",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "정수가 아닌 유리수의 소수 표현",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정수가 아닌 유리수를 소수로 고치면 {유한소수}가 되거나 {순환소수}가 된다.",
+        "example": {
+          "prompt": "$\\frac{5}{6}$는 어느 쪽인가?",
+          "answer": "순환소수"
+        },
+        "studentC": "정수가 아닌 유리수를 소수로 고치면 □가 되거나 □가 된다.",
+        "answers": [
+          "유한소수",
+          "순환소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "정수가 아닌 유리수를 소수로 고치면 어떤 종류의 소수가 되는가? 될 수 있는 종류를 빠짐없이 쓰시오.",
+        "bAnswer": "유한소수가 되거나 순환소수가 된다. 예: $\\frac{1}{4}=0.25$, $\\frac{5}{6}=0.8333\\cdots$",
+        "bGoal": "정수가 아닌 유리수의 소수 표현 두 가지 말하기",
+        "bReason": "종류를 빠짐없이 답해야 함을 질문에 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유한소수"
+            ]
+          },
+          {
+            "anyOf": [
+              "순환소수"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 종류를 순서 없이 채우는 짧은 빈칸임.",
+        "learningRole": "definition",
+        "roleReason": "유리수의 소수 표현 종류",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2156,
+        "part": "m2plus",
+        "sourceFingerprint": "1246148cf3a0f1c7ada8619b0ab03a1d28d2b963ddb89218909301e4d2552054",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2156
+        },
+        "directReview": null,
+        "cFrozenSentence": "정수가 아닌 유리수를 소수로 고치면 □가 되거나 □가 된다.",
+        "cFrozenDefinition": "정수가 아닌 유리수를 소수로 고치면 {유한소수}가 되거나 {순환소수}가 된다.",
+        "cFrozenAnswers": [
+          "유한소수",
+          "순환소수"
+        ],
+        "cMarkedSentence": "정수가 아닌 유리수를 소수로 고치면 {유한소수}가 되거나 {순환소수}가 된다.",
+        "cSlotAnswers": [
+          "유한소수",
+          "순환소수"
+        ],
+        "cStudentSentence": "정수가 아닌 유리수를 소수로 고치면 □가 되거나 □가 된다.",
+        "cAnswers": [
+          "유한소수",
+          "순환소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "순환소수",
+            "equivalentAnswers": [
+              "순환소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유한소수"
+          ],
+          [
+            "순환소수"
+          ]
+        ],
+        "proposalFingerprint": "dee8bb6709a1e541d62645f5df526899ec7dcc95bfa7dffa019a7e7a90dc86ae"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc13",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "분수의 순환마디 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "순환소수가 되는 분수는 분자를 분모로 나누어 같은 {나머지}가 처음 다시 나올 때까지 계산하면, 그 사이에 나온 몫의 숫자 묶음이 {순환마디}이다.",
+        "example": {
+          "prompt": "$\\frac{4}{11}$의 순환마디는?",
+          "answer": "$36$"
+        },
+        "studentC": "순환소수가 되는 분수는 분자를 분모로 나누어 같은 □가 처음 다시 나올 때까지 계산하면, 그 사이에 나온 몫의 숫자 묶음이 □이다.",
+        "answers": [
+          "나머지",
+          "순환마디"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "분수 $\\frac4{11}$의 순환마디를 구하려고 한다. 나눗셈을 언제까지 하면 되는지 말하고, 순환마디를 구하시오.",
+        "bAnswer": "$4\\div11$을 계산하면 나머지가 $7$, $4$의 차례로 나오므로, 처음의 $4$와 같은 나머지가 다시 나올 때까지 하면 된다. 그 사이의 몫 $3$, $6$이 순환마디 $36$이다.",
+        "bGoal": "나눗셈의 나머지로 분수의 순환마디 구하기",
+        "bReason": "나눗셈을 멈추는 기준과 결과를 구체적인 분수로 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 나머지가 다시 나올 때까지 나눈다",
+              "나머지 $4$가 다시 나오면 멈춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "절차가 문장에 이어져 있고 핵심 낱말 두 개를 묻는 빈칸임.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "나눗셈으로 순환마디 구하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "notationReason": "분수를 직접 목적어로 읽는 조사를 피하고 값4/11·순환마디36은 유지한다.",
+        "sourceIndex": 2157,
+        "part": "m2plus",
+        "sourceFingerprint": "5e2ff0f74407f75e3b5b0cceb0eacb8cb0dec41661254f41d13a530991988cce",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2157
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-01-02-xc13"
+        },
+        "cFrozenSentence": "순환소수가 되는 분수는 분자를 분모로 나누어 같은 □가 처음 다시 나올 때까지 계산하면, 그 사이에 나온 몫의 숫자 묶음이 □이다.",
+        "cFrozenDefinition": "순환소수가 되는 분수는 분자를 분모로 나누어 같은 {나머지}가 처음 다시 나올 때까지 계산하면, 그 사이에 나온 몫의 숫자 묶음이 {순환마디}이다.",
+        "cFrozenAnswers": [
+          "나머지",
+          "순환마디"
+        ],
+        "cMarkedSentence": "순환소수가 되는 분수는 분자를 분모로 나누어 같은 {나머지}가 처음 다시 나올 때까지 계산하면, 그 사이에 나온 몫의 숫자 묶음이 {순환마디}이다.",
+        "cSlotAnswers": [
+          "나머지",
+          "순환마디"
+        ],
+        "cStudentSentence": "순환소수가 되는 분수는 분자를 분모로 나누어 같은 □가 처음 다시 나올 때까지 계산하면, 그 사이에 나온 몫의 숫자 묶음이 □이다.",
+        "cAnswers": [
+          "나머지",
+          "순환마디"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나머지",
+            "equivalentAnswers": [
+              "나머지"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "순환마디",
+            "equivalentAnswers": [
+              "순환마디"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나머지"
+          ],
+          [
+            "순환마디"
+          ]
+        ],
+        "proposalFingerprint": "8a884b24c690f7cf8631dc02f26ea770f7d5f683cce9563617f5c9619ed48182"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc14",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디의 되풀이 간격",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 {$k$자리마다} 다시 나온다.",
+        "example": {
+          "prompt": "$0.\\dot{1}2\\dot{3}$의 소수점 아래 $4$번째 숫자",
+          "answer": "$1$"
+        },
+        "studentC": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 □ 다시 나온다.",
+        "answers": [
+          "$k$자리마다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$k$자리마다 되풀이된다는 사실은 c5의 나머지 방법의 전제임.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c5(소수점 아래 $n$번째 자리의 숫자)의 방법 질문에 포함되어 목표가 중복됨.",
+        "cDecision": "keep",
+        "cReason": "순환 조건과 $k$의 뜻이 문장에 있어 간격을 묻는 빈칸으로 분명함.",
+        "learningRole": "definition",
+        "roleReason": "되풀이 간격",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2158,
+        "part": "m2plus",
+        "sourceFingerprint": "fcb2803cbc2e7958b411470d97bad94cc0a6bea29f6ad477d840868dde9bb2f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2158
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 □ 다시 나온다.",
+        "cFrozenDefinition": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 {$k$자리마다} 다시 나온다.",
+        "cFrozenAnswers": [
+          "$k$자리마다"
+        ],
+        "cMarkedSentence": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 {$k$자리마다} 다시 나온다.",
+        "cSlotAnswers": [
+          "$k$자리마다"
+        ],
+        "cStudentSentence": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 □ 다시 나온다.",
+        "cAnswers": [
+          "$k$자리마다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$k$자리마다",
+            "equivalentAnswers": [
+              "$k$자리마다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$k$자리마다"
+          ]
+        ],
+        "proposalFingerprint": "ce2e4255e773104d8d1f0188ac27da740b419dcee9eddbc04fc757d2e13eb6e1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc15",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디의 숫자 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "점이 찍힌 첫 숫자부터 끝 숫자까지 세면 {순환마디}가 몇 {자리}인지 알 수 있다.",
+        "example": {
+          "prompt": "$2.\\dot{4}06\\dot{1}$의 순환마디는 몇 자리인가?",
+          "answer": "$4$자리"
+        },
+        "studentC": "점이 찍힌 첫 숫자부터 끝 숫자까지 세면 □가 몇 □인지 알 수 있다.",
+        "answers": [
+          "순환마디",
+          "자리"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "점 표기에서 자리 수를 세는 단순 확인으로 설명할 내용이 적음.",
+        "exclusionReason": "B 제외: 설명형에는 단순 수치 확인이며 m2-01-02-c3, m2-01-02-c5의 질문 과정에 포함됨.",
+        "cDecision": "rewrite",
+        "cAfter": "점을 찍어 나타낸 순환소수에서 점이 찍힌 {첫} 숫자부터 점이 찍힌 끝 숫자까지의 숫자 개수가 {순환마디}의 자리 수이다.",
+        "cAnswers": [
+          "첫",
+          "순환마디"
+        ],
+        "cReason": "'자리'라는 빈칸이 막연해 세는 범위와 대상을 묻게 함.",
+        "learningRole": "procedure",
+        "roleReason": "점 표기에서 마디 자리 수 세기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2159,
+        "part": "m2plus",
+        "sourceFingerprint": "34c18045fd2897dccbc70f90f9861049822755d94e49617855b5294e00fb4a85",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2159
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "점을 찍어 나타낸 순환소수에서 점이 찍힌 {첫} 숫자부터 점이 찍힌 끝 숫자까지의 숫자 개수가 {순환마디}의 자리 수이다.",
+        "cSlotAnswers": [
+          "첫",
+          "순환마디"
+        ],
+        "cStudentSentence": "점을 찍어 나타낸 순환소수에서 점이 찍힌 □ 숫자부터 점이 찍힌 끝 숫자까지의 숫자 개수가 □의 자리 수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "첫",
+            "equivalentAnswers": [
+              "첫",
+              "처음"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "순환마디",
+            "equivalentAnswers": [
+              "순환마디"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "첫",
+            "accept": [
+              "처음"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "첫",
+            "처음"
+          ],
+          [
+            "순환마디"
+          ]
+        ],
+        "proposalFingerprint": "785bfbfc6ff7c31a55375a504115a137a135931ce94e3ef7215ea1103b53badc"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc16",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환소수와 무한소수의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "순환소수는 소수점 아래 숫자가 {끝나지 않으므로} 무한소수의 한 갈래이다.",
+        "example": {
+          "prompt": "$0.\\dot{2}$는 유한소수인가?",
+          "answer": "아니다"
+        },
+        "studentC": "순환소수는 소수점 아래 숫자가 □ 무한소수의 한 갈래이다.",
+        "answers": [
+          "끝나지 않으므로"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "순환소수가 무한소수에 든다는 내용은 xc20의 질문에서 함께 다룸.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-xc20(순환소수와 무한소수의 포함 관계)과 목표가 중복됨.",
+        "cDecision": "rewrite",
+        "cAfter": "순환소수는 소수점 아래 숫자가 끝나지 않으므로 {유한소수}가 아니라 {무한소수}의 한 갈래이다.",
+        "cAnswers": [
+          "유한소수",
+          "무한소수"
+        ],
+        "cReason": "'끝나지 않으므로'라는 구절 빈칸 대신 대비되는 두 용어를 묻게 함.",
+        "learningRole": "reason",
+        "roleReason": "순환소수가 무한소수인 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2160,
+        "part": "m2plus",
+        "sourceFingerprint": "e0ea1919c5cb9f902a02808673dafa98f323e3ff9be17bad404b60d663f0f09e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2160
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "순환소수는 소수점 아래 숫자가 끝나지 않으므로 {유한소수}가 아니라 {무한소수}의 한 갈래이다.",
+        "cSlotAnswers": [
+          "유한소수",
+          "무한소수"
+        ],
+        "cStudentSentence": "순환소수는 소수점 아래 숫자가 끝나지 않으므로 □가 아니라 □의 한 갈래이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "무한소수",
+            "equivalentAnswers": [
+              "무한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유한소수"
+          ],
+          [
+            "무한소수"
+          ]
+        ],
+        "proposalFingerprint": "7b1d8801b787c3bf44e91a080c0cfa6fd4b2a3556fec1e264f4b38fb9816fb30"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc17",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환이 반드시 생기는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자연수를 $b$로 나눌 때 나올 수 있는 나머지는 $b$가지뿐이므로, 나눗셈을 이어 가면 나누어떨어지거나 같은 {나머지}가 다시 나와 그때부터 몫이 {되풀이}된다.",
+        "example": {
+          "prompt": "$\\frac{1}{4}$처럼 나누어떨어지는 분수에서는 왜 순환이 생기지 않는가?",
+          "answer": "나머지 $0$에서 나눗셈이 끝나서"
+        },
+        "studentC": "자연수를 $b$로 나눌 때 나올 수 있는 나머지는 $b$가지뿐이므로, 나눗셈을 이어 가면 나누어떨어지거나 같은 □가 다시 나와 그때부터 몫이 □된다.",
+        "answers": [
+          "나머지",
+          "되풀이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{7}$처럼 분자를 분모 $7$로 나누는 나눗셈이 나누어떨어지지 않고 계속될 때, 몫의 숫자가 반드시 되풀이되는 까닭을 '나올 수 있는 나머지의 종류'로 설명하시오.",
+        "bAnswer": "$7$로 나눈 나머지는 $1$부터 $6$까지 $6$가지뿐이므로, 나눗셈을 계속하면 언젠가 같은 나머지가 다시 나온다. 그때부터 같은 계산이 반복되어 몫이 되풀이된다.",
+        "bGoal": "나머지의 종류가 한정되어 순환이 생기는 까닭 설명하기",
+        "bReason": "구체적인 분모와 설명의 근거를 정해 준 까닭 질문으로 바꿈.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지는 $1$부터 $6$까지 $6$가지뿐이다",
+              "나머지는 $7$보다 작은 수뿐이라 종류가 한정된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 나머지가 다시 나온다",
+              "같은 계산이 반복된다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근거가 문장에 주어지고 원인과 결과 낱말을 하나씩 묻는 빈칸임.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "순환이 반드시 생기는 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2161,
+        "part": "m2plus",
+        "sourceFingerprint": "16fa7c93c8ae1537162a34526306fdf99d48ef76dce1f349208305add5be84da",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2161
+        },
+        "directReview": null,
+        "cFrozenSentence": "자연수를 $b$로 나눌 때 나올 수 있는 나머지는 $b$가지뿐이므로, 나눗셈을 이어 가면 나누어떨어지거나 같은 □가 다시 나와 그때부터 몫이 □된다.",
+        "cFrozenDefinition": "자연수를 $b$로 나눌 때 나올 수 있는 나머지는 $b$가지뿐이므로, 나눗셈을 이어 가면 나누어떨어지거나 같은 {나머지}가 다시 나와 그때부터 몫이 {되풀이}된다.",
+        "cFrozenAnswers": [
+          "나머지",
+          "되풀이"
+        ],
+        "cMarkedSentence": "자연수를 $b$로 나눌 때 나올 수 있는 나머지는 $b$가지뿐이므로, 나눗셈을 이어 가면 나누어떨어지거나 같은 {나머지}가 다시 나와 그때부터 몫이 {되풀이}된다.",
+        "cSlotAnswers": [
+          "나머지",
+          "되풀이"
+        ],
+        "cStudentSentence": "자연수를 $b$로 나눌 때 나올 수 있는 나머지는 $b$가지뿐이므로, 나눗셈을 이어 가면 나누어떨어지거나 같은 □가 다시 나와 그때부터 몫이 □된다.",
+        "cAnswers": [
+          "나머지",
+          "되풀이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나머지",
+            "equivalentAnswers": [
+              "나머지"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "되풀이",
+            "equivalentAnswers": [
+              "되풀이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나머지"
+          ],
+          [
+            "되풀이"
+          ]
+        ],
+        "proposalFingerprint": "f9a3c1c488a85043dc2858ac302bcfb3cd65ab37bcc0933523168d168d3291bc"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc18",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "앞자리가 있을 때 $n$번째 숫자",
+        "kind": "방법",
+        "level": "상",
+        "definition": "순환하지 않는 숫자가 앞에 있으면, 찾는 자리가 순환하는 부분에 있을 때 앞의 {자리 수}를 먼저 빼고 남은 수를 {순환마디의 숫자 개수}로 나눈 나머지를 본다.",
+        "example": {
+          "prompt": "$0.2\\dot{4}\\dot{7}$의 소수점 아래 $10$번째 숫자",
+          "answer": "$4$"
+        },
+        "studentC": "순환하지 않는 숫자가 앞에 있으면, 찾는 자리가 순환하는 부분에 있을 때 앞의 □를 먼저 빼고 남은 수를 □로 나눈 나머지를 본다.",
+        "answers": [
+          "자리 수",
+          "순환마디의 숫자 개수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.2\\dot{4}\\dot{7}$의 소수점 아래 $10$번째 자리의 숫자를 구하시오. 순환하지 않는 숫자 $2$를 어떻게 처리하는지 드러나게 과정을 쓰시오.",
+        "bAnswer": "순환하지 않는 숫자가 $1$개이므로 $10-1=9$이다. 순환마디 $47$은 $2$자리이고 $9=2\\times4+1$이므로 순환마디의 첫째 숫자인 $4$이다.",
+        "bGoal": "순환하지 않는 앞자리를 빼고 $n$번째 숫자 찾기",
+        "bReason": "앞자리가 있는 구체적인 순환소수로 처리 방법을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10-1=9$",
+              "순환하지 않는 숫자 $1$개를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$를 $2$로 나눈 나머지가 $1$이다",
+              "순환마디의 첫째 숫자"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "소수점 아래에 순환하지 않는 숫자가 $a$개 있고 순환마디의 숫자가 $k$개일 때, 순환하는 부분에 있는 소수점 아래 $n$번째 숫자는 {$n-a$}를 {$k$}로 나눈 {나머지}로 찾는다.",
+        "cAnswers": [
+          "$n-a$",
+          "$k$",
+          "나머지"
+        ],
+        "cReason": "무엇에서 빼는지 불분명하고 답이 긴 구절이라 기호로 관계를 밝힘.",
+        "studentLabel": "순환하지 않는 숫자가 앞에 있을 때 $n$번째 숫자",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "앞자리를 빼고 나머지 보기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2162,
+        "part": "m2plus",
+        "sourceFingerprint": "87796e8fafd0d8c0c02db4d872ac2e4bded29acbdeaee8ae5fbc4463e2ed492f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2162
+        },
+        "directReview": null,
+        "cMarkedSentence": "소수점 아래에 순환하지 않는 숫자가 $a$개 있고 순환마디의 숫자가 $k$개일 때, 순환하는 부분에 있는 소수점 아래 $n$번째 숫자는 {$n-a$}를 {$k$}로 나눈 {나머지}로 찾는다.",
+        "cSlotAnswers": [
+          "$n-a$",
+          "$k$",
+          "나머지"
+        ],
+        "cStudentSentence": "소수점 아래에 순환하지 않는 숫자가 $a$개 있고 순환마디의 숫자가 $k$개일 때, 순환하는 부분에 있는 소수점 아래 $n$번째 숫자는 □를 □로 나눈 □로 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n-a$",
+            "equivalentAnswers": [
+              "$n-a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$k$",
+            "equivalentAnswers": [
+              "$k$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "나머지",
+            "equivalentAnswers": [
+              "나머지"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n-a$"
+          ],
+          [
+            "$k$"
+          ],
+          [
+            "나머지"
+          ]
+        ],
+        "proposalFingerprint": "778cc27ecf1c882e48561c0b6ec976fd5f392ff97a6a977e0a30cd1f7d64d93a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc19",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "나머지가 $0$일 때의 숫자",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 {마지막} 숫자이다.",
+        "example": {
+          "prompt": "$0.\\dot{3}8\\dot{5}$의 소수점 아래 $30$번째 숫자",
+          "answer": "$5$"
+        },
+        "studentC": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 □ 숫자이다.",
+        "answers": [
+          "마지막"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.\\dot{3}8\\dot{5}$의 소수점 아래 $30$번째 자리의 숫자를 구하려고 $30$을 순환마디의 숫자 개수 $3$으로 나누었더니 나머지가 $0$이었다. 이때 답이 어느 숫자인지 까닭과 함께 쓰시오.",
+        "bAnswer": "$30$번째 자리는 순환마디 $385$가 꼭 $10$번 되풀이되어 끝나는 자리이므로, 순환마디의 마지막 숫자인 $5$이다.",
+        "bGoal": "나머지가 $0$일 때 순환마디의 마지막 숫자임을 알기",
+        "bReason": "나머지가 $0$인 구체적인 상황을 주고 어느 숫자인지와 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "순환마디의 마지막 숫자이다",
+              "$5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "순환마디가 꼭 $10$번 되풀이되어 끝나는 자리이다",
+              "나누어떨어지면 순환마디의 끝자리에 해당한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "순환 조건과 나머지 조건이 문장에 다 있어 결론 하나를 묻기에 분명함.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "나머지 $0$인 경우 처리",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2163,
+        "part": "m2plus",
+        "sourceFingerprint": "3d2297e8192f55c00eed1c085f515ba054a567d9f5f8d6fbba3ffb298fec9934",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2163
+        },
+        "directReview": null,
+        "cFrozenSentence": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 □ 숫자이다.",
+        "cFrozenDefinition": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 {마지막} 숫자이다.",
+        "cFrozenAnswers": [
+          "마지막"
+        ],
+        "cMarkedSentence": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 {마지막} 숫자이다.",
+        "cSlotAnswers": [
+          "마지막"
+        ],
+        "cStudentSentence": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 □ 숫자이다.",
+        "cAnswers": [
+          "마지막"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마지막",
+            "equivalentAnswers": [
+              "마지막",
+              "끝"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "마지막",
+            "accept": [
+              "끝"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "마지막",
+            "끝"
+          ]
+        ],
+        "proposalFingerprint": "91e4717887e123bf9fc5e5e543cb35bd81a9648f3bcc26e794a1e671efc50c63"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc20",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환소수와 무한소수의 포함 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "순환소수는 모두 {무한소수}이지만, 무한소수가 모두 {순환소수}인 것은 아니다.",
+        "example": {
+          "prompt": "되풀이되지 않는 무한소수의 예",
+          "answer": "$\\pi$"
+        },
+        "studentC": "순환소수는 모두 □이지만, 무한소수가 모두 □인 것은 아니다.",
+        "answers": [
+          "무한소수",
+          "순환소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "'순환소수는 모두 무한소수이다'와 '무한소수는 모두 순환소수이다' 중 옳은 것을 고르고, 옳은 까닭을 순환소수의 뜻으로 설명하시오. 옳지 않은 쪽은 예를 하나 드시오.",
+        "bAnswer": "'순환소수는 모두 무한소수이다'가 옳다. 순환소수는 숫자 배열이 끝없이 되풀이되어 소수점 아래가 끝나지 않기 때문이다. $\\pi=3.141592\\cdots$는 무한소수이지만 순환하지 않으므로 뒤 문장은 옳지 않다.",
+        "bGoal": "순환소수와 무한소수의 포함 관계를 까닭과 예로 설명하기",
+        "bReason": "포함 방향을 두 문장의 참·거짓, 까닭, 반례로 묻도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "'순환소수는 모두 무한소수이다'가 옳다",
+              "순환소수는 모두 무한소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "순환소수는 소수점 아래 숫자가 끝나지 않는다",
+              "숫자 배열이 끝없이 되풀이된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\pi$는 순환하지 않는 무한소수이다",
+              "순환하지 않는 무한소수의 예를 든다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 용어의 포함 방향을 대비하는 짧은 비교 빈칸임.",
+        "learningRole": "reason",
+        "roleReason": "포함 관계와 반례",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2164,
+        "part": "m2plus",
+        "sourceFingerprint": "728bc9c823262d9a9ba0e7b261300c266b9eef6522f86d5f83995a01eeaba91e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2164
+        },
+        "directReview": null,
+        "cFrozenSentence": "순환소수는 모두 □이지만, 무한소수가 모두 □인 것은 아니다.",
+        "cFrozenDefinition": "순환소수는 모두 {무한소수}이지만, 무한소수가 모두 {순환소수}인 것은 아니다.",
+        "cFrozenAnswers": [
+          "무한소수",
+          "순환소수"
+        ],
+        "cMarkedSentence": "순환소수는 모두 {무한소수}이지만, 무한소수가 모두 {순환소수}인 것은 아니다.",
+        "cSlotAnswers": [
+          "무한소수",
+          "순환소수"
+        ],
+        "cStudentSentence": "순환소수는 모두 □이지만, 무한소수가 모두 □인 것은 아니다.",
+        "cAnswers": [
+          "무한소수",
+          "순환소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "무한소수",
+            "equivalentAnswers": [
+              "무한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "순환소수",
+            "equivalentAnswers": [
+              "순환소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "무한소수"
+          ],
+          [
+            "순환소수"
+          ]
+        ],
+        "proposalFingerprint": "82eef0ae68efd1460f32808c41db22c191f2684647758966e667f47bf4d75c86"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc21",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "유한소수와 순환소수를 가르는 분모",
+        "kind": "성질",
+        "level": "상",
+        "definition": "기약분수의 분모의 소인수가 {$2$, $5$}뿐이면 유한소수, {그 밖의 소인수}가 있으면 순환소수가 된다.",
+        "example": {
+          "prompt": "$\\frac{7}{12}$은 어느 쪽인가?",
+          "answer": "순환소수"
+        },
+        "studentC": "기약분수의 분모의 소인수가 □뿐이면 유한소수, □가 있으면 순환소수가 된다.",
+        "answers": [
+          "$2$, $5$",
+          "그 밖의 소인수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "기약분수 $\\frac7{20}$과 $\\frac7{12}$을 소수로 고치면 각각 유한소수와 순환소수 중 어느 것이 되는지, 분모의 소인수를 근거로 판단하시오.",
+        "bAnswer": "$20=2^2\\times5$는 소인수가 $2$와 $5$뿐이므로 $\\frac{7}{20}$은 유한소수이다. $12=2^2\\times3$에는 소인수 $3$이 있으므로 $\\frac{7}{12}$은 순환소수이다.",
+        "bGoal": "분모의 소인수로 유한소수와 순환소수 가르기",
+        "bReason": "두 기약분수를 비교해 판정 기준을 적용하도록 구체화함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{20}$은 유한소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{12}$은 순환소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$에는 소인수 $3$이 있다",
+              "$20$의 소인수는 $2$와 $5$뿐이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "기약분수의 분모의 소인수가 {$2$}와 {$5$}뿐이면 {유한소수}, 그 밖의 소인수가 있으면 {순환소수}가 된다.",
+        "cAnswers": [
+          "$2$",
+          "$5$",
+          "유한소수",
+          "순환소수"
+        ],
+        "cReason": "'그 밖의 소인수'라는 긴 빈칸 대신 기준 수와 두 결과를 묻게 함.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "분모로 두 소수 구분하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "notationReason": "십이분의 칠 뒤 을을 쓰며 두 분수의 분모 조건은 유지한다.",
+        "sourceIndex": 2165,
+        "part": "m2plus",
+        "sourceFingerprint": "05167442f90cd89154c50da6fc1636a3cc86ecf66bafe580a2c7731a5707fea5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2165
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-01-02-xc21"
+        },
+        "cMarkedSentence": "기약분수의 분모의 소인수가 {$2$}와 {$5$}뿐이면 {유한소수}, 그 밖의 소인수가 있으면 {순환소수}가 된다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$5$",
+          "유한소수",
+          "순환소수"
+        ],
+        "cStudentSentence": "기약분수의 분모의 소인수가 □와 □뿐이면 □, 그 밖의 소인수가 있으면 □가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 3,
+            "answer": "순환소수",
+            "equivalentAnswers": [
+              "순환소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ],
+          [
+            "유한소수"
+          ],
+          [
+            "순환소수"
+          ]
+        ],
+        "proposalFingerprint": "1aaa4c332333df213d0cabd50b78972ea070635ca8b2badac4bb07afa7c996e1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc22",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "소수점 아래 숫자의 합",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수점 바로 아래부터 순환하면 순환마디의 숫자가 같은 차례로 되풀이되므로, 소수점 아래 여러 자리의 숫자의 합은 {마디 한 묶음의 합}에 {되풀이된 횟수}를 곱하고 남는 자리의 숫자를 더해 구한다.",
+        "example": {
+          "prompt": "$0.\\dot{1}\\dot{2}$의 소수점 아래 $10$자리까지 숫자의 합",
+          "answer": "$15$"
+        },
+        "studentC": "소수점 바로 아래부터 순환하면 순환마디의 숫자가 같은 차례로 되풀이되므로, 소수점 아래 여러 자리의 숫자의 합은 □에 □를 곱하고 남는 자리의 숫자를 더해 구한다.",
+        "answers": [
+          "마디 한 묶음의 합",
+          "되풀이된 횟수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.\\dot{1}\\dot{2}$의 소수점 아래 첫째 자리부터 $11$번째 자리까지의 숫자를 모두 더한 값을 구하시오. 순환마디를 이용한 계산 과정을 쓰시오.",
+        "bAnswer": "순환마디 $12$의 숫자의 합은 $1+2=3$이고, $11=2\\times5+1$이므로 순환마디가 $5$번 되풀이되고 숫자 $1$이 하나 남는다. 합은 $3\\times5+1=16$이다.",
+        "bGoal": "순환마디의 합과 되풀이 횟수로 숫자의 합 구하기",
+        "bReason": "남는 자리가 생기는 구체적인 범위를 주어 계산 방법 전체를 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "순환마디의 숫자의 합 $3$에 $5$를 곱한다",
+              "순환마디가 $5$번 되풀이된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남는 숫자 $1$을 더한다",
+              "$11$번째 숫자 $1$이 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "소수점 바로 아래부터 순환하는 소수에서 소수점 아래 여러 자리의 숫자의 합은 순환마디 한 묶음의 숫자의 {합}에 순환마디가 되풀이된 {횟수}를 곱하고, 남는 자리의 숫자를 {더해} 구한다.",
+        "cAnswers": [
+          "합",
+          "횟수",
+          "더해"
+        ],
+        "cReason": "빈칸 답이 '마디 한 묶음의 합' 같은 긴 구절이어서 핵심 낱말로 줄임.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "마디 단위로 합 구하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2166,
+        "part": "m2plus",
+        "sourceFingerprint": "beb97fee46bce82db4a1d315f8d53db9e636bf02e19b6b43987aa2ffa6a54237",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2166
+        },
+        "directReview": null,
+        "cMarkedSentence": "소수점 바로 아래부터 순환하는 소수에서 소수점 아래 여러 자리의 숫자의 합은 순환마디 한 묶음의 숫자의 {합}에 순환마디가 되풀이된 {횟수}를 곱하고, 남는 자리의 숫자를 {더해} 구한다.",
+        "cSlotAnswers": [
+          "합",
+          "횟수",
+          "더해"
+        ],
+        "cStudentSentence": "소수점 바로 아래부터 순환하는 소수에서 소수점 아래 여러 자리의 숫자의 합은 순환마디 한 묶음의 숫자의 □에 순환마디가 되풀이된 □를 곱하고, 남는 자리의 숫자를 □ 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "횟수",
+            "equivalentAnswers": [
+              "횟수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "더해",
+            "equivalentAnswers": [
+              "더해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "횟수"
+          ],
+          [
+            "더해"
+          ]
+        ],
+        "proposalFingerprint": "3cfa6124ff4864887028bb8eca38c4e42fdc96a9d9861c54dbbdc0d917fd1d9d"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc23",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디 앞에 숫자가 생기는 분모",
+        "kind": "성질",
+        "level": "상",
+        "definition": "기약분수의 분모에 $2$나 $5$가 다른 소인수와 함께 있으면 순환마디 {앞에} 순환하지 않는 숫자가 {생긴다}.",
+        "example": {
+          "prompt": "$\\frac{1}{6}$을 순환소수로 쓰면?",
+          "answer": "$0.1\\dot{6}$"
+        },
+        "studentC": "기약분수의 분모에 $2$나 $5$가 다른 소인수와 함께 있으면 순환마디 □ 순환하지 않는 숫자가 □.",
+        "answers": [
+          "앞에",
+          "생긴다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "기약분수 $\\frac{1}{3}$과 $\\frac{1}{6}$을 순환소수로 나타내면 $0.\\dot{3}$, $0.1\\dot{6}$이다. $\\frac{1}{6}$에만 순환마디 앞에 순환하지 않는 숫자가 생기는 것을 두 분모의 소인수를 비교하여 설명하시오.",
+        "bAnswer": "$3$의 소인수는 $3$뿐이지만 $6=2\\times3$에는 $2$가 다른 소인수 $3$과 함께 있다. 기약분수의 분모에 $2$나 $5$가 다른 소인수와 함께 있으면 순환마디 앞에 순환하지 않는 숫자가 생긴다.",
+        "bGoal": "분모의 소인수로 순환하지 않는 앞자리가 생기는 경우 알기",
+        "bReason": "두 분수의 소수 표현을 주고 분모 소인수의 차이로 설명하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$에는 소인수 $2$가 $3$과 함께 있다",
+              "분모에 $2$나 $5$가 다른 소인수와 함께 있다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "기약분수의 분모에 소인수 {$2$}나 {$5$}가 그 밖의 소인수와 함께 있으면, 소수로 고쳤을 때 순환마디 {앞}에 순환하지 않는 숫자가 생긴다.",
+        "cAnswers": [
+          "$2$",
+          "$5$",
+          "앞"
+        ],
+        "cReason": "'앞에', '생긴다' 같은 서술 빈칸 대신 조건이 되는 소인수를 묻게 함.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "앞자리가 생기는 분모 조건",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2167,
+        "part": "m2plus",
+        "sourceFingerprint": "8b147590a16a4abe1f5f66c9daf340a64a7cfc9699628003196713b687a1770f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2167
+        },
+        "directReview": null,
+        "cMarkedSentence": "기약분수의 분모에 소인수 {$2$}나 {$5$}가 그 밖의 소인수와 함께 있으면, 소수로 고쳤을 때 순환마디 {앞}에 순환하지 않는 숫자가 생긴다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$5$",
+          "앞"
+        ],
+        "cStudentSentence": "기약분수의 분모에 소인수 □나 □가 그 밖의 소인수와 함께 있으면, 소수로 고쳤을 때 순환마디 □에 순환하지 않는 숫자가 생긴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "앞",
+            "equivalentAnswers": [
+              "앞"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ],
+          [
+            "앞"
+          ]
+        ],
+        "proposalFingerprint": "1a782f5ac56b42ba16081a81a7a2ca953819a39b0c04e64eda3276a4cc7e3a63"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc24",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "분모가 $9$인 분수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\frac{a}{9}$($a$는 $1$부터 $8$까지의 자연수)는 숫자 $a$가 되풀이되는 {$0.\\dot{a}$} 꼴이다.",
+        "example": {
+          "prompt": "$\\frac{5}{9}$를 순환소수로 쓰면?",
+          "answer": "$0.\\dot{5}$"
+        },
+        "studentC": "$\\frac{a}{9}$($a$는 $1$부터 $8$까지의 자연수)는 숫자 $a$가 되풀이되는 □ 꼴이다.",
+        "answers": [
+          "$0.\\dot{a}$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{9}=0.111\\cdots$이다. $a$가 $1$부터 $8$까지의 자연수일 때 $\\frac{a}{9}$를 소수로 나타내면 어떤 꼴이 되는지 설명하고, $\\frac{5}{9}$를 점을 찍어 나타내시오.",
+        "bAnswer": "$\\frac{a}{9}=a\\times0.111\\cdots=0.aaa\\cdots$이므로 숫자 $a$가 되풀이되는 $0.\\dot{a}$ 꼴이다. $\\frac{5}{9}=0.\\dot{5}$",
+        "bGoal": "분모가 $9$인 분수의 순환소수 꼴 알기",
+        "bReason": "$a$의 범위와 출발점이 되는 $\\frac{1}{9}$의 값을 질문에 넣음.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "숫자 $a$가 끝없이 되풀이된다",
+              "$0.\\dot{a}$",
+              "$0.aaa\\cdots$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.\\dot{5}$",
+              "$0.555\\cdots$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$a$의 범위와 되풀이되는 숫자가 문장에 있어 표기만 묻기에 분명함.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "분모 $9$인 분수의 표기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2168,
+        "part": "m2plus",
+        "sourceFingerprint": "33abd982b21134670d4278d59911557c6b835ca84d6c91e52729407b6ea5507d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2168
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\frac{a}{9}$($a$는 $1$부터 $8$까지의 자연수)는 숫자 $a$가 되풀이되는 □ 꼴이다.",
+        "cFrozenDefinition": "$\\frac{a}{9}$($a$는 $1$부터 $8$까지의 자연수)는 숫자 $a$가 되풀이되는 {$0.\\dot{a}$} 꼴이다.",
+        "cFrozenAnswers": [
+          "$0.\\dot{a}$"
+        ],
+        "cMarkedSentence": "$\\frac{a}{9}$($a$는 $1$부터 $8$까지의 자연수)는 숫자 $a$가 되풀이되는 {$0.\\dot{a}$} 꼴이다.",
+        "cSlotAnswers": [
+          "$0.\\dot{a}$"
+        ],
+        "cStudentSentence": "$\\frac{a}{9}$($a$는 $1$부터 $8$까지의 자연수)는 숫자 $a$가 되풀이되는 □ 꼴이다.",
+        "cAnswers": [
+          "$0.\\dot{a}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0.\\dot{a}$",
+            "equivalentAnswers": [
+              "$0.\\dot{a}$",
+              "$0.aaa\\cdots$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0.\\dot{a}$",
+            "accept": [
+              "$0.aaa\\cdots$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0.\\dot{a}$",
+            "$0.aaa\\cdots$"
+          ]
+        ],
+        "proposalFingerprint": "2a05a6c8e530a0bd1f23602e9fe20fb6ebf3dcbcc5c7a40f73ac390364350bef"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc25",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "분모가 $99$인 분수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 {두 자리}로 쓴 숫자가 되풀이되는 소수가 된다.",
+        "example": {
+          "prompt": "$\\frac{7}{99}$을 순환소수로 쓰면?",
+          "answer": "$0.\\dot{0}\\dot{7}$"
+        },
+        "studentC": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 □로 쓴 숫자가 되풀이되는 소수가 된다.",
+        "answers": [
+          "두 자리"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{99}=0.\\dot{0}\\dot{1}$이다. $\\frac{23}{99}$과 $\\frac{7}{99}$을 각각 점을 찍어 순환소수로 나타내고, 분자가 한 자리 수일 때 주의할 점을 쓰시오.",
+        "bAnswer": "$\\frac{23}{99}=0.\\dot{2}\\dot{3}$, $\\frac{7}{99}=0.\\dot{0}\\dot{7}$이다. 분자를 두 자리로 쓴 숫자가 되풀이되므로, 한 자리 수는 앞에 $0$을 붙여 $07$로 생각한다.",
+        "bGoal": "분모가 $99$인 분수의 순환소수 꼴 알기",
+        "bReason": "두 자리·한 자리 분자를 대비시켜 주의점까지 답하도록 범위를 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.\\dot{2}\\dot{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.\\dot{0}\\dot{7}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자를 두 자리로 맞추어 앞에 $0$을 붙인다",
+              "$7$은 $07$로 생각한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$n$의 범위가 문장에 있고 '두 자리'로 쓴다는 핵심 하나를 묻는 빈칸임.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "분모 $99$인 분수의 표기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2169,
+        "part": "m2plus",
+        "sourceFingerprint": "7286d7f3d2669734c9934ae720ab1f8c7450a1959dc451f147bd46e2b9cd8ef0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2169
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 □로 쓴 숫자가 되풀이되는 소수가 된다.",
+        "cFrozenDefinition": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 {두 자리}로 쓴 숫자가 되풀이되는 소수가 된다.",
+        "cFrozenAnswers": [
+          "두 자리"
+        ],
+        "cMarkedSentence": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 {두 자리}로 쓴 숫자가 되풀이되는 소수가 된다.",
+        "cSlotAnswers": [
+          "두 자리"
+        ],
+        "cStudentSentence": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 □로 쓴 숫자가 되풀이되는 소수가 된다.",
+        "cAnswers": [
+          "두 자리"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두 자리",
+            "equivalentAnswers": [
+              "두 자리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "두 자리"
+          ]
+        ],
+        "proposalFingerprint": "953a353b1a796de12075ed9f2d5edb670f816bf39b0161562a00f63b1c55756a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-03-xc1",
+        "section": "중2::1. 수와 식::순환소수의 분수 표현",
+        "term": "순환소수를 $x$로 놓기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "순환소수를 분수로 고칠 때는 먼저 그 수를 {$x$}로 놓고 식을 세운다.",
+        "example": {
+          "prompt": "$x=0.\\dot{4}$일 때 $10x$는?",
+          "answer": "$4.\\dot{4}$"
+        },
+        "studentC": "순환소수를 분수로 고칠 때는 먼저 그 수를 □로 놓고 식을 세운다.",
+        "answers": [
+          "$x$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-03-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "x라는 문자 자체를 고르는 일은 수학적 목표가 아니고 m2-01-03-c2의 식 세우기와 중복이다.",
+        "cDecision": "exclude",
+        "cReason": "순환소수를 어떤 문자로 놓는지는 자유여서 x만 정답인 문항은 의미가 없다.",
+        "exclusionReason": "B·C: 문자 x 암기 항목을 별도 문항으로 쓰지 않고 m2-01-03-c2의 분수 표현 절차에서 확인한다.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "순환소수를 x로 놓고 시작",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "exampleNeeded": true,
+        "bRequiredIdeas": null,
+        "sourceIndex": 2170,
+        "part": "m2plus",
+        "sourceFingerprint": "29dd9d0e6dcd14189c687efa37dbea3ca558b482441a5828a64c3c4b3af1ae29",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2170
+        },
+        "directReview": {
+          "path": "direct-review.json",
+          "id": "m2-01-03-xc1",
+          "note": "x와 y는 동의어 답이 아니라 변수 선택의 자유이다. B 제외 후보에 불필요하게 남긴 문항 필드를 비웠다."
+        },
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-03-xc2",
+        "section": "중2::1. 수와 식::순환소수의 분수 표현",
+        "term": "한 자리 순환마디의 분모",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수점 바로 아래부터 숫자 하나가 순환하는 $0.\\dot{a}$는 분모가 {$9$}, 분자가 {$a$}인 분수와 같다.",
+        "example": {
+          "prompt": "$0.\\dot{2}$를 분수로 고치면?",
+          "answer": "$\\frac{2}{9}$"
+        },
+        "studentC": "소수점 바로 아래부터 숫자 하나가 순환하는 $0.\\dot{a}$는 분모가 □, 분자가 □인 분수와 같다.",
+        "answers": [
+          "$9$",
+          "$a$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-03-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$a$가 $1$부터 $9$까지의 자연수일 때, 소수 첫째 자리부터 숫자 $a$ 하나가 순환하는 $0.\\dot{a}$를 분수로 고치면 분자와 분모는 각각 무엇인가? 이를 이용해 $0.\\dot{2}$를 분수로 고치시오.",
+        "bAnswer": "분자는 $a$, 분모는 $9$이다. 즉 $0.\\dot{a}=\\frac{a}{9}$이므로 $0.\\dot{2}=\\frac{2}{9}$이다.",
+        "bGoal": "$0.\\dot{a}=\\frac{a}{9}$ 알고 쓰기",
+        "bReason": "제목이 분모만 가리켜 $a$의 조건과 분자·분모를 함께 묻도록 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 $9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 $a$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{9}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "소수 첫째 자리부터 숫자 하나가 순환하는 $0.\\dot{a}$($a$는 $1$부터 $9$까지의 자연수)는 분모가 {$9$}, 분자가 {$a$}인 분수와 같다.",
+        "cAnswers": [
+          "$9$",
+          "$a$"
+        ],
+        "cReason": "기호 $a$의 조건이 빠져 있어 보충하고 빈칸은 그대로 둠",
+        "coreAfter": "소수점 바로 아래부터 숫자 하나가 순환하는 $0.\\dot{a}$($a$는 $1$부터 $9$까지의 자연수)는 분모가 {$9$}, 분자가 {$a$}인 분수와 같다.",
+        "coreReason": "문자 $a$가 어떤 수인지 조건이 없어 밝힘",
+        "exampleNeeded": true,
+        "studentLabel": "한 자리 순환마디 $0.\\dot{a}$를 분수로",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "한 자리 순환은 분모 9, 분자 a",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 2171,
+        "part": "m2plus",
+        "sourceFingerprint": "6adabb70ffe131fd335f86f77510b29eb51a7d9b6c0880bd5697832284363d47",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2171
+        },
+        "directReview": null,
+        "coreBeforeRepair": "소수점 바로 아래부터 숫자 하나가 순환하는 $0.\\dot{a}$($a$는 $1$부터 $9$까지의 자연수)는 분모가 {$9$}, 분자가 {$a$}인 분수와 같다.",
+        "coreRepairReason": "이미 좋아 그대로 보존함. 원래 핵심어 {$9$}, {$a$}를 유지했고, $a$의 범위만 보충함.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "소수 첫째 자리부터 숫자 하나가 순환하는 $0.\\dot{a}$($a$는 $1$부터 $9$까지의 자연수)는 분모가 {$9$}, 분자가 {$a$}인 분수와 같다.",
+        "cSlotAnswers": [
+          "$9$",
+          "$a$"
+        ],
+        "cStudentSentence": "소수 첫째 자리부터 숫자 하나가 순환하는 $0.\\dot{a}$($a$는 $1$부터 $9$까지의 자연수)는 분모가 □, 분자가 □인 분수와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$9$",
+            "equivalentAnswers": [
+              "$9$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "$a$"
+          ]
+        ],
+        "proposalFingerprint": "f6ce33ee9e25a56895ab578bbd2048182f0b9286d1a09233cb76a61ffccc3792"
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "sourceCommit": "13bf05dce",
+  "grades": [
+    "e3",
+    "e4"
+  ],
+  "sourceFileSha256": "c4deb797f1d028ddc25a50e9f6479e7a77c0aaa056b9faf6d2c1607de998d438",
+  "sourceRowsVerified": 2779,
+  "proposalIdsAndOrderPreserved": true,
+  "sourceFingerprintsRecomputed": 2779,
+  "proposalFingerprintsRecomputed": 2779,
+  "directReadingCurrentContentAndRole": 2779,
+  "derivedQuestionsMatchProposal": true,
+  "openEditorialIssues": 0,
+  "coreProposals": 88,
+  "exampleRequirements": 105,
+  "independentResponseRecords": 222,
+  "independentResponseDecisions": {
+    "retained-with-reason": 52,
+    "amended": 170
+  },
+  "frozenIndependentEventCount": 420,
+  "frozenCurrentHashEventsWithoutResponse": 0,
+  "counts": {
+    "sourceByPart": {
+      "e3": 194,
+      "e4": 145,
+      "e3plus": 984,
+      "e4plus": 1456
+    },
+    "proposalByPart": {
+      "e3": 194,
+      "e4": 145,
+      "e3plus": 984,
+      "e4plus": 1456
+    },
+    "bDecision": {
+      "rewrite": 2232,
+      "exclude": 547
+    },
+    "cDecision": {
+      "rewrite": 1729,
+      "exclude": 68,
+      "keep": 982
+    }
+  },
+  "figureReferenceWarnings": [
+    [
+      534,
+      "e3-1-2-4-xc19",
+      "figure reference; require supplied figure or rewrite"
+    ],
+    [
+      560,
+      "e3-1-2-5-xc20",
+      "figure reference; require supplied figure or rewrite"
+    ]
+  ],
+  "isReleaseApproval": false,
+  "boundary": "Planning only. Raw independent responses retained unchanged; Codex dispositions do not change model verdicts. Root owns final independent rerun, diagrams, integration and deployment."
+}

@@ -1,0 +1,3230 @@
+{
+  "sourceCommit": "13bf05dce",
+  "status": "direct-planning-response-not-independent-pass",
+  "rows": [
+    {
+      "id": "e4-1-5-3-xc2",
+      "sourceIndex": 1946,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-5-3-xc2",
+          "grade": "초4",
+          "reviewedHash": "f70386c174b2e404ff985ca7261820bcf27d77a23c85454dc8aa99fed663485c",
+          "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+          "evidence": "cohort-2026-10-07T07-16-00-569Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-5-3-xc2",
+              "revise",
+              "pass",
+              "none",
+              "B: 둘째 기준(눈금 한 칸의 수량과 막대 칸 수가 같다)이 물음의 전제를 되풀이해도 충족되어 순환적이다. 수량=칸 수×한 칸의 수량이라는 관계를 요구해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-5-3-xc2",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-5-3-xc2",
+              "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+              "term": "수량이 같은 항목",
+              "kind": "성질",
+              "level": "하",
+              "definition": "막대 길이가 같은 항목들은 {수량이 같다}."
+            },
+            "B": {
+              "prompt": "같은 막대그래프에서 두 항목의 막대 길이가 같으면 두 항목의 수량은 어떤지 쓰고, 그 까닭을 눈금 한 칸이 나타내는 수량과 연결해 설명하시오.",
+              "answer": "수량이 같다. 같은 눈금을 쓰고 막대의 칸 수도 같기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "수량이 같다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "눈금 한 칸이 나타내는 수량과 막대의 칸 수가 모두 같기 때문이다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "막대 길이가 같은 항목들은 수량이 {같다}.",
+              "acceptedAnswers": [
+                [
+                  "같다",
+                  "똑같다"
+                ]
+              ]
+            },
+            "goal": "같은 길이는 같은 수량",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "f70386c174b2e404ff985ca7261820bcf27d77a23c85454dc8aa99fed663485c"
+          },
+          "currentNormalizedHash": "f70386c174b2e404ff985ca7261820bcf27d77a23c85454dc8aa99fed663485c",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "a995dd1b1db01621486f8091114c433d638f499d024fbe60a762ff7d4f0f150c",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "ffd13f4fe374fd0c59e84e1a7f7611805b1e2613d16300a71234800c791273c3",
+      "currentProposal": {
+        "sourceIndex": 1946,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "110b5dfd6e267e17bdfa60ed9163b63ae6eac50bf3c42036513328c454cf2310",
+        "proposalFingerprint": "ffd13f4fe374fd0c59e84e1a7f7611805b1e2613d16300a71234800c791273c3",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 막대그래프에서 두 항목의 막대 길이가 같으면 두 항목의 수량은 어떤지 쓰고, 그 까닭을 눈금 한 칸이 나타내는 수량과 연결해 설명하시오.",
+        "bAnswer": "수량이 같습니다. 수량은 막대의 칸 수에 한 칸이 나타내는 수량을 곱한 값인데, 두 막대는 이 두 수가 모두 같기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수량이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수량은 칸 수와 한 칸의 수량을 곱한 값인데 두 막대의 두 수가 모두 같다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "같은 길이는 같은 수량",
+        "bReason": "막대 길이와 수량의 관계를 묻는 짧은 질문",
+        "cDecision": "rewrite",
+        "cAfter": "막대 길이가 같은 항목들은 수량이 {같다}.",
+        "cReason": "'수량이 같다' 구절 통째 대신 '같다'만 가림",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "수량이 같은 항목",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대 길이가 같은 항목들은 수량이 {같다}.",
+        "cStudentSentence": "막대 길이가 같은 항목들은 수량이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 막대그래프에서 두 항목의 막대 길이가 같으면 두 항목의 수량은 어떤지 쓰고, 그 까닭을 눈금 한 칸이 나타내는 수량과 연결해 설명하시오.",
+          "answer": "수량이 같습니다. 수량은 막대의 칸 수에 한 칸이 나타내는 수량을 곱한 값인데, 두 막대는 이 두 수가 모두 같기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수량이 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "수량은 칸 수와 한 칸의 수량을 곱한 값인데 두 막대의 두 수가 모두 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "막대 길이가 같은 항목들은 수량이 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-5-3-xc2",
+        "sourceIndex": 1946,
+        "proposalFingerprint": "ffd13f4fe374fd0c59e84e1a7f7611805b1e2613d16300a71234800c791273c3",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "同じ칸 수와 한 칸 수량의 곱이 같다는 이유를 명시했다.",
+        "cReason": "막대 길이와 수량의 같음을 비교한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "수량과 칸 수의 곱 관계를 기준에 넣었다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-5-3-xc6",
+      "sourceIndex": 1950,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-5-3-xc6",
+          "grade": "초4",
+          "reviewedHash": "f0f0359d8229d6faf05e0f4e1888ac899ef0583aec357bc0dd2d7f4b73d878ab",
+          "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+          "evidence": "cohort-2026-10-07T07-16-00-569Z-0",
+          "blind": [
+            [
+              "e4-1-5-3-xc6",
+              "C",
+              "수량(수)",
+              "revise",
+              "빈칸 범위가 넓음. '항목의 이름/종류'도 막대그래프에서 알 수 있어 정답이 하나로 정해지지 않음."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-5-3-xc6",
+              "excluded",
+              "revise",
+              "none",
+              "C: 빈칸 범위가 넓다. 항목 이름이나 종류도 막대그래프에서 알 수 있어 정답이 하나로 정해지지 않고, 수·개수·양까지 허용된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-5-3-xc6",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-5-3-xc6",
+              "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+              "term": "막대그래프에서 알 수 있는 것",
+              "kind": "성질",
+              "level": "하",
+              "definition": "막대그래프로 각 항목의 {수량}과 많고 적음을 알 수 있다."
+            },
+            "B": {
+              "excluded": "표와 막대그래프에서 읽을 수 있는 값과 비교의 뜻은 e4-1-5-1-xc7의 B에서 설명한다."
+            },
+            "C": {
+              "sentence": "막대그래프로 각 항목의 {수량}과 많고 적음을 알 수 있다.",
+              "acceptedAnswers": [
+                [
+                  "수량",
+                  "수",
+                  "개수",
+                  "양"
+                ]
+              ]
+            },
+            "goal": "",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "f0f0359d8229d6faf05e0f4e1888ac899ef0583aec357bc0dd2d7f4b73d878ab"
+          },
+          "currentNormalizedHash": "f0f0359d8229d6faf05e0f4e1888ac899ef0583aec357bc0dd2d7f4b73d878ab",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "215ffe34de036a3b4aa67ed7f2f72d587565a936d84e6d4f911f1ad42c93fc2d",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+      "currentProposal": {
+        "sourceIndex": 1950,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "060e09c3cd87aa611072fa45f3bdb857be54356ee3ef9ec7b57795cdb070bf6f",
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "",
+        "bReason": "표와 막대그래프에서 읽을 수 있는 값과 비교의 뜻은 e4-1-5-1-xc7의 B에서 설명한다.",
+        "exclusionReason": "B/C: 일반적인 쓰임은 e4-1-5-1-xc7과 겹치며 각 항목의 무엇이라는 열린 이름 빈칸은 제외한다.",
+        "cDecision": "exclude",
+        "cReason": "각 항목의 무엇을 알 수 있는지 묻는 빈칸은 항목 이름이나 수량 등 다른 답이 열려 있다. 표와 그래프의 쓰임은 e4-1-5-1-xc7에서 확인한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "막대그래프에서 알 수 있는 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": null,
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "term": "표와 막대그래프에서 읽을 수 있는 값과 비교의 뜻은 e4-1-5-1-xc7의 B에서 설명한다.",
+          "cloze": "각 항목의 무엇을 알 수 있는지 묻는 빈칸은 항목 이름이나 수량 등 다른 답이 열려 있다. 표와 그래프의 쓰임은 e4-1-5-1-xc7에서 확인한다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-5-3-xc6",
+        "sourceIndex": 1950,
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "표 그래프 쓰임은xc7에 남긴다.",
+        "cReason": "수량과 항목 이름 등 다른 답이 가능한 빈칸을 제외했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "이름과 수량 등 답이 열리는 C를 제외했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-5-3-xc7",
+      "sourceIndex": 1951,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-5-3-xc7",
+          "grade": "초4",
+          "reviewedHash": "213b6f35f2f2f3e8b4d3b4c8bf8ebdef358d24b02d9d3851c1972a03d2e7c83b",
+          "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+          "evidence": "cohort-2026-10-07T07-16-00-569Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-5-3-xc7",
+              "excluded",
+              "revise",
+              "none",
+              "C: '어느 것이 더 ___지'에서 많은지·큰지·적은지를 모두 허용하는 문법 복원 수준이라 개념을 확인하지 못한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-5-3-xc7",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-5-3-xc7",
+              "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+              "term": "표와 함께 보기",
+              "kind": "성질",
+              "level": "하",
+              "definition": "막대그래프를 표와 함께 보면 정확한 수와 {많고 적음}을 함께 알 수 있다."
+            },
+            "B": {
+              "excluded": "표와 막대그래프의 비교는 e4-1-5-1-xc7의 B에서 다룬다."
+            },
+            "C": {
+              "sentence": "막대그래프를 표와 함께 보면 정확한 수와 어느 것이 더 {많은지} 함께 알 수 있다.",
+              "acceptedAnswers": [
+                [
+                  "많은지",
+                  "큰지",
+                  "적은지"
+                ]
+              ]
+            },
+            "goal": "",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "213b6f35f2f2f3e8b4d3b4c8bf8ebdef358d24b02d9d3851c1972a03d2e7c83b"
+          },
+          "currentNormalizedHash": "213b6f35f2f2f3e8b4d3b4c8bf8ebdef358d24b02d9d3851c1972a03d2e7c83b",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "94b8ee7874b35260746dd4ad6147f1d4b3d4dee48d88fa169d76793bc577e30e",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+      "currentProposal": {
+        "sourceIndex": 1951,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "8df76690984eb10ce894c4a48d05505dbb44a333bb84193417eda3662ec34679",
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "",
+        "bReason": "표와 막대그래프의 비교는 e4-1-5-1-xc7의 B에서 다룬다.",
+        "exclusionReason": "B/C: 표와 그래프의 쓰임 비교는 e4-1-5-1-xc7에 남기고 반대말도 가능한 문장 완성 빈칸은 제외한다.",
+        "cDecision": "exclude",
+        "cReason": "많은지와 적은지처럼 반대 답도 가능한 빈칸은 동의어 평가가 아니라 문장 완성에 그친다.",
+        "answerNotes": "C의 많은지와 적은지는 동의어가 아니라 둘 다 그래프로 알 수 있는 서로 다른 유효한 비교다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "표와 함께 보기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": null,
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "term": "표와 막대그래프의 비교는 e4-1-5-1-xc7의 B에서 다룬다.",
+          "cloze": "많은지와 적은지처럼 반대 답도 가능한 빈칸은 동의어 평가가 아니라 문장 완성에 그친다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-5-3-xc7",
+        "sourceIndex": 1951,
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "표 그래프 쓰임은xc7에 남긴다.",
+        "cReason": "많은지 적은지 반대 답도 받아야 했던 문장 완성을 제외했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "반대 뜻도 받던 문장 완성 C를 제외했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-2-xc11",
+      "sourceIndex": 1213,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-2-xc11",
+          "grade": "초3",
+          "reviewedHash": "c6569d57050691ab17570e66721d3c642940e690f6af69561c73d505ed5417d3",
+          "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+          "evidence": "cohort-2026-10-07T07-16-00-569Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-2-xc11",
+              "revise",
+              "pass",
+              "none",
+              "B: 물음이 요구한 최종 답 '1 L 650 mL'가 requiredIdeas에 없어 이유만 쓰고도 통과할 수 있다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-2-xc11",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-2-xc11",
+              "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+              "term": "$\\mathrm{mL}$를 몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 나타내기",
+              "kind": "방법",
+              "level": "중",
+              "definition": "$\\mathrm{mL}$로 나타낸 들이는 {$1000\\,\\mathrm{mL}$씩 묶은 수}를 $\\mathrm{L}$로, 남은 수를 $\\mathrm{mL}$로 쓴다.",
+              "example": {
+                "prompt": "$1650\\,\\mathrm{mL}$를 $1\\,\\mathrm{L}\\ 650\\,\\mathrm{mL}$로 쓰는 까닭은?",
+                "answer": "그중 $1000\\,\\mathrm{mL}$가 $1\\,\\mathrm{L}$라서"
+              }
+            },
+            "B": {
+              "prompt": "$1650\\,\\mathrm{mL}$를 몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 나타내고, 그렇게 나타낼 수 있는 까닭을 쓰세요.",
+              "answer": "$1\\,\\mathrm{L}\\ 650\\,\\mathrm{mL}$입니다. $1650\\,\\mathrm{mL}$ 중 $1000\\,\\mathrm{mL}$가 $1\\,\\mathrm{L}$이고 $650\\,\\mathrm{mL}$가 남기 때문입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$1000\\,\\mathrm{mL}$를 $1\\,\\mathrm{L}$로 바꾼다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "남은 $650\\,\\mathrm{mL}$는 그대로 쓴다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$1000\\,\\mathrm{mL}=1\\,\\mathrm{L}$이므로 $1650\\,\\mathrm{mL}=${$1$}$\\,\\mathrm{L}$ {$650$}$\\,\\mathrm{mL}$이다.",
+              "acceptedAnswers": [
+                [
+                  "$1$"
+                ],
+                [
+                  "$650$"
+                ]
+              ]
+            },
+            "goal": "mL를 몇 L 몇 mL로 나타내는 방법과 까닭 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "c6569d57050691ab17570e66721d3c642940e690f6af69561c73d505ed5417d3"
+          },
+          "currentNormalizedHash": "c6569d57050691ab17570e66721d3c642940e690f6af69561c73d505ed5417d3",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "d338fe73df1f78124de2480a9b1e68ab42d6a3ccb0a2fe87636a7064cf82d1c7",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "95f2a734682e02871bd328f06669440b573a9ff498fb7ab1011b832df92a2c76",
+      "currentProposal": {
+        "sourceIndex": 1213,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+        "sourceFingerprint": "805bbf316c4b2d63b530951b28a14dd9785d8603690a9e3f56bb24a49101b8bf",
+        "proposalFingerprint": "95f2a734682e02871bd328f06669440b573a9ff498fb7ab1011b832df92a2c76",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-2-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$1650\\,\\mathrm{mL}$를 몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 나타내고, 그렇게 나타낼 수 있는 까닭을 쓰세요.",
+        "bAnswer": "$1\\,\\mathrm{L}\\ 650\\,\\mathrm{mL}$입니다. $1650\\,\\mathrm{mL}$ 중 $1000\\,\\mathrm{mL}$가 $1\\,\\mathrm{L}$이고 $650\\,\\mathrm{mL}$가 남기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{L}\\ 650\\,\\mathrm{mL}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1650\\,\\mathrm{mL}$ 중 $1000\\,\\mathrm{mL}$를 $1\\,\\mathrm{L}$로 바꾸면 $650\\,\\mathrm{mL}$가 남는다"
+            ]
+          }
+        ],
+        "bGoal": "mL를 몇 L 몇 mL로 나타내는 방법과 까닭 설명",
+        "bReason": "원문 예시의 1650 mL로 답과 까닭을 함께 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$1000\\,\\mathrm{mL}=1\\,\\mathrm{L}$이므로 $1650\\,\\mathrm{mL}=${$1$}$\\,\\mathrm{L}$ {$650$}$\\,\\mathrm{mL}$이다.",
+        "cReason": "원문 답 '1000 mL씩 묶은 수'는 초3이 스스로 떠올리기 어려운 구절임. 실제 변환 계산으로 바꿈",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$\\mathrm{mL}$를 몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 나타내기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1000\\,\\mathrm{mL}=1\\,\\mathrm{L}$이므로 $1650\\,\\mathrm{mL}=${$1$}$\\,\\mathrm{L}$ {$650$}$\\,\\mathrm{mL}$이다.",
+        "cStudentSentence": "$1000\\,\\mathrm{mL}=1\\,\\mathrm{L}$이므로 $1650\\,\\mathrm{mL}=$□$\\,\\mathrm{L}$ □$\\,\\mathrm{mL}$이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          },
+          {
+            "expected": "$650$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1650\\,\\mathrm{mL}$를 몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 나타내고, 그렇게 나타낼 수 있는 까닭을 쓰세요.",
+          "answer": "$1\\,\\mathrm{L}\\ 650\\,\\mathrm{mL}$입니다. $1650\\,\\mathrm{mL}$ 중 $1000\\,\\mathrm{mL}$가 $1\\,\\mathrm{L}$이고 $650\\,\\mathrm{mL}$가 남기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1\\,\\mathrm{L}\\ 650\\,\\mathrm{mL}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1650\\,\\mathrm{mL}$ 중 $1000\\,\\mathrm{mL}$를 $1\\,\\mathrm{L}$로 바꾸면 $650\\,\\mathrm{mL}$가 남는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1000\\,\\mathrm{mL}=1\\,\\mathrm{L}$이므로 $1650\\,\\mathrm{mL}=${$1$}$\\,\\mathrm{L}$ {$650$}$\\,\\mathrm{mL}$이다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ],
+            [
+              "$650$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-5-2-xc11",
+        "sourceIndex": 1213,
+        "proposalFingerprint": "95f2a734682e02871bd328f06669440b573a9ff498fb7ab1011b832df92a2c76",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "1L650mL 결과와1000mL 교환 이유를 기준으로 삼았다.",
+        "cReason": "1650을 두 단위로 분해한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "실제 결과1L650mL를 기준에 명시했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-2-xc13",
+      "sourceIndex": 1215,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-2-xc13",
+          "grade": "초3",
+          "reviewedHash": "06f83326f75553d804f0733edccb206cbe9b94cf5f771355e7086889bbd0bf25",
+          "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+          "evidence": "cohort-2026-10-07T07-16-00-569Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-2-xc13",
+              "revise",
+              "pass",
+              "none",
+              "B: 첫 기준 '들이를 아는 물건을 기준으로 삼는다'는 물음의 전제(200 mL 우유갑 이용)를 되풀이해도 충족된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-2-xc13",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-2-xc13",
+              "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+              "term": "아는 들이를 기준으로",
+              "kind": "방법",
+              "level": "중",
+              "definition": "우유 한 갑($200\\,\\mathrm{mL}$)처럼 {들이를 아는 물건}을 기준으로 삼아 다른 그릇의 들이를 어림한다."
+            },
+            "B": {
+              "prompt": "들이가 $200\\,\\mathrm{mL}$인 우유갑을 이용해 물병의 들이를 어림하는 방법을 설명하세요.",
+              "answer": "물병에 우유갑으로 몇 번쯤 담기는지 생각하고, $200\\,\\mathrm{mL}$가 그 횟수만큼이라고 어림합니다. 예를 들어 $3$번쯤이면 약 $600\\,\\mathrm{mL}$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "들이를 아는 물건을 기준으로 삼는다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "몇 번쯤 담기는지로 어림한다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "들이가 $200\\,\\mathrm{mL}$인 우유갑으로 $3$번쯤 부으면 가득 차는 물병의 들이는 약 {$600$}$\\,\\mathrm{mL}$로 어림할 수 있다.",
+              "acceptedAnswers": [
+                [
+                  "$600$"
+                ]
+              ]
+            },
+            "goal": "아는 들이를 기준으로 어림하는 방법 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "06f83326f75553d804f0733edccb206cbe9b94cf5f771355e7086889bbd0bf25"
+          },
+          "currentNormalizedHash": "06f83326f75553d804f0733edccb206cbe9b94cf5f771355e7086889bbd0bf25",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "46a321d6d6ff6d8604a57215ea8d6207d02dd91d572ec8511622641139611717",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "5ca5ed848964b1392de0cd014df2ccd65a7d42246d421c5fa1eff8348d94fd9b",
+      "currentProposal": {
+        "sourceIndex": 1215,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+        "sourceFingerprint": "01eae6e33800ee5a6bf83f61e0f00d4464217af336e12f4cd5543d1ccd11fbd0",
+        "proposalFingerprint": "5ca5ed848964b1392de0cd014df2ccd65a7d42246d421c5fa1eff8348d94fd9b",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-2-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "들이가 $200\\,\\mathrm{mL}$인 우유갑을 이용해 물병의 들이를 어림하는 방법을 설명하세요.",
+        "bAnswer": "물병에 우유갑으로 몇 번쯤 담기는지 생각하고, $200\\,\\mathrm{mL}$가 그 횟수만큼이라고 어림합니다. 예를 들어 $3$번쯤이면 약 $600\\,\\mathrm{mL}$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "우유갑으로 몇 번쯤 담기는지 생각하여 $200\\,\\mathrm{mL}$를 그 횟수만큼 모은 양으로 어림한다"
+            ]
+          }
+        ],
+        "bGoal": "아는 들이를 기준으로 어림하는 방법 설명",
+        "bReason": "우유갑 200 mL를 기준으로 주어 어림 방법만 쓰게 함. 예시의 횟수는 학생이 다르게 잡아도 인정",
+        "cDecision": "rewrite",
+        "cAfter": "들이가 $200\\,\\mathrm{mL}$인 우유갑으로 $3$번쯤 부으면 가득 차는 물병의 들이는 약 {$600$}$\\,\\mathrm{mL}$로 어림할 수 있다.",
+        "cReason": "원문 답 '들이를 아는 물건'은 긴 구절이라 무엇을 쓸지 알기 어려움. 기준 들이로 어림하는 짧은 계산으로 바꿈",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "아는 들이를 기준으로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "들이가 $200\\,\\mathrm{mL}$인 우유갑으로 $3$번쯤 부으면 가득 차는 물병의 들이는 약 {$600$}$\\,\\mathrm{mL}$로 어림할 수 있다.",
+        "cStudentSentence": "들이가 $200\\,\\mathrm{mL}$인 우유갑으로 $3$번쯤 부으면 가득 차는 물병의 들이는 약 □$\\,\\mathrm{mL}$로 어림할 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$600$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "들이가 $200\\,\\mathrm{mL}$인 우유갑을 이용해 물병의 들이를 어림하는 방법을 설명하세요.",
+          "answer": "물병에 우유갑으로 몇 번쯤 담기는지 생각하고, $200\\,\\mathrm{mL}$가 그 횟수만큼이라고 어림합니다. 예를 들어 $3$번쯤이면 약 $600\\,\\mathrm{mL}$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "우유갑으로 몇 번쯤 담기는지 생각하여 $200\\,\\mathrm{mL}$를 그 횟수만큼 모은 양으로 어림한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "들이가 $200\\,\\mathrm{mL}$인 우유갑으로 $3$번쯤 부으면 가득 차는 물병의 들이는 약 {$600$}$\\,\\mathrm{mL}$로 어림할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$600$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-5-2-xc13",
+        "sourceIndex": 1215,
+        "proposalFingerprint": "5ca5ed848964b1392de0cd014df2ccd65a7d42246d421c5fa1eff8348d94fd9b",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "200mL를 횟수만큼 모으는 실제 어림 방법을 요구한다.",
+        "cReason": "200씩3번인600을 계산한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "200mL를 횟수만큼 모으는 방법으로 기준을 좁혔다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-5-3-xc21",
+      "sourceIndex": 1964,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-5-3-xc21",
+          "grade": "초4",
+          "reviewedHash": "0630e4fd55fdf981baf96caaad647f5310f01970861f9a9291d1f5d285a210fd",
+          "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+          "evidence": "cohort-2026-10-07T07-16-00-569Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-5-3-xc21",
+              "revise",
+              "revise",
+              "none",
+              "B·C: 물음의 조건 '5명보다 많고 10명보다 적은'이 곧 '두 눈금 사이'이다. 조건을 바꿔 쓰기만 하면 정답이라 개념을 확인하지 못한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-5-3-xc21",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-5-3-xc21",
+              "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+              "term": "조건에 맞는 항목 찾기",
+              "kind": "방법",
+              "level": "상",
+              "definition": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 {사이}에 있는 항목이다."
+            },
+            "B": {
+              "prompt": "눈금이 $5$명, $10$명으로 표시된 막대그래프에서 $5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 어디에 있는지 쓰라.",
+              "answer": "$5$명 눈금과 $10$명 눈금 사이에 있다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "두 눈금 사이",
+                    "$5$와 $10$ 눈금 사이"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 {사이}에 있는 항목이다.",
+              "acceptedAnswers": [
+                [
+                  "사이"
+                ]
+              ]
+            },
+            "goal": "조건에 맞는 항목 찾기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "0630e4fd55fdf981baf96caaad647f5310f01970861f9a9291d1f5d285a210fd"
+          },
+          "currentNormalizedHash": "0630e4fd55fdf981baf96caaad647f5310f01970861f9a9291d1f5d285a210fd",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "1cae1132654b999c12e7ace7c18ef73e031108d990d80af5138ad369e93cd26b",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "1cae1132654b999c12e7ace7c18ef73e031108d990d80af5138ad369e93cd26b",
+      "currentProposal": {
+        "sourceIndex": 1964,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "2a683279fdf9e510e5020059572b1663cf8971a5c8c6bd8a67ea9c242a09227e",
+        "proposalFingerprint": "1cae1132654b999c12e7ace7c18ef73e031108d990d80af5138ad369e93cd26b",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "눈금이 $5$명, $10$명으로 표시된 막대그래프에서 $5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 어디에 있는지 쓰라.",
+        "bAnswer": "$5$명 눈금과 $10$명 눈금 사이에 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 눈금 사이",
+              "$5$와 $10$ 눈금 사이"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "조건에 맞는 항목 찾기",
+        "bReason": "수량 조건을 막대 끝 위치로 바꾸게 함",
+        "cDecision": "keep",
+        "cReason": "막대 끝이 두 눈금 □, 사이로 쉽게 이어짐",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "조건에 맞는 항목 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 {사이}에 있는 항목이다.",
+        "cStudentSentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 □에 있는 항목이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "사이",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 □에 있는 항목이다.",
+          "answers": [
+            "사이"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "눈금이 $5$명, $10$명으로 표시된 막대그래프에서 $5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 어디에 있는지 쓰라.",
+          "answer": "$5$명 눈금과 $10$명 눈금 사이에 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 눈금 사이",
+                "$5$와 $10$ 눈금 사이"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 {사이}에 있는 항목이다.",
+          "acceptedAnswers": [
+            [
+              "사이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc21",
+          "sourceIndex": 1964,
+          "proposalFingerprint": "1cae1132654b999c12e7ace7c18ef73e031108d990d80af5138ad369e93cd26b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "5명과 10명 사이의 열린 범위에 막대 끝이 있음을 묻는다.",
+          "cReason": "정확한 중간으로 읽힐 수 있는 가운데를 전체 사이와 구분했다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-5-3-xc21",
+        "sourceIndex": 1964,
+        "proposalFingerprint": "1cae1132654b999c12e7ace7c18ef73e031108d990d80af5138ad369e93cd26b",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "수량의 범위를 그래프 끝 위치로 옮기는 적용이다.",
+        "cReason": "숫자 대소와 공간 위치 사이의 대응을 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "수량 범위를 그래프의 공간 위치로 옮기는 적용은 단순한 문구 반복이 아니다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-6-1-xc10",
+      "sourceIndex": 1981,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-6-1-xc10",
+          "grade": "초4",
+          "reviewedHash": "553e743a4e9c29de1eb49042ab1735f3441fd03d4be4b8f73cc29223151854d1",
+          "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+          "evidence": "cohort-2026-10-07T07-16-00-569Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-6-1-xc10",
+              "pass",
+              "revise",
+              "none",
+              "C: 예시 '10씩, 1000씩 커지는 것처럼'이 빈칸 '다를'을 노출하고 '~ 수 있다' 어법만으로도 채워진다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-6-1-xc10",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-6-1-xc10",
+              "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+              "term": "방향마다 다른 규칙",
+              "kind": "성질",
+              "level": "중",
+              "definition": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 {규칙이 다를 수 있다}."
+            },
+            "B": {
+              "prompt": "수 배열표의 윗줄은 왼쪽부터 $10$, $20$, $30$이고, 바로 아랫줄은 $1010$, $1020$, $1030$이다. 오른쪽 이웃 칸으로 갈 때와 바로 아래 칸으로 갈 때 각각 얼마씩 커지는지 쓰고, 두 방향의 규칙이 같은지 비교하시오.",
+              "answer": "오른쪽으로는 $10$씩, 아래쪽으로는 $1000$씩 커진다. 방향마다 커지는 양이 달라 두 규칙은 다르다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "오른쪽으로 $10$씩 커진다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "아래쪽으로 $1000$씩 커진다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "두 방향의 규칙이 다르다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 {다를} 수 있다.",
+              "acceptedAnswers": [
+                [
+                  "다를",
+                  "달라질"
+                ]
+              ]
+            },
+            "goal": "방향마다 다른 규칙",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "553e743a4e9c29de1eb49042ab1735f3441fd03d4be4b8f73cc29223151854d1"
+          },
+          "currentNormalizedHash": "553e743a4e9c29de1eb49042ab1735f3441fd03d4be4b8f73cc29223151854d1",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "21fdc1b35b3a31e0092a0fe36834e3026a98d3d8cde7ba8423728eaf753534c6",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "21fdc1b35b3a31e0092a0fe36834e3026a98d3d8cde7ba8423728eaf753534c6",
+      "currentProposal": {
+        "sourceIndex": 1981,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "044754c87d13bd56550cb52f48d08d99a08287f651a44a54727f9f83b3f853c7",
+        "proposalFingerprint": "21fdc1b35b3a31e0092a0fe36834e3026a98d3d8cde7ba8423728eaf753534c6",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "수 배열표의 윗줄은 왼쪽부터 $10$, $20$, $30$이고, 바로 아랫줄은 $1010$, $1020$, $1030$이다. 오른쪽 이웃 칸으로 갈 때와 바로 아래 칸으로 갈 때 각각 얼마씩 커지는지 쓰고, 두 방향의 규칙이 같은지 비교하시오.",
+        "bAnswer": "오른쪽으로는 $10$씩, 아래쪽으로는 $1000$씩 커진다. 방향마다 커지는 양이 달라 두 규칙은 다르다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽으로 $10$씩 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래쪽으로 $1000$씩 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 방향의 규칙이 다르다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "방향마다 다른 규칙",
+        "bReason": "가로·세로 규칙이 다를 수 있음을 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 {다를} 수 있다.",
+        "cReason": "'규칙이 다를 수 있다' 구절 대신 '다를'만 가림",
+        "cSlotEquivalents": [
+          [
+            "달라질"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "방향마다 다른 규칙",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 {다를} 수 있다.",
+        "cStudentSentence": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 □ 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "다를",
+            "equivalents": [
+              "달라질"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "수 배열표의 윗줄은 왼쪽부터 $10$, $20$, $30$이고, 바로 아랫줄은 $1010$, $1020$, $1030$이다. 오른쪽 이웃 칸으로 갈 때와 바로 아래 칸으로 갈 때 각각 얼마씩 커지는지 쓰고, 두 방향의 규칙이 같은지 비교하시오.",
+          "answer": "오른쪽으로는 $10$씩, 아래쪽으로는 $1000$씩 커진다. 방향마다 커지는 양이 달라 두 규칙은 다르다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오른쪽으로 $10$씩 커진다"
+              ]
+            },
+            {
+              "anyOf": [
+                "아래쪽으로 $1000$씩 커진다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 방향의 규칙이 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 {다를} 수 있다.",
+          "acceptedAnswers": [
+            [
+              "다를",
+              "달라질"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc10",
+          "sourceIndex": 1981,
+          "proposalFingerprint": "21fdc1b35b3a31e0092a0fe36834e3026a98d3d8cde7ba8423728eaf753534c6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두 줄의 실제 수를 제시해 오른쪽 10과 아래쪽 1000의 다른 규칙을 스스로 찾는다.",
+          "cReason": "두 방향이 다를 수 있다는 비교는 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-6-1-xc10",
+        "sourceIndex": 1981,
+        "proposalFingerprint": "21fdc1b35b3a31e0092a0fe36834e3026a98d3d8cde7ba8423728eaf753534c6",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "가로10 세로1000의 변화를 실제 읽어 비교한다.",
+        "cReason": "두 방향의 규칙이 다르다는 짧은 비교를 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "10과1000이라는 증가량이 다른지 판단하는 짧은 비교를 유지한다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-2-xc22",
+      "sourceIndex": 1222,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-2-xc22",
+          "grade": "초3",
+          "reviewedHash": "601d751f7a5aea987aa2d31e2cabca20e7a4ddfeedccb4d3c5565957437f9638",
+          "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+          "evidence": "cohort-2026-10-07T07-16-00-569Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-2-xc22",
+              "revise",
+              "pass",
+              "none",
+              "B: 두 requiredIdea('1000 mL=1 L'와 '1000 mL는 L 쪽으로 옮겨 쓴다')가 같은 내용이라 하나만 쓴 완전한 답이 탈락할 수 있다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-2-xc22",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-2-xc22",
+              "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+              "term": "$\\mathrm{mL}$ 쪽의 수",
+              "kind": "성질",
+              "level": "상",
+              "definition": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$ 쪽의 수는 {$1000$보다 작게} 쓴다."
+            },
+            "B": {
+              "prompt": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$의 수를 $1000$보다 작게 쓰는 까닭을 쓰세요.",
+              "answer": "$1000\\,\\mathrm{mL}$가 되면 $1\\,\\mathrm{L}$로 바꾸어 $\\mathrm{L}$ 쪽에 쓸 수 있기 때문입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$1000\\,\\mathrm{mL}=1\\,\\mathrm{L}$"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$1000\\,\\mathrm{mL}$는 L 쪽으로 옮겨 쓴다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$의 수는 {$1000$}보다 작게 쓴다.",
+              "acceptedAnswers": [
+                [
+                  "$1000$"
+                ]
+              ]
+            },
+            "goal": "mL 쪽 수를 1000보다 작게 쓰는 까닭 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "601d751f7a5aea987aa2d31e2cabca20e7a4ddfeedccb4d3c5565957437f9638"
+          },
+          "currentNormalizedHash": "601d751f7a5aea987aa2d31e2cabca20e7a4ddfeedccb4d3c5565957437f9638",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "04f096b93c2171450fd9f34b4dfbdfd942042e1855f1b65a4f2752830d84f084",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "baa193ad3b0dd49379416ea5be98301a8bfac53914301df60f182e282156c57b",
+      "currentProposal": {
+        "sourceIndex": 1222,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+        "sourceFingerprint": "4762480c3c693560a69b65186307dc32f8a27b379297986b93c5b08e84931ba8",
+        "proposalFingerprint": "baa193ad3b0dd49379416ea5be98301a8bfac53914301df60f182e282156c57b",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-2-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$의 수를 $1000$보다 작게 쓰는 까닭을 쓰세요.",
+        "bAnswer": "$1000\\,\\mathrm{mL}$가 되면 $1\\,\\mathrm{L}$로 바꾸어 $\\mathrm{L}$ 쪽에 쓸 수 있기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1000\\,\\mathrm{mL}$마다 $1\\,\\mathrm{L}$로 바꾸어 L 쪽에 쓸 수 있기 때문이다"
+            ]
+          }
+        ],
+        "bGoal": "mL 쪽 수를 1000보다 작게 쓰는 까닭 설명",
+        "bReason": "고쳐 쓰는 방법은 xc23에서 묻고, 여기서는 까닭만 물어 겹치지 않게 함",
+        "cDecision": "rewrite",
+        "cAfter": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$의 수는 {$1000$}보다 작게 쓴다.",
+        "cReason": "원문 빈칸 '1000보다 작게'는 수와 비교 말을 함께 가려 답 형태가 불분명함. 수 하나만 쓰게 바꿈",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$\\mathrm{mL}$ 쪽의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$의 수는 {$1000$}보다 작게 쓴다.",
+        "cStudentSentence": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$의 수는 □보다 작게 쓴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1000$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$의 수를 $1000$보다 작게 쓰는 까닭을 쓰세요.",
+          "answer": "$1000\\,\\mathrm{mL}$가 되면 $1\\,\\mathrm{L}$로 바꾸어 $\\mathrm{L}$ 쪽에 쓸 수 있기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1000\\,\\mathrm{mL}$마다 $1\\,\\mathrm{L}$로 바꾸어 L 쪽에 쓸 수 있기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓸 때 $\\mathrm{mL}$의 수는 {$1000$}보다 작게 쓴다.",
+          "acceptedAnswers": [
+            [
+              "$1000$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-5-2-xc22",
+        "sourceIndex": 1222,
+        "proposalFingerprint": "baa193ad3b0dd49379416ea5be98301a8bfac53914301df60f182e282156c57b",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "1000mL를1L로 바꾸는 이유의 중복 기준을 합쳤다.",
+        "cReason": "남은mL의 범위1000미만이 명확하다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "같은 환산 이유의 중복 기준을 합쳤다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-6-2-xc8",
+      "sourceIndex": 2004,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-6-2-xc8",
+          "grade": "초4",
+          "reviewedHash": "7c3646f5db92dac9d6c8c49755126e884e626f6c2de95f42d1fca284b7294807",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-6-2-xc8",
+              "revise",
+              "pass",
+              "none",
+              "B: requiredIdeas의 '규칙을 찾기 쉽다'가 물음의 '규칙을 찾을 때 어떤 점이 좋은지'를 되풀이만 해도 충족된다. 수로 적으면 늘어나는 수(차)를 비교할 수 있다는 내용으로 기준을 좁혀야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-6-2-xc8",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-6-2-xc8",
+              "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+              "term": "개수를 수 배열로 바꾸기",
+              "kind": "방법",
+              "level": "하",
+              "definition": "도형 배열의 개수를 수 배열로 바꾸어 쓰면 {규칙을 찾기 쉽다}."
+            },
+            "B": {
+              "prompt": "첫째에 도형 $2$개, 둘째에 $4$개, 셋째에 $6$개가 놓여 있다. 도형을 그림 대신 $2$, $4$, $6$이라는 수로 적으면, 개수가 늘어나는 규칙을 찾을 때 어떤 점이 좋은지 쓰시오.",
+              "answer": "$2$, $4$, $6$처럼 수로 쓰면 늘어나는 수를 비교해 규칙을 찾기 쉽다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "규칙을 찾기 쉽다",
+                    "수의 변화를 비교하기 쉽다",
+                    "늘어나는 수가 잘 보인다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "도형 개수가 첫째 $2$개, 둘째 $4$개, 셋째 $6$개로 같은 수씩 늘어난다. 다음 단계로 갈 때마다 도형은 {$2$}개씩 늘어난다.",
+              "acceptedAnswers": [
+                [
+                  "$2$",
+                  "두"
+                ]
+              ]
+            },
+            "goal": "수 배열로 바꾸는 이점 말하기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "7c3646f5db92dac9d6c8c49755126e884e626f6c2de95f42d1fca284b7294807"
+          },
+          "currentNormalizedHash": "7c3646f5db92dac9d6c8c49755126e884e626f6c2de95f42d1fca284b7294807",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "92f9b209a0283c5cc5cdf8665eef42d6881308cabf45f6374d73da314b436327",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "bac273920648f7bac6d706d4a0a1520272f890494fc1a26462f2b58b388fa5c7",
+      "currentProposal": {
+        "sourceIndex": 2004,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+        "sourceFingerprint": "01a085597149791c02ab0c86e6850cbfd445ea20e0a2cafcb17ba4f8d47b7b36",
+        "proposalFingerprint": "bac273920648f7bac6d706d4a0a1520272f890494fc1a26462f2b58b388fa5c7",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-2-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "첫째에 도형 $2$개, 둘째에 $4$개, 셋째에 $6$개가 놓여 있다. 도형을 그림 대신 $2$, $4$, $6$이라는 수로 적으면, 개수가 늘어나는 규칙을 찾을 때 어떤 점이 좋은지 쓰시오.",
+        "bAnswer": "$2$, $4$, $6$처럼 수로 쓰면 늘어나는 수를 비교해 규칙을 찾기 쉽다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "늘어나는 수를 비교하기 쉽다",
+              "차례 사이 수의 차를 비교해 $2$씩 늘어남을 알기 쉽다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "수 배열로 바꾸는 이점 말하기",
+        "bReason": "왜 수로 바꾸는지 이유를 확인",
+        "cDecision": "rewrite",
+        "cAfter": "도형 개수가 첫째 $2$개, 둘째 $4$개, 셋째 $6$개로 같은 수씩 늘어난다. 다음 단계로 갈 때마다 도형은 {$2$}개씩 늘어난다.",
+        "cReason": "빈칸이 서술어 전체라 길어 '규칙' 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "개수를 수 배열로 바꾸기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "도형 개수가 첫째 $2$개, 둘째 $4$개, 셋째 $6$개로 같은 수씩 늘어난다. 다음 단계로 갈 때마다 도형은 {$2$}개씩 늘어난다.",
+        "cStudentSentence": "도형 개수가 첫째 $2$개, 둘째 $4$개, 셋째 $6$개로 같은 수씩 늘어난다. 다음 단계로 갈 때마다 도형은 □개씩 늘어난다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "첫째에 도형 $2$개, 둘째에 $4$개, 셋째에 $6$개가 놓여 있다. 도형을 그림 대신 $2$, $4$, $6$이라는 수로 적으면, 개수가 늘어나는 규칙을 찾을 때 어떤 점이 좋은지 쓰시오.",
+          "answer": "$2$, $4$, $6$처럼 수로 쓰면 늘어나는 수를 비교해 규칙을 찾기 쉽다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "늘어나는 수를 비교하기 쉽다",
+                "차례 사이 수의 차를 비교해 $2$씩 늘어남을 알기 쉽다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "도형 개수가 첫째 $2$개, 둘째 $4$개, 셋째 $6$개로 같은 수씩 늘어난다. 다음 단계로 갈 때마다 도형은 {$2$}개씩 늘어난다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-6-2-xc8",
+        "sourceIndex": 2004,
+        "proposalFingerprint": "bac273920648f7bac6d706d4a0a1520272f890494fc1a26462f2b58b388fa5c7",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "규칙을 찾기 쉽다만으로 부족하고 증가량 비교를 요구한다.",
+        "cReason": "2 4 6의 차2를 계산한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "증가량 비교라는 실제 이점을 요구했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-3-xc24",
+      "sourceIndex": 1232,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-3-xc24",
+          "grade": "초3",
+          "reviewedHash": "a0a599e790480635f85f00877b0c79b7480bf1e459b616451b0de34af3799d3e",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-3-xc24",
+              "revise",
+              "pass",
+              "none",
+              "B: 첫 필수 '한 가지 단위(mL)로 고친다'는 물음의 'mL로 고쳐서' 문구를 복사해도 충족된다. 2L 400mL=2400mL로 환산한다는 내용을 요구해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-3-xc24",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-3-xc24",
+              "section": "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
+              "term": "단위를 하나로 고치기",
+              "kind": "성질",
+              "level": "상",
+              "definition": "한쪽은 $\\mathrm{L}$와 $\\mathrm{mL}$, 다른 쪽은 $\\mathrm{mL}$만 있으면 {한 가지 단위}로 고친 뒤에 계산해야 실수가 적다."
+            },
+            "B": {
+              "prompt": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}+800\\,\\mathrm{mL}$를 두 들이 모두 $\\mathrm{mL}$로 고쳐서 계산하는 방법을 설명하고 답을 쓰세요.",
+              "answer": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 $2400\\,\\mathrm{mL}$로 고친 뒤 $2400+800=3200$으로 계산합니다. 답은 $3200\\,\\mathrm{mL}$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "한 가지 단위(mL)로 고친다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$3200\\,\\mathrm{mL}$"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}+800\\,\\mathrm{mL}$는 $2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 {$2400$}$\\,\\mathrm{mL}$로 고쳐 $800\\,\\mathrm{mL}$와 더하면 {$3200$}$\\,\\mathrm{mL}$이다.",
+              "acceptedAnswers": [
+                [
+                  "$2400$"
+                ],
+                [
+                  "$3200$"
+                ]
+              ]
+            },
+            "goal": "단위를 하나로 고쳐 계산하는 방법 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "a0a599e790480635f85f00877b0c79b7480bf1e459b616451b0de34af3799d3e"
+          },
+          "currentNormalizedHash": "a0a599e790480635f85f00877b0c79b7480bf1e459b616451b0de34af3799d3e",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "22098d0d2cc5a703a64adce751d656fd97856c55917f81d8399b77884eb08321",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "6257ac8edf021d058da2b42a677d9e87e18b923101a979d404f21fc4990c819d",
+      "currentProposal": {
+        "sourceIndex": 1232,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
+        "sourceFingerprint": "284f1bd7e7955497e270edb170c3c362e7cac546dbac4993e7fd7b807ac3a956",
+        "proposalFingerprint": "6257ac8edf021d058da2b42a677d9e87e18b923101a979d404f21fc4990c819d",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-3-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}+800\\,\\mathrm{mL}$를 두 들이 모두 $\\mathrm{mL}$로 고쳐서 계산하는 방법을 설명하고 답을 쓰세요.",
+        "bAnswer": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 $2400\\,\\mathrm{mL}$로 고친 뒤 $2400+800=3200$으로 계산합니다. 답은 $3200\\,\\mathrm{mL}$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 $2400\\,\\mathrm{mL}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2400+800=3200$이므로 $3200\\,\\mathrm{mL}$이다"
+            ]
+          }
+        ],
+        "bGoal": "단위를 하나로 고쳐 계산하는 방법 설명",
+        "bReason": "원문에 예가 없어 단위가 섞인 식을 새로 만들어 방법을 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}+800\\,\\mathrm{mL}$는 $2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 {$2400$}$\\,\\mathrm{mL}$로 고쳐 $800\\,\\mathrm{mL}$와 더하면 {$3200$}$\\,\\mathrm{mL}$이다.",
+        "cReason": "원문 답 '한 가지 단위'는 떠올리기 어려운 구절이고 실제 고치기를 확인하지 못함. 단위를 맞추는 계산으로 바꿈",
+        "answerNotes": "B 답은 $3\\,\\mathrm{L}\\ 200\\,\\mathrm{mL}$로 써도 정답",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "단위를 하나로 고치기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}+800\\,\\mathrm{mL}$는 $2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 {$2400$}$\\,\\mathrm{mL}$로 고쳐 $800\\,\\mathrm{mL}$와 더하면 {$3200$}$\\,\\mathrm{mL}$이다.",
+        "cStudentSentence": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}+800\\,\\mathrm{mL}$는 $2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 □$\\,\\mathrm{mL}$로 고쳐 $800\\,\\mathrm{mL}$와 더하면 □$\\,\\mathrm{mL}$이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$2400$",
+            "equivalents": []
+          },
+          {
+            "expected": "$3200$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}+800\\,\\mathrm{mL}$를 두 들이 모두 $\\mathrm{mL}$로 고쳐서 계산하는 방법을 설명하고 답을 쓰세요.",
+          "answer": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 $2400\\,\\mathrm{mL}$로 고친 뒤 $2400+800=3200$으로 계산합니다. 답은 $3200\\,\\mathrm{mL}$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 $2400\\,\\mathrm{mL}$로 고친다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$2400+800=3200$이므로 $3200\\,\\mathrm{mL}$이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}+800\\,\\mathrm{mL}$는 $2\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 {$2400$}$\\,\\mathrm{mL}$로 고쳐 $800\\,\\mathrm{mL}$와 더하면 {$3200$}$\\,\\mathrm{mL}$이다.",
+          "acceptedAnswers": [
+            [
+              "$2400$"
+            ],
+            [
+              "$3200$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-5-3-xc24",
+        "sourceIndex": 1232,
+        "proposalFingerprint": "6257ac8edf021d058da2b42a677d9e87e18b923101a979d404f21fc4990c819d",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "실제2400환산과3200계산을 기준으로 삼았다.",
+        "cReason": "같은 두 계산을 빈칸으로 직접 수행한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "실제 단위 환산값2400을 기준에 넣었다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-6-2-xc9",
+      "sourceIndex": 2005,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-6-2-xc9",
+          "grade": "초4",
+          "reviewedHash": "4bf110ecf5ca0103f6a429119433187513828f6dbc703098bde41b252f09286c",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-6-2-xc9",
+              "revise",
+              "excluded",
+              "none",
+              "B: 물음이 '오른쪽에 1개를 더 놓고 같은 방법으로 1개를 더'라고 규칙을 이미 서술한다. 답 '오른쪽에 1개씩 늘어난다'는 물음을 옮겨 쓰는 것만으로 충족된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-6-2-xc9",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-6-2-xc9",
+              "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+              "term": "도형 배열의 규칙 말하기",
+              "kind": "방법",
+              "level": "하",
+              "definition": "도형 배열의 규칙은 오른쪽에 $1$개씩 늘어난다처럼 {말}로 설명한다."
+            },
+            "B": {
+              "prompt": "첫째에는 동그라미가 $1$개 있다. 둘째에는 그 오른쪽에 동그라미 $1$개를 더 놓고, 셋째에도 같은 방법으로 $1$개를 더 놓았다. 동그라미가 늘어나는 방향과 개수를 넣어 배열의 규칙을 쓰시오.",
+              "answer": "오른쪽에 동그라미가 $1$개씩 늘어난다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "오른쪽에 동그라미가 $1$개씩 늘어난다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "excluded": "말·글이라는 표현 형식만 묻는 C는 실제 배열의 수학적 규칙을 확인하지 못한다."
+            },
+            "goal": "규칙을 말로 설명하기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "4bf110ecf5ca0103f6a429119433187513828f6dbc703098bde41b252f09286c"
+          },
+          "currentNormalizedHash": "4bf110ecf5ca0103f6a429119433187513828f6dbc703098bde41b252f09286c",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "1fba510a2c1a0addd0b2e534efaadf7c34bae69154763be2038b65c11d1c9934",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "ae7d7f079cd0e341901f134c860bdb6149422a7eebe83f8068558680e1bef491",
+      "currentProposal": {
+        "sourceIndex": 2005,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+        "sourceFingerprint": "744e351885f2aefa08e49a82bb49af79433fa2beaab8b195c41d275900fd57f1",
+        "proposalFingerprint": "ae7d7f079cd0e341901f134c860bdb6149422a7eebe83f8068558680e1bef491",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-2-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "동그라미를 첫째에는 $1$개, 둘째에는 $2$개, 셋째에는 $3$개씩 가로로 나란히 놓았다. 매번 맨 왼쪽 동그라미의 자리는 같다. 차례가 바뀔 때 동그라미가 어느 쪽에 몇 개씩 늘어나는지 써서 배열의 규칙을 설명하시오.",
+        "bAnswer": "오른쪽에 동그라미가 $1$개씩 늘어난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽에 동그라미가 $1$개씩 늘어난다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "규칙을 말로 설명하기",
+        "bReason": "각 단계의 실제 개수와 고정된 왼쪽 끝만 주어 늘어나는 방향과 개수는 학생이 판단하게 한다.",
+        "cDecision": "exclude",
+        "cReason": "말·글이라는 표현 형식만 묻는 C는 실제 배열의 수학적 규칙을 확인하지 못한다.",
+        "exclusionReason": "C만 제외: 배열의 규칙을 실제로 설명하는 B를 남기고 말이라는 낱말 복원은 제외한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "도형 배열의 규칙 말하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "동그라미를 첫째에는 $1$개, 둘째에는 $2$개, 셋째에는 $3$개씩 가로로 나란히 놓았다. 매번 맨 왼쪽 동그라미의 자리는 같다. 차례가 바뀔 때 동그라미가 어느 쪽에 몇 개씩 늘어나는지 써서 배열의 규칙을 설명하시오.",
+          "answer": "오른쪽에 동그라미가 $1$개씩 늘어난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오른쪽에 동그라미가 $1$개씩 늘어난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "말·글이라는 표현 형식만 묻는 C는 실제 배열의 수학적 규칙을 확인하지 못한다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-6-2-xc9",
+        "sourceIndex": 2005,
+        "proposalFingerprint": "ae7d7f079cd0e341901f134c860bdb6149422a7eebe83f8068558680e1bef491",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "1 2 3의 실제 배치와 고정된 왼쪽 끝에서 오른쪽으로 하나씩 늘어남을 판단한다.",
+        "cReason": "말이라는 표현 이름 복원은 제외한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "증가 방향과 개수를 먼저 주지 않고 실제 단계별 배열을 주었다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-3-xc25",
+      "sourceIndex": 1233,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-3-xc25",
+          "grade": "초3",
+          "reviewedHash": "cd2cb3643a378df35cb9dd0484a834d57d8e9d3de9c24014335d4d5f2620f69c",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-3-xc25",
+              "revise",
+              "pass",
+              "none",
+              "B: 첫 anyOf '가까운 L로 바꾼다'는 물음의 '가까운 몇 L로 바꾸어'를 되풀이해도 충족된다. 가까운 L를 정하는 기준(mL 부분이 500mL 이상이면 올림)을 필수로 해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-3-xc25",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-3-xc25",
+              "section": "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
+              "term": "들이의 합 어림하기",
+              "kind": "방법",
+              "level": "상",
+              "definition": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 {$3\\,\\mathrm{L}$}, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 {$1\\,\\mathrm{L}$}로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+              "example": {
+                "prompt": "$1\\,\\mathrm{L}\\ 900\\,\\mathrm{mL}+2\\,\\mathrm{L}\\ 100\\,\\mathrm{mL}$를 약 $4\\,\\mathrm{L}$로 어림하는 까닭은?",
+                "answer": "약 $2\\,\\mathrm{L}$ 두 개라서"
+              }
+            },
+            "B": {
+              "prompt": "$2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}+1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$의 합을 어림하려고 합니다. 두 들이를 각각 가까운 몇 $\\mathrm{L}$로 바꾸어 더하는 방법으로 어림할 때, 가까운 $\\mathrm{L}$로 바꾸는 방법과 합이 약 몇 $\\mathrm{L}$인지 쓰세요.",
+              "answer": "각 들이가 어느 $\\mathrm{L}$에 더 가까운지 보고 바꿉니다. $2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$는 약 $3\\,\\mathrm{L}$, $1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$는 약 $1\\,\\mathrm{L}$로 보고 더하므로 합은 약 $4\\,\\mathrm{L}$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "각 들이가 어느 $\\mathrm{L}$에 더 가까운지 보고 가까운 $\\mathrm{L}$로 바꾼다",
+                    "$\\mathrm{mL}$ 부분이 $500\\,\\mathrm{mL}$보다 많으면 $\\mathrm{L}$를 하나 올리고 적으면 그대로 두어 바꾼다",
+                    "$2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$는 약 $3\\,\\mathrm{L}$, $1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$는 약 $1\\,\\mathrm{L}$로 바꾼다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "합은 약 $4\\,\\mathrm{L}$",
+                    "약 $4\\,\\mathrm{L}$"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 {$3\\,\\mathrm{L}$}, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 {$1\\,\\mathrm{L}$}로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+              "acceptedAnswers": [
+                [
+                  "$3\\,\\mathrm{L}$"
+                ],
+                [
+                  "$1\\,\\mathrm{L}$"
+                ]
+              ]
+            },
+            "goal": "각 들이를 가까운 $\\mathrm{L}$로 바꾸어 더하는 합의 어림 방법 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "cd2cb3643a378df35cb9dd0484a834d57d8e9d3de9c24014335d4d5f2620f69c"
+          },
+          "currentNormalizedHash": "cd2cb3643a378df35cb9dd0484a834d57d8e9d3de9c24014335d4d5f2620f69c",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "12e319449053840c9483399bd759f2a889e03d0d7a24144dd62b6785e5516d89",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "b7a4fa777b68bc44a201bf372f20e6282d8e00656512ecb1bac30232e0c77e21",
+      "currentProposal": {
+        "sourceIndex": 1233,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
+        "sourceFingerprint": "ec91e93c9193aae4cf044ea9be1cad9d1cbaac2fda9d936e58a46bca4bb7f6d2",
+        "proposalFingerprint": "b7a4fa777b68bc44a201bf372f20e6282d8e00656512ecb1bac30232e0c77e21",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-3-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}+1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$의 합을 어림하려고 합니다. 두 들이를 각각 가까운 몇 $\\mathrm{L}$로 바꾸어 더하는 방법으로 어림할 때, 가까운 $\\mathrm{L}$로 바꾸는 방법과 합이 약 몇 $\\mathrm{L}$인지 쓰세요.",
+        "bAnswer": "각 들이가 어느 $\\mathrm{L}$에 더 가까운지 보고 바꿉니다. $2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$는 약 $3\\,\\mathrm{L}$, $1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$는 약 $1\\,\\mathrm{L}$로 보고 더하므로 합은 약 $4\\,\\mathrm{L}$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$는 $3\\,\\mathrm{L}$에 더 가까워 약 $3\\,\\mathrm{L}$로, $1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$는 $1\\,\\mathrm{L}$에 더 가까워 약 $1\\,\\mathrm{L}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합은 약 $4\\,\\mathrm{L}$이다"
+            ]
+          }
+        ],
+        "bGoal": "각 들이를 가까운 $\\mathrm{L}$로 바꾸어 더하는 합의 어림 방법 설명",
+        "bReason": "합을 먼저 구해 어림하는 방법 등 다른 방법이 있으므로, 질문에서 '각각 가까운 몇 $\\mathrm{L}$로 바꾸어 더하는 방법'으로 범위를 정하고 그 방법과 결과를 요구함",
+        "cDecision": "keep",
+        "cReason": "'가까운 몇 리터로 어림'이라는 기준과 두 들이가 문장에 있어 답 $3\\,\\mathrm{L}$, $1\\,\\mathrm{L}$가 분명한 짧은 계산임",
+        "answerNotes": "'3 L', '3 리터' 표기 모두 허용. 첫 빈칸에 $2\\,\\mathrm{L}$를 쓰면 오답",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "들이의 합 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 {$3\\,\\mathrm{L}$}, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 {$1\\,\\mathrm{L}$}로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+        "cStudentSentence": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 □, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 □로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3\\,\\mathrm{L}$",
+            "equivalents": []
+          },
+          {
+            "expected": "$1\\,\\mathrm{L}$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 □, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 □로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+          "answers": [
+            "$3\\,\\mathrm{L}$",
+            "$1\\,\\mathrm{L}$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}+1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$의 합을 어림하려고 합니다. 두 들이를 각각 가까운 몇 $\\mathrm{L}$로 바꾸어 더하는 방법으로 어림할 때, 가까운 $\\mathrm{L}$로 바꾸는 방법과 합이 약 몇 $\\mathrm{L}$인지 쓰세요.",
+          "answer": "각 들이가 어느 $\\mathrm{L}$에 더 가까운지 보고 바꿉니다. $2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$는 약 $3\\,\\mathrm{L}$, $1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$는 약 $1\\,\\mathrm{L}$로 보고 더하므로 합은 약 $4\\,\\mathrm{L}$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$는 $3\\,\\mathrm{L}$에 더 가까워 약 $3\\,\\mathrm{L}$로, $1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$는 $1\\,\\mathrm{L}$에 더 가까워 약 $1\\,\\mathrm{L}$로 바꾼다"
+              ]
+            },
+            {
+              "anyOf": [
+                "합은 약 $4\\,\\mathrm{L}$이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 {$3\\,\\mathrm{L}$}, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 {$1\\,\\mathrm{L}$}로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+          "acceptedAnswers": [
+            [
+              "$3\\,\\mathrm{L}$"
+            ],
+            [
+              "$1\\,\\mathrm{L}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-5-3-xc25",
+        "sourceIndex": 1233,
+        "proposalFingerprint": "b7a4fa777b68bc44a201bf372f20e6282d8e00656512ecb1bac30232e0c77e21",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "각각3L와1L에 가깝다는 실제 어림과4L합을 요구한다.",
+        "cReason": "실제 가까운 정수 리터로 바꾼다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "각각의 실제 가까운 리터와 합을 기준에 넣었다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-6-2-xc13",
+      "sourceIndex": 2008,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-6-2-xc13",
+          "grade": "초4",
+          "reviewedHash": "500d7097f477ebf53401ba3b34407bb8ac2fc4bdff17c372363babb263c6027a",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-6-2-xc13",
+              "revise",
+              "pass",
+              "none",
+              "B: 두 번째 필수의 대안 '같은 차례가 반복되지 않는다'는 물음의 '같은 묶음이 되풀이되지 않는 까닭'을 재진술한 것이라 까닭 없이도 충족된다. '묶음마다 모양이 달라진다'처럼 구체적인 내용만 인정해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-6-2-xc13",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-6-2-xc13",
+              "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+              "term": "반복 묶음 찾기",
+              "kind": "방법",
+              "level": "중",
+              "definition": "반복 묶음은 처음과 {같은 차례가 다시 시작되는 곳}에서 끊어 찾는다.",
+              "example": {
+                "prompt": "$\\bigcirc$, $\\triangle$, $\\triangle$, $\\bigcirc$, $\\triangle$, $\\triangle$를 두 개씩 묶으면 안 되는 까닭은?",
+                "answer": "묶음마다 모양이 달라져서"
+              }
+            },
+            "B": {
+              "prompt": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 가장 작은 반복 묶음은 몇 개로 이루어졌는지 쓰고, 앞에서부터 두 개씩 묶으면 같은 묶음이 되풀이되지 않는 까닭을 쓰시오.",
+              "answer": "$3$개씩 묶는다. $2$개씩 묶으면 묶음마다 모양이 달라 같은 차례가 아니기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$3$개씩",
+                    "$\\bigcirc\\triangle\\triangle$이 반복"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "묶음마다 모양이 달라진다",
+                    "같은 차례가 반복되지 않는다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 같은 차례가 되풀이되는 가장 작은 묶음은 도형 {$3$}개로 이루어져 있다.",
+              "acceptedAnswers": [
+                [
+                  "$3$",
+                  "세"
+                ]
+              ]
+            },
+            "goal": "반복 묶음 끊는 곳 찾기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "500d7097f477ebf53401ba3b34407bb8ac2fc4bdff17c372363babb263c6027a"
+          },
+          "currentNormalizedHash": "500d7097f477ebf53401ba3b34407bb8ac2fc4bdff17c372363babb263c6027a",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "f260d8a7d5f0936c69033ebf89155146ef6bcaa444e7fc0842782d49fed62cef",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "3fd4088c2697ac7f76174743fd172267b84acdb1adf80169cdedf21d569fb59c",
+      "currentProposal": {
+        "sourceIndex": 2008,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+        "sourceFingerprint": "9d809ee59292ae9a01ce045bf69609482bf7cd0877dc1ed760197f6605fefbb5",
+        "proposalFingerprint": "3fd4088c2697ac7f76174743fd172267b84acdb1adf80169cdedf21d569fb59c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-2-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 가장 작은 반복 묶음은 몇 개로 이루어졌는지 쓰고, 앞에서부터 두 개씩 묶으면 같은 묶음이 되풀이되지 않는 까닭을 쓰시오.",
+        "bAnswer": "$3$개씩 묶는다. $2$개씩 묶으면 묶음마다 모양이 달라 같은 차례가 아니기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개씩 묶는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 개씩 묶으면 첫 묶음은 동그라미와 세모, 다음 묶음은 세모와 동그라미가 되어 모양의 차례가 달라진다",
+              "두 개씩 묶은 각 묶음의 모양이나 차례가 서로 달라진다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "반복 묶음 끊는 곳 찾기",
+        "bReason": "같은 차례가 다시 시작되는 곳을 찾는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 같은 차례가 되풀이되는 가장 작은 묶음은 도형 {$3$}개로 이루어져 있다.",
+        "cReason": "긴 구절 빈칸을 예시 속 묶음 개수로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "반복 묶음 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 같은 차례가 되풀이되는 가장 작은 묶음은 도형 {$3$}개로 이루어져 있다.",
+        "cStudentSentence": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 같은 차례가 되풀이되는 가장 작은 묶음은 도형 □개로 이루어져 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 가장 작은 반복 묶음은 몇 개로 이루어졌는지 쓰고, 앞에서부터 두 개씩 묶으면 같은 묶음이 되풀이되지 않는 까닭을 쓰시오.",
+          "answer": "$3$개씩 묶는다. $2$개씩 묶으면 묶음마다 모양이 달라 같은 차례가 아니기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$개씩 묶는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 개씩 묶으면 첫 묶음은 동그라미와 세모, 다음 묶음은 세모와 동그라미가 되어 모양의 차례가 달라진다",
+                "두 개씩 묶은 각 묶음의 모양이나 차례가 서로 달라진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 같은 차례가 되풀이되는 가장 작은 묶음은 도형 {$3$}개로 이루어져 있다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-6-2-xc13",
+        "sourceIndex": 2008,
+        "proposalFingerprint": "3fd4088c2697ac7f76174743fd172267b84acdb1adf80169cdedf21d569fb59c",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "두 개씩 묶으면 묶음의 모양 차례가 달라지는 이유를 요구한다.",
+        "cReason": "가장 작은 반복 묶음3개를 찾는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "같은 반복이 아니라는 결론 대신 묶음별 모양과 차례가 다른 이유를 요구했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-6-2-xc14",
+      "sourceIndex": 2009,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-6-2-xc14",
+          "grade": "초4",
+          "reviewedHash": "af208bc59faf3a4e89da49cb48efb6b231bba5c8427b6e806bd78e5cb5cca911",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [
+            [
+              "e4-1-6-2-xc14",
+              "C",
+              "모양",
+              "revise",
+              "답 '모양'이 같은 문장 앞부분('모양과 색이')에 그대로 있어 지문 단어 베끼기로 풀림"
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-6-2-xc14",
+              "pass",
+              "revise",
+              "none",
+              "C: 답 '모양'이 같은 문장 앞부분('모양과 색이 함께 바뀌는')에 그대로 있어 지문 단어를 베끼면 풀린다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-6-2-xc14",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-6-2-xc14",
+              "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+              "term": "모양과 색이 함께 바뀌는 배열",
+              "kind": "방법",
+              "level": "중",
+              "definition": "모양과 색이 함께 바뀌는 배열은 {모양의 규칙}과 색의 규칙을 따로 찾는다."
+            },
+            "B": {
+              "prompt": "빨간 동그라미, 빨간 세모, 파란 동그라미, 파란 세모가 이 순서대로 계속 반복된다. 모양의 규칙과 색의 규칙을 따로 쓰시오.",
+              "answer": "모양은 동그라미와 세모가 번갈아 나오고, 색은 빨강 두 개와 파랑 두 개가 차례로 반복된다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "동그라미와 세모가 번갈아 나온다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "빨강 두 개와 파랑 두 개가 차례로 반복된다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "모양과 색이 함께 바뀌는 배열은 {모양}의 규칙과 색의 규칙을 따로 찾는다.",
+              "acceptedAnswers": [
+                [
+                  "모양"
+                ]
+              ]
+            },
+            "goal": "모양과 색 규칙 따로 찾기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "af208bc59faf3a4e89da49cb48efb6b231bba5c8427b6e806bd78e5cb5cca911"
+          },
+          "currentNormalizedHash": "af208bc59faf3a4e89da49cb48efb6b231bba5c8427b6e806bd78e5cb5cca911",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "be5bfa116160274d24cf63009e19ccdc3f72d7bde795246a47d716cf693bf84a",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "dfc4c79431ee9ec7b81fd2e4fb5e3792e257440f34c16648f122d7eecd5b0c19",
+      "currentProposal": {
+        "sourceIndex": 2009,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+        "sourceFingerprint": "952a2f9c3cb81c8358580118154083fd430dfb2a9384565cafa6d82b6831f2bc",
+        "proposalFingerprint": "dfc4c79431ee9ec7b81fd2e4fb5e3792e257440f34c16648f122d7eecd5b0c19",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-2-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "빨간 동그라미, 빨간 세모, 파란 동그라미, 파란 세모가 이 순서대로 계속 반복된다. 모양의 규칙과 색의 규칙을 따로 쓰시오.",
+        "bAnswer": "모양은 동그라미와 세모가 번갈아 나오고, 색은 빨강 두 개와 파랑 두 개가 차례로 반복된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "동그라미와 세모가 번갈아 나온다"
+            ]
+          },
+          {
+            "anyOf": [
+              "빨강 두 개와 파랑 두 개가 차례로 반복된다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모양과 색 규칙 따로 찾기",
+        "bReason": "두 규칙을 분리해 말하는지 확인",
+        "cDecision": "rewrite",
+        "cAfter": "빨간 동그라미, 빨간 세모, 파란 동그라미, 파란 세모가 이 순서대로 계속 반복된다. 여섯째 도형의 모양은 {세모}이고 색은 {빨강}이다.",
+        "cReason": "'□과' 앞 답 범위를 '모양' 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "삼각형"
+          ],
+          [
+            "빨간색",
+            "빨강색"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모양과 색이 함께 바뀌는 배열",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "빨간 동그라미, 빨간 세모, 파란 동그라미, 파란 세모가 이 순서대로 계속 반복된다. 여섯째 도형의 모양은 {세모}이고 색은 {빨강}이다.",
+        "cStudentSentence": "빨간 동그라미, 빨간 세모, 파란 동그라미, 파란 세모가 이 순서대로 계속 반복된다. 여섯째 도형의 모양은 □이고 색은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "세모",
+            "equivalents": [
+              "삼각형"
+            ]
+          },
+          {
+            "expected": "빨강",
+            "equivalents": [
+              "빨간색",
+              "빨강색"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "빨간 동그라미, 빨간 세모, 파란 동그라미, 파란 세모가 이 순서대로 계속 반복된다. 모양의 규칙과 색의 규칙을 따로 쓰시오.",
+          "answer": "모양은 동그라미와 세모가 번갈아 나오고, 색은 빨강 두 개와 파랑 두 개가 차례로 반복된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "동그라미와 세모가 번갈아 나온다"
+              ]
+            },
+            {
+              "anyOf": [
+                "빨강 두 개와 파랑 두 개가 차례로 반복된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "빨간 동그라미, 빨간 세모, 파란 동그라미, 파란 세모가 이 순서대로 계속 반복된다. 여섯째 도형의 모양은 {세모}이고 색은 {빨강}이다.",
+          "acceptedAnswers": [
+            [
+              "세모",
+              "삼각형"
+            ],
+            [
+              "빨강",
+              "빨간색",
+              "빨강색"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-6-2-xc14",
+        "sourceIndex": 2009,
+        "proposalFingerprint": "dfc4c79431ee9ec7b81fd2e4fb5e3792e257440f34c16648f122d7eecd5b0c19",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "모양과 색의 독립 규칙이 각각 맞다.",
+        "cReason": "여섯째 도형의 세모와 빨강을 규칙으로 찾는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "모양 단어 복사 대신 여섯째 도형을 규칙으로 찾게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-4-xc2",
+      "sourceIndex": 1236,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-4-xc2",
+          "grade": "초3",
+          "reviewedHash": "5f8b0f207e9f75916d0ec3de3aa5d18c6a9f14de439ba58bbd8ed9d6f0f515ed",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-4-xc2",
+              "pass",
+              "revise",
+              "none",
+              "C: 다음 문장 '이럴 때는 저울을 쓴다'가 '알기 {어렵다}'를 드러낸다. 빈칸이 사실상 어휘 완성이라 수학 내용을 확인하지 못한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-4-xc2",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-4-xc2",
+              "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+              "term": "손 어림의 한계",
+              "kind": "성질",
+              "level": "하",
+              "definition": "무게가 비슷한 두 물건은 손으로 들어 보는 것만으로는 어느 쪽이 무거운지 {알기 어렵다}."
+            },
+            "B": {
+              "prompt": "무게가 비슷한 두 물건을 손으로 들어서 비교하면 어떤 점이 어려운지 쓰고, 더 정확하게 비교하려면 무엇을 쓰면 되는지 쓰세요.",
+              "answer": "손으로는 작은 무게 차이를 느끼기 어려워 어느 쪽이 무거운지 알기 어렵습니다. 저울(양팔저울)을 쓰면 정확하게 비교할 수 있습니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "손으로는 작은 차이를 알기 어렵다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "저울을 쓴다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "무게가 비슷한 두 물건은 손으로 들어 보는 것만으로는 어느 쪽이 무거운지 알기 {어렵다}. 이럴 때는 저울을 쓴다.",
+              "acceptedAnswers": [
+                [
+                  "어렵다"
+                ]
+              ]
+            },
+            "goal": "손 어림의 한계와 저울의 필요 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "5f8b0f207e9f75916d0ec3de3aa5d18c6a9f14de439ba58bbd8ed9d6f0f515ed"
+          },
+          "currentNormalizedHash": "5f8b0f207e9f75916d0ec3de3aa5d18c6a9f14de439ba58bbd8ed9d6f0f515ed",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "761b41298e1101777d7c92c1f52ac9a2330ad6c744ef7eec9f566208e662d6d0",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "761b41298e1101777d7c92c1f52ac9a2330ad6c744ef7eec9f566208e662d6d0",
+      "currentProposal": {
+        "sourceIndex": 1236,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+        "sourceFingerprint": "c99fb771850ffc081ac0c0644b4958abebcd7c16c02a290fefa4874b36ff5cfb",
+        "proposalFingerprint": "761b41298e1101777d7c92c1f52ac9a2330ad6c744ef7eec9f566208e662d6d0",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-4-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "무게가 비슷한 두 물건을 손으로 들어서 비교하면 어떤 점이 어려운지 쓰고, 더 정확하게 비교하려면 무엇을 쓰면 되는지 쓰세요.",
+        "bAnswer": "손으로는 작은 무게 차이를 느끼기 어려워 어느 쪽이 무거운지 알기 어렵습니다. 저울(양팔저울)을 쓰면 정확하게 비교할 수 있습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "손으로는 작은 차이를 알기 어렵다"
+            ]
+          },
+          {
+            "anyOf": [
+              "저울을 쓴다"
+            ]
+          }
+        ],
+        "bGoal": "손 어림의 한계와 저울의 필요 설명",
+        "bReason": "어려운 점과 해결 도구 두 가지로 답할 범위를 밝힘",
+        "cDecision": "rewrite",
+        "cAfter": "무게가 비슷한 두 물건은 손으로 들어 보는 것만으로는 어느 쪽이 무거운지 알기 {어렵다}. 이럴 때는 저울을 쓴다.",
+        "cReason": "원문 빈칸 '알기 어렵다'는 문장 끝 전체를 복원해야 해 '모른다', '헷갈린다' 등 답이 흩어짐. 낱말 하나로 좁힘",
+        "answerNotes": "'어렵다', '힘들다' 허용. '쉽다'는 오답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "손 어림의 한계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "무게가 비슷한 두 물건은 손으로 들어 보는 것만으로는 어느 쪽이 무거운지 알기 {어렵다}. 이럴 때는 저울을 쓴다.",
+        "cStudentSentence": "무게가 비슷한 두 물건은 손으로 들어 보는 것만으로는 어느 쪽이 무거운지 알기 □. 이럴 때는 저울을 쓴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "어렵다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "무게가 비슷한 두 물건을 손으로 들어서 비교하면 어떤 점이 어려운지 쓰고, 더 정확하게 비교하려면 무엇을 쓰면 되는지 쓰세요.",
+          "answer": "손으로는 작은 무게 차이를 느끼기 어려워 어느 쪽이 무거운지 알기 어렵습니다. 저울(양팔저울)을 쓰면 정확하게 비교할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "손으로는 작은 차이를 알기 어렵다"
+              ]
+            },
+            {
+              "anyOf": [
+                "저울을 쓴다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "무게가 비슷한 두 물건은 손으로 들어 보는 것만으로는 어느 쪽이 무거운지 알기 {어렵다}. 이럴 때는 저울을 쓴다.",
+          "acceptedAnswers": [
+            [
+              "어렵다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-4-xc2",
+          "sourceIndex": 1236,
+          "proposalFingerprint": "761b41298e1101777d7c92c1f52ac9a2330ad6c744ef7eec9f566208e662d6d0",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "비슷한무게의느끼기어려운차이를저울로비교하는이유·도구를 요청한다.",
+          "cReason": "손느낌의어려움과저울사용조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-5-4-xc2",
+        "sourceIndex": 1236,
+        "proposalFingerprint": "761b41298e1101777d7c92c1f52ac9a2330ad6c744ef7eec9f566208e662d6d0",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "손 비교의 작은 차이 한계와 저울 해결책이 맞다.",
+        "cReason": "어렵다는 말은 손 비교의 정확성 한계라는 목표를 나타낸다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "손으로 미세한 차이를 알기 어렵다는 측정 한계는 도구 사용의 유용한 근거이다. 뒤의 해결 도구가 그 답의 문구 복사는 아니다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-4-xc5",
+      "sourceIndex": 1239,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-4-xc5",
+          "grade": "초3",
+          "reviewedHash": "fec100a6628436c5c333ff014c0953d26f385831744193db4fad217789c35f1c",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-4-xc5",
+              "pass",
+              "revise",
+              "none",
+              "C: 문장에 '추를 4개 올렸더니'가 있고 빈칸 답이 그 '4'라서 수를 베끼면 풀린다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-4-xc5",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-4-xc5",
+              "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+              "term": "추의 개수로 말하기",
+              "kind": "방법",
+              "level": "하",
+              "definition": "무게가 모두 같은 추를 저울이 나란해질 때까지 올리면 물건이 {추 몇 개의 무게와 같은지}로 무게를 말할 수 있다."
+            },
+            "B": {
+              "prompt": "무게가 모두 같은 추와 양팔저울이 있습니다. 지우개의 무게가 추 몇 개의 무게와 꼭 같아서 저울이 수평이 되는 경우, 지우개의 무게를 '추 몇 개'로 나타내는 방법을 설명하세요.",
+              "answer": "한쪽 접시에 지우개를 놓고 다른 쪽 접시에 추를 하나씩 올립니다. 저울이 수평이 되었을 때 올린 추의 개수로 지우개의 무게를 말합니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "지우개를 한쪽 접시에 놓고 다른 쪽 접시에 추를 올린다",
+                    "지우개와 추를 양팔저울의 양쪽 접시에 나누어 올린다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "저울이 수평이 될 때 올린 추의 개수로 지우개의 무게를 말한다",
+                    "저울이 수평이 되면 지우개의 무게는 올린 추 몇 개의 무게와 같다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "양팔저울의 한쪽에 지우개를 놓고 다른 쪽에 무게가 같은 추를 $4$개 올렸더니 저울이 기울지 않았다. 지우개의 무게는 추 {$4$}개의 무게와 같다.",
+              "acceptedAnswers": [
+                [
+                  "$4$"
+                ]
+              ]
+            },
+            "goal": "같은 추의 개수로 무게를 나타내는 방법 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "fec100a6628436c5c333ff014c0953d26f385831744193db4fad217789c35f1c"
+          },
+          "currentNormalizedHash": "fec100a6628436c5c333ff014c0953d26f385831744193db4fad217789c35f1c",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "096c5d59056e38389cd83a2482344c6b888e1112f4b02cc049003309733f4832",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "096c5d59056e38389cd83a2482344c6b888e1112f4b02cc049003309733f4832",
+      "currentProposal": {
+        "sourceIndex": 1239,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+        "sourceFingerprint": "ac75e64c1ca22cf21791ad8591a0a1812c512466248b3fa5a195470fe00e14aa",
+        "proposalFingerprint": "096c5d59056e38389cd83a2482344c6b888e1112f4b02cc049003309733f4832",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-4-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "무게가 모두 같은 추와 양팔저울이 있습니다. 지우개의 무게가 추 몇 개의 무게와 꼭 같아서 저울이 수평이 되는 경우, 지우개의 무게를 '추 몇 개'로 나타내는 방법을 설명하세요.",
+        "bAnswer": "한쪽 접시에 지우개를 놓고 다른 쪽 접시에 추를 하나씩 올립니다. 저울이 수평이 되었을 때 올린 추의 개수로 지우개의 무게를 말합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "지우개를 한쪽 접시에 놓고 다른 쪽 접시에 추를 올린다",
+              "지우개와 추를 양팔저울의 양쪽 접시에 나누어 올린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "저울이 수평이 될 때 올린 추의 개수로 지우개의 무게를 말한다",
+              "저울이 수평이 되면 지우개의 무게는 올린 추 몇 개의 무게와 같다"
+            ]
+          }
+        ],
+        "bGoal": "같은 추의 개수로 무게를 나타내는 방법 설명",
+        "bReason": "추 몇 개로 정확히 수평이 되는 지우개라는 조건을 문장에 넣어, 추의 개수로 무게를 말할 수 있는 경우로 응답 범위를 정함",
+        "cDecision": "rewrite",
+        "cAfter": "양팔저울의 한쪽에 지우개를 놓고 다른 쪽에 무게가 같은 추를 $4$개 올렸더니 저울이 기울지 않았다. 지우개의 무게는 추 {$4$}개의 무게와 같다.",
+        "cReason": "원문 답 '추 몇 개의 무게와 같은지'는 문장 일부를 통째로 복원해야 하는 긴 구절임. 구체 상황의 개수를 쓰게 바꿈",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "추의 개수로 말하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "양팔저울의 한쪽에 지우개를 놓고 다른 쪽에 무게가 같은 추를 $4$개 올렸더니 저울이 기울지 않았다. 지우개의 무게는 추 {$4$}개의 무게와 같다.",
+        "cStudentSentence": "양팔저울의 한쪽에 지우개를 놓고 다른 쪽에 무게가 같은 추를 $4$개 올렸더니 저울이 기울지 않았다. 지우개의 무게는 추 □개의 무게와 같다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "무게가 모두 같은 추와 양팔저울이 있습니다. 지우개의 무게가 추 몇 개의 무게와 꼭 같아서 저울이 수평이 되는 경우, 지우개의 무게를 '추 몇 개'로 나타내는 방법을 설명하세요.",
+          "answer": "한쪽 접시에 지우개를 놓고 다른 쪽 접시에 추를 하나씩 올립니다. 저울이 수평이 되었을 때 올린 추의 개수로 지우개의 무게를 말합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "지우개를 한쪽 접시에 놓고 다른 쪽 접시에 추를 올린다",
+                "지우개와 추를 양팔저울의 양쪽 접시에 나누어 올린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "저울이 수평이 될 때 올린 추의 개수로 지우개의 무게를 말한다",
+                "저울이 수평이 되면 지우개의 무게는 올린 추 몇 개의 무게와 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "양팔저울의 한쪽에 지우개를 놓고 다른 쪽에 무게가 같은 추를 $4$개 올렸더니 저울이 기울지 않았다. 지우개의 무게는 추 {$4$}개의 무게와 같다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-4-xc5",
+          "sourceIndex": 1239,
+          "proposalFingerprint": "096c5d59056e38389cd83a2482344c6b888e1112f4b02cc049003309733f4832",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은추몇개와정확히수평되는지우개라는조건으로개수측정방법을묻는다.",
+          "cReason": "추네개와평형이면무게도네추분량인관계다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-5-4-xc5",
+        "sourceIndex": 1239,
+        "proposalFingerprint": "096c5d59056e38389cd83a2482344c6b888e1112f4b02cc049003309733f4832",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "정확히 수평이 되는 경우의 추 개수 측정을 설명한다.",
+        "cReason": "한쪽 추4개와 다른쪽 지우개 무게를 평형으로 연결하는 의미가 있다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "추 개수와 지우개 무게를 저울 평형으로 연결하는 측정 해석이며 단순 수 복사와 다르다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-4-xc12",
+      "sourceIndex": 1245,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-4-xc12",
+          "grade": "초3",
+          "reviewedHash": "e82e28199ce5948c7511c6298f2e1759ae57cb8edb09d9498b12c8b4f12d5560",
+          "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+          "evidence": "cohort-2026-10-07T07-16-00-594Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-4-xc12",
+              "pass",
+              "revise",
+              "none",
+              "C: '서로 다르므로 …같다고 할 수 없다'의 구조에서 '같다'만 들어갈 수 있고 앞 문장에도 '무게가 같다'가 반복된다. 개념을 확인하지 못하는 어휘 완성이다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-4-xc12",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-4-xc12",
+              "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+              "term": "재는 물건의 무게가 다를 때",
+              "kind": "성질",
+              "level": "중",
+              "definition": "단위로 쓰는 물건의 무게가 서로 다르면 그 개수로는 무게를 {비교할 수 없다}."
+            },
+            "B": {
+              "prompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+              "answer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "재는 물건 한 개의 무게가 서로 다르다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "개수만으로 비교할 수 없다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 {같다}고 할 수 없다.",
+              "acceptedAnswers": [
+                [
+                  "같다"
+                ]
+              ]
+            },
+            "goal": "재는 물건이 다르면 개수로 무게를 견줄 수 없음을 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "e82e28199ce5948c7511c6298f2e1759ae57cb8edb09d9498b12c8b4f12d5560"
+          },
+          "currentNormalizedHash": "e82e28199ce5948c7511c6298f2e1759ae57cb8edb09d9498b12c8b4f12d5560",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "0d5dbeb4c6173d54c5b644945a704ae2c3a411d8fc9c94e5ba869461ca430d66",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "0d5dbeb4c6173d54c5b644945a704ae2c3a411d8fc9c94e5ba869461ca430d66",
+      "currentProposal": {
+        "sourceIndex": 1245,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+        "sourceFingerprint": "b16aabc24662d2a7c7e785cc8f0ca9939e98510c20a3e5b2b4db06587392fe50",
+        "proposalFingerprint": "0d5dbeb4c6173d54c5b644945a704ae2c3a411d8fc9c94e5ba869461ca430d66",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-4-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+        "bAnswer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "재는 물건 한 개의 무게가 서로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수만으로 비교할 수 없다"
+            ]
+          }
+        ],
+        "bGoal": "재는 물건이 다르면 개수로 무게를 견줄 수 없음을 설명",
+        "bReason": "'단위로 쓰는 물건'이라는 어려운 말 대신 바둑돌과 클립 상황으로 물음",
+        "cDecision": "rewrite",
+        "cAfter": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 {같다}고 할 수 없다.",
+        "cReason": "원문의 '단위로 쓰는 물건'은 초3에게 어렵고 빈칸 '비교할 수 없다'는 문장 끝 복원임. 구체 상황의 '같다' 판단으로 바꿈",
+        "answerNotes": "'같다' 정답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "재는 물건의 무게가 다를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 {같다}고 할 수 없다.",
+        "cStudentSentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 □고 할 수 없다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+          "answer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "재는 물건 한 개의 무게가 서로 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "개수만으로 비교할 수 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 {같다}고 할 수 없다.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-4-xc12",
+          "sourceIndex": 1245,
+          "proposalFingerprint": "0d5dbeb4c6173d54c5b644945a704ae2c3a411d8fc9c94e5ba869461ca430d66",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "기준물건이다른측정개수만으로무게순서를못정하는이유다.",
+          "cReason": "단위물건한개무게가서로다름을명시해같다를단정못하는조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-5-4-xc12",
+        "sourceIndex": 1245,
+        "proposalFingerprint": "0d5dbeb4c6173d54c5b644945a704ae2c3a411d8fc9c94e5ba869461ca430d66",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "단위 물건 무게가 달라 개수만으로 비교 못하는 이유다.",
+        "cReason": "각 물건과 기준추의 같음은 가와 나가 같은지와 다른 비교이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "각 물건과 각각의 기준 물건 무게 비교와 두 측정 대상끼리의 비교는 서로 다른 관계이다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-4-xc17",
+      "sourceIndex": 1250,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-4-xc17",
+          "grade": "초3",
+          "reviewedHash": "7e7a85eae5b72826d49c9970ee42bff1f218ecd0de050d2ca8634573c11b7598",
+          "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+          "evidence": "cohort-2026-10-07T07-23-59-554Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-4-xc17",
+              "pass",
+              "revise",
+              "none",
+              "C 문장에서 '추를 3개 더 올렸더니'라고 이미 말한 뒤 빈칸 {3}을 묻는다. 앞 구절을 베끼면 정답이라 '더 얹은 추의 개수가 무게 차'라는 개념을 확인하지 못한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-4-xc17",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-4-xc17",
+              "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+              "term": "추를 더 얹어 차 알기",
+              "kind": "방법",
+              "level": "중",
+              "definition": "가벼운 쪽 접시에 추를 하나씩 더 얹어 저울이 {나란해지면} 더 얹은 추만큼 무게 차가 난다."
+            },
+            "B": {
+              "prompt": "양팔저울에 두 물건을 올렸더니 한쪽으로 기울었습니다. 무게가 같은 추 몇 개를 한쪽 접시에 더 올리면 저울이 정확히 수평이 되는 경우, 추를 사용하여 두 물건의 무게 차를 알아내는 방법을 설명하세요.",
+              "answer": "가벼운(올라간) 쪽 접시에 추를 하나씩 올립니다. 저울이 수평이 되었을 때 더 올린 추의 개수만큼의 무게가 두 물건의 무게 차입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "가벼운(올라간) 쪽 접시에 추를 하나씩 더 올린다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "저울이 수평이 될 때 더 올린 추의 개수만큼의 무게가 무게 차이다",
+                    "수평이 되면 두 물건의 무게 차는 더 올린 추 몇 개의 무게와 같다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "양팔저울의 가벼운 쪽 접시에 무게가 같은 추를 $3$개 더 올렸더니 저울이 수평이 되었다. 두 물건의 무게 차는 추 {$3$}개의 무게와 같다.",
+              "acceptedAnswers": [
+                [
+                  "$3$"
+                ]
+              ]
+            },
+            "goal": "추를 더 얹어 두 물건의 무게 차를 아는 방법 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "7e7a85eae5b72826d49c9970ee42bff1f218ecd0de050d2ca8634573c11b7598"
+          },
+          "currentNormalizedHash": "7e7a85eae5b72826d49c9970ee42bff1f218ecd0de050d2ca8634573c11b7598",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "a216684e4f5aa783f30761a17400a379f01eb63fed139341585b3b4b149f6f2d",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "a216684e4f5aa783f30761a17400a379f01eb63fed139341585b3b4b149f6f2d",
+      "currentProposal": {
+        "sourceIndex": 1250,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+        "sourceFingerprint": "7428bdc23bbaf130cf90573d294b5711f86c07cdd9931aa00ce14eef002f7a53",
+        "proposalFingerprint": "a216684e4f5aa783f30761a17400a379f01eb63fed139341585b3b4b149f6f2d",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-4-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "양팔저울에 두 물건을 올렸더니 한쪽으로 기울었습니다. 무게가 같은 추 몇 개를 한쪽 접시에 더 올리면 저울이 정확히 수평이 되는 경우, 추를 사용하여 두 물건의 무게 차를 알아내는 방법을 설명하세요.",
+        "bAnswer": "가벼운(올라간) 쪽 접시에 추를 하나씩 올립니다. 저울이 수평이 되었을 때 더 올린 추의 개수만큼의 무게가 두 물건의 무게 차입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가벼운(올라간) 쪽 접시에 추를 하나씩 더 올린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "저울이 수평이 될 때 더 올린 추의 개수만큼의 무게가 무게 차이다",
+              "수평이 되면 두 물건의 무게 차는 더 올린 추 몇 개의 무게와 같다"
+            ]
+          }
+        ],
+        "bGoal": "추를 더 얹어 두 물건의 무게 차를 아는 방법 설명",
+        "bReason": "더 올린 같은 추 몇 개로 정확히 수평이 되는 경우라는 조건을 문장에 넣어, 남는 작은 차이가 있는 경우와 구별하고 무게 차가 추 개수로 정해지게 함",
+        "cDecision": "rewrite",
+        "cAfter": "양팔저울의 가벼운 쪽 접시에 무게가 같은 추를 $3$개 더 올렸더니 저울이 수평이 되었다. 두 물건의 무게 차는 추 {$3$}개의 무게와 같다.",
+        "cReason": "원문 빈칸 '나란해지면'은 조건을 가려 '수평이 되면', '같아지면' 등 답이 흩어짐. 추 개수를 쓰는 구체 상황으로 바꿈",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "추를 더 얹어 차 알기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "양팔저울의 가벼운 쪽 접시에 무게가 같은 추를 $3$개 더 올렸더니 저울이 수평이 되었다. 두 물건의 무게 차는 추 {$3$}개의 무게와 같다.",
+        "cStudentSentence": "양팔저울의 가벼운 쪽 접시에 무게가 같은 추를 $3$개 더 올렸더니 저울이 수평이 되었다. 두 물건의 무게 차는 추 □개의 무게와 같다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "양팔저울에 두 물건을 올렸더니 한쪽으로 기울었습니다. 무게가 같은 추 몇 개를 한쪽 접시에 더 올리면 저울이 정확히 수평이 되는 경우, 추를 사용하여 두 물건의 무게 차를 알아내는 방법을 설명하세요.",
+          "answer": "가벼운(올라간) 쪽 접시에 추를 하나씩 올립니다. 저울이 수평이 되었을 때 더 올린 추의 개수만큼의 무게가 두 물건의 무게 차입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가벼운(올라간) 쪽 접시에 추를 하나씩 더 올린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "저울이 수평이 될 때 더 올린 추의 개수만큼의 무게가 무게 차이다",
+                "수평이 되면 두 물건의 무게 차는 더 올린 추 몇 개의 무게와 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "양팔저울의 가벼운 쪽 접시에 무게가 같은 추를 $3$개 더 올렸더니 저울이 수평이 되었다. 두 물건의 무게 차는 추 {$3$}개의 무게와 같다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-4-xc17",
+          "sourceIndex": 1250,
+          "proposalFingerprint": "a216684e4f5aa783f30761a17400a379f01eb63fed139341585b3b4b149f6f2d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은추몇개로정확히평형가능한조건을넣고가벼운쪽추추가방법을설명한다.",
+          "cReason": "추세개추가평형에서무게차가추세개인관계가확정된다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-5-4-xc17",
+        "sourceIndex": 1250,
+        "proposalFingerprint": "a216684e4f5aa783f30761a17400a379f01eb63fed139341585b3b4b149f6f2d",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "가벼운쪽에 추가한 추 무게가 원래 차이라는 원리를 설명한다.",
+        "cReason": "추3개를 추가해 수평이 된 사실로 무게 차를 해석한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "추가한 추의 무게가 두 물건의 차라는 평형 관계 해석을 유지한다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-4-xc18",
+      "sourceIndex": 1251,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-4-xc18",
+          "grade": "초3",
+          "reviewedHash": "0288c8324fcca260301f9c4532f032af822e1b36fbb8c86604aaec57a1ab898c",
+          "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+          "evidence": "cohort-2026-10-07T07-23-59-554Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-4-xc18",
+              "revise",
+              "pass",
+              "none",
+              "B 필수 기준 1 '무게를 아는 물건을 기준으로 삼는다'는 물음의 '무게를 이미 아는 물건을 이용하여'를 되풀이한 것이다. 문구만 복사해도 만족되므로 기준이 되지 못한다. 비교(무겁다/가볍다)로 어림한다는 내용만 필수로 남겨야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-4-xc18",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-4-xc18",
+              "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+              "term": "아는 무게와 견주기",
+              "kind": "방법",
+              "level": "중",
+              "definition": "이미 무게를 아는 물건을 떠올려 다른 물건이 그보다 무거운지 가벼운지 {견주어} 어림한다."
+            },
+            "B": {
+              "prompt": "저울이 없을 때, 무게를 이미 아는 물건을 이용하여 다른 물건의 무게를 어림하는 방법을 설명하세요.",
+              "answer": "무게를 아는 물건을 떠올리거나 들어 보고, 어림하려는 물건이 그보다 무거운지 가벼운지 비교하여 어림합니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "무게를 아는 물건을 기준으로 삼는다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "그보다 무거운지 가벼운지 비교한다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "무게를 아는 설탕 한 봉지가 $2\\,\\mathrm{kg}$일 때, 수박을 들어 보니 설탕 $3$봉지와 비슷하게 느껴지면 수박의 무게는 약 {$6$}$\\,\\mathrm{kg}$으로 어림한다.",
+              "acceptedAnswers": [
+                [
+                  "$6$"
+                ]
+              ]
+            },
+            "goal": "아는 무게와 견주어 어림하는 방법 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "0288c8324fcca260301f9c4532f032af822e1b36fbb8c86604aaec57a1ab898c"
+          },
+          "currentNormalizedHash": "0288c8324fcca260301f9c4532f032af822e1b36fbb8c86604aaec57a1ab898c",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "aa9688429c497518ed5209ccd1aae4e5904dbe1692e6b480b087f5dba8ea7cd7",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "689c7bba3cd83242966acc7bf06b3acdb4491d8c2348e07cf409c0573fa61fc8",
+      "currentProposal": {
+        "sourceIndex": 1251,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+        "sourceFingerprint": "911ae2ff0a79e468f821732da942b50265d8232165d9ce7270300030428ceb17",
+        "proposalFingerprint": "689c7bba3cd83242966acc7bf06b3acdb4491d8c2348e07cf409c0573fa61fc8",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "저울이 없을 때, 무게를 이미 아는 물건을 이용하여 다른 물건의 무게를 어림하는 방법을 설명하세요.",
+        "bAnswer": "무게를 아는 물건을 떠올리거나 들어 보고, 어림하려는 물건이 그보다 무거운지 가벼운지 비교하여 어림합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "무게를 아는 물건보다 무거운지 가벼운지 비교하여 다른 물건의 무게를 어림한다"
+            ]
+          }
+        ],
+        "bGoal": "아는 무게와 견주어 어림하는 방법 설명",
+        "bReason": "'저울이 없을 때'라는 조건을 주어 방법을 쓰게 함. 단위는 아직 쓰지 않음",
+        "cDecision": "rewrite",
+        "cAfter": "무게를 아는 설탕 한 봉지가 $2\\,\\mathrm{kg}$일 때, 수박을 들어 보니 설탕 $3$봉지와 비슷하게 느껴지면 수박의 무게는 약 {$6$}$\\,\\mathrm{kg}$으로 어림한다.",
+        "cReason": "'아는'이라는 낱말 복원 빈칸은 실제 무게 어림을 확인하지 못해, 기준이 되는 물건의 무게와 비교 결과를 주고 수박의 무게를 어림하는 짧은 계산 빈칸으로 바꿈. 답 $6$은 다른 곳에 공개되지 않고 입력 수 $2$, $3$과 다른 값임",
+        "answerNotes": "'아는', '알고 있는' 허용",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "아는 무게와 견주기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "무게를 아는 설탕 한 봉지가 $2\\,\\mathrm{kg}$일 때, 수박을 들어 보니 설탕 $3$봉지와 비슷하게 느껴지면 수박의 무게는 약 {$6$}$\\,\\mathrm{kg}$으로 어림한다.",
+        "cStudentSentence": "무게를 아는 설탕 한 봉지가 $2\\,\\mathrm{kg}$일 때, 수박을 들어 보니 설탕 $3$봉지와 비슷하게 느껴지면 수박의 무게는 약 □$\\,\\mathrm{kg}$으로 어림한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "저울이 없을 때, 무게를 이미 아는 물건을 이용하여 다른 물건의 무게를 어림하는 방법을 설명하세요.",
+          "answer": "무게를 아는 물건을 떠올리거나 들어 보고, 어림하려는 물건이 그보다 무거운지 가벼운지 비교하여 어림합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "무게를 아는 물건보다 무거운지 가벼운지 비교하여 다른 물건의 무게를 어림한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "무게를 아는 설탕 한 봉지가 $2\\,\\mathrm{kg}$일 때, 수박을 들어 보니 설탕 $3$봉지와 비슷하게 느껴지면 수박의 무게는 약 {$6$}$\\,\\mathrm{kg}$으로 어림한다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-5-4-xc18",
+        "sourceIndex": 1251,
+        "proposalFingerprint": "689c7bba3cd83242966acc7bf06b3acdb4491d8c2348e07cf409c0573fa61fc8",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "기준물건 전제 반복을 빼고 실제 무겁고 가벼움 비교를 요구한다.",
+        "cReason": "2kg세봉지인6kg어림이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "전제 반복 기준을 빼고 무겁고 가벼움 비교를 요구했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-5-4-xc19",
+      "sourceIndex": 1252,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-5-4-xc19",
+          "grade": "초3",
+          "reviewedHash": "fc30f79d1ff57a13af03e92f28a9c6f18b611bcd8323b9268a6534cb52aed44d",
+          "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+          "evidence": "cohort-2026-10-07T07-23-59-554Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-5-4-xc19",
+              "revise",
+              "revise",
+              "pass",
+              "core 교정(나가 무게가 있는 물건)은 타당하다. 그러나 B 물음·기준과 C 문장에는 '나가 무게가 있다'는 전제가 없다. 그래서 B의 '합이므로 가보다 무겁다'와 C의 '다는 가보다 무겁다'는 원문의 결함을 그대로 갖고 있다. B·C도 core 문장에 맞춰야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-5-4-xc19",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-5-4-xc19",
+              "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+              "term": "두 물건을 함께 올리기",
+              "kind": "방법",
+              "level": "상",
+              "definition": "가와 나를 한쪽에, 다를 다른 쪽에 올려 수평이면 다는 가보다 {무겁다}."
+            },
+            "B": {
+              "prompt": "양팔저울의 한쪽에 가와 나를 함께 올리고 다른 쪽에 다를 올렸더니 수평이 되었습니다. 다와 가 중 어느 것이 더 무거운지 쓰고, 그 까닭을 쓰세요.",
+              "answer": "다가 더 무겁습니다. 다의 무게는 가와 나의 무게를 합한 것과 같으므로 가 하나보다 무겁습니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "다의 무게는 가와 나를 합한 무게와 같다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "그래서 다가 가보다 무겁다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "양팔저울의 한쪽에 가와 나를 함께, 다른 쪽에 다를 올렸더니 수평이었다. 다는 가보다 {무겁다}.",
+              "acceptedAnswers": [
+                [
+                  "무겁다"
+                ]
+              ]
+            },
+            "goal": "두 물건을 함께 올려 수평일 때 무게 관계 설명",
+            "coreAfter": "무게가 있는 물건 가와 나를 양팔저울 한쪽에, 물건 다를 다른 쪽에 올려 수평이면 다는 가보다 {무겁다}.",
+            "coreReason": "무겁다라는 원래표적과두물건합과한물건의평형관계를보존한다. 나의무게가0인경우가아니라실제무게있는물건임을명시한다.",
+            "hash": "fc30f79d1ff57a13af03e92f28a9c6f18b611bcd8323b9268a6534cb52aed44d"
+          },
+          "currentNormalizedHash": "fc30f79d1ff57a13af03e92f28a9c6f18b611bcd8323b9268a6534cb52aed44d",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "4f77d9129e0651862e9a6f550f37a5d38c1dd8d0d792bf0649b4971741ccda99",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "7fae786eeb9855ed27a2c1df11577f2300bb1ac7a8bf834e12c4cf3d616a5cb1",
+      "currentProposal": {
+        "sourceIndex": 1252,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+        "sourceFingerprint": "f43e2fd7b90ee53e4cd1eb53914ed58e0852f3d82583823cebb0d408259de164",
+        "proposalFingerprint": "7fae786eeb9855ed27a2c1df11577f2300bb1ac7a8bf834e12c4cf3d616a5cb1",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-4-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "무게가 있는 물건 가와 나를 양팔저울의 한쪽에 함께 올리고 다른 쪽에 물건 다를 올렸더니 수평이 되었습니다. 다와 가 중 어느 것이 더 무거운지 쓰고, 그 까닭을 쓰세요.",
+        "bAnswer": "다가 더 무겁습니다. 다의 무게는 가와 나의 무게를 합한 것과 같으므로 가 하나보다 무겁습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다의 무게는 가와 나를 합한 무게와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그래서 다가 가보다 무겁다"
+            ]
+          }
+        ],
+        "bGoal": "두 물건을 함께 올려 수평일 때 무게 관계 설명",
+        "bReason": "양팔저울 상황을 밝혀 판단과 까닭을 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "무게가 있는 물건 가와 나를 양팔저울의 한쪽에 함께, 물건 다를 다른 쪽에 올렸더니 수평이었다. 다는 가보다 {무겁다}.",
+        "cReason": "원문은 양팔저울이라는 말이 없어 '올려 수평이면'의 뜻이 가려짐. 저울을 밝히고 짧은 비교 빈칸은 유지함",
+        "coreAfter": "무게가 있는 물건 가와 나를 양팔저울 한쪽에, 물건 다를 다른 쪽에 올려 수평이면 다는 가보다 {무겁다}.",
+        "coreReason": "무겁다라는 원래표적과두물건합과한물건의평형관계를보존한다. 나의무게가0인경우가아니라실제무게있는물건임을명시한다.",
+        "answerNotes": "'무겁다' 정답. '가볍다', '같다'는 오답",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 물건을 함께 올리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "무게가 있는 물건 가와 나를 양팔저울의 한쪽에 함께, 물건 다를 다른 쪽에 올렸더니 수평이었다. 다는 가보다 {무겁다}.",
+        "cStudentSentence": "무게가 있는 물건 가와 나를 양팔저울의 한쪽에 함께, 물건 다를 다른 쪽에 올렸더니 수평이었다. 다는 가보다 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "무겁다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "무게가 있는 물건 가와 나를 양팔저울의 한쪽에 함께 올리고 다른 쪽에 물건 다를 올렸더니 수평이 되었습니다. 다와 가 중 어느 것이 더 무거운지 쓰고, 그 까닭을 쓰세요.",
+          "answer": "다가 더 무겁습니다. 다의 무게는 가와 나의 무게를 합한 것과 같으므로 가 하나보다 무겁습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "다의 무게는 가와 나를 합한 무게와 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "그래서 다가 가보다 무겁다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "무게가 있는 물건 가와 나를 양팔저울의 한쪽에 함께, 물건 다를 다른 쪽에 올렸더니 수평이었다. 다는 가보다 {무겁다}.",
+          "acceptedAnswers": [
+            [
+              "무겁다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-5-4-xc19",
+        "sourceIndex": 1252,
+        "proposalFingerprint": "7fae786eeb9855ed27a2c1df11577f2300bb1ac7a8bf834e12c4cf3d616a5cb1",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "실제 무게 있는 물건 조건을 일반 설명과 맞췄다.",
+        "cReason": "양의 무게 합이라 더 무겁다는 비교가 맞다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "무게가 있는 물건이라는 조건을 B C에도 맞췄다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    }
+  ]
+}

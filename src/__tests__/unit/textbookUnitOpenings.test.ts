@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
+import { coreSectionSourceHash } from "../../../scripts/qa/concept-blank/student-clear/opening-source";
 import { textbookSemanticNodeSchema } from "@/contracts/textbookSemantic.contract";
 import {
   BLANK_SECTIONS,
@@ -58,22 +59,9 @@ const CHAPTERS_BY_SEMESTER: Record<string, [number, number]> = {
   중3: [4, 3],
 };
 
-const stable = (value: unknown): string =>
-  Array.isArray(value)
-    ? `[${value.map(stable).join(",")}]`
-    : value && typeof value === "object"
-      ? `{${Object.keys(value)
-          .sort()
-          .map(
-            (key) =>
-              `${JSON.stringify(key)}:${stable((value as Record<string, unknown>)[key])}`,
-          )
-          .join(",")}}`
-      : JSON.stringify(value);
 const sha = (text: string) =>
   createHash("sha256").update(text, "utf8").digest("hex");
-const sectionHash = (key: string, concepts: unknown) =>
-  sha(stable({ section: key, concepts }));
+const sectionHash = coreSectionSourceHash;
 
 /** Text without its math, and its Korean words of two letters or more. */
 const plain = (text: string) =>

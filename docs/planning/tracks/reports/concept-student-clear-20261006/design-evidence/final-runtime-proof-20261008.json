@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-07T16:53:28.846Z",
+  "contentPlanHash": "850d98da6b7d6710604e9ca95c407b160cca2af5fab3ea37b18ff662990b9e24",
+  "compiledCandidateHash": "5dd01e931e5a4f8a8f42aa398fa639e992be29989bc937c4b7c4adcb76031e10",
+  "appliedBankHash": "7297754857be8beba247331fd46e27b70f3696c604d9792693d130122b6f8c72",
+  "count": 9119,
+  "definitionChanges": 607,
+  "examplePromptChanges": 1,
+  "notationFaults": 0,
+  "idsOrderLevelsPreserved": true,
+  "assessmentTablesMatchPlan": true,
+  "studentRecordsWritten": false,
+  "oxParticleAmendments": [
+    {
+      "part": "m1plus",
+      "id": "m1-06-05-xo11",
+      "field": "statement",
+      "before": "$\\frac{360}{x}$를",
+      "after": "$\\frac{360}{x}$을",
+      "reason": "분수는 분모 다음 분자를 읽는다. 삼백육십/칠/일 뒤 받침에 맞는 조사만 교정; 수식·답·판정·이유 의미는 보존."
+    },
+    {
+      "part": "m2plus",
+      "id": "m2-01-01-xo24",
+      "field": "statement",
+      "before": "$\\frac{7}{5\\times a}$가",
+      "after": "$\\frac{7}{5\\times a}$이",
+      "reason": "분수는 분모 다음 분자를 읽는다. 삼백육십/칠/일 뒤 받침에 맞는 조사만 교정; 수식·답·판정·이유 의미는 보존."
+    },
+    {
+      "part": "m2plus",
+      "id": "m2-02-01-xo25",
+      "field": "why",
+      "before": "$\\frac{1}{a}$는 음수, $\\frac{1}{b}$는 양수이다.",
+      "after": "$\\frac{1}{a}$은 음수, $\\frac{1}{b}$은 양수이다.",
+      "reason": "분수는 분모 다음 분자를 읽는다. 삼백육십/칠/일 뒤 받침에 맞는 조사만 교정; 수식·답·판정·이유 의미는 보존."
+    }
+  ]
+}

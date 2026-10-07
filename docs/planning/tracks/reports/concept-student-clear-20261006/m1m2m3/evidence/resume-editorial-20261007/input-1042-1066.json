@@ -1,0 +1,2418 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:57:04.438Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-05-xc23",
+        "section": "중1::1. 소인수분해::최대공약수와 최소공배수의 활용",
+        "term": "정육면체에 드는 상자 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "가장 작은 정육면체를 만든 뒤 상자 수는 한 모서리를 세 모서리로 각각 나눈 {세 몫의 곱}이다.",
+        "example": {
+          "prompt": "세 모서리가 $2\\,\\mathrm{cm}$, $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 상자로 가장 작은 정육면체를 만들 때 필요한 상자 수는?",
+          "answer": "$72$개"
+        },
+        "studentC": "가장 작은 정육면체를 만든 뒤 상자 수는 한 모서리를 세 모서리로 각각 나눈 □이다.",
+        "answers": [
+          "세 몫의 곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-05-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "가로, 세로, 높이가 각각 $2$ $\\mathrm{cm}$, $3$ $\\mathrm{cm}$, $4$ $\\mathrm{cm}$인 직육면체 모양 상자 여러 개를 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들었다. 정육면체의 한 모서리의 길이를 구한 다음, 필요한 상자의 수를 구하는 방법을 설명하여 구하시오.",
+        "bAnswer": "한 모서리의 길이는 $2$, $3$, $4$의 최소공배수인 $12$ $\\mathrm{cm}$이다. 가로, 세로, 높이 방향으로 각각 $12\\div 2=6$(개), $12\\div 3=4$(개), $12\\div 4=3$(개)씩 놓이므로 상자는 모두 $6\\times 4\\times 3=72$(개)이다.",
+        "bGoal": "가장 작은 정육면체를 만드는 데 필요한 상자 수를 세 방향 몫의 곱으로 구한다.",
+        "bReason": "제목만으로는 상자의 크기와 어떤 정육면체인지 알 수 없다. 세 길이와 쌓는 방법을 주어 두 단계 과정을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "크기가 같은 직육면체 모양의 상자를 같은 방향으로 빈틈없이 쌓아 정육면체를 만들 때, 필요한 상자의 수는 정육면체의 한 모서리의 길이를 상자의 가로, 세로, 높이로 각각 나눈 세 몫의 {곱}이다.",
+        "cAnswers": [
+          "곱"
+        ],
+        "cReason": "원문의 '한 모서리를 세 모서리로 나눈'은 어느 도형의 모서리인지 구별되지 않고, 무엇을 쌓는지도 없다. 도형을 밝히고 빈칸을 연산 하나로 줄였다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 모서리의 길이는 $2$, $3$, $4$의 최소공배수 $12$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 방향으로 $12\\div2=6$, $12\\div3=4$, $12\\div4=3$(개)의 곱으로 센다(부피 $1728\\div24$로 구해도 됨)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$72$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "세 방향 몫을 곱해 상자 수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1042,
+        "part": "m1plus",
+        "sourceFingerprint": "35ad3cb253e72e6cb8c9443d510534d78b07f329eb9cc337cfea08c2d0e9f68b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1042
+        },
+        "directReview": null,
+        "cMarkedSentence": "크기가 같은 직육면체 모양의 상자를 같은 방향으로 빈틈없이 쌓아 정육면체를 만들 때, 필요한 상자의 수는 정육면체의 한 모서리의 길이를 상자의 가로, 세로, 높이로 각각 나눈 세 몫의 {곱}이다.",
+        "cSlotAnswers": [
+          "곱"
+        ],
+        "cStudentSentence": "크기가 같은 직육면체 모양의 상자를 같은 방향으로 빈틈없이 쌓아 정육면체를 만들 때, 필요한 상자의 수는 정육면체의 한 모서리의 길이를 상자의 가로, 세로, 높이로 각각 나눈 세 몫의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ]
+        ],
+        "proposalFingerprint": "8977585f90190eb3699332deb4510b89574f59f053a3eb4d3221528b2b8705e5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-05-xc24",
+        "section": "중1::1. 소인수분해::최대공약수와 최소공배수의 활용",
+        "term": "가장 큰 정육면체로 자르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직육면체를 남김없이 같은 크기의 가장 큰 정육면체로 자를 때 한 모서리의 길이는 세 모서리 길이의 {최대공약수}이다.",
+        "example": {
+          "prompt": "$12\\,\\mathrm{cm}$, $18\\,\\mathrm{cm}$, $30\\,\\mathrm{cm}$인 나무토막에서 나오는 정육면체는 몇 개?",
+          "answer": "$30$개"
+        },
+        "studentC": "직육면체를 남김없이 같은 크기의 가장 큰 정육면체로 자를 때 한 모서리의 길이는 세 모서리 길이의 □이다.",
+        "answers": [
+          "최대공약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-05-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "가로, 세로, 높이가 각각 $12$ $\\mathrm{cm}$, $18$ $\\mathrm{cm}$, $30$ $\\mathrm{cm}$인 직육면체 모양 나무토막을 남는 부분 없이 잘라 크기가 같은 가장 큰 정육면체들을 만들려고 한다. 정육면체의 한 모서리의 길이는 세 수의 무엇인지 쓰고, 그 길이와 정육면체의 개수를 구하시오.",
+        "bAnswer": "$12$, $18$, $30$의 최대공약수인 $6$ $\\mathrm{cm}$이다. 세 방향으로 각각 $12\\div 6=2$(개), $18\\div 6=3$(개), $30\\div 6=5$(개)씩 나오므로 모두 $2\\times 3\\times 5=30$(개)이다.",
+        "bGoal": "직육면체를 가장 큰 정육면체로 자를 때 한 모서리가 세 길이의 최대공약수임을 알고 개수를 구한다.",
+        "bReason": "부피를 나누어 개수를 구한 맞는 풀이도 인정",
+        "cDecision": "rewrite",
+        "cAfter": "직육면체를 남김없이 같은 크기의 가장 큰 정육면체로 자를 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 {최대공약수}이다.",
+        "cAnswers": [
+          "최대공약수"
+        ],
+        "cReason": "원문의 '한 모서리'와 '세 모서리 길이'가 각각 어느 도형의 것인지 적혀 있지 않아 지칭이 모호하다. 도형 이름만 보충했다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12$, $18$, $30$의 최대공약수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\times3\\times5=30$(개)",
+              "부피로 $6480\\div216=30$(개)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "application",
+        "roleReason": "자른 정육면체 모서리는 최대공약수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1043,
+        "part": "m1plus",
+        "sourceFingerprint": "1d52c4c7cde621e96be7eb5a20e6dc27eb7fea384de833cc83d15b6d45831c4f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1043
+        },
+        "directReview": null,
+        "cMarkedSentence": "직육면체를 남김없이 같은 크기의 가장 큰 정육면체로 자를 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 {최대공약수}이다.",
+        "cSlotAnswers": [
+          "최대공약수"
+        ],
+        "cStudentSentence": "직육면체를 남김없이 같은 크기의 가장 큰 정육면체로 자를 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최대공약수",
+            "equivalentAnswers": [
+              "최대공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최대공약수"
+          ]
+        ],
+        "proposalFingerprint": "58fff1b547511f5d151bda597a2dc5871030904868d9cfa27bf7256920e29f2e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc1",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "부호를 붙여 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "늘어난 양, 높은 곳, 이익처럼 한쪽을 {$+$}로 나타내면 줄어든 양, 낮은 곳, 손해처럼 반대쪽은 {$-$}로 나타낸다.",
+        "example": {
+          "prompt": "해수면을 기준으로 '해저 $200\\,\\mathrm{m}$'를 나타내면?",
+          "answer": "$-200\\,\\mathrm{m}$"
+        },
+        "studentC": "늘어난 양, 높은 곳, 이익처럼 한쪽을 □로 나타내면 줄어든 양, 낮은 곳, 손해처럼 반대쪽은 □로 나타낸다.",
+        "answers": [
+          "$+$",
+          "$-$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "해수면을 기준으로 하여 해수면보다 $300$ $\\mathrm{m}$ 높은 곳을 $+300$ $\\mathrm{m}$로 나타내기로 했다. 이때 해수면보다 $200$ $\\mathrm{m}$ 낮은 바닷속을 어떻게 나타내는지 쓰시오. 또 이익과 손해, 늘어난 양과 줄어든 양처럼 서로 반대되는 두 양에 부호를 붙이는 규칙을 쓰시오.",
+        "bAnswer": "$-200$ $\\mathrm{m}$로 나타낸다. 서로 반대되는 두 양에서 한쪽을 $+$로 나타내면 반대쪽은 $-$로 나타낸다.",
+        "bGoal": "서로 반대되는 두 양을 기준에 따라 $+$, $-$ 부호로 나타낸다.",
+        "bReason": "제목만으로는 무엇에 부호를 붙이는지 없다. 기준(해수면)과 한쪽의 표기를 주고 반대쪽 표기와 규칙을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "예가 문장에 들어 있고 한쪽과 반대쪽의 부호를 대비시키는 짧은 빈칸이라 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-200$ $\\mathrm{m}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한쪽을 $+$로 나타내면 반대쪽은 $-$로 나타낸다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "반대되는 양에 +, − 붙이기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1044,
+        "part": "m1plus",
+        "sourceFingerprint": "0ee89531eb507efaf2ff32daac5a9a21db326bdd527691d8ec670bba1f611579",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1044
+        },
+        "directReview": null,
+        "cFrozenSentence": "늘어난 양, 높은 곳, 이익처럼 한쪽을 □로 나타내면 줄어든 양, 낮은 곳, 손해처럼 반대쪽은 □로 나타낸다.",
+        "cFrozenDefinition": "늘어난 양, 높은 곳, 이익처럼 한쪽을 {$+$}로 나타내면 줄어든 양, 낮은 곳, 손해처럼 반대쪽은 {$-$}로 나타낸다.",
+        "cFrozenAnswers": [
+          "$+$",
+          "$-$"
+        ],
+        "cMarkedSentence": "늘어난 양, 높은 곳, 이익처럼 한쪽을 {$+$}로 나타내면 줄어든 양, 낮은 곳, 손해처럼 반대쪽은 {$-$}로 나타낸다.",
+        "cSlotAnswers": [
+          "$+$",
+          "$-$"
+        ],
+        "cStudentSentence": "늘어난 양, 높은 곳, 이익처럼 한쪽을 □로 나타내면 줄어든 양, 낮은 곳, 손해처럼 반대쪽은 □로 나타낸다.",
+        "cAnswers": [
+          "$+$",
+          "$-$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$+$",
+            "equivalentAnswers": [
+              "$+$",
+              "양의 부호",
+              "양의 부호 $+$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-$",
+            "equivalentAnswers": [
+              "$-$",
+              "음의 부호",
+              "음의 부호 $-$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$+$",
+            "accept": [
+              "양의 부호",
+              "양의 부호 $+$"
+            ]
+          },
+          {
+            "answer": "$-$",
+            "accept": [
+              "음의 부호",
+              "음의 부호 $-$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$+$",
+            "양의 부호",
+            "양의 부호 $+$"
+          ],
+          [
+            "$-$",
+            "음의 부호",
+            "음의 부호 $-$"
+          ]
+        ],
+        "proposalFingerprint": "edf4dfbe51e6c1312c78d69315873cbc64c4e3e3357e53b997d690f132ee682c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc2",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "양의 부호 생략",
+        "kind": "성질",
+        "level": "하",
+        "definition": "양수는 양의 부호 {$+$}를 빼고 쓸 수 있지만, 음수의 부호 {$-$}는 뺄 수 없다.",
+        "example": {
+          "prompt": "$+7$을 부호를 빼고 쓰면?",
+          "answer": "$7$"
+        },
+        "studentC": "양수는 양의 부호 □를 빼고 쓸 수 있지만, 음수의 부호 □는 뺄 수 없다.",
+        "answers": [
+          "$+$",
+          "$-$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$+7$과 $-7$ 가운데 부호를 생략하여 쓸 수 있는 수를 고르고 생략한 모양을 쓰시오. 또 다른 한 수는 왜 부호를 생략할 수 없는지 쓰시오.",
+        "bAnswer": "$+7$은 양의 부호를 생략하여 $7$로 쓸 수 있다. $-7$에서 음의 부호를 빼면 $7$이 되어 다른 수가 되므로 생략할 수 없다.",
+        "bGoal": "양의 부호는 생략할 수 있고 음의 부호는 생략할 수 없음을 설명한다.",
+        "bReason": "제목 '양의 부호 생략'은 규칙 이름뿐이다. 두 수를 주고 어느 쪽을 생략할 수 있는지와 다른 쪽의 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "{양수}는 부호 $+$를 생략하여 쓸 수 있지만, {음수}는 부호 $-$를 생략할 수 없다.",
+        "cAnswers": [
+          "양수",
+          "음수"
+        ],
+        "cReason": "원문은 '양의 부호 □'처럼 바로 앞 말이 답을 알려 주어 빈칸이 기호 옮겨 적기가 된다. 어느 수에서 생략할 수 있는지를 묻게 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$+7$은 $7$로 쓸 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-7$에서 $-$를 빼면 $7$이 되어 다른 수가 된다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "−를 빼면 다른 수가 됨",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1045,
+        "part": "m1plus",
+        "sourceFingerprint": "20bf95948dfd556cd32f177547f6015f3c425bfb09a19b9f31508c40a35524e9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1045
+        },
+        "directReview": null,
+        "cMarkedSentence": "{양수}는 부호 $+$를 생략하여 쓸 수 있지만, {음수}는 부호 $-$를 생략할 수 없다.",
+        "cSlotAnswers": [
+          "양수",
+          "음수"
+        ],
+        "cStudentSentence": "□는 부호 $+$를 생략하여 쓸 수 있지만, □는 부호 $-$를 생략할 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "음수",
+            "equivalentAnswers": [
+              "음수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "음수"
+          ]
+        ],
+        "proposalFingerprint": "bb0af53560c7546e5f71c3660900d9f3c65b64c2a9c8fad53f3874c1dfd5dc4b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc3",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "$0$의 자리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0$은 양수와 음수의 {경계}로, 양수도 음수도 아니지만 {정수}이다.",
+        "example": {
+          "prompt": "$0$은 정수인가?",
+          "answer": "정수이다"
+        },
+        "studentC": "$0$은 양수와 음수의 □로, 양수도 음수도 아니지만 □이다.",
+        "answers": [
+          "경계",
+          "정수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$0$은 양수, 음수, 정수 가운데 어디에 속하고 어디에 속하지 않는지 모두 쓰시오.",
+        "bAnswer": "$0$은 양수도 음수도 아니다. 그러나 $0$은 정수이다.",
+        "bGoal": "$0$이 양수도 음수도 아니지만 정수임을 안다.",
+        "bReason": "제목 '$0$의 자리'는 수직선의 위치를 묻는지 수의 종류를 묻는지 알 수 없다. 견줄 세 종류를 밝혀 속하는지 여부를 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$0$은 양수와 음수의 경계가 되는 수로, 양수도 음수도 아니지만 $-2$, $-1$, $1$, $2$와 같은 종류의 수인 {정수}이다.",
+        "cAnswers": [
+          "정수"
+        ],
+        "cReason": "원문 첫 빈칸 '경계'는 학생이 떠올리기 어려운 임의의 낱말이다. 그 말은 드러내고, '유리수'로 답하지 않도록 정수를 가리키는 단서를 넣었다.",
+        "studentLabel": "$0$은 어떤 수인가",
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0$은 양수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$은 음수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$은 정수이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "0은 양수도 음수도 아닌 정수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1046,
+        "part": "m1plus",
+        "sourceFingerprint": "859adbfb0283af6560b4762ccb8f81d7e21510f2f6126644ed38877c4246227e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1046
+        },
+        "directReview": null,
+        "cMarkedSentence": "$0$은 양수와 음수의 경계가 되는 수로, 양수도 음수도 아니지만 $-2$, $-1$, $1$, $2$와 같은 종류의 수인 {정수}이다.",
+        "cSlotAnswers": [
+          "정수"
+        ],
+        "cStudentSentence": "$0$은 양수와 음수의 경계가 되는 수로, 양수도 음수도 아니지만 $-2$, $-1$, $1$, $2$와 같은 종류의 수인 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ]
+        ],
+        "proposalFingerprint": "77ee33cf4367ec4715bc321c900fb69e13be08453d3c1ecf1aff1be9da57ed64"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc4",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "수직선에 정수 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "수직선에서 양의 정수는 원점의 {오른쪽}에, 음의 정수는 원점의 {왼쪽}에 같은 간격으로 나타낸다.",
+        "example": {
+          "prompt": "한 칸이 $1$인 수직선에서 원점의 왼쪽으로 $3$칸 간 점이 나타내는 정수는?",
+          "answer": "$-3$"
+        },
+        "studentC": "수직선에서 양의 정수는 원점의 □에, 음의 정수는 원점의 □에 같은 간격으로 나타낸다.",
+        "answers": [
+          "오른쪽",
+          "왼쪽"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "원점이 $0$을 나타내고 한 칸의 길이가 $1$인 수직선이 있다. 양의 정수와 음의 정수를 각각 원점의 어느 쪽에 어떻게 나타내는지 쓰고, 원점에서 왼쪽으로 $3$칸 간 점이 나타내는 정수를 쓰시오.",
+        "bAnswer": "양의 정수는 원점의 오른쪽에, 음의 정수는 원점의 왼쪽에 한 칸씩 같은 간격으로 나타낸다. 원점에서 왼쪽으로 $3$칸 간 점은 $-3$을 나타낸다.",
+        "bGoal": "수직선에서 양의 정수와 음의 정수의 위치를 알고 점이 나타내는 정수를 읽는다.",
+        "bReason": "'같은 간격'은 질문의 '한 칸의 길이가 1'에 이미 주어져 있어 빠뜨려도 답이 성립",
+        "cDecision": "keep",
+        "cReason": "양의 정수와 음의 정수의 방향을 대비시키는 짧은 문장이고 기준(원점)이 문장에 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양의 정수는 원점의 오른쪽, 음의 정수는 원점의 왼쪽에 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "원점 오른쪽 양, 왼쪽 음",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1047,
+        "part": "m1plus",
+        "sourceFingerprint": "702cca655f1693a9d8fe733810d4b268094b65df8533c266a14e84e6c77c4638",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1047
+        },
+        "directReview": null,
+        "cFrozenSentence": "수직선에서 양의 정수는 원점의 □에, 음의 정수는 원점의 □에 같은 간격으로 나타낸다.",
+        "cFrozenDefinition": "수직선에서 양의 정수는 원점의 {오른쪽}에, 음의 정수는 원점의 {왼쪽}에 같은 간격으로 나타낸다.",
+        "cFrozenAnswers": [
+          "오른쪽",
+          "왼쪽"
+        ],
+        "cMarkedSentence": "수직선에서 양의 정수는 원점의 {오른쪽}에, 음의 정수는 원점의 {왼쪽}에 같은 간격으로 나타낸다.",
+        "cSlotAnswers": [
+          "오른쪽",
+          "왼쪽"
+        ],
+        "cStudentSentence": "수직선에서 양의 정수는 원점의 □에, 음의 정수는 원점의 □에 같은 간격으로 나타낸다.",
+        "cAnswers": [
+          "오른쪽",
+          "왼쪽"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "오른쪽",
+            "equivalentAnswers": [
+              "오른쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "왼쪽",
+            "equivalentAnswers": [
+              "왼쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "왼쪽"
+          ]
+        ],
+        "proposalFingerprint": "51923f11a2764d6260346d5e0beea29e0cebb373be0b18173bd564d04c6476ab"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc5",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "정수가 아닌 유리수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "기약분수로 나타냈을 때 분모가 {$1$}이 아닌 유리수를 {정수가 아닌 유리수}라 한다.",
+        "example": {
+          "prompt": "$-\\frac{9}{3}$, $\\frac{5}{2}$ 가운데 정수가 아닌 유리수는?",
+          "answer": "$\\frac{5}{2}$"
+        },
+        "studentC": "기약분수로 나타냈을 때 분모가 □이 아닌 유리수를 □라 한다.",
+        "answers": [
+          "$1$",
+          "정수가 아닌 유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "정수가 아닌 유리수가 어떤 수인지 기약분수의 분모를 이용하여 설명하시오. 또 $-\\frac93$과 $\\frac52$ 가운데 정수가 아닌 유리수를 고르고 까닭을 쓰시오.",
+        "bAnswer": "분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수이다. $\\frac52$는 기약분수이고 분모가 $2$이므로 정수가 아닌 유리수이다. $-\\frac93$은 약분하면 $-3$이므로 정수이다.",
+        "bGoal": "정수가 아닌 유리수를 기약분수의 분모로 정의하고 예에서 고른다.",
+        "bReason": "고른 수의 이유만 요구한 질문에서 고르지 않은 수의 약분을 필수 채점 조건으로 삼지 않는다. 읽는 분모 삼에 맞게 조사를 고친다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{5}{2}$, $-\\frac{1}{3}$처럼 분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수를 {정수가 아닌 유리수}라 한다.",
+        "cAnswers": [
+          "정수가 아닌 유리수"
+        ],
+        "cReason": "원문은 조건인 분모의 값과 결론인 용어를 함께 가려 문장만으로는 무엇을 말하는지 잡기 어렵다. 조건은 드러내고 용어만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수"
+            ]
+          },
+          {
+            "anyOf": [
+              "정수가 아닌 유리수는 $\\frac52$이고 기약분수의 분모가 $2$이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "기약분수 분모가 1이 아닌 수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "notationReason": "삼분의 구를 읽은 뒤 와·는을 쓰고 분수식/분모의 수학 값은 그대로 유지한다.",
+        "sourceIndex": 1048,
+        "part": "m1plus",
+        "sourceFingerprint": "a57b5af138a8313603b70b52f609e1a70f0bab7bfec55b52b1da1e798869ee31",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1048
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-02-01-xc5"
+        },
+        "cMarkedSentence": "$\\frac{5}{2}$, $-\\frac{1}{3}$처럼 분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수를 {정수가 아닌 유리수}라 한다.",
+        "cSlotAnswers": [
+          "정수가 아닌 유리수"
+        ],
+        "cStudentSentence": "$\\frac{5}{2}$, $-\\frac{1}{3}$처럼 분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수를 □라 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수가 아닌 유리수",
+            "equivalentAnswers": [
+              "정수가 아닌 유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수가 아닌 유리수"
+          ]
+        ],
+        "proposalFingerprint": "e9a7fcfa4e7ea37e12b38952f1fdae18d8d2bf86896a72bff9b7665ff800e6bb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc6",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "끝이 있는 소수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.7$, $-1.25$처럼 끝이 있는 소수는 분수로 고칠 수 있으므로 {유리수}이다.",
+        "example": {
+          "prompt": "$-0.5$를 분수로 나타내면?",
+          "answer": "$-\\frac{1}{2}$"
+        },
+        "studentC": "$0.7$, $-1.25$처럼 끝이 있는 소수는 분수로 고칠 수 있으므로 □이다.",
+        "answers": [
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.7$, $-1.25$처럼 소수점 아래의 숫자가 끝나는 소수는 유리수인지 아닌지 쓰고, 두 수를 각각 분수로 고쳐서 그 까닭을 설명하시오.",
+        "bAnswer": "유리수이다. $0.7=\\frac{7}{10}$, $-1.25=-\\frac{125}{100}=-\\frac{5}{4}$처럼 분수로 나타낼 수 있기 때문이다.",
+        "bGoal": "끝이 있는 소수가 분수로 고쳐지므로 유리수임을 설명한다.",
+        "bReason": "값이 같은 두 분수 표현을 '또는'으로 뭉치지 않고 대안으로 나눔",
+        "cDecision": "keep",
+        "cReason": "예와 까닭이 문장에 있고 결론인 '유리수' 하나만 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유리수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.7=\\frac{7}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-1.25=-\\frac{125}{100}$",
+              "$-1.25=-\\frac{5}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수로 나타낼 수 있기 때문이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "분수로 고쳐지므로 유리수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1049,
+        "part": "m1plus",
+        "sourceFingerprint": "ff1cee72c4e3cc279920a8c026e1aa85b9ac235093011296202ad8f1c91899b0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1049
+        },
+        "directReview": null,
+        "cFrozenSentence": "$0.7$, $-1.25$처럼 끝이 있는 소수는 분수로 고칠 수 있으므로 □이다.",
+        "cFrozenDefinition": "$0.7$, $-1.25$처럼 끝이 있는 소수는 분수로 고칠 수 있으므로 {유리수}이다.",
+        "cFrozenAnswers": [
+          "유리수"
+        ],
+        "cMarkedSentence": "$0.7$, $-1.25$처럼 끝이 있는 소수는 분수로 고칠 수 있으므로 {유리수}이다.",
+        "cSlotAnswers": [
+          "유리수"
+        ],
+        "cStudentSentence": "$0.7$, $-1.25$처럼 끝이 있는 소수는 분수로 고칠 수 있으므로 □이다.",
+        "cAnswers": [
+          "유리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "32a2c9fd4d334881cacb4da92018d2239ddb69ba34a88b2a5cd3b448842c8b60"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc7",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "정수와 유리수의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "모든 정수는 {분모가 $1$인 분수}로 쓸 수 있으므로 유리수에 포함된다.",
+        "example": {
+          "prompt": "$-4$를 분모가 $1$인 분수로 쓰면?",
+          "answer": "$-\\frac{4}{1}$"
+        },
+        "studentC": "모든 정수는 □로 쓸 수 있으므로 유리수에 포함된다.",
+        "answers": [
+          "분모가 $1$인 분수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 정수가 유리수이기도 한 까닭을 정수 $-4$를 예로 들어 설명하시오.",
+        "bAnswer": "$-4=-\\frac{4}{1}$처럼 모든 정수는 분모가 $1$인 분수로 나타낼 수 있다. 분수 꼴로 나타낼 수 있는 수가 유리수이므로 모든 정수는 유리수이다.",
+        "bGoal": "정수를 분모가 $1$인 분수로 나타낼 수 있어 유리수에 포함됨을 설명한다.",
+        "bReason": "제목 '정수와 유리수의 관계'는 포함 관계인지 차이인지 정해 주지 않는다. '모든 정수가 유리수인 까닭'으로 묻는 관계를 정하고 예를 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "모든 정수는 분모가 $1$인 {분수}로 나타낼 수 있으므로 {유리수}에 포함된다.",
+        "cAnswers": [
+          "분수",
+          "유리수"
+        ],
+        "cReason": "원문 빈칸 '분모가 $1$인 분수'는 통째로 떠올리기에 긴 구절이다. 구절을 풀어 짧은 낱말 빈칸 두 개로 나누었다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-4=-\\frac{4}{1}$처럼 정수는 분수(분모가 $1$인 분수 등)로 나타낼 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 꼴로 나타낼 수 있는 수가 유리수이므로 정수는 모두 유리수이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "분모 1인 분수로 쓸 수 있음",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1050,
+        "part": "m1plus",
+        "sourceFingerprint": "d21d4db853f647af2909b03627ba1d03c18abfc581c243db887af2aa49b8ef1b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1050
+        },
+        "directReview": null,
+        "cMarkedSentence": "모든 정수는 분모가 $1$인 {분수}로 나타낼 수 있으므로 {유리수}에 포함된다.",
+        "cSlotAnswers": [
+          "분수",
+          "유리수"
+        ],
+        "cStudentSentence": "모든 정수는 분모가 $1$인 □로 나타낼 수 있으므로 □에 포함된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "4c706779d9ecc217823183d11dc15787dde9b1d39ae040a3d5c2ce3acb421d10"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc8",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "약분하면 정수인 분수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분수 꼴이라도 약분하여 분모가 {$1$}이 되면 그 수는 정수이다.",
+        "example": {
+          "prompt": "$-\\frac{12}{4}$는 어떤 정수인가?",
+          "answer": "$-3$"
+        },
+        "studentC": "분수 꼴이라도 약분하여 분모가 □이 되면 그 수는 정수이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "분수 꼴이라도 약분하여 분모가 $1$이 되면 정수임을 안다.",
+        "bReason": "이 내용은 같은 단원의 '기약분수로 정수 판정'(m1-02-01-xc16)에 그대로 들어 있다. 그 문항이 약분하면 정수인 분수와 정수가 아닌 분수를 함께 판정하게 하므로 이 B는 같은 질문의 절반을 되풀이한다.",
+        "cDecision": "exclude",
+        "cReason": "빈칸의 답 '$1$'이 m1-02-01-xc16의 첫 빈칸과 같고 문장 내용도 그 앞부분과 겹쳐, 같은 값을 한 번 더 적게 할 뿐이다.",
+        "exclusionReason": "약분 한 번으로 끝나는 계산 문항이고, 분수 꼴 수의 정수 판정은 m1-02-01-xc16에서 까닭과 함께 묻고 있어 범위가 겹침.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "약분해 분모 1이면 정수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1051,
+        "part": "m1plus",
+        "sourceFingerprint": "f58913ad4e51dfd47a7f8be282bcf2074ea502cfa76477ff99300f5651ecfa02",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1051
+        },
+        "directReview": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc9",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "두 수 사이의 정수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 수 사이의 정수는 수직선에 두 수를 나타낸 뒤 그 사이에 있는 {눈금}의 정수를 센다.",
+        "example": {
+          "prompt": "$-2.5$와 $1.5$ 사이의 정수는 몇 개?",
+          "answer": "$4$개"
+        },
+        "studentC": "두 수 사이의 정수는 수직선에 두 수를 나타낸 뒤 그 사이에 있는 □의 정수를 센다.",
+        "answers": [
+          "눈금"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$-2.5$와 $1.5$ 사이에 있는 정수를 모두 찾으려고 한다. 수직선을 이용하여 찾는 방법을 설명하고, 그 정수를 모두 써서 개수를 구하시오.",
+        "bAnswer": "수직선에 $-2.5$와 $1.5$를 점으로 나타내고 두 점 사이에 있는 정수를 왼쪽부터 센다. 정수는 $-2$, $-1$, $0$, $1$이므로 $4$개이다.",
+        "bGoal": "정수가 아닌 두 수 사이의 정수를 수직선으로 찾아 센다.",
+        "bReason": "제목만으로는 어떤 두 수인지 없어 답할 수 없다. 양 끝이 정수가 아닌 두 수를 주어 방법과 개수를 묻고, $0$을 빠뜨리지 않는지도 확인하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 수 사이에 있는 정수를 찾을 때에는 두 수를 {수직선} 위에 점으로 나타낸 뒤, 두 점 사이에 있는 정수를 빠짐없이 센다.",
+        "cAnswers": [
+          "수직선"
+        ],
+        "cReason": "원문 빈칸 '눈금'은 수학 내용이 아닌 임의의 낱말이고 '눈금의 정수'라는 표현도 어색하다. 방법의 핵심인 도구(수직선)를 묻게 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직선에 $-2.5$와 $1.5$를 나타내고 그 사이의 정수를 센다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-2$, $-1$, $0$, $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "수직선에서 사이의 정수 세기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1052,
+        "part": "m1plus",
+        "sourceFingerprint": "c2c87bee07420ef70ef991bb299785353d2485ec8dfcc722f4112d35a5f90585",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1052
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 수 사이에 있는 정수를 찾을 때에는 두 수를 {수직선} 위에 점으로 나타낸 뒤, 두 점 사이에 있는 정수를 빠짐없이 센다.",
+        "cSlotAnswers": [
+          "수직선"
+        ],
+        "cStudentSentence": "두 수 사이에 있는 정수를 찾을 때에는 두 수를 □ 위에 점으로 나타낸 뒤, 두 점 사이에 있는 정수를 빠짐없이 센다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "수직선",
+            "equivalentAnswers": [
+              "수직선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "수직선"
+          ]
+        ],
+        "proposalFingerprint": "df29d08617bcdf9f217c57f5fab654cc82f41d69b843a16b1e1eaeead3bc1c1a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc10",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "수직선 위 분수의 자리",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분수는 이웃한 두 정수 사이를 분모만큼 {똑같이} 나누어 그 자리를 찾는다.",
+        "example": {
+          "prompt": "$-\\frac{3}{2}$은 어느 두 정수 사이에 있는가?",
+          "answer": "$-2$와 $-1$ 사이"
+        },
+        "studentC": "분수는 이웃한 두 정수 사이를 분모만큼 □ 나누어 그 자리를 찾는다.",
+        "answers": [
+          "똑같이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$-\\frac{3}{2}$을 수직선 위에 나타내려고 한다. 이 수가 어느 두 이웃한 정수 사이에 있는지 쓰고, 그 사이를 몇 등분하여 어느 점을 잡아야 하는지 설명하시오.",
+        "bAnswer": "$-\\frac{3}{2}$은 $-2$와 $-1$ 사이에 있다. 분모가 $2$이므로 $-2$와 $-1$ 사이를 $2$등분하면 그 한가운데 점이 $-\\frac{3}{2}$을 나타낸다.",
+        "bGoal": "분수를 이웃한 두 정수 사이를 분모만큼 등분하여 수직선에 나타낸다.",
+        "bReason": "제목만으로는 어떤 분수를 나타내는지 없다. 음수인 분수를 주어 두 정수와 등분 방법을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "분수를 수직선에 나타낼 때에는 그 분수가 놓이는 이웃한 두 정수 사이를 {분모}의 수만큼 똑같이 나누어 자리를 찾는다.",
+        "cAnswers": [
+          "분모"
+        ],
+        "cReason": "원문 빈칸 '똑같이'는 수학적 핵심이 아니고, 몇 등분인지를 정하는 '분모'가 그대로 드러나 있었다. 핵심인 분모를 묻게 바꾸었다.",
+        "studentLabel": "수직선에 분수 나타내기",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-2$와 $-1$ 사이"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 사이를 $2$등분한 한가운데 점"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "정수 사이를 분모만큼 등분",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1053,
+        "part": "m1plus",
+        "sourceFingerprint": "37a9f18ed326fb0ae62f95ed6341a42cbc5a3fbd3a00caa80b5cfa9f664e1a79",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1053
+        },
+        "directReview": null,
+        "cMarkedSentence": "분수를 수직선에 나타낼 때에는 그 분수가 놓이는 이웃한 두 정수 사이를 {분모}의 수만큼 똑같이 나누어 자리를 찾는다.",
+        "cSlotAnswers": [
+          "분모"
+        ],
+        "cStudentSentence": "분수를 수직선에 나타낼 때에는 그 분수가 놓이는 이웃한 두 정수 사이를 □의 수만큼 똑같이 나누어 자리를 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분모",
+            "equivalentAnswers": [
+              "분모"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분모"
+          ]
+        ],
+        "proposalFingerprint": "b05a12cf10c5bbbb817b5a6cb63fb66901b00622960aa9393e9caa5bfa6baa78"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc11",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "부호로 가르기와 꼴로 가르기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "양수 · 음수는 {부호}로 가른 것이고, 정수 · 유리수는 {수의 꼴}로 가른 것이다.",
+        "example": {
+          "prompt": "$-\\frac{1}{2}$은 양수 · 음수 · 정수 가운데 어디에 드는가?",
+          "answer": "음수"
+        },
+        "studentC": "양수 · 음수는 □로 가른 것이고, 정수 · 유리수는 □로 가른 것이다.",
+        "answers": [
+          "부호",
+          "수의 꼴"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$-\\frac{1}{2}$에 대하여 ($1$) 양수인지 음수인지 ($2$) 정수인지 정수가 아닌 유리수인지 각각 답하시오. 또 ($1$)과 ($2$)는 각각 수의 무엇을 보고 나눈 것인지 쓰시오.",
+        "bAnswer": "($1$) 음수 ($2$) 정수가 아닌 유리수. ($1$)은 수의 부호($0$보다 큰지 작은지)를 보고 나눈 것이고, ($2$)는 부호와 상관없이 수의 꼴(정수인지 아닌지)을 보고 나눈 것이다.",
+        "bGoal": "부호에 따른 분류와 정수 여부에 따른 분류가 서로 다른 기준임을 구별한다.",
+        "bReason": "제목의 '가르기', '꼴'은 학생에게 낯선 말이라 무엇을 묻는지 알기 어렵다. 한 수를 두 기준으로 분류하게 한 뒤 기준이 무엇인지 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "유리수를 양수, $0$, 음수로 나누는 것은 수의 {부호}를 기준으로 한 것이고, 정수와 정수가 아닌 유리수로 나누는 것은 부호와 상관없이 수의 꼴을 기준으로 한 것이다.",
+        "cAnswers": [
+          "부호"
+        ],
+        "cReason": "원문 빈칸 '수의 꼴'은 임의의 표현이라 맞히기 어렵고, '정수·유리수'는 서로 나뉘는 짝이 아니라 범위가 틀리게 읽힌다. 짝을 바로잡고 '부호'만 묻게 했다.",
+        "studentLabel": "수를 나누는 두 가지 기준",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "($1$) 음수"
+            ]
+          },
+          {
+            "anyOf": [
+              "($2$) 정수가 아닌 유리수"
+            ]
+          },
+          {
+            "anyOf": [
+              "($1$)은 부호($0$보다 큰지 작은지)로 나눈 것"
+            ]
+          },
+          {
+            "anyOf": [
+              "($2$)는 수의 꼴(정수인지 아닌지)로 나눈 것"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "부호 기준과 정수 여부 기준",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1054,
+        "part": "m1plus",
+        "sourceFingerprint": "08e57273e18def1bce1240f9ff89558b52dc4d49054bf515d5499eada38181e0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1054
+        },
+        "directReview": null,
+        "cMarkedSentence": "유리수를 양수, $0$, 음수로 나누는 것은 수의 {부호}를 기준으로 한 것이고, 정수와 정수가 아닌 유리수로 나누는 것은 부호와 상관없이 수의 꼴을 기준으로 한 것이다.",
+        "cSlotAnswers": [
+          "부호"
+        ],
+        "cStudentSentence": "유리수를 양수, $0$, 음수로 나누는 것은 수의 □를 기준으로 한 것이고, 정수와 정수가 아닌 유리수로 나누는 것은 부호와 상관없이 수의 꼴을 기준으로 한 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부호"
+          ]
+        ],
+        "proposalFingerprint": "5f834692bafc380fe4d714215f99833c59b4b36fa88b0eea6057c09b428ace0a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc12",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "자연수 · 정수 · 유리수의 포함 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수는 모두 {정수}에, 정수는 모두 {유리수}에 들어 있다.",
+        "example": {
+          "prompt": "$5$는 자연수, 정수, 유리수 가운데 어디에 드는가?",
+          "answer": "셋 모두"
+        },
+        "studentC": "자연수는 모두 □에, 정수는 모두 □에 들어 있다.",
+        "answers": [
+          "정수",
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "자연수와 정수 사이, 정수와 유리수 사이의 포함 관계를 각각 문장으로 쓰시오. 또 $5$와 $-\\frac12$는 각각 자연수, 정수, 유리수 가운데 어디에 속하는지 모두 쓰시오.",
+        "bAnswer": "자연수는 모두 정수이다. 정수는 모두 유리수이다. $5$는 자연수, 정수, 유리수 모두에 속하고, $-\\frac{1}{2}$는 유리수에만 속한다.",
+        "bGoal": "자연수, 정수, 유리수의 포함 관계를 말하고 수가 속하는 범위를 판단한다.",
+        "bReason": "'자연수는 모두 유리수이다'처럼 맞지만 모범답과 다른 문장 조합이 나올 수 있어, 어떤 두 관계를 묻는지 밝힘.",
+        "cDecision": "keep",
+        "cReason": "세 수 집합의 포함 순서를 짧게 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자연수는 모두 정수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정수는 모두 유리수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$는 자연수, 정수, 유리수 모두에 속한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-\\frac{1}{2}$는 유리수에만 속한다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "자연수는 정수, 정수는 유리수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "notationReason": "수학 도형이 아닌 자리표시 ○○·△△는 쓰지 않고 두 실제 포함 관계와 분류 요구를 그대로 둔다.",
+        "sourceIndex": 1055,
+        "part": "m1plus",
+        "sourceFingerprint": "3755009534dbaafa74ea7382a865c0570a15f62ec35b16415c90846f313af89e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1055
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-02-01-xc12"
+        },
+        "cFrozenSentence": "자연수는 모두 □에, 정수는 모두 □에 들어 있다.",
+        "cFrozenDefinition": "자연수는 모두 {정수}에, 정수는 모두 {유리수}에 들어 있다.",
+        "cFrozenAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cMarkedSentence": "자연수는 모두 {정수}에, 정수는 모두 {유리수}에 들어 있다.",
+        "cSlotAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cStudentSentence": "자연수는 모두 □에, 정수는 모두 □에 들어 있다.",
+        "cAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "9656090e4e6aebb4732788beebef7b6edcc4bf520e6a2015c6faff5d249aa988"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc13",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "기준에 따라 달라지는 것",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 양이라도 기준을 어디로 잡느냐에 따라 나타내는 {부호}가 달라질 수 있다.",
+        "example": {
+          "prompt": "$10$층을 기준으로 $7$층을 정수로 나타내면?",
+          "answer": "$-3$층"
+        },
+        "studentC": "같은 양이라도 기준을 어디로 잡느냐에 따라 나타내는 □가 달라질 수 있다.",
+        "answers": [
+          "부호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "어느 건물에서 기준이 되는 층보다 위층은 $+$, 아래층은 $-$를 붙여 층수의 차로 나타내기로 했다. $7$층을 (가) $10$층을 기준으로 할 때 (나) $5$층을 기준으로 할 때 각각 나타내고, 같은 $7$층인데 표현이 달라지는 까닭을 쓰시오.",
+        "bAnswer": "(가) $10$층보다 $3$층 아래이므로 $-3$층 (나) $5$층보다 $2$층 위이므로 $+2$층. 기준을 어디로 잡느냐에 따라 기준보다 위인지 아래인지가 달라지므로 부호가 달라진다.",
+        "bGoal": "같은 대상도 기준에 따라 부호가 달라짐을 설명한다.",
+        "bReason": "제목 '기준에 따라 달라지는 것'은 무엇이 달라지는지조차 숨기고 있다. 같은 층을 두 기준으로 나타내게 하여 달라지는 것과 까닭을 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "같은 위치나 양이라도 기준을 어디로 잡느냐에 따라 $+$로 나타낼지 $-$로 나타낼지, 곧 수의 {부호}가 달라질 수 있다.",
+        "cAnswers": [
+          "부호"
+        ],
+        "cReason": "원문의 '나타내는 □'에는 '수', '값'도 들어갈 수 있어 답이 하나로 정해지지 않는다. $+$, $-$를 언급해 부호를 묻는 것임을 분명히 했다.",
+        "studentLabel": "기준에 따라 달라지는 부호",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(가) $-3$층"
+            ]
+          },
+          {
+            "anyOf": [
+              "(나) $+2$층"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준에 따라 기준보다 위인지 아래인지가 달라져 부호가 달라진다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "기준에 따라 위아래가 바뀜",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1056,
+        "part": "m1plus",
+        "sourceFingerprint": "503c21081efd457d587b5f0bff7b7531bb4f158ff344745cfe3c6b2925b62498",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1056
+        },
+        "directReview": null,
+        "cMarkedSentence": "같은 위치나 양이라도 기준을 어디로 잡느냐에 따라 $+$로 나타낼지 $-$로 나타낼지, 곧 수의 {부호}가 달라질 수 있다.",
+        "cSlotAnswers": [
+          "부호"
+        ],
+        "cStudentSentence": "같은 위치나 양이라도 기준을 어디로 잡느냐에 따라 $+$로 나타낼지 $-$로 나타낼지, 곧 수의 □가 달라질 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부호"
+          ]
+        ],
+        "proposalFingerprint": "f58560b354eaed626c0d61f46a6104540ec57a3f5b287678f674f8d9c0078635"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc14",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "두 유리수 사이의 유리수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "서로 다른 두 유리수 사이에는 언제나 {또 다른 유리수}가 있다. 두 수의 {한가운데} 수가 그 하나이다.",
+        "example": {
+          "prompt": "$\\frac{1}{3}$과 $\\frac{1}{2}$의 한가운데 수는?",
+          "answer": "$\\frac{5}{12}$"
+        },
+        "studentC": "서로 다른 두 유리수 사이에는 언제나 □가 있다. 두 수의 □ 수가 그 하나이다.",
+        "answers": [
+          "또 다른 유리수",
+          "한가운데"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 다른 두 유리수 $\\frac{1}{3}$과 $\\frac{1}{2}$ 사이에 또 다른 유리수가 있는지 알아보려고 한다. 수직선에서 두 수의 한가운데에 있는 수를 구하시오. 또 이로부터 서로 다른 두 유리수 사이에 대하여 말할 수 있는 성질을 쓰시오.",
+        "bAnswer": "$\\frac{1}{3}=\\frac{4}{12}$, $\\frac{1}{2}=\\frac{6}{12}$이므로 한가운데 수는 $\\frac{5}{12}$이고, 이 수도 유리수이다. 따라서 서로 다른 두 유리수 사이에는 언제나 또 다른 유리수가 있다.",
+        "bGoal": "서로 다른 두 유리수 사이에 항상 다른 유리수가 있음을 한가운데 수로 설명한다.",
+        "bReason": "제목은 대상만 말하고 성질을 묻는지 계산을 묻는지 없다. 구체적인 두 수의 한가운데 수를 구하게 한 뒤 일반 성질을 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "서로 다른 두 유리수 사이에는 언제나 또 다른 유리수가 있다. 수직선에서 두 수를 나타내는 두 점의 {한가운데} 점이 나타내는 수가 그 하나이다.",
+        "cAnswers": [
+          "한가운데"
+        ],
+        "cReason": "원문 첫 빈칸 '또 다른 유리수'는 긴 구절이고 '유리수'가 문장 앞에 그대로 나온다. 성질은 드러내고, 그런 수를 어디서 찾는지만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한가운데 수 $\\frac{5}{12}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 다른 두 유리수 사이에는 언제나 또 다른 유리수가 있다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "한가운데 수도 유리수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1057,
+        "part": "m1plus",
+        "sourceFingerprint": "26e3acf640fb7ed94ff5df08daa59592d8139597cfab031e091a579acbca3e73",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1057
+        },
+        "directReview": null,
+        "cMarkedSentence": "서로 다른 두 유리수 사이에는 언제나 또 다른 유리수가 있다. 수직선에서 두 수를 나타내는 두 점의 {한가운데} 점이 나타내는 수가 그 하나이다.",
+        "cSlotAnswers": [
+          "한가운데"
+        ],
+        "cStudentSentence": "서로 다른 두 유리수 사이에는 언제나 또 다른 유리수가 있다. 수직선에서 두 수를 나타내는 두 점의 □ 점이 나타내는 수가 그 하나이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한가운데",
+            "equivalentAnswers": [
+              "한가운데",
+              "가운데",
+              "정가운데"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한가운데",
+            "accept": [
+              "가운데",
+              "정가운데"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한가운데",
+            "가운데",
+            "정가운데"
+          ]
+        ],
+        "proposalFingerprint": "a73c33f95791560eabd2ce8d37ae71c2ffde29c749fc682b916d814a8cc6a622"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc15",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "거리가 같은 두 점",
+        "kind": "방법",
+        "level": "상",
+        "definition": "수직선에서 어떤 점으로부터 거리가 양수 $a$인 점은 그 점의 오른쪽과 왼쪽에 {하나씩}, 모두 {두 개}이다.",
+        "example": {
+          "prompt": "$-1$에서 거리가 $4$인 점이 나타내는 수는?",
+          "answer": "$3$, $-5$"
+        },
+        "studentC": "수직선에서 어떤 점으로부터 거리가 양수 $a$인 점은 그 점의 오른쪽과 왼쪽에 □, 모두 □이다.",
+        "answers": [
+          "하나씩",
+          "두 개"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "수직선에서 $-1$을 나타내는 점으로부터의 거리가 $4$인 점은 몇 개인지 쓰고, 각 점이 나타내는 수를 구하시오. 또 왜 그 개수가 되는지 쓰시오.",
+        "bAnswer": "두 개이다. $-1$에서 오른쪽으로 $4$만큼 간 점은 $3$, 왼쪽으로 $4$만큼 간 점은 $-5$를 나타낸다. 한 점에서 같은 거리에 있는 점은 오른쪽과 왼쪽에 하나씩 있기 때문이다.",
+        "bGoal": "수직선에서 한 점으로부터 거리가 같은 점이 양쪽에 하나씩 두 개임을 알고 구한다.",
+        "bReason": "제목만으로는 기준점과 거리가 없어 답할 수 없다. 기준점 $-1$과 거리 $4$를 주고 개수, 수, 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "수직선에서 어떤 점으로부터의 거리가 양수 $a$인 점은 그 점의 {오른쪽}과 {왼쪽}에 하나씩, 모두 두 개이다.",
+        "cAnswers": [
+          "오른쪽",
+          "왼쪽"
+        ],
+        "cReason": "원문의 두 빈칸 '하나씩'과 '두 개'는 한쪽이 다른 쪽을 바로 알려 준다. 두 개가 되는 까닭인 양쪽 방향을 묻게 바꾸었다. 두 답은 순서를 바꾸어 써도 맞다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$과 $-5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 거리에 있는 점이 오른쪽과 왼쪽에 하나씩 있기 때문"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "양쪽에 하나씩 두 점 찾기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1058,
+        "part": "m1plus",
+        "sourceFingerprint": "c93abadc4255b566ea72ee43c0bc35e6715b8c3ca5001d22caadce42df4ca300",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1058
+        },
+        "directReview": null,
+        "cMarkedSentence": "수직선에서 어떤 점으로부터의 거리가 양수 $a$인 점은 그 점의 {오른쪽}과 {왼쪽}에 하나씩, 모두 두 개이다.",
+        "cSlotAnswers": [
+          "오른쪽",
+          "왼쪽"
+        ],
+        "cStudentSentence": "수직선에서 어떤 점으로부터의 거리가 양수 $a$인 점은 그 점의 □과 □에 하나씩, 모두 두 개이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "오른쪽",
+            "equivalentAnswers": [
+              "오른쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "왼쪽",
+            "equivalentAnswers": [
+              "왼쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "왼쪽"
+          ]
+        ],
+        "proposalFingerprint": "fac3e84e55000d2ae66e4e8296e0e96ae827f732318fd6a0c61ca97761275d27"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc16",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "기약분수로 정수 판정",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모가 양수인 기약분수로 나타냈을 때 분모가 {$1$}이면 정수이고, $1$이 아니면 {정수가 아닌 유리수}이다. 약분하기 전의 분모만 보면 잘못 가른다.",
+        "example": {
+          "prompt": "$-\\frac{14}{7}$, $\\frac{14}{4}$ 가운데 정수는?",
+          "answer": "$-\\frac{14}{7}$"
+        },
+        "studentC": "분모가 양수인 기약분수로 나타냈을 때 분모가 □이면 정수이고, $1$이 아니면 □이다. 약분하기 전의 분모만 보면 잘못 가른다.",
+        "answers": [
+          "$1$",
+          "정수가 아닌 유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$-\\frac{14}{7}$와 $\\frac{14}{4}$ 가운데 정수인 것을 고르려고 한다. 각 수를 분모가 양수인 기약분수로 나타내어 판단하는 방법을 설명하고, 약분하기 전의 분모만 보고 판단하면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$-\\frac{14}{7}=-\\frac21=-2$는 기약분수의 분모가 $1$이므로 정수이다. $\\frac{14}{4}=\\frac72$는 분모가 $1$이 아니므로 정수가 아닌 유리수이다. 약분 전 분모가 $1$이 아니어도 약분 후에는 $1$이 될 수 있으므로 먼저 약분해야 한다.",
+        "bGoal": "기약분수로 고쳐 분모가 $1$인지로 정수 여부를 판정한다.",
+        "bReason": "이유를 특정한 긴 사례 문장과 일치시킬 필요가 없어 약분 전후 분모가 달라질 수 있다는 뜻만 요구한다.",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 {$1$}이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 {약분}하기 전의 분모만 보고 판단하면 안 된다.",
+        "cAnswers": [
+          "$1$",
+          "약분"
+        ],
+        "cReason": "원문은 첫 빈칸의 답 '$1$'이 바로 뒤 '$1$이 아니면'에 그대로 나와 베껴 쓸 수 있다. 그 부분을 '그렇지 않으면'으로 바꾸고 주의할 점의 핵심어를 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-\\frac{14}{7}=-2$로 기약분수의 분모가 $1$이므로 정수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{14}{4}=\\frac{7}{2}$로 기약분수의 분모가 $1$이 아니므로 정수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약분 후 분모가 $1$이 될 수 있으므로 먼저 약분해야 한다",
+              "약분 전의 분모만으로는 약분 후 정수가 되는 수를 잘못 판단한다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "기약분수 분모로 정수 판정",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "notationReason": "칠분의 십사는 와, 이분의 칠은 은으로 읽으며 정수 분류와 약분 값은 그대로이다.",
+        "sourceIndex": 1059,
+        "part": "m1plus",
+        "sourceFingerprint": "a8ad678029e005dbdce46b5a27b4d3863c019078bb48a7ebfdf401d40200ee97",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1059
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-02-01-xc16"
+        },
+        "cMarkedSentence": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 {$1$}이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 {약분}하기 전의 분모만 보고 판단하면 안 된다.",
+        "cSlotAnswers": [
+          "$1$",
+          "약분"
+        ],
+        "cStudentSentence": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 □이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 □하기 전의 분모만 보고 판단하면 안 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "약분"
+          ]
+        ],
+        "proposalFingerprint": "8cbfd80d781ff8f7864968a4b50c6fecbf7c9e4483da8d2b3068746767448ab5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc17",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "분모가 $0$인 분수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "유리수는 분자와 분모가 정수인 분수로 나타내는 수이고, 분모가 {$0$}인 분수는 {생각하지 않는다}.",
+        "example": {
+          "prompt": "$\\frac{3}{0}$은 유리수인가?",
+          "answer": "아니다"
+        },
+        "studentC": "유리수는 분자와 분모가 정수인 분수로 나타내는 수이고, 분모가 □인 분수는 □.",
+        "answers": [
+          "$0$",
+          "생각하지 않는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{0}$은 유리수인지 아닌지 쓰시오. 유리수를 분수로 나타낼 때 분자와 분모가 만족해야 하는 조건을 써서 까닭을 설명하시오.",
+        "bAnswer": "유리수가 아니다. 유리수는 분자와 분모가 정수이고 분모가 $0$이 아닌 분수로 나타낼 수 있는 수이며, 분모가 $0$인 분수는 생각하지 않기 때문이다.",
+        "bGoal": "유리수를 나타내는 분수에서 분모가 $0$일 수 없음을 안다.",
+        "bReason": "제목만으로는 분모가 $0$인 분수에 대해 무엇을 물을지 없다. 구체적인 $\\frac{3}{0}$의 판단과 분자·분모의 조건을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "유리수는 분자와 분모가 정수인 분수로 나타낼 수 있는 수이며, 이때 분모는 {$0$}이 될 수 없다.",
+        "cAnswers": [
+          "$0$"
+        ],
+        "cReason": "원문 둘째 빈칸 '생각하지 않는다'는 수학 용어가 아닌 서술이라 그대로 맞히기 어렵다. 문장을 '될 수 없다'로 끝내고 분모의 값만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유리수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자와 분모는 정수이고 분모는 $0$이 아니어야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{0}$은 분모가 $0$이라 이 조건에 맞지 않는다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "분모는 0이 될 수 없음",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1060,
+        "part": "m1plus",
+        "sourceFingerprint": "19141f4b52ac7d6492959691b6e206c2dbe4351470e1a6b146d2969f33f9e5fb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1060
+        },
+        "directReview": null,
+        "cMarkedSentence": "유리수는 분자와 분모가 정수인 분수로 나타낼 수 있는 수이며, 이때 분모는 {$0$}이 될 수 없다.",
+        "cSlotAnswers": [
+          "$0$"
+        ],
+        "cStudentSentence": "유리수는 분자와 분모가 정수인 분수로 나타낼 수 있는 수이며, 이때 분모는 □이 될 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "5dfe3f3f5f6107977e5f4bb54318e8825df108c548c79e64a96144657fd583c1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc18",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "음의 부호의 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "세 수 $-\\frac{2}{3}$, $\\frac{-2}{3}$, $\\frac{2}{-3}$의 값은 모두 {같다}. 음의 부호가 어디에 붙어도 {음수}이다.",
+        "example": {
+          "prompt": "$\\frac{-6}{2}$을 정수로 나타내면?",
+          "answer": "$-3$"
+        },
+        "studentC": "세 수 $-\\frac{2}{3}$, $\\frac{-2}{3}$, $\\frac{2}{-3}$의 값은 모두 □. 음의 부호가 어디에 붙어도 □이다.",
+        "answers": [
+          "같다",
+          "음수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "세 수 $-\\frac{2}{3}$, $\\frac{-2}{3}$, $\\frac{2}{-3}$의 값을 서로 비교하고, 세 수가 각각 양수인지 음수인지 쓰시오. 또 $\\frac{-6}{2}$을 정수로 나타내시오.",
+        "bAnswer": "세 수의 값은 모두 같고, 모두 음수이다. $\\frac{-6}{2}=-\\frac{6}{2}=-3$이다.",
+        "bGoal": "음의 부호가 분수 앞, 분자, 분모 중 어디에 있어도 같은 음수임을 안다.",
+        "bReason": "제목 '음의 부호의 자리'는 무엇의 자리인지 드러나지 않는다. 부호의 위치만 다른 세 분수를 주어 값의 비교와 부호를 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "세 수 $-\\frac{2}{3}$, $\\frac{-2}{3}$, $\\frac{2}{-3}$의 값은 모두 {같다}. 음의 부호가 분수 앞, 분자, 분모 가운데 어느 한 곳에 붙어도 그 수는 {음수}이다.",
+        "cAnswers": [
+          "같다",
+          "음수"
+        ],
+        "cReason": "원문의 '어디에 붙어도'는 범위가 모호하여 분자와 분모에 모두 붙는 경우까지 포함하는 것으로 읽힐 수 있다. '어느 한 곳'으로 범위를 밝혔다.",
+        "studentLabel": "분수에서 음의 부호의 위치",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 수의 값은 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 수 모두 음수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{-6}{2}=-3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "−의 자리가 달라도 같은 음수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1061,
+        "part": "m1plus",
+        "sourceFingerprint": "76f342673196f6fb07dc662955e2fb96e0d5dd5bf932add5325a66d9831a9067",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1061
+        },
+        "directReview": null,
+        "cMarkedSentence": "세 수 $-\\frac{2}{3}$, $\\frac{-2}{3}$, $\\frac{2}{-3}$의 값은 모두 {같다}. 음의 부호가 분수 앞, 분자, 분모 가운데 어느 한 곳에 붙어도 그 수는 {음수}이다.",
+        "cSlotAnswers": [
+          "같다",
+          "음수"
+        ],
+        "cStudentSentence": "세 수 $-\\frac{2}{3}$, $\\frac{-2}{3}$, $\\frac{2}{-3}$의 값은 모두 □. 음의 부호가 분수 앞, 분자, 분모 가운데 어느 한 곳에 붙어도 그 수는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "음수",
+            "equivalentAnswers": [
+              "음수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ],
+          [
+            "음수"
+          ]
+        ],
+        "proposalFingerprint": "9adce819752f1fd4f128b9bfc83fa0639f649c79e28ebd1ec639f3c8c789e93d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc19",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "조건이 둘인 정수 세기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "'$a$보다 크고 $b$보다 작은 정수'는 수직선에 두 경계를 표시하고 {경계는 빼고} 그 {사이}의 정수를 센다.",
+        "example": {
+          "prompt": "$-\\frac{7}{2}$보다 크고 $2$보다 작은 정수는 몇 개?",
+          "answer": "$5$개"
+        },
+        "studentC": "'$a$보다 크고 $b$보다 작은 정수'는 수직선에 두 경계를 표시하고 □ 그 □의 정수를 센다.",
+        "answers": [
+          "경계는 빼고",
+          "사이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$-\\frac{7}{2}$보다 크고 $2$보다 작은 정수를 모두 찾으려고 한다. 수직선에서 어떻게 찾는지 설명하고, $2$를 세는지 세지 않는지 까닭과 함께 밝힌 뒤 정수를 모두 써서 개수를 구하시오.",
+        "bAnswer": "수직선에 $-\\frac{7}{2}$과 $2$를 표시하고 그 사이의 정수를 센다. '$2$보다 작은' 수이므로 $2$는 세지 않는다. 정수는 $-3$, $-2$, $-1$, $0$, $1$이므로 $5$개이다.",
+        "bGoal": "'보다 크고 보다 작은' 두 조건을 만족하는 정수를 경계를 빼고 센다.",
+        "bReason": "제목 '조건이 둘인'은 어떤 조건인지 말하지 않는다. 한쪽 경계가 정수인 예를 주어 경계를 세는지 여부까지 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "'$a$보다 크고 $b$보다 작은 정수'를 셀 때에는 수직선에 $a$, $b$를 나타내고 그 사이의 정수를 센다. 이때 $a$와 $b$가 정수이더라도 그 두 수는 {제외한다}.",
+        "cAnswers": [
+          "제외한다"
+        ],
+        "cReason": "원문 빈칸 '경계는 빼고'는 긴 구절이고 '경계'가 바로 앞에 나오며, 둘째 빈칸 '사이'는 수학적 핵심이 아니다. 경계를 세지 않는다는 판단 하나만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직선에 $-\\frac{7}{2}$과 $2$를 표시하고 그 사이의 정수를 센다"
+            ]
+          },
+          {
+            "anyOf": [
+              "'$2$보다 작은' 수이므로 $2$는 세지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-3$, $-2$, $-1$, $0$, $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "경계를 빼고 사이 정수 세기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1062,
+        "part": "m1plus",
+        "sourceFingerprint": "451dfe9526713bc8336120628650949fe2ff27b14b70896dd59aedd51bdc300c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1062
+        },
+        "directReview": null,
+        "cMarkedSentence": "'$a$보다 크고 $b$보다 작은 정수'를 셀 때에는 수직선에 $a$, $b$를 나타내고 그 사이의 정수를 센다. 이때 $a$와 $b$가 정수이더라도 그 두 수는 {제외한다}.",
+        "cSlotAnswers": [
+          "제외한다"
+        ],
+        "cStudentSentence": "'$a$보다 크고 $b$보다 작은 정수'를 셀 때에는 수직선에 $a$, $b$를 나타내고 그 사이의 정수를 센다. 이때 $a$와 $b$가 정수이더라도 그 두 수는 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제외한다",
+            "equivalentAnswers": [
+              "제외한다",
+              "뺀다",
+              "세지 않는다",
+              "포함하지 않는다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제외한다",
+            "accept": [
+              "뺀다",
+              "세지 않는다",
+              "포함하지 않는다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제외한다",
+            "뺀다",
+            "세지 않는다",
+            "포함하지 않는다"
+          ]
+        ],
+        "proposalFingerprint": "673557d104cc552cd5aad100da91406b2c5bb388051189a6c65d86bff38b4628"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc20",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "양의 부호와 덧셈 기호",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$+3$의 $+$는 수의 {부호}이고, $5+3$의 $+$는 {덧셈} 기호이다.",
+        "example": {
+          "prompt": "$(+2)+(+3)$에서 부호인 $+$는 몇 개?",
+          "answer": "$2$개"
+        },
+        "studentC": "$+3$의 $+$는 수의 □이고, $5+3$의 $+$는 □ 기호이다.",
+        "answers": [
+          "부호",
+          "덧셈"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "식 $(+2)+(+3)$에는 기호 $+$가 세 번 나온다. 세 개의 $+$가 각각 수의 부호인지 덧셈 기호인지 구별하고, 그렇게 판단한 까닭을 쓰시오.",
+        "bAnswer": "괄호 안의 $+2$, $+3$에 붙은 두 개의 $+$는 그 수가 양수임을 나타내는 양의 부호이다. 두 괄호 사이의 $+$는 두 수를 더하라는 덧셈 기호이다.",
+        "bGoal": "같은 모양의 $+$가 양의 부호로 쓰일 때와 덧셈 기호로 쓰일 때를 구별한다.",
+        "bReason": "제목은 두 용어의 나열이라 구별을 묻는지 뜻을 묻는지 없다. 두 쓰임이 함께 나오는 식을 주어 각각을 구별하게 했다.",
+        "cDecision": "keep",
+        "cReason": "구체적인 두 식에서 $+$의 쓰임을 대비시키는 짧은 문장이라 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$+2$, $+3$에 붙은 두 $+$는 양수임을 나타내는 양의 부호"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 괄호 사이의 $+$는 두 수를 더하라는 덧셈 기호"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "naming",
+        "roleReason": "+의 부호와 덧셈 기호 구별",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1063,
+        "part": "m1plus",
+        "sourceFingerprint": "73a9c178a0498bc4122db3799ca1048f9648e1309886a6fbe8d086deef84d568",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1063
+        },
+        "directReview": null,
+        "cFrozenSentence": "$+3$의 $+$는 수의 □이고, $5+3$의 $+$는 □ 기호이다.",
+        "cFrozenDefinition": "$+3$의 $+$는 수의 {부호}이고, $5+3$의 $+$는 {덧셈} 기호이다.",
+        "cFrozenAnswers": [
+          "부호",
+          "덧셈"
+        ],
+        "cMarkedSentence": "$+3$의 $+$는 수의 {부호}이고, $5+3$의 $+$는 {덧셈} 기호이다.",
+        "cSlotAnswers": [
+          "부호",
+          "덧셈"
+        ],
+        "cStudentSentence": "$+3$의 $+$는 수의 □이고, $5+3$의 $+$는 □ 기호이다.",
+        "cAnswers": [
+          "부호",
+          "덧셈"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "덧셈",
+            "equivalentAnswers": [
+              "덧셈"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부호"
+          ],
+          [
+            "덧셈"
+          ]
+        ],
+        "proposalFingerprint": "08eb818bebd19190cd62e6c30cccfcfb881221c5c1d3c788be0bf552aac9dbcf"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc21",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "수직선에서 두 정수 사이의 거리",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 칸의 길이가 $1$인 수직선에서 두 정수 사이의 거리는 두 점 사이의 {칸 수}와 같다. 원점이 두 점 사이에 있으면 원점까지의 두 거리를 {더한다}.",
+        "example": {
+          "prompt": "$-3$과 $4$ 사이의 거리는?",
+          "answer": "$7$"
+        },
+        "studentC": "한 칸의 길이가 $1$인 수직선에서 두 정수 사이의 거리는 두 점 사이의 □와 같다. 원점이 두 점 사이에 있으면 원점까지의 두 거리를 □.",
+        "answers": [
+          "칸 수",
+          "더한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "한 칸의 길이가 $1$인 수직선에서 $-3$을 나타내는 점과 $4$를 나타내는 점 사이의 거리를 구하려고 한다. ($1$) 두 점 사이의 칸 수로 구하는 방법 ($2$) 원점까지의 거리를 이용하는 방법으로 각각 설명하고 거리를 구하시오.",
+        "bAnswer": "($1$) $-3$에서 $4$까지는 $7$칸이므로 거리는 $7$이다. ($2$) 원점이 두 점 사이에 있으므로 $-3$에서 원점까지의 거리 $3$과 원점에서 $4$까지의 거리 $4$를 더하면 $3+4=7$이다.",
+        "bGoal": "수직선에서 두 정수 사이의 거리를 칸 수와 원점까지의 거리의 합으로 구한다.",
+        "bReason": "제목만으로는 어떤 두 정수인지와 수직선의 눈금 조건이 없다. 원점을 사이에 둔 두 정수와 한 칸의 길이를 밝혀 두 가지 방법을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "한 칸의 길이와 원점이 사이에 있는 경우라는 조건이 문장에 있고, 빈칸이 짧은 낱말과 연산이라 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "($1$) $-3$에서 $4$까지 $7$칸"
+            ]
+          },
+          {
+            "anyOf": [
+              "($2$) 원점까지의 거리 $3$과 $4$를 더해 $3+4=7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "거리 $7$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "칸 수 또는 원점까지 거리의 합",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1064,
+        "part": "m1plus",
+        "sourceFingerprint": "dfbc65eb091a34e5b300efbb67e3e63b3cc11f3dc18859a352a411d2bf04bc5a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1064
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 칸의 길이가 $1$인 수직선에서 두 정수 사이의 거리는 두 점 사이의 □와 같다. 원점이 두 점 사이에 있으면 원점까지의 두 거리를 □.",
+        "cFrozenDefinition": "한 칸의 길이가 $1$인 수직선에서 두 정수 사이의 거리는 두 점 사이의 {칸 수}와 같다. 원점이 두 점 사이에 있으면 원점까지의 두 거리를 {더한다}.",
+        "cFrozenAnswers": [
+          "칸 수",
+          "더한다"
+        ],
+        "cMarkedSentence": "한 칸의 길이가 $1$인 수직선에서 두 정수 사이의 거리는 두 점 사이의 {칸 수}와 같다. 원점이 두 점 사이에 있으면 원점까지의 두 거리를 {더한다}.",
+        "cSlotAnswers": [
+          "칸 수",
+          "더한다"
+        ],
+        "cStudentSentence": "한 칸의 길이가 $1$인 수직선에서 두 정수 사이의 거리는 두 점 사이의 □와 같다. 원점이 두 점 사이에 있으면 원점까지의 두 거리를 □.",
+        "cAnswers": [
+          "칸 수",
+          "더한다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "칸 수",
+            "equivalentAnswers": [
+              "칸 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더한다",
+            "equivalentAnswers": [
+              "더한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "칸 수"
+          ],
+          [
+            "더한다"
+          ]
+        ],
+        "proposalFingerprint": "269c8a590b05ebfab00eb1f2357f7bd483aab6dfc14dcd122d1bf0989b72933f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc22",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "가장 큰 음의 정수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가장 큰 음의 정수는 {$-1$}, 가장 작은 양의 정수는 {$1$}이고, 가장 작은 음의 정수는 {없다}.",
+        "example": {
+          "prompt": "가장 큰 음의 정수와 가장 작은 양의 정수의 한가운데 수는?",
+          "answer": "$0$"
+        },
+        "studentC": "가장 큰 음의 정수는 □, 가장 작은 양의 정수는 □이고, 가장 작은 음의 정수는 □.",
+        "answers": [
+          "$-1$",
+          "$1$",
+          "없다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "음의 정수 가운데 가장 큰 수와 양의 정수 가운데 가장 작은 수를 각각 쓰시오. 또 가장 작은 음의 정수가 있는지 없는지 까닭과 함께 쓰시오.",
+        "bAnswer": "가장 큰 음의 정수는 $-1$, 가장 작은 양의 정수는 $1$이다. 음의 정수는 $-1$, $-2$, $-3$, …으로 수직선의 왼쪽으로 끝없이 이어지므로 가장 작은 음의 정수는 없다.",
+        "bGoal": "가장 큰 음의 정수와 가장 작은 양의 정수를 알고 가장 작은 음의 정수가 없음을 설명한다.",
+        "bReason": "제목은 세 가지 중 하나만 가리킨다. 정의에 담긴 세 물음을 모두 넣고 '없다'의 까닭을 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "세 경우를 나란히 묻는 짧은 문장이고 각 빈칸에 들어갈 답이 수 또는 '없다'로 분명하다.",
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 음의 정수 $-1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 양의 정수 $1$ ($+1$도 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 음의 정수는 없다: 음의 정수는 $-1$, $-2$, $-3$, …으로 끝없이 작아지기 때문"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "음의 정수는 끝없이 작아짐",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1065,
+        "part": "m1plus",
+        "sourceFingerprint": "4fba0b027d37111344307b1c6878d86b4896f7956853f4f3a016454c2d64672c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1065
+        },
+        "directReview": null,
+        "cFrozenSentence": "가장 큰 음의 정수는 □, 가장 작은 양의 정수는 □이고, 가장 작은 음의 정수는 □.",
+        "cFrozenDefinition": "가장 큰 음의 정수는 {$-1$}, 가장 작은 양의 정수는 {$1$}이고, 가장 작은 음의 정수는 {없다}.",
+        "cFrozenAnswers": [
+          "$-1$",
+          "$1$",
+          "없다"
+        ],
+        "cMarkedSentence": "가장 큰 음의 정수는 {$-1$}, 가장 작은 양의 정수는 {$1$}이고, 가장 작은 음의 정수는 {없다}.",
+        "cSlotAnswers": [
+          "$-1$",
+          "$1$",
+          "없다"
+        ],
+        "cStudentSentence": "가장 큰 음의 정수는 □, 가장 작은 양의 정수는 □이고, 가장 작은 음의 정수는 □.",
+        "cAnswers": [
+          "$-1$",
+          "$1$",
+          "없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-1$",
+            "equivalentAnswers": [
+              "$-1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$",
+              "$+1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$1$",
+            "accept": [
+              "$+1$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$-1$"
+          ],
+          [
+            "$1$",
+            "$+1$"
+          ],
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "26ed36884e217387462ea9ff625ed8f35b47aa12681b6e695130f4e39345789b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-02-xc1",
+        "section": "중1::2. 정수와 유리수::수의 대소관계",
+        "term": "절댓값 기호 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$|a|$는 '$a$의 {절댓값}'이라 읽는다.",
+        "example": {
+          "prompt": "$|-3|$을 읽으면?",
+          "answer": "$-3$의 절댓값"
+        },
+        "studentC": "$|a|$는 '$a$의 □'이라 읽는다.",
+        "answers": [
+          "절댓값"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-02-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "절댓값 기호를 바르게 읽을 수 있다.",
+        "bReason": "읽는 법 한 줄만 답하는 질문이다. m1-02-02-c1의 B에서 이미 뜻과 기호 $|a|$를 함께 쓰게 하므로 따로 둘 내용이 남지 않는다.",
+        "cDecision": "keep",
+        "cReason": "기호를 읽는 낱말 하나를 채우는 짧은 빈칸이고 문장이 스스로 완결된다.",
+        "exclusionReason": "기호를 읽는 낱말만 답하게 되어 설명형으로 물을 내용이 없음.",
+        "authorBatch": 3,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "naming",
+        "roleReason": "|a|를 a의 절댓값으로 읽기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1066,
+        "part": "m1plus",
+        "sourceFingerprint": "b5b5f8c6d513d9f2600ff9f8fee7468f51990a8ebae4f1bcfe36f7d9bb80fcb4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1066
+        },
+        "directReview": null,
+        "cFrozenSentence": "$|a|$는 '$a$의 □'이라 읽는다.",
+        "cFrozenDefinition": "$|a|$는 '$a$의 {절댓값}'이라 읽는다.",
+        "cFrozenAnswers": [
+          "절댓값"
+        ],
+        "cMarkedSentence": "$|a|$는 '$a$의 {절댓값}'이라 읽는다.",
+        "cSlotAnswers": [
+          "절댓값"
+        ],
+        "cStudentSentence": "$|a|$는 '$a$의 □'이라 읽는다.",
+        "cAnswers": [
+          "절댓값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절댓값",
+            "equivalentAnswers": [
+              "절댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "절댓값"
+          ]
+        ],
+        "proposalFingerprint": "a48e65dbbed34d5e0d4034c542fee4dc48f11886c476eefe3a6bfdb4e08b1c9f"
+      }
+    }
+  ]
+}

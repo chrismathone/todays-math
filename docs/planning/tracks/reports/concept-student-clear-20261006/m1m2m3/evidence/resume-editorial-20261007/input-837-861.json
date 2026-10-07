@@ -1,0 +1,2576 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:24:14.952Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-02-c4",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "$x$축과 만나는 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "그래프가 $x$축과 만나는 점의 $x$좌표는 {$y=0$}을 넣은 이차방정식 $ax^2+bx+c=0$의 {해}이다.",
+        "studentC": "그래프가 $x$축과 만나는 점의 $x$좌표는 □을 넣은 이차방정식 $ax^2+bx+c=0$의 □이다.",
+        "answers": [
+          "$y=0$",
+          "해"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-c4",
+        "learningRole": "reason",
+        "roleReason": "$x$축 위의 점은 $y=0$이라 방정식의 해",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=ax^2+bx+c$의 그래프가 $x$축과 만나는 점의 $x$좌표는 어떤 방정식의 해와 같은가? 그 까닭도 쓰시오.",
+        "bAnswer": "이차방정식 $ax^2+bx+c=0$의 해와 같다. $x$축 위의 점은 $y$좌표가 $0$이므로 $y=0$을 대입하기 때문이다.",
+        "bGoal": "$x$축 교점과 이차방정식의 관계",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$ax^2+bx+c=0$의 해"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$축 위의 점은 $y$좌표가 $0$",
+              "$y=0$을 대입"
+            ]
+          }
+        ],
+        "bReason": "교점과 방정식의 관계 및 $y=0$의 근거를 함께 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "대입 조건과 해라는 관계를 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 837,
+        "part": "m3",
+        "sourceFingerprint": "ff8202e5cae987567de80f359cf4cfde1ed040496292552eecfab77d98462181",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 837
+        },
+        "directReview": null,
+        "cFrozenSentence": "그래프가 $x$축과 만나는 점의 $x$좌표는 □을 넣은 이차방정식 $ax^2+bx+c=0$의 □이다.",
+        "cFrozenDefinition": "그래프가 $x$축과 만나는 점의 $x$좌표는 {$y=0$}을 넣은 이차방정식 $ax^2+bx+c=0$의 {해}이다.",
+        "cFrozenAnswers": [
+          "$y=0$",
+          "해"
+        ],
+        "cMarkedSentence": "그래프가 $x$축과 만나는 점의 $x$좌표는 {$y=0$}을 넣은 이차방정식 $ax^2+bx+c=0$의 {해}이다.",
+        "cSlotAnswers": [
+          "$y=0$",
+          "해"
+        ],
+        "cStudentSentence": "그래프가 $x$축과 만나는 점의 $x$좌표는 □을 넣은 이차방정식 $ax^2+bx+c=0$의 □이다.",
+        "cAnswers": [
+          "$y=0$",
+          "해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y=0$",
+            "equivalentAnswers": [
+              "$y=0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "해",
+            "equivalentAnswers": [
+              "해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y=0$"
+          ],
+          [
+            "해"
+          ]
+        ],
+        "proposalFingerprint": "8890454cf7bdb633da5a822436e6ace579711c7877d5f92ee218a3410480ad69"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-02-c5",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "일차항의 계수의 절반을 쓰는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$(x+t)^2=x^2+2tx+t^2$에서 일차항의 계수는 {$2t$}이다 — 그래서 $x^2+dx$를 완전제곱식으로 묶으려면 $t$를 {$d$의 절반}으로 정한다.",
+        "studentC": "$(x+t)^2=x^2+2tx+t^2$에서 일차항의 계수는 □이다 — 그래서 $x^2+dx$를 완전제곱식으로 묶으려면 $t$를 □으로 정한다.",
+        "answers": [
+          "$2t$",
+          "$d$의 절반"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-c5",
+        "learningRole": "reason",
+        "roleReason": "일차항 계수 $2t=d$에서 $t$를 절반으로 정함",
+        "bDecision": "rewrite",
+        "bPrompt": "$(x+t)^2=x^2+2tx+t^2$임을 이용하여, $x^2+dx$를 완전제곱식 $(x+t)^2$을 이용해 나타내려면 $t$를 $d$로 어떻게 정해야 하는지와 그 까닭을 쓰시오.",
+        "bAnswer": "$(x+t)^2$의 일차항의 계수는 $2t$이므로 $2t=d$가 되어야 한다. 그래서 $t=\\frac{d}{2}$, 곧 $d$의 절반으로 정한다.",
+        "bGoal": "완전제곱식에서 일차항 계수의 절반",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일차항의 계수가 $2t$",
+              "$2t=d$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$t=\\frac{d}{2}$",
+              "$d$의 절반"
+            ]
+          }
+        ],
+        "bReason": "'절반'이라는 답을 감추고 전개식에서 직접 이끌게 했다.",
+        "cDecision": "keep",
+        "cReason": "전개식의 계수와 절반 규칙을 잇는 분명한 이유 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 838,
+        "part": "m3",
+        "sourceFingerprint": "74ee93abab7a48e8794dae0b236326f6b265711e5ea349218b441f9b0caf8dc1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 838
+        },
+        "directReview": null,
+        "cFrozenSentence": "$(x+t)^2=x^2+2tx+t^2$에서 일차항의 계수는 □이다 — 그래서 $x^2+dx$를 완전제곱식으로 묶으려면 $t$를 □으로 정한다.",
+        "cFrozenDefinition": "$(x+t)^2=x^2+2tx+t^2$에서 일차항의 계수는 {$2t$}이다 — 그래서 $x^2+dx$를 완전제곱식으로 묶으려면 $t$를 {$d$의 절반}으로 정한다.",
+        "cFrozenAnswers": [
+          "$2t$",
+          "$d$의 절반"
+        ],
+        "cMarkedSentence": "$(x+t)^2=x^2+2tx+t^2$에서 일차항의 계수는 {$2t$}이다 — 그래서 $x^2+dx$를 완전제곱식으로 묶으려면 $t$를 {$d$의 절반}으로 정한다.",
+        "cSlotAnswers": [
+          "$2t$",
+          "$d$의 절반"
+        ],
+        "cStudentSentence": "$(x+t)^2=x^2+2tx+t^2$에서 일차항의 계수는 □이다 — 그래서 $x^2+dx$를 완전제곱식으로 묶으려면 $t$를 □으로 정한다.",
+        "cAnswers": [
+          "$2t$",
+          "$d$의 절반"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2t$",
+            "equivalentAnswers": [
+              "$2t$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$d$의 절반",
+            "equivalentAnswers": [
+              "$d$의 절반",
+              "$\\frac{d}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$d$의 절반",
+            "accept": [
+              "$\\frac{d}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$2t$"
+          ],
+          [
+            "$d$의 절반",
+            "$\\frac{d}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "f6288b6b06df9ba042c7617826fe6d2a8269e226380e540be8f20f632d1a357b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-02-c6",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "$a$, $b$, $c$의 부호와 그래프",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$a$는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+        "studentC": "$a$는 볼록한 □을, $c$는 □과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 □.",
+        "answers": [
+          "방향",
+          "$y$축",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-c6",
+        "learningRole": "application",
+        "roleReason": "$a$, $c$의 역할과 축 위치로 $a$, $b$ 부호 관계",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=ax^2+bx+c$의 그래프에서 볼록한 방향을 정하는 계수와 $y$축과 만나는 점을 정하는 계수를 각각 쓰시오. 또 축 $x=-\\frac{b}{2a}$가 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호는 어떤 관계인지 까닭과 함께 쓰시오.",
+        "bAnswer": "볼록한 방향은 $a$가, $y$축과 만나는 점은 $c$가 정한다. 축이 왼쪽이면 $-\\frac{b}{2a}<0$, 곧 $\\frac{b}{a}>0$이므로 $a$와 $b$의 부호가 같다.",
+        "bGoal": "계수의 부호와 그래프 정보",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "볼록한 방향은 $a$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$축과 만나는 점은 $c$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$와 $b$의 부호가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-\\frac{b}{2a}<0$",
+              "$\\frac{b}{a}>0$"
+            ]
+          }
+        ],
+        "bReason": "함수식과 축의 식을 밝혀 세 계수의 역할을 각각 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$y=ax^2+bx+c$의 그래프에서 $a$의 부호는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+        "cAnswers": [
+          "방향",
+          "$y$축",
+          "같다"
+        ],
+        "cReason": "원문에 $a$, $b$, $c$가 어느 식의 계수인지 없어 함수식을 넣었다.",
+        "coreAfter": "$y=ax^2+bx+c$의 그래프에서 $a$는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+        "coreReason": "학습 설명에 $a$, $b$, $c$가 속한 함수식이 없어 지칭 대상이 불명확하다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 839,
+        "part": "m3",
+        "sourceFingerprint": "c0b632420735da3bbb14d69d518d26e040f5d63d7a67b9a12852fb8014f99131",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 839
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=ax^2+bx+c$의 그래프에서 $a$의 부호는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+        "cSlotAnswers": [
+          "방향",
+          "$y$축",
+          "같다"
+        ],
+        "cStudentSentence": "$y=ax^2+bx+c$의 그래프에서 $a$의 부호는 볼록한 □을, $c$는 □과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "방향",
+            "equivalentAnswers": [
+              "방향"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$축",
+            "equivalentAnswers": [
+              "$y$축"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "방향"
+          ],
+          [
+            "$y$축"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "5ffdc38e2d3c977c1db72aee8be71423241961cc3d4fb9d4dcf546d7fa9334e3"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-02-c7",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "꼭짓점과 다른 한 점의 역할",
+        "kind": "방법",
+        "level": "상",
+        "definition": "꼭짓점은 $y=a(x-p)^2+q$의 {$p$, $q$}를 정하고, 꼭짓점이 아닌 그래프 위의 한 점은 남은 {$a$}를 하나로 정한다.",
+        "studentC": "꼭짓점은 $y=a(x-p)^2+q$의 □를 정하고, 꼭짓점이 아닌 그래프 위의 한 점은 남은 □를 하나로 정한다.",
+        "answers": [
+          "$p$, $q$",
+          "$a$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-c7",
+        "learningRole": "procedure",
+        "roleReason": "꼭짓점으로 $p$, $q$, 다른 한 점으로 $a$ 결정",
+        "bDecision": "rewrite",
+        "bPrompt": "꼭짓점이 $(p,\\ q)$인 이차함수를 $y=a(x-p)^2+q$로 놓을 때, 꼭짓점이 정하는 것과 꼭짓점이 아닌 그래프 위의 한 점이 정하는 것을 각각 쓰시오. 이를 이용하여 꼭짓점이 $(1,\\ 2)$이고 점 $(2,\\ 5)$를 지나는 이차함수의 식을 구하시오.",
+        "bAnswer": "꼭짓점은 $p$, $q$를 정하고, 다른 한 점은 남은 $a$를 정한다. $y=a(x-1)^2+2$에 $(2,\\ 5)$를 대입하면 $5=a+2$, $a=3$이므로 $y=3(x-1)^2+2$이다.",
+        "bGoal": "꼭짓점과 한 점으로 식 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점은 $p$, $q$를 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 점은 $a$를 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=3(x-1)^2+2$"
+            ]
+          }
+        ],
+        "bReason": "역할 구분에 구체 꼭짓점과 점을 더해 절차를 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "꼭짓점과 다른 점의 역할을 나눠 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 840,
+        "part": "m3",
+        "sourceFingerprint": "defaf99afc8d6e28edd8e84ac2db71e6bed5dc7c9a55d29a5fce5d1226cfed0a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 840
+        },
+        "directReview": null,
+        "cFrozenSentence": "꼭짓점은 $y=a(x-p)^2+q$의 □를 정하고, 꼭짓점이 아닌 그래프 위의 한 점은 남은 □를 하나로 정한다.",
+        "cFrozenDefinition": "꼭짓점은 $y=a(x-p)^2+q$의 {$p$, $q$}를 정하고, 꼭짓점이 아닌 그래프 위의 한 점은 남은 {$a$}를 하나로 정한다.",
+        "cFrozenAnswers": [
+          "$p$, $q$",
+          "$a$"
+        ],
+        "cMarkedSentence": "꼭짓점은 $y=a(x-p)^2+q$의 {$p$, $q$}를 정하고, 꼭짓점이 아닌 그래프 위의 한 점은 남은 {$a$}를 하나로 정한다.",
+        "cSlotAnswers": [
+          "$p$, $q$",
+          "$a$"
+        ],
+        "cStudentSentence": "꼭짓점은 $y=a(x-p)^2+q$의 □를 정하고, 꼭짓점이 아닌 그래프 위의 한 점은 남은 □를 하나로 정한다.",
+        "cAnswers": [
+          "$p$, $q$",
+          "$a$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$p$, $q$",
+            "equivalentAnswers": [
+              "$p$, $q$",
+              "$p$와 $q$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$p$, $q$",
+            "accept": [
+              "$p$와 $q$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$p$, $q$",
+            "$p$와 $q$"
+          ],
+          [
+            "$a$"
+          ]
+        ],
+        "proposalFingerprint": "a364be86139b8c6b6069544e27532f3c5a586c836ed9c531737b57f50b928612"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-03-c1",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "최댓값",
+        "kind": "정의",
+        "level": "하",
+        "definition": "함수의 {함숫값} 가운데 가장 {큰} 값이 그 함수의 최댓값이다.",
+        "studentC": "함수의 □ 가운데 가장 □ 값이 그 함수의 최댓값이다.",
+        "answers": [
+          "함숫값",
+          "큰"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 함수의 최댓값은 그 함수의 무엇 가운데 어떤 값인가?",
+        "bAnswer": "함숫값 가운데 가장 큰 값",
+        "bGoal": "최댓값의 뜻",
+        "bReason": "제목만으로는 답의 범위가 없어 '무엇 가운데 어떤 값'으로 답의 형태를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "함숫값",
+              "$y$의 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 큰"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "함숫값과 '큰'을 채우는 짧은 정의 빈칸이라 지칭이 분명하다.",
+        "learningRole": "definition",
+        "roleReason": "함숫값 중 가장 큰 값이라는 뜻",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 841,
+        "part": "m3",
+        "sourceFingerprint": "a72d42ba3df2411956604c3a759bae6ec40a9644c631e852e943f7a9814ecf3e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 841
+        },
+        "directReview": null,
+        "cFrozenSentence": "함수의 □ 가운데 가장 □ 값이 그 함수의 최댓값이다.",
+        "cFrozenDefinition": "함수의 {함숫값} 가운데 가장 {큰} 값이 그 함수의 최댓값이다.",
+        "cFrozenAnswers": [
+          "함숫값",
+          "큰"
+        ],
+        "cMarkedSentence": "함수의 {함숫값} 가운데 가장 {큰} 값이 그 함수의 최댓값이다.",
+        "cSlotAnswers": [
+          "함숫값",
+          "큰"
+        ],
+        "cStudentSentence": "함수의 □ 가운데 가장 □ 값이 그 함수의 최댓값이다.",
+        "cAnswers": [
+          "함숫값",
+          "큰"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "함숫값",
+            "equivalentAnswers": [
+              "함숫값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "함숫값"
+          ],
+          [
+            "큰"
+          ]
+        ],
+        "proposalFingerprint": "347d091765de2707593ea8479ed5e01adb2a216199ecc698d68f0085050ac7dc"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-03-c2",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "최솟값",
+        "kind": "정의",
+        "level": "하",
+        "definition": "함수의 {함숫값} 가운데 가장 {작은} 값이 그 함수의 최솟값이다.",
+        "studentC": "함수의 □ 가운데 가장 □ 값이 그 함수의 최솟값이다.",
+        "answers": [
+          "함숫값",
+          "작은"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 함수의 최솟값은 그 함수의 무엇 가운데 어떤 값인가?",
+        "bAnswer": "함숫값 가운데 가장 작은 값",
+        "bGoal": "최솟값의 뜻",
+        "bReason": "최댓값과 짝이 되는 정의로, 함숫값 중 어떤 값인지를 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "함숫값",
+              "$y$의 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "함숫값과 '작은'을 채우는 짧은 정의 빈칸이라 그대로 쓸 수 있다.",
+        "learningRole": "definition",
+        "roleReason": "함숫값 중 가장 작은 값이라는 뜻",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 842,
+        "part": "m3",
+        "sourceFingerprint": "565c76f40b2042f8554039509d91761b161e3a8f529f9d814f443ed9df336251",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 842
+        },
+        "directReview": null,
+        "cFrozenSentence": "함수의 □ 가운데 가장 □ 값이 그 함수의 최솟값이다.",
+        "cFrozenDefinition": "함수의 {함숫값} 가운데 가장 {작은} 값이 그 함수의 최솟값이다.",
+        "cFrozenAnswers": [
+          "함숫값",
+          "작은"
+        ],
+        "cMarkedSentence": "함수의 {함숫값} 가운데 가장 {작은} 값이 그 함수의 최솟값이다.",
+        "cSlotAnswers": [
+          "함숫값",
+          "작은"
+        ],
+        "cStudentSentence": "함수의 □ 가운데 가장 □ 값이 그 함수의 최솟값이다.",
+        "cAnswers": [
+          "함숫값",
+          "작은"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "함숫값",
+            "equivalentAnswers": [
+              "함숫값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "함숫값"
+          ],
+          [
+            "작은"
+          ]
+        ],
+        "proposalFingerprint": "91e33de3863fbe1605513286d5c96eebfa957332d400d333b7fda34e7d822c15"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-03-c3",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "이차함수의 최댓값과 최솟값",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$y=a(x-p)^2+q$는 $a>0$이면 $x=p$에서 {최솟값} $q$를, $a<0$이면 $x=p$에서 {최댓값} $q$를 갖는다.",
+        "studentC": "$y=a(x-p)^2+q$는 $a>0$이면 $x=p$에서 □ $q$를, $a<0$이면 $x=p$에서 □ $q$를 갖는다.",
+        "answers": [
+          "최솟값",
+          "최댓값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=a(x-p)^2+q$가 $a>0$일 때와 $a<0$일 때 각각 최댓값과 최솟값 중 무엇을 갖는지 쓰고, 그 값과 그 값을 갖는 $x$의 값을 쓰시오.",
+        "bAnswer": "$a>0$이면 $x=p$에서 최솟값 $q$를 갖고, $a<0$이면 $x=p$에서 최댓값 $q$를 갖는다.",
+        "bGoal": "표준형에서 최댓값·최솟값 판단하기",
+        "bReason": "$a$의 부호에 따라 최대·최소가 갈리고 그때의 $x$도 읽어야 하므로 두 경우를 나눠 물었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a>0$이면 최솟값 $q$",
+              "$a>0$일 때 최솟값이 $q$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a<0$이면 최댓값 $q$",
+              "$a<0$일 때 최댓값이 $q$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=p$에서",
+              "$x=p$일 때"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$a$의 부호 조건이 보이고 최솟값·최댓값만 가리는 짧은 대응 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "$a$의 부호로 최대·최소와 그 값 읽기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 843,
+        "part": "m3",
+        "sourceFingerprint": "e2894dc382058ce69295a202ae81915d1bed6a5cc2ddff643e7e2cadd3f937d8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 843
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=a(x-p)^2+q$는 $a>0$이면 $x=p$에서 □ $q$를, $a<0$이면 $x=p$에서 □ $q$를 갖는다.",
+        "cFrozenDefinition": "$y=a(x-p)^2+q$는 $a>0$이면 $x=p$에서 {최솟값} $q$를, $a<0$이면 $x=p$에서 {최댓값} $q$를 갖는다.",
+        "cFrozenAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cMarkedSentence": "$y=a(x-p)^2+q$는 $a>0$이면 $x=p$에서 {최솟값} $q$를, $a<0$이면 $x=p$에서 {최댓값} $q$를 갖는다.",
+        "cSlotAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cStudentSentence": "$y=a(x-p)^2+q$는 $a>0$이면 $x=p$에서 □ $q$를, $a<0$이면 $x=p$에서 □ $q$를 갖는다.",
+        "cAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최솟값",
+            "equivalentAnswers": [
+              "최솟값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최댓값",
+            "equivalentAnswers": [
+              "최댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최솟값"
+          ],
+          [
+            "최댓값"
+          ]
+        ],
+        "proposalFingerprint": "ab87afed389c61711cd7a99238a68ee8c6e7895f69a241129327c4ff44eb3c33"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-03-c4",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "최댓값 · 최솟값이 없는 경우",
+        "kind": "성질",
+        "level": "중",
+        "definition": "아래로 볼록한 포물선은 위로 끝없이 올라가므로 {최댓값}이 없고, 위로 볼록한 포물선은 {최솟값}이 없다.",
+        "studentC": "아래로 볼록한 포물선은 위로 끝없이 올라가므로 □이 없고, 위로 볼록한 포물선은 □이 없다.",
+        "answers": [
+          "최댓값",
+          "최솟값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$의 범위가 실수 전체일 때, 아래로 볼록한 포물선과 위로 볼록한 포물선에는 각각 최댓값과 최솟값 가운데 무엇이 없는가? 그래프의 모양을 근거로 쓰시오.",
+        "bAnswer": "아래로 볼록한 포물선은 위로 끝없이 올라가므로 최댓값이 없고, 위로 볼록한 포물선은 아래로 끝없이 내려가므로 최솟값이 없다.",
+        "bGoal": "볼록 방향과 최댓값·최솟값의 유무",
+        "bReason": "'없는 경우'가 무엇인지 몰라 $x$의 범위와 두 볼록 방향을 밝히고 근거를 요구했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아래로 볼록하면 최댓값이 없다",
+              "아래로 볼록한 포물선은 최댓값이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "위로 볼록하면 최솟값이 없다",
+              "위로 볼록한 포물선은 최솟값이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝없이 올라가거나 내려간다",
+              "함숫값이 한없이 커지거나 작아진다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "볼록 방향과 '위로 끝없이 올라가므로'라는 근거가 보여 최댓값·최솟값을 가리는 빈칸이 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "그래프가 끝없이 이어져 한쪽 값이 없음",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 844,
+        "part": "m3",
+        "sourceFingerprint": "da4f4391dfec3ae15f64b466caa27a56b2150bd4d2e4507c6074e838116be819",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 844
+        },
+        "directReview": null,
+        "cFrozenSentence": "아래로 볼록한 포물선은 위로 끝없이 올라가므로 □이 없고, 위로 볼록한 포물선은 □이 없다.",
+        "cFrozenDefinition": "아래로 볼록한 포물선은 위로 끝없이 올라가므로 {최댓값}이 없고, 위로 볼록한 포물선은 {최솟값}이 없다.",
+        "cFrozenAnswers": [
+          "최댓값",
+          "최솟값"
+        ],
+        "cMarkedSentence": "아래로 볼록한 포물선은 위로 끝없이 올라가므로 {최댓값}이 없고, 위로 볼록한 포물선은 {최솟값}이 없다.",
+        "cSlotAnswers": [
+          "최댓값",
+          "최솟값"
+        ],
+        "cStudentSentence": "아래로 볼록한 포물선은 위로 끝없이 올라가므로 □이 없고, 위로 볼록한 포물선은 □이 없다.",
+        "cAnswers": [
+          "최댓값",
+          "최솟값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최댓값",
+            "equivalentAnswers": [
+              "최댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최솟값",
+            "equivalentAnswers": [
+              "최솟값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최댓값"
+          ],
+          [
+            "최솟값"
+          ]
+        ],
+        "proposalFingerprint": "c27cafcaab222f7b7b829845636e000bbc0fbfc0dde859455f92dc1600640afd"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-03-c5",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "일반형의 최댓값 · 최솟값 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "일반형은 {표준형}으로 고친 뒤 {꼭짓점}의 $y$좌표를 읽는다 — 그 값이 최댓값 또는 최솟값이다.",
+        "studentC": "일반형은 □으로 고친 뒤 □의 $y$좌표를 읽는다 — 그 값이 최댓값 또는 최솟값이다.",
+        "answers": [
+          "표준형",
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수가 $y=ax^2+bx+c$ 꼴로 주어졌을 때 최댓값 또는 최솟값을 구하려면 식을 어떤 꼴로 고치고, 그래프의 어느 점의 무엇을 읽어야 하는가?",
+        "bAnswer": "$y=a(x-p)^2+q$ 꼴의 표준형으로 고친 뒤 꼭짓점의 $y$좌표 $q$를 읽는다.",
+        "bGoal": "일반형에서 최댓값·최솟값을 구하는 절차",
+        "bReason": "'일반형'이 무엇인지 식으로 보이고, 고칠 꼴과 읽을 좌표를 함께 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "표준형",
+              "$y=a(x-p)^2+q$ 꼴",
+              "완전제곱식 꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 $y$좌표",
+              "꼭짓점의 $q$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "이차함수 $y=ax^2+bx+c$의 최댓값 또는 최솟값은 식을 {표준형} $y=a(x-p)^2+q$로 고친 뒤 {꼭짓점}의 $y$좌표 $q$를 읽어 구한다.",
+        "cAnswers": [
+          "표준형",
+          "꼭짓점"
+        ],
+        "cReason": "'일반형은'이 무엇의 식인지 없어서 이차함수와 두 식의 꼴을 밝혔다.",
+        "learningRole": "procedure",
+        "roleReason": "표준형으로 고쳐 꼭짓점의 $y$좌표 읽기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 845,
+        "part": "m3",
+        "sourceFingerprint": "1ad76be46312d0e32d80e3729dbcd603504f697eca1e618855494f4b55cb5db0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 845
+        },
+        "directReview": null,
+        "cMarkedSentence": "이차함수 $y=ax^2+bx+c$의 최댓값 또는 최솟값은 식을 {표준형} $y=a(x-p)^2+q$로 고친 뒤 {꼭짓점}의 $y$좌표 $q$를 읽어 구한다.",
+        "cSlotAnswers": [
+          "표준형",
+          "꼭짓점"
+        ],
+        "cStudentSentence": "이차함수 $y=ax^2+bx+c$의 최댓값 또는 최솟값은 식을 □ $y=a(x-p)^2+q$로 고친 뒤 □의 $y$좌표 $q$를 읽어 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "표준형",
+            "equivalentAnswers": [
+              "표준형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "표준형"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "99252921a0d8f00dd8eef4044109749b11aae7cb23038cf24bb45db69303c5a7"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-03-c6",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "최댓값 · 최솟값의 활용",
+        "kind": "방법",
+        "level": "상",
+        "definition": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 {최솟값}, 위로 볼록하면 {최댓값}을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "studentC": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 □, 위로 볼록하면 □을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "answers": [
+          "최솟값",
+          "최댓값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "변하는 양을 $x$의 이차함수로 나타내어 최댓값이나 최솟값을 구할 때, 꼭짓점의 $x$의 값이 문제에서 실제로 될 수 있는 값인지 확인해야 하는 까닭은 무엇인가? 또 될 수 없는 값이면 어떻게 구하는가?",
+        "bAnswer": "꼭짓점의 $x$의 값이 실제로 될 수 없으면 꼭짓점의 함숫값이 실제로 나오지 않으므로 그 값을 최댓값이나 최솟값으로 쓸 수 없다. 이때는 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "bGoal": "활용 문제에서 꼭짓점 사용 조건 확인",
+        "bReason": "활용의 핵심인 '실제로 될 수 있는 값' 확인과 그 대안을 묻도록 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점에서의 함숫값이 실제로 나오지 않는다",
+              "꼭짓점의 $y$좌표를 답으로 쓸 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$가 될 수 있는 값들에서 함숫값을 비교한다",
+              "가능한 $x$의 값에서 함숫값을 비교한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "사용 조건과 볼록 방향이 모두 보여 최솟값·최댓값 대응이 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "꼭짓점의 $x$가 가능한지 확인 후 판단",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 846,
+        "part": "m3",
+        "sourceFingerprint": "7c588bb06b283a1ac5e52fb712b097593daa7aea3ec16212f70ab6ccf6e83457",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 846
+        },
+        "directReview": null,
+        "cFrozenSentence": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 □, 위로 볼록하면 □을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "cFrozenDefinition": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 {최솟값}, 위로 볼록하면 {최댓값}을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "cFrozenAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cMarkedSentence": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 {최솟값}, 위로 볼록하면 {최댓값}을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "cSlotAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cStudentSentence": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 □, 위로 볼록하면 □을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "cAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최솟값",
+            "equivalentAnswers": [
+              "최솟값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최댓값",
+            "equivalentAnswers": [
+              "최댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최솟값"
+          ],
+          [
+            "최댓값"
+          ]
+        ],
+        "proposalFingerprint": "786f087c9ccd814dc81c98202bf1cb909a24e0af49671b097e3dab1ae8bd70a1"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-01-c1",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "사인",
+        "kind": "정의",
+        "level": "하",
+        "definition": "직각삼각형에서 $\\angle A$의 사인은 {빗변}의 길이에 대한 {높이}의 비이고, $\\sin A$로 쓴다.",
+        "studentC": "직각삼각형에서 $\\angle A$의 사인은 □의 길이에 대한 □의 비이고, $\\sin A$로 쓴다.",
+        "answers": [
+          "빗변",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 $\\sin A$는 어느 변의 길이에 대한 어느 변의 길이의 비인가? 변의 이름과 선분 기호로 쓰시오.",
+        "bAnswer": "빗변 $\\overline{AB}$의 길이에 대한 높이 $\\overline{BC}$의 길이의 비이다. 즉 $\\sin A=\\frac{\\overline{BC}}{\\overline{AB}}$이다.",
+        "bGoal": "사인의 뜻",
+        "bReason": "그림이 없어 직각의 위치를 정하고 변 이름과 선분을 함께 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빗변 $\\overline{AB}$에 대한",
+              "분모가 $\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이 $\\overline{BC}$",
+              "분자가 $\\overline{BC}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "빗변과 높이를 채우는 짧은 정의 빈칸으로 교과서 용어와 맞다.",
+        "learningRole": "definition",
+        "roleReason": "빗변에 대한 높이의 비",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 847,
+        "part": "m3",
+        "sourceFingerprint": "cc21db77df5874e68dfe113dae945b482e791181674549f652ceaca30d7f5486",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 847
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형에서 $\\angle A$의 사인은 □의 길이에 대한 □의 비이고, $\\sin A$로 쓴다.",
+        "cFrozenDefinition": "직각삼각형에서 $\\angle A$의 사인은 {빗변}의 길이에 대한 {높이}의 비이고, $\\sin A$로 쓴다.",
+        "cFrozenAnswers": [
+          "빗변",
+          "높이"
+        ],
+        "cMarkedSentence": "직각삼각형에서 $\\angle A$의 사인은 {빗변}의 길이에 대한 {높이}의 비이고, $\\sin A$로 쓴다.",
+        "cSlotAnswers": [
+          "빗변",
+          "높이"
+        ],
+        "cStudentSentence": "직각삼각형에서 $\\angle A$의 사인은 □의 길이에 대한 □의 비이고, $\\sin A$로 쓴다.",
+        "cAnswers": [
+          "빗변",
+          "높이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "fa3453c3a438435f97ff69ff953fa1e10db754722f23f8f68ace3e36e6ee872f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-01-c2",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "코사인",
+        "kind": "정의",
+        "level": "하",
+        "definition": "직각삼각형에서 $\\angle A$의 코사인은 {빗변}의 길이에 대한 {밑변}의 길이의 비이고, $\\cos A$로 쓴다.",
+        "studentC": "직각삼각형에서 $\\angle A$의 코사인은 □의 길이에 대한 □의 길이의 비이고, $\\cos A$로 쓴다.",
+        "answers": [
+          "빗변",
+          "밑변"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 $\\cos A$는 어느 변의 길이에 대한 어느 변의 길이의 비인가? 변의 이름과 선분 기호로 쓰시오.",
+        "bAnswer": "빗변 $\\overline{AB}$의 길이에 대한 밑변 $\\overline{AC}$의 길이의 비이다. 즉 $\\cos A=\\frac{\\overline{AC}}{\\overline{AB}}$이다.",
+        "bGoal": "코사인의 뜻",
+        "bReason": "직각과 기준각의 위치를 밝혀 분모·분자 변을 특정할 수 있게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빗변 $\\overline{AB}$에 대한",
+              "분모가 $\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변 $\\overline{AC}$",
+              "분자가 $\\overline{AC}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "빗변과 밑변을 채우는 짧은 정의 빈칸이다.",
+        "learningRole": "definition",
+        "roleReason": "빗변에 대한 밑변의 비",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 848,
+        "part": "m3",
+        "sourceFingerprint": "310df41a915ffd805aec705a9446a43fca05b8920a76ca7501f78dd7da33aaf4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 848
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형에서 $\\angle A$의 코사인은 □의 길이에 대한 □의 길이의 비이고, $\\cos A$로 쓴다.",
+        "cFrozenDefinition": "직각삼각형에서 $\\angle A$의 코사인은 {빗변}의 길이에 대한 {밑변}의 길이의 비이고, $\\cos A$로 쓴다.",
+        "cFrozenAnswers": [
+          "빗변",
+          "밑변"
+        ],
+        "cMarkedSentence": "직각삼각형에서 $\\angle A$의 코사인은 {빗변}의 길이에 대한 {밑변}의 길이의 비이고, $\\cos A$로 쓴다.",
+        "cSlotAnswers": [
+          "빗변",
+          "밑변"
+        ],
+        "cStudentSentence": "직각삼각형에서 $\\angle A$의 코사인은 □의 길이에 대한 □의 길이의 비이고, $\\cos A$로 쓴다.",
+        "cAnswers": [
+          "빗변",
+          "밑변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "밑변"
+          ]
+        ],
+        "proposalFingerprint": "5027cc4ecc710ae218a4f766e1fb0040c4f3fe01a7ab2f2d899ab9d46eeb4ea4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-01-c3",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "탄젠트",
+        "kind": "정의",
+        "level": "하",
+        "definition": "직각삼각형에서 $\\angle A$의 탄젠트는 {밑변}의 길이에 대한 {높이}의 비이고, $\\tan A$로 쓴다.",
+        "studentC": "직각삼각형에서 $\\angle A$의 탄젠트는 □의 길이에 대한 □의 비이고, $\\tan A$로 쓴다.",
+        "answers": [
+          "밑변",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 $\\tan A$는 어느 변의 길이에 대한 어느 변의 길이의 비인가? 변의 이름과 선분 기호로 쓰시오.",
+        "bAnswer": "밑변 $\\overline{AC}$의 길이에 대한 높이 $\\overline{BC}$의 길이의 비이다. 즉 $\\tan A=\\frac{\\overline{BC}}{\\overline{AC}}$이다.",
+        "bGoal": "탄젠트의 뜻",
+        "bReason": "빗변을 쓰지 않는 비임이 드러나도록 같은 삼각형에서 변을 특정하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑변 $\\overline{AC}$에 대한",
+              "분모가 $\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이 $\\overline{BC}$",
+              "분자가 $\\overline{BC}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "밑변과 높이를 채우는 짧은 정의 빈칸이다.",
+        "learningRole": "definition",
+        "roleReason": "밑변에 대한 높이의 비",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 849,
+        "part": "m3",
+        "sourceFingerprint": "86b9e556b8ed87bbc1236aff756c6e9050164e5c1e81d3d9b68df6fa931303d9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 849
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형에서 $\\angle A$의 탄젠트는 □의 길이에 대한 □의 비이고, $\\tan A$로 쓴다.",
+        "cFrozenDefinition": "직각삼각형에서 $\\angle A$의 탄젠트는 {밑변}의 길이에 대한 {높이}의 비이고, $\\tan A$로 쓴다.",
+        "cFrozenAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cMarkedSentence": "직각삼각형에서 $\\angle A$의 탄젠트는 {밑변}의 길이에 대한 {높이}의 비이고, $\\tan A$로 쓴다.",
+        "cSlotAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cStudentSentence": "직각삼각형에서 $\\angle A$의 탄젠트는 □의 길이에 대한 □의 비이고, $\\tan A$로 쓴다.",
+        "cAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑변"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "701402dc9b2127cba873edbc956ab50961e252eb85a456a5b63a1f194caf5b84"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-01-c4",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "삼각비",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$\\angle A$의 {사인}, {코사인}, {탄젠트}를 한데 묶어 $\\angle A$의 삼각비라 한다.",
+        "studentC": "$\\angle A$의 □, □, □를 한데 묶어 $\\angle A$의 삼각비라 한다.",
+        "answers": [
+          "사인",
+          "코사인",
+          "탄젠트"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle A$의 삼각비라고 한데 묶어 부르는 것들을 이름과 기호로 모두 쓰시오.",
+        "bAnswer": "사인($\\sin A$), 코사인($\\cos A$), 탄젠트($\\tan A$)",
+        "bGoal": "삼각비가 묶는 대상",
+        "bReason": "'삼각비'라는 이름이 묶는 대상을 이름과 기호로 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사인",
+              "$\\sin A$"
+            ]
+          },
+          {
+            "anyOf": [
+              "코사인",
+              "$\\cos A$"
+            ]
+          },
+          {
+            "anyOf": [
+              "탄젠트",
+              "$\\tan A$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세 이름을 채우는 짧은 빈칸으로 지칭이 분명하다.",
+        "learningRole": "naming",
+        "roleReason": "사인·코사인·탄젠트를 묶은 이름",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 850,
+        "part": "m3",
+        "sourceFingerprint": "abb88fdb3b4a21cec820cb2f235f08cea1571b4bf0b424f5e18d5d48d0e52b47",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 850
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\angle A$의 □, □, □를 한데 묶어 $\\angle A$의 삼각비라 한다.",
+        "cFrozenDefinition": "$\\angle A$의 {사인}, {코사인}, {탄젠트}를 한데 묶어 $\\angle A$의 삼각비라 한다.",
+        "cFrozenAnswers": [
+          "사인",
+          "코사인",
+          "탄젠트"
+        ],
+        "cMarkedSentence": "$\\angle A$의 {사인}, {코사인}, {탄젠트}를 한데 묶어 $\\angle A$의 삼각비라 한다.",
+        "cSlotAnswers": [
+          "사인",
+          "코사인",
+          "탄젠트"
+        ],
+        "cStudentSentence": "$\\angle A$의 □, □, □를 한데 묶어 $\\angle A$의 삼각비라 한다.",
+        "cAnswers": [
+          "사인",
+          "코사인",
+          "탄젠트"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "사인",
+            "equivalentAnswers": [
+              "사인"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "코사인",
+            "equivalentAnswers": [
+              "코사인"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "탄젠트",
+            "equivalentAnswers": [
+              "탄젠트"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "사인"
+          ],
+          [
+            "코사인"
+          ],
+          [
+            "탄젠트"
+          ]
+        ],
+        "proposalFingerprint": "e17a2055ed4bc01b37ed94cd3e05fb633155947f81aa0bfe4fbe3b008a5e4a39"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-01-c5",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "$\\sin$ · $\\cos$ · $\\tan$",
+        "kind": "정의",
+        "level": "중",
+        "definition": "기호 $\\sin A$, $\\cos A$, $\\tan A$에서 $A$는 $\\angle A$의 {크기}를 뜻하고, $\\sin$, $\\cos$, $\\tan$는 sine, cosine, {tangent}를 줄인 말이다.",
+        "studentC": "기호 $\\sin A$, $\\cos A$, $\\tan A$에서 $A$는 $\\angle A$의 □를 뜻하고, $\\sin$, $\\cos$, $\\tan$는 sine, cosine, □를 줄인 말이다.",
+        "answers": [
+          "크기",
+          "tangent"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "기호 $\\sin A$, $\\cos A$, $\\tan A$에서 $A$는 무엇을 나타내는가?",
+        "bAnswer": "$\\angle A$의 크기",
+        "bGoal": "삼각비 기호에서 $A$의 뜻",
+        "bReason": "영어 약자 암기보다 기호 속 $A$가 각의 크기임을 묻는 데 집중했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle A$의 크기",
+              "각 $A$의 크기"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "기호 $\\sin A$, $\\cos A$, $\\tan A$에서 $A$는 $\\angle A$의 {크기}를 뜻하고, $\\sin$, $\\cos$, $\\tan$는 각각 sine, cosine, tangent를 줄인 말이다.",
+        "cAnswers": [
+          "크기"
+        ],
+        "cReason": "영어 철자 'tangent' 빈칸은 철자 암기라 빼고 $A$의 뜻만 남겼다.",
+        "studentLabel": "삼각비 기호의 뜻",
+        "learningRole": "naming",
+        "roleReason": "기호의 $A$는 각의 크기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 851,
+        "part": "m3",
+        "sourceFingerprint": "86675aa442a2a2e88c2a9c43650d12c7e3ed5e73e89a03ad722adb9886d7190c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 851
+        },
+        "directReview": null,
+        "cMarkedSentence": "기호 $\\sin A$, $\\cos A$, $\\tan A$에서 $A$는 $\\angle A$의 {크기}를 뜻하고, $\\sin$, $\\cos$, $\\tan$는 각각 sine, cosine, tangent를 줄인 말이다.",
+        "cSlotAnswers": [
+          "크기"
+        ],
+        "cStudentSentence": "기호 $\\sin A$, $\\cos A$, $\\tan A$에서 $A$는 $\\angle A$의 □를 뜻하고, $\\sin$, $\\cos$, $\\tan$는 각각 sine, cosine, tangent를 줄인 말이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "크기",
+            "equivalentAnswers": [
+              "크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "크기"
+          ]
+        ],
+        "proposalFingerprint": "680a5b2ebbb0c60c316c3ca7c64bf0c3a6e087d53da21d5d4e4ce92cdd529e2c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-01-c6",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "높이와 밑변",
+        "kind": "정의",
+        "level": "중",
+        "definition": "기준이 되는 예각과 {마주 보는} 변이 높이이고, 그 각에 붙은 두 변 중 빗변이 아닌 쪽이 {밑변}이다.",
+        "studentC": "기준이 되는 예각과 □ 변이 높이이고, 그 각에 붙은 두 변 중 빗변이 아닌 쪽이 □이다.",
+        "answers": [
+          "마주 보는",
+          "밑변"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 삼각비의 기준이 되는 예각이 정해졌을 때, 높이와 밑변은 각각 어떤 변인지 기준각과의 위치로 쓰시오.",
+        "bAnswer": "높이는 기준각과 마주 보는 변이고, 밑변은 기준각에 붙은 두 변 가운데 빗변이 아닌 변이다.",
+        "bGoal": "높이와 밑변의 뜻",
+        "bReason": "높이·밑변이 기준각에 따라 정해짐을 위치 관계로 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "높이는 기준각과 마주 보는 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변은 기준각에 붙은 변 가운데 빗변이 아닌 변"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직각삼각형에서 삼각비의 기준이 되는 예각과 {마주 보는} 변이 높이이고, 그 각에 붙은 두 변 가운데 빗변이 아닌 변이 {밑변}이다.",
+        "cAnswers": [
+          "마주 보는",
+          "밑변"
+        ],
+        "cReason": "어떤 도형의 변인지 없어 직각삼각형과 삼각비의 기준임을 밝혔다.",
+        "learningRole": "definition",
+        "roleReason": "기준각에 대한 변의 위치로 정의",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 852,
+        "part": "m3",
+        "sourceFingerprint": "0a61ee0a91991d8f57ea9ffc4a66efc6aab13fb887edbaecb5a950c238bb0664",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 852
+        },
+        "directReview": null,
+        "cMarkedSentence": "직각삼각형에서 삼각비의 기준이 되는 예각과 {마주 보는} 변이 높이이고, 그 각에 붙은 두 변 가운데 빗변이 아닌 변이 {밑변}이다.",
+        "cSlotAnswers": [
+          "마주 보는",
+          "밑변"
+        ],
+        "cStudentSentence": "직각삼각형에서 삼각비의 기준이 되는 예각과 □ 변이 높이이고, 그 각에 붙은 두 변 가운데 빗변이 아닌 변이 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마주 보는",
+            "equivalentAnswers": [
+              "마주 보는",
+              "마주보는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "마주 보는",
+            "accept": [
+              "마주보는"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "마주 보는",
+            "마주보는"
+          ],
+          [
+            "밑변"
+          ]
+        ],
+        "proposalFingerprint": "def92175055ed1f5e72276ba88452d67ffb1f093e3ae258fceed61cc7dabf9c4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-01-c7",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "직각삼각형의 크기와 삼각비의 값",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 예각의 크기가 같은 직각삼각형은 모두 {닮음}이므로, 삼각형이 크든 작든 그 각의 삼각비의 값은 {같다}.",
+        "studentC": "한 예각의 크기가 같은 직각삼각형은 모두 □이므로, 삼각형이 크든 작든 그 각의 삼각비의 값은 □.",
+        "answers": [
+          "닮음",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "한 예각의 크기가 같고 크기만 다른 직각삼각형이 여러 개 있을 때, 그 각의 삼각비의 값은 삼각형마다 어떻게 되는지 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "모두 같다. 직각과 한 예각이 같아 세 삼각형이 모두 닮음이므로 대응하는 변의 길이의 비가 같기 때문이다.",
+        "bGoal": "삼각비가 삼각형의 크기와 무관한 까닭",
+        "bReason": "결론을 미리 말하지 않고 값의 변화와 닮음 근거를 함께 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모두 같다",
+              "변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "닮음",
+              "닮은 삼각형"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근거 '닮음'과 결론 '같다'를 채우는 짧은 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "닮음이라 삼각비가 같음",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 853,
+        "part": "m3",
+        "sourceFingerprint": "9ef199158cc9a1866731c9993920fd858fd6624b29ddde9bb8bfc95435fc5291",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 853
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 예각의 크기가 같은 직각삼각형은 모두 □이므로, 삼각형이 크든 작든 그 각의 삼각비의 값은 □.",
+        "cFrozenDefinition": "한 예각의 크기가 같은 직각삼각형은 모두 {닮음}이므로, 삼각형이 크든 작든 그 각의 삼각비의 값은 {같다}.",
+        "cFrozenAnswers": [
+          "닮음",
+          "같다"
+        ],
+        "cMarkedSentence": "한 예각의 크기가 같은 직각삼각형은 모두 {닮음}이므로, 삼각형이 크든 작든 그 각의 삼각비의 값은 {같다}.",
+        "cSlotAnswers": [
+          "닮음",
+          "같다"
+        ],
+        "cStudentSentence": "한 예각의 크기가 같은 직각삼각형은 모두 □이므로, 삼각형이 크든 작든 그 각의 삼각비의 값은 □.",
+        "cAnswers": [
+          "닮음",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "닮음",
+            "equivalentAnswers": [
+              "닮음"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "닮음"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "cef222d67c703039f46bd5d99c0ff8532aaef15c24f1c1f8b1fd5e55ad534f99"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-01-c8",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "한 삼각비로 나머지가 정해지는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "예각의 삼각비 하나를 알면 두 변의 {길이의 비}가 정해지고, {피타고라스 정리}로 나머지 변의 비도 정해지므로 다른 삼각비도 정해진다.",
+        "studentC": "예각의 삼각비 하나를 알면 두 변의 □가 정해지고, □로 나머지 변의 비도 정해지므로 다른 삼각비도 정해진다.",
+        "answers": [
+          "길이의 비",
+          "피타고라스 정리"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 예각 $A$에 대하여 $\\sin A$의 값 하나만 알아도 $\\cos A$와 $\\tan A$의 값이 정해지는 까닭을 쓰시오.",
+        "bAnswer": "$\\sin A$를 알면 빗변과 높이의 길이의 비가 정해지고, 피타고라스 정리로 밑변의 길이의 비도 정해지므로 나머지 삼각비도 정해진다.",
+        "bGoal": "한 삼각비로 나머지가 정해지는 까닭",
+        "bReason": "주어진 삼각비와 구할 삼각비를 정해 비와 피타고라스 정리의 연결을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 변의 길이의 비가 정해진다",
+              "빗변과 높이의 비가 정해진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "피타고라스 정리"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'길이의 비'와 '피타고라스 정리'를 채우는 빈칸이 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "비와 피타고라스 정리로 나머지 변 결정",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 854,
+        "part": "m3",
+        "sourceFingerprint": "e711630912bb8b9e8da68ef1f3413bf38e9f82e92359de8ee9895d691f3f4024",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 854
+        },
+        "directReview": null,
+        "cFrozenSentence": "예각의 삼각비 하나를 알면 두 변의 □가 정해지고, □로 나머지 변의 비도 정해지므로 다른 삼각비도 정해진다.",
+        "cFrozenDefinition": "예각의 삼각비 하나를 알면 두 변의 {길이의 비}가 정해지고, {피타고라스 정리}로 나머지 변의 비도 정해지므로 다른 삼각비도 정해진다.",
+        "cFrozenAnswers": [
+          "길이의 비",
+          "피타고라스 정리"
+        ],
+        "cMarkedSentence": "예각의 삼각비 하나를 알면 두 변의 {길이의 비}가 정해지고, {피타고라스 정리}로 나머지 변의 비도 정해지므로 다른 삼각비도 정해진다.",
+        "cSlotAnswers": [
+          "길이의 비",
+          "피타고라스 정리"
+        ],
+        "cStudentSentence": "예각의 삼각비 하나를 알면 두 변의 □가 정해지고, □로 나머지 변의 비도 정해지므로 다른 삼각비도 정해진다.",
+        "cAnswers": [
+          "길이의 비",
+          "피타고라스 정리"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "길이의 비",
+            "equivalentAnswers": [
+              "길이의 비"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "피타고라스 정리",
+            "equivalentAnswers": [
+              "피타고라스 정리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "길이의 비"
+          ],
+          [
+            "피타고라스 정리"
+          ]
+        ],
+        "proposalFingerprint": "7f839a11528bf0c842758ecc5041201cfbbed78383239092a331122e6bc1d3a4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c1",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$30^\\circ$, $45^\\circ$, $60^\\circ$의 삼각비의 값",
+        "kind": "공식",
+        "level": "하",
+        "definition": "$\\sin 30^\\circ=$ {$\\frac{1}{2}$}, $\\sin 45^\\circ=$ {$\\frac{\\sqrt{2}}{2}$}, $\\sin 60^\\circ=$ {$\\frac{\\sqrt{3}}{2}$}이다 — 각이 커질수록 사인 값도 커진다.",
+        "studentC": "$\\sin 30^\\circ=$ □, $\\sin 45^\\circ=$ □, $\\sin 60^\\circ=$ □이다 — 각이 커질수록 사인 값도 커진다.",
+        "answers": [
+          "$\\frac{1}{2}$",
+          "$\\frac{\\sqrt{2}}{2}$",
+          "$\\frac{\\sqrt{3}}{2}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\sin 30^\\circ$, $\\sin 45^\\circ$, $\\sin 60^\\circ$의 값을 각각 쓰고, 각이 $30^\\circ$, $45^\\circ$, $60^\\circ$로 커질 때 사인의 값이 어떻게 변하는지 세 값을 비교해 말해 보세요.",
+        "bAnswer": "$\\sin 30^\\circ=\\frac{1}{2}$, $\\sin 45^\\circ=\\frac{\\sqrt{2}}{2}$, $\\sin 60^\\circ=\\frac{\\sqrt{3}}{2}$이다. $1<\\sqrt{2}<\\sqrt{3}$이므로 각이 커질수록 사인의 값도 커진다.",
+        "bGoal": "특수한 각의 사인 값과 크기 순서 알기",
+        "bReason": "제목은 삼각비 전체를 가리키므로 사인 세 값과 대소 비교로 범위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 사인 값 $\\frac{1}{2}$, $\\frac{\\sqrt{2}}{2}$, $\\frac{\\sqrt{3}}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각이 커지면 사인의 값도 커짐"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "식마다 값 하나를 채우는 짧은 계산 빈칸이라 그대로 쓸 수 있다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "30·45·60도 사인 값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 855,
+        "part": "m3",
+        "sourceFingerprint": "9e3af1fd2ce59c59987bcb8485915b3ec2f54c7b34b8cc6724a3e514346ac45d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 855
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\sin 30^\\circ=$ □, $\\sin 45^\\circ=$ □, $\\sin 60^\\circ=$ □이다 — 각이 커질수록 사인 값도 커진다.",
+        "cFrozenDefinition": "$\\sin 30^\\circ=$ {$\\frac{1}{2}$}, $\\sin 45^\\circ=$ {$\\frac{\\sqrt{2}}{2}$}, $\\sin 60^\\circ=$ {$\\frac{\\sqrt{3}}{2}$}이다 — 각이 커질수록 사인 값도 커진다.",
+        "cFrozenAnswers": [
+          "$\\frac{1}{2}$",
+          "$\\frac{\\sqrt{2}}{2}$",
+          "$\\frac{\\sqrt{3}}{2}$"
+        ],
+        "cMarkedSentence": "$\\sin 30^\\circ=$ {$\\frac{1}{2}$}, $\\sin 45^\\circ=$ {$\\frac{\\sqrt{2}}{2}$}, $\\sin 60^\\circ=$ {$\\frac{\\sqrt{3}}{2}$}이다 — 각이 커질수록 사인 값도 커진다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{2}$",
+          "$\\frac{\\sqrt{2}}{2}$",
+          "$\\frac{\\sqrt{3}}{2}$"
+        ],
+        "cStudentSentence": "$\\sin 30^\\circ=$ □, $\\sin 45^\\circ=$ □, $\\sin 60^\\circ=$ □이다 — 각이 커질수록 사인 값도 커진다.",
+        "cAnswers": [
+          "$\\frac{1}{2}$",
+          "$\\frac{\\sqrt{2}}{2}$",
+          "$\\frac{\\sqrt{3}}{2}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{\\sqrt{2}}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{\\sqrt{2}}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$\\frac{\\sqrt{3}}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{\\sqrt{3}}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$\\frac{\\sqrt{2}}{2}$"
+          ],
+          [
+            "$\\frac{\\sqrt{3}}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "b8cfee041a6d1258340f41d530088d172fe2ccac0e07eddc4b11deb0af155d0b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c2",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "삼각비의 표",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$0^\\circ$부터 $90^\\circ$까지 {$1^\\circ$} 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 {가로줄}과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "studentC": "$0^\\circ$부터 $90^\\circ$까지 □ 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 □과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "answers": [
+          "$1^\\circ$",
+          "가로줄"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각비의 표는 어떤 값을 정리한 표인지 말하고, 이 표에서 $\\cos 35^\\circ$의 어림값을 찾으려면 어느 가로줄과 어느 세로줄이 만나는 칸을 읽어야 하는지 설명해 보세요.",
+        "bAnswer": "$0^\\circ$부터 $90^\\circ$까지 $1^\\circ$ 간격의 각에 대하여 사인, 코사인, 탄젠트의 어림값을 정리한 표이다. $35^\\circ$의 가로줄과 $\\cos$의 세로줄이 만나는 칸을 읽는다.",
+        "bGoal": "삼각비의 표의 구성과 읽는 법 알기",
+        "bReason": "질문 문구를 베껴도 통과하던 기준을 실제 줄 이름으로 바꿈",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각마다 사인·코사인·탄젠트의 어림값을 정리한 표",
+              "$0^\\circ$부터 $90^\\circ$까지 각의 삼각비의 값을 정리한 표"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35^\\circ$의 가로줄과 $\\cos$의 세로줄이 만나는 칸을 읽는다",
+              "$35^\\circ$ 줄과 코사인 줄이 만나는 칸"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세로줄과 짝이 되는 말과 각의 간격을 묻는 빈칸이라 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "1도 간격 어림값 표",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 856,
+        "part": "m3",
+        "sourceFingerprint": "af4582349118da916f28be5d3040bff99b93219a769f589d8c8891ee9b4709c8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 856
+        },
+        "directReview": null,
+        "cFrozenSentence": "$0^\\circ$부터 $90^\\circ$까지 □ 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 □과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "cFrozenDefinition": "$0^\\circ$부터 $90^\\circ$까지 {$1^\\circ$} 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 {가로줄}과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "cFrozenAnswers": [
+          "$1^\\circ$",
+          "가로줄"
+        ],
+        "cMarkedSentence": "$0^\\circ$부터 $90^\\circ$까지 {$1^\\circ$} 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 {가로줄}과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "cSlotAnswers": [
+          "$1^\\circ$",
+          "가로줄"
+        ],
+        "cStudentSentence": "$0^\\circ$부터 $90^\\circ$까지 □ 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 □과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "cAnswers": [
+          "$1^\\circ$",
+          "가로줄"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1^\\circ$",
+            "equivalentAnswers": [
+              "$1^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "가로줄",
+            "equivalentAnswers": [
+              "가로줄"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1^\\circ$"
+          ],
+          [
+            "가로줄"
+          ]
+        ],
+        "proposalFingerprint": "e2d5a3cbe95b9de37af80b0b332df38e72657990bfbb9ab3bcb3849089ffc025"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c3",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$30^\\circ$, $45^\\circ$, $60^\\circ$의 코사인 · 탄젠트",
+        "kind": "공식",
+        "level": "중",
+        "definition": "$\\cos 30^\\circ=$ {$\\frac{\\sqrt{3}}{2}$}, $\\cos 60^\\circ=$ {$\\frac{1}{2}$}이고, $\\tan 45^\\circ=$ {$1$}, $\\tan 60^\\circ=$ {$\\sqrt{3}$}이다.",
+        "studentC": "$\\cos 30^\\circ=$ □, $\\cos 60^\\circ=$ □이고, $\\tan 45^\\circ=$ □, $\\tan 60^\\circ=$ □이다.",
+        "answers": [
+          "$\\frac{\\sqrt{3}}{2}$",
+          "$\\frac{1}{2}$",
+          "$1$",
+          "$\\sqrt{3}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "값 네 개를 나열하는 수치 암기라 서술 질문으로 물을 내용이 없다.",
+        "cDecision": "keep",
+        "cReason": "코사인·탄젠트 값을 하나씩 채우는 짧은 계산 빈칸으로 충분하다.",
+        "exclusionReason": "B 제외: 단순 수치 암기이며 c1의 값 쓰기 질문과 형식이 겹친다. 값이 나오는 까닭은 c7, xc3, xc4, xc5가 다룬다. C는 유지한다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "특수각 코사인·탄젠트 값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 857,
+        "part": "m3",
+        "sourceFingerprint": "9978c284cae703e2a87d01fdc4585bbb53af188b211dc2f5f4d39e7a407675e1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 857
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$\\cos 30^\\circ=$ □, $\\cos 60^\\circ=$ □이고, $\\tan 45^\\circ=$ □, $\\tan 60^\\circ=$ □이다.",
+        "cFrozenDefinition": "$\\cos 30^\\circ=$ {$\\frac{\\sqrt{3}}{2}$}, $\\cos 60^\\circ=$ {$\\frac{1}{2}$}이고, $\\tan 45^\\circ=$ {$1$}, $\\tan 60^\\circ=$ {$\\sqrt{3}$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{\\sqrt{3}}{2}$",
+          "$\\frac{1}{2}$",
+          "$1$",
+          "$\\sqrt{3}$"
+        ],
+        "cMarkedSentence": "$\\cos 30^\\circ=$ {$\\frac{\\sqrt{3}}{2}$}, $\\cos 60^\\circ=$ {$\\frac{1}{2}$}이고, $\\tan 45^\\circ=$ {$1$}, $\\tan 60^\\circ=$ {$\\sqrt{3}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{\\sqrt{3}}{2}$",
+          "$\\frac{1}{2}$",
+          "$1$",
+          "$\\sqrt{3}$"
+        ],
+        "cStudentSentence": "$\\cos 30^\\circ=$ □, $\\cos 60^\\circ=$ □이고, $\\tan 45^\\circ=$ □, $\\tan 60^\\circ=$ □이다.",
+        "cAnswers": [
+          "$\\frac{\\sqrt{3}}{2}$",
+          "$\\frac{1}{2}$",
+          "$1$",
+          "$\\sqrt{3}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{\\sqrt{3}}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{\\sqrt{3}}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 3,
+            "answer": "$\\sqrt{3}$",
+            "equivalentAnswers": [
+              "$\\sqrt{3}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          [
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$1$"
+          ],
+          [
+            "$\\sqrt{3}$"
+          ]
+        ],
+        "proposalFingerprint": "4744fc9645dd56e6e29436818421a480ae55b1e35457cf48d9eaaeabe1653863"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c4",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$\\sin^2 A$",
+        "kind": "정의",
+        "level": "중",
+        "definition": "$(\\sin A)^2$을 간단히 $\\sin^2 A$로 쓴다 — {삼각비의 값}을 {제곱}한 것이지 각을 제곱한 것이 아니다.",
+        "studentC": "$(\\sin A)^2$을 간단히 $\\sin^2 A$로 쓴다 — □을 □한 것이지 각을 제곱한 것이 아니다.",
+        "answers": [
+          "삼각비의 값",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\sin^2 A$는 어떤 식을 간단히 쓴 것인지 말하고, 이때 제곱되는 것이 무엇인지 설명해 보세요. 또 $\\sin^2 30^\\circ$의 값을 구해 보세요.",
+        "bAnswer": "$\\sin^2 A$는 $(\\sin A)^2$을 간단히 쓴 것으로, 각 $A$가 아니라 $\\sin A$의 값을 제곱한 것이다. $\\sin^2 30^\\circ=\\left(\\frac{1}{2}\\right)^2=\\frac{1}{4}$이다.",
+        "bGoal": "$\\sin^2 A$ 표기의 뜻 알기",
+        "bReason": "기호만 있는 제목이라 무엇이 제곱되는지와 계산 예를 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sin^2 A=(\\sin A)^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각이 아니라 삼각비의 값을 제곱함"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sin^2 30^\\circ=\\frac{1}{4}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$(\\sin A)^2$을 간단히 {$\\sin^2 A$}로 쓴다 — {삼각비의 값}을 제곱한 것이지 각을 제곱한 것이 아니다.",
+        "cAnswers": [
+          "$\\sin^2 A$",
+          "삼각비의 값"
+        ],
+        "cReason": "둘째 빈칸 답 '제곱'이 바로 뒤 '각을 제곱한'에 그대로 드러나 있었다.",
+        "exampleNeeded": true,
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "naming",
+        "roleReason": "(sin A)²의 줄임 표기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 858,
+        "part": "m3",
+        "sourceFingerprint": "c52d97b495d397dfd0b5730ee30773701ab26d6a6fe688040319b69f3f73a3ae",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 858
+        },
+        "directReview": null,
+        "cMarkedSentence": "$(\\sin A)^2$을 간단히 {$\\sin^2 A$}로 쓴다 — {삼각비의 값}을 제곱한 것이지 각을 제곱한 것이 아니다.",
+        "cSlotAnswers": [
+          "$\\sin^2 A$",
+          "삼각비의 값"
+        ],
+        "cStudentSentence": "$(\\sin A)^2$을 간단히 □로 쓴다 — □을 제곱한 것이지 각을 제곱한 것이 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\sin^2 A$",
+            "equivalentAnswers": [
+              "$\\sin^2 A$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "삼각비의 값",
+            "equivalentAnswers": [
+              "삼각비의 값",
+              "$\\sin A$의 값",
+              "사인의 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "삼각비의 값",
+            "accept": [
+              "$\\sin A$의 값",
+              "사인의 값"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\sin^2 A$"
+          ],
+          [
+            "삼각비의 값",
+            "$\\sin A$의 값",
+            "사인의 값"
+          ]
+        ],
+        "proposalFingerprint": "9b719b4e842483f43ed4e1246d2fcd268f736d7ca7df650b316b82deaf041576"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c5",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "반지름이 $1$인 사분원에서 사인과 코사인",
+        "kind": "성질",
+        "level": "중",
+        "definition": "중심이 $O$이고 반지름이 $1$인 사분원의 호 위에 있고 양 끝 점이 아닌 점 $A$에서 한 반지름에 수선 $\\overline{AB}$를 그으면 직각삼각형 $AOB$의 {빗변}이 $1$이므로, $\\angle AOB=x$의 사인은 {높이} $\\overline{AB}$, 코사인은 {밑변} $\\overline{OB}$의 길이와 같다.",
+        "studentC": "중심이 $O$이고 반지름이 $1$인 사분원의 호 위에 있고 양 끝 점이 아닌 점 $A$에서 한 반지름에 수선 $\\overline{AB}$를 그으면 직각삼각형 $AOB$의 □이 $1$이므로, $\\angle AOB=x$의 사인은 □ $\\overline{AB}$, 코사인은 □ $\\overline{OB}$의 길이와 같다.",
+        "answers": [
+          "빗변",
+          "높이",
+          "밑변"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "중심이 $O$이고 반지름이 $1$인 사분원의 호 위에 양 끝 점이 아닌 점 $A$가 있고, $A$에서 한 반지름에 수선 $\\overline{AB}$를 그었다. $\\angle AOB=x$일 때 $\\sin x$와 $\\cos x$가 각각 어느 선분의 길이와 같은지 말하고 그 까닭을 설명해 보세요.",
+        "bAnswer": "직각삼각형 $AOB$에서 빗변 $\\overline{OA}$는 반지름이라 $1$이다. 그래서 $\\sin x=\\frac{\\overline{AB}}{\\overline{OA}}=\\overline{AB}$, $\\cos x=\\frac{\\overline{OB}}{\\overline{OA}}=\\overline{OB}$이다.",
+        "bGoal": "사분원에서 사인·코사인을 선분의 길이로 읽기",
+        "bReason": "그림이 없어 점 $A$, $B$의 위치와 각 $x$를 질문에 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빗변 $\\overline{OA}=1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sin x=\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\cos x=\\overline{OB}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "높이/밑변이라는 말 복원 대신 실제로 사인·코사인과 같아지는 선분을 묻도록 답의 종류를 정한다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "빗변 1이라 선분이 값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "cAfter": "중심이 $O$이고 반지름이 $1$인 사분원의 호 위에 양 끝점이 아닌 점 $A$가 있다. $A$에서 한 반지름에 내린 수선의 발을 $B$라 할 때, $\\angle AOB=x$의 사인은 선분 {$\\overline{AB}$}의 길이, 코사인은 선분 {$\\overline{OB}$}의 길이와 같다.",
+        "cAnswers": [
+          "$\\overline{AB}$",
+          "$\\overline{OB}$"
+        ],
+        "directReviewNote": "독립 2차 웨이브의 선분/높이/밑변 답 범위 문제를 해결했다. 주어진 직각삼각형에서 빗변은 반지름 1이므로 두 대응 선분이 맞다.",
+        "exampleNeeded": true,
+        "sourceIndex": 859,
+        "part": "m3",
+        "sourceFingerprint": "84a5781b590082486d0a58a8dd408a787555f65641f130847e5c5619628ec181",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 859
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-05-02-c5"
+        },
+        "cMarkedSentence": "중심이 $O$이고 반지름이 $1$인 사분원의 호 위에 양 끝점이 아닌 점 $A$가 있다. $A$에서 한 반지름에 내린 수선의 발을 $B$라 할 때, $\\angle AOB=x$의 사인은 선분 {$\\overline{AB}$}의 길이, 코사인은 선분 {$\\overline{OB}$}의 길이와 같다.",
+        "cSlotAnswers": [
+          "$\\overline{AB}$",
+          "$\\overline{OB}$"
+        ],
+        "cStudentSentence": "중심이 $O$이고 반지름이 $1$인 사분원의 호 위에 양 끝점이 아닌 점 $A$가 있다. $A$에서 한 반지름에 내린 수선의 발을 $B$라 할 때, $\\angle AOB=x$의 사인은 선분 □의 길이, 코사인은 선분 □의 길이와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{AB}$",
+            "equivalentAnswers": [
+              "$\\overline{AB}$",
+              "$AB$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\overline{OB}$",
+            "equivalentAnswers": [
+              "$\\overline{OB}$",
+              "$OB$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{AB}$",
+            "accept": [
+              "$AB$"
+            ]
+          },
+          {
+            "answer": "$\\overline{OB}$",
+            "accept": [
+              "$OB$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{AB}$",
+            "$AB$"
+          ],
+          [
+            "$\\overline{OB}$",
+            "$OB$"
+          ]
+        ],
+        "proposalFingerprint": "b0bcca6396afc0e23d68cc9aa2cda150c6a9564ce9bf27d2a5f839a8245af8f9"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c6",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$0^\\circ$, $90^\\circ$의 삼각비의 값",
+        "kind": "공식",
+        "level": "중",
+        "definition": "$\\sin 0^\\circ=0$, $\\cos 0^\\circ=$ {$1$}, $\\sin 90^\\circ=$ {$1$}, $\\cos 90^\\circ=0$이고, $\\tan 90^\\circ$의 값은 {정할 수 없다}.",
+        "studentC": "$\\sin 0^\\circ=0$, $\\cos 0^\\circ=$ □, $\\sin 90^\\circ=$ □, $\\cos 90^\\circ=0$이고, $\\tan 90^\\circ$의 값은 □.",
+        "answers": [
+          "$1$",
+          "$1$",
+          "정할 수 없다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "$0^\\circ$와 $90^\\circ$의 사인, 코사인, 탄젠트의 값을 각각 말해 보세요. 값을 정할 수 없는 것이 있으면 어느 것인지도 밝히세요.",
+        "bAnswer": "$\\sin 0^\\circ=0$, $\\cos 0^\\circ=1$, $\\tan 0^\\circ=0$이고, $\\sin 90^\\circ=1$, $\\cos 90^\\circ=0$이다. $\\tan 90^\\circ$의 값은 정할 수 없다.",
+        "bGoal": "$0^\\circ$, $90^\\circ$의 삼각비의 값 알기",
+        "bReason": "어느 삼각비까지 답할지와 값이 없는 경우가 있음을 질문에 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0^\\circ$의 사인 $0$, 코사인 $1$, 탄젠트 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ$의 사인 $1$, 코사인 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\tan 90^\\circ$는 정할 수 없음"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "주어진 값과 대비해 나머지 값을 채우는 짧은 빈칸이다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "0도·90도 삼각비 값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 860,
+        "part": "m3",
+        "sourceFingerprint": "d1f0d375b99d8d220dc700df3cf01edda68bf1cab795996131823312bc7018d5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 860
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\sin 0^\\circ=0$, $\\cos 0^\\circ=$ □, $\\sin 90^\\circ=$ □, $\\cos 90^\\circ=0$이고, $\\tan 90^\\circ$의 값은 □.",
+        "cFrozenDefinition": "$\\sin 0^\\circ=0$, $\\cos 0^\\circ=$ {$1$}, $\\sin 90^\\circ=$ {$1$}, $\\cos 90^\\circ=0$이고, $\\tan 90^\\circ$의 값은 {정할 수 없다}.",
+        "cFrozenAnswers": [
+          "$1$",
+          "$1$",
+          "정할 수 없다"
+        ],
+        "cMarkedSentence": "$\\sin 0^\\circ=0$, $\\cos 0^\\circ=$ {$1$}, $\\sin 90^\\circ=$ {$1$}, $\\cos 90^\\circ=0$이고, $\\tan 90^\\circ$의 값은 {정할 수 없다}.",
+        "cSlotAnswers": [
+          "$1$",
+          "$1$",
+          "정할 수 없다"
+        ],
+        "cStudentSentence": "$\\sin 0^\\circ=0$, $\\cos 0^\\circ=$ □, $\\sin 90^\\circ=$ □, $\\cos 90^\\circ=0$이고, $\\tan 90^\\circ$의 값은 □.",
+        "cAnswers": [
+          "$1$",
+          "$1$",
+          "정할 수 없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "정할 수 없다",
+            "equivalentAnswers": [
+              "정할 수 없다",
+              "정하지 않는다",
+              "정의되지 않는다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "정할 수 없다",
+            "accept": [
+              "정하지 않는다",
+              "정의되지 않는다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$1$"
+          ],
+          [
+            "정할 수 없다",
+            "정하지 않는다",
+            "정의되지 않는다"
+          ]
+        ],
+        "proposalFingerprint": "3add43687af5bb12a7820766de6e367aa401802531c42689dec9a10001d9fc23"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c7",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "특수한 각의 삼각비를 얻는 도형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$45^\\circ$의 값은 {정사각형}을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 {정삼각형}을 반으로 자른 삼각형에서 얻는다.",
+        "studentC": "$45^\\circ$의 값은 □을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 □을 반으로 자른 삼각형에서 얻는다.",
+        "answers": [
+          "정사각형",
+          "정삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "$45^\\circ$의 삼각비의 값과 $30^\\circ$, $60^\\circ$의 삼각비의 값은 각각 어떤 도형을 어떻게 잘라 만든 직각삼각형에서 구할 수 있는지 설명해 보세요.",
+        "bAnswer": "$45^\\circ$는 정사각형을 대각선으로 잘라 생기는 직각이등변삼각형에서 구한다. $30^\\circ$, $60^\\circ$는 정삼각형을 한 꼭짓점에서 맞은편 변에 그은 수선으로 반으로 잘라 생기는 직각삼각형에서 구한다.",
+        "bGoal": "특수한 각의 삼각비가 나오는 도형 알기",
+        "bReason": "'도형'이 무엇을 뜻하는지 불분명해 각별로 도형과 자르는 방법을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$45^\\circ$는 정사각형을 대각선으로 자름"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30^\\circ$, $60^\\circ$는 정삼각형을 반으로 자름"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "도형 이름 두 개만 묻고 자르는 방법이 단서로 남아 있다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "정사각형·정삼각형 잘라 구함",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 861,
+        "part": "m3",
+        "sourceFingerprint": "917c11c237e7992059f8afe21c7eaa3c47c068bb9d93df744c8b92ab94c6a76b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 861
+        },
+        "directReview": null,
+        "cFrozenSentence": "$45^\\circ$의 값은 □을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 □을 반으로 자른 삼각형에서 얻는다.",
+        "cFrozenDefinition": "$45^\\circ$의 값은 {정사각형}을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 {정삼각형}을 반으로 자른 삼각형에서 얻는다.",
+        "cFrozenAnswers": [
+          "정사각형",
+          "정삼각형"
+        ],
+        "cMarkedSentence": "$45^\\circ$의 값은 {정사각형}을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 {정삼각형}을 반으로 자른 삼각형에서 얻는다.",
+        "cSlotAnswers": [
+          "정사각형",
+          "정삼각형"
+        ],
+        "cStudentSentence": "$45^\\circ$의 값은 □을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 □을 반으로 자른 삼각형에서 얻는다.",
+        "cAnswers": [
+          "정사각형",
+          "정삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정삼각형",
+            "equivalentAnswers": [
+              "정삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정사각형"
+          ],
+          [
+            "정삼각형"
+          ]
+        ],
+        "proposalFingerprint": "ec49ea20c5289128755a5e086f255b49b1a94a3b8bb004efdef5e0c372906a79"
+      }
+    }
+  ]
+}

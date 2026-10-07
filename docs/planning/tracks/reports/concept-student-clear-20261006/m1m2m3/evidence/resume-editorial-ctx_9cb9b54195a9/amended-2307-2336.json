@@ -1,0 +1,2518 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-2307-2336.json",
+  "changes": [
+    {
+      "id": "m2-01-08-xc21",
+      "cAfter": "$x\\ne0$일 때 $(6x^2+3x)\\div(3x)$에서 첫째 항만 나누어 $2x+3x$로 쓰면 잘못이다. 두 항을 {각각} $3x$로 나누면 {$2x+1$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "각각",
+          "모두"
+        ],
+        [
+          "$2x+1$"
+        ]
+      ],
+      "cReason": "나누는단항식과0아님조건을명시한다."
+    },
+    {
+      "id": "m2-01-08-xc22",
+      "cAfter": "곱과 몫이 덧셈이나 뺄셈으로 이어진 식은 덧셈·뺄셈보다 곱셈·나눗셈을 {먼저} 한 뒤 {동류항}끼리 정리한다.",
+      "cReason": "곱셈나눗셈답순서를임의로고정하지않고계산우선순위를묻는다."
+    },
+    {
+      "id": "m2-02-01-xc1",
+      "cAfter": "두 수를 비교할 때 $<$에 같은 경우를 포함한 부등호는 {$\\le$}이고, $>$에 같은 경우를 포함한 부등호는 {$\\ge$}이다.",
+      "cReason": "네가지단순나열에서두답순서모호함을각기호의뜻으로구별한다."
+    },
+    {
+      "id": "m2-02-01-xc7",
+      "cAfter": "'$x$는 $5$ {이상}이다'는 $x\\ge5$로, '$x$는 $5$ {이하}이다'는 $x\\le5$로 나타낸다. 초과와 미만에는 등호가 붙지 않는다.",
+      "cReason": "이상·이하의답순서를각부등식으로정한다."
+    },
+    {
+      "id": "m2-02-01-xc9",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양변에서 $1$을 뺀 뒤 음수 $-3$으로 나누어 방향을 바꾸거나, 같은 수를 더하고 빼서 $3b>3a$로 고친 뒤 양수 $3$으로 나누는 등 부등식의 성질에 맞는 과정을 보인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a<b$"
+          ]
+        }
+      ],
+      "bReason": "두단계부등식성질을이용한과정전체를확인한다."
+    },
+    {
+      "id": "m2-02-01-xc10",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$ac=bc$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$ac>bc$"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수를 곱해도 등식은 성립하고 부등식은 방향이 바뀐다"
+          ]
+        }
+      ],
+      "bReason": "각각식으로쓰고차이를설명하라는요구를모두반영한다."
+    },
+    {
+      "id": "m2-02-01-xc11",
+      "cAfter": "$x+2=5$의 해는 {$x=3$} 하나이다. $x+2\\le5$의 해는 {$x\\le3$}으로, 조건을 만족하는 모든 수의 범위로 나타낸다.",
+      "coreAfter": "일차방정식은 모든 항을 한쪽 변으로 옮겨 정리한 뒤 미지수의 계수가 $0$이 아니면 해가 하나이다. 일차부등식의 해는 조건을 만족하는 모든 수의 {범위}로 나타낸다.",
+      "cReason": "방정식일반의해개수라는불명확한일반화대신두구체식의해를비교한다.",
+      "coreReason": "해하나라는설명은미지수계수0아닌일차방정식으로한정한다."
+    },
+    {
+      "id": "m2-02-01-xc14",
+      "cAfter": "$-2<x\\le3$의 각 변에 $-1$을 곱하면 {$2>-x\\ge-3$}이다. $x=3$이 가능하므로 $-x$는 {$-3$}이 될 수 있다.",
+      "cAcceptedAnswers": [
+        [
+          "$2>-x\\ge-3$",
+          "$-3\\le-x<2$"
+        ],
+        [
+          "$-3$"
+        ]
+      ],
+      "coreAfter": "범위의 각 변에 음수를 곱하면 {부등호 방향}은 바뀌지만, 등호는 원래 포함된 끝 값에 대응하는 쪽에 남는다. $-2<x\\le3$이면 $2>-x\\ge-3$이고, 작은 수부터 다시 쓰면 $-3\\le-x<2$이다.",
+      "cReason": "단순히등호자리를옮긴다는암기대신대응하는끝값이포함됨을확인한다.",
+      "coreReason": "좌우순서를다시쓸때만반대편에보이는현상과음수곱셈을구별한다."
+    },
+    {
+      "id": "m2-02-01-xc16",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\le$이므로 $-2$는 포함된다",
+            "등호가 있어 $-2$는 포함된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$<$이므로 $3$은 포함되지 않는다",
+            "등호가 없어 $3$은 빠진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-2$, $-1$, $0$, $1$, $2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개"
+          ]
+        }
+      ],
+      "cAfter": "정수 $a$, $b$가 $a<b$일 때 $a\\le x<b$를 만족하는 정수 $x$를 세려면, 등호가 있는 쪽의 끝 수 $a$는 {포함}하고 끝 수 $b$는 {제외}한다.",
+      "bReason": "모든정수를쓰라는요구와개수계산을따로확인한다.",
+      "cReason": "범위가빈경우a도들어가지않으므로a<b조건을명시한다."
+    },
+    {
+      "id": "m2-02-02-xc6",
+      "cAfter": "모든 항을 좌변으로 옮겨 정리했을 때, 좌변의 차수가 $2$이거나 문자 $x$가 {없어지는} 부등식은 {일차부등식}이 아니다.",
+      "cReason": "정리전높은차수항이있어도서로없어질수있으므로정리후를기준으로삼는다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-01-08-xc20",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "음수 계수를 곱하면 모든 항의 부호가 바뀐다는 규칙을 오답 예로만 다시 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "$-x(2x-3)$을 $-2x^2-3x$로 전개하면 잘못이다. $-x$를 $-3$에도 곱해야 하므로 바른 결과는 {$-2x^2+3x$}이다.",
+      "cAnswers": [
+        "$-2x^2+3x$"
+      ],
+      "cReason": "답 '잘못'은 평가 낱말이고 '부호'는 문장에 이미 있어 베끼게 된다.",
+      "exclusionReason": "B 제외: 서술형에서 '음수를 곱할 때의 부호'(m2-01-08-xc2)와 목표가 중복된다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "음수 곱 전개의 부호 실수 고치기",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2307,
+      "part": "m2plus",
+      "sourceFingerprint": "c503c63406c44d5f3b11cd57577512eb8d98626fbb124b5714ac3dd9017e5ead",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2307
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$-x(2x-3)$을 $-2x^2-3x$로 전개하면 잘못이다. $-x$를 $-3$에도 곱해야 하므로 바른 결과는 {$-2x^2+3x$}이다.",
+      "cSlotAnswers": [
+        "$-2x^2+3x$"
+      ],
+      "cStudentSentence": "$-x(2x-3)$을 $-2x^2-3x$로 전개하면 잘못이다. $-x$를 $-3$에도 곱해야 하므로 바른 결과는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-2x^2+3x$",
+          "equivalentAnswers": [
+            "$-2x^2+3x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-2x^2+3x$"
+        ]
+      ],
+      "proposalFingerprint": "e3763643ee47443479a651fc20bd7c4d2347a88e158f99336a78ff34969e5bfd"
+    },
+    {
+      "id": "m2-01-08-xc21",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "각 항을 모두 나눈다는 내용을 나눗셈 문항들에서 이미 답한다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x\\ne0$일 때 $(6x^2+3x)\\div(3x)$에서 첫째 항만 나누어 $2x+3x$로 쓰면 잘못이다. 두 항을 {각각} $3x$로 나누면 {$2x+1$}이다.",
+      "cAnswers": [
+        "각각",
+        "$2x+1$"
+      ],
+      "cReason": "나누는단항식과0아님조건을명시한다.",
+      "exclusionReason": "B 제외: 서술형에서 '다항식과 단항식의 나눗셈'(m2-01-08-c5), '분수로 쓴 나눗셈'(m2-01-08-xc9)과 목표가 중복된다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "한 항만 나누는 실수 고치기",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2308,
+      "part": "m2plus",
+      "sourceFingerprint": "05018a9b736e829cc88812f556f33b91f744111cc939d932c5363f9f7a2a391d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2308
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$x\\ne0$일 때 $(6x^2+3x)\\div(3x)$에서 첫째 항만 나누어 $2x+3x$로 쓰면 잘못이다. 두 항을 {각각} $3x$로 나누면 {$2x+1$}이다.",
+      "cSlotAnswers": [
+        "각각",
+        "$2x+1$"
+      ],
+      "cStudentSentence": "$x\\ne0$일 때 $(6x^2+3x)\\div(3x)$에서 첫째 항만 나누어 $2x+3x$로 쓰면 잘못이다. 두 항을 □ $3x$로 나누면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "각각",
+          "equivalentAnswers": [
+            "각각",
+            "모두"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2x+1$",
+          "equivalentAnswers": [
+            "$2x+1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "각각",
+          "accept": [
+            "모두"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "각각",
+          "모두"
+        ],
+        [
+          "$2x+1$"
+        ]
+      ],
+      "proposalFingerprint": "890cf0182d0dbfb310e0f41d89c8df7acaffcb299aa376375f4acea155eca90c"
+    },
+    {
+      "id": "m2-01-08-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$x\\ne0$일 때 $x(x+2)-(4x^3-2x^2)\\div2x$를 계산하시오. 이때 뺄셈보다 먼저 계산하는 두 부분과 그 결과를 각각 쓰시오.",
+      "bAnswer": "먼저 $x(x+2)=x^2+2x$와 $(4x^3-2x^2)\\div2x=2x^2-x$를 계산한다. $x^2+2x-(2x^2-x)=-x^2+3x$이다.",
+      "bGoal": "곱셈과 나눗셈을 먼저 하고 동류항 정리하기",
+      "bReason": "곱과 몫이 뺄셈으로 이어진 실제 식에서 먼저 할 부분을 짚게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x(x+2)=x^2+2x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(4x^3-2x^2)\\div2x=2x^2-x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-x^2+3x$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "곱셈나눗셈답순서를임의로고정하지않고계산우선순위를묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "곱·몫이 섞인 식의 계산",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2309,
+      "part": "m2plus",
+      "sourceFingerprint": "01df533a05b27ae5a20839bdc4d430e11d72ebd51bf0ca9569985736bcb40c99",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2309
+      },
+      "directReview": null,
+      "cMarkedSentence": "곱과 몫이 덧셈이나 뺄셈으로 이어진 식은 덧셈·뺄셈보다 곱셈·나눗셈을 {먼저} 한 뒤 {동류항}끼리 정리한다.",
+      "cSlotAnswers": [
+        "먼저",
+        "동류항"
+      ],
+      "cStudentSentence": "곱과 몫이 덧셈이나 뺄셈으로 이어진 식은 덧셈·뺄셈보다 곱셈·나눗셈을 □ 한 뒤 □끼리 정리한다.",
+      "cAnswers": [
+        "먼저",
+        "동류항"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "먼저",
+          "equivalentAnswers": [
+            "먼저"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "먼저"
+        ],
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "f549c1a29e6db3f4ba66a5574e9c9692d063551856e8143f7c2692fa194fd77c",
+      "cAfter": "곱과 몫이 덧셈이나 뺄셈으로 이어진 식은 덧셈·뺄셈보다 곱셈·나눗셈을 {먼저} 한 뒤 {동류항}끼리 정리한다."
+    },
+    {
+      "id": "m2-02-01-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "부등호를 모두 쓰고, 그중 '같다'는 뜻이 함께 들어 있는 것을 고르세요.",
+      "bAnswer": "부등호는 $<$, $>$, $\\le$, $\\ge$이고, 이 중 등호가 붙어 '같다'는 뜻이 들어 있는 것은 $\\le$와 $\\ge$이다.",
+      "bGoal": "부등호의 종류를 쓰고 등호가 있는 것과 없는 것으로 나누기",
+      "bReason": "개수 '네 가지'를 질문에서 말하지 않고 기호를 직접 쓰고 등호 유무로 나누게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$<$, $>$, $\\le$, $\\ge$"
+          ]
+        },
+        {
+          "anyOf": [
+            "등호가 붙은 것은 $\\le$, $\\ge$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "네가지단순나열에서두답순서모호함을각기호의뜻으로구별한다.",
+      "learningRole": "naming",
+      "roleReason": "부등호 기호의 종류 알기",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2310,
+      "part": "m2plus",
+      "sourceFingerprint": "c996473c356948c5fb9b8598cc9b7a490a65d00ff82c6e4f8d00173e94c0bed4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2310
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 수를 비교할 때 $<$에 같은 경우를 포함한 부등호는 {$\\le$}이고, $>$에 같은 경우를 포함한 부등호는 {$\\ge$}이다.",
+      "cSlotAnswers": [
+        "$\\le$",
+        "$\\ge$"
+      ],
+      "cStudentSentence": "두 수를 비교할 때 $<$에 같은 경우를 포함한 부등호는 □이고, $>$에 같은 경우를 포함한 부등호는 □이다.",
+      "cAnswers": [
+        "$\\le$",
+        "$\\ge$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\le$",
+          "equivalentAnswers": [
+            "$\\le$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\ge$",
+          "equivalentAnswers": [
+            "$\\ge$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\le$"
+        ],
+        [
+          "$\\ge$"
+        ]
+      ],
+      "proposalFingerprint": "f8b4f07597a924423d268911ab73d3b6d94d87f161ff8212aa8de1f70ab55b34",
+      "cAfter": "두 수를 비교할 때 $<$에 같은 경우를 포함한 부등호는 {$\\le$}이고, $>$에 같은 경우를 포함한 부등호는 {$\\ge$}이다."
+    },
+    {
+      "id": "m2-02-01-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "'$x$는 $2$ 초과이다'를 부등식으로 나타내고, $x=2$가 이 조건에 맞는지 이유와 함께 쓰세요.",
+      "bAnswer": "$x>2$이다. 초과는 그 수보다 크다는 뜻이므로 $2$와 같은 $x=2$는 조건에 맞지 않는다.",
+      "bGoal": "초과를 등호 없는 부등호 $>$로 나타내고 경계가 빠짐을 알기",
+      "bReason": "초과의 핵심인 경계 제외가 드러나도록 $x=2$의 포함 여부를 함께 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x>2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=2$는 조건에 맞지 않는다",
+            "$2$는 포함되지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "초과는 그 수보다 크다는 뜻",
+            "$2>2$는 거짓이다",
+            "같은 경우는 초과가 아니다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "식 $x>5$가 주어져 크다와 초과를 짝지어 채울 수 있다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "초과라는 말의 뜻과 기호",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2311,
+      "part": "m2plus",
+      "sourceFingerprint": "c04ae8dc4f8bc651bc711a65d8558222a3035e8b2d04a730b1d3742767ddf9e7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2311
+      },
+      "directReview": null,
+      "cFrozenSentence": "$x>5$는 $x$가 $5$보다 □, 곧 $5$ □라는 뜻이다.",
+      "cFrozenDefinition": "$x>5$는 $x$가 $5$보다 {크다}, 곧 $5$ {초과}라는 뜻이다.",
+      "cFrozenAnswers": [
+        "크다",
+        "초과"
+      ],
+      "cMarkedSentence": "$x>5$는 $x$가 $5$보다 {크다}, 곧 $5$ {초과}라는 뜻이다.",
+      "cSlotAnswers": [
+        "크다",
+        "초과"
+      ],
+      "cStudentSentence": "$x>5$는 $x$가 $5$보다 □, 곧 $5$ □라는 뜻이다.",
+      "cAnswers": [
+        "크다",
+        "초과"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "크다",
+          "equivalentAnswers": [
+            "크다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "초과",
+          "equivalentAnswers": [
+            "초과"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "크다"
+        ],
+        [
+          "초과"
+        ]
+      ],
+      "proposalFingerprint": "babf7ea7dd9291a891b34dabc8d902480d09967d33d84414b6027be7cd6d90bf"
+    },
+    {
+      "id": "m2-02-01-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "'$x$는 $7$ 이하이다'를 부등식으로 나타내고, '$x$는 $7$ 미만이다'와 무엇이 다른지 쓰세요.",
+      "bAnswer": "$x\\le 7$이다. 이하는 작거나 같다는 뜻이라 $x=7$이 포함되지만, 미만은 작다는 뜻이라 $x<7$이고 $x=7$이 포함되지 않는다.",
+      "bGoal": "이하를 $\\le$로 나타내고 미만과의 차이 알기",
+      "bReason": "이하만 물으면 한 낱말 답으로 끝나므로 미만과의 차이인 경계 포함 여부를 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x\\le 7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "이하는 $7$을 포함하고 미만은 $7$을 포함하지 않는다",
+            "이하는 $x=7$도 되지만 미만은 안 된다",
+            "이하에는 등호가 있고 미만에는 등호가 없다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "작거나 같다는 뜻이 문장에 있어 이하 한 낱말이 분명히 정해진다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "이하라는 말의 뜻과 기호",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2312,
+      "part": "m2plus",
+      "sourceFingerprint": "bb67a449d6ce3be2aefb782f30c725ca69efa2d5383f672fbc48ea9d6bf0d67c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2312
+      },
+      "directReview": null,
+      "cFrozenSentence": "$x\\le5$는 $x$가 $5$보다 작거나 같다, 곧 $5$ □라는 뜻이다.",
+      "cFrozenDefinition": "$x\\le5$는 $x$가 $5$보다 작거나 같다, 곧 $5$ {이하}라는 뜻이다.",
+      "cFrozenAnswers": [
+        "이하"
+      ],
+      "cMarkedSentence": "$x\\le5$는 $x$가 $5$보다 작거나 같다, 곧 $5$ {이하}라는 뜻이다.",
+      "cSlotAnswers": [
+        "이하"
+      ],
+      "cStudentSentence": "$x\\le5$는 $x$가 $5$보다 작거나 같다, 곧 $5$ □라는 뜻이다.",
+      "cAnswers": [
+        "이하"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "이하",
+          "equivalentAnswers": [
+            "이하"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "이하"
+        ]
+      ],
+      "proposalFingerprint": "0fc84f98e8aa90e2176bd11591f7a156ce91a031a1f7aaff9fae570ad313b72a"
+    },
+    {
+      "id": "m2-02-01-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "'$a$는 $-1$ 미만이다'를 부등식으로 나타내고, $a=-1$과 $a=-2$가 각각 이 조건에 맞는지 판단하세요.",
+      "bAnswer": "$a<-1$이다. $-1$은 $-1$보다 작지 않으므로 맞지 않고, $-2$는 $-1$보다 작으므로 맞는다.",
+      "bGoal": "미만을 $<$로 나타내고 음수 경계에서 맞는 값 가리기",
+      "bReason": "음수 경계에서 자주 헷갈리므로 $-1$과 $-2$를 직접 판단하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a<-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=-1$은 맞지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=-2$는 맞는다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "식 $x<5$가 주어져 미만과 작다를 짝지어 채울 수 있다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "미만이라는 말의 뜻과 기호",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2313,
+      "part": "m2plus",
+      "sourceFingerprint": "6847f1cf38f3e5788982f39d8b706b4b59978e0f415b521b12ed8e256b576cdd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2313
+      },
+      "directReview": null,
+      "cFrozenSentence": "$x<5$는 $x$가 $5$ □, 곧 $5$보다 □는 뜻이다.",
+      "cFrozenDefinition": "$x<5$는 $x$가 $5$ {미만}, 곧 $5$보다 {작다}는 뜻이다.",
+      "cFrozenAnswers": [
+        "미만",
+        "작다"
+      ],
+      "cMarkedSentence": "$x<5$는 $x$가 $5$ {미만}, 곧 $5$보다 {작다}는 뜻이다.",
+      "cSlotAnswers": [
+        "미만",
+        "작다"
+      ],
+      "cStudentSentence": "$x<5$는 $x$가 $5$ □, 곧 $5$보다 □는 뜻이다.",
+      "cAnswers": [
+        "미만",
+        "작다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "미만",
+          "equivalentAnswers": [
+            "미만"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "작다",
+          "equivalentAnswers": [
+            "작다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "미만"
+        ],
+        [
+          "작다"
+        ]
+      ],
+      "proposalFingerprint": "354a696cef6db3c1299c672abbbbd4cbd88cd204eab298c46ed8ea975a1c2b04"
+    },
+    {
+      "id": "m2-02-01-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=4$가 부등식 $2x-1>5$의 해인지 확인하는 방법을 설명하고, 해인지 아닌지 판단하세요.",
+      "bAnswer": "$x=4$를 부등식에 대입하면 좌변이 $2\\times 4-1=7$이고 $7>5$는 참이므로 $x=4$는 해이다.",
+      "bGoal": "값을 대입해 참인지 보고 해인지 판단하기",
+      "bReason": "확인 방법이 실제 계산으로 이어지도록 부등식과 $x$의 값을 정해 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=4$를 대입한다",
+            "$x$ 자리에 $4$를 넣어 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7>5$가 참이므로 해이다",
+            "부등식이 참이 되므로 해이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "대입하고 참인지 본다는 두 단계가 빈칸으로 분명히 드러난다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "해인지 확인하는 절차",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2314,
+      "part": "m2plus",
+      "sourceFingerprint": "9cb0b21eac5bb9b5947f4a77401457515e8ba17a4a4f3078dbcc8299967afa74",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2314
+      },
+      "directReview": null,
+      "cFrozenSentence": "어떤 값이 부등식의 해인지는 그 값을 □하여 부등식이 □이 되는지로 판단한다.",
+      "cFrozenDefinition": "어떤 값이 부등식의 해인지는 그 값을 {대입}하여 부등식이 {참}이 되는지로 판단한다.",
+      "cFrozenAnswers": [
+        "대입",
+        "참"
+      ],
+      "cMarkedSentence": "어떤 값이 부등식의 해인지는 그 값을 {대입}하여 부등식이 {참}이 되는지로 판단한다.",
+      "cSlotAnswers": [
+        "대입",
+        "참"
+      ],
+      "cStudentSentence": "어떤 값이 부등식의 해인지는 그 값을 □하여 부등식이 □이 되는지로 판단한다.",
+      "cAnswers": [
+        "대입",
+        "참"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "대입",
+          "equivalentAnswers": [
+            "대입"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "참",
+          "equivalentAnswers": [
+            "참"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "대입"
+        ],
+        [
+          "참"
+        ]
+      ],
+      "proposalFingerprint": "a9f121089aaf8994640d84d579834ac9d08dba57fdb654bbbf188bdb3767ad16"
+    },
+    {
+      "id": "m2-02-01-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "'$x$는 $5$보다 크지 않다'와 '$y$는 $0$보다 작지 않다'를 각각 부등식으로 나타내고, $y=0$이 둘째 조건에 맞는 이유를 쓰세요.",
+      "bAnswer": "$x\\le 5$, $y\\ge 0$이다. '작지 않다'는 크거나 같다는 뜻이고, $0$은 $0$보다 작지 않으므로 $y=0$도 조건에 맞는다.",
+      "bGoal": "크지 않다와 작지 않다를 등호가 있는 부등호로 나타내기",
+      "bReason": "두 표현의 방향이 뒤바뀌기 쉬워 문장 두 개를 주고 같은 경우의 포함 이유를 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x\\le 5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y\\ge 0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작지 않다는 크거나 같다는 뜻이다",
+            "$0$은 $0$보다 작지 않다",
+            "같은 경우도 작지 않은 것이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "뜻풀이가 문장에 있고 기호 두 개만 비워 방향 구별을 확인한다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "부정 표현이 뜻하는 부등호",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2315,
+      "part": "m2plus",
+      "sourceFingerprint": "d8a54c2acbe8cde7732384a6328b4a77cf77caf3d512d3093639ece2bb4f8549",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2315
+      },
+      "directReview": null,
+      "cFrozenSentence": "「크지 않다」는 작거나 같다는 뜻이라 □로, 「작지 않다」는 크거나 같다는 뜻이라 □로 쓴다.",
+      "cFrozenDefinition": "「크지 않다」는 작거나 같다는 뜻이라 {$\\le$}로, 「작지 않다」는 크거나 같다는 뜻이라 {$\\ge$}로 쓴다.",
+      "cFrozenAnswers": [
+        "$\\le$",
+        "$\\ge$"
+      ],
+      "cMarkedSentence": "「크지 않다」는 작거나 같다는 뜻이라 {$\\le$}로, 「작지 않다」는 크거나 같다는 뜻이라 {$\\ge$}로 쓴다.",
+      "cSlotAnswers": [
+        "$\\le$",
+        "$\\ge$"
+      ],
+      "cStudentSentence": "「크지 않다」는 작거나 같다는 뜻이라 □로, 「작지 않다」는 크거나 같다는 뜻이라 □로 쓴다.",
+      "cAnswers": [
+        "$\\le$",
+        "$\\ge$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\le$",
+          "equivalentAnswers": [
+            "$\\le$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\ge$",
+          "equivalentAnswers": [
+            "$\\ge$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\le$"
+        ],
+        [
+          "$\\ge$"
+        ]
+      ],
+      "proposalFingerprint": "37e9bd92141ac4ec429afd1e22ad1282cef127dd196e492b3d489896be12c709"
+    },
+    {
+      "id": "m2-02-01-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "'$500$원짜리 물건 $x$개의 값은 $3000$원 이하이다'를 부등식으로 나타내세요. 또 '이상', '이하', '초과', '미만' 중 등호가 붙은 부등호로 나타내는 말을 모두 고르세요.",
+      "bAnswer": "$500x\\le 3000$이다. 등호가 붙은 부등호 $\\ge$, $\\le$로 나타내는 말은 '이상'과 '이하'이고, '초과'와 '미만'은 등호가 없는 $>$, $<$로 나타낸다.",
+      "bGoal": "문장의 수량 관계를 식으로 세우고 알맞은 부등호 고르기",
+      "bReason": "어떤 문장인지 정해지지 않은 제목이라 값과 개수가 있는 실제 문장을 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$500x\\le 3000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "이상과 이하"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "이상·이하의답순서를각부등식으로정한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "문장을 부등식으로 옮기기",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2316,
+      "part": "m2plus",
+      "sourceFingerprint": "6c52618345d8c53049d16a87f2abc3287397380507b63b3c6cbc4dee8fad25f0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2316
+      },
+      "directReview": null,
+      "cMarkedSentence": "'$x$는 $5$ {이상}이다'는 $x\\ge5$로, '$x$는 $5$ {이하}이다'는 $x\\le5$로 나타낸다. 초과와 미만에는 등호가 붙지 않는다.",
+      "cSlotAnswers": [
+        "이상",
+        "이하"
+      ],
+      "cStudentSentence": "'$x$는 $5$ □이다'는 $x\\ge5$로, '$x$는 $5$ □이다'는 $x\\le5$로 나타낸다. 초과와 미만에는 등호가 붙지 않는다.",
+      "cAnswers": [
+        "이상",
+        "이하"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "이상",
+          "equivalentAnswers": [
+            "이상"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "이하",
+          "equivalentAnswers": [
+            "이하"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "이상"
+        ],
+        [
+          "이하"
+        ]
+      ],
+      "proposalFingerprint": "caf3617469f9d5705979adcb58c80d759add5004d30a875352916c41411b7922",
+      "cAfter": "'$x$는 $5$ {이상}이다'는 $x\\ge5$로, '$x$는 $5$ {이하}이다'는 $x\\le5$로 나타낸다. 초과와 미만에는 등호가 붙지 않는다."
+    },
+    {
+      "id": "m2-02-01-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "양수로 나눌 때 방향이 그대로라는 목표가 m2-02-01-c8 질문과 겹친다.",
+      "cDecision": "keep",
+      "cReason": "$\\frac{a}{3}<\\frac{b}{3}$ 예가 문장에 있어 양수, 같다를 바로 채울 수 있다.",
+      "exclusionReason": "B 제외: m2-02-01-c8 서술형이 $\\frac{a}{c}$와 $\\frac{b}{c}$의 비교까지 묻고 있어 같은 목표의 중복이다. C 빈칸은 유지한다.",
+      "learningRole": "definition",
+      "roleReason": "양수로 나눌 때의 성질 확인",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2317,
+      "part": "m2plus",
+      "sourceFingerprint": "80c026b34356e69f65045e9711e91bf610b5fc74f4659581e214316cb4cb9525",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2317
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "$a<b$이면 $\\frac{a}{3}<\\frac{b}{3}$처럼 □로 나누어도 부등호의 방향이 □.",
+      "cFrozenDefinition": "$a<b$이면 $\\frac{a}{3}<\\frac{b}{3}$처럼 {양수}로 나누어도 부등호의 방향이 {같다}.",
+      "cFrozenAnswers": [
+        "양수",
+        "같다"
+      ],
+      "cMarkedSentence": "$a<b$이면 $\\frac{a}{3}<\\frac{b}{3}$처럼 {양수}로 나누어도 부등호의 방향이 {같다}.",
+      "cSlotAnswers": [
+        "양수",
+        "같다"
+      ],
+      "cStudentSentence": "$a<b$이면 $\\frac{a}{3}<\\frac{b}{3}$처럼 □로 나누어도 부등호의 방향이 □.",
+      "cAnswers": [
+        "양수",
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다",
+            "그대로이다",
+            "바뀌지 않는다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "같다",
+          "accept": [
+            "그대로이다",
+            "바뀌지 않는다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ],
+        [
+          "같다",
+          "그대로이다",
+          "바뀌지 않는다"
+        ]
+      ],
+      "proposalFingerprint": "70b9d3ec3eb8f1c90800c46d4163799d3b686e13ddafc9c594a7f49a1b81e913"
+    },
+    {
+      "id": "m2-02-01-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$-3a+1>-3b+1$일 때 $a$와 $b$의 크기를 부등호로 나타내고, 그렇게 되는 과정을 부등식의 성질을 써서 설명하세요.",
+      "bAnswer": "양변에서 $1$을 빼면 부등호의 방향이 그대로여서 $-3a>-3b$이고, 양변을 음수 $-3$으로 나누면 방향이 바뀌어 $a<b$이다.",
+      "bGoal": "두 식의 대소에서 성질을 차례로 써서 $a$, $b$의 대소 알아내기",
+      "bReason": "두단계부등식성질을이용한과정전체를확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양변에서 $1$을 뺀 뒤 음수 $-3$으로 나누어 방향을 바꾸거나, 같은 수를 더하고 빼서 $3b>3a$로 고친 뒤 양수 $3$으로 나누는 등 부등식의 성질에 맞는 과정을 보인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a<b$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$-3a+1>-3b+1$에서 $a$와 $b$의 대소를 알아내려면 양변에서 $1$을 뺀 다음 양변을 $-3$으로 나눈다. 이때 {음수}로 나누므로 부등호의 방향이 {바뀌어} $a<b$가 된다.",
+      "cAnswers": [
+        "음수",
+        "바뀌어"
+      ],
+      "cReason": "문장이 너무 길고 '거꾸로 되돌리되'가 추상적이라 구체 식의 풀이 문장으로 바꿨다.",
+      "coreAfter": "$a$, $b$에 같은 수를 더하거나 빼고 $0$이 아닌 같은 수를 곱하거나 나눈 두 식의 대소에서 $a$, $b$의 대소를 알려면, 양변에 그 계산을 {거꾸로} 해 $a$, $b$만 남기고, 음수를 곱하거나 음수로 나눌 때만 부등호를 {뒤집는다}.",
+      "coreReason": "'그 계산을 거꾸로 되돌린다'가 무엇을 하라는 말인지 중2 학생이 알기 어려워, 양변에 계산해 $a$, $b$만 남긴다는 실제 조작으로 풀어 썼다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "식의 대소에서 문자의 대소를 얻는 순서",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2318,
+      "part": "m2plus",
+      "sourceFingerprint": "bf05f70396d4882d370eefe31020e85eeccfa24b67c60f096c2f7756fe126a72",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2318
+      },
+      "directReview": null,
+      "coreBeforeRepair": "$a$, $b$에 같은 계산을 한 두 식의 대소가 주어지면, 양변에 같은 수를 더하거나 빼고 $0$이 아닌 같은 수를 곱하거나 나누어 $a$와 $b$만 남긴다. 이때 음수를 곱하거나 음수로 나눌 때만 부등호의 방향을 바꾼다. 예를 들어 $-3a+1>-3b+1$이면 양변에서 $1$을 빼고 양변을 $-3$으로 나누어 $a<b$를 얻는다.",
+      "coreRepairReason": "교정안이 $-3a+1>-3b+1$ 산수 예까지 넣어 160자를 넘고, '같은 계산'으로 줄여 원래 조건이 흐려졌다. 그래서 예는 빼고 원본의 계산 조건(더하기·빼기, $0$이 아닌 수 곱하기·나누기)을 되살렸다. '$a$, $b$만 남긴다'는 설명은 유지했고, 원본 핵심어 {거꾸로}, {뒤집는다}를 표시했다.",
+      "coreRepairEvidence": "core-repair/core-003",
+      "cMarkedSentence": "$-3a+1>-3b+1$에서 $a$와 $b$의 대소를 알아내려면 양변에서 $1$을 뺀 다음 양변을 $-3$으로 나눈다. 이때 {음수}로 나누므로 부등호의 방향이 {바뀌어} $a<b$가 된다.",
+      "cSlotAnswers": [
+        "음수",
+        "바뀌어"
+      ],
+      "cStudentSentence": "$-3a+1>-3b+1$에서 $a$와 $b$의 대소를 알아내려면 양변에서 $1$을 뺀 다음 양변을 $-3$으로 나눈다. 이때 □로 나누므로 부등호의 방향이 □ $a<b$가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "바뀌어",
+          "equivalentAnswers": [
+            "바뀌어",
+            "뒤집혀",
+            "반대가 되어"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "바뀌어",
+          "accept": [
+            "뒤집혀",
+            "반대가 되어"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ],
+        [
+          "바뀌어",
+          "뒤집혀",
+          "반대가 되어"
+        ]
+      ],
+      "proposalFingerprint": "29b8364850e8f6a3d6bd3d8acbbbc9a54e6e29229ffddb376bcca465f1c6efc5"
+    },
+    {
+      "id": "m2-02-01-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$c$가 음수일 때, 등식 $a=b$의 양변에 $c$를 곱한 결과와 부등식 $a<b$의 양변에 $c$를 곱한 결과를 각각 식으로 쓰고 차이를 설명하세요.",
+      "bAnswer": "등식은 $ac=bc$로 그대로 등식이 성립한다. 부등식은 부등호의 방향이 바뀌어 $ac>bc$가 된다. 곧 음수를 곱할 때 등식은 달라지는 것이 없지만 부등식은 방향이 반대가 된다.",
+      "bGoal": "음수를 곱할 때 등식과 부등식의 결과가 다름을 식으로 비교하기",
+      "bReason": "각각식으로쓰고차이를설명하라는요구를모두반영한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$ac=bc$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$ac>bc$"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수를 곱해도 등식은 성립하고 부등식은 방향이 바뀐다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "등식은 양변에 같은 수를 곱해도 늘 등식이지만, 부등식은 양변에 같은 {음수}를 곱하면 부등호의 방향이 {반대}로 바뀐다.",
+      "cAnswers": [
+        "음수",
+        "반대"
+      ],
+      "cReason": "'부등호가 거꾸로 선다'는 낯선 표현이라 '방향이 반대로 바뀐다'로 고쳤다.",
+      "learningRole": "definition",
+      "roleReason": "등식의 성질과 부등식의 성질의 차이",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2319,
+      "part": "m2plus",
+      "sourceFingerprint": "33661932d93c0d5b5033752641994d02cbcb1ad0057f938ddf3cd0ee4f195513",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2319
+      },
+      "directReview": null,
+      "cMarkedSentence": "등식은 양변에 같은 수를 곱해도 늘 등식이지만, 부등식은 양변에 같은 {음수}를 곱하면 부등호의 방향이 {반대}로 바뀐다.",
+      "cSlotAnswers": [
+        "음수",
+        "반대"
+      ],
+      "cStudentSentence": "등식은 양변에 같은 수를 곱해도 늘 등식이지만, 부등식은 양변에 같은 □를 곱하면 부등호의 방향이 □로 바뀐다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "반대",
+          "equivalentAnswers": [
+            "반대"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ],
+        [
+          "반대"
+        ]
+      ],
+      "proposalFingerprint": "3e873479a031aeab755e51cdc42c2c847c93d03ff041386a252e81cc376eac13"
+    },
+    {
+      "id": "m2-02-01-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "방정식 $x+2=5$의 해와 부등식 $x+2\\le 5$의 해를 각각 구하고, 해의 개수와 나타내는 모양이 어떻게 다른지 쓰세요.",
+      "bAnswer": "방정식의 해는 $x=3$ 하나이다. 부등식의 해는 $x\\le 3$으로, $3$ 이하인 수가 모두 해이므로 셀 수 없이 많고 범위로 나타난다.",
+      "bGoal": "방정식의 해와 부등식의 해가 값 하나와 범위로 다름을 알기",
+      "bReason": "'범위로 나온다'가 무엇과의 비교인지 보이도록 같은 좌변의 방정식과 부등식을 나란히 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방정식의 해는 $x=3$ 하나이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "부등식의 해는 $x\\le 3$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "부등식의 해는 여러 개이다",
+            "부등식의 해는 범위로 나타난다",
+            "$3$ 이하인 수가 모두 해이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "방정식일반의해개수라는불명확한일반화대신두구체식의해를비교한다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "부등식의 해가 범위라는 특징",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2320,
+      "part": "m2plus",
+      "sourceFingerprint": "a184f3bcb782145b7af5d2439163d1899bac21218f38a367a71661269ce246fd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2320
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x+2=5$의 해는 {$x=3$} 하나이다. $x+2\\le5$의 해는 {$x\\le3$}으로, 조건을 만족하는 모든 수의 범위로 나타낸다.",
+      "cSlotAnswers": [
+        "$x=3$",
+        "$x\\le3$"
+      ],
+      "cStudentSentence": "$x+2=5$의 해는 □ 하나이다. $x+2\\le5$의 해는 □으로, 조건을 만족하는 모든 수의 범위로 나타낸다.",
+      "cAnswers": [
+        "$x=3$",
+        "$x\\le3$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x=3$",
+          "equivalentAnswers": [
+            "$x=3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$x\\le3$",
+          "equivalentAnswers": [
+            "$x\\le3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$x=3$"
+        ],
+        [
+          "$x\\le3$"
+        ]
+      ],
+      "proposalFingerprint": "4c4b2083eeb8412d4ea88d94794665c06782c0527abc6769737cba6eb2931489",
+      "cAfter": "$x+2=5$의 해는 {$x=3$} 하나이다. $x+2\\le5$의 해는 {$x\\le3$}으로, 조건을 만족하는 모든 수의 범위로 나타낸다.",
+      "coreAfter": "일차방정식은 모든 항을 한쪽 변으로 옮겨 정리한 뒤 미지수의 계수가 $0$이 아니면 해가 하나이다. 일차부등식의 해는 조건을 만족하는 모든 수의 {범위}로 나타낸다.",
+      "coreReason": "해하나라는설명은미지수계수0아닌일차방정식으로한정한다."
+    },
+    {
+      "id": "m2-02-01-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "문자가 없는 부등식 $3<5$, $2\\ge 2$, $4<1$이 각각 참인지 거짓인지 판단하고, $2\\ge 2$를 그렇게 판단한 이유를 쓰세요.",
+      "bAnswer": "$3<5$는 참, $2\\ge 2$는 참, $4<1$은 거짓이다. $\\ge$는 크거나 같다는 뜻이므로 두 수가 같은 $2\\ge 2$도 참이다.",
+      "bGoal": "수만 있는 부등식의 참, 거짓 판단하기",
+      "bReason": "참인 것만 보면 판단 연습이 안 되어 거짓인 식과 등호가 걸린 식을 함께 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3<5$는 참"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4<1$은 거짓"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\ge 2$는 참"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\ge$는 크거나 같다는 뜻이라 같아도 성립한다",
+            "같은 경우도 $\\ge$에 포함된다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$3<5$는 {참}, $5<3$은 {거짓}인 것처럼 문자가 없는 부등식은 성립하는지 아닌지가 이미 정해져 있다.",
+      "cAnswers": [
+        "참",
+        "거짓"
+      ],
+      "cReason": "두 빈칸이 단서 없이 붙어 있어 참인 예와 거짓인 예에 하나씩 대응시켰다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "수만 있는 부등식의 참·거짓 판단",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2321,
+      "part": "m2plus",
+      "sourceFingerprint": "6ed875d67256824423b3e16238a72a48503e3624ac3df4a5065cc40c94544dc2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2321
+      },
+      "directReview": null,
+      "cMarkedSentence": "$3<5$는 {참}, $5<3$은 {거짓}인 것처럼 문자가 없는 부등식은 성립하는지 아닌지가 이미 정해져 있다.",
+      "cSlotAnswers": [
+        "참",
+        "거짓"
+      ],
+      "cStudentSentence": "$3<5$는 □, $5<3$은 □인 것처럼 문자가 없는 부등식은 성립하는지 아닌지가 이미 정해져 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "참",
+          "equivalentAnswers": [
+            "참"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "거짓",
+          "equivalentAnswers": [
+            "거짓"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "참"
+        ],
+        [
+          "거짓"
+        ]
+      ],
+      "proposalFingerprint": "1b42dae00dd6155fedf88d3a1da4f3524049bea6affa1f3197ab59767f8add56"
+    },
+    {
+      "id": "m2-02-01-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$1\\le x<4$일 때 $5-x$의 값의 범위를 구하는 과정을 부등식의 성질을 써서 순서대로 쓰세요.",
+      "bAnswer": "각 변에 $-1$을 곱하면 부등호의 방향이 바뀌어 $-4<-x\\le -1$이고, 각 변에 $5$를 더하면 $1<5-x\\le 4$이다.",
+      "bGoal": "$a-x$ 꼴 식의 범위를 $-1$을 곱한 뒤 더하는 순서로 구하기",
+      "bReason": "'빼는 꼴'이 어떤 식인지 알 수 없어 $5-x$와 $x$의 범위를 직접 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 변에 $-1$을 곱하면 부등호의 방향이 바뀐다",
+            "$-4<-x\\le -1$",
+            "$-1\\ge -x>-4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1<5-x\\le 4$",
+            "$4\\ge 5-x>1$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$-1$을 곱할 때 바뀌는 것 하나만 비워 절차의 핵심을 묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "$a-x$의 범위를 구하는 순서",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2322,
+      "part": "m2plus",
+      "sourceFingerprint": "592c97efd4744a977034eb5b9a657397e432da3b27dc234f2e4a935e0301c194",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2322
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a$가 상수일 때 $a-x$의 값의 범위는, $x$의 범위를 나타내는 부등식의 각 변에 $-1$을 곱해 □을 바꾼 뒤 각 변에 $a$를 더해 구한다.",
+      "cFrozenDefinition": "$a$가 상수일 때 $a-x$의 값의 범위는, $x$의 범위를 나타내는 부등식의 각 변에 $-1$을 곱해 {부등호 방향}을 바꾼 뒤 각 변에 $a$를 더해 구한다.",
+      "cFrozenAnswers": [
+        "부등호 방향"
+      ],
+      "cMarkedSentence": "$a$가 상수일 때 $a-x$의 값의 범위는, $x$의 범위를 나타내는 부등식의 각 변에 $-1$을 곱해 {부등호 방향}을 바꾼 뒤 각 변에 $a$를 더해 구한다.",
+      "cSlotAnswers": [
+        "부등호 방향"
+      ],
+      "cStudentSentence": "$a$가 상수일 때 $a-x$의 값의 범위는, $x$의 범위를 나타내는 부등식의 각 변에 $-1$을 곱해 □을 바꾼 뒤 각 변에 $a$를 더해 구한다.",
+      "cAnswers": [
+        "부등호 방향"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부등호 방향",
+          "equivalentAnswers": [
+            "부등호 방향",
+            "부등호의 방향"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "부등호 방향",
+          "accept": [
+            "부등호의 방향"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부등호 방향",
+          "부등호의 방향"
+        ]
+      ],
+      "proposalFingerprint": "eb9e6ebd4d6f173581c8b50375196fba5ccd55470a6412f6e6b7263f77794e07"
+    },
+    {
+      "id": "m2-02-01-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "$-2<x\\le 3$의 각 변에 $-1$을 곱한 식을 쓰고, 곱한 뒤에 등호가 어느 수 쪽에 붙는지 이유와 함께 설명하세요.",
+      "bAnswer": "$-3\\le -x<2$이다. $x$는 $3$이 될 수 있으므로 $-x$는 $-3$이 될 수 있고, $x$는 $-2$가 될 수 없으므로 $-x$는 $2$가 될 수 없다. 그래서 등호는 $-3$ 쪽에 붙는다.",
+      "bGoal": "음수를 곱할 때 등호가 원래 경계에 대응하는 쪽에 남음을 설명하기",
+      "bReason": "'등호의 자리'가 가리키는 대상이 보이도록 한쪽에만 등호가 있는 범위를 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-3\\le -x<2$",
+            "$2>-x\\ge -3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=3$일 때 $-x=-3$이므로 등호는 $-3$ 쪽에 붙는다",
+            "등호는 원래 $3$에 대응하는 $-3$ 쪽에 남는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "단순히등호자리를옮긴다는암기대신대응하는끝값이포함됨을확인한다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "등호가 붙는 쪽이 옮겨지는 까닭",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2323,
+      "part": "m2plus",
+      "sourceFingerprint": "f2bf00fd08d917d3a1defdff4ebb0753df93b5a1daf6d22eecabef4832f2dba6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2323
+      },
+      "directReview": null,
+      "cMarkedSentence": "$-2<x\\le3$의 각 변에 $-1$을 곱하면 {$2>-x\\ge-3$}이다. $x=3$이 가능하므로 $-x$는 {$-3$}이 될 수 있다.",
+      "cSlotAnswers": [
+        "$2>-x\\ge-3$",
+        "$-3$"
+      ],
+      "cStudentSentence": "$-2<x\\le3$의 각 변에 $-1$을 곱하면 □이다. $x=3$이 가능하므로 $-x$는 □이 될 수 있다.",
+      "cAnswers": [
+        "$2>-x\\ge-3$",
+        "$-3$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2>-x\\ge-3$",
+          "equivalentAnswers": [
+            "$2>-x\\ge-3$",
+            "$-3\\le-x<2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-3$",
+          "equivalentAnswers": [
+            "$-3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2>-x\\ge-3$",
+          "$-3\\le-x<2$"
+        ],
+        [
+          "$-3$"
+        ]
+      ],
+      "proposalFingerprint": "0c9d7733e2d54cfba570cf962956c0e12d23a4c3e698790b3a5de1e0240732fa",
+      "cAfter": "$-2<x\\le3$의 각 변에 $-1$을 곱하면 {$2>-x\\ge-3$}이다. $x=3$이 가능하므로 $-x$는 {$-3$}이 될 수 있다.",
+      "coreAfter": "범위의 각 변에 음수를 곱하면 {부등호 방향}은 바뀌지만, 등호는 원래 포함된 끝 값에 대응하는 쪽에 남는다. $-2<x\\le3$이면 $2>-x\\ge-3$이고, 작은 수부터 다시 쓰면 $-3\\le-x<2$이다.",
+      "coreReason": "좌우순서를다시쓸때만반대편에보이는현상과음수곱셈을구별한다."
+    },
+    {
+      "id": "m2-02-01-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$-1<x<2$는 $x$에 대한 어떤 두 부등식이 함께 성립한다는 뜻인지 쓰고, 이를 만족하는 정수 $x$를 모두 구하세요.",
+      "bAnswer": "$x>-1$과 $x<2$가 동시에 성립한다는 뜻이다. $x$는 $-1$과 $2$ 사이의 수이므로 정수 $x$는 $0$, $1$이다.",
+      "bGoal": "부등호 두 개로 쓴 범위를 두 부등식의 동시 성립으로 읽기",
+      "bReason": "'두 부등호로 쓴 범위'가 어떤 식인지 알 수 있게 $-1<x<2$를 주고 둘로 나누게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x>-1$과 $x<2$가 동시에 성립한다",
+            "$-1<x$이고 $x<2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정수 $x$는 $0$, $1$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "두 부등식이 문장에 있어 동시에, 사이를 무리 없이 채울 수 있다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "두 부등호로 쓴 범위의 뜻",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2324,
+      "part": "m2plus",
+      "sourceFingerprint": "e95ed33bc4ed656559ca4e56b93db7071d6fce23c42e11bc21b6b4b80d2709ba",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2324
+      },
+      "directReview": null,
+      "cFrozenSentence": "$-1<x<2$는 $x>-1$과 $x<2$가 □ 성립한다는 뜻으로 $x$가 두 수 □에 있다.",
+      "cFrozenDefinition": "$-1<x<2$는 $x>-1$과 $x<2$가 {동시에} 성립한다는 뜻으로 $x$가 두 수 {사이}에 있다.",
+      "cFrozenAnswers": [
+        "동시에",
+        "사이"
+      ],
+      "cMarkedSentence": "$-1<x<2$는 $x>-1$과 $x<2$가 {동시에} 성립한다는 뜻으로 $x$가 두 수 {사이}에 있다.",
+      "cSlotAnswers": [
+        "동시에",
+        "사이"
+      ],
+      "cStudentSentence": "$-1<x<2$는 $x>-1$과 $x<2$가 □ 성립한다는 뜻으로 $x$가 두 수 □에 있다.",
+      "cAnswers": [
+        "동시에",
+        "사이"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "동시에",
+          "equivalentAnswers": [
+            "동시에",
+            "함께"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "사이",
+          "equivalentAnswers": [
+            "사이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "동시에",
+          "accept": [
+            "함께"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "동시에",
+          "함께"
+        ],
+        [
+          "사이"
+        ]
+      ],
+      "proposalFingerprint": "cd035d76fe3259ef8101f7f2c244e4979cd1ea4f85b014f3cd68c66e37a3af8c"
+    },
+    {
+      "id": "m2-02-01-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$-2\\le x<3$을 만족하는 정수 $x$를 모두 쓰고 개수를 구하세요. 양 끝의 수 $-2$와 $3$이 각각 포함되는지도 이유와 함께 밝히세요.",
+      "bAnswer": "$-2$ 쪽은 $\\le$이므로 $-2$가 포함되고, $3$ 쪽은 $<$이므로 $3$은 포함되지 않는다. 따라서 정수 $x$는 $-2$, $-1$, $0$, $1$, $2$로 $5$개이다.",
+      "bGoal": "범위 양 끝의 포함 여부를 따져 정수 세기",
+      "bReason": "모든정수를쓰라는요구와개수계산을따로확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\le$이므로 $-2$는 포함된다",
+            "등호가 있어 $-2$는 포함된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$<$이므로 $3$은 포함되지 않는다",
+            "등호가 없어 $3$은 빠진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-2$, $-1$, $0$, $1$, $2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "정수 $a$, $b$가 $a<b$일 때 $a\\le x<b$를 만족하는 정수 $x$를 세려면, 등호가 있는 쪽의 끝 수 $a$는 {포함}하고 끝 수 $b$는 {제외}한다.",
+      "cAnswers": [
+        "포함",
+        "제외"
+      ],
+      "cReason": "범위가빈경우a도들어가지않으므로a<b조건을명시한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "범위 안의 정수를 세는 방법",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2325,
+      "part": "m2plus",
+      "sourceFingerprint": "f9e573863063c1355aa9db3a656e6de654146a1ba7534d17ff6b173c114058d0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2325
+      },
+      "directReview": null,
+      "cMarkedSentence": "정수 $a$, $b$가 $a<b$일 때 $a\\le x<b$를 만족하는 정수 $x$를 세려면, 등호가 있는 쪽의 끝 수 $a$는 {포함}하고 끝 수 $b$는 {제외}한다.",
+      "cSlotAnswers": [
+        "포함",
+        "제외"
+      ],
+      "cStudentSentence": "정수 $a$, $b$가 $a<b$일 때 $a\\le x<b$를 만족하는 정수 $x$를 세려면, 등호가 있는 쪽의 끝 수 $a$는 □하고 끝 수 $b$는 □한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "포함",
+          "equivalentAnswers": [
+            "포함"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "제외",
+          "equivalentAnswers": [
+            "제외"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "포함"
+        ],
+        [
+          "제외"
+        ]
+      ],
+      "proposalFingerprint": "2aa65e651aedbd38d3ede242d6997b84d7a9f395810d3352346fd2655fe6eca4"
+    },
+    {
+      "id": "m2-02-01-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$a<b$일 때, $c$가 양수인 경우, $c=0$인 경우, $c$가 음수인 경우로 나누어 $ac$와 $bc$의 크기를 각각 비교하세요.",
+      "bAnswer": "$c$가 양수이면 $ac<bc$, $c=0$이면 $ac=bc=0$으로 같고, $c$가 음수이면 $ac>bc$이다.",
+      "bGoal": "곱하는 수가 양수, $0$, 음수일 때의 대소 결과 구별하기",
+      "bReason": "$0$인 경우만 떼어 묻기보다 양수, 음수와 나란히 비교해 빠진 경우를 채우게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$c$가 양수이면 $ac<bc$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$c=0$이면 $ac=bc$",
+            "$c=0$이면 둘 다 $0$으로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$c$가 음수이면 $ac>bc$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$ac$, $bc$와 $c$의 조건이 문장에 모두 있어 두 빈칸이 분명하다.",
+      "learningRole": "definition",
+      "roleReason": "곱하는 수의 부호와 $0$에 따른 대소",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2326,
+      "part": "m2plus",
+      "sourceFingerprint": "b5f08c9f17e0fb7442a64b91791784d1621dba1930d5c3c0306bd9bf2d503b5c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2326
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a<b$이어도 $ac<bc$이려면 $c$가 □여야 하고, $c=0$이면 두 값이 □.",
+      "cFrozenDefinition": "$a<b$이어도 $ac<bc$이려면 $c$가 {양수}여야 하고, $c=0$이면 두 값이 {같아진다}.",
+      "cFrozenAnswers": [
+        "양수",
+        "같아진다"
+      ],
+      "cMarkedSentence": "$a<b$이어도 $ac<bc$이려면 $c$가 {양수}여야 하고, $c=0$이면 두 값이 {같아진다}.",
+      "cSlotAnswers": [
+        "양수",
+        "같아진다"
+      ],
+      "cStudentSentence": "$a<b$이어도 $ac<bc$이려면 $c$가 □여야 하고, $c=0$이면 두 값이 □.",
+      "cAnswers": [
+        "양수",
+        "같아진다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "같아진다",
+          "equivalentAnswers": [
+            "같아진다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ],
+        [
+          "같아진다"
+        ]
+      ],
+      "proposalFingerprint": "b8558a557d3ab9870d9f23e982ec3886d364eccb9c8e00f980823bbde2a22d26"
+    },
+    {
+      "id": "m2-02-01-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$0\\le x\\le 2$일 때 $3x-1$의 값의 범위를 구하고, 그 범위의 가장 작은 값과 가장 큰 값이 각각 $x$가 얼마일 때의 값인지 쓰세요.",
+      "bAnswer": "각 변에 $3$을 곱하면 $0\\le 3x\\le 6$, 각 변에서 $1$을 빼면 $-1\\le 3x-1\\le 5$이다. 가장 작은 값 $-1$은 $x=0$일 때, 가장 큰 값 $5$는 $x=2$일 때의 값이며, 등호가 있으므로 두 값 모두 범위에 포함된다.",
+      "bGoal": "등호가 있는 범위에서 식의 끝 값이 경계의 $x$에서 나옴을 알기",
+      "bReason": "'대응하는 끝 값'이 무엇인지 보이도록 범위와 식을 주고 어느 $x$의 값인지 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-1\\le 3x-1\\le 5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은 값 $-1$은 $x=0$일 때의 값"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 큰 값 $5$는 $x=2$일 때의 값"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$0\\le x\\le 2$일 때 $3x-1$의 값의 범위는 $-1\\le 3x-1\\le 5$이다. $x$의 범위에 {등호}가 있으므로 $x=2$일 때의 값 $5$도 범위에 {포함된다}.",
+      "cAnswers": [
+        "등호",
+        "포함된다"
+      ],
+      "cReason": "'대응하는 끝 값', '경계의 값'이 추상적이라 실제 범위와 값으로 바꿨다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "등호가 있는 범위에서 끝 값 구하기",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2327,
+      "part": "m2plus",
+      "sourceFingerprint": "021af3b4d3f2189bfaf7b5318749057dbd69569e5505e553495732e8e80be0b4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2327
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0\\le x\\le 2$일 때 $3x-1$의 값의 범위는 $-1\\le 3x-1\\le 5$이다. $x$의 범위에 {등호}가 있으므로 $x=2$일 때의 값 $5$도 범위에 {포함된다}.",
+      "cSlotAnswers": [
+        "등호",
+        "포함된다"
+      ],
+      "cStudentSentence": "$0\\le x\\le 2$일 때 $3x-1$의 값의 범위는 $-1\\le 3x-1\\le 5$이다. $x$의 범위에 □가 있으므로 $x=2$일 때의 값 $5$도 범위에 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "등호",
+          "equivalentAnswers": [
+            "등호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "포함된다",
+          "equivalentAnswers": [
+            "포함된다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "등호"
+        ],
+        [
+          "포함된다"
+        ]
+      ],
+      "proposalFingerprint": "d156513535061bde71175503ca7022c0a193cd976d6cdf3de0bd51e25991e4c0"
+    },
+    {
+      "id": "m2-02-01-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$-2<x<4$일 때 $\\frac{x+2}{2}$의 값의 범위를 구하는 과정을 부등식의 성질을 써서 순서대로 쓰세요.",
+      "bAnswer": "각 변에 $2$를 더하면 $0<x+2<6$이고, 각 변을 양수 $2$로 나누면 부등호의 방향이 그대로여서 $0<\\frac{x+2}{2}<3$이다.",
+      "bGoal": "$\\frac{x+a}{b}$ 꼴 식의 범위를 더한 뒤 나누는 순서로 구하기",
+      "bReason": "'분수 꼴 식'이 어떤 식인지 알 수 없어 분자와 분모가 정해진 식을 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 변에 $2$를 더해 $0<x+2<6$",
+            "$0<x+2<6$",
+            "각 변을 $2$로 나누어 $-1<\\frac{x}{2}<2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0<\\frac{x+2}{2}<3$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$b>0$ 조건이 있고 더한, 나누어 두 단계가 순서대로 드러난다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "분수 꼴 식의 범위를 구하는 순서",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2328,
+      "part": "m2plus",
+      "sourceFingerprint": "682be7c841bd0e4da82954c1948a2a339dde204db11b797f1a5f4dc2cb9723a7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2328
+      },
+      "directReview": null,
+      "cFrozenSentence": "$b>0$일 때 $\\frac{x+a}{b}$의 범위는 $x$의 범위의 각 변에 $a$를 □ 뒤 $b$로 □ 구한다.",
+      "cFrozenDefinition": "$b>0$일 때 $\\frac{x+a}{b}$의 범위는 $x$의 범위의 각 변에 $a$를 {더한} 뒤 $b$로 {나누어} 구한다.",
+      "cFrozenAnswers": [
+        "더한",
+        "나누어"
+      ],
+      "cMarkedSentence": "$b>0$일 때 $\\frac{x+a}{b}$의 범위는 $x$의 범위의 각 변에 $a$를 {더한} 뒤 $b$로 {나누어} 구한다.",
+      "cSlotAnswers": [
+        "더한",
+        "나누어"
+      ],
+      "cStudentSentence": "$b>0$일 때 $\\frac{x+a}{b}$의 범위는 $x$의 범위의 각 변에 $a$를 □ 뒤 $b$로 □ 구한다.",
+      "cAnswers": [
+        "더한",
+        "나누어"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "더한",
+          "equivalentAnswers": [
+            "더한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "나누어",
+          "equivalentAnswers": [
+            "나누어"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "더한"
+        ],
+        [
+          "나누어"
+        ]
+      ],
+      "proposalFingerprint": "41cf1b37580ad2a1b30a82348f29ed16ddba70fef1750be19b49ff9a0701066c"
+    },
+    {
+      "id": "m2-02-01-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "'$x$의 $3$배는 $12$를 넘지 않는다'와 '$x$의 $3$배는 $12$를 넘는다'를 각각 부등식으로 나타내고, $3x=12$인 경우가 어느 문장에 포함되는지 이유와 함께 쓰세요.",
+      "bAnswer": "$3x\\le 12$, $3x>12$이다. $3x=12$이면 $12$와 같을 뿐 넘은 것이 아니므로 '넘지 않는다'에 포함된다.",
+      "bGoal": "넘는다와 넘지 않는다를 초과와 이하의 부등호로 나타내기",
+      "bReason": "두 표현의 차이인 같은 경우의 처리가 드러나도록 $3x=12$의 포함 여부를 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3x\\le 12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3x>12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 것은 넘은 것이 아니므로 '넘지 않는다'에 포함된다",
+            "$3x=12$는 '넘지 않는다' 쪽에 들어간다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "같은 경우의 포함 여부가 단서로 주어져 이하, 초과가 정해진다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "넘는다, 넘지 않는다가 뜻하는 부등호",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2329,
+      "part": "m2plus",
+      "sourceFingerprint": "6e86952dfa818b208e1fc77993423e7ce73b539502820695d2b98d15dc5708f0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2329
+      },
+      "directReview": null,
+      "cFrozenSentence": "「넘지 않는다」는 같은 경우도 들어가므로 □와 같은 뜻이고, 「넘는다」는 같은 경우가 빠지므로 □와 같은 뜻이다.",
+      "cFrozenDefinition": "「넘지 않는다」는 같은 경우도 들어가므로 {이하}와 같은 뜻이고, 「넘는다」는 같은 경우가 빠지므로 {초과}와 같은 뜻이다.",
+      "cFrozenAnswers": [
+        "이하",
+        "초과"
+      ],
+      "cMarkedSentence": "「넘지 않는다」는 같은 경우도 들어가므로 {이하}와 같은 뜻이고, 「넘는다」는 같은 경우가 빠지므로 {초과}와 같은 뜻이다.",
+      "cSlotAnswers": [
+        "이하",
+        "초과"
+      ],
+      "cStudentSentence": "「넘지 않는다」는 같은 경우도 들어가므로 □와 같은 뜻이고, 「넘는다」는 같은 경우가 빠지므로 □와 같은 뜻이다.",
+      "cAnswers": [
+        "이하",
+        "초과"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "이하",
+          "equivalentAnswers": [
+            "이하"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "초과",
+          "equivalentAnswers": [
+            "초과"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "이하"
+        ],
+        [
+          "초과"
+        ]
+      ],
+      "proposalFingerprint": "cb6bb93dd90f90bc7a4ac40165132c4c5a4661e4be9f257e84f6139744326524"
+    },
+    {
+      "id": "m2-02-02-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "네 가지 꼴은 m2-02-02-c1 정의에서, $a\\ne 0$의 까닭은 m2-02-02-xc6에서 이미 다룬다.",
+      "cDecision": "rewrite",
+      "cAfter": "일차부등식은 모든 항을 좌변으로 옮겨 정리하면 $ax+b>0$, $ax+b<0$, $ax+b\\ge 0$, $ax+b\\le 0$ 가운데 하나가 되며, 좌변이 {일차식}이 되도록 $a$는 {$0$}이 아니어야 한다.",
+      "cAnswers": [
+        "일차식",
+        "$0$"
+      ],
+      "cReason": "'하나의 꼴'은 뜻 없는 임의 구라서 조건 $a\\ne 0$과 그 까닭을 묻도록 바꿨다.",
+      "exclusionReason": "B 제외: 일차부등식 정의 서술형(m2-02-02-c1)과 목표가 겹치는 꼴 나열형 제목이다. C 빈칸은 고쳐서 유지한다.",
+      "learningRole": "definition",
+      "roleReason": "일차부등식을 정리한 꼴과 $a$의 조건",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2330,
+      "part": "m2plus",
+      "sourceFingerprint": "5acc41e5f9045c8017fe47f9489a7a2121efed4906d970bc603e1d4cd7f807cc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2330
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "일차부등식은 모든 항을 좌변으로 옮겨 정리하면 $ax+b>0$, $ax+b<0$, $ax+b\\ge 0$, $ax+b\\le 0$ 가운데 하나가 되며, 좌변이 {일차식}이 되도록 $a$는 {$0$}이 아니어야 한다.",
+      "cSlotAnswers": [
+        "일차식",
+        "$0$"
+      ],
+      "cStudentSentence": "일차부등식은 모든 항을 좌변으로 옮겨 정리하면 $ax+b>0$, $ax+b<0$, $ax+b\\ge 0$, $ax+b\\le 0$ 가운데 하나가 되며, 좌변이 □이 되도록 $a$는 □이 아니어야 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "일차식",
+          "equivalentAnswers": [
+            "일차식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "일차식"
+        ],
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "fabbe776e46fd17f9cd087d79d4945e3c5daec4c01620597a7297cff790fd2dd"
+    },
+    {
+      "id": "m2-02-02-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "양수 계수로 나누는 단계는 m2-02-02-c3 풀이에서, 근거 성질은 m2-02-01-c8에서 묻는다.",
+      "cDecision": "keep",
+      "cReason": "$3x<12$ 예가 문장에 있어 양수, 그대로를 바로 채울 수 있다.",
+      "exclusionReason": "B 제외: 풀이 순서 서술형(m2-02-02-c3)의 마지막 단계와 같은 내용을 되풀이하는 중복이다. C 빈칸은 유지한다.",
+      "learningRole": "procedure",
+      "roleReason": "양수 계수로 나누는 단계 확인",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2331,
+      "part": "m2plus",
+      "sourceFingerprint": "4784c2115fe577d04a24d927e0ddc8aa847dea17fbbccf8b54445166125b7f35",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2331
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "$3x<12$처럼 $x$의 계수가 □이면 양변을 그 수로 나누어도 부등호가 □이다.",
+      "cFrozenDefinition": "$3x<12$처럼 $x$의 계수가 {양수}이면 양변을 그 수로 나누어도 부등호가 {그대로}이다.",
+      "cFrozenAnswers": [
+        "양수",
+        "그대로"
+      ],
+      "cMarkedSentence": "$3x<12$처럼 $x$의 계수가 {양수}이면 양변을 그 수로 나누어도 부등호가 {그대로}이다.",
+      "cSlotAnswers": [
+        "양수",
+        "그대로"
+      ],
+      "cStudentSentence": "$3x<12$처럼 $x$의 계수가 □이면 양변을 그 수로 나누어도 부등호가 □이다.",
+      "cAnswers": [
+        "양수",
+        "그대로"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "그대로",
+          "equivalentAnswers": [
+            "그대로"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ],
+        [
+          "그대로"
+        ]
+      ],
+      "proposalFingerprint": "9f49485d490527e36ae6716ea753810554144c0d39c3c2c60bc07c1c9b79f5f2"
+    },
+    {
+      "id": "m2-02-02-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "부등식 $x-4>2$에서 $-4$를 이항하면 $x>2+4$가 됩니다. 이항해도 부등호의 방향이 바뀌지 않는 이유를 양변에 한 계산으로 설명하세요.",
+      "bAnswer": "이항은 양변에 $4$를 더한 것과 같다. $x-4+4>2+4$에서 $x>2+4$가 되는데, 양변에 같은 수를 더하거나 빼도 부등호의 방향은 바뀌지 않으므로 이항해도 방향이 그대로이다.",
+      "bGoal": "이항을 양변에 같은 수를 더하거나 빼는 성질로 설명하기",
+      "bReason": "까닭을 묻는 제목이라 실제 이항 한 번을 주고 양변에 한 계산으로 풀어 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양변에 $4$를 더한 것과 같다",
+            "$x-4+4>2+4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "양변에 같은 수를 더하거나 빼도 부등호의 방향은 바뀌지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$x-4>2$에서 $-4$를 이항한 $x>2+4$는 양변에 $4$를 {더한} 것과 같으므로, 이항해도 부등호의 방향은 {바뀌지 않는다}.",
+      "cAnswers": [
+        "더한",
+        "바뀌지 않는다"
+      ],
+      "cReason": "'성질을 줄여 쓴 것'이 추상적이고 첫 빈칸이 길어 구체 식의 한 단계로 바꿨다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "이항해도 방향이 유지되는 까닭",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2332,
+      "part": "m2plus",
+      "sourceFingerprint": "95e49361d8d8dcae6fbd5a6ed7096a60ac610020ac95a6bca6af2d85d8d3de99",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2332
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x-4>2$에서 $-4$를 이항한 $x>2+4$는 양변에 $4$를 {더한} 것과 같으므로, 이항해도 부등호의 방향은 {바뀌지 않는다}.",
+      "cSlotAnswers": [
+        "더한",
+        "바뀌지 않는다"
+      ],
+      "cStudentSentence": "$x-4>2$에서 $-4$를 이항한 $x>2+4$는 양변에 $4$를 □ 것과 같으므로, 이항해도 부등호의 방향은 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "더한",
+          "equivalentAnswers": [
+            "더한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "바뀌지 않는다",
+          "equivalentAnswers": [
+            "바뀌지 않는다",
+            "그대로이다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "바뀌지 않는다",
+          "accept": [
+            "그대로이다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "더한"
+        ],
+        [
+          "바뀌지 않는다",
+          "그대로이다"
+        ]
+      ],
+      "proposalFingerprint": "3abb550ddee638d88bad0bcbeec9bfaf99e5652ba5bfbe99e86fc3e8b6de6a80"
+    },
+    {
+      "id": "m2-02-02-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$x\\ge 2$와 $x<-1$을 각각 수직선 위에 나타낼 때, 어느 수에 어떤 모양의 점을 찍고 어느 방향으로 선을 긋는지 말로 설명하세요.",
+      "bAnswer": "$x\\ge 2$는 $2$에 속이 찬 점(●)을 찍고 오른쪽으로 긋는다. $x<-1$은 $-1$에 속이 빈 점(○)을 찍고 왼쪽으로 긋는다.",
+      "bGoal": "주어진 해를 수직선에 그리는 방법 말하기",
+      "bReason": "그림 없이 답할 수 있게 점의 위치, 모양, 방향 세 가지를 말로 쓰도록 특정했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x\\ge 2$는 $2$에 속이 찬 점을 찍고 오른쪽으로 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x<-1$은 $-1$에 속이 빈 점을 찍고 왼쪽으로 긋는다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$x\\ge 2$가 주어져 점의 모양과 방향 두 빈칸이 분명하다.",
+      "studentLabel": "$x\\ge 2$, $x<-1$을 수직선에 나타내기",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "구체적인 해를 수직선에 그리기",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2333,
+      "part": "m2plus",
+      "sourceFingerprint": "2b872a7af6fe96fff9121dfb560ac86a208b35810fde083159847d2efec60130",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2333
+      },
+      "directReview": null,
+      "cFrozenSentence": "$x\\ge2$는 수직선의 $2$에 □을 찍고 □으로 화살표를 긋는다.",
+      "cFrozenDefinition": "$x\\ge2$는 수직선의 $2$에 {속이 찬 점}을 찍고 {오른쪽}으로 화살표를 긋는다.",
+      "cFrozenAnswers": [
+        "속이 찬 점",
+        "오른쪽"
+      ],
+      "cMarkedSentence": "$x\\ge2$는 수직선의 $2$에 {속이 찬 점}을 찍고 {오른쪽}으로 화살표를 긋는다.",
+      "cSlotAnswers": [
+        "속이 찬 점",
+        "오른쪽"
+      ],
+      "cStudentSentence": "$x\\ge2$는 수직선의 $2$에 □을 찍고 □으로 화살표를 긋는다.",
+      "cAnswers": [
+        "속이 찬 점",
+        "오른쪽"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "속이 찬 점",
+          "equivalentAnswers": [
+            "속이 찬 점",
+            "찬 점"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "오른쪽",
+          "equivalentAnswers": [
+            "오른쪽"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "속이 찬 점",
+          "accept": [
+            "찬 점"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "속이 찬 점",
+          "찬 점"
+        ],
+        [
+          "오른쪽"
+        ]
+      ],
+      "proposalFingerprint": "9105771361a2c84914e0ca129b00de175ff2bb75b8da2fe32760878407517290"
+    },
+    {
+      "id": "m2-02-02-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$2x+1>5$를 풀어 $x>2$를 얻었습니다. 이 범위에서 수 하나를 골라 그 수가 실제로 해인지 확인하는 과정을 쓰세요.",
+      "bAnswer": "$x>2$인 수, 예를 들어 $x=3$을 처음 부등식에 대입하면 $2\\times 3+1=7$이고 $7>5$는 참이므로 $3$은 실제로 해이다.",
+      "bGoal": "구한 해를 처음 부등식에 대입해 검산하기",
+      "bReason": "검산이 무엇을 어디에 넣는 일인지 보이도록 부등식과 구한 해를 함께 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x>2$인 수를 처음 부등식 $2x+1>5$에 대입한다",
+            "$x=3$을 대입한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "부등식이 참이 됨을 확인한다",
+            "$7>5$로 참이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$2x+1>5$의 해가 $x>2$로 나왔을 때, $x=3$을 처음 부등식에 {대입}하면 $7>5$로 {참}이므로 $3$은 실제로 해이다.",
+      "cAnswers": [
+        "대입",
+        "참"
+      ],
+      "cReason": "둘째 빈칸 '확인'은 문장 뜻을 되풀이할 뿐이라 대입 결과의 참을 묻게 바꿨다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "구한 해를 검산하는 방법",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2334,
+      "part": "m2plus",
+      "sourceFingerprint": "adff9384a2f38ac04fe3580a45cdee008b31ff7cd898187effbd1863b41a88bc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2334
+      },
+      "directReview": null,
+      "cMarkedSentence": "$2x+1>5$의 해가 $x>2$로 나왔을 때, $x=3$을 처음 부등식에 {대입}하면 $7>5$로 {참}이므로 $3$은 실제로 해이다.",
+      "cSlotAnswers": [
+        "대입",
+        "참"
+      ],
+      "cStudentSentence": "$2x+1>5$의 해가 $x>2$로 나왔을 때, $x=3$을 처음 부등식에 □하면 $7>5$로 □이므로 $3$은 실제로 해이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "대입",
+          "equivalentAnswers": [
+            "대입"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "참",
+          "equivalentAnswers": [
+            "참"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "대입"
+        ],
+        [
+          "참"
+        ]
+      ],
+      "proposalFingerprint": "7fd6903ff1e3f1e1ff9fdccdbd89a6557f6c0d67e1f3a2e4e58ec80c57f7a2ba"
+    },
+    {
+      "id": "m2-02-02-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$x^2-1>0$과 $2x+3>2x$가 각각 일차부등식이 아닌 이유를 쓰세요.",
+      "bAnswer": "$x^2-1>0$은 좌변이 $x$에 대한 이차식이므로 일차부등식이 아니다. $2x+3>2x$는 모든 항을 좌변으로 옮겨 정리하면 $3>0$이 되어 $x$항이 없어지므로 좌변이 일차식이 아니다.",
+      "bGoal": "차수가 $2$이거나 $x$가 없어지는 부등식이 일차부등식이 아님을 설명하기",
+      "bReason": "아닌 경우 두 가지를 구별하도록 이차식인 식과 $x$가 사라지는 식을 하나씩 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x^2-1>0$은 좌변이 이차식이다",
+            "$x$의 차수가 $2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2x+3>2x$는 정리하면 $3>0$이 되어 $x$항이 없어진다",
+            "정리하면 $x$가 사라져 좌변이 일차식이 아니다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "정리전높은차수항이있어도서로없어질수있으므로정리후를기준으로삼는다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "일차부등식이 아닌 까닭 구별",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2335,
+      "part": "m2plus",
+      "sourceFingerprint": "f493a5bd3aa28e7c69ce29108eb7e70fe836345cba944d4ef28d07f5d5583e0a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2335
+      },
+      "directReview": null,
+      "cMarkedSentence": "모든 항을 좌변으로 옮겨 정리했을 때, 좌변의 차수가 $2$이거나 문자 $x$가 {없어지는} 부등식은 {일차부등식}이 아니다.",
+      "cSlotAnswers": [
+        "없어지는",
+        "일차부등식"
+      ],
+      "cStudentSentence": "모든 항을 좌변으로 옮겨 정리했을 때, 좌변의 차수가 $2$이거나 문자 $x$가 □ 부등식은 □이 아니다.",
+      "cAnswers": [
+        "없어지는",
+        "일차부등식"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "없어지는",
+          "equivalentAnswers": [
+            "없어지는"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "일차부등식",
+          "equivalentAnswers": [
+            "일차부등식"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "없어지는"
+        ],
+        [
+          "일차부등식"
+        ]
+      ],
+      "proposalFingerprint": "1443917ff424ad42582026816cf6c7138dd464e4f5f12fa88a7d187a64568b36",
+      "cAfter": "모든 항을 좌변으로 옮겨 정리했을 때, 좌변의 차수가 $2$이거나 문자 $x$가 {없어지는} 부등식은 {일차부등식}이 아니다."
+    },
+    {
+      "id": "m2-02-02-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "이항할 때 바뀌는 것과 그대로인 것은 m2-02-02-c2 질문에서 이미 묻는다.",
+      "cDecision": "keep",
+      "cReason": "바뀌는 것과 그대로인 것을 짧게 대비시킨 빈칸이라 쓸모 있다.",
+      "exclusionReason": "B 제외: 이항 서술형(m2-02-02-c2)과 까닭 서술형(m2-02-02-xc3)의 답에 같은 내용이 들어 있는 중복이다. C 빈칸은 유지한다.",
+      "learningRole": "definition",
+      "roleReason": "이항에서 바뀌는 것과 그대로인 것",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2336,
+      "part": "m2plus",
+      "sourceFingerprint": "a2b3d02b0957d2520f769758cb25c7b50eedaf110ecf5538b968262bc6042906",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2336
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "부등식의 이항도 방정식처럼 넘긴 항의 □만 바뀌고 부등호는 □이다.",
+      "cFrozenDefinition": "부등식의 이항도 방정식처럼 넘긴 항의 {부호}만 바뀌고 부등호는 {그대로}이다.",
+      "cFrozenAnswers": [
+        "부호",
+        "그대로"
+      ],
+      "cMarkedSentence": "부등식의 이항도 방정식처럼 넘긴 항의 {부호}만 바뀌고 부등호는 {그대로}이다.",
+      "cSlotAnswers": [
+        "부호",
+        "그대로"
+      ],
+      "cStudentSentence": "부등식의 이항도 방정식처럼 넘긴 항의 □만 바뀌고 부등호는 □이다.",
+      "cAnswers": [
+        "부호",
+        "그대로"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "그대로",
+          "equivalentAnswers": [
+            "그대로"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "그대로"
+        ]
+      ],
+      "proposalFingerprint": "4f5c49f4cf80312074fe202888cc23b9e14ee79f3bce27ee49b6785c53757955"
+    }
+  ]
+}

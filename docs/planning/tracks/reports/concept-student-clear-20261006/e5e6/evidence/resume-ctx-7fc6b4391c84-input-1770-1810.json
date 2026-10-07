@@ -1,0 +1,3371 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T08:16:28.897755+00:00",
+  "rows": [
+    {
+      "id": "e6-1-2-3-xc20",
+      "bDecision": "revise",
+      "bPrompt": "각기둥을 전개도로 펼칠 때 모든 모서리는 자르거나 접는 선으로 남긴다. 자르는 모서리의 수를 구하는 방법을 설명하고, 모서리가 $9$개인 삼각기둥에서 접는 선이 $4$개일 때 자르는 모서리의 수를 구하시오.",
+      "bAnswer": "전체 모서리의 수에서 접는 선으로 남기는 모서리의 수를 뺀다. $9-4=5$이므로 $5$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 모서리의 수에서 접는 선의 수를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "자르는 모서리의 수를 전체 모서리 수와 접는 선의 수로 구한다.",
+      "bReason": "방법과 구체적 값을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "모서리가 $9$개인 삼각기둥의 전개도에서 접는 선이 $4$개이면 자르는 모서리는 {$5$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$",
+            "$5$개"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 긴 구절이라 구체적인 값을 구하게 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1770,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc20",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "잘라야 하는 모서리의 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각기둥을 전개도로 펼칠 때 자르는 모서리의 수는 모서리의 수에서 {접는 선으로 남기는 모서리}의 수를 뺀 것이다.",
+        "studentC": "각기둥을 전개도로 펼칠 때 자르는 모서리의 수는 모서리의 수에서 □의 수를 뺀 것이다.",
+        "answers": [
+          "접는 선으로 남기는 모서리"
+        ]
+      },
+      "sourceFingerprint": "adc8f025512d147ef472d233ac32baff0f26c0aca5e76fffcc58c635f34198d1",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "모서리가 $9$개인 삼각기둥의 전개도에서 접는 선이 $4$개이면 자르는 모서리는 □개이다.",
+      "cMarkedSentence": "모서리가 $9$개인 삼각기둥의 전개도에서 접는 선이 $4$개이면 자르는 모서리는 {$5$}개이다.",
+      "cStudentSentence": "모서리가 $9$개인 삼각기둥의 전개도에서 접는 선이 $4$개이면 자르는 모서리는 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": [
+            "$5$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥을 전개도로 펼칠 때 모든 모서리는 자르거나 접는 선으로 남긴다. 자르는 모서리의 수를 구하는 방법을 설명하고, 모서리가 $9$개인 삼각기둥에서 접는 선이 $4$개일 때 자르는 모서리의 수를 구하시오.",
+        "answer": "전체 모서리의 수에서 접는 선으로 남기는 모서리의 수를 뺀다. $9-4=5$이므로 $5$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 모서리의 수에서 접는 선의 수를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모서리가 $9$개인 삼각기둥의 전개도에서 접는 선이 $4$개이면 자르는 모서리는 {$5$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$5$",
+            "$5$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "80cf66aa92b76f3b992f3c1d871942c49afbb5f51bb0715ddc61e683078c61c3",
+      "questionRevision": "planning-e5e6-20261006-80cf66aa92b7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc21",
+      "bDecision": "revise",
+      "bPrompt": "어떤 그림이 삼각기둥의 전개도인지 접어 보기 전에 먼저 확인하려면 무엇을 살펴보면 되는지, 어떤 경우에 전개도가 아님을 바로 알 수 있는지 설명하시오.",
+      "bAnswer": "면의 모양과 수를 살펴본다. 삼각형 $2$개와 직사각형 $3$개가 아니면 접어 보지 않아도 전개도가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면의 모양을 살펴본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면의 수를 살펴본다",
+            "면의 개수를 살펴본다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "접기 전에 면의 모양과 수로 걸러 낸다.",
+      "bReason": "그림 없이 일반적인 판별 순서를 설명할 수 있다.",
+      "cDecision": "revise",
+      "cAfter": "삼각기둥의 전개도에는 삼각형 $2$개와 직사각형 $3$개가 있어야 하므로, 직사각형이 $4$개인 그림은 면의 {수}가 맞지 않아 접어 보지 않아도 전개도가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수",
+            "개수"
+          ]
+        }
+      ],
+      "cReason": "긴 빈칸 '접어 보지 않아도' 대신 면의 수를 가려내는 짧은 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1771,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc21",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "면의 모양과 수로 먼저 가르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "면의 모양이나 수가 맞지 않으면 {접어 보지 않아도} 전개도가 아님을 알 수 있다.",
+        "studentC": "면의 모양이나 수가 맞지 않으면 □ 전개도가 아님을 알 수 있다.",
+        "answers": [
+          "접어 보지 않아도"
+        ]
+      },
+      "sourceFingerprint": "78556f41a8327b5e5b87ffa49e9c63659f977fc9fedb058483ff0d861e88bf24",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "수"
+      ],
+      "cStudentAfter": "삼각기둥의 전개도에는 삼각형 $2$개와 직사각형 $3$개가 있어야 하므로, 직사각형이 $4$개인 그림은 면의 □가 맞지 않아 접어 보지 않아도 전개도가 아니다.",
+      "cMarkedSentence": "삼각기둥의 전개도에는 삼각형 $2$개와 직사각형 $3$개가 있어야 하므로, 직사각형이 $4$개인 그림은 면의 {수}가 맞지 않아 접어 보지 않아도 전개도가 아니다.",
+      "cStudentSentence": "삼각기둥의 전개도에는 삼각형 $2$개와 직사각형 $3$개가 있어야 하므로, 직사각형이 $4$개인 그림은 면의 □가 맞지 않아 접어 보지 않아도 전개도가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "수",
+          "equivalents": [
+            "개수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 그림이 삼각기둥의 전개도인지 접어 보기 전에 먼저 확인하려면 무엇을 살펴보면 되는지, 어떤 경우에 전개도가 아님을 바로 알 수 있는지 설명하시오.",
+        "answer": "면의 모양과 수를 살펴본다. 삼각형 $2$개와 직사각형 $3$개가 아니면 접어 보지 않아도 전개도가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면의 모양을 살펴본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면의 수를 살펴본다",
+              "면의 개수를 살펴본다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각기둥의 전개도에는 삼각형 $2$개와 직사각형 $3$개가 있어야 하므로, 직사각형이 $4$개인 그림은 면의 {수}가 맞지 않아 접어 보지 않아도 전개도가 아니다.",
+        "acceptedAnswers": [
+          [
+            "수",
+            "개수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a1b6fa37faa9b7daa988a5baecdbad585d738f770f984218c83b07ea5f8827af",
+      "questionRevision": "planning-e5e6-20261006-a1b6fa37faa9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc22",
+      "bDecision": "revise",
+      "bPrompt": "각기둥에서 한 꼭짓점에는 몇 개의 면이 모이는지 쓰고, 어떤 면들이 모이는지 설명하시오.",
+      "bAnswer": "$3$개의 면이 모인다. 밑면 $1$개와 이웃한 옆면 $2$개가 모인다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면 $1$개와 옆면 $2$개",
+            "밑면 하나와 옆면 둘"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "각기둥의 꼭짓점에 모이는 면의 구성을 안다.",
+      "bReason": "모이는 면의 수와 종류를 함께 설명한다.",
+      "cDecision": "keep",
+      "cAfter": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 {$3$개}씩 모인다.",
+      "cReason": "짧은 수 빈칸이며 각기둥이라는 조건이 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1772,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc22",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "한 꼭짓점에 모이는 면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 {$3$개}씩 모인다.",
+        "studentC": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 □씩 모인다.",
+        "answers": [
+          "$3$개"
+        ]
+      },
+      "sourceFingerprint": "89772de27cad7560398c4a4e7f363120d2db492f4b847b6e9be83aff70e77dc3",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 {$3$개}씩 모인다.",
+      "cFrozenStudentSentence": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 □씩 모인다.",
+      "cProposedAnswers": [
+        "$3$개"
+      ],
+      "cStudentAfter": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 □씩 모인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 {$3$개}씩 모인다.",
+      "cStudentSentence": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 □씩 모인다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥에서 한 꼭짓점에는 몇 개의 면이 모이는지 쓰고, 어떤 면들이 모이는지 설명하시오.",
+        "answer": "$3$개의 면이 모인다. 밑면 $1$개와 이웃한 옆면 $2$개가 모인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면 $1$개와 옆면 $2$개",
+              "밑면 하나와 옆면 둘"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전개도를 접어 만든 각기둥에서는 한 꼭짓점에 면이 {$3$개}씩 모인다.",
+        "acceptedAnswers": [
+          [
+            "$3$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "991176ac72ff88a3eaf1fa5bc842a8867cdef4d4b74242ea3c96e184fb01b8ce",
+      "questionRevision": "planning-e5e6-20261006-991176ac72ff",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc23",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "이은 옆면의 한 변이 밑면의 둘레와 같은 까닭을 설명한다.",
+      "bReason": "xc10의 B가 같은 관계와 까닭을 이미 묻고, 질문에 결론을 드러내야 한다.",
+      "cDecision": "revise",
+      "cAfter": "밑면이 한 변 $3\\,\\mathrm{cm}$인 정삼각형이면 옆면을 한 줄로 이은 직사각형에서 밑면과 맞닿는 쪽 변은 $3\\,\\mathrm{cm}$인 변 {$3$}개를 이은 것이므로 길이가 {$9$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$3$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 길어서 소스의 예를 이용한 짧은 수 빈칸으로 바꾼다.",
+      "exclusionReason": "B는 이은 옆면의 변이 밑면의 둘레와 같은 까닭을 묻는 xc10과 중복이다. 대체: e6-1-2-3-xc10",
+      "exampleNeeded": false,
+      "sourceIndex": 1773,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc23",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "이은 옆면의 한 변이 밑면의 둘레와 같은 까닭",
+        "kind": "방법",
+        "level": "상",
+        "definition": "옆면을 한 줄로 이은 직사각형의 한 변은 옆면마다 {밑면의 변과 맞닿는 변}을 차례로 이은 것이므로 밑면의 둘레와 길이가 같다.",
+        "example": {
+          "prompt": "밑면이 한 변 $3\\,\\mathrm{cm}$인 정삼각형인 각기둥의 옆면을 한 줄로 이은 직사각형에서, 밑면과 맞닿는 변이 $9\\,\\mathrm{cm}$인 까닭은?",
+          "answer": "$3\\,\\mathrm{cm}$인 변 셋이 이어져서"
+        },
+        "studentC": "옆면을 한 줄로 이은 직사각형의 한 변은 옆면마다 □을 차례로 이은 것이므로 밑면의 둘레와 길이가 같다.",
+        "answers": [
+          "밑면의 변과 맞닿는 변"
+        ]
+      },
+      "sourceFingerprint": "f1ba58c8dda2b62138aba7475d52f2320db4175ad483f118b73faf19330622b8",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$9$"
+      ],
+      "cStudentAfter": "밑면이 한 변 $3\\,\\mathrm{cm}$인 정삼각형이면 옆면을 한 줄로 이은 직사각형에서 밑면과 맞닿는 쪽 변은 $3\\,\\mathrm{cm}$인 변 □개를 이은 것이므로 길이가 □$\\,\\mathrm{cm}$이다.",
+      "cMarkedSentence": "밑면이 한 변 $3\\,\\mathrm{cm}$인 정삼각형이면 옆면을 한 줄로 이은 직사각형에서 밑면과 맞닿는 쪽 변은 $3\\,\\mathrm{cm}$인 변 {$3$}개를 이은 것이므로 길이가 {$9$}$\\,\\mathrm{cm}$이다.",
+      "cStudentSentence": "밑면이 한 변 $3\\,\\mathrm{cm}$인 정삼각형이면 옆면을 한 줄로 이은 직사각형에서 밑면과 맞닿는 쪽 변은 $3\\,\\mathrm{cm}$인 변 □개를 이은 것이므로 길이가 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "$3$개"
+          ]
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "밑면이 한 변 $3\\,\\mathrm{cm}$인 정삼각형이면 옆면을 한 줄로 이은 직사각형에서 밑면과 맞닿는 쪽 변은 $3\\,\\mathrm{cm}$인 변 {$3$}개를 이은 것이므로 길이가 {$9$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "$3$개"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 이은 옆면의 변이 밑면의 둘레와 같은 까닭을 묻는 xc10과 중복이다. 대체: e6-1-2-3-xc10"
+      },
+      "proposalFingerprint": "907c8067b9274975949d2f1823168c10c82ec775e55dea7d2d864c8077972b6b",
+      "questionRevision": "planning-e5e6-20261006-907c8067b927",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc24",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 전개도는 어떤 각기둥의 전개도이기도 한지, 그 까닭과 함께 쓰시오.",
+      "bAnswer": "사각기둥의 전개도이기도 하다. 직육면체는 마주 보는 두 면을 밑면으로 하는 사각기둥이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사각기둥"
+          ]
+        },
+        {
+          "anyOf": [
+            "직육면체는 밑면이 직사각형인 사각기둥이다",
+            "마주 보는 두 면을 밑면으로 볼 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "직육면체가 사각기둥의 한 종류임을 전개도로 연결한다.",
+      "bReason": "두 입체의 관계를 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 전개도는 {사각기둥}의 전개도이기도 하다.",
+      "cReason": "입체의 포함 관계를 묻는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1774,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc24",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "직육면체의 전개도",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직육면체의 전개도는 {사각기둥}의 전개도이기도 하다.",
+        "studentC": "직육면체의 전개도는 □의 전개도이기도 하다.",
+        "answers": [
+          "사각기둥"
+        ]
+      },
+      "sourceFingerprint": "923362d9c1f9f08e98f2fe0135cae577048cdc23ff9cffe090f8bc70e4c15474",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "직육면체의 전개도는 {사각기둥}의 전개도이기도 하다.",
+      "cFrozenStudentSentence": "직육면체의 전개도는 □의 전개도이기도 하다.",
+      "cProposedAnswers": [
+        "사각기둥"
+      ],
+      "cStudentAfter": "직육면체의 전개도는 □의 전개도이기도 하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "사각기둥"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 전개도는 {사각기둥}의 전개도이기도 하다.",
+      "cStudentSentence": "직육면체의 전개도는 □의 전개도이기도 하다.",
+      "cSlotAnswers": [
+        {
+          "key": "사각기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 전개도는 어떤 각기둥의 전개도이기도 한지, 그 까닭과 함께 쓰시오.",
+        "answer": "사각기둥의 전개도이기도 하다. 직육면체는 마주 보는 두 면을 밑면으로 하는 사각기둥이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사각기둥"
+            ]
+          },
+          {
+            "anyOf": [
+              "직육면체는 밑면이 직사각형인 사각기둥이다",
+              "마주 보는 두 면을 밑면으로 볼 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 전개도는 {사각기둥}의 전개도이기도 하다.",
+        "acceptedAnswers": [
+          [
+            "사각기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "60cf4801d37ab0a2fe6e1092bff4388c4d515a8d58e3857887f32d4b3bd946e8",
+      "questionRevision": "planning-e5e6-20261006-60cf4801d37a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc25",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 옆면이 한 줄로 이어져 있지 않은 그림도 전개도가 될 수 있는지 쓰고, 전개도인지 판단하는 기준을 설명하시오.",
+      "bAnswer": "될 수 있다. 접었을 때 겹치는 면과 빈틈이 없이 처음 각기둥이 되면 전개도이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 줄이 아니어도 전개도가 될 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "접었을 때 겹침과 빈틈이 없다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "옆면의 배열이 아니라 접었을 때의 결과로 판단한다.",
+      "bReason": "한 줄로 이은 모양만 전개도라는 오해를 바로잡는다.",
+      "cDecision": "revise",
+      "cAfter": "옆면이 한 줄로 이어지지 않아도 접었을 때 빈틈이 없고 {겹치는} 면도 없으면 전개도이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹치는",
+            "겹쳐지는",
+            "포개지는"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 길므로 겹침 조건 한 낱말만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1775,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc25",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "한 줄이 아닌 옆면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "옆면이 한 줄로 이어지지 않아도 접었을 때 {빈틈과 겹침이 없으면} 전개도이다.",
+        "studentC": "옆면이 한 줄로 이어지지 않아도 접었을 때 □ 전개도이다.",
+        "answers": [
+          "빈틈과 겹침이 없으면"
+        ]
+      },
+      "sourceFingerprint": "6117efcb694fbbc0fa476994bdbeb50d33d79b089cac6d7860ddf927b003e655",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "겹치는"
+      ],
+      "cStudentAfter": "옆면이 한 줄로 이어지지 않아도 접었을 때 빈틈이 없고 □ 면도 없으면 전개도이다.",
+      "cMarkedSentence": "옆면이 한 줄로 이어지지 않아도 접었을 때 빈틈이 없고 {겹치는} 면도 없으면 전개도이다.",
+      "cStudentSentence": "옆면이 한 줄로 이어지지 않아도 접었을 때 빈틈이 없고 □ 면도 없으면 전개도이다.",
+      "cSlotAnswers": [
+        {
+          "key": "겹치는",
+          "equivalents": [
+            "겹쳐지는",
+            "포개지는"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 옆면이 한 줄로 이어져 있지 않은 그림도 전개도가 될 수 있는지 쓰고, 전개도인지 판단하는 기준을 설명하시오.",
+        "answer": "될 수 있다. 접었을 때 겹치는 면과 빈틈이 없이 처음 각기둥이 되면 전개도이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 줄이 아니어도 전개도가 될 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "접었을 때 겹침과 빈틈이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "옆면이 한 줄로 이어지지 않아도 접었을 때 빈틈이 없고 {겹치는} 면도 없으면 전개도이다.",
+        "acceptedAnswers": [
+          [
+            "겹치는",
+            "겹쳐지는",
+            "포개지는"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "08cbc9513513f8966bc756ad13c23ac061566bbb574cecc451777029f66e4f6a",
+      "questionRevision": "planning-e5e6-20261006-08cbc9513513",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc26",
+      "bDecision": "revise",
+      "bPrompt": "전개도를 접었을 때 전개도 가장자리에서 잘려 있던 두 선분은 각기둥에서 어떻게 되는지 쓰시오.",
+      "bAnswer": "둘씩 짝지어 맞붙어 각기둥의 한 모서리가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 선분이 맞붙어 한 모서리가 된다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "잘린 선분 둘이 접으면 하나의 모서리가 됨을 안다.",
+      "bReason": "전개도의 선분과 입체의 모서리를 연결한다.",
+      "cDecision": "keep",
+      "cAfter": "전개도를 접으면 잘린 선분은 둘씩 짝지어 {한 모서리}가 된다.",
+      "cReason": "'한 모서리'를 묻는 짧은 문장이며 조건이 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1776,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc26",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "잘린 선분의 짝",
+        "kind": "성질",
+        "level": "상",
+        "definition": "전개도를 접으면 잘린 선분은 둘씩 짝지어 {한 모서리}가 된다.",
+        "studentC": "전개도를 접으면 잘린 선분은 둘씩 짝지어 □가 된다.",
+        "answers": [
+          "한 모서리"
+        ]
+      },
+      "sourceFingerprint": "f17adbf1de6e055420f5b0b956c6ee2b15b380b5e62349ec1b83b0af570e8bb3",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "전개도를 접으면 잘린 선분은 둘씩 짝지어 {한 모서리}가 된다.",
+      "cFrozenStudentSentence": "전개도를 접으면 잘린 선분은 둘씩 짝지어 □가 된다.",
+      "cProposedAnswers": [
+        "한 모서리"
+      ],
+      "cStudentAfter": "전개도를 접으면 잘린 선분은 둘씩 짝지어 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한 모서리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "전개도를 접으면 잘린 선분은 둘씩 짝지어 {한 모서리}가 된다.",
+      "cStudentSentence": "전개도를 접으면 잘린 선분은 둘씩 짝지어 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "한 모서리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도를 접었을 때 전개도 가장자리에서 잘려 있던 두 선분은 각기둥에서 어떻게 되는지 쓰시오.",
+        "answer": "둘씩 짝지어 맞붙어 각기둥의 한 모서리가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 선분이 맞붙어 한 모서리가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전개도를 접으면 잘린 선분은 둘씩 짝지어 {한 모서리}가 된다.",
+        "acceptedAnswers": [
+          [
+            "한 모서리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f4c58a1ebaca1e7039fe96f31a11a7cb243818d2b6aa4c1f67b8f7a38c6c427d",
+      "questionRevision": "planning-e5e6-20261006-f4c58a1ebaca",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc27",
+      "bDecision": "revise",
+      "bPrompt": "삼각기둥에서 $5$개의 모서리를 잘라 전개도를 만들었다. 전개도의 둘레에는 자른 모서리가 각각 몇 번씩 나타나는지 까닭과 함께 쓰고, 둘레를 이루는 선분이 모두 몇 개인지 구하시오. 한 직선 위에 있어도 따로 센다.",
+      "bAnswer": "$2$번씩 나타난다. 자른 모서리의 양쪽에 있던 두 면에 각각 선분이 남기 때문이다. 둘레는 $5\\times2=10$개의 선분이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$번씩 나타난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양쪽 두 면에 각각 선분이 남는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$개"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "둘레에 잘린 모서리가 두 번씩 나타나는 까닭을 설명한다.",
+      "bReason": "xc26의 짝 관계를 둘레 선분의 수로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "전개도의 둘레에는 자른 모서리가 한 개마다 {$2$}번씩 나타난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두",
+            "$2$번"
+          ]
+        }
+      ],
+      "cReason": "원문의 '두 번씩'을 수로 쓴 답도 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1777,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc27",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "전개도의 둘레",
+        "kind": "성질",
+        "level": "상",
+        "definition": "전개도의 둘레에는 잘린 모서리가 {두 번씩} 나타난다.",
+        "studentC": "전개도의 둘레에는 잘린 모서리가 □ 나타난다.",
+        "answers": [
+          "두 번씩"
+        ]
+      },
+      "sourceFingerprint": "f3221766c8edbb3d74a4d956c664d909e9b791a29c231c808104c1876c936913",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "전개도의 둘레에는 자른 모서리가 한 개마다 □번씩 나타난다.",
+      "cMarkedSentence": "전개도의 둘레에는 자른 모서리가 한 개마다 {$2$}번씩 나타난다.",
+      "cStudentSentence": "전개도의 둘레에는 자른 모서리가 한 개마다 □번씩 나타난다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두",
+            "$2$번"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각기둥에서 $5$개의 모서리를 잘라 전개도를 만들었다. 전개도의 둘레에는 자른 모서리가 각각 몇 번씩 나타나는지 까닭과 함께 쓰고, 둘레를 이루는 선분이 모두 몇 개인지 구하시오. 한 직선 위에 있어도 따로 센다.",
+        "answer": "$2$번씩 나타난다. 자른 모서리의 양쪽에 있던 두 면에 각각 선분이 남기 때문이다. 둘레는 $5\\times2=10$개의 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$번씩 나타난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "양쪽 두 면에 각각 선분이 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전개도의 둘레에는 자른 모서리가 한 개마다 {$2$}번씩 나타난다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두",
+            "$2$번"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9164db30ab1f4184c7d1d06cf074da43b3e71a186b2e9aa9fc85baa1951547c1",
+      "questionRevision": "planning-e5e6-20261006-9164db30ab1f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "각뿔의 밑면이 $1$개임을 확인한다.",
+      "bReason": "밑면 수 하나만 묻는 사소한 사실이며 c2·c4와 겹친다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "숫자 하나만 답하는 빈칸이고 c4가 더 의미 있게 다룬다.",
+      "exclusionReason": "c2와 c4가 같은 내용을 포함한다. 대체 ID: e6-1-2-4-c4",
+      "exampleNeeded": false,
+      "sourceIndex": 1778,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각뿔의 밑면 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔의 밑면은 {$1$}개이다.",
+        "studentC": "각뿔의 밑면은 □개이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "7788e407804405523a9187a827673261454ea95b1a019b428f416df60e9c94fa",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c2와 c4가 같은 내용을 포함한다. 대체 ID: e6-1-2-4-c4",
+        "cloze": "c2와 c4가 같은 내용을 포함한다. 대체 ID: e6-1-2-4-c4"
+      },
+      "proposalFingerprint": "4547f11574e3a51faf0eb14a7c43315c1326900c233a304b7c92104213254a62",
+      "questionRevision": "planning-e5e6-20261006-4547f11574e3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "옆면이 만들어지는 방법을 안다.",
+      "bReason": "c3 B가 옆면의 모양과 만들어지는 방법을 이미 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 구절 두 개를 채우는 빈칸이라 c3와 중복되고 부담이 크다.",
+      "exclusionReason": "c3와 중복. 대체 ID: e6-1-2-4-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 1779,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각뿔 옆면의 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔에서 {밑면의 변 하나}와 {각뿔의 꼭짓점}을 이으면 삼각형인 옆면 하나가 생긴다.",
+        "studentC": "각뿔에서 □와 □을 이으면 삼각형인 옆면 하나가 생긴다.",
+        "answers": [
+          "밑면의 변 하나",
+          "각뿔의 꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "9ad4922df22a9cf1bfbab934a517b51566402c2e9f66eeba568a56fcefa0f7cd",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c3와 중복. 대체 ID: e6-1-2-4-c3",
+        "cloze": "c3와 중복. 대체 ID: e6-1-2-4-c3"
+      },
+      "proposalFingerprint": "26dd50c16c4b97d985a1b57d956a4966e380a906aa799ff9174fae354d08bc25",
+      "questionRevision": "planning-e5e6-20261006-26dd50c16c4b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc3",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 옆면 수는 밑면의 무엇의 수와 같은가요? 밑면이 오각형일 때 옆면이 몇 개인지와 그 까닭도 설명하세요.",
+      "bAnswer": "옆면 수는 밑면의 변의 수와 같다. 밑면의 변 하나마다 옆면이 하나씩 생기므로 오각형이면 옆면은 $5$개이다.",
+      "bGoal": "옆면 수와 밑면 변의 수의 관계와 까닭을 이해한다.",
+      "bReason": "관계, 까닭, 오각형 예를 함께 물어 계산값 하나만 묻는 문제를 피한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 변의 수와 같다",
+            "밑면의 꼭짓점 수와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변 하나마다 옆면이 하나씩 생긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "밑면이 육각형인 각뿔에서 옆면 하나는 밑면의 변 하나와 이어지므로, 옆면은 모두 {$6$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$",
+            "$6$개"
+          ]
+        }
+      ],
+      "cReason": "'변의 수'를 맞히면 꼭짓점 수도 참이라 답이 갈리므로 육각형 예로 값을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1780,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각뿔 옆면의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔의 옆면의 수는 밑면의 {변의 수}와 같다.",
+        "studentC": "각뿔의 옆면의 수는 밑면의 □와 같다.",
+        "answers": [
+          "변의 수"
+        ]
+      },
+      "sourceFingerprint": "9c17556f09059736693f8fb520d6a78ff17a0144364a69d9ba74720fbf2298eb",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [
+        "$6$"
+      ],
+      "cStudentAfter": "밑면이 육각형인 각뿔에서 옆면 하나는 밑면의 변 하나와 이어지므로, 옆면은 모두 □개이다.",
+      "cMarkedSentence": "밑면이 육각형인 각뿔에서 옆면 하나는 밑면의 변 하나와 이어지므로, 옆면은 모두 {$6$}개이다.",
+      "cStudentSentence": "밑면이 육각형인 각뿔에서 옆면 하나는 밑면의 변 하나와 이어지므로, 옆면은 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": [
+            "$6$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 옆면 수는 밑면의 무엇의 수와 같은가요? 밑면이 오각형일 때 옆면이 몇 개인지와 그 까닭도 설명하세요.",
+        "answer": "옆면 수는 밑면의 변의 수와 같다. 밑면의 변 하나마다 옆면이 하나씩 생기므로 오각형이면 옆면은 $5$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 변의 수와 같다",
+              "밑면의 꼭짓점 수와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변 하나마다 옆면이 하나씩 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 육각형인 각뿔에서 옆면 하나는 밑면의 변 하나와 이어지므로, 옆면은 모두 {$6$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$6$",
+            "$6$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b7dd02e8acba1a9470429a2476dac844527f8791426f52be547a076ec503ec6d",
+      "questionRevision": "planning-e5e6-20261006-b7dd02e8acba",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "옆면이 한 점에 모임을 안다.",
+      "bReason": "c1과 c4에 이미 들어 있는 내용이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'한 점'을 쓰는 단순 빈칸이며 xc5가 이 점의 이름까지 다룬다.",
+      "exclusionReason": "c1·c4·xc5와 중복. 대체 ID: e6-1-2-4-xc5",
+      "exampleNeeded": false,
+      "sourceIndex": 1781,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "옆면이 모이는 점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔의 옆면들은 모두 {한 점}에서 만난다.",
+        "studentC": "각뿔의 옆면들은 모두 □에서 만난다.",
+        "answers": [
+          "한 점"
+        ]
+      },
+      "sourceFingerprint": "4409b65e537e7cbd1fb82f6150b84223c84d88e23ec989efc9ecf43ee5dfec0d",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c1·c4·xc5와 중복. 대체 ID: e6-1-2-4-xc5",
+        "cloze": "c1·c4·xc5와 중복. 대체 ID: e6-1-2-4-xc5"
+      },
+      "proposalFingerprint": "b84f88f8ecc7808faa685c65105a3e30a96d14e92be1b84848c6a1d902efb33f",
+      "questionRevision": "planning-e5e6-20261006-b84f88f8ecc7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc5",
+      "bDecision": "revise",
+      "bPrompt": "각뿔에서 옆면들이 모이는 점은 밑면의 안과 밖 중 어디에 있나요? 이 점을 무엇이라 부르나요?",
+      "bAnswer": "밑면 밖에 있는 한 점이고, 이 점을 각뿔의 꼭짓점이라 한다.",
+      "bGoal": "옆면이 모이는 점의 위치와 이름을 안다.",
+      "bReason": "점의 위치와 이름을 나누어 묻고 학생이 아는 말만 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면 밖의 한 점이다",
+            "밑면에 있지 않은 점이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각뿔의 꼭짓점",
+            "꼭짓점"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "cDecision": "revise",
+      "cAfter": "각뿔의 옆면들은 밑면 밖의 {한 점}에 모이며, 이 점을 각뿔의 {꼭짓점}이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한 점",
+            "한 개의 점",
+            "하나의 점"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점",
+            "각뿔의 꼭짓점"
+          ]
+        }
+      ],
+      "cReason": "'각뿔의 꼭짓점'을 통째로 외우지 않고 꼭짓점이라는 낱말만 답하게 한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'꼭짓점'과 '각뿔의 꼭짓점'은 같은 답이다.",
+      "sourceIndex": 1782,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc5",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각뿔의 뾰족한 부분",
+        "kind": "정의",
+        "level": "하",
+        "definition": "각뿔의 옆면들은 밑면 밖의 {한 점}에 모이며, 이 점을 {각뿔의 꼭짓점}이라 한다.",
+        "studentC": "각뿔의 옆면들은 밑면 밖의 □에 모이며, 이 점을 □이라 한다.",
+        "answers": [
+          "한 점",
+          "각뿔의 꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "e77d498cd730955e23cd0ee6aee354787ea35ce085d97185d9b4877f92d79fd0",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [
+        "한 점",
+        "꼭짓점"
+      ],
+      "cStudentAfter": "각뿔의 옆면들은 밑면 밖의 □에 모이며, 이 점을 각뿔의 □이라 한다.",
+      "cMarkedSentence": "각뿔의 옆면들은 밑면 밖의 {한 점}에 모이며, 이 점을 각뿔의 {꼭짓점}이라 한다.",
+      "cStudentSentence": "각뿔의 옆면들은 밑면 밖의 □에 모이며, 이 점을 각뿔의 □이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "한 점",
+          "equivalents": [
+            "한 개의 점",
+            "하나의 점"
+          ]
+        },
+        {
+          "key": "꼭짓점",
+          "equivalents": [
+            "각뿔의 꼭짓점"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔에서 옆면들이 모이는 점은 밑면의 안과 밖 중 어디에 있나요? 이 점을 무엇이라 부르나요?",
+        "answer": "밑면 밖에 있는 한 점이고, 이 점을 각뿔의 꼭짓점이라 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면 밖의 한 점이다",
+              "밑면에 있지 않은 점이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각뿔의 꼭짓점",
+              "꼭짓점"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 옆면들은 밑면 밖의 {한 점}에 모이며, 이 점을 각뿔의 {꼭짓점}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "한 점",
+            "한 개의 점",
+            "하나의 점"
+          ],
+          [
+            "꼭짓점",
+            "각뿔의 꼭짓점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2e8aba5e949642715af0d835b3ecee82cfe24e338f9f551e1f554167d654bbc4",
+      "questionRevision": "planning-e5e6-20261006-2e8aba5e9496",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "옆면과 밑면이 변을 공유함을 안다.",
+      "bReason": "xc15가 같은 사실을 이유로 사용한다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'변 하나'를 쓰는 사소한 빈칸이라 xc15에 포함된다.",
+      "exclusionReason": "xc15와 중복. 대체 ID: e6-1-2-4-xc15",
+      "exampleNeeded": false,
+      "sourceIndex": 1783,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc6",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "밑면과 옆면이 함께 가진 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔의 옆면 하나는 밑면과 {변 하나}를 함께 가진다.",
+        "studentC": "각뿔의 옆면 하나는 밑면과 □를 함께 가진다.",
+        "answers": [
+          "변 하나"
+        ]
+      },
+      "sourceFingerprint": "0d80ddb1d624941e1197f24bbcfd188d651624a953d28b5da8716d9773458fdb",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "xc15와 중복. 대체 ID: e6-1-2-4-xc15",
+        "cloze": "xc15와 중복. 대체 ID: e6-1-2-4-xc15"
+      },
+      "proposalFingerprint": "94fa3a06936c8cfe9ffb8545e2c8614c1625a9d11aa3941071f6c36fb2696e55",
+      "questionRevision": "planning-e5e6-20261006-94fa3a06936c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "각뿔의 면이 모두 평평함을 안다.",
+      "bReason": "굽은 면이 있는 입체를 아직 모르는 학생에게는 비교 대상이 불분명하다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'평평한 다각형'은 c1의 정의와 겹치는 자명한 문장이다.",
+      "exclusionReason": "c1과 중복되고 비교 대상이 없다. 대체 ID: e6-1-2-4-c1",
+      "exampleNeeded": false,
+      "sourceIndex": 1784,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc7",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "평평한 면으로 된 입체",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔은 굽은 면 없이 {평평한 다각형} 면으로만 둘러싸여 있다.",
+        "studentC": "각뿔은 굽은 면 없이 □ 면으로만 둘러싸여 있다.",
+        "answers": [
+          "평평한 다각형"
+        ]
+      },
+      "sourceFingerprint": "69b5e60b31dfdc61e4e06aec8668add78a8caaa286036242a6ec067650d9122b",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c1과 중복되고 비교 대상이 없다. 대체 ID: e6-1-2-4-c1",
+        "cloze": "c1과 중복되고 비교 대상이 없다. 대체 ID: e6-1-2-4-c1"
+      },
+      "proposalFingerprint": "f7894a63c9d2af50c3ae2541953fac54dee245c43f7a7ac6f804e6f598788f4f",
+      "questionRevision": "planning-e5e6-20261006-f7894a63c9d2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc8",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 전체 면의 수는 옆면의 수와 밑면의 수를 이용해 어떻게 구하나요? 밑면이 사각형인 각뿔의 면은 모두 몇 개인가요?",
+      "bAnswer": "옆면의 수에 밑면 $1$개를 더한다. 밑면이 사각형이면 옆면 $4$개와 밑면 $1$개로 모두 $5$개이다.",
+      "bGoal": "옆면 수와 밑면 수를 더해 전체 면의 수를 구한다.",
+      "bReason": "방법을 말하게 하고 사각형 예의 답까지 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면의 수에 밑면 $1$개를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "밑면이 오각형인 각뿔의 면은 옆면 {$5$}개와 밑면 $1$개를 합해 모두 {$6$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$",
+            "$5$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$",
+            "$6$개"
+          ]
+        }
+      ],
+      "cReason": "'$1$개'만 쓰는 빈칸 대신 옆면 수와 전체 면 수를 계산하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1785,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc8",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각뿔의 면의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔의 면의 수는 옆면의 수에 밑면 {$1$개}를 더한 것이다.",
+        "studentC": "각뿔의 면의 수는 옆면의 수에 밑면 □를 더한 것이다.",
+        "answers": [
+          "$1$개"
+        ]
+      },
+      "sourceFingerprint": "d4f98cdc05dfe7e59b76b8933852f2dd08f740da639b5ea0e08886a34e9f58b6",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$6$"
+      ],
+      "cStudentAfter": "밑면이 오각형인 각뿔의 면은 옆면 □개와 밑면 $1$개를 합해 모두 □개이다.",
+      "cMarkedSentence": "밑면이 오각형인 각뿔의 면은 옆면 {$5$}개와 밑면 $1$개를 합해 모두 {$6$}개이다.",
+      "cStudentSentence": "밑면이 오각형인 각뿔의 면은 옆면 □개와 밑면 $1$개를 합해 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": [
+            "$5$개"
+          ]
+        },
+        {
+          "key": "$6$",
+          "equivalents": [
+            "$6$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 전체 면의 수는 옆면의 수와 밑면의 수를 이용해 어떻게 구하나요? 밑면이 사각형인 각뿔의 면은 모두 몇 개인가요?",
+        "answer": "옆면의 수에 밑면 $1$개를 더한다. 밑면이 사각형이면 옆면 $4$개와 밑면 $1$개로 모두 $5$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면의 수에 밑면 $1$개를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 오각형인 각뿔의 면은 옆면 {$5$}개와 밑면 $1$개를 합해 모두 {$6$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$5$",
+            "$5$개"
+          ],
+          [
+            "$6$",
+            "$6$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fbb5e0d468455fba7918f456cfc7a6a651b3e7fc070d77ad5623c1162bf65bf5",
+      "questionRevision": "planning-e5e6-20261006-fbb5e0d46845",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc9",
+      "bDecision": "revise",
+      "bPrompt": "각뿔에서 밑면이 아닌 면과 밑면을 꼭대기 점과 관련지어 구별하는 방법을 설명하세요. 밑면은 꼭대기 점과 어떤 관계인가요?",
+      "bAnswer": "밑면은 옆면들이 모이는 꼭대기 점에 닿지 않는 면이다.",
+      "bGoal": "꼭대기 점을 기준으로 밑면을 찾는 방법을 안다.",
+      "bReason": "모양이 아닌 위치로 밑면을 찾는 방법을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭대기 점에 닿지 않는 면이다",
+            "꼭대기 점과 마주 보는 면이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "각뿔에서 옆면이 모이는 {꼭대기 점}에 닿지 않는 면이 밑면이다.",
+      "cReason": "꼭대기 점에 닿지 않는 면이 밑면이라는 찾는 방법을 낱말 하나로 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'꼭대기 점'과 '꼭짓점'은 같은 답이다.",
+      "sourceIndex": 1786,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc9",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각뿔의 밑면 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "각뿔에서 옆면이 모이는 {꼭대기 점}에 닿지 않는 면이 밑면이다.",
+        "studentC": "각뿔에서 옆면이 모이는 □에 닿지 않는 면이 밑면이다.",
+        "answers": [
+          "꼭대기 점"
+        ]
+      },
+      "sourceFingerprint": "c04074e7b83ec179d727b4e73a9e9470c4f77bea9e3752dcb57f8c752ed59efc",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "각뿔에서 옆면이 모이는 {꼭대기 점}에 닿지 않는 면이 밑면이다.",
+      "cFrozenStudentSentence": "각뿔에서 옆면이 모이는 □에 닿지 않는 면이 밑면이다.",
+      "cProposedAnswers": [
+        "꼭대기 점"
+      ],
+      "cStudentAfter": "각뿔에서 옆면이 모이는 □에 닿지 않는 면이 밑면이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭대기 점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔에서 옆면이 모이는 {꼭대기 점}에 닿지 않는 면이 밑면이다.",
+      "cStudentSentence": "각뿔에서 옆면이 모이는 □에 닿지 않는 면이 밑면이다.",
+      "cSlotAnswers": [
+        {
+          "key": "꼭대기 점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔에서 밑면이 아닌 면과 밑면을 꼭대기 점과 관련지어 구별하는 방법을 설명하세요. 밑면은 꼭대기 점과 어떤 관계인가요?",
+        "answer": "밑면은 옆면들이 모이는 꼭대기 점에 닿지 않는 면이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭대기 점에 닿지 않는 면이다",
+              "꼭대기 점과 마주 보는 면이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔에서 옆면이 모이는 {꼭대기 점}에 닿지 않는 면이 밑면이다.",
+        "acceptedAnswers": [
+          [
+            "꼭대기 점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "09e1af02277f6a11d331446ab2cdf3e389f757d7fe04c85272aa455aaf6a47da",
+      "questionRevision": "planning-e5e6-20261006-09e1af02277f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc10",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "밑면이 삼각형인 각뿔의 면을 안다.",
+      "bReason": "xc8과 xc21이 같은 관계를 더 일반적으로 다룬다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "$4$개를 쓰는 단순 값 빈칸이라 xc19와 겹친다.",
+      "exclusionReason": "xc8, xc19와 중복. 대체 ID: e6-1-2-4-xc8",
+      "exampleNeeded": false,
+      "sourceIndex": 1787,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc10",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "밑면이 삼각형인 각뿔",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 삼각형인 각뿔은 면 {$4$개}가 모두 삼각형이다.",
+        "studentC": "밑면이 삼각형인 각뿔은 면 □가 모두 삼각형이다.",
+        "answers": [
+          "$4$개"
+        ]
+      },
+      "sourceFingerprint": "b0a70b1a36d8cbcbd81385bc255515af40abb0858c59b3a2875ab45d2194b754",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "xc8, xc19와 중복. 대체 ID: e6-1-2-4-xc8",
+        "cloze": "xc8, xc19와 중복. 대체 ID: e6-1-2-4-xc8"
+      },
+      "proposalFingerprint": "6845dc84a200def43c5452f37e8e39719ef0a7ff94a9060c824979e5931171b0",
+      "questionRevision": "planning-e5e6-20261006-6845dc84a200",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc11",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 밑면과 옆면 중 모양이 언제나 삼각형인 면은 어느 것인가요? 그 까닭을 옆면이 만들어지는 방법으로 설명하세요.",
+      "bAnswer": "옆면이 언제나 삼각형이다. 옆면은 밑면의 변 하나와 꼭대기 점을 이어서 만들어지기 때문이다.",
+      "bGoal": "밑면 모양과 상관없이 옆면은 삼각형임을 이유와 함께 안다.",
+      "bReason": "c3의 정의를 이용해 이유를 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 변 하나와 꼭대기를 이어 만들어진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "각뿔의 밑면은 삼각형이 아닐 수 있지만, {옆면}은 언제나 삼각형이다.",
+      "cReason": "밑면 모양은 달라도 옆면은 언제나 삼각형이라는 성질을 묻는 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1788,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc11",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "언제나 삼각형인 면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각뿔의 밑면은 삼각형이 아닐 수 있지만, {옆면}은 언제나 삼각형이다.",
+        "studentC": "각뿔의 밑면은 삼각형이 아닐 수 있지만, □은 언제나 삼각형이다.",
+        "answers": [
+          "옆면"
+        ]
+      },
+      "sourceFingerprint": "339074d94498bde4220192c6cbcdfe7b6682a960249ec2ec79deced7aff9201c",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "각뿔의 밑면은 삼각형이 아닐 수 있지만, {옆면}은 언제나 삼각형이다.",
+      "cFrozenStudentSentence": "각뿔의 밑면은 삼각형이 아닐 수 있지만, □은 언제나 삼각형이다.",
+      "cProposedAnswers": [
+        "옆면"
+      ],
+      "cStudentAfter": "각뿔의 밑면은 삼각형이 아닐 수 있지만, □은 언제나 삼각형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "옆면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔의 밑면은 삼각형이 아닐 수 있지만, {옆면}은 언제나 삼각형이다.",
+      "cStudentSentence": "각뿔의 밑면은 삼각형이 아닐 수 있지만, □은 언제나 삼각형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "옆면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 밑면과 옆면 중 모양이 언제나 삼각형인 면은 어느 것인가요? 그 까닭을 옆면이 만들어지는 방법으로 설명하세요.",
+        "answer": "옆면이 언제나 삼각형이다. 옆면은 밑면의 변 하나와 꼭대기 점을 이어서 만들어지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 변 하나와 꼭대기를 이어 만들어진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 밑면은 삼각형이 아닐 수 있지만, {옆면}은 언제나 삼각형이다.",
+        "acceptedAnswers": [
+          [
+            "옆면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1d5fb3d50ac3541477971adec734c2ed633a64e2ecfc6d084b57d16dd75c3523",
+      "questionRevision": "planning-e5e6-20261006-1d5fb3d50ac3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc12",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 옆면과 각뿔의 옆면은 각각 어떤 모양인가요?",
+      "bAnswer": "각기둥의 옆면은 직사각형이고, 각뿔의 옆면은 삼각형이다.",
+      "bGoal": "각기둥과 각뿔의 옆면 모양을 구별한다.",
+      "bReason": "c4의 밑면 수 구별과 다른 옆면 모양 구별이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각기둥의 옆면은 직사각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각뿔의 옆면은 삼각형이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 {삼각형}이다.",
+      "cReason": "각기둥은 직사각형, 각뿔은 삼각형으로 구별하는 짧은 낱말 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1789,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc12",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각기둥과 각뿔의 옆면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 {삼각형}이다.",
+        "studentC": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 □이다.",
+        "answers": [
+          "삼각형"
+        ]
+      },
+      "sourceFingerprint": "694774b0bfc6de6a8c4fd396c678561b921189550ab60f749fa620e7be993a90",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 {삼각형}이다.",
+      "cFrozenStudentSentence": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 □이다.",
+      "cProposedAnswers": [
+        "삼각형"
+      ],
+      "cStudentAfter": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 {삼각형}이다.",
+      "cStudentSentence": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 옆면과 각뿔의 옆면은 각각 어떤 모양인가요?",
+        "answer": "각기둥의 옆면은 직사각형이고, 각뿔의 옆면은 삼각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각기둥의 옆면은 직사각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각뿔의 옆면은 삼각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 옆면은 직사각형, 각뿔의 옆면은 {삼각형}이다.",
+        "acceptedAnswers": [
+          [
+            "삼각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dd9d84ceadaa4ff962a5511356402886fc6c86cd97425a5224b9bf5706dc23b8",
+      "questionRevision": "planning-e5e6-20261006-dd9d84ceadaa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc13",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 옆면 수를 알면 밑면에 대해 무엇을 알 수 있나요? 또 알 수 없는 것은 무엇인가요?",
+      "bAnswer": "밑면의 변의 수를 알 수 있다. 옆면 하나가 밑면의 변 하나에 이어지기 때문이다. 하지만 변의 길이는 알 수 없다.",
+      "bGoal": "옆면 수로 알 수 있는 정보와 알 수 없는 정보를 구별한다.",
+      "bReason": "옆면 수와 변의 수 관계를 이용하되 길이는 알 수 없음을 짚는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 변의 수를 알 수 있다",
+            "밑면이 몇각형인지 알 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 길이는 알 수 없다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "옆면이 $7$개인 각뿔의 밑면은 변이 {$7$}개인 다각형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$",
+            "$7$개"
+          ]
+        }
+      ],
+      "cReason": "원문은 설명 문장이 길어 낱말만 채우므로 구체적인 옆면 수에서 변의 수를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1790,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc13",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "옆면 수로 알 수 있는 것",
+        "kind": "방법",
+        "level": "중",
+        "definition": "각뿔의 옆면 수와 밑면의 변의 수는 서로 {같다}. 옆면 하나가 밑면의 변 하나에 이어지기 때문이다. 그러나 이 개수로 밑면의 변이 얼마나 긴지는 알 수 없다.",
+        "studentC": "각뿔의 옆면 수와 밑면의 변의 수는 서로 □. 옆면 하나가 밑면의 변 하나에 이어지기 때문이다. 그러나 이 개수로 밑면의 변이 얼마나 긴지는 알 수 없다.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "d00b6f8f4c7f3c0448ea62244c69954d9c6c37e2a41412a32cb67b7bdcfe3645",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [
+        "$7$"
+      ],
+      "cStudentAfter": "옆면이 $7$개인 각뿔의 밑면은 변이 □개인 다각형이다.",
+      "cMarkedSentence": "옆면이 $7$개인 각뿔의 밑면은 변이 {$7$}개인 다각형이다.",
+      "cStudentSentence": "옆면이 $7$개인 각뿔의 밑면은 변이 □개인 다각형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": [
+            "$7$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 옆면 수를 알면 밑면에 대해 무엇을 알 수 있나요? 또 알 수 없는 것은 무엇인가요?",
+        "answer": "밑면의 변의 수를 알 수 있다. 옆면 하나가 밑면의 변 하나에 이어지기 때문이다. 하지만 변의 길이는 알 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 변의 수를 알 수 있다",
+              "밑면이 몇각형인지 알 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이는 알 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "옆면이 $7$개인 각뿔의 밑면은 변이 {$7$}개인 다각형이다.",
+        "acceptedAnswers": [
+          [
+            "$7$",
+            "$7$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "638acf515887e876a5e77866e79e27f3b7e069679be750e62ceab0e534061455",
+      "questionRevision": "planning-e5e6-20261006-638acf515887",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc14",
+      "bDecision": "revise",
+      "bPrompt": "각뿔에서 이웃한 두 옆면이 함께 가지는 선분은 무엇인가요? 그 선분은 어디에서 어디까지 이어지나요?",
+      "bAnswer": "모서리이다. 꼭대기 점에서 밑면의 꼭짓점까지 이어진 모서리이다.",
+      "bGoal": "이웃한 두 옆면이 만나는 모서리를 이해한다.",
+      "bReason": "모서리 이름과 이어지는 위치를 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭대기에서 밑면의 꼭짓점까지 이어진다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 {모서리}를 함께 가진다.",
+      "cReason": "이웃한 두 옆면이 함께 가지는 '모서리'라는 낱말만 묻는 짧은 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1791,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc14",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "이웃한 두 옆면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 {모서리}를 함께 가진다.",
+        "studentC": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 □를 함께 가진다.",
+        "answers": [
+          "모서리"
+        ]
+      },
+      "sourceFingerprint": "ce4abbf6c742d949e1eb34589ec2e36365b4294e172f6dc32664eb03aae67468",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 {모서리}를 함께 가진다.",
+      "cFrozenStudentSentence": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 □를 함께 가진다.",
+      "cProposedAnswers": [
+        "모서리"
+      ],
+      "cStudentAfter": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 □를 함께 가진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모서리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 {모서리}를 함께 가진다.",
+      "cStudentSentence": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 □를 함께 가진다.",
+      "cSlotAnswers": [
+        {
+          "key": "모서리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔에서 이웃한 두 옆면이 함께 가지는 선분은 무엇인가요? 그 선분은 어디에서 어디까지 이어지나요?",
+        "answer": "모서리이다. 꼭대기 점에서 밑면의 꼭짓점까지 이어진 모서리이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모서리이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭대기에서 밑면의 꼭짓점까지 이어진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 이웃한 두 옆면은 꼭대기에서 밑면 꼭짓점까지 이어진 {모서리}를 함께 가진다.",
+        "acceptedAnswers": [
+          [
+            "모서리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "377c9a496bed82bea9dfacd0b77398f94b6e84a1aa790b34ed04d39d66d2436c",
+      "questionRevision": "planning-e5e6-20261006-377c9a496bed",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc15",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 옆면 중에 밑면과 평행한 면이 있나요? 있는지 없는지 말하고, 옆면과 밑면이 어떻게 만나는지로 까닭을 설명하세요.",
+      "bAnswer": "없다. 옆면은 각각 밑면과 변 하나를 함께 가지며 만나므로 밑면과 평행하지 않다.",
+      "bGoal": "서로 만나는 면은 평행하지 않다는 관계로 이유를 설명한다.",
+      "bReason": "각기둥의 평행한 두 밑면과 대비되는 각뿔의 특징이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행한 옆면은 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면이 밑면과 변 하나를 함께 가지며 만난다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "평행한 두 면은 서로 만나지 않는다. 각뿔의 옆면은 밑면과 한 변을 함께 가지므로 밑면과 서로 {만난다}. 따라서 밑면과 평행한 옆면은 {없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "만난다",
+            "만나"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "하나도 없다"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 평행의 뜻을 이용해 '만난다/없다'만 판단하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1792,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc15",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "밑면과 평행한 면이 없다",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각뿔의 옆면은 각각 밑면과 {변 하나를 함께 가지며 만나므로} 밑면과 평행하지 않다.",
+        "studentC": "각뿔의 옆면은 각각 밑면과 □ 밑면과 평행하지 않다.",
+        "answers": [
+          "변 하나를 함께 가지며 만나므로"
+        ]
+      },
+      "sourceFingerprint": "a14ac0d97b140978f3c6f37a62f08020f1a021784adb1163620497ed32fe0a33",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [
+        "만난다",
+        "없다"
+      ],
+      "cStudentAfter": "평행한 두 면은 서로 만나지 않는다. 각뿔의 옆면은 밑면과 한 변을 함께 가지므로 밑면과 서로 □. 따라서 밑면과 평행한 옆면은 □.",
+      "cMarkedSentence": "평행한 두 면은 서로 만나지 않는다. 각뿔의 옆면은 밑면과 한 변을 함께 가지므로 밑면과 서로 {만난다}. 따라서 밑면과 평행한 옆면은 {없다}.",
+      "cStudentSentence": "평행한 두 면은 서로 만나지 않는다. 각뿔의 옆면은 밑면과 한 변을 함께 가지므로 밑면과 서로 □. 따라서 밑면과 평행한 옆면은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "만난다",
+          "equivalents": [
+            "만나"
+          ]
+        },
+        {
+          "key": "없다",
+          "equivalents": [
+            "하나도 없다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 옆면 중에 밑면과 평행한 면이 있나요? 있는지 없는지 말하고, 옆면과 밑면이 어떻게 만나는지로 까닭을 설명하세요.",
+        "answer": "없다. 옆면은 각각 밑면과 변 하나를 함께 가지며 만나므로 밑면과 평행하지 않다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 옆면은 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면이 밑면과 변 하나를 함께 가지며 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평행한 두 면은 서로 만나지 않는다. 각뿔의 옆면은 밑면과 한 변을 함께 가지므로 밑면과 서로 {만난다}. 따라서 밑면과 평행한 옆면은 {없다}.",
+        "acceptedAnswers": [
+          [
+            "만난다",
+            "만나"
+          ],
+          [
+            "없다",
+            "하나도 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8a45aa4c62947090588f9129b0c8dbd8c03f709a5429404ae6806567ece207bf",
+      "questionRevision": "planning-e5e6-20261006-8a45aa4c6294",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc16",
+      "bDecision": "revise",
+      "bPrompt": "각뿔을 거꾸로 세워 놓으면 밑면은 어느 면인가요? 놓인 방향과 상관없이 밑면을 정하는 기준을 말하세요.",
+      "bAnswer": "놓인 방향과 상관없이 같은 면이 밑면이다. 꼭대기 점과 마주 보는 다각형 면이다.",
+      "bGoal": "밑면이 놓인 방향이 아니라 꼭대기와의 관계로 정해짐을 안다.",
+      "bReason": "아래쪽 면이 밑면이라는 오개념을 바로잡는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "놓인 방향과 상관없이 같은 면이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭대기와 마주 보는 면이다",
+            "꼭대기 점에 닿지 않는 면이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 구절을 외우게 하고 xc9와 겹친다.",
+      "exclusionReason": "C는 xc9와 중복. 대체 ID: e6-1-2-4-xc9",
+      "exampleNeeded": false,
+      "sourceIndex": 1793,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc16",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "거꾸로 세운 각뿔의 밑면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각뿔을 거꾸로 세워도 밑면은 {꼭대기와 마주 보는 다각형}이다.",
+        "studentC": "각뿔을 거꾸로 세워도 밑면은 □이다.",
+        "answers": [
+          "꼭대기와 마주 보는 다각형"
+        ]
+      },
+      "sourceFingerprint": "e7a2b766daac3dd64a19100b7ef8bce17cf40bf977650176b4c05a7fd4147291",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "각뿔을 거꾸로 세워 놓으면 밑면은 어느 면인가요? 놓인 방향과 상관없이 밑면을 정하는 기준을 말하세요.",
+        "answer": "놓인 방향과 상관없이 같은 면이 밑면이다. 꼭대기 점과 마주 보는 다각형 면이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "놓인 방향과 상관없이 같은 면이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭대기와 마주 보는 면이다",
+              "꼭대기 점에 닿지 않는 면이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 xc9와 중복. 대체 ID: e6-1-2-4-xc9"
+      },
+      "proposalFingerprint": "b71cac109e72272c427d5f4b0e3a5711df8116e3bf638efb64a1df71b1e50ae9",
+      "questionRevision": "planning-e5e6-20261006-b71cac109e72",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc17",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 모든 옆면이 반드시 합동이 되는 경우를 하나 말해 보세요. 밑면의 모양과 꼭대기 점의 위치를 쓰세요.",
+      "bAnswer": "밑면이 정다각형이고 꼭대기 점이 밑면 한가운데 바로 위에 있으면 옆면이 모두 합동이다.",
+      "bGoal": "옆면이 모두 합동이 되는 조건을 안다.",
+      "bReason": "합동 개념을 각뿔에 적용하되 '하나의 경우'를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 정다각형이다",
+            "밑면이 정삼각형이나 정사각형 같은 정다각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭대기가 밑면 한가운데 위에 있다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 {정다각형}이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+      "cReason": "밑면 조건이 정다각형이라는 전제 조건을 묻는 짧은 낱말 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'정다각형'은 정사각형 같은 구체적 예도 인정할 수 있다.",
+      "sourceIndex": 1794,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc17",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "합동인 옆면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 {정다각형}이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+        "studentC": "밑면이 □이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+        "answers": [
+          "정다각형"
+        ]
+      },
+      "sourceFingerprint": "385eabb320268273213d0b6ec106a50853bf39a6399d474427f564a83d015d9e",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "밑면이 {정다각형}이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+      "cFrozenStudentSentence": "밑면이 □이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+      "cProposedAnswers": [
+        "정다각형"
+      ],
+      "cStudentAfter": "밑면이 □이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정다각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 {정다각형}이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+      "cStudentSentence": "밑면이 □이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정다각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 모든 옆면이 반드시 합동이 되는 경우를 하나 말해 보세요. 밑면의 모양과 꼭대기 점의 위치를 쓰세요.",
+        "answer": "밑면이 정다각형이고 꼭대기 점이 밑면 한가운데 바로 위에 있으면 옆면이 모두 합동이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 정다각형이다",
+              "밑면이 정삼각형이나 정사각형 같은 정다각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭대기가 밑면 한가운데 위에 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 {정다각형}이고 꼭대기가 밑면 한가운데 위에 있으면 옆면은 모두 합동이다.",
+        "acceptedAnswers": [
+          [
+            "정다각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d61815467894a249ca5745e791019cc45585cb553e6a60380242d521f0d8e65e",
+      "questionRevision": "planning-e5e6-20261006-d61815467894",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc18",
+      "bDecision": "revise",
+      "bPrompt": "면이 $7$개인 각뿔의 밑면은 몇 각형인가요? 밑면 수와 옆면 수를 이용해 구하는 방법도 설명하세요.",
+      "bAnswer": "전체 면 $7$개에서 밑면 $1$개를 빼면 옆면이 $6$개이다. 옆면 수는 밑면의 변의 수와 같으므로 밑면은 육각형이다.",
+      "bGoal": "전체 면의 수에서 밑면의 변의 수를 거꾸로 구한다.",
+      "bReason": "xc8의 반대 방향 추론을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 면에서 밑면 $1$개를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면 $6$개이므로 변이 $6$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각형이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "두 빈칸이 모두 같은 숫자 $1$이라 값 빈칸으로 가치가 낮다.",
+      "exclusionReason": "C는 xc8·xc13과 겹친다. 대체 ID: e6-1-2-4-xc8",
+      "exampleNeeded": false,
+      "sourceIndex": 1795,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc18",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "면의 수로 밑면의 변 수 알기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각뿔의 전체 면에서 밑면 {$1$}개를 제외하면 옆면들이다. 밑면의 변 하나마다 옆면이 {$1$}개씩 있으므로 남은 면의 수가 밑면의 변 수이다.",
+        "studentC": "각뿔의 전체 면에서 밑면 □개를 제외하면 옆면들이다. 밑면의 변 하나마다 옆면이 □개씩 있으므로 남은 면의 수가 밑면의 변 수이다.",
+        "answers": [
+          "$1$",
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "adcfdf3277c25bb59f1d53990ff7599d12c280fdd2292c820025b2896c19c271",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "면이 $7$개인 각뿔의 밑면은 몇 각형인가요? 밑면 수와 옆면 수를 이용해 구하는 방법도 설명하세요.",
+        "answer": "전체 면 $7$개에서 밑면 $1$개를 빼면 옆면이 $6$개이다. 옆면 수는 밑면의 변의 수와 같으므로 밑면은 육각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 면에서 밑면 $1$개를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면 $6$개이므로 변이 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "육각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 xc8·xc13과 겹친다. 대체 ID: e6-1-2-4-xc8"
+      },
+      "proposalFingerprint": "ac93e61f203cf6d7982afcc980c520bf881622f43582f35cf745d5ffa16dc65b",
+      "questionRevision": "planning-e5e6-20261006-ac93e61f203c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc19",
+      "bDecision": "revise",
+      "bPrompt": "각뿔 중 면의 수가 가장 적은 것은 밑면이 몇 각형인 각뿔인가요? 그때 면은 몇 개인지와 까닭도 설명하세요.",
+      "bAnswer": "밑면이 삼각형인 각뿔이다. 다각형의 변은 적어도 $3$개이므로 옆면이 적어도 $3$개이고, 밑면 $1$개를 더해 면은 $4$개이다.",
+      "bGoal": "밑면의 변이 가장 적을 때 면이 가장 적음을 추론한다.",
+      "bReason": "4개라는 값만이 아니라 가장 작은 변의 수를 이유로 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 삼각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다각형의 변은 적어도 $3$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면은 $4$개이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "각뿔의 밑면은 변이 적어도 {$3$}개이므로 각뿔의 면은 적어도 {$4$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$3$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "$4$개"
+          ]
+        }
+      ],
+      "cReason": "원문의 값 하나보다 '변이 $3$개 이상'이라는 이유를 포함한 빈칸이 낫다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1796,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc19",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "면이 가장 적은 각뿔",
+        "kind": "성질",
+        "level": "상",
+        "definition": "면이 가장 적은 각뿔은 밑면이 삼각형인 각뿔로 면이 {$4$개}이다.",
+        "studentC": "면이 가장 적은 각뿔은 밑면이 삼각형인 각뿔로 면이 □이다.",
+        "answers": [
+          "$4$개"
+        ]
+      },
+      "sourceFingerprint": "d954047b9008e07e6c1597223159a52fdf473b865db674f27cbf83e351027af7",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$4$"
+      ],
+      "cStudentAfter": "각뿔의 밑면은 변이 적어도 □개이므로 각뿔의 면은 적어도 □개이다.",
+      "cMarkedSentence": "각뿔의 밑면은 변이 적어도 {$3$}개이므로 각뿔의 면은 적어도 {$4$}개이다.",
+      "cStudentSentence": "각뿔의 밑면은 변이 적어도 □개이므로 각뿔의 면은 적어도 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "$3$개"
+          ]
+        },
+        {
+          "key": "$4$",
+          "equivalents": [
+            "$4$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔 중 면의 수가 가장 적은 것은 밑면이 몇 각형인 각뿔인가요? 그때 면은 몇 개인지와 까닭도 설명하세요.",
+        "answer": "밑면이 삼각형인 각뿔이다. 다각형의 변은 적어도 $3$개이므로 옆면이 적어도 $3$개이고, 밑면 $1$개를 더해 면은 $4$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 삼각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다각형의 변은 적어도 $3$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면은 $4$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 밑면은 변이 적어도 {$3$}개이므로 각뿔의 면은 적어도 {$4$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "$3$개"
+          ],
+          [
+            "$4$",
+            "$4$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6fd32bd34bed9d5f2a1111c0737d27a41d5152321fd9bfb84a45d4afc68ecf43",
+      "questionRevision": "planning-e5e6-20261006-6fd32bd34bed",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc20",
+      "bDecision": "revise",
+      "bPrompt": "밑면의 모양이 같은 각기둥과 각뿔 중 어느 쪽의 면이 몇 개 더 많은가요? 밑면과 옆면의 수를 비교해 까닭을 설명하세요.",
+      "bAnswer": "각기둥이 $1$개 더 많다. 옆면의 수는 같고 밑면이 각기둥은 $2$개, 각뿔은 $1$개이기 때문이다.",
+      "bGoal": "각기둥과 각뿔의 면의 수를 밑면 수로 비교한다.",
+      "bReason": "c4와 xc8의 관계를 합쳐 비교 추론을 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각기둥이 $1$개 더 많다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면 수는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면이 각기둥은 $2$개, 각뿔은 $1$개이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 {$1$개} 많다.",
+      "cReason": "밑면 모양이 같다는 조건에서 면 수 차이를 묻는 짧은 비교 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1797,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc20",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각기둥과 각뿔의 면 수 비교",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 {$1$개} 많다.",
+        "studentC": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 □ 많다.",
+        "answers": [
+          "$1$개"
+        ]
+      },
+      "sourceFingerprint": "77323cc50046afe84c400d5b6176875463045c69b17d3e8d55773eb7737314a9",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 {$1$개} 많다.",
+      "cFrozenStudentSentence": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 □ 많다.",
+      "cProposedAnswers": [
+        "$1$개"
+      ],
+      "cStudentAfter": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 □ 많다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 {$1$개} 많다.",
+      "cStudentSentence": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 □ 많다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면의 모양이 같은 각기둥과 각뿔 중 어느 쪽의 면이 몇 개 더 많은가요? 밑면과 옆면의 수를 비교해 까닭을 설명하세요.",
+        "answer": "각기둥이 $1$개 더 많다. 옆면의 수는 같고 밑면이 각기둥은 $2$개, 각뿔은 $1$개이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각기둥이 $1$개 더 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면 수는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면이 각기둥은 $2$개, 각뿔은 $1$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면 모양이 같으면 각기둥이 각뿔보다 면이 {$1$개} 많다.",
+        "acceptedAnswers": [
+          [
+            "$1$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7b8e14feb69bc079d8dca82e92faa86966320e6cc62a392f0f7586fcafd7d5a5",
+      "questionRevision": "planning-e5e6-20261006-7b8e14feb69b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc21",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 모든 면이 삼각형이 되려면 밑면이 어떤 모양이어야 하나요? 옆면의 모양을 이용해 까닭을 설명하세요.",
+      "bAnswer": "밑면이 삼각형이어야 한다. 옆면은 항상 삼각형이므로 밑면까지 삼각형이면 모든 면이 삼각형이다.",
+      "bGoal": "옆면이 언제나 삼각형이라는 성질로 조건을 추론한다.",
+      "bReason": "xc11의 성질을 사용해 필요한 밑면 조건을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 삼각형이어야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면은 항상 삼각형이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "모든 면이 삼각형인 각뿔은 {밑면}이 삼각형인 각뿔뿐이다.",
+      "cReason": "모든 면이 삼각형이 되려면 어느 면이 삼각형이어야 하는지 묻는 낱말 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1798,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc21",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "모든 면이 삼각형인 각뿔",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모든 면이 삼각형인 각뿔은 {밑면}이 삼각형인 각뿔뿐이다.",
+        "studentC": "모든 면이 삼각형인 각뿔은 □이 삼각형인 각뿔뿐이다.",
+        "answers": [
+          "밑면"
+        ]
+      },
+      "sourceFingerprint": "eef6f4cb2712041c564f3879bf8ae68e5229a90cf44b08cb57406fdc5baff750",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "모든 면이 삼각형인 각뿔은 {밑면}이 삼각형인 각뿔뿐이다.",
+      "cFrozenStudentSentence": "모든 면이 삼각형인 각뿔은 □이 삼각형인 각뿔뿐이다.",
+      "cProposedAnswers": [
+        "밑면"
+      ],
+      "cStudentAfter": "모든 면이 삼각형인 각뿔은 □이 삼각형인 각뿔뿐이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "모든 면이 삼각형인 각뿔은 {밑면}이 삼각형인 각뿔뿐이다.",
+      "cStudentSentence": "모든 면이 삼각형인 각뿔은 □이 삼각형인 각뿔뿐이다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 모든 면이 삼각형이 되려면 밑면이 어떤 모양이어야 하나요? 옆면의 모양을 이용해 까닭을 설명하세요.",
+        "answer": "밑면이 삼각형이어야 한다. 옆면은 항상 삼각형이므로 밑면까지 삼각형이면 모든 면이 삼각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 삼각형이어야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면은 항상 삼각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모든 면이 삼각형인 각뿔은 {밑면}이 삼각형인 각뿔뿐이다.",
+        "acceptedAnswers": [
+          [
+            "밑면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1324aab3f8a11e01fb2a836c92240fc57252efcd7261a2c74844f683428665a5",
+      "questionRevision": "planning-e5e6-20261006-1324aab3f8a1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc22",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 옆면인 삼각형의 세 꼭짓점은 각각 어디에 있는 점인가요?",
+      "bAnswer": "밑면의 이웃한 두 꼭짓점과 각뿔의 꼭짓점이다.",
+      "bGoal": "옆면 삼각형의 꼭짓점 위치를 안다.",
+      "bReason": "옆면이 밑면의 한 변과 꼭대기로 만들어진다는 관계를 꼭짓점으로 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 이웃한 두 꼭짓점이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각뿔의 꼭짓점이다",
+            "꼭대기 점이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "각뿔의 옆면인 삼각형은 밑면의 꼭짓점 {$2$}개와 각뿔의 꼭짓점 {$1$}개를 꼭짓점으로 가진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "$2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$",
+            "$1$개"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 꼭짓점의 개수로 옆면 구조를 확인하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1799,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc22",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "옆면 삼각형의 꼭짓점",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각뿔의 옆면인 삼각형은 {밑면의 이웃한 두 꼭짓점}과 {각뿔의 꼭짓점}을 꼭짓점으로 가진다.",
+        "studentC": "각뿔의 옆면인 삼각형은 □과 □을 꼭짓점으로 가진다.",
+        "answers": [
+          "밑면의 이웃한 두 꼭짓점",
+          "각뿔의 꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "da46fd873eb9e6871321efe98c1cb90193ac153423a7e6794f639e99bf325a09",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$1$"
+      ],
+      "cStudentAfter": "각뿔의 옆면인 삼각형은 밑면의 꼭짓점 □개와 각뿔의 꼭짓점 □개를 꼭짓점으로 가진다.",
+      "cMarkedSentence": "각뿔의 옆면인 삼각형은 밑면의 꼭짓점 {$2$}개와 각뿔의 꼭짓점 {$1$}개를 꼭짓점으로 가진다.",
+      "cStudentSentence": "각뿔의 옆면인 삼각형은 밑면의 꼭짓점 □개와 각뿔의 꼭짓점 □개를 꼭짓점으로 가진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "$2$개"
+          ]
+        },
+        {
+          "key": "$1$",
+          "equivalents": [
+            "$1$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 옆면인 삼각형의 세 꼭짓점은 각각 어디에 있는 점인가요?",
+        "answer": "밑면의 이웃한 두 꼭짓점과 각뿔의 꼭짓점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 이웃한 두 꼭짓점이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각뿔의 꼭짓점이다",
+              "꼭대기 점이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 옆면인 삼각형은 밑면의 꼭짓점 {$2$}개와 각뿔의 꼭짓점 {$1$}개를 꼭짓점으로 가진다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "$2$개"
+          ],
+          [
+            "$1$",
+            "$1$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3495d4808ee8096446e8ccdbce6312814b5e8d755f2413e376a4a6c79ee769ce",
+      "questionRevision": "planning-e5e6-20261006-3495d4808ee8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc23",
+      "bDecision": "revise",
+      "bPrompt": "각뿔 중 네 면이 모두 삼각형인 것이 있습니다. 이 입체에서 밑면은 어떻게 정할 수 있나요?",
+      "bAnswer": "네 면이 모두 삼각형이므로 어느 면이든 밑면으로 정할 수 있다. 밑면을 정하면 그 면에 닿지 않는 점이 꼭대기가 된다.",
+      "bGoal": "모든 면이 삼각형인 각뿔에서 밑면과 꼭대기가 짝으로 정해짐을 안다.",
+      "bReason": "밑면이 하나로 정해져 있지 않다는 점을 이해하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어느 면이든 밑면으로 정할 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면을 정하면 닿지 않는 점이 꼭대기가 된다",
+            "꼭대기를 정하면 마주 보는 면이 밑면이 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'면이 모두 삼각형'을 외우는 긴 구절이며 B가 더 유용하게 다룬다.",
+      "exclusionReason": "C는 xc9·xc21과 겹친다. 대체 ID: e6-1-2-4-xc9",
+      "exampleNeeded": false,
+      "sourceIndex": 1800,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc23",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "꼭대기로 정하는 밑면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면이 삼각형인 각뿔은 {면이 모두 삼각형}이라 꼭대기를 정해야 밑면이 정해진다.",
+        "studentC": "밑면이 삼각형인 각뿔은 □이라 꼭대기를 정해야 밑면이 정해진다.",
+        "answers": [
+          "면이 모두 삼각형"
+        ]
+      },
+      "sourceFingerprint": "da851de2380474d94bd4af40a70ef0d80f92d74c1366bfef9721883a0e7ce28a",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "각뿔 중 네 면이 모두 삼각형인 것이 있습니다. 이 입체에서 밑면은 어떻게 정할 수 있나요?",
+        "answer": "네 면이 모두 삼각형이므로 어느 면이든 밑면으로 정할 수 있다. 밑면을 정하면 그 면에 닿지 않는 점이 꼭대기가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어느 면이든 밑면으로 정할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면을 정하면 닿지 않는 점이 꼭대기가 된다",
+              "꼭대기를 정하면 마주 보는 면이 밑면이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 xc9·xc21과 겹친다. 대체 ID: e6-1-2-4-xc9"
+      },
+      "proposalFingerprint": "2aa964395db23fa62821b8b11d2bc7e9bc2bb79ff45a08151e98890d059917d1",
+      "questionRevision": "planning-e5e6-20261006-2aa964395db2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc25",
+      "bDecision": "revise",
+      "bPrompt": "어떤 입체도형이 각기둥인지 각뿔인지 구별하려면 밑면과 옆면에서 무엇을 확인하나요?",
+      "bAnswer": "평행하고 합동인 밑면 두 개가 있으면 각기둥이다. 옆면들이 한 점에 모이면 각뿔이다.",
+      "bGoal": "두 입체를 구별하는 기준을 적용한다.",
+      "bReason": "c4의 개별 사실을 판별 방법으로 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 평행하고 합동인 두 개이면 각기둥이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면이 한 점에 모이면 각뿔이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "서로 평행하고 합동인 밑면이 두 개이면 {각기둥}이고, 옆면들이 한 점에 모이면 {각뿔}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "각기둥"
+          ]
+        },
+        {
+          "anyOf": [
+            "각뿔"
+          ]
+        }
+      ],
+      "cReason": "어색한 구절 대신 확인한 기준으로 도형 이름을 고르게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1801,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc25",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "각기둥인지 각뿔인지 가르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각기둥과 각뿔 가운데, 밑면 두 개가 평행하고 합동이면 각기둥, 옆면이 {한 점에 모이면} 각뿔이다.",
+        "studentC": "각기둥과 각뿔 가운데, 밑면 두 개가 평행하고 합동이면 각기둥, 옆면이 □ 각뿔이다.",
+        "answers": [
+          "한 점에 모이면"
+        ]
+      },
+      "sourceFingerprint": "780b7fcc789da5b0ac8db4c4974910d899a444811e79f600c163a18c2eea01c0",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [
+        "각기둥",
+        "각뿔"
+      ],
+      "cStudentAfter": "서로 평행하고 합동인 밑면이 두 개이면 □이고, 옆면들이 한 점에 모이면 □이다.",
+      "cMarkedSentence": "서로 평행하고 합동인 밑면이 두 개이면 {각기둥}이고, 옆면들이 한 점에 모이면 {각뿔}이다.",
+      "cStudentSentence": "서로 평행하고 합동인 밑면이 두 개이면 □이고, 옆면들이 한 점에 모이면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "각기둥",
+          "equivalents": []
+        },
+        {
+          "key": "각뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 입체도형이 각기둥인지 각뿔인지 구별하려면 밑면과 옆면에서 무엇을 확인하나요?",
+        "answer": "평행하고 합동인 밑면 두 개가 있으면 각기둥이다. 옆면들이 한 점에 모이면 각뿔이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 평행하고 합동인 두 개이면 각기둥이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면이 한 점에 모이면 각뿔이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서로 평행하고 합동인 밑면이 두 개이면 {각기둥}이고, 옆면들이 한 점에 모이면 {각뿔}이다.",
+        "acceptedAnswers": [
+          [
+            "각기둥"
+          ],
+          [
+            "각뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bb80caaff4403a54a2d20110b6514e60adcc717d2ec284938c9021af162c5c44",
+      "questionRevision": "planning-e5e6-20261006-bb80caaff440",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-xc26",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 옆면 수는 밑면의 꼭짓점 수와 같을까요? 다각형의 변과 꼭짓점의 수 관계를 이용해 설명하세요.",
+      "bAnswer": "같다. 다각형은 변의 수와 꼭짓점의 수가 같고, 각뿔의 옆면 수는 밑면의 변의 수와 같기 때문이다.",
+      "bGoal": "변의 수와 꼭짓점의 수가 같다는 사실을 연결해 추론한다.",
+      "bReason": "xc3의 관계를 꼭짓점 수로 확장한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다각형의 변의 수와 꼭짓점의 수는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면 수는 밑면 변의 수와 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'같다'를 쓰는 단순 빈칸으로 xc3와 겹친다.",
+      "exclusionReason": "C는 xc3·xc13과 중복. 대체 ID: e6-1-2-4-xc3",
+      "exampleNeeded": false,
+      "sourceIndex": 1802,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-4-xc26",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "term": "옆면 수와 밑면 꼭짓점 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각뿔의 옆면의 수는 밑면의 꼭짓점 수와도 {같다}.",
+        "studentC": "각뿔의 옆면의 수는 밑면의 꼭짓점 수와도 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "4b130d648dab5b23869dab9d2121bde90c4f1e46f3af51f46569166fa626abcc",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "각뿔의 옆면 수는 밑면의 꼭짓점 수와 같을까요? 다각형의 변과 꼭짓점의 수 관계를 이용해 설명하세요.",
+        "answer": "같다. 다각형은 변의 수와 꼭짓점의 수가 같고, 각뿔의 옆면 수는 밑면의 변의 수와 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다각형의 변의 수와 꼭짓점의 수는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면 수는 밑면 변의 수와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 xc3·xc13과 중복. 대체 ID: e6-1-2-4-xc3"
+      },
+      "proposalFingerprint": "f73da94bf96298bb53c77f5e44cad3dd79ffb96ac83e8cfce9bc86dabf65c671",
+      "questionRevision": "planning-e5e6-20261006-f73da94bf962",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "삼각뿔이라는 이름과 밑면 모양의 대응을 확인한다.",
+      "bReason": "이름 짓는 규칙은 e6-1-2-5-c1이 더 일반적으로 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "밑면이 {삼각형}인 각뿔을 삼각뿔이라 한다.",
+      "cReason": "삼각뿔의 밑면이 삼각형임을 확인하는 짧은 낱말 문장이라 대표로 남긴다.",
+      "exclusionReason": "B: e6-1-2-5-c1과 중복이며 이름 하나의 대응만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1803,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "삼각뿔",
+        "kind": "정의",
+        "level": "하",
+        "definition": "밑면이 {삼각형}인 각뿔을 삼각뿔이라 한다.",
+        "studentC": "밑면이 □인 각뿔을 삼각뿔이라 한다.",
+        "answers": [
+          "삼각형"
+        ]
+      },
+      "sourceFingerprint": "52143d773535681bc113d9baf7d5760cae9a5dbb4802c03125e126c79667f628",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "밑면이 {삼각형}인 각뿔을 삼각뿔이라 한다.",
+      "cFrozenStudentSentence": "밑면이 □인 각뿔을 삼각뿔이라 한다.",
+      "cProposedAnswers": [
+        "삼각형"
+      ],
+      "cStudentAfter": "밑면이 □인 각뿔을 삼각뿔이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 {삼각형}인 각뿔을 삼각뿔이라 한다.",
+      "cStudentSentence": "밑면이 □인 각뿔을 삼각뿔이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "밑면이 {삼각형}인 각뿔을 삼각뿔이라 한다.",
+        "acceptedAnswers": [
+          [
+            "삼각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B: e6-1-2-5-c1과 중복이며 이름 하나의 대응만 묻는다."
+      },
+      "proposalFingerprint": "d047a6c8f880b438d7597d02e66f16b7533bd40c01a44e9916fb63af2bb875b3",
+      "questionRevision": "planning-e5e6-20261006-d047a6c8f880",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "사각뿔의 밑면 모양과 이름의 대응을 확인한다.",
+      "bReason": "xc1, c1과 같은 규칙을 반복한다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "삼각뿔 문장과 구조가 같고 밑면 이름만 바뀐다.",
+      "exclusionReason": "중복: 대체 e6-1-2-5-c1, e6-1-2-5-xc1.",
+      "exampleNeeded": false,
+      "sourceIndex": 1804,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "사각뿔",
+        "kind": "정의",
+        "level": "하",
+        "definition": "밑면이 {사각형}인 각뿔을 사각뿔이라 한다.",
+        "studentC": "밑면이 □인 각뿔을 사각뿔이라 한다.",
+        "answers": [
+          "사각형"
+        ]
+      },
+      "sourceFingerprint": "75aaf28b9f503c3950ba2d586535e0593a7883d3f4817c20f545be11ba9f5f7f",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "중복: 대체 e6-1-2-5-c1, e6-1-2-5-xc1.",
+        "cloze": "중복: 대체 e6-1-2-5-c1, e6-1-2-5-xc1."
+      },
+      "proposalFingerprint": "76d7d03014ba60695db0f40b2a8f6558923d484cc4eccb83c346a58e3cf3ac95",
+      "questionRevision": "planning-e5e6-20261006-76d7d03014ba",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "오각뿔의 밑면 모양과 이름의 대응을 확인한다.",
+      "bReason": "c1 원문이 이미 오각뿔 예를 포함한다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "같은 낱말 대응의 반복이다.",
+      "exclusionReason": "중복: 대체 e6-1-2-5-c1, e6-1-2-5-xc1.",
+      "exampleNeeded": false,
+      "sourceIndex": 1805,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "오각뿔",
+        "kind": "정의",
+        "level": "하",
+        "definition": "밑면이 {오각형}인 각뿔을 오각뿔이라 한다.",
+        "studentC": "밑면이 □인 각뿔을 오각뿔이라 한다.",
+        "answers": [
+          "오각형"
+        ]
+      },
+      "sourceFingerprint": "e62b39d7bdf07869eddf9ebf658ab019b62c4be3939ec4691038b0c564290ea6",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "중복: 대체 e6-1-2-5-c1, e6-1-2-5-xc1.",
+        "cloze": "중복: 대체 e6-1-2-5-c1, e6-1-2-5-xc1."
+      },
+      "proposalFingerprint": "e5ea9d06ff93dc6262c831cbb75b1219d718a9423f8a08a09ca1eceff5372d1b",
+      "questionRevision": "planning-e5e6-20261006-e5ea9d06ff93",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "각뿔의 꼭짓점이 밑면과 꼭대기에 있음을 확인한다.",
+      "bReason": "c4와 c3이 같은 내용을 더 명확히 다룬다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'꼭대기 한 점'을 외우게 하는 긴 구절 빈칸이다.",
+      "exclusionReason": "중복: 대체 e6-1-2-5-c4.",
+      "exampleNeeded": false,
+      "sourceIndex": 1806,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "꼭짓점이 있는 곳",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔의 꼭짓점은 밑면의 꼭짓점들과 {꼭대기 한 점}이다.",
+        "studentC": "각뿔의 꼭짓점은 밑면의 꼭짓점들과 □이다.",
+        "answers": [
+          "꼭대기 한 점"
+        ]
+      },
+      "sourceFingerprint": "36c2d02d74c19fae4d0b20a34768fe65d35abddba1b313bc0d10141eb2fb31f1",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "중복: 대체 e6-1-2-5-c4.",
+        "cloze": "중복: 대체 e6-1-2-5-c4."
+      },
+      "proposalFingerprint": "3286f69ec2c513afd6bbbc0868d97c9218c4552efe81e509ed49dae063f06757",
+      "questionRevision": "planning-e5e6-20261006-3286f69ec2c5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc5",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 모서리는 위치에 따라 어떤 두 종류로 나뉘는지 설명하시오.",
+      "bAnswer": "밑면의 둘레에 있는 모서리와, 꼭대기에서 밑면의 꼭짓점으로 이어지는 모서리로 나뉜다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 둘레에 있는 모서리",
+            "밑면의 변이 되는 모서리"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭대기에서 밑면의 꼭짓점으로 이어진 모서리",
+            "꼭대기로 가는 모서리",
+            "옆면의 모서리"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "각뿔의 모서리를 밑면의 모서리와 꼭대기로 가는 모서리로 구분한다.",
+      "bReason": "모서리 수 세기의 바탕이 되는 분류를 직접 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "각뿔의 모서리는 밑면의 둘레에 있는 모서리와 {꼭대기}에서 밑면의 꼭짓점으로 이어진 모서리로 나뉜다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭대기",
+            "꼭대기 꼭짓점"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 낱말 하나로 줄여 외우기 부담을 없앤다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1807,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc5",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "두 갈래의 모서리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각뿔의 모서리에는 밑면의 둘레에 있는 것과 {꼭대기로 이어진} 것이 있다.",
+        "studentC": "각뿔의 모서리에는 밑면의 둘레에 있는 것과 □ 것이 있다.",
+        "answers": [
+          "꼭대기로 이어진"
+        ]
+      },
+      "sourceFingerprint": "74c14dede75a71bbec8c777526851a5c49eda4515ee73ebe69548e0246aa76c2",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "꼭대기"
+      ],
+      "cStudentAfter": "각뿔의 모서리는 밑면의 둘레에 있는 모서리와 □에서 밑면의 꼭짓점으로 이어진 모서리로 나뉜다.",
+      "cMarkedSentence": "각뿔의 모서리는 밑면의 둘레에 있는 모서리와 {꼭대기}에서 밑면의 꼭짓점으로 이어진 모서리로 나뉜다.",
+      "cStudentSentence": "각뿔의 모서리는 밑면의 둘레에 있는 모서리와 □에서 밑면의 꼭짓점으로 이어진 모서리로 나뉜다.",
+      "cSlotAnswers": [
+        {
+          "key": "꼭대기",
+          "equivalents": [
+            "꼭대기 꼭짓점"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 모서리는 위치에 따라 어떤 두 종류로 나뉘는지 설명하시오.",
+        "answer": "밑면의 둘레에 있는 모서리와, 꼭대기에서 밑면의 꼭짓점으로 이어지는 모서리로 나뉜다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 둘레에 있는 모서리",
+              "밑면의 변이 되는 모서리"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭대기에서 밑면의 꼭짓점으로 이어진 모서리",
+              "꼭대기로 가는 모서리",
+              "옆면의 모서리"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 모서리는 밑면의 둘레에 있는 모서리와 {꼭대기}에서 밑면의 꼭짓점으로 이어진 모서리로 나뉜다.",
+        "acceptedAnswers": [
+          [
+            "꼭대기",
+            "꼭대기 꼭짓점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6aa5c22045404f7ccb23b8670e641bee33ec4ef32ff3ed98dcc398091844ad51",
+      "questionRevision": "planning-e5e6-20261006-6aa5c2204540",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "밑면 이름에서 각뿔 이름을 만드는 표기 규칙을 안다.",
+      "bReason": "'형'을 '뿔'로 바꾸는 표기 규칙은 c1이 더 의미 있게 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "낱말 글자 바꾸기 암기라 수학 개념 이해와 거리가 멀다.",
+      "exclusionReason": "중복·표기 암기: 대체 e6-1-2-5-c1.",
+      "exampleNeeded": false,
+      "sourceIndex": 1808,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc6",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "이름 짓는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "밑면의 모양 이름인 삼각형, 사각형 등에서 {'형'을 '뿔'로 바꾸어} 삼각뿔, 사각뿔 등으로 이름을 짓는다.",
+        "studentC": "밑면의 모양 이름인 삼각형, 사각형 등에서 □ 삼각뿔, 사각뿔 등으로 이름을 짓는다.",
+        "answers": [
+          "'형'을 '뿔'로 바꾸어"
+        ]
+      },
+      "sourceFingerprint": "2bab23cafebd70284b9e41c758bd089e7638aefa0a829cc41e1b0fd635fc9fba",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "중복·표기 암기: 대체 e6-1-2-5-c1.",
+        "cloze": "중복·표기 암기: 대체 e6-1-2-5-c1."
+      },
+      "proposalFingerprint": "84d63f1b128645441b6aa991b1254e09ce391b677c36b76982ba332163d9b8ef",
+      "questionRevision": "planning-e5e6-20261006-84d63f1b1286",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc7",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 면은 밑면과 옆면으로 이루어져 있다. 옆면의 수와 밑면의 변의 수는 어떤 관계인지 쓰고, 이를 이용해 전체 면의 수를 밑면의 변의 수로 구하는 방법을 설명하시오.",
+      "bAnswer": "옆면의 수는 밑면의 변의 수와 같다. 여기에 밑면 $1$개를 더하므로 면의 수는 밑면의 변의 수에 $1$을 더한 수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면의 수는 밑면의 변의 수와 같다",
+            "옆면은 변마다 하나씩이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면 $1$개를 더한다",
+            "변의 수에 $1$을 더한다",
+            "변의 수$+1$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "옆면 수와 밑면 변의 수의 대응으로 면의 수를 구하는 이유를 설명한다.",
+      "bReason": "공식 암기 대신 면을 밑면과 옆면으로 나누어 세게 한다.",
+      "cDecision": "revise",
+      "cAfter": "각뿔의 옆면의 수는 밑면의 변의 수와 {같다}. 전체 면의 수는 밑면의 변의 수보다 {$1$} 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "같고",
+            "똑같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cReason": "'$1$ 크다'를 한 구절로 묻던 것을 옆면 수의 관계와 더하는 수로 나눈다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1809,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc7",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "면의 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "각뿔의 면의 수는 밑면의 변의 수보다 {$1$ 크다}.",
+        "studentC": "각뿔의 면의 수는 밑면의 변의 수보다 □.",
+        "answers": [
+          "$1$ 크다"
+        ]
+      },
+      "sourceFingerprint": "33da5c1c3fb321a4cd9a8e63a47cb1a0a6dff3e7b74dbe8fd57312003b960d4f",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "같다",
+        "$1$"
+      ],
+      "cStudentAfter": "각뿔의 옆면의 수는 밑면의 변의 수와 □. 전체 면의 수는 밑면의 변의 수보다 □ 크다.",
+      "cMarkedSentence": "각뿔의 옆면의 수는 밑면의 변의 수와 {같다}. 전체 면의 수는 밑면의 변의 수보다 {$1$} 크다.",
+      "cStudentSentence": "각뿔의 옆면의 수는 밑면의 변의 수와 □. 전체 면의 수는 밑면의 변의 수보다 □ 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "같고",
+            "똑같다"
+          ]
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 면은 밑면과 옆면으로 이루어져 있다. 옆면의 수와 밑면의 변의 수는 어떤 관계인지 쓰고, 이를 이용해 전체 면의 수를 밑면의 변의 수로 구하는 방법을 설명하시오.",
+        "answer": "옆면의 수는 밑면의 변의 수와 같다. 여기에 밑면 $1$개를 더하므로 면의 수는 밑면의 변의 수에 $1$을 더한 수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면의 수는 밑면의 변의 수와 같다",
+              "옆면은 변마다 하나씩이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면 $1$개를 더한다",
+              "변의 수에 $1$을 더한다",
+              "변의 수$+1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 옆면의 수는 밑면의 변의 수와 {같다}. 전체 면의 수는 밑면의 변의 수보다 {$1$} 크다.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "같고",
+            "똑같다"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f4d26a0521e9678e68e0d005dd5fd162549d50753482a9cae5e82219b498ef40",
+      "questionRevision": "planning-e5e6-20261006-f4d26a0521e9",
+      "requiresIndependentReview": true
+    }
+  ]
+}

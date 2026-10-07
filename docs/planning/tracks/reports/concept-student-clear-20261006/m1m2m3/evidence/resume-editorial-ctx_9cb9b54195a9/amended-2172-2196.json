@@ -1,0 +1,2094 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-2172-2196.json",
+  "changes": [
+    {
+      "id": "m2-01-03-xc3",
+      "cAfter": "순환마디가 두 자리이고 소수 첫째 자리부터 순환하는 수를 순환소수의 분수 변환 공식으로 고칠 때, 약분하기 전의 분모는 {$99$}이다.",
+      "cReason": "임의의동치분수가아니라순환마디두자리의분수변환공식에서나오는분모라고밝힌다."
+    },
+    {
+      "id": "m2-01-03-xc4",
+      "cAfter": "순환마디가 세 자리이고 소수 첫째 자리부터 순환하는 수를 순환소수의 분수 변환 공식으로 고칠 때, 약분하기 전의 분모는 {$999$}이다.",
+      "cReason": "공식으로구한약분전분모라는범위를밝힌다."
+    },
+    {
+      "id": "m2-01-03-xc6",
+      "cAfter": "$1.\\dot2$를 정수 부분과 소수 부분의 합으로 나눈 뒤, 소수 부분을 분수로 고치면 $1+$ {$\\frac29$}이다. 이를 하나의 기약분수로 나타내면 {$\\frac{11}{9}$}이다.",
+      "cReason": "뒷절의0.2반복표기를복사하는칸대신소수부분의분수변환과최종기약분수를묻는다."
+    },
+    {
+      "id": "m2-01-03-xc8",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자를분모로나누어확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\div9=0.444\\cdots=0.\\dot4$이므로맞다"
+          ]
+        }
+      ],
+      "bReason": "실제로확인하라는요구에맞게검산계산결과도확인한다."
+    },
+    {
+      "id": "m2-01-03-xc12",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10x$와 $x$의 소수 부분이 같아 빼면 없어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는식x의정수부분이3이므로그3을뺀다"
+          ]
+        }
+      ],
+      "bReason": "10과x가나뉜수식표기를하나로정리한다."
+    },
+    {
+      "id": "m2-01-03-xc15",
+      "bPrompt": "$x=0.2\\dot3\\dot7$을 분수로 고치려고 한다. $x$에 각각 곱하여 소수 부분이 같은 두 수를 만들 수 있는 $10$, $100$, $1000$, $\\ldots$ 중 가장 작은 두 수를 구하고, 그렇게 고른 까닭을 쓰시오.",
+      "bAnswer": "$10$과 $1000$이다. $10x=2.3737\\cdots$, $1000x=237.3737\\cdots$로 소수 부분이 같아진다. $100x=23.7373\\cdots$는 이 둘과 소수 부분이 다르므로 고르지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$과 $1000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10x=2.3737\\cdots$, $1000x=237.3737\\cdots$로 소수 부분이 같다"
+          ]
+        }
+      ],
+      "cAfter": "$x=0.2\\dot3\\dot7$에서 소수점을 첫 순환마디 바로 앞으로 옮기려면 $x$에 {$10$}을, 첫 순환마디 바로 뒤로 옮기려면 {$1000$}을 곱한다.",
+      "bReason": "다른큰거듭제곱쌍도가능하므로가장작은두수라는범위를정한다.",
+      "cReason": "순서없는앞·뒤이름칸대신각목표위치에해당하는곱할수를묻는다."
+    },
+    {
+      "id": "m2-01-03-xc16",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100x$와 $10x$의 소수 부분이 같아 빼면 없어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는식10x의정수부분이1이므로그1을뺀다"
+          ]
+        }
+      ],
+      "bReason": "100x와10x를각하나의수식으로표시한다."
+    },
+    {
+      "id": "m2-01-03-xc20",
+      "bPrompt": "$0.333\\cdots$에서 반복 묶음을 임시로 $33$으로 잡아 분수로 고치면 어떻게 되는가? 묶음을 $3$으로 잡을 때와 기약분수 결과를 비교하고, 가장 짧은 묶음으로 계산하면 편리한 까닭을 쓰시오.",
+      "bAnswer": "$33/99=1/3$이고 $3/9=1/3$이므로 값은 같다. 가장 짧은 묶음 $3$으로 잡으면 분자와 분모가 작아 약분이 간단하다.",
+      "cAfter": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$를 기약분수로 고치면 {$\\frac13$}로 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다.",
+      "bReason": "최소마디약속에어긋난점표기를정식표현처럼사용하지않고임시반복묶음으로구별한다.",
+      "cReason": "정식순환마디표기와길게잡은반복묶음을구별한다."
+    },
+    {
+      "id": "m2-01-03-xc21",
+      "bPrompt": "$x=0.2\\dot3$일 때 $10x-x$를 계산하면 정수만 남는가? 실제 계산으로 확인하시오. 이어서 소수 부분이 없어지도록 빼는 두 식을 찾아 $x$를 기약분수로 나타내시오.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10x-x=2.1$로 정수만 남지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100x-10x=21$처럼 소수 부분이 같은 두 식을 실제로 써서 빼 정수만 남긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=\\frac7{30}$"
+          ]
+        }
+      ],
+      "bReason": "10x-x=2.1에서도분수변환은가능하므로왜안되냐고묻지않고정수만남는지를확인한다."
+    },
+    {
+      "id": "m2-01-03-xc26",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "45와99의최대공약수9로나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac5{11}$"
+          ]
+        }
+      ],
+      "bReason": "실제로나눌수9와기약분수5/11을함께확인한다."
+    },
+    {
+      "id": "m2-01-04-xc4",
+      "cAfter": "$0.5+0.\\dot2$를 계산하려고 두 소수를 각각 기약분수로 고치면 순서대로 {$\\frac12$}, {$\\frac29$}이다. 두 분수를 더한 값을 기약분수로 나타내면 {$\\frac{13}{18}$}이다.",
+      "cReason": "분수모양을보고분수라는말만쓰는칸을없애고두변환과계산결과를각각묻는다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-01-03-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "분모 규칙(c3)에서 자리 수만 2로 바꾼 수치 암기 항목임",
+      "cDecision": "rewrite",
+      "cAfter": "순환마디가 두 자리이고 소수 첫째 자리부터 순환하는 수를 순환소수의 분수 변환 공식으로 고칠 때, 약분하기 전의 분모는 {$99$}이다.",
+      "cAnswers": [
+        "$99$"
+      ],
+      "cReason": "임의의동치분수가아니라순환마디두자리의분수변환공식에서나오는분모라고밝힌다.",
+      "coreAfter": "소수점 바로 아래부터 두 자리가 순환하면 분수로 고칠 때 약분하기 전의 분모가 {$99$}이다.",
+      "coreReason": "약분한 뒤의 분모는 $99$가 아닐 수 있어 범위를 분명히 함",
+      "exclusionReason": "B 제외: m2-01-03-c3의 일반 규칙과 목표가 겹치는 단순 수치 암기형 제목.",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "두 자리 순환은 분모 99",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2172,
+      "part": "m2plus",
+      "sourceFingerprint": "45ef3f9a7c43c89959ee65f6b5f89efeb1c7f083b1bb815dd89dc418b0b641ad",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2172
+      },
+      "directReview": null,
+      "coreBeforeRepair": "소수점 바로 아래부터 두 자리가 순환하면 분수로 고칠 때 약분하기 전의 분모가 {$99$}이다.",
+      "coreRepairReason": "이미 좋아 그대로 보존함. 원래 핵심어 {$99$}를 유지했고, '약분하기 전'만 더해 예의 기약분수 $\\frac{5}{33}$와 모순되지 않게 함.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "순환마디가 두 자리이고 소수 첫째 자리부터 순환하는 수를 순환소수의 분수 변환 공식으로 고칠 때, 약분하기 전의 분모는 {$99$}이다.",
+      "cSlotAnswers": [
+        "$99$"
+      ],
+      "cStudentSentence": "순환마디가 두 자리이고 소수 첫째 자리부터 순환하는 수를 순환소수의 분수 변환 공식으로 고칠 때, 약분하기 전의 분모는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$99$",
+          "equivalentAnswers": [
+            "$99$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$99$"
+        ]
+      ],
+      "proposalFingerprint": "713f1856551045ee4368ce0dbdffa066090b1f2dc0d62bb9f151626ec6604f44"
+    },
+    {
+      "id": "m2-01-03-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "분모 규칙(c3)에서 자리 수만 3으로 바꾼 수치 암기 항목임",
+      "cDecision": "rewrite",
+      "cAfter": "순환마디가 세 자리이고 소수 첫째 자리부터 순환하는 수를 순환소수의 분수 변환 공식으로 고칠 때, 약분하기 전의 분모는 {$999$}이다.",
+      "cAnswers": [
+        "$999$"
+      ],
+      "cReason": "공식으로구한약분전분모라는범위를밝힌다.",
+      "coreAfter": "소수점 바로 아래부터 세 자리가 순환하면 분수로 고칠 때 약분하기 전의 분모가 {$999$}이다.",
+      "coreReason": "약분한 뒤의 분모는 $999$가 아닐 수 있어 범위를 분명히 함",
+      "exclusionReason": "B 제외: m2-01-03-c3의 일반 규칙과 xc3의 두 자리 항목을 되풀이하는 단순 수치 암기형 제목.",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "세 자리 순환은 분모 999",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2173,
+      "part": "m2plus",
+      "sourceFingerprint": "038beba3b27c5443a4f200326aa7264dc27f0e6b66aa22eae647d93a266c2987",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2173
+      },
+      "directReview": null,
+      "coreBeforeRepair": "소수점 바로 아래부터 세 자리가 순환하면 분수로 고칠 때 약분하기 전의 분모가 {$999$}이다.",
+      "coreRepairReason": "이미 좋아 그대로 보존함. 원래 핵심어 {$999$}를 유지했고, '약분하기 전'으로 범위만 분명히 함.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "순환마디가 세 자리이고 소수 첫째 자리부터 순환하는 수를 순환소수의 분수 변환 공식으로 고칠 때, 약분하기 전의 분모는 {$999$}이다.",
+      "cSlotAnswers": [
+        "$999$"
+      ],
+      "cStudentSentence": "순환마디가 세 자리이고 소수 첫째 자리부터 순환하는 수를 순환소수의 분수 변환 공식으로 고칠 때, 약분하기 전의 분모는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$999$",
+          "equivalentAnswers": [
+            "$999$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$999$"
+        ]
+      ],
+      "proposalFingerprint": "8004befed653308165ddb10c9a71c302beb73d2bf4514b97ec3bbcfe7dd71e4e"
+    },
+    {
+      "id": "m2-01-03-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{3}$을 분수로 고치면 먼저 $\\frac{3}{9}$을 얻는다. 답을 가장 간단한 분수로 쓰려면 무엇을 해야 하는지 쓰고, 그 결과를 구하시오.",
+      "bAnswer": "분자와 분모를 공약수 $3$으로 나누어 약분하여 기약분수로 나타낸다. $\\frac{3}{9}=\\frac{1}{3}$",
+      "bGoal": "고친 분수를 약분해 기약분수로 답하기",
+      "bReason": "질문이 요구하지 않은 '기약분수' 용어를 별도 요소로 강요하던 것 삭제",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분한다",
+            "분자와 분모를 공약수 $3$으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "고친 뒤의 마무리 단계를 묻는 짧고 분명한 낱말 빈칸임",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "고친 분수를 약분해 기약분수로",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2174,
+      "part": "m2plus",
+      "sourceFingerprint": "073a2bd70d5c46938ca5c79e97311b8dcda5e640b46c7304af247359792a491f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2174
+      },
+      "directReview": null,
+      "cFrozenSentence": "순환소수를 분수로 고친 뒤에는 □하여 □로 나타낸다.",
+      "cFrozenDefinition": "순환소수를 분수로 고친 뒤에는 {약분}하여 {기약분수}로 나타낸다.",
+      "cFrozenAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cMarkedSentence": "순환소수를 분수로 고친 뒤에는 {약분}하여 {기약분수}로 나타낸다.",
+      "cSlotAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cStudentSentence": "순환소수를 분수로 고친 뒤에는 □하여 □로 나타낸다.",
+      "cAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "기약분수",
+          "equivalentAnswers": [
+            "기약분수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ],
+        [
+          "기약분수"
+        ]
+      ],
+      "proposalFingerprint": "d8f101d8b94d73bc0896a3f707dae8a6b3960febafbe82998a613a950229c3c0"
+    },
+    {
+      "id": "m2-01-03-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$1.\\dot{2}$를 정수 부분과 소수 부분의 합으로 나누어 분수로 고치는 과정을 쓰시오.",
+      "bAnswer": "$1.\\dot{2}=1+0.\\dot{2}$이고 $0.\\dot{2}=\\frac{2}{9}$이므로 $1.\\dot{2}=1+\\frac{2}{9}=\\frac{11}{9}$이다.",
+      "bGoal": "정수 부분을 따로 떼어 순환소수를 분수로 고치기",
+      "bReason": "어떤 수를 어떤 방법으로 고치는지 없어 $1.\\dot{2}$와 '합으로 나누기'를 지정함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1+0.\\dot{2}$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.\\dot{2}=\\frac{2}{9}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{11}{9}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$1.\\dot2$를 정수 부분과 소수 부분의 합으로 나눈 뒤, 소수 부분을 분수로 고치면 $1+$ {$\\frac29$}이다. 이를 하나의 기약분수로 나타내면 {$\\frac{11}{9}$}이다.",
+      "cAnswers": [
+        "$\\frac29$",
+        "$\\frac{11}{9}$"
+      ],
+      "cReason": "뒷절의0.2반복표기를복사하는칸대신소수부분의분수변환과최종기약분수를묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "정수 부분과 소수 부분으로 나눔",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2175,
+      "part": "m2plus",
+      "sourceFingerprint": "7fbf58f763ffbf6218ac90086376a65d5a69aa23963bac963e409e01fe8cd976",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2175
+      },
+      "directReview": null,
+      "cMarkedSentence": "$1.\\dot2$를 정수 부분과 소수 부분의 합으로 나눈 뒤, 소수 부분을 분수로 고치면 $1+$ {$\\frac29$}이다. 이를 하나의 기약분수로 나타내면 {$\\frac{11}{9}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac29$",
+        "$\\frac{11}{9}$"
+      ],
+      "cStudentSentence": "$1.\\dot2$를 정수 부분과 소수 부분의 합으로 나눈 뒤, 소수 부분을 분수로 고치면 $1+$ □이다. 이를 하나의 기약분수로 나타내면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac29$",
+          "equivalentAnswers": [
+            "$\\frac29$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{11}{9}$",
+          "equivalentAnswers": [
+            "$\\frac{11}{9}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{11}{9}$",
+          "accept": [
+            "$1\\frac{2}{9}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac29$"
+        ],
+        [
+          "$\\frac{11}{9}$"
+        ]
+      ],
+      "proposalFingerprint": "9ff3c3b00276ae9056c106c2d6097c52cf8b0a128639b8274dbba05bd21e2364"
+    },
+    {
+      "id": "m2-01-03-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "빼는 단계는 c2의 과정 서술과 xc13의 조건 문항에 이미 들어 있음",
+      "cDecision": "rewrite",
+      "cAfter": "$x=0.\\dot{8}$일 때 $10x=8.888\\cdots$와 $x=0.888\\cdots$는 {소수 부분}이 같으므로 변끼리 빼면 $9x=${$8$}이 된다.",
+      "cAnswers": [
+        "소수 부분",
+        "$8$"
+      ],
+      "cReason": "답 '소수 부분'이 문장 첫머리에 그대로 나와 베끼게 되므로 예로 바꿈",
+      "exclusionReason": "B 제외: m2-01-03-c2(식 이용 과정)와 m2-01-03-xc13(두 식의 조건)과 목표가 중복되는 조각 제목.",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "소수 부분 같은 두 식을 변끼리 뺌",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2176,
+      "part": "m2plus",
+      "sourceFingerprint": "0dae6505f2c8e0977e9b5428725a2ea3cf194d5c4d7fd489adf71fe440988df9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2176
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$x=0.\\dot{8}$일 때 $10x=8.888\\cdots$와 $x=0.888\\cdots$는 {소수 부분}이 같으므로 변끼리 빼면 $9x=${$8$}이 된다.",
+      "cSlotAnswers": [
+        "소수 부분",
+        "$8$"
+      ],
+      "cStudentSentence": "$x=0.\\dot{8}$일 때 $10x=8.888\\cdots$와 $x=0.888\\cdots$는 □이 같으므로 변끼리 빼면 $9x=$□이 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "소수 부분",
+          "equivalentAnswers": [
+            "소수 부분",
+            "소수점 아래 부분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$8$",
+          "equivalentAnswers": [
+            "$8$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "소수 부분",
+          "accept": [
+            "소수점 아래 부분"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "소수 부분",
+          "소수점 아래 부분"
+        ],
+        [
+          "$8$"
+        ]
+      ],
+      "proposalFingerprint": "7850f41d85fa7ba0466beff7fc4dc858f7c7586a8c98e8359a4fc72420439fc4"
+    },
+    {
+      "id": "m2-01-03-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{4}$를 분수로 고쳐 $\\frac{4}{9}$를 얻었다. 이 답이 맞는지 확인하는 방법을 쓰고, 실제로 확인하시오.",
+      "bAnswer": "분자 $4$를 분모 $9$로 나누어 처음의 순환소수가 나오는지 본다. $4\\div9=0.444\\cdots=0.\\dot{4}$이므로 맞다.",
+      "bGoal": "나눗셈으로 고친 분수 검산하기",
+      "bReason": "실제로확인하라는요구에맞게검산계산결과도확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자를분모로나누어확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\div9=0.444\\cdots=0.\\dot4$이므로맞다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "순환소수를 분수로 바르게 고쳤는지 알아보려면, 그 분수의 {분자}를 {분모}로 나누어 처음의 순환소수가 나오는지 확인한다.",
+      "cAnswers": [
+        "분자",
+        "분모"
+      ],
+      "cReason": "빈칸 '확인'은 내용 없는 낱말이라 나눗셈의 방향을 묻게 바꿈",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "분자÷분모로 원래 소수 확인",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2177,
+      "part": "m2plus",
+      "sourceFingerprint": "f42ba6fed0e6270815dbcea47e1156327ce409a3405444af0dc36e829498e5b3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2177
+      },
+      "directReview": null,
+      "cMarkedSentence": "순환소수를 분수로 바르게 고쳤는지 알아보려면, 그 분수의 {분자}를 {분모}로 나누어 처음의 순환소수가 나오는지 확인한다.",
+      "cSlotAnswers": [
+        "분자",
+        "분모"
+      ],
+      "cStudentSentence": "순환소수를 분수로 바르게 고쳤는지 알아보려면, 그 분수의 □를 □로 나누어 처음의 순환소수가 나오는지 확인한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분자",
+          "equivalentAnswers": [
+            "분자"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "분모",
+          "equivalentAnswers": [
+            "분모"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분자"
+        ],
+        [
+          "분모"
+        ]
+      ],
+      "proposalFingerprint": "11cd60fe206e8a41cbc4fd3a40e2ef06b1e7467f270227c49e63e2aabc4b2474"
+    },
+    {
+      "id": "m2-01-03-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "곱할 수 정하기(xc15)의 가장 쉬운 경우이며 c2 예시에 이미 포함됨",
+      "cDecision": "rewrite",
+      "cAfter": "순환소수 $x$가 소수 첫째 자리부터 숫자 하나가 순환하면, $x$에 {$10$}을 곱해 소수점을 오른쪽으로 {한 자리} 옮긴다.",
+      "cAnswers": [
+        "$10$",
+        "한 자리"
+      ],
+      "cReason": "$x$가 무엇인지 문장에 없어 '순환소수 $x$'임을 밝힘",
+      "exclusionReason": "B 제외: m2-01-03-c2의 예와 m2-01-03-xc15의 일반 방법에 포함되는 단순 수치형 중복 제목.",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "한 자리 순환이면 10을 곱함",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2178,
+      "part": "m2plus",
+      "sourceFingerprint": "5b0794907aeb10f5ee59545da26273fe485dc912b4f2829bcc397a2e151487a6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2178
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "순환소수 $x$가 소수 첫째 자리부터 숫자 하나가 순환하면, $x$에 {$10$}을 곱해 소수점을 오른쪽으로 {한 자리} 옮긴다.",
+      "cSlotAnswers": [
+        "$10$",
+        "한 자리"
+      ],
+      "cStudentSentence": "순환소수 $x$가 소수 첫째 자리부터 숫자 하나가 순환하면, $x$에 □을 곱해 소수점을 오른쪽으로 □ 옮긴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$10$",
+          "equivalentAnswers": [
+            "$10$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "한 자리",
+          "equivalentAnswers": [
+            "한 자리",
+            "$1$자리",
+            "한 칸"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "한 자리",
+          "accept": [
+            "$1$자리",
+            "한 칸"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$10$"
+        ],
+        [
+          "한 자리",
+          "$1$자리",
+          "한 칸"
+        ]
+      ],
+      "proposalFingerprint": "fe6565264c7b3e9327ae07b155b36734b4a1c5ac8a6ec0cd94d68a444002286b"
+    },
+    {
+      "id": "m2-01-03-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=0.\\dot{2}\\dot{4}$를 분수로 고칠 때 $x$에 얼마를 곱한 식에서 $x$를 빼야 하는지 까닭과 함께 쓰고, $x$를 기약분수로 나타내시오.",
+      "bAnswer": "순환마디가 두 자리이므로 $100$을 곱해야 $100x=24.2424\\cdots$와 $x=0.2424\\cdots$의 소수 부분이 같아진다. 변끼리 빼면 $99x=24$이므로 $x=\\frac{24}{99}=\\frac{8}{33}$이다.",
+      "bGoal": "순환마디가 두 자리일 때 곱할 수와 그 까닭 알기",
+      "bReason": "까닭을 순환마디의 자릿수로 답해도 맞으므로 대안으로 인정",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100$을 곱한다",
+            "$100x-x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "순환마디가 두 자리이므로 소수점을 두 자리 옮겨야 한다",
+            "$100x$와 $x$의 소수 부분이 같아져 빼면 없어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{33}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "순환소수 $x$가 소수 첫째 자리부터 두 자리가 순환하면, {$100$}$x$에서 $x$를 빼서 {$99$}$x$의 값이 정수가 되게 한다.",
+      "cAnswers": [
+        "$100$",
+        "$99$"
+      ],
+      "cReason": "둘째 답 $x$가 문장에 그대로 나오고 $x$의 뜻도 없어 고침",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "두 자리 순환이면 100x-x",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2179,
+      "part": "m2plus",
+      "sourceFingerprint": "f3190e84cee1541779265e8f7942ec79a903fb6dcf469af58e50e9f3d4cf74e6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2179
+      },
+      "directReview": null,
+      "cMarkedSentence": "순환소수 $x$가 소수 첫째 자리부터 두 자리가 순환하면, {$100$}$x$에서 $x$를 빼서 {$99$}$x$의 값이 정수가 되게 한다.",
+      "cSlotAnswers": [
+        "$100$",
+        "$99$"
+      ],
+      "cStudentSentence": "순환소수 $x$가 소수 첫째 자리부터 두 자리가 순환하면, □$x$에서 $x$를 빼서 □$x$의 값이 정수가 되게 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$100$",
+          "equivalentAnswers": [
+            "$100$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$99$",
+          "equivalentAnswers": [
+            "$99$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$100$"
+        ],
+        [
+          "$99$"
+        ]
+      ],
+      "proposalFingerprint": "688ab76c13ebc561104df8c9501c15a7dabe7e68f7cd1eb67ed0669e555395a0"
+    },
+    {
+      "id": "m2-01-03-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=3.\\dot{4}$를 공식으로 분수로 고치면 분자가 $34-3$이 된다. 정수 부분 $3$을 빼게 되는 까닭을 $10x$와 $x$를 써서 설명하시오.",
+      "bAnswer": "$10x=34.444\\cdots$, $x=3.444\\cdots$는 소수 부분이 같으므로 변끼리 빼면 $9x=34-3=31$이다. 빼는 식 $x$의 정수 부분 $3$이 그대로 빼지므로 정수 부분도 순환하지 않는 부분으로 보고 뺀다.",
+      "bGoal": "정수 부분이 있을 때 분자에서 정수 부분을 빼는 까닭 설명하기",
+      "bReason": "10과x가나뉜수식표기를하나로정리한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10x$와 $x$의 소수 부분이 같아 빼면 없어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는식x의정수부분이3이므로그3을뺀다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$3.\\dot{4}$를 공식으로 분수로 고칠 때는 정수 부분도 {순환하지 않는} 부분으로 보아 뺀다. 따라서 분자는 $34-3=31$이고 분수는 {$\\frac{31}{9}$}이다.",
+      "cAnswers": [
+        "순환하지 않는",
+        "$\\frac{31}{9}$"
+      ],
+      "cReason": "'되풀이되지 않는 부분'이 긴 구 빈칸이고 예가 없어 뜻을 알기 어려움",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "빼는 식 x의 정수 부분이 빠짐",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2180,
+      "part": "m2plus",
+      "sourceFingerprint": "572ac9609a99350072d5e82b63196f6febb87327bf21b488d77861b32a410b4c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2180
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-03-xc12"
+      },
+      "cMarkedSentence": "$3.\\dot{4}$를 공식으로 분수로 고칠 때는 정수 부분도 {순환하지 않는} 부분으로 보아 뺀다. 따라서 분자는 $34-3=31$이고 분수는 {$\\frac{31}{9}$}이다.",
+      "cSlotAnswers": [
+        "순환하지 않는",
+        "$\\frac{31}{9}$"
+      ],
+      "cStudentSentence": "$3.\\dot{4}$를 공식으로 분수로 고칠 때는 정수 부분도 □ 부분으로 보아 뺀다. 따라서 분자는 $34-3=31$이고 분수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "순환하지 않는",
+          "equivalentAnswers": [
+            "순환하지 않는",
+            "되풀이되지 않는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{31}{9}$",
+          "equivalentAnswers": [
+            "$\\frac{31}{9}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "순환하지 않는",
+          "accept": [
+            "되풀이되지 않는"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "순환하지 않는",
+          "되풀이되지 않는"
+        ],
+        [
+          "$\\frac{31}{9}$"
+        ]
+      ],
+      "proposalFingerprint": "8cf00a03024c368789cf3be99fdc517c1efcf3f4254f75d21ca3f89d1865b85c"
+    },
+    {
+      "id": "m2-01-03-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "순환소수 $x$를 분수로 고치려고 $x$에 $10$의 거듭제곱을 곱해 만든 두 식을 변끼리 뺀다. 이때 두 식의 소수 부분은 어떤 조건을 만족해야 하는지 그 까닭과 함께 쓰시오.",
+      "bAnswer": "두 식의 소수점 아래 숫자의 배열이 똑같아야 한다. 그래야 변끼리 뺐을 때 소수 부분이 $0$이 되어 정수만 남고, $x$를 분수로 나타낼 수 있다. 예: $x=0.\\dot{7}$이면 $10x=7.777\\cdots$와 $x=0.777\\cdots$",
+      "bGoal": "빼는 두 식의 소수 부분이 같아야 하는 까닭 알기",
+      "bReason": "'빼는 두 식'이 무엇인지 없어 상황과 답할 범위(조건과 까닭)를 밝힘",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 식의 소수 부분이 같아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼면 소수 부분이 없어져 정수만 남는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "순환소수 $x$에 $10$의 거듭제곱을 곱해 만든 두 식은 소수점 아래 숫자의 배열이 {같아야} 변끼리 뺐을 때 {소수 부분}이 없어진다.",
+      "cAnswers": [
+        "같아야",
+        "소수 부분"
+      ],
+      "cReason": "'빼는 두 식'이 무엇인지 숨은 제목 없이는 알 수 없어 주어를 밝힘",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "소수 부분이 같아야 빼서 0",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2181,
+      "part": "m2plus",
+      "sourceFingerprint": "863e3c81227f8945cf081e35a1bd10a8bf21f9aed0a7370d9b53c051a38be99c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2181
+      },
+      "directReview": null,
+      "cMarkedSentence": "순환소수 $x$에 $10$의 거듭제곱을 곱해 만든 두 식은 소수점 아래 숫자의 배열이 {같아야} 변끼리 뺐을 때 {소수 부분}이 없어진다.",
+      "cSlotAnswers": [
+        "같아야",
+        "소수 부분"
+      ],
+      "cStudentSentence": "순환소수 $x$에 $10$의 거듭제곱을 곱해 만든 두 식은 소수점 아래 숫자의 배열이 □ 변끼리 뺐을 때 □이 없어진다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같아야",
+          "equivalentAnswers": [
+            "같아야",
+            "똑같아야"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "소수 부분",
+          "equivalentAnswers": [
+            "소수 부분",
+            "소수점 아래 부분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "같아야",
+          "accept": [
+            "똑같아야"
+          ]
+        },
+        {
+          "answer": "소수 부분",
+          "accept": [
+            "소수점 아래 부분"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같아야",
+          "똑같아야"
+        ],
+        [
+          "소수 부분",
+          "소수점 아래 부분"
+        ]
+      ],
+      "proposalFingerprint": "f829debd5e575b372683e338f8195a066ab7bd7188ef7debe67796a4c00c54fa"
+    },
+    {
+      "id": "m2-01-03-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{6}$을 공식으로 분수로 고치면 분모가 $9$이다. 그런데 기약분수로 나타내면 분모가 $9$가 아니다. 기약분수를 구하고, 분모가 달라지는 까닭을 쓰시오.",
+      "bAnswer": "$0.\\dot{6}=\\frac{6}{9}=\\frac{2}{3}$이다. 분자와 분모의 공약수 $3$으로 약분되어 분모가 $9$의 약수인 $3$으로 바뀌기 때문이다.",
+      "bGoal": "기약분수의 분모가 $9$, $99$ 꼴이 아닐 수 있음을 이해하기",
+      "bReason": "약분된다는 까닭이면 충분하므로 '약수' 일반화를 별도 필수로 두지 않음",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자와 분모가 공약수 $3$으로 약분된다",
+            "분모 $9$가 $3$으로 나누어져 $9$의 약수인 $3$이 된다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "순환소수를 분수로 고치면 처음 분모는 $9$, $99$, $990$ 같은 꼴이지만, {약분}하면 분모가 처음 분모의 {약수}로 바뀐다. 예를 들어 $0.\\dot{3}=\\frac{3}{9}=\\frac{1}{3}$이다.",
+      "cAnswers": [
+        "약분",
+        "약수"
+      ],
+      "cReason": "'아닐 수도'는 문장 조각이라 빈칸으로 부적절해 핵심 낱말 두 개로 바꿈",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "약분으로 분모가 약수로 바뀜",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2182,
+      "part": "m2plus",
+      "sourceFingerprint": "6152171a53990f9c1043cf5808c99a59d51743f472e50bb87b7544ff82ad0b97",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2182
+      },
+      "directReview": null,
+      "cMarkedSentence": "순환소수를 분수로 고치면 처음 분모는 $9$, $99$, $990$ 같은 꼴이지만, {약분}하면 분모가 처음 분모의 {약수}로 바뀐다. 예를 들어 $0.\\dot{3}=\\frac{3}{9}=\\frac{1}{3}$이다.",
+      "cSlotAnswers": [
+        "약분",
+        "약수"
+      ],
+      "cStudentSentence": "순환소수를 분수로 고치면 처음 분모는 $9$, $99$, $990$ 같은 꼴이지만, □하면 분모가 처음 분모의 □로 바뀐다. 예를 들어 $0.\\dot{3}=\\frac{3}{9}=\\frac{1}{3}$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "약수",
+          "equivalentAnswers": [
+            "약수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ],
+        [
+          "약수"
+        ]
+      ],
+      "proposalFingerprint": "4ea46d6a65a3abf5fc20eca07e218bb8721c2c37aff17ddf1b9ecca95b976c35"
+    },
+    {
+      "id": "m2-01-03-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=0.2\\dot3\\dot7$을 분수로 고치려고 한다. $x$에 각각 곱하여 소수 부분이 같은 두 수를 만들 수 있는 $10$, $100$, $1000$, $\\ldots$ 중 가장 작은 두 수를 구하고, 그렇게 고른 까닭을 쓰시오.",
+      "bAnswer": "$10$과 $1000$이다. $10x=2.3737\\cdots$, $1000x=237.3737\\cdots$로 소수 부분이 같아진다. $100x=23.7373\\cdots$는 이 둘과 소수 부분이 다르므로 고르지 않는다.",
+      "bGoal": "소수 부분이 같아지도록 곱할 수 정하기",
+      "bReason": "다른큰거듭제곱쌍도가능하므로가장작은두수라는범위를정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$과 $1000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10x=2.3737\\cdots$, $1000x=237.3737\\cdots$로 소수 부분이 같다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$x=0.2\\dot3\\dot7$에서 소수점을 첫 순환마디 바로 앞으로 옮기려면 $x$에 {$10$}을, 첫 순환마디 바로 뒤로 옮기려면 {$1000$}을 곱한다.",
+      "cAnswers": [
+        "$10$",
+        "$1000$"
+      ],
+      "cReason": "순서없는앞·뒤이름칸대신각목표위치에해당하는곱할수를묻는다.",
+      "coreAfter": "순환소수 $x$에, 소수점을 순환마디의 {첫 숫자 바로 앞}으로 옮기는 $10$의 거듭제곱과 {끝 숫자 바로 뒤}로 옮기는 $10$의 거듭제곱을 각각 곱한다. 소수 첫째 자리부터 순환하면 앞쪽은 $x$를 그대로 쓴다.",
+      "coreReason": "곱하는 대상이 빠져 있고, 첫째 자리부터 순환할 때 곱할 수가 없는 경우를 밝힘",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "소수점을 순환마디 앞·뒤로 옮김",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2183,
+      "part": "m2plus",
+      "sourceFingerprint": "01c4bd9f6e5ea4fc413b20417b3e748fcfd03824a8acfc98aaa6c18fe5bee06b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2183
+      },
+      "directReview": null,
+      "coreBeforeRepair": "순환소수 $x$에, 소수점을 순환마디의 {첫 숫자 바로 앞}으로 옮기는 $10$의 거듭제곱과 {끝 숫자 바로 뒤}로 옮기는 $10$의 거듭제곱을 각각 곱한다. 소수 첫째 자리부터 순환하면 앞의 식은 $x$ 그대로 쓴다.",
+      "coreRepairReason": "원래 핵심어 {첫 숫자 바로 앞}, {끝 숫자 바로 뒤}를 유지함. 지칭이 모호하던 '앞의 식'만 '앞쪽'으로 다듬음. 예의 답 $1000$과 $10$은 넣지 않음.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "cMarkedSentence": "$x=0.2\\dot3\\dot7$에서 소수점을 첫 순환마디 바로 앞으로 옮기려면 $x$에 {$10$}을, 첫 순환마디 바로 뒤로 옮기려면 {$1000$}을 곱한다.",
+      "cSlotAnswers": [
+        "$10$",
+        "$1000$"
+      ],
+      "cStudentSentence": "$x=0.2\\dot3\\dot7$에서 소수점을 첫 순환마디 바로 앞으로 옮기려면 $x$에 □을, 첫 순환마디 바로 뒤로 옮기려면 □을 곱한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$10$",
+          "equivalentAnswers": [
+            "$10$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$1000$",
+          "equivalentAnswers": [
+            "$1000$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$10$"
+        ],
+        [
+          "$1000$"
+        ]
+      ],
+      "proposalFingerprint": "3b523dc5eb52cdd671018e268434fd87a4c45ef788a9fd17c019e0492715c661"
+    },
+    {
+      "id": "m2-01-03-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=0.1\\dot{5}$를 공식으로 분수로 고치면 분자가 $15-1$이 된다. $1$을 빼게 되는 까닭을 $100x$와 $10x$를 써서 설명하시오.",
+      "bAnswer": "$100x=15.555\\cdots$, $10x=1.555\\cdots$는 소수 부분이 같으므로 변끼리 빼면 $90x=15-1=14$이다. 빼는 수 $1$은 작은 쪽 식 $10x$의 정수 부분, 곧 순환하지 않는 앞부분이다.",
+      "bGoal": "분자 공식의 뺄셈이 생기는 까닭 설명하기",
+      "bReason": "100x와10x를각하나의수식으로표시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100x$와 $10x$의 소수 부분이 같아 빼면 없어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는식10x의정수부분이1이므로그1을뺀다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$x=0.1\\dot{5}$이면 $100x=15.555\\cdots$, $10x=1.555\\cdots$이다. 변끼리 빼면 $90x=15-${$1$}이므로, 분자에서 빼는 수는 작은 쪽 식 $10x$의 {정수 부분}이다.",
+      "cAnswers": [
+        "$1$",
+        "정수 부분"
+      ],
+      "cReason": "'변끼리 뺄 때'는 문장 조각 빈칸이고 예 없이는 '작은 쪽 식'을 알 수 없음",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "작은 쪽 식의 정수 부분이 빠짐",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2184,
+      "part": "m2plus",
+      "sourceFingerprint": "7a8068559ba8fdf953750aa83c44424a5b0e4207b16781163db10f751781ea8f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2184
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-03-xc16"
+      },
+      "cMarkedSentence": "$x=0.1\\dot{5}$이면 $100x=15.555\\cdots$, $10x=1.555\\cdots$이다. 변끼리 빼면 $90x=15-${$1$}이므로, 분자에서 빼는 수는 작은 쪽 식 $10x$의 {정수 부분}이다.",
+      "cSlotAnswers": [
+        "$1$",
+        "정수 부분"
+      ],
+      "cStudentSentence": "$x=0.1\\dot{5}$이면 $100x=15.555\\cdots$, $10x=1.555\\cdots$이다. 변끼리 빼면 $90x=15-$□이므로, 분자에서 빼는 수는 작은 쪽 식 $10x$의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "정수 부분",
+          "equivalentAnswers": [
+            "정수 부분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "정수 부분"
+        ]
+      ],
+      "proposalFingerprint": "bd9ae3a7aa3ff831989d238b8eb4c9d1659e9f4084fc897ee61033ad0d272292"
+    },
+    {
+      "id": "m2-01-03-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=0.\\dot{7}$을 분수로 고치면 분모가 $9$가 된다. 분모에 $9$가 생기는 까닭을 $10x$와 $x$를 써서 설명하시오.",
+      "bAnswer": "$10x=7.777\\cdots$, $x=0.777\\cdots$는 소수 부분이 같으므로 변끼리 빼면 $9x=7$이다. $x$의 계수가 $10-1=9$가 되어 $x=\\frac{7}{9}$의 분모가 $9$이다.",
+      "bGoal": "분모의 $9$가 $10x-x$에서 나옴을 설명하기",
+      "bReason": "까닭을 설명할 구체 수가 없어 $0.\\dot{7}$과 사용할 두 식을 지정함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10x$와 $x$의 소수 부분이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10x-x=9x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$의 계수 $9$가 분모가 된다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "소수 첫째 자리부터 한 자리가 순환하는 순환소수 $x$는 $10x$와 $x$의 {소수 부분}이 같다. 그래서 $10x-x$를 계산하면 좌변은 {$9x$}가 된다.",
+      "cAnswers": [
+        "소수 부분",
+        "$9x$"
+      ],
+      "cReason": "뒤에서 9를 다시 보여 주는 답 복사를 없애고 실제 좌변을 계산하게 한다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "10x-x에서 계수 9가 분모",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2185,
+      "part": "m2plus",
+      "sourceFingerprint": "dcf0f69994df1859e004ab0e499f874d8696e5575b511c0c8699b37509b9d843",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2185
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-03-xc18"
+      },
+      "cMarkedSentence": "소수 첫째 자리부터 한 자리가 순환하는 순환소수 $x$는 $10x$와 $x$의 {소수 부분}이 같다. 그래서 $10x-x$를 계산하면 좌변은 {$9x$}가 된다.",
+      "cSlotAnswers": [
+        "소수 부분",
+        "$9x$"
+      ],
+      "cStudentSentence": "소수 첫째 자리부터 한 자리가 순환하는 순환소수 $x$는 $10x$와 $x$의 □이 같다. 그래서 $10x-x$를 계산하면 좌변은 □가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "소수 부분",
+          "equivalentAnswers": [
+            "소수 부분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$9x$",
+          "equivalentAnswers": [
+            "$9x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "소수 부분"
+        ],
+        [
+          "$9x$"
+        ]
+      ],
+      "proposalFingerprint": "8dadb72967367fc6dc5b104a2b860ff3e2c7c4d7f36abbb829b50e81bd338e4c"
+    },
+    {
+      "id": "m2-01-03-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=0.12\\dot{5}$를 분수로 고치면 약분하기 전의 분모가 $900$이다. 분모 끝에 $0$이 두 개 붙는 까닭을 $x$에 곱하는 두 수와 관련지어 설명하시오.",
+      "bAnswer": "소수점 아래에서 순환하지 않는 숫자가 두 개이므로 $100x=12.555\\cdots$와 $1000x=125.555\\cdots$를 만들어 뺀다. $(1000-100)x=900x=113$이 되어 $x$의 계수 끝에 $0$이 두 개 붙는다.",
+      "bGoal": "분모 끝 $0$의 개수가 순환하지 않는 숫자 수와 같은 까닭 설명하기",
+      "bReason": "질문이 묻지 않은 일반 규칙(0의 개수=순환하지 않는 숫자의 개수) 요구 삭제",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "순환하지 않는 숫자가 두 개라 $100x$를 만든다",
+            "$100x=12.555\\cdots$와 $1000x=125.555\\cdots$의 소수 부분이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1000x-100x=900x$",
+            "$(1000-100)x=113$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$x=0.12\\dot{5}$는 소수점 아래에서 순환하지 않는 숫자가 두 개이므로 $1000x$에서 {$100$}$x$를 뺀다. 그러면 $900x=113$이 되어 분모 끝에 {$0$}이 두 개 붙는다.",
+      "cAnswers": [
+        "$100$",
+        "$0$"
+      ],
+      "cReason": "답 '$k$개'가 문장의 $k$를 베끼는 꼴이고 $10^k$ 표기가 어려워 구체 예로 바꿈",
+      "coreAfter": "소수점 아래에서 순환하지 않는 숫자가 $k$개이면 빼는 두 식에 모두 $10^k$이 곱해져 있으므로, 뺀 뒤 $x$의 계수(약분하기 전 분모) 끝에 {$0$}이 {$k$개} 붙는다.",
+      "coreReason": "정수 부분의 숫자와 혼동될 수 있고 $10^k$을 곱하는 것과 $0$이 붙는 것의 연결이 불분명함",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "10^k배 식을 빼 분모 끝 0이 k개",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2186,
+      "part": "m2plus",
+      "sourceFingerprint": "a258aa8a2a78ae63c01b2bf2e1157f16677e9a06ef24cbaf0608ed75ecdb55e2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2186
+      },
+      "directReview": null,
+      "coreBeforeRepair": "소수점 아래에서 순환하지 않는 숫자가 $k$개이면 빼는 두 식에 모두 $10^k$이 곱해져 있으므로, 뺀 뒤 $x$의 계수(분모) 끝에 {$0$}이 {$k$개} 붙는다.",
+      "coreRepairReason": "원래 핵심어 {$0$}, {$k$개}를 유지함. 약분하면 끝의 $0$이 사라질 수 있으므로 '약분하기 전 분모'로 범위만 더함.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "cMarkedSentence": "$x=0.12\\dot{5}$는 소수점 아래에서 순환하지 않는 숫자가 두 개이므로 $1000x$에서 {$100$}$x$를 뺀다. 그러면 $900x=113$이 되어 분모 끝에 {$0$}이 두 개 붙는다.",
+      "cSlotAnswers": [
+        "$100$",
+        "$0$"
+      ],
+      "cStudentSentence": "$x=0.12\\dot{5}$는 소수점 아래에서 순환하지 않는 숫자가 두 개이므로 $1000x$에서 □$x$를 뺀다. 그러면 $900x=113$이 되어 분모 끝에 □이 두 개 붙는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$100$",
+          "equivalentAnswers": [
+            "$100$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$100$"
+        ],
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "9031f88d8feea49ffcf723852d077ccf2e72d6b31860e80c171228f4b49782e6"
+    },
+    {
+      "id": "m2-01-03-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.333\\cdots$에서 반복 묶음을 임시로 $33$으로 잡아 분수로 고치면 어떻게 되는가? 묶음을 $3$으로 잡을 때와 기약분수 결과를 비교하고, 가장 짧은 묶음으로 계산하면 편리한 까닭을 쓰시오.",
+      "bAnswer": "$33/99=1/3$이고 $3/9=1/3$이므로 값은 같다. 가장 짧은 묶음 $3$으로 잡으면 분자와 분모가 작아 약분이 간단하다.",
+      "bGoal": "순환마디를 가장 짧게 잡는 까닭 알기",
+      "bReason": "최소마디약속에어긋난점표기를정식표현처럼사용하지않고임시반복묶음으로구별한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{33}{99}=\\frac{1}{3}$로 값은 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 짧게 잡으면 약분할 것이 적다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$를 기약분수로 고치면 {$\\frac13$}로 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다.",
+      "cAnswers": [
+        "$\\frac13$"
+      ],
+      "cReason": "정식순환마디표기와길게잡은반복묶음을구별한다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "마디를 짧게 잡아야 약분이 적음",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2187,
+      "part": "m2plus",
+      "sourceFingerprint": "2ebdd3c2aa3605bee12f5832adc0c6f7a362791b7b79d818f2ed7cb1d93cb332",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2187
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$를 기약분수로 고치면 {$\\frac13$}로 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다.",
+      "cSlotAnswers": [
+        "$\\frac13$"
+      ],
+      "cStudentSentence": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$를 기약분수로 고치면 □로 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac13$",
+          "equivalentAnswers": [
+            "$\\frac13$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac13$"
+        ]
+      ],
+      "proposalFingerprint": "4559424453cba74911cd891843151d6e474495dbdb07f40aee8406088b211ffa"
+    },
+    {
+      "id": "m2-01-03-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=0.2\\dot3$일 때 $10x-x$를 계산하면 정수만 남는가? 실제 계산으로 확인하시오. 이어서 소수 부분이 없어지도록 빼는 두 식을 찾아 $x$를 기약분수로 나타내시오.",
+      "bAnswer": "$10x=2.333\\cdots$, $x=0.2333\\cdots$는 소수 부분이 달라 빼도 $2.1$로 소수 부분이 남는다. 소수점을 순환마디 바로 앞으로 옮긴 $10x$와 $100x=23.333\\cdots$를 빼면 $90x=21$, $x=\\frac{21}{90}=\\frac{7}{30}$이다.",
+      "bGoal": "순환하지 않는 숫자가 있을 때 빼는 식 바르게 고르기",
+      "bReason": "10x-x=2.1에서도분수변환은가능하므로왜안되냐고묻지않고정수만남는지를확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10x-x=2.1$로 정수만 남지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100x-10x=21$처럼 소수 부분이 같은 두 식을 실제로 써서 빼 정수만 남긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=\\frac7{30}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$x=0.2\\dot{3}$은 소수점 아래에 순환하지 않는 숫자가 있어서 $10x-x$를 계산하면 소수 부분이 {남는다}. 그래서 소수점을 순환마디 바로 {앞}으로 옮긴 $10x$를 만들어 $100x-10x$를 계산한다.",
+      "cAnswers": [
+        "남는다",
+        "앞"
+      ],
+      "cReason": "문장이 길고 $x$의 뜻이 없어 구체 예와 짧은 낱말 빈칸으로 바꿈",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "x를 빼면 소수 부분이 남음",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2188,
+      "part": "m2plus",
+      "sourceFingerprint": "8fd849bb965c83e3851c2348e15c2e8920fa33e229a6372bf783292ea6ac6ad9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2188
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x=0.2\\dot{3}$은 소수점 아래에 순환하지 않는 숫자가 있어서 $10x-x$를 계산하면 소수 부분이 {남는다}. 그래서 소수점을 순환마디 바로 {앞}으로 옮긴 $10x$를 만들어 $100x-10x$를 계산한다.",
+      "cSlotAnswers": [
+        "남는다",
+        "앞"
+      ],
+      "cStudentSentence": "$x=0.2\\dot{3}$은 소수점 아래에 순환하지 않는 숫자가 있어서 $10x-x$를 계산하면 소수 부분이 □. 그래서 소수점을 순환마디 바로 □으로 옮긴 $10x$를 만들어 $100x-10x$를 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "남는다",
+          "equivalentAnswers": [
+            "남는다",
+            "없어지지 않는다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "앞",
+          "equivalentAnswers": [
+            "앞"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "남는다",
+          "accept": [
+            "없어지지 않는다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "남는다",
+          "없어지지 않는다"
+        ],
+        [
+          "앞"
+        ]
+      ],
+      "proposalFingerprint": "d639974f2528ac0842cbc9451549ea755dc0277d22ec31cf67958e9072c814eb"
+    },
+    {
+      "id": "m2-01-03-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.1\\dot{6}$을 기약분수로 고치고 분모의 소인수를 모두 구하시오. 순환마디가 $9$뿐인 경우처럼 유한소수와 값이 같은 경우를 제외하면, 순환소수를 고친 기약분수의 분모에는 어떤 소인수가 있어야 하는지 까닭과 함께 쓰시오.",
+      "bAnswer": "$0.1\\dot{6}=\\frac{15}{90}=\\frac{1}{6}$이고 분모 $6$의 소인수는 $2$, $3$이다. 유한소수와 값이 같은 경우를 제외하면 분모에 $2$와 $5$가 아닌 소인수가 있어야 한다. 분모의 소인수가 $2$나 $5$뿐이면 유한소수로 나타낼 수 있기 때문이다.",
+      "bGoal": "순환소수와 기약분수 분모의 소인수 관계 알기",
+      "bReason": "순환 9가 유한소수와 같은 값인 예외를 문제와 답에 반영해 분모 성질을 틀리게 일반화하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$, 소인수 $2$, $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모에 $2$와 $5$가 아닌 소인수가 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$나 $5$뿐이면 유한소수가 된다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$0.1\\dot{6}=\\frac{1}{6}$이고 분모 $6$의 소인수는 $2$와 {$3$}이다. 분모에 $2$와 $5$가 아닌 소인수가 있으므로 이 수는 유한소수로 나타낼 수 {없다}.",
+      "cAnswers": [
+        "$3$",
+        "없다"
+      ],
+      "cReason": "2·5의 순서가 뒤바뀌는 빈칸과 6의 임의 소인수를 묻던 칸을 없애고 소인수 2를 보여 준다.",
+      "coreAfter": "순환소수를 고친 기약분수의 분모에는 {$2$, $5$가 아닌} 소인수가 반드시 있다. (단, $0.\\dot{9}=1$처럼 순환마디가 $9$뿐인 순환소수는 정수나 유한소수와 값이 같으므로 제외한다.)",
+      "coreReason": "$0.\\dot{9}=1$, $0.4\\dot{9}=\\frac{1}{2}$이 반례가 되므로 예외를 밝힘",
+      "exampleNeeded": true,
+      "studentLabel": "순환소수를 고친 기약분수의 분모의 소인수",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "2·5뿐이면 유한소수가 됨",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2189,
+      "part": "m2plus",
+      "sourceFingerprint": "fada62c819ea96e0682f8f05134ad16e0bb8845767fe1a52a97134b7d3b8297d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2189
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-03-xc23"
+      },
+      "coreBeforeRepair": "순환소수를 고친 기약분수의 분모에는 {$2$, $5$가 아닌} 소인수가 반드시 있다. (단, $0.\\dot{9}=1$처럼 순환마디가 $9$뿐인 순환소수는 정수나 유한소수와 값이 같으므로 제외한다.)",
+      "coreRepairReason": "이미 좋아 그대로 보존함. 원래 핵심어 {$2$, $5$가 아닌}을 유지했고, 반례를 막는 예외 조건만 둠.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "cMarkedSentence": "$0.1\\dot{6}=\\frac{1}{6}$이고 분모 $6$의 소인수는 $2$와 {$3$}이다. 분모에 $2$와 $5$가 아닌 소인수가 있으므로 이 수는 유한소수로 나타낼 수 {없다}.",
+      "cSlotAnswers": [
+        "$3$",
+        "없다"
+      ],
+      "cStudentSentence": "$0.1\\dot{6}=\\frac{1}{6}$이고 분모 $6$의 소인수는 $2$와 □이다. 분모에 $2$와 $5$가 아닌 소인수가 있으므로 이 수는 유한소수로 나타낼 수 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "없다",
+          "equivalentAnswers": [
+            "없다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ],
+        [
+          "없다"
+        ]
+      ],
+      "proposalFingerprint": "3368c91b2e330d8159bfcbbc32df6eeccebb496d29381791aba7dcb761118b38"
+    },
+    {
+      "id": "m2-01-03-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=0.\\dot{1}\\dot{2}$와 $y=0.1\\dot{2}$를 분수로 고칠 때 각각 어떤 두 식을 변끼리 빼야 하는지 쓰고, 빼는 식이 서로 다른 까닭을 설명하시오.",
+      "bAnswer": "$x$는 $100x-x$($=12$), $y$는 $100y-10y$($=11$)를 쓴다. $y$는 소수 첫째 자리의 $1$이 순환하지 않으므로 $y$ 대신 $10y=1.222\\cdots$를 써야 $100y=12.222\\cdots$와 소수 부분이 같아지기 때문이다.",
+      "bGoal": "순환이 시작되는 자리에 따라 빼는 식 구분하기",
+      "bReason": "제목의 $a$, $b$ 꼴이 추상적이라 구체적인 두 수와 답할 범위(식과 까닭)를 줌",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100x-x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100y-10y$"
+          ]
+        },
+        {
+          "anyOf": [
+            "순환하지 않는 숫자가 있으면 소수 부분을 같게 하려고 $10y$를 쓴다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "순환소수 $x$를 분수로 고칠 때, $x=0.\\dot{1}\\dot{2}$처럼 소수 첫째 자리부터 두 자리가 순환하면 {$100x-x$}를, $x=0.1\\dot{2}$처럼 소수 둘째 자리부터 한 자리가 순환하면 {$100x-10x$}를 계산한다.",
+      "cAnswers": [
+        "$100x-x$",
+        "$100x-10x$"
+      ],
+      "cReason": "$x$의 뜻과 무엇을 위한 식인지가 숨은 제목에만 있어 문장에 넣고 예를 붙임",
+      "exampleNeeded": true,
+      "studentLabel": "두 꼴의 순환소수에 쓰는 뺄셈 식 구분하기",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "순환 시작 자리로 뺄셈 식 구분",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2190,
+      "part": "m2plus",
+      "sourceFingerprint": "e9305cfb18caf2a4dadc74ae917389e6bd7f57ea1035bed897791c86aade311b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2190
+      },
+      "directReview": null,
+      "cMarkedSentence": "순환소수 $x$를 분수로 고칠 때, $x=0.\\dot{1}\\dot{2}$처럼 소수 첫째 자리부터 두 자리가 순환하면 {$100x-x$}를, $x=0.1\\dot{2}$처럼 소수 둘째 자리부터 한 자리가 순환하면 {$100x-10x$}를 계산한다.",
+      "cSlotAnswers": [
+        "$100x-x$",
+        "$100x-10x$"
+      ],
+      "cStudentSentence": "순환소수 $x$를 분수로 고칠 때, $x=0.\\dot{1}\\dot{2}$처럼 소수 첫째 자리부터 두 자리가 순환하면 □를, $x=0.1\\dot{2}$처럼 소수 둘째 자리부터 한 자리가 순환하면 □를 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$100x-x$",
+          "equivalentAnswers": [
+            "$100x-x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$100x-10x$",
+          "equivalentAnswers": [
+            "$100x-10x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$100x-x$"
+        ],
+        [
+          "$100x-10x$"
+        ]
+      ],
+      "proposalFingerprint": "d8c51def7b32292ee931aa5d436af0ebb097d450da02b117be61018367085f9a"
+    },
+    {
+      "id": "m2-01-03-xc25",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{1}\\dot{2}$에 자연수 $n$을 곱한 값이 자연수가 되게 하려고 한다. $n$이 어떤 수여야 하는지 구하는 방법을 쓰고, 가장 작은 $n$을 구하시오.",
+      "bAnswer": "$0.\\dot{1}\\dot{2}=\\frac{12}{99}=\\frac{4}{33}$로 기약분수로 고친다. 분모 $33$이 약분되어 없어져야 하므로 $n$은 $33$의 배수여야 하고, 가장 작은 $n$은 $33$이다.",
+      "bGoal": "순환소수에 곱해 자연수가 되게 하는 수 구하기",
+      "bReason": "일반 방법만으로는 막연해 구체 수와 구할 대상(조건, 최솟값)을 정함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기약분수 $\\frac{4}{33}$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$n$은 분모 $33$의 배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은 $n$은 $33$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "아무 분수·분모의 배수를 써도 참인 열린 두 칸 대신 가장 작은 자연수라는 기준으로 답을 한정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "application",
+      "roleReason": "기약분수 분모의 배수를 곱함",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "cAfter": "양의 순환소수에 자연수를 곱해 자연수가 되게 하려 한다. 먼저 그 소수를 기약분수로 고치면, 곱할 수 있는 가장 작은 자연수는 그 기약분수의 {분모}이다.",
+      "cAnswers": [
+        "분모"
+      ],
+      "sourceIndex": 2191,
+      "part": "m2plus",
+      "sourceFingerprint": "cd48d7d2dfb2d0b993a8e3a6d507bdf08bf5c6b2bcce3e3eb844d4f62c2a3d82",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2191
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-03-xc25"
+      },
+      "cMarkedSentence": "양의 순환소수에 자연수를 곱해 자연수가 되게 하려 한다. 먼저 그 소수를 기약분수로 고치면, 곱할 수 있는 가장 작은 자연수는 그 기약분수의 {분모}이다.",
+      "cSlotAnswers": [
+        "분모"
+      ],
+      "cStudentSentence": "양의 순환소수에 자연수를 곱해 자연수가 되게 하려 한다. 먼저 그 소수를 기약분수로 고치면, 곱할 수 있는 가장 작은 자연수는 그 기약분수의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분모",
+          "equivalentAnswers": [
+            "분모"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분모"
+        ]
+      ],
+      "proposalFingerprint": "277ec334344aa9dbea9b3c046528215ff1b84b6bbea382fd522552add667d61a"
+    },
+    {
+      "id": "m2-01-03-xc26",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{4}\\dot{5}=\\frac{45}{99}$를 한 번에 기약분수로 만들려면 분자와 분모를 어떤 수로 나누어야 하는지 쓰고, 기약분수를 구하시오.",
+      "bAnswer": "$45$와 $99$의 최대공약수 $9$로 나눈다. $\\frac{45}{99}=\\frac{5}{11}$",
+      "bGoal": "최대공약수로 나누어 한 번에 기약분수 만들기",
+      "bReason": "실제로나눌수9와기약분수5/11을함께확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "45와99의최대공약수9로나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac5{11}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "순환소수를 분수로 고친 뒤 분자와 분모를 두 수의 {최대공약수}로 나누면 한 번에 {기약분수}가 된다.",
+      "cAnswers": [
+        "최대공약수",
+        "기약분수"
+      ],
+      "cReason": "무엇을 분수로 고친 뒤인지 주어가 없어 보충하고 빈칸은 유지함",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "최대공약수로 한 번에 약분",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2192,
+      "part": "m2plus",
+      "sourceFingerprint": "1751706dd471214e611b7b242f4ad354dc008faf6db574c401656cc1071f3f3e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2192
+      },
+      "directReview": null,
+      "cMarkedSentence": "순환소수를 분수로 고친 뒤 분자와 분모를 두 수의 {최대공약수}로 나누면 한 번에 {기약분수}가 된다.",
+      "cSlotAnswers": [
+        "최대공약수",
+        "기약분수"
+      ],
+      "cStudentSentence": "순환소수를 분수로 고친 뒤 분자와 분모를 두 수의 □로 나누면 한 번에 □가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최대공약수",
+          "equivalentAnswers": [
+            "최대공약수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "기약분수",
+          "equivalentAnswers": [
+            "기약분수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최대공약수"
+        ],
+        [
+          "기약분수"
+        ]
+      ],
+      "proposalFingerprint": "6bdea5c142c600f1f5cf09cba34362fb3fd683d47bd995d09154502b47c44fba"
+    },
+    {
+      "id": "m2-01-04-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "c3가 이미 덧셈 예로 같은 방법을 묻고 있음",
+      "cDecision": "rewrite",
+      "cAfter": "$0.\\dot{1}+0.\\dot{4}$는 각각 분수로 고쳐 $\\frac{1}{9}+${$\\frac{4}{9}$}$=${$\\frac{5}{9}$}로 계산한다.",
+      "cAnswers": [
+        "$\\frac{4}{9}$",
+        "$\\frac{5}{9}$"
+      ],
+      "cReason": "답 '덧셈'이 '더할 때'를 되풀이하고 '분수'는 c3와 겹쳐 짧은 계산 빈칸으로 바꿈",
+      "exclusionReason": "B 제외: m2-01-04-c3(분수로 고쳐 계산, 덧셈 예)와 목표·예가 중복되는 제목.",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "분수로 고쳐 분수끼리 더함",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2193,
+      "part": "m2plus",
+      "sourceFingerprint": "d587a4ea42d30c48dec5372a86490b8b293d8e3c5859a8883cc012f1cf7a0b40",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2193
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$0.\\dot{1}+0.\\dot{4}$는 각각 분수로 고쳐 $\\frac{1}{9}+${$\\frac{4}{9}$}$=${$\\frac{5}{9}$}로 계산한다.",
+      "cSlotAnswers": [
+        "$\\frac{4}{9}$",
+        "$\\frac{5}{9}$"
+      ],
+      "cStudentSentence": "$0.\\dot{1}+0.\\dot{4}$는 각각 분수로 고쳐 $\\frac{1}{9}+$□$=$□로 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{4}{9}$",
+          "equivalentAnswers": [
+            "$\\frac{4}{9}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{5}{9}$",
+          "equivalentAnswers": [
+            "$\\frac{5}{9}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{4}{9}$"
+        ],
+        [
+          "$\\frac{5}{9}$"
+        ]
+      ],
+      "proposalFingerprint": "775303f1091740d4b9538ccaec29f19f8e29cc73ebc1483ee817afa2955bfb16"
+    },
+    {
+      "id": "m2-01-04-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "c3의 방법에서 연산만 뺄셈으로 바꾼 항목임",
+      "cDecision": "rewrite",
+      "cAfter": "$0.\\dot{6}-0.\\dot{4}$는 각각 분수로 고쳐 {$\\frac{6}{9}$}$-\\frac{4}{9}=${$\\frac{2}{9}$}로 계산한다.",
+      "cAnswers": [
+        "$\\frac{6}{9}$",
+        "$\\frac{2}{9}$"
+      ],
+      "cReason": "답 '뺀다'가 '뺄 때'를 되풀이해 의미가 없어 짧은 계산 빈칸으로 바꿈",
+      "exclusionReason": "B 제외: m2-01-04-c3와 방법이 같고 연산만 다른 반복 제목.",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "분수로 고쳐 분수끼리 뺌",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2194,
+      "part": "m2plus",
+      "sourceFingerprint": "de97d38fa8980378ced18a45d6ad075f6efcb919f7990e75be34aaa1d79245b8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2194
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$0.\\dot{6}-0.\\dot{4}$는 각각 분수로 고쳐 {$\\frac{6}{9}$}$-\\frac{4}{9}=${$\\frac{2}{9}$}로 계산한다.",
+      "cSlotAnswers": [
+        "$\\frac{6}{9}$",
+        "$\\frac{2}{9}$"
+      ],
+      "cStudentSentence": "$0.\\dot{6}-0.\\dot{4}$는 각각 분수로 고쳐 □$-\\frac{4}{9}=$□로 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{6}{9}$",
+          "equivalentAnswers": [
+            "$\\frac{6}{9}$",
+            "$\\frac{2}{3}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{2}{9}$",
+          "equivalentAnswers": [
+            "$\\frac{2}{9}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{6}{9}$",
+          "accept": [
+            "$\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{6}{9}$",
+          "$\\frac{2}{3}$"
+        ],
+        [
+          "$\\frac{2}{9}$"
+        ]
+      ],
+      "proposalFingerprint": "3bc2ead58f01c0289661f7169607311c3dfee9a89efab54e116856bd24764149"
+    },
+    {
+      "id": "m2-01-04-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "c3의 방법에서 연산만 자연수 곱으로 바꾼 항목임",
+      "cDecision": "rewrite",
+      "cAfter": "$0.\\dot{3}\\times6$은 $0.\\dot{3}$을 분수 {$\\frac{1}{3}$}로 고쳐 계산하면 {$2$}이다.",
+      "cAnswers": [
+        "$\\frac{1}{3}$",
+        "$2$"
+      ],
+      "cReason": "답 '곱한다'가 '곱할 때'를 되풀이해 의미가 없어 짧은 계산 빈칸으로 바꿈",
+      "exclusionReason": "B 제외: m2-01-04-c3와 방법이 같고 연산만 다른 반복 제목.",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "분수로 고쳐 자연수와 곱함",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2195,
+      "part": "m2plus",
+      "sourceFingerprint": "4368ea74d0464a5d913a72073820637984251d0aa2303d016a5a25fe99cf1f1b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2195
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$0.\\dot{3}\\times6$은 $0.\\dot{3}$을 분수 {$\\frac{1}{3}$}로 고쳐 계산하면 {$2$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{3}$",
+        "$2$"
+      ],
+      "cStudentSentence": "$0.\\dot{3}\\times6$은 $0.\\dot{3}$을 분수 □로 고쳐 계산하면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{3}$",
+          "equivalentAnswers": [
+            "$\\frac{1}{3}$",
+            "$\\frac{3}{9}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{1}{3}$",
+          "accept": [
+            "$\\frac{3}{9}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{3}$",
+          "$\\frac{3}{9}$"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "bf3cd80c78736d7ac9ef1790db0c3d984b5def1dfa9110113fcf629f23441172"
+    },
+    {
+      "id": "m2-01-04-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.5+0.\\dot{2}$처럼 유한소수와 순환소수가 섞인 식은 어떻게 계산하는지 쓰고, 이 식의 값을 기약분수로 구하시오.",
+      "bAnswer": "유한소수와 순환소수를 둘 다 분수로 고쳐 계산한다. $0.5+0.\\dot{2}=\\frac{1}{2}+\\frac{2}{9}=\\frac{9}{18}+\\frac{4}{18}=\\frac{13}{18}$",
+      "bGoal": "유한소수도 분수로 고쳐 순환소수와 함께 계산하기",
+      "bReason": "통분은 질문이 묻지 않은 중간 단계라 별도 필수에서 삭제",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수를 모두 분수로 고친다",
+            "$\\frac{1}{2}+\\frac{2}{9}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{13}{18}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$0.5+0.\\dot2$를 계산하려고 두 소수를 각각 기약분수로 고치면 순서대로 {$\\frac12$}, {$\\frac29$}이다. 두 분수를 더한 값을 기약분수로 나타내면 {$\\frac{13}{18}$}이다.",
+      "cAnswers": [
+        "$\\frac12$",
+        "$\\frac29$",
+        "$\\frac{13}{18}$"
+      ],
+      "cReason": "분수모양을보고분수라는말만쓰는칸을없애고두변환과계산결과를각각묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "유한·순환소수 둘 다 분수로",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2196,
+      "part": "m2plus",
+      "sourceFingerprint": "e9af8e2b9e4c015dbc6a733d243b2627aba853585708dfbc5863e05e379f5286",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2196
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0.5+0.\\dot2$를 계산하려고 두 소수를 각각 기약분수로 고치면 순서대로 {$\\frac12$}, {$\\frac29$}이다. 두 분수를 더한 값을 기약분수로 나타내면 {$\\frac{13}{18}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac12$",
+        "$\\frac29$",
+        "$\\frac{13}{18}$"
+      ],
+      "cStudentSentence": "$0.5+0.\\dot2$를 계산하려고 두 소수를 각각 기약분수로 고치면 순서대로 □, □이다. 두 분수를 더한 값을 기약분수로 나타내면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac12$",
+          "equivalentAnswers": [
+            "$\\frac12$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac29$",
+          "equivalentAnswers": [
+            "$\\frac29$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$\\frac{13}{18}$",
+          "equivalentAnswers": [
+            "$\\frac{13}{18}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac12$"
+        ],
+        [
+          "$\\frac29$"
+        ],
+        [
+          "$\\frac{13}{18}$"
+        ]
+      ],
+      "proposalFingerprint": "e8527b906cb457bf2ba1d83820515d469ed3a771caa95523e225586f751781f2"
+    }
+  ]
+}

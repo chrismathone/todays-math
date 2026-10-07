@@ -1,0 +1,714 @@
+{
+  "rows": [
+    {
+      "id": "e5-2-3-4-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형은 어떤 도형입니까? 도형을 어떻게 움직였을 때 어떻게 되는 도형인지 설명하시오.",
+      "bAnswer": "한 점을 중심으로 180°(반 바퀴) 돌렸을 때 처음 도형과 완전히 겹치는 도형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반 바퀴 돌린다",
+            "180° 돌린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 도형과 완전히 겹친다",
+            "처음 도형과 꼭 맞게 포개어진다"
+          ]
+        }
+      ],
+      "bGoal": "돌리는 양과 겹침이라는 점대칭도형의 두 조건을 스스로 말한다.",
+      "bReason": "제목만으로는 답의 범위가 없어 움직임과 결과를 묻는 질문으로 좁혔다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형은 한 점을 중심으로 {반 바퀴} 돌렸을 때 처음 도형과 완전히 {겹치는} 도형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반 바퀴",
+            "180°",
+            "180도"
+          ]
+        },
+        {
+          "anyOf": [
+            "겹치는",
+            "포개어지는"
+          ]
+        }
+      ],
+      "cReason": "원문은 '겹치는'만 비워 핵심 조건인 돌리는 양을 확인하지 못한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-c2",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대칭의 중심은 어떤 점을 말합니까?",
+      "bAnswer": "점대칭도형을 180° 돌려 처음 도형과 완전히 겹치게 할 때 중심이 되는 점이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "도형을 반 바퀴(180°) 돌릴 때 중심이 되는 점",
+            "반 바퀴 돌려도 움직이지 않는 점"
+          ]
+        }
+      ],
+      "bGoal": "대칭의 중심을 돌리기의 기준점으로 설명한다.",
+      "bReason": "정식 용어이므로 무엇인지 좁혀 물으면 충분하다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형을 반 바퀴 돌려 처음 도형과 겹치게 할 때 중심이 되는 점을 {대칭의 중심}이라고 한다.",
+      "cReason": "'움직이지 않는 기준점'은 임의의 긴 구절이라 용어 이름을 답하게 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-c3",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대응점, 대응변, 대응각은 각각 무엇을 말합니까? 도형을 어떻게 움직였을 때의 점, 변, 각인지 설명하시오.",
+      "bAnswer": "대칭의 중심을 중심으로 180° 돌렸을 때 겹치는 점이 대응점, 겹치는 변이 대응변, 겹치는 각이 대응각이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대칭의 중심을 중심으로 반 바퀴(180°) 돌린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그때 서로 겹치는 점, 변, 각이다",
+            "돌렸을 때 자리가 서로 바뀌는 점, 변, 각이다"
+          ]
+        }
+      ],
+      "bGoal": "대응점·대응변·대응각을 반 바퀴 돌려 겹치는 부분으로 한꺼번에 설명한다.",
+      "bReason": "c3·c4·c5가 같은 문장 구조라 한 질문으로 묶었다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형을 대칭의 중심을 중심으로 180° 돌렸을 때 겹치는 점을 {대응점}, 겹치는 변을 {대응변}, 겹치는 각을 {대응각}이라고 한다.",
+      "cReason": "'점의 짝'은 외울 낱말이 아니므로 세 용어 이름을 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-c4",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응변의 뜻은 c3에서 함께 확인한다.",
+      "bReason": "c3와 낱말만 다른 같은 정의라 따로 물을 가치가 낮다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'변의 짝'은 임의 구절이고 c3 수정 C가 대응변을 포함한다.",
+      "exclusionReason": "c3와 중복. 대체: e5-2-3-4-c3 (B, C)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-c5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응각의 뜻은 c3에서 함께 확인한다.",
+      "bReason": "c3와 낱말만 다른 같은 정의다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'각의 짝'은 임의 구절이고 c3 수정 C가 대응각을 포함한다.",
+      "exclusionReason": "c3와 중복. 대체: e5-2-3-4-c3 (B, C)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-c6",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대응점끼리 이은 선분과 대칭의 중심은 어떤 관계입니까? 대응점 ㄱ과 ㄹ을 이은 선분의 길이가 10 cm일 때, 점 ㄱ에서 대칭의 중심까지의 거리도 구하시오.",
+      "bAnswer": "대칭의 중심은 대응점끼리 이은 선분을 똑같이 둘로 나눈다(선분의 한가운데에 있다). 점 ㄱ에서 대칭의 중심까지의 거리는 5 cm이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대칭의 중심은 대응점끼리 이은 선분의 한가운데에 있다",
+            "대칭의 중심이 그 선분을 똑같이 둘로 나눈다",
+            "두 대응점에서 대칭의 중심까지의 거리가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "5 cm"
+          ]
+        }
+      ],
+      "bGoal": "대칭의 중심이 대응점을 이은 선분을 이등분함을 말하고 길이에 적용한다.",
+      "bReason": "'성질'이라는 제목만으로는 어떤 성질인지 알 수 없어 대상을 밝혔다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "대응점을 이은 선분 위에서 대칭의 중심의 위치를 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'한가운데'와 함께 '가운데', '중간'도 인정."
+    },
+    {
+      "id": "e5-2-3-4-c7",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대응변끼리, 대응각끼리는 각각 어떤 관계입니까? 변 ㄱㄴ의 대응변이 변 ㄹㅁ이고 변 ㄱㄴ의 길이가 7 cm일 때 변 ㄹㅁ의 길이도 쓰시오.",
+      "bAnswer": "대응변의 길이는 서로 같고, 대응각의 크기도 서로 같다. 변 ㄹㅁ의 길이는 7 cm이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대응변의 길이가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대응각의 크기가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "7 cm"
+          ]
+        }
+      ],
+      "bGoal": "대응변의 길이와 대응각의 크기가 같음을 말하고 적용한다.",
+      "bReason": "'같은 부분'은 편집용 제목이라 대응변·대응각의 관계를 직접 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형에서 대응변의 {길이}는 서로 같고, 대응각의 {크기}도 서로 같다.",
+      "cReason": "'회전해도 유지되어'는 돌려 말한 표현이라 교과서식 성질 문장으로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc1",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "점대칭도형인지 확인하는 방법은 c1의 정의와 같다.",
+      "bReason": "c1의 정의를 방법으로 다시 쓴 것이라 답이 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 구절을 통째로 비웠고, 줄여도 c1 수정 C와 같은 빈칸이 된다.",
+      "exclusionReason": "c1과 중복. 대체: e5-2-3-4-c1 (B, C)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc2",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "반 바퀴가 180°임은 빈칸으로 확인하면 충분하다.",
+      "bReason": "값 하나만 답하는 사실이라 서술형 가치가 없다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "반 바퀴를 각도로 바꾸는 짧은 문장으로 답이 하나로 정해진다.",
+      "exclusionReason": "B만 제외: 단순 값 하나. C는 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'180°'와 함께 '180도'도 인정."
+    },
+    {
+      "id": "e5-2-3-4-xc3",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정사각형과 직사각형은 점대칭도형입니다. 이 도형들에서 대칭의 중심은 어디에 있는지 설명하시오.",
+      "bAnswer": "두 대각선이 만나는 점이 대칭의 중심이다. (마주 보는 꼭짓점이 대응점이라, 대응점끼리 이은 두 선분이 만나는 점이다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 대각선이 만나는 점",
+            "마주 보는 꼭짓점끼리 이은 두 선분이 만나는 점"
+          ]
+        }
+      ],
+      "bGoal": "정사각형·직사각형의 대칭의 중심 위치를 말한다.",
+      "bReason": "xc3과 xc6의 답이 같아 한 질문으로 합쳤다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형과 직사각형의 대칭의 중심은 두 {대각선}이 만나는 점이다.",
+      "cReason": "긴 구절 대신 핵심 낱말만 비우고 직사각형(xc6)도 함께 담았다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc4",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "원의 대칭의 중심은 빈칸으로 확인하면 충분하다.",
+      "bReason": "답이 '원의 중심' 한 낱말뿐이라 설명할 관계가 없다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "원의 대칭의 중심 위치를 묻는 짧은 문장으로 초3에서 배운 '원의 중심'으로 답할 수 있다.",
+      "exclusionReason": "B만 제외: 한 낱말 사실. C는 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'원의 중심'과 함께 '중심'도 인정."
+    },
+    {
+      "id": "e5-2-3-4-xc5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정삼각형은 점대칭도형입니까? 반 바퀴 돌렸을 때 처음 도형과 어떻게 되는지를 들어 설명하시오.",
+      "bAnswer": "점대칭도형이 아니다. 어느 점을 중심으로 180° 돌려도 꼭짓점의 방향이 반대로 되어 처음 도형과 완전히 겹치지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반 바퀴(180°) 돌리면 처음 도형과 완전히 겹치지 않는다",
+            "반 바퀴 돌리면 뒤집힌 방향의 모양이 되어 포개어지지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "정삼각형이 점대칭도형이 아닌 까닭을 정의로 판단한다.",
+      "bReason": "선대칭도형이라 점대칭으로도 착각하기 쉬운 대표 반례다.",
+      "cDecision": "revise",
+      "cAfter": "정삼각형은 어느 점을 중심으로 반 바퀴 돌려도 처음 도형과 완전히 겹치지 않으므로 점대칭도형이 {아니다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다",
+            "아닙니다"
+          ]
+        }
+      ],
+      "cReason": "문장 끝 전체를 비운 서술형 빈칸을 판단 낱말 하나로 줄였다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc6",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "직사각형의 대칭의 중심은 xc3에서 함께 확인한다.",
+      "bReason": "xc3의 정사각형과 답이 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc3 수정 C가 직사각형을 포함해 같은 빈칸이 반복된다.",
+      "exclusionReason": "xc3과 중복. 대체: e5-2-3-4-xc3 (B, C)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc7",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형인지, 점대칭도형인지 각각 답하시오. 점대칭도형이라면 대칭의 중심이 어디인지도 쓰시오.",
+      "bAnswer": "선대칭도형은 아니고 점대칭도형이다. 대칭의 중심은 두 대각선이 만나는 점이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "선대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "점대칭도형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대칭의 중심은 두 대각선이 만나는 점이다"
+          ]
+        }
+      ],
+      "bGoal": "평행사변형으로 선대칭과 점대칭이 서로 다른 성질임을 구별한다.",
+      "bReason": "두 대칭을 혼동하지 않는지 확인하는 대표 도형이라 판단과 중심 위치를 함께 물었다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "조건(직사각형도 마름모도 아님)이 정확하고 선대칭과 대비되는 답이 한 용어로 정해진다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc8",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "마름모가 두 대칭을 모두 가짐은 xc18에서 함께 확인한다.",
+      "bReason": "xc18의 도형 목록에 마름모가 들어 있다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "마름모가 선대칭이면서 점대칭임을 한 용어로 확인하는 짧은 문장이다.",
+      "exclusionReason": "B만 제외: xc18과 중복. 대체: e5-2-3-4-xc18 (B)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc9",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대칭의 중심이 1개임은 빈칸으로 확인하면 충분하다.",
+      "bReason": "개수 하나만 답하는 사실이고 까닭은 초5 범위를 넘는다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형인 다각형이나 원에서 대칭의 중심은 {1}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "1",
+            "한",
+            "하나"
+          ]
+        }
+      ],
+      "cReason": "'한없이 뻗지 않는'은 초5에게 낯선 말이라 빼고 다각형·원 조건만 남겼다.",
+      "exclusionReason": "B만 제외: 단순 개수. C는 수정 유지.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc10",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 대응점에서 대칭의 중심까지의 거리가 같음은 c6에서 확인한다.",
+      "bReason": "c6의 성질을 거리로 바꿔 말한 것이고 c6 B가 거리까지 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "c6과 달리 거리 표현으로 묻는 짧은 문장이라 빈칸으로는 쓸 만하다.",
+      "exclusionReason": "B만 제외: c6과 중복. 대체: e5-2-3-4-c6 (B)",
+      "exampleNeeded": false,
+      "synonymNotes": "'같은 거리'와 함께 '똑같은 거리'도 인정."
+    },
+    {
+      "id": "e5-2-3-4-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대칭의 중심 ㅇ과 도형 위의 한 점 ㄱ이 주어졌을 때, 점 ㄱ의 대응점의 위치를 어떻게 찾는지 설명하시오.",
+      "bAnswer": "점 ㄱ에서 점 ㅇ을 지나는 직선을 긋고, 그 직선 위에서 점 ㅇ의 반대쪽으로 선분 ㄱㅇ과 같은 길이만큼 떨어진 곳이 대응점이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점 ㄱ과 대칭의 중심 ㅇ을 지나는 직선 위에서 찾는다",
+            "점 ㄱ에서 ㅇ을 지나도록 선을 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "ㅇ에서 반대쪽으로 선분 ㄱㅇ과 같은 거리만큼 떨어진 곳이다",
+            "ㅇ이 한가운데가 되도록 반대쪽에 점을 찍는다"
+          ]
+        }
+      ],
+      "bGoal": "대칭의 중심을 지나는 직선과 같은 거리로 대응점을 찾는 순서를 말한다.",
+      "bReason": "점 이름을 주어 '어디서 어디까지 같은 거리인지'를 분명히 답하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "점 ㄱ의 대응점은 점 ㄱ에서 {대칭의 중심}을 지나는 직선을 긋고, 대칭의 중심에서 점 ㄱ까지의 거리와 {같은} 거리만큼 더 간 곳에 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대칭의 중심"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "cReason": "원문은 구절 전체를 비웠고 '같은 거리'의 기준이 없어 기준을 밝히고 낱말만 비웠다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc12",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정육각형의 판단은 xc15의 일반 규칙에서 예로 확인한다.",
+      "bReason": "xc15 B가 정육각형을 예로 포함한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "정육각형이라는 구체 도형의 판단을 한 용어로 확인하는 짧은 문장이다.",
+      "exclusionReason": "B만 제외: xc15와 중복. 대체: e5-2-3-4-xc15 (B)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc13",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정오각형의 판단은 xc15 B와 xc16 C에서 확인한다.",
+      "bReason": "xc15 B가 정오각형을 예로 묻고 까닭은 xc5와 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc5와 도형 이름만 다른 문장이고 xc16 수정 C에 정오각형이 들어 있다.",
+      "exclusionReason": "중복. 대체: e5-2-3-4-xc15 (B), e5-2-3-4-xc16 (C)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc14",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응각의 크기가 같음은 c7에서 확인한다.",
+      "bReason": "c7의 성질을 그대로 적용하는 값 하나짜리 물음이다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형에서 각 ㄱㄴㄷ의 대응각이 각 ㄹㅁㅂ이고 각 ㄹㅁㅂ의 크기가 70°이면, 각 ㄱㄴㄷ의 크기는 {70°}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "70°",
+            "70도",
+            "70"
+          ]
+        }
+      ],
+      "cReason": "'그 대응각과 같다'는 앞말을 되풀이하는 답이라 실제 각도로 적용하게 바꿨다.",
+      "exclusionReason": "B만 제외: c7과 중복. 대체: e5-2-3-4-c7 (B)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정다각형이 점대칭도형인지 아닌지는 변의 수에 따라 어떻게 달라집니까? 정오각형과 정육각형이 각각 점대칭도형인지도 쓰시오.",
+      "bAnswer": "변의 수가 짝수인 정다각형은 점대칭도형이고, 홀수인 정다각형은 점대칭도형이 아니다. 정오각형은 점대칭도형이 아니고 정육각형은 점대칭도형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "변의 수가 짝수이면 점대칭도형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 수가 홀수이면 점대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정오각형은 점대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육각형은 점대칭도형이다"
+          ]
+        }
+      ],
+      "bGoal": "정다각형의 변의 수(짝수·홀수)와 점대칭 여부의 규칙을 말하고 예에 적용한다.",
+      "bReason": "xc12·xc13·xc15·xc16을 하나의 일반 규칙과 두 예로 묶었다.",
+      "cDecision": "revise",
+      "cAfter": "변의 수가 {짝수}인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 겹치므로 점대칭도형이다.",
+      "cReason": "'겹치므로'는 이음말 빈칸이라 규칙의 핵심 조건인 '짝수'를 비웠다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc16",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "홀수 정다각형의 판단은 xc15에서 짝수와 함께 확인한다.",
+      "bReason": "xc15 B가 홀수인 경우까지 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "정삼각형, 정오각형처럼 변의 수가 {홀수}인 정다각형은 점대칭도형이 아니다.",
+      "cReason": "'되지 않는다'는 어미 빈칸이라 조건인 '홀수'를 비우고 익숙한 예를 붙였다.",
+      "exclusionReason": "B만 제외: xc15와 중복. 대체: e5-2-3-4-xc15 (B)",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "다각형인 점대칭도형의 절반과 대칭의 중심이 그려져 있을 때, 나머지 절반을 그려 도형을 완성하는 순서를 설명하시오.",
+      "bAnswer": "주어진 각 꼭짓점의 대응점을 찾아 찍고(대칭의 중심을 지나 반대쪽으로 같은 거리), 찍은 대응점들을 차례로 선분으로 이어 완성한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 꼭짓점의 대응점을 찾아 표시한다",
+            "각 꼭짓점에서 대칭의 중심을 지나 반대쪽 같은 거리에 점을 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "찍은 점들을 차례로 이어 도형을 완성한다"
+          ]
+        }
+      ],
+      "bGoal": "대응점을 찍고 잇는 점대칭도형 완성 순서를 말한다.",
+      "bReason": "그림 없이도 일반 순서를 말할 수 있어 조건(절반과 중심이 주어짐)을 질문에 넣었다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "완성 순서에서 찍어야 할 점의 이름을 묻고 '중심 건너편 같은 거리'라는 조건이 문장에 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정사각형, 직사각형, 마름모, 원, 정삼각형 중에서 선대칭도형이면서 점대칭도형인 것을 모두 고르시오. 고르지 않은 도형은 두 대칭 중 어느 쪽이 아닌지 쓰시오.",
+      "bAnswer": "정사각형, 직사각형, 마름모, 원이다. 정삼각형은 선대칭도형이지만 점대칭도형이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형, 직사각형, 마름모, 원을 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정삼각형은 점대칭도형이 아니다"
+          ]
+        }
+      ],
+      "bGoal": "익숙한 도형을 두 대칭 기준으로 분류한다.",
+      "bReason": "목록을 외우게 하지 않고 반례를 섞어 판단하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "네 도형이 선대칭이면서 점대칭임을 반 바퀴 조건과 함께 한 용어로 확인한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc19",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 한 직선 위에 있지 않은 두 대응변은 서로 어떤 위치 관계에 있습니까? 두 변을 길게 늘였을 때 만나는지를 넣어 설명하시오.",
+      "bAnswer": "서로 평행하다. 두 변을 아무리 늘여도 만나지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 평행하다",
+            "길게 늘여도 서로 만나지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "대응변끼리는 길이가 같을 뿐 아니라 평행함을 안다.",
+      "bReason": "'한 직선 위에 있지 않은'이라는 조건을 지키고 평행을 스스로 말하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "한 직선 위에 놓이는 경우를 뺀 조건이 정확하고 답이 초4에서 배운 낱말이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'서로 평행'과 함께 '평행'도 인정."
+    },
+    {
+      "id": "e5-2-3-4-xc20",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대칭의 중심이 표시되어 있지 않을 때, 대응점을 이용하여 대칭의 중심을 찾는 방법을 설명하시오.",
+      "bAnswer": "대응점끼리 이은 선분을 두 개 그어 두 선분이 만나는 점을 찾는다. (대응점끼리 이은 선분 하나의 한가운데 점을 찾아도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대응점끼리 이은 두 선분이 만나는 점을 찾는다",
+            "대응점끼리 이은 선분의 한가운데 점을 찾는다"
+          ]
+        }
+      ],
+      "bGoal": "대응점을 이은 선분으로 대칭의 중심을 찾는 방법을 말한다.",
+      "bReason": "두 선분의 교점과 한 선분의 한가운데가 모두 옳은 방법이라 둘 다 인정한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "'한 직선 위에 있지 않은 두 쌍'이라는 조건이 있어 답이 짧게 정해진다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'만나는 점'과 함께 '만나는 곳', '서로 만나는 점'도 인정."
+    },
+    {
+      "id": "e5-2-3-4-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형을 대칭의 중심을 지나는 직선으로 자르면, 나누어진 두 부분의 넓이는 어떤 관계입니까? 넓이가 24 cm²인 평행사변형을 대칭의 중심을 지나는 직선으로 잘랐을 때 한 부분의 넓이도 구하시오.",
+      "bAnswer": "두 부분의 넓이는 서로 같다. 한 부분의 넓이는 24÷2=12 (cm²)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 부분의 넓이가 서로 같다",
+            "넓이가 반씩 나누어진다",
+            "두 부분의 모양과 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "12 cm²"
+          ]
+        }
+      ],
+      "bGoal": "대칭의 중심을 지나는 직선이 넓이를 반으로 나눔을 말하고 적용한다.",
+      "bReason": "넓이 관계를 묻고 평행사변형으로 값을 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이}가 같은 두 부분으로 나눈다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "넓이",
+            "크기"
+          ]
+        }
+      ],
+      "cReason": "'넓이가 같은 두 부분'이라는 긴 구절 대신 핵심 낱말만 비웠다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형인 육각형은 이웃한 세 변의 길이만 알아도 둘레를 구할 수 있습니다. 대응변의 어떤 성질 때문인지 설명하고, 이웃한 세 변의 길이가 3 cm, 4 cm, 5 cm일 때 둘레를 구하시오.",
+      "bAnswer": "대응변의 길이가 서로 같아 나머지 세 변도 3 cm, 4 cm, 5 cm이다. 둘레는 (3+4+5)×2=24 (cm)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대응변의 길이가 서로 같다",
+            "나머지 세 변의 길이가 주어진 세 변과 각각 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "24 cm"
+          ]
+        }
+      ],
+      "bGoal": "대응변의 길이가 같다는 성질로 둘레 구하는 방법을 설명한다.",
+      "bReason": "공식 암기가 아니라 근거가 되는 성질과 실제 계산을 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형인 육각형에서 이웃한 세 변의 길이가 3 cm, 4 cm, 5 cm이면 둘레는 (3+4+5)×{2}={24} (cm)이다.",
+      "cReason": "'이웃한 세 변의 합의 두 배'는 통째로 외울 구절이라 실제 식의 짧은 값으로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-3-4-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 도형을 한 점을 중심으로 한 바퀴 돌렸더니 처음 도형과 완전히 겹쳤습니다. 이것만으로 점대칭도형이라고 할 수 있는지 답하고, 그 까닭을 돌리는 양과 관련지어 설명하시오.",
+      "bAnswer": "할 수 없다. 한 바퀴 돌리면 어떤 도형이든 처음과 겹치므로, 반 바퀴(180°) 돌렸을 때 겹쳐야 점대칭도형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점대칭도형이라고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 바퀴 돌리면 모든 도형이 처음 도형과 겹친다",
+            "반 바퀴(180°) 돌렸을 때 겹쳐야 점대칭도형이다"
+          ]
+        }
+      ],
+      "bGoal": "점대칭의 기준이 한 바퀴가 아니라 반 바퀴임을 까닭과 함께 구별한다.",
+      "bReason": "흔한 오개념을 상황으로 주고 판단과 까닭의 범위를 정했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "한 바퀴와 대비해 판단 기준이 되는 회전량을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'반 바퀴'와 함께 '180°', '180도'도 인정."
+    }
+  ],
+  "sectionNotes": [
+    "c3~c5(대응점·변·각), xc3·xc6(대각선 교점), xc12·xc13·xc15·xc16(정다각형 변의 수)은 같은 내용의 반복이라 각각 대표 문항 하나로 묶고 나머지는 대체 ID를 적어 제외했다.",
+    "모든 B는 그림 없이 글만으로 답할 수 있게 썼으며, coreAfter가 필요한 수학 오류는 없었고 xc9의 '한없이 뻗지 않는'만 C에서 풀어 썼다."
+  ]
+}

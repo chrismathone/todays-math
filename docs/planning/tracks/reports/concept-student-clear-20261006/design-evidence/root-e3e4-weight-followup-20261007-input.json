@@ -1,0 +1,157 @@
+{
+  "status": "Immutable questions before Root actual amendment; not approval",
+  "workerHandoffCommit": "55ddb218f4a2811e3f074ae719b15463ca24d927",
+  "auditBeforeSha256": "58e92a3c170dba557e66efa0e0fbac5cbe91c64ac133e6427299b60c9a0e9643",
+  "reviewPacket": "cohort-2026-10-07T08-38-09-383Z-0",
+  "rows": [
+    {
+      "id": "e3-2-5-4-xc12",
+      "before": {
+        "sourceIndex": 1245,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+        "sourceFingerprint": "b16aabc24662d2a7c7e785cc8f0ca9939e98510c20a3e5b2b4db06587392fe50",
+        "proposalFingerprint": "8c04742ab82c9791945be6cebf573407c8fdf4c2ff75ad19b0d909321b75406e",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-4-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+        "bAnswer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "재는 물건 한 개의 무게가 서로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수만으로 비교할 수 없다"
+            ]
+          }
+        ],
+        "bGoal": "재는 물건이 다르면 개수로 무게를 견줄 수 없음을 설명",
+        "bReason": "바둑돌과 클립의 무게가 다르면 개수만으로 전체 무게를 비교할 수 없다는 B는 유지한다.",
+        "cDecision": "rewrite",
+        "cAfter": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같습니다. 바둑돌 한 개가 클립 한 개보다 무겁다면, 가는 나보다 {무겁습니다}.",
+        "cReason": "같다고 할 수 없다는 부정 문장 대신 두 기준 물건의 무게 대소와 같은 개수를 주어 가와 나의 무게를 한 방향으로 비교하게 했다.",
+        "answerNotes": "바둑돌 한 개가 더 무겁고 개수가 같다는 두 조건으로 가가 더 무겁다. 부정문 안의 같다·무겁다·가볍다를 추측하는 문제가 아니다.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "재는 물건의 무게가 다를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같습니다. 바둑돌 한 개가 클립 한 개보다 무겁다면, 가는 나보다 {무겁습니다}.",
+        "cStudentSentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같습니다. 바둑돌 한 개가 클립 한 개보다 무겁다면, 가는 나보다 □.",
+        "cSlotEquivalents": [
+          [
+            "무겁다",
+            "무거워요",
+            "더 무겁습니다",
+            "더 무겁다"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "무겁습니다",
+            "equivalents": [
+              "무겁다",
+              "무거워요",
+              "더 무겁습니다",
+              "더 무겁다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+          "answer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "재는 물건 한 개의 무게가 서로 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "개수만으로 비교할 수 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같습니다. 바둑돌 한 개가 클립 한 개보다 무겁다면, 가는 나보다 {무겁습니다}.",
+          "acceptedAnswers": [
+            [
+              "무겁습니다",
+              "무겁다",
+              "무거워요",
+              "더 무겁습니다",
+              "더 무겁다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-4-xc12",
+          "sourceIndex": 1245,
+          "proposalFingerprint": "0d5dbeb4c6173d54c5b644945a704ae2c3a411d8fc9c94e5ba869461ca430d66",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "단위 물건 무게가 달라 개수만으로 비교 못하는 이유다.",
+          "cReason": "각 물건과 기준추의 같음은 가와 나가 같은지와 다른 비교이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e3-2-5-4-xc12",
+        "grade": "초3",
+        "source": {
+          "id": "e3-2-5-4-xc12",
+          "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+          "term": "재는 물건의 무게가 다를 때",
+          "kind": "성질",
+          "level": "중",
+          "definition": "단위로 쓰는 물건의 무게가 서로 다르면 그 개수로는 무게를 {비교할 수 없다}."
+        },
+        "B": {
+          "prompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+          "answer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "재는 물건 한 개의 무게가 서로 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "개수만으로 비교할 수 없다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같습니다. 바둑돌 한 개가 클립 한 개보다 무겁다면, 가는 나보다 {무겁습니다}.",
+          "acceptedAnswers": [
+            [
+              "무겁습니다",
+              "무겁다",
+              "무거워요",
+              "더 무겁습니다",
+              "더 무겁다"
+            ]
+          ]
+        },
+        "goal": "재는 물건이 다르면 개수로 무게를 견줄 수 없음을 설명",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "d9c85814d7448eff6f9c7726ad8ae8b8b195144f0d5225ee8cc0c4b8b6b87f12"
+      }
+    }
+  ]
+}

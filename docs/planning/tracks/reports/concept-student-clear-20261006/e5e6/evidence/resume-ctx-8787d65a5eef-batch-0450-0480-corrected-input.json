@@ -1,0 +1,528 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-1-3-xc22",
+      "bDecision": "revise",
+      "bPrompt": "괄호 안에 덧셈과 곱셈이 함께 있을 때 괄호 안은 어떤 차례로 계산하는지 쓰고, $60\\div(2+4\\times2)$에서 $60$을 나누는 수와 식의 값을 구하시오.",
+      "bAnswer": "괄호 안에서도 곱셈과 나눗셈을 덧셈과 뺄셈보다 먼저 계산한다. $4\\times2=8$, $2+8=10$이므로 $60$을 나누는 수는 $10$이고, $60\\div10=6$이다. ($2+4$를 먼저 하면 $60\\div12=5$가 되어 틀린다.)",
+      "bGoal": "괄호 안에서도 같은 차례 약속이 적용됨을 알고 계산한다.",
+      "bReason": "질문은괄호안의덧셈과곱셈만묻는다. 나눗셈과뺄셈의명칭까지답의필수내용으로확장하지않고그실제요청두연산의차례만평가한다.",
+      "studentLabel": "괄호 안에 계산이 여러 개일 때",
+      "cDecision": "revise",
+      "cAfter": "$60\\div(2+4\\times2)$는 괄호 안에서도 곱셈을 덧셈보다 먼저 하므로 괄호 안의 값은 {$10$}이고, 식의 값은 {$6$}이다.",
+      "cReason": "원 빈칸 '곱셈과 나눗셈을 먼저'는 c1과 같은 답이어서, 괄호 안이라는 새 상황이 드러나지 않는다. 식에 적용해 괄호 안의 값과 전체 값을 쓰게 한다.",
+      "exampleNeeded": false,
+      "exampleReason": "원 예시 식을 썼다.",
+      "synonymNotes": "수 답이라 동의어 없음. 괄호 안을 $12$로 계산하면 오답.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 안에서도 곱셈을 덧셈보다 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$을 나누는 수는 $10$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0450-0480.json",
+      "codexFinalAmendedFromFingerprint": "f01d80d2fd97a42fc8000b279b1a41f21e274441ce67f9a688f874607b95c1f5",
+      "sourceIndex": 465,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-3-xc22",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+        "term": "괄호 안의 혼합 계산",
+        "kind": "방법",
+        "level": "상",
+        "definition": "괄호 안에도 여러 계산이 있으면 괄호 안에서도 {곱셈과 나눗셈을 먼저} 한다.",
+        "example": {
+          "prompt": "$60\\div(2+4\\times2)$에서 $60$을 나누는 수를 말로 설명하시오.",
+          "answer": "$4$의 $2$배에 $2$를 더한 수"
+        },
+        "studentC": "괄호 안에도 여러 계산이 있으면 괄호 안에서도 □ 한다.",
+        "answers": [
+          "곱셈과 나눗셈을 먼저"
+        ]
+      },
+      "sourceFingerprint": "1b53691a06663722a598f772eb78c023f7a72b1bd8ec7743230a1f6bb48e6746",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$6$"
+      ],
+      "cStudentAfter": "$60\\div(2+4\\times2)$는 괄호 안에서도 곱셈을 덧셈보다 먼저 하므로 괄호 안의 값은 □이고, 식의 값은 □이다.",
+      "cMarkedSentence": "$60\\div(2+4\\times2)$는 괄호 안에서도 곱셈을 덧셈보다 먼저 하므로 괄호 안의 값은 {$10$}이고, 식의 값은 {$6$}이다.",
+      "cStudentSentence": "$60\\div(2+4\\times2)$는 괄호 안에서도 곱셈을 덧셈보다 먼저 하므로 괄호 안의 값은 □이고, 식의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호 안에 덧셈과 곱셈이 함께 있을 때 괄호 안은 어떤 차례로 계산하는지 쓰고, $60\\div(2+4\\times2)$에서 $60$을 나누는 수와 식의 값을 구하시오.",
+        "answer": "괄호 안에서도 곱셈과 나눗셈을 덧셈과 뺄셈보다 먼저 계산한다. $4\\times2=8$, $2+8=10$이므로 $60$을 나누는 수는 $10$이고, $60\\div10=6$이다. ($2+4$를 먼저 하면 $60\\div12=5$가 되어 틀린다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 안에서도 곱셈을 덧셈보다 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60$을 나누는 수는 $10$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$60\\div(2+4\\times2)$는 괄호 안에서도 곱셈을 덧셈보다 먼저 하므로 괄호 안의 값은 {$10$}이고, 식의 값은 {$6$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0398e8393f8fd5c1258fc8b2ddf2c3e4fac88556fbe986fd74bf23892e486381",
+      "questionRevision": "planning-e5e6-20261006-0398e8393f8f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-3-xc26",
+      "bDecision": "revise",
+      "bPrompt": "괄호 두 개가 따로 놓인 식에서 두 괄호 안과 괄호 밖의 계산은 어떤 차례로 하는지 쓰시오. $(9-3)\\times(2+5)\\div3$에서 서로 곱하는 두 수가 무엇인지 밝혀 값을 구하시오.",
+      "bAnswer": "두 괄호 안을 각각 먼저 계산한 뒤, 남은 곱셈과 나눗셈을 앞에서부터 계산한다. $9-3=6$과 $2+5=7$이 곱하는 두 수이고, $6\\times7=42$, $42\\div3=14$이므로 값은 $14$이다.",
+      "bGoal": "괄호가 둘인 식에서 각 괄호 안을 먼저 계산한 뒤 나머지를 차례대로 계산한다.",
+      "bReason": "괄호두개가서로따로있는경우임을명시해괄호안에다른괄호가있는식까지같은단계로혼동하지않는다. 실제예의6·7과앞부터곱나누기목표는보존한다.",
+      "studentLabel": "괄호가 두 개인 식",
+      "cDecision": "revise",
+      "cAfter": "$(9-3)\\times(2+5)\\div3$은 두 괄호 안을 각각 먼저 계산하여 {$6$} $\\times$ {$7$} $\\div3$으로 바꾼 뒤 계산하므로 값은 {$14$}이다.",
+      "cReason": "빈칸 '모두 먼저'는 어색한 구절이고 c2의 규칙을 되풀이한다. 두 괄호를 각각 수로 바꾸는 과정을 식에서 확인하게 한다.",
+      "exampleNeeded": false,
+      "exampleReason": "원 예시 식을 썼다.",
+      "synonymNotes": "수 답이라 동의어 없음.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 괄호 안을 각각 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그다음 남은 곱셈과 나눗셈을 앞에서부터 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "서로 곱하는 두 수는 $9-3=6$과 $2+5=7$이다",
+            "곱하는 두 수는 $6$과 $7$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0450-0480.json",
+      "codexFinalAmendedFromFingerprint": "b39ed499ee92cd95779475bb3cdd2b14bee27e6dbce2e81b19654f869617f372",
+      "sourceIndex": 469,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-3-xc26",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+        "term": "괄호가 둘인 식",
+        "kind": "방법",
+        "level": "상",
+        "definition": "괄호가 둘이면 각 괄호 안을 {모두 먼저} 계산한 뒤 나머지를 차례대로 한다.",
+        "example": {
+          "prompt": "$(9-3)\\times(2+5)\\div3$에서 곱하는 두 수는 각각 무엇인가?",
+          "answer": "$9$와 $3$의 차, $2$와 $5$의 합"
+        },
+        "studentC": "괄호가 둘이면 각 괄호 안을 □ 계산한 뒤 나머지를 차례대로 한다.",
+        "answers": [
+          "모두 먼저"
+        ]
+      },
+      "sourceFingerprint": "842dd2750d8a4465fd10cdab2bda8ebf24740df91c3150ed7eda4f5060c8400d",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$7$",
+        "$14$"
+      ],
+      "cStudentAfter": "$(9-3)\\times(2+5)\\div3$은 두 괄호 안을 각각 먼저 계산하여 □ $\\times$ □ $\\div3$으로 바꾼 뒤 계산하므로 값은 □이다.",
+      "cMarkedSentence": "$(9-3)\\times(2+5)\\div3$은 두 괄호 안을 각각 먼저 계산하여 {$6$} $\\times$ {$7$} $\\div3$으로 바꾼 뒤 계산하므로 값은 {$14$}이다.",
+      "cStudentSentence": "$(9-3)\\times(2+5)\\div3$은 두 괄호 안을 각각 먼저 계산하여 □ $\\times$ □ $\\div3$으로 바꾼 뒤 계산하므로 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "$14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호 두 개가 따로 놓인 식에서 두 괄호 안과 괄호 밖의 계산은 어떤 차례로 하는지 쓰시오. $(9-3)\\times(2+5)\\div3$에서 서로 곱하는 두 수가 무엇인지 밝혀 값을 구하시오.",
+        "answer": "두 괄호 안을 각각 먼저 계산한 뒤, 남은 곱셈과 나눗셈을 앞에서부터 계산한다. $9-3=6$과 $2+5=7$이 곱하는 두 수이고, $6\\times7=42$, $42\\div3=14$이므로 값은 $14$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 괄호 안을 각각 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그다음 남은 곱셈과 나눗셈을 앞에서부터 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 곱하는 두 수는 $9-3=6$과 $2+5=7$이다",
+              "곱하는 두 수는 $6$과 $7$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$(9-3)\\times(2+5)\\div3$은 두 괄호 안을 각각 먼저 계산하여 {$6$} $\\times$ {$7$} $\\div3$으로 바꾼 뒤 계산하므로 값은 {$14$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$7$"
+          ],
+          [
+            "$14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "525450eebad2260f477215659ac45c89ec7367617ca04597a94122c881738ced",
+      "questionRevision": "planning-e5e6-20261006-525450eebad2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-3-xc27",
+      "bDecision": "revise",
+      "bPrompt": "혼합 계산을 하기 전에 수를 간단한 수로 어림해 두면 계산한 답을 살피는 데 어떤 도움이 되는지 설명하시오. $198$과 $51$을 각각 십의 자리까지 반올림하여 $198\\div2+51\\times2$의 값을 어림하시오. 또 계산 차례만 잘못 바꾸어 답이 $300$이 되었다면 어느 계산을 먼저 했는지 쓰시오.",
+      "bAnswer": "어림한 값과 계산한 답이 크게 다르면 계산 차례나 계산이 틀렸음을 알아챌 수 있다. $200\\div2+50\\times2=100+100$이므로 약 $200$이다(실제 값은 $99+102=201$). $300$쯤 나왔다면 $99+51=150$을 먼저 더한 뒤 $2$를 곱해 $150\\times2=300$으로 계산한 것으로, 덧셈을 곱셈보다 먼저 한 잘못이다.",
+      "bGoal": "어림한 값으로 혼합 계산 답의 크기를 살피고 차례 오류를 짐작한다.",
+      "bReason": "어림방법을열어두면202등다른타당한값도가능하다.198·51의십의자리반올림을지정해약200이라는응답범위를정하고300의원인은차례만틀린경우로한정한다.",
+      "studentLabel": "어림으로 답 살피기",
+      "cDecision": "revise",
+      "cAfter": "$198\\div2+51\\times2$에서 $198$을 $200$으로, $51$을 $50$으로 어림하면 $200\\div2+50\\times2$이므로 값은 약 {$200$}이다. 계산한 답이 $300$쯤 나왔다면 계산 차례를 다시 살펴본다.",
+      "cReason": "빈칸 '대강의 크기'는 정해진 용어가 아니어서 맞히기 어렵다. 실제 식을 어림해 값을 쓰게 하고 그 쓰임은 뒤 문장으로 남긴다.",
+      "exampleNeeded": false,
+      "exampleReason": "원 예시 식을 썼다.",
+      "synonymNotes": "어림값은 $200$이 기준이며 정확한 값 $201$도 정답으로 볼지 채점 기준이 필요하다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어림한 값과 계산한 답이 크게 다르면 계산이나 차례가 틀렸음을 알 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약 $200$",
+            "$200$쯤",
+            "$200$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$99+51$을 먼저 더한 뒤 곱했을 것이다",
+            "덧셈을 곱셈보다 먼저 계산했을 것이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$200$",
+            "약 $200$",
+            "$200$쯤"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0450-0480.json",
+      "codexFinalAmendedFromFingerprint": "9d96d98a26d5f76132e6c61433bb40b38844a469fcd96099962f215e68f40ef6",
+      "sourceIndex": 470,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-3-xc27",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+        "term": "어림으로 답 살피기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "혼합 계산의 답은 수를 어림해 {대강의 크기}를 짐작해 두면 틀린 차례를 알아채기 쉽다.",
+        "example": {
+          "prompt": "$198\\div2+51\\times2$를 어림하면 $200$쯤이다. $300$쯤이 나왔다면 계산 차례를 어떻게 잘못했겠는가?",
+          "answer": "$99+51$을 먼저 더했다"
+        },
+        "studentC": "혼합 계산의 답은 수를 어림해 □를 짐작해 두면 틀린 차례를 알아채기 쉽다.",
+        "answers": [
+          "대강의 크기"
+        ]
+      },
+      "sourceFingerprint": "a9cbcd9a52380ad725d87bbd8841adc0e8e3af0eccb32c0ee21a3a13fe35d2d0",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$200$"
+      ],
+      "cStudentAfter": "$198\\div2+51\\times2$에서 $198$을 $200$으로, $51$을 $50$으로 어림하면 $200\\div2+50\\times2$이므로 값은 약 □이다. 계산한 답이 $300$쯤 나왔다면 계산 차례를 다시 살펴본다.",
+      "cMarkedSentence": "$198\\div2+51\\times2$에서 $198$을 $200$으로, $51$을 $50$으로 어림하면 $200\\div2+50\\times2$이므로 값은 약 {$200$}이다. 계산한 답이 $300$쯤 나왔다면 계산 차례를 다시 살펴본다.",
+      "cStudentSentence": "$198\\div2+51\\times2$에서 $198$을 $200$으로, $51$을 $50$으로 어림하면 $200\\div2+50\\times2$이므로 값은 약 □이다. 계산한 답이 $300$쯤 나왔다면 계산 차례를 다시 살펴본다.",
+      "cSlotAnswers": [
+        {
+          "key": "$200$",
+          "equivalents": [
+            "약 $200$",
+            "$200$쯤"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "혼합 계산을 하기 전에 수를 간단한 수로 어림해 두면 계산한 답을 살피는 데 어떤 도움이 되는지 설명하시오. $198$과 $51$을 각각 십의 자리까지 반올림하여 $198\\div2+51\\times2$의 값을 어림하시오. 또 계산 차례만 잘못 바꾸어 답이 $300$이 되었다면 어느 계산을 먼저 했는지 쓰시오.",
+        "answer": "어림한 값과 계산한 답이 크게 다르면 계산 차례나 계산이 틀렸음을 알아챌 수 있다. $200\\div2+50\\times2=100+100$이므로 약 $200$이다(실제 값은 $99+102=201$). $300$쯤 나왔다면 $99+51=150$을 먼저 더한 뒤 $2$를 곱해 $150\\times2=300$으로 계산한 것으로, 덧셈을 곱셈보다 먼저 한 잘못이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어림한 값과 계산한 답이 크게 다르면 계산이나 차례가 틀렸음을 알 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약 $200$",
+              "$200$쯤",
+              "$200$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$99+51$을 먼저 더한 뒤 곱했을 것이다",
+              "덧셈을 곱셈보다 먼저 계산했을 것이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$198\\div2+51\\times2$에서 $198$을 $200$으로, $51$을 $50$으로 어림하면 $200\\div2+50\\times2$이므로 값은 약 {$200$}이다. 계산한 답이 $300$쯤 나왔다면 계산 차례를 다시 살펴본다.",
+        "acceptedAnswers": [
+          [
+            "$200$",
+            "약 $200$",
+            "$200$쯤"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dbc09dca606f6f01fd178014505709a831b89f71f0963a65bc6da781029bd254",
+      "questionRevision": "planning-e5e6-20261006-dbc09dca606f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc8",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수가 다른 자연수의 배수라는 것을 곱셈식으로 나타내려면 어떤 꼴의 식으로 써야 하는지 설명하고, $40$이 $5$의 배수임을 곱셈식으로 나타내시오.",
+      "bAnswer": "(그 자연수)$\\times$(자연수) 꼴로 쓴다. $40=5\\times8$이므로 $40$은 $5$의 배수이다.",
+      "bGoal": "배수임을 '그 수 × 자연수' 꼴의 곱셈식으로 나타낸다.",
+      "bReason": "40이5의배수인곱셈식은5·8의곱순서를바꾸거나등호양변을바꾸어도같다. 개념목표를유지하면서그동치식을함께인정한다.",
+      "studentLabel": "배수를 곱셈식으로 쓰기",
+      "cDecision": "revise",
+      "cAfter": "$5$의 배수는 모두 $5\\times$(자연수)로 쓸 수 있다. $40$은 $5\\times${$8$}이므로 $5$의 배수이고, $42$는 그렇게 쓸 수 없으므로 $5$의 배수가 {아니다}.",
+      "cReason": "빈칸 '(그 수)×(자연수)'는 기호 섞인 추상 꼴이라 학생이 그대로 적기 어렵다. 꼴은 문장에 보여 주고 곱하는 수와 판단을 묻게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(그 자연수)$\\times$(자연수) 꼴로 쓴다",
+            "(그 수)$\\times$(자연수)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40=5\\times8$",
+            "$40=8\\times5$",
+            "$5\\times8=40$",
+            "$8\\times5=40$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0450-0480.json",
+      "codexFinalAmendedFromFingerprint": "57204e39f06672df37bb148d2b5a8816ebc042306db1769dc3f2a317564a9485",
+      "sourceIndex": 478,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc8",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "배수를 곱셈식으로 쓰기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "어떤 수의 배수는 모두 {(그 수)$\\times$(자연수)} 꼴의 곱셈식으로 쓸 수 있다.",
+        "example": {
+          "prompt": "$40$을 $5$의 배수임이 드러나는 곱셈식으로 쓰시오.",
+          "answer": "$5\\times8$"
+        },
+        "studentC": "어떤 수의 배수는 모두 □ 꼴의 곱셈식으로 쓸 수 있다.",
+        "answers": [
+          "(그 수)$\\times$(자연수)"
+        ]
+      },
+      "sourceFingerprint": "0ec82e353e34be09e2aa18cf733a09dbbfe25f1d9a602c5063e3e41d4f2359bb",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$8$",
+        "아니다"
+      ],
+      "cStudentAfter": "$5$의 배수는 모두 $5\\times$(자연수)로 쓸 수 있다. $40$은 $5\\times$□이므로 $5$의 배수이고, $42$는 그렇게 쓸 수 없으므로 $5$의 배수가 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$5$의 배수는 모두 $5\\times$(자연수)로 쓸 수 있다. $40$은 $5\\times${$8$}이므로 $5$의 배수이고, $42$는 그렇게 쓸 수 없으므로 $5$의 배수가 {아니다}.",
+      "cStudentSentence": "$5$의 배수는 모두 $5\\times$(자연수)로 쓸 수 있다. $40$은 $5\\times$□이므로 $5$의 배수이고, $42$는 그렇게 쓸 수 없으므로 $5$의 배수가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수가 다른 자연수의 배수라는 것을 곱셈식으로 나타내려면 어떤 꼴의 식으로 써야 하는지 설명하고, $40$이 $5$의 배수임을 곱셈식으로 나타내시오.",
+        "answer": "(그 자연수)$\\times$(자연수) 꼴로 쓴다. $40=5\\times8$이므로 $40$은 $5$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "(그 자연수)$\\times$(자연수) 꼴로 쓴다",
+              "(그 수)$\\times$(자연수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40=5\\times8$",
+              "$40=8\\times5$",
+              "$5\\times8=40$",
+              "$8\\times5=40$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5$의 배수는 모두 $5\\times$(자연수)로 쓸 수 있다. $40$은 $5\\times${$8$}이므로 $5$의 배수이고, $42$는 그렇게 쓸 수 없으므로 $5$의 배수가 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "62375020bd7e87fd0f11287e1a024d75a5bcc28cbf730a17060402cbd3099b0d",
+      "questionRevision": "planning-e5e6-20261006-62375020bd7e",
+      "requiresIndependentReview": true
+    }
+  ]
+}

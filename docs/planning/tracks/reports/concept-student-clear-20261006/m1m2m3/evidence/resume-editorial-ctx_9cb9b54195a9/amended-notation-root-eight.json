@@ -1,0 +1,279 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-notation-root-eight.json",
+  "changes": [
+    {
+      "id": "m1-03-04-xc19",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "이 해를 사람 수의 답으로 쓸 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac72=3.5$는 정수가 아니어서 사람 수로 맞지 않는다",
+            "사람 수는 자연수여야 하는데 $3.5$명은 자연수가 아니다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m1-03-05-xc14",
+      "bAnswer": "양변에 같은 수를 더하거나 빼고, $0$이 아닌 같은 수를 곱하거나 나누었는지 살핀다. 한쪽 식을 같은 값을 나타내는 식으로 정리하는 것도 가능하다. 여기서는 좌변은 $2$로 나누었는데 우변은 $2$를 빼서 원래 해와 달라지므로 옳지 않다. 바르게는 양변을 $2$로 나누어 $x=3$이다."
+    },
+    {
+      "id": "m1-03-05-xc15",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "등식의 양변에 같은 계산을 하는 서로 다른 올바른 풀이 두 가지를 제시한다(예: $0.3$으로 나누기, $10$을 곱한 뒤 $3$으로 나누기)"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 방법 모두 해 $x=5$를 얻는다"
+          ]
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-03-04-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "사람 수를 $x$명이라 하고 방정식을 풀었더니 해가 $x=\\frac{7}{2}$이었다. 이 해를 문제의 답으로 쓸 수 있는가? 사람 수가 될 수 있는 수의 종류를 들어 이유를 쓰시오.",
+      "bAnswer": "쓸 수 없다. 사람 수는 정수여야 하는데 $\\frac72=3.5$는 정수가 아니므로 사람 수로 맞지 않는다.",
+      "bGoal": "방정식의 해가 문제 상황의 조건(자연수)에 맞는지 판단한다.",
+      "bReason": "0명인 상황도 있을 수 있고 주어진 해 하나로 문제 전체의 해없음을 단정할 수 없으므로 3.5명이 불가능한 이유만 요구한다.",
+      "cDecision": "rewrite",
+      "cAfter": "사람 수를 구하는 방정식의 해가 $x=\\frac72$로 나왔다. $\\frac72=3.5$는 정수가 아니므로 이 값을 사람 수의 답으로 쓸 수 {없다}.",
+      "cAnswers": [
+        "없다"
+      ],
+      "cReason": "분수 표기여도 자연수인 4/2같은 반례를 피하고 원래 core에서 교정한 비정수7/2·음수-3을 실제 C에도 사용한다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "이 해를 사람 수의 답으로 쓸 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac72=3.5$는 정수가 아니어서 사람 수로 맞지 않는다",
+            "사람 수는 자연수여야 하는데 $3.5$명은 자연수가 아니다"
+          ]
+        }
+      ],
+      "coreAfter": "개수 · 사람 수처럼 미지수가 자연수여야 하면, 해가 $\\frac{7}{2}$이나 $-3$처럼 자연수가 아닌 수로 나올 때 그 상황에 {맞지 않는다}.",
+      "coreReason": "$\\frac{6}{2}$처럼 분수 꼴이어도 자연수인 경우가 있다. 그래서 기준을 '자연수가 아닌 수'로 분명히 했다.",
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "application",
+      "roleReason": "해가 자연수 조건에 맞는지",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1243,
+      "part": "m1plus",
+      "sourceFingerprint": "f8f34940dbc7deff9ef2437019a886c4243c84b0f8d926d678951af1ffddda82",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1243
+      },
+      "directReview": null,
+      "coreBeforeRepair": "개수 · 사람 수처럼 미지수가 자연수여야 하면, 해가 $\\frac{7}{2}$이나 $-3$처럼 자연수가 아닌 수로 나올 때 그 상황에 {맞지 않는다}.",
+      "coreRepairReason": "원본 핵심어 {맞지 않는다}를 유지했다. 예시는 일반 기준 '자연수가 아닌 수'를 돕는 보조로만 쓰였다. 이미 좋은 교정이라 보존했다.",
+      "coreRepairEvidence": "core-repair/core-000",
+      "cMarkedSentence": "사람 수를 구하는 방정식의 해가 $x=\\frac72$로 나왔다. $\\frac72=3.5$는 정수가 아니므로 이 값을 사람 수의 답으로 쓸 수 {없다}.",
+      "cSlotAnswers": [
+        "없다"
+      ],
+      "cStudentSentence": "사람 수를 구하는 방정식의 해가 $x=\\frac72$로 나왔다. $\\frac72=3.5$는 정수가 아니므로 이 값을 사람 수의 답으로 쓸 수 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "없다",
+          "equivalentAnswers": [
+            "없다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "없다"
+        ]
+      ],
+      "proposalFingerprint": "af7053ed93b1baa8fd633b1da3590fedbd791d5079533f8589d06194677d1a5f"
+    },
+    {
+      "id": "m1-03-05-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "방정식을 풀면서 식을 다음 줄로 바꾼 것이 옳은지 판단하는 기준을 쓰세요. 그 기준으로 $2x=6$을 $x=6-2$로 바꾼 것이 옳은지 판단하고, 좌변과 우변에 각각 어떤 계산을 했는지도 밝히세요.",
+      "bAnswer": "양변에 같은 수를 더하거나 빼고, $0$이 아닌 같은 수를 곱하거나 나누었는지 살핀다. 한쪽 식을 같은 값을 나타내는 식으로 정리하는 것도 가능하다. 여기서는 좌변은 $2$로 나누었는데 우변은 $2$를 빼서 원래 해와 달라지므로 옳지 않다. 바르게는 양변을 $2$로 나누어 $x=3$이다.",
+      "bGoal": "풀이의 한 단계가 등식의 성질에 맞는지 판단한다.",
+      "bReason": "제목 '바꾼 과정 따지기'는 무엇을 바꾼 과정인지조차 없다. 판단 기준을 묻고, 원문 예시의 잘못된 변형을 질문에 넣어 직접 판단하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "방정식의 해를 바꾸지 않고 풀려면 양변에 같은 수를 더하거나 빼도 된다. 양변에 같은 수를 곱하거나 양변을 같은 수로 나눌 때 그 수는 {$0$}이 아니어야 한다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cReason": "등식 성립과 해 보존을 혼동하지 않게 곱셈에도 0아님 조건을 둔다.",
+      "studentLabel": "방정식을 바꾼 과정이 옳은지 따지기",
+      "exampleNeeded": true,
+      "authorBatch": 7,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기준: 양변에 같은 계산을 했는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "좌변은 $2$로 나누었고 우변은 $2$를 뺐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "따라서 옳지 않다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "양변에 같은 계산인지 점검",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1261,
+      "part": "m1plus",
+      "sourceFingerprint": "4c20775c54f7e6cb993801041669011e21ec1a9900321e9c1f1a6ecb67a08410",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1261
+      },
+      "directReview": null,
+      "cMarkedSentence": "방정식의 해를 바꾸지 않고 풀려면 양변에 같은 수를 더하거나 빼도 된다. 양변에 같은 수를 곱하거나 양변을 같은 수로 나눌 때 그 수는 {$0$}이 아니어야 한다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "방정식의 해를 바꾸지 않고 풀려면 양변에 같은 수를 더하거나 빼도 된다. 양변에 같은 수를 곱하거나 양변을 같은 수로 나눌 때 그 수는 □이 아니어야 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "양변",
+          "accept": [
+            "양쪽 변"
+          ]
+        },
+        {
+          "answer": "같은",
+          "accept": [
+            "똑같은"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "4fd915d1e0e2c83256cc76a4cf78a8a1b6a36b711ab7703c3a138cecaaf148c5",
+      "coreAfter": "방정식을 풀 때는 {양변}에 같은 수나 식을 더하거나 빼고, $0$이 아닌 {같은 수}를 곱하거나 나누면 해가 바뀌지 않는다. 한 변의 식을 같은 값을 나타내는 식으로 간단히 정리해도 된다.",
+      "coreReason": "해 보존에는 0곱하기를 허용할 수 없고 한 변의 동치 정리도 유효하므로 같은 계산만이 유일한 변형이라고 일반화하지 않는다."
+    },
+    {
+      "id": "m1-03-05-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.3x=1.5$를 등식의 성질로 푸는 방법을 두 가지 쓰세요. 방법마다 양변에 어떤 계산을 하는지 밝히고, 두 방법으로 구한 해가 같은지 확인하세요.",
+      "bAnswer": "방법 $1$은 양변을 $0.3$으로 나누어 $x=5$를 얻는다. 방법 $2$는 양변에 $10$을 곱해 $3x=15$로 만든 뒤 양변을 $3$으로 나누어 $x=5$를 얻는다. 두 해는 같다.",
+      "bGoal": "계수가 소수일 때 그 소수로 나누거나 $10$을 곱하는 두 방법을 안다.",
+      "bReason": "질문이 특정 두 방법을 지정하지 않아 올바른 두 풀이를 인정하며 모범답 방법을 각기 필수로 강제하지 않는다.",
+      "cDecision": "keep",
+      "cReason": "예시 식 $0.3x=1.5$가 보이고, '그 소수로'와 '$10$을'이 각각 나누기와 곱하기를 가리켜 두 빈칸이 분명하다. 두 방법을 짧게 견주는 문장이다.",
+      "exampleNeeded": true,
+      "authorBatch": 7,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "등식의 양변에 같은 계산을 하는 서로 다른 올바른 풀이 두 가지를 제시한다(예: $0.3$으로 나누기, $10$을 곱한 뒤 $3$으로 나누기)"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 방법 모두 해 $x=5$를 얻는다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "소수로 나누거나 10 곱하기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1262,
+      "part": "m1plus",
+      "sourceFingerprint": "7354ab65d4512c3be6020e748a3becf0f6728dc1def06e35e42f776b376e69dd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1262
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 □ 양변에 $10$을 □ 정리한다.",
+      "cFrozenDefinition": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 {나누거나} 양변에 $10$을 {곱해} 정리한다.",
+      "cFrozenAnswers": [
+        "나누거나",
+        "곱해"
+      ],
+      "cMarkedSentence": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 {나누거나} 양변에 $10$을 {곱해} 정리한다.",
+      "cSlotAnswers": [
+        "나누거나",
+        "곱해"
+      ],
+      "cStudentSentence": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 □ 양변에 $10$을 □ 정리한다.",
+      "cAnswers": [
+        "나누거나",
+        "곱해"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나누거나",
+          "equivalentAnswers": [
+            "나누거나"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "곱해",
+          "equivalentAnswers": [
+            "곱해"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "나누거나"
+        ],
+        [
+          "곱해"
+        ]
+      ],
+      "proposalFingerprint": "46cac242f74b0d3f8f87a6e450deb895969c710f61a95413c7ab83b9f545bbb5"
+    }
+  ]
+}

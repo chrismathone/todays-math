@@ -1,0 +1,382 @@
+{
+  "sourceCommit": "13bf05dce",
+  "scope": "Actual assembled learning definitions read by Codex; capture alone is not adoption.",
+  "rows": [
+    {
+      "id": "e5-1-4-3-xc15",
+      "sourceIndex": 762,
+      "sourceFingerprint": "5f194190f0eee4e924517cd3f05bf6b0dfa43a67126a7ff4d70a149a12c328b6",
+      "proposalFingerprint": "0575007874789ca7e19139fcf9a8bb1fa476cda1867c21e8e2ee631e9e0fb6a4",
+      "proposed": true,
+      "definition": "약분은 한 분수의 분모와 분자를 $1$보다 큰 공약수로 나누어 {작게} 쓰는 일이고, 통분은 분모가 다른 분수들의 분모를 같게 만드는 일이다. 두 경우 모두 분수의 크기는 변하지 않는다.",
+      "definitionFingerprint": "fd3d89215ebaac1ad78c9ac32782ad966e12e11253ea8a62b2de9387a67e1ac5",
+      "visibleLength": 100,
+      "targets": [
+        "작게"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-3-xc25",
+      "sourceIndex": 772,
+      "sourceFingerprint": "8383654467247627c06e5dcc2fd79ea1a8713562225333a720b5d20ecf7960d4",
+      "proposalFingerprint": "67dc4e16fd2034727c6f167028ea3b8ed203ec1bc125152e86f96fb5466c4eaf",
+      "proposed": true,
+      "definition": "통분한 두 분수의 차를 분수로 나타낼 때, 분자에는 {분자의 차}를 쓰고 분모에는 {공통분모}를 쓴다.",
+      "definitionFingerprint": "bc0a04bedeb8eea54f167f165c15b02dcedc3ca383ff60fc0472228dd42fe74f",
+      "visibleLength": 53,
+      "targets": [
+        "분자의 차",
+        "공통분모"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-4-xc23",
+      "sourceIndex": 796,
+      "sourceFingerprint": "03dfb761f7c0bdb2246b922455267f515ebec34d9bd09770c35282beba9b098b",
+      "proposalFingerprint": "b9ae4811525b358007b3373e8deb4286d036924c9a463dbd16eaf9b647d8edb7",
+      "proposed": true,
+      "definition": "분수로 나타낸 두 양의 크기를 비교할 때는 기준이 되는 {전체가 같은지} 먼저 확인한다. 전체가 다르면 같은 분수라도 나타내는 양이 다를 수 있다.",
+      "definitionFingerprint": "258746988fd6876c24e8484055908193f84f6266115826562e19968d515d13f5",
+      "visibleLength": 80,
+      "targets": [
+        "전체가 같은지"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-5-1-xc10",
+      "sourceIndex": 836,
+      "sourceFingerprint": "53642b88db62b34920b6614ba5d04a70dcf165eee6e92be27e3fac7b4f5de6ea",
+      "proposalFingerprint": "b21efb548b8855b6a393cbd5aa8cf8658bb712dfbac5579ba440228bea9f35f4",
+      "proposed": true,
+      "definition": "분모가 다른 분수의 덧셈은 통분하기, 분자끼리 더하기, 약분할 수 있으면 {약분하기}의 차례로 한다.",
+      "definitionFingerprint": "985af148fcedfbb9a9bcabd10e75396cabbaaff13fc58b016e5927a81b935b9a",
+      "visibleLength": 54,
+      "targets": [
+        "약분하기"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-5-1-xc25",
+      "sourceIndex": 851,
+      "sourceFingerprint": "3d046aed8e9a49bddb76e3d5216cf9c35ddc717dff606fc42a3ac223ded16ca1",
+      "proposalFingerprint": "22bbe1c25e1f378eaead3eb9e4634ba2dafc5ad9b61a26881e8e488e68a5e0a6",
+      "proposed": true,
+      "definition": "두 분수를 통분할 때 공통분모는 두 분모의 공배수이므로, 두 분모 중 큰 수보다 {작을 수 없다}.",
+      "definitionFingerprint": "47695b08e431fae1a994a90aa1ef780119bd4760f73438d74ff0538f5ec0aa08",
+      "visibleLength": 53,
+      "targets": [
+        "작을 수 없다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-5-2-xc23",
+      "sourceIndex": 874,
+      "sourceFingerprint": "c82c7fe532cb5bd34d41496c7bac8e4b25394cd12e1fb2b77fe86ed89ae3ec24",
+      "proposalFingerprint": "9ba393c18bd147ce65af5cd4e9655bae05f6fbe65b3f0f84e4aef7679d266b2e",
+      "proposed": true,
+      "definition": "두 양을 합한 길이나 무게를 구할 때 그 양이 대분수이면 대분수의 덧셈으로 구하고, 분모가 다르면 {통분하여 더한다}.",
+      "definitionFingerprint": "01ce119ea8772257f4d9307a4723110d739be1226be4f8c7b5848e49f6f37286",
+      "visibleLength": 64,
+      "targets": [
+        "통분하여 더한다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-5-4-xc6",
+      "sourceIndex": 911,
+      "sourceFingerprint": "f699d59487562e13f44bba257b9f0984b7dd4e7c56966dff469212d0d4f0595c",
+      "proposalFingerprint": "91b51dd28146391acdd4085a6b1e3dbdd18acdec58fd79d60834b412b1cefd7f",
+      "proposed": true,
+      "definition": "대분수에서 진분수를 뺄 때, 통분한 뒤 대분수의 분수 부분이 빼는 진분수보다 크거나 같으면 자연수 부분은 그대로 두고 {분수 부분끼리만} 뺀다.",
+      "definitionFingerprint": "13288b2c60c3b115a4478aa9f03b0a78350ed6346fe46a208506e9b1641d854e",
+      "visibleLength": 78,
+      "targets": [
+        "분수 부분끼리만"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-2-xc20",
+      "sourceIndex": 973,
+      "sourceFingerprint": "ce43ee3da1f96185a0058a4d523f147c495f2431199eb950401376aebb6d81a8",
+      "proposalFingerprint": "50bdec42a9a51cbd79b00d6363b4088106b1c959e9078ba91a1e4799634abc88",
+      "proposed": true,
+      "definition": "둘레가 같은 직사각형 가운데 가로와 세로 길이의 {차이가 작을수록} 넓이가 크다. 두 길이가 같은 정사각형일 때 넓이가 가장 크다.",
+      "definitionFingerprint": "e3391cf0a7d615dfb029d35ead3e5a27e931911feeea7b3ce39a35cd0ac1a569",
+      "visibleLength": 71,
+      "targets": [
+        "차이가 작을수록"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-3-xc4",
+      "sourceIndex": 983,
+      "sourceFingerprint": "8d05d72ef26acd73b3abed4e0a40be615deec69c323ac956e1375ab3c2f557cf",
+      "proposalFingerprint": "ba4747e207fdfcfec595be5c19ebf984ece2aa731a8e035ea5a71fe0127d6306",
+      "proposed": true,
+      "definition": "직사각형의 가로와 세로를 $\\mathrm{m}$로 재어 곱하면 넓이를 {$\\mathrm{m}^2$}로 나타낼 수 있다.",
+      "definitionFingerprint": "d64249fa7a064b4b041b3b5fb438cc41a8ee1ed71cb2abf096aa98a476491a01",
+      "visibleLength": 41,
+      "targets": [
+        "$\\mathrm{m}^2$"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-3-xc5",
+      "sourceIndex": 984,
+      "sourceFingerprint": "eda33e616df2da9f8d0365a8e31dfa79a23640e8d05b2bb4bcb200abbd1c4c91",
+      "proposalFingerprint": "ed4dfca26989036e5c27cb640665770d86d9aa2230cb0ae04f37a138a3ec3306",
+      "proposed": true,
+      "definition": "직사각형의 가로와 세로를 $\\mathrm{km}$로 재어 곱하면 넓이를 {$\\mathrm{km}^2$}로 나타낼 수 있다.",
+      "definitionFingerprint": "ed59da66eed29f99abb9a38156371bdec2477f0c4f38c777e1846ad203dad48f",
+      "visibleLength": 43,
+      "targets": [
+        "$\\mathrm{km}^2$"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-3-xc17",
+      "sourceIndex": 995,
+      "sourceFingerprint": "933a71adf6f11cb920fe5c48820d017a67464f478b2a0555f9762be1d0d6f93c",
+      "proposalFingerprint": "edeba73e5294f0c6eae8c81951b7d88ee2d5ade095b179ebd227026b939f0dac",
+      "proposed": true,
+      "definition": "정사각형의 한 변의 길이를 $1000$배로 하면 가로와 세로가 모두 $1000$배가 되어, 넓이는 {$1000000$배}가 된다.",
+      "definitionFingerprint": "c131f244ddd6b43f4423ce73fa0ba21c754bd4daf0acbd696fb4d3c2ec83caf5",
+      "visibleLength": 64,
+      "targets": [
+        "$1000000$배"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-3-xc18",
+      "sourceIndex": 996,
+      "sourceFingerprint": "b3b2490c54ce62e4e4b985b4403b94579a226c63bff4440b8c8751547319dc7e",
+      "proposalFingerprint": "f87a8688ec157a0ea83547fc373c1c8773e7aaf07f6f607c9123f878be1279ff",
+      "proposed": true,
+      "definition": "직사각형의 가로와 세로를 같은 길이 단위로 재어 곱한 수는, 한 변의 길이가 그 단위로 $1$인 {정사각형 넓이의 몇 배}인지 나타낸다.",
+      "definitionFingerprint": "1e4b7748ad608974b77a081550d3395dd23f3b745ba2ec491976e29f79d89d5d",
+      "visibleLength": 72,
+      "targets": [
+        "정사각형 넓이의 몇 배"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-5-xc17",
+      "sourceIndex": 1041,
+      "sourceFingerprint": "e1ae703f11e17526af779a655133d2f367c217a5bcf3b792336deab39abbf598",
+      "proposalFingerprint": "670a57cd87f9877c673074af9db680e4e9543db91a6ea385eb9486ba45966f15",
+      "proposed": true,
+      "definition": "사다리꼴의 넓이 식에서 윗변을 $0$으로 놓으면 {삼각형의 넓이 식}과 같아진다. 이는 윗변이 한 점으로 줄어든 모양을 생각한 것이다.",
+      "definitionFingerprint": "7020bfc61918d40926a4d65d9fcc6887b97da58e947e27db81120ea090a0192d",
+      "visibleLength": 71,
+      "targets": [
+        "삼각형의 넓이 식"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-4-xc4",
+      "sourceIndex": 1107,
+      "sourceFingerprint": "c3f897169f7ceb6065a70a5ec35c1930ed2734ca42bc4d98b09ea13f2150e7a3",
+      "proposalFingerprint": "eee2025540d5a2ca3e27b18bb77f1c97699f5a226fffcff744cab8166be753c3",
+      "proposed": true,
+      "definition": "소수를 올림할 때, 나타낼 자리의 아래에 {$0$이 아닌 숫자가 있으면} 그 자리의 단위만큼 더한 뒤 아래 자리는 버린다. 단위는 소수 첫째 자리면 $0.1$, 둘째 자리면 $0.01$이다.",
+      "definitionFingerprint": "5a63c83acea5b3f2d146dd63940c1beff3da426da79b0410711fafb4005dafaf",
+      "visibleLength": 98,
+      "targets": [
+        "$0$이 아닌 숫자가 있으면"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-4-xc13",
+      "sourceIndex": 1114,
+      "sourceFingerprint": "bacc70235667b7671c79a7e1690f1bdc60be95d2f5f5e0eb64e90e1ef33bef12",
+      "proposalFingerprint": "4e478608880ece0361697f4b6328bba56e00ef001f135f7b64f51700701c39ac",
+      "proposed": true,
+      "definition": "같은 수를 같은 자리까지 올림·버림했을 때, 원래 수의 그 자리 아래에 $0$ 아닌 숫자가 있으면 차가 {한 단위만큼} 나고 없으면 차가 $0$이다. 한 단위는 십의 자리 $10$, 백의 자리 $100$이다.",
+      "definitionFingerprint": "3de999ded5b38e06a64225e4f68e0da6c075c477fdd9497bb3e2000819036613",
+      "visibleLength": 106,
+      "targets": [
+        "한 단위만큼"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-4-xc19",
+      "sourceIndex": 1118,
+      "sourceFingerprint": "62888973230d37419aaeda5e0f0785798503b4482c65ff49440e613541150ace",
+      "proposalFingerprint": "a4352a8ba9d09ef4b6a371871aa4c294b2896944b50801ddaac11caf979eec01",
+      "proposed": true,
+      "definition": "자연수를 같은 자리까지 올림해 같은 값이 되면, 원래 수는 그 값에서 {한 단위를 뺀 수} 초과이고 그 값 이하이다. 한 단위는 십의 자리 $10$, 백의 자리 $100$이다.",
+      "definitionFingerprint": "cde6081b12e3cb14ed62a2b97a8c4f3a522ed68bb7776055d7bcddef4af1248c",
+      "visibleLength": 92,
+      "targets": [
+        "한 단위를 뺀 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-4-xc23",
+      "sourceIndex": 1121,
+      "sourceFingerprint": "b4503bea3aadba8a3f087b0593e3f56ad34bb683deb11f59e384ca073bd17b4d",
+      "proposalFingerprint": "c441957da4b7c3cbabcea51ff162e38b97687605a6a10f8c62a2ce75043d71e6",
+      "proposed": true,
+      "definition": "올림한 값과 원래 수의 차는 나타낸 자리의 {한 단위보다 작다}. 한 단위는 십의 자리 $10$, 백의 자리 $100$이다.",
+      "definitionFingerprint": "887b3fbdcf787c05a1dbd509632d29da47f5318522e3c753584d345d1e2b143e",
+      "visibleLength": 63,
+      "targets": [
+        "한 단위보다 작다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-5-xc19",
+      "sourceIndex": 1137,
+      "sourceFingerprint": "99ab83083eb452948d2d5b1e8ccbc7eb8f80ad4178a082ad46333d3634f387e9",
+      "proposalFingerprint": "ed129014c65b25f275a54c3827cb71d73500b73a5dd7a528c48802d087517656",
+      "proposed": true,
+      "definition": "자연수를 같은 자리까지 버림해 같은 값이 되면, 원래 수는 {그 값 이상}이고 그 값에 한 단위를 더한 수 미만이다. 한 단위는 십의 자리 $10$, 백의 자리 $100$이다.",
+      "definitionFingerprint": "c4b1086f41e9d64a494fcdda804fa7642275b27f37dabd48f71cf3c8d442d368",
+      "visibleLength": 92,
+      "targets": [
+        "그 값 이상"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-5-xc25",
+      "sourceIndex": 1141,
+      "sourceFingerprint": "6127f30812fca8e1affdc06a5325122be66604253830d01e3a117ec20c70d876",
+      "proposalFingerprint": "e98f93d86cf4b9efaaba70807258ada6862a3d253b9cf3aca0808b6e94fdbb63",
+      "proposed": true,
+      "definition": "소수를 같은 자리까지 버림해 같은 값이 되면, 원래 수는 그 값 이상이고 그 값에 한 단위를 더한 수 {미만}이다. 한 단위는 소수 첫째 자리 $0.1$, 둘째 자리 $0.01$이다.",
+      "definitionFingerprint": "f1729d8fed5a0938924bf04c1190c2b372da3807f1a2d20f4a44bdfad169699b",
+      "visibleLength": 96,
+      "targets": [
+        "미만"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-6-xc22",
+      "sourceIndex": 1157,
+      "sourceFingerprint": "497158b7ef94b0d6e701c7132a8a7f5f99b8cc4404a9e229d90fb5f34abfc823",
+      "proposalFingerprint": "9ca85c69e1f660b1ece30fc6077e8277d7e3535c77e0e7fbb605dbab6ea91a45",
+      "proposed": true,
+      "definition": "반올림한 값과 원래 수의 차는 나타낸 자리 단위의 {절반보다 크지 않다}. 십의 자리까지 반올림하면 차는 $5$ 이하, 백의 자리까지이면 $50$ 이하이다.",
+      "definitionFingerprint": "53ab36207e5f3c860afd8b2d0277c9a7c654bd2ae8c0be3cb6a5962e8032fcc4",
+      "visibleLength": 81,
+      "targets": [
+        "절반보다 크지 않다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-2-1-xc26",
+      "sourceIndex": 1182,
+      "sourceFingerprint": "4559a5f1277a8449dc05403985d8221ffc94547a3fd96ce69bf5b7ff1a57bff5",
+      "proposalFingerprint": "edafe432252d40091d281a6c5a4a072a15e8e5643794f6ff31a10a30ba4f1df4",
+      "proposed": true,
+      "definition": "분수와 자연수의 곱셈식 두 개의 크기를 견줄 때는 {곱을 각각 구해} 비교한다.",
+      "definitionFingerprint": "243d8fcad098b898caf17c1320423acc5f311d1e2c430617fd94664c4e5bfad3",
+      "visibleLength": 42,
+      "targets": [
+        "곱을 각각 구해"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-2-2-xc22",
+      "sourceIndex": 1198,
+      "sourceFingerprint": "0101da35ec0b2a6e3b190e7ec5a5baebe704357c8cb37641dd44ca9a716d4a72",
+      "proposalFingerprint": "d0909dac81af3ae52c330ae500c2cc86e88a2edd042e29219295061b9cbf93ac",
+      "proposed": true,
+      "definition": "어떤 양의 몇 분의 몇을 구한 뒤 그 결과의 몇 분의 몇을 다시 구할 때에는, {먼저 구한 양}에 다음 분수를 곱한다.",
+      "definitionFingerprint": "fb58f9e4ef59e4ec7442890d32460258204912e9a712dcad6fa2bb76c89e6717",
+      "visibleLength": 64,
+      "targets": [
+        "먼저 구한 양"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-2-3-xc19",
+      "sourceIndex": 1213,
+      "sourceFingerprint": "d4fbd891b7b94f70f76266851016e17d16e61ab28cfaccf3701ad9eeafcfd36a",
+      "proposalFingerprint": "ec934ae2989cee1a4b05aa6f808debc66c45bed71cbf7cca8851010ab60275f4",
+      "proposed": true,
+      "definition": "단위분수끼리 곱할 때는 전체를 첫째 분모의 수만큼 똑같이 나눈 부분 하나를, 둘째 분모의 수만큼 다시 똑같이 나눈다. 그중 {한 조각}이 곱이 나타내는 양이며, 곱의 분모는 두 분모의 곱이다.",
+      "definitionFingerprint": "3a2c121f77f4c4bc73c677fa378adcce474dee9be8141b31342840fe113a4150",
+      "visibleLength": 105,
+      "targets": [
+        "한 조각"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-2-4-xc7",
+      "sourceIndex": 1225,
+      "sourceFingerprint": "1a2dda3ab5bc8f0fa0b9fbc4ea8d025aa17650f52b80c50d46c1a29c6c9d88fe",
+      "proposalFingerprint": "658431fdeb31d1cf3ea4cd68322433e43d8d6d9efe904dabb2a8972c60849148",
+      "proposed": true,
+      "definition": "대분수들을 가분수로 고쳐 곱셈식에서 약분할 때, {분모가 모두 $1$이 되면} 곱이 자연수가 된다.",
+      "definitionFingerprint": "6e1413c09ebdb26526c61ae0e5c989ad0fdd9070a5d3091c189fd4d8dbf4e758",
+      "visibleLength": 51,
+      "targets": [
+        "분모가 모두 $1$이 되면"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-2-4-xc19",
+      "sourceIndex": 1234,
+      "sourceFingerprint": "ea040bd51ae30482dcb93c7ffe24110d8e6954f9daabd21c2957b66a74ae41e9",
+      "proposalFingerprint": "87cafc97c50dd7bd3cd2feab7c228336d392662690cfb81473d7060996587daf",
+      "proposed": true,
+      "definition": "대분수끼리 곱할 때 같은 부분끼리만 곱해 더하면, 한 수의 자연수 부분과 다른 수의 분수 부분을 곱한 값들이 빠진다. {가분수}로 고치면 각 수의 전체 양을 곱할 수 있다.",
+      "definitionFingerprint": "a6401fc890ad73af2c2ec08b2d7e736436957f3636e1fd82c38bb83bfbe6e8c9",
+      "visibleLength": 94,
+      "targets": [
+        "가분수"
+      ],
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

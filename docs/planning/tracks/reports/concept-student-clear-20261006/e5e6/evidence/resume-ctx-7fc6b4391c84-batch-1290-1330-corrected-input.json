@@ -1,0 +1,655 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-3-3-xc9",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정사각형이 아닌 마름모의 대칭축은 몇 개이고 어떤 직선인가요? 또 마주 보는 변의 한가운데끼리 이은 직선은 이 마름모의 대칭축이 되는지 쓰세요.",
+      "bAnswer": "$2$개이고 두 대각선을 각각 포함하는 직선이다. 마주 보는 변의 한가운데끼리 이은 직선은 접어도 완전히 겹치지 않으므로 대칭축이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$개",
+            "두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "두대각선을각각포함하는직선이다",
+            "두대각선방향으로그은직선이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 한가운데끼리 이은 직선은 대칭축이 아니다"
+          ]
+        }
+      ],
+      "bGoal": "마름모의 대칭축이 대각선임을 직사각형과 구별해 안다.",
+      "bReason": "직사각형과 대칭축 위치가 반대라는 점을 대비해 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형이 아닌 마름모의 대칭축은 두 {대각선}을 각각 포함하는 직선이다.",
+      "cReason": "정사각형 제외 조건이 있고 '두 대각선'이라는 짧은 답으로 핵심을 확인한다.",
+      "synonymNotes": "C 답은 '두 대각선', '대각선 2개', '대각선' 모두 인정.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대각선"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1290-1330.json",
+      "codexFinalAmendedFromFingerprint": "b1a010e86e41bbe7cec22b57f25e6ec38c4cdfc78af2c24c95948b674282d172",
+      "sourceIndex": 1297,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc9",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "마름모의 대칭축",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형이 아닌 마름모의 대칭축은 {두 대각선}이다.",
+        "studentC": "정사각형이 아닌 마름모의 대칭축은 □이다.",
+        "answers": [
+          "두 대각선"
+        ]
+      },
+      "sourceFingerprint": "875a0f661913e1e57fe73eaa33773526882cda15742f402b4e76e5800dcbbcd9",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "대각선"
+      ],
+      "cStudentAfter": "정사각형이 아닌 마름모의 대칭축은 두 □을 각각 포함하는 직선이다.",
+      "cMarkedSentence": "정사각형이 아닌 마름모의 대칭축은 두 {대각선}을 각각 포함하는 직선이다.",
+      "cStudentSentence": "정사각형이 아닌 마름모의 대칭축은 두 □을 각각 포함하는 직선이다.",
+      "cSlotAnswers": [
+        {
+          "key": "대각선",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형이 아닌 마름모의 대칭축은 몇 개이고 어떤 직선인가요? 또 마주 보는 변의 한가운데끼리 이은 직선은 이 마름모의 대칭축이 되는지 쓰세요.",
+        "answer": "$2$개이고 두 대각선을 각각 포함하는 직선이다. 마주 보는 변의 한가운데끼리 이은 직선은 접어도 완전히 겹치지 않으므로 대칭축이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "두대각선을각각포함하는직선이다",
+              "두대각선방향으로그은직선이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 한가운데끼리 이은 직선은 대칭축이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형이 아닌 마름모의 대칭축은 두 {대각선}을 각각 포함하는 직선이다.",
+        "acceptedAnswers": [
+          [
+            "대각선"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "99d9a9dbb1cae48077416ad1359044c3aa98d757a8a5efe3da46f4bc96a6b6d4",
+      "questionRevision": "planning-e5e6-20261006-99d9a9dbb1ca",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc11",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정다각형의 대칭축의 수는 그 도형의 무엇의 수와 같은가요? 이를 이용해 정팔각형의 대칭축은 몇 개인지도 쓰세요.",
+      "bAnswer": "변의 수와 같다. 정팔각형은 변이 $8$개이므로 대칭축도 $8$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "변의 수와 같다",
+            "꼭짓점의 수와 같다",
+            "각의 수와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$개",
+            "여덟 개"
+          ]
+        }
+      ],
+      "bGoal": "정다각형의 대칭축 수 규칙을 말하고 정팔각형에 적용한다.",
+      "bReason": "일반 관계를 먼저 묻고 원문의 정팔각형 예를 붙였다.",
+      "cDecision": "keep",
+      "cAfter": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+      "cReason": "정다각형이라는 조건과 '변의 수'라는 짧은 답으로 규칙을 확인한다.",
+      "synonymNotes": "C 답은 '변의 수' 외에 '꼭짓점의 수', '각의 수'도 수학적으로 옳으므로 인정.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수",
+            "꼭짓점의 수",
+            "각의 수"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1290-1330.json",
+      "codexFinalAmendedFromFingerprint": "3b1e5775acfe8f308e72632ddb7ead57cf1c522da8d472a0a9555d7f2cb7c679",
+      "sourceIndex": 1299,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc11",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "정다각형의 대칭축 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+        "example": {
+          "prompt": "정팔각형의 대칭축은 몇 개인가?",
+          "answer": "$8$개"
+        },
+        "studentC": "정다각형의 대칭축 수는 □와 같다.",
+        "answers": [
+          "변의 수"
+        ]
+      },
+      "sourceFingerprint": "8ce37b048986aee40ee33c468f12acf673436c0aa0d1074feebcb864a3a05d84",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+      "cFrozenStudentSentence": "정다각형의 대칭축 수는 □와 같다.",
+      "cProposedAnswers": [
+        "변의 수"
+      ],
+      "cStudentAfter": "정다각형의 대칭축 수는 □와 같다.",
+      "cMarkedSentence": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+      "cStudentSentence": "정다각형의 대칭축 수는 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "변의 수",
+          "equivalents": [
+            "꼭짓점의 수",
+            "각의 수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정다각형의 대칭축의 수는 그 도형의 무엇의 수와 같은가요? 이를 이용해 정팔각형의 대칭축은 몇 개인지도 쓰세요.",
+        "answer": "변의 수와 같다. 정팔각형은 변이 $8$개이므로 대칭축도 $8$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변의 수와 같다",
+              "꼭짓점의 수와 같다",
+              "각의 수와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$개",
+              "여덟 개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "변의 수",
+            "꼭짓점의 수",
+            "각의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "893667b3ac9fa3674e0e3f153b1aad14e5457c2c53944e9432299f3600e09d70",
+      "questionRevision": "planning-e5e6-20261006-893667b3ac9f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "선대칭인 다각형의 반쪽과 대칭축이 그려져 있습니다. 나머지 반쪽을 그려 도형을 완성하는 방법을 순서대로 설명하세요.",
+      "bAnswer": "각 꼭짓점에서 대칭축에 수직인 선을 긋고, 대칭축 건너편의 같은 거리에 대응점을 찍는다. 축 위의 꼭짓점은 그대로 둔다. 찍은 대응점들을 원래 꼭짓점 순서대로 선분으로 잇는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각꼭짓점에서대칭축에수직인선위의반대쪽같은거리에대응점을찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "찍은 점들을 차례로 잇는다",
+            "점들을 순서대로 선으로 연결한다"
+          ]
+        }
+      ],
+      "bGoal": "선대칭도형의 나머지 반쪽을 그리는 두 단계를 말한다.",
+      "bReason": "주어진 것과 설명할 방법의 범위를 질문 안에 밝혔다.",
+      "cDecision": "keep",
+      "cAfter": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cReason": "반쪽과 대칭축이 주어진 상황에서 '대응점'이라는 핵심 용어 하나를 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1290-1330.json",
+      "codexFinalAmendedFromFingerprint": "eab8ed877ef63b5527e12e6df1fa5f12cc4c1c19a324554d4f2414cca652e38d",
+      "sourceIndex": 1300,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc12",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "선대칭도형 완성하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+        "studentC": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 □을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+        "answers": [
+          "대응점"
+        ]
+      },
+      "sourceFingerprint": "164c4b4fa1515d9b101de582c6311f837e6a2e05481c26154048d4066b2a545c",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cFrozenStudentSentence": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 □을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cProposedAnswers": [
+        "대응점"
+      ],
+      "cStudentAfter": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 □을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cStudentSentence": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 □을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "선대칭인 다각형의 반쪽과 대칭축이 그려져 있습니다. 나머지 반쪽을 그려 도형을 완성하는 방법을 순서대로 설명하세요.",
+        "answer": "각 꼭짓점에서 대칭축에 수직인 선을 긋고, 대칭축 건너편의 같은 거리에 대응점을 찍는다. 축 위의 꼭짓점은 그대로 둔다. 찍은 대응점들을 원래 꼭짓점 순서대로 선분으로 잇는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각꼭짓점에서대칭축에수직인선위의반대쪽같은거리에대응점을찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "찍은 점들을 차례로 잇는다",
+              "점들을 순서대로 선으로 연결한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+        "acceptedAnswers": [
+          [
+            "대응점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f0aa66b0290d8188946a9720188f5a822f2830560930f63a93b5bf919ec4f601",
+      "questionRevision": "planning-e5e6-20261006-f0aa66b0290d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc15",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대칭축과 대칭축 밖의 한 점이 그려져 있습니다. 이 점의 대응점을 찍으려면 어떻게 해야 하는지 설명하세요.",
+      "bAnswer": "그 점에서 대칭축에 수직인 선을 긋고, 대칭축 건너편으로 그 점에서 대칭축까지의 거리와 같은 거리만큼 떨어진 곳에 점을 찍는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점에서 대칭축에 수직인 선을 긋는다",
+            "대칭축과 직각으로 만나는 선을 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대칭축 건너편에 같은 거리만큼 떨어진 곳에 찍는다",
+            "대칭축까지의 거리만큼 반대쪽으로 더 가서 찍는다"
+          ]
+        }
+      ],
+      "bGoal": "수직과 같은 거리 두 조건으로 대응점을 찍는 방법을 말한다.",
+      "bReason": "주어진 대상을 밝히고 방법만 설명하도록 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "대칭축 밖의 한 점에서 대칭축에 {수직}인 선을 긋는다. 그 선 위에서 대칭축 건너편으로, 처음 점에서 대칭축까지의 거리와 {같은} 거리만큼 떨어진 곳에 대응점을 찍는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "cReason": "'수직인 선' 한 덩어리 대신 방법의 두 조건인 수직과 같은 거리를 빈칸으로 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1290-1330.json",
+      "codexFinalAmendedFromFingerprint": "182d96d22c95bb248bbf2060bd979a08c478ce5910d74f21c76ec71b72150625",
+      "sourceIndex": 1303,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc15",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "대응점 찍는 법",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 점의 대응점은 대칭축에 {수직인 선}을 긋고 건너편으로 같은 거리만큼 재어 찍는다.",
+        "studentC": "한 점의 대응점은 대칭축에 □을 긋고 건너편으로 같은 거리만큼 재어 찍는다.",
+        "answers": [
+          "수직인 선"
+        ]
+      },
+      "sourceFingerprint": "c46c75220a1936346aa8dfa228b58388ea0d7bde365c1254d1c5a830ac99adfb",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "수직",
+        "같은"
+      ],
+      "cStudentAfter": "대칭축 밖의 한 점에서 대칭축에 □인 선을 긋는다. 그 선 위에서 대칭축 건너편으로, 처음 점에서 대칭축까지의 거리와 □ 거리만큼 떨어진 곳에 대응점을 찍는다.",
+      "cMarkedSentence": "대칭축 밖의 한 점에서 대칭축에 {수직}인 선을 긋는다. 그 선 위에서 대칭축 건너편으로, 처음 점에서 대칭축까지의 거리와 {같은} 거리만큼 떨어진 곳에 대응점을 찍는다.",
+      "cStudentSentence": "대칭축 밖의 한 점에서 대칭축에 □인 선을 긋는다. 그 선 위에서 대칭축 건너편으로, 처음 점에서 대칭축까지의 거리와 □ 거리만큼 떨어진 곳에 대응점을 찍는다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        },
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대칭축과 대칭축 밖의 한 점이 그려져 있습니다. 이 점의 대응점을 찍으려면 어떻게 해야 하는지 설명하세요.",
+        "answer": "그 점에서 대칭축에 수직인 선을 긋고, 대칭축 건너편으로 그 점에서 대칭축까지의 거리와 같은 거리만큼 떨어진 곳에 점을 찍는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "점에서 대칭축에 수직인 선을 긋는다",
+              "대칭축과 직각으로 만나는 선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대칭축 건너편에 같은 거리만큼 떨어진 곳에 찍는다",
+              "대칭축까지의 거리만큼 반대쪽으로 더 가서 찍는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대칭축 밖의 한 점에서 대칭축에 {수직}인 선을 긋는다. 그 선 위에서 대칭축 건너편으로, 처음 점에서 대칭축까지의 거리와 {같은} 거리만큼 떨어진 곳에 대응점을 찍는다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ],
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "519a8a39c5fc9924f0822252f2ac39716d20752ed0d946e4dc6e6df661d4f442",
+      "questionRevision": "planning-e5e6-20261006-519a8a39c5fc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대칭의 중심 ㅇ과 도형 위에서 점 ㅇ과 다른 한 점 ㄱ이 주어졌을 때, 점 ㄱ의 대응점의 위치를 어떻게 찾는지 설명하시오.",
+      "bAnswer": "점 ㄱ에서 점 ㅇ을 지나는 직선을 긋고, 그 직선 위에서 점 ㅇ의 반대쪽으로 선분 ㄱㅇ과 같은 길이만큼 떨어진 곳이 대응점이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점 ㄱ과 대칭의 중심 ㅇ을 지나는 직선 위에서 찾는다",
+            "점 ㄱ에서 ㅇ을 지나도록 선을 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "ㅇ에서 반대쪽으로 선분 ㄱㅇ과 같은 거리만큼 떨어진 곳이다",
+            "ㅇ이 한가운데가 되도록 반대쪽에 점을 찍는다"
+          ]
+        }
+      ],
+      "bGoal": "대칭의 중심을 지나는 직선과 같은 거리로 대응점을 찾는 순서를 말한다.",
+      "bReason": "점 이름을 주어 '어디서 어디까지 같은 거리인지'를 분명히 답하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형에서 중심 밖에 있는 점 ㄱ의 대응점을 찾으려면, 점 ㄱ에서 {대칭의 중심}을 지나는 직선을 긋는다. 그 직선 위에서 중심을 지나 반대쪽으로, 점 ㄱ에서 중심까지의 거리와 {같은} 거리만큼 더 간 곳에 대응점을 찍는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대칭의 중심"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "cReason": "원문은 구절 전체를 비웠고 '같은 거리'의 기준이 없어 기준을 밝히고 낱말만 비웠다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1290-1330.json",
+      "codexFinalAmendedFromFingerprint": "0b0cbbe1fe53ffc88f49cdaaec3d41ad151c899cf88a411d8ebcc8f43279062b",
+      "sourceIndex": 1322,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc11",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "대응점 찾는 법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 점에서 {대칭의 중심을 지나는} 직선을 긋고 같은 거리만큼 더 가면 대응점이 있다.",
+        "studentC": "한 점에서 □ 직선을 긋고 같은 거리만큼 더 가면 대응점이 있다.",
+        "answers": [
+          "대칭의 중심을 지나는"
+        ]
+      },
+      "sourceFingerprint": "ea4114eca4a5d9f4af5487097ebe005cb8945f5ceccf594f5b5488563f90015d",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "대칭의 중심",
+        "같은"
+      ],
+      "cStudentAfter": "점대칭도형에서 중심 밖에 있는 점 ㄱ의 대응점을 찾으려면, 점 ㄱ에서 □을 지나는 직선을 긋는다. 그 직선 위에서 중심을 지나 반대쪽으로, 점 ㄱ에서 중심까지의 거리와 □ 거리만큼 더 간 곳에 대응점을 찍는다.",
+      "cMarkedSentence": "점대칭도형에서 중심 밖에 있는 점 ㄱ의 대응점을 찾으려면, 점 ㄱ에서 {대칭의 중심}을 지나는 직선을 긋는다. 그 직선 위에서 중심을 지나 반대쪽으로, 점 ㄱ에서 중심까지의 거리와 {같은} 거리만큼 더 간 곳에 대응점을 찍는다.",
+      "cStudentSentence": "점대칭도형에서 중심 밖에 있는 점 ㄱ의 대응점을 찾으려면, 점 ㄱ에서 □을 지나는 직선을 긋는다. 그 직선 위에서 중심을 지나 반대쪽으로, 점 ㄱ에서 중심까지의 거리와 □ 거리만큼 더 간 곳에 대응점을 찍는다.",
+      "cSlotAnswers": [
+        {
+          "key": "대칭의 중심",
+          "equivalents": []
+        },
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형에서 대칭의 중심 ㅇ과 도형 위에서 점 ㅇ과 다른 한 점 ㄱ이 주어졌을 때, 점 ㄱ의 대응점의 위치를 어떻게 찾는지 설명하시오.",
+        "answer": "점 ㄱ에서 점 ㅇ을 지나는 직선을 긋고, 그 직선 위에서 점 ㅇ의 반대쪽으로 선분 ㄱㅇ과 같은 길이만큼 떨어진 곳이 대응점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "점 ㄱ과 대칭의 중심 ㅇ을 지나는 직선 위에서 찾는다",
+              "점 ㄱ에서 ㅇ을 지나도록 선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "ㅇ에서 반대쪽으로 선분 ㄱㅇ과 같은 거리만큼 떨어진 곳이다",
+              "ㅇ이 한가운데가 되도록 반대쪽에 점을 찍는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "점대칭도형에서 중심 밖에 있는 점 ㄱ의 대응점을 찾으려면, 점 ㄱ에서 {대칭의 중심}을 지나는 직선을 긋는다. 그 직선 위에서 중심을 지나 반대쪽으로, 점 ㄱ에서 중심까지의 거리와 {같은} 거리만큼 더 간 곳에 대응점을 찍는다.",
+        "acceptedAnswers": [
+          [
+            "대칭의 중심"
+          ],
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b4cabb8f016bb8130afe4f9a4772c2e50d1c6215d7843a28d393dee83dd93129",
+      "questionRevision": "planning-e5e6-20261006-b4cabb8f016b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "다각형인 점대칭도형의 절반과 대칭의 중심이 그려져 있을 때, 나머지 절반을 그려 도형을 완성하는 순서를 설명하시오.",
+      "bAnswer": "주어진 각 꼭짓점의 대응점을 찾아 찍고(대칭의 중심을 지나 반대쪽으로 같은 거리), 찍은 대응점들을 차례로 선분으로 이어 완성한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각꼭짓점에서중심을지나는직선위의반대쪽같은거리에대응점을찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "찍은 점들을 차례로 이어 도형을 완성한다"
+          ]
+        }
+      ],
+      "bGoal": "대응점을 찍고 잇는 점대칭도형 완성 순서를 말한다.",
+      "bReason": "그림 없이도 일반 순서를 말할 수 있어 조건(절반과 중심이 주어짐)을 질문에 넣었다.",
+      "cDecision": "keep",
+      "cAfter": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cReason": "완성 순서에서 찍어야 할 점의 이름을 묻고 '중심 건너편 같은 거리'라는 조건이 문장에 있다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1290-1330.json",
+      "codexFinalAmendedFromFingerprint": "b61d888c43a09d776e03f37ac398e465425c222ec19826f8c04c5b7e708b1502",
+      "sourceIndex": 1328,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc17",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "점대칭도형 완성하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+        "studentC": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 □을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+        "answers": [
+          "대응점"
+        ]
+      },
+      "sourceFingerprint": "a6aa46c2b1591fd2fd485cbebddf623c608f38cca68b77e7262f3e072d95925e",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cFrozenStudentSentence": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 □을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cProposedAnswers": [
+        "대응점"
+      ],
+      "cStudentAfter": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 □을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cStudentSentence": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 □을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "다각형인 점대칭도형의 절반과 대칭의 중심이 그려져 있을 때, 나머지 절반을 그려 도형을 완성하는 순서를 설명하시오.",
+        "answer": "주어진 각 꼭짓점의 대응점을 찾아 찍고(대칭의 중심을 지나 반대쪽으로 같은 거리), 찍은 대응점들을 차례로 선분으로 이어 완성한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각꼭짓점에서중심을지나는직선위의반대쪽같은거리에대응점을찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "찍은 점들을 차례로 이어 도형을 완성한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+        "acceptedAnswers": [
+          [
+            "대응점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "58c948dd0147273b58fbbfc9ba88cbfe25fa4197f4af108d1c8099a8798ea9e7",
+      "questionRevision": "planning-e5e6-20261006-58c948dd0147",
+      "requiresIndependentReview": true
+    }
+  ]
+}

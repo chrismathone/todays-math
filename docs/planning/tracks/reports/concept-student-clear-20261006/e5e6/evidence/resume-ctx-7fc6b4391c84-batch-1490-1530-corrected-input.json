@@ -1,0 +1,784 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-5-4-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "겨냥도에서 보이는 면이 세 개임을 안다.",
+      "bReason": "면의 수 하나만 답하는 내용이라 서술형으로 물을 가치가 낮다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 면은 {세 개}이다.",
+      "cReason": "보이는 면의 수를 짧게 확인하는 기본 사실 문장이다.",
+      "exclusionReason": "B: 수 하나만 답하는 문항이며, 보이지 않는 면과 점선의 관계는 e5-2-5-4-xc24 B에서 다룬다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'세 개', '$3$개'는 같은 답이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "5a07ee8ff10f16d761b43fb3b97f1932c7edd6cc7f3c6667fe66ce90af67a38c",
+      "sourceIndex": 1494,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-4-xc1",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "보이는 면의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 겨냥도에서 보이는 면은 {세 개}이다.",
+        "studentC": "직육면체의 겨냥도에서 보이는 면은 □이다.",
+        "answers": [
+          "세 개"
+        ]
+      },
+      "sourceFingerprint": "de38eecd8e9053dcd34b4642debce02e646ae9da57abd65adf3d16bc3c4fa437",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "세 개"
+      ],
+      "cStudentAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 면은 {세 개}이다.",
+      "cStudentSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 면은 {세 개}이다.",
+        "acceptedAnswers": [
+          [
+            "세 개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B: 수 하나만 답하는 문항이며, 보이지 않는 면과 점선의 관계는 e5-2-5-4-xc24 B에서 다룬다."
+      },
+      "proposalFingerprint": "2cf65193d6890f8ca09e97d384ddd6209087f575a922a77351ee4280795fa5a5",
+      "questionRevision": "planning-e5e6-20261006-2cf65193d689",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-4-xc2",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "겨냥도에서 보이지 않는 면이 세 개임을 안다.",
+      "bReason": "xc1과 짝을 이루는 수 하나짜리 사실이라 따로 서술형을 만들 필요가 없다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 면은 {세 개}이다.",
+      "cReason": "보이지 않는 면의 수는 점선이 세 개인 까닭의 바탕이 되므로 짧은 확인으로 남긴다.",
+      "exclusionReason": "B: 수 하나만 답하는 문항이며, e5-2-5-4-xc24 B가 이 사실을 쓰게 한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'세 개', '$3$개'는 같은 답이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "a7863662b20cc6f023a3f1a0bef22ad48e94335269c5052eb645561b9d4c8c6e",
+      "sourceIndex": 1495,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-4-xc2",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "보이지 않는 면의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 겨냥도에서 보이지 않는 면은 {세 개}이다.",
+        "studentC": "직육면체의 겨냥도에서 보이지 않는 면은 □이다.",
+        "answers": [
+          "세 개"
+        ]
+      },
+      "sourceFingerprint": "e5014febf075888f75ad4e37fccc2700826be02f1019cad43a53b988ea14c6e0",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "세 개"
+      ],
+      "cStudentAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 면은 {세 개}이다.",
+      "cStudentSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 면은 {세 개}이다.",
+        "acceptedAnswers": [
+          [
+            "세 개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B: 수 하나만 답하는 문항이며, e5-2-5-4-xc24 B가 이 사실을 쓰게 한다."
+      },
+      "proposalFingerprint": "5220fd8f782881ccedce0c8640903f6b3e7dc7e923469187e80c5531292b8a68",
+      "questionRevision": "planning-e5e6-20261006-5220fd8f7828",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-4-xc5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "겨냥도에서 보이는 꼭짓점이 $7$개임을 안다.",
+      "bReason": "꼭짓점의 수 하나만 세는 내용이라 설명할 관계가 없다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 꼭짓점은 {$7$개}이다.",
+      "cReason": "보이는 꼭짓점의 수를 확인하는 짧은 사실 문장이다.",
+      "exclusionReason": "B: 수 하나만 답하는 단순 세기 문항이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "f5057c8ff021f6bda80b28fa3a44c9a95e2af09ccfc92bbc0a221f8c1ce23136",
+      "sourceIndex": 1498,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-4-xc5",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "보이는 꼭짓점의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 겨냥도에서 보이는 꼭짓점은 {$7$개}이다.",
+        "studentC": "직육면체의 겨냥도에서 보이는 꼭짓점은 □이다.",
+        "answers": [
+          "$7$개"
+        ]
+      },
+      "sourceFingerprint": "2ffc43b28837c5ccff56ca6ace1f227aa7df1f606d4725042db739ad1639dfe1",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$7$개"
+      ],
+      "cStudentAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 꼭짓점은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 꼭짓점은 {$7$개}이다.",
+      "cStudentSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 꼭짓점은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 꼭짓점은 {$7$개}이다.",
+        "acceptedAnswers": [
+          [
+            "$7$개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B: 수 하나만 답하는 단순 세기 문항이다."
+      },
+      "proposalFingerprint": "37384df89c1c91acd3da27b46e3898e3ae30174de58048ddeb1c8e373d8d3003",
+      "questionRevision": "planning-e5e6-20261006-37384df89c1c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-4-xc6",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "겨냥도에서 보이지 않는 꼭짓점이 $1$개임을 안다.",
+      "bReason": "보이지 않는 꼭짓점은 xc27 B의 점선 그리는 방법에서 쓰인다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 꼭짓점은 {$1$개}이다.",
+      "cReason": "보이지 않는 꼭짓점이 하나뿐이라는 사실은 점선 그리기의 출발점이라 남긴다.",
+      "exclusionReason": "B: 수 하나만 답하는 문항이며, e5-2-5-4-xc27 B가 이 꼭짓점을 쓰게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "939c8d11f70800754fe29154d5ffc1fc604ef002c0ebf72c4930725464888131",
+      "sourceIndex": 1499,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-4-xc6",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "보이지 않는 꼭짓점의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 겨냥도에서 보이지 않는 꼭짓점은 {$1$개}이다.",
+        "studentC": "직육면체의 겨냥도에서 보이지 않는 꼭짓점은 □이다.",
+        "answers": [
+          "$1$개"
+        ]
+      },
+      "sourceFingerprint": "2238cbd0f6df7ab7118a0fd76dbb84c825be036810b6eca2020f9257fd886d8c",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$개"
+      ],
+      "cStudentAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 꼭짓점은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 꼭짓점은 {$1$개}이다.",
+      "cStudentSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 꼭짓점은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이지 않는 꼭짓점은 {$1$개}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B: 수 하나만 답하는 문항이며, e5-2-5-4-xc27 B가 이 꼭짓점을 쓰게 한다."
+      },
+      "proposalFingerprint": "00d1b2052b9c577dd68e3f1bdeed8cdf9db9db3248c74976a6d48a5b3bbf584c",
+      "questionRevision": "planning-e5e6-20261006-00d1b2052b9c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-4-xc22",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "점선 세 개가 가로, 세로, 높이 방향으로 하나씩임을 안다.",
+      "bReason": "방향별 개수는 xc20 B와 xc27 B에서 이미 쓰인다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 점선 세 개는 가로, 세로, 높이 방향으로 {하나씩} 그어진다.",
+      "cReason": "점선이 세 방향에 하나씩이라는 사실을 짧은 낱말로 확인하며, xc21 계산의 근거가 된다.",
+      "exclusionReason": "B: e5-2-5-4-xc20, e5-2-5-4-xc27 B와 내용이 겹친다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'하나씩', '한 개씩', '$1$개씩'은 같은 답이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "d6b0eccd1a460bba94809494787da50246e456a5ab27aeae3ef89c6ca4d44e28",
+      "sourceIndex": 1515,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-4-xc22",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "점선 세 개의 방향",
+        "kind": "성질",
+        "level": "상",
+        "definition": "점선 세 개는 가로, 세로, 높이 방향으로 {하나씩} 그어진다.",
+        "studentC": "점선 세 개는 가로, 세로, 높이 방향으로 □ 그어진다.",
+        "answers": [
+          "하나씩"
+        ]
+      },
+      "sourceFingerprint": "3652d885413ad2f180d3cf1754ff0ef0061b4e02d2dbb903fd2967dcee4c3cfa",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "하나씩"
+      ],
+      "cStudentAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 점선 세 개는 가로, 세로, 높이 방향으로 □ 그어진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "하나씩"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 점선 세 개는 가로, 세로, 높이 방향으로 {하나씩} 그어진다.",
+      "cStudentSentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 점선 세 개는 가로, 세로, 높이 방향으로 □ 그어진다.",
+      "cSlotAnswers": [
+        {
+          "key": "하나씩",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 세 면이 보이게 그린 겨냥도에서 점선 세 개는 가로, 세로, 높이 방향으로 {하나씩} 그어진다.",
+        "acceptedAnswers": [
+          [
+            "하나씩"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B: e5-2-5-4-xc20, e5-2-5-4-xc27 B와 내용이 겹친다."
+      },
+      "proposalFingerprint": "6c02d8d9344e8d81ed9cf11a50f35cd587dc1f676338d2f88b66e03936998d64",
+      "questionRevision": "planning-e5e6-20261006-6c02d8d9344e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-4-xc27",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 세 면이 보이게 겨냥도를 그립니다. 보이는 모서리를 실선으로 바르게 그린 뒤, 무엇의 자리를 먼저 정하고 거기에서 점선을 어떻게 그으면 되는지 순서대로 설명하세요.",
+      "bAnswer": "보이지 않는 꼭짓점의 자리를 먼저 정한다. 그 점에서 보이는 세 꼭짓점으로 가로, 세로, 높이 방향의 점선을 하나씩 잇는다. 같은 방향의 실선 모서리와 서로 평행하고 길이가 같도록 그린다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보이지 않는 꼭짓점의 자리를 먼저 정한다",
+            "점선 세 개가 만나는 한 점을 먼저 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒷꼭짓점에서보이는세꼭짓점까지세방향의점선을잇는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은방향의실선모서리와평행하고길이가같게그린다"
+          ]
+        }
+      ],
+      "bGoal": "보이지 않는 꼭짓점을 정한 뒤 세 방향으로 점선을 긋는 차례를 말한다.",
+      "bReason": "xc11의 '점선이 만나는 곳'까지 포함하도록, 정할 것과 긋는 방법을 차례로 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 가로, 세로, 높이의 서로 다른 {$3$} 방향으로 점선을 하나씩 잇는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '세 방향으로'는 구절이라 방향의 수 하나만 답하게 줄였다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "a06747858564465cd8e2f4e1fb9d6c0c6ee7ac9aa27382e60fcfc1a5442b22c0",
+      "sourceIndex": 1519,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-4-xc27",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "점선 그리는 차례",
+        "kind": "방법",
+        "level": "상",
+        "definition": "점선은 보이지 않는 꼭짓점을 먼저 정하고 그 점에서 {세 방향으로} 긋는다.",
+        "studentC": "점선은 보이지 않는 꼭짓점을 먼저 정하고 그 점에서 □ 긋는다.",
+        "answers": [
+          "세 방향으로"
+        ]
+      },
+      "sourceFingerprint": "352ab42263ae65eddb664be0142d713e0895c4a6c481f246e67e42ba0809c3e0",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 가로, 세로, 높이의 서로 다른 □ 방향으로 점선을 하나씩 잇는다.",
+      "cMarkedSentence": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 가로, 세로, 높이의 서로 다른 {$3$} 방향으로 점선을 하나씩 잇는다.",
+      "cStudentSentence": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 가로, 세로, 높이의 서로 다른 □ 방향으로 점선을 하나씩 잇는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 세 면이 보이게 겨냥도를 그립니다. 보이는 모서리를 실선으로 바르게 그린 뒤, 무엇의 자리를 먼저 정하고 거기에서 점선을 어떻게 그으면 되는지 순서대로 설명하세요.",
+        "answer": "보이지 않는 꼭짓점의 자리를 먼저 정한다. 그 점에서 보이는 세 꼭짓점으로 가로, 세로, 높이 방향의 점선을 하나씩 잇는다. 같은 방향의 실선 모서리와 서로 평행하고 길이가 같도록 그린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "보이지 않는 꼭짓점의 자리를 먼저 정한다",
+              "점선 세 개가 만나는 한 점을 먼저 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒷꼭짓점에서보이는세꼭짓점까지세방향의점선을잇는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은방향의실선모서리와평행하고길이가같게그린다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 가로, 세로, 높이의 서로 다른 {$3$} 방향으로 점선을 하나씩 잇는다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9ba9f646a104ac2675edb99d502f3a48bad8a6b7beb0958fcdd40e6188323b15",
+      "questionRevision": "planning-e5e6-20261006-9ba9f646a104",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-5-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도에 정사각형 세 개가 한 줄로 이어진 부분이 있다. 접었을 때 이 세 면 가운데 서로 마주 보는 두 면은 어느 것인지 쓰고, 그 두 면이 가운데 면과 어떻게 만나는지를 이용하여 까닭을 설명하시오.",
+      "bAnswer": "양 끝의 두 면이 마주 본다. 두 면이 가운데 면의 서로 반대쪽 변에서 각각 수직으로 세워지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양 끝의 두 면",
+            "첫째 면과 셋째 면"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 면이 가운데 면의 서로 반대쪽 변에서 수직으로 세워진다",
+            "가운데 면의 마주 보는 두 변에 붙어 있어서 접으면 서로 마주 선다"
+          ]
+        }
+      ],
+      "bGoal": "한 줄 세 면에서 마주 보는 면을 찾고 그 까닭을 말한다.",
+      "bReason": "그림 없이도 떠올릴 수 있는 배치라 조건을 질문에 적고 까닭의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 전개도에서 한 줄로 이어진 세 면 가운데 {양 끝}의 두 면은 접으면 서로 마주 본다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "양 끝",
+            "양쪽 끝",
+            "맨 끝"
+          ]
+        }
+      ],
+      "cReason": "빈칸을 위치를 나타내는 짧은 말로 줄여 표현 차이로 틀리지 않게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "e7c21fbd289b611ae784eb8571386909a913c7d950bd76ff7e5cd2a063c22d91",
+      "sourceIndex": 1525,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-5-xc6",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "한 줄로 이어진 세 면",
+        "kind": "방법",
+        "level": "하",
+        "definition": "전개도에서 한 줄로 이어진 세 면 가운데 {양 끝의 두 면}은 접으면 마주 본다.",
+        "studentC": "전개도에서 한 줄로 이어진 세 면 가운데 □은 접으면 마주 본다.",
+        "answers": [
+          "양 끝의 두 면"
+        ]
+      },
+      "sourceFingerprint": "5a0993404c6a1c1581d3a7627ceaf138fcfd8b54edd20ccb2d1776e6f1ebd3db",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "양 끝"
+      ],
+      "cStudentAfter": "정육면체의 전개도에서 한 줄로 이어진 세 면 가운데 □의 두 면은 접으면 서로 마주 본다.",
+      "cMarkedSentence": "정육면체의 전개도에서 한 줄로 이어진 세 면 가운데 {양 끝}의 두 면은 접으면 서로 마주 본다.",
+      "cStudentSentence": "정육면체의 전개도에서 한 줄로 이어진 세 면 가운데 □의 두 면은 접으면 서로 마주 본다.",
+      "cSlotAnswers": [
+        {
+          "key": "양 끝",
+          "equivalents": [
+            "양쪽 끝",
+            "맨 끝"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 전개도에 정사각형 세 개가 한 줄로 이어진 부분이 있다. 접었을 때 이 세 면 가운데 서로 마주 보는 두 면은 어느 것인지 쓰고, 그 두 면이 가운데 면과 어떻게 만나는지를 이용하여 까닭을 설명하시오.",
+        "answer": "양 끝의 두 면이 마주 본다. 두 면이 가운데 면의 서로 반대쪽 변에서 각각 수직으로 세워지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "양 끝의 두 면",
+              "첫째 면과 셋째 면"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 면이 가운데 면의 서로 반대쪽 변에서 수직으로 세워진다",
+              "가운데 면의 마주 보는 두 변에 붙어 있어서 접으면 서로 마주 선다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체의 전개도에서 한 줄로 이어진 세 면 가운데 {양 끝}의 두 면은 접으면 서로 마주 본다.",
+        "acceptedAnswers": [
+          [
+            "양 끝",
+            "양쪽 끝",
+            "맨 끝"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3c15e839de01219cfc04f5f46d1d815900ad17c953e1728a77a8c04cacef09f2",
+      "questionRevision": "planning-e5e6-20261006-3c15e839de01",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-5-xc7",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 어떤 관계로 만나는지 쓰고, 이 두 면이 서로 마주 보는 면이 될 수 있는지도 쓰시오.",
+      "bAnswer": "접으면 수직으로 만난다. 서로 만나는 면이므로 마주 보는 면이 될 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수직으로 만난다",
+            "직각으로 만난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 면이 될 수 없다",
+            "마주 보지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "붙어 있는 면은 수직이며 마주 보는 면이 아님을 구별한다.",
+      "bReason": "수직 관계에 더해 마주 보는 면과의 구별까지 묻도록 넓혔다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 {수직}으로 만난다.",
+      "cReason": "변을 맞댄 두 면이라는 조건이 분명하고 답이 '수직' 한 낱말이다.",
+      "synonymNotes": "C에서 '직각'도 같은 뜻으로 인정할 수 있다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "0abc35f03ab351bb498796c4dd24f794d1a48e8a96f0c9807217a17a7d5638f9",
+      "sourceIndex": 1526,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-5-xc7",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "붙어 있는 두 면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 {수직}으로 만난다.",
+        "studentC": "전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 □으로 만난다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "d455ccd373b735ee3390ed90b22230bce67400f6329882e9b53bbbfa402945ec",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "정육면체의 전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 □으로 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체의 전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 {수직}으로 만난다.",
+      "cStudentSentence": "정육면체의 전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 □으로 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 어떤 관계로 만나는지 쓰고, 이 두 면이 서로 마주 보는 면이 될 수 있는지도 쓰시오.",
+        "answer": "접으면 수직으로 만난다. 서로 만나는 면이므로 마주 보는 면이 될 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수직으로 만난다",
+              "직각으로 만난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 면이 될 수 없다",
+              "마주 보지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체의 전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 {수직}으로 만난다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "88aef50a255868b355fb7b55f35af372185e41ab0b20bfdd7bf6df78b1f88e2a",
+      "questionRevision": "planning-e5e6-20261006-88aef50a2558",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-5-xc10",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "전개도를 접을 때 서로 맞닿아 모서리 하나가 되는 두 선분의 길이는 어떤 관계여야 하는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "두 선분의 길이는 같아야 한다. 두 선분이 꼭 맞게 붙어 모서리 하나가 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 선분이 꼭 맞게 붙어 한 모서리가 된다",
+            "길이가 다르면 딱 맞게 붙지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "맞닿는 선분의 길이가 같아야 하는 까닭을 말한다.",
+      "bReason": "길이 관계와 그 까닭으로 설명할 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "전개도를 접었을 때 꼭 맞게 겹쳐 모서리 하나가 되는 두 선분은 길이가 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 무엇을 견주는지 드러나지 않아 '길이가'를 문장에 남겼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1490-1530.json",
+      "codexFinalAmendedFromFingerprint": "3262b51b660ee537f83654193b46bd648f4c522b0f07a97b2e771b7b0b317c3c",
+      "sourceIndex": 1529,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-5-xc10",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "맞닿는 선분",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전개도를 접었을 때 맞닿는 두 선분은 {길이가 같다}.",
+        "studentC": "전개도를 접었을 때 맞닿는 두 선분은 □.",
+        "answers": [
+          "길이가 같다"
+        ]
+      },
+      "sourceFingerprint": "175ef52dd9f513cc94ddf645d7a5ec303b57c15aa7623b9acefdbd7d6813b4a7",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "전개도를 접었을 때 꼭 맞게 겹쳐 모서리 하나가 되는 두 선분은 길이가 □.",
+      "cMarkedSentence": "전개도를 접었을 때 꼭 맞게 겹쳐 모서리 하나가 되는 두 선분은 길이가 {같다}.",
+      "cStudentSentence": "전개도를 접었을 때 꼭 맞게 겹쳐 모서리 하나가 되는 두 선분은 길이가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도를 접을 때 서로 맞닿아 모서리 하나가 되는 두 선분의 길이는 어떤 관계여야 하는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "두 선분의 길이는 같아야 한다. 두 선분이 꼭 맞게 붙어 모서리 하나가 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 선분이 꼭 맞게 붙어 한 모서리가 된다",
+              "길이가 다르면 딱 맞게 붙지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전개도를 접었을 때 꼭 맞게 겹쳐 모서리 하나가 되는 두 선분은 길이가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a558a65d312480c388f1826357e27c2d43f33b26e0e4b2ba70c97ef208e19534",
+      "questionRevision": "planning-e5e6-20261006-a558a65d3124",
+      "requiresIndependentReview": true
+    }
+  ]
+}

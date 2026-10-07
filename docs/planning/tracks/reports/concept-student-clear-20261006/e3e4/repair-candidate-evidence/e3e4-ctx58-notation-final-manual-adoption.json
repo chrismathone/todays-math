@@ -1,0 +1,417 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-1-1-xc24",
+      "sourceIndex": 2111,
+      "beforeProposal": {
+        "sourceIndex": 2111,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "bed453e50b1b320fa7d0f65b10df26d738d81f5169108a03a31ecfed92ec97f1",
+        "proposalFingerprint": "451a665fbba0797dc618bc09abf6f5c344c9b18f807162457871c5713c7ce670",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{6}{7}+\\frac{5}{7}$는 $2$보다 얼마나 작은지, 각 분수가 $1$보다 얼마나 작은지를 이용해 구하고 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{6}{7}$은 $1$보다 $\\frac{1}{7}$, $\\frac{5}{7}$는 $1$보다 $\\frac{2}{7}$ 작아서 합은 $2$보다 $\\frac{1}{7}+\\frac{2}{7}=\\frac{3}{7}$ 작다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 분수가 $1$보다 모자란 양 $\\frac{1}{7}$, $\\frac{2}{7}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모자란 양을 더하면 $\\frac{3}{7}$",
+              "$\\frac{3}{7}$ 작다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$1$에서 모자란 양으로 어림",
+        "bReason": "모자란 양을 모아 $2$와의 차를 구함",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{6}{7}$과 $\\frac{5}{7}$은 각각 $1$보다 모자란다. 모자란 양을 합하면 {$\\frac{3}{7}$}이므로 두 분수의 합은 $2$보다 그만큼 작다.",
+        "cReason": "긴 구절 빈칸을 '모자란' 한 낱말로 좁힘",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$1$을 기준으로 합 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{6}{7}$과 $\\frac{5}{7}$은 각각 $1$보다 모자란다. 모자란 양을 합하면 {$\\frac{3}{7}$}이므로 두 분수의 합은 $2$보다 그만큼 작다.",
+        "cStudentSentence": "$\\frac{6}{7}$과 $\\frac{5}{7}$은 각각 $1$보다 모자란다. 모자란 양을 합하면 □이므로 두 분수의 합은 $2$보다 그만큼 작다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{3}{7}$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{6}{7}+\\frac{5}{7}$는 $2$보다 얼마나 작은지, 각 분수가 $1$보다 얼마나 작은지를 이용해 구하고 까닭을 설명하시오.",
+          "answer": "$\\frac{6}{7}$은 $1$보다 $\\frac{1}{7}$, $\\frac{5}{7}$는 $1$보다 $\\frac{2}{7}$ 작아서 합은 $2$보다 $\\frac{1}{7}+\\frac{2}{7}=\\frac{3}{7}$ 작다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각 분수가 $1$보다 모자란 양 $\\frac{1}{7}$, $\\frac{2}{7}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "모자란 양을 더하면 $\\frac{3}{7}$",
+                "$\\frac{3}{7}$ 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{6}{7}$과 $\\frac{5}{7}$은 각각 $1$보다 모자란다. 모자란 양을 합하면 {$\\frac{3}{7}$}이므로 두 분수의 합은 $2$보다 그만큼 작다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{3}{7}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-1-1-xc24",
+          "sourceIndex": 2111,
+          "proposalFingerprint": "451a665fbba0797dc618bc09abf6f5c344c9b18f807162457871c5713c7ce670",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "각 분수에서1까지 부족한 양을 모아2와의 차를 구한다.",
+          "cReason": "실제 두 분수의 부족한 양의 합3/7을 구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cAfter": "$\\frac{6}{7}$과 $\\frac{5}{7}$는 각각 $1$보다 모자란다. 모자란 양을 합하면 {$\\frac{3}{7}$}이므로 두 분수의 합은 $2$보다 그만큼 작다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-1-3-xc12",
+      "sourceIndex": 2139,
+      "beforeProposal": {
+        "sourceIndex": 2139,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "2d3f9412c572bcd3b149b34f9694d2af08947fdb80b4163e967ad141df2d3724",
+        "proposalFingerprint": "aa2972f1389bacd35c14a0c1690fc8b334dcad968fcc8ad52fbc3a6e74667858",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\frac{2}{5}+1\\frac{1}{5}$을 자연수끼리 분수끼리 더하는 방법과 가분수로 바꾸어 더하는 방법으로 각각 계산하고, 두 결과를 비교하시오.",
+        "bAnswer": "$2+\\frac{3}{5}=2\\frac{3}{5}$, $\\frac{7}{5}+\\frac{6}{5}=\\frac{13}{5}=2\\frac{3}{5}$으로 두 결과는 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자연수끼리 더한 $2$와 분수끼리 더한 $\\frac{3}{5}$를 합쳐 $2\\frac{3}{5}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{5}+\\frac{6}{5}=\\frac{13}{5}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 결과가 $2\\frac{3}{5}$로 같다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 계산 방법의 결과 비교",
+        "bReason": "두 방법을 직접 계산해 같음을 확인",
+        "cDecision": "keep",
+        "cReason": "'같다' 한 낱말만 묻는 짧은 비교 빈칸",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 방법의 결과",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 {같다}.",
+        "cStudentSentence": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1\\frac{2}{5}+1\\frac{1}{5}$을 자연수끼리 분수끼리 더하는 방법과 가분수로 바꾸어 더하는 방법으로 각각 계산하고, 두 결과를 비교하시오.",
+          "answer": "$2+\\frac{3}{5}=2\\frac{3}{5}$, $\\frac{7}{5}+\\frac{6}{5}=\\frac{13}{5}=2\\frac{3}{5}$으로 두 결과는 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "자연수끼리 더한 $2$와 분수끼리 더한 $\\frac{3}{5}$를 합쳐 $2\\frac{3}{5}$이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{7}{5}+\\frac{6}{5}=\\frac{13}{5}$이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 결과가 $2\\frac{3}{5}$로 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-1-3-xc12",
+          "sourceIndex": 2139,
+          "proposalFingerprint": "aa2972f1389bacd35c14a0c1690fc8b334dcad968fcc8ad52fbc3a6e74667858",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두 방법의 실제 계산과 결과 같음을 모두 요청한 범위에 맞췄다.",
+          "cReason": "두 대분수 덧셈 방법의 결과가 같다는 비교를 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자연수끼리 더한 $2$와 분수끼리 더한 $\\frac{3}{5}$을 합쳐 $2\\frac{3}{5}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{5}+\\frac{6}{5}=\\frac{13}{5}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 결과가 $2\\frac{3}{5}$으로 같다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-1-4-xc13",
+      "sourceIndex": 2154,
+      "beforeProposal": {
+        "sourceIndex": 2154,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "533ca7c51799ec6b897fcb8aeddfd09ee2af26d768c2ce0fddd474010148f436",
+        "proposalFingerprint": "bdaf8e07acb8b1faadf42198c77bca9db229f0f38e02451304f421a15281a1e7",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 확인",
+        "bReason": "2-1-2-xc11과 같은 검산 목표",
+        "exclusionReason": "덧셈으로 뺄셈을 확인하는 2-1-2-xc11과 같은 목표라 B 중복",
+        "cDecision": "rewrite",
+        "cReason": "두 식이 보이고 '확인한다'만 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "잘못되었다",
+            "잘못됐다"
+          ]
+        ],
+        "cAfter": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$을 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 {틀렸다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$을 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 {틀렸다}.",
+        "cStudentSentence": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$을 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "틀렸다",
+            "equivalents": [
+              "잘못되었다",
+              "잘못됐다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$을 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 {틀렸다}.",
+          "acceptedAnswers": [
+            [
+              "틀렸다",
+              "잘못되었다",
+              "잘못됐다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-1-2-xc11과 같은 검산 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-1-4-xc13",
+          "sourceIndex": 2154,
+          "proposalFingerprint": "bdaf8e07acb8b1faadf42198c77bca9db229f0f38e02451304f421a15281a1e7",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "분수뺄셈검산의기존B와중복되어제외한다.",
+          "cReason": "학생이계산한뒤의검산값4와1/6이처음5와1/6과다름을판단한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cAfter": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$를 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 {틀렸다}."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-6-xc18",
+      "sourceIndex": 2397,
+      "beforeProposal": {
+        "sourceIndex": 2397,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "bb5f6206f50eb9d1931ba7644698c19fa8af02bf700ae8f26593523e74d57c15",
+        "proposalFingerprint": "278c42f1965a044be37fd8b23c61a271eebd4d534d09db190d58360a088dd897",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$2.96$와 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+        "bAnswer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$쯤"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "소수 두 자리 합 어림",
+        "bReason": "가까운 자연수로 어림하는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "'가까운 자연수' 익숙한 구절 빈칸",
+        "cSlotEquivalents": [
+          [
+            "가장 가까운 자연수"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "cStudentSentence": "소수 두 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가까운 자연수",
+            "equivalents": [
+              "가장 가까운 자연수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 두 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+          "answers": [
+            "가까운 자연수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$2.96$와 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+          "answer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$쯤"
+              ]
+            },
+            {
+              "anyOf": [
+                "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "가까운 자연수",
+              "가장 가까운 자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc18",
+          "sourceIndex": 2397,
+          "proposalFingerprint": "278c42f1965a044be37fd8b23c61a271eebd4d534d09db190d58360a088dd897",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "각 수를 가장 가까운 자연수로 어림해 3과 1 및 합 4를 쓰게 했다.",
+          "cReason": "가까운 자연수라는 어림 방법의 빈칸을 보존한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

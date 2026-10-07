@@ -1,0 +1,22 @@
+{
+  "label": "clock-bound",
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-clock-bound.json",
+  "changes": [
+    {
+      "id": "m1-03-13-c6",
+      "coreAfter": "$a$시 $x$분($12$시는 $a=0$)에 $12$시에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도이다. 큰 각도에서 작은 각도를 뺀 값을 차라 하자. 두 바늘의 작은 각은 차가 $180^\\circ$ 이하이면 차, 넘으면 $360^\\circ$에서 차를 뺀 값이다.",
+      "coreReason": "12시 표기와 두 위치식, 음수가 아닌 차, 180도 경계를 유지하며 중복 표현을 줄여 보이는160자 한도에 맞춘다."
+    }
+  ],
+  "notes": [
+    {
+      "id": "m1-03-13-c6",
+      "b": "B의 시각 범위와 시침30a+0.5x·분침6x 식 및 큰 각도에서 작은 각도를 뺀 뒤 360도에서 빼는 과정이 정확하다.",
+      "c": "C에 a0..11, x0..60미만 및 12시a0 범위를 유지하며 시침식의 소수·분수 동치를 허용한다.",
+      "core": "짧아진 설명도 12시a0, 기준 방향, 두 위치식, 큰 각도에서 작은 각도를 빼는 차, 180도 이하/초과 두 경우를 모두 명시한다."
+    }
+  ],
+  "rereadIds": [
+    "m1-03-13-c6"
+  ]
+}

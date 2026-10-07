@@ -1,0 +1,90 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-1-2-5-xc7",
+      "sourceIndex": 1602,
+      "beforeProposal": {
+        "sourceIndex": 1602,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-5 삼각형의 세 각의 크기의 합",
+        "sourceFingerprint": "3ae8b9822507a060bba85a0b35dbbe152f92f8719704689d97d93087dee44b10",
+        "proposalFingerprint": "d367e59dfb2b25d5d80fae6b7d1682eb1a49d9a14ae07795ff316854dd96738d",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-5-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 종이의 가장 긴 변을 아래에 놓았습니다. 위 꼭짓점에서 아래 변에 직각으로 내려 그은 선이 만나는 점을 표시했습니다. 세 꼭짓점이 이 점에 닿도록 접어 세 각을 겹치지 않게 모으면 어떤 모양이 되는지 쓰고, 이를 이용해 세 각의 합을 설명하세요.",
+        "bAnswer": "세 각이 일직선을 이룹니다. 접어도 각의 크기는 바뀌지 않고 세 각이 빈틈없이 일직선을 채우므로, 세 각의 합은 $180^\\circ$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 각이 겹치지 않고 빈틈없이 일직선을 이룬다."
+            ]
+          },
+          {
+            "anyOf": [
+              "접어도 각의 크기는 같고 일직선의 각이 $180^\\circ$이므로 세 각의 합도 $180^\\circ$이다."
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "올바른접기배치에서세각이일직선을채우는모양과180도합의뜻을설명한다.",
+        "bReason": "아래변위임의의점으로접어도된다고하지않는다. 실제접기점을직각으로내려그은선의발로명시하고질문에준접기위치복사대신모인각의모양과합의뜻을평가한다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형 종이의 위 꼭짓점에서 아래 변에 직각으로 내려 그은 선이 만나는 점을 표시한다. 세 꼭짓점이 이 점에 닿도록 접어 세 각을 겹치지 않고 모으면 일직선이 되므로 합은 {$180^\\circ$}이다.",
+        "cReason": "어느한점이라는불충분한접기위치를실제직각으로내린선의만나는점으로특정한다. 모인각이일직선이되는180도관계는유지한다.",
+        "exampleNeeded": "가장긴변을아래둔삼각형에윗꼭짓점에서직각으로내린선의발을표시하고세꼭짓점을그점으로접는순서그림이새로필요하다. 학생문장도접기위치를명시한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "접어서 세 각 모으기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형 종이의 위 꼭짓점에서 아래 변에 직각으로 내려 그은 선이 만나는 점을 표시한다. 세 꼭짓점이 이 점에 닿도록 접어 세 각을 겹치지 않고 모으면 일직선이 되므로 합은 {$180^\\circ$}이다.",
+        "cStudentSentence": "삼각형 종이의 위 꼭짓점에서 아래 변에 직각으로 내려 그은 선이 만나는 점을 표시한다. 세 꼭짓점이 이 점에 닿도록 접어 세 각을 겹치지 않고 모으면 일직선이 되므로 합은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$180^\\circ$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형 종이의 가장 긴 변을 아래에 놓았습니다. 위 꼭짓점에서 아래 변에 직각으로 내려 그은 선이 만나는 점을 표시했습니다. 세 꼭짓점이 이 점에 닿도록 접어 세 각을 겹치지 않게 모으면 어떤 모양이 되는지 쓰고, 이를 이용해 세 각의 합을 설명하세요.",
+          "answer": "세 각이 일직선을 이룹니다. 접어도 각의 크기는 바뀌지 않고 세 각이 빈틈없이 일직선을 채우므로, 세 각의 합은 $180^\\circ$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 각이 겹치지 않고 빈틈없이 일직선을 이룬다."
+              ]
+            },
+            {
+              "anyOf": [
+                "접어도 각의 크기는 같고 일직선의 각이 $180^\\circ$이므로 세 각의 합도 $180^\\circ$이다."
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형 종이의 위 꼭짓점에서 아래 변에 직각으로 내려 그은 선이 만나는 점을 표시한다. 세 꼭짓점이 이 점에 닿도록 접어 세 각을 겹치지 않고 모으면 일직선이 되므로 합은 {$180^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$180^\\circ$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "learningRole": "reason",
+        "cAfter": "삼각형 종이의 가장 긴 변을 아래에 놓는다. 위 꼭짓점에서 아래 변에 직각으로 내려 그은 선이 만나는 점을 표시한다. 세 꼭짓점이 이 점에 닿도록 접어 세 각을 겹치지 않고 모으면 일직선이 되므로 합은 {$180^\\circ$}이다.",
+        "cReason": "C만보아도접기점이삼각형안의아래변위에있도록가장긴변을아래둔조건을자립하여제시한다. 실제점에접어모은각과180도합의관계는유지한다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

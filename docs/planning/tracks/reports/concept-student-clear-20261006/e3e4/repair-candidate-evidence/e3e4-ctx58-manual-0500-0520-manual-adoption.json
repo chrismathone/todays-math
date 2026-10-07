@@ -1,0 +1,2277 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-3-6-xc18",
+      "sourceIndex": 2397,
+      "beforeProposal": {
+        "sourceIndex": 2397,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "bb5f6206f50eb9d1931ba7644698c19fa8af02bf700ae8f26593523e74d57c15",
+        "proposalFingerprint": "5d4a71efbcf03be67a7f3076fe7364d255d8e9b999a90ae65cf2239ba09936d6",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$2.96+1.03$의 합을 어림하는 방법을 쓰고, 어림한 값을 쓰시오.",
+        "bAnswer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가까운 자연수로 바꾼다",
+              "$2.96$을 $3$으로, $1.03$을 $1$로"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "소수 두 자리 합 어림",
+        "bReason": "가까운 자연수로 어림하는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "'가까운 자연수' 익숙한 구절 빈칸",
+        "cSlotEquivalents": [
+          [
+            "가장 가까운 자연수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "cStudentSentence": "소수 두 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가까운 자연수",
+            "equivalents": [
+              "가장 가까운 자연수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 두 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+          "answers": [
+            "가까운 자연수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$2.96+1.03$의 합을 어림하는 방법을 쓰고, 어림한 값을 쓰시오.",
+          "answer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "가까운 자연수로 바꾼다",
+                "$2.96$을 $3$으로, $1.03$을 $1$로"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "가까운 자연수",
+              "가장 가까운 자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc18",
+          "sourceIndex": 2397,
+          "proposalFingerprint": "5d4a71efbcf03be67a7f3076fe7364d255d8e9b999a90ae65cf2239ba09936d6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "자유어림질문을각각가까운자연수로어림하는범위로좁힌다.",
+          "cReason": "소수두자리합의가까운자연수어림방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$2.96$와 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$쯤"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-6-xc21",
+      "sourceIndex": 2400,
+      "beforeProposal": {
+        "sourceIndex": 2400,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "ef9955d34b42b9f252d173b3f223f3865fde9353677cf684bf607925b1ca6adb",
+        "proposalFingerprint": "74976daedadc88e1f5e67188395e223610fdbf5dbbd4527fb9771c61e9036ace",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 카드 $1,2,3,5,7,9$를 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 수 두 개를 만들어 합을 가장 크게 하려고 합니다. 가장 큰 숫자 $9$와 그다음 큰 숫자 $7$을 각각 어느 자리에 놓아야 하는지, 그 까닭과 함께 쓰시오.",
+        "bAnswer": "$9$와 $7$을 각각 일의 자리에 놓는다. 같은 숫자도 높은 자리일수록 값이 크기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리에 놓는다",
+              "가장 높은 자리에 놓는다",
+              "각 수의 일의 자리"
+            ]
+          },
+          {
+            "anyOf": [
+              "높은 자리일수록 값이 크다",
+              "높은 자리 숫자가 더 큰 값을 나타낸다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "큰 숫자를 높은 자리에 놓는 까닭",
+        "bReason": "카드 수를 주어 자리와 까닭을 함께 묻는다",
+        "cDecision": "keep",
+        "cReason": "일의 자리라는 짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합이 가장 큰 덧셈식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "숫자 카드 여섯 장을 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 두 수의 합을 가장 크게 하려면, 큰 숫자를 {일}의 자리부터 놓는다. 같은 숫자도 높은 자리일수록 값이 크기 때문이다.",
+        "cStudentSentence": "숫자 카드 여섯 장을 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 두 수의 합을 가장 크게 하려면, 큰 숫자를 □의 자리부터 놓는다. 같은 숫자도 높은 자리일수록 값이 크기 때문이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "일",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "숫자 카드 여섯 장을 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 두 수의 합을 가장 크게 하려면, 큰 숫자를 □의 자리부터 놓는다. 같은 숫자도 높은 자리일수록 값이 크기 때문이다.",
+          "answers": [
+            "일"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "숫자 카드 $1,2,3,5,7,9$를 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 수 두 개를 만들어 합을 가장 크게 하려고 합니다. 가장 큰 숫자 $9$와 그다음 큰 숫자 $7$을 각각 어느 자리에 놓아야 하는지, 그 까닭과 함께 쓰시오.",
+          "answer": "$9$와 $7$을 각각 일의 자리에 놓는다. 같은 숫자도 높은 자리일수록 값이 크기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "일의 자리에 놓는다",
+                "가장 높은 자리에 놓는다",
+                "각 수의 일의 자리"
+              ]
+            },
+            {
+              "anyOf": [
+                "높은 자리일수록 값이 크다",
+                "높은 자리 숫자가 더 큰 값을 나타낸다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "숫자 카드 여섯 장을 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 두 수의 합을 가장 크게 하려면, 큰 숫자를 {일}의 자리부터 놓는다. 같은 숫자도 높은 자리일수록 값이 크기 때문이다.",
+          "acceptedAnswers": [
+            [
+              "일"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc21",
+          "sourceIndex": 2400,
+          "proposalFingerprint": "74976daedadc88e1f5e67188395e223610fdbf5dbbd4527fb9771c61e9036ace",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "알수없는동그라미자리기호를자연수한자리·소수두자리조건으로말로명시한다.",
+          "cReason": "동일한자리조건을말로명시하여일의자리배치를묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "숫자 카드 $1,2,3,5,7,9$를 한 번씩 써서 자연수 부분이 한 자리인 소수 두 자리 수 두 개를 만들려고 한다. 두 수의 합이 가장 크려면 $9$와 $7$을 각각 어느 자리에 놓아야 하는지, 그 까닭과 함께 쓰시오.",
+        "cDecision": "rewrite",
+        "cAfter": "숫자 카드 여섯 장을 한 번씩 써서 자연수 부분이 한 자리인 소수 두 자리 수 두 개를 만든다. 합이 가장 크려면 큰 숫자 두 장을 각각 {일}의 자리에 놓는다. 같은 숫자도 높은 자리일수록 값이 크기 때문이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-7-xc12",
+      "sourceIndex": 2409,
+      "beforeProposal": {
+        "sourceIndex": 2409,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "2224b7c18cc43451b6a42e5f4a011cb3cfd21dd71467a59803cad3c760322660",
+        "proposalFingerprint": "78470d2e0b22307bf531796119537c53e04dfaec5324345a4a5b8947b292a157",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$4-1.35$를 세로셈으로 계산하는 방법을 쓰고 답을 구하시오.",
+        "bAnswer": "$4$를 $4.00$으로 고쳐 쓰고 소수 부분이 모자라므로 받아내림하여 계산한다. 답은 $2.65$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4.00$으로 고쳐 쓴다",
+              "소수 부분을 $0$으로 채워 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "받아내림한다",
+              "받아내려 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "자연수에서 소수 빼는 방법",
+        "bReason": "구체 식으로 방법을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$4-1.35$를 세로셈으로 계산할 때는 $4$를 {$4.00$}으로 고쳐 쓰고 받아내림하여 뺀다.",
+        "cReason": "숨은 수 이름 대신 구체 수 $4.00$으로 교체",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자연수에서 소수 두 자리 수 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4-1.35$를 세로셈으로 계산할 때는 $4$를 {$4.00$}으로 고쳐 쓰고 받아내림하여 뺀다.",
+        "cStudentSentence": "$4-1.35$를 세로셈으로 계산할 때는 $4$를 □으로 고쳐 쓰고 받아내림하여 뺀다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$4.00$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4-1.35$를 세로셈으로 계산하는 방법을 쓰고 답을 구하시오.",
+          "answer": "$4$를 $4.00$으로 고쳐 쓰고 소수 부분이 모자라므로 받아내림하여 계산한다. 답은 $2.65$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4.00$으로 고쳐 쓴다",
+                "소수 부분을 $0$으로 채워 쓴다"
+              ]
+            },
+            {
+              "anyOf": [
+                "받아내림한다",
+                "받아내려 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4-1.35$를 세로셈으로 계산할 때는 $4$를 {$4.00$}으로 고쳐 쓰고 받아내림하여 뺀다.",
+          "acceptedAnswers": [
+            [
+              "$4.00$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-7-xc12",
+          "sourceIndex": 2409,
+          "proposalFingerprint": "78470d2e0b22307bf531796119537c53e04dfaec5324345a4a5b8947b292a157",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "방법과답을요청했으므로4.00표기·받아내림외에실제차2.65도기준에포함한다.",
+          "cReason": "자연수4를자리맞춤4.00으로쓰는표기이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4.00$으로 고쳐 쓴다",
+              "소수 부분을 $0$으로 채워 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "받아내림하여 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.65$"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-7-xc13",
+      "sourceIndex": 2410,
+      "beforeProposal": {
+        "sourceIndex": 2410,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "d91c39638df79dee631642f31a257b859aaea569d1f35169c9bd44dd848c7ba6",
+        "proposalFingerprint": "abe9aea62a14998b7857a835884d19b543f6c5e62bc0c2335963e66e1bbbefa4",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$4.13-1.58=2.55$라고 계산했습니다. 이 답이 맞는지 덧셈으로 확인하는 방법과 결과를 쓰시오.",
+        "bAnswer": "차 $2.55$와 빼는 수 $1.58$을 더하면 $2.55+1.58=4.13$으로 처음 수와 같으므로 맞다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.55+1.58$",
+              "차와 빼는 수를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4.13$과 같다",
+              "처음 수와 같다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 검산하기",
+        "bReason": "계산 결과가 맞는 식으로 검산 방법을 묻는다",
+        "cDecision": "keep",
+        "cReason": "식이 주어져 짧은 동사 빈칸으로 충분",
+        "cSlotEquivalents": [
+          [
+            "검산한다",
+            "확인할 수 있다",
+            "맞는지 확인한다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 {확인한다}.",
+        "cStudentSentence": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "확인한다",
+            "equivalents": [
+              "검산한다",
+              "확인할 수 있다",
+              "맞는지 확인한다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 □.",
+          "answers": [
+            "확인한다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$4.13-1.58=2.55$라고 계산했습니다. 이 답이 맞는지 덧셈으로 확인하는 방법과 결과를 쓰시오.",
+          "answer": "차 $2.55$와 빼는 수 $1.58$을 더하면 $2.55+1.58=4.13$으로 처음 수와 같으므로 맞다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.55+1.58$",
+                "차와 빼는 수를 더한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4.13$과 같다",
+                "처음 수와 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 {확인한다}.",
+          "acceptedAnswers": [
+            [
+              "확인한다",
+              "검산한다",
+              "확인할 수 있다",
+              "맞는지 확인한다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-7-xc13",
+          "sourceIndex": 2410,
+          "proposalFingerprint": "abe9aea62a14998b7857a835884d19b543f6c5e62bc0c2335963e66e1bbbefa4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "차와빼는수의합4.13을원래수와비교하는방법이다.",
+          "cReason": "확인한다행동낱말대신검산식의실제합4.13을묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$4.13-1.58$의 차를 $2.55$라고 구했다. $2.55+1.58=4.13$으로 처음 수와 같으므로 뺄셈 계산은 {맞다}.",
+        "cSlotEquivalents": [
+          [
+            "옳다",
+            "바르다"
+          ]
+        ],
+        "cReason": "검산한다라는 행동 이름 대신 검산의 결과를 보고 계산의 맞고 틀림을 판단한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-7-xc17",
+      "sourceIndex": 2414,
+      "beforeProposal": {
+        "sourceIndex": 2414,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "75ffbc6e36dbf81c676bac81fad6dc07cab5ab39a8a545aaccbb3908b2d18a78",
+        "proposalFingerprint": "395a72258dd5d20048fc1f8e2edb8577748049a4179d26e77c10f266f9d332ee",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$5.02-1.98$의 차가 대략 얼마인지 쉽게 알아보는 방법을 쓰시오.",
+        "bAnswer": "$5.02$는 $5$에, $1.98$은 $2$에 가까우므로 $5-2=3$ 정도라고 어림한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 수를 가까운 자연수로 바꾼다",
+              "$5$와 $2$로 어림한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$ 정도",
+              "약 $3$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "가까운 자연수로 차 어림",
+        "bReason": "원문 예제를 완성 질문으로 만든다",
+        "cDecision": "rewrite",
+        "cAfter": "$5.02-1.98$은 $5.02$를 $5$로, $1.98$을 $2$로 어림하여 약 {$3$}이라고 알 수 있다.",
+        "cReason": "어려운 구절 대신 선명한 어림 계산으로 교체",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5.02-1.98$은 $5.02$를 $5$로, $1.98$을 $2$로 어림하여 약 {$3$}이라고 알 수 있다.",
+        "cStudentSentence": "$5.02-1.98$은 $5.02$를 $5$로, $1.98$을 $2$로 어림하여 약 □이라고 알 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5.02-1.98$의 차가 대략 얼마인지 쉽게 알아보는 방법을 쓰시오.",
+          "answer": "$5.02$는 $5$에, $1.98$은 $2$에 가까우므로 $5-2=3$ 정도라고 어림한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각 수를 가까운 자연수로 바꾼다",
+                "$5$와 $2$로 어림한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3$ 정도",
+                "약 $3$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5.02-1.98$은 $5.02$를 $5$로, $1.98$을 $2$로 어림하여 약 {$3$}이라고 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-7-xc17",
+          "sourceIndex": 2414,
+          "proposalFingerprint": "395a72258dd5d20048fc1f8e2edb8577748049a4179d26e77c10f266f9d332ee",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "자유어림방법을가까운자연수어림으로명시하여3만받는기준의범위를맞춘다.",
+          "cReason": "5와2로어림한차3을구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$5.02$와 $1.98$을 각각 가장 가까운 자연수로 어림하여 $5.02-1.98$의 차를 어림하시오. 어떤 수로 바꾸었는지와 어림한 차를 쓰시오.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5.02$를 $5$로, $1.98$을 $2$로 어림한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$ 정도",
+              "약 $3$"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-7-xc18",
+      "sourceIndex": 2415,
+      "beforeProposal": {
+        "sourceIndex": 2415,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "df83e8b1104c20c5b277da127f62474b86d102c0a0c3bf350bc5967943c4bdc6",
+        "proposalFingerprint": "1efaf407cee0749970b34c5332bfa576f937b82e5a0f39466ddd49f8eb42f1cb",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$5-1.2-0.8$을 한 번에 빼려면 $5$에서 어떤 수를 빼면 되는지, 그 까닭과 함께 쓰시오.",
+        "bAnswer": "$1.2+0.8=2$를 한 번에 뺀다. $1.2$와 $0.8$을 차례로 빼면 모두 $2$를 뺀 것이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.2+0.8=2$를 뺀다",
+              "두 수의 합을 한 번에 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "차례로 빼면 둘을 모두 뺀 것이다",
+              "나누어 빼도 합만큼 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차례로 빼기와 합 한 번 빼기",
+        "bReason": "구체 식으로 같은 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$5-1.2-0.8$은 $5$에서 $1.2$와 $0.8$의 {합}을 한 번에 뺀 것과 같다.",
+        "cReason": "긴 구절 빈칸을 합이라는 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "더한 값",
+            "더한 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차례로 빼기와 한꺼번에 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5-1.2-0.8$은 $5$에서 $1.2$와 $0.8$의 {합}을 한 번에 뺀 것과 같다.",
+        "cStudentSentence": "$5-1.2-0.8$은 $5$에서 $1.2$와 $0.8$의 □을 한 번에 뺀 것과 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "합",
+            "equivalents": [
+              "더한 값",
+              "더한 수"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5-1.2-0.8$을 한 번에 빼려면 $5$에서 어떤 수를 빼면 되는지, 그 까닭과 함께 쓰시오.",
+          "answer": "$1.2+0.8=2$를 한 번에 뺀다. $1.2$와 $0.8$을 차례로 빼면 모두 $2$를 뺀 것이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.2+0.8=2$를 뺀다",
+                "두 수의 합을 한 번에 뺀다"
+              ]
+            },
+            {
+              "anyOf": [
+                "차례로 빼면 둘을 모두 뺀 것이다",
+                "나누어 빼도 합만큼 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5-1.2-0.8$은 $5$에서 $1.2$와 $0.8$의 {합}을 한 번에 뺀 것과 같다.",
+          "acceptedAnswers": [
+            [
+              "합",
+              "더한 값",
+              "더한 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-7-xc18",
+          "sourceIndex": 2415,
+          "proposalFingerprint": "1efaf407cee0749970b34c5332bfa576f937b82e5a0f39466ddd49f8eb42f1cb",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "어떤수인지요청했으므로두수의합이라는일반방법외에실제2를기준으로받는다.",
+          "cReason": "차례로뺄양의합을한번에빼는관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.2$와 $0.8$을 차례로 빼면 모두 두 수의 합인 $2$를 뺀 것이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-7-xc20",
+      "sourceIndex": 2417,
+      "beforeProposal": {
+        "sourceIndex": 2417,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "cac7aeaf5fe45d733d2f1762ec148ed676316b331024b1b34405aff170b8b1bd",
+        "proposalFingerprint": "8af8795599fc53f1f9758e4a6b1770771bf4b1c2b0809506778606dda3413bf8",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$6.75-2.75$의 차는 자연수입니다. 두 수의 소수 부분에 주목하여 그 까닭을 쓰시오.",
+        "bAnswer": "$6.75-2.75=4$이다. 두 수의 소수 부분 $0.75$가 같아서 빼면 없어지기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수 부분이 같아서 빼면 $0$이 된다",
+              "소수 부분이 서로 없어진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "소수 부분이 같으면 차는 자연수",
+        "bReason": "조건과 결론 관계의 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$6.75-2.75$처럼 두 소수의 소수 부분이 같으면 차의 소수 부분은 {$0$}이어서 자연수이다.",
+        "cReason": "가려진 조건 대신 짧은 숫자 빈칸으로 교체",
+        "cSlotEquivalents": [
+          [
+            "영"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 자연수가 되는 뺄셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$6.75-2.75$처럼 두 소수의 소수 부분이 같으면 차의 소수 부분은 {$0$}이어서 자연수이다.",
+        "cStudentSentence": "$6.75-2.75$처럼 두 소수의 소수 부분이 같으면 차의 소수 부분은 □이어서 자연수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": [
+              "영"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$6.75-2.75$의 차는 자연수입니다. 두 수의 소수 부분에 주목하여 그 까닭을 쓰시오.",
+          "answer": "$6.75-2.75=4$이다. 두 수의 소수 부분 $0.75$가 같아서 빼면 없어지기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "소수 부분이 같아서 빼면 $0$이 된다",
+                "소수 부분이 서로 없어진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$6.75-2.75$처럼 두 소수의 소수 부분이 같으면 차의 소수 부분은 {$0$}이어서 자연수이다.",
+          "acceptedAnswers": [
+            [
+              "$0$",
+              "영"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-7-xc20",
+          "sourceIndex": 2417,
+          "proposalFingerprint": "8af8795599fc53f1f9758e4a6b1770771bf4b1c2b0809506778606dda3413bf8",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "같은0.75소수부분을덜어없애자연수4인까닭이다.",
+          "cReason": "두소수같음이면차0도가능하므로큰소수에서작은소수를빼는조건을명시하고일반정의도원문확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "소수 부분이 같은 두 소수에서 큰 수에서 작은 수를 빼면, 차의 소수 부분은 {$0$}이어서 자연수이다.",
+        "cReason": "원문에 있는 큰 소수에서 작은 소수를 뺀다는 조건을 되살려 차가 0인 경우를 제외한다. 일반 설명 원문은 이 조건이 이미 있어 유지한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-7-xc21",
+      "sourceIndex": 2418,
+      "beforeProposal": {
+        "sourceIndex": 2418,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "101f1bf7793675c9734ec98e1d3679b051edb9497a4024709c9976005dd88238",
+        "proposalFingerprint": "64863b32d07d745b48337b3a462c4292683cb59cb44494b4dae44d085b63725a",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 카드 $1,2,3,5,7,9$를 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 수 두 개를 만들어 큰 수에서 작은 수를 뺀 차를 가장 크게 하려고 합니다. 빼어지는 수(앞의 수)와 빼는 수(뒤의 수)를 각각 크게 만들어야 하는지 작게 만들어야 하는지 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "빼어지는 수는 크게, 빼는 수는 작게 만든다. 앞의 수가 클수록, 뒤의 수가 작을수록 차가 커지기 때문이다. 예: $9.75-1.23$.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빼어지는 수는 크게, 빼는 수는 작게",
+              "앞의 수는 크게 뒤의 수는 작게"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 수가 클수록 차가 커지고 뒤의 수가 작을수록 차가 커진다",
+              "덜 빼야 더 많이 남는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차를 크게 하는 수 만들기",
+        "bReason": "카드 상황에서 방향과 까닭을 함께 묻는다",
+        "cDecision": "keep",
+        "cReason": "크게/작게 대비 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "더 작게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차가 큰 뺄셈식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 {작게} 만든다.",
+        "cStudentSentence": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 □ 만든다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작게",
+            "equivalents": [
+              "더 작게"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 □ 만든다.",
+          "answers": [
+            "작게"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "숫자 카드 $1,2,3,5,7,9$를 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 수 두 개를 만들어 큰 수에서 작은 수를 뺀 차를 가장 크게 하려고 합니다. 빼어지는 수(앞의 수)와 빼는 수(뒤의 수)를 각각 크게 만들어야 하는지 작게 만들어야 하는지 쓰고 그 까닭을 쓰시오.",
+          "answer": "빼어지는 수는 크게, 빼는 수는 작게 만든다. 앞의 수가 클수록, 뒤의 수가 작을수록 차가 커지기 때문이다. 예: $9.75-1.23$.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "빼어지는 수는 크게, 빼는 수는 작게",
+                "앞의 수는 크게 뒤의 수는 작게"
+              ]
+            },
+            {
+              "anyOf": [
+                "앞의 수가 클수록 차가 커지고 뒤의 수가 작을수록 차가 커진다",
+                "덜 빼야 더 많이 남는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 {작게} 만든다.",
+          "acceptedAnswers": [
+            [
+              "작게",
+              "더 작게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-7-xc21",
+          "sourceIndex": 2418,
+          "proposalFingerprint": "64863b32d07d745b48337b3a462c4292683cb59cb44494b4dae44d085b63725a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "동그라미자리기호를소수두자리수의말로된조건으로바꾼다.",
+          "cReason": "앞수크고뒤수작게하는차최대관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "숫자 카드 $1,2,3,5,7,9$를 한 번씩 써서 자연수 부분이 한 자리인 소수 두 자리 수 두 개를 만든다. 큰 수에서 작은 수를 뺀 차가 가장 크려면 앞의 수와 뒤의 수를 각각 크게 만들어야 하는지 작게 만들어야 하는지 쓰고, 그 까닭을 쓰시오.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "앞의 수는 크게, 뒤의 수는 작게 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 수가 클수록 차가 커지고 뒤의 수가 작을수록 차가 커진다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-7-xc26",
+      "sourceIndex": 2420,
+      "beforeProposal": {
+        "sourceIndex": 2420,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "4c49b3ad7c405a061ae8319de7c5d67324fadf05391f1f0214f9642ff74c5ab3",
+        "proposalFingerprint": "6030805f6d47c1ccddcc2a7817095169a6370e0fe6f9d8ec21dfda8bed5c66af",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 수에서 $0.48$을 빼야 하는데 잘못하여 더했더니 $2.3$이 되었습니다. 바르게 계산한 값을 구하고, 그렇게 구하는 까닭을 쓰시오.",
+        "bAnswer": "$2.3$에서 $0.48$을 두 번 빼어 $1.34$이다. 더한 것을 되돌리려 한 번 빼고, 원래 해야 할 뺄셈으로 한 번 더 빼야 하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.48$을 두 번 뺀다",
+              "$2.3-0.96$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.34$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "잘못 더한 값 바로잡기",
+        "bReason": "원문 예제를 값과 까닭이 있는 질문으로 만든다",
+        "cDecision": "rewrite",
+        "cAfter": "빼야 할 수를 잘못 더했으면, 그 결과에서 빼야 할 수를 {두} 번 빼야 바른 차가 된다.",
+        "cReason": "긴 구절 빈칸을 횟수 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "잘못 더한 값 바로잡기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "빼야 할 수를 잘못 더했으면, 그 결과에서 빼야 할 수를 {두} 번 빼야 바른 차가 된다.",
+        "cStudentSentence": "빼야 할 수를 잘못 더했으면, 그 결과에서 빼야 할 수를 □ 번 빼야 바른 차가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 수에서 $0.48$을 빼야 하는데 잘못하여 더했더니 $2.3$이 되었습니다. 바르게 계산한 값을 구하고, 그렇게 구하는 까닭을 쓰시오.",
+          "answer": "$2.3$에서 $0.48$을 두 번 빼어 $1.34$이다. 더한 것을 되돌리려 한 번 빼고, 원래 해야 할 뺄셈으로 한 번 더 빼야 하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.48$을 두 번 뺀다",
+                "$2.3-0.96$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1.34$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "빼야 할 수를 잘못 더했으면, 그 결과에서 빼야 할 수를 {두} 번 빼야 바른 차가 된다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-7-xc26",
+          "sourceIndex": 2420,
+          "proposalFingerprint": "6030805f6d47c1ccddcc2a7817095169a6370e0fe6f9d8ec21dfda8bed5c66af",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "두번빼는절차외에잘못더한양복구와원래뺄양이라는요청한까닭을기준에포함한다.",
+          "cReason": "잘못더한값에서두번빼는복구관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.34$"
+            ]
+          },
+          {
+            "anyOf": [
+              "잘못 더한 $0.48$을 빼서 되돌린 뒤 원래 빼야 할 $0.48$을 한 번 더 뺀다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-1-xc9",
+      "sourceIndex": 2430,
+      "beforeProposal": {
+        "sourceIndex": 2430,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "df3c034394e07d3c34f9b1f9c9cf37de9375f52bb415d9fea1029a5e523ff30c",
+        "proposalFingerprint": "395663f99b59bf4835d16f94494b847bbf608da36a024e8e7ad4da15f5c4ac05",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각자로 직선 위의 한 점을 지나는 그 직선의 수선을 긋는 방법을 쓰시오.",
+        "bAnswer": "삼각자의 직각을 낀 한 변을 직선에 맞추고 그 점에 대어 직각을 낀 다른 한 변을 따라 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 한 변을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 변을 따라 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "삼각자로 수선 긋기",
+        "bReason": "삼각자 작도 순서를 묻는다",
+        "cDecision": "keep",
+        "cReason": "수직 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각자로 수선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 {수직}이 되므로 수선을 그을 수 있다.",
+        "cStudentSentence": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 □이 되므로 수선을 그을 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 □이 되므로 수선을 그을 수 있다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각자로 직선 위의 한 점을 지나는 그 직선의 수선을 긋는 방법을 쓰시오.",
+          "answer": "삼각자의 직각을 낀 한 변을 직선에 맞추고 그 점에 대어 직각을 낀 다른 한 변을 따라 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각을 낀 한 변을 직선에 맞춘다"
+              ]
+            },
+            {
+              "anyOf": [
+                "다른 한 변을 따라 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 {수직}이 되므로 수선을 그을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-1-xc9",
+          "sourceIndex": 2430,
+          "proposalFingerprint": "395663f99b59bf4835d16f94494b847bbf608da36a024e8e7ad4da15f5c4ac05",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "한점을지나는수선이므로삼각자의직각꼭짓점을그점에맞추는조건도기준에넣는다.",
+          "cReason": "직각을낀두변으로그은직선의수직관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각의 꼭짓점을 주어진 점에 맞춘다. 직각을 낀 다른 변을 따라 선을 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 한 변을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각의 꼭짓점을 주어진 점에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각을 낀 다른 변을 따라 긋는다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-1-xc21",
+      "sourceIndex": 2440,
+      "beforeProposal": {
+        "sourceIndex": 2440,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "bb8e11bc3f78c5533e930886054f66c5c6164e4dd2791bf26b964e88e91a667d",
+        "proposalFingerprint": "2cd6a90963280d85713039e7fc6eafe2d688b2a15cb18fa22df4ba9cdd09658d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "시계의 짧은바늘과 긴바늘이 서로 수직이 되는 정각을 $1$시부터 $12$시 가운데에서 모두 찾고, 그 까닭을 쓰시오.",
+        "bAnswer": "$3$시와 $9$시이다. 이때 두 바늘이 이루는 각이 직각($90^\\circ$)이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$시"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$시"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 바늘 사이의 각이 직각이다",
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 바늘이 수직인 정각",
+        "bReason": "시계 상황에 수직을 적용하게 한다",
+        "cDecision": "rewrite",
+        "cAfter": "정각 가운데 시곗바늘 두 개가 수직인 때는 {$3$}시와 {$9$}시이다.",
+        "cReason": "두 답을 한 빈칸에 쓰는 부담을 둘로 나눔",
+        "cSlotEquivalents": [
+          [
+            "$9$"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 바늘이 수직인 정각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정각 가운데 시곗바늘 두 개가 수직인 때는 {$3$}시와 {$9$}시이다.",
+        "cStudentSentence": "정각 가운데 시곗바늘 두 개가 수직인 때는 □시와 □시이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "$9$"
+            ]
+          },
+          {
+            "expected": "$9$",
+            "equivalents": [
+              "$3$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "시계의 짧은바늘과 긴바늘이 서로 수직이 되는 정각을 $1$시부터 $12$시 가운데에서 모두 찾고, 그 까닭을 쓰시오.",
+          "answer": "$3$시와 $9$시이다. 이때 두 바늘이 이루는 각이 직각($90^\\circ$)이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$시"
+              ]
+            },
+            {
+              "anyOf": [
+                "$9$시"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 바늘 사이의 각이 직각이다",
+                "$90^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정각 가운데 시곗바늘 두 개가 수직인 때는 {$3$}시와 {$9$}시이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "$9$"
+            ],
+            [
+              "$9$",
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-1-xc21",
+          "sourceIndex": 2440,
+          "proposalFingerprint": "2cd6a90963280d85713039e7fc6eafe2d688b2a15cb18fa22df4ba9cdd09658d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "1시부터12시정각중3과9의직각을이유와함께요청한다.",
+          "cReason": "각빈칸에3과9를둘다허용하면3·3도통과하므로이른시간순서를명시하고정답을자리별고정한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$1$시부터 $12$시까지의 정각 중 두 시곗바늘이 수직인 때를 이른 시각부터 쓰면 {$3$}시와 {$9$}시이다.",
+        "cSlotEquivalents": [
+          [],
+          []
+        ],
+        "cReason": "두 빈칸에 같은 시각을 써도 맞게 되는 별칭을 없애고 시각의 순서를 명시한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-1-xc24",
+      "sourceIndex": 2442,
+      "beforeProposal": {
+        "sourceIndex": 2442,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "9694200b7fdece8c52e69dc3574660248ddd5b1d89f4ff844b8b42bd98cd4fcd",
+        "proposalFingerprint": "7c4f4bcb686c6bff3513346df9cfb87c011ef4203df4de2d97b8771659e003a4",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "수직인 두 직선 가, 나가 만나는 점에서 직각 안쪽으로 직선 다를 그었더니 다가 가와 $25^\\circ$를 이루었습니다. 다가 나와 이루는 각은 몇 도이며, 그 까닭은 무엇입니까?",
+        "bAnswer": "$65^\\circ$이다. 두 각이 직각 $90^\\circ$를 나누어 가지므로 $90^\\circ-25^\\circ=65^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$65^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각의 합이 $90^\\circ$다",
+              "직각을 나누어 가진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직각 안쪽 직선이 만드는 각",
+        "bReason": "원문 예제에 조건을 보충해 자립",
+        "coreAfter": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 선을 그어 두 각으로 나누면, 그 두 각의 크기의 합은 {$90^\\circ$}이다.",
+        "coreReason": "90도라는 원래표적을보존하며어느각을합하는지 같은직각안쪽의두부분으로명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 직선을 그으면, 그 직선이 두 직선과 이루는 두 각의 합은 {$90^\\circ$}이다.",
+        "cReason": "'작은 각' 모호함을 직각 안쪽 조건으로 고침",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "수직인 두 직선과 그 점을 지나는 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 직선을 그으면, 그 직선이 두 직선과 이루는 두 각의 합은 {$90^\\circ$}이다.",
+        "cStudentSentence": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 직선을 그으면, 그 직선이 두 직선과 이루는 두 각의 합은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "수직인 두 직선 가, 나가 만나는 점에서 직각 안쪽으로 직선 다를 그었더니 다가 가와 $25^\\circ$를 이루었습니다. 다가 나와 이루는 각은 몇 도이며, 그 까닭은 무엇입니까?",
+          "answer": "$65^\\circ$이다. 두 각이 직각 $90^\\circ$를 나누어 가지므로 $90^\\circ-25^\\circ=65^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$65^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 각의 합이 $90^\\circ$다",
+                "직각을 나누어 가진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 직선을 그으면, 그 직선이 두 직선과 이루는 두 각의 합은 {$90^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-1-xc24",
+          "sourceIndex": 2442,
+          "proposalFingerprint": "7c4f4bcb686c6bff3513346df9cfb87c011ef4203df4de2d97b8771659e003a4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "직선다와나의두교차각중직각안쪽의남은각을명시하여65를묻는다.",
+          "cReason": "바뀐일반설명처럼직각을나눈같은두부분의합으로C를명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "수직인 두 직선 가와 나가 만드는 한 직각을, 두 직선이 만나는 점에서 뻗은 선으로 나누었다. 나눈 두 각 중 하나가 $25^\\circ$일 때 나머지 각은 몇 도인지 쓰고, 그 까닭을 쓰시오.",
+        "cDecision": "rewrite",
+        "cAfter": "수직인 두 직선이 만드는 한 직각을 두 각으로 나누면, 나눈 두 각의 크기의 합은 {$90^\\circ$}이다.",
+        "cSlotEquivalents": [
+          [
+            "직각",
+            "$90$도"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-2-xc4",
+      "sourceIndex": 2449,
+      "beforeProposal": {
+        "sourceIndex": 2449,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "65477c5f911c4722be9c5d8eb08e6b8873cb364472ed9cf21dd9efaafe00ce33",
+        "proposalFingerprint": "7e7fb5889447d1f959de030f17d2956562a68d7e82748e6fbca1d7a91b22aefa",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각자 두 개로 주어진 직선과 평행한 직선을 긋는 방법을 쓰시오.",
+        "bAnswer": "한 삼각자의 한 변을 직선에 맞추어 고정하고, 다른 삼각자를 그 삼각자의 변에 대어 밀어 옮긴 자리에서 선을 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 삼각자를 직선에 맞추어 고정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 삼각자를 대고 밀어서 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "삼각자 두 개로 평행선 긋기",
+        "bReason": "작도 순서를 묻는다",
+        "cDecision": "keep",
+        "cReason": "동사 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "움직이면서",
+            "옮기면서"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각자 두 개로 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 {밀면서} 평행선을 긋는다.",
+        "cStudentSentence": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 □ 평행선을 긋는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "밀면서",
+            "equivalents": [
+              "움직이면서",
+              "옮기면서"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 □ 평행선을 긋는다.",
+          "answers": [
+            "밀면서"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각자 두 개로 주어진 직선과 평행한 직선을 긋는 방법을 쓰시오.",
+          "answer": "한 삼각자의 한 변을 직선에 맞추어 고정하고, 다른 삼각자를 그 삼각자의 변에 대어 밀어 옮긴 자리에서 선을 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 삼각자를 직선에 맞추어 고정한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "다른 삼각자를 대고 밀어서 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 {밀면서} 평행선을 긋는다.",
+          "acceptedAnswers": [
+            [
+              "밀면서",
+              "움직이면서",
+              "옮기면서"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc4",
+          "sourceIndex": 2449,
+          "proposalFingerprint": "7e7fb5889447d1f959de030f17d2956562a68d7e82748e6fbca1d7a91b22aefa",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "직선에맞춘삼각자가아닌잘못된다른변을그을수있는설명이므로움직일삼각자먼저맞춤·보조삼각자고정·같은변따라긋기단계를명시한다.",
+          "cReason": "움직이는삼각자의맞춘변따라긋는조건을C에도맞춘다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "움직일 삼각자의 한 변을 주어진 직선에 맞춘다. 다른 삼각자를 움직일 삼각자의 다른 변에 붙여 고정한다. 움직일 삼각자를 고정한 삼각자에 붙인 채 밀어 옮기고, 처음에 직선에 맞췄던 변을 따라 선을 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "움직일 삼각자의 한 변을 주어진 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 삼각자를 그 삼각자의 다른 변에 붙여 고정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "움직일 삼각자를 고정한 삼각자에 붙여 밀어 옮긴 뒤 처음 직선에 맞춘 변을 따라 긋는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 삼각자의 한 변을 직선에 맞추고, 다른 삼각자를 그 삼각자의 다른 변에 붙여 고정한다. 처음 삼각자를 고정한 삼각자에 붙인 채 {밀어 옮긴} 뒤, 처음 직선에 맞춘 변을 따라 그으면 평행선이 된다.",
+        "cSlotEquivalents": [
+          [
+            "미끄러뜨린",
+            "밀어서 옮긴"
+          ]
+        ],
+        "cReason": "어느 삼각자를 움직이며 어느 변으로 그리는지 밝혀 회전하거나 다른 변으로 긋는 잘못을 막는다.",
+        "coreAfter": "한 삼각자의 한 변을 직선에 맞추고, 다른 삼각자를 그 삼각자의 다른 변에 붙여 고정한다. 처음 삼각자를 고정한 삼각자에 붙인 채 {밀어 옮긴} 뒤, 처음 직선에 맞춘 변을 따라 그으면 평행선이 된다.",
+        "coreReason": "원문의 밀면서라는 동작만으로는 기준 직선과 그리는 변이 정해지지 않는다. 두 삼각자의 역할과 같은 변으로 긋는 과정을 보충해 평행선 작도라는 일반 방법을 보존한다.",
+        "exampleNeeded": "움직이는 삼각자와 고정한 삼각자의 색을 다르게 하고 처음 직선에 맞춘 변과 옮긴 뒤 같은 변을 표시한 그림이 있으면 도움이 된다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-2-xc6",
+      "sourceIndex": 2451,
+      "beforeProposal": {
+        "sourceIndex": 2451,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "5cdbdf36a414b44ffefd0b8936d500a22da10f536e9c64d52d4c7bdfe418c778",
+        "proposalFingerprint": "83084552be5e557b68b83e79e1c7927e3cd63dd0ec36e58001941a5503c1d193",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형에는 서로 평행한 변이 있습니까? 그 까닭을 쓰시오.",
+        "bAnswer": "없다. 세 변이 서로 만나는데 평행선은 만나지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "없다",
+              "평행한 변이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변이 서로 만난다",
+              "평행선은 만나지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "삼각형에 평행한 변 없음",
+        "bReason": "평행선 정의로 삼각형을 판단",
+        "cDecision": "keep",
+        "cReason": "없다 빈칸이 짧아 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "삼각형과 평행",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 {없다}.",
+        "cStudentSentence": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "없다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 □.",
+          "answers": [
+            "없다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형에는 서로 평행한 변이 있습니까? 그 까닭을 쓰시오.",
+          "answer": "없다. 세 변이 서로 만나는데 평행선은 만나지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "없다",
+                "평행한 변이 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 변이 서로 만난다",
+                "평행선은 만나지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc6",
+          "sourceIndex": 2451,
+          "proposalFingerprint": "83084552be5e557b68b83e79e1c7927e3cd63dd0ec36e58001941a5503c1d193",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "평행선안만남의정의만으로삼각형판정이유가아니므로세변모두만남을받는다.",
+          "cReason": "삼각형모든변만남으로평행변없음을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각형은 어느 두 변도 꼭짓점에서 서로 만난다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-2-xc11",
+      "sourceIndex": 2456,
+      "beforeProposal": {
+        "sourceIndex": 2456,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "22d1fecb532772f773a53c2969a0a20473e19b733cccf4f7fc516d763501d66c",
+        "proposalFingerprint": "25839f0922f598c1f25ac53395541cb08e6a7eadff973d3c50be038f3621ec1b",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈종이에 오른쪽 $3$칸, 위 $1$칸인 비스듬한 선분이 있습니다. 이 선분을 늘인 직선 밖의 한 점에서 이 선분과 평행한 선분을 긋는 방법을 쓰시오.",
+        "bAnswer": "그 점에서 같은 방향으로 오른쪽 $3$칸, 위 $1$칸을 가서 점을 찍고 두 점을 이어 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽 $3$칸, 위 $1$칸을 같은 방향으로 간다",
+              "가로와 세로 칸 수를 같게 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점을 잇는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈에서 평행한 선분 긋기",
+        "bReason": "칸 수를 주어 방법을 구체화",
+        "coreAfter": "모눈종이에서 한 선분을 늘인 직선 밖의 점을 지나는 평행한 선분은, 원래 선분과 같은 방향으로 가로 칸 수와 세로 칸 수를 각각 {똑같이} 하여 긋는다.",
+        "coreReason": "똑같이라는 원래표적과원래직선밖의점조건을보존한다.가로와세로서로같음이아닌각각원래선분과같음으로명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "모눈종이에서 오른쪽 $3$칸, 위 $1$칸인 선분과 평행한 선분은 같은 방향으로 오른쪽 {$3$}칸, 위 {$1$}칸 가도록 긋는다.",
+        "cReason": "모호한 '똑같이' 대신 구체 칸 수 빈칸",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈종이에 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이에서 오른쪽 $3$칸, 위 $1$칸인 선분과 평행한 선분은 같은 방향으로 오른쪽 {$3$}칸, 위 {$1$}칸 가도록 긋는다.",
+        "cStudentSentence": "모눈종이에서 오른쪽 $3$칸, 위 $1$칸인 선분과 평행한 선분은 같은 방향으로 오른쪽 □칸, 위 □칸 가도록 긋는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          },
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모눈종이에 오른쪽 $3$칸, 위 $1$칸인 비스듬한 선분이 있습니다. 이 선분을 늘인 직선 밖의 한 점에서 이 선분과 평행한 선분을 긋는 방법을 쓰시오.",
+          "answer": "그 점에서 같은 방향으로 오른쪽 $3$칸, 위 $1$칸을 가서 점을 찍고 두 점을 이어 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오른쪽 $3$칸, 위 $1$칸을 같은 방향으로 간다",
+                "가로와 세로 칸 수를 같게 한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 점을 잇는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모눈종이에서 오른쪽 $3$칸, 위 $1$칸인 선분과 평행한 선분은 같은 방향으로 오른쪽 {$3$}칸, 위 {$1$}칸 가도록 긋는다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ],
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc11",
+          "sourceIndex": 2456,
+          "proposalFingerprint": "25839f0922f598c1f25ac53395541cb08e6a7eadff973d3c50be038f3621ec1b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "가로와세로칸수를같게라는기준을원래선분과각각같게로명시한다.",
+          "cReason": "원래3·1변화를그대로다른점에옮겨평행하게그리는방법이며일반설명도조건을보존한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "주어진 점에서 원래 선분과 같이 오른쪽 $3$칸, 위 $1$칸 간 곳에 점을 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점을 잇는다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-2-xc12",
+      "sourceIndex": 2457,
+      "beforeProposal": {
+        "sourceIndex": 2457,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "9f5e93593375be93bf9458e08a8f13eb84c39cec97429801f55ca3fbf23a9684",
+        "proposalFingerprint": "bf3f7c1939ee497dfd4e0131c70f1155f6202306fef5c7dd6eb214dedac448b5",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 평행한 직선 세 개 중 두 개씩 짝 지은 평행선은 모두 몇 쌍입니까? 어떻게 세었는지 쓰시오.",
+        "bAnswer": "$3$쌍이다. 직선을 가, 나, 다라 하면 (가, 나), (가, 다), (나, 다)이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$쌍",
+              "세 쌍"
+            ]
+          },
+          {
+            "anyOf": [
+              "(가, 나), (가, 다), (나, 다)",
+              "빠짐없이 짝을 지어 센다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "평행선 세 개의 짝 세기",
+        "bReason": "짝을 빠짐없이 세는 방법을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 {$3$}쌍이다.",
+        "cReason": "숫자 빈칸으로 답 형태를 명확히 함",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 세 직선의 평행선 쌍",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 {$3$}쌍이다.",
+        "cStudentSentence": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 □쌍이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "서로 평행한 직선 세 개 중 두 개씩 짝 지은 평행선은 모두 몇 쌍입니까? 어떻게 세었는지 쓰시오.",
+          "answer": "$3$쌍이다. 직선을 가, 나, 다라 하면 (가, 나), (가, 다), (나, 다)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$쌍",
+                "세 쌍"
+              ]
+            },
+            {
+              "anyOf": [
+                "(가, 나), (가, 다), (나, 다)",
+                "빠짐없이 짝을 지어 센다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 {$3$}쌍이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc12",
+          "sourceIndex": 2457,
+          "proposalFingerprint": "bf3f7c1939ee497dfd4e0131c70f1155f6202306fef5c7dd6eb214dedac448b5",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "빠짐없이센다는지시만으로방법이아니므로가나·가다·나다또는2+1의구체세기를받는다.",
+          "cReason": "평행직선세개의모든짝3을구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$쌍",
+              "세 쌍"
+            ]
+          },
+          {
+            "anyOf": [
+              "직선을 가 나 다라 하면 가와 나, 가와 다, 나와 다로 짝짓는다",
+              "첫 직선과 나머지 둘로 $2$쌍, 남은 둘끼리 $1$쌍이므로 $2+1$이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-2-xc16",
+      "sourceIndex": 2461,
+      "beforeProposal": {
+        "sourceIndex": 2461,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "c15c095c6a2f672fc7184bae55811d2b65225509aa9f49db8a0d80ab3658aa2d",
+        "proposalFingerprint": "677f1a0df77d5de38f7a9fc1da2fa11fbfaebefc59d7bd6fa80e65ad3cbab9d2",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 다에 각각 평행한 서로 다른 두 직선 가, 나가 같은 평면 위에 있습니다. 가와 나는 서로 어떤 관계입니까?",
+        "bAnswer": "서로 평행하다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행하다",
+              "서로 평행"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 직선에 평행한 두 직선",
+        "bReason": "직선 이름으로 관계를 자립시킴",
+        "cDecision": "keep",
+        "cReason": "평행 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 직선과 만나지 않는 두 직선의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 {평행}하다.",
+        "cStudentSentence": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 □하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 □하다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직선 다에 각각 평행한 서로 다른 두 직선 가, 나가 같은 평면 위에 있습니다. 가와 나는 서로 어떤 관계입니까?",
+          "answer": "서로 평행하다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행하다",
+                "서로 평행"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 {평행}하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc16",
+          "sourceIndex": 2461,
+          "proposalFingerprint": "677f1a0df77d5de38f7a9fc1da2fa11fbfaebefc59d7bd6fa80e65ad3cbab9d2",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "같은평면의평행직선셋이라는B조건이명확하다.",
+          "cReason": "C에도같은평평한면위의서로다른직선조건을명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "같은 평평한 면 위에서 한 직선에 각각 평행한 서로 다른 두 직선은 서로 {평행}하다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-2-xc20",
+      "sourceIndex": 2465,
+      "beforeProposal": {
+        "sourceIndex": 2465,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "10637b9cb9948275cdcbbc09e12471dfc9608976822c7f3a3afceff7ef987aa4",
+        "proposalFingerprint": "3f711688e45b75aef1b57ea2da2a6a68a40ef4253a3f503bb6ac282dbf8ee5be",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 가와 나는 평행하고, 직선 다와 라도 평행합니다. 가는 다에 수직입니다. 네 직선으로 둘러싸인 도형은 무엇이며, 그 까닭은 무엇입니까?",
+        "bAnswer": "직사각형이다. 마주 보는 변이 평행하고 네 각이 모두 직각이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각이 모두 직각이다",
+              "수직으로 만난다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "평행선 두 쌍이 만드는 도형",
+        "bReason": "직선 이름으로 상황을 자립시킨다",
+        "cDecision": "rewrite",
+        "cAfter": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 네 각이 모두 직각인 {직사각형}이 생긴다.",
+        "cReason": "'사각형'으로 답할 모호함을 직각 조건으로 해소",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행선 두 쌍이 수직으로 만날 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 네 각이 모두 직각인 {직사각형}이 생긴다.",
+        "cStudentSentence": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 네 각이 모두 직각인 □이 생긴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직사각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직선 가와 나는 평행하고, 직선 다와 라도 평행합니다. 가는 다에 수직입니다. 네 직선으로 둘러싸인 도형은 무엇이며, 그 까닭은 무엇입니까?",
+          "answer": "직사각형이다. 마주 보는 변이 평행하고 네 각이 모두 직각이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "네 각이 모두 직각이다",
+                "수직으로 만난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 네 각이 모두 직각인 {직사각형}이 생긴다.",
+          "acceptedAnswers": [
+            [
+              "직사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc20",
+          "sourceIndex": 2465,
+          "proposalFingerprint": "3f711688e45b75aef1b57ea2da2a6a68a40ef4253a3f503bb6ac282dbf8ee5be",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "한수직조건만반복하지말고평행관계로네각모두직각임을이유로받는다.",
+          "cReason": "직각으로만나는평행두쌍의직사각형구성이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선 두 쌍이 직각으로 만나 네 각이 모두 직각이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-2-xc24",
+      "sourceIndex": 2468,
+      "beforeProposal": {
+        "sourceIndex": 2468,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "56f643ec27f25f473e34f4ee4ba034e9572ad14453c8ba3cb2202a1550f69736",
+        "proposalFingerprint": "e32e934e1945b65070930d5ff41ea7179d1137cef381decaf141487d6c1aa371",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 사각형에는 서로 평행한 변이 한 쌍 이상 있습니까? 아니라면 어떤 사각형인지 설명하시오.",
+        "bAnswer": "아니다. 어느 두 변도 평행하지 않아 늘이면 서로 만나는 사각형도 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변이 없는 사각형도 있다",
+              "모든 사각형에 있는 것은 아니다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행한 변이 없는 사각형",
+        "bReason": "반례 개념을 말로 확인한다",
+        "cDecision": "keep",
+        "cReason": "짧은 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 변이 없는 사각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+        "cStudentSentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "없는",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+          "answers": [
+            "없는"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "모든 사각형에는 서로 평행한 변이 한 쌍 이상 있습니까? 아니라면 어떤 사각형인지 설명하시오.",
+          "answer": "아니다. 어느 두 변도 평행하지 않아 늘이면 서로 만나는 사각형도 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행한 변이 없는 사각형도 있다",
+                "모든 사각형에 있는 것은 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+          "acceptedAnswers": [
+            [
+              "없는"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc24",
+          "sourceIndex": 2468,
+          "proposalFingerprint": "e32e934e1945b65070930d5ff41ea7179d1137cef381decaf141487d6c1aa371",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "평행변없는사각형반례가실제로정해지도록그림또는구체구성예의필요를기록해야한다.",
+          "cReason": "사각형에평행변이없을수있는존재조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bDecision": "exclude",
+        "bPrompt": "",
+        "bAnswer": "",
+        "bRequiredIdeas": [],
+        "bReason": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다.",
+        "exclusionReason": "B: 평행한 변이 없는 사각형 그림이나 직접 그리기 응답을 지원한 뒤 반례를 확인하는 문제로 다시 검토한다. C와 원래 일반 설명은 유지한다.",
+        "exampleNeeded": "평행한 변이 한 쌍도 없는 사각형을 그리고 마주 보는 두 쌍의 변을 각각 늘인 보조선을 보여 줄 것. 예시는 두 쌍 모두 만나도록 검증해야 한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-3-xc1",
+      "sourceIndex": 2472,
+      "beforeProposal": {
+        "sourceIndex": 2472,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "e6f1e7c864a3b5fbb9da4ca828576f081a11c007526547be74c7b2acb83d48b7",
+        "proposalFingerprint": "bc5b749fc445119226fdff4d3289532c2759bbcd8249b1ece979e76a7671dbb4",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각자로 평행선 사이의 거리를 재는 방법을 쓰시오.",
+        "bAnswer": "삼각자의 직각을 이용해 한 평행선에서 다른 평행선까지 수선을 긋고 그 선분의 길이를 잰다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 이용해 수선을 긋는다",
+              "두 직선에 수직인 선분을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 길이를 잰다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "삼각자로 거리 재기",
+        "bReason": "거리 측정 순서를 묻는다",
+        "cDecision": "keep",
+        "cReason": "수선 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "수직선",
+            "수직인 선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각자로 거리 재기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 {수선}을 긋고 그 길이를 잰다.",
+        "cStudentSentence": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 □을 긋고 그 길이를 잰다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수선",
+            "equivalents": [
+              "수직선",
+              "수직인 선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 □을 긋고 그 길이를 잰다.",
+          "answers": [
+            "수선"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각자로 평행선 사이의 거리를 재는 방법을 쓰시오.",
+          "answer": "삼각자의 직각을 이용해 한 평행선에서 다른 평행선까지 수선을 긋고 그 선분의 길이를 잰다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각을 이용해 수선을 긋는다",
+                "두 직선에 수직인 선분을 긋는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "그 길이를 잰다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 {수선}을 긋고 그 길이를 잰다.",
+          "acceptedAnswers": [
+            [
+              "수선",
+              "수직선",
+              "수직인 선"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc1",
+          "sourceIndex": 2472,
+          "proposalFingerprint": "bc5b749fc445119226fdff4d3289532c2759bbcd8249b1ece979e76a7671dbb4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "수직선분을그어그길이를재는거리방법이다.",
+          "cReason": "수직선은수선과혼동되는다른용어이므로수선·수직인선만허용한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          [
+            "수직인 선",
+            "수직인 선분"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

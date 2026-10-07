@@ -1,0 +1,7 @@
+{
+  "reasonObservedByWorker": "CLI raised generic Claude errors; previous helper did not retain exception detail",
+  "coordinatorObservation": "Explicit session-limit 429; reset 21:20 KST on 2026-10-06, reported through Orca",
+  "inputCohortsPreserved": 72,
+  "settledDraftsPreserved": 40,
+  "correctiveAction": "New helper stops new calls on any provider-level CliCallError; no failed call counts as a completed row"
+}

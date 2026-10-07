@@ -1,0 +1,1665 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-root-negative-140-159.json",
+  "changes": [
+    {
+      "id": "m2-03-01-xc20",
+      "cDecision": "rewrite",
+      "cAfter": "$x,y$가 자연수일 때 $x+y=3$을 만족하는 쌍은 $(1,2),(2,1)$이다. 이 두 쌍 중 $x-y=2$도 만족하는 쌍은 {없다}.",
+      "cMarkedSentence": "$x,y$가 자연수일 때 $x+y=3$을 만족하는 쌍은 $(1,2),(2,1)$이다. 이 두 쌍 중 $x-y=2$도 만족하는 쌍은 {없다}.",
+      "cAcceptedAnswers": [
+        [
+          "없다",
+          "하나도 없다"
+        ]
+      ],
+      "cReason": "공통쌍이없으면없다는말반복을벗어나특정연립방정식의자연수범위해유무를판정하게한다. 소수나분수해는있지만자연수해는없다.",
+      "bPrompt": "일차방정식 $x+y=3$의 자연수 해를 모두 표로 정리한 뒤, 각 순서쌍을 $x-y=2$에 대입하시오. 두 방정식을 함께 만족하는 자연수 해가 있는지 결과와 함께 말하시오.",
+      "bAnswer": "$x+y=3$의 자연수 해는 $(1,\\ 2)$, $(2,\\ 1)$이다. 각각 $x-y$의 값이 $-1$, $1$이어서 어느 쌍도 $x-y=2$를 만족하지 않는다. 따라서 두 방정식을 함께 만족하는 자연수 해는 없다.",
+      "bReason": "첫째 식의 유한한 후보를 표로 정리하고 둘째 식에 넣도록 하여 끝없는 표 작성 요구를 없앤다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x+y=3$의 자연수 해는 $(1,2),(2,1)$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 순서쌍의 $x-y$ 값은 각각 $-1$, $1$이다",
+            "$(1,2),(2,1)$은 모두 $x-y=2$를 만족하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 방정식을 함께 만족하는 자연수 해는 없다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m1-03-01-xc11",
+      "cDecision": "rewrite",
+      "cAfter": "$x=\\frac23$일 때 $6x-1$의 값은 {$3$}이다.",
+      "cMarkedSentence": "$x=\\frac23$일 때 $6x-1$의 값은 {$3$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ]
+      ],
+      "cReason": "괄호를쳐서/곱을약분하며같은임의의요령낱말을빈칸답으로고정하지않고분수전체를대입한실제식의값을묻는다."
+    },
+    {
+      "id": "m1-03-01-xc12",
+      "bPrompt": "$x=-1$, $y=3$일 때 어떤 학생이 $xy-2y=3-6=-3$이라고 계산했다. 잘못된 부분을 설명하고, 바르게 대입한 식과 식의 값을 쓰시오.",
+      "bAnswer": "$xy$는 $3$이 아니라 $(-1)\\times3=-3$이다. 음수 $-1$의 부호까지 함께 대입해야 한다. 따라서 $xy-2y=(-1)\\times3-2\\times3=-3-6=-9$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$xy=(-1)\\times3=-3$",
+            "$x=-1$의 음의 부호를 빠뜨렸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-1)\\times3-2\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-9$"
+          ]
+        }
+      ],
+      "cAfter": "$x=-1$, $y=3$일 때 $xy-2y$의 값은 {$-9$}이다.",
+      "cMarkedSentence": "$x=-1$, $y=3$일 때 $xy-2y$의 값은 {$-9$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$-9$"
+        ]
+      ],
+      "bReason": "부호·괄호·계산순서가모두가능한주의낱말을없애고음수대입실수의판단과식의값을묻는다.",
+      "cReason": "부호·괄호·계산순서가모두가능한주의낱말을없애고음수대입실수의판단과식의값을묻는다."
+    },
+    {
+      "id": "m2-03-02-xc10",
+      "cDecision": "rewrite",
+      "cAfter": "$y=2x-1$을 $3x-y=5$에 대입하면 $3x-(2x-1)=5$이다. 괄호를 풀어 정리하면 $x+$ {$1$} $=5$이다.",
+      "cMarkedSentence": "$y=2x-1$을 $3x-y=5$에 대입하면 $3x-(2x-1)=5$이다. 괄호를 풀어 정리하면 $x+$ {$1$} $=5$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ]
+      ],
+      "cReason": "앞의빼기가대입하는식전체에미친다는수학적부호판단을묻고부호/식/값중요령낱말을맞히는칸을없앤다."
+    },
+    {
+      "id": "m1-03-02-xc3",
+      "cAfter": "항 $x$에서 $x$의 계수는 {$1$}, 항 $-x$에서 $x$의 계수는 {$-1$}이다.",
+      "cMarkedSentence": "항 $x$에서 $x$의 계수는 {$1$}, 항 $-x$에서 $x$의 계수는 {$-1$}이다.",
+      "cReason": "계수의대상인항을명시하는작은조건보완만한다. x의계수1과-x의계수-1이라는기본확인은유지한다."
+    },
+    {
+      "id": "m2-03-02-xc11",
+      "cAfter": "$x=3y-2$, $x+y=6$에서 $x$를 없애면 $(3y-2)+y=6$이다. 이 식을 풀면 $y=$ {$2$}이다.",
+      "cMarkedSentence": "$x=3y-2$, $x+y=6$에서 $x$를 없애면 $(3y-2)+y=6$이다. 이 식을 풀면 $y=$ {$2$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ]
+      ],
+      "cReason": "주어진x와3y-2를그대로옮기는앞두칸을없애고대입한식에서남은미지수의값을결정하게한다."
+    },
+    {
+      "id": "m1-03-02-xc4",
+      "cAfter": "항 $\\frac{x}{3}$에서 $x$의 계수는 {$\\frac13$}이다.",
+      "cMarkedSentence": "항 $\\frac{x}{3}$에서 $x$의 계수는 {$\\frac13$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\frac13$",
+          "$\\frac{1}{3}$"
+        ]
+      ],
+      "cReason": "곱셈기호를보고곱이라는말을옮기는대신분수꼴항의계수를실제로해석하게한다. 일반설명의0아닌수분모조건은유지한다."
+    },
+    {
+      "id": "m2-03-02-xc12",
+      "cDecision": "rewrite",
+      "cAfter": "$y=2x+1$, $y=-x+7$에서 두 우변을 같다고 놓으면 $2x+1=-x+7$이다. 이를 풀면 $x=$ {$2$}이다.",
+      "cMarkedSentence": "$y=2x+1$, $y=-x+7$에서 두 우변을 같다고 놓으면 $2x+1=-x+7$이다. 이를 풀면 $x=$ {$2$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ]
+      ],
+      "cReason": "y와같다라는구문복원대신같은y를나타내는두식이같다는성질로x를결정하는실제수치해석을묻는다."
+    },
+    {
+      "id": "m2-03-02-xc13",
+      "cDecision": "rewrite",
+      "cAfter": "$3x+2y=5$에서 $x+2y=-1$을 변끼리 빼면, 좌변은 $2x$이고 우변은 $5-(-1)=$ {$6$}이다.",
+      "cMarkedSentence": "$3x+2y=5$에서 $x+2y=-1$을 변끼리 빼면, 좌변은 $2x$이고 우변은 $5-(-1)=$ {$6$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ]
+      ],
+      "cReason": "모든항/상수항같은열린낱말경계를없애고음수상수항까지빼야하는실제우변결과를묻는다."
+    },
+    {
+      "id": "m2-03-02-xc14",
+      "cAfter": "$4x+3y=10$, $2x-5y=-8$에서 $x$를 소거하려면 둘째 식에 {$2$}를 곱한 뒤 첫째 식에서 둘째 식을 빼면 된다.",
+      "cMarkedSentence": "$4x+3y=10$, $2x-5y=-8$에서 $x$를 소거하려면 둘째 식에 {$2$}를 곱한 뒤 첫째 식에서 둘째 식을 빼면 된다.",
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ]
+      ],
+      "cReason": "배수와약수방향을구별할조건이없는낱말빈칸을없애고한식에만곱하여소거하는효율적계수를실제로구하게한다."
+    },
+    {
+      "id": "m2-03-02-xc19",
+      "cDecision": "rewrite",
+      "cAfter": "$3x+y=10$에서 $x+y=4$를 변끼리 빼면 $2x=$ {$6$}이다.",
+      "cMarkedSentence": "$3x+y=10$에서 $x+y=4$를 변끼리 빼면 $2x=$ {$6$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ]
+      ],
+      "cReason": "우변/성립을추측하는칸을변끼리빼는실제우변수치로바꾼다. 양변에동일하게계산하는이해를확인한다."
+    },
+    {
+      "id": "m1-03-04-xc18",
+      "cAfter": "형이 동생보다 $3$살 많을 때, 동생의 나이를 $x$살로 놓으면 형의 나이는 {$x+3$}살이다.",
+      "cMarkedSentence": "형이 동생보다 $3$살 많을 때, 동생의 나이를 $x$살로 놓으면 형의 나이는 {$x+3$}살이다.",
+      "cAcceptedAnswers": [
+        [
+          "$x+3$",
+          "$3+x$",
+          "$(x+3)$"
+        ]
+      ],
+      "cReason": "미지수하나/x라는답유형이흐린둘째칸을없애고주어진나이차를식으로나타내는분명한칸을남긴다."
+    },
+    {
+      "id": "m2-03-04-xc24",
+      "cDecision": "rewrite",
+      "cAfter": "「$x$가 $y$의 $m$배보다 $n$만큼 크다」를 등식으로 나타내면 {$x=my+n$}이다.",
+      "cMarkedSentence": "「$x$가 $y$의 $m$배보다 $n$만큼 크다」를 등식으로 나타내면 {$x=my+n$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$x=my+n$",
+          "$my+n=x$"
+        ]
+      ],
+      "cReason": "곱한뒤와겹치는먼저라는구문칸을없애고문장조건을나타내는등식하나를묻는다."
+    },
+    {
+      "id": "m1-03-06-xc16",
+      "cAfter": "$0.5x+\\frac13=\\frac56$에서 계수와 상수항을 모두 정수로 만들려면 양변에 곱할 가장 작은 자연수는 {$6$}이다.",
+      "cMarkedSentence": "$0.5x+\\frac13=\\frac56$에서 계수와 상수항을 모두 정수로 만들려면 양변에 곱할 가장 작은 자연수는 {$6$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ]
+      ],
+      "cReason": "분모라는말을보고분수를복원하는대신소수와분수가섞인식을정수계수로바꾸는최소배수를구하게한다."
+    },
+    {
+      "id": "m2-03-04-xc25",
+      "cDecision": "rewrite",
+      "cAfter": "연립방정식 $ax+2y=8$, $3x+by=1$의 해가 $(2,1)$이다. 이 해를 둘째 식에 대입하면 $6+b=1$이므로 $b=$ {$-5$}이다.",
+      "cMarkedSentence": "연립방정식 $ax+2y=8$, $3x+by=1$의 해가 $(2,1)$이다. 이 해를 둘째 식에 대입하면 $6+b=1$이므로 $b=$ {$-5$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$-5$"
+        ]
+      ],
+      "cReason": "모두/잘못이라는일상논리낱말대신제시한해가두번째식까지참이되게만드는상수를실제로확인한다."
+    },
+    {
+      "id": "m1-03-07-xc17",
+      "cAfter": "$3x+a=5$에서 $x$의 계수 $3$을 $2$로 잘못 보고 풀었더니 해가 $x=1$이었다. 이때 $x=1$은 $2x+a=5$의 해이므로 $a=$ {$3$}이다.",
+      "cMarkedSentence": "$3x+a=5$에서 $x$의 계수 $3$을 $2$로 잘못 보고 풀었더니 해가 $x=1$이었다. 이때 $x=1$은 $2x+a=5$의 해이므로 $a=$ {$3$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ]
+      ],
+      "cReason": "잘못본을앞문장에서그대로옮기는대신잘못읽은계수로구한해를올바른대상식에대입하여상수를구하게한다."
+    },
+    {
+      "id": "m1-03-08-xc5",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구한 값 $13$을 처음 문제의 문장에 넣어 조건이 맞는지 확인한다",
+            "어떤 수에 $7$을 더하면 $20$이라는 원래 조건에 $13$을 넣어 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13+7=20$으로 조건에 맞으므로 답이 맞다"
+          ]
+        }
+      ],
+      "bReason": "방정식자체가문장조건을잘못옮겼을수있으므로원래문제조건에넣어확인한다는기준을분명하게한다. 이구체문제의정확한식을허용하는것이수학적으로틀리지는않지만교육목표를장부에명시한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-03-01-xc20",
+      "learningRole": "application",
+      "roleReason": "공통 쌍이 없으면 자연수 해 없음",
+      "bDecision": "rewrite",
+      "bPrompt": "일차방정식 $x+y=3$의 자연수 해를 모두 표로 정리한 뒤, 각 순서쌍을 $x-y=2$에 대입하시오. 두 방정식을 함께 만족하는 자연수 해가 있는지 결과와 함께 말하시오.",
+      "bAnswer": "$x+y=3$의 자연수 해는 $(1,\\ 2)$, $(2,\\ 1)$이다. 각각 $x-y$의 값이 $-1$, $1$이어서 어느 쌍도 $x-y=2$를 만족하지 않는다. 따라서 두 방정식을 함께 만족하는 자연수 해는 없다.",
+      "bGoal": "공통 해가 없는 경우 해석",
+      "bReason": "첫째 식의 유한한 후보를 표로 정리하고 둘째 식에 넣도록 하여 끝없는 표 작성 요구를 없앤다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x+y=3$의 자연수 해는 $(1,2),(2,1)$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 순서쌍의 $x-y$ 값은 각각 $-1$, $1$이다",
+            "$(1,2),(2,1)$은 모두 $x-y=2$를 만족하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 방정식을 함께 만족하는 자연수 해는 없다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "공통쌍이없으면없다는말반복을벗어나특정연립방정식의자연수범위해유무를판정하게한다. 소수나분수해는있지만자연수해는없다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2475,
+      "part": "m2plus",
+      "sourceFingerprint": "acfdccc8aedbf1aefef9bde73c7be63be77a22b6c9b66b7ec92ce0c052d63136",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2475
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x,y$가 자연수일 때 $x+y=3$을 만족하는 쌍은 $(1,2),(2,1)$이다. 이 두 쌍 중 $x-y=2$도 만족하는 쌍은 {없다}.",
+      "cSlotAnswers": [
+        "없다"
+      ],
+      "cStudentSentence": "$x,y$가 자연수일 때 $x+y=3$을 만족하는 쌍은 $(1,2),(2,1)$이다. 이 두 쌍 중 $x-y=2$도 만족하는 쌍은 □.",
+      "cAnswers": [
+        "없다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "없다",
+          "equivalentAnswers": [
+            "없다",
+            "하나도 없다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "없다",
+          "하나도 없다"
+        ]
+      ],
+      "proposalFingerprint": "82cd8cbfdba6e22e62574935ab19afe012cdc20a331d9c5dcc4a996351049954",
+      "cAfter": "$x,y$가 자연수일 때 $x+y=3$을 만족하는 쌍은 $(1,2),(2,1)$이다. 이 두 쌍 중 $x-y=2$도 만족하는 쌍은 {없다}."
+    },
+    {
+      "id": "m1-03-01-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=\\frac23$일 때 $6x$를 $12$라고 하면 왜 틀리는지 설명하시오. $6x-1$에 분수를 대입한 계산식을 쓰고, 약분 과정과 식의 값을 쓰시오.",
+      "bAnswer": "$x$에는 분자 $2$만 넣는 것이 아니라 분수 $\\frac23$ 전체를 넣어야 한다. $6x-1=6\\times\\frac23-1=4-1=3$이다.",
+      "bGoal": "분수를 대입할 때 괄호를 쓰고 약분하며 계산한다.",
+      "bReason": "막연한 주의점 나열을 분자만 넣은 잘못과 전체 분수 대입·약분의 구체적 설명으로 바꾸어 수학적 목표를 분명히 한다.",
+      "cDecision": "rewrite",
+      "cReason": "괄호를쳐서/곱을약분하며같은임의의요령낱말을빈칸답으로고정하지않고분수전체를대입한실제식의값을묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$에는 분자 $2$가 아니라 분수 $\\frac23$ 전체를 대입해야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\times\\frac23-1=4-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "값은 $3$이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "분수는 괄호로 대입해 약분",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1169,
+      "part": "m1plus",
+      "sourceFingerprint": "fd9c80154c023e2e1dcffc0823af503a30ed89dccf9dad618b91290696561d5a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1169
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x=\\frac23$일 때 $6x-1$의 값은 {$3$}이다.",
+      "cSlotAnswers": [
+        "$3$"
+      ],
+      "cStudentSentence": "$x=\\frac23$일 때 $6x-1$의 값은 □이다.",
+      "cAnswers": [
+        "$3$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "fe1590370d3748649d6941559a19b647095d73f048bff555323b951e19cb97f1",
+      "cAfter": "$x=\\frac23$일 때 $6x-1$의 값은 {$3$}이다."
+    },
+    {
+      "id": "m1-03-01-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=-1$, $y=3$일 때 어떤 학생이 $xy-2y=3-6=-3$이라고 계산했다. 잘못된 부분을 설명하고, 바르게 대입한 식과 식의 값을 쓰시오.",
+      "bAnswer": "$xy$는 $3$이 아니라 $(-1)\\times3=-3$이다. 음수 $-1$의 부호까지 함께 대입해야 한다. 따라서 $xy-2y=(-1)\\times3-2\\times3=-3-6=-9$이다.",
+      "bGoal": "문자가 둘 이상인 식의 값을 빠짐없이 대입해 구한다.",
+      "bReason": "부호·괄호·계산순서가모두가능한주의낱말을없애고음수대입실수의판단과식의값을묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x=-1$, $y=3$일 때 $xy-2y$의 값은 {$-9$}이다.",
+      "cAnswers": [
+        "$-9$"
+      ],
+      "cReason": "부호·괄호·계산순서가모두가능한주의낱말을없애고음수대입실수의판단과식의값을묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$xy=(-1)\\times3=-3$",
+            "$x=-1$의 음의 부호를 빠뜨렸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-1)\\times3-2\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-9$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "모든 문자에 대입, 부호 주의",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1170,
+      "part": "m1plus",
+      "sourceFingerprint": "80c894742a532d788d7bae1674ce4097691a57d153a6e4976c69888669b3ba37",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1170
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x=-1$, $y=3$일 때 $xy-2y$의 값은 {$-9$}이다.",
+      "cSlotAnswers": [
+        "$-9$"
+      ],
+      "cStudentSentence": "$x=-1$, $y=3$일 때 $xy-2y$의 값은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-9$",
+          "equivalentAnswers": [
+            "$-9$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-9$"
+        ]
+      ],
+      "proposalFingerprint": "f30a612e5f077f80fa0a54d6badc3c2d8f4b7bb80854912a6ec91641a9c88566"
+    },
+    {
+      "id": "m2-03-02-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$y=2x-1$을 $3x-y=5$에 대입할 때 어떤 학생이 $3x-2x-1=5$라고 썼다. 바르게 대입한 식을 쓰고, 괄호가 필요한 까닭을 쓰시오.",
+      "bAnswer": "$3x-(2x-1)=5$. $y$ 앞의 $-$는 $2x-1$ 전체에 적용되므로 $-1$의 부호도 바뀌어 $+1$이 되어야 한다. 괄호가 없으면 $-1$의 부호가 그대로 남아 틀린다.",
+      "bGoal": "$-$ 앞 대입에서 괄호가 필요한 까닭",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3x-(2x-1)=5$",
+            "$3x-2x+1=5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞의 $-$가 $2x-1$ 전체에 적용된다",
+            "$-1$의 부호도 바뀌어야 한다"
+          ]
+        }
+      ],
+      "bReason": "괄호 누락 오답을 보여 주어 부호가 틀리는 지점을 직접 설명하게 함",
+      "cDecision": "rewrite",
+      "cReason": "앞의빼기가대입하는식전체에미친다는수학적부호판단을묻고부호/식/값중요령낱말을맞히는칸을없앤다.",
+      "learningRole": "reason",
+      "roleReason": "괄호 없이 대입하면 부호가 틀리는 까닭",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2486,
+      "part": "m2plus",
+      "sourceFingerprint": "a103e6426afe32052fce02c65dbe6d6db134726ac39507db169a4c12aeba60a5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2486
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y=2x-1$을 $3x-y=5$에 대입하면 $3x-(2x-1)=5$이다. 괄호를 풀어 정리하면 $x+$ {$1$} $=5$이다.",
+      "cSlotAnswers": [
+        "$1$"
+      ],
+      "cStudentSentence": "$y=2x-1$을 $3x-y=5$에 대입하면 $3x-(2x-1)=5$이다. 괄호를 풀어 정리하면 $x+$ □ $=5$이다.",
+      "cAnswers": [
+        "$1$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ]
+      ],
+      "proposalFingerprint": "816c3f4dd20a3aa45fad7d4c7167862f45d9d4ec79565b1f286138498c72502e",
+      "cAfter": "$y=2x-1$을 $3x-y=5$에 대입하면 $3x-(2x-1)=5$이다. 괄호를 풀어 정리하면 $x+$ {$1$} $=5$이다."
+    },
+    {
+      "id": "m1-03-02-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "항 $x$에서 $x$의 계수와 항 $-x$에서 $x$의 계수를 각각 쓰고, 수가 보이지 않는데도 계수를 말할 수 있는 까닭을 쓰시오.",
+      "bAnswer": "$1$, $-1$. $x=1\\times x$, $-x=(-1)\\times x$에서 $1$이 생략되어 있기 때문이다.",
+      "bGoal": "생략된 $1$을 되살려 $x$, $-x$의 계수를 읽는다.",
+      "bReason": "제목에 대상은 있으나 값만 쓰면 외우기에 그치므로 $1$이 생략되었다는 까닭까지 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "계수의대상인항을명시하는작은조건보완만한다. x의계수1과-x의계수-1이라는기본확인은유지한다.",
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$의 계수 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-x$의 계수 $-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: $x=1\\times x$, $-x=(-1)\\times x$에서 $1$이 생략됨"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "reason",
+      "roleReason": "생략된 1로 계수 읽기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1184,
+      "part": "m1plus",
+      "sourceFingerprint": "7772bcf23fba88c24b3585b10416bbb20f227b26020bab6c215dc56291ec0c4a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1184
+      },
+      "directReview": null,
+      "cMarkedSentence": "항 $x$에서 $x$의 계수는 {$1$}, 항 $-x$에서 $x$의 계수는 {$-1$}이다.",
+      "cSlotAnswers": [
+        "$1$",
+        "$-1$"
+      ],
+      "cStudentSentence": "항 $x$에서 $x$의 계수는 □, 항 $-x$에서 $x$의 계수는 □이다.",
+      "cAnswers": [
+        "$1$",
+        "$-1$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-1$",
+          "equivalentAnswers": [
+            "$-1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "$-1$"
+        ]
+      ],
+      "proposalFingerprint": "de80e02639267a8b7dae1ac19c3dbbfc58a3af4a851f10074920f1427e19433a",
+      "cAfter": "항 $x$에서 $x$의 계수는 {$1$}, 항 $-x$에서 $x$의 계수는 {$-1$}이다."
+    },
+    {
+      "id": "m2-03-02-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=3y-2$, $x+y=6$을 대입법으로 풀 때 첫째 식을 둘째 식의 어디에 어떻게 넣는지 대입한 식으로 쓰고, 해를 구하시오.",
+      "bAnswer": "둘째 식의 $x$ 자리에 $3y-2$를 통째로 넣어 $(3y-2)+y=6$으로 만든다. $4y=8$이므로 $y=2$, $x=4$이다.",
+      "bGoal": "$x=$ 꼴 식의 대입",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(3y-2)+y=6$",
+            "$x$ 자리에 $3y-2$를 넣는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=4$, $y=2$"
+          ]
+        }
+      ],
+      "bReason": "$y=$ 꼴이 아닌 $x=$ 꼴에서도 같은 원리임을 실제 대입식과 해로 확인함",
+      "cDecision": "rewrite",
+      "cAfter": "$x=3y-2$, $x+y=6$에서 $x$를 없애면 $(3y-2)+y=6$이다. 이 식을 풀면 $y=$ {$2$}이다.",
+      "cAnswers": [
+        "$2$"
+      ],
+      "cReason": "주어진x와3y-2를그대로옮기는앞두칸을없애고대입한식에서남은미지수의값을결정하게한다.",
+      "learningRole": "procedure",
+      "roleReason": "$x=$ 꼴 식을 $x$ 자리에 대입",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2487,
+      "part": "m2plus",
+      "sourceFingerprint": "1a52bc48213699be95377191810148337985df78b07d531c789fff1af2e38c30",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2487
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x=3y-2$, $x+y=6$에서 $x$를 없애면 $(3y-2)+y=6$이다. 이 식을 풀면 $y=$ {$2$}이다.",
+      "cSlotAnswers": [
+        "$2$"
+      ],
+      "cStudentSentence": "$x=3y-2$, $x+y=6$에서 $x$를 없애면 $(3y-2)+y=6$이다. 이 식을 풀면 $y=$ □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$3y-2$",
+          "accept": [
+            "$(3y-2)$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "c32be02beff2418a5be316b28d08f7314189b026a8ce92fe744da49a537d50ad"
+    },
+    {
+      "id": "m1-03-02-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{x}{3}$에서 $x$의 계수를 구하려고 한다. $\\frac{x}{3}$을 수와 $x$의 곱으로 고쳐 쓰고, $x$의 계수를 쓰시오.",
+      "bAnswer": "$\\frac{x}{3}=\\frac{1}{3}\\times x$이므로 $x$의 계수는 $\\frac{1}{3}$이다.",
+      "bGoal": "분수 꼴의 항을 수와 문자의 곱으로 고쳐 계수를 찾는다.",
+      "bReason": "'분수 꼴 항'이 어떤 모양인지 제목만으로는 알 수 없어 $\\frac{x}{3}$을 직접 보이고 고쳐 쓰는 과정을 요구했다.",
+      "cDecision": "rewrite",
+      "cAfter": "항 $\\frac{x}{3}$에서 $x$의 계수는 {$\\frac13$}이다.",
+      "cAnswers": [
+        "$\\frac13$"
+      ],
+      "cReason": "곱셈기호를보고곱이라는말을옮기는대신분수꼴항의계수를실제로해석하게한다. 일반설명의0아닌수분모조건은유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{x}{3}=\\frac{1}{3}\\times x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "계수 $\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "곱으로 고쳐 분수 계수 찾기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1185,
+      "part": "m1plus",
+      "sourceFingerprint": "b17520a2107f3b48e17e70c42991d67eea3b381d01f273369902d06281a3ed88",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1185
+      },
+      "directReview": null,
+      "cMarkedSentence": "항 $\\frac{x}{3}$에서 $x$의 계수는 {$\\frac13$}이다.",
+      "cSlotAnswers": [
+        "$\\frac13$"
+      ],
+      "cStudentSentence": "항 $\\frac{x}{3}$에서 $x$의 계수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac13$",
+          "equivalentAnswers": [
+            "$\\frac13$",
+            "$\\frac{1}{3}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac13$",
+          "$\\frac{1}{3}$"
+        ]
+      ],
+      "proposalFingerprint": "89ec220d98cfb4c333f8c2d92761f12ff96138983015ebef25193df5ea0acff0",
+      "coreAfter": "문자가 분자에 있고 분모가 $0$이 아닌 수인 분수 꼴의 항은 {수와 문자의 곱}으로 고쳐 쓰면, 문자 앞에 곱해진 {분수}가 계수이다.",
+      "coreReason": "분모에도 문자가 있는 식에는 이 계수 규칙을 그대로 적용할 수 없으므로 분모가 0 아닌 수라는 범위를 명시한다."
+    },
+    {
+      "id": "m2-03-02-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$y=2x+1$, $y=-x+7$처럼 두 식이 모두 $y=$(식) 꼴일 때 $x$에 대한 방정식을 어떻게 만들 수 있는지 그 까닭과 함께 쓰고, 해를 구하시오.",
+      "bAnswer": "두 우변이 모두 같은 $y$와 같으므로 $2x+1=-x+7$로 놓는다. $3x=6$이므로 $x=2$, $y=5$이다.",
+      "bGoal": "두 $y=$ 꼴 식의 우변 같게 놓기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2x+1=-x+7$",
+            "두 우변을 같다고 놓는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 우변이 모두 같은 $y$와 같기 때문",
+            "둘 다 $y$와 같으므로"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=2$, $y=5$"
+          ]
+        }
+      ],
+      "bReason": "우변끼리 같다고 놓는 근거가 핵심이라 방법·까닭·해를 함께 요구함",
+      "cDecision": "rewrite",
+      "cReason": "y와같다라는구문복원대신같은y를나타내는두식이같다는성질로x를결정하는실제수치해석을묻는다.",
+      "learningRole": "procedure",
+      "roleReason": "두 우변을 같다고 놓아 방정식 만들기",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2488,
+      "part": "m2plus",
+      "sourceFingerprint": "2447b3823c48a00ccdf6be5f6d65f3f2d1814a2175a3afeb8a3a26513fa3b3e5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2488
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y=2x+1$, $y=-x+7$에서 두 우변을 같다고 놓으면 $2x+1=-x+7$이다. 이를 풀면 $x=$ {$2$}이다.",
+      "cSlotAnswers": [
+        "$2$"
+      ],
+      "cStudentSentence": "$y=2x+1$, $y=-x+7$에서 두 우변을 같다고 놓으면 $2x+1=-x+7$이다. 이를 풀면 $x=$ □이다.",
+      "cAnswers": [
+        "$2$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "32aed0a6656e00bfeaddf981278826561910bdad226ddfdf077cb7c2dcf78435",
+      "cAfter": "$y=2x+1$, $y=-x+7$에서 두 우변을 같다고 놓으면 $2x+1=-x+7$이다. 이를 풀면 $x=$ {$2$}이다."
+    },
+    {
+      "id": "m1-03-02-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$3x^2y$에서 '$x$에 대한 차수'를 구하려고 한다. 무엇이 곱해진 횟수를 세는지 쓰고, $x$에 대한 차수와 $y$에 대한 차수를 각각 구하시오.",
+      "bAnswer": "$x$에 대한 차수는 $x$가 곱해진 횟수만 센다. $x$에 대한 차수는 $2$, $y$에 대한 차수는 $1$이다.",
+      "bGoal": "문자가 여럿인 항에서 한 문자에 대한 차수를 구한다.",
+      "bReason": "'한 문자에 대한 차수'는 문자가 둘 이상인 항이 있어야 뜻이 드러나므로 $3x^2y$를 주고 두 문자에 대해 각각 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "한 항에서 $x$에 대한 차수는 $x$가 곱해진 횟수만 센 것이고, $x$가 아닌 다른 {문자}가 곱해진 횟수는 세지 않는다.",
+      "cAnswers": [
+        "문자"
+      ],
+      "cReason": "원문의 답 '$x$'는 같은 문장의 '$x$에 대한 차수'에서 그대로 베낄 수 있다. 다른 문자는 세지 않는다는 점을 묻도록 바꾸었다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$가 곱해진 횟수만 셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$에 대한 차수 $2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y$에 대한 차수 $1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "definition",
+      "roleReason": "지정한 문자의 곱한 횟수만",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1190,
+      "part": "m1plus",
+      "sourceFingerprint": "737c5c3080e5130a0c0ad98337a9a8519aeadc67e562bc46354c9ef1c5e6981b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1190
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 항에서 $x$에 대한 차수는 $x$가 곱해진 횟수만 센 것이고, $x$가 아닌 다른 {문자}가 곱해진 횟수는 세지 않는다.",
+      "cSlotAnswers": [
+        "문자"
+      ],
+      "cStudentSentence": "한 항에서 $x$에 대한 차수는 $x$가 곱해진 횟수만 센 것이고, $x$가 아닌 다른 □가 곱해진 횟수는 세지 않는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "문자",
+          "equivalentAnswers": [
+            "문자"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "문자"
+        ]
+      ],
+      "proposalFingerprint": "fddaafa3fa47ae0e8f4ae11eed08018320e2f97542fc03e9407750b0b160366e",
+      "coreAfter": "한 항에서 $x$에 대한 차수는 {$x$}가 곱해진 횟수만 센다. 다른 문자의 곱해진 횟수는 여기에 더하지 않는다.",
+      "coreReason": "항이 여러 개인 다항식의 차수를 모든 곱의 횟수를 더해 세는 것으로 읽히지 않게 한 항을 대상으로 한다고 밝힌다."
+    },
+    {
+      "id": "m2-03-02-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$3x+2y=5$에서 $x+2y=-1$을 변끼리 빼려고 한다. 둘째 식의 어느 항들의 부호가 바뀌는지 쓰고, 뺀 결과 식을 쓰시오.",
+      "bAnswer": "둘째 식의 모든 항 $x$, $2y$, $-1$의 부호가 바뀌어 $-x$, $-2y$, $+1$을 더하는 것과 같다. 상수항도 $-1$이 $+1$이 되므로 $2x=6$이다.",
+      "bGoal": "뺄 때 모든 항의 부호 변화",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘째 식의 모든 항(상수항 포함)의 부호가 바뀐다",
+            "상수항 $-1$도 $+1$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2x=6$"
+          ]
+        }
+      ],
+      "bReason": "음수 상수항이 있는 예로 상수항의 부호 변화를 놓치기 쉬운 지점을 드러냄",
+      "cDecision": "rewrite",
+      "cReason": "모든항/상수항같은열린낱말경계를없애고음수상수항까지빼야하는실제우변결과를묻는다.",
+      "learningRole": "procedure",
+      "roleReason": "빼기를 모든 항 부호 바꾼 더하기로 처리",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2489,
+      "part": "m2plus",
+      "sourceFingerprint": "9fa923a7af2952ad5f8a0e4f33a63d4bcf7e3cf7077653ff0f12dcb6f57afaab",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2489
+      },
+      "directReview": null,
+      "cMarkedSentence": "$3x+2y=5$에서 $x+2y=-1$을 변끼리 빼면, 좌변은 $2x$이고 우변은 $5-(-1)=$ {$6$}이다.",
+      "cSlotAnswers": [
+        "$6$"
+      ],
+      "cStudentSentence": "$3x+2y=5$에서 $x+2y=-1$을 변끼리 빼면, 좌변은 $2x$이고 우변은 $5-(-1)=$ □이다.",
+      "cAnswers": [
+        "$6$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$6$",
+          "equivalentAnswers": [
+            "$6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ]
+      ],
+      "proposalFingerprint": "dfde4797c0c67d6606e87135a6dbae9f92c0062f97d1be991f7b2e285feaff0e",
+      "cAfter": "$3x+2y=5$에서 $x+2y=-1$을 변끼리 빼면, 좌변은 $2x$이고 우변은 $5-(-1)=$ {$6$}이다."
+    },
+    {
+      "id": "m2-03-02-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "$4x+3y=10$, $2x-5y=-8$을 가감법으로 풀 때 $x$와 $y$ 중 어느 것을 소거하는 것이 계산이 적은지 고르고 그 까닭을 쓰시오.",
+      "bAnswer": "$x$를 소거한다. $x$의 계수 $4$가 $2$의 배수라서 둘째 식에만 $2$를 곱하면 되지만, $y$의 계수 $3$과 $5$는 서로의 배수가 아니라 두 식 모두에 수를 곱해야 한다.",
+      "bGoal": "계수를 보고 소거할 미지수 고르기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$를 소거한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$가 $2$의 배수라 한 식에만 곱하면 된다",
+            "$y$는 두 식 모두에 곱해야 한다"
+          ]
+        }
+      ],
+      "bReason": "배수 관계 계수와 아닌 계수를 한 연립방정식에 넣어 비교하게 함",
+      "cDecision": "rewrite",
+      "cAfter": "$4x+3y=10$, $2x-5y=-8$에서 $x$를 소거하려면 둘째 식에 {$2$}를 곱한 뒤 첫째 식에서 둘째 식을 빼면 된다.",
+      "cAnswers": [
+        "$2$"
+      ],
+      "cReason": "배수와약수방향을구별할조건이없는낱말빈칸을없애고한식에만곱하여소거하는효율적계수를실제로구하게한다.",
+      "learningRole": "application",
+      "roleReason": "계수 관계로 소거할 미지수 선택",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2490,
+      "part": "m2plus",
+      "sourceFingerprint": "4fe5db2b816b66625ce6bd378653d77b5864ca75c35f0a8b5bb5237cc5d31741",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2490
+      },
+      "directReview": null,
+      "cMarkedSentence": "$4x+3y=10$, $2x-5y=-8$에서 $x$를 소거하려면 둘째 식에 {$2$}를 곱한 뒤 첫째 식에서 둘째 식을 빼면 된다.",
+      "cSlotAnswers": [
+        "$2$"
+      ],
+      "cStudentSentence": "$4x+3y=10$, $2x-5y=-8$에서 $x$를 소거하려면 둘째 식에 □를 곱한 뒤 첫째 식에서 둘째 식을 빼면 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "한 식",
+          "accept": [
+            "한 방정식",
+            "한쪽 식"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "4e6bf3dbcccb5173a39c1952687cc43b0dfd6546985f9dfbc6446aec98531aeb"
+    },
+    {
+      "id": "m2-03-02-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 연립방정식을 한 번은 대입법으로, 한 번은 가감법으로 풀었다. 두 방법으로 구한 해는 같은가, 다른가? 까닭과 함께 쓰시오.",
+      "bAnswer": "같다. 연립방정식의 해는 두 방정식을 모두 만족하는 $x$, $y$의 값으로 정해져 있고, 두 방법은 그 값을 찾는 과정만 다르기 때문이다.",
+      "bGoal": "풀이법과 해의 무관함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "해는 두 방정식을 모두 만족하는 값으로 정해져 있어 방법과 관계없이 같다",
+            "두 방법 모두 두 식을 함께 만족하는 값을 찾는 것이라 같다"
+          ]
+        }
+      ],
+      "bReason": "'같다'는 선택은 복사가 가능해 해가 방법과 무관하게 정해지는 이유를 요구함",
+      "cDecision": "keep",
+      "cReason": "두 방법을 비교하는 짧은 문장으로 답 범위가 분명해 유지",
+      "learningRole": "reason",
+      "roleReason": "해는 풀이법이 아니라 두 식이 정한다",
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2492,
+      "part": "m2plus",
+      "sourceFingerprint": "e290b130ff1bd72867aca6bdcf222fa17836efde5e6a991ecf62610d60441445",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2492
+      },
+      "directReview": null,
+      "cFrozenSentence": "대입법으로 풀든 가감법으로 풀든 연립방정식의 □는 □.",
+      "cFrozenDefinition": "대입법으로 풀든 가감법으로 풀든 연립방정식의 {해}는 {같다}.",
+      "cFrozenAnswers": [
+        "해",
+        "같다"
+      ],
+      "cMarkedSentence": "대입법으로 풀든 가감법으로 풀든 연립방정식의 {해}는 {같다}.",
+      "cSlotAnswers": [
+        "해",
+        "같다"
+      ],
+      "cStudentSentence": "대입법으로 풀든 가감법으로 풀든 연립방정식의 □는 □.",
+      "cAnswers": [
+        "해",
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "해",
+          "equivalentAnswers": [
+            "해"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "해"
+        ],
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "e4835d9cc85a9dc866f7aaad0e9b1a846e581607e477536e8fd22ee4562933f8"
+    },
+    {
+      "id": "m2-03-02-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$3x+y=10$에서 $x+y=4$를 변끼리 뺄 때 어떤 학생이 $2x=10$이라고 썼다. 무엇을 잘못했는지 쓰고 바르게 뺀 식을 쓰시오.",
+      "bAnswer": "좌변끼리만 빼고 우변 $10$에서 $4$를 빼지 않았다. 우변끼리도 빼야 등식이 성립하므로 바른 식은 $2x=6$이다.",
+      "bGoal": "우변까지 빼기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "우변끼리 빼지 않았다",
+            "우변 $10$에서 $4$를 빼지 않았다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2x=6$"
+          ]
+        }
+      ],
+      "bReason": "우변을 빠뜨린 실제 오답을 제시해 잘못된 곳을 짚게 함",
+      "cDecision": "rewrite",
+      "cReason": "우변/성립을추측하는칸을변끼리빼는실제우변수치로바꾼다. 양변에동일하게계산하는이해를확인한다.",
+      "learningRole": "procedure",
+      "roleReason": "좌변·우변 모두 빼는 가감법",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2495,
+      "part": "m2plus",
+      "sourceFingerprint": "d46518108cc08ce86d8aa20f9a3a46656542f3a57c0d505483cdb49748ba20c0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2495
+      },
+      "directReview": null,
+      "cMarkedSentence": "$3x+y=10$에서 $x+y=4$를 변끼리 빼면 $2x=$ {$6$}이다.",
+      "cSlotAnswers": [
+        "$6$"
+      ],
+      "cStudentSentence": "$3x+y=10$에서 $x+y=4$를 변끼리 빼면 $2x=$ □이다.",
+      "cAnswers": [
+        "$6$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$6$",
+          "equivalentAnswers": [
+            "$6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ]
+      ],
+      "proposalFingerprint": "1bf04de394528bdb23d345a49647a433090340d181748f22b09acb7a3272993d",
+      "cAfter": "$3x+y=10$에서 $x+y=4$를 변끼리 빼면 $2x=$ {$6$}이다."
+    },
+    {
+      "id": "m1-03-04-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "형이 동생보다 $3$살 많고 두 사람의 나이의 합은 $25$살이다. 동생의 나이를 $x$살이라 할 때 형의 나이를 $x$를 사용한 식으로 나타내고, 나이의 합에 대한 방정식을 세우시오.",
+      "bAnswer": "형의 나이는 $(x+3)$살이다. 두 사람의 나이의 합이 $25$살이므로 $x+(x+3)=25$이다.",
+      "bGoal": "모르는 두 양을 미지수 하나로 나타내어 방정식을 세운다.",
+      "bReason": "제목 '두 양으로 방정식 세우기'는 상황이 없으면 답할 수 없다. m1-03-04-xc9의 B와 달리 모르는 양이 둘인 상황을 주고 다른 양을 $x$로 나타내는 단계를 따로 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "형이 동생보다 $3$살 많을 때, 동생의 나이를 $x$살로 놓으면 형의 나이는 {$x+3$}살이다.",
+      "cAnswers": [
+        "$x+3$"
+      ],
+      "cReason": "미지수하나/x라는답유형이흐린둘째칸을없애고주어진나이차를식으로나타내는분명한칸을남긴다.",
+      "studentLabel": "모르는 양이 둘일 때 방정식 세우기",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "형의 나이 $(x+3)$살"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식 $x+(x+3)=25$($2x+3=25$ 등 같은 뜻의 식 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "application",
+      "roleReason": "두 양을 미지수 하나로 표현",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1242,
+      "part": "m1plus",
+      "sourceFingerprint": "1c68cb328ed3604699ec7eb6319d4f91c5e17d8743a3901ad84a3c6f74dba51f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1242
+      },
+      "directReview": null,
+      "cMarkedSentence": "형이 동생보다 $3$살 많을 때, 동생의 나이를 $x$살로 놓으면 형의 나이는 {$x+3$}살이다.",
+      "cSlotAnswers": [
+        "$x+3$"
+      ],
+      "cStudentSentence": "형이 동생보다 $3$살 많을 때, 동생의 나이를 $x$살로 놓으면 형의 나이는 □살이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x+3$",
+          "equivalentAnswers": [
+            "$x+3$",
+            "$3+x$",
+            "$(x+3)$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$x+3$",
+          "accept": [
+            "$3+x$",
+            "$(x+3)$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$x+3$",
+          "$3+x$",
+          "$(x+3)$"
+        ]
+      ],
+      "proposalFingerprint": "980dbe412def6b88754f15a068a66eafaf5de2123b88296f8f28368f7688c9f0"
+    },
+    {
+      "id": "m1-03-05-xc24",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "양변에 서로 다른 계산을 한 줄을 찾아 고친다.",
+      "bReason": "제목 '틀린 줄 찾기'가 요구하는 일은 m1-03-05-xc14의 B(양변에 같은 계산을 했는지로 변형의 옳고 그름 판단)와 같다. 틀린 까닭도 '양변에 다른 계산'으로 같고 예시 숫자만 다르다.",
+      "cDecision": "rewrite",
+      "cAfter": "$2x=6$에서 왼쪽을 $2$로 나누고 오른쪽에서 $2$를 빼어 $x=4$라고 계산했다. 이 값 $x=4$를 원래 방정식에 대입하면 좌변은 {$8$}, 우변은 {$6$}으로 달라서 풀이가 틀렸음을 알 수 있다.",
+      "cAnswers": [
+        "$8$",
+        "$6$"
+      ],
+      "cReason": "서로 다른 계산이면 항상 거짓이라는 과잉 일반화 대신 특정 오류를 원래 방정식으로 검산하여 확인한다.",
+      "exclusionReason": "B 제외: m1-03-05-xc14 B에서 잘못된 양변 계산을 이미 판단한다. C는 실제 잘못 구한 값을 원래 식에 대입하여 검산하는 별도의 짧은 확인으로 유지한다.",
+      "studentLabel": "방정식 풀이에서 틀린 줄 찾기",
+      "exampleNeeded": true,
+      "authorBatch": 7,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "양변 계산 다른 줄 찾기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1271,
+      "part": "m1plus",
+      "sourceFingerprint": "12e0f79e60edf940f7e6e4aaf09733f0f81dd5469f196a56ba0d882836f7555f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1271
+      },
+      "directReview": null,
+      "cMarkedSentence": "$2x=6$에서 왼쪽을 $2$로 나누고 오른쪽에서 $2$를 빼어 $x=4$라고 계산했다. 이 값 $x=4$를 원래 방정식에 대입하면 좌변은 {$8$}, 우변은 {$6$}으로 달라서 풀이가 틀렸음을 알 수 있다.",
+      "cSlotAnswers": [
+        "$8$",
+        "$6$"
+      ],
+      "cStudentSentence": "$2x=6$에서 왼쪽을 $2$로 나누고 오른쪽에서 $2$를 빼어 $x=4$라고 계산했다. 이 값 $x=4$를 원래 방정식에 대입하면 좌변은 □, 우변은 □으로 달라서 풀이가 틀렸음을 알 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$8$",
+          "equivalentAnswers": [
+            "$8$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$6$",
+          "equivalentAnswers": [
+            "$6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$8$"
+        ],
+        [
+          "$6$"
+        ]
+      ],
+      "proposalFingerprint": "282ef74aa7eb2b2345c49e024533d03b42dc246f455fc82cda4efa0f94056395",
+      "coreAfter": "방정식 풀이에서 양변에 한 계산이 {같은지} 확인하고, 구한 값을 원래 방정식에 {대입}하여 좌변과 우변이 같은지도 살핀다. 한쪽에만 계산하거나 서로 다른 계산을 하면 원래 방정식의 해와 달라질 수 있다.",
+      "coreReason": "서로 다른 계산이 우연히 같은 결과를 줄 수도 있으므로 항상 틀렸다는 단정을 피하고 검산의 판단 근거를 밝힌다."
+    },
+    {
+      "id": "m2-03-04-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "「$x$가 $y$의 $2$배보다 $1$만큼 크다」를 식으로 쓰시오. 이것을 $x=2(y+1)$로 쓰면 왜 틀리는지도 쓰시오.",
+      "bAnswer": "$x=2y+1$이다. $2(y+1)$은 $y$에 $1$을 먼저 더한 뒤 $2$배한 것이라 $2y+2$가 되지만, 이 조건은 $2$배를 먼저 한 뒤 $1$을 더해야 하기 때문이다.",
+      "bGoal": "배와 차가 함께 든 조건을 계산 순서대로 쓰기",
+      "bReason": "계산 순서에서 생기는 흔한 오답을 비교하도록 틀린 식을 제시했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=2y+1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$배를 먼저 하고 $1$을 더해야 한다",
+            "$2(y+1)=2y+2$가 되어 다르다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "roleReason": "$m$배를 먼저 하는 순서의 이유",
+      "cDecision": "rewrite",
+      "cReason": "곱한뒤와겹치는먼저라는구문칸을없애고문장조건을나타내는등식하나를묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 35,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2535,
+      "part": "m2plus",
+      "sourceFingerprint": "cfaa5450af94b96fc56ba3a3055d0344db846a833b707ead3cfc7c8808db79f7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2535
+      },
+      "directReview": null,
+      "cMarkedSentence": "「$x$가 $y$의 $m$배보다 $n$만큼 크다」를 등식으로 나타내면 {$x=my+n$}이다.",
+      "cSlotAnswers": [
+        "$x=my+n$"
+      ],
+      "cStudentSentence": "「$x$가 $y$의 $m$배보다 $n$만큼 크다」를 등식으로 나타내면 □이다.",
+      "cAnswers": [
+        "$x=my+n$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x=my+n$",
+          "equivalentAnswers": [
+            "$x=my+n$",
+            "$my+n=x$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$x=my+n$",
+          "accept": [
+            "$my+n=x$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$x=my+n$",
+          "$my+n=x$"
+        ]
+      ],
+      "proposalFingerprint": "1f0153b6dfc7a578708431ae8ba9554c04c8d2beb52c01e6aa45d2cca4842f7d",
+      "cAfter": "「$x$가 $y$의 $m$배보다 $n$만큼 크다」를 등식으로 나타내면 {$x=my+n$}이다."
+    },
+    {
+      "id": "m1-03-06-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.5x+\\frac13=\\frac56$처럼 소수와 분수가 섞인 일차방정식을 풉니다. 먼저 소수를 분수로 바꾼 식을 쓰세요. 그 식의 계수와 상수항을 모두 정수로 만들기 위해 양변에 곱할 가장 작은 자연수와 곱한 뒤의 식, 해를 차례로 쓰세요.",
+      "bAnswer": "$0.5$를 분수 $\\frac12$로 바꾸어 식 $\\frac12x+\\frac13=\\frac56$을 얻는다. 분모 $2$, $3$, $6$의 최소공배수 $6$을 양변에 곱하면 $3x+2=5$이므로 $x=1$이다.",
+      "bGoal": "소수와 분수가 섞인 방정식은 소수를 분수로 고친 뒤 분모의 최소공배수를 곱해 푼다.",
+      "bReason": "단순히 곱할 가장 작은 자연수면1이므로 계수와상수항을 모두 정수로 만드는 목적을 명시한다.",
+      "cDecision": "rewrite",
+      "cAfter": "$0.5x+\\frac13=\\frac56$에서 계수와 상수항을 모두 정수로 만들려면 양변에 곱할 가장 작은 자연수는 {$6$}이다.",
+      "cAnswers": [
+        "$6$"
+      ],
+      "cReason": "분모라는말을보고분수를복원하는대신소수와분수가섞인식을정수계수로바꾸는최소배수를구하게한다.",
+      "exampleNeeded": true,
+      "authorBatch": 7,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.5$를 분수 $\\frac{1}{2}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양변에 $6$을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한 뒤의 식 $3x+2=5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "해 $x=1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "소수를 분수로 고친 뒤 곱함",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "notationReason": "분수로 끝나는 식 뒤의 조사 논란은 식을 얻는다는 문장으로 피하고 방정식·해는 그대로이다.",
+      "sourceIndex": 1288,
+      "part": "m1plus",
+      "sourceFingerprint": "0f499ab0ec4b91b86bfa60cd48e251b83d56539a3a44ebe5542cb5f412f55bb7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1288
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m1-03-06-xc16"
+      },
+      "cMarkedSentence": "$0.5x+\\frac13=\\frac56$에서 계수와 상수항을 모두 정수로 만들려면 양변에 곱할 가장 작은 자연수는 {$6$}이다.",
+      "cSlotAnswers": [
+        "$6$"
+      ],
+      "cStudentSentence": "$0.5x+\\frac13=\\frac56$에서 계수와 상수항을 모두 정수로 만들려면 양변에 곱할 가장 작은 자연수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$6$",
+          "equivalentAnswers": [
+            "$6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ]
+      ],
+      "proposalFingerprint": "6585e168bbb7087039ef516abac770942dd0edc7e45b8236ada85c36f12b289f"
+    },
+    {
+      "id": "m2-03-04-xc25",
+      "bDecision": "rewrite",
+      "bPrompt": "연립방정식 $ax+2y=8$, $3x+by=1$의 해가 $(2,\\ 1)$일 때 $a=3$, $b=5$라고 구했다. 이 값이 맞는지 확인하는 방법을 쓰고, 틀린 상수가 있으면 찾아 바르게 고치시오.",
+      "bAnswer": "해와 구한 값을 두 식에 모두 넣는다. $3\\times2+2\\times1=8$이므로 첫째 식은 성립하지만, $3\\times2+5\\times1=11\\ne1$이므로 $b$를 잘못 구했다. $6+b=1$에서 $b=-5$이다.",
+      "bGoal": "두 식에 넣어 구한 상수 확인하기",
+      "bReason": "검산으로 틀린 상수를 찾아내도록 일부러 틀린 값을 포함한 상황을 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "해와 구한 값을 두 식에 모두 넣어 성립하는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$b$를 잘못 구했다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$b=-5$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "roleReason": "두 식에 넣어 오류 찾기",
+      "cDecision": "rewrite",
+      "cReason": "모두/잘못이라는일상논리낱말대신제시한해가두번째식까지참이되게만드는상수를실제로확인한다.",
+      "exampleNeeded": true,
+      "authorBatch": 35,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2536,
+      "part": "m2plus",
+      "sourceFingerprint": "7c503496956ef1c29b2780af34bb20b3441a86ed9d38c17eda7f989e07378ee5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2536
+      },
+      "directReview": null,
+      "cMarkedSentence": "연립방정식 $ax+2y=8$, $3x+by=1$의 해가 $(2,1)$이다. 이 해를 둘째 식에 대입하면 $6+b=1$이므로 $b=$ {$-5$}이다.",
+      "cSlotAnswers": [
+        "$-5$"
+      ],
+      "cStudentSentence": "연립방정식 $ax+2y=8$, $3x+by=1$의 해가 $(2,1)$이다. 이 해를 둘째 식에 대입하면 $6+b=1$이므로 $b=$ □이다.",
+      "cAnswers": [
+        "$-5$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-5$",
+          "equivalentAnswers": [
+            "$-5$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-5$"
+        ]
+      ],
+      "proposalFingerprint": "c1acffecbc676a864efd6a9ca1b97cb37cf407c6f71cb149a5261f5c09401bed",
+      "cAfter": "연립방정식 $ax+2y=8$, $3x+by=1$의 해가 $(2,1)$이다. 이 해를 둘째 식에 대입하면 $6+b=1$이므로 $b=$ {$-5$}이다."
+    },
+    {
+      "id": "m1-03-07-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "방정식 $3x+a=5$에서 $x$의 계수 $3$을 $2$로 잘못 보고 풀었더니 해가 $x=1$이 나왔다. $x=1$을 어느 식에 대입해야 $a$의 값을 구할 수 있는지 까닭과 함께 쓰고, $a$의 값을 구하시오.",
+      "bAnswer": "$x=1$은 잘못 본 식 $2x+a=5$의 해이므로 이 식에 대입한다. $2+a=5$이므로 $a=3$이다. 원래 식 $3x+a=5$에 대입하면 안 된다.",
+      "bGoal": "잘못 보고 푼 해는 잘못 본 식의 해임을 알고 그 식에 대입해 문자의 값을 구한다.",
+      "bReason": "제목 '잘못 본 계수'는 상황 설명이 전혀 없다. 무엇을 무엇으로 잘못 보았는지와 그때 나온 해를 주고 대입할 식을 고르게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$3x+a=5$에서 $x$의 계수 $3$을 $2$로 잘못 보고 풀었더니 해가 $x=1$이었다. 이때 $x=1$은 $2x+a=5$의 해이므로 $a=$ {$3$}이다.",
+      "cAnswers": [
+        "$3$"
+      ],
+      "cReason": "잘못본을앞문장에서그대로옮기는대신잘못읽은계수로구한해를올바른대상식에대입하여상수를구하게한다.",
+      "studentLabel": "계수를 잘못 보고 푼 경우",
+      "exampleNeeded": true,
+      "authorBatch": 8,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "잘못 본 식 $2x+a=5$에 대입한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: $x=1$은 원래 식이 아니라 잘못 본 식을 풀어 나온 해이기 때문"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2+a=5$에서 $a=3$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "procedure",
+      "roleReason": "잘못 본 식에 해 대입",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1312,
+      "part": "m1plus",
+      "sourceFingerprint": "fa0f8f2223216802074f711f287f50e28cfee0318a2e916747e691b5206c3909",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1312
+      },
+      "directReview": null,
+      "cMarkedSentence": "$3x+a=5$에서 $x$의 계수 $3$을 $2$로 잘못 보고 풀었더니 해가 $x=1$이었다. 이때 $x=1$은 $2x+a=5$의 해이므로 $a=$ {$3$}이다.",
+      "cSlotAnswers": [
+        "$3$"
+      ],
+      "cStudentSentence": "$3x+a=5$에서 $x$의 계수 $3$을 $2$로 잘못 보고 풀었더니 해가 $x=1$이었다. 이때 $x=1$은 $2x+a=5$의 해이므로 $a=$ □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "잘못 본",
+          "accept": [
+            "잘못 본 식",
+            "틀리게 본"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "6e779efb9c800dc829707ce3f355f4e72f424ff7879e8168fcd25d72232521e1"
+    },
+    {
+      "id": "m1-03-08-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 어떤 수를 $13$이라고 구했다. 이 답이 맞는지 확인하려면 $13$을 어디에 넣어 보아야 하는지 쓰고, 실제로 확인하시오.",
+      "bAnswer": "구한 값 $13$을 문제의 문장에 넣어 본다. $13$에 $7$을 더하면 $20$이 되어 문제의 조건에 맞으므로 답이 맞다.",
+      "bGoal": "구한 값을 문제의 문장에 넣어 조건에 맞는지 확인한다.",
+      "bReason": "방정식자체가문장조건을잘못옮겼을수있으므로원래문제조건에넣어확인한다는기준을분명하게한다. 이구체문제의정확한식을허용하는것이수학적으로틀리지는않지만교육목표를장부에명시한다.",
+      "cDecision": "rewrite",
+      "cAfter": "방정식을 풀어 구한 값은 처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+      "cAnswers": [
+        "문장"
+      ],
+      "cReason": "문제의조건·내용에넣어검산한다는같은뜻을문장과함께인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 8,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구한 값 $13$을 처음 문제의 문장에 넣어 조건이 맞는지 확인한다",
+            "어떤 수에 $7$을 더하면 $20$이라는 원래 조건에 $13$을 넣어 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13+7=20$으로 조건에 맞으므로 답이 맞다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "procedure",
+      "roleReason": "구한 값을 문장에 넣어 확인",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1325,
+      "part": "m1plus",
+      "sourceFingerprint": "83e7e634161735b00be378d2c85d062da4a74ee8656f1336471d92333e9332d7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1325
+      },
+      "directReview": null,
+      "cMarkedSentence": "방정식을 풀어 구한 값은 처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+      "cSlotAnswers": [
+        "문장"
+      ],
+      "cStudentSentence": "방정식을 풀어 구한 값은 처음 문제의 □에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "문장",
+          "equivalentAnswers": [
+            "문장",
+            "조건",
+            "내용"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "문장",
+          "조건",
+          "내용"
+        ]
+      ],
+      "proposalFingerprint": "1079e8423560fb1ded7d458cfe0aab9d493cec5a900b3b7f9eb638c1d0f93f1e"
+    }
+  ]
+}

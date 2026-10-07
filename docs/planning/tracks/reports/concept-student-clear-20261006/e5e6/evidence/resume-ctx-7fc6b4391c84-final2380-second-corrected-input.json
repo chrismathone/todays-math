@@ -1,0 +1,99 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-3-6-xc19",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $2$개를 면끼리 붙여 놓은 것에 세 번째 쌓기나무를 붙일 때, $3$개로 만든 서로 다른 모양이 두 가지뿐인 까닭을 붙이는 방법으로 설명하시오.",
+      "bAnswer": "세 번째 쌓기나무를 한 줄로 잇거나 꺾어 잇는 두 방법밖에 없기 때문이다. 다른 위치에 붙여도 돌리면 이 두 모양 중 하나와 같다.",
+      "bGoal": "$3$개 모양이 두 가지뿐인 까닭을 붙이는 방법으로 설명한다.",
+      "bReason": "가짓수만 아는 것에서 나아가 왜 두 가지뿐인지 붙이는 경우를 나누어 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 줄로 잇는 방법",
+            "곧게 이어 붙이는 경우"
+          ]
+        },
+        {
+          "anyOf": [
+            "꺾어 잇는 방법",
+            "꺾어 붙이는 경우"
+          ]
+        },
+        {
+          "anyOf": [
+            "다른 면에 붙인 경우도 돌리거나 뒤집으면 한 줄 또는 꺾인 모양과 겹쳐진다",
+            "다른 위치에 붙여도 방향만 다르고 두 모양 중 하나이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "두 모양이 되는 이유는 붙이는 방법과 회전 비교를 설명하는 B에서 평가한다. 이를 문장 속 긴 구절 빈칸으로 되풀이하지 않는다.",
+      "exclusionReason": "C는 xc2와 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "대체 ID: e6-2-3-6-xc2",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2380-second.json",
+      "codexFinalAmendedFromFingerprint": "6ddaaff942b31a6287730216b8a784e08332ff091d9c7854dac5fdfca524d020",
+      "sourceIndex": 2410,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-6-xc19",
+        "section": "초6::2-3 공간과 입체::2-3-6 여러 가지 모양 만들기",
+        "term": "$3$개로 두 가지 모양만 나오는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "쌓기나무 $3$개는 세 번째를 한 줄로 잇거나 {꺾어 잇는} 두 방법밖에 없어 모양이 두 가지이다.",
+        "studentC": "쌓기나무 $3$개는 세 번째를 한 줄로 잇거나 □ 두 방법밖에 없어 모양이 두 가지이다.",
+        "answers": [
+          "꺾어 잇는"
+        ]
+      },
+      "sourceFingerprint": "3bcd08363784d9a86f4230b8f65103a585f0b792bb47697b827d316b230bdbad",
+      "draftEvidence": "evidence/section-098-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "쌓기나무 $2$개를 면끼리 붙여 놓은 것에 세 번째 쌓기나무를 붙일 때, $3$개로 만든 서로 다른 모양이 두 가지뿐인 까닭을 붙이는 방법으로 설명하시오.",
+        "answer": "세 번째 쌓기나무를 한 줄로 잇거나 꺾어 잇는 두 방법밖에 없기 때문이다. 다른 위치에 붙여도 돌리면 이 두 모양 중 하나와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 줄로 잇는 방법",
+              "곧게 이어 붙이는 경우"
+            ]
+          },
+          {
+            "anyOf": [
+              "꺾어 잇는 방법",
+              "꺾어 붙이는 경우"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 면에 붙인 경우도 돌리거나 뒤집으면 한 줄 또는 꺾인 모양과 겹쳐진다",
+              "다른 위치에 붙여도 방향만 다르고 두 모양 중 하나이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 xc2와 중복된다."
+      },
+      "proposalFingerprint": "6ddaaff942b31a6287730216b8a784e08332ff091d9c7854dac5fdfca524d020",
+      "questionRevision": "planning-e5e6-20261006-6ddaaff942b3",
+      "requiresIndependentReview": true
+    }
+  ]
+}

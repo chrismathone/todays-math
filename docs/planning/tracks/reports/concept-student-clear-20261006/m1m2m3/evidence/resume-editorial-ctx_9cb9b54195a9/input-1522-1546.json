@@ -1,0 +1,2533 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:13:13.341Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc11",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "점으로만 된 그래프",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$x$가 자연수처럼 띄엄띄엄한 값만 가지면 그래프는 선이 아니라 {점}들로만 그린다.",
+        "example": {
+          "prompt": "사과 $x$개의 값 $y$원의 그래프는 선인가, 점인가?",
+          "answer": "점"
+        },
+        "studentC": "$x$가 자연수처럼 띄엄띄엄한 값만 가지면 그래프는 선이 아니라 □들로만 그린다.",
+        "answers": [
+          "점"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc11",
+        "learningRole": "reason",
+        "roleReason": "그래프를 점으로만 그리는 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "사과 $x$개의 값을 $y$원이라 할 때, $x$와 $y$ 사이의 관계를 나타낸 그래프는 이어진 선으로 그리는가, 떨어진 점들로 그리는가? 그렇게 그리는 까닭을 $x$가 가질 수 있는 값으로 설명하시오.",
+        "bAnswer": "떨어진 점들로 그린다. 사과의 개수 $x$는 $1$, $2$, $3$, $\\cdots$ 같은 자연수만 될 수 있고 그 사이의 값은 없기 때문이다.",
+        "bGoal": "점으로만 그리는 그래프의 까닭 설명하기",
+        "bReason": "구체적인 상황을 주어 $x$가 가질 수 있는 값과 그래프 모양을 연결하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "점들로 그린다",
+              "점으로만 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$는 자연수만 될 수 있다",
+              "$x$가 띄엄띄엄한 값만 가진다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 있고 선과 맞세운 낱말 하나만 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1522,
+        "part": "m1plus",
+        "sourceFingerprint": "1cb5989391b12076c9d19d7102e0959a4775e2e6c1fa152b8e95896002f6bf34",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1522
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x$가 자연수처럼 띄엄띄엄한 값만 가지면 그래프는 선이 아니라 □들로만 그린다.",
+        "cFrozenDefinition": "$x$가 자연수처럼 띄엄띄엄한 값만 가지면 그래프는 선이 아니라 {점}들로만 그린다.",
+        "cFrozenAnswers": [
+          "점"
+        ],
+        "cMarkedSentence": "$x$가 자연수처럼 띄엄띄엄한 값만 가지면 그래프는 선이 아니라 {점}들로만 그린다.",
+        "cSlotAnswers": [
+          "점"
+        ],
+        "cStudentSentence": "$x$가 자연수처럼 띄엄띄엄한 값만 가지면 그래프는 선이 아니라 □들로만 그린다.",
+        "cAnswers": [
+          "점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "점",
+            "equivalentAnswers": [
+              "점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "점"
+          ]
+        ],
+        "proposalFingerprint": "6018f2aecb38e3ad17e6064ad4b3e6f5aa7e70e0930d3cc121480a236a00472d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc12",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "상황을 그래프로 옮기기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "상황을 그래프로 옮길 때는 시간에 따라 양이 {늘었는지}, {줄었는지}, 그대로인지 차례로 따져 구간을 이어 그린다.",
+        "example": {
+          "prompt": "걸어가다 쉬고 다시 걸었다. 거리 그래프는 어떤 모양인가?",
+          "answer": "올라가다 수평, 다시 올라간다"
+        },
+        "studentC": "상황을 그래프로 옮길 때는 시간에 따라 양이 □, □, 그대로인지 차례로 따져 구간을 이어 그린다.",
+        "answers": [
+          "늘었는지",
+          "줄었는지"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc12",
+        "learningRole": "application",
+        "roleReason": "상황의 변화를 구간별 그래프 모양으로 옮기기",
+        "bDecision": "rewrite",
+        "bPrompt": "집을 나서서 걸어가다가 잠시 쉬고 다시 걸었다. 가로축을 시간, 세로축을 이동한 거리로 하여 그래프를 그리면 어떤 모양이 되는지 걷는 동안, 쉬는 동안, 다시 걷는 동안으로 나누어 설명하시오.",
+        "bAnswer": "걷는 동안에는 거리가 늘어 오른쪽 위로 올라가고, 쉬는 동안에는 거리가 그대로여서 수평이며, 다시 걷는 동안에는 다시 오른쪽 위로 올라간다.",
+        "bGoal": "상황을 구간별 그래프 모양으로 옮기기",
+        "bReason": "상황과 두 축을 정해 주어 구간마다 모양을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "걷는 동안 오른쪽 위로 올라간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "쉬는 동안 수평이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다시 걷는 동안 다시 올라간다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "상황을 그래프로 옮길 때는 시간에 따라 양이 늘면 오른쪽 {위}로, 줄면 오른쪽 {아래}로, 그대로이면 {수평}으로 구간을 이어 그린다.",
+        "cAnswers": [
+          "위",
+          "아래",
+          "수평"
+        ],
+        "cReason": "'늘었는지' 같은 활용꼴은 정확히 쓰기 어려워 변화에 맞는 방향을 묻도록 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1523,
+        "part": "m1plus",
+        "sourceFingerprint": "da317c0d715f08bd0163bf22e807602463f51f3297f53438b39320b86cd0ef91",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1523
+        },
+        "directReview": null,
+        "cMarkedSentence": "상황을 그래프로 옮길 때는 시간에 따라 양이 늘면 오른쪽 {위}로, 줄면 오른쪽 {아래}로, 그대로이면 {수평}으로 구간을 이어 그린다.",
+        "cSlotAnswers": [
+          "위",
+          "아래",
+          "수평"
+        ],
+        "cStudentSentence": "상황을 그래프로 옮길 때는 시간에 따라 양이 늘면 오른쪽 □로, 줄면 오른쪽 □로, 그대로이면 □으로 구간을 이어 그린다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "위",
+            "equivalentAnswers": [
+              "위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "아래",
+            "equivalentAnswers": [
+              "아래"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "수평",
+            "equivalentAnswers": [
+              "수평"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "위"
+          ],
+          [
+            "아래"
+          ],
+          [
+            "수평"
+          ]
+        ],
+        "proposalFingerprint": "2384cd52ad543022e7e88cef6462ed538d98f223e2832064e49a67b17ef58a45"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc13",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "거리 그래프와 속력",
+        "kind": "성질",
+        "level": "중",
+        "definition": "시간과 거리 그래프에서 기울어짐이 가파른 구간일수록 {속력}이 {빠르다}.",
+        "example": {
+          "prompt": "$1$시간에 $4\\,\\mathrm{km}$ 간 구간과 $1$시간에 $10\\,\\mathrm{km}$ 간 구간 가운데 더 가파른 것은?",
+          "answer": "$10\\,\\mathrm{km}$ 간 구간"
+        },
+        "studentC": "시간과 거리 그래프에서 기울어짐이 가파른 구간일수록 □이 □.",
+        "answers": [
+          "속력",
+          "빠르다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc13",
+        "learningRole": "application",
+        "roleReason": "시간–거리 그래프의 가파름과 속력",
+        "bDecision": "rewrite",
+        "bPrompt": "가로축이 시간, 세로축이 이동한 거리인 그래프에서 $1$시간에 $4\\,\\mathrm{km}$를 간 구간과 $1$시간에 $10\\,\\mathrm{km}$를 간 구간 가운데 어느 구간이 더 가파른가? 그래프의 가파른 정도와 속력의 관계도 쓰시오.",
+        "bAnswer": "$1$시간에 $10\\,\\mathrm{km}$를 간 구간이 더 가파르다. 같은 시간에 거리가 더 많이 늘어나기 때문이며, 가파른 구간일수록 속력이 빠르다.",
+        "bGoal": "거리 그래프의 가파름을 속력으로 해석하기",
+        "bReason": "축의 배치와 두 구간의 수치를 주어 가파름과 속력을 연결하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$시간에 $10\\,\\mathrm{km}$를 간 구간"
+            ]
+          },
+          {
+            "anyOf": [
+              "가파를수록 속력이 빠르다",
+              "같은 시간에 더 많이 이동할수록 더 가파르다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "가로축이 시간, 세로축이 이동한 거리인 그래프에서 가파른 구간일수록 {속력}이 빠르다.",
+        "cAnswers": [
+          "속력"
+        ],
+        "cReason": "어느 축이 시간인지에 따라 뜻이 달라지므로 축을 밝히고 빈칸을 하나로 줄였다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1524,
+        "part": "m1plus",
+        "sourceFingerprint": "c167f02a70199cbc51fdf63c8a4f68b63f5b5358f22ab80ac261c464f1d5290a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1524
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로축이 시간, 세로축이 이동한 거리인 그래프에서 가파른 구간일수록 {속력}이 빠르다.",
+        "cSlotAnswers": [
+          "속력"
+        ],
+        "cStudentSentence": "가로축이 시간, 세로축이 이동한 거리인 그래프에서 가파른 구간일수록 □이 빠르다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "속력",
+            "equivalentAnswers": [
+              "속력",
+              "빠르기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "속력",
+            "accept": [
+              "빠르기"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "속력",
+            "빠르기"
+          ]
+        ],
+        "proposalFingerprint": "75c819669a4636233727bb54903921439360108fa0bc6d4e89bc12d0a0009d69"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc14",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "되돌아오는 거리 그래프",
+        "kind": "성질",
+        "level": "중",
+        "definition": "집에서 떨어진 거리 그래프가 {내려가면} 집 쪽으로 {돌아오고} 있는 것이다.",
+        "example": {
+          "prompt": "집에서 떨어진 거리가 $20$분부터 줄어들면 그때부터 무엇을 했는가?",
+          "answer": "집으로 돌아왔다"
+        },
+        "studentC": "집에서 떨어진 거리 그래프가 □ 집 쪽으로 □ 있는 것이다.",
+        "answers": [
+          "내려가면",
+          "돌아오고"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc14",
+        "learningRole": "application",
+        "roleReason": "집에서 떨어진 거리 그래프가 내려가는 구간의 뜻",
+        "bDecision": "rewrite",
+        "bPrompt": "집에서 출발한 뒤 지난 시간을 $x$분, 집에서 떨어진 거리를 $y\\,\\mathrm{m}$로 나타낸 그래프가 $x=20$부터 오른쪽 아래로 내려간다. $20$분부터 무엇을 하고 있는지, 그렇게 볼 수 있는 까닭과 함께 쓰시오.",
+        "bAnswer": "집 쪽으로 돌아오고 있다. 그래프가 내려가는 것은 집에서 떨어진 거리가 줄어든다는 뜻이기 때문이다.",
+        "bGoal": "내려가는 거리 그래프를 상황으로 해석하기",
+        "bReason": "세로축이 집에서 떨어진 거리임을 밝혀야 내려감의 뜻을 답할 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "집 쪽으로 돌아오고 있다",
+              "집에 가까워지고 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "집에서 떨어진 거리가 줄어들기 때문이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "시간에 따라 집에서 떨어진 거리를 나타낸 그래프가 오른쪽 아래로 내려가는 구간에서는 집에서 떨어진 거리가 {줄어들므로} 집 쪽으로 {돌아오고} 있는 것이다.",
+        "cAnswers": [
+          "줄어들므로",
+          "돌아오고"
+        ],
+        "cReason": "조건(내려가면)과 결론이 모두 빈칸이라 조건은 보이고 까닭과 결론을 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1525,
+        "part": "m1plus",
+        "sourceFingerprint": "496ea561180ff9b00946f7cbcad58db284b1d870b3251595cfd2e44c013ed5a9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1525
+        },
+        "directReview": null,
+        "cMarkedSentence": "시간에 따라 집에서 떨어진 거리를 나타낸 그래프가 오른쪽 아래로 내려가는 구간에서는 집에서 떨어진 거리가 {줄어들므로} 집 쪽으로 {돌아오고} 있는 것이다.",
+        "cSlotAnswers": [
+          "줄어들므로",
+          "돌아오고"
+        ],
+        "cStudentSentence": "시간에 따라 집에서 떨어진 거리를 나타낸 그래프가 오른쪽 아래로 내려가는 구간에서는 집에서 떨어진 거리가 □ 집 쪽으로 □ 있는 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "줄어들므로",
+            "equivalentAnswers": [
+              "줄어들므로",
+              "감소하므로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "돌아오고",
+            "equivalentAnswers": [
+              "돌아오고",
+              "가까워지고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "줄어들므로",
+            "accept": [
+              "감소하므로"
+            ]
+          },
+          {
+            "answer": "돌아오고",
+            "accept": [
+              "가까워지고"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "줄어들므로",
+            "감소하므로"
+          ],
+          [
+            "돌아오고",
+            "가까워지고"
+          ]
+        ],
+        "proposalFingerprint": "bc307b363472e4e1b4bcfcfccc0549d98ec6c2dad7382fde51b17b82d05701f9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc15",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "물의 양 그래프",
+        "kind": "방법",
+        "level": "중",
+        "definition": "물을 넣으면 그래프가 올라가고, 물을 빼면 {내려가며}, 넣는 양과 빼는 양이 같으면 {수평}이 된다.",
+        "example": {
+          "prompt": "물을 $1$분에 $3\\,\\mathrm{L}$ 넣으면서 $3\\,\\mathrm{L}$씩 뺄 때 물의 양 그래프는?",
+          "answer": "수평"
+        },
+        "studentC": "물을 넣으면 그래프가 올라가고, 물을 빼면 □, 넣는 양과 빼는 양이 같으면 □이 된다.",
+        "answers": [
+          "내려가며",
+          "수평"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc15",
+        "learningRole": "application",
+        "roleReason": "물을 넣고 빼는 상황과 그래프의 모양",
+        "bDecision": "rewrite",
+        "bPrompt": "물통에 든 물의 양을 시간에 따라 나타낸 그래프는 물을 넣기만 할 때, 빼기만 할 때, 같은 시간에 넣는 양과 빼는 양이 같을 때 각각 어떤 모양이 되는지 쓰시오.",
+        "bAnswer": "물을 넣기만 하면 오른쪽 위로 올라가고, 빼기만 하면 오른쪽 아래로 내려가며, 넣는 양과 빼는 양이 같으면 수평이 된다.",
+        "bGoal": "물의 양 변화에 맞는 그래프 모양 말하기",
+        "bReason": "그래프가 무엇을 나타내는지와 세 경우를 질문에 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "넣기만 하면 올라간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "빼기만 하면 내려간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넣는 양과 빼는 양이 같으면 수평이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "주어진 첫 경우와 견주어 나머지 두 모양을 쓰는 분명한 비교 빈칸이다.",
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1526,
+        "part": "m1plus",
+        "sourceFingerprint": "ccfbecdc53aa473b89fd7931afc50e837e83c0ff05cca71da12249ac6cd6e850",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1526
+        },
+        "directReview": null,
+        "cFrozenSentence": "물을 넣으면 그래프가 올라가고, 물을 빼면 □, 넣는 양과 빼는 양이 같으면 □이 된다.",
+        "cFrozenDefinition": "물을 넣으면 그래프가 올라가고, 물을 빼면 {내려가며}, 넣는 양과 빼는 양이 같으면 {수평}이 된다.",
+        "cFrozenAnswers": [
+          "내려가며",
+          "수평"
+        ],
+        "cMarkedSentence": "물을 넣으면 그래프가 올라가고, 물을 빼면 {내려가며}, 넣는 양과 빼는 양이 같으면 {수평}이 된다.",
+        "cSlotAnswers": [
+          "내려가며",
+          "수평"
+        ],
+        "cStudentSentence": "물을 넣으면 그래프가 올라가고, 물을 빼면 □, 넣는 양과 빼는 양이 같으면 □이 된다.",
+        "cAnswers": [
+          "내려가며",
+          "수평"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "내려가며",
+            "equivalentAnswers": [
+              "내려가며",
+              "내려가고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "수평",
+            "equivalentAnswers": [
+              "수평"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "내려가며",
+            "accept": [
+              "내려가고"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "내려가며",
+            "내려가고"
+          ],
+          [
+            "수평"
+          ]
+        ],
+        "proposalFingerprint": "b84546c75d06dcfd061ec0160eb72ac2995b76fdc85d468b85da007c61ae7d17"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc16",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "기둥 모양 그릇에 물 붓기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "기둥 모양 그릇에 같은 빠르기로 물을 부으면 높이 그래프는 {직선}이 된다. 같은 시간마다 높이가 {같은 만큼} 오르기 때문이다.",
+        "example": {
+          "prompt": "원기둥 모양 물통에 일정하게 물을 부을 때 높이 그래프의 모양은?",
+          "answer": "직선"
+        },
+        "studentC": "기둥 모양 그릇에 같은 빠르기로 물을 부으면 높이 그래프는 □이 된다. 같은 시간마다 높이가 □ 오르기 때문이다.",
+        "answers": [
+          "직선",
+          "같은 만큼"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc16",
+        "learningRole": "reason",
+        "roleReason": "기둥 모양 그릇의 물 높이 그래프가 직선인 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "원기둥 모양의 빈 물통에 일정한 빠르기로 물을 부을 때, 시간에 따른 물의 높이를 나타낸 그래프는 어떤 모양인가? 그 까닭을 같은 시간마다 높이가 오르는 정도로 설명하시오.",
+        "bAnswer": "오른쪽 위로 향하는 직선이다. 물통의 폭이 어느 높이에서나 같아서 같은 시간마다 물의 높이가 같은 만큼 오르기 때문이다.",
+        "bGoal": "그릇 모양과 높이 그래프의 모양 연결하기",
+        "bReason": "그릇의 모양과 붓는 빠르기를 주고 모양과 까닭을 함께 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직선"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 시간마다 높이가 같은 만큼 오른다",
+              "높이가 일정하게 오른다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "모양과 까닭을 하나씩 묻는 문장으로 조건이 모두 드러나 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1527,
+        "part": "m1plus",
+        "sourceFingerprint": "567a6e2d5b239abb833b6e9bd5bfd2c21432590304b9529f9571a1bd2c5e8f31",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1527
+        },
+        "directReview": null,
+        "cFrozenSentence": "기둥 모양 그릇에 같은 빠르기로 물을 부으면 높이 그래프는 □이 된다. 같은 시간마다 높이가 □ 오르기 때문이다.",
+        "cFrozenDefinition": "기둥 모양 그릇에 같은 빠르기로 물을 부으면 높이 그래프는 {직선}이 된다. 같은 시간마다 높이가 {같은 만큼} 오르기 때문이다.",
+        "cFrozenAnswers": [
+          "직선",
+          "같은 만큼"
+        ],
+        "cMarkedSentence": "기둥 모양 그릇에 같은 빠르기로 물을 부으면 높이 그래프는 {직선}이 된다. 같은 시간마다 높이가 {같은 만큼} 오르기 때문이다.",
+        "cSlotAnswers": [
+          "직선",
+          "같은 만큼"
+        ],
+        "cStudentSentence": "기둥 모양 그릇에 같은 빠르기로 물을 부으면 높이 그래프는 □이 된다. 같은 시간마다 높이가 □ 오르기 때문이다.",
+        "cAnswers": [
+          "직선",
+          "같은 만큼"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직선",
+            "equivalentAnswers": [
+              "직선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같은 만큼",
+            "equivalentAnswers": [
+              "같은 만큼",
+              "일정하게",
+              "똑같이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "같은 만큼",
+            "accept": [
+              "일정하게",
+              "똑같이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직선"
+          ],
+          [
+            "같은 만큼",
+            "일정하게",
+            "똑같이"
+          ]
+        ],
+        "proposalFingerprint": "7aed6d920a4283bce2cb3446d4708d35b1dbac3f0a9e2d2669290d6752620197"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc17",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "같은 모양이 되풀이되는 그래프",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 모양이 되풀이되는 그래프는 한 번 되풀이되는 {간격}을 구하면 먼 뒤의 값을 {예상}할 수 있다.",
+        "example": {
+          "prompt": "관람차 높이가 $12$분마다 같은 모양으로 되풀이되면 $36$분 뒤 높이는 처음과 어떠한가?",
+          "answer": "같다"
+        },
+        "studentC": "같은 모양이 되풀이되는 그래프는 한 번 되풀이되는 □을 구하면 먼 뒤의 값을 □할 수 있다.",
+        "answers": [
+          "간격",
+          "예상"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc17",
+        "learningRole": "application",
+        "roleReason": "되풀이되는 간격으로 나중 값 예상하기",
+        "bDecision": "rewrite",
+        "bPrompt": "관람차에 탄 사람의 높이를 시간에 따라 나타낸 그래프가 $12$분마다 같은 모양으로 되풀이된다. 탄 지 $36$분이 되었을 때의 높이는 처음 탔을 때의 높이와 견주어 어떠한지 까닭과 함께 쓰시오.",
+        "bAnswer": "처음 높이와 같다. $36=12\\times 3$이어서 같은 모양이 정확히 $3$번 되풀이된 때이기 때문이다.",
+        "bGoal": "되풀이되는 간격으로 나중 값 예상하기",
+        "bReason": "뜻을 묻는 m1-04-03-c7과 달리 간격을 써서 값을 예상하는 적용을 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "처음 높이와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36$분은 $12$분의 $3$배이다",
+              "$36=12\\times 3$",
+              "같은 모양이 $3$번 되풀이된 때이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "구할 것(간격)과 그 쓸모(예상)를 묻는 분명한 문장이다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1528,
+        "part": "m1plus",
+        "sourceFingerprint": "b5f49613eee189cc0acc0ea3a9eb4220071cd676c295fdfbec3c7a17cba04dc7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1528
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 모양이 되풀이되는 그래프는 한 번 되풀이되는 □을 구하면 먼 뒤의 값을 □할 수 있다.",
+        "cFrozenDefinition": "같은 모양이 되풀이되는 그래프는 한 번 되풀이되는 {간격}을 구하면 먼 뒤의 값을 {예상}할 수 있다.",
+        "cFrozenAnswers": [
+          "간격",
+          "예상"
+        ],
+        "cMarkedSentence": "같은 모양이 되풀이되는 그래프는 한 번 되풀이되는 {간격}을 구하면 먼 뒤의 값을 {예상}할 수 있다.",
+        "cSlotAnswers": [
+          "간격",
+          "예상"
+        ],
+        "cStudentSentence": "같은 모양이 되풀이되는 그래프는 한 번 되풀이되는 □을 구하면 먼 뒤의 값을 □할 수 있다.",
+        "cAnswers": [
+          "간격",
+          "예상"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "간격",
+            "equivalentAnswers": [
+              "간격"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "예상",
+            "equivalentAnswers": [
+              "예상",
+              "예측"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "예상",
+            "accept": [
+              "예측"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "간격"
+          ],
+          [
+            "예상",
+            "예측"
+          ]
+        ],
+        "proposalFingerprint": "c30740930bae13fe2dd1cc752b01a6dcc986b0da34fdcf5cbaa513a2226eb6c9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc18",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "두 그래프 사이의 세로 간격",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 길을 같은 곳에서 같은 쪽으로 출발한 두 사람의 거리 그래프에서, 같은 시각 두 그래프의 세로 {간격}이 그때 두 사람 사이의 {거리}이다.",
+        "example": {
+          "prompt": "$10$분에 $A$는 $800\\,\\mathrm{m}$, $B$는 $500\\,\\mathrm{m}$ 지점이면 두 사람 사이 거리는?",
+          "answer": "$300\\,\\mathrm{m}$"
+        },
+        "studentC": "한 직선 길을 같은 곳에서 같은 쪽으로 출발한 두 사람의 거리 그래프에서, 같은 시각 두 그래프의 세로 □이 그때 두 사람 사이의 □이다.",
+        "answers": [
+          "간격",
+          "거리"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc18",
+        "learningRole": "application",
+        "roleReason": "두 그래프의 세로 간격을 두 사람 사이의 거리로 읽기",
+        "bDecision": "rewrite",
+        "bPrompt": "한 직선 길을 같은 곳에서 같은 쪽으로 출발한 $A$, $B$ 두 사람의 이동 거리를 시간에 따라 같은 좌표평면에 그래프로 나타냈다. 출발 $10$분 뒤 $A$의 그래프는 $800\\,\\mathrm{m}$, $B$의 그래프는 $500\\,\\mathrm{m}$를 가리킨다. 이때 두 사람 사이의 거리를 구하고, 그래프에서 무엇을 읽은 것인지 쓰시오.",
+        "bAnswer": "$800-500=300$이므로 $300\\,\\mathrm{m}$이다. 같은 시각에서 두 그래프의 세로 간격, 곧 $y$좌표의 차를 읽은 것이다.",
+        "bGoal": "세로 간격을 두 사람 사이의 거리로 읽기",
+        "bReason": "출발 조건과 같은 시각의 두 값을 주어 세로 간격의 뜻을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$300\\,\\mathrm{m}$",
+              "$800-500=300$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 시각에서 두 그래프의 세로 간격",
+              "같은 시각의 두 $y$좌표의 차"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 직선 길을 같은 곳에서 같은 쪽으로 출발한 두 사람의 이동 거리 그래프에서, 같은 시각에서 두 그래프의 세로 간격, 즉 $y$좌표의 {차}가 그때 두 사람 사이의 거리이다.",
+        "cAnswers": [
+          "차"
+        ],
+        "cReason": "빈칸 답 '거리'가 문장 앞에 그대로 나와 베낄 수 있어 간격의 뜻을 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1529,
+        "part": "m1plus",
+        "sourceFingerprint": "aee7aa33f2f7147872a9b5601e1f18cab6b761b3b570af7d139a66ca853853fa",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1529
+        },
+        "directReview": null,
+        "cMarkedSentence": "한 직선 길을 같은 곳에서 같은 쪽으로 출발한 두 사람의 이동 거리 그래프에서, 같은 시각에서 두 그래프의 세로 간격, 즉 $y$좌표의 {차}가 그때 두 사람 사이의 거리이다.",
+        "cSlotAnswers": [
+          "차"
+        ],
+        "cStudentSentence": "한 직선 길을 같은 곳에서 같은 쪽으로 출발한 두 사람의 이동 거리 그래프에서, 같은 시각에서 두 그래프의 세로 간격, 즉 $y$좌표의 □가 그때 두 사람 사이의 거리이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "차"
+          ]
+        ],
+        "proposalFingerprint": "0a8b15222e0cc927c75618e271bf04972e2453b3ec3e291ece3ac0d474e897f1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc19",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "처음과 끝으로 평균 빠르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "이동한 거리 그래프의 처음 점과 끝 점만 보아도 전체 이동 거리를 걸린 시간으로 {나누어} 평균 {빠르기}를 구할 수 있다.",
+        "example": {
+          "prompt": "$(0, 0)$에서 $(30, 2400)$까지 간 이동 거리 그래프의 평균 분속은? ($x$: 분, $y$: $\\mathrm{m}$)",
+          "answer": "분속 $80\\,\\mathrm{m}$"
+        },
+        "studentC": "이동한 거리 그래프의 처음 점과 끝 점만 보아도 전체 이동 거리를 걸린 시간으로 □ 평균 □를 구할 수 있다.",
+        "answers": [
+          "나누어",
+          "빠르기"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc19",
+        "learningRole": "procedure",
+        "roleReason": "처음 점과 끝 점으로 평균 빠르기 구하기",
+        "bDecision": "rewrite",
+        "bPrompt": "출발한 뒤 지난 시간을 $x$분, 이동한 거리를 $y\\,\\mathrm{m}$로 나타낸 그래프가 점 $(0, 0)$에서 시작해 점 $(30, 2400)$에서 끝난다. 중간 모양을 모를 때에도 구할 수 있는 평균 빠르기를 식과 함께 구하시오.",
+        "bAnswer": "전체 이동 거리 $2400\\,\\mathrm{m}$를 걸린 시간 $30$분으로 나누면 $2400\\div 30=80$이므로 평균 분속 $80\\,\\mathrm{m}$이다.",
+        "bGoal": "처음과 끝 점으로 평균 빠르기 구하기",
+        "bReason": "두 축의 단위와 처음·끝 점을 주어 나누는 두 양을 식으로 보이게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2400\\div 30$",
+              "전체 이동 거리를 걸린 시간으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분속 $80\\,\\mathrm{m}$",
+              "$1$분에 $80\\,\\mathrm{m}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "쓰는 계산(나눗셈)과 구하는 양을 하나씩 묻는 분명한 문장이다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1530,
+        "part": "m1plus",
+        "sourceFingerprint": "4b077fe4ae7e1d9f7aefaa348801e28fa5d404771b0fb99d828debe517bcb67a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1530
+        },
+        "directReview": null,
+        "cFrozenSentence": "이동한 거리 그래프의 처음 점과 끝 점만 보아도 전체 이동 거리를 걸린 시간으로 □ 평균 □를 구할 수 있다.",
+        "cFrozenDefinition": "이동한 거리 그래프의 처음 점과 끝 점만 보아도 전체 이동 거리를 걸린 시간으로 {나누어} 평균 {빠르기}를 구할 수 있다.",
+        "cFrozenAnswers": [
+          "나누어",
+          "빠르기"
+        ],
+        "cMarkedSentence": "이동한 거리 그래프의 처음 점과 끝 점만 보아도 전체 이동 거리를 걸린 시간으로 {나누어} 평균 {빠르기}를 구할 수 있다.",
+        "cSlotAnswers": [
+          "나누어",
+          "빠르기"
+        ],
+        "cStudentSentence": "이동한 거리 그래프의 처음 점과 끝 점만 보아도 전체 이동 거리를 걸린 시간으로 □ 평균 □를 구할 수 있다.",
+        "cAnswers": [
+          "나누어",
+          "빠르기"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나누어",
+            "equivalentAnswers": [
+              "나누어"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빠르기",
+            "equivalentAnswers": [
+              "빠르기",
+              "속력"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "빠르기",
+            "accept": [
+              "속력"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나누어"
+          ],
+          [
+            "빠르기",
+            "속력"
+          ]
+        ],
+        "proposalFingerprint": "c211b6e09c071a92a208fe324dcbe01fb0a38fbe0ad1541390fff8a8bd84bfa3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc20",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "그래프가 끊어진 곳",
+        "kind": "성질",
+        "level": "상",
+        "definition": "요금 그래프처럼 그래프가 갑자기 {끊어져} 다른 높이에서 다시 시작하면 그 순간 값이 한 번에 {뛰어} 바뀐 것이다.",
+        "example": {
+          "prompt": "주차 요금 그래프가 $30$분에서 갑자기 위로 뛰면 그때 요금은 어떻게 바뀐 것인가?",
+          "answer": "한 번에 올랐다"
+        },
+        "studentC": "요금 그래프처럼 그래프가 갑자기 □ 다른 높이에서 다시 시작하면 그 순간 값이 한 번에 □ 바뀐 것이다.",
+        "answers": [
+          "끊어져",
+          "뛰어"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc20",
+        "learningRole": "application",
+        "roleReason": "그래프가 끊어진 곳에서 값이 한 번에 바뀜",
+        "bDecision": "rewrite",
+        "bPrompt": "주차 시간을 $x$분, 주차 요금을 $y$원으로 나타낸 그래프가 $x=30$에서 끊어지고 더 높은 곳에서 다시 시작한다. 이것은 요금이 어떻게 바뀜을 뜻하는지, 이어진 선으로 올라가는 경우와 견주어 쓰시오.",
+        "bAnswer": "$30$분이 되는 순간 요금이 한 번에 뛰어오른다는 뜻이다. 이어진 선은 값이 조금씩 이어서 변하지만, 끊어진 곳에서는 사이의 값을 거치지 않고 갑자기 바뀐다.",
+        "bGoal": "끊어진 그래프를 값의 갑작스러운 변화로 해석하기",
+        "bReason": "요금 상황과 끊어진 위치를 주고 이어진 선과의 차이를 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 순간 요금이 한 번에 오른다",
+              "요금이 갑자기 뛰어 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이어진 선은 값이 조금씩 변한다",
+              "끊어진 곳에서는 사이의 값을 거치지 않는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "요금 그래프처럼 그래프가 끊어져 다른 높이에서 다시 시작하면, 그 순간 값이 조금씩이 아니라 {한 번에} 바뀐 것이다.",
+        "cAnswers": [
+          "한 번에"
+        ],
+        "cReason": "'끊어져', '뛰어' 같은 활용꼴 빈칸은 조건과 결론을 함께 가려 결론의 핵심만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1531,
+        "part": "m1plus",
+        "sourceFingerprint": "879ccee8130d70da49912273a268aca705d31c4ff11e973dae418930c390820c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1531
+        },
+        "directReview": null,
+        "cMarkedSentence": "요금 그래프처럼 그래프가 끊어져 다른 높이에서 다시 시작하면, 그 순간 값이 조금씩이 아니라 {한 번에} 바뀐 것이다.",
+        "cSlotAnswers": [
+          "한 번에"
+        ],
+        "cStudentSentence": "요금 그래프처럼 그래프가 끊어져 다른 높이에서 다시 시작하면, 그 순간 값이 조금씩이 아니라 □ 바뀐 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 번에",
+            "equivalentAnswers": [
+              "한 번에",
+              "갑자기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한 번에",
+            "accept": [
+              "갑자기"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 번에",
+            "갑자기"
+          ]
+        ],
+        "proposalFingerprint": "f4c24e7eb98a12e7553e60dfead2465d6d9d0d4bd76a9ebb0af52743c85fdadd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc21",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "그래프에서 시간 차 읽기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$x$가 경과 시간, $y$가 같은 종류의 양을 나타내는 두 그래프에서, 같은 $y$값에 이르는 두 점의 {$x$값}을 읽는다. 큰 값에서 작은 값을 빼면 그 양에 이르는 시간의 차이다.",
+        "example": {
+          "prompt": "$A$는 $12$분, $B$는 $15$분에 $1\\,\\mathrm{km}$ 지점에 닿았다. 시간 차는?",
+          "answer": "$3$분"
+        },
+        "studentC": "$x$가 경과 시간, $y$가 같은 종류의 양을 나타내는 두 그래프에서, 같은 $y$값에 이르는 두 점의 □을 읽는다. 큰 값에서 작은 값을 빼면 그 양에 이르는 시간의 차이다.",
+        "answers": [
+          "$x$값"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc21",
+        "learningRole": "procedure",
+        "roleReason": "같은 $y$값에 이르는 두 $x$값의 차 읽기",
+        "bDecision": "rewrite",
+        "bPrompt": "출발한 뒤 지난 시간을 $x$분, 이동한 거리를 $y\\,\\mathrm{km}$로 나타낸 $A$, $B$ 두 사람의 그래프에서 $y=1$인 점의 $x$좌표가 $A$는 $12$, $B$는 $15$이다. 두 사람이 $1\\,\\mathrm{km}$ 지점에 닿은 시간의 차를 구하고, 그래프에서 어떤 값을 읽어 계산했는지 쓰시오.",
+        "bAnswer": "$15-12=3$이므로 $3$분이다. 두 그래프에서 $y$의 값이 같은 두 점의 $x$값을 읽어 큰 값에서 작은 값을 뺀 것이다.",
+        "bGoal": "두 그래프에서 시간의 차 읽기",
+        "bReason": "두 축의 뜻과 같은 $y$값의 두 점을 주어 읽는 값과 계산을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$분",
+              "$15-12=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$의 값이 같은 두 점의 $x$값을 읽는다",
+              "$y=1$인 점의 $x$좌표 $12$와 $15$를 읽는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "축의 뜻이 문장에 있고 읽을 대상 하나만 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1532,
+        "part": "m1plus",
+        "sourceFingerprint": "a907c6bfa2432aa4da69cdf576ab6a710da609d6bae889c8475d8836111d2a1c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1532
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x$가 경과 시간, $y$가 같은 종류의 양을 나타내는 두 그래프에서, 같은 $y$값에 이르는 두 점의 □을 읽는다. 큰 값에서 작은 값을 빼면 그 양에 이르는 시간의 차이다.",
+        "cFrozenDefinition": "$x$가 경과 시간, $y$가 같은 종류의 양을 나타내는 두 그래프에서, 같은 $y$값에 이르는 두 점의 {$x$값}을 읽는다. 큰 값에서 작은 값을 빼면 그 양에 이르는 시간의 차이다.",
+        "cFrozenAnswers": [
+          "$x$값"
+        ],
+        "cMarkedSentence": "$x$가 경과 시간, $y$가 같은 종류의 양을 나타내는 두 그래프에서, 같은 $y$값에 이르는 두 점의 {$x$값}을 읽는다. 큰 값에서 작은 값을 빼면 그 양에 이르는 시간의 차이다.",
+        "cSlotAnswers": [
+          "$x$값"
+        ],
+        "cStudentSentence": "$x$가 경과 시간, $y$가 같은 종류의 양을 나타내는 두 그래프에서, 같은 $y$값에 이르는 두 점의 □을 읽는다. 큰 값에서 작은 값을 빼면 그 양에 이르는 시간의 차이다.",
+        "cAnswers": [
+          "$x$값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$값",
+            "equivalentAnswers": [
+              "$x$값",
+              "$x$좌표",
+              "$x$의 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$x$값",
+            "accept": [
+              "$x$좌표",
+              "$x$의 값"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$x$값",
+            "$x$좌표",
+            "$x$의 값"
+          ]
+        ],
+        "proposalFingerprint": "3e002f423cbd3bd6f3476a88150b6bc63417d6b4521d847908cb7d9835729cbd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc22",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "줄다가 늘어나는 그래프",
+        "kind": "성질",
+        "level": "상",
+        "definition": "그래프가 내려가다 다시 올라가면 가장 낮은 점에서 감소가 {멈추고} {증가}가 시작된다.",
+        "example": {
+          "prompt": "저수지 물 높이가 $6$월에 가장 낮았다가 다시 오르면 감소에서 증가로 바뀐 때는?",
+          "answer": "$6$월"
+        },
+        "studentC": "그래프가 내려가다 다시 올라가면 가장 낮은 점에서 감소가 □ □가 시작된다.",
+        "answers": [
+          "멈추고",
+          "증가"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc22",
+        "learningRole": "application",
+        "roleReason": "가장 낮은 점이 감소에서 증가로 바뀌는 때임",
+        "bDecision": "rewrite",
+        "bPrompt": "저수지의 물 높이를 월별로 나타낸 그래프가 내려가다가 $6$월에 가장 낮은 점을 지나 다시 올라간다. 가장 낮은 점은 물 높이의 변화에서 어떤 때를 나타내는가?",
+        "bAnswer": "물 높이가 가장 낮은 때이며, 줄어들던 물 높이가 감소를 멈추고 증가하기 시작하는 때이다. 곧 $6$월에 감소에서 증가로 바뀐다.",
+        "bGoal": "가장 낮은 점을 변화가 바뀌는 때로 해석하기",
+        "bReason": "상황과 가장 낮은 점의 위치를 주어 변화가 바뀌는 때임을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "감소가 멈추고 증가가 시작되는 때",
+              "감소에서 증가로 바뀌는 때"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "그래프가 내려가다 다시 올라가면 가장 {낮은} 점에서 감소가 멈추고 {증가}가 시작된다.",
+        "cAnswers": [
+          "낮은",
+          "증가"
+        ],
+        "cReason": "'멈추고'는 떠올리기 어려운 임의 낱말이라 바뀌는 위치와 바뀐 뒤의 변화를 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1533,
+        "part": "m1plus",
+        "sourceFingerprint": "e06496048bee3d1167128217b0d784b080817836ca387ccab20cbe2cce9d8a5a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1533
+        },
+        "directReview": null,
+        "cMarkedSentence": "그래프가 내려가다 다시 올라가면 가장 {낮은} 점에서 감소가 멈추고 {증가}가 시작된다.",
+        "cSlotAnswers": [
+          "낮은",
+          "증가"
+        ],
+        "cStudentSentence": "그래프가 내려가다 다시 올라가면 가장 □ 점에서 감소가 멈추고 □가 시작된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "낮은",
+            "equivalentAnswers": [
+              "낮은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "증가",
+            "equivalentAnswers": [
+              "증가"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "낮은"
+          ],
+          [
+            "증가"
+          ]
+        ],
+        "proposalFingerprint": "b3265e9fe7fc979e90723c364264c8a231b72b2dffb2a1e2e78c785a76f5bbaa"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-03-xc23",
+        "section": "중1::4. 그래프와 비례::그래프의 이해",
+        "term": "일정하게 줄어드는 양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 시간마다 같은 양이 줄면 그래프는 오른쪽 아래로 향하는 {직선}이고, $x$축과 만나는 곳에서 양이 {$0$}이 된다.",
+        "example": {
+          "prompt": "$20\\,\\mathrm{L}$에서 $1$분에 $2\\,\\mathrm{L}$씩 빠지면 그래프가 $x$축과 만나는 시각은?",
+          "answer": "$10$분"
+        },
+        "studentC": "같은 시간마다 같은 양이 줄면 그래프는 오른쪽 아래로 향하는 □이고, $x$축과 만나는 곳에서 양이 □이 된다.",
+        "answers": [
+          "직선",
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-03-xc23",
+        "learningRole": "application",
+        "roleReason": "일정하게 줄어드는 양의 그래프와 $x$축과 만나는 점",
+        "bDecision": "rewrite",
+        "bPrompt": "$20\\,\\mathrm{L}$가 든 물통에서 물이 $1$분에 $2\\,\\mathrm{L}$씩 일정하게 빠진다. 시간을 $x$분, 남은 물의 양을 $y\\,\\mathrm{L}$로 나타낸 그래프는 어떤 모양인가? 그래프가 $x$축과 만나는 점의 뜻과 그때의 시각도 쓰시오.",
+        "bAnswer": "오른쪽 아래로 향하는 직선이다. $x$축과 만나는 점은 남은 물의 양이 $0\\,\\mathrm{L}$가 되는 때이고, $20\\div 2=10$이므로 $10$분이다.",
+        "bGoal": "일정하게 줄어드는 양의 그래프 해석하기",
+        "bReason": "처음 양과 줄어드는 빠르기를 주어 모양, 만나는 점의 뜻, 시각을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽 아래로 향하는 직선",
+              "내려가는 직선"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$축과 만나는 점에서 물의 양이 $0$이다",
+              "물이 다 빠진 때이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$분"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "그래프의 모양과 $x$축에서의 값을 하나씩 묻는 분명한 문장이다.",
+        "exampleNeeded": true,
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1534,
+        "part": "m1plus",
+        "sourceFingerprint": "92f7c4d1db0a0b0d192378bfd9219b0ba35830dc859d822573e7a1c3a36fc41e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1534
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 시간마다 같은 양이 줄면 그래프는 오른쪽 아래로 향하는 □이고, $x$축과 만나는 곳에서 양이 □이 된다.",
+        "cFrozenDefinition": "같은 시간마다 같은 양이 줄면 그래프는 오른쪽 아래로 향하는 {직선}이고, $x$축과 만나는 곳에서 양이 {$0$}이 된다.",
+        "cFrozenAnswers": [
+          "직선",
+          "$0$"
+        ],
+        "cMarkedSentence": "같은 시간마다 같은 양이 줄면 그래프는 오른쪽 아래로 향하는 {직선}이고, $x$축과 만나는 곳에서 양이 {$0$}이 된다.",
+        "cSlotAnswers": [
+          "직선",
+          "$0$"
+        ],
+        "cStudentSentence": "같은 시간마다 같은 양이 줄면 그래프는 오른쪽 아래로 향하는 □이고, $x$축과 만나는 곳에서 양이 □이 된다.",
+        "cAnswers": [
+          "직선",
+          "$0$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직선",
+            "equivalentAnswers": [
+              "직선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직선"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "66d7fe437de3e49f70c48cef58912fb827dbaff7a66da72df65eaecadb978353"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc1",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "표로 정비례 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "표에서 정비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$도 각각 {같은 배}가 되는지 확인한다.",
+        "example": {
+          "prompt": "$x$가 $1$, $2$, $3$일 때 $y$가 $5$, $10$, $15$이면 정비례하는가?",
+          "answer": "정비례한다"
+        },
+        "studentC": "표에서 정비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$도 각각 □가 되는지 확인한다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$의 값이 $1$, $2$, $3$일 때 $y$의 값이 차례로 $5$, $10$, $15$인 표가 있다. $y$가 $x$에 정비례하는지 판단하고, 표에서 무엇을 확인했는지 쓰시오.",
+        "bAnswer": "정비례한다. $x$가 $2$배, $3$배가 될 때 $y$도 $5$에서 $10$, $15$로 $2$배, $3$배가 되기 때문이다.",
+        "bGoal": "표의 값으로 정비례 여부 판단하기",
+        "bReason": "표가 지면에 없어 구체적인 값을 주고 확인한 내용까지 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정비례한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$가 $2$배, $3$배가 될 때 $y$도 $2$배, $3$배가 된다",
+              "$y\\div x$의 값이 항상 $5$로 일정하다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "확인할 내용 하나를 묻는 짧은 문장이며 '같은 배'는 문맥으로 알 수 있다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "표에서 정비례를 확인하는 방법",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1535,
+        "part": "m1plus",
+        "sourceFingerprint": "7c05f1872712e3096cbf210dc108e2db390d65473d259f7c884a0ab48064d000",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1535
+        },
+        "directReview": null,
+        "cFrozenSentence": "표에서 정비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$도 각각 □가 되는지 확인한다.",
+        "cFrozenDefinition": "표에서 정비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$도 각각 {같은 배}가 되는지 확인한다.",
+        "cFrozenAnswers": [
+          "같은 배"
+        ],
+        "cMarkedSentence": "표에서 정비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$도 각각 {같은 배}가 되는지 확인한다.",
+        "cSlotAnswers": [
+          "같은 배"
+        ],
+        "cStudentSentence": "표에서 정비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$도 각각 □가 되는지 확인한다.",
+        "cAnswers": [
+          "같은 배"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 배",
+            "equivalentAnswers": [
+              "같은 배",
+              "$2$배, $3$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "같은 배",
+            "accept": [
+              "$2$배, $3$배"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "같은 배",
+            "$2$배, $3$배"
+          ]
+        ],
+        "proposalFingerprint": "ace92174cb394dfc3fa89b9640f48e513a0ace5353bbb599d014c1ce3ebee3ca"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc2",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "관계식에서 $a$ 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "정비례 관계식 $y=ax$에서 $a$는 $x\\neq0$일 때 {$y\\div x$}의 값이다.",
+        "example": {
+          "prompt": "$x=5$일 때 $y=20$이면 $a$의 값은?",
+          "answer": "$4$"
+        },
+        "studentC": "정비례 관계식 $y=ax$에서 $a$는 $x\\neq0$일 때 □의 값이다.",
+        "answers": [
+          "$y\\div x$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$a=y\\div x$는 c3 성질과 xc11 관계식 세우기 과정에 이미 들어 있다.",
+        "exclusionReason": "B 제외: 서술형 목표가 m1-04-04-c3($y\\div x=a$)과 m1-04-04-xc11($a$를 구해 관계식 세우기)과 겹친다.",
+        "cDecision": "keep",
+        "cReason": "$x\\neq0$ 조건이 있고 $a$를 구하는 식 하나만 묻는다.",
+        "learningRole": "procedure",
+        "roleReason": "한 쌍의 값으로 $a$ 구하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1536,
+        "part": "m1plus",
+        "sourceFingerprint": "d92c97dbc1327df3372a325673378bd9687603c859711531c2782f6a8d6adb8a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1536
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "정비례 관계식 $y=ax$에서 $a$는 $x\\neq0$일 때 □의 값이다.",
+        "cFrozenDefinition": "정비례 관계식 $y=ax$에서 $a$는 $x\\neq0$일 때 {$y\\div x$}의 값이다.",
+        "cFrozenAnswers": [
+          "$y\\div x$"
+        ],
+        "cMarkedSentence": "정비례 관계식 $y=ax$에서 $a$는 $x\\neq0$일 때 {$y\\div x$}의 값이다.",
+        "cSlotAnswers": [
+          "$y\\div x$"
+        ],
+        "cStudentSentence": "정비례 관계식 $y=ax$에서 $a$는 $x\\neq0$일 때 □의 값이다.",
+        "cAnswers": [
+          "$y\\div x$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y\\div x$",
+            "equivalentAnswers": [
+              "$y\\div x$",
+              "$\\frac{y}{x}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$y\\div x$",
+            "accept": [
+              "$\\frac{y}{x}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$y\\div x$",
+            "$\\frac{y}{x}$"
+          ]
+        ],
+        "proposalFingerprint": "cf6eee66d1ff00c2cf547222ecdbd9e979fe2a56e04150f5028c023d032fc5ef"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc3",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "관계식으로 값 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "관계식 $y=ax$에 $x$의 값을 {대입}하면 $y$의 값을 {구할} 수 있다.",
+        "example": {
+          "prompt": "$y=6x$에서 $x=-2$일 때 $y$의 값은?",
+          "answer": "$-12$"
+        },
+        "studentC": "관계식 $y=ax$에 $x$의 값을 □하면 $y$의 값을 □ 수 있다.",
+        "answers": [
+          "대입",
+          "구할"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "대입 계산 한 번으로 끝나 서술할 관계나 이유가 없다.",
+        "exclusionReason": "B 제외: 단순 대입 계산이어서 서술형에 맞지 않고, 대입 절차는 m1-04-04-xc11에서 다룬다.",
+        "cDecision": "rewrite",
+        "cAfter": "관계식 $y=6x$에서 $x=-2$일 때 $y$의 값은 $x$ 대신 $-2$를 {대입}하여 $y=6\\times(-2)=${$-12$}로 구한다.",
+        "cAnswers": [
+          "대입",
+          "$-12$"
+        ],
+        "cReason": "'□ 수 있다'의 '구할'은 수학 내용이 없는 빈칸이라 구체 식으로 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$x$의 값을 대입해 $y$의 값 구하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1537,
+        "part": "m1plus",
+        "sourceFingerprint": "b7d168e2f209708d5ab0ff7a7b28676117bef57839c2581a606f07727966c1fe",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1537
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "관계식 $y=6x$에서 $x=-2$일 때 $y$의 값은 $x$ 대신 $-2$를 {대입}하여 $y=6\\times(-2)=${$-12$}로 구한다.",
+        "cSlotAnswers": [
+          "대입",
+          "$-12$"
+        ],
+        "cStudentSentence": "관계식 $y=6x$에서 $x=-2$일 때 $y$의 값은 $x$ 대신 $-2$를 □하여 $y=6\\times(-2)=$□로 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-12$",
+            "equivalentAnswers": [
+              "$-12$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "$-12$"
+          ]
+        ],
+        "proposalFingerprint": "a655d50f73fa9ff66f438f23b365cf84d5f6583ff1f48229f8c0d2962c578d4d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc4",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "생활 속 정비례",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 개의 값이 정해진 물건의 개수와 {전체 값}처럼, 한쪽이 늘면 다른 쪽도 {같은 배}로 느는 관계가 정비례이다.",
+        "example": {
+          "prompt": "한 개에 $800$원인 지우개 $x$개의 값 $y$원의 관계식은?",
+          "answer": "$y=800x$"
+        },
+        "studentC": "한 개의 값이 정해진 물건의 개수와 □처럼, 한쪽이 늘면 다른 쪽도 □로 느는 관계가 정비례이다.",
+        "answers": [
+          "전체 값",
+          "같은 배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "한 개에 $800$원인 지우개 $x$개의 값을 $y$원이라 할 때, $x$와 $y$ 사이의 관계식을 쓰고 $y$가 $x$에 정비례하는 까닭을 쓰시오.",
+        "bAnswer": "$y=800x$이다. 개수가 $2$배, $3$배가 되면 값도 $2$배, $3$배가 되므로($y=ax$ 꼴이므로) 정비례한다.",
+        "bGoal": "생활 속 상황을 정비례 관계식으로 나타내기",
+        "bReason": "어떤 상황인지 제목에 없어 지우개 값이라는 구체 장면과 변수를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=800x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수가 $2$배, $3$배가 되면 값도 $2$배, $3$배가 된다",
+              "$y=ax$ 꼴이다",
+              "$y\\div x$가 $800$으로 일정하다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 개에 $800$원인 지우개 $x$개의 값을 $y$원이라 하면, 개수가 $2$배, $3$배가 될 때 값도 $2$배, $3$배가 되므로 $y$는 $x$에 {정비례}하고 관계식은 {$y=800x$}이다.",
+        "cAnswers": [
+          "정비례",
+          "$y=800x$"
+        ],
+        "cReason": "'전체 값', '같은 배'는 임의로 고른 낱말이라 학생이 떠올리기 어렵다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "물건 값 상황의 정비례",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1538,
+        "part": "m1plus",
+        "sourceFingerprint": "a8705d1e6365b0a1b21366572e133ed643e3063ff48325cc2ffcddbf013d81bc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1538
+        },
+        "directReview": null,
+        "cMarkedSentence": "한 개에 $800$원인 지우개 $x$개의 값을 $y$원이라 하면, 개수가 $2$배, $3$배가 될 때 값도 $2$배, $3$배가 되므로 $y$는 $x$에 {정비례}하고 관계식은 {$y=800x$}이다.",
+        "cSlotAnswers": [
+          "정비례",
+          "$y=800x$"
+        ],
+        "cStudentSentence": "한 개에 $800$원인 지우개 $x$개의 값을 $y$원이라 하면, 개수가 $2$배, $3$배가 될 때 값도 $2$배, $3$배가 되므로 $y$는 $x$에 □하고 관계식은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정비례",
+            "equivalentAnswers": [
+              "정비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y=800x$",
+            "equivalentAnswers": [
+              "$y=800x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정비례"
+          ],
+          [
+            "$y=800x$"
+          ]
+        ],
+        "proposalFingerprint": "04222493cf50f7c7c36f4f7701d82e72c9d34e48bf1218dea1059dca34eca7f1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc5",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "정비례 그래프가 언제나 지나는 점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$y=ax$의 그래프는 언제나 {원점}을 지난다. $x=0$이면 $y$의 값이 {$0$}이기 때문이다.",
+        "example": {
+          "prompt": "$y=-5x$의 그래프가 지나는 점 가운데 좌표축 위의 점은?",
+          "answer": "$(0, 0)$"
+        },
+        "studentC": "$y=ax$의 그래프는 언제나 □을 지난다. $x=0$이면 $y$의 값이 □이기 때문이다.",
+        "answers": [
+          "원점",
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$a$의 값이 무엇이든 $y=ax$의 그래프가 항상 지나는 점을 쓰고, 그 까닭을 $x$에 알맞은 값을 대입하여 설명하시오.",
+        "bAnswer": "원점 $(0, 0)$을 지난다. $x=0$을 대입하면 $y=a\\times0=0$이기 때문이다.",
+        "bGoal": "정비례 그래프가 원점을 지나는 이유 설명하기",
+        "bReason": "지나는 점의 이름뿐 아니라 대입으로 보이는 이유까지 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원점",
+              "점 $(0, 0)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=0$이면 $y=0$이다",
+              "$y=a\\times0=0$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "결론과 이유를 한 빈칸씩 묻고 이유 문장이 식으로 뒷받침된다.",
+        "learningRole": "reason",
+        "roleReason": "원점을 지나는 까닭",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1539,
+        "part": "m1plus",
+        "sourceFingerprint": "3cb872122ec3a86dc3d37b4465930087620ab4631a58e3324c8088a8f21ad26e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1539
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=ax$의 그래프는 언제나 □을 지난다. $x=0$이면 $y$의 값이 □이기 때문이다.",
+        "cFrozenDefinition": "$y=ax$의 그래프는 언제나 {원점}을 지난다. $x=0$이면 $y$의 값이 {$0$}이기 때문이다.",
+        "cFrozenAnswers": [
+          "원점",
+          "$0$"
+        ],
+        "cMarkedSentence": "$y=ax$의 그래프는 언제나 {원점}을 지난다. $x=0$이면 $y$의 값이 {$0$}이기 때문이다.",
+        "cSlotAnswers": [
+          "원점",
+          "$0$"
+        ],
+        "cStudentSentence": "$y=ax$의 그래프는 언제나 □을 지난다. $x=0$이면 $y$의 값이 □이기 때문이다.",
+        "cAnswers": [
+          "원점",
+          "$0$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "원점",
+            "equivalentAnswers": [
+              "원점",
+              "점 $(0, 0)$",
+              "$(0, 0)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "원점",
+            "accept": [
+              "점 $(0, 0)$",
+              "$(0, 0)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "원점",
+            "점 $(0, 0)$",
+            "$(0, 0)$"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "eb03a08fb92708d5b0c4492efde5bd8ee8787aea4041b7b7c0862c362aa22591"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc6",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "정비례 그래프 그리기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$y=ax$의 그래프는 원점과 그래프 위의 다른 {한 점}을 찾아 {직선}으로 이으면 된다.",
+        "example": {
+          "prompt": "$y=2x$의 그래프를 그릴 때 원점 말고 찍을 점의 예는?",
+          "answer": "$(1, 2)$"
+        },
+        "studentC": "$y=ax$의 그래프는 원점과 그래프 위의 다른 □을 찾아 □으로 이으면 된다.",
+        "answers": [
+          "한 점",
+          "직선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$의 값이 수 전체일 때 $y=2x$의 그래프를 좌표평면에 그리려고 한다. 어떤 점들을 찾아 어떻게 이으면 되는지 점의 좌표를 들어 쓰시오.",
+        "bAnswer": "원점 $(0, 0)$과 그래프 위의 다른 한 점, 예를 들어 $(1, 2)$를 찍고 두 점을 지나는 직선을 긋는다.",
+        "bGoal": "두 점으로 정비례 그래프 그리는 방법 말하기",
+        "bReason": "그리기 절차를 구체적인 식 $y=2x$와 점의 좌표로 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원점과 $(1, 2)$를 찾는다",
+              "원점과 그래프 위의 다른 한 점을 찾는다",
+              "$y=2x$를 만족하는 서로 다른 두 점을 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점을 직선으로 잇는다",
+              "두 점을 지나는 직선을 긋는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "원점이 주어져 있고 필요한 점의 수와 선의 종류를 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "정비례 그래프 그리는 순서",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1540,
+        "part": "m1plus",
+        "sourceFingerprint": "c7f49c95848e4c401abab0ce7f684715bfdc6eb32176e05cb717a8efa7687324",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1540
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=ax$의 그래프는 원점과 그래프 위의 다른 □을 찾아 □으로 이으면 된다.",
+        "cFrozenDefinition": "$y=ax$의 그래프는 원점과 그래프 위의 다른 {한 점}을 찾아 {직선}으로 이으면 된다.",
+        "cFrozenAnswers": [
+          "한 점",
+          "직선"
+        ],
+        "cMarkedSentence": "$y=ax$의 그래프는 원점과 그래프 위의 다른 {한 점}을 찾아 {직선}으로 이으면 된다.",
+        "cSlotAnswers": [
+          "한 점",
+          "직선"
+        ],
+        "cStudentSentence": "$y=ax$의 그래프는 원점과 그래프 위의 다른 □을 찾아 □으로 이으면 된다.",
+        "cAnswers": [
+          "한 점",
+          "직선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 점",
+            "equivalentAnswers": [
+              "한 점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "직선",
+            "equivalentAnswers": [
+              "직선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 점"
+          ],
+          [
+            "직선"
+          ]
+        ],
+        "proposalFingerprint": "685a1a2866d1a12da31bd13129d4cfb6b143ad5377df711365f7b13893ae2357"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc7",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "$a>0$인 그래프의 방향",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$a$가 양수이면 $y=ax$의 그래프는 오른쪽 {위}로 향하는 {직선}이다.",
+        "example": {
+          "prompt": "$y=\\frac{1}{3}x$의 그래프는 오른쪽 위와 오른쪽 아래 가운데 어디로 향하는가?",
+          "answer": "오른쪽 위"
+        },
+        "studentC": "$a$가 양수이면 $y=ax$의 그래프는 오른쪽 □로 향하는 □이다.",
+        "answers": [
+          "위",
+          "직선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$a>0$일 때의 방향은 c5 물음이 $a<0$과 함께 이미 묻는다.",
+        "exclusionReason": "B 제외: m1-04-04-c5의 부호별 방향·사분면 서술과 목표가 겹치는 조각 항목이다.",
+        "cDecision": "keep",
+        "cReason": "양수 조건 하나만 다루는 짧은 확인 빈칸으로 쓸모가 있다.",
+        "learningRole": "definition",
+        "roleReason": "$a>0$일 때 그래프의 방향",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1541,
+        "part": "m1plus",
+        "sourceFingerprint": "2fe77d89914b4b63ffb5a3780a73624e79000b36e50867dd2d521021c2f8b0b1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1541
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$a$가 양수이면 $y=ax$의 그래프는 오른쪽 □로 향하는 □이다.",
+        "cFrozenDefinition": "$a$가 양수이면 $y=ax$의 그래프는 오른쪽 {위}로 향하는 {직선}이다.",
+        "cFrozenAnswers": [
+          "위",
+          "직선"
+        ],
+        "cMarkedSentence": "$a$가 양수이면 $y=ax$의 그래프는 오른쪽 {위}로 향하는 {직선}이다.",
+        "cSlotAnswers": [
+          "위",
+          "직선"
+        ],
+        "cStudentSentence": "$a$가 양수이면 $y=ax$의 그래프는 오른쪽 □로 향하는 □이다.",
+        "cAnswers": [
+          "위",
+          "직선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "위",
+            "equivalentAnswers": [
+              "위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "직선",
+            "equivalentAnswers": [
+              "직선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "위"
+          ],
+          [
+            "직선"
+          ]
+        ],
+        "proposalFingerprint": "b33f5eead5d64b174736225723926ee8789cc661e64601459f2d002992793664"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc8",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "$x$가 커질 때 $y$의 변화",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정비례 관계 $y=ax$에서 $a>0$이면 $x$의 값이 커질 때 $y$의 값도 {커지고}, $a<0$이면 $y$의 값은 {작아진다}.",
+        "example": {
+          "prompt": "$y=-3x$에서 $x$가 $1$에서 $2$로 커지면 $y$는?",
+          "answer": "$-3$에서 $-6$으로 작아진다"
+        },
+        "studentC": "정비례 관계 $y=ax$에서 $a>0$이면 $x$의 값이 커질 때 $y$의 값도 □, $a<0$이면 $y$의 값은 □.",
+        "answers": [
+          "커지고",
+          "작아진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "정비례 관계 $y=ax$에서 $x$의 값이 커질 때 $y$의 값은 $a>0$인 경우와 $a<0$인 경우에 각각 어떻게 변하는지 쓰시오.",
+        "bAnswer": "$a>0$이면 $y$의 값도 커지고, $a<0$이면 $y$의 값은 작아진다.",
+        "bGoal": "$a$의 부호에 따른 $y$의 값의 변화 구별하기",
+        "bReason": "어느 식의 변화인지와 $a$의 부호별 경우를 질문에 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a>0$이면 $y$의 값이 커진다",
+              "$a>0$이면 $y$의 값이 증가한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a<0$이면 $y$의 값이 작아진다",
+              "$a<0$이면 $y$의 값이 감소한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 모두 보이고 두 경우의 변화를 대비해 묻는 좋은 빈칸이다.",
+        "studentLabel": "정비례에서 $x$가 커질 때 $y$의 변화",
+        "learningRole": "definition",
+        "roleReason": "$a$의 부호와 $y$의 증가·감소",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1542,
+        "part": "m1plus",
+        "sourceFingerprint": "0216017fbc962e5350cfb92fa55e05688b4de2228193567eba48f52626d800fc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1542
+        },
+        "directReview": null,
+        "cFrozenSentence": "정비례 관계 $y=ax$에서 $a>0$이면 $x$의 값이 커질 때 $y$의 값도 □, $a<0$이면 $y$의 값은 □.",
+        "cFrozenDefinition": "정비례 관계 $y=ax$에서 $a>0$이면 $x$의 값이 커질 때 $y$의 값도 {커지고}, $a<0$이면 $y$의 값은 {작아진다}.",
+        "cFrozenAnswers": [
+          "커지고",
+          "작아진다"
+        ],
+        "cMarkedSentence": "정비례 관계 $y=ax$에서 $a>0$이면 $x$의 값이 커질 때 $y$의 값도 {커지고}, $a<0$이면 $y$의 값은 {작아진다}.",
+        "cSlotAnswers": [
+          "커지고",
+          "작아진다"
+        ],
+        "cStudentSentence": "정비례 관계 $y=ax$에서 $a>0$이면 $x$의 값이 커질 때 $y$의 값도 □, $a<0$이면 $y$의 값은 □.",
+        "cAnswers": [
+          "커지고",
+          "작아진다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "커지고",
+            "equivalentAnswers": [
+              "커지고",
+              "증가하고",
+              "커진다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작아진다",
+            "equivalentAnswers": [
+              "작아진다",
+              "감소한다",
+              "줄어든다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "커지고",
+            "accept": [
+              "증가하고",
+              "커진다"
+            ]
+          },
+          {
+            "answer": "작아진다",
+            "accept": [
+              "감소한다",
+              "줄어든다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "커지고",
+            "증가하고",
+            "커진다"
+          ],
+          [
+            "작아진다",
+            "감소한다",
+            "줄어든다"
+          ]
+        ],
+        "proposalFingerprint": "f683940684b3d8ddbffcff48265baba4c3d1a8db59686a38181823df60bfef0a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc9",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "정비례인 식 고르기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "{$y=ax$} 꼴만 정비례이고, $y=ax+b$ ($b\\neq0$)나 $xy=a$ 꼴은 {정비례가 아니다}.",
+        "example": {
+          "prompt": "$y=\\frac{x}{4}$, $y=x+4$ 가운데 정비례 관계는?",
+          "answer": "$y=\\frac{x}{4}$"
+        },
+        "studentC": "□ 꼴만 정비례이고, $y=ax+b$ ($b\\neq0$)나 $xy=a$ 꼴은 □.",
+        "answers": [
+          "$y=ax$",
+          "정비례가 아니다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "네 식 $y=\\frac{x}{4}$, $y=x+4$, $xy=4$, $y=-4x$ 가운데 $y$가 $x$에 정비례하는 것을 모두 고르고, 고른 기준을 쓰시오.",
+        "bAnswer": "$y=\\frac{x}{4}$와 $y=-4x$이다. $a\\neq0$일 때 $y=ax$ 꼴로 나타낼 수 있기 때문이다.",
+        "bGoal": "식의 꼴로 정비례 관계 가려내기",
+        "bReason": "고를 식이 지면에 없어 꼴이 다른 네 식을 주고 기준을 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=\\frac{x}{4}$를 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=-4x$를 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=ax$ 꼴로 나타낼 수 있다",
+              "$x$에 $0$이 아닌 일정한 수를 곱한 꼴이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$a\\neq0$일 때 {$y=ax$} 꼴로 나타낼 수 있는 관계만 정비례이다. 예를 들어 $y=\\frac{x}{4}$와 $y=x+4$ 가운데 정비례인 것은 {$y=\\frac{x}{4}$}이다.",
+        "cAnswers": [
+          "$y=ax$",
+          "$y=\\frac{x}{4}$"
+        ],
+        "cReason": "문장 맨 앞 빈칸은 단서가 없고 '정비례가 아니다'는 구 전체가 답이라 길다.",
+        "coreAfter": "{$y=ax$} ($a\\neq0$) 꼴만 정비례이고, $y=ax+b$ ($b\\neq0$)나 $xy=a$ 꼴은 {정비례가 아니다}.",
+        "coreReason": "$a=0$이면 $y=0$이 되어 정비례가 아니므로 $a\\neq0$ 조건을 보충한다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "식의 꼴로 정비례 판별하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1543,
+        "part": "m1plus",
+        "sourceFingerprint": "2126d23046c797900c9bdefde44b70dec7dd2e820236da718f6fb3718bc3867e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1543
+        },
+        "directReview": null,
+        "coreBeforeRepair": "$a\\neq0$일 때 {$y=ax$} 꼴만 정비례이고, $y=ax+b$ ($b\\neq0$)나 $xy=a$ 꼴은 {정비례가 아니다}.",
+        "coreRepairReason": "원본 핵심어 {$y=ax$}, {정비례가 아니다}를 유지했다. $a\\neq0$ 조건은 식 바로 뒤 괄호에 넣어, $b\\neq0$을 적은 방식과 맞추었다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "$a\\neq0$일 때 {$y=ax$} 꼴로 나타낼 수 있는 관계만 정비례이다. 예를 들어 $y=\\frac{x}{4}$와 $y=x+4$ 가운데 정비례인 것은 {$y=\\frac{x}{4}$}이다.",
+        "cSlotAnswers": [
+          "$y=ax$",
+          "$y=\\frac{x}{4}$"
+        ],
+        "cStudentSentence": "$a\\neq0$일 때 □ 꼴로 나타낼 수 있는 관계만 정비례이다. 예를 들어 $y=\\frac{x}{4}$와 $y=x+4$ 가운데 정비례인 것은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y=ax$",
+            "equivalentAnswers": [
+              "$y=ax$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y=\\frac{x}{4}$",
+            "equivalentAnswers": [
+              "$y=\\frac{x}{4}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y=ax$"
+          ],
+          [
+            "$y=\\frac{x}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "63811dad9fb63e73eb4c37b28a466786cb4cc1d5f667253deff331ceac45eee3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc10",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "$x$를 수로 나눈 꼴의 정비례",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$k$가 $0$이 아닐 때 $y=\\frac{x}{k}$는 $y=\\frac{1}{k}x$로 고쳐 쓸 수 있으므로 {정비례} 관계이고, $a$는 {$\\frac{1}{k}$}이다.",
+        "example": {
+          "prompt": "$y=\\frac{x}{3}$가 정비례 관계인 까닭은?",
+          "answer": "$y=\\frac{1}{3}x$ 꼴이어서"
+        },
+        "studentC": "$k$가 $0$이 아닐 때 $y=\\frac{x}{k}$는 $y=\\frac{1}{k}x$로 고쳐 쓸 수 있으므로 □ 관계이고, $a$는 □이다.",
+        "answers": [
+          "정비례",
+          "$\\frac{1}{k}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=\\frac{x}{3}$에서 $y$가 $x$에 정비례하는지 판단하고, 그 까닭을 $y=ax$ 꼴과 관련지어 쓰시오. 이때 $a$의 값도 쓰시오.",
+        "bAnswer": "정비례한다. $y=\\frac{1}{3}x$로 고쳐 쓸 수 있어 $y=ax$ 꼴이고 $a=\\frac{1}{3}$이다.",
+        "bGoal": "$y=\\frac{x}{k}$ 꼴이 정비례인 이유 설명하기",
+        "bReason": "문자 $k$ 대신 $y=\\frac{x}{3}$을 주어 고쳐 쓰는 이유를 직접 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정비례한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=\\frac{1}{3}x$로 고쳐 쓸 수 있다",
+              "$x$에 $\\frac{1}{3}$을 곱한 꼴이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=\\frac{1}{3}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "고쳐 쓴 식이 보이고 관계 이름과 $a$의 값을 묻는 빈칸이 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "나눗셈 꼴이 정비례인 까닭",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1544,
+        "part": "m1plus",
+        "sourceFingerprint": "00326378d6eb1fed7b5369720000cc163832a78fcd148150822bc34eaa17c410",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1544
+        },
+        "directReview": null,
+        "cFrozenSentence": "$k$가 $0$이 아닐 때 $y=\\frac{x}{k}$는 $y=\\frac{1}{k}x$로 고쳐 쓸 수 있으므로 □ 관계이고, $a$는 □이다.",
+        "cFrozenDefinition": "$k$가 $0$이 아닐 때 $y=\\frac{x}{k}$는 $y=\\frac{1}{k}x$로 고쳐 쓸 수 있으므로 {정비례} 관계이고, $a$는 {$\\frac{1}{k}$}이다.",
+        "cFrozenAnswers": [
+          "정비례",
+          "$\\frac{1}{k}$"
+        ],
+        "cMarkedSentence": "$k$가 $0$이 아닐 때 $y=\\frac{x}{k}$는 $y=\\frac{1}{k}x$로 고쳐 쓸 수 있으므로 {정비례} 관계이고, $a$는 {$\\frac{1}{k}$}이다.",
+        "cSlotAnswers": [
+          "정비례",
+          "$\\frac{1}{k}$"
+        ],
+        "cStudentSentence": "$k$가 $0$이 아닐 때 $y=\\frac{x}{k}$는 $y=\\frac{1}{k}x$로 고쳐 쓸 수 있으므로 □ 관계이고, $a$는 □이다.",
+        "cAnswers": [
+          "정비례",
+          "$\\frac{1}{k}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정비례",
+            "equivalentAnswers": [
+              "정비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{k}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{k}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정비례"
+          ],
+          [
+            "$\\frac{1}{k}$"
+          ]
+        ],
+        "proposalFingerprint": "6208a3eb695642a01371707bdb650f060df0c6e056ac0aa7dd4d924db58b642c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc11",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "정비례 관계식 세우기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정비례하는 두 양은 $y=ax$로 놓고 $x$가 $0$이 아닌 한 쌍의 값을 {대입}해 {$a$}를 구한다.",
+        "example": {
+          "prompt": "$y$가 $x$에 정비례하고 $x=-3$일 때 $y=9$이면 관계식은?",
+          "answer": "$y=-3x$"
+        },
+        "studentC": "정비례하는 두 양은 $y=ax$로 놓고 $x$가 $0$이 아닌 한 쌍의 값을 □해 □를 구한다.",
+        "answers": [
+          "대입",
+          "$a$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$y$가 $x$에 정비례하고 $x=-3$일 때 $y=9$이다. $x$와 $y$ 사이의 관계식을 구하는 과정을 쓰시오.",
+        "bAnswer": "$y=ax$로 놓고 $x=-3$, $y=9$를 대입하면 $9=-3a$이므로 $a=-3$이다. 따라서 $y=-3x$이다.",
+        "bGoal": "한 쌍의 값으로 정비례 관계식 세우기",
+        "bReason": "세울 식의 조건이 없어 한 쌍의 값을 주고 과정을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=ax$에 $x=-3$, $y=9$를 대입한다",
+              "$a=9\\div(-3)=-3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=-3x$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$x\\neq0$ 조건이 있고 대입해서 $a$를 구하는 절차의 핵심만 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "대입으로 $a$를 구해 식 세우기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1545,
+        "part": "m1plus",
+        "sourceFingerprint": "1adbdd58c2aead1b830e51563f37d6db8e3faeb4d69d1a8ba184b99ab56e8a43",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1545
+        },
+        "directReview": null,
+        "cFrozenSentence": "정비례하는 두 양은 $y=ax$로 놓고 $x$가 $0$이 아닌 한 쌍의 값을 □해 □를 구한다.",
+        "cFrozenDefinition": "정비례하는 두 양은 $y=ax$로 놓고 $x$가 $0$이 아닌 한 쌍의 값을 {대입}해 {$a$}를 구한다.",
+        "cFrozenAnswers": [
+          "대입",
+          "$a$"
+        ],
+        "cMarkedSentence": "정비례하는 두 양은 $y=ax$로 놓고 $x$가 $0$이 아닌 한 쌍의 값을 {대입}해 {$a$}를 구한다.",
+        "cSlotAnswers": [
+          "대입",
+          "$a$"
+        ],
+        "cStudentSentence": "정비례하는 두 양은 $y=ax$로 놓고 $x$가 $0$이 아닌 한 쌍의 값을 □해 □를 구한다.",
+        "cAnswers": [
+          "대입",
+          "$a$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "$a$"
+          ]
+        ],
+        "proposalFingerprint": "399714d0836081296bc2a2e85ec9cb0c8534c456cfe16ae61a388ffc0e958141"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc12",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "지나는 사분면 판단",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$y=ax$의 그래프가 지나는 사분면은 {$a$의 부호}만으로 {정해진다}.",
+        "example": {
+          "prompt": "$y=-\\frac{3}{4}x$의 그래프가 지나는 사분면은?",
+          "answer": "제$2$, $4$사분면"
+        },
+        "studentC": "$y=ax$의 그래프가 지나는 사분면은 □만으로 □.",
+        "answers": [
+          "$a$의 부호",
+          "정해진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=-\\frac{3}{4}x$의 그래프가 지나는 사분면을 모두 쓰고, 식의 어느 부분을 보고 판단했는지 쓰시오.",
+        "bAnswer": "제$2$, $4$사분면을 지난다. $x$에 곱해진 수 $-\\frac{3}{4}$이 음수이기 때문이다.",
+        "bGoal": "$a$의 부호로 지나는 사분면 판단하기",
+        "bReason": "판단할 식이 없어 분수 계수의 식을 주고 근거가 부호임을 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "제$2$, $4$사분면"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$에 곱해진 수가 음수이다",
+              "$a<0$이다",
+              "$-\\frac{3}{4}<0$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$y=ax$의 그래프가 지나는 사분면은 $a$의 {부호}로 정해진다. 예를 들어 $y=-\\frac{3}{4}x$의 그래프는 제{$2$, $4$}사분면을 지난다.",
+        "cAnswers": [
+          "부호",
+          "$2$, $4$"
+        ],
+        "cReason": "문장 끝의 '정해진다'는 수학 내용이 없는 빈칸이라 예로 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "식을 보고 사분면 판단하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1546,
+        "part": "m1plus",
+        "sourceFingerprint": "fdebd31f26c1f1ac693d4de316eea7fdb5b228625bf610c9831077af7d88b184",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1546
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=ax$의 그래프가 지나는 사분면은 $a$의 {부호}로 정해진다. 예를 들어 $y=-\\frac{3}{4}x$의 그래프는 제{$2$, $4$}사분면을 지난다.",
+        "cSlotAnswers": [
+          "부호",
+          "$2$, $4$"
+        ],
+        "cStudentSentence": "$y=ax$의 그래프가 지나는 사분면은 $a$의 □로 정해진다. 예를 들어 $y=-\\frac{3}{4}x$의 그래프는 제□사분면을 지난다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$, $4$",
+            "equivalentAnswers": [
+              "$2$, $4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부호"
+          ],
+          [
+            "$2$, $4$"
+          ]
+        ],
+        "proposalFingerprint": "8ee058edac53d45de2e834988bc078e905e124b584721a384631284871b128c0"
+      }
+    }
+  ]
+}

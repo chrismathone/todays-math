@@ -1,0 +1,78 @@
+import fs from 'node:fs';
+const root='C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3';
+const a=JSON.parse(fs.readFileSync(root+'/audit.json','utf8')),c=JSON.parse(fs.readFileSync(root+'/coverage-ledger.json','utf8'));
+const negative=JSON.parse(fs.readFileSync(root+'/negative-resolution-ctx_9cb9b54195a9.json','utf8'));
+const additional=JSON.parse(fs.readFileSync(root+'/additional-negative-resolution-ctx_9cb9b54195a9.json','utf8'));
+const text=`# 중1~3 학생용 개념백지: 내용 계획안
+
+기준 원문은 main \`13bf05dce\`에서 추출한 \`D:/tmp/concept-student-clear-20261006/m1m2m3.json\`이다. 3,719개 ID의 원문 B 제목·정의와 실제 C 학생 문장을 대상으로 구체적인 B 질문·답·필수 의미, C 유지·교정·형식 제외 제안을 작성했다. 생산 코드·데이터, 학생 기록, 발행 교재는 수정하지 않았다.
+
+현재 제안은 **${a.rows.length}개**, 현재 제안 해시와 학습 역할에 연결된 최종 읽기 기록은 **${a.finalEditorialCount}개**, 미완료는 **${a.finalEditorialPendingIds.length}개**다. 읽기 완료와 독립 승인은 다르다. Root와 독립 Claude 검토자의 계획 합의, 실제 학생 지면 확인 및 생산 통합은 별도 단계다.
+
+|학년|기본|확장|합계|
+|---|---:|---:|---:|
+|중1|362|1,196|1,558|
+|중2|386|1,148|1,534|
+|중3|177|450|627|
+
+## 우선 읽을 파일
+
+- [audit.json](audit.json): 원문 순서의 전체 제안과 원문·제안 SHA-256. \`proposal-cohorts.json\`은 바이트가 같은 호환 파일이다.
+- [coverage-ledger.json](coverage-ledger.json): 3,719개 ID 전부의 결정, 현재 읽기 여부, 실제 읽은 사람과 증거 위치.
+- [final-editorial.json](final-editorial.json): 최종 B 질문·답·기준, C 문장·허용 답, 학습 역할 및 바뀐 일반 설명에 대한 개별 읽기 기록.
+- [독립 지적 대조 기록](negative-resolution-ctx_9cb9b54195a9.json): 현재 제안 해시와 일치했던 지적 ${negative.scopeCount}개 중 ${negative.resolved}개 대조 완료(수정 ${negative.amended}개, 근거 유지 ${negative.retainedWithReason}개), 미완료 ${negative.pending}개. 기존 제안과 해시가 달랐던 ${negative.staleNotApplied.length}개 지적은 자동으로 적용하지 않고 보존했다.
+- [후속 독립 지적 대조 기록](additional-negative-resolution-ctx_9cb9b54195a9.json): 후속 두 시점에서 배정된 ${additional.resolved}건도 대조 완료(수정 ${additional.amended}건, 근거 유지 ${additional.retainedWithReason}건). 앞의 276건과 일부 ID가 겹치므로 두 수를 고유 ID 수로 합산하지 않는다.
+- [samples-current-blind.md](samples-current-blind.md): 모든 학년을 포함한 현재 대표 16문항. 학생에게는 학년과 질문만 보인다.
+- [samples-current-source-review.md](samples-current-source-review.md), [JSON](samples-current-source-review.json): 같은 번호의 원문·제안·답·필수 의미·사유·해시 대조.
+- [examples-needed.json](examples-needed.json): 예시나 구체적인 대상을 필요로 한다고 개별 작성·검토에서 표시한 ${a.summary.examplesNeeded}개. 이미 질문에 예를 넣은 항목도 포함하므로 미완료 개수와 같지 않다.
+- [evidence/source.json](evidence/source.json): 제공된 원문을 바이트 그대로 보존한 파일. 원문 \`term\`, \`definition\`, \`studentC\`, \`answers\`, 기존 예를 모두 보존한다.
+
+## 내용 설계 제안
+
+B는 편집 제목을 학생 질문으로 사용하지 않는다. 상황, 필요한 조건, 기호의 뜻, 답할 범위를 질문 자체에 둔다. 정식 용어의 뜻은 정의 질문으로 물을 수 있고, 원리·비교·방법은 학생이 무엇을 설명해야 하는지 명시한다. 질문이 예나 이유를 요구하면 모범답과 필수 의미에도 그것을 포함한다. 한 가지 방법을 지정하지 않은 물음에서는 다른 올바른 풀이도 허용한다.
+
+\`bPrompt\`, \`bAnswer\`, \`bRequiredIdeas\`를 따로 둔다. 일반 개념 정의를 구체적인 B 질문의 답으로 대신 쓰면 질문과 채점 범위가 어긋난다. \`anyOf\`는 같은 의미를 표현하는 허용 예이며 모든 올바른 답의 문자열 목록은 아니다. 서로 다른 계산 결과·조건·분류를 동의어로 합치지 않는다.
+
+C는 제목·앞 문제·교사 설명 없이 실제 문장을 읽는다. 짧고 유용한 수 비교, 명확한 계산이나 낱말 빈칸은 유지한다. 대상이 생략된 '분모', 긴 임의 구절, 문법상 들어갈 수 없는 답, 여러 답의 순서가 정해지지 않는 빈칸을 고쳤다. 순서가 수학적으로 무관하면 한 쌍의 답을 허용하거나 문장에 역할을 정한다. 조사가 정답을 미리 알려 주는 경우도 점검했다.
+
+\`cAfter\`와 \`cMarkedSentence\`는 정답 표시가 포함된 완전한 C 제안 문장이다. \`cStudentSentence\`는 실제 빈칸 지면, \`cAcceptedAnswers\`는 빈칸 순서별 답이다. LaTeX 내부 중괄호는 빈칸 표시와 구분한다. C 교정을 일반 학습 설명으로 자동 적용하지 않는다. 일반 설명 자체에 수학적 오류, 빠진 조건, 불명확한 학생 언어가 있을 때만 \`coreAfter\`와 \`coreReason\`을 따로 제안한다.
+
+형식별 \`exclude\`는 문항 제외 제안이다. ID나 학생 이력을 삭제하지 않는다. B에서 중복되어 제외해도 C에서 짧은 비교·계산 확인으로 유용할 수 있다. 반복을 제외할 때에는 중복되는 목표 또는 대체 ID를 사유에 남긴다. 현재 B 교정 ${a.summary.B.rewrite??0}개·제외 ${a.summary.B.exclude??0}개, C 유지 ${a.summary.C.keep??0}개·교정 ${a.summary.C.rewrite??0}개·제외 ${a.summary.C.exclude??0}개이며 일반 설명 교정은 ${a.summary.coreChanges}개다.
+
+## 실제 읽기에서 확인한 문제
+
+- 중1: 방정식 풀이에서 나누는 계수가 0이 아님을 표시하고, 좌변·우변 배치는 가능한 한 방법임을 밝힌다. 둘레를 도는 문제는 같은 출발점·동시 출발·일정한 속력·출발 뒤 첫 만남을 질문에 둔다. 도형의 점과 선분은 어느 위치인지 보이게 한다.
+- 중2: 순환소수의 분모 규칙은 약분 전 표현에 적용한다. '전체의 수/앞부분'은 구체적인 두 식의 정수 부분으로 설명한다. 함수에서는 함수의 이름, 입력, 함숫값을 구분한다. 실제 길이·질량·시간 문제는 단위, 처음 값, 가능한 범위를 같이 제시한다.
+- 중3: 제곱근에서는 자연수의 제곱과 실수의 제곱을 혼동하지 않는다. 이차함수의 축·꼭짓점은 0이 아닌 이차항 계수와 질문 속 식을 기준으로 묻는다. 통계는 상자그림이 알려 주는 다섯 요약값과 전체 자료의 분포를 구분한다.
+
+구체적인 수를 넣더라도 일반 원리·관계가 남도록 했다. C용 한 번의 계산을 일반 개념 설명으로 바꾸지 않았다. 새 예가 필요한 표시, 원래 예, 제안 질문을 함께 남겨 예시가 실제로 범위를 밝히는지 후속 검토할 수 있다.
+
+## 읽기와 검증의 출처
+
+최초 전수 초안은 각 ID의 원문 제목·정의·C 문장·답·기존 예를 제공한 격리 Claude 작성 보조 결과를 포함한다. 이는 앞서 허용된 작성 보조이며 독립 Claude 승인과 다르다. \`audit.reviewedIds\`는 이 작성 범위를 뜻한다. 모든 ID를 한 명이 직접 읽었다는 뜻으로 사용하지 않는다.
+
+최종 읽기는 실제 읽은 주체별로 구분한다: ${Object.entries(c.readerCounts).map(([k,v])=>`${k}: ${v}개`).join('; ')}. Root·보조 Codex의 기록을 가져올 때 원문 순서, 현재 제안 해시, 학습 역할 및 정규화 결과를 대조했다. 수정을 요구한 항목은 주 담당자가 전체 질문·답·기준을 다시 읽고 고친 뒤 수정된 문장까지 재확인했다. 표기만 후속 수정한 경우 이전 전체 읽기와 수정 필드 읽기 증거를 별도로 보존했다.
+
+\`evidence/assist-2400-2899-20261007/correction-resolution.json\`에는 보조 500개 중 수정 요청 90개의 해결 과정을 기록했다. \`evidence/assist-remaining-380-20261007/correction-resolution.json\`에는 별도 보조 380개 중 수정 요청 95개의 해결 과정을 기록했다. 나머지 410개와 285개는 해당 보조가 직접 읽은 제안 해시를 대조하여 가져왔으며, 이후 수정한 항목은 현재 장부에서 실제 후속 읽은 사람으로 표시한다. 각 Root 보조 읽기 폴더에도 당시 수정 해결 기록이 있다. 이후 표기 교정은 \`evidence/notation-reread-ctx_9cb9b54195a9/\`와 개별 장부의 \`notationReread\`로 이어진다. 과거 시점의 입력·판정 파일은 현재 제안으로 덮어쓰지 않는다.
+
+독립 지적의 대조에서는 실제 문장과 수학 의미를 다시 읽었다. 밑과 지수, 양수와 음수, 제곱근의 부등호, 삼각비의 증가·감소처럼 같은 단어나 기호가 있더라도 조건과 결론의 관계를 판단하는 짧은 문항은 유지할 수 있다. 내심은 원문에서 내접원의 중심으로 정의되므로 같은 반지름을 근거로 쓰는 답을 무조건 순환 논증으로 배제하지 않았다. 반면 ‘끝이 무엇’, ‘이 수’, ‘보통 먼저’처럼 대상이나 답 범위가 정해지지 않는 표현은 구체화했다. 각 유지 판단에도 원문과 현재 제안 및 이유를 남겼으며, 유지 판정이 독립 승인으로 바뀌는 것은 아니다.
+
+[추가 예시 관찰](evidence/negative-example-observations-ctx_9cb9b54195a9.json)에는 실수 분류와 인수분해에서 새로 넣은 구체 예, 삼각비의 실제 값 읽기로 확장할 때 필요한 표를 기록했다. 삼각비 표의 수치를 묻는 추가 예에는 표 자체를 학생에게 보여 주어야 한다.
+
+현재 검증 파일은 다음과 같다. 과거 \`validation.json\`, \`resume-validation.json\`, \`samples-blind.md\`, \`samples-source-review.md\`는 작성 당시 자료이므로 현재 승인 근거로 쓰지 않는다.
+
+- [구조 검증](resume-validation-ctx_9cb9b54195a9.json): ID·순서·원문 해시·제안 해시·빈칸 파서·허용 답·일반 설명 사유.
+- [실제 통합 계약 검증](editorial-validation-ctx_9cb9b54195a9.json): 통합 작업트리의 \`normalizeProposal\`, \`editorialRows\`, \`verifyEditorialRow\`로 현재 질문과 실제 읽기 장부의 대응을 확인.
+- [실제 통합 표기 검증](resume-notation-ctx_9cb9b54195a9.json): \`bankNotationFaults\`로 제안 적용 결과를 확인.
+
+이 검증들은 수학·교육적 승인이나 학생 이해 실험을 대신하지 않는다. 생산 통합, 화면·인쇄·교재 내보내기, 독립 검토의 최종 승인과 배포는 Root 소유다. TypeSafe 채점 설계는 프로젝트 지침에 따라 결정론적 계산과 별도로 다루며, 이 작업에서는 API나 생산 채점 경로를 구현하지 않았다.
+`;
+const addendum=`
+## 마지막 대조와 남은 통합 사항
+
+뒤쪽 독립 지적 116개에는 별도 보조 Codex의 제안을 참고했다. 보조 보고서 커밋은 90cd2b8b113db765ed59cff5251164523458b883이며, 각 20개 단위의 원문·제안·before/after 읽기 증거를 이 보고서의 evidence/tail-negative-* 폴더에 바이트 그대로 보존했다. 주 담당자는 116개 모두 원문과 질문·답·기준·C·바뀐 일반 설명을 다시 읽고 적용 후 실제 출력까지 재독했다. 그대로 가져온 독립 승인으로 처리하지 않았다.
+
+최종 전수 구조·읽기 계약 검사는 3,719개가 통과했다. 갱신된 분수 조사 검사에서 제안 B·C·기준의 오류 9곳을 8개 ID에서 고쳤다. 원문에 남은 예제 1곳의 조사 수정은 [source-example-correction-ctx_9cb9b54195a9.json](source-example-correction-ctx_9cb9b54195a9.json)에 따로 제안했다. 원문 예제를 바꾸는 계약은 현재 정규화기에 없으므로 원문을 조용히 바꾸지 않았으며, 표기 검사 결과의 그 1건과 수정 제안을 함께 인계한다. 수학 내용의 변화는 없다.
+`;
+fs.writeFileSync(root+'/README.md',text+addendum);
+console.log(JSON.stringify({current:a.finalEditorialCount,pending:a.finalEditorialPendingIds.length,bytes:Buffer.byteLength(text)}));

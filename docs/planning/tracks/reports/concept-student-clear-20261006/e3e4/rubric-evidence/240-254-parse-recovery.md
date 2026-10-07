@@ -1,0 +1,1 @@
+The raw output contained an invalid preliminary array followed by an explicitly corrected complete array. Parsed the final complete JSON array only; verified all 14 IDs and order against the frozen selection. Raw output and original parse error remain preserved. This is parsing recovery, not mathematical or editorial approval.

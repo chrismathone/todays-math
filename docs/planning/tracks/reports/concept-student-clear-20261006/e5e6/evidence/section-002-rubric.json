@@ -1,0 +1,902 @@
+{
+  "rows": [
+    {
+      "id": "e5-1-1-3-c1",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈과 나눗셈을 먼저 계산하고 그다음 덧셈과 뺄셈을 계산한다",
+            "나눗셈과 곱셈을 먼저, 덧셈과 뺄셈을 나중에 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱셈과 나눗셈",
+            "나눗셈과 곱셈",
+            "곱셈·나눗셈",
+            "$\\times$와 $\\div$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-c2",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 안을 가장 먼저 계산한다",
+            "( ) 안을 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그다음 곱셈과 나눗셈, 마지막으로 덧셈과 뺄셈을 계산한다",
+            "괄호 다음 곱셈·나눗셈, 그다음 덧셈·뺄셈 순서로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$34$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "괄호 안",
+            "괄호 속",
+            "( ) 안",
+            "괄호 안의 식",
+            "$6+2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$34$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-c3",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞에서부터 차례로 계산한다",
+            "왼쪽부터 차례로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$27$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "앞",
+            "왼쪽",
+            "앞쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "$27$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc1",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$에 더해지는 수는 $8\\div2\\times3$을 계산한 값 $12$이다",
+            "더해지는 수는 $12$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 없으면 곱셈과 나눗셈을 덧셈보다 먼저 계산하기 때문이다",
+            "곱셈·나눗셈이 덧셈보다 먼저라서 $8\\div2\\times3$을 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bReason": "c2가 같은 세 단계 차례를 식 적용과 함께 묻는 중복이다.",
+      "exclusionReason": "B 제외: c2와 답이 같은 중복.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "덧셈과 뺄셈",
+            "덧셈·뺄셈",
+            "뺄셈과 덧셈",
+            "$+$와 $-$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc3",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bReason": "c3와 규칙·답이 같은 중복이다.",
+      "exclusionReason": "B·C 모두 c3와 중복.",
+      "bRequiredIdeas": []
+    },
+    {
+      "id": "e5-1-1-3-xc4",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다",
+            "왼쪽부터 차례로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12+3$을 먼저 더하면 $20-15=5$가 되어 값이 달라진다",
+            "먼저 더하면 $5$가 되어 $11$과 다르다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "앞에서부터",
+            "왼쪽부터",
+            "앞에서부터 차례로"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc5",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 안을 먼저 계산한 결과가 하나의 수가 되어 나머지 계산에 쓰인다",
+            "괄호 안의 계산 결과를 하나의 수로 보고 나머지를 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$",
+            "$8+4$를 계산한 $12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc6",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bReason": "밑줄 긋기는 풀이 요령이며 c1과 답이 중복된다.",
+      "exclusionReason": "사소한 풀이 행동이며 c1과 중복.",
+      "bRequiredIdeas": []
+    },
+    {
+      "id": "e5-1-1-3-xc7",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bReason": "이름 뜻풀이뿐이라 서술할 내용이 없다.",
+      "exclusionReason": "B 제외: 용어 뜻풀이.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "혼합"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc8",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bReason": "식을 한 줄씩 다시 쓰는 풀이 습관이다.",
+      "exclusionReason": "B 제외: 풀이 습관.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$38$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc9",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "물건 전체의 값은 곱셈으로 나타낸다",
+            "물건값은 곱셈으로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "똑같이 나눈 한 명의 몫은 나눗셈으로 나타낸다",
+            "똑같이 나누는 것은 나눗셈으로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$600\\times3\\div2$",
+            "$(600\\times3)\\div2$",
+            "$3\\times600\\div2$",
+            "$600\\div2\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$900$원"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$600\\times3\\div2$",
+            "$(600\\times3)\\div2$",
+            "$3\\times600\\div2$",
+            "$600\\div2\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$900$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc10",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bReason": "계산 개수를 세어 보는 점검 요령이다.",
+      "exclusionReason": "B·C 제외: 점검 행동이라 가치가 낮음.",
+      "bRequiredIdeas": []
+    },
+    {
+      "id": "e5-1-1-3-xc11",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈과 나눗셈이 모두 덧셈·뺄셈보다 앞에 놓인 식이다",
+            "곱셈·나눗셈이 덧셈·뺄셈보다 앞에 있는 식이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\div3\\times2+12$가 그런 식이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\div3\\times2+12=16$이다",
+            "값은 $16$이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc13",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 안의 덧셈을 곱셈과 나눗셈보다 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$에 곱해지는 수는 $3+2=5$이다",
+            "곱해지는 수는 $5$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "먼저",
+            "앞서",
+            "먼저 한다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc14",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈 부분과 나눗셈 부분을 각각 먼저 계산한 다음 두 결과를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "더하는 두 수는 $28$과 $4$이다",
+            "$7\\times4=28$, $36\\div9=4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$32$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$28$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$32$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc15",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "첫째 식에서 $36$을 나누는 수는 $4+2=6$이고 둘째 식에서는 $4$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "첫째 식의 값은 $18$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘째 식의 값은 $15$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 있으면 괄호 안의 덧셈을 먼저 하고 없으면 나눗셈과 곱셈을 먼저 하므로 값이 달라진다",
+            "괄호가 먼저 계산할 부분을 바꾸어 값이 달라진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc16",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈을 뺄셈보다 먼저 계산하므로 빼는 수는 곱셈의 결과이다",
+            "뺄셈 뒤의 곱셈을 먼저 계산한 값이 빼는 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는 수는 $6\\times7=42$이다",
+            "빼는 수는 $42$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$42$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc17",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "뒤 식에서 앞 식의 결과가 쓰인 자리에 앞 식을 넣는다",
+            "$800$ 자리에 $500+300$을 넣는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(500+300)\\times2$",
+            "$2\\times(500+300)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 필요하다",
+            "괄호를 써야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 없으면 $500+300\\times2=1100$이 되어 값이 달라지므로 합을 먼저 계산해야 한다",
+            "괄호가 없으면 곱셈을 먼저 하여 $1100$이 되어 $1600$과 다르다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$(500+300)\\times2$",
+            "$2\\times(500+300)$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc18",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "뒤의 수는 나누는 수가 아니라 앞의 나눗셈의 몫에 곱해진다",
+            "나눈 결과에 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바르게 계산하면 $16$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\times2$를 먼저 하면 $40\\div10=4$로 값이 다르다",
+            "먼저 곱하면 $4$가 되어 틀린다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc19",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약속이 없으면 계산하는 사람마다 차례가 달라 같은 식의 값이 여러 가지가 된다",
+            "사람마다 다른 값이 나올 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈을 먼저 하면 $14$이고 앞에서부터 하면 $20$이다",
+            "$2+3\\times4$는 $14$와 $20$ 두 값이 나올 수 있다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은 값",
+            "같은 답",
+            "같은 결과",
+            "하나의 값"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc20",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 계산하고 싶은 부분을 괄호로 묶는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(6+18)\\div3-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "괄호",
+            "소괄호",
+            "$(\\ )$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc21",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합이나 차 전체를 곱하거나 나눌 때 그 합이나 차를 괄호로 묶는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(12+6)\\div3\\times4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "괄호로 묶는다",
+            "$(\\ )$로 묶는다",
+            "괄호 안에 쓴다",
+            "괄호를 친다",
+            "괄호를 쓴다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc22",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 안에서도 곱셈과 나눗셈을 덧셈과 뺄셈보다 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$을 나누는 수는 $10$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc23",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합이나 차 전체를 곱하거나 나눌 때는 괄호가 필요하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈·나눗셈의 결과끼리 더하거나 뺄 때는 괄호가 필요 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$400\\times5+900\\div3$",
+            "$900\\div3+400\\times5$",
+            "$5\\times400+900\\div3$",
+            "$(400\\times5)+(900\\div3)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2300$원"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$400\\times5+900\\div3$",
+            "$900\\div3+400\\times5$",
+            "$5\\times400+900\\div3$",
+            "$(400\\times5)+(900\\div3)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2300$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc24",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으므로 곱셈과 나눗셈을 먼저 해야 하는데 $8+4$를 먼저 더한 것이 잘못이다",
+            "덧셈을 곱셈보다 먼저 한 것이 잘못이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "덧셈",
+            "더하기",
+            "$8+4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc25",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$24\\times2\\div4=12$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24\\div4\\times2=12$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 값이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "기호와 수를 함께 옮겨 자리를 바꾸면 값이 변하지 않는다",
+            "$\\times2$와 $\\div4$의 자리를 바꾸어도 값이 같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc26",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 괄호 안을 각각 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그다음 남은 곱셈과 나눗셈을 앞에서부터 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "서로 곱하는 두 수는 $9-3=6$과 $2+5=7$이다",
+            "곱하는 두 수는 $6$과 $7$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc27",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어림한 값과 계산한 답이 크게 다르면 계산이나 차례가 틀렸음을 알 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약 $200$",
+            "$200$쯤",
+            "$200$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$99+51$을 먼저 더한 뒤 곱했을 것이다",
+            "덧셈을 곱셈보다 먼저 계산했을 것이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$200$",
+            "약 $200$",
+            "$200$쯤"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import type {
 import { conceptMemoryRows, memoryRowMarkdown } from "../conceptRows";
 import { conceptScriptFor } from "../conceptScripts";
 import { ACTIVITY_LABELS } from "../activities";
+import { conceptQuestionBlocks } from "../conceptQuestions";
+import { reviewedQuestionMode } from "@/lib/concept-blank/questions";
 
 export function activityText(
   activity: TextbookActivity,
@@ -36,13 +38,13 @@ export function writingActivity(
   });
 }
 
-/** Selected phases use identical source rows and identical eight-row partitions. */
+/** Legacy phases share definition rows; new questions have their own frozen rows and groups. */
 export function memoryActivityBlocks(input: {
   entries: readonly ConceptEntry[];
+  questionEntries?: readonly ConceptEntry[];
   conceptKey: string;
   components: QuickCreateComponents;
 }): ManuscriptBlock[] {
-  const rows = conceptMemoryRows(input.entries);
   const phases = [
     {
       enabled: input.components.conceptStudy,
@@ -66,6 +68,24 @@ export function memoryActivityBlocks(input: {
   return phases
     .filter((option) => option.enabled)
     .flatMap((option) => {
+      if (option.phase === "sentences" && reviewedQuestionMode(input.entries))
+        return conceptQuestionBlocks({
+          entries: input.questionEntries ?? input.entries,
+          conceptKey: input.conceptKey,
+          activity: "sentenceRecall",
+          title: "책 없이 답 쓰기",
+        });
+      const rows = conceptMemoryRows(
+        option.phase === "keywords"
+          ? (input.questionEntries ?? input.entries)
+          : input.entries,
+        option.phase,
+      );
+      const questionMode = reviewedQuestionMode(input.entries);
+      if (option.phase === "keywords" && questionMode && !rows.length)
+        throw new Error(
+          "빈칸 문항: 출제 가능한 문항이 없습니다. 다른 활동이나 단원을 선택하세요.",
+        );
       const blocks: ManuscriptBlock[] = [];
       for (let offset = 0; offset < rows.length; offset += 8) {
         const part = rows.slice(offset, offset + 8);
@@ -80,11 +100,20 @@ export function memoryActivityBlocks(input: {
           showRepetitionChecks: option.phase === "study",
           semantic: {
             activity: option.activity,
-            title: option.title,
+            title:
+              option.phase === "keywords" && questionMode
+                ? "빈칸 문항"
+                : option.title,
+            ...(option.phase === "keywords" && questionMode
+              ? { subtitle: "문장을 읽고 빈칸에 알맞은 내용을 쓰세요." }
+              : {}),
             continuation: offset > 0,
             node: {
               kind: "rows",
-              groupKey: `${input.conceptKey}.memory-${offset / 8}`,
+              groupKey:
+                option.phase === "keywords" && questionMode
+                  ? `${input.conceptKey}.question-cloze.v1.${offset / 8}`
+                  : `${input.conceptKey}.memory-${offset / 8}`,
               rows: part,
             },
           },
@@ -96,6 +125,7 @@ export function memoryActivityBlocks(input: {
 
 export function additionalConceptActivities(input: {
   entries: readonly ConceptEntry[];
+  questionEntries?: readonly ConceptEntry[];
   sectionKey: string;
   conceptKey: string;
   components: QuickCreateComponents;
@@ -150,6 +180,23 @@ export function additionalConceptActivities(input: {
   ] as const;
   for (const scaffold of scaffolds) {
     if (!components[scaffold.activity]) continue;
+    if (
+      scaffold.activity !== "conceptBlankTest" &&
+      reviewedQuestionMode(entries)
+    ) {
+      blocks.push(
+        ...conceptQuestionBlocks({
+          entries: input.questionEntries ?? entries,
+          conceptKey: input.conceptKey,
+          activity: scaffold.activity,
+          title:
+            scaffold.activity === "conceptMap"
+              ? "단원 개념 확인 모음"
+              : scaffold.title,
+        }),
+      );
+      continue;
+    }
     for (let offset = 0; offset < rows.length; offset += scaffold.size) {
       const block = activityText(
         scaffold.activity,
@@ -171,6 +218,7 @@ export function additionalConceptActivities(input: {
 export { ACTIVITY_LABELS } from "../activities";
 export function selectedLearningGuide(
   components: QuickCreateComponents,
+  questionMode = false,
 ): ManuscriptBlock[] {
   const instructions: Partial<Record<TextbookActivity, string>> = {
     unitIntro: "단원 질문과 목표를 읽고 궁금한 점을 기록하세요.",
@@ -178,22 +226,34 @@ export function selectedLearningGuide(
     concepts: "개념의 뜻·조건·예를 함께 확인하세요.",
     dialogueCheck: "대화를 떠올리며 핵심 물음에 답하세요.",
     conceptStudy: "개념표를 읽고 1~4회 반복한 것을 표시하세요.",
-    termRecall: "뜻을 보고 용어를 떠올리세요.",
-    clozeRecall: "같은 개념표의 핵심어 빈칸을 채우세요.",
-    sentenceRecall: "용어를 보고 개념 문장을 쓰세요.",
+    termRecall: questionMode
+      ? "물음을 읽고 요구한 내용에 답하세요."
+      : "뜻을 보고 용어를 떠올리세요.",
+    clozeRecall: questionMode
+      ? "문장을 읽고 빈칸에 알맞은 내용을 쓰세요."
+      : "같은 개념표의 핵심어 빈칸을 채우세요.",
+    sentenceRecall: questionMode
+      ? "같은 물음을 앞에서 풀었다면 책 없이 다시 답해 보세요."
+      : "용어를 보고 개념 문장을 쓰세요.",
     conceptBlankTest: "책을 덮고 기억한 개념을 스스로 정리하세요.",
     basicCheck: "짧은 문제로 개념을 바로 적용해 보세요.",
     workedExamples: "예제 풀이를 읽은 뒤 확인 문제를 스스로 푸세요.",
     practice: "유형별 문제를 풀고 사용한 방법을 설명하세요.",
     written: "생각한 순서와 계산 근거를 함께 쓰세요.",
-    explainActivity: "짝에게 설명하고 질문에 답하세요.",
-    conceptMap: "개념 사이의 관계를 자신의 말로 연결하세요.",
+    explainActivity: questionMode
+      ? "앞에서 풀었던 물음이라면 다시 답한 뒤 친구와 답을 비교해 보세요."
+      : "짝에게 설명하고 질문에 답하세요.",
+    conceptMap: questionMode
+      ? "같은 단원의 물음을 묶었습니다. 다른 활동에서 풀었다면 다시 답을 써서 확인하세요."
+      : "개념 사이의 관계를 자신의 말로 연결하세요.",
     reasoning: "판단의 근거를 쓰고 다른 방법과 비교하세요.",
     errorCheck: "문장의 옳고 그름과 이유를 설명하세요.",
     review: "앞에서 배운 내용을 다시 꺼내 풀어 보세요.",
     assessment: "도움 없이 풀고 다시 공부할 부분을 찾으세요.",
     rest: "이야기를 읽고 함께 생각할 질문을 나누세요.",
-    preparation: "오늘 배울 개념에 대해 이미 아는 것을 적으세요.",
+    preparation: questionMode
+      ? "지금 알고 있는 내용으로 답해 보세요. 아직 배우지 않았다면 ‘아직 모르겠어요’라고 적어도 됩니다."
+      : "오늘 배울 개념에 대해 이미 아는 것을 적으세요.",
     learningPlan: "학습할 날과 공부한 날을 기록하세요.",
     questionLog: "막힌 부분과 시도한 방법을 질문으로 남기세요.",
   };
@@ -205,7 +265,7 @@ export function selectedLearningGuide(
         .filter(([key]) => components[key as TextbookActivity])
         .map(
           ([key, value], index) =>
-            `${index + 1}. **${ACTIVITY_LABELS[key as TextbookActivity]}** · ${value}`,
+            `${index + 1}. **${questionMode ? (({ termRecall: "개념 질문", clozeRecall: "빈칸 문항", sentenceRecall: "책 없이 답 쓰기", conceptMap: "단원 개념 확인 모음" } as Partial<Record<TextbookActivity, string>>)[key as TextbookActivity] ?? ACTIVITY_LABELS[key as TextbookActivity]) : ACTIVITY_LABELS[key as TextbookActivity]}** · ${value}`,
         )
         .join("\n\n") || "선택한 활동을 진행하고 궁금한 점을 기록하세요.",
     ),

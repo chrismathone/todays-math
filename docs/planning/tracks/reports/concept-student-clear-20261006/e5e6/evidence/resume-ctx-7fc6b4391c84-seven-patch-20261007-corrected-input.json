@@ -1,0 +1,139 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-2-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수를 곱한 식에서 곱한 두 수와 그 곱은 서로 약수와 배수로 어떤 관계인지 쓰시오. 그리고 $6\\times8=48$에서 그 관계를 말하시오.",
+      "bAnswer": "곱한 두 수는 곱의 약수이고, 곱은 곱한 두 수 각각의 배수이다. $6\\times8=48$에서 $6$과 $8$은 $48$의 약수이고, $48$은 $6$의 배수이면서 $8$의 배수이다.",
+      "bGoal": "곱셈식 하나에서 곱한 두 수와 곱의 약수·배수 관계를 양쪽 방향으로 말한다.",
+      "bReason": "제목만으로는 무엇과 무엇의 관계인지 알 수 없어, 곱셈식이라는 대상과 C와 다른 예($6\\times8=48$)를 질문 안에 넣었다.",
+      "studentLabel": "곱셈식에서 읽는 약수와 배수",
+      "cDecision": "keep",
+      "cAfter": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+      "cReason": "$3\\times7=21$ 한 식에서 약수·배수 두 낱말을 채우는 짧은 문장이다. '두 수 각각의'라는 말로 $21$이 $3$과 $7$ 양쪽의 배수임이 드러나 조건이 분명하다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱한두수는그곱의약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱은곱한두수각각의배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$과$8$은$48$의약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$48$은$6$의배수이면서$8$의배수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-seven-patch-20261007.json",
+      "codexFinalAmendedFromFingerprint": "10638438f2fa88ac23ca0be2f2e964dad8ffd9c91af11a4f0eb3d31b5ea95cdf",
+      "sourceIndex": 14,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-1-2-2-c1",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "약수와 배수의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+        "studentC": "$3\\times7=21$에서 $3$과 $7$은 $21$의 □이고, $21$은 두 수 각각의 □이다.",
+        "answers": [
+          "약수",
+          "배수"
+        ]
+      },
+      "sourceFingerprint": "7cfd111e0ec3ece88be21df37528009da20401dc61600e91bb3cc20c8ce9758a",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+      "cFrozenStudentSentence": "$3\\times7=21$에서 $3$과 $7$은 $21$의 □이고, $21$은 두 수 각각의 □이다.",
+      "cProposedAnswers": [
+        "약수",
+        "배수"
+      ],
+      "cStudentAfter": "$3\\times7=21$에서 $3$과 $7$은 $21$의 □이고, $21$은 두 수 각각의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+      "cStudentSentence": "$3\\times7=21$에서 $3$과 $7$은 $21$의 □이고, $21$은 두 수 각각의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "약수",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수를 곱한 식에서 곱한 두 수와 그 곱은 서로 약수와 배수로 어떤 관계인지 쓰시오. 그리고 $6\\times8=48$에서 그 관계를 말하시오.",
+        "answer": "곱한 두 수는 곱의 약수이고, 곱은 곱한 두 수 각각의 배수이다. $6\\times8=48$에서 $6$과 $8$은 $48$의 약수이고, $48$은 $6$의 배수이면서 $8$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱한두수는그곱의약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱은곱한두수각각의배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과$8$은$48$의약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$48$은$6$의배수이면서$8$의배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+        "acceptedAnswers": [
+          [
+            "약수"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8d1912bf728150d900e70e9c164f1e4e4bd706d3c24050d3e152b636ec00db90",
+      "questionRevision": "planning-e5e6-20261006-8d1912bf7281",
+      "requiresIndependentReview": true
+    }
+  ]
+}

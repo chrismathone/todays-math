@@ -1,0 +1,2409 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-2247-2276.json",
+  "changes": [
+    {
+      "id": "m2-01-06-xc8",
+      "cAfter": "$B\\ne0$일 때 $A\\div B$는 {분수} $\\frac AB$로 바꿀 수 있다. 분자와 분모에 공통인수가 있으면 {약분}하여 간단히 한다.",
+      "cReason": "나누는수가0아님과약분가능조건을명시한다."
+    },
+    {
+      "id": "m2-01-06-xc10",
+      "cAfter": "$x\\ne0$일 때 $\\frac23x$로 나누려면 나누는 식을 $\\frac{2x}3$처럼 문자까지 넣은 하나의 {분수}로 쓴 다음 그 {역수}를 곱한다.",
+      "cReason": "역수의존재조건과문자를포함한분수형태를보인다."
+    },
+    {
+      "id": "m2-01-06-xc11",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cAnswers": null,
+      "cSlotAnswers": null,
+      "cAcceptedAnswers": null,
+      "cSlots": null,
+      "cReason": "두방법의편리함은학생과식에따라달라정해진사실빈칸으로검사하기어렵다.",
+      "exclusionReason": "B/C 제외: 방법의 편리함은 주관적이며 두 계산 방법 자체는 m2-01-06-c3에서 이미 다룬다."
+    },
+    {
+      "id": "m2-01-06-xc12",
+      "cAfter": "$(-2a^2b)^3$처럼 단항식을 거듭제곱할 때는 {계수}와 각 문자를 각각 거듭제곱한다. 이 식의 계수는 {$-8$}이다.",
+      "cReason": "각각이라는부사보다음의계수거듭제곱을직접확인하고문자값에따라달라질전체부호와구별한다."
+    },
+    {
+      "id": "m2-01-06-xc13",
+      "cAfter": "괄호가 없고 곱셈과 나눗셈만 섞인 식은 {왼쪽}부터 차례로 계산한다. 나눗셈을 나누는 수의 {역수}를 곱하는 식으로 바꾸어 계산할 수도 있다.",
+      "cAcceptedAnswers": [
+        [
+          "왼쪽",
+          "앞"
+        ],
+        [
+          "역수"
+        ]
+      ],
+      "cReason": "괄호가있는경우에도무조건왼쪽부터라는오해를막는다."
+    },
+    {
+      "id": "m2-01-06-xc17",
+      "cAfter": "$a\\ne0$일 때 $(2a)^2\\div(-a)^3\\times a$를 계산하려면 먼저 각 {거듭제곱}을 계산한다. 정리한 결과는 {$-4$}이다.",
+      "cReason": "문자의부호를모르고전체부호를먼저정한다는모호함대신실제거듭제곱과계산결과를묻는다."
+    },
+    {
+      "id": "m2-01-06-xc19",
+      "cAfter": "직사각형의 넓이를 가로의 길이로 {나누면} {세로}의 길이가 된다.",
+      "cReason": "같은문장에높이이름을미리주는공식을덜고역산관계를묻는다."
+    },
+    {
+      "id": "m2-01-06-xc20",
+      "cAfter": "직육면체의 부피를 밑넓이로 {나누면} {높이}가 된다.",
+      "cReason": "곱셈공식에인쇄된답을옮기지않고역산관계를떠올리게한다."
+    },
+    {
+      "id": "m2-01-06-xc21",
+      "cAfter": "$A$, $B$가 $0$이 아닐 때 $A\\div X=B$이면 $X=$ {$A\\div B$}이다. $A\\times X=B$일 때 $X=B\\div A$인 것과 나누는 순서가 {반대}이다.",
+      "cReason": "비교하는곱셈식에서도A로나눌수있다는조건을보인다.",
+      "cAcceptedAnswers": [
+        [
+          "$A\\div B$",
+          "$\\frac AB$"
+        ],
+        [
+          "반대",
+          "거꾸로"
+        ]
+      ]
+    },
+    {
+      "id": "m2-01-06-xc23",
+      "bPrompt": "$a\\ne0$일 때 $6a\\div\\left(\\frac23a\\right)$를 $6a\\times\\left(\\frac32a\\right)$로 고쳐 계산하면 틀린다. 틀린 까닭을 설명하고 바르게 계산하시오.",
+      "bReason": "나누는전체단항식을괄호로명확히구분한다."
+    },
+    {
+      "id": "m2-01-06-xc24",
+      "bPrompt": "$a\\ne0$일 때 $12a\\div(3a)\\times(2a)$를 $12a\\div(6a^2)$으로 바꾸어 계산하면 잘못이다. 잘못인 까닭을 설명하고 바르게 계산하시오.",
+      "cAfter": "괄호가 없고 곱셈과 나눗셈만 섞인 식에서 뒤의 곱셈을 먼저 하면 {나누는} 식이 달라질 수 있다. 따라서 {왼쪽}에서부터 차례로 계산한다.",
+      "cAcceptedAnswers": [
+        [
+          "나누는"
+        ],
+        [
+          "왼쪽",
+          "앞"
+        ]
+      ],
+      "bReason": "곱하거나나누는단항식범위를명확히묶는다.",
+      "cReason": "괄호없는혼합계산으로범위를한정하고달라질수있다고정확히쓴다."
+    },
+    {
+      "id": "m2-01-07-xc4",
+      "cAfter": "문자가 곱해진 부분이 같은 항을 {동류항}이라 한다. 이런 항들은 각 문자의 {지수}가 모두 같다.",
+      "coreAfter": "계수를 제외하고 {문자가 곱해진 부분}이 같은 항을 동류항이라 한다. 여러 문자가 있으면 각 문자의 지수가 모두 같아야 한다. $x^2y$와 $xy^2$는 전체 차수는 같지만 {동류항이 아니다}.",
+      "cReason": "전체차수만같은다변수항을동류항으로오해하지않게각문자지수로정확히쓴다.",
+      "coreReason": "문자와총차수같음만으로부족한원정의를각문자지수일치로교정한다."
+    },
+    {
+      "id": "m2-01-07-xc5",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차수는 $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5x^3=5\\times x\\times x\\times x$에서 문자 $x$가 $3$번 곱해졌다"
+          ]
+        }
+      ],
+      "bReason": "곱셈으로풀어설명하라는요구에맞는실제표현을기준으로삼는다."
+    },
+    {
+      "id": "m2-01-07-xc6",
+      "cAfter": "동류항을 정리한 다항식에서 각 항의 차수 가운데 가장 {큰} 것을 그 다항식의 차수라 한다. $x^3-2x+1$의 차수는 {$3$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "큰",
+          "높은"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "coreAfter": "{동류항을 정리한} 다항식에서 계수가 $0$이 아닌 항들의 차수 중 {가장 큰 차수}를 그 다항식의 차수라 한다.",
+      "cReason": "서로없어지는높은차수항을그대로세지않도록정리후라는조건을명시한다.",
+      "coreReason": "합쳐서없어지는항을제외한차수정의를보존한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-01-06-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "분수 꼴로 바꾸어 약분하는 방법은 c3 질문의 첫째 방법으로 이미 답하게 된다.",
+      "cDecision": "rewrite",
+      "cReason": "나누는수가0아님과약분가능조건을명시한다.",
+      "exclusionReason": "B 제외: m2-01-06-c3(단항식의 나눗셈) 질문의 분수 꼴 방법과 목표가 겹치는 중복이다.",
+      "learningRole": "procedure",
+      "roleReason": "나눗셈을 분수 꼴로 바꾸기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2247,
+      "part": "m2plus",
+      "sourceFingerprint": "4a758255cad64209d3ba4d719bc8a43d0e7426b038d8a3f57cf461b5690682b5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2247
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$B\\ne0$일 때 $A\\div B$는 {분수} $\\frac AB$로 바꿀 수 있다. 분자와 분모에 공통인수가 있으면 {약분}하여 간단히 한다.",
+      "cSlotAnswers": [
+        "분수",
+        "약분"
+      ],
+      "cStudentSentence": "$B\\ne0$일 때 $A\\div B$는 □ $\\frac AB$로 바꿀 수 있다. 분자와 분모에 공통인수가 있으면 □하여 간단히 한다.",
+      "cAnswers": [
+        "분수",
+        "약분"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분수"
+        ],
+        [
+          "약분"
+        ]
+      ],
+      "proposalFingerprint": "a7ade52afff29889160d115c8a8c4cabfd0e3d1266be945280124f9cea812174",
+      "cAfter": "$B\\ne0$일 때 $A\\div B$는 {분수} $\\frac AB$로 바꿀 수 있다. 분자와 분모에 공통인수가 있으면 {약분}하여 간단히 한다."
+    },
+    {
+      "id": "m2-01-06-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "같은 문자의 곱에서 지수를 더하는 내용은 c2 질문과 같다.",
+      "cDecision": "keep",
+      "cReason": "예 $a^2\\times a$가 있어 '지수', '거듭제곱' 빈칸이 분명하다.",
+      "exclusionReason": "B 제외: m2-01-06-c2(같은 문자의 곱) 질문과 목표가 같은 중복이다.",
+      "learningRole": "procedure",
+      "roleReason": "같은 문자의 곱을 거듭제곱으로 모으기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2248,
+      "part": "m2plus",
+      "sourceFingerprint": "f0ecfb7c1673be8eae07f73dd349a92f89a877f7f09c001ff51444a2fd6dc351",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2248
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "$a^2\\times a$처럼 같은 문자의 곱은 □를 더해 하나의 □으로 쓴다.",
+      "cFrozenDefinition": "$a^2\\times a$처럼 같은 문자의 곱은 {지수}를 더해 하나의 {거듭제곱}으로 쓴다.",
+      "cFrozenAnswers": [
+        "지수",
+        "거듭제곱"
+      ],
+      "cMarkedSentence": "$a^2\\times a$처럼 같은 문자의 곱은 {지수}를 더해 하나의 {거듭제곱}으로 쓴다.",
+      "cSlotAnswers": [
+        "지수",
+        "거듭제곱"
+      ],
+      "cStudentSentence": "$a^2\\times a$처럼 같은 문자의 곱은 □를 더해 하나의 □으로 쓴다.",
+      "cAnswers": [
+        "지수",
+        "거듭제곱"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "지수",
+          "equivalentAnswers": [
+            "지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "거듭제곱",
+          "equivalentAnswers": [
+            "거듭제곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "지수"
+        ],
+        [
+          "거듭제곱"
+        ]
+      ],
+      "proposalFingerprint": "6ff496a8e5af9512bf3c550fb7aa0246c0597475564d1b9134e9e3ae987325e9"
+    },
+    {
+      "id": "m2-01-06-xc10",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "분수 계수 단항식의 역수 구하기는 xc23의 오류 설명 질문에서 그대로 다룬다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x\\ne0$일 때 $\\frac23x$로 나누려면 나누는 식을 $\\frac{2x}3$처럼 문자까지 넣은 하나의 {분수}로 쓴 다음 그 {역수}를 곱한다.",
+      "cAnswers": [
+        "분수",
+        "역수"
+      ],
+      "cReason": "역수의존재조건과문자를포함한분수형태를보인다.",
+      "exclusionReason": "B 제외: m2-01-06-xc23(역수에서 문자를 빠뜨리는 잘못) 질문과 목표가 겹치는 중복이다.",
+      "learningRole": "procedure",
+      "roleReason": "분수 계수 단항식으로 나누는 방법",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2249,
+      "part": "m2plus",
+      "sourceFingerprint": "d2c36bc3f9e417b2d555f47135186f01ea1d46d45ea191e3c811267e69182c87",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2249
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$x\\ne0$일 때 $\\frac23x$로 나누려면 나누는 식을 $\\frac{2x}3$처럼 문자까지 넣은 하나의 {분수}로 쓴 다음 그 {역수}를 곱한다.",
+      "cSlotAnswers": [
+        "분수",
+        "역수"
+      ],
+      "cStudentSentence": "$x\\ne0$일 때 $\\frac23x$로 나누려면 나누는 식을 $\\frac{2x}3$처럼 문자까지 넣은 하나의 □로 쓴 다음 그 □를 곱한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "역수",
+          "equivalentAnswers": [
+            "역수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분수"
+        ],
+        [
+          "역수"
+        ]
+      ],
+      "proposalFingerprint": "07455fbb44249dec8816d1ccfb904da88cc86e7d541a36e62af22cebcec601ec"
+    },
+    {
+      "id": "m2-01-06-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "어느 방법이 '편한지'는 주관적 판단이라 서술 답의 채점 기준을 세울 수 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cAnswers": null,
+      "cReason": "두방법의편리함은학생과식에따라달라정해진사실빈칸으로검사하기어렵다.",
+      "exclusionReason": "B/C 제외: 방법의 편리함은 주관적이며 두 계산 방법 자체는 m2-01-06-c3에서 이미 다룬다.",
+      "learningRole": "procedure",
+      "roleReason": "나눗셈 방법의 선택",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2250,
+      "part": "m2plus",
+      "sourceFingerprint": "2527343801966eb74045fe7faac54a725b03067b441d6718215a0518af962967",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2250
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": null,
+      "cSlotAnswers": null,
+      "cStudentSentence": null,
+      "cSlots": null,
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": null,
+      "proposalFingerprint": "dfe1c60f33c89dee05f88f337b2af6acb36ad997b5a0711b4a18970c192f0268"
+    },
+    {
+      "id": "m2-01-06-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-2a^2b)^3$을 계산하고, 결과의 계수의 부호가 어떻게 정해지는지 설명하시오.",
+      "bAnswer": "$(-2)^3\\times(a^2)^3\\times b^3=-8a^6b^3$이다. 음수 $-2$를 $3$번(홀수 번) 곱하므로 계수는 음수이다.",
+      "bGoal": "음수 계수가 있는 단항식의 거듭제곱 계산하기",
+      "bReason": "계수·문자 각각의 거듭제곱과 부호 판단을 함께 보도록 음수 계수의 세제곱을 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-8a^6b^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-2$를 $3$번 곱하므로 음수이다",
+            "음수를 홀수 번 곱하면 음수이다",
+            "$(-2)^3=-8$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$(-2a^2b)^3$처럼 단항식을 거듭제곱할 때는 {계수}와 각 문자를 각각 거듭제곱한다. 이 식의 계수는 {$-8$}이다.",
+      "cAnswers": [
+        "계수",
+        "$-8$"
+      ],
+      "cReason": "각각이라는부사보다음의계수거듭제곱을직접확인하고문자값에따라달라질전체부호와구별한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "단항식의 거듭제곱과 부호",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2251,
+      "part": "m2plus",
+      "sourceFingerprint": "132e02f159fc013b7be1fe43a882be3e6370d3a7b13f2f1f277ea5e5c2974c09",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2251
+      },
+      "directReview": null,
+      "cMarkedSentence": "$(-2a^2b)^3$처럼 단항식을 거듭제곱할 때는 {계수}와 각 문자를 각각 거듭제곱한다. 이 식의 계수는 {$-8$}이다.",
+      "cSlotAnswers": [
+        "계수",
+        "$-8$"
+      ],
+      "cStudentSentence": "$(-2a^2b)^3$처럼 단항식을 거듭제곱할 때는 □와 각 문자를 각각 거듭제곱한다. 이 식의 계수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계수",
+          "equivalentAnswers": [
+            "계수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-8$",
+          "equivalentAnswers": [
+            "$-8$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "계수"
+        ],
+        [
+          "$-8$"
+        ]
+      ],
+      "proposalFingerprint": "549ad7b72453d7d334c305e73621a0f628a98e46330b6f6ac549dd10f03c43e6"
+    },
+    {
+      "id": "m2-01-06-xc13",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "왼쪽부터 계산하고 역수의 곱셈으로 바꾸는 내용은 c5와 xc24 질문에서 다룬다.",
+      "cDecision": "rewrite",
+      "cAfter": "괄호가 없고 곱셈과 나눗셈만 섞인 식은 {왼쪽}부터 차례로 계산한다. 나눗셈을 나누는 수의 {역수}를 곱하는 식으로 바꾸어 계산할 수도 있다.",
+      "cAnswers": [
+        "왼쪽",
+        "역수"
+      ],
+      "cReason": "괄호가있는경우에도무조건왼쪽부터라는오해를막는다.",
+      "exclusionReason": "B 제외: m2-01-06-c5(혼합 계산 차례)와 m2-01-06-xc24(차례를 바꾸는 잘못) 질문과 목표가 겹치는 중복이다.",
+      "learningRole": "procedure",
+      "roleReason": "곱셈·나눗셈 혼합식의 계산 차례",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2252,
+      "part": "m2plus",
+      "sourceFingerprint": "8d3d3b20567f2eb6ff3739af4562311da668e61b0610774a58d8df8bd9141aaa",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2252
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "괄호가 없고 곱셈과 나눗셈만 섞인 식은 {왼쪽}부터 차례로 계산한다. 나눗셈을 나누는 수의 {역수}를 곱하는 식으로 바꾸어 계산할 수도 있다.",
+      "cSlotAnswers": [
+        "왼쪽",
+        "역수"
+      ],
+      "cStudentSentence": "괄호가 없고 곱셈과 나눗셈만 섞인 식은 □부터 차례로 계산한다. 나눗셈을 나누는 수의 □를 곱하는 식으로 바꾸어 계산할 수도 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "왼쪽",
+          "equivalentAnswers": [
+            "왼쪽",
+            "앞"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "역수",
+          "equivalentAnswers": [
+            "역수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "왼쪽",
+          "accept": [
+            "앞"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "왼쪽",
+          "앞"
+        ],
+        [
+          "역수"
+        ]
+      ],
+      "proposalFingerprint": "69a8e05900e9766f3f039198e8dec25708bba22dc0fb59b45390d20567569075"
+    },
+    {
+      "id": "m2-01-06-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "부호가 다르면 음수라는 규칙을 나눗셈 한 번에 쓰는 단순 계산이다.",
+      "cDecision": "keep",
+      "cReason": "부호가 다른 경우와 같은 경우를 '음수/양수'로 대비하는 짧은 빈칸이다.",
+      "exclusionReason": "B 제외: m2-01-06-c4(곱의 부호)의 부호 규칙을 되풀이하는 단순 수치 확인이라 중복이다.",
+      "learningRole": "procedure",
+      "roleReason": "나눗셈 몫의 부호 정하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2253,
+      "part": "m2plus",
+      "sourceFingerprint": "3780d0982b9e4a8e0d2858e6ef1cc3130d9a3966b59dca7b4a097ea565c4e253",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2253
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "계수의 부호가 다른 두 단항식을 나누면 몫의 계수는 □, 계수의 부호가 같으면 □이다.",
+      "cFrozenDefinition": "계수의 부호가 다른 두 단항식을 나누면 몫의 계수는 {음수}, 계수의 부호가 같으면 {양수}이다.",
+      "cFrozenAnswers": [
+        "음수",
+        "양수"
+      ],
+      "cMarkedSentence": "계수의 부호가 다른 두 단항식을 나누면 몫의 계수는 {음수}, 계수의 부호가 같으면 {양수}이다.",
+      "cSlotAnswers": [
+        "음수",
+        "양수"
+      ],
+      "cStudentSentence": "계수의 부호가 다른 두 단항식을 나누면 몫의 계수는 □, 계수의 부호가 같으면 □이다.",
+      "cAnswers": [
+        "음수",
+        "양수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ],
+        [
+          "양수"
+        ]
+      ],
+      "proposalFingerprint": "f62b62ae703f86814b5930ea00d37e3cfbd35fa903d4d2d93b9170256b593519"
+    },
+    {
+      "id": "m2-01-06-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$x\\ne0$일 때 $3x\\times\\square=12x^2y$를 만족시키는 단항식 $\\square$를 구하고, 구한 방법을 쓰시오.",
+      "bAnswer": "곱한 결과를 곱해진 식으로 나누면 된다. $\\square=12x^2y\\div3x=4xy$",
+      "bGoal": "곱셈식에서 모르는 단항식을 나눗셈으로 구하기",
+      "bReason": "조건 $x\\ne0$과 구체적인 등식을 주고 나눗셈으로 구하는 방법을 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$12x^2y$를 $3x$로 나눈다",
+            "$\\square=12x^2y\\div3x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4xy$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$0$이 아닌 식 $A$에 대하여 $A\\times X=B$이면 $X$는 $B$를 $A$로 {나누어} 구한다. 즉 $X=${$B\\div A$}이다.",
+      "cAnswers": [
+        "나누어",
+        "$B\\div A$"
+      ],
+      "cReason": "기호 $\\square$가 빈칸 표시와 겹치고 '거꾸로'는 뜻 없는 빈칸이라 $X$로 바꿔 다듬었다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "곱셈식의 모르는 식 구하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2254,
+      "part": "m2plus",
+      "sourceFingerprint": "2756807813ae426686816cdd3aca9bb4272f3d6b12477b60eccd5c8ca9fc389d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2254
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0$이 아닌 식 $A$에 대하여 $A\\times X=B$이면 $X$는 $B$를 $A$로 {나누어} 구한다. 즉 $X=${$B\\div A$}이다.",
+      "cSlotAnswers": [
+        "나누어",
+        "$B\\div A$"
+      ],
+      "cStudentSentence": "$0$이 아닌 식 $A$에 대하여 $A\\times X=B$이면 $X$는 $B$를 $A$로 □ 구한다. 즉 $X=$□이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나누어",
+          "equivalentAnswers": [
+            "나누어"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$B\\div A$",
+          "equivalentAnswers": [
+            "$B\\div A$",
+            "$\\frac{B}{A}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$B\\div A$",
+          "accept": [
+            "$\\frac{B}{A}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "나누어"
+        ],
+        [
+          "$B\\div A$",
+          "$\\frac{B}{A}$"
+        ]
+      ],
+      "proposalFingerprint": "ffd2018d0c304e33bce001ce3cb873c7b07f7a90a0241302329e9994d70d3ece"
+    },
+    {
+      "id": "m2-01-06-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 $2a\\div6a^2$을 계산하고, 몫에서 $a$가 분자와 분모 중 어디에 남는지 까닭과 함께 쓰시오.",
+      "bAnswer": "$\\frac{2a}{6a^2}=\\frac{1}{3a}$이다. 분자에 $a$가 $1$개, 분모에 $2$개 있어 $1$개만 약분되므로 분모에 $a$가 남는다.",
+      "bGoal": "몫이 분수 꼴이 되는 단항식의 나눗셈 계산하기",
+      "bReason": "나누는 쪽에 문자가 더 많은 구체적인 식을 주고 $a$가 남는 자리와 까닭을 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{3a}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모에 $a$가 $2$개, 분자에 $1$개라 $a$ 하나만 약분된다",
+            "나누는 식에 $a$가 더 많이 곱해져 있어 분모에 $a$가 남는다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "상황 설명이 문장에 다 있고 '분모', '분수'만 가려 읽고 답할 수 있다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "문자가 분모에 남는 까닭",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2255,
+      "part": "m2plus",
+      "sourceFingerprint": "16d83f4e6a497e9bb6bc6db585e2ea35ae089288ef11db12d0cef3bc6e8d2cd0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2255
+      },
+      "directReview": null,
+      "cFrozenSentence": "단항식의 나눗셈에서 같은 문자가 나누는 쪽에 더 많이 곱해져 있으면, 약분한 뒤 그 문자가 □에 남아 몫이 □ 꼴이 된다.",
+      "cFrozenDefinition": "단항식의 나눗셈에서 같은 문자가 나누는 쪽에 더 많이 곱해져 있으면, 약분한 뒤 그 문자가 {분모}에 남아 몫이 {분수} 꼴이 된다.",
+      "cFrozenAnswers": [
+        "분모",
+        "분수"
+      ],
+      "cMarkedSentence": "단항식의 나눗셈에서 같은 문자가 나누는 쪽에 더 많이 곱해져 있으면, 약분한 뒤 그 문자가 {분모}에 남아 몫이 {분수} 꼴이 된다.",
+      "cSlotAnswers": [
+        "분모",
+        "분수"
+      ],
+      "cStudentSentence": "단항식의 나눗셈에서 같은 문자가 나누는 쪽에 더 많이 곱해져 있으면, 약분한 뒤 그 문자가 □에 남아 몫이 □ 꼴이 된다.",
+      "cAnswers": [
+        "분모",
+        "분수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분모",
+          "equivalentAnswers": [
+            "분모"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분모"
+        ],
+        [
+          "분수"
+        ]
+      ],
+      "proposalFingerprint": "6bcf363226d83b480f3a719d65851a7cd927a18044a913928ce3f3707c78a900"
+    },
+    {
+      "id": "m2-01-06-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 $(2a)^2\\div(-a)^3\\times a$를 계산하고, 결과의 부호를 어떻게 정했는지 쓰시오.",
+      "bAnswer": "$(2a)^2=4a^2$, $(-a)^3=-a^3$이므로 $4a^2\\div(-a^3)\\times a=4a^2\\times\\left(-\\frac{1}{a^3}\\right)\\times a=-4$이다. $-$가 $1$개(홀수 개)이므로 부호는 $-$이다.",
+      "bGoal": "거듭제곱이 여럿인 혼합식에서 부호를 정해 계산하기",
+      "bReason": "c5와 구별되도록 음수의 세제곱이 든 식을 주고 부호 결정 과정을 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(2a)^2=4a^2$, $(-a)^3=-a^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-a)^3=-a^3$에서 $-$가 하나 나오므로 결과의 부호는 $-$이다",
+            "$-$가 홀수 개이므로 계수가 음수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-4$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$a\\ne0$일 때 $(2a)^2\\div(-a)^3\\times a$를 계산하려면 먼저 각 {거듭제곱}을 계산한다. 정리한 결과는 {$-4$}이다.",
+      "cAnswers": [
+        "거듭제곱",
+        "$-4$"
+      ],
+      "cReason": "문자의부호를모르고전체부호를먼저정한다는모호함대신실제거듭제곱과계산결과를묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "거듭제곱을 먼저 풀고 부호 정하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2256,
+      "part": "m2plus",
+      "sourceFingerprint": "747f401f71a30bd4118fd3d651f02275d33145a1bcbee9c328581cdb3e1e7d79",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2256
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a\\ne0$일 때 $(2a)^2\\div(-a)^3\\times a$를 계산하려면 먼저 각 {거듭제곱}을 계산한다. 정리한 결과는 {$-4$}이다.",
+      "cSlotAnswers": [
+        "거듭제곱",
+        "$-4$"
+      ],
+      "cStudentSentence": "$a\\ne0$일 때 $(2a)^2\\div(-a)^3\\times a$를 계산하려면 먼저 각 □을 계산한다. 정리한 결과는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "거듭제곱",
+          "equivalentAnswers": [
+            "거듭제곱"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-4$",
+          "equivalentAnswers": [
+            "$-4$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "거듭제곱"
+        ],
+        [
+          "$-4$"
+        ]
+      ],
+      "proposalFingerprint": "5ef0c3c4f3aa8fa1684d3f4962bfcc0da18b2d0725daeac6470e3d9a31f22d83"
+    },
+    {
+      "id": "m2-01-06-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$x\\ne0$일 때 $24x^3\\div2x\\div3x$를 계산하고, 이 식이 $24x^3\\div(2x\\div3x)$와 다른 까닭을 설명하시오.",
+      "bAnswer": "앞에서부터 차례로 나누면 $\\frac{24x^3}{2x\\times3x}=4x$이다. 괄호가 있는 식에서는 $2x\\div3x=\\frac23$의 몫을 먼저 구한 뒤 그 몫으로 나누므로 $36x^3$이 된다. 두 식의 계산 차례가 다르다.",
+      "bGoal": "잇달아 나누는 식과 괄호가 있는 식 구별하기",
+      "bReason": "괄호 유무에 따른 차이를 같은 세 식으로 비교하도록 두 식을 모두 제시했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 없으면 $2x$로 나눈 뒤 $3x$로 나누고, 괄호가 있으면 $2x\\div3x$의 몫으로 나눈다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 {$\\frac{A}{BC}$}와 같다. 괄호가 있는 $A\\div(B\\div C)$는 {$\\frac{AC}{B}$}와 같다.",
+      "cAnswers": [
+        "$\\frac{A}{BC}$",
+        "$\\frac{AC}{B}$"
+      ],
+      "cReason": "특정 값에서 두 결과가 같을 수도 있어 항상 다르다고 읽히는 마지막 말은 빼고 서로 다른 계산식의 일반 의미를 남긴다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "괄호에 따라 나누는 대상이 달라지는 까닭",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "notationReason": "삼분의 이 뒤 직접 조사 대신 몫을 구한다는 문장을 쓰며 값4x·36x³은 보존한다. 이유의 값 나열만으로 계산 차이를 대신하지 않게 한다.",
+      "sourceIndex": 2257,
+      "part": "m2plus",
+      "sourceFingerprint": "bdea47044f19c28b54cfdd14d8ae0db84a44854ff40efdea2e8553fef951f70d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2257
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-06-xc18"
+      },
+      "cMarkedSentence": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 {$\\frac{A}{BC}$}와 같다. 괄호가 있는 $A\\div(B\\div C)$는 {$\\frac{AC}{B}$}와 같다.",
+      "cSlotAnswers": [
+        "$\\frac{A}{BC}$",
+        "$\\frac{AC}{B}$"
+      ],
+      "cStudentSentence": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 □와 같다. 괄호가 있는 $A\\div(B\\div C)$는 □와 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{A}{BC}$",
+          "equivalentAnswers": [
+            "$\\frac{A}{BC}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{AC}{B}$",
+          "equivalentAnswers": [
+            "$\\frac{AC}{B}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{A}{BC}$"
+        ],
+        [
+          "$\\frac{AC}{B}$"
+        ]
+      ],
+      "proposalFingerprint": "fdb122464a061ab1753083af279d80841ee1fd670b7bce948bb78f197e86a962",
+      "coreAfter": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 {$\\frac{A}{BC}$}와 같다. $A\\div(B\\div C)$는 괄호 안을 먼저 계산하므로 $\\frac{AC}{B}$와 같다. 두 식은 계산 차례가 다르고, 값이 같을 수도 다를 수도 있다.",
+      "coreReason": "B·C의 영이 아닌 조건을 밝히고 항상 값이 다르다는 오해를 막는다. C=1 또는 A=0 등의 경우 값은 같아질 수 있다."
+    },
+    {
+      "id": "m2-01-06-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "넓이가 $12x^2y$이고 가로의 길이가 $4x$인 직사각형의 세로의 길이를 식을 세워 구하시오. (단, $x>0$, $y>0$)",
+      "bAnswer": "(세로)$=$(넓이)$\\div$(가로)이므로 $12x^2y\\div4x=3xy$",
+      "bGoal": "넓이와 한 변으로 다른 변의 길이 구하기",
+      "bReason": "그림 없이 풀 수 있게 넓이·가로의 식과 양수 조건을 질문에 밝혔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$12x^2y\\div4x$",
+            "넓이를 가로의 길이로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3xy$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "직사각형의 넓이를 가로의 길이로 {나누면} {세로}의 길이가 된다.",
+      "cAnswers": [
+        "나누면",
+        "세로"
+      ],
+      "cReason": "같은문장에높이이름을미리주는공식을덜고역산관계를묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "넓이 공식의 역연산 활용",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2258,
+      "part": "m2plus",
+      "sourceFingerprint": "766b6ee87d4df02ce603cd2eca3c3f8d48343aa84283b1154304eb2945871632",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2258
+      },
+      "directReview": null,
+      "cMarkedSentence": "직사각형의 넓이를 가로의 길이로 {나누면} {세로}의 길이가 된다.",
+      "cSlotAnswers": [
+        "나누면",
+        "세로"
+      ],
+      "cStudentSentence": "직사각형의 넓이를 가로의 길이로 □ □의 길이가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나누면",
+          "equivalentAnswers": [
+            "나누면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "세로",
+          "equivalentAnswers": [
+            "세로"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "나누면"
+        ],
+        [
+          "세로"
+        ]
+      ],
+      "proposalFingerprint": "466a1c798938860cad90d0e8afd56e6e5528e39fb43e22bcddb08c80e9fba206"
+    },
+    {
+      "id": "m2-01-06-xc20",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "곱의 공식에서 한 양을 나눗셈으로 구하는 같은 틀의 활용이 xc19에 있다.",
+      "cDecision": "rewrite",
+      "cAfter": "직육면체의 부피를 밑넓이로 {나누면} {높이}가 된다.",
+      "cAnswers": [
+        "나누면",
+        "높이"
+      ],
+      "cReason": "곱셈공식에인쇄된답을옮기지않고역산관계를떠올리게한다.",
+      "exclusionReason": "B 제외: m2-01-06-xc19(넓이에서 변의 길이)와 같은 형식의 나눗셈 활용 문제 중복이다.",
+      "learningRole": "application",
+      "roleReason": "부피 공식의 역연산 활용",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2259,
+      "part": "m2plus",
+      "sourceFingerprint": "d7c8b7af5c90b83cfab50d90dd57f3ee4e4e72b34f4c429df1e789899ac9b322",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2259
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "직육면체의 부피를 밑넓이로 {나누면} {높이}가 된다.",
+      "cSlotAnswers": [
+        "나누면",
+        "높이"
+      ],
+      "cStudentSentence": "직육면체의 부피를 밑넓이로 □ □가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나누면",
+          "equivalentAnswers": [
+            "나누면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "나누면"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "proposalFingerprint": "47ff1826fc1f7b335bc20e3c1a4236c15003bba56e947fded661ccfaf580dcc8"
+    },
+    {
+      "id": "m2-01-06-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$x\\ne0$일 때 $8x^3\\div\\square=2x$를 만족시키는 단항식 $\\square$를 구하고, 구한 방법을 쓰시오.",
+      "bAnswer": "나누어지는 식을 몫으로 나누면 된다. $\\square=8x^3\\div2x=4x^2$",
+      "bGoal": "나눗셈식에서 나누는 식 구하기",
+      "bReason": "곱셈식의 경우(xc15)와 헷갈리지 않게 나누는 식이 빈 구체적인 등식을 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$8x^3\\div2x$",
+            "나누어지는 식을 몫으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4x^2$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$A$, $B$가 $0$이 아닐 때 $A\\div X=B$이면 $X=$ {$A\\div B$}이다. $A\\times X=B$일 때 $X=B\\div A$인 것과 나누는 순서가 {반대}이다.",
+      "cAnswers": [
+        "$A\\div B$",
+        "반대"
+      ],
+      "cReason": "비교하는곱셈식에서도A로나눌수있다는조건을보인다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "나눗셈식의 모르는 식 구하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2260,
+      "part": "m2plus",
+      "sourceFingerprint": "df69926a68691c0f29b7a25b073091958ade55f8e10d5e5185b57ca4f853c4ba",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2260
+      },
+      "directReview": null,
+      "cMarkedSentence": "$A$, $B$가 $0$이 아닐 때 $A\\div X=B$이면 $X=$ {$A\\div B$}이다. $A\\times X=B$일 때 $X=B\\div A$인 것과 나누는 순서가 {반대}이다.",
+      "cSlotAnswers": [
+        "$A\\div B$",
+        "반대"
+      ],
+      "cStudentSentence": "$A$, $B$가 $0$이 아닐 때 $A\\div X=B$이면 $X=$ □이다. $A\\times X=B$일 때 $X=B\\div A$인 것과 나누는 순서가 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$A\\div B$",
+          "equivalentAnswers": [
+            "$A\\div B$",
+            "$\\frac AB$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "반대",
+          "equivalentAnswers": [
+            "반대",
+            "거꾸로"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "반대",
+          "accept": [
+            "거꾸로"
+          ]
+        }
+      ],
+      "equivalentExpressions": [
+        {
+          "answer": "$A\\div B$",
+          "accept": [
+            "$\\frac{A}{B}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$A\\div B$",
+          "$\\frac AB$"
+        ],
+        [
+          "반대",
+          "거꾸로"
+        ]
+      ],
+      "proposalFingerprint": "2632522a53cc140deecfa23c32ece1e8405d1e92fe9f04bcffe631f5f0e94e4c"
+    },
+    {
+      "id": "m2-01-06-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=2$, $y=-1$일 때 $6x^2y\\div3x$의 값을 구하려고 한다. 식을 먼저 간단히 한 결과와, 그 식에 대입하여 구한 값을 차례로 쓰시오.",
+      "bAnswer": "$6x^2y\\div3x=2xy$이고, $x=2$, $y=-1$을 대입하면 $2\\times2\\times(-1)=-4$이다.",
+      "bGoal": "식을 간단히 한 뒤 대입하여 식의 값 구하기",
+      "bReason": "대입할 값과 식을 주고 '간단히 한 식'과 '값' 두 가지를 답하도록 범위를 정했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2xy$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-4$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "차례의 두 단계 '간단히', '대입'을 묻는 짧은 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "간단히 한 뒤 대입하는 차례",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2261,
+      "part": "m2plus",
+      "sourceFingerprint": "e1441635239a16d5132bb24d7576fdbe64ebbe979bf3570d4ca27c75530f8a07",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2261
+      },
+      "directReview": null,
+      "cFrozenSentence": "단항식의 곱셈과 나눗셈이 든 식의 값은 식을 먼저 □ 한 뒤 □하면 쉽다.",
+      "cFrozenDefinition": "단항식의 곱셈과 나눗셈이 든 식의 값은 식을 먼저 {간단히} 한 뒤 {대입}하면 쉽다.",
+      "cFrozenAnswers": [
+        "간단히",
+        "대입"
+      ],
+      "cMarkedSentence": "단항식의 곱셈과 나눗셈이 든 식의 값은 식을 먼저 {간단히} 한 뒤 {대입}하면 쉽다.",
+      "cSlotAnswers": [
+        "간단히",
+        "대입"
+      ],
+      "cStudentSentence": "단항식의 곱셈과 나눗셈이 든 식의 값은 식을 먼저 □ 한 뒤 □하면 쉽다.",
+      "cAnswers": [
+        "간단히",
+        "대입"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "간단히",
+          "equivalentAnswers": [
+            "간단히"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "대입",
+          "equivalentAnswers": [
+            "대입"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "간단히"
+        ],
+        [
+          "대입"
+        ]
+      ],
+      "proposalFingerprint": "cacb166ee6ee61685f52914480aba0be37628a3c242b22e725eb6e51f13a4350"
+    },
+    {
+      "id": "m2-01-06-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 $6a\\div\\left(\\frac23a\\right)$를 $6a\\times\\left(\\frac32a\\right)$로 고쳐 계산하면 틀린다. 틀린 까닭을 설명하고 바르게 계산하시오.",
+      "bAnswer": "$\\frac{2}{3}a=\\frac{2a}{3}$이므로 역수는 $\\frac{3}{2a}$인데, 계수만 뒤집고 문자 $a$를 분모로 보내지 않았다. 바르게 계산하면 $6a\\times\\frac{3}{2a}=9$이다.",
+      "bGoal": "분수 계수 단항식의 역수를 바르게 구하기",
+      "bReason": "나누는전체단항식을괄호로명확히구분한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}a$의 역수는 $\\frac{3}{2a}$이다",
+            "문자 $a$도 분모로 가야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$a\\ne0$일 때 $\\frac{2}{3}a$의 역수를 계수만 뒤집어 $\\frac{3}{2}a$라 하면 잘못이다. {문자}도 {분모}로 가야 하므로 역수는 {$\\frac{3}{2a}$}이다.",
+      "cAnswers": [
+        "문자",
+        "분모",
+        "$\\frac{3}{2a}$"
+      ],
+      "cReason": "뒤 문장 '문자도'가 첫 답을 보여 주고 '잘못'은 뜻 없는 빈칸이라 예와 함께 고쳤다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "역수에서 문자를 빠뜨리는 오류 진단",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2262,
+      "part": "m2plus",
+      "sourceFingerprint": "2e52ae7b7a1be4448fc63f9a7d6b145d011f7aaf7b7f5e6aacf4eb5c50ec3fea",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2262
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a\\ne0$일 때 $\\frac{2}{3}a$의 역수를 계수만 뒤집어 $\\frac{3}{2}a$라 하면 잘못이다. {문자}도 {분모}로 가야 하므로 역수는 {$\\frac{3}{2a}$}이다.",
+      "cSlotAnswers": [
+        "문자",
+        "분모",
+        "$\\frac{3}{2a}$"
+      ],
+      "cStudentSentence": "$a\\ne0$일 때 $\\frac{2}{3}a$의 역수를 계수만 뒤집어 $\\frac{3}{2}a$라 하면 잘못이다. □도 □로 가야 하므로 역수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "문자",
+          "equivalentAnswers": [
+            "문자"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "분모",
+          "equivalentAnswers": [
+            "분모"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$\\frac{3}{2a}$",
+          "equivalentAnswers": [
+            "$\\frac{3}{2a}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "문자"
+        ],
+        [
+          "분모"
+        ],
+        [
+          "$\\frac{3}{2a}$"
+        ]
+      ],
+      "proposalFingerprint": "00bb3e88c2c02361c9da98abeb4d6ab16a927f7e077d157af5204ab72d915848"
+    },
+    {
+      "id": "m2-01-06-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 $12a\\div(3a)\\times(2a)$를 $12a\\div(6a^2)$으로 바꾸어 계산하면 잘못이다. 잘못인 까닭을 설명하고 바르게 계산하시오.",
+      "bAnswer": "곱셈과 나눗셈이 섞인 식은 앞에서부터 차례로 계산해야 하는데, 뒤의 곱셈을 먼저 해서 나누는 식이 $3a$에서 $6a^2$으로 달라졌다. 바르게 계산하면 $12a\\div3a=4$, $4\\times2a=8a$이다.",
+      "bGoal": "곱셈·나눗셈 혼합식을 앞에서부터 계산해야 함을 설명하기",
+      "bReason": "곱하거나나누는단항식범위를명확히묶는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞에서부터 차례로 계산해야 한다",
+            "뒤의 곱셈을 먼저 하면 나누는 식이 $3a$에서 $6a^2$으로 바뀐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8a$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "괄호가 없고 곱셈과 나눗셈만 섞인 식에서 뒤의 곱셈을 먼저 하면 {나누는} 식이 달라질 수 있다. 따라서 {왼쪽}에서부터 차례로 계산한다.",
+      "cAnswers": [
+        "나누는",
+        "왼쪽"
+      ],
+      "cReason": "괄호없는혼합계산으로범위를한정하고달라질수있다고정확히쓴다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "계산 차례를 바꾸면 틀리는 까닭",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2263,
+      "part": "m2plus",
+      "sourceFingerprint": "fa13b99c35365993687a1f176f102efab5bf0161b57e54c63d950d948ebe9c11",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2263
+      },
+      "directReview": null,
+      "cMarkedSentence": "괄호가 없고 곱셈과 나눗셈만 섞인 식에서 뒤의 곱셈을 먼저 하면 {나누는} 식이 달라질 수 있다. 따라서 {왼쪽}에서부터 차례로 계산한다.",
+      "cSlotAnswers": [
+        "나누는",
+        "왼쪽"
+      ],
+      "cStudentSentence": "괄호가 없고 곱셈과 나눗셈만 섞인 식에서 뒤의 곱셈을 먼저 하면 □ 식이 달라질 수 있다. 따라서 □에서부터 차례로 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나누는",
+          "equivalentAnswers": [
+            "나누는"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "왼쪽",
+          "equivalentAnswers": [
+            "왼쪽",
+            "앞"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "앞",
+          "accept": [
+            "왼쪽"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "나누는"
+        ],
+        [
+          "왼쪽",
+          "앞"
+        ]
+      ],
+      "proposalFingerprint": "be009695349f926649d0a34676a59910cb70cf67a0a2b58b744e57cfd1fc316c"
+    },
+    {
+      "id": "m2-01-06-xc25",
+      "bDecision": "rewrite",
+      "bPrompt": "자연수 $a$에 대하여 $2x^a\\times3x^2=6x^5$이 $x$의 값에 관계없이 성립할 때, $a$의 값을 구하고 그렇게 구할 수 있는 까닭을 쓰시오.",
+      "bAnswer": "좌변은 $6x^{a+2}$이고, 두 단항식이 $x$의 값에 관계없이 같으려면 $x$의 지수가 같아야 하므로 $a+2=5$, $a=3$이다.",
+      "bGoal": "단항식의 등식에서 지수를 비교해 모르는 지수 구하기",
+      "bReason": "'관계없이 성립'이라는 조건과 구체적인 등식을 질문에 넣어 지수 비교의 근거를 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양변의 $x$의 지수가 같아야 한다",
+            "$a+2=5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=3$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "계수가 $0$이 아닌 두 단항식이 문자의 값에 관계없이 같으면 같은 문자의 {지수}끼리 같다. 그래서 자연수 $a$에 대하여 $6x^{a+2}=6x^5$이 항상 성립하면 $a=${$3$}이다.",
+      "cAnswers": [
+        "지수",
+        "$3$"
+      ],
+      "cReason": "'문자의 값에 관계없이'는 빈칸으로 두기엔 긴 구절이고 뒤의 '지수를 견주어'가 답을 보여 주었다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "지수 비교로 모르는 지수 구하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2264,
+      "part": "m2plus",
+      "sourceFingerprint": "736d2017afa52ae64a7be7ba6df39d241ed44dc71b339868526a1c3946d663d0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2264
+      },
+      "directReview": null,
+      "cMarkedSentence": "계수가 $0$이 아닌 두 단항식이 문자의 값에 관계없이 같으면 같은 문자의 {지수}끼리 같다. 그래서 자연수 $a$에 대하여 $6x^{a+2}=6x^5$이 항상 성립하면 $a=${$3$}이다.",
+      "cSlotAnswers": [
+        "지수",
+        "$3$"
+      ],
+      "cStudentSentence": "계수가 $0$이 아닌 두 단항식이 문자의 값에 관계없이 같으면 같은 문자의 □끼리 같다. 그래서 자연수 $a$에 대하여 $6x^{a+2}=6x^5$이 항상 성립하면 $a=$□이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "지수",
+          "equivalentAnswers": [
+            "지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "지수"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "556c7b1486c75b0cc9050dd5e0688a30be9c1e5afd71fb34009e11a64b166f12"
+    },
+    {
+      "id": "m2-01-07-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "다항식은 무엇을 어떤 계산으로 이은 식인지 쓰고, $2x-3y+1$을 그 뜻에 맞게 나누어 보이시오.",
+      "bAnswer": "한 개 또는 여러 개의 항을 덧셈으로 이은 식이다. $2x-3y+1=2x+(-3y)+1$로 세 항 $2x$, $-3y$, $1$의 합이다.",
+      "bGoal": "다항식을 항의 합으로 이해하기",
+      "bReason": "뺄셈이 섞인 식도 항의 덧셈으로 본다는 점을 예로 확인하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항을 덧셈으로 이은 식",
+            "한 개 또는 여러 개의 항의 합"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2x$, $-3y$, $1$의 합",
+            "$2x+(-3y)+1$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 개 또는 여러 개의 {항}을 {덧셈}으로 이은 식을 다항식이라 한다.",
+      "cAnswers": [
+        "항",
+        "덧셈"
+      ],
+      "cReason": "재료와 이름을 함께 가려 뜻이 정해지지 않으므로 이름은 보이게 함.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "다항식의 뜻",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2265,
+      "part": "m2plus",
+      "sourceFingerprint": "dc1a2dd96ae865d4ec2301edf25e6c6c50a23ae5e37c3ea10e5f72f6ce51a91d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2265
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 개 또는 여러 개의 {항}을 {덧셈}으로 이은 식을 다항식이라 한다.",
+      "cSlotAnswers": [
+        "항",
+        "덧셈"
+      ],
+      "cStudentSentence": "한 개 또는 여러 개의 □을 □으로 이은 식을 다항식이라 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "항",
+          "equivalentAnswers": [
+            "항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "덧셈",
+          "equivalentAnswers": [
+            "덧셈",
+            "더하기"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "덧셈",
+          "accept": [
+            "더하기"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "항"
+        ],
+        [
+          "덧셈",
+          "더하기"
+        ]
+      ],
+      "proposalFingerprint": "906f3f0a1c0e8ffeb9d4cf0b3fafdd28c1b377bc649ecdef90a8f064756e4dbd"
+    },
+    {
+      "id": "m2-01-07-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "다항식 $3a-5b$의 항을 모두 쓰고, 둘째 항에 $-$ 부호를 붙여 쓰는 까닭을 덧셈과 관련지어 말하시오.",
+      "bAnswer": "항은 $3a$, $-5b$이다. $3a-5b=3a+(-5b)$로 덧셈으로 이어 쓰면 더해지는 것이 $-5b$이기 때문이다.",
+      "bGoal": "부호를 포함해 항 찾기",
+      "bReason": "항을 쓸 때 부호를 빠뜨리는 실수를 겨냥해 덧셈으로 본 까닭을 물음.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3a$, $-5b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3a+(-5b)$로 볼 수 있다",
+            "뺄셈을 음의 항의 덧셈으로 본다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "다항식에서 덧셈으로 이어진 각각의 단항식을 그 다항식의 {항}이라 한다.",
+      "cAnswers": [
+        "항"
+      ],
+      "cReason": "'단항식'과 '항'을 함께 가리면 첫 빈칸에 여러 말이 들어갈 수 있다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "다항식의 항의 뜻",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2266,
+      "part": "m2plus",
+      "sourceFingerprint": "cab380b708dcfec48dbd2d545a59276cc4c4e26c2a5a92206fbc6a4b8981fd19",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2266
+      },
+      "directReview": null,
+      "cMarkedSentence": "다항식에서 덧셈으로 이어진 각각의 단항식을 그 다항식의 {항}이라 한다.",
+      "cSlotAnswers": [
+        "항"
+      ],
+      "cStudentSentence": "다항식에서 덧셈으로 이어진 각각의 단항식을 그 다항식의 □이라 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "항",
+          "equivalentAnswers": [
+            "항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "항"
+        ]
+      ],
+      "proposalFingerprint": "0e6a4bab0c856bcbf7d0cbce1736479983aa8f68f422c9d1571eaf3ff58f6525"
+    },
+    {
+      "id": "m2-01-07-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "$x^2-4x+7$의 상수항을 쓰고, 그 항을 상수항이라고 하는 까닭을 말하시오.",
+      "bAnswer": "상수항은 $7$이다. 문자 없이 수로만 된 항이기 때문이다.",
+      "bGoal": "상수항을 찾고 뜻 말하기",
+      "bReason": "상수항을 실제 식에서 고르고 '문자가 없다'는 기준을 답하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "문자가 없는 항",
+            "수로만 된 항"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'문자 없이'라는 조건이 남아 있어 두 빈칸이 모두 정해진다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "상수항의 뜻",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2267,
+      "part": "m2plus",
+      "sourceFingerprint": "73335e3dd666a92ae433d1e8f505157c52d8f77ce26e6731833a5072d7c45297",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2267
+      },
+      "directReview": null,
+      "cFrozenSentence": "문자 없이 □로만 된 항을 □이라 한다.",
+      "cFrozenDefinition": "문자 없이 {수}로만 된 항을 {상수항}이라 한다.",
+      "cFrozenAnswers": [
+        "수",
+        "상수항"
+      ],
+      "cMarkedSentence": "문자 없이 {수}로만 된 항을 {상수항}이라 한다.",
+      "cSlotAnswers": [
+        "수",
+        "상수항"
+      ],
+      "cStudentSentence": "문자 없이 □로만 된 항을 □이라 한다.",
+      "cAnswers": [
+        "수",
+        "상수항"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "수",
+          "equivalentAnswers": [
+            "수",
+            "상수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "상수항",
+          "equivalentAnswers": [
+            "상수항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "수",
+          "accept": [
+            "상수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "수",
+          "상수"
+        ],
+        [
+          "상수항"
+        ]
+      ],
+      "proposalFingerprint": "262f7e2e7b9e25208b00bff84060133373f84c48cf076e2b841374f820547ce1"
+    },
+    {
+      "id": "m2-01-07-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$x^2$과 $3x$ 중 $3x^2$과 동류항인 것을 고르고, 다른 하나가 동류항이 아닌 까닭을 쓰시오.",
+      "bAnswer": "$x^2$이다. $3x$는 문자는 $x$로 같지만 차수가 $1$이어서 차수가 $2$인 $3x^2$과 다르기 때문이다.",
+      "bGoal": "문자와 차수로 동류항 판별하기",
+      "bReason": "문자만 같으면 동류항이라고 여기는 오해를 차수 비교로 짚게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3x$는 차수가 다르다",
+            "$3x$는 일차, $3x^2$은 이차이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "전체차수만같은다변수항을동류항으로오해하지않게각문자지수로정확히쓴다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "동류항의 뜻",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2268,
+      "part": "m2plus",
+      "sourceFingerprint": "1523b909135526ead29aa30d54f07ea95c8cb60687830cf5b686b6eaf7160cc9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2268
+      },
+      "directReview": null,
+      "cMarkedSentence": "문자가 곱해진 부분이 같은 항을 {동류항}이라 한다. 이런 항들은 각 문자의 {지수}가 모두 같다.",
+      "cSlotAnswers": [
+        "동류항",
+        "지수"
+      ],
+      "cStudentSentence": "문자가 곱해진 부분이 같은 항을 □이라 한다. 이런 항들은 각 문자의 □가 모두 같다.",
+      "cAnswers": [
+        "동류항",
+        "지수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "지수",
+          "equivalentAnswers": [
+            "지수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "동류항"
+        ],
+        [
+          "지수"
+        ]
+      ],
+      "proposalFingerprint": "37b34575f9b6e2fa5ae9c4d53c8af34b667c00c999c6c76c310e3268b4d5c0e8",
+      "cAfter": "문자가 곱해진 부분이 같은 항을 {동류항}이라 한다. 이런 항들은 각 문자의 {지수}가 모두 같다.",
+      "coreAfter": "계수를 제외하고 {문자가 곱해진 부분}이 같은 항을 동류항이라 한다. 여러 문자가 있으면 각 문자의 지수가 모두 같아야 한다. $x^2y$와 $xy^2$는 전체 차수는 같지만 {동류항이 아니다}.",
+      "coreReason": "문자와총차수같음만으로부족한원정의를각문자지수일치로교정한다."
+    },
+    {
+      "id": "m2-01-07-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "항 $5x^3$의 차수를 구하고, 계수 $5$가 아니라 그 수가 차수인 까닭을 곱셈으로 풀어 써서 말하시오.",
+      "bAnswer": "차수는 $3$이다. $5x^3=5\\times x\\times x\\times x$에서 문자 $x$가 $3$번 곱해졌고, 차수는 문자가 곱해진 횟수이기 때문이다.",
+      "bGoal": "항의 차수를 문자가 곱해진 횟수로 알기",
+      "bReason": "곱셈으로풀어설명하라는요구에맞는실제표현을기준으로삼는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차수는 $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5x^3=5\\times x\\times x\\times x$에서 문자 $x$가 $3$번 곱해졌다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "항 $5x^3$에서 문자 $x$는 {$3$}번 곱해졌다. 이렇게 한 항에서 문자가 곱해진 횟수를 그 항의 {차수}라 한다.",
+      "cAnswers": [
+        "$3$",
+        "차수"
+      ],
+      "cReason": "'횟수'는 개수·수 등으로도 쓸 수 있는 임의 낱말이라 구체 예로 바꿈.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "항의 차수의 뜻",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2269,
+      "part": "m2plus",
+      "sourceFingerprint": "b0ca5e16f0e67bcad4470d1743013755981b38cdc45c70a0315f9d155c66cedc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2269
+      },
+      "directReview": null,
+      "cMarkedSentence": "항 $5x^3$에서 문자 $x$는 {$3$}번 곱해졌다. 이렇게 한 항에서 문자가 곱해진 횟수를 그 항의 {차수}라 한다.",
+      "cSlotAnswers": [
+        "$3$",
+        "차수"
+      ],
+      "cStudentSentence": "항 $5x^3$에서 문자 $x$는 □번 곱해졌다. 이렇게 한 항에서 문자가 곱해진 횟수를 그 항의 □라 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "차수",
+          "equivalentAnswers": [
+            "차수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ],
+        [
+          "차수"
+        ]
+      ],
+      "proposalFingerprint": "e6a9af8ee02319aa694620e5a3109031dd303a84ae2a41d9fda4f635ad287028"
+    },
+    {
+      "id": "m2-01-07-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "다항식 $x^3-2x+1$의 차수를 구하고, 세 항 중 어느 항을 보고 정했는지 그 까닭과 함께 쓰시오.",
+      "bAnswer": "차수는 $3$이다. 각 항의 차수 가운데 가장 큰 것이 다항식의 차수인데, 차수가 가장 큰 항이 $x^3$이기 때문이다.",
+      "bGoal": "가장 큰 항의 차수로 다항식의 차수 정하기",
+      "bReason": "다항식의 차수를 정하는 기준과 근거 항을 함께 답하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다항식의 차수는 $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 항의 차수 중 가장 큰 것을 택한다",
+            "차수가 가장 큰 항 $x^3$을 본다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "동류항을 정리한 다항식에서 각 항의 차수 가운데 가장 {큰} 것을 그 다항식의 차수라 한다. $x^3-2x+1$의 차수는 {$3$}이다.",
+      "cAnswers": [
+        "큰",
+        "$3$"
+      ],
+      "cReason": "서로없어지는높은차수항을그대로세지않도록정리후라는조건을명시한다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "다항식의 차수의 뜻",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2270,
+      "part": "m2plus",
+      "sourceFingerprint": "053303c091b097ea2d6ff5f30c293bd4644638f26a457e23ef1036d36edfa0e4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2270
+      },
+      "directReview": null,
+      "cMarkedSentence": "동류항을 정리한 다항식에서 각 항의 차수 가운데 가장 {큰} 것을 그 다항식의 차수라 한다. $x^3-2x+1$의 차수는 {$3$}이다.",
+      "cSlotAnswers": [
+        "큰",
+        "$3$"
+      ],
+      "cStudentSentence": "동류항을 정리한 다항식에서 각 항의 차수 가운데 가장 □ 것을 그 다항식의 차수라 한다. $x^3-2x+1$의 차수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰",
+            "높은"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "큰",
+          "accept": [
+            "높은"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "큰",
+          "높은"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "facf119926f075b529ce98fc39c83b52fa22ceeb352ddf7ff6380ced8b4de7e6",
+      "coreAfter": "{동류항을 정리한} 다항식에서 계수가 $0$이 아닌 항들의 차수 중 {가장 큰 차수}를 그 다항식의 차수라 한다.",
+      "coreReason": "합쳐서없어지는항을제외한차수정의를보존한다."
+    },
+    {
+      "id": "m2-01-07-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "$2x+5$와 $x^2+2x$ 중 일차식을 고르고, 일차식인지 판단하는 기준을 쓰시오.",
+      "bAnswer": "$2x+5$이다. 차수가 $1$인 다항식이 일차식이고, $x^2+2x$는 차수가 $2$이다.",
+      "bGoal": "차수로 일차식 판별하기",
+      "bReason": "일차식을 다른 차수의 식과 견주어 판별 기준을 답하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2x+5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "차수가 $1$인 다항식",
+            "가장 큰 항의 차수가 $1$이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "조건이 분명하고 용어 하나만 묻는 짧은 정의 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "일차식의 뜻",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2271,
+      "part": "m2plus",
+      "sourceFingerprint": "1d2abf0575d4af1bbd6b657452ccac2947c028c8a5803d59173e343512c41dfd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2271
+      },
+      "directReview": null,
+      "cFrozenSentence": "차수가 $1$인 다항식을 □이라 한다.",
+      "cFrozenDefinition": "차수가 $1$인 다항식을 {일차식}이라 한다.",
+      "cFrozenAnswers": [
+        "일차식"
+      ],
+      "cMarkedSentence": "차수가 $1$인 다항식을 {일차식}이라 한다.",
+      "cSlotAnswers": [
+        "일차식"
+      ],
+      "cStudentSentence": "차수가 $1$인 다항식을 □이라 한다.",
+      "cAnswers": [
+        "일차식"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "일차식",
+          "equivalentAnswers": [
+            "일차식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "일차식"
+        ]
+      ],
+      "proposalFingerprint": "6983b91723830303badbdcf671d88877d64cec80014dafe7efab7d024974a0d0"
+    },
+    {
+      "id": "m2-01-07-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$3a+(2a-b)$에서 괄호를 풀면 괄호 안 두 항의 부호가 어떻게 되는지 쓰고, 식을 계산하시오.",
+      "bAnswer": "두 항의 부호는 그대로이다. $3a+2a-b=5a-b$이다.",
+      "bGoal": "$+$ 뒤의 괄호 풀기",
+      "bReason": "괄호 앞 $+$일 때 부호가 유지됨을 구체 식에서 확인하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부호가 그대로이다",
+            "$3a+2a-b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5a-b$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "조건($+$)이 보이고 결과 '그대로'만 묻는 분명한 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "$+$ 뒤 괄호 푸는 방법",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2272,
+      "part": "m2plus",
+      "sourceFingerprint": "2e312a0c360e9e2517955ccd8cae5038009e61ab4cba00cc21740cccb64543cf",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2272
+      },
+      "directReview": null,
+      "cFrozenSentence": "괄호 앞이 $+$이면 괄호 안 각 항의 부호를 □ 두고 괄호를 푼다.",
+      "cFrozenDefinition": "괄호 앞이 $+$이면 괄호 안 각 항의 부호를 {그대로} 두고 괄호를 푼다.",
+      "cFrozenAnswers": [
+        "그대로"
+      ],
+      "cMarkedSentence": "괄호 앞이 $+$이면 괄호 안 각 항의 부호를 {그대로} 두고 괄호를 푼다.",
+      "cSlotAnswers": [
+        "그대로"
+      ],
+      "cStudentSentence": "괄호 앞이 $+$이면 괄호 안 각 항의 부호를 □ 두고 괄호를 푼다.",
+      "cAnswers": [
+        "그대로"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "그대로",
+          "equivalentAnswers": [
+            "그대로"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "그대로"
+        ]
+      ],
+      "proposalFingerprint": "0b2f1d12bf8f437e4c6806216d573c4d7ca2231bdd918f952e198003bf9e9f6e"
+    },
+    {
+      "id": "m2-01-07-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$x-(3x-2)$의 괄호를 풀 때 괄호 안의 $3x$와 $-2$가 각각 어떻게 바뀌는지 쓰고, 식을 계산하시오.",
+      "bAnswer": "$3x$는 $-3x$로, $-2$는 $+2$로 두 항의 부호가 모두 바뀐다. $x-3x+2=-2x+2$이다.",
+      "bGoal": "$-$ 뒤의 괄호 풀기",
+      "bReason": "괄호 안 모든 항의 부호가 바뀜을 항별로 답하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 항의 부호가 모두 바뀐다",
+            "$-3x+2$로 바뀐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-2x+2$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "괄호 앞이 {$-$}이면 괄호 안 각 항의 부호를 모두 바꾸어 괄호를 푼다.",
+      "cAnswers": [
+        "$-$"
+      ],
+      "cReason": "'모두'는 '각 항'과 겹치는 임의 낱말이라 조건 기호만 묻게 함.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "$-$ 뒤 괄호 푸는 방법",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2273,
+      "part": "m2plus",
+      "sourceFingerprint": "cf3449ad006033795fb5750bf37af7e3fc0416d5860509a2ac31796914b44f1c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2273
+      },
+      "directReview": null,
+      "cMarkedSentence": "괄호 앞이 {$-$}이면 괄호 안 각 항의 부호를 모두 바꾸어 괄호를 푼다.",
+      "cSlotAnswers": [
+        "$-$"
+      ],
+      "cStudentSentence": "괄호 앞이 □이면 괄호 안 각 항의 부호를 모두 바꾸어 괄호를 푼다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-$",
+          "equivalentAnswers": [
+            "$-$",
+            "마이너스"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$-$",
+          "accept": [
+            "마이너스"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$-$",
+          "마이너스"
+        ]
+      ],
+      "proposalFingerprint": "137698b0072716b6562e54efcbdcbc8daf02da40e1629f7e1bb3b8e9fa13046e"
+    },
+    {
+      "id": "m2-01-07-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$3-x+2x^2$을 보통 쓰는 차례로 다시 쓰고, 항을 어떤 기준으로 늘어놓았는지 쓰시오.",
+      "bAnswer": "$2x^2-x+3$이다. 차수가 큰 항부터 작은 항의 차례, 곧 이차항, 일차항, 상수항의 차례로 쓴다.",
+      "bGoal": "차수가 큰 항부터 정리하기",
+      "bReason": "정리하는 차례를 실제 식을 다시 쓰며 기준과 함께 답하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2x^2-x+3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "차수가 큰 항부터 차례로 쓴다",
+            "이차항, 일차항, 상수항의 차례로 쓴다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'이차항, 일차항, 상수항처럼'이 있어 큰·작은이 분명히 정해진다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "항을 늘어놓는 차례",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2274,
+      "part": "m2plus",
+      "sourceFingerprint": "2ac9b7fc6f1883f253c7a65b4ad8fa6d36939b821a81e09398886d485805327e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2274
+      },
+      "directReview": null,
+      "cFrozenSentence": "다항식은 보통 이차항, 일차항, 상수항처럼 차수가 □ 것에서 □ 것의 차례로 정리한다.",
+      "cFrozenDefinition": "다항식은 보통 이차항, 일차항, 상수항처럼 차수가 {큰} 것에서 {작은} 것의 차례로 정리한다.",
+      "cFrozenAnswers": [
+        "큰",
+        "작은"
+      ],
+      "cMarkedSentence": "다항식은 보통 이차항, 일차항, 상수항처럼 차수가 {큰} 것에서 {작은} 것의 차례로 정리한다.",
+      "cSlotAnswers": [
+        "큰",
+        "작은"
+      ],
+      "cStudentSentence": "다항식은 보통 이차항, 일차항, 상수항처럼 차수가 □ 것에서 □ 것의 차례로 정리한다.",
+      "cAnswers": [
+        "큰",
+        "작은"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰",
+            "높은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "작은",
+          "equivalentAnswers": [
+            "작은",
+            "낮은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "큰",
+          "accept": [
+            "높은"
+          ]
+        },
+        {
+          "answer": "작은",
+          "accept": [
+            "낮은"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "큰",
+          "높은"
+        ],
+        [
+          "작은",
+          "낮은"
+        ]
+      ],
+      "proposalFingerprint": "a730705d246adf7c97d9313fbcfc94f1758493c7d6e16e480fbc9a08eb6d0c91"
+    },
+    {
+      "id": "m2-01-07-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "이차식 $x^2+x$와 이차식 $-x^2+3$을 더한 결과를 구하고, 그 결과가 몇 차식인지와 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "$x+3$이고 일차식이다. $x^2$과 $-x^2$을 더하면 $0$이 되어 이차항이 없어지기 때문이다.",
+      "bGoal": "이차식의 합이 이차식이 아닐 수 있음을 알기",
+      "bReason": "이차식끼리 더하면 늘 이차식이라는 오해를 반례로 확인하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x+3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "일차식"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x^2$ 항이 없어진다",
+            "$x^2+(-x^2)=0$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "이차식끼리 더해도 $x^2$ 항이 없어지면 결과는 이차식이 아닐 수 있다. 예를 들어 $(x^2+x)+(-x^2+3)=$ {$x+3$}이고 이것은 {일차식}이다.",
+      "cAnswers": [
+        "$x+3$",
+        "일차식"
+      ],
+      "cReason": "'사라지면'은 없어지면 등 여러 말이 가능한 임의 서술어 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "이차항이 없어지는 까닭",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2275,
+      "part": "m2plus",
+      "sourceFingerprint": "c9312bf4835ba16aa63d12e1856e91adf9f2027e669dba058a274e7626a5040e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2275
+      },
+      "directReview": null,
+      "cMarkedSentence": "이차식끼리 더해도 $x^2$ 항이 없어지면 결과는 이차식이 아닐 수 있다. 예를 들어 $(x^2+x)+(-x^2+3)=$ {$x+3$}이고 이것은 {일차식}이다.",
+      "cSlotAnswers": [
+        "$x+3$",
+        "일차식"
+      ],
+      "cStudentSentence": "이차식끼리 더해도 $x^2$ 항이 없어지면 결과는 이차식이 아닐 수 있다. 예를 들어 $(x^2+x)+(-x^2+3)=$ □이고 이것은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x+3$",
+          "equivalentAnswers": [
+            "$x+3$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "일차식",
+          "equivalentAnswers": [
+            "일차식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$x+3$"
+        ],
+        [
+          "일차식"
+        ]
+      ],
+      "proposalFingerprint": "5762bd458d24456f136727d6897c630550e3d24987f98f10f747521c968ab1f4"
+    },
+    {
+      "id": "m2-01-07-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$2x^2+3x-1$과 $x^2-5$를 세로셈으로 더하려고 위아래로 쓴다. 아래 식의 $-5$는 위 식의 어느 항 아래에 써야 하는지 쓰고, 그 까닭을 말하시오.",
+      "bAnswer": "$-1$ 아래에 쓴다. 동류항끼리 자리를 맞추어야 같은 줄에 있는 것끼리 바로 더할 수 있기 때문이다.",
+      "bGoal": "동류항끼리 자리 맞춰 세로셈하기",
+      "bReason": "그림 없이도 답할 수 있게 한 항의 자리와 그 까닭을 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-1$ 아래",
+            "상수항 아래"
+          ]
+        },
+        {
+          "anyOf": [
+            "동류항끼리 자리를 맞춘다",
+            "상수항끼리 더해야 한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 다항식을 세로셈으로 더하거나 뺄 때는 {동류항}끼리 자리를 맞춰 위아래로 쓴다.",
+      "cAnswers": [
+        "동류항"
+      ],
+      "cReason": "둘째 답 '동류항'이 문장 앞에 그대로 나와 베껴 쓰게 된다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "세로셈의 자리 맞추기",
+      "authorBatch": 29,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2276,
+      "part": "m2plus",
+      "sourceFingerprint": "6795d26f0b07d67422b563a6cf8cf294f83011cfa9084c356f8ea7bcd91254ca",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2276
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 다항식을 세로셈으로 더하거나 뺄 때는 {동류항}끼리 자리를 맞춰 위아래로 쓴다.",
+      "cSlotAnswers": [
+        "동류항"
+      ],
+      "cStudentSentence": "두 다항식을 세로셈으로 더하거나 뺄 때는 □끼리 자리를 맞춰 위아래로 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "0fc1ed23725cc70dc4e82348e7bc836974bb93165146f26177f9e7dc15e33b41"
+    }
+  ]
+}
