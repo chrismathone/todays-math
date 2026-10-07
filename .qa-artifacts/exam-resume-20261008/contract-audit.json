@@ -1,0 +1,2647 @@
+{
+  "schemaVersion": "exam-twin-contract-audit/v1",
+  "auditDate": "2026-10-08",
+  "createdAtUtc": "2026-10-07T16:14:57.543232+00:00",
+  "status": "completed_setup_audit",
+  "baselineCommit": "6b14920ed71baf770213bb1e6e9af8f80412bfe3",
+  "branch": "chrismathone/exam-twin-contracts-20261008",
+  "worktree": "C:/Users/user/orca/workspaces/todays-math/exam-twin-contracts-20261008",
+  "report": {
+    "path": "docs/planning/tracks/reports/exam-twin-contract-audit-20261008.md",
+    "sha256": "68549b9bb3318ea439ece0485b23b13ea5987006c9f4770f6876f29c83f13584"
+  },
+  "scope": {
+    "setupOnly": true,
+    "verifiedTwins": 0,
+    "twinCandidatesCreated": 0,
+    "productionIntegrationImplemented": false,
+    "dbWriterImplemented": false,
+    "dbReads": 0,
+    "dbWrites": 0,
+    "paidApiCalls": 0,
+    "imagesGenerated": 0,
+    "workersSpawned": 0,
+    "mainOrParentEdited": false,
+    "sourceNOrOriginalArtifactsModified": false,
+    "hwpConversions": 0,
+    "npmInstallOrPrismaGenerate": false,
+    "pushMergeDeployPerformed": false,
+    "integrationOwner": "parent feature branch",
+    "readyForLaterLoad": false
+  },
+  "instructions": {
+    "read": [
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-contracts-20261008/AGENTS.md",
+        "sha256": "644dd7b882a2304d7ae022c94fcdea531599b3361a1c4b882ef34be9397f2801"
+      },
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/AGENTS.md",
+        "sha256": "644dd7b882a2304d7ae022c94fcdea531599b3361a1c4b882ef34be9397f2801"
+      },
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/docs/planning/tracks/brief-exam-extraction-resume-20261008.md",
+        "sha256": "076aeb1eb572fec4bd20fb07dbac15bc9c642cce1c0d363c99b9b0995eae584b"
+      },
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-1.md",
+        "sha256": "b530f1367ededa6f40e56e58641e5d7a9a3afe927b5e72788dd7cbfc61033eaa"
+      }
+    ],
+    "latestAddendumSha256": "b530f1367ededa6f40e56e58641e5d7a9a3afe927b5e72788dd7cbfc61033eaa",
+    "reReadAfterBothOwnerUpdates": true,
+    "precedence": "expanded owner addendum over earlier numeric-only direction; grade/applied curriculum over every variant strategy",
+    "doNotDuplicateBankReads": true
+  },
+  "ownerRequirements": {
+    "retained": [
+      "evaluated concept",
+      "core solution method",
+      "applied curriculum",
+      "target difficulty"
+    ],
+    "variantDimensions": [
+      "stem_structure",
+      "context",
+      "representation",
+      "inverse_target"
+    ],
+    "combinationsAllowed": true,
+    "insufficient": [
+      "numeric_only",
+      "school_name_only",
+      "synonym_only",
+      "sentence_order_only"
+    ],
+    "mandatoryReviews": [
+      "same_principle",
+      "natural_korean",
+      "distinct_presentation",
+      "whole_candidate_grade_curriculum",
+      "new_math_answer_solution",
+      "recreated_figures",
+      "metadata",
+      "rights_similarity"
+    ],
+    "allAnswersSolutionsFiguresRegenerated": true,
+    "originalCropsReferenceOnly": true
+  },
+  "findings": [
+    {
+      "area": "Transformer",
+      "reusable": "Candidate-only `transformProblem`; normalization, parse retry and failure visibility. `src/lib/ai/transformer.ts:46`, `src/lib/ai/transformer.ts:97`, `src/lib/ai/transformer.ts:156`.",
+      "actualGap": "Defaults `numbers`/`keep`; no structural/context delta, school map, concept/method evidence, mandatory new solution or independent verification. A nonempty undersized candidate array is returned after slicing, unlike generator count checking.",
+      "evidenceRefs": [
+        "src/lib/ai/transformer.ts:46",
+        "src/lib/ai/transformer.ts:97",
+        "src/lib/ai/transformer.ts:156"
+      ]
+    },
+    {
+      "area": "Transform prompt",
+      "reusable": "Concept/method preservation, difficulty axis and figure request. `src/lib/ai/prompts/transform.ts:75`, `src/lib/ai/prompts/transform.ts:83`, `src/lib/ai/prompts/transform.ts:102`, `src/lib/ai/prompts/transform.ts:121`.",
+      "actualGap": "`numbers` explicitly preserves sentences/context; `conditions` permits a broader change but does not require meaningful presentation change. Original answer/solution are supplied to the model (`src/lib/ai/prompts/transform.ts:135`–`src/lib/ai/prompts/transform.ts:136`). This is not a blind twin solver. The system prompt is middle-school-specific.",
+      "evidenceRefs": [
+        "src/lib/ai/prompts/transform.ts:75",
+        "src/lib/ai/prompts/transform.ts:83",
+        "src/lib/ai/prompts/transform.ts:102",
+        "src/lib/ai/prompts/transform.ts:121",
+        "src/lib/ai/prompts/transform.ts:135",
+        "src/lib/ai/prompts/transform.ts:136"
+      ]
+    },
+    {
+      "area": "Meaning of verified",
+      "reusable": "`verifiesOriginalReproduction` normalizes and compares the original answer with model-recomputed original answer. `src/lib/ai/originalReproduction.ts:29`; `src/contracts/problem.contract.ts:358`.",
+      "actualGap": "This boolean neither independently solves the new twin nor checks its changed conditions, uniqueness, distractors, natural Korean or distinct presentation. Never map it to twin verification.",
+      "evidenceRefs": [
+        "src/lib/ai/originalReproduction.ts:29",
+        "src/contracts/problem.contract.ts:358"
+      ]
+    },
+    {
+      "area": "Transform API/adopt",
+      "reusable": "Authenticated original lookup, family-main selection, admission control; server rerender of spec, fabricated-value check, pending adoption, original family inheritance. `src/app/api/problems/transform/route.ts:76`, `src/app/api/problems/transform/route.ts:108`; `src/app/api/problems/transform/adopt/route.ts:89`, `src/app/api/problems/transform/adopt/route.ts:109`, `src/app/api/problems/transform/adopt/route.ts:129`, `src/app/api/problems/transform/adopt/route.ts:150`, `src/app/api/problems/transform/adopt/route.ts:169`.",
+      "actualGap": "Requires an existing DB origin. Family-main redirection can replace the requested variant. Adopt saves no external source/variant/review ledger and is a DB writer. Do not use it for offline exam-reference twins.",
+      "evidenceRefs": [
+        "src/app/api/problems/transform/route.ts:76",
+        "src/app/api/problems/transform/route.ts:108",
+        "src/app/api/problems/transform/adopt/route.ts:89",
+        "src/app/api/problems/transform/adopt/route.ts:109",
+        "src/app/api/problems/transform/adopt/route.ts:129",
+        "src/app/api/problems/transform/adopt/route.ts:150",
+        "src/app/api/problems/transform/adopt/route.ts:169"
+      ]
+    },
+    {
+      "area": "Figure capability",
+      "reusable": "One Python render boundary dispatches v2, `graph-1`, `elem-1`, then sanitizes. `scripts/figure/render_spec.py:65`, `scripts/figure/render_spec.py:81`. Current catalog includes geometry fields, annotated polynomial/inverse graphs and **60 elem kinds**. `scripts/figure/engine-catalog.json:2`, `scripts/figure/engine-catalog.json:869`.",
+      "actualGap": "Transform prompt claims graphs/statistics are unrepresentable (`src/lib/ai/prompts/transform.ts:56`) and shows a narrow hand-written v2 subset. This is a prompt/capability mismatch, not evidence that the engine lacks those figures.",
+      "evidenceRefs": [
+        "scripts/figure/render_spec.py:65",
+        "scripts/figure/render_spec.py:81",
+        "scripts/figure/engine-catalog.json:2",
+        "scripts/figure/engine-catalog.json:869",
+        "src/lib/ai/prompts/transform.ts:56"
+      ]
+    },
+    {
+      "area": "Figure conditions",
+      "reusable": "Numeric-label guard documents its limits. `src/lib/figure/figureMatchesContent.ts:21`, `src/lib/figure/figureMatchesContent.ts:41`, `src/lib/figure/figureMatchesContent.ts:78`. Geometry validates strict keys, construction relationships and right angles. `vendor/figure-engine/core/figure_scene.py:3042`.",
+      "actualGap": "Label-number membership is not binding a value to a particular object/unit/relation. It ignores coordinates and is not a complete validator for graph/elem/raster data. Some exam givens appear only in a figure; requiring every number in stem text alone can reject a legitimate figure.",
+      "evidenceRefs": [
+        "src/lib/figure/figureMatchesContent.ts:21",
+        "src/lib/figure/figureMatchesContent.ts:41",
+        "src/lib/figure/figureMatchesContent.ts:78",
+        "vendor/figure-engine/core/figure_scene.py:3042"
+      ]
+    },
+    {
+      "area": "Rendering/quality",
+      "reusable": "Local/remote transport, cancellation, bounds, typeset label metrics, `strict` option. `src/lib/figure/renderFigureSpec.ts:45`, `src/lib/figure/renderFigureSpec.ts:84`, `src/lib/figure/renderFigureSpec.ts:132`. Python sanitizer has bounded tags/attributes/paths and local references. `vendor/figure-engine/core/figure_quality.py:37`, `vendor/figure-engine/core/figure_quality.py:687`. MathJax fragment guard is a second boundary (`src/lib/figure/mathjaxLabel.ts:287`).",
+      "actualGap": "Default rendering may drop dimensions and report their names (`src/lib/figure/renderFigureSpec.ts:112`); transform routes consume the SVG without persisting these omissions. Unresolved typesetting emits a warning but returns `ok:true` (`src/lib/figure/renderFigureSpec.ts:254`). Twin acceptance needs a strict quality result and explicit review of every omission.",
+      "evidenceRefs": [
+        "src/lib/figure/renderFigureSpec.ts:45",
+        "src/lib/figure/renderFigureSpec.ts:84",
+        "src/lib/figure/renderFigureSpec.ts:132",
+        "vendor/figure-engine/core/figure_quality.py:37",
+        "vendor/figure-engine/core/figure_quality.py:687",
+        "src/lib/figure/mathjaxLabel.ts:287",
+        "src/lib/figure/renderFigureSpec.ts:112",
+        "src/lib/figure/renderFigureSpec.ts:254"
+      ]
+    },
+    {
+      "area": "Studio redraw",
+      "reusable": "Image-conditioned inference, spec repair, source/render comparison, attempt trail and bounded retries. `src/lib/dev-ai/figure-engine.ts:137`, `src/lib/dev-ai/figure-engine.ts:256`, `src/lib/dev-ai/figure-engine.ts:321`, `src/lib/dev-ai/figure-engine.ts:331`.",
+      "actualGap": "Source redraw preserves exact original printed labels/geometry (`src/lib/dev-ai/figure-prompt.ts:27`, `src/lib/dev-ai/figure-prompt.ts:58`); twin review must compare against **changed conditions and approved target layout**. Final failed comparison/timeout can return a rendered draft with `figureReview.passed:false` (`src/lib/dev-ai/figure-engine.ts:362`, `src/lib/dev-ai/figure-engine.ts:385`). Render success is not acceptance. Success trails are discarded (`src/lib/dev-ai/figure-engine.ts:72`); audit needs durable successful provenance too.",
+      "evidenceRefs": [
+        "src/lib/dev-ai/figure-engine.ts:137",
+        "src/lib/dev-ai/figure-engine.ts:256",
+        "src/lib/dev-ai/figure-engine.ts:321",
+        "src/lib/dev-ai/figure-engine.ts:331",
+        "src/lib/dev-ai/figure-prompt.ts:27",
+        "src/lib/dev-ai/figure-prompt.ts:58",
+        "src/lib/dev-ai/figure-engine.ts:362",
+        "src/lib/dev-ai/figure-engine.ts:385",
+        "src/lib/dev-ai/figure-engine.ts:72"
+      ]
+    },
+    {
+      "area": "Existing asset support",
+      "reusable": "`assetScene` composes registered authored SVG parts with deterministic dimensions/labels; `realScene` binds labels to facts. `scripts/figure/figure_assets.py:12`, `scripts/figure/figure_assets.py:57`, `scripts/figure/figure_assets.py:164`; `scripts/figure/elementary.py:2446`; `src/lib/middle/realScene.ts:10`.",
+      "actualGap": "This path is **SVG-only**, explicitly forbidding image/text/href/id in assets (`scripts/figure/figure_assets.py:48`, `scripts/figure/figure_assets.py:102`). An imagegen bitmap cannot be dropped into it. No imagegen invocation was found in the searched math generator/figure/import directories; this does not claim none exists elsewhere in the project.",
+      "evidenceRefs": [
+        "scripts/figure/figure_assets.py:12",
+        "scripts/figure/figure_assets.py:57",
+        "scripts/figure/figure_assets.py:164",
+        "scripts/figure/elementary.py:2446",
+        "src/lib/middle/realScene.ts:10",
+        "scripts/figure/figure_assets.py:48",
+        "scripts/figure/figure_assets.py:102"
+      ]
+    },
+    {
+      "area": "Generators",
+      "reusable": "AI generator parses/normalizes, enforces requested count, derives format and returns pending drafts (`src/lib/ai/generator.ts:34`, `src/lib/ai/generator.ts:116`, `src/lib/ai/generator.ts:141`). Deterministic elementary/middle/high engines compute from seeded facts, reject unregistered keys and validate choices (`src/lib/middle/generate.ts:147`, `src/lib/middle/generate.ts:164`; `src/lib/high/generate.ts:88`, `src/lib/high/generate.ts:113`, `src/lib/high/generate.ts:130`; `src/lib/elementary/generate.ts:44`).",
+      "actualGap": "AI generator has no figure/asset output, concept constraints or mandatory solution (`src/lib/ai/generator.ts:34`). Its prompt also assumes middle school (`src/lib/ai/prompts/generate.ts:57`). Deterministic type coverage does not establish coverage of unextracted exams. Existing facts/constraints are reusable, not a generic arbitrary-exam solver.",
+      "evidenceRefs": [
+        "src/lib/ai/generator.ts:34",
+        "src/lib/ai/generator.ts:116",
+        "src/lib/ai/generator.ts:141",
+        "src/lib/middle/generate.ts:147",
+        "src/lib/middle/generate.ts:164",
+        "src/lib/high/generate.ts:88",
+        "src/lib/high/generate.ts:113",
+        "src/lib/high/generate.ts:130",
+        "src/lib/elementary/generate.ts:44",
+        "src/lib/ai/generator.ts:34",
+        "src/lib/ai/prompts/generate.ts:57"
+      ]
+    },
+    {
+      "area": "Variant collection",
+      "reusable": "Shared distinct key includes content, answer and figure spec; variants report shortfalls and dedupe format siblings together. `src/lib/engine/variants.ts:51`, `src/lib/engine/variants.ts:73`, `src/lib/engine/variants.ts:159`; loader uses it (`scripts/import/load-engine-problems.ts:46`).",
+      "actualGap": "Exact content/spec equality cannot assess same principle plus distinct presentation. Repeated answers can be mathematically valid; do not require a new answer merely to establish presentation change. Existing import fingerprint omits figures and metadata (`src/lib/import/problemFingerprint.ts:20`); use a separate versioned twin digest.",
+      "evidenceRefs": [
+        "src/lib/engine/variants.ts:51",
+        "src/lib/engine/variants.ts:73",
+        "src/lib/engine/variants.ts:159",
+        "scripts/import/load-engine-problems.ts:46",
+        "src/lib/import/problemFingerprint.ts:20"
+      ]
+    },
+    {
+      "area": "Regeneration",
+      "reusable": "Blind source pack, independent-session reports, source/candidate digests, exact question coverage, renderer/middle-school checks and fail-closed loading. `scripts/import/exam-paper/regenerateExam.ts:48`, `scripts/import/exam-paper/regenerateExam.ts:160`, `scripts/import/exam-paper/regenerateExam.ts:227`, `scripts/import/exam-paper/regenerateExam.ts:355`, `scripts/import/exam-paper/regenerateExam.ts:498`; `scripts/import/exam-paper/REGENERATION.md:66`.",
+      "actualGap": "Its source is original drafts and copied original figures, not a transformed stem and recreated figures. `exam.json.units` is deliberately outside the mathematical source digest (`scripts/import/exam-paper/regenerateExam.ts:176`). Reuse the verification discipline, but introduce a twin payload/digest and independent metadata digest; do not reuse an old pack or report.",
+      "evidenceRefs": [
+        "scripts/import/exam-paper/regenerateExam.ts:48",
+        "scripts/import/exam-paper/regenerateExam.ts:160",
+        "scripts/import/exam-paper/regenerateExam.ts:227",
+        "scripts/import/exam-paper/regenerateExam.ts:355",
+        "scripts/import/exam-paper/regenerateExam.ts:498",
+        "scripts/import/exam-paper/REGENERATION.md:66",
+        "scripts/import/exam-paper/regenerateExam.ts:176"
+      ]
+    },
+    {
+      "area": "Legacy exam loader",
+      "reusable": "Unit/family validation, exclusions, graph-choice mapping, text-render guards; `--regenerate-all` blocks before DB reads/file copies on invalid evidence. `scripts/import/exam-paper/load-exam-paper.ts:239`, `scripts/import/exam-paper/load-exam-paper.ts:375`, `scripts/import/exam-paper/load-exam-paper.ts:429`, `scripts/import/exam-paper/load-exam-paper.ts:511`.",
+      "actualGap": "Still emits `past_exam`, original external ID, copied original figures, no SVG, `approved`, and potentially direct use (`scripts/import/exam-paper/load-exam-paper.ts:525`–`scripts/import/exam-paper/load-exam-paper.ts:553`). Dry-run reads DB and writes public figures plus `load_rows.json` before returning (`scripts/import/exam-paper/load-exam-paper.ts:383`, `scripts/import/exam-paper/load-exam-paper.ts:196`, `scripts/import/exam-paper/load-exam-paper.ts:538`, `scripts/import/exam-paper/load-exam-paper.ts:570`). Duplicate-ID check only runs after the dry-run return (`scripts/import/exam-paper/load-exam-paper.ts:581`). Do not execute or silently repurpose it as twin dry-run.",
+      "evidenceRefs": [
+        "scripts/import/exam-paper/load-exam-paper.ts:239",
+        "scripts/import/exam-paper/load-exam-paper.ts:375",
+        "scripts/import/exam-paper/load-exam-paper.ts:429",
+        "scripts/import/exam-paper/load-exam-paper.ts:511",
+        "scripts/import/exam-paper/load-exam-paper.ts:525",
+        "scripts/import/exam-paper/load-exam-paper.ts:553",
+        "scripts/import/exam-paper/load-exam-paper.ts:383",
+        "scripts/import/exam-paper/load-exam-paper.ts:196",
+        "scripts/import/exam-paper/load-exam-paper.ts:538",
+        "scripts/import/exam-paper/load-exam-paper.ts:570",
+        "scripts/import/exam-paper/load-exam-paper.ts:581"
+      ]
+    }
+  ],
+  "metadataFilterSearch": [
+    {
+      "axis": "Curriculum",
+      "current": "`Problem.unitId` → Unit grade/chapter/section; list filters include grade, chapter/prefix and ordered unit range. `prisma/schema.prisma:783`; `src/contracts/problem.contract.ts:190`; API `src/app/api/problems/route.ts:152`.",
+      "twinRequirement": "Reuse actual Unit IDs and parent's timestamped live-family evidence. Keep explicit curriculum edition/semester, prerequisite concepts and method evidence in sidecar until a reviewed extension exists. An unknown value is a hold, not inferred certainty."
+    },
+    {
+      "axis": "Type / difficulty / format",
+      "current": "Separate problemType, questionType and difficulty (`schema.prisma:789`, `:796`); serializer preserves format (`src/lib/serializers.ts:111`); derived format query shares classifier (`src/lib/problem/formatQuery.ts:15`).",
+      "twinRequirement": "Persist reviewed values, compare normalized rendered content with choice/answer/subpart layout. Do not classify by school name or stem wording alone. Target difficulty includes reasoning and reading burden."
+    },
+    {
+      "axis": "Reference source",
+      "current": "DB has externalId, sourceFile, school, subject, examId, questionNumber, score (`schema.prisma:849`–`:859`).",
+      "twinRequirement": "Keep accurate real school/year/term/exam/source hashes internally; fictional school belongs in rendered content and a separate replacement map. Twin namespace for externalId; DB-generated problemCode remains separate and unset in dry-run. Never pass an original ID as the twin ID."
+    },
+    {
+      "axis": "Twin lineage",
+      "current": "source enum includes `transformed`, nullable origin FK (`src/contracts/common.contract.ts:57`; `schema.prisma:785`). Current `transformed + null origin` classifies as workbook (`src/lib/problem/provenance.ts:193`).",
+      "twinRequirement": "**Blocking compatibility gap:** an external-reference twin with no DB origin would be mislabeled workbook. Use `source:\"transformed\"` in the proposed plan, `originProblemId:null`, and explicit `exam_twin` lineage in sidecar. Block future load until native discriminator/relation + serializer/badge/filter support is agreed. Do not invent an FK, create a fake source row or mislabel it past_exam/AI-original."
+    },
+    {
+      "axis": "Figure origin",
+      "current": "figureSvg, figureSource, figureUrls, dims/mm and choice index exist in DB (`schema.prisma:804`–`:843`). Badge classification only sees SVG or URL prefixes (`src/lib/problem/provenance.ts:215`); `/figures/` means scan.",
+      "twinRequirement": "Reviewed authored images need an image origin distinct from source crops. `figureSource:\"image\"` alone is currently insufficient: ProvenanceInput/ProblemEntity serializer omit it. New URL roots alone produce unknown. Extend the full read chain, preserving old rows."
+    },
+    {
+      "axis": "Figure sizing / placement",
+      "current": "Arrays have strict alignment and unknown conventions. Print projection preserves them (`src/lib/print/toPrintProblem.ts:22`, `src/lib/print/toPrintProblem.ts:45`); `src/lib/figurePrintSize.ts:135`.",
+      "twinRequirement": "New pixels and intended physical width must describe the regenerated image, not copied source dimensions. Keep source width as reference evidence; don't put print policy caps into measured metadata. Validate new stem/choice/subpart ownership, source/target diagrams and actual print size."
+    },
+    {
+      "axis": "Review / eligibility",
+      "current": "pending/approved/rejected and directUseAllowed (`schema.prisma:861`); centralized eligibility (`src/lib/problemEligibility.ts:32`, `src/lib/problemEligibility.ts:64`).",
+      "twinRequirement": "Dry-run never implies approval. Future plan defaults pending and directUseAllowed=false, with separate math, presentation, figure, metadata and rights states. Existing locks are independent and cannot be lifted by a twin approval."
+    },
+    {
+      "axis": "Existing filters",
+      "current": "Unit axes, difficulty, problemType, format, source, reviewStatus, pool, figure/solution/answer presence and q (`src/contracts/problem.contract.ts:190`–`src/contracts/problem.contract.ts:260`; `src/components/problem/ProblemBank.tsx:218`, `src/components/problem/ProblemBank.tsx:595`).",
+      "twinRequirement": "Reuse these axes. No implemented twin/version/structural-delta/rights/verification/asset filter is claimed. New axes need storage or join + query contract + server + client + total/page-count parity tests."
+    },
+    {
+      "axis": "Keyword search",
+      "current": "Server searches content, code, answer, solution, school and numeric question number (`src/app/api/problems/route.ts:189`, `src/app/api/problems/route.ts:216`). Source path, external ID, exam ID and SVG are intentionally excluded.",
+      "twinRequirement": "Real school is an internal reference search value; student content uses fiction. Year/term/exam type, concept/method and variant keywords need explicit searchable fields/joins. Do not hide metadata in stem text or make raw SVG/path text a keyword source."
+    }
+  ],
+  "evidence": [
+    {
+      "ref": "prisma/seed-data/units.ts:3408",
+      "path": "prisma/seed-data/units.ts",
+      "line": 3408,
+      "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+      "lineText": "    section: \"(교육과정 외) 두 원의 위치 관계\","
+    },
+    {
+      "ref": "scripts/figure/elementary.py:2446",
+      "path": "scripts/figure/elementary.py",
+      "line": 2446,
+      "sha256": "36ffdef55df1a2575f0ea17e37f70d5d62fae4fb0225a92fa2fa1817b3426c8e",
+      "lineText": "# 실물 에셋 합성 kind (assetScene) — 규격·검증은 figure_assets.py 한 곳에."
+    },
+    {
+      "ref": "scripts/figure/engine-catalog.json:2",
+      "path": "scripts/figure/engine-catalog.json",
+      "line": 2,
+      "sha256": "8543d256e75b513772c9f2cd47d21ec9698ab7189e9c9daa9613308a58ebb409",
+      "lineText": "  \"graph-1\": {"
+    },
+    {
+      "ref": "scripts/figure/engine-catalog.json:869",
+      "path": "scripts/figure/engine-catalog.json",
+      "line": 869,
+      "sha256": "8543d256e75b513772c9f2cd47d21ec9698ab7189e9c9daa9613308a58ebb409",
+      "lineText": "    \"assetScene\": {"
+    },
+    {
+      "ref": "scripts/figure/figure_assets.py:102",
+      "path": "scripts/figure/figure_assets.py",
+      "line": 102,
+      "sha256": "de446a41e16ef86d14fe76ba9ac5362377b5b75ca35661184dd31d4f49c4891e",
+      "lineText": "    m = re.search(r'viewBox=\"0 0 ([\\d.]+) ([\\d.]+)\"', svg)"
+    },
+    {
+      "ref": "scripts/figure/figure_assets.py:12",
+      "path": "scripts/figure/figure_assets.py",
+      "line": 12,
+      "sha256": "de446a41e16ef86d14fe76ba9ac5362377b5b75ca35661184dd31d4f49c4891e",
+      "lineText": "- 루트: `<svg viewBox=\"0 0 W H\">` 하나. `width/height` 속성 금지(배치가 scale 로 정한다)."
+    },
+    {
+      "ref": "scripts/figure/figure_assets.py:164",
+      "path": "scripts/figure/figure_assets.py",
+      "line": 164,
+      "sha256": "de446a41e16ef86d14fe76ba9ac5362377b5b75ca35661184dd31d4f49c4891e",
+      "lineText": "def render_asset_scene(spec: Mapping[str, Any]) -> str:"
+    },
+    {
+      "ref": "scripts/figure/figure_assets.py:48",
+      "path": "scripts/figure/figure_assets.py",
+      "line": 48,
+      "sha256": "de446a41e16ef86d14fe76ba9ac5362377b5b75ca35661184dd31d4f49c4891e",
+      "lineText": "_FORBIDDEN_RE = re.compile("
+    },
+    {
+      "ref": "scripts/figure/figure_assets.py:57",
+      "path": "scripts/figure/figure_assets.py",
+      "line": 57,
+      "sha256": "de446a41e16ef86d14fe76ba9ac5362377b5b75ca35661184dd31d4f49c4891e",
+      "lineText": "def _load_manifest() -> dict[str, dict[str, Any]]:"
+    },
+    {
+      "ref": "scripts/figure/figure_assets.py:88",
+      "path": "scripts/figure/figure_assets.py",
+      "line": 88,
+      "sha256": "de446a41e16ef86d14fe76ba9ac5362377b5b75ca35661184dd31d4f49c4891e",
+      "lineText": "def _asset_body(slug: str) -> tuple[float, float, str]:"
+    },
+    {
+      "ref": "scripts/figure/graph_scene.py:102",
+      "path": "scripts/figure/graph_scene.py",
+      "line": 102,
+      "sha256": "d94e6798813a1a732b431d1903b4aa4700d9b0161d485c4eb5d287b91e224fb0",
+      "lineText": "def render_graph(spec):"
+    },
+    {
+      "ref": "scripts/figure/render_spec.py:65",
+      "path": "scripts/figure/render_spec.py",
+      "line": 65,
+      "sha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+      "lineText": "    try:"
+    },
+    {
+      "ref": "scripts/figure/render_spec.py:81",
+      "path": "scripts/figure/render_spec.py",
+      "line": 81,
+      "sha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+      "lineText": "        svg = sanitize_svg(svg)"
+    },
+    {
+      "ref": "scripts/import/exam-paper/REGENERATION.md:66",
+      "path": "scripts/import/exam-paper/REGENERATION.md",
+      "line": 66,
+      "sha256": "517ad8152c90dd1ad386e019f0395439b6019b8139fb8cecc9f3803a2ff71f9a",
+      "lineText": "other grades still require an explicit curriculum check by the verifier. A complete"
+    },
+    {
+      "ref": "scripts/import/exam-paper/examConfig.ts:17",
+      "path": "scripts/import/exam-paper/examConfig.ts",
+      "line": 17,
+      "sha256": "11e19bc5102451190b5559dbaaa793659bd94d7e858761f5bdb1a338af658b1b",
+      "lineText": "  section: string;"
+    },
+    {
+      "ref": "scripts/import/exam-paper/examConfig.ts:39",
+      "path": "scripts/import/exam-paper/examConfig.ts",
+      "line": 39,
+      "sha256": "11e19bc5102451190b5559dbaaa793659bd94d7e858761f5bdb1a338af658b1b",
+      "lineText": "   * 표가 든 문항. 원본 지면에서 표를 **오려** 그림으로 붙이고(`figures/crop_tables.py`),"
+    },
+    {
+      "ref": "scripts/import/exam-paper/examConfig.ts:55",
+      "path": "scripts/import/exam-paper/examConfig.ts",
+      "line": 55,
+      "sha256": "11e19bc5102451190b5559dbaaa793659bd94d7e858761f5bdb1a338af658b1b",
+      "lineText": "  /**"
+    },
+    {
+      "ref": "scripts/import/exam-paper/exams/2025-gyeongsanyeo-3-2-mid/exam.json:6",
+      "path": "scripts/import/exam-paper/exams/2025-gyeongsanyeo-3-2-mid/exam.json",
+      "line": 6,
+      "sha256": "38084405ce070ae628ca061a383fe60898f34769f0da1514f33687488ab3cb8a",
+      "lineText": "  \"excludeFromLoad\": {"
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:196",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 196,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "function copyFigures(figs: SourceFigure[]): string[] {"
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:239",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 239,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "async function assertFamilies("
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:375",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 375,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "  // Explicit opt-in: fail before DB reads or figure writes while any regenerated"
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:383",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 383,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "  const units = await prisma.unit.findMany({"
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:429",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 429,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "    const excluded = CFG.excludeFromLoad?.[n];"
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:511",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 511,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "    const faults = ["
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:525",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 525,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "    rows.push({"
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:538",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 538,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "      figureUrls: figs.length > 0 ? copyFigures(figs) : [],"
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:553",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 553,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "      pool: \"shared\","
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:570",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 570,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "  if (!APPLY) {"
+    },
+    {
+      "ref": "scripts/import/exam-paper/load-exam-paper.ts:581",
+      "path": "scripts/import/exam-paper/load-exam-paper.ts",
+      "line": 581,
+      "sha256": "0edebd2687023fcefa52c060d69830c976ce1ac75dee6dc1ae3dccc1891b00f9",
+      "lineText": "  // 이미 들어간 것이 있으면 멈춘다 — externalId 가 유일 키다."
+    },
+    {
+      "ref": "scripts/import/exam-paper/regenerateExam.ts:160",
+      "path": "scripts/import/exam-paper/regenerateExam.ts",
+      "line": 160,
+      "sha256": "d458c4dd7bdbe73978ca796196b84fa5120523b5da2cbabc16966210c24e493e",
+      "lineText": "function fingerprintSource(examDir: string, figures: SourceFigure[]) {"
+    },
+    {
+      "ref": "scripts/import/exam-paper/regenerateExam.ts:176",
+      "path": "scripts/import/exam-paper/regenerateExam.ts",
+      "line": 176,
+      "sha256": "d458c4dd7bdbe73978ca796196b84fa5120523b5da2cbabc16966210c24e493e",
+      "lineText": "      delete config.units;"
+    },
+    {
+      "ref": "scripts/import/exam-paper/regenerateExam.ts:227",
+      "path": "scripts/import/exam-paper/regenerateExam.ts",
+      "line": 227,
+      "sha256": "d458c4dd7bdbe73978ca796196b84fa5120523b5da2cbabc16966210c24e493e",
+      "lineText": "export function prepareRegeneration("
+    },
+    {
+      "ref": "scripts/import/exam-paper/regenerateExam.ts:355",
+      "path": "scripts/import/exam-paper/regenerateExam.ts",
+      "line": 355,
+      "sha256": "d458c4dd7bdbe73978ca796196b84fa5120523b5da2cbabc16966210c24e493e",
+      "lineText": "function candidateIssues("
+    },
+    {
+      "ref": "scripts/import/exam-paper/regenerateExam.ts:397",
+      "path": "scripts/import/exam-paper/regenerateExam.ts",
+      "line": 397,
+      "sha256": "d458c4dd7bdbe73978ca796196b84fa5120523b5da2cbabc16966210c24e493e",
+      "lineText": "  if (manifest.grade.startsWith(\"중\")) {"
+    },
+    {
+      "ref": "scripts/import/exam-paper/regenerateExam.ts:451",
+      "path": "scripts/import/exam-paper/regenerateExam.ts",
+      "line": 451,
+      "sha256": "d458c4dd7bdbe73978ca796196b84fa5120523b5da2cbabc16966210c24e493e",
+      "lineText": "export function collectRegeneration(examDir: string): RegenerationResult {"
+    },
+    {
+      "ref": "scripts/import/exam-paper/regenerateExam.ts:48",
+      "path": "scripts/import/exam-paper/regenerateExam.ts",
+      "line": 48,
+      "sha256": "d458c4dd7bdbe73978ca796196b84fa5120523b5da2cbabc16966210c24e493e",
+      "lineText": "const verificationSchema = z.object({"
+    },
+    {
+      "ref": "scripts/import/exam-paper/regenerateExam.ts:498",
+      "path": "scripts/import/exam-paper/regenerateExam.ts",
+      "line": 498,
+      "sha256": "d458c4dd7bdbe73978ca796196b84fa5120523b5da2cbabc16966210c24e493e",
+      "lineText": "export function readVerifiedRegeneration("
+    },
+    {
+      "ref": "scripts/import/exam-paper/solver_rules.json:3",
+      "path": "scripts/import/exam-paper/solver_rules.json",
+      "line": 3,
+      "sha256": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+      "lineText": "  \"forbiddenMethods\": ["
+    },
+    {
+      "ref": "scripts/import/load-engine-problems.ts:46",
+      "path": "scripts/import/load-engine-problems.ts",
+      "line": 46,
+      "sha256": "5d5b2082af75d07dc4c9130ffdeedad6e2db14b765c330d3ab75850397f0819c",
+      "lineText": "  dedupeByVariant,"
+    },
+    {
+      "ref": "scripts/import/load-engine-problems.ts:552",
+      "path": "scripts/import/load-engine-problems.ts",
+      "line": 552,
+      "sha256": "5d5b2082af75d07dc4c9130ffdeedad6e2db14b765c330d3ab75850397f0819c",
+      "lineText": "  const run = dedupeByVariant(rows, rowKey);"
+    },
+    {
+      "ref": "src/app/api/problems/route.ts:152",
+      "path": "src/app/api/problems/route.ts",
+      "line": 152,
+      "sha256": "fba88b9ace7489bddad17e026ea343584af98115cc0e4ae5dd2159095006f7fe",
+      "lineText": "  // chapter(정확 일치)가 있으면 chapterPrefix(접두 일치)는 무시한다."
+    },
+    {
+      "ref": "src/app/api/problems/route.ts:189",
+      "path": "src/app/api/problems/route.ts",
+      "line": 189,
+      "sha256": "fba88b9ace7489bddad17e026ea343584af98115cc0e4ae5dd2159095006f7fe",
+      "lineText": "  // 검색(2026-08-19) — `contains` + `insensitive`."
+    },
+    {
+      "ref": "src/app/api/problems/route.ts:216",
+      "path": "src/app/api/problems/route.ts",
+      "line": 216,
+      "sha256": "fba88b9ace7489bddad17e026ea343584af98115cc0e4ae5dd2159095006f7fe",
+      "lineText": "  const searchWhere = isWholeCode"
+    },
+    {
+      "ref": "src/app/api/problems/transform/adopt/route.ts:109",
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "line": 109,
+      "sha256": "63f07d2ae1759302f535f802140ef90e94557434059d17e641e023fb255e49b7",
+      "lineText": "    (item) => !verifiesOriginalReproduction(origin, item),"
+    },
+    {
+      "ref": "src/app/api/problems/transform/adopt/route.ts:129",
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "line": 129,
+      "sha256": "63f07d2ae1759302f535f802140ef90e94557434059d17e641e023fb255e49b7",
+      "lineText": "    data: parsed.data.items.map((item, at) => ({"
+    },
+    {
+      "ref": "src/app/api/problems/transform/adopt/route.ts:150",
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "line": 150,
+      "sha256": "63f07d2ae1759302f535f802140ef90e94557434059d17e641e023fb255e49b7",
+      "lineText": "      familyKey: origin.familyKey,"
+    },
+    {
+      "ref": "src/app/api/problems/transform/adopt/route.ts:169",
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "line": 169,
+      "sha256": "63f07d2ae1759302f535f802140ef90e94557434059d17e641e023fb255e49b7",
+      "lineText": "      reviewStatus: \"pending\","
+    },
+    {
+      "ref": "src/app/api/problems/transform/adopt/route.ts:89",
+      "path": "src/app/api/problems/transform/adopt/route.ts",
+      "line": 89,
+      "sha256": "63f07d2ae1759302f535f802140ef90e94557434059d17e641e023fb255e49b7",
+      "lineText": "  const figureRequired = originNeedsFigure(origin);"
+    },
+    {
+      "ref": "src/app/api/problems/transform/route.ts:108",
+      "path": "src/app/api/problems/transform/route.ts",
+      "line": 108,
+      "sha256": "56e18cb95ac0707c98b449cd0ee5471f08414c7313e31d0c6e11ee2d847897a7",
+      "lineText": "    const drawn = figureRequired"
+    },
+    {
+      "ref": "src/app/api/problems/transform/route.ts:76",
+      "path": "src/app/api/problems/transform/route.ts",
+      "line": 76,
+      "sha256": "56e18cb95ac0707c98b449cd0ee5471f08414c7313e31d0c6e11ee2d847897a7",
+      "lineText": "  const origin ="
+    },
+    {
+      "ref": "src/components/problem/ProblemBank.tsx:218",
+      "path": "src/components/problem/ProblemBank.tsx",
+      "line": 218,
+      "sha256": "52ea3807bcd85c5b08e0692178286604daaf89feaa1dbec9cef3cd8ce386321f",
+      "lineText": "  // 단원은 **범위 하나**로만 좁힌다(시작·끝 소단원 id). 서버가 `orderIndex` 로 푼다."
+    },
+    {
+      "ref": "src/components/problem/ProblemBank.tsx:595",
+      "path": "src/components/problem/ProblemBank.tsx",
+      "line": 595,
+      "sha256": "52ea3807bcd85c5b08e0692178286604daaf89feaa1dbec9cef3cd8ce386321f",
+      "lineText": "          value={reviewStatus}"
+    },
+    {
+      "ref": "src/contracts/common.contract.ts:57",
+      "path": "src/contracts/common.contract.ts",
+      "line": 57,
+      "sha256": "f2903bfa655a373b1b97957a6198e873ed34405c8add68d4d137a8a8838f9030",
+      "lineText": "  [\"manual\", \"past_exam\", \"transformed\", \"ai_generated\", \"school_textbook\"],"
+    },
+    {
+      "ref": "src/contracts/problem.contract.ts:124",
+      "path": "src/contracts/problem.contract.ts",
+      "line": 124,
+      "sha256": "27614a935a5118168a7f279f38289c293de03fa7a3e4222e462ae00720973bae",
+      "lineText": "   *    코드로 단원을 읽지 마라. 단원은 `unitId` 가 진실이다."
+    },
+    {
+      "ref": "src/contracts/problem.contract.ts:190",
+      "path": "src/contracts/problem.contract.ts",
+      "line": 190,
+      "sha256": "27614a935a5118168a7f279f38289c293de03fa7a3e4222e462ae00720973bae",
+      "lineText": "export const problemFilterQuerySchema = z.strictObject({"
+    },
+    {
+      "ref": "src/contracts/problem.contract.ts:260",
+      "path": "src/contracts/problem.contract.ts",
+      "line": 260,
+      "sha256": "27614a935a5118168a7f279f38289c293de03fa7a3e4222e462ae00720973bae",
+      "lineText": "  hasAnswer: z.literal(\"true\").optional(),"
+    },
+    {
+      "ref": "src/contracts/problem.contract.ts:358",
+      "path": "src/contracts/problem.contract.ts",
+      "line": 358,
+      "sha256": "27614a935a5118168a7f279f38289c293de03fa7a3e4222e462ae00720973bae",
+      "lineText": "  /** 원본 재현 검사 통과 여부. false 인 후보는 화면에서 채택할 수 없다. */"
+    },
+    {
+      "ref": "src/contracts/problem.contract.ts:367",
+      "path": "src/contracts/problem.contract.ts",
+      "line": 367,
+      "sha256": "27614a935a5118168a7f279f38289c293de03fa7a3e4222e462ae00720973bae",
+      "lineText": "  figureSpec: figureSpecSchema.nullable(),"
+    },
+    {
+      "ref": "src/lib/ai/generator.ts:116",
+      "path": "src/lib/ai/generator.ts",
+      "line": 116,
+      "sha256": "f36078d2db20d817c6e852f68e2ac07e0ef9c2ff232d1ed667eac8ba56a030d0",
+      "lineText": "    if (parsed.length < count) {"
+    },
+    {
+      "ref": "src/lib/ai/generator.ts:141",
+      "path": "src/lib/ai/generator.ts",
+      "line": 141,
+      "sha256": "f36078d2db20d817c6e852f68e2ac07e0ef9c2ff232d1ed667eac8ba56a030d0",
+      "lineText": "    return {"
+    },
+    {
+      "ref": "src/lib/ai/generator.ts:34",
+      "path": "src/lib/ai/generator.ts",
+      "line": 34,
+      "sha256": "f36078d2db20d817c6e852f68e2ac07e0ef9c2ff232d1ed667eac8ba56a030d0",
+      "lineText": "const generatedItemSchema = z.strictObject({"
+    },
+    {
+      "ref": "src/lib/ai/originalReproduction.ts:29",
+      "path": "src/lib/ai/originalReproduction.ts",
+      "line": 29,
+      "sha256": "e9bf299829a6320bbd45b2dfd500fb5fd045e1f9dd18feb46528fbfd59316eb4",
+      "lineText": "export function verifiesOriginalReproduction("
+    },
+    {
+      "ref": "src/lib/ai/prompts/generate.ts:57",
+      "path": "src/lib/ai/prompts/generate.ts",
+      "line": 57,
+      "sha256": "03b11ee8dbc56b25d6c438ff9b0e7c8d077ac1d6920dc4756fafe440600d4f56",
+      "lineText": "    \"당신은 한국 중학교 수학 문제를 출제하는 조교입니다.\","
+    },
+    {
+      "ref": "src/lib/ai/prompts/transform.ts:102",
+      "path": "src/lib/ai/prompts/transform.ts",
+      "line": 102,
+      "sha256": "e3d087b8960ada251dcb5a6e6965d9f549ccc7543c7821cee9937750980f46a0",
+      "lineText": "export function buildTransformSystemPrompt(): string {"
+    },
+    {
+      "ref": "src/lib/ai/prompts/transform.ts:121",
+      "path": "src/lib/ai/prompts/transform.ts",
+      "line": 121,
+      "sha256": "e3d087b8960ada251dcb5a6e6965d9f549ccc7543c7821cee9937750980f46a0",
+      "lineText": "export function buildTransformUserPrompt({"
+    },
+    {
+      "ref": "src/lib/ai/prompts/transform.ts:135",
+      "path": "src/lib/ai/prompts/transform.ts",
+      "line": 135,
+      "sha256": "e3d087b8960ada251dcb5a6e6965d9f549ccc7543c7821cee9937750980f46a0",
+      "lineText": "    `원본 정답: ${originAnswer}`,"
+    },
+    {
+      "ref": "src/lib/ai/prompts/transform.ts:136",
+      "path": "src/lib/ai/prompts/transform.ts",
+      "line": 136,
+      "sha256": "e3d087b8960ada251dcb5a6e6965d9f549ccc7543c7821cee9937750980f46a0",
+      "lineText": "    originSolution ? `원본 풀이: ${originSolution}` : \"원본 풀이: (없음)\","
+    },
+    {
+      "ref": "src/lib/ai/prompts/transform.ts:56",
+      "path": "src/lib/ai/prompts/transform.ts",
+      "line": 56,
+      "sha256": "e3d087b8960ada251dcb5a6e6965d9f549ccc7543c7821cee9937750980f46a0",
+      "lineText": "  \"  (그래프·사진·통계 그림처럼 아래 스키마로 표현할 수 없는 것도 null 입니다.)\","
+    },
+    {
+      "ref": "src/lib/ai/prompts/transform.ts:75",
+      "path": "src/lib/ai/prompts/transform.ts",
+      "line": 75,
+      "sha256": "e3d087b8960ada251dcb5a6e6965d9f549ccc7543c7821cee9937750980f46a0",
+      "lineText": "const MODE_INSTRUCTION: Record<TransformMode, string> = {"
+    },
+    {
+      "ref": "src/lib/ai/prompts/transform.ts:83",
+      "path": "src/lib/ai/prompts/transform.ts",
+      "line": 83,
+      "sha256": "e3d087b8960ada251dcb5a6e6965d9f549ccc7543c7821cee9937750980f46a0",
+      "lineText": "const DIFFICULTY_SHIFT_INSTRUCTION: Record<DifficultyShift, string> = {"
+    },
+    {
+      "ref": "src/lib/ai/transformer.ts:156",
+      "path": "src/lib/ai/transformer.ts",
+      "line": 156,
+      "sha256": "71c18f5995ba62472d5eea5c7def95f477f3047899bb485a39a483776cc85e33",
+      "lineText": "  const candidates: TransformCandidate[] = items"
+    },
+    {
+      "ref": "src/lib/ai/transformer.ts:161",
+      "path": "src/lib/ai/transformer.ts",
+      "line": 161,
+      "sha256": "71c18f5995ba62472d5eea5c7def95f477f3047899bb485a39a483776cc85e33",
+      "lineText": "      content: speakWordyOperators(normalizeAiText(item.content)).out,"
+    },
+    {
+      "ref": "src/lib/ai/transformer.ts:46",
+      "path": "src/lib/ai/transformer.ts",
+      "line": 46,
+      "sha256": "71c18f5995ba62472d5eea5c7def95f477f3047899bb485a39a483776cc85e33",
+      "lineText": "const transformedItemSchema = z.strictObject({"
+    },
+    {
+      "ref": "src/lib/ai/transformer.ts:97",
+      "path": "src/lib/ai/transformer.ts",
+      "line": 97,
+      "sha256": "71c18f5995ba62472d5eea5c7def95f477f3047899bb485a39a483776cc85e33",
+      "lineText": "export async function transformProblem("
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-engine.ts:137",
+      "path": "src/lib/dev-ai/figure-engine.ts",
+      "line": 137,
+      "sha256": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+      "lineText": "    inference ??"
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-engine.ts:256",
+      "path": "src/lib/dev-ai/figure-engine.ts",
+      "line": 256,
+      "sha256": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+      "lineText": "        renderFigureSpec(withLabelMetrics(value), {"
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-engine.ts:321",
+      "path": "src/lib/dev-ai/figure-engine.ts",
+      "line": 321,
+      "sha256": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+      "lineText": "      if (rendered.svg.length > 500000 || !validDevAiSvg(rendered.svg)) {"
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-engine.ts:331",
+      "path": "src/lib/dev-ai/figure-engine.ts",
+      "line": 331,
+      "sha256": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+      "lineText": "      const comparison = await buildFigureComparisonImage("
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-engine.ts:362",
+      "path": "src/lib/dev-ai/figure-engine.ts",
+      "line": 362,
+      "sha256": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+      "lineText": "      // 원장님 2026-09-19 «원본 대조 멘트는 생성하지 마» — 끝까지 안 맞아도 경고 문구는 싣지 않는다."
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-engine.ts:385",
+      "path": "src/lib/dev-ai/figure-engine.ts",
+      "line": 385,
+      "sha256": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+      "lineText": "    if (timedOut) {"
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-engine.ts:72",
+      "path": "src/lib/dev-ai/figure-engine.ts",
+      "line": 72,
+      "sha256": "504239e62c12ed3ed241e4d029faf0cf01aa0cb53d59925ae3ec8d3efa6688ab",
+      "lineText": " * (원장님 2026-09-22 «수집된 로그로 업그레이드 패치 가능하게»). 성공하면 버린다. 화면에는 안 나간다."
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-prompt.ts:17",
+      "path": "src/lib/dev-ai/figure-prompt.ts",
+      "line": 17,
+      "sha256": "cb7f23ec123daa07c568724b92fff7d3afe64fabe6bbde213a50ba3e21807239",
+      "lineText": "FigureSpec v2 uses screen y downward. graph-1 uses mathematical y UP. Prefer FigureSpec v2 for geometry; graph-1 for function graphs with any annotations, finite/horizontal segments, inscribed polygons or custom axis labels; elem-1 for supported charts, solids and elementary figures."
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-prompt.ts:27",
+      "path": "src/lib/dev-ai/figure-prompt.ts",
+      "line": 27,
+      "sha256": "cb7f23ec123daa07c568724b92fff7d3afe64fabe6bbde213a50ba3e21807239",
+      "lineText": "Restore ONLY original PRINTED diagram content. Ignore student handwriting, worked solutions, crossed-out annotations and colored pen strokes, including irregular handwritten coordinate text. Preserve every straight geometric construction segment, even if faint or grey: a horizontal chord joining two curve branches, an inscribed polygon edge, or a dashed projection is diagram content. Do not erase geometric lines based only on ink lightness. Preserve printed math labels exactly. Use consistent textbook line weights, readable labels with clear separation, correct solid/dashed distinctions, and generous outer padding so every label fits inside the viewBox. Never replace a plotted curve with a polygon; use the engine curve renderer."
+    },
+    {
+      "ref": "src/lib/dev-ai/figure-prompt.ts:58",
+      "path": "src/lib/dev-ai/figure-prompt.ts",
+      "line": 58,
+      "sha256": "cb7f23ec123daa07c568724b92fff7d3afe64fabe6bbde213a50ba3e21807239",
+      "lineText": "Check printed geometry/curve shape, number of objects, exact printed labels, arrowheads, solid vs dashed lines, angle marks and shading. IGNORE student handwriting and pen/pencil annotations; their removal is required. Do NOT solve the question or correct printed values."
+    },
+    {
+      "ref": "src/lib/elementary/generate.ts:44",
+      "path": "src/lib/elementary/generate.ts",
+      "line": 44,
+      "sha256": "42b6d1a7f8e8e4a9b67dbd6ea74cf3ccf3f920757a49337b014603ee71b73d77",
+      "lineText": "const HANDLERS = { ...G3, ...G4, ...G5, ...G6 };"
+    },
+    {
+      "ref": "src/lib/engine/variants.ts:159",
+      "path": "src/lib/engine/variants.ts",
+      "line": 159,
+      "sha256": "32ec4a1788556d1779ce94865aa9b5a5ad651d8e0601658ea3fa9c2c984987a4",
+      "lineText": "export function dedupeByVariant<"
+    },
+    {
+      "ref": "src/lib/engine/variants.ts:51",
+      "path": "src/lib/engine/variants.ts",
+      "line": 51,
+      "sha256": "32ec4a1788556d1779ce94865aa9b5a5ad651d8e0601658ea3fa9c2c984987a4",
+      "lineText": "export function distinctKey(item: {"
+    },
+    {
+      "ref": "src/lib/engine/variants.ts:73",
+      "path": "src/lib/engine/variants.ts",
+      "line": 73,
+      "sha256": "32ec4a1788556d1779ce94865aa9b5a5ad651d8e0601658ea3fa9c2c984987a4",
+      "lineText": "export function collectDistinctVariantsResult<"
+    },
+    {
+      "ref": "src/lib/figure/figureMatchesContent.ts:21",
+      "path": "src/lib/figure/figureMatchesContent.ts",
+      "line": 21,
+      "sha256": "1ce6d94867ee1128c53ebaf3fa91df3ebb7c7fcb51fb5a36721a4feeeaec0f9e",
+      "lineText": " *"
+    },
+    {
+      "ref": "src/lib/figure/figureMatchesContent.ts:41",
+      "path": "src/lib/figure/figureMatchesContent.ts",
+      "line": 41,
+      "sha256": "1ce6d94867ee1128c53ebaf3fa91df3ebb7c7fcb51fb5a36721a4feeeaec0f9e",
+      "lineText": "function printedLabels(spec: Record<string, unknown>): string[] {"
+    },
+    {
+      "ref": "src/lib/figure/figureMatchesContent.ts:78",
+      "path": "src/lib/figure/figureMatchesContent.ts",
+      "line": 78,
+      "sha256": "1ce6d94867ee1128c53ebaf3fa91df3ebb7c7fcb51fb5a36721a4feeeaec0f9e",
+      "lineText": "export function figureFabricationReason("
+    },
+    {
+      "ref": "src/lib/figure/mathjaxLabel.ts:287",
+      "path": "src/lib/figure/mathjaxLabel.ts",
+      "line": 287,
+      "sha256": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd",
+      "lineText": " * 파이썬의 `sanitize_svg` 는 조판 **전에** 돈다 — 여기서 끼워 넣는 조각은 그 검사를"
+    },
+    {
+      "ref": "src/lib/figure/mathjaxLabel.ts:291",
+      "path": "src/lib/figure/mathjaxLabel.ts",
+      "line": 291,
+      "sha256": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd",
+      "lineText": "export function isSafeFragment(fragment: string): boolean {"
+    },
+    {
+      "ref": "src/lib/figure/renderFigureSpec.ts:112",
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "line": 112,
+      "sha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb",
+      "lineText": "    delete table[name];"
+    },
+    {
+      "ref": "src/lib/figure/renderFigureSpec.ts:132",
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "line": 132,
+      "sha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb",
+      "lineText": "      process.env.STUDIO_ENGINE_URL ||"
+    },
+    {
+      "ref": "src/lib/figure/renderFigureSpec.ts:254",
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "line": 254,
+      "sha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb",
+      "lineText": "    if (laid.unresolved.length > 0) {"
+    },
+    {
+      "ref": "src/lib/figure/renderFigureSpec.ts:45",
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "line": 45,
+      "sha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb",
+      "lineText": "  signal?: AbortSignal;"
+    },
+    {
+      "ref": "src/lib/figure/renderFigureSpec.ts:84",
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "line": 84,
+      "sha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb",
+      "lineText": "export async function renderFigureSpec("
+    },
+    {
+      "ref": "src/lib/figurePrintSize.ts:135",
+      "path": "src/lib/figurePrintSize.ts",
+      "line": 135,
+      "sha256": "54a7ba44de9e1daa68ae3fd4229da95b021d7ec209dcfe2b48a3ccfff1110c27",
+      "lineText": "export function checkFigureSourceMm("
+    },
+    {
+      "ref": "src/lib/high/generate.ts:113",
+      "path": "src/lib/high/generate.ts",
+      "line": 113,
+      "sha256": "9e1d02df1dd81304ae35cc5f51ea5800d86211cd10351737daf113af1fa62169",
+      "lineText": "export function assertDistractors(p: HighProblem, where: string): void {"
+    },
+    {
+      "ref": "src/lib/high/generate.ts:130",
+      "path": "src/lib/high/generate.ts",
+      "line": 130,
+      "sha256": "9e1d02df1dd81304ae35cc5f51ea5800d86211cd10351737daf113af1fa62169",
+      "lineText": "  key: string,"
+    },
+    {
+      "ref": "src/lib/high/generate.ts:148",
+      "path": "src/lib/high/generate.ts",
+      "line": 148,
+      "sha256": "9e1d02df1dd81304ae35cc5f51ea5800d86211cd10351737daf113af1fa62169",
+      "lineText": "  assertDistractors(p, where);"
+    },
+    {
+      "ref": "src/lib/high/generate.ts:163",
+      "path": "src/lib/high/generate.ts",
+      "line": 163,
+      "sha256": "9e1d02df1dd81304ae35cc5f51ea5800d86211cd10351737daf113af1fa62169",
+      "lineText": "export function generateHighSet("
+    },
+    {
+      "ref": "src/lib/high/generate.ts:88",
+      "path": "src/lib/high/generate.ts",
+      "line": 88,
+      "sha256": "9e1d02df1dd81304ae35cc5f51ea5800d86211cd10351737daf113af1fa62169",
+      "lineText": "/** 이번 물결에 못 만든 유형 — `highRegistry.test.ts` 가 「등록 ∪ 보류 = 색인」을 본다. */"
+    },
+    {
+      "ref": "src/lib/high/josa.ts:76",
+      "path": "src/lib/high/josa.ts",
+      "line": 76,
+      "sha256": "5f7168e9d077de0aebf5cd17082b553f18d6d2c7e4f745862075ee9704ff223b",
+      "lineText": "/** 을/를 */"
+    },
+    {
+      "ref": "src/lib/high/types.ts:49",
+      "path": "src/lib/high/types.ts",
+      "line": 49,
+      "sha256": "35c3097a348c976c881ee7e0ece26445cba557e76150ff9d52466f5d0e0b56d7",
+      "lineText": "export type HighHold = {"
+    },
+    {
+      "ref": "src/lib/import/problemFingerprint.ts:20",
+      "path": "src/lib/import/problemFingerprint.ts",
+      "line": 20,
+      "sha256": "7908f26ce54c302c73b5b8faec53972d4b3eba0e957cf36922b841198ac6535e",
+      "lineText": "  const canonical = JSON.stringify(["
+    },
+    {
+      "ref": "src/lib/import/syncExamMetadata.ts:102",
+      "path": "src/lib/import/syncExamMetadata.ts",
+      "line": 102,
+      "sha256": "fc1b5d721928ece5f03a5658b405268a3ecdb2634731c8e6636b3a0deaab714c",
+      "lineText": "    where: { source: \"past_exam\", examId: { in: ids } },"
+    },
+    {
+      "ref": "src/lib/jev/client.ts:103",
+      "path": "src/lib/jev/client.ts",
+      "line": 103,
+      "sha256": "b0e1244b7e863db7580d68308e466c4d674fc6bc863593558e699446454e2b3f",
+      "lineText": "    confidence: Math.min(selected, confidence),"
+    },
+    {
+      "ref": "src/lib/jev/client.ts:111",
+      "path": "src/lib/jev/client.ts",
+      "line": 111,
+      "sha256": "b0e1244b7e863db7580d68308e466c4d674fc6bc863593558e699446454e2b3f",
+      "lineText": "export async function askJev(input: {"
+    },
+    {
+      "ref": "src/lib/jev/client.ts:12",
+      "path": "src/lib/jev/client.ts",
+      "line": 12,
+      "sha256": "b0e1244b7e863db7580d68308e466c4d674fc6bc863593558e699446454e2b3f",
+      "lineText": "export const JEV_MODEL = \"jev-latest\";"
+    },
+    {
+      "ref": "src/lib/jev/client.ts:50",
+      "path": "src/lib/jev/client.ts",
+      "line": 50,
+      "sha256": "b0e1244b7e863db7580d68308e466c4d674fc6bc863593558e699446454e2b3f",
+      "lineText": "export function isJevEnabled(env: NodeJS.ProcessEnv = process.env): boolean {"
+    },
+    {
+      "ref": "src/lib/mathgen/mathDefense.ts:260",
+      "path": "src/lib/mathgen/mathDefense.ts",
+      "line": 260,
+      "sha256": "822e0b332f8d70ea32bbb9e4f79a18adadd8f71c691d8a3cfd42bedb1b36c0bd",
+      "lineText": " * 처럼 집합 표기를 사용. 중학 교육과정에 집합 개념이 없음 — 학생이 못 읽음."
+    },
+    {
+      "ref": "src/lib/mathgen/mathDefense.ts:30",
+      "path": "src/lib/mathgen/mathDefense.ts",
+      "line": 30,
+      "sha256": "822e0b332f8d70ea32bbb9e4f79a18adadd8f71c691d8a3cfd42bedb1b36c0bd",
+      "lineText": "  | \"middle1\""
+    },
+    {
+      "ref": "src/lib/mathgen/mathDefense.ts:526",
+      "path": "src/lib/mathgen/mathDefense.ts",
+      "line": 526,
+      "sha256": "822e0b332f8d70ea32bbb9e4f79a18adadd8f71c691d8a3cfd42bedb1b36c0bd",
+      "lineText": "export const buildMathDefense = (grade: GradeKey | null): string => {"
+    },
+    {
+      "ref": "src/lib/mathgen/solutionValidator.ts:12",
+      "path": "src/lib/mathgen/solutionValidator.ts",
+      "line": 12,
+      "sha256": "5e144a68677cc2c3dbc00b58033a3e84e86c435d9aa865840f3be1472c667f39",
+      "lineText": " * 검증은 *경고 (warning)* 로만 surfacing — 답 자체를 무효화 하지 않는다."
+    },
+    {
+      "ref": "src/lib/middle/combo.ts:548",
+      "path": "src/lib/middle/combo.ts",
+      "line": 548,
+      "sha256": "b1361ab97c9c9ef1c191c53b30c5b84273581ff4021eead2f0fb4316e293f729",
+      "lineText": "export function generateMiddleComboProblem("
+    },
+    {
+      "ref": "src/lib/middle/generate.ts:147",
+      "path": "src/lib/middle/generate.ts",
+      "line": 147,
+      "sha256": "4bdb90431cdb94a3023da05ad3731aa721d0a5ddcbf284bf3e2d7be1540faaab",
+      "lineText": "export function registeredTypes(): TypeEntry[] {"
+    },
+    {
+      "ref": "src/lib/middle/generate.ts:164",
+      "path": "src/lib/middle/generate.ts",
+      "line": 164,
+      "sha256": "4bdb90431cdb94a3023da05ad3731aa721d0a5ddcbf284bf3e2d7be1540faaab",
+      "lineText": "export function generateMiddleProblem("
+    },
+    {
+      "ref": "src/lib/middle/realScene.ts:10",
+      "path": "src/lib/middle/realScene.ts",
+      "line": 10,
+      "sha256": "011716dde97f9b5359efaf0a420f8b9f1848d1395f8ed31cc3c1125cf923fab3",
+      "lineText": " * 2. **치수 라벨은 사실에서만 온다**: `dimLabel()`·`textLabel()` 이 만드는 문자열의"
+    },
+    {
+      "ref": "src/lib/middle/realScene.ts:18",
+      "path": "src/lib/middle/realScene.ts",
+      "line": 18,
+      "sha256": "011716dde97f9b5359efaf0a420f8b9f1848d1395f8ed31cc3c1125cf923fab3",
+      "lineText": "/** 에셋 원본 viewBox 와 그 안의 지면선 y — `scripts/figure/assets/*.svg` 실측. */"
+    },
+    {
+      "ref": "src/lib/middle/solutionText.ts:107",
+      "path": "src/lib/middle/solutionText.ts",
+      "line": 107,
+      "sha256": "cf74e9a3ea3e369439978952112cb518c2344ac844dcdd08e399dd1c5320ba6b",
+      "lineText": "export function tidySolution(solution: string): string {"
+    },
+    {
+      "ref": "src/lib/middle/types.ts:24",
+      "path": "src/lib/middle/types.ts",
+      "line": 24,
+      "sha256": "bd95a101d93599998fcffc441c738f7c32599774030cb99ba8e3874993091a3c",
+      "lineText": "  facts: Record<string, number>;"
+    },
+    {
+      "ref": "src/lib/print/toPrintProblem.ts:22",
+      "path": "src/lib/print/toPrintProblem.ts",
+      "line": 22,
+      "sha256": "19652a1bbc809e409dc7580896dbbb826f1e665ac0c3020c5e37a8506b54b32e",
+      "lineText": "export interface PrintableProblemRow {"
+    },
+    {
+      "ref": "src/lib/print/toPrintProblem.ts:45",
+      "path": "src/lib/print/toPrintProblem.ts",
+      "line": 45,
+      "sha256": "19652a1bbc809e409dc7580896dbbb826f1e665ac0c3020c5e37a8506b54b32e",
+      "lineText": "export const PRINT_FIGURE_FIELDS = ["
+    },
+    {
+      "ref": "src/lib/problem/formatQuery.ts:15",
+      "path": "src/lib/problem/formatQuery.ts",
+      "line": 15,
+      "sha256": "de6057e8ac3f3c5152b3c566f743aa7d7ed7160df0ae7bfe1f5a16aeb85b3a4a",
+      "lineText": "export async function findProblemIdsByFormat("
+    },
+    {
+      "ref": "src/lib/problem/provenance.ts:193",
+      "path": "src/lib/problem/provenance.ts",
+      "line": 193,
+      "sha256": "8f6396db0355508d834badaa21405f14e87930fab98625a7ab51ba51dae74bed",
+      "lineText": "  if (problem.source === \"transformed\") {"
+    },
+    {
+      "ref": "src/lib/problem/provenance.ts:215",
+      "path": "src/lib/problem/provenance.ts",
+      "line": 215,
+      "sha256": "8f6396db0355508d834badaa21405f14e87930fab98625a7ab51ba51dae74bed",
+      "lineText": "export function classifyFigure(problem: ProvenanceInput): FigureOrigin | null {"
+    },
+    {
+      "ref": "src/lib/problemEligibility.ts:32",
+      "path": "src/lib/problemEligibility.ts",
+      "line": 32,
+      "sha256": "aaeb47aa7d07a650b02100e7b9a476a29394f7222ac381130faddd3e1b942559",
+      "lineText": "export function problemEligibleWhere() {"
+    },
+    {
+      "ref": "src/lib/problemEligibility.ts:64",
+      "path": "src/lib/problemEligibility.ts",
+      "line": 64,
+      "sha256": "aaeb47aa7d07a650b02100e7b9a476a29394f7222ac381130faddd3e1b942559",
+      "lineText": "export function problemIneligibleReason("
+    },
+    {
+      "ref": "src/lib/serializers.ts:111",
+      "path": "src/lib/serializers.ts",
+      "line": 111,
+      "sha256": "a818992d252f42b3f5a716cee7537a70e1063a117162e8296971a76d83d60065",
+      "lineText": "    questionType: row.questionType,"
+    },
+    {
+      "ref": "src/lib/serializers.ts:88",
+      "path": "src/lib/serializers.ts",
+      "line": 88,
+      "sha256": "a818992d252f42b3f5a716cee7537a70e1063a117162e8296971a76d83d60065",
+      "lineText": "  return {"
+    },
+    {
+      "ref": "vendor/figure-engine/core/figure_quality.py:37",
+      "path": "vendor/figure-engine/core/figure_quality.py",
+      "line": 37,
+      "sha256": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934",
+      "lineText": "MAX_SVG_BYTES = 512 * 1024"
+    },
+    {
+      "ref": "vendor/figure-engine/core/figure_quality.py:687",
+      "path": "vendor/figure-engine/core/figure_quality.py",
+      "line": 687,
+      "sha256": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934",
+      "lineText": "def sanitize_svg(svg: str) -> str:"
+    },
+    {
+      "ref": "vendor/figure-engine/core/figure_scene.py:3042",
+      "path": "vendor/figure-engine/core/figure_scene.py",
+      "line": 3042,
+      "sha256": "b8b1f5e121617a8d5a44b947da03df8cec25ac1ac86b4e3390d119c16c27ee9e",
+      "lineText": "def compile_figure_spec(spec: Mapping[str, Any] | FigureSpec) -> FigureScene:"
+    }
+  ],
+  "dryRunContract": {
+    "status": "proposal_not_implemented",
+    "namespace": "exam-twin/v1",
+    "suggestedNewFiles": [
+      "src/contracts/examTwin.contract.ts",
+      "scripts/import/exam-twin/contract.ts",
+      "scripts/import/exam-twin/prepare.ts",
+      "scripts/import/exam-twin/verify.ts",
+      "scripts/import/exam-twin/dry-run.ts"
+    ],
+    "inputs": [
+      "immutable ReferenceEvidence",
+      "versioned TwinDraft and VariantDelta",
+      "new FigureArtifact bytes/spec/template per explicit role",
+      "independent ReviewEvidence",
+      "parent-provided timestamped taxonomy/bank snapshot",
+      "official CurriculumBinding",
+      "all three existing ledgers"
+    ],
+    "outputs": [
+      "new work-folder-only plan and blockers",
+      "proposed Problem row mapping",
+      "separate provenance/review sidecar",
+      "zero DB mutations"
+    ],
+    "noPrismaNoNetworkNoPublicCopyNoOverwrite": true,
+    "noApplyRevertWriter": true,
+    "digestDomains": {
+      "referenceDigest": "original evidence only",
+      "twinProblemDigest": "normalized stem/subparts/choices/tables/target facts/domains/signs/units/givens/sought role/specs/asset bytes/ownership/score/grade-subject constraints and applied policy",
+      "twinSolutionDigest": "new answer/student solution/rubric/solver version",
+      "metadataDigest": "curriculum policy, Unit/live-family snapshot, labels/deltas and review bindings"
+    },
+    "solverInputs": "Only changed twin problem and recreated figures; no original answers/solutions or old regeneration approval. Separate blind pack per version.",
+    "verification": "External separate-session independent solution evidence plus every step/choice/domain/sign/unit/existence/required uniqueness/curriculum check. Hashes, different IDs, renderer success, confidence and original-answer agreement are insufficient.",
+    "loadPlan": {
+      "source": "transformed",
+      "originProblemId": "confirmed actual DB source UUID or null",
+      "externalId": "exam-twin:<opaque-reference-key>:qNN:vNN, at most 120 characters; never original ID",
+      "problemCode": null,
+      "reviewStatus": "pending",
+      "directUseAllowed": false,
+      "figureSource": "engine or image according to new artifact; never source crop",
+      "originalSchool": "internal accurate reference metadata",
+      "fictionalSchool": "rendered content plus explicit map",
+      "sourceExamSynchronization": false
+    },
+    "blockingGap": "transformed with null origin currently means workbook; truthful exam_twin discriminator/read chain must be resolved before any future load",
+    "admissionOrder": [
+      "permanent exclusions and highest-priority grade/curriculum reject/hold gate",
+      "current snapshot and official policy bindings",
+      "complete coverage and valid new IDs",
+      "meaningful delta plus independent presentation reviews",
+      "new answer/solution and all figures with matching digests",
+      "domain/sign/unit/existence/required uniqueness and every-choice review",
+      "complete metadata and resolved rights state",
+      "truthful external-reference provenance support"
+    ],
+    "pathSafety": "Resolve physical paths; reject traversal, symlink escape, input/output overlap and overwriting any original/prior evidence."
+  },
+  "curriculumGate": {
+    "priority": "highest_mandatory",
+    "referenceCase": {
+      "examYear": 2025,
+      "grade": "?3",
+      "subject": "??",
+      "appliedEdition": "2015",
+      "decisionBasis": "grade-specific phased rollout; no blanket 2022 assumption"
+    },
+    "bindingFields": [
+      "source grade/subject/schoolLevel/term/year",
+      "reference applied edition",
+      "target edition/year if republished",
+      "official document URL/version/hash/section/page",
+      "verified standard code or null",
+      "actual Unit ID and reviewed grade/semester progression",
+      "live family snapshot hash",
+      "generator/template rule version",
+      "required student method/prerequisite evidence"
+    ],
+    "surfaces": [
+      {
+        "field": "stem",
+        "check": "concepts, required reading and applicable curriculum"
+      },
+      {
+        "field": "choices",
+        "check": "every statement and distractor method/notation"
+      },
+      {
+        "field": "tables_figures_graphs",
+        "check": "meaning, relationships, coordinate system and notation"
+      },
+      {
+        "field": "answer",
+        "check": "format, notation, units and allowed target-grade representation"
+      },
+      {
+        "field": "studentSolution",
+        "check": "complete legitimate target-grade method, all steps and cases"
+      },
+      {
+        "field": "prerequisites",
+        "check": "required prior concepts, equation solving, construction knowledge"
+      },
+      {
+        "field": "assets_templates",
+        "check": "target grade/edition, parameter restrictions, notation and prerequisite binding"
+      }
+    ],
+    "establishedOutsideGradeOrNoLegitimateMethod": "rejected",
+    "unclearOrDisputedScope": "pending",
+    "mathCorrectnessAndStudentCurriculumSeparate": true,
+    "upperGradeVerifierMethodDoesNotApproveStudentSolution": true,
+    "neverAutoAdoptBecause": [
+      "original school set it",
+      "Unit/live family exists",
+      "higher-grade generator supports it",
+      "model confidence",
+      "render passed",
+      "new image template exists"
+    ],
+    "assignedAchievementStandardCodes": [],
+    "individualStandardsStatus": "No per-question codes/permissions assigned in setup; source Annex 8 and grade/semester progression evidence must be reviewed before acceptance.",
+    "officialSources": [
+      {
+        "url": "https://www.korea.kr/news/policyNewsView.do?newsId=148909720",
+        "publisher": "Education Ministry via official government portal",
+        "accessed": "2026-10-08",
+        "evidence": "2022 curriculum rollout: middle1 2025, middle1-2 2026, all grades 2027; 2015 applies until that grade changes. Supports inference that 2025 middle3 remains 2015.",
+        "contentLocator": "rollout paragraph after opening announcement"
+      },
+      {
+        "url": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+        "publisher": "Education Ministry",
+        "accessed": "2026-10-08",
+        "evidence": "Notice 2015-74 designates mathematics Annex 8 and provides official original attachments. No attachment-derived standard codes claimed.",
+        "contentLocator": "notice subject list, item 8 and attached Annex 1-15 archive"
+      },
+      {
+        "url": "https://ncic.re.kr/bbs/standard/list.do?page=7",
+        "publisher": "NCIC / KICE",
+        "accessed": "2026-10-08",
+        "evidence": "Official middle 2015 mathematics assessment/standard resource listing, entry 175. Individual detail endpoint unavailable via browsing; no per-code permission inferred.",
+        "contentLocator": "entry 175"
+      }
+    ],
+    "existingGapEvidence": [
+      "scripts/import/exam-paper/regenerateExam.ts:397",
+      "scripts/import/exam-paper/solver_rules.json:3",
+      "src/lib/mathgen/solutionValidator.ts:12",
+      "src/lib/mathgen/mathDefense.ts:526",
+      "prisma/seed-data/units.ts:3408"
+    ]
+  },
+  "representationAndInverseReview": {
+    "status": "design_examples_only_not_verified_twins",
+    "domainChecks": [
+      "signed algebra variable versus positive length/area",
+      "coordinate location",
+      "denominator nonzero",
+      "square and square-root signs/branches",
+      "units/dimensional consistency",
+      "actual feasible relation",
+      "solution existence",
+      "required uniqueness or all-solution-set completeness"
+    ],
+    "representationDelta": "Bind algebra relations to numeric point distance/segment length/area/coordinates with before/after domains and prerequisite check; do not conflate point/segment and scalar length.",
+    "inverseExample": {
+      "relation": "M-m=R",
+      "directTarget": "R from M,m",
+      "inverseTarget": "m from M,R",
+      "recompute": "m=M-R",
+      "constraints": [
+        "R>=0",
+        "m<=M",
+        "both extrema attained in actual data/function/set domain",
+        "R=0 may be valid for constant situation",
+        "R<0 invalid",
+        "parameter-target inverses require full admissible solution set check"
+      ]
+    },
+    "gate": "All representation/target changes and their student solution must pass highest-priority target grade/applied-curriculum gate."
+  },
+  "imageAssetTemplatePath": {
+    "status": "design_only_no_generated_assets",
+    "authoring": "specific future target -> view_image local reference -> built-in imagegen -> inspect/review -> copy selected output to own versioned batch folder",
+    "proposedAssetPath": "<twin-batch>/assets/<asset-id>/v1/image.png",
+    "promptAndInputOutputHashesRequired": true,
+    "existingReusable": [
+      "scripts/figure/figure_assets.py SVG-only manifest/composition",
+      "src/lib/middle/realScene.ts deterministic fact labels",
+      "scripts/figure/assets/manifest*.json",
+      "Problem.figureUrls/dims/mm and print projection"
+    ],
+    "actualGap": "reviewed raster manifest/template selector and truthful image provenance; current assetScene forbids raster image/text/href/id",
+    "runtime": "Select immutable reviewed assets/templates and compute math facts/answers in code; no skill invocation. Fail closed on missing/stale/pending assets or curriculum-incompatible templates.",
+    "manifestFields": [
+      "asset/tool/prompt/version",
+      "reference and output byte hashes",
+      "MIME/pixel dimensions/alpha/physical width",
+      "fictional-name and exact text transcript",
+      "anchors/regions/explicit roles",
+      "template/parameter range/domain/sign/unit bindings",
+      "grade/subject/applied curriculum/official policy",
+      "concepts/core method/prerequisites/family",
+      "target math digest",
+      "reviewer/checks/rights states"
+    ],
+    "noPixelOnlyMathematicalOracle": true,
+    "noSanitizerRelaxationToEmbedBitmaps": true,
+    "combinedRasterVectorLayout": "Requires a separately validated ownership/layout/render contract; not assumed supported.",
+    "liveRuntimeImageGeneration": "Deferred; separate API/auth/cost/queue/review contract and authorization required."
+  },
+  "typesafeDesign": {
+    "skill": ".agents/skills/typesafe-ai/SKILL.md",
+    "existingClient": "src/lib/jev/client.ts",
+    "preserveDirectHttpClient": true,
+    "existingPrimitive": "choice_only",
+    "currentPublicConfidence": "min(selected_probability,confidence); full distribution not exposed",
+    "timeoutMs": 1500,
+    "proposedQuestions": [
+      "Unit/family candidate fit with no_match/insufficient_evidence",
+      "same core principle",
+      "meaningful distinct presentation",
+      "natural Korean",
+      "grade/curriculum evidence discrepancy reviewer routing"
+    ],
+    "state": "Named JSON fields serialized as a string; source/target facts, actual candidate taxonomy, official policy evidence, delta and evidence pointers. Independent judgments can share one bounded request; dependent family selection needs later appropriate candidates.",
+    "uncertainty": "null/failure/missing/uncertain -> hold; evaluate thresholds on labeled domain controls; no confidence approval oracle. Deterministic rules own acceptance.",
+    "notYetSupported": [
+      "Score wrapper",
+      "Noul wrapper",
+      "raw distribution evidence persistence"
+    ],
+    "paidCalls": 0,
+    "livePrimaryDocsRead": [
+      "https://docs.typesafe.ai/llms.txt",
+      "https://docs.typesafe.ai/api",
+      "https://docs.typesafe.ai/concepts/state",
+      "https://docs.typesafe.ai/primitives/choice",
+      "https://docs.typesafe.ai/primitives/noul",
+      "https://docs.typesafe.ai/confidence",
+      "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
+      "https://docs.typesafe.ai/sdk/javascript"
+    ],
+    "accessNote": "Markdown page endpoints failed; normal pages were accessible. No new SDK/integration installed."
+  },
+  "upgradePhases": {
+    "P0": "contracts/evidence/official policy and parent bank snapshot",
+    "P1": "Bumil pilot draft/dry-run under latest addendum",
+    "P2": "reviewed target 2025+ extraction and coverage/holds inventory",
+    "P3": "implement every retained useful feasible engine/read/render improvement with tests, after relevant P2 evidence",
+    "P4": "separately authorized writer/rollout; excluded from setup"
+  },
+  "upgradeCandidates": [
+    {
+      "id": "U01",
+      "title": "Structural/context variants",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/prompts/transform.ts",
+          "line": 75,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 97,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/ai/prompts/transform.ts:75`, `src/lib/ai/transformer.ts:97`; new twin contract and per-type presentation templates beside middle/high handlers",
+      "concreteValidation": "Fail number/name/synonym/order-only controls; pass meaningful condition/data/question organization or natural new situation while preserving core steps; fluency, method and presentation reviews independent",
+      "phaseDependencies": "P0 design → P1 pilot → P3 templates after P2",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U02",
+      "title": "School/context substitution",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 161,
+          "existing": true
+        }
+      ],
+      "targetDescription": "Transformer intake/normalization (`src/lib/ai/transformer.ts:161`); new school-map validator and figure text transcript",
+      "concreteValidation": "Search stem/choices/subparts/table/figure/solution for real-name residue; one mapping per school per question; compare names affecting numeric/choice conditions",
+      "phaseDependencies": "P1; U01/U13/U14",
+      "dependsOn": [
+        "U01",
+        "U13",
+        "U14",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U03",
+      "title": "Independent twin solve gate",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 355,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 498,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`scripts/import/exam-paper/regenerateExam.ts:355`, `scripts/import/exam-paper/regenerateExam.ts:498`; new twin payload reader/verifier adapter",
+      "concreteValidation": "No original-answer oracle; all types solved; mutate stem/spec/asset/choice/score and reject old reports; independent computations, every step and uniqueness checked",
+      "phaseDependencies": "P0/P1; U18",
+      "dependsOn": [
+        "U18",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U04",
+      "title": "Parameter constraints",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/m3Trig.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/m3.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/types.ts",
+          "line": 24,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/middle/m3Trig.ts`, `src/lib/middle/m3.ts`, applicable middle/high/elementary handlers; facts contracts `src/lib/middle/types.ts:24`",
+      "concreteValidation": "Enumerate boundary parameters and at least 100 deterministic seeds per changed rule; separate solver checks denominator/domain/discriminant/positivity/integer counts/triangle inequalities and required solution cardinality",
+      "phaseDependencies": "P3 after P2 type evidence; U03",
+      "dependsOn": [
+        "U03",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U05",
+      "title": "Choice quality",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/engine/expandEngine.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/engine/variants.ts",
+          "line": 159,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 113,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/engine/expandEngine.ts`, `src/lib/engine/variants.ts:159`, `src/lib/high/generate.ts:113`, shared choice rules",
+      "concreteValidation": "Recompute all options; algebraic-equivalent duplicate controls, one required correct answer/set, faithful figure-choice mapping, balanced answer positions and plausible distractors",
+      "phaseDependencies": "P3 after P2; U04/U13",
+      "dependsOn": [
+        "U04",
+        "U13",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U06",
+      "title": "Solution and rubric quality",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/generator.ts",
+          "line": 34,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/prompts/generate.ts",
+          "line": 57,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/solutionText.ts",
+          "line": 107,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/ai/generator.ts:34`, `src/lib/ai/prompts/generate.ts:57`, `src/lib/middle/solutionText.ts:107`, new twin rubric sidecar",
+      "concreteValidation": "Require new nonempty complete explanations; check cases, units and conclusion; subpart/rubric scores sum to item/paper totals; render and independent step review",
+      "phaseDependencies": "P1 gate; P3 rules after P2",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U07",
+      "title": "Difficulty/reading-burden preservation",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/tier.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 148,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/middle/tier.ts`, `src/lib/high/generate.ts:148`, transformer difficulty control",
+      "concreteValidation": "After U27 gate, preserve core steps/target difficulty; no new reading or prerequisite burden; labeled review and no confidence-only assignment",
+      "phaseDependencies": "P1 review; P3 calibration after P2/parent snapshot; U27",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U08",
+      "title": "Concept/type coverage",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/generate.ts",
+          "line": 147,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 88,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/types.ts",
+          "line": 49,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/middle/generate.ts:147`, `src/lib/high/generate.ts:88`, `src/lib/high/types.ts:49`, elementary forms/combos",
+      "concreteValidation": "Compare every extracted concept/core method to registry/live families; register∪hold completeness, no key collisions, actual multi-seed invariants and held reason per missing type",
+      "phaseDependencies": "P2 census → P3 implementation; fresh taxonomy",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U09",
+      "title": "Conditions, tables and multipart forms",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/combo.ts",
+          "line": 548,
+          "existing": true
+        },
+        {
+          "path": "src/lib/elementary/forms.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/parseProblemContent.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 39,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/middle/combo.ts:548`, `src/lib/elementary/forms.ts`, `src/lib/problem/parseProblemContent.ts`, `scripts/import/exam-paper/examConfig.ts:39`; new structured twin data model",
+      "concreteValidation": "Preserve subpart/option order, table headers/units/data totals and score; rebuild tables instead of source crops; parser/render parity and independent recalculation",
+      "phaseDependencies": "P1 model; P3 after P2 form evidence",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U10",
+      "title": "Prompt/catalog capability sync",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/prompts/transform.ts",
+          "line": 56,
+          "existing": true
+        },
+        {
+          "path": "src/lib/dev-ai/figure-prompt.ts",
+          "line": 17,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/build_catalog.py",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/render_spec.py",
+          "line": 65,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/ai/prompts/transform.ts:56`, `src/lib/dev-ai/figure-prompt.ts:17`, `scripts/figure/build_catalog.py`, `scripts/figure/render_spec.py:65`",
+      "concreteValidation": "Prompt includes current v2/graph/elem keys; representative geometry/function/stat/solid specs render; catalog generated from engine, unknown keys still reject",
+      "phaseDependencies": "P0/P1 design; P3 code; U17",
+      "dependsOn": [
+        "U17",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U11",
+      "title": "Figure mathematical bindings",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/figure/figureMatchesContent.ts",
+          "line": 41,
+          "existing": true
+        },
+        {
+          "path": "vendor/figure-engine/core/figure_scene.py",
+          "line": 3042,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/graph_scene.py",
+          "line": 102,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 10,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/figure/figureMatchesContent.ts:41`, `vendor/figure-engine/core/figure_scene.py:3042`, `scripts/figure/graph_scene.py:102`, `src/lib/middle/realScene.ts:10`",
+      "concreteValidation": "Bind each length/angle/coordinate/table count to target facts and units; negative right-angle/ratio/scatter cases; allow documented figure-only givens; prevent showing sought answers",
+      "phaseDependencies": "P1 manual gate; P3 typed bindings after P2",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U12",
+      "title": "Strict figure quality",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/figure/renderFigureSpec.ts",
+          "line": 112,
+          "existing": true
+        },
+        {
+          "path": "src/lib/figure/renderFigureSpec.ts",
+          "line": 254,
+          "existing": true
+        },
+        {
+          "path": "src/lib/dev-ai/figure-engine.ts",
+          "line": 256,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/figure/renderFigureSpec.ts:112`, `src/lib/figure/renderFigureSpec.ts:254`, `src/lib/dev-ai/figure-engine.ts:256`; new quality evidence result",
+      "concreteValidation": "Strict render no silent dimension loss; collision/cutoff/label checks, explicit unresolved labels and omissions; source-review false/timeout drafts remain held; actual print size inspection",
+      "phaseDependencies": "P1 gate; P3 seam; U11",
+      "dependsOn": [
+        "U11",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U13",
+      "title": "Multi-figure ownership",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 367,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/graphChoiceFigures.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/print/toPrintProblem.ts",
+          "line": 45,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/contracts/problem.contract.ts:367`, `schema.prisma:830`, `scripts/import/exam-paper/graphChoiceFigures.ts`, `src/lib/print/toPrintProblem.ts:45`",
+      "concreteValidation": "Multiple stem/subpart/solution/choice artifacts; exact URL/dims/mm/index cardinality, no duplicate/missing choice binding, screen/print parity; geometry SVG supplied per role through reviewed representation",
+      "phaseDependencies": "P0 design/P1; P3 read chain; U09/U15",
+      "dependsOn": [
+        "U09",
+        "U15",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U14",
+      "title": "Imagegen assets/templates",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/figure/figure_assets.py",
+          "line": 12,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 18,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`scripts/figure/figure_assets.py:12`, `src/lib/middle/realScene.ts:18`, assets manifests; new raster manifest/approved-template selector",
+      "concreteValidation": "Pin reviewed bytes/template/hash/anchors; reject pending/stale/missing assets; no runtime skill call; label transcript/school/name review, multiple parameter cases and print legibility",
+      "phaseDependencies": "P1 authored path; P3 ingestion after P2; U11/U13/U21",
+      "dependsOn": [
+        "U11",
+        "U13",
+        "U21",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U15",
+      "title": "Provenance and metadata read chain",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 124,
+          "existing": true
+        },
+        {
+          "path": "src/lib/serializers.ts",
+          "line": 88,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/provenance.ts",
+          "line": 193,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/provenance.ts",
+          "line": 215,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`schema.prisma:785`, `:805`, `src/contracts/problem.contract.ts:124`, `src/lib/serializers.ts:88`, `src/lib/problem/provenance.ts:193`, `src/lib/problem/provenance.ts:215`",
+      "concreteValidation": "External-origin twin never workbook; null FK truthful; authored raster never scan; old textbook/engine labels unchanged; source+variant+review/figure fields survive serialization; high-engine origin considered if current data requires it",
+      "phaseDependencies": "P0 blocking design → P3 migration/read compatibility; before P4",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U16",
+      "title": "Filter/search completion",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/components/problem/ProblemBank.tsx",
+          "line": 218,
+          "existing": true
+        },
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 190,
+          "existing": true
+        },
+        {
+          "path": "src/app/api/problems/route.ts",
+          "line": 189,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/formatQuery.ts",
+          "line": 15,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/problemApi.ts",
+          "line": null,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/components/problem/ProblemBank.tsx:218`, `src/contracts/problem.contract.ts:190`, `src/app/api/problems/route.ts:189`, `src/lib/problem/formatQuery.ts:15`, `src/lib/problem/problemApi.ts`",
+      "concreteValidation": "UI→request→where/join→stored value parity; source/twin/review/year/term/asset/concept queries with unknown values, mixed filters, total counts and page boundaries; measure before adding indexes",
+      "phaseDependencies": "P3 after U15 and P2 needs census",
+      "dependsOn": [
+        "U15",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U17",
+      "title": "Snapshot-based classification",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/load-exam-paper.ts",
+          "line": 239,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 17,
+          "existing": true
+        },
+        {
+          "path": "src/lib/jev/client.ts",
+          "line": 111,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`scripts/import/exam-paper/load-exam-paper.ts:239`, `scripts/import/exam-paper/examConfig.ts:17`, `src/lib/jev/client.ts:111`; new injected taxonomy-snapshot adapter",
+      "concreteValidation": "Parent snapshot hash/time required; real Unit/live family; no-match/ambiguous cases held; five Bumil proposals reevaluated; mocked Jev timeout/invalid output paths cannot approve",
+      "phaseDependencies": "P0/P1; parent fresh bank, no duplicate DB read",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U18",
+      "title": "Twin IDs/digests/replay",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/import/problemFingerprint.ts",
+          "line": 20,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 160,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problemCode.ts",
+          "line": null,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/import/problemFingerprint.ts:20`, `scripts/import/exam-paper/regenerateExam.ts:160`, `src/lib/problemCode.ts`; new twin digest/ID validators",
+      "concreteValidation": "Separate reference/twin/solution/metadata versions, ordered canonical representation, byte changes stale results, ID collisions and rerun idempotency; problemCode not forged",
+      "phaseDependencies": "P0/P1; prerequisite for U03/U14",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true,
+      "enables": [
+        "U03",
+        "U14"
+      ]
+    },
+    {
+      "id": "U19",
+      "title": "Diversity/deduplication",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/engine/variants.ts",
+          "line": 51,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/generate.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 163,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/load-engine-problems.ts",
+          "line": 552,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/engine/variants.ts:51`, `src/lib/middle/generate.ts`, `src/lib/high/generate.ts:163`, `scripts/import/load-engine-problems.ts:552`",
+      "concreteValidation": "Same seed/template version reproducible; semantic near-copy controls, structural/context coverage, spec/asset-aware keys, honest shortfalls; valid same-answer twins allowed; format siblings kept/dropped together",
+      "phaseDependencies": "P3 after P2; U01/U14/U18",
+      "dependsOn": [
+        "U01",
+        "U14",
+        "U18",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U20",
+      "title": "Review/failure observability",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/dev-ai/figure-engine.ts",
+          "line": 72,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 451,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/dev-ai/figure-engine.ts:72`, AI retry/admission, `scripts/import/exam-paper/regenerateExam.ts:451`; new durable twin attempt ledger",
+      "concreteValidation": "Persist successful and failed generation/review evidence, model/prompt/template version, pending versus rejected, changed-conditions reset and bounded retries; no fallback to old answer/crop",
+      "phaseDependencies": "P1 ledger; P3 resilience; no paid calls in tests",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U21",
+      "title": "Safe authored-asset handling",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/figure/render_spec.py",
+          "line": 81,
+          "existing": true
+        },
+        {
+          "path": "vendor/figure-engine/core/figure_quality.py",
+          "line": 687,
+          "existing": true
+        },
+        {
+          "path": "src/lib/figure/mathjaxLabel.ts",
+          "line": 291,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/figure_assets.py",
+          "line": 88,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`scripts/figure/render_spec.py:81`, `vendor/figure-engine/core/figure_quality.py:687`, `src/lib/figure/mathjaxLabel.ts:291`, `scripts/figure/figure_assets.py:88`, source-figure presentation",
+      "concreteValidation": "Manifest/file hash validation, trusted MIME/dimensions, physical-path escape/overwrite controls, hostile SVG/label rejection and separate raster boundary; do not weaken engine image prohibition",
+      "phaseDependencies": "P0/P1 boundary design before asset activation; P3 adapter validation with reviewed manifests",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U22",
+      "title": "Permanent exclusion/lock guard",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 55,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/load-exam-paper.ts",
+          "line": 429,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`scripts/import/exam-paper/examConfig.ts:55`, loader `scripts/import/exam-paper/load-exam-paper.ts:429`, three existing hold/lock/patch ledgers; new twin exclusion reader",
+      "concreteValidation": "81 holds + 1 permanent exclude = 82 unique original IDs; 2 patches are subsets; q19 excluded despite new twin UUID and baseline before=true; no writer/unlock hidden in dry-run",
+      "phaseDependencies": "P0/P1; before any P4",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U23",
+      "title": "Generation scope/count/answers",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/generator.ts",
+          "line": 116,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 156,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/ai/generator.ts:116`, `src/lib/ai/transformer.ts:156`, generate/transform prompt grade assumptions",
+      "concreteValidation": "Reject incomplete requested batch without silently counting it complete; require solutions; grade-aware constraints and approved image/template input; mocked responses preserve pending/failed states",
+      "phaseDependencies": "P3 after P2; U06/U07/U10/U14",
+      "dependsOn": [
+        "U06",
+        "U07",
+        "U10",
+        "U14",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U24",
+      "title": "Korean/math notation consistency",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/jsonRepair.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/wordyOperators.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/solutionText.ts",
+          "line": 107,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/josa.ts",
+          "line": 76,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/ai/jsonRepair.ts`, `src/lib/ai/wordyOperators.ts`, `src/lib/middle/solutionText.ts:107`, `src/lib/high/josa.ts:76`, math renderer",
+      "concreteValidation": "Correct particles/units, natural context vocabulary, no wordy-symbol or source-font residue, valid math delimiters; normalization cannot change an equation or create fake structural change; screen/print textual review",
+      "phaseDependencies": "P1 presentation gate; P3 reusable templates after P2",
+      "dependsOn": [
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U25",
+      "title": "Algebra/geometry representation templates",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/types.ts",
+          "line": 24,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/graph_scene.py",
+          "line": 102,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 10,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/middle/types.ts:24`, middle/high handlers and combo rules, `scripts/figure/graph_scene.py:102`, `src/lib/middle/realScene.ts:10`; new representation-map validator",
+      "concreteValidation": "Signed-variable→positive-length counterexample must fail; distinguish segment from length; prove relation/domain equivalence, positive lengths/areas, coordinates/units and same principle; all new prerequisites pass U27",
+      "phaseDependencies": "P1 delta/gate design; P3 type rules after P2; U04/U11/U27",
+      "dependsOn": [
+        "U04",
+        "U11",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U26",
+      "title": "Inverse input/condition/parameter generation",
+      "status": "candidate_not_implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/combo.ts",
+          "line": 548,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`src/lib/middle/combo.ts:548`, applicable middle/high handler facts, new inverse-target constraints/solver",
+      "concreteValidation": "M-m=R checks m=M-R, R≥0, attained extrema; negative/zero/boundary cases, impossible range, multiple parameters, denominator zero and square-root sign; independently solve full admissible inverse set and student method",
+      "phaseDependencies": "P1 contract; P3 rules after P2; U03/U04/U07/U27",
+      "dependsOn": [
+        "U03",
+        "U04",
+        "U07",
+        "U27"
+      ],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    },
+    {
+      "id": "U27",
+      "title": "Highest-priority applied-curriculum gate",
+      "status": "candidate_not_implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "prisma/seed-data/units.ts",
+          "line": 3408,
+          "existing": true
+        },
+        {
+          "path": "src/lib/mathgen/mathDefense.ts",
+          "line": 526,
+          "existing": true
+        },
+        {
+          "path": "src/lib/mathgen/solutionValidator.ts",
+          "line": 12,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 397,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/solver_rules.json",
+          "line": 3,
+          "existing": true
+        }
+      ],
+      "targetDescription": "`prisma/seed-data/units.ts:3408`, `src/lib/mathgen/mathDefense.ts:526`, `src/lib/mathgen/solutionValidator.ts:12`, `scripts/import/exam-paper/regenerateExam.ts:397`, `scripts/import/exam-paper/solver_rules.json:3`; new versioned official-policy/CurriculumBinding validator",
+      "concreteValidation": "2025 middle3 resolves to 2015; all stem/choice/figure/notation/answer/student-solution/prerequisite surfaces checked; no legitimate method→reject, unclear→hold; unverified codes null; Unit/family/template existence and school/AI confidence never auto-approve",
+      "phaseDependencies": "P0 highest priority design → P1 whole-candidate review → P3 rule/template integration; prerequisite of every candidate and P4",
+      "dependsOn": [],
+      "targetGradeCurriculumGateRequired": true,
+      "deferredReason": null,
+      "setupOnly": true
+    }
+  ],
+  "upgradeCandidateCount": 27,
+  "implementedUpgradeCount": 0,
+  "allCandidateScope": "Complete register identified by this code audit; not a claim to analyze unextracted papers or all possible future types. Corpus-specific implementation waits for extracted reviewed evidence.",
+  "preservation": {
+    "ledgers": [
+      {
+        "path": "scripts/qa/reports/refresh-engine-content/exam-hold-pilot81-20261003.json",
+        "sha256": "fefc5a7a9dfda0a93324ad07b7a0e6b4b714f37671008c98f27c75ac432f6f9f",
+        "kind": "temporary_hold",
+        "rowCount": 81,
+        "externalIds": [
+          "2025-dongdo-3-2-mid-1",
+          "2025-dongdo-3-2-mid-2",
+          "2025-dongdo-3-2-mid-3",
+          "2025-dongdo-3-2-mid-4",
+          "2025-dongdo-3-2-mid-5",
+          "2025-dongdo-3-2-mid-6",
+          "2025-dongdo-3-2-mid-7",
+          "2025-dongdo-3-2-mid-8",
+          "2025-dongdo-3-2-mid-9",
+          "2025-dongdo-3-2-mid-10",
+          "2025-dongdo-3-2-mid-11",
+          "2025-dongdo-3-2-mid-12",
+          "2025-dongdo-3-2-mid-13",
+          "2025-dongdo-3-2-mid-14",
+          "2025-dongdo-3-2-mid-15",
+          "2025-dongdo-3-2-mid-16",
+          "2025-gangdong-3-2-mid-1",
+          "2025-gangdong-3-2-mid-2",
+          "2025-gangdong-3-2-mid-3",
+          "2025-gangdong-3-2-mid-4",
+          "2025-gangdong-3-2-mid-5",
+          "2025-gangdong-3-2-mid-6",
+          "2025-gangdong-3-2-mid-7",
+          "2025-gangdong-3-2-mid-8",
+          "2025-gangdong-3-2-mid-9",
+          "2025-gangdong-3-2-mid-10",
+          "2025-gangdong-3-2-mid-11",
+          "2025-gangdong-3-2-mid-12",
+          "2025-gangdong-3-2-mid-13",
+          "2025-gangdong-3-2-mid-14",
+          "2025-gangdong-3-2-mid-15",
+          "2025-gangdong-3-2-mid-16",
+          "2025-gangdong-3-2-mid-17",
+          "2025-gangdong-3-2-mid-18",
+          "2025-gangdong-3-2-mid-19",
+          "2025-gangdong-3-2-mid-20",
+          "2025-gangdong-3-2-mid-21",
+          "2025-gyeongsanyeo-3-2-mid-1",
+          "2025-gyeongsanyeo-3-2-mid-2",
+          "2025-gyeongsanyeo-3-2-mid-3",
+          "2025-gyeongsanyeo-3-2-mid-4",
+          "2025-gyeongsanyeo-3-2-mid-5",
+          "2025-gyeongsanyeo-3-2-mid-6",
+          "2025-gyeongsanyeo-3-2-mid-7",
+          "2025-gyeongsanyeo-3-2-mid-8",
+          "2025-gyeongsanyeo-3-2-mid-9",
+          "2025-gyeongsanyeo-3-2-mid-10",
+          "2025-gyeongsanyeo-3-2-mid-11",
+          "2025-gyeongsanyeo-3-2-mid-12",
+          "2025-gyeongsanyeo-3-2-mid-13",
+          "2025-gyeongsanyeo-3-2-mid-14",
+          "2025-gyeongsanyeo-3-2-mid-15",
+          "2025-gyeongsanyeo-3-2-mid-16",
+          "2025-gyeongsanyeo-3-2-mid-17",
+          "2025-gyeongsanyeo-3-2-mid-18",
+          "2025-gyeongsanyeo-3-2-mid-20",
+          "2025-gyeongsanyeo-3-2-mid-21",
+          "2025-gyeongsanyeo-3-2-mid-22",
+          "2025-gyeongsanyeo-3-2-mid-23",
+          "2025-gyeongsanyeo-3-2-mid-24",
+          "2025-gyeongsanyeo-3-2-mid-25",
+          "2025-gyeongsanyeo-3-2-mid-26",
+          "2025-jeonghwa-3-2-mid-1",
+          "2025-jeonghwa-3-2-mid-2",
+          "2025-jeonghwa-3-2-mid-3",
+          "2025-jeonghwa-3-2-mid-4",
+          "2025-jeonghwa-3-2-mid-5",
+          "2025-jeonghwa-3-2-mid-6",
+          "2025-jeonghwa-3-2-mid-7",
+          "2025-jeonghwa-3-2-mid-8",
+          "2025-jeonghwa-3-2-mid-9",
+          "2025-jeonghwa-3-2-mid-10",
+          "2025-jeonghwa-3-2-mid-11",
+          "2025-jeonghwa-3-2-mid-12",
+          "2025-jeonghwa-3-2-mid-13",
+          "2025-jeonghwa-3-2-mid-14",
+          "2025-jeonghwa-3-2-mid-15",
+          "2025-jeonghwa-3-2-mid-16",
+          "2025-jeonghwa-3-2-mid-17",
+          "2025-jeonghwa-3-2-mid-18",
+          "2025-jeonghwa-3-2-mid-19"
+        ],
+        "meaning": "Historical before values are evidence, never authorization to restore/unlock."
+      },
+      {
+        "path": "scripts/qa/reports/refresh-engine-content/exam-lock-gyeongsanyeo19-20261003.json",
+        "sha256": "5f2f125164784ebc7818e6845283f2136b5145a9597bf68f9fa26f90177589f8",
+        "kind": "permanent_exclusion",
+        "rowCount": 1,
+        "externalIds": [
+          "2025-gyeongsanyeo-3-2-mid-19"
+        ],
+        "meaning": "Historical before values are evidence, never authorization to restore/unlock."
+      },
+      {
+        "path": "scripts/qa/reports/refresh-engine-content/exam-draft-review-bank-decide-20261003.json",
+        "sha256": "f3b8f3bbd3426933dfc88baa28d4658830176fb871fc5c7badaf40d5f080a105",
+        "kind": "preserved_content_patches",
+        "rowCount": 2,
+        "externalIds": [
+          "2025-dongdo-3-2-mid-16",
+          "2025-gangdong-3-2-mid-17"
+        ],
+        "meaning": "Historical before values are evidence, never authorization to restore/unlock."
+      }
+    ],
+    "uniqueHoldOrLockExternalIds": 82,
+    "holdLockOverlap": 0,
+    "patchRowsAreSubset": true,
+    "permanentExclusion": "2025-gyeongsanyeo-3-2-mid-19",
+    "permanentExclusionConfig": "scripts/import/exam-paper/exams/2025-gyeongsanyeo-3-2-mid/exam.json:6",
+    "corrections": [
+      "Dongdo16 variance denominator 12 -> 3",
+      "Gangdong17 escaped percent notation"
+    ],
+    "noReactivationByNewTwinIdOrHistoricalBeforeTrue": true
+  },
+  "verification": {
+    "kind": "existing_contract_offline_tests",
+    "groups": [
+      {
+        "command": "node node_modules/vitest/vitest.mjs run --no-cache --configLoader runner --maxWorkers 2 src/__tests__/unit/planPersonalExams.test.ts src/__tests__/unit/examRegeneration.test.ts src/__tests__/unit/examDecisionLoad.test.ts src/__tests__/unit/examDecisionCorpus.test.ts src/__tests__/unit/examCorpusGuards.test.ts src/__tests__/unit/examPercentRepair.test.ts src/__tests__/unit/aiGenerator.test.ts src/__tests__/unit/aiBankIntakeNormalize.test.ts src/__tests__/unit/devAiFigureEngine.test.ts src/__tests__/unit/figureEngineCatalog.test.ts src/__tests__/unit/figureDropSafety.test.ts src/__tests__/unit/figureCurveGraph.test.ts src/__tests__/unit/figureStatKinds.test.ts src/__tests__/unit/figureSolidKinds.test.ts src/__tests__/unit/vendoredFigureEngine.test.ts src/__tests__/unit/figureMatchesContent.test.ts src/__tests__/unit/problemProvenance.test.ts src/__tests__/unit/problemFormatQuery.test.ts src/__tests__/api/problemTransform.test.ts src/__tests__/api/problemFormatFilter.test.ts src/__tests__/unit/jevClient.test.ts",
+        "fileCount": 21,
+        "testsPassed": 404,
+        "testsFailed": 0,
+        "exitCode": 0,
+        "durationSeconds": 91.29,
+        "files": [
+          "src/__tests__/unit/planPersonalExams.test.ts",
+          "src/__tests__/unit/examRegeneration.test.ts",
+          "src/__tests__/unit/examDecisionLoad.test.ts",
+          "src/__tests__/unit/examDecisionCorpus.test.ts",
+          "src/__tests__/unit/examCorpusGuards.test.ts",
+          "src/__tests__/unit/examPercentRepair.test.ts",
+          "src/__tests__/unit/aiGenerator.test.ts",
+          "src/__tests__/unit/aiBankIntakeNormalize.test.ts",
+          "src/__tests__/unit/devAiFigureEngine.test.ts",
+          "src/__tests__/unit/figureEngineCatalog.test.ts",
+          "src/__tests__/unit/figureDropSafety.test.ts",
+          "src/__tests__/unit/figureCurveGraph.test.ts",
+          "src/__tests__/unit/figureStatKinds.test.ts",
+          "src/__tests__/unit/figureSolidKinds.test.ts",
+          "src/__tests__/unit/vendoredFigureEngine.test.ts",
+          "src/__tests__/unit/figureMatchesContent.test.ts",
+          "src/__tests__/unit/problemProvenance.test.ts",
+          "src/__tests__/unit/problemFormatQuery.test.ts",
+          "src/__tests__/api/problemTransform.test.ts",
+          "src/__tests__/api/problemFormatFilter.test.ts",
+          "src/__tests__/unit/jevClient.test.ts"
+        ]
+      },
+      {
+        "command": "node node_modules/vitest/vitest.mjs run --no-cache --configLoader runner --maxWorkers 2 src/__tests__/components/sourceFigureSanitize.test.tsx src/__tests__/unit/figureLabelTypeset.test.ts src/__tests__/unit/figurePrintSize.test.ts src/__tests__/unit/toPrintProblem.test.ts src/__tests__/unit/highRegistry.test.ts src/__tests__/unit/problemEligibility.test.ts src/__tests__/unit/importMetadata.test.ts",
+        "fileCount": 7,
+        "testsPassed": 119,
+        "testsFailed": 0,
+        "exitCode": 0,
+        "durationSeconds": 187.32,
+        "files": [
+          "src/__tests__/components/sourceFigureSanitize.test.tsx",
+          "src/__tests__/unit/figureLabelTypeset.test.ts",
+          "src/__tests__/unit/figurePrintSize.test.ts",
+          "src/__tests__/unit/toPrintProblem.test.ts",
+          "src/__tests__/unit/highRegistry.test.ts",
+          "src/__tests__/unit/problemEligibility.test.ts",
+          "src/__tests__/unit/importMetadata.test.ts"
+        ]
+      }
+    ],
+    "totalFilesPassed": 28,
+    "totalTestsPassed": 523,
+    "totalFailures": 0,
+    "noNewTwinVerificationClaim": true,
+    "dbMock": "vitest.setup.ts global in-memory Prisma double; loader tests mock Prisma directly",
+    "aiMocks": "AI generator SDK, transform wrapper, Studio subscription CLI and Jev fetch mocked in relevant tests",
+    "runtimeEnvironmentOverrides": {
+      "STUDIO_AI_JEV": "off",
+      "STUDIO_ENGINE_URL": "",
+      "VERCEL": "",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "NO_COLOR": "1"
+    },
+    "cacheDisabled": true,
+    "configLoader": "runner",
+    "temporaryDependencyJunction": "Own worktree pointer to existing D:/todays-math/node_modules; removed after tests. No install/generate.",
+    "referenceLineValidation": "All cited file:line references exist at baseline; report and JSON generated in own worktree only."
+  },
+  "remainingBlockers": [
+    "whole-candidate grade/applied-curriculum policy binding and per-item evidence",
+    "external-reference exam_twin provenance discriminator",
+    "twin-specific immutable payload/digests",
+    "meaningful four-axis deltas and external natural-Korean/distinct-presentation reviews",
+    "all recreated figures with ownership and reviewed raster ingestion",
+    "parent fresh live Unit/family binding",
+    "later P3 implementation and validation; no production work authorized here"
+  ],
+  "parentContinuationUpdate": {
+    "evidence": "Latest owner message in this session; parent-supplied, not independently reread/audited by this worker",
+    "setupScript": "prepare-twin-resume.mjs",
+    "preparationArtifact": "design/preparation.json",
+    "preparationItems": 21,
+    "authored": 0,
+    "verified": 0,
+    "loadable": 0,
+    "allGradeReviews": "pending",
+    "freshBankReported": {
+      "protectedOriginalRows": 82,
+      "locksAndCorrectionsConfirmed": true,
+      "middle3Units": 22,
+      "eligibleFamilies": 302,
+      "currentRegistry": 299
+    },
+    "differentCountPopulationsMustNotBeSubtractedAsCoverageProof": true,
+    "integrationAction": "Parent should link actual artifact/snapshot paths, timestamps, hashes and key-level mapping."
+  },
+  "unknowns": [
+    "item-level official standard/grade/semester permission",
+    "legitimate target-grade student solution",
+    "current Unit/live family key-level bindings",
+    "meaningful presentation/representation/inverse-target delta reviews",
+    "new figure/asset data, roles and acceptance",
+    "independent twin answer/solution proof",
+    "rights/similarity state",
+    "native truthful external-reference twin provenance"
+  ]
+}
