@@ -329,6 +329,8 @@ export default function ExplorerHome({
   journeyTheme,
   conceptMemory,
   readOnly = false,
+  dailyStartAllowed,
+  dailyStartNote,
   busy,
   claims = NO_CLAIMS,
   chestNotices = NO_NOTICES,
@@ -354,6 +356,8 @@ export default function ExplorerHome({
   conceptMemory?: ReactNode;
   /** Read-only previews keep their action names instead of pretending to load. */
   readOnly?: boolean;
+  dailyStartAllowed?: boolean;
+  dailyStartNote?: string;
   busy: boolean;
   /** Chests pressed and shown as opened while their saves are on the way. */
   claims?: readonly string[];
@@ -489,7 +493,9 @@ export default function ExplorerHome({
               ? "다시 걷는 여정"
               : complete && !active
                 ? "오늘의 한 칸 완료"
-                : "오늘의 한 칸"}
+                : dailyStartAllowed === undefined
+                  ? "오늘의 한 칸"
+                  : "탐험의 한 칸"}
           </span>
           <span>
             {answered} / {goal}{" "}
@@ -529,13 +535,21 @@ export default function ExplorerHome({
             {prerequisiteContext.reason}
           </p>
         ) : null}
+        {dailyStartAllowed === false && dailyStartNote ? (
+          <p className={`${s.missionRetry} ${a.retry}`} role="status">
+            {dailyStartNote}
+          </p>
+        ) : null}
         {activeReview || active || pendingRetry || !complete ? (
           <button
             type="button"
-            className={s.primary}
+            className={
+              dailyStartAllowed === undefined ? s.primary : s.secondary
+            }
             disabled={
               busy ||
               saving ||
+              dailyStartAllowed === false ||
               (!activeReview && !pendingRetry && unavailable) ||
               (!activeReview &&
                 !active &&
@@ -554,7 +568,9 @@ export default function ExplorerHome({
                   ? "남은 문제 다시 풀기"
                   : active
                     ? "이어서 탐험하기"
-                    : "오늘의 탐험 시작"}
+                    : dailyStartAllowed === undefined
+                      ? "오늘의 탐험 시작"
+                      : "탐험 문제 시작"}
             <span aria-hidden="true"> →</span>
           </button>
         ) : (

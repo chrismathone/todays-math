@@ -13,6 +13,12 @@ import { fadingTargets, type FadingConcept } from "@/lib/fading/concepts";
 import { FadingSourceError, type FadingSource } from "@/lib/fading/source";
 import { createExplorerState, explorerView } from "@/lib/math-explorers/engine";
 import type { ExplorerState } from "@/contracts/mathExplorers.contract";
+import type {
+  FadingDailyActivity,
+  FadingDailyPlan,
+} from "@/contracts/fadingDaily.contract";
+import * as apiSource from "@/components/fading/apiSource";
+import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
@@ -40,7 +46,118 @@ const concept: FadingConcept = {
 };
 
 function local() {
-  return createLocalFadingSource({ concepts: [concept], today, cards: true });
+  const source = createLocalFadingSource({
+    concepts: [concept],
+    today,
+    cards: true,
+  });
+  // Keep testing sources that provide only the original four methods.
+  return { ...source, dailyPlan: undefined };
+}
+
+function suppliedPlan(activities?: FadingDailyActivity[]): FadingDailyPlan {
+  const planned: FadingDailyActivity[] = activities ?? [
+    {
+      kind: "recall",
+      key: "recall:first",
+      bucket: "prerequisite",
+      slots: 3,
+      done: 0,
+      state: "todo",
+      reason: {
+        code: "prerequisite-unassessed",
+        text: "다음 탐험 전에 필요한 개념을 확인해요.",
+      },
+      unit: "recall",
+      prompts: 3,
+      conceptId: concept.id,
+      section: concept.section,
+      terms: ["삼각형 선수 개념"],
+      step: null,
+      rated: false,
+      risk: null,
+      daysUntil: null,
+      start: "pick-open",
+    },
+    {
+      kind: "practice",
+      key: "practice:today",
+      bucket: "progress",
+      slots: 10,
+      done: 0,
+      state: "todo",
+      reason: { code: "progress-practice", text: "현재 진도의 문제를 풀어요." },
+      unit: "question",
+      count: 10,
+      answered: 0,
+      retryRemaining: 0,
+      source: {
+        kind: "elementary",
+        route: "bank",
+        unitId: "e3-multiply",
+        title: "곱셈",
+        subtitle: "초등 3학년",
+        selection: "expedition",
+      },
+      start: "start",
+    },
+  ];
+  return {
+    version: 1,
+    today,
+    mode: "split",
+    quota: { total: 20, source: "default", over: 0 },
+    shares: { review: 0, prerequisite: 3, progress: 10 },
+    counts: { total: 13, done: 0, remaining: 13 },
+    buckets: {
+      review: { planned: 0, done: 0 },
+      prerequisite: { planned: 3, done: 0 },
+      progress: { planned: 10, done: 0 },
+    },
+    units: {
+      recall: { planned: 1, done: 0 },
+      prompt: { planned: 3, done: 0 },
+      question: { planned: 10, done: 0 },
+      task: { planned: 0, done: 0 },
+    },
+    activities: planned,
+    next: planned[0]?.key ?? null,
+    status: "todo",
+    shortfall: [],
+    held: { recalls: 7, prompts: 21 },
+    integration: { expedition: true },
+    prerequisite: {
+      target: {
+        title: "곱셈",
+        explorerUnitId: "e3-multiply",
+        courseSectionId: null,
+        sectionKey: null,
+        graphUnitId: null,
+        cardIds: [],
+      },
+      coverage: { status: "partial", cardLinks: 1, graphEdges: 0 },
+      links: [
+        {
+          via: "card-link",
+          reason: null,
+          prerequisite: {
+            title: "덧셈",
+            cardId: "addition",
+            graphUnitId: null,
+            courseSectionIds: [],
+            sectionKeys: [],
+          },
+          mapping: "unmapped",
+          conceptIds: [],
+          evidence: {
+            fading: { status: "weak", total: 1, rated: 1, weak: 1, stale: 0 },
+            card: { status: "recent" },
+            course: { status: "unknown" },
+          },
+        },
+      ],
+    },
+  };
 }
 function explorer(): ExplorerState {
   return {
@@ -79,9 +196,7 @@ async function atFour() {
 async function exit() {
   fireEvent.click(screen.getByRole("button", { name: "풀이 나가기" }));
   const dialog = await screen.findByRole("dialog", { name: "잠시 나갈까요" });
-  fireEvent.click(
-    within(dialog).getByRole("button", { name: "나가기", exact: true }),
-  );
+  fireEvent.click(within(dialog).getByRole("button", { name: "나가기" }));
   await screen.findByRole("heading", { name: "개념을 떠올려 볼까요?" });
 }
 
@@ -113,6 +228,219 @@ afterEach(() => {
 });
 
 describe("Explorer concept memory inside the old shell", () => {
+  it.each(["state", "daily"] as const)(
+    "fences the API source and remounts after a changed login reported by %s",
+    async (origin) => {
+      const original = explorer();
+      const changed: ExplorerState = {
+        ...explorerView(createExplorerState("next-student", 3), today),
+        student: {
+          id: "next-student",
+          name: "다음 학생",
+          className: "다음 반",
+        },
+        revision: 5,
+        feedback: null,
+      };
+      const rejectedLocal = local();
+      const rejected: FadingSource =
+        origin === "daily"
+          ? {
+              ...rejectedLocal,
+              dailyPlan: vi.fn(async () => {
+                throw new FadingSourceError(
+                  "CONFLICT",
+                  STUDENT_CHANGED_MESSAGE,
+                  409,
+                );
+              }),
+            }
+          : rejectedLocal;
+      if (origin === "state")
+        vi.spyOn(rejected, "state").mockRejectedValue(
+          new FadingSourceError("CONFLICT", STUDENT_CHANGED_MESSAGE, 409),
+        );
+      const current = local();
+      const factory = vi
+        .spyOn(apiSource, "createApiFadingSource")
+        .mockImplementation((options) =>
+          options?.studentId === original.student.id ? rejected : current,
+        );
+      const fetchState = vi.fn(
+        async () =>
+          new Response(JSON.stringify({ data: changed }), { status: 200 }),
+      );
+      vi.stubGlobal("fetch", fetchState);
+      render(
+        <StudentMathExplorers conceptMemoryEnabled initialState={original} />,
+      );
+      await screen.findByRole("heading", { name: "개념을 떠올려 볼까요?" });
+      await waitFor(() =>
+        expect(factory).toHaveBeenCalledWith({ studentId: changed.student.id }),
+      );
+      expect(factory).toHaveBeenCalledWith({ studentId: original.student.id });
+      expect(fetchState).toHaveBeenCalledTimes(1);
+      expect(screen.getByText(/다음 학생 · 다음 반/)).toBeInTheDocument();
+      expect(rejectedLocal.snapshot().concepts).toEqual({});
+    },
+  );
+
+  it("runs the actual local daily planner from first activity to persisted resume inside the explorer", async () => {
+    const source = createLocalFadingSource({
+      concepts: [concept],
+      today,
+      cards: true,
+      daily: { quota: 20, progressSections: [concept.section] },
+    });
+    const planned = await source.dailyPlan();
+    const actions = vi.spyOn(source, "act");
+    const original = explorer();
+    const before = structuredClone(original);
+    render(
+      <StudentMathExplorers
+        conceptMemoryEnabled
+        fadingSource={source}
+        initialState={original}
+        preview
+      />,
+    );
+    const region = await screen.findByRole("region", {
+      name: "오늘의 자동 학습 계획",
+    });
+    expect(planned.units.prompt.planned).toBe(3);
+    expect(
+      within(region).getByText(
+        `기본 분량 ${planned.counts.done} / ${planned.quota.total}개 · 오늘 배정 ${planned.counts.total}개`,
+      ),
+    ).toBeInTheDocument();
+    fireEvent.click(
+      within(region).getByRole("button", { name: "오늘 학습 시작" }),
+    );
+    await screen.findByRole("button", { name: "문장 보기" });
+    expect(actions.mock.calls.map(([action]) => action.action)).toEqual([
+      "open",
+    ]);
+    expect((await source.state()).session?.conceptId).toBe(concept.id);
+    await exit();
+    const next = await screen.findByRole("button", { name: "다음 활동" });
+    await waitFor(() => expect(next).toBeEnabled());
+    fireEvent.click(next);
+    await screen.findByRole("button", { name: "풀이 나가기" });
+    expect(actions).toHaveBeenCalledTimes(1);
+    expect(original).toEqual(before);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("uses the supplied daily next activity and distinct counts instead of inventing a question quota", async () => {
+    const source = { ...local(), dailyPlan: vi.fn(async () => suppliedPlan()) };
+    const actions = vi.spyOn(source, "act");
+    const { container } = isolated(source);
+    const plan = await screen.findByRole("region", {
+      name: "오늘의 자동 학습 계획",
+    });
+    expect(
+      within(plan).getByText("기본 분량 0 / 20개 · 오늘 배정 13개"),
+    ).toBeInTheDocument();
+    expect(within(plan).getByText("0 / 1묶음")).toBeInTheDocument();
+    expect(within(plan).getAllByText("0 / 3문장")).toHaveLength(2);
+    expect(within(plan).getAllByText("0 / 10문제").length).toBeGreaterThan(0);
+    expect(
+      within(plan).getByText(/복습할 개념 7묶음 · 21문장이 남아/),
+    ).toBeInTheDocument();
+    const oldStart = screen.getByRole("button", { name: /탐험 문제 시작/ });
+    expect(oldStart.className).not.toContain("primary");
+    fireEvent.click(within(plan).getByText("선수 개념 살펴보기"));
+    expect(
+      within(plan).getByText(
+        /개념 기억: 다시 확인할 부분 · 탐험 카드: 최근 기록 있음 · 문제 풀이: 확인할 근거 없음/,
+      ),
+    ).toBeInTheDocument();
+    fireEvent.click(
+      within(plan).getByRole("button", { name: "오늘 학습 시작" }),
+    );
+    await screen.findByRole("button", { name: "문장 보기" });
+    expect(actions.mock.calls.map(([action]) => action.action)).toEqual([
+      "open",
+    ]);
+    expect(
+      container.querySelector('[data-explorer-concept-session="true"]'),
+    ).toBeInTheDocument();
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it("gates a whole explorer block when the supplied plan says it is blocked", async () => {
+    const plan = suppliedPlan();
+    const practice = plan.activities[1];
+    if (practice.kind !== "practice")
+      throw new Error("Expected practice fixture");
+    practice.state = "blocked";
+    practice.start = "none";
+    practice.reason = {
+      code: "blocked",
+      text: "이 문제 묶음은 오늘 남은 분량에 들어가지 않아요.",
+    };
+    const source = { ...local(), dailyPlan: vi.fn(async () => plan) };
+    render(
+      <StudentMathExplorers
+        conceptMemoryEnabled
+        fadingSource={source}
+        initialState={explorer()}
+      />,
+    );
+    await screen.findByRole("region", { name: "오늘의 자동 학습 계획" });
+    expect(
+      screen.getByRole("button", { name: /탐험 문제 시작/ }),
+    ).toBeDisabled();
+    expect(
+      screen.getAllByText("이 문제 묶음은 오늘 남은 분량에 들어가지 않아요.")
+        .length,
+    ).toBeGreaterThan(0);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ["bank", "expedition-start"],
+    ["repair", "retry-unresolved"],
+  ] as const)(
+    "dispatches a library supplied old %s block through its existing action after syncing revision",
+    async (route, action) => {
+      const plan = suppliedPlan();
+      const practice = plan.activities[1];
+      if (practice.kind !== "practice")
+        throw new Error("Expected practice fixture");
+      practice.source.route = route;
+      plan.next = plan.activities[1].key;
+      const source = { ...local(), dailyPlan: vi.fn(async () => plan) };
+      const original = explorer();
+      const requests: { expectedRevision: number; action: { type: string } }[] =
+        [];
+      const api = vi.fn(async (_url: string, options?: RequestInit) => {
+        if (options?.body) requests.push(JSON.parse(String(options.body)));
+        return new Response(
+          JSON.stringify({ data: { ...original, revision: 9 } }),
+          { status: 200 },
+        );
+      });
+      vi.stubGlobal("fetch", api);
+      render(
+        <StudentMathExplorers
+          conceptMemoryEnabled
+          fadingSource={source}
+          initialState={original}
+        />,
+      );
+      fireEvent.click(
+        await screen.findByRole("button", { name: "오늘 학습 시작" }),
+      );
+      await waitFor(() => expect(requests).toHaveLength(1));
+      expect(requests[0]).toMatchObject({
+        expectedRevision: 9,
+        action: { type: action },
+      });
+      expect(api).toHaveBeenCalledTimes(2);
+    },
+  );
+
   it("keeps the old mission, journey and tools while the local preview never fetches", async () => {
     const source = local();
     const { container } = isolated(source);
@@ -126,9 +454,7 @@ describe("Explorer concept memory inside the old shell", () => {
     expect(
       screen.getByRole("button", { name: /오늘의 탐험 시작/ }),
     ).toBeDisabled();
-    expect(
-      screen.getByRole("button", { name: "도감", exact: true }),
-    ).toBeEnabled();
+    expect(screen.getByRole("button", { name: "도감" })).toBeEnabled();
     fireEvent.click(screen.getByRole("button", { name: "우리 기지" }));
     expect(screen.getByRole("button", { name: /기지 키우기/ })).toBeDisabled();
     fireEvent.click(screen.getByRole("button", { name: "우리 기지 닫기" }));
@@ -236,7 +562,6 @@ describe("Explorer concept memory inside the old shell", () => {
     for (let index = 0; index < concept.propositions.length; index++) {
       const different = screen.queryByRole("button", {
         name: "다름",
-        exact: true,
       });
       if (different) fireEvent.click(different);
       fireEvent.click(
@@ -286,7 +611,7 @@ describe("Explorer concept memory inside the old shell", () => {
     fireEvent.click(
       await screen.findByRole("button", { name: /삼각형 성질 1.*연습하기/ }),
     );
-    await screen.findByRole("button", { name: "모르겠어요", exact: true });
+    await screen.findByRole("button", { name: "모르겠어요" });
     await exit();
     expect(actions).not.toHaveBeenCalled();
     expect(source.snapshot()).toEqual(snapshot);
@@ -371,14 +696,37 @@ describe("Explorer concept memory inside the old shell", () => {
     isolated(source);
     const alert = await screen.findByRole("alert");
     expect(alert).toHaveTextContent("연결이 끊겼어요.");
-    expect(
-      screen.getByRole("button", { name: "도감", exact: true }),
-    ).toBeEnabled();
+    expect(screen.getByRole("button", { name: "도감" })).toBeEnabled();
     fireEvent.click(
       within(alert).getByRole("button", { name: "개념 자료 다시 불러오기" }),
     );
     await screen.findByRole("button", { name: "배울 개념 고르기" });
     await waitFor(() => expect(read).toHaveBeenCalledTimes(2));
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
+  it("retries a failed open catalog as well as state so the selector becomes usable", async () => {
+    const source = local();
+    const catalog = vi
+      .spyOn(source, "catalog")
+      .mockRejectedValueOnce(
+        new FadingSourceError("OFFLINE", "목록을 불러오지 못했어요.", 0),
+      );
+    isolated(source);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "배울 개념 고르기" }),
+    );
+    const alert = await screen.findByRole("alert");
+    expect(alert).toHaveTextContent("목록을 불러오지 못했어요.");
+    fireEvent.click(
+      within(alert).getByRole("button", { name: "개념 자료 다시 불러오기" }),
+    );
+    expect(
+      await screen.findByRole("button", {
+        name: /삼각형 성질 1.*선택하고 시작/,
+      }),
+    ).toBeEnabled();
+    expect(catalog).toHaveBeenCalledTimes(2);
+    expect(fetch).not.toHaveBeenCalled();
   });
 });
