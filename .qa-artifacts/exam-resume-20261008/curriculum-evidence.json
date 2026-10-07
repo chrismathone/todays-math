@@ -1,0 +1,3155 @@
+{
+  "schema_version": 1,
+  "created_date_kst": "2026-10-08",
+  "task": "exam-twin resume SETUP curriculum evidence",
+  "worktree": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008",
+  "verified_twins": 0,
+  "new_candidates_created": 0,
+  "final_grade_approvals": 0,
+  "current_bank_snapshot_owner": "parent",
+  "raw_sources_committed": false,
+  "inputs": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/AGENTS.md",
+      "sha256": "644dd7b882a2304d7ae022c94fcdea531599b3361a1c4b882ef34be9397f2801"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-1.md",
+      "sha256": "b530f1367ededa6f40e56e58641e5d7a9a3afe927b5e72788dd7cbfc61033eaa"
+    },
+    {
+      "path": "C:/Users/user/orca/artifacts/outputs/exam-inventory-20261003/processing/n2025-9967cfbb759aa6d36988/drafts.json",
+      "sha256": "179310f0303d159d07f37b82ccf0b2218025e9efd6a87ce4ba51fb022da778aa"
+    },
+    {
+      "path": "C:/Users/user/orca/artifacts/outputs/exam-inventory-20261003/processing/n2025-9967cfbb759aa6d36988/src/paper.pdf",
+      "sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689"
+    }
+  ],
+  "sources": [
+    {
+      "id": "moe-60747",
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+      "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+      "bytes": 174986,
+      "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-60747.html",
+      "primary": true,
+      "retrieved_date_kst": "2026-10-08",
+      "use": "2015-74 supplementary provision 1 and math booklet 8 designation"
+    },
+    {
+      "id": "moe-93457",
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93457&lev=0&m=040401&opType=N&page=1&s=moe",
+      "sha256": "c676e0d2f480107f5f985d494c4cbe30dda1c1857ca8e2c6ec92f00adb764bc8",
+      "bytes": 173351,
+      "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-93457.html",
+      "primary": true,
+      "retrieved_date_kst": "2026-10-08",
+      "use": "rejected_scope: special education 2022-34; not the general pilot rollout authority"
+    },
+    {
+      "id": "moe-93458",
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+      "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+      "bytes": 175150,
+      "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-93458.html",
+      "primary": true,
+      "retrieved_date_kst": "2026-10-08",
+      "use": "general education 2022-33 supplementary provision 1 (rollout)"
+    },
+    {
+      "id": "moe-2015-74-zip",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+      "sha256": "556c3045b7dceff1442049d3b84e6dd0a34fdee420356305e7802e7070afa212",
+      "bytes": 56033270,
+      "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-books-1-15.zip",
+      "primary": true,
+      "retrieved_date_kst": "2026-10-08"
+    },
+    {
+      "id": "moe-2015-74-math-pdf",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+      "archive_member": "별책8_수학과 교육과정.pdf",
+      "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+      "bytes": 2533289,
+      "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+      "primary": true,
+      "retrieved_date_kst": "2026-10-08",
+      "format": "pdf"
+    },
+    {
+      "id": "moe-81884",
+      "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=81884&lev=0&m=0404&opType=N&s=moe&statusYN=W",
+      "sha256": "f7eac01c0c3136bb07d3cd5c811377b5ceb026aa8b540ece06bee97fbbadf0d4",
+      "bytes": 172175,
+      "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-81884.html",
+      "primary": true,
+      "retrieved_date_kst": "2026-10-08",
+      "use": "2015-revision math amended 2020-236, booklet 8"
+    },
+    {
+      "id": "moe-2020-236-math-hwp",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+      "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "bytes": 4598784,
+      "compressed": true,
+      "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+      "primary": true,
+      "retrieved_date_kst": "2026-10-08"
+    }
+  ],
+  "rollout": {
+    "2015": {
+      "source_id": "moe-60747",
+      "locator": "부칙 1 가~라",
+      "phases": [
+        {
+          "date": "2017-03-01",
+          "grades": [
+            "elementary1",
+            "elementary2"
+          ]
+        },
+        {
+          "date": "2018-03-01",
+          "grades": [
+            "elementary3",
+            "elementary4",
+            "middle1",
+            "high1"
+          ]
+        },
+        {
+          "date": "2019-03-01",
+          "grades": [
+            "elementary5",
+            "elementary6",
+            "middle2",
+            "high2"
+          ]
+        },
+        {
+          "date": "2020-03-01",
+          "grades": [
+            "middle3",
+            "high3"
+          ]
+        }
+      ]
+    },
+    "2022": {
+      "source_id": "moe-93458",
+      "locator": "부칙 1 가~라",
+      "phases": [
+        {
+          "date": "2024-03-01",
+          "grades": [
+            "elementary1",
+            "elementary2"
+          ]
+        },
+        {
+          "date": "2025-03-01",
+          "grades": [
+            "elementary3",
+            "elementary4",
+            "middle1",
+            "high1"
+          ]
+        },
+        {
+          "date": "2026-03-01",
+          "grades": [
+            "elementary5",
+            "elementary6",
+            "middle2",
+            "high2"
+          ]
+        },
+        {
+          "date": "2027-03-01",
+          "grades": [
+            "middle3",
+            "high3"
+          ]
+        }
+      ]
+    },
+    "pilot_reference_2025_middle3": "2015_revision",
+    "middle3_2026": "2015_revision",
+    "middle3_2027": "2022_revision_requires_separate_mapping",
+    "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+  },
+  "achievement_standards": [
+    {
+      "code": "10수학01-07",
+      "verified_text": "이차방정식에서 판별식의 의미를 이해하고 이를 설명할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section1",
+        "tag": 67,
+        "record_1based": 519,
+        "record_offset_in_uncompressed_stream": 29955,
+        "extracted_paragraph_1based": 1118
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          52
+        ],
+        "printed_pages": [
+          48
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "10수학01-08",
+      "verified_text": "이차방정식의 근과 계수의 관계를 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section1",
+        "tag": 67,
+        "record_1based": 523,
+        "record_offset_in_uncompressed_stream": 30133,
+        "extracted_paragraph_1based": 1119
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          52
+        ],
+        "printed_pages": [
+          48
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "10수학01-10",
+      "verified_text": "이차함수의 그래프와 직선의 위치 관계를 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section1",
+        "tag": 67,
+        "record_1based": 535,
+        "record_offset_in_uncompressed_stream": 30557,
+        "extracted_paragraph_1based": 1122
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          52
+        ],
+        "printed_pages": [
+          48
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "10수학01-11",
+      "verified_text": "이차함수의 최대, 최소를 이해하고, 이를 활용하여 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section1",
+        "tag": 67,
+        "record_1based": 539,
+        "record_offset_in_uncompressed_stream": 30721,
+        "extracted_paragraph_1based": 1123
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          52
+        ],
+        "printed_pages": [
+          48
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "10수학01-12",
+      "verified_text": "간단한 삼차방정식과 사차방정식을 풀 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section1",
+        "tag": 67,
+        "record_1based": 547,
+        "record_offset_in_uncompressed_stream": 31033,
+        "extracted_paragraph_1based": 1125
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          52
+        ],
+        "printed_pages": [
+          48
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "10수학01-13",
+      "verified_text": "미지수가 2개인 연립이차방정식을 풀 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section1",
+        "tag": 67,
+        "record_1based": 551,
+        "record_offset_in_uncompressed_stream": 31193,
+        "extracted_paragraph_1based": 1126
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          52
+        ],
+        "printed_pages": [
+          48
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "10수학01-16",
+      "verified_text": "이차부등식과 이차함수의 관계를 이해하고, 이차부등식과 연립이차부등식을 풀 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section1",
+        "tag": 67,
+        "record_1based": 563,
+        "record_offset_in_uncompressed_stream": 31669,
+        "extracted_paragraph_1based": 1129
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          52
+        ],
+        "printed_pages": [
+          48
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "12기하02-01",
+      "verified_text": "벡터의 뜻을 안다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section6",
+        "tag": 67,
+        "record_1based": 373,
+        "record_offset_in_uncompressed_stream": 26553,
+        "extracted_paragraph_1based": 2876
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          114
+        ],
+        "printed_pages": [
+          110
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "12기하02-04",
+      "verified_text": "두 평면벡터의 내적의 뜻을 알고, 이를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section6",
+        "tag": 67,
+        "record_1based": 389,
+        "record_offset_in_uncompressed_stream": 27135,
+        "extracted_paragraph_1based": 2880
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          114
+        ],
+        "printed_pages": [
+          110
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "12미적02-03",
+      "verified_text": "삼각함수의 덧셈정리를 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section4",
+        "tag": 67,
+        "record_1based": 430,
+        "record_offset_in_uncompressed_stream": 28667,
+        "extracted_paragraph_1based": 2502
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          90
+        ],
+        "printed_pages": [
+          86
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "12수학Ⅰ02-01",
+      "verified_text": "일반각과 호도법의 뜻을 안다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section2",
+        "tag": 67,
+        "record_1based": 453,
+        "record_offset_in_uncompressed_stream": 29644,
+        "extracted_paragraph_1based": 2138
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          68
+        ],
+        "printed_pages": [
+          64
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "12수학Ⅰ02-02",
+      "verified_text": "삼각함수의 뜻을 알고, 사인함수, 코사인함수, 탄젠트함수의 그래프를 그릴 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section2",
+        "tag": 67,
+        "record_1based": 457,
+        "record_offset_in_uncompressed_stream": 29804,
+        "extracted_paragraph_1based": 2139
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          68
+        ],
+        "printed_pages": [
+          64
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "12수학Ⅰ02-03",
+      "verified_text": "사인법칙과 코사인법칙을 이해하고, 이를 활용할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section2",
+        "tag": 67,
+        "record_1based": 461,
+        "record_offset_in_uncompressed_stream": 30024,
+        "extracted_paragraph_1based": 2140
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          68
+        ],
+        "printed_pages": [
+          64
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "12수학Ⅱ02-04",
+      "verified_text": "함수 敤敱(敤敱은 양의 정수)의 도함수를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section3",
+        "tag": 67,
+        "record_1based": 433,
+        "record_offset_in_uncompressed_stream": 29435,
+        "extracted_paragraph_1based": 2317
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          79
+        ],
+        "printed_pages": [
+          75
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": false
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "12수학Ⅱ02-05",
+      "verified_text": "함수의 실수배, 합, 차, 곱의 미분법을 알고, 다항함수의 도함수를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section3",
+        "tag": 67,
+        "record_1based": 441,
+        "record_offset_in_uncompressed_stream": 29925,
+        "extracted_paragraph_1based": 2318
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          79
+        ],
+        "printed_pages": [
+          75
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "high_school_excluded_for_pilot"
+    },
+    {
+      "code": "6수03-06",
+      "verified_text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3433,
+        "record_offset_in_uncompressed_stream": 176573,
+        "extracted_paragraph_1based": 690
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          29
+        ],
+        "printed_pages": [
+          25
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "elementary_grade_band"
+    },
+    {
+      "code": "6수03-08",
+      "verified_text": "원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3445,
+        "record_offset_in_uncompressed_stream": 177155,
+        "extracted_paragraph_1based": 693
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          29
+        ],
+        "printed_pages": [
+          25
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "elementary_grade_band"
+    },
+    {
+      "code": "9수01-01",
+      "verified_text": "소인수분해의 뜻을 알고, 자연수를 소인수분해할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3740,
+        "record_offset_in_uncompressed_stream": 191529,
+        "extracted_paragraph_1based": 759
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          32
+        ],
+        "printed_pages": [
+          28
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-02",
+      "verified_text": "최대공약수와 최소공배수의 성질을 이해하고, 이를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3744,
+        "record_offset_in_uncompressed_stream": 191699,
+        "extracted_paragraph_1based": 760
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          32
+        ],
+        "printed_pages": [
+          28
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-03",
+      "verified_text": "양수와 음수, 정수와 유리수의 개념을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3752,
+        "record_offset_in_uncompressed_stream": 191981,
+        "extracted_paragraph_1based": 762
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          32
+        ],
+        "printed_pages": [
+          28
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-04",
+      "verified_text": "정수와 유리수의 대소 관계를 판단할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3756,
+        "record_offset_in_uncompressed_stream": 192139,
+        "extracted_paragraph_1based": 763
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          32
+        ],
+        "printed_pages": [
+          28
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-05",
+      "verified_text": "정수와 유리수의 사칙계산의 원리를 이해하고, 그 계산을 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3760,
+        "record_offset_in_uncompressed_stream": 192295,
+        "extracted_paragraph_1based": 764
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          32
+        ],
+        "printed_pages": [
+          28
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-06",
+      "verified_text": "순환소수의 뜻을 알고, 유리수와 순환소수의 관계를 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3768,
+        "record_offset_in_uncompressed_stream": 192587,
+        "extracted_paragraph_1based": 766
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          32
+        ],
+        "printed_pages": [
+          28
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-07",
+      "verified_text": "제곱근의 뜻을 알고, 그 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3776,
+        "record_offset_in_uncompressed_stream": 192865,
+        "extracted_paragraph_1based": 768
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          33
+        ],
+        "printed_pages": [
+          29
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-08",
+      "verified_text": "무리수의 개념을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3780,
+        "record_offset_in_uncompressed_stream": 193017,
+        "extracted_paragraph_1based": 769
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          33
+        ],
+        "printed_pages": [
+          29
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-09",
+      "verified_text": "실수의 대소 관계를 판단할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3784,
+        "record_offset_in_uncompressed_stream": 193153,
+        "extracted_paragraph_1based": 770
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          33
+        ],
+        "printed_pages": [
+          29
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수01-10",
+      "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3788,
+        "record_offset_in_uncompressed_stream": 193301,
+        "extracted_paragraph_1based": 771
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          33
+        ],
+        "printed_pages": [
+          29
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-01",
+      "verified_text": "다양한 상황을 문자를 사용한 식으로 나타낼 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3896,
+        "record_offset_in_uncompressed_stream": 199138,
+        "extracted_paragraph_1based": 792
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-02",
+      "verified_text": "식의 값을 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3900,
+        "record_offset_in_uncompressed_stream": 199304,
+        "extracted_paragraph_1based": 793
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-03",
+      "verified_text": "일차식의 덧셈과 뺄셈의 원리를 이해하고, 그 계산을 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3904,
+        "record_offset_in_uncompressed_stream": 199438,
+        "extracted_paragraph_1based": 794
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-04",
+      "verified_text": "방정식과 그 해의 의미를 알고, 등식의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3912,
+        "record_offset_in_uncompressed_stream": 199718,
+        "extracted_paragraph_1based": 796
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-05",
+      "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3916,
+        "record_offset_in_uncompressed_stream": 199888,
+        "extracted_paragraph_1based": 797
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-06",
+      "verified_text": "지수법칙을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3924,
+        "record_offset_in_uncompressed_stream": 200168,
+        "extracted_paragraph_1based": 799
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-07",
+      "verified_text": "다항식의 덧셈과 뺄셈의 원리를 이해하고, 그 계산을 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3928,
+        "record_offset_in_uncompressed_stream": 200296,
+        "extracted_paragraph_1based": 800
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-08",
+      "verified_text": "‘(단항식)×(다항식)’, ‘(다항식)÷(단항식)’과 같은 곱셈과 나눗셈의 원리를 이해하고, 그 계산을 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3932,
+        "record_offset_in_uncompressed_stream": 200474,
+        "extracted_paragraph_1based": 801
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": false
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-09",
+      "verified_text": "부등식과 그 해의 의미를 알고, 부등식의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3940,
+        "record_offset_in_uncompressed_stream": 200866,
+        "extracted_paragraph_1based": 803
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-10",
+      "verified_text": "일차부등식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3944,
+        "record_offset_in_uncompressed_stream": 201036,
+        "extracted_paragraph_1based": 804
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-11",
+      "verified_text": "미지수가 2개인 연립일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3948,
+        "record_offset_in_uncompressed_stream": 201216,
+        "extracted_paragraph_1based": 805
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-12",
+      "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3956,
+        "record_offset_in_uncompressed_stream": 201534,
+        "extracted_paragraph_1based": 807
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수02-13",
+      "verified_text": "이차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 3964,
+        "record_offset_in_uncompressed_stream": 201786,
+        "extracted_paragraph_1based": 809
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          34
+        ],
+        "printed_pages": [
+          30
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-01",
+      "verified_text": "순서쌍과 좌표를 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4102,
+        "record_offset_in_uncompressed_stream": 208503,
+        "extracted_paragraph_1based": 838
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-02",
+      "verified_text": "다양한 상황을 그래프로 나타내고, 주어진 그래프를 해석할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4106,
+        "record_offset_in_uncompressed_stream": 208637,
+        "extracted_paragraph_1based": 839
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-03",
+      "verified_text": "정비례, 반비례 관계를 이해하고, 그 관계를 표, 식, 그래프로 나타낼 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4110,
+        "record_offset_in_uncompressed_stream": 208817,
+        "extracted_paragraph_1based": 840
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-04",
+      "verified_text": "함수의 개념을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4118,
+        "record_offset_in_uncompressed_stream": 209125,
+        "extracted_paragraph_1based": 842
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-05",
+      "verified_text": "일차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4122,
+        "record_offset_in_uncompressed_stream": 209259,
+        "extracted_paragraph_1based": 843
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-06",
+      "verified_text": "일차함수의 그래프의 성질을 이해하고, 이를 활용하여 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4126,
+        "record_offset_in_uncompressed_stream": 209427,
+        "extracted_paragraph_1based": 844
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-07",
+      "verified_text": "일차함수와 미지수가 2개인 일차방정식의 관계를 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4134,
+        "record_offset_in_uncompressed_stream": 209739,
+        "extracted_paragraph_1based": 846
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-08",
+      "verified_text": "두 일차함수의 그래프와 연립일차방정식의 관계를 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4138,
+        "record_offset_in_uncompressed_stream": 209907,
+        "extracted_paragraph_1based": 847
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-09",
+      "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4146,
+        "record_offset_in_uncompressed_stream": 210185,
+        "extracted_paragraph_1based": 849
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수03-10",
+      "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4150,
+        "record_offset_in_uncompressed_stream": 210353,
+        "extracted_paragraph_1based": 850
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          36
+        ],
+        "printed_pages": [
+          32
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-01",
+      "verified_text": "점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4248,
+        "record_offset_in_uncompressed_stream": 215704,
+        "extracted_paragraph_1based": 868
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-02",
+      "verified_text": "평행선에서 동위각과 엇각의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4252,
+        "record_offset_in_uncompressed_stream": 215902,
+        "extracted_paragraph_1based": 869
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-03",
+      "verified_text": "삼각형을 작도할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4260,
+        "record_offset_in_uncompressed_stream": 216160,
+        "extracted_paragraph_1based": 871
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-04",
+      "verified_text": "삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4264,
+        "record_offset_in_uncompressed_stream": 216294,
+        "extracted_paragraph_1based": 872
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-05",
+      "verified_text": "다각형의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4272,
+        "record_offset_in_uncompressed_stream": 216602,
+        "extracted_paragraph_1based": 874
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-06",
+      "verified_text": "부채꼴의 중심각과 호의 관계를 이해하고, 이를 이용하여 부채꼴의 넓이와 호의 길이를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4276,
+        "record_offset_in_uncompressed_stream": 216736,
+        "extracted_paragraph_1based": 875
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-07",
+      "verified_text": "다면체의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4284,
+        "record_offset_in_uncompressed_stream": 217096,
+        "extracted_paragraph_1based": 877
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-08",
+      "verified_text": "회전체의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4288,
+        "record_offset_in_uncompressed_stream": 217232,
+        "extracted_paragraph_1based": 878
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-09",
+      "verified_text": "입체도형의 겉넓이와 부피를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4292,
+        "record_offset_in_uncompressed_stream": 217366,
+        "extracted_paragraph_1based": 879
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-10",
+      "verified_text": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4300,
+        "record_offset_in_uncompressed_stream": 217636,
+        "extracted_paragraph_1based": 881
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-11",
+      "verified_text": "삼각형의 외심과 내심의 성질을 이해하고 설명할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4304,
+        "record_offset_in_uncompressed_stream": 217794,
+        "extracted_paragraph_1based": 882
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-12",
+      "verified_text": "사각형의 성질을 이해하고 설명할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4308,
+        "record_offset_in_uncompressed_stream": 217962,
+        "extracted_paragraph_1based": 883
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-13",
+      "verified_text": "도형의 닮음의 의미와 닮은 도형의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4316,
+        "record_offset_in_uncompressed_stream": 218218,
+        "extracted_paragraph_1based": 885
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-14",
+      "verified_text": "삼각형의 닮음 조건을 이해하고, 이를 이용하여 두 삼각형이 닮음인지 판별할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4320,
+        "record_offset_in_uncompressed_stream": 218380,
+        "extracted_paragraph_1based": 886
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-15",
+      "verified_text": "평행선 사이의 선분의 길이의 비를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4325,
+        "record_offset_in_uncompressed_stream": 218596,
+        "extracted_paragraph_1based": 887
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-16",
+      "verified_text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4333,
+        "record_offset_in_uncompressed_stream": 218866,
+        "extracted_paragraph_1based": 889
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-17",
+      "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4341,
+        "record_offset_in_uncompressed_stream": 219120,
+        "extracted_paragraph_1based": 891
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-18",
+      "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4345,
+        "record_offset_in_uncompressed_stream": 219292,
+        "extracted_paragraph_1based": 892
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-19",
+      "verified_text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4353,
+        "record_offset_in_uncompressed_stream": 219558,
+        "extracted_paragraph_1based": 894
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수04-20",
+      "verified_text": "원주각의 성질을 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4357,
+        "record_offset_in_uncompressed_stream": 219722,
+        "extracted_paragraph_1based": 895
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          38
+        ],
+        "printed_pages": [
+          34
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수05-01",
+      "verified_text": "자료를 줄기와 잎 그림, 도수분포표, 히스토그램, 도수분포다각형으로 나타내고 해석할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4503,
+        "record_offset_in_uncompressed_stream": 228171,
+        "extracted_paragraph_1based": 922
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수05-02",
+      "verified_text": "상대도수를 구하며, 이를 그래프로 나타내고, 상대도수의 분포를 이해한다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4507,
+        "record_offset_in_uncompressed_stream": 228417,
+        "extracted_paragraph_1based": 923
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수05-03",
+      "verified_text": "공학적 도구를 이용하여 실생활과 관련된 자료를 수집하고 표나 그래프로 정리하고 해석할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4511,
+        "record_offset_in_uncompressed_stream": 228603,
+        "extracted_paragraph_1based": 924
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": false
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수05-04",
+      "verified_text": "경우의 수를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4519,
+        "record_offset_in_uncompressed_stream": 228965,
+        "extracted_paragraph_1based": 926
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          40
+        ],
+        "printed_pages": [
+          36
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수05-05",
+      "verified_text": "확률의 개념과 그 기본 성질을 이해하고, 확률을 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4523,
+        "record_offset_in_uncompressed_stream": 229101,
+        "extracted_paragraph_1based": 927
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          40
+        ],
+        "printed_pages": [
+          36
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수05-06",
+      "verified_text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4531,
+        "record_offset_in_uncompressed_stream": 229385,
+        "extracted_paragraph_1based": 929
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          40
+        ],
+        "printed_pages": [
+          36
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수05-07",
+      "verified_text": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4535,
+        "record_offset_in_uncompressed_stream": 229561,
+        "extracted_paragraph_1based": 930
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          40
+        ],
+        "printed_pages": [
+          36
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    },
+    {
+      "code": "9수05-08",
+      "verified_text": "자료를 산점도로 나타내고, 이를 이용하여 상관관계를 말할 수 있다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record_1based": 4543,
+        "record_offset_in_uncompressed_stream": 229829,
+        "extracted_paragraph_1based": 932
+      },
+      "original_2015_pdf_locator": {
+        "source_id": "moe-2015-74-math-pdf",
+        "physical_pages_1based": [
+          40
+        ],
+        "printed_pages": [
+          36
+        ],
+        "code_found": true,
+        "same_text_after_whitespace_normalization": true
+      },
+      "scope": "middle_school_grades_1_to_3_band"
+    }
+  ],
+  "official_middle_restrictions": [
+    {
+      "id": "no_vieta",
+      "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4075,
+        "record_offset_in_uncompressed_stream": 207128,
+        "extracted_paragraph_1based": 833
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          35
+        ],
+        "printed_pages": [
+          31
+        ]
+      }
+    },
+    {
+      "id": "no_ratio_identities",
+      "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4440,
+        "record_offset_in_uncompressed_stream": 224820,
+        "extracted_paragraph_1based": 908
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ]
+      }
+    },
+    {
+      "id": "angle_range",
+      "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4444,
+        "record_offset_in_uncompressed_stream": 224946,
+        "extracted_paragraph_1based": 909
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ]
+      }
+    },
+    {
+      "id": "no_circle_proportionality",
+      "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4452,
+        "record_offset_in_uncompressed_stream": 225374,
+        "extracted_paragraph_1based": 911
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ]
+      }
+    },
+    {
+      "id": "real_quadratic_roots",
+      "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4059,
+        "record_offset_in_uncompressed_stream": 206372,
+        "extracted_paragraph_1based": 829
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          35
+        ],
+        "printed_pages": [
+          31
+        ]
+      }
+    },
+    {
+      "id": "no_complex_equation_applications",
+      "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4071,
+        "record_offset_in_uncompressed_stream": 206968,
+        "extracted_paragraph_1based": 832
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          35
+        ],
+        "printed_pages": [
+          31
+        ]
+      }
+    },
+    {
+      "id": "no_complex_function_applications",
+      "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4221,
+        "record_offset_in_uncompressed_stream": 214313,
+        "extracted_paragraph_1based": 863
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ]
+      }
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4472,
+        "record_offset_in_uncompressed_stream": 226554,
+        "extracted_paragraph_1based": 916
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ]
+      }
+    }
+  ],
+  "band_caveat": {
+    "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+    "source_id": "moe-2020-236-math-hwp",
+    "locator": {
+      "stream": "BodyText/Section0",
+      "record_1based": 3713,
+      "record_offset_in_uncompressed_stream": 190162,
+      "text": "[중학교 1~3학년]"
+    },
+    "original_pdf_page_1based": 32,
+    "original_pdf_printed_page": 28
+  },
+  "prohibited_pilot_methods": [
+    {
+      "method": "law_of_sines_or_cosines",
+      "verified_high_standard": "12수학Ⅰ02-03"
+    },
+    {
+      "method": "trigonometric_addition_subtraction_double_half_angle_formulas",
+      "verified_high_standard": "12미적02-03",
+      "separate_half_angle_code": null,
+      "reason": "no guessed half-angle code; formulas are excluded by middle ratio-relation restriction and higher-course addition theorem scope"
+    },
+    {
+      "method": "derivatives",
+      "verified_high_standards": [
+        "12수학Ⅱ02-04",
+        "12수학Ⅱ02-05"
+      ]
+    },
+    {
+      "method": "vectors_dot_products",
+      "verified_high_standards": [
+        "12기하02-01",
+        "12기하02-04"
+      ]
+    },
+    {
+      "method": "Vieta",
+      "verified_high_standard": "10수학01-08",
+      "explicit_middle_exclusion": "no_vieta"
+    },
+    {
+      "method": "discriminant_general_parabola_line_position_and_quadratic_optimization",
+      "verified_high_standards": [
+        "10수학01-07",
+        "10수학01-10",
+        "10수학01-11"
+      ]
+    },
+    {
+      "method": "general_trigonometric_functions_radians_outside_0_to_90_degrees",
+      "verified_high_standards": [
+        "12수학Ⅰ02-01",
+        "12수학Ⅰ02-02"
+      ]
+    },
+    {
+      "method": "circle_power_secant_tangent_products",
+      "reason": "middle explicit no_circle_proportionality; no invented higher-course code"
+    }
+  ],
+  "question_mappings": [
+    {
+      "question_number": 1,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-1",
+      "source_content_sha256_utf8": "7330d1796e68c77ec6b43fcf969bc579043b89fb5cf86e6ce71358c19ce40009",
+      "source_locator": {
+        "draft_json_pointer": "/0/content",
+        "paper_physical_page_1based": 1
+      },
+      "observed_unit_hint": "이차함수와 그래프",
+      "proposed_unit_topic": "이차함수와 그래프",
+      "primary_standard_codes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "prerequisite_standard_codes": [
+        "9수03-01",
+        "9수03-05",
+        "9수02-02"
+      ],
+      "proposed_middle3_method": "계수의 부호·절댓값과 그래프의 방향·폭·대칭·증감. 보기의 y=x 만남은 공통점 (0,0)을 직접 대입하여 판단한다.",
+      "specific_gate_notes": "일반적인 직선-포물선 위치 관계나 판별식 이론을 요구하는 변형은 제외.",
+      "figure_or_table_required": false,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 2,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-2",
+      "source_content_sha256_utf8": "d9a7dbce062b869cfdc44a9eb886053a88d578987dbcc9bb7def356e183bc9d7",
+      "source_locator": {
+        "draft_json_pointer": "/1/content",
+        "paper_physical_page_1based": 1
+      },
+      "observed_unit_hint": "이차함수와 그래프",
+      "proposed_unit_topic": "이차함수와 그래프",
+      "primary_standard_codes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "prerequisite_standard_codes": [
+        "9수03-01",
+        "9수02-02"
+      ],
+      "proposed_middle3_method": "그림의 꼭짓점과 수직 평행이동량을 읽고 y=ax²+q에 좌표를 대입한다.",
+      "specific_gate_notes": "본문에서 빠진 그래프의 꼭짓점 눈금이 필수 조건이다.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 3,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-3",
+      "source_content_sha256_utf8": "f7ee190e7954eae8043432f151f71985f10011ebf808a3a49888b8961fa5d2a1",
+      "source_locator": {
+        "draft_json_pointer": "/2/content",
+        "paper_physical_page_1based": 1
+      },
+      "observed_unit_hint": "이차함수와 그래프",
+      "proposed_unit_topic": "이차함수와 그래프",
+      "primary_standard_codes": [
+        "9수03-10"
+      ],
+      "prerequisite_standard_codes": [
+        "9수03-01",
+        "9수02-02"
+      ],
+      "proposed_middle3_method": "축과 꼭짓점에서 y=a(x-p)²+q를 구성하고 주어진 점, x=0을 차례로 대입한다.",
+      "specific_gate_notes": "도함수·최적화·포물선의 초점/준선 이론은 제외.",
+      "figure_or_table_required": false,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 4,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-4",
+      "source_content_sha256_utf8": "10ab18dd65de059e4ea7117da630f0f3501e4f7df1ace4c0747236cc1d3782ff",
+      "source_locator": {
+        "draft_json_pointer": "/3/content",
+        "paper_physical_page_1based": 1
+      },
+      "observed_unit_hint": "이차함수의 활용",
+      "proposed_unit_topic": "이차함수의 활용",
+      "primary_standard_codes": [
+        "9수03-10",
+        "9수03-06"
+      ],
+      "prerequisite_standard_codes": [
+        "9수03-01",
+        "9수03-05",
+        "9수02-12"
+      ],
+      "proposed_middle3_method": "그림의 볼록 방향과 y절편에서 a와 b의 부호를 읽어 일차함수의 기울기·절편과 사분면을 판단한다.",
+      "specific_gate_notes": "원점과 축 교차가 식과 일치해야 하며 추측한 그림이나 판별식 설명은 허용하지 않는다.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 5,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-5",
+      "source_content_sha256_utf8": "9d7184823e0d2561574b0c2944dcb5e5ad2429613d8e467c42504f80545adeb7",
+      "source_locator": {
+        "draft_json_pointer": "/4/content",
+        "paper_physical_page_1based": 1
+      },
+      "observed_unit_hint": "이차함수의 활용",
+      "proposed_unit_topic": "이차함수의 활용",
+      "primary_standard_codes": [
+        "9수03-10",
+        "9수02-13"
+      ],
+      "prerequisite_standard_codes": [
+        "9수02-12",
+        "9수03-01",
+        "6수03-06"
+      ],
+      "proposed_middle3_method": "완전제곱식으로 꼭짓점을 구하고 y=0인 이차방정식을 인수분해하여 밑변·높이와 삼각형 넓이를 계산한다.",
+      "specific_gate_notes": "일반 직선과 이차함수의 교점 이론, 근과 계수의 관계, 미분 또는 정적분은 제외.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 6,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-6",
+      "source_content_sha256_utf8": "463f8baedf5ae2fed8172af0118542eafc45ec1a8a4dcb1cba7de406ac603113",
+      "source_locator": {
+        "draft_json_pointer": "/5/content",
+        "paper_physical_page_1based": 2
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비",
+      "primary_standard_codes": [
+        "9수04-17"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-13",
+        "9수04-14"
+      ],
+      "proposed_middle3_method": "각이 같은 직각삼각형에서 대응하는 빗변·높이·밑변을 확인하고 각 삼각비의 정의를 직접 적용한다.",
+      "specific_gate_notes": "그림의 직각 B,D,F와 대응 점을 확인한다. 삼각비 사이의 공식으로 설명하지 않는다.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 7,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-7",
+      "source_content_sha256_utf8": "017ec2b4d6558273a223961c431db61ccb051d33de3a7f6ea3f67da4586c0df3",
+      "source_locator": {
+        "draft_json_pointer": "/6/content",
+        "paper_physical_page_1based": 2
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비",
+      "primary_standard_codes": [
+        "9수02-13",
+        "9수04-17"
+      ],
+      "prerequisite_standard_codes": [
+        "9수02-12",
+        "9수04-16",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "proposed_middle3_method": "완전제곱으로 방정식을 풀고 sin A=2/3을 빗변 3, 대변 2인 직각삼각형으로 해석한다. 피타고라스로 나머지 변을 구해 cos A와 tan A를 각각 정의로 계산한다.",
+      "specific_gate_notes": "삼각비 사이의 관계를 다루지 않는다는 제한과 충돌할 소지가 있다. 도형을 통한 해석도 자동 승인이 아니며 교과 검토자가 평가 의도를 확인해야 한다. sin²A+cos²A=1, tan A=sin A/cos A를 공식으로 사용하면 제외.",
+      "figure_or_table_required": false,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 8,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-8",
+      "source_content_sha256_utf8": "0c929304dd97121656bd6c8a41b8ae692ed7266a437c0df6f40bb097b65161c6",
+      "source_locator": {
+        "draft_json_pointer": "/7/content",
+        "paper_physical_page_1based": 2
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비",
+      "primary_standard_codes": [
+        "9수04-17"
+      ],
+      "prerequisite_standard_codes": [
+        "9수01-09",
+        "9수01-10",
+        "9수02-12"
+      ],
+      "proposed_middle3_method": "30°,45°,60°의 직각삼각형에서 얻은 값과 0°,90°의 정의 가능한 값을 직접 대입하여 근호 식의 값을 비교한다.",
+      "specific_gate_notes": "삼각비 항등식으로 정리하지 않는다. 0°~90°라 하여 tan90°나 0으로 나누기를 허용하지 않는다.",
+      "figure_or_table_required": false,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 9,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-9",
+      "source_content_sha256_utf8": "6addbf376a1d0bae2f1d667e7692722f528d8a2d4877d555f2ed003d9a4d6ceb",
+      "source_locator": {
+        "draft_json_pointer": "/8/content",
+        "paper_physical_page_1based": 2
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비",
+      "primary_standard_codes": [
+        "9수04-17"
+      ],
+      "prerequisite_standard_codes": [
+        "9수02-02"
+      ],
+      "proposed_middle3_method": "반지름 1인 사분원의 직각삼각형·접선 도형에 표시된 길이로 sin55°,cos55°,tan55°를 각각 읽고 산술 및 반올림을 수행한다.",
+      "specific_gate_notes": "초안에 길이 표시 0.57,0.82,1.43과 사분원 그림이 빠져 있다. 일반 단위원, 라디안, 사분면별 삼각함수 이론은 제외.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 10,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-10",
+      "source_content_sha256_utf8": "65593e3d19187b6219ba9336e8a6d2b2a7e879c15bd83e8e71d709fd1ac2b993",
+      "source_locator": {
+        "draft_json_pointer": "/9/content",
+        "paper_physical_page_1based": 2
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비의 활용",
+      "primary_standard_codes": [
+        "9수04-18"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-17",
+        "9수02-02"
+      ],
+      "proposed_middle3_method": "수평거리·눈높이·높이 차를 직각삼각형으로 구성하고 제공된 표의 tan58° 값으로 계산한 뒤 눈높이를 더한다.",
+      "specific_gate_notes": "표 tan58°=1.6003과 m 단위 및 반올림 자리가 조건이다. 현행 live family는 부모 작업에서 확인해야 한다.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 11,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-11",
+      "source_content_sha256_utf8": "6a46ae922a34c384d8a24c6b9567f3518bb55930ba97644c8d6a0a1494102e3c",
+      "source_locator": {
+        "draft_json_pointer": "/10/content",
+        "paper_physical_page_1based": 3
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비의 활용",
+      "primary_standard_codes": [
+        "9수04-18",
+        "9수04-17"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-05",
+        "9수04-10",
+        "9수01-10"
+      ],
+      "proposed_middle3_method": "그림의 B-D-C 공선·D의 내부 위치와 직각 C를 확인한다. 각의 합으로 ∠BAD=∠ABD=15°를 얻어 AD=BD인 이등변삼각형을 만들고 직각삼각형 ADC의 30° 값에서 AC,DC를 구한다. BC=BD+DC로 tan15°를 정의한다.",
+      "specific_gate_notes": "15°가 있다는 이유만으로 상위 학년 문항이라고 단정하지 않는다. 덧셈/뺄셈·반각 공식이나 sin법칙은 제외; 합법적 도형 경로와 복잡도 검토가 필요하다.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 12,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-12",
+      "source_content_sha256_utf8": "e2590bd5a6113fd693dd09ed231a6afb94aa3205ca06475d2f33afba7e6d7303",
+      "source_locator": {
+        "draft_json_pointer": "/11/content",
+        "paper_physical_page_1based": 3
+      },
+      "observed_unit_hint": "삼각비의 활용",
+      "proposed_unit_topic": "삼각비의 활용",
+      "primary_standard_codes": [
+        "9수04-18"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-17",
+        "6수03-06",
+        "9수01-10"
+      ],
+      "proposed_middle3_method": "그림의 ∠ABC=90°를 확인하고 대각선 AC로 둘로 나눈다. ABC의 45° 삼각비로 길이를 얻고 A에서 DC에 수선을 내려 60°인 직각삼각형의 높이로 ADC 넓이를 구한다.",
+      "specific_gate_notes": "일반 삼각형의 넓이 공식 1/2 ab sin C를 암기식으로 쓰지 않고 수선·높이를 제시한다. 그림의 직각 누락은 보류.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 13,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-13",
+      "source_content_sha256_utf8": "8b7cfc79e6a7f3f240658147d667322e488e4a5ad4e837703a89685645a91d5f",
+      "source_locator": {
+        "draft_json_pointer": "/12/content",
+        "paper_physical_page_1based": 3
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비의 활용/입체도형",
+      "primary_standard_codes": [
+        "9수04-18",
+        "9수04-09"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-17",
+        "9수04-08",
+        "6수03-08"
+      ],
+      "proposed_middle3_method": "원뿔의 축을 포함하는 단면에서 모선·반지름·높이와 명시된 30°를 직각삼각형으로 읽고 원뿔 부피를 계산한다.",
+      "specific_gate_notes": "공간에서 직선과 평면이 이루는 각을 일반 정사영/벡터로 정의하는 새 표현은 제외. 단면의 30°와 직각을 명시해야 한다.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 14,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-14",
+      "source_content_sha256_utf8": "d85d7968d03bd611708edd8a7a8a8e41f21d66a76aa480cd9f2fe29d6f4b8eec",
+      "source_locator": {
+        "draft_json_pointer": "/13/content",
+        "paper_physical_page_1based": 3
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비의 활용/접기",
+      "primary_standard_codes": [
+        "9수04-18"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-04",
+        "9수04-12",
+        "9수04-16",
+        "9수02-05",
+        "9수01-10"
+      ],
+      "proposed_middle3_method": "접기 합동으로 PA=PC, QA=QC와 ∠APQ=∠CPQ를 얻는다. 원래 직사각형의 직각에 피타고라스를 적용하여 가로 길이와 Q의 위치를 구하고 P에서 BC에 내린 수선의 직각삼각형에서 tan x를 정의한다.",
+      "specific_gate_notes": "Q의 원래 변 위 위치와 부호를 확인하고 복잡한 도형/계산 평가 제한을 별도 검토한다. 반각·벡터 반사·좌표회전 공식은 제외.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 15,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-15",
+      "source_content_sha256_utf8": "6336b2123cb52285fe64a62a0bf54ccefcd8f45f198719b6a47e22857693ae4a",
+      "source_locator": {
+        "draft_json_pointer": "/14/content",
+        "paper_physical_page_1based": 3
+      },
+      "observed_unit_hint": "원과 직선",
+      "proposed_unit_topic": "원과 직선",
+      "primary_standard_codes": [
+        "9수04-19"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-16",
+        "9수02-05",
+        "6수03-08"
+      ],
+      "proposed_middle3_method": "중심에서 현에 내린 수선은 현을 이등분한다. 현의 반길이·활의 높이와 반지름으로 직각삼각형을 구성해 반지름을 구한 뒤 원주를 계산한다.",
+      "specific_gate_notes": "그림의 현 길이와 활의 높이는 초안에 없다. 저해상도 측정 라벨을 원본 자료로 다시 대조해야 한다. 할선/접선의 거듭제곱 정리는 제외.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 16,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-16",
+      "source_content_sha256_utf8": "2a0a3a6ab32cdaae436229cea0c6c7139a73ec1f9e483b76d7c828b3914be911",
+      "source_locator": {
+        "draft_json_pointer": "/15/content",
+        "paper_physical_page_1based": 4
+      },
+      "observed_unit_hint": "원과 직선",
+      "proposed_unit_topic": "원과 직선",
+      "primary_standard_codes": [
+        "9수04-19"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-04",
+        "9수04-10",
+        "9수04-05"
+      ],
+      "proposed_middle3_method": "중심에서 같은 거리의 두 현이 같음을 수선·반지름과 직각삼각형 합동으로 설명하고 이등변삼각형의 밑각 및 내각 합을 쓴다.",
+      "specific_gate_notes": "A,B,C가 원 위, O가 중심이며 수선의 발이 현 위임을 그림과 새 본문에 명시한다.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 17,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-17",
+      "source_content_sha256_utf8": "2b007899a695221616d16af68f17a9987f1a9d6b6f61646713e51db1c1d6aa90",
+      "source_locator": {
+        "draft_json_pointer": "/16/content",
+        "paper_physical_page_1based": 4
+      },
+      "observed_unit_hint": "원과 직선",
+      "proposed_unit_topic": "원과 직선",
+      "primary_standard_codes": [
+        "9수04-19"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-12",
+        "9수04-16",
+        "9수02-05",
+        "6수03-06"
+      ],
+      "proposed_middle3_method": "세 변에 대한 반지름의 수직성과 같은 외부 점의 접선 길이를 이용해 AM과 BM 관계를 세운다. 직각삼각형 ABM의 피타고라스로 BM을 구해 넓이를 계산한다.",
+      "specific_gate_notes": "M은 AM 접선과 BC의 교점이라는 의미와 접점 E,F,G,H의 대응을 재제작 그림/본문에 보존해야 한다. 원의 방정식·원과 비례는 제외.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 18,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-18",
+      "source_content_sha256_utf8": "f4deafdc27156f764d585406d49164f2b783b0fa234d2f03c57ba8450da08819",
+      "source_locator": {
+        "draft_json_pointer": "/17/content",
+        "paper_physical_page_1based": 4
+      },
+      "observed_unit_hint": "이차함수의 활용",
+      "proposed_unit_topic": "이차함수의 활용",
+      "primary_standard_codes": [
+        "9수03-10"
+      ],
+      "prerequisite_standard_codes": [
+        "9수02-12",
+        "9수02-11",
+        "9수03-05",
+        "9수02-02"
+      ],
+      "proposed_middle3_method": "y=a(x-1)²+(b-a)로 고쳐 꼭짓점을 읽는다. 꼭짓점과 주어진 점의 대입으로 a,b에 대한 두 일차식을 만들고 연립일차방정식으로 푼다.",
+      "specific_gate_notes": "꼭짓점 좌표가 직선 위라는 대입 관계로 처리한다. 일반 직선-포물선 교점/접선 이론이나 미분은 제외.",
+      "figure_or_table_required": false,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 19,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-19",
+      "source_content_sha256_utf8": "1ca06e12a9b63387b3a827941c62d93ebb4b2eaf02f6e6db743f71608a6afb96",
+      "source_locator": {
+        "draft_json_pointer": "/18/content",
+        "paper_physical_page_1based": 4
+      },
+      "observed_unit_hint": "삼각비",
+      "proposed_unit_topic": "삼각비의 활용",
+      "primary_standard_codes": [
+        "9수04-18"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-17",
+        "9수04-05",
+        "9수04-10",
+        "9수01-10"
+      ],
+      "proposed_middle3_method": "B에서 AC에 수선을 내린다. AB를 빗변으로 하는 45° 직각삼각형과 C의 내각 60°인 직각삼각형을 차례로 사용해 BC를 구한다.",
+      "specific_gate_notes": "75°의 sin/cos/tan 값을 공식으로 구할 필요가 없다. 높이의 발이 선분 AC 위라는 위치와 사인법칙/각의 덧셈 배제를 확인한다.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 20,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-20",
+      "source_content_sha256_utf8": "79e3387af8eda6fe66ce2e9702721e383ba01baedc6b004676c6089e39ea6693",
+      "source_locator": {
+        "draft_json_pointer": "/19/content",
+        "paper_physical_page_1based": 4
+      },
+      "observed_unit_hint": "삼각비의 활용",
+      "proposed_unit_topic": "삼각비의 활용/부채꼴",
+      "primary_standard_codes": [
+        "9수04-18",
+        "9수04-06"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-10",
+        "9수04-17",
+        "6수03-06",
+        "6수03-08"
+      ],
+      "proposed_middle3_method": "OBC의 두 반지름이 같으므로 중심각을 내각 합으로 얻는다. C에서 지름에 수선을 내려 60° 직각삼각형의 높이로 삼각형 OBC 넓이를 계산하고 부채꼴 넓이에서 뺀다.",
+      "specific_gate_notes": "그림의 음영은 활꼴(호 BC와 현 BC 사이)이다. sin120° 등 90° 밖의 삼각비, 적분, 높이를 생략한 상위 학년 공식은 제외.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    },
+    {
+      "question_number": 21,
+      "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-21",
+      "source_content_sha256_utf8": "d3fcd3d376cc3fd415b847fff83307b3a86684e4af394d33e766a371cdfab1bd",
+      "source_locator": {
+        "draft_json_pointer": "/20/content",
+        "paper_physical_page_1based": 4
+      },
+      "observed_unit_hint": "원과 직선",
+      "proposed_unit_topic": "원과 직선",
+      "primary_standard_codes": [
+        "9수04-19"
+      ],
+      "prerequisite_standard_codes": [
+        "9수04-16",
+        "9수04-12",
+        "9수02-05"
+      ],
+      "proposed_middle3_method": "같은 외부 점 D,C의 두 접선 길이를 각각 같게 놓아 CD=DA+CB를 얻는다. 평행한 AD,BC 사이 수평거리 AB와 높이 차로 직각삼각형을 만든 뒤 피타고라스와 일차방정식을 쓴다.",
+      "specific_gate_notes": "A,B는 지름의 양끝 접점, E는 CD 위의 접점이라는 순서를 확인한다. 접선-할선의 곱이나 원과 비례 성질로 바꾸면 제외.",
+      "figure_or_table_required": true,
+      "draft_hasFigure": false,
+      "mapping_status": "expert_proposal_only",
+      "candidate_grade_approval": "pending",
+      "generator_binding": {
+        "owner": "parent exam-extraction-resume-20261008",
+        "current_unit_id": null,
+        "current_live_family": null,
+        "generator_source_hash": null,
+        "rule_scope_review": "pending_current_bank_and_source_review"
+      },
+      "new_candidate_id": null,
+      "new_candidate_hash": null,
+      "mathematical_correctness_of_new_candidate": "not_run",
+      "full_surface_curriculum_review_of_new_candidate": "not_run"
+    }
+  ],
+  "highest_gate": {
+    "status": "required_for_each_new_candidate_not_implemented_here",
+    "surfaces": [
+      "stem",
+      "choices",
+      "figure_and_graph_semantics",
+      "notation",
+      "answer_format",
+      "student_solution",
+      "necessary_procedure",
+      "prerequisites"
+    ],
+    "decisions": {
+      "known_out_of_scope": "exclude_from_approval_load_and_delivery",
+      "uncertain_scope_or_reviewer_disagreement": "pending",
+      "mathematically_correct_but_student_solution_out_of_scope": "fail"
+    },
+    "insufficient_evidence": [
+      "school_original_question",
+      "original_answer_or_solution",
+      "AI_probability",
+      "another_grade_generator_exists",
+      "achievement_standard_band_alone"
+    ]
+  },
+  "verified_scope": [
+    "2015 and 2022 general national phase-in dates",
+    "2015-74 authoritative math PDF and amended 2020-236 authoritative math HWP fetched and hashed",
+    "All used mapping standard texts and eight restrictions crosschecked between PDF and amended HWP",
+    "61 middle-band standards extracted from amended HWP with exact record locators; 59 whole-row whitespace matches to original PDF, 2 formatting/split-page exceptions explicitly recorded",
+    "Original question-only pages 1~4 visually inspected for diagram semantics; figures are inputs to proposed mapping, not permissions",
+    "21 source-content-based expert proposals with no new candidate approval"
+  ],
+  "unresolved": [
+    "Current Unit UUID, live family and generator source/rule binding; parent owns bank snapshot",
+    "Exact grade/semester sequencing requires current Unit and teaching-scope evidence; band codes alone are insufficient",
+    "New candidate body, choices, diagrams, answer format, solutions and prerequisite review has not occurred",
+    "Question 7 may itself assess prohibited ratio relationships; geometric reconstruction does not settle that interpretation",
+    "Question 14 and other combined geometry need complexity/target difficulty review",
+    "Complete post-2020 math amendment-chain audit through pilot date is not asserted; later 2022-2/2024-1 consolidated policy requires confirmation before final publication approval",
+    "Source year/school authenticity: paper header 2025 but footer says 26년; draft school 범일중 versus anonymized BI중 in PDF; parent must reconcile. Both 2025 and 2026 middle3 use 2015, so this ambiguity does not change the phase-in inference",
+    "Old hasFigure=false on all 21 entries does not establish no figure: 16 questions require diagrams and Q10 also requires a table",
+    "Q15 small measurement labels require high-resolution/source attestation when reproducing figures",
+    "2022 achievement-standard crosswalk and 2027 retargeting not performed"
+  ],
+  "cross_edition_format_exceptions": [
+    {
+      "code": "9수02-08",
+      "reason": "different quotation mark glyphs in original PDF; amended official HWP text is authoritative for extraction; this code is not used in pilot mapping"
+    },
+    {
+      "code": "9수05-03",
+      "reason": "original PDF row spans pages 39~40; amended official HWP text and code extracted; this code is not used in pilot mapping"
+    }
+  ],
+  "methodology": {
+    "reference_content": "draft content only and PDF question-only pages 1~4; stored answer/solution values are excluded from mapping records and not used as correctness or curriculum oracles",
+    "answer_exposure": "Initial PDF inventory extracted a snippet from page 5 and revealed it is an answer appendix. Page 5 and its text are excluded from mapping evidence and no original answer is used to validate any proposal.",
+    "hwp_extraction": "Python olefile (already installed); FileHeader compressed flag at byte 36; raw DEFLATE (-15) BodyText/SectionN; sequential HWP record headers tag/level/size; tag 67 PARA_TEXT UTF-16LE; exact standard paragraphs/records only. No GUI, HWP COM conversion, desktop input or paid API.",
+    "pdf_extraction": "Existing PyMuPDF text extraction and rendered relevant standard pages/first four pilot pages inspected; physical and printed pages stored separately.",
+    "raw_file_reproducibility": "Official download URLs and SHA-256 identify source bytes. Raw downloads and temporary scripts/renderings are local ignored supporting files, not in this scoped commit. HTML has retrieval-specific markup/counters; compare downloaded binary hashes when reproducing.",
+    "new_solutions": "No candidate solutions authored or approved. Proposed method sketches are expert inferences from verified curriculum and source geometry."
+  },
+  "verification": {
+    "all_question_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "question_count": 21,
+    "used_standard_count": 28,
+    "all_used_codes_found_in_official_hwp": true,
+    "all_used_descriptions_crosschecked_original_pdf": true,
+    "official_middle_band_codes": 61,
+    "all_input_files_unchanged": true,
+    "db_actions": 0,
+    "paid_calls": 0,
+    "deploys": 0,
+    "pushes": 0,
+    "raw_source_hashes_rechecked": true,
+    "hwp_record_offsets_redecoded_and_all_standard_texts_equal": true,
+    "all_21_new_candidate_grade_approvals_pending": true,
+    "scope": "evidence consistency only; no candidate correctness/curriculum acceptance tests"
+  },
+  "report_artifact": {
+    "path": "docs/planning/tracks/reports/exam-twin-curriculum-20261008.md",
+    "sha256": "97f47dab4dec32e41b35eed278f724c238c28317434ac92865bf279f91385a2b"
+  },
+  "version_limitations": {
+    "verified_math_editions": [
+      "2015-74 book8 PDF",
+      "2020-236 amended book8 HWP"
+    ],
+    "post_2020_complete_amendment_chain_audited": false,
+    "final_candidate_approval_allowed": false,
+    "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+  }
+}
