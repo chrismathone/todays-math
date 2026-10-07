@@ -1,6 +1,8 @@
 import type { Prisma } from "@prisma/client";
+import { notFound } from "next/navigation";
 
 import { db } from "@/lib/db";
+import { devPageVisible } from "@/lib/devPageAccess";
 
 import { ReviewWireClient } from "./ReviewWireClient";
 
@@ -38,6 +40,10 @@ export const dynamic = "force-dynamic";
 const SAMPLE = 48;
 
 export default async function ReviewWirePage() {
+  // 프록시가 `/dev/` 를 공개로 둔다 — production 에서는 **로그인한 원장에게만** 연다
+  // (`src/lib/devPageAccess.ts`). 로그인 없는 요청은 DB 를 읽기 전에 여기서 끝난다.
+  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+
   const [total, excluded, pending, withFigure, figureNoMm, noSolution, units] =
     await Promise.all([
       db.problem.count(),

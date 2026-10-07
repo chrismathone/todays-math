@@ -28,6 +28,7 @@ vi.mock("@/lib/ai/generator", () => ({
 
 import { POST as generateProblemsRoute } from "@/app/api/problems/generate/route";
 import { AiGenerationError } from "@/lib/ai/errors";
+import { AI_BUSY_MESSAGE, resetAiAdmission } from "@/lib/aiAdmission";
 import { errorResponseSchema } from "@/contracts/common.contract";
 import { problemGenerateResponseSchema } from "@/contracts/problem.contract";
 import {
@@ -174,5 +175,49 @@ describe("[T3.2] POST /api/problems/generate", () => {
     } finally {
       createManySpy.mockRestore();
     }
+  });
+});
+
+describe("🔴 한 사람이 동시에 띄우는 생성은 둘까지 (2026-10-07 검수)", () => {
+  const call = () =>
+    generateProblemsRoute(
+      jsonRequest("http://localhost/api/problems/generate", {
+        unitId: MOCK_EMPTY_PROBLEM_UNIT.id,
+        difficulty: "기본",
+        count: 1,
+      }),
+    );
+
+  it("셋째 요청은 AI 를 부르지 않고 429 — 앞의 것이 실패로 끝나도 자리는 돌아온다", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    resetAiAdmission();
+    let fail!: (error: Error) => void;
+    mockGenerateProblems.mockReturnValue(
+      new Promise<never>((_, reject) => {
+        fail = reject;
+      }),
+    );
+
+    const first = call();
+    const second = call();
+    await vi.waitFor(() =>
+      expect(mockGenerateProblems).toHaveBeenCalledTimes(2),
+    );
+
+    const third = await call();
+    expect(third.status).toBe(429);
+    expect(errorResponseSchema.parse(await third.json()).error.message).toBe(
+      AI_BUSY_MESSAGE,
+    );
+    expect(mockGenerateProblems).toHaveBeenCalledTimes(2);
+
+    fail(new AiGenerationError("upstream"));
+    expect((await first).status).toBe(502);
+    expect((await second).status).toBe(502);
+
+    mockGenerateProblems.mockRejectedValueOnce(new AiGenerationError("again"));
+    expect((await call()).status).toBe(502);
+    expect(mockGenerateProblems).toHaveBeenCalledTimes(3);
+    log.mockRestore();
   });
 });

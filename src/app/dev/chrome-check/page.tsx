@@ -1,5 +1,8 @@
+import { notFound } from "next/navigation";
+
 import { AppChrome } from "@/components/chrome/AppChrome";
 import { MAIN_VIEW_TOGGLE_CLASS } from "@/components/main/MainScreen";
+import { devPageVisible } from "@/lib/devPageAccess";
 
 /**
  * 상단 크롬 **표본** — 로그인 없이 «메인과 같은 무게»의 헤더를 그린다.
@@ -25,7 +28,11 @@ import { MAIN_VIEW_TOGGLE_CLASS } from "@/components/main/MainScreen";
  */
 export const dynamic = "force-dynamic";
 
-export default function ChromeCheckPage() {
+export default async function ChromeCheckPage() {
+  // 계측용 표본이다 — 개발 서버에서는 종전대로 로그인 없이 열리고, production 에서는 닫는다
+  // (`src/lib/devPageAccess.ts` — `/dev` 화면은 하나도 빠짐없이 가드를 단다).
+  if (!(await devPageVisible())) notFound();
+
   return (
     <AppChrome
       remaining={3}

@@ -23,10 +23,10 @@ try {
       if (screen === "list") await page.getByText("아직 배정된 강의가 없어요", { exact: true }).waitFor();
       else await page.getByRole("heading", { level: 1 }).waitFor();
       const geometry = await page.evaluate(() => {
-        const module = document.querySelector("[data-student-module-content]");
+        const moduleContent = document.querySelector("[data-student-module-content]");
         const logout = document.querySelector("[data-student-header] button");
         const visible = node => node.getBoundingClientRect().height > 0 && getComputedStyle(node).display !== "none";
-        return { overflow: document.documentElement.scrollWidth - innerWidth, moduleWidth: module.getBoundingClientRect().width,
+        return { overflow: document.documentElement.scrollWidth - innerWidth, moduleWidth: moduleContent.getBoundingClientRect().width,
           headers: document.querySelectorAll("[data-student-header]").length, logoutHeight: logout.getBoundingClientRect().height,
           logoutDisabled: logout.disabled, visibleNav: [...document.querySelectorAll("[data-student-global-nav]")].filter(visible).length,
           labels: [...document.querySelectorAll("[data-student-global-nav] a")].filter(visible).map(node => node.textContent.trim()) };

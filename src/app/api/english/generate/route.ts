@@ -21,6 +21,7 @@ import {
   englishGradeSchema,
 } from "@/contracts/english.contract";
 import { sameOriginMutation } from "@/lib/accountAccess";
+import { AI_BUSY_MESSAGE, admitAiWork } from "@/lib/aiAdmission";
 import { db } from "@/lib/db";
 import { bankMenuDenied, bankErrorResponse } from "@/lib/english/bank/http";
 import { EnglishBankError } from "@/lib/english/bank/policy";
@@ -71,6 +72,10 @@ async function handlePost(request: NextRequest) {
   // 표의 grade 는 string — 계약 목록 밖 값이면 여기서 500 으로 드러난다(조용히 다른 학년으로 생성하지 않는다).
   const grade = englishGradeSchema.parse(owned.data.grade);
 
+  // 한 사람이 동시에 띄우는 생성은 둘까지 — 요청 하나가 모델을 셋까지 부르는데 한도가 없었다(2026-10-07 검수).
+  const release = admitAiWork("english-generate", session.id);
+  if (!release) return jsonError("AI_GENERATION_FAILED", AI_BUSY_MESSAGE, 429);
+
   try {
     if (parsed.data.passageRef) {
       const denied = bankMenuDenied(session, true);
@@ -119,6 +124,8 @@ async function handlePost(request: NextRequest) {
         502,
       );
     throw error;
+  } finally {
+    release();
   }
 }
 

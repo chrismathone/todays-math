@@ -42,6 +42,10 @@ async function handlePost(request: Request) {
   if (!parsed.success) return new Response(null, { status: 400 });
   if (parsed.data.ownerId !== account.id)
     return new Response(null, { status: 403 });
+  // 가입은 열려 있다 — 승인받지 않은 계정의 화면 기록은 받아만 주고 적지 않는다(요청마다 50줄을 끝없이 쌓을 수 있었다).
+  // 화면의 기록기가 재시도하지 않게 응답은 같은 204 다.
+  if (account.approvalStatus !== "approved")
+    return new Response(null, { status: 204 });
   await db.accountAuditLog.createMany({
     data: parsed.data.events.map((event) => ({
       userId: account.id,

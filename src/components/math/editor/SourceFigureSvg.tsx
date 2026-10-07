@@ -1,5 +1,6 @@
 import { useEffect, useRef, type HTMLAttributes } from "react";
 import {
+  firstPaintFigureMarkup,
   paintSourceFigure,
   sourceFigureWidth,
 } from "./sourceFigurePresentation";
@@ -18,7 +19,8 @@ export function SourceFigureSvg({
       ref={ref}
       className="source-figure-frame"
       style={{ width: sourceFigureWidth(source) }}
-      dangerouslySetInnerHTML={{ __html: source }}
+      // 본문에서 떼어 온 글자다 — 실행되는 것이 섞였으면 첫 그림은 비우고, 효과가 살균본을 그린다.
+      dangerouslySetInnerHTML={{ __html: firstPaintFigureMarkup(source) }}
     />
   );
 }
