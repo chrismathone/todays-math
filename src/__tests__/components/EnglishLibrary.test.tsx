@@ -99,6 +99,16 @@ describe("[EnglishLibrary] 내 문제 세트", () => {
       target: { value: "검토 중" },
     });
     expect(screen.getByText("조건에 맞는 문제 세트가 없습니다.")).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "검색·상태 초기화" }));
+    expect(screen.getByRole("combobox", { name: "상태" })).toHaveValue("all");
+    expect(
+      screen.getByRole("searchbox", { name: "세트 이름으로 찾기" }),
+    ).toHaveValue("");
+    expect(
+      within(screen.getByRole("list", { name: "문제 세트 목록" })).getAllByRole(
+        "button",
+      ),
+    ).toHaveLength(2);
   });
 
   it("«새로고침»은 세트 목록을 다시 읽는다", async () => {
