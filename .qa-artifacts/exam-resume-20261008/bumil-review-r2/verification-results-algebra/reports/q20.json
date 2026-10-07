@@ -1,0 +1,578 @@
+{
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": null
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "evidence": {
+    "questionNumber": 20,
+    "mathReview": "독립 답과 저자 답은 표기만 다르고 모두 (6π+9√3) cm²이다. OBC의 밑각은 30°·30°라 중심각 120°이다. 부채꼴 12π, C에서 지름까지 높이 3√3, 삼각형 OBC 넓이 9√3을 얻는다. 작은 CB 활꼴은 12π−9√3, 반원 18π에서 이를 빼면 6π+9√3이다. 두 영역이 모두 양수이며 반원보다 작고 합이 반원 넓이다.",
+    "solutionReview": "저자 해설에 수선 CH가 명시되고 120°를 직선각에서 빼 60°인 직각삼각형을 만든다. 삼각형 넓이는 밑변 OB와 높이 CH로 구한다. sin120°나 일반 사인 넓이 공식·라디안·적분은 사용하지 않는다.",
+    "transformationReview": "원문은 CB의 작은 활꼴인 색칠 부분을 구한다. 새 문항은 그 경계를 영역 기록으로 정확히 정의하고 반원에서 이를 제외한 나머지를 구한다. 질문 대상이 실제로 보완 영역으로 전환되며 원주의 각·부채꼴·높이·삼각형 차의 핵심은 남는다.",
+    "wordingReview": "C를 두 끝점에서 제외하고 작은 호의 중심각을 180° 미만으로 한정하여 두 호나 두 영역의 모호함을 없앴다. 답의 정확한 π·제곱근 형식과 단위가 분명하다.",
+    "difficultyScoreReview": {
+      "status": "pending-calibration",
+      "sourceScore": 7,
+      "candidateScore": 7,
+      "proposal": "기본",
+      "reason": "원문의 7점은 유지되고 새 선수 개념은 추가되지 않지만, 중심각 추론·외부 높이의 수선·특수각 비·부채꼴−삼각형·반원−활꼴을 연결하는 복합 과정이다. 기본이라는 v2/후보 제안의 객관적 난이도 기준이 제시되지 않아 확정하지 않는다. 수학/교육과정 범위 오류는 아니다."
+    },
+    "surfaceEvidence": {
+      "stem": "반원·지름·30°·작은 호·여집합 영역을 초·중학교 도형 개념으로 정확히 정의한다.",
+      "choices": "서술형으로 보기 없음. 영역과 답의 정확한 형식이 본문에 있다.",
+      "figuresAndTables": "C는 반원의 호 위에 있고 B의 각은 30°, 두 반지름은 같으며 작은 중심각은 120°다. 색칠은 현 CB와 B→C의 작은 호로 닫힌 영역에만 있다.",
+      "notation": "반지름·현·도 단위 중심각·π·제곱근·cm²만 사용한다. 120°는 부채꼴에 쓰며 삼각비는 60°에만 쓴다.",
+      "answer": "반원보다 작은 정확한 양수 넓이 (6π+9√3) cm²이다.",
+      "studentSolution": "같은 반지름의 이등변삼각형, 내각/직선각, 도 단위 부채꼴, 수선·60° 삼각비, 밑변·높이 넓이와 영역의 차로 완성된다.",
+      "prerequisites": "초등 원·삼각형 넓이, 중학교 부채꼴·이등변삼각형·수선과 60° 삼각비·근호 계산이다. 원과 비례의 곱 정리나 고등학교 선수 개념은 없다."
+    },
+    "holds": [
+      {
+        "dimension": "unitFamilyFit",
+        "reason": "family와 의미 유형은 의도적으로 미확정이다. Unit/원주각 후보는 관련되지만 등록06·10의 각/삼각비 응용만으로 부채꼴−삼각형−반원 보완 영역까지 동일 family라고 확정할 수 없다.",
+        "requiredEvidence": "작은 활꼴과 나머지 넓이의 필수 복합 절차를 수용하는 중3 Unit/live family의 명시적 의미 대응",
+        "forceLabel": false
+      },
+      {
+        "dimension": "scoreAppropriate",
+        "reason": "기본 제안과 위 복합 과정의 객관적 부담을 연결하는 난이도 척도가 없다.",
+        "requiredEvidence": "중심각·수선·삼각비·두 번의 영역 차의 부담에 대한 동일 척도 난이도/7점 판정",
+        "requiresNewStudentExperiment": false
+      }
+    ],
+    "bindingAudit": {
+      "verificationInputsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "candidateFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/package/private/q20/candidate.json",
+      "candidateFileSha256": "2eff78dc4ff77ca6d5e765b243ea3db0bb78be45be97dd10bdb734c36d81a382",
+      "allFourDigestsRecomputed": true,
+      "digestImplementation": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs",
+      "digestImplementationSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59",
+      "solveFile": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/solve/q20.json",
+      "solveFileSha256": "509f59eca96112735b301e499bb87bc5b87da39a3fc919b199b4daf47e492690",
+      "parentSolveCanonicalDigestMatchesFrozen": true,
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "authorDiffersFromVerifier": true,
+      "authorAnswerComparedOnlyAfterBlindFreeze": "0e2ee38d597e2e7a8782a673a0a0235c4910630f"
+    },
+    "independentEvidence": {
+      "answer": "$(6\\pi+9\\sqrt{3})\\,\\mathrm{cm}^{2}$",
+      "solution": "$\\mathrm{O}$가 지름 $\\overline{AB}$ 위에 있으므로 $\\angle OBC=\\angle ABC=30^{\\circ}$이다. $\\overline{OB}=\\overline{OC}=6\\,\\mathrm{cm}$인 이등변삼각형 $\\mathrm{OBC}$에서 $\\angle OCB=30^{\\circ}$이므로 $\\angle COB=180^{\\circ}-30^{\\circ}-30^{\\circ}=120^{\\circ}$이다.\n따라서 작은 호 $CB$에 대응하는 부채꼴 $\\mathrm{COB}$의 넓이는 $\\frac{120}{360}\\times\\pi\\times6^{2}=12\\pi\\,\\mathrm{cm}^{2}$이다.\n점 $\\mathrm{C}$에서 지름 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\angle COB=120^{\\circ}$이므로 $\\mathrm{H}$는 $\\mathrm{A}$와 $\\mathrm{O}$ 사이에 있고, $\\angle COH=60^{\\circ}$이다. 직각삼각형 $\\mathrm{COH}$에서 $\\overline{CH}=6\\sin60^{\\circ}=3\\sqrt{3}\\,\\mathrm{cm}$이다.\n삼각형 $\\mathrm{OBC}$에서 밑변 $\\overline{OB}$에 대한 높이는 $\\overline{CH}$이므로 넓이는 $\\frac{1}{2}\\times6\\times3\\sqrt{3}=9\\sqrt{3}\\,\\mathrm{cm}^{2}$이다.\n색칠한 부분의 넓이는 부채꼴에서 삼각형을 뺀 $(12\\pi-9\\sqrt{3})\\,\\mathrm{cm}^{2}$이다.\n반원 전체 넓이는 $\\frac{1}{2}\\pi\\times6^{2}=18\\pi\\,\\mathrm{cm}^{2}$이므로 색칠하지 않은 부분의 넓이는 $18\\pi-(12\\pi-9\\sqrt{3})=6\\pi+9\\sqrt{3}\\,\\mathrm{cm}^{2}$이다.",
+      "conditions": {
+        "radiusCm": 6,
+        "diameterCm": 12,
+        "anglesDegrees": {
+          "ABC": 30,
+          "OCB": 30,
+          "COB": 120,
+          "COH": 60
+        },
+        "minorArcCentralAngleBelow180": true,
+        "trigonometricAngleWithin0To90": true,
+        "heightCm": "3sqrt(3)",
+        "sectorAreaCm2": "12pi",
+        "triangleAreaCm2": "9sqrt(3)",
+        "shadedAreaCm2": "12pi-9sqrt(3)",
+        "semicircleAreaCm2": "18pi",
+        "requestedUnshadedAreaCm2": "6pi+9sqrt(3)",
+        "shadedAndUnshadedAreasPositive": true,
+        "eachAreaBelowSemicircleArea": true
+      },
+      "choiceReview": []
+    },
+    "sourceQuestionOnly": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+      "sha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "jsonPointer": "/19",
+      "contentSha256": "79e3387af8eda6fe66ce2e9702721e383ba01baedc6b004676c6089e39ea6693",
+      "originalAnswersRead": false,
+      "sourceScore": 7,
+      "candidateScore": 7,
+      "scorePreserved": true,
+      "sourceFigureReferences": [
+        "figures/q20.png"
+      ]
+    },
+    "curriculumGrounding": {
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardCodes": [
+        "9수04-18",
+        "9수04-06",
+        "9수04-10",
+        "9수04-17",
+        "6수03-06",
+        "6수03-08"
+      ],
+      "supplementaryReviewerCodes": [],
+      "standards": [
+        {
+          "code": "6수03-06",
+          "verified_text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "elementary_grade_band"
+        },
+        {
+          "code": "6수03-08",
+          "verified_text": "원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3445,
+            "record_offset_in_uncompressed_stream": 177155,
+            "extracted_paragraph_1based": 693
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "elementary_grade_band"
+        },
+        {
+          "code": "9수04-06",
+          "verified_text": "부채꼴의 중심각과 호의 관계를 이해하고, 이를 이용하여 부채꼴의 넓이와 호의 길이를 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4276,
+            "record_offset_in_uncompressed_stream": 216736,
+            "extracted_paragraph_1based": 875
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-10",
+          "verified_text": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4300,
+            "record_offset_in_uncompressed_stream": 217636,
+            "extracted_paragraph_1based": 881
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-18",
+          "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "gradeBandCodeAloneUsedAsApproval": false,
+      "exactGradeAnchors": {
+        "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원주각",
+        "semester": 2,
+        "orderIndex": 486,
+        "problemCodePrefix": "J30603"
+      },
+      "targetYearApplication": {
+        "nominalSourceYear": 2025,
+        "middle3In2025And2026": "2015",
+        "middle3In2027": "2022 requires separate retarget review",
+        "evidence": {
+          "2015": {
+            "source_id": "moe-60747",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2017-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2018-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2019-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2020-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "2022": {
+            "source_id": "moe-93458",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2024-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2025-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2026-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2027-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "pilot_reference_2025_middle3": "2015_revision",
+          "middle3_2026": "2015_revision",
+          "middle3_2027": "2022_revision_requires_separate_mapping",
+          "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+        }
+      },
+      "restrictionCompliance": {
+        "trigAnglesInStudentCalculation": [
+          60
+        ],
+        "trigRatioIdentitiesUsed": false,
+        "circlePowerOrProportionalityUsed": false,
+        "vietaDiscriminantDerivativesVectorsInStudentMethod": false
+      },
+      "materialAmendmentReview": {
+        "status": "pending-final-publication-attestation-on-selected-provisions",
+        "scope": "Only listed standard texts and relevant trig/circle restrictions for middle3/2015; no unrelated whole-policy audit requested.",
+        "providedEditionChecks": "2015 PDF and 2020 HWP selected clauses match after whitespace normalization",
+        "materialConflictEvidenced": false,
+        "completePost2020AmendmentChainClaimed": false,
+        "owner": "parent",
+        "blocksAutomaticRelease": true
+      }
+    },
+    "taxonomyGrounding": {
+      "registryPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotCapturedAt": "2026-10-07T16:08:32.171Z",
+      "assignment": {
+        "status": "pending",
+        "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+        "familyKey": null,
+        "currentUnit": {
+          "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원주각",
+          "semester": 2,
+          "orderIndex": 486,
+          "problemCodePrefix": "J30603"
+        },
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "색칠 영역은 호 CB와 현 CB 사이의 활꼴이다. 원주각으로 중심각을 결정하고 부채꼴에서 삼각형을 빼는 절차까지 필요한데 등록06/10은 각·변·삼각비 문제여서 같은 family인지 확신하기 어렵다.",
+        "candidates": [
+          {
+            "registryKey": "3-2|원주각|06",
+            "registryTitle": "원주각의 성질과 삼각비의 값",
+            "section": "원주각",
+            "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "family": "mid:3-2|원주각|06",
+            "confidence": "low",
+            "evidence": "원주각과 삼각비를 함께 쓰는 부분은 관련되지만 부채꼴-삼각형의 활꼴 넓이 절차가 확인되지 않았다.",
+            "sameUnitLiveCount": 26,
+            "currentUnit": {
+              "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+              "grade": "중3",
+              "chapter": "6. 원의 성질",
+              "section": "원주각",
+              "semester": 2,
+              "orderIndex": 486,
+              "problemCodePrefix": "J30603"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|원주각|06",
+              "grade": "중3",
+              "unitSection": "원주각",
+              "rpmBook": "3-2",
+              "rpmMinor": "원주각",
+              "rpmType": "06",
+              "rpmTitle": "원주각의 성질과 삼각비의 값"
+            },
+            "currentLiveCount": 26
+          },
+          {
+            "registryKey": "3-2|원주각|10",
+            "registryTitle": "반원에 대한 원주각의 크기의 응용",
+            "section": "원주각",
+            "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "family": "mid:3-2|원주각|10",
+            "confidence": "low",
+            "evidence": "반원 원주각 응용이라는 개념은 관련되지만 색칠 활꼴 넓이의 핵심 절차까지 일치한다고 확정할 수 없다.",
+            "sameUnitLiveCount": 28,
+            "currentUnit": {
+              "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+              "grade": "중3",
+              "chapter": "6. 원의 성질",
+              "section": "원주각",
+              "semester": 2,
+              "orderIndex": 486,
+              "problemCodePrefix": "J30603"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|원주각|10",
+              "grade": "중3",
+              "unitSection": "원주각",
+              "rpmBook": "3-2",
+              "rpmMinor": "원주각",
+              "rpmType": "10",
+              "rpmTitle": "반원에 대한 원주각의 크기의 응용"
+            },
+            "currentLiveCount": 28
+          }
+        ]
+      },
+      "registryMatch": null,
+      "verifierAssignedSemanticType": null,
+      "unknownTypeNullIsNotValidationFailure": true,
+      "forcedUnitOrFamily": false
+    },
+    "assetReview": [
+      {
+        "role": "stem",
+        "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q20\\figure-1.spec.json",
+        "specSha256": "4473e58cdec9bda08889ecd6e5c4494c310702f82f2fa822669ee4a4043a4f67",
+        "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q20\\figure-1.svg",
+        "svgSha256": "9f4ecc3d85b8608cefcd69840a458fd9a047347a2aca68e0f8752b30b6a0ade1",
+        "intendedWidthMm": 62,
+        "actualStudentSvgByteHashMatches": true,
+        "visualInspectionCompleted": true,
+        "mathNeverMeasuredFromRaster": true,
+        "printMetrics": {
+          "minimumLabelEmMm": 4.217447990476731,
+          "minimumLabelEmPt": 11.954970681666323,
+          "labelCount": 5,
+          "screenWidthAt96Dpi": 234,
+          "screenSizeProofInspected": false,
+          "screenAssessment": "labels/angles identifiable without overlaps",
+          "physicalPaperProofInspected": false,
+          "dimensionsOwner": "parent"
+        },
+        "geometryCalculationScope": "coordinates are used only to validate authored vector geometry, not as the student solution method",
+        "geometryChecks": {
+          "radius": 90,
+          "ABCdegrees": 30.000000000000004,
+          "BOCdegrees": 120.00000000000001,
+          "OC": 90,
+          "OB": 90,
+          "shadedBoundary": [
+            {
+              "seg": [
+                "C",
+                "B"
+              ]
+            },
+            {
+              "arc": {
+                "circle": "semicircleSupport",
+                "from": "B",
+                "to": "C",
+                "dir": "ccw"
+              }
+            }
+          ],
+          "smallArcCentralAngleDegrees": 120
+        }
+      }
+    ],
+    "syntaxCheck": {
+      "engine": "KaTeX strict",
+      "studentMathSpans": 39,
+      "passed": true,
+      "surfaceKeywordViolations": []
+    },
+    "judgmentDesign": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "liveDocs": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "apiCalls": 0,
+      "jevResponses": null,
+      "probabilities": null,
+      "mode": "manual scoped judgments with named evidence; exact math and binding in code",
+      "aggregation": "Out-of-grade required methods reject; insufficient evidence holds its own dimension; no probability or hash grants release.",
+      "apiCallsScope": "TypeSafe/Jev/OpenAI inference endpoints; only public documentation was fetched"
+    },
+    "releaseBoundary": {
+      "automaticReleaseAllowed": false,
+      "dbOrApplyWrites": 0,
+      "sourceIdentity": "pending-parent-attestation",
+      "rights": "pending-parent-review",
+      "nativeProvenance": "pending-parent-review",
+      "materialAmendmentFinalAttestation": "pending-parent-on-selected-provisions",
+      "statusMeaning": "verified is only this scoped independent review; it is not publishing or rights permission"
+    },
+    "readOnlyGateAudit": {
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "review-scoreAppropriate-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  },
+  "studentDigest": "06788db5de931162daba02380191c669e768016ab2279a63fed039814378b94f",
+  "candidateDigest": "0ed9faa1f19680d76a59e80e96d2b84d18d4f0448278297b649473800cd23600",
+  "assetDigest": "3dc03367ac8af81399639781664334d7e94e08bf7a8a10e0e0b3f2deac8add6e",
+  "solveDigest": "88400f8e5213129fabdbf980d077453faee0b18b0ebf3cc34baea2973bac00ea"
+}
