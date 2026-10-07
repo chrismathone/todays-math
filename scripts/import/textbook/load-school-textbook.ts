@@ -58,7 +58,6 @@
  * 계획에서 빠진 문항은 잠근다. 고치기 전 값은 회차마다 새 파일(`load/refresh-<시각>.json`)에 남는다.
  * 전부를 한꺼번에 잠그거나 목록으로 푸는 일은 `hold-school-textbook.ts`, 실린 것을 세는 일은 `census.ts`.
  */
-import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
@@ -75,11 +74,16 @@ import {
   parseSourceBook,
   parseSourceMaterial,
 } from "../../../src/lib/import/schoolTextbook/sourceMeta";
+import { checkKeyOf } from "../../../src/lib/import/schoolTextbook/checkKey";
 import {
+  cleanContent,
   hwpLeftovers,
-  stripItemNumber,
   tidyHwpNotation,
 } from "../../../src/lib/import/schoolTextbook/hwpNotation";
+import {
+  buildVocabulary,
+  unsplitWords,
+} from "../../../src/lib/import/schoolTextbook/unsplitWords";
 import { renderMathHtml } from "../../../src/lib/math/renderMathHtml";
 
 const DIR = process.argv[2];
@@ -207,18 +211,6 @@ interface Checked {
   newSolution?: string | null;
 }
 
-/** 지면 검토가 보는 글의 지문 — 본문 · 정답 · 해설 후보(없으면 빈 글) */
-export function checkKeyOf(
-  content: string,
-  answer: string,
-  candidateSolution: string | null,
-): string {
-  return createHash("sha1")
-    .update([content, answer, candidateSolution ?? ""].join("\n::\n"))
-    .digest("hex")
-    .slice(0, 16);
-}
-
 function readJsonl<T>(path: string): T[] {
   return readFileSync(path, "utf8")
     .split("\n")
@@ -322,6 +314,14 @@ function buildRows(): {
   for (const dir of CHECK_DIRS)
     for (const row of readJsonl<Checked>(join(DIR, dir, "checked.jsonl")))
       checks.set(row.id, row);
+  // 끊겼다 이어진 낱말을 붙일 사전 — 검토자가 쓴 해설(줄 끝에서 끊긴 적이 없는 글)
+  const vocabulary = buildVocabulary([
+    ...reviewed.flatMap((review) => (review.solution ? [review.solution] : [])),
+    ...[...checks.values()].flatMap((check) =>
+      check.newSolution ? [check.newSolution] : [],
+    ),
+  ]);
+  const unsplit = (text: string): string => unsplitWords(text, vocabulary);
   // 마무리 손질(`finalize.py`) — 있으면 본문 · 교과서 풀이는 그것을 쓴다(줄 잇기 · 표기. 글자는 같다)
   const finalPath = join(DIR, "final", "final.jsonl");
   const finished = new Map(
@@ -432,11 +432,11 @@ function buildRows(): {
       .filter((_line, index) => !drop.has(index))
       .join("\n");
     const finish = finished.get(review.id);
-    // 본문 머리에 붙은 문항 번호(«01다음을 …»)는 걷는다 — 손질한 쪽 · 안 한 쪽에 같이 건다
-    const content = stripItemNumber(tidy(finish?.content ?? kept));
+    // 본문 머리에 붙은 문항 번호(«01다음을 …») · 배점 표시(«[4점]»)는 걷는다 — 손질한 쪽 · 안 한 쪽에 같이 건다
+    const content = unsplit(cleanContent(tidy(finish?.content ?? kept)));
     // 🔴 마무리 손질은 글자를 안 바꾼다 — 빈칸을 접어 견줘서, 다르면 그 문항은 싣지 않는다
     const squeezed = (text: string) =>
-      stripItemNumber(tidy(text)).replace(/\s+/g, "");
+      cleanContent(tidy(text)).replace(/\s+/g, "");
     if (squeezed(content) !== squeezed(kept)) {
       skip("마무리 손질이 본문의 글자를 바꿨다");
       continue;
@@ -453,7 +453,7 @@ function buildRows(): {
       textFlaws("해설", text).length === 0 && hwpLeftovers(text).length === 0;
     const textbook =
       !review.needSolution && source.solution && !source.solutionFigure
-        ? tidy(finish?.solution ?? source.solution)
+        ? unsplit(tidy(finish?.solution ?? source.solution))
         : null;
     const firstWritten = reviewerSolution?.trim()
       ? tidy(reviewerSolution)

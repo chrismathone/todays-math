@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from check_collect import judge, parse_output, repair_escapes  # noqa: E402
+from check_collect import check_key, judge, parse_output, repair_escapes  # noqa: E402
 
 OUTPUT = """### 1
 content: ok
@@ -67,3 +67,12 @@ def test_a_verdict_that_does_not_fit_is_not_written():
     assert judge(block(content="flaw", why="끊겼다", solution="none"), False)[0]["newSolution"] is None
     # keep 인데 해설을 적었으면 버린다 — 후보를 그대로 쓴다
     assert judge(block(new="$1$이다."), True)[0]["newSolution"] is None
+
+
+def test_the_key_of_a_text_is_the_same_value_the_loader_computes():
+    """🔴 `src/__tests__/unit/schoolTextbookCheckKey.test.ts` 가 쥔 값과 같다 — 값이 바뀌면 두 시험을 같이 고친다."""
+    frac = chr(92) + "frac{1}{2}"
+    assert check_key("두 점 사이의 거 리는 $12$이다.\n① $1$\n② $" + frac + "$", "②", None) == "03d5c45174dfe3f6"
+    assert check_key("다음을 계산하시오.", "$3$", "$1+2=3$이다.\n따라서 답은 $3$이다.") == "fa5c672c3ea86ef3"
+    # 빈칸 · 줄바꿈은 지문에 넣지 않는다
+    assert check_key("두 점 사이의 거리는 $12$이다. ① $1$ ② $" + frac + "$", " ② ", "") == "03d5c45174dfe3f6"

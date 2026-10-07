@@ -7,8 +7,10 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  cleanContent,
   hwpLeftovers,
   stripItemNumber,
+  stripScoreMarks,
   tidyHwpNotation,
 } from "@/lib/import/schoolTextbook/hwpNotation";
 
@@ -183,6 +185,121 @@ describe("stripItemNumber — 본문 머리에 붙은 문항 번호", () => {
       "$01$로 시작하는",
     ])
       expect(stripItemNumber(text)).toBe(text);
+  });
+});
+
+describe("stripScoreMarks — 본문에 남은 배점 표시", () => {
+  it("대괄호 안에 수와 «점»만 있을 때 걷는다", () => {
+    expect(
+      stripScoreMarks("양수 $r$의 값은? [$3$점]\n① $\\sqrt{5}$\n② $2$"),
+    ).toBe("양수 $r$의 값은?\n① $\\sqrt{5}$\n② $2$");
+    expect(stripScoreMarks("정수 $k$의 개수를 구하시오. [4점]")).toBe(
+      "정수 $k$의 개수를 구하시오.",
+    );
+    expect(stripScoreMarks("구하시오. ［$3.5$점］")).toBe("구하시오.");
+    for (const text of [
+      "점 $[3, 5]$ 위의 점",
+      "구간 $[1,~4]$에서",
+      "[보기]에서 고르시오.",
+      "한 문제에 $4$점씩",
+    ])
+      expect(stripScoreMarks(text)).toBe(text);
+  });
+
+  it("본문 손질은 번호와 배점을 같이 걷는다", () => {
+    expect(cleanContent("01다음 값은? [$4$점]\n① $1$")).toBe(
+      "다음 값은?\n① $1$",
+    );
+  });
+});
+
+describe("지면 검토가 짚은 꼴 — 본문에 섞인 글 · 전각 기호 · 부호만 감싼 근호", () => {
+  it("본문 앞뒤의 머리 · 번호 · 출처를 걷는다", () => {
+    expect(
+      cleanContent(
+        "|원 위의 한 점을 지나는 접선의 방정식| 다음 접선의 방정식을 구하시오.\n⑴ 원 $x^{2}+y^{2}=2$",
+      ),
+    ).toBe("다음 접선의 방정식을 구하시오.\n⑴ 원 $x^{2}+y^{2}=2$");
+    expect(
+      cleanContent(
+        "|함수 $y=x^{n}$($n$은 양의 정수)의 부정적분| 다음 부정적분을 구하시오.",
+      ),
+    ).toBe("다음 부정적분을 구하시오.");
+    expect(cleanContent("명제와 조건\n01 두 조건\n $p:x$는")).toBe(
+      "두 조건\n $p:x$는",
+    );
+    expect(
+      cleanContent("사인법칙과 코사인법칙\n01삼각형 $\\mathrm{ABC}$에서"),
+    ).toBe("삼각형 $\\mathrm{ABC}$에서");
+    expect(cleanContent("01$625$의 네제곱근 중에서 실수인 것들의 곱은?")).toBe(
+      "$625$의 네제곱근 중에서 실수인 것들의 곱은?",
+    );
+    expect(cleanContent("●○○\n다음 중 합성수인 것은?\n① $13$")).toBe(
+      "다음 중 합성수인 것은?\n① $13$",
+    );
+    expect(
+      cleanContent("경우의 수는?\n① $24$\n⑤ $40$\n[2020년 3월 고2 15번]"),
+    ).toBe("경우의 수는?\n① $24$\n⑤ $40$");
+    expect(cleanContent("1 다음을 구하시오.\n⑴ $x=-4$")).toBe(
+      "다음을 구하시오.\n⑴ $x=-4$",
+    );
+    expect(cleanContent("1 두 수 $2^{2}\\times 3^{a}$, $3^{4}$의")).toBe(
+      "두 수 $2^{2}\\times 3^{a}$, $3^{4}$의",
+    );
+  });
+
+  it("본문인 것은 그대로 둔다", () => {
+    for (const text of [
+      "두 집합\n $A=\\left\\{ 1,~2\\right\\}$, $B$에 대하여",
+      "다항식의 연산\n다음 나눗셈의 몫과 나머지를 구하시오.", // 번호가 없으면 제목인지 가릴 수 없다
+      "3 이상의 자연수 $n$에 대하여",
+      "1시간 후 살아 있는 단세포 생물의 수는",
+      "1 이상 10 이하의 자연수 중에서",
+      "$|x|$의 값은?\n① $1$",
+      "구간 $[0,~2]$에서\n[보기]의 설명 중 옳은 것은?",
+    ])
+      expect(cleanContent(text)).toBe(text);
+  });
+
+  it("전각 기호와 부호만 감싼 근호를 고친다", () => {
+    expect(tidyHwpNotation("$2x^{2}+ax－3+a$ · $x＜3$ · $a＝b＋1$")).toBe(
+      "$2x^{2}+ax-3+a$ · $x<3$ · $a=b+1$",
+    );
+    expect(tidyHwpNotation("$\\sqrt{-}3\\sqrt{-}15$ · $\\sqrt{-3}$")).toBe(
+      "$\\sqrt{-3}\\sqrt{-15}$ · $\\sqrt{-3}$",
+    );
+    // 수식 밖의 전각 기호는 글이다
+    expect(tidyHwpNotation("값이 － 인 경우")).toBe("값이 － 인 경우");
+  });
+
+  it.each([
+    // 문자 · 원주율 · 괄호 · 분수 뒤의 단위
+    [
+      r`$x\,cm$ · $4x\,cm^{2}$ · $y\,kWh$`,
+      r`$x\,\mathrm{cm}$ · $4x\,\mathrm{cm}^{2}$ · $y\,\mathrm{kWh}$`,
+    ],
+    [
+      r`$25\pi cm\,^{2}$ · $2\pi cm\,$`,
+      r`$25\pi \,\mathrm{cm}\,^{2}$ · $2\pi \,\mathrm{cm}\,$`,
+    ],
+    [
+      r`$(x+3)km$ · $\frac{5}{4}km$ · $\frac{a}{800}m/s$`,
+      r`$(x+3)\,\mathrm{km}$ · $\frac{5}{4}\,\mathrm{km}$ · $\frac{a}{800}\,\mathrm{m/s}$`,
+    ],
+    [
+      r`$=205(MB)$ · $=4\,\mathrm{(}cm)$ · $2(x+8)~\mathrm{(}cm)$`,
+      r`$=205(\mathrm{MB})$ · $=4\,(\mathrm{cm})$ · $2(x+8)~(\mathrm{cm})$`,
+    ],
+  ])("단위: %s", (before, after) => {
+    expect(tidyHwpNotation(before)).toBe(after);
+    expect(tidyHwpNotation(after)).toBe(after);
+  });
+
+  it.each([
+    r`$2(m)+3$ · $f(m)$ · $(a+b)c$ · $x^{2}m$ · $\frac{k}{2}m$`,
+    r`$3\,\mathrm{cm}$ · $(x+3)\,\mathrm{km}$`,
+  ])("단위가 아닌 것은 그대로: %s", (text) => {
+    expect(tidyHwpNotation(text)).toBe(text);
   });
 });
 

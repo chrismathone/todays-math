@@ -25,11 +25,21 @@ const UNIT_AFTER_DIGIT = new RegExp(
   "g",
 );
 const UNIT_AFTER_SPACE = new RegExp(
-  String.raw`(?<=\\pi\s?|\})(?:\\,|~)+(${UNIT})(?![A-Za-z])`,
+  String.raw`(?<=\\pi\s?|[a-z0-9})])(?:\\,|~)+(${UNIT})(?![A-Za-z])`,
+  "g",
+);
+/** 원주율 · 괄호 · 분수 뒤에 바로 붙은 단위 — «25\pi cm» · «(x+3)km» · «\frac{5}{4}km» */
+const UNIT_GLUED = new RegExp(
+  String.raw`(?<=\\pi\s?|[)}])(${UNIT})(?![A-Za-z])`,
+  "g",
+);
+/** 숫자 뒤 괄호 안의 단위 — «205(MB)». 한 글자 단위는 뺀다(«2(m)» 은 곱일 수 있다) */
+const UNIT_IN_PARENS_AFTER_DIGIT = new RegExp(
+  String.raw`(?<=\d)\((${UNIT})(\^\{\d\})?\)`,
   "g",
 );
 const UNIT_IN_PARENS = new RegExp(
-  String.raw`(?<=\\,|\\pi\s?)\((${UNIT}|m|g|L)(\^\{\d\})?\)`,
+  String.raw`(?<=\\,|~|\\pi\s?)\((${UNIT}|m|g|L)(\^\{\d\})?\)`,
   "g",
 );
 
@@ -86,7 +96,9 @@ function tidyWords(chunk: string): string {
         /(?<![\\A-Za-z])([a-z])(cm|km)(?![A-Za-z])/g,
         "$1\\,\\mathrm{$2}",
       )
+      .replace(UNIT_GLUED, "\\,\\mathrm{$1}")
       .replace(UNIT_IN_PARENS, "(\\mathrm{$1}$2)")
+      .replace(UNIT_IN_PARENS_AFTER_DIGIT, "(\\mathrm{$1}$2)")
       // 그 밖의 표기
       .replace(/(?<!\.)\.\.\.(?!\.)/g, "\\cdots ")
       .replace(/\\int\s*_\{\}\^\{\}/g, "\\int ")
@@ -94,11 +106,25 @@ function tidyWords(chunk: string): string {
   );
 }
 
+const FULL_WIDTH_SIGNS: Record<string, string> = {
+  "－": "-",
+  "＋": "+",
+  "＜": "<",
+  "＞": ">",
+  "＝": "=",
+};
+
 function tidyBody(body: string): string {
   let out = body
     .replace(/\s*\n\s*/g, " ")
+    // 전각 기호 — 수식 글꼴로 조판되지 않는다(«$2x^{2}+ax－3+a$» · «$x＜3$»)
+    .replace(/[－＋＜＞＝]/g, (sign) => FULL_WIDTH_SIGNS[sign] ?? sign)
+    // 근호가 부호만 감쌌다 — «\sqrt{-}3» 은 √(−3) 이다(허수 단원)
+    .replace(/\\sqrt\{-\}(\d+)/g, "\\sqrt{-$1}")
     // 곧은 글자 묶음이 걸리는 것은 낱말 규칙보다 먼저 — «\mathrm{bold}60» · «\mathrm{230}\,km» · «dyad\mathrm{AB}»
     .replace(/\\mathrm\{bold\}/g, "")
+    // 곧은 글자로 감싼 괄호 — «\mathrm{(}cm^{2})»
+    .replace(/\\mathrm\{([()])\}/g, "$1")
     .replace(/\\mathrm\{([\d.,=+\-~\s]*)\}/g, "$1")
     .replace(
       /(?<!\\)dyad\s*(\\mathrm\{[^{}]*\}|\{[^{}]*\}|[A-Z]{2})/g,
@@ -138,11 +164,45 @@ export function tidyHwpNotation(text: string): string {
 }
 
 /**
- * 본문 머리에 붙은 문항 번호를 걷는다 — «01다음을 합의 기호 …» · «01 수직선 위의 …».
- * 0 으로 시작하는 두 자리 수만이다(«1시간 후 …» · «10개의 공 …» 은 본문이다). 본문에만 건다.
+ * 본문 머리에 붙은 문항 번호를 걷는다 — «01다음을 합의 기호 …» · «01 수직선 위의 …» · «01$625$의 네제곱근 …».
+ * 0 으로 시작하는 두 자리 수, 그리고 «1 다음 …» · «1 두 수 …»(첫 문항의 번호가 본문에 붙은 것)만이다.
+ * «1시간 후 …» · «10개의 공 …» · «3 이상의 자연수 …» 는 본문이다. 본문에만 건다.
  */
 export function stripItemNumber(content: string): string {
-  return content.replace(/^0\d\s*(?=[가-힣])/, "");
+  return content
+    .replace(/^0\d\s*(?=[가-힣$])/, "")
+    .replace(/^1\s+(?=다음|두\s+수)/, "");
+}
+
+/**
+ * 본문 앞뒤에 섞인 «문항이 아닌 글»을 걷는다 — 지면 검토(2026-10-07)가 짚은 꼴 넷이다.
+ *   · 유형 제목 «|원 위의 한 점을 지나는 접선의 방정식| 다음 접선의 …» — 세로줄로 감싼 머리
+ *   · 단원 제목 한 줄 + 번호 «명제와 조건 ⏎ 01 두 조건 …» — 둘째 줄이 «01» 로 시작할 때만(제목만 있는 줄은 가릴 수 없다)
+ *   · 난이도 표지 «●○○ ⏎ 다음 중 …»
+ *   · 끝의 출처 표지 «… ⑤ $40$ ⏎ [2020년 3월 고2 15번]»
+ */
+export function stripForeignLines(content: string): string {
+  return content
+    .replace(/^\|[^|\n]{2,80}\|\s*/, "")
+    .replace(/^[^\n$?.!]{2,25}\n(?=0\d\s*[가-힣$])/, "")
+    .replace(/^[●○◐]{2,5}\s*\n/, "")
+    .replace(/\s*\[\s*20\d\d년[^\]\n]*\]\s*$/, "");
+}
+
+/**
+ * 본문에 남은 배점 표시를 걷는다 — «… 의 값은? [$4$점]». 시험 대비 자료의 발문 끝에 붙어 있다(101문항).
+ * 대괄호 안에 수와 «점»만 있을 때다. 본문에만 건다.
+ */
+export function stripScoreMarks(content: string): string {
+  return content.replace(
+    /[ \t]*[[［]\s*\$?\s*\d+(?:\.\d+)?\s*\$?\s*점\s*[\]］]/g,
+    "",
+  );
+}
+
+/** 본문에만 거는 손질 — 문항이 아닌 글(머리 · 번호 · 배점 · 출처)을 걷는다 */
+export function cleanContent(content: string): string {
+  return stripScoreMarks(stripItemNumber(stripForeignLines(content))).trim();
 }
 
 const LEFTOVER_WORDS: Array<[RegExp, string | null]> = [

@@ -5,7 +5,7 @@
 
 `out/<묶음>.txt` 의 `### i` 덩이를 읽어 문항마다 한 줄을 쓴다:
   { id, key, batch, i, content: ok|flaw, contentWhy, solution: keep|replace|none, solutionWhy, newSolution }
-`key` 는 검토자가 본 글의 지문이다(`check_batches.py` 가 `key/` 에 둔 것) — 적재기가 지금 글의 지문과 견준다.
+`key` 는 검토자가 본 글의 지문이다(`check_key` — 묶음의 글에서 낸다) — 적재기가 지금 글의 지문과 견준다.
 
 판정이 꼴에 안 맞는 덩이는 **쓰지 않는다**(그 문항은 «아직 검토받지 않음»으로 남아 잠긴 채다):
   - `content` 가 ok · flaw 가 아니다 / `solution` 이 keep · replace · none 이 아니다
@@ -14,6 +14,7 @@
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import pathlib
 import re
@@ -33,6 +34,17 @@ _BROKEN_ESCAPES = (
     ("\x07", "a", r"lpha|ngle|pprox|st(?![a-z])"),
     ("\x0b", "v", r"ec(?![a-z])|arnothing|ert|dots"),
 )
+
+
+def check_key(content: str, answer: str, solution: str | None) -> str:
+    """검토자가 본 글의 지문 — 적재기(`src/lib/import/schoolTextbook/checkKey.ts`)와 **같은 셈**이다.
+
+    빈칸 · 줄바꿈은 넣지 않는다(끊긴 낱말을 붙이는 손질은 판정이 본 것을 바꾸지 않는다).
+    🔴 두 쪽의 시험이 같은 예 · 같은 값을 쥐고 있다 — 한쪽만 바꾸면 모든 판정이 «다른 글»로 읽혀 전부 잠긴다.
+    """
+    squeeze = lambda text: re.sub("[ \t\r\n]+", "", text)  # noqa: E731
+    joined = "\n::\n".join(squeeze(text) for text in (content, answer, solution or ""))
+    return hashlib.sha1(joined.encode("utf-8")).hexdigest()[:16]
 
 
 def repair_escapes(text: str) -> str:
@@ -102,6 +114,7 @@ def main() -> None:
                 continue
             done += 1
             blocks = parse_output(result.read_bytes().decode("utf-8"))
+            items = json.loads((root / "batch" / f"{name}.json").read_text(encoding="utf-8"))
             for key in json.loads((root / "key" / f"{name}.json").read_text(encoding="utf-8")):
                 block = blocks.get(key["i"])
                 if block is None:
@@ -115,7 +128,10 @@ def main() -> None:
                     continue
                 for field in ("content", "solution"):
                     counts[field][record[field]] = counts[field].get(record[field], 0) + 1
-                out.write(json.dumps({"id": key["id"], "key": key["key"], "batch": name, "i": key["i"], **record}, ensure_ascii=False) + "\n")
+                # 지문은 검토자가 **본 글**(묶음)에서 낸다
+                item = items[key["i"] - 1]
+                seen = check_key("\n".join(item["lines"]), item["answer"], "\n".join(item["solution"]) if item["solution"] else None)
+                out.write(json.dumps({"id": key["id"], "key": seen, "batch": name, "i": key["i"], **record}, ensure_ascii=False) + "\n")
     print(f"묶음 {done}/{len(index)} · 판정 {sum(counts['content'].values())} · 못 쓴 덩이 {missing}")
     print("  본문:", json.dumps(counts["content"], ensure_ascii=False))
     print("  해설:", json.dumps(counts["solution"], ensure_ascii=False))
