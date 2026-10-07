@@ -1,11 +1,11 @@
 /**
- * 🔴 RED → 🟢 — «오늘의 작업» 뷰 (D-148 · 25 §1.2 · 시안 hifi-d148-english-switch.html C 안 본문).
+ * «오늘의 작업» 뷰 — WorkroomHome 구성과 기존 영어 행동 계약.
  *
  * 구현: src/components/english/EnglishStudio.tsx · EnglishPrepView.tsx
  * 뒷단: MSW `src/mocks/handlers/english.ts` (base 의 라우트가 워크트리에 없어도 화면 시험은 돈다)
  *
  * 무엇을 잠그나
- * 1. 시험 목록은 **한 번** 읽고 학교 칩 · 시험 고르기 · «이번 시험 준비» 세 단계 · 자료 · 출제 설정 · 세트를 그린다.
+ * 1. 시험 목록은 **한 번** 읽고 학교·시험 선택 · 실제 준비 개수 · 자료 · 출제 설정 · 세트를 그린다.
  * 2. 고른 시험은 localStorage(`today-english-exam`)에 남는다.
  * 3. 자료 추가(지문 직접 입력 · 파일) — 상한(계약 `ENGLISH_MATERIAL_MAX_BYTES`, 4MB) 초과 · 허용하지 않는 확장자는 **보내지 않고** 거절 문구.
  * 4. 자료 · 시험 삭제는 확인 창(ConfirmDialog)을 지난다. 시험 삭제 창은 딸린 자료·세트도 지워짐을 적는다.
@@ -83,7 +83,7 @@ describe("[EnglishStudio] 오늘의 작업", () => {
       ).toMatchObject({ ok: true });
   });
 
-  it("시험 목록을 한 번 읽어 학교 칩 · 시험 고르기 · 준비 단계 · 자료 · 설정 · 세트를 그린다", async () => {
+  it("시험 목록을 한 번 읽어 학교·시험 선택 · 실제 준비 개수 · 자료 · 설정 · 세트를 그린다", async () => {
     const log = makeLog();
     const requests = requestLog();
     render(<Harness log={log} />);
@@ -96,8 +96,11 @@ describe("[EnglishStudio] 오늘의 작업", () => {
       ),
     ).toBeVisible();
 
-    // 학교 칩 — 고른 칩은 aria-pressed
-    const chips = within(screen.getByRole("group", { name: "학교" }));
+    // 학교와 시험은 한 영역에서 고른다 — 고른 학교는 aria-pressed
+    const context = within(
+      screen.getByRole("region", { name: "학교와 시험 선택" }),
+    );
+    const chips = within(context.getByRole("group", { name: "학교" }));
     expect(chips.getByRole("button", { name: "침산중학교" })).toHaveAttribute(
       "aria-pressed",
       "true",
@@ -105,13 +108,13 @@ describe("[EnglishStudio] 오늘의 작업", () => {
     expect(
       chips.getByRole("button", { name: "경명여자중학교" }),
     ).toHaveAttribute("aria-pressed", "false");
-    const pick = screen.getByRole("combobox", { name: "시험 고르기" });
+    const pick = context.getByRole("combobox", { name: "시험 고르기" });
     expect(
       within(pick).getByRole("option", { name: "중3 · 2학기 중간고사" }),
     ).toBeInTheDocument();
     expect(pick).toHaveValue(ENGLISH_EXAM_A_ID);
 
-    // 이번 시험 준비 — 세 단계는 단추, 끝난 단계는 ✓
+    // 실제 개수와 이동 단추 — 항목이 존재한다는 이유로 준비 완료로 표시하지 않는다.
     expect(screen.getByText("10월 14일 시험 예정")).toBeVisible();
     const steps = within(screen.getByRole("list", { name: "이번 시험 준비" }));
     expect(steps.getByRole("button", { name: /자료 등록/ })).toHaveTextContent(
@@ -123,7 +126,7 @@ describe("[EnglishStudio] 오늘의 작업", () => {
     expect(
       steps.getByRole("button", { name: /검토 및 인쇄/ }),
     ).toHaveTextContent("1개 검토 완료");
-    expect(steps.getAllByText("✓")).toHaveLength(3);
+    expect(steps.queryByText("✓")).not.toBeInTheDocument();
 
     // 시험 자료 — 파일은 내려받기 링크, 텍스트는 글자 수
     const materials = within(screen.getByRole("region", { name: "시험 자료" }));
@@ -257,6 +260,21 @@ describe("[EnglishStudio] 오늘의 작업", () => {
     expect(requests.seen.filter((r) => r.method === "POST")).toHaveLength(0);
     requests.off();
   });
+
+  it.each([/^자료 추가$/, /자료 등록/])(
+    "자료 창을 닫으면 실제로 열었던 단추 %s로 초점을 돌린다",
+    async (name) => {
+      render(<Harness log={makeLog()} />);
+      await screen.findByRole("heading", { name: "오늘의 작업" });
+      const opener = screen.getByRole("button", { name });
+      opener.focus();
+      fireEvent.click(opener);
+      const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
+      fireEvent.click(dialog.getByRole("button", { name: "창 닫기" }));
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(opener).toHaveFocus();
+    },
+  );
 
   it("자료 종류는 방향키와 Home/End로 선택하고 선택한 탭만 Tab으로 방문한다", async () => {
     render(<Harness log={makeLog()} />);
