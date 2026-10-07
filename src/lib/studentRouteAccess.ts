@@ -249,6 +249,11 @@ const ACTIVE_RULES: readonly Rule[] = [
     why: "오늘의 기억 — 본인의 복습 상태 조회 · 풀이와 평가 저장",
   },
   {
+    methods: ["GET", "POST"],
+    path: "/api/learn/fading/relearn",
+    why: "오늘의 기억 — 본인의 단기 재학습 대기열 조회 · 확인의 답 저장",
+  },
+  {
     methods: ["GET"],
     path: "/api/learn/fading/catalog",
     why: "오늘의 기억 — 개념 목록",
