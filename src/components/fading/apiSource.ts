@@ -9,16 +9,26 @@ async function request<T>(
   url: string,
   parse: (json: unknown) => Promise<T>,
   body?: unknown,
+  studentId?: string,
 ): Promise<T> {
   let res: Response;
   try {
     res = await fetch(url, {
       cache: "no-store",
+      ...(studentId || body !== undefined
+        ? {
+            headers: {
+              ...(studentId ? { "x-student-id": studentId } : {}),
+              ...(body === undefined
+                ? {}
+                : { "content-type": "application/json" }),
+            },
+          }
+        : {}),
       ...(body === undefined
         ? {}
         : {
             method: "POST",
-            headers: { "content-type": "application/json" },
             body: JSON.stringify(body),
           }),
     });
@@ -71,32 +81,47 @@ async function request<T>(
   }
 }
 
-export function createApiFadingSource(): FadingSource {
+export function createApiFadingSource({
+  studentId,
+}: { studentId?: string } = {}): FadingSource {
+  const scoped = <T>(
+    url: string,
+    parse: (json: unknown) => Promise<T>,
+    body?: unknown,
+  ) => request(url, parse, body, studentId);
   return {
     state: () =>
-      request(
+      scoped(
         "/api/learn/fading",
         async (json) =>
           (await contracts()).fadingStateResponseSchema.parse(json).data,
       ),
     act: (action) =>
-      request(
+      scoped(
         "/api/learn/fading",
         async (json) =>
           (await contracts()).fadingStateResponseSchema.parse(json).data,
         action,
       ),
     catalog: (grade) =>
-      request(
+      scoped(
         `/api/learn/fading/catalog${grade ? `?grade=${encodeURIComponent(grade)}` : ""}`,
         async (json) =>
           (await contracts()).fadingCatalogResponseSchema.parse(json).data,
       ),
     concept: (id) =>
-      request(
+      scoped(
         `/api/learn/fading/concepts/${encodeURIComponent(id)}`,
         async (json) =>
           (await contracts()).fadingConceptResponseSchema.parse(json).data,
+      ),
+    dailyPlan: (options) =>
+      scoped(
+        `/api/learn/fading/daily${options?.quota === undefined ? "" : `?quota=${encodeURIComponent(options.quota)}`}`,
+        async (json) =>
+          (
+            await import("@/contracts/fadingDaily.contract")
+          ).fadingDailyPlanResponseSchema.parse(json).data,
       ),
   };
 }
