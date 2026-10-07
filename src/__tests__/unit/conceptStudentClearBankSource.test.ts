@@ -54,13 +54,36 @@ describe("reviewed table attachment source plan", () => {
         "utf8",
       );
       const attached = text.includes("attachReviewedQuestions");
-      if (attached) expect(() => attachAssessmentSource(text, part)).toThrow("기존");
+      if (attached)
+        expect(() => attachAssessmentSource(text, part)).toThrow("기존");
       // Keep exercising the migration against every real source after adoption.
-      const original = attached ? text
-        .replace(/^import \{ withAssessments as attachReviewedQuestions[^\n]*\n/m, "")
-        .replace(/^import reviewedQuestionData[^\n]*\n/m, "")
-        .replace(/^\/\/ 원래 단원·그림·사례 helper[^\n]*\n/m, "")
-        .replace(/^bank\.concepts = attachReviewedQuestions[^\n]*\n?/m, "") : text;
+      const parsed = ts.createSourceFile(
+        "bank.ts",
+        text,
+        ts.ScriptTarget.Latest,
+        true,
+      );
+      const attachments = parsed.statements.filter(
+        (node) =>
+          (ts.isImportDeclaration(node) &&
+            ts.isStringLiteral(node.moduleSpecifier) &&
+            (node.moduleSpecifier.text === "./assessment" ||
+              node.moduleSpecifier.text.startsWith("./assessments/"))) ||
+          (ts.isExpressionStatement(node) &&
+            node
+              .getText(parsed)
+              .startsWith("bank.concepts = attachReviewedQuestions(")),
+      );
+      const original = attached
+        ? attachments
+            .slice()
+            .reverse()
+            .reduce(
+              (source, node) =>
+                source.slice(0, node.getFullStart()) + source.slice(node.end),
+              text,
+            )
+        : text;
       const after = attachAssessmentSource(original, part);
       expect(after).toContain(
         `./assessments/${part.replace(/plus$/, "-plus")}.json`,

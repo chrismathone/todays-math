@@ -11,8 +11,11 @@ import finalChanges from "../../../docs/planning/tracks/reports/concept-student-
 type Revision = { id: string; before: string; after: string };
 const originalRevisions = changes.changes as Revision[];
 const finalRevisions = finalChanges.changes as Revision[];
-const revised = [...new Map([...originalRevisions, ...finalRevisions]
-  .map((row) => [row.id, row])).values()];
+const revised = [
+  ...new Map(
+    [...originalRevisions, ...finalRevisions].map((row) => [row.id, row]),
+  ).values(),
+];
 const entries = new Map(
   CONCEPT_BLANK_BANK.concepts.map((entry) => [entry.id, entry]),
 );
@@ -33,7 +36,8 @@ describe("reviewed concept wording is shared by worksheets, recall and new textb
     expect(finalRevisions).toHaveLength(607);
     const prior = new Map(originalRevisions.map((row) => [row.id, row]));
     for (const row of finalRevisions) {
-      if (prior.has(row.id)) expect(row.before, row.id).toBe(prior.get(row.id)!.after);
+      if (prior.has(row.id))
+        expect(row.before, row.id).toBe(prior.get(row.id)!.after);
     }
   });
   it("has applied revisions in every supported grade", () => {

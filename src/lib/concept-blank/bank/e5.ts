@@ -6,9 +6,11 @@ import type {
   ApplyItem,
 } from "@/contracts/conceptBlank.contract";
 import { markGivenCases } from "./plus";
-import { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";
+import {
+  withAssessments as attachReviewedQuestions,
+  type AssessmentTable as ReviewedQuestionTable,
+} from "./assessment";
 import reviewedQuestionData from "./assessments/e5.json";
-
 
 /** 초5 고정 은행. 교재는 용어·차례만 참고하고 설명과 수치는 새로 썼다. */
 export const bank: ConceptBlankBank = {
@@ -2592,4 +2594,7 @@ figure(
 markGivenCases(bank, []);
 
 // 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.
-bank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;
+bank.concepts = attachReviewedQuestions(
+  bank,
+  reviewedQuestionData as ReviewedQuestionTable,
+).concepts;

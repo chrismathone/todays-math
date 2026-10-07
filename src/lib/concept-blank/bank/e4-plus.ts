@@ -1,7 +1,9 @@
 import { RETIRED, joinBanks, plusSection } from "./plus";
-import { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";
+import {
+  withAssessments as attachReviewedQuestions,
+  type AssessmentTable as ReviewedQuestionTable,
+} from "./assessment";
 import reviewedQuestionData from "./assessments/e4-plus.json";
-
 
 /**
  * 초4 보강(은행 3차) — 소단원마다 개념 · ○× · 적용이 원래 `e4.ts` 와 합쳐 하 · 중 · 상 10개씩 되게 채운다.
@@ -23441,4 +23443,7 @@ export const bank = joinBanks([
 ]);
 
 // 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.
-bank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;
+bank.concepts = attachReviewedQuestions(
+  bank,
+  reviewedQuestionData as ReviewedQuestionTable,
+).concepts;

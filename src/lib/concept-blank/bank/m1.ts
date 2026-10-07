@@ -5,9 +5,11 @@ import type {
   FigureItem,
   OxItem,
 } from "@/contracts/conceptBlank.contract";
-import { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";
+import {
+  withAssessments as attachReviewedQuestions,
+  type AssessmentTable as ReviewedQuestionTable,
+} from "./assessment";
 import reviewedQuestionData from "./assessments/m1.json";
-
 
 /**
  * 개념 백지 은행 — 중1(D-150 · 26번 문서 §5). 교재는 «어떤 용어가 어느 소단원에 있나»만 참고하고
@@ -5773,4 +5775,7 @@ figure(
 );
 
 // 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.
-bank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;
+bank.concepts = attachReviewedQuestions(
+  bank,
+  reviewedQuestionData as ReviewedQuestionTable,
+).concepts;

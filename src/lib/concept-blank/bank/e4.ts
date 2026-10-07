@@ -4,9 +4,11 @@ import type {
   FigureItem,
 } from "@/contracts/conceptBlank.contract";
 import { markGivenCases } from "./plus";
-import { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";
+import {
+  withAssessments as attachReviewedQuestions,
+  type AssessmentTable as ReviewedQuestionTable,
+} from "./assessment";
 import reviewedQuestionData from "./assessments/e4.json";
-
 
 /** 수식이 든 글을 새로 쓸 때는 `r` 로 쓴다 — 역슬래시를 그대로 둔다(전수 검토 2026-10-02). */
 const r = String.raw;
@@ -1792,12 +1794,7 @@ section(
   "2-6 다각형",
   "2-6-1 다각형",
   [
-    [
-      "다각형",
-      "정의",
-      "하",
-      "선분으로만 둘러싸인 도형을 {다각형}이라 한다.",
-    ],
+    ["다각형", "정의", "하", "선분으로만 둘러싸인 도형을 {다각형}이라 한다."],
     [
       "오각형",
       "정의",
@@ -2506,4 +2503,7 @@ figure(
 markGivenCases(bank, []);
 
 // 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.
-bank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;
+bank.concepts = attachReviewedQuestions(
+  bank,
+  reviewedQuestionData as ReviewedQuestionTable,
+).concepts;

@@ -1,7 +1,9 @@
 import { joinBanks, plusSection, RETIRED } from "./plus";
-import { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";
+import {
+  withAssessments as attachReviewedQuestions,
+  type AssessmentTable as ReviewedQuestionTable,
+} from "./assessment";
 import reviewedQuestionData from "./assessments/e5-plus.json";
-
 
 /** 수식이 든 글은 `r` 로 쓴다 — 역슬래시를 그대로 둔다. */
 const r = String.raw;
@@ -14100,7 +14102,12 @@ export const bank = joinBanks([
           "성질",
           "대칭축으로 나뉜 두 부분은 넓이가 같으므로 전체 넓이는 {한쪽 넓이의 두 배}이다.",
         ],
-        ["상", "원의 대칭축 수", "성질", "원의 대칭축의 개수는 {셀 수 없이 많다}."],
+        [
+          "상",
+          "원의 대칭축 수",
+          "성질",
+          "원의 대칭축의 개수는 {셀 수 없이 많다}.",
+        ],
         [
           "상",
           "정오각형의 대칭축",
@@ -17086,8 +17093,18 @@ export const bank = joinBanks([
         "성질",
         "직육면체에서 평행한 두 면은 서로 {마주 보는} 면이다.",
       ],
-      ["하", "밑면의 수", "성질", r`직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 {$2$}개이다.`],
-      ["하", "옆면의 수", "성질", r`직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 {$4$}개이다.`],
+      [
+        "하",
+        "밑면의 수",
+        "성질",
+        r`직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 {$2$}개이다.`,
+      ],
+      [
+        "하",
+        "옆면의 수",
+        "성질",
+        r`직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 {$4$}개이다.`,
+      ],
       [
         "하",
         "이웃한 두 면",
@@ -19382,4 +19399,7 @@ export const bank = joinBanks([
 ]);
 
 // 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.
-bank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;
+bank.concepts = attachReviewedQuestions(
+  bank,
+  reviewedQuestionData as ReviewedQuestionTable,
+).concepts;

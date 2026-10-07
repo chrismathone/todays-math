@@ -5,9 +5,11 @@ import type {
   OxItem,
   ApplyItem,
 } from "@/contracts/conceptBlank.contract";
-import { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";
+import {
+  withAssessments as attachReviewedQuestions,
+  type AssessmentTable as ReviewedQuestionTable,
+} from "./assessment";
 import reviewedQuestionData from "./assessments/e6.json";
-
 
 /** 수식이 든 글은 `r` 로 쓴다 — 역슬래시를 그대로 둔다. */
 const r = String.raw;
@@ -2624,4 +2626,7 @@ export const bank: ConceptBlankBank = {
 };
 
 // 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.
-bank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;
+bank.concepts = attachReviewedQuestions(
+  bank,
+  reviewedQuestionData as ReviewedQuestionTable,
+).concepts;
