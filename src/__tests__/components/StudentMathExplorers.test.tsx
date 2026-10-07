@@ -45,7 +45,11 @@ vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
 }));
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 vi.mock("@/components/math-explorers/ExplorerBankActivity", () => ({
   default: ({
     kind,
