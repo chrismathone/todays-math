@@ -13,6 +13,7 @@
 import type { NextRequest } from "next/server";
 
 import { jsonError } from "@/lib/apiResponse";
+import { cronSecretMatches } from "@/lib/cronSecret";
 
 import { executeSyncResponse } from "../route";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
@@ -27,7 +28,7 @@ async function handleGet(request: NextRequest) {
       "CRON_SECRET 이 설정되지 않았습니다.",
       503,
     );
-  if (request.headers.get("authorization") !== `Bearer ${secret}`)
+  if (!cronSecretMatches(request, secret))
     return jsonError("UNAUTHORIZED", "cron 시크릿이 다릅니다.", 401);
   return executeSyncResponse();
 }

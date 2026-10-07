@@ -1,3 +1,7 @@
+import { notFound } from "next/navigation";
+
+import { devPageVisible } from "@/lib/devPageAccess";
+
 import { CANDIDATES, glyphPxAt, readSamples } from "./samples";
 import type { GlyphPayload, GlyphSample } from "./samples";
 
@@ -46,8 +50,9 @@ function Row({ s, p }: { s: GlyphSample; p: GlyphPayload }) {
 
       {/* 본문 글자 — 그림 바로 옆에 둔다. 이것이 견줄 상대다. */}
       <p className="mb-3 text-[12.5px] leading-[1.55]">
-        본문은 이 크기입니다(12.5px). 아래 그림 속 숫자·이름이 이 글자보다 작으면
-        학생이 종이에서 못 읽습니다. 견주실 것은 <b>이 문장의 글자</b>입니다.
+        본문은 이 크기입니다(12.5px). 아래 그림 속 숫자·이름이 이 글자보다
+        작으면 학생이 종이에서 못 읽습니다. 견주실 것은 <b>이 문장의 글자</b>
+        입니다.
       </p>
 
       <div className="flex flex-wrap items-start gap-6">
@@ -79,7 +84,11 @@ function Row({ s, p }: { s: GlyphSample; p: GlyphPayload }) {
   );
 }
 
-export default function Page() {
+export default async function Page() {
+  // 프록시가 `/dev/` 를 공개로 둔다 — production 에서는 **로그인한 원장에게만** 연다
+  // (`src/lib/devPageAccess.ts`). 실물 비교 지면이라 인쇄하시는 컴퓨터에서도 보여야 한다.
+  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+
   const p = readSamples();
 
   if (!p) {
@@ -87,7 +96,8 @@ export default function Page() {
       <main className="mx-auto max-w-[900px] p-8">
         <h1 className="text-lg font-bold">그림 글자 크기 — 표본이 없습니다</h1>
         <p className="mt-3 text-[13px]">
-          먼저 <code>python scripts/qa/pick-glyph-size-samples.py</code> 를 돌리십시오.
+          먼저 <code>python scripts/qa/pick-glyph-size-samples.py</code> 를
+          돌리십시오.
           <b> 빈 화면을 「문제 없음」으로 읽으면 안 됩니다.</b>
         </p>
       </main>
@@ -102,15 +112,18 @@ export default function Page() {
 
       <p className="mt-2 text-[13px] leading-[1.6]">
         갈래가 실제로 내는 그림 <b>{p.drawn}장</b> 중 글자가 있는 것이{" "}
-        <b>{p.withText}종</b>이고, 그 가운데 <b>{p.belowBody}종</b>이 지면에서 본문(
-        {p.bodyPx}px)보다 작은 글자로 나갑니다. 아래는 <b>나쁜 것 12 + 멀쩡한 것 4</b>
+        <b>{p.withText}종</b>이고, 그 가운데 <b>{p.belowBody}종</b>이 지면에서
+        본문(
+        {p.bodyPx}px)보다 작은 글자로 나갑니다. 아래는{" "}
+        <b>나쁜 것 12 + 멀쩡한 것 4</b>
         입니다 — 멀쩡한 것을 같이 둔 것은 「전부 이렇구나」로 읽히지 않게 하려는
         것입니다. 잰 날: {p.measuredOn}.
       </p>
 
       <p className="mt-2 text-[13px] leading-[1.6]">
-        <b>인쇄해서 보십시오.</b> 화면 배율로는 판단이 어긋납니다. 각 줄에 본문 문장이
-        같이 있으니, <b>그 문장의 글자와 그림 속 숫자를 눈으로 견주시면</b> 됩니다.
+        <b>인쇄해서 보십시오.</b> 화면 배율로는 판단이 어긋납니다. 각 줄에 본문
+        문장이 같이 있으니,{" "}
+        <b>그 문장의 글자와 그림 속 숫자를 눈으로 견주시면</b> 됩니다.
       </p>
 
       <ul className="mt-3 space-y-1 text-[12px] leading-[1.5]">
@@ -122,9 +135,9 @@ export default function Page() {
       </ul>
 
       <p className="mt-3 text-[12px] leading-[1.5] text-neutral-700">
-        ⚠️ 후보 넷은 전부 <b>「얼마나 크게 싣는가」</b>만 바꿉니다. 그림 자체의 글자를
-        키우는 것은 그리는 쪽(엔진)을 고치는 일이라 이 화면에서 보여 드릴 수 없습니다.
-        폭으로 못 메우는 자리가 남으면 그때 따로 여쭙겠습니다.
+        ⚠️ 후보 넷은 전부 <b>「얼마나 크게 싣는가」</b>만 바꿉니다. 그림 자체의
+        글자를 키우는 것은 그리는 쪽(엔진)을 고치는 일이라 이 화면에서 보여 드릴
+        수 없습니다. 폭으로 못 메우는 자리가 남으면 그때 따로 여쭙겠습니다.
       </p>
 
       <div className="mt-6">
