@@ -1,6 +1,7 @@
 /**
  * 오늘의 영어 — AI 직접 생성 (D-148 · 25 §4.3). 서버 전용 — 호출부가 키를 읽는다.
- * 공급자: `OPENAI_API_KEY` 가 있으면 gpt-6-luna(`callOpenAi`), 없으면 DeepSeek(`callAi`) — `resolveEnglishVendor`(25 §12.7).
+ * 운영 공급자: `OPENAI_API_KEY` 가 있으면 gpt-6-luna(`callOpenAi`), 없으면 DeepSeek(`callAi`).
+ * 개발 라우트는 구독 CLI 전송을 주입한다. 전송만 바꾸고 파싱·검증·고쳐 쓰기는 함께 쓴다.
  *
  * 흐름: 프롬프트(`src/lib/ai/prompts/englishExam.ts`) → `callOpenAi`/`callAi` → **객체 하나** `parseAiJsonObject`
  *   → 모양 받아 주기(`coerceEnglishDraftShape`) → 검증기 `validateEnglishDraft(value, input)` → `source: "deepseek"`.
@@ -84,8 +85,8 @@ export function resolveEnglishVendor(
 
 /** 고쳐 쓰기를 시작해도 되는 첫 호출의 최대 소요 — 라우트 300초에서 고쳐 쓰기 한 번(~100초)과 여유를 뺀 값 */
 /**
- * 지금 서버 AI 길이 부르는 모델 · 프롬프트 판 — 세트의 «만든 조건»에 싣는다(원장님 2026-10-01 «메타데이터 기억되게»).
- * `generateEnglishDraft` 와 같은 `resolveEnglishVendor` 로 고르므로 실제로 부른 것과 같다.
+ * 운영 API가 부르는 모델 · 프롬프트 판 — 세트의 «만든 조건»에 싣는다(원장님 2026-10-01 «메타데이터 기억되게»).
+ * `generateEnglishDraft` 의 기본 API 전송과 같은 `resolveEnglishVendor`로 고른다. 개발은 주입된 CLI의 메타데이터를 쓴다.
  */
 export function englishGenerationModel(
   env: Record<string, string | undefined> = process.env,
@@ -101,9 +102,16 @@ export function englishGenerationModel(
 
 export const ENGLISH_REFINE_BUDGET_MS = 150_000;
 
+export type EnglishGenerationTransport = (input: {
+  system: string;
+  prompt: string;
+}) => Promise<string>;
+
 export interface GenerateEnglishOptions {
   /** 시계 — 시험이 예산 분기를 재려고 넣는다 */
   now?: () => number;
+  /** 개발 구독 CLI도 같은 파서·검증기·고쳐 쓰기를 거친다. */
+  transport?: EnglishGenerationTransport;
 }
 
 /**
@@ -113,10 +121,14 @@ export interface GenerateEnglishOptions {
 export async function generateEnglishDraft(
   input: EnglishGenerateRequest,
   grade: EnglishGrade,
-  { now = Date.now }: GenerateEnglishOptions = {},
+  { now = Date.now, transport }: GenerateEnglishOptions = {},
 ): Promise<EnglishDraft> {
   const started = now();
-  const call = resolveEnglishVendor() === "openai" ? callOpenAi : callAi;
+  // 개발 라우트가 전송 주입을 빠뜨려도 과금 API로 내려가지 않는다.
+  if (process.env.NODE_ENV === "development" && !transport)
+    throw new AiConfigError("개발용 구독 AI 연결이 설정되지 않았습니다.");
+  const call =
+    transport ?? (resolveEnglishVendor() === "openai" ? callOpenAi : callAi);
   const system = buildEnglishSystemPrompt();
   const attempt = async () => {
     const raw = await call({
