@@ -379,6 +379,8 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         // «오늘의 기억» 새 앱(2026-10-06) — 관문은 열고, 서버 문이 꺼져 있으면 라우트가 404 로 답한다.
         "GET /api/learn/fading",
         "POST /api/learn/fading",
+        "GET /api/learn/fading/relearn",
+        "POST /api/learn/fading/relearn",
         "GET /api/learn/fading/catalog",
         `GET /api/learn/fading/concepts/${UUID}`,
         "GET /api/learn/fading/daily",
