@@ -195,7 +195,7 @@ async function openPdf(file: File) {
     useSystemFonts: true,
   }).promise;
   if (doc.numPages > 30) {
-    await doc.destroy();
+    await doc.loadingTask.destroy();
     throw new Error("30쪽 이하의 자료를 선택하세요.");
   }
   return { doc, pdfjs };
@@ -217,7 +217,7 @@ export async function readListeningPdfText(file: File) {
     }
     return pages.join("\n");
   } finally {
-    await doc.destroy();
+    await doc.loadingTask.destroy();
   }
 }
 
@@ -323,6 +323,6 @@ export async function readListeningQuestionPdf(
       );
     return questions;
   } finally {
-    await doc.destroy();
+    await doc.loadingTask.destroy();
   }
 }

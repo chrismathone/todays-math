@@ -1,5 +1,5 @@
 /**
- * 🔴 RED → 🟢 — 검토·편집 화면 (D-148 · 25 §1.3). «학교별 내신 대비» 뷰 안 상태(`editing: setId`)로 열린다.
+ * 🔴 RED → 🟢 — 검토·편집 화면 (D-148 · 25 §1.3). «오늘의 작업» 뷰 안 상태(`editing: setId`)로 열린다.
  *
  * 구현: src/components/english/EnglishEditor.tsx (뿌리 EnglishStudio 가 마운트)
  *
@@ -243,7 +243,7 @@ describe("[EnglishEditor] 검토·편집", () => {
     );
     fireEvent.click(dialog.getByRole("button", { name: "삭제" }));
     expect(
-      await screen.findByRole("heading", { name: "문제 보관함" }),
+      await screen.findByRole("heading", { name: "내 문제 세트" }),
     ).toBeVisible();
     expect(
       screen.queryByText("협력의 가치 · 외부지문 기본 훈련"),
@@ -422,7 +422,7 @@ describe("[EnglishEditor] 검토·편집", () => {
     );
     const log = makeLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(
       await screen.findByRole("button", {
         name: "협력의 가치 · 외부지문 기본 훈련 열기",
@@ -436,7 +436,7 @@ describe("[EnglishEditor] 검토·편집", () => {
     ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "목록" }));
     expect(
-      await screen.findByRole("heading", { name: "문제 보관함" }),
+      await screen.findByRole("heading", { name: "내 문제 세트" }),
     ).toBeVisible();
   });
 });

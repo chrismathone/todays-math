@@ -57,8 +57,8 @@ import type { EnglishView } from "./views";
 import s from "./EnglishStudio.module.css";
 
 const HEADER = {
-  title: "학교별 내신 대비",
-  description: "학교의 출제 흐름에 맞춰, 이번 시험을 준비하세요.",
+  title: "오늘의 작업",
+  description: "시험 범위와 자료를 정리하고, 필요한 문제를 준비하세요.",
 };
 /** 계약이 내보내지 않는 상한 — `englishMaterialTextCreateSchema.name.max(255)` 와 같은 값 */
 const MATERIAL_NAME_MAX = 255;

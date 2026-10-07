@@ -54,7 +54,7 @@ export default function EnglishLibraryView({
   return (
     <>
       <WorkspacePageHeader
-        title="문제 보관함"
+        title="내 문제 세트"
         description="이 시험의 문제 세트를 찾고, 열어 검토합니다."
       />
       <EnglishExamPicker exams={exams} exam={exam} onSelect={onSelectExam} />

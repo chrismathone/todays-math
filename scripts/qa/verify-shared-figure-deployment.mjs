@@ -623,7 +623,7 @@ async function renderPdf(page, helpers, bytes, imageBoxes) {
           png: canvas.toDataURL("image/png").split(",")[1],
         });
       }
-      await pdf.destroy();
+      await pdf.loadingTask.destroy();
       return pages;
     },
     { encoded: bytes.toString("base64"), imageBoxes },

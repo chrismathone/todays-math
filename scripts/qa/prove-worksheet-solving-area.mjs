@@ -278,7 +278,7 @@ try {
     );
     document.canvasFactory.destroy(canvas);
     pdfs.push({ style, pages: document.numPages, bounds: first.view });
-    await document.destroy();
+    await document.loadingTask.destroy();
   }
   await writeFile(
     path.join(output, "evidence.json"),

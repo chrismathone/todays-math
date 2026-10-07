@@ -712,7 +712,7 @@ describe("[사진에서 글 읽기] 자료 화면에서 들어가는 길", () =>
       return realFetch(input, init);
     });
     render(<Harness log={makeLog()} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "자료 추가" }));
     const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
     fireEvent.change(dialog.getByLabelText("파일"), {
@@ -796,7 +796,7 @@ describe("[사진에서 글 읽기] 자료 화면에서 들어가는 길", () =>
       return realFetch(input, init);
     });
     render(<Harness log={makeLog()} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "자료 추가" }));
     const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
     fireEvent.click(dialog.getByRole("tab", { name: "사진에서 읽기" }));

@@ -1187,7 +1187,7 @@ export const ITEMS: PrintCheckItem[] = [
       "④ ∑ 의 위·아래끝이 기호와 겹치지 않는가.",
     lookFromSource: false,
     evidence: [
-      "src/app/globals.css (--op-limit-scale · .katex .mop .sizing)",
+      "src/app/globals.css (--op-limit-scale · .katex .mop .katex-sizing)",
       "src/__tests__/unit/opLimitScale.test.ts",
       "docs/planning/07-coding-convention.md (D-104)",
     ],

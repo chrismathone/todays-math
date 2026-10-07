@@ -3,25 +3,17 @@
 /**
  * 오늘의 영어 — «문제 만들기» (D-148 · 25 §4 · 브리프 english-ai §3). 트랙 english-ai 소유.
  *
- * 세 길: ① ChatGPT 로 제작(키 없음 — 요청문 복사 · 결과 붙여넣기) ② 원문 복원(규칙 기반 `makeCloze`)
- * ③ API 직접 생성(`POST /api/english/generate`). 세 길 모두 저장 전 미리보기가 없다 — 편집 화면이 곧 검토다.
- * 저장은 늘 «초안»(`POST /api/english/exams/{id}/sets`) → `onSaved(id)`. ChatGPT 탭과 API 탭은 조건을 같이 쓴다.
+ * AI 제작은 조건 → 생성 결과 검토·수정 → 명시적 초안 저장으로 진행한다.
+ * 원문 복원과 외부 자료 가져오기는 보조 방식이며 기존 저장·권한 계약을 유지한다.
+ * 저장은 늘 «초안»(`POST /api/english/exams/{id}/sets`) → `onSaved(id)`.
  *
  * 모양은 작업실 토큰 그대로(05 §8.9) · D-08(사무적) · D-30(손가락 커서는 단추·선택에만).
  */
-import {
-  useEffect,
-  useEffectEvent,
-  useId,
-  useRef,
-  useState,
-  type KeyboardEvent,
-} from "react";
+import { useEffect, useEffectEvent, useId, useRef, useState } from "react";
 
 import WorkProgress from "@/components/unified/WorkProgress";
 import {
   ENGLISH_DIFFICULTIES,
-  ENGLISH_GENERATE_MODES,
   ENGLISH_GENERATED_TYPES,
   ENGLISH_GENERATE_COUNT_MAX,
   ENGLISH_SOURCE_PASSAGE_MIN,
@@ -49,12 +41,15 @@ import {
 } from "@/lib/english/chatgpt";
 import { CLOZE_COUNTS, makeCloze } from "@/lib/english/cloze";
 import { englishMetaFromConditions } from "@/lib/english/meta";
-import { validateEnglishDraft } from "@/lib/english/validate";
+import {
+  validateEnglishDraft,
+  type EnglishDraftExpectation,
+} from "@/lib/english/validate";
 
 import AutoGrowTextarea from "./AutoGrowTextarea";
+import EnglishMakerPreview from "./EnglishMakerPreview";
 
 import s from "./EnglishMaker.module.css";
-import tabs from "./EnglishTabs.module.css";
 
 export interface EnglishMakerViewProps {
   exam: EnglishExam;
@@ -82,17 +77,6 @@ type Conditions = {
   types: GeneratedType[];
 };
 
-const TABS: { id: MakerTab; label: string }[] = [
-  { id: "chatgpt", label: "ChatGPT 로 제작" },
-  { id: "cloze", label: "원문 복원" },
-  { id: "api", label: "API 직접 생성" },
-];
-
-const MODE_LABEL: Record<Mode, string> = {
-  new: "새 지문 생성",
-  original: "원문 유지",
-  variation: "원문 변형",
-};
 const COUNT_OPTIONS = [3, 5, 6, 8] as const;
 type CountOption = (typeof COUNT_OPTIONS)[number];
 
@@ -138,7 +122,12 @@ function fitCount(count: number, typeCount: number): CountOption {
  * `examId` — 이 초안을 검증한 시험. 저장이 끊긴 뒤 시험을 바꾸고 «다시 저장»을 누르면 초안이 **다른 시험**에
  * 들어가던 것을 막는다(D-153 검토 #2): 묶음은 제 시험으로만 보내고, 다른 시험을 보는 동안 단추는 숨긴다.
  */
-type SaveBundle = { draft: EnglishDraft; meta: EnglishSetMeta; examId: string };
+type SaveBundle = {
+  draft: EnglishDraft;
+  meta: EnglishSetMeta;
+  examId: string;
+  expectation?: EnglishDraftExpectation;
+};
 
 function sortKeys(value: unknown): unknown {
   if (Array.isArray(value)) return value.map(sortKeys);
@@ -282,10 +271,17 @@ export default function EnglishMakerView({
   onBankSeedHandled,
 }: EnglishMakerViewProps) {
   const uid = useId();
-  // 탭·패널 id 는 인스턴스마다 다르게 — 한 화면에 둘이 마운트돼도 aria-controls·포커스가 안 섞인다(리드 검토 D8).
-  const tabId = (id: MakerTab) => `${uid}-tab-${id}`;
-  const panelId = (id: MakerTab) => `${uid}-panel-${id}`;
-  const [tab, setTab] = useState<MakerTab>("chatgpt");
+  const [tab, setTab] = useState<MakerTab>("api");
+  const scope = useRef(0);
+  const generation = useRef<AbortController | null>(null);
+  // Even switching away and back must invalidate an old asynchronous result.
+  useEffect(
+    () => () => {
+      scope.current += 1;
+      generation.current?.abort();
+    },
+    [exam.id],
+  );
   const [conditions, setConditions] = useState<Conditions>(() => {
     const types = capTypes(
       exclusiveUnderline(exam.types.length ? [...exam.types] : ["주제"]),
@@ -364,6 +360,16 @@ export default function EnglishMakerView({
     pendingSave,
   );
 
+  useEffect(() => {
+    if (!pendingSave && !busy) return;
+    const warn = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [pendingSave, busy]);
+
   // A bank handoff is a one-shot command. Read the latest draft only when that command is handled.
   const acceptBankSeed = useEffectEvent((bankSeed: EnglishBankMakerSeed) => {
     if (handledSeeds.current.has(bankSeed.requestId)) return;
@@ -423,6 +429,9 @@ export default function EnglishMakerView({
   }, [bankSeed, busy, exam.id, onBankSeedAccepted]);
 
   const textMaterials = materials.filter((material) => material.content);
+  const pendingVerdict = pendingSave
+    ? validateEnglishDraft(pendingSave.draft, pendingSave.expectation)
+    : null;
 
   function detachBank(path: "external" | "cloze") {
     const message =
@@ -592,6 +601,7 @@ export default function EnglishMakerView({
   }
 
   async function postBundle(bundle: SaveBundle): Promise<string> {
+    const startedScope = scope.current;
     setSaveFailure(null);
     try {
       const body = await readJson(
@@ -617,14 +627,16 @@ export default function EnglishMakerView({
         error instanceof ApiFailure
           ? error
           : new ApiFailure(0, messageOf(error));
-      setSaveFailure(failure);
+      if (startedScope === scope.current) setSaveFailure(failure);
       throw failure;
     }
   }
 
   async function saveDraft(draft: EnglishDraft, meta: EnglishSetMeta) {
+    const startedScope = scope.current;
     const bundle = bundleFor(draft, meta);
     const id = await postBundle(bundle);
+    if (startedScope !== scope.current) return;
     setPendingSave(null);
     onNotice("초안으로 저장했습니다. 검토 화면에서 확인해 주세요.", "status");
     onSaved(id);
@@ -633,14 +645,17 @@ export default function EnglishMakerView({
   async function retrySave() {
     if (!pendingSave || busy || pendingSave.examId !== exam.id) return;
     const bundle = pendingSave;
+    if (!validateEnglishDraft(bundle.draft, bundle.expectation).ok) return;
+    const startedScope = scope.current;
     setBusy("save");
     try {
       const id = await postBundle(bundle);
+      if (startedScope !== scope.current) return;
       setPendingSave(null);
       onNotice("초안으로 저장했습니다. 검토 화면에서 확인해 주세요.", "status");
       onSaved(id);
     } catch (error) {
-      onNotice(messageOf(error), "alert");
+      if (startedScope === scope.current) onNotice(messageOf(error), "alert");
     } finally {
       setBusy(null);
     }
@@ -654,6 +669,7 @@ export default function EnglishMakerView({
       !pendingSave.meta.passageRef
     )
       return;
+    const startedScope = scope.current;
     const meta = { ...pendingSave.meta, clientKey: crypto.randomUUID() };
     delete meta.passageRef;
     const bundle = { ...pendingSave, meta };
@@ -667,11 +683,12 @@ export default function EnglishMakerView({
     setBusy("save");
     try {
       const id = await postBundle(bundle);
+      if (startedScope !== scope.current) return;
       setPendingSave(null);
       onNotice("은행 연결을 해제한 새 사본을 초안으로 저장했습니다.", "status");
       onSaved(id);
     } catch (error) {
-      onNotice(messageOf(error), "alert");
+      if (startedScope === scope.current) onNotice(messageOf(error), "alert");
     } finally {
       setBusy(null);
     }
@@ -688,28 +705,31 @@ export default function EnglishMakerView({
 
   async function copyRequest() {
     if (busy) return;
+    const startedScope = scope.current;
     const request = validatedConditions();
     if (!request) return;
     setBusy("prepare");
     setFallbackText(null);
     try {
       await prepareBank(bankPassage, "chatgpt");
+      if (startedScope !== scope.current) return;
       const text = buildChatgptRequest({ exam, request });
       const clipboard =
         typeof navigator === "undefined" ? undefined : navigator.clipboard;
       try {
         if (!clipboard?.writeText) throw new Error("clipboard unavailable");
         await clipboard.writeText(text);
+        if (startedScope !== scope.current) return;
         setFallbackText(null);
         onNotice(
           "요청문을 복사했습니다. ChatGPT 에 붙여 넣어 주세요.",
           "status",
         );
       } catch {
-        setFallbackText(text);
+        if (startedScope === scope.current) setFallbackText(text);
       }
     } catch (error) {
-      onNotice(messageOf(error), "alert");
+      if (startedScope === scope.current) onNotice(messageOf(error), "alert");
     } finally {
       setBusy(null);
     }
@@ -717,6 +737,12 @@ export default function EnglishMakerView({
 
   async function importPaste() {
     if (busy) return;
+    const startedScope = scope.current;
+    if (
+      pendingSave?.meta.path === "api" &&
+      !window.confirm("저장 전 AI 제작 결과를 외부 자료로 바꾸시겠습니까?")
+    )
+      return;
     // «요청문 복사»와 같은 함수로 조건을 읽는다 — 조건이 계약을 못 지나면 여기서도 사유를 보이고 멈춘다.
     // (리드 검토 D4: 전에는 expectation 을 조용히 버리고 문항 수·유형 대조 없이 저장까지 갔다.)
     const request = validatedConditions();
@@ -760,8 +786,10 @@ export default function EnglishMakerView({
                 sameText(pickedPassage, request.passage)),
         }),
       );
+      if (startedScope !== scope.current) return;
       setPasteText("");
     } catch (error) {
+      if (startedScope !== scope.current) return;
       const message = messageOf(error);
       setPasteIssues([{ question: null, message }]);
       onNotice(message, "alert");
@@ -773,28 +801,32 @@ export default function EnglishMakerView({
   /** 수정 요청문 복사 — 거절된 그때의 글로 지은 것. 클립보드를 못 쓰면 글을 펼쳐 직접 복사하게 한다 */
   async function copyFixRequest() {
     if (!rejection || busy) return;
+    const startedScope = scope.current;
     setBusy("prepare");
     setFixOpen(false);
     setFixCopyFailed(false);
     try {
       // The rejected prompt still contains its original source after current input is edited.
       await prepareBank(rejection.bank, "chatgpt");
+      if (startedScope !== scope.current) return;
       const clipboard =
         typeof navigator === "undefined" ? undefined : navigator.clipboard;
       try {
         if (!clipboard?.writeText) throw new Error("clipboard unavailable");
         await clipboard.writeText(rejection.text);
+        if (startedScope !== scope.current) return;
         setFixCopyFailed(false);
         onNotice(
           "수정 요청문을 복사했습니다. 같은 ChatGPT 대화에 붙여 넣어 주세요.",
           "status",
         );
       } catch {
+        if (startedScope !== scope.current) return;
         setFixCopyFailed(true);
         setFixOpen(true);
       }
     } catch (error) {
-      onNotice(messageOf(error), "alert");
+      if (startedScope === scope.current) onNotice(messageOf(error), "alert");
     } finally {
       setBusy(null);
     }
@@ -806,6 +838,7 @@ export default function EnglishMakerView({
       return;
     }
     if (!rejection || busy) return;
+    const startedScope = scope.current;
     if (!rejection.bank) {
       setFixOpen(true);
       return;
@@ -813,9 +846,10 @@ export default function EnglishMakerView({
     setBusy("prepare");
     try {
       await prepareBank(rejection.bank, "chatgpt");
+      if (startedScope !== scope.current) return;
       setFixOpen(true);
     } catch (error) {
-      onNotice(messageOf(error), "alert");
+      if (startedScope === scope.current) onNotice(messageOf(error), "alert");
     } finally {
       setBusy(null);
     }
@@ -823,6 +857,14 @@ export default function EnglishMakerView({
 
   async function makeClozeSet() {
     if (busy) return;
+    const startedScope = scope.current;
+    if (
+      pendingSave?.meta.path === "api" &&
+      !window.confirm(
+        "저장 전 AI 제작 결과를 원문 복원 연습으로 바꾸시겠습니까?",
+      )
+    )
+      return;
     const text = bankCloze ? clozeText : clozeText.trim();
     if (!text.trim()) {
       setClozeError("원문을 입력해 주세요.");
@@ -858,8 +900,10 @@ export default function EnglishMakerView({
     } else if (materialName) meta.materialName = materialName;
     try {
       await prepareBank(bankCloze, "cloze");
+      if (startedScope !== scope.current) return;
       await saveDraft(verdict.draft, meta);
     } catch (error) {
+      if (startedScope !== scope.current) return;
       const message = messageOf(error);
       setClozeError(message);
       onNotice(message, "alert");
@@ -872,17 +916,31 @@ export default function EnglishMakerView({
     if (busy) return;
     const request = validatedConditions();
     if (!request) return;
+    if (
+      pendingSave &&
+      !window.confirm(
+        "아직 저장하지 않은 결과를 새로 생성한 결과로 바꾸시겠습니까?",
+      )
+    )
+      return;
+    const startedScope = scope.current;
+    const controller = new AbortController();
+    generation.current = controller;
+    const active = () =>
+      startedScope === scope.current && !controller.signal.aborted;
     setApiError(null);
     setBusy("generate");
     setStartedAt(Date.now());
     let generating = false;
     try {
       await prepareBank(bankPassage, "api");
+      if (!active()) return;
       generating = true;
       const body = await readJson(
         await fetch("/api/english/generate", {
           method: "POST",
           headers: JSON_HEADERS,
+          signal: controller.signal,
           body: JSON.stringify({
             examId: exam.id,
             ...request,
@@ -890,6 +948,7 @@ export default function EnglishMakerView({
           }),
         }),
       );
+      if (!active()) return;
       const full = englishGenerateResponseSchema.safeParse(body);
       const draft = full.success
         ? full
@@ -904,29 +963,23 @@ export default function EnglishMakerView({
       setAiLink("ready");
       // 부른 모델 · 프롬프트 판은 서버가 알려 준다(못 읽으면 빼고 저장한다 — 초안은 잃지 않는다)
       const model = full.success ? full.data.model : undefined;
-      try {
-        await saveDraft(
-          full.success ? full.data.data : (draft.data as EnglishDraft),
-          englishMetaFromConditions("api", request, {
-            passageRef: bankPassage?.passageRef,
-            model: model?.name,
-            promptVersion: model?.promptVersion,
-            materialName:
-              request.mode === "new"
-                ? undefined
-                : (bankPassage?.title ??
-                  sameText(pickedPassage, request.passage)),
-          }),
-        );
-      } catch (error) {
-        // 저장 실패(503 포함)는 연결 상태를 바꾸지 않는다. 생성 실패만 «대기»다.
-        const failure =
-          error instanceof ApiFailure
-            ? error
-            : new ApiFailure(0, messageOf(error));
-        setApiError(failure);
-      }
+      const bundle = bundleFor(
+        full.success ? full.data.data : (draft.data as EnglishDraft),
+        englishMetaFromConditions("api", request, {
+          passageRef: bankPassage?.passageRef,
+          model: model?.name,
+          promptVersion: model?.promptVersion,
+          materialName:
+            request.mode === "new"
+              ? undefined
+              : (bankPassage?.title ??
+                sameText(pickedPassage, request.passage)),
+        }),
+      );
+      setPendingSave({ ...bundle, expectation: request });
+      setSaveFailure(null);
     } catch (error) {
+      if (!active()) return;
       const failure =
         error instanceof ApiFailure
           ? error
@@ -934,26 +987,9 @@ export default function EnglishMakerView({
       if (generating && failure.status === 503) setAiLink("waiting");
       setApiError(failure);
     } finally {
+      if (generation.current === controller) generation.current = null;
       setBusy(null);
     }
-  }
-
-  function moveTab(event: KeyboardEvent<HTMLButtonElement>) {
-    const index = TABS.findIndex((item) => item.id === tab);
-    const next =
-      event.key === "Home"
-        ? 0
-        : event.key === "End"
-          ? TABS.length - 1
-          : event.key === "ArrowRight"
-            ? (index + 1) % TABS.length
-            : event.key === "ArrowLeft"
-              ? (index + TABS.length - 1) % TABS.length
-              : null;
-    if (next === null) return;
-    event.preventDefault();
-    setTab(TABS[next]!.id);
-    document.getElementById(tabId(TABS[next]!.id))?.focus();
   }
 
   const materialPicker = (onPick: (material: EnglishMaterial) => void) =>
@@ -992,26 +1028,52 @@ export default function EnglishMakerView({
         </p>
       ) : null}
       <fieldset className={s.group}>
-        <legend>제작 방식</legend>
-        <div className={s.choices}>
-          {ENGLISH_GENERATE_MODES.map((mode) => (
-            <label key={mode} className={s.choice}>
-              <input
-                type="radio"
-                disabled={busy !== null}
-                name={`${uid}-mode`}
-                value={mode}
-                checked={conditions.mode === mode}
-                onChange={() => update({ mode })}
-              />
-              {MODE_LABEL[mode]}
-            </label>
-          ))}
+        <legend>제작 시작점</legend>
+        <div className={s.startModes}>
+          <label className={s.startChoice}>
+            <input
+              type="radio"
+              name={`${uid}-start`}
+              disabled={busy !== null}
+              checked={conditions.mode === "new"}
+              onChange={() => update({ mode: "new" })}
+            />
+            AI로 원문부터
+          </label>
+          <label className={s.startChoice}>
+            <input
+              type="radio"
+              name={`${uid}-start`}
+              disabled={busy !== null}
+              checked={conditions.mode !== "new"}
+              onChange={() => update({ mode: "original" })}
+            />
+            기존 원문으로
+          </label>
         </div>
       </fieldset>
+      {conditions.mode !== "new" ? (
+        <fieldset className={s.group}>
+          <legend>원문 사용 방식</legend>
+          <div className={s.choices}>
+            {(["original", "variation"] as const).map((mode) => (
+              <label key={mode} className={s.choice}>
+                <input
+                  type="radio"
+                  name={`${uid}-mode`}
+                  disabled={busy !== null}
+                  checked={conditions.mode === mode}
+                  onChange={() => update({ mode })}
+                />
+                {mode === "original" ? "원문 유지" : "원문 변형"}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      ) : null}
       {conditions.mode === "new" ? (
         <div className={s.field}>
-          <label htmlFor={`${uid}-topic`}>소재</label>
+          <label htmlFor={`${uid}-topic`}>원문의 주제와 요청</label>
           <input
             id={`${uid}-topic`}
             disabled={busy !== null}
@@ -1130,343 +1192,447 @@ export default function EnglishMakerView({
 
   return (
     // 머리(«문제 만들기» WorkspacePageHeader)와 학교 칩·시험 고르기 줄은 뿌리 EnglishStudio(shell)가 그린다 —
-    // 여기서는 탭 줄부터 시작한다(리드 결정 2026-09-30, 머리·시험 이름이 둘 나오던 자리).
+    // 여기서는 전체 페이지 제작 작업 영역부터 시작한다.
     <div className={s.maker}>
-      <div role="tablist" aria-label="문제 만들기 방법" className={s.tabs}>
-        {TABS.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            role="tab"
-            className={tabs.tab}
-            disabled={busy !== null}
-            id={tabId(item.id)}
-            aria-selected={tab === item.id}
-            aria-controls={panelId(item.id)}
-            tabIndex={tab === item.id ? 0 : -1}
-            onKeyDown={moveTab}
-            onClick={() => setTab(item.id)}
-          >
-            {item.label}
-          </button>
-        ))}
+      <div className={s.methodBar}>
+        <button
+          type="button"
+          className={s.methodButton}
+          aria-pressed={tab === "api"}
+          disabled={busy !== null}
+          onClick={() => setTab("api")}
+        >
+          AI 문제 제작
+        </button>
+        <details className={s.otherMethods}>
+          <summary>다른 제작 방식</summary>
+          <div className={s.methodOptions}>
+            <button
+              type="button"
+              className={s.methodButton}
+              aria-pressed={tab === "cloze"}
+              disabled={busy !== null}
+              onClick={(event) => {
+                setTab("cloze");
+                event.currentTarget.closest("details")?.removeAttribute("open");
+              }}
+            >
+              원문 복원 연습
+            </button>
+            <button
+              type="button"
+              className={s.methodButton}
+              aria-pressed={tab === "chatgpt"}
+              disabled={busy !== null}
+              onClick={(event) => {
+                setTab("chatgpt");
+                event.currentTarget.closest("details")?.removeAttribute("open");
+              }}
+            >
+              외부 자료 가져오기
+            </button>
+          </div>
+        </details>
+        <span className={s.methodHelp}>조건 설정 → 결과 검토 → 초안 저장</span>
       </div>
-
-      <section
-        role="tabpanel"
-        id={panelId("chatgpt")}
-        aria-labelledby={tabId("chatgpt")}
-        hidden={tab !== "chatgpt"}
-        tabIndex={0}
-        className={s.panel}
-      >
-        {tab === "chatgpt" ? (
-          <>
-            <div className={s.card}>
-              <h2>ChatGPT 로 제작</h2>
-              <p>
-                ChatGPT 대화에서 만든 뒤 붙여 넣으면 초안으로 저장됩니다. API
-                키가 필요 없습니다.
-              </p>
-            </div>
-            {conditionFields}
-            <div className={s.actions}>
-              <button
-                type="button"
-                className={s.primaryButton}
-                disabled={busy !== null}
-                onClick={() => void copyRequest()}
-              >
-                요청문 복사
-              </button>
-            </div>
-            {fallbackText !== null ? (
-              <div className={s.field}>
-                <p role="alert" className={s.alert}>
-                  복사되지 않았습니다. 아래 글을 직접 복사해 주세요.
-                </p>
-                <textarea
-                  aria-label="요청문"
-                  readOnly
-                  rows={10}
-                  value={fallbackText}
-                  onFocus={(event) => event.currentTarget.select()}
-                />
-              </div>
-            ) : null}
-            <div className={s.field}>
-              <label htmlFor={`${uid}-paste`}>ChatGPT 결과 붙여넣기</label>
-              <textarea
-                id={`${uid}-paste`}
-                disabled={busy !== null}
-                rows={10}
-                value={pasteText}
-                placeholder="ChatGPT 가 답한 JSON 을 그대로 붙여 넣으세요."
-                onChange={(event) => setPasteText(event.target.value)}
-              />
-            </div>
-            {pasteIssues.length ? (
-              <div role="alert" className={s.alert}>
-                {rejection &&
-                (pasteText !== rejection.pasted ||
-                  JSON.stringify(conditions) !== rejection.conditions) ? (
-                  <p className={s.alertStale}>
-                    아래 사유와 수정 요청문은 앞서 가져오기를 눌렀을 때의 글
-                    기준입니다.
+      <div className={s.workarea}>
+        <div className={s.controls}>
+          <div className={s.context}>
+            <span>
+              대상 학년 <strong>{exam.grade}</strong>
+            </span>
+            <span>
+              {exam.school} · {exam.title}
+            </span>
+          </div>
+          <section
+            aria-label="외부 자료 가져오기"
+            hidden={tab !== "chatgpt"}
+            className={s.panel}
+          >
+            {tab === "chatgpt" ? (
+              <>
+                <div className={s.card}>
+                  <h2>외부 자료 가져오기</h2>
+                  <p>
+                    ChatGPT 등 외부 도구로 만든 결과를 가져와 초안으로
+                    저장합니다.
                   </p>
+                </div>
+                {conditionFields}
+                <div className={s.actions}>
+                  <button
+                    type="button"
+                    className={s.primaryButton}
+                    disabled={busy !== null}
+                    onClick={() => void copyRequest()}
+                  >
+                    요청문 복사
+                  </button>
+                </div>
+                {fallbackText !== null ? (
+                  <div className={s.field}>
+                    <p role="alert" className={s.alert}>
+                      복사되지 않았습니다. 아래 글을 직접 복사해 주세요.
+                    </p>
+                    <textarea
+                      aria-label="요청문"
+                      readOnly
+                      rows={10}
+                      value={fallbackText}
+                      onFocus={(event) => event.currentTarget.select()}
+                    />
+                  </div>
                 ) : null}
-                <p>
-                  {rejection
-                    ? "가져오지 못했습니다. 아래 사유를 ChatGPT 에 알려 고친 결과를 다시 붙여 넣어 주세요."
-                    : "가져오지 못했습니다. 아래 사유를 고쳐 다시 붙여 넣어 주세요."}
-                </p>
-                <IssueList issues={pasteIssues} />
-                {rejection ? (
-                  <>
-                    <div className={s.alertActions}>
-                      <button
-                        type="button"
-                        className={s.quietButton}
-                        disabled={busy !== null}
-                        onClick={() => void copyFixRequest()}
-                      >
-                        수정 요청문 복사
-                      </button>
-                      <button
-                        type="button"
-                        className={s.quietButton}
-                        disabled={busy !== null}
-                        aria-expanded={fixOpen}
-                        onClick={() => void toggleFixRequest()}
-                      >
-                        {fixOpen ? "수정 요청문 접기" : "수정 요청문 보기"}
-                      </button>
-                    </div>
-                    {fixCopyFailed ? (
-                      <p>복사되지 않았습니다. 아래 글을 직접 복사해 주세요.</p>
+                <div className={s.field}>
+                  <label htmlFor={`${uid}-paste`}>ChatGPT 결과 붙여넣기</label>
+                  <textarea
+                    id={`${uid}-paste`}
+                    disabled={busy !== null}
+                    rows={10}
+                    value={pasteText}
+                    placeholder="ChatGPT 가 답한 JSON 을 그대로 붙여 넣으세요."
+                    onChange={(event) => setPasteText(event.target.value)}
+                  />
+                </div>
+                {pasteIssues.length ? (
+                  <div role="alert" className={s.alert}>
+                    {rejection &&
+                    (pasteText !== rejection.pasted ||
+                      JSON.stringify(conditions) !== rejection.conditions) ? (
+                      <p className={s.alertStale}>
+                        아래 사유와 수정 요청문은 앞서 가져오기를 눌렀을 때의 글
+                        기준입니다.
+                      </p>
                     ) : null}
-                    {fixOpen ? (
-                      <textarea
-                        aria-label="수정 요청문"
-                        className={s.fixText}
-                        readOnly
-                        rows={10}
-                        value={rejection.text}
-                        onFocus={(event) => event.currentTarget.select()}
-                      />
+                    <p>
+                      {rejection
+                        ? "가져오지 못했습니다. 아래 사유를 ChatGPT 에 알려 고친 결과를 다시 붙여 넣어 주세요."
+                        : "가져오지 못했습니다. 아래 사유를 고쳐 다시 붙여 넣어 주세요."}
+                    </p>
+                    <IssueList issues={pasteIssues} />
+                    {rejection ? (
+                      <>
+                        <div className={s.alertActions}>
+                          <button
+                            type="button"
+                            className={s.quietButton}
+                            disabled={busy !== null}
+                            onClick={() => void copyFixRequest()}
+                          >
+                            수정 요청문 복사
+                          </button>
+                          <button
+                            type="button"
+                            className={s.quietButton}
+                            disabled={busy !== null}
+                            aria-expanded={fixOpen}
+                            onClick={() => void toggleFixRequest()}
+                          >
+                            {fixOpen ? "수정 요청문 접기" : "수정 요청문 보기"}
+                          </button>
+                        </div>
+                        {fixCopyFailed ? (
+                          <p>
+                            복사되지 않았습니다. 아래 글을 직접 복사해 주세요.
+                          </p>
+                        ) : null}
+                        {fixOpen ? (
+                          <textarea
+                            aria-label="수정 요청문"
+                            className={s.fixText}
+                            readOnly
+                            rows={10}
+                            value={rejection.text}
+                            onFocus={(event) => event.currentTarget.select()}
+                          />
+                        ) : null}
+                      </>
                     ) : null}
-                  </>
+                  </div>
                 ) : null}
-              </div>
+                <div className={s.actions}>
+                  <button
+                    type="button"
+                    className={s.primaryButton}
+                    disabled={busy !== null}
+                    onClick={() => void importPaste()}
+                  >
+                    {busy === "import" ? (
+                      <WorkProgress variant="inline" label="저장 중…" />
+                    ) : (
+                      "가져오기"
+                    )}
+                  </button>
+                </div>
+              </>
             ) : null}
-            <div className={s.actions}>
+          </section>
+
+          <section
+            aria-label="원문 복원 연습"
+            hidden={tab !== "cloze"}
+            className={s.panel}
+          >
+            {tab === "cloze" ? (
+              <>
+                <div className={s.card}>
+                  <h2>원문 복원</h2>
+                  <p>
+                    입력한 원문의 단어를 빈칸으로 바꾸는 연습입니다. AI 추론형
+                    문항과 다릅니다.
+                  </p>
+                </div>
+                <div className={s.form}>
+                  {bankCloze ? (
+                    <p role="status" className={s.statusLine}>
+                      은행 원문 «{bankCloze.title}» 연결됨
+                    </p>
+                  ) : null}
+                  {clozeBankMessage ? (
+                    <p role="status" className={s.statusLine}>
+                      {clozeBankMessage}
+                    </p>
+                  ) : null}
+                  <div className={s.field}>
+                    <div className={s.fieldHead}>
+                      <label htmlFor={`${uid}-cloze`}>복원할 원문</label>
+                      {materialPicker((material) => {
+                        detachBank("cloze");
+                        setPickedCloze(material);
+                        setClozeText(material.content ?? "");
+                      })}
+                    </div>
+                    <AutoGrowTextarea
+                      id={`${uid}-cloze`}
+                      disabled={busy !== null}
+                      rows={10}
+                      value={clozeText}
+                      placeholder="영어 원문을 붙여 넣으세요."
+                      onChange={(event) => {
+                        if (event.target.value !== clozeText)
+                          detachBank("cloze");
+                        setClozeText(event.target.value);
+                      }}
+                    />
+                  </div>
+                  <div className={s.row}>
+                    <div className={s.field}>
+                      <label htmlFor={`${uid}-cloze-count`}>최대 문항 수</label>
+                      <select
+                        id={`${uid}-cloze-count`}
+                        disabled={busy !== null}
+                        className={s.select}
+                        value={clozeCount}
+                        onChange={(event) => {
+                          setConditionsEdited(true);
+                          setClozeCount(
+                            Number(event.target.value) as ClozeCount,
+                          );
+                        }}
+                      >
+                        {CLOZE_COUNTS.map((count) => (
+                          <option key={count} value={count}>
+                            {count}문항
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  {clozeError ? (
+                    <p role="alert" className={s.alert}>
+                      {clozeError}
+                    </p>
+                  ) : null}
+                  <div className={s.actions}>
+                    <button
+                      type="button"
+                      className={s.primaryButton}
+                      disabled={busy !== null}
+                      onClick={() => void makeClozeSet()}
+                    >
+                      {busy === "cloze" ? (
+                        <WorkProgress variant="inline" label="저장 중…" />
+                      ) : (
+                        "연습문제 만들기"
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : null}
+          </section>
+
+          <section
+            aria-label="AI 제작 조건"
+            hidden={tab !== "api"}
+            className={s.panel}
+          >
+            {tab === "api" ? (
+              <>
+                <div className={s.card}>
+                  <h2>제작 조건</h2>
+                  <p role="status" className={s.statusLine}>
+                    {aiLink === "ready"
+                      ? "AI 연결됨"
+                      : aiLink === "waiting"
+                        ? "연결 대기 — AI 연결이 설정되지 않았습니다."
+                        : "AI 연결 확인 전 — 첫 생성 때 확인합니다."}
+                  </p>
+                  <p>
+                    주제와 조건에 맞는 원문·문항을 만들고 결과를 확인하세요.
+                  </p>
+                </div>
+                {conditionFields}
+                {apiError ? (
+                  <div role="alert" className={s.alert}>
+                    <p>{apiError.message}</p>
+                    {apiError.issues.length ? (
+                      <IssueList issues={apiError.issues} />
+                    ) : null}
+                  </div>
+                ) : null}
+                <div className={s.actions}>
+                  <button
+                    type="button"
+                    className={s.primaryButton}
+                    disabled={busy !== null || aiLink === "waiting"}
+                    onClick={() => void generateWithApi()}
+                  >
+                    {busy === "generate" ? (
+                      <WorkProgress
+                        variant="inline"
+                        label="원문·문항 생성 중…"
+                        startedAt={startedAt}
+                      />
+                    ) : (
+                      "원문·문항 생성"
+                    )}
+                  </button>
+                </div>
+              </>
+            ) : null}
+          </section>
+        </div>
+        <section
+          className={s.results}
+          aria-label="제작 결과"
+          aria-busy={busy === "generate"}
+        >
+          {pendingSave?.examId === exam.id &&
+          pendingSave.meta.path === "api" ? (
+            <EnglishMakerPreview
+              key={pendingSave.examId}
+              draft={pendingSave.draft}
+              meta={pendingSave.meta}
+              verdict={pendingVerdict!}
+              disabled={busy !== null || saveFailure !== null}
+              onChange={(draft) => {
+                // A failed request stays immutable for a safe identical retry.
+                if (busy || saveFailure) return;
+                setPendingSave({
+                  ...pendingSave,
+                  draft,
+                  meta: { ...pendingSave.meta, clientKey: crypto.randomUUID() },
+                });
+              }}
+            />
+          ) : (
+            <div className={s.emptyResult}>
+              <span className={s.emptyMark} aria-hidden="true">
+                Aa
+              </span>
+              <h2>
+                {busy === "generate"
+                  ? "원문과 문항을 만들고 있습니다"
+                  : "제작 결과를 확인하는 곳"}
+              </h2>
+              <p>
+                {tab === "api"
+                  ? "왼쪽에서 제작 조건을 정하면 원문, 문항, 정답·해설과 근거를 이곳에서 함께 확인할 수 있습니다."
+                  : "보조 제작 방식은 초안 저장 후 검토 화면에서 원문과 문항을 확인합니다."}
+              </p>
+              <p>형식 검사와 교사의 내용 검토는 별개입니다.</p>
+            </div>
+          )}
+          {busy === "generate" ? (
+            <div className={s.resultActions}>
               <button
                 type="button"
-                className={s.primaryButton}
-                disabled={busy !== null}
-                onClick={() => void importPaste()}
+                className={s.quietButton}
+                onClick={() => {
+                  generation.current?.abort();
+                  onNotice(
+                    "생성 요청을 취소했습니다. 기존 입력과 결과는 남아 있습니다.",
+                    "status",
+                  );
+                }}
               >
-                {busy === "import" ? (
-                  <WorkProgress variant="inline" label="저장 중…" />
-                ) : (
-                  "가져오기"
-                )}
+                생성 취소
               </button>
             </div>
-          </>
-        ) : null}
-      </section>
-
-      <section
-        role="tabpanel"
-        id={panelId("cloze")}
-        aria-labelledby={tabId("cloze")}
-        hidden={tab !== "cloze"}
-        tabIndex={0}
-        className={s.panel}
-      >
-        {tab === "cloze" ? (
-          <>
+          ) : null}
+          {/* 다른 시험을 보는 동안에는 숨긴다 — 그 시험으로 돌아오면 다시 보인다(묶음은 그대로) */}
+          {pendingSave && pendingSave.examId === exam.id ? (
             <div className={s.card}>
-              <h2>원문 복원</h2>
-              <p>
-                입력한 원문의 단어를 빈칸으로 바꾸는 연습입니다. AI 추론형
-                문항과 다릅니다.
-              </p>
-            </div>
-            <div className={s.form}>
-              {bankCloze ? (
-                <p role="status" className={s.statusLine}>
-                  은행 원문 «{bankCloze.title}» 연결됨
-                </p>
-              ) : null}
-              {clozeBankMessage ? (
-                <p role="status" className={s.statusLine}>
-                  {clozeBankMessage}
-                </p>
-              ) : null}
-              <div className={s.field}>
-                <div className={s.fieldHead}>
-                  <label htmlFor={`${uid}-cloze`}>복원할 원문</label>
-                  {materialPicker((material) => {
-                    detachBank("cloze");
-                    setPickedCloze(material);
-                    setClozeText(material.content ?? "");
-                  })}
-                </div>
-                <AutoGrowTextarea
-                  id={`${uid}-cloze`}
-                  disabled={busy !== null}
-                  rows={10}
-                  value={clozeText}
-                  placeholder="영어 원문을 붙여 넣으세요."
-                  onChange={(event) => {
-                    if (event.target.value !== clozeText) detachBank("cloze");
-                    setClozeText(event.target.value);
-                  }}
-                />
-              </div>
-              <div className={s.row}>
-                <div className={s.field}>
-                  <label htmlFor={`${uid}-cloze-count`}>최대 문항 수</label>
-                  <select
-                    id={`${uid}-cloze-count`}
-                    disabled={busy !== null}
-                    className={s.select}
-                    value={clozeCount}
-                    onChange={(event) => {
-                      setConditionsEdited(true);
-                      setClozeCount(Number(event.target.value) as ClozeCount);
-                    }}
-                  >
-                    {CLOZE_COUNTS.map((count) => (
-                      <option key={count} value={count}>
-                        {count}문항
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              {clozeError ? (
+              {saveFailure &&
+              (pendingSave.meta.path === "api" ||
+                pendingSave.meta.passageRef) ? (
                 <p role="alert" className={s.alert}>
-                  {clozeError}
+                  {saveFailure.message}{" "}
+                  {!pendingSave.meta.passageRef
+                    ? "결과를 보존했습니다. 같은 초안으로 다시 저장할 수 있습니다."
+                    : saveFailure.reason === "RIGHTS_REQUIRED"
+                      ? "은행에서 제작·외부 전송 이용 근거를 확인한 뒤 다시 저장해 주세요."
+                      : "입력과 저장할 초안을 보존했습니다. 은행 원문을 확인한 뒤 다시 저장하거나, 연결을 해제해 새 사본으로 저장할 수 있습니다."}
                 </p>
               ) : null}
               <div className={s.actions}>
                 <button
                   type="button"
                   className={s.primaryButton}
-                  disabled={busy !== null}
-                  onClick={() => void makeClozeSet()}
+                  disabled={busy !== null || !pendingVerdict?.ok}
+                  onClick={() => void retrySave()}
                 >
-                  {busy === "cloze" ? (
+                  {busy === "save" ? (
                     <WorkProgress variant="inline" label="저장 중…" />
+                  ) : saveFailure ? (
+                    "다시 저장"
                   ) : (
-                    "연습문제 만들기"
+                    "초안 저장"
                   )}
+                </button>
+                {saveFailure && pendingSave.meta.passageRef ? (
+                  <button
+                    type="button"
+                    className={s.quietButton}
+                    disabled={busy !== null}
+                    onClick={() => void unlinkAndSave()}
+                  >
+                    은행 연결 해제 후 새 사본 저장
+                  </button>
+                ) : null}
+                <button
+                  type="button"
+                  className={s.quietButton}
+                  disabled={busy !== null}
+                  onClick={() => {
+                    if (
+                      saveFailure ||
+                      window.confirm(
+                        "저장하지 않은 제작 결과를 버리시겠습니까?",
+                      )
+                    )
+                      cancelPendingSave();
+                  }}
+                >
+                  {saveFailure ? "저장 재시도 취소" : "결과 버리기"}
                 </button>
               </div>
             </div>
-          </>
-        ) : null}
-      </section>
-
-      <section
-        role="tabpanel"
-        id={panelId("api")}
-        aria-labelledby={tabId("api")}
-        hidden={tab !== "api"}
-        tabIndex={0}
-        className={s.panel}
-      >
-        {tab === "api" ? (
-          <>
-            <div className={s.card}>
-              <h2>API 직접 생성</h2>
-              <p role="status" className={s.statusLine}>
-                {aiLink === "ready"
-                  ? "AI 연결됨"
-                  : aiLink === "waiting"
-                    ? "연결 대기 — AI 연결이 설정되지 않았습니다."
-                    : "AI 연결 확인 전 — 첫 생성 때 확인합니다."}
-              </p>
-              <p>생성 시 소재·지문을 AI 서버로 보냅니다.</p>
-            </div>
-            {conditionFields}
-            {apiError ? (
-              <div role="alert" className={s.alert}>
-                <p>{apiError.message}</p>
-                {apiError.issues.length ? (
-                  <IssueList issues={apiError.issues} />
-                ) : null}
-              </div>
-            ) : null}
-            <div className={s.actions}>
-              <button
-                type="button"
-                className={s.primaryButton}
-                disabled={busy !== null || aiLink === "waiting"}
-                onClick={() => void generateWithApi()}
-              >
-                {busy === "generate" ? (
-                  <WorkProgress
-                    variant="inline"
-                    label="생성 중…"
-                    startedAt={startedAt}
-                  />
-                ) : (
-                  "AI 지문·문제 생성"
-                )}
-              </button>
-            </div>
-          </>
-        ) : null}
-      </section>
-      {/* 다른 시험을 보는 동안에는 숨긴다 — 그 시험으로 돌아오면 다시 보인다(묶음은 그대로) */}
-      {pendingSave && pendingSave.examId === exam.id ? (
-        <div className={s.card}>
-          {saveFailure && pendingSave.meta.passageRef ? (
-            <p role="alert" className={s.alert}>
-              {saveFailure.message}{" "}
-              {saveFailure.reason === "RIGHTS_REQUIRED"
-                ? "은행에서 제작·외부 전송 이용 근거를 확인한 뒤 다시 저장해 주세요."
-                : "입력과 저장할 초안을 보존했습니다. 은행 원문을 확인한 뒤 다시 저장하거나, 연결을 해제해 새 사본으로 저장할 수 있습니다."}
-            </p>
           ) : null}
-          <div className={s.actions}>
-            <button
-              type="button"
-              className={s.primaryButton}
-              disabled={busy !== null}
-              onClick={() => void retrySave()}
-            >
-              {busy === "save" ? (
-                <WorkProgress variant="inline" label="저장 중…" />
-              ) : (
-                "다시 저장"
-              )}
-            </button>
-            {saveFailure && pendingSave.meta.passageRef ? (
-              <button
-                type="button"
-                className={s.quietButton}
-                disabled={busy !== null}
-                onClick={() => void unlinkAndSave()}
-              >
-                은행 연결 해제 후 새 사본 저장
-              </button>
-            ) : null}
-            <button
-              type="button"
-              className={s.quietButton}
-              disabled={busy !== null}
-              onClick={cancelPendingSave}
-            >
-              저장 재시도 취소
-            </button>
-          </div>
-        </div>
-      ) : null}
+        </section>
+      </div>
     </div>
   );
 }

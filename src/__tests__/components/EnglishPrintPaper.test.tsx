@@ -47,6 +47,32 @@ function cssBlock(className: string): string {
 }
 
 describe("EnglishPaper — 학생용 · 교사용", () => {
+  it("prints composition numbers consistently on questions and answer blanks without changing source indices", () => {
+    const { container } = render(
+      <EnglishPaper
+        academyName="학습 자료"
+        exam={EXAM}
+        set={SAMPLE_SET}
+        view="student"
+        questionNumbers={[2, 5, 8, 9]}
+        bundle={{ no: 2, questions: [2, 3], passage: false }}
+      />,
+    );
+    expect(
+      Array.from(
+        container.querySelectorAll("[data-english-question]"),
+        (node) => node.getAttribute("data-english-question"),
+      ),
+    ).toEqual(["8", "9"]);
+    expect(
+      Array.from(
+        container.querySelectorAll("[data-english-answer-blank]"),
+        (node) => node.getAttribute("data-english-answer-blank"),
+      ),
+    ).toEqual(["8", "9"]);
+    expect(container.querySelector("[data-english-teacher-box]")).toBeNull();
+    expect(screen.getByText(/문제 묶음 2.*8~9번/)).toBeVisible();
+  });
   it("학생용에는 정답·해설·근거 상자가 없다", () => {
     const { container } = paper("student");
     expect(container.querySelector("[data-english-teacher-box]")).toBeNull();

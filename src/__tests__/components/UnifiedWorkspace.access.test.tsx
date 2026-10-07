@@ -473,7 +473,7 @@ describe("per-account workspace menu access", () => {
     } finally {
       window.removeEventListener("english-bank-before-leave", cancel);
     }
-    fireEvent.click(nav().getByRole("button", { name: "문제 만들기" }));
+    fireEvent.click(nav().getByRole("button", { name: "AI 문제 제작" }));
     expect(
       await screen.findByTestId("english-bank-seed"),
     ).toBeEmptyDOMElement();
@@ -1270,13 +1270,18 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
   const ALL = WORKSPACE_MENUS.map((menu) => menu.id);
   const MATH_ONLY = ALL.filter((menu) => workspaceMenuProduct(menu) === "math");
   const brand = () => screen.getByRole("button", { name: /제품 고르기/ });
-  const ENGLISH_NAV = ["학교별 내신 대비", "문제 만들기", "문제 보관함"];
+  const ENGLISH_NAV = [
+    "오늘의 작업",
+    "시험지 만들기",
+    "AI 문제 제작",
+    "내 문제 세트",
+  ];
   const SET_ID = "73000000-0000-4000-8000-000000000001";
 
   it.each([
-    ["english-school", "english", "학교별 내신 대비"],
-    ["english-maker", "english-maker", "문제 만들기"],
-    ["english-library", "english-library", "문제 보관함"],
+    ["english-school", "english", "오늘의 작업"],
+    ["english-maker", "english-maker", "AI 문제 제작"],
+    ["english-library", "english-library", "내 문제 세트"],
   ] as const)(
     "opens only the allowed English menu %s even from a forbidden hash",
     async (menu, view, label) => {
@@ -1288,7 +1293,9 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       const nav = within(
         screen.getByRole("navigation", { name: "작업실 메뉴" }),
       );
-      expect(nav.getAllByRole("button")).toHaveLength(1);
+      expect(nav.getAllByRole("button")).toHaveLength(
+        menu === "english-library" ? 2 : 1,
+      );
       expect(nav.getByRole("button", { name: label })).toHaveAttribute(
         "aria-current",
         "page",
@@ -1313,6 +1320,36 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       "english-maker",
     );
     expect(window.location.hash).toBe("#english-maker");
+  });
+  it("maximizes English without remounting its work and restores navigation with Escape", async () => {
+    window.history.replaceState(null, "", "/#english-questions");
+    const { container } = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["english-library", "english-maker"]}
+      />,
+    );
+    const panel = await screen.findByTestId("english-view");
+    expect(panel).toHaveTextContent("english-questions");
+    fireEvent.click(screen.getByRole("button", { name: "화면 최대화" }));
+    expect(container.querySelector('[data-maximized="true"]')).not.toBeNull();
+    expect(
+      screen.queryByRole("navigation", { name: "작업실 메뉴" }),
+    ).toBeNull();
+    expect(screen.getByTestId("english-view")).toBe(panel);
+    expect(screen.getByRole("button", { name: "화면 복원" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(
+      screen.getByRole("navigation", { name: "작업실 메뉴" }),
+    ).toBeVisible();
+    expect(screen.getByTestId("english-view")).toBe(panel);
+    expect(screen.getByRole("button", { name: "화면 최대화" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
   });
 
   it("does not send a set deep link without library access and removes a revoked view", async () => {
@@ -1341,7 +1378,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(
       within(
         screen.getByRole("navigation", { name: "작업실 메뉴" }),
-      ).queryByRole("button", { name: "문제 보관함" }),
+      ).queryByRole("button", { name: "내 문제 세트" }),
     ).not.toBeInTheDocument();
   });
 
@@ -1405,9 +1442,10 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
         .getAllByRole("button")
         .map((button) => button.getAttribute("aria-label")),
     ).toEqual([...ENGLISH_NAV, "영어듣기", "자료은행"]);
-    expect(
-      nav().getByRole("button", { name: "학교별 내신 대비" }),
-    ).toHaveAttribute("aria-current", "page");
+    expect(nav().getByRole("button", { name: "오늘의 작업" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
     expect(window.location.hash).toBe("#english");
     expect(
       await screen.findByRole("heading", { name: "영어 패널" }),
@@ -1421,7 +1459,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(screen.queryByRole("listbox", { name: "제품" })).toBeNull();
     expect(brand()).toHaveAccessibleName("제품 고르기 — 오늘의영어");
     expect(
-      within(screen.getByRole("banner")).getByText("학교별 내신 대비"),
+      within(screen.getByRole("banner")).getByText("오늘의 작업"),
     ).toBeVisible();
 
     // 옆 메뉴 파란 단추 → 셸 modal «english-exam» 이 영어 뷰에 전해진다(창은 영어 뷰가 그린다)
@@ -1429,7 +1467,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(screen.getByTestId("english-new-exam")).toHaveTextContent("true");
     expect(screen.queryByRole("dialog")).toBeNull();
 
-    fireEvent.click(nav().getByRole("button", { name: "문제 보관함" }));
+    fireEvent.click(nav().getByRole("button", { name: "내 문제 세트" }));
     expect(window.location.hash).toBe("#english-library");
     expect(screen.getByTestId("english-view")).toHaveTextContent(
       "english-library",
@@ -1498,18 +1536,18 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(screen.getByTestId("english-view")).toHaveTextContent(
       "english-maker",
     );
-    expect(nav().getByRole("button", { name: "문제 만들기" })).toHaveAttribute(
+    expect(nav().getByRole("button", { name: "AI 문제 제작" })).toHaveAttribute(
       "aria-current",
       "page",
     );
     expect(
-      within(screen.getByRole("banner")).getByText("문제 만들기"),
+      within(screen.getByRole("banner")).getByText("AI 문제 제작"),
     ).toBeVisible();
     expect(window.location.hash).toBe("#english-maker");
     // 빠른 검색에는 두 제품이 다 선다
     fireEvent.click(screen.getByRole("button", { name: "빠른 검색 열기" }));
     const dialog = within(screen.getByRole("dialog"));
-    expect(dialog.getByRole("button", { name: "문제 보관함" })).toBeVisible();
+    expect(dialog.getByRole("button", { name: "내 문제 세트" })).toBeVisible();
     expect(dialog.getByRole("button", { name: "내 시험지" })).toBeVisible();
     fireEvent.click(dialog.getByRole("button", { name: "내 시험지" }));
     expect(window.location.hash).toBe("#library");

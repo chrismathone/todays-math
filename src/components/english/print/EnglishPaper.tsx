@@ -72,6 +72,8 @@ export interface EnglishPaperProps {
   bundle?: EnglishPaperBundle;
   /** 교사용 첫 쪽 머리의 안내 줄 — 학생용에는 찍지 않는다 */
   teacherNotes?: readonly EnglishTeacherNote[];
+  /** Display numbers in a composed paper, while source indices remain unchanged. */
+  questionNumbers?: readonly number[];
   /**
    * 쪽 나눔 — 쪽마다 블록 번호(`englishPaperBlocks` 순). 없으면 **한 쪽에 전부**.
    * 빈 배열 `[]` 인 쪽은 머리·꼬리만 그린다(측정 틀이 본문 높이를 잴 때 쓴다).
@@ -158,14 +160,16 @@ function PassageBox({
 
 function QuestionBlock({
   index,
+  displayNumber,
   question,
   view,
 }: {
   index: number;
+  displayNumber?: number;
   question: EnglishQuestion;
   view: EnglishPaperView;
 }) {
-  const number = index + 1;
+  const number = displayNumber ?? index + 1;
   const open = ENGLISH_OPEN_TYPES.includes(question.type);
   // 보기 줄 — 편집 화면과 같은 규칙(번호뿐인 보기는 발문 속 번호가 곧 보기 · 겹친 번호를 찍지 않는다)
   const options = englishOptionLayout(question);
@@ -242,6 +246,7 @@ export function EnglishPaper({
   academyName,
   bundle,
   teacherNotes,
+  questionNumbers,
   pages,
 }: EnglishPaperProps) {
   const selection = englishPaperSelection(view, bundle);
@@ -250,7 +255,12 @@ export function EnglishPaper({
   const bundleNo = view === "student" ? (bundle?.no ?? null) : null;
   const bundleLabel =
     bundle && bundleNo !== null
-      ? englishBundleLabel({ no: bundleNo, questions: bundle.questions })
+      ? englishBundleLabel({
+          no: bundleNo,
+          questions: bundle.questions.map(
+            (i) => (questionNumbers?.[i] ?? i + 1) - 1,
+          ),
+        })
       : null;
   const layout: readonly (readonly number[])[] = pages ?? [
     blocks.map((_, index) => index),
@@ -344,6 +354,7 @@ export function EnglishPaper({
                   >
                     <QuestionBlock
                       index={group.item.block.index}
+                      displayNumber={questionNumbers?.[group.item.block.index]}
                       question={set.questions[group.item.block.index]!}
                       view={view}
                     />

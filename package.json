@@ -47,7 +47,7 @@
     "bcryptjs": "^3.0.3",
     "fflate": "0.8.3",
     "jsqr": "1.4.0",
-    "katex": "^0.16.47",
+    "katex": "0.18.2",
     "mathjax-full": "^3.2.1",
     "mathlive": "^0.110.0",
     "mpg123-decoder": "1.0.3",
@@ -55,7 +55,7 @@
     "next-auth": "^5.0.0-beta.32",
     "openai": "^7.4.0",
     "pdf-lib": "1.17.1",
-    "pdfjs-dist": "^5.7.284",
+    "pdfjs-dist": "6.2.108",
     "puppeteer-core": "25.1.0",
     "qrcode": "1.5.4",
     "react": "19.2.8",
@@ -84,7 +84,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.5",
-    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/coverage-v8": "4.1.11",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "eslint-config-prettier": "^10.1.8",
@@ -98,6 +98,15 @@
     "tsx": "4.20.5",
     "typescript": "^5",
     "vite": "^8.2.1",
-    "vitest": "^4.1.10"
+    "vitest": "4.1.11"
+  },
+  "overrides": {
+    "katex": "$katex",
+    "@prisma/config": {
+      "deepmerge-ts": "8.0.0"
+    },
+    "speech-rule-engine": {
+      "@xmldom/xmldom": "0.9.12"
+    }
   }
 }
