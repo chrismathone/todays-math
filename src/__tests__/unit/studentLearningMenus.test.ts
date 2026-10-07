@@ -9,6 +9,7 @@ import {
 import {
   readStudentLearningMenus,
   studentLearningMenusKey,
+  writeStudentLearningMenus,
 } from "@/lib/learn/studentLearningMenusStore";
 import { studentLearningMenusRequestSchema } from "@/contracts/studentLearningMenus.contract";
 
@@ -108,5 +109,17 @@ describe("학생별 추가 메뉴", () => {
         enabled: ["english-listening"],
       }).success,
     ).toBe(false);
+  });
+  it("쓰기 저장소도 잘못된 ID와 중복 메뉴를 DB에 보내지 않는다", async () => {
+    const upsert = vi.fn();
+    await expect(
+      writeStudentLearningMenus("invalid", [], "manager", { upsert }),
+    ).rejects.toThrow();
+    await expect(
+      writeStudentLearningMenus(studentA, ["lectures", "lectures"], "manager", {
+        upsert,
+      }),
+    ).rejects.toThrow();
+    expect(upsert).not.toHaveBeenCalled();
   });
 });
