@@ -1,12 +1,12 @@
 /**
- * 🔴 RED → 🟢 — «문제 보관함» 뷰 (D-148 · 25 §1.2 · 셸 브리프 §2.4).
+ * 🔴 RED → 🟢 — «내 문제 세트» 뷰 (D-148 · 25 §1.2 · 셸 브리프 §2.4).
  *
  * 구현: src/components/english/EnglishLibraryView.tsx (뿌리 EnglishStudio 가 마운트)
  *
  * 무엇을 잠그나
  * 1. 이 시험의 세트 전부를 행으로 — **행은 단추다**(D-30: 손가락 커서는 실제 단추에만).
  * 2. 이름 검색 · 상태 거르기 · «새로고침»(다시 읽는다).
- * 3. 행을 누르면 «학교별 내신 대비» 뷰의 편집 화면으로 간다.
+ * 3. 행을 누르면 «오늘의 작업» 뷰의 편집 화면으로 간다.
  * 4. 빈 상태 + «문제 만들기»(만들기 뷰로).
  */
 import {
@@ -53,12 +53,12 @@ function countSetReads() {
 
 async function openLibrary(log = makeLog()) {
   render(<Harness log={log} initialView="english-library" />);
-  await screen.findByRole("heading", { name: "문제 보관함" });
+  await screen.findByRole("heading", { name: "내 문제 세트" });
   await screen.findByRole("list", { name: "문제 세트 목록" });
   return log;
 }
 
-describe("[EnglishLibrary] 문제 보관함", () => {
+describe("[EnglishLibrary] 내 문제 세트", () => {
   it("이 시험의 세트를 행(단추)으로 그린다 — 제목 · 문항 수 · 상태 알약", async () => {
     await openLibrary();
     const list = within(screen.getByRole("list", { name: "문제 세트 목록" }));
@@ -113,7 +113,7 @@ describe("[EnglishLibrary] 문제 보관함", () => {
     reads.off();
   });
 
-  it("행을 누르면 «학교별 내신 대비» 뷰의 편집 화면으로 간다", async () => {
+  it("행을 누르면 «오늘의 작업» 뷰의 편집 화면으로 간다", async () => {
     await openLibrary();
     fireEvent.click(screen.getByRole("button", { name: /원문 복원 연습/ }));
     expect(currentView()).toBe("english-library");

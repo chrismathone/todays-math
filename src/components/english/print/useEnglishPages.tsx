@@ -52,11 +52,28 @@ export function useEnglishPages(
 ): EnglishPagesState {
   const host = useRef<HTMLDivElement>(null);
   const [measured, setMeasured] = useState<Measured | null>(null);
-  const { set, exam, view, academyName, bundle, teacherNotes } = props;
+  const {
+    set,
+    exam,
+    view,
+    academyName,
+    bundle,
+    teacherNotes,
+    questionNumbers,
+  } = props;
   // 묶음 · 교사용 안내 줄이 바뀌면 실리는 블록과 머리 높이가 바뀐다 — 다시 잰다(D-151)
   const key = useMemo(
-    () => JSON.stringify([set, exam, view, academyName, bundle, teacherNotes]),
-    [set, exam, view, academyName, bundle, teacherNotes],
+    () =>
+      JSON.stringify([
+        set,
+        exam,
+        view,
+        academyName,
+        bundle,
+        teacherNotes,
+        questionNumbers,
+      ]),
+    [set, exam, view, academyName, bundle, teacherNotes, questionNumbers],
   );
   // 🔴 재는 쪽과 그리는 쪽이 같은 블록 목록을 써야 한다 — 묶음을 빼고 재면 잰 높이가 엉뚱한 문항에 붙는다
   //    (묶음 객체는 그릴 때마다 새로 만들어질 수 있어, 내용으로 견주려고 글자로 바꿔 의존에 건다)

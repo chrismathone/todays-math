@@ -66,6 +66,9 @@ export function Harness({
         <button onClick={() => setView("english")}>학교 메뉴</button>
         <button onClick={() => setView("english-maker")}>만들기 메뉴</button>
         <button onClick={() => setView("english-library")}>보관함 메뉴</button>
+        <button onClick={() => setView("english-questions")}>
+          시험지 메뉴
+        </button>
       </nav>
       {/* 셸 옆 메뉴의 파란 단추 자리 — 목록이 «읽는 중»·«오류»여도 눌린다 */}
       <button type="button" onClick={() => setNewExamOpen(true)}>

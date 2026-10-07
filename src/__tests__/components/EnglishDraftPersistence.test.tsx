@@ -137,6 +137,8 @@ describe("[EnglishStudio] 저장과 메뉴 이동 중 초안 보존", () => {
       { target: { value: "아직 저장하지 않은 제목" } },
     );
     navigate("만들기 메뉴");
+    fireEvent.click(screen.getByText("다른 제작 방식"));
+    navigate("외부 자료 가져오기");
     fireEvent.change(
       screen.getByRole("textbox", { name: "ChatGPT 결과 붙여넣기" }),
       { target: { value: "작성 중인 결과" } },
@@ -166,7 +168,8 @@ describe("[EnglishStudio] 저장과 메뉴 이동 중 초안 보존", () => {
       ),
     );
     render(<Harness log={makeLog()} initialView="english-maker" />);
-    fireEvent.click(await screen.findByRole("tab", { name: "원문 복원" }));
+    fireEvent.click(await screen.findByText("다른 제작 방식"));
+    navigate("원문 복원 연습");
     fireEvent.change(screen.getByRole("textbox", { name: "복원할 원문" }), {
       target: { value: base.passage },
     });
@@ -207,7 +210,8 @@ describe("[EnglishStudio] 저장과 메뉴 이동 중 초안 보존", () => {
       { target: { value: "계속 편집할 초안" } },
     );
     navigate("만들기 메뉴");
-    fireEvent.click(screen.getByRole("tab", { name: "원문 복원" }));
+    fireEvent.click(screen.getByText("다른 제작 방식"));
+    navigate("원문 복원 연습");
     fireEvent.change(screen.getByRole("textbox", { name: "복원할 원문" }), {
       target: { value: base.passage },
     });

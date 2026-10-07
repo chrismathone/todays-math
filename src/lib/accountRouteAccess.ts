@@ -42,6 +42,9 @@ export function englishRouteAllowed(
   const bank = allowed.includes("english-bank");
   const listeningMaterial = listening || bank;
   const read = method === "GET" || method === "HEAD";
+  if (path === "/api/english/questions") return library && read;
+  if (path === "/api/english/questions/resolve")
+    return library && method === "POST";
   if (path === "/api/english/passages")
     return bank && (read || method === "POST");
   if (path === "/api/english/passages/import") return bank && method === "POST";
