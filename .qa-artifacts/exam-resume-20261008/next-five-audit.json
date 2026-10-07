@@ -163,7 +163,9 @@
     ],
     "eligibleForProductionNow": 0,
     "wholeQuestionCurriculumApprovals": 0,
-    "curriculumGatePendingQuestions": 106
+    "curriculumGatePendingQuestions": 106,
+    "parentScopedAbsenceEvidenceAvailableForExams": 5,
+    "globalDbDedupCompleted": false
   },
   "exams": [
     {
@@ -1451,7 +1453,7 @@
         "tablesWithoutIndexedTableAsset": []
       },
       "currentDbDedup": {
-        "status": "pending_parent_scoped_read",
+        "status": "parent_scoped_absence_evidence_available_global_dedup_pending",
         "performed": false,
         "count": null,
         "matchedProblemIds": null,
@@ -1467,7 +1469,24 @@
           "externalIdPrefix": "2025-gyeonggu-3-2-mid-",
           "schoolAlias": "경구중"
         },
-        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion."
+        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion.",
+        "parentEvidence": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+          "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+          "capturedAt": "2026-10-07 15:57:15.290971+00",
+          "jsonPointers": [
+            "/exactExamScope",
+            "/exams",
+            "/bankGroups",
+            "/limitations"
+          ],
+          "school": "경구중",
+          "exactExamRowsForSchoolInParentResult": 0,
+          "bankGroupsForSchoolInParentResult": 0,
+          "scopeOnly": true,
+          "globalDedupComplete": false,
+          "joinOwner": "parent"
+        }
       },
       "newTwinProduction": {
         "created": 0,
@@ -1563,7 +1582,7 @@
         "blockedOn": [
           "grade/applied-curriculum/standards/Unit/live family/generator rule and prerequisites evidence",
           "per-question source equivalence and score/figure checks",
-          "parent latest scoped DB/live metadata read",
+          "parent scoped result still needs source-hash/content dedup and item Unit/live-family/generator-rule mapping",
           "new structural/context authored twins and all independent checks"
         ],
         "highestPriorityGate": "Per-question grade/applied curriculum across all content and prerequisites; reject violations, hold uncertainty."
@@ -3425,7 +3444,7 @@
         "tablesWithoutIndexedTableAsset": []
       },
       "currentDbDedup": {
-        "status": "pending_parent_scoped_read",
+        "status": "parent_scoped_absence_evidence_available_global_dedup_pending",
         "performed": false,
         "count": null,
         "matchedProblemIds": null,
@@ -3441,7 +3460,24 @@
           "externalIdPrefix": "2025-gyeongsan-3-2-mid-",
           "schoolAlias": "경산중"
         },
-        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion."
+        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion.",
+        "parentEvidence": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+          "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+          "capturedAt": "2026-10-07 15:57:15.290971+00",
+          "jsonPointers": [
+            "/exactExamScope",
+            "/exams",
+            "/bankGroups",
+            "/limitations"
+          ],
+          "school": "경산중",
+          "exactExamRowsForSchoolInParentResult": 0,
+          "bankGroupsForSchoolInParentResult": 0,
+          "scopeOnly": true,
+          "globalDedupComplete": false,
+          "joinOwner": "parent"
+        }
       },
       "newTwinProduction": {
         "created": 0,
@@ -3517,7 +3553,7 @@
         "blockedOn": [
           "grade/applied-curriculum/standards/Unit/live family/generator rule and prerequisites evidence",
           "per-question source equivalence and score/figure checks",
-          "parent latest scoped DB/live metadata read",
+          "parent scoped result still needs source-hash/content dedup and item Unit/live-family/generator-rule mapping",
           "new structural/context authored twins and all independent checks"
         ],
         "highestPriorityGate": "Per-question grade/applied curriculum across all content and prerequisites; reject violations, hold uncertainty."
@@ -5135,7 +5171,7 @@
         ]
       },
       "currentDbDedup": {
-        "status": "pending_parent_scoped_read",
+        "status": "parent_scoped_absence_evidence_available_global_dedup_pending",
         "performed": false,
         "count": null,
         "matchedProblemIds": null,
@@ -5151,7 +5187,24 @@
           "externalIdPrefix": "2025-gyeongsang-3-2-mid-",
           "schoolAlias": "경상중"
         },
-        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion."
+        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion.",
+        "parentEvidence": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+          "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+          "capturedAt": "2026-10-07 15:57:15.290971+00",
+          "jsonPointers": [
+            "/exactExamScope",
+            "/exams",
+            "/bankGroups",
+            "/limitations"
+          ],
+          "school": "경상중",
+          "exactExamRowsForSchoolInParentResult": 0,
+          "bankGroupsForSchoolInParentResult": 0,
+          "scopeOnly": true,
+          "globalDedupComplete": false,
+          "joinOwner": "parent"
+        }
       },
       "newTwinProduction": {
         "created": 0,
@@ -5233,7 +5286,7 @@
         "blockedOn": [
           "grade/applied-curriculum/standards/Unit/live family/generator rule and prerequisites evidence",
           "per-question source equivalence and score/figure checks",
-          "parent latest scoped DB/live metadata read",
+          "parent scoped result still needs source-hash/content dedup and item Unit/live-family/generator-rule mapping",
           "new structural/context authored twins and all independent checks"
         ],
         "highestPriorityGate": "Per-question grade/applied curriculum across all content and prerequisites; reject violations, hold uncertainty."
@@ -7195,7 +7248,7 @@
         "tablesWithoutIndexedTableAsset": []
       },
       "currentDbDedup": {
-        "status": "pending_parent_scoped_read",
+        "status": "parent_scoped_absence_evidence_available_global_dedup_pending",
         "performed": false,
         "count": null,
         "matchedProblemIds": null,
@@ -7211,7 +7264,24 @@
           "externalIdPrefix": "2025-gyeongsin-3-2-mid-",
           "schoolAlias": "경신중"
         },
-        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion."
+        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion.",
+        "parentEvidence": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+          "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+          "capturedAt": "2026-10-07 15:57:15.290971+00",
+          "jsonPointers": [
+            "/exactExamScope",
+            "/exams",
+            "/bankGroups",
+            "/limitations"
+          ],
+          "school": "경신중",
+          "exactExamRowsForSchoolInParentResult": 0,
+          "bankGroupsForSchoolInParentResult": 0,
+          "scopeOnly": true,
+          "globalDedupComplete": false,
+          "joinOwner": "parent"
+        }
       },
       "newTwinProduction": {
         "created": 0,
@@ -7284,7 +7354,7 @@
           "grade/applied-curriculum/standards/Unit/live family/generator rule and prerequisites evidence",
           "year/page identity",
           "per-question source equivalence and score/figure checks",
-          "parent latest scoped DB/live metadata read",
+          "parent scoped result still needs source-hash/content dedup and item Unit/live-family/generator-rule mapping",
           "new structural/context authored twins and all independent checks"
         ],
         "highestPriorityGate": "Per-question grade/applied curriculum across all content and prerequisites; reject violations, hold uncertainty."
@@ -8550,7 +8620,7 @@
         "tablesWithoutIndexedTableAsset": []
       },
       "currentDbDedup": {
-        "status": "pending_parent_scoped_read",
+        "status": "parent_scoped_absence_evidence_available_global_dedup_pending",
         "performed": false,
         "count": null,
         "matchedProblemIds": null,
@@ -8566,7 +8636,24 @@
           "externalIdPrefix": "2025-gyeongam-3-2-mid-",
           "schoolAlias": "경암중"
         },
-        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion."
+        "warning": "경산중 and 경산여중 are distinct; preserve Gyeongsanyeo q19 permanent exclusion.",
+        "parentEvidence": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+          "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+          "capturedAt": "2026-10-07 15:57:15.290971+00",
+          "jsonPointers": [
+            "/exactExamScope",
+            "/exams",
+            "/bankGroups",
+            "/limitations"
+          ],
+          "school": "경암중",
+          "exactExamRowsForSchoolInParentResult": 0,
+          "bankGroupsForSchoolInParentResult": 0,
+          "scopeOnly": true,
+          "globalDedupComplete": false,
+          "joinOwner": "parent"
+        }
       },
       "newTwinProduction": {
         "created": 0,
@@ -8648,7 +8735,7 @@
         "blockedOn": [
           "grade/applied-curriculum/standards/Unit/live family/generator rule and prerequisites evidence",
           "per-question source equivalence and score/figure checks",
-          "parent latest scoped DB/live metadata read",
+          "parent scoped result still needs source-hash/content dedup and item Unit/live-family/generator-rule mapping",
           "new structural/context authored twins and all independent checks"
         ],
         "highestPriorityGate": "Per-question grade/applied curriculum across all content and prerequisites; reject violations, hold uncertainty."
@@ -9601,7 +9688,7 @@
     "acceptanceOfAnyQuestion": false,
     "reviewedMiddleSchoolPrintedPages": "Printed pp.25-37 (PDF pp.29-41); relevant middle-school standards/restrictions retained."
   },
-  "updatedAt": "2026-10-07T16:14:07.544175+00:00",
+  "updatedAt": "2026-10-07T16:17:57.788508+00:00",
   "curriculumGate": {
     "priority": "highest_before_variation_and_final_adoption",
     "sourceGrade": "중3",
@@ -9704,7 +9791,7 @@
         "notPerQuestionApproval": true
       }
     ],
-    "unitLiveFamilyGeneratorLinkStatus": "pending_parent_scoped_live_read_and_rule_review",
+    "unitLiveFamilyGeneratorLinkStatus": "parent_live_catalog_available_item_mapping_and_generator_rule_review_pending",
     "standardsCodesNeverInvented": true,
     "inspectionScope": [
       "stem",
@@ -9829,5 +9916,112 @@
       "latestReadSha256": "076aeb1eb572fec4bd20fb07dbac15bc9c642cce1c0d363c99b9b0995eae584b",
       "reason": "Parent refreshed original brief to point to updated addendum-1; latest full file reread and final policy already matches. Originals/old artifact bytes stayed unchanged."
     }
-  ]
+  ],
+  "parentBankReadEvidence": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+    "exists": true,
+    "bytes": 78133,
+    "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+    "capturedAt": "2026-10-07 15:57:15.290971+00",
+    "scope": "resume-setup-read-only-middle3-pilot-next5-and-protected82",
+    "transactionReadOnly": "on",
+    "isolation": "RepeatableRead",
+    "exactExamScope": {
+      "level": "중",
+      "grade": 3,
+      "year": 2025,
+      "semester": 2,
+      "round": "중간",
+      "schools": [
+        "범일중",
+        "경구중",
+        "경산중",
+        "경상중",
+        "경신중",
+        "경암중",
+        "동도중",
+        "강동중",
+        "경산여중",
+        "정화중"
+      ]
+    },
+    "returnedExactExamSchools": [
+      "정화중",
+      "동도중",
+      "강동중",
+      "경산여중"
+    ],
+    "returnedBankGroupSchools": [
+      "강동중",
+      "경산여중",
+      "동도중",
+      "정화중"
+    ],
+    "candidateSixSchoolsAbsentFromBothScopedResults": [
+      "범일중",
+      "경구중",
+      "경산중",
+      "경상중",
+      "경신중",
+      "경암중"
+    ],
+    "protectedUniqueRowsFoundAndLocked": 82,
+    "ledgerChecks": [
+      {
+        "path": "scripts/qa/reports/refresh-engine-content/exam-hold-pilot81-20261003.json",
+        "sha256": "fefc5a7a9dfda0a93324ad07b7a0e6b4b714f37671008c98f27c75ac432f6f9f",
+        "expectedRows": 81,
+        "foundAndIdentityMatched": 81,
+        "locked": 81,
+        "correctionsMatch": {}
+      },
+      {
+        "path": "scripts/qa/reports/refresh-engine-content/exam-lock-gyeongsanyeo19-20261003.json",
+        "sha256": "5f2f125164784ebc7818e6845283f2136b5145a9597bf68f9fa26f90177589f8",
+        "expectedRows": 1,
+        "foundAndIdentityMatched": 1,
+        "locked": 1,
+        "correctionsMatch": {}
+      },
+      {
+        "path": "scripts/qa/reports/refresh-engine-content/exam-draft-review-bank-decide-20261003.json",
+        "sha256": "f3b8f3bbd3426933dfc88baa28d4658830176fb871fc5c7badaf40d5f080a105",
+        "expectedRows": 2,
+        "foundAndIdentityMatched": 2,
+        "locked": 2,
+        "correctionsMatch": {
+          "2025-dongdo-3-2-mid-16": true,
+          "2025-gangdong-3-2-mid-17": true
+        }
+      }
+    ],
+    "availableLiveUnits": 22,
+    "availableLiveFamilies": 302,
+    "livePredicate": "중3; pool=shared; review_status=approved; direct_use_allowed=true; btrim(answer)<>''; answer<>'(정답 없음)'; family_key IS NOT NULL",
+    "limitations": [
+      "Scoped read, not a recount of all 1715 inventory jobs.",
+      "School bank groups may include other exam periods; exact dedup also needs exam identity, source hashes and content.",
+      "Live family presence is not a semantic assignment or generator coverage approval.",
+      "No original answers/solutions, credentials, student records or user records are exported."
+    ],
+    "interpretation": "Absence only within this parent captured scope and returned school groups. No source-hash/content cross-bank dedup completed; live family presence is not assignment or curriculum/generator approval.",
+    "queryPerformedBy": "parent",
+    "queriesPerformedByThisWorker": 0,
+    "fullJoinOwner": "parent",
+    "sourceAuditNotOverwritten": true
+  },
+  "sourceAuditBaseline": {
+    "commit": "1cdfe02b51395868047432162d76d23e6155b1ea",
+    "jsonSha256BeforeParentReadReference": "42b62ec614258707ac8d8747c9784b103d34a6216842133aa1a627310024dcaf",
+    "reportSha256BeforeParentReadReference": "4743c899908c77d88d110a7ee11857bc52fa6692dc5452461dd2a091616be7c5",
+    "preservedPerExamSections": [
+      "sourceFiles",
+      "equivalence",
+      "legacyExtraction",
+      "perQuestionCurriculumGate",
+      "pendingEvidence",
+      "newTwinProduction"
+    ],
+    "note": "Fresh parent scope reference appended; no original/source extraction/figures/answers/curriculum status rewritten."
+  }
 }

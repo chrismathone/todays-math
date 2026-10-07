@@ -2,7 +2,7 @@
 
 경구·경산·경상·경신·경암 중3 2025-2 중간 수학을 읽기 전용으로 대조했다. 완료 HWP/PDF 5짝과 원본 스캔 19개 파일은 모두 존재한다. 현재 완료 PDF의 재추출 결과는 5편 모두 9월 `body.json`과 정확히 같으며, 기존 HWP 발문/보기 수식도 현재 HWP 내부에 전량 존재한다. **이는 참고 추출 재사용 근거이며, 전체 HWP/PDF 동등성·현재 DB 중복 없음·새 쌍둥이 검증 완료를 뜻하지 않는다. 검증된 쌍둥이는 0개다.**
 
-작업 브랜치 `chrismathone/exam-twin-next-five-20261008`, 시작 HEAD `6b14920ed71baf770213bb1e6e9af8f80412bfe3`. 감사 JSON `.qa-artifacts/exam-resume-20261008/next-five-audit.json`의 SHA-256은 `42b62ec614258707ac8d8747c9784b103d34a6216842133aa1a627310024dcaf`다. 파일 원문 해시, 내부 기록/텍스트 해시, 175개 기존 산출물과 71개 그림의 경로/해시, 106문항의 교육과정 보류 행은 JSON에 있다. 부모만 이 기능 브랜치를 통합한다.
+작업 브랜치 `chrismathone/exam-twin-next-five-20261008`, 시작 HEAD `6b14920ed71baf770213bb1e6e9af8f80412bfe3`. 감사 JSON `.qa-artifacts/exam-resume-20261008/next-five-audit.json`의 SHA-256은 `954d506390c2a4470a632b6e5e85ca0c604b231cd1eeb485cb9bf7946a569c9c`다. 파일 원문 해시, 내부 기록/텍스트 해시, 175개 기존 산출물과 71개 그림의 경로/해시, 106문항의 교육과정 보류 행은 JSON에 있다. 부모만 이 기능 브랜치를 통합한다.
 
 ## 적용 지시와 완료 단계의 구분
 
@@ -14,7 +14,7 @@
 | 기존 추출 | 5편 106문항, 초안 48, 옛 sol_ai 43 | 원문 참고 자료; 추출 파이프라인 완료/적재를 뜻하지 않음 |
 | 내용 대응 | 현재 PDF 재추출 5/5 완전 객체 일치; HWP 수식 1062/1062 멤버십 일치 | 동일 위치·분수 의미·그림·배점까지 확정한 전수 동등성은 0편 |
 | 학년·교육과정 | 2015 적용 시기·공식 기준 확인; 개별 106문항은 보류 | 본문부터 학생용 풀이·선수 개념까지 가장 먼저 검토 |
-| 현재 DB 중복 | 접속/조회 0회, 확인 미완료 | 부모의 최신 범위 한정 읽기 결과와 연결 |
+| 현재 DB 중복 | worker 직접 조회 0회; 부모의 최신 제한 조회 결과 연결 | 범위 내 후보 학교 불검출; 전역/내용 중복 검사는 미완료 |
 | 새 쌍둥이 | 제작 0 / 독립 검증 0 / 저장 0 | 새 ID·본문·그림·답/해설·메타데이터·검산 전량 필요 |
 
 `readyForExtraction` 및 2026-10-03 스냅샷의 `existingExamIds=[]`·`existingQuestionCount=0`은 역사적 목록값이다. 현재 미적재/중복 없음이라는 판단에는 사용하지 않았다. 경산중과 경산여중은 다른 학교다. `drafts.directUseAllowed=true` 역시 과거 로컬 초안 값이며 현재 출제 허가가 아니다.
@@ -218,7 +218,7 @@
 | 도형·표·산점도·이미지 | 원본 그림은 조건 파악 증거; 기존 엔진/spec/render/sanitize 경로 | 71개 참고 그림을 완성품으로 재사용하지 않음. 필요한 모든 새 그림/표/데이터/스펙·라벨·인쇄 크기 검수; 코드 곤란 이미지에는 내장 imagegen 제작과 검수 기록 |
 | 답·학생용 해설 | 옛 답/풀이/sol_ai/불일치 플래그는 대조 기록 | 변형된 본문/도형 기준 전량 새 풀이·독립 검산; 정답을 감춘 풀이자와 분리된 검수, 실제 학년 허용 풀이 |
 | 문항 메타데이터 | 현재 source/origin/problem/family/figure 계약과 provenance 필드 | 실제/목표 교육과정·근거·live Unit/family·type/format/difficulty/배점·새 ID/버전·학교 치환·그림해시·학년/수학/권리 검수·보류 |
-| 중복/적재/생성기 | 서로 다른 historical/inventory IDs 및 필터 계약을 조회 키로 | 부모 scoped bank read 이후 판단; twin은 original externalId/problemCode와 분리, 없는 originProblemId 금지; 생성 규칙/템플릿 개선은 별도 후속 구현 |
+| 중복/적재/생성기 | 서로 다른 historical/inventory IDs 및 필터 계약을 조회 키로 | 부모 scoped bank read의 제한 결과와 후속 소스/내용 중복 검사로 판단; twin은 original externalId/problemCode와 분리, 없는 originProblemId 금지; 생성 규칙/템플릿 개선은 별도 후속 구현 |
 
 `REGENERATION.md`의 prepare→독립 풀이→verify-pack→독립 검수→collect/check는 재사용할 검증 절차 참고다. 기존 21개 범일중 검증, 43개 sol_ai, 기존 답 일치 또는 파일 해시는 새 쌍둥이 통과 기록으로 복사하지 않는다. prepare/build/convert를 기존 폴더에 재실행하지 않았다. `load-exam-paper.ts`의 past_exam/원본 그림 적재 경로 또는 `--regenerate-all`만으로 최신 요구가 충족되지 않는다.
 
@@ -258,7 +258,17 @@
 | `scripts/qa/reports/refresh-engine-content/exam-lock-gyeongsanyeo19-20261003.json` | 1 | `5f2f125164784ebc7818e6845283f2136b5145a9597bf68f9fa26f90177589f8` | `631847eafffbde75b8a8bdd086ddb590f94d794f6102153b4849943200b70d39` |
 | `scripts/qa/reports/refresh-engine-content/exam-draft-review-bank-decide-20261003.json` | 2 | `f3b8f3bbd3426933dfc88baa28d4658830176fb871fc5c7badaf40d5f080a105` | `425f83150834a0882134b10f6e3a046414127a209823f2db7ed85490ce16b276` |
 
-세 원장은 현재 파일과 10-04 보존 사본이 JSON 의미상 동일하고, 줄바꿈을 정규화한 텍스트도 동일하다. 원시 SHA 차이는 줄바꿈 표현 차이이며 이 감사에서 변경하지 않았다. 81행 hold, 경산여중 19번 영구 제외, 동도16 분모 보정·강동17 퍼센트 이스케이프 보정을 함께 유지한다. `scripts/import/exam-paper/exams/2025-gyeongsanyeo-3-2-mid/exam.json`의 `excludeFromLoad[19]`를 확인했다. 원장의 `before=true`를 잠금 해제/재적재 기본값으로 사용하지 않는다. 현재 DB 상태에 관한 주장은 하지 않는다.
+세 원장은 현재 파일과 10-04 보존 사본이 JSON 의미상 동일하고, 줄바꿈을 정규화한 텍스트도 동일하다. 원시 SHA 차이는 줄바꿈 표현 차이이며 이 감사에서 변경하지 않았다. 81행 hold, 경산여중 19번 영구 제외, 동도16 분모 보정·강동17 퍼센트 이스케이프 보정을 함께 유지한다. `scripts/import/exam-paper/exams/2025-gyeongsanyeo-3-2-mid/exam.json`의 `excludeFromLoad[19]`를 확인했다. 원장의 `before=true`를 잠금 해제/재적재 기본값으로 사용하지 않는다. 이 원장 파일 대조만으로 현재 DB 상태를 판단하지 않는다. 아래 부모의 최신 제한 조회 증거는 별도로 인용한다.
+
+## 부모의 최신 제한 DB 읽기 증거 연결
+
+소스 감사 기준 커밋 `1cdfe02b51395868047432162d76d23e6155b1ea`의 원본/기존 산출물/내용 대응/학년 보류 증거를 보존했다. 부모가 작성한 `C:\Users\user\orca\workspaces\todays-math\exam-extraction-resume-20261008\.qa-artifacts\exam-resume-20261008\bank-read-20261008.json`를 파일로 읽어 연결했다. SHA-256 `164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b`, capturedAt `2026-10-07 15:57:15.290971+00` (UTC; 한국 시간 2026-10-08 00:57:15). 부모 기록의 트랜잭션은 read-only `on`, 격리는 `RepeatableRead`다. 이 worker는 DB에 직접 접속하거나 질의를 실행하지 않았다.
+
+정확한 Exam 조회 범위는 중학교 3학년·2025년·2학기·중간, 학교 10개(범일·다음 5편·옛 4학교)다. 반환된 Exam은 동도·강동·경산여·정화 4학교뿐이다. 반환된 학교별 problem groups에도 범일·경구·경산·경상·경신·경암 6학교가 없다. **이는 해당 조회 범위에서의 부재 증거이며, 별칭/다른 기간/출처 누락/소스 해시/내용을 포함한 전역 중복 검사 완료가 아니다.** 10-03 스냅샷을 최신 근거로 바꿔 쓰지 않았다. 각 시험 JSON `currentDbDedup.parentEvidence`는 부모 파일의 경로/해시/범위와 제한 결과만 가리키며, 실제 sourceFile/ID/Unit/live-family 조인은 부모가 수행한다.
+
+부모 기록에서 hold 81행과 경산여 19번 1행의 unique externalId 82개가 모두 found/identity matched이고 `directUseAllowed=false`다. 동도16·강동17 보정 2행도 `correctionsMatch=true`다. 로컬 세 원장의 SHA-256은 부모 읽기 증거에 기록된 원장 해시와 일치한다. 잠금과 영구 제외를 해제하거나 원장/원본을 변경하지 않았다.
+
+현재 중3 Unit 22개와 live family 302개가 부모 파일에 있지만, 해당 문항의 의미상 대응이나 2015 교육과정/생성 규칙 허용을 증명하지 않는다. 106문항의 Unit/family/rule 부여·학생용 풀이/선수 검토는 계속 보류다. 독립 쌍둥이 제작·검증은 여전히 0개다. 부모는 current DB 조인 결과를 별도 근거로 첨부하며 이 소스 감사를 덮어쓰지 않는다.
 
 ## 증거 한계·부모 인계·검증
 
@@ -266,6 +276,6 @@ HWP는 OLE FileHeader, PrvText, 압축된 BodyText 기록과 기존 수식 문�
 
 기존 Oct03 외부 `processing/`에서 찾은 것은 범일중 표본 한 폴더다. 이 감사의 5개 로컬 폴더에는 src/HWPX/batch-state/log/load ledger/regeneration result가 없었다. 다른 컴퓨터나 세션에도 없다고 일반화하지 않는다. 각 기존 파일의 경로/해시를 재사용 기준으로 삼고, 증거가 불충분하면 기존 산출물을 보존한 별도 작업 사본에서 후속 검토한다.
 
-부모가 할 일: 최신 scoped bank read와 이 보고서의 sourceFile/canonical/legacy/inventory/externalId 키를 연결하고, 먼저 학년/2015 근거·허용 풀이·선수 개념을 확정한다. 경신은 P0 연도/페이지 대응, 경산23은 답 불일치, 경상은 표 네 개, 각 편은 배점/소문항/그림을 해결한다. 다른 관문 통과 시 경구→경산→경암→경상 순으로 새 구조/표현/역방향 후보를 제작할 수 있다. 경신 순서는 신원 해결 후 지정한다. 새 문항별 curriculum/mathematical/figure/metadata/rights 검수를 각각 연결하고, 확정되지 않은 항목은 보류한다.
+부모가 할 일: 준비된 최신 scoped bank read와 이 보고서의 sourceFile/canonical/legacy/inventory/externalId 키를 조인하고, 소스 해시/내용 기반 전역 중복 검사를 완료하며, 먼저 학년/2015 근거·허용 풀이·선수 개념을 확정한다. 경신은 P0 연도/페이지 대응, 경산23은 답 불일치, 경상은 표 네 개, 각 편은 배점/소문항/그림을 해결한다. 다른 관문 통과 시 경구→경산→경암→경상 순으로 새 구조/표현/역방향 후보를 제작할 수 있다. 경신 순서는 신원 해결 후 지정한다. 새 문항별 curriculum/mathematical/figure/metadata/rights 검수를 각각 연결하고, 확정되지 않은 항목은 보류한다.
 
 29개 원본, 175개 기존 폴더 파일, 입력 문서/목록, 세 원장과 보존 사본을 읽은 해시로 다시 대조했다. 공식 문서 번호는 실제 첨부 PDF에서 확인했다. 현재 DB 접속, 쓰기/apply/unlock/delete/reload/deploy/push, 원본 변환/desktop control, 설치/prisma generate, 유료 호출, 다른 세션 수정/worker 생성은 없었다. 커밋 대상은 이 보고서와 감사 JSON 두 파일뿐이다. 모든 학년 관문/새 제작 검증은 아직 pending이며 **verified twins = 0**이다.
