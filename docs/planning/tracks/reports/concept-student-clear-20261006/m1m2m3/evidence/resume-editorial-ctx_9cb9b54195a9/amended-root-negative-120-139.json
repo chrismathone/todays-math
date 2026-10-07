@@ -1,0 +1,1677 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-root-negative-120-139.json",
+  "changes": [
+    {
+      "id": "m3-06-01-c6",
+      "cAfter": "한 원에서 길이가 같은 두 현 중 하나는 원의 중심에서 $3\\,\\mathrm{cm}$ 떨어져 있다. 다른 현도 원의 중심에서 {$3$}$\\,\\mathrm{cm}$ 떨어져 있다.",
+      "cMarkedSentence": "한 원에서 길이가 같은 두 현 중 하나는 원의 중심에서 $3\\,\\mathrm{cm}$ 떨어져 있다. 다른 현도 원의 중심에서 {$3$}$\\,\\mathrm{cm}$ 떨어져 있다.",
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ]
+      ],
+      "cReason": "현 길이의 같음에서 중심까지 거리의 같음을 추론하게 한다. 한 원과 두 현 조건을 주고 답 대상은 거리 수치로 한정한다."
+    },
+    {
+      "id": "m1-03-10-xc15",
+      "cAfter": "두 집단의 인원을 합한 전체 인원을 생각한다. 한 집단은 $a$명 늘고 다른 집단은 $b$명 줄었을 때, 늘어난 수를 양수로 나타내면 전체 인원의 변화는 {$(a-b)$}명이다.",
+      "cMarkedSentence": "두 집단의 인원을 합한 전체 인원을 생각한다. 한 집단은 $a$명 늘고 다른 집단은 $b$명 줄었을 때, 늘어난 수를 양수로 나타내면 전체 인원의 변화는 {$(a-b)$}명이다.",
+      "cReason": "변화량의 연산식을 미리 쓰지 않고 증가량과 감소량을 제시하여 전체 변화 식을 회상하게 한다.",
+      "cAcceptedAnswers": [
+        [
+          "$(a-b)$",
+          "$a-b$"
+        ]
+      ]
+    },
+    {
+      "id": "m2-02-06-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 곳에서 두 사람이 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$, $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 몇 시간 이상 걸어야 하는지 부등식을 세워 구하시오.",
+      "bAnswer": "$t$시간 걸으면 두 사람 사이의 거리는 $(3+4)t=7t\\,(\\mathrm{km})$이다. $7t\\ge14$를 풀면 $t\\ge2$이므로 $2$시간 이상 걸어야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7t\\ge14$",
+            "$(3+4)t\\ge14$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$시간 이상",
+            "$t\\ge2$"
+          ]
+        }
+      ],
+      "bReason": "xc15가 거리 식만 묻는 데 비해 이 목표는 최소 시간의 부등식 풀이이다. 별도 B를 복구하고 불필요한 수량 예시는 일반 설명에 넣지 않는다.",
+      "cAfter": "두 사람이 같은 곳에서 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$와 $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 {$2$}시간 이상 걸어야 한다.",
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ]
+      ],
+      "cReason": "거리와 최소 시간의 구체 조건으로 이중 부정 표현을 없앤다."
+    },
+    {
+      "id": "m2-02-07-xc1",
+      "cDecision": "rewrite",
+      "cAfter": "소금물의 양에서 물의 양을 빼면 녹아 있는 {소금의 양}이 남는다.",
+      "cMarkedSentence": "소금물의 양에서 물의 양을 빼면 녹아 있는 {소금의 양}이 남는다.",
+      "cAcceptedAnswers": [
+        [
+          "소금의 양",
+          "소금 양"
+        ]
+      ],
+      "cReason": "가환 덧셈의 두 이름 슬롯을 고정하면 맞는 순서를 오답 처리한다. 한 구성 성분을 빼서 남는 성분 하나를 묻는다."
+    },
+    {
+      "id": "m2-02-07-xc6",
+      "cDecision": "rewrite",
+      "cAfter": "농도가 $a\\,\\%$인 소금물 $x\\,\\mathrm{g}$ 속 소금의 양은 {$\\frac{a}{100}x$}$\\,\\mathrm{g}$이다.",
+      "cMarkedSentence": "농도가 $a\\,\\%$인 소금물 $x\\,\\mathrm{g}$ 속 소금의 양은 {$\\frac{a}{100}x$}$\\,\\mathrm{g}$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{a}{100}x$",
+          "$\\frac{ax}{100}$"
+        ]
+      ],
+      "cReason": "농도와 전체 질량으로 소금 질량의 문자식을 쓰는 목표만 남긴다. 식이라는 모호한 두 번째 낱말 빈칸은 없앤다."
+    },
+    {
+      "id": "m2-02-07-xc9",
+      "cDecision": "rewrite",
+      "cAfter": "소금물 $200\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣으면, 소금의 양은 그대로이고 소금물의 양은 {$(200+x)$}$\\,\\mathrm{g}$이다.",
+      "cMarkedSentence": "소금물 $200\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣으면, 소금의 양은 그대로이고 소금물의 양은 {$(200+x)$}$\\,\\mathrm{g}$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$(200+x)$",
+          "$200+x$",
+          "$x+200$"
+        ]
+      ],
+      "cReason": "양과 증감 낱말을 붙인 두 칸을 하나의 질량 식으로 바꾼다. 물을 넣었을 때 전체 질량이 늘어나는 수량 관계를 분명하게 묻는다."
+    },
+    {
+      "id": "m1-01-01-xc7",
+      "cDecision": "rewrite",
+      "cAfter": "$91$은 $1$과 자기 자신 외에도 {$7$}로 나누어떨어지므로 소수가 아니다. 빈칸에는 $91$을 나누어떨어지게 하는 가장 작은 소수를 쓴다.",
+      "cMarkedSentence": "$91$은 $1$과 자기 자신 외에도 {$7$}로 나누어떨어지므로 소수가 아니다. 빈칸에는 $91$을 나누어떨어지게 하는 가장 작은 소수를 쓴다.",
+      "cAcceptedAnswers": [
+        [
+          "$7$"
+        ]
+      ],
+      "cReason": "작은 소수인지 자연수인지 여러 절차가 가능한 지시를 피하고 실제 소인수와 합성수의 판정을 확인한다."
+    },
+    {
+      "id": "m2-02-07-xc10",
+      "cDecision": "rewrite",
+      "cAfter": "소금물 $400\\,\\mathrm{g}$에서 물 $x\\,\\mathrm{g}$을 증발시키면, 소금의 양은 그대로이고 남은 소금물의 양은 {$(400-x)$}$\\,\\mathrm{g}$이다.",
+      "cMarkedSentence": "소금물 $400\\,\\mathrm{g}$에서 물 $x\\,\\mathrm{g}$을 증발시키면, 소금의 양은 그대로이고 남은 소금물의 양은 {$(400-x)$}$\\,\\mathrm{g}$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$(400-x)$",
+          "$400-x$"
+        ]
+      ],
+      "cReason": "증발한 양을 복사하는 칸과 어미 칸을 하나의 남은 전체 질량 식으로 바꾼다. 증발시킨 것이 물임을 유지한다."
+    },
+    {
+      "id": "m2-02-07-xc21",
+      "cAfter": "고르게 섞인 농도 $10\\,\\%$의 소금물 $200\\,\\mathrm{g}$에서 $50\\,\\mathrm{g}$을 덜어 낸 뒤 물 $50\\,\\mathrm{g}$을 넣었다. 소금물의 양은 다시 $200\\,\\mathrm{g}$이지만 소금의 양은 {$15$}$\\,\\mathrm{g}$이다.",
+      "cMarkedSentence": "고르게 섞인 농도 $10\\,\\%$의 소금물 $200\\,\\mathrm{g}$에서 $50\\,\\mathrm{g}$을 덜어 낸 뒤 물 $50\\,\\mathrm{g}$을 넣었다. 소금물의 양은 다시 $200\\,\\mathrm{g}$이지만 소금의 양은 {$15$}$\\,\\mathrm{g}$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$15$"
+        ]
+      ],
+      "cReason": "덜어 낸 양과 비율이 섞인 낱말 빈칸을 남은 소금의 질량 하나로 명확하게 바꾼다. 섞인 소금물이 균일함을 조건으로 밝힌다."
+    },
+    {
+      "id": "m2-02-07-xc22",
+      "cAfter": "소금물의 농도를 구하려면 소금의 양을 {소금물의 양}으로 나누고 $100$을 곱하여 백분율로 나타낸다.",
+      "cMarkedSentence": "소금물의 농도를 구하려면 소금의 양을 {소금물의 양}으로 나누고 $100$을 곱하여 백분율로 나타낸다.",
+      "cAcceptedAnswers": [
+        [
+          "소금물의 양",
+          "전체 소금물의 양"
+        ]
+      ],
+      "cReason": "여러 잘못된 분모 중 물만 정답으로 고정하는 두 번째 칸을 없애고 정확한 농도 기준량 하나를 묻는다."
+    },
+    {
+      "id": "m2-02-07-xc23",
+      "cDecision": "rewrite",
+      "cAfter": "농도 $4\\,\\%$의 소금물과 $10\\,\\%$의 소금물을 섞으면, 섞은 소금물의 농도는 $10\\,\\%$보다 {낮다}.",
+      "cMarkedSentence": "농도 $4\\,\\%$의 소금물과 $10\\,\\%$의 소금물을 섞으면, 섞은 소금물의 농도는 $10\\,\\%$보다 {높을 수 없다}.",
+      "cAcceptedAnswers": [
+        [
+          "낮다",
+          "작다"
+        ]
+      ],
+      "cReason": "어림·검산 등 방법 이름의 열린 답을 없애고 혼합 농도의 상한을 묻는다. 두 소금물을 실제 섞으면 높은 농도를 넘을 수 없다는 쉬운 비교는 타당하다."
+    },
+    {
+      "id": "m1-03-01-xc8",
+      "cAfter": "$b>0$일 때 $a\\div(-b)$를 분모가 양수인 분수로 나타내면 {$-\\frac{a}{b}$}이다.",
+      "cMarkedSentence": "$b>0$일 때 $a\\div(-b)$를 분모가 양수인 분수로 나타내면 {$-\\frac{a}{b}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$-\\frac{a}{b}$",
+          "$\\frac{-a}{b}$",
+          "$-a/b$",
+          "$(-a)/b$"
+        ]
+      ],
+      "cReason": "부호 위치 한 곳을 의무로 고정하지 않는다. 분모가양수인 음의 제수를 나누는 동치 분수 표현을 모두 허용한다."
+    },
+    {
+      "id": "m1-03-11-xc7",
+      "bPrompt": "집에서 도서관까지 시속 $4\\,\\mathrm{km}$로 $30$분 동안 걸었다. 길을 선분으로 간단히 그려 두 끝에 집과 도서관을 쓰고, 알려진 속력과 시간을 적으시오. 거리를 구하는 식을 쓰려면 시간을 어떤 단위로 바꾸어야 하는지 말하고 거리를 구하시오.",
+      "bAnswer": "선분의 두 끝에 집과 도서관을 쓰고 시속 $4\\,\\mathrm{km}$와 $30$분을 적는다. 속력이 시속이므로 $30$분을 $\\frac12$시간으로 바꾼다. 거리는 $4\\times\\frac12=2\\,(\\mathrm{km})$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "집과 도서관을 잇는 선분에 시속 $4\\,\\mathrm{km}$와 $30$분을 적는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30$분을 $\\frac12$시간으로 바꾼다",
+            "$0.5$시간"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\times\\frac12=2\\,(\\mathrm{km})$",
+            "$2\\,\\mathrm{km}$"
+          ]
+        }
+      ],
+      "bReason": "풀이 요령의 막연한 관계라는 말만 요구하지 않고 실제 거리 문제를 정리할 때 필요한 양과 식을 쓰게 한다."
+    },
+    {
+      "id": "m2-03-01-xc3",
+      "cDecision": "rewrite",
+      "cAfter": "$x+3y=10$에 $x=1$을 대입하면 남은 미지수는 {$y$}이고, 그 값은 {$3$}이다.",
+      "cMarkedSentence": "$x+3y=10$에 $x=1$을 대입하면 남은 미지수는 {$y$}이고, 그 값은 {$3$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$y$"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "cReason": "다시 일차방정식 이름을 옮기는 칸을 구체적으로 남은 미지수와 그 값의 해석으로 바꾼다."
+    },
+    {
+      "id": "m2-03-01-xc5",
+      "cDecision": "rewrite",
+      "cAfter": "$x,y$가 $1$부터 $5$까지의 자연수일 때, $x+y=4$의 해는 $(1,3),(2,2),(3,1)$이고 $x-y=2$의 해는 $(3,1),(4,2),(5,3)$이다. 두 방정식에 공통인 해는 {$(3,1)$}이다.",
+      "cMarkedSentence": "$x,y$가 $1$부터 $5$까지의 자연수일 때, $x+y=4$의 해는 $(1,3),(2,2),(3,1)$이고 $x-y=2$의 해는 $(3,1),(4,2),(5,3)$이다. 두 방정식에 공통인 해는 {$(3,1)$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$(3,1)$",
+          "$(3,\\ 1)$",
+          "$x=3,\\ y=1$"
+        ]
+      ],
+      "cReason": "자연수 해의 표에서 실제 공통 순서쌍을 찾아 쓰게 한다. 표의 가능한 범위를 제한하여 두 번째 표가 끝없이 이어지는 혼동을 없앤다.",
+      "bPrompt": "$x,y$가 $1$부터 $5$까지의 자연수일 때, 두 일차방정식 $x+y=4$, $x-y=2$의 해를 각각 표로 구한 뒤, 두 표에서 공통인 순서쌍을 찾아 연립방정식의 해를 쓰시오.",
+      "bAnswer": "$x+y=4$의 해는 $(1,\\ 3)$, $(2,\\ 2)$, $(3,\\ 1)$이고, $x-y=2$의 해는 $(3,\\ 1)$, $(4,\\ 2)$, $(5,\\ 3)$이다. 공통인 $(3,\\ 1)$이 연립방정식의 해이다.",
+      "bReason": "표에 적을 자연수 범위를 명시하여 무한한 해를 전부 쓰는 요구를 피한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x+y=4$의 해는 $(1,3),(2,2),(3,1)$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x-y=2$의 해는 $(3,1),(4,2),(5,3)$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 표에 공통인 $(3,1)$이 연립방정식의 해이다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2-03-01-xc12",
+      "cDecision": "rewrite",
+      "cAfter": "연립방정식의 해는 그 연립방정식을 이루는 방정식들을 {모두 만족하는} 해이다.",
+      "cMarkedSentence": "연립방정식의 해는 그 연립방정식을 이루는 방정식들을 {모두 만족하는} 해이다.",
+      "cAcceptedAnswers": [
+        [
+          "모두 만족하는",
+          "동시에 만족하는",
+          "함께 만족하는"
+        ]
+      ],
+      "cReason": "두 방정식/공통이라는 경계가 흐린 두 슬롯을 동시에 만족한다는 의미 하나로 묶는다. 모든 방정식을 함께 만족한다는 동치 답을 인정한다."
+    },
+    {
+      "id": "m2-03-01-xc15",
+      "cAfter": "연립방정식 $x+y=5$, $ax-y=1$의 해가 $x=2$, $y=b$이다. 먼저 $x+y=5$에 대입하면 $b=$ {$3$}이고, 이를 다른 식에 대입하면 $a=$ {$2$}이다.",
+      "cMarkedSentence": "연립방정식 $x+y=5$, $ax-y=1$의 해가 $x=2$, $y=b$이다. 먼저 $x+y=5$에 대입하면 $b=$ {$3$}이고, 이를 다른 식에 대입하면 $a=$ {$2$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "cReason": "주어진 b 문자를 그대로 옮기는 대신 계수가없는식부터실제로대입해 두상수를 결정하는 결과를 묻는다. 일반설명의 올바른 상수 표현 교정은 보존한다."
+    },
+    {
+      "id": "m2-03-01-xc19",
+      "cDecision": "rewrite",
+      "cAfter": "$x+y=3$의 해를 $x,y$가 자연수일 때 찾으면 $(1,2),(2,1)$이다. $0$ 이상의 정수도 허용하면 $(0,3),(3,0)$이 더해져 해는 모두 {$4$}개이다.",
+      "cMarkedSentence": "$x+y=3$의 해를 $x,y$가 자연수일 때 찾으면 $(1,2),(2,1)$이다. $0$ 이상의 정수도 허용하면 $(0,3),(3,0)$이 더해져 해는 모두 {$4$}개이다.",
+      "cAcceptedAnswers": [
+        [
+          "$4$"
+        ]
+      ],
+      "cReason": "허용수집합을0이상으로바꾸면0좌표해가추가됨을구체적으로계수한다. 앞에쓴0을복사하거나어미만고치는칸은없앤다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m3-06-01-c6",
+      "bDecision": "rewrite",
+      "bPrompt": "한 원에서 길이가 같은 두 현이 있다. 원의 중심에서 두 현까지의 거리는 어떤 관계인가? 그 까닭도 쓰시오.",
+      "bAnswer": "거리가 같다. 두 현이 지름이면 중심에서의 거리는 모두 $0$이다. 그 밖에는 두 현의 절반 길이와 빗변인 반지름이 같으므로, 중심에서 내린 수선을 한 변으로 하는 두 직각삼각형이 합동이 되어 수선의 길이가 같다.",
+      "bGoal": "길이가 같은 두 현의 거리 관계와 근거",
+      "bReason": "RHS라는 이름만 쓰는 답이 아니라 실제 현의 절반·반지름·수선의 관계를 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "중심에서 두 현까지의 거리가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 현을 반으로 나눈 길이와 빗변인 반지름이 같아 두 직각삼각형이 합동이므로 수선 길이가 같다",
+            "반지름 $r$와 같은 현 길이 $l$을 쓰면 중심에서 두 현까지의 거리가 모두 $\\sqrt{r^2-(l/2)^2}$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 원에서 길이가 같은 두 현 중 하나는 원의 중심에서 $3\\,\\mathrm{cm}$ 떨어져 있다. 다른 현도 원의 중심에서 {$3$}$\\,\\mathrm{cm}$ 떨어져 있다.",
+      "cAnswers": [
+        "$3$"
+      ],
+      "cReason": "현 길이의 같음에서 중심까지 거리의 같음을 추론하게 한다. 한 원과 두 현 조건을 주고 답 대상은 거리 수치로 한정한다.",
+      "learningRole": "reason",
+      "roleReason": "길이가 같은 두 현은 중심에서 거리가 같은 성질",
+      "coreAfter": "‘중심에서 거리가 같은 두 현은 길이가 같다’를 거꾸로 하면, 한 원에서 {길이}가 같은 두 현은 원의 중심에서 같은 {거리}만큼 떨어져 있다.",
+      "coreReason": "'거꾸로'의 대상이 설명 안에 없어 앞 성질을 밝혔다.",
+      "authorBatch": 60,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 877,
+      "part": "m3",
+      "sourceFingerprint": "b921ce24bbf5b9e98109555d81b9e501ae4b3d581b6c6dbfb8ff32978b1b9c80",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 877
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 원에서 길이가 같은 두 현 중 하나는 원의 중심에서 $3\\,\\mathrm{cm}$ 떨어져 있다. 다른 현도 원의 중심에서 {$3$}$\\,\\mathrm{cm}$ 떨어져 있다.",
+      "cSlotAnswers": [
+        "$3$"
+      ],
+      "cStudentSentence": "한 원에서 길이가 같은 두 현 중 하나는 원의 중심에서 $3\\,\\mathrm{cm}$ 떨어져 있다. 다른 현도 원의 중심에서 □$\\,\\mathrm{cm}$ 떨어져 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "e7c95c97cee31fd65ae09c8caeebd91f38bee868cf0a742c9ae7fafb605f35b6"
+    },
+    {
+      "id": "m1-03-10-xc15",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "늘어난 수와 줄어든 수의 차로 전체 변화를 구한다.",
+      "bReason": "m1-03-10-c6의 B가 (늘어난 양)$-$(줄어든 양)$=$(전체 변화량)을 이미 묻고, xc18의 B가 구체 문제에 적용한다. 같은 관계의 반복이라 현재 형식에서는 제외한다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 집단의 인원을 합한 전체 인원을 생각한다. 한 집단은 $a$명 늘고 다른 집단은 $b$명 줄었을 때, 늘어난 수를 양수로 나타내면 전체 인원의 변화는 {$(a-b)$}명이다.",
+      "cAnswers": [
+        "$(a-b)$"
+      ],
+      "cReason": "변화량의 연산식을 미리 쓰지 않고 증가량과 감소량을 제시하여 전체 변화 식을 회상하게 한다.",
+      "exclusionReason": "B 제외: m1-03-10-c6의 B와 같은 관계(늘어난 양 − 줄어든 양 = 전체 변화량)를 묻는 질문의 중복이다. C는 고쳐서 유지한다.",
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "늘어난 수-줄어든 수가 전체 변화",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1385,
+      "part": "m1plus",
+      "sourceFingerprint": "de11984bea9b62f3ef129bbb34e4b5a5cd887d2e46774f14f6bdd953f76264fb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1385
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 집단의 인원을 합한 전체 인원을 생각한다. 한 집단은 $a$명 늘고 다른 집단은 $b$명 줄었을 때, 늘어난 수를 양수로 나타내면 전체 인원의 변화는 {$(a-b)$}명이다.",
+      "cSlotAnswers": [
+        "$(a-b)$"
+      ],
+      "cStudentSentence": "두 집단의 인원을 합한 전체 인원을 생각한다. 한 집단은 $a$명 늘고 다른 집단은 $b$명 줄었을 때, 늘어난 수를 양수로 나타내면 전체 인원의 변화는 □명이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(a-b)$",
+          "equivalentAnswers": [
+            "$(a-b)$",
+            "$a-b$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$(a-b)$",
+          "accept": [
+            "$a-b$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$(a-b)$",
+          "$a-b$"
+        ]
+      ],
+      "proposalFingerprint": "95a228ec55324940c84fcfa4034d1a3666d7c791d1d5270d5d2c6c4dd06f0ca5"
+    },
+    {
+      "id": "m2-02-06-xc22",
+      "learningRole": "application",
+      "roleReason": "두 속력 합×시간이 거리 이상",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 곳에서 두 사람이 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$, $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 몇 시간 이상 걸어야 하는지 부등식을 세워 구하시오.",
+      "bAnswer": "$t$시간 걸으면 두 사람 사이의 거리는 $(3+4)t=7t\\,(\\mathrm{km})$이다. $7t\\ge14$를 풀면 $t\\ge2$이므로 $2$시간 이상 걸어야 한다.",
+      "bGoal": null,
+      "bReason": "xc15가 거리 식만 묻는 데 비해 이 목표는 최소 시간의 부등식 풀이이다. 별도 B를 복구하고 불필요한 수량 예시는 일반 설명에 넣지 않는다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 사람이 같은 곳에서 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$와 $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 {$2$}시간 이상 걸어야 한다.",
+      "cAnswers": [
+        "$2$"
+      ],
+      "cReason": "거리와 최소 시간의 구체 조건으로 이중 부정 표현을 없앤다.",
+      "exclusionReason": "B 제외: 반대 방향 이동 거리의 합은 06-xc15 B에서, '이상' 부등식 세우기는 다른 활용 B에서 평가되는 중복이다.",
+      "authorBatch": 32,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2432,
+      "part": "m2plus",
+      "sourceFingerprint": "9d91501e7f86f611fbcb97916bea60bacac570fff2ab6aea42d63b3139046116",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2432
+      },
+      "directReview": null,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7t\\ge14$",
+            "$(3+4)t\\ge14$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$시간 이상",
+            "$t\\ge2$"
+          ]
+        }
+      ],
+      "cMarkedSentence": "두 사람이 같은 곳에서 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$와 $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 {$2$}시간 이상 걸어야 한다.",
+      "cSlotAnswers": [
+        "$2$"
+      ],
+      "cStudentSentence": "두 사람이 같은 곳에서 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$와 $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 □시간 이상 걸어야 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "8e7ff6e289077828b2cef8060a4b3027da43d9ae7bf4138f4d3f242fbcb45ef5"
+    },
+    {
+      "id": "m2-02-07-xc1",
+      "learningRole": "definition",
+      "roleReason": "소금물 양 = 소금 양 + 물 양",
+      "bDecision": "rewrite",
+      "bPrompt": "소금물의 양, 소금의 양, 물의 양 사이의 관계를 등식으로 나타내시오.",
+      "bAnswer": "(소금물의 양)$=$(소금의 양)$+$(물의 양)",
+      "bGoal": "소금물의 구성 관계 이해",
+      "bReason": "세 양의 이름만 주고 합 관계를 등식으로 쓰게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(소금물의 양)$=$(소금의 양)$+$(물의 양)",
+            "(물의 양)$=$(소금물의 양)$-$(소금의 양)",
+            "(소금의 양)$=$(소금물의 양)$-$(물의 양)"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "가환 덧셈의 두 이름 슬롯을 고정하면 맞는 순서를 오답 처리한다. 한 구성 성분을 빼서 남는 성분 하나를 묻는다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2436,
+      "part": "m2plus",
+      "sourceFingerprint": "461f21bf2cbba0686bb07eedf4d7e911df26e6d10aeddd22f4fd061528994ab3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2436
+      },
+      "directReview": null,
+      "cMarkedSentence": "소금물의 양에서 물의 양을 빼면 녹아 있는 {소금의 양}이 남는다.",
+      "cSlotAnswers": [
+        "소금의 양"
+      ],
+      "cStudentSentence": "소금물의 양에서 물의 양을 빼면 녹아 있는 □이 남는다.",
+      "cAnswers": [
+        "소금의 양"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "소금의 양",
+          "equivalentAnswers": [
+            "소금의 양",
+            "소금 양"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "소금의 양",
+          "소금 양"
+        ]
+      ],
+      "proposalFingerprint": "9a4b4739d6aeb62a3a8f9a00a48638b6871cbf139ac80bcfbd77a03f963b4de2",
+      "cAfter": "소금물의 양에서 물의 양을 빼면 녹아 있는 {소금의 양}이 남는다."
+    },
+    {
+      "id": "m2-02-07-xc6",
+      "learningRole": "application",
+      "roleReason": "$a\\%$ 소금물 $x$g 속 소금을 문자식으로",
+      "bDecision": "rewrite",
+      "bPrompt": "농도가 $4\\%$인 소금물 $x\\,\\mathrm{g}$ 속 소금의 양을 $x$를 사용한 식으로 나타내고, $4x\\,\\mathrm{g}$이라고 하면 왜 틀렸는지 말하시오.",
+      "bAnswer": "$\\frac{4}{100}x\\,\\mathrm{g}$이다. $4\\%$는 $4$배가 아니라 $\\frac{4}{100}$배이기 때문이다.",
+      "bGoal": "농도를 곱하는 비율로 문자식 세우기",
+      "bReason": "흔한 오답 $4x$를 제시해 $\\frac{4}{100}$배의 뜻을 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{4}{100}x\\,\\mathrm{g}$",
+            "$\\frac{1}{25}x\\,\\mathrm{g}$",
+            "$\\frac{x}{25}\\,\\mathrm{g}$",
+            "$0.04x\\,\\mathrm{g}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\%$는 $\\frac{4}{100}$배이다",
+            "$4\\%$는 $0.04$배이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "농도와 전체 질량으로 소금 질량의 문자식을 쓰는 목표만 남긴다. 식이라는 모호한 두 번째 낱말 빈칸은 없앤다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2441,
+      "part": "m2plus",
+      "sourceFingerprint": "d31deae6f08ed88e7155f655daf7602bfc31c0f1a30969a14adafe509ef2eb2e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2441
+      },
+      "directReview": null,
+      "cMarkedSentence": "농도가 $a\\,\\%$인 소금물 $x\\,\\mathrm{g}$ 속 소금의 양은 {$\\frac{a}{100}x$}$\\,\\mathrm{g}$이다.",
+      "cSlotAnswers": [
+        "$\\frac{a}{100}x$"
+      ],
+      "cStudentSentence": "농도가 $a\\,\\%$인 소금물 $x\\,\\mathrm{g}$ 속 소금의 양은 □$\\,\\mathrm{g}$이다.",
+      "cAnswers": [
+        "$\\frac{a}{100}x$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{a}{100}x$",
+          "equivalentAnswers": [
+            "$\\frac{a}{100}x$",
+            "$\\frac{ax}{100}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "식",
+          "accept": [
+            "문자식",
+            "문자를 사용한 식"
+          ]
+        }
+      ],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{a}{100}x\\,\\mathrm{g}$",
+          "accept": [
+            "$\\frac{ax}{100}\\,\\mathrm{g}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{a}{100}x$",
+          "$\\frac{ax}{100}$"
+        ]
+      ],
+      "proposalFingerprint": "fc7d5d9fad755531a99b8e04749f5d7f0f95909aef2afdfbd8c338691ecf1017",
+      "cAfter": "농도가 $a\\,\\%$인 소금물 $x\\,\\mathrm{g}$ 속 소금의 양은 {$\\frac{a}{100}x$}$\\,\\mathrm{g}$이다."
+    },
+    {
+      "id": "m2-02-07-xc9",
+      "learningRole": "application",
+      "roleReason": "물 $x$g을 넣은 뒤 두 양을 식으로",
+      "bDecision": "rewrite",
+      "bPrompt": "농도가 $10\\%$인 소금물 $200\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣었다. 물을 넣은 뒤의 소금의 양과 소금물의 양을 각각 구하시오.",
+      "bAnswer": "소금의 양은 그대로 $20\\,\\mathrm{g}$이고, 소금물의 양은 $(200+x)\\,\\mathrm{g}$이다.",
+      "bGoal": "물 추가 후 양을 문자식으로 표현",
+      "bReason": "구체 수치와 $x$를 주어 불변량과 변화량을 식으로 쓰게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소금 $20\\,\\mathrm{g}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "소금물 $(200+x)\\,\\mathrm{g}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "양과 증감 낱말을 붙인 두 칸을 하나의 질량 식으로 바꾼다. 물을 넣었을 때 전체 질량이 늘어나는 수량 관계를 분명하게 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2443,
+      "part": "m2plus",
+      "sourceFingerprint": "5b5c2d3723c99cb2233db6875a0657f42df2891e02ef5a17e742bd7298bfd861",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2443
+      },
+      "directReview": null,
+      "cMarkedSentence": "소금물 $200\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣으면, 소금의 양은 그대로이고 소금물의 양은 {$(200+x)$}$\\,\\mathrm{g}$이다.",
+      "cSlotAnswers": [
+        "$(200+x)$"
+      ],
+      "cStudentSentence": "소금물 $200\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣으면, 소금의 양은 그대로이고 소금물의 양은 □$\\,\\mathrm{g}$이다.",
+      "cAnswers": [
+        "$(200+x)$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(200+x)$",
+          "equivalentAnswers": [
+            "$(200+x)$",
+            "$200+x$",
+            "$x+200$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "늘어난다",
+          "accept": [
+            "증가한다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(200+x)$",
+          "$200+x$",
+          "$x+200$"
+        ]
+      ],
+      "proposalFingerprint": "37d74c321c351d5d4fab574f8671116a0b111ba581475cc07ed15cb53fb322e7",
+      "cAfter": "소금물 $200\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣으면, 소금의 양은 그대로이고 소금물의 양은 {$(200+x)$}$\\,\\mathrm{g}$이다."
+    },
+    {
+      "id": "m1-01-01-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "$91$이 소수인지 알아보려고 한다. 작은 소수부터 차례로 나누어 볼 때, $91$을 나누어떨어지게 하는 소수를 찾기까지 확인한 소수를 쓰시오. 그 결과를 이용하여 $91$이 소수인지 판단하고 이유를 쓰시오.",
+      "bAnswer": "$1$과 자기 자신이 아닌 약수가 있는지 작은 소수 $2$, $3$, $5$, $7$, …의 차례로 나누어 본다. $91=7\\times13$으로 $7$로 나누어떨어지므로 $91$은 소수가 아니다(합성수이다).",
+      "bGoal": "작은 소수부터 나누어 보아 소수인지 판단하는 방법을 쓰고 실제로 적용한다.",
+      "bReason": "91의작은소수확인2·3·5·7,약수7,합성수판정의실제기준을그대로읽어수식밖숫자·곱셈기호의표기를고쳤다.",
+      "cDecision": "rewrite",
+      "cReason": "작은 소수인지 자연수인지 여러 절차가 가능한 지시를 피하고 실제 소인수와 합성수의 판정을 확인한다.",
+      "exampleNeeded": true,
+      "authorBatch": 0,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$, $3$, $5$, $7$의 차례로 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$91$은 $7$로 나누어떨어진다",
+            "$91=7\\times13$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$91$은 소수가 아니라 합성수이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-000",
+      "learningRole": "procedure",
+      "roleReason": "작은 소수부터 나눠 보기",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 931,
+      "part": "m1plus",
+      "sourceFingerprint": "e168cb941ae6e0b24c38892c799ce7af45d8bfa23424be7cddb0e15d2ad652ed",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 931
+      },
+      "directReview": null,
+      "cMarkedSentence": "$91$은 $1$과 자기 자신 외에도 {$7$}로 나누어떨어지므로 소수가 아니다. 빈칸에는 $91$을 나누어떨어지게 하는 가장 작은 소수를 쓴다.",
+      "cSlotAnswers": [
+        "$7$"
+      ],
+      "cStudentSentence": "$91$은 $1$과 자기 자신 외에도 □로 나누어떨어지므로 소수가 아니다. 빈칸에는 $91$을 나누어떨어지게 하는 가장 작은 소수를 쓴다.",
+      "cAnswers": [
+        "$7$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$7$",
+          "equivalentAnswers": [
+            "$7$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$7$"
+        ]
+      ],
+      "proposalFingerprint": "53659ae1e9f9df6ffc2366dc620a2cc7df3910ec815a3ac4f291641834b5e709",
+      "cAfter": "$91$은 $1$과 자기 자신 외에도 {$7$}로 나누어떨어지므로 소수가 아니다. 빈칸에는 $91$을 나누어떨어지게 하는 가장 작은 소수를 쓴다."
+    },
+    {
+      "id": "m2-02-07-xc10",
+      "learningRole": "application",
+      "roleReason": "물 $x$g 증발 뒤 두 양을 식으로",
+      "bDecision": "rewrite",
+      "bPrompt": "농도가 $5\\%$인 소금물 $400\\,\\mathrm{g}$에서 물 $x\\,\\mathrm{g}$을 증발시켰다. 증발시킨 뒤의 소금의 양과 소금물의 양을 각각 구하시오.",
+      "bAnswer": "소금의 양은 그대로 $20\\,\\mathrm{g}$이고, 소금물의 양은 $(400-x)\\,\\mathrm{g}$이다.",
+      "bGoal": "증발 후 양을 문자식으로 표현",
+      "bReason": "물을 넣는 xc9와 반대 방향의 변화를 구체 수치로 확인함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소금 $20\\,\\mathrm{g}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "소금물 $(400-x)\\,\\mathrm{g}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "증발한 양을 복사하는 칸과 어미 칸을 하나의 남은 전체 질량 식으로 바꾼다. 증발시킨 것이 물임을 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2444,
+      "part": "m2plus",
+      "sourceFingerprint": "271195110ce66d2361cb731b9614e755a95c1b65a71437666804e789e4e5bce8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2444
+      },
+      "directReview": null,
+      "cMarkedSentence": "소금물 $400\\,\\mathrm{g}$에서 물 $x\\,\\mathrm{g}$을 증발시키면, 소금의 양은 그대로이고 남은 소금물의 양은 {$(400-x)$}$\\,\\mathrm{g}$이다.",
+      "cSlotAnswers": [
+        "$(400-x)$"
+      ],
+      "cStudentSentence": "소금물 $400\\,\\mathrm{g}$에서 물 $x\\,\\mathrm{g}$을 증발시키면, 소금의 양은 그대로이고 남은 소금물의 양은 □$\\,\\mathrm{g}$이다.",
+      "cAnswers": [
+        "$(400-x)$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(400-x)$",
+          "equivalentAnswers": [
+            "$(400-x)$",
+            "$400-x$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "줄고",
+          "accept": [
+            "줄어들고",
+            "감소하고"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(400-x)$",
+          "$400-x$"
+        ]
+      ],
+      "proposalFingerprint": "ec6b7f640d25bd0cf61bcede6943a6bee9bbe7fe0087ed8b338935ff20ca7474",
+      "cAfter": "소금물 $400\\,\\mathrm{g}$에서 물 $x\\,\\mathrm{g}$을 증발시키면, 소금의 양은 그대로이고 남은 소금물의 양은 {$(400-x)$}$\\,\\mathrm{g}$이다."
+    },
+    {
+      "id": "m1-02-05-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.25$와 같은 소수의 역수를 구할 때 먼저 무엇을 하는지 쓰고, $0.25$의 역수를 구하는 과정을 보이시오.",
+      "bAnswer": "소수를 먼저 분수로 고친 뒤 분자와 분모를 바꾼다. $0.25=\\frac{1}{4}$이므로 역수는 $4$이다.",
+      "bGoal": "소수를 분수로 고쳐 역수를 구할 수 있다.",
+      "bReason": "소수는 분자와 분모가 보이지 않아 예가 있어야 방법을 물을 수 있다. 분수로 고치기 쉬운 $0.25$를 넣고 첫 단계를 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "'먼저 □로 고친 뒤'는 첫 단계를 묻는 낱말 빈칸이고 뒤의 '분자와 분모를 바꾸어'가 실마리가 되어 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 소수를 분수로 고침"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.25=\\frac{1}{4}$ ($\\frac{25}{100}$도 허용)에서 분자와 분모를 바꿈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "분수로 고친 뒤 뒤집기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1137,
+      "part": "m1plus",
+      "sourceFingerprint": "46f738949dc394381c2a70954f1ae7a0ba71457da3689abdc70a84f152cf9c3d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1137
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 {분수}로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "cSlotAnswers": [
+        "분수"
+      ],
+      "cStudentSentence": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 □로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "cAnswers": [
+        "분수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분수"
+        ]
+      ],
+      "proposalFingerprint": "c934f42ab1e0def3be3beb93e28fecb0448e94bf3712cdb42b71b35cc04a2116",
+      "cAfter": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 {분수}로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "coreAfter": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 {분수}로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "coreReason": "0은역수가없으므로대상을0아닌수로밝히고소수라는말이소수점표현을뜻함을실제예로구별한다."
+    },
+    {
+      "id": "m2-02-07-xc21",
+      "learningRole": "application",
+      "roleReason": "덜어 낸 비율만큼 소금이 줄고 전체는 그대로",
+      "bDecision": "rewrite",
+      "bPrompt": "농도가 $10\\%$인 소금물 $200\\,\\mathrm{g}$에서 $50\\,\\mathrm{g}$을 덜어 낸 뒤 물 $50\\,\\mathrm{g}$을 넣었다. 처음과 비교하여 소금의 양과 소금물의 양이 각각 어떻게 되었는지 말하고, 이때의 농도를 구하시오.",
+      "bAnswer": "소금물의 $\\frac{1}{4}$을 덜어 냈으므로 소금은 $20\\,\\mathrm{g}$에서 $15\\,\\mathrm{g}$으로 줄고, 소금물의 양은 $200\\,\\mathrm{g}$ 그대로이다. 농도는 $\\frac{15}{200}\\times100=7.5$이므로 $7.5\\%$이다.",
+      "bGoal": "덜어 내고 물 넣기의 양 변화 추적",
+      "bReason": "구체 수치로 소금 감소와 전체 유지 후 농도까지 이어 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소금이 $15\\,\\mathrm{g}$이 된다",
+            "소금이 $5\\,\\mathrm{g}$ 줄어든다",
+            "소금이 처음의 $\\frac{1}{4}$만큼 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "소금물의 양은 $200\\,\\mathrm{g}$ 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7.5\\%$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "고르게 섞인 농도 $10\\,\\%$의 소금물 $200\\,\\mathrm{g}$에서 $50\\,\\mathrm{g}$을 덜어 낸 뒤 물 $50\\,\\mathrm{g}$을 넣었다. 소금물의 양은 다시 $200\\,\\mathrm{g}$이지만 소금의 양은 {$15$}$\\,\\mathrm{g}$이다.",
+      "cAnswers": [
+        "$15$"
+      ],
+      "cReason": "덜어 낸 양과 비율이 섞인 낱말 빈칸을 남은 소금의 질량 하나로 명확하게 바꾼다. 섞인 소금물이 균일함을 조건으로 밝힌다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2452,
+      "part": "m2plus",
+      "sourceFingerprint": "091feb824bef193a970e02f71749030668c550d4761979109659c1c2f0843248",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2452
+      },
+      "directReview": null,
+      "cMarkedSentence": "고르게 섞인 농도 $10\\,\\%$의 소금물 $200\\,\\mathrm{g}$에서 $50\\,\\mathrm{g}$을 덜어 낸 뒤 물 $50\\,\\mathrm{g}$을 넣었다. 소금물의 양은 다시 $200\\,\\mathrm{g}$이지만 소금의 양은 {$15$}$\\,\\mathrm{g}$이다.",
+      "cSlotAnswers": [
+        "$15$"
+      ],
+      "cStudentSentence": "고르게 섞인 농도 $10\\,\\%$의 소금물 $200\\,\\mathrm{g}$에서 $50\\,\\mathrm{g}$을 덜어 낸 뒤 물 $50\\,\\mathrm{g}$을 넣었다. 소금물의 양은 다시 $200\\,\\mathrm{g}$이지만 소금의 양은 □$\\,\\mathrm{g}$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$15$",
+          "equivalentAnswers": [
+            "$15$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$15$"
+        ]
+      ],
+      "proposalFingerprint": "c67cb0bc2dc7f71a50175f928c2f10b8f1e740370e81a75ecaf4f144e59fc5de"
+    },
+    {
+      "id": "m2-02-07-xc22",
+      "learningRole": "reason",
+      "roleReason": "분모에 물 대신 소금물 양을 써야 함",
+      "bDecision": "rewrite",
+      "bPrompt": "소금 $20\\,\\mathrm{g}$을 물 $80\\,\\mathrm{g}$에 녹인 소금물의 농도를 $\\frac{20}{80}\\times100=25$에서 $25\\%$로 구했다. 무엇이 잘못되었는지 말하고 바른 농도를 구하시오.",
+      "bAnswer": "나누는 수에 소금물의 양 $20+80=100\\,(\\mathrm{g})$ 대신 물의 양 $80\\,\\mathrm{g}$을 썼다. 바른 농도는 $\\frac{20}{100}\\times100=20$이므로 $20\\%$이다.",
+      "bGoal": "농도 분모 오류 찾기",
+      "bReason": "구체 오답 풀이를 주어 분모 선택의 잘못을 찾게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모에 물의 양이 아니라 소금물의 양을 써야 한다",
+            "소금물의 양은 $100\\,\\mathrm{g}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20\\%$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "소금물의 농도를 구하려면 소금의 양을 {소금물의 양}으로 나누고 $100$을 곱하여 백분율로 나타낸다.",
+      "cAnswers": [
+        "소금물의 양"
+      ],
+      "cReason": "여러 잘못된 분모 중 물만 정답으로 고정하는 두 번째 칸을 없애고 정확한 농도 기준량 하나를 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2453,
+      "part": "m2plus",
+      "sourceFingerprint": "c43e5574043d7e090d9099d4f91aa7bd387838c51b6048aab67f63beaea3d113",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2453
+      },
+      "directReview": null,
+      "cMarkedSentence": "소금물의 농도를 구하려면 소금의 양을 {소금물의 양}으로 나누고 $100$을 곱하여 백분율로 나타낸다.",
+      "cSlotAnswers": [
+        "소금물의 양"
+      ],
+      "cStudentSentence": "소금물의 농도를 구하려면 소금의 양을 □으로 나누고 $100$을 곱하여 백분율로 나타낸다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "소금물의 양",
+          "equivalentAnswers": [
+            "소금물의 양",
+            "전체 소금물의 양"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "소금물의 양",
+          "전체 소금물의 양"
+        ]
+      ],
+      "proposalFingerprint": "24e42b2f7896751c4c72a8ef070ed1c4b44160249229355b3c854e347364a5e2"
+    },
+    {
+      "id": "m2-02-07-xc23",
+      "learningRole": "application",
+      "roleReason": "섞은 농도 범위로 계산 검토",
+      "bDecision": "rewrite",
+      "bPrompt": "농도가 $4\\%$인 소금물과 $10\\%$인 소금물을 섞은 뒤의 농도를 계산했더니 $12\\%$가 나왔다. 다시 계산하지 않고도 이 결과가 틀렸다고 판단할 수 있는 까닭을 말하시오.",
+      "bAnswer": "섞은 농도는 $4\\%$와 $10\\%$ 사이에 있어야 하는데, $12\\%$는 $10\\%$보다 높으므로 틀렸다.",
+      "bGoal": "범위 어림으로 답 검토",
+      "bReason": "범위를 벗어난 구체 결과를 주어 어림 검토를 적용하게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "섞은 농도는 $4\\%$와 $10\\%$ 사이여야 한다",
+            "섞은 농도는 $10\\%$보다 높을 수 없다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "어림·검산 등 방법 이름의 열린 답을 없애고 혼합 농도의 상한을 묻는다. 두 소금물을 실제 섞으면 높은 농도를 넘을 수 없다는 쉬운 비교는 타당하다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2454,
+      "part": "m2plus",
+      "sourceFingerprint": "9a2ad8e9efdca932f09c45085fc7b36255fedca7c79aa20a7e5cf6d7d13892a6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2454
+      },
+      "directReview": null,
+      "cMarkedSentence": "농도 $4\\,\\%$의 소금물과 $10\\,\\%$의 소금물을 섞으면, 섞은 소금물의 농도는 $10\\,\\%$보다 {낮다}.",
+      "cSlotAnswers": [
+        "낮다"
+      ],
+      "cStudentSentence": "농도 $4\\,\\%$의 소금물과 $10\\,\\%$의 소금물을 섞으면, 섞은 소금물의 농도는 $10\\,\\%$보다 □.",
+      "cAnswers": [
+        "낮다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "낮다",
+          "equivalentAnswers": [
+            "낮다",
+            "작다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "틀린",
+          "accept": [
+            "잘못된"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "낮다",
+          "작다"
+        ]
+      ],
+      "proposalFingerprint": "dee340b58fe45813d77f94a58f8f9d7ba3d9397713c6f84eaf17ed3bc1c9607a",
+      "cAfter": "농도 $4\\,\\%$의 소금물과 $10\\,\\%$의 소금물을 섞으면, 섞은 소금물의 농도는 $10\\,\\%$보다 {낮다}."
+    },
+    {
+      "id": "m1-03-01-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$x\\div4$와 $x\\div(-4)$를 분모가 양수인 분수로 나타내시오. 두 번째 식은 음의 부호를 분수 앞에 둔 표기와 분자에 둔 표기를 모두 쓰고, 두 표기의 값이 같은 이유를 설명하시오.",
+      "bAnswer": "$x\\div4=\\frac{x}{4}$이고 $x\\div(-4)=-\\frac{x}{4}=\\frac{-x}{4}$이다. 분모에 있는 음의 부호 하나를 분수 전체 앞이나 분자에 옮겨도 같은 값을 나타낸다.",
+      "bGoal": "음수로 나눈 식을 분수 꼴로 쓸 때 부호의 자리를 안다.",
+      "bReason": "제목 '부호 자리'는 어떤 식의 어떤 부호인지 알 수 없어, 양수로 나눈 식과 음수로 나눈 식을 나란히 주고 부호의 위치를 물었다.",
+      "cDecision": "rewrite",
+      "cAfter": "$b>0$일 때 $a\\div(-b)$를 분모가 양수인 분수로 나타내면 {$-\\frac{a}{b}$}이다.",
+      "cAnswers": [
+        "$-\\frac{a}{b}$"
+      ],
+      "cReason": "부호 위치 한 곳을 의무로 고정하지 않는다. 분모가양수인 음의 제수를 나누는 동치 분수 표현을 모두 허용한다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{x}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{x}{4}$와 $\\frac{-x}{4}$를 모두 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모의 음의 부호 하나를 분수 전체 앞이나 분자에 옮겨도 값이 같다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "음의 부호는 분수 앞에",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1166,
+      "part": "m1plus",
+      "sourceFingerprint": "a653a1b44dadc2f7495e9b0f41898cd08579e2ddf7c07b766ddc8e857465f43b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1166
+      },
+      "directReview": null,
+      "cMarkedSentence": "$b>0$일 때 $a\\div(-b)$를 분모가 양수인 분수로 나타내면 {$-\\frac{a}{b}$}이다.",
+      "cSlotAnswers": [
+        "$-\\frac{a}{b}$"
+      ],
+      "cStudentSentence": "$b>0$일 때 $a\\div(-b)$를 분모가 양수인 분수로 나타내면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-\\frac{a}{b}$",
+          "equivalentAnswers": [
+            "$-\\frac{a}{b}$",
+            "$\\frac{-a}{b}$",
+            "$-a/b$",
+            "$(-a)/b$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-\\frac{a}{b}$",
+          "$\\frac{-a}{b}$",
+          "$-a/b$",
+          "$(-a)/b$"
+        ]
+      ],
+      "proposalFingerprint": "33a65bba17bb9fec12f00a75ae5bf98628256888f39fc4bae53f2a2844dff203",
+      "coreAfter": "$b\\ne0$일 때 $a\\div b$는 {$\\frac{a}{b}$}로 쓴다. $a\\div(-b)$는 음의 부호를 {분수 앞}에 두어 $-\\frac{a}{b}$로 나타낼 수 있다.",
+      "coreReason": "0분모금지조건을넣고음부호를분수앞에표시할수있다는표현으로써분자에음부호를두는동치표기도잘못이라고읽히지않게한다."
+    },
+    {
+      "id": "m1-03-11-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "집에서 도서관까지 시속 $4\\,\\mathrm{km}$로 $30$분 동안 걸었다. 길을 선분으로 간단히 그려 두 끝에 집과 도서관을 쓰고, 알려진 속력과 시간을 적으시오. 거리를 구하는 식을 쓰려면 시간을 어떤 단위로 바꾸어야 하는지 말하고 거리를 구하시오.",
+      "bAnswer": "선분의 두 끝에 집과 도서관을 쓰고 시속 $4\\,\\mathrm{km}$와 $30$분을 적는다. 속력이 시속이므로 $30$분을 $\\frac12$시간으로 바꾼다. 거리는 $4\\times\\frac12=2\\,(\\mathrm{km})$이다.",
+      "bGoal": "거리·속력·시간 문제의 상황을 선분 그림으로 정리하는 방법과 그 쓸모를 설명한다.",
+      "bReason": "풀이 요령의 막연한 관계라는 말만 요구하지 않고 실제 거리 문제를 정리할 때 필요한 양과 식을 쓰게 한다.",
+      "cDecision": "exclude",
+      "cReason": "빈칸 답 '선분', '관계'는 수학적 사실이 아니라 풀이 요령을 설명하는 낱말이다. '선', '직선', '그림'이나 '차이', '크기'처럼 다른 말도 들어갈 수 있어 답이 하나로 정해지지 않는다. 방법을 스스로 설명하는 B로만 다루는 것이 알맞다.",
+      "exclusionReason": "C 제외: 풀이 요령 문장의 임의 낱말('선분', '관계')을 가린 빈칸이라 문장만 읽어서는 답이 하나로 정해지지 않고 외울 수학 내용도 없다. B는 고쳐서 유지한다.",
+      "studentLabel": "선분 그림으로 상황 정리하기",
+      "exampleNeeded": true,
+      "authorBatch": 10,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "집과 도서관을 잇는 선분에 시속 $4\\,\\mathrm{km}$와 $30$분을 적는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30$분을 $\\frac12$시간으로 바꾼다",
+            "$0.5$시간"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\times\\frac12=2\\,(\\mathrm{km})$",
+            "$2\\,\\mathrm{km}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "선분에 거리·속력·시간 적기",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1401,
+      "part": "m1plus",
+      "sourceFingerprint": "78d473548f1be44a9c23c171a9b0144067cb45f8d63f097566e35e30c0c08c34",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1401
+      },
+      "directReview": null,
+      "proposalFingerprint": "5ec4e761f6b30e666913a9affdd8fcc4fa19e196c5c7a19ededacd1f5cdb8d0c"
+    },
+    {
+      "id": "m1-03-11-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "분속 $1\\,\\mathrm{km}$로 달리는 자동차와 시속 $50\\,\\mathrm{km}$로 달리는 자동차 중 어느 쪽이 더 빠른지 알아보려고 한다. 두 속력을 비교하기 전에 먼저 해야 할 일을 쓰고, 분속 $1\\,\\mathrm{km}$를 시속으로 고쳐 어느 쪽이 더 빠른지 답하시오.",
+      "bAnswer": "두 속력의 단위를 같게 고쳐야 한다. $1$분에 $1\\,\\mathrm{km}$를 가면 $60$분 동안 $60\\,\\mathrm{km}$를 가므로 분속 $1\\,\\mathrm{km}$는 시속 $60\\,\\mathrm{km}$이다. 따라서 분속 $1\\,\\mathrm{km}$로 달리는 자동차가 더 빠르다.",
+      "bGoal": "단위가 다른 속력을 같은 단위로 고쳐 비교하고 분속을 시속으로 바꾸는 까닭을 말한다.",
+      "bReason": "제목은 계산 하나만 가리켜 왜 바꾸는지가 빠져 있다. 정의의 앞부분(비교할 때 단위를 맞춘다)을 살리려고 두 속력을 비교하는 상황을 주고 변환 과정과 결론을 함께 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "단위가 다른 두 속력을 비교할 때는 먼저 {단위}를 같게 고친다. 예를 들어 분속 $1\\,\\mathrm{km}$는 시속 {$60$}$\\,\\mathrm{km}$이다.",
+      "cAnswers": [
+        "단위",
+        "$60$"
+      ],
+      "cReason": "원문 첫 빈칸은 '같은 단위'라는 구 전체를 가려 '시속', '같은 것' 등 여러 표현이 가능하고, '견줄'은 중1 학생에게 낯선 말이다. '비교할'로 바꾸고 핵심 낱말 '단위'만 묻도록 줄였다. 둘째 빈칸은 단위를 밖으로 빼 수만 쓰게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 10,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 두 속력의 단위를 같게 고침"
+          ]
+        },
+        {
+          "anyOf": [
+            "분속 $1\\,\\mathrm{km}$는 시속 $60\\,\\mathrm{km}$ ($60$분 동안 $60\\,\\mathrm{km}$)"
+          ]
+        },
+        {
+          "anyOf": [
+            "분속 $1\\,\\mathrm{km}$로 달리는 자동차가 더 빠름"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "분속 1km는 시속 60km로 통일",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1402,
+      "part": "m1plus",
+      "sourceFingerprint": "804f4b5a49620a0406769fb9600c3960b2a5134a1e002e93960de09ad2164140",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1402
+      },
+      "directReview": null,
+      "cMarkedSentence": "단위가 다른 두 속력을 비교할 때는 먼저 {단위}를 같게 고친다. 예를 들어 분속 $1\\,\\mathrm{km}$는 시속 {$60$}$\\,\\mathrm{km}$이다.",
+      "cSlotAnswers": [
+        "단위",
+        "$60$"
+      ],
+      "cStudentSentence": "단위가 다른 두 속력을 비교할 때는 먼저 □를 같게 고친다. 예를 들어 분속 $1\\,\\mathrm{km}$는 시속 □$\\,\\mathrm{km}$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "단위",
+          "equivalentAnswers": [
+            "단위"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$60$",
+          "equivalentAnswers": [
+            "$60$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "단위"
+        ],
+        [
+          "$60$"
+        ]
+      ],
+      "proposalFingerprint": "9e598c4d3acbc6102296e87e79154215d40ceaf4f6c7d04714b1a1dd5a9ac8ae"
+    },
+    {
+      "id": "m2-03-01-xc3",
+      "learningRole": "procedure",
+      "roleReason": "$x$ 값을 넣으면 $y$의 일차방정식",
+      "bDecision": "rewrite",
+      "bPrompt": "일차방정식 $x+3y=10$에서 $x=1$일 때 이 식은 어떤 방정식이 되는지 말하고 $y$의 값을 구하시오.",
+      "bAnswer": "$1+3y=10$, 즉 $y$에 대한 일차방정식이 되고 $y=3$이다.",
+      "bGoal": "한 미지수 고정 후 풀기",
+      "bReason": "식과 $x$ 값을 제시해 식의 종류와 $y$ 값을 함께 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y$에 대한 일차방정식",
+            "$1+3y=10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y=3$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "다시 일차방정식 이름을 옮기는 칸을 구체적으로 남은 미지수와 그 값의 해석으로 바꾼다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2459,
+      "part": "m2plus",
+      "sourceFingerprint": "2196be63c736d0e2a1838b420108ab035badf2a2c88056a412a7bd304236e722",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2459
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x+3y=10$에 $x=1$을 대입하면 남은 미지수는 {$y$}이고, 그 값은 {$3$}이다.",
+      "cSlotAnswers": [
+        "$y$",
+        "$3$"
+      ],
+      "cStudentSentence": "$x+3y=10$에 $x=1$을 대입하면 남은 미지수는 □이고, 그 값은 □이다.",
+      "cAnswers": [
+        "$y$",
+        "$3$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$y$",
+          "equivalentAnswers": [
+            "$y$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$y$"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "6bb2d8c6edc1ce42d23a20c2021e033b9550e2c62ef41666c0fc64da0b624632",
+      "cAfter": "$x+3y=10$에 $x=1$을 대입하면 남은 미지수는 {$y$}이고, 그 값은 {$3$}이다."
+    },
+    {
+      "id": "m2-03-01-xc5",
+      "learningRole": "procedure",
+      "roleReason": "두 표의 공통 순서쌍 찾기",
+      "bDecision": "rewrite",
+      "bPrompt": "$x,y$가 $1$부터 $5$까지의 자연수일 때, 두 일차방정식 $x+y=4$, $x-y=2$의 해를 각각 표로 구한 뒤, 두 표에서 공통인 순서쌍을 찾아 연립방정식의 해를 쓰시오.",
+      "bAnswer": "$x+y=4$의 해는 $(1,\\ 3)$, $(2,\\ 2)$, $(3,\\ 1)$이고, $x-y=2$의 해는 $(3,\\ 1)$, $(4,\\ 2)$, $(5,\\ 3)$이다. 공통인 $(3,\\ 1)$이 연립방정식의 해이다.",
+      "bGoal": "표 비교로 연립방정식 풀기",
+      "bReason": "표에 적을 자연수 범위를 명시하여 무한한 해를 전부 쓰는 요구를 피한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x+y=4$의 해는 $(1,3),(2,2),(3,1)$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x-y=2$의 해는 $(3,1),(4,2),(5,3)$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 표에 공통인 $(3,1)$이 연립방정식의 해이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "자연수 해의 표에서 실제 공통 순서쌍을 찾아 쓰게 한다. 표의 가능한 범위를 제한하여 두 번째 표가 끝없이 이어지는 혼동을 없앤다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2461,
+      "part": "m2plus",
+      "sourceFingerprint": "180a3eadd0aef86284df153d7fb055803e47e94aac784674c84e6bc68b0cfc9b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2461
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x,y$가 $1$부터 $5$까지의 자연수일 때, $x+y=4$의 해는 $(1,3),(2,2),(3,1)$이고 $x-y=2$의 해는 $(3,1),(4,2),(5,3)$이다. 두 방정식에 공통인 해는 {$(3,1)$}이다.",
+      "cSlotAnswers": [
+        "$(3,1)$"
+      ],
+      "cStudentSentence": "$x,y$가 $1$부터 $5$까지의 자연수일 때, $x+y=4$의 해는 $(1,3),(2,2),(3,1)$이고 $x-y=2$의 해는 $(3,1),(4,2),(5,3)$이다. 두 방정식에 공통인 해는 □이다.",
+      "cAnswers": [
+        "$(3,1)$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(3,1)$",
+          "equivalentAnswers": [
+            "$(3,1)$",
+            "$(3,\\ 1)$",
+            "$x=3,\\ y=1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(3,1)$",
+          "$(3,\\ 1)$",
+          "$x=3,\\ y=1$"
+        ]
+      ],
+      "proposalFingerprint": "25e016e37c6b44bcad167830c2445eeae31887be851aa89c2becb64ecabb78b2",
+      "cAfter": "$x,y$가 $1$부터 $5$까지의 자연수일 때, $x+y=4$의 해는 $(1,3),(2,2),(3,1)$이고 $x-y=2$의 해는 $(3,1),(4,2),(5,3)$이다. 두 방정식에 공통인 해는 {$(3,1)$}이다."
+    },
+    {
+      "id": "m2-03-01-xc12",
+      "learningRole": "definition",
+      "roleReason": "연립방정식의 해는 각 해의 공통",
+      "bDecision": "rewrite",
+      "bPrompt": "연립방정식의 해는 그 연립방정식을 이루는 각 방정식의 해와 어떤 관계인지 말하시오.",
+      "bAnswer": "각 방정식의 해 가운데 두 방정식에 공통인 해가 연립방정식의 해이다.",
+      "bGoal": "연립방정식 해와 각 해의 관계",
+      "bReason": "'공통'을 질문에서 말하지 않고 두 해집합의 관계를 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 방정식에 공통인 해",
+            "두 방정식을 모두 만족하는 해"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "두 방정식/공통이라는 경계가 흐린 두 슬롯을 동시에 만족한다는 의미 하나로 묶는다. 모든 방정식을 함께 만족한다는 동치 답을 인정한다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2468,
+      "part": "m2plus",
+      "sourceFingerprint": "df26f4ce6ad2cba3a78702a0d6298bbc6d495d4c8ac1ca74710b6c9a1d3ccc67",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2468
+      },
+      "directReview": null,
+      "cMarkedSentence": "연립방정식의 해는 그 연립방정식을 이루는 방정식들을 {모두 만족하는} 해이다.",
+      "cSlotAnswers": [
+        "모두 만족하는"
+      ],
+      "cStudentSentence": "연립방정식의 해는 그 연립방정식을 이루는 방정식들을 □ 해이다.",
+      "cAnswers": [
+        "모두 만족하는"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "모두 만족하는",
+          "equivalentAnswers": [
+            "모두 만족하는",
+            "동시에 만족하는",
+            "함께 만족하는"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "모두 만족하는",
+          "동시에 만족하는",
+          "함께 만족하는"
+        ]
+      ],
+      "proposalFingerprint": "e4e690b05303beee61be375ab88bffa1d82e9132ce7410ec38e4c12c35f8da48",
+      "cAfter": "연립방정식의 해는 그 연립방정식을 이루는 방정식들을 {모두 만족하는} 해이다."
+    },
+    {
+      "id": "m2-03-01-xc15",
+      "learningRole": "procedure",
+      "roleReason": "문자 계수 없는 식에 먼저 대입",
+      "bDecision": "rewrite",
+      "bPrompt": "연립방정식 $x+y=5$, $ax-y=1$의 해가 $x=2$, $y=b$일 때, 두 식 중 어느 식에 먼저 대입해야 하는지 까닭과 함께 말하고 상수 $a$, $b$의 값을 구하시오.",
+      "bAnswer": "$a$가 없는 $x+y=5$에 먼저 대입하면 모르는 것이 $b$ 하나뿐이라 $2+b=5$, $b=3$이다. 이를 $ax-y=1$에 대입하면 $2a-3=1$, $a=2$이다.",
+      "bGoal": "대입 순서 정하기",
+      "bReason": "구체 식으로 먼저 쓸 식과 근거, 두 상수를 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x+y=5$에 먼저 대입한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모르는 상수가 $b$ 하나뿐이다",
+            "$x+y=5$에는 $a$가 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$b=3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=2$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "연립방정식 $x+y=5$, $ax-y=1$의 해가 $x=2$, $y=b$이다. 먼저 $x+y=5$에 대입하면 $b=$ {$3$}이고, 이를 다른 식에 대입하면 $a=$ {$2$}이다.",
+      "cAnswers": [
+        "$3$",
+        "$2$"
+      ],
+      "cReason": "주어진 b 문자를 그대로 옮기는 대신 계수가없는식부터실제로대입해 두상수를 결정하는 결과를 묻는다. 일반설명의 올바른 상수 표현 교정은 보존한다.",
+      "exampleNeeded": true,
+      "coreAfter": "해가 $x=2,\\ y=b$처럼 일부만 주어지면 $x$, $y$ 말고는 값을 모르는 문자가 없는 방정식에 먼저 넣어 {$b$}를 구한 뒤, 그 해를 다른 식에 {대입}한다.",
+      "coreReason": "원문 '상수가 없는 방정식'은 $x+y=5$처럼 숫자 상수항이 있는 식과 맞지 않아 보여, 값을 모르는 문자가 없는 식이라는 뜻으로 바로잡았다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2471,
+      "part": "m2plus",
+      "sourceFingerprint": "37e50ead7fe1df510ca044a254517f7697a44971e1f3a13e77eef423e5bdb266",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2471
+      },
+      "directReview": null,
+      "coreBeforeRepair": "해가 $x=2,\\ y=b$처럼 일부만 주어지면 값을 모르는 문자 계수가 없는 방정식에 먼저 넣어 {$b$}를 구한 뒤 다른 식에 {대입}한다.",
+      "coreRepairReason": "교정안의 '문자 계수가 없는'은 상수항이 문자인 경우를 빠뜨려서, 계수와 상수항을 모두 포함하도록 '$x$, $y$ 말고 값을 모르는 문자'로 고쳤다. 원본 핵심어 {$b$}, {대입}은 유지했다.",
+      "coreRepairEvidence": "core-repair/core-003",
+      "cMarkedSentence": "연립방정식 $x+y=5$, $ax-y=1$의 해가 $x=2$, $y=b$이다. 먼저 $x+y=5$에 대입하면 $b=$ {$3$}이고, 이를 다른 식에 대입하면 $a=$ {$2$}이다.",
+      "cSlotAnswers": [
+        "$3$",
+        "$2$"
+      ],
+      "cStudentSentence": "연립방정식 $x+y=5$, $ax-y=1$의 해가 $x=2$, $y=b$이다. 먼저 $x+y=5$에 대입하면 $b=$ □이고, 이를 다른 식에 대입하면 $a=$ □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "81750bb77385d327b38f56b980e18ed1f294846f21494040b40858d6f6e5feb5"
+    },
+    {
+      "id": "m2-03-01-xc19",
+      "learningRole": "application",
+      "roleReason": "$0$을 포함하면 해가 늘어남",
+      "bDecision": "rewrite",
+      "bPrompt": "일차방정식 $x+y=3$의 해를 $x$, $y$가 자연수일 때와 $0$ 이상의 정수일 때 각각 모두 구하고, 해의 개수가 달라지는 까닭을 말하시오.",
+      "bAnswer": "자연수일 때는 $(1,\\ 2)$, $(2,\\ 1)$의 $2$개이고, $0$ 이상의 정수일 때는 $(0,\\ 3)$, $(1,\\ 2)$, $(2,\\ 1)$, $(3,\\ 0)$의 $4$개이다. $0$이 포함되어 $x=0$ 또는 $y=0$인 해가 더해지기 때문이다.",
+      "bGoal": "수의 범위에 따른 해 비교",
+      "bReason": "구체 식으로 두 범위의 해와 차이의 원인을 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 해 $(1,\\ 2)$, $(2,\\ 1)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$ 이상의 정수 해 $(0,\\ 3)$, $(1,\\ 2)$, $(2,\\ 1)$, $(3,\\ 0)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=0$ 또는 $y=0$인 해가 더해진다",
+            "$0$이 포함되기 때문이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "허용수집합을0이상으로바꾸면0좌표해가추가됨을구체적으로계수한다. 앞에쓴0을복사하거나어미만고치는칸은없앤다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2474,
+      "part": "m2plus",
+      "sourceFingerprint": "76d5a8ede40faa42a5059c51471f328ef25c863629ca2179e5357d7c7ccbdbed",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2474
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x+y=3$의 해를 $x,y$가 자연수일 때 찾으면 $(1,2),(2,1)$이다. $0$ 이상의 정수도 허용하면 $(0,3),(3,0)$이 더해져 해는 모두 {$4$}개이다.",
+      "cSlotAnswers": [
+        "$4$"
+      ],
+      "cStudentSentence": "$x+y=3$의 해를 $x,y$가 자연수일 때 찾으면 $(1,2),(2,1)$이다. $0$ 이상의 정수도 허용하면 $(0,3),(3,0)$이 더해져 해는 모두 □개이다.",
+      "cAnswers": [
+        "$4$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$4$",
+          "equivalentAnswers": [
+            "$4$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$4$"
+        ]
+      ],
+      "proposalFingerprint": "e98078aca4544bc46b4ded5d29b2e8e62ca9142f5a0bbfac9c88facd93f3983b",
+      "cAfter": "$x+y=3$의 해를 $x,y$가 자연수일 때 찾으면 $(1,2),(2,1)$이다. $0$ 이상의 정수도 허용하면 $(0,3),(3,0)$이 더해져 해는 모두 {$4$}개이다."
+    }
+  ]
+}

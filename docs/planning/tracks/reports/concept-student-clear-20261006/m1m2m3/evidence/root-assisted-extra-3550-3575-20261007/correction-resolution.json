@@ -1,0 +1,100 @@
+{
+  "recordedAt": "2026-10-07T08:59:25.597Z",
+  "dispatchId": "ctx_9cb9b54195a9",
+  "rootAdoptImportedUnchanged": 18,
+  "workerCorrectedAndReread": 7,
+  "unresolvedRootRequests": 0,
+  "notIndependentClaudeApproval": true,
+  "rows": [
+    {
+      "id": "m3-05-02-xc13",
+      "sourceIndex": 3550,
+      "rootInputFingerprint": "c29802905d9b4fd4fe6597c4e687bf29271e6f1b142ccbfb0fdbf6ebd8a70f01",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json",
+      "currentFingerprint": "5eb86fbe9d4b4bd028ed42f93766235748f245d6c64c140ee341cfa25feabfb8",
+      "workerRereadEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-root-3550-twenty.json",
+      "reader": "Codex dispatched worker direct reading",
+      "bReason": "표의배열을주고사인열해당값에서같은행각도를어림값으로읽는다.",
+      "cReason": "같은가로줄과어림값을특정배열아래에서묻는다.",
+      "coreReason": "주어진값과가까운표값을찾아각의어림값을구하는방법이다.",
+      "resolvedAt": "2026-10-07T08:59:00.148Z"
+    },
+    {
+      "id": "m3-05-02-xc18",
+      "sourceIndex": 3554,
+      "rootInputFingerprint": "1cb44614a90f4114d05853120c822a8d4237ca1121effbfbb1d8a571367e483c",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json",
+      "currentFingerprint": "19c29d978145b0cc9b5afcc59b93b7d68ad60ed6486567c34053f0ffad044d1b",
+      "workerRereadEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-root-3550-twenty.json",
+      "reader": "Codex dispatched worker direct reading",
+      "bReason": "두직각변길이가같아직각이등변이고예각45도이다.",
+      "cReason": "공통빗변과같은두직각변을명시한다.",
+      "coreReason": "정의없는높이·밑변대신기준각상대두직각변이다.",
+      "resolvedAt": "2026-10-07T08:59:00.151Z"
+    },
+    {
+      "id": "m3-05-02-xc19",
+      "sourceIndex": 3555,
+      "rootInputFingerprint": "2308c9f6941c472d994724c9cb1617d6331e3716dd9d7d90df73d63ebd7684da",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json",
+      "currentFingerprint": "247cf970d281246f0ae24ab2c6272acdb16af73516346200c810f3354472a6d6",
+      "workerRereadEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-root-3550-twenty.json",
+      "reader": "Codex dispatched worker direct reading",
+      "bReason": "45도양쪽에서맞은편직각변의대소를공통빗변으로나눠비교한다.",
+      "cReason": "두범위에서사인과코사인의대소를각묻는다.",
+      "coreReason": "다른직각변과맞은편직각변의관계가분명하다.",
+      "resolvedAt": "2026-10-07T08:59:00.153Z"
+    },
+    {
+      "id": "m3-05-02-xc20",
+      "sourceIndex": 3556,
+      "rootInputFingerprint": "3d8df9d61206066dac8e1cb0b963826928b7940c771aefb3ac58e1eb8eb47376",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json",
+      "currentFingerprint": "f774dd32590f92d9d55cd5450b8e1edccd2efcabe0948ad176e81de392631aa0",
+      "workerRereadEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-root-3550-twenty.json",
+      "reader": "Codex dispatched worker direct reading",
+      "bReason": "기울기=세로증가/가로증가=탄젠트라는근거와30도를받는다.",
+      "cReason": "양의기울기의예각관계tan a와30도이다.",
+      "resolvedAt": "2026-10-07T08:59:00.154Z"
+    },
+    {
+      "id": "m3-05-02-xc21",
+      "sourceIndex": 3557,
+      "rootInputFingerprint": "bd77d77275cc7690406b7439d3a1ea218736b38ee206cd19757dd0d81f90b6ae",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json",
+      "currentFingerprint": "63763ed91341a6d2c6b96371072409a4fc7bcd358e2604261c2eab144f0a312f",
+      "workerRereadEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-root-3550-twenty.json",
+      "reader": "Codex dispatched worker direct reading",
+      "bReason": "사인·코사인0..1및탄젠트의90도미만접근을구별한다.",
+      "cReason": "탄젠트는90도작은쪽으로접근하는경우이다.",
+      "coreReason": "tan90미정의와각삼각비적용구간을명시한다.",
+      "resolvedAt": "2026-10-07T08:59:00.155Z"
+    },
+    {
+      "id": "m3-05-03-xc8",
+      "sourceIndex": 3565,
+      "rootInputFingerprint": "db46e02c2943e3200d28a74e33c44480fff805dd34b8fab3ce9eedab892b0e2b",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json",
+      "currentFingerprint": "b740978b4e9270c367f4d60e593c59b4eec095bdf16476797d9aca31f6922059",
+      "workerRereadEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-root-3550-twenty.json",
+      "reader": "Codex dispatched worker direct reading",
+      "bReason": "표의반올림값0.5736을대신곱한길이5.736은어림값이다.",
+      "cReason": "정확한표값도가능하므로특정반올림사례만묻는다.",
+      "coreReason": "반올림값을이용한길이계산이라는조건이있다.",
+      "resolvedAt": "2026-10-07T08:59:00.157Z"
+    },
+    {
+      "id": "m3-05-03-xc9",
+      "sourceIndex": 3566,
+      "rootInputFingerprint": "9ef2df8efa89d8bfcc3c62f1f523661a0e55a0e97b332eda0622cbc9c6165387",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json",
+      "currentFingerprint": "2b25404cf0627f514391c1d4c6bce0b76cd9528c43f32e88d157501aa5ecb163",
+      "workerRereadEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-root-3550-twenty.json",
+      "reader": "Codex dispatched worker direct reading",
+      "bReason": "높이고정과예각탄젠트증가로h/tan x가감소한다.",
+      "cReason": "예각조건과같은높이조건을명시한다.",
+      "coreReason": "0도·90도문제를배제하는예각막대그림자관계이다.",
+      "resolvedAt": "2026-10-07T08:59:00.158Z"
+    }
+  ]
+}

@@ -1,0 +1,2532 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:35:22.815Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc15",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "각을 더하고 빼서 같은 각 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "공통인 각에 크기가 같은 각을 {더하거나} {빼서} 두 삼각형의 끼인각이 같음을 보인다.",
+        "example": {
+          "prompt": "한 평각 안에 차례로 놓인 반직선 $OA$, $OB$, $OC$, $OD$에서 $\\angle AOC=\\angle BOD=90^\\circ$, $\\angle BOC=30^\\circ$이면 $\\angle AOB$는?",
+          "answer": "$60^\\circ$"
+        },
+        "studentC": "공통인 각에 크기가 같은 각을 □ □ 두 삼각형의 끼인각이 같음을 보인다.",
+        "answers": [
+          "더하거나",
+          "빼서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "크기가 $180^\\circ$보다 작은 $\\angle AOD$의 안쪽에 반직선 $OB$, $OC$가 있고, 반직선 $OA$에 가까운 쪽부터 $OB$, $OC$ 순서로 놓여 있다. $\\angle AOC=\\angle BOD$일 때 $\\angle AOB=\\angle COD$인 까닭을 설명하시오.",
+        "bAnswer": "$\\angle AOB=\\angle AOC-\\angle BOC$이고 $\\angle COD=\\angle BOD-\\angle BOC$이다. 크기가 같은 두 각에서 공통인 $\\angle BOC$를 각각 뺀 것이므로 크기가 같다.",
+        "bGoal": "공통인 각을 빼서 같은 각 보이기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle AOC$와 $\\angle BOD$에서 공통인 $\\angle BOC$를 각각 뺀다",
+              "$\\angle AOB=\\angle AOC-\\angle BOC$이고 $\\angle COD=\\angle BOD-\\angle BOC$"
+            ]
+          }
+        ],
+        "bReason": "그림이 없어 반직선의 위치와 순서를 밝힌 예로 바꿨다.",
+        "cDecision": "rewrite",
+        "cAfter": "반직선 $OA$, $OB$, $OC$, $OD$가 이 차례로 놓여 있고 $\\angle AOC=\\angle BOD$이면, 두 각에 공통인 {$\\angle BOC$}를 각각 {빼서} $\\angle AOB=\\angle COD$임을 알 수 있다.",
+        "cAnswers": [
+          "$\\angle BOC$",
+          "빼서"
+        ],
+        "cReason": "연달아 놓인 '더하거나', '빼서'는 무엇에 대한 것인지 알 수 없어 상황을 넣었다.",
+        "coreAfter": "크기가 같은 두 각에 공통인 각을 각각 {더하거나}, 크기가 같은 두 각에서 공통인 각을 각각 {빼서} 만든 두 각도 크기가 같다. 이를 이용해 두 삼각형의 끼인각이 같음을 보인다.",
+        "coreReason": "원문으로는 무엇에 무엇을 더하고 빼는지 읽어 내기 어렵다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "같은 각에서 공통인 각을 빼기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1722,
+        "part": "m1plus",
+        "sourceFingerprint": "78f53e404647c385fbf78fc4638746f69ade9c765643701b87aae5b54066841f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1722
+        },
+        "directReview": null,
+        "coreBeforeRepair": "크기가 같은 두 각에 공통인 각을 각각 더하거나, 크기가 같은 두 각에서 공통인 각을 각각 빼면 그 결과도 크기가 같다. 이것으로 두 삼각형의 끼인각이 같음을 보인다.",
+        "coreRepairReason": "현재안에서 빠진 원본 핵심어 {더하거나}, {빼서} 표지를 되살렸다. 더하고 빼는 대상을 '크기가 같은 두 각'과 '공통인 각'으로 밝혔다. 끼인각이 같음을 보이는 목적도 유지했다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "반직선 $OA$, $OB$, $OC$, $OD$가 이 차례로 놓여 있고 $\\angle AOC=\\angle BOD$이면, 두 각에 공통인 {$\\angle BOC$}를 각각 {빼서} $\\angle AOB=\\angle COD$임을 알 수 있다.",
+        "cSlotAnswers": [
+          "$\\angle BOC$",
+          "빼서"
+        ],
+        "cStudentSentence": "반직선 $OA$, $OB$, $OC$, $OD$가 이 차례로 놓여 있고 $\\angle AOC=\\angle BOD$이면, 두 각에 공통인 □를 각각 □ $\\angle AOB=\\angle COD$임을 알 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\angle BOC$",
+            "equivalentAnswers": [
+              "$\\angle BOC$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빼서",
+            "equivalentAnswers": [
+              "빼서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\angle BOC$"
+          ],
+          [
+            "빼서"
+          ]
+        ],
+        "proposalFingerprint": "43489b1e7dc545798ad2a04a7234062dc22b21de6ac89b8b553713e10d2c5c0c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc16",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "합동이 되게 조건 더하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 변이 같을 때는 {나머지 한 변}이나 두 변의 {끼인각} 가운데 하나만 더 같으면 합동이 된다.",
+        "example": {
+          "prompt": "$\\triangle ABC$와 $\\triangle DEF$에서 $\\overline{AB}=\\overline{DE}$, $\\overline{AC}=\\overline{DF}$일 때 합동이 되려면 더할 각은?",
+          "answer": "$\\angle A=\\angle D$"
+        },
+        "studentC": "두 변이 같을 때는 □이나 두 변의 □ 가운데 하나만 더 같으면 합동이 된다.",
+        "answers": [
+          "나머지 한 변",
+          "끼인각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$와 $\\triangle DEF$에서 $\\overline{AB}=\\overline{DE}$, $\\overline{AC}=\\overline{DF}$이다. 두 삼각형이 합동이 되도록 조건 하나를 더하려 한다. 더할 수 있는 조건을 모두 쓰고, 각각 어떤 합동 조건이 되는지 쓰시오.",
+        "bAnswer": "$\\overline{BC}=\\overline{EF}$를 더하면 $\\mathrm{SSS}$ 합동, $\\angle A=\\angle D$를 더하면 $\\mathrm{SAS}$ 합동이다.",
+        "bGoal": "두 변이 같을 때 더 필요한 조건 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BC}=\\overline{EF}$이면 $\\mathrm{SSS}$ 합동"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle A=\\angle D$이면 $\\mathrm{SAS}$ 합동"
+            ]
+          }
+        ],
+        "bReason": "이미 같은 것이 무엇인지 주어져야 해 두 변이 같은 예를 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 삼각형에서 두 쌍의 대응변의 길이가 각각 같을 때, {나머지 한 변}의 길이나 그 두 변의 {끼인각}의 크기 가운데 하나만 더 같으면 합동이 된다.",
+        "cAnswers": [
+          "나머지 한 변",
+          "끼인각"
+        ],
+        "cReason": "'두 변이 같을 때'가 두 삼각형의 대응변을 뜻함을 문장에 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "합동이 되게 하는 추가 조건 고르기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1723,
+        "part": "m1plus",
+        "sourceFingerprint": "b5159ef13fa0927c48a8fd760dbefe740fc7a265869c6dbc5e4c56e77fc52aca",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1723
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 삼각형에서 두 쌍의 대응변의 길이가 각각 같을 때, {나머지 한 변}의 길이나 그 두 변의 {끼인각}의 크기 가운데 하나만 더 같으면 합동이 된다.",
+        "cSlotAnswers": [
+          "나머지 한 변",
+          "끼인각"
+        ],
+        "cStudentSentence": "두 삼각형에서 두 쌍의 대응변의 길이가 각각 같을 때, □의 길이나 그 두 변의 □의 크기 가운데 하나만 더 같으면 합동이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나머지 한 변",
+            "equivalentAnswers": [
+              "나머지 한 변",
+              "남은 한 변",
+              "나머지 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "끼인각",
+            "equivalentAnswers": [
+              "끼인각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "나머지 한 변",
+            "accept": [
+              "남은 한 변",
+              "나머지 변"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나머지 한 변",
+            "남은 한 변",
+            "나머지 변"
+          ],
+          [
+            "끼인각"
+          ]
+        ],
+        "proposalFingerprint": "2499acf46fbebcd072b83920381105f259517e6fccd9cc6137912410b3586aa1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc17",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "세 번째 각으로 맞추는 합동",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 변과 두 각이 같은데 그 변이 두 각 사이에 없으면, 세 번째 각을 구해 {양 끝 각}을 맞추어 {$\\mathrm{ASA}$} 합동을 보인다.",
+        "example": {
+          "prompt": "$\\triangle ABC$와 $\\triangle DEF$에서 $\\overline{BC}=\\overline{EF}$, $\\angle A=\\angle D$, $\\angle B=\\angle E$이면 합동인가?",
+          "answer": "합동이다"
+        },
+        "studentC": "한 변과 두 각이 같은데 그 변이 두 각 사이에 없으면, 세 번째 각을 구해 □을 맞추어 □ 합동을 보인다.",
+        "answers": [
+          "양 끝 각",
+          "$\\mathrm{ASA}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$와 $\\triangle DEF$에서 $\\overline{BC}=\\overline{EF}$, $\\angle A=\\angle D$, $\\angle B=\\angle E$이다. 두 삼각형이 합동인지 답하고, 어떤 합동 조건으로 알 수 있는지 과정을 설명하시오.",
+        "bAnswer": "합동이다. 삼각형의 세 각의 크기의 합은 $180^\\circ$이므로 $\\angle C=\\angle F$이다. 그러면 $\\overline{BC}=\\overline{EF}$이고 그 양 끝 각 $\\angle B=\\angle E$, $\\angle C=\\angle F$가 같으므로 $\\mathrm{ASA}$ 합동이다.",
+        "bGoal": "나머지 각을 구해 $\\mathrm{ASA}$ 합동 보이기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle C=\\angle F$",
+              "나머지 한 각의 크기도 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{ASA}$ 합동",
+              "한 변과 그 양 끝 각이 같다"
+            ]
+          }
+        ],
+        "bReason": "'세 번째 각'이 어느 각인지 알 수 있도록 변과 각을 준 예로 바꿨다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 삼각형에서 한 쌍의 대응변과 두 쌍의 대응각이 같은데 그 변이 두 각 사이에 있지 않으면, 세 각의 크기의 합이 {$180^\\circ$}임을 이용해 나머지 각도 같음을 보인 뒤 {$\\mathrm{ASA}$} 합동을 쓴다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "$\\mathrm{ASA}$"
+        ],
+        "cReason": "'양 끝 각을 맞추어'는 뜻이 흐려 나머지 각을 구하는 근거를 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "나머지 각을 구한 뒤 $\\mathrm{ASA}$ 적용",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1724,
+        "part": "m1plus",
+        "sourceFingerprint": "9afa37792c3ee03c7e3c8364325217f45909e6ff7f9df118b389a619b2fc44c9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1724
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 삼각형에서 한 쌍의 대응변과 두 쌍의 대응각이 같은데 그 변이 두 각 사이에 있지 않으면, 세 각의 크기의 합이 {$180^\\circ$}임을 이용해 나머지 각도 같음을 보인 뒤 {$\\mathrm{ASA}$} 합동을 쓴다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "$\\mathrm{ASA}$"
+        ],
+        "cStudentSentence": "두 삼각형에서 한 쌍의 대응변과 두 쌍의 대응각이 같은데 그 변이 두 각 사이에 있지 않으면, 세 각의 크기의 합이 □임을 이용해 나머지 각도 같음을 보인 뒤 □ 합동을 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\mathrm{ASA}$",
+            "equivalentAnswers": [
+              "$\\mathrm{ASA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "$\\mathrm{ASA}$"
+          ]
+        ],
+        "proposalFingerprint": "c9ed00e71b565b122aab9cc1e756efca9cf0cdaf36718bcfa8e493ce20a49342"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc18",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "접은 종이와 합동",
+        "kind": "성질",
+        "level": "상",
+        "definition": "종이를 접었을 때 겹치는 두 부분은 접는 선을 기준으로 {포개지므로} 서로 {합동}이다.",
+        "example": {
+          "prompt": "종이를 접었을 때 접혀 올라간 부분과 그 부분이 원래 있던 자리의 넓이는 어떠한가?",
+          "answer": "같다"
+        },
+        "studentC": "종이를 접었을 때 겹치는 두 부분은 접는 선을 기준으로 □ 서로 □이다.",
+        "answers": [
+          "포개지므로",
+          "합동"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "종이의 한쪽을 접어 올렸을 때, 접혀 올라간 부분과 그 부분이 접기 전에 있던 자리의 도형은 서로 어떤 관계인지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "합동이다. 접은 것을 다시 펴면 접힌 부분이 원래 자리와 완전히 포개지기 때문이다.",
+        "bGoal": "접은 종이에서 합동인 두 부분 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "완전히 포개진다",
+              "모양과 크기가 같다"
+            ]
+          }
+        ],
+        "bReason": "어느 두 부분을 비교하는지 접힌 부분과 접기 전 자리로 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "종이를 접었을 때 접혀 올라간 부분은 접기 전에 있던 자리의 도형과 모양과 크기가 같아 완전히 {포개지므로}, 두 도형은 서로 {합동}이다.",
+        "cAnswers": [
+          "포개지므로",
+          "합동"
+        ],
+        "cReason": "'겹치는 두 부분'이 무엇인지 알 수 없어 두 대상을 문장에 밝혔다.",
+        "coreAfter": "종이를 접었을 때 접힌 부분과 그 부분이 접기 전에 있던 자리는 접는 선을 기준으로 완전히 {포개지므로} 서로 {합동}이다.",
+        "coreReason": "'겹치는 두 부분'만으로는 어느 두 도형을 말하는지 알 수 없다.",
+        "learningRole": "reason",
+        "roleReason": "접힌 부분과 원래 자리가 포개짐",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1725,
+        "part": "m1plus",
+        "sourceFingerprint": "e6eadc5027cd8db57662b766c7113d72e257df582b0857c3791d32164a8ca044",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1725
+        },
+        "directReview": null,
+        "coreBeforeRepair": "종이를 접었을 때 접힌 부분과 그 부분이 접기 전에 있던 자리는 완전히 포개지므로 서로 합동이다.",
+        "coreRepairReason": "현재안에서 빠진 원본 핵심어 {포개지므로}, {합동} 표지를 되살렸다. 현재안이 뺀 '접는 선을 기준으로'라는 원문 조건도 복구했다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "종이를 접었을 때 접혀 올라간 부분은 접기 전에 있던 자리의 도형과 모양과 크기가 같아 완전히 {포개지므로}, 두 도형은 서로 {합동}이다.",
+        "cSlotAnswers": [
+          "포개지므로",
+          "합동"
+        ],
+        "cStudentSentence": "종이를 접었을 때 접혀 올라간 부분은 접기 전에 있던 자리의 도형과 모양과 크기가 같아 완전히 □, 두 도형은 서로 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "포개지므로",
+            "equivalentAnswers": [
+              "포개지므로",
+              "포개어지므로",
+              "겹치므로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "포개지므로",
+            "accept": [
+              "포개어지므로",
+              "겹치므로"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "포개지므로",
+            "포개어지므로",
+            "겹치므로"
+          ],
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "4ea1e2504ebb874e7b35d585c4516c29c9af1f08cc8266c7c318f20a914211d4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc19",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "합동을 보이는 순서",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 삼각형의 합동을 보일 때는 같은 것 세 가지를 각각의 {근거}와 함께 쓰고, 끝에 알맞은 {합동 조건}을 밝힌다.",
+        "example": {
+          "prompt": "같은 것이 세 변이면 끝에 쓸 조건은?",
+          "answer": "$\\mathrm{SSS}$ 합동"
+        },
+        "studentC": "두 삼각형의 합동을 보일 때는 같은 것 세 가지를 각각의 □와 함께 쓰고, 끝에 알맞은 □을 밝힌다.",
+        "answers": [
+          "근거",
+          "합동 조건"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "두 삼각형이 합동임을 글로 보일 때, 어떤 내용을 어떤 순서로 써야 하는지 설명하시오.",
+        "bAnswer": "두 삼각형에서 서로 같은 변이나 각 세 가지를 각각 같은 까닭과 함께 쓰고, 마지막에 $\\mathrm{SSS}$, $\\mathrm{SAS}$, $\\mathrm{ASA}$ 가운데 어느 합동 조건인지 밝힌다.",
+        "bGoal": "합동을 보이는 글의 짜임",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 같은 변이나 각 세 가지를 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각각 같은 까닭을 함께 쓴다",
+              "근거를 밝힌다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마지막에 합동 조건을 밝힌다",
+              "$\\mathrm{SSS}$, $\\mathrm{SAS}$, $\\mathrm{ASA}$ 중 어느 것인지 쓴다"
+            ]
+          }
+        ],
+        "bReason": "'순서'가 글로 쓰는 차례임을 밝혀 답할 범위를 정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 삼각형의 합동을 보일 때는 길이가 같은 변이나 크기가 같은 각 세 가지를 각각의 {근거}와 함께 쓰고, 끝에 알맞은 {합동 조건}을 밝힌다.",
+        "cAnswers": [
+          "근거",
+          "합동 조건"
+        ],
+        "cReason": "'같은 것 세 가지'가 변과 각임을 문장에 밝혔다.",
+        "learningRole": "procedure",
+        "roleReason": "같은 것 세 가지, 근거, 합동 조건 순서",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1726,
+        "part": "m1plus",
+        "sourceFingerprint": "f0d4d0c964619a0f09bcb04226a37d48f5c77baa4f6380f0fba529110a615546",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1726
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 삼각형의 합동을 보일 때는 길이가 같은 변이나 크기가 같은 각 세 가지를 각각의 {근거}와 함께 쓰고, 끝에 알맞은 {합동 조건}을 밝힌다.",
+        "cSlotAnswers": [
+          "근거",
+          "합동 조건"
+        ],
+        "cStudentSentence": "두 삼각형의 합동을 보일 때는 길이가 같은 변이나 크기가 같은 각 세 가지를 각각의 □와 함께 쓰고, 끝에 알맞은 □을 밝힌다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "근거",
+            "equivalentAnswers": [
+              "근거",
+              "까닭",
+              "이유"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합동 조건",
+            "equivalentAnswers": [
+              "합동 조건"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "근거",
+            "accept": [
+              "까닭",
+              "이유"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "근거",
+            "까닭",
+            "이유"
+          ],
+          [
+            "합동 조건"
+          ]
+        ],
+        "proposalFingerprint": "7e89d5657ef60ca7614ad0fd1c14520d3c8f1363f5fc55fb388e92eea7c86e52"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc20",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "대응변으로 길이 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직접 알 수 없는 길이는 그 선분을 변으로 하는 삼각형과 {합동}인 삼각형을 찾아 {대응변}의 길이로 구한다.",
+        "example": {
+          "prompt": "$\\triangle ABC\\equiv\\triangle DEF$, $\\overline{AB}+\\overline{EF}=13$, $\\overline{DE}=5$이면 $\\overline{BC}$는?",
+          "answer": "$8$"
+        },
+        "studentC": "직접 알 수 없는 길이는 그 선분을 변으로 하는 삼각형과 □인 삼각형을 찾아 □의 길이로 구한다.",
+        "answers": [
+          "합동",
+          "대응변"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC\\equiv\\triangle DEF$이고 $\\overline{AB}+\\overline{EF}=13$, $\\overline{DE}=5$일 때 $\\overline{BC}$의 길이를 구하고, 구하는 과정을 설명하시오.",
+        "bAnswer": "$\\overline{AB}$는 $\\overline{DE}$의 대응변이므로 $\\overline{AB}=5$이고 $\\overline{EF}=13-5=8$이다. $\\overline{BC}$는 $\\overline{EF}$의 대응변이므로 $\\overline{BC}=8$이다.",
+        "bGoal": "대응변을 이용해 길이 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\overline{DE}=5$",
+              "$\\overline{BC}=\\overline{EF}$",
+              "대응변의 길이가 같음을 이용한다"
+            ]
+          }
+        ],
+        "bReason": "방법만으로는 답할 수 없어 대응변을 두 번 쓰는 예를 넣었다.",
+        "cDecision": "keep",
+        "cReason": "합동인 삼각형과 대응변을 차례로 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "대응변으로 모르는 길이 구하기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1727,
+        "part": "m1plus",
+        "sourceFingerprint": "690d2e6b433971507cb8a4a91c44075f955e7c218377510b165cb8a7b8597061",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1727
+        },
+        "directReview": null,
+        "cFrozenSentence": "직접 알 수 없는 길이는 그 선분을 변으로 하는 삼각형과 □인 삼각형을 찾아 □의 길이로 구한다.",
+        "cFrozenDefinition": "직접 알 수 없는 길이는 그 선분을 변으로 하는 삼각형과 {합동}인 삼각형을 찾아 {대응변}의 길이로 구한다.",
+        "cFrozenAnswers": [
+          "합동",
+          "대응변"
+        ],
+        "cMarkedSentence": "직접 알 수 없는 길이는 그 선분을 변으로 하는 삼각형과 {합동}인 삼각형을 찾아 {대응변}의 길이로 구한다.",
+        "cSlotAnswers": [
+          "합동",
+          "대응변"
+        ],
+        "cStudentSentence": "직접 알 수 없는 길이는 그 선분을 변으로 하는 삼각형과 □인 삼각형을 찾아 □의 길이로 구한다.",
+        "cAnswers": [
+          "합동",
+          "대응변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대응변",
+            "equivalentAnswers": [
+              "대응변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합동"
+          ],
+          [
+            "대응변"
+          ]
+        ],
+        "proposalFingerprint": "db3005e9acc27fd18354d44bfeade3d029c8eae9af5bf0f3ea0351632503e12e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc1",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "꼭짓점과 변의 개수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "다각형에서 꼭짓점의 개수와 변의 개수는 언제나 {같다}.",
+        "example": {
+          "prompt": "칠각형의 꼭짓점의 개수는?",
+          "answer": "$7$개"
+        },
+        "studentC": "다각형에서 꼭짓점의 개수와 변의 개수는 언제나 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형에서 꼭짓점의 개수와 변의 개수는 어떤 관계인지 쓰고, 칠각형을 예로 들어 확인하시오.",
+        "bAnswer": "항상 같다. 칠각형은 변이 $7$개이고 꼭짓점도 $7$개이다.",
+        "bGoal": "꼭짓점과 변의 개수의 관계",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점의 개수와 변의 개수는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "칠각형은 변 $7$개, 꼭짓점 $7$개"
+            ]
+          }
+        ],
+        "bReason": "두 개수의 관계를 묻고 예로 확인하게 해 답할 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "두 개수의 관계를 한 낱말로 묻는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "꼭짓점과 변의 개수가 같음",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1728,
+        "part": "m1plus",
+        "sourceFingerprint": "805edb590ec84d5b0831df7caffa4dd8f3cde0370033a7ae632446418f6cdf85",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1728
+        },
+        "directReview": null,
+        "cFrozenSentence": "다각형에서 꼭짓점의 개수와 변의 개수는 언제나 □.",
+        "cFrozenDefinition": "다각형에서 꼭짓점의 개수와 변의 개수는 언제나 {같다}.",
+        "cFrozenAnswers": [
+          "같다"
+        ],
+        "cMarkedSentence": "다각형에서 꼭짓점의 개수와 변의 개수는 언제나 {같다}.",
+        "cSlotAnswers": [
+          "같다"
+        ],
+        "cStudentSentence": "다각형에서 꼭짓점의 개수와 변의 개수는 언제나 □.",
+        "cAnswers": [
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "76010f851ed9d4199ae65bb68b3f5a87a0dad676f0f84157dfb839b78b3ed0a0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc2",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "다각형이 아닌 도형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "{곡선}이 섞여 있거나 선분이 {끊겨} 둘러막히지 않은 도형은 다각형이 아니다.",
+        "example": {
+          "prompt": "부채꼴은 다각형인가?",
+          "answer": "아니다"
+        },
+        "studentC": "□이 섞여 있거나 선분이 □ 둘러막히지 않은 도형은 다각형이 아니다.",
+        "answers": [
+          "곡선",
+          "끊겨"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "원과, 선분 세 개를 ㄷ자 모양으로 이어 놓은 도형은 둘 다 다각형이 아니다. 다각형의 뜻에 비추어 각각 그 까닭을 쓰시오.",
+        "bAnswer": "원은 선분이 아닌 곡선으로 이루어져 있어서 다각형이 아니다. ㄷ자 모양은 한쪽이 열려 있어 선분으로 완전히 둘러싸이지 않아서 다각형이 아니다.",
+        "bGoal": "다각형이 아닌 도형의 구별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원은 곡선으로 이루어져 있다",
+              "선분이 아닌 곡선이 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "선분으로 완전히 둘러싸이지 않았다",
+              "한쪽이 열려 있다"
+            ]
+          }
+        ],
+        "bReason": "두 가지 경우를 각각 떠올릴 수 있게 아는 도형의 예를 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "{곡선}이 섞여 있거나, {선분}으로 완전히 둘러싸이지 않고 열려 있는 도형은 다각형이 아니다.",
+        "cAnswers": [
+          "곡선",
+          "선분"
+        ],
+        "cReason": "'끊겨'는 떠올리기 어려운 임의의 낱말이라 선분을 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "곡선이 있거나 열려 있으면 다각형이 아님",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1729,
+        "part": "m1plus",
+        "sourceFingerprint": "8d6eecc65717b65fd631bf51da72729be28f9aacae6029c3daf2d3f7b59135ec",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1729
+        },
+        "directReview": null,
+        "cMarkedSentence": "{곡선}이 섞여 있거나, {선분}으로 완전히 둘러싸이지 않고 열려 있는 도형은 다각형이 아니다.",
+        "cSlotAnswers": [
+          "곡선",
+          "선분"
+        ],
+        "cStudentSentence": "□이 섞여 있거나, □으로 완전히 둘러싸이지 않고 열려 있는 도형은 다각형이 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곡선",
+            "equivalentAnswers": [
+              "곡선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "선분",
+            "equivalentAnswers": [
+              "선분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곡선"
+          ],
+          [
+            "선분"
+          ]
+        ],
+        "proposalFingerprint": "fc3625652bad60cdd508351736917f67e4b869e24287e6fe15f4a40fb0bdab74"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc3",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "다각형의 이름 붙이기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "다각형은 {변}의 개수에 따라 이름을 붙여, 변이 $5$개이면 오각형이라 한다.",
+        "example": {
+          "prompt": "변이 $9$개인 다각형의 이름은?",
+          "answer": "구각형"
+        },
+        "studentC": "다각형은 □의 개수에 따라 이름을 붙여, 변이 $5$개이면 오각형이라 한다.",
+        "answers": [
+          "변"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 이름은 무엇의 개수에 따라 정해지는지 쓰고, 구각형을 예로 들어 설명하시오.",
+        "bAnswer": "변의 개수에 따라 정해진다. 구각형은 변이 $9$개인 다각형이다.",
+        "bGoal": "다각형의 이름을 붙이는 기준",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변의 개수",
+              "꼭짓점의 개수"
+            ]
+          },
+          {
+            "anyOf": [
+              "구각형은 변이 $9$개",
+              "구각형은 꼭짓점이 $9$개"
+            ]
+          }
+        ],
+        "bReason": "기준이 되는 것을 질문에서 먼저 말하지 않도록 이름을 주고 설명하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "다각형은 {변}의 개수에 따라 이름을 붙이므로, 선분 $5$개로 둘러싸인 다각형은 {오각형}이다.",
+        "cAnswers": [
+          "변",
+          "오각형"
+        ],
+        "cReason": "빈칸 답 '변'이 바로 뒤 '변이 $5$개'에 그대로 나와 고쳤다.",
+        "exampleNeeded": true,
+        "learningRole": "naming",
+        "roleReason": "변의 개수로 이름 붙이기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1730,
+        "part": "m1plus",
+        "sourceFingerprint": "a2f4a7e0cc5728e8b82e28d595343a92cc396e837ba7caafec8312f36711def1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1730
+        },
+        "directReview": null,
+        "cMarkedSentence": "다각형은 {변}의 개수에 따라 이름을 붙이므로, 선분 $5$개로 둘러싸인 다각형은 {오각형}이다.",
+        "cSlotAnswers": [
+          "변",
+          "오각형"
+        ],
+        "cStudentSentence": "다각형은 □의 개수에 따라 이름을 붙이므로, 선분 $5$개로 둘러싸인 다각형은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변",
+            "equivalentAnswers": [
+              "변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "오각형",
+            "equivalentAnswers": [
+              "오각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변"
+          ],
+          [
+            "오각형"
+          ]
+        ],
+        "proposalFingerprint": "d797d91588027f3cb480264e580b20af89fa67dbf5d107169c39bc2c42b60e39"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc4",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "이웃한 꼭짓점",
+        "kind": "방법",
+        "level": "하",
+        "definition": "다각형에서 한 {변}의 양 끝에 있는 두 꼭짓점을 서로 {이웃한} 꼭짓점이라 한다.",
+        "example": {
+          "prompt": "오각형의 한 꼭짓점과 이웃한 꼭짓점은 몇 개?",
+          "answer": "$2$개"
+        },
+        "studentC": "다각형에서 한 □의 양 끝에 있는 두 꼭짓점을 서로 □ 꼭짓점이라 한다.",
+        "answers": [
+          "변",
+          "이웃한"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형에서 두 꼭짓점이 '서로 이웃한다'는 것은 무슨 뜻인지 쓰시오. 또 오각형 $ABCDE$(꼭짓점이 이 순서로 놓임)에서 꼭짓점 $A$와 이웃한 꼭짓점을 모두 쓰시오.",
+        "bAnswer": "한 변의 양 끝에 있는 두 꼭짓점을 서로 이웃한다고 한다. 꼭짓점 $A$와 이웃한 꼭짓점은 $B$와 $E$이다.",
+        "bGoal": "이웃한 꼭짓점의 뜻",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변의 양 끝에 있는 두 꼭짓점",
+              "한 변으로 이어진 두 꼭짓점"
+            ]
+          },
+          {
+            "anyOf": [
+              "$B$와 $E$"
+            ]
+          }
+        ],
+        "bReason": "뜻과 함께 실제로 찾아보게 꼭짓점 순서가 정해진 오각형을 넣었다.",
+        "cDecision": "keep",
+        "cReason": "변의 양 끝이라는 조건과 용어를 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "한 변의 양 끝 꼭짓점",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1731,
+        "part": "m1plus",
+        "sourceFingerprint": "495cb58013c891471e1a359de864a9b9c8cee2d4acc1f40167024caa6934deef",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1731
+        },
+        "directReview": null,
+        "cFrozenSentence": "다각형에서 한 □의 양 끝에 있는 두 꼭짓점을 서로 □ 꼭짓점이라 한다.",
+        "cFrozenDefinition": "다각형에서 한 {변}의 양 끝에 있는 두 꼭짓점을 서로 {이웃한} 꼭짓점이라 한다.",
+        "cFrozenAnswers": [
+          "변",
+          "이웃한"
+        ],
+        "cMarkedSentence": "다각형에서 한 {변}의 양 끝에 있는 두 꼭짓점을 서로 {이웃한} 꼭짓점이라 한다.",
+        "cSlotAnswers": [
+          "변",
+          "이웃한"
+        ],
+        "cStudentSentence": "다각형에서 한 □의 양 끝에 있는 두 꼭짓점을 서로 □ 꼭짓점이라 한다.",
+        "cAnswers": [
+          "변",
+          "이웃한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변",
+            "equivalentAnswers": [
+              "변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이웃한",
+            "equivalentAnswers": [
+              "이웃한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변"
+          ],
+          [
+            "이웃한"
+          ]
+        ],
+        "proposalFingerprint": "51a7f6bbf2e1d6f6b1c76268c30569cae3cce0455959cfcde8f1a34c12500042"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc5",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "정삼각형과 정사각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "변 셋의 길이가 모두 같은 삼각형은 내각 셋도 같아 {정삼각형}이고, 변 넷과 내각 넷이 모두 같은 사각형은 {정사각형}이다.",
+        "example": {
+          "prompt": "정사각형의 한 내각의 크기는?",
+          "answer": "$90^\\circ$"
+        },
+        "studentC": "변 셋의 길이가 모두 같은 삼각형은 내각 셋도 같아 □이고, 변 넷과 내각 넷이 모두 같은 사각형은 □이다.",
+        "answers": [
+          "정삼각형",
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형과 정사각형은 각각 변과 내각이 어떤 도형인지 쓰고, 각각 한 내각의 크기를 쓰시오.",
+        "bAnswer": "정삼각형은 세 변의 길이와 세 내각의 크기가 각각 모두 같은 삼각형으로 한 내각은 $60^\\circ$이다. 정사각형은 네 변의 길이와 네 내각의 크기가 각각 모두 같은 사각형으로 한 내각은 $90^\\circ$이다.",
+        "bGoal": "정다각형의 뜻을 삼각형·사각형에 적용",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형은 세 변의 길이와 세 내각의 크기가 각각 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정사각형은 네 변의 길이와 네 내각의 크기가 각각 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "bReason": "두 도형 이름만 있어 변·내각 조건과 내각의 크기를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "조건을 읽고 두 도형의 이름을 채우는 분명한 빈칸이다.",
+        "learningRole": "application",
+        "roleReason": "정다각형의 조건을 두 도형에 적용",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1732,
+        "part": "m1plus",
+        "sourceFingerprint": "f621b4f94d033046c7c5c1b6de1dc504e93c56fed2e9305c24fa4135fa048f17",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1732
+        },
+        "directReview": null,
+        "cFrozenSentence": "변 셋의 길이가 모두 같은 삼각형은 내각 셋도 같아 □이고, 변 넷과 내각 넷이 모두 같은 사각형은 □이다.",
+        "cFrozenDefinition": "변 셋의 길이가 모두 같은 삼각형은 내각 셋도 같아 {정삼각형}이고, 변 넷과 내각 넷이 모두 같은 사각형은 {정사각형}이다.",
+        "cFrozenAnswers": [
+          "정삼각형",
+          "정사각형"
+        ],
+        "cMarkedSentence": "변 셋의 길이가 모두 같은 삼각형은 내각 셋도 같아 {정삼각형}이고, 변 넷과 내각 넷이 모두 같은 사각형은 {정사각형}이다.",
+        "cSlotAnswers": [
+          "정삼각형",
+          "정사각형"
+        ],
+        "cStudentSentence": "변 셋의 길이가 모두 같은 삼각형은 내각 셋도 같아 □이고, 변 넷과 내각 넷이 모두 같은 사각형은 □이다.",
+        "cAnswers": [
+          "정삼각형",
+          "정사각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정삼각형",
+            "equivalentAnswers": [
+              "정삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정삼각형"
+          ],
+          [
+            "정사각형"
+          ]
+        ],
+        "proposalFingerprint": "bcfd54a094a52c3f871729d465170eaa7af5a934b2b31ec0d95c732c680a7106"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc6",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "다각형의 둘레",
+        "kind": "방법",
+        "level": "하",
+        "definition": "다각형의 둘레의 길이는 모든 {변}의 길이를 {더한} 것이다.",
+        "example": {
+          "prompt": "한 변이 $4$인 정오각형의 둘레는?",
+          "answer": "$20$"
+        },
+        "studentC": "다각형의 둘레의 길이는 모든 □의 길이를 □ 것이다.",
+        "answers": [
+          "변",
+          "더한"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 둘레의 길이는 어떻게 구하는지 쓰고, 한 변의 길이가 $4$인 정오각형의 둘레의 길이를 구하시오.",
+        "bAnswer": "모든 변의 길이를 더한다. 정오각형은 길이가 $4$인 변이 $5$개이므로 둘레의 길이는 $20$이다.",
+        "bGoal": "다각형의 둘레 구하는 방법",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모든 변의 길이를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$",
+              "$4\\times 5$"
+            ]
+          }
+        ],
+        "bReason": "구하는 방법과 함께 한 번 적용해 보게 정오각형 예를 넣었다.",
+        "cDecision": "keep",
+        "cReason": "무엇을 어떻게 하는지 묻는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "모든 변의 길이를 더하기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1733,
+        "part": "m1plus",
+        "sourceFingerprint": "2fa82adae1bd99ec4bca492647cdb3e859fab4bc55bd75eec1c5e52f5919bdca",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1733
+        },
+        "directReview": null,
+        "cFrozenSentence": "다각형의 둘레의 길이는 모든 □의 길이를 □ 것이다.",
+        "cFrozenDefinition": "다각형의 둘레의 길이는 모든 {변}의 길이를 {더한} 것이다.",
+        "cFrozenAnswers": [
+          "변",
+          "더한"
+        ],
+        "cMarkedSentence": "다각형의 둘레의 길이는 모든 {변}의 길이를 {더한} 것이다.",
+        "cSlotAnswers": [
+          "변",
+          "더한"
+        ],
+        "cStudentSentence": "다각형의 둘레의 길이는 모든 □의 길이를 □ 것이다.",
+        "cAnswers": [
+          "변",
+          "더한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변",
+            "equivalentAnswers": [
+              "변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더한",
+            "equivalentAnswers": [
+              "더한",
+              "합한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더한",
+            "accept": [
+              "합한"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변"
+          ],
+          [
+            "더한",
+            "합한"
+          ]
+        ],
+        "proposalFingerprint": "5d9eb5bb701b4ecda025a132e5e3f6d87461614e04ed16f6e0365d02c328019e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc7",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "정$n$각형의 둘레와 한 변",
+        "kind": "공식",
+        "level": "중",
+        "definition": "정$n$각형의 둘레의 길이는 한 변의 길이의 {$n$배}이고, 한 변의 길이는 둘레를 {$n$}으로 나눈 값이다.",
+        "example": {
+          "prompt": "둘레가 $42$인 정육각형의 한 변의 길이는?",
+          "answer": "$7$"
+        },
+        "studentC": "정$n$각형의 둘레의 길이는 한 변의 길이의 □이고, 한 변의 길이는 둘레를 □으로 나눈 값이다.",
+        "answers": [
+          "$n$배",
+          "$n$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "정$n$각형의 한 변의 길이가 $a$일 때 둘레의 길이를 $n$과 $a$로 나타내고 그 까닭을 쓰시오. 또 둘레의 길이가 $42$인 정육각형의 한 변의 길이를 구하시오.",
+        "bAnswer": "둘레의 길이는 $na$이다. 길이가 $a$로 같은 변이 $n$개 있기 때문이다. 정육각형의 한 변의 길이는 $42\\div 6=7$이다.",
+        "bGoal": "정$n$각형의 둘레와 한 변의 관계",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$na$",
+              "$n\\times a$",
+              "$a\\times n$"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이가 같은 변이 $n$개 있다",
+              "모든 변의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$"
+            ]
+          }
+        ],
+        "bReason": "둘레를 구하는 방향과 한 변을 구하는 방향을 모두 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "곱하기와 나누기 두 방향을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "둘레는 한 변의 $n$배",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1734,
+        "part": "m1plus",
+        "sourceFingerprint": "53e7c84f799a09abcd95d250b2159fbeed272b8831c2637001cdc9e53e182c98",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1734
+        },
+        "directReview": null,
+        "cFrozenSentence": "정$n$각형의 둘레의 길이는 한 변의 길이의 □이고, 한 변의 길이는 둘레를 □으로 나눈 값이다.",
+        "cFrozenDefinition": "정$n$각형의 둘레의 길이는 한 변의 길이의 {$n$배}이고, 한 변의 길이는 둘레를 {$n$}으로 나눈 값이다.",
+        "cFrozenAnswers": [
+          "$n$배",
+          "$n$"
+        ],
+        "cMarkedSentence": "정$n$각형의 둘레의 길이는 한 변의 길이의 {$n$배}이고, 한 변의 길이는 둘레를 {$n$}으로 나눈 값이다.",
+        "cSlotAnswers": [
+          "$n$배",
+          "$n$"
+        ],
+        "cStudentSentence": "정$n$각형의 둘레의 길이는 한 변의 길이의 □이고, 한 변의 길이는 둘레를 □으로 나눈 값이다.",
+        "cAnswers": [
+          "$n$배",
+          "$n$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n$배",
+            "equivalentAnswers": [
+              "$n$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$n$",
+            "equivalentAnswers": [
+              "$n$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n$배"
+          ],
+          [
+            "$n$"
+          ]
+        ],
+        "proposalFingerprint": "1af80851bdf6e1623fa1af839cc5eecbf6b5e5cc219023e26453a24d1adbb754"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc8",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "한 꼭짓점의 두 외각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 꼭짓점에서 외각은 {두} 개 생기지만 서로 {맞꼭지각}이라 크기가 같으므로 하나만 생각한다.",
+        "example": {
+          "prompt": "한 꼭짓점의 두 외각의 크기는 어떤가?",
+          "answer": "같다"
+        },
+        "studentC": "한 꼭짓점에서 외각은 □ 개 생기지만 서로 □이라 크기가 같으므로 하나만 생각한다.",
+        "answers": [
+          "두",
+          "맞꼭지각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 한 꼭짓점에서 두 변을 각각 늘이면 외각이 두 개 생긴다. 이 두 외각의 크기는 서로 어떤 관계인지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "크기가 같다. 두 외각은 서로 맞꼭지각이기 때문이다.",
+        "bGoal": "한 꼭짓점의 두 외각이 같은 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 맞꼭지각이다"
+            ]
+          }
+        ],
+        "bReason": "외각이 두 개 생기는 상황을 밝히고 크기 관계와 까닭을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "개수와 근거 용어를 묻는 짧은 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "두 외각은 맞꼭지각",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1735,
+        "part": "m1plus",
+        "sourceFingerprint": "5c5b6747f52f4c74fce460ce1acc08634117a880f2952de2327e3670b7e93a0a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1735
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 꼭짓점에서 외각은 □ 개 생기지만 서로 □이라 크기가 같으므로 하나만 생각한다.",
+        "cFrozenDefinition": "한 꼭짓점에서 외각은 {두} 개 생기지만 서로 {맞꼭지각}이라 크기가 같으므로 하나만 생각한다.",
+        "cFrozenAnswers": [
+          "두",
+          "맞꼭지각"
+        ],
+        "cMarkedSentence": "한 꼭짓점에서 외각은 {두} 개 생기지만 서로 {맞꼭지각}이라 크기가 같으므로 하나만 생각한다.",
+        "cSlotAnswers": [
+          "두",
+          "맞꼭지각"
+        ],
+        "cStudentSentence": "한 꼭짓점에서 외각은 □ 개 생기지만 서로 □이라 크기가 같으므로 하나만 생각한다.",
+        "cAnswers": [
+          "두",
+          "맞꼭지각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두",
+            "equivalentAnswers": [
+              "두",
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "맞꼭지각",
+            "equivalentAnswers": [
+              "맞꼭지각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "두",
+            "accept": [
+              "$2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "두",
+            "$2$"
+          ],
+          [
+            "맞꼭지각"
+          ]
+        ],
+        "proposalFingerprint": "aca7c7f45579eb16c402946eedd372bef131d3e68d7187bf49e2f1349e9b3893"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc9",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "대각선으로 생기는 삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$n$각형의 한 꼭짓점에서 대각선을 모두 그으면 {$n-2$}개의 {삼각형}으로 나뉜다.",
+        "example": {
+          "prompt": "팔각형의 한 꼭짓점에서 대각선을 모두 그으면 삼각형이 몇 개?",
+          "answer": "$6$개"
+        },
+        "studentC": "$n$각형의 한 꼭짓점에서 대각선을 모두 그으면 □개의 □으로 나뉜다.",
+        "answers": [
+          "$n-2$",
+          "삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$n$각형의 한 꼭짓점에서 대각선을 모두 그으면 다각형이 삼각형 몇 개로 나뉘는지 $n$을 사용하여 나타내고, 팔각형의 경우로 확인하시오.",
+        "bAnswer": "$n-2$개로 나뉜다. 팔각형은 한 꼭짓점에서 대각선을 $5$개 그을 수 있고 삼각형 $6$개로 나뉜다.",
+        "bGoal": "한 꼭짓점의 대각선으로 나뉘는 삼각형의 개수",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$n-2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "팔각형은 삼각형 $6$개"
+            ]
+          }
+        ],
+        "bReason": "어디에서 그은 대각선인지 밝히고 식과 예를 함께 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "개수의 식과 나뉘는 도형을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "삼각형 $n-2$개로 나뉨",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1736,
+        "part": "m1plus",
+        "sourceFingerprint": "c0ce0a8a3b9fd54807360757115c22a1f7f9ef3c60055d273938f22afe821280",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1736
+        },
+        "directReview": null,
+        "cFrozenSentence": "$n$각형의 한 꼭짓점에서 대각선을 모두 그으면 □개의 □으로 나뉜다.",
+        "cFrozenDefinition": "$n$각형의 한 꼭짓점에서 대각선을 모두 그으면 {$n-2$}개의 {삼각형}으로 나뉜다.",
+        "cFrozenAnswers": [
+          "$n-2$",
+          "삼각형"
+        ],
+        "cMarkedSentence": "$n$각형의 한 꼭짓점에서 대각선을 모두 그으면 {$n-2$}개의 {삼각형}으로 나뉜다.",
+        "cSlotAnswers": [
+          "$n-2$",
+          "삼각형"
+        ],
+        "cStudentSentence": "$n$각형의 한 꼭짓점에서 대각선을 모두 그으면 □개의 □으로 나뉜다.",
+        "cAnswers": [
+          "$n-2$",
+          "삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n-2$",
+            "equivalentAnswers": [
+              "$n-2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "삼각형",
+            "equivalentAnswers": [
+              "삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n-2$"
+          ],
+          [
+            "삼각형"
+          ]
+        ],
+        "proposalFingerprint": "53c6755e7bb54b7e3ff5909a2f2bb4bf78688ab03606ee0fe5a801d4d8ade463"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc10",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "정다각형이 아닌 사각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "내각만 모두 같은 {직사각형}이나 변만 모두 같은 {마름모}는 정사각형이 아닌 한 정다각형이 아니다.",
+        "example": {
+          "prompt": "네 내각이 모두 $90^\\circ$이고 가로와 세로가 다른 사각형은 정다각형인가?",
+          "answer": "아니다"
+        },
+        "studentC": "내각만 모두 같은 □이나 변만 모두 같은 □는 정사각형이 아닌 한 정다각형이 아니다.",
+        "answers": [
+          "직사각형",
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "가로와 세로의 길이가 다른 직사각형과, 네 내각의 크기가 모두 같지는 않은 마름모는 정다각형인지 각각 답하고, 정다각형의 뜻에 비추어 그 까닭을 쓰시오.",
+        "bAnswer": "둘 다 정다각형이 아니다. 정다각형은 모든 변의 길이와 모든 내각의 크기가 둘 다 같아야 하는데, 직사각형은 내각만 같고 마름모는 변만 같기 때문이다.",
+        "bGoal": "한 조건만 맞는 사각형이 정다각형이 아닌 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘 다 정다각형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변과 내각의 두 조건을 모두 만족해야 정다각형이다",
+              "한 조건만 만족하므로 정다각형이 아니다"
+            ]
+          }
+        ],
+        "bReason": "어떤 사각형인지 밝히고 두 조건이 모두 필요함을 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "한 조건만 맞는 두 사각형의 이름을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "두 조건이 모두 필요함",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1737,
+        "part": "m1plus",
+        "sourceFingerprint": "794557dcdec54e11fba416b9db9b284460f0aedc6034c0228b4ff9a1a534552f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1737
+        },
+        "directReview": null,
+        "cFrozenSentence": "내각만 모두 같은 □이나 변만 모두 같은 □는 정사각형이 아닌 한 정다각형이 아니다.",
+        "cFrozenDefinition": "내각만 모두 같은 {직사각형}이나 변만 모두 같은 {마름모}는 정사각형이 아닌 한 정다각형이 아니다.",
+        "cFrozenAnswers": [
+          "직사각형",
+          "마름모"
+        ],
+        "cMarkedSentence": "내각만 모두 같은 {직사각형}이나 변만 모두 같은 {마름모}는 정사각형이 아닌 한 정다각형이 아니다.",
+        "cSlotAnswers": [
+          "직사각형",
+          "마름모"
+        ],
+        "cStudentSentence": "내각만 모두 같은 □이나 변만 모두 같은 □는 정사각형이 아닌 한 정다각형이 아니다.",
+        "cAnswers": [
+          "직사각형",
+          "마름모"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직사각형",
+            "equivalentAnswers": [
+              "직사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "마름모",
+            "equivalentAnswers": [
+              "마름모"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직사각형"
+          ],
+          [
+            "마름모"
+          ]
+        ],
+        "proposalFingerprint": "5701c20b31ac138590bc82457ddee92805de85e941310cb9c5e1134959727bed"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc11",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "둔각인 내각의 외각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "다각형의 한 꼭짓점에서 내각이 둔각이면 외각은 {예각}이다. 내각과 외각의 합은 $180^\\circ$이며, 내각이 직각이면 외각도 직각이다.",
+        "example": {
+          "prompt": "내각이 $120^\\circ$인 꼭짓점의 외각은 예각인가, 둔각인가?",
+          "answer": "예각"
+        },
+        "studentC": "다각형의 한 꼭짓점에서 내각이 둔각이면 외각은 □이다. 내각과 외각의 합은 $180^\\circ$이며, 내각이 직각이면 외각도 직각이다.",
+        "answers": [
+          "예각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 한 꼭짓점에서 내각이 둔각일 때, 그 꼭짓점의 외각은 예각, 직각, 둔각 가운데 어느 것인지 쓰고 그 까닭을 설명하시오.",
+        "bAnswer": "예각이다. 내각과 외각의 크기의 합이 $180^\\circ$인데 내각이 $90^\\circ$보다 크므로 외각은 $90^\\circ$보다 작다.",
+        "bGoal": "내각의 종류로 외각의 종류 판단",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예각"
+            ]
+          },
+          {
+            "anyOf": [
+              "내각과 외각의 크기의 합이 $180^\\circ$이다",
+              "외각은 $180^\\circ$에서 내각을 뺀 것이다"
+            ]
+          }
+        ],
+        "bReason": "답할 범위를 세 가지 각의 종류로 밝히고 까닭을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "근거가 문장에 있고 각의 종류 하나를 묻는 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "합이 $180^\\circ$라 둔각의 외각은 예각",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1738,
+        "part": "m1plus",
+        "sourceFingerprint": "5c1c793bdf40d43c7e66b7925b03f0a9b14d11c7abbf0a25cb409f271378e526",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1738
+        },
+        "directReview": null,
+        "cFrozenSentence": "다각형의 한 꼭짓점에서 내각이 둔각이면 외각은 □이다. 내각과 외각의 합은 $180^\\circ$이며, 내각이 직각이면 외각도 직각이다.",
+        "cFrozenDefinition": "다각형의 한 꼭짓점에서 내각이 둔각이면 외각은 {예각}이다. 내각과 외각의 합은 $180^\\circ$이며, 내각이 직각이면 외각도 직각이다.",
+        "cFrozenAnswers": [
+          "예각"
+        ],
+        "cMarkedSentence": "다각형의 한 꼭짓점에서 내각이 둔각이면 외각은 {예각}이다. 내각과 외각의 합은 $180^\\circ$이며, 내각이 직각이면 외각도 직각이다.",
+        "cSlotAnswers": [
+          "예각"
+        ],
+        "cStudentSentence": "다각형의 한 꼭짓점에서 내각이 둔각이면 외각은 □이다. 내각과 외각의 합은 $180^\\circ$이며, 내각이 직각이면 외각도 직각이다.",
+        "cAnswers": [
+          "예각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "예각",
+            "equivalentAnswers": [
+              "예각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "예각"
+          ]
+        ],
+        "proposalFingerprint": "6cbc18a4d7d3f4cffb37980508c7110c51c83909a07a8a483b3197556eafa307"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc12",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "사각형의 대각선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사각형의 대각선은 {$2$}개이고, 서로 {마주 보는} 꼭짓점끼리 잇는다.",
+        "example": {
+          "prompt": "사각형 $ABCD$의 대각선 둘을 쓰면?",
+          "answer": "$\\overline{AC}$, $\\overline{BD}$"
+        },
+        "studentC": "사각형의 대각선은 □개이고, 서로 □ 꼭짓점끼리 잇는다.",
+        "answers": [
+          "$2$",
+          "마주 보는"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형 $ABCD$(꼭짓점이 이 순서로 놓임)의 대각선을 모두 쓰고, 대각선이 그것뿐인 까닭을 설명하시오.",
+        "bAnswer": "$\\overline{AC}$와 $\\overline{BD}$이다. 사각형에서는 각 꼭짓점과 이웃하지 않은 꼭짓점이 마주 보는 꼭짓점 하나뿐이기 때문이다.",
+        "bGoal": "사각형의 대각선과 그 개수의 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AC}$와 $\\overline{BD}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃하지 않은 꼭짓점은 마주 보는 꼭짓점 하나뿐이다",
+              "한 꼭짓점에서 $1$개씩 긋고 겹치는 것을 빼면 $2$개이다"
+            ]
+          }
+        ],
+        "bReason": "개수를 질문에서 말하지 않고 꼭짓점 이름으로 직접 찾게 했다.",
+        "cDecision": "keep",
+        "cReason": "개수와 잇는 꼭짓점의 위치를 묻는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "대각선의 뜻을 사각형에 적용",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1739,
+        "part": "m1plus",
+        "sourceFingerprint": "d8f7eb558f4f9b660f2ca04eaa011d2c6cae6a734fcbab7163d6c7fc9d3b9988",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1739
+        },
+        "directReview": null,
+        "cFrozenSentence": "사각형의 대각선은 □개이고, 서로 □ 꼭짓점끼리 잇는다.",
+        "cFrozenDefinition": "사각형의 대각선은 {$2$}개이고, 서로 {마주 보는} 꼭짓점끼리 잇는다.",
+        "cFrozenAnswers": [
+          "$2$",
+          "마주 보는"
+        ],
+        "cMarkedSentence": "사각형의 대각선은 {$2$}개이고, 서로 {마주 보는} 꼭짓점끼리 잇는다.",
+        "cSlotAnswers": [
+          "$2$",
+          "마주 보는"
+        ],
+        "cStudentSentence": "사각형의 대각선은 □개이고, 서로 □ 꼭짓점끼리 잇는다.",
+        "cAnswers": [
+          "$2$",
+          "마주 보는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "마주 보는",
+            "equivalentAnswers": [
+              "마주 보는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "마주 보는"
+          ]
+        ],
+        "proposalFingerprint": "8de07fb4d4c8353933f2187a6d58122273354029cd0e7fbe2ab997168093b7e2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc13",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "대각선의 개수로 다각형 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대각선이 $k$개인 다각형은 $\\frac{n(n-3)}{2}=k$를 만족하는 자연수 {$n$}을 찾아 {$n$각형}으로 답한다.",
+        "example": {
+          "prompt": "대각선이 $54$개인 다각형은?",
+          "answer": "십이각형"
+        },
+        "studentC": "대각선이 $k$개인 다각형은 $\\frac{n(n-3)}{2}=k$를 만족하는 자연수 □을 찾아 □으로 답한다.",
+        "answers": [
+          "$n$",
+          "$n$각형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "대각선이 모두 $54$개인 다각형은 몇 각형인지 구하고, 구하는 과정을 쓰시오.",
+        "bAnswer": "$n$각형이라 하면 $\\frac{n(n-3)}{2}=54$이므로 $n(n-3)=108$이다. $12\\times 9=108$이므로 $n=12$, 곧 십이각형이다.",
+        "bGoal": "대각선의 개수로 다각형 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십이각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{n(n-3)}2=54$",
+              "$n(n-3)=108$"
+            ]
+          }
+        ],
+        "bReason": "$k$만 있는 방법 설명이라 실제 개수가 주어진 예로 바꿨다.",
+        "cDecision": "rewrite",
+        "cAfter": "대각선이 $k$개인 다각형을 찾을 때는 변의 수를 $n$이라 하고 식 {$\\frac{n(n-3)}{2}$}$=k$를 만족하는 {자연수} $n$을 찾는다.",
+        "cAnswers": [
+          "$\\frac{n(n-3)}{2}$",
+          "자연수"
+        ],
+        "cReason": "식에 보이는 $n$을 그대로 베끼는 빈칸이라 세울 식을 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "공식을 식으로 세워 $n$ 찾기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "notationReason": "표시용 기준은 정식 이름 십이각형으로 쓴다. 목록이 전수 입력 문자열 규칙이 아니므로 같은 숫자 이름도 동치로 인정한다.",
+        "sourceIndex": 1740,
+        "part": "m1plus",
+        "sourceFingerprint": "e3133ae99a448d64fab7e2051b5ccc11537b2777cf45c4e0c936bd44f2d3023a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1740
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-06-01-xc13"
+        },
+        "cMarkedSentence": "대각선이 $k$개인 다각형을 찾을 때는 변의 수를 $n$이라 하고 식 {$\\frac{n(n-3)}{2}$}$=k$를 만족하는 {자연수} $n$을 찾는다.",
+        "cSlotAnswers": [
+          "$\\frac{n(n-3)}{2}$",
+          "자연수"
+        ],
+        "cStudentSentence": "대각선이 $k$개인 다각형을 찾을 때는 변의 수를 $n$이라 하고 식 □$=k$를 만족하는 □ $n$을 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{n(n-3)}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{n(n-3)}{2}$",
+              "$n(n-3)\\div 2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "자연수",
+            "equivalentAnswers": [
+              "자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{n(n-3)}{2}$",
+            "accept": [
+              "$n(n-3)\\div 2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{n(n-3)}{2}$",
+            "$n(n-3)\\div 2$"
+          ],
+          [
+            "자연수"
+          ]
+        ],
+        "proposalFingerprint": "f4975b186675dc3e1ed126c8eb31d7d32147de991e281ec9115fe5314aaadcf8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc14",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "$n$각형이 $(n+1)$각형이 될 때 늘어나는 대각선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$n$각형이 $(n+1)$각형이 되면 대각선은 {$n-1$}개 {늘어난다}.",
+        "example": {
+          "prompt": "육각형이 칠각형이 되면 대각선은 몇 개 늘어나는가?",
+          "answer": "$5$개"
+        },
+        "studentC": "$n$각형이 $(n+1)$각형이 되면 대각선은 □개 □.",
+        "answers": [
+          "$n-1$",
+          "늘어난다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "육각형이 칠각형이 되면 대각선은 몇 개 늘어나는지 구하시오. 또 $n$각형이 $(n+1)$각형이 될 때 늘어나는 대각선의 개수를 $n$을 사용하여 나타내시오.",
+        "bAnswer": "육각형의 대각선은 $9$개, 칠각형은 $14$개이므로 $5$개 늘어난다. 일반적으로 $\\frac{(n+1)(n-2)}{2}-\\frac{n(n-3)}{2}=n-1$개 늘어난다.",
+        "bGoal": "변이 하나 늘 때 늘어나는 대각선의 개수",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$n-1$"
+            ]
+          }
+        ],
+        "bReason": "구체적인 경우로 확인한 뒤 일반식을 답하도록 두 단계로 물었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$n$각형이 $(n+1)$각형이 되면 대각선은 {$n-1$}개 늘어난다. 예를 들어 육각형이 칠각형이 되면 {$5$}개 늘어난다.",
+        "cAnswers": [
+          "$n-1$",
+          "$5$"
+        ],
+        "cReason": "'늘어난다' 빈칸은 뻔해 일반식과 예의 값을 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "두 다각형의 대각선 개수의 차",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1741,
+        "part": "m1plus",
+        "sourceFingerprint": "7f4dc6d8b22ddbe27db7f8960a21b6013f81651d6e454adf9a35b8ac214ed54f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1741
+        },
+        "directReview": null,
+        "cMarkedSentence": "$n$각형이 $(n+1)$각형이 되면 대각선은 {$n-1$}개 늘어난다. 예를 들어 육각형이 칠각형이 되면 {$5$}개 늘어난다.",
+        "cSlotAnswers": [
+          "$n-1$",
+          "$5$"
+        ],
+        "cStudentSentence": "$n$각형이 $(n+1)$각형이 되면 대각선은 □개 늘어난다. 예를 들어 육각형이 칠각형이 되면 □개 늘어난다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n-1$",
+            "equivalentAnswers": [
+              "$n-1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n-1$"
+          ],
+          [
+            "$5$"
+          ]
+        ],
+        "proposalFingerprint": "8cdceebfb1af8e67ee57ca563acec01f9af1b0f60d457f2306bd805c7ea96f4f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc15",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "대각선과 변의 개수 견주기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "오각형은 대각선과 변의 개수가 {같고}, 육각형부터는 {대각선}이 더 많다.",
+        "example": {
+          "prompt": "대각선의 개수가 변의 개수와 같은 다각형은?",
+          "answer": "오각형"
+        },
+        "studentC": "오각형은 대각선과 변의 개수가 □, 육각형부터는 □이 더 많다.",
+        "answers": [
+          "같고",
+          "대각선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "오각형과 육각형에서 각각 대각선의 개수와 변의 개수를 구하고, 어느 쪽이 더 많은지 비교하시오.",
+        "bAnswer": "오각형은 대각선 $5$개, 변 $5$개로 같다. 육각형은 대각선 $9$개, 변 $6$개로 대각선이 더 많다.",
+        "bGoal": "대각선과 변의 개수 비교",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오각형은 대각선 $5$개, 변 $5$개로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "육각형은 대각선 $9$개, 변 $6$개로 대각선이 더 많다"
+            ]
+          }
+        ],
+        "bReason": "비교할 두 다각형을 정해 직접 세어 비교하게 했다.",
+        "cDecision": "keep",
+        "cReason": "두 다각형의 비교 결과를 묻는 짧은 비교 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "공식으로 두 개수 비교",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1742,
+        "part": "m1plus",
+        "sourceFingerprint": "98d4fe49e99cc43935d8d5ca5794a8766e7e703e3cf33daa694f43d9ca305504",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1742
+        },
+        "directReview": null,
+        "cFrozenSentence": "오각형은 대각선과 변의 개수가 □, 육각형부터는 □이 더 많다.",
+        "cFrozenDefinition": "오각형은 대각선과 변의 개수가 {같고}, 육각형부터는 {대각선}이 더 많다.",
+        "cFrozenAnswers": [
+          "같고",
+          "대각선"
+        ],
+        "cMarkedSentence": "오각형은 대각선과 변의 개수가 {같고}, 육각형부터는 {대각선}이 더 많다.",
+        "cSlotAnswers": [
+          "같고",
+          "대각선"
+        ],
+        "cStudentSentence": "오각형은 대각선과 변의 개수가 □, 육각형부터는 □이 더 많다.",
+        "cAnswers": [
+          "같고",
+          "대각선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같고",
+            "equivalentAnswers": [
+              "같고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같고"
+          ],
+          [
+            "대각선"
+          ]
+        ],
+        "proposalFingerprint": "220e72693bfb3ae087cca99fb6796159cd404ef6bc6f7494eeaed326a69f8c55"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc16",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "꼭짓점 둘을 잇는 선분",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$n$개의 꼭짓점 가운데 두 점을 잇는 선분은 모두 $\\frac{n(n-1)}{2}$개이고, 그중 {$n$}개는 {변}, 나머지는 대각선이다.",
+        "example": {
+          "prompt": "육각형의 꼭짓점 둘을 잇는 선분은 모두 몇 개인가?",
+          "answer": "$15$개"
+        },
+        "studentC": "$n$개의 꼭짓점 가운데 두 점을 잇는 선분은 모두 $\\frac{n(n-1)}{2}$개이고, 그중 □개는 □, 나머지는 대각선이다.",
+        "answers": [
+          "$n$",
+          "변"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "육각형의 꼭짓점 $6$개 가운데 두 점을 이은 선분은 모두 몇 개인지 구하고, 그중 변과 대각선은 각각 몇 개인지 쓰시오.",
+        "bAnswer": "모두 $\\frac{6\\times 5}{2}=15$개이고, 그중 변이 $6$개, 대각선이 $9$개이다.",
+        "bGoal": "두 꼭짓점을 잇는 선분을 변과 대각선으로 나누기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$15$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "변 $6$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각선 $9$개"
+            ]
+          }
+        ],
+        "bReason": "일반식만으로는 뜻을 알기 어려워 육각형에서 세어 보게 했다.",
+        "cDecision": "keep",
+        "cReason": "전체 선분 중 변의 몫을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "전체 선분은 변과 대각선의 합",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1743,
+        "part": "m1plus",
+        "sourceFingerprint": "3e8d6b801bf67c0fec58ce9d9f2150ca084accdfd518dddc7aef76e83eeb7113",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1743
+        },
+        "directReview": null,
+        "cFrozenSentence": "$n$개의 꼭짓점 가운데 두 점을 잇는 선분은 모두 $\\frac{n(n-1)}{2}$개이고, 그중 □개는 □, 나머지는 대각선이다.",
+        "cFrozenDefinition": "$n$개의 꼭짓점 가운데 두 점을 잇는 선분은 모두 $\\frac{n(n-1)}{2}$개이고, 그중 {$n$}개는 {변}, 나머지는 대각선이다.",
+        "cFrozenAnswers": [
+          "$n$",
+          "변"
+        ],
+        "cMarkedSentence": "$n$개의 꼭짓점 가운데 두 점을 잇는 선분은 모두 $\\frac{n(n-1)}{2}$개이고, 그중 {$n$}개는 {변}, 나머지는 대각선이다.",
+        "cSlotAnswers": [
+          "$n$",
+          "변"
+        ],
+        "cStudentSentence": "$n$개의 꼭짓점 가운데 두 점을 잇는 선분은 모두 $\\frac{n(n-1)}{2}$개이고, 그중 □개는 □, 나머지는 대각선이다.",
+        "cAnswers": [
+          "$n$",
+          "변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n$",
+            "equivalentAnswers": [
+              "$n$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "변",
+            "equivalentAnswers": [
+              "변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n$"
+          ],
+          [
+            "변"
+          ]
+        ],
+        "proposalFingerprint": "ce08449a5d2bd0a3870356a72d1506a08ab49fc241cfe41ffea8b4bf09e00e93"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc17",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "원탁 악수와 대각선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$n$명이 원탁에 앉아 {양옆}을 뺀 모든 사람과 한 번씩 악수하면 그 횟수는 $n$각형의 {대각선}의 개수와 같다.",
+        "example": {
+          "prompt": "$7$명이 원탁에 앉아 양옆을 뺀 모든 사람과 한 번씩 악수하면 모두 몇 번인가?",
+          "answer": "$14$번"
+        },
+        "studentC": "$n$명이 원탁에 앉아 □을 뺀 모든 사람과 한 번씩 악수하면 그 횟수는 $n$각형의 □의 개수와 같다.",
+        "answers": [
+          "양옆",
+          "대각선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$7$명이 원탁에 둘러앉아 각자 양옆 사람을 뺀 모든 사람과 한 번씩 악수한다. 악수는 모두 몇 번인지 구하고, 이것이 다각형에서 무엇을 세는 것과 같은지 설명하시오.",
+        "bAnswer": "$14$번이다. 사람을 꼭짓점으로 보면 양옆 사람은 이웃한 꼭짓점이므로, 칠각형의 대각선의 개수 $\\frac{7\\times 4}{2}=14$와 같다.",
+        "bGoal": "악수 횟수를 대각선의 개수로 바꾸어 세기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$14$번"
+            ]
+          },
+          {
+            "anyOf": [
+              "칠각형의 대각선의 개수와 같다",
+              "이웃하지 않은 꼭짓점끼리 잇는 선분의 개수와 같다"
+            ]
+          }
+        ],
+        "bReason": "사람 수가 정해진 상황을 주고 대각선과의 연결을 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "상황과 대각선을 잇는 두 낱말을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "양옆을 뺀 악수는 대각선과 같음",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1744,
+        "part": "m1plus",
+        "sourceFingerprint": "cd99cc358b7c511b35a0e919875fe5d0ebb2837a913fbf546b7103d3310fb193",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1744
+        },
+        "directReview": null,
+        "cFrozenSentence": "$n$명이 원탁에 앉아 □을 뺀 모든 사람과 한 번씩 악수하면 그 횟수는 $n$각형의 □의 개수와 같다.",
+        "cFrozenDefinition": "$n$명이 원탁에 앉아 {양옆}을 뺀 모든 사람과 한 번씩 악수하면 그 횟수는 $n$각형의 {대각선}의 개수와 같다.",
+        "cFrozenAnswers": [
+          "양옆",
+          "대각선"
+        ],
+        "cMarkedSentence": "$n$명이 원탁에 앉아 {양옆}을 뺀 모든 사람과 한 번씩 악수하면 그 횟수는 $n$각형의 {대각선}의 개수와 같다.",
+        "cSlotAnswers": [
+          "양옆",
+          "대각선"
+        ],
+        "cStudentSentence": "$n$명이 원탁에 앉아 □을 뺀 모든 사람과 한 번씩 악수하면 그 횟수는 $n$각형의 □의 개수와 같다.",
+        "cAnswers": [
+          "양옆",
+          "대각선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양옆",
+            "equivalentAnswers": [
+              "양옆"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양옆"
+          ],
+          [
+            "대각선"
+          ]
+        ],
+        "proposalFingerprint": "38a12882a66b40fb2c745de0e492f37ecc0b9530fd53ab189c901dc0da6d583f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc18",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "한 꼭짓점에서 그은 대각선이 $k$개인 다각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 꼭짓점에서 그은 대각선이 $k$개이면 꼭짓점은 {$k+3$}개이므로 {$(k+3)$각형}이다.",
+        "example": {
+          "prompt": "한 꼭짓점에서 대각선을 $9$개 그을 수 있는 다각형은?",
+          "answer": "십이각형"
+        },
+        "studentC": "한 꼭짓점에서 그은 대각선이 $k$개이면 꼭짓점은 □개이므로 □이다.",
+        "answers": [
+          "$k+3$",
+          "$(k+3)$각형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "한 꼭짓점에서 그을 수 있는 대각선이 $9$개인 다각형은 몇 각형인지 구하고, 그 까닭을 쓰시오.",
+        "bAnswer": "$n$각형의 한 꼭짓점에서 그을 수 있는 대각선은 $n-3$개이므로 $n-3=9$, $n=12$이다. 따라서 십이각형이다.",
+        "bGoal": "한 꼭짓점의 대각선 개수로 다각형 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십이각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$n-3=9$",
+              "대각선의 개수에 $3$을 더한다"
+            ]
+          }
+        ],
+        "bReason": "$k$가 들어간 제목이라 실제 개수를 준 예로 거꾸로 구하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "한 꼭짓점에서 그을 수 있는 대각선이 $k$개인 다각형은 꼭짓점이 {$k+3$}개이다. 예를 들어 $k=9$일 때 그 다각형의 이름은 {십이각형}이다.",
+        "cAnswers": [
+          "$k+3$",
+          "십이각형"
+        ],
+        "cReason": "두 번째 칸이 꼭짓점 개수인지 다각형 이름인지 구별되도록 이름이라고 명시한다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$n-3$ 관계를 거꾸로 쓰기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "notationReason": "표시용 기준과 주정답은 십이각형이다. 부모의 답변에 따라 유효한 학생 입력 별칭 12각형은 보존한다.",
+        "sourceIndex": 1745,
+        "part": "m1plus",
+        "sourceFingerprint": "f285a83e1919891c6b4c0554927e8cd3590f56102f092ba6e9785f534a09fbfc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1745
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-06-01-xc18"
+        },
+        "cMarkedSentence": "한 꼭짓점에서 그을 수 있는 대각선이 $k$개인 다각형은 꼭짓점이 {$k+3$}개이다. 예를 들어 $k=9$일 때 그 다각형의 이름은 {십이각형}이다.",
+        "cSlotAnswers": [
+          "$k+3$",
+          "십이각형"
+        ],
+        "cStudentSentence": "한 꼭짓점에서 그을 수 있는 대각선이 $k$개인 다각형은 꼭짓점이 □개이다. 예를 들어 $k=9$일 때 그 다각형의 이름은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$k+3$",
+            "equivalentAnswers": [
+              "$k+3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "십이각형",
+            "equivalentAnswers": [
+              "십이각형",
+              "$12$각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "십이각형",
+            "accept": [
+              "$12$각형"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$k+3$"
+          ],
+          [
+            "십이각형",
+            "$12$각형"
+          ]
+        ],
+        "proposalFingerprint": "8402f0c54b358c438014a02f9b356a33c6977ce8122d781b4e5d6f9e985d4716"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-01-xc19",
+        "section": "중1::6. 평면도형::다각형",
+        "term": "한 꼭짓점의 대각선으로 삼각형이 $k$개 생기는 다각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 꼭짓점에서 대각선을 모두 그어 삼각형이 $k$개 생기면 그 다각형은 {$(k+2)$각형}이다.",
+        "example": {
+          "prompt": "한 꼭짓점에서 대각선을 모두 그어 삼각형이 $8$개 생기는 다각형은?",
+          "answer": "십각형"
+        },
+        "studentC": "한 꼭짓점에서 대각선을 모두 그어 삼각형이 $k$개 생기면 그 다각형은 □이다.",
+        "answers": [
+          "$(k+2)$각형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-01-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "삼각형 개수에 $2$를 더하는 것뿐이라 따로 설명할 내용이 없다.",
+        "exclusionReason": "B 제외: xc9가 같은 $n-2$ 관계를 이미 묻고, 거꾸로 구하는 형식은 xc18과 겹친다.",
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 다 있고 식 하나를 채우는 분명한 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "$n-2$ 관계를 거꾸로 쓰기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1746,
+        "part": "m1plus",
+        "sourceFingerprint": "5ab977ec05da65fddbdd75127abc7d542106b60b64d66ba765bc9b9a9651b4cb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1746
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "한 꼭짓점에서 대각선을 모두 그어 삼각형이 $k$개 생기면 그 다각형은 □이다.",
+        "cFrozenDefinition": "한 꼭짓점에서 대각선을 모두 그어 삼각형이 $k$개 생기면 그 다각형은 {$(k+2)$각형}이다.",
+        "cFrozenAnswers": [
+          "$(k+2)$각형"
+        ],
+        "cMarkedSentence": "한 꼭짓점에서 대각선을 모두 그어 삼각형이 $k$개 생기면 그 다각형은 {$(k+2)$각형}이다.",
+        "cSlotAnswers": [
+          "$(k+2)$각형"
+        ],
+        "cStudentSentence": "한 꼭짓점에서 대각선을 모두 그어 삼각형이 $k$개 생기면 그 다각형은 □이다.",
+        "cAnswers": [
+          "$(k+2)$각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(k+2)$각형",
+            "equivalentAnswers": [
+              "$(k+2)$각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$(k+2)$각형"
+          ]
+        ],
+        "proposalFingerprint": "86c363ac888472f5b4f84147ffb3822817f3fa1dbb3906560619c0479380218a"
+      }
+    }
+  ]
+}

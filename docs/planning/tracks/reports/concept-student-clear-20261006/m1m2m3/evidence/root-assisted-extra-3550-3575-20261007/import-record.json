@@ -1,0 +1,92 @@
+{
+  "importedAt": "2026-10-07T08:54:39.339Z",
+  "dispatchId": "ctx_9cb9b54195a9",
+  "notIndependentClaudeApproval": true,
+  "importedIds": [
+    "m3-05-02-xc15",
+    "m3-05-02-xc16",
+    "m3-05-02-xc17",
+    "m3-05-03-xc1",
+    "m3-05-03-xc2",
+    "m3-05-03-xc3",
+    "m3-05-03-xc4",
+    "m3-05-03-xc5",
+    "m3-05-03-xc6",
+    "m3-05-03-xc7",
+    "m3-05-03-xc10",
+    "m3-05-03-xc11",
+    "m3-05-03-xc12",
+    "m3-05-03-xc13",
+    "m3-05-03-xc14",
+    "m3-05-03-xc15",
+    "m3-05-03-xc16",
+    "m3-05-03-xc17"
+  ],
+  "pending": [
+    {
+      "id": "m3-05-02-xc13",
+      "sourceIndex": 3550,
+      "proposalFingerprint": "c29802905d9b4fd4fe6597c4e687bf29271e6f1b142ccbfb0fdbf6ebd8a70f01",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "표의 행이 각이고 열이 사인값이라는 배열을 제시하지 않은 채 가로줄과 세로줄을 정답으로 요구한다. 표의 배열을 명시하거나 실제 표를 제공한다. 반올림된0.4226으로 각을 찾는 경우 정확한 등식과 정확한25도를 단정하지 않고 어림값임을 나타낸다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json"
+    },
+    {
+      "id": "m3-05-02-xc18",
+      "sourceIndex": 3554,
+      "proposalFingerprint": "1cb44614a90f4114d05853120c822a8d4237ca1121effbfbb1d8a571367e483c",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "사인과 코사인이 같은 예각45도라는 결과는 맞지만 높이·밑변이 어느 직각변인지 정의되지 않았다. 기준각의 맞은편 직각변과 빗변 아닌 붙은 변의 길이가 같다고 명시한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json"
+    },
+    {
+      "id": "m3-05-02-xc19",
+      "sourceIndex": 3555,
+      "proposalFingerprint": "2308c9f6941c472d994724c9cb1617d6331e3716dd9d7d90df73d63ebd7684da",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "45도 전후의 사인·코사인 비교는 맞다. 높이와 밑변이라는 이름만으로 기준각 상대의 어느 두 변인지 가정하지 않도록 맞은편 직각변과 붙은 직각변을 명시하고 공통 빗변으로 나누는 이유를 연결한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json"
+    },
+    {
+      "id": "m3-05-02-xc20",
+      "sourceIndex": 3556,
+      "proposalFingerprint": "3d8df9d61206066dac8e1cb0b963826928b7940c771aefb3ac58e1eb8eb47376",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 기울기가 탄젠트인 이유까지 요구하지만 기준은 관계의 이름과 tan30도 값만 확인한다. 가로 증가량에 대한 세로 증가량의 비가 두 직각변의 비라는 이유를 확인한다. C의 양수 기울기와 x축 양의 방향의 예각30도 관계는 타당하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json"
+    },
+    {
+      "id": "m3-05-02-xc21",
+      "sourceIndex": 3557,
+      "proposalFingerprint": "bd77d77275cc7690406b7439d3a1ea218736b38ee206cd19757dd0d81f90b6ae",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "사인·코사인의0도부터90도까지 범위와 탄젠트의 범위를 구별한다. 탄젠트90도는 정의되지 않으므로0도 이상90도 미만에서 증가하고 왼쪽에서90도에 가까워질 때 커진다는 조건을 명시한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json"
+    },
+    {
+      "id": "m3-05-03-xc8",
+      "sourceIndex": 3565,
+      "proposalFingerprint": "db46e02c2943e3200d28a74e33c44480fff805dd34b8fab3ce9eedab892b0e2b",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B의 반올림된sin35도0.5736은 근삿값 표시로 바꾼다. C의 표에서 구한 길이는 언제나 정확할 수 없다는 단정은 sin30도1/2 같은 정확한 표 값의 반례가 있다. 무리수 값을 유한 소수로 반올림한 해당 경우의 계산 결과가 어림값이라는 개념으로 제한한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json"
+    },
+    {
+      "id": "m3-05-03-xc9",
+      "sourceIndex": 3566,
+      "proposalFingerprint": "9ef2df8efa89d8bfcc3c62f1f523661a0e55a0e97b332eda0622cbc9c6165387",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B는 그림자가 짧아지는 이유를 요구하므로 높이를 고정한 상태에서 예각이 커질수록 탄젠트가 커져 h/tanx가 작아짐을 기준으로 확인한다. C와 일반 설명에도0도보다 크고90도보다 작은 각 조건을 넣어 tan0도 나눗셈 및 정의되지 않는 tan90도를 배제한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3550-3575-20261007/root-middle-final-3550-3575-verdicts.json"
+    }
+  ],
+  "inputSha256": "8c47f168aab5905d90001c05f70d2da19c33a0e9e2a45b2f1ba0c3e70c6bc9bf",
+  "verdictSha256": "64d2cbc9aeb84cc3282109bda605e335663a02df5388268434d92f185363f096"
+}

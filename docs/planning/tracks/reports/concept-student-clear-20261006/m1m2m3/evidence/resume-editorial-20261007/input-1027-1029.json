@@ -1,0 +1,274 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:53:31.756Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-05-xc8",
+        "section": "중1::1. 소인수분해::최대공약수와 최소공배수의 활용",
+        "term": "같은 길이로 자르기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 {최대공약수}이다.",
+        "example": {
+          "prompt": "$36\\,\\mathrm{cm}$, $48\\,\\mathrm{cm}$ 끈을 자를 때 가장 긴 길이는?",
+          "answer": "$12\\,\\mathrm{cm}$"
+        },
+        "studentC": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 □이다.",
+        "answers": [
+          "최대공약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-05-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 $36$ $\\mathrm{cm}$, $48$ $\\mathrm{cm}$인 두 끈을 남는 부분 없이 모두 같은 길이의 도막으로 자르려고 한다. 한 도막을 가장 길게 하려면 그 길이를 $36$과 $48$의 무엇으로 정해야 하는지 쓰고, 그 길이와 이때 생기는 도막의 수를 구하시오.",
+        "bAnswer": "$36$과 $48$의 최대공약수인 $12$ $\\mathrm{cm}$이다. 도막은 $36\\div 12=3$(개), $48\\div 12=4$(개)이므로 모두 $7$개이다.",
+        "bGoal": "여러 끈을 남김없이 같은 길이로 가장 길게 자를 때 그 길이가 최대공약수임을 알고 구한다.",
+        "bReason": "제목만으로는 끈의 길이와 조건(남김없이, 가장 길게)이 없다. 길이를 주고 최대공약수와 도막 수까지 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "자르는 대상, 조건, 구하는 것이 문장에 모두 있고 빈칸이 핵심 용어 하나이다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$36$과 $48$의 최대공약수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "도막 수 $3+4=7$(개)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "application",
+        "roleReason": "가장 긴 도막은 최대공약수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1027,
+        "part": "m1plus",
+        "sourceFingerprint": "0641cacaf09a29cf9fa32c3d8b3fff3a8f1dc87940b16a77b706df980bb50def",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1027
+        },
+        "directReview": null,
+        "cFrozenSentence": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 □이다.",
+        "cFrozenDefinition": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 {최대공약수}이다.",
+        "cFrozenAnswers": [
+          "최대공약수"
+        ],
+        "cMarkedSentence": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 {최대공약수}이다.",
+        "cSlotAnswers": [
+          "최대공약수"
+        ],
+        "cStudentSentence": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 □이다.",
+        "cAnswers": [
+          "최대공약수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최대공약수",
+            "equivalentAnswers": [
+              "최대공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최대공약수"
+          ]
+        ],
+        "proposalFingerprint": "cf9c77ed316e8009c3d08f08ffdee9a5bc9dbe63aadc51546ba2bd85132b20b7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-05-xc9",
+        "section": "중1::1. 소인수분해::최대공약수와 최소공배수의 활용",
+        "term": "정육면체 쌓기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "같은 직육면체를 쌓아 가장 작은 정육면체를 만들 때 한 모서리의 길이는 세 모서리 길이의 {최소공배수}이다.",
+        "example": {
+          "prompt": "세 모서리가 $2\\,\\mathrm{cm}$, $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 상자를 쌓아 가장 작은 정육면체를 만들 때 한 모서리는?",
+          "answer": "$12\\,\\mathrm{cm}$"
+        },
+        "studentC": "같은 직육면체를 쌓아 가장 작은 정육면체를 만들 때 한 모서리의 길이는 세 모서리 길이의 □이다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-05-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "가로, 세로, 높이가 각각 $2$ $\\mathrm{cm}$, $3$ $\\mathrm{cm}$, $4$ $\\mathrm{cm}$인 직육면체 모양 상자 여러 개를 같은 방향으로 빈틈없이 쌓아 정육면체를 만들려고 한다. 가장 작은 정육면체의 한 모서리의 길이는 $2$, $3$, $4$의 무엇인지 쓰고, 그 길이와 까닭을 쓰시오.",
+        "bAnswer": "$2$, $3$, $4$의 최소공배수인 $12$ $\\mathrm{cm}$이다. 정육면체의 한 모서리의 길이는 상자의 가로, 세로, 높이 각각의 배수여야 하므로 세 수의 공배수이고, 그중 가장 작은 것을 골라야 하기 때문이다.",
+        "bGoal": "직육면체를 쌓아 가장 작은 정육면체를 만들 때 한 모서리가 세 길이의 최소공배수임을 설명한다.",
+        "bReason": "제목 '정육면체 쌓기'에는 무엇을 쌓고 무엇을 구하는지가 없다. 상자의 세 길이와 쌓는 방법을 밝혀 길이와 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "크기가 같은 직육면체를 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 {최소공배수}이다.",
+        "cAnswers": [
+          "최소공배수"
+        ],
+        "cReason": "원문의 '한 모서리'와 '세 모서리'가 각각 정육면체의 것인지 직육면체의 것인지 밝혀져 있지 않아 지칭이 모호하다. 어느 도형의 길이인지 적어 주었다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$, $3$, $4$의 최소공배수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 모서리의 길이가 $2$, $3$, $4$ 각각의 배수여야 하고(공배수) 그 가운데 가장 작아야 한다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "application",
+        "roleReason": "쌓은 정육면체 모서리는 최소공배수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1028,
+        "part": "m1plus",
+        "sourceFingerprint": "e8246bde62719816a99654f498a616a94fb8ab91f4dad7a84e1aad3e7df03e3f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1028
+        },
+        "directReview": null,
+        "cMarkedSentence": "크기가 같은 직육면체를 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 {최소공배수}이다.",
+        "cSlotAnswers": [
+          "최소공배수"
+        ],
+        "cStudentSentence": "크기가 같은 직육면체를 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최소공배수",
+            "equivalentAnswers": [
+              "최소공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최소공배수"
+          ]
+        ],
+        "proposalFingerprint": "22b340051bb1c585a7f6f2e6077b571d7976c1b7e7aefa099e9de754c2202820"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-05-xc10",
+        "section": "중1::1. 소인수분해::최대공약수와 최소공배수의 활용",
+        "term": "정사각형 조각의 개수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "최대공약수로 한 변의 길이를 구한 뒤, 조각의 개수는 가로와 세로를 각각 그 길이로 나눈 {몫의 곱}이다.",
+        "example": {
+          "prompt": "가로 $20\\,\\mathrm{cm}$, 세로 $12\\,\\mathrm{cm}$를 가장 큰 정사각형으로 자르면 몇 개?",
+          "answer": "$15$개"
+        },
+        "studentC": "최대공약수로 한 변의 길이를 구한 뒤, 조각의 개수는 가로와 세로를 각각 그 길이로 나눈 □이다.",
+        "answers": [
+          "몫의 곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-05-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $20$ $\\mathrm{cm}$, 세로 $12$ $\\mathrm{cm}$인 직사각형 종이를 남는 부분 없이 잘라 크기가 같은 가장 큰 정사각형 조각들을 만들었다. 정사각형의 한 변의 길이를 구한 다음, 조각이 모두 몇 개인지 구하는 방법을 설명하여 구하시오.",
+        "bAnswer": "한 변의 길이는 $20$과 $12$의 최대공약수인 $4$ $\\mathrm{cm}$이다. 가로로 $20\\div 4=5$(개), 세로로 $12\\div 4=3$(개)씩 놓이므로 조각은 모두 $5\\times 3=15$(개)이다.",
+        "bGoal": "가장 큰 정사각형으로 자른 조각의 수를 가로·세로 방향 몫의 곱으로 구한다.",
+        "bReason": "제목만으로는 어떤 도형을 어떻게 자른 조각인지 알 수 없다. 직사각형의 크기를 주고 두 단계의 구하는 방법을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형을 남김없이 같은 크기의 정사각형으로 자를 때, 정사각형 조각의 개수는 직사각형의 가로와 세로를 각각 정사각형의 한 변의 길이로 나눈 두 몫의 {곱}이다.",
+        "cAnswers": [
+          "곱"
+        ],
+        "cReason": "원문은 '최대공약수로 한 변의 길이를 구한 뒤'로 시작해 무엇을 자르는 상황인지 숨은 제목 없이는 모른다. 상황을 넣고 빈칸은 '몫의 곱' 대신 연산 하나로 줄였다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변의 길이는 $20$과 $12$의 최대공약수 $4$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로 $20\\div4=5$(개), 세로 $12\\div4=3$(개)의 곱으로 센다(넓이 $240\\div16$으로 구해도 됨)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "가로·세로 몫을 곱해 조각 수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1029,
+        "part": "m1plus",
+        "sourceFingerprint": "86fa8b0664ed4a02e16edd184954426cc59b93af5fb4f12ba2acdd2b9640ad21",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1029
+        },
+        "directReview": null,
+        "cMarkedSentence": "직사각형을 남김없이 같은 크기의 정사각형으로 자를 때, 정사각형 조각의 개수는 직사각형의 가로와 세로를 각각 정사각형의 한 변의 길이로 나눈 두 몫의 {곱}이다.",
+        "cSlotAnswers": [
+          "곱"
+        ],
+        "cStudentSentence": "직사각형을 남김없이 같은 크기의 정사각형으로 자를 때, 정사각형 조각의 개수는 직사각형의 가로와 세로를 각각 정사각형의 한 변의 길이로 나눈 두 몫의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ]
+        ],
+        "proposalFingerprint": "1e0c86e91dd5e4ae07037ef6986f0af1ae60181375ef18b32ef892382565ee7b"
+      }
+    }
+  ]
+}

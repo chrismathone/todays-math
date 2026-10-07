@@ -1,0 +1,2531 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:52:01.218Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc11",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "땅에 떨어지는 시각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "물체의 높이를 나타내는 식이 $0$이 되는 때가 {땅에 떨어지는} 시각이고, 그 해 가운데 {$t>0$}인 것만 답이다.",
+        "studentC": "물체의 높이를 나타내는 식이 $0$이 되는 때가 □ 시각이고, 그 해 가운데 □인 것만 답이다.",
+        "answers": [
+          "땅에 떨어지는",
+          "$t>0$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "지면에서 쏘아 올린 물체의 $t$초 후의 높이가 $(20t-5t^2)$ $\\mathrm{m}$이다. 물체가 다시 땅에 떨어지는 시각을 구하는 방정식을 세우고, 두 해 가운데 답을 고른 까닭을 쓰시오.",
+        "bAnswer": "땅에서는 높이가 $0$이므로 $20t-5t^2=0$이고 해는 $t=0$ 또는 $t=4$이다. $t=0$은 쏘아 올린 순간이므로 $t>0$인 $4$초 후가 답이다.",
+        "bGoal": "땅에 떨어지는 시각을 높이 $0$으로 구하기",
+        "bReason": "$t=0$을 출발 순간으로 제외하는 표현도 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20t-5t^2=0$",
+              "높이를 나타내는 식을 $0$으로 놓는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$t>0$인 해만 답이다",
+              "$t=0$은 쏘아 올린 순간이므로 제외한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "쏘아 올린 물체의 $t$초 후의 높이를 나타내는 식이 {$0$}이 되는 때가 물체가 땅에 떨어지는 시각이고, 그 방정식의 해 가운데 {$t>0$}인 것만 답이다.",
+        "cAnswers": [
+          "$0$",
+          "$t>0$"
+        ],
+        "cReason": "$t$가 무엇인지 문장에 없고 답 $0$이 미리 보여 빈칸을 옮겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "높이 0인 때가 떨어지는 때",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3450,
+        "part": "m3plus",
+        "sourceFingerprint": "72e275174604e64914c863430d7126b30a34cd353e0ae83c2578bd2ee4832ad6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3450
+        },
+        "directReview": null,
+        "cMarkedSentence": "쏘아 올린 물체의 $t$초 후의 높이를 나타내는 식이 {$0$}이 되는 때가 물체가 땅에 떨어지는 시각이고, 그 방정식의 해 가운데 {$t>0$}인 것만 답이다.",
+        "cSlotAnswers": [
+          "$0$",
+          "$t>0$"
+        ],
+        "cStudentSentence": "쏘아 올린 물체의 $t$초 후의 높이를 나타내는 식이 □이 되는 때가 물체가 땅에 떨어지는 시각이고, 그 방정식의 해 가운데 □인 것만 답이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$t>0$",
+            "equivalentAnswers": [
+              "$t>0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$t>0$"
+          ]
+        ],
+        "proposalFingerprint": "795a06cf1dda3e2e2684bd9f6f9f47cb631295116f18fa3a82644ee794cdb7cf"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc12",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "귀퉁이를 잘라 만든 상자의 밑면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형 종이의 네 귀퉁이에서 한 변이 $k$인 정사각형을 잘라 접으면 밑면의 각 변은 {양쪽}에서 잘려 {$2k$}만큼 짧아지고, 상자의 높이는 $k$가 된다.",
+        "example": {
+          "prompt": "한 변이 $x$인 정사각형 종이의 네 귀퉁이에서 한 변이 $2$인 정사각형을 잘라 접은 상자의 밑면 한 변이 $x-4$인 까닭은?",
+          "answer": "양쪽에서 $2$씩 잘려서"
+        },
+        "studentC": "직사각형 종이의 네 귀퉁이에서 한 변이 $k$인 정사각형을 잘라 접으면 밑면의 각 변은 □에서 잘려 □만큼 짧아지고, 상자의 높이는 $k$가 된다.",
+        "answers": [
+          "양쪽",
+          "$2k$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변의 길이가 $x$ $\\mathrm{cm}$인 정사각형 종이의 네 귀퉁이에서 한 변의 길이가 $2$ $\\mathrm{cm}$인 정사각형을 잘라 내고, 남은 부분을 접어 올려 뚜껑 없는 상자를 만들었다. 상자 밑면의 한 변의 길이와 높이를 쓰고, 밑면의 한 변이 그렇게 되는 까닭을 쓰시오.",
+        "bAnswer": "밑면의 한 변은 $(x-4)$ $\\mathrm{cm}$, 높이는 $2$ $\\mathrm{cm}$이다. 종이의 각 변이 양쪽 끝에서 $2$ $\\mathrm{cm}$씩 잘려 모두 $4$ $\\mathrm{cm}$ 짧아지기 때문이다.",
+        "bGoal": "귀퉁이를 자른 상자의 밑면과 높이 나타내기",
+        "bReason": "그림이 없어 자르고 접는 방법과 길이를 질문에 풀어 썼다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양쪽에서 잘려 $4$ $\\mathrm{cm}$ 짧아짐"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 한 변 $x-4$, 높이 $2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "자르는 상황과 $k$의 뜻이 문장에 있어 빈칸이 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "양쪽에서 잘려 $2k$ 짧아짐",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3451,
+        "part": "m3plus",
+        "sourceFingerprint": "2f5b4e4be691c99f5d0695177d16c5cc2d443e42dcfc7ce411e74fa5204a6a0e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3451
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형 종이의 네 귀퉁이에서 한 변이 $k$인 정사각형을 잘라 접으면 밑면의 각 변은 □에서 잘려 □만큼 짧아지고, 상자의 높이는 $k$가 된다.",
+        "cFrozenDefinition": "직사각형 종이의 네 귀퉁이에서 한 변이 $k$인 정사각형을 잘라 접으면 밑면의 각 변은 {양쪽}에서 잘려 {$2k$}만큼 짧아지고, 상자의 높이는 $k$가 된다.",
+        "cFrozenAnswers": [
+          "양쪽",
+          "$2k$"
+        ],
+        "cMarkedSentence": "직사각형 종이의 네 귀퉁이에서 한 변이 $k$인 정사각형을 잘라 접으면 밑면의 각 변은 {양쪽}에서 잘려 {$2k$}만큼 짧아지고, 상자의 높이는 $k$가 된다.",
+        "cSlotAnswers": [
+          "양쪽",
+          "$2k$"
+        ],
+        "cStudentSentence": "직사각형 종이의 네 귀퉁이에서 한 변이 $k$인 정사각형을 잘라 접으면 밑면의 각 변은 □에서 잘려 □만큼 짧아지고, 상자의 높이는 $k$가 된다.",
+        "cAnswers": [
+          "양쪽",
+          "$2k$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양쪽",
+            "equivalentAnswers": [
+              "양쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2k$",
+            "equivalentAnswers": [
+              "$2k$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양쪽"
+          ],
+          [
+            "$2k$"
+          ]
+        ],
+        "proposalFingerprint": "888aacd085fd7546a227d0260d69035a889ea27d1a76d9256f3ab620c4039c43"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc13",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "자연수의 합 공식의 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1$부터 $n$까지의 합을 거꾸로 늘어놓은 합과 더하면 합이 $n+1$인 쌍이 {$n$개} 생긴다 — 이것이 처음 합의 두 배이므로 처음 합은 {$\\frac{n(n+1)}{2}$}이다.",
+        "studentC": "$1$부터 $n$까지의 합을 거꾸로 늘어놓은 합과 더하면 합이 $n+1$인 쌍이 □ 생긴다 — 이것이 처음 합의 두 배이므로 처음 합은 □이다.",
+        "answers": [
+          "$n$개",
+          "$\\frac{n(n+1)}{2}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$1+2+3+\\cdots+n$의 값을 구하는 공식을 쓰시오. 또 이 합과, 순서를 거꾸로 쓴 $n+\\cdots+3+2+1$을 같은 자리끼리 더하는 방법으로 그 공식이 나오는 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{n(n+1)}{2}$이다. 같은 자리끼리 더하면 합이 $n+1$인 쌍이 $n$개 생겨 모두 $n(n+1)$이고, 이것은 처음 합의 두 배이므로 $2$로 나눈다.",
+        "bGoal": "자연수의 합 공식이 나오는 까닭",
+        "bReason": "어떤 방법으로 설명할지를 질문에 밝혀 답의 범위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합이 $n+1$인 쌍이 $n$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 합의 두 배이므로 $2$로 나눔"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{n(n+1)}{2}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "설명의 흐름이 문장에 있고 개수와 결과 식만 가려 적당하다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "거꾸로 더하면 $n+1$이 $n$쌍",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3452,
+        "part": "m3plus",
+        "sourceFingerprint": "2b9e6d320aadb1063f546c2e2b9040cfe9eeed29bcf5ed208744d819f4766125",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3452
+        },
+        "directReview": null,
+        "cFrozenSentence": "$1$부터 $n$까지의 합을 거꾸로 늘어놓은 합과 더하면 합이 $n+1$인 쌍이 □ 생긴다 — 이것이 처음 합의 두 배이므로 처음 합은 □이다.",
+        "cFrozenDefinition": "$1$부터 $n$까지의 합을 거꾸로 늘어놓은 합과 더하면 합이 $n+1$인 쌍이 {$n$개} 생긴다 — 이것이 처음 합의 두 배이므로 처음 합은 {$\\frac{n(n+1)}{2}$}이다.",
+        "cFrozenAnswers": [
+          "$n$개",
+          "$\\frac{n(n+1)}{2}$"
+        ],
+        "cMarkedSentence": "$1$부터 $n$까지의 합을 거꾸로 늘어놓은 합과 더하면 합이 $n+1$인 쌍이 {$n$개} 생긴다 — 이것이 처음 합의 두 배이므로 처음 합은 {$\\frac{n(n+1)}{2}$}이다.",
+        "cSlotAnswers": [
+          "$n$개",
+          "$\\frac{n(n+1)}{2}$"
+        ],
+        "cStudentSentence": "$1$부터 $n$까지의 합을 거꾸로 늘어놓은 합과 더하면 합이 $n+1$인 쌍이 □ 생긴다 — 이것이 처음 합의 두 배이므로 처음 합은 □이다.",
+        "cAnswers": [
+          "$n$개",
+          "$\\frac{n(n+1)}{2}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n$개",
+            "equivalentAnswers": [
+              "$n$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{n(n+1)}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{n(n+1)}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n$개"
+          ],
+          [
+            "$\\frac{n(n+1)}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "8e1135d81262a18688448e1340528fe226d4196e4d832d7f0d5f52bf09a2044f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc15",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "둘레가 주어진 직사각형의 변 놓기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "둘레가 $l$인 직사각형은 가로와 세로의 합이 {$\\frac{l}{2}$}이므로, 가로를 $x$로 놓으면 세로는 {$\\frac{l}{2}-x$}이다.",
+        "example": {
+          "prompt": "둘레가 $20$인 직사각형의 가로가 $x$일 때 세로가 $20-x$가 아닌 까닭은?",
+          "answer": "가로와 세로의 합이 $10$이라서"
+        },
+        "studentC": "둘레가 $l$인 직사각형은 가로와 세로의 합이 □이므로, 가로를 $x$로 놓으면 세로는 □이다.",
+        "answers": [
+          "$\\frac{l}{2}$",
+          "$\\frac{l}{2}-x$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "둘레의 길이가 $20$ $\\mathrm{cm}$인 직사각형의 가로의 길이를 $x$ $\\mathrm{cm}$라 할 때, 세로의 길이를 $x$로 나타내시오. 또 세로가 $(20-x)$ $\\mathrm{cm}$가 아닌 까닭을 쓰시오.",
+        "bAnswer": "세로는 $(10-x)$ $\\mathrm{cm}$이다. 둘레는 가로와 세로의 합의 $2$배이므로 가로와 세로의 합은 $20$이 아니라 $10$이기 때문이다.",
+        "bGoal": "둘레가 주어진 직사각형의 변 나타내기",
+        "bReason": "흔한 오답 $20-x$와 견주어 이유를 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가로와 세로의 합은 둘레의 절반"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로는 $10-x$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$l$의 뜻이 문장에 있고 두 식이 단계적으로 이어진다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "가로+세로는 둘레의 절반",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3453,
+        "part": "m3plus",
+        "sourceFingerprint": "12b5723f6da3fb468132c12df03c610f7d8ce40869465437f83a331fa84c451d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3453
+        },
+        "directReview": null,
+        "cFrozenSentence": "둘레가 $l$인 직사각형은 가로와 세로의 합이 □이므로, 가로를 $x$로 놓으면 세로는 □이다.",
+        "cFrozenDefinition": "둘레가 $l$인 직사각형은 가로와 세로의 합이 {$\\frac{l}{2}$}이므로, 가로를 $x$로 놓으면 세로는 {$\\frac{l}{2}-x$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{l}{2}$",
+          "$\\frac{l}{2}-x$"
+        ],
+        "cMarkedSentence": "둘레가 $l$인 직사각형은 가로와 세로의 합이 {$\\frac{l}{2}$}이므로, 가로를 $x$로 놓으면 세로는 {$\\frac{l}{2}-x$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{l}{2}$",
+          "$\\frac{l}{2}-x$"
+        ],
+        "cStudentSentence": "둘레가 $l$인 직사각형은 가로와 세로의 합이 □이므로, 가로를 $x$로 놓으면 세로는 □이다.",
+        "cAnswers": [
+          "$\\frac{l}{2}$",
+          "$\\frac{l}{2}-x$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{l}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{l}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{l}{2}-x$",
+            "equivalentAnswers": [
+              "$\\frac{l}{2}-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{l}{2}$"
+          ],
+          [
+            "$\\frac{l}{2}-x$"
+          ]
+        ],
+        "proposalFingerprint": "d6a8ee84ffb949ad7edfe9c78a67474633a3425fcd36774e363eac2b742c318e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc16",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "모든 변이 양수인 해만",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가로를 $x$, 세로를 $x-5$로 놓았다면 해 가운데 $x>5$인 것만 답이 된다 — 모든 {변의 길이}가 {양수}여야 하기 때문이다.",
+        "studentC": "가로를 $x$, 세로를 $x-5$로 놓았다면 해 가운데 $x>5$인 것만 답이 된다 — 모든 □가 □여야 하기 때문이다.",
+        "answers": [
+          "변의 길이",
+          "양수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 가로의 길이를 $x$ $\\mathrm{cm}$, 세로의 길이를 $(x-5)$ $\\mathrm{cm}$로 놓고 넓이가 $24$ $\\mathrm{cm}$$^2$라는 방정식을 풀었더니 $x=8$ 또는 $x=-3$이었다. 답이 되려면 $x$가 어떤 범위에 있어야 하는지 까닭과 함께 쓰고, 답을 고르시오.",
+        "bAnswer": "가로와 세로가 모두 양수여야 하므로 $x>0$이고 $x-5>0$, 곧 $x>5$이어야 한다. 따라서 답은 $x=8$이다.",
+        "bGoal": "모든 변이 양수가 되는 해의 범위 찾기",
+        "bReason": "$x>0$만이 아니라 $x-5>0$까지 따지게 하는 상황을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모든 변의 길이가 양수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>5$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 가로를 $x$, 세로를 $x-5$로 놓았다면 두 변의 길이가 모두 {양수}여야 하므로, 방정식의 해 가운데 {$x>5$}인 것만 답이 된다.",
+        "cAnswers": [
+          "양수",
+          "$x>5$"
+        ],
+        "cReason": "결론 $x>5$가 드러나 있어 도형을 밝히고 범위를 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "모든 변이 양수인 해만",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3454,
+        "part": "m3plus",
+        "sourceFingerprint": "8b6587f4be445108e96bf9832c9701287acdb4adaa9f2930f7742b5eac6547d6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3454
+        },
+        "directReview": null,
+        "cMarkedSentence": "직사각형의 가로를 $x$, 세로를 $x-5$로 놓았다면 두 변의 길이가 모두 {양수}여야 하므로, 방정식의 해 가운데 {$x>5$}인 것만 답이 된다.",
+        "cSlotAnswers": [
+          "양수",
+          "$x>5$"
+        ],
+        "cStudentSentence": "직사각형의 가로를 $x$, 세로를 $x-5$로 놓았다면 두 변의 길이가 모두 □여야 하므로, 방정식의 해 가운데 □인 것만 답이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x>5$",
+            "equivalentAnswers": [
+              "$x>5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "$x>5$"
+          ]
+        ],
+        "proposalFingerprint": "efa4f8c4c683f5cffaa56731f3c9151c8cf2584e24bb8c96581aeda393782c46"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc17",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "넓이가 몇 배가 되는 원",
+        "kind": "방법",
+        "level": "중",
+        "definition": "반지름이 $r$인 원의 반지름을 $x$만큼 늘려 넓이가 $k$배가 되면 $\\pi(r+x)^2=k\\pi r^2$이다. 양변을 $\\pi$로 나누면 $(r+x)^2=$ {$kr^2$}이 되어 $x$를 구할 수 있다.",
+        "studentC": "반지름이 $r$인 원의 반지름을 $x$만큼 늘려 넓이가 $k$배가 되면 $\\pi(r+x)^2=k\\pi r^2$이다. 양변을 $\\pi$로 나누면 $(r+x)^2=$ □이 되어 $x$를 구할 수 있다.",
+        "answers": [
+          "$kr^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $3$ $\\mathrm{cm}$인 원의 반지름을 $x$ $\\mathrm{cm}$만큼 늘였더니 넓이가 처음 원의 $4$배가 되었다. $x$를 구하는 방정식을 세워 간단히 하고, $x$의 값을 구하시오.",
+        "bAnswer": "$\\pi(3+x)^2=4\\times9\\pi$이고 양변을 $\\pi$로 나누면 $(3+x)^2=36$이다. $3+x=\\pm6$에서 $x>0$이므로 $x=3$이다.",
+        "bGoal": "넓이가 몇 배가 되는 원으로 방정식 세우기",
+        "bReason": "문자만 있는 식 대신 수를 넣어 세우고 푸는 흐름을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "새 반지름 $3+x$로 넓이를 나타냄"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변을 $\\pi$로 나눔"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=3$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "반지름의 길이가 $r$인 원의 반지름을 $x$만큼 늘리면 새 반지름의 길이는 {$r+x$}이다. 새 원의 넓이가 처음의 $k$배이면 (새 원의 넓이)$=${$k\\pi r^2$}이고, 양변을 $\\pi$로 나누어 $x$에 대한 이차방정식을 푼다.",
+        "cAnswers": [
+          "$r+x$",
+          "$k\\pi r^2$"
+        ],
+        "cReason": "빈칸이 바로 앞 식에서 $\\pi$만 지우면 되는 답이어서 식 세우기를 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "넓이 $k$배를 식으로 세움",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3455,
+        "part": "m3plus",
+        "sourceFingerprint": "dd5d42f3943cc560e27bea8e27f682a02263803931f3c4e96e37adeb75bafde2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3455
+        },
+        "directReview": null,
+        "cMarkedSentence": "반지름의 길이가 $r$인 원의 반지름을 $x$만큼 늘리면 새 반지름의 길이는 {$r+x$}이다. 새 원의 넓이가 처음의 $k$배이면 (새 원의 넓이)$=${$k\\pi r^2$}이고, 양변을 $\\pi$로 나누어 $x$에 대한 이차방정식을 푼다.",
+        "cSlotAnswers": [
+          "$r+x$",
+          "$k\\pi r^2$"
+        ],
+        "cStudentSentence": "반지름의 길이가 $r$인 원의 반지름을 $x$만큼 늘리면 새 반지름의 길이는 □이다. 새 원의 넓이가 처음의 $k$배이면 (새 원의 넓이)$=$□이고, 양변을 $\\pi$로 나누어 $x$에 대한 이차방정식을 푼다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$r+x$",
+            "equivalentAnswers": [
+              "$r+x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$k\\pi r^2$",
+            "equivalentAnswers": [
+              "$k\\pi r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$r+x$"
+          ],
+          [
+            "$k\\pi r^2$"
+          ]
+        ],
+        "proposalFingerprint": "27e29327c210e4d8cc5abe391f1fe3dd3e47ad0a1cd63947e4148c649cfdd457"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc18",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "한 번만 이르는 높이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "지면에서 쏘아 올린 물체가 {지면보다 높은} 어떤 곳을 오르내리는 동안 한 번만 지나면 그곳이 {최고 높이}이고, 그 높이에 대한 방정식은 중근을 갖는다.",
+        "studentC": "지면에서 쏘아 올린 물체가 □ 어떤 곳을 오르내리는 동안 한 번만 지나면 그곳이 □이고, 그 높이에 대한 방정식은 중근을 갖는다.",
+        "answers": [
+          "지면보다 높은",
+          "최고 높이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "지면에서 쏘아 올린 물체의 $t$초 후의 높이가 $(20t-5t^2)$ $\\mathrm{m}$이다. 높이가 $20$ $\\mathrm{m}$가 되는 시각을 구하는 방정식 $20t-5t^2=20$의 해는 $t=2$ 하나뿐(중근)이다. 이 사실에서 $20$ $\\mathrm{m}$가 어떤 높이인지 까닭과 함께 쓰시오.",
+        "bAnswer": "$20$ $\\mathrm{m}$는 물체가 올라간 최고 높이이다. 최고 높이보다 낮은 곳은 올라갈 때와 내려올 때 두 번 지나지만, 한 번만 지나는 곳은 가장 높은 곳뿐이기 때문이다.",
+        "bGoal": "중근이 되는 높이가 최고 높이임을 해석",
+        "bReason": "중근이 나오는 식을 주어 그 뜻을 움직임으로 해석하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 번만 지나는 높이"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 높이가 최고 높이"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "지면에서 쏘아 올린 물체가 지면보다 높은 어떤 높이를 오르내리는 동안 {한} 번만 지나면 그 높이가 {최고 높이}이고, 그 높이가 되는 시각을 구하는 이차방정식은 {중근}을 갖는다.",
+        "cAnswers": [
+          "한",
+          "최고 높이",
+          "중근"
+        ],
+        "cReason": "'지면보다 높은'은 맞히기 어려운 조건 구절이라 결론 쪽을 가렸다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "한 번만 지나면 최고 높이",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3456,
+        "part": "m3plus",
+        "sourceFingerprint": "cad60ffcbceb53fcc495960b622e169436f12a1aea018b4ae2a468bdf341f666",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3456
+        },
+        "directReview": null,
+        "cMarkedSentence": "지면에서 쏘아 올린 물체가 지면보다 높은 어떤 높이를 오르내리는 동안 {한} 번만 지나면 그 높이가 {최고 높이}이고, 그 높이가 되는 시각을 구하는 이차방정식은 {중근}을 갖는다.",
+        "cSlotAnswers": [
+          "한",
+          "최고 높이",
+          "중근"
+        ],
+        "cStudentSentence": "지면에서 쏘아 올린 물체가 지면보다 높은 어떤 높이를 오르내리는 동안 □ 번만 지나면 그 높이가 □이고, 그 높이가 되는 시각을 구하는 이차방정식은 □을 갖는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한",
+            "equivalentAnswers": [
+              "한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최고 높이",
+            "equivalentAnswers": [
+              "최고 높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "중근",
+            "equivalentAnswers": [
+              "중근"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한"
+          ],
+          [
+            "최고 높이"
+          ],
+          [
+            "중근"
+          ]
+        ],
+        "proposalFingerprint": "507812e44bb34f673ec1642303f11bcf1eadd9d4c14905ded58d7a49a601e5ab"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc20",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "세 변이 연속하는 직각삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직각삼각형의 세 변을 $x$, $x+1$, $x+2$로 놓으면 피타고라스 정리로 {$x^2+(x+1)^2=(x+2)^2$}을 세운다.",
+        "studentC": "직각삼각형의 세 변을 $x$, $x+1$, $x+2$로 놓으면 피타고라스 정리로 □을 세운다.",
+        "answers": [
+          "$x^2+(x+1)^2=(x+2)^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 길이가 연속하는 세 자연수인 직각삼각형이 있다. 가장 짧은 변의 길이를 $x$라 할 때 세 변의 길이를 $x$로 나타내고, 어느 변이 빗변인지 밝혀 방정식을 세우시오.",
+        "bAnswer": "세 변은 $x$, $x+1$, $x+2$이고 가장 긴 $x+2$가 빗변이다. 피타고라스 정리에 따라 $x^2+(x+1)^2=(x+2)^2$이다.",
+        "bGoal": "피타고라스 정리로 이차방정식 세우기",
+        "bReason": "어느 변이 빗변인지 스스로 정하게 하여 식의 근거를 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 변 $x$, $x+1$, $x+2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 긴 변이 빗변"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x^2+(x+1)^2=(x+2)^2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세 변과 쓸 정리가 주어져 있어 식 빈칸 하나로 충분하다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "피타고라스로 식 세우기",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3457,
+        "part": "m3plus",
+        "sourceFingerprint": "cb0045eaea918c174785451706c260a44262960747df7e7bbd07d7d841e7af4d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3457
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 세 변을 $x$, $x+1$, $x+2$로 놓으면 피타고라스 정리로 □을 세운다.",
+        "cFrozenDefinition": "직각삼각형의 세 변을 $x$, $x+1$, $x+2$로 놓으면 피타고라스 정리로 {$x^2+(x+1)^2=(x+2)^2$}을 세운다.",
+        "cFrozenAnswers": [
+          "$x^2+(x+1)^2=(x+2)^2$"
+        ],
+        "cMarkedSentence": "직각삼각형의 세 변을 $x$, $x+1$, $x+2$로 놓으면 피타고라스 정리로 {$x^2+(x+1)^2=(x+2)^2$}을 세운다.",
+        "cSlotAnswers": [
+          "$x^2+(x+1)^2=(x+2)^2$"
+        ],
+        "cStudentSentence": "직각삼각형의 세 변을 $x$, $x+1$, $x+2$로 놓으면 피타고라스 정리로 □을 세운다.",
+        "cAnswers": [
+          "$x^2+(x+1)^2=(x+2)^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x^2+(x+1)^2=(x+2)^2$",
+            "equivalentAnswers": [
+              "$x^2+(x+1)^2=(x+2)^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x^2+(x+1)^2=(x+2)^2$"
+          ]
+        ],
+        "proposalFingerprint": "9daeae24e1de2b824df26dc8a8dc0c4063eaa83ff12a9d771c52cae8f65da3d7"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc21",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "움직이는 점과 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "점이 출발한 뒤 지난 시간을 $t$로 놓고, 움직이는 점이 정하는 길이를 {$t$의 식}으로 나타내어 넓이 조건을 방정식으로 세운다. 해를 구한 뒤 점이 움직일 수 있는 {시간의 범위}에 맞는지 확인한다.",
+        "studentC": "점이 출발한 뒤 지난 시간을 $t$로 놓고, 움직이는 점이 정하는 길이를 □으로 나타내어 넓이 조건을 방정식으로 세운다. 해를 구한 뒤 점이 움직일 수 있는 □에 맞는지 확인한다.",
+        "answers": [
+          "$t$의 식",
+          "시간의 범위"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 $ABCD$에서 $AB=10$ $\\mathrm{cm}$, $BC=12$ $\\mathrm{cm}$이다. 점 $P$는 $A$를 출발해 변 $AB$ 위를 $B$ 쪽으로 매초 $1$ $\\mathrm{cm}$씩, 점 $Q$는 같은 때에 $B$를 출발해 변 $BC$ 위를 $C$ 쪽으로 매초 $2$ $\\mathrm{cm}$씩 움직이고, $Q$가 $C$에 닿으면 두 점 모두 멈춘다. 출발한 지 $t$초 후 삼각형 $PBQ$의 넓이가 $16$ $\\mathrm{cm}$$^2$가 되는 $t$의 값을 구하고, 방정식의 해 가운데 버린 것이 있으면 그 까닭을 쓰시오.",
+        "bAnswer": "$PB=10-t$, $BQ=2t$이므로 $\\frac{1}{2}(10-t)\\times2t=16$, 곧 $t^2-10t+16=0$이고 $t=2$ 또는 $t=8$이다. $Q$는 $6$초 후 $C$에 닿아 멈추므로 $0<t\\le6$이어야 해서 $t=2$만 답이다.",
+        "bGoal": "움직이는 점의 길이를 $t$로 나타내 넓이 방정식 세우기",
+        "bReason": "일반 절차 진술 대신 실제 식, 값, 버린 까닭을 요구",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}(10-t)\\times 2t=16$",
+              "$t(10-t)=16$",
+              "$t^2-10t+16=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$t=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$Q$가 $6$초 후 $C$에 닿아 멈추므로 $t=8$은 버린다",
+              "$0<t\\le 6$이어야 하므로 $t=8$은 답이 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "점이 출발한 뒤 지난 시간을 $t$초로 놓으면, 매초 $2$ cm씩 움직이는 점이 움직인 거리는 {$2t$} cm이다. 이런 길이를 써서 넓이에 대한 방정식을 세우고, 해를 구한 뒤 점이 실제로 움직이는 동안의 $t$의 {범위}에 맞는지 확인한다.",
+        "cAnswers": [
+          "$2t$",
+          "범위"
+        ],
+        "cReason": "'움직이는 점이 정하는 길이'가 상황 없이 모호해 속력을 넣었다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "길이를 $t$의 식으로 나타냄",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3458,
+        "part": "m3plus",
+        "sourceFingerprint": "415f023ba2afb64b2adfc7f1f639723cddc8d9f1d09c1726b0975f521f44c8bd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3458
+        },
+        "directReview": null,
+        "cMarkedSentence": "점이 출발한 뒤 지난 시간을 $t$초로 놓으면, 매초 $2$ cm씩 움직이는 점이 움직인 거리는 {$2t$} cm이다. 이런 길이를 써서 넓이에 대한 방정식을 세우고, 해를 구한 뒤 점이 실제로 움직이는 동안의 $t$의 {범위}에 맞는지 확인한다.",
+        "cSlotAnswers": [
+          "$2t$",
+          "범위"
+        ],
+        "cStudentSentence": "점이 출발한 뒤 지난 시간을 $t$초로 놓으면, 매초 $2$ cm씩 움직이는 점이 움직인 거리는 □ cm이다. 이런 길이를 써서 넓이에 대한 방정식을 세우고, 해를 구한 뒤 점이 실제로 움직이는 동안의 $t$의 □에 맞는지 확인한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2t$",
+            "equivalentAnswers": [
+              "$2t$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "범위",
+            "equivalentAnswers": [
+              "범위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2t$"
+          ],
+          [
+            "범위"
+          ]
+        ],
+        "proposalFingerprint": "5f0e6363b67a45f56862fbb60babd420bf75c633a47ae31930dd910b85b52fa2"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc22",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "달력의 위아래 날짜",
+        "kind": "방법",
+        "level": "상",
+        "definition": "달력에서 위아래로 이웃한 두 날짜는 {$7$}만큼 차이 나므로 $x$, {$x+7$}로 놓는다.",
+        "studentC": "달력에서 위아래로 이웃한 두 날짜는 □만큼 차이 나므로 $x$, □로 놓는다.",
+        "answers": [
+          "$7$",
+          "$x+7$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "달력에서 위아래로 바로 이웃한 두 날짜 중 위의 날짜를 $x$일이라 할 때, 아래 날짜를 $x$로 나타내고 그렇게 되는 까닭을 쓰시오.",
+        "bAnswer": "$(x+7)$일이다. 달력에서 바로 아래 칸은 한 주, 곧 $7$일 뒤의 같은 요일이기 때문이다.",
+        "bGoal": "달력의 위아래 날짜를 미지수로 나타내기",
+        "bReason": "위와 아래 중 어느 날짜를 $x$로 놓는지 밝혀 답을 하나로 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "위아래 날짜의 차는 $7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래 날짜는 $x+7$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "상황이 문장 하나로 분명하고 수와 식 빈칸이 짧다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "위아래 날짜는 7 차이",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3459,
+        "part": "m3plus",
+        "sourceFingerprint": "1b27031d34cf1fbfd50dabd42607047006790f28ead9e546908502e1fc5b25ef",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3459
+        },
+        "directReview": null,
+        "cFrozenSentence": "달력에서 위아래로 이웃한 두 날짜는 □만큼 차이 나므로 $x$, □로 놓는다.",
+        "cFrozenDefinition": "달력에서 위아래로 이웃한 두 날짜는 {$7$}만큼 차이 나므로 $x$, {$x+7$}로 놓는다.",
+        "cFrozenAnswers": [
+          "$7$",
+          "$x+7$"
+        ],
+        "cMarkedSentence": "달력에서 위아래로 이웃한 두 날짜는 {$7$}만큼 차이 나므로 $x$, {$x+7$}로 놓는다.",
+        "cSlotAnswers": [
+          "$7$",
+          "$x+7$"
+        ],
+        "cStudentSentence": "달력에서 위아래로 이웃한 두 날짜는 □만큼 차이 나므로 $x$, □로 놓는다.",
+        "cAnswers": [
+          "$7$",
+          "$x+7$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$7$",
+            "equivalentAnswers": [
+              "$7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+7$",
+            "equivalentAnswers": [
+              "$x+7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$7$"
+          ],
+          [
+            "$x+7$"
+          ]
+        ],
+        "proposalFingerprint": "b17db091dbcace713870a69673b5f75a855cbab7e6f5a4833ffc8f485834f4a3"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc23",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "두 자리 자연수를 식으로 쓰기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 {$10a+b$}이다 — 숫자를 나란히 쓴 $ab$는 {곱}을 뜻한다.",
+        "example": {
+          "prompt": "십의 자리 숫자가 $x$, 일의 자리 숫자가 $x+2$인 수를 $x(x+2)$로 쓰면 안 되는 까닭은?",
+          "answer": "그것은 두 숫자의 곱이라서"
+        },
+        "studentC": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 □이다 — 숫자를 나란히 쓴 $ab$는 □을 뜻한다.",
+        "answers": [
+          "$10a+b$",
+          "곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "십의 자리 숫자가 $x$, 일의 자리 숫자가 $x+2$인 두 자리 자연수를 $x$의 식으로 나타내시오. 또 이 수를 $x(x+2)$로 쓰면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$10x+(x+2)=11x+2$이다. $x(x+2)$는 두 숫자를 곱한 값이지, 십의 자리가 $10$씩을 나타내는 두 자리 수가 아니다.",
+        "bGoal": "두 자리 자연수를 자릿값으로 나타내기",
+        "bReason": "$x$의 식을 묻는 질문이므로 일반 공식 대신 실제 식으로 판단",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10x+(x+2)$",
+              "$11x+2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x(x+2)$는 두 숫자의 곱이다",
+              "나란히 쓴 문자는 곱을 뜻한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$a$, $b$의 뜻이 문장에 있고 식과 뜻을 대비해 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "자릿값으로 $10a+b$",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3460,
+        "part": "m3plus",
+        "sourceFingerprint": "61dfe47c36eb080c39e56c52a43fff2e5a9fb659637fffc7c8d6b7c42bc8b181",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3460
+        },
+        "directReview": null,
+        "cFrozenSentence": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 □이다 — 숫자를 나란히 쓴 $ab$는 □을 뜻한다.",
+        "cFrozenDefinition": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 {$10a+b$}이다 — 숫자를 나란히 쓴 $ab$는 {곱}을 뜻한다.",
+        "cFrozenAnswers": [
+          "$10a+b$",
+          "곱"
+        ],
+        "cMarkedSentence": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 {$10a+b$}이다 — 숫자를 나란히 쓴 $ab$는 {곱}을 뜻한다.",
+        "cSlotAnswers": [
+          "$10a+b$",
+          "곱"
+        ],
+        "cStudentSentence": "십의 자리 숫자가 $a$, 일의 자리 숫자가 $b$인 두 자리 자연수는 □이다 — 숫자를 나란히 쓴 $ab$는 □을 뜻한다.",
+        "cAnswers": [
+          "$10a+b$",
+          "곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10a+b$",
+            "equivalentAnswers": [
+              "$10a+b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱",
+              "$a\\times b$",
+              "$a$와 $b$의 곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "곱",
+            "accept": [
+              "$a\\times b$",
+              "$a$와 $b$의 곱"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$10a+b$"
+          ],
+          [
+            "곱",
+            "$a\\times b$",
+            "$a$와 $b$의 곱"
+          ]
+        ],
+        "proposalFingerprint": "5765d1a9d74ac0574e04f1bb16df96db3202190b099ccf49b9c316c054b3397f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc25",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "끈을 잘라 만든 두 정사각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "끈의 길이는 정사각형의 {둘레}가 되므로 한 변은 끈 길이의 {$\\frac{1}{4}$}이다 — 끈을 둘로 자르면 한쪽을 $x$로 놓고 다른 쪽은 처음 길이에서 $x$를 뺀다.",
+        "example": {
+          "prompt": "길이 $20$인 끈을 $x$와 나머지로 잘라 만든 두 정사각형의 한 변은?",
+          "answer": "$\\frac{x}{4}$와 $\\frac{20-x}{4}$"
+        },
+        "studentC": "끈의 길이는 정사각형의 □가 되므로 한 변은 끈 길이의 □이다 — 끈을 둘로 자르면 한쪽을 $x$로 놓고 다른 쪽은 처음 길이에서 $x$를 뺀다.",
+        "answers": [
+          "둘레",
+          "$\\frac{1}{4}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 $20$ $\\mathrm{cm}$인 끈을 두 도막으로 잘라 각각을 구부려 정사각형을 하나씩 만든다. 한 도막의 길이를 $x$ $\\mathrm{cm}$라 할 때 두 정사각형의 한 변의 길이를 각각 $x$로 나타내고, 그렇게 되는 까닭을 쓰시오.",
+        "bAnswer": "한 변의 길이는 $\\frac{x}{4}$ $\\mathrm{cm}$와 $\\frac{20-x}{4}$ $\\mathrm{cm}$이다. 다른 도막의 길이는 $(20-x)$ $\\mathrm{cm}$이고, 끈의 길이가 정사각형의 둘레가 되므로 한 변은 그 $\\frac{1}{4}$이다.",
+        "bGoal": "끈으로 만든 정사각형의 한 변을 식으로 나타내기",
+        "bReason": "$\\frac{20-x}{4}$에 이미 담긴 중간 단계를 따로 강요하지 않음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{x}{4}$와 $\\frac{20-x}{4}$",
+              "$\\frac{x}{4}$와 $5-\\frac{x}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "끈의 길이가 정사각형의 둘레이므로 한 변은 그 $\\frac{1}{4}$이다",
+              "둘레를 $4$로 나누면 한 변의 길이이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "끈을 구부려 정사각형을 만들면 끈의 길이가 정사각형의 {둘레}가 되므로 한 변의 길이는 끈 길이의 {$\\frac{1}{4}$}이다 — 길이 $20$인 끈을 둘로 잘라 한쪽을 $x$로 놓으면 다른 쪽은 {$20-x$}이다.",
+        "cAnswers": [
+          "둘레",
+          "$\\frac{1}{4}$",
+          "$20-x$"
+        ],
+        "cReason": "끈으로 정사각형을 만든다는 상황이 문장에 없어 앞에 밝혔다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "끈 길이가 둘레, 변은 1/4",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3461,
+        "part": "m3plus",
+        "sourceFingerprint": "dba0143a938542065acc16405ac67d51d920e79527a834bbb2adeda6e860ebd1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3461
+        },
+        "directReview": null,
+        "cMarkedSentence": "끈을 구부려 정사각형을 만들면 끈의 길이가 정사각형의 {둘레}가 되므로 한 변의 길이는 끈 길이의 {$\\frac{1}{4}$}이다 — 길이 $20$인 끈을 둘로 잘라 한쪽을 $x$로 놓으면 다른 쪽은 {$20-x$}이다.",
+        "cSlotAnswers": [
+          "둘레",
+          "$\\frac{1}{4}$",
+          "$20-x$"
+        ],
+        "cStudentSentence": "끈을 구부려 정사각형을 만들면 끈의 길이가 정사각형의 □가 되므로 한 변의 길이는 끈 길이의 □이다 — 길이 $20$인 끈을 둘로 잘라 한쪽을 $x$로 놓으면 다른 쪽은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "둘레",
+            "equivalentAnswers": [
+              "둘레",
+              "둘레의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{4}$",
+              "$4$분의 $1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$20-x$",
+            "equivalentAnswers": [
+              "$20-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "둘레",
+            "accept": [
+              "둘레의 길이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{1}{4}$",
+            "accept": [
+              "$4$분의 $1$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "둘레",
+            "둘레의 길이"
+          ],
+          [
+            "$\\frac{1}{4}$",
+            "$4$분의 $1$"
+          ],
+          [
+            "$20-x$"
+          ]
+        ],
+        "proposalFingerprint": "1b07a44caa6fd98a1806ef7063e199b575619fe795a7a918d31159aadf9c572f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc1",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "이차함수인 식과 아닌 식",
+        "kind": "정의",
+        "level": "하",
+        "definition": "식을 정리하여 $y=ax^2+bx+c$로 나타낼 수 있고 {$a\\ne 0$}이면 이차함수이다 — $y=\\frac{1}{x^2}$은 $x$에 대한 {이차식}으로 나타낼 수 없으므로 이차함수가 아니다.",
+        "studentC": "식을 정리하여 $y=ax^2+bx+c$로 나타낼 수 있고 □이면 이차함수이다 — $y=\\frac{1}{x^2}$은 $x$에 대한 □으로 나타낼 수 없으므로 이차함수가 아니다.",
+        "answers": [
+          "$a\\ne 0$",
+          "이차식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc1",
+        "learningRole": "application",
+        "roleReason": "식을 정리해 이차함수 여부 판별",
+        "bDecision": "rewrite",
+        "bPrompt": "다음 식이 이차함수인지 각각 판단하고, $y=ax^2+bx+c$ ($a\\ne 0$) 꼴로 정리할 수 있는지로 까닭을 쓰시오. ① $y=x(x+1)$ ② $y=x^2-(x^2+3x)$ ③ $y=\\frac{1}{x^2}$",
+        "bAnswer": "①은 $y=x^2+x$로 $a=1\\ne 0$이므로 이차함수이다. ②는 $y=-3x$로 $x^2$항이 없어 이차함수가 아니다. ③은 $x$가 분모에 있어 $x$에 대한 이차식으로 나타낼 수 없으므로 이차함수가 아니다.",
+        "bGoal": "식을 정리하여 이차함수 판별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "①은 이차함수",
+              "$y=x^2+x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "②는 $x^2$항이 없어져 이차함수가 아니다",
+              "②는 $y=-3x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "③은 이차식으로 나타낼 수 없어 이차함수가 아니다",
+              "③은 $x$가 분모에 있다"
+            ]
+          }
+        ],
+        "bReason": "정리 후 판정, 소거, 분모라는 세 유형의 식을 넣어 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "$a$의 조건과 이차식이 아닌 예를 함께 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3462,
+        "part": "m3plus",
+        "sourceFingerprint": "aa2fa9fa39acf0029a75888fa85b2401c8bc743bb75d599bd382b3a79a5a02a3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3462
+        },
+        "directReview": null,
+        "cFrozenSentence": "식을 정리하여 $y=ax^2+bx+c$로 나타낼 수 있고 □이면 이차함수이다 — $y=\\frac{1}{x^2}$은 $x$에 대한 □으로 나타낼 수 없으므로 이차함수가 아니다.",
+        "cFrozenDefinition": "식을 정리하여 $y=ax^2+bx+c$로 나타낼 수 있고 {$a\\ne 0$}이면 이차함수이다 — $y=\\frac{1}{x^2}$은 $x$에 대한 {이차식}으로 나타낼 수 없으므로 이차함수가 아니다.",
+        "cFrozenAnswers": [
+          "$a\\ne 0$",
+          "이차식"
+        ],
+        "cMarkedSentence": "식을 정리하여 $y=ax^2+bx+c$로 나타낼 수 있고 {$a\\ne 0$}이면 이차함수이다 — $y=\\frac{1}{x^2}$은 $x$에 대한 {이차식}으로 나타낼 수 없으므로 이차함수가 아니다.",
+        "cSlotAnswers": [
+          "$a\\ne 0$",
+          "이차식"
+        ],
+        "cStudentSentence": "식을 정리하여 $y=ax^2+bx+c$로 나타낼 수 있고 □이면 이차함수이다 — $y=\\frac{1}{x^2}$은 $x$에 대한 □으로 나타낼 수 없으므로 이차함수가 아니다.",
+        "cAnswers": [
+          "$a\\ne 0$",
+          "이차식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a\\ne 0$",
+            "equivalentAnswers": [
+              "$a\\ne 0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이차식",
+            "equivalentAnswers": [
+              "이차식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a\\ne 0$"
+          ],
+          [
+            "이차식"
+          ]
+        ],
+        "proposalFingerprint": "4ae586ea119046557a1316d7e0c63d4b4c33add62d4b3cc8f687de8fa1f923b0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc2",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "이차함수의 함숫값",
+        "kind": "정의",
+        "level": "하",
+        "definition": "이차함수 $y=f(x)$에서 $x$의 값에 따라 정해지는 $y$의 값이 {함숫값}이고, $f(k)$는 식의 $x$에 $k$를 {대입}한 값이다.",
+        "example": {
+          "prompt": "$f(x)=x^2-1$에서 $f(3)$은 무엇을 뜻하는가?",
+          "answer": "$x=3$일 때의 $y$의 값"
+        },
+        "studentC": "이차함수 $y=f(x)$에서 $x$의 값에 따라 정해지는 $y$의 값이 □이고, $f(k)$는 식의 $x$에 $k$를 □한 값이다.",
+        "answers": [
+          "함숫값",
+          "대입"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc2",
+        "learningRole": "procedure",
+        "roleReason": "$f(k)$의 뜻과 대입으로 함숫값 구하기",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $f(x)=x^2-1$에서 $f(3)$은 무엇을 뜻하는지 쓰고, 그 값을 구하시오.",
+        "bAnswer": "$x=3$일 때의 함숫값($y$의 값)이다. $x$에 $3$을 대입하면 $f(3)=3^2-1=8$이다.",
+        "bGoal": "함숫값의 뜻과 계산",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=3$일 때의 $y$의 값",
+              "$x=3$일 때의 함숫값"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          }
+        ],
+        "bReason": "함수식과 $x$값을 제시해 뜻과 계산을 함께 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "용어와 대입이라는 절차를 묻는 짧고 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3463,
+        "part": "m3plus",
+        "sourceFingerprint": "337c00ad7c630856e8592f8ccdbef5bf271e8772491f1d1cd4597cd09cf556c8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3463
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차함수 $y=f(x)$에서 $x$의 값에 따라 정해지는 $y$의 값이 □이고, $f(k)$는 식의 $x$에 $k$를 □한 값이다.",
+        "cFrozenDefinition": "이차함수 $y=f(x)$에서 $x$의 값에 따라 정해지는 $y$의 값이 {함숫값}이고, $f(k)$는 식의 $x$에 $k$를 {대입}한 값이다.",
+        "cFrozenAnswers": [
+          "함숫값",
+          "대입"
+        ],
+        "cMarkedSentence": "이차함수 $y=f(x)$에서 $x$의 값에 따라 정해지는 $y$의 값이 {함숫값}이고, $f(k)$는 식의 $x$에 $k$를 {대입}한 값이다.",
+        "cSlotAnswers": [
+          "함숫값",
+          "대입"
+        ],
+        "cStudentSentence": "이차함수 $y=f(x)$에서 $x$의 값에 따라 정해지는 $y$의 값이 □이고, $f(k)$는 식의 $x$에 $k$를 □한 값이다.",
+        "cAnswers": [
+          "함숫값",
+          "대입"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "함숫값",
+            "equivalentAnswers": [
+              "함숫값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입",
+              "넣은",
+              "넣기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "대입",
+            "accept": [
+              "넣은",
+              "넣기"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "함숫값"
+          ],
+          [
+            "대입",
+            "넣은",
+            "넣기"
+          ]
+        ],
+        "proposalFingerprint": "a9bdda31886fa352d0291add307d5fade4a72e5255aecb043a584e4c2e2e7de6"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc3",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "$y=x^2$의 그래프 위의 점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$y=x^2$의 그래프는 $(1,\\ 1)$, $(2,\\ 4)$처럼 $x$좌표를 {제곱}한 값이 $y$좌표인 점들을 매끄럽게 이은 곡선이다.",
+        "studentC": "$y=x^2$의 그래프는 $(1,\\ 1)$, $(2,\\ 4)$처럼 $x$좌표를 □한 값이 $y$좌표인 점들을 매끄럽게 이은 곡선이다.",
+        "answers": [
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc3",
+        "learningRole": "application",
+        "roleReason": "좌표 관계로 그래프 위의 점 판정",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=x^2$의 그래프 위의 점에서 $x$좌표와 $y$좌표 사이에는 어떤 관계가 있는가? 이를 이용하여 점 $(-3,\\ 9)$와 점 $(3,\\ -9)$가 그래프 위에 있는지 각각 판단하시오.",
+        "bAnswer": "$y$좌표는 $x$좌표의 제곱이다. $(-3)^2=9$이므로 $(-3,\\ 9)$는 그래프 위에 있고, $3^2=9\\ne -9$이므로 $(3,\\ -9)$는 그래프 위에 있지 않다.",
+        "bGoal": "그래프 위의 점의 좌표 관계",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y$좌표는 $x$좌표의 제곱",
+              "$y=x^2$을 만족한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(-3,\\ 9)$는 그래프 위에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(3,\\ -9)$는 그래프 위에 있지 않다"
+            ]
+          }
+        ],
+        "bReason": "관계만 묻지 않고 음수 좌표 두 점의 판정을 넣어 적용시켰다.",
+        "cDecision": "keep",
+        "cReason": "예시 점에서 제곱 관계를 읽게 하는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3464,
+        "part": "m3plus",
+        "sourceFingerprint": "c74d337a039264d0c69b45b793c1139fdc288a5243fe84412f39b163c194d0ba",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3464
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=x^2$의 그래프는 $(1,\\ 1)$, $(2,\\ 4)$처럼 $x$좌표를 □한 값이 $y$좌표인 점들을 매끄럽게 이은 곡선이다.",
+        "cFrozenDefinition": "$y=x^2$의 그래프는 $(1,\\ 1)$, $(2,\\ 4)$처럼 $x$좌표를 {제곱}한 값이 $y$좌표인 점들을 매끄럽게 이은 곡선이다.",
+        "cFrozenAnswers": [
+          "제곱"
+        ],
+        "cMarkedSentence": "$y=x^2$의 그래프는 $(1,\\ 1)$, $(2,\\ 4)$처럼 $x$좌표를 {제곱}한 값이 $y$좌표인 점들을 매끄럽게 이은 곡선이다.",
+        "cSlotAnswers": [
+          "제곱"
+        ],
+        "cStudentSentence": "$y=x^2$의 그래프는 $(1,\\ 1)$, $(2,\\ 4)$처럼 $x$좌표를 □한 값이 $y$좌표인 점들을 매끄럽게 이은 곡선이다.",
+        "cAnswers": [
+          "제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱"
+          ]
+        ],
+        "proposalFingerprint": "9133159f87f5cb73d0aad9cf60074aefe1436fdc62c213847e91c9a3883b4b1a"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc4",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "$x$가 커질 때 $y=x^2$의 변화",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$y=x^2$에서 $x>0$이면 $x$가 커질수록 $y$도 {커지고}, $x<0$이면 $x$가 커질수록 $y$는 {작아진다}.",
+        "studentC": "$y=x^2$에서 $x>0$이면 $x$가 커질수록 $y$도 □, $x<0$이면 $x$가 커질수록 $y$는 □.",
+        "answers": [
+          "커지고",
+          "작아진다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc4",
+        "learningRole": "application",
+        "roleReason": "$x$의 범위에 따른 $y=x^2$의 증감",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=x^2$에서 $x<0$인 범위와 $x>0$인 범위 각각에서 $x$의 값이 커지면 $y$의 값은 어떻게 변하는가? $x=-3,\\ -2,\\ -1$과 $x=1,\\ 2,\\ 3$일 때의 $y$의 값을 근거로 쓰시오.",
+        "bAnswer": "$x<0$에서는 $y$가 $9,\\ 4,\\ 1$로 작아지고, $x>0$에서는 $1,\\ 4,\\ 9$로 커진다.",
+        "bGoal": "$y=x^2$의 범위별 증감",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x<0$이면 $y$가 작아진다",
+              "$x<0$이면 감소한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>0$이면 $y$가 커진다",
+              "$x>0$이면 증가한다"
+            ]
+          }
+        ],
+        "bReason": "두 범위를 나누고 구체적인 $x$값을 주어 변화를 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "두 범위의 변화를 대비시키는 짧은 비교 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3465,
+        "part": "m3plus",
+        "sourceFingerprint": "203869107c1adc4cd89873f5be1caadbc6dd3655173db3a726a0002ba88d3b25",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3465
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=x^2$에서 $x>0$이면 $x$가 커질수록 $y$도 □, $x<0$이면 $x$가 커질수록 $y$는 □.",
+        "cFrozenDefinition": "$y=x^2$에서 $x>0$이면 $x$가 커질수록 $y$도 {커지고}, $x<0$이면 $x$가 커질수록 $y$는 {작아진다}.",
+        "cFrozenAnswers": [
+          "커지고",
+          "작아진다"
+        ],
+        "cMarkedSentence": "$y=x^2$에서 $x>0$이면 $x$가 커질수록 $y$도 {커지고}, $x<0$이면 $x$가 커질수록 $y$는 {작아진다}.",
+        "cSlotAnswers": [
+          "커지고",
+          "작아진다"
+        ],
+        "cStudentSentence": "$y=x^2$에서 $x>0$이면 $x$가 커질수록 $y$도 □, $x<0$이면 $x$가 커질수록 $y$는 □.",
+        "cAnswers": [
+          "커지고",
+          "작아진다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "커지고",
+            "equivalentAnswers": [
+              "커지고",
+              "증가하고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작아진다",
+            "equivalentAnswers": [
+              "작아진다",
+              "감소한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "커지고",
+            "accept": [
+              "증가하고"
+            ]
+          },
+          {
+            "answer": "작아진다",
+            "accept": [
+              "감소한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "커지고",
+            "증가하고"
+          ],
+          [
+            "작아진다",
+            "감소한다"
+          ]
+        ],
+        "proposalFingerprint": "9ada28f2d57ee5e1bed3a8bd24eaf2b4413228e6a9ac6ccb4bfa51e2f248bd3b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc5",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "$y=ax^2$과 $y=-ax^2$의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$y=ax^2$과 $y=-ax^2$의 그래프는 {$x$축}에 대하여 서로 {대칭}이다.",
+        "studentC": "$y=ax^2$과 $y=-ax^2$의 그래프는 □에 대하여 서로 □이다.",
+        "answers": [
+          "$x$축",
+          "대칭"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc5",
+        "learningRole": "reason",
+        "roleReason": "$y=ax^2$과 $y=-ax^2$의 $x$축 대칭",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c6 B가 같은 $x$에서 부호가 반대인 점으로 $x$축 대칭을 이미 묻는다.",
+        "cDecision": "keep",
+        "cReason": "대칭의 기준 직선과 관계를 묻는 짧고 분명한 빈칸이다.",
+        "exclusionReason": "B 제외: c6 B의 $x$축 대칭 설명 질문에서 계수만 $a$로 일반화한 중복 목표이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3466,
+        "part": "m3plus",
+        "sourceFingerprint": "ebf9950b1343ef062323364f810430cea3545be4f88aba7ac69ae7c7abd0a573",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3466
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$y=ax^2$과 $y=-ax^2$의 그래프는 □에 대하여 서로 □이다.",
+        "cFrozenDefinition": "$y=ax^2$과 $y=-ax^2$의 그래프는 {$x$축}에 대하여 서로 {대칭}이다.",
+        "cFrozenAnswers": [
+          "$x$축",
+          "대칭"
+        ],
+        "cMarkedSentence": "$y=ax^2$과 $y=-ax^2$의 그래프는 {$x$축}에 대하여 서로 {대칭}이다.",
+        "cSlotAnswers": [
+          "$x$축",
+          "대칭"
+        ],
+        "cStudentSentence": "$y=ax^2$과 $y=-ax^2$의 그래프는 □에 대하여 서로 □이다.",
+        "cAnswers": [
+          "$x$축",
+          "대칭"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$축",
+            "equivalentAnswers": [
+              "$x$축"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대칭",
+            "equivalentAnswers": [
+              "대칭"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x$축"
+          ],
+          [
+            "대칭"
+          ]
+        ],
+        "proposalFingerprint": "ce5814427b6d8a8ea7d49b3a773fb03f58841e1d811b4bdc0565f95fd4e311d5"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc6",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "괄호 안의 부호와 축의 위치",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$y=a(x-p)^2$의 축은 괄호 안을 {$0$}으로 만드는 $x$의 값에서 정해진다 — 괄호 안이 $x+k$이면 축은 {$x=-k$}로, 부호를 반대로 읽는다.",
+        "example": {
+          "prompt": "$y=(x+3)^2$의 축이 $x=3$이 아니라 $x=-3$인 까닭은?",
+          "answer": "$x=-3$에서 괄호 안이 $0$이라서"
+        },
+        "studentC": "$y=a(x-p)^2$의 축은 괄호 안을 □으로 만드는 $x$의 값에서 정해진다 — 괄호 안이 $x+k$이면 축은 □로, 부호를 반대로 읽는다.",
+        "answers": [
+          "$0$",
+          "$x=-k$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc6",
+        "learningRole": "reason",
+        "roleReason": "괄호 안이 $0$이 되는 값으로 축을 정함",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=(x+3)^2$의 그래프의 축의 방정식을 쓰고, 괄호 안의 값을 이용하여 그 까닭을 쓰시오. 또 $y=a(x+k)^2$의 축의 방정식을 쓰시오.",
+        "bAnswer": "축은 $x=-3$이다. 괄호 안 $x+3$이 $0$이 되는 $x$의 값이 $-3$이기 때문이다. $y=a(x+k)^2$의 축은 $x=-k$이다.",
+        "bGoal": "괄호 안 부호와 축의 위치",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=-3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=-3$에서 괄호 안이 $0$",
+              "$x+3=x-(-3)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=-k$"
+            ]
+          }
+        ],
+        "bReason": "한 예에 그치지 않게 $x+k$ 일반 경우의 축까지 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "괄호를 $0$으로 만드는 원리와 축을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3467,
+        "part": "m3plus",
+        "sourceFingerprint": "a796b603360a9b7c3e6faeb1ae254f53c1a6b69210f4d89993749745f8a2a440",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3467
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=a(x-p)^2$의 축은 괄호 안을 □으로 만드는 $x$의 값에서 정해진다 — 괄호 안이 $x+k$이면 축은 □로, 부호를 반대로 읽는다.",
+        "cFrozenDefinition": "$y=a(x-p)^2$의 축은 괄호 안을 {$0$}으로 만드는 $x$의 값에서 정해진다 — 괄호 안이 $x+k$이면 축은 {$x=-k$}로, 부호를 반대로 읽는다.",
+        "cFrozenAnswers": [
+          "$0$",
+          "$x=-k$"
+        ],
+        "cMarkedSentence": "$y=a(x-p)^2$의 축은 괄호 안을 {$0$}으로 만드는 $x$의 값에서 정해진다 — 괄호 안이 $x+k$이면 축은 {$x=-k$}로, 부호를 반대로 읽는다.",
+        "cSlotAnswers": [
+          "$0$",
+          "$x=-k$"
+        ],
+        "cStudentSentence": "$y=a(x-p)^2$의 축은 괄호 안을 □으로 만드는 $x$의 값에서 정해진다 — 괄호 안이 $x+k$이면 축은 □로, 부호를 반대로 읽는다.",
+        "cAnswers": [
+          "$0$",
+          "$x=-k$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x=-k$",
+            "equivalentAnswers": [
+              "$x=-k$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$x=-k$"
+          ]
+        ],
+        "proposalFingerprint": "6564c7290c8b201e89d5572cb951f294074d922a192685d9e9d42c1d1f9efcc0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc7",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "축을 경계로 바뀌는 증가와 감소",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 {작아지고}, $x>p$일 때 {커진다} — 축 $x=p$가 {경계}이다.",
+        "studentC": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 □, $x>p$일 때 □ — 축 $x=p$가 □이다.",
+        "answers": [
+          "작아지고",
+          "커진다",
+          "경계"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc7",
+        "learningRole": "definition",
+        "roleReason": "축 $x=p$를 경계로 한 증감 성질",
+        "bDecision": "rewrite",
+        "bPrompt": "$a>0$인 이차함수 $y=a(x-p)^2+q$에서 $x<p$일 때와 $x>p$일 때 각각 $x$가 커지면 $y$는 어떻게 변하는가? 이 변화가 바뀌는 경계가 되는 직선의 방정식도 쓰시오.",
+        "bAnswer": "$x<p$에서는 $y$가 작아지고, $x>p$에서는 $y$가 커진다. 경계는 축 $x=p$이다.",
+        "bGoal": "축을 경계로 한 증가와 감소",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x<p$이면 작아진다",
+              "$x<p$이면 감소"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>p$이면 커진다",
+              "$x>p$이면 증가"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=p$"
+            ]
+          }
+        ],
+        "bReason": "$a>0$ 조건과 두 범위, 경계 직선을 질문에 명시했다.",
+        "cDecision": "keep",
+        "cReason": "두 범위의 증감과 경계를 묻는 짧은 비교 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3468,
+        "part": "m3plus",
+        "sourceFingerprint": "685407c49ae8765c557d1052418bbafaf515849c4db01ca576529f3f4effbaa8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3468
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 □, $x>p$일 때 □ — 축 $x=p$가 □이다.",
+        "cFrozenDefinition": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 {작아지고}, $x>p$일 때 {커진다} — 축 $x=p$가 {경계}이다.",
+        "cFrozenAnswers": [
+          "작아지고",
+          "커진다",
+          "경계"
+        ],
+        "cMarkedSentence": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 {작아지고}, $x>p$일 때 {커진다} — 축 $x=p$가 {경계}이다.",
+        "cSlotAnswers": [
+          "작아지고",
+          "커진다",
+          "경계"
+        ],
+        "cStudentSentence": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 □, $x>p$일 때 □ — 축 $x=p$가 □이다.",
+        "cAnswers": [
+          "작아지고",
+          "커진다",
+          "경계"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작아지고",
+            "equivalentAnswers": [
+              "작아지고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "커진다",
+            "equivalentAnswers": [
+              "커진다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "경계",
+            "equivalentAnswers": [
+              "경계",
+              "기준"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "경계",
+            "accept": [
+              "기준"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작아지고"
+          ],
+          [
+            "커진다"
+          ],
+          [
+            "경계",
+            "기준"
+          ]
+        ],
+        "proposalFingerprint": "06aba4b4d4f95e50d9ee7436e57998b3717a160861901eb279061db0e6838f86"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc8",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "평행이동과 점의 좌표",
+        "kind": "성질",
+        "level": "상",
+        "definition": "그래프를 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 평행이동하면 그래프 위의 모든 점 $(u,\\ v)$가 {$(u+m,\\ v+n)$}으로 옮겨진다.",
+        "studentC": "그래프를 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 평행이동하면 그래프 위의 모든 점 $(u,\\ v)$가 □으로 옮겨진다.",
+        "answers": [
+          "$(u+m,\\ v+n)$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc8",
+        "learningRole": "procedure",
+        "roleReason": "평행이동에서 점의 좌표 변화",
+        "bDecision": "rewrite",
+        "bPrompt": "그래프를 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 평행이동하면 그래프 위의 점 $(u,\\ v)$는 어느 점으로 옮겨지는가? 또 점 $(1,\\ 2)$를 $x$축 방향으로 $-3$, $y$축 방향으로 $4$만큼 옮긴 점을 쓰시오.",
+        "bAnswer": "$(u+m,\\ v+n)$으로 옮겨진다. 점 $(1,\\ 2)$는 $(-2,\\ 6)$으로 옮겨진다.",
+        "bGoal": "평행이동한 점의 좌표",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(u+m,\\ v+n)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(-2,\\ 6)$"
+            ]
+          }
+        ],
+        "bReason": "일반 규칙과 음수 이동이 섞인 구체 점을 함께 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "일반 좌표 규칙 하나를 묻는 분명한 계산 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3469,
+        "part": "m3plus",
+        "sourceFingerprint": "fe39caebe8312d666394850247e339eaf64fc70c11165020f2dbfdb04f5134d9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3469
+        },
+        "directReview": null,
+        "cFrozenSentence": "그래프를 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 평행이동하면 그래프 위의 모든 점 $(u,\\ v)$가 □으로 옮겨진다.",
+        "cFrozenDefinition": "그래프를 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 평행이동하면 그래프 위의 모든 점 $(u,\\ v)$가 {$(u+m,\\ v+n)$}으로 옮겨진다.",
+        "cFrozenAnswers": [
+          "$(u+m,\\ v+n)$"
+        ],
+        "cMarkedSentence": "그래프를 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 평행이동하면 그래프 위의 모든 점 $(u,\\ v)$가 {$(u+m,\\ v+n)$}으로 옮겨진다.",
+        "cSlotAnswers": [
+          "$(u+m,\\ v+n)$"
+        ],
+        "cStudentSentence": "그래프를 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 평행이동하면 그래프 위의 모든 점 $(u,\\ v)$가 □으로 옮겨진다.",
+        "cAnswers": [
+          "$(u+m,\\ v+n)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(u+m,\\ v+n)$",
+            "equivalentAnswers": [
+              "$(u+m,\\ v+n)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$(u+m,\\ v+n)$"
+          ]
+        ],
+        "proposalFingerprint": "69d461133b6b43fd56422b5fd734f9032e7dfbc2e0dc47e4b084f4f961c5b92f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc9",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "옮긴 그래프를 다시 옮길 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$y=a(x-p)^2+q$를 다시 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 옮기면 꼭짓점이 {$(p+m,\\ q+n)$}으로 옮겨진다.",
+        "studentC": "$y=a(x-p)^2+q$를 다시 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 옮기면 꼭짓점이 □으로 옮겨진다.",
+        "answers": [
+          "$(p+m,\\ q+n)$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc9",
+        "learningRole": "procedure",
+        "roleReason": "다시 평행이동한 꼭짓점과 식",
+        "bDecision": "rewrite",
+        "bPrompt": "$a\\ne 0$일 때 $y=a(x-p)^2+q$의 그래프를 다시 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 평행이동한 그래프의 꼭짓점의 좌표와 식을 쓰시오.",
+        "bAnswer": "꼭짓점은 $(p+m,\\ q+n)$이고, 식은 $y=a\\{x-(p+m)\\}^2+q+n$이다.",
+        "bGoal": "거듭 평행이동한 그래프의 꼭짓점",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(p+m,\\ q+n)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=a\\{x-(p+m)\\}^2+q+n$",
+              "$y=a(x-p-m)^2+q+n$"
+            ]
+          }
+        ],
+        "bReason": "꼭짓점 이동과 $a$가 유지된 식을 함께 쓰도록 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "꼭짓점의 이동 결과 하나를 묻는 분명한 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3470,
+        "part": "m3plus",
+        "sourceFingerprint": "381700a0b2eb189149f68bb8e4c1a0e8c2425611b9558d8f84b6bced642301bb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3470
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=a(x-p)^2+q$를 다시 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 옮기면 꼭짓점이 □으로 옮겨진다.",
+        "cFrozenDefinition": "$y=a(x-p)^2+q$를 다시 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 옮기면 꼭짓점이 {$(p+m,\\ q+n)$}으로 옮겨진다.",
+        "cFrozenAnswers": [
+          "$(p+m,\\ q+n)$"
+        ],
+        "cMarkedSentence": "$y=a(x-p)^2+q$를 다시 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 옮기면 꼭짓점이 {$(p+m,\\ q+n)$}으로 옮겨진다.",
+        "cSlotAnswers": [
+          "$(p+m,\\ q+n)$"
+        ],
+        "cStudentSentence": "$y=a(x-p)^2+q$를 다시 $x$축 방향으로 $m$, $y$축 방향으로 $n$만큼 옮기면 꼭짓점이 □으로 옮겨진다.",
+        "cAnswers": [
+          "$(p+m,\\ q+n)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(p+m,\\ q+n)$",
+            "equivalentAnswers": [
+              "$(p+m,\\ q+n)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$(p+m,\\ q+n)$"
+          ]
+        ],
+        "proposalFingerprint": "f4af43437d44b8076d9387fd5c3fd34fa42063b0739f5a802b11de229482dd14"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc10",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "그래프에서 계수와 꼭짓점의 위치 읽기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "이차함수 $y=a(x-p)^2+q$의 그래프는 아래로 볼록하면 {$a>0$}, 위로 볼록하면 $a<0$이다. 꼭짓점의 $x$좌표와 $y$좌표가 각각 {$p$, $q$}이므로 꼭짓점의 위치에서 두 수의 부호를 읽는다.",
+        "example": {
+          "prompt": "$y=a(x-p)^2+q$의 그래프의 꼭짓점이 제$2$사분면에 있으면 $p<0$, $q>0$인 까닭은?",
+          "answer": "꼭짓점의 좌표가 $(p,\\ q)$라서"
+        },
+        "studentC": "이차함수 $y=a(x-p)^2+q$의 그래프는 아래로 볼록하면 □, 위로 볼록하면 $a<0$이다. 꼭짓점의 $x$좌표와 $y$좌표가 각각 □이므로 꼭짓점의 위치에서 두 수의 부호를 읽는다.",
+        "answers": [
+          "$a>0$",
+          "$p$, $q$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc10",
+        "learningRole": "application",
+        "roleReason": "볼록 방향과 꼭짓점 사분면으로 부호 판단",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=a(x-p)^2+q$의 그래프가 위로 볼록하고 꼭짓점이 제$2$사분면에 있을 때, $a$, $p$, $q$의 부호를 각각 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "위로 볼록하므로 $a<0$이다. 꼭짓점 $(p,\\ q)$가 제$2$사분면에 있으므로 $p<0$, $q>0$이다.",
+        "bGoal": "그래프 정보로 계수 부호 읽기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a<0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$p<0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$q>0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점이 $(p,\\ q)$"
+            ]
+          }
+        ],
+        "bReason": "그림 대신 볼록 방향과 사분면을 글로 주어 부호를 읽게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "이차함수 $y=a(x-p)^2+q$의 그래프가 아래로 볼록하면 {$a>0$}, 위로 볼록하면 {$a<0$}이다. 꼭짓점의 좌표가 {$(p,\\ q)$}이므로, 꼭짓점이 있는 사분면에서 $p$, $q$의 부호를 읽는다.",
+        "cAnswers": [
+          "$a>0$",
+          "$a<0$",
+          "$(p,\\ q)$"
+        ],
+        "cReason": "원문은 $a<0$을 보여 주어 대칭되는 $a>0$ 빈칸이 베끼기가 된다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3471,
+        "part": "m3plus",
+        "sourceFingerprint": "a5e9836f5766dc84fb2b8b866483fcdb9a82657b72f20c4b5cf92f2174e0b15e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3471
+        },
+        "directReview": null,
+        "cMarkedSentence": "이차함수 $y=a(x-p)^2+q$의 그래프가 아래로 볼록하면 {$a>0$}, 위로 볼록하면 {$a<0$}이다. 꼭짓점의 좌표가 {$(p,\\ q)$}이므로, 꼭짓점이 있는 사분면에서 $p$, $q$의 부호를 읽는다.",
+        "cSlotAnswers": [
+          "$a>0$",
+          "$a<0$",
+          "$(p,\\ q)$"
+        ],
+        "cStudentSentence": "이차함수 $y=a(x-p)^2+q$의 그래프가 아래로 볼록하면 □, 위로 볼록하면 □이다. 꼭짓점의 좌표가 □이므로, 꼭짓점이 있는 사분면에서 $p$, $q$의 부호를 읽는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a>0$",
+            "equivalentAnswers": [
+              "$a>0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a<0$",
+            "equivalentAnswers": [
+              "$a<0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$(p,\\ q)$",
+            "equivalentAnswers": [
+              "$(p,\\ q)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a>0$"
+          ],
+          [
+            "$a<0$"
+          ],
+          [
+            "$(p,\\ q)$"
+          ]
+        ],
+        "proposalFingerprint": "11c8d1fe0639eecd79cd130a6515e5555f2b9696f803ba5430692563e5f01aa7"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc11",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "그래프가 지나는 사분면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이차함수의 그래프가 지나는 사분면을 알려면 {볼록한 방향}과 {꼭짓점의 위치}부터 살핀다 — 아래로 볼록하고 꼭짓점이 $x$축보다 위에 있으면 제$1$, 제$2$사분면만 지난다.",
+        "example": {
+          "prompt": "$y=(x-1)^2+2$의 그래프가 제$3$, 제$4$사분면을 지나지 않는 까닭은?",
+          "answer": "$y$의 값이 늘 $2$ 이상이라서"
+        },
+        "studentC": "이차함수의 그래프가 지나는 사분면을 알려면 □과 □부터 살핀다 — 아래로 볼록하고 꼭짓점이 $x$축보다 위에 있으면 제$1$, 제$2$사분면만 지난다.",
+        "answers": [
+          "볼록한 방향",
+          "꼭짓점의 위치"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc11",
+        "learningRole": "reason",
+        "roleReason": "최저점이 $x$축 위라 $y>0$, 제3·4사분면 불통과",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=(x-1)^2+2$의 그래프가 제$3$사분면과 제$4$사분면을 지나지 않는 까닭을 쓰시오.",
+        "bAnswer": "아래로 볼록하고 꼭짓점 $(1,\\ 2)$가 가장 낮은 점이므로 $y$의 값은 늘 $2$ 이상이다. 그래서 $y<0$인 제$3$, 제$4$사분면은 지나지 않는다.",
+        "bGoal": "꼭짓점과 볼록 방향으로 지나는 사분면 판단",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점이 가장 낮은 점",
+              "아래로 볼록"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y\\ge 2$",
+              "$y$의 값이 늘 양수"
+            ]
+          },
+          {
+            "anyOf": [
+              "제$3$, 제$4$사분면은 $y<0$"
+            ]
+          }
+        ],
+        "bReason": "판단 기준을 질문에서 미리 말하지 않고 까닭을 스스로 찾게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "아래로 볼록한 이차함수의 그래프는 꼭짓점이 가장 {낮은} 점이다. 그래서 꼭짓점이 $x$축보다 위에 있으면 그래프 위의 모든 점의 $y$좌표가 {양수}이므로, 그래프는 제$1$, 제$2$사분면만 지난다.",
+        "cAnswers": [
+          "낮은",
+          "양수"
+        ],
+        "cReason": "긴 키워드 두 개의 순서가 바뀌어도 맞고 결론과의 연결이 비어 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3472,
+        "part": "m3plus",
+        "sourceFingerprint": "c770cc314f64566d63d844895f7a6623a3fca24d7d076a791ee3946e353862ee",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3472
+        },
+        "directReview": null,
+        "cMarkedSentence": "아래로 볼록한 이차함수의 그래프는 꼭짓점이 가장 {낮은} 점이다. 그래서 꼭짓점이 $x$축보다 위에 있으면 그래프 위의 모든 점의 $y$좌표가 {양수}이므로, 그래프는 제$1$, 제$2$사분면만 지난다.",
+        "cSlotAnswers": [
+          "낮은",
+          "양수"
+        ],
+        "cStudentSentence": "아래로 볼록한 이차함수의 그래프는 꼭짓점이 가장 □ 점이다. 그래서 꼭짓점이 $x$축보다 위에 있으면 그래프 위의 모든 점의 $y$좌표가 □이므로, 그래프는 제$1$, 제$2$사분면만 지난다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "낮은",
+            "equivalentAnswers": [
+              "낮은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "낮은"
+          ],
+          [
+            "양수"
+          ]
+        ],
+        "proposalFingerprint": "0c848ce1a7938b8aa1136019258d6081ddff8c31ca64289d5f31f3919760423c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc12",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "평행이동으로 포갤 수 있는 두 그래프",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 이차함수의 그래프를 평행이동하여 {포갤} 수 있으려면 $x^2$의 계수가 {같아야} 한다.",
+        "studentC": "두 이차함수의 그래프를 평행이동하여 □ 수 있으려면 $x^2$의 계수가 □ 한다.",
+        "answers": [
+          "포갤",
+          "같아야"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc12",
+        "learningRole": "reason",
+        "roleReason": "평행이동으로 포개지려면 $x^2$의 계수가 같아야 함",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=3x^2$과 $y=3(x+1)^2-5$의 그래프는 평행이동하여 포갤 수 있는가? 일반적으로 두 이차함수의 그래프를 평행이동하여 포갤 수 있는 조건과 함께 까닭을 쓰시오.",
+        "bAnswer": "포갤 수 있다. 평행이동해도 $x^2$의 계수는 변하지 않으므로, 두 그래프의 $x^2$의 계수가 같아야 포갤 수 있는데 두 식 모두 $3$이다.",
+        "bGoal": "포갤 수 있는 두 그래프의 조건",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "포갤 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x^2$의 계수가 같아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행이동해도 $x^2$의 계수는 변하지 않는다"
+            ]
+          }
+        ],
+        "bReason": "구체 두 식의 판정과 일반 조건, 근거를 함께 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 이차함수의 그래프를 평행이동하여 포갤 수 있으려면 $x^2$의 계수가 {같아야} 한다. 계수의 절댓값만 같고 부호가 다르면 볼록한 {방향}이 달라 포갤 수 없다.",
+        "cAnswers": [
+          "같아야",
+          "방향"
+        ],
+        "cReason": "원문은 '포갤'과 조건을 모두 숨겨 결론과 조건이 함께 비어 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3473,
+        "part": "m3plus",
+        "sourceFingerprint": "2932da2aab942745192d80fe4ec8a1890fe8b0a87012c5620e708f005869dc68",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3473
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 이차함수의 그래프를 평행이동하여 포갤 수 있으려면 $x^2$의 계수가 {같아야} 한다. 계수의 절댓값만 같고 부호가 다르면 볼록한 {방향}이 달라 포갤 수 없다.",
+        "cSlotAnswers": [
+          "같아야",
+          "방향"
+        ],
+        "cStudentSentence": "두 이차함수의 그래프를 평행이동하여 포갤 수 있으려면 $x^2$의 계수가 □ 한다. 계수의 절댓값만 같고 부호가 다르면 볼록한 □이 달라 포갤 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같아야",
+            "equivalentAnswers": [
+              "같아야"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "방향",
+            "equivalentAnswers": [
+              "방향"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같아야"
+          ],
+          [
+            "방향"
+          ]
+        ],
+        "proposalFingerprint": "d63c9281d4a32c656adacc08b29aa27883a02656f306c0f41a98da8edcf78708"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc13",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "폭은 같고 방향이 다른 두 그래프",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$y=2x^2$과 $y=-2x^2+1$의 그래프는 $x^2$의 계수의 {절댓값}이 같아 폭은 같지만, 볼록한 {방향}이 반대이다.",
+        "studentC": "$y=2x^2$과 $y=-2x^2+1$의 그래프는 $x^2$의 계수의 □이 같아 폭은 같지만, 볼록한 □이 반대이다.",
+        "answers": [
+          "절댓값",
+          "방향"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc13",
+        "learningRole": "application",
+        "roleReason": "계수의 절댓값과 부호로 폭·방향 비교",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=2x^2$과 $y=-2x^2+1$의 그래프를 비교하여 폭이 같은지, 볼록한 방향이 같은지 각각 쓰고 그 까닭을 $x^2$의 계수로 설명하시오.",
+        "bAnswer": "$x^2$의 계수 $2$와 $-2$의 절댓값이 같으므로 폭은 같다. 부호가 달라 $y=2x^2$은 아래로, $y=-2x^2+1$은 위로 볼록하여 방향은 반대이다.",
+        "bGoal": "계수로 폭과 방향 구별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "절댓값이 같아 폭이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "부호가 달라 볼록한 방향이 반대"
+            ]
+          }
+        ],
+        "bReason": "폭과 방향을 각각 판정하고 절댓값·부호로 근거를 대게 했다.",
+        "cDecision": "keep",
+        "cReason": "절댓값과 방향을 대비시키는 짧은 비교 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3474,
+        "part": "m3plus",
+        "sourceFingerprint": "9d0c5c1f31f290edcfc6c0d942ed6cfacbd8feab4c995111b577b5f59e9c82e4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3474
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=2x^2$과 $y=-2x^2+1$의 그래프는 $x^2$의 계수의 □이 같아 폭은 같지만, 볼록한 □이 반대이다.",
+        "cFrozenDefinition": "$y=2x^2$과 $y=-2x^2+1$의 그래프는 $x^2$의 계수의 {절댓값}이 같아 폭은 같지만, 볼록한 {방향}이 반대이다.",
+        "cFrozenAnswers": [
+          "절댓값",
+          "방향"
+        ],
+        "cMarkedSentence": "$y=2x^2$과 $y=-2x^2+1$의 그래프는 $x^2$의 계수의 {절댓값}이 같아 폭은 같지만, 볼록한 {방향}이 반대이다.",
+        "cSlotAnswers": [
+          "절댓값",
+          "방향"
+        ],
+        "cStudentSentence": "$y=2x^2$과 $y=-2x^2+1$의 그래프는 $x^2$의 계수의 □이 같아 폭은 같지만, 볼록한 □이 반대이다.",
+        "cAnswers": [
+          "절댓값",
+          "방향"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절댓값",
+            "equivalentAnswers": [
+              "절댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "방향",
+            "equivalentAnswers": [
+              "방향"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "절댓값"
+          ],
+          [
+            "방향"
+          ]
+        ],
+        "proposalFingerprint": "523eb0e6714f2384c5931585ce891d8b3ee65c2c892eaff4eda02da53f00efd7"
+      }
+    }
+  ]
+}

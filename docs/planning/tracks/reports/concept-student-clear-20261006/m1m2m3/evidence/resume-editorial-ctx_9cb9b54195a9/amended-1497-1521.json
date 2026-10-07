@@ -1,0 +1,2046 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-1497-1521.json",
+  "changes": [
+    {
+      "id": "m1-04-02-xc9",
+      "cAfter": "$y$축 위에 있지 않은 점과 그 점을 $y$축을 따라 접었을 때 겹치는 점은 {$x$좌표}의 부호만 {반대}이다.",
+      "cReason": "x좌표가0인 축 위의 점은 부호가 반대라고 할 수 없으므로 제외 조건을 명시한다."
+    },
+    {
+      "id": "m1-04-02-xc10",
+      "cAfter": "$a>0$, $b<0$일 때 점 $(b,a)$의 $x$좌표는 {음수}, $y$좌표는 {양수}이므로 이 점은 {제$2$사분면}에 있다.",
+      "cReason": "부호를 넣는다는 모호한 절차 대신 주어진 문자와 좌표의 순서를 보고 실제 부호를 판별한다."
+    },
+    {
+      "id": "m1-04-02-xc15",
+      "cAfter": "네 변이 좌표축에 평행한 직사각형에서 가로 길이는 꼭짓점의 {$x$좌표} 중 큰 값에서 작은 값을 빼서 구하고, 세로 길이는 {$y$좌표}에서 같은 방법으로 구한다. 넓이는 두 길이를 곱한 값이다.",
+      "coreAfter": "네 변이 좌표축에 평행한 직사각형의 가로 길이는 꼭짓점의 {$x$좌표} 중 큰 값에서 작은 값을 뺀 값이고, 세로 길이는 {$y$좌표} 중 큰 값에서 작은 값을 뺀 값이다. 이 두 길이를 곱하면 넓이가 된다.",
+      "coreReason": "차의 순서를 큰 값에서 작은 값으로 정하고 가로·세로 길이를 각각 연결한다.",
+      "cReason": "x와y의 임의 답 순서를 없애고 길이가 음수가 되지 않는 빼기 순서를 밝힌다."
+    },
+    {
+      "id": "m1-04-02-xc16",
+      "cAfter": "삼각형 $ABC$를 완전히 둘러싼 직사각형의 넓이에서 삼각형 $ABC$ 바깥에 남는 부분의 넓이를 모두 {빼면} 삼각형 $ABC$의 넓이가 된다.",
+      "cReason": "둘러싼 도형은 직사각형이라고 제시하고 전체에서 바깥 넓이를 빼는 핵심 관계만 묻는다."
+    },
+    {
+      "id": "m1-04-02-xc17",
+      "cAfter": "좌표축 위에 있지 않은 점 $P$와, $P$와 $x$축·$y$축·원점에 대하여 대칭인 세 점을 꼭짓점으로 하는 사각형은 네 변이 좌표축에 평행한 {직사각형}이다.",
+      "cReason": "네 점을 아무 순서로나 이어도 된다는 표현 대신 그 네 점이 사각형의 꼭짓점임을 밝힌다."
+    },
+    {
+      "id": "m1-04-03-xc1",
+      "cAfter": "그래프를 읽을 때는 가로축과 {세로축}이 각각 무엇을 나타내는지 먼저 확인한다.",
+      "cAcceptedAnswers": [
+        [
+          "세로축",
+          "$y$축"
+        ]
+      ],
+      "cReason": "가로축·세로축의 임의 순서 때문에 맞는 답이 틀리지 않도록 하나만 빈칸으로 둔다."
+    },
+    {
+      "id": "m1-04-03-xc2",
+      "cAfter": "$x$의 값과 그에 대응하는 $y$의 값을 적은 표가 있다. 대응하는 두 값을 $(x,y)$ 순서의 {순서쌍}으로 만들고 좌표평면에 {점}으로 찍으면 그래프가 된다.",
+      "cReason": "표에서 아무 두 값을 고르는 것이 아니라 서로 대응하는 x,y를 짝짓는 절차임을 밝힌다."
+    },
+    {
+      "id": "m1-04-03-xc5",
+      "cAfter": "물을 넣기 시작한 뒤 지난 시간을 $x$분, 물통에 든 물의 양을 $y$리터로 나타내는 그래프에서 $x=0$일 때의 $y$값은 물을 넣기 {시작할 때} 물통에 들어 있던 물의 양이다.",
+      "cAcceptedAnswers": [
+        [
+          "시작할 때",
+          "시작하기 전"
+        ]
+      ],
+      "cReason": "물의 양에도 출발이라는 말을 쓰던 문장을 시작 시점의 물통 상황으로 구체화한다."
+    },
+    {
+      "id": "m1-04-03-xc8",
+      "bPrompt": "$A$와 $B$가 이동한 거리를 나타낸 두 그래프가 같은 좌표평면에 있다. 가로축은 출발한 뒤 지난 시간, 세로축은 이동한 거리이다. 같은 시각에 $A$의 그래프가 $B$의 그래프보다 위에 있으면 그때 누가 더 멀리 갔는가? 그래프의 무엇을 견주어 판단하는지도 쓰시오.",
+      "cAfter": "같은 좌표평면에 그린 두 그래프에서, 같은 $x$의 값에서 더 {위}에 있는 그래프는 그때의 {$y$의 값}도 더 크다.",
+      "cAcceptedAnswers": [
+        [
+          "위"
+        ],
+        [
+          "$y$의 값",
+          "$y$좌표"
+        ]
+      ],
+      "cReason": "y좌표도라는 동의어가 문장에 자연스럽게 들어가도록 조사를 고친다."
+    },
+    {
+      "id": "m1-04-03-xc9",
+      "bPrompt": "두 사람이 같은 시각에 같은 곳에서 출발하여 곧은 길을 따라 같은 방향으로 이동한다. 출발한 뒤 지난 시간을 $x$분, 이동한 거리를 $y\\,\\mathrm{m}$로 나타낸 두 그래프가 점 $(20, 1500)$에서 만난다. 이 점은 두 사람에 대해 무엇을 뜻하는가?"
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-04-02-xc9",
+      "learningRole": "reason",
+      "roleReason": "$y$축으로 접으면 $x$좌표의 부호만 바뀌는 까닭",
+      "bDecision": "rewrite",
+      "bPrompt": "좌표평면을 $y$축을 따라 접으면 점 $(4, 1)$은 어떤 점과 겹치는가? 겹치는 두 점의 $y$좌표와 $x$좌표가 각각 어떻게 되는지 접는 상황으로 설명하시오.",
+      "bAnswer": "$(-4, 1)$과 겹친다. $y$축을 따라 접으면 점의 높이는 그대로이므로 $y$좌표는 같고, $y$축에서 같은 거리만큼 떨어진 반대쪽으로 가므로 $x$좌표는 부호만 반대가 된다.",
+      "bGoal": "접기로 $y$축 대칭의 좌표 변화 설명하기",
+      "bReason": "좌표 규칙을 묻는 m1-04-02-c5와 달리 접는 상황에서 까닭을 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(-4, 1)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y$좌표는 같다",
+            "점의 높이는 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y$축에서 같은 거리만큼 떨어진 반대쪽이라 $x$좌표는 부호만 반대이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$y$축 위에 있지 않은 점과 그 점을 $y$축을 따라 접었을 때 겹치는 점은 {$x$좌표}의 부호만 {반대}이다.",
+      "cAnswers": [
+        "$x$좌표",
+        "반대"
+      ],
+      "cReason": "x좌표가0인 축 위의 점은 부호가 반대라고 할 수 없으므로 제외 조건을 명시한다.",
+      "studentLabel": "$y$축을 따라 접었을 때 겹치는 두 점",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1497,
+      "part": "m1plus",
+      "sourceFingerprint": "1606cd700ca08abfd975b234e19649fa6f0e78c9b5e63d8946472145eb470277",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1497
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y$축 위에 있지 않은 점과 그 점을 $y$축을 따라 접었을 때 겹치는 점은 {$x$좌표}의 부호만 {반대}이다.",
+      "cSlotAnswers": [
+        "$x$좌표",
+        "반대"
+      ],
+      "cStudentSentence": "$y$축 위에 있지 않은 점과 그 점을 $y$축을 따라 접었을 때 겹치는 점은 □의 부호만 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x$좌표",
+          "equivalentAnswers": [
+            "$x$좌표"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "반대",
+          "equivalentAnswers": [
+            "반대"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$x$좌표"
+        ],
+        [
+          "반대"
+        ]
+      ],
+      "proposalFingerprint": "59a8f95a0afae5f7903fa701e09387a5e9dda424a4fa993aefd4eacaedb85f9d"
+    },
+    {
+      "id": "m1-04-02-xc10",
+      "learningRole": "application",
+      "roleReason": "문자의 부호로 점의 사분면 정하기",
+      "bDecision": "rewrite",
+      "bPrompt": "$a>0$, $b<0$일 때 점 $(b, a)$는 제몇 사분면 위에 있는가? $x$좌표와 $y$좌표의 부호를 각각 밝혀 구하시오.",
+      "bAnswer": "$x$좌표 $b$는 음수, $y$좌표 $a$는 양수이므로 부호가 $(-, +)$이다. 따라서 제$2$사분면 위에 있다.",
+      "bGoal": "문자 좌표의 부호로 사분면 정하기",
+      "bReason": "문자의 조건과 점을 주어 $a$, $b$의 자리가 바뀐 좌표를 따지게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$좌표 $b$는 음수이고 $y$좌표 $a$는 양수이다",
+            "좌표의 부호가 $(-, +)$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "제$2$사분면"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "부호를 넣는다는 모호한 절차 대신 주어진 문자와 좌표의 순서를 보고 실제 부호를 판별한다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1498,
+      "part": "m1plus",
+      "sourceFingerprint": "f4137d4bfc369bc7e935c1ef3459df0c88de7095bbe99220f972e4ce2155221f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1498
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a>0$, $b<0$일 때 점 $(b,a)$의 $x$좌표는 {음수}, $y$좌표는 {양수}이므로 이 점은 {제$2$사분면}에 있다.",
+      "cSlotAnswers": [
+        "음수",
+        "양수",
+        "제$2$사분면"
+      ],
+      "cStudentSentence": "$a>0$, $b<0$일 때 점 $(b,a)$의 $x$좌표는 □, $y$좌표는 □이므로 이 점은 □에 있다.",
+      "cAnswers": [
+        "음수",
+        "양수",
+        "제$2$사분면"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "제$2$사분면",
+          "equivalentAnswers": [
+            "제$2$사분면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ],
+        [
+          "양수"
+        ],
+        [
+          "제$2$사분면"
+        ]
+      ],
+      "proposalFingerprint": "3aca6e2742a101448a00b04c71ff78ba9dd0f864984da957f72d9a2e423691ba",
+      "cAfter": "$a>0$, $b<0$일 때 점 $(b,a)$의 $x$좌표는 {음수}, $y$좌표는 {양수}이므로 이 점은 {제$2$사분면}에 있다."
+    },
+    {
+      "id": "m1-04-02-xc11",
+      "learningRole": "application",
+      "roleReason": "곱과 합의 부호에서 두 수의 부호 알아내기",
+      "bDecision": "rewrite",
+      "bPrompt": "$ab>0$이고 $a+b<0$일 때 점 $(a, b)$는 제몇 사분면 위에 있는가? $ab>0$과 $a+b<0$에서 각각 알 수 있는 것을 차례로 써서 구하시오.",
+      "bAnswer": "$ab>0$이므로 $a$, $b$의 부호가 같다. 그런데 $a+b<0$이므로 둘 다 음수이다. 따라서 점 $(a, b)$는 제$3$사분면 위에 있다.",
+      "bGoal": "곱과 합의 부호로 사분면 정하기",
+      "bReason": "곱의 조건과 합의 조건이 각각 무엇을 알려 주는지 단계별로 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$ab>0$이면 $a$, $b$의 부호가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a+b<0$이므로 $a$, $b$는 모두 음수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "제$3$사분면"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$ab>0$이면 $a$, $b$의 부호가 {같고}, $ab<0$이면 {다르다}. 부호가 같을 때는 $a+b$의 부호까지 알면 점 $(a, b)$가 속하는 사분면이 정해진다.",
+      "cAnswers": [
+        "같고",
+        "다르다"
+      ],
+      "cReason": "끝 문장에 어느 합, 어느 점의 사분면인지 없어 $a+b$와 점 $(a, b)$를 밝혔다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1499,
+      "part": "m1plus",
+      "sourceFingerprint": "7cd4cdb869872e96af8a4bb074abc133c949f4b36189f76825d6716413b380de",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1499
+      },
+      "directReview": null,
+      "cMarkedSentence": "$ab>0$이면 $a$, $b$의 부호가 {같고}, $ab<0$이면 {다르다}. 부호가 같을 때는 $a+b$의 부호까지 알면 점 $(a, b)$가 속하는 사분면이 정해진다.",
+      "cSlotAnswers": [
+        "같고",
+        "다르다"
+      ],
+      "cStudentSentence": "$ab>0$이면 $a$, $b$의 부호가 □, $ab<0$이면 □. 부호가 같을 때는 $a+b$의 부호까지 알면 점 $(a, b)$가 속하는 사분면이 정해진다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같고",
+          "equivalentAnswers": [
+            "같고"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "다르다",
+          "equivalentAnswers": [
+            "다르다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같고"
+        ],
+        [
+          "다르다"
+        ]
+      ],
+      "proposalFingerprint": "9ecec20488b0a595a8e4d7f9fb867c25dcc5fad1b912f717ddffbd5444dbeb27"
+    },
+    {
+      "id": "m1-04-02-xc12",
+      "learningRole": "application",
+      "roleReason": "$x$축 대칭과 $y$축 대칭을 이어 한 결과",
+      "bDecision": "rewrite",
+      "bPrompt": "점 $(a, b)$와 $x$축에 대하여 대칭인 점을 구한 다음, 그 점과 $y$축에 대하여 대칭인 점을 구하면 좌표가 어떻게 되는가? 이 점은 처음 점 $(a, b)$와 어떤 대칭 관계인지도 쓰시오.",
+      "bAnswer": "$x$축에 대하여 대칭인 점은 $(a, -b)$이고, 이 점과 $y$축에 대하여 대칭인 점은 $(-a, -b)$이다. 이 점은 처음 점 $(a, b)$와 원점에 대하여 대칭이다.",
+      "bGoal": "두 번 대칭한 결과와 원점 대칭 연결하기",
+      "bReason": "대칭의 순서와 답할 것(좌표, 처음 점과의 관계)을 질문에 밝혔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(-a, -b)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 점과 원점에 대하여 대칭이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "점 $(a, b)$와 $x$축에 대하여 대칭인 점을 구하고, 그 점과 $y$축에 대하여 대칭인 점을 다시 구하면 {$(-a, -b)$}이다. 이 점은 처음 점과 {원점}에 대하여 대칭이다.",
+      "cAnswers": [
+        "$(-a, -b)$",
+        "원점"
+      ],
+      "cReason": "끝 빈칸 '같다'가 답할 거리가 없어 결과 좌표와 대칭의 기준을 묻도록 바꾸었다.",
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1500,
+      "part": "m1plus",
+      "sourceFingerprint": "6d9d57e9bde07ff368b83f195c32b2d6e125c4647b4d67055a42cbdd3832146e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1500
+      },
+      "directReview": null,
+      "cMarkedSentence": "점 $(a, b)$와 $x$축에 대하여 대칭인 점을 구하고, 그 점과 $y$축에 대하여 대칭인 점을 다시 구하면 {$(-a, -b)$}이다. 이 점은 처음 점과 {원점}에 대하여 대칭이다.",
+      "cSlotAnswers": [
+        "$(-a, -b)$",
+        "원점"
+      ],
+      "cStudentSentence": "점 $(a, b)$와 $x$축에 대하여 대칭인 점을 구하고, 그 점과 $y$축에 대하여 대칭인 점을 다시 구하면 □이다. 이 점은 처음 점과 □에 대하여 대칭이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(-a, -b)$",
+          "equivalentAnswers": [
+            "$(-a, -b)$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "원점",
+          "equivalentAnswers": [
+            "원점"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(-a, -b)$"
+        ],
+        [
+          "원점"
+        ]
+      ],
+      "proposalFingerprint": "7544a5bdb985d461cf9f15a198140fcf21ec129d91572b1136ce767f687ddf9e"
+    },
+    {
+      "id": "m1-04-02-xc13",
+      "learningRole": "application",
+      "roleReason": "한 좌표의 부호만 바꾼 점이 옮겨 가는 사분면",
+      "bDecision": "rewrite",
+      "bPrompt": "제$1$사분면 위의 점 $(a, b)$에서 $x$좌표의 부호만 바꾼 점 $(-a, b)$와 $y$좌표의 부호만 바꾼 점 $(a, -b)$는 각각 제몇 사분면 위에 있는가? 각각 어느 좌표축을 건너 옮겨 간 것인지도 쓰시오.",
+      "bAnswer": "$(-a, b)$는 $y$축을 건너 제$2$사분면으로, $(a, -b)$는 $x$축을 건너 제$4$사분면으로 옮겨 간다.",
+      "bGoal": "부호를 바꾼 점의 사분면과 건너는 축 말하기",
+      "bReason": "처음 점의 사분면을 정해 주어 옮겨 간 사분면을 구체적으로 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(-a, b)$는 제$2$사분면"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(a, -b)$는 제$4$사분면"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$좌표의 부호만 바꾸면 $y$축을 건너고 $y$좌표의 부호만 바꾸면 $x$축을 건넌다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "바꾼 좌표와 건너는 축을 짝지어 묻는 분명한 비교 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1501,
+      "part": "m1plus",
+      "sourceFingerprint": "043b8e68413ecc7b58ce8dac9fc5a999514cf3dd40395d42f88374cc96cdad07",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1501
+      },
+      "directReview": null,
+      "cFrozenSentence": "좌표축 위에 있지 않은 점에서 $x$좌표의 부호만 바꾸면 □을 건너 이웃한 사분면으로, $y$좌표의 부호만 바꾸면 □을 건너 이웃한 사분면으로 옮겨 간다.",
+      "cFrozenDefinition": "좌표축 위에 있지 않은 점에서 $x$좌표의 부호만 바꾸면 {$y$축}을 건너 이웃한 사분면으로, $y$좌표의 부호만 바꾸면 {$x$축}을 건너 이웃한 사분면으로 옮겨 간다.",
+      "cFrozenAnswers": [
+        "$y$축",
+        "$x$축"
+      ],
+      "cMarkedSentence": "좌표축 위에 있지 않은 점에서 $x$좌표의 부호만 바꾸면 {$y$축}을 건너 이웃한 사분면으로, $y$좌표의 부호만 바꾸면 {$x$축}을 건너 이웃한 사분면으로 옮겨 간다.",
+      "cSlotAnswers": [
+        "$y$축",
+        "$x$축"
+      ],
+      "cStudentSentence": "좌표축 위에 있지 않은 점에서 $x$좌표의 부호만 바꾸면 □을 건너 이웃한 사분면으로, $y$좌표의 부호만 바꾸면 □을 건너 이웃한 사분면으로 옮겨 간다.",
+      "cAnswers": [
+        "$y$축",
+        "$x$축"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$y$축",
+          "equivalentAnswers": [
+            "$y$축"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$x$축",
+          "equivalentAnswers": [
+            "$x$축"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$y$축"
+        ],
+        [
+          "$x$축"
+        ]
+      ],
+      "proposalFingerprint": "73f7420f9a245b67dcce5c377d77df89d651a3bffcea0a69fdb7678c9a58f289"
+    },
+    {
+      "id": "m1-04-02-xc14",
+      "learningRole": "procedure",
+      "roleReason": "$x$축 대칭을 좌표 사이의 등식으로 나타내기",
+      "bDecision": "rewrite",
+      "bPrompt": "두 점 $(a, b)$, $(c, d)$가 $x$축에 대하여 대칭일 때, $a$와 $c$ 사이의 관계식과 $b$와 $d$ 사이의 관계식을 쓰시오.",
+      "bAnswer": "$a=c$이고 $b=-d$이다.",
+      "bGoal": "$x$축 대칭 조건을 식으로 쓰기",
+      "bReason": "제목은 축 대칭이지만 내용은 $x$축뿐이어서 축과 답할 식의 종류를 밝혔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a=c$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$b=-d$",
+            "$d=-b$",
+            "$b+d=0$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 점 $(a, b)$, $(c, d)$가 $x$축에 대하여 대칭이면 $x$좌표끼리는 {$a=c$}이고 $y$좌표끼리는 {$b=-d$}이다.",
+      "cAnswers": [
+        "$a=c$",
+        "$b=-d$"
+      ],
+      "cReason": "빈칸에 무엇에 대한 식을 쓸지 단서가 없어 좌표별 안내를 넣었다.",
+      "studentLabel": "$x$축에 대하여 대칭인 두 점의 조건",
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1502,
+      "part": "m1plus",
+      "sourceFingerprint": "d804c65afdedcb22298aea1a66aca5befa1fb631d6bb23f48783cb9783be9d5d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1502
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 점 $(a, b)$, $(c, d)$가 $x$축에 대하여 대칭이면 $x$좌표끼리는 {$a=c$}이고 $y$좌표끼리는 {$b=-d$}이다.",
+      "cSlotAnswers": [
+        "$a=c$",
+        "$b=-d$"
+      ],
+      "cStudentSentence": "두 점 $(a, b)$, $(c, d)$가 $x$축에 대하여 대칭이면 $x$좌표끼리는 □이고 $y$좌표끼리는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a=c$",
+          "equivalentAnswers": [
+            "$a=c$",
+            "$c=a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$b=-d$",
+          "equivalentAnswers": [
+            "$b=-d$",
+            "$d=-b$",
+            "$b+d=0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$a=c$",
+          "accept": [
+            "$c=a$"
+          ]
+        },
+        {
+          "answer": "$b=-d$",
+          "accept": [
+            "$d=-b$",
+            "$b+d=0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$a=c$",
+          "$c=a$"
+        ],
+        [
+          "$b=-d$",
+          "$d=-b$",
+          "$b+d=0$"
+        ]
+      ],
+      "proposalFingerprint": "fdb49c4597e4e516e398708a4ef9eac6d0aa5cebae0461da3d0b9bfaf2f5e596"
+    },
+    {
+      "id": "m1-04-02-xc15",
+      "learningRole": "procedure",
+      "roleReason": "좌표의 차로 직사각형의 가로와 세로 구하기",
+      "bDecision": "rewrite",
+      "bPrompt": "네 변이 좌표축에 평행한 직사각형의 넓이를 꼭짓점의 좌표로 구하는 방법을 쓰시오. 네 점 $(-1, -2)$, $(3, -2)$, $(3, 1)$, $(-1, 1)$을 꼭짓점으로 하는 직사각형으로 계산 과정을 보이시오.",
+      "bAnswer": "가로의 길이는 $x$좌표의 차, 세로의 길이는 $y$좌표의 차로 구해 곱한다. 가로는 $3-(-1)=4$, 세로는 $1-(-2)=3$이므로 넓이는 $4\\times 3=12$이다.",
+      "bGoal": "좌표의 차로 직사각형의 넓이 구하기",
+      "bReason": "일반 방법을 먼저 묻고 음수 좌표가 있는 예로 차 구하기를 확인하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$좌표의 차와 $y$좌표의 차를 곱한다",
+            "가로는 $x$좌표의 차, 세로는 $y$좌표의 차로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\times 3=12$",
+            "넓이는 $12$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "x와y의 임의 답 순서를 없애고 길이가 음수가 되지 않는 빼기 순서를 밝힌다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1503,
+      "part": "m1plus",
+      "sourceFingerprint": "8fab1beeec8c068392fba97439f5f9416d4d281ebbcc7e8f600611fa0941b731",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1503
+      },
+      "directReview": null,
+      "cMarkedSentence": "네 변이 좌표축에 평행한 직사각형에서 가로 길이는 꼭짓점의 {$x$좌표} 중 큰 값에서 작은 값을 빼서 구하고, 세로 길이는 {$y$좌표}에서 같은 방법으로 구한다. 넓이는 두 길이를 곱한 값이다.",
+      "cSlotAnswers": [
+        "$x$좌표",
+        "$y$좌표"
+      ],
+      "cStudentSentence": "네 변이 좌표축에 평행한 직사각형에서 가로 길이는 꼭짓점의 □ 중 큰 값에서 작은 값을 빼서 구하고, 세로 길이는 □에서 같은 방법으로 구한다. 넓이는 두 길이를 곱한 값이다.",
+      "cAnswers": [
+        "$x$좌표",
+        "$y$좌표"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x$좌표",
+          "equivalentAnswers": [
+            "$x$좌표"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$y$좌표",
+          "equivalentAnswers": [
+            "$y$좌표"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$x$좌표"
+        ],
+        [
+          "$y$좌표"
+        ]
+      ],
+      "proposalFingerprint": "df2cb0b57419507a06eda7f34802dc0921300a339c05d1926beac54c464d2510",
+      "cAfter": "네 변이 좌표축에 평행한 직사각형에서 가로 길이는 꼭짓점의 {$x$좌표} 중 큰 값에서 작은 값을 빼서 구하고, 세로 길이는 {$y$좌표}에서 같은 방법으로 구한다. 넓이는 두 길이를 곱한 값이다.",
+      "coreAfter": "네 변이 좌표축에 평행한 직사각형의 가로 길이는 꼭짓점의 {$x$좌표} 중 큰 값에서 작은 값을 뺀 값이고, 세로 길이는 {$y$좌표} 중 큰 값에서 작은 값을 뺀 값이다. 이 두 길이를 곱하면 넓이가 된다.",
+      "coreReason": "차의 순서를 큰 값에서 작은 값으로 정하고 가로·세로 길이를 각각 연결한다."
+    },
+    {
+      "id": "m1-04-02-xc16",
+      "learningRole": "procedure",
+      "roleReason": "축에 평행한 변이 없는 삼각형의 넓이 구하는 절차",
+      "bDecision": "rewrite",
+      "bPrompt": "세 점 $(0, 0)$, $(4, 1)$, $(1, 3)$을 꼭짓점으로 하는 삼각형은 어느 변도 좌표축에 평행하지 않다. 이 삼각형을 둘러싸는, 변이 좌표축에 평행한 가장 작은 직사각형을 이용해 넓이를 구하는 과정을 쓰시오.",
+      "bAnswer": "둘러싼 직사각형은 가로 $4$, 세로 $3$이므로 넓이가 $12$이다. 바깥에 생기는 직각삼각형 세 개의 넓이는 $2$, $3$, $\\frac{3}{2}$이므로 삼각형의 넓이는 $12-2-3-\\frac{3}{2}=\\frac{11}{2}$이다.",
+      "bGoal": "직사각형에서 빼는 방법으로 넓이 구하기",
+      "bReason": "방법 일반은 m1-04-02-c7에서 묻으므로 여기서는 실제 점으로 절차를 해 보게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직사각형의 넓이 $12$에서 바깥 직각삼각형 세 개의 넓이를 뺀다",
+            "$12-2-3-\\frac{3}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{11}{2}$",
+            "$5.5$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "삼각형 $ABC$를 완전히 둘러싼 직사각형의 넓이에서 삼각형 $ABC$ 바깥에 남는 부분의 넓이를 모두 {빼면} 삼각형 $ABC$의 넓이가 된다.",
+      "cAnswers": [
+        "빼면"
+      ],
+      "cReason": "둘러싼 도형은 직사각형이라고 제시하고 전체에서 바깥 넓이를 빼는 핵심 관계만 묻는다.",
+      "exampleNeeded": true,
+      "coreAfter": "좌표평면에서 세 꼭짓점을 둘러싸고 변이 좌표축에 평행한 {직사각형}의 넓이에서 삼각형 바깥에 남는 부분의 넓이를 모두 빼면 삼각형의 넓이가 된다. 남는 부분은 주로 {직각삼각형}이고, 아니면 더 나누어 구한다.",
+      "coreReason": "삼각형의 두 꼭짓점이 직사각형의 마주 보는 꼭짓점에 놓이면, 바깥 부분이 삼각형이 아닌 경우가 있다.",
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1504,
+      "part": "m1plus",
+      "sourceFingerprint": "1f62be975b73b40e1a7fd60f035106c615007f4e98fd36c18a6f694177f4bc78",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1504
+      },
+      "directReview": null,
+      "coreBeforeRepair": "세 꼭짓점을 둘러싼 {직사각형}의 넓이에서 삼각형 바깥에 남는 부분의 넓이를 모두 빼면 삼각형의 넓이가 된다. 남는 부분은 대개 {직각삼각형}들이다.",
+      "coreRepairReason": "원본 핵심어 {직사각형}은 유지했다. {삼각형}은 실제로 생기는 모양인 {직각삼각형}으로 구체화했다. 바깥 부분이 늘 삼각형은 아니므로 '더 나누어 구한다'를 덧붙였다. 좌표평면 단원의 방법이므로 변이 좌표축에 평행하다는 전제를 밝혔다. coreReason의 '모서리'는 '꼭짓점'으로 바로잡았다.",
+      "coreRepairEvidence": "core-repair/core-001",
+      "cMarkedSentence": "삼각형 $ABC$를 완전히 둘러싼 직사각형의 넓이에서 삼각형 $ABC$ 바깥에 남는 부분의 넓이를 모두 {빼면} 삼각형 $ABC$의 넓이가 된다.",
+      "cSlotAnswers": [
+        "빼면"
+      ],
+      "cStudentSentence": "삼각형 $ABC$를 완전히 둘러싼 직사각형의 넓이에서 삼각형 $ABC$ 바깥에 남는 부분의 넓이를 모두 □ 삼각형 $ABC$의 넓이가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "빼면",
+          "equivalentAnswers": [
+            "빼면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "빼면"
+        ]
+      ],
+      "proposalFingerprint": "4be2fd59617b3f5b215f8e16fa8a5b98b52efc1a1a2acc25d083aed4c0a1c515"
+    },
+    {
+      "id": "m1-04-02-xc17",
+      "learningRole": "application",
+      "roleReason": "대칭인 네 점이 만드는 직사각형",
+      "bDecision": "rewrite",
+      "bPrompt": "점 $(2, 3)$과, 이 점과 $x$축 · $y$축 · 원점에 대하여 대칭인 세 점을 꼭짓점으로 하는 사각형은 어떤 도형인가? 세 점의 좌표를 쓰고 이 도형의 넓이를 구하시오.",
+      "bAnswer": "세 점은 $(2, -3)$, $(-2, 3)$, $(-2, -3)$이다. 네 점을 꼭짓점으로 하면 변이 좌표축에 평행한 직사각형이 되고, 가로가 $4$, 세로가 $6$이므로 넓이는 $24$이다.",
+      "bGoal": "대칭인 점으로 만든 도형 알아보고 넓이 구하기",
+      "bReason": "구체적인 점을 주어 세 대칭점, 도형의 이름, 넓이를 차례로 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(2, -3)$, $(-2, 3)$, $(-2, -3)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "네 점을 아무 순서로나 이어도 된다는 표현 대신 그 네 점이 사각형의 꼭짓점임을 밝힌다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1505,
+      "part": "m1plus",
+      "sourceFingerprint": "d558677dd994ea3d484dc995ed488a6b25cff6c9d0acc8b9b54117c067d0cdc1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1505
+      },
+      "directReview": null,
+      "cMarkedSentence": "좌표축 위에 있지 않은 점 $P$와, $P$와 $x$축·$y$축·원점에 대하여 대칭인 세 점을 꼭짓점으로 하는 사각형은 네 변이 좌표축에 평행한 {직사각형}이다.",
+      "cSlotAnswers": [
+        "직사각형"
+      ],
+      "cStudentSentence": "좌표축 위에 있지 않은 점 $P$와, $P$와 $x$축·$y$축·원점에 대하여 대칭인 세 점을 꼭짓점으로 하는 사각형은 네 변이 좌표축에 평행한 □이다.",
+      "cAnswers": [
+        "직사각형"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "직사각형",
+          "equivalentAnswers": [
+            "직사각형"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "직사각형"
+        ]
+      ],
+      "proposalFingerprint": "3aaf311a45eff2263407ea1515ae42979a3c30fe0cf52726f011cc916ed1960c",
+      "cAfter": "좌표축 위에 있지 않은 점 $P$와, $P$와 $x$축·$y$축·원점에 대하여 대칭인 세 점을 꼭짓점으로 하는 사각형은 네 변이 좌표축에 평행한 {직사각형}이다."
+    },
+    {
+      "id": "m1-04-02-xc18",
+      "learningRole": "procedure",
+      "roleReason": "사분면 조건을 좌표의 부호 조건으로 바꾸기",
+      "bDecision": "rewrite",
+      "bPrompt": "점 $(a-2, 3)$이 제$2$사분면 위에 있으려면 $a-2$는 양수여야 하는가, 음수여야 하는가? 제$2$사분면 위의 점의 좌표의 부호를 근거로 설명하시오.",
+      "bAnswer": "제$2$사분면 위의 점은 $x$좌표가 음수, $y$좌표가 양수이다. $y$좌표 $3$은 이미 양수이므로 $x$좌표인 $a-2$가 음수여야 한다.",
+      "bGoal": "사분면 조건에서 식의 부호 알아내기",
+      "bReason": "좌표가 식인 점을 주어 사분면에서 부호로 거꾸로 따지는 방향을 묻도록 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "제$2$사분면 위의 점은 $x$좌표가 음수이다",
+            "제$2$사분면의 부호는 $(-, +)$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a-2$는 음수여야 한다",
+            "$a-2<0$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "점이 어느 사분면 위에 있는지 알면 $x$좌표와 $y$좌표의 {부호}를 알 수 있다. 예를 들어 점 $(a-2, 3)$이 제$2$사분면 위에 있으면 $a-2$는 {음수}이다.",
+      "cAnswers": [
+        "부호",
+        "음수"
+      ],
+      "cReason": "조건을 조건으로 바꾼다는 말이 어려워 알 수 있는 것과 구체 예로 풀어 썼다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1506,
+      "part": "m1plus",
+      "sourceFingerprint": "e6b30aa5b665f5a21bc8f46b795a1b807cf1d56dda6eaed6645c45145522a658",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1506
+      },
+      "directReview": null,
+      "cMarkedSentence": "점이 어느 사분면 위에 있는지 알면 $x$좌표와 $y$좌표의 {부호}를 알 수 있다. 예를 들어 점 $(a-2, 3)$이 제$2$사분면 위에 있으면 $a-2$는 {음수}이다.",
+      "cSlotAnswers": [
+        "부호",
+        "음수"
+      ],
+      "cStudentSentence": "점이 어느 사분면 위에 있는지 알면 $x$좌표와 $y$좌표의 □를 알 수 있다. 예를 들어 점 $(a-2, 3)$이 제$2$사분면 위에 있으면 $a-2$는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "음수"
+        ]
+      ],
+      "proposalFingerprint": "b3429ec10e50e7a1f4f99b9637b9aa5b765281485220a82b8a8131ab3fb6d573"
+    },
+    {
+      "id": "m1-04-02-xc19",
+      "learningRole": "reason",
+      "roleReason": "$y$축 대칭인 두 점 사이의 거리가 $2|a|$인 까닭",
+      "bDecision": "rewrite",
+      "bPrompt": "점 $(a, b)$와, 이 점과 $y$축에 대하여 대칭인 점 사이의 거리를 $a$를 사용한 식으로 나타내고, 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "$2|a|$이다. 대칭인 점은 $(-a, b)$이고 두 점 모두 $y$축에서 $|a|$만큼 떨어져 서로 반대쪽에 있으므로, 두 점 사이의 거리는 $|a|+|a|=2|a|$이다.",
+      "bGoal": "대칭인 두 점 사이의 거리 식으로 나타내기",
+      "bReason": "어떤 문자로 나타낼지와 까닭까지 답하게 해 공식만 외우지 않도록 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2|a|$",
+            "$|2a|$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 점이 $y$축에서 각각 $|a|$만큼 떨어져 있다",
+            "대칭인 점이 $(-a, b)$라서 $x$좌표의 차가 거리이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "두 점과 대칭축이 문장에 다 있고 식 하나만 묻는다.",
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1507,
+      "part": "m1plus",
+      "sourceFingerprint": "d126102626d9ca31591ffd0ea3994efc49ca74f80f2f673eeec3fdeae573323e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1507
+      },
+      "directReview": null,
+      "cFrozenSentence": "점 $(a, b)$와 $y$축에 대하여 대칭인 점 사이의 거리는 □이다.",
+      "cFrozenDefinition": "점 $(a, b)$와 $y$축에 대하여 대칭인 점 사이의 거리는 {$2|a|$}이다.",
+      "cFrozenAnswers": [
+        "$2|a|$"
+      ],
+      "cMarkedSentence": "점 $(a, b)$와 $y$축에 대하여 대칭인 점 사이의 거리는 {$2|a|$}이다.",
+      "cSlotAnswers": [
+        "$2|a|$"
+      ],
+      "cStudentSentence": "점 $(a, b)$와 $y$축에 대하여 대칭인 점 사이의 거리는 □이다.",
+      "cAnswers": [
+        "$2|a|$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2|a|$",
+          "equivalentAnswers": [
+            "$2|a|$",
+            "$|2a|$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$2|a|$",
+          "accept": [
+            "$|2a|$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$2|a|$",
+          "$|2a|$"
+        ]
+      ],
+      "proposalFingerprint": "cb57ad880d2bff72244fa539b8b2bacaf2413a3801df0d5f74d4adc07851eb46"
+    },
+    {
+      "id": "m1-04-02-xc20",
+      "learningRole": "procedure",
+      "roleReason": "대칭축과 부호가 바뀌는 좌표의 대응",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "두 축 대칭의 규칙은 m1-04-02-c4와 m1-04-02-c5에서 각각 묻고 있어 합친 질문은 겹친다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x$축에 대하여 대칭인 점은 {$y$좌표}의 부호만, $y$축에 대하여 대칭인 점은 {$x$좌표}의 부호만 반대이다.",
+      "cAnswers": [
+        "$y$좌표",
+        "$x$좌표"
+      ],
+      "cReason": "'엇갈린다'는 학생이 떠올리기 어려운 임의 낱말이라 빼고 두 축의 비교만 남겼다.",
+      "exclusionReason": "B 제외: $x$축 대칭(m1-04-02-c4)과 $y$축 대칭(m1-04-02-c5)의 B를 합쳐 되풀이하는 성질 질문이다.",
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1508,
+      "part": "m1plus",
+      "sourceFingerprint": "aded84e6b2af9ae7b31100d853a6c3d305d5ce8c90e2f63b2c23a473670c9801",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1508
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$x$축에 대하여 대칭인 점은 {$y$좌표}의 부호만, $y$축에 대하여 대칭인 점은 {$x$좌표}의 부호만 반대이다.",
+      "cSlotAnswers": [
+        "$y$좌표",
+        "$x$좌표"
+      ],
+      "cStudentSentence": "$x$축에 대하여 대칭인 점은 □의 부호만, $y$축에 대하여 대칭인 점은 □의 부호만 반대이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$y$좌표",
+          "equivalentAnswers": [
+            "$y$좌표"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$x$좌표",
+          "equivalentAnswers": [
+            "$x$좌표"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$y$좌표"
+        ],
+        [
+          "$x$좌표"
+        ]
+      ],
+      "proposalFingerprint": "c75e7a77054b79e367caf298abd7e66c6318be822e0405b6e863eafb0ea7c4da"
+    },
+    {
+      "id": "m1-04-02-xc21",
+      "learningRole": "reason",
+      "roleReason": "원점 대칭인 점이 마주 보는 사분면에 놓이는 까닭",
+      "bDecision": "rewrite",
+      "bPrompt": "좌표축 위에 있지 않은 점과 원점에 대하여 대칭인 점은 처음 점이 있는 사분면과 어떤 위치의 사분면에 있는가? 제$2$사분면 위의 점을 예로 들어 좌표의 부호로 까닭을 설명하시오.",
+      "bAnswer": "원점을 사이에 두고 마주 보는 사분면에 있다. 제$2$사분면 위의 점은 부호가 $(-, +)$인데 원점 대칭이면 두 부호가 모두 바뀌어 $(+, -)$가 되므로 제$4$사분면 위에 있다.",
+      "bGoal": "원점 대칭과 사분면의 위치 관계 설명하기",
+      "bReason": "사분면 하나를 정해 주어 부호 변화로 까닭을 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마주 보는 사분면에 있다",
+            "대각선 방향의 사분면에 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-, +)$가 $(+, -)$로 바뀌어 제$4$사분면이다",
+            "두 좌표의 부호가 모두 바뀌어 제$4$사분면이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "일반 관계와 제$1$사분면의 예를 하나씩 묻는 분명한 문장이다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1509,
+      "part": "m1plus",
+      "sourceFingerprint": "e773582a6f813c6667cabdf42e2540a69ba94e81bf7421f49cedff80c57b1fa5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1509
+      },
+      "directReview": null,
+      "cFrozenSentence": "좌표축 위에 있지 않은 두 점이 원점에 대하여 대칭이면 서로 □ 사분면에 있다. 제$1$사분면의 점과 대칭인 점은 □에 있다.",
+      "cFrozenDefinition": "좌표축 위에 있지 않은 두 점이 원점에 대하여 대칭이면 서로 {마주 보는} 사분면에 있다. 제$1$사분면의 점과 대칭인 점은 {제$3$사분면}에 있다.",
+      "cFrozenAnswers": [
+        "마주 보는",
+        "제$3$사분면"
+      ],
+      "cMarkedSentence": "좌표축 위에 있지 않은 두 점이 원점에 대하여 대칭이면 서로 {마주 보는} 사분면에 있다. 제$1$사분면의 점과 대칭인 점은 {제$3$사분면}에 있다.",
+      "cSlotAnswers": [
+        "마주 보는",
+        "제$3$사분면"
+      ],
+      "cStudentSentence": "좌표축 위에 있지 않은 두 점이 원점에 대하여 대칭이면 서로 □ 사분면에 있다. 제$1$사분면의 점과 대칭인 점은 □에 있다.",
+      "cAnswers": [
+        "마주 보는",
+        "제$3$사분면"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "마주 보는",
+          "equivalentAnswers": [
+            "마주 보는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "제$3$사분면",
+          "equivalentAnswers": [
+            "제$3$사분면"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "마주 보는"
+        ],
+        [
+          "제$3$사분면"
+        ]
+      ],
+      "proposalFingerprint": "ce9c31a82a77db4d49f8fc8ad6175529f3401a413dc43324f9d23a47eda639b5"
+    },
+    {
+      "id": "m1-04-02-xc22",
+      "learningRole": "application",
+      "roleReason": "넓이 조건에서 방정식을 세워 좌표 구하기",
+      "bDecision": "rewrite",
+      "bPrompt": "세 점 $(0, 0)$, $(6, 0)$, $(2, a)$를 꼭짓점으로 하는 삼각형의 넓이가 $12$이고 $a>0$이다. 밑변과 높이를 정해 $a$에 대한 방정식을 세우고 $a$의 값을 구하시오.",
+      "bAnswer": "$(0, 0)$과 $(6, 0)$을 이은 변을 밑변으로 하면 길이는 $6$이고 높이는 $a$이다. $\\frac{1}{2}\\times 6\\times a=12$에서 $3a=12$이므로 $a=4$이다.",
+      "bGoal": "넓이 조건으로 모르는 좌표 구하기",
+      "bReason": "세 점과 넓이, $a$의 부호를 모두 주어 식 세우기와 풀이를 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}\\times 6\\times a=12$",
+            "$3a=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=4$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "삼각형의 넓이가 주어지면 모르는 좌표를 {문자}로 두고, 밑변과 높이를 그 문자로 나타내 {방정식}을 세워 푼다.",
+      "cAnswers": [
+        "문자",
+        "방정식"
+      ],
+      "cReason": "끝 빈칸 '세운다'는 답할 내용이 없어 방법의 두 단계를 묻도록 옮겼다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1510,
+      "part": "m1plus",
+      "sourceFingerprint": "497787d3f71ed298ece551fa2403de3e36b174e71fe2295d005e7a0152609566",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1510
+      },
+      "directReview": null,
+      "cMarkedSentence": "삼각형의 넓이가 주어지면 모르는 좌표를 {문자}로 두고, 밑변과 높이를 그 문자로 나타내 {방정식}을 세워 푼다.",
+      "cSlotAnswers": [
+        "문자",
+        "방정식"
+      ],
+      "cStudentSentence": "삼각형의 넓이가 주어지면 모르는 좌표를 □로 두고, 밑변과 높이를 그 문자로 나타내 □을 세워 푼다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "문자",
+          "equivalentAnswers": [
+            "문자"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "방정식",
+          "equivalentAnswers": [
+            "방정식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "문자"
+        ],
+        [
+          "방정식"
+        ]
+      ],
+      "proposalFingerprint": "6b0cff38f6267323258d5ab47fa08b4dd0a84109f6f8cada371e4d1fd5da90bd"
+    },
+    {
+      "id": "m1-04-02-xc23",
+      "learningRole": "application",
+      "roleReason": "식으로 된 좌표의 부호를 정해 사분면 찾기",
+      "bDecision": "rewrite",
+      "bPrompt": "$a<0$, $b>0$일 때 점 $(a-b, ab)$는 제몇 사분면 위에 있는가? $a-b$와 $ab$의 부호를 각각 어떻게 정했는지 까닭도 쓰시오.",
+      "bAnswer": "$a-b$는 음수에서 양수를 뺀 것이므로 음수이고, $ab$는 부호가 다른 두 수의 곱이므로 음수이다. 좌표의 부호가 $(-, -)$이므로 제$3$사분면 위에 있다.",
+      "bGoal": "식의 부호를 따져 사분면 정하기",
+      "bReason": "문자 조건과 점을 주고 뺄셈과 곱셈의 부호 판단을 따로 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a-b$는 음수이다",
+            "$a-b<0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$ab$는 음수이다",
+            "$ab<0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "제$3$사분면"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$a<0$, $b>0$일 때 $a-b$는 {음수}, $ab$는 {음수}이므로 점 $(a-b, ab)$는 {제$3$사분면} 위에 있다.",
+      "cAnswers": [
+        "음수",
+        "음수",
+        "제$3$사분면"
+      ],
+      "cReason": "부호·사분면 빈칸이 m1-04-02-xc10과 같아, 식의 부호를 직접 따지는 빈칸으로 바꾸었다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1511,
+      "part": "m1plus",
+      "sourceFingerprint": "556132d484a98d5ffb015d7913428401cb215ef7ee2bcde5df1f5d188f9f18f9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1511
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a<0$, $b>0$일 때 $a-b$는 {음수}, $ab$는 {음수}이므로 점 $(a-b, ab)$는 {제$3$사분면} 위에 있다.",
+      "cSlotAnswers": [
+        "음수",
+        "음수",
+        "제$3$사분면"
+      ],
+      "cStudentSentence": "$a<0$, $b>0$일 때 $a-b$는 □, $ab$는 □이므로 점 $(a-b, ab)$는 □ 위에 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "제$3$사분면",
+          "equivalentAnswers": [
+            "제$3$사분면"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ],
+        [
+          "음수"
+        ],
+        [
+          "제$3$사분면"
+        ]
+      ],
+      "proposalFingerprint": "bb49af6384f793528950277226379d8b532cc0b44f234cf96b44c27e59ef5038"
+    },
+    {
+      "id": "m1-04-03-xc1",
+      "learningRole": "procedure",
+      "roleReason": "그래프를 읽기 전 두 축 확인하기",
+      "bDecision": "rewrite",
+      "bPrompt": "그래프를 읽을 때 가장 먼저 확인해야 하는 것은 무엇인가? 그것을 확인하지 않으면 그래프 위의 점을 해석할 수 없는 까닭도 쓰시오.",
+      "bAnswer": "가로축과 세로축이 각각 무엇을 나타내는지 확인한다. 축이 나타내는 양을 알아야 점의 좌표가 무엇의 값인지 알 수 있기 때문이다.",
+      "bGoal": "두 축이 나타내는 양부터 확인하기",
+      "bReason": "확인할 것과 그 까닭을 함께 물어 단순 암기가 되지 않게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로축과 세로축이 각각 무엇을 나타내는지",
+            "$x$축과 $y$축이 나타내는 양"
+          ]
+        },
+        {
+          "anyOf": [
+            "축이 나타내는 양을 알아야 좌표가 무엇의 값인지 알 수 있다",
+            "축이 무엇인지에 따라 같은 모양도 뜻이 달라진다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "가로축·세로축의 임의 순서 때문에 맞는 답이 틀리지 않도록 하나만 빈칸으로 둔다.",
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1512,
+      "part": "m1plus",
+      "sourceFingerprint": "13bd49cc27c131c7a1f9189b1d117032c75766b2570fd95e22325401d3f773de",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1512
+      },
+      "directReview": null,
+      "cMarkedSentence": "그래프를 읽을 때는 가로축과 {세로축}이 각각 무엇을 나타내는지 먼저 확인한다.",
+      "cSlotAnswers": [
+        "세로축"
+      ],
+      "cStudentSentence": "그래프를 읽을 때는 가로축과 □이 각각 무엇을 나타내는지 먼저 확인한다.",
+      "cAnswers": [
+        "세로축"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "세로축",
+          "equivalentAnswers": [
+            "세로축",
+            "$y$축"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "가로축",
+          "accept": [
+            "$x$축"
+          ]
+        },
+        {
+          "answer": "세로축",
+          "accept": [
+            "$y$축"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "세로축",
+          "$y$축"
+        ]
+      ],
+      "proposalFingerprint": "83a75e06c811a7c7ee3cb7d7554106c5d1babed411f4d64c1d91b9978f768991",
+      "cAfter": "그래프를 읽을 때는 가로축과 {세로축}이 각각 무엇을 나타내는지 먼저 확인한다."
+    },
+    {
+      "id": "m1-04-03-xc2",
+      "learningRole": "procedure",
+      "roleReason": "표의 값을 순서쌍으로 바꿔 점 찍기",
+      "bDecision": "rewrite",
+      "bPrompt": "두 변수 $x$, $y$의 값을 정리한 표를 보고 그래프를 그리는 순서를 쓰시오. 표에 $x=1$일 때 $y=4$가 있다면 좌표평면에 어떤 점을 찍는지도 쓰시오.",
+      "bAnswer": "표에서 $x$의 값과 그에 대응하는 $y$의 값을 순서쌍 $(x, y)$로 만들고, 그 순서쌍을 좌표로 하는 점을 좌표평면에 찍는다. $x=1$, $y=4$이면 점 $(1, 4)$를 찍는다.",
+      "bGoal": "표에서 그래프를 그리는 순서 말하기",
+      "bReason": "표의 값 한 쌍을 주어 순서쌍으로 바꾸는 단계를 직접 보이게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$의 값과 $y$의 값을 순서쌍 $(x, y)$로 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "순서쌍을 좌표로 하는 점을 좌표평면에 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(1, 4)$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "표에서 아무 두 값을 고르는 것이 아니라 서로 대응하는 x,y를 짝짓는 절차임을 밝힌다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1513,
+      "part": "m1plus",
+      "sourceFingerprint": "2718e9f6726090686da93e850446865dc73bc6700dd798f8e9406de95eba6f92",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1513
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x$의 값과 그에 대응하는 $y$의 값을 적은 표가 있다. 대응하는 두 값을 $(x,y)$ 순서의 {순서쌍}으로 만들고 좌표평면에 {점}으로 찍으면 그래프가 된다.",
+      "cSlotAnswers": [
+        "순서쌍",
+        "점"
+      ],
+      "cStudentSentence": "$x$의 값과 그에 대응하는 $y$의 값을 적은 표가 있다. 대응하는 두 값을 $(x,y)$ 순서의 □으로 만들고 좌표평면에 □으로 찍으면 그래프가 된다.",
+      "cAnswers": [
+        "순서쌍",
+        "점"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "순서쌍",
+          "equivalentAnswers": [
+            "순서쌍"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "점",
+          "equivalentAnswers": [
+            "점"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "순서쌍"
+        ],
+        [
+          "점"
+        ]
+      ],
+      "proposalFingerprint": "fd16fbe4aa09552667f5af14adec976a3c0f588e648180d2d15fb52fed23f66f",
+      "cAfter": "$x$의 값과 그에 대응하는 $y$의 값을 적은 표가 있다. 대응하는 두 값을 $(x,y)$ 순서의 {순서쌍}으로 만들고 좌표평면에 {점}으로 찍으면 그래프가 된다."
+    },
+    {
+      "id": "m1-04-03-xc3",
+      "learningRole": "procedure",
+      "roleReason": "그래프에서 $x$의 값에 대응하는 $y$의 값 읽기",
+      "bDecision": "rewrite",
+      "bPrompt": "가로축이 $x$, 세로축이 $y$인 그래프에서 $x=3$일 때의 $y$의 값을 찾는 순서를 쓰시오. 그래프가 점 $(3, 15)$를 지난다면 그 값은 얼마인가?",
+      "bAnswer": "가로축에서 $x=3$인 곳을 찾아 그 위에 있는 그래프의 점을 찾고, 그 점의 $y$좌표를 읽는다. 그래프가 $(3, 15)$를 지나므로 $y$의 값은 $15$이다.",
+      "bGoal": "그래프에서 값을 찾는 순서 말하기",
+      "bReason": "무엇을 찾는지($x$가 정해졌을 때의 $y$)와 구체적인 점을 질문에 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=3$에 해당하는 그래프 위의 점을 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 점의 $y$좌표를 읽는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "그래프에서 $x$의 값이 정해졌을 때 $y$의 값을 찾으려면, 그 $x$의 값에 해당하는 그래프 위의 점을 찾아 그 점의 {$y$좌표}를 읽는다.",
+      "cAnswers": [
+        "$y$좌표"
+      ],
+      "cReason": "무엇을 구하려는지 문장에 없고 끝 빈칸 '읽는다'는 답할 내용이 없어 고쳤다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1514,
+      "part": "m1plus",
+      "sourceFingerprint": "888dcb761bd1a835ff26585eec77d5f568a6076ab29fa4792c58a13c35f06aee",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1514
+      },
+      "directReview": null,
+      "cMarkedSentence": "그래프에서 $x$의 값이 정해졌을 때 $y$의 값을 찾으려면, 그 $x$의 값에 해당하는 그래프 위의 점을 찾아 그 점의 {$y$좌표}를 읽는다.",
+      "cSlotAnswers": [
+        "$y$좌표"
+      ],
+      "cStudentSentence": "그래프에서 $x$의 값이 정해졌을 때 $y$의 값을 찾으려면, 그 $x$의 값에 해당하는 그래프 위의 점을 찾아 그 점의 □를 읽는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$y$좌표",
+          "equivalentAnswers": [
+            "$y$좌표",
+            "$y$의 값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$y$좌표",
+          "accept": [
+            "$y$의 값"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$y$좌표",
+          "$y$의 값"
+        ]
+      ],
+      "proposalFingerprint": "654e9a0f0caa0808de77b97e24807438b89c31ec2e0dddd0ef89dd4054ef4cbf"
+    },
+    {
+      "id": "m1-04-03-xc4",
+      "learningRole": "application",
+      "roleReason": "수평인 구간을 상황으로 해석하기",
+      "bDecision": "rewrite",
+      "bPrompt": "출발한 뒤 지난 시간을 $x$분, 이동한 거리를 $y\\,\\mathrm{m}$로 나타낸 그래프가 $x=10$부터 $x=15$까지 가로축과 평행하다. 이 구간에서 $y$의 값은 어떻게 되며, 그동안 어떤 상황이었는지 쓰시오.",
+      "bAnswer": "$y$의 값이 변하지 않는다. 이동한 거리가 늘지 않았으므로 $10$분부터 $15$분까지 멈춰 있었다.",
+      "bGoal": "수평인 구간을 실제 상황으로 해석하기",
+      "bReason": "두 축의 뜻과 구간을 주어 수평의 뜻을 상황으로 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y$의 값이 변하지 않는다",
+            "이동한 거리가 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "멈춰 있었다",
+            "움직이지 않았다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "그래프가 가로축과 평행한 구간에서는 $y$의 값이 {변하지 않는다}.",
+      "cAnswers": [
+        "변하지 않는다"
+      ],
+      "cReason": "조건(평행)과 결론이 모두 빈칸이라 조건은 보여 주고 결론만 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1515,
+      "part": "m1plus",
+      "sourceFingerprint": "14ca980a932e731d4692afe737bdab1d20d3b0c3672e4b75418637bcd690efc4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1515
+      },
+      "directReview": null,
+      "cMarkedSentence": "그래프가 가로축과 평행한 구간에서는 $y$의 값이 {변하지 않는다}.",
+      "cSlotAnswers": [
+        "변하지 않는다"
+      ],
+      "cStudentSentence": "그래프가 가로축과 평행한 구간에서는 $y$의 값이 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "변하지 않는다",
+          "equivalentAnswers": [
+            "변하지 않는다",
+            "일정하다",
+            "그대로이다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "변하지 않는다",
+          "accept": [
+            "일정하다",
+            "그대로이다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "변하지 않는다",
+          "일정하다",
+          "그대로이다"
+        ]
+      ],
+      "proposalFingerprint": "8e269c51bbd3fe2798f1231f2cf5067b5c39b8e47951cc2737d6b49e66e34e9f"
+    },
+    {
+      "id": "m1-04-03-xc5",
+      "learningRole": "application",
+      "roleReason": "$x=0$인 점이 처음의 양임을 읽기",
+      "bDecision": "rewrite",
+      "bPrompt": "물통에 물을 넣기 시작한 뒤 지난 시간을 $x$분, 물통에 든 물의 양을 $y\\,\\mathrm{L}$로 나타낸 그래프가 점 $(0, 20)$에서 시작한다. 이 점은 무엇을 뜻하는가?",
+      "bAnswer": "물을 넣기 시작할 때($x=0$) 물통에 이미 물이 $20\\,\\mathrm{L}$ 들어 있었다는 뜻이다.",
+      "bGoal": "그래프의 시작점을 처음의 양으로 해석하기",
+      "bReason": "시작점이라는 말만으로는 상황을 알 수 없어 두 축의 뜻과 점을 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "시작할 때의 물의 양이다",
+            "$x=0$일 때의 물의 양이다",
+            "처음에 들어 있던 물의 양이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20\\,\\mathrm{L}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "물의 양에도 출발이라는 말을 쓰던 문장을 시작 시점의 물통 상황으로 구체화한다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1516,
+      "part": "m1plus",
+      "sourceFingerprint": "de6c3df0b423010664876ae31042aea5f9281fbe645975de25e008ce75a4f147",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1516
+      },
+      "directReview": null,
+      "cMarkedSentence": "물을 넣기 시작한 뒤 지난 시간을 $x$분, 물통에 든 물의 양을 $y$리터로 나타내는 그래프에서 $x=0$일 때의 $y$값은 물을 넣기 {시작할 때} 물통에 들어 있던 물의 양이다.",
+      "cSlotAnswers": [
+        "시작할 때"
+      ],
+      "cStudentSentence": "물을 넣기 시작한 뒤 지난 시간을 $x$분, 물통에 든 물의 양을 $y$리터로 나타내는 그래프에서 $x=0$일 때의 $y$값은 물을 넣기 □ 물통에 들어 있던 물의 양이다.",
+      "cAnswers": [
+        "시작할 때"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "시작할 때",
+          "equivalentAnswers": [
+            "시작할 때",
+            "시작하기 전"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "출발할 때",
+          "accept": [
+            "처음",
+            "시작할 때"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "시작할 때",
+          "시작하기 전"
+        ]
+      ],
+      "proposalFingerprint": "4dfc548b3df7a2789b089cf1363c2856422a9940561a49510fed02b6ea213572",
+      "cAfter": "물을 넣기 시작한 뒤 지난 시간을 $x$분, 물통에 든 물의 양을 $y$리터로 나타내는 그래프에서 $x=0$일 때의 $y$값은 물을 넣기 {시작할 때} 물통에 들어 있던 물의 양이다."
+    },
+    {
+      "id": "m1-04-03-xc6",
+      "learningRole": "definition",
+      "roleReason": "변수와 상수의 구별",
+      "bDecision": "rewrite",
+      "bPrompt": "한 개에 $500$원인 빵 $x$개의 값을 $y$원이라 할 때, $x$, $y$, $500$을 변수와 상수로 나누고 그렇게 나눈 기준을 쓰시오.",
+      "bAnswer": "$x$와 $y$는 값이 여러 가지로 바뀌므로 변수이고, $500$은 값이 정해져 바뀌지 않으므로 상수이다.",
+      "bGoal": "변수와 상수 구별하기",
+      "bReason": "두 용어의 차이를 묻는 것임을 밝히고 구별할 대상을 상황으로 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$, $y$는 변수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$500$은 상수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "값이 바뀌면 변수, 정해져 바뀌지 않으면 상수이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "뜻을 읽고 두 용어를 쓰는 짧은 비교 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1517,
+      "part": "m1plus",
+      "sourceFingerprint": "27c031ef0a6e72b7cdab43d343b33f4c7791479cae9870b111739f4be0964ed2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1517
+      },
+      "directReview": null,
+      "cFrozenSentence": "값이 바뀌는 양은 □로, 값이 정해져 바뀌지 않는 수는 □라 한다.",
+      "cFrozenDefinition": "값이 바뀌는 양은 {변수}로, 값이 정해져 바뀌지 않는 수는 {상수}라 한다.",
+      "cFrozenAnswers": [
+        "변수",
+        "상수"
+      ],
+      "cMarkedSentence": "값이 바뀌는 양은 {변수}로, 값이 정해져 바뀌지 않는 수는 {상수}라 한다.",
+      "cSlotAnswers": [
+        "변수",
+        "상수"
+      ],
+      "cStudentSentence": "값이 바뀌는 양은 □로, 값이 정해져 바뀌지 않는 수는 □라 한다.",
+      "cAnswers": [
+        "변수",
+        "상수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "변수",
+          "equivalentAnswers": [
+            "변수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "상수",
+          "equivalentAnswers": [
+            "상수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "변수"
+        ],
+        [
+          "상수"
+        ]
+      ],
+      "proposalFingerprint": "684446e9b0f129d61232bfd05c2cb3c0300f48605b56976d3397f524fc23a504"
+    },
+    {
+      "id": "m1-04-03-xc7",
+      "learningRole": "application",
+      "roleReason": "가장 높은 점에서 최댓값과 그때 읽기",
+      "bDecision": "rewrite",
+      "bPrompt": "하루 동안 시각 $x$시의 기온을 $y$도로 나타낸 그래프에서 가장 높은 점이 $(14, 26)$이다. 이 점의 $x$좌표와 $y$좌표는 각각 무엇을 알려 주는가?",
+      "bAnswer": "$y$좌표 $26$은 하루 중 가장 높은 기온이 $26$도임을, $x$좌표 $14$는 그 기온이 된 시각이 $14$시임을 알려 준다.",
+      "bGoal": "가장 높은 점의 두 좌표 해석하기",
+      "bReason": "두 축의 뜻과 점을 주어 두 좌표가 알려 주는 것을 따로 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 높은 기온이 $26$도이다",
+            "최고 기온이 $26$도이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그때의 시각이 $14$시이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "그래프에서 가장 높은 점의 $y$좌표는 $y$의 값 가운데 {가장 큰} 값이다.",
+      "cAnswers": [
+        "가장 큰"
+      ],
+      "cReason": "조건(높은)과 결론(가장 큰)이 모두 빈칸이라 결론만 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1518,
+      "part": "m1plus",
+      "sourceFingerprint": "056683521ad71d87f097c8fa616bdd16a8728a84049d0a9cc8ecf1ba396f8d80",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1518
+      },
+      "directReview": null,
+      "cMarkedSentence": "그래프에서 가장 높은 점의 $y$좌표는 $y$의 값 가운데 {가장 큰} 값이다.",
+      "cSlotAnswers": [
+        "가장 큰"
+      ],
+      "cStudentSentence": "그래프에서 가장 높은 점의 $y$좌표는 $y$의 값 가운데 □ 값이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "가장 큰",
+          "equivalentAnswers": [
+            "가장 큰",
+            "제일 큰"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "가장 큰",
+          "accept": [
+            "제일 큰"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "가장 큰",
+          "제일 큰"
+        ]
+      ],
+      "proposalFingerprint": "194f06571996bf943eec0a7e0ba0a0ca813731fabab5ef4d3fe1b2efb57f5229"
+    },
+    {
+      "id": "m1-04-03-xc8",
+      "learningRole": "application",
+      "roleReason": "같은 $x$에서 두 그래프의 높이 견주기",
+      "bDecision": "rewrite",
+      "bPrompt": "$A$와 $B$가 이동한 거리를 나타낸 두 그래프가 같은 좌표평면에 있다. 가로축은 출발한 뒤 지난 시간, 세로축은 이동한 거리이다. 같은 시각에 $A$의 그래프가 $B$의 그래프보다 위에 있으면 그때 누가 더 멀리 갔는가? 그래프의 무엇을 견주어 판단하는지도 쓰시오.",
+      "bAnswer": "$A$가 더 멀리 갔다. 같은 시각(같은 $x$의 값)에서 $y$좌표, 곧 이동한 거리가 더 큰 쪽을 찾는 것이다.",
+      "bGoal": "같은 $x$에서 두 그래프의 값 견주기",
+      "bReason": "두 그래프가 무엇을 나타내는지 주어 위아래 위치의 뜻을 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$A$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 시각에서 $y$좌표가 더 큰 쪽이다",
+            "같은 $x$의 값에서 그래프가 더 위에 있는 쪽의 값이 크다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "같은 좌표평면에 그린 두 그래프에서, 같은 $x$의 값에서 더 {위}에 있는 그래프는 그때의 {$y$의 값}도 더 크다.",
+      "cAnswers": [
+        "위",
+        "$y$의 값"
+      ],
+      "cReason": "y좌표도라는 동의어가 문장에 자연스럽게 들어가도록 조사를 고친다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1519,
+      "part": "m1plus",
+      "sourceFingerprint": "74280e5c0269b396a186e2bff889df8307f36f499fe0b05c34f50ba43f85a798",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1519
+      },
+      "directReview": null,
+      "cMarkedSentence": "같은 좌표평면에 그린 두 그래프에서, 같은 $x$의 값에서 더 {위}에 있는 그래프는 그때의 {$y$의 값}도 더 크다.",
+      "cSlotAnswers": [
+        "위",
+        "$y$의 값"
+      ],
+      "cStudentSentence": "같은 좌표평면에 그린 두 그래프에서, 같은 $x$의 값에서 더 □에 있는 그래프는 그때의 □도 더 크다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "위",
+          "equivalentAnswers": [
+            "위"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$y$의 값",
+          "equivalentAnswers": [
+            "$y$의 값",
+            "$y$좌표"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$y$의 값",
+          "accept": [
+            "$y$좌표"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "위"
+        ],
+        [
+          "$y$의 값",
+          "$y$좌표"
+        ]
+      ],
+      "proposalFingerprint": "3e7679a57dd19c260389b8b309c7693dc615380f377121d8f908431cc9021d4e"
+    },
+    {
+      "id": "m1-04-03-xc9",
+      "learningRole": "application",
+      "roleReason": "두 그래프가 만나는 점의 뜻",
+      "bDecision": "rewrite",
+      "bPrompt": "두 사람이 같은 시각에 같은 곳에서 출발하여 곧은 길을 따라 같은 방향으로 이동한다. 출발한 뒤 지난 시간을 $x$분, 이동한 거리를 $y\\,\\mathrm{m}$로 나타낸 두 그래프가 점 $(20, 1500)$에서 만난다. 이 점은 두 사람에 대해 무엇을 뜻하는가?",
+      "bAnswer": "출발한 지 $20$분이 되었을 때 두 사람이 이동한 거리가 $1500\\,\\mathrm{m}$로 같다는 뜻이다. 곧 그때 두 사람은 같은 지점에 있다.",
+      "bGoal": "만나는 점을 상황으로 해석하기",
+      "bReason": "출발 조건과 두 축의 뜻을 주어야 같은 지점이라는 해석이 가능하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$20$분일 때 두 사람의 이동 거리가 같다",
+            "$20$분에 두 사람 모두 $1500\\,\\mathrm{m}$를 갔다",
+            "$20$분에 두 사람이 같은 지점에 있다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "만나는 점에서 두 값이 같다는 한 가지를 묻는 짧은 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1520,
+      "part": "m1plus",
+      "sourceFingerprint": "cb19017c7af6087aa81e31fed25b0cec71f5c91f949383a12c16a1cac9afe2bb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1520
+      },
+      "directReview": null,
+      "cFrozenSentence": "두 그래프가 만나는 점에서는 그 $x$값일 때 두 양의 값이 □.",
+      "cFrozenDefinition": "두 그래프가 만나는 점에서는 그 $x$값일 때 두 양의 값이 {같다}.",
+      "cFrozenAnswers": [
+        "같다"
+      ],
+      "cMarkedSentence": "두 그래프가 만나는 점에서는 그 $x$값일 때 두 양의 값이 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "두 그래프가 만나는 점에서는 그 $x$값일 때 두 양의 값이 □.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "ee0324d28042b890c2bd93c238e778e8aa149e9d7a1d55b9596299ce520fb2ca"
+    },
+    {
+      "id": "m1-04-03-xc10",
+      "learningRole": "procedure",
+      "roleReason": "같은 시간 동안 변한 양으로 빠르기 견주기",
+      "bDecision": "rewrite",
+      "bPrompt": "출발한 뒤 $0$분에서 $5$분까지 $300\\,\\mathrm{m}$, $5$분에서 $10$분까지 $500\\,\\mathrm{m}$를 갔다. 어느 구간에서 더 빠르게 이동했는지, 무엇을 견주어 판단했는지 쓰시오.",
+      "bAnswer": "$5$분에서 $10$분까지가 더 빠르다. 두 구간의 시간이 $5$분으로 같으므로 그동안 이동한 거리가 더 큰 구간이 더 빠르다.",
+      "bGoal": "같은 시간 동안 변한 양으로 빠르기 견주기",
+      "bReason": "두 구간의 시간과 변한 양을 주어 견주는 기준을 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$분에서 $10$분까지"
+          ]
+        },
+        {
+          "anyOf": [
+            "걸린 시간이 같으므로 이동한 거리가 큰 쪽이 빠르다",
+            "같은 시간 동안 변한 양을 견준다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "길이가 같은 두 시간 구간 가운데 $y$의 값이 더 {많이} 변한 구간이 더 {빠르게} 변한 것이다. 이때 $y$가 늘었든 줄었든 변한 양의 크기로 견준다.",
+      "cAnswers": [
+        "많이",
+        "빠르게"
+      ],
+      "cReason": "'변한 크기'는 떠올리기 어렵고 뒤 문장에 '크기'가 드러나 있어 쉬운 낱말로 바꾸었다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1521,
+      "part": "m1plus",
+      "sourceFingerprint": "561f4df1f73899a1a25dddf26a7da88566f559695bd68f3aa54e7c9e42244675",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1521
+      },
+      "directReview": null,
+      "cMarkedSentence": "길이가 같은 두 시간 구간 가운데 $y$의 값이 더 {많이} 변한 구간이 더 {빠르게} 변한 것이다. 이때 $y$가 늘었든 줄었든 변한 양의 크기로 견준다.",
+      "cSlotAnswers": [
+        "많이",
+        "빠르게"
+      ],
+      "cStudentSentence": "길이가 같은 두 시간 구간 가운데 $y$의 값이 더 □ 변한 구간이 더 □ 변한 것이다. 이때 $y$가 늘었든 줄었든 변한 양의 크기로 견준다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "많이",
+          "equivalentAnswers": [
+            "많이",
+            "크게"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "빠르게",
+          "equivalentAnswers": [
+            "빠르게"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "많이",
+          "accept": [
+            "크게"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "많이",
+          "크게"
+        ],
+        [
+          "빠르게"
+        ]
+      ],
+      "proposalFingerprint": "6e16b9d800b7e731be57394156072e2a87549b4618a63a2492167c94c9d9be23"
+    }
+  ]
+}

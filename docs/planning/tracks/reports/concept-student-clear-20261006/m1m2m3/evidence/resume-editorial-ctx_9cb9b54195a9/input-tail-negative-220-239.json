@@ -1,0 +1,1791 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T11:53:37.046Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc19",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "구멍 뚫린 기둥의 밑넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑면에 수직인 원기둥 모양 구멍이 두 밑면을 관통하면, 밑넓이는 바깥 밑면에서 {구멍}의 넓이를 빼고, 옆넓이는 바깥과 {안쪽}을 더한다.",
+        "example": {
+          "prompt": "반지름 $3$인 원기둥에 회전축을 따라 반지름 $1$인 구멍을 끝까지 뚫었다. 한 밑면의 넓이는?",
+          "answer": "$8\\pi$"
+        },
+        "studentC": "밑면에 수직인 원기둥 모양 구멍이 두 밑면을 관통하면, 밑넓이는 바깥 밑면에서 □의 넓이를 빼고, 옆넓이는 바깥과 □을 더한다.",
+        "answers": [
+          "구멍",
+          "안쪽"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "밑넓이에서 구멍을 빼고 안쪽 옆넓이를 더하는 내용이 이미 앞 문항에 있다.",
+        "cDecision": "rewrite",
+        "cAfter": "밑면에 수직인 원기둥 모양 구멍이 두 밑면을 관통하면, 밑넓이는 바깥 밑면의 넓이에서 구멍의 넓이를 {뺀} 값이고, 옆넓이는 바깥 옆넓이에 구멍 안쪽의 옆넓이를 {더한} 값이다.",
+        "cAnswers": [
+          "뺀",
+          "더한"
+        ],
+        "cReason": "빈칸 '구멍'이 문장 앞의 '구멍이'를 그대로 베끼면 되는 답이었다.",
+        "exclusionReason": "B 제외: m1-07-04-c6의 B가 구멍 뚫린 기둥의 밑넓이 빼기와 안쪽 옆넓이 더하기를 모두 묻고 있어 목표가 중복된다.",
+        "learningRole": "procedure",
+        "roleReason": "구멍 뚫린 기둥의 밑넓이·옆넓이",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1925,
+        "part": "m1plus",
+        "sourceFingerprint": "76bdb58c66cdb4c79a2e4541998840c51eba09a6b5d9d909116eafe99ba68602",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1925
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "밑면에 수직인 원기둥 모양 구멍이 두 밑면을 관통하면, 밑넓이는 바깥 밑면의 넓이에서 구멍의 넓이를 {뺀} 값이고, 옆넓이는 바깥 옆넓이에 구멍 안쪽의 옆넓이를 {더한} 값이다.",
+        "cSlotAnswers": [
+          "뺀",
+          "더한"
+        ],
+        "cStudentSentence": "밑면에 수직인 원기둥 모양 구멍이 두 밑면을 관통하면, 밑넓이는 바깥 밑면의 넓이에서 구멍의 넓이를 □ 값이고, 옆넓이는 바깥 옆넓이에 구멍 안쪽의 옆넓이를 □ 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "뺀",
+            "equivalentAnswers": [
+              "뺀"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더한",
+            "equivalentAnswers": [
+              "더한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "뺀"
+          ],
+          [
+            "더한"
+          ]
+        ],
+        "proposalFingerprint": "7dd1f9e0f42ef1ca9d3cd61ebffe36c08011ce3e128ae798b95188f15eef9830"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc7",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반구의 겉넓이",
+        "kind": "공식",
+        "level": "하",
+        "definition": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 {$3\\pi r^2$}이다.",
+        "example": {
+          "prompt": "반지름 $2$인 반구의 겉넓이는?",
+          "answer": "$12\\pi$"
+        },
+        "studentC": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 □이다.",
+        "answers": [
+          "$3\\pi r^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "둥근 면과 단면을 더하는 내용이 반구의 겉넓이와 부피 문항의 답과 같음.",
+        "cDecision": "keep",
+        "cReason": "두 넓이를 더해 식을 완성하는 짧은 계산 빈칸이라 유지함.",
+        "exclusionReason": "B 제외: m1-07-06-c4(반구의 겉넓이와 부피)와 목표가 같은 서술형 중복.",
+        "learningRole": "definition",
+        "roleReason": "반구의 겉넓이를 $r$로 나타낸 식",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1961,
+        "part": "m1plus",
+        "sourceFingerprint": "23c0aeaa6238f10846a4dd8103208a2343565aa8316330791b6dddc67fde803f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1961
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 □이다.",
+        "cFrozenDefinition": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 {$3\\pi r^2$}이다.",
+        "cFrozenAnswers": [
+          "$3\\pi r^2$"
+        ],
+        "cMarkedSentence": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 {$3\\pi r^2$}이다.",
+        "cSlotAnswers": [
+          "$3\\pi r^2$"
+        ],
+        "cStudentSentence": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 □이다.",
+        "cAnswers": [
+          "$3\\pi r^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3\\pi r^2$",
+            "equivalentAnswers": [
+              "$3\\pi r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3\\pi r^2$"
+          ]
+        ],
+        "proposalFingerprint": "2430222aa382fc4d6c7168c88fdcde8f80cd4b0b0e752af6a646885c809a3fc0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc14",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "도형 속에서 직각삼각형 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "도형에서 삼각비를 구할 때는 구하는 각을 한 예각으로 하는 {직각삼각형}을 찾는다 — 직사각형에서는 {대각선}이 그 빗변이 된다.",
+        "example": {
+          "prompt": "직사각형의 대각선이 가로와 이루는 각의 코사인을 구할 때 빗변이 되는 것은?",
+          "answer": "대각선 — 직각과 마주 봐서"
+        },
+        "studentC": "도형에서 삼각비를 구할 때는 구하는 각을 한 예각으로 하는 □을 찾는다 — 직사각형에서는 □이 그 빗변이 된다.",
+        "answers": [
+          "직각삼각형",
+          "대각선"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\overline{AB}=4$, $\\overline{BC}=3$인 직사각형 $ABCD$에서 $\\angle BAC$의 코사인을 구하려고 한다. 사용할 직각삼각형과 그 빗변을 쓰고 $\\cos(\\angle BAC)$의 값을 구하시오.",
+        "bAnswer": "$\\angle B=90^\\circ$인 직각삼각형 $ABC$를 쓰고, 빗변은 대각선 $\\overline{AC}$이다. $\\overline{AC}=5$이므로 $\\cos(\\angle BAC)=\\frac{4}{5}$이다.",
+        "bGoal": "도형 속 직각삼각형을 찾아 삼각비 구하기",
+        "bReason": "그림이 없어 꼭짓점 순서와 변의 길이를 주고 대각선이 빗변임을 찾게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형 $ABC$",
+              "$\\triangle ABC$"
+            ]
+          },
+          {
+            "anyOf": [
+              "빗변은 대각선 $\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{5}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "대각선으로 나눈 삼각형이라는 구성을 명시해 빗변의 대상을 밝힌다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "대각선을 빗변으로 하는 삼각형 찾기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3531,
+        "part": "m3plus",
+        "sourceFingerprint": "f4b64b71f254e7f70c680fad2a6b2b12c3fcc180f1276fbd16dc145fee0176b2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3531
+        },
+        "directReview": null,
+        "cMarkedSentence": "직사각형을 대각선 하나로 나누면 두 {직각삼각형}이 생긴다. 이 두 삼각형에서 빗변은 직사각형의 {대각선}이다.",
+        "cSlotAnswers": [
+          "직각삼각형",
+          "대각선"
+        ],
+        "cStudentSentence": "직사각형을 대각선 하나로 나누면 두 □이 생긴다. 이 두 삼각형에서 빗변은 직사각형의 □이다.",
+        "cAnswers": [
+          "직각삼각형",
+          "대각선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직각삼각형",
+            "equivalentAnswers": [
+              "직각삼각형"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직각삼각형"
+          ],
+          [
+            "대각선"
+          ]
+        ],
+        "proposalFingerprint": "4d9f4f919b4ffbb8a7ce9fd0f951d9475bdf10e0d3b3847db83a3e7d8ee82678",
+        "cAfter": "직사각형을 대각선 하나로 나누면 두 {직각삼각형}이 생긴다. 이 두 삼각형에서 빗변은 직사각형의 {대각선}이다."
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-06-xc1",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "확대한 도형의 대응 길이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "도형을 같은 비율로 확대하면 어느 대응 길이든 같은 {배수}로 늘어난다.",
+        "studentC": "도형을 같은 비율로 확대하면 어느 대응 길이든 같은 □로 늘어난다.",
+        "answers": [
+          "배수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-xc1",
+        "learningRole": "definition",
+        "roleReason": "확대하면 모든 대응 길이가 같은 배수로 늘어난다",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "닮음의 기본 성질 한 줄로 c1·c8 B에서 이미 전제로 쓰인다.",
+        "cDecision": "keep",
+        "cReason": "'같은 배수'를 묻는 짧은 빈칸으로 닮음 기본 성질을 확인한다.",
+        "exclusionReason": "B 제외: 대응 길이가 같은 배수로 변한다는 성질은 c1·c8 B 질문과 목표가 중복된다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3111,
+        "part": "m2plus",
+        "sourceFingerprint": "50d3b9ed8d8db1b6fd366f2d42cb2be1f6e81747cdae1c5a322856263c881b8a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3111
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "도형을 같은 비율로 확대하면 어느 대응 길이든 같은 □로 늘어난다.",
+        "cFrozenDefinition": "도형을 같은 비율로 확대하면 어느 대응 길이든 같은 {배수}로 늘어난다.",
+        "cFrozenAnswers": [
+          "배수"
+        ],
+        "cMarkedSentence": "도형을 같은 비율로 확대하면 어느 대응 길이든 같은 {배수}로 늘어난다.",
+        "cSlotAnswers": [
+          "배수"
+        ],
+        "cStudentSentence": "도형을 같은 비율로 확대하면 어느 대응 길이든 같은 □로 늘어난다.",
+        "cAnswers": [
+          "배수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "배수",
+            "equivalentAnswers": [
+              "배수",
+              "배율"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "배수",
+            "accept": [
+              "배율"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "배수",
+            "배율"
+          ]
+        ],
+        "proposalFingerprint": "e8e6ef712c1bb1690e91cf80587c86b1989286c47e78eb2b8521d9774c356034"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-06-xc2",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "축소한 도형의 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "도형을 일정한 비율로 줄일 때 길이는 변하지만 대응하는 {각의 크기}는 그대로이다.",
+        "studentC": "도형을 일정한 비율로 줄일 때 길이는 변하지만 대응하는 □는 그대로이다.",
+        "answers": [
+          "각의 크기"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-xc2",
+        "learningRole": "definition",
+        "roleReason": "축소해도 대응각의 크기는 변하지 않는다",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 도형을 일정한 비율로 줄여서 새 도형을 그렸다. 대응하는 변의 길이와 대응하는 각의 크기는 각각 어떻게 되는가?",
+        "bAnswer": "대응하는 변의 길이는 모두 같은 비율로 줄어들고, 대응하는 각의 크기는 변하지 않는다.",
+        "bGoal": "축소할 때 변하는 양과 변하지 않는 양 구별",
+        "bReason": "길이와 각을 대비해 무엇이 그대로인지 답하도록 범위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "길이는 같은 비율로 줄어든다",
+              "길이는 일정한 비율로 변한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 크기는 그대로이다",
+              "각의 크기는 같다",
+              "각은 변하지 않는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "길이는 변한다는 대비 속에서 '각의 크기'를 묻는 분명한 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3112,
+        "part": "m2plus",
+        "sourceFingerprint": "c547cc18dbcfa574f22058ac9e0e3317751bfa820a25a2e54996aca2f9be69a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3112
+        },
+        "directReview": null,
+        "cFrozenSentence": "도형을 일정한 비율로 줄일 때 길이는 변하지만 대응하는 □는 그대로이다.",
+        "cFrozenDefinition": "도형을 일정한 비율로 줄일 때 길이는 변하지만 대응하는 {각의 크기}는 그대로이다.",
+        "cFrozenAnswers": [
+          "각의 크기"
+        ],
+        "cMarkedSentence": "도형을 일정한 비율로 줄일 때 길이는 변하지만 대응하는 {각의 크기}는 그대로이다.",
+        "cSlotAnswers": [
+          "각의 크기"
+        ],
+        "cStudentSentence": "도형을 일정한 비율로 줄일 때 길이는 변하지만 대응하는 □는 그대로이다.",
+        "cAnswers": [
+          "각의 크기"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "각의 크기",
+            "equivalentAnswers": [
+              "각의 크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "각의 크기"
+          ]
+        ],
+        "proposalFingerprint": "5089933bddcd091cd73c38a11c528c61dd2a4deff8269c89a5dd9c9030e686ff"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-06-xc4",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "둘레 비의 비교 순서",
+        "kind": "방법",
+        "level": "하",
+        "definition": "닮음비를 작은 도형부터 적었다면 둘레의 비도 {작은 도형}부터 적어야 한다.",
+        "studentC": "닮음비를 작은 도형부터 적었다면 둘레의 비도 □부터 적어야 한다.",
+        "answers": [
+          "작은 도형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-xc4",
+        "learningRole": "procedure",
+        "roleReason": "닮음비와 둘레의 비를 같은 도형 순서로 쓴다",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "비를 쓰는 순서는 독립 개념이 아닌 c1의 표기 주의 사항이다.",
+        "cDecision": "keep",
+        "cReason": "닮음비와 같은 순서로 쓴다는 대응 빈칸이 짧고 분명하다.",
+        "exclusionReason": "B 제외: 둘레 비 표기 순서는 c1 B 둘레 비 질문의 일부라 중복 형식이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3114,
+        "part": "m2plus",
+        "sourceFingerprint": "f2e5efb994c989fa5a99384717cca968604875deb5f64fd40d2df88fc2f23ab7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3114
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "닮음비를 작은 도형부터 적었다면 둘레의 비도 □부터 적어야 한다.",
+        "cFrozenDefinition": "닮음비를 작은 도형부터 적었다면 둘레의 비도 {작은 도형}부터 적어야 한다.",
+        "cFrozenAnswers": [
+          "작은 도형"
+        ],
+        "cMarkedSentence": "닮음비를 작은 도형부터 적었다면 둘레의 비도 {작은 도형}부터 적어야 한다.",
+        "cSlotAnswers": [
+          "작은 도형"
+        ],
+        "cStudentSentence": "닮음비를 작은 도형부터 적었다면 둘레의 비도 □부터 적어야 한다.",
+        "cAnswers": [
+          "작은 도형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작은 도형",
+            "equivalentAnswers": [
+              "작은 도형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작은 도형"
+          ]
+        ],
+        "proposalFingerprint": "f904d4560c975491820cc7edf63c19ba29c43bd15a768594f4a727c1a3e6372d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc23",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반구 그릇의 물",
+        "kind": "방법",
+        "level": "상",
+        "definition": "반구 모양 그릇에 가득 찬 물의 부피는 그릇과 반지름이 같은 {구}의 부피의 {절반}이다.",
+        "example": {
+          "prompt": "반지름 $9$인 반구 그릇에 가득 담긴 물의 부피는?",
+          "answer": "$486\\pi$"
+        },
+        "studentC": "반구 모양 그릇에 가득 찬 물의 부피는 그릇과 반지름이 같은 □의 부피의 □이다.",
+        "answers": [
+          "구",
+          "절반"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "가득 찬 물의 부피는 반구의 부피를 상황만 바꿔 다시 묻는 것임.",
+        "cDecision": "rewrite",
+        "cReason": "그릇 벽 두께 대신 물을 담는 안쪽 반구의 반지름을 기준으로 비교한다.",
+        "exclusionReason": "B 제외: m1-07-06-c4(반구의 겉넓이와 부피)와 목표가 같은 서술형 중복.",
+        "learningRole": "application",
+        "roleReason": "반구의 부피를 그릇의 물에 적용",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1977,
+        "part": "m1plus",
+        "sourceFingerprint": "79aaf57613becedf1f78e2cf0419f3d22dddfbe9da5604fda3658f5268709575",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1977
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "안쪽이 반구 모양인 그릇에 가득 찬 물의 부피는 그 반구와 반지름이 같은 {구}의 부피의 {절반}이다.",
+        "cSlotAnswers": [
+          "구",
+          "절반"
+        ],
+        "cStudentSentence": "안쪽이 반구 모양인 그릇에 가득 찬 물의 부피는 그 반구와 반지름이 같은 □의 부피의 □이다.",
+        "cAnswers": [
+          "구",
+          "절반"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "구",
+            "equivalentAnswers": [
+              "구"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "반",
+              "$\\frac12$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "$\\frac{1}{2}$",
+              "반"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "구"
+          ],
+          [
+            "절반",
+            "반",
+            "$\\frac12$"
+          ]
+        ],
+        "proposalFingerprint": "6fa0814914148086aa70e984cbe5a64da1cc5cdc78c0f3b5412199e5b8779ef4",
+        "cAfter": "안쪽이 반구 모양인 그릇에 가득 찬 물의 부피는 그 반구와 반지름이 같은 {구}의 부피의 {절반}이다."
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-06-xc10",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "겉넓이 비에서 길이 비",
+        "kind": "방법",
+        "level": "중",
+        "definition": "닮은 입체의 겉넓이 비가 두 수의 제곱 꼴이면 제곱하기 전의 {양수}끼리 비교하여 길이 비를 찾는다.",
+        "studentC": "닮은 입체의 겉넓이 비가 두 수의 제곱 꼴이면 제곱하기 전의 □끼리 비교하여 길이 비를 찾는다.",
+        "answers": [
+          "양수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-xc10",
+        "learningRole": "procedure",
+        "roleReason": "겉넓이 비를 제곱 꼴로 보고 제곱 전 양수로 길이 비를 찾는다",
+        "bDecision": "rewrite",
+        "bPrompt": "닮은 두 입체도형의 겉넓이의 비가 $9:16$이다. 두 입체도형의 닮음비를 구하고, 어떻게 구했는지 쓰시오.",
+        "bAnswer": "$9=3^2$, $16=4^2$이므로 제곱하기 전의 양수끼리 비교하여 닮음비는 $3:4$이다.",
+        "bGoal": "겉넓이 비에서 닮음비 거꾸로 구하기",
+        "bReason": "제곱을 거꾸로 되돌리는 절차가 드러나게 제곱수 비 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3:4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9=3^2$, $16=4^2$",
+              "제곱하여 $9$, $16$이 되는 양수를 찾는다",
+              "겉넓이 비는 닮음비의 제곱이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'제곱하기 전의 양수'를 묻는 핵심 빈칸이 짧고 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3118,
+        "part": "m2plus",
+        "sourceFingerprint": "9d7487426ff88640a2cf1f21b0f74161065624f28418c790ddc3e5729fdea704",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3118
+        },
+        "directReview": null,
+        "cFrozenSentence": "닮은 입체의 겉넓이 비가 두 수의 제곱 꼴이면 제곱하기 전의 □끼리 비교하여 길이 비를 찾는다.",
+        "cFrozenDefinition": "닮은 입체의 겉넓이 비가 두 수의 제곱 꼴이면 제곱하기 전의 {양수}끼리 비교하여 길이 비를 찾는다.",
+        "cFrozenAnswers": [
+          "양수"
+        ],
+        "cMarkedSentence": "닮은 입체의 겉넓이 비가 두 수의 제곱 꼴이면 제곱하기 전의 {양수}끼리 비교하여 길이 비를 찾는다.",
+        "cSlotAnswers": [
+          "양수"
+        ],
+        "cStudentSentence": "닮은 입체의 겉넓이 비가 두 수의 제곱 꼴이면 제곱하기 전의 □끼리 비교하여 길이 비를 찾는다.",
+        "cAnswers": [
+          "양수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ]
+        ],
+        "proposalFingerprint": "b22aae0872cec712fb048e4c6a6f3e97e14ac1def9b22f27dfcc8a957b449177"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-06-xc11",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "부피 비에서 길이 비",
+        "kind": "방법",
+        "level": "중",
+        "definition": "닮은 입체의 부피 비를 세제곱 꼴로 나타내고 세 번 곱한 {양수}를 찾아 길이 비를 구한다.",
+        "studentC": "닮은 입체의 부피 비를 세제곱 꼴로 나타내고 세 번 곱한 □를 찾아 길이 비를 구한다.",
+        "answers": [
+          "양수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-xc11",
+        "learningRole": "procedure",
+        "roleReason": "부피 비를 세제곱 꼴로 보고 세제곱 전 양수로 길이 비를 찾는다",
+        "bDecision": "rewrite",
+        "bPrompt": "닮은 두 입체도형의 부피의 비가 $8:27$이다. 두 입체도형의 닮음비를 구하고, 어떻게 구했는지 쓰시오.",
+        "bAnswer": "$8=2^3$, $27=3^3$이므로 세제곱하기 전의 양수끼리 비교하여 닮음비는 $2:3$이다.",
+        "bGoal": "부피 비에서 닮음비 거꾸로 구하기",
+        "bReason": "세제곱을 되돌리는 절차를 보이도록 세제곱수 비 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8=2^3$, $27=3^3$",
+              "세제곱하여 $8$, $27$이 되는 양수를 찾는다",
+              "부피 비는 닮음비의 세제곱이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "닮은 입체의 부피의 비를 세제곱 꼴로 나타낸 뒤, 세제곱하기 전의 {양수}끼리 비교하여 길이의 비를 구한다.",
+        "cAnswers": [
+          "양수"
+        ],
+        "cReason": "'세 번 곱한 □'가 곱하기 전인지 후인지 모호해 세제곱 전으로 밝혔다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3119,
+        "part": "m2plus",
+        "sourceFingerprint": "53f2f385cc77dda0bb6c96d4114c3a6d3bad731e31f4e1201c4e78d24002d814",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3119
+        },
+        "directReview": null,
+        "cMarkedSentence": "닮은 입체의 부피의 비를 세제곱 꼴로 나타낸 뒤, 세제곱하기 전의 {양수}끼리 비교하여 길이의 비를 구한다.",
+        "cSlotAnswers": [
+          "양수"
+        ],
+        "cStudentSentence": "닮은 입체의 부피의 비를 세제곱 꼴로 나타낸 뒤, 세제곱하기 전의 □끼리 비교하여 길이의 비를 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ]
+        ],
+        "proposalFingerprint": "24fe4804f79d4933361c78f289600cb4714d2513bfdf8f55ed27fc7ae3ea0544"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc3",
+        "section": "중1::8. 통계::대푯값",
+        "term": "자료에 없는 평균",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평균은 변량과 같은 {단위}를 쓰고, 자료에 없는 값이 나올 수도 {있다}.",
+        "example": {
+          "prompt": "$1$, $2$, $4$의 평균은?",
+          "answer": "$\\frac{7}{3}$"
+        },
+        "studentC": "평균은 변량과 같은 □를 쓰고, 자료에 없는 값이 나올 수도 □.",
+        "answers": [
+          "단위",
+          "있다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "평균은 반드시 자료에 있는 값 중 하나인가? $1$, $2$, $4$의 평균을 구하여 답하시오.",
+        "bAnswer": "아니다. 평균은 $\\frac{1+2+4}{3}=\\frac{7}{3}$인데, 이 값은 자료에 없다.",
+        "bGoal": "평균이 자료에 없는 값일 수 있음을 알기",
+        "bReason": "제목 '자료에 없는 평균'이 묻는 바를 예 하나로 판단하게 구체화함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평균은 자료에 없는 값일 수도 있다",
+              "반드시 자료에 있는 값은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 $\\frac{7}{3}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "단위와 '자료에 없는 값' 두 성질을 짧게 확인함",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "평균이 자료 밖의 값일 수 있음을 예로 확인",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1981,
+        "part": "m1plus",
+        "sourceFingerprint": "f87a5e098ba507bf93e35b3982e334d51c2e0bd692010e4652971cdfc79ea749",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1981
+        },
+        "directReview": null,
+        "cFrozenSentence": "평균은 변량과 같은 □를 쓰고, 자료에 없는 값이 나올 수도 □.",
+        "cFrozenDefinition": "평균은 변량과 같은 {단위}를 쓰고, 자료에 없는 값이 나올 수도 {있다}.",
+        "cFrozenAnswers": [
+          "단위",
+          "있다"
+        ],
+        "cMarkedSentence": "평균은 변량과 같은 {단위}를 쓰고, 자료에 없는 값이 나올 수도 {있다}.",
+        "cSlotAnswers": [
+          "단위",
+          "있다"
+        ],
+        "cStudentSentence": "평균은 변량과 같은 □를 쓰고, 자료에 없는 값이 나올 수도 □.",
+        "cAnswers": [
+          "단위",
+          "있다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "단위",
+            "equivalentAnswers": [
+              "단위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "있다",
+            "equivalentAnswers": [
+              "있다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "단위"
+          ],
+          [
+            "있다"
+          ]
+        ],
+        "proposalFingerprint": "a5ac7a7641ea4315726641a28eb16dfb5bb87038118a6b41163a41168d4eb50b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc4",
+        "section": "중1::8. 통계::대푯값",
+        "term": "최빈값 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "최빈값은 각 값이 나온 {횟수}를 세어 가장 {많은} 값을 고른다.",
+        "example": {
+          "prompt": "$4$, $6$, $6$, $6$, $8$의 최빈값은?",
+          "answer": "$6$"
+        },
+        "studentC": "최빈값은 각 값이 나온 □를 세어 가장 □ 값을 고른다.",
+        "answers": [
+          "횟수",
+          "많은"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "횟수를 세어 최빈값을 찾는 내용이 c5의 질문에 이미 들어 있음",
+        "cDecision": "rewrite",
+        "cReason": "값 자체의 크기가 아니라 나온 횟수가 가장 많다는 것을 명시한다.",
+        "exclusionReason": "B 제외: 최빈값을 횟수로 찾는 질문은 m1-08-01-c5의 B(뜻과 구하기)와 목표가 중복됨",
+        "learningRole": "procedure",
+        "roleReason": "나온 횟수를 세어 최빈값 찾기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1982,
+        "part": "m1plus",
+        "sourceFingerprint": "ecbc67e6a9ee42baf9119cfaa157dcbfce377e190b497b952330ec0a9794393f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1982
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "최빈값은 각 값이 나온 {횟수}를 세어, 그 횟수가 가장 {많은} 값을 고른다.",
+        "cSlotAnswers": [
+          "횟수",
+          "많은"
+        ],
+        "cStudentSentence": "최빈값은 각 값이 나온 □를 세어, 그 횟수가 가장 □ 값을 고른다.",
+        "cAnswers": [
+          "횟수",
+          "많은"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "횟수",
+            "equivalentAnswers": [
+              "횟수",
+              "개수"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "많은",
+            "equivalentAnswers": [
+              "많은"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "횟수",
+            "accept": [
+              "개수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "횟수",
+            "개수"
+          ],
+          [
+            "많은"
+          ]
+        ],
+        "proposalFingerprint": "db78ded8c51dcfee72fb307e711789a404cf8a545512beabf792172ea68197e5",
+        "cAfter": "최빈값은 각 값이 나온 {횟수}를 세어, 그 횟수가 가장 {많은} 값을 고른다."
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-06-xc18",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "넓이 차로 두 넓이 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "넓이가 서로 다른 닮은 두 도형의 넓이 비와 넓이 차를 알면 비의 두 수의 {차}가 실제 넓이 차에 대응함을 이용한다.",
+        "studentC": "넓이가 서로 다른 닮은 두 도형의 넓이 비와 넓이 차를 알면 비의 두 수의 □가 실제 넓이 차에 대응함을 이용한다.",
+        "answers": [
+          "차"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-xc18",
+        "learningRole": "application",
+        "roleReason": "넓이 비의 두 수의 차를 실제 넓이 차에 대응시킨다",
+        "bDecision": "rewrite",
+        "bPrompt": "닮은 두 평면도형의 넓이의 비가 $4:9$이고 넓이의 차가 $20\\,\\mathrm{cm}^2$이다. 두 도형의 넓이를 각각 구하고, 비의 어떤 값을 넓이의 차에 대응시켰는지 쓰시오.",
+        "bAnswer": "비의 두 수의 차 $9-4=5$가 $20\\,\\mathrm{cm}^2$에 대응하므로 비의 $1$에 해당하는 넓이는 $4\\,\\mathrm{cm}^2$이다. 두 넓이는 $16\\,\\mathrm{cm}^2$, $36\\,\\mathrm{cm}^2$이다.",
+        "bGoal": "넓이 비와 넓이 차로 두 넓이 구하기",
+        "bReason": "비의 차를 실제 차에 맞추는 생각이 필요하도록 구체 비와 차를 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$16\\,\\mathrm{cm}^2$와 $36\\,\\mathrm{cm}^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9-4=5$가 $20$에 대응한다",
+              "비의 두 수의 차가 넓이의 차에 대응한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "비의 두 수의 '차'를 묻는 하나의 핵심 빈칸이 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3126,
+        "part": "m2plus",
+        "sourceFingerprint": "ae54c778320fb5a6645794452d179344b5f8ec120a6e7d5ba7c56afb5eb102e6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3126
+        },
+        "directReview": null,
+        "cFrozenSentence": "넓이가 서로 다른 닮은 두 도형의 넓이 비와 넓이 차를 알면 비의 두 수의 □가 실제 넓이 차에 대응함을 이용한다.",
+        "cFrozenDefinition": "넓이가 서로 다른 닮은 두 도형의 넓이 비와 넓이 차를 알면 비의 두 수의 {차}가 실제 넓이 차에 대응함을 이용한다.",
+        "cFrozenAnswers": [
+          "차"
+        ],
+        "cMarkedSentence": "넓이가 서로 다른 닮은 두 도형의 넓이 비와 넓이 차를 알면 비의 두 수의 {차}가 실제 넓이 차에 대응함을 이용한다.",
+        "cSlotAnswers": [
+          "차"
+        ],
+        "cStudentSentence": "넓이가 서로 다른 닮은 두 도형의 넓이 비와 넓이 차를 알면 비의 두 수의 □가 실제 넓이 차에 대응함을 이용한다.",
+        "cAnswers": [
+          "차"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차",
+              "차이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "차",
+            "accept": [
+              "차이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "차",
+            "차이"
+          ]
+        ],
+        "proposalFingerprint": "93b1ac0216edb6a33ddb79838e6c6209d5595ffa7103efa3322cea4c40a3b016"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc7",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "정리의 적용 조건 확인",
+        "kind": "방법",
+        "level": "하",
+        "definition": "세 변의 제곱 관계를 쓰기 전에 삼각형에 {직각}이 있는지 또는 그 관계로 직각을 판별하는 상황인지 확인한다.",
+        "studentC": "세 변의 제곱 관계를 쓰기 전에 삼각형에 □이 있는지 또는 그 관계로 직각을 판별하는 상황인지 확인한다.",
+        "answers": [
+          "직각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc7",
+        "learningRole": "procedure",
+        "roleReason": "제곱 관계를 쓰는 상황(직각 존재 또는 직각 판별)",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 세 변의 길이 사이에 $a^2+b^2=c^2$ 같은 제곱 관계를 이용할 수 있는 상황을 모두 쓰시오.",
+        "bAnswer": "삼각형에 직각이 있어(직각삼각형이어서) 변의 길이를 구할 때와, 세 변의 길이로 직각삼각형인지 판별할 때이다.",
+        "bGoal": "피타고라스 정리의 적용 조건 확인",
+        "bReason": "정리와 그 역이 쓰이는 상황을 구분해 답하도록 범위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형일 때",
+              "삼각형에 직각이 있을 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각삼각형인지 판별할 때",
+              "직각인지 판별하는 상황"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "적용 전 '직각' 유무를 확인한다는 하나의 핵심 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3137,
+        "part": "m2plus",
+        "sourceFingerprint": "d1036e3e626dff6b46c12d574cad20f07b3eb421e90a54d0fa6029e5e726be10",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3137
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 변의 제곱 관계를 쓰기 전에 삼각형에 □이 있는지 또는 그 관계로 직각을 판별하는 상황인지 확인한다.",
+        "cFrozenDefinition": "세 변의 제곱 관계를 쓰기 전에 삼각형에 {직각}이 있는지 또는 그 관계로 직각을 판별하는 상황인지 확인한다.",
+        "cFrozenAnswers": [
+          "직각"
+        ],
+        "cMarkedSentence": "세 변의 제곱 관계를 쓰기 전에 삼각형에 {직각}이 있는지 또는 그 관계로 직각을 판별하는 상황인지 확인한다.",
+        "cSlotAnswers": [
+          "직각"
+        ],
+        "cStudentSentence": "세 변의 제곱 관계를 쓰기 전에 삼각형에 □이 있는지 또는 그 관계로 직각을 판별하는 상황인지 확인한다.",
+        "cAnswers": [
+          "직각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직각",
+            "equivalentAnswers": [
+              "직각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직각"
+          ]
+        ],
+        "proposalFingerprint": "21125760b5da47870db56e416fbd0eb69cf5f2ac223246f8c9f3be80a2c9d6ec"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-02-xc4",
+        "section": "중1::8. 통계::줄기와 잎 그림",
+        "term": "가장 작은 값과 가장 큰 값",
+        "kind": "방법",
+        "level": "하",
+        "definition": "크기순으로 정리한 줄기와 잎 그림에서 가장 작은 변량은 잎이 있는 첫 줄기의 {첫} 잎으로, 가장 큰 변량은 잎이 있는 마지막 줄기의 {마지막} 잎으로 읽는다.",
+        "example": {
+          "prompt": "줄기 $1$의 잎이 $2$, $5$이고 줄기 $3$의 잎이 $4$, $9$이면 가장 큰 값은?",
+          "answer": "$39$"
+        },
+        "studentC": "크기순으로 정리한 줄기와 잎 그림에서 가장 작은 변량은 잎이 있는 첫 줄기의 □ 잎으로, 가장 큰 변량은 잎이 있는 마지막 줄기의 □ 잎으로 읽는다.",
+        "answers": [
+          "첫",
+          "마지막"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-02-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "잎이 일의 자리 숫자인 줄기와 잎 그림에서 줄기 $1$의 잎이 $2$, $5$이고, 줄기 $2$에는 잎이 없으며, 줄기 $3$의 잎이 $4$, $9$이다. 가장 작은 변량과 가장 큰 변량을 구하고, 그림의 어느 위치에서 읽었는지 쓰시오.",
+        "bAnswer": "가장 작은 변량은 $12$(잎이 있는 첫 줄기의 첫 잎), 가장 큰 변량은 $39$(잎이 있는 마지막 줄기의 마지막 잎)이다.",
+        "bGoal": "줄기와 잎 그림에서 최솟값과 최댓값 읽기",
+        "bReason": "그림이 없으므로 줄기별 잎을 글로 주고 읽은 위치까지 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 변량은 $12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 큰 변량은 $39$"
+            ]
+          },
+          {
+            "anyOf": [
+              "첫 줄기의 첫 잎과 마지막 줄기의 마지막 잎에서 읽는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "내림차순 그림과 혼동하지 않도록 줄기와 잎의 증가 방향을 명시한다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "그림에서 가장 작은 값과 큰 값을 읽는 위치",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2004,
+        "part": "m1plus",
+        "sourceFingerprint": "035abc9314457a13a0bc3886177ed20616fc6f896d12c26b50f3f7327c1d19b0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2004
+        },
+        "directReview": null,
+        "cMarkedSentence": "줄기는 위에서 아래로, 각 줄의 잎은 왼쪽에서 오른쪽으로 작은 수부터 정리한 그림이 있다. 가장 작은 변량은 잎이 있는 첫 줄기의 {첫} 잎으로, 가장 큰 변량은 마지막 줄기의 {마지막} 잎으로 읽는다.",
+        "cSlotAnswers": [
+          "첫",
+          "마지막"
+        ],
+        "cStudentSentence": "줄기는 위에서 아래로, 각 줄의 잎은 왼쪽에서 오른쪽으로 작은 수부터 정리한 그림이 있다. 가장 작은 변량은 잎이 있는 첫 줄기의 □ 잎으로, 가장 큰 변량은 마지막 줄기의 □ 잎으로 읽는다.",
+        "cAnswers": [
+          "첫",
+          "마지막"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "첫",
+            "equivalentAnswers": [
+              "첫",
+              "첫 번째",
+              "맨 앞"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "마지막",
+            "equivalentAnswers": [
+              "마지막",
+              "맨 끝",
+              "끝"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "첫",
+            "accept": [
+              "첫 번째",
+              "맨 앞"
+            ]
+          },
+          {
+            "answer": "마지막",
+            "accept": [
+              "맨 끝",
+              "끝"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "첫",
+            "첫 번째",
+            "맨 앞"
+          ],
+          [
+            "마지막",
+            "맨 끝",
+            "끝"
+          ]
+        ],
+        "proposalFingerprint": "77696fc371c6adcff23797971aff4290b6d21e28932f68c89fb801cc3e206664",
+        "cAfter": "줄기는 위에서 아래로, 각 줄의 잎은 왼쪽에서 오른쪽으로 작은 수부터 정리한 그림이 있다. 가장 작은 변량은 잎이 있는 첫 줄기의 {첫} 잎으로, 가장 큰 변량은 마지막 줄기의 {마지막} 잎으로 읽는다."
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc14",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "그림 방향과 빗변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "삼각형을 돌려 놓아도 빗변은 종이에서 기울어진 모양이 아니라 {직각의 맞은편}이라는 조건으로 찾는다.",
+        "studentC": "삼각형을 돌려 놓아도 빗변은 종이에서 기울어진 모양이 아니라 □이라는 조건으로 찾는다.",
+        "answers": [
+          "직각의 맞은편"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc14",
+        "learningRole": "definition",
+        "roleReason": "돌려 놓아도 빗변은 직각의 맞은편으로 찾는다",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "빗변을 직각의 맞은편으로 찾는 기준은 xc1 B와 같다.",
+        "cDecision": "keep",
+        "cReason": "모양이 아닌 조건으로 빗변을 찾는다는 대비가 분명한 빈칸이다.",
+        "exclusionReason": "B 제외: 직각의 맞은편으로 빗변을 찾는 기준은 xc1 B와 방향만 다른 중복이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3144,
+        "part": "m2plus",
+        "sourceFingerprint": "71cff03b4c1a61aed8439b91fdedcfdc478eecd07862ff05559e644604b8aee6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3144
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "삼각형을 돌려 놓아도 빗변은 종이에서 기울어진 모양이 아니라 □이라는 조건으로 찾는다.",
+        "cFrozenDefinition": "삼각형을 돌려 놓아도 빗변은 종이에서 기울어진 모양이 아니라 {직각의 맞은편}이라는 조건으로 찾는다.",
+        "cFrozenAnswers": [
+          "직각의 맞은편"
+        ],
+        "cMarkedSentence": "삼각형을 돌려 놓아도 빗변은 종이에서 기울어진 모양이 아니라 {직각의 맞은편}이라는 조건으로 찾는다.",
+        "cSlotAnswers": [
+          "직각의 맞은편"
+        ],
+        "cStudentSentence": "삼각형을 돌려 놓아도 빗변은 종이에서 기울어진 모양이 아니라 □이라는 조건으로 찾는다.",
+        "cAnswers": [
+          "직각의 맞은편"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직각의 맞은편",
+            "equivalentAnswers": [
+              "직각의 맞은편"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직각의 맞은편"
+          ]
+        ],
+        "proposalFingerprint": "7253c5fb3badb35b730bb117a036a3a86c35f2d4f42c28056b7a848dab023227"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-02-xc10",
+        "section": "중1::8. 통계::줄기와 잎 그림",
+        "term": "그림에서 최빈값 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "줄기와 잎을 함께 읽은 {변량} 가운데 가장 자주 나온 값이 최빈값이다. 모든 변량이 한 번씩 나오면 최빈값은 {없다}.",
+        "example": {
+          "prompt": "줄기 $4$의 잎이 $2$, $6$, $6$, $6$이고 다른 변량은 모두 한 번씩이면 최빈값은? ($4|6$은 $46$)",
+          "answer": "$46$"
+        },
+        "studentC": "줄기와 잎을 함께 읽은 □ 가운데 가장 자주 나온 값이 최빈값이다. 모든 변량이 한 번씩 나오면 최빈값은 □.",
+        "answers": [
+          "변량",
+          "없다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "잎이 일의 자리 숫자인 줄기와 잎 그림에서 줄기 $3$의 잎이 $6$, $9$, 줄기 $4$의 잎이 $2$, $6$, $6$, $6$이다. 최빈값을 구하고, 답이 $6$이 아닌 이유를 쓰시오.",
+        "bAnswer": "$46$. 최빈값은 잎이 아니라 줄기와 잎을 함께 읽은 변량으로 정한다. $46$이 $3$번으로 가장 많이 나왔고, $36$은 다른 변량이다.",
+        "bGoal": "줄기와 잎 그림에서 최빈값을 변량으로 읽기",
+        "bReason": "잎 $6$이 두 줄기에 걸친 예로 잎만 보는 오류를 구별하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최빈값은 $46$"
+            ]
+          },
+          {
+            "anyOf": [
+              "줄기와 잎을 함께 읽은 변량으로 판단한다",
+              "$36$과 $46$은 다른 변량이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "변량으로 읽는다는 점과 최빈값이 없는 경우를 함께 확인함",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "그림에서 최빈값을 변량 단위로 찾기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2010,
+        "part": "m1plus",
+        "sourceFingerprint": "7e727be1348189967dd75130ddf93b46a00f5b4a73e98940f14d6778e7f9fc00",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2010
+        },
+        "directReview": null,
+        "cFrozenSentence": "줄기와 잎을 함께 읽은 □ 가운데 가장 자주 나온 값이 최빈값이다. 모든 변량이 한 번씩 나오면 최빈값은 □.",
+        "cFrozenDefinition": "줄기와 잎을 함께 읽은 {변량} 가운데 가장 자주 나온 값이 최빈값이다. 모든 변량이 한 번씩 나오면 최빈값은 {없다}.",
+        "cFrozenAnswers": [
+          "변량",
+          "없다"
+        ],
+        "cMarkedSentence": "줄기와 잎을 함께 읽은 {변량} 가운데 가장 자주 나온 값이 최빈값이다. 모든 변량이 한 번씩 나오면 최빈값은 {없다}.",
+        "cSlotAnswers": [
+          "변량",
+          "없다"
+        ],
+        "cStudentSentence": "줄기와 잎을 함께 읽은 □ 가운데 가장 자주 나온 값이 최빈값이다. 모든 변량이 한 번씩 나오면 최빈값은 □.",
+        "cAnswers": [
+          "변량",
+          "없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변량",
+            "equivalentAnswers": [
+              "변량",
+              "값",
+              "수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "변량",
+            "accept": [
+              "값",
+              "수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변량",
+            "값",
+            "수"
+          ],
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "be5985e3a2c631e38ebc1e4bd9610fa94f1c8fcd157cec027747737a3bdab944"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-03-xc20",
+        "section": "중3::5. 삼각비::삼각비의 활용",
+        "term": "넓이가 가장 큰 끼인각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 {$90^\\circ$}일 때 가장 크다 — 예각의 사인과 둔각의 이웃각의 사인은 {$1$보다 작고} $\\sin 90^\\circ=1$이기 때문이다.",
+        "studentC": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 □일 때 가장 크다 — 예각의 사인과 둔각의 이웃각의 사인은 □ $\\sin 90^\\circ=1$이기 때문이다.",
+        "answers": [
+          "$90^\\circ$",
+          "$1$보다 작고"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "두 변의 길이가 $a$, $c$로 정해진 삼각형에서 끼인각의 크기만 바꿀 때, 넓이가 가장 커지는 끼인각의 크기를 말하고 그 까닭을 설명해 보세요.",
+        "bAnswer": "끼인각이 $90^\\circ$일 때 가장 크다. 넓이는 $\\frac12ac$에 끼인각의 사인(둔각이면 $180^\\circ$에서 뺀 예각의 사인)을 곱한 값이다. 이 값은 $1$ 이하이고, 끼인각이 $90^\\circ$일 때만 $1$이다.",
+        "bGoal": "두 변이 정해진 삼각형의 넓이가 최대인 끼인각 알기",
+        "bReason": "사인값이1보다 작다는 말과90도에서1이라는 모순을1이하로 바로잡는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "끼인각이 $90^\\circ$일 때 최대"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱해지는 사인의 값이 $90^\\circ$일 때 가장 큰 $1$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 {$90^\\circ$}일 때 가장 크다 — 끼인각이 예각이거나 둔각일 때 넓이 공식에 쓰는 사인의 값은 $\\sin 90^\\circ$의 값인 $1$보다 {작기} 때문이다.",
+        "cAnswers": [
+          "$90^\\circ$",
+          "작기"
+        ],
+        "cReason": "'둔각의 이웃각의 사인'이 어렵고 빈칸 '$1$보다 작고'는 구 전체였다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "사인 최대 1이 90°",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3577,
+        "part": "m3plus",
+        "sourceFingerprint": "1c002edd011b33e5b729d8925ea5f3ec3116ac4ef57ec82812ccec51fb22330e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3577
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 {$90^\\circ$}일 때 가장 크다 — 끼인각이 예각이거나 둔각일 때 넓이 공식에 쓰는 사인의 값은 $\\sin 90^\\circ$의 값인 $1$보다 {작기} 때문이다.",
+        "cSlotAnswers": [
+          "$90^\\circ$",
+          "작기"
+        ],
+        "cStudentSentence": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 □일 때 가장 크다 — 끼인각이 예각이거나 둔각일 때 넓이 공식에 쓰는 사인의 값은 $\\sin 90^\\circ$의 값인 $1$보다 □ 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$",
+              "직각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작기",
+            "equivalentAnswers": [
+              "작기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$90^\\circ$",
+            "accept": [
+              "직각"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$90^\\circ$",
+            "직각"
+          ],
+          [
+            "작기"
+          ]
+        ],
+        "proposalFingerprint": "1a14464c4cfcc44affab52f162f68bfa0d3768b09a8aa71076fd1384ddb5b3c6"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-01-xc17",
+        "section": "중3::6. 원의 성질::원과 현",
+        "term": "활꼴의 높이로 반지름 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 {$r^2=(r-h)^2+a^2$}을 세워 $r$을 구한다.",
+        "studentC": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 □을 세워 $r$을 구한다.",
+        "answers": [
+          "$r^2=(r-h)^2+a^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "반원보다 작은 활꼴에서 현의 길이의 절반이 $a$, 높이(현의 중점에서 호까지 현에 수직으로 잰 길이)가 $h$이다. 원의 반지름을 $r$이라 할 때 $r$을 구하는 식을 세우고, 직각삼각형의 세 변을 이용해 까닭을 쓰시오.",
+        "bAnswer": "높이를 재는 선을 늘이면 원의 중심을 지나므로 중심에서 현까지의 거리는 $r-h$이다. 빗변 $r$, 직각을 낀 두 변 $a$, $r-h$인 직각삼각형에서 $r^2=(r-h)^2+a^2$을 세운다.",
+        "bGoal": "활꼴의 높이로 반지름 구하기",
+        "bReason": "작은 활꼴로 한정해 양수 길이r-h를 정당하게 쓰고 직각삼각형 근거를 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$r^2=(r-h)^2+a^2$",
+              "$r=\\frac{a^2+h^2}{2h}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심에서현까지거리는r-h이며 빗변r과직각변a,r-h에피타고라스정리를쓴다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$a$, $h$, $r$의 뜻이 모두 주어진 식 하나를 묻는 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "활꼴의 높이와 현의 절반으로 반지름 식 세우기",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3595,
+        "part": "m3plus",
+        "sourceFingerprint": "6e800a27b5756b451fe162142abb7c2cd2403bf38f081d7e20c2673eb7c0d172",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3595
+        },
+        "directReview": null,
+        "cFrozenSentence": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 □을 세워 $r$을 구한다.",
+        "cFrozenDefinition": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 {$r^2=(r-h)^2+a^2$}을 세워 $r$을 구한다.",
+        "cFrozenAnswers": [
+          "$r^2=(r-h)^2+a^2$"
+        ],
+        "cMarkedSentence": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 {$r^2=(r-h)^2+a^2$}을 세워 $r$을 구한다.",
+        "cSlotAnswers": [
+          "$r^2=(r-h)^2+a^2$"
+        ],
+        "cStudentSentence": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 □을 세워 $r$을 구한다.",
+        "cAnswers": [
+          "$r^2=(r-h)^2+a^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$r^2=(r-h)^2+a^2$",
+            "equivalentAnswers": [
+              "$r^2=(r-h)^2+a^2$",
+              "$(r-h)^2+a^2=r^2$",
+              "$a^2+(r-h)^2=r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$r^2=(r-h)^2+a^2$",
+            "accept": [
+              "$(r-h)^2+a^2=r^2$",
+              "$a^2+(r-h)^2=r^2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$r^2=(r-h)^2+a^2$",
+            "$(r-h)^2+a^2=r^2$",
+            "$a^2+(r-h)^2=r^2$"
+          ]
+        ],
+        "proposalFingerprint": "13e66801089108304e99f19d4bbcfe2f05f3fb32ecc913e42e4b1b1e9e0fa04a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-02-xc12",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "직사각형의 한 변 역산",
+        "kind": "방법",
+        "level": "중",
+        "definition": "대각선과 한 변의 길이를 아는 직사각형에서는 대각선의 제곱에서 그 변의 {제곱을 뺀 값}이 다른 변의 제곱이다.",
+        "studentC": "대각선과 한 변의 길이를 아는 직사각형에서는 대각선의 제곱에서 그 변의 □이 다른 변의 제곱이다.",
+        "answers": [
+          "제곱을 뺀 값"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "대각선의 길이가 $d$, 가로의 길이가 $a$인 직사각형에서 세로의 길이를 $b$라 할 때, $b^2$을 $d$, $a$로 나타내시오.",
+        "bAnswer": "$a^2+b^2=d^2$이므로 $b^2=d^2-a^2$이다.",
+        "bGoal": "대각선과 한 변으로 다른 변의 제곱 구하기",
+        "bReason": "역산 방향을 문자로 정하고 제곱근 없이 $b^2$으로 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b^2=d^2-a^2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "빼서 구하는 역산 관계가 한 빈칸으로 분명해 유지",
+        "learningRole": "procedure",
+        "roleReason": "대각선의 제곱에서 한 변의 제곱을 빼는 역산",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3163,
+        "part": "m2plus",
+        "sourceFingerprint": "64ac3095b6b317fb56536ff5065035cdbb092c2fd177b15bb7c589250c2f5afb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3163
+        },
+        "directReview": null,
+        "cFrozenSentence": "대각선과 한 변의 길이를 아는 직사각형에서는 대각선의 제곱에서 그 변의 □이 다른 변의 제곱이다.",
+        "cFrozenDefinition": "대각선과 한 변의 길이를 아는 직사각형에서는 대각선의 제곱에서 그 변의 {제곱을 뺀 값}이 다른 변의 제곱이다.",
+        "cFrozenAnswers": [
+          "제곱을 뺀 값"
+        ],
+        "cMarkedSentence": "대각선과 한 변의 길이를 아는 직사각형에서는 대각선의 제곱에서 그 변의 {제곱을 뺀 값}이 다른 변의 제곱이다.",
+        "cSlotAnswers": [
+          "제곱을 뺀 값"
+        ],
+        "cStudentSentence": "대각선과 한 변의 길이를 아는 직사각형에서는 대각선의 제곱에서 그 변의 □이 다른 변의 제곱이다.",
+        "cAnswers": [
+          "제곱을 뺀 값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱을 뺀 값",
+            "equivalentAnswers": [
+              "제곱을 뺀 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱을 뺀 값"
+          ]
+        ],
+        "proposalFingerprint": "15024955cdb71d2a8d21fa5c07690019cf3562c79a0a53b6b67315e26775c3ab"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-04-xc8",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "접선과 현이 이루는 각과 중심각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 {중심각}은 {$2x$}이다.",
+        "studentC": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 □은 □이다.",
+        "answers": [
+          "중심각",
+          "$2x$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-xc8",
+        "learningRole": "reason",
+        "roleReason": "접선과 현의 각과 중심각의 $2$배 관계",
+        "bDecision": "rewrite",
+        "bPrompt": "원 $O$ 위의 점 $A$에서의 접선과 현 $AB$가 이루는 각의 크기가 $x$이다. 그 각의 안쪽에 놓인 호 $AB$에 대한 중심각의 크기를 $x$로 나타내고 까닭을 쓰시오. 큰 호일 때는 그 호를 따라 잰 $180^\\circ$보다 큰 중심각을 말한다.",
+        "bAnswer": "중심각의 크기는 $2x$이다. 접선과 현이 이루는 각은 그 호에 대한 원주각과 같으므로 원주각이 $x$이고, 같은 호의 중심각은 원주각의 두 배이기 때문이다.",
+        "bGoal": "접선과 현의 각과 중심각",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "그호에대한원주각이x이고중심각은그두배이다"
+            ]
+          }
+        ],
+        "bReason": "둔각에서90-x가음수가되는대안증명을빼고큰호에도맞는원주각근거를유지한다.",
+        "cDecision": "keep",
+        "cReason": "중심각과 $2x$라는 두 빈칸이 관계를 짧게 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3648,
+        "part": "m3plus",
+        "sourceFingerprint": "661b0b35ad5a1094ee8780c5b6309f32c83c621ba53b7df07597eb901df5c940",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3648
+        },
+        "directReview": null,
+        "cFrozenSentence": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 □은 □이다.",
+        "cFrozenDefinition": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 {중심각}은 {$2x$}이다.",
+        "cFrozenAnswers": [
+          "중심각",
+          "$2x$"
+        ],
+        "cMarkedSentence": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 {중심각}은 {$2x$}이다.",
+        "cSlotAnswers": [
+          "중심각",
+          "$2x$"
+        ],
+        "cStudentSentence": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 □은 □이다.",
+        "cAnswers": [
+          "중심각",
+          "$2x$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중심각",
+            "equivalentAnswers": [
+              "중심각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2x$",
+            "equivalentAnswers": [
+              "$2x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중심각"
+          ],
+          [
+            "$2x$"
+          ]
+        ],
+        "proposalFingerprint": "c788509cc7ba57b037989f3599826d0f3a6f3a94e1100bb132925a00fcee51dd"
+      }
+    }
+  ]
+}

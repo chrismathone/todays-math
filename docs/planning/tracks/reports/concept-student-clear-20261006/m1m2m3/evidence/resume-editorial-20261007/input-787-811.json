@@ -1,0 +1,2530 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:18:07.085Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c4",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "$a^2+2ab+b^2$, $a^2-2ab+b^2$의 인수분해",
+        "kind": "공식",
+        "level": "중",
+        "definition": "$a^2+2ab+b^2$은 {$(a+b)^2$}으로, $a^2-2ab+b^2$은 {$(a-b)^2$}으로 인수분해된다.",
+        "studentC": "$a^2+2ab+b^2$은 □으로, $a^2-2ab+b^2$은 □으로 인수분해된다.",
+        "answers": [
+          "$(a+b)^2$",
+          "$(a-b)^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c4",
+        "learningRole": "procedure",
+        "roleReason": "제곱 꼴 세 항식의 인수분해",
+        "bDecision": "rewrite",
+        "bPrompt": "$a^2+2ab+b^2$과 $a^2-2ab+b^2$을 각각 인수분해하시오.",
+        "bAnswer": "$a^2+2ab+b^2=(a+b)^2$, $a^2-2ab+b^2=(a-b)^2$",
+        "bGoal": "완전제곱식 꼴 인수분해 공식",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(a+b)^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(a-b)^2$"
+            ]
+          }
+        ],
+        "bReason": "두 식을 제시해 각각의 인수분해 결과를 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "두 공식 결과를 묻는 짧은 비교 빈칸이다.",
+        "studentLabel": "완전제곱식으로 인수분해하기",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 787,
+        "part": "m3",
+        "sourceFingerprint": "069f82b6269542910790abbfd69dbdf877125e2a0e1d0ea4bcaa56a991792f16",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 787
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a^2+2ab+b^2$은 □으로, $a^2-2ab+b^2$은 □으로 인수분해된다.",
+        "cFrozenDefinition": "$a^2+2ab+b^2$은 {$(a+b)^2$}으로, $a^2-2ab+b^2$은 {$(a-b)^2$}으로 인수분해된다.",
+        "cFrozenAnswers": [
+          "$(a+b)^2$",
+          "$(a-b)^2$"
+        ],
+        "cMarkedSentence": "$a^2+2ab+b^2$은 {$(a+b)^2$}으로, $a^2-2ab+b^2$은 {$(a-b)^2$}으로 인수분해된다.",
+        "cSlotAnswers": [
+          "$(a+b)^2$",
+          "$(a-b)^2$"
+        ],
+        "cStudentSentence": "$a^2+2ab+b^2$은 □으로, $a^2-2ab+b^2$은 □으로 인수분해된다.",
+        "cAnswers": [
+          "$(a+b)^2$",
+          "$(a-b)^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(a+b)^2$",
+            "equivalentAnswers": [
+              "$(a+b)^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(a-b)^2$",
+            "equivalentAnswers": [
+              "$(a-b)^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$(a+b)^2$"
+          ],
+          [
+            "$(a-b)^2$"
+          ]
+        ],
+        "proposalFingerprint": "2f26d078af7d667d44517478bc2c683a851976f3cba44f6eb6b6acff6bebde74"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c5",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "완전제곱식",
+        "kind": "정의",
+        "level": "중",
+        "definition": "어떤 다항식을 {제곱}한 꼴이거나 그런 식에 {상수}가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "studentC": "어떤 다항식을 □한 꼴이거나 그런 식에 □가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "answers": [
+          "제곱",
+          "상수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c5",
+        "learningRole": "definition",
+        "roleReason": "제곱한 꼴 또는 그 상수배",
+        "bDecision": "rewrite",
+        "bPrompt": "완전제곱식이란 어떤 식인지 설명하고, 상수가 곱해진 경우를 포함하여 예를 두 개 드시오.",
+        "bAnswer": "어떤 다항식을 제곱한 꼴이거나 그런 식에 상수가 곱해진 식이다. 예: $(x+3)^2$, $2(a-b)^2$",
+        "bGoal": "완전제곱식의 뜻",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다항식을 제곱한 꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "제곱한 꼴에 상수가 곱해진 것도 포함"
+            ]
+          }
+        ],
+        "bReason": "상수배 포함 여부를 놓치지 않게 예의 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "제곱과 상수를 묻는 빈칸에 예가 있어 분명하다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 788,
+        "part": "m3",
+        "sourceFingerprint": "6e04c37a992b47850b9a305f3195840a3ee2613a572d9363855869cf3b01e39b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 788
+        },
+        "directReview": null,
+        "cFrozenSentence": "어떤 다항식을 □한 꼴이거나 그런 식에 □가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "cFrozenDefinition": "어떤 다항식을 {제곱}한 꼴이거나 그런 식에 {상수}가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "cFrozenAnswers": [
+          "제곱",
+          "상수"
+        ],
+        "cMarkedSentence": "어떤 다항식을 {제곱}한 꼴이거나 그런 식에 {상수}가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "cSlotAnswers": [
+          "제곱",
+          "상수"
+        ],
+        "cStudentSentence": "어떤 다항식을 □한 꼴이거나 그런 식에 □가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "cAnswers": [
+          "제곱",
+          "상수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "상수",
+            "equivalentAnswers": [
+              "상수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱"
+          ],
+          [
+            "상수"
+          ]
+        ],
+        "proposalFingerprint": "c4b4fcd184346f19ed8fe6ef9b5a2dc338985a97a88110b95b85e6b272a713a1"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c6",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "$a^2-b^2$의 인수분해",
+        "kind": "공식",
+        "level": "중",
+        "definition": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 {곱}인 {$(a+b)(a-b)$}로 인수분해된다.",
+        "studentC": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 □인 □로 인수분해된다.",
+        "answers": [
+          "곱",
+          "$(a+b)(a-b)$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c6",
+        "learningRole": "procedure",
+        "roleReason": "제곱의 차는 합과 차의 곱",
+        "bDecision": "rewrite",
+        "bPrompt": "$a^2-b^2$을 인수분해하고, 그 결과가 $a$와 $b$의 무엇과 무엇의 곱인지 말하시오.",
+        "bAnswer": "$(a+b)(a-b)$이고, $a$와 $b$의 합과 차의 곱이다.",
+        "bGoal": "제곱의 차 인수분해",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(a+b)(a-b)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "합과 차의 곱"
+            ]
+          }
+        ],
+        "bReason": "결과와 그 구조 이름을 함께 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "구조와 결과식을 묻는 짧은 빈칸이다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 789,
+        "part": "m3",
+        "sourceFingerprint": "121b837e34afc3f5860d2113762086841b8f56f62c2917e906287f73925032a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 789
+        },
+        "directReview": null,
+        "cFrozenSentence": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 □인 □로 인수분해된다.",
+        "cFrozenDefinition": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 {곱}인 {$(a+b)(a-b)$}로 인수분해된다.",
+        "cFrozenAnswers": [
+          "곱",
+          "$(a+b)(a-b)$"
+        ],
+        "cMarkedSentence": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 {곱}인 {$(a+b)(a-b)$}로 인수분해된다.",
+        "cSlotAnswers": [
+          "곱",
+          "$(a+b)(a-b)$"
+        ],
+        "cStudentSentence": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 □인 □로 인수분해된다.",
+        "cAnswers": [
+          "곱",
+          "$(a+b)(a-b)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(a+b)(a-b)$",
+            "equivalentAnswers": [
+              "$(a+b)(a-b)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "$(a+b)(a-b)$"
+          ]
+        ],
+        "proposalFingerprint": "f96a1aa5d107a6c8cebeec5904dc0a4084bc0740a5f12666d551d820fde67a95"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c7",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "$x^2+(a+b)x+ab$의 인수분해",
+        "kind": "공식",
+        "level": "중",
+        "definition": "$x^2+(a+b)x+ab$는 {곱}이 상수항, {합}이 $x$의 계수가 되는 두 수를 찾아 $(x+a)(x+b)$로 쓴다.",
+        "studentC": "$x^2+(a+b)x+ab$는 □이 상수항, □이 $x$의 계수가 되는 두 수를 찾아 $(x+a)(x+b)$로 쓴다.",
+        "answers": [
+          "곱",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c7",
+        "learningRole": "procedure",
+        "roleReason": "곱이 상수항, 합이 $x$의 계수인 두 수",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+(a+b)x+ab$ 꼴의 이차식을 인수분해할 때 어떤 조건을 만족하는 두 수를 찾는지 말하고, 인수분해한 결과를 쓰시오.",
+        "bAnswer": "곱이 상수항 $ab$, 합이 $x$의 계수 $a+b$인 두 수를 찾는다. $(x+a)(x+b)$",
+        "bGoal": "합과 곱을 이용한 인수분해",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "곱이 상수항인 두 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "합이 $x$의 계수인 두 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x+a)(x+b)$"
+            ]
+          }
+        ],
+        "bReason": "두 수의 조건과 결과를 구분하여 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "곱과 합의 대응을 묻는 짧은 비교 빈칸이다.",
+        "studentLabel": "합과 곱으로 두 수 찾아 인수분해하기",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 790,
+        "part": "m3",
+        "sourceFingerprint": "46025c87706af753f6b18e954152623ca362a124225bf3554e1645d2a1286316",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 790
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2+(a+b)x+ab$는 □이 상수항, □이 $x$의 계수가 되는 두 수를 찾아 $(x+a)(x+b)$로 쓴다.",
+        "cFrozenDefinition": "$x^2+(a+b)x+ab$는 {곱}이 상수항, {합}이 $x$의 계수가 되는 두 수를 찾아 $(x+a)(x+b)$로 쓴다.",
+        "cFrozenAnswers": [
+          "곱",
+          "합"
+        ],
+        "cMarkedSentence": "$x^2+(a+b)x+ab$는 {곱}이 상수항, {합}이 $x$의 계수가 되는 두 수를 찾아 $(x+a)(x+b)$로 쓴다.",
+        "cSlotAnswers": [
+          "곱",
+          "합"
+        ],
+        "cStudentSentence": "$x^2+(a+b)x+ab$는 □이 상수항, □이 $x$의 계수가 되는 두 수를 찾아 $(x+a)(x+b)$로 쓴다.",
+        "cAnswers": [
+          "곱",
+          "합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "dd2cfecdc0a20e46aac231ebfa31ea2cd32e2578c229c144e2e8fa8d8b5f21be"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c8",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "완전제곱식이 되기 위한 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 {절반}을 {제곱}한 수와 같아야 한다.",
+        "studentC": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 □을 □한 수와 같아야 한다.",
+        "answers": [
+          "절반",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c8",
+        "learningRole": "procedure",
+        "roleReason": "$b=\\left(\\frac{a}{2}\\right)^2$ 조건",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+ax+b$가 완전제곱식이 되려면 상수항 $b$와 $x$의 계수 $a$ 사이에 어떤 관계가 있어야 하는지 식이나 말로 나타내시오.",
+        "bAnswer": "$b=\\left(\\frac{a}{2}\\right)^2$, 즉 $b$는 $a$의 절반을 제곱한 수와 같아야 한다.",
+        "bGoal": "완전제곱식이 되는 조건",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b=\\left(\\frac{a}{2}\\right)^2$",
+              "$b$는 $a$의 절반의 제곱",
+              "$b=\\frac{a^2}{4}$"
+            ]
+          }
+        ],
+        "bReason": "식의 꼴과 두 계수를 밝혀 관계를 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "절반과 제곱을 묻는 짧은 조건 빈칸이다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 791,
+        "part": "m3",
+        "sourceFingerprint": "1769682c002a7ab68e1a5eb04d6401e7997bdecd8ed73c5a90645c1a92473e35",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 791
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 □을 □한 수와 같아야 한다.",
+        "cFrozenDefinition": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 {절반}을 {제곱}한 수와 같아야 한다.",
+        "cFrozenAnswers": [
+          "절반",
+          "제곱"
+        ],
+        "cMarkedSentence": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 {절반}을 {제곱}한 수와 같아야 한다.",
+        "cSlotAnswers": [
+          "절반",
+          "제곱"
+        ],
+        "cStudentSentence": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 □을 □한 수와 같아야 한다.",
+        "cAnswers": [
+          "절반",
+          "제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "반",
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "반",
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "제곱"
+          ]
+        ],
+        "proposalFingerprint": "b04d85139eaca7fdcbb87e7748dc7ef468039c4af1c11d90f9e3359ad758e255"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c9",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "$acx^2+(ad+bc)x+bd$의 인수분해",
+        "kind": "공식",
+        "level": "상",
+        "definition": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "studentC": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, □으로 곱해 더한 $ad+bc$가 □가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "answers": [
+          "대각선",
+          "$x$의 계수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c9",
+        "learningRole": "procedure",
+        "roleReason": "계수를 쪼개 대각선 곱의 합 맞추기",
+        "bDecision": "rewrite",
+        "bPrompt": "$acx^2+(ad+bc)x+bd$를 $(ax+b)(cx+d)$로 인수분해할 때 $x^2$의 계수와 상수항을 어떻게 쪼개고, 어떤 조건으로 짝을 고르는지 설명하시오.",
+        "bAnswer": "$x^2$의 계수를 $a\\times c$, 상수항을 $b\\times d$로 쪼갠 뒤, 대각선으로 곱해 더한 $ad+bc$가 $x$의 계수가 되는 짝을 고른다.",
+        "bGoal": "$x^2$의 계수가 $1$이 아닌 이차식 인수분해",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2$의 계수와 상수항을 각각 두 수의 곱으로 쪼갠다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각선으로 곱해 더한 값이 $x$의 계수가 되는 짝을 고른다",
+              "$ad+bc$가 $x$의 계수와 같아야 한다"
+            ]
+          }
+        ],
+        "bReason": "쪼개는 단계와 고르는 조건을 나누어 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "대각선과 $x$의 계수를 묻는 빈칸이 절차 핵심이다.",
+        "studentLabel": "대각선으로 곱해 인수분해하기",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 792,
+        "part": "m3",
+        "sourceFingerprint": "db29d7f8b5f831268f0d22ac6e3efc57982f85b37d4498913d954f80eb42c66b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 792
+        },
+        "directReview": null,
+        "cFrozenSentence": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, □으로 곱해 더한 $ad+bc$가 □가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cFrozenDefinition": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cFrozenAnswers": [
+          "대각선",
+          "$x$의 계수"
+        ],
+        "cMarkedSentence": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cSlotAnswers": [
+          "대각선",
+          "$x$의 계수"
+        ],
+        "cStudentSentence": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, □으로 곱해 더한 $ad+bc$가 □가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cAnswers": [
+          "대각선",
+          "$x$의 계수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선",
+              "엇갈려",
+              "$X$자 모양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x$의 계수",
+            "equivalentAnswers": [
+              "$x$의 계수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "대각선",
+            "accept": [
+              "엇갈려",
+              "X자 모양"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대각선",
+            "엇갈려",
+            "$X$자 모양"
+          ],
+          [
+            "$x$의 계수"
+          ]
+        ],
+        "proposalFingerprint": "339f65e2002b5b307ccd013301bf6c6497c345c0728b3fa8def7db8b96614f9e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-03-c1",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "내림차순",
+        "kind": "정의",
+        "level": "하",
+        "definition": "한 문자를 기준으로 차수가 {큰} 항을 앞에, {작은} 항을 뒤에 오도록 늘어놓는 것이 내림차순 정리이다.",
+        "studentC": "한 문자를 기준으로 차수가 □ 항을 앞에, □ 항을 뒤에 오도록 늘어놓는 것이 내림차순 정리이다.",
+        "answers": [
+          "큰",
+          "작은"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "다항식을 한 문자에 대하여 '내림차순으로 정리한다'는 것은 항을 어떤 순서로 늘어놓는 것인지 쓰시오. 또 $3-2x+x^2$을 $x$에 대하여 내림차순으로 정리하시오.",
+        "bAnswer": "그 문자의 차수가 큰 항부터 작은 항의 순서로 늘어놓는 것이다. $x^2-2x+3$",
+        "bGoal": "내림차순의 뜻과 적용",
+        "bReason": "제목만으로는 답할 범위를 알 수 없어 순서 기준과 정리 예를 함께 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "차수가 큰 항부터 작은 항의 순서",
+              "차수가 높은 항을 앞에, 낮은 항을 뒤에 둔다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x^2-2x+3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "큰/작은을 대비시키는 짧고 분명한 정의 빈칸",
+        "learningRole": "definition",
+        "roleReason": "차수 순서로 항을 늘어놓는 정리 방식",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 793,
+        "part": "m3",
+        "sourceFingerprint": "44b42b7c0aef497b58cbae0130caa0b728ad482cf5840448d76ff94765333faa",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 793
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 문자를 기준으로 차수가 □ 항을 앞에, □ 항을 뒤에 오도록 늘어놓는 것이 내림차순 정리이다.",
+        "cFrozenDefinition": "한 문자를 기준으로 차수가 {큰} 항을 앞에, {작은} 항을 뒤에 오도록 늘어놓는 것이 내림차순 정리이다.",
+        "cFrozenAnswers": [
+          "큰",
+          "작은"
+        ],
+        "cMarkedSentence": "한 문자를 기준으로 차수가 {큰} 항을 앞에, {작은} 항을 뒤에 오도록 늘어놓는 것이 내림차순 정리이다.",
+        "cSlotAnswers": [
+          "큰",
+          "작은"
+        ],
+        "cStudentSentence": "한 문자를 기준으로 차수가 □ 항을 앞에, □ 항을 뒤에 오도록 늘어놓는 것이 내림차순 정리이다.",
+        "cAnswers": [
+          "큰",
+          "작은"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰",
+              "높은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은",
+              "낮은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "큰",
+            "accept": [
+              "높은"
+            ]
+          },
+          {
+            "answer": "작은",
+            "accept": [
+              "낮은"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "큰",
+            "높은"
+          ],
+          [
+            "작은",
+            "낮은"
+          ]
+        ],
+        "proposalFingerprint": "46834d52e04ea5c676daec17a69406d7a4e72c42fb5a711e935c66820c80a970"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-03-c2",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "공통부분을 한 문자로 놓기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 식이 되풀이되면 그 부분을 {한 문자}로 바꿔 인수분해한 뒤, 끝에 원래 식을 {다시 넣는다}.",
+        "studentC": "같은 식이 되풀이되면 그 부분을 □로 바꿔 인수분해한 뒤, 끝에 원래 식을 □.",
+        "answers": [
+          "한 문자",
+          "다시 넣는다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "$(x+1)^2+5(x+1)+6$처럼 같은 식이 되풀이되는 식을 인수분해하는 과정을 단계별로 설명하고, 인수분해한 결과를 쓰시오.",
+        "bAnswer": "$x+1=A$로 놓으면 $A^2+5A+6=(A+2)(A+3)$이다. $A$ 자리에 $x+1$을 다시 넣으면 $(x+3)(x+4)$이다.",
+        "bGoal": "공통부분 치환 인수분해 절차",
+        "bReason": "되풀이되는 식이 있는 구체 식을 주어 치환과 되돌리기 단계를 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+1$을 한 문자로 놓는다",
+              "$x+1=A$로 놓는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$A$ 자리에 $x+1$을 다시 넣는다",
+              "원래 식으로 되돌린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x+3)(x+4)$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "치환과 되돌리기 두 단계를 짧게 묻는 분명한 절차 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "한 문자로 놓고 인수분해한 뒤 되돌리는 순서",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 794,
+        "part": "m3",
+        "sourceFingerprint": "9295fe8469998cc2ed2514584224d947a6f42094254b5ab83fe75f326281fc14",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 794
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 식이 되풀이되면 그 부분을 □로 바꿔 인수분해한 뒤, 끝에 원래 식을 □.",
+        "cFrozenDefinition": "같은 식이 되풀이되면 그 부분을 {한 문자}로 바꿔 인수분해한 뒤, 끝에 원래 식을 {다시 넣는다}.",
+        "cFrozenAnswers": [
+          "한 문자",
+          "다시 넣는다"
+        ],
+        "cMarkedSentence": "같은 식이 되풀이되면 그 부분을 {한 문자}로 바꿔 인수분해한 뒤, 끝에 원래 식을 {다시 넣는다}.",
+        "cSlotAnswers": [
+          "한 문자",
+          "다시 넣는다"
+        ],
+        "cStudentSentence": "같은 식이 되풀이되면 그 부분을 □로 바꿔 인수분해한 뒤, 끝에 원래 식을 □.",
+        "cAnswers": [
+          "한 문자",
+          "다시 넣는다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 문자",
+            "equivalentAnswers": [
+              "한 문자",
+              "문자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "다시 넣는다",
+            "equivalentAnswers": [
+              "다시 넣는다",
+              "대입한다",
+              "되돌려 넣는다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한 문자",
+            "accept": [
+              "문자"
+            ]
+          },
+          {
+            "answer": "다시 넣는다",
+            "accept": [
+              "대입한다",
+              "되돌려 넣는다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 문자",
+            "문자"
+          ],
+          [
+            "다시 넣는다",
+            "대입한다",
+            "되돌려 넣는다"
+          ]
+        ],
+        "proposalFingerprint": "22e38daf824bd7995f2d151a852aff3ea10775217cfd6afd4cb329ba235045f4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-03-c3",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "인수분해를 이용한 수의 계산",
+        "kind": "방법",
+        "level": "중",
+        "definition": "복잡한 수의 계산은 {인수분해 공식}에 맞는 꼴로 보고 {곱}으로 바꾸면 쉬워진다: $99^2-1=100\\times 98$.",
+        "studentC": "복잡한 수의 계산은 □에 맞는 꼴로 보고 □으로 바꾸면 쉬워진다: $99^2-1=100\\times 98$.",
+        "answers": [
+          "인수분해 공식",
+          "곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "복잡한 수의 계산에 인수분해 공식을 쓰면 왜 쉬워지는지 $99^2-1$을 예로 들어 설명하고, 그 값을 구하시오.",
+        "bAnswer": "$99^2-1=99^2-1^2$을 제곱의 차 공식으로 $(99+1)(99-1)=100\\times 98$로 바꾸면 $99^2$을 직접 구하지 않고 쉬운 곱셈으로 계산된다. 값은 $9800$이다.",
+        "bGoal": "인수분해 공식을 수의 계산에 활용",
+        "bReason": "일반 원리를 묻되 공식에 맞는 구체 수식을 주어 답의 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(99+1)(99-1)$",
+              "$100\\times 98$"
+            ]
+          },
+          {
+            "anyOf": [
+              "계산하기 쉬운 곱으로 바뀐다",
+              "$99^2$을 직접 계산하지 않아도 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9800$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "공식과 곱을 묻고 예가 붙은 분명한 방법 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "수식을 공식 꼴로 보고 곱으로 바꿔 계산",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 795,
+        "part": "m3",
+        "sourceFingerprint": "6a2b8d7cddfa96ae2b931a38fcfb7840403e109d2d7a2e1c22e777ddf38eeabc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 795
+        },
+        "directReview": null,
+        "cFrozenSentence": "복잡한 수의 계산은 □에 맞는 꼴로 보고 □으로 바꾸면 쉬워진다: $99^2-1=100\\times 98$.",
+        "cFrozenDefinition": "복잡한 수의 계산은 {인수분해 공식}에 맞는 꼴로 보고 {곱}으로 바꾸면 쉬워진다: $99^2-1=100\\times 98$.",
+        "cFrozenAnswers": [
+          "인수분해 공식",
+          "곱"
+        ],
+        "cMarkedSentence": "복잡한 수의 계산은 {인수분해 공식}에 맞는 꼴로 보고 {곱}으로 바꾸면 쉬워진다: $99^2-1=100\\times 98$.",
+        "cSlotAnswers": [
+          "인수분해 공식",
+          "곱"
+        ],
+        "cStudentSentence": "복잡한 수의 계산은 □에 맞는 꼴로 보고 □으로 바꾸면 쉬워진다: $99^2-1=100\\times 98$.",
+        "cAnswers": [
+          "인수분해 공식",
+          "곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "인수분해 공식",
+            "equivalentAnswers": [
+              "인수분해 공식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱",
+              "곱의 꼴"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "곱",
+            "accept": [
+              "곱의 꼴"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "인수분해 공식"
+          ],
+          [
+            "곱",
+            "곱의 꼴"
+          ]
+        ],
+        "proposalFingerprint": "fed02d1f903b3d35a90883909d05cbf58a933c02070fefd6905ffbe9f1f498d1"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-03-c4",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "항이 $4$개인 식의 인수분해",
+        "kind": "방법",
+        "level": "상",
+        "definition": "항이 넷이면 둘씩 묶어 {공통인 인수}가 생기는지 살피고, 세 항이 완전제곱식이고 나머지 항이 제곱을 빼는 꼴이면 {제곱의 차} 공식을 쓴다.",
+        "studentC": "항이 넷이면 둘씩 묶어 □가 생기는지 살피고, 세 항이 완전제곱식이고 나머지 항이 제곱을 빼는 꼴이면 □ 공식을 쓴다.",
+        "answers": [
+          "공통인 인수",
+          "제곱의 차"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "항이 $4$개인 식을 인수분해할 때 항을 묶는 방법 두 가지를 쓰고, 각 방법을 어떤 경우에 쓰는지 설명하시오.",
+        "bAnswer": "① 둘씩 묶었을 때 두 묶음에 공통인 인수가 생기면 그것으로 다시 묶는다. ② 세 항이 완전제곱식을 이루고 나머지 한 항이 제곱을 빼는 꼴이면 셋과 하나로 묶어 제곱의 차 공식을 쓴다.",
+        "bGoal": "네 항 식의 묶는 전략 선택",
+        "bReason": "두 전략과 각각의 사용 조건을 함께 묻도록 범위를 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘씩 묶어 공통인 인수가 생기면 묶는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 항이 완전제곱식이고 나머지가 제곱을 빼는 꼴이면 제곱의 차 공식",
+              "셋과 하나로 묶어 제곱의 차 공식"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 전략의 핵심어만 묻는 짧은 비교 빈칸",
+        "learningRole": "procedure",
+        "roleReason": "둘씩 묶기와 셋·하나 묶기의 선택 조건",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 796,
+        "part": "m3",
+        "sourceFingerprint": "32217afec2047885ab84325ef517c53d50e4080bcd500cad957ea5bd22c3a16a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 796
+        },
+        "directReview": null,
+        "cFrozenSentence": "항이 넷이면 둘씩 묶어 □가 생기는지 살피고, 세 항이 완전제곱식이고 나머지 항이 제곱을 빼는 꼴이면 □ 공식을 쓴다.",
+        "cFrozenDefinition": "항이 넷이면 둘씩 묶어 {공통인 인수}가 생기는지 살피고, 세 항이 완전제곱식이고 나머지 항이 제곱을 빼는 꼴이면 {제곱의 차} 공식을 쓴다.",
+        "cFrozenAnswers": [
+          "공통인 인수",
+          "제곱의 차"
+        ],
+        "cMarkedSentence": "항이 넷이면 둘씩 묶어 {공통인 인수}가 생기는지 살피고, 세 항이 완전제곱식이고 나머지 항이 제곱을 빼는 꼴이면 {제곱의 차} 공식을 쓴다.",
+        "cSlotAnswers": [
+          "공통인 인수",
+          "제곱의 차"
+        ],
+        "cStudentSentence": "항이 넷이면 둘씩 묶어 □가 생기는지 살피고, 세 항이 완전제곱식이고 나머지 항이 제곱을 빼는 꼴이면 □ 공식을 쓴다.",
+        "cAnswers": [
+          "공통인 인수",
+          "제곱의 차"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공통인 인수",
+            "equivalentAnswers": [
+              "공통인 인수",
+              "공통인수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱의 차",
+            "equivalentAnswers": [
+              "제곱의 차",
+              "합과 차의 곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "공통인 인수",
+            "accept": [
+              "공통인수"
+            ]
+          },
+          {
+            "answer": "제곱의 차",
+            "accept": [
+              "합과 차의 곱"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공통인 인수",
+            "공통인수"
+          ],
+          [
+            "제곱의 차",
+            "합과 차의 곱"
+          ]
+        ],
+        "proposalFingerprint": "90e4be57683ad1bc1b81fc43648d64bbf184077f7cb2314645701ecd5f413102"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-03-c5",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "인수분해를 이용한 식의 값",
+        "kind": "방법",
+        "level": "상",
+        "definition": "인수분해는 식을 {값이 같은 곱의 꼴}로 바꾸는 것이므로, 인수분해한 뒤 {대입}하면 계산이 간단해지는 경우가 있다.",
+        "studentC": "인수분해는 식을 □로 바꾸는 것이므로, 인수분해한 뒤 □하면 계산이 간단해지는 경우가 있다.",
+        "answers": [
+          "값이 같은 곱의 꼴",
+          "대입"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "식의 값을 구할 때 원래 식 대신 인수분해한 식에 수를 대입해도 같은 값이 나오는 까닭은 무엇인가? 또 그렇게 하면 어떤 점이 좋은지 쓰시오.",
+        "bAnswer": "인수분해한 식은 원래 식과 값이 같은 곱의 꼴이기 때문이다. 곱의 꼴에 대입하면 계산이 간단해지는 경우가 있다.",
+        "bGoal": "인수분해한 식에 대입해도 되는 근거",
+        "bReason": "대입의 정당성과 이점을 나누어 물어 이유형 답을 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "인수분해한 식은 원래 식과 값이 같다",
+              "값이 같은 곱의 꼴이다",
+              "전개하면 원래 식이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "계산이 간단해진다",
+              "곱셈만 하면 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "인수분해한 식은 원래 식과 값이 같은 {곱}의 꼴이므로, 인수분해한 뒤 수를 {대입}하면 계산이 간단해지는 경우가 있다.",
+        "cAnswers": [
+          "곱",
+          "대입"
+        ],
+        "cReason": "'값이 같은 곱의 꼴' 전체를 쓰게 하는 긴 임의 키워드 빈칸을 줄임",
+        "learningRole": "reason",
+        "roleReason": "인수분해한 식과 원래 식의 값이 같음",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 797,
+        "part": "m3",
+        "sourceFingerprint": "0d81e9e770b8dadafbbafbca7a01be7af4e6142a84f19117b076d1fea4adf93d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 797
+        },
+        "directReview": null,
+        "cMarkedSentence": "인수분해한 식은 원래 식과 값이 같은 {곱}의 꼴이므로, 인수분해한 뒤 수를 {대입}하면 계산이 간단해지는 경우가 있다.",
+        "cSlotAnswers": [
+          "곱",
+          "대입"
+        ],
+        "cStudentSentence": "인수분해한 식은 원래 식과 값이 같은 □의 꼴이므로, 인수분해한 뒤 수를 □하면 계산이 간단해지는 경우가 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "대입"
+          ]
+        ],
+        "proposalFingerprint": "6053b138043053861e74ae4fa1d7626ffef78db29503ac0530de170b8b9e403e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c1",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "이차방정식",
+        "kind": "정의",
+        "level": "하",
+        "definition": "항을 모두 {좌변}으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 {$0$이 아닌} 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "studentC": "항을 모두 □으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 □ 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "answers": [
+          "좌변",
+          "$0$이 아닌"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 방정식을 $x$에 대한 이차방정식이라 하는지, 모든 항을 한쪽으로 옮겨 정리한 꼴과 계수의 조건을 들어 설명하시오.",
+        "bAnswer": "모든 항을 좌변으로 옮겨 정리했을 때 $ax^2+bx+c=0$ ($a$, $b$, $c$는 상수, $a\\ne 0$) 꼴이 되는 방정식이다.",
+        "bGoal": "이차방정식의 뜻",
+        "bReason": "정리한 꼴과 $a\\ne 0$ 조건 두 요소를 답하도록 범위를 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$ax^2+bx+c=0$",
+              "($x$에 대한 이차식)$=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a\\ne 0$",
+              "$x^2$의 계수가 $0$이 아니다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "정리 방향과 계수 조건을 묻는 분명한 정의 빈칸",
+        "learningRole": "definition",
+        "roleReason": "$ax^2+bx+c=0$, $a\\ne 0$ 꼴의 방정식",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 798,
+        "part": "m3",
+        "sourceFingerprint": "db5092c9ae8ffa21cac8b6b5e8a8df571f66aa5784d4ea637c12f4c0c257717e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 798
+        },
+        "directReview": null,
+        "cFrozenSentence": "항을 모두 □으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 □ 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "cFrozenDefinition": "항을 모두 {좌변}으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 {$0$이 아닌} 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "cFrozenAnswers": [
+          "좌변",
+          "$0$이 아닌"
+        ],
+        "cMarkedSentence": "항을 모두 {좌변}으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 {$0$이 아닌} 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "cSlotAnswers": [
+          "좌변",
+          "$0$이 아닌"
+        ],
+        "cStudentSentence": "항을 모두 □으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 □ 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "cAnswers": [
+          "좌변",
+          "$0$이 아닌"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "좌변",
+            "equivalentAnswers": [
+              "좌변",
+              "왼쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0$이 아닌",
+            "equivalentAnswers": [
+              "$0$이 아닌"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "좌변",
+            "accept": [
+              "왼쪽"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "좌변",
+            "왼쪽"
+          ],
+          [
+            "$0$이 아닌"
+          ]
+        ],
+        "proposalFingerprint": "9d606f60b0ac2a8cf28a218faa4e8460b773d0c560ca2fcf7692f7ffcc9d3d69"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c2",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "이차방정식의 해",
+        "kind": "정의",
+        "level": "하",
+        "definition": "이차방정식에 넣었을 때 등식을 {참}으로 만드는 $x$의 값이 그 방정식의 해이고, {근}이라고도 부른다.",
+        "studentC": "이차방정식에 넣었을 때 등식을 □으로 만드는 $x$의 값이 그 방정식의 해이고, □이라고도 부른다.",
+        "answers": [
+          "참",
+          "근"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식의 해란 무엇인지 쓰고, 해를 부르는 다른 이름을 쓰시오.",
+        "bAnswer": "방정식의 $x$에 대입했을 때 등식을 참이 되게 하는 $x$의 값이다. 근이라고도 한다.",
+        "bGoal": "이차방정식의 해의 뜻",
+        "bReason": "해의 뜻과 다른 이름을 나누어 물어 답의 종류를 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "등식을 참이 되게 하는 $x$의 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "근"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "참과 근을 묻는 짧고 분명한 정의 빈칸",
+        "learningRole": "definition",
+        "roleReason": "등식을 참으로 만드는 $x$의 값",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 799,
+        "part": "m3",
+        "sourceFingerprint": "65fb22998703bbab2f4a0fed10566331986a35d4173fa77137609d9d9627ae7e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 799
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차방정식에 넣었을 때 등식을 □으로 만드는 $x$의 값이 그 방정식의 해이고, □이라고도 부른다.",
+        "cFrozenDefinition": "이차방정식에 넣었을 때 등식을 {참}으로 만드는 $x$의 값이 그 방정식의 해이고, {근}이라고도 부른다.",
+        "cFrozenAnswers": [
+          "참",
+          "근"
+        ],
+        "cMarkedSentence": "이차방정식에 넣었을 때 등식을 {참}으로 만드는 $x$의 값이 그 방정식의 해이고, {근}이라고도 부른다.",
+        "cSlotAnswers": [
+          "참",
+          "근"
+        ],
+        "cStudentSentence": "이차방정식에 넣었을 때 등식을 □으로 만드는 $x$의 값이 그 방정식의 해이고, □이라고도 부른다.",
+        "cAnswers": [
+          "참",
+          "근"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "참",
+            "equivalentAnswers": [
+              "참"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "근",
+            "equivalentAnswers": [
+              "근"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "참"
+          ],
+          [
+            "근"
+          ]
+        ],
+        "proposalFingerprint": "5206851d50864fc78ae8e9c1363bf9c7e1df69e82da67d24cfbf20445446016c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c3",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "이차방정식을 푼다",
+        "kind": "정의",
+        "level": "하",
+        "definition": "이차방정식을 푼다는 것은 그 방정식을 참이 되게 하는 $x$의 값인 {해}를 빠짐없이 모두 구하는 것이다.",
+        "studentC": "이차방정식을 푼다는 것은 그 방정식을 참이 되게 하는 $x$의 값인 □를 빠짐없이 모두 구하는 것이다.",
+        "answers": [
+          "해"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "'이차방정식을 푼다'는 것은 무엇을 구하는 것인지 쓰고, 얼마나 구해야 하는지도 밝히시오.",
+        "bAnswer": "이차방정식의 해, 곧 방정식을 참이 되게 하는 $x$의 값을 빠짐없이 모두 구하는 것이다.",
+        "bGoal": "방정식을 푼다의 뜻",
+        "bReason": "해의 뜻과 겹치지 않도록 '모두 구한다'는 범위를 함께 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "해를 구한다",
+              "참이 되게 하는 $x$의 값을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "빠짐없이 모두"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "해의 뜻과 연결한 짧은 용어 빈칸으로 분명함",
+        "learningRole": "definition",
+        "roleReason": "해를 빠짐없이 모두 구하는 일",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 800,
+        "part": "m3",
+        "sourceFingerprint": "394a4b49174254e24dea4aa07c6c3e9681abefb5a35174b9e354bf91f83ad9d6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 800
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차방정식을 푼다는 것은 그 방정식을 참이 되게 하는 $x$의 값인 □를 빠짐없이 모두 구하는 것이다.",
+        "cFrozenDefinition": "이차방정식을 푼다는 것은 그 방정식을 참이 되게 하는 $x$의 값인 {해}를 빠짐없이 모두 구하는 것이다.",
+        "cFrozenAnswers": [
+          "해"
+        ],
+        "cMarkedSentence": "이차방정식을 푼다는 것은 그 방정식을 참이 되게 하는 $x$의 값인 {해}를 빠짐없이 모두 구하는 것이다.",
+        "cSlotAnswers": [
+          "해"
+        ],
+        "cStudentSentence": "이차방정식을 푼다는 것은 그 방정식을 참이 되게 하는 $x$의 값인 □를 빠짐없이 모두 구하는 것이다.",
+        "cAnswers": [
+          "해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "해",
+            "equivalentAnswers": [
+              "해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "해"
+          ]
+        ],
+        "proposalFingerprint": "759bb26f6edf053c1595411b90e7c72eafc5128ab9724c3b23f7d7555da7ee28"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c4",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "$AB=0$의 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수나 식의 곱이 $0$이면 둘 가운데 {적어도 하나}는 $0$이다 — $AB=0$이면 $A=0$ {또는} $B=0$.",
+        "studentC": "두 수나 식의 곱이 $0$이면 둘 가운데 □는 $0$이다 — $AB=0$이면 $A=0$ □ $B=0$.",
+        "answers": [
+          "적어도 하나",
+          "또는"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "두 수나 식 $A$, $B$에 대하여 $AB=0$이면 $A$와 $B$에 대해 무엇을 알 수 있는지 쓰시오.",
+        "bAnswer": "$A=0$ 또는 $B=0$이다. 곧 둘 가운데 적어도 하나는 $0$이다.",
+        "bGoal": "$AB=0$의 성질",
+        "bReason": "기호 $A$, $B$의 뜻을 밝혀 곱이 $0$일 때의 결론을 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A=0$ 또는 $B=0$",
+              "적어도 하나는 $0$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'적어도 하나', '또는'을 묻는 핵심 논리 빈칸",
+        "studentLabel": "곱이 $0$일 때의 성질",
+        "learningRole": "definition",
+        "roleReason": "곱이 $0$이면 한 인수 이상이 $0$",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 801,
+        "part": "m3",
+        "sourceFingerprint": "a66e97e9731d050f7c5b7a58d7df0cf1e92cfcc899640bfb5f8e23990c34769c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 801
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수나 식의 곱이 $0$이면 둘 가운데 □는 $0$이다 — $AB=0$이면 $A=0$ □ $B=0$.",
+        "cFrozenDefinition": "두 수나 식의 곱이 $0$이면 둘 가운데 {적어도 하나}는 $0$이다 — $AB=0$이면 $A=0$ {또는} $B=0$.",
+        "cFrozenAnswers": [
+          "적어도 하나",
+          "또는"
+        ],
+        "cMarkedSentence": "두 수나 식의 곱이 $0$이면 둘 가운데 {적어도 하나}는 $0$이다 — $AB=0$이면 $A=0$ {또는} $B=0$.",
+        "cSlotAnswers": [
+          "적어도 하나",
+          "또는"
+        ],
+        "cStudentSentence": "두 수나 식의 곱이 $0$이면 둘 가운데 □는 $0$이다 — $AB=0$이면 $A=0$ □ $B=0$.",
+        "cAnswers": [
+          "적어도 하나",
+          "또는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "적어도 하나",
+            "equivalentAnswers": [
+              "적어도 하나",
+              "하나 이상"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "또는",
+            "equivalentAnswers": [
+              "또는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "적어도 하나",
+            "accept": [
+              "하나 이상"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "적어도 하나",
+            "하나 이상"
+          ],
+          [
+            "또는"
+          ]
+        ],
+        "proposalFingerprint": "5cf4c4e4af46ed07c2c892a12fddf4844f314fffc650ac42a2cae0a7f995118a"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c5",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "인수분해를 이용한 이차방정식의 풀이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "이차방정식의 우변을 $0$으로 만들고 좌변을 인수분해하여 $AB=0$ 꼴로 고친다. 두 인수의 곱이 $0$이면 $A=0$ {또는} $B=0$이므로, 각 인수를 $0$으로 만드는 값을 모두 찾는다.",
+        "studentC": "이차방정식의 우변을 $0$으로 만들고 좌변을 인수분해하여 $AB=0$ 꼴로 고친다. 두 인수의 곱이 $0$이면 $A=0$ □ $B=0$이므로, 각 인수를 $0$으로 만드는 값을 모두 찾는다.",
+        "answers": [
+          "또는"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $x^2-x=6$을 인수분해를 이용하여 푸는 과정을 단계별로 설명하고, 해를 구하시오.",
+        "bAnswer": "우변을 $0$으로 만들면 $x^2-x-6=0$, 좌변을 인수분해하면 $(x-3)(x+2)=0$이므로 $x-3=0$ 또는 $x+2=0$, 곧 $x=3$ 또는 $x=-2$이다.",
+        "bGoal": "인수분해로 이차방정식 풀기",
+        "bReason": "우변이 $0$이 아닌 식을 주어 정리·인수분해·해 단계를 모두 보게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2-x-6=0$",
+              "우변을 $0$으로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x-3)(x+2)=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=3$ 또는 $x=-2$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "이차방정식을 인수분해로 풀 때는 먼저 우변을 {$0$}으로 만들고, 좌변을 {인수분해}하여 $AB=0$ 꼴로 고친 뒤 각 인수를 $0$으로 만드는 값을 모두 찾는다.",
+        "cAnswers": [
+          "$0$",
+          "인수분해"
+        ],
+        "cReason": "원문 빈칸 '또는'이 c4 C와 같아 풀이 절차의 핵심을 묻도록 바꿈",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "우변 $0$, 인수분해, 각 인수 $0$",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 802,
+        "part": "m3",
+        "sourceFingerprint": "3f99cb87d8794a6131e2e560aa5dddbd15326ef45033b5c8dd9261b2f098171c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 802
+        },
+        "directReview": null,
+        "cMarkedSentence": "이차방정식을 인수분해로 풀 때는 먼저 우변을 {$0$}으로 만들고, 좌변을 {인수분해}하여 $AB=0$ 꼴로 고친 뒤 각 인수를 $0$으로 만드는 값을 모두 찾는다.",
+        "cSlotAnswers": [
+          "$0$",
+          "인수분해"
+        ],
+        "cStudentSentence": "이차방정식을 인수분해로 풀 때는 먼저 우변을 □으로 만들고, 좌변을 □하여 $AB=0$ 꼴로 고친 뒤 각 인수를 $0$으로 만드는 값을 모두 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "인수분해",
+            "equivalentAnswers": [
+              "인수분해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "인수분해"
+          ]
+        ],
+        "proposalFingerprint": "eb0cbbcfa34c07e848deb271c56d7bbfeb06820221ea57dc117a28ba05b48c45"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c6",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "중근",
+        "kind": "정의",
+        "level": "중",
+        "definition": "이차방정식의 두 해가 {같은 값}으로 겹칠 때 그 해를 {중근}이라 한다 — $(x-3)^2=0$의 해는 $x=3$ 하나.",
+        "studentC": "이차방정식의 두 해가 □으로 겹칠 때 그 해를 □이라 한다 — $(x-3)^2=0$의 해는 $x=3$ 하나.",
+        "answers": [
+          "같은 값",
+          "중근"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식의 '중근'은 어떤 해를 말하는지 쓰고, $(x-3)^2=0$의 중근을 쓰시오.",
+        "bAnswer": "이차방정식의 두 해가 같은 값으로 겹칠 때 그 해이다. $(x-3)^2=0$의 중근은 $x=3$이다.",
+        "bGoal": "중근의 뜻",
+        "bReason": "용어의 뜻과 구체 방정식의 중근을 함께 물어 답 형태를 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 해가 같은 값으로 겹친 해",
+              "두 해가 서로 같을 때 그 해"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "겹침 조건과 용어를 묻고 예가 있는 분명한 빈칸",
+        "learningRole": "definition",
+        "roleReason": "두 해가 겹친 해",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 803,
+        "part": "m3",
+        "sourceFingerprint": "85508ed64c987b32994fafcddcb60092db8bf70f9b353749ba677b88e1cc4cde",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 803
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차방정식의 두 해가 □으로 겹칠 때 그 해를 □이라 한다 — $(x-3)^2=0$의 해는 $x=3$ 하나.",
+        "cFrozenDefinition": "이차방정식의 두 해가 {같은 값}으로 겹칠 때 그 해를 {중근}이라 한다 — $(x-3)^2=0$의 해는 $x=3$ 하나.",
+        "cFrozenAnswers": [
+          "같은 값",
+          "중근"
+        ],
+        "cMarkedSentence": "이차방정식의 두 해가 {같은 값}으로 겹칠 때 그 해를 {중근}이라 한다 — $(x-3)^2=0$의 해는 $x=3$ 하나.",
+        "cSlotAnswers": [
+          "같은 값",
+          "중근"
+        ],
+        "cStudentSentence": "이차방정식의 두 해가 □으로 겹칠 때 그 해를 □이라 한다 — $(x-3)^2=0$의 해는 $x=3$ 하나.",
+        "cAnswers": [
+          "같은 값",
+          "중근"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 값",
+            "equivalentAnswers": [
+              "같은 값",
+              "같은 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중근",
+            "equivalentAnswers": [
+              "중근"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "같은 값",
+            "accept": [
+              "같은 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은 값",
+            "같은 수"
+          ],
+          [
+            "중근"
+          ]
+        ],
+        "proposalFingerprint": "2e69b471be14aba8f81e23adcb4950039a6c8e1320cac357629373b819b0425f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c7",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "제곱근을 이용한 이차방정식의 풀이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$x^2=q$ ($q\\ge 0$) 꼴이면 $x$는 $q$의 {제곱근}이므로 해는 {$x=\\pm\\sqrt{q}$}이다.",
+        "studentC": "$x^2=q$ ($q\\ge 0$) 꼴이면 $x$는 $q$의 □이므로 해는 □이다.",
+        "answers": [
+          "제곱근",
+          "$x=\\pm\\sqrt{q}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "$q\\ge 0$일 때 이차방정식 $x^2=q$의 해를 제곱근의 뜻을 이용해 구하고, 그 까닭을 쓰시오.",
+        "bAnswer": "$x$는 제곱하여 $q$가 되는 수, 곧 $q$의 제곱근이므로 $x=\\pm\\sqrt{q}$이다.",
+        "bGoal": "제곱근으로 $x^2=q$ 풀기",
+        "bReason": "$q\\ge 0$ 조건을 넣어 해와 근거를 함께 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$는 $q$의 제곱근",
+              "제곱하여 $q$가 되는 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=\\pm\\sqrt{q}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "제곱근과 해의 꼴을 묻는 분명한 빈칸",
+        "learningRole": "procedure",
+        "roleReason": "$x^2=q$에서 $x=\\pm\\sqrt{q}$",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 804,
+        "part": "m3",
+        "sourceFingerprint": "833191cc0a198164e47f46ac6a4295a20b08c0a4d58ef3b4998b7ac46cbcf0c9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 804
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2=q$ ($q\\ge 0$) 꼴이면 $x$는 $q$의 □이므로 해는 □이다.",
+        "cFrozenDefinition": "$x^2=q$ ($q\\ge 0$) 꼴이면 $x$는 $q$의 {제곱근}이므로 해는 {$x=\\pm\\sqrt{q}$}이다.",
+        "cFrozenAnswers": [
+          "제곱근",
+          "$x=\\pm\\sqrt{q}$"
+        ],
+        "cMarkedSentence": "$x^2=q$ ($q\\ge 0$) 꼴이면 $x$는 $q$의 {제곱근}이므로 해는 {$x=\\pm\\sqrt{q}$}이다.",
+        "cSlotAnswers": [
+          "제곱근",
+          "$x=\\pm\\sqrt{q}$"
+        ],
+        "cStudentSentence": "$x^2=q$ ($q\\ge 0$) 꼴이면 $x$는 $q$의 □이므로 해는 □이다.",
+        "cAnswers": [
+          "제곱근",
+          "$x=\\pm\\sqrt{q}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱근",
+            "equivalentAnswers": [
+              "제곱근"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x=\\pm\\sqrt{q}$",
+            "equivalentAnswers": [
+              "$x=\\pm\\sqrt{q}$",
+              "$\\pm\\sqrt{q}$",
+              "$x=\\sqrt{q}$ 또는 $x=-\\sqrt{q}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$x=\\pm\\sqrt{q}$",
+            "accept": [
+              "$\\pm\\sqrt{q}$",
+              "$x=\\sqrt{q}$ 또는 $x=-\\sqrt{q}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "제곱근"
+          ],
+          [
+            "$x=\\pm\\sqrt{q}$",
+            "$\\pm\\sqrt{q}$",
+            "$x=\\sqrt{q}$ 또는 $x=-\\sqrt{q}$"
+          ]
+        ],
+        "proposalFingerprint": "a24e9e8152bbbf723004c45cf2e7a7ff639700a904d17522f490619b2f000896"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c8",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "이차방정식이 중근을 가질 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이차방정식이 ({완전제곱식})$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 {제곱}일 때.",
+        "studentC": "이차방정식이 (□)$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 □일 때.",
+        "answers": [
+          "완전제곱식",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식이 중근을 가지려면 어떤 꼴로 정리되어야 하는지 쓰시오. 또 $x^2+ax+b=0$이 중근을 가지려면 $b$와 $a$ 사이에 어떤 관계가 있어야 하는지 쓰시오.",
+        "bAnswer": "(완전제곱식)$=0$ 꼴로 정리되어야 한다. $b=\\left(\\frac{a}{2}\\right)^2$, 곧 $b$가 $a$의 절반의 제곱이어야 한다.",
+        "bGoal": "중근을 가질 조건",
+        "bReason": "일반 꼴과 계수 관계를 나누어 물어 관계형 답을 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(완전제곱식)$=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b=\\left(\\frac{a}{2}\\right)^2$",
+              "$b$가 $a$의 절반의 제곱"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "완전제곱식과 계수 관계를 묻는 짧은 빈칸",
+        "learningRole": "reason",
+        "roleReason": "완전제곱식 꼴과 $b=(a/2)^2$의 관계",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 805,
+        "part": "m3",
+        "sourceFingerprint": "ef2b1f3aa10186cbc1864735d808896b3522e493c9208398885ea3825ffdb7cd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 805
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차방정식이 (□)$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 □일 때.",
+        "cFrozenDefinition": "이차방정식이 ({완전제곱식})$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 {제곱}일 때.",
+        "cFrozenAnswers": [
+          "완전제곱식",
+          "제곱"
+        ],
+        "cMarkedSentence": "이차방정식이 ({완전제곱식})$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 {제곱}일 때.",
+        "cSlotAnswers": [
+          "완전제곱식",
+          "제곱"
+        ],
+        "cStudentSentence": "이차방정식이 (□)$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 □일 때.",
+        "cAnswers": [
+          "완전제곱식",
+          "제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "완전제곱식",
+            "equivalentAnswers": [
+              "완전제곱식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱",
+              "제곱수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제곱",
+            "accept": [
+              "제곱수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "완전제곱식"
+          ],
+          [
+            "제곱",
+            "제곱수"
+          ]
+        ],
+        "proposalFingerprint": "7ffd99210e39f5e34075ab87043fb1bb1a81985b2df0658fc15838d7e343381a"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c9",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "완전제곱식을 이용한 이차방정식의 풀이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 {$\\left(\\frac{b}{2}\\right)^2$}을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "studentC": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 □을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "answers": [
+          "$\\left(\\frac{b}{2}\\right)^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c9",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+bx=c$ 꼴의 이차방정식을 완전제곱식을 이용해 풀 때, 양변에 무엇을 더하는지와 그다음 해를 구하는 방법을 쓰시오.",
+        "bAnswer": "양변에 $\\left(\\frac{b}{2}\\right)^2$을 더해 $\\left(x+\\frac{b}{2}\\right)^2=c+\\left(\\frac{b}{2}\\right)^2$으로 만든 뒤, 제곱근의 뜻을 이용해 해를 구한다.",
+        "bGoal": "완전제곱식을 이용한 풀이 절차",
+        "bReason": "더할 수와 이어지는 풀이 단계를 묻도록 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\left(\\frac{b}{2}\\right)^2$",
+              "$x$의 계수의 절반의 제곱"
+            ]
+          },
+          {
+            "anyOf": [
+              "제곱근의 뜻으로 푼다",
+              "$x+\\frac{b}{2}=\\pm\\sqrt{c+\\left(\\frac{b}{2}\\right)^2}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "더할 수 하나를 묻는 핵심 절차 빈칸",
+        "learningRole": "procedure",
+        "roleReason": "절반의 제곱을 더해 완전제곱식 만들기",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 806,
+        "part": "m3",
+        "sourceFingerprint": "f4382141f35c0567122bab982189701d89204d674232474a45649ae0e7f69dbd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 806
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 □을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "cFrozenDefinition": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 {$\\left(\\frac{b}{2}\\right)^2$}을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "cFrozenAnswers": [
+          "$\\left(\\frac{b}{2}\\right)^2$"
+        ],
+        "cMarkedSentence": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 {$\\left(\\frac{b}{2}\\right)^2$}을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "cSlotAnswers": [
+          "$\\left(\\frac{b}{2}\\right)^2$"
+        ],
+        "cStudentSentence": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 □을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "cAnswers": [
+          "$\\left(\\frac{b}{2}\\right)^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\left(\\frac{b}{2}\\right)^2$",
+            "equivalentAnswers": [
+              "$\\left(\\frac{b}{2}\\right)^2$",
+              "$\\frac{b^2}{4}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\left(\\frac{b}{2}\\right)^2$",
+            "accept": [
+              "$\\frac{b^2}{4}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\left(\\frac{b}{2}\\right)^2$",
+            "$\\frac{b^2}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "00b56668b560b071aad755504644bfdd8b25ad45270cb2b4edbbc0931632c4da"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-02-c1",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "근의 공식",
+        "kind": "공식",
+        "level": "하",
+        "definition": "$ax^2+bx+c=0$의 해를 계수만으로 구하는 식이 근의 공식이다 — 분자는 {$-b\\pm\\sqrt{b^2-4ac}$}, 분모는 {$2a$}.",
+        "studentC": "$ax^2+bx+c=0$의 해를 계수만으로 구하는 식이 근의 공식이다 — 분자는 □, 분모는 □.",
+        "answers": [
+          "$-b\\pm\\sqrt{b^2-4ac}$",
+          "$2a$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $ax^2+bx+c=0$($a\\ne0$)의 해를 $a$, $b$, $c$로 나타내는 근의 공식을 쓰시오. 또 이 공식으로 해를 구하려면 근호 안의 식의 값이 어떤 조건을 만족해야 하는지 쓰시오.",
+        "bAnswer": "$x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$이다. 근호 안의 $b^2-4ac$가 $0$ 이상이어야 한다.",
+        "bGoal": "근의 공식을 조건과 함께 쓰기",
+        "bReason": "어느 방정식의 무엇을 나타내는 공식인지와 근호 안 조건까지 묻도록 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b^2-4ac\\ge0$일 때 해를 구할 수 있음"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "방정식과 분자·분모가 문장에 드러나 빈칸이 분명하다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "계수로 해 구하는 공식",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 807,
+        "part": "m3",
+        "sourceFingerprint": "5a5e69b918618f937ea40dcb8a869e704ce89bf5aeb62e11084dac9100c9f811",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 807
+        },
+        "directReview": null,
+        "cFrozenSentence": "$ax^2+bx+c=0$의 해를 계수만으로 구하는 식이 근의 공식이다 — 분자는 □, 분모는 □.",
+        "cFrozenDefinition": "$ax^2+bx+c=0$의 해를 계수만으로 구하는 식이 근의 공식이다 — 분자는 {$-b\\pm\\sqrt{b^2-4ac}$}, 분모는 {$2a$}.",
+        "cFrozenAnswers": [
+          "$-b\\pm\\sqrt{b^2-4ac}$",
+          "$2a$"
+        ],
+        "cMarkedSentence": "$ax^2+bx+c=0$의 해를 계수만으로 구하는 식이 근의 공식이다 — 분자는 {$-b\\pm\\sqrt{b^2-4ac}$}, 분모는 {$2a$}.",
+        "cSlotAnswers": [
+          "$-b\\pm\\sqrt{b^2-4ac}$",
+          "$2a$"
+        ],
+        "cStudentSentence": "$ax^2+bx+c=0$의 해를 계수만으로 구하는 식이 근의 공식이다 — 분자는 □, 분모는 □.",
+        "cAnswers": [
+          "$-b\\pm\\sqrt{b^2-4ac}$",
+          "$2a$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-b\\pm\\sqrt{b^2-4ac}$",
+            "equivalentAnswers": [
+              "$-b\\pm\\sqrt{b^2-4ac}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2a$",
+            "equivalentAnswers": [
+              "$2a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-b\\pm\\sqrt{b^2-4ac}$"
+          ],
+          [
+            "$2a$"
+          ]
+        ],
+        "proposalFingerprint": "ef079ce4fa084537625c9e4c7cb4a8a980bb554d3a0023a0b08d2114d7144301"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-02-c2",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "이차방정식의 근의 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$b^2-4ac$가 양수이면 서로 다른 근이 {$2$}개, $0$이면 {중근} $1$개, 음수이면 근이 {없다}.",
+        "studentC": "$b^2-4ac$가 양수이면 서로 다른 근이 □개, $0$이면 □ $1$개, 음수이면 근이 □.",
+        "answers": [
+          "$2$",
+          "중근",
+          "없다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $ax^2+bx+c=0$에서 $b^2-4ac$의 값이 양수일 때, $0$일 때, 음수일 때 근의 개수가 각각 어떻게 되는지 쓰시오.",
+        "bAnswer": "양수이면 서로 다른 두 근, $0$이면 중근 하나, 음수이면 근이 없다.",
+        "bGoal": "$b^2-4ac$의 부호와 근의 개수 연결",
+        "bReason": "$a$, $b$, $c$가 어느 방정식의 계수인지 밝히고 세 경우를 모두 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양수: 서로 다른 두 근"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$: 중근(한 개)"
+            ]
+          },
+          {
+            "anyOf": [
+              "음수: 근이 없음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "이차방정식 $ax^2+bx+c=0$에서 $b^2-4ac$가 양수이면 서로 다른 근이 {$2$}개, $0$이면 {중근} $1$개, 음수이면 근이 {없다}.",
+        "cAnswers": [
+          "$2$",
+          "중근",
+          "없다"
+        ],
+        "cReason": "$a$, $b$, $c$가 가리키는 방정식이 문장에 없어 앞에 밝혔다.",
+        "coreAfter": "이차방정식 $ax^2+bx+c=0$에서 $b^2-4ac$가 양수이면 서로 다른 근이 {$2$}개, $0$이면 {중근} $1$개, 음수이면 근이 {없다}.",
+        "coreReason": "$a$, $b$, $c$가 어느 식의 계수인지 나와 있지 않았다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "b²-4ac 부호로 개수 판별",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 808,
+        "part": "m3",
+        "sourceFingerprint": "f357241bd90b03e331279e8c00a0ccdfd4e5590a67709ce643900119c10003da",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 808
+        },
+        "directReview": null,
+        "coreBeforeRepair": "이차방정식 $ax^2+bx+c=0$에서 $b^2-4ac$가 양수이면 서로 다른 근이 {$2$}개, $0$이면 {중근} $1$개, 음수이면 근이 {없다}.",
+        "coreRepairReason": "원본 핵심어 {$2$}, {중근}, {없다}와 세 경우 구조를 유지했다. 이미 좋은 교정이라 보존했다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "이차방정식 $ax^2+bx+c=0$에서 $b^2-4ac$가 양수이면 서로 다른 근이 {$2$}개, $0$이면 {중근} $1$개, 음수이면 근이 {없다}.",
+        "cSlotAnswers": [
+          "$2$",
+          "중근",
+          "없다"
+        ],
+        "cStudentSentence": "이차방정식 $ax^2+bx+c=0$에서 $b^2-4ac$가 양수이면 서로 다른 근이 □개, $0$이면 □ $1$개, 음수이면 근이 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중근",
+            "equivalentAnswers": [
+              "중근"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "중근"
+          ],
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "4fc3f9bfe2c39d8c363fb365fd5b297b710f6c43c36ba7a322edfedf963deba0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-02-c3",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "두 근이 주어진 이차방정식",
+        "kind": "공식",
+        "level": "중",
+        "definition": "$x^2$의 계수가 $a$이고 해가 $\\alpha$, $\\beta$인 이차방정식은 {$a(x-\\alpha)(x-\\beta)=0$}으로 쓸 수 있다.",
+        "studentC": "$x^2$의 계수가 $a$이고 해가 $\\alpha$, $\\beta$인 이차방정식은 □으로 쓸 수 있다.",
+        "answers": [
+          "$a(x-\\alpha)(x-\\beta)=0$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "두 해가 $\\alpha$, $\\beta$이고 $x^2$의 계수가 $a$($a\\ne0$)인 이차방정식을 인수분해된 꼴로 쓰고, 그 방정식의 해가 $\\alpha$, $\\beta$인 까닭을 쓰시오.",
+        "bAnswer": "$a(x-\\alpha)(x-\\beta)=0$이다. $x=\\alpha$ 또는 $x=\\beta$이면 두 괄호 중 하나가 $0$이 되어 좌변이 $0$이 된다.",
+        "bGoal": "두 근과 $x^2$의 계수로 이차방정식 만들기",
+        "bReason": "식만 외우지 않도록 해가 $\\alpha$, $\\beta$가 되는 까닭까지 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a(x-\\alpha)(x-\\beta)=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=\\alpha$ 또는 $x=\\beta$일 때 한 인수가 $0$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건과 기호가 모두 주어져 있고 빈칸이 식 하나로 분명하다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "두 근으로 인수분해 꼴 세움",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 809,
+        "part": "m3",
+        "sourceFingerprint": "ae3ab9d45971905bce0e9ece156afc37f16c7e8e964dd45a5ff55f1336366743",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 809
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2$의 계수가 $a$이고 해가 $\\alpha$, $\\beta$인 이차방정식은 □으로 쓸 수 있다.",
+        "cFrozenDefinition": "$x^2$의 계수가 $a$이고 해가 $\\alpha$, $\\beta$인 이차방정식은 {$a(x-\\alpha)(x-\\beta)=0$}으로 쓸 수 있다.",
+        "cFrozenAnswers": [
+          "$a(x-\\alpha)(x-\\beta)=0$"
+        ],
+        "cMarkedSentence": "$x^2$의 계수가 $a$이고 해가 $\\alpha$, $\\beta$인 이차방정식은 {$a(x-\\alpha)(x-\\beta)=0$}으로 쓸 수 있다.",
+        "cSlotAnswers": [
+          "$a(x-\\alpha)(x-\\beta)=0$"
+        ],
+        "cStudentSentence": "$x^2$의 계수가 $a$이고 해가 $\\alpha$, $\\beta$인 이차방정식은 □으로 쓸 수 있다.",
+        "cAnswers": [
+          "$a(x-\\alpha)(x-\\beta)=0$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a(x-\\alpha)(x-\\beta)=0$",
+            "equivalentAnswers": [
+              "$a(x-\\alpha)(x-\\beta)=0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a(x-\\alpha)(x-\\beta)=0$"
+          ]
+        ],
+        "proposalFingerprint": "db6198eff7d1293085a2e346eb88cc55c4c66b2ae91b8e320a40b6e78aeeebb8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-02-c4",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "계수가 분수 · 소수인 이차방정식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "계수가 분수나 소수여도 {근의 공식}을 바로 쓸 수 있다 — 양변에 알맞은 수를 곱해 계수를 정수로 고치는 것은 {계산을 간단히} 하려는 것이다.",
+        "studentC": "계수가 분수나 소수여도 □을 바로 쓸 수 있다 — 양변에 알맞은 수를 곱해 계수를 정수로 고치는 것은 □ 하려는 것이다.",
+        "answers": [
+          "근의 공식",
+          "계산을 간단히"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $0.1x^2-0.3x-\\frac{1}{2}=0$은 그대로도 근의 공식으로 풀 수 있지만, 보통은 양변에 $10$을 곱해 $x^2-3x-5=0$으로 고친 다음 푼다. 먼저 고치는 까닭을 쓰시오.",
+        "bAnswer": "양변에 $0$이 아닌 같은 수를 곱해도 해는 그대로이고, 계수가 정수가 되어 근의 공식 계산이 간단해지기 때문이다.",
+        "bGoal": "분수·소수 계수를 정수로 고쳐 푸는 까닭",
+        "bReason": "고치는 까닭만 물으므로 해가 변하지 않는다는 말은 필수가 아님",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "계수가 정수가 되어 계산이 간단해진다",
+              "분수·소수 계산을 피할 수 있다",
+              "근의 공식에 넣어 계산하기 쉬워진다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "계수가 분수나 소수인 이차방정식에도 근의 공식을 그대로 쓸 수 있지만, 양변에 알맞은 수를 곱해 계수를 {정수}로 고치면 {계산}이 간단해진다.",
+        "cAnswers": [
+          "정수",
+          "계산"
+        ],
+        "cReason": "첫 빈칸은 제목 없이 무엇을 쓰는지 알 수 없고 둘째 빈칸은 임의의 구절이었다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "정수 계수로 계산 간단히",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 810,
+        "part": "m3",
+        "sourceFingerprint": "3077e405fb97cb89051ae341e64adeb39dede41cfaa66d1f8c3f2b558b901bc9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 810
+        },
+        "directReview": null,
+        "cMarkedSentence": "계수가 분수나 소수인 이차방정식에도 근의 공식을 그대로 쓸 수 있지만, 양변에 알맞은 수를 곱해 계수를 {정수}로 고치면 {계산}이 간단해진다.",
+        "cSlotAnswers": [
+          "정수",
+          "계산"
+        ],
+        "cStudentSentence": "계수가 분수나 소수인 이차방정식에도 근의 공식을 그대로 쓸 수 있지만, 양변에 알맞은 수를 곱해 계수를 □로 고치면 □이 간단해진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "계산",
+            "equivalentAnswers": [
+              "계산"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "계산"
+          ]
+        ],
+        "proposalFingerprint": "5e677af9d0188f095d2694f7c15d25bed22a261240b7785dc58b642b6b0c6461"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-02-c5",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "근의 공식 유도",
+        "kind": "방법",
+        "level": "상",
+        "definition": "근의 공식은 $ax^2+bx+c=0$의 양변을 {$a$}로 나눈 뒤 좌변을 {완전제곱식}으로 고쳐 제곱근을 구하면 나온다.",
+        "studentC": "근의 공식은 $ax^2+bx+c=0$의 양변을 □로 나눈 뒤 좌변을 □으로 고쳐 제곱근을 구하면 나온다.",
+        "answers": [
+          "$a$",
+          "완전제곱식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $ax^2+bx+c=0$($a\\ne0$)에서 근의 공식을 끌어내는 과정을 순서대로 쓰시오. 양변을 무엇으로 나누는지, 좌변을 어떤 꼴로 고치는지, 마지막에 무엇을 구하는지가 드러나게 쓴다.",
+        "bAnswer": "양변을 $a$로 나누고 상수항을 우변으로 옮긴다. 양변에 $\\left(\\frac{b}{2a}\\right)^2$을 더해 $\\left(x+\\frac{b}{2a}\\right)^2=\\frac{b^2-4ac}{4a^2}$으로 고친다. 제곱근을 구해 정리하면 $x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$이다.",
+        "bGoal": "근의 공식 유도 과정 설명",
+        "bReason": "유도에서 답해야 할 세 단계를 질문에 범위로 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변을 $a$로 나눔"
+            ]
+          },
+          {
+            "anyOf": [
+              "좌변을 완전제곱식으로 고침"
+            ]
+          },
+          {
+            "anyOf": [
+              "제곱근을 구해 $x$를 구함"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "식과 단계가 문장에 있어 두 빈칸이 분명하고 짧다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "완전제곱식으로 공식 유도",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 811,
+        "part": "m3",
+        "sourceFingerprint": "47884239931bfc6cfc643d5a736020ef7e3840dbc5130e943128e070b494320f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 811
+        },
+        "directReview": null,
+        "cFrozenSentence": "근의 공식은 $ax^2+bx+c=0$의 양변을 □로 나눈 뒤 좌변을 □으로 고쳐 제곱근을 구하면 나온다.",
+        "cFrozenDefinition": "근의 공식은 $ax^2+bx+c=0$의 양변을 {$a$}로 나눈 뒤 좌변을 {완전제곱식}으로 고쳐 제곱근을 구하면 나온다.",
+        "cFrozenAnswers": [
+          "$a$",
+          "완전제곱식"
+        ],
+        "cMarkedSentence": "근의 공식은 $ax^2+bx+c=0$의 양변을 {$a$}로 나눈 뒤 좌변을 {완전제곱식}으로 고쳐 제곱근을 구하면 나온다.",
+        "cSlotAnswers": [
+          "$a$",
+          "완전제곱식"
+        ],
+        "cStudentSentence": "근의 공식은 $ax^2+bx+c=0$의 양변을 □로 나눈 뒤 좌변을 □으로 고쳐 제곱근을 구하면 나온다.",
+        "cAnswers": [
+          "$a$",
+          "완전제곱식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "완전제곱식",
+            "equivalentAnswers": [
+              "완전제곱식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a$"
+          ],
+          [
+            "완전제곱식"
+          ]
+        ],
+        "proposalFingerprint": "427ede3ac2644d2b48985f1070ed4e13c4b9b3b0463dce780d6cb1d90351e879"
+      }
+    }
+  ]
+}

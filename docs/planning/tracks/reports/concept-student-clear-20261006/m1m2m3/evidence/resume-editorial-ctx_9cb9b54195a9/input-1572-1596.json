@@ -1,0 +1,2619 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:17:24.729Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc15",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "표로 정비례 · 반비례 가르기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "표에서 $\\frac{y}{x}$가 일정하면 {정비례}, $xy$가 일정하면 {반비례}이다.",
+        "example": {
+          "prompt": "$x$가 $1$, $2$, $3$일 때 $y$가 $6$, $3$, $2$이면 어느 관계인가?",
+          "answer": "반비례"
+        },
+        "studentC": "표에서 $\\frac{y}{x}$가 일정하면 □, $xy$가 일정하면 □이다.",
+        "answers": [
+          "정비례",
+          "반비례"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$의 값이 $1$, $2$, $3$일 때 $y$의 값이 차례로 $6$, $3$, $2$인 표가 있다. $\\frac{y}{x}$와 $xy$ 가운데 일정한 것을 계산으로 찾고, $y$가 $x$에 정비례하는지 반비례하는지 쓰시오.",
+        "bAnswer": "$xy$의 값이 $6$, $6$, $6$으로 일정하므로 반비례한다. $\\frac{y}{x}$의 값은 $6$, $\\frac{3}{2}$, $\\frac{2}{3}$로 일정하지 않다.",
+        "bGoal": "표에서 몫과 곱을 계산해 관계 가려내기",
+        "bReason": "표가 없어 값을 주고 두 계산 가운데 일정한 것을 찾게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$xy$의 값이 $6$으로 일정하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반비례한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 판별 기준과 관계 이름을 짝지어 묻는 짧은 비교 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "표에서 $\\frac{y}{x}$, $xy$로 가르기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1572,
+        "part": "m1plus",
+        "sourceFingerprint": "8187cb7e40395ad2f871e12917922bec1284fb54415d8778c9b826a3da63aa2e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1572
+        },
+        "directReview": null,
+        "cFrozenSentence": "표에서 $\\frac{y}{x}$가 일정하면 □, $xy$가 일정하면 □이다.",
+        "cFrozenDefinition": "표에서 $\\frac{y}{x}$가 일정하면 {정비례}, $xy$가 일정하면 {반비례}이다.",
+        "cFrozenAnswers": [
+          "정비례",
+          "반비례"
+        ],
+        "cMarkedSentence": "표에서 $\\frac{y}{x}$가 일정하면 {정비례}, $xy$가 일정하면 {반비례}이다.",
+        "cSlotAnswers": [
+          "정비례",
+          "반비례"
+        ],
+        "cStudentSentence": "표에서 $\\frac{y}{x}$가 일정하면 □, $xy$가 일정하면 □이다.",
+        "cAnswers": [
+          "정비례",
+          "반비례"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정비례",
+            "equivalentAnswers": [
+              "정비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반비례",
+            "equivalentAnswers": [
+              "반비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정비례"
+          ],
+          [
+            "반비례"
+          ]
+        ],
+        "proposalFingerprint": "2f1a01187a466eb44b92a28d18eb24974c649761370087f7fa97be45a56e97b1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc16",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례 그래프와 직사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$y=\\frac{a}{x}$의 그래프 위의 한 점에서 두 좌표축에 수선을 내려 만든 직사각형의 넓이는 언제나 {$|a|$}이다.",
+        "example": {
+          "prompt": "$y=\\frac{10}{x}$ 위의 점 $(2, 5)$에서 두 좌표축에 수선을 내려 만든 직사각형의 넓이는?",
+          "answer": "$10$"
+        },
+        "studentC": "$y=\\frac{a}{x}$의 그래프 위의 한 점에서 두 좌표축에 수선을 내려 만든 직사각형의 넓이는 언제나 □이다.",
+        "answers": [
+          "$|a|$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "점 $\\mathrm{P}(2, 5)$는 $y=\\frac{10}{x}$의 그래프 위의 점이다. 원점 $\\mathrm{O}$, $\\mathrm{A}(2, 0)$, $\\mathrm{P}(2, 5)$, $\\mathrm{B}(0, 5)$를 꼭짓점으로 하는 직사각형 $\\mathrm{OAPB}$의 넓이를 구하시오. 또 그래프 위의 다른 점 $(5, 2)$로 같은 방법의 직사각형을 만들면 넓이가 달라지는지 까닭과 함께 쓰시오.",
+        "bAnswer": "넓이는 $2\\times5=10$이다. 점 $(5, 2)$로 만들어도 $5\\times2=10$으로 같다. 가로와 세로의 길이의 곱이 $xy=10$으로 일정하기 때문이다.",
+        "bGoal": "반비례 그래프의 직사각형 넓이가 일정함을 알기",
+        "bReason": "그림이 없어 네 꼭짓점의 좌표를 밝히고 다른 점과 비교하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "넓이는 $10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "달라지지 않는다",
+              "넓이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\times2=10$",
+              "가로와 세로의 곱이 $xy=10$으로 일정하다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "직사각형을 만드는 방법이 문장에 있고 넓이 식 하나만 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "직사각형 넓이가 일정한 까닭",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1573,
+        "part": "m1plus",
+        "sourceFingerprint": "a7b832cdb084ab5f74aca45048365e0a8070a16529d0a16e2c7014fd8d0c2982",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1573
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=\\frac{a}{x}$의 그래프 위의 한 점에서 두 좌표축에 수선을 내려 만든 직사각형의 넓이는 언제나 □이다.",
+        "cFrozenDefinition": "$y=\\frac{a}{x}$의 그래프 위의 한 점에서 두 좌표축에 수선을 내려 만든 직사각형의 넓이는 언제나 {$|a|$}이다.",
+        "cFrozenAnswers": [
+          "$|a|$"
+        ],
+        "cMarkedSentence": "$y=\\frac{a}{x}$의 그래프 위의 한 점에서 두 좌표축에 수선을 내려 만든 직사각형의 넓이는 언제나 {$|a|$}이다.",
+        "cSlotAnswers": [
+          "$|a|$"
+        ],
+        "cStudentSentence": "$y=\\frac{a}{x}$의 그래프 위의 한 점에서 두 좌표축에 수선을 내려 만든 직사각형의 넓이는 언제나 □이다.",
+        "cAnswers": [
+          "$|a|$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$|a|$",
+            "equivalentAnswers": [
+              "$|a|$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$|a|$"
+          ]
+        ],
+        "proposalFingerprint": "e901e8177139576b0ddcafd03898a07d1f7701ad515ae7383a87df81b4dd632b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc17",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "좌표가 정수인 점 세기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$a$가 자연수일 때 $y=\\frac{a}{x}$의 그래프 위에서 두 좌표가 모두 정수인 점은 $x$가 $a$의 {약수}이거나 약수에 음의 부호를 붙인 수일 때 {생긴다}.",
+        "example": {
+          "prompt": "$y=\\frac{6}{x}$의 그래프 위에서 두 좌표가 모두 정수인 점은 몇 개?",
+          "answer": "$8$개"
+        },
+        "studentC": "$a$가 자연수일 때 $y=\\frac{a}{x}$의 그래프 위에서 두 좌표가 모두 정수인 점은 $x$가 $a$의 □이거나 약수에 음의 부호를 붙인 수일 때 □.",
+        "answers": [
+          "약수",
+          "생긴다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=\\frac{6}{x}$의 그래프 위의 점 가운데 $x$좌표와 $y$좌표가 모두 정수인 점의 개수를 구하고, 그런 점의 $x$좌표가 어떤 수인지 쓰시오.",
+        "bAnswer": "$x$좌표가 $6$의 약수 $1$, $2$, $3$, $6$이거나 $-1$, $-2$, $-3$, $-6$일 때이므로 모두 $8$개이다.",
+        "bGoal": "약수를 이용해 좌표가 정수인 점 세기",
+        "bReason": "셀 대상의 식이 없어 $y=\\frac{6}{x}$을 주고 $x$좌표의 조건도 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$좌표는 $6$의 약수이거나 약수에 음의 부호를 붙인 수이다",
+              "$x$좌표는 $\\pm1$, $\\pm2$, $\\pm3$, $\\pm6$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$a$가 자연수일 때 $y=\\frac{a}{x}$의 그래프 위에서 두 좌표가 모두 정수인 점은 $x$좌표가 $a$의 {약수}이거나 약수에 음의 부호를 붙인 수인 점이다. 예를 들어 $y=\\frac{6}{x}$에서는 이런 점이 모두 {$8$}개이다.",
+        "cAnswers": [
+          "약수",
+          "$8$"
+        ],
+        "cReason": "문장 끝의 '생긴다'는 내용 없는 빈칸이라 개수를 세는 예로 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "약수로 정수 좌표인 점 세기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1574,
+        "part": "m1plus",
+        "sourceFingerprint": "d7b22dcbf9030b84d4ac3c5d91074118c524ce6e36cd1e7fd309552d5ff5db59",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1574
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a$가 자연수일 때 $y=\\frac{a}{x}$의 그래프 위에서 두 좌표가 모두 정수인 점은 $x$좌표가 $a$의 {약수}이거나 약수에 음의 부호를 붙인 수인 점이다. 예를 들어 $y=\\frac{6}{x}$에서는 이런 점이 모두 {$8$}개이다.",
+        "cSlotAnswers": [
+          "약수",
+          "$8$"
+        ],
+        "cStudentSentence": "$a$가 자연수일 때 $y=\\frac{a}{x}$의 그래프 위에서 두 좌표가 모두 정수인 점은 $x$좌표가 $a$의 □이거나 약수에 음의 부호를 붙인 수인 점이다. 예를 들어 $y=\\frac{6}{x}$에서는 이런 점이 모두 □개이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약수",
+            "equivalentAnswers": [
+              "약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$8$",
+            "equivalentAnswers": [
+              "$8$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약수"
+          ],
+          [
+            "$8$"
+          ]
+        ],
+        "proposalFingerprint": "0674a016564b9eef7ac554b812f5f70c1d2a93fa851a447d0d137e3240c2bad2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc18",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "두 그래프가 만나는 점",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$y=ax$와 $y=\\frac{b}{x}$의 그래프가 만나는 점은 {두 관계식}을 모두 만족하므로, 그 좌표를 두 식에 {대입}한다.",
+        "example": {
+          "prompt": "$y=2x$와 $y=\\frac{b}{x}$가 $x=3$인 점에서 만날 때 $b$의 값은?",
+          "answer": "$18$"
+        },
+        "studentC": "$y=ax$와 $y=\\frac{b}{x}$의 그래프가 만나는 점은 □을 모두 만족하므로, 그 좌표를 두 식에 □한다.",
+        "answers": [
+          "두 관계식",
+          "대입"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=2x$의 그래프와 $y=\\frac{b}{x}$의 그래프가 $x$좌표가 $3$인 점에서 만날 때 $b$의 값을 구하는 과정을 쓰시오.",
+        "bAnswer": "만나는 점은 두 식을 모두 만족한다. $y=2x$에 $x=3$을 대입하면 $y=6$이므로 만나는 점은 $(3, 6)$이다. $y=\\frac{b}{x}$에 대입하면 $6=\\frac{b}{3}$이므로 $b=18$이다.",
+        "bGoal": "만나는 점의 좌표를 두 식에 대입해 미지수 구하기",
+        "bReason": "어떤 두 그래프인지 없어 두 식과 만나는 점의 $x$좌표를 정해 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "만나는 점은 $(3, 6)$이다",
+              "$x=3$일 때 $y=6$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b=18$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$y=ax$와 $y=\\frac{b}{x}$의 그래프가 만나는 점의 좌표를 두 관계식에 각각 {대입}하면 두 식이 모두 성립한다. 예를 들어 $y=2x$와 $y=\\frac{b}{x}$의 그래프가 $x$좌표가 $3$인 점에서 만나면 그 점은 $(3, 6)$이고 $b=${$18$}이다.",
+        "cAnswers": [
+          "대입",
+          "$18$"
+        ],
+        "cReason": "'두 관계식'은 뒤의 '두 식'과 같은 말이라 베껴 쓰는 빈칸이 된다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "만나는 점으로 미지수 구하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1575,
+        "part": "m1plus",
+        "sourceFingerprint": "065f67cc8794477069a08e1c410a51049530d142f2a397263756ff6da65c8014",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1575
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=ax$와 $y=\\frac{b}{x}$의 그래프가 만나는 점의 좌표를 두 관계식에 각각 {대입}하면 두 식이 모두 성립한다. 예를 들어 $y=2x$와 $y=\\frac{b}{x}$의 그래프가 $x$좌표가 $3$인 점에서 만나면 그 점은 $(3, 6)$이고 $b=${$18$}이다.",
+        "cSlotAnswers": [
+          "대입",
+          "$18$"
+        ],
+        "cStudentSentence": "$y=ax$와 $y=\\frac{b}{x}$의 그래프가 만나는 점의 좌표를 두 관계식에 각각 □하면 두 식이 모두 성립한다. 예를 들어 $y=2x$와 $y=\\frac{b}{x}$의 그래프가 $x$좌표가 $3$인 점에서 만나면 그 점은 $(3, 6)$이고 $b=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$18$",
+            "equivalentAnswers": [
+              "$18$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "$18$"
+          ]
+        ],
+        "proposalFingerprint": "4ee461a6f96adb1dc9f65feca1637961ccb886e3ace6e684f7dbe64840fc9cb2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc19",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "맞물린 톱니바퀴의 톱니 수와 회전수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "맞물린 두 톱니바퀴에서 (톱니 수)와 (회전수)의 {곱}은 같으므로, 한 바퀴의 톱니 수와 회전수는 {반비례}한다.",
+        "example": {
+          "prompt": "톱니 $20$개인 바퀴가 $3$번 돌 때 맞물린 톱니 $x$개인 바퀴는 $y$번 돈다. 관계식은?",
+          "answer": "$y=\\frac{60}{x}$"
+        },
+        "studentC": "맞물린 두 톱니바퀴에서 (톱니 수)와 (회전수)의 □은 같으므로, 한 바퀴의 톱니 수와 회전수는 □한다.",
+        "answers": [
+          "곱",
+          "반비례"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "톱니가 $20$개인 톱니바퀴 $\\mathrm{A}$가 $3$번 회전할 때, $\\mathrm{A}$와 맞물린 톱니가 $x$개인 톱니바퀴 $\\mathrm{B}$는 $y$번 회전한다. $x$와 $y$ 사이의 관계식을 구하고 그 까닭을 쓰시오.",
+        "bAnswer": "맞물려 지나간 톱니의 수가 같으므로 $20\\times3=xy$, 곧 $xy=60$이다. 따라서 $y=\\frac{60}{x}$이다.",
+        "bGoal": "맞물린 톱니바퀴 상황을 반비례 관계식으로 나타내기",
+        "bReason": "어느 바퀴의 무엇이 변하는지 불분명해 두 바퀴와 변수의 뜻을 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=\\frac{60}{x}$",
+              "$xy=60$"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞물려 지나간 톱니의 수가 같다",
+              "(톱니 수)$\\times$(회전수)가 두 바퀴에서 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "맞물린 두 톱니바퀴에서 (톱니 수)$\\times$(회전수)의 값은 서로 같다. 톱니가 $20$개인 바퀴가 $3$번 돌 때 맞물린 톱니 $x$개인 바퀴가 $y$번 돈다면 $xy=${$60$}이므로 $y$는 $x$에 {반비례}한다.",
+        "cAnswers": [
+          "$60$",
+          "반비례"
+        ],
+        "cReason": "'한 바퀴의 톱니 수와 회전수'가 어느 바퀴의 무엇인지 알 수 없다.",
+        "coreAfter": "맞물린 두 톱니바퀴에서는 같은 시간 동안 (톱니 수)와 (회전수)의 {곱}이 서로 같다. 그래서 한쪽 바퀴의 톱니 수와 회전수가 정해져 있으면, 다른 바퀴의 톱니 수와 회전수는 {반비례}한다.",
+        "coreReason": "한 바퀴의 톱니 수는 고정된 값이라, 원문으로는 무엇이 반비례하는지 불명확하다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "톱니 수와 회전수의 반비례",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1576,
+        "part": "m1plus",
+        "sourceFingerprint": "f73f95bf48166c34fa848012b21d9fe9ed0c84e92c49c399140c8e8e3970e4dd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1576
+        },
+        "directReview": null,
+        "coreBeforeRepair": "맞물린 두 톱니바퀴에서는 (톱니 수)와 (회전수)의 {곱}이 서로 같다. 그래서 한쪽 바퀴의 톱니 수와 회전수가 정해져 있으면, 맞물린 다른 바퀴의 톱니 수와 회전수는 {반비례}한다.",
+        "coreRepairReason": "원본 핵심어 {곱}, {반비례}를 유지했다. 곱이 같아지는 조건인 '같은 시간 동안'을 보탰다. 반비례하는 대상을 '다른 바퀴의 톱니 수와 회전수'로 밝혔다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "맞물린 두 톱니바퀴에서 (톱니 수)$\\times$(회전수)의 값은 서로 같다. 톱니가 $20$개인 바퀴가 $3$번 돌 때 맞물린 톱니 $x$개인 바퀴가 $y$번 돈다면 $xy=${$60$}이므로 $y$는 $x$에 {반비례}한다.",
+        "cSlotAnswers": [
+          "$60$",
+          "반비례"
+        ],
+        "cStudentSentence": "맞물린 두 톱니바퀴에서 (톱니 수)$\\times$(회전수)의 값은 서로 같다. 톱니가 $20$개인 바퀴가 $3$번 돌 때 맞물린 톱니 $x$개인 바퀴가 $y$번 돈다면 $xy=$□이므로 $y$는 $x$에 □한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$60$",
+            "equivalentAnswers": [
+              "$60$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반비례",
+            "equivalentAnswers": [
+              "반비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$60$"
+          ],
+          [
+            "반비례"
+          ]
+        ],
+        "proposalFingerprint": "20ac55f040e27acf0a5064953be2d6760d104e33d41c7a652a8c1b7a29b11661"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc20",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례에서 $x$가 $k$배일 때 $y$",
+        "kind": "성질",
+        "level": "상",
+        "definition": "반비례 관계에서 $x$가 $k$배가 되면 $y$는 {$\\frac{1}{k}$배}가 된다.",
+        "example": {
+          "prompt": "$x=3$일 때 $y=8$인 반비례 관계에서 $x=12$이면 $y$의 값은?",
+          "answer": "$2$"
+        },
+        "studentC": "반비례 관계에서 $x$가 $k$배가 되면 $y$는 □가 된다.",
+        "answers": [
+          "$\\frac{1}{k}$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$y$가 $x$에 반비례하고 $x=3$일 때 $y=8$이다. $x=12$일 때 $y$의 값을, $x$의 값이 몇 배가 되었는지를 이용하여 구하시오.",
+        "bAnswer": "$x$의 값이 $3$에서 $12$로 $4$배가 되었으므로 $y$의 값은 $\\frac{1}{4}$배가 되어 $8\\times\\frac{1}{4}=2$이다.",
+        "bGoal": "$x$가 $k$배일 때 $y$가 $\\frac{1}{k}$배임을 이용하기",
+        "bReason": "문자 $k$만으로는 막연해 $4$배가 되는 구체 값으로 성질을 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$가 $4$배가 되면 $y$는 $\\frac{1}{4}$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건과 결론이 한 줄에 있고 역수의 배 하나만 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "$k$배와 $\\frac{1}{k}$배의 관계 쓰기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1577,
+        "part": "m1plus",
+        "sourceFingerprint": "9c484ff67b355ce6338ba1730750868eeacb9044233fde23fa143e84e5c32ed1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1577
+        },
+        "directReview": null,
+        "cFrozenSentence": "반비례 관계에서 $x$가 $k$배가 되면 $y$는 □가 된다.",
+        "cFrozenDefinition": "반비례 관계에서 $x$가 $k$배가 되면 $y$는 {$\\frac{1}{k}$배}가 된다.",
+        "cFrozenAnswers": [
+          "$\\frac{1}{k}$배"
+        ],
+        "cMarkedSentence": "반비례 관계에서 $x$가 $k$배가 되면 $y$는 {$\\frac{1}{k}$배}가 된다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{k}$배"
+        ],
+        "cStudentSentence": "반비례 관계에서 $x$가 $k$배가 되면 $y$는 □가 된다.",
+        "cAnswers": [
+          "$\\frac{1}{k}$배"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{k}$배",
+            "equivalentAnswers": [
+              "$\\frac{1}{k}$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{k}$배"
+          ]
+        ],
+        "proposalFingerprint": "31c84fcf9a017b32ca0c15d72ef188e7a2109e93dc14ac19ec4cc5ff65700094"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc21",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "같은 그래프 위의 두 점",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$y=\\frac{a}{x}$의 그래프 위의 두 점 $(p, q)$, $(r, s)$에서 {$pq=rs$}이므로 모르는 {좌표}를 구할 수 있다.",
+        "example": {
+          "prompt": "$(2, 9)$와 $(6, k)$가 같은 반비례 그래프 위에 있을 때 $k$의 값은?",
+          "answer": "$3$"
+        },
+        "studentC": "$y=\\frac{a}{x}$의 그래프 위의 두 점 $(p, q)$, $(r, s)$에서 □이므로 모르는 □를 구할 수 있다.",
+        "answers": [
+          "$pq=rs$",
+          "좌표"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "두 점 $(2, 9)$와 $(6, k)$가 같은 반비례 관계 $y=\\frac{a}{x}$의 그래프 위에 있을 때 $k$의 값을 구하는 과정을 쓰시오.",
+        "bAnswer": "$a=2\\times9=18$이고 $6\\times k=18$이므로 $k=3$이다.",
+        "bGoal": "같은 반비례 그래프 위의 두 점으로 모르는 좌표 구하기",
+        "bReason": "어떤 그래프인지 제목에 없어 반비례 식과 두 점을 구체로 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=18$",
+              "$2\\times9=6\\times k$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$k=3$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$y=\\frac{a}{x}$의 그래프 위의 두 점 $(p, q)$, $(r, s)$에서 $pq$와 $rs$의 값은 모두 {$a$}로 같다. 예를 들어 $(2, 9)$와 $(6, k)$가 같은 반비례 그래프 위에 있으면 $6k=18$이므로 $k=${$3$}이다.",
+        "cAnswers": [
+          "$a$",
+          "$3$"
+        ],
+        "cReason": "등식 전체가 답인 빈칸은 단서가 없고 '좌표'는 막연하다.",
+        "studentLabel": "같은 반비례 그래프 위의 두 점",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "두 점의 좌표의 곱이 같음을 이용",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1578,
+        "part": "m1plus",
+        "sourceFingerprint": "8590d03f7175b37706f7e8296c9cb12a16a05d1c243975f98ce9b5b6b1cf9465",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1578
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=\\frac{a}{x}$의 그래프 위의 두 점 $(p, q)$, $(r, s)$에서 $pq$와 $rs$의 값은 모두 {$a$}로 같다. 예를 들어 $(2, 9)$와 $(6, k)$가 같은 반비례 그래프 위에 있으면 $6k=18$이므로 $k=${$3$}이다.",
+        "cSlotAnswers": [
+          "$a$",
+          "$3$"
+        ],
+        "cStudentSentence": "$y=\\frac{a}{x}$의 그래프 위의 두 점 $(p, q)$, $(r, s)$에서 $pq$와 $rs$의 값은 모두 □로 같다. 예를 들어 $(2, 9)$와 $(6, k)$가 같은 반비례 그래프 위에 있으면 $6k=18$이므로 $k=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a$"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "168b8d380f0e6e3908a785ffb4ab42330e735ae5f77353b29fe004852eb640bb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc22",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "넓이가 일정한 삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "넓이가 일정한 삼각형의 밑변 $x$와 높이 $y$는 $\\frac{1}{2}xy$가 일정하므로 {$xy$}가 일정한 {반비례} 관계이다.",
+        "example": {
+          "prompt": "넓이가 $12$인 삼각형의 밑변 $x$와 높이 $y$의 관계식은?",
+          "answer": "$y=\\frac{24}{x}$"
+        },
+        "studentC": "넓이가 일정한 삼각형의 밑변 $x$와 높이 $y$는 $\\frac{1}{2}xy$가 일정하므로 □가 일정한 □ 관계이다.",
+        "answers": [
+          "$xy$",
+          "반비례"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "넓이가 $12$인 삼각형의 밑변의 길이를 $x$, 높이를 $y$라 할 때, $x$와 $y$ 사이의 관계식을 구하고 $y$가 $x$에 반비례하는 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{1}{2}xy=12$이므로 $xy=24$, 곧 $y=\\frac{24}{x}$이다. $xy$의 값이 일정하므로 반비례한다.",
+        "bGoal": "넓이가 일정한 삼각형에서 반비례 관계식 세우기",
+        "bReason": "넓이의 값과 변수의 뜻을 주어 $\\frac{1}{2}$을 처리하는 과정을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=\\frac{24}{x}$",
+              "$xy=24$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$xy$의 값이 일정하다",
+              "$y=\\frac{a}{x}$ 꼴이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$\\frac{1}{2}xy$에서 $xy$로 넘어가는 추론과 관계 이름을 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "밑변과 높이의 반비례",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1579,
+        "part": "m1plus",
+        "sourceFingerprint": "3435df017739ef95f8600cfae46b23b468bc13e7e59ca882027fd44644a22c9f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1579
+        },
+        "directReview": null,
+        "cFrozenSentence": "넓이가 일정한 삼각형의 밑변 $x$와 높이 $y$는 $\\frac{1}{2}xy$가 일정하므로 □가 일정한 □ 관계이다.",
+        "cFrozenDefinition": "넓이가 일정한 삼각형의 밑변 $x$와 높이 $y$는 $\\frac{1}{2}xy$가 일정하므로 {$xy$}가 일정한 {반비례} 관계이다.",
+        "cFrozenAnswers": [
+          "$xy$",
+          "반비례"
+        ],
+        "cMarkedSentence": "넓이가 일정한 삼각형의 밑변 $x$와 높이 $y$는 $\\frac{1}{2}xy$가 일정하므로 {$xy$}가 일정한 {반비례} 관계이다.",
+        "cSlotAnswers": [
+          "$xy$",
+          "반비례"
+        ],
+        "cStudentSentence": "넓이가 일정한 삼각형의 밑변 $x$와 높이 $y$는 $\\frac{1}{2}xy$가 일정하므로 □가 일정한 □ 관계이다.",
+        "cAnswers": [
+          "$xy$",
+          "반비례"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$xy$",
+            "equivalentAnswers": [
+              "$xy$",
+              "$x$와 $y$의 곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반비례",
+            "equivalentAnswers": [
+              "반비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$xy$",
+            "accept": [
+              "$x$와 $y$의 곱"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$xy$",
+            "$x$와 $y$의 곱"
+          ],
+          [
+            "반비례"
+          ]
+        ],
+        "proposalFingerprint": "f10c780bfe5e5ed846948bc1fab501626fa8c828a362f15aa84a1b729b7c8d05"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc23",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례 관계식의 단위",
+        "kind": "방법",
+        "level": "상",
+        "definition": "전체 양을 한 몫씩 나누는 반비례 관계 $y=\\frac{a}{x}$에서, 전체 양과 한 몫의 단위가 다르면 {같은 단위}로 고친다. 이때 $x$는 한 몫의 양, $y$는 몫의 수이며, 두 수의 곱인 {$a$}가 전체 양이다.",
+        "example": {
+          "prompt": "물 $2\\,\\mathrm{L}$를 $x\\,\\mathrm{mL}$씩 컵 $y$개에 나누어 담을 때 관계식은?",
+          "answer": "$y=\\frac{2000}{x}$"
+        },
+        "studentC": "전체 양을 한 몫씩 나누는 반비례 관계 $y=\\frac{a}{x}$에서, 전체 양과 한 몫의 단위가 다르면 □로 고친다. 이때 $x$는 한 몫의 양, $y$는 몫의 수이며, 두 수의 곱인 □가 전체 양이다.",
+        "answers": [
+          "같은 단위",
+          "$a$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "물 $2\\,\\mathrm{L}$를 한 컵에 $x\\,\\mathrm{mL}$씩 똑같이 나누어 담았더니 컵 $y$개가 가득 찼다. $x$와 $y$ 사이의 관계식을 구하고, 식을 세울 때 단위를 어떻게 처리했는지 쓰시오.",
+        "bAnswer": "$2\\,\\mathrm{L}=2000\\,\\mathrm{mL}$로 단위를 같게 하면 $xy=2000$이므로 $y=\\frac{2000}{x}$이다.",
+        "bGoal": "단위를 맞추어 반비례 관계식 세우기",
+        "bReason": "'단위'가 무엇을 뜻하는지 모호해 $\\mathrm{L}$와 $\\mathrm{mL}$가 섞인 장면을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2\\,\\mathrm{L}=2000\\,\\mathrm{mL}$로 고친다",
+              "전체 양과 한 컵의 양을 같은 단위로 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=\\frac{2000}{x}$",
+              "$xy=2000$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "물 $2\\,\\mathrm{L}$를 $x\\,\\mathrm{mL}$씩 컵 $y$개에 나누어 담을 때에는 단위를 같게 하여 $2\\,\\mathrm{L}=${$2000$}$\\,\\mathrm{mL}$로 고친다. 그러면 $xy=2000$이므로 관계식은 {$y=\\frac{2000}{x}$}이다.",
+        "cAnswers": [
+          "$2000$",
+          "$y=\\frac{2000}{x}$"
+        ],
+        "cReason": "두 문장에 걸쳐 길고 '한 몫', '몫의 수'가 무엇인지 알기 어렵다.",
+        "coreAfter": "전체 양을 똑같은 양씩 나누어 담는 반비례 관계 $y=\\frac{a}{x}$에서 전체 양과 한 번에 담는 양의 단위가 다르면 먼저 {같은 단위}로 고친다. 이때 $x$는 한 번에 담는 양, $y$는 나누어 담은 개수이며, 두 수의 곱인 {$a$}가 전체 양이다.",
+        "coreReason": "'한 몫씩 나누는', '몫의 수'라는 표현이 중$1$ 학생에게 불명확하다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "단위를 맞춘 반비례 식 세우기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1580,
+        "part": "m1plus",
+        "sourceFingerprint": "18ade58c366177e77e116bc05247fc38b4ca03c47a28897704c17ef7b9182418",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1580
+        },
+        "directReview": null,
+        "coreBeforeRepair": "전체 양을 똑같은 양씩 나누어 담는 반비례 관계 $y=\\frac{a}{x}$에서 전체 양과 한 번에 담는 양의 단위가 다르면 먼저 {같은 단위}로 고친다. 이때 $x$는 한 번에 담는 양, $y$는 나눈 개수이며, 두 수의 곱인 {$a$}가 전체 양이다.",
+        "coreRepairReason": "원본 핵심어 {같은 단위}, {$a$}를 유지했다. '몫'이라는 말만 쉬운 말로 바꾸었다. $x$, $y$, $a$의 역할과 단위를 먼저 맞추는 일반 절차는 그대로 두었다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "물 $2\\,\\mathrm{L}$를 $x\\,\\mathrm{mL}$씩 컵 $y$개에 나누어 담을 때에는 단위를 같게 하여 $2\\,\\mathrm{L}=${$2000$}$\\,\\mathrm{mL}$로 고친다. 그러면 $xy=2000$이므로 관계식은 {$y=\\frac{2000}{x}$}이다.",
+        "cSlotAnswers": [
+          "$2000$",
+          "$y=\\frac{2000}{x}$"
+        ],
+        "cStudentSentence": "물 $2\\,\\mathrm{L}$를 $x\\,\\mathrm{mL}$씩 컵 $y$개에 나누어 담을 때에는 단위를 같게 하여 $2\\,\\mathrm{L}=$□$\\,\\mathrm{mL}$로 고친다. 그러면 $xy=2000$이므로 관계식은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2000$",
+            "equivalentAnswers": [
+              "$2000$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y=\\frac{2000}{x}$",
+            "equivalentAnswers": [
+              "$y=\\frac{2000}{x}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2000$"
+          ],
+          [
+            "$y=\\frac{2000}{x}$"
+          ]
+        ],
+        "proposalFingerprint": "540b3dee7dbf911119ffb70067b6fd21f7acead88046baf6811d2f7fb9300cef"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc1",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "교점 · 교선 세기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "각기둥이나 각뿔에서 교점의 수는 {꼭짓점}의 수와 같고, 교선의 수는 {모서리}의 수와 같다.",
+        "example": {
+          "prompt": "사각뿔의 교점과 교선의 개수는?",
+          "answer": "$5$개, $8$개"
+        },
+        "studentC": "각기둥이나 각뿔에서 교점의 수는 □의 수와 같고, 교선의 수는 □의 수와 같다.",
+        "answers": [
+          "꼭짓점",
+          "모서리"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "각기둥이나 각뿔에서 교점의 개수와 교선의 개수는 각각 무엇의 개수를 세면 되는지 쓰고, 사각뿔의 교점과 교선의 개수를 구하시오.",
+        "bAnswer": "교점은 꼭짓점의 개수, 교선은 모서리의 개수를 세면 된다. 사각뿔은 교점이 $5$개, 교선이 $8$개이다.",
+        "bGoal": "꼭짓점·모서리로 교점·교선 세기",
+        "bReason": "세는 대상과 사각뿔 적용을 함께 물어 방법이 쓰이게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "교점의 수는 꼭짓점의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "교선의 수는 모서리의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "교점 $5$개, 교선 $8$개"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "교점-꼭짓점, 교선-모서리 대응을 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "입체에서 교점·교선을 세는 방법",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1581,
+        "part": "m1plus",
+        "sourceFingerprint": "91c0a51e3ceb13c4885559a4077ec7f0ff67f93f6642d1e5a362c2681a7e5eb3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1581
+        },
+        "directReview": null,
+        "cFrozenSentence": "각기둥이나 각뿔에서 교점의 수는 □의 수와 같고, 교선의 수는 □의 수와 같다.",
+        "cFrozenDefinition": "각기둥이나 각뿔에서 교점의 수는 {꼭짓점}의 수와 같고, 교선의 수는 {모서리}의 수와 같다.",
+        "cFrozenAnswers": [
+          "꼭짓점",
+          "모서리"
+        ],
+        "cMarkedSentence": "각기둥이나 각뿔에서 교점의 수는 {꼭짓점}의 수와 같고, 교선의 수는 {모서리}의 수와 같다.",
+        "cSlotAnswers": [
+          "꼭짓점",
+          "모서리"
+        ],
+        "cStudentSentence": "각기둥이나 각뿔에서 교점의 수는 □의 수와 같고, 교선의 수는 □의 수와 같다.",
+        "cAnswers": [
+          "꼭짓점",
+          "모서리"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "모서리",
+            "equivalentAnswers": [
+              "모서리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "꼭짓점"
+          ],
+          [
+            "모서리"
+          ]
+        ],
+        "proposalFingerprint": "c77a9b735e7f5f418a9badd4e2434c7a559a0666cee047130c320f66cb0a3814"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc2",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "직선 · 반직선 · 선분의 기호",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직선 $AB$는 {$\\overleftrightarrow{AB}$}, 반직선 $AB$는 {$\\overrightarrow{AB}$}, 선분 $AB$는 {$\\overline{AB}$}로 나타낸다.",
+        "example": {
+          "prompt": "양 끝이 있는 곧은 선 $AB$의 기호는?",
+          "answer": "$\\overline{AB}$"
+        },
+        "studentC": "직선 $AB$는 □, 반직선 $AB$는 □, 선분 $AB$는 □로 나타낸다.",
+        "answers": [
+          "$\\overleftrightarrow{AB}$",
+          "$\\overrightarrow{AB}$",
+          "$\\overline{AB}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 $AB$, 반직선 $AB$, 선분 $AB$를 각각 기호로 쓰고, 글자 위 표시의 화살표가 있고 없음이 무엇을 나타내는지 설명하시오.",
+        "bAnswer": "차례로 $\\overleftrightarrow{AB}$, $\\overrightarrow{AB}$, $\\overline{AB}$이다. 화살표는 그쪽으로 끝없이 이어짐을 나타내고, 화살표가 없으면 그쪽에 끝 점이 있음을 나타낸다.",
+        "bGoal": "세 기호를 쓰고 모양의 뜻 연결하기",
+        "bReason": "기호 쓰기만 하면 C와 같아져 화살표의 뜻까지 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overleftrightarrow{AB}$, $\\overrightarrow{AB}$, $\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "화살표는 그쪽으로 끝없이 이어짐을 나타낸다",
+              "양쪽 화살표는 양쪽으로, 한쪽 화살표는 한쪽으로 끝없이 이어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "화살표가 없으면 끝 점이 있다",
+              "선분은 양 끝 점에서 끝난다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세 도형과 기호를 짝 짓는 분명한 기호 빈칸",
+        "learningRole": "naming",
+        "roleReason": "직선·반직선·선분의 기호 표기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1582,
+        "part": "m1plus",
+        "sourceFingerprint": "3d801f4c45ce349a8126504bdf4389aa667008d5a48097e4484f8f5a96eec0d5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1582
+        },
+        "directReview": null,
+        "cFrozenSentence": "직선 $AB$는 □, 반직선 $AB$는 □, 선분 $AB$는 □로 나타낸다.",
+        "cFrozenDefinition": "직선 $AB$는 {$\\overleftrightarrow{AB}$}, 반직선 $AB$는 {$\\overrightarrow{AB}$}, 선분 $AB$는 {$\\overline{AB}$}로 나타낸다.",
+        "cFrozenAnswers": [
+          "$\\overleftrightarrow{AB}$",
+          "$\\overrightarrow{AB}$",
+          "$\\overline{AB}$"
+        ],
+        "cMarkedSentence": "직선 $AB$는 {$\\overleftrightarrow{AB}$}, 반직선 $AB$는 {$\\overrightarrow{AB}$}, 선분 $AB$는 {$\\overline{AB}$}로 나타낸다.",
+        "cSlotAnswers": [
+          "$\\overleftrightarrow{AB}$",
+          "$\\overrightarrow{AB}$",
+          "$\\overline{AB}$"
+        ],
+        "cStudentSentence": "직선 $AB$는 □, 반직선 $AB$는 □, 선분 $AB$는 □로 나타낸다.",
+        "cAnswers": [
+          "$\\overleftrightarrow{AB}$",
+          "$\\overrightarrow{AB}$",
+          "$\\overline{AB}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overleftrightarrow{AB}$",
+            "equivalentAnswers": [
+              "$\\overleftrightarrow{AB}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\overrightarrow{AB}$",
+            "equivalentAnswers": [
+              "$\\overrightarrow{AB}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$\\overline{AB}$",
+            "equivalentAnswers": [
+              "$\\overline{AB}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\overleftrightarrow{AB}$"
+          ],
+          [
+            "$\\overrightarrow{AB}$"
+          ],
+          [
+            "$\\overline{AB}$"
+          ]
+        ],
+        "proposalFingerprint": "5bed1147f2dee1d11a7a5e930e090764c64031654b70e347ff42de7c997db7b0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc3",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "선분의 길이 기호",
+        "kind": "방법",
+        "level": "하",
+        "definition": "선분 $AB$의 길이도 {$\\overline{AB}$}로 나타낸다. 이 길이 기호를 써서 $5\\,\\mathrm{cm}$와 같다고 하면 선분 $AB$의 길이가 $5\\,\\mathrm{cm}$라는 뜻이다.",
+        "example": {
+          "prompt": "$\\overline{PQ}=8\\,\\mathrm{cm}$는 무엇을 뜻하는가?",
+          "answer": "선분 $PQ$의 길이가 $8\\,\\mathrm{cm}$이다"
+        },
+        "studentC": "선분 $AB$의 길이도 □로 나타낸다. 이 길이 기호를 써서 $5\\,\\mathrm{cm}$와 같다고 하면 선분 $AB$의 길이가 $5\\,\\mathrm{cm}$라는 뜻이다.",
+        "answers": [
+          "$\\overline{AB}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "기호 $\\overline{AB}$가 나타낼 수 있는 두 가지를 쓰고, $\\overline{PQ}=8\\,\\mathrm{cm}$는 무슨 뜻인지 쓰시오.",
+        "bAnswer": "$\\overline{AB}$는 선분 $AB$라는 도형을 나타내기도 하고 선분 $AB$의 길이를 나타내기도 한다. $\\overline{PQ}=8\\,\\mathrm{cm}$는 선분 $PQ$의 길이가 $8\\,\\mathrm{cm}$라는 뜻이다.",
+        "bGoal": "선분 기호가 길이도 나타냄을 알기",
+        "bReason": "한 기호의 두 쓰임과 등식의 뜻을 답하도록 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "선분 $AB$ 자체",
+              "선분 $AB$라는 도형"
+            ]
+          },
+          {
+            "anyOf": [
+              "선분 $AB$의 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "선분 $PQ$의 길이가 $8\\,\\mathrm{cm}$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "선분 $AB$의 길이도 기호 {$\\overline{AB}$}로 나타낸다. 선분 $PQ$의 길이가 $8\\,\\mathrm{cm}$임을 식으로 쓰면 {$\\overline{PQ}=8\\,\\mathrm{cm}$}이다.",
+        "cAnswers": [
+          "$\\overline{AB}$",
+          "$\\overline{PQ}=8\\,\\mathrm{cm}$"
+        ],
+        "cReason": "'이 길이 기호를 써서 … 같다고 하면'이 무엇을 가리키는지 흐려 식 쓰기로 바꿈",
+        "coreAfter": "선분 $AB$의 길이도 {$\\overline{AB}$}로 나타낸다. 예를 들어 $\\overline{AB}=5\\,\\mathrm{cm}$는 선분 $AB$의 길이가 $5\\,\\mathrm{cm}$라는 뜻이다.",
+        "coreReason": "둘째 문장이 식 없이 돌려 말해 중1 학생이 읽기 어렵다.",
+        "exampleNeeded": true,
+        "learningRole": "naming",
+        "roleReason": "선분 기호로 길이를 나타내는 약속",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1583,
+        "part": "m1plus",
+        "sourceFingerprint": "d4c3d609c93ef03a253ffb94f82a20bed59a5fea79900a460222439e0f9a3eb4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1583
+        },
+        "directReview": null,
+        "coreBeforeRepair": "선분 $AB$의 길이도 $\\overline{AB}$로 나타낸다. 예를 들어 $\\overline{AB}=5\\,\\mathrm{cm}$는 선분 $AB$의 길이가 $5\\,\\mathrm{cm}$라는 뜻이다.",
+        "coreRepairReason": "현재안에서 빠진 원본 핵심어 {$\\overline{AB}$} 표지를 되살렸다. 길이를 같은 기호로 나타낸다는 일반 설명은 첫 문장에 남겼다. 둘째 문장은 원문과 같은 $5\\,\\mathrm{cm}$를 식으로 보여 주어, 예가 일반 설명을 대신하지 않게 했다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "선분 $AB$의 길이도 기호 {$\\overline{AB}$}로 나타낸다. 선분 $PQ$의 길이가 $8\\,\\mathrm{cm}$임을 식으로 쓰면 {$\\overline{PQ}=8\\,\\mathrm{cm}$}이다.",
+        "cSlotAnswers": [
+          "$\\overline{AB}$",
+          "$\\overline{PQ}=8\\,\\mathrm{cm}$"
+        ],
+        "cStudentSentence": "선분 $AB$의 길이도 기호 □로 나타낸다. 선분 $PQ$의 길이가 $8\\,\\mathrm{cm}$임을 식으로 쓰면 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{AB}$",
+            "equivalentAnswers": [
+              "$\\overline{AB}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\overline{PQ}=8\\,\\mathrm{cm}$",
+            "equivalentAnswers": [
+              "$\\overline{PQ}=8\\,\\mathrm{cm}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{AB}$"
+          ],
+          [
+            "$\\overline{PQ}=8\\,\\mathrm{cm}$"
+          ]
+        ],
+        "proposalFingerprint": "1b4f68aad35095b982b203eb684a9050bacf9f87b9c60241f0ab317e5274319c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc4",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "선과 면의 종류",
+        "kind": "정의",
+        "level": "하",
+        "definition": "선에는 {직선}과 {곡선}이 있고, 면에는 {평면}과 {곡면}이 있다.",
+        "example": {
+          "prompt": "원기둥의 옆면은 평면인가, 곡면인가?",
+          "answer": "곡면"
+        },
+        "studentC": "선에는 □과 □이 있고, 면에는 □과 □이 있다.",
+        "answers": [
+          "직선",
+          "곡선",
+          "평면",
+          "곡면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "선의 두 종류와 면의 두 종류를 각각 쓰고, 원기둥의 옆면은 면의 종류 중 무엇인지 쓰시오.",
+        "bAnswer": "선에는 직선과 곡선이 있고, 면에는 평면과 곡면이 있다. 원기둥의 옆면은 곡면이다.",
+        "bGoal": "선과 면의 종류 구분하기",
+        "bReason": "종류 나열에 원기둥 옆면 분류를 더해 구분 기준을 쓰게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직선과 곡선"
+            ]
+          },
+          {
+            "anyOf": [
+              "평면과 곡면"
+            ]
+          },
+          {
+            "anyOf": [
+              "원기둥의 옆면은 곡면"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "선·면 각각 두 낱말씩 쓰는 빈칸 네 개로 범위가 분명함",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "곧은 것과 굽은 것으로 선·면 분류",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1584,
+        "part": "m1plus",
+        "sourceFingerprint": "738c3fe50037ef4ec9b3ebd94135a82af163500c2f3b6e62b5292587324f4591",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1584
+        },
+        "directReview": null,
+        "cFrozenSentence": "선에는 □과 □이 있고, 면에는 □과 □이 있다.",
+        "cFrozenDefinition": "선에는 {직선}과 {곡선}이 있고, 면에는 {평면}과 {곡면}이 있다.",
+        "cFrozenAnswers": [
+          "직선",
+          "곡선",
+          "평면",
+          "곡면"
+        ],
+        "cMarkedSentence": "선에는 {직선}과 {곡선}이 있고, 면에는 {평면}과 {곡면}이 있다.",
+        "cSlotAnswers": [
+          "직선",
+          "곡선",
+          "평면",
+          "곡면"
+        ],
+        "cStudentSentence": "선에는 □과 □이 있고, 면에는 □과 □이 있다.",
+        "cAnswers": [
+          "직선",
+          "곡선",
+          "평면",
+          "곡면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직선",
+            "equivalentAnswers": [
+              "직선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곡선",
+            "equivalentAnswers": [
+              "곡선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "평면",
+            "equivalentAnswers": [
+              "평면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 3,
+            "answer": "곡면",
+            "equivalentAnswers": [
+              "곡면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직선"
+          ],
+          [
+            "곡선"
+          ],
+          [
+            "평면"
+          ],
+          [
+            "곡면"
+          ]
+        ],
+        "proposalFingerprint": "cc832cf58f13d4f82e164161d94915d0ea6065e5727fe360793d49375ff76190"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc5",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "중점을 식으로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "점 $M$이 선분 $AB$의 중점이면 {$\\overline{AM}=\\overline{MB}$}이고, 그 길이는 $\\overline{AB}$의 {$\\frac{1}{2}$}이다.",
+        "example": {
+          "prompt": "$\\overline{AB}=14\\,\\mathrm{cm}$이고 $M$이 중점일 때 $\\overline{MB}$는?",
+          "answer": "$7\\,\\mathrm{cm}$"
+        },
+        "studentC": "점 $M$이 선분 $AB$의 중점이면 □이고, 그 길이는 $\\overline{AB}$의 □이다.",
+        "answers": [
+          "$\\overline{AM}=\\overline{MB}$",
+          "$\\frac{1}{2}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "점 $M$이 선분 $AB$의 중점일 때, 세 선분의 길이 $\\overline{AM}$, $\\overline{MB}$, $\\overline{AB}$ 사이의 관계를 식으로 나타내시오.",
+        "bAnswer": "$\\overline{AM}=\\overline{MB}=\\frac{1}{2}\\overline{AB}$",
+        "bGoal": "중점 조건을 길이의 식으로 옮기기",
+        "bReason": "어떤 길이들의 관계를 식으로 쓸지 대상을 세 선분으로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AM}=\\overline{MB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AM}=\\frac{1}{2}\\overline{AB}$",
+              "$\\overline{AB}=2\\overline{AM}$",
+              "$\\overline{MB}=\\frac{1}{2}\\overline{AB}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "등식과 배수를 각각 쓰게 하는 분명한 식 빈칸",
+        "studentLabel": "중점을 식으로 나타내기",
+        "learningRole": "procedure",
+        "roleReason": "중점을 길이 등식과 $\\frac{1}{2}$배로 쓰기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1585,
+        "part": "m1plus",
+        "sourceFingerprint": "0d8addee59579b749f99f5aeb2f711d01e908b24e626ff94fcd5c947c6e10017",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1585
+        },
+        "directReview": null,
+        "cFrozenSentence": "점 $M$이 선분 $AB$의 중점이면 □이고, 그 길이는 $\\overline{AB}$의 □이다.",
+        "cFrozenDefinition": "점 $M$이 선분 $AB$의 중점이면 {$\\overline{AM}=\\overline{MB}$}이고, 그 길이는 $\\overline{AB}$의 {$\\frac{1}{2}$}이다.",
+        "cFrozenAnswers": [
+          "$\\overline{AM}=\\overline{MB}$",
+          "$\\frac{1}{2}$"
+        ],
+        "cMarkedSentence": "점 $M$이 선분 $AB$의 중점이면 {$\\overline{AM}=\\overline{MB}$}이고, 그 길이는 $\\overline{AB}$의 {$\\frac{1}{2}$}이다.",
+        "cSlotAnswers": [
+          "$\\overline{AM}=\\overline{MB}$",
+          "$\\frac{1}{2}$"
+        ],
+        "cStudentSentence": "점 $M$이 선분 $AB$의 중점이면 □이고, 그 길이는 $\\overline{AB}$의 □이다.",
+        "cAnswers": [
+          "$\\overline{AM}=\\overline{MB}$",
+          "$\\frac{1}{2}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{AM}=\\overline{MB}$",
+            "equivalentAnswers": [
+              "$\\overline{AM}=\\overline{MB}$",
+              "$\\overline{MB}=\\overline{AM}$",
+              "$\\overline{AM}=\\overline{BM}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{AM}=\\overline{MB}$",
+            "accept": [
+              "$\\overline{MB}=\\overline{AM}$",
+              "$\\overline{AM}=\\overline{BM}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{AM}=\\overline{MB}$",
+            "$\\overline{MB}=\\overline{AM}$",
+            "$\\overline{AM}=\\overline{BM}$"
+          ],
+          [
+            "$\\frac{1}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "9015139786664dd9dcd77cc6849d3d656ca6d40692afb8cf88a6e0b24d3864e9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc6",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "선분 · 반직선 · 직선의 포함 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "선분 $AB$는 반직선 $AB$에, 반직선 $AB$는 직선 $AB$에 {포함}된다. 길이를 잴 수 있는 것은 {선분}뿐이다.",
+        "example": {
+          "prompt": "직선, 반직선, 선분 가운데 길이를 잴 수 있는 것은?",
+          "answer": "선분"
+        },
+        "studentC": "선분 $AB$는 반직선 $AB$에, 반직선 $AB$는 직선 $AB$에 □된다. 길이를 잴 수 있는 것은 □뿐이다.",
+        "answers": [
+          "포함",
+          "선분"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "선분 $AB$, 반직선 $AB$, 직선 $AB$ 사이의 포함 관계를 쓰고, 셋 중 길이를 잴 수 있는 것과 그 이유를 쓰시오.",
+        "bAnswer": "선분 $AB$는 반직선 $AB$에 포함되고, 반직선 $AB$는 직선 $AB$에 포함된다. 길이를 잴 수 있는 것은 양 끝이 있는 선분뿐이고, 반직선과 직선은 끝없이 이어져 길이를 잴 수 없다.",
+        "bGoal": "세 도형의 포함 관계와 길이를 잴 수 있는 도형 알기",
+        "bReason": "어떤 관계인지 포함 순서와 길이 측정 가능 여부로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "선분 $AB$는 반직선 $AB$에, 반직선 $AB$는 직선 $AB$에 포함된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이를 잴 수 있는 것은 선분뿐이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "선분은 양 끝이 있다",
+              "반직선과 직선은 끝없이 이어진다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "포함 관계와 길이를 잴 수 있는 도형을 짧게 묻는 빈칸",
+        "learningRole": "reason",
+        "roleReason": "끝이 있는지에 따른 포함과 길이 측정",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1586,
+        "part": "m1plus",
+        "sourceFingerprint": "de0e2be8bd06affc40b71d36495725e1a15a6c5de501abe62c25ce8a5e9136b8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1586
+        },
+        "directReview": null,
+        "cFrozenSentence": "선분 $AB$는 반직선 $AB$에, 반직선 $AB$는 직선 $AB$에 □된다. 길이를 잴 수 있는 것은 □뿐이다.",
+        "cFrozenDefinition": "선분 $AB$는 반직선 $AB$에, 반직선 $AB$는 직선 $AB$에 {포함}된다. 길이를 잴 수 있는 것은 {선분}뿐이다.",
+        "cFrozenAnswers": [
+          "포함",
+          "선분"
+        ],
+        "cMarkedSentence": "선분 $AB$는 반직선 $AB$에, 반직선 $AB$는 직선 $AB$에 {포함}된다. 길이를 잴 수 있는 것은 {선분}뿐이다.",
+        "cSlotAnswers": [
+          "포함",
+          "선분"
+        ],
+        "cStudentSentence": "선분 $AB$는 반직선 $AB$에, 반직선 $AB$는 직선 $AB$에 □된다. 길이를 잴 수 있는 것은 □뿐이다.",
+        "cAnswers": [
+          "포함",
+          "선분"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "포함",
+            "equivalentAnswers": [
+              "포함"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "선분",
+            "equivalentAnswers": [
+              "선분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "포함"
+          ],
+          [
+            "선분"
+          ]
+        ],
+        "proposalFingerprint": "bd2f37ecfa890242540f738356ca2a44634c0b18f94e288589e2672dc3ecc734"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc7",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "선분 $AB$와 선분 $BA$",
+        "kind": "성질",
+        "level": "중",
+        "definition": "선분 $AB$와 선분 $BA$는 {같은} 선분이지만, 반직선 $AB$와 반직선 $BA$는 {다른} 반직선이다.",
+        "example": {
+          "prompt": "$\\overline{AB}$와 $\\overline{BA}$는 같은가?",
+          "answer": "같다"
+        },
+        "studentC": "선분 $AB$와 선분 $BA$는 □ 선분이지만, 반직선 $AB$와 반직선 $BA$는 □ 반직선이다.",
+        "answers": [
+          "같은",
+          "다른"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "선분 $AB$와 선분 $BA$는 같은 도형이지만 반직선 $AB$와 반직선 $BA$는 서로 다른 도형이다. 각각 그 이유를 설명하시오.",
+        "bAnswer": "선분은 두 점 $A$, $B$ 사이의 부분이므로 어느 점을 먼저 써도 같은 부분이다. 반직선은 앞에 쓴 점이 시작점이므로 반직선 $AB$는 $A$에서 $B$ 쪽으로, 반직선 $BA$는 $B$에서 $A$ 쪽으로 뻗어 시작점과 방향이 다르다.",
+        "bGoal": "글자 순서가 선분과 반직선에 주는 차이 설명하기",
+        "bReason": "같다·다르다 판정은 C가 맡으므로 B는 그 이유를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "선분은 순서를 바꿔도 두 점 사이의 같은 부분이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반직선은 시작점이 다르다",
+              "반직선은 뻗는 방향이 다르다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "선분과 반직선의 대비를 같은/다른으로 묻는 짧은 비교 빈칸",
+        "learningRole": "reason",
+        "roleReason": "글자 순서가 반직선에서만 뜻을 바꾸는 까닭",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1587,
+        "part": "m1plus",
+        "sourceFingerprint": "5ee4bd44d5e781eb3930522a1ac97a14d32cef3e67cc2d2dbd0cc467f861ec94",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1587
+        },
+        "directReview": null,
+        "cFrozenSentence": "선분 $AB$와 선분 $BA$는 □ 선분이지만, 반직선 $AB$와 반직선 $BA$는 □ 반직선이다.",
+        "cFrozenDefinition": "선분 $AB$와 선분 $BA$는 {같은} 선분이지만, 반직선 $AB$와 반직선 $BA$는 {다른} 반직선이다.",
+        "cFrozenAnswers": [
+          "같은",
+          "다른"
+        ],
+        "cMarkedSentence": "선분 $AB$와 선분 $BA$는 {같은} 선분이지만, 반직선 $AB$와 반직선 $BA$는 {다른} 반직선이다.",
+        "cSlotAnswers": [
+          "같은",
+          "다른"
+        ],
+        "cStudentSentence": "선분 $AB$와 선분 $BA$는 □ 선분이지만, 반직선 $AB$와 반직선 $BA$는 □ 반직선이다.",
+        "cAnswers": [
+          "같은",
+          "다른"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은",
+            "equivalentAnswers": [
+              "같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "다른",
+            "equivalentAnswers": [
+              "다른"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은"
+          ],
+          [
+            "다른"
+          ]
+        ],
+        "proposalFingerprint": "a77636bb5abd3fe2d2578da0d7a5401af341a6889b34f8b008d8a75c9f3db624"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc8",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "한 점을 지나는 직선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "점 하나만 주면 그 점을 지나게 그을 수 있는 직선이 {끝없이} 많다. 직선을 하나로 정하려면 점이 {두 개} 필요하다.",
+        "example": {
+          "prompt": "점 $A$를 지나는 직선은 몇 개인가?",
+          "answer": "무수히 많다"
+        },
+        "studentC": "점 하나만 주면 그 점을 지나게 그을 수 있는 직선이 □ 많다. 직선을 하나로 정하려면 점이 □ 필요하다.",
+        "answers": [
+          "끝없이",
+          "두 개"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "점 $A$ 하나만 주어졌을 때 점 $A$를 지나는 직선은 몇 개 그을 수 있는지 쓰고, 직선을 하나로 정하려면 무엇이 더 필요한지 쓰시오.",
+        "bAnswer": "무수히 많이 그을 수 있다. 직선을 하나로 정하려면 점 $A$와 다른 점이 하나 더 주어져야 한다.",
+        "bGoal": "한 점만으로 직선이 정해지지 않음을 알기",
+        "bReason": "한 점일 때의 직선 개수와 부족한 조건을 답하도록 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "무수히 많다",
+              "끝없이 많다",
+              "셀 수 없이 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 점이 하나 더 필요하다",
+              "서로 다른 두 점이 필요하다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "점 하나만 주어지면 그 점을 지나는 직선은 {무수히} 많다. 직선을 하나로 정하려면 서로 다른 점이 {두 개} 필요하다.",
+        "cAnswers": [
+          "무수히",
+          "두 개"
+        ],
+        "cReason": "둘째 문장에 '서로 다른' 조건이 빠져 있어 보충함",
+        "coreAfter": "점 하나만 주어지면 그 점을 지나는 직선은 {끝없이} 많다. 직선을 하나로 정하려면 서로 다른 점이 {두 개} 필요하다.",
+        "coreReason": "같은 점 두 개로는 직선이 정해지지 않으므로 '서로 다른'이 필요하다.",
+        "learningRole": "reason",
+        "roleReason": "한 점으로는 직선이 정해지지 않는 까닭",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1588,
+        "part": "m1plus",
+        "sourceFingerprint": "713cc88780acea5f7f0fb3f4d7d4f180b710ef0ea9f635de7a0d9ccfbe5aa916",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1588
+        },
+        "directReview": null,
+        "coreBeforeRepair": "점 하나만 주어지면 그 점을 지나는 직선은 끝없이 많다. 직선을 하나로 정하려면 서로 다른 두 점이 필요하다.",
+        "coreRepairReason": "현재안에서 빠진 원본 핵심어 {끝없이}, {두 개} 표지를 되살렸다. '서로 다른' 조건은 핵심어 앞에 붙여 교정 내용을 유지했다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "점 하나만 주어지면 그 점을 지나는 직선은 {무수히} 많다. 직선을 하나로 정하려면 서로 다른 점이 {두 개} 필요하다.",
+        "cSlotAnswers": [
+          "무수히",
+          "두 개"
+        ],
+        "cStudentSentence": "점 하나만 주어지면 그 점을 지나는 직선은 □ 많다. 직선을 하나로 정하려면 서로 다른 점이 □ 필요하다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "무수히",
+            "equivalentAnswers": [
+              "무수히",
+              "끝없이",
+              "셀 수 없이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "두 개",
+            "equivalentAnswers": [
+              "두 개",
+              "$2$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "무수히",
+            "accept": [
+              "끝없이",
+              "셀 수 없이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [
+          {
+            "answer": "두 개",
+            "accept": [
+              "$2$개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "무수히",
+            "끝없이",
+            "셀 수 없이"
+          ],
+          [
+            "두 개",
+            "$2$개"
+          ]
+        ],
+        "proposalFingerprint": "cbd8728455806c28d26b163902acc19de4628b0487736756be50241b5f7159d9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc9",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "세 점으로 만드는 직선",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 직선 위에 있지 않은 세 점에서 두 점씩 이으면 직선이 {$3$개} 생기고, 세 점이 {한 직선} 위에 있으면 $1$개뿐이다.",
+        "example": {
+          "prompt": "어느 세 점도 한 직선 위에 있지 않은 네 점으로 만드는 직선은 몇 개?",
+          "answer": "$6$개"
+        },
+        "studentC": "한 직선 위에 있지 않은 세 점에서 두 점씩 이으면 직선이 □ 생기고, 세 점이 □ 위에 있으면 $1$개뿐이다.",
+        "answers": [
+          "$3$개",
+          "한 직선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 다른 세 점 가운데 두 점을 지나는 직선의 개수를, 세 점이 한 직선 위에 있지 않은 경우와 한 직선 위에 있는 경우로 나누어 각각 구하고 이유를 쓰시오.",
+        "bAnswer": "한 직선 위에 있지 않으면 두 점을 고를 때마다 서로 다른 직선이 생겨 $3$개이다. 한 직선 위에 있으면 어느 두 점을 골라도 같은 직선이므로 $1$개이다.",
+        "bGoal": "세 점의 위치에 따라 직선의 개수 구하기",
+        "bReason": "경우를 두 가지로 밝히고 개수는 질문에 드러내지 않음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 직선 위에 있지 않으면 $3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 직선 위에 있으면 $1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 직선 위의 점은 어느 두 점을 골라도 같은 직선이다",
+              "두 점을 고를 때마다 다른 직선이 생긴다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 직선 위에 있지 않은 서로 다른 세 점 가운데 두 점을 지나는 직선은 모두 {$3$개}이고, 세 점이 모두 한 직선 위에 있으면 {$1$개}뿐이다.",
+        "cAnswers": [
+          "$3$개",
+          "$1$개"
+        ],
+        "cReason": "둘째 답 '한 직선'이 문장 앞에 그대로 있어 베껴 쓸 수 있음",
+        "studentLabel": "세 점으로 정해지는 직선의 개수",
+        "learningRole": "application",
+        "roleReason": "두 점이 직선을 정함을 세 점에 적용",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1589,
+        "part": "m1plus",
+        "sourceFingerprint": "d3141bd4585bdabc00cb899b05b11936c57d889b3976fe6dae22526a86fd06cb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1589
+        },
+        "directReview": null,
+        "cMarkedSentence": "한 직선 위에 있지 않은 서로 다른 세 점 가운데 두 점을 지나는 직선은 모두 {$3$개}이고, 세 점이 모두 한 직선 위에 있으면 {$1$개}뿐이다.",
+        "cSlotAnswers": [
+          "$3$개",
+          "$1$개"
+        ],
+        "cStudentSentence": "한 직선 위에 있지 않은 서로 다른 세 점 가운데 두 점을 지나는 직선은 모두 □이고, 세 점이 모두 한 직선 위에 있으면 □뿐이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$개",
+            "equivalentAnswers": [
+              "$3$개",
+              "세 개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$개",
+            "equivalentAnswers": [
+              "$1$개",
+              "한 개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$3$개",
+            "accept": [
+              "세 개"
+            ]
+          },
+          {
+            "answer": "$1$개",
+            "accept": [
+              "한 개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$3$개",
+            "세 개"
+          ],
+          [
+            "$1$개",
+            "한 개"
+          ]
+        ],
+        "proposalFingerprint": "93f1b7f6e08d2f656bb29d80cfc618da8ce8e6e36c100b527d90fa9099d14e86"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc10",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "중점의 중점",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$M$이 $\\overline{AB}$의 중점이고 $N$이 $\\overline{AM}$의 중점이면 $\\overline{AN}$은 $\\overline{AB}$의 {$\\frac{1}{4}$}이다.",
+        "example": {
+          "prompt": "$M$이 $\\overline{AB}$의 중점, $N$이 $\\overline{AM}$의 중점이고 $\\overline{AB}=20\\,\\mathrm{cm}$일 때 $\\overline{AN}$은?",
+          "answer": "$5\\,\\mathrm{cm}$"
+        },
+        "studentC": "$M$이 $\\overline{AB}$의 중점이고 $N$이 $\\overline{AM}$의 중점이면 $\\overline{AN}$은 $\\overline{AB}$의 □이다.",
+        "answers": [
+          "$\\frac{1}{4}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "점 $M$이 선분 $AB$의 중점이고 점 $N$이 선분 $AM$의 중점일 때, $\\overline{AN}$은 $\\overline{AB}$의 몇 배인지 과정을 써서 구하시오.",
+        "bAnswer": "$\\overline{AM}=\\frac{1}{2}\\overline{AB}$이고 $\\overline{AN}=\\frac{1}{2}\\overline{AM}$이므로 $\\overline{AN}=\\frac{1}{2}\\times\\frac{1}{2}\\overline{AB}=\\frac{1}{4}\\overline{AB}$이다. 즉 $\\frac{1}{4}$배이다.",
+        "bGoal": "중점을 두 번 써서 길이의 배수 구하기",
+        "bReason": "점들의 조건을 질문에 밝히고 결과 배수는 숨김",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AM}=\\frac{1}{2}\\overline{AB}$이고 $\\overline{AN}=\\frac{1}{2}\\overline{AM}$",
+              "절반의 절반"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$배",
+              "$\\overline{AN}=\\frac{1}{4}\\overline{AB}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 모두 있고 결론 하나만 묻는 분명한 빈칸",
+        "learningRole": "procedure",
+        "roleReason": "절반의 절반으로 $\\frac{1}{4}$을 얻는 계산",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1590,
+        "part": "m1plus",
+        "sourceFingerprint": "6d2c589f37cad2c2192512b7a50e543b5a6d91881d80fedf0289881f01b8f35a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1590
+        },
+        "directReview": null,
+        "cFrozenSentence": "$M$이 $\\overline{AB}$의 중점이고 $N$이 $\\overline{AM}$의 중점이면 $\\overline{AN}$은 $\\overline{AB}$의 □이다.",
+        "cFrozenDefinition": "$M$이 $\\overline{AB}$의 중점이고 $N$이 $\\overline{AM}$의 중점이면 $\\overline{AN}$은 $\\overline{AB}$의 {$\\frac{1}{4}$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{1}{4}$"
+        ],
+        "cMarkedSentence": "$M$이 $\\overline{AB}$의 중점이고 $N$이 $\\overline{AM}$의 중점이면 $\\overline{AN}$은 $\\overline{AB}$의 {$\\frac{1}{4}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{4}$"
+        ],
+        "cStudentSentence": "$M$이 $\\overline{AB}$의 중점이고 $N$이 $\\overline{AM}$의 중점이면 $\\overline{AN}$은 $\\overline{AB}$의 □이다.",
+        "cAnswers": [
+          "$\\frac{1}{4}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{4}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "130a1c1354cdec8655dcad91db7b8baef70a7914cd685aa71c3b5abb78a1a5fe"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc11",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "가장 짧은 선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 점을 잇는 선 가운데 선분이 가장 {짧으므로}, 두 점 사이의 거리는 휘어진 선이 아니라 {선분}의 길이로 잰다.",
+        "example": {
+          "prompt": "두 점을 잇는 직선 부분, 곡선, 꺾은선 가운데 가장 짧은 것은?",
+          "answer": "선분"
+        },
+        "studentC": "두 점을 잇는 선 가운데 선분이 가장 □, 두 점 사이의 거리는 휘어진 선이 아니라 □의 길이로 잰다.",
+        "answers": [
+          "짧으므로",
+          "선분"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "두 점 $A$, $B$는 곡선이나 꺾은선으로도 이을 수 있다. 그런데도 두 점 사이의 거리를 선분 $AB$의 길이로 정하는 까닭을 설명하시오.",
+        "bAnswer": "두 점 $A$, $B$를 잇는 선 가운데 선분 $AB$가 가장 짧기 때문이다.",
+        "bGoal": "거리를 선분의 길이로 정하는 까닭 설명하기",
+        "bReason": "정의를 묻는 m1-05-01-c9와 달리 선분을 택하는 이유만 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 점을 잇는 선 가운데 선분이 가장 짧다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 점을 잇는 여러 선 가운데 길이가 가장 {짧은} 것은 {선분}이다. 그래서 두 점 사이의 거리는 휘어진 선이 아니라 이 선의 길이로 정한다.",
+        "cAnswers": [
+          "짧은",
+          "선분"
+        ],
+        "cReason": "둘째 답 '선분'이 문장 앞에 이미 있어 베껴 쓰게 됨",
+        "learningRole": "reason",
+        "roleReason": "선분이 가장 짧아 거리의 기준이 됨",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1591,
+        "part": "m1plus",
+        "sourceFingerprint": "502574e4dfdacb893b9493e11806fadc166c5abf9b9db7fcb16e26986fd51018",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1591
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 점을 잇는 여러 선 가운데 길이가 가장 {짧은} 것은 {선분}이다. 그래서 두 점 사이의 거리는 휘어진 선이 아니라 이 선의 길이로 정한다.",
+        "cSlotAnswers": [
+          "짧은",
+          "선분"
+        ],
+        "cStudentSentence": "두 점을 잇는 여러 선 가운데 길이가 가장 □ 것은 □이다. 그래서 두 점 사이의 거리는 휘어진 선이 아니라 이 선의 길이로 정한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "짧은",
+            "equivalentAnswers": [
+              "짧은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "선분",
+            "equivalentAnswers": [
+              "선분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "짧은"
+          ],
+          [
+            "선분"
+          ]
+        ],
+        "proposalFingerprint": "d6972bb4edaef59d425ca562a38d0fdc0e054299ecee31134a379d54d5812d81"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc12",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "같은 반직선 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 반직선 $AB$와 반직선 $AC$는 시작점과 {방향}이 같아 {같은} 반직선이다.",
+        "example": {
+          "prompt": "$A$, $B$, $C$가 이 순서로 한 직선 위에 있을 때 $\\overrightarrow{AB}$와 같은 반직선은?",
+          "answer": "$\\overrightarrow{AC}$"
+        },
+        "studentC": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 반직선 $AB$와 반직선 $AC$는 시작점과 □이 같아 □ 반직선이다.",
+        "answers": [
+          "방향",
+          "같은"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "한 직선 위에 세 점 $A$, $B$, $C$가 이 순서로 있을 때, 반직선 $AB$와 반직선 $AC$가 같은 반직선인지 판단하고 이유를 쓰시오.",
+        "bAnswer": "같은 반직선이다. 두 반직선 모두 시작점이 $A$이고, $B$와 $C$가 $A$에서 같은 쪽에 있어 뻗는 방향도 같기 때문이다.",
+        "bGoal": "기호가 달라도 같은 반직선 찾아내기",
+        "bReason": "점의 순서를 질문에 밝히고 판단과 근거를 함께 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 반직선이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "시작점이 $A$로 같고 뻗는 방향이 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "점의 순서가 문장에 있어 근거와 결론을 묻기에 분명함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "같은 반직선의 조건을 세 점에 적용",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1592,
+        "part": "m1plus",
+        "sourceFingerprint": "a3397d87c87ab3ba2978dfc6a9fcf7d31145dc7733a4a3208bc5301e90f7fc2c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1592
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 반직선 $AB$와 반직선 $AC$는 시작점과 □이 같아 □ 반직선이다.",
+        "cFrozenDefinition": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 반직선 $AB$와 반직선 $AC$는 시작점과 {방향}이 같아 {같은} 반직선이다.",
+        "cFrozenAnswers": [
+          "방향",
+          "같은"
+        ],
+        "cMarkedSentence": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 반직선 $AB$와 반직선 $AC$는 시작점과 {방향}이 같아 {같은} 반직선이다.",
+        "cSlotAnswers": [
+          "방향",
+          "같은"
+        ],
+        "cStudentSentence": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 반직선 $AB$와 반직선 $AC$는 시작점과 □이 같아 □ 반직선이다.",
+        "cAnswers": [
+          "방향",
+          "같은"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "방향",
+            "equivalentAnswers": [
+              "방향",
+              "뻗는 방향"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같은",
+            "equivalentAnswers": [
+              "같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "방향",
+            "accept": [
+              "뻗는 방향"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "방향",
+            "뻗는 방향"
+          ],
+          [
+            "같은"
+          ]
+        ],
+        "proposalFingerprint": "d618ffec513cc2cd570ca43ae7675a0b928518fc68f184e9d27dc77ff9bc3b8c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc13",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "어느 세 점도 한 직선 위에 없을 때 반직선의 개수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어느 세 점도 한 직선 위에 있지 않은 점들로 만드는 반직선의 개수는 직선의 개수의 {$2$배}이다. 시작점을 {바꿀} 수 있기 때문이다.",
+        "example": {
+          "prompt": "어느 세 점도 한 직선 위에 있지 않은 네 점으로 만드는 반직선은 몇 개?",
+          "answer": "$12$개"
+        },
+        "studentC": "어느 세 점도 한 직선 위에 있지 않은 점들로 만드는 반직선의 개수는 직선의 개수의 □이다. 시작점을 □ 수 있기 때문이다.",
+        "answers": [
+          "$2$배",
+          "바꿀"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "어느 세 점도 한 직선 위에 있지 않은 여러 점 가운데 두 점을 골라 직선과 반직선을 만들 때, 반직선의 개수는 직선의 개수의 몇 배인지 쓰고 이유를 설명하시오.",
+        "bAnswer": "$2$배이다. 두 점 $A$, $B$를 고르면 직선은 하나이지만 반직선은 시작점에 따라 반직선 $AB$와 반직선 $BA$ 두 개가 생기기 때문이다.",
+        "bGoal": "직선과 반직선의 개수 관계 설명하기",
+        "bReason": "배수와 그 까닭을 답하도록 하고 배수는 질문에 넣지 않음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점마다 시작점이 다른 반직선이 두 개 생긴다",
+              "반직선 $AB$와 반직선 $BA$가 서로 다르다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "어느 세 점도 한 직선 위에 있지 않은 점들 가운데 두 점 $A$, $B$를 고르면 직선은 $\\overleftrightarrow{AB}$ 하나이지만 반직선은 $\\overrightarrow{AB}$와 {$\\overrightarrow{BA}$}가 따로 생긴다. 그래서 반직선의 개수는 직선의 개수의 {$2$배}이다.",
+        "cAnswers": [
+          "$\\overrightarrow{BA}$",
+          "$2$배"
+        ],
+        "cReason": "빈칸 '바꿀'은 임의의 서술어라 떠올리기 어려워 근거가 되는 반직선을 묻게 함",
+        "learningRole": "reason",
+        "roleReason": "두 점마다 반직선이 둘인 까닭",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1593,
+        "part": "m1plus",
+        "sourceFingerprint": "c8950a87a42ff0fc94b6ba2b83b1ee839c26986768c709cdb09700683a0527cd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1593
+        },
+        "directReview": null,
+        "cMarkedSentence": "어느 세 점도 한 직선 위에 있지 않은 점들 가운데 두 점 $A$, $B$를 고르면 직선은 $\\overleftrightarrow{AB}$ 하나이지만 반직선은 $\\overrightarrow{AB}$와 {$\\overrightarrow{BA}$}가 따로 생긴다. 그래서 반직선의 개수는 직선의 개수의 {$2$배}이다.",
+        "cSlotAnswers": [
+          "$\\overrightarrow{BA}$",
+          "$2$배"
+        ],
+        "cStudentSentence": "어느 세 점도 한 직선 위에 있지 않은 점들 가운데 두 점 $A$, $B$를 고르면 직선은 $\\overleftrightarrow{AB}$ 하나이지만 반직선은 $\\overrightarrow{AB}$와 □가 따로 생긴다. 그래서 반직선의 개수는 직선의 개수의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overrightarrow{BA}$",
+            "equivalentAnswers": [
+              "$\\overrightarrow{BA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$배",
+            "equivalentAnswers": [
+              "$2$배",
+              "두 배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2$배",
+            "accept": [
+              "두 배"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overrightarrow{BA}$"
+          ],
+          [
+            "$2$배",
+            "두 배"
+          ]
+        ],
+        "proposalFingerprint": "750da24af7f8db94bd7fa9a74e8ae1ecdd165c6108cbc0c71f2b3252c4140f3d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc14",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "한 직선 위의 점으로 만든 선분",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 위의 여러 점으로 만드는 직선은 {$1$개}뿐이지만, 선분은 두 점을 고를 때마다 {하나씩} 생긴다.",
+        "example": {
+          "prompt": "한 직선 위의 세 점 $A$, $B$, $C$로 만드는 선분은 몇 개?",
+          "answer": "$3$개"
+        },
+        "studentC": "한 직선 위의 여러 점으로 만드는 직선은 □뿐이지만, 선분은 두 점을 고를 때마다 □ 생긴다.",
+        "answers": [
+          "$1$개",
+          "하나씩"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "한 직선 위에 서로 다른 세 점 $A$, $B$, $C$가 있다. 이 중 두 점을 지나는 직선의 개수와 두 점을 양 끝 점으로 하는 선분의 개수를 각각 구하고, 두 개수가 다른 이유를 설명하시오.",
+        "bAnswer": "직선은 $1$개, 선분은 선분 $AB$, 선분 $BC$, 선분 $AC$의 $3$개이다. 어느 두 점을 골라도 직선은 같은 직선이지만, 선분은 양 끝 점이 다르면 서로 다른 선분이기 때문이다.",
+        "bGoal": "한 직선 위의 점으로 직선과 선분의 개수 비교하기",
+        "bReason": "'여러 점'으로는 셀 수 없어 세 점의 구체 상황을 넣음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직선은 $1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "선분은 $3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "직선은 어느 두 점을 골라도 같다",
+              "선분은 양 끝 점이 다르면 다른 선분이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 직선 위에 서로 다른 세 점 $A$, $B$, $C$가 있을 때, 이 중 두 점을 지나는 직선은 {$1$개}뿐이지만 두 점을 양 끝 점으로 하는 선분은 {$3$개}이다.",
+        "cAnswers": [
+          "$1$개",
+          "$3$개"
+        ],
+        "cReason": "빈칸 '하나씩'이 무엇을 묻는지 모호해 세 점 상황의 개수 비교로 바꿈",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "한 직선 위 점들의 직선·선분 세기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1594,
+        "part": "m1plus",
+        "sourceFingerprint": "a84a803188bcae4bb910e6d13d5d7c030d576fe67a57bf681b7d972d01990e0f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1594
+        },
+        "directReview": null,
+        "cMarkedSentence": "한 직선 위에 서로 다른 세 점 $A$, $B$, $C$가 있을 때, 이 중 두 점을 지나는 직선은 {$1$개}뿐이지만 두 점을 양 끝 점으로 하는 선분은 {$3$개}이다.",
+        "cSlotAnswers": [
+          "$1$개",
+          "$3$개"
+        ],
+        "cStudentSentence": "한 직선 위에 서로 다른 세 점 $A$, $B$, $C$가 있을 때, 이 중 두 점을 지나는 직선은 □뿐이지만 두 점을 양 끝 점으로 하는 선분은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$개",
+            "equivalentAnswers": [
+              "$1$개",
+              "한 개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$개",
+            "equivalentAnswers": [
+              "$3$개",
+              "세 개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$1$개",
+            "accept": [
+              "한 개"
+            ]
+          },
+          {
+            "answer": "$3$개",
+            "accept": [
+              "세 개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$1$개",
+            "한 개"
+          ],
+          [
+            "$3$개",
+            "세 개"
+          ]
+        ],
+        "proposalFingerprint": "17ffa191b8786635e4240114a3fd33eef2ef852c8049dbe8c5b63dd44e83735e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc15",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "이어진 선분의 길이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 {$\\overline{AC}=\\overline{AB}+\\overline{BC}$}이다.",
+        "example": {
+          "prompt": "$\\overline{AC}=12$, $\\overline{AB}=5$일 때 $\\overline{BC}$는?",
+          "answer": "$7$"
+        },
+        "studentC": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 □이다.",
+        "answers": [
+          "$\\overline{AC}=\\overline{AB}+\\overline{BC}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "한 직선 위에 세 점 $A$, $B$, $C$가 이 순서로 있을 때 $\\overline{AB}$, $\\overline{BC}$, $\\overline{AC}$ 사이의 관계식을 쓰고, $\\overline{AC}=12$, $\\overline{AB}=5$일 때 $\\overline{BC}$의 값을 구하시오.",
+        "bAnswer": "$\\overline{AC}=\\overline{AB}+\\overline{BC}$이다. 따라서 $\\overline{BC}=12-5=7$이다.",
+        "bGoal": "이어진 선분의 길이 관계 세우고 쓰기",
+        "bReason": "점의 순서를 밝히고 일반 관계식과 적용을 함께 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AC}=\\overline{AB}+\\overline{BC}$",
+              "$\\overline{BC}=\\overline{AC}-\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BC}=7$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "점의 순서 조건이 있고 관계식 하나를 쓰는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "한 직선 위 이어진 선분 길이의 합",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1595,
+        "part": "m1plus",
+        "sourceFingerprint": "4cb10e03fe54072cd0393c60d73a402c233743a5d2f5b6aba9ad44d6d9c7edbb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1595
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 □이다.",
+        "cFrozenDefinition": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 {$\\overline{AC}=\\overline{AB}+\\overline{BC}$}이다.",
+        "cFrozenAnswers": [
+          "$\\overline{AC}=\\overline{AB}+\\overline{BC}$"
+        ],
+        "cMarkedSentence": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 {$\\overline{AC}=\\overline{AB}+\\overline{BC}$}이다.",
+        "cSlotAnswers": [
+          "$\\overline{AC}=\\overline{AB}+\\overline{BC}$"
+        ],
+        "cStudentSentence": "한 직선 위에 $A$, $B$, $C$가 이 순서로 있으면 □이다.",
+        "cAnswers": [
+          "$\\overline{AC}=\\overline{AB}+\\overline{BC}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{AC}=\\overline{AB}+\\overline{BC}$",
+            "equivalentAnswers": [
+              "$\\overline{AC}=\\overline{AB}+\\overline{BC}$",
+              "$\\overline{AB}+\\overline{BC}=\\overline{AC}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{AC}=\\overline{AB}+\\overline{BC}$",
+            "accept": [
+              "$\\overline{AB}+\\overline{BC}=\\overline{AC}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{AC}=\\overline{AB}+\\overline{BC}$",
+            "$\\overline{AB}+\\overline{BC}=\\overline{AC}$"
+          ]
+        ],
+        "proposalFingerprint": "457eb5191fd269da73eccc167549f5a0a548a7511d3fdcca3e430e168009f1b8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc16",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "삼등분점과 길이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$P$, $Q$가 $\\overline{AB}$의 삼등분점이면 세 조각은 각각 $\\overline{AB}$의 {$\\frac{1}{3}$}이고, $A$에서 먼 쪽 점 $Q$까지의 길이 $\\overline{AQ}$는 $\\overline{AB}$의 {$\\frac{2}{3}$}이다.",
+        "example": {
+          "prompt": "$\\overline{AB}$의 삼등분점 가운데 $A$에서 먼 쪽이 $Q$이고 $\\overline{AB}=18\\,\\mathrm{cm}$일 때 $\\overline{AQ}$는?",
+          "answer": "$12\\,\\mathrm{cm}$"
+        },
+        "studentC": "$P$, $Q$가 $\\overline{AB}$의 삼등분점이면 세 조각은 각각 $\\overline{AB}$의 □이고, $A$에서 먼 쪽 점 $Q$까지의 길이 $\\overline{AQ}$는 $\\overline{AB}$의 □이다.",
+        "answers": [
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{3}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "선분 $AB$의 삼등분점을 $A$에 가까운 쪽부터 $P$, $Q$라 할 때, $\\overline{AP}$와 $\\overline{AQ}$는 각각 $\\overline{AB}$의 몇 배인지 쓰고 $\\overline{AQ}$가 그렇게 되는 이유를 설명하시오.",
+        "bAnswer": "$\\overline{AP}=\\frac{1}{3}\\overline{AB}$, $\\overline{AQ}=\\frac{2}{3}\\overline{AB}$이다. $\\overline{AQ}$는 길이가 각각 $\\frac{1}{3}\\overline{AB}$인 $\\overline{AP}$와 $\\overline{PQ}$를 이은 것이기 때문이다.",
+        "bGoal": "삼등분점으로 나뉜 길이의 배수 구하기",
+        "bReason": "두 점의 위치를 질문에 밝혀 어느 길이를 묻는지 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AP}=\\frac{1}{3}\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AQ}=\\frac{2}{3}\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AQ}$는 같은 길이의 조각 두 개이다",
+              "$\\overline{AQ}=\\overline{AP}+\\overline{PQ}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$Q$의 위치가 문장에 있어 두 배수를 묻기에 분명함",
+        "learningRole": "procedure",
+        "roleReason": "세 등분한 조각 수로 길이의 배수 구하기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1596,
+        "part": "m1plus",
+        "sourceFingerprint": "c1907ca90a37d4aa5d8d52ce59756a43d52fee57e6a8b4778ce211b107182e24",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1596
+        },
+        "directReview": null,
+        "cFrozenSentence": "$P$, $Q$가 $\\overline{AB}$의 삼등분점이면 세 조각은 각각 $\\overline{AB}$의 □이고, $A$에서 먼 쪽 점 $Q$까지의 길이 $\\overline{AQ}$는 $\\overline{AB}$의 □이다.",
+        "cFrozenDefinition": "$P$, $Q$가 $\\overline{AB}$의 삼등분점이면 세 조각은 각각 $\\overline{AB}$의 {$\\frac{1}{3}$}이고, $A$에서 먼 쪽 점 $Q$까지의 길이 $\\overline{AQ}$는 $\\overline{AB}$의 {$\\frac{2}{3}$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{3}$"
+        ],
+        "cMarkedSentence": "$P$, $Q$가 $\\overline{AB}$의 삼등분점이면 세 조각은 각각 $\\overline{AB}$의 {$\\frac{1}{3}$}이고, $A$에서 먼 쪽 점 $Q$까지의 길이 $\\overline{AQ}$는 $\\overline{AB}$의 {$\\frac{2}{3}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{3}$"
+        ],
+        "cStudentSentence": "$P$, $Q$가 $\\overline{AB}$의 삼등분점이면 세 조각은 각각 $\\overline{AB}$의 □이고, $A$에서 먼 쪽 점 $Q$까지의 길이 $\\overline{AQ}$는 $\\overline{AB}$의 □이다.",
+        "cAnswers": [
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{3}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{3}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{2}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{2}{3}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{3}$"
+          ],
+          [
+            "$\\frac{2}{3}$"
+          ]
+        ],
+        "proposalFingerprint": "48f4ffbc646d5c60d32275d1407df8cd4fb58d592cba79a6e8ae179e5e03155a"
+      }
+    }
+  ]
+}

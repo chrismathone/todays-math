@@ -1,0 +1,1290 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:19:09.452Z",
+  "supplementalVerdicts": "evidence/assist-remaining-380-20261007/reviews.json",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-06-02-xc13",
+        "section": "중2::6. 도형의 닮음::삼각형의 닮음 조건",
+        "term": "수선이 만든 세 닮은 삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$\\angle A=90^\\circ$인 $\\triangle ABC$에서 $\\overline{AH}\\perp\\overline{BC}$이고 $H$가 변 $BC$ 위에 있으면 $\\triangle ABC$, $\\triangle HBA$, $\\triangle HAC$는 모두 {닮음}이다.",
+        "studentC": "$\\angle A=90^\\circ$인 $\\triangle ABC$에서 $\\overline{AH}\\perp\\overline{BC}$이고 $H$가 변 $BC$ 위에 있으면 $\\triangle ABC$, $\\triangle HBA$, $\\triangle HAC$는 모두 □이다.",
+        "answers": [
+          "닮음"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-02-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle A=90^\\circ$인 $\\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 하자. 이 그림에서 $\\triangle ABC$와 닮은 삼각형을 모두 찾아 대응하는 꼭짓점의 차례에 맞게 쓰고, 닮음 조건의 이름과 함께 각각 닮음인 까닭을 쓰시오.",
+        "bAnswer": "$\\triangle HBA$와 $\\triangle HAC$이다. $\\triangle ABC$와 $\\triangle HBA$는 $\\angle B$가 공통이고 $\\angle BAC=\\angle BHA=90^\\circ$이므로 $\\mathrm{AA}$ 닮음이다. $\\triangle ABC$와 $\\triangle HAC$는 $\\angle C$가 공통이고 $\\angle BAC=\\angle AHC=90^\\circ$이므로 $\\mathrm{AA}$ 닮음이다.",
+        "bGoal": "수선이 만든 닮은 삼각형 찾기",
+        "bReason": "닮은 삼각형의 이름을 미리 주면 답이 드러나므로 찾게 하고 근거까지 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\triangle ABC\\backsim\\triangle HBA$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle ABC\\backsim\\triangle HAC$"
+            ]
+          },
+          {
+            "anyOf": [
+              "공통인 각과 직각이 각각 같아 $\\mathrm{AA}$ 닮음이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\angle A=90^\\circ$인 $\\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 하면, $\\triangle ABC$와 $\\triangle HBA$는 {$\\angle B$}가 공통이고 $\\triangle ABC$와 $\\triangle HAC$는 {$\\angle C$}가 공통이라 세 삼각형은 직각과 함께 모두 {$\\mathrm{AA}$} 닮음이다.",
+        "cAnswers": [
+          "$\\angle B$",
+          "$\\angle C$",
+          "$\\mathrm{AA}$"
+        ],
+        "cReason": "긴 조건 끝의 닮음 한 낱말은 뻔해서 닮음의 근거인 공통각을 묻도록 바꾸었다.",
+        "learningRole": "reason",
+        "roleReason": "공통각과 직각으로 세 삼각형이 닮음인 까닭",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2986,
+        "part": "m2plus",
+        "sourceFingerprint": "bb9723ed4cdfa9b5095105526f144ac5fe88290839f09f8161eb0a546f6df1a2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2986
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\angle A=90^\\circ$인 $\\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 하면, $\\triangle ABC$와 $\\triangle HBA$는 {$\\angle B$}가 공통이고 $\\triangle ABC$와 $\\triangle HAC$는 {$\\angle C$}가 공통이라 세 삼각형은 직각과 함께 모두 {$\\mathrm{AA}$} 닮음이다.",
+        "cSlotAnswers": [
+          "$\\angle B$",
+          "$\\angle C$",
+          "$\\mathrm{AA}$"
+        ],
+        "cStudentSentence": "$\\angle A=90^\\circ$인 $\\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 하면, $\\triangle ABC$와 $\\triangle HBA$는 □가 공통이고 $\\triangle ABC$와 $\\triangle HAC$는 □가 공통이라 세 삼각형은 직각과 함께 모두 □ 닮음이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\angle B$",
+            "equivalentAnswers": [
+              "$\\angle B$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\angle C$",
+            "equivalentAnswers": [
+              "$\\angle C$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$\\mathrm{AA}$",
+            "equivalentAnswers": [
+              "$\\mathrm{AA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\angle B$"
+          ],
+          [
+            "$\\angle C$"
+          ],
+          [
+            "$\\mathrm{AA}$"
+          ]
+        ],
+        "proposalFingerprint": "0a8e37033d8bbef29b85d713282b9227561c94b4b9ed4abc384b60a093b8f1d4"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-01-xc4",
+        "section": "중2::7. 닮음의 활용::삼각형에서 평행선 사이의 선분의 길이의 비",
+        "term": "조각의 비를 쓰는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "밑변에 평행한 선분이 두 변을 나눌 때 조각의 비는 {같은 쪽} 조각끼리 차례를 맞춰 쓴다. 한 변에서 꼭짓점 쪽 조각을 먼저 썼으면 다른 변에서도 {꼭짓점 쪽} 조각을 먼저 쓴다.",
+        "example": {
+          "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$일 때 $\\overline{AD}:\\overline{DB}=\\overline{AE}:\\square$의 $\\square$는?",
+          "answer": "$\\overline{EC}$"
+        },
+        "studentC": "밑변에 평행한 선분이 두 변을 나눌 때 조각의 비는 □ 조각끼리 차례를 맞춰 쓴다. 한 변에서 꼭짓점 쪽 조각을 먼저 썼으면 다른 변에서도 □ 조각을 먼저 쓴다.",
+        "answers": [
+          "같은 쪽",
+          "꼭짓점 쪽"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-01-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. 한 학생이 $\\overline{AD}:\\overline{DB}=\\overline{EC}:\\overline{AE}$라고 썼다. 이 비례식이 틀린 까닭을 쓰고 바르게 고치시오.",
+        "bAnswer": "$\\overline{AD}$는 꼭짓점 $A$ 쪽 조각인데 $\\overline{EC}$는 밑변 쪽 조각이라 차례가 맞지 않는다. 같은 쪽 조각끼리 차례를 맞추어 $\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$로 써야 한다.",
+        "bGoal": "조각의 비를 같은 차례로 쓰기",
+        "bReason": "c3의 비례식과 겹치지 않게 차례를 뒤집은 잘못된 식을 고치게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AD}$는 꼭짓점 쪽 조각인데 $\\overline{EC}$는 밑변 쪽 조각이라 차례가 맞지 않는다",
+              "두 변에서 같은 쪽 조각끼리 같은 차례에 써야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$",
+              "$\\overline{DB}:\\overline{AD}=\\overline{EC}:\\overline{AE}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$일 때 조각의 비는 같은 쪽 조각끼리 차례를 맞춰 쓴다. 변 $AB$에서 밑변 쪽 조각을 먼저 써서 $\\overline{DB}:\\overline{AD}$로 시작했으면 변 $AC$에서도 {$\\overline{EC}$} $:$ {$\\overline{AE}$}의 차례로 쓴다.",
+        "cAnswers": [
+          "$\\overline{EC}$",
+          "$\\overline{AE}$"
+        ],
+        "cReason": "둘째 빈칸의 답인 꼭짓점 쪽이 같은 문장에 그대로 나와 있어 차례를 실제로 맞추는 빈칸으로 바꾸었다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "같은 쪽 조각끼리 차례를 맞추는 방법",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2998,
+        "part": "m2plus",
+        "sourceFingerprint": "49bd93d40b87e85f1565a7555e7d5b3fef440f9be9c0bd57b134710fe63f6c30",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2998
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$일 때 조각의 비는 같은 쪽 조각끼리 차례를 맞춰 쓴다. 변 $AB$에서 밑변 쪽 조각을 먼저 써서 $\\overline{DB}:\\overline{AD}$로 시작했으면 변 $AC$에서도 {$\\overline{EC}$} $:$ {$\\overline{AE}$}의 차례로 쓴다.",
+        "cSlotAnswers": [
+          "$\\overline{EC}$",
+          "$\\overline{AE}$"
+        ],
+        "cStudentSentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$일 때 조각의 비는 같은 쪽 조각끼리 차례를 맞춰 쓴다. 변 $AB$에서 밑변 쪽 조각을 먼저 써서 $\\overline{DB}:\\overline{AD}$로 시작했으면 변 $AC$에서도 □ $:$ □의 차례로 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{EC}$",
+            "equivalentAnswers": [
+              "$\\overline{EC}$",
+              "$\\overline{CE}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\overline{AE}$",
+            "equivalentAnswers": [
+              "$\\overline{AE}$",
+              "$\\overline{EA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{EC}$",
+            "accept": [
+              "$\\overline{CE}$"
+            ]
+          },
+          {
+            "answer": "$\\overline{AE}$",
+            "accept": [
+              "$\\overline{EA}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{EC}$",
+            "$\\overline{CE}$"
+          ],
+          [
+            "$\\overline{AE}$",
+            "$\\overline{EA}$"
+          ]
+        ],
+        "proposalFingerprint": "5aef804b62ae95a7d9dc52cff5342eecbf55610b295a8d9a2899d95a52787fdb"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-06-xc13",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "겉넓이와 넓이의 배율",
+        "kind": "성질",
+        "level": "중",
+        "definition": "닮은 입체에서는 {각 면}의 넓이가 같은 배수로 변하므로 그 합인 겉넓이에도 같은 넓이 배율이 적용된다.",
+        "studentC": "닮은 입체에서는 □의 넓이가 같은 배수로 변하므로 그 합인 겉넓이에도 같은 넓이 배율이 적용된다.",
+        "answers": [
+          "각 면"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-xc13",
+        "learningRole": "reason",
+        "roleReason": "각 면의 넓이가 같은 배수로 변하므로 합인 겉넓이도 같다",
+        "bDecision": "rewrite",
+        "bPrompt": "닮음비가 $m:n$인 두 입체도형에서 겉넓이의 비가 닮음비의 제곱이 되는 까닭을 입체의 '면'을 이용하여 쓰시오.",
+        "bAnswer": "대응하는 각 면은 닮음비가 $m:n$인 닮은 평면도형이므로 각 면의 넓이의 비가 모두 $m^2:n^2$이다. 겉넓이는 이 면들의 넓이의 합이므로 겉넓이의 비도 $m^2:n^2$이다.",
+        "bGoal": "겉넓이 비가 제곱이 되는 까닭 설명",
+        "bReason": "평면의 넓이 비를 입체 겉넓이로 넓히는 근거를 면 단위로 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대응하는 각 면의 넓이의 비가 $m^2:n^2$이다",
+              "각 면의 넓이가 모두 같은 배수로 변한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이는 면의 넓이의 합이다",
+              "합해도 같은 비가 된다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'각 면'이 합으로 이어지는 근거를 묻는 하나의 핵심 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3121,
+        "part": "m2plus",
+        "sourceFingerprint": "cd4a6be6470ea367486e1811f7df192400a951884e0691ff4df9187e084a98d7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3121
+        },
+        "directReview": null,
+        "cFrozenSentence": "닮은 입체에서는 □의 넓이가 같은 배수로 변하므로 그 합인 겉넓이에도 같은 넓이 배율이 적용된다.",
+        "cFrozenDefinition": "닮은 입체에서는 {각 면}의 넓이가 같은 배수로 변하므로 그 합인 겉넓이에도 같은 넓이 배율이 적용된다.",
+        "cFrozenAnswers": [
+          "각 면"
+        ],
+        "cMarkedSentence": "닮은 입체에서는 {각 면}의 넓이가 같은 배수로 변하므로 그 합인 겉넓이에도 같은 넓이 배율이 적용된다.",
+        "cSlotAnswers": [
+          "각 면"
+        ],
+        "cStudentSentence": "닮은 입체에서는 □의 넓이가 같은 배수로 변하므로 그 합인 겉넓이에도 같은 넓이 배율이 적용된다.",
+        "cAnswers": [
+          "각 면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "각 면",
+            "equivalentAnswers": [
+              "각 면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "각 면"
+          ]
+        ],
+        "proposalFingerprint": "baa9ba138873d86332a338adffc109c6d729f0ea1da7b845cd7e49fe31f500af"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc1",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "빗변을 고르는 위치",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직각 표시가 있는 꼭짓점과 {마주 보는 변}을 빗변으로 고른다.",
+        "studentC": "직각 표시가 있는 꼭짓점과 □을 빗변으로 고른다.",
+        "answers": [
+          "마주 보는 변"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc1",
+        "learningRole": "definition",
+        "roleReason": "빗변은 직각인 꼭짓점과 마주 보는 변",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 빗변은 직각인 꼭짓점과 어떤 위치 관계에 있는 변인가?",
+        "bAnswer": "직각인 꼭짓점과 마주 보는 변이다.",
+        "bGoal": "빗변의 위치 찾기",
+        "bReason": "빗변을 꼭짓점과의 위치로 찾게 하여 그림 모양에 기대지 않게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각과 마주 보는 변",
+              "직각의 맞은편 변"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "직각 꼭짓점과의 위치를 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3131,
+        "part": "m2plus",
+        "sourceFingerprint": "15d97a25dae296f1d18043bd3f65b32be193d5ed91e9337343078dfc35d51a0c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3131
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각 표시가 있는 꼭짓점과 □을 빗변으로 고른다.",
+        "cFrozenDefinition": "직각 표시가 있는 꼭짓점과 {마주 보는 변}을 빗변으로 고른다.",
+        "cFrozenAnswers": [
+          "마주 보는 변"
+        ],
+        "cMarkedSentence": "직각 표시가 있는 꼭짓점과 {마주 보는 변}을 빗변으로 고른다.",
+        "cSlotAnswers": [
+          "마주 보는 변"
+        ],
+        "cStudentSentence": "직각 표시가 있는 꼭짓점과 □을 빗변으로 고른다.",
+        "cAnswers": [
+          "마주 보는 변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마주 보는 변",
+            "equivalentAnswers": [
+              "마주 보는 변",
+              "맞은편 변",
+              "대변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "마주 보는 변",
+            "accept": [
+              "맞은편 변",
+              "대변"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "마주 보는 변",
+            "맞은편 변",
+            "대변"
+          ]
+        ],
+        "proposalFingerprint": "976c21a1fef3b363bad30ab8dd2d5e2cff367d313103d126021eb0e15ef81d76"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc9",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "세 변에서 직각 판별 순서",
+        "kind": "방법",
+        "level": "중",
+        "definition": "세 변만 알려졌다면 {가장 긴 변}의 제곱을 따로 놓고 나머지 두 제곱의 합과 비교한다.",
+        "studentC": "세 변만 알려졌다면 □의 제곱을 따로 놓고 나머지 두 제곱의 합과 비교한다.",
+        "answers": [
+          "가장 긴 변"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc9",
+        "learningRole": "procedure",
+        "roleReason": "가장 긴 변의 제곱을 나머지 두 제곱의 합과 비교",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 길이만 주어진 삼각형이 직각삼각형인지 판별할 때, 어느 변의 제곱을 나머지 두 변의 제곱의 합과 비교해야 하는가? 그 까닭도 쓰시오.",
+        "bAnswer": "가장 긴 변의 제곱이다. 직각삼각형이라면 빗변이 가장 긴 변이기 때문이다.",
+        "bGoal": "직각 판별에서 비교할 변 고르기",
+        "bReason": "비교할 변과 그 근거를 함께 묻도록 판별 상황을 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 긴 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "빗변이 가장 긴 변이다",
+              "직각삼각형이면 빗변이 가장 길다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "따로 놓을 변인 '가장 긴 변' 하나를 묻는 분명한 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3139,
+        "part": "m2plus",
+        "sourceFingerprint": "e4468ef405edc632ee78ba45df9cf283f7cb2553b053f7908d5aeb3c1ae08cd3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3139
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 변만 알려졌다면 □의 제곱을 따로 놓고 나머지 두 제곱의 합과 비교한다.",
+        "cFrozenDefinition": "세 변만 알려졌다면 {가장 긴 변}의 제곱을 따로 놓고 나머지 두 제곱의 합과 비교한다.",
+        "cFrozenAnswers": [
+          "가장 긴 변"
+        ],
+        "cMarkedSentence": "세 변만 알려졌다면 {가장 긴 변}의 제곱을 따로 놓고 나머지 두 제곱의 합과 비교한다.",
+        "cSlotAnswers": [
+          "가장 긴 변"
+        ],
+        "cStudentSentence": "세 변만 알려졌다면 □의 제곱을 따로 놓고 나머지 두 제곱의 합과 비교한다.",
+        "cAnswers": [
+          "가장 긴 변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가장 긴 변",
+            "equivalentAnswers": [
+              "가장 긴 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가장 긴 변"
+          ]
+        ],
+        "proposalFingerprint": "e0e3b2a1af2cd3b8e7f168ab2ecba821b2b770390ca24e300759ffe2ffaf4d5b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc10",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "피타고라스 수의 같은 배수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "피타고라스 수 세 개에 같은 {자연수}를 곱한 세 수도 피타고라스 정리의 식을 만족한다.",
+        "studentC": "피타고라스 수 세 개에 같은 □를 곱한 세 수도 피타고라스 정리의 식을 만족한다.",
+        "answers": [
+          "자연수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc10",
+        "learningRole": "application",
+        "roleReason": "피타고라스 수에 같은 자연수를 곱해도 피타고라스 수",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "같은 배수로 바꿔도 관계가 유지되는 까닭은 xc21 B에서 묻는다.",
+        "cDecision": "keep",
+        "cReason": "곱하는 수가 '자연수'여야 함을 묻는 짧은 빈칸이라 유지한다.",
+        "exclusionReason": "B 제외: 세 수에 같은 수를 곱해도 관계가 유지됨은 xc21 B의 일반 배율 질문과 중복된다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3140,
+        "part": "m2plus",
+        "sourceFingerprint": "4e15c61d0e7440496f76eb173f0e6b4255fa1bf96e21a65ee356ae7522a057de",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3140
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "피타고라스 수 세 개에 같은 □를 곱한 세 수도 피타고라스 정리의 식을 만족한다.",
+        "cFrozenDefinition": "피타고라스 수 세 개에 같은 {자연수}를 곱한 세 수도 피타고라스 정리의 식을 만족한다.",
+        "cFrozenAnswers": [
+          "자연수"
+        ],
+        "cMarkedSentence": "피타고라스 수 세 개에 같은 {자연수}를 곱한 세 수도 피타고라스 정리의 식을 만족한다.",
+        "cSlotAnswers": [
+          "자연수"
+        ],
+        "cStudentSentence": "피타고라스 수 세 개에 같은 □를 곱한 세 수도 피타고라스 정리의 식을 만족한다.",
+        "cAnswers": [
+          "자연수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "자연수",
+            "equivalentAnswers": [
+              "자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ],
+        "proposalFingerprint": "bee9f350ef5b91cc0b61024075b16adb7ff5f40b687b5fd2905f576afea6dc18"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc11",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "직각의 위치를 거꾸로 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "세 길이의 제곱 관계가 맞으면 가장 긴 변의 {맞은편 각}이 직각이라고 판단한다.",
+        "studentC": "세 길이의 제곱 관계가 맞으면 가장 긴 변의 □이 직각이라고 판단한다.",
+        "answers": [
+          "맞은편 각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc11",
+        "learningRole": "application",
+        "roleReason": "제곱 관계가 맞으면 가장 긴 변의 맞은편 각이 직각",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 $\\mathrm{ABC}$에서 $\\overline{\\mathrm{AB}}=5$, $\\overline{\\mathrm{BC}}=12$, $\\overline{\\mathrm{CA}}=13$이다. 이 삼각형이 직각삼각형인지 확인하고, 직각이라면 어느 각이 직각인지 쓰시오.",
+        "bAnswer": "$5^2+12^2=25+144=169=13^2$이므로 직각삼각형이다. 가장 긴 변 $\\overline{\\mathrm{CA}}$의 맞은편 각인 $\\angle \\mathrm{B}$가 직각이다.",
+        "bGoal": "세 변으로 직각의 위치 찾기",
+        "bReason": "점 이름과 변의 길이를 주어 맞은편 각을 실제로 찾게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5^2+12^2=13^2$",
+              "$25+144=169$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle \\mathrm{B}$",
+              "각 $\\mathrm{B}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "가장 긴 변과 직각의 위치 관계를 묻는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3141,
+        "part": "m2plus",
+        "sourceFingerprint": "ce4bb348a153f4efed9fb575cf0e183647b711503db33100cae51212a9b2c649",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3141
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 길이의 제곱 관계가 맞으면 가장 긴 변의 □이 직각이라고 판단한다.",
+        "cFrozenDefinition": "세 길이의 제곱 관계가 맞으면 가장 긴 변의 {맞은편 각}이 직각이라고 판단한다.",
+        "cFrozenAnswers": [
+          "맞은편 각"
+        ],
+        "cMarkedSentence": "세 길이의 제곱 관계가 맞으면 가장 긴 변의 {맞은편 각}이 직각이라고 판단한다.",
+        "cSlotAnswers": [
+          "맞은편 각"
+        ],
+        "cStudentSentence": "세 길이의 제곱 관계가 맞으면 가장 긴 변의 □이 직각이라고 판단한다.",
+        "cAnswers": [
+          "맞은편 각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "맞은편 각",
+            "equivalentAnswers": [
+              "맞은편 각",
+              "대각",
+              "마주 보는 각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "맞은편 각",
+            "accept": [
+              "대각",
+              "마주 보는 각"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "맞은편 각",
+            "대각",
+            "마주 보는 각"
+          ]
+        ],
+        "proposalFingerprint": "9c0464dfb099e709fe5ca405da12fc31bab8cf31e2dec28c40f79c81195b5ce9"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc13",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "분수 길이에도 적용",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각삼각형이면 세 변의 길이가 자연수가 아닌 {분수}나 {소수}여도 같은 제곱 관계를 쓸 수 있다.",
+        "studentC": "직각삼각형이면 세 변의 길이가 자연수가 아닌 □나 □여도 같은 제곱 관계를 쓸 수 있다.",
+        "answers": [
+          "분수",
+          "소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc13",
+        "learningRole": "application",
+        "roleReason": "분수·소수 길이에도 같은 제곱 관계를 쓴다",
+        "bDecision": "rewrite",
+        "bPrompt": "직각을 낀 두 변의 길이가 $0.6$, $0.8$인 직각삼각형에도 피타고라스 정리를 쓸 수 있는가? 쓸 수 있다면 빗변의 길이를 구하시오.",
+        "bAnswer": "쓸 수 있다. $0.6^2+0.8^2=0.36+0.64=1$이고 제곱하여 $1$이 되는 양수는 $1$이므로 빗변의 길이는 $1$이다.",
+        "bGoal": "자연수가 아닌 길이에 정리 적용",
+        "bReason": "자연수가 아닌 길이에도 쓰는지 확인하도록 소수 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빗변의 길이는 $1$이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'분수'와 '소수'를 묻는 짧은 빈칸이며 두 답의 순서는 바뀌어도 된다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3143,
+        "part": "m2plus",
+        "sourceFingerprint": "805a97070ac5a7db1ae299abb6a653a9e0cfce793fe468b9b725df0653a13428",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3143
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형이면 세 변의 길이가 자연수가 아닌 □나 □여도 같은 제곱 관계를 쓸 수 있다.",
+        "cFrozenDefinition": "직각삼각형이면 세 변의 길이가 자연수가 아닌 {분수}나 {소수}여도 같은 제곱 관계를 쓸 수 있다.",
+        "cFrozenAnswers": [
+          "분수",
+          "소수"
+        ],
+        "cMarkedSentence": "직각삼각형이면 세 변의 길이가 자연수가 아닌 {분수}나 {소수}여도 같은 제곱 관계를 쓸 수 있다.",
+        "cSlotAnswers": [
+          "분수",
+          "소수"
+        ],
+        "cStudentSentence": "직각삼각형이면 세 변의 길이가 자연수가 아닌 □나 □여도 같은 제곱 관계를 쓸 수 있다.",
+        "cAnswers": [
+          "분수",
+          "소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "소수"
+          ]
+        ],
+        "proposalFingerprint": "6ac83e10ec87593598b699980d469ade69f9b5fe65d593042be4ad088ea98c73"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc18",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "한 변이 미정인 직각삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "빗변이 지정되지 않고 한 변이 미지수이면 그 변이 {빗변인 경우}와 {직각을 낀 변인 경우}를 나누어 생각한다.",
+        "studentC": "빗변이 지정되지 않고 한 변이 미지수이면 그 변이 □와 □를 나누어 생각한다.",
+        "answers": [
+          "빗변인 경우",
+          "직각을 낀 변인 경우"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc18",
+        "learningRole": "application",
+        "roleReason": "빗변이 지정되지 않으면 미지수 변이 빗변인 경우와 아닌 경우로 나눈다",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형의 두 변의 길이가 $3$, $4$이고 나머지 한 변의 길이가 $x$이다. 어느 변이 빗변인지 알려 주지 않았을 때 $x^2$의 값이 될 수 있는 것을 모두 구하시오.",
+        "bAnswer": "$x$가 빗변이면 $x^2=3^2+4^2=25$이고, 길이가 $4$인 변이 빗변이면 $x^2=4^2-3^2=7$이다. 따라서 $x^2=25$ 또는 $x^2=7$이다.",
+        "bGoal": "빗변이 미정일 때 경우 나누기",
+        "bReason": "제곱근 학습 전이라 $x^2$을 묻고 빗변 경우 나누기가 드러나게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2=25$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x^2=7$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "나눌 두 경우를 묻는 빈칸이 분명하며 두 답의 순서는 바뀌어도 된다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3148,
+        "part": "m2plus",
+        "sourceFingerprint": "6e5997a4e85872c52e365c594617bb408941fe07a5589147266b80e6def6192a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3148
+        },
+        "directReview": null,
+        "cFrozenSentence": "빗변이 지정되지 않고 한 변이 미지수이면 그 변이 □와 □를 나누어 생각한다.",
+        "cFrozenDefinition": "빗변이 지정되지 않고 한 변이 미지수이면 그 변이 {빗변인 경우}와 {직각을 낀 변인 경우}를 나누어 생각한다.",
+        "cFrozenAnswers": [
+          "빗변인 경우",
+          "직각을 낀 변인 경우"
+        ],
+        "cMarkedSentence": "빗변이 지정되지 않고 한 변이 미지수이면 그 변이 {빗변인 경우}와 {직각을 낀 변인 경우}를 나누어 생각한다.",
+        "cSlotAnswers": [
+          "빗변인 경우",
+          "직각을 낀 변인 경우"
+        ],
+        "cStudentSentence": "빗변이 지정되지 않고 한 변이 미지수이면 그 변이 □와 □를 나누어 생각한다.",
+        "cAnswers": [
+          "빗변인 경우",
+          "직각을 낀 변인 경우"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변인 경우",
+            "equivalentAnswers": [
+              "빗변인 경우"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "직각을 낀 변인 경우",
+            "equivalentAnswers": [
+              "직각을 낀 변인 경우"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변인 경우"
+          ],
+          [
+            "직각을 낀 변인 경우"
+          ]
+        ],
+        "proposalFingerprint": "ae01f01d3c1ecb6ee2cbfd150b117307a0d8b430fa5281117bd0b391e9c56cf7"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc19",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "넓이 재배열 증명의 공통 부분",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합동인 직각삼각형들을 두 방식으로 배치한 증명에서는 전체 넓이에서 같은 삼각형들의 {넓이의 합}을 빼고 남은 넓이를 비교한다.",
+        "studentC": "합동인 직각삼각형들을 두 방식으로 배치한 증명에서는 전체 넓이에서 같은 삼각형들의 □을 빼고 남은 넓이를 비교한다.",
+        "answers": [
+          "넓이의 합"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc19",
+        "learningRole": "reason",
+        "roleReason": "전체 넓이에서 같은 삼각형들의 넓이의 합을 빼고 비교",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "두 배치의 남은 넓이 비교는 c7 B와 같은 목표다.",
+        "cDecision": "keep",
+        "cReason": "빼는 대상인 삼각형들의 '넓이의 합'을 묻는 짧은 빈칸이다.",
+        "exclusionReason": "B 제외: 재배열 증명의 남은 넓이 비교는 c7 B 피타고라스의 방법 질문과 중복된다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3149,
+        "part": "m2plus",
+        "sourceFingerprint": "c2a53065cded87879dd153244fdaf327c7f04eeaea94fe624ea084a110bb6c9e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3149
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "합동인 직각삼각형들을 두 방식으로 배치한 증명에서는 전체 넓이에서 같은 삼각형들의 □을 빼고 남은 넓이를 비교한다.",
+        "cFrozenDefinition": "합동인 직각삼각형들을 두 방식으로 배치한 증명에서는 전체 넓이에서 같은 삼각형들의 {넓이의 합}을 빼고 남은 넓이를 비교한다.",
+        "cFrozenAnswers": [
+          "넓이의 합"
+        ],
+        "cMarkedSentence": "합동인 직각삼각형들을 두 방식으로 배치한 증명에서는 전체 넓이에서 같은 삼각형들의 {넓이의 합}을 빼고 남은 넓이를 비교한다.",
+        "cSlotAnswers": [
+          "넓이의 합"
+        ],
+        "cStudentSentence": "합동인 직각삼각형들을 두 방식으로 배치한 증명에서는 전체 넓이에서 같은 삼각형들의 □을 빼고 남은 넓이를 비교한다.",
+        "cAnswers": [
+          "넓이의 합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "넓이의 합",
+            "equivalentAnswers": [
+              "넓이의 합",
+              "넓이 합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "넓이의 합",
+            "accept": [
+              "넓이 합"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "넓이의 합",
+            "넓이 합"
+          ]
+        ],
+        "proposalFingerprint": "5449472281702ecadfb0313d17b9f913abf7e6940bdcb6328ae64f6d63536ede"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-01-xc21",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "닮음 배율과 제곱 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직각삼각형의 길이를 같은 비율로 바꾸면 식의 세 제곱이 모두 그 비율의 {제곱 배}가 되어 관계가 유지된다.",
+        "studentC": "직각삼각형의 길이를 같은 비율로 바꾸면 식의 세 제곱이 모두 그 비율의 □가 되어 관계가 유지된다.",
+        "answers": [
+          "제곱 배"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-xc21",
+        "learningRole": "reason",
+        "roleReason": "세 변을 같은 비율로 바꾸면 세 제곱이 모두 비율의 제곱 배",
+        "bDecision": "rewrite",
+        "bPrompt": "직각을 낀 두 변의 길이가 $a$, $b$이고 빗변의 길이가 $c$인 직각삼각형의 세 변의 길이를 모두 $k$배($k>0$) 하였다. 새 삼각형에서도 $(ka)^2+(kb)^2=(kc)^2$이 성립하는 까닭을 식으로 쓰시오.",
+        "bAnswer": "$(ka)^2+(kb)^2=k^2a^2+k^2b^2=k^2(a^2+b^2)=k^2c^2=(kc)^2$이다. 세 제곱이 모두 $k^2$배가 되므로 관계가 유지된다.",
+        "bGoal": "닮은 직각삼각형에서 관계가 유지되는 까닭",
+        "bReason": "배율 $k$를 일반 문자로 두어 산수 한 번이 아닌 식으로 설명하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 제곱이 모두 $k^2$배가 된다",
+              "$k^2(a^2+b^2)=k^2c^2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세 제곱이 비율의 '제곱 배'가 된다는 핵심 하나를 묻는 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3151,
+        "part": "m2plus",
+        "sourceFingerprint": "82c8f0b084f38ddc6980eb8e7b5a6a489cf79005962490b1e01db3595a4ca677",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3151
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 길이를 같은 비율로 바꾸면 식의 세 제곱이 모두 그 비율의 □가 되어 관계가 유지된다.",
+        "cFrozenDefinition": "직각삼각형의 길이를 같은 비율로 바꾸면 식의 세 제곱이 모두 그 비율의 {제곱 배}가 되어 관계가 유지된다.",
+        "cFrozenAnswers": [
+          "제곱 배"
+        ],
+        "cMarkedSentence": "직각삼각형의 길이를 같은 비율로 바꾸면 식의 세 제곱이 모두 그 비율의 {제곱 배}가 되어 관계가 유지된다.",
+        "cSlotAnswers": [
+          "제곱 배"
+        ],
+        "cStudentSentence": "직각삼각형의 길이를 같은 비율로 바꾸면 식의 세 제곱이 모두 그 비율의 □가 되어 관계가 유지된다.",
+        "cAnswers": [
+          "제곱 배"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱 배",
+            "equivalentAnswers": [
+              "제곱 배",
+              "제곱배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제곱 배",
+            "accept": [
+              "제곱배"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱 배",
+            "제곱배"
+          ]
+        ],
+        "proposalFingerprint": "fd826d558eb2a9de88ca9fbbe8ae51bb85d96ae790ed68b39bb1dd84265c16c9"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-02-xc9",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "거리 문제의 단위 맞추기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직각삼각형으로 거리를 계산할 때는 길이의 단위를 {통일}한 다음 제곱한다.",
+        "studentC": "직각삼각형으로 거리를 계산할 때는 길이의 단위를 □한 다음 제곱한다.",
+        "answers": [
+          "통일"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "단위 통일은 계산 습관이라 개념 질문으로 세우기 어려움",
+        "cDecision": "keep",
+        "cReason": "제곱 전에 단위를 맞춘다는 절차가 한 빈칸으로 분명해 유지",
+        "exclusionReason": "B 제외: 수학 개념이 아닌 계산 주의 사항이라 개념백지 형식에 맞지 않음",
+        "learningRole": "procedure",
+        "roleReason": "거리 계산 전 단위를 맞추는 절차",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3160,
+        "part": "m2plus",
+        "sourceFingerprint": "22ec755e4f4df317aa898e1f90d8317eadf0701020d149846854b1e3fbd58d35",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3160
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "직각삼각형으로 거리를 계산할 때는 길이의 단위를 □한 다음 제곱한다.",
+        "cFrozenDefinition": "직각삼각형으로 거리를 계산할 때는 길이의 단위를 {통일}한 다음 제곱한다.",
+        "cFrozenAnswers": [
+          "통일"
+        ],
+        "cMarkedSentence": "직각삼각형으로 거리를 계산할 때는 길이의 단위를 {통일}한 다음 제곱한다.",
+        "cSlotAnswers": [
+          "통일"
+        ],
+        "cStudentSentence": "직각삼각형으로 거리를 계산할 때는 길이의 단위를 □한 다음 제곱한다.",
+        "cAnswers": [
+          "통일"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "통일",
+            "equivalentAnswers": [
+              "통일"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "통일"
+          ]
+        ],
+        "proposalFingerprint": "7fd0a52ef4d4b860a8f7a14c4c01fba517b0daf76dd171a9e8e0d93bccfc0b80"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-01-xc2",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "동전 한 번의 결과",
+        "kind": "성질",
+        "level": "하",
+        "definition": "동전 한 개를 한 번 던져 면을 기록하면 가능한 결과는 {앞면}과 {뒷면}이다.",
+        "studentC": "동전 한 개를 한 번 던져 면을 기록하면 가능한 결과는 □과 □이다.",
+        "answers": [
+          "앞면",
+          "뒷면"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "동전의 두 면은 단순 사실이라 개념 질문으로 세우기 어려움",
+        "cDecision": "keep",
+        "cReason": "가장 기본적인 결과 나열을 짧게 확인하는 분명한 빈칸이라 유지",
+        "exclusionReason": "B 제외: 단순 사실 확인이라 개념백지 형식에 맞지 않음",
+        "learningRole": "application",
+        "roleReason": "동전 한 번의 가능한 결과 나열",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3174,
+        "part": "m2plus",
+        "sourceFingerprint": "a1e876ae6ae9ccc42f8f9aa8246b59a73c5632a95fabdd8d6189b62d8645ea6b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3174
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "동전 한 개를 한 번 던져 면을 기록하면 가능한 결과는 □과 □이다.",
+        "cFrozenDefinition": "동전 한 개를 한 번 던져 면을 기록하면 가능한 결과는 {앞면}과 {뒷면}이다.",
+        "cFrozenAnswers": [
+          "앞면",
+          "뒷면"
+        ],
+        "cMarkedSentence": "동전 한 개를 한 번 던져 면을 기록하면 가능한 결과는 {앞면}과 {뒷면}이다.",
+        "cSlotAnswers": [
+          "앞면",
+          "뒷면"
+        ],
+        "cStudentSentence": "동전 한 개를 한 번 던져 면을 기록하면 가능한 결과는 □과 □이다.",
+        "cAnswers": [
+          "앞면",
+          "뒷면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "앞면",
+            "equivalentAnswers": [
+              "앞면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "뒷면",
+            "equivalentAnswers": [
+              "뒷면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "앞면"
+          ],
+          [
+            "뒷면"
+          ]
+        ],
+        "proposalFingerprint": "12d0e4c34ce1e4100fb58426e0240e850d5425d2378ceb48edbb7f21b0e2ed54"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-01-xc3",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "주사위의 눈 목록",
+        "kind": "방법",
+        "level": "하",
+        "definition": "보통 주사위 한 개의 가능한 눈을 적을 때는 {$1$부터 $6$까지} 빠짐없이 쓴다.",
+        "studentC": "보통 주사위 한 개의 가능한 눈을 적을 때는 □ 빠짐없이 쓴다.",
+        "answers": [
+          "$1$부터 $6$까지"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "주사위 눈 범위는 단순 사실 암기임",
+        "cDecision": "keep",
+        "cReason": "주사위 결과 범위를 짧게 확인하는 분명한 빈칸이라 유지",
+        "exclusionReason": "B 제외: 단순 사실 암기라 개념백지 형식에 맞지 않음",
+        "learningRole": "application",
+        "roleReason": "주사위 한 개의 가능한 눈 나열",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3175,
+        "part": "m2plus",
+        "sourceFingerprint": "098227422e07ab253942a7c9ac612eab62635d64f2e110d6d5b46e218f22e043",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3175
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "보통 주사위 한 개의 가능한 눈을 적을 때는 □ 빠짐없이 쓴다.",
+        "cFrozenDefinition": "보통 주사위 한 개의 가능한 눈을 적을 때는 {$1$부터 $6$까지} 빠짐없이 쓴다.",
+        "cFrozenAnswers": [
+          "$1$부터 $6$까지"
+        ],
+        "cMarkedSentence": "보통 주사위 한 개의 가능한 눈을 적을 때는 {$1$부터 $6$까지} 빠짐없이 쓴다.",
+        "cSlotAnswers": [
+          "$1$부터 $6$까지"
+        ],
+        "cStudentSentence": "보통 주사위 한 개의 가능한 눈을 적을 때는 □ 빠짐없이 쓴다.",
+        "cAnswers": [
+          "$1$부터 $6$까지"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$부터 $6$까지",
+            "equivalentAnswers": [
+              "$1$부터 $6$까지"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$부터 $6$까지"
+          ]
+        ],
+        "proposalFingerprint": "5a547993a7ebdda45fec9457a1981616de7c16bd02e4efc0e65e16e0c1cb6265"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-01-xc8",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "불가능한 사건의 가짓수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "조건을 만족하는 결과가 하나도 없으면 경우의 수는 {$0$}이다.",
+        "studentC": "조건을 만족하는 결과가 하나도 없으면 경우의 수는 □이다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "경우의 수 $0$은 단순 사실이라 개념 질문으로 부적합",
+        "cDecision": "keep",
+        "cReason": "불가능한 사건의 경우의 수를 짧게 확인하는 분명한 빈칸이라 유지",
+        "exclusionReason": "B 제외: 단순 수치 사실이라 개념백지 형식에 맞지 않음",
+        "learningRole": "application",
+        "roleReason": "조건을 만족하는 결과가 없을 때의 경우의 수",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3180,
+        "part": "m2plus",
+        "sourceFingerprint": "7e8bafc74f33d8ba4fa0021314d45183acb11e94f7445371089ea8f146f99f75",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3180
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "조건을 만족하는 결과가 하나도 없으면 경우의 수는 □이다.",
+        "cFrozenDefinition": "조건을 만족하는 결과가 하나도 없으면 경우의 수는 {$0$}이다.",
+        "cFrozenAnswers": [
+          "$0$"
+        ],
+        "cMarkedSentence": "조건을 만족하는 결과가 하나도 없으면 경우의 수는 {$0$}이다.",
+        "cSlotAnswers": [
+          "$0$"
+        ],
+        "cStudentSentence": "조건을 만족하는 결과가 하나도 없으면 경우의 수는 □이다.",
+        "cAnswers": [
+          "$0$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "75e5c67e4302bfce610d33151526b55fd78bf7f236d75316bd92d35d2cbfe2ba"
+      }
+    }
+  ]
+}

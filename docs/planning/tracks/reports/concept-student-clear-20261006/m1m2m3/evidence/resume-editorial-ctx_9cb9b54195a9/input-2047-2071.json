@@ -1,0 +1,2206 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:30:03.176Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc22",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "묶는 폭과 보이는 분포",
+        "kind": "성질",
+        "level": "상",
+        "definition": "계급을 넓게 묶으면 표는 간단해지지만 좁은 구간에 자료가 몰리는 세부 모습은 {덜 드러난다}.",
+        "studentC": "계급을 넓게 묶으면 표는 간단해지지만 좁은 구간에 자료가 몰리는 세부 모습은 □.",
+        "answers": [
+          "덜 드러난다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포표에서 계급의 크기를 크게 하여 자료를 넓게 묶을 때의 좋은 점 한 가지와 나쁜 점 한 가지를 쓰시오.",
+        "bAnswer": "계급의 개수가 줄어 표가 간단해지지만, 자료가 좁은 구간에 몰려 있는 것과 같은 자세한 분포 모습은 알아보기 어려워진다.",
+        "bGoal": "계급의 크기가 클 때의 장점과 단점 말하기",
+        "bReason": "'묶는 폭과 보이는 분포'가 막연해 좋은 점과 나쁜 점으로 답할 범위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "표가 간단해진다",
+              "계급의 개수가 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자세한 분포를 알기 어렵다",
+              "자료가 몰려 있는 곳이 덜 드러난다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "계급의 크기를 크게 하면 표는 {간단}해지지만, 자료가 좁은 구간에 몰려 있는 것 같은 자세한 분포 모습은 알아보기 {어려워}진다.",
+        "cAnswers": [
+          "간단",
+          "어려워"
+        ],
+        "cReason": "문장 끝의 '덜 드러난다'는 임의의 표현이라 장점과 단점을 한 낱말씩 묻게 했다.",
+        "learningRole": "reason",
+        "roleReason": "넓게 묶으면 세부 분포가 가려지는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2047,
+        "part": "m1plus",
+        "sourceFingerprint": "dab194d9be5b9d81e17051ad832fcc1cd6800c3b429aa023e044abc374a9459c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2047
+        },
+        "directReview": null,
+        "cMarkedSentence": "계급의 크기를 크게 하면 표는 {간단}해지지만, 자료가 좁은 구간에 몰려 있는 것 같은 자세한 분포 모습은 알아보기 {어려워}진다.",
+        "cSlotAnswers": [
+          "간단",
+          "어려워"
+        ],
+        "cStudentSentence": "계급의 크기를 크게 하면 표는 □해지지만, 자료가 좁은 구간에 몰려 있는 것 같은 자세한 분포 모습은 알아보기 □진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "간단",
+            "equivalentAnswers": [
+              "간단",
+              "단순"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "어려워",
+            "equivalentAnswers": [
+              "어려워",
+              "힘들어"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "간단",
+            "accept": [
+              "단순"
+            ]
+          },
+          {
+            "answer": "어려워",
+            "accept": [
+              "힘들어"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "간단",
+            "단순"
+          ],
+          [
+            "어려워",
+            "힘들어"
+          ]
+        ],
+        "proposalFingerprint": "6996c95f2c4ad6cea4b8eddaa209937a8f43f43caf90b310bc79b4ec1a2c7185"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc23",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "계급 안에서 변량 바꾸기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변량을 고쳐도 같은 계급 안에 머무르면 도수분포표의 도수는 {변하지 않는다}.",
+        "studentC": "변량을 고쳐도 같은 계급 안에 머무르면 도수분포표의 도수는 □.",
+        "answers": [
+          "변하지 않는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "계급 '$50$ 이상 $60$ 미만'에 속하던 변량 $52$를 $57$로 고쳤다. 도수분포표의 도수는 어떻게 되는지 이유와 함께 쓰시오.",
+        "bAnswer": "변하지 않는다. $57$도 $50$ 이상 $60$ 미만인 계급에 속하므로 각 계급에 속한 자료의 수가 그대로이기 때문이다.",
+        "bGoal": "같은 계급 안에서 값이 바뀌어도 도수가 그대로인 이유 말하기",
+        "bReason": "일반 문장을 확인하도록 한 계급 안에서 값이 바뀌는 예를 넣고 이유를 물었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "도수는 변하지 않는다",
+              "도수는 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "고친 값도 같은 계급에 속한다",
+              "$57$도 $50$ 이상 $60$ 미만이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "같은 계급 안이라는 조건이 문장에 있고 결론만 짧게 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "계급 안의 변화가 도수에 영향 없는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2048,
+        "part": "m1plus",
+        "sourceFingerprint": "9f8ce86b72c1dc091d5cc3d40c9e3e5063d3870e7d0a6a1c567e54610ce3266b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2048
+        },
+        "directReview": null,
+        "cFrozenSentence": "변량을 고쳐도 같은 계급 안에 머무르면 도수분포표의 도수는 □.",
+        "cFrozenDefinition": "변량을 고쳐도 같은 계급 안에 머무르면 도수분포표의 도수는 {변하지 않는다}.",
+        "cFrozenAnswers": [
+          "변하지 않는다"
+        ],
+        "cMarkedSentence": "변량을 고쳐도 같은 계급 안에 머무르면 도수분포표의 도수는 {변하지 않는다}.",
+        "cSlotAnswers": [
+          "변하지 않는다"
+        ],
+        "cStudentSentence": "변량을 고쳐도 같은 계급 안에 머무르면 도수분포표의 도수는 □.",
+        "cAnswers": [
+          "변하지 않는다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변하지 않는다",
+            "equivalentAnswers": [
+              "변하지 않는다",
+              "그대로이다",
+              "바뀌지 않는다",
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "변하지 않는다",
+            "accept": [
+              "그대로이다",
+              "바뀌지 않는다",
+              "같다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변하지 않는다",
+            "그대로이다",
+            "바뀌지 않는다",
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "acb6e786afe073939753069959594fc28c7d6e4f2fd107af21544612280c89b7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc1",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "가로축의 경계 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "히스토그램에서 직사각형의 왼쪽 끝과 오른쪽 끝에 대응하는 수로 계급의 {범위}를 읽는다.",
+        "studentC": "히스토그램에서 직사각형의 왼쪽 끝과 오른쪽 끝에 대응하는 수로 계급의 □를 읽는다.",
+        "answers": [
+          "범위"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "히스토그램에서 어떤 직사각형의 왼쪽 끝이 가로축의 $20$, 오른쪽 끝이 가로축의 $30$에 놓여 있다. 이 직사각형이 나타내는 계급을 이상과 미만을 써서 나타내시오.",
+        "bAnswer": "$20$ 이상 $30$ 미만",
+        "bGoal": "직사각형의 양 끝에서 계급의 범위 읽기",
+        "bReason": "그림이 없으므로 직사각형의 양 끝이 놓인 가로축의 값을 질문에 적었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20$ 이상 $30$ 미만"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "히스토그램과 직사각형의 양 끝이 문장에 있어 범위를 묻는 뜻이 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "가로축에서 계급의 범위를 읽는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2049,
+        "part": "m1plus",
+        "sourceFingerprint": "4f82f9f7369883a5fde614f7e261217102756f067c12cdf57b2b1cef555a71d9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2049
+        },
+        "directReview": null,
+        "cFrozenSentence": "히스토그램에서 직사각형의 왼쪽 끝과 오른쪽 끝에 대응하는 수로 계급의 □를 읽는다.",
+        "cFrozenDefinition": "히스토그램에서 직사각형의 왼쪽 끝과 오른쪽 끝에 대응하는 수로 계급의 {범위}를 읽는다.",
+        "cFrozenAnswers": [
+          "범위"
+        ],
+        "cMarkedSentence": "히스토그램에서 직사각형의 왼쪽 끝과 오른쪽 끝에 대응하는 수로 계급의 {범위}를 읽는다.",
+        "cSlotAnswers": [
+          "범위"
+        ],
+        "cStudentSentence": "히스토그램에서 직사각형의 왼쪽 끝과 오른쪽 끝에 대응하는 수로 계급의 □를 읽는다.",
+        "cAnswers": [
+          "범위"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "범위",
+            "equivalentAnswers": [
+              "범위",
+              "구간",
+              "양 끝 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "범위",
+            "accept": [
+              "구간",
+              "양 끝 값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "범위",
+            "구간",
+            "양 끝 값"
+          ]
+        ],
+        "proposalFingerprint": "89bf46a9a3f8cee9f103946aee3a648423ebb6df127f60fce16dab9b4f3b3572"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc2",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "세로 눈금의 역할",
+        "kind": "성질",
+        "level": "하",
+        "definition": "세로축의 한 눈금이 나타내는 {도수}를 먼저 확인해야 직사각형의 높이를 바르게 읽는다.",
+        "studentC": "세로축의 한 눈금이 나타내는 □를 먼저 확인해야 직사각형의 높이를 바르게 읽는다.",
+        "answers": [
+          "도수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "히스토그램의 세로축에 눈금 $0$, $10$, $20$이 적혀 있고 $0$과 $10$ 사이가 $5$칸으로 똑같이 나뉘어 있다. 작은 눈금 한 칸이 나타내는 도수를 구하고, 직사각형의 높이를 읽기 전에 이것을 확인해야 하는 이유를 쓰시오.",
+        "bAnswer": "$10\\div 5=2$이므로 한 칸은 도수 $2$를 나타낸다. 한 칸이 $1$이 아닐 수 있어 칸 수만 세면 도수를 잘못 읽기 때문이다.",
+        "bGoal": "세로축 한 칸의 크기를 확인하고 도수 읽기",
+        "bReason": "'역할'이 막연해 눈금이 적힌 모습을 글로 주고 한 칸의 크기를 구하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 칸이 $1$이 아닐 수 있다",
+              "칸 수와 도수가 다를 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 세로축의 눈금 한 칸이 나타내는 {도수}를 먼저 확인해야 직사각형의 높이를 바르게 읽을 수 있다.",
+        "cAnswers": [
+          "도수"
+        ],
+        "cReason": "어떤 그래프의 세로축인지 문장에 없어 히스토그램임을 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "세로축 눈금 한 칸의 크기 확인",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2050,
+        "part": "m1plus",
+        "sourceFingerprint": "769bf907b2cf30de7372b2d054ddefb25a94c94b82f2b908341d826048a339b7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2050
+        },
+        "directReview": null,
+        "cMarkedSentence": "히스토그램에서 세로축의 눈금 한 칸이 나타내는 {도수}를 먼저 확인해야 직사각형의 높이를 바르게 읽을 수 있다.",
+        "cSlotAnswers": [
+          "도수"
+        ],
+        "cStudentSentence": "히스토그램에서 세로축의 눈금 한 칸이 나타내는 □를 먼저 확인해야 직사각형의 높이를 바르게 읽을 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수",
+              "크기",
+              "값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "도수",
+            "accept": [
+              "크기",
+              "값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수",
+            "크기",
+            "값"
+          ]
+        ],
+        "proposalFingerprint": "1ddfb3691e51d9692ce363afe7206fe10e1d07976103d5eba10140ce33bceacc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc3",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "빈 구간 그리기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "도수가 없는 계급은 높이를 {$0$}으로 나타내고 가로축 위의 구간은 {남겨 둔다}.",
+        "studentC": "도수가 없는 계급은 높이를 □으로 나타내고 가로축 위의 구간은 □.",
+        "answers": [
+          "$0$",
+          "남겨 둔다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "히스토그램을 그릴 때, 가운데에 있는 어떤 계급의 도수가 $0$이면 그 계급을 어떻게 나타내는지 쓰시오.",
+        "bAnswer": "그 계급에는 직사각형을 그리지 않되(높이 $0$), 가로축에서 그 계급의 구간은 없애지 않고 그대로 비워 둔다.",
+        "bGoal": "도수가 없는 계급을 히스토그램에 나타내는 방법 말하기",
+        "bReason": "'빈 구간'의 뜻이 불분명해 도수가 없는 가운데 계급이라는 상황을 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형을 그리지 않는다",
+              "높이가 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로축의 구간은 그대로 둔다",
+              "그 자리를 비워 둔다",
+              "구간을 없애지 않는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 자료가 하나도 없는 계급은 직사각형의 높이가 {$0$}이지만, 가로축에서 그 계급의 구간은 없애지 않고 {남겨} 둔다.",
+        "cAnswers": [
+          "$0$",
+          "남겨"
+        ],
+        "cReason": "히스토그램이라는 말이 없고 끝 빈칸이 서술어 전체라 답이 흔들려 다듬었다.",
+        "learningRole": "procedure",
+        "roleReason": "도수가 없는 계급을 그리는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2051,
+        "part": "m1plus",
+        "sourceFingerprint": "6e545e7577c6bf173815d86bc09a76a82daaf85810a31c1b97b621b384b72160",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2051
+        },
+        "directReview": null,
+        "cMarkedSentence": "히스토그램에서 자료가 하나도 없는 계급은 직사각형의 높이가 {$0$}이지만, 가로축에서 그 계급의 구간은 없애지 않고 {남겨} 둔다.",
+        "cSlotAnswers": [
+          "$0$",
+          "남겨"
+        ],
+        "cStudentSentence": "히스토그램에서 자료가 하나도 없는 계급은 직사각형의 높이가 □이지만, 가로축에서 그 계급의 구간은 없애지 않고 □ 둔다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "남겨",
+            "equivalentAnswers": [
+              "남겨",
+              "그대로",
+              "비워"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "남겨",
+            "accept": [
+              "그대로",
+              "비워"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "남겨",
+            "그대로",
+            "비워"
+          ]
+        ],
+        "proposalFingerprint": "9a5a490a111ec099258480e85cf3fe8d5e5a828b6f039b9ccc8c8525b17bff5f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc4",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "가장 높은 직사각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "가장 높게 올라온 직사각형이 있는 구간에는 자료가 가장 {많이} 들어 있다.",
+        "studentC": "가장 높게 올라온 직사각형이 있는 구간에는 자료가 가장 □ 들어 있다.",
+        "answers": [
+          "많이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "높이가 도수라는 m1-08-04-c2의 적용이고 m1-08-03-xc12와 묻는 내용이 같다.",
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 직사각형이 가장 높은 계급은 {도수}가 가장 큰 계급, 곧 자료가 가장 {많이} 속한 계급이다.",
+        "cAnswers": [
+          "도수",
+          "많이"
+        ],
+        "cReason": "어떤 그래프인지 문장에 없어 히스토그램을 밝히고 높이와 도수를 연결했다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-04-c2(높이는 도수)와 m1-08-03-xc12(도수가 가장 큰 계급)의 목표가 반복된다.",
+        "learningRole": "application",
+        "roleReason": "가장 높은 직사각형에서 도수 읽기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2052,
+        "part": "m1plus",
+        "sourceFingerprint": "fa3d7c25b4740360892b5aee23076b5a046e266089964f3c68c1be325d153b15",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2052
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "히스토그램에서 직사각형이 가장 높은 계급은 {도수}가 가장 큰 계급, 곧 자료가 가장 {많이} 속한 계급이다.",
+        "cSlotAnswers": [
+          "도수",
+          "많이"
+        ],
+        "cStudentSentence": "히스토그램에서 직사각형이 가장 높은 계급은 □가 가장 큰 계급, 곧 자료가 가장 □ 속한 계급이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "많이",
+            "equivalentAnswers": [
+              "많이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ],
+          [
+            "많이"
+          ]
+        ],
+        "proposalFingerprint": "e65697d0af6ad1e314570f8d3cc648c1e410c5bed95cbc9e63157fae37655c94"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc5",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "같은 높이 읽기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 히스토그램에서 높이가 같은 두 직사각형은 도수도 {같다}.",
+        "studentC": "한 히스토그램에서 높이가 같은 두 직사각형은 도수도 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "높이가 도수를 나타낸다는 m1-08-04-c2에서 바로 나오는 한 줄 결론이다.",
+        "cDecision": "keep",
+        "cReason": "한 히스토그램이라는 조건이 있고 결론만 짧게 묻는 분명한 문장이다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-04-c2(세로는 도수)와 목표가 겹치는 단순 적용이다.",
+        "learningRole": "application",
+        "roleReason": "같은 높이에서 같은 도수 읽기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2053,
+        "part": "m1plus",
+        "sourceFingerprint": "5d214a893948f23b37c9c0abafb3a39e063b5e8643436efef65520e671bca7d4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2053
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "한 히스토그램에서 높이가 같은 두 직사각형은 도수도 □.",
+        "cFrozenDefinition": "한 히스토그램에서 높이가 같은 두 직사각형은 도수도 {같다}.",
+        "cFrozenAnswers": [
+          "같다"
+        ],
+        "cMarkedSentence": "한 히스토그램에서 높이가 같은 두 직사각형은 도수도 {같다}.",
+        "cSlotAnswers": [
+          "같다"
+        ],
+        "cStudentSentence": "한 히스토그램에서 높이가 같은 두 직사각형은 도수도 □.",
+        "cAnswers": [
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "d53c4fa34a1b1e782991ade1d59bbbef6866d04ce9f7748c68920e418ee22d8b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc6",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "높이와 자료의 값 구별",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직사각형의 높이는 변량의 크기가 아니라 그 구간의 {자료 수}를 나타낸다.",
+        "studentC": "직사각형의 높이는 변량의 크기가 아니라 그 구간의 □를 나타낸다.",
+        "answers": [
+          "자료 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "학생들의 키를 조사한 히스토그램에서 계급 '$150$ 이상 $160$ 미만' 위에 있는 직사각형의 높이가 $8$이다. 이 $8$이 뜻하는 것을 쓰고, 키의 값과는 어떻게 다른지 쓰시오.",
+        "bAnswer": "키가 $150$ 이상 $160$ 미만인 학생이 $8$명이라는 뜻(도수)이다. 키의 값은 가로축에서 읽는 것이고, 높이는 키가 아니라 학생 수이다.",
+        "bGoal": "직사각형의 높이를 변량이 아닌 도수로 읽기",
+        "bReason": "높이와 변량을 혼동하는 지점을 드러내려고 키 조사의 구체적인 높이를 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 계급에 속한 학생이 $8$명이다",
+              "도수가 $8$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 키의 값이 아니다",
+              "키는 가로축에서 읽는다",
+              "변량의 크기가 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 직사각형의 높이는 변량의 크기가 아니라 그 계급의 {도수}를 나타낸다.",
+        "cAnswers": [
+          "도수"
+        ],
+        "cReason": "어떤 그래프의 직사각형인지 문장에 없어 히스토그램임을 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "높이가 변량이 아니라 도수라는 구별",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2054,
+        "part": "m1plus",
+        "sourceFingerprint": "f118074083bd28e4a2bbe49cea4e5371b023fe5d35b7cdd1e797dd32fdb8df83",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2054
+        },
+        "directReview": null,
+        "cMarkedSentence": "히스토그램에서 직사각형의 높이는 변량의 크기가 아니라 그 계급의 {도수}를 나타낸다.",
+        "cSlotAnswers": [
+          "도수"
+        ],
+        "cStudentSentence": "히스토그램에서 직사각형의 높이는 변량의 크기가 아니라 그 계급의 □를 나타낸다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수",
+              "자료의 수",
+              "자료 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "도수",
+            "accept": [
+              "자료의 수",
+              "자료 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수",
+            "자료의 수",
+            "자료 수"
+          ]
+        ],
+        "proposalFingerprint": "52a5d806c6f65f898105c6f05db90b4920a5e73a0379069e3a0ef4ecfdc9156e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc7",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "계급의 폭 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직사각형의 가로 폭은 계급의 끝 경계에서 시작 경계를 {빼서} 구한다.",
+        "studentC": "직사각형의 가로 폭은 계급의 끝 경계에서 시작 경계를 □ 구한다.",
+        "answers": [
+          "빼서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "양 끝 값의 차로 계급의 크기를 구하는 m1-08-03-c2와 같은 계산이다.",
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 직사각형의 가로의 길이는 오른쪽 끝의 값에서 왼쪽 끝의 값을 {뺀} 값이고, 이것이 계급의 {크기}이다.",
+        "cAnswers": [
+          "뺀",
+          "크기"
+        ],
+        "cReason": "'끝 경계', '시작 경계'가 낯선 말이라 직사각형의 양 끝으로 바꿔 썼다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-c2(계급의 크기는 양 끝 값의 차)와 목표가 겹친다.",
+        "learningRole": "procedure",
+        "roleReason": "직사각형의 가로에서 계급의 크기 구하기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2055,
+        "part": "m1plus",
+        "sourceFingerprint": "e45cb8801bdf0eea38528c058c795a9cadf3386f39e68d13754e6af1ce43cfd3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2055
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "히스토그램에서 직사각형의 가로의 길이는 오른쪽 끝의 값에서 왼쪽 끝의 값을 {뺀} 값이고, 이것이 계급의 {크기}이다.",
+        "cSlotAnswers": [
+          "뺀",
+          "크기"
+        ],
+        "cStudentSentence": "히스토그램에서 직사각형의 가로의 길이는 오른쪽 끝의 값에서 왼쪽 끝의 값을 □ 값이고, 이것이 계급의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "뺀",
+            "equivalentAnswers": [
+              "뺀"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크기",
+            "equivalentAnswers": [
+              "크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "뺀"
+          ],
+          [
+            "크기"
+          ]
+        ],
+        "proposalFingerprint": "34c4e69b25250da1a7d07712b703ea4698987f1b34ea6d4d4cb7bcb2bf764029"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc8",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "표에서 그래프로 옮기기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "도수분포표의 계급에 맞춰 밑변을 잡고 도수에 맞춰 {높이}를 정하여 직사각형을 그린다.",
+        "studentC": "도수분포표의 계급에 맞춰 밑변을 잡고 도수에 맞춰 □를 정하여 직사각형을 그린다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "밑변은 계급, 높이는 도수라는 내용이 m1-08-04-c1, m1-08-04-c2와 같다.",
+        "cDecision": "rewrite",
+        "cAfter": "도수분포표를 히스토그램으로 나타낼 때, 각 직사각형의 밑변은 가로축의 {계급}에 맞추고 높이는 그 계급의 {도수}에 맞춘다.",
+        "cAnswers": [
+          "계급",
+          "도수"
+        ],
+        "cReason": "무엇을 그리는지 문장에 없어 히스토그램으로 옮기는 상황임을 밝혔다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-04-c1(히스토그램의 뜻), m1-08-04-c2(가로와 세로)와 목표가 겹친다.",
+        "learningRole": "procedure",
+        "roleReason": "표를 보고 직사각형을 그리는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2056,
+        "part": "m1plus",
+        "sourceFingerprint": "e5c8057302ca92b917936d2e778c396c50cf1fde7ee67bfb4d950691a7c22424",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2056
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "도수분포표를 히스토그램으로 나타낼 때, 각 직사각형의 밑변은 가로축의 {계급}에 맞추고 높이는 그 계급의 {도수}에 맞춘다.",
+        "cSlotAnswers": [
+          "계급",
+          "도수"
+        ],
+        "cStudentSentence": "도수분포표를 히스토그램으로 나타낼 때, 각 직사각형의 밑변은 가로축의 □에 맞추고 높이는 그 계급의 □에 맞춘다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "계급",
+            "equivalentAnswers": [
+              "계급"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "계급"
+          ],
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "a8f849b15c2a9e9323ed44c4ebf2c525d2f064a034144090c949f9969cc7a828"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc9",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "높이를 더해 전체 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "전체 자료 수는 각 직사각형에서 읽은 {도수}를 모두 {더하여} 구한다.",
+        "studentC": "전체 자료 수는 각 직사각형에서 읽은 □를 모두 □ 구한다.",
+        "answers": [
+          "도수",
+          "더하여"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 히스토그램에 직사각형이 $4$개 있고 높이가 왼쪽부터 차례로 $3$, $7$, $6$, $4$이다. 전체 자료의 수를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "각 직사각형의 높이가 나타내는 도수를 모두 더한다. $3+7+6+4=20$.",
+        "bGoal": "히스토그램에서 도수를 모두 더해 전체 자료의 수 구하기",
+        "bReason": "그림이 없어 직사각형의 높이를 수로 제시해 전체를 구하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 직사각형의 높이(도수)를 모두 더한다",
+              "$3+7+6+4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 전체 자료의 수는 각 직사각형의 높이로 읽은 {도수}를 모두 {더하여} 구한다.",
+        "cAnswers": [
+          "도수",
+          "더하여"
+        ],
+        "cReason": "어떤 그래프의 직사각형인지 문장에 없어 히스토그램과 높이를 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "높이를 모두 더해 전체 자료의 수 구하기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2057,
+        "part": "m1plus",
+        "sourceFingerprint": "fd51acef658af6e7a01f64ecb2ba864140bcd54a7544d49c2d5c3950c1245ba0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2057
+        },
+        "directReview": null,
+        "cMarkedSentence": "히스토그램에서 전체 자료의 수는 각 직사각형의 높이로 읽은 {도수}를 모두 {더하여} 구한다.",
+        "cSlotAnswers": [
+          "도수",
+          "더하여"
+        ],
+        "cStudentSentence": "히스토그램에서 전체 자료의 수는 각 직사각형의 높이로 읽은 □를 모두 □ 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더하여",
+            "equivalentAnswers": [
+              "더하여",
+              "더해서",
+              "합하여"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더하여",
+            "accept": [
+              "더해서",
+              "합하여"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ],
+          [
+            "더하여",
+            "더해서",
+            "합하여"
+          ]
+        ],
+        "proposalFingerprint": "4db5941fa0f8fb74c022e1360a8d8a4f3397566bf01377ce5e07c56d8146ec2c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc10",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "높이 차의 뜻",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 세로축 눈금을 쓰는 두 직사각형의 높이 차는 두 계급의 {도수 차}를 나타낸다.",
+        "studentC": "같은 세로축 눈금을 쓰는 두 직사각형의 높이 차는 두 계급의 □를 나타낸다.",
+        "answers": [
+          "도수 차"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc10",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "높이가 도수라는 m1-08-04-c2에서 바로 나오는 뺄셈 적용이다.",
+        "cDecision": "rewrite",
+        "cAfter": "한 히스토그램에서 두 직사각형의 높이의 차는 두 계급의 {도수}의 차를 나타낸다.",
+        "cAnswers": [
+          "도수"
+        ],
+        "cReason": "'같은 세로축 눈금을 쓰는'이 어려운 표현이라 한 히스토그램으로 바꿨다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-04-c2(세로는 도수)와 목표가 겹치는 단순 적용이다.",
+        "learningRole": "application",
+        "roleReason": "높이의 차를 도수의 차로 읽기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2058,
+        "part": "m1plus",
+        "sourceFingerprint": "6a90ee5e7faf2ab89b0140a2e3bec30155379cd6fd1f95fe909974ddc3fa7fb4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2058
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "한 히스토그램에서 두 직사각형의 높이의 차는 두 계급의 {도수}의 차를 나타낸다.",
+        "cSlotAnswers": [
+          "도수"
+        ],
+        "cStudentSentence": "한 히스토그램에서 두 직사각형의 높이의 차는 두 계급의 □의 차를 나타낸다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "df552e2d39f4785404ed132384f6cd42606f18fefb10faac66a315b3f7c0f5d9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc11",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "나란한 구간의 자료 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "이웃한 여러 계급에 속한 자료 수를 구하려면 각 직사각형의 {높이}에 해당하는 도수를 합친다.",
+        "studentC": "이웃한 여러 계급에 속한 자료 수를 구하려면 각 직사각형의 □에 해당하는 도수를 합친다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc11",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "여러 계급의 도수를 더하는 m1-08-04-xc15, m1-08-03-xc11과 같은 방법이다.",
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 이웃한 여러 계급에 속한 자료의 수는 그 계급들의 직사각형의 {높이}가 나타내는 도수를 모두 {더하여} 구한다.",
+        "cAnswers": [
+          "높이",
+          "더하여"
+        ],
+        "cReason": "어떤 그래프의 직사각형인지 문장에 없어 히스토그램을 밝히고 더하는 과정을 묻게 했다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-04-xc15(조건에 맞는 계급의 도수 더하기), m1-08-03-xc11과 목표가 겹친다.",
+        "learningRole": "procedure",
+        "roleReason": "이웃한 계급의 도수를 더하는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2059,
+        "part": "m1plus",
+        "sourceFingerprint": "0b9109fc1bf63318f8c293ed73cd381f3977b9b33e21f313ebbf89484afa34a6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2059
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "히스토그램에서 이웃한 여러 계급에 속한 자료의 수는 그 계급들의 직사각형의 {높이}가 나타내는 도수를 모두 {더하여} 구한다.",
+        "cSlotAnswers": [
+          "높이",
+          "더하여"
+        ],
+        "cStudentSentence": "히스토그램에서 이웃한 여러 계급에 속한 자료의 수는 그 계급들의 직사각형의 □가 나타내는 도수를 모두 □ 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더하여",
+            "equivalentAnswers": [
+              "더하여",
+              "더해서",
+              "합하여"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더하여",
+            "accept": [
+              "더해서",
+              "합하여"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "높이"
+          ],
+          [
+            "더하여",
+            "더해서",
+            "합하여"
+          ]
+        ],
+        "proposalFingerprint": "83007b812694183cbdee501bf43d5a9f2f844970985fa452598164fd5cc164dc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc12",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "넓이에서 도수 읽기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 직사각형의 넓이를 {계급의 크기}로 나누면 그 계급의 {도수}를 얻는다.",
+        "studentC": "한 직사각형의 넓이를 □로 나누면 그 계급의 □를 얻는다.",
+        "answers": [
+          "계급의 크기",
+          "도수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "히스토그램에서 한 직사각형의 넓이가 $60$이고 계급의 크기가 $5$이다. 이 계급의 도수를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "직사각형의 넓이는 (계급의 크기)$\\times$(도수)이므로 넓이를 계급의 크기로 나눈다. $60\\div 5=12$.",
+        "bGoal": "직사각형의 넓이와 계급의 크기로 도수 구하기",
+        "bReason": "방법이 추상적이어서 넓이와 계급의 크기를 수로 주어 도수를 구하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "넓이를 계급의 크기로 나눈다",
+              "$60\\div 5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 한 직사각형의 넓이를 그 직사각형의 가로의 길이인 {계급의 크기}로 나누면 그 계급의 도수를 얻는다.",
+        "cAnswers": [
+          "계급의 크기"
+        ],
+        "cReason": "나누는 것과 결과가 모두 가려져 있어 나누는 것만 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "넓이를 계급의 크기로 나누어 도수 구하기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2060,
+        "part": "m1plus",
+        "sourceFingerprint": "f31eb3128fee8e16cb4334fe1cb7acdc632311312230896ceb8b3665034e1d88",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2060
+        },
+        "directReview": null,
+        "cMarkedSentence": "히스토그램에서 한 직사각형의 넓이를 그 직사각형의 가로의 길이인 {계급의 크기}로 나누면 그 계급의 도수를 얻는다.",
+        "cSlotAnswers": [
+          "계급의 크기"
+        ],
+        "cStudentSentence": "히스토그램에서 한 직사각형의 넓이를 그 직사각형의 가로의 길이인 □로 나누면 그 계급의 도수를 얻는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "계급의 크기",
+            "equivalentAnswers": [
+              "계급의 크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "계급의 크기"
+          ]
+        ],
+        "proposalFingerprint": "8bfa44385d089d7ace0556a2ce72309c50c02198763bfa99c301002a0a6ae230"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc13",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "높이 비와 넓이 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "계급의 폭이 같은 직사각형끼리는 넓이의 비가 {높이의 비}와 같다.",
+        "studentC": "계급의 폭이 같은 직사각형끼리는 넓이의 비가 □와 같다.",
+        "answers": [
+          "높이의 비"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "넓이가 도수에 정비례한다는 m1-08-04-c3을 비로 다시 말한 내용이다.",
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 가로의 길이가 같은 직사각형끼리는 넓이의 비가 {높이}의 비, 곧 {도수}의 비와 같다.",
+        "cAnswers": [
+          "높이",
+          "도수"
+        ],
+        "cReason": "히스토그램이라는 말이 없고 '높이의 비'가 긴 빈칸이어서 낱말 단위로 나눴다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-04-c3(넓이는 도수에 정비례)과 목표가 겹친다.",
+        "learningRole": "reason",
+        "roleReason": "가로가 같을 때 넓이의 비와 도수의 비",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2061,
+        "part": "m1plus",
+        "sourceFingerprint": "a4e35c5f18fd53d3fdf23ef61c8141f71319c121bed31c8806982c4bcd4dc6f9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2061
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "히스토그램에서 가로의 길이가 같은 직사각형끼리는 넓이의 비가 {높이}의 비, 곧 {도수}의 비와 같다.",
+        "cSlotAnswers": [
+          "높이",
+          "도수"
+        ],
+        "cStudentSentence": "히스토그램에서 가로의 길이가 같은 직사각형끼리는 넓이의 비가 □의 비, 곧 □의 비와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "높이"
+          ],
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "51db3b31b8d21825417c1b19dc8c0b9d3f2d3c99456b0773b629034460aaea8c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc14",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "가장 오른쪽 구간",
+        "kind": "성질",
+        "level": "중",
+        "definition": "오른쪽에 그려진 계급일수록 변량의 범위는 {크지만}, 그 도수가 더 크다고 할 수는 {없다}.",
+        "studentC": "오른쪽에 그려진 계급일수록 변량의 범위는 □, 그 도수가 더 크다고 할 수는 □.",
+        "answers": [
+          "크지만",
+          "없다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "히스토그램에서 가장 오른쪽에 있는 계급에 대해, 그 계급에 속한 변량의 값과 그 계급의 도수 중 '다른 계급보다 크다'고 말할 수 있는 것은 어느 것인지 이유와 함께 쓰시오.",
+        "bAnswer": "변량의 값이다. 가로축은 오른쪽으로 갈수록 값이 커지지만, 도수는 직사각형의 높이로 정해지므로 오른쪽에 있다고 해서 큰 것은 아니다.",
+        "bGoal": "계급의 위치와 도수의 크기를 구별하기",
+        "bReason": "위치가 변량과 도수 중 무엇을 알려 주는지 묻는 질문으로 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변량의 값이 크다",
+              "변량의 값이라고 말할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도수는 높이로 정해진다",
+              "오른쪽에 있다고 도수가 큰 것은 아니다",
+              "도수는 위치와 관계없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 오른쪽에 있는 계급일수록 그 계급에 속하는 변량의 값은 {크지만}, 도수가 더 크다고 할 수는 {없다}.",
+        "cAnswers": [
+          "크지만",
+          "없다"
+        ],
+        "cReason": "'변량의 범위는 크지만'이 계급의 크기가 커진다는 뜻으로 읽혀 값이 크다는 뜻으로 고쳤다.",
+        "studentLabel": "오른쪽 계급과 도수",
+        "learningRole": "reason",
+        "roleReason": "위치는 변량의 크기일 뿐 도수가 아닌 까닭",
+        "coreAfter": "히스토그램에서 오른쪽에 그려진 계급일수록 그 계급에 속하는 변량의 값은 {크지만}, 그 도수가 더 크다고 할 수는 {없다}.",
+        "coreReason": "'변량의 범위는 크다'는 계급의 크기가 커진다는 뜻으로 읽힐 수 있어 변량의 값이 크다는 뜻으로 바로잡는다.",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2062,
+        "part": "m1plus",
+        "sourceFingerprint": "f11213ac4b975094b4f8f14367f1ae0a1b3398547f8e7fa6f6be61a677d7ff4f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2062
+        },
+        "directReview": null,
+        "coreBeforeRepair": "히스토그램에서 오른쪽에 그려진 계급일수록 그 계급에 속하는 변량의 값은 크지만, 그 도수가 더 크다고 할 수는 없다.",
+        "coreRepairReason": "표지가 없어서 원래 핵심어 {크지만}, {없다}를 되살림. 위치와 도수는 관계가 없다는 원래 대비도 유지함.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "히스토그램에서 오른쪽에 있는 계급일수록 그 계급에 속하는 변량의 값은 {크지만}, 도수가 더 크다고 할 수는 {없다}.",
+        "cSlotAnswers": [
+          "크지만",
+          "없다"
+        ],
+        "cStudentSentence": "히스토그램에서 오른쪽에 있는 계급일수록 그 계급에 속하는 변량의 값은 □, 도수가 더 크다고 할 수는 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "크지만",
+            "equivalentAnswers": [
+              "크지만"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "크지만"
+          ],
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "be767b9a5623197ff2592a0b4dc512c1ea0fb757c3323d550ec79ccd7fde52d2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc15",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "조건에 맞는 구간 고르기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "조건에 맞는 범위가 계급 전체들로 이루어지면, 그 계급들의 {도수}를 모두 {더하여} 자료 수를 구한다.",
+        "studentC": "조건에 맞는 범위가 계급 전체들로 이루어지면, 그 계급들의 □를 모두 □ 자료 수를 구한다.",
+        "answers": [
+          "도수",
+          "더하여"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "히스토그램의 계급이 $40$ 이상 $50$ 미만, $50$ 이상 $60$ 미만, $60$ 이상 $70$ 미만, $70$ 이상 $80$ 미만이고 직사각형의 높이가 차례로 $2$, $6$, $9$, $3$이다. $60$ 이상인 자료의 수를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "$60$ 이상에 해당하는 두 계급 $60$ 이상 $70$ 미만, $70$ 이상 $80$ 미만의 도수를 더한다. $9+3=12$.",
+        "bGoal": "조건에 맞는 계급을 골라 도수의 합 구하기",
+        "bReason": "'조건'과 그림이 없어 계급과 높이를 모두 글로 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60$ 이상인 두 계급의 도수를 더한다",
+              "$9+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "구하려는 범위가 몇 개의 계급을 통째로 합친 것과 같으면, 그 계급들의 {도수}를 모두 {더하여} 자료의 수를 구한다.",
+        "cAnswers": [
+          "도수",
+          "더하여"
+        ],
+        "cReason": "'계급 전체들로 이루어지면'이 어색해 통째로 합친 범위라는 뜻으로 풀었다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "조건에 맞는 계급의 도수를 더하는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2063,
+        "part": "m1plus",
+        "sourceFingerprint": "e304781f166aea30922a34593a7b8789376b122bd4aad381307976f3bb5a84f5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2063
+        },
+        "directReview": null,
+        "cMarkedSentence": "구하려는 범위가 몇 개의 계급을 통째로 합친 것과 같으면, 그 계급들의 {도수}를 모두 {더하여} 자료의 수를 구한다.",
+        "cSlotAnswers": [
+          "도수",
+          "더하여"
+        ],
+        "cStudentSentence": "구하려는 범위가 몇 개의 계급을 통째로 합친 것과 같으면, 그 계급들의 □를 모두 □ 자료의 수를 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더하여",
+            "equivalentAnswers": [
+              "더하여",
+              "더해서",
+              "합하여"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더하여",
+            "accept": [
+              "더해서",
+              "합하여"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ],
+          [
+            "더하여",
+            "더해서",
+            "합하여"
+          ]
+        ],
+        "proposalFingerprint": "69be757a69bd39b36918f18c47ba6159901f9b3643b8d4dc6476a77010754089"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc16",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "계급의 수와 전체 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "구간을 몇 개로 나눴는지와 자료가 몇 개인지는 다르므로 계급 수만으로 전체 도수를 {알 수 없다}.",
+        "studentC": "구간을 몇 개로 나눴는지와 자료가 몇 개인지는 다르므로 계급 수만으로 전체 도수를 □.",
+        "answers": [
+          "알 수 없다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 히스토그램에서 계급의 개수가 $5$개라는 것만 알고 있다. 이것만으로 전체 자료의 수를 알 수 있는지 이유와 함께 쓰시오.",
+        "bAnswer": "알 수 없다. 계급의 개수는 구간을 몇 개로 나누었는지를 나타낼 뿐이고, 전체 자료의 수는 각 계급의 도수를 모두 더해야 알 수 있기 때문이다.",
+        "bGoal": "계급의 개수와 도수의 총합을 구별하기",
+        "bReason": "두 수를 혼동하는지 확인하도록 계급의 개수만 아는 상황으로 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "알 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 자료의 수는 도수의 합이다",
+              "각 계급의 도수를 알아야 한다",
+              "계급의 개수는 구간의 개수일 뿐이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "이유가 문장에 풀려 있고 결론만 짧게 묻는 분명한 문장이다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "계급의 개수로 전체 도수를 알 수 없는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2064,
+        "part": "m1plus",
+        "sourceFingerprint": "b6580917eee227c0e043eb5c2043ddf1d512999f9f160c1b881f8f5cb404384f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2064
+        },
+        "directReview": null,
+        "cFrozenSentence": "구간을 몇 개로 나눴는지와 자료가 몇 개인지는 다르므로 계급 수만으로 전체 도수를 □.",
+        "cFrozenDefinition": "구간을 몇 개로 나눴는지와 자료가 몇 개인지는 다르므로 계급 수만으로 전체 도수를 {알 수 없다}.",
+        "cFrozenAnswers": [
+          "알 수 없다"
+        ],
+        "cMarkedSentence": "구간을 몇 개로 나눴는지와 자료가 몇 개인지는 다르므로 계급 수만으로 전체 도수를 {알 수 없다}.",
+        "cSlotAnswers": [
+          "알 수 없다"
+        ],
+        "cStudentSentence": "구간을 몇 개로 나눴는지와 자료가 몇 개인지는 다르므로 계급 수만으로 전체 도수를 □.",
+        "cAnswers": [
+          "알 수 없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "알 수 없다",
+            "equivalentAnswers": [
+              "알 수 없다",
+              "구할 수 없다",
+              "정할 수 없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "알 수 없다",
+            "accept": [
+              "구할 수 없다",
+              "정할 수 없다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "알 수 없다",
+            "구할 수 없다",
+            "정할 수 없다"
+          ]
+        ],
+        "proposalFingerprint": "075de677dbd45cb8fad5746cd98c52d37818dea7bc780d0d36e126fcec2aa25c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc17",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "전체 넓이로 도수 총합 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형 넓이를 모두 더한 값을 공통인 {가로 폭}으로 나누면 {전체 도수}가 나온다.",
+        "studentC": "직사각형 넓이를 모두 더한 값을 공통인 □으로 나누면 □가 나온다.",
+        "answers": [
+          "가로 폭",
+          "전체 도수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "넓이의 합 공식(m1-08-04-c5)을 거꾸로 쓴 것이고 나누는 방법은 m1-08-04-xc12와 같다.",
+        "cDecision": "rewrite",
+        "cAfter": "계급의 크기가 모두 같은 히스토그램에서 직사각형의 넓이의 합을 계급의 크기로 나누면 {도수의 총합}이 나온다.",
+        "cAnswers": [
+          "도수의 총합"
+        ],
+        "cReason": "히스토그램이라는 말이 없고 나누는 것과 결과가 모두 가려져 있어 결과만 묻게 했다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-04-c5(넓이의 합 공식)의 역산이며 m1-08-04-xc12와 방법이 겹친다.",
+        "learningRole": "procedure",
+        "roleReason": "넓이의 합에서 도수의 총합 구하기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2065,
+        "part": "m1plus",
+        "sourceFingerprint": "db0cb9699b48d664f7967408a6c6893935140a8f01f55378df86db5d83b8a6e5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2065
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "계급의 크기가 모두 같은 히스토그램에서 직사각형의 넓이의 합을 계급의 크기로 나누면 {도수의 총합}이 나온다.",
+        "cSlotAnswers": [
+          "도수의 총합"
+        ],
+        "cStudentSentence": "계급의 크기가 모두 같은 히스토그램에서 직사각형의 넓이의 합을 계급의 크기로 나누면 □이 나온다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수의 총합",
+            "equivalentAnswers": [
+              "도수의 총합",
+              "전체 도수",
+              "전체 자료의 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "도수의 총합",
+            "accept": [
+              "전체 도수",
+              "전체 자료의 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수의 총합",
+            "전체 도수",
+            "전체 자료의 수"
+          ]
+        ],
+        "proposalFingerprint": "56a3f1ea3a733f6001fd2744a2e3d113ac71ebb58f31af21c23bc9d586cfec00"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc18",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "도수를 유지하며 계급 합치기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "이웃한 계급들을 합쳐 새 그래프를 그릴 때 높이는 원래 계급들의 {도수를 더한 값}으로 정한다.",
+        "studentC": "이웃한 계급들을 합쳐 새 그래프를 그릴 때 높이는 원래 계급들의 □으로 정한다.",
+        "answers": [
+          "도수를 더한 값"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc18",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "이웃한 계급을 합치면 도수가 합이 된다는 m1-08-03-xc9와 같은 내용이다.",
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 이웃한 계급들을 하나로 합쳐 다시 그릴 때, 새 직사각형의 높이는 원래 계급들의 도수의 {합}으로 정한다.",
+        "cAnswers": [
+          "합"
+        ],
+        "cReason": "'새 그래프'가 무엇인지 불분명하고 빈칸이 길어 히스토그램을 밝히고 줄였다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-xc9(이웃한 계급을 합친 도수)와 목표가 겹친다.",
+        "learningRole": "procedure",
+        "roleReason": "합친 계급의 높이를 도수의 합으로 정하기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2066,
+        "part": "m1plus",
+        "sourceFingerprint": "399c2efd08d5745e7c7cd44ebd7e9239d5504b1d50d863169f2dfe859e8e164c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2066
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "히스토그램에서 이웃한 계급들을 하나로 합쳐 다시 그릴 때, 새 직사각형의 높이는 원래 계급들의 도수의 {합}으로 정한다.",
+        "cSlotAnswers": [
+          "합"
+        ],
+        "cStudentSentence": "히스토그램에서 이웃한 계급들을 하나로 합쳐 다시 그릴 때, 새 직사각형의 높이는 원래 계급들의 도수의 □으로 정한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "72022af0eb697dd2ea31d770a57b9eea58b24c21ddb982064ad27186b2c59b2f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc19",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "축 눈금이 다른 그림 비교",
+        "kind": "방법",
+        "level": "상",
+        "definition": "서로 다른 그래프는 눈금 간격이 다를 수 있으므로 그림의 길이보다 {눈금값}을 읽어 도수를 비교한다.",
+        "studentC": "서로 다른 그래프는 눈금 간격이 다를 수 있으므로 그림의 길이보다 □을 읽어 도수를 비교한다.",
+        "answers": [
+          "눈금값"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "세로축의 눈금 간격이 서로 다른 두 히스토그램이 있다. 그림에서 직사각형이 더 길어 보이는 쪽의 도수가 반드시 더 크다고 할 수 있는지 쓰고, 도수를 바르게 비교하는 방법을 쓰시오.",
+        "bAnswer": "할 수 없다. 눈금 한 칸이 나타내는 도수가 다를 수 있으므로, 각 직사각형의 높이를 세로축의 눈금으로 읽은 값끼리 비교한다.",
+        "bGoal": "눈금이 다른 히스토그램의 도수를 눈금값으로 비교하기",
+        "bReason": "무엇을 비교하는지 드러나도록 눈금 간격이 다른 두 히스토그램 상황을 서술했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "반드시 크다고 할 수 없다",
+              "길다고 도수가 큰 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로축의 눈금으로 읽은 값을 비교한다",
+              "도수를 읽어 비교한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "서로 다른 두 히스토그램은 세로축의 눈금 간격이 다를 수 있으므로, 직사각형의 그림상 길이가 아니라 세로축의 {눈금}이 나타내는 값을 읽어 {도수}를 비교한다.",
+        "cAnswers": [
+          "눈금",
+          "도수"
+        ],
+        "cReason": "'그래프', '그림의 길이'가 가리키는 대상이 없어 히스토그램의 직사각형으로 밝혔다.",
+        "learningRole": "procedure",
+        "roleReason": "눈금이 다른 두 그래프의 도수 비교 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2067,
+        "part": "m1plus",
+        "sourceFingerprint": "092bc51a768b690f56614e78e6467e265e8afa9ff71af6efeb0f41c8da6f4175",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2067
+        },
+        "directReview": null,
+        "cMarkedSentence": "서로 다른 두 히스토그램은 세로축의 눈금 간격이 다를 수 있으므로, 직사각형의 그림상 길이가 아니라 세로축의 {눈금}이 나타내는 값을 읽어 {도수}를 비교한다.",
+        "cSlotAnswers": [
+          "눈금",
+          "도수"
+        ],
+        "cStudentSentence": "서로 다른 두 히스토그램은 세로축의 눈금 간격이 다를 수 있으므로, 직사각형의 그림상 길이가 아니라 세로축의 □이 나타내는 값을 읽어 □를 비교한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "눈금",
+            "equivalentAnswers": [
+              "눈금"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "눈금"
+          ],
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "29c3bf04eaa62a2744887785040d48fcacd5440e44986b07f1c8dda691f4306c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc20",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "같은 넓이와 같은 인원",
+        "kind": "성질",
+        "level": "상",
+        "definition": "서로 다른 히스토그램의 전체 넓이가 같아도 계급의 크기가 다르면 전체 인원은 {다를 수 있다}.",
+        "studentC": "서로 다른 히스토그램의 전체 넓이가 같아도 계급의 크기가 다르면 전체 인원은 □.",
+        "answers": [
+          "다를 수 있다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "히스토그램 가는 계급의 크기가 $5$, 히스토그램 나는 계급의 크기가 $10$이고, 두 히스토그램 모두 직사각형의 넓이의 합이 $200$이다. 두 히스토그램의 도수의 총합이 같은지 계산하여 답하시오.",
+        "bAnswer": "같지 않다. 가는 $200\\div 5=40$, 나는 $200\\div 10=20$이다.",
+        "bGoal": "넓이의 합이 같아도 도수의 총합이 다를 수 있음을 계산으로 보이기",
+        "bReason": "'다를 수 있다'를 직접 확인하도록 계급의 크기가 다른 두 경우를 수로 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같지 않다",
+              "다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가는 $40$, 나는 $20$",
+              "$200\\div 5=40$, $200\\div 10=20$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 모두 있고 결론만 묻는 분명한 비교 문장이다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "넓이가 같아도 인원이 다를 수 있는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2068,
+        "part": "m1plus",
+        "sourceFingerprint": "2a62671d9260c94a331699ae018487df7baff2fe39b74d435b8e144d540c5459",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2068
+        },
+        "directReview": null,
+        "cFrozenSentence": "서로 다른 히스토그램의 전체 넓이가 같아도 계급의 크기가 다르면 전체 인원은 □.",
+        "cFrozenDefinition": "서로 다른 히스토그램의 전체 넓이가 같아도 계급의 크기가 다르면 전체 인원은 {다를 수 있다}.",
+        "cFrozenAnswers": [
+          "다를 수 있다"
+        ],
+        "cMarkedSentence": "서로 다른 히스토그램의 전체 넓이가 같아도 계급의 크기가 다르면 전체 인원은 {다를 수 있다}.",
+        "cSlotAnswers": [
+          "다를 수 있다"
+        ],
+        "cStudentSentence": "서로 다른 히스토그램의 전체 넓이가 같아도 계급의 크기가 다르면 전체 인원은 □.",
+        "cAnswers": [
+          "다를 수 있다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다를 수 있다",
+            "equivalentAnswers": [
+              "다를 수 있다",
+              "같지 않을 수 있다",
+              "달라질 수 있다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "다를 수 있다",
+            "accept": [
+              "같지 않을 수 있다",
+              "달라질 수 있다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다를 수 있다",
+            "같지 않을 수 있다",
+            "달라질 수 있다"
+          ]
+        ],
+        "proposalFingerprint": "dc551c6a2f3d1dd5b15cfaf4a26efa7944d70a3b1cc00423481a749c930d60ef"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc21",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "구간 내부의 정보",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자료가 있는 계급 안에 들어갈 수 있는 값이 여러 개이면, 그 계급의 도수만으로 개별 자료의 {정확한 값}을 {정할 수 없다}.",
+        "studentC": "자료가 있는 계급 안에 들어갈 수 있는 값이 여러 개이면, 그 계급의 도수만으로 개별 자료의 □을 □.",
+        "answers": [
+          "정확한 값",
+          "정할 수 없다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "각 자료의 정확한 값을 알 수 없다는 m1-08-03-c7의 한계를 되풀이한다.",
+        "cDecision": "rewrite",
+        "cAfter": "계급에 들어갈 수 있는 값이 여러 개이면, 그 계급의 도수만으로는 그 계급에 속한 각 자료의 {정확한 값}을 알 수 없다.",
+        "cAnswers": [
+          "정확한 값"
+        ],
+        "cReason": "목적어와 결론이 모두 가려져 있어 무엇을 알 수 없는지만 묻게 했다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-c7(각 자료의 정확한 값은 알 수 없음)과 목표가 겹친다.",
+        "learningRole": "reason",
+        "roleReason": "도수만으로 개별 값을 모르는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2069,
+        "part": "m1plus",
+        "sourceFingerprint": "b6260ffbea0b197b28edff8ac079b5646f1899d40170433f0dadf20ca2a0186e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2069
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "계급에 들어갈 수 있는 값이 여러 개이면, 그 계급의 도수만으로는 그 계급에 속한 각 자료의 {정확한 값}을 알 수 없다.",
+        "cSlotAnswers": [
+          "정확한 값"
+        ],
+        "cStudentSentence": "계급에 들어갈 수 있는 값이 여러 개이면, 그 계급의 도수만으로는 그 계급에 속한 각 자료의 □을 알 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정확한 값",
+            "equivalentAnswers": [
+              "정확한 값",
+              "실제 값",
+              "원래 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "정확한 값",
+            "accept": [
+              "실제 값",
+              "원래 값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정확한 값",
+            "실제 값",
+            "원래 값"
+          ]
+        ],
+        "proposalFingerprint": "bf4838c9827371641b71c664a7aece8acf2e52b3d95f0d7a8aae4e61861f394b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc22",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "경계가 아닌 기준선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "계급 안의 기준값 미만과 이상에 모두 자료가 올 수 있고 도수가 $0$보다 크면, 각 부분의 {자료 수}는 그 계급의 도수만으로 {정할 수 없다}.",
+        "studentC": "계급 안의 기준값 미만과 이상에 모두 자료가 올 수 있고 도수가 $0$보다 크면, 각 부분의 □는 그 계급의 도수만으로 □.",
+        "answers": [
+          "자료 수",
+          "정할 수 없다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc22",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "계급 안쪽의 값으로는 자료 수를 정할 수 없다는 m1-08-03-xc17과 같다.",
+        "cDecision": "rewrite",
+        "cAfter": "기준이 되는 값이 계급의 안쪽에 있어 그 값 미만에도 이상에도 자료가 올 수 있고 그 계급의 도수가 $0$보다 크면, 그 값 미만인 자료의 수와 이상인 자료의 수는 그 계급의 {도수}만으로 {정할 수 없다}.",
+        "cAnswers": [
+          "도수",
+          "정할 수 없다"
+        ],
+        "cReason": "'각 부분'이 무엇인지 불분명해 미만인 수와 이상인 수로 풀어 썼다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-xc17(계급 안쪽의 값과 표의 한계)과 목표가 겹친다.",
+        "learningRole": "reason",
+        "roleReason": "계급 안쪽의 값으로 도수를 나눌 수 없는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2070,
+        "part": "m1plus",
+        "sourceFingerprint": "4455730625776c96d53d40abe81ca0d44eaf67a22b5360fb2780efb209b65b3e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2070
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "기준이 되는 값이 계급의 안쪽에 있어 그 값 미만에도 이상에도 자료가 올 수 있고 그 계급의 도수가 $0$보다 크면, 그 값 미만인 자료의 수와 이상인 자료의 수는 그 계급의 {도수}만으로 {정할 수 없다}.",
+        "cSlotAnswers": [
+          "도수",
+          "정할 수 없다"
+        ],
+        "cStudentSentence": "기준이 되는 값이 계급의 안쪽에 있어 그 값 미만에도 이상에도 자료가 올 수 있고 그 계급의 도수가 $0$보다 크면, 그 값 미만인 자료의 수와 이상인 자료의 수는 그 계급의 □만으로 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정할 수 없다",
+            "equivalentAnswers": [
+              "정할 수 없다",
+              "알 수 없다",
+              "구할 수 없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "정할 수 없다",
+            "accept": [
+              "알 수 없다",
+              "구할 수 없다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ],
+          [
+            "정할 수 없다",
+            "알 수 없다",
+            "구할 수 없다"
+          ]
+        ],
+        "proposalFingerprint": "035b7b642a838d5a68301be87c98c169889d2a5b451a52eca5ad74db6a985766"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc23",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "순위가 속하는 직사각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "자료를 {작은 값부터} 셀 때, 왼쪽부터 도수를 더한 값이 목표 순위 {이상}이 되는 첫 {계급}에 그 순위의 자료가 있다.",
+        "studentC": "자료를 □ 셀 때, 왼쪽부터 도수를 더한 값이 목표 순위 □이 되는 첫 □에 그 순위의 자료가 있다.",
+        "answers": [
+          "작은 값부터",
+          "이상",
+          "계급"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "도수를 차례로 더해 순위가 속한 계급을 찾는 m1-08-03-xc18과 같은 방법이다.",
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 자료를 작은 값부터 셀 때, 왼쪽 계급부터 도수를 차례로 더한 값이 찾는 순위 {이상}이 되는 첫 {계급}에 그 순위의 자료가 있다.",
+        "cAnswers": [
+          "이상",
+          "계급"
+        ],
+        "cReason": "첫 빈칸 '작은 값부터'는 맞히기 어려운 구절이라 보여 주고 핵심 두 개만 남겼다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-xc18(순위가 들어 있는 계급)과 목표가 겹친다.",
+        "learningRole": "procedure",
+        "roleReason": "도수를 더해 순위가 속한 계급 찾기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2071,
+        "part": "m1plus",
+        "sourceFingerprint": "b09f42d871441def784a2185f29375d3820ef0ac1b372c80b22b9fe3bfbc38ef",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2071
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "히스토그램에서 자료를 작은 값부터 셀 때, 왼쪽 계급부터 도수를 차례로 더한 값이 찾는 순위 {이상}이 되는 첫 {계급}에 그 순위의 자료가 있다.",
+        "cSlotAnswers": [
+          "이상",
+          "계급"
+        ],
+        "cStudentSentence": "히스토그램에서 자료를 작은 값부터 셀 때, 왼쪽 계급부터 도수를 차례로 더한 값이 찾는 순위 □이 되는 첫 □에 그 순위의 자료가 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이상",
+            "equivalentAnswers": [
+              "이상"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "계급",
+            "equivalentAnswers": [
+              "계급",
+              "직사각형",
+              "구간"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "계급",
+            "accept": [
+              "직사각형",
+              "구간"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이상"
+          ],
+          [
+            "계급",
+            "직사각형",
+            "구간"
+          ]
+        ],
+        "proposalFingerprint": "3746b05b44bd17ff73bcad753b6d6ac56b6fa47315cc50640591b6375d22c6f1"
+      }
+    }
+  ]
+}

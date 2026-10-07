@@ -1,0 +1,2777 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T06:46:56.035Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-04-xc18",
+        "section": "중1::3. 방정식::방정식과 그 해",
+        "term": "두 양으로 방정식 세우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 양의 관계를 {미지수} 하나로 나타낸 뒤, 문장에서 같다고 한 것을 {등호}로 잇는다.",
+        "example": {
+          "prompt": "형이 동생보다 $3$살 많고 둘의 나이 합이 $25$이다. 동생을 $x$살로 한 방정식은?",
+          "answer": "$x+(x+3)=25$"
+        },
+        "studentC": "두 양의 관계를 □ 하나로 나타낸 뒤, 문장에서 같다고 한 것을 □로 잇는다.",
+        "answers": [
+          "미지수",
+          "등호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-04-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "형이 동생보다 $3$살 많고 두 사람의 나이의 합은 $25$살이다. 동생의 나이를 $x$살이라 할 때 형의 나이를 $x$를 사용한 식으로 나타내고, 나이의 합에 대한 방정식을 세우시오.",
+        "bAnswer": "형의 나이는 $(x+3)$살이다. 두 사람의 나이의 합이 $25$살이므로 $x+(x+3)=25$이다.",
+        "bGoal": "모르는 두 양을 미지수 하나로 나타내어 방정식을 세운다.",
+        "bReason": "제목 '두 양으로 방정식 세우기'는 상황이 없으면 답할 수 없다. m1-03-04-xc9의 B와 달리 모르는 양이 둘인 상황을 주고 다른 양을 $x$로 나타내는 단계를 따로 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "모르는 양이 둘이어도 한 양을 $x$로 놓으면 다른 양을 $x$를 사용한 식으로 나타낼 수 있으므로 {미지수}는 하나로 충분하다. 예를 들어 동생이 $x$살이고 형이 동생보다 $3$살 많으면 형의 나이는 {$x+3$}살이다.",
+        "cAnswers": [
+          "미지수",
+          "$x+3$"
+        ],
+        "cReason": "원문 '두 양의 관계를 □ 하나로 나타낸 뒤'는 예 없이는 중1이 뜻을 알기 어려운 추상적인 말이고, 답도 m1-03-04-xc9의 C와 똑같다. 나이 예를 넣어 다른 양을 식으로 나타내는 핵심 단계를 빈칸으로 했다.",
+        "studentLabel": "모르는 양이 둘일 때 방정식 세우기",
+        "exampleNeeded": true,
+        "authorBatch": 6,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "형의 나이 $(x+3)$살"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식 $x+(x+3)=25$($2x+3=25$ 등 같은 뜻의 식 인정)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "application",
+        "roleReason": "두 양을 미지수 하나로 표현",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1242,
+        "part": "m1plus",
+        "sourceFingerprint": "1c68cb328ed3604699ec7eb6319d4f91c5e17d8743a3901ad84a3c6f74dba51f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1242
+        },
+        "directReview": null,
+        "cMarkedSentence": "모르는 양이 둘이어도 한 양을 $x$로 놓으면 다른 양을 $x$를 사용한 식으로 나타낼 수 있으므로 {미지수}는 하나로 충분하다. 예를 들어 동생이 $x$살이고 형이 동생보다 $3$살 많으면 형의 나이는 {$x+3$}살이다.",
+        "cSlotAnswers": [
+          "미지수",
+          "$x+3$"
+        ],
+        "cStudentSentence": "모르는 양이 둘이어도 한 양을 $x$로 놓으면 다른 양을 $x$를 사용한 식으로 나타낼 수 있으므로 □는 하나로 충분하다. 예를 들어 동생이 $x$살이고 형이 동생보다 $3$살 많으면 형의 나이는 □살이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "미지수",
+            "equivalentAnswers": [
+              "미지수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+3$",
+            "equivalentAnswers": [
+              "$x+3$",
+              "$3+x$",
+              "$(x+3)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$x+3$",
+            "accept": [
+              "$3+x$",
+              "$(x+3)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "미지수"
+          ],
+          [
+            "$x+3$",
+            "$3+x$",
+            "$(x+3)$"
+          ]
+        ],
+        "proposalFingerprint": "cdd2c28b2633bf8fd4d8d954892e051ea103895806c4fee0dc8737547dd26a6f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-04-xc19",
+        "section": "중1::3. 방정식::방정식과 그 해",
+        "term": "해가 상황에 맞는지 보기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "개수 · 사람 수처럼 미지수가 자연수여야 하면, 해가 분수나 음수로 나올 때 그 상황에 {맞지 않는다}.",
+        "example": {
+          "prompt": "사람 수 $x$에 대한 방정식의 해가 $x=\\frac{7}{2}$이면?",
+          "answer": "알맞은 답이 없다"
+        },
+        "studentC": "개수 · 사람 수처럼 미지수가 자연수여야 하면, 해가 분수나 음수로 나올 때 그 상황에 □.",
+        "answers": [
+          "맞지 않는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-04-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "사람 수를 $x$명이라 하고 방정식을 풀었더니 해가 $x=\\frac{7}{2}$이었다. 이 해를 문제의 답으로 쓸 수 있는가? 사람 수가 될 수 있는 수의 종류를 들어 이유를 쓰시오.",
+        "bAnswer": "쓸 수 없다. 사람 수는 자연수여야 하는데 $\\frac{7}{2}$은 자연수가 아니므로 상황에 맞지 않는다. 이 문제에는 알맞은 답이 없다.",
+        "bGoal": "방정식의 해가 문제 상황의 조건(자연수)에 맞는지 판단한다.",
+        "bReason": "제목 '해가 상황에 맞는지 보기'는 상황과 해가 주어져야 판단할 수 있다. 사람 수와 분수 해를 주고 판단과 이유를 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "개수나 사람 수처럼 미지수가 {자연수}여야 하는 상황에서는, 방정식의 해가 분수나 음수로 나오면 그 해는 상황에 맞지 않는다.",
+        "cAnswers": [
+          "자연수"
+        ],
+        "cReason": "원문 답 '맞지 않는다'는 '알맞지 않다', '답이 될 수 없다' 등으로도 쓸 수 있는 서술어 구다. 결론은 보이게 두고 판단의 기준이 되는 수의 종류를 빈칸으로 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 6,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "문제의 답으로 쓸 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "사람 수는 자연수여야 하는데 $\\frac{7}{2}$은 자연수가 아니다"
+            ]
+          }
+        ],
+        "coreAfter": "개수 · 사람 수처럼 미지수가 자연수여야 하면, 해가 $\\frac{7}{2}$이나 $-3$처럼 자연수가 아닌 수로 나올 때 그 상황에 {맞지 않는다}.",
+        "coreReason": "$\\frac{6}{2}$처럼 분수 꼴이어도 자연수인 경우가 있다. 그래서 기준을 '자연수가 아닌 수'로 분명히 했다.",
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "application",
+        "roleReason": "해가 자연수 조건에 맞는지",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1243,
+        "part": "m1plus",
+        "sourceFingerprint": "f8f34940dbc7deff9ef2437019a886c4243c84b0f8d926d678951af1ffddda82",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1243
+        },
+        "directReview": null,
+        "coreBeforeRepair": "개수 · 사람 수처럼 미지수가 자연수여야 하면, 해가 $\\frac{7}{2}$이나 $-3$처럼 자연수가 아닌 수로 나올 때 그 상황에 {맞지 않는다}.",
+        "coreRepairReason": "원본 핵심어 {맞지 않는다}를 유지했다. 예시는 일반 기준 '자연수가 아닌 수'를 돕는 보조로만 쓰였다. 이미 좋은 교정이라 보존했다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "개수나 사람 수처럼 미지수가 {자연수}여야 하는 상황에서는, 방정식의 해가 분수나 음수로 나오면 그 해는 상황에 맞지 않는다.",
+        "cSlotAnswers": [
+          "자연수"
+        ],
+        "cStudentSentence": "개수나 사람 수처럼 미지수가 □여야 하는 상황에서는, 방정식의 해가 분수나 음수로 나오면 그 해는 상황에 맞지 않는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "자연수",
+            "equivalentAnswers": [
+              "자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ],
+        "proposalFingerprint": "47b31f2e59ab0351e37b8e85ca3633a37a71a12818de8f1598869434a0acb274"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-04-xc20",
+        "section": "중1::3. 방정식::방정식과 그 해",
+        "term": "정리가 맞는지 수로 확인",
+        "kind": "방법",
+        "level": "상",
+        "definition": "식을 바르게 정리했다면 정리 전후는 {항등식}이다. 수 하나를 넣어 두 값이 {다르면} 정리가 틀린 것이고, 같다고 해서 옳다고 단정할 수는 없다.",
+        "example": {
+          "prompt": "$x=1$을 넣어 $2(x+3)$과 $2x+3$을 견주면?",
+          "answer": "$8$과 $5$로 다르다"
+        },
+        "studentC": "식을 바르게 정리했다면 정리 전후는 □이다. 수 하나를 넣어 두 값이 □ 정리가 틀린 것이고, 같다고 해서 옳다고 단정할 수는 없다.",
+        "answers": [
+          "항등식",
+          "다르면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-04-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$2(x+3)$을 $2x+3$으로 정리한 것이 맞는지 $x=1$을 넣어 확인하려고 한다. 두 식의 값을 각각 구하고 그 결과로 알 수 있는 것을 쓰시오. 만약 두 값이 같게 나왔다면 정리가 옳다고 단정할 수 있는지도 쓰시오.",
+        "bAnswer": "$x=1$일 때 $2(x+3)=8$, $2x+3=5$로 값이 다르므로 정리가 틀렸다. 바르게 정리했다면 정리 전의 식과 정리 후의 식은 어떤 수를 넣어도 값이 같아야 하기 때문이다. 수 하나에서 값이 같다고 해서 정리가 옳다고 단정할 수는 없다.",
+        "bGoal": "수를 넣어 정리의 오류를 찾고, 이 확인 방법의 한계를 말한다.",
+        "bReason": "제목 '정리가 맞는지 수로 확인'은 확인할 식이 없다. 틀린 정리의 예를 주어 값을 견주게 하고, 원문 정의에 있는 '같다고 해서 옳다고 단정할 수 없다'까지 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "식을 바르게 정리했다면 (정리 전의 식)$=$(정리 후의 식)은 {항등식}이다. 따라서 문자에 수 하나를 넣어 두 식의 값이 {다르면} 정리가 틀린 것이다. 두 값이 같다고 해서 옳다고 단정할 수는 없다.",
+        "cAnswers": [
+          "항등식",
+          "다르면"
+        ],
+        "cReason": "원문 '정리 전후는 □이다'는 무엇이 항등식인지 대상이 없어 중1이 읽기 어렵다. 두 식을 등호로 이은 등식임을 밝히고, '두 값'이 두 식의 값임을 드러냈다. 답은 그대로다.",
+        "exampleNeeded": true,
+        "authorBatch": 6,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=1$일 때 $2(x+3)=8$, $2x+3=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 값이 다르므로 정리가 틀렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수 하나에서 값이 같게 나와도 정리가 옳다고 단정할 수 없다"
+            ]
+          }
+        ],
+        "coreAfter": "식을 바르게 정리했다면 정리 전의 식과 정리 후의 식을 등호로 이은 등식은 {항등식}이다. 수 하나를 넣어 두 식의 값이 {다르면} 정리가 틀린 것이고, 같다고 해서 옳다고 단정할 수는 없다.",
+        "coreReason": "'정리 전후는 항등식이다'는 무엇이 항등식인지 분명하지 않다. 그래서 두 식을 등호로 이은 등식이 항등식임을 밝혔다.",
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "수 대입으로 정리 오류 찾기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1244,
+        "part": "m1plus",
+        "sourceFingerprint": "607e5131ecbc25eeec8d316e1647cab625f44d47d0b6304d4b99c059f68c0bc0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1244
+        },
+        "directReview": null,
+        "coreBeforeRepair": "식을 바르게 정리했다면 정리 전의 식과 정리 후의 식을 등호로 이은 등식은 {항등식}이다. 수 하나를 넣어 두 값이 {다르면} 정리가 틀린 것이고, 같다고 해서 옳다고 단정할 수는 없다.",
+        "coreRepairReason": "원본 핵심어 {항등식}, {다르면}을 그대로 두었다. '두 값'을 '두 식의 값'으로 바꾸어 무엇을 비교하는지 밝혔다. 한 수로는 틀림만 보일 수 있다는 원래 판단 기준도 유지했다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "식을 바르게 정리했다면 (정리 전의 식)$=$(정리 후의 식)은 {항등식}이다. 따라서 문자에 수 하나를 넣어 두 식의 값이 {다르면} 정리가 틀린 것이다. 두 값이 같다고 해서 옳다고 단정할 수는 없다.",
+        "cSlotAnswers": [
+          "항등식",
+          "다르면"
+        ],
+        "cStudentSentence": "식을 바르게 정리했다면 (정리 전의 식)$=$(정리 후의 식)은 □이다. 따라서 문자에 수 하나를 넣어 두 식의 값이 □ 정리가 틀린 것이다. 두 값이 같다고 해서 옳다고 단정할 수는 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "항등식",
+            "equivalentAnswers": [
+              "항등식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "다르면",
+            "equivalentAnswers": [
+              "다르면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "항등식"
+          ],
+          [
+            "다르면"
+          ]
+        ],
+        "proposalFingerprint": "98c60dcd582c65aa88ec5523c33e3b618ca5f52f538969e6778e93994869ac84"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-04-xc21",
+        "section": "중1::3. 방정식::방정식과 그 해",
+        "term": "단위를 맞춰 등식 세우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 종류의 양을 서로 다른 단위로 나타냈으면 {같은 단위}로 바꾼 뒤 등식을 세운다. 예를 들어 길이끼리는 $\\mathrm{cm}$와 $\\mathrm{m}$를 맞추고, 시간끼리는 분과 시간을 맞춘다.",
+        "example": {
+          "prompt": "$x\\,\\mathrm{cm}$와 $2\\,\\mathrm{m}$의 합이 $350\\,\\mathrm{cm}$일 때 방정식은?",
+          "answer": "$x+200=350$"
+        },
+        "studentC": "같은 종류의 양을 서로 다른 단위로 나타냈으면 □로 바꾼 뒤 등식을 세운다. 예를 들어 길이끼리는 $\\mathrm{cm}$와 $\\mathrm{m}$를 맞추고, 시간끼리는 분과 시간을 맞춘다.",
+        "answers": [
+          "같은 단위"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-04-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 $x\\,\\mathrm{cm}$인 끈과 $2\\,\\mathrm{m}$인 끈의 길이의 합이 $350\\,\\mathrm{cm}$이다. 이것을 방정식으로 나타내시오. 식을 세우기 전에 먼저 해야 할 일도 쓰시오.",
+        "bAnswer": "먼저 단위를 같게 맞춘다. $2\\,\\mathrm{m}=200\\,\\mathrm{cm}$이므로 방정식은 $x+200=350$이다.",
+        "bGoal": "단위가 다른 양을 같은 단위로 바꾼 뒤 등식을 세운다.",
+        "bReason": "m로 맞춘 식도 인정하면서 $200\\,\\mathrm{cm}$ 환산을 따로 강요하던 모순을 없앰",
+        "cDecision": "keep",
+        "cReason": "빈칸 바로 뒤에 길이와 시간의 예가 이어져 답 '같은 단위'가 분명히 정해진다. 쉬운 말로 된 문장이다.",
+        "exampleNeeded": true,
+        "authorBatch": 6,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 단위를 같게 맞춤",
+              "$\\mathrm{m}$와 $\\mathrm{cm}$를 한 단위로 바꿈"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\,\\mathrm{m}=200\\,\\mathrm{cm}$",
+              "$350\\,\\mathrm{cm}=3.5\\,\\mathrm{m}$, $x\\,\\mathrm{cm}=\\frac{x}{100}\\,\\mathrm{m}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x+200=350$",
+              "$\\frac{x}{100}+2=3.5$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "단위 맞춘 뒤 등식 세우기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1245,
+        "part": "m1plus",
+        "sourceFingerprint": "196243bc29f68e723efc311e91a735d6d99f67459d3e92fa7526a756ee76cf98",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1245
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 종류의 양을 서로 다른 단위로 나타냈으면 □로 바꾼 뒤 등식을 세운다. 예를 들어 길이끼리는 $\\mathrm{cm}$와 $\\mathrm{m}$를 맞추고, 시간끼리는 분과 시간을 맞춘다.",
+        "cFrozenDefinition": "같은 종류의 양을 서로 다른 단위로 나타냈으면 {같은 단위}로 바꾼 뒤 등식을 세운다. 예를 들어 길이끼리는 $\\mathrm{cm}$와 $\\mathrm{m}$를 맞추고, 시간끼리는 분과 시간을 맞춘다.",
+        "cFrozenAnswers": [
+          "같은 단위"
+        ],
+        "cMarkedSentence": "같은 종류의 양을 서로 다른 단위로 나타냈으면 {같은 단위}로 바꾼 뒤 등식을 세운다. 예를 들어 길이끼리는 $\\mathrm{cm}$와 $\\mathrm{m}$를 맞추고, 시간끼리는 분과 시간을 맞춘다.",
+        "cSlotAnswers": [
+          "같은 단위"
+        ],
+        "cStudentSentence": "같은 종류의 양을 서로 다른 단위로 나타냈으면 □로 바꾼 뒤 등식을 세운다. 예를 들어 길이끼리는 $\\mathrm{cm}$와 $\\mathrm{m}$를 맞추고, 시간끼리는 분과 시간을 맞춘다.",
+        "cAnswers": [
+          "같은 단위"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 단위",
+            "equivalentAnswers": [
+              "같은 단위",
+              "하나의 단위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "같은 단위",
+            "accept": [
+              "하나의 단위"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은 단위",
+            "하나의 단위"
+          ]
+        ],
+        "proposalFingerprint": "9a7fb15af5f3a52d9d12350f7cec282258d08e65e20b51a424cb5ded86af3160"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-04-xc22",
+        "section": "중1::3. 방정식::방정식과 그 해",
+        "term": "계산 법칙과 항등식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$a(b+c)=ab+ac$처럼 계산 법칙을 나타낸 등식은 모두 {항등식}이다.",
+        "example": {
+          "prompt": "$x(y+2)=xy+2x$는 항등식인가?",
+          "answer": "항등식이다"
+        },
+        "studentC": "$a(b+c)=ab+ac$처럼 계산 법칙을 나타낸 등식은 모두 □이다.",
+        "answers": [
+          "항등식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-04-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$x(y+2)=xy+2x$는 항등식인가? 이 등식이 어떤 계산 법칙으로 만들어진 것인지 밝혀 이유를 쓰시오.",
+        "bAnswer": "항등식이다. 분배법칙으로 좌변의 괄호를 풀면 우변이 되므로 $x$, $y$에 어떤 수를 넣어도 항상 참이다.",
+        "bGoal": "계산 법칙을 나타낸 등식이 항등식임을 설명한다.",
+        "bReason": "분배법칙 근거만 써도 맞으므로 '어떤 수를 넣어도 참' 문장의 별도 강요를 삭제함",
+        "cDecision": "keep",
+        "cReason": "분배법칙의 식이 예로 들어 있고 빈칸 하나가 용어(항등식)라 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 6,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "항등식이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분배법칙으로 좌변의 괄호를 풀면 우변과 같은 식이 됨",
+              "분배법칙을 나타낸 식이라 $x$, $y$에 어떤 수를 넣어도 참임"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "분배법칙 등식은 항상 참",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1246,
+        "part": "m1plus",
+        "sourceFingerprint": "c9ebeb9de69101e75180e2aaab07fab33e8bee657082f8ff3a3f3282921da632",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1246
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a(b+c)=ab+ac$처럼 계산 법칙을 나타낸 등식은 모두 □이다.",
+        "cFrozenDefinition": "$a(b+c)=ab+ac$처럼 계산 법칙을 나타낸 등식은 모두 {항등식}이다.",
+        "cFrozenAnswers": [
+          "항등식"
+        ],
+        "cMarkedSentence": "$a(b+c)=ab+ac$처럼 계산 법칙을 나타낸 등식은 모두 {항등식}이다.",
+        "cSlotAnswers": [
+          "항등식"
+        ],
+        "cStudentSentence": "$a(b+c)=ab+ac$처럼 계산 법칙을 나타낸 등식은 모두 □이다.",
+        "cAnswers": [
+          "항등식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "항등식",
+            "equivalentAnswers": [
+              "항등식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "항등식"
+          ]
+        ],
+        "proposalFingerprint": "e9b9a399e22ed18b2a4d262eb713fa3459cf30dd18fefcd5f792e4b8e8c2174a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-04-xc23",
+        "section": "중1::3. 방정식::방정식과 그 해",
+        "term": "항등식이 아님을 보이기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "등식에 수를 넣어 보아 {하나라도} 거짓이 되면 그 등식은 항등식이 {아니다}.",
+        "example": {
+          "prompt": "$x=0$을 넣으면 참, $x=1$을 넣으면 거짓인 등식은 무엇인가?",
+          "answer": "방정식"
+        },
+        "studentC": "등식에 수를 넣어 보아 □ 거짓이 되면 그 등식은 항등식이 □.",
+        "answers": [
+          "하나라도",
+          "아니다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-04-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "등식 $2x=x$는 $x=0$을 넣으면 참이고 $x=1$을 넣으면 거짓이다. 이 등식은 항등식인가, 방정식인가? 그 이유를 쓰시오.",
+        "bAnswer": "방정식이다. 거짓이 되는 값이 하나라도 있으면 항등식이 아니고, $x$의 값에 따라 참도 되고 거짓도 되므로 방정식이다.",
+        "bGoal": "거짓이 되는 값을 하나 찾아 항등식이 아님을 보인다.",
+        "bReason": "원문 예시는 등식 없이 '참, 거짓인 등식'이라고만 하여 가리키는 대상이 없다. 실제로 $x=0$에서 참, $x=1$에서 거짓인 등식 $2x=x$를 넣어 판단하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "등식의 문자에 수를 넣어 보아 거짓이 되는 경우가 하나라도 있으면 그 등식은 {항등식}이 아니다.",
+        "cAnswers": [
+          "항등식"
+        ],
+        "cReason": "원문은 조건의 낱말 '하나라도'와 결론 '아니다'를 함께 가려 문장의 뼈대가 사라진다. 조건은 모두 보이게 두고 결론의 용어만 빈칸으로 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 6,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "방정식이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이유: 거짓이 되는 값($x=1$)이 있어 항등식이 아니고, $x$의 값에 따라 참도 되고 거짓도 되기 때문(둘 중 하나를 바르게 써도 인정)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "거짓 하나면 항등식 아님",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1247,
+        "part": "m1plus",
+        "sourceFingerprint": "983fde9277ca7049e4ff0e7b48bdfd8439ab416dc4c10a7b4fb1a0ffe1d3692f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1247
+        },
+        "directReview": null,
+        "cMarkedSentence": "등식의 문자에 수를 넣어 보아 거짓이 되는 경우가 하나라도 있으면 그 등식은 {항등식}이 아니다.",
+        "cSlotAnswers": [
+          "항등식"
+        ],
+        "cStudentSentence": "등식의 문자에 수를 넣어 보아 거짓이 되는 경우가 하나라도 있으면 그 등식은 □이 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "항등식",
+            "equivalentAnswers": [
+              "항등식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "항등식"
+          ]
+        ],
+        "proposalFingerprint": "4eec63a5bc1b33f67bdd878c337eb9040239cdff1968ee7c364ca46e38d04237"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc1",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "양변에 같은 수 더하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$a=b$이면 $a+c=b+c$이다. 좌변과 우변, 곧 {양변}에 {똑같은 수}를 보태도 두 쪽은 여전히 같다.",
+        "example": {
+          "prompt": "$x-4=6$의 양변에 $4$를 더하면?",
+          "answer": "$x=10$"
+        },
+        "studentC": "$a=b$이면 $a+c=b+c$이다. 좌변과 우변, 곧 □에 □를 보태도 두 쪽은 여전히 같다.",
+        "answers": [
+          "양변",
+          "똑같은 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$x-4=6$에서 좌변에 $x$만 남기려면 양변에 어떤 수를 더해야 하는지 쓰고 결과를 구하세요. 그렇게 해도 등식이 성립하는 근거를 $a=b$와 수 $c$를 써서 식으로 나타내세요.",
+        "bAnswer": "양변에 $4$를 더하면 $x=10$이다. 근거는 '$a=b$이면 $a+c=b+c$'이다.",
+        "bGoal": "양변에 같은 수를 더하는 성질을 방정식 $x-4=6$에 써 본다.",
+        "bReason": "제목 '양변에 같은 수 더하기'는 행동 이름일 뿐 질문이 아니다. 어디에 무엇을 더하는지와 근거 식을 답하도록 원문 예시를 넣었다.",
+        "cDecision": "keep",
+        "cReason": "식 $a+c=b+c$가 보이고, '좌변과 우변, 곧'이 첫 빈칸(양변)을, 식의 $c$가 둘째 빈칸(똑같은 수)을 알려 준다. 숨은 제목 없이도 풀린다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변에 $4$를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과 $x=10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "근거: $a=b$이면 $a+c=b+c$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "definition",
+        "roleReason": "양변에 같은 수 더해도 성립",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1248,
+        "part": "m1plus",
+        "sourceFingerprint": "279381ceb36cfc8d7d071751c644b5682d5619992527d588726ee91f9850e959",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1248
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a=b$이면 $a+c=b+c$이다. 좌변과 우변, 곧 □에 □를 보태도 두 쪽은 여전히 같다.",
+        "cFrozenDefinition": "$a=b$이면 $a+c=b+c$이다. 좌변과 우변, 곧 {양변}에 {똑같은 수}를 보태도 두 쪽은 여전히 같다.",
+        "cFrozenAnswers": [
+          "양변",
+          "똑같은 수"
+        ],
+        "cMarkedSentence": "$a=b$이면 $a+c=b+c$이다. 좌변과 우변, 곧 {양변}에 {똑같은 수}를 보태도 두 쪽은 여전히 같다.",
+        "cSlotAnswers": [
+          "양변",
+          "똑같은 수"
+        ],
+        "cStudentSentence": "$a=b$이면 $a+c=b+c$이다. 좌변과 우변, 곧 □에 □를 보태도 두 쪽은 여전히 같다.",
+        "cAnswers": [
+          "양변",
+          "똑같은 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양변",
+            "equivalentAnswers": [
+              "양변",
+              "양쪽 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "똑같은 수",
+            "equivalentAnswers": [
+              "똑같은 수",
+              "같은 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "양변",
+            "accept": [
+              "양쪽 변"
+            ]
+          },
+          {
+            "answer": "똑같은 수",
+            "accept": [
+              "같은 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양변",
+            "양쪽 변"
+          ],
+          [
+            "똑같은 수",
+            "같은 수"
+          ]
+        ],
+        "proposalFingerprint": "16c680f1c957f4904ceec72ad953bf680aa11c15bbc78b526f7b490f5d1444f7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc2",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "양변에서 같은 수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$a=b$이면 $a-c=b-c$이다. 좌변의 더해진 수를 없애려면 양변에서 그 수를 {빼면} 된다.",
+        "example": {
+          "prompt": "$x+9=15$의 양변에서 $9$를 빼면?",
+          "answer": "$x=6$"
+        },
+        "studentC": "$a=b$이면 $a-c=b-c$이다. 좌변의 더해진 수를 없애려면 양변에서 그 수를 □ 된다.",
+        "answers": [
+          "빼면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$x+9=15$처럼 좌변에서 $x$에 수가 더해져 있을 때, 좌변에 $x$만 남기려면 양변에 어떤 계산을 해야 하는지 쓰고 결과를 구하세요. 이때 쓰는 등식의 성질을 $a=b$와 수 $c$로 나타내세요.",
+        "bAnswer": "양변에서 $9$를 빼면 $x=6$이다. 쓰는 성질은 '$a=b$이면 $a-c=b-c$'이다.",
+        "bGoal": "더해진 수를 없애기 위해 양변에서 같은 수를 빼는 방법을 쓴다.",
+        "bReason": "제목 '양변에서 같은 수 빼기'만으로는 언제 왜 빼는지 드러나지 않는다. '더해진 수를 없앤다'는 상황과 예시 식을 질문에 담았다.",
+        "cDecision": "keep",
+        "cReason": "'더해진 수를 없애려면'이라는 상황과 식 $a-c=b-c$가 함께 보여 빈칸(빼면)이 하나로 정해진다. 더하기의 반대 계산을 떠올리게 하는 쓸모 있는 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변에서 $9$를 뺀다(양변에 $-9$를 더한다고 해도 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과 $x=6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "성질: $a=b$이면 $a-c=b-c$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "더해진 수는 양변에서 빼기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1249,
+        "part": "m1plus",
+        "sourceFingerprint": "469a09cedba8e17d0013d63349c3718c92f4aad444df3bdc78b5cb5bb8c5b72b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1249
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a=b$이면 $a-c=b-c$이다. 좌변의 더해진 수를 없애려면 양변에서 그 수를 □ 된다.",
+        "cFrozenDefinition": "$a=b$이면 $a-c=b-c$이다. 좌변의 더해진 수를 없애려면 양변에서 그 수를 {빼면} 된다.",
+        "cFrozenAnswers": [
+          "빼면"
+        ],
+        "cMarkedSentence": "$a=b$이면 $a-c=b-c$이다. 좌변의 더해진 수를 없애려면 양변에서 그 수를 {빼면} 된다.",
+        "cSlotAnswers": [
+          "빼면"
+        ],
+        "cStudentSentence": "$a=b$이면 $a-c=b-c$이다. 좌변의 더해진 수를 없애려면 양변에서 그 수를 □ 된다.",
+        "cAnswers": [
+          "빼면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빼면",
+            "equivalentAnswers": [
+              "빼면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빼면"
+          ]
+        ],
+        "proposalFingerprint": "c362c09900cc33c2e6ce72a5c15d93c1b86483fc85d51cced573450a328f08dd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc3",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "양변에 같은 수 곱하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$a=b$이면 $ac=bc$이다. 분모를 없애려면 양변에 그 {분모}를 곱한다.",
+        "example": {
+          "prompt": "$\\frac{x}{5}=2$의 양변에 $5$를 곱하면?",
+          "answer": "$x=10$"
+        },
+        "studentC": "$a=b$이면 $ac=bc$이다. 분모를 없애려면 양변에 그 □를 곱한다.",
+        "answers": [
+          "분모"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{x}{5}=2$에서 좌변에 $x$만 남기려면 양변에 어떤 수를 곱해야 하는지 쓰고 결과를 구하세요. 이때 쓰는 등식의 성질을 $a=b$와 수 $c$로 나타내세요.",
+        "bAnswer": "양변에 분모와 같은 수 $5$를 곱하면 $x=10$이다. 쓰는 성질은 '$a=b$이면 $ac=bc$'이다.",
+        "bGoal": "$x$가 어떤 수로 나누어져 있을 때 양변에 그 수를 곱해 $x$만 남긴다.",
+        "bReason": "제목 '양변에 같은 수 곱하기'에는 분모를 없앤다는 쓰임이 없다. 분모가 있는 구체 식을 주고 곱할 수와 근거를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$a=b$이면 $ac=bc$이다. $\\frac{x}{5}=2$처럼 $x$가 어떤 수로 나누어져 있으면 양변에 그 수를 {곱하여} $x$만 남긴다.",
+        "cAnswers": [
+          "곱하여"
+        ],
+        "cReason": "원문 '분모를 없애려면 양변에 그 □를 곱한다'는 답 '분모'가 바로 앞에 적혀 있어 베끼면 되고, 어떤 식의 분모인지도 없다. 예시 식을 넣고 빈칸을 해야 할 계산으로 옮겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변에 $5$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과 $x=10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "성질: $a=b$이면 $ac=bc$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "나눈 수를 양변에 곱하기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1250,
+        "part": "m1plus",
+        "sourceFingerprint": "c9249366b6e6140a4d477a5b5856e67adc33a03bbf4dc01c6ee80121304da90e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1250
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a=b$이면 $ac=bc$이다. $\\frac{x}{5}=2$처럼 $x$가 어떤 수로 나누어져 있으면 양변에 그 수를 {곱하여} $x$만 남긴다.",
+        "cSlotAnswers": [
+          "곱하여"
+        ],
+        "cStudentSentence": "$a=b$이면 $ac=bc$이다. $\\frac{x}{5}=2$처럼 $x$가 어떤 수로 나누어져 있으면 양변에 그 수를 □ $x$만 남긴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱하여",
+            "equivalentAnswers": [
+              "곱하여",
+              "곱해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "곱하여",
+            "accept": [
+              "곱해"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱하여",
+            "곱해"
+          ]
+        ],
+        "proposalFingerprint": "0b123eb9293d3fcc4c6a3cbaec48565f46a083df087fd8e66924b31900fd901e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc4",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "양변을 같은 수로 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$a=b$이고 $c\\neq0$이면 $\\frac{a}{c}=\\frac{b}{c}$이다. $ax=b$ 꼴에서는 $0$이 아닌 $x$의 계수로 양변을 {나누면} $x$만 남는다.",
+        "example": {
+          "prompt": "$4x=28$의 양변을 $4$로 나누면?",
+          "answer": "$x=7$"
+        },
+        "studentC": "$a=b$이고 $c\\neq0$이면 $\\frac{a}{c}=\\frac{b}{c}$이다. $ax=b$ 꼴에서는 $0$이 아닌 $x$의 계수로 양변을 □ $x$만 남는다.",
+        "answers": [
+          "나누면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$4x=28$에서 좌변에 $x$만 남기려면 양변을 어떤 수로 나누어야 하는지 쓰고 결과를 구하세요. 이때 쓰는 등식의 성질을 $a=b$와 수 $c$로 나타내고, $c$에 붙는 조건도 쓰세요.",
+        "bAnswer": "양변을 $x$의 계수 $4$로 나누면 $x=7$이다. 쓰는 성질은 '$a=b$이고 $c\\neq0$이면 $\\frac{a}{c}=\\frac{b}{c}$'이다.",
+        "bGoal": "$x$에 곱해진 수(계수)로 양변을 나누어 $x$만 남기고, 나누는 수의 조건을 안다.",
+        "bReason": "제목 '양변을 같은 수로 나누기'에는 무엇으로 나누는지와 $0$이 아니라는 조건이 없다. 예시 식을 주고 나누는 수, 성질, 조건을 차례로 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$a=b$이고 $c\\neq0$이면 $\\frac{a}{c}=\\frac{b}{c}$이다. $4x=28$처럼 $x$에 $0$이 아닌 수가 곱해져 있으면 양변을 그 수로 {나누어} $x$만 남긴다.",
+        "cAnswers": [
+          "나누어"
+        ],
+        "cReason": "원문은 한 문장 안에서 $a$, $b$를 '$a=b$'와 '$ax=b$'에 서로 다른 뜻으로 써서 헷갈린다. 뒤 식을 구체 예 $4x=28$로 바꾸어 기호 충돌을 없앴다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변을 $4$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과 $x=7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "성질: $a=b$이면 $\\frac{a}{c}=\\frac{b}{c}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "조건: $c\\neq0$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "계수로 양변 나누기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1251,
+        "part": "m1plus",
+        "sourceFingerprint": "c467308a2106aae3cdc52157519520aeff3ef8fe748defa817eea824a47cacea",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1251
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a=b$이고 $c\\neq0$이면 $\\frac{a}{c}=\\frac{b}{c}$이다. $4x=28$처럼 $x$에 $0$이 아닌 수가 곱해져 있으면 양변을 그 수로 {나누어} $x$만 남긴다.",
+        "cSlotAnswers": [
+          "나누어"
+        ],
+        "cStudentSentence": "$a=b$이고 $c\\neq0$이면 $\\frac{a}{c}=\\frac{b}{c}$이다. $4x=28$처럼 $x$에 $0$이 아닌 수가 곱해져 있으면 양변을 그 수로 □ $x$만 남긴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나누어",
+            "equivalentAnswers": [
+              "나누어",
+              "나누면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "나누어",
+            "accept": [
+              "나누면"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나누어",
+            "나누면"
+          ]
+        ],
+        "proposalFingerprint": "6ba2d93756e646b990e72915b85596ff0cd32b16beaa304c69951e2074c9bc61"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc5",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "등식과 저울",
+        "kind": "성질",
+        "level": "하",
+        "definition": "등식은 양쪽 무게가 같은 {저울}처럼, 양쪽에 똑같은 일을 하면 계속 {균형}을 이룬다.",
+        "example": {
+          "prompt": "평형을 이룬 저울 양쪽에서 $2\\,\\mathrm{kg}$씩 덜어 내면?",
+          "answer": "여전히 평형이다"
+        },
+        "studentC": "등식은 양쪽 무게가 같은 □처럼, 양쪽에 똑같은 일을 하면 계속 □을 이룬다.",
+        "answers": [
+          "저울",
+          "균형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "평형을 이룬 양팔저울의 양쪽 접시에서 $2\\,\\mathrm{kg}$씩 덜어 내면 저울이 어떻게 되는지 답하세요. 그리고 이것이 등식의 어떤 성질과 같은지 설명하세요.",
+        "bAnswer": "저울은 여전히 평형을 이룬다. 등식의 양변에서 같은 수를 빼도 등식이 성립한다는 성질과 같다.",
+        "bGoal": "등식의 성질을 평형을 이룬 저울에 빗대어 이해한다.",
+        "bReason": "제목 '등식과 저울'은 두 낱말을 늘어놓았을 뿐 어떤 관계를 묻는지 없다. 저울에서 일어나는 일과 그에 대응하는 등식의 성질을 묻도록 구체 상황을 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "양쪽 무게가 같은 저울의 양쪽에 같은 무게를 올리거나 덜어 내도 저울은 계속 {균형}을 이룬다. 등식도 이와 같아서 양변에 같은 수를 더하거나 빼도 성립한다.",
+        "cAnswers": [
+          "균형"
+        ],
+        "cReason": "문장 첫머리 '평형을 이룬 저울'에 답 '평형'이 그대로 보임. '평형'도 정답으로 인정 권장",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "저울은 여전히 평형을 이룬다"
+            ]
+          },
+          {
+            "anyOf": [
+              "등식의 양변에서 같은 수를 빼도 등식이 성립한다는 성질과 같다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "저울 평형으로 성질 이해",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1252,
+        "part": "m1plus",
+        "sourceFingerprint": "3806047d890cd3bf2ff857a05128b3380241869dc757795dc0ac7af79a00470e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1252
+        },
+        "directReview": null,
+        "cMarkedSentence": "양쪽 무게가 같은 저울의 양쪽에 같은 무게를 올리거나 덜어 내도 저울은 계속 {균형}을 이룬다. 등식도 이와 같아서 양변에 같은 수를 더하거나 빼도 성립한다.",
+        "cSlotAnswers": [
+          "균형"
+        ],
+        "cStudentSentence": "양쪽 무게가 같은 저울의 양쪽에 같은 무게를 올리거나 덜어 내도 저울은 계속 □을 이룬다. 등식도 이와 같아서 양변에 같은 수를 더하거나 빼도 성립한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "균형",
+            "equivalentAnswers": [
+              "균형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "평형",
+            "accept": [
+              "균형"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "균형"
+          ]
+        ],
+        "proposalFingerprint": "62e1e84d57e1eb7fd0408613570176a77417209b9d8a88a42d121839e32597a6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc6",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "한쪽에만 더하면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "등식의 {한쪽}에만 $0$이 아닌 수를 더하면 양변의 값이 {달라져} 등식이 성립하지 않는다.",
+        "example": {
+          "prompt": "$3=3$의 좌변에만 $1$을 더하면?",
+          "answer": "$4=3$으로 거짓이다"
+        },
+        "studentC": "등식의 □에만 $0$이 아닌 수를 더하면 양변의 값이 □ 등식이 성립하지 않는다.",
+        "answers": [
+          "한쪽",
+          "달라져"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$3=3$은 참인 등식입니다. 좌변에만 $1$을 더하면 어떤 식이 되는지 쓰고, 그 식이 참인지 답하세요. 이로부터 등식의 성질을 쓸 때 꼭 지켜야 할 점을 말하세요.",
+        "bAnswer": "$4=3$이 되어 거짓이다. 수를 더할 때에는 한쪽 변에만 더하지 말고 양변에 같은 수를 더해야 한다.",
+        "bGoal": "한쪽 변에만 계산하면 등식이 깨짐을 예로 확인한다.",
+        "bReason": "제목 '한쪽에만 더하면'은 문장이 중간에 끊겨 무엇을 답할지 알 수 없다. 참인 등식 $3=3$을 주고 결과 식, 참·거짓, 지켜야 할 점을 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "등식의 {한쪽} 변에만 $0$이 아닌 수를 더하면 양변의 값이 달라져 등식이 성립하지 않는다.",
+        "cAnswers": [
+          "한쪽"
+        ],
+        "cReason": "원문은 조건(한쪽)과 그 결과(달라져)를 모두 가려 '등식의 □에만 … 양변의 값이 □'가 되어 뜻이 통하지 않는다. 결과는 보이게 두고 조건만 남겼다.",
+        "studentLabel": "등식의 한쪽 변에만 수를 더하면",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4=3$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "거짓이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한쪽 변에만 더하지 말고 양변에 같은 수를 더해야 한다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "한쪽만 더하면 등식 깨짐",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1253,
+        "part": "m1plus",
+        "sourceFingerprint": "fe2aa88dcebbfe8055d24da985fef8a1a3123b8f712229e9421c60a53d2913f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1253
+        },
+        "directReview": null,
+        "cMarkedSentence": "등식의 {한쪽} 변에만 $0$이 아닌 수를 더하면 양변의 값이 달라져 등식이 성립하지 않는다.",
+        "cSlotAnswers": [
+          "한쪽"
+        ],
+        "cStudentSentence": "등식의 □ 변에만 $0$이 아닌 수를 더하면 양변의 값이 달라져 등식이 성립하지 않는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한쪽",
+            "equivalentAnswers": [
+              "한쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한쪽"
+          ]
+        ],
+        "proposalFingerprint": "f08a61e1b9bbfd4dd08eb94ee547ec3a39e500ed409333d4ddca1a312d0a8c25"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc7",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "양변에 음수 더하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "양변에 음수를 더하는 것은 그 절댓값만큼 양변에서 {빼는} 것과 같다.",
+        "example": {
+          "prompt": "$x+5=1$의 양변에 $-5$를 더하면?",
+          "answer": "$x=-4$"
+        },
+        "studentC": "양변에 음수를 더하는 것은 그 절댓값만큼 양변에서 □ 것과 같다.",
+        "answers": [
+          "빼는"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$x+5=1$의 양변에 $-5$를 더한 식을 쓰고 정리하세요. 또 양변에 $-5$를 더하는 것은 양변에서 어떤 수를 빼는 것과 같은지 답하세요.",
+        "bAnswer": "$x+5+(-5)=1+(-5)$이므로 $x=-4$이다. 양변에서 $5$를 빼는 것과 같다.",
+        "bGoal": "양변에 음수를 더하는 것이 그 절댓값만큼 빼는 것과 같음을 안다.",
+        "bReason": "제목 '양변에 음수 더하기'는 계산 이름뿐이다. 구체 식에서 결과를 구하고 뺄셈과의 관계까지 답하도록 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "'음수를 더하는 것'과 '절댓값만큼'이 모두 중1 수와 연산에서 배운 말이고, 빈칸(빼는)이 하나로 정해지는 짧은 문장이다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+5+(-5)=1+(-5)$를 정리하면 $x=-4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변에서 $5$를 빼는 것과 같다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "음수 더하기는 빼기와 같음",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1254,
+        "part": "m1plus",
+        "sourceFingerprint": "64eefe2dd1780721d040cf338810c607b524e32c06ff8ea8950e91fef668d8a8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1254
+        },
+        "directReview": null,
+        "cFrozenSentence": "양변에 음수를 더하는 것은 그 절댓값만큼 양변에서 □ 것과 같다.",
+        "cFrozenDefinition": "양변에 음수를 더하는 것은 그 절댓값만큼 양변에서 {빼는} 것과 같다.",
+        "cFrozenAnswers": [
+          "빼는"
+        ],
+        "cMarkedSentence": "양변에 음수를 더하는 것은 그 절댓값만큼 양변에서 {빼는} 것과 같다.",
+        "cSlotAnswers": [
+          "빼는"
+        ],
+        "cStudentSentence": "양변에 음수를 더하는 것은 그 절댓값만큼 양변에서 □ 것과 같다.",
+        "cAnswers": [
+          "빼는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빼는",
+            "equivalentAnswers": [
+              "빼는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빼는"
+          ]
+        ],
+        "proposalFingerprint": "88883c9eab8cdca4b650d627e797e23c15a83fd9827d4113b8f87572099bd4c2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc8",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "$-x$를 $x$로 바꾸기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$-x=a$이면 양변에 {$-1$}을 곱하거나 $-1$로 {나누어} $x=-a$를 얻는다.",
+        "example": {
+          "prompt": "$-x=6$의 해는?",
+          "answer": "$x=-6$"
+        },
+        "studentC": "$-x=a$이면 양변에 □을 곱하거나 $-1$로 □ $x=-a$를 얻는다.",
+        "answers": [
+          "$-1$",
+          "나누어"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$-x=6$에서 $x$의 값을 구하려면 양변에 어떤 수를 곱하면 되는지 쓰고 해를 구하세요. 일반적으로 $-x=a$($a$는 수)이면 $x$는 무엇인지도 쓰세요.",
+        "bAnswer": "양변에 $-1$을 곱하면 $x=-6$이다. 일반적으로 $-x=a$이면 $x=-a$이다.",
+        "bGoal": "$-x=a$ 꼴에서 양변에 $-1$을 곱하거나 $-1$로 나누어 $x$를 구한다.",
+        "bReason": "제목 '$-x$를 $x$로 바꾸기'는 어떤 식에서 어떻게 바꾸는지 말하지 않는다. 방정식 $-x=6$과 일반 꼴 $-x=a$를 주고 곱할 수와 결과를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$-x=a$이면 양변에 {$-1$}을 곱하거나 양변을 같은 수로 나누어 $x=-a$를 얻는다.",
+        "cAnswers": [
+          "$-1$"
+        ],
+        "cReason": "원문은 첫 빈칸의 답 $-1$이 바로 뒤 '$-1$로'에 그대로 적혀 있어 베끼면 된다. 뒤의 $-1$을 '같은 수'로 바꾸어 답이 드러나지 않게 하고 빈칸을 하나로 줄였다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변에 $-1$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=-6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-x=a$이면 $x=-a$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "-1을 곱해 x로 바꾸기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1255,
+        "part": "m1plus",
+        "sourceFingerprint": "9dcaa0500f72fb637e36b6b655f173d8409312da469ba201f10ee1a72b19a075",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1255
+        },
+        "directReview": null,
+        "cMarkedSentence": "$-x=a$이면 양변에 {$-1$}을 곱하거나 양변을 같은 수로 나누어 $x=-a$를 얻는다.",
+        "cSlotAnswers": [
+          "$-1$"
+        ],
+        "cStudentSentence": "$-x=a$이면 양변에 □을 곱하거나 양변을 같은 수로 나누어 $x=-a$를 얻는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-1$",
+            "equivalentAnswers": [
+              "$-1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-1$"
+          ]
+        ],
+        "proposalFingerprint": "21e3cb6e112a25a1c1e2c598cdb78d309fbbf4adf43fbd41a1d2102b3da477e4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc9",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "$ax+b=c$를 두 단계로 풀기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$a$가 $0$이 아닐 때 $ax+b=c$는 먼저 양변에서 {$b$를 빼고}, 다음에 양변을 {$a$로 나눈다}.",
+        "example": {
+          "prompt": "$3x+2=14$를 풀면?",
+          "answer": "$x=4$"
+        },
+        "studentC": "$a$가 $0$이 아닐 때 $ax+b=c$는 먼저 양변에서 □, 다음에 양변을 □.",
+        "answers": [
+          "$b$를 빼고",
+          "$a$로 나눈다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$a\\neq0$인 방정식 $ax+b=c$($a$, $b$, $c$는 수)를 등식의 성질만 써서 풀 때, 양변에 하는 두 계산을 순서대로 쓰세요. 그리고 같은 순서로 $3x+2=14$를 풀어 해를 구하세요.",
+        "bAnswer": "먼저 양변에서 $b$를 빼고, 다음에 양변을 $a$로 나눈다. $3x+2=14$는 양변에서 $2$를 빼 $3x=12$, 양변을 $3$으로 나누어 $x=4$이다.",
+        "bGoal": "$ax+b=c$ 꼴을 빼기와 나누기의 두 단계로 푸는 순서를 익힌다.",
+        "bReason": "제목 '$ax+b=c$를 두 단계로 풀기'는 두 단계가 무엇인지 묻는지 계산을 하라는 것인지 불분명하다. 기호의 뜻과 조건 $a\\neq0$을 밝히고 순서와 적용을 함께 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$a$가 $0$이 아닐 때 $ax+b=c$는 먼저 양변에서 $b$를 {빼고}, 다음에 양변을 $a$로 {나눈다}.",
+        "cAnswers": [
+          "빼고",
+          "나눈다"
+        ],
+        "cReason": "원문 빈칸은 '$b$를 빼고', '$a$로 나눈다'처럼 조사까지 든 긴 구절이라 학생마다 쓰는 말이 달라진다. 문자는 보이게 하고 순서의 핵심인 계산 낱말만 가렸다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 양변에서 $b$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다음에 양변을 $a$로 나눈다(먼저 $a$로 나눈 뒤 $\\frac{b}{a}$를 빼는 등 등식의 성질에 맞는 다른 순서도 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3x+2=14$에서 $2$를 빼 $3x=12$, $3$으로 나누어 $x=4$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "b 빼고 a로 나누는 순서",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1256,
+        "part": "m1plus",
+        "sourceFingerprint": "0c5eaae9fc1d548a5186018a5dad0f88fd24285e9146a5557d972e32bf569e5f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1256
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a$가 $0$이 아닐 때 $ax+b=c$는 먼저 양변에서 $b$를 {빼고}, 다음에 양변을 $a$로 {나눈다}.",
+        "cSlotAnswers": [
+          "빼고",
+          "나눈다"
+        ],
+        "cStudentSentence": "$a$가 $0$이 아닐 때 $ax+b=c$는 먼저 양변에서 $b$를 □, 다음에 양변을 $a$로 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빼고",
+            "equivalentAnswers": [
+              "빼고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "나눈다",
+            "equivalentAnswers": [
+              "나눈다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빼고"
+          ],
+          [
+            "나눈다"
+          ]
+        ],
+        "proposalFingerprint": "a651b10a7db332880fd86850b83d860b6a5aa9b50148c63c961e94d503451831"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc10",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "계수가 분수인 방정식 풀기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$\\frac{2}{3}x=8$처럼 계수가 분수이면 양변에 그 계수의 {역수}를 곱한다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}x=8$의 해는?",
+          "answer": "$x=12$"
+        },
+        "studentC": "$\\frac{2}{3}x=8$처럼 계수가 분수이면 양변에 그 계수의 □를 곱한다.",
+        "answers": [
+          "역수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{3}x=8$에서 좌변에 $x$만 남기려면 양변에 어떤 수를 곱해야 하는지 쓰세요. 그 수가 $x$의 계수 $\\frac{2}{3}$와 어떤 관계인지 말하고 해를 구하세요.",
+        "bAnswer": "양변에 $\\frac{3}{2}$을 곱한다. 이 수는 계수 $\\frac{2}{3}$의 역수이다. 해는 $x=12$이다.",
+        "bGoal": "계수가 분수일 때 양변에 계수의 역수를 곱해 푼다.",
+        "bReason": "제목 '계수가 분수인 방정식 풀기'는 방법을 묻는지 답을 묻는지 정해져 있지 않다. 구체 식을 주고 곱할 수, 계수와의 관계, 해를 차례로 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "예시 식 $\\frac{2}{3}x=8$이 문장에 있고 빈칸이 표준 용어 '역수' 하나라 무엇을 묻는지 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변에 $\\frac{3}{2}$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{2}$은 계수 $\\frac{2}{3}$의 역수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=12$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "분수 계수는 역수 곱하기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1257,
+        "part": "m1plus",
+        "sourceFingerprint": "fcfb516e9bbae49d92a7c63dee6852eb7001bd17a1035cf5d4af19151e282570",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1257
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\frac{2}{3}x=8$처럼 계수가 분수이면 양변에 그 계수의 □를 곱한다.",
+        "cFrozenDefinition": "$\\frac{2}{3}x=8$처럼 계수가 분수이면 양변에 그 계수의 {역수}를 곱한다.",
+        "cFrozenAnswers": [
+          "역수"
+        ],
+        "cMarkedSentence": "$\\frac{2}{3}x=8$처럼 계수가 분수이면 양변에 그 계수의 {역수}를 곱한다.",
+        "cSlotAnswers": [
+          "역수"
+        ],
+        "cStudentSentence": "$\\frac{2}{3}x=8$처럼 계수가 분수이면 양변에 그 계수의 □를 곱한다.",
+        "cAnswers": [
+          "역수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "역수",
+            "equivalentAnswers": [
+              "역수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "역수"
+          ]
+        ],
+        "proposalFingerprint": "225147736c185e925c3f67448e0515ac1129149ae9f9b79e393016369b56dac1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc11",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "등식의 성질을 쓰는 차례",
+        "kind": "방법",
+        "level": "중",
+        "definition": "보통 {더하기 · 빼기}로 상수항을 먼저 정리한 뒤 {곱하기 · 나누기}로 계수를 정리한다.",
+        "example": {
+          "prompt": "$\\frac{x}{2}-1=3$을 풀면?",
+          "answer": "$x=8$"
+        },
+        "studentC": "보통 □로 상수항을 먼저 정리한 뒤 □로 계수를 정리한다.",
+        "answers": [
+          "더하기 · 빼기",
+          "곱하기 · 나누기"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{x}{2}-1=3$을 등식의 성질로 풀려고 합니다. (가) 양변에 $2$를 곱하기, (나) 양변에 $1$을 더하기 중 보통 어느 것을 먼저 하는지 고르고, 그 순서대로 풀어 해를 구하세요.",
+        "bAnswer": "보통 (나)를 먼저 한다. 양변에 $1$을 더하면 $\\frac{x}{2}=4$이고, 이어서 양변에 $2$를 곱하면 $x=8$이다.",
+        "bGoal": "상수항을 더하기·빼기로 먼저 정리하고 계수를 곱하기·나누기로 정리하는 순서를 안다.",
+        "bReason": "제목 '등식의 성질을 쓰는 차례'는 어떤 상황의 차례인지 없다. 두 계산이 모두 필요한 방정식을 주고 어느 것을 먼저 하는지 고르게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{x}{2}-1=3$ 같은 방정식을 등식의 성질로 풀 때에는 보통 양변에 같은 수를 더하거나 빼서 {상수항}을 먼저 정리한 뒤, 양변에 같은 수를 곱하거나 양변을 같은 수로 나누어 $x$의 {계수}를 정리한다.",
+        "cAnswers": [
+          "상수항",
+          "계수"
+        ],
+        "cReason": "원문 '보통 □로 상수항을 먼저…'는 무엇을 할 때의 이야기인지(방정식 풀이) 없고, 빈칸 답이 '더하기 · 빼기'처럼 가운뎃점까지 든 긴 묶음이다. 상황을 앞에 넣고 빈칸을 배운 용어 두 개로 옮겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(나) 양변에 $1$을 더하기를 먼저 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{x}{2}=4$를 얻은 뒤 양변에 $2$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=8$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "상수항 먼저, 계수 나중",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1258,
+        "part": "m1plus",
+        "sourceFingerprint": "2a8d160a9f49c04b71c76d279e133547d44c3025816653af71c4a586b5c3fb11",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1258
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\frac{x}{2}-1=3$ 같은 방정식을 등식의 성질로 풀 때에는 보통 양변에 같은 수를 더하거나 빼서 {상수항}을 먼저 정리한 뒤, 양변에 같은 수를 곱하거나 양변을 같은 수로 나누어 $x$의 {계수}를 정리한다.",
+        "cSlotAnswers": [
+          "상수항",
+          "계수"
+        ],
+        "cStudentSentence": "$\\frac{x}{2}-1=3$ 같은 방정식을 등식의 성질로 풀 때에는 보통 양변에 같은 수를 더하거나 빼서 □을 먼저 정리한 뒤, 양변에 같은 수를 곱하거나 양변을 같은 수로 나누어 $x$의 □를 정리한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상수항",
+            "equivalentAnswers": [
+              "상수항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "계수",
+            "equivalentAnswers": [
+              "계수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상수항"
+          ],
+          [
+            "계수"
+          ]
+        ],
+        "proposalFingerprint": "74936eba9ad10fa88525706e1a43c522132447b9934ae9513e74076f1e966b4f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc12",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "미지수가 오른쪽에 있을 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$7=x+2$처럼 미지수가 우변에 있으면 양변을 {바꾸어} $x+2=7$로 써도 {된다}.",
+        "example": {
+          "prompt": "$7=x+2$의 해는?",
+          "answer": "$x=5$"
+        },
+        "studentC": "$7=x+2$처럼 미지수가 우변에 있으면 양변을 □ $x+2=7$로 써도 □.",
+        "answers": [
+          "바꾸어",
+          "된다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$7=x+2$는 미지수 $x$가 우변에 있습니다. 이 방정식을 $x$가 좌변에 오도록 고쳐 쓰고, 그렇게 써도 되는 근거가 되는 등식의 성질을 말한 뒤 해를 구하세요.",
+        "bAnswer": "$x+2=7$로 쓴다. 등식은 좌변과 우변을 서로 바꾸어도 성립하기 때문이다. 양변에서 $2$를 빼면 $x=5$이다.",
+        "bGoal": "미지수가 우변에 있을 때 양변을 바꾸어 쓰고 푼다.",
+        "bReason": "제목 '미지수가 오른쪽에 있을 때'는 조건만 있고 물음이 없다. 고쳐 쓴 식, 근거, 해를 답하도록 구체 방정식을 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$7=x+2$처럼 미지수가 우변에 있으면 좌변과 우변을 서로 {바꾸어} $x+2=7$로 써도 된다.",
+        "cAnswers": [
+          "바꾸어"
+        ],
+        "cReason": "둘째 빈칸 '된다'는 문장을 끝맺는 말일 뿐 수학 내용이 없다. 이 빈칸을 없애고, '양변을 □'가 무엇을 하는지 드러나도록 '좌변과 우변을 서로'로 풀어 썼다.",
+        "studentLabel": "미지수가 우변에 있는 방정식",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+2=7$로 고쳐 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "근거: 등식은 좌변과 우변을 서로 바꾸어도 성립한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=5$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "양변 바꾸어 x를 좌변으로",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1259,
+        "part": "m1plus",
+        "sourceFingerprint": "93a28e24d3379b70f7da722c33044ddbc9f77984d59fa507dff7107d787762ec",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1259
+        },
+        "directReview": null,
+        "cMarkedSentence": "$7=x+2$처럼 미지수가 우변에 있으면 좌변과 우변을 서로 {바꾸어} $x+2=7$로 써도 된다.",
+        "cSlotAnswers": [
+          "바꾸어"
+        ],
+        "cStudentSentence": "$7=x+2$처럼 미지수가 우변에 있으면 좌변과 우변을 서로 □ $x+2=7$로 써도 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "바꾸어",
+            "equivalentAnswers": [
+              "바꾸어"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "바꾸어"
+          ]
+        ],
+        "proposalFingerprint": "1839545b52686f146e56f6f8d0eb3e133b73c0bb9848bb6147f140c0236936d0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc13",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "곱한 수와 더한 수의 구별",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$3x$의 $3$은 곱해진 수라 양변을 {나누어} 없애고, $x+3$의 $3$은 더해진 수라 양변에서 {빼서} 없앤다.",
+        "example": {
+          "prompt": "$3x=12$와 $x+3=12$의 해는?",
+          "answer": "$x=4$, $x=9$"
+        },
+        "studentC": "$3x$의 $3$은 곱해진 수라 양변을 □ 없애고, $x+3$의 $3$은 더해진 수라 양변에서 □ 없앤다.",
+        "answers": [
+          "나누어",
+          "빼서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$3x=12$와 $x+3=12$에는 모두 $3$이 있습니다. 각 방정식에서 좌변에 $x$만 남기려면 양변에 어떤 계산을 해야 하는지 쓰세요. 두 계산이 다른 까닭을 $3$의 역할로 설명하고 두 방정식의 해를 구하세요.",
+        "bAnswer": "$3x=12$의 $3$은 $x$에 곱해진 수이므로 양변을 $3$으로 나누어 $x=4$이다. $x+3=12$의 $3$은 $x$에 더해진 수이므로 양변에서 $3$을 빼어 $x=9$이다.",
+        "bGoal": "곱해진 수와 더해진 수를 구별하여 알맞은 등식의 성질을 고른다.",
+        "bReason": "제목 '곱한 수와 더한 수의 구별'은 무엇을 어떻게 구별하라는지 없다. 같은 수 $3$이 다른 역할로 나오는 두 식을 나란히 주고 비교하게 했다.",
+        "cDecision": "keep",
+        "cReason": "$3x$와 $x+3$을 나란히 놓고 '곱해진 수라', '더해진 수라'라는 까닭까지 보여 주어 두 빈칸(나누어, 빼서)이 각각 하나로 정해진다. 짧은 대조형으로 쓸모 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3x=12$: 양변을 $3$으로 나누어 $x=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x+3=12$: 양변에서 $3$을 빼어 $x=9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 앞의 $3$은 $x$에 곱해진 수이고 뒤의 $3$은 $x$에 더해진 수이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "곱한 3과 더한 3의 구별",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1260,
+        "part": "m1plus",
+        "sourceFingerprint": "df5d88aaa2bfff51ff6f87acba419c33dbf55a85ba9bfc3a8de91fe2d709f7b1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1260
+        },
+        "directReview": null,
+        "cFrozenSentence": "$3x$의 $3$은 곱해진 수라 양변을 □ 없애고, $x+3$의 $3$은 더해진 수라 양변에서 □ 없앤다.",
+        "cFrozenDefinition": "$3x$의 $3$은 곱해진 수라 양변을 {나누어} 없애고, $x+3$의 $3$은 더해진 수라 양변에서 {빼서} 없앤다.",
+        "cFrozenAnswers": [
+          "나누어",
+          "빼서"
+        ],
+        "cMarkedSentence": "$3x$의 $3$은 곱해진 수라 양변을 {나누어} 없애고, $x+3$의 $3$은 더해진 수라 양변에서 {빼서} 없앤다.",
+        "cSlotAnswers": [
+          "나누어",
+          "빼서"
+        ],
+        "cStudentSentence": "$3x$의 $3$은 곱해진 수라 양변을 □ 없애고, $x+3$의 $3$은 더해진 수라 양변에서 □ 없앤다.",
+        "cAnswers": [
+          "나누어",
+          "빼서"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나누어",
+            "equivalentAnswers": [
+              "나누어"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빼서",
+            "equivalentAnswers": [
+              "빼서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나누어"
+          ],
+          [
+            "빼서"
+          ]
+        ],
+        "proposalFingerprint": "3fe0fb7283130dc3062ab6850ca9104411ad4fe9f0f69cb3e40d1bd78467a326"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc14",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "바꾼 과정 따지기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "식을 바꾼 과정이 맞는지는 {양변}에 {같은} 계산(더하기 · 빼기 · 곱하기 · $0$이 아닌 수로 나누기)을 했는지 본다.",
+        "example": {
+          "prompt": "$2x=6$에서 $x=6-2$로 바꾼 것은 맞는가?",
+          "answer": "아니다"
+        },
+        "studentC": "식을 바꾼 과정이 맞는지는 □에 □ 계산(더하기 · 빼기 · 곱하기 · $0$이 아닌 수로 나누기)을 했는지 본다.",
+        "answers": [
+          "양변",
+          "같은"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식을 풀면서 식을 다음 줄로 바꾼 것이 옳은지 판단하는 기준을 쓰세요. 그 기준으로 $2x=6$을 $x=6-2$로 바꾼 것이 옳은지 판단하고, 좌변과 우변에 각각 어떤 계산을 했는지도 밝히세요.",
+        "bAnswer": "양변에 같은 계산(더하기, 빼기, 곱하기, $0$이 아닌 수로 나누기)을 했는지 본다. 좌변은 $2$로 나누었는데 우변은 $2$를 뺐으므로 옳지 않다. 바르게는 양변을 $2$로 나누어 $x=3$이다.",
+        "bGoal": "풀이의 한 단계가 등식의 성질에 맞는지 판단한다.",
+        "bReason": "제목 '바꾼 과정 따지기'는 무엇을 바꾼 과정인지조차 없다. 판단 기준을 묻고, 원문 예시의 잘못된 변형을 질문에 넣어 직접 판단하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "방정식을 풀면서 한 줄을 다음 줄로 바르게 바꾸었는지는 {양변}에 {같은} 계산(더하기 · 빼기 · 곱하기 · $0$이 아닌 수로 나누기)을 했는지로 따진다.",
+        "cAnswers": [
+          "양변",
+          "같은"
+        ],
+        "cReason": "원문 '식을 바꾼 과정'은 숨은 제목 없이는 어떤 상황인지 알 수 없다. 방정식 풀이의 한 줄에서 다음 줄로 가는 상황임을 앞에 밝혔고, 빈칸 두 개는 그대로 두었다.",
+        "studentLabel": "방정식을 바꾼 과정이 옳은지 따지기",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "기준: 양변에 같은 계산을 했는지 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "좌변은 $2$로 나누었고 우변은 $2$를 뺐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "따라서 옳지 않다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "양변에 같은 계산인지 점검",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1261,
+        "part": "m1plus",
+        "sourceFingerprint": "4c20775c54f7e6cb993801041669011e21ec1a9900321e9c1f1a6ecb67a08410",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1261
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식을 풀면서 한 줄을 다음 줄로 바르게 바꾸었는지는 {양변}에 {같은} 계산(더하기 · 빼기 · 곱하기 · $0$이 아닌 수로 나누기)을 했는지로 따진다.",
+        "cSlotAnswers": [
+          "양변",
+          "같은"
+        ],
+        "cStudentSentence": "방정식을 풀면서 한 줄을 다음 줄로 바르게 바꾸었는지는 □에 □ 계산(더하기 · 빼기 · 곱하기 · $0$이 아닌 수로 나누기)을 했는지로 따진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양변",
+            "equivalentAnswers": [
+              "양변",
+              "양쪽 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같은",
+            "equivalentAnswers": [
+              "같은",
+              "똑같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "양변",
+            "accept": [
+              "양쪽 변"
+            ]
+          },
+          {
+            "answer": "같은",
+            "accept": [
+              "똑같은"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양변",
+            "양쪽 변"
+          ],
+          [
+            "같은",
+            "똑같은"
+          ]
+        ],
+        "proposalFingerprint": "5897caa1ec0fe32f4cf95bb527210543d02dd3403eb1d936d3f26efe25556745"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc15",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "소수 계수와 등식의 성질",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 {나누거나} 양변에 $10$을 {곱해} 정리한다.",
+        "example": {
+          "prompt": "$0.3x=1.5$의 해는?",
+          "answer": "$x=5$"
+        },
+        "studentC": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 □ 양변에 $10$을 □ 정리한다.",
+        "answers": [
+          "나누거나",
+          "곱해"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.3x=1.5$를 등식의 성질로 푸는 방법을 두 가지 쓰세요. 방법마다 양변에 어떤 계산을 하는지 밝히고, 두 방법으로 구한 해가 같은지 확인하세요.",
+        "bAnswer": "방법 $1$은 양변을 $0.3$으로 나누어 $x=5$를 얻는다. 방법 $2$는 양변에 $10$을 곱해 $3x=15$로 만든 뒤 양변을 $3$으로 나누어 $x=5$를 얻는다. 두 해는 같다.",
+        "bGoal": "계수가 소수일 때 그 소수로 나누거나 $10$을 곱하는 두 방법을 안다.",
+        "bReason": "제목 '소수 계수와 등식의 성질'은 두 낱말의 관계가 무엇인지 말하지 않는다. 한 방정식을 두 방법으로 풀어 비교하도록 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "예시 식 $0.3x=1.5$가 보이고, '그 소수로'와 '$10$을'이 각각 나누기와 곱하기를 가리켜 두 빈칸이 분명하다. 두 방법을 짧게 견주는 문장이다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "방법 $1$: 양변을 $0.3$으로 나누어 $x=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "방법 $2$: 양변에 $10$을 곱해 $3x=15$로 만든 뒤 $3$으로 나누어 $x=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 방법의 해가 같다(양변에 같은 계산을 한 옳은 방법이면 다른 두 가지도 인정)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "소수로 나누거나 10 곱하기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1262,
+        "part": "m1plus",
+        "sourceFingerprint": "7354ab65d4512c3be6020e748a3becf0f6728dc1def06e35e42f776b376e69dd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1262
+        },
+        "directReview": null,
+        "cFrozenSentence": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 □ 양변에 $10$을 □ 정리한다.",
+        "cFrozenDefinition": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 {나누거나} 양변에 $10$을 {곱해} 정리한다.",
+        "cFrozenAnswers": [
+          "나누거나",
+          "곱해"
+        ],
+        "cMarkedSentence": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 {나누거나} 양변에 $10$을 {곱해} 정리한다.",
+        "cSlotAnswers": [
+          "나누거나",
+          "곱해"
+        ],
+        "cStudentSentence": "$0.3x=1.5$처럼 계수가 소수이면 양변을 그 소수로 □ 양변에 $10$을 □ 정리한다.",
+        "cAnswers": [
+          "나누거나",
+          "곱해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나누거나",
+            "equivalentAnswers": [
+              "나누거나"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱해",
+            "equivalentAnswers": [
+              "곱해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나누거나"
+          ],
+          [
+            "곱해"
+          ]
+        ],
+        "proposalFingerprint": "9dfd07784968d7dda650b4bdd9c998c865873606b46e63c908bcfe38b2ee9d5a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc16",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "빼기와 음수 더하기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "양변에서 $c$를 빼는 것과 양변에 {$-c$}를 더하는 것은 {같은} 일이다.",
+        "example": {
+          "prompt": "$x+2=7$의 양변에 $-2$를 더하면?",
+          "answer": "$x=5$"
+        },
+        "studentC": "양변에서 $c$를 빼는 것과 양변에 □를 더하는 것은 □ 일이다.",
+        "answers": [
+          "$-c$",
+          "같은"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "양변에서 빼는 것과 음수를 더하는 것이 같은 계산임을 안다.",
+        "bReason": "제목 '빼기와 음수 더하기'가 묻는 관계는 m1-03-05-xc7의 B와 같고 예시도 숫자만 다르다. 같은 단원에 같은 유형의 질문이 두 번 나오게 된다.",
+        "cDecision": "rewrite",
+        "cAfter": "양변에서 $c$를 빼는 것은 양변에 {$-c$}를 더하는 것과 같다.",
+        "cAnswers": [
+          "$-c$"
+        ],
+        "cReason": "둘째 빈칸 '같은'은 문장을 맺는 말이라 묻는 내용이 없다. 이 빈칸을 없애고 문자로 일반화한 핵심 $-c$만 남겼다. xc7의 C는 말로, 이 문장은 문자로 묻기 때문에 C는 남긴다.",
+        "exclusionReason": "B 제외: m1-03-05-xc7의 B(음수를 더하기와 빼기의 관계)와 같은 관계를 숫자만 바꾸어 다시 묻는 중복이다. C는 문자식 빈칸으로 유지한다.",
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "c 빼기는 -c 더하기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1263,
+        "part": "m1plus",
+        "sourceFingerprint": "da838da89c3b22edebaca7d84e000cc607f1d354da1a6d9affc501335cf35d72",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1263
+        },
+        "directReview": null,
+        "cMarkedSentence": "양변에서 $c$를 빼는 것은 양변에 {$-c$}를 더하는 것과 같다.",
+        "cSlotAnswers": [
+          "$-c$"
+        ],
+        "cStudentSentence": "양변에서 $c$를 빼는 것은 양변에 □를 더하는 것과 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-c$",
+            "equivalentAnswers": [
+              "$-c$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-c$"
+          ]
+        ],
+        "proposalFingerprint": "1cc513d8156b5b3331d20a8a3a1890764ac486b229e6456568bbc767f0b0e7b0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc17",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "양변에 $0$을 곱하면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "양변에 $0$을 곱하면 언제나 {$0=0$}이 되어 원래 등식의 정보를 {잃는다}.",
+        "example": {
+          "prompt": "$x=3$의 양변에 $0$을 곱하면?",
+          "answer": "$0=0$"
+        },
+        "studentC": "양변에 $0$을 곱하면 언제나 □이 되어 원래 등식의 정보를 □.",
+        "answers": [
+          "$0=0$",
+          "잃는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$x=3$의 양변에 $0$을 곱하면 어떤 식이 되는지 쓰고, 그 식만 보고 $x$의 값을 알 수 있는지 답하세요. 이로부터 방정식을 풀 때 양변에 $0$을 곱하면 안 되는 까닭을 설명하세요.",
+        "bAnswer": "$0=0$이 된다. 이 식에는 $x$가 없어서 $x$의 값을 알 수 없다. 양변에 $0$을 곱하면 등식은 성립하지만 어떤 등식이든 $0=0$이 되어 해를 구할 수 없다.",
+        "bGoal": "양변에 $0$을 곱하면 등식은 성립하지만 풀이에는 쓸모없음을 이해한다.",
+        "bReason": "제목 '양변에 $0$을 곱하면'은 문장이 중간에 끊겨 있다. 구체 등식 $x=3$을 주고 결과 식과 그 식의 한계를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 등식이든 양변에 $0$을 곱하면 언제나 {$0=0$}이 된다. 예를 들어 $x=3$의 양변에 $0$을 곱하면 $x$가 사라져 그 식으로는 $x$의 값을 알 수 없다.",
+        "cAnswers": [
+          "$0=0$"
+        ],
+        "cReason": "원문의 '원래 등식의 정보를 잃는다'는 중1에게 낯선 설명투 말이고, 그 끝말을 빈칸으로 두면 답을 정하기 어렵다. '$x$가 사라져 값을 알 수 없다'로 풀어 쓰고 빈칸은 결과 식 하나로 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0=0$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 식만으로는 $x$의 값을 알 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 등식은 성립하지만 $x$가 사라져 해를 구할 수 없다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "0 곱하면 x 정보 사라짐",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1264,
+        "part": "m1plus",
+        "sourceFingerprint": "50ee2e057be614b9192ff8bd35fa2d4a88087eec4e4598bfff85a73bb1b3b436",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1264
+        },
+        "directReview": null,
+        "cMarkedSentence": "어떤 등식이든 양변에 $0$을 곱하면 언제나 {$0=0$}이 된다. 예를 들어 $x=3$의 양변에 $0$을 곱하면 $x$가 사라져 그 식으로는 $x$의 값을 알 수 없다.",
+        "cSlotAnswers": [
+          "$0=0$"
+        ],
+        "cStudentSentence": "어떤 등식이든 양변에 $0$을 곱하면 언제나 □이 된다. 예를 들어 $x=3$의 양변에 $0$을 곱하면 $x$가 사라져 그 식으로는 $x$의 값을 알 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0=0$",
+            "equivalentAnswers": [
+              "$0=0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0=0$"
+          ]
+        ],
+        "proposalFingerprint": "22e760ccc2b0078c9173f4e4d8e678d431edee6d8bcbe31d7d8068c6786f1bd3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc18",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "풀이의 각 줄과 등식의 성질",
+        "kind": "방법",
+        "level": "상",
+        "definition": "풀이의 각 줄은 앞 줄의 {양변}에 {같은 계산}을 하거나 한 변을 정리한 것이므로, 줄마다 무엇을 했는지 밝힐 수 있다.",
+        "example": {
+          "prompt": "$5x-1=9$를 $5x=10$으로 바꿀 때 쓴 성질은?",
+          "answer": "양변에 $1$을 더한다"
+        },
+        "studentC": "풀이의 각 줄은 앞 줄의 □에 □을 하거나 한 변을 정리한 것이므로, 줄마다 무엇을 했는지 밝힐 수 있다.",
+        "answers": [
+          "양변",
+          "같은 계산"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$5x-1=9$를 풀면서 첫 줄을 $5x=10$으로, 그 다음 줄을 $x=2$로 바꾸었습니다. 각 단계에서 양변에 어떤 계산을 했는지 쓰세요.",
+        "bAnswer": "첫째 단계는 양변에 $1$을 더한 것이고, 둘째 단계는 양변을 $5$로 나눈 것이다.",
+        "bGoal": "풀이의 각 줄이 어떤 등식의 성질을 쓴 것인지 밝힌다.",
+        "bReason": "제목 '풀이의 각 줄과 등식의 성질'은 어떤 풀이인지 없어 답할 수 없다. 세 줄짜리 실제 풀이를 주고 줄마다 한 계산을 쓰게 했다.",
+        "cDecision": "exclude",
+        "cReason": "빈칸 답(양변, 같은 계산)이 m1-03-05-xc14의 C(양변, 같은)와 사실상 같다. 뒤의 '줄마다 무엇을 했는지 밝힐 수 있다'는 내용은 빈칸으로 묻기보다 B의 서술형이 맞다.",
+        "exclusionReason": "C 제외: m1-03-05-xc14의 C와 같은 답(양변·같은 계산)을 되풀이하는 빈칸 중복이다. B는 줄마다 쓴 성질을 밝히는 문항으로 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "첫째 단계: 양변에 $1$을 더했다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘째 단계: 양변을 $5$로 나누었다($\\frac{1}{5}$을 곱했다고 해도 인정)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "줄마다 쓴 성질 밝히기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1265,
+        "part": "m1plus",
+        "sourceFingerprint": "b3712327ab884eba7c40e563a973b2928183283c800d9bdbbc31982e7ad74d49",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1265
+        },
+        "directReview": null,
+        "proposalFingerprint": "a90979e82a1de507c022d825459d746375be2296f618d7972c4686d43222f6ee"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc19",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "등식의 성질과 옮기기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "양변에서 같은 수를 빼는 것은 그 항을 부호를 바꾸어 반대쪽으로 {옮기는} 것과 결과가 {같다}.",
+        "example": {
+          "prompt": "$x+6=2$에서 $6$을 우변으로 옮기면?",
+          "answer": "$x=2-6$"
+        },
+        "studentC": "양변에서 같은 수를 빼는 것은 그 항을 부호를 바꾸어 반대쪽으로 □ 것과 결과가 □.",
+        "answers": [
+          "옮기는",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "항을 옮기는 것이 양변에서 같은 수를 빼는 것과 같음을 안다.",
+        "bReason": "제목 '등식의 성질과 옮기기'가 묻는 관계는 다음 단원 m1-03-06-c3 '이항과 등식의 성질'의 B와 같다. 그쪽은 '이항'이라는 정식 용어로 묻기 때문에 여기서 따로 낼 필요가 없다.",
+        "cDecision": "rewrite",
+        "cAfter": "$x+6=2$에서 좌변의 $+6$을 부호를 바꾸어 우변으로 옮기면 $x=2-6$이다. 이것은 양변에서 $6$을 {빼는} 것과 결과가 같다.",
+        "cAnswers": [
+          "빼는"
+        ],
+        "cReason": "원문의 '그 항'은 가리키는 대상이 없고, 둘째 빈칸 '같다'는 맺음말이라 뜻이 없다. 구체 식으로 '그 항'을 정해 주고 빈칸을 등식의 성질 쪽 계산으로 옮겼다. 06-c3의 C(부호)와 답도 겹치지 않는다.",
+        "exclusionReason": "B 제외: m1-03-06-c3의 B(이항이 양변에 같은 수를 더하거나 뺀 것과 같은 까닭)와 같은 관계를 묻는 서술형 중복이다. C는 답이 다른 빈칸으로 유지한다.",
+        "studentLabel": "양변에서 빼기와 항 옮기기",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "이항은 양변에서 빼기와 같음",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1266,
+        "part": "m1plus",
+        "sourceFingerprint": "69208d87fa9f23652e9ec63f41f2e81162cf4c28a9fe07e4b4f9631d1b632c7f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1266
+        },
+        "directReview": null,
+        "cMarkedSentence": "$x+6=2$에서 좌변의 $+6$을 부호를 바꾸어 우변으로 옮기면 $x=2-6$이다. 이것은 양변에서 $6$을 {빼는} 것과 결과가 같다.",
+        "cSlotAnswers": [
+          "빼는"
+        ],
+        "cStudentSentence": "$x+6=2$에서 좌변의 $+6$을 부호를 바꾸어 우변으로 옮기면 $x=2-6$이다. 이것은 양변에서 $6$을 □ 것과 결과가 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빼는",
+            "equivalentAnswers": [
+              "빼는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빼는"
+          ]
+        ],
+        "proposalFingerprint": "d65f8d3cc0a1c09114445618afde758e868f8755b8531cf619b02f57a57eee02"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc20",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "분수가 여럿일 때 한 번에",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$\\frac{3}{4}x-\\frac{1}{2}=1$처럼 분수가 여럿이면 양변에 분모의 {최소공배수}를 곱해 한꺼번에 {정수}로 만든다.",
+        "example": {
+          "prompt": "$\\frac{3}{4}x-\\frac{1}{2}=1$의 해는?",
+          "answer": "$x=2$"
+        },
+        "studentC": "$\\frac{3}{4}x-\\frac{1}{2}=1$처럼 분수가 여럿이면 양변에 분모의 □를 곱해 한꺼번에 □로 만든다.",
+        "answers": [
+          "최소공배수",
+          "정수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc20",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "분수가 여럿인 방정식에서 분모의 최소공배수를 곱해 분모를 한 번에 없앤다.",
+        "bReason": "제목 '분수가 여럿일 때 한 번에'가 가리키는 방법은 m1-03-06-c7 '계수가 분수인 일차방정식'의 B와 같다. 상수항에도 곱하는 주의점은 m1-03-06-xc12의 B가 다룬다. 이 문항에만 있는 물음이 없다.",
+        "cDecision": "exclude",
+        "cReason": "빈칸 답 두 개(최소공배수, 정수)가 m1-03-06-c7의 C와 똑같다. 또 '한꺼번에 □로 만든다'는 무엇을 정수로 만드는지가 문장에 없다.",
+        "exclusionReason": "B 제외: m1-03-06-c7·m1-03-06-xc12의 B와 같은 '분모의 최소공배수 곱하기' 풀이를 숫자만 바꾼 중복이다. C 제외: m1-03-06-c7의 C와 빈칸 답이 똑같은 중복이다.",
+        "studentLabel": "분수가 여럿인 방정식의 분모 한 번에 없애기",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "분모의 최소공배수 곱하기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1267,
+        "part": "m1plus",
+        "sourceFingerprint": "781584545cb6203934642c56056837191e007db3a50b35e5b21ed0b48cc6d0ee",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1267
+        },
+        "directReview": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc21",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "양변에 같은 식 빼기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "등식의 양변에 같은 {식}을 더하거나 빼도 등식은 성립하므로, 문자가 있는 항도 {같은 방법}으로 정리한다.",
+        "example": {
+          "prompt": "$3x=x+8$의 양변에서 $x$를 빼면?",
+          "answer": "$2x=8$"
+        },
+        "studentC": "등식의 양변에 같은 □을 더하거나 빼도 등식은 성립하므로, 문자가 있는 항도 □으로 정리한다.",
+        "answers": [
+          "식",
+          "같은 방법"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "등식의 양변에 더하거나 빼는 것이 수가 아니라 $x$처럼 문자가 있는 식이어도 등식이 성립하는지 답하세요. 그리고 $3x=x+8$에서 우변의 $x$를 없애려면 양변에 어떤 계산을 하는지와 그 결과 식을 쓰세요.",
+        "bAnswer": "성립한다. 양변에서 $x$를 빼면 $3x-x=x+8-x$이므로 $2x=8$이다.",
+        "bGoal": "양변에 같은 식을 더하거나 빼도 등식이 성립함을 알고 문자가 있는 항을 정리한다.",
+        "bReason": "제목 '양변에 같은 식 빼기'만으로는 '수'에서 '식'으로 넓힌다는 요점이 드러나지 않는다. 수가 아닌 식도 되는지를 먼저 묻고 구체 방정식에 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "등식의 양변에 같은 식을 더하거나 빼도 등식은 성립하므로 문자가 있는 항도 같은 방법으로 정리한다. 예를 들어 $3x=x+8$은 양변에서 {$x$}를 빼어 $2x=8$로 정리한다.",
+        "cAnswers": [
+          "$x$"
+        ],
+        "cReason": "원문 빈칸 '식'은 한 낱말이라 '수', '항', '문자' 중 무엇인지 정하기 어렵다. '같은 방법'도 가리키는 것이 흐릿하고 '같은'이 앞에 이미 나온다. 일반 문장은 그대로 보여 주고 예시에서 빼는 식을 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "문자가 있는 식을 더하거나 빼도 등식은 성립한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변에서 $x$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과 $2x=8$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "definition",
+        "roleReason": "같은 식을 더하고 빼도 성립",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1268,
+        "part": "m1plus",
+        "sourceFingerprint": "7d971f64f372dd57ee5e3ecc9d70b32331718b24875763a39402aae52d983b72",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1268
+        },
+        "directReview": null,
+        "cMarkedSentence": "등식의 양변에 같은 식을 더하거나 빼도 등식은 성립하므로 문자가 있는 항도 같은 방법으로 정리한다. 예를 들어 $3x=x+8$은 양변에서 {$x$}를 빼어 $2x=8$로 정리한다.",
+        "cSlotAnswers": [
+          "$x$"
+        ],
+        "cStudentSentence": "등식의 양변에 같은 식을 더하거나 빼도 등식은 성립하므로 문자가 있는 항도 같은 방법으로 정리한다. 예를 들어 $3x=x+8$은 양변에서 □를 빼어 $2x=8$로 정리한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$",
+            "equivalentAnswers": [
+              "$x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x$"
+          ]
+        ],
+        "proposalFingerprint": "ad10c4d3712ad229ca9ebcfc2bcc6a7ffea6aa28a50a826d899a27c131949888"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc22",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "같은 계산의 결과",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$a=b$일 때 $3a-1$과 $3b-1$은 {같다}. 같은 수에 같은 계산을 하면 결과도 {같기} 때문이다.",
+        "example": {
+          "prompt": "$a=b$이면 $2a+5$와 $2b+5$의 관계는?",
+          "answer": "같다"
+        },
+        "studentC": "$a=b$일 때 $3a-1$과 $3b-1$은 □. 같은 수에 같은 계산을 하면 결과도 □ 때문이다.",
+        "answers": [
+          "같다",
+          "같기"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$a=b$일 때 $2a+5$와 $2b+5$의 값이 어떤 관계인지 쓰세요. 그리고 $a=b$에서 등식의 성질을 어떤 순서로 쓰면 그 관계를 얻는지 설명하세요.",
+        "bAnswer": "두 값은 같다. $a=b$의 양변에 $2$를 곱하면 $2a=2b$이고, 다시 양변에 $5$를 더하면 $2a+5=2b+5$이다.",
+        "bGoal": "$a=b$에 등식의 성질을 거듭 써서 두 식이 같음을 보인다.",
+        "bReason": "제목 '같은 계산의 결과'는 무엇에 같은 계산을 한 결과인지 없다. 두 식을 주고 관계와 그것을 얻는 과정을 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$a=b$일 때 양변에 $3$을 곱하면 {$3a=3b$}이고, 다시 양변에서 $1$을 빼면 $3a-1=3b-1$이다. 같은 수에 같은 계산을 하면 결과도 같기 때문이다.",
+        "cAnswers": [
+          "$3a=3b$"
+        ],
+        "cReason": "원문은 두 빈칸의 답이 '같다', '같기'로 같은 말이고 바로 옆에 '같은'이 두 번 나와 베끼면 된다. 결론은 보여 주고, 거기까지 가는 중간 단계 식을 묻도록 바꾸었다.",
+        "studentLabel": "$a=b$일 때 같은 계산을 한 두 식",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 값은 같다($2a+5=2b+5$)"
+            ]
+          },
+          {
+            "anyOf": [
+              "먼저 양변에 $2$를 곱해 $2a=2b$"
+            ]
+          },
+          {
+            "anyOf": [
+              "다음에 양변에 $5$를 더한다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "같은 계산이면 결과도 같음",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1269,
+        "part": "m1plus",
+        "sourceFingerprint": "04ea1c9e7398584b4003e13946dc3a2a66c96ed983371887bcad8403a77aa692",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1269
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a=b$일 때 양변에 $3$을 곱하면 {$3a=3b$}이고, 다시 양변에서 $1$을 빼면 $3a-1=3b-1$이다. 같은 수에 같은 계산을 하면 결과도 같기 때문이다.",
+        "cSlotAnswers": [
+          "$3a=3b$"
+        ],
+        "cStudentSentence": "$a=b$일 때 양변에 $3$을 곱하면 □이고, 다시 양변에서 $1$을 빼면 $3a-1=3b-1$이다. 같은 수에 같은 계산을 하면 결과도 같기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3a=3b$",
+            "equivalentAnswers": [
+              "$3a=3b$",
+              "$3b=3a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$3a=3b$",
+            "accept": [
+              "$3b=3a$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$3a=3b$",
+            "$3b=3a$"
+          ]
+        ],
+        "proposalFingerprint": "65d6b40c19baf2284341b6985f995118dcbef7f1a154cfde43294287603f2517"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc23",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "음수로 나눌 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "양변을 음수로 나누어도 등식은 성립하며, $0$이 아닌 변은 {부호}가 {바뀐다}.",
+        "example": {
+          "prompt": "$-3x=12$의 해는?",
+          "answer": "$x=-4$"
+        },
+        "studentC": "양변을 음수로 나누어도 등식은 성립하며, $0$이 아닌 변은 □가 □.",
+        "answers": [
+          "부호",
+          "바뀐다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$-3x=12$의 양변을 음수 $-3$으로 나누어도 등식이 성립하는지 답하고, 나눈 결과 식을 쓰세요. 그리고 우변의 부호가 나누기 전과 어떻게 달라졌는지 말하세요.",
+        "bAnswer": "$-3$은 $0$이 아니므로 성립한다. 결과는 $x=-4$이다. 우변은 양수 $12$에서 음수 $-4$로 부호가 바뀌었다.",
+        "bGoal": "양변을 음수로 나누어도 등식이 성립하고 $0$이 아닌 변의 부호가 바뀜을 안다.",
+        "bReason": "제목 '음수로 나눌 때'는 조건만 있고 무엇을 답할지 없다. 구체 방정식에서 성립 여부, 결과, 부호 변화를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "양변을 음수로 나누어도 등식은 성립하며, 이때 $0$이 아닌 변은 {부호}가 바뀐다. 예를 들어 $-3x=12$의 양변을 $-3$으로 나누면 $x=-4$이다.",
+        "cAnswers": [
+          "부호"
+        ],
+        "cReason": "원문은 '$0$이 아닌 변은 □가 □'로 주어와 서술어를 다 가려 무엇이 어떻게 되는지 짐작할 단서가 없다. 빈칸을 '부호' 하나로 줄이고 확인할 예시를 붙였다.",
+        "studentLabel": "등식의 양변을 음수로 나눌 때",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "성립한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과 $x=-4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "우변의 부호가 양수($12$)에서 음수($-4$)로 바뀌었다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "음수로 나누면 부호 바뀜",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1270,
+        "part": "m1plus",
+        "sourceFingerprint": "3ad88645cedc9d5e537e1b7d374a3152fca07d383cb0af574cb10973bf00b079",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1270
+        },
+        "directReview": null,
+        "cMarkedSentence": "양변을 음수로 나누어도 등식은 성립하며, 이때 $0$이 아닌 변은 {부호}가 바뀐다. 예를 들어 $-3x=12$의 양변을 $-3$으로 나누면 $x=-4$이다.",
+        "cSlotAnswers": [
+          "부호"
+        ],
+        "cStudentSentence": "양변을 음수로 나누어도 등식은 성립하며, 이때 $0$이 아닌 변은 □가 바뀐다. 예를 들어 $-3x=12$의 양변을 $-3$으로 나누면 $x=-4$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부호"
+          ]
+        ],
+        "proposalFingerprint": "6e404b6d8368c88753c4308fd0402af12137e8b5c9803dd981e3965a9a919e11"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc24",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "틀린 줄 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "풀이에서 한쪽 변에만 계산했거나 양변에 한 계산이 {다르면}, 그 줄은 등식의 성질로 {설명할 수 없는} 줄이다.",
+        "example": {
+          "prompt": "$\\frac{x}{3}=4$를 $x=\\frac{4}{3}$로 푼 잘못은?",
+          "answer": "양변에 $3$을 곱해야 한다"
+        },
+        "studentC": "풀이에서 한쪽 변에만 계산했거나 양변에 한 계산이 □, 그 줄은 등식의 성질로 □ 줄이다.",
+        "answers": [
+          "다르면",
+          "설명할 수 없는"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "양변에 서로 다른 계산을 한 줄을 찾아 고친다.",
+        "bReason": "제목 '틀린 줄 찾기'가 요구하는 일은 m1-03-05-xc14의 B(양변에 같은 계산을 했는지로 변형의 옳고 그름 판단)와 같다. 틀린 까닭도 '양변에 다른 계산'으로 같고 예시 숫자만 다르다.",
+        "cDecision": "rewrite",
+        "cAfter": "풀이의 어느 줄에서 한쪽 변에만 계산을 했거나 양변에 서로 {다른} 계산을 했다면, 그 줄은 등식의 성질로 설명할 수 없는 틀린 줄이다.",
+        "cAnswers": [
+          "다른"
+        ],
+        "cReason": "원문 둘째 빈칸 '설명할 수 없는'은 학생이 떠올리기 어려운 긴 표현이고, 두 빈칸으로 조건과 결론이 함께 가려진다. 결론은 보이게 두고 틀린 줄의 조건인 '다른'만 남겼다.",
+        "exclusionReason": "B 제외: m1-03-05-xc14의 B(바꾼 과정이 옳은지 판단)와 같은 유형의 오류 판단 문항을 숫자만 바꾼 중복이다. C는 조건 하나만 묻는 빈칸으로 유지한다.",
+        "studentLabel": "방정식 풀이에서 틀린 줄 찾기",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "양변 계산 다른 줄 찾기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1271,
+        "part": "m1plus",
+        "sourceFingerprint": "12e0f79e60edf940f7e6e4aaf09733f0f81dd5469f196a56ba0d882836f7555f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1271
+        },
+        "directReview": null,
+        "cMarkedSentence": "풀이의 어느 줄에서 한쪽 변에만 계산을 했거나 양변에 서로 {다른} 계산을 했다면, 그 줄은 등식의 성질로 설명할 수 없는 틀린 줄이다.",
+        "cSlotAnswers": [
+          "다른"
+        ],
+        "cStudentSentence": "풀이의 어느 줄에서 한쪽 변에만 계산을 했거나 양변에 서로 □ 계산을 했다면, 그 줄은 등식의 성질로 설명할 수 없는 틀린 줄이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다른",
+            "equivalentAnswers": [
+              "다른"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다른"
+          ]
+        ],
+        "proposalFingerprint": "8e5eae15e3bef219ae178e27601b592bfbdda16a67bb82aee0cfdd89b663939f"
+      }
+    }
+  ]
+}

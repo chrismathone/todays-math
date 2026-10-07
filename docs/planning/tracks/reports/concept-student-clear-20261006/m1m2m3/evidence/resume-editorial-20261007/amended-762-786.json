@@ -1,0 +1,2118 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-20261007/input-762-786.json",
+  "changes": [
+    {
+      "id": "m3-01-02-c7",
+      "cAfter": "실수는 유리수와 무리수로 나뉜다. 유리수 중 정수를 제외한 나머지를 {정수가 아닌 유리수}라 한다.",
+      "cReason": "정수·정수가 아닌 유리수의 두 이름을 순서 바꾸어도 참인 빈칸 대신 제외된 범주를 보이고 나머지 이름을 묻는다."
+    },
+    {
+      "id": "m3-01-02-c8",
+      "cAfter": "두 실수 $a$, $b$에 대해 $a-b>0$이면 $a$ {$>$} $b$이고, $a-b=0$이면 $a$ {$=$} $b$이며, $a-b<0$이면 $a$ {$<$} $b$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$>$"
+        ],
+        [
+          "$=$"
+        ],
+        [
+          "$<$"
+        ]
+      ],
+      "cReason": "양수이면 a가 크다·음수이면 b가 크다의 두 참인 조합이 생기는 연동 빈칸을 실제 세 부호별 비교로 바꾼다."
+    },
+    {
+      "id": "m3-01-02-c9",
+      "bPrompt": "제곱근표에서 어떤 수를 찾으면 그 수에 대한 어떤 값을 알 수 있는지 쓰시오. 보통 표에 있는 값이 어떤 방식으로 나타낸 값인지도 쓰시오.",
+      "bAnswer": "그 수의 양의 제곱근을 알 수 있다. 보통 소수 몇째 자리까지 나타낸 어림값이다. 다만 $4$의 양의 제곱근 $2$처럼 정확한 값이 표에 나타나는 경우도 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양의 제곱근"
+          ]
+        },
+        {
+          "anyOf": [
+            "보통 소수 몇째 자리까지 나타낸 어림값이다"
+          ]
+        }
+      ],
+      "bReason": "제곱수의 양의 제곱근은 정확히 표시할 수 있으므로 모든 표의 값이 정확한 값과 다르다고 단정하지 않는다."
+    },
+    {
+      "id": "m3-01-03-c3",
+      "bPrompt": "$a>0$, $b>0$일 때 $\\sqrt{a^2b}$에서 인수 $a^2$을 근호 밖으로 꺼낸 식을 쓰고, 이 방법으로 $\\sqrt{12}$를 간단히 하시오.",
+      "bReason": "0<a<1이면 근호 밖으로 꺼낸 뒤 근호 안 수가 오히려 커지므로 항상 더 작아진다는 말을 없앤다.",
+      "coreAfter": "근호 안의 수에 $1$보다 큰 {제곱수}인 인수가 있으면 그 인수의 양의 제곱근을 근호 밖으로 꺼낸다. 예를 들어 $\\sqrt8=\\sqrt{2^2\\times2}=2\\sqrt2$이다. 일반적으로 $a>0$, $b>0$이면 $\\sqrt{a^2b}=a\\sqrt b$이다.",
+      "coreReason": "제곱인 인수 자체가 밖으로 나오는 원문 오류를 그 인수의 양의 제곱근으로 고치고 일반식에서 양수 조건을 밝힌다.",
+      "cAfter": "근호 안의 수에 $1$보다 큰 제곱수인 인수가 있으면 그 인수의 {양의 제곱근}을 근호 밖으로 꺼낸다. 예를 들어 $\\sqrt{12}=\\sqrt{4\\times3}=2\\sqrt3$이다.",
+      "cReason": "1보다 큰 제곱수라는 인수를 보이고 밖으로 나오는 것은 그 수 자체가 아닌 양의 제곱근임을 확인한다."
+    },
+    {
+      "id": "m3-01-03-c4",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모에 같은 0이 아닌 수를 곱해 분모를 유리수로 바꾸는 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{\\sqrt5}{5}$"
+          ]
+        }
+      ],
+      "bReason": "분수값을 유지하는 같은 영이 아닌 수의 곱셈 조건을 유리화 정의에 함께 요구한다."
+    },
+    {
+      "id": "m3-01-03-c5",
+      "bPrompt": "근호를 간단히 한 뒤 근호가 있는 항끼리 더하거나 뺄 때, 하나로 묶을 수 있는 항은 어떤 항인지 쓰시오. 또 $4\\sqrt5-\\sqrt5+2\\sqrt3$을 계산하시오.",
+      "bReason": "근호 안 수가 다른 식도 먼저 간단히 하면 묶일 수 있으므로 간단히 한 뒤의 같은 근호 조건임을 명시한다."
+    },
+    {
+      "id": "m3-02-01-c8",
+      "bPrompt": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt a+\\sqrt b$인 분수를 유리화하려 한다. 합과 차의 곱 공식을 써서 분모를 $a-b$로 만들려면 분자와 분모에 어떤 식을 곱하는지 쓰시오.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\sqrt a-\\sqrt b$를 곱한다"
+          ]
+        }
+      ],
+      "bReason": "음의 켤레 등 다른 유리화 방법도 가능한 열린 질문을 원하는 분모 a-b와 사용할 공식으로 정해 질문·모범답 범위를 맞춘다."
+    },
+    {
+      "id": "m3-02-02-c1",
+      "bPrompt": "다항식의 인수란 무엇인지 설명하시오. 또 $x^2+3x$를 정수 계수인 두 일차식의 곱으로 나타내고, 그 두 인수를 쓰시오.",
+      "bAnswer": "다항식을 여러 식의 곱으로 나타냈을 때 곱해진 식 하나하나를 그 다항식의 인수라 한다. $x^2+3x=x(x+3)$이므로 두 인수는 $x$와 $x+3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "여러 식의 곱으로 나타냈을 때 곱해진 각 식"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x^2+3x=x(x+3)$로 두 인수 $x$, $x+3$을 쓴다",
+            "$x^2+3x=(-x)(-x-3)$로 두 인수 $-x$, $-x-3$을 쓴다"
+          ]
+        }
+      ],
+      "bReason": "질문에 이미 준 x(x+3)을 베끼지 않도록 학생이 직접 두 일차식의 곱을 만든다. 질문 범위에 맞는 음의 두 인수도 같은 곱의 대안으로 인정하되 1과 원다항식은 일차식 두 개가 아니므로 제외한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m3-01-02-c5",
+      "bDecision": "rewrite",
+      "bPrompt": "수직선에서 원점의 왼쪽에 있는 점에 대응하는 실수를 무엇이라고 하는지 쓰고, 그 수를 $0$과 비교하시오.",
+      "bAnswer": "음의 실수(음수)이고, $0$보다 작다.",
+      "bGoal": "수직선 위치로 음수를 알아보기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음의 실수",
+            "음수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$보다 작다"
+          ]
+        }
+      ],
+      "bReason": "c4와 같은 형식을 피해 위치에서 이름과 부호를 찾게 했다.",
+      "cDecision": "keep",
+      "cReason": "위치 한 칸만 묻는 짧은 빈칸으로 분명하다.",
+      "learningRole": "naming",
+      "roleReason": "원점 왼쪽의 수를 음의 실수로 부르기",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 762,
+      "part": "m3",
+      "sourceFingerprint": "1c8f27d7fa68dba1451a54808a0b18fc7b9a1bb1ed99c93025514f36f8ae51d1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 762
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0$보다 작은 실수가 음의 실수(음수)이고, 수직선에서 원점의 □에 놓인다.",
+      "cFrozenDefinition": "$0$보다 작은 실수가 음의 실수(음수)이고, 수직선에서 원점의 {왼쪽}에 놓인다.",
+      "cFrozenAnswers": [
+        "왼쪽"
+      ],
+      "cMarkedSentence": "$0$보다 작은 실수가 음의 실수(음수)이고, 수직선에서 원점의 {왼쪽}에 놓인다.",
+      "cSlotAnswers": [
+        "왼쪽"
+      ],
+      "cStudentSentence": "$0$보다 작은 실수가 음의 실수(음수)이고, 수직선에서 원점의 □에 놓인다.",
+      "cAnswers": [
+        "왼쪽"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "왼쪽",
+          "equivalentAnswers": [
+            "왼쪽"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "왼쪽"
+        ]
+      ],
+      "proposalFingerprint": "637bb066263122050683a1cfd866dcd94ad288e00ebdf14e8180feeaa59e1209"
+    },
+    {
+      "id": "m3-01-02-c6",
+      "bDecision": "rewrite",
+      "bPrompt": "소수를 유한소수, 순환소수, 순환하지 않는 무한소수로 나눌 때, 각각이 유리수인지 무리수인지 분류하시오.",
+      "bAnswer": "유한소수와 순환소수는 유리수이고, 순환하지 않는 무한소수는 무리수이다.",
+      "bGoal": "소수의 종류로 유리수와 무리수 가르기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "유한소수는 유리수"
+          ]
+        },
+        {
+          "anyOf": [
+            "순환소수는 유리수"
+          ]
+        },
+        {
+          "anyOf": [
+            "순환하지 않는 무한소수는 무리수"
+          ]
+        }
+      ],
+      "bReason": "분류할 소수 세 종류를 제시해 각각의 소속을 묻도록 특정했다.",
+      "cDecision": "keep",
+      "cReason": "순환소수와 무리수 두 칸이 분류의 핵심이라 유지한다.",
+      "learningRole": "definition",
+      "roleReason": "소수 종류별 유리수·무리수 분류",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 763,
+      "part": "m3",
+      "sourceFingerprint": "c7f21249cb287cfc8c4191327e72b5af6ff8e1cef9e2ed7a11a175c089fe50f6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 763
+      },
+      "directReview": null,
+      "cFrozenSentence": "소수 가운데 유한소수와 □는 유리수이고, 순환하지 않는 무한소수는 □이다.",
+      "cFrozenDefinition": "소수 가운데 유한소수와 {순환소수}는 유리수이고, 순환하지 않는 무한소수는 {무리수}이다.",
+      "cFrozenAnswers": [
+        "순환소수",
+        "무리수"
+      ],
+      "cMarkedSentence": "소수 가운데 유한소수와 {순환소수}는 유리수이고, 순환하지 않는 무한소수는 {무리수}이다.",
+      "cSlotAnswers": [
+        "순환소수",
+        "무리수"
+      ],
+      "cStudentSentence": "소수 가운데 유한소수와 □는 유리수이고, 순환하지 않는 무한소수는 □이다.",
+      "cAnswers": [
+        "순환소수",
+        "무리수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "순환소수",
+          "equivalentAnswers": [
+            "순환소수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "무리수",
+          "equivalentAnswers": [
+            "무리수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "순환소수"
+        ],
+        [
+          "무리수"
+        ]
+      ],
+      "proposalFingerprint": "6e390e16676121492e9991cdb3e549232601ecfd9f22cd72284fcd59e8a393d6"
+    },
+    {
+      "id": "m3-01-02-c7",
+      "bDecision": "rewrite",
+      "bPrompt": "실수는 유리수와 무리수로 나뉜다. 이 가운데 유리수를 다시 두 종류로 나누면 무엇과 무엇이 되는지 쓰시오.",
+      "bAnswer": "정수와 정수가 아닌 유리수로 나뉜다.",
+      "bGoal": "실수의 분류에서 유리수 아래 단계 말하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정수"
+          ]
+        },
+        {
+          "anyOf": [
+            "정수가 아닌 유리수"
+          ]
+        }
+      ],
+      "bReason": "전체 분류 중 유리수의 하위 두 갈래만 묻도록 범위를 좁혔다.",
+      "cDecision": "rewrite",
+      "cReason": "정수·정수가 아닌 유리수의 두 이름을 순서 바꾸어도 참인 빈칸 대신 제외된 범주를 보이고 나머지 이름을 묻는다.",
+      "learningRole": "definition",
+      "roleReason": "실수 분류표에서 유리수의 하위 분류",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 764,
+      "part": "m3",
+      "sourceFingerprint": "e64b710981e7b5b3c3220220c7213b0d1acb32710390393d8373632a38edc4b3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 764
+      },
+      "directReview": null,
+      "cMarkedSentence": "실수는 유리수와 무리수로 나뉜다. 유리수 중 정수를 제외한 나머지를 {정수가 아닌 유리수}라 한다.",
+      "cSlotAnswers": [
+        "정수가 아닌 유리수"
+      ],
+      "cStudentSentence": "실수는 유리수와 무리수로 나뉜다. 유리수 중 정수를 제외한 나머지를 □라 한다.",
+      "cAnswers": [
+        "정수가 아닌 유리수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "정수가 아닌 유리수",
+          "equivalentAnswers": [
+            "정수가 아닌 유리수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "정수가 아닌 유리수"
+        ]
+      ],
+      "proposalFingerprint": "34f9f1651fb86ffa4863d0f5859fc5bd42c881a475dd4c56243af58b359dc354",
+      "cAfter": "실수는 유리수와 무리수로 나뉜다. 유리수 중 정수를 제외한 나머지를 {정수가 아닌 유리수}라 한다."
+    },
+    {
+      "id": "m3-01-02-c8",
+      "bDecision": "rewrite",
+      "bPrompt": "두 실수 $a$, $b$의 크기를 $a-b$를 이용해 비교하려고 한다. $a-b$가 양수일 때, $0$일 때, 음수일 때 $a$와 $b$의 대소 관계를 각각 쓰시오.",
+      "bAnswer": "$a-b>0$이면 $a>b$, $a-b=0$이면 $a=b$, $a-b<0$이면 $a<b$이다.",
+      "bGoal": "차의 부호로 두 실수의 대소 판정하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a-b>0$이면 $a>b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a-b=0$이면 $a=b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a-b<0$이면 $a<b$"
+          ]
+        }
+      ],
+      "bReason": "차의 세 가지 부호별 결론을 묻도록 기호 $a$, $b$와 경우를 명시했다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 실수 $a$, $b$에 대해 $a-b>0$이면 $a$ {$>$} $b$이고, $a-b=0$이면 $a$ {$=$} $b$이며, $a-b<0$이면 $a$ {$<$} $b$이다.",
+      "cAnswers": [
+        "$>$",
+        "$=$",
+        "$<$"
+      ],
+      "cReason": "양수이면 a가 크다·음수이면 b가 크다의 두 참인 조합이 생기는 연동 빈칸을 실제 세 부호별 비교로 바꾼다.",
+      "learningRole": "procedure",
+      "roleReason": "$a-b$의 부호로 대소를 정하는 절차",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 765,
+      "part": "m3",
+      "sourceFingerprint": "d3c4c3d0bc7e803d386b3c422cd7919812b18be74a04e9ad22e7049ea66f3d3d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 765
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 실수 $a$, $b$에 대해 $a-b>0$이면 $a$ {$>$} $b$이고, $a-b=0$이면 $a$ {$=$} $b$이며, $a-b<0$이면 $a$ {$<$} $b$이다.",
+      "cSlotAnswers": [
+        "$>$",
+        "$=$",
+        "$<$"
+      ],
+      "cStudentSentence": "두 실수 $a$, $b$에 대해 $a-b>0$이면 $a$ □ $b$이고, $a-b=0$이면 $a$ □ $b$이며, $a-b<0$이면 $a$ □ $b$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$>$",
+          "equivalentAnswers": [
+            "$>$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$=$",
+          "equivalentAnswers": [
+            "$=$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$<$",
+          "equivalentAnswers": [
+            "$<$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$>$"
+        ],
+        [
+          "$=$"
+        ],
+        [
+          "$<$"
+        ]
+      ],
+      "proposalFingerprint": "df7293cbd6bc1bbe75a7908256fdcc6b3e67ce560590e1db0a86983827781736"
+    },
+    {
+      "id": "m3-01-02-c9",
+      "bDecision": "rewrite",
+      "bPrompt": "제곱근표에서 어떤 수를 찾으면 그 수에 대한 어떤 값을 알 수 있는지 쓰시오. 보통 표에 있는 값이 어떤 방식으로 나타낸 값인지도 쓰시오.",
+      "bAnswer": "그 수의 양의 제곱근을 알 수 있다. 보통 소수 몇째 자리까지 나타낸 어림값이다. 다만 $4$의 양의 제곱근 $2$처럼 정확한 값이 표에 나타나는 경우도 있다.",
+      "bGoal": "제곱근표가 주는 값의 뜻 알기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양의 제곱근"
+          ]
+        },
+        {
+          "anyOf": [
+            "보통 소수 몇째 자리까지 나타낸 어림값이다"
+          ]
+        }
+      ],
+      "bReason": "제곱수의 양의 제곱근은 정확히 표시할 수 있으므로 모든 표의 값이 정확한 값과 다르다고 단정하지 않는다.",
+      "cDecision": "keep",
+      "cReason": "수의 범위는 지면에 주고 핵심인 '양의 제곱근'만 비워 유지한다.",
+      "learningRole": "definition",
+      "roleReason": "양의 제곱근의 어림값을 모은 표",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 766,
+      "part": "m3",
+      "sourceFingerprint": "790085cceadb074e35b2564afc7f1232c03a467d0360cf910ec1cca9c3847fed",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 766
+      },
+      "directReview": null,
+      "cFrozenSentence": "$1.00$부터 $99.9$까지의 수에 대해 □의 어림값을 찾아볼 수 있게 늘어놓은 표가 제곱근표이다.",
+      "cFrozenDefinition": "$1.00$부터 $99.9$까지의 수에 대해 {양의 제곱근}의 어림값을 찾아볼 수 있게 늘어놓은 표가 제곱근표이다.",
+      "cFrozenAnswers": [
+        "양의 제곱근"
+      ],
+      "cMarkedSentence": "$1.00$부터 $99.9$까지의 수에 대해 {양의 제곱근}의 어림값을 찾아볼 수 있게 늘어놓은 표가 제곱근표이다.",
+      "cSlotAnswers": [
+        "양의 제곱근"
+      ],
+      "cStudentSentence": "$1.00$부터 $99.9$까지의 수에 대해 □의 어림값을 찾아볼 수 있게 늘어놓은 표가 제곱근표이다.",
+      "cAnswers": [
+        "양의 제곱근"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양의 제곱근",
+          "equivalentAnswers": [
+            "양의 제곱근"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양의 제곱근"
+        ]
+      ],
+      "proposalFingerprint": "a037665eea8cc0d1727a411ceccd0ea54f1d1bc0b086ecced9c191a934dee9af"
+    },
+    {
+      "id": "m3-01-02-c10",
+      "bDecision": "rewrite",
+      "bPrompt": "수직선 위의 점에 대응하는 수를 모두 모으면 어떤 수 전체가 되는지 쓰고, 서로 다른 두 수 $a$, $b$($a<b$) 사이에 있는 수가 몇 개인지 쓰시오.",
+      "bAnswer": "수직선은 실수에 대응하는 점들로 빈틈없이 채워지므로 실수 전체가 된다. 서로 다른 두 실수 사이에는 실수가 무수히 많다.",
+      "bGoal": "실수와 수직선의 대응 관계 이해하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "실수 전체",
+            "실수"
+          ]
+        },
+        {
+          "anyOf": [
+            "무수히 많다",
+            "셀 수 없이 많다",
+            "끝없이 많다"
+          ]
+        }
+      ],
+      "bReason": "질문에 '실수'를 쓰지 않아 대응하는 수의 종류를 학생이 직접 말하게 했다.",
+      "cDecision": "keep",
+      "cReason": "수의 종류와 개수 두 칸이 각각 분명하다.",
+      "learningRole": "definition",
+      "roleReason": "실수와 수직선 위 점의 대응, 실수의 조밀성",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 767,
+      "part": "m3",
+      "sourceFingerprint": "9b02e5c0fdea88a3584c39194d1bf1c912882f8a508bdc4d52806ee0877c8213",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 767
+      },
+      "directReview": null,
+      "cFrozenSentence": "수직선은 □에 대응하는 점만으로 빈틈없이 채워지고, 서로 다른 두 실수 사이에는 실수가 □.",
+      "cFrozenDefinition": "수직선은 {실수}에 대응하는 점만으로 빈틈없이 채워지고, 서로 다른 두 실수 사이에는 실수가 {무수히 많다}.",
+      "cFrozenAnswers": [
+        "실수",
+        "무수히 많다"
+      ],
+      "cMarkedSentence": "수직선은 {실수}에 대응하는 점만으로 빈틈없이 채워지고, 서로 다른 두 실수 사이에는 실수가 {무수히 많다}.",
+      "cSlotAnswers": [
+        "실수",
+        "무수히 많다"
+      ],
+      "cStudentSentence": "수직선은 □에 대응하는 점만으로 빈틈없이 채워지고, 서로 다른 두 실수 사이에는 실수가 □.",
+      "cAnswers": [
+        "실수",
+        "무수히 많다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "실수",
+          "equivalentAnswers": [
+            "실수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "무수히 많다",
+          "equivalentAnswers": [
+            "무수히 많다",
+            "셀 수 없이 많다",
+            "끝없이 많다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "무수히 많다",
+          "accept": [
+            "셀 수 없이 많다",
+            "끝없이 많다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "실수"
+        ],
+        [
+          "무수히 많다",
+          "셀 수 없이 많다",
+          "끝없이 많다"
+        ]
+      ],
+      "proposalFingerprint": "2bedad5e2e63c8abbb653b4c1015d6e2049d370fb0f9ceda9015357ebe18ce5b"
+    },
+    {
+      "id": "m3-01-03-c1",
+      "bDecision": "rewrite",
+      "bPrompt": "$a>0$, $b>0$일 때 $\\sqrt{a}\\times\\sqrt{b}$를 근호 하나로 나타내고, 이를 이용해 $\\sqrt{3}\\times\\sqrt{5}$를 계산하시오.",
+      "bAnswer": "$\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}$이므로 $\\sqrt{3}\\times\\sqrt{5}=\\sqrt{15}$이다.",
+      "bGoal": "제곱근의 곱셈 법칙 쓰기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\sqrt{ab}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{15}$"
+          ]
+        }
+      ],
+      "bReason": "근호 안이 양수라는 조건과 일반식, 적용 계산을 함께 지정했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$a>0$, $b>0$일 때 $\\sqrt{a}\\times\\sqrt{b}$는 근호 안의 수끼리 {곱해서} 근호 하나로 쓴다. 예를 들어 $\\sqrt{2}\\times\\sqrt{5}=${$\\sqrt{10}$}이다.",
+      "cAnswers": [
+        "곱해서",
+        "$\\sqrt{10}$"
+      ],
+      "cReason": "양수 조건이 빠져 있고 예가 답을 보여 주어 조건을 넣고 예를 빈칸으로 바꿨다.",
+      "coreAfter": "$a>0$, $b>0$일 때 근호끼리 곱하면 근호 안의 수끼리 {곱해서} 근호 하나로 쓴다: $\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}$, 예를 들어 $\\sqrt{2}\\times\\sqrt{3}=\\sqrt{6}$.",
+      "coreReason": "근호 안의 수가 양수라는 조건이 빠져 있어 보충했다.",
+      "learningRole": "procedure",
+      "roleReason": "$\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}$로 곱하기",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 768,
+      "part": "m3",
+      "sourceFingerprint": "d18ff65cb41b60b69e1847ce2028d284c897ce0bea2f31858eb0971b6246faec",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 768
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a>0$, $b>0$일 때 $\\sqrt{a}\\times\\sqrt{b}$는 근호 안의 수끼리 {곱해서} 근호 하나로 쓴다. 예를 들어 $\\sqrt{2}\\times\\sqrt{5}=${$\\sqrt{10}$}이다.",
+      "cSlotAnswers": [
+        "곱해서",
+        "$\\sqrt{10}$"
+      ],
+      "cStudentSentence": "$a>0$, $b>0$일 때 $\\sqrt{a}\\times\\sqrt{b}$는 근호 안의 수끼리 □ 근호 하나로 쓴다. 예를 들어 $\\sqrt{2}\\times\\sqrt{5}=$□이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱해서",
+          "equivalentAnswers": [
+            "곱해서"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\sqrt{10}$",
+          "equivalentAnswers": [
+            "$\\sqrt{10}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱해서"
+        ],
+        [
+          "$\\sqrt{10}$"
+        ]
+      ],
+      "proposalFingerprint": "2dde17c25a6edc3033a27788a5c79c96916779cfb183d113997ddaa1f4e4e884"
+    },
+    {
+      "id": "m3-01-03-c2",
+      "bDecision": "rewrite",
+      "bPrompt": "$a>0$, $b>0$일 때 $\\sqrt{a}\\div\\sqrt{b}$를 근호 하나로 나타내고, 이를 이용해 $\\sqrt{15}\\div\\sqrt{3}$을 계산하시오.",
+      "bAnswer": "$\\sqrt{a}\\div\\sqrt{b}=\\sqrt{\\frac{a}{b}}$이므로 $\\sqrt{15}\\div\\sqrt{3}=\\sqrt{5}$이다.",
+      "bGoal": "제곱근의 나눗셈 법칙 쓰기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\sqrt{\\frac{a}{b}}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{5}$"
+          ]
+        }
+      ],
+      "bReason": "양수 조건과 일반식, 적용 계산을 함께 묻도록 정했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$a>0$, $b>0$일 때 $\\sqrt{a}\\div\\sqrt{b}$는 근호 안의 수끼리 {나누어} 근호 하나로 쓴다. 예를 들어 $\\sqrt{14}\\div\\sqrt{2}=${$\\sqrt{7}$}이다.",
+      "cAnswers": [
+        "나누어",
+        "$\\sqrt{7}$"
+      ],
+      "cReason": "양수 조건이 없고 예가 답을 보여 주어 조건을 넣고 예를 빈칸으로 바꿨다.",
+      "coreAfter": "$a>0$, $b>0$일 때 근호끼리 나누면 근호 안의 수끼리 {나누어} 근호 하나로 쓴다: $\\sqrt{a}\\div\\sqrt{b}=\\sqrt{\\frac{a}{b}}$, 예를 들어 $\\sqrt{6}\\div\\sqrt{2}=\\sqrt{3}$.",
+      "coreReason": "근호 안의 수가 양수라는 조건이 빠져 있어 보충했다.",
+      "learningRole": "procedure",
+      "roleReason": "$\\sqrt{a}\\div\\sqrt{b}=\\sqrt{\\frac{a}{b}}$로 나누기",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 769,
+      "part": "m3",
+      "sourceFingerprint": "f54a62dd57f381a957d97813f8ce4fdcae805296a6e4c5ef3ade47037187d244",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 769
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a>0$, $b>0$일 때 $\\sqrt{a}\\div\\sqrt{b}$는 근호 안의 수끼리 {나누어} 근호 하나로 쓴다. 예를 들어 $\\sqrt{14}\\div\\sqrt{2}=${$\\sqrt{7}$}이다.",
+      "cSlotAnswers": [
+        "나누어",
+        "$\\sqrt{7}$"
+      ],
+      "cStudentSentence": "$a>0$, $b>0$일 때 $\\sqrt{a}\\div\\sqrt{b}$는 근호 안의 수끼리 □ 근호 하나로 쓴다. 예를 들어 $\\sqrt{14}\\div\\sqrt{2}=$□이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나누어",
+          "equivalentAnswers": [
+            "나누어"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\sqrt{7}$",
+          "equivalentAnswers": [
+            "$\\sqrt{7}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "나누어"
+        ],
+        [
+          "$\\sqrt{7}$"
+        ]
+      ],
+      "proposalFingerprint": "a68330e80f6f310a6de6c7c9eeae07abc5dc6064eb7454b8d0e740c5c4abc7ff"
+    },
+    {
+      "id": "m3-01-03-c3",
+      "bDecision": "rewrite",
+      "bPrompt": "$a>0$, $b>0$일 때 $\\sqrt{a^2b}$에서 인수 $a^2$을 근호 밖으로 꺼낸 식을 쓰고, 이 방법으로 $\\sqrt{12}$를 간단히 하시오.",
+      "bAnswer": "$\\sqrt{a^2b}=a\\sqrt{b}$이다. $\\sqrt{12}=\\sqrt{2^2\\times 3}=2\\sqrt{3}$이다.",
+      "bGoal": "제곱인 인수를 근호 밖으로 꺼내기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a\\sqrt{b}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\sqrt{3}$"
+          ]
+        }
+      ],
+      "bReason": "0<a<1이면 근호 밖으로 꺼낸 뒤 근호 안 수가 오히려 커지므로 항상 더 작아진다는 말을 없앤다.",
+      "cDecision": "rewrite",
+      "cAfter": "근호 안의 수에 $1$보다 큰 제곱수인 인수가 있으면 그 인수의 {양의 제곱근}을 근호 밖으로 꺼낸다. 예를 들어 $\\sqrt{12}=\\sqrt{4\\times3}=2\\sqrt3$이다.",
+      "cAnswers": [
+        "양의 제곱근"
+      ],
+      "cReason": "1보다 큰 제곱수라는 인수를 보이고 밖으로 나오는 것은 그 수 자체가 아닌 양의 제곱근임을 확인한다.",
+      "coreAfter": "근호 안의 수에 $1$보다 큰 {제곱수}인 인수가 있으면 그 인수의 양의 제곱근을 근호 밖으로 꺼낸다. 예를 들어 $\\sqrt8=\\sqrt{2^2\\times2}=2\\sqrt2$이다. 일반적으로 $a>0$, $b>0$이면 $\\sqrt{a^2b}=a\\sqrt b$이다.",
+      "coreReason": "제곱인 인수 자체가 밖으로 나오는 원문 오류를 그 인수의 양의 제곱근으로 고치고 일반식에서 양수 조건을 밝힌다.",
+      "learningRole": "procedure",
+      "roleReason": "$\\sqrt{a^2b}=a\\sqrt{b}$로 근호 간단히 하기",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 770,
+      "part": "m3",
+      "sourceFingerprint": "4ef787c25e4c101811ceb62808e45a0db7ea7df4e716bd94935b64e69b8a67a2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 770
+      },
+      "directReview": null,
+      "cMarkedSentence": "근호 안의 수에 $1$보다 큰 제곱수인 인수가 있으면 그 인수의 {양의 제곱근}을 근호 밖으로 꺼낸다. 예를 들어 $\\sqrt{12}=\\sqrt{4\\times3}=2\\sqrt3$이다.",
+      "cSlotAnswers": [
+        "양의 제곱근"
+      ],
+      "cStudentSentence": "근호 안의 수에 $1$보다 큰 제곱수인 인수가 있으면 그 인수의 □을 근호 밖으로 꺼낸다. 예를 들어 $\\sqrt{12}=\\sqrt{4\\times3}=2\\sqrt3$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양의 제곱근",
+          "equivalentAnswers": [
+            "양의 제곱근"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "제곱",
+          "accept": [
+            "제곱수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양의 제곱근"
+        ]
+      ],
+      "proposalFingerprint": "a650168fbd6b15373b8d80ed9393ab9bc06d62a91d6b459de3dc66edd984fb3e"
+    },
+    {
+      "id": "m3-01-03-c4",
+      "bDecision": "rewrite",
+      "bPrompt": "분모에 근호가 있는 분수에서 '분모의 유리화'가 무엇인지 쓰고, $\\frac{1}{\\sqrt{5}}$의 분모를 유리화하시오.",
+      "bAnswer": "분자와 분모에 같은 $0$이 아닌 수를 곱해 분모를 유리수로 바꾸는 것이다. $\\frac{1}{\\sqrt{5}}=\\frac{\\sqrt{5}}{5}$",
+      "bGoal": "분모의 유리화의 뜻과 실행",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모에 같은 0이 아닌 수를 곱해 분모를 유리수로 바꾸는 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{\\sqrt5}{5}$"
+          ]
+        }
+      ],
+      "bReason": "분수값을 유지하는 같은 영이 아닌 수의 곱셈 조건을 유리화 정의에 함께 요구한다.",
+      "cDecision": "keep",
+      "cReason": "목표인 '유리수' 한 칸이 정의의 핵심이라 유지한다.",
+      "learningRole": "definition",
+      "roleReason": "분모를 유리수로 바꾸는 유리화의 뜻",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 771,
+      "part": "m3",
+      "sourceFingerprint": "57924710a47c75f8b3b7844435dc38b6bc3583e03da1ad56090bd3c3d29430fc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 771
+      },
+      "directReview": null,
+      "cFrozenSentence": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 □로 바꾸는 일을 분모의 유리화라 한다.",
+      "cFrozenDefinition": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 {유리수}로 바꾸는 일을 분모의 유리화라 한다.",
+      "cFrozenAnswers": [
+        "유리수"
+      ],
+      "cMarkedSentence": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 {유리수}로 바꾸는 일을 분모의 유리화라 한다.",
+      "cSlotAnswers": [
+        "유리수"
+      ],
+      "cStudentSentence": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 □로 바꾸는 일을 분모의 유리화라 한다.",
+      "cAnswers": [
+        "유리수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "유리수",
+          "equivalentAnswers": [
+            "유리수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "유리수"
+        ]
+      ],
+      "proposalFingerprint": "e81c57b920cab3ffaab52797c36e360f21abeccd589cdacd61e9f9b02d8fc30e"
+    },
+    {
+      "id": "m3-01-03-c5",
+      "bDecision": "rewrite",
+      "bPrompt": "근호를 간단히 한 뒤 근호가 있는 항끼리 더하거나 뺄 때, 하나로 묶을 수 있는 항은 어떤 항인지 쓰시오. 또 $4\\sqrt5-\\sqrt5+2\\sqrt3$을 계산하시오.",
+      "bAnswer": "근호 안의 수가 같은 항끼리 묶을 수 있다. $4\\sqrt{5}-\\sqrt{5}+2\\sqrt{3}=3\\sqrt{5}+2\\sqrt{3}$",
+      "bGoal": "근호 안이 같은 항끼리 덧셈·뺄셈하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "근호 안의 수가 같은 항"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\sqrt{5}+2\\sqrt{3}$"
+          ]
+        }
+      ],
+      "bReason": "근호 안 수가 다른 식도 먼저 간단히 하면 묶일 수 있으므로 간단히 한 뒤의 같은 근호 조건임을 명시한다.",
+      "cDecision": "keep",
+      "cReason": "'같은'과 '동류항' 두 칸이 예와 함께 분명하다.",
+      "learningRole": "procedure",
+      "roleReason": "근호 안이 같은 항을 동류항처럼 계산",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 772,
+      "part": "m3",
+      "sourceFingerprint": "5c24c73c6a177f642dc3c8a7f2e146a0cf1c114da104bdc3add730fda08bf9dc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 772
+      },
+      "directReview": null,
+      "cFrozenSentence": "근호 안의 수가 □ 항끼리 □처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+      "cFrozenDefinition": "근호 안의 수가 {같은} 항끼리 {동류항}처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+      "cFrozenAnswers": [
+        "같은",
+        "동류항"
+      ],
+      "cMarkedSentence": "근호 안의 수가 {같은} 항끼리 {동류항}처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+      "cSlotAnswers": [
+        "같은",
+        "동류항"
+      ],
+      "cStudentSentence": "근호 안의 수가 □ 항끼리 □처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+      "cAnswers": [
+        "같은",
+        "동류항"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같은",
+          "equivalentAnswers": [
+            "같은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같은"
+        ],
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "e61bce689df145689c62fb28ceb9a297cbda0825200538dfabe6291f1e56b675"
+    },
+    {
+      "id": "m3-01-03-c6",
+      "bDecision": "rewrite",
+      "bPrompt": "근호가 있는 식에서도 분배법칙 $a(b+c)=ab+ac$를 쓸 수 있는 까닭을 쓰고, $\\sqrt{2}(\\sqrt{3}+\\sqrt{5})$를 전개하시오.",
+      "bAnswer": "근호로 나타낸 수도 실수이므로 분배법칙이 그대로 성립한다. $\\sqrt{2}(\\sqrt{3}+\\sqrt{5})=\\sqrt{6}+\\sqrt{10}$",
+      "bGoal": "근호 식에 분배법칙 적용하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "근호로 나타낸 수도 실수",
+            "$\\sqrt{2}$, $\\sqrt{3}$, $\\sqrt{5}$도 실수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{6}+\\sqrt{10}$"
+          ]
+        }
+      ],
+      "bReason": "법칙이 성립하는 근거와 각 항에 곱하는 적용을 함께 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "'각 항'과 '실수' 두 칸이 법칙과 근거를 나눠 묻는다.",
+      "learningRole": "reason",
+      "roleReason": "근호 수도 실수라 분배법칙이 성립",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 773,
+      "part": "m3",
+      "sourceFingerprint": "ce8feff7cff42b1e9d1e46d1e1007ae8733b9ff2a07223b7d913f3967cdb6718",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 773
+      },
+      "directReview": null,
+      "cFrozenSentence": "실수에서 $a(b+c)=ab+ac$가 성립한다 — 괄호 밖의 수는 괄호 안의 □에 곱해지고, 근호로 나타낸 수도 □이므로 이 관계가 그대로 성립한다.",
+      "cFrozenDefinition": "실수에서 $a(b+c)=ab+ac$가 성립한다 — 괄호 밖의 수는 괄호 안의 {각 항}에 곱해지고, 근호로 나타낸 수도 {실수}이므로 이 관계가 그대로 성립한다.",
+      "cFrozenAnswers": [
+        "각 항",
+        "실수"
+      ],
+      "cMarkedSentence": "실수에서 $a(b+c)=ab+ac$가 성립한다 — 괄호 밖의 수는 괄호 안의 {각 항}에 곱해지고, 근호로 나타낸 수도 {실수}이므로 이 관계가 그대로 성립한다.",
+      "cSlotAnswers": [
+        "각 항",
+        "실수"
+      ],
+      "cStudentSentence": "실수에서 $a(b+c)=ab+ac$가 성립한다 — 괄호 밖의 수는 괄호 안의 □에 곱해지고, 근호로 나타낸 수도 □이므로 이 관계가 그대로 성립한다.",
+      "cAnswers": [
+        "각 항",
+        "실수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "각 항",
+          "equivalentAnswers": [
+            "각 항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "실수",
+          "equivalentAnswers": [
+            "실수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "각 항"
+        ],
+        [
+          "실수"
+        ]
+      ],
+      "proposalFingerprint": "9ec075a4dca6911696eaa55844a51a2620fd4b00c7f93ea68c9a05ac61297360"
+    },
+    {
+      "id": "m3-01-03-c7",
+      "bDecision": "rewrite",
+      "bPrompt": "$a>0$, $b>0$일 때 $\\sqrt{a}+\\sqrt{b}$를 $\\sqrt{a+b}$로 계산해도 되는지 판단하고, $a=9$, $b=16$을 넣어 두 식의 값을 비교하시오.",
+      "bAnswer": "안 된다. $\\sqrt{9}+\\sqrt{16}=3+4=7$이고 $\\sqrt{9+16}=\\sqrt{25}=5$이므로 두 값이 다르다.",
+      "bGoal": "근호 안끼리 더하는 오류 바로잡기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "안 된다",
+            "같지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{9}+\\sqrt{16}=7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{9+16}=5$",
+            "$\\sqrt{25}=5$"
+          ]
+        }
+      ],
+      "bReason": "곱셈 법칙을 덧셈에 잘못 쓰는 오류를 값이 깔끔한 $9$, $16$으로 확인하게 했다.",
+      "cDecision": "keep",
+      "cReason": "'다르다'와 '덧셈' 두 칸이 오류의 핵심이다.",
+      "learningRole": "reason",
+      "roleReason": "$\\sqrt{a}+\\sqrt{b}\\ne\\sqrt{a+b}$ 확인",
+      "exampleNeeded": true,
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 774,
+      "part": "m3",
+      "sourceFingerprint": "9f0a332f75514ae915e766e0a4655dbb1a417835765f8394db5234e044159507",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 774
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a>0$, $b>0$이면 $\\sqrt{a}+\\sqrt{b}$는 $\\sqrt{a+b}$와 □ — 제곱근의 곱셈 법칙을 그대로 □에 쓸 수는 없다.",
+      "cFrozenDefinition": "$a>0$, $b>0$이면 $\\sqrt{a}+\\sqrt{b}$는 $\\sqrt{a+b}$와 {다르다} — 제곱근의 곱셈 법칙을 그대로 {덧셈}에 쓸 수는 없다.",
+      "cFrozenAnswers": [
+        "다르다",
+        "덧셈"
+      ],
+      "cMarkedSentence": "$a>0$, $b>0$이면 $\\sqrt{a}+\\sqrt{b}$는 $\\sqrt{a+b}$와 {다르다} — 제곱근의 곱셈 법칙을 그대로 {덧셈}에 쓸 수는 없다.",
+      "cSlotAnswers": [
+        "다르다",
+        "덧셈"
+      ],
+      "cStudentSentence": "$a>0$, $b>0$이면 $\\sqrt{a}+\\sqrt{b}$는 $\\sqrt{a+b}$와 □ — 제곱근의 곱셈 법칙을 그대로 □에 쓸 수는 없다.",
+      "cAnswers": [
+        "다르다",
+        "덧셈"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "다르다",
+          "equivalentAnswers": [
+            "다르다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "덧셈",
+          "equivalentAnswers": [
+            "덧셈"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "다르다"
+        ],
+        [
+          "덧셈"
+        ]
+      ],
+      "proposalFingerprint": "63e5571e1b628ee6a16678d6d83b7f2a492e65a74a4720f71974f3194e396f84"
+    },
+    {
+      "id": "m3-02-01-c1",
+      "learningRole": "procedure",
+      "roleReason": "분배법칙으로 곱한 뒤 동류항을 정리하는 순서",
+      "bDecision": "rewrite",
+      "bPrompt": "두 다항식을 곱할 때 어떤 법칙으로 어떻게 곱하는지, 곱한 뒤 무엇을 하여 정리하는지 차례대로 설명하시오.",
+      "bAnswer": "분배법칙으로 한 식의 각 항을 다른 식의 모든 항에 곱한 다음, 동류항끼리 모아 정리한다.",
+      "bGoal": "다항식 곱셈의 두 단계 절차 설명",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분배법칙을 써서 한 식의 각 항을 다른 식의 모든 항에 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한 뒤 동류항끼리 모아 정리한다"
+          ]
+        }
+      ],
+      "bReason": "제목만으로는 무엇을 답할지 모르므로 곱하는 법칙과 정리 단계를 특정했다.",
+      "cDecision": "keep",
+      "cReason": "절차의 두 핵심어만 비운 짧고 분명한 문장이다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 775,
+      "part": "m3",
+      "sourceFingerprint": "af6cc04b5bc2a960e99a12e4ca8fc724ef73f306391e20e213b9b3141d3d38d9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 775
+      },
+      "directReview": null,
+      "cFrozenSentence": "□으로 한 식의 각 항을 다른 식의 모든 항에 곱한 다음 □끼리 모아 정리한다.",
+      "cFrozenDefinition": "{분배법칙}으로 한 식의 각 항을 다른 식의 모든 항에 곱한 다음 {동류항}끼리 모아 정리한다.",
+      "cFrozenAnswers": [
+        "분배법칙",
+        "동류항"
+      ],
+      "cMarkedSentence": "{분배법칙}으로 한 식의 각 항을 다른 식의 모든 항에 곱한 다음 {동류항}끼리 모아 정리한다.",
+      "cSlotAnswers": [
+        "분배법칙",
+        "동류항"
+      ],
+      "cStudentSentence": "□으로 한 식의 각 항을 다른 식의 모든 항에 곱한 다음 □끼리 모아 정리한다.",
+      "cAnswers": [
+        "분배법칙",
+        "동류항"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분배법칙",
+          "equivalentAnswers": [
+            "분배법칙",
+            "분배 법칙"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "분배법칙",
+          "accept": [
+            "분배 법칙"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분배법칙",
+          "분배 법칙"
+        ],
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "8e5d86799ecabbc7563bbe2dd72e1928fcdc71b39acb2ba6b70ffb472a5ca44d"
+    },
+    {
+      "id": "m3-02-01-c2",
+      "learningRole": "definition",
+      "roleReason": "곱셈 공식이 전개 결과를 정리한 등식임",
+      "bDecision": "rewrite",
+      "bPrompt": "$(a+b)^2=a^2+2ab+b^2$은 곱셈 공식의 한 예이다. 곱셈 공식이란 무엇인지 설명하시오.",
+      "bAnswer": "자주 나오는 꼴의 다항식 곱셈을 미리 전개해 정리해 둔 등식이다.",
+      "bGoal": "곱셈 공식의 뜻 설명",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자주 나오는 꼴의 다항식 곱셈을 미리 전개해 둔 것",
+            "곱의 전개 결과를 미리 정리해 둔 것"
+          ]
+        },
+        {
+          "anyOf": [
+            "등식이다",
+            "곱한 식과 전개식이 같다는 식이다"
+          ]
+        }
+      ],
+      "bReason": "제목만으로 범위가 불분명해 예 하나를 주고 뜻을 묻도록 했다.",
+      "cDecision": "keep",
+      "cReason": "전개와 등식이라는 핵심어를 묻는 짧은 정의 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 776,
+      "part": "m3",
+      "sourceFingerprint": "c9ba39945bca598390ef22325ce117fccb751894afda09e745ba1d3b1abf9332",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 776
+      },
+      "directReview": null,
+      "cFrozenSentence": "자주 나오는 꼴의 다항식 곱셈을 미리 □해 정리해 둔 □이 곱셈 공식이다.",
+      "cFrozenDefinition": "자주 나오는 꼴의 다항식 곱셈을 미리 {전개}해 정리해 둔 {등식}이 곱셈 공식이다.",
+      "cFrozenAnswers": [
+        "전개",
+        "등식"
+      ],
+      "cMarkedSentence": "자주 나오는 꼴의 다항식 곱셈을 미리 {전개}해 정리해 둔 {등식}이 곱셈 공식이다.",
+      "cSlotAnswers": [
+        "전개",
+        "등식"
+      ],
+      "cStudentSentence": "자주 나오는 꼴의 다항식 곱셈을 미리 □해 정리해 둔 □이 곱셈 공식이다.",
+      "cAnswers": [
+        "전개",
+        "등식"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "전개",
+          "equivalentAnswers": [
+            "전개"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "등식",
+          "equivalentAnswers": [
+            "등식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "전개"
+        ],
+        [
+          "등식"
+        ]
+      ],
+      "proposalFingerprint": "8e306ace5a12f1df185c3b1851f0f272797c2d0a62704d918413d056ef0cc6a8"
+    },
+    {
+      "id": "m3-02-01-c3",
+      "learningRole": "procedure",
+      "roleReason": "합의 제곱 전개와 가운데 항 $2ab$",
+      "bDecision": "rewrite",
+      "bPrompt": "$(a+b)^2$을 전개한 식을 쓰고, 가운데 항이 두 항 $a$, $b$의 곱과 어떤 관계인지 말하시오.",
+      "bAnswer": "$a^2+2ab+b^2$이고, 가운데 항 $2ab$는 $a$와 $b$의 곱의 $2$배이다.",
+      "bGoal": "합의 제곱 공식과 가운데 항 이해",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a^2+2ab+b^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가운데 항은 $ab$의 $2$배이다"
+          ]
+        }
+      ],
+      "bReason": "공식 결과와 가운데 항의 관계를 함께 묻도록 범위를 정했다.",
+      "cDecision": "keep",
+      "cReason": "전개식과 $2$배를 묻는 짧고 유용한 공식 빈칸이다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 777,
+      "part": "m3",
+      "sourceFingerprint": "26b847b7cc6e38c684ab2f4fc29f6d78d27a6802fbc0a575b220c1879e147770",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 777
+      },
+      "directReview": null,
+      "cFrozenSentence": "$(a+b)^2$을 전개하면 □이다 — 가운데 항은 두 항의 곱의 □.",
+      "cFrozenDefinition": "$(a+b)^2$을 전개하면 {$a^2+2ab+b^2$}이다 — 가운데 항은 두 항의 곱의 {$2$배}.",
+      "cFrozenAnswers": [
+        "$a^2+2ab+b^2$",
+        "$2$배"
+      ],
+      "cMarkedSentence": "$(a+b)^2$을 전개하면 {$a^2+2ab+b^2$}이다 — 가운데 항은 두 항의 곱의 {$2$배}.",
+      "cSlotAnswers": [
+        "$a^2+2ab+b^2$",
+        "$2$배"
+      ],
+      "cStudentSentence": "$(a+b)^2$을 전개하면 □이다 — 가운데 항은 두 항의 곱의 □.",
+      "cAnswers": [
+        "$a^2+2ab+b^2$",
+        "$2$배"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a^2+2ab+b^2$",
+          "equivalentAnswers": [
+            "$a^2+2ab+b^2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$배",
+          "equivalentAnswers": [
+            "$2$배",
+            "두 배"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$2$배",
+          "accept": [
+            "두 배"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$a^2+2ab+b^2$"
+        ],
+        [
+          "$2$배",
+          "두 배"
+        ]
+      ],
+      "proposalFingerprint": "672ee7e200411331e8025c2171db354b351d650ed9d1ffa4282f0c1d47a2abbe"
+    },
+    {
+      "id": "m3-02-01-c4",
+      "learningRole": "procedure",
+      "roleReason": "차의 제곱 전개와 부호 비교",
+      "bDecision": "rewrite",
+      "bPrompt": "$(a-b)^2$을 전개한 식을 쓰고, $(a+b)^2$의 전개식과 비교하여 무엇이 다른지 말하시오.",
+      "bAnswer": "$a^2-2ab+b^2$이고, $(a+b)^2=a^2+2ab+b^2$과 가운데 항의 부호만 다르다.",
+      "bGoal": "차의 제곱 공식과 합의 제곱 비교",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a^2-2ab+b^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가운데 항의 부호만 다르다",
+            "가운데 항이 $+2ab$가 아니라 $-2ab$이다"
+          ]
+        }
+      ],
+      "bReason": "합의 제곱과의 비교 대상을 질문에 밝혀 관계를 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "전개식과 차이점(부호)을 묻는 짧은 비교 빈칸이다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 778,
+      "part": "m3",
+      "sourceFingerprint": "114d4831643e83dac2e764adb9509badf14f2a767b0885ee7c6ba786e6247edc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 778
+      },
+      "directReview": null,
+      "cFrozenSentence": "$(a-b)^2$을 전개하면 □이다 — 합의 제곱과 가운데 항의 □만 다르다.",
+      "cFrozenDefinition": "$(a-b)^2$을 전개하면 {$a^2-2ab+b^2$}이다 — 합의 제곱과 가운데 항의 {부호}만 다르다.",
+      "cFrozenAnswers": [
+        "$a^2-2ab+b^2$",
+        "부호"
+      ],
+      "cMarkedSentence": "$(a-b)^2$을 전개하면 {$a^2-2ab+b^2$}이다 — 합의 제곱과 가운데 항의 {부호}만 다르다.",
+      "cSlotAnswers": [
+        "$a^2-2ab+b^2$",
+        "부호"
+      ],
+      "cStudentSentence": "$(a-b)^2$을 전개하면 □이다 — 합의 제곱과 가운데 항의 □만 다르다.",
+      "cAnswers": [
+        "$a^2-2ab+b^2$",
+        "부호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a^2-2ab+b^2$",
+          "equivalentAnswers": [
+            "$a^2-2ab+b^2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a^2-2ab+b^2$"
+        ],
+        [
+          "부호"
+        ]
+      ],
+      "proposalFingerprint": "eee9ee6b722f9af5c863c3a5d63315fe1bedf5995199f196d867183155c7163f"
+    },
+    {
+      "id": "m3-02-01-c5",
+      "learningRole": "reason",
+      "roleReason": "$-ab$와 $+ab$가 지워져 두 항만 남는 까닭",
+      "bDecision": "rewrite",
+      "bPrompt": "$(a+b)(a-b)$를 전개한 결과를 쓰고, 결과에 항이 두 개만 남는 까닭을 설명하시오.",
+      "bAnswer": "$a^2-b^2$이다. 전개할 때 나오는 $-ab$와 $+ab$가 서로 지워지기 때문이다.",
+      "bGoal": "합과 차의 곱 공식과 그 까닭",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a^2-b^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-ab$와 $+ab$가 서로 지워진다",
+            "가운데 두 항의 합이 $0$이다"
+          ]
+        }
+      ],
+      "bReason": "결과뿐 아니라 가운데 항이 사라지는 까닭을 묻도록 특정했다.",
+      "cDecision": "keep",
+      "cReason": "결과와 소거 현상을 묻는 분명한 문장이다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 779,
+      "part": "m3",
+      "sourceFingerprint": "d16b036319ad7b67639c829fc4594ff71219618be7fb45c0946e5dd003a6ea64",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 779
+      },
+      "directReview": null,
+      "cFrozenSentence": "$(a+b)(a-b)$를 전개하면 □이다 — 가운데 두 항 $-ab$와 $+ab$가 □.",
+      "cFrozenDefinition": "$(a+b)(a-b)$를 전개하면 {$a^2-b^2$}이다 — 가운데 두 항 $-ab$와 $+ab$가 {지워진다}.",
+      "cFrozenAnswers": [
+        "$a^2-b^2$",
+        "지워진다"
+      ],
+      "cMarkedSentence": "$(a+b)(a-b)$를 전개하면 {$a^2-b^2$}이다 — 가운데 두 항 $-ab$와 $+ab$가 {지워진다}.",
+      "cSlotAnswers": [
+        "$a^2-b^2$",
+        "지워진다"
+      ],
+      "cStudentSentence": "$(a+b)(a-b)$를 전개하면 □이다 — 가운데 두 항 $-ab$와 $+ab$가 □.",
+      "cAnswers": [
+        "$a^2-b^2$",
+        "지워진다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a^2-b^2$",
+          "equivalentAnswers": [
+            "$a^2-b^2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "지워진다",
+          "equivalentAnswers": [
+            "지워진다",
+            "없어진다",
+            "소거된다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "지워진다",
+          "accept": [
+            "없어진다",
+            "소거된다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a^2-b^2$"
+        ],
+        [
+          "지워진다",
+          "없어진다",
+          "소거된다"
+        ]
+      ],
+      "proposalFingerprint": "8ed9739cf285c87a3ad40d4b89eb9ae2e26f9a2674f1b7aa33f91576c251a7a6"
+    },
+    {
+      "id": "m3-02-01-c6",
+      "learningRole": "procedure",
+      "roleReason": "$x$의 계수는 합, 상수항은 곱",
+      "bDecision": "rewrite",
+      "bPrompt": "$(x+a)(x+b)$를 전개할 때 $x$의 계수와 상수항은 각각 $a$, $b$로 어떻게 나타나는지 말하시오.",
+      "bAnswer": "$x$의 계수는 $a+b$(두 수의 합), 상수항은 $ab$(두 수의 곱)이다.",
+      "bGoal": "$(x+a)(x+b)$ 전개의 계수 구조",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$의 계수는 $a+b$",
+            "$x$의 계수는 두 수의 합"
+          ]
+        },
+        {
+          "anyOf": [
+            "상수항은 $ab$",
+            "상수항은 두 수의 곱"
+          ]
+        }
+      ],
+      "bReason": "전개식 전체보다 계수와 상수항의 관계를 묻도록 좁혔다.",
+      "cDecision": "keep",
+      "cReason": "합과 곱의 대응을 묻는 짧은 비교 빈칸이다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 780,
+      "part": "m3",
+      "sourceFingerprint": "2600bab283efc78d531bcc8cf3ea07fedd459601f1160600c686de3a896d6222",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 780
+      },
+      "directReview": null,
+      "cFrozenSentence": "$(x+a)(x+b)$를 전개하면 $x$의 계수는 두 수 $a$, $b$의 □, 상수항은 □이다.",
+      "cFrozenDefinition": "$(x+a)(x+b)$를 전개하면 $x$의 계수는 두 수 $a$, $b$의 {합}, 상수항은 {곱}이다.",
+      "cFrozenAnswers": [
+        "합",
+        "곱"
+      ],
+      "cMarkedSentence": "$(x+a)(x+b)$를 전개하면 $x$의 계수는 두 수 $a$, $b$의 {합}, 상수항은 {곱}이다.",
+      "cSlotAnswers": [
+        "합",
+        "곱"
+      ],
+      "cStudentSentence": "$(x+a)(x+b)$를 전개하면 $x$의 계수는 두 수 $a$, $b$의 □, 상수항은 □이다.",
+      "cAnswers": [
+        "합",
+        "곱"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "합",
+          "equivalentAnswers": [
+            "합"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "곱",
+          "equivalentAnswers": [
+            "곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "합"
+        ],
+        [
+          "곱"
+        ]
+      ],
+      "proposalFingerprint": "ca60319339073693fb7ddb5dceded2b91ef8137435bd4c12d5969e5f4f075168"
+    },
+    {
+      "id": "m3-02-01-c7",
+      "learningRole": "procedure",
+      "roleReason": "$(ax+b)(cx+d)$의 각 계수",
+      "bDecision": "rewrite",
+      "bPrompt": "$(ax+b)(cx+d)$를 전개할 때 $x^2$의 계수, $x$의 계수, 상수항을 각각 $a$, $b$, $c$, $d$로 나타내시오.",
+      "bAnswer": "$x^2$의 계수는 $ac$, $x$의 계수는 $ad+bc$, 상수항은 $bd$이다.",
+      "bGoal": "일차식 곱의 계수 구하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x^2$의 계수 $ac$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$의 계수 $ad+bc$"
+          ]
+        },
+        {
+          "anyOf": [
+            "상수항 $bd$"
+          ]
+        }
+      ],
+      "bReason": "세 계수를 문자로 나타내라고 답의 형태를 정했다.",
+      "cDecision": "keep",
+      "cReason": "세 계수를 묻는 빈칸이 서로 독립적이고 분명하다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 781,
+      "part": "m3",
+      "sourceFingerprint": "55502e4e9fecc2a9e989ed35cdd689a84aec27daa6c5348168251e4119f8dfeb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 781
+      },
+      "directReview": null,
+      "cFrozenSentence": "$(ax+b)(cx+d)$를 전개하면 $x^2$의 계수는 □, $x$의 계수는 □, 상수항은 □이다.",
+      "cFrozenDefinition": "$(ax+b)(cx+d)$를 전개하면 $x^2$의 계수는 {$ac$}, $x$의 계수는 {$ad+bc$}, 상수항은 {$bd$}이다.",
+      "cFrozenAnswers": [
+        "$ac$",
+        "$ad+bc$",
+        "$bd$"
+      ],
+      "cMarkedSentence": "$(ax+b)(cx+d)$를 전개하면 $x^2$의 계수는 {$ac$}, $x$의 계수는 {$ad+bc$}, 상수항은 {$bd$}이다.",
+      "cSlotAnswers": [
+        "$ac$",
+        "$ad+bc$",
+        "$bd$"
+      ],
+      "cStudentSentence": "$(ax+b)(cx+d)$를 전개하면 $x^2$의 계수는 □, $x$의 계수는 □, 상수항은 □이다.",
+      "cAnswers": [
+        "$ac$",
+        "$ad+bc$",
+        "$bd$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$ac$",
+          "equivalentAnswers": [
+            "$ac$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$ad+bc$",
+          "equivalentAnswers": [
+            "$ad+bc$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$bd$",
+          "equivalentAnswers": [
+            "$bd$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$ac$"
+        ],
+        [
+          "$ad+bc$"
+        ],
+        [
+          "$bd$"
+        ]
+      ],
+      "proposalFingerprint": "06395e79a000e5005bf27ef5b30308ea8e6972af850bdb466fec80c1378e8c52"
+    },
+    {
+      "id": "m3-02-01-c8",
+      "learningRole": "procedure",
+      "roleReason": "$\\sqrt{a}-\\sqrt{b}$를 곱해 분모를 $a-b$로 만듦",
+      "bDecision": "rewrite",
+      "bPrompt": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt a+\\sqrt b$인 분수를 유리화하려 한다. 합과 차의 곱 공식을 써서 분모를 $a-b$로 만들려면 분자와 분모에 어떤 식을 곱하는지 쓰시오.",
+      "bAnswer": "$\\sqrt{a}-\\sqrt{b}$를 곱한다. 합과 차의 곱이 되어 분모가 $(\\sqrt{a})^2-(\\sqrt{b})^2=a-b$인 유리수가 된다.",
+      "bGoal": "곱셈 공식을 이용한 분모의 유리화",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\sqrt a-\\sqrt b$를 곱한다"
+          ]
+        }
+      ],
+      "bReason": "음의 켤레 등 다른 유리화 방법도 가능한 열린 질문을 원하는 분모 a-b와 사용할 공식으로 정해 질문·모범답 범위를 맞춘다.",
+      "cDecision": "keep",
+      "cReason": "조건이 갖추어져 있고 곱할 식과 공식 이름을 묻는 빈칸이 분명하다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 782,
+      "part": "m3",
+      "sourceFingerprint": "f81c90daf8d7bbdf8e6d12c7b739ebaae7ca94d3fec65ecce8f62af00aee0b90",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 782
+      },
+      "directReview": null,
+      "cFrozenSentence": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 □를 곱한다 — □이 되어 분모가 유리수 $a-b$가 된다.",
+      "cFrozenDefinition": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 {$\\sqrt{a}-\\sqrt{b}$}를 곱한다 — {합과 차의 곱}이 되어 분모가 유리수 $a-b$가 된다.",
+      "cFrozenAnswers": [
+        "$\\sqrt{a}-\\sqrt{b}$",
+        "합과 차의 곱"
+      ],
+      "cMarkedSentence": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 {$\\sqrt{a}-\\sqrt{b}$}를 곱한다 — {합과 차의 곱}이 되어 분모가 유리수 $a-b$가 된다.",
+      "cSlotAnswers": [
+        "$\\sqrt{a}-\\sqrt{b}$",
+        "합과 차의 곱"
+      ],
+      "cStudentSentence": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 □를 곱한다 — □이 되어 분모가 유리수 $a-b$가 된다.",
+      "cAnswers": [
+        "$\\sqrt{a}-\\sqrt{b}$",
+        "합과 차의 곱"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\sqrt{a}-\\sqrt{b}$",
+          "equivalentAnswers": [
+            "$\\sqrt{a}-\\sqrt{b}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "합과 차의 곱",
+          "equivalentAnswers": [
+            "합과 차의 곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\sqrt{a}-\\sqrt{b}$"
+        ],
+        [
+          "합과 차의 곱"
+        ]
+      ],
+      "proposalFingerprint": "4e981250ed6fe67316cb5a8314582fe14b45bbfbc03d75d85a76e1cf7fafe62a"
+    },
+    {
+      "id": "m3-02-01-c9",
+      "learningRole": "procedure",
+      "roleReason": "$a^2+b^2$을 합·차의 제곱으로 변형",
+      "bDecision": "rewrite",
+      "bPrompt": "$a^2+b^2$을 $(a+b)^2$과 $ab$로 나타낸 식, $(a-b)^2$과 $ab$로 나타낸 식을 각각 쓰시오.",
+      "bAnswer": "$a^2+b^2=(a+b)^2-2ab$, $a^2+b^2=(a-b)^2+2ab$",
+      "bGoal": "곱셈 공식의 변형식 쓰기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a^2+b^2=(a+b)^2-2ab$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a^2+b^2=(a-b)^2+2ab$"
+          ]
+        }
+      ],
+      "bReason": "두 변형식을 어떤 재료로 나타낼지 질문에서 특정했다.",
+      "cDecision": "keep",
+      "cReason": "빼고 더하는 양을 묻는 짧은 공식 빈칸으로 유용하다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 783,
+      "part": "m3",
+      "sourceFingerprint": "2a36a50c4580873084dfbe556d3546de54f1e5780d0812666a037f4e11103f9e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 783
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a^2+b^2$은 $(a+b)^2$에서 □를 빼거나 $(a-b)^2$에 □를 더해서 구한다.",
+      "cFrozenDefinition": "$a^2+b^2$은 $(a+b)^2$에서 {$2ab$}를 빼거나 $(a-b)^2$에 {$2ab$}를 더해서 구한다.",
+      "cFrozenAnswers": [
+        "$2ab$",
+        "$2ab$"
+      ],
+      "cMarkedSentence": "$a^2+b^2$은 $(a+b)^2$에서 {$2ab$}를 빼거나 $(a-b)^2$에 {$2ab$}를 더해서 구한다.",
+      "cSlotAnswers": [
+        "$2ab$",
+        "$2ab$"
+      ],
+      "cStudentSentence": "$a^2+b^2$은 $(a+b)^2$에서 □를 빼거나 $(a-b)^2$에 □를 더해서 구한다.",
+      "cAnswers": [
+        "$2ab$",
+        "$2ab$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2ab$",
+          "equivalentAnswers": [
+            "$2ab$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2ab$",
+          "equivalentAnswers": [
+            "$2ab$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2ab$"
+        ],
+        [
+          "$2ab$"
+        ]
+      ],
+      "proposalFingerprint": "b2a99821b9743b42c5f562a004ac37f1f4881e3fa660ff58a73582ca86ac5160"
+    },
+    {
+      "id": "m3-02-02-c1",
+      "learningRole": "definition",
+      "roleReason": "곱으로 나타낸 식의 각 식이 인수",
+      "bDecision": "rewrite",
+      "bPrompt": "다항식의 인수란 무엇인지 설명하시오. 또 $x^2+3x$를 정수 계수인 두 일차식의 곱으로 나타내고, 그 두 인수를 쓰시오.",
+      "bAnswer": "다항식을 여러 식의 곱으로 나타냈을 때 곱해진 식 하나하나를 그 다항식의 인수라 한다. $x^2+3x=x(x+3)$이므로 두 인수는 $x$와 $x+3$이다.",
+      "bGoal": "인수의 뜻 설명",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "여러 식의 곱으로 나타냈을 때 곱해진 각 식"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x^2+3x=x(x+3)$로 두 인수 $x$, $x+3$을 쓴다",
+            "$x^2+3x=(-x)(-x-3)$로 두 인수 $-x$, $-x-3$을 쓴다"
+          ]
+        }
+      ],
+      "bReason": "질문에 이미 준 x(x+3)을 베끼지 않도록 학생이 직접 두 일차식의 곱을 만든다. 질문 범위에 맞는 음의 두 인수도 같은 곱의 대안으로 인정하되 1과 원다항식은 일차식 두 개가 아니므로 제외한다.",
+      "cDecision": "keep",
+      "cReason": "곱과 인수라는 정의 핵심어를 묻는 분명한 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 784,
+      "part": "m3",
+      "sourceFingerprint": "f58a77f6f336f40b01e52094403e500a4821bcf188839105ef2581ad7cda6807",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 784
+      },
+      "directReview": null,
+      "cFrozenSentence": "다항식을 여러 식의 □으로 나타냈을 때, 곱해진 식 하나하나가 처음 다항식의 □이다.",
+      "cFrozenDefinition": "다항식을 여러 식의 {곱}으로 나타냈을 때, 곱해진 식 하나하나가 처음 다항식의 {인수}이다.",
+      "cFrozenAnswers": [
+        "곱",
+        "인수"
+      ],
+      "cMarkedSentence": "다항식을 여러 식의 {곱}으로 나타냈을 때, 곱해진 식 하나하나가 처음 다항식의 {인수}이다.",
+      "cSlotAnswers": [
+        "곱",
+        "인수"
+      ],
+      "cStudentSentence": "다항식을 여러 식의 □으로 나타냈을 때, 곱해진 식 하나하나가 처음 다항식의 □이다.",
+      "cAnswers": [
+        "곱",
+        "인수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱",
+          "equivalentAnswers": [
+            "곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "인수",
+          "equivalentAnswers": [
+            "인수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱"
+        ],
+        [
+          "인수"
+        ]
+      ],
+      "proposalFingerprint": "cde8233479bd9a3d51bb9b4c854210586ddd4b6a532c03d853f1bea49ba9ad83"
+    },
+    {
+      "id": "m3-02-02-c2",
+      "learningRole": "definition",
+      "roleReason": "인수의 곱으로 고쳐 씀, 전개의 역",
+      "bDecision": "rewrite",
+      "bPrompt": "인수분해란 무엇인지 설명하고, 전개와 어떤 관계인지 말하시오.",
+      "bAnswer": "다항식 하나를 둘 이상의 인수의 곱으로 고쳐 쓰는 일이다. 전개를 거꾸로 한 것이다.",
+      "bGoal": "인수분해의 뜻과 전개와의 관계",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘 이상의 인수의 곱으로 고쳐 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전개를 거꾸로 한 것",
+            "전개의 반대 과정"
+          ]
+        }
+      ],
+      "bReason": "정의와 전개와의 관계 두 가지를 묻도록 특정했다.",
+      "cDecision": "keep",
+      "cReason": "곱과 전개를 묻는 짧은 정의 빈칸으로 유용하다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 785,
+      "part": "m3",
+      "sourceFingerprint": "bef885ca1b990ada03420f4fb2560a75cc76784cb47f3a868efc31c419baf2fd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 785
+      },
+      "directReview": null,
+      "cFrozenSentence": "다항식 하나를 둘 이상의 인수의 □으로 고쳐 쓰는 일이 인수분해이고, □를 거꾸로 한 것이다.",
+      "cFrozenDefinition": "다항식 하나를 둘 이상의 인수의 {곱}으로 고쳐 쓰는 일이 인수분해이고, {전개}를 거꾸로 한 것이다.",
+      "cFrozenAnswers": [
+        "곱",
+        "전개"
+      ],
+      "cMarkedSentence": "다항식 하나를 둘 이상의 인수의 {곱}으로 고쳐 쓰는 일이 인수분해이고, {전개}를 거꾸로 한 것이다.",
+      "cSlotAnswers": [
+        "곱",
+        "전개"
+      ],
+      "cStudentSentence": "다항식 하나를 둘 이상의 인수의 □으로 고쳐 쓰는 일이 인수분해이고, □를 거꾸로 한 것이다.",
+      "cAnswers": [
+        "곱",
+        "전개"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱",
+          "equivalentAnswers": [
+            "곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "전개",
+          "equivalentAnswers": [
+            "전개"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱"
+        ],
+        [
+          "전개"
+        ]
+      ],
+      "proposalFingerprint": "57f970be17770a98d83bad7a662203104af875308aa6766f34c5ecc515872114"
+    },
+    {
+      "id": "m3-02-02-c3",
+      "learningRole": "procedure",
+      "roleReason": "분배법칙을 거꾸로 써서 괄호 밖으로",
+      "bDecision": "rewrite",
+      "bPrompt": "다항식의 모든 항에 공통인 인수가 있을 때 어떤 법칙을 써서 어떻게 인수분해하는지 설명하고, $ma+mb$를 인수분해하시오.",
+      "bAnswer": "분배법칙을 거꾸로 써서 공통인 인수를 괄호 밖으로 묶어 낸다. $ma+mb=m(a+b)$",
+      "bGoal": "공통인 인수로 묶어 내기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분배법칙을 거꾸로 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "공통인 인수를 괄호 밖으로 묶어 낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$m(a+b)$"
+          ]
+        }
+      ],
+      "bReason": "쓰는 법칙과 묶는 방향, 결과를 함께 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "법칙과 묶는 위치를 묻는 빈칸에 식 예가 있어 분명하다.",
+      "authorBatch": 54,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 786,
+      "part": "m3",
+      "sourceFingerprint": "f85840d1f71e81beaa3f8052764e8e94a528c5dcfa2fc89617c4cbb5782c5f85",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 786
+      },
+      "directReview": null,
+      "cFrozenSentence": "모든 항에 똑같이 들어 있는 인수를 □을 거꾸로 써서 괄호 □으로 묶어 낸다: $ma+mb=m(a+b)$.",
+      "cFrozenDefinition": "모든 항에 똑같이 들어 있는 인수를 {분배법칙}을 거꾸로 써서 괄호 {밖}으로 묶어 낸다: $ma+mb=m(a+b)$.",
+      "cFrozenAnswers": [
+        "분배법칙",
+        "밖"
+      ],
+      "cMarkedSentence": "모든 항에 똑같이 들어 있는 인수를 {분배법칙}을 거꾸로 써서 괄호 {밖}으로 묶어 낸다: $ma+mb=m(a+b)$.",
+      "cSlotAnswers": [
+        "분배법칙",
+        "밖"
+      ],
+      "cStudentSentence": "모든 항에 똑같이 들어 있는 인수를 □을 거꾸로 써서 괄호 □으로 묶어 낸다: $ma+mb=m(a+b)$.",
+      "cAnswers": [
+        "분배법칙",
+        "밖"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분배법칙",
+          "equivalentAnswers": [
+            "분배법칙"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "밖",
+          "equivalentAnswers": [
+            "밖",
+            "바깥"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "밖",
+          "accept": [
+            "바깥"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분배법칙"
+        ],
+        [
+          "밖",
+          "바깥"
+        ]
+      ],
+      "proposalFingerprint": "5d17af13e011973c92e4388efaa43033f0de9d0cdfc240520740b99bb179f0fc"
+    }
+  ]
+}

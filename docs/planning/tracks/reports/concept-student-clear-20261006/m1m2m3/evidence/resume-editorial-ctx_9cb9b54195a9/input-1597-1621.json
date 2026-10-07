@@ -1,0 +1,2565 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:20:15.996Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc17",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "밑면이 $n$각형인 각기둥의 교점 · 교선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑면이 $n$각형인 각기둥은 교점이 {$2n$}개, 교선이 {$3n$}개이다.",
+        "example": {
+          "prompt": "오각기둥의 교점과 교선의 개수는?",
+          "answer": "$10$개, $15$개"
+        },
+        "studentC": "밑면이 $n$각형인 각기둥은 교점이 □개, 교선이 □개이다.",
+        "answers": [
+          "$2n$",
+          "$3n$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면이 $n$각형인 각기둥의 교점과 교선의 개수를 각각 $n$에 대한 식으로 나타내고, 그렇게 되는 이유를 설명하시오.",
+        "bAnswer": "교점은 $2n$개, 교선은 $3n$개이다. 교점은 꼭짓점으로 두 밑면에 $n$개씩 있고, 교선은 모서리로 두 밑면에 $n$개씩과 옆면 사이에 $n$개가 있기 때문이다.",
+        "bGoal": "각기둥의 교점·교선 개수를 식으로 나타내기",
+        "bReason": "식만 쓰면 C와 같아져 꼭짓점·모서리를 세는 근거까지 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "교점 $2n$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "교선 $3n$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점이 두 밑면에 $n$개씩 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리가 두 밑면에 $n$개씩, 옆에 $n$개 있다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$n$에 대한 식 두 개를 묻는 짧고 분명한 빈칸",
+        "learningRole": "reason",
+        "roleReason": "꼭짓점·모서리를 세어 $2n$, $3n$을 얻음",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1597,
+        "part": "m1plus",
+        "sourceFingerprint": "07b8152977dec7bbbfc16e91c5b2d9b36052e1df5caac66c4e43b9d758560af5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1597
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑면이 $n$각형인 각기둥은 교점이 □개, 교선이 □개이다.",
+        "cFrozenDefinition": "밑면이 $n$각형인 각기둥은 교점이 {$2n$}개, 교선이 {$3n$}개이다.",
+        "cFrozenAnswers": [
+          "$2n$",
+          "$3n$"
+        ],
+        "cMarkedSentence": "밑면이 $n$각형인 각기둥은 교점이 {$2n$}개, 교선이 {$3n$}개이다.",
+        "cSlotAnswers": [
+          "$2n$",
+          "$3n$"
+        ],
+        "cStudentSentence": "밑면이 $n$각형인 각기둥은 교점이 □개, 교선이 □개이다.",
+        "cAnswers": [
+          "$2n$",
+          "$3n$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2n$",
+            "equivalentAnswers": [
+              "$2n$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3n$",
+            "equivalentAnswers": [
+              "$3n$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2n$"
+          ],
+          [
+            "$3n$"
+          ]
+        ],
+        "proposalFingerprint": "bdabde39c03d8d93f28c2a8a0c9f5788f5ff5734954773560661d93e8a2ea7c3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-01-xc18",
+        "section": "중1::5. 기본 도형::점, 선, 면",
+        "term": "면이 움직인 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "면이 그 면 밖으로 움직인 자리는 {입체}가 된다. 바닥에 놓인 원 모양 면이 위로 곧게 움직이면 {원기둥} 모양이 된다.",
+        "example": {
+          "prompt": "바닥에 놓인 직사각형 모양 면이 위로 곧게 움직인 자리는 어떤 입체 모양인가?",
+          "answer": "직육면체"
+        },
+        "studentC": "면이 그 면 밖으로 움직인 자리는 □가 된다. 바닥에 놓인 원 모양 면이 위로 곧게 움직이면 □ 모양이 된다.",
+        "answers": [
+          "입체",
+          "원기둥"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-01-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "면이 그 면 밖으로 움직인 자리는 어떤 도형이 되는지 쓰고, 바닥에 놓인 직사각형 모양의 면이 위로 곧게 움직인 자리는 어떤 입체 모양인지 쓰시오.",
+        "bAnswer": "입체도형이 된다. 직사각형 모양의 면이 위로 곧게 움직인 자리는 직육면체 모양이다.",
+        "bGoal": "면이 움직여 입체가 됨을 예로 확인하기",
+        "bReason": "C의 원기둥 예와 겹치지 않게 직사각형 예로 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "입체도형",
+              "입체"
+            ]
+          },
+          {
+            "anyOf": [
+              "직육면체",
+              "사각기둥"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "일반 사실과 원 모양 예를 하나씩 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "면이 움직인 자리를 입체로 떠올리기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1598,
+        "part": "m1plus",
+        "sourceFingerprint": "a4740089ea9f054f42ddde05a36179ad2939da417fc97fdb020e6c1e2a2237f5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1598
+        },
+        "directReview": null,
+        "cFrozenSentence": "면이 그 면 밖으로 움직인 자리는 □가 된다. 바닥에 놓인 원 모양 면이 위로 곧게 움직이면 □ 모양이 된다.",
+        "cFrozenDefinition": "면이 그 면 밖으로 움직인 자리는 {입체}가 된다. 바닥에 놓인 원 모양 면이 위로 곧게 움직이면 {원기둥} 모양이 된다.",
+        "cFrozenAnswers": [
+          "입체",
+          "원기둥"
+        ],
+        "cMarkedSentence": "면이 그 면 밖으로 움직인 자리는 {입체}가 된다. 바닥에 놓인 원 모양 면이 위로 곧게 움직이면 {원기둥} 모양이 된다.",
+        "cSlotAnswers": [
+          "입체",
+          "원기둥"
+        ],
+        "cStudentSentence": "면이 그 면 밖으로 움직인 자리는 □가 된다. 바닥에 놓인 원 모양 면이 위로 곧게 움직이면 □ 모양이 된다.",
+        "cAnswers": [
+          "입체",
+          "원기둥"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "입체",
+            "equivalentAnswers": [
+              "입체",
+              "입체도형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "원기둥",
+            "equivalentAnswers": [
+              "원기둥"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "입체",
+            "accept": [
+              "입체도형"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "입체",
+            "입체도형"
+          ],
+          [
+            "원기둥"
+          ]
+        ],
+        "proposalFingerprint": "1fd662ff9e9f11bc2a3c4799afe8a07b3c041a80c19c7ffd98bd0d064fd7e4dd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc1",
+        "section": "중1::5. 기본 도형::각",
+        "term": "각의 꼭짓점과 변",
+        "kind": "정의",
+        "level": "하",
+        "definition": "각을 이루는 두 반직선을 각의 {변}, 두 반직선이 시작하는 점을 각의 {꼭짓점}이라 한다.",
+        "example": {
+          "prompt": "$\\angle AOB$의 꼭짓점은?",
+          "answer": "점 $O$"
+        },
+        "studentC": "각을 이루는 두 반직선을 각의 □, 두 반직선이 시작하는 점을 각의 □이라 한다.",
+        "answers": [
+          "변",
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle AOB$에서 각의 꼭짓점과 두 변을 각각 쓰시오.",
+        "bAnswer": "꼭짓점은 점 $O$이고, 두 변은 반직선 $OA$와 반직선 $OB$이다.",
+        "bGoal": "각에서 꼭짓점과 변 찾기",
+        "bReason": "용어 뜻은 C가 맡으므로 구체적인 각에서 찾아 쓰게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점은 점 $O$"
+            ]
+          },
+          {
+            "anyOf": [
+              "변은 반직선 $OA$와 반직선 $OB$",
+              "변 $OA$, 변 $OB$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "각의 두 부분의 이름을 묻는 짧은 정의 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "naming",
+        "roleReason": "각을 이루는 부분의 이름",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1599,
+        "part": "m1plus",
+        "sourceFingerprint": "48ddcab97d2ea01bef60754c07e52a4db21af3e3c597f271261de116f26e1154",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1599
+        },
+        "directReview": null,
+        "cFrozenSentence": "각을 이루는 두 반직선을 각의 □, 두 반직선이 시작하는 점을 각의 □이라 한다.",
+        "cFrozenDefinition": "각을 이루는 두 반직선을 각의 {변}, 두 반직선이 시작하는 점을 각의 {꼭짓점}이라 한다.",
+        "cFrozenAnswers": [
+          "변",
+          "꼭짓점"
+        ],
+        "cMarkedSentence": "각을 이루는 두 반직선을 각의 {변}, 두 반직선이 시작하는 점을 각의 {꼭짓점}이라 한다.",
+        "cSlotAnswers": [
+          "변",
+          "꼭짓점"
+        ],
+        "cStudentSentence": "각을 이루는 두 반직선을 각의 □, 두 반직선이 시작하는 점을 각의 □이라 한다.",
+        "cAnswers": [
+          "변",
+          "꼭짓점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변",
+            "equivalentAnswers": [
+              "변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "68d32a505034a0f91811bc031be718ef34c3d85e82621098fefd8870289abd7e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc2",
+        "section": "중1::5. 기본 도형::각",
+        "term": "각을 기호로 쓰는 법",
+        "kind": "방법",
+        "level": "하",
+        "definition": "각은 꼭짓점을 나타내는 글자를 {가운데}에 써서 $\\angle AOB$처럼 나타내고, 헷갈리지 않으면 간단히 {$\\angle O$}로도 쓴다.",
+        "example": {
+          "prompt": "꼭짓점이 $B$이고 두 변이 $BA$, $BC$인 각을 기호로 쓰면?",
+          "answer": "$\\angle ABC$"
+        },
+        "studentC": "각은 꼭짓점을 나타내는 글자를 □에 써서 $\\angle AOB$처럼 나타내고, 헷갈리지 않으면 간단히 □로도 쓴다.",
+        "answers": [
+          "가운데",
+          "$\\angle O$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "꼭짓점이 $B$이고 두 변이 반직선 $BA$, $BC$인 각을 세 글자를 써서 기호로 나타내고, 꼭짓점을 나타내는 글자는 어디에 쓰는지 쓰시오.",
+        "bAnswer": "$\\angle ABC$(또는 $\\angle CBA$)로 나타내며, 꼭짓점을 나타내는 글자를 가운데에 쓴다.",
+        "bGoal": "각을 세 글자 기호로 쓰는 규칙 알기",
+        "bReason": "C의 $\\angle AOB$와 다른 각을 주어 규칙을 적용하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle ABC$",
+              "$\\angle CBA$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점 글자를 가운데에 쓴다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "글자 위치 규칙과 줄인 표기를 하나씩 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "naming",
+        "roleReason": "꼭짓점을 가운데 쓰는 각의 표기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1600,
+        "part": "m1plus",
+        "sourceFingerprint": "9c611499ad14a025c5477a2e272baa46a987c713ff5f2456004f7308ea547b61",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1600
+        },
+        "directReview": null,
+        "cFrozenSentence": "각은 꼭짓점을 나타내는 글자를 □에 써서 $\\angle AOB$처럼 나타내고, 헷갈리지 않으면 간단히 □로도 쓴다.",
+        "cFrozenDefinition": "각은 꼭짓점을 나타내는 글자를 {가운데}에 써서 $\\angle AOB$처럼 나타내고, 헷갈리지 않으면 간단히 {$\\angle O$}로도 쓴다.",
+        "cFrozenAnswers": [
+          "가운데",
+          "$\\angle O$"
+        ],
+        "cMarkedSentence": "각은 꼭짓점을 나타내는 글자를 {가운데}에 써서 $\\angle AOB$처럼 나타내고, 헷갈리지 않으면 간단히 {$\\angle O$}로도 쓴다.",
+        "cSlotAnswers": [
+          "가운데",
+          "$\\angle O$"
+        ],
+        "cStudentSentence": "각은 꼭짓점을 나타내는 글자를 □에 써서 $\\angle AOB$처럼 나타내고, 헷갈리지 않으면 간단히 □로도 쓴다.",
+        "cAnswers": [
+          "가운데",
+          "$\\angle O$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가운데",
+            "equivalentAnswers": [
+              "가운데"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\angle O$",
+            "equivalentAnswers": [
+              "$\\angle O$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가운데"
+          ],
+          [
+            "$\\angle O$"
+          ]
+        ],
+        "proposalFingerprint": "8cb4390b657d3c5a0bf9029a0451b05d72b68e7c4f890d82180e6219e15c4f8b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc3",
+        "section": "중1::5. 기본 도형::각",
+        "term": "각의 크기 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$\\angle AOB$는 각 자체를 나타내기도 하고 그 각의 {크기}를 나타내기도 하여, $\\angle AOB=40^\\circ$처럼 {쓴다}.",
+        "example": {
+          "prompt": "$\\angle AOB$의 크기가 $70^\\circ$임을 기호로 쓰면?",
+          "answer": "$\\angle AOB=70^\\circ$"
+        },
+        "studentC": "$\\angle AOB$는 각 자체를 나타내기도 하고 그 각의 □를 나타내기도 하여, $\\angle AOB=40^\\circ$처럼 □.",
+        "answers": [
+          "크기",
+          "쓴다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "기호 $\\angle AOB$가 나타낼 수 있는 두 가지를 쓰고, 각 $AOB$의 크기가 $70^\\circ$임을 식으로 나타내시오.",
+        "bAnswer": "$\\angle AOB$는 각 $AOB$라는 도형을 나타내기도 하고 그 각의 크기를 나타내기도 한다. 크기가 $70^\\circ$임은 $\\angle AOB=70^\\circ$로 쓴다.",
+        "bGoal": "각 기호가 크기도 나타냄을 알고 식으로 쓰기",
+        "bReason": "한 기호의 두 쓰임과 식 표현을 답하도록 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 $AOB$ 자체",
+              "각 $AOB$라는 도형"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 $AOB$의 크기"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle AOB=70^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\angle AOB$는 각 자체를 나타내기도 하고 그 각의 {크기}를 나타내기도 한다. 그래서 각 $AOB$의 크기가 $40^\\circ$이면 {$\\angle AOB=40^\\circ$}로 쓴다.",
+        "cAnswers": [
+          "크기",
+          "$\\angle AOB=40^\\circ$"
+        ],
+        "cReason": "빈칸 '쓴다'는 수학 내용이 없는 서술어라 식 쓰기로 바꿈",
+        "exampleNeeded": true,
+        "learningRole": "naming",
+        "roleReason": "각 기호로 크기를 나타내는 약속",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1601,
+        "part": "m1plus",
+        "sourceFingerprint": "65b7683c07e4f09d93398baa2cc21c348e4f0dee343c3ff6079ba9e5b87838f3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1601
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\angle AOB$는 각 자체를 나타내기도 하고 그 각의 {크기}를 나타내기도 한다. 그래서 각 $AOB$의 크기가 $40^\\circ$이면 {$\\angle AOB=40^\\circ$}로 쓴다.",
+        "cSlotAnswers": [
+          "크기",
+          "$\\angle AOB=40^\\circ$"
+        ],
+        "cStudentSentence": "$\\angle AOB$는 각 자체를 나타내기도 하고 그 각의 □를 나타내기도 한다. 그래서 각 $AOB$의 크기가 $40^\\circ$이면 □로 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "크기",
+            "equivalentAnswers": [
+              "크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\angle AOB=40^\\circ$",
+            "equivalentAnswers": [
+              "$\\angle AOB=40^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "크기"
+          ],
+          [
+            "$\\angle AOB=40^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "6e85af7f29be9697a620b07a067de6c22d29b95ccb411c91f05e2cdaa1989911"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc4",
+        "section": "중1::5. 기본 도형::각",
+        "term": "각의 갈래 가르기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "각의 크기를 $90^\\circ$, {$180^\\circ$}와 견주어 예각, 직각, 둔각, 평각으로 {가른다}.",
+        "example": {
+          "prompt": "$145^\\circ$는 어떤 각인가?",
+          "answer": "둔각"
+        },
+        "studentC": "각의 크기를 $90^\\circ$, □와 견주어 예각, 직각, 둔각, 평각으로 □.",
+        "answers": [
+          "$180^\\circ$",
+          "가른다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "크기가 $35^\\circ$인 각과 $145^\\circ$인 각은 각각 예각, 직각, 둔각, 평각 중 무엇인지 쓰고, 어떤 크기와 비교하여 판단했는지 설명하시오.",
+        "bAnswer": "$35^\\circ$는 $90^\\circ$보다 작으므로 예각이고, $145^\\circ$는 $90^\\circ$보다 크고 $180^\\circ$보다 작으므로 둔각이다.",
+        "bGoal": "각의 크기를 기준과 비교해 종류 정하기",
+        "bReason": "범위 정의는 m1-05-02-c4와 겹쳐 구체 각을 분류하는 적용으로 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$35^\\circ$는 예각"
+            ]
+          },
+          {
+            "anyOf": [
+              "$145^\\circ$는 둔각"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ$와 비교한다",
+              "$90^\\circ$, $180^\\circ$와 비교한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "각의 크기를 $90^\\circ$, {$180^\\circ$}와 비교하여 종류를 구분한다. $90^\\circ$보다 작은 각($0^\\circ$는 제외)은 {예각}, $90^\\circ$보다 크고 평각보다 작은 각은 {둔각}이다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "예각",
+          "둔각"
+        ],
+        "cReason": "빈칸 '가른다'는 내용 없는 낯선 서술어라 기준과 종류를 묻게 함",
+        "coreAfter": "각의 크기를 $90^\\circ$, {$180^\\circ$}와 비교하여 예각, 직각, 둔각, 평각으로 {구분한다}.",
+        "coreReason": "'견주어 가른다'는 중1 학생에게 낯선 표현이다.",
+        "studentLabel": "각의 종류 구분하기",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "기준 각과 비교해 종류 판정",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1602,
+        "part": "m1plus",
+        "sourceFingerprint": "719c5eed4028cdde01849c353baa930f1c1ff3af7cbd27d2504d36d3cb1556b6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1602
+        },
+        "directReview": null,
+        "coreBeforeRepair": "각의 크기를 $90^\\circ$, $180^\\circ$와 비교하여 예각, 직각, 둔각, 평각으로 구분한다.",
+        "coreRepairReason": "현재안에서 빠진 표지를 복구했다. 원본 핵심어 {$180^\\circ$}는 유지했다. '가른다'는 쉬운 말 {구분한다}로 바꾸어 핵심어 자리를 지켰다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "각의 크기를 $90^\\circ$, {$180^\\circ$}와 비교하여 종류를 구분한다. $90^\\circ$보다 작은 각($0^\\circ$는 제외)은 {예각}, $90^\\circ$보다 크고 평각보다 작은 각은 {둔각}이다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "예각",
+          "둔각"
+        ],
+        "cStudentSentence": "각의 크기를 $90^\\circ$, □와 비교하여 종류를 구분한다. $90^\\circ$보다 작은 각($0^\\circ$는 제외)은 □, $90^\\circ$보다 크고 평각보다 작은 각은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "예각",
+            "equivalentAnswers": [
+              "예각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "둔각",
+            "equivalentAnswers": [
+              "둔각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "예각"
+          ],
+          [
+            "둔각"
+          ]
+        ],
+        "proposalFingerprint": "7cbc982b48a5358b12d18ced6856acba303eea84a40e9dab7dfdf78fd2a208f1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc5",
+        "section": "중1::5. 기본 도형::각",
+        "term": "맞꼭지각 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 직선이 만나 생긴 네 각 가운데 꼭짓점을 사이에 두고 {마주 보는} 두 각이 맞꼭지각이고, 맞꼭지각은 {두 쌍} 생긴다.",
+        "example": {
+          "prompt": "두 직선이 만날 때 생기는 맞꼭지각은 몇 쌍인가?",
+          "answer": "$2$쌍"
+        },
+        "studentC": "두 직선이 만나 생긴 네 각 가운데 꼭짓점을 사이에 두고 □ 두 각이 맞꼭지각이고, 맞꼭지각은 □ 생긴다.",
+        "answers": [
+          "마주 보는",
+          "두 쌍"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선이 한 점에서 만나 생긴 네 각을 한 바퀴 도는 순서대로 $\\angle a$, $\\angle b$, $\\angle c$, $\\angle d$라 할 때, 맞꼭지각을 모두 짝 지어 쓰고 몇 쌍인지 쓰시오.",
+        "bAnswer": "$\\angle a$와 $\\angle c$, $\\angle b$와 $\\angle d$가 각각 맞꼭지각이며, 모두 $2$쌍이다.",
+        "bGoal": "네 교각에서 맞꼭지각 짝 찾기",
+        "bReason": "그림이 없어 각의 이름과 순서를 주고 짝과 쌍의 수를 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle a$와 $\\angle c$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle b$와 $\\angle d$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$쌍",
+              "두 쌍"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "찾는 기준과 쌍의 수를 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "마주 보는 각을 짝 지어 찾기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1603,
+        "part": "m1plus",
+        "sourceFingerprint": "f9706b2f379575274a97cc86f620eb3efbadb9c1b189f9e8092f8d5f0fe1ed56",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1603
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 직선이 만나 생긴 네 각 가운데 꼭짓점을 사이에 두고 □ 두 각이 맞꼭지각이고, 맞꼭지각은 □ 생긴다.",
+        "cFrozenDefinition": "두 직선이 만나 생긴 네 각 가운데 꼭짓점을 사이에 두고 {마주 보는} 두 각이 맞꼭지각이고, 맞꼭지각은 {두 쌍} 생긴다.",
+        "cFrozenAnswers": [
+          "마주 보는",
+          "두 쌍"
+        ],
+        "cMarkedSentence": "두 직선이 만나 생긴 네 각 가운데 꼭짓점을 사이에 두고 {마주 보는} 두 각이 맞꼭지각이고, 맞꼭지각은 {두 쌍} 생긴다.",
+        "cSlotAnswers": [
+          "마주 보는",
+          "두 쌍"
+        ],
+        "cStudentSentence": "두 직선이 만나 생긴 네 각 가운데 꼭짓점을 사이에 두고 □ 두 각이 맞꼭지각이고, 맞꼭지각은 □ 생긴다.",
+        "cAnswers": [
+          "마주 보는",
+          "두 쌍"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마주 보는",
+            "equivalentAnswers": [
+              "마주 보는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "두 쌍",
+            "equivalentAnswers": [
+              "두 쌍",
+              "$2$쌍"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "두 쌍",
+            "accept": [
+              "$2$쌍"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "마주 보는"
+          ],
+          [
+            "두 쌍",
+            "$2$쌍"
+          ]
+        ],
+        "proposalFingerprint": "ebbd5c0fccb333ee49f1ca85ef88576699f1aa29ddc63d9446def945437d0431"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc6",
+        "section": "중1::5. 기본 도형::각",
+        "term": "이웃한 두 교각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 직선이 만나 생긴 교각 가운데 {이웃한} 두 각을 더하면 언제나 {$180^\\circ$}가 된다.",
+        "example": {
+          "prompt": "한 교각이 $70^\\circ$이면 그 이웃한 각은?",
+          "answer": "$110^\\circ$"
+        },
+        "studentC": "두 직선이 만나 생긴 교각 가운데 □ 두 각을 더하면 언제나 □가 된다.",
+        "answers": [
+          "이웃한",
+          "$180^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선이 한 점에서 만나 생긴 교각 가운데 이웃한 두 각의 크기의 합은 얼마인지 쓰고, 그 이유를 설명하시오.",
+        "bAnswer": "$180^\\circ$이다. 이웃한 두 각을 합치면 한 직선 위에서 평각을 이루기 때문이다.",
+        "bGoal": "이웃한 두 교각의 합과 까닭 알기",
+        "bReason": "합의 값과 평각이라는 근거를 함께 답하도록 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 두 각이 합쳐져 평각이 된다",
+              "두 각이 한 직선을 이룬다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "위치 조건과 합을 하나씩 묻는 분명한 빈칸",
+        "learningRole": "reason",
+        "roleReason": "이웃한 교각이 평각을 이루는 까닭",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1604,
+        "part": "m1plus",
+        "sourceFingerprint": "5cc4f560428b451318c8793b390921d8c5c8f6f905187106060ebbfcefbed4bf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1604
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 직선이 만나 생긴 교각 가운데 □ 두 각을 더하면 언제나 □가 된다.",
+        "cFrozenDefinition": "두 직선이 만나 생긴 교각 가운데 {이웃한} 두 각을 더하면 언제나 {$180^\\circ$}가 된다.",
+        "cFrozenAnswers": [
+          "이웃한",
+          "$180^\\circ$"
+        ],
+        "cMarkedSentence": "두 직선이 만나 생긴 교각 가운데 {이웃한} 두 각을 더하면 언제나 {$180^\\circ$}가 된다.",
+        "cSlotAnswers": [
+          "이웃한",
+          "$180^\\circ$"
+        ],
+        "cStudentSentence": "두 직선이 만나 생긴 교각 가운데 □ 두 각을 더하면 언제나 □가 된다.",
+        "cAnswers": [
+          "이웃한",
+          "$180^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이웃한",
+            "equivalentAnswers": [
+              "이웃한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이웃한"
+          ],
+          [
+            "$180^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "8b31ec04f1050dd95413f2997dab6ee3896c338e35111fb22dbf9ef5bd83abaa"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc7",
+        "section": "중1::5. 기본 도형::각",
+        "term": "맞꼭지각으로 방정식 세우기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "맞꼭지각인 두 각을 식으로 나타낸 뒤 두 식이 {같다}고 놓아 {방정식}을 푼다.",
+        "example": {
+          "prompt": "맞꼭지각이 $(2x+15)^\\circ$, $(4x-25)^\\circ$일 때 $x$는?",
+          "answer": "$20$"
+        },
+        "studentC": "맞꼭지각인 두 각을 식으로 나타낸 뒤 두 식이 □고 놓아 □을 푼다.",
+        "answers": [
+          "같다",
+          "방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "맞꼭지각인 두 각의 크기가 $(2x+15)^\\circ$, $(4x-25)^\\circ$일 때, $x$의 값을 구하는 방정식을 세우고 그렇게 세운 근거를 쓴 뒤 $x$의 값을 구하시오.",
+        "bAnswer": "맞꼭지각의 크기는 서로 같으므로 $2x+15=4x-25$이다. 이를 풀면 $2x=40$, $x=20$이다.",
+        "bGoal": "맞꼭지각의 성질로 방정식 세워 풀기",
+        "bReason": "방법 진술만으로는 답할 수 없어 구체적인 식을 넣어 세우게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "맞꼭지각의 크기는 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2x+15=4x-25$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=20$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "식을 놓는 근거와 방법을 묻는 짧은 절차 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "두 식을 같다고 놓아 방정식 풀기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1605,
+        "part": "m1plus",
+        "sourceFingerprint": "63ecbbe7b103252c2456eab0445d29a4477b8b97e05b21d08b30379623a89767",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1605
+        },
+        "directReview": null,
+        "cFrozenSentence": "맞꼭지각인 두 각을 식으로 나타낸 뒤 두 식이 □고 놓아 □을 푼다.",
+        "cFrozenDefinition": "맞꼭지각인 두 각을 식으로 나타낸 뒤 두 식이 {같다}고 놓아 {방정식}을 푼다.",
+        "cFrozenAnswers": [
+          "같다",
+          "방정식"
+        ],
+        "cMarkedSentence": "맞꼭지각인 두 각을 식으로 나타낸 뒤 두 식이 {같다}고 놓아 {방정식}을 푼다.",
+        "cSlotAnswers": [
+          "같다",
+          "방정식"
+        ],
+        "cStudentSentence": "맞꼭지각인 두 각을 식으로 나타낸 뒤 두 식이 □고 놓아 □을 푼다.",
+        "cAnswers": [
+          "같다",
+          "방정식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "방정식",
+            "equivalentAnswers": [
+              "방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ],
+          [
+            "방정식"
+          ]
+        ],
+        "proposalFingerprint": "cd275f4a50349b8a0847cd6065850e189d2cfc74f28b290cfd538b658b142a66"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc8",
+        "section": "중1::5. 기본 도형::각",
+        "term": "평각을 나눈 각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "평각이 여러 각으로 나뉘면 그 각들의 합이 {$180^\\circ$}라는 {방정식}을 세운다.",
+        "example": {
+          "prompt": "평각이 $x^\\circ$, $3x^\\circ$, $2x^\\circ$로 나뉘면 $x$는?",
+          "answer": "$30$"
+        },
+        "studentC": "평각이 여러 각으로 나뉘면 그 각들의 합이 □라는 □을 세운다.",
+        "answers": [
+          "$180^\\circ$",
+          "방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "평각이 크기가 $x^\\circ$, $3x^\\circ$, $2x^\\circ$인 세 각으로 나뉘어 있을 때, $x$의 값을 구하는 방정식을 세우고 근거를 쓴 뒤 $x$의 값을 구하시오.",
+        "bAnswer": "평각의 크기는 $180^\\circ$이므로 세 각의 크기의 합이 $180^\\circ$이다. $x+3x+2x=180$에서 $6x=180$, $x=30$이다.",
+        "bGoal": "평각을 나눈 각의 합으로 방정식 세우기",
+        "bReason": "나뉜 각의 식을 질문에 주어 합이 평각임을 쓰게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나뉜 각의 크기의 합은 $180^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x+3x+2x=180$",
+              "$6x=180$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=30$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "합의 값과 방법을 묻는 짧고 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "각의 합이 $180^\\circ$임을 식으로 세우기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1606,
+        "part": "m1plus",
+        "sourceFingerprint": "1bfc82a08b37b6d9816c43ce6e0aad11d457524d58a9bc1da848fc162fd1230b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1606
+        },
+        "directReview": null,
+        "cFrozenSentence": "평각이 여러 각으로 나뉘면 그 각들의 합이 □라는 □을 세운다.",
+        "cFrozenDefinition": "평각이 여러 각으로 나뉘면 그 각들의 합이 {$180^\\circ$}라는 {방정식}을 세운다.",
+        "cFrozenAnswers": [
+          "$180^\\circ$",
+          "방정식"
+        ],
+        "cMarkedSentence": "평각이 여러 각으로 나뉘면 그 각들의 합이 {$180^\\circ$}라는 {방정식}을 세운다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "방정식"
+        ],
+        "cStudentSentence": "평각이 여러 각으로 나뉘면 그 각들의 합이 □라는 □을 세운다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "방정식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "방정식",
+            "equivalentAnswers": [
+              "방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "방정식"
+          ]
+        ],
+        "proposalFingerprint": "8c454ad63648eb5b8dd669c9845f6a40c3f186e2d699a544a2c45def37d272c6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc9",
+        "section": "중1::5. 기본 도형::각",
+        "term": "직각을 나눈 각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직각이 두 각으로 나뉘면 두 각의 합이 {$90^\\circ$}이므로, 한 각을 알면 다른 각은 {$90^\\circ$에서 뺀} 값이다.",
+        "example": {
+          "prompt": "직각을 둘로 나눈 한 각이 $35^\\circ$이면 다른 각은?",
+          "answer": "$55^\\circ$"
+        },
+        "studentC": "직각이 두 각으로 나뉘면 두 각의 합이 □이므로, 한 각을 알면 다른 각은 □ 값이다.",
+        "answers": [
+          "$90^\\circ$",
+          "$90^\\circ$에서 뺀"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$90^\\circ$에서 한 번 빼는 계산뿐이라 서술형 물음으로 남길 내용이 적음",
+        "cDecision": "rewrite",
+        "cAfter": "직각이 두 각으로 나뉘면 두 각의 크기의 합은 {$90^\\circ$}이다. 그래서 한 각의 크기가 $x^\\circ$이면 다른 각의 크기는 {$(90-x)^\\circ$}이다.",
+        "cAnswers": [
+          "$90^\\circ$",
+          "$(90-x)^\\circ$"
+        ],
+        "cReason": "빈칸 '$90^\\circ$에서 뺀'은 어구 조각이라 쓰기 어려워 식으로 답하게 함",
+        "exclusionReason": "B 제외: 단순 뺄셈 하나이고 직각을 나누는 내용은 m1-05-02-xc15, 합으로 식을 세우는 내용은 m1-05-02-xc8과 목표가 겹침. C는 고쳐서 사용함",
+        "learningRole": "procedure",
+        "roleReason": "합이 $90^\\circ$임을 써서 나머지 각 구하기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1607,
+        "part": "m1plus",
+        "sourceFingerprint": "1897b80afea6d6f6f5505b221b88987b72442da6656a7bbeade99461b0baaa1e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1607
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "직각이 두 각으로 나뉘면 두 각의 크기의 합은 {$90^\\circ$}이다. 그래서 한 각의 크기가 $x^\\circ$이면 다른 각의 크기는 {$(90-x)^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$90^\\circ$",
+          "$(90-x)^\\circ$"
+        ],
+        "cStudentSentence": "직각이 두 각으로 나뉘면 두 각의 크기의 합은 □이다. 그래서 한 각의 크기가 $x^\\circ$이면 다른 각의 크기는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(90-x)^\\circ$",
+            "equivalentAnswers": [
+              "$(90-x)^\\circ$",
+              "$90^\\circ-x^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$(90-x)^\\circ$",
+            "accept": [
+              "$90^\\circ-x^\\circ$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$90^\\circ$"
+          ],
+          [
+            "$(90-x)^\\circ$",
+            "$90^\\circ-x^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "6c81ad193629400824ae771310625d07df8ffaabfcc40548ee6120821dfdfc07"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc10",
+        "section": "중1::5. 기본 도형::각",
+        "term": "수직이등분선의 두 조건",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직선이 선분의 수직이등분선이려면 선분의 {중점}을 지나고 선분과 {수직}이어야 한다. 하나만 맞으면 수직이등분선이 아니다.",
+        "example": {
+          "prompt": "$\\overline{AB}=10\\,\\mathrm{cm}$의 수직이등분선과 $\\overline{AB}$가 만나는 점에서 $A$까지의 거리는?",
+          "answer": "$5\\,\\mathrm{cm}$"
+        },
+        "studentC": "직선이 선분의 수직이등분선이려면 선분의 □을 지나고 선분과 □이어야 한다. 하나만 맞으면 수직이등분선이 아니다.",
+        "answers": [
+          "중점",
+          "수직"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 $l$이 선분 $AB$의 중점을 지나지만 선분 $AB$와 수직은 아니다. 직선 $l$이 선분 $AB$의 수직이등분선인지 판단하고 이유를 쓰시오.",
+        "bAnswer": "수직이등분선이 아니다. 수직이등분선은 선분의 중점을 지나는 것과 선분에 수직인 것을 모두 만족해야 하는데, 직선 $l$은 수직 조건을 만족하지 않기 때문이다.",
+        "bGoal": "수직이등분선의 두 조건이 모두 필요함을 알기",
+        "bReason": "정의는 m1-05-02-c10과 겹쳐 한 조건만 맞는 경우의 판단으로 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직이등분선이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 조건을 모두 만족해야 한다",
+              "수직이 아니기 때문이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 조건을 각각 쓰게 하고 '하나만 맞으면 아님'도 문장에 있어 분명함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "한 조건만 맞는 직선을 판정",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1608,
+        "part": "m1plus",
+        "sourceFingerprint": "87c7439f55e9686eae08076df40bde9e8d2e1cdfa20636b1edcab262f13f08d6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1608
+        },
+        "directReview": null,
+        "cFrozenSentence": "직선이 선분의 수직이등분선이려면 선분의 □을 지나고 선분과 □이어야 한다. 하나만 맞으면 수직이등분선이 아니다.",
+        "cFrozenDefinition": "직선이 선분의 수직이등분선이려면 선분의 {중점}을 지나고 선분과 {수직}이어야 한다. 하나만 맞으면 수직이등분선이 아니다.",
+        "cFrozenAnswers": [
+          "중점",
+          "수직"
+        ],
+        "cMarkedSentence": "직선이 선분의 수직이등분선이려면 선분의 {중점}을 지나고 선분과 {수직}이어야 한다. 하나만 맞으면 수직이등분선이 아니다.",
+        "cSlotAnswers": [
+          "중점",
+          "수직"
+        ],
+        "cStudentSentence": "직선이 선분의 수직이등분선이려면 선분의 □을 지나고 선분과 □이어야 한다. 하나만 맞으면 수직이등분선이 아니다.",
+        "cAnswers": [
+          "중점",
+          "수직"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중점",
+            "equivalentAnswers": [
+              "중점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "수직",
+            "equivalentAnswers": [
+              "수직"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중점"
+          ],
+          [
+            "수직"
+          ]
+        ],
+        "proposalFingerprint": "a1632aeb3cad47809833090a6e47df67669a07e135991bf3cfbe84ddfe175051"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc11",
+        "section": "중1::5. 기본 도형::각",
+        "term": "한 점을 지나는 세 직선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "세 직선이 한 점에서 만나면 두 직선씩 골라 생기는 맞꼭지각을 모두 세어 {$6$쌍}이고, 둘레의 여섯 각의 합은 {$360^\\circ$}이다.",
+        "example": {
+          "prompt": "세 직선이 한 점에서 만나 생긴 각 가운데 이웃한 세 각의 합은?",
+          "answer": "$180^\\circ$"
+        },
+        "studentC": "세 직선이 한 점에서 만나면 두 직선씩 골라 생기는 맞꼭지각을 모두 세어 □이고, 둘레의 여섯 각의 합은 □이다.",
+        "answers": [
+          "$6$쌍",
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 다른 세 직선이 한 점에서 만날 때 생기는 맞꼭지각은 모두 몇 쌍인지 세는 방법과 함께 쓰시오.",
+        "bAnswer": "세 직선에서 두 직선을 고르는 방법은 $3$가지이고, 두 직선마다 맞꼭지각이 $2$쌍씩 생기므로 $3\\times 2=6$쌍이다.",
+        "bGoal": "세 직선이 만드는 맞꼭지각의 쌍 세기",
+        "bReason": "두 사실 중 세는 방법이 필요한 쌍의 수로 초점을 정하고 수는 숨김",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$쌍"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 직선을 고르는 $3$가지마다 $2$쌍씩 생긴다",
+              "직선을 두 개씩 짝 지어 각각 $2$쌍씩 센다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세는 기준이 문장에 있고 쌍의 수와 각의 합을 묻는 분명한 빈칸",
+        "learningRole": "procedure",
+        "roleReason": "두 직선씩 묶어 맞꼭지각 쌍 세기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1609,
+        "part": "m1plus",
+        "sourceFingerprint": "4286d4d76f2ca6ef9f1578f26348f0579468e07b40da0590c58aebf3b1303be1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1609
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 직선이 한 점에서 만나면 두 직선씩 골라 생기는 맞꼭지각을 모두 세어 □이고, 둘레의 여섯 각의 합은 □이다.",
+        "cFrozenDefinition": "세 직선이 한 점에서 만나면 두 직선씩 골라 생기는 맞꼭지각을 모두 세어 {$6$쌍}이고, 둘레의 여섯 각의 합은 {$360^\\circ$}이다.",
+        "cFrozenAnswers": [
+          "$6$쌍",
+          "$360^\\circ$"
+        ],
+        "cMarkedSentence": "세 직선이 한 점에서 만나면 두 직선씩 골라 생기는 맞꼭지각을 모두 세어 {$6$쌍}이고, 둘레의 여섯 각의 합은 {$360^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$6$쌍",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "세 직선이 한 점에서 만나면 두 직선씩 골라 생기는 맞꼭지각을 모두 세어 □이고, 둘레의 여섯 각의 합은 □이다.",
+        "cAnswers": [
+          "$6$쌍",
+          "$360^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6$쌍",
+            "equivalentAnswers": [
+              "$6$쌍",
+              "여섯 쌍"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$6$쌍",
+            "accept": [
+              "여섯 쌍"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$6$쌍",
+            "여섯 쌍"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "c307954600940c246df5354a5030ec7d32ceb1d5f7259a3823a27628a851de09"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc12",
+        "section": "중1::5. 기본 도형::각",
+        "term": "점과 직선 사이의 거리 재기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "점에서 직선에 {수선}을 긋고 그 {수선의 발}까지의 선분 길이를 재면 점과 직선 사이의 거리이다.",
+        "example": {
+          "prompt": "점 $(3, 4)$와 $x$축 사이의 거리는?",
+          "answer": "$4$"
+        },
+        "studentC": "점에서 직선에 □을 긋고 그 □까지의 선분 길이를 재면 점과 직선 사이의 거리이다.",
+        "answers": [
+          "수선",
+          "수선의 발"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "좌표평면 위의 점 $(3,\\,4)$와 $x$축 사이의 거리를 구하고, 어떤 선분의 길이를 구한 것인지 설명하시오.",
+        "bAnswer": "거리는 $4$이다. 점 $(3,\\,4)$에서 $x$축에 내린 수선의 발 $(3,\\,0)$까지 이은 선분의 길이이다.",
+        "bGoal": "수선의 발까지의 길이로 거리 구하기",
+        "bReason": "방법 진술은 m1-05-02-c12와 겹쳐 좌표평면의 구체 예에 적용하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$축에 내린 수선의 발까지의 선분",
+              "점 $(3,\\,0)$까지 이은 선분"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "수선을 긋고 수선의 발까지 재는 순서를 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "점과 직선 사이의 거리를 실제로 구하기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1610,
+        "part": "m1plus",
+        "sourceFingerprint": "e4593bf65b0fc9f11fb75cd012878e0766ad7d12c5297170ecd33b906574ea60",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1610
+        },
+        "directReview": null,
+        "cFrozenSentence": "점에서 직선에 □을 긋고 그 □까지의 선분 길이를 재면 점과 직선 사이의 거리이다.",
+        "cFrozenDefinition": "점에서 직선에 {수선}을 긋고 그 {수선의 발}까지의 선분 길이를 재면 점과 직선 사이의 거리이다.",
+        "cFrozenAnswers": [
+          "수선",
+          "수선의 발"
+        ],
+        "cMarkedSentence": "점에서 직선에 {수선}을 긋고 그 {수선의 발}까지의 선분 길이를 재면 점과 직선 사이의 거리이다.",
+        "cSlotAnswers": [
+          "수선",
+          "수선의 발"
+        ],
+        "cStudentSentence": "점에서 직선에 □을 긋고 그 □까지의 선분 길이를 재면 점과 직선 사이의 거리이다.",
+        "cAnswers": [
+          "수선",
+          "수선의 발"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "수선",
+            "equivalentAnswers": [
+              "수선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "수선의 발",
+            "equivalentAnswers": [
+              "수선의 발"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "수선"
+          ],
+          [
+            "수선의 발"
+          ]
+        ],
+        "proposalFingerprint": "54fb7d1000ce67b1e3efbda19920a92bad9cec1563250d118f7eb9be325aae57"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc13",
+        "section": "중1::5. 기본 도형::각",
+        "term": "맞꼭지각이 같은 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\angle a$, $\\angle c$가 맞꼭지각이고 $\\angle b$가 둘 사이의 이웃한 각이면 두 식 $\\angle a+\\angle b=180^\\circ$, $\\angle b+\\angle c=180^\\circ$에서 같은 {$\\angle b$}를 빼 {$\\angle a=\\angle c$}를 얻는다.",
+        "studentC": "$\\angle a$, $\\angle c$가 맞꼭지각이고 $\\angle b$가 둘 사이의 이웃한 각이면 두 식 $\\angle a+\\angle b=180^\\circ$, $\\angle b+\\angle c=180^\\circ$에서 같은 □를 빼 □를 얻는다.",
+        "answers": [
+          "$\\angle b$",
+          "$\\angle a=\\angle c$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선이 한 점에서 만나 생긴 네 각을 한 바퀴 도는 순서대로 $\\angle a$, $\\angle b$, $\\angle c$, $\\angle d$라 하자. 맞꼭지각인 $\\angle a$와 $\\angle c$의 크기가 같은 이유를 $\\angle b$를 이용하여 설명하시오.",
+        "bAnswer": "$\\angle a$와 $\\angle b$, $\\angle b$와 $\\angle c$는 각각 평각을 이루므로 $\\angle a+\\angle b=180^\\circ$, $\\angle b+\\angle c=180^\\circ$이다. 따라서 $\\angle a$와 $\\angle c$는 모두 $180^\\circ-\\angle b$와 같으므로 $\\angle a=\\angle c$이다.",
+        "bGoal": "맞꼭지각의 크기가 같은 까닭 설명하기",
+        "bReason": "그림이 없어 각의 이름과 순서를 밝히고 이용할 각을 지정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle a+\\angle b=180^\\circ$이고 $\\angle b+\\angle c=180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각 모두 $180^\\circ-\\angle b$와 같다",
+              "두 식에서 같은 $\\angle b$를 빼면 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "각의 관계와 두 식이 문장에 있어 빼는 각과 결론을 묻기에 분명함",
+        "learningRole": "reason",
+        "roleReason": "같은 이웃 각과 합이 $180^\\circ$라는 논증",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1611,
+        "part": "m1plus",
+        "sourceFingerprint": "33eb71ff1e18b33b925e467d02926313d88b391526e2dce34ed5a4110e719ffd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1611
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\angle a$, $\\angle c$가 맞꼭지각이고 $\\angle b$가 둘 사이의 이웃한 각이면 두 식 $\\angle a+\\angle b=180^\\circ$, $\\angle b+\\angle c=180^\\circ$에서 같은 □를 빼 □를 얻는다.",
+        "cFrozenDefinition": "$\\angle a$, $\\angle c$가 맞꼭지각이고 $\\angle b$가 둘 사이의 이웃한 각이면 두 식 $\\angle a+\\angle b=180^\\circ$, $\\angle b+\\angle c=180^\\circ$에서 같은 {$\\angle b$}를 빼 {$\\angle a=\\angle c$}를 얻는다.",
+        "cFrozenAnswers": [
+          "$\\angle b$",
+          "$\\angle a=\\angle c$"
+        ],
+        "cMarkedSentence": "$\\angle a$, $\\angle c$가 맞꼭지각이고 $\\angle b$가 둘 사이의 이웃한 각이면 두 식 $\\angle a+\\angle b=180^\\circ$, $\\angle b+\\angle c=180^\\circ$에서 같은 {$\\angle b$}를 빼 {$\\angle a=\\angle c$}를 얻는다.",
+        "cSlotAnswers": [
+          "$\\angle b$",
+          "$\\angle a=\\angle c$"
+        ],
+        "cStudentSentence": "$\\angle a$, $\\angle c$가 맞꼭지각이고 $\\angle b$가 둘 사이의 이웃한 각이면 두 식 $\\angle a+\\angle b=180^\\circ$, $\\angle b+\\angle c=180^\\circ$에서 같은 □를 빼 □를 얻는다.",
+        "cAnswers": [
+          "$\\angle b$",
+          "$\\angle a=\\angle c$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\angle b$",
+            "equivalentAnswers": [
+              "$\\angle b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\angle a=\\angle c$",
+            "equivalentAnswers": [
+              "$\\angle a=\\angle c$",
+              "$\\angle c=\\angle a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\angle a=\\angle c$",
+            "accept": [
+              "$\\angle c=\\angle a$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\angle b$"
+          ],
+          [
+            "$\\angle a=\\angle c$",
+            "$\\angle c=\\angle a$"
+          ]
+        ],
+        "proposalFingerprint": "9ebc0669bb3eae87710ea6eac07709508318168468d39e87989ef6e2e8f289a8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc14",
+        "section": "중1::5. 기본 도형::각",
+        "term": "평각 위 두 이등분선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평각을 이루는 이웃한 두 각을 각각 이등분하는 두 반직선이 이루는 각은 언제나 {$90^\\circ$}이다.",
+        "example": {
+          "prompt": "$\\angle AOC=70^\\circ$, $\\angle COB=110^\\circ$일 때 두 각의 이등분선이 이루는 각은?",
+          "answer": "$90^\\circ$"
+        },
+        "studentC": "평각을 이루는 이웃한 두 각을 각각 이등분하는 두 반직선이 이루는 각은 언제나 □이다.",
+        "answers": [
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "점 $O$는 직선 $AB$ 위에서 두 점 $A$, $B$ 사이에 있다. 점 $O$에서 반직선 $OC$를 그어 평각 $AOB$를 $\\angle AOC$와 $\\angle COB$로 나누었을 때, $\\angle AOC$의 이등분선 $OD$와 $\\angle COB$의 이등분선 $OE$가 이루는 $\\angle DOE$의 크기를 구하고 이유를 설명하시오.",
+        "bAnswer": "$90^\\circ$이다. $\\angle DOE=\\frac{1}{2}\\angle AOC+\\frac{1}{2}\\angle COB=\\frac{1}{2}(\\angle AOC+\\angle COB)=\\frac{1}{2}\\times 180^\\circ=90^\\circ$이기 때문이다.",
+        "bGoal": "평각을 나눈 두 각의 이등분선이 이루는 각 구하기",
+        "bReason": "그림이 없어 점의 위치와 이등분선의 이름을 모두 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각의 합 $180^\\circ$의 절반이다",
+              "$\\frac{1}{2}(\\angle AOC+\\angle COB)$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 있고 언제나 성립하는 결과 하나를 묻는 빈칸",
+        "studentLabel": "평각을 나눈 두 각의 이등분선",
+        "learningRole": "reason",
+        "roleReason": "두 절반의 합이 평각의 절반이 됨",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1612,
+        "part": "m1plus",
+        "sourceFingerprint": "f27fe8260d6a492d661660526e6832cac18c9e4fda332f2326f7ade700b5f6d8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1612
+        },
+        "directReview": null,
+        "cFrozenSentence": "평각을 이루는 이웃한 두 각을 각각 이등분하는 두 반직선이 이루는 각은 언제나 □이다.",
+        "cFrozenDefinition": "평각을 이루는 이웃한 두 각을 각각 이등분하는 두 반직선이 이루는 각은 언제나 {$90^\\circ$}이다.",
+        "cFrozenAnswers": [
+          "$90^\\circ$"
+        ],
+        "cMarkedSentence": "평각을 이루는 이웃한 두 각을 각각 이등분하는 두 반직선이 이루는 각은 언제나 {$90^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$90^\\circ$"
+        ],
+        "cStudentSentence": "평각을 이루는 이웃한 두 각을 각각 이등분하는 두 반직선이 이루는 각은 언제나 □이다.",
+        "cAnswers": [
+          "$90^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$90^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "c92b357f8a57c14cc7f3f586204d5c49fdcd0fb2f4c80edcdca49f6ea76eed1e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc15",
+        "section": "중1::5. 기본 도형::각",
+        "term": "직각을 $a:b$로 나누기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직각을 $a:b$로 나누면 두 각은 $90^\\circ\\times\\frac{a}{a+b}$와 {$90^\\circ\\times\\frac{b}{a+b}$}이다.",
+        "example": {
+          "prompt": "직각을 $2:3$으로 나눈 두 각 가운데 큰 각은?",
+          "answer": "$54^\\circ$"
+        },
+        "studentC": "직각을 $a:b$로 나누면 두 각은 $90^\\circ\\times\\frac{a}{a+b}$와 □이다.",
+        "answers": [
+          "$90^\\circ\\times\\frac{b}{a+b}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "직각을 두 각의 크기의 비가 $2:3$이 되도록 나누었을 때 두 각의 크기를 구하고, 비가 $a:b$($a$, $b$는 양수)일 때 두 각의 크기를 $a$, $b$에 대한 식으로 나타내시오.",
+        "bAnswer": "$2:3$이면 $90^\\circ\\times\\frac{2}{5}=36^\\circ$, $90^\\circ\\times\\frac{3}{5}=54^\\circ$이다. $a:b$이면 $90^\\circ\\times\\frac{a}{a+b}$, $90^\\circ\\times\\frac{b}{a+b}$이다.",
+        "bGoal": "직각을 주어진 비로 나눈 각의 크기 구하기",
+        "bReason": "구체적인 비로 계산한 뒤 일반식을 쓰게 하여 범위를 보존함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$36^\\circ$와 $54^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ\\times\\frac{a}{a+b}$와 $90^\\circ\\times\\frac{b}{a+b}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직각을 두 각의 크기의 비가 $a:b$($a$, $b$는 양수)가 되도록 나누면, 두 각의 크기는 각각 $90^\\circ$의 {$\\frac{a}{a+b}$}배와 {$\\frac{b}{a+b}$}배이다.",
+        "cAnswers": [
+          "$\\frac{a}{a+b}$",
+          "$\\frac{b}{a+b}$"
+        ],
+        "cReason": "보이는 식에서 $a$를 $b$로만 바꿔 베끼면 되는 빈칸이라 두 분수를 모두 묻게 함",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "전체를 $a+b$로 나눈 비례배분",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1613,
+        "part": "m1plus",
+        "sourceFingerprint": "6e5c04e010a89a70adad4a6c65bb3bb0e457ef1d3e533a3d46fb9058444b3305",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1613
+        },
+        "directReview": null,
+        "cMarkedSentence": "직각을 두 각의 크기의 비가 $a:b$($a$, $b$는 양수)가 되도록 나누면, 두 각의 크기는 각각 $90^\\circ$의 {$\\frac{a}{a+b}$}배와 {$\\frac{b}{a+b}$}배이다.",
+        "cSlotAnswers": [
+          "$\\frac{a}{a+b}$",
+          "$\\frac{b}{a+b}$"
+        ],
+        "cStudentSentence": "직각을 두 각의 크기의 비가 $a:b$($a$, $b$는 양수)가 되도록 나누면, 두 각의 크기는 각각 $90^\\circ$의 □배와 □배이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{a}{a+b}$",
+            "equivalentAnswers": [
+              "$\\frac{a}{a+b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{b}{a+b}$",
+            "equivalentAnswers": [
+              "$\\frac{b}{a+b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{a}{a+b}$"
+          ],
+          [
+            "$\\frac{b}{a+b}$"
+          ]
+        ],
+        "proposalFingerprint": "b7c81108fde8e02915cb558377e16930ea914ca33471d965caeddbbbc97ed696"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc16",
+        "section": "중1::5. 기본 도형::각",
+        "term": "한 교각이 직각이면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 직선이 만나 생긴 교각 가운데 {하나}만 $90^\\circ$여도 네 각이 모두 {$90^\\circ$}가 되어 두 직선은 수직이다.",
+        "example": {
+          "prompt": "한 교각이 $90^\\circ$일 때 나머지 세 교각의 크기의 합은?",
+          "answer": "$270^\\circ$"
+        },
+        "studentC": "두 직선이 만나 생긴 교각 가운데 □만 $90^\\circ$여도 네 각이 모두 □가 되어 두 직선은 수직이다.",
+        "answers": [
+          "하나",
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선이 한 점에서 만나 생긴 네 교각 중 하나가 $90^\\circ$이면 나머지 세 각도 모두 $90^\\circ$인 이유를 설명하시오.",
+        "bAnswer": "$90^\\circ$인 각과 이웃한 두 각은 각각 $180^\\circ-90^\\circ=90^\\circ$이고, 맞꼭지각은 크기가 같으므로 $90^\\circ$이다. 따라서 네 각이 모두 $90^\\circ$이다.",
+        "bGoal": "한 교각이 직각이면 두 직선이 수직임을 설명하기",
+        "bReason": "결과가 아니라 나머지 각이 직각이 되는 근거를 묻도록 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이웃한 각은 $180^\\circ-90^\\circ=90^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞꼭지각은 크기가 같아 $90^\\circ$이다",
+              "이웃한 각을 차례로 $180^\\circ$에서 빼면 모두 $90^\\circ$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 직선이 만나 생긴 네 교각 가운데 {하나}만 직각이어도 나머지 {세} 각이 모두 직각이 되어 두 직선은 서로 {수직}이다.",
+        "cAnswers": [
+          "하나",
+          "세",
+          "수직"
+        ],
+        "cReason": "둘째 답 $90^\\circ$가 문장 앞에 그대로 보여 베껴 쓰게 됨",
+        "learningRole": "reason",
+        "roleReason": "한 직각에서 네 각이 모두 직각이 되는 까닭",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1614,
+        "part": "m1plus",
+        "sourceFingerprint": "11956f739d20fdcdad6a222070a9e6fffa5b858dfe92e1fa7291b021e79a702b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1614
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 직선이 만나 생긴 네 교각 가운데 {하나}만 직각이어도 나머지 {세} 각이 모두 직각이 되어 두 직선은 서로 {수직}이다.",
+        "cSlotAnswers": [
+          "하나",
+          "세",
+          "수직"
+        ],
+        "cStudentSentence": "두 직선이 만나 생긴 네 교각 가운데 □만 직각이어도 나머지 □ 각이 모두 직각이 되어 두 직선은 서로 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "하나",
+            "equivalentAnswers": [
+              "하나",
+              "한 각",
+              "$1$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "세",
+            "equivalentAnswers": [
+              "세",
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "수직",
+            "equivalentAnswers": [
+              "수직"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "하나",
+            "accept": [
+              "한 각",
+              "$1$개"
+            ]
+          },
+          {
+            "answer": "세",
+            "accept": [
+              "$3$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "하나",
+            "한 각",
+            "$1$개"
+          ],
+          [
+            "세",
+            "$3$"
+          ],
+          [
+            "수직"
+          ]
+        ],
+        "proposalFingerprint": "52248d5276985f917f328b06060e35d14c6e763e267a01ba58d2a7c399eb31bc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc17",
+        "section": "중1::5. 기본 도형::각",
+        "term": "예각과 둔각의 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "예각 두 개를 더하면 예각, 직각, {둔각}이 모두 될 수 있지만 둔각 두 개를 더하면 언제나 {평각보다 크다}.",
+        "example": {
+          "prompt": "$50^\\circ$와 $60^\\circ$를 더하면 어떤 각인가?",
+          "answer": "둔각"
+        },
+        "studentC": "예각 두 개를 더하면 예각, 직각, □이 모두 될 수 있지만 둔각 두 개를 더하면 언제나 □.",
+        "answers": [
+          "둔각",
+          "평각보다 크다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "예각 두 개의 크기를 더한 결과가 예각, 직각, 둔각의 크기가 되는 예를 각각 하나씩 들고, 둔각 두 개의 크기의 합은 왜 항상 $180^\\circ$보다 큰지 설명하시오.",
+        "bAnswer": "예: $20^\\circ+30^\\circ=50^\\circ$(예각), $40^\\circ+50^\\circ=90^\\circ$(직각), $50^\\circ+60^\\circ=110^\\circ$(둔각). 둔각은 각각 $90^\\circ$보다 크므로 두 둔각의 합은 $90^\\circ+90^\\circ=180^\\circ$보다 크다.",
+        "bGoal": "예각끼리, 둔각끼리 더한 크기의 범위 판단하기",
+        "bReason": "예를 직접 들게 하고 둔각의 합은 이유를 묻도록 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20^\\circ+30^\\circ=50^\\circ$처럼 합이 $90^\\circ$보다 작은 예각 두 개의 예"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40^\\circ+50^\\circ=90^\\circ$처럼 합이 $90^\\circ$인 예각 두 개의 예"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50^\\circ+60^\\circ=110^\\circ$처럼 합이 $90^\\circ$보다 큰 예각 두 개의 예"
+            ]
+          },
+          {
+            "anyOf": [
+              "둔각은 각각 $90^\\circ$보다 크므로 합은 $180^\\circ$보다 크다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "예각 두 개의 크기를 더하면 예각, 직각, {둔각}의 크기가 모두 될 수 있지만, 둔각 두 개의 크기를 더하면 언제나 {$180^\\circ$}보다 크다.",
+        "cAnswers": [
+          "둔각",
+          "$180^\\circ$"
+        ],
+        "cReason": "빈칸 '평각보다 크다'는 길어서 쓰기 어려워 기준 크기만 묻게 함",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "각의 범위로 합의 범위를 따지기",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1615,
+        "part": "m1plus",
+        "sourceFingerprint": "4019eb1ebc436d54f182c2f0e7eb85a32b473ab3738fb975ed2dbd85f12587f6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1615
+        },
+        "directReview": null,
+        "cMarkedSentence": "예각 두 개의 크기를 더하면 예각, 직각, {둔각}의 크기가 모두 될 수 있지만, 둔각 두 개의 크기를 더하면 언제나 {$180^\\circ$}보다 크다.",
+        "cSlotAnswers": [
+          "둔각",
+          "$180^\\circ$"
+        ],
+        "cStudentSentence": "예각 두 개의 크기를 더하면 예각, 직각, □의 크기가 모두 될 수 있지만, 둔각 두 개의 크기를 더하면 언제나 □보다 크다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "둔각",
+            "equivalentAnswers": [
+              "둔각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$",
+              "평각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$180^\\circ$",
+            "accept": [
+              "평각"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "둔각"
+          ],
+          [
+            "$180^\\circ$",
+            "평각"
+          ]
+        ],
+        "proposalFingerprint": "d012ff78f40e3780e628393c755a9107b8c3b5af0dea6e3eac0088e687d105c8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-02-xc18",
+        "section": "중1::5. 기본 도형::각",
+        "term": "시계 바늘의 각 가르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "시계의 두 바늘이 겹치지 않을 때, 두 바늘이 이루는 작은 쪽 각을 구한 뒤 $90^\\circ$, $180^\\circ$와 견주어 {예각}, 직각, {둔각}, 평각 가운데 무엇인지 가른다.",
+        "example": {
+          "prompt": "$5$시 정각에 두 바늘이 이루는 작은 쪽 각은 어떤 각인가?",
+          "answer": "둔각"
+        },
+        "studentC": "시계의 두 바늘이 겹치지 않을 때, 두 바늘이 이루는 작은 쪽 각을 구한 뒤 $90^\\circ$, $180^\\circ$와 견주어 □, 직각, □, 평각 가운데 무엇인지 가른다.",
+        "answers": [
+          "예각",
+          "둔각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$5$시 정각에 시계의 시침과 분침이 이루는 작은 쪽 각의 크기를 구하고, 이 각이 예각, 직각, 둔각, 평각 중 무엇인지 이유와 함께 쓰시오.",
+        "bAnswer": "이웃한 숫자 눈금 사이의 각은 $360^\\circ\\div 12=30^\\circ$이고 두 바늘 사이가 $5$칸이므로 $30^\\circ\\times 5=150^\\circ$이다. $90^\\circ$보다 크고 $180^\\circ$보다 작으므로 둔각이다.",
+        "bGoal": "시곗바늘이 이루는 각을 구해 종류 정하기",
+        "bReason": "시각이 없으면 답할 수 없어 $5$시 정각의 구체 상황을 넣음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$150^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둔각"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ$보다 크고 $180^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "시계에서 이웃한 두 숫자 눈금 사이의 각의 크기는 $360^\\circ$를 $12$로 똑같이 나눈 {$30^\\circ$}이다. $5$시 정각에 두 바늘이 이루는 작은 쪽 각은 {$150^\\circ$}이고, $90^\\circ$보다 크고 $180^\\circ$보다 작으므로 {둔각}이다.",
+        "cAnswers": [
+          "$30^\\circ$",
+          "$150^\\circ$",
+          "둔각"
+        ],
+        "cReason": "목록에서 빠진 예각·둔각만 채우는 빈칸은 내용이 없어 실제 시각의 각으로 바꿈",
+        "coreAfter": "시계의 두 바늘이 겹치지 않을 때, 두 바늘이 이루는 작은 쪽 각의 크기를 구한 뒤 $90^\\circ$, $180^\\circ$와 비교하여 {예각}, 직각, {둔각}, 평각 가운데 무엇인지 구분한다.",
+        "coreReason": "'견주어 가른다'는 중1 학생에게 낯선 표현이다.",
+        "studentLabel": "시곗바늘이 이루는 각의 종류",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "시각에서 각을 구해 종류 판정",
+        "authorBatch": 14,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1616,
+        "part": "m1plus",
+        "sourceFingerprint": "1632f72beac534be9a858ccacc57d972e4cde808a8449c8d06934ff4e868dc5f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1616
+        },
+        "directReview": null,
+        "coreBeforeRepair": "시계의 두 바늘이 겹치지 않을 때, 두 바늘이 이루는 작은 쪽 각의 크기를 구한 뒤 $90^\\circ$, $180^\\circ$와 비교하여 예각, 직각, 둔각, 평각 가운데 무엇인지 구분한다.",
+        "coreRepairReason": "현재안에서 빠진 원본 핵심어 {예각}, {둔각} 표지를 되살렸다. 겹치지 않는다는 조건, 작은 쪽 각이라는 대상, $90^\\circ$·$180^\\circ$ 기준은 그대로 두었다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "시계에서 이웃한 두 숫자 눈금 사이의 각의 크기는 $360^\\circ$를 $12$로 똑같이 나눈 {$30^\\circ$}이다. $5$시 정각에 두 바늘이 이루는 작은 쪽 각은 {$150^\\circ$}이고, $90^\\circ$보다 크고 $180^\\circ$보다 작으므로 {둔각}이다.",
+        "cSlotAnswers": [
+          "$30^\\circ$",
+          "$150^\\circ$",
+          "둔각"
+        ],
+        "cStudentSentence": "시계에서 이웃한 두 숫자 눈금 사이의 각의 크기는 $360^\\circ$를 $12$로 똑같이 나눈 □이다. $5$시 정각에 두 바늘이 이루는 작은 쪽 각은 □이고, $90^\\circ$보다 크고 $180^\\circ$보다 작으므로 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$30^\\circ$",
+            "equivalentAnswers": [
+              "$30^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$150^\\circ$",
+            "equivalentAnswers": [
+              "$150^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "둔각",
+            "equivalentAnswers": [
+              "둔각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$30^\\circ$"
+          ],
+          [
+            "$150^\\circ$"
+          ],
+          [
+            "둔각"
+          ]
+        ],
+        "proposalFingerprint": "5b09b3bb3c7084002341f8b6cdfa7511f4d01ea8f5fa8ff049577444ea0c5b66"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-03-xc1",
+        "section": "중1::5. 기본 도형::두 직선의 위치 관계",
+        "term": "점이 직선 위에 있다",
+        "kind": "정의",
+        "level": "하",
+        "definition": "직선이 어떤 점을 {지나면} 그 점은 직선 {위에} 있다고 한다.",
+        "example": {
+          "prompt": "직선 $l$이 점 $A$를 지나지 않으면 점 $A$는 어디에 있는가?",
+          "answer": "직선 $l$ 밖"
+        },
+        "studentC": "직선이 어떤 점을 □ 그 점은 직선 □ 있다고 한다.",
+        "answers": [
+          "지나면",
+          "위에"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-03-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "'직선 위에 있다'의 뜻은 점과 직선의 위치 관계 문항에서 '밖'과 함께 이미 묻는다.",
+        "exclusionReason": "B 제외: m1-05-03-c1의 B가 '직선 위'와 '직선 밖'을 함께 묻는 목표 중복이다.",
+        "cDecision": "rewrite",
+        "cAfter": "점 $A$가 직선 $l$ 위에 있다는 것은 직선 $l$이 점 $A$를 {지난다}는 뜻이다.",
+        "cAnswers": [
+          "지난다"
+        ],
+        "cReason": "조건 '지나면'과 결론 '위에'를 모두 가려 무엇을 묻는지 알 수 없었다.",
+        "learningRole": "definition",
+        "roleReason": "'직선 위에 있다'의 뜻",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1617,
+        "part": "m1plus",
+        "sourceFingerprint": "0d2acf2c2c5221e02e47af148894f28a258fa4037efac21f3165a4911756db3d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1617
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "점 $A$가 직선 $l$ 위에 있다는 것은 직선 $l$이 점 $A$를 {지난다}는 뜻이다.",
+        "cSlotAnswers": [
+          "지난다"
+        ],
+        "cStudentSentence": "점 $A$가 직선 $l$ 위에 있다는 것은 직선 $l$이 점 $A$를 □는 뜻이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지난다",
+            "equivalentAnswers": [
+              "지난다",
+              "지나간다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "지난다",
+            "accept": [
+              "지나간다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지난다",
+            "지나간다"
+          ]
+        ],
+        "proposalFingerprint": "497169f6d8bf7644f781a4bb30ae9639a0b70654f7262add9f0555316771437f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-03-xc2",
+        "section": "중1::5. 기본 도형::두 직선의 위치 관계",
+        "term": "평행선",
+        "kind": "정의",
+        "level": "하",
+        "definition": "서로 평행한 직선의 짝을 {평행선}이라 부르며, 끝없이 늘여도 서로 {만나지 않는다}.",
+        "example": {
+          "prompt": "직사각형의 마주 보는 두 변을 늘인 두 직선의 관계는?",
+          "answer": "평행하다"
+        },
+        "studentC": "서로 평행한 직선의 짝을 □이라 부르며, 끝없이 늘여도 서로 □.",
+        "answers": [
+          "평행선",
+          "만나지 않는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-03-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "평행의 뜻은 이미 묻고 있어 여기에는 '평행선'이라는 이름만 남는다.",
+        "exclusionReason": "B 제외: 평행의 뜻은 m1-05-03-c2의 B가 묻고, 이름만 답하는 이름 붙이기 중복이다.",
+        "cDecision": "keep",
+        "cReason": "용어 이름과 '만나지 않는다'는 성질을 하나씩 묻는 짧은 빈칸이다.",
+        "learningRole": "naming",
+        "roleReason": "평행한 두 직선의 이름 '평행선'",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1618,
+        "part": "m1plus",
+        "sourceFingerprint": "2366781db420bb3932f2ce54e54e59ccc233deb12a2e3671d6a385a8b16ff817",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1618
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "서로 평행한 직선의 짝을 □이라 부르며, 끝없이 늘여도 서로 □.",
+        "cFrozenDefinition": "서로 평행한 직선의 짝을 {평행선}이라 부르며, 끝없이 늘여도 서로 {만나지 않는다}.",
+        "cFrozenAnswers": [
+          "평행선",
+          "만나지 않는다"
+        ],
+        "cMarkedSentence": "서로 평행한 직선의 짝을 {평행선}이라 부르며, 끝없이 늘여도 서로 {만나지 않는다}.",
+        "cSlotAnswers": [
+          "평행선",
+          "만나지 않는다"
+        ],
+        "cStudentSentence": "서로 평행한 직선의 짝을 □이라 부르며, 끝없이 늘여도 서로 □.",
+        "cAnswers": [
+          "평행선",
+          "만나지 않는다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행선",
+            "equivalentAnswers": [
+              "평행선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "만나지 않는다",
+            "equivalentAnswers": [
+              "만나지 않는다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평행선"
+          ],
+          [
+            "만나지 않는다"
+          ]
+        ],
+        "proposalFingerprint": "676fdf627099b5ff230c675fdd0af55cdb2630f9943efdae28b163ccbf124b50"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-03-xc3",
+        "section": "중1::5. 기본 도형::두 직선의 위치 관계",
+        "term": "평면에서 만나는 두 직선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 평면 위의 두 직선이 평행하지도 일치하지도 않으면 반드시 {한 점}에서 {만난다}.",
+        "example": {
+          "prompt": "정사각형의 이웃한 두 변을 늘인 두 직선은 어떻게 되는가?",
+          "answer": "한 점에서 만난다"
+        },
+        "studentC": "한 평면 위의 두 직선이 평행하지도 일치하지도 않으면 반드시 □에서 □.",
+        "answers": [
+          "한 점",
+          "만난다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-03-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "평면에서 두 직선의 세 경우를 나열하면 저절로 나오는 내용이다.",
+        "exclusionReason": "B 제외: m1-05-03-c3의 B(평면에서 두 직선의 위치 관계 나열)와 목표 중복이다.",
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 모두 드러나 있고 결론만 가린 분명한 빈칸이다.",
+        "learningRole": "definition",
+        "roleReason": "평행·일치가 아니면 한 점에서 만남",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1619,
+        "part": "m1plus",
+        "sourceFingerprint": "747e581b4955bc81f4faad2519bf338f1aab638f1e5ac8a73635a5044fc51f44",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1619
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "한 평면 위의 두 직선이 평행하지도 일치하지도 않으면 반드시 □에서 □.",
+        "cFrozenDefinition": "한 평면 위의 두 직선이 평행하지도 일치하지도 않으면 반드시 {한 점}에서 {만난다}.",
+        "cFrozenAnswers": [
+          "한 점",
+          "만난다"
+        ],
+        "cMarkedSentence": "한 평면 위의 두 직선이 평행하지도 일치하지도 않으면 반드시 {한 점}에서 {만난다}.",
+        "cSlotAnswers": [
+          "한 점",
+          "만난다"
+        ],
+        "cStudentSentence": "한 평면 위의 두 직선이 평행하지도 일치하지도 않으면 반드시 □에서 □.",
+        "cAnswers": [
+          "한 점",
+          "만난다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 점",
+            "equivalentAnswers": [
+              "한 점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "만난다",
+            "equivalentAnswers": [
+              "만난다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 점"
+          ],
+          [
+            "만난다"
+          ]
+        ],
+        "proposalFingerprint": "6d691ca65999f4f193beca9f2622e1804fd7530b9c0837e97649ed0c9832ca3b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-03-xc4",
+        "section": "중1::5. 기본 도형::두 직선의 위치 관계",
+        "term": "평행 기호 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$l\\parallel m$은 「$l$과 $m$은 {평행}하다」라고 읽는다.",
+        "example": {
+          "prompt": "$AB\\parallel CD$를 읽으면?",
+          "answer": "$AB$와 $CD$는 평행하다"
+        },
+        "studentC": "$l\\parallel m$은 「$l$과 $m$은 □하다」라고 읽는다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-03-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "기호 읽는 법만 서술형으로 묻기에는 내용이 한 낱말뿐이다.",
+        "exclusionReason": "B 제외: 기호 $l\\parallel m$은 m1-05-03-c2의 B에서 쓰게 하므로 읽기만 묻는 단순 중복이다.",
+        "cDecision": "keep",
+        "cReason": "기호를 보고 읽는 말을 채우는 짧은 빈칸으로 충분하다.",
+        "learningRole": "naming",
+        "roleReason": "기호 $\\parallel$ 읽는 법",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1620,
+        "part": "m1plus",
+        "sourceFingerprint": "29b65fcd12dbe01f9022941d58a4b515a3627d0fe858d7da9fa545a8fea8d1d9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1620
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$l\\parallel m$은 「$l$과 $m$은 □하다」라고 읽는다.",
+        "cFrozenDefinition": "$l\\parallel m$은 「$l$과 $m$은 {평행}하다」라고 읽는다.",
+        "cFrozenAnswers": [
+          "평행"
+        ],
+        "cMarkedSentence": "$l\\parallel m$은 「$l$과 $m$은 {평행}하다」라고 읽는다.",
+        "cSlotAnswers": [
+          "평행"
+        ],
+        "cStudentSentence": "$l\\parallel m$은 「$l$과 $m$은 □하다」라고 읽는다.",
+        "cAnswers": [
+          "평행"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평행"
+          ]
+        ],
+        "proposalFingerprint": "af4d3cf235972ec1dd1a371d597f5311aa32a2dc292a59774c48bf9c3ee3d5e4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-03-xc5",
+        "section": "중1::5. 기본 도형::두 직선의 위치 관계",
+        "term": "직육면체의 평행한 모서리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직육면체에서 한 모서리와 평행한 모서리는 그 모서리와 {방향}이 같은 모서리로, 모서리 $12$개는 방향에 따라 {$3$묶음}으로 나뉜다.",
+        "example": {
+          "prompt": "직육면체에서 한 모서리와 평행한 모서리는 몇 개인가?",
+          "answer": "$3$개"
+        },
+        "studentC": "직육면체에서 한 모서리와 평행한 모서리는 그 모서리와 □이 같은 모서리로, 모서리 $12$개는 방향에 따라 □으로 나뉜다.",
+        "answers": [
+          "방향",
+          "$3$묶음"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-03-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "직육면체에서 한 모서리와 평행한 모서리는 몇 개인지 구하고, 모서리 $12$개를 서로 평행한 것끼리 묶어 그 이유를 설명하시오.",
+        "bAnswer": "$3$개이다. 모서리 $12$개는 서로 평행한 것끼리 $4$개씩 $3$묶음으로 나뉘므로, 한 모서리와 같은 묶음에 있는 나머지 $3$개가 평행하다.",
+        "bGoal": "직육면체의 평행한 모서리를 묶음으로 세기",
+        "bReason": "개수만이 아니라 평행한 모서리끼리 묶는 세는 방법을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 모서리와 평행한 모서리는 $3$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 평행한 모서리끼리 $4$개씩 묶인다",
+              "모서리 $12$개가 방향에 따라 $4$개씩 $3$묶음으로 나뉜다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직육면체의 모서리 $12$개는 방향이 같은 것끼리 {$4$}개씩 {$3$}묶음으로 나뉘고, 한 모서리와 평행한 모서리는 같은 묶음의 나머지 {$3$}개이다.",
+        "cAnswers": [
+          "$4$",
+          "$3$",
+          "$3$"
+        ],
+        "cReason": "첫 빈칸 답 '방향'이 뒤의 '방향에 따라'에 그대로 드러났다.",
+        "learningRole": "procedure",
+        "roleReason": "평행한 모서리를 묶어 세는 방법",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1621,
+        "part": "m1plus",
+        "sourceFingerprint": "2ae8e88a0b58fb9011df71892f66f3a21b24419898273c7664768d516b05d326",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1621
+        },
+        "directReview": null,
+        "cMarkedSentence": "직육면체의 모서리 $12$개는 방향이 같은 것끼리 {$4$}개씩 {$3$}묶음으로 나뉘고, 한 모서리와 평행한 모서리는 같은 묶음의 나머지 {$3$}개이다.",
+        "cSlotAnswers": [
+          "$4$",
+          "$3$",
+          "$3$"
+        ],
+        "cStudentSentence": "직육면체의 모서리 $12$개는 방향이 같은 것끼리 □개씩 □묶음으로 나뉘고, 한 모서리와 평행한 모서리는 같은 묶음의 나머지 □개이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "40a6eb39a51100550470e2d609284f1dc358e5b02e6274bd55b2b2d65b7facd7"
+      }
+    }
+  ]
+}

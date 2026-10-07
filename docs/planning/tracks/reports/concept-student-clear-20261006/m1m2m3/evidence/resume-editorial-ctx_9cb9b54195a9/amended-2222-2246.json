@@ -1,0 +1,2098 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-2222-2246.json",
+  "changes": [
+    {
+      "id": "m2-01-05-xc8",
+      "cAcceptedAnswers": [
+        [
+          "$a$에만"
+        ],
+        [
+          "$-a$ 전체",
+          "$-a$"
+        ]
+      ],
+      "cReason": "뒤의붙고와이어지는조사를포함한답만받는다."
+    },
+    {
+      "id": "m2-01-05-xc10",
+      "cAfter": "$b\\ne0$이고 $m$이 자연수일 때 $\\left(\\frac ab\\right)^m$은 분자와 분모를 각각 {$m$제곱}하여 {$\\frac{a^m}{b^m}$}이 된다.",
+      "cReason": "분수의분모와지수의조건을독립된문장에명시한다."
+    },
+    {
+      "id": "m2-01-05-xc14",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{a\\times a}{a\\times a\\times a\\times a\\times a}$에서 같은 인수 $a$ 두 개씩 약분한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac1{a^3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모에 a가 3개 남는다"
+          ]
+        }
+      ],
+      "cAfter": "$a\\ne0$이고 자연수 $m$, $n$이 $m<n$일 때 $a^m\\div a^n$에서는 분자의 $a$가 모두 {약분}되고 {분모}에 $a$가 $(n-m)$개 남는다.",
+      "bReason": "실제약분과남은위치·개수를모두묻는질문에맞춘다.",
+      "cReason": "지수를인수개수로해석하는자연수조건을밝힌다."
+    },
+    {
+      "id": "m2-01-05-xc15",
+      "cAfter": "$m$, $n$이 자연수일 때 $(a^m)^n$은 $a^m$을 $n$번 곱한 것이다. 따라서 $a$가 $m$개씩 $n$묶음, 모두 {$mn$}개 곱해져 지수끼리 {곱한다}.",
+      "cReason": "묶음개수로설명하는지수범위를밝힌다."
+    },
+    {
+      "id": "m2-01-05-xc16",
+      "cAfter": "$a\\ne0$이고 자연수 $m$, $n$이 $m>n$일 때 $\\frac{a^m}{a^n}$에서 분모의 $a$ $n$개가 분자의 $a$ $n$개와 {약분}되어 분자에 $a$가 {$m-n$}개 남는다.",
+      "cReason": "분자의남은인수개수를짧은수식칸으로묻고자연수조건을보인다."
+    },
+    {
+      "id": "m2-01-05-xc20",
+      "cAfter": "$2^5\\times5^3$에서 $2$와 $5$를 세 쌍 묶으면 $4\\times10^3$이 된다. 이 수는 {$4$}자리 자연수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2^3\\times5^3=10^3$으로 묶는다",
+            "$2^5\\times5^3=4\\times10^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "4자리"
+          ]
+        }
+      ],
+      "bReason": "십의거듭제곱이용과정요구에맞춰4000만쓴답으로과정을대체하지않는다.",
+      "cReason": "자릿수를알수있다는추상어휘칸대신실제십의거듭제곱자릿수를판단한다."
+    },
+    {
+      "id": "m2-01-05-xc21",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10^4$",
+            "$(2\\times5)^4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\times5$가 $4$번 곱해진 것과 같다",
+            "곱하는 순서를 바꾸어 (2×5)를 4묶음으로 만든다"
+          ]
+        }
+      ],
+      "bReason": "거듭제곱하나라는조건을만족하는두동등표현을받는다."
+    },
+    {
+      "id": "m2-01-06-xc5",
+      "cAfter": "$2a\\times5b$는 교환법칙과 결합법칙을 써서 수끼리 곱한 {$10$}과 문자끼리 곱한 {$ab$}의 곱으로 나타낼 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "교환법칙으로 곱하는 순서를 바꾸어도 결과가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "결합법칙으로 먼저 묶어 곱하는 것을 바꾸어도 결과가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10ab$"
+          ]
+        }
+      ],
+      "bReason": "법칙의이름을요구한질문과그이름·의미를확인하는기준을맞춘다.",
+      "cReason": "계수와문자의답순서가정해지지않던칸을각부분의실제곱으로구별한다."
+    },
+    {
+      "id": "m2-01-06-xc6",
+      "bPrompt": "$0$이 아닌 수의 역수가 무엇인지 설명하고, $\\frac23$의 역수를 구하시오.",
+      "bReason": "역수가존재하는수의조건을제시한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-01-05-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$2^3$을 $2\\times3$으로 계산하면 잘못이다. $2^3$과 $2\\times3$이 각각 $2$를 어떻게 한 것인지 밝혀 두 식이 다른 까닭을 설명하시오.",
+      "bAnswer": "$2^3=2\\times2\\times2$로 $2$를 $3$번 곱한 것이고, $2\\times3=2+2+2$로 $2$를 $3$번 더한 것이어서 뜻이 다르다.",
+      "bGoal": "거듭제곱과 곱셈의 뜻 구별하기",
+      "bReason": "'잘못'이라는 제목만으로는 무엇이 틀린지 몰라 $2^3$과 $2\\times3$을 비교하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2^3=2\\times2\\times2$",
+            "$2^3$은 $2$를 $3$번 곱한 것"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\times3=2+2+2$",
+            "$2\\times3$은 $2$를 $3$번 더한 것"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "두 식의 뜻을 '곱한/더한'으로 대비하는 짧고 분명한 빈칸이다.",
+      "studentLabel": "$a^n$과 $a\\times n$의 차이",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "$a^n$과 $a\\times n$의 뜻 차이",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2222,
+      "part": "m2plus",
+      "sourceFingerprint": "2c6a5cf5cd85302a644067cea54f34416f64f91153541c979b737702886c8277",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2222
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a^n$은 $a$를 $n$번 □ 것이고 $a\\times n$은 $a$를 $n$번 □ 것이라 뜻이 다르다.",
+      "cFrozenDefinition": "$a^n$은 $a$를 $n$번 {곱한} 것이고 $a\\times n$은 $a$를 $n$번 {더한} 것이라 뜻이 다르다.",
+      "cFrozenAnswers": [
+        "곱한",
+        "더한"
+      ],
+      "cMarkedSentence": "$a^n$은 $a$를 $n$번 {곱한} 것이고 $a\\times n$은 $a$를 $n$번 {더한} 것이라 뜻이 다르다.",
+      "cSlotAnswers": [
+        "곱한",
+        "더한"
+      ],
+      "cStudentSentence": "$a^n$은 $a$를 $n$번 □ 것이고 $a\\times n$은 $a$를 $n$번 □ 것이라 뜻이 다르다.",
+      "cAnswers": [
+        "곱한",
+        "더한"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱한",
+          "equivalentAnswers": [
+            "곱한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "더한",
+          "equivalentAnswers": [
+            "더한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱한"
+        ],
+        [
+          "더한"
+        ]
+      ],
+      "proposalFingerprint": "2e5db0abe400a646737cc8577a65237ad1923a4d64d07e5b87089018e5e497eb"
+    },
+    {
+      "id": "m2-01-05-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$x\\times y\\times x\\times y\\times y$를 거듭제곱을 써서 간단히 나타내고, 어떻게 정리했는지 쓰시오.",
+      "bAnswer": "$x^2y^3$이다. 같은 문자끼리 모으면 $x$가 $2$번, $y$가 $3$번 곱해져 있으므로 그 횟수를 지수로 쓴다.",
+      "bGoal": "문자가 섞인 곱을 문자별 거듭제곱으로 쓰기",
+      "bReason": "방법을 실제로 쓰도록 $x$, $y$가 뒤섞인 구체적인 곱을 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x^2y^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 문자끼리 모아 곱한 횟수를 지수로 쓴다",
+            "$x$는 $2$번, $y$는 $3$번 곱해져 있다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "여러 문자가 섞인 곱은 {같은} 문자끼리 모으고, 문자마다 곱한 횟수를 {지수}로 쓴다.",
+      "cAnswers": [
+        "같은",
+        "지수"
+      ],
+      "cReason": "'같은 문자끼리' 구절 전체 대신 핵심 낱말 '같은'만 가렸다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "문자별로 모아 지수로 쓰는 방법",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2223,
+      "part": "m2plus",
+      "sourceFingerprint": "2f04fbe676baf10a026feb1e268f28b479a04c191e793b1dcdd7ca4270a849e9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2223
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 문자가 섞인 곱은 {같은} 문자끼리 모으고, 문자마다 곱한 횟수를 {지수}로 쓴다.",
+      "cSlotAnswers": [
+        "같은",
+        "지수"
+      ],
+      "cStudentSentence": "여러 문자가 섞인 곱은 □ 문자끼리 모으고, 문자마다 곱한 횟수를 □로 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같은",
+          "equivalentAnswers": [
+            "같은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "지수",
+          "equivalentAnswers": [
+            "지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같은"
+        ],
+        [
+          "지수"
+        ]
+      ],
+      "proposalFingerprint": "9ca1f436cb4cc5b764b08f835fd5c2330e20ecbbdf61ad0e88b510359a2ec391"
+    },
+    {
+      "id": "m2-01-05-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "같은 수의 곱을 밑과 지수로 쓰는 내용은 c1~c3 질문에서 이미 설명하게 된다.",
+      "cDecision": "keep",
+      "cReason": "밑과 지수의 역할을 한 문장에서 확인하는 짧은 빈칸이라 유지한다.",
+      "exclusionReason": "B 제외: m2-01-05-c1~c3(거듭제곱·밑·지수)의 설명 질문과 목표가 겹치는 중복이다.",
+      "learningRole": "procedure",
+      "roleReason": "같은 수의 곱을 거듭제곱으로 쓰기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2224,
+      "part": "m2plus",
+      "sourceFingerprint": "2c5155ace345216f1b8ec35407f7915de7cc619b3b1a9646e233488a431bee0f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2224
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "같은 수를 여러 번 곱한 식은 그 수를 □으로, 곱한 횟수를 □로 하여 쓴다.",
+      "cFrozenDefinition": "같은 수를 여러 번 곱한 식은 그 수를 {밑}으로, 곱한 횟수를 {지수}로 하여 쓴다.",
+      "cFrozenAnswers": [
+        "밑",
+        "지수"
+      ],
+      "cMarkedSentence": "같은 수를 여러 번 곱한 식은 그 수를 {밑}으로, 곱한 횟수를 {지수}로 하여 쓴다.",
+      "cSlotAnswers": [
+        "밑",
+        "지수"
+      ],
+      "cStudentSentence": "같은 수를 여러 번 곱한 식은 그 수를 □으로, 곱한 횟수를 □로 하여 쓴다.",
+      "cAnswers": [
+        "밑",
+        "지수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "밑",
+          "equivalentAnswers": [
+            "밑"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "지수",
+          "equivalentAnswers": [
+            "지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "밑"
+        ],
+        [
+          "지수"
+        ]
+      ],
+      "proposalFingerprint": "2ad134e8c75dc18c86dc74926a26e7d58b0c398b9f2305aa9fb518170c0577e6"
+    },
+    {
+      "id": "m2-01-05-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$-5^2$과 $(-5)^2$의 값을 각각 구하고, 두 값이 다른 까닭을 지수 $2$가 적용되는 범위로 설명하시오.",
+      "bAnswer": "$-5^2=-(5\\times5)=-25$, $(-5)^2=(-5)\\times(-5)=25$이다. 괄호가 없으면 지수가 $5$에만 적용되고, 괄호가 있으면 $-5$ 전체를 두 번 곱하기 때문이다.",
+      "bGoal": "괄호 유무에 따른 지수의 적용 범위 구별하기",
+      "bReason": "괄호 유무의 차이를 $-5^2$과 $(-5)^2$의 값으로 직접 비교하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-5^2=-25$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-5)^2=25$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-5^2$은 $5$만 제곱하고 $(-5)^2$은 $-5$ 전체를 제곱한다",
+            "$-5^2=-(5\\times5)$, $(-5)^2=(-5)\\times(-5)$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "뒤의붙고와이어지는조사를포함한답만받는다.",
+      "studentLabel": "$-a^n$과 $(-a)^n$의 차이",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "지수가 적용되는 범위의 차이",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2225,
+      "part": "m2plus",
+      "sourceFingerprint": "cd4b262f50f558c313fa5895b82baeaa925e9d3111d702097f5d5adef0c5eb31",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2225
+      },
+      "directReview": null,
+      "cFrozenSentence": "괄호가 없는 $-a^n$에서는 지수가 □ 붙고, $(-a)^n$에서는 □를 $n$번 곱한다.",
+      "cFrozenDefinition": "괄호가 없는 $-a^n$에서는 지수가 {$a$에만} 붙고, $(-a)^n$에서는 {$-a$ 전체}를 $n$번 곱한다.",
+      "cFrozenAnswers": [
+        "$a$에만",
+        "$-a$ 전체"
+      ],
+      "cMarkedSentence": "괄호가 없는 $-a^n$에서는 지수가 {$a$에만} 붙고, $(-a)^n$에서는 {$-a$ 전체}를 $n$번 곱한다.",
+      "cSlotAnswers": [
+        "$a$에만",
+        "$-a$ 전체"
+      ],
+      "cStudentSentence": "괄호가 없는 $-a^n$에서는 지수가 □ 붙고, $(-a)^n$에서는 □를 $n$번 곱한다.",
+      "cAnswers": [
+        "$a$에만",
+        "$-a$ 전체"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a$에만",
+          "equivalentAnswers": [
+            "$a$에만"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-a$ 전체",
+          "equivalentAnswers": [
+            "$-a$ 전체",
+            "$-a$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$a$에만",
+          "accept": [
+            "$a$만",
+            "$a$"
+          ]
+        },
+        {
+          "answer": "$-a$ 전체",
+          "accept": [
+            "$-a$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$a$에만"
+        ],
+        [
+          "$-a$ 전체",
+          "$-a$"
+        ]
+      ],
+      "proposalFingerprint": "e7cf5329b056ef51225124621239339324c148c79c0708c8bbde041b61dd8779"
+    },
+    {
+      "id": "m2-01-05-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-1)^6$과 $(-1)^7$의 값을 각각 구하고, 음수의 거듭제곱의 부호가 지수에 따라 어떻게 정해지는지 쓰시오.",
+      "bAnswer": "$(-1)^6=1$, $(-1)^7=-1$이다. 지수가 짝수이면 양수, 홀수이면 음수가 된다.",
+      "bGoal": "음수의 거듭제곱의 부호 정하기",
+      "bReason": "부호 규칙을 $(-1)^6$, $(-1)^7$로 확인한 뒤 일반 규칙을 말하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(-1)^6=1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-1)^7=-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "지수가 짝수이면 양수, 홀수이면 음수",
+            "음수를 짝수 번 곱하면 양수, 홀수 번 곱하면 음수"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "짝수·홀수와 부호의 대응을 묻는 짧은 비교 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "지수의 짝홀로 부호 정하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2226,
+      "part": "m2plus",
+      "sourceFingerprint": "a0f292a39f433d451ba25c09fe83593466ecf0e384bca2126cd8320a27937ff8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2226
+      },
+      "directReview": null,
+      "cFrozenSentence": "음수를 □ 번 곱하면 양수, □ 번 곱하면 음수가 된다.",
+      "cFrozenDefinition": "음수를 {짝수} 번 곱하면 양수, {홀수} 번 곱하면 음수가 된다.",
+      "cFrozenAnswers": [
+        "짝수",
+        "홀수"
+      ],
+      "cMarkedSentence": "음수를 {짝수} 번 곱하면 양수, {홀수} 번 곱하면 음수가 된다.",
+      "cSlotAnswers": [
+        "짝수",
+        "홀수"
+      ],
+      "cStudentSentence": "음수를 □ 번 곱하면 양수, □ 번 곱하면 음수가 된다.",
+      "cAnswers": [
+        "짝수",
+        "홀수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "짝수",
+          "equivalentAnswers": [
+            "짝수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "홀수",
+          "equivalentAnswers": [
+            "홀수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "짝수"
+        ],
+        [
+          "홀수"
+        ]
+      ],
+      "proposalFingerprint": "3b7d0ec6f626125d8f76e1ffca42894155d3abb32d4c96f8302dbe1e3197129b"
+    },
+    {
+      "id": "m2-01-05-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$b\\ne0$이고 $m$이 자연수일 때 $\\left(\\frac{a}{b}\\right)^m$을 분자와 분모의 거듭제곱으로 나타내고, 이를 이용해 $\\left(\\frac{2}{3}\\right)^3$의 값을 구하시오.",
+      "bAnswer": "$\\left(\\frac{a}{b}\\right)^m=\\frac{a^m}{b^m}$이다. $\\left(\\frac{2}{3}\\right)^3=\\frac{2^3}{3^3}=\\frac{8}{27}$",
+      "bGoal": "분수의 거듭제곱 계산하기",
+      "bReason": "분모 조건 $b\\ne0$과 자연수 $m$을 밝히고 구체적인 분수에 적용하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{a^m}{b^m}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{27}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "분수의분모와지수의조건을독립된문장에명시한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "분자·분모를 각각 거듭제곱",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2227,
+      "part": "m2plus",
+      "sourceFingerprint": "f34b0b38c4115a08027a3dfbf0063587550c15ef3042bc87b42cbe084f1cf2a9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2227
+      },
+      "directReview": null,
+      "cMarkedSentence": "$b\\ne0$이고 $m$이 자연수일 때 $\\left(\\frac ab\\right)^m$은 분자와 분모를 각각 {$m$제곱}하여 {$\\frac{a^m}{b^m}$}이 된다.",
+      "cSlotAnswers": [
+        "$m$제곱",
+        "$\\frac{a^m}{b^m}$"
+      ],
+      "cStudentSentence": "$b\\ne0$이고 $m$이 자연수일 때 $\\left(\\frac ab\\right)^m$은 분자와 분모를 각각 □하여 □이 된다.",
+      "cAnswers": [
+        "$m$제곱",
+        "$\\frac{a^m}{b^m}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$m$제곱",
+          "equivalentAnswers": [
+            "$m$제곱"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{a^m}{b^m}$",
+          "equivalentAnswers": [
+            "$\\frac{a^m}{b^m}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$m$제곱"
+        ],
+        [
+          "$\\frac{a^m}{b^m}$"
+        ]
+      ],
+      "proposalFingerprint": "dbce61f22a96040a956811f1d16bcd820c8f7bc78d83b6f451dba2e82ffd5477",
+      "cAfter": "$b\\ne0$이고 $m$이 자연수일 때 $\\left(\\frac ab\\right)^m$은 분자와 분모를 각각 {$m$제곱}하여 {$\\frac{a^m}{b^m}$}이 된다."
+    },
+    {
+      "id": "m2-01-05-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "$a^3\\times a^2$과 $(a^3)^2$을 각각 간단히 하고, 두 계산에서 지수를 다루는 방법이 어떻게 다른지 쓰시오.",
+      "bAnswer": "$a^3\\times a^2=a^5$, $(a^3)^2=a^6$이다. 밑이 같은 거듭제곱의 곱셈에서는 지수를 더하고, 거듭제곱의 거듭제곱에서는 지수를 곱한다.",
+      "bGoal": "지수를 더하는 경우와 곱하는 경우 구별하기",
+      "bReason": "헷갈리는 두 법칙을 같은 수 $3$, $2$가 쓰인 두 식으로 대비했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a^5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a^6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈에서는 지수를 더하고 거듭제곱의 거듭제곱에서는 지수를 곱한다",
+            "$3+2$와 $3\\times2$로 계산한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "{밑}이 같은 거듭제곱끼리 곱할 때는 지수를 {더하고}, 거듭제곱을 다시 거듭제곱할 때는 지수를 {곱한다}.",
+      "cAnswers": [
+        "밑",
+        "더하고",
+        "곱한다"
+      ],
+      "cReason": "문장 맨 앞의 구절 빈칸 '밑이 같은'은 무엇을 채울지 알기 어려워 낱말 '밑'으로 줄였다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "두 지수법칙의 구별",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2228,
+      "part": "m2plus",
+      "sourceFingerprint": "5269fdeaa292710e07fcf2659d331877542686417c73bdb5a0068296646699bc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2228
+      },
+      "directReview": null,
+      "cMarkedSentence": "{밑}이 같은 거듭제곱끼리 곱할 때는 지수를 {더하고}, 거듭제곱을 다시 거듭제곱할 때는 지수를 {곱한다}.",
+      "cSlotAnswers": [
+        "밑",
+        "더하고",
+        "곱한다"
+      ],
+      "cStudentSentence": "□이 같은 거듭제곱끼리 곱할 때는 지수를 □, 거듭제곱을 다시 거듭제곱할 때는 지수를 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "밑",
+          "equivalentAnswers": [
+            "밑"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "더하고",
+          "equivalentAnswers": [
+            "더하고"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "곱한다",
+          "equivalentAnswers": [
+            "곱한다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "밑"
+        ],
+        [
+          "더하고"
+        ],
+        [
+          "곱한다"
+        ]
+      ],
+      "proposalFingerprint": "11a1ea8de14e9ba87660c38ad81edc9d639829525e01513d78a193374f7c969c"
+    },
+    {
+      "id": "m2-01-05-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$4^3\\times8^2$을 $2$의 거듭제곱 하나로 나타내고 풀이 과정을 쓰시오.",
+      "bAnswer": "$4=2^2$, $8=2^3$이므로 $4^3\\times8^2=(2^2)^3\\times(2^3)^2=2^6\\times2^6=2^{12}$",
+      "bGoal": "수를 같은 밑의 거듭제곱으로 고쳐 지수법칙 쓰기",
+      "bReason": "밑을 고치는 방법을 실제 식 $4^3\\times8^2$에서 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4=2^2$, $8=2^3$으로 고친다",
+            "$4^3=2^6$, $8^2=2^6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2^{12}$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "예 $4=2^2$, $8=2^3$이 문장에 있어 '밑'과 '지수법칙' 빈칸이 분명하다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "밑을 통일하는 방법",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2229,
+      "part": "m2plus",
+      "sourceFingerprint": "fd80e3c86084c9290b49a123cee6677e5a03a4376d02b41f593d202831a5ea30",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2229
+      },
+      "directReview": null,
+      "cFrozenSentence": "$4=2^2$, $8=2^3$처럼 수를 같은 □의 거듭제곱으로 바꾸면 □을 쓸 수 있다.",
+      "cFrozenDefinition": "$4=2^2$, $8=2^3$처럼 수를 같은 {밑}의 거듭제곱으로 바꾸면 {지수법칙}을 쓸 수 있다.",
+      "cFrozenAnswers": [
+        "밑",
+        "지수법칙"
+      ],
+      "cMarkedSentence": "$4=2^2$, $8=2^3$처럼 수를 같은 {밑}의 거듭제곱으로 바꾸면 {지수법칙}을 쓸 수 있다.",
+      "cSlotAnswers": [
+        "밑",
+        "지수법칙"
+      ],
+      "cStudentSentence": "$4=2^2$, $8=2^3$처럼 수를 같은 □의 거듭제곱으로 바꾸면 □을 쓸 수 있다.",
+      "cAnswers": [
+        "밑",
+        "지수법칙"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "밑",
+          "equivalentAnswers": [
+            "밑"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "지수법칙",
+          "equivalentAnswers": [
+            "지수법칙"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "밑"
+        ],
+        [
+          "지수법칙"
+        ]
+      ],
+      "proposalFingerprint": "b4f6791351be26058d9fa1defbd87b6e63445bd9ad842a263a45302b4f267fe0"
+    },
+    {
+      "id": "m2-01-05-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$(3a^2)^2$을 $6a^4$이라고 계산하면 무엇이 잘못인지 설명하고 바르게 계산하시오.",
+      "bAnswer": "계수 $3$에 지수 $2$를 곱한 것이 잘못이다. 계수 $3$도 제곱해야 하므로 $(3a^2)^2=3^2\\times(a^2)^2=9a^4$",
+      "bGoal": "곱의 거듭제곱에서 계수도 거듭제곱함을 알기",
+      "bReason": "흔한 오답 $6a^4$을 제시해 계수 처리의 잘못을 찾게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "계수 $3$도 제곱해야 한다",
+            "계수에 지수 $2$를 곱한 것이 잘못이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9a^4$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$(3a^2)^2$처럼 계수가 있는 곱을 거듭제곱할 때는 계수도 문자와 똑같이 {거듭제곱}한다. 계수에 지수를 {곱하는} 것이 아니다.",
+      "cAnswers": [
+        "거듭제곱",
+        "곱하는"
+      ],
+      "cReason": "'괄호 안의 계수'가 어떤 식의 괄호인지 문장에 없어 예 $(3a^2)^2$을 넣었다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "계수에 지수를 곱하는 오류 진단",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2230,
+      "part": "m2plus",
+      "sourceFingerprint": "2ba5f76800c547c9e4751fa306515e5bcc9b7e1cd06c1ab8cd7e24f1b344e3b4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2230
+      },
+      "directReview": null,
+      "cMarkedSentence": "$(3a^2)^2$처럼 계수가 있는 곱을 거듭제곱할 때는 계수도 문자와 똑같이 {거듭제곱}한다. 계수에 지수를 {곱하는} 것이 아니다.",
+      "cSlotAnswers": [
+        "거듭제곱",
+        "곱하는"
+      ],
+      "cStudentSentence": "$(3a^2)^2$처럼 계수가 있는 곱을 거듭제곱할 때는 계수도 문자와 똑같이 □한다. 계수에 지수를 □ 것이 아니다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "거듭제곱",
+          "equivalentAnswers": [
+            "거듭제곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "곱하는",
+          "equivalentAnswers": [
+            "곱하는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "거듭제곱"
+        ],
+        [
+          "곱하는"
+        ]
+      ],
+      "proposalFingerprint": "0ee16f441e8affe0e1018cabf46a24c1367fe2fd86b9f2b1b312cca7524eb70f"
+    },
+    {
+      "id": "m2-01-05-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 $a^2\\div a^5$를 분수로 쓰고 약분하여 간단히 하시오. 약분한 뒤 $a$가 분자와 분모 중 어디에 몇 개 남는지도 쓰시오.",
+      "bAnswer": "$\\frac{a\\times a}{a\\times a\\times a\\times a\\times a}$에서 분자의 $a$ $2$개가 모두 약분되고 분모에 $a$가 $3$개 남아 $\\frac{1}{a^3}$이 된다.",
+      "bGoal": "나누는 쪽 지수가 클 때 몫이 분수가 되는 까닭 알기",
+      "bReason": "실제약분과남은위치·개수를모두묻는질문에맞춘다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{a\\times a}{a\\times a\\times a\\times a\\times a}$에서 같은 인수 $a$ 두 개씩 약분한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac1{a^3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모에 a가 3개 남는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "지수를인수개수로해석하는자연수조건을밝힌다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "몫이 분수 꼴이 되는 근거",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2231,
+      "part": "m2plus",
+      "sourceFingerprint": "99430e476a307563a2b7baf566269f2e57178579257bf20833bfeac729a37583",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2231
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a\\ne0$이고 자연수 $m$, $n$이 $m<n$일 때 $a^m\\div a^n$에서는 분자의 $a$가 모두 {약분}되고 {분모}에 $a$가 $(n-m)$개 남는다.",
+      "cSlotAnswers": [
+        "약분",
+        "분모"
+      ],
+      "cStudentSentence": "$a\\ne0$이고 자연수 $m$, $n$이 $m<n$일 때 $a^m\\div a^n$에서는 분자의 $a$가 모두 □되고 □에 $a$가 $(n-m)$개 남는다.",
+      "cAnswers": [
+        "약분",
+        "분모"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "분모",
+          "equivalentAnswers": [
+            "분모"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ],
+        [
+          "분모"
+        ]
+      ],
+      "proposalFingerprint": "7817d9b5ad08db5fc038764b1702456e6b902db6e337d9b36a54557b476943d4",
+      "cAfter": "$a\\ne0$이고 자연수 $m$, $n$이 $m<n$일 때 $a^m\\div a^n$에서는 분자의 $a$가 모두 {약분}되고 {분모}에 $a$가 $(n-m)$개 남는다."
+    },
+    {
+      "id": "m2-01-05-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$m$, $n$이 자연수일 때 $(a^m)^n$의 지수가 $m$과 $n$의 곱이 되는 까닭을, $(a^m)^n$을 $a^m$의 곱으로 풀어 써서 설명하시오. $(a^2)^3$을 예로 들어도 된다.",
+      "bAnswer": "$(a^m)^n$은 $a^m$을 $n$번 곱한 것이므로 $a$가 $m$개씩 $n$묶음, 모두 $mn$개 곱해진다. 그래서 $(a^m)^n=a^{mn}$이다.",
+      "bGoal": "거듭제곱의 거듭제곱에서 지수를 곱하는 까닭 설명하기",
+      "bReason": "설명 방법을 '$a^m$의 곱으로 풀어 쓰기'로 정하고 구체 예도 허용했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(a^m)^n$은 $a^m$을 $n$번 곱한 것이다",
+            "$(a^2)^3=a^2\\times a^2\\times a^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a$가 $m$개씩 $n$묶음이라 모두 $mn$개 곱해진다",
+            "지수 $m$을 $n$번 더하면 $mn$이다",
+            "$2+2+2=2\\times3=6$이므로 $a^6$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$m$, $n$이 자연수일 때 $(a^m)^n$은 $a^m$을 $n$번 곱한 것이다. 따라서 $a$가 $m$개씩 $n$묶음, 모두 {$mn$}개 곱해져 지수끼리 {곱한다}.",
+      "cAnswers": [
+        "$mn$",
+        "곱한다"
+      ],
+      "cReason": "묶음개수로설명하는지수범위를밝힌다.",
+      "learningRole": "reason",
+      "roleReason": "지수를 곱하는 근거",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2232,
+      "part": "m2plus",
+      "sourceFingerprint": "2244046c2284d57e4177527f2da04b61e53b3c7cce532dd1b4c0dcbccda2bed2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2232
+      },
+      "directReview": null,
+      "cMarkedSentence": "$m$, $n$이 자연수일 때 $(a^m)^n$은 $a^m$을 $n$번 곱한 것이다. 따라서 $a$가 $m$개씩 $n$묶음, 모두 {$mn$}개 곱해져 지수끼리 {곱한다}.",
+      "cSlotAnswers": [
+        "$mn$",
+        "곱한다"
+      ],
+      "cStudentSentence": "$m$, $n$이 자연수일 때 $(a^m)^n$은 $a^m$을 $n$번 곱한 것이다. 따라서 $a$가 $m$개씩 $n$묶음, 모두 □개 곱해져 지수끼리 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$mn$",
+          "equivalentAnswers": [
+            "$mn$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "곱한다",
+          "equivalentAnswers": [
+            "곱한다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$mn$"
+        ],
+        [
+          "곱한다"
+        ]
+      ],
+      "proposalFingerprint": "c513b8851bf75b6ddbdad6eb9b23a85098345b0cb98d5511841f9921ade575a0"
+    },
+    {
+      "id": "m2-01-05-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$이고 자연수 $m$, $n$이 $m>n$일 때 $a^m\\div a^n$의 지수가 $m-n$이 되는 까닭을, 분수 $\\frac{a^m}{a^n}$의 약분으로 설명하시오. $a^5\\div a^2$을 예로 들어도 된다.",
+      "bAnswer": "분수 $\\frac{a^m}{a^n}$에서 분모의 $a$ $n$개가 분자의 $a$ $n$개와 약분되어 분자에 $a$가 $(m-n)$개 남으므로 $a^{m-n}$이 된다.",
+      "bGoal": "나눗셈에서 지수를 빼는 까닭 설명하기",
+      "bReason": "조건 $a\\ne0$, $m>n$과 설명 수단인 약분을 질문에 밝혔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모의 $a$ $n$개가 분자의 $a$ $n$개와 약분된다",
+            "$\\frac{a\\times a\\times a\\times a\\times a}{a\\times a}$에서 $a$가 $2$개씩 약분된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자에 $a$가 $(m-n)$개 남는다",
+            "$a$가 $3$개 남아 $a^3$이 된다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "분자의남은인수개수를짧은수식칸으로묻고자연수조건을보인다.",
+      "learningRole": "reason",
+      "roleReason": "지수를 빼는 근거",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2233,
+      "part": "m2plus",
+      "sourceFingerprint": "77020912e04279be5202f2b39e3647f9de305868d17d755d48da06aea1ec5733",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2233
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a\\ne0$이고 자연수 $m$, $n$이 $m>n$일 때 $\\frac{a^m}{a^n}$에서 분모의 $a$ $n$개가 분자의 $a$ $n$개와 {약분}되어 분자에 $a$가 {$m-n$}개 남는다.",
+      "cSlotAnswers": [
+        "약분",
+        "$m-n$"
+      ],
+      "cStudentSentence": "$a\\ne0$이고 자연수 $m$, $n$이 $m>n$일 때 $\\frac{a^m}{a^n}$에서 분모의 $a$ $n$개가 분자의 $a$ $n$개와 □되어 분자에 $a$가 □개 남는다.",
+      "cAnswers": [
+        "약분",
+        "$m-n$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$m-n$",
+          "equivalentAnswers": [
+            "$m-n$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$(m-n)$개",
+          "accept": [
+            "$m-n$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ],
+        [
+          "$m-n$"
+        ]
+      ],
+      "proposalFingerprint": "b9eae35da2cf17de3393bec01aeaa06ab5d8c60f412926d374b253832dbe4d0a",
+      "cAfter": "$a\\ne0$이고 자연수 $m$, $n$이 $m>n$일 때 $\\frac{a^m}{a^n}$에서 분모의 $a$ $n$개가 분자의 $a$ $n$개와 {약분}되어 분자에 $a$가 {$m-n$}개 남는다."
+    },
+    {
+      "id": "m2-01-05-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$3^{x+1}=3^4$일 때 자연수 $x$의 값을 구하고, 거듭제곱의 어떤 성질을 이용했는지 쓰시오.",
+      "bAnswer": "밑이 $3$으로 같은 두 거듭제곱이 같으면 지수도 같으므로 $x+1=4$, $x=3$이다.",
+      "bGoal": "밑이 같은 거듭제곱의 등식에서 지수 비교하기",
+      "bReason": "'지수가 미지수인 등식'을 구체적인 식 $3^{x+1}=3^4$으로 제시하고 근거 성질을 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑이 같으므로 지수가 같다",
+            "$x+1=4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=3$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$a$가 $1$보다 큰 자연수일 때 $a^m=a^n$이면 두 {지수}가 같으므로 {$m=n$}이다.",
+      "cAnswers": [
+        "지수",
+        "$m=n$"
+      ],
+      "cReason": "'□이 $1$보다 큰 같은 자연수인'은 읽기 어려워 기호 $a^m=a^n$으로 풀어 썼다.",
+      "studentLabel": "밑이 같은 두 거듭제곱이 같을 때",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "지수 비교로 미지수 구하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2234,
+      "part": "m2plus",
+      "sourceFingerprint": "2458dd590b3cbf41bbe7c63e4b54dc4202d23767d30de7adc41e0c375b42a0d0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2234
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a$가 $1$보다 큰 자연수일 때 $a^m=a^n$이면 두 {지수}가 같으므로 {$m=n$}이다.",
+      "cSlotAnswers": [
+        "지수",
+        "$m=n$"
+      ],
+      "cStudentSentence": "$a$가 $1$보다 큰 자연수일 때 $a^m=a^n$이면 두 □가 같으므로 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "지수",
+          "equivalentAnswers": [
+            "지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$m=n$",
+          "equivalentAnswers": [
+            "$m=n$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "지수"
+        ],
+        [
+          "$m=n$"
+        ]
+      ],
+      "proposalFingerprint": "256187fb91d91d459e948ca827aa80457e60c416dbd1ac4b7d7346a74d9f894f"
+    },
+    {
+      "id": "m2-01-05-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$9^x=3^8$을 만족시키는 자연수 $x$의 값을 구하고 풀이 과정을 쓰시오.",
+      "bAnswer": "$9=3^2$이므로 $9^x=(3^2)^x=3^{2x}$이다. $3^{2x}=3^8$에서 $2x=8$, $x=4$",
+      "bGoal": "밑을 같게 고쳐 지수 비교하기",
+      "bReason": "밑이 다른 등식 $9^x=3^8$을 주어 밑을 맞추는 과정을 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$9=3^2$이므로 $9^x=3^{2x}$",
+            "좌변을 밑이 $3$인 거듭제곱으로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=4$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "예 $4^x=2^6$이 문장에 있어 '같은 밑', '지수' 빈칸이 분명하다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "밑을 맞춘 뒤 지수 비교",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2235,
+      "part": "m2plus",
+      "sourceFingerprint": "f55993fd78f5bd79e6d1a31db46ef7c6487c74ff2148edcbbf1c771bc1ee9b3b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2235
+      },
+      "directReview": null,
+      "cFrozenSentence": "$4^x=2^6$처럼 밑이 다르면 한쪽을 □으로 고친 뒤 □를 비교한다.",
+      "cFrozenDefinition": "$4^x=2^6$처럼 밑이 다르면 한쪽을 {같은 밑}으로 고친 뒤 {지수}를 비교한다.",
+      "cFrozenAnswers": [
+        "같은 밑",
+        "지수"
+      ],
+      "cMarkedSentence": "$4^x=2^6$처럼 밑이 다르면 한쪽을 {같은 밑}으로 고친 뒤 {지수}를 비교한다.",
+      "cSlotAnswers": [
+        "같은 밑",
+        "지수"
+      ],
+      "cStudentSentence": "$4^x=2^6$처럼 밑이 다르면 한쪽을 □으로 고친 뒤 □를 비교한다.",
+      "cAnswers": [
+        "같은 밑",
+        "지수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같은 밑",
+          "equivalentAnswers": [
+            "같은 밑"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "지수",
+          "equivalentAnswers": [
+            "지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같은 밑"
+        ],
+        [
+          "지수"
+        ]
+      ],
+      "proposalFingerprint": "f1a6b8d0686390bb3521d0abc071ff54f4c48eb0cbbf2bcb0e6250392a90e131"
+    },
+    {
+      "id": "m2-01-05-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$3^2+3^2+3^2$을 $3$의 거듭제곱 하나로 나타내고, 답이 $3^6$이 아닌 까닭을 설명하시오.",
+      "bAnswer": "$3^2$이 $3$개이므로 $3\\times3^2=3^3$이다. 지수를 더하는 것은 거듭제곱끼리 곱할 때이고, 더할 때는 개수를 곱한다.",
+      "bGoal": "같은 거듭제곱의 덧셈과 곱셈 구별하기",
+      "bReason": "덧셈에 지수법칙을 잘못 쓰는 오답 $3^6$을 제시해 구별하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3^2$이 $3$개이므로 $3\\times3^2$이다",
+            "덧셈에서는 지수를 더할 수 없고 개수를 곱한다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'더하면/곱한'으로 덧셈과 곱셈의 차이를 묻는 짧은 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "덧셈에 지수법칙을 못 쓰는 까닭",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2236,
+      "part": "m2plus",
+      "sourceFingerprint": "d05776f992cbd2b76e782124a9a4ab807a00a0b2a4a16a742698d704eae73839",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2236
+      },
+      "directReview": null,
+      "cFrozenSentence": "같은 거듭제곱 $a^n$을 여러 개 □ $a^n$에 그 개수를 □ 것이 된다. 지수를 더하는 것은 거듭제곱끼리 곱할 때뿐이다.",
+      "cFrozenDefinition": "같은 거듭제곱 $a^n$을 여러 개 {더하면} $a^n$에 그 개수를 {곱한} 것이 된다. 지수를 더하는 것은 거듭제곱끼리 곱할 때뿐이다.",
+      "cFrozenAnswers": [
+        "더하면",
+        "곱한"
+      ],
+      "cMarkedSentence": "같은 거듭제곱 $a^n$을 여러 개 {더하면} $a^n$에 그 개수를 {곱한} 것이 된다. 지수를 더하는 것은 거듭제곱끼리 곱할 때뿐이다.",
+      "cSlotAnswers": [
+        "더하면",
+        "곱한"
+      ],
+      "cStudentSentence": "같은 거듭제곱 $a^n$을 여러 개 □ $a^n$에 그 개수를 □ 것이 된다. 지수를 더하는 것은 거듭제곱끼리 곱할 때뿐이다.",
+      "cAnswers": [
+        "더하면",
+        "곱한"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "더하면",
+          "equivalentAnswers": [
+            "더하면"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "곱한",
+          "equivalentAnswers": [
+            "곱한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "더하면"
+        ],
+        [
+          "곱한"
+        ]
+      ],
+      "proposalFingerprint": "3017f0f7c32801909fa6fb39ff5c5515feb0af9e7a82a003e0679d64bd66667b"
+    },
+    {
+      "id": "m2-01-05-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$2^5\\times5^3$이 몇 자리 자연수인지 구하고, $10$의 거듭제곱을 이용한 풀이 과정을 쓰시오.",
+      "bAnswer": "$2^5\\times5^3=2^2\\times(2^3\\times5^3)=4\\times10^3=4000$이므로 $4$자리 수이다.",
+      "bGoal": "$2$와 $5$를 짝지어 자릿수 구하기",
+      "bReason": "십의거듭제곱이용과정요구에맞춰4000만쓴답으로과정을대체하지않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2^3\\times5^3=10^3$으로 묶는다",
+            "$2^5\\times5^3=4\\times10^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "4자리"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$2^5\\times5^3$에서 $2$와 $5$를 세 쌍 묶으면 $4\\times10^3$이 된다. 이 수는 {$4$}자리 자연수이다.",
+      "cAnswers": [
+        "$4$"
+      ],
+      "cReason": "자릿수를알수있다는추상어휘칸대신실제십의거듭제곱자릿수를판단한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "$10$의 거듭제곱으로 자릿수 구하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2237,
+      "part": "m2plus",
+      "sourceFingerprint": "05f56e0533c82ea975ac01f7aa304265886f3ea13b3090251f9f1edd97cea6ed",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2237
+      },
+      "directReview": null,
+      "cMarkedSentence": "$2^5\\times5^3$에서 $2$와 $5$를 세 쌍 묶으면 $4\\times10^3$이 된다. 이 수는 {$4$}자리 자연수이다.",
+      "cSlotAnswers": [
+        "$4$"
+      ],
+      "cStudentSentence": "$2^5\\times5^3$에서 $2$와 $5$를 세 쌍 묶으면 $4\\times10^3$이 된다. 이 수는 □자리 자연수이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$4$",
+          "equivalentAnswers": [
+            "$4$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$4$"
+        ]
+      ],
+      "proposalFingerprint": "d40a8c61122abd67950cab608d847e8986b6f2f9b25f545b300fa82231435285"
+    },
+    {
+      "id": "m2-01-05-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$2^4\\times5^4$을 거듭제곱 하나로 나타내고, 그렇게 묶을 수 있는 까닭을 곱을 풀어 써서 설명하시오.",
+      "bAnswer": "$2$ $4$개와 $5$ $4$개의 곱은 순서를 바꾸면 $(2\\times5)$를 $4$번 곱한 것과 같으므로 $2^4\\times5^4=(2\\times5)^4=10^4$",
+      "bGoal": "지수가 같은 거듭제곱의 곱을 하나로 묶기",
+      "bReason": "거듭제곱하나라는조건을만족하는두동등표현을받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10^4$",
+            "$(2\\times5)^4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\times5$가 $4$번 곱해진 것과 같다",
+            "곱하는 순서를 바꾸어 (2×5)를 4묶음으로 만든다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "조건 설명이 문장에 있고 결과식 하나만 묻는 분명한 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "$a^nb^n=(ab)^n$의 근거",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2238,
+      "part": "m2plus",
+      "sourceFingerprint": "275948182ac59f23b783ea3dbd04363cf35a5fec630a6f1641af7a110f612fd4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2238
+      },
+      "directReview": null,
+      "cFrozenSentence": "밑이 달라도 지수가 같은 두 거듭제곱의 곱은 밑끼리 곱해 한 거듭제곱으로 묶을 수 있다. $a^n\\times b^n$은 □과 같다.",
+      "cFrozenDefinition": "밑이 달라도 지수가 같은 두 거듭제곱의 곱은 밑끼리 곱해 한 거듭제곱으로 묶을 수 있다. $a^n\\times b^n$은 {$(ab)^n$}과 같다.",
+      "cFrozenAnswers": [
+        "$(ab)^n$"
+      ],
+      "cMarkedSentence": "밑이 달라도 지수가 같은 두 거듭제곱의 곱은 밑끼리 곱해 한 거듭제곱으로 묶을 수 있다. $a^n\\times b^n$은 {$(ab)^n$}과 같다.",
+      "cSlotAnswers": [
+        "$(ab)^n$"
+      ],
+      "cStudentSentence": "밑이 달라도 지수가 같은 두 거듭제곱의 곱은 밑끼리 곱해 한 거듭제곱으로 묶을 수 있다. $a^n\\times b^n$은 □과 같다.",
+      "cAnswers": [
+        "$(ab)^n$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(ab)^n$",
+          "equivalentAnswers": [
+            "$(ab)^n$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(ab)^n$"
+        ]
+      ],
+      "proposalFingerprint": "4a14fc7ebcac2e55d1cd080758ee69c17ac62a32a2673865de8b4b5d75e0d935"
+    },
+    {
+      "id": "m2-01-05-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$2^{10}$과 $4^4$ 중 어느 수가 더 큰지, 밑을 같게 고쳐서 비교하시오.",
+      "bAnswer": "$4^4=(2^2)^4=2^8$이고 지수가 $10>8$이므로 $2^{10}$이 더 크다. ($2^{10}=4^5$으로 고쳐 비교해도 된다.)",
+      "bGoal": "밑을 같게 하여 거듭제곱의 크기 비교하기",
+      "bReason": "비교할 두 수와 방법(밑 맞추기)을 질문에 넣어 답할 범위를 정했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4^4=2^8$",
+            "$2^{10}=4^5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2^{10}$이 더 크다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "예가 문장에 있어 '같은 밑', '지수'를 묻는 빈칸이 분명하다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "밑을 맞춰 크기 비교",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2239,
+      "part": "m2plus",
+      "sourceFingerprint": "3542f56c991d601f6078bb10a249ccab03cd9714494b15680abd5a41d295c8f9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2239
+      },
+      "directReview": null,
+      "cFrozenSentence": "$2^{10}$과 $4^4$처럼 밑이 다르면 □으로 고쳐 □를 견준다.",
+      "cFrozenDefinition": "$2^{10}$과 $4^4$처럼 밑이 다르면 {같은 밑}으로 고쳐 {지수}를 견준다.",
+      "cFrozenAnswers": [
+        "같은 밑",
+        "지수"
+      ],
+      "cMarkedSentence": "$2^{10}$과 $4^4$처럼 밑이 다르면 {같은 밑}으로 고쳐 {지수}를 견준다.",
+      "cSlotAnswers": [
+        "같은 밑",
+        "지수"
+      ],
+      "cStudentSentence": "$2^{10}$과 $4^4$처럼 밑이 다르면 □으로 고쳐 □를 견준다.",
+      "cAnswers": [
+        "같은 밑",
+        "지수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같은 밑",
+          "equivalentAnswers": [
+            "같은 밑"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "지수",
+          "equivalentAnswers": [
+            "지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같은 밑"
+        ],
+        [
+          "지수"
+        ]
+      ],
+      "proposalFingerprint": "35640b468286784fe2c4a4e934cf9efd8b6dd3185313b5e5c5001e9b9c5af5c5"
+    },
+    {
+      "id": "m2-01-06-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "단항식이 어떤 식인지 설명하고, $3x^2y$와 $x+2$ 중 단항식을 고르시오.",
+      "bAnswer": "수와 문자의 곱으로만 이루어져 항이 하나뿐인 식이다. $3x^2y$가 단항식이다.",
+      "bGoal": "단항식의 뜻 알고 찾기",
+      "bReason": "뜻 설명에 더해 항이 $2$개인 식과 구별하는 예를 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수와 문자의 곱으로만 이루어진 식",
+            "항이 하나뿐인 식"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3x^2y$가 단항식이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "뜻의 핵심 '곱'과 용어를 묻는 짧은 빈칸이라 유지한다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "단항식의 뜻",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2240,
+      "part": "m2plus",
+      "sourceFingerprint": "78a2c9fa67028892dabd3aae8ebd8dac2b23e9252f9141a56f3e095bf3fe39c1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2240
+      },
+      "directReview": null,
+      "cFrozenSentence": "수와 문자를 □하기만 하여 만든, 항이 하나뿐인 식을 □이라 한다.",
+      "cFrozenDefinition": "수와 문자를 {곱}하기만 하여 만든, 항이 하나뿐인 식을 {단항식}이라 한다.",
+      "cFrozenAnswers": [
+        "곱",
+        "단항식"
+      ],
+      "cMarkedSentence": "수와 문자를 {곱}하기만 하여 만든, 항이 하나뿐인 식을 {단항식}이라 한다.",
+      "cSlotAnswers": [
+        "곱",
+        "단항식"
+      ],
+      "cStudentSentence": "수와 문자를 □하기만 하여 만든, 항이 하나뿐인 식을 □이라 한다.",
+      "cAnswers": [
+        "곱",
+        "단항식"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱",
+          "equivalentAnswers": [
+            "곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "단항식",
+          "equivalentAnswers": [
+            "단항식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱"
+        ],
+        [
+          "단항식"
+        ]
+      ],
+      "proposalFingerprint": "df514f2ce468b0b3854b2558e060005b7c1f648a1e9cfc868c402247237722b4"
+    },
+    {
+      "id": "m2-01-06-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "단항식 $-5ab$의 계수를 쓰고, 단항식의 계수가 무엇인지 설명하시오.",
+      "bAnswer": "계수는 $-5$이다. 계수는 단항식에서 문자에 곱해진 수이다.",
+      "bGoal": "단항식의 계수 찾고 뜻 말하기",
+      "bReason": "부호까지 포함해 답하도록 음수 계수인 $-5ab$를 예로 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "문자에 곱해진 수"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "계수의 뜻과 이름을 묻는 짧은 정의 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "계수의 뜻",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2241,
+      "part": "m2plus",
+      "sourceFingerprint": "1c4c8a6307e41434bd700cef833e1d64c66efbacd264db8911cc504d07a0a71d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2241
+      },
+      "directReview": null,
+      "cFrozenSentence": "단항식에서 문자에 곱해진 □를 그 단항식의 □라 한다.",
+      "cFrozenDefinition": "단항식에서 문자에 곱해진 {수}를 그 단항식의 {계수}라 한다.",
+      "cFrozenAnswers": [
+        "수",
+        "계수"
+      ],
+      "cMarkedSentence": "단항식에서 문자에 곱해진 {수}를 그 단항식의 {계수}라 한다.",
+      "cSlotAnswers": [
+        "수",
+        "계수"
+      ],
+      "cStudentSentence": "단항식에서 문자에 곱해진 □를 그 단항식의 □라 한다.",
+      "cAnswers": [
+        "수",
+        "계수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "수",
+          "equivalentAnswers": [
+            "수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "계수",
+          "equivalentAnswers": [
+            "계수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "수"
+        ],
+        [
+          "계수"
+        ]
+      ],
+      "proposalFingerprint": "3270b727bd70ec1bd08d16c0bac34d6742b8af31465876d3ab0a4104187b62a1"
+    },
+    {
+      "id": "m2-01-06-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\times3\\times b$를 곱셈 기호를 생략하여 나타내고, 수 $3$을 어디에 썼는지 쓰시오.",
+      "bAnswer": "$3ab$이다. 곱셈 기호 $\\times$를 생략하고 수 $3$을 문자 앞에 쓴다.",
+      "bGoal": "곱셈 기호를 생략해 단항식 쓰기",
+      "bReason": "표기 규칙을 구체적인 곱 $a\\times3\\times b$에 적용하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3ab$"
+          ]
+        },
+        {
+          "anyOf": [
+            "수를 문자 앞에 쓴다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "단항식을 쓸 때는 곱셈 기호 $\\times$를 {생략}하고 수를 문자 {앞}에 쓴다.",
+      "cAnswers": [
+        "생략",
+        "앞"
+      ],
+      "cReason": "'곱셈 기호 □'의 답 $\\times$는 묻는 뜻이 없어 '생략'을 빈칸으로 옮겼다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "곱셈 기호 생략 규칙",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2242,
+      "part": "m2plus",
+      "sourceFingerprint": "62d34f34f9d6062a2bb8cb6c9e4e0bd11d47174247bef3b956a091c3d6e8eddb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2242
+      },
+      "directReview": null,
+      "cMarkedSentence": "단항식을 쓸 때는 곱셈 기호 $\\times$를 {생략}하고 수를 문자 {앞}에 쓴다.",
+      "cSlotAnswers": [
+        "생략",
+        "앞"
+      ],
+      "cStudentSentence": "단항식을 쓸 때는 곱셈 기호 $\\times$를 □하고 수를 문자 □에 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "생략",
+          "equivalentAnswers": [
+            "생략"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "앞",
+          "equivalentAnswers": [
+            "앞"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "생략"
+        ],
+        [
+          "앞"
+        ]
+      ],
+      "proposalFingerprint": "31ea435fe237349e566774f359b69cfbd04d1df9ebebe6a470950a89a6762f10"
+    },
+    {
+      "id": "m2-01-06-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "알파벳 순서로 쓴다는 표기 관례 하나뿐이라 설명할 내용이 없다.",
+      "cDecision": "rewrite",
+      "cAfter": "곱으로 쓴 단항식에서 문자는 보통 {알파벳} 순서로 쓴다. 예를 들어 $y\\times2\\times x$는 {$2xy$}로 쓴다.",
+      "cAnswers": [
+        "알파벳",
+        "$2xy$"
+      ],
+      "cReason": "'□ □로'에서 둘째 답 '순서'는 뜻 없는 빈칸이라 적용 예로 바꿨다.",
+      "exclusionReason": "B 제외: 단순 표기 관례 암기이고 m2-01-06-xc3의 표기 규칙 질문과 형식이 겹친다.",
+      "learningRole": "naming",
+      "roleReason": "문자를 쓰는 차례의 관례",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2243,
+      "part": "m2plus",
+      "sourceFingerprint": "582c6c55d43402baa7a6568209410acba9c454d1c8c741f86482cae87b61482d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2243
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "곱으로 쓴 단항식에서 문자는 보통 {알파벳} 순서로 쓴다. 예를 들어 $y\\times2\\times x$는 {$2xy$}로 쓴다.",
+      "cSlotAnswers": [
+        "알파벳",
+        "$2xy$"
+      ],
+      "cStudentSentence": "곱으로 쓴 단항식에서 문자는 보통 □ 순서로 쓴다. 예를 들어 $y\\times2\\times x$는 □로 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "알파벳",
+          "equivalentAnswers": [
+            "알파벳"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2xy$",
+          "equivalentAnswers": [
+            "$2xy$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "알파벳"
+        ],
+        [
+          "$2xy$"
+        ]
+      ],
+      "proposalFingerprint": "8a5066a2ef0d8295ebaabfc0b130e121d8ea7dc9fbb1c7df19cc3590b350637a"
+    },
+    {
+      "id": "m2-01-06-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$2a\\times5b$를 $(2\\times5)\\times(a\\times b)$로 바꾸어 계산해도 되는 까닭을 곱셈의 계산 법칙의 이름을 들어 설명하고, 계산 결과를 쓰시오.",
+      "bAnswer": "곱셈의 교환법칙으로 곱하는 순서를 바꿀 수 있고, 결합법칙으로 어느 것을 먼저 묶어 곱해도 되기 때문이다. 결과는 $10ab$이다.",
+      "bGoal": "단항식의 곱셈에 쓰이는 계산 법칙 설명하기",
+      "bReason": "법칙의이름을요구한질문과그이름·의미를확인하는기준을맞춘다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "교환법칙으로 곱하는 순서를 바꾸어도 결과가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "결합법칙으로 먼저 묶어 곱하는 것을 바꾸어도 결과가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10ab$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "계수와문자의답순서가정해지지않던칸을각부분의실제곱으로구별한다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "계수·문자끼리 모을 수 있는 근거",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2244,
+      "part": "m2plus",
+      "sourceFingerprint": "4f7ce254167b6d5fafdd64904b41a18040a1029cd0488a2649c74465c15b90c5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2244
+      },
+      "directReview": null,
+      "cMarkedSentence": "$2a\\times5b$는 교환법칙과 결합법칙을 써서 수끼리 곱한 {$10$}과 문자끼리 곱한 {$ab$}의 곱으로 나타낼 수 있다.",
+      "cSlotAnswers": [
+        "$10$",
+        "$ab$"
+      ],
+      "cStudentSentence": "$2a\\times5b$는 교환법칙과 결합법칙을 써서 수끼리 곱한 □과 문자끼리 곱한 □의 곱으로 나타낼 수 있다.",
+      "cAnswers": [
+        "$10$",
+        "$ab$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$10$",
+          "equivalentAnswers": [
+            "$10$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$ab$",
+          "equivalentAnswers": [
+            "$ab$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$10$"
+        ],
+        [
+          "$ab$"
+        ]
+      ],
+      "proposalFingerprint": "8518549b74c33b3dd6e649a7a6806a25b0e96d663a6bec8d6d6a42d12f1ef10c",
+      "cAfter": "$2a\\times5b$는 교환법칙과 결합법칙을 써서 수끼리 곱한 {$10$}과 문자끼리 곱한 {$ab$}의 곱으로 나타낼 수 있다."
+    },
+    {
+      "id": "m2-01-06-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$0$이 아닌 수의 역수가 무엇인지 설명하고, $\\frac23$의 역수를 구하시오.",
+      "bAnswer": "곱해서 $1$이 되는 수를 그 수의 역수라 한다. $\\frac{2}{3}$의 역수는 $\\frac{3}{2}$이다.",
+      "bGoal": "역수의 뜻 알고 구하기",
+      "bReason": "역수가존재하는수의조건을제시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱해서 $1$이 되는 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "정의의 핵심 수 $1$과 용어를 묻는 짧은 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "역수의 뜻",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2245,
+      "part": "m2plus",
+      "sourceFingerprint": "34e0e86fefb9bbe186408778898e9d0c4f6c369ac141f77d247331860eb2982f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2245
+      },
+      "directReview": null,
+      "cFrozenSentence": "곱해서 □이 되는 두 수를 서로의 □라 한다.",
+      "cFrozenDefinition": "곱해서 {$1$}이 되는 두 수를 서로의 {역수}라 한다.",
+      "cFrozenAnswers": [
+        "$1$",
+        "역수"
+      ],
+      "cMarkedSentence": "곱해서 {$1$}이 되는 두 수를 서로의 {역수}라 한다.",
+      "cSlotAnswers": [
+        "$1$",
+        "역수"
+      ],
+      "cStudentSentence": "곱해서 □이 되는 두 수를 서로의 □라 한다.",
+      "cAnswers": [
+        "$1$",
+        "역수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "역수",
+          "equivalentAnswers": [
+            "역수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "역수"
+        ]
+      ],
+      "proposalFingerprint": "3f49743de0e5471863a9fb3abb3386c2ec3fa772f53f0233e30d7166004e2721"
+    },
+    {
+      "id": "m2-01-06-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 단항식 $3a$의 역수를 구하고, 그 식이 역수인 까닭을 쓰시오.",
+      "bAnswer": "$3a=\\frac{3a}{1}$이므로 역수는 $\\frac{1}{3a}$이다. $3a\\times\\frac{1}{3a}=1$이기 때문이다.",
+      "bGoal": "단항식의 역수 구하고 확인하기",
+      "bReason": "조건 $a\\ne0$과 구체적인 단항식 $3a$를 주고 역수인 근거까지 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{3a}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3a\\times\\frac{1}{3a}=1$",
+            "두 식을 곱하면 $1$이 된다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "뜻($1$)과 구하는 방법(바꾸어)을 함께 묻고 조건도 문장에 있다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "단항식의 역수의 뜻과 구하는 법",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2246,
+      "part": "m2plus",
+      "sourceFingerprint": "e5f1034b48d9fe8018fd57a38093cf838f9639ca030a998ce4c9a41bff42ac4b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2246
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0$이 아닌 단항식과 곱해서 □이 되는 식을 그 단항식의 역수라 하고, 단항식을 분수 꼴로 써서 분자와 분모를 □ 구한다.",
+      "cFrozenDefinition": "$0$이 아닌 단항식과 곱해서 {$1$}이 되는 식을 그 단항식의 역수라 하고, 단항식을 분수 꼴로 써서 분자와 분모를 {바꾸어} 구한다.",
+      "cFrozenAnswers": [
+        "$1$",
+        "바꾸어"
+      ],
+      "cMarkedSentence": "$0$이 아닌 단항식과 곱해서 {$1$}이 되는 식을 그 단항식의 역수라 하고, 단항식을 분수 꼴로 써서 분자와 분모를 {바꾸어} 구한다.",
+      "cSlotAnswers": [
+        "$1$",
+        "바꾸어"
+      ],
+      "cStudentSentence": "$0$이 아닌 단항식과 곱해서 □이 되는 식을 그 단항식의 역수라 하고, 단항식을 분수 꼴로 써서 분자와 분모를 □ 구한다.",
+      "cAnswers": [
+        "$1$",
+        "바꾸어"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "바꾸어",
+          "equivalentAnswers": [
+            "바꾸어"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "바꾸어"
+        ]
+      ],
+      "proposalFingerprint": "88b051106569a23b1c60684eea46f04786771bdc854bfa206ebae018816bb075"
+    }
+  ]
+}

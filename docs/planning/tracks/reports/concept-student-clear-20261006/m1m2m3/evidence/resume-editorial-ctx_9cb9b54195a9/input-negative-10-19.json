@@ -1,0 +1,1035 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:39:52.085Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-07-01-c2",
+        "section": "중1::7. 입체도형::다면체",
+        "term": "면 · 모서리 · 꼭짓점",
+        "kind": "정의",
+        "level": "하",
+        "definition": "다면체를 둘러싼 다각형이 {면}, 면과 면이 만나는 선분이 {모서리}, 모서리가 모이는 점이 {꼭짓점}이다.",
+        "studentC": "다면체를 둘러싼 다각형이 □, 면과 면이 만나는 선분이 □, 모서리가 모이는 점이 □이다.",
+        "answers": [
+          "면",
+          "모서리",
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-01-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "다면체에서 면, 모서리, 꼭짓점은 각각 무엇을 가리키는지 설명하시오.",
+        "bAnswer": "면은 다면체를 둘러싸고 있는 다각형, 모서리는 두 면이 만나서 생기는 선분, 꼭짓점은 모서리들이 만나는 점이다.",
+        "bGoal": "다면체의 세 구성 요소 구별하기",
+        "bReason": "세 용어가 나열만 되어 있어 각각의 뜻을 쓰라는 범위를 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "면은 다면체를 둘러싼 다각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리는 면과 면이 만나는 선분이다",
+              "모서리는 면인 다각형의 변이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점은 모서리가 만나는 점이다",
+              "꼭짓점은 면인 다각형의 꼭짓점이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세 용어를 한 문장에서 구별하게 하는 짧은 낱말 빈칸.",
+        "learningRole": "definition",
+        "roleReason": "면·모서리·꼭짓점의 뜻",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 281,
+        "part": "m1",
+        "sourceFingerprint": "d09873f0f817438909f40539b8b421ab04df1946d07a9393f9d1e6ca758a8fff",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 281
+        },
+        "directReview": null,
+        "cFrozenSentence": "다면체를 둘러싼 다각형이 □, 면과 면이 만나는 선분이 □, 모서리가 모이는 점이 □이다.",
+        "cFrozenDefinition": "다면체를 둘러싼 다각형이 {면}, 면과 면이 만나는 선분이 {모서리}, 모서리가 모이는 점이 {꼭짓점}이다.",
+        "cFrozenAnswers": [
+          "면",
+          "모서리",
+          "꼭짓점"
+        ],
+        "cMarkedSentence": "다면체를 둘러싼 다각형이 {면}, 면과 면이 만나는 선분이 {모서리}, 모서리가 모이는 점이 {꼭짓점}이다.",
+        "cSlotAnswers": [
+          "면",
+          "모서리",
+          "꼭짓점"
+        ],
+        "cStudentSentence": "다면체를 둘러싼 다각형이 □, 면과 면이 만나는 선분이 □, 모서리가 모이는 점이 □이다.",
+        "cAnswers": [
+          "면",
+          "모서리",
+          "꼭짓점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "면",
+            "equivalentAnswers": [
+              "면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "모서리",
+            "equivalentAnswers": [
+              "모서리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "면"
+          ],
+          [
+            "모서리"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "3ddeb48e3d27aa7fc5a12b8221a586dd4d5f85e99716a86398f3535b693a3b01"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-07-01-c3",
+        "section": "중1::7. 입체도형::다면체",
+        "term": "사면체 · 오면체 · 육면체",
+        "kind": "정의",
+        "level": "하",
+        "definition": "다면체의 이름은 {면의 개수}로 붙인다. 면이 넷이면 사면체, 여섯이면 {육면체}이다.",
+        "studentC": "다면체의 이름은 □로 붙인다. 면이 넷이면 사면체, 여섯이면 □이다.",
+        "answers": [
+          "면의 개수",
+          "육면체"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-01-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "사면체, 오면체, 육면체는 각각 어떤 다면체인지 쓰고, 이런 이름을 무엇을 기준으로 붙이는지 쓰시오.",
+        "bAnswer": "면이 각각 $4$개, $5$개, $6$개인 다면체이며, 다면체의 이름은 면의 개수를 기준으로 붙인다.",
+        "bGoal": "면의 개수로 다면체 이름 붙이기",
+        "bReason": "이름 세 개만 나열된 제목에 이름을 붙이는 기준까지 답하도록 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "면이 각각 $4$개, $5$개, $6$개인 다면체이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면의 개수로 이름을 붙인다",
+              "면의 수가 기준이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "이름의 기준과 적용 예를 묻는 짧은 문장이라 그대로 쓸 수 있음.",
+        "learningRole": "naming",
+        "roleReason": "면의 개수로 붙이는 다면체 이름",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 282,
+        "part": "m1",
+        "sourceFingerprint": "c7e9c90304f53369bd7879ae24d50f309667ef3955fd7ca3bf94a4f8b69d509b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 282
+        },
+        "directReview": null,
+        "cFrozenSentence": "다면체의 이름은 □로 붙인다. 면이 넷이면 사면체, 여섯이면 □이다.",
+        "cFrozenDefinition": "다면체의 이름은 {면의 개수}로 붙인다. 면이 넷이면 사면체, 여섯이면 {육면체}이다.",
+        "cFrozenAnswers": [
+          "면의 개수",
+          "육면체"
+        ],
+        "cMarkedSentence": "다면체의 이름은 {면의 개수}로 붙인다. 면이 넷이면 사면체, 여섯이면 {육면체}이다.",
+        "cSlotAnswers": [
+          "면의 개수",
+          "육면체"
+        ],
+        "cStudentSentence": "다면체의 이름은 □로 붙인다. 면이 넷이면 사면체, 여섯이면 □이다.",
+        "cAnswers": [
+          "면의 개수",
+          "육면체"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "면의 개수",
+            "equivalentAnswers": [
+              "면의 개수",
+              "면의 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "육면체",
+            "equivalentAnswers": [
+              "육면체"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "면의 개수",
+            "accept": [
+              "면의 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "면의 개수",
+            "면의 수"
+          ],
+          [
+            "육면체"
+          ]
+        ],
+        "proposalFingerprint": "ef8b4bfc210088caabc9624aadee4330f48ed2844c1be61ca28dbea4937e4e5d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c6",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "$a^2-b^2$의 인수분해",
+        "kind": "공식",
+        "level": "중",
+        "definition": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 {곱}인 {$(a+b)(a-b)$}로 인수분해된다.",
+        "studentC": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 □인 □로 인수분해된다.",
+        "answers": [
+          "곱",
+          "$(a+b)(a-b)$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c6",
+        "learningRole": "procedure",
+        "roleReason": "제곱의 차는 합과 차의 곱",
+        "bDecision": "rewrite",
+        "bPrompt": "$a^2-b^2$을 인수분해하고, 그 결과가 $a$와 $b$의 무엇과 무엇의 곱인지 말하시오.",
+        "bAnswer": "$(a+b)(a-b)$이고, $a$와 $b$의 합과 차의 곱이다.",
+        "bGoal": "제곱의 차 인수분해",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(a+b)(a-b)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "합과 차의 곱"
+            ]
+          }
+        ],
+        "bReason": "결과와 그 구조 이름을 함께 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "구조와 결과식을 묻는 짧은 빈칸이다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 789,
+        "part": "m3",
+        "sourceFingerprint": "121b837e34afc3f5860d2113762086841b8f56f62c2917e906287f73925032a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 789
+        },
+        "directReview": null,
+        "cFrozenSentence": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 □인 □로 인수분해된다.",
+        "cFrozenDefinition": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 {곱}인 {$(a+b)(a-b)$}로 인수분해된다.",
+        "cFrozenAnswers": [
+          "곱",
+          "$(a+b)(a-b)$"
+        ],
+        "cMarkedSentence": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 {곱}인 {$(a+b)(a-b)$}로 인수분해된다.",
+        "cSlotAnswers": [
+          "곱",
+          "$(a+b)(a-b)$"
+        ],
+        "cStudentSentence": "제곱의 차 $a^2-b^2$은 두 수의 합과 차의 □인 □로 인수분해된다.",
+        "cAnswers": [
+          "곱",
+          "$(a+b)(a-b)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(a+b)(a-b)$",
+            "equivalentAnswers": [
+              "$(a+b)(a-b)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "$(a+b)(a-b)$"
+          ]
+        ],
+        "proposalFingerprint": "f96a1aa5d107a6c8cebeec5904dc0a4084bc0740a5f12666d551d820fde67a95"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c8",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "완전제곱식이 되기 위한 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 {절반}을 {제곱}한 수와 같아야 한다.",
+        "studentC": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 □을 □한 수와 같아야 한다.",
+        "answers": [
+          "절반",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c8",
+        "learningRole": "procedure",
+        "roleReason": "$b=\\left(\\frac{a}{2}\\right)^2$ 조건",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+ax+b$가 완전제곱식이 되려면 상수항 $b$와 $x$의 계수 $a$ 사이에 어떤 관계가 있어야 하는지 식이나 말로 나타내시오.",
+        "bAnswer": "$b=\\left(\\frac{a}{2}\\right)^2$, 즉 $b$는 $a$의 절반을 제곱한 수와 같아야 한다.",
+        "bGoal": "완전제곱식이 되는 조건",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b=\\left(\\frac{a}{2}\\right)^2$",
+              "$b$는 $a$의 절반의 제곱",
+              "$b=\\frac{a^2}{4}$"
+            ]
+          }
+        ],
+        "bReason": "식의 꼴과 두 계수를 밝혀 관계를 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "절반과 제곱을 묻는 짧은 조건 빈칸이다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 791,
+        "part": "m3",
+        "sourceFingerprint": "1769682c002a7ab68e1a5eb04d6401e7997bdecd8ed73c5a90645c1a92473e35",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 791
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 □을 □한 수와 같아야 한다.",
+        "cFrozenDefinition": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 {절반}을 {제곱}한 수와 같아야 한다.",
+        "cFrozenAnswers": [
+          "절반",
+          "제곱"
+        ],
+        "cMarkedSentence": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 {절반}을 {제곱}한 수와 같아야 한다.",
+        "cSlotAnswers": [
+          "절반",
+          "제곱"
+        ],
+        "cStudentSentence": "$x^2+ax+b$가 완전제곱식이 되려면 $b$가 $x$의 계수 $a$의 □을 □한 수와 같아야 한다.",
+        "cAnswers": [
+          "절반",
+          "제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "반",
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "반",
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "제곱"
+          ]
+        ],
+        "proposalFingerprint": "b04d85139eaca7fdcbb87e7748dc7ef468039c4af1c11d90f9e3359ad758e255"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c8",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "이차방정식이 중근을 가질 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이차방정식이 ({완전제곱식})$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 {제곱}일 때.",
+        "studentC": "이차방정식이 (□)$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 □일 때.",
+        "answers": [
+          "완전제곱식",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식이 중근을 가지려면 어떤 꼴로 정리되어야 하는지 쓰시오. 또 $x^2+ax+b=0$이 중근을 가지려면 $b$와 $a$ 사이에 어떤 관계가 있어야 하는지 쓰시오.",
+        "bAnswer": "(완전제곱식)$=0$ 꼴로 정리되어야 한다. $b=\\left(\\frac{a}{2}\\right)^2$, 곧 $b$가 $a$의 절반의 제곱이어야 한다.",
+        "bGoal": "중근을 가질 조건",
+        "bReason": "일반 꼴과 계수 관계를 나누어 물어 관계형 답을 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(완전제곱식)$=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b=\\left(\\frac{a}{2}\\right)^2$",
+              "$b$가 $a$의 절반의 제곱"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "완전제곱식과 계수 관계를 묻는 짧은 빈칸",
+        "learningRole": "definition",
+        "roleReason": "중근이 되는 완전제곱식 조건을 정의하고 적용한다.",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 805,
+        "part": "m3",
+        "sourceFingerprint": "ef2b1f3aa10186cbc1864735d808896b3522e493c9208398885ea3825ffdb7cd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 805
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차방정식이 (□)$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 □일 때.",
+        "cFrozenDefinition": "이차방정식이 ({완전제곱식})$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 {제곱}일 때.",
+        "cFrozenAnswers": [
+          "완전제곱식",
+          "제곱"
+        ],
+        "cMarkedSentence": "이차방정식이 ({완전제곱식})$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 {제곱}일 때.",
+        "cSlotAnswers": [
+          "완전제곱식",
+          "제곱"
+        ],
+        "cStudentSentence": "이차방정식이 (□)$=0$ 꼴로 정리되면 중근을 갖는다 — $x^2+ax+b=0$에서는 $b$가 $a$의 절반의 □일 때.",
+        "cAnswers": [
+          "완전제곱식",
+          "제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "완전제곱식",
+            "equivalentAnswers": [
+              "완전제곱식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱",
+              "제곱수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제곱",
+            "accept": [
+              "제곱수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "완전제곱식"
+          ],
+          [
+            "제곱",
+            "제곱수"
+          ]
+        ],
+        "proposalFingerprint": "7ffd99210e39f5e34075ab87043fb1bb1a81985b2df0658fc15838d7e343381a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-07-02-c5",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정다면체가 다섯 가지뿐인 까닭",
+        "kind": "정리",
+        "level": "상",
+        "definition": "한 꼭짓점에 면이 {$3$개 이상} 모여야 하고, 모인 각의 크기의 합이 {$360^\\circ$}보다 작아야 입체가 되기 때문이다.",
+        "studentC": "한 꼭짓점에 면이 □ 모여야 하고, 모인 각의 크기의 합이 □보다 작아야 입체가 되기 때문이다.",
+        "answers": [
+          "$3$개 이상",
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "정다면체가 다섯 가지뿐인 까닭을 설명하려고 한다. 정삼각형의 한 내각은 $60^\\circ$, 정사각형은 $90^\\circ$, 정오각형은 $108^\\circ$, 정육각형 이상의 정다각형은 $120^\\circ$ 이상이다. 한 꼭짓점에 모이는 면의 개수와 각의 크기의 합이 만족해야 할 조건을 쓰시오. 그 조건을 만족하는 면의 종류와 모이는 개수의 모든 경우도 쓰시오.",
+        "bAnswer": "한 꼭짓점에 면이 $3$개 이상 모여야 하고 각의 크기의 합은 $360^\\circ$보다 작아야 한다. 정삼각형은 $3$, $4$, $5$개, 정사각형은 $3$개, 정오각형은 $3$개가 가능하다. 정육각형 이상은 $3$개만 모여도 $360^\\circ$ 이상이 되어 입체의 꼭짓점을 만들지 못한다. 가능한 경우가 이 다섯 가지뿐이다.",
+        "bGoal": "정다면체가 다섯 가지뿐인 까닭",
+        "bReason": "두 일반 조건만 적고 왜 다섯인지 설명 없이 끝내던 질문에 내각 값을 주어 실제 가능한 경우를 스스로 확인하게 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 꼭짓점에 면이 $3$개 이상 모인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모인 각의 합은 $360^\\circ$보다 작아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형은 $3$, $4$, $5$개가 모일 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정사각형은 $3$개가 모일 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정오각형은 $3$개가 모일 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정육각형 이상은 면 $3$개만 모여도 각의 합이 $360^\\circ$ 이상이어서 불가능하다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "다면체의 한 꼭짓점에는 면이 {$3$}개 이상 모여야 하고, 그 꼭짓점에 모인 각의 크기의 합은 {$360^\\circ$}보다 작아야 한다. 이 두 조건 때문에 정다면체는 다섯 가지뿐이다.",
+        "cAnswers": [
+          "$3$",
+          "$360^\\circ$"
+        ],
+        "cReason": "'때문이다'가 가리키는 결론이 숨은 제목에만 있어 문장에 넣음.",
+        "learningRole": "reason",
+        "roleReason": "다섯 가지뿐인 까닭의 두 조건",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "exampleNeeded": true,
+        "sourceIndex": 293,
+        "part": "m1",
+        "sourceFingerprint": "e5ceb53473e16dffe7fdc863a2eb44a1771aee45637bceb5c25496c203324520",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 293
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-07-02-c5"
+        },
+        "cMarkedSentence": "다면체의 한 꼭짓점에는 면이 {$3$}개 이상 모여야 하고, 그 꼭짓점에 모인 각의 크기의 합은 {$360^\\circ$}보다 작아야 한다. 이 두 조건 때문에 정다면체는 다섯 가지뿐이다.",
+        "cSlotAnswers": [
+          "$3$",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "다면체의 한 꼭짓점에는 면이 □개 이상 모여야 하고, 그 꼭짓점에 모인 각의 크기의 합은 □보다 작아야 한다. 이 두 조건 때문에 정다면체는 다섯 가지뿐이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "c21e24f59b1c694019b8095a69ec6a38f69870388545e946be111277fa5e1644"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-01-c3",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "축",
+        "kind": "정의",
+        "level": "하",
+        "definition": "포물선을 반으로 접으면 양쪽이 포개지는데, 이때 접는 선인 {대칭축}을 그 포물선의 {축}이라 부른다.",
+        "studentC": "포물선을 반으로 접으면 양쪽이 포개지는데, 이때 접는 선인 □을 그 포물선의 □이라 부른다.",
+        "answers": [
+          "대칭축",
+          "축"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-c3",
+        "learningRole": "definition",
+        "roleReason": "접는 선으로 포물선의 축을 정의함",
+        "bDecision": "rewrite",
+        "bPrompt": "포물선의 축이란 어떤 직선인지 포물선을 접는 일과 관련지어 설명하시오.",
+        "bAnswer": "포물선을 그 직선을 따라 접으면 양쪽이 꼭 포개지는 직선, 곧 포물선의 대칭축이다.",
+        "bGoal": "포물선의 축의 뜻",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 직선을 따라 접으면 양쪽이 꼭 포개진다",
+              "포물선의 대칭축이다",
+              "포물선이 그 직선에 대하여 대칭이다"
+            ]
+          }
+        ],
+        "bReason": "'축'만으로는 좌표축과 헷갈리므로 포물선을 접는 선으로 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "포물선을 한 직선을 따라 접었을 때 양쪽이 꼭 포개지면, 그 접는 선을 포물선의 {축}이라 한다.",
+        "cAnswers": [
+          "축"
+        ],
+        "cReason": "두 빈칸의 답 '대칭축'과 '축'이 서로 바뀌어도 맞아 채점이 모호하다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 820,
+        "part": "m3",
+        "sourceFingerprint": "7e2ed1ae0ee92d45d06a917973c88737dd8fc8836df73fee7f53819736f5fe0d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 820
+        },
+        "directReview": null,
+        "cMarkedSentence": "포물선을 한 직선을 따라 접었을 때 양쪽이 꼭 포개지면, 그 접는 선을 포물선의 {축}이라 한다.",
+        "cSlotAnswers": [
+          "축"
+        ],
+        "cStudentSentence": "포물선을 한 직선을 따라 접었을 때 양쪽이 꼭 포개지면, 그 접는 선을 포물선의 □이라 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "축",
+            "equivalentAnswers": [
+              "축",
+              "대칭축"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "축",
+            "accept": [
+              "대칭축"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "축",
+            "대칭축"
+          ]
+        ],
+        "proposalFingerprint": "81309ed01f1c1db66909af248e432e1440bbedac53c8623b97818325083ba75e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-04-08-c8",
+        "section": "중2::4. 함수::일차함수와 일차방정식",
+        "term": "계수의 부호와 그래프",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$ax+by+c=0$($b\\ne0$)의 그래프의 기울기는 $-\\frac{a}{b}$, $y$절편은 $-\\frac{c}{b}$이므로 계수의 {부호}로 그래프의 {모양}을 알 수 있다.",
+        "studentC": "$ax+by+c=0$($b\\ne0$)의 그래프의 기울기는 $-\\frac{a}{b}$, $y$절편은 $-\\frac{c}{b}$이므로 계수의 □로 그래프의 □을 알 수 있다.",
+        "answers": [
+          "부호",
+          "모양"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-08-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀어 기울기와 $y$절편을 $a$, $b$, $c$로 나타내시오. 계수가 양수, 음수, $0$인지 알면 그래프의 방향과 $y$축과 만나는 위치에 대해 무엇을 알 수 있는지도 쓰시오.",
+        "bAnswer": "$y=-\\frac{a}{b}x-\\frac{c}{b}$이므로 기울기는 $-\\frac{a}{b}$, $y$절편은 $-\\frac{c}{b}$이다. 기울기가 양수이면 오른쪽 위, 음수이면 오른쪽 아래로 향하고 $0$이면 수평이다. $y$절편이 양수이면 원점 위, 음수이면 원점 아래, $0$이면 원점에서 $y$축과 만난다.",
+        "bGoal": "계수의 부호로 기울기·절편의 부호 판단",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "기울기 $-\\frac{a}{b}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$절편 $-\\frac{c}{b}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "기울기가 양수이면 오른쪽 위, 음수이면 오른쪽 아래로 향하고 $0$이면 수평이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$절편이 양수이면 원점 위, 음수이면 원점 아래, $0$이면 원점에서 $y$축과 만난다"
+            ]
+          }
+        ],
+        "bReason": "계수가 0인 수평선·원점을 지나는 경우도 조건에 남아 있으므로 두 방향만 가능하다는 듯한 답을 고친다.",
+        "cDecision": "rewrite",
+        "cAfter": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀면 기울기는 {$-\\frac{a}{b}$}, $y$절편은 {$-\\frac{c}{b}$}이므로, 계수의 부호로 기울기와 $y$절편의 부호를 알 수 있다.",
+        "cAnswers": [
+          "$-\\frac{a}{b}$",
+          "$-\\frac{c}{b}$"
+        ],
+        "cReason": "'부호·모양' 빈칸은 막연해 실제로 구하는 기울기와 절편을 채우게 했다.",
+        "coreAfter": "$ax+by+c=0$($b\\ne0$)의 {기울기}는 $-\\frac{a}{b}$, {$y$절편}은 $-\\frac{c}{b}$이다. 계수가 양수, 음수, $0$인지 알면 그래프의 방향과 $y$축과 만나는 점이 원점의 위, 아래, 원점인지 판단할 수 있다.",
+        "coreReason": "모양이라는 막연한 말 대신 기울기·y절편으로 판단할 구체 방향과 위치를 밝히고 0인 계수의 수평선·원점 경우도 포함한다.",
+        "learningRole": "reason",
+        "roleReason": "$-\\frac{a}{b}$, $-\\frac{c}{b}$의 부호가 계수로 정해짐",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "coreRepairDecision": "reject",
+        "coreRepairDecisionReason": "현재 일반 설명의 구체 관계를 직접 읽고 기울기와 y절편을 핵심어로 표시했다. 0인 계수도 범위에 남긴다.",
+        "sourceIndex": 554,
+        "part": "m2",
+        "sourceFingerprint": "9f3e6809f22d27b8388a3b302d19e5e64a1444ed13c985327bbb7151da7b079c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 554
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-04-08-c8"
+        },
+        "cMarkedSentence": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀면 기울기는 {$-\\frac{a}{b}$}, $y$절편은 {$-\\frac{c}{b}$}이므로, 계수의 부호로 기울기와 $y$절편의 부호를 알 수 있다.",
+        "cSlotAnswers": [
+          "$-\\frac{a}{b}$",
+          "$-\\frac{c}{b}$"
+        ],
+        "cStudentSentence": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀면 기울기는 □, $y$절편은 □이므로, 계수의 부호로 기울기와 $y$절편의 부호를 알 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-\\frac{a}{b}$",
+            "equivalentAnswers": [
+              "$-\\frac{a}{b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-\\frac{c}{b}$",
+            "equivalentAnswers": [
+              "$-\\frac{c}{b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-\\frac{a}{b}$"
+          ],
+          [
+            "$-\\frac{c}{b}$"
+          ]
+        ],
+        "proposalFingerprint": "135e3adfdaea73365af6f60bc274be3385496ee3b85ab26674065bd621d635f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-07-03-c7",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "회전체의 성질 (회전축에 수직인 단면)",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥, 원뿔, 원뿔대, 구를 회전축과 {수직}으로 만나는 평면으로 자른 단면은 언제나 {원}이다.",
+        "studentC": "원기둥, 원뿔, 원뿔대, 구를 회전축과 □으로 만나는 평면으로 자른 단면은 언제나 □이다.",
+        "answers": [
+          "수직",
+          "원"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "원기둥, 원뿔, 원뿔대, 구를 각각 회전축에 수직인 평면으로 두 부분으로 나눈다. 새로 생긴 단면은 어떤 모양인가? 그렇게 되는 까닭을 회전체를 만드는 방법과 관련지어 쓰시오.",
+        "bAnswer": "단면은 항상 원이다. 평면도형의 각 점이 회전축을 중심으로 한 바퀴 돌면서 원을 그리기 때문이다.",
+        "bGoal": "회전축에 수직인 단면이 원인 까닭 설명하기",
+        "bReason": "입체를 실제로 두 부분으로 가르는 단면이라고 밝혀 끝점만 닿는 경우와 섞이지 않게 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "단면은 원이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도형의 각 점이 회전축 둘레를 한 바퀴 돌며 원을 그린다",
+              "회전축을 중심으로 한 바퀴 돌려 만든 입체이기 때문이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "실제 입체를 두 부분으로 가르는 경우라고 조건을 밝혀 단면이 한 점인 끝의 경우를 제외한다.",
+        "studentLabel": "회전축에 수직인 평면으로 자른 단면",
+        "learningRole": "reason",
+        "roleReason": "수직 단면이 원이 되는 까닭",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "cAfter": "원기둥, 원뿔, 원뿔대, 구를 각각 회전축과 {수직}으로 만나는 평면으로 두 부분으로 나누면, 새로 생긴 단면은 {원}이다.",
+        "cAnswers": [
+          "수직",
+          "원"
+        ],
+        "sourceIndex": 301,
+        "part": "m1",
+        "sourceFingerprint": "f35a08573c15e89df9a11dddf34af8053d85b13675c0f506e81ffcc27ca106e6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 301
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-07-03-c7"
+        },
+        "cMarkedSentence": "원기둥, 원뿔, 원뿔대, 구를 각각 회전축과 {수직}으로 만나는 평면으로 두 부분으로 나누면, 새로 생긴 단면은 {원}이다.",
+        "cSlotAnswers": [
+          "수직",
+          "원"
+        ],
+        "cStudentSentence": "원기둥, 원뿔, 원뿔대, 구를 각각 회전축과 □으로 만나는 평면으로 두 부분으로 나누면, 새로 생긴 단면은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "수직",
+            "equivalentAnswers": [
+              "수직"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "원",
+            "equivalentAnswers": [
+              "원"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "수직"
+          ],
+          [
+            "원"
+          ]
+        ],
+        "proposalFingerprint": "aa799aebe50c646360746453a7262d75197d232d6b66ab9f168ad02cc055857e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-04-09-c8",
+        "section": "중2::4. 함수::일차함수의 그래프와 연립방정식의 해",
+        "term": "직선으로 둘러싸인 도형의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직선들로 둘러싸인 도형의 넓이는 직선끼리의 {교점}과 축과 만나는 점을 구해 {꼭짓점}의 좌표부터 찾는다.",
+        "studentC": "직선들로 둘러싸인 도형의 넓이는 직선끼리의 □과 축과 만나는 점을 구해 □의 좌표부터 찾는다.",
+        "answers": [
+          "교점",
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-09-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "세 직선 $y=x$, $y=-x+8$, $y=2$로 둘러싸인 삼각형의 넓이를 구하려 한다. 먼저 무엇을 구해야 하는지 쓰고, 세 꼭짓점의 좌표와 넓이를 구하시오.",
+        "bAnswer": "직선끼리의 교점, 곧 꼭짓점의 좌표를 먼저 구한다. $y=x$와 $y=2$의 교점은 $(2,\\ 2)$, $y=-x+8$과 $y=2$의 교점은 $(6,\\ 2)$, $y=x$와 $y=-x+8$의 교점은 $(4,\\ 4)$이다. 밑변 $6-2=4$, 높이 $4-2=2$이므로 넓이는 $\\frac{1}{2}\\times4\\times2=4$이다.",
+        "bGoal": "교점으로 꼭짓점을 구해 넓이 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "교점을 먼저 구한다",
+              "꼭짓점의 좌표를 먼저 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(2,\\ 2)$, $(6,\\ 2)$, $(4,\\ 4)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이 $4$"
+            ]
+          }
+        ],
+        "bReason": "축 삼각형인 xc16·xc17과 겹치지 않게 세 직선끼리의 교점이 꼭짓점인 예를 썼다.",
+        "cDecision": "rewrite",
+        "cAfter": "직선들로 둘러싸인 도형의 넓이를 구하려면, 경계를 이루는 직선끼리의 {교점}을 구해 {꼭짓점}의 좌표부터 찾는다. 좌표축도 경계이면 그 축과의 교점도 구한다.",
+        "cAnswers": [
+          "교점",
+          "꼭짓점"
+        ],
+        "cReason": "좌표축이 항상 경계라는 숨은 전제 대신 실제 도형의 경계로 꼭짓점을 찾는 대상을 특정한다.",
+        "coreAfter": "직선들로 둘러싸인 도형의 넓이를 구하려면, 경계를 이루는 직선끼리의 {교점}을 구해 {꼭짓점}의 좌표부터 찾는다. 좌표축도 경계인 경우에는 그 축과의 교점도 구한다.",
+        "coreReason": "항상 축과의 교점까지 꼭짓점이라는 듯 읽히지 않게 실제 경계선을 기준으로 밝힌다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "교점 → 꼭짓점 → 넓이",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "coreRepairDecision": "reject",
+        "coreRepairDecisionReason": "원래 핵심어인 교점과 꼭짓점은 역할이 분명하여 보존했다. 좌표축은 도형 경계에 포함될 때만 적용한다.",
+        "sourceIndex": 562,
+        "part": "m2",
+        "sourceFingerprint": "fdcea70116fa31079a67c56041cabffacad4cd0312b1361feea5a0442b8ded77",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 562
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-04-09-c8"
+        },
+        "cMarkedSentence": "직선들로 둘러싸인 도형의 넓이를 구하려면, 경계를 이루는 직선끼리의 {교점}을 구해 {꼭짓점}의 좌표부터 찾는다. 좌표축도 경계이면 그 축과의 교점도 구한다.",
+        "cSlotAnswers": [
+          "교점",
+          "꼭짓점"
+        ],
+        "cStudentSentence": "직선들로 둘러싸인 도형의 넓이를 구하려면, 경계를 이루는 직선끼리의 □을 구해 □의 좌표부터 찾는다. 좌표축도 경계이면 그 축과의 교점도 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "교점",
+            "equivalentAnswers": [
+              "교점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "교점"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "2f14980d29ea3ca68168ccb4810028d561c2b8a65c1ee7925eda7226e2ab7f66"
+      }
+    }
+  ]
+}

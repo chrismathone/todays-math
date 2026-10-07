@@ -1,0 +1,449 @@
+{
+  "generatedAt": "2026-10-07T12:08:52.458Z",
+  "sourceCommit": "13bf05dce",
+  "scope": "Additional assigned findings after the fixed 276-current/36-stale snapshot; some IDs overlap that older snapshot, so counts are not unique IDs across both files.",
+  "resolved": 14,
+  "amended": 13,
+  "retainedWithReason": 1,
+  "pending": 0,
+  "disclosure": "Decisions come from actual primary reading and recorded verdicts. This file checks evidence binding only; retained disagreements are not independent approvals.",
+  "rows": [
+    {
+      "id": "m1-08-02-c3",
+      "sourceIndex": 334,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-361Z-0",
+      "reviewedNormalizedHash": "65024493e16ba097ba6790df161cbc275b44ff67c5f35fe5d09c28274cb8a8b5",
+      "reviewedRawFingerprint": "577232ad8bec20b0a1088e4d1e62c1b9a63a18342dfc1b2bffc7a3d449f85893",
+      "decision": "amend",
+      "reason": "모두/반복해서 등 여러 표현이 들어가는 방법 부사를 실제 중복 잎 목록으로 바꾼다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "77f4d9ef68f01dec0254cc7816a69dbe6889c3251ed554c249e9b8b369252a89",
+      "currentRawFingerprint": "77f4d9ef68f01dec0254cc7816a69dbe6889c3251ed554c249e9b8b369252a89",
+      "currentNormalizedHash": "e925a1c96e1d37ea3aef4e5b20aa8ce046db6a398f69464bccc34ebc83b1beb2",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.808Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [
+        [
+          "m1-08-02-c3",
+          "C",
+          "세로(위에서 아래), 작은 것부터/모두 등 여러 답 가능",
+          "revise",
+          "두 번째 빈칸이 '모두, 반복해서, 작은 것부터' 등 여러 말로 채워져 답 범위가 정해지지 않는다."
+        ]
+      ],
+      "keyed": []
+    },
+    {
+      "id": "m1-01-01-xc3",
+      "sourceIndex": 927,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-361Z-0",
+      "reviewedNormalizedHash": "add9630aa8dd54083eb789f020e6f1510705908b25486f9f514ae98680aab1ca",
+      "reviewedRawFingerprint": "688af41818323f652b604525ee4012846c04b4d32e0363c53ba4c0bca5ddecba",
+      "decision": "amend",
+      "reason": "1만 속하는 갈래에 없는 이름을 붙이라고 하지 않고 약수 개수에 따른 분류를 묻는다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "c7290a40a5528598546345bc81856ddda02105d1ff400ebe205ffb4b0a7d6ee2",
+      "currentRawFingerprint": "c7290a40a5528598546345bc81856ddda02105d1ff400ebe205ffb4b0a7d6ee2",
+      "currentNormalizedHash": "8535ed257eb523135d1772be302809fd6144bfc8061ca786dc9776260266675f",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.811Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [
+        [
+          "m1-01-01-xc3",
+          "B",
+          "1개: 1, 2개: 소수, 3개 이상: 합성수. 1은 1개인 수, 7 소수, 9 합성수",
+          "revise",
+          "약수가 1개인 수의 갈래 이름이 교과에 없어 '각 갈래의 이름' 요구가 불명확하다."
+        ]
+      ],
+      "keyed": [
+        [
+          "m1-01-01-xc3",
+          "revise",
+          "excluded",
+          "none",
+          "B가 '약수가 1개인 수' 갈래의 '이름'을 쓰라고 하는데 교과에 그 갈래의 이름이 없다. 참고답도 '1은 1'로 순환 서술이 된다. 이름을 묻지 말고 '1, 소수, 합성수 중 어디에 속하는가'로 묻거나, 약수의 개수와 갈래를 연결하는 물음으로 바꿔야 한다."
+        ]
+      ]
+    },
+    {
+      "id": "m3-04-02-xc23",
+      "sourceIndex": 3497,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-361Z-0",
+      "reviewedNormalizedHash": "94ec75ca1d92b81b804db8d03676a6f70094c298b4d1486ce0ecd6e834daf0ec",
+      "reviewedRawFingerprint": "f955383d365092d1d6c42082f6acb709c5402d2ab924273fc32b2462e2b7da7a",
+      "decision": "amend",
+      "reason": "그가 밑변만 다시 가리키는 것으로 읽힐 여지를 없애고 삼각형의 높이임을 밝힌다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "cbc4f9734c88be389b858762d3a93c00f81453b6fa9fe13a15065ff6bc20189e",
+      "currentRawFingerprint": "cbc4f9734c88be389b858762d3a93c00f81453b6fa9fe13a15065ff6bc20189e",
+      "currentNormalizedHash": "8424dc87629a6c99c204ec64e8c97268fe725f87c33c6bee32c87bf953d546e5",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.813Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [
+        [
+          "m3-04-02-xc23",
+          "C",
+          "밑변, 높이",
+          "revise",
+          "두 번째 '그 □'가 앞 빈칸(밑변)을 다시 가리키는 것처럼 읽혀 어느 말을 쓸지 헷갈린다."
+        ]
+      ],
+      "keyed": []
+    },
+    {
+      "id": "m3-05-02-xc6",
+      "sourceIndex": 3544,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-361Z-0",
+      "reviewedNormalizedHash": "ca34c200fd69e9102b7f039ea55d158d792bd2725e0c30eb4983668357f22ffe",
+      "reviewedRawFingerprint": "e1ce1926f9132366ae8049e8fcf7b0858db4bc138f5b6f52a65a31220b145bd9",
+      "decision": "amend",
+      "reason": "반올림한 수의 이름을 묻는데 수치 계산으로 읽힐 수 있어 실제 표의 수를 주고 이름을 묻는 문장으로 바꾼다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "93c008188c063fac26837952ce65b24abc38ad1c8a82d43cabd90fa9038a2de6",
+      "currentRawFingerprint": "93c008188c063fac26837952ce65b24abc38ad1c8a82d43cabd90fa9038a2de6",
+      "currentNormalizedHash": "6865207f485a2c4350661a3dd87ac5b1e9fe3e0b3606814971bf8fe2a89c970b",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.816Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [
+        [
+          "m3-05-02-xc6",
+          "C",
+          "무리수, 0.7071 (자리 불명)",
+          "revise",
+          "'정한 자리'가 몇째 자리인지 주어지지 않아 반올림한 값이 정해지지 않는다."
+        ]
+      ],
+      "keyed": []
+    },
+    {
+      "id": "m2-09-01-xc3",
+      "sourceIndex": 3175,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-361Z-0",
+      "reviewedNormalizedHash": "6793642903f4718244e605e43db7f21bddb534475f30e49ec8aead6c54682d45",
+      "reviewedRawFingerprint": "f111419cae1fafb4e12f280801badfc3b70d82223b08085f61d889c3ab9e6a4b",
+      "decision": "amend",
+      "reason": "빠짐없이 앞의 빈칸에 부사가 들어갈 수 있으므로 가능한 눈 자체를 모두 쓰라고 한다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "66fe10f46e4afe9ebbad3c43a39521c62f442f18eaab13c3a884848b528a44df",
+      "currentRawFingerprint": "66fe10f46e4afe9ebbad3c43a39521c62f442f18eaab13c3a884848b528a44df",
+      "currentNormalizedHash": "88217edea816c9c75ef3872281ae600d3c95ee9dc59c80664d555294b1f3904c",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.818Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [
+        [
+          "m2-09-01-xc3",
+          "C",
+          "중복 없이/하나씩/1부터 6까지 등",
+          "revise",
+          "'□ 빠짐없이'의 빈칸이 '중복 없이, 하나씩, 모두' 등 여러 말로 채워져 답이 정해지지 않고 문장 복원에 가깝다."
+        ]
+      ],
+      "keyed": []
+    },
+    {
+      "id": "m3-01-02-xc19",
+      "sourceIndex": 3307,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-361Z-0",
+      "reviewedNormalizedHash": "aa85d9282522faa1507851dc49577840aa56cedb883abd3fd52e46938b0a264f",
+      "reviewedRawFingerprint": "12146931f09fe40211a29e303f7b679aea58d31e93d7869cbbb8e5025db78b18",
+      "decision": "amend",
+      "reason": "범위가 겹치고 겹치지 않는다는 대비 연결 대신 알려진 범위로 실제 두 수의 크기를 비교한다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "d8e1da853afc682b1b659203075d0046b14530bd6cc0654cb746b52af1bff260",
+      "currentRawFingerprint": "d8e1da853afc682b1b659203075d0046b14530bd6cc0654cb746b52af1bff260",
+      "currentNormalizedHash": "8b0ea42d8f9ea6d6eff558e404b9f09225472512904206e30c21af81231df065",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.827Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [],
+      "keyed": [
+        [
+          "m3-01-02-xc19",
+          "pass",
+          "revise",
+          "none",
+          "C에서 '겹치지 않으면'을 고르는 빈칸 바로 뒤에 '겹치면 더 정확한 값이 필요하다'가 있어, 그 부정만 쓰면 되므로 대비 구조에서 답이 나온다. 범위 비교 개념을 확인하지 못하고 문장 복원에 그친다. 구체적인 범위(예: 2.23<√5<2.24와 2.3)를 비교하는 빈칸으로 바꿔야 한다."
+        ]
+      ]
+    },
+    {
+      "id": "m3-05-01-xc11",
+      "sourceIndex": 3529,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-361Z-0",
+      "reviewedNormalizedHash": "d09d22d40fec57b0c6a3d88034af5f6e33a7654f8d00871f644c7677dad7bc87",
+      "reviewedRawFingerprint": "40a66f71555983e55e4acd21813e654f0d194b6b63e4f1878f119af2b4fda876",
+      "decision": "amend",
+      "reason": "단위라는 이름을 옮기는 칸을 없애고 같은 삼각형을 다른 길이 단위로 잰 비의 비교를 묻는다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "fc0c63d55637d0f80bad5232d97d4fc64dac65ce0a71dd92e03815dbc46cf224",
+      "currentRawFingerprint": "fc0c63d55637d0f80bad5232d97d4fc64dac65ce0a71dd92e03815dbc46cf224",
+      "currentNormalizedHash": "c93fff8e3b8108f74f447fb4f0b7285d3894fb479297d3bc0b863427782393fa",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.832Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [],
+      "keyed": [
+        [
+          "m3-05-01-xc11",
+          "pass",
+          "revise",
+          "none",
+          "C 첫 빈칸 '{단위}가 없는 수'의 답이 같은 문장 뒤쪽 '길이를 재는 단위를 바꾸어도'에 그대로 나와 복사만으로 채울 수 있고, 둘째 빈칸 '같다'도 문맥만으로 복원된다. 삼각비가 길이의 비라는 이해를 확인하지 못한다. 문장에서 '단위'를 노출하지 않고, 예를 들어 cm와 mm로 잰 값의 관계를 묻는 식으로 바꿔야 한다."
+        ]
+      ]
+    },
+    {
+      "id": "m3-06-04-xc2",
+      "sourceIndex": 3644,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-398Z-1",
+      "reviewedNormalizedHash": "119ac8bc373d09b353ab8dc5391a8809ea35ad43e97f6281a60d58b50b915261",
+      "reviewedRawFingerprint": "0005a0d917c82c3c1619acd3dd5c13f9ee564e7de5ceaac6a0d6bc64b74f1a61",
+      "decision": "amend",
+      "reason": "반복된 내접이라는 단어와 일반 부정문 대신 실제 평행사변형에 내접 조건을 적용한다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "21b02acb5ff0118470c37510fa68eb67551b7fe6a904ba20b265ed401b2638da",
+      "currentRawFingerprint": "21b02acb5ff0118470c37510fa68eb67551b7fe6a904ba20b265ed401b2638da",
+      "currentNormalizedHash": "32e77d17e0ae8a52760d35cbb5c04d7a672b38ae34d13ee5ca37fa8a7c49bc43",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.833Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [
+        [
+          "m3-06-04-xc2",
+          "C",
+          "내접 / 아니다",
+          "revise",
+          "첫 빈칸 '내접'은 같은 문장의 '내접하는'을 그대로 옮기면 되고, 둘째 빈칸 '아니다'도 '~만 ~하므로'라는 문장 구조만으로 정해져, 사각형의 내접 조건을 적용하지 않아도 채울 수 있음."
+        ]
+      ],
+      "keyed": [
+        [
+          "m3-06-04-xc2",
+          "pass",
+          "revise",
+          "none",
+          "C의 첫 빈칸 '내접'은 바로 뒤 문장 '원에 내접하는'을 옮기면 채워지고, 둘째 빈칸 '아니다'는 '~만 ~하므로 모든 ~는 ~것은' 문장 구조만으로 정해진다. 사각형이 내접하기 위한 조건을 쓰지 않아도 정답이 나오는 문법 복원형 빈칸이다. 또 '원이 있는 사각형만 내접하므로'는 원이 없는 사각형이 존재해야 결론이 나온다. 이 근거 없이 결론을 이끌고 있어 빈칸의 핵심을 마주 보는 두 각의 합 같은 판정 기준에 두는 개편이 필요하다."
+        ]
+      ]
+    },
+    {
+      "id": "m2-09-02-xc9",
+      "sourceIndex": 3204,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-398Z-1",
+      "reviewedNormalizedHash": "1424e6bdeb0d91b82c9dbd938f80dba2c07daef556692cd13fd1733ab41b73a5",
+      "reviewedRawFingerprint": "3c7761be4fa00df6e5d73f3d663d47e841cc390dcb7a190e7d1a4e855c92e3ca",
+      "decision": "amend",
+      "reason": "다른 수라는 결론만 반복해 이유 기준을 통과하지 않도록 자리 구별을 필수 의미로 둔다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "a37076592c5ab77ff18407ed0e099e597d6af22e0d02615d632642ddb853579b",
+      "currentRawFingerprint": "a37076592c5ab77ff18407ed0e099e597d6af22e0d02615d632642ddb853579b",
+      "currentNormalizedHash": "f3d7dee65da4d7cd1da56e1418c06eb1d22bc5c262030f838d6812255b8c06e6",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.836Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [],
+      "keyed": [
+        [
+          "m2-09-02-xc9",
+          "revise",
+          "pass",
+          "none",
+          "B의 두 번째 requiredIdea의 anyOf 대안 '35와 53은 서로 다른 수이다'는 물음에 나온 두 수를 되풀이하는 순환 서술이라 이유 없이 통과할 수 있다. 첫 번째 idea(다른 경우로 센다)와도 내용이 겹친다. 이유는 '십의 자리와 일의 자리를 바꾸면 다른 수가 된다'로 한정해야 한다."
+        ]
+      ]
+    },
+    {
+      "id": "m2-09-03-xc13",
+      "sourceIndex": 3235,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-398Z-1",
+      "reviewedNormalizedHash": "ada3c770b6145d7446a7e5f63b76ffa08498d7c6a32de6082debd3db90d65dd2",
+      "reviewedRawFingerprint": "088b7743e4bb8a67ef53e06b344b0e9b55ce43398c7d0cb09a7be6eab1d200ee",
+      "decision": "amend",
+      "reason": "반드시5번이 아니라는 결론의 반복을 이유 기준에서 빼고 확률의 뜻을 설명하게 한다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "91eae378be66524122aa3f87e421524036a32c4686c1e90d163be214d225afb0",
+      "currentRawFingerprint": "91eae378be66524122aa3f87e421524036a32c4686c1e90d163be214d225afb0",
+      "currentNormalizedHash": "d5aa4d1a45f98d83c210bf217a52c01b2600fda733ad96dc9ebda22ad88c23b3",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.864Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [],
+      "keyed": [
+        [
+          "m2-09-03-xc13",
+          "revise",
+          "pass",
+          "none",
+          "B의 두 번째 requiredIdea 대안 '적은 횟수에서는 확률과 다르게 나올 수 있다'는 첫 idea '반드시 5번이라고 할 수 없다'를 되풀이한 것이다. 물음이 요구한 '확률 1/2의 뜻(상대도수가 가까워지는 값)'을 쓰지 않아도 통과한다. 두 idea가 독립적이지 않으므로 대안은 확률의 뜻 설명으로 한정해야 한다."
+        ]
+      ]
+    },
+    {
+      "id": "m2-09-04-xc1",
+      "sourceIndex": 3246,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-398Z-1",
+      "reviewedNormalizedHash": "fb646e29c2719a3e4034757ca09c5f1bfb2d3cf795e644525a5986c48735a533",
+      "reviewedRawFingerprint": "48f224d4e52e5095ad3e9a2c12582592abdafbdb00e6e9b956ee1a176c02e939",
+      "decision": "amend",
+      "reason": "겹친 결과와 이중 계산은 같은 오류 이유를 이루므로 하나의 필수 의미로 묶는다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "8ef7ac568318454f75c3dec34f687310ed0f047ff21066140575ed994fd1544a",
+      "currentRawFingerprint": "8ef7ac568318454f75c3dec34f687310ed0f047ff21066140575ed994fd1544a",
+      "currentNormalizedHash": "1dea3d87fc98ee63ca84c741e02dd4f6257af44b0b6286a5d531b2a36f1d8c33",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.870Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [],
+      "keyed": [
+        [
+          "m2-09-04-xc1",
+          "revise",
+          "excluded",
+          "none",
+          "B의 requiredIdeas 1('6의 눈이 두 사건에 모두 속한다')과 2('그대로 더하면 겹친 결과를 두 번 센다')는 물음의 '틀리는 이유' 하나를 둘로 쪼갠 것이다. 서로를 함의하므로 독립 필수가 아니다. 하나의 idea로 합치고 anyOf 대안으로 처리해야 한다."
+        ]
+      ]
+    },
+    {
+      "id": "m2-09-04-xc2",
+      "sourceIndex": 3247,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-398Z-1",
+      "reviewedNormalizedHash": "64401f5c3a6189836800707c18f8dbdcee77894663f6dfefb4fe7af70260bd81",
+      "reviewedRawFingerprint": "7e0962e7a3fe81b8e1c833feefaafa0d6d5a12e289b471e4930243c7d019e03a",
+      "decision": "amend",
+      "reason": "가능성이라는 이름 대신 서로 영향을 주지 않는다는 실제 조건을 빈칸으로 둔다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "aa6d7bf90b90a11bb53a86fdad73e29345ccd3fbed6097c6f5e195269c5215c1",
+      "currentRawFingerprint": "aa6d7bf90b90a11bb53a86fdad73e29345ccd3fbed6097c6f5e195269c5215c1",
+      "currentNormalizedHash": "0440cc127b8d0f41fef9709f99240b7620a6501c3fb44dfa020f51fbd77718b9",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.873Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [],
+      "keyed": [
+        [
+          "m2-09-04-xc2",
+          "pass",
+          "revise",
+          "none",
+          "C에서 빈칸 '가능성/확률'은 같은 문장의 '두 확률을 그대로 곱해'에서 '확률'을 옮기거나 '바꾸지 않는지'에서 자연스럽게 복원할 수 있다. 영향 여부(독립 여부)라는 핵심은 빈칸 밖 '바꾸지 않는지 살핀다'에 이미 주어져 있어 개념 확인이 되지 않는다. 핵심 판단어(영향을 주지 않는다 등)를 빈칸으로 해야 한다."
+        ]
+      ]
+    },
+    {
+      "id": "m2-09-04-xc22",
+      "sourceIndex": 3267,
+      "capture": "evidence/negative-new-1121-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "c2b1b99ba7b36180471ee0c8913c2fd498d6ea0e146d336dcc00f8ee63ccdea9",
+      "cohort": "cohort-2026-10-07T11-21-07-398Z-1",
+      "reviewedNormalizedHash": "e65c5115fea59426a791e8c4c69cde9e7c7984762f79cc4d5c6715865c6876b7",
+      "reviewedRawFingerprint": "5c4fed23ba61a2570b1aa00f2888fda38a4076cfed2e12bbd278cb711deeda79",
+      "decision": "retain-with-reason",
+      "reason": "두가지색에서 같은색이 되는 남은 경우가 모두파랑임을 찾는 것은 사건 분할 그 자체다. 계산을 하지 않는 짧은 분류라고 제외하지 않고 유지한다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1121.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1121.json",
+      "firstResolutionFingerprint": "5c4fed23ba61a2570b1aa00f2888fda38a4076cfed2e12bbd278cb711deeda79",
+      "currentRawFingerprint": "5c4fed23ba61a2570b1aa00f2888fda38a4076cfed2e12bbd278cb711deeda79",
+      "currentNormalizedHash": "e65c5115fea59426a791e8c4c69cde9e7c7984762f79cc4d5c6715865c6876b7",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T11:44:05.875Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+      "blind": [],
+      "keyed": [
+        [
+          "m2-09-04-xc22",
+          "pass",
+          "revise",
+          "none",
+          "C 문장에 '모두 빨강인 경우와 {모두 파랑}인 경우'로 한쪽 분할이 이미 제시되어 있다. 주머니에 색이 두 가지뿐이라 빈칸은 소거만으로 채워지고, 같은 색 사건을 색별로 나누어 더한다는 핵심은 확인되지 않는다. 분할을 빈칸으로 하거나 두 경우의 확률을 '더한다'를 묻는 식으로 바꿔야 한다."
+        ]
+      ]
+    },
+    {
+      "id": "m1-03-08-xc5",
+      "sourceIndex": 1325,
+      "capture": "evidence/negative-new-1138-ctx_9cb9b54195a9/capture.json",
+      "captureSha256": "55067a698d2306eec1a1ee959eb7e09ab60da209f41ed11fb4b779cf24d22a54",
+      "cohort": "cohort-2026-10-07T11-38-20-285Z-0",
+      "reviewedNormalizedHash": "5ef5587b383ee2e1bab99aa2d08148569f9930b4782453ee3eaecd55299db6f1",
+      "reviewedRawFingerprint": "1079e8423560fb1ded7d458cfe0aab9d493cec5a900b3b7f9eb638c1d0f93f1e",
+      "decision": "amend",
+      "reason": "열린 낱말 복원을 구체적인 원래 조건 검산으로 바꿔 계산과 판단을 요구한다.",
+      "dispositionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/verdicts-negative-new-1138.json",
+      "firstResolutionEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/amended-negative-new-1138.json",
+      "firstResolutionFingerprint": "21d61feb339f221ce1d381afada85f394aa14fd601f157e628c5a9342dd9b289",
+      "currentRawFingerprint": "21d61feb339f221ce1d381afada85f394aa14fd601f157e628c5a9342dd9b289",
+      "currentNormalizedHash": "8878b35b130a00c7a8530fb2edecdc32e852a85ad1ee7914c58b1e31c75616db",
+      "currentReader": "Codex dispatched worker direct reading",
+      "currentReadAt": "2026-10-07T12:04:48.482Z",
+      "currentInputEvidence": "evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1138.json",
+      "blind": [
+        [
+          "m1-03-08-xc5",
+          "B",
+          "처음 문제의 조건에 넣어 본다. 13+7=20이므로 맞다.",
+          "pass",
+          ""
+        ],
+        [
+          "m1-03-08-xc5",
+          "C",
+          "조건(상황)",
+          "revise",
+          "빈칸에 조건·상황·내용·말 등 여러 표현이 가능하다. 바로 뒤의 '문제가 말한 조건'을 그대로 옮기면 되어 수학적 판단이 필요 없다. 식과 문제 상황의 구분처럼 검산 대상을 구체적으로 묻도록 고쳐야 한다."
+        ]
+      ],
+      "keyed": [
+        [
+          "m1-03-08-xc5",
+          "pass",
+          "revise",
+          "none",
+          "C: 빈칸 앞뒤의 '처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지'에서 답을 문장 속 낱말로 채울 수 있고, 인정 답 '문장·조건·내용'도 서로 바꿔 쓸 수 있다. 수학적 판단이 필요 없다. 검산 대상이 풀이한 방정식인지 처음 문제의 조건인지 구분해 고르게 하는 문항으로 고쳐야 한다."
+        ]
+      ]
+    }
+  ]
+}

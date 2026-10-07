@@ -1,0 +1,1995 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-20261007/input-1117-1141.json",
+  "changes": [
+    {
+      "id": "m1-02-04-xc8",
+      "bPrompt": "$3$에 $-2$를 곱하는 식을 음수에 괄호를 넣어 쓰시오. $3\\times-2$처럼 기호를 이어 쓰는 것보다 괄호를 넣으면 어떤 두 기호를 구별하기 쉬운지 설명하시오.",
+      "bAnswer": "$3\\times(-2)$로 쓴다. 괄호를 넣으면 곱셈 기호 $\\times$와 음의 부호 $-$가 서로 이어 붙어 보이지 않아 구별하기 쉽다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈 기호 $\\times$와 음의 부호 $-$를 구별하기 쉽다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\times(-2)$"
+          ]
+        }
+      ],
+      "bReason": "괄호없는표기의계산값이틀리다는주장이아니라이단원의명료한표기목적을질문·답에밝힌다."
+    },
+    {
+      "id": "m1-02-04-xc13",
+      "cAcceptedAnswers": [
+        [
+          "$a\\times(b+c)$",
+          "$(b+c)\\times a$",
+          "$a\\times(c+b)$"
+        ]
+      ],
+      "cReason": "같은인수a와남은합을묶은표현에서곱·합의교환에따른같은분배식만인정한다."
+    },
+    {
+      "id": "m1-02-04-xc14",
+      "coreAfter": "자연수 $a$, $b$, $n$에 대하여 $\\left(-\\frac{a}{b}\\right)^n$은 $n$이 짝수인지 홀수인지로 부호를 정한 뒤, 분자와 분모를 각각 {$n$번} 곱한다.",
+      "coreReason": "음의분수와반복곱횟수를다루는a·b·n의자연수범위를밝혀0분모나정수가아닌횟수를숨겨가정하지않는다."
+    },
+    {
+      "id": "m1-02-05-xc3",
+      "cAfter": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 {분수}로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "coreAfter": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 {분수}로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "coreReason": "0은역수가없으므로대상을0아닌수로밝히고소수라는말이소수점표현을뜻함을실제예로구별한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-02-04-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "음수를 제곱한 값은 양수와 음수 가운데 어느 것인지 쓰고, 그 까닭을 부호가 같은 두 수의 곱의 규칙으로 설명하시오. $(-5)^2$을 예로 들어도 된다.",
+      "bAnswer": "언제나 양수이다. 음수의 제곱은 같은 음수를 두 번 곱한 것이어서 부호가 같은 두 수의 곱이므로 절댓값의 곱에 양의 부호가 붙는다. 예: $(-5)^2=(-5)\\times(-5)=25$",
+      "bGoal": "음수의 제곱이 양수인 까닭을 두 수의 곱의 부호 규칙으로 설명할 수 있다.",
+      "bReason": "결과의 부호만 물으면 m1-02-04-c5의 규칙과 겹친다. 이 문항은 '왜 양수인지'를 두 수의 곱 규칙과 잇는 까닭 질문으로 정했다.",
+      "cDecision": "keep",
+      "cReason": "'음수를 두 번 곱한 수'라는 풀이가 문장에 있어 제곱의 뜻을 몰라도 읽을 수 있고, 빈칸은 양수·음수 가운데 하나를 고르는 짧은 답이다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양수"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 같은 음수를 두 번 곱한 것은 부호가 같은 두 수의 곱이므로 양의 부호가 붙음 ($(-5)^2=25$ 같은 예는 선택)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "reason",
+      "roleReason": "같은 부호 곱이라 양수",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1117,
+      "part": "m1plus",
+      "sourceFingerprint": "076849dc1708fe1403698f200c8d6122674ddf9b3953c6af88336eba8cb18856",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1117
+      },
+      "directReview": null,
+      "cFrozenSentence": "음수를 두 번 곱한 수, 곧 음수의 제곱은 언제나 □이다.",
+      "cFrozenDefinition": "음수를 두 번 곱한 수, 곧 음수의 제곱은 언제나 {양수}이다.",
+      "cFrozenAnswers": [
+        "양수"
+      ],
+      "cMarkedSentence": "음수를 두 번 곱한 수, 곧 음수의 제곱은 언제나 {양수}이다.",
+      "cSlotAnswers": [
+        "양수"
+      ],
+      "cStudentSentence": "음수를 두 번 곱한 수, 곧 음수의 제곱은 언제나 □이다.",
+      "cAnswers": [
+        "양수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ]
+      ],
+      "proposalFingerprint": "f11bcf0d51e1a35830898288c5dc6bb8e6297d6f95c099c40433afd2162bd61d"
+    },
+    {
+      "id": "m1-02-04-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$3$에 $-2$를 곱하는 식을 음수에 괄호를 넣어 쓰시오. $3\\times-2$처럼 기호를 이어 쓰는 것보다 괄호를 넣으면 어떤 두 기호를 구별하기 쉬운지 설명하시오.",
+      "bAnswer": "$3\\times(-2)$로 쓴다. 괄호를 넣으면 곱셈 기호 $\\times$와 음의 부호 $-$가 서로 이어 붙어 보이지 않아 구별하기 쉽다.",
+      "bGoal": "음수를 곱하는 식을 괄호를 써서 바르게 나타낼 수 있다.",
+      "bReason": "괄호없는표기의계산값이틀리다는주장이아니라이단원의명료한표기목적을질문·답에밝힌다.",
+      "cDecision": "keep",
+      "cReason": "'음수를 곱할 때'라는 상황이 문장에 있고 빈칸이 '괄호', '부호'로 짧고 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈 기호 $\\times$와 음의 부호 $-$를 구별하기 쉽다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\times(-2)$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "음수에 괄호 쳐서 곱 표기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1118,
+      "part": "m1plus",
+      "sourceFingerprint": "cd4531fcf0eecbc539205ed92329df633ffa69782d9cda345853995b1671d55b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1118
+      },
+      "directReview": null,
+      "cFrozenSentence": "음수를 곱할 때는 음수에 □를 쳐서 곱셈 기호와 □가 붙어 보이지 않게 한다.",
+      "cFrozenDefinition": "음수를 곱할 때는 음수에 {괄호}를 쳐서 곱셈 기호와 {부호}가 붙어 보이지 않게 한다.",
+      "cFrozenAnswers": [
+        "괄호",
+        "부호"
+      ],
+      "cMarkedSentence": "음수를 곱할 때는 음수에 {괄호}를 쳐서 곱셈 기호와 {부호}가 붙어 보이지 않게 한다.",
+      "cSlotAnswers": [
+        "괄호",
+        "부호"
+      ],
+      "cStudentSentence": "음수를 곱할 때는 음수에 □를 쳐서 곱셈 기호와 □가 붙어 보이지 않게 한다.",
+      "cAnswers": [
+        "괄호",
+        "부호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "괄호",
+          "equivalentAnswers": [
+            "괄호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호",
+            "음의 부호",
+            "$-$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "부호",
+          "accept": [
+            "음의 부호",
+            "$-$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "괄호"
+        ],
+        [
+          "부호",
+          "음의 부호",
+          "$-$"
+        ]
+      ],
+      "proposalFingerprint": "6279321eb3b9a12d12c4fb0f702054e5f059bde7d8c2d3a051215ce6c4d42979"
+    },
+    {
+      "id": "m1-02-04-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-4)\\times(+7)\\times(-25)$를 계산할 때 $(-4)$와 $(-25)$를 먼저 곱해도 되는 까닭을 곱셈의 계산 법칙 두 가지의 이름을 들어 설명하고, 그렇게 계산한 값을 구하시오.",
+      "bAnswer": "곱셈의 교환법칙으로 $(+7)$과 $(-25)$의 순서를 바꿀 수 있고, 결합법칙으로 $(-4)\\times(-25)$를 먼저 묶어 곱할 수 있다. $(-4)\\times(-25)=100$이고 $100\\times7=700$이다.",
+      "bGoal": "교환법칙과 결합법칙을 이용해 곱하기 쉬운 수끼리 먼저 곱할 수 있다.",
+      "bReason": "'곱하기 쉬운 수'가 무엇인지는 예가 있어야 안다. 어떤 수를 먼저 묶는지와 그것을 허락하는 법칙의 이름을 함께 묻도록 구체적인 식을 넣었다.",
+      "cDecision": "keep",
+      "cReason": "'순서를 바꿀 수 있는', '묶음을 바꿀 수 있는'이라는 설명이 각 빈칸 앞에 있어 법칙 이름을 떠올리는 좋은 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "교환법칙: 곱하는 순서를 바꿀 수 있음"
+          ]
+        },
+        {
+          "anyOf": [
+            "결합법칙: 먼저 곱할 두 수를 묶을 수 있음"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-4)\\times(-25)=100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$700$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "교환·결합으로 쉬운 수 먼저 곱",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1119,
+      "part": "m1plus",
+      "sourceFingerprint": "1448859f4a4e9337039b8590f12dd3a46b792191f34ceacd32cedff3cef1179e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1119
+      },
+      "directReview": null,
+      "cFrozenSentence": "곱셈에서 수의 순서를 바꿀 수 있는 □과 묶음을 바꿀 수 있는 □이 성립하므로, 곱하기 쉬운 수끼리 먼저 묶어 곱해도 된다.",
+      "cFrozenDefinition": "곱셈에서 수의 순서를 바꿀 수 있는 {교환법칙}과 묶음을 바꿀 수 있는 {결합법칙}이 성립하므로, 곱하기 쉬운 수끼리 먼저 묶어 곱해도 된다.",
+      "cFrozenAnswers": [
+        "교환법칙",
+        "결합법칙"
+      ],
+      "cMarkedSentence": "곱셈에서 수의 순서를 바꿀 수 있는 {교환법칙}과 묶음을 바꿀 수 있는 {결합법칙}이 성립하므로, 곱하기 쉬운 수끼리 먼저 묶어 곱해도 된다.",
+      "cSlotAnswers": [
+        "교환법칙",
+        "결합법칙"
+      ],
+      "cStudentSentence": "곱셈에서 수의 순서를 바꿀 수 있는 □과 묶음을 바꿀 수 있는 □이 성립하므로, 곱하기 쉬운 수끼리 먼저 묶어 곱해도 된다.",
+      "cAnswers": [
+        "교환법칙",
+        "결합법칙"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "교환법칙",
+          "equivalentAnswers": [
+            "교환법칙",
+            "곱셈의 교환법칙"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "결합법칙",
+          "equivalentAnswers": [
+            "결합법칙",
+            "곱셈의 결합법칙"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "교환법칙",
+          "accept": [
+            "곱셈의 교환법칙"
+          ]
+        },
+        {
+          "answer": "결합법칙",
+          "accept": [
+            "곱셈의 결합법칙"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "교환법칙",
+          "곱셈의 교환법칙"
+        ],
+        [
+          "결합법칙",
+          "곱셈의 결합법칙"
+        ]
+      ],
+      "proposalFingerprint": "c9faecfb423f8c9a9c3b978c0685f304bb2bf554929f6d3615758029a9c1efa5"
+    },
+    {
+      "id": "m1-02-04-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-2)\\times(-3)\\times(-5)\\times(+1)$처럼 $0$이 아닌 수를 여러 개 곱할 때, 곱의 부호를 먼저 정하는 방법과 그다음에 할 계산을 차례대로 쓰고 이 식의 값을 구하시오.",
+      "bAnswer": "음수의 개수를 세어 부호를 먼저 정한다. 짝수 개이면 $+$, 홀수 개이면 $-$이다. 그다음 절댓값끼리 곱한다. 음수가 $3$개이므로 부호는 $-$이고 $2\\times3\\times5\\times1=30$이므로 값은 $-30$이다.",
+      "bGoal": "여러 수의 곱을 부호를 먼저 정하고 절댓값을 곱하는 차례로 계산할 수 있다.",
+      "bReason": "m1-02-04-c4가 부호 규칙 자체를 묻는다. 이 문항은 '부호 먼저, 절댓값 나중'이라는 계산 절차를 실제 식에 적용하게 하여 구별했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$0$이 아닌 여러 수를 곱할 때는 {음수}의 개수로 부호를 먼저 정하고 {절댓값}끼리 곱한다.",
+      "cAnswers": [
+        "음수",
+        "절댓값"
+      ],
+      "cReason": "원문의 둘째 빈칸 '곱한다'는 서술어라 떠올릴 내용이 없다. 무엇의 개수를 세는지와 무엇끼리 곱하는지를 묻는 낱말 빈칸으로 바꿨다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음수의 개수로 부호를 먼저 정함 (짝수 개 $+$, 홀수 개 $-$)"
+          ]
+        },
+        {
+          "anyOf": [
+            "그다음 절댓값끼리 곱함"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수가 $3$개이므로 $-$, $2\\times3\\times5\\times1=30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-30$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "음수 개수로 곱의 부호 결정",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1120,
+      "part": "m1plus",
+      "sourceFingerprint": "973fff250d687e05597f047863f6642d78de99c5ea6ab7c1b181e2b7edf09b6e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1120
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0$이 아닌 여러 수를 곱할 때는 {음수}의 개수로 부호를 먼저 정하고 {절댓값}끼리 곱한다.",
+      "cSlotAnswers": [
+        "음수",
+        "절댓값"
+      ],
+      "cStudentSentence": "$0$이 아닌 여러 수를 곱할 때는 □의 개수로 부호를 먼저 정하고 □끼리 곱한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "절댓값",
+          "equivalentAnswers": [
+            "절댓값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ],
+        [
+          "절댓값"
+        ]
+      ],
+      "proposalFingerprint": "a3641025a094029026bf3fb9327ae4b38643ee53348ae5cacb41a44f13c1b37b"
+    },
+    {
+      "id": "m1-02-04-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "자연수 $n$에 대하여 $(-1)^n$의 값은 $n$이 짝수일 때와 홀수일 때 각각 얼마인지 쓰고, 그 까닭을 $-1$을 곱한 횟수로 설명하시오.",
+      "bAnswer": "$n$이 짝수이면 $1$, 홀수이면 $-1$이다. $-1$을 짝수 번 곱하면 음수가 짝수 개여서 곱이 양수 $1$이 되고, 홀수 번 곱하면 음수가 홀수 개여서 곱이 $-1$이 된다.",
+      "bGoal": "$(-1)^n$의 값을 지수가 짝수인지 홀수인지에 따라 구할 수 있다.",
+      "bReason": "제목에는 지수를 나타내는 문자가 없어 무엇에 따라 값이 달라지는지 알 수 없다. $n$이 자연수라는 조건과 두 경우로 나누어 답하라는 범위를 넣었다.",
+      "cDecision": "keep",
+      "cReason": "식 $(-1)^n$과 조건(짝수, 홀수)이 보이고 빈칸은 값 두 개뿐인 짧은 대비 빈칸이다.",
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$n$이 짝수이면 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$n$이 홀수이면 $-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: $-1$을 짝수 번 곱하면 음수가 짝수 개라 $1$, 홀수 번 곱하면 음수가 홀수 개라 $-1$ (둘씩 짝지으면 $1$이 된다는 설명도 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "지수 짝홀로 1과 -1 결정",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1121,
+      "part": "m1plus",
+      "sourceFingerprint": "7a810c14f7c1f69c4fec4ae07f3d4ee312e916db71edcd30e264fe7e0b4d706a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1121
+      },
+      "directReview": null,
+      "cFrozenSentence": "$(-1)^n$은 $n$이 짝수이면 □, 홀수이면 □이다.",
+      "cFrozenDefinition": "$(-1)^n$은 $n$이 짝수이면 {$1$}, 홀수이면 {$-1$}이다.",
+      "cFrozenAnswers": [
+        "$1$",
+        "$-1$"
+      ],
+      "cMarkedSentence": "$(-1)^n$은 $n$이 짝수이면 {$1$}, 홀수이면 {$-1$}이다.",
+      "cSlotAnswers": [
+        "$1$",
+        "$-1$"
+      ],
+      "cStudentSentence": "$(-1)^n$은 $n$이 짝수이면 □, 홀수이면 □이다.",
+      "cAnswers": [
+        "$1$",
+        "$-1$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-1$",
+          "equivalentAnswers": [
+            "$-1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "$-1$"
+        ]
+      ],
+      "proposalFingerprint": "9dad6b5fea78b4b113381380ab913f3437fd154ea512ac3073ea9f3e5f4e3f8f"
+    },
+    {
+      "id": "m1-02-04-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "음수를 세제곱한 값의 부호는 무엇인지 쓰고, 그 까닭을 곱해진 음수의 개수로 설명하시오. 또 $(-3)^3$의 값을 구하시오.",
+      "bAnswer": "음수이다. 음수를 세 번 곱하면 음수가 $3$개, 곧 홀수 개 곱해지므로 곱이 음수이다. $(-3)^3=(-3)\\times(-3)\\times(-3)=-27$",
+      "bGoal": "음수의 세제곱이 음수인 까닭을 음수의 개수로 설명할 수 있다.",
+      "bReason": "결과만 물으면 m1-02-04-c5와 겹친다. 정의에 있는 까닭(음수가 홀수 개)을 학생이 직접 말하게 하는 질문으로 정했다.",
+      "cDecision": "keep",
+      "cReason": "까닭(음수가 홀수 개)이 문장에 주어져 있고 그 결과만 묻는 짧은 빈칸이다. '세 번 곱하면'으로 세제곱의 뜻도 풀려 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음수"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 음수가 $3$개, 곧 홀수 개 곱해짐"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-27$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "reason",
+      "roleReason": "음수 홀수 개 곱이라 음수",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1122,
+      "part": "m1plus",
+      "sourceFingerprint": "0c87f7e1b23bbed38ff77e12329ec2261420ee338f0a359331f99be6f7e19ea6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1122
+      },
+      "directReview": null,
+      "cFrozenSentence": "음수를 세 번 곱하면 음수가 홀수 개이므로 결과는 □이다.",
+      "cFrozenDefinition": "음수를 세 번 곱하면 음수가 홀수 개이므로 결과는 {음수}이다.",
+      "cFrozenAnswers": [
+        "음수"
+      ],
+      "cMarkedSentence": "음수를 세 번 곱하면 음수가 홀수 개이므로 결과는 {음수}이다.",
+      "cSlotAnswers": [
+        "음수"
+      ],
+      "cStudentSentence": "음수를 세 번 곱하면 음수가 홀수 개이므로 결과는 □이다.",
+      "cAnswers": [
+        "음수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ]
+      ],
+      "proposalFingerprint": "98979f3cb5e4f83e4d17aae648a89bd6fb1a3015a444f508461b63817d50a607"
+    },
+    {
+      "id": "m1-02-04-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$13\\times(-7)+13\\times(-3)$처럼 두 곱에 같은 수가 들어 있는 식 $a\\times b+a\\times c$는 분배법칙을 거꾸로 써서 어떤 식으로 고칠 수 있는지 쓰고, 예로 든 식을 그 방법으로 계산하시오.",
+      "bAnswer": "같은 수 $a$를 묶어 $a\\times(b+c)$로 고친다. $13\\times(-7)+13\\times(-3)=13\\times\\{(-7)+(-3)\\}=13\\times(-10)=-130$",
+      "bGoal": "같은 수가 곱해진 두 곱의 합을 분배법칙으로 묶어 계산할 수 있다.",
+      "bReason": "'거꾸로 쓰기'는 어느 식을 어느 식으로 바꾼다는 뜻인지 제목만으로 알 수 없다. 출발하는 식의 꼴과 실제 수 예를 질문에 넣었다.",
+      "cDecision": "keep",
+      "cReason": "같은인수a와남은합을묶은표현에서곱·합의교환에따른같은분배식만인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a\\times(b+c)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13\\times\\{(-7)+(-3)\\}=13\\times(-10)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-130$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "공통인 수 a로 묶어 계산",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1123,
+      "part": "m1plus",
+      "sourceFingerprint": "5d93343c458c06bd3ae5c93753c925561f5dacb87bbef6b7f0098d1139d49d50",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1123
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a\\times b+a\\times c$는 같은 수 $a$를 묶어 □로 계산할 수 있다.",
+      "cFrozenDefinition": "$a\\times b+a\\times c$는 같은 수 $a$를 묶어 {$a\\times(b+c)$}로 계산할 수 있다.",
+      "cFrozenAnswers": [
+        "$a\\times(b+c)$"
+      ],
+      "cMarkedSentence": "$a\\times b+a\\times c$는 같은 수 $a$를 묶어 {$a\\times(b+c)$}로 계산할 수 있다.",
+      "cSlotAnswers": [
+        "$a\\times(b+c)$"
+      ],
+      "cStudentSentence": "$a\\times b+a\\times c$는 같은 수 $a$를 묶어 □로 계산할 수 있다.",
+      "cAnswers": [
+        "$a\\times(b+c)$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a\\times(b+c)$",
+          "equivalentAnswers": [
+            "$a\\times(b+c)$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a\\times(b+c)$",
+          "$(b+c)\\times a$",
+          "$a\\times(c+b)$"
+        ]
+      ],
+      "proposalFingerprint": "7ab382e7ce57e22671ae476db18ec374ed1f452e49aa0377adf597b2cf43faf6"
+    },
+    {
+      "id": "m1-02-04-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\left(-\\frac{2}{3}\\right)^3$처럼 음의 분수를 거듭제곱할 때, 부호는 무엇을 보고 정하는지와 분자, 분모는 각각 어떻게 계산하는지 쓰고 이 값을 구하시오.",
+      "bAnswer": "부호는 지수를 보고 정한다. 지수가 짝수이면 $+$, 홀수이면 $-$이다. 분자와 분모는 각각 지수만큼 거듭 곱한다. 지수 $3$이 홀수이므로 부호는 $-$이고 $\\frac{2\\times2\\times2}{3\\times3\\times3}=\\frac{8}{27}$이므로 값은 $-\\frac{8}{27}$이다.",
+      "bGoal": "음의 분수의 거듭제곱을 부호와 분자·분모로 나누어 계산할 수 있다.",
+      "bReason": "제목 '분수의 거듭제곱'에는 음의 부호가 붙은 분수라는 조건이 없다. 정의의 $\\left(-\\frac{a}{b}\\right)^n$ 꼴이 드러나는 예를 넣고 부호, 분자, 분모를 나누어 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "자연수 $a$, $b$, $n$에 대하여 $\\left(-\\frac{a}{b}\\right)^n$은 $n$이 짝수인지 홀수인지로 {부호}를 정한 뒤, 분자와 분모를 각각 {$n$번} 곱한다.",
+      "cAnswers": [
+        "부호",
+        "$n$번"
+      ],
+      "cReason": "원문에는 $a$, $b$, $n$이 어떤 수인지 없어 $-\\frac{a}{b}$가 음수인지조차 알 수 없다. 문자의 조건을 넣고 부호를 정하는 기준도 문장에 밝혔다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부호는 지수가 짝수인지 홀수인지로 정함 (짝수 $+$, 홀수 $-$)"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자와 분모를 각각 지수만큼 거듭 곱함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{8}{27}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "부호 정하고 분자·분모 n번 곱",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1124,
+      "part": "m1plus",
+      "sourceFingerprint": "0278fb90989566fc0eea6102b896612b92ed136113ff8dc66b084abb53a19b3b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1124
+      },
+      "directReview": null,
+      "cMarkedSentence": "자연수 $a$, $b$, $n$에 대하여 $\\left(-\\frac{a}{b}\\right)^n$은 $n$이 짝수인지 홀수인지로 {부호}를 정한 뒤, 분자와 분모를 각각 {$n$번} 곱한다.",
+      "cSlotAnswers": [
+        "부호",
+        "$n$번"
+      ],
+      "cStudentSentence": "자연수 $a$, $b$, $n$에 대하여 $\\left(-\\frac{a}{b}\\right)^n$은 $n$이 짝수인지 홀수인지로 □를 정한 뒤, 분자와 분모를 각각 □ 곱한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$n$번",
+          "equivalentAnswers": [
+            "$n$번",
+            "$n$ 번"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$n$번",
+          "accept": [
+            "$n$ 번"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "$n$번",
+          "$n$ 번"
+        ]
+      ],
+      "proposalFingerprint": "48b25be7513d56417cfe9490bfa3bf7cf708b77cc0d6b757c0374cfae011b16b",
+      "coreAfter": "자연수 $a$, $b$, $n$에 대하여 $\\left(-\\frac{a}{b}\\right)^n$은 $n$이 짝수인지 홀수인지로 부호를 정한 뒤, 분자와 분모를 각각 {$n$번} 곱한다.",
+      "coreReason": "음의분수와반복곱횟수를다루는a·b·n의자연수범위를밝혀0분모나정수가아닌횟수를숨겨가정하지않는다."
+    },
+    {
+      "id": "m1-02-04-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$0$이 아닌 두 수 $a$, $b$에 대하여 $a\\times b>0$일 때와 $a\\times b<0$일 때, $a$와 $b$의 부호는 서로 어떤 관계인지 각각 쓰시오. 또 $a\\times b<0$이고 $a>0$이면 $b$의 부호는 무엇인지 쓰시오.",
+      "bAnswer": "$a\\times b>0$이면 두 수의 부호가 같고, $a\\times b<0$이면 두 수의 부호가 다르다. $a\\times b<0$이고 $a>0$이면 $b$는 음수이다.",
+      "bGoal": "곱의 부호를 보고 두 수의 부호가 같은지 다른지 판단할 수 있다.",
+      "bReason": "제목은 '양수가 되는 조건'만 말하지만 정의는 곱이 음수인 경우도 다룬다. 두 경우를 모두 묻고 문자와 부등호의 뜻을 질문에 밝혔다.",
+      "cDecision": "keep",
+      "cReason": "곱이 양수일 때와 음수일 때를 대비해 묻는 짧은 빈칸이고 조건($0$이 아닌 두 수)이 문장에 있다.",
+      "studentLabel": "곱의 부호로 두 수의 부호 알기",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a\\times b>0$이면 두 수의 부호가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a\\times b<0$이면 두 수의 부호가 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$b$는 음수"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "곱의 부호와 두 수 부호 관계",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1125,
+      "part": "m1plus",
+      "sourceFingerprint": "520487fc7150889cd697b8309809e7ee196ba1a5da7a7ea1d092c94844475ce8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1125
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0$이 아닌 두 수의 곱이 양수이면 두 수의 부호는 □, 음수이면 두 수의 부호는 □.",
+      "cFrozenDefinition": "$0$이 아닌 두 수의 곱이 양수이면 두 수의 부호는 {같고}, 음수이면 두 수의 부호는 {다르다}.",
+      "cFrozenAnswers": [
+        "같고",
+        "다르다"
+      ],
+      "cMarkedSentence": "$0$이 아닌 두 수의 곱이 양수이면 두 수의 부호는 {같고}, 음수이면 두 수의 부호는 {다르다}.",
+      "cSlotAnswers": [
+        "같고",
+        "다르다"
+      ],
+      "cStudentSentence": "$0$이 아닌 두 수의 곱이 양수이면 두 수의 부호는 □, 음수이면 두 수의 부호는 □.",
+      "cAnswers": [
+        "같고",
+        "다르다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같고",
+          "equivalentAnswers": [
+            "같고",
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "다르다",
+          "equivalentAnswers": [
+            "다르다",
+            "서로 다르다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "같고",
+          "accept": [
+            "같다"
+          ]
+        },
+        {
+          "answer": "다르다",
+          "accept": [
+            "서로 다르다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같고",
+          "같다"
+        ],
+        [
+          "다르다",
+          "서로 다르다"
+        ]
+      ],
+      "proposalFingerprint": "39d02f9cec52d7e91a32b407b11d8dd38ef290096b2fda9d7548629ffe450c15"
+    },
+    {
+      "id": "m1-02-04-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "두 수 $a$, $b$의 곱의 절댓값 $|a\\times b|$를 $|a|$와 $|b|$를 사용하여 나타내고, $a=-4$, $b=3$일 때 양쪽의 값이 같음을 확인하시오.",
+      "bAnswer": "$|a\\times b|=|a|\\times|b|$, 곧 곱의 절댓값은 절댓값의 곱과 같다. $|(-4)\\times3|=|-12|=12$이고 $|-4|\\times|3|=4\\times3=12$이다.",
+      "bGoal": "곱의 절댓값과 절댓값의 곱이 같음을 식으로 나타내고 확인할 수 있다.",
+      "bReason": "제목 '곱의 절댓값'은 무엇과 비교하라는지 알려 주지 않는다. 비교할 두 대상을 기호로 주고, 값을 확인할 수를 정해 주었다.",
+      "cDecision": "keep",
+      "cReason": "'곱의 절댓값'과 '절댓값의 곱'은 낱말 순서만 다른 서로 다른 계산이라, 이를 구별해 쓰게 하는 짧은 빈칸으로 쓸모가 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$|a\\times b|=|a|\\times|b|$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$|(-4)\\times3|=|-12|=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$|-4|\\times|3|=4\\times3=12$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "곱의 절댓값은 절댓값의 곱",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1126,
+      "part": "m1plus",
+      "sourceFingerprint": "7404702e2649d341f40667877d0131b28d63fe9bd6aa802ae0c42c66df5ee2fe",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1126
+      },
+      "directReview": null,
+      "cFrozenSentence": "두 수의 곱의 절댓값은 두 수의 □과 같다.",
+      "cFrozenDefinition": "두 수의 곱의 절댓값은 두 수의 {절댓값의 곱}과 같다.",
+      "cFrozenAnswers": [
+        "절댓값의 곱"
+      ],
+      "cMarkedSentence": "두 수의 곱의 절댓값은 두 수의 {절댓값의 곱}과 같다.",
+      "cSlotAnswers": [
+        "절댓값의 곱"
+      ],
+      "cStudentSentence": "두 수의 곱의 절댓값은 두 수의 □과 같다.",
+      "cAnswers": [
+        "절댓값의 곱"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "절댓값의 곱",
+          "equivalentAnswers": [
+            "절댓값의 곱",
+            "절댓값을 곱한 값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "절댓값의 곱",
+          "accept": [
+            "절댓값을 곱한 값"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "절댓값의 곱",
+          "절댓값을 곱한 값"
+        ]
+      ],
+      "proposalFingerprint": "159a571776c177c7d4f66a879160f552144ef7ee405edb233efb92bcba35e764"
+    },
+    {
+      "id": "m1-02-04-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-2)^3\\times(-1)^4\\times(-3)^2$처럼 거듭제곱이 여러 개 곱해진 식은 어떤 차례로 계산하는지 쓰고, 이 식의 값을 구하시오.",
+      "bAnswer": "각 거듭제곱의 부호와 값을 먼저 구한 뒤 그 값들을 곱한다. $(-2)^3=-8$, $(-1)^4=1$, $(-3)^2=9$이므로 $(-8)\\times1\\times9=-72$이다.",
+      "bGoal": "거듭제곱이 섞인 곱을 거듭제곱부터 계산하여 구할 수 있다.",
+      "bReason": "'거듭제곱이 섞인 곱'이 어떤 식인지는 예가 없으면 알기 어렵다. 지수가 짝수인 것과 홀수인 것이 함께 있는 식을 넣어 차례와 부호 판단을 함께 묻게 했다.",
+      "cDecision": "exclude",
+      "cReason": "문장이 계산 차례만 말하고 있어 빈칸으로 삼을 핵심어가 없다. '부호' 빈칸은 '값', '지수' 같은 다른 말로도 채워지고 '곱한다'는 서술어일 뿐이다. 차례는 B에서 실제 식으로 묻는 편이 낫다.",
+      "exclusionReason": "C 제외: 빈칸 '부호', '곱한다'가 답이 하나로 정해지지 않는 임의 낱말이어서 빈칸 형식으로 쓸모가 없다. B는 고쳐서 사용한다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 거듭제곱의 값(부호 포함)을 먼저 구한 뒤 곱함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-2)^3=-8$, $(-1)^4=1$, $(-3)^2=9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-72$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "거듭제곱 값부터 구해 곱",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1127,
+      "part": "m1plus",
+      "sourceFingerprint": "f1dd232dfa1025c896e7a3de9ee0b27168eabd11d6e54310ac0aab9730ac0a48",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1127
+      },
+      "directReview": null,
+      "proposalFingerprint": "fa9c1c01811df13d204576f3b2879ed74be48d9d256b26646764a3e7ed511e8a"
+    },
+    {
+      "id": "m1-02-04-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$99\\times(-12)$를 쉽게 계산하려고 $99$를 $100-1$로 바꾸었다. 이때 어떤 계산 법칙을 써서 식을 어떻게 풀어 쓰는지 보이고, 값을 구하시오.",
+      "bAnswer": "분배법칙을 쓴다. $(100-1)\\times(-12)=100\\times(-12)-1\\times(-12)=-1200+12=-1188$",
+      "bGoal": "곱하기 어려운 수를 쉬운 두 수의 합이나 차로 바꾸어 분배법칙으로 계산할 수 있다.",
+      "bReason": "'쉽게 곱하기'는 어떤 수를 어떻게 바꾸는지 예가 없으면 알 수 없다. 바꾼 꼴 $100-1$까지 질문에 주고 법칙의 이름과 풀어 쓴 식을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$99$를 $100-1$로 바꾸는 것처럼 곱하기 어려운 수를 계산하기 쉬운 두 수의 합이나 차로 바꾸면 {분배법칙}으로 나누어 곱할 수 있다.",
+      "cAnswers": [
+        "분배법칙"
+      ],
+      "cReason": "원문의 첫 빈칸 '계산하기 쉬운 두 수의 합이나 차'는 너무 길고 학생이 같은 표현으로 쓸 수 없다. 그 부분은 예와 함께 보여 주고 법칙 이름만 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분배법칙"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(100-1)\\times(-12)=100\\times(-12)-1\\times(-12)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-1200+12=-1188$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "합·차로 바꿔 분배법칙 적용",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1128,
+      "part": "m1plus",
+      "sourceFingerprint": "0c004c587a50da5117e9d09dafc6e8d783bd671eda52b9ea1f8a40de02af527c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1128
+      },
+      "directReview": null,
+      "cMarkedSentence": "$99$를 $100-1$로 바꾸는 것처럼 곱하기 어려운 수를 계산하기 쉬운 두 수의 합이나 차로 바꾸면 {분배법칙}으로 나누어 곱할 수 있다.",
+      "cSlotAnswers": [
+        "분배법칙"
+      ],
+      "cStudentSentence": "$99$를 $100-1$로 바꾸는 것처럼 곱하기 어려운 수를 계산하기 쉬운 두 수의 합이나 차로 바꾸면 □으로 나누어 곱할 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분배법칙",
+          "equivalentAnswers": [
+            "분배법칙"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분배법칙"
+        ]
+      ],
+      "proposalFingerprint": "043fb0794bad981e86c2c703dd15ae6e4872a23525f63e726f8c6503e271b065"
+    },
+    {
+      "id": "m1-02-04-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$-5$, $-2$, $3$, $4$ 가운데 서로 다른 세 수를 골라 곱한 값을 가장 크게 만들려고 한다. 곱의 부호와 절댓값을 어떤 차례로 따져 고르는지 설명하고, 가장 큰 곱을 구하시오.",
+      "bAnswer": "먼저 곱이 양수가 되는 경우를 찾는다. 양수는 두 개뿐이므로 음수 두 개와 양수 한 개를 고를 때 곱이 양수이다. 그 가운데 절댓값이 가장 큰 것을 고르면 $(-5)\\times(-2)\\times4=40$이다. $(-5)\\times(-2)\\times3=30$보다 크므로 가장 큰 곱은 $40$이다.",
+      "bGoal": "곱의 부호와 절댓값을 차례로 따져 가장 큰 곱을 찾을 수 있다.",
+      "bReason": "고를 수가 주어지지 않으면 물을 수 없는 내용이다. 양수인 곱이 만들어지는 수 네 개를 주고 '부호 먼저, 절댓값 나중'의 차례를 설명하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "여러 수 가운데 세 수를 골라 곱을 가장 크게 하려면, 곱이 양수가 되는 경우가 있을 때 그런 경우만 비교하여 곱의 {절댓값}이 가장 큰 것을 고른다.",
+      "cAnswers": [
+        "절댓값"
+      ],
+      "cReason": "원문은 첫 빈칸의 답 '양수'가 바로 앞 '양수인 곱을 만들 수 있으면'에 그대로 나와 베껴 쓰게 되고, 문장도 길어 읽기 어렵다. 문장을 줄이고 절댓값 빈칸 하나만 남겼다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 곱이 양수가 되는 경우를 찾음: 음수 두 개와 양수 한 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 가운데 절댓값이 가장 큰 곱을 고름"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-5)\\times(-2)\\times4=40$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "양수 곱 중 절댓값 최대 선택",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1129,
+      "part": "m1plus",
+      "sourceFingerprint": "4a6467d7b7e188da82afe8b219c883d6c5286dba4dc697c7630a430f7794835a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1129
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 수 가운데 세 수를 골라 곱을 가장 크게 하려면, 곱이 양수가 되는 경우가 있을 때 그런 경우만 비교하여 곱의 {절댓값}이 가장 큰 것을 고른다.",
+      "cSlotAnswers": [
+        "절댓값"
+      ],
+      "cStudentSentence": "여러 수 가운데 세 수를 골라 곱을 가장 크게 하려면, 곱이 양수가 되는 경우가 있을 때 그런 경우만 비교하여 곱의 □이 가장 큰 것을 고른다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "절댓값",
+          "equivalentAnswers": [
+            "절댓값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "절댓값"
+        ]
+      ],
+      "proposalFingerprint": "c422b6e560115993fa903ad298143dfaeb8fa2cd031dea0590183a1e32f49d63"
+    },
+    {
+      "id": "m1-02-04-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$a<0$, $b<0$일 때 $a\\times b\\times b$의 부호를 구하려고 한다. $a$, $b$의 값을 몰라도 곱의 부호를 정할 수 있는 방법을 쓰고, 이 곱의 부호를 구하시오.",
+      "bAnswer": "각 문자가 양수인지 음수인지만 보고, 곱해진 음수의 개수로 부호를 정한다. $a$, $b$, $b$가 모두 음수여서 음수가 $3$개, 곧 홀수 개이므로 곱은 음수이다.",
+      "bGoal": "문자의 부호 조건만으로 곱의 부호를 정할 수 있다.",
+      "bReason": "'문자의 곱'이 어떤 문자의 어떤 곱인지 제목에 없다. 부등호로 각 문자의 부호를 주고, 값을 모른 채 부호를 정하는 방법을 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "문자의 조건 $a<0$, $b>0$과 구할 대상 $a\\times b$가 문장에 모두 있어 빈칸에 부호 하나를 쓰면 된다는 점이 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "값을 몰라도 각 수의 부호, 곧 곱해진 음수의 개수로 정함 ($b\\times b$가 양수임을 이용한 설명도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수가 $3$개(홀수 개)이므로 곱은 음수"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "문자 부호만으로 곱 부호 판정",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1130,
+      "part": "m1plus",
+      "sourceFingerprint": "7bec67c7d313b7ac8c05a908ae641ca534407454b0cb8e0b7c286e908ffa6139",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1130
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0$이 아닌 수들의 곱의 부호는 각 수의 부호로 정한다. $a<0$, $b>0$일 때 $a\\times b$의 부호는 □이다.",
+      "cFrozenDefinition": "$0$이 아닌 수들의 곱의 부호는 각 수의 부호로 정한다. $a<0$, $b>0$일 때 $a\\times b$의 부호는 {$-$}이다.",
+      "cFrozenAnswers": [
+        "$-$"
+      ],
+      "cMarkedSentence": "$0$이 아닌 수들의 곱의 부호는 각 수의 부호로 정한다. $a<0$, $b>0$일 때 $a\\times b$의 부호는 {$-$}이다.",
+      "cSlotAnswers": [
+        "$-$"
+      ],
+      "cStudentSentence": "$0$이 아닌 수들의 곱의 부호는 각 수의 부호로 정한다. $a<0$, $b>0$일 때 $a\\times b$의 부호는 □이다.",
+      "cAnswers": [
+        "$-$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-$",
+          "equivalentAnswers": [
+            "$-$",
+            "음의 부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$-$",
+          "accept": [
+            "음의 부호"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$-$",
+          "음의 부호"
+        ]
+      ],
+      "proposalFingerprint": "bb164d3b1a9a5fc1a005a5dc1735ee138fde0e80d89be43554e3a5e06c078d1a"
+    },
+    {
+      "id": "m1-02-04-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "괄호 안이 뺄셈인 식 $a\\times(b-c)$에 분배법칙을 쓰면 어떤 식이 되는지 쓰고, 이를 이용하여 $(-6)\\times\\left(\\frac{1}{2}-\\frac{2}{3}\\right)$를 계산하시오.",
+      "bAnswer": "$a\\times(b-c)=a\\times b-a\\times c$이다. $(-6)\\times\\frac{1}{2}-(-6)\\times\\frac{2}{3}=-3-(-4)=1$",
+      "bGoal": "괄호 안이 뺄셈일 때에도 분배법칙을 써서 계산할 수 있다.",
+      "bReason": "제목만으로는 성립 여부를 묻는지 식을 묻는지 알 수 없다. 출발하는 식을 주고 풀어 쓴 식을 답하게 한 뒤 분수 예에 적용하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "괄호 안이 뺄셈이어도 분배법칙이 성립하여 $a\\times(b-c)=${$a\\times b-a\\times c$}이다.",
+      "cAnswers": [
+        "$a\\times b-a\\times c$"
+      ],
+      "cReason": "원문 빈칸 '성립한다'는 식이 이미 다 보인 뒤에 붙는 서술어라 떠올릴 내용이 없다. 풀어 쓴 식을 빈칸으로 옮겨 법칙의 내용을 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a\\times(b-c)=a\\times b-a\\times c$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-6)\\times\\frac{1}{2}-(-6)\\times\\frac{2}{3}=-3-(-4)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "뺄셈에도 분배법칙 성립",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1131,
+      "part": "m1plus",
+      "sourceFingerprint": "94e620229f5cc251d949c29efcee0069d2911179a61d4396d6bb6e767a6c040d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1131
+      },
+      "directReview": null,
+      "cMarkedSentence": "괄호 안이 뺄셈이어도 분배법칙이 성립하여 $a\\times(b-c)=${$a\\times b-a\\times c$}이다.",
+      "cSlotAnswers": [
+        "$a\\times b-a\\times c$"
+      ],
+      "cStudentSentence": "괄호 안이 뺄셈이어도 분배법칙이 성립하여 $a\\times(b-c)=$□이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a\\times b-a\\times c$",
+          "equivalentAnswers": [
+            "$a\\times b-a\\times c$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a\\times b-a\\times c$"
+        ]
+      ],
+      "proposalFingerprint": "4b82b62c94c575488cba14d8816a8e97b29e55674ecc71bea466c310d8be771d"
+    },
+    {
+      "id": "m1-02-04-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-1)+(-1)^2+(-1)^3+\\cdots+(-1)^9$처럼 $-1$의 거듭제곱을 지수 $1$부터 $9$까지 차례로 더한 식을 쉽게 계산하는 방법을 쓰고, 이 식의 값을 구하시오.",
+      "bAnswer": "더하는 수가 $-1$, $1$, $-1$, $1$, $\\cdots$로 번갈아 나오므로 앞에서부터 둘씩 짝지으면 한 쌍의 합이 $(-1)+1=0$이다. 수가 $9$개이므로 $4$쌍의 합은 $0$이고 마지막 $(-1)^9=-1$이 남아 값은 $-1$이다.",
+      "bGoal": "$-1$의 거듭제곱의 합을 둘씩 짝지어 계산할 수 있다.",
+      "bReason": "질문은 쉽게 계산하는 방법을 묻는데, $-1$과 $1$의 개수를 세는 맞는 풀이가 '4쌍' 요소 때문에 틀리게 되므로 대안으로 허용한다.",
+      "cDecision": "keep",
+      "cReason": "식의 꼴과 '$-1$과 $1$이 번갈아 나오면'이라는 상황이 문장에 있고 빈칸이 낱말 하나이다. 같은 뜻의 말은 정답으로 인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘씩 짝지으면 한 쌍의 합이 $0$이고 마지막 $(-1)^9=-1$이 남는다",
+            "$-1$이 $5$개, $1$이 $4$개이므로 $(-5)+4$로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "-1과 1을 짝지어 0 만들기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1132,
+      "part": "m1plus",
+      "sourceFingerprint": "e960236c9e5c9a9a4bc513d23a5551b89b31d7252def0087fa4f6b125b377579",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1132
+      },
+      "directReview": null,
+      "cFrozenSentence": "$(-1)+(-1)^2+(-1)^3+\\cdots$처럼 $-1$과 $1$이 번갈아 나오면 둘씩 □ 더한다.",
+      "cFrozenDefinition": "$(-1)+(-1)^2+(-1)^3+\\cdots$처럼 $-1$과 $1$이 번갈아 나오면 둘씩 {짝지어} 더한다.",
+      "cFrozenAnswers": [
+        "짝지어"
+      ],
+      "cMarkedSentence": "$(-1)+(-1)^2+(-1)^3+\\cdots$처럼 $-1$과 $1$이 번갈아 나오면 둘씩 {짝지어} 더한다.",
+      "cSlotAnswers": [
+        "짝지어"
+      ],
+      "cStudentSentence": "$(-1)+(-1)^2+(-1)^3+\\cdots$처럼 $-1$과 $1$이 번갈아 나오면 둘씩 □ 더한다.",
+      "cAnswers": [
+        "짝지어"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "짝지어",
+          "equivalentAnswers": [
+            "짝지어",
+            "짝 지어",
+            "묶어"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "짝지어",
+          "accept": [
+            "짝 지어",
+            "묶어"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "짝지어",
+          "짝 지어",
+          "묶어"
+        ]
+      ],
+      "proposalFingerprint": "2dffdf1b56bc80f76023c250e0281eb0ec83a30b6693d3be312af6c8eab6652c"
+    },
+    {
+      "id": "m1-02-04-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-1)\\times(-2)\\times0\\times(-3)$처럼 곱하는 수 가운데 $0$이 하나라도 있을 때, 음수의 개수를 세어 부호를 정해야 하는지 쓰고 이 곱의 값을 구하시오.",
+      "bAnswer": "세지 않아도 된다. $0$이 하나라도 곱해지면 음수의 개수와 관계없이 곱은 $0$이다. 따라서 값은 $0$이다.",
+      "bGoal": "$0$이 곱해진 식은 음수의 개수와 관계없이 곱이 $0$임을 판단할 수 있다.",
+      "bReason": "m1-02-04-xc3이 '한 수에 $0$을 곱하기'를 묻는다. 이 문항은 여러 수의 곱에서 음수 세기 규칙을 쓰지 않아도 된다는 판단을 묻도록 음수가 섞인 식을 넣어 구별했다.",
+      "cDecision": "rewrite",
+      "cAfter": "여러 수를 곱할 때 곱하는 수 가운데 $0$이 하나라도 있으면, {음수}가 몇 개인지와 관계없이 곱은 $0$이다.",
+      "cAnswers": [
+        "음수"
+      ],
+      "cReason": "원문의 '곱의 부호를 셀 때'는 무엇을 센다는 말인지 어색하고, 빈칸 답 $0$은 m1-02-04-xc3의 C와 똑같다. 이 문항만의 내용인 '음수의 개수를 따질 필요가 없다'를 묻도록 빈칸을 옮겼다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음수의 개수를 셀 필요가 없음"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$이 하나라도 곱해지면 곱은 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "0이 곱해지면 곱은 0",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1133,
+      "part": "m1plus",
+      "sourceFingerprint": "90292f850b5a914e8f42c80108c585ba240bdc3f08a7063b5ba61dfaf359eb05",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1133
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 수를 곱할 때 곱하는 수 가운데 $0$이 하나라도 있으면, {음수}가 몇 개인지와 관계없이 곱은 $0$이다.",
+      "cSlotAnswers": [
+        "음수"
+      ],
+      "cStudentSentence": "여러 수를 곱할 때 곱하는 수 가운데 $0$이 하나라도 있으면, □가 몇 개인지와 관계없이 곱은 $0$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ]
+      ],
+      "proposalFingerprint": "ff3a341dd809d437619eaafbcb6b75430d43e0e64bcb23d70a24c925f713ba15"
+    },
+    {
+      "id": "m1-02-04-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "곱이 $-6$이고 합이 $1$인 두 정수를 찾으려고 한다. 곱의 부호에서 먼저 알 수 있는 것과 그다음에 살펴볼 것을 차례대로 쓰고, 두 정수를 구하시오.",
+      "bAnswer": "곱이 음수이므로 두 수의 부호가 다르다. 절댓값의 곱이 $6$인 짝은 $1$과 $6$, $2$와 $3$이다. 부호를 서로 다르게 붙여 합이 $1$이 되는 것은 $3$과 $-2$이다.",
+      "bGoal": "곱의 부호와 절댓값의 곱을 이용해 조건에 맞는 두 정수를 찾을 수 있다.",
+      "bReason": "곱과 합의 값이 주어져야 찾는 과정을 쓸 수 있다. 실제 값을 주고 '부호 먼저, 절댓값의 곱, 합 확인'의 차례를 설명하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "곱과 합이 주어진 두 정수를 찾을 때, 곱이 $0$이 아니면 곱의 {부호}로 두 수의 부호가 같은지 다른지를 먼저 정하고, 절댓값의 곱이 맞는 짝 가운데 합이 맞는 것을 고른다.",
+      "cAnswers": [
+        "부호"
+      ],
+      "cReason": "원문은 두 정수를 찾는 상황이라는 말이 제목에만 있어 '합이 맞는 것'이 무슨 뜻인지 알 수 없다. 상황을 문장 앞에 넣고, 문장에 여러 번 나오는 말과 겹치는 둘째 빈칸은 없앴다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱이 음수이므로 두 수의 부호가 다름"
+          ]
+        },
+        {
+          "anyOf": [
+            "절댓값의 곱이 $6$인 짝($1$과 $6$, $2$와 $3$) 가운데 합이 $1$이 되는 것을 찾음"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$과 $-2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "곱의 부호, 절댓값 짝, 합 확인",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1134,
+      "part": "m1plus",
+      "sourceFingerprint": "2cfd269f4a011331edb2b528e042815b3b0c84335866cc83b8b5f451ad2a9f11",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1134
+      },
+      "directReview": null,
+      "cMarkedSentence": "곱과 합이 주어진 두 정수를 찾을 때, 곱이 $0$이 아니면 곱의 {부호}로 두 수의 부호가 같은지 다른지를 먼저 정하고, 절댓값의 곱이 맞는 짝 가운데 합이 맞는 것을 고른다.",
+      "cSlotAnswers": [
+        "부호"
+      ],
+      "cStudentSentence": "곱과 합이 주어진 두 정수를 찾을 때, 곱이 $0$이 아니면 곱의 □로 두 수의 부호가 같은지 다른지를 먼저 정하고, 절댓값의 곱이 맞는 짝 가운데 합이 맞는 것을 고른다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ]
+      ],
+      "proposalFingerprint": "5dea36213f5c69069f826ee4f07984bc4eda5116625aad6262b41b9cd575d336"
+    },
+    {
+      "id": "m1-02-05-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "$0$이 아닌 정수 $a$의 역수를 $a$를 사용한 분수로 나타내고, 그 수가 $a$의 역수인 까닭을 두 수의 곱으로 확인하시오. 또 $-6$의 역수를 구하시오.",
+      "bAnswer": "$a$의 역수는 $\\frac{1}{a}$이다. $a\\times\\frac{1}{a}=1$이기 때문이다. $-6$의 역수는 $-\\frac{1}{6}$이다.",
+      "bGoal": "$0$이 아닌 정수의 역수를 분수로 나타낼 수 있다.",
+      "bReason": "제목만으로는 정의를 묻는지 구하는 방법을 묻는지 알 수 없다. 문자 $a$와 $0$이 아니라는 조건을 밝히고, 음의 정수 예로 부호까지 확인하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$0$이 아닌 정수 $a$의 역수는 {$\\frac{1}{a}$}이다.",
+      "cAnswers": [
+        "$\\frac{1}{a}$"
+      ],
+      "cReason": "원문은 '분자가 □'와 '분수 □'를 함께 물어 둘째 빈칸의 답 안에 첫 빈칸의 답이 들어 있고, '분모가 $a$'도 답을 거의 알려 준다. 식 하나만 쓰는 빈칸으로 줄였다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{a}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a\\times\\frac{1}{a}=1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{1}{6}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "정수 a의 역수는 1/a",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1135,
+      "part": "m1plus",
+      "sourceFingerprint": "db331df106708111e97872db1ec86002ba3f71b5922a9522a695a98c224ada5b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1135
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0$이 아닌 정수 $a$의 역수는 {$\\frac{1}{a}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{a}$"
+      ],
+      "cStudentSentence": "$0$이 아닌 정수 $a$의 역수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{a}$",
+          "equivalentAnswers": [
+            "$\\frac{1}{a}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{a}$"
+        ]
+      ],
+      "proposalFingerprint": "f96d99eb51be3e659f95ee7ee740c084bc561cd37d7f800335ab4cbc35ef7dec"
+    },
+    {
+      "id": "m1-02-05-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "분자가 $0$이 아닌 분수의 역수는 분자와 분모를 어떻게 하여 구하는지 쓰고, $\\frac{5}{8}$의 역수와 $-\\frac{2}{3}$의 역수를 각각 구하시오.",
+      "bAnswer": "분자와 분모를 서로 바꾼다. 부호는 그대로 둔다. $\\frac{5}{8}$의 역수는 $\\frac{8}{5}$이고 $-\\frac{2}{3}$의 역수는 $-\\frac{3}{2}$이다.",
+      "bGoal": "분수의 역수를 분자와 분모를 바꾸어 구할 수 있다.",
+      "bReason": "제목에는 '분자가 $0$이 아닌'이라는 조건이 없다. 조건을 넣고 양의 분수와 음의 분수 예를 하나씩 주어 부호가 그대로임도 확인하게 했다.",
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 있고 '분자와 분모를 □ 수'는 하는 일을 묻는 짧은 빈칸이다. 같은 뜻의 표현은 정답으로 인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모를 서로 바꿈 (부호는 그대로)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "분자와 분모를 서로 바꿈",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1136,
+      "part": "m1plus",
+      "sourceFingerprint": "9bee6cf287d5fe0671d8c9868c5cc5bd81e7b8e97872fcd8bea9c0b23ace0272",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1136
+      },
+      "directReview": null,
+      "cFrozenSentence": "분자가 $0$이 아닌 분수의 역수는 분자와 분모를 □ 수이다.",
+      "cFrozenDefinition": "분자가 $0$이 아닌 분수의 역수는 분자와 분모를 {서로 바꾼} 수이다.",
+      "cFrozenAnswers": [
+        "서로 바꾼"
+      ],
+      "cMarkedSentence": "분자가 $0$이 아닌 분수의 역수는 분자와 분모를 {서로 바꾼} 수이다.",
+      "cSlotAnswers": [
+        "서로 바꾼"
+      ],
+      "cStudentSentence": "분자가 $0$이 아닌 분수의 역수는 분자와 분모를 □ 수이다.",
+      "cAnswers": [
+        "서로 바꾼"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "서로 바꾼",
+          "equivalentAnswers": [
+            "서로 바꾼",
+            "바꾼",
+            "맞바꾼",
+            "서로 바꾸어 놓은"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "서로 바꾼",
+          "accept": [
+            "바꾼",
+            "맞바꾼",
+            "서로 바꾸어 놓은"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "서로 바꾼",
+          "바꾼",
+          "맞바꾼",
+          "서로 바꾸어 놓은"
+        ]
+      ],
+      "proposalFingerprint": "eeff6caa68cf9d2b0be919f0261dd1cb5743d41e8847e1b281c02406b0ffd7b2"
+    },
+    {
+      "id": "m1-02-05-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.25$와 같은 소수의 역수를 구할 때 먼저 무엇을 하는지 쓰고, $0.25$의 역수를 구하는 과정을 보이시오.",
+      "bAnswer": "소수를 먼저 분수로 고친 뒤 분자와 분모를 바꾼다. $0.25=\\frac{1}{4}$이므로 역수는 $4$이다.",
+      "bGoal": "소수를 분수로 고쳐 역수를 구할 수 있다.",
+      "bReason": "소수는 분자와 분모가 보이지 않아 예가 있어야 방법을 물을 수 있다. 분수로 고치기 쉬운 $0.25$를 넣고 첫 단계를 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "'먼저 □로 고친 뒤'는 첫 단계를 묻는 낱말 빈칸이고 뒤의 '분자와 분모를 바꾸어'가 실마리가 되어 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 소수를 분수로 고침"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.25=\\frac{1}{4}$ ($\\frac{25}{100}$도 허용)에서 분자와 분모를 바꿈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "분수로 고친 뒤 뒤집기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1137,
+      "part": "m1plus",
+      "sourceFingerprint": "46f738949dc394381c2a70954f1ae7a0ba71457da3689abdc70a84f152cf9c3d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1137
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 {분수}로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "cSlotAnswers": [
+        "분수"
+      ],
+      "cStudentSentence": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 □로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "cAnswers": [
+        "분수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분수"
+        ]
+      ],
+      "proposalFingerprint": "c934f42ab1e0def3be3beb93e28fecb0448e94bf3712cdb42b71b35cc04a2116",
+      "cAfter": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 {분수}로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "coreAfter": "$0.25$처럼 $0$이 아닌 소수의 역수는 먼저 {분수}로 고친 뒤 분자와 분모를 바꾸어 구한다.",
+      "coreReason": "0은역수가없으므로대상을0아닌수로밝히고소수라는말이소수점표현을뜻함을실제예로구별한다."
+    },
+    {
+      "id": "m1-02-05-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$0$이 아닌 두 수의 부호가 같을 때, 나눗셈의 몫은 무엇을 구한 다음 어떤 부호를 붙여 얻는지 쓰고, 이 방법으로 $(-24)\\div(-8)$을 계산하시오.",
+      "bAnswer": "두 수의 절댓값의 몫을 구한 다음 양의 부호를 붙인다. $(-24)\\div(-8)=+(24\\div8)=3$",
+      "bGoal": "부호가 같은 두 수의 나눗셈을 절댓값의 몫과 부호로 계산할 수 있다.",
+      "bReason": "m1-02-05-c2는 몫의 부호만 묻는다. 이 문항은 정의에 있는 '절댓값의 몫'까지 포함한 계산 방법을 음수끼리의 예로 묻도록 구별했다.",
+      "cDecision": "keep",
+      "cReason": "조건과 '절댓값의 몫'이 문장에 있고 빈칸은 붙일 부호 하나라서 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 절댓값의 몫을 구함"
+          ]
+        },
+        {
+          "anyOf": [
+            "양의 부호를 붙임"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "절댓값의 몫에 양의 부호",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1138,
+      "part": "m1plus",
+      "sourceFingerprint": "b5aee30d12588c6e68a70dfaa7ea92a2d959a416b38e886591b59fff6eef00fc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1138
+      },
+      "directReview": null,
+      "cFrozenSentence": "부호가 같은 두 수의 몫은 절댓값의 몫에 □를 붙인다.",
+      "cFrozenDefinition": "부호가 같은 두 수의 몫은 절댓값의 몫에 {양의 부호}를 붙인다.",
+      "cFrozenAnswers": [
+        "양의 부호"
+      ],
+      "cMarkedSentence": "부호가 같은 두 수의 몫은 절댓값의 몫에 {양의 부호}를 붙인다.",
+      "cSlotAnswers": [
+        "양의 부호"
+      ],
+      "cStudentSentence": "부호가 같은 두 수의 몫은 절댓값의 몫에 □를 붙인다.",
+      "cAnswers": [
+        "양의 부호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양의 부호",
+          "equivalentAnswers": [
+            "양의 부호",
+            "$+$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "양의 부호",
+          "accept": [
+            "$+$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "양의 부호",
+          "$+$"
+        ]
+      ],
+      "proposalFingerprint": "a756ce78b29ae92332cec277f473ef3138f25a9a86c0f0a4580f7a5e62eb3e15"
+    },
+    {
+      "id": "m1-02-05-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$0$이 아닌 두 수의 부호가 다를 때, 나눗셈의 몫은 무엇을 구한 다음 어떤 부호를 붙여 얻는지 쓰고, 이 방법으로 $(+35)\\div(-7)$을 계산하시오.",
+      "bAnswer": "두 수의 절댓값의 몫을 구한 다음 음의 부호를 붙인다. $(+35)\\div(-7)=-(35\\div7)=-5$",
+      "bGoal": "부호가 다른 두 수의 나눗셈을 절댓값의 몫과 부호로 계산할 수 있다.",
+      "bReason": "제목만으로는 부호만 답하면 되는지 계산 방법 전체를 쓰는지 알 수 없다. 절댓값의 몫과 부호를 차례로 묻고 양수를 음수로 나누는 예를 넣었다.",
+      "cDecision": "keep",
+      "cReason": "m1-02-05-xc4의 C와 짝이 되는 경우를 묻는 짧은 빈칸이며 조건이 문장에 다 보인다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 절댓값의 몫을 구함"
+          ]
+        },
+        {
+          "anyOf": [
+            "음의 부호를 붙임"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-5$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "절댓값의 몫에 음의 부호",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1139,
+      "part": "m1plus",
+      "sourceFingerprint": "14d0f176fc89aa7163f0a13cfcb4f4a77f82965f136f2d05990ff996ce75dc47",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1139
+      },
+      "directReview": null,
+      "cFrozenSentence": "부호가 다른 두 수의 몫은 절댓값의 몫에 □를 붙인다.",
+      "cFrozenDefinition": "부호가 다른 두 수의 몫은 절댓값의 몫에 {음의 부호}를 붙인다.",
+      "cFrozenAnswers": [
+        "음의 부호"
+      ],
+      "cMarkedSentence": "부호가 다른 두 수의 몫은 절댓값의 몫에 {음의 부호}를 붙인다.",
+      "cSlotAnswers": [
+        "음의 부호"
+      ],
+      "cStudentSentence": "부호가 다른 두 수의 몫은 절댓값의 몫에 □를 붙인다.",
+      "cAnswers": [
+        "음의 부호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음의 부호",
+          "equivalentAnswers": [
+            "음의 부호",
+            "$-$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "음의 부호",
+          "accept": [
+            "$-$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "음의 부호",
+          "$-$"
+        ]
+      ],
+      "proposalFingerprint": "940261e820ea9bef8f315de564171ad87474b7e6159ca2d79993dcd6d3aeffa0"
+    },
+    {
+      "id": "m1-02-05-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$0$을 $0$이 아닌 수로 나누면 몫이 얼마인지 쓰고, $0\\div(-9)$의 값을 구한 뒤 곱셈으로 검산하시오.",
+      "bAnswer": "몫은 언제나 $0$이다. $0\\div(-9)=0$이고, $0\\times(-9)=0$이므로 맞다.",
+      "bGoal": "$0$을 $0$이 아닌 수로 나눈 몫이 $0$임을 말할 수 있다.",
+      "bReason": "제목 '$0$을 나누기'는 '$0$으로 나누기'와 헷갈리기 쉽다. 나누어지는 수가 $0$이고 나누는 수는 $0$이 아니라는 조건을 질문에 분명히 적었다.",
+      "cDecision": "keep",
+      "cReason": "나누어지는 수와 나누는 수의 조건이 문장에 모두 있고 몫 하나만 묻는 짧은 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0\\div(-9)=0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "검산: $0\\times(-9)=0$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "0을 나눈 몫은 0",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1140,
+      "part": "m1plus",
+      "sourceFingerprint": "84517239d4cccc2a9d5d83434072b263adc561a351905ed281f2bdd72455e6ef",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1140
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0$을 $0$이 아닌 수로 나누면 몫은 언제나 □이다.",
+      "cFrozenDefinition": "$0$을 $0$이 아닌 수로 나누면 몫은 언제나 {$0$}이다.",
+      "cFrozenAnswers": [
+        "$0$"
+      ],
+      "cMarkedSentence": "$0$을 $0$이 아닌 수로 나누면 몫은 언제나 {$0$}이다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "$0$을 $0$이 아닌 수로 나누면 몫은 언제나 □이다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "eaaeade2f3ffd4c98bc5815b292010384c3e693178369a2c00763a9bb143894f"
+    },
+    {
+      "id": "m1-02-05-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "$5\\div0$처럼 어떤 수를 $0$으로 나누는 계산을 할 수 있는지 쓰고, 그 까닭을 '어떤 수에 $0$을 곱하면 얼마가 되는지'를 이용하여 설명하시오.",
+      "bAnswer": "할 수 없다. 그래서 $0$으로 나누는 것은 생각하지 않는다. $5\\div0$의 몫이 있다면 그 수에 $0$을 곱해 $5$가 되어야 하는데, 어떤 수에 $0$을 곱해도 $0$이므로 그런 수는 없다.",
+      "bGoal": "$0$으로 나누는 것은 생각하지 않음을 알고 그 까닭을 말할 수 있다.",
+      "bReason": "m1-02-05-xc6과 제목이 비슷해 구별되지 않는다. 구체적인 식 $5\\div0$을 보여 주고, 학생이 이미 아는 '$0$을 곱하면 $0$'으로 까닭을 말하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 수를 {$0$}으로 나누는 것은 생각하지 않는다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cReason": "원문의 둘째 빈칸 '않는다'는 서술어 끝이라 수학 내용이 아니고, 두 빈칸이 다 비면 문장의 뜻을 알 수 없다. 나누는 수만 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "계산할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 몫이 있다면 그 수에 $0$을 곱해 $5$가 되어야 하는데 어떤 수에 $0$을 곱해도 $0$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "0으로는 나누지 않음",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1141,
+      "part": "m1plus",
+      "sourceFingerprint": "ec62db0cc01d2e2f1b26fe3fd7cf5db86ba3ad3dde059b7f806cfa33ba953ff7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1141
+      },
+      "directReview": null,
+      "cMarkedSentence": "어떤 수를 {$0$}으로 나누는 것은 생각하지 않는다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "어떤 수를 □으로 나누는 것은 생각하지 않는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "0fb66ca70ac0b0a6ed0c5602efd3c3313a30a76e2e2199b4e02fb5d982ada9e6"
+    }
+  ]
+}

@@ -1,0 +1,2012 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-1797-1821.json",
+  "changes": [
+    {
+      "id": "m1-06-04-xc2",
+      "cAfter": "원 위의 서로 다른 두 점 $A$, $B$를 원을 따라 이은 부분은 {호}이고, 두 점을 곧게 이은 선분은 {현}이다.",
+      "cReason": "두점이원위에있고서로다르다는조건을밝힌다."
+    },
+    {
+      "id": "m1-06-04-xc4",
+      "cAfter": "중심이 $O$인 원 위에 서로 다른 두 점 $A$, $B$가 있다. 부채꼴 $AOB$에서 중심각은 {$\\angle AOB$}이고, 그 중심각에 대한 호는 {호 $AB$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\angle AOB$",
+          "$\\angle BOA$"
+        ],
+        [
+          "호 $AB$",
+          "$\\overset{\\frown}{AB}$",
+          "호 $BA$",
+          "$\\overset{\\frown}{BA}$"
+        ]
+      ],
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\angle COD$",
+            "$\\angle DOC$"
+          ]
+        },
+        {
+          "anyOf": [
+            "호 $CD$",
+            "$\\overset{\\frown}{CD}$",
+            "호 $DC$",
+            "$\\overset{\\frown}{DC}$"
+          ]
+        }
+      ],
+      "cReason": "O가중심이라는조건과두점의소속을밝히고같은호의역순표기도허용한다."
+    },
+    {
+      "id": "m1-06-04-xc8",
+      "bPrompt": "한 원에서 중심각의 크기가 $30^\\circ$인 부채꼴의 호의 길이가 $5$이다. 같은 원에서 중심각의 크기가 $120^\\circ$인 부채꼴의 호의 길이를 구하고, 중심각의 크기와 호의 길이의 관계를 이용해 구한 과정을 쓰시오.",
+      "bAnswer": "구하는 호의 길이를 $x$라 하면 $30:120=5:x$에서 $30x=600$이므로 $x=20$이다. 중심각이 $4$배라서 호의 길이도 $5$의 $4$배인 $20$이라고 구해도 된다.",
+      "bReason": "비례식뿐아니라중심각4배라는관계로푼답도질문의요구와일치하게한다."
+    },
+    {
+      "id": "m1-06-04-xc12",
+      "cAfter": "한 원에서 길이가 같은 두 현에 대한 중심각을 각각 $180^\\circ$ 이하로 잡으면, 그 두 중심각의 크기는 {같다}.",
+      "cReason": "작은중심각과큰중심각을서로비교하는모호함을막고유용한짧은비교만묻는다."
+    },
+    {
+      "id": "m1-06-04-xc15",
+      "cAfter": "호에 대한 중심각의 크기가 $180^\\circ$보다 작을 때, 활꼴의 넓이는 부채꼴의 넓이에서 두 반지름과 현이 이루는 {삼각형}의 넓이를 뺀 값이다. 이 활꼴의 넓이는 중심각의 크기에 {정비례}하지 않는다.",
+      "cReason": "삼각형넓이를뺀다는말만으로비례하지않음을증명한것처럼보이는그래서연결을없앤다."
+    },
+    {
+      "id": "m1-06-04-xc17",
+      "cAfter": "원 위의 서로 다른 세 점이 원을 세 호로 나누고 그 길이의 비가 $a:b:c$일 때($a$, $b$, $c$는 양수), 각 호에 대한 중심각의 크기는 {$360^\\circ$}를 $a+b+c$로 나눈 뒤 각각 $a$, $b$, $c$를 곱해 구한다.",
+      "cReason": "세점의구별과비의양수조건을분명히한다."
+    },
+    {
+      "id": "m1-06-04-xc18",
+      "cAfter": "원 $O$ 위의 두 점 $A$, $B$에 대하여 $0^\\circ<\\angle AOB<180^\\circ$이다. $\\overline{OA}=\\overline{OB}$이므로 삼각형 $OAB$는 {이등변삼각형}이다. 따라서 $\\angle OAB$와 $\\angle OBA$의 크기는 서로 같고, 각각 {$(180^\\circ-\\angle AOB)\\div2$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "이등변삼각형"
+        ],
+        [
+          "$(180^\\circ-\\angle AOB)\\div2$",
+          "$\\frac{180^\\circ-\\angle AOB}{2}$",
+          "$90^\\circ-\\frac{1}{2}\\angle AOB$"
+        ]
+      ],
+      "cReason": "일치점이나지름양끝이면삼각형이되지않으므로중심각범위를명시하고동치각식을보존한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-06-04-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "원의 지름은 반드시 어느 점을 지나는지 쓰고, 한 원에서 지름의 길이와 반지름의 길이 사이의 관계를 쓰시오.",
+      "bAnswer": "지름은 원의 중심을 지나고, 지름의 길이는 반지름의 길이의 $2$배이다.",
+      "bGoal": "지름이 지나는 점과 반지름과의 길이 관계 말하기",
+      "bReason": "두 선분 이름만 있어 지나는 점과 길이 관계 두 가지로 답할 범위를 정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원의 중심을 지난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름의 길이는 반지름의 길이의 $2$배",
+            "반지름의 길이는 지름의 길이의 절반"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "중심과 $2$배를 묻는 짧은 빈칸으로 문장만 읽어도 답할 수 있음.",
+      "learningRole": "definition",
+      "roleReason": "지름의 뜻과 반지름과의 길이 관계",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1797,
+      "part": "m1plus",
+      "sourceFingerprint": "d3a66c5170b3380596409464414e59968fabaef9ff2ee0c1f4e7a4801f02ff9a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1797
+      },
+      "directReview": null,
+      "cFrozenSentence": "어느 지름이든 원의 □을 지나며, 길이는 반지름을 □ 한 것과 같다.",
+      "cFrozenDefinition": "어느 지름이든 원의 {중심}을 지나며, 길이는 반지름을 {$2$배} 한 것과 같다.",
+      "cFrozenAnswers": [
+        "중심",
+        "$2$배"
+      ],
+      "cMarkedSentence": "어느 지름이든 원의 {중심}을 지나며, 길이는 반지름을 {$2$배} 한 것과 같다.",
+      "cSlotAnswers": [
+        "중심",
+        "$2$배"
+      ],
+      "cStudentSentence": "어느 지름이든 원의 □을 지나며, 길이는 반지름을 □ 한 것과 같다.",
+      "cAnswers": [
+        "중심",
+        "$2$배"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "중심",
+          "equivalentAnswers": [
+            "중심"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$배",
+          "equivalentAnswers": [
+            "$2$배",
+            "두 배"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$2$배",
+          "accept": [
+            "두 배"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "중심"
+        ],
+        [
+          "$2$배",
+          "두 배"
+        ]
+      ],
+      "proposalFingerprint": "8d1b23833722d8527d8174115dcf1b0c4e0d029d2845bafb89ae5aa5c8406be2"
+    },
+    {
+      "id": "m1-06-04-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "호와 현의 정의를 이미 따로 묻고 있어 이름 두 개만 다시 답하게 됨.",
+      "cDecision": "rewrite",
+      "cReason": "두점이원위에있고서로다르다는조건을밝힌다.",
+      "exclusionReason": "B 제외: 호(m1-06-04-c2)와 현(m1-06-04-c3)의 정의 질문과 답이 겹치는 이름 구별 항목이라 서술형으로는 목표 중복임. C의 비교 빈칸으로만 사용함.",
+      "learningRole": "naming",
+      "roleReason": "같은 두 점을 이은 호와 현의 이름 구별",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1798,
+      "part": "m1plus",
+      "sourceFingerprint": "ccf5e328cca15aedaf217f7828f3a7b53388ce3fe02619bd7c4eaf61b87783e8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1798
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "원 위의 서로 다른 두 점 $A$, $B$를 원을 따라 이은 부분은 {호}이고, 두 점을 곧게 이은 선분은 {현}이다.",
+      "cSlotAnswers": [
+        "호",
+        "현"
+      ],
+      "cStudentSentence": "원 위의 서로 다른 두 점 $A$, $B$를 원을 따라 이은 부분은 □이고, 두 점을 곧게 이은 선분은 □이다.",
+      "cAnswers": [
+        "호",
+        "현"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "호",
+          "equivalentAnswers": [
+            "호"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "현",
+          "equivalentAnswers": [
+            "현"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "호"
+        ],
+        [
+          "현"
+        ]
+      ],
+      "proposalFingerprint": "df07b6a7f9e6c2f94a24c06525f026709a0c4b4d324c87b1c003a89b8ecd38cf",
+      "cAfter": "원 위의 서로 다른 두 점 $A$, $B$를 원을 따라 이은 부분은 {호}이고, 두 점을 곧게 이은 선분은 {현}이다."
+    },
+    {
+      "id": "m1-06-04-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "반원은 원이 무엇으로 나뉜 부분인지 쓰고, 반원을 부채꼴로 볼 때 중심각의 크기를 쓰시오.",
+      "bAnswer": "지름이 원을 나눈 두 부분 가운데 하나가 반원이고, 부채꼴로 볼 때 중심각의 크기는 $180^\\circ$이다.",
+      "bGoal": "반원의 뜻과 중심각의 크기 말하기",
+      "bReason": "한 낱말 제목이라 원을 나누는 선분과 부채꼴로 볼 때의 중심각까지 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름으로 나눈 원의 한 부분",
+            "원을 지름으로 반으로 나눈 것"
+          ]
+        },
+        {
+          "anyOf": [
+            "$180^\\circ$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "용어 이름과 중심각의 크기를 묻는 빈칸이 짧고 분명함.",
+      "learningRole": "definition",
+      "roleReason": "반원의 뜻과 중심각 $180^\\circ$",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1799,
+      "part": "m1plus",
+      "sourceFingerprint": "3bd6826ff52774f3c0769aa93ff5a74fdb72785d9a824a8704d5f48f8ab0fb65",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1799
+      },
+      "directReview": null,
+      "cFrozenSentence": "지름이 나눈 원의 두 부분 가운데 하나를 □이라 하며, 그 중심각은 □이다.",
+      "cFrozenDefinition": "지름이 나눈 원의 두 부분 가운데 하나를 {반원}이라 하며, 그 중심각은 {$180^\\circ$}이다.",
+      "cFrozenAnswers": [
+        "반원",
+        "$180^\\circ$"
+      ],
+      "cMarkedSentence": "지름이 나눈 원의 두 부분 가운데 하나를 {반원}이라 하며, 그 중심각은 {$180^\\circ$}이다.",
+      "cSlotAnswers": [
+        "반원",
+        "$180^\\circ$"
+      ],
+      "cStudentSentence": "지름이 나눈 원의 두 부분 가운데 하나를 □이라 하며, 그 중심각은 □이다.",
+      "cAnswers": [
+        "반원",
+        "$180^\\circ$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "반원",
+          "equivalentAnswers": [
+            "반원"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$180^\\circ$",
+          "equivalentAnswers": [
+            "$180^\\circ$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "반원"
+        ],
+        [
+          "$180^\\circ$"
+        ]
+      ],
+      "proposalFingerprint": "4a1f6d3d7628a06c9fdc248b94d7d90a4276a83c28fe4cce75dea9c95a4f2e76"
+    },
+    {
+      "id": "m1-06-04-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$ 위의 두 점 $C$, $D$에 대하여 부채꼴 $COD$의 중심각을 기호로 쓰고, 그 중심각에 대한 호를 쓰시오.",
+      "bAnswer": "중심각은 $\\angle COD$이고, 그 중심각에 대한 호는 호 $CD$($\\overset{\\frown}{CD}$)이다.",
+      "bGoal": "부채꼴의 이름에서 중심각과 호 읽어 내기",
+      "bReason": "C 문장과 문자를 달리해 표기 규칙을 스스로 적용하는지 보도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\angle COD$",
+            "$\\angle DOC$"
+          ]
+        },
+        {
+          "anyOf": [
+            "호 $CD$",
+            "$\\overset{\\frown}{CD}$",
+            "호 $DC$",
+            "$\\overset{\\frown}{DC}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "O가중심이라는조건과두점의소속을밝히고같은호의역순표기도허용한다.",
+      "exampleNeeded": true,
+      "learningRole": "naming",
+      "roleReason": "부채꼴 이름에서 중심각과 호의 기호 읽기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1800,
+      "part": "m1plus",
+      "sourceFingerprint": "1f50ba0091db76222a964ed1c45f2b6a8c56ac777c482395d5cd09485f78a998",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1800
+      },
+      "directReview": null,
+      "cMarkedSentence": "중심이 $O$인 원 위에 서로 다른 두 점 $A$, $B$가 있다. 부채꼴 $AOB$에서 중심각은 {$\\angle AOB$}이고, 그 중심각에 대한 호는 {호 $AB$}이다.",
+      "cSlotAnswers": [
+        "$\\angle AOB$",
+        "호 $AB$"
+      ],
+      "cStudentSentence": "중심이 $O$인 원 위에 서로 다른 두 점 $A$, $B$가 있다. 부채꼴 $AOB$에서 중심각은 □이고, 그 중심각에 대한 호는 □이다.",
+      "cAnswers": [
+        "$\\angle AOB$",
+        "호 $AB$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\angle AOB$",
+          "equivalentAnswers": [
+            "$\\angle AOB$",
+            "$\\angle BOA$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "호 $AB$",
+          "equivalentAnswers": [
+            "호 $AB$",
+            "$\\overset{\\frown}{AB}$",
+            "호 $BA$",
+            "$\\overset{\\frown}{BA}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\angle AOB$",
+          "accept": [
+            "$\\angle BOA$"
+          ]
+        },
+        {
+          "answer": "호 $AB$",
+          "accept": [
+            "$\\overset{\\frown}{AB}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\angle AOB$",
+          "$\\angle BOA$"
+        ],
+        [
+          "호 $AB$",
+          "$\\overset{\\frown}{AB}$",
+          "호 $BA$",
+          "$\\overset{\\frown}{BA}$"
+        ]
+      ],
+      "proposalFingerprint": "fb0890fec784824b21731ffa67623dfbe962bb8b2172f5f115ef710f2f85fbd2",
+      "cAfter": "중심이 $O$인 원 위에 서로 다른 두 점 $A$, $B$가 있다. 부채꼴 $AOB$에서 중심각은 {$\\angle AOB$}이고, 그 중심각에 대한 호는 {호 $AB$}이다."
+    },
+    {
+      "id": "m1-06-04-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "한 원에서 중심각의 크기가 같은 두 부채꼴의 호의 길이와 넓이를 각각 비교하여 쓰시오.",
+      "bAnswer": "두 부채꼴의 호의 길이는 서로 같고, 넓이도 서로 같다.",
+      "bGoal": "중심각이 같은 두 부채꼴의 호의 길이와 넓이 비교하기",
+      "bReason": "제목에 조건만 있어 '한 원'을 밝히고 비교할 두 양을 지정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "호의 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이가 같다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 모두 있고 결론 한 낱말만 묻는 짧은 빈칸임.",
+      "learningRole": "definition",
+      "roleReason": "중심각이 같으면 호의 길이와 넓이가 같다는 성질",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1801,
+      "part": "m1plus",
+      "sourceFingerprint": "5010504bb0689c5d48ec38e5872c518fdfef95349403566a56151d3c93877dcc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1801
+      },
+      "directReview": null,
+      "cFrozenSentence": "한 원에서 중심각의 크기가 같은 두 부채꼴은 호의 길이와 넓이가 각각 □.",
+      "cFrozenDefinition": "한 원에서 중심각의 크기가 같은 두 부채꼴은 호의 길이와 넓이가 각각 {같다}.",
+      "cFrozenAnswers": [
+        "같다"
+      ],
+      "cMarkedSentence": "한 원에서 중심각의 크기가 같은 두 부채꼴은 호의 길이와 넓이가 각각 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "한 원에서 중심각의 크기가 같은 두 부채꼴은 호의 길이와 넓이가 각각 □.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "813d55448294c2f2257d8d37f79787e93c04937ffc78b4ec545227ce60ea9a3b"
+    },
+    {
+      "id": "m1-06-04-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "원을 중심각의 크기가 같은 부채꼴 $n$개로 나눌 때, 한 부채꼴의 중심각의 크기를 $n$을 써서 나타내고 그렇게 구하는 까닭을 쓰시오.",
+      "bAnswer": "$\\frac{360^\\circ}{n}$이다. 부채꼴 $n$개의 중심각의 크기를 모두 더하면 원 한 바퀴인 $360^\\circ$가 되기 때문이다.",
+      "bGoal": "원을 똑같이 나눈 부채꼴의 중심각 구하기",
+      "bReason": "$n$의 뜻을 질문에 밝히고 식과 그 까닭을 함께 답하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{360^\\circ}{n}$",
+            "$360^\\circ\\div n$"
+          ]
+        },
+        {
+          "anyOf": [
+            "중심각의 크기의 합이 $360^\\circ$이다",
+            "원 한 바퀴가 $360^\\circ$이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$n$의 뜻이 문장에 있고 식 하나만 묻는 분명한 빈칸임.",
+      "learningRole": "procedure",
+      "roleReason": "$360^\\circ$를 $n$으로 나누어 중심각 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1802,
+      "part": "m1plus",
+      "sourceFingerprint": "6a95caa2a2c77658d52cd33a109d3b6988e9c6f6ce66e64ec98341f3a5bbdc00",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1802
+      },
+      "directReview": null,
+      "cFrozenSentence": "원을 중심각이 같은 부채꼴 $n$개로 똑같이 나누면 한 부채꼴의 중심각은 □이다.",
+      "cFrozenDefinition": "원을 중심각이 같은 부채꼴 $n$개로 똑같이 나누면 한 부채꼴의 중심각은 {$\\frac{360^\\circ}{n}$}이다.",
+      "cFrozenAnswers": [
+        "$\\frac{360^\\circ}{n}$"
+      ],
+      "cMarkedSentence": "원을 중심각이 같은 부채꼴 $n$개로 똑같이 나누면 한 부채꼴의 중심각은 {$\\frac{360^\\circ}{n}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{360^\\circ}{n}$"
+      ],
+      "cStudentSentence": "원을 중심각이 같은 부채꼴 $n$개로 똑같이 나누면 한 부채꼴의 중심각은 □이다.",
+      "cAnswers": [
+        "$\\frac{360^\\circ}{n}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{360^\\circ}{n}$",
+          "equivalentAnswers": [
+            "$\\frac{360^\\circ}{n}$",
+            "$360^\\circ\\div n$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{360^\\circ}{n}$",
+          "accept": [
+            "$360^\\circ\\div n$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{360^\\circ}{n}$",
+          "$360^\\circ\\div n$"
+        ]
+      ],
+      "proposalFingerprint": "476be24c69b5d442a2ce7832cda834f071926c0c93308d985b6a965635edaff2"
+    },
+    {
+      "id": "m1-06-04-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "한 원에서 두 부채꼴의 호의 길이의 비는 무엇의 비와 같은지 쓰고, 중심각의 크기가 $40^\\circ$, $120^\\circ$인 두 부채꼴의 호의 길이의 비를 가장 간단한 자연수의 비로 나타내시오.",
+      "bAnswer": "두 부채꼴의 중심각의 크기의 비와 같다. 따라서 호의 길이의 비는 $40:120=1:3$이다.",
+      "bGoal": "중심각의 비로 호의 길이의 비 구하기",
+      "bReason": "어느 원의 어떤 비인지 제목에 없어 '한 원'과 구체적인 중심각을 넣음.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "중심각의 크기의 비와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1:3$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 원에서 두 부채꼴의 호의 길이의 비는 두 부채꼴의 {중심각}의 크기의 비와 같다.",
+      "cAnswers": [
+        "중심각"
+      ],
+      "cReason": "둘째 빈칸 '비'는 문장 앞의 '비'를 베끼면 되므로 중심각만 묻게 함.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "중심각의 비로 호의 길이의 비 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1803,
+      "part": "m1plus",
+      "sourceFingerprint": "38556e3eae6f1a3936c3fefb7e49755a811fba8e3a285e18960e6c9e0071f584",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1803
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 원에서 두 부채꼴의 호의 길이의 비는 두 부채꼴의 {중심각}의 크기의 비와 같다.",
+      "cSlotAnswers": [
+        "중심각"
+      ],
+      "cStudentSentence": "한 원에서 두 부채꼴의 호의 길이의 비는 두 부채꼴의 □의 크기의 비와 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "중심각",
+          "equivalentAnswers": [
+            "중심각"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "중심각"
+        ]
+      ],
+      "proposalFingerprint": "ebdf2acbbbfe78fdd5d891eb0b1b1fb425da04fd0c6bb500704abf5c017da932"
+    },
+    {
+      "id": "m1-06-04-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "한 원에서 중심각의 크기가 $30^\\circ$인 부채꼴의 호의 길이가 $5$이다. 같은 원에서 중심각의 크기가 $120^\\circ$인 부채꼴의 호의 길이를 구하고, 중심각의 크기와 호의 길이의 관계를 이용해 구한 과정을 쓰시오.",
+      "bAnswer": "구하는 호의 길이를 $x$라 하면 $30:120=5:x$에서 $30x=600$이므로 $x=20$이다. 중심각이 $4$배라서 호의 길이도 $5$의 $4$배인 $20$이라고 구해도 된다.",
+      "bGoal": "중심각과 호의 길이로 비례식을 세워 모르는 호 구하기",
+      "bReason": "비례식뿐아니라중심각4배라는관계로푼답도질문의요구와일치하게한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$30:120=5:x$",
+            "$30:5=120:x$",
+            "중심각이 $4$배이므로 호의 길이도 $4$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 원에서 모르는 호의 길이는 두 중심각의 크기의 비와 두 호의 길이의 비를 같게 놓은 {비례식}을 세워 구한다.",
+      "cAnswers": [
+        "비례식"
+      ],
+      "cReason": "둘째 빈칸 '값'은 배울 내용이 없는 낱말이라 빼고 비례식만 묻게 함.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "중심각의 비와 호의 길이의 비로 비례식 세우기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1804,
+      "part": "m1plus",
+      "sourceFingerprint": "97f0d3fc5094a92502880dc1c1bcbe1942e639ac1c4cc9e5675718190b8dfd1c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1804
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 원에서 모르는 호의 길이는 두 중심각의 크기의 비와 두 호의 길이의 비를 같게 놓은 {비례식}을 세워 구한다.",
+      "cSlotAnswers": [
+        "비례식"
+      ],
+      "cStudentSentence": "한 원에서 모르는 호의 길이는 두 중심각의 크기의 비와 두 호의 길이의 비를 같게 놓은 □을 세워 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "비례식",
+          "equivalentAnswers": [
+            "비례식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "비례식"
+        ]
+      ],
+      "proposalFingerprint": "593f4291ec074472a9c968159bcff1a3495d549a4f61a29412b223b53e5a3382"
+    },
+    {
+      "id": "m1-06-04-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "원 전체를 부채꼴로 보면 중심각의 크기는 얼마인지 쓰고, 이를 이용해 둘레의 길이가 $36$인 원에서 중심각의 크기가 $60^\\circ$인 부채꼴의 호의 길이를 구하시오.",
+      "bAnswer": "원 전체는 중심각의 크기가 $360^\\circ$인 부채꼴이다. 호의 길이는 $36\\times\\frac{60}{360}=6$이다.",
+      "bGoal": "원 전체에 대한 비율로 호의 길이 구하기",
+      "bReason": "제목만으로는 무엇을 구하는지 알 수 없어 둘레가 주어진 원에서 호를 구하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$360^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "원 전체는 중심각의 크기가 {$360^\\circ$}인 부채꼴로 볼 수 있다. 그래서 중심각의 크기가 $x^\\circ$인 부채꼴의 호의 길이와 넓이는 각각 원의 둘레의 길이와 넓이의 {$\\frac{x}{360}$}배이다.",
+      "cAnswers": [
+        "$360^\\circ$",
+        "$\\frac{x}{360}$"
+      ],
+      "cReason": "'둘레와 넓이에 대한 비율'이 무엇을 뜻하는지 불분명해 비율을 식으로 드러냄.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "원 전체 $360^\\circ$에 대한 비율로 호 구하기",
+      "coreAfter": "원 전체는 중심각의 크기가 {$360^\\circ$}인 부채꼴로 볼 수 있다. 그래서 한 원에서 중심각의 크기가 $x^\\circ$인 부채꼴의 호의 길이와 넓이는 원의 둘레의 길이와 넓이에 각각 {비율} $\\frac{x}{360}$를 곱해 구한다.",
+      "coreReason": "'둘레와 넓이에 대한 비율'이 무엇의 비율인지 드러나지 않아 $\\frac{x}{360}$를 밝혔다.",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1805,
+      "part": "m1plus",
+      "sourceFingerprint": "dc3b533f2ab1ea909943e5fced14ce0afde2f9239938e5bbe2cbed69f07e993f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1805
+      },
+      "directReview": null,
+      "coreBeforeRepair": "원 전체는 중심각의 크기가 $360^\\circ$인 부채꼴로 볼 수 있다. 그래서 한 원에서 중심각의 크기가 $x^\\circ$인 부채꼴의 호의 길이와 넓이는 원의 둘레의 길이와 넓이에 각각 $\\frac{x}{360}$를 곱해 구한다.",
+      "coreRepairReason": "현재안에서 빠진 원본 핵심어 {$360^\\circ$}, {비율} 표지를 되살렸다. 비율이 $\\frac{x}{360}$임을 바로 뒤에 붙여 뜻을 분명히 했다.",
+      "coreRepairEvidence": "core-repair/core-001",
+      "cMarkedSentence": "원 전체는 중심각의 크기가 {$360^\\circ$}인 부채꼴로 볼 수 있다. 그래서 중심각의 크기가 $x^\\circ$인 부채꼴의 호의 길이와 넓이는 각각 원의 둘레의 길이와 넓이의 {$\\frac{x}{360}$}배이다.",
+      "cSlotAnswers": [
+        "$360^\\circ$",
+        "$\\frac{x}{360}$"
+      ],
+      "cStudentSentence": "원 전체는 중심각의 크기가 □인 부채꼴로 볼 수 있다. 그래서 중심각의 크기가 $x^\\circ$인 부채꼴의 호의 길이와 넓이는 각각 원의 둘레의 길이와 넓이의 □배이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$360^\\circ$",
+          "equivalentAnswers": [
+            "$360^\\circ$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{x}{360}$",
+          "equivalentAnswers": [
+            "$\\frac{x}{360}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$360^\\circ$"
+        ],
+        [
+          "$\\frac{x}{360}$"
+        ]
+      ],
+      "proposalFingerprint": "8d629aba306f353e38c1dd14c54bf78737e7eac16ee711f2a403f87d6ebcf5a5"
+    },
+    {
+      "id": "m1-06-04-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "원의 할선이 그 원과 두 점 $A$, $B$에서 만난다. 선분 $AB$는 이 원의 무엇인지 쓰고, 할선과 선분 $AB$는 어떤 관계인지 쓰시오.",
+      "bAnswer": "선분 $AB$는 원의 현이다. 할선은 현 $AB$를 양쪽으로 끝없이 늘인 직선, 곧 직선 $AB$이다.",
+      "bGoal": "할선과 현의 관계 말하기",
+      "bReason": "두 용어를 이은 제목이라 만나는 점에 이름을 붙이고 선분과 직선의 관계를 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "현"
+          ]
+        },
+        {
+          "anyOf": [
+            "현을 양쪽으로 늘인 직선",
+            "현 $AB$를 포함하는 직선",
+            "직선 $AB$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "할선이 원과 만나는 두 점을 이은 선분은 그 원의 {현}이다. 할선은 이 선분을 양쪽으로 끝없이 늘인 직선이다.",
+      "cAnswers": [
+        "현"
+      ],
+      "cReason": "첫 빈칸의 답 '현'이 뒤의 '그 현을'에 그대로 나오므로 문장을 고쳐 가림.",
+      "learningRole": "definition",
+      "roleReason": "할선과 현의 포함 관계",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1806,
+      "part": "m1plus",
+      "sourceFingerprint": "79a1da9d44b2716b2c5a89087851089d85a624282058a5afb08a5e10f145ee06",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1806
+      },
+      "directReview": null,
+      "cMarkedSentence": "할선이 원과 만나는 두 점을 이은 선분은 그 원의 {현}이다. 할선은 이 선분을 양쪽으로 끝없이 늘인 직선이다.",
+      "cSlotAnswers": [
+        "현"
+      ],
+      "cStudentSentence": "할선이 원과 만나는 두 점을 이은 선분은 그 원의 □이다. 할선은 이 선분을 양쪽으로 끝없이 늘인 직선이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "현",
+          "equivalentAnswers": [
+            "현"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "현"
+        ]
+      ],
+      "proposalFingerprint": "79aa8ebd1a8e7558ae8f71f10dcb618830b49286e2a6c6d67751c7e1b6254f50"
+    },
+    {
+      "id": "m1-06-04-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$에서 $\\angle AOB$의 크기가 $180^\\circ$보다 작은 부채꼴 $AOB$가 있다. 이 부채꼴에서 삼각형 $OAB$를 잘라 내면 남는 도형의 이름을 쓰고, 그 도형이 무엇과 무엇으로 둘러싸여 있는지 쓰시오.",
+      "bAnswer": "활꼴이 남는다. 이 활꼴은 현 $AB$와 호 $AB$로 둘러싸여 있다.",
+      "bGoal": "부채꼴과 활꼴의 관계 말하기",
+      "bReason": "그림이 없으므로 부채꼴과 잘라 내는 삼각형을 점 이름으로 밝힘.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "활꼴"
+          ]
+        },
+        {
+          "anyOf": [
+            "현 $AB$와 호 $AB$",
+            "현과 호"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "빼는 도형과 남는 도형을 묻는 두 빈칸이 서로 답을 드러내지 않음.",
+      "learningRole": "definition",
+      "roleReason": "부채꼴에서 삼각형을 빼면 활꼴이 된다는 관계",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1807,
+      "part": "m1plus",
+      "sourceFingerprint": "4bb2da67b531e6712e40c33e74d5168d5121a8964784847984019628203dc1ff",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1807
+      },
+      "directReview": null,
+      "cFrozenSentence": "중심각이 평각보다 작은 부채꼴에서 두 반지름과 현이 이루는 □을 빼면 □이 남는다.",
+      "cFrozenDefinition": "중심각이 평각보다 작은 부채꼴에서 두 반지름과 현이 이루는 {삼각형}을 빼면 {활꼴}이 남는다.",
+      "cFrozenAnswers": [
+        "삼각형",
+        "활꼴"
+      ],
+      "cMarkedSentence": "중심각이 평각보다 작은 부채꼴에서 두 반지름과 현이 이루는 {삼각형}을 빼면 {활꼴}이 남는다.",
+      "cSlotAnswers": [
+        "삼각형",
+        "활꼴"
+      ],
+      "cStudentSentence": "중심각이 평각보다 작은 부채꼴에서 두 반지름과 현이 이루는 □을 빼면 □이 남는다.",
+      "cAnswers": [
+        "삼각형",
+        "활꼴"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "삼각형",
+          "equivalentAnswers": [
+            "삼각형"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "활꼴",
+          "equivalentAnswers": [
+            "활꼴"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "삼각형"
+        ],
+        [
+          "활꼴"
+        ]
+      ],
+      "proposalFingerprint": "bb7e659eca10c817838a3d91a86decb30d5a1563566bbbe08cd342c8520cac65"
+    },
+    {
+      "id": "m1-06-04-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$에서 두 현 $AB$, $CD$의 길이가 같고 $\\angle AOB=70^\\circ$이다. $\\angle COD$의 크기를 구하고, 그렇게 판단한 성질을 쓰시오.",
+      "bAnswer": "$\\angle COD=70^\\circ$이다. 한 원에서 길이가 같은 두 현에 대한 중심각의 크기는 같기 때문이다.",
+      "bGoal": "길이가 같은 두 현의 중심각 비교하기",
+      "bReason": "'현에 대한 중심각'이 무엇인지 보이도록 점 이름과 각을 준 상황으로 만듦.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$70^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "길이가 같은 두 현에 대한 중심각의 크기는 같다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "작은중심각과큰중심각을서로비교하는모호함을막고유용한짧은비교만묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "현의 길이가 같으면 중심각이 같다는 성질 적용",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1808,
+      "part": "m1plus",
+      "sourceFingerprint": "fc329afaada37dd0f0ed4fab884f01f286fd775ecc103457b539d1779cfa917f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1808
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 원에서 길이가 같은 두 현에 대한 중심각을 각각 $180^\\circ$ 이하로 잡으면, 그 두 중심각의 크기는 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "한 원에서 길이가 같은 두 현에 대한 중심각을 각각 $180^\\circ$ 이하로 잡으면, 그 두 중심각의 크기는 □.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "76195d5bd837aa99c71ff55ba697c88e7f5c9c6c8143bf1d71e0fdf1b394714f",
+      "cAfter": "한 원에서 길이가 같은 두 현에 대한 중심각을 각각 $180^\\circ$ 이하로 잡으면, 그 두 중심각의 크기는 {같다}."
+    },
+    {
+      "id": "m1-06-04-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "중심각의 크기가 $x^\\circ$인 부채꼴의 넓이가 $S$일 때, 같은 원의 넓이는 $S$의 몇 배인지 $x$를 써서 나타내고 그 까닭을 쓰시오.",
+      "bAnswer": "$\\frac{360}{x}$배이다. 한 원에서 부채꼴의 넓이는 중심각의 크기에 정비례하고, 원 전체의 중심각 $360^\\circ$는 $x^\\circ$의 $\\frac{360}{x}$배이기 때문이다.",
+      "bGoal": "부채꼴의 넓이에서 원의 넓이 구하는 까닭 말하기",
+      "bReason": "$x$, $S$의 뜻을 질문에 넣고 배수와 그 근거인 정비례를 함께 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{360}{x}$배",
+            "$360\\div x$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이는 중심각의 크기에 정비례한다",
+            "부채꼴의 넓이는 원의 넓이의 $\\frac{x}{360}$배이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "기호의 뜻이 문장에 모두 있고 배수 식 하나만 묻는 빈칸임.",
+      "learningRole": "reason",
+      "roleReason": "중심각의 비율로 원 전체의 넓이를 되찾는 까닭",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1809,
+      "part": "m1plus",
+      "sourceFingerprint": "51724793aaedbbb0b15e46673e5b54459d0ac1e01fffda86e5e8e1d5820eee1a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1809
+      },
+      "directReview": null,
+      "cFrozenSentence": "중심각이 $x^\\circ$인 부채꼴의 넓이가 $S$이면 원의 넓이는 $S$의 □배이다.",
+      "cFrozenDefinition": "중심각이 $x^\\circ$인 부채꼴의 넓이가 $S$이면 원의 넓이는 $S$의 {$\\frac{360}{x}$}배이다.",
+      "cFrozenAnswers": [
+        "$\\frac{360}{x}$"
+      ],
+      "cMarkedSentence": "중심각이 $x^\\circ$인 부채꼴의 넓이가 $S$이면 원의 넓이는 $S$의 {$\\frac{360}{x}$}배이다.",
+      "cSlotAnswers": [
+        "$\\frac{360}{x}$"
+      ],
+      "cStudentSentence": "중심각이 $x^\\circ$인 부채꼴의 넓이가 $S$이면 원의 넓이는 $S$의 □배이다.",
+      "cAnswers": [
+        "$\\frac{360}{x}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{360}{x}$",
+          "equivalentAnswers": [
+            "$\\frac{360}{x}$",
+            "$360\\div x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{360}{x}$",
+          "accept": [
+            "$360\\div x$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{360}{x}$",
+          "$360\\div x$"
+        ]
+      ],
+      "proposalFingerprint": "bc9828d3729bfe9652d39345b0339623b88f74ac8a09e2387b010451a8c68a66"
+    },
+    {
+      "id": "m1-06-04-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$ 위에 세 점 $A$, $B$, $C$가 이 순서로 있고 $\\angle AOB=\\angle BOC=40^\\circ$이다. 이때 $\\angle AOC=80^\\circ$로 $\\angle AOB$의 $2$배이지만 현 $AC$의 길이는 현 $AB$의 길이의 $2$배보다 짧다. 그 까닭을 삼각형 $ABC$의 변의 길이를 이용해 설명하시오.",
+      "bAnswer": "중심각의 크기가 같으므로 $\\overline{AB}=\\overline{BC}$이다. 삼각형 $ABC$에서 한 변의 길이는 나머지 두 변의 길이의 합보다 짧으므로 $\\overline{AC}<\\overline{AB}+\\overline{BC}=2\\overline{AB}$이다.",
+      "bGoal": "현의 길이가 중심각에 정비례하지 않는 까닭 설명하기",
+      "bReason": "무엇이 무엇의 두 배가 못 되는지 제목에 없어 세 점의 순서와 각을 정해 줌.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{AB}=\\overline{BC}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "삼각형의 한 변의 길이는 나머지 두 변의 길이의 합보다 짧다",
+            "$\\overline{AC}<\\overline{AB}+\\overline{BC}$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "문장은 길지만 조건이 모두 보이고 삼각형의 변의 관계에서 나오는 결론만 묻음.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "삼각형의 변의 길이 관계로 현이 $2$배가 안 되는 까닭",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1810,
+      "part": "m1plus",
+      "sourceFingerprint": "581b33b109fae2f0baebe6612f9c2b591c616247ec3612b7b1b198d498228bc1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1810
+      },
+      "directReview": null,
+      "cFrozenSentence": "한 원의 중심이 $O$이고 서로 다른 세 점 $A$, $B$, $C$가 원 위에 있을 때, 같은 크기의 중심각 $\\angle AOB$, $\\angle BOC$에 대한 현 $AB$, $BC$의 길이는 같다. 현 $AC$는 삼각형 $ABC$의 한 변이므로 $\\overline{AB}+\\overline{BC}$보다 □.",
+      "cFrozenDefinition": "한 원의 중심이 $O$이고 서로 다른 세 점 $A$, $B$, $C$가 원 위에 있을 때, 같은 크기의 중심각 $\\angle AOB$, $\\angle BOC$에 대한 현 $AB$, $BC$의 길이는 같다. 현 $AC$는 삼각형 $ABC$의 한 변이므로 $\\overline{AB}+\\overline{BC}$보다 {짧다}.",
+      "cFrozenAnswers": [
+        "짧다"
+      ],
+      "cMarkedSentence": "한 원의 중심이 $O$이고 서로 다른 세 점 $A$, $B$, $C$가 원 위에 있을 때, 같은 크기의 중심각 $\\angle AOB$, $\\angle BOC$에 대한 현 $AB$, $BC$의 길이는 같다. 현 $AC$는 삼각형 $ABC$의 한 변이므로 $\\overline{AB}+\\overline{BC}$보다 {짧다}.",
+      "cSlotAnswers": [
+        "짧다"
+      ],
+      "cStudentSentence": "한 원의 중심이 $O$이고 서로 다른 세 점 $A$, $B$, $C$가 원 위에 있을 때, 같은 크기의 중심각 $\\angle AOB$, $\\angle BOC$에 대한 현 $AB$, $BC$의 길이는 같다. 현 $AC$는 삼각형 $ABC$의 한 변이므로 $\\overline{AB}+\\overline{BC}$보다 □.",
+      "cAnswers": [
+        "짧다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "짧다",
+          "equivalentAnswers": [
+            "짧다",
+            "작다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "짧다",
+          "accept": [
+            "작다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "짧다",
+          "작다"
+        ]
+      ],
+      "proposalFingerprint": "7cec484675afe64662da28a65afc489dfc1aeadea496ccd84314f1a9ea72265b"
+    },
+    {
+      "id": "m1-06-04-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$에서 $\\angle AOB$의 크기가 $180^\\circ$보다 작은 부채꼴 $AOB$가 있다. 현 $AB$와 호 $AB$로 둘러싸인 활꼴의 넓이는 어떤 두 도형의 넓이로 어떻게 구하는지 쓰고, 이 활꼴의 넓이가 $\\angle AOB$의 크기에 정비례하는지 쓰시오.",
+      "bAnswer": "부채꼴 $AOB$의 넓이에서 삼각형 $OAB$의 넓이를 빼서 구한다. 활꼴의 넓이는 $\\angle AOB$의 크기에 정비례하지 않는다.",
+      "bGoal": "활꼴의 넓이 구하는 방법과 정비례 여부 말하기",
+      "bReason": "넓이의 무엇을 묻는지 제목에 없어 구하는 방법과 정비례 여부 두 가지로 특정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부채꼴의 넓이에서 삼각형 $OAB$의 넓이를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정비례하지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "호에 대한 중심각의 크기가 $180^\\circ$보다 작을 때, 활꼴의 넓이는 부채꼴의 넓이에서 두 반지름과 현이 이루는 {삼각형}의 넓이를 뺀 값이다. 이 활꼴의 넓이는 중심각의 크기에 {정비례}하지 않는다.",
+      "cAnswers": [
+        "삼각형",
+        "정비례"
+      ],
+      "cReason": "삼각형넓이를뺀다는말만으로비례하지않음을증명한것처럼보이는그래서연결을없앤다.",
+      "learningRole": "procedure",
+      "roleReason": "부채꼴에서 삼각형을 빼 활꼴의 넓이 구하기",
+      "coreAfter": "호에 대한 중심각이 $180^\\circ$보다 작은 활꼴의 넓이는 부채꼴의 넓이에서 두 반지름과 현이 이루는 {삼각형}의 넓이를 뺀 값이다. 이 삼각형의 넓이가 중심각의 크기에 정비례하지 않으므로 활꼴의 넓이도 {정비례하지 않는다}.",
+      "coreReason": "활꼴 자체에는 중심각이 없으므로 '호에 대한 중심각'으로 대상을 분명히 했다.",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1811,
+      "part": "m1plus",
+      "sourceFingerprint": "0a32653dd4581c6f7053308a6692e72da27755a55eed859962db206b2c59ac68",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1811
+      },
+      "directReview": null,
+      "coreBeforeRepair": "호에 대한 중심각의 크기가 $180^\\circ$보다 작은 활꼴의 넓이는 부채꼴의 넓이에서 두 반지름과 현이 이루는 삼각형의 넓이를 뺀 값이다. 빼는 삼각형의 넓이가 중심각의 크기에 정비례하지 않으므로 활꼴의 넓이도 중심각의 크기에 정비례하지 않는다.",
+      "coreRepairReason": "현재안에서 빠진 원본 핵심어 {삼각형}, {정비례하지 않는다} 표지를 되살렸다. 겹친 '중심각의 크기에' 반복을 줄여 길이를 맞추었다. 빼는 삼각형이 어떤 삼각형인지는 유지했다.",
+      "coreRepairEvidence": "core-repair/core-001",
+      "cMarkedSentence": "호에 대한 중심각의 크기가 $180^\\circ$보다 작을 때, 활꼴의 넓이는 부채꼴의 넓이에서 두 반지름과 현이 이루는 {삼각형}의 넓이를 뺀 값이다. 이 활꼴의 넓이는 중심각의 크기에 {정비례}하지 않는다.",
+      "cSlotAnswers": [
+        "삼각형",
+        "정비례"
+      ],
+      "cStudentSentence": "호에 대한 중심각의 크기가 $180^\\circ$보다 작을 때, 활꼴의 넓이는 부채꼴의 넓이에서 두 반지름과 현이 이루는 □의 넓이를 뺀 값이다. 이 활꼴의 넓이는 중심각의 크기에 □하지 않는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "삼각형",
+          "equivalentAnswers": [
+            "삼각형"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "정비례",
+          "equivalentAnswers": [
+            "정비례"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "삼각형"
+        ],
+        [
+          "정비례"
+        ]
+      ],
+      "proposalFingerprint": "8a6125f31623ff6cfa7c2282327e652fd6caab9e90a97ced0a0e3802f75b84bf"
+    },
+    {
+      "id": "m1-06-04-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$ 위의 두 점 $A$, $B$가 원을 두 호로 나누고, 짧은 쪽 호 $AB$에 대한 중심각의 크기가 $100^\\circ$이다. 긴 쪽 호에 대한 중심각의 크기를 구하고, 긴 쪽 호 위에 점 $C$가 있을 때 이 호를 어떻게 나타내는지 쓰시오.",
+      "bAnswer": "두 호에 대한 중심각의 크기의 합이 $360^\\circ$이므로 $360^\\circ-100^\\circ=260^\\circ$이다. 긴 쪽 호는 호 $ACB$($\\overset{\\frown}{ACB}$)로 나타낸다.",
+      "bGoal": "긴 쪽 호의 중심각과 표기 알기",
+      "bReason": "두 호를 가르는 기준과 표기에 쓸 점 $C$의 위치를 질문에 밝힘.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$260^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "호 $ACB$",
+            "$\\overset{\\frown}{ACB}$",
+            "호 $BCA$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "원 위의 두 점 $A$, $B$가 나눈 두 호에 대한 중심각의 크기를 더하면 {$360^\\circ$}이다. 긴 쪽 호는 그 호 위의 다른 한 점 $C$를 넣어 호 {$ACB$}로 나타낸다.",
+      "cAnswers": [
+        "$360^\\circ$",
+        "$ACB$"
+      ],
+      "cReason": "'다른 점'은 무엇을 가리키는지 흐릿해 점 $C$를 주고 표기를 직접 쓰게 함.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "두 호의 중심각의 합 $360^\\circ$와 긴 호의 표기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1812,
+      "part": "m1plus",
+      "sourceFingerprint": "cb2549921d7bc761d50a97d184a5364632c2e9dab7d203c340381aedbd47187f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1812
+      },
+      "directReview": null,
+      "cMarkedSentence": "원 위의 두 점 $A$, $B$가 나눈 두 호에 대한 중심각의 크기를 더하면 {$360^\\circ$}이다. 긴 쪽 호는 그 호 위의 다른 한 점 $C$를 넣어 호 {$ACB$}로 나타낸다.",
+      "cSlotAnswers": [
+        "$360^\\circ$",
+        "$ACB$"
+      ],
+      "cStudentSentence": "원 위의 두 점 $A$, $B$가 나눈 두 호에 대한 중심각의 크기를 더하면 □이다. 긴 쪽 호는 그 호 위의 다른 한 점 $C$를 넣어 호 □로 나타낸다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$360^\\circ$",
+          "equivalentAnswers": [
+            "$360^\\circ$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$ACB$",
+          "equivalentAnswers": [
+            "$ACB$",
+            "$BCA$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$ACB$",
+          "accept": [
+            "$BCA$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$360^\\circ$"
+        ],
+        [
+          "$ACB$",
+          "$BCA$"
+        ]
+      ],
+      "proposalFingerprint": "d6472b7de1f5c8084b510e5a1e352cff173e6a4353e6a71a643a0c5953d60bae"
+    },
+    {
+      "id": "m1-06-04-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "원 위의 세 점이 원을 세 호로 나누고, 세 호의 길이의 비가 $2:3:4$이다. 세 호에 대한 중심각의 크기를 각각 구하고, 구한 방법을 쓰시오.",
+      "bAnswer": "중심각의 크기의 비도 $2:3:4$이고 합은 $360^\\circ$이다. $360^\\circ\\div(2+3+4)=40^\\circ$에 $2$, $3$, $4$를 곱하면 $80^\\circ$, $120^\\circ$, $160^\\circ$이다.",
+      "bGoal": "호의 길이의 비로 중심각 나누어 구하기",
+      "bReason": "문자 비만으로는 절차를 쓰기 어려워 세 호의 비를 수로 주고 방법까지 답하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$80^\\circ$, $120^\\circ$, $160^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$360^\\circ$를 비의 합 $9$로 나눈 뒤 각 비의 값을 곱한다",
+            "$360^\\circ\\times\\frac{2}{9}$처럼 $360^\\circ$를 비에 따라 나눈다",
+            "중심각의 비가 호의 길이의 비와 같고 합이 $360^\\circ$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "세점의구별과비의양수조건을분명히한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "$360^\\circ$를 호의 길이의 비로 나누기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1813,
+      "part": "m1plus",
+      "sourceFingerprint": "ad6511e7642f1e293638a68b382dccc3c879436cc0c4a956ed89139b66bc495b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1813
+      },
+      "directReview": null,
+      "cMarkedSentence": "원 위의 서로 다른 세 점이 원을 세 호로 나누고 그 길이의 비가 $a:b:c$일 때($a$, $b$, $c$는 양수), 각 호에 대한 중심각의 크기는 {$360^\\circ$}를 $a+b+c$로 나눈 뒤 각각 $a$, $b$, $c$를 곱해 구한다.",
+      "cSlotAnswers": [
+        "$360^\\circ$"
+      ],
+      "cStudentSentence": "원 위의 서로 다른 세 점이 원을 세 호로 나누고 그 길이의 비가 $a:b:c$일 때($a$, $b$, $c$는 양수), 각 호에 대한 중심각의 크기는 □를 $a+b+c$로 나눈 뒤 각각 $a$, $b$, $c$를 곱해 구한다.",
+      "cAnswers": [
+        "$360^\\circ$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$360^\\circ$",
+          "equivalentAnswers": [
+            "$360^\\circ$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$360^\\circ$"
+        ]
+      ],
+      "proposalFingerprint": "94b5feae3f39de53824020a9bdbed5d20577b6e0a66902212d3f03b9b58e17bf",
+      "cAfter": "원 위의 서로 다른 세 점이 원을 세 호로 나누고 그 길이의 비가 $a:b:c$일 때($a$, $b$, $c$는 양수), 각 호에 대한 중심각의 크기는 {$360^\\circ$}를 $a+b+c$로 나눈 뒤 각각 $a$, $b$, $c$를 곱해 구한다."
+    },
+    {
+      "id": "m1-06-04-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$ 위의 두 점 $A$, $B$에 대하여 $\\angle AOB=50^\\circ$이다. 삼각형 $OAB$가 어떤 삼각형인지 까닭과 함께 쓰고, $\\angle OAB$의 크기를 구하시오.",
+      "bAnswer": "$\\overline{OA}$, $\\overline{OB}$가 모두 반지름이라 길이가 같으므로 삼각형 $OAB$는 이등변삼각형이다. 두 밑각의 크기가 같으므로 $\\angle OAB=(180^\\circ-50^\\circ)\\div2=65^\\circ$이다.",
+      "bGoal": "두 반지름이 만드는 이등변삼각형의 밑각 구하기",
+      "bReason": "점 $O$가 원의 중심임을 밝히고 이등변삼각형인 까닭과 각의 크기를 함께 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{OA}=\\overline{OB}$",
+            "두 변이 반지름이라 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이등변삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$65^\\circ$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "원 $O$ 위의 두 점 $A$, $B$에 대하여 $0^\\circ<\\angle AOB<180^\\circ$이다. $\\overline{OA}=\\overline{OB}$이므로 삼각형 $OAB$는 {이등변삼각형}이다. 따라서 $\\angle OAB$와 $\\angle OBA$의 크기는 서로 같고, 각각 {$(180^\\circ-\\angle AOB)\\div2$}이다.",
+      "cAnswers": [
+        "이등변삼각형",
+        "$(180^\\circ-\\angle AOB)\\div2$"
+      ],
+      "cReason": "일치점이나지름양끝이면삼각형이되지않으므로중심각범위를명시하고동치각식을보존한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "반지름으로 생기는 이등변삼각형의 밑각 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1814,
+      "part": "m1plus",
+      "sourceFingerprint": "d417a6fed8951a4d52f77ba673e9a74d33c48d5df7f06f09bcdb0417078b8a86",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1814
+      },
+      "directReview": null,
+      "cMarkedSentence": "원 $O$ 위의 두 점 $A$, $B$에 대하여 $0^\\circ<\\angle AOB<180^\\circ$이다. $\\overline{OA}=\\overline{OB}$이므로 삼각형 $OAB$는 {이등변삼각형}이다. 따라서 $\\angle OAB$와 $\\angle OBA$의 크기는 서로 같고, 각각 {$(180^\\circ-\\angle AOB)\\div2$}이다.",
+      "cSlotAnswers": [
+        "이등변삼각형",
+        "$(180^\\circ-\\angle AOB)\\div2$"
+      ],
+      "cStudentSentence": "원 $O$ 위의 두 점 $A$, $B$에 대하여 $0^\\circ<\\angle AOB<180^\\circ$이다. $\\overline{OA}=\\overline{OB}$이므로 삼각형 $OAB$는 □이다. 따라서 $\\angle OAB$와 $\\angle OBA$의 크기는 서로 같고, 각각 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "이등변삼각형",
+          "equivalentAnswers": [
+            "이등변삼각형"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$(180^\\circ-\\angle AOB)\\div2$",
+          "equivalentAnswers": [
+            "$(180^\\circ-\\angle AOB)\\div2$",
+            "$\\frac{180^\\circ-\\angle AOB}{2}$",
+            "$90^\\circ-\\frac{1}{2}\\angle AOB$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$(180^\\circ-\\angle AOB)\\div2$",
+          "accept": [
+            "$\\frac{180^\\circ-\\angle AOB}{2}$",
+            "$90^\\circ-\\frac{1}{2}\\angle AOB$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "이등변삼각형"
+        ],
+        [
+          "$(180^\\circ-\\angle AOB)\\div2$",
+          "$\\frac{180^\\circ-\\angle AOB}{2}$",
+          "$90^\\circ-\\frac{1}{2}\\angle AOB$"
+        ]
+      ],
+      "proposalFingerprint": "02f50624bd0de992d41421b62fd0cc4ad8ea98dcf93e8b95f74b6340615d3c0c"
+    },
+    {
+      "id": "m1-06-04-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$의 지름 $AB$가 있고, 원 위의 두 점 $C$, $D$는 직선 $AB$에 대하여 같은 쪽에 있다. $\\overline{OC}\\parallel\\overline{BD}$이고 $\\angle AOC=40^\\circ$일 때, $\\angle BOD$의 크기를 구하는 과정을 쓰시오.",
+      "bAnswer": "$\\overline{OC}\\parallel\\overline{BD}$이므로 동위각인 $\\angle OBD=\\angle AOC=40^\\circ$이다. $\\overline{OB}=\\overline{OD}$이므로 $\\angle ODB=\\angle OBD=40^\\circ$이고, $\\angle BOD=180^\\circ-40^\\circ-40^\\circ=100^\\circ$이다.",
+      "bGoal": "평행선의 각과 이등변삼각형으로 중심각 구하기",
+      "bReason": "그림 없이 풀 수 있도록 지름, 두 점의 위치, 평행한 선분, 주어진 각을 모두 밝힘.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\angle OBD=40^\\circ$(동위각)",
+            "$\\angle COD=\\angle ODB$(엇각)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{OB}=\\overline{OD}$이므로 $\\angle OBD=\\angle ODB$",
+            "삼각형 $OBD$는 이등변삼각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100^\\circ$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "원에서 반지름과 현이 평행하면 동위각이나 엇각의 크기가 서로 {같음}을 이용하고, 중심과 현의 양 끝 점을 이은 삼각형이 {이등변삼각형}임을 이용해 중심각의 크기를 구한다.",
+      "cAnswers": [
+        "같음",
+        "이등변삼각형"
+      ],
+      "cReason": "'각을 옮긴다'는 말과 어느 삼각형인지가 흐릿해 쓰는 성질 두 가지가 드러나게 고침.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "평행선의 각과 이등변삼각형을 이어 쓰는 절차",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1815,
+      "part": "m1plus",
+      "sourceFingerprint": "e21ebb395a6882442b82311fe3c0cf09c97b9bbed65894aa3eacadb457a7f8d7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1815
+      },
+      "directReview": null,
+      "cMarkedSentence": "원에서 반지름과 현이 평행하면 동위각이나 엇각의 크기가 서로 {같음}을 이용하고, 중심과 현의 양 끝 점을 이은 삼각형이 {이등변삼각형}임을 이용해 중심각의 크기를 구한다.",
+      "cSlotAnswers": [
+        "같음",
+        "이등변삼각형"
+      ],
+      "cStudentSentence": "원에서 반지름과 현이 평행하면 동위각이나 엇각의 크기가 서로 □을 이용하고, 중심과 현의 양 끝 점을 이은 삼각형이 □임을 이용해 중심각의 크기를 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같음",
+          "equivalentAnswers": [
+            "같음"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "이등변삼각형",
+          "equivalentAnswers": [
+            "이등변삼각형"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같음"
+        ],
+        [
+          "이등변삼각형"
+        ]
+      ],
+      "proposalFingerprint": "e7f8c1406476b2beff036a5e85444d99ddf1c346e6661b3bdbde6f0c78a06c40"
+    },
+    {
+      "id": "m1-06-04-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 서로 다른 두 원에서 중심각의 크기가 같은 두 부채꼴의 호의 길이는 같은지 쓰고, '호의 길이는 중심각의 크기에 정비례한다'는 성질을 쓸 수 있는 조건을 쓰시오.",
+      "bAnswer": "호의 길이는 같지 않고, 반지름이 긴 원의 호가 더 길다. 이 성질은 한 원 또는 반지름의 길이가 같은 원에서만 쓸 수 있다.",
+      "bGoal": "정비례 성질을 쓸 수 있는 조건 말하기",
+      "bReason": "제목에 묻는 내용이 없어 호의 길이 비교와 성질의 적용 조건으로 특정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "호의 길이가 다르다",
+            "같지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 원에서만",
+            "반지름의 길이가 같을 때만",
+            "합동인 원에서만"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "반지름의 길이가 다른 두 원에서는 중심각의 크기가 같아도 호의 길이가 서로 {다르다}. 그래서 호의 길이가 중심각의 크기에 정비례한다는 성질은 반지름의 길이가 같은 원에서만 쓴다.",
+      "cAnswers": [
+        "다르다"
+      ],
+      "cReason": "둘째 빈칸은 긴 구절이고 앞의 '반지름'을 되풀이하므로 결론 한 낱말만 묻게 함.",
+      "studentLabel": "반지름이 다른 두 원의 호",
+      "learningRole": "reason",
+      "roleReason": "정비례 성질을 한 원에서만 쓰는 까닭",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1816,
+      "part": "m1plus",
+      "sourceFingerprint": "d1701cc3da38e42079569047521a0295815331c49911d0e1f6263738a2ebf94e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1816
+      },
+      "directReview": null,
+      "cMarkedSentence": "반지름의 길이가 다른 두 원에서는 중심각의 크기가 같아도 호의 길이가 서로 {다르다}. 그래서 호의 길이가 중심각의 크기에 정비례한다는 성질은 반지름의 길이가 같은 원에서만 쓴다.",
+      "cSlotAnswers": [
+        "다르다"
+      ],
+      "cStudentSentence": "반지름의 길이가 다른 두 원에서는 중심각의 크기가 같아도 호의 길이가 서로 □. 그래서 호의 길이가 중심각의 크기에 정비례한다는 성질은 반지름의 길이가 같은 원에서만 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "다르다",
+          "equivalentAnswers": [
+            "다르다",
+            "같지 않다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "다르다",
+          "accept": [
+            "같지 않다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "다르다",
+          "같지 않다"
+        ]
+      ],
+      "proposalFingerprint": "cc8d1dd5cd32014501e39aaceb18961d9680e32e762e2b4d88e97ecfe2524c44"
+    },
+    {
+      "id": "m1-06-04-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "시계에서 시침이 $1$시간 동안, 분침이 $1$분 동안 도는 각의 크기를 각각 쓰고, 분침이 $20$분 동안 그리는 부채꼴의 중심각의 크기를 구하시오.",
+      "bAnswer": "시침은 $12$시간에 $360^\\circ$를 돌므로 $1$시간에 $30^\\circ$, 분침은 $60$분에 $360^\\circ$를 돌므로 $1$분에 $6^\\circ$ 돈다. 분침이 $20$분 동안 그리는 부채꼴의 중심각의 크기는 $6^\\circ\\times20=120^\\circ$이다.",
+      "bGoal": "시곗바늘이 도는 각으로 부채꼴의 중심각 구하기",
+      "bReason": "어느 바늘이 얼마 동안 도는지 제목에 없어 시간 단위와 구할 각을 정해 줌.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "시침은 $1$시간에 $30^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분침은 $1$분에 $6^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$120^\\circ$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "바늘과 시간 단위가 문장에 있고 기준이 되는 두 각만 묻는 짧은 빈칸임.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "시침·분침이 도는 각을 중심각에 적용",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1817,
+      "part": "m1plus",
+      "sourceFingerprint": "e40b668c230eb3f398f79b32dfa5c7cae29e52efb119731802251e66f7088fa6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1817
+      },
+      "directReview": null,
+      "cFrozenSentence": "시곗바늘이 그리는 부채꼴은 시침이 $1$시간에 □, 분침이 $1$분에 □ 돈다는 것을 쓴다.",
+      "cFrozenDefinition": "시곗바늘이 그리는 부채꼴은 시침이 $1$시간에 {$30^\\circ$}, 분침이 $1$분에 {$6^\\circ$} 돈다는 것을 쓴다.",
+      "cFrozenAnswers": [
+        "$30^\\circ$",
+        "$6^\\circ$"
+      ],
+      "cMarkedSentence": "시곗바늘이 그리는 부채꼴은 시침이 $1$시간에 {$30^\\circ$}, 분침이 $1$분에 {$6^\\circ$} 돈다는 것을 쓴다.",
+      "cSlotAnswers": [
+        "$30^\\circ$",
+        "$6^\\circ$"
+      ],
+      "cStudentSentence": "시곗바늘이 그리는 부채꼴은 시침이 $1$시간에 □, 분침이 $1$분에 □ 돈다는 것을 쓴다.",
+      "cAnswers": [
+        "$30^\\circ$",
+        "$6^\\circ$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$30^\\circ$",
+          "equivalentAnswers": [
+            "$30^\\circ$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$6^\\circ$",
+          "equivalentAnswers": [
+            "$6^\\circ$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$30^\\circ$"
+        ],
+        [
+          "$6^\\circ$"
+        ]
+      ],
+      "proposalFingerprint": "56d3f8d3d87a37cb36f79cd0c317aab96602a140bb0f8896f178f51a5fbd4314"
+    },
+    {
+      "id": "m1-06-04-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "한 원에서 중심각의 크기가 $30^\\circ$인 부채꼴의 호의 길이가 $2$이다. 같은 원에서 중심각의 크기가 $30^\\circ$, $45^\\circ$인 두 부채꼴을 겹치지 않게 이어 붙였을 때, 이어 붙인 부채꼴의 중심각의 크기와 호의 길이를 구하시오.",
+      "bAnswer": "중심각의 크기는 $30^\\circ+45^\\circ=75^\\circ$이다. 호의 길이는 중심각의 크기에 정비례하므로 $30:75=2:x$에서 $x=5$이다.",
+      "bGoal": "이어 붙인 부채꼴의 중심각과 호의 길이 구하기",
+      "bReason": "'이어 붙인다'는 상황을 수치로 주어 중심각의 합과 정비례를 함께 쓰게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$75^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 원에서 두 부채꼴을 겹치지 않게 이어 붙이면 중심각의 크기는 두 중심각의 크기의 {합}이 되고, 이어 붙인 호의 길이는 그 중심각의 크기에 {정비례}한다.",
+      "cAnswers": [
+        "합",
+        "정비례"
+      ],
+      "cReason": "첫 빈칸 답 '더해지고'가 뒤의 '더한 중심각'에서 드러나므로 문장을 고쳐 가림.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "중심각의 합과 호의 길이의 정비례 적용",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1818,
+      "part": "m1plus",
+      "sourceFingerprint": "edbb78cd936db2263fd80a8d23b52c6159d73955d0e50f95fd8d4953a751d7be",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1818
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 원에서 두 부채꼴을 겹치지 않게 이어 붙이면 중심각의 크기는 두 중심각의 크기의 {합}이 되고, 이어 붙인 호의 길이는 그 중심각의 크기에 {정비례}한다.",
+      "cSlotAnswers": [
+        "합",
+        "정비례"
+      ],
+      "cStudentSentence": "한 원에서 두 부채꼴을 겹치지 않게 이어 붙이면 중심각의 크기는 두 중심각의 크기의 □이 되고, 이어 붙인 호의 길이는 그 중심각의 크기에 □한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "합",
+          "equivalentAnswers": [
+            "합"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "정비례",
+          "equivalentAnswers": [
+            "정비례"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "합"
+        ],
+        [
+          "정비례"
+        ]
+      ],
+      "proposalFingerprint": "c5b1721a6ea716bdbe6143cf4676818ac470016bf2072f46d6e676e48fc8c789"
+    },
+    {
+      "id": "m1-06-05-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "지름의 길이가 $d$인 원의 둘레의 길이를 $d$와 $\\pi$를 써서 나타내고, 이 식이 반지름의 길이 $r$로 나타낸 $2\\pi r$와 같은 까닭을 쓰시오.",
+      "bAnswer": "$\\pi d$이다. 지름의 길이는 반지름의 길이의 $2$배, 곧 $d=2r$이므로 $2\\pi r=\\pi\\times2r=\\pi d$이다.",
+      "bGoal": "지름으로 원의 둘레의 길이 나타내기",
+      "bReason": "$d$의 뜻을 밝히고 반지름 공식과의 연결까지 답하도록 범위를 정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\pi d$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$d=2r$",
+            "지름의 길이는 반지름의 길이의 $2$배"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$d$의 뜻이 문장에 있고 공식 하나만 묻는 짧은 빈칸임.",
+      "learningRole": "procedure",
+      "roleReason": "지름으로 둘레를 나타내는 공식",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1819,
+      "part": "m1plus",
+      "sourceFingerprint": "6847f85b162bc95b31e10c853d2dda8854cadaa76761a2e21e41fd1aaec4d3cb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1819
+      },
+      "directReview": null,
+      "cFrozenSentence": "지름이 $d$인 원의 둘레의 길이는 □이다.",
+      "cFrozenDefinition": "지름이 $d$인 원의 둘레의 길이는 {$\\pi d$}이다.",
+      "cFrozenAnswers": [
+        "$\\pi d$"
+      ],
+      "cMarkedSentence": "지름이 $d$인 원의 둘레의 길이는 {$\\pi d$}이다.",
+      "cSlotAnswers": [
+        "$\\pi d$"
+      ],
+      "cStudentSentence": "지름이 $d$인 원의 둘레의 길이는 □이다.",
+      "cAnswers": [
+        "$\\pi d$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\pi d$",
+          "equivalentAnswers": [
+            "$\\pi d$",
+            "$d\\pi$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\pi d$",
+          "accept": [
+            "$d\\pi$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\pi d$",
+          "$d\\pi$"
+        ]
+      ],
+      "proposalFingerprint": "c116f0a458f4b7f474d2d902f76281e336c49f1eb503bb4097688b2e4a0ff034"
+    },
+    {
+      "id": "m1-06-05-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "원주율을 소수로 나타내면 어떤 특징이 있는지 쓰고, 그래서 원의 둘레의 길이나 넓이를 정확하게 나타낼 때 원주율을 어떻게 쓰는지 쓰시오.",
+      "bAnswer": "원주율은 $3.14159\\cdots$와 같이 소수점 아래가 끝없이 이어져 소수로 다 쓸 수 없다. 그래서 어림한 값 대신 기호 $\\pi$를 그대로 써서 나타낸다.",
+      "bGoal": "원주율을 기호 $\\pi$로 쓰는 까닭 말하기",
+      "bReason": "제목이 행동만 말해 소수로 썼을 때의 특징과 그에 따른 표기를 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수점 아래가 끝없이 이어진다",
+            "소수로 정확히 다 쓸 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "기호 $\\pi$를 그대로 쓴다",
+            "$\\pi$로 나타낸다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "원주율은 $3.14159\\cdots$와 같이 소수점 아래가 {끝없이} 이어지는 수이므로, 정확한 값을 나타낼 때는 기호 {$\\pi$}를 그대로 쓴다.",
+      "cAnswers": [
+        "끝없이",
+        "$\\pi$"
+      ],
+      "cReason": "'기호', '쓴다'는 배울 내용이 없는 낱말 빈칸이라 수의 특징과 기호를 묻게 함.",
+      "learningRole": "reason",
+      "roleReason": "원주율을 $\\pi$로 두는 까닭",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1820,
+      "part": "m1plus",
+      "sourceFingerprint": "1888f8eb81443464016ccb043f2ab9640a6acebca9483d900eb77f194e831869",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1820
+      },
+      "directReview": null,
+      "cMarkedSentence": "원주율은 $3.14159\\cdots$와 같이 소수점 아래가 {끝없이} 이어지는 수이므로, 정확한 값을 나타낼 때는 기호 {$\\pi$}를 그대로 쓴다.",
+      "cSlotAnswers": [
+        "끝없이",
+        "$\\pi$"
+      ],
+      "cStudentSentence": "원주율은 $3.14159\\cdots$와 같이 소수점 아래가 □ 이어지는 수이므로, 정확한 값을 나타낼 때는 기호 □를 그대로 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "끝없이",
+          "equivalentAnswers": [
+            "끝없이",
+            "한없이",
+            "계속"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\pi$",
+          "equivalentAnswers": [
+            "$\\pi$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "끝없이",
+          "accept": [
+            "한없이",
+            "계속"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "끝없이",
+          "한없이",
+          "계속"
+        ],
+        [
+          "$\\pi$"
+        ]
+      ],
+      "proposalFingerprint": "888d78a5e8decb89b855c398b85aeadfa6f61a651f8d804f8ad3b699923c3db1"
+    },
+    {
+      "id": "m1-06-05-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "반원의 둘레는 어떤 두 부분으로 이루어지는지 쓰고, 반지름의 길이가 $4$인 반원의 둘레의 길이를 구하시오.",
+      "bAnswer": "반원의 둘레는 호(원의 둘레의 절반)와 지름으로 이루어진다. 둘레의 길이는 $\\frac{1}{2}\\times2\\pi\\times4+8=4\\pi+8$이다.",
+      "bGoal": "반원의 둘레의 길이 구하기",
+      "bReason": "지름을 빠뜨리기 쉬운 개념이라 둘레를 이루는 부분과 계산을 함께 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "호와 지름",
+            "원의 둘레의 절반과 지름"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\pi+8$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "절반과 지름을 묻는 두 빈칸이 방법의 핵심이고 서로 답을 드러내지 않음.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "호에 지름을 더해 반원의 둘레 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1821,
+      "part": "m1plus",
+      "sourceFingerprint": "7b94777f2604ace41dd5e850d1adb47e9c21d59cfa23d67697cdf59c424ac9c1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1821
+      },
+      "directReview": null,
+      "cFrozenSentence": "반원의 둘레는 원의 둘레의 □에 □의 길이를 더한다.",
+      "cFrozenDefinition": "반원의 둘레는 원의 둘레의 {절반}에 {지름}의 길이를 더한다.",
+      "cFrozenAnswers": [
+        "절반",
+        "지름"
+      ],
+      "cMarkedSentence": "반원의 둘레는 원의 둘레의 {절반}에 {지름}의 길이를 더한다.",
+      "cSlotAnswers": [
+        "절반",
+        "지름"
+      ],
+      "cStudentSentence": "반원의 둘레는 원의 둘레의 □에 □의 길이를 더한다.",
+      "cAnswers": [
+        "절반",
+        "지름"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "절반",
+          "equivalentAnswers": [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "지름",
+          "equivalentAnswers": [
+            "지름"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "절반",
+          "accept": [
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "절반",
+          "반",
+          "$\\frac{1}{2}$"
+        ],
+        [
+          "지름"
+        ]
+      ],
+      "proposalFingerprint": "5fadf56dc14f72cf4dd1899f2d7046b9d54eeafcd2fc0857a676473118cecb09"
+    }
+  ]
+}

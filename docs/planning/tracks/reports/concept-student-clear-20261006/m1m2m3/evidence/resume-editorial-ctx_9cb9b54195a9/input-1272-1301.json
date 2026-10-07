@@ -1,0 +1,2780 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T06:50:55.298Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc25",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "저울로 모르는 무게 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "저울 양쪽에 같은 물건이 있으면 양쪽에서 {같이} 덜어 내어 모르는 {무게}를 구한다.",
+        "example": {
+          "prompt": "무게가 같은 구슬 $3$개와 $10\\,\\mathrm{g}$이 구슬 $1$개와 $30\\,\\mathrm{g}$과 평형이다. 구슬 하나의 무게는?",
+          "answer": "$10\\,\\mathrm{g}$"
+        },
+        "studentC": "저울 양쪽에 같은 물건이 있으면 양쪽에서 □ 덜어 내어 모르는 □를 구한다.",
+        "answers": [
+          "같이",
+          "무게"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "무게가 같은 구슬 $3$개와 $10\\,\\mathrm{g}$짜리 추 $1$개를 올린 접시가, 같은 구슬 $1$개와 $10\\,\\mathrm{g}$짜리 추 $3$개를 올린 접시와 평형을 이룹니다. 양쪽 접시에서 무엇을 똑같이 덜어 내면 되는지 차례로 쓰고 구슬 $1$개의 무게를 구하세요.",
+        "bAnswer": "양쪽에서 구슬을 $1$개씩 덜어 내면 구슬 $2$개와 추 $1$개가 추 $3$개와 평형이다. 다시 양쪽에서 $10\\,\\mathrm{g}$짜리 추를 $1$개씩 덜어 내면 구슬 $2$개가 추 $2$개, 곧 $20\\,\\mathrm{g}$과 평형이므로 구슬 $1$개는 $10\\,\\mathrm{g}$이다.",
+        "bGoal": "저울 양쪽에서 같은 것을 덜어 내는 방법으로 모르는 무게를 구한다.",
+        "bReason": "$30\\,\\mathrm{g}$짜리 추 $1$개에서는 $10\\,\\mathrm{g}$만 덜어 낼 수 없어 '양쪽에서 똑같이 덜어 낸다'는 답과 맞지 않는다. 오른쪽을 $10\\,\\mathrm{g}$짜리 추 $3$개로 바꾸었고 수치와 답은 그대로이다.",
+        "cDecision": "exclude",
+        "cReason": "원문 빈칸 '같이'와 '무게'는 뜻이 약한 낱말이다. 문장을 다듬어도 '양쪽에서 같은 것을 덜어 내도 평형'이 되어 m1-03-05-xc5의 고친 C와 같은 내용이 된다. 이 개념은 구체 수치가 있는 B로 묻는 편이 맞다.",
+        "exclusionReason": "C 제외: m1-03-05-xc5의 C(저울의 평형 비유)와 같은 내용을 되풀이하는 빈칸이며, 원문 빈칸 낱말(같이·무게)도 학습 가치가 낮다. B는 구체 문제로 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양쪽에서 구슬을 $1$개씩 덜어 낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "양쪽에서 $10\\,\\mathrm{g}$짜리 추를 $1$개씩 덜어 낸다(덜어 내는 순서는 바뀌어도 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "구슬 $2$개가 $20\\,\\mathrm{g}$이므로 구슬 $1$개는 $10\\,\\mathrm{g}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "application",
+        "roleReason": "저울에서 같이 덜어 무게 구함",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1272,
+        "part": "m1plus",
+        "sourceFingerprint": "cbdc658efb5cae7df4bb726f96234abece59d4de08fd950eac0a9880cf6fd053",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1272
+        },
+        "directReview": null,
+        "proposalFingerprint": "9d12b6c0bc24e83c4cdbf25c11a5107b74f26516cab00979b60a6fb252b72035"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc1",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "상수항을 우변으로 이항하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "좌변에 더해진 상수항은 {빼는} 꼴로, 빼진 상수항은 {더하는} 꼴로 부호를 바꾸어 우변에 쓴다.",
+        "example": {
+          "prompt": "$x+3=5$에서 $3$을 이항하면 우변에서 빼는 수가 되는 까닭은?",
+          "answer": "양변에서 $3$을 뺀 것이어서"
+        },
+        "studentC": "좌변에 더해진 상수항은 □ 꼴로, 빼진 상수항은 □ 꼴로 부호를 바꾸어 우변에 쓴다.",
+        "answers": [
+          "빼는",
+          "더하는"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$x+3=5$와 $x-3=5$에서 좌변의 상수항을 각각 우변으로 이항한 식을 쓰세요. 그리고 좌변에서 더해진 수와 빼진 수가 우변에서 각각 어떻게 바뀌는지 말하세요.",
+        "bAnswer": "$x+3=5$는 $x=5-3$, $x-3=5$는 $x=5+3$이다. 좌변에서 더해진 수는 우변에서 빼는 수로, 빼진 수는 더하는 수로 바뀐다.",
+        "bGoal": "상수항을 우변으로 이항할 때 부호가 바뀌는 두 경우를 구별한다.",
+        "bReason": "제목 '상수항을 우변으로 이항하기'는 행동 이름뿐이다. 더해진 경우와 빼진 경우의 식을 나란히 주고 변화를 비교하게 했다. 이항이 성립하는 까닭은 m1-03-06-c3의 B가 묻는다.",
+        "cDecision": "keep",
+        "cReason": "더해진 경우와 빼진 경우를 견주는 짧은 문장이고 '부호를 바꾸어'가 보여 두 빈칸(빼는, 더하는)이 정해진다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+3=5$는 $x=5-3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x-3=5$는 $x=5+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "더해진 수는 빼는 수로, 빼진 수는 더하는 수로 바뀐다(부호가 바뀐다)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "상수항 부호 바꿔 우변으로",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1273,
+        "part": "m1plus",
+        "sourceFingerprint": "10c46a7b6611c8320dae5b346c35c5ecaeb51c612003e42b89700fd58727720e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1273
+        },
+        "directReview": null,
+        "cFrozenSentence": "좌변에 더해진 상수항은 □ 꼴로, 빼진 상수항은 □ 꼴로 부호를 바꾸어 우변에 쓴다.",
+        "cFrozenDefinition": "좌변에 더해진 상수항은 {빼는} 꼴로, 빼진 상수항은 {더하는} 꼴로 부호를 바꾸어 우변에 쓴다.",
+        "cFrozenAnswers": [
+          "빼는",
+          "더하는"
+        ],
+        "cMarkedSentence": "좌변에 더해진 상수항은 {빼는} 꼴로, 빼진 상수항은 {더하는} 꼴로 부호를 바꾸어 우변에 쓴다.",
+        "cSlotAnswers": [
+          "빼는",
+          "더하는"
+        ],
+        "cStudentSentence": "좌변에 더해진 상수항은 □ 꼴로, 빼진 상수항은 □ 꼴로 부호를 바꾸어 우변에 쓴다.",
+        "cAnswers": [
+          "빼는",
+          "더하는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빼는",
+            "equivalentAnswers": [
+              "빼는",
+              "뺄셈"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더하는",
+            "equivalentAnswers": [
+              "더하는",
+              "덧셈"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "빼는",
+            "accept": [
+              "뺄셈"
+            ]
+          },
+          {
+            "answer": "더하는",
+            "accept": [
+              "덧셈"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빼는",
+            "뺄셈"
+          ],
+          [
+            "더하는",
+            "덧셈"
+          ]
+        ],
+        "proposalFingerprint": "03ad66f1f81adcebfaff070908cd7a1051d5f12f0926f1f865f6912f91ed94bc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc2",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "미지수 항 이항하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "우변에 있는 $x$의 항도 부호를 바꾸어 {좌변}으로 {옮긴다}.",
+        "example": {
+          "prompt": "$5x=2x+9$에서 $2x$를 이항하면?",
+          "answer": "$5x-2x=9$"
+        },
+        "studentC": "우변에 있는 $x$의 항도 부호를 바꾸어 □으로 □.",
+        "answers": [
+          "좌변",
+          "옮긴다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$5x=2x+9$에서 우변의 $2x$를 좌변으로 이항한 식을 쓰고 정리하세요. 상수항이 아닌 $x$의 항도 이항할 수 있는 까닭을 등식의 성질로 설명하세요.",
+        "bAnswer": "$5x-2x=9$이고 정리하면 $3x=9$이다. 양변에서 같은 식 $2x$를 뺀 것과 같으므로 $x$의 항도 이항할 수 있다.",
+        "bGoal": "미지수가 있는 항도 부호를 바꾸어 이항할 수 있음을 안다.",
+        "bReason": "제목 '미지수 항 이항하기'는 어느 변의 무엇을 옮기는지 없다. 우변에 $x$의 항이 있는 식을 주고 이항한 식과 근거를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "상수항뿐 아니라 $x$가 있는 항도 이항할 수 있다. $5x=2x+9$에서 우변의 $2x$를 부호를 바꾸어 {좌변}으로 옮기면 $5x-2x=9$이다.",
+        "cAnswers": [
+          "좌변"
+        ],
+        "cReason": "원문 '우변에 있는 $x$의 항도 … □으로 □'는 둘째 빈칸 '옮긴다'가 맺음말일 뿐이고, '항도'의 '도'가 무엇에 더해지는 말인지도 없다. 상수항과 견주는 말과 예시 식을 넣고 빈칸을 하나로 줄였다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이항한 식 $5x-2x=9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정리하면 $3x=9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 양변에서 같은 식 $2x$를 뺀 것과 같다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "x의 항도 부호 바꿔 이항",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1274,
+        "part": "m1plus",
+        "sourceFingerprint": "af138741bd3f32d3a078e27aad5a9da1d94e857d54328dc91d31b1bc89026985",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1274
+        },
+        "directReview": null,
+        "cMarkedSentence": "상수항뿐 아니라 $x$가 있는 항도 이항할 수 있다. $5x=2x+9$에서 우변의 $2x$를 부호를 바꾸어 {좌변}으로 옮기면 $5x-2x=9$이다.",
+        "cSlotAnswers": [
+          "좌변"
+        ],
+        "cStudentSentence": "상수항뿐 아니라 $x$가 있는 항도 이항할 수 있다. $5x=2x+9$에서 우변의 $2x$를 부호를 바꾸어 □으로 옮기면 $5x-2x=9$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "좌변",
+            "equivalentAnswers": [
+              "좌변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "좌변"
+          ]
+        ],
+        "proposalFingerprint": "109c953646d44f5682ba97175c98020da2caba0d4ae02f92df636ede37b7ea88"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc3",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "$ax=b$ 꼴 만들기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "{이항}하여 $x$가 있는 항은 한쪽에, 수는 다른 쪽에 모아 $ax=b$ 꼴로 정리한다.",
+        "example": {
+          "prompt": "$3x-4=8$을 $ax=b$ 꼴로 정리하면?",
+          "answer": "$3x=12$"
+        },
+        "studentC": "□하여 $x$가 있는 항은 한쪽에, 수는 다른 쪽에 모아 $ax=b$ 꼴로 정리한다.",
+        "answers": [
+          "이항"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$3x-4=8$을 $ax=b$($a$, $b$는 수) 꼴로 정리하세요. 어떤 항을 어느 변으로 어떻게 옮겼는지 설명하고 $a$와 $b$의 값을 쓰세요.",
+        "bAnswer": "좌변의 $-4$를 부호를 바꾸어 우변으로 이항하면 $3x=8+4$, 곧 $3x=12$이다. $a=3$, $b=12$이다.",
+        "bGoal": "이항으로 $x$의 항과 수를 서로 다른 변에 모아 $ax=b$ 꼴로 만든다.",
+        "bReason": "제목 '$ax=b$ 꼴 만들기'에는 $a$, $b$가 무엇인지와 어떤 식에서 만드는지가 없다. 기호의 뜻을 밝히고 구체 방정식에서 과정까지 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "'$x$가 있는 항은 한쪽에, 수는 다른 쪽에 모아'가 빈칸의 행동을 충분히 설명해 답(이항)이 정해진다. c1의 정의형과 달리 용어를 쓰임 속에서 떠올리게 한다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "좌변의 $-4$를 부호를 바꾸어 우변으로 이항한다(양변에 $4$를 더한다고 해도 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "정리한 식 $3x=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=3$, $b=12$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "이항으로 ax=b 꼴 정리",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1275,
+        "part": "m1plus",
+        "sourceFingerprint": "0c2298f94cce3d8b03acc9e4b7d709780184f12c8b48b309197a655734cbe099",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1275
+        },
+        "directReview": null,
+        "cFrozenSentence": "□하여 $x$가 있는 항은 한쪽에, 수는 다른 쪽에 모아 $ax=b$ 꼴로 정리한다.",
+        "cFrozenDefinition": "{이항}하여 $x$가 있는 항은 한쪽에, 수는 다른 쪽에 모아 $ax=b$ 꼴로 정리한다.",
+        "cFrozenAnswers": [
+          "이항"
+        ],
+        "cMarkedSentence": "{이항}하여 $x$가 있는 항은 한쪽에, 수는 다른 쪽에 모아 $ax=b$ 꼴로 정리한다.",
+        "cSlotAnswers": [
+          "이항"
+        ],
+        "cStudentSentence": "□하여 $x$가 있는 항은 한쪽에, 수는 다른 쪽에 모아 $ax=b$ 꼴로 정리한다.",
+        "cAnswers": [
+          "이항"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이항",
+            "equivalentAnswers": [
+              "이항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이항"
+          ]
+        ],
+        "proposalFingerprint": "a1ddc33eb3acb1d2f3515fd7d63fead298288bc4c198f92b0ccb4cf6ea7ea260"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc4",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "$ax=b$ 꼴에서 해 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$ax=b$ ($a\\neq0$) 꼴이 되면 양변을 {$x$의 계수}로 나누어 {해}를 구한다.",
+        "example": {
+          "prompt": "$-5x=15$의 해는?",
+          "answer": "$x=-3$"
+        },
+        "studentC": "$ax=b$ ($a\\neq0$) 꼴이 되면 양변을 □로 나누어 □를 구한다.",
+        "answers": [
+          "$x$의 계수",
+          "해"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식을 정리해 $ax=b$($a$, $b$는 수, $a\\neq0$) 꼴이 되었을 때 해를 구하려면 양변에 어떤 계산을 하는지 쓰고, 그 방법으로 $-5x=15$의 해를 구하세요.",
+        "bAnswer": "양변을 $x$의 계수 $a$로 나눈다. $-5x=15$는 양변을 $-5$로 나누어 $x=-3$이다.",
+        "bGoal": "$ax=b$ 꼴에서 양변을 $x$의 계수로 나누어 해를 구한다.",
+        "bReason": "제목 '$ax=b$ 꼴에서 해 구하기'는 기호의 조건($a\\neq0$)과 할 일을 밝히지 않는다. 일반 방법을 묻고 계수가 음수인 원문 예시로 써 보게 했다.",
+        "cDecision": "keep",
+        "cReason": "식 $ax=b$와 조건 $a\\neq0$이 문장에 있어 나누는 수와 구하는 것이 각각 정해진다. 풀이 마지막 단계를 짧게 확인한다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변을 $x$의 계수 $a$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-5x=15$의 해는 $x=-3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "계수로 나누어 해 구하기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1276,
+        "part": "m1plus",
+        "sourceFingerprint": "ba1dc7f03f4e5d4b31eb3225df8548d23c5add7d87733b5854d218b30fa86d82",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1276
+        },
+        "directReview": null,
+        "cFrozenSentence": "$ax=b$ ($a\\neq0$) 꼴이 되면 양변을 □로 나누어 □를 구한다.",
+        "cFrozenDefinition": "$ax=b$ ($a\\neq0$) 꼴이 되면 양변을 {$x$의 계수}로 나누어 {해}를 구한다.",
+        "cFrozenAnswers": [
+          "$x$의 계수",
+          "해"
+        ],
+        "cMarkedSentence": "$ax=b$ ($a\\neq0$) 꼴이 되면 양변을 {$x$의 계수}로 나누어 {해}를 구한다.",
+        "cSlotAnswers": [
+          "$x$의 계수",
+          "해"
+        ],
+        "cStudentSentence": "$ax=b$ ($a\\neq0$) 꼴이 되면 양변을 □로 나누어 □를 구한다.",
+        "cAnswers": [
+          "$x$의 계수",
+          "해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$의 계수",
+            "equivalentAnswers": [
+              "$x$의 계수",
+              "$a$",
+              "계수",
+              "계수 $a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "해",
+            "equivalentAnswers": [
+              "해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$x$의 계수",
+            "accept": [
+              "$a$",
+              "계수",
+              "계수 $a$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$x$의 계수",
+            "$a$",
+            "계수",
+            "계수 $a$"
+          ],
+          [
+            "해"
+          ]
+        ],
+        "proposalFingerprint": "4839650ed01e55e68ab894189b3753d603a5a8c89c00f14e310339b075caa7d5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc5",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "해 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "구한 값을 처음 방정식에 {대입}하여 양변의 값이 같으면 그 값이 {해}임을 확인할 수 있다.",
+        "example": {
+          "prompt": "$2x+1=9$의 해 $x=4$를 넣으면 양변은 얼마인가?",
+          "answer": "둘 다 $9$"
+        },
+        "studentC": "구한 값을 처음 방정식에 □하여 양변의 값이 같으면 그 값이 □임을 확인할 수 있다.",
+        "answers": [
+          "대입",
+          "해"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$2x+1=9$를 풀어 $x=4$를 얻었습니다. 이 값이 정말 해인지 확인하는 방법을 쓰고, 실제로 좌변과 우변의 값을 구해 확인하세요.",
+        "bAnswer": "구한 값을 처음 방정식에 대입해 양변의 값이 같은지 본다. $x=4$를 대입하면 좌변은 $2\\times4+1=9$, 우변은 $9$로 같으므로 $x=4$는 해이다.",
+        "bGoal": "구한 값을 처음 방정식에 대입하여 해인지 확인한다.",
+        "bReason": "제목 '해 확인하기'는 어떤 방정식의 어떤 값을 확인하는지 없다. 방정식과 구한 값을 주고 방법과 실제 계산을 함께 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "'처음 방정식에', '양변의 값이 같으면'이 보여 두 빈칸(대입, 해)이 분명하다. 둘 다 중1이 배운 용어다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구한 값을 처음 방정식에 대입해 양변의 값이 같은지 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "좌변 $2\\times4+1=9$, 우변 $9$로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "따라서 $x=4$는 해이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "대입해 양변 비교",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1277,
+        "part": "m1plus",
+        "sourceFingerprint": "eff10e123bb7ac0c8d3cb7ab7597115302344a703852edb339b187e5aa0893b7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1277
+        },
+        "directReview": null,
+        "cFrozenSentence": "구한 값을 처음 방정식에 □하여 양변의 값이 같으면 그 값이 □임을 확인할 수 있다.",
+        "cFrozenDefinition": "구한 값을 처음 방정식에 {대입}하여 양변의 값이 같으면 그 값이 {해}임을 확인할 수 있다.",
+        "cFrozenAnswers": [
+          "대입",
+          "해"
+        ],
+        "cMarkedSentence": "구한 값을 처음 방정식에 {대입}하여 양변의 값이 같으면 그 값이 {해}임을 확인할 수 있다.",
+        "cSlotAnswers": [
+          "대입",
+          "해"
+        ],
+        "cStudentSentence": "구한 값을 처음 방정식에 □하여 양변의 값이 같으면 그 값이 □임을 확인할 수 있다.",
+        "cAnswers": [
+          "대입",
+          "해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "해",
+            "equivalentAnswers": [
+              "해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "해"
+          ]
+        ],
+        "proposalFingerprint": "30d453cdc4b15611073a1deae3e8bd5760cc9f1352cad88477e517d9f248d7c3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc6",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "일차방정식 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "모든 항을 좌변으로 옮겨 정리했을 때 {$ax+b=0$} ($a\\neq0$) 꼴이면 {일차방정식}이다.",
+        "example": {
+          "prompt": "$3x-1=x+5$는 일차방정식인가?",
+          "answer": "일차방정식이다"
+        },
+        "studentC": "모든 항을 좌변으로 옮겨 정리했을 때 □ ($a\\neq0$) 꼴이면 □이다.",
+        "answers": [
+          "$ax+b=0$",
+          "일차방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $3x-1=x+5$의 모든 항을 좌변으로 옮겨 정리한 식을 쓰세요. 그 식을 $ax+b=0$ 꼴로 볼 때 $a$와 $b$의 값을 구하고, 일차방정식인지 판단하세요. 판단에 필요한 $a$의 조건도 쓰세요.",
+        "bAnswer": "$3x-1-x-5=0$이므로 $2x-6=0$이다. $a=2$, $b=-6$이다. $a\\neq0$이어야 일차방정식인데 $a=2$이므로 일차방정식이다.",
+        "bGoal": "방정식을 $ax+b=0$ ($a\\neq0$) 꼴로 정리해 일차방정식인지 알아본다.",
+        "bReason": "제목 '일차방정식 알아보기'는 어떤 식을 어떤 기준으로 알아보는지 없다. 구체 방정식과 $ax+b=0$ 꼴, $a$의 조건을 질문에 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "모든 항을 좌변으로 옮겨 정리했을 때 $ax+b=0$ 꼴이고 $x$의 계수 $a$가 {$0$}이 아니면 일차방정식이다.",
+        "cAnswers": [
+          "$0$"
+        ],
+        "cReason": "원문은 꼴($ax+b=0$)과 결론(일차방정식)을 둘 다 가려 '□ ($a\\neq0$) 꼴이면 □이다'만 남는다. 둘 다 보이게 하고 빠뜨리기 쉬운 조건을 빈칸으로 했다. c4의 C(일차식)와 답도 겹치지 않는다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정리한 식 $2x-6=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=2$, $b=-6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "조건 $a\\neq0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "일차방정식이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "ax+b=0 꼴로 정리해 판별",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1278,
+        "part": "m1plus",
+        "sourceFingerprint": "32e4b3e267d160536b72de419357b66b7d1144cd21b12c853e5cd8a7b03e8c77",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1278
+        },
+        "directReview": null,
+        "cMarkedSentence": "모든 항을 좌변으로 옮겨 정리했을 때 $ax+b=0$ 꼴이고 $x$의 계수 $a$가 {$0$}이 아니면 일차방정식이다.",
+        "cSlotAnswers": [
+          "$0$"
+        ],
+        "cStudentSentence": "모든 항을 좌변으로 옮겨 정리했을 때 $ax+b=0$ 꼴이고 $x$의 계수 $a$가 □이 아니면 일차방정식이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "3e62ed981477ac1a9dfc1782de25edf3eedd65f0520e0789601d7351769bb67f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc7",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "이항할 수 있는 항",
+        "kind": "성질",
+        "level": "하",
+        "definition": "이항은 {더해지거나 빼진} 항을 옮기는 것이고, 곱해진 수는 이항하지 {않는다}.",
+        "example": {
+          "prompt": "$4x=12$에서 $4$를 이항할 수 있는가?",
+          "answer": "없다"
+        },
+        "studentC": "이항은 □ 항을 옮기는 것이고, 곱해진 수는 이항하지 □.",
+        "answers": [
+          "더해지거나 빼진",
+          "않는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$4x=12$에서 $4$를 우변으로 이항하여 $x=12-4$로 쓸 수 있는지 답하세요. 그 까닭을 쓰고, $4$를 없애는 바른 방법과 해도 쓰세요.",
+        "bAnswer": "쓸 수 없다. 이항은 더해지거나 빼진 항을 옮기는 것인데 $4$는 $x$에 곱해진 수이기 때문이다. 양변을 $4$로 나누어 $x=3$을 얻는다.",
+        "bGoal": "이항은 더해지거나 빼진 항에만 쓰고 곱해진 수에는 쓰지 않음을 안다.",
+        "bReason": "제목 '이항할 수 있는 항'은 목록을 쓰라는 것인지 판단하라는 것인지 불분명하다. 곱해진 수를 이항하려는 잘못된 시도를 주고 판단, 까닭, 바른 방법을 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "이항은 더해지거나 빼진 항을 옮기는 것이다. $4x=12$의 $4$처럼 $x$에 {곱해진} 수는 이항할 수 없고, 양변을 그 수로 나누어 없앤다.",
+        "cAnswers": [
+          "곱해진"
+        ],
+        "cReason": "원문은 긴 구절 '더해지거나 빼진'과 맺음말 '않는다'를 가려, 앞은 쓰기 어렵고 뒤는 뜻이 없다. 이항 대상은 보여 주고 이항이 안 되는 경우를 예시와 함께 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "쓸 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: $4$는 $x$에 곱해진 수이고, 이항은 더해지거나 빼진 항을 옮기는 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변을 $4$로 나누어 $x=3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "곱해진 수는 이항 불가",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1279,
+        "part": "m1plus",
+        "sourceFingerprint": "2499dcdc7d1427ef5bfff31f1660e9cd6ad859515ddd60fb5392eddd48083f87",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1279
+        },
+        "directReview": null,
+        "cMarkedSentence": "이항은 더해지거나 빼진 항을 옮기는 것이다. $4x=12$의 $4$처럼 $x$에 {곱해진} 수는 이항할 수 없고, 양변을 그 수로 나누어 없앤다.",
+        "cSlotAnswers": [
+          "곱해진"
+        ],
+        "cStudentSentence": "이항은 더해지거나 빼진 항을 옮기는 것이다. $4x=12$의 $4$처럼 $x$에 □ 수는 이항할 수 없고, 양변을 그 수로 나누어 없앤다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱해진",
+            "equivalentAnswers": [
+              "곱해진",
+              "곱한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "곱해진",
+            "accept": [
+              "곱한"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱해진",
+            "곱한"
+          ]
+        ],
+        "proposalFingerprint": "e52bdfa10292aa0ce7893cd6676c050dd30f00bde42e159c8545aa5451193e51"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc8",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "계수가 음수일 때",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$-x=a$나 $-3x=b$처럼 계수가 음수이면 양변을 그 {음수}로 나누어 {부호}까지 정리한다.",
+        "example": {
+          "prompt": "$-x=-8$의 해는?",
+          "answer": "$x=8$"
+        },
+        "studentC": "$-x=a$나 $-3x=b$처럼 계수가 음수이면 양변을 그 □로 나누어 □까지 정리한다.",
+        "answers": [
+          "음수",
+          "부호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "$x$의 계수가 음수일 때 양변을 그 음수로 나누어 해를 구한다.",
+        "bReason": "제목 '계수가 음수일 때'가 묻는 것은 앞 단원 m1-03-05-xc8의 B($-x=a$)와 m1-03-05-xc23의 B(양변을 음수로 나누기)가 이미 묻고 있다. 예시도 같은 꼴이다.",
+        "cDecision": "rewrite",
+        "cAfter": "$-3x=15$처럼 $x$의 계수가 음수이면 양변을 그 음수인 {$-3$}으로 나누어 부호까지 정리하면 $x=-5$이다.",
+        "cAnswers": [
+          "$-3$"
+        ],
+        "cReason": "원문은 첫 빈칸의 답 '음수'가 바로 앞 '계수가 음수이면'에 적혀 있어 베끼면 된다. 구체 식을 넣고 $3$이 아니라 $-3$으로 나눈다는 점을 묻게 했다.",
+        "exclusionReason": "B 제외: m1-03-05-xc8·m1-03-05-xc23의 B와 같은 '음수 계수로 양변 나누기' 문항을 숫자만 바꾼 중복이다. C는 나누는 수를 묻는 빈칸으로 유지한다.",
+        "studentLabel": "$x$의 계수가 음수인 방정식",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "음수 계수로 양변 나눔",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1280,
+        "part": "m1plus",
+        "sourceFingerprint": "9ea261e403284cfb8ec0d4e3436638c19290cd69b5453befe68a314bf75eeddf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1280
+        },
+        "directReview": null,
+        "cMarkedSentence": "$-3x=15$처럼 $x$의 계수가 음수이면 양변을 그 음수인 {$-3$}으로 나누어 부호까지 정리하면 $x=-5$이다.",
+        "cSlotAnswers": [
+          "$-3$"
+        ],
+        "cStudentSentence": "$-3x=15$처럼 $x$의 계수가 음수이면 양변을 그 음수인 □으로 나누어 부호까지 정리하면 $x=-5$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-3$",
+            "equivalentAnswers": [
+              "$-3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-3$"
+          ]
+        ],
+        "proposalFingerprint": "c1672ecb5eb9033b3c3c01aeadbdebc67bf6e269c69e31adcc7095621bcb480c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc9",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "양쪽에 $x$가 있는 방정식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "양변에 $x$의 항이 있으면 $x$의 항은 {좌변}으로, 상수항은 {우변}으로 이항해 정리한다.",
+        "example": {
+          "prompt": "$7x-3=4x+9$의 해는?",
+          "answer": "$x=4$"
+        },
+        "studentC": "양변에 $x$의 항이 있으면 $x$의 항은 □으로, 상수항은 □으로 이항해 정리한다.",
+        "answers": [
+          "좌변",
+          "우변"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$7x-3=4x+9$처럼 양변에 모두 $x$의 항이 있는 방정식을 풉니다. 어떤 항을 어느 변으로 이항하는지 쓰고, 이항한 식, 정리한 식, 해를 차례로 쓰세요.",
+        "bAnswer": "우변의 $4x$는 좌변으로, 좌변의 $-3$은 우변으로 이항한다. $7x-4x=9+3$이고 정리하면 $3x=12$이므로 $x=4$이다.",
+        "bGoal": "양변에 $x$의 항이 있는 방정식을 이항으로 정리해 푼다.",
+        "bReason": "첫 요소는 다른 이항을 인정하면서 이항한 식·정리한 식은 한 가지만 요구해, 반대쪽 변으로 모은 바른 풀이가 틀리게 됨",
+        "cDecision": "exclude",
+        "cReason": "빈칸 답(좌변, 우변)과 문장 뼈대가 m1-03-06-c5의 C와 같다. 따로 두면 같은 답을 두 번 쓰게 된다.",
+        "exclusionReason": "C 제외: m1-03-06-c5의 C와 빈칸 답(좌변·우변)이 똑같은 중복이다. B는 구체 방정식에 적용하는 문항으로 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "우변의 $4x$는 좌변으로, 좌변의 $-3$은 우변으로 이항한다",
+              "좌변의 $7x$는 우변으로, 우변의 $9$는 좌변으로 이항한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7x-4x=9+3$",
+              "$-3-9=4x-7x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3x=12$",
+              "$-12=-3x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=4$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "x항·상수항 나눠 이항",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1281,
+        "part": "m1plus",
+        "sourceFingerprint": "7beee28d6256e46cd0f7b9c6cf6e6c00a6254f0f4704d658ad6b92422e862184",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1281
+        },
+        "directReview": null,
+        "proposalFingerprint": "44e21cd85a4ca1500e124dbcbcae41045fb3873da9b42ab104117880c749f575"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc10",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "괄호 앞이 음수인 방정식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "괄호 앞에 음의 부호가 있으면 괄호를 풀 때 괄호 안 {모든} 항의 {부호}를 바꾼다.",
+        "example": {
+          "prompt": "$3-(x-5)=2$의 해는?",
+          "answer": "$x=6$"
+        },
+        "studentC": "괄호 앞에 음의 부호가 있으면 괄호를 풀 때 괄호 안 □ 항의 □를 바꾼다.",
+        "answers": [
+          "모든",
+          "부호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$3-(x-5)=2$에서 괄호를 푼 식을 쓰고, 괄호 안의 항 $x$와 $-5$가 각각 어떻게 바뀌었는지 말하세요. 그리고 해를 구하세요.",
+        "bAnswer": "$3-x+5=2$이다. 괄호 앞에 $-$가 있으므로 $x$는 $-x$로, $-5$는 $+5$로 모든 항의 부호가 바뀐다. $8-x=2$에서 $x=6$이다.",
+        "bGoal": "괄호 앞에 음의 부호가 있을 때 괄호 안 모든 항의 부호를 바꾸어 괄호를 푼다.",
+        "bReason": "제목 '괄호 앞이 음수인 방정식'은 종류 이름이다. 구체 식에서 괄호를 푼 결과와 각 항의 변화를 말하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "괄호 앞에 $-$가 있으면 괄호를 풀 때 괄호 안 {모든} 항의 부호를 바꾼다. 예를 들어 $-(x-5)=-x+5$이다.",
+        "cAnswers": [
+          "모든"
+        ],
+        "cReason": "원문 둘째 빈칸 '부호'는 바로 앞 '음의 부호'에 같은 낱말이 있어 베끼면 된다. 실수가 잦은 '모든'만 빈칸으로 두고 확인할 식을 붙였다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "괄호를 푼 식 $3-x+5=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$는 $-x$로, $-5$는 $+5$로 부호가 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=6$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "괄호 안 모든 부호 바꿈",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1282,
+        "part": "m1plus",
+        "sourceFingerprint": "70cf887a0ec698ed3aefeb5a42e24f6af812bf4b10a071edd28cfcefd2ba68bf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1282
+        },
+        "directReview": null,
+        "cMarkedSentence": "괄호 앞에 $-$가 있으면 괄호를 풀 때 괄호 안 {모든} 항의 부호를 바꾼다. 예를 들어 $-(x-5)=-x+5$이다.",
+        "cSlotAnswers": [
+          "모든"
+        ],
+        "cStudentSentence": "괄호 앞에 $-$가 있으면 괄호를 풀 때 괄호 안 □ 항의 부호를 바꾼다. 예를 들어 $-(x-5)=-x+5$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모든",
+            "equivalentAnswers": [
+              "모든",
+              "각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모든",
+            "accept": [
+              "각"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모든",
+            "각"
+          ]
+        ],
+        "proposalFingerprint": "1862451d0610384bfe133c495271c371437a27979409fb630fb32320a6af89d5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc11",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "소수 계수에 곱할 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수점 아래 자리가 가장 긴 수에 맞춰 $10$, $100$ 등을 양변의 {모든 항}에 {곱한다}.",
+        "example": {
+          "prompt": "$0.3x-0.15=0.6$의 양변에 곱할 수는?",
+          "answer": "$100$"
+        },
+        "studentC": "소수점 아래 자리가 가장 긴 수에 맞춰 $10$, $100$ 등을 양변의 □에 □.",
+        "answers": [
+          "모든 항",
+          "곱한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.3x-0.15=0.6$의 계수를 모두 정수로 바꾸려면 양변에 $10$, $100$, $1000$ 중 어떤 수를 곱해야 하는지 가장 작은 수로 답하세요. 그렇게 정한 기준과 곱한 뒤의 식도 쓰세요.",
+        "bAnswer": "$100$을 곱한다. 소수점 아래 자리가 가장 긴 $0.15$가 소수 둘째 자리까지 있기 때문이다. 곱하면 $30x-15=60$이다.",
+        "bGoal": "소수점 아래 자릿수가 가장 긴 수에 맞추어 곱할 $10$의 거듭제곱을 정한다.",
+        "bReason": "제목 '소수 계수에 곱할 수'는 어떤 식에서 곱할 수를 정하는지 없다. 자릿수가 서로 다른 소수가 섞인 식을 주고 수와 기준을 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "계수가 소수인 일차방정식은 소수점 아래 자리가 가장 긴 수에 맞춰 양변의 모든 항에 $10$, $100$ 등을 곱한다. 예를 들어 $0.3x-0.15=0.6$은 $0.15$에 맞춰 {$100$}을 곱한다.",
+        "cAnswers": [
+          "$100$"
+        ],
+        "cReason": "원문은 어떤 방정식 이야기인지 없이 시작하고, 둘째 빈칸 '곱한다'는 앞의 '$10$, $100$ 등을'만 보아도 나오는 맺음말이다. 규칙은 다 보여 주고, 그 규칙으로 곱할 수를 정하는 것을 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준: 소수점 아래 자리가 가장 많은 $0.15$가 소수 둘째 자리까지 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱한 뒤의 식 $30x-15=60$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "소수 자릿수에 맞춰 곱함",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1283,
+        "part": "m1plus",
+        "sourceFingerprint": "4dd42676838a02e9d8f77f98fcd5dd6bb45fa63a5866be6fae6be939b5a34a38",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1283
+        },
+        "directReview": null,
+        "cMarkedSentence": "계수가 소수인 일차방정식은 소수점 아래 자리가 가장 긴 수에 맞춰 양변의 모든 항에 $10$, $100$ 등을 곱한다. 예를 들어 $0.3x-0.15=0.6$은 $0.15$에 맞춰 {$100$}을 곱한다.",
+        "cSlotAnswers": [
+          "$100$"
+        ],
+        "cStudentSentence": "계수가 소수인 일차방정식은 소수점 아래 자리가 가장 긴 수에 맞춰 양변의 모든 항에 $10$, $100$ 등을 곱한다. 예를 들어 $0.3x-0.15=0.6$은 $0.15$에 맞춰 □을 곱한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$100$",
+            "equivalentAnswers": [
+              "$100$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$100$"
+          ]
+        ],
+        "proposalFingerprint": "e7f6c4fd95646a185ff8068afb4cc2562ad70128940632c1d9e136bae842ca3e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc12",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "분수 계수에 곱할 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모의 {최소공배수}를 양변의 모든 항에 곱하며, {상수항}에도 빠짐없이 곱한다.",
+        "example": {
+          "prompt": "$\\frac{x}{3}-1=\\frac{x}{4}$의 해는?",
+          "answer": "$x=12$"
+        },
+        "studentC": "분모의 □를 양변의 모든 항에 곱하며, □에도 빠짐없이 곱한다.",
+        "answers": [
+          "최소공배수",
+          "상수항"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{x}{3}-1=\\frac{x}{4}$의 양변에 분모 $3$, $4$의 최소공배수를 곱하려고 합니다. 곱하는 수와 곱한 뒤의 식을 쓰고 해를 구하세요. 이때 빠뜨리기 쉬운 항이 무엇인지도 말하세요.",
+        "bAnswer": "$12$를 곱하면 $4x-12=3x$이므로 $x=12$이다. 분수가 아닌 상수항 $-1$에도 $12$를 곱해야 하는데 이것을 빠뜨리기 쉽다.",
+        "bGoal": "분모의 최소공배수를 양변의 모든 항, 특히 상수항에도 빠짐없이 곱한다.",
+        "bReason": "제목 '분수 계수에 곱할 수'는 수 하나만 묻는 것처럼 보이지만 정의의 요점은 '상수항에도 곱한다'이다. 분수가 아닌 상수항이 있는 식을 주고 그 점을 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "계수가 분수인 일차방정식에서 분모의 최소공배수를 양변에 곱할 때에는, $\\frac{x}{3}-1=\\frac{x}{4}$의 $-1$처럼 분수가 아닌 {상수항}에도 빠짐없이 곱한다.",
+        "cAnswers": [
+          "상수항"
+        ],
+        "cReason": "원문은 어떤 식 이야기인지 없고, 첫 빈칸(최소공배수)은 m1-03-06-c7의 C와 답이 겹친다. 주어를 밝히고 이 문항만의 요점인 '상수항'을 예시와 함께 남겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "곱하는 수는 $12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱한 뒤의 식 $4x-12=3x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "빠뜨리기 쉬운 항: 분수가 아닌 상수항 $-1$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "최소공배수를 모든 항에",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1284,
+        "part": "m1plus",
+        "sourceFingerprint": "4e3920b7d0d8d568329af6669141ab05b91bcb4dad5547b1c18491daf10640cd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1284
+        },
+        "directReview": null,
+        "cMarkedSentence": "계수가 분수인 일차방정식에서 분모의 최소공배수를 양변에 곱할 때에는, $\\frac{x}{3}-1=\\frac{x}{4}$의 $-1$처럼 분수가 아닌 {상수항}에도 빠짐없이 곱한다.",
+        "cSlotAnswers": [
+          "상수항"
+        ],
+        "cStudentSentence": "계수가 분수인 일차방정식에서 분모의 최소공배수를 양변에 곱할 때에는, $\\frac{x}{3}-1=\\frac{x}{4}$의 $-1$처럼 분수가 아닌 □에도 빠짐없이 곱한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상수항",
+            "equivalentAnswers": [
+              "상수항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상수항"
+          ]
+        ],
+        "proposalFingerprint": "d830e50f5a4fc76c60861553e29fbcdee52cf69131f20b9d3e30110bc2ae009c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc13",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "일차방정식이 아닌 경우",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정리했을 때 $x$의 항이 없어지거나 {$x^2$}의 항이 남으면 일차방정식이 {아니다}.",
+        "example": {
+          "prompt": "$x^2+x=x+1$은 일차방정식인가?",
+          "answer": "아니다"
+        },
+        "studentC": "정리했을 때 $x$의 항이 없어지거나 □의 항이 남으면 일차방정식이 □.",
+        "answers": [
+          "$x^2$",
+          "아니다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+x=x+1$과 $2x+3=2x+5$를 각각 모든 항을 좌변으로 옮겨 정리하세요. 그리고 두 방정식이 일차방정식이 아닌 까닭을 각각 말하세요.",
+        "bAnswer": "$x^2+x=x+1$은 $x^2-1=0$이 되어 $x^2$의 항이 남으므로 일차방정식이 아니다. $2x+3=2x+5$는 $-2=0$이 되어 $x$의 항이 없어지므로 일차방정식이 아니다.",
+        "bGoal": "정리했을 때 $x$의 항이 없어지거나 $x^2$의 항이 남으면 일차방정식이 아님을 안다.",
+        "bReason": "제목 '일차방정식이 아닌 경우'는 두 경우를 가리키는데 원문 예시는 하나뿐이다. $x^2$이 남는 식과 $x$가 없어지는 식을 하나씩 넣어 두 경우를 모두 판단하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "모든 항을 좌변으로 옮겨 정리했을 때 $x$의 항이 없어지거나 {$x^2$}의 항이 남으면 일차방정식이 아니다.",
+        "cAnswers": [
+          "$x^2$"
+        ],
+        "cReason": "원문 '정리했을 때'는 무엇을 어떻게 정리하는지 없고, 둘째 빈칸 '아니다'는 맺음말이다. 정리 방법을 밝히고 빈칸을 하나로 줄였다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2+x=x+1$은 $x^2-1=0$이 되어 $x^2$의 항이 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2x+3=2x+5$는 $-2=0$이 되어 $x$의 항이 없어진다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "definition",
+        "roleReason": "일차방정식이 아닌 꼴",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1285,
+        "part": "m1plus",
+        "sourceFingerprint": "a399692ec47e355661f51a49ac33562d917e3b829a9451f11b2983a5c2ca36ef",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1285
+        },
+        "directReview": null,
+        "cMarkedSentence": "모든 항을 좌변으로 옮겨 정리했을 때 $x$의 항이 없어지거나 {$x^2$}의 항이 남으면 일차방정식이 아니다.",
+        "cSlotAnswers": [
+          "$x^2$"
+        ],
+        "cStudentSentence": "모든 항을 좌변으로 옮겨 정리했을 때 $x$의 항이 없어지거나 □의 항이 남으면 일차방정식이 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x^2$",
+            "equivalentAnswers": [
+              "$x^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x^2$"
+          ]
+        ],
+        "proposalFingerprint": "14ed45bec4bf08246208dcb3e8cbe9c46eeb323dbd9bcfa795a935bbe73c08ab"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc14",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "해가 분수인 방정식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$ax=b$에서 $b$가 $a$로 나누어떨어지지 않으면 해는 {분수} {$\\frac{b}{a}$}로 쓴다.",
+        "example": {
+          "prompt": "$6x=4$의 해는?",
+          "answer": "$x=\\frac{2}{3}$"
+        },
+        "studentC": "$ax=b$에서 $b$가 $a$로 나누어떨어지지 않으면 해는 □ □로 쓴다.",
+        "answers": [
+          "분수",
+          "$\\frac{b}{a}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$6x=4$의 해를 구하세요. $4$는 $6$으로 나누어떨어지지 않는데 이럴 때 해를 어떤 수로 나타내는지 쓰세요. 또 $ax=b$($a$, $b$는 정수, $a\\neq0$)의 해를 $a$와 $b$로 나타내세요.",
+        "bAnswer": "양변을 $6$으로 나누면 $x=\\frac{4}{6}=\\frac{2}{3}$이다. 나누어떨어지지 않으면 해를 분수로 쓴다. $ax=b$의 해는 $x=\\frac{b}{a}$이다.",
+        "bGoal": "$ax=b$에서 나누어떨어지지 않을 때 해를 분수 $\\frac{b}{a}$로 나타낸다.",
+        "bReason": "제목 '해가 분수인 방정식'은 종류 이름이다. 나누어떨어지지 않는 구체 식과 일반 꼴을 함께 주고, 기호 조건 $a\\neq0$을 질문에 밝혔다.",
+        "cDecision": "rewrite",
+        "cAfter": "$ax=b$ ($a\\neq0$)에서 $b$가 $a$로 나누어떨어지지 않으면 해는 분수 {$\\frac{b}{a}$}로 쓴다. 예를 들어 $6x=4$의 해는 $x=\\frac{2}{3}$이다.",
+        "cAnswers": [
+          "$\\frac{b}{a}$"
+        ],
+        "cReason": "원문은 빈칸 두 개가 '□ □로'처럼 붙어 있어 각각 무엇을 쓰라는지 알기 어렵고, 나눗셈에 필요한 조건 $a\\neq0$도 없다. 조건을 넣고 '분수'는 보이게 하여 식 하나만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6x=4$의 해는 $x=\\frac{2}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어떨어지지 않으면 해를 분수로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$ax=b$의 해는 $x=\\frac{b}{a}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "안 나누어지면 분수 해",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1286,
+        "part": "m1plus",
+        "sourceFingerprint": "341c46bef7685a57a685b96cfce7a96e7fdc52014bfe8a7cd21889ceaa35c75b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1286
+        },
+        "directReview": null,
+        "cMarkedSentence": "$ax=b$ ($a\\neq0$)에서 $b$가 $a$로 나누어떨어지지 않으면 해는 분수 {$\\frac{b}{a}$}로 쓴다. 예를 들어 $6x=4$의 해는 $x=\\frac{2}{3}$이다.",
+        "cSlotAnswers": [
+          "$\\frac{b}{a}$"
+        ],
+        "cStudentSentence": "$ax=b$ ($a\\neq0$)에서 $b$가 $a$로 나누어떨어지지 않으면 해는 분수 □로 쓴다. 예를 들어 $6x=4$의 해는 $x=\\frac{2}{3}$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{b}{a}$",
+            "equivalentAnswers": [
+              "$\\frac{b}{a}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{b}{a}$"
+          ]
+        ],
+        "proposalFingerprint": "244af8838805832469e2512bedb8b66f77c10793944fb20f05e3cab1d4e225b5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc15",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "미지수가 우변에 남았을 때 해 쓰기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "풀어서 (수)$=x$ 꼴이 되면 양변을 {바꾸어} $x=$(수) 꼴로 해를 쓴다. 등식은 양변을 바꾸어도 {성립}하기 때문이다.",
+        "example": {
+          "prompt": "$3=x$를 $x=3$으로 써도 되는 까닭은?",
+          "answer": "양변을 바꾸어도 같은 등식이어서"
+        },
+        "studentC": "풀어서 (수)$=x$ 꼴이 되면 양변을 □ $x=$(수) 꼴로 해를 쓴다. 등식은 양변을 바꾸어도 □하기 때문이다.",
+        "answers": [
+          "바꾸어",
+          "성립"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "(수)$=x$ 꼴을 $x=$(수) 꼴로 바꾸어 해를 쓰는 근거를 안다.",
+        "bReason": "제목 '미지수가 우변에 남았을 때 해 쓰기'가 묻는 근거는 앞 단원 m1-03-05-xc12의 B(미지수가 우변에 있는 방정식을 고쳐 쓰는 근거)와 같은 성질이다. 상황만 풀이 처음에서 끝으로 옮긴 것이다.",
+        "cDecision": "rewrite",
+        "cAfter": "방정식을 풀어 (수)$=x$ 꼴이 되면 $x=$(수) 꼴로 고쳐 해를 쓴다. 등식은 좌변과 우변을 서로 {바꾸어도} 성립하기 때문이다.",
+        "cAnswers": [
+          "바꾸어도"
+        ],
+        "cReason": "원문은 첫 빈칸의 답 '바꾸어'가 바로 뒤 문장 '양변을 바꾸어도'에 그대로 있어 베끼면 된다. 둘째 빈칸 '성립'도 맺음말이다. 앞 문장을 '고쳐'로 바꾸고 근거 쪽에 빈칸 하나만 두었다.",
+        "exclusionReason": "B 제외: m1-03-05-xc12의 B(양변을 바꾸어 써도 되는 근거)와 같은 근거를 묻는 서술형 중복이다. C는 근거 문장의 빈칸으로 유지한다.",
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "양변을 바꿔도 등식 성립",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1287,
+        "part": "m1plus",
+        "sourceFingerprint": "6ec32803a2ccb5656abf9bf039231f53f5c2b8e5f86d7895ebf22a88d26c8908",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1287
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식을 풀어 (수)$=x$ 꼴이 되면 $x=$(수) 꼴로 고쳐 해를 쓴다. 등식은 좌변과 우변을 서로 {바꾸어도} 성립하기 때문이다.",
+        "cSlotAnswers": [
+          "바꾸어도"
+        ],
+        "cStudentSentence": "방정식을 풀어 (수)$=x$ 꼴이 되면 $x=$(수) 꼴로 고쳐 해를 쓴다. 등식은 좌변과 우변을 서로 □ 성립하기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "바꾸어도",
+            "equivalentAnswers": [
+              "바꾸어도"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "바꾸어도"
+          ]
+        ],
+        "proposalFingerprint": "597a7721dd4afb87436d726361659f0abf07d8e9b6d7374bae3b37947086bda6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc16",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "소수와 분수가 섞인 방정식",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수와 분수가 섞이면 소수를 {분수}로 바꾼 뒤 분모의 {최소공배수}를 곱한다.",
+        "example": {
+          "prompt": "$0.5x+\\frac{1}{3}=\\frac{5}{6}$의 해는?",
+          "answer": "$x=1$"
+        },
+        "studentC": "소수와 분수가 섞이면 소수를 □로 바꾼 뒤 분모의 □를 곱한다.",
+        "answers": [
+          "분수",
+          "최소공배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.5x+\\frac{1}{3}=\\frac{5}{6}$처럼 소수와 분수가 섞인 일차방정식을 풉니다. 먼저 소수를 어떻게 바꾸는지 쓰고, 양변에 곱할 가장 작은 자연수와 곱한 뒤의 식, 해를 차례로 쓰세요.",
+        "bAnswer": "$0.5$를 분수 $\\frac12$로 바꾸어 식 $\\frac12x+\\frac13=\\frac56$을 얻는다. 분모 $2$, $3$, $6$의 최소공배수 $6$을 양변에 곱하면 $3x+2=5$이므로 $x=1$이다.",
+        "bGoal": "소수와 분수가 섞인 방정식은 소수를 분수로 고친 뒤 분모의 최소공배수를 곱해 푼다.",
+        "bReason": "제목 '소수와 분수가 섞인 방정식'은 종류 이름이다. 구체 식에서 첫 단계, 곱할 수, 중간 식, 해를 차례로 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "계수에 소수와 분수가 섞인 일차방정식은 먼저 소수를 {분수}로 바꾼 뒤 양변에 분모의 최소공배수를 곱한다.",
+        "cAnswers": [
+          "분수"
+        ],
+        "cReason": "원문 '소수와 분수가 섞이면'은 어디에 섞였는지, 무엇에 곱하는지(양변)가 없다. 둘째 빈칸(최소공배수)은 m1-03-06-c7의 C와 겹친다. 주어와 '양변에'를 넣고 이 문항만의 첫 단계만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.5$를 분수 $\\frac{1}{2}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변에 $6$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱한 뒤의 식 $3x+2=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=1$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "소수를 분수로 고친 뒤 곱함",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "notationReason": "분수로 끝나는 식 뒤의 조사 논란은 식을 얻는다는 문장으로 피하고 방정식·해는 그대로이다.",
+        "sourceIndex": 1288,
+        "part": "m1plus",
+        "sourceFingerprint": "0f499ab0ec4b91b86bfa60cd48e251b83d56539a3a44ebe5542cb5f412f55bb7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1288
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-03-06-xc16"
+        },
+        "cMarkedSentence": "계수에 소수와 분수가 섞인 일차방정식은 먼저 소수를 {분수}로 바꾼 뒤 양변에 분모의 최소공배수를 곱한다.",
+        "cSlotAnswers": [
+          "분수"
+        ],
+        "cStudentSentence": "계수에 소수와 분수가 섞인 일차방정식은 먼저 소수를 □로 바꾼 뒤 양변에 분모의 최소공배수를 곱한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ]
+        ],
+        "proposalFingerprint": "629f647c36bf41140ff77e2d982f7923de6ebe0e5e2eec1f7fc9b6c8be78f3c8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc17",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "분자에 괄호를 치는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\frac{x-1}{2}$에 $6$을 곱하면 $3(x-1)$이다. 분자 전체에 곱해야 하므로 분자를 {괄호}로 {묶어} 계산한다.",
+        "example": {
+          "prompt": "$\\frac{x+2}{3}=\\frac{x-1}{2}$의 해는?",
+          "answer": "$x=7$"
+        },
+        "studentC": "$\\frac{x-1}{2}$에 $6$을 곱하면 $3(x-1)$이다. 분자 전체에 곱해야 하므로 분자를 □로 □ 계산한다.",
+        "answers": [
+          "괄호",
+          "묶어"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{x+2}{3}=\\frac{x-1}{2}$의 양변에 $6$을 곱한 식을 괄호를 써서 나타내세요. 분자에 괄호를 쳐야 하는 까닭을 말하고 해를 구하세요.",
+        "bAnswer": "$2(x+2)=3(x-1)$이다. 곱하는 수가 분자 전체에 곱해져야 하므로 분자를 괄호로 묶는다. $2x+4=3x-3$에서 $x=7$이다.",
+        "bGoal": "분자가 여러 항인 분수에 수를 곱할 때 분자를 괄호로 묶어 계산한다.",
+        "bReason": "제목 '분자에 괄호를 치는 까닭'은 어떤 식의 분자인지 없다. 분자가 두 항인 방정식을 주고 곱한 식, 까닭, 해를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{x-1}{2}$에 $6$을 곱하면 $3(x-1)$이다. 분자 전체에 곱해야 하므로 분자를 {괄호}로 묶어 계산한다.",
+        "cAnswers": [
+          "괄호"
+        ],
+        "cReason": "둘째 빈칸 '묶어'는 '괄호로'를 알면 저절로 따라오는 말이라 빈칸이 둘일 까닭이 없다. 빈칸을 '괄호' 하나로 줄였고 문장은 그대로 두었다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2(x+2)=3(x-1)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 곱하는 수가 분자 전체(모든 항)에 곱해져야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=7$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "분자 전체에 곱해짐",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1289,
+        "part": "m1plus",
+        "sourceFingerprint": "2410a1d104239ce172a586790de769af5eabfdbf8357d4f3ec2319a5b2064ef5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1289
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\frac{x-1}{2}$에 $6$을 곱하면 $3(x-1)$이다. 분자 전체에 곱해야 하므로 분자를 {괄호}로 묶어 계산한다.",
+        "cSlotAnswers": [
+          "괄호"
+        ],
+        "cStudentSentence": "$\\frac{x-1}{2}$에 $6$을 곱하면 $3(x-1)$이다. 분자 전체에 곱해야 하므로 분자를 □로 묶어 계산한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ]
+        ],
+        "proposalFingerprint": "c72497c979922708340a9d7bdbd1c0cd4d6b98b9e877fd26ac8878f1effddfc0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc18",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "비례식을 방정식으로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$a:b=c:d$이면 {$ad=bc$}이므로 비례식을 방정식으로 바꾸어 풀 수 있다.",
+        "example": {
+          "prompt": "$(x+1):3=4:6$의 해는?",
+          "answer": "$x=1$"
+        },
+        "studentC": "$a:b=c:d$이면 □이므로 비례식을 방정식으로 바꾸어 풀 수 있다.",
+        "answers": [
+          "$ad=bc$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "비례식 $(x+1):3=4:6$을 방정식으로 바꿀 때 쓰는 비례식의 성질을 말하고, 바꾼 방정식과 해를 구하세요.",
+        "bAnswer": "비례식에서 바깥쪽 두 항의 곱과 안쪽 두 항의 곱은 같다. 곧 $a:b=c:d$이면 $ad=bc$이다. $6(x+1)=3\\times4$에서 $6x+6=12$이므로 $x=1$이다.",
+        "bGoal": "비례식의 성질 $ad=bc$를 써서 비례식을 방정식으로 바꾸어 푼다.",
+        "bReason": "제목 '비례식을 방정식으로'는 문장이 끊겨 있다. 구체 비례식을 주고 쓰는 성질, 바꾼 식, 해를 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "비례식 $a:b=c:d$가 문장에 있고 빈칸이 그 성질을 나타내는 식 하나라 답이 정해진다. 초등학교에서 배운 성질을 문자로 쓰는 쓸모 있는 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "비례식에서 바깥쪽 두 항의 곱과 안쪽 두 항의 곱은 같다($a:b=c:d$이면 $ad=bc$)"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식 $6(x+1)=3\\times4$(같은 뜻의 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=1$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "비례식을 곱의 등식으로",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1290,
+        "part": "m1plus",
+        "sourceFingerprint": "d8e94a4afe8c719acf6aaa4e7698ca81a85264ed2da370f7b081d40aa979ac2b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1290
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a:b=c:d$이면 □이므로 비례식을 방정식으로 바꾸어 풀 수 있다.",
+        "cFrozenDefinition": "$a:b=c:d$이면 {$ad=bc$}이므로 비례식을 방정식으로 바꾸어 풀 수 있다.",
+        "cFrozenAnswers": [
+          "$ad=bc$"
+        ],
+        "cMarkedSentence": "$a:b=c:d$이면 {$ad=bc$}이므로 비례식을 방정식으로 바꾸어 풀 수 있다.",
+        "cSlotAnswers": [
+          "$ad=bc$"
+        ],
+        "cStudentSentence": "$a:b=c:d$이면 □이므로 비례식을 방정식으로 바꾸어 풀 수 있다.",
+        "cAnswers": [
+          "$ad=bc$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$ad=bc$",
+            "equivalentAnswers": [
+              "$ad=bc$",
+              "$bc=ad$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$ad=bc$",
+            "accept": [
+              "$bc=ad$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$ad=bc$",
+            "$bc=ad$"
+          ]
+        ],
+        "proposalFingerprint": "735486d624871921128229e56a4f9c381953af3c32a1212b62bd87ff1996e552"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc19",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "정리하면 $x$가 사라지는 방정식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정리하여 $0\\times x=b$ 꼴이 되면 $b\\neq0$일 때 해가 {없고}, $b=0$일 때 해가 {무수히 많다}.",
+        "example": {
+          "prompt": "$3x-(x+4)=2(x-1)$의 해는?",
+          "answer": "없다"
+        },
+        "studentC": "정리하여 $0\\times x=b$ 꼴이 되면 $b\\neq0$일 때 해가 □, $b=0$일 때 해가 □.",
+        "answers": [
+          "없고",
+          "무수히 많다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식을 정리했더니 $0\\times x=b$($b$는 수) 꼴이 되었습니다. $b\\neq0$일 때와 $b=0$일 때 해가 각각 어떻게 되는지 까닭과 함께 쓰세요. 그리고 $3x-(x+4)=2(x-1)$은 어느 경우인지 정리하여 판단하세요.",
+        "bAnswer": "$b\\neq0$이면 $x$에 어떤 수를 넣어도 좌변이 $0$이라 성립하지 않으므로 해가 없다. $b=0$이면 $x$에 어떤 수를 넣어도 $0=0$으로 성립하므로 해가 무수히 많다. $3x-(x+4)=2(x-1)$은 $2x-4=2x-2$, 곧 $0\\times x=2$가 되어 해가 없다.",
+        "bGoal": "정리하여 $x$의 항이 사라지는 방정식의 해를 두 경우로 나누어 판단한다.",
+        "bReason": "제목 '정리하면 $x$가 사라지는 방정식'은 무엇을 답할지 없다. $0\\times x=b$ 꼴과 $b$의 두 경우를 질문에 밝히고 원문 예시로 판단하게 했다.",
+        "cDecision": "keep",
+        "cReason": "꼴 $0\\times x=b$와 두 조건 $b\\neq0$, $b=0$이 모두 보이고 빈칸은 각 경우의 결론뿐이라 대조가 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b\\neq0$: 어떤 수를 넣어도 좌변이 $0$이라 성립하지 않으므로 해가 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b=0$: 어떤 수를 넣어도 $0=0$으로 성립하므로 해가 무수히 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주어진 방정식은 $2x-4=2x-2$, 곧 $0\\times x=2$ 꼴이 되어 해가 없다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "0×x=b의 해 판단",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1291,
+        "part": "m1plus",
+        "sourceFingerprint": "71342d356e9a4db0cdb7beee8e863e8b0e5c1171cc4c4536a53f03b4c0a7b875",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1291
+        },
+        "directReview": null,
+        "cFrozenSentence": "정리하여 $0\\times x=b$ 꼴이 되면 $b\\neq0$일 때 해가 □, $b=0$일 때 해가 □.",
+        "cFrozenDefinition": "정리하여 $0\\times x=b$ 꼴이 되면 $b\\neq0$일 때 해가 {없고}, $b=0$일 때 해가 {무수히 많다}.",
+        "cFrozenAnswers": [
+          "없고",
+          "무수히 많다"
+        ],
+        "cMarkedSentence": "정리하여 $0\\times x=b$ 꼴이 되면 $b\\neq0$일 때 해가 {없고}, $b=0$일 때 해가 {무수히 많다}.",
+        "cSlotAnswers": [
+          "없고",
+          "무수히 많다"
+        ],
+        "cStudentSentence": "정리하여 $0\\times x=b$ 꼴이 되면 $b\\neq0$일 때 해가 □, $b=0$일 때 해가 □.",
+        "cAnswers": [
+          "없고",
+          "무수히 많다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없고",
+            "equivalentAnswers": [
+              "없고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "무수히 많다",
+            "equivalentAnswers": [
+              "무수히 많다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없고"
+          ],
+          [
+            "무수히 많다"
+          ]
+        ],
+        "proposalFingerprint": "37e52e2aa2ce0410207e12a38b63a8b6ff76132b40062de80609e196ba355eb7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc20",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "잘못 이항한 곳 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "풀이를 따라가며 옮긴 항의 {부호}가 바뀌었는지, 모든 항에 같은 수를 {곱했는지} 확인한다.",
+        "example": {
+          "prompt": "$2x-3=5$를 $2x=5-3$으로 바꾼 잘못은?",
+          "answer": "부호를 바꾸지 않았다"
+        },
+        "studentC": "풀이를 따라가며 옮긴 항의 □가 바뀌었는지, 모든 항에 같은 수를 □ 확인한다.",
+        "answers": [
+          "부호",
+          "곱했는지"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$2x+3=9$에서 $2x=9+3$으로 바꾼 풀이가 틀린 까닭을 쓰고, 올바르게 고친 식과 해를 쓰시오.",
+        "bAnswer": "좌변의 $+3$을 우변으로 이항하면 $-3$이 되어야 한다. $2x=9-3=6$이므로 $x=3$이다.",
+        "bGoal": "잘못된 이항을 등식의 성질로 바로잡기",
+        "bReason": "실제 풀이를 주어 확인할 항과 오류 범위를 정한다.",
+        "cDecision": "exclude",
+        "cAfter": "일차방정식의 풀이가 맞는지 살필 때에는 이항한 항의 {부호}가 바뀌었는지, 양변에 수를 곱했다면 {모든} 항에 곱했는지 확인한다.",
+        "cAnswers": [
+          "부호",
+          "모든"
+        ],
+        "cReason": "풀이가 하나도 보이지 않아 어디를 확인하는지 알 수 없고 곱했는지는 모든 풀이에 해당하지 않는다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$+3$을 이항하면 $-3$이어야 함"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$$x=9-3$과 해 $x=3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "reason",
+        "roleReason": "이항 부호·곱셈 누락 점검",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "exclusionReason": "C: 실제 오답 풀이 없이 부호/곱했는지라는 점검 낱말을 외우게 하므로 C에서 제외하고, B에는 구체 오답 식을 제시한다.",
+        "sourceIndex": 1292,
+        "part": "m1plus",
+        "sourceFingerprint": "7e465a41ff0318156891bd16c63021e43ce437c5176900c6a5b33713a6c1bbac",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1292
+        },
+        "directReview": {
+          "path": "direct-review.json",
+          "id": "m1-03-06-xc20",
+          "note": "형식별 제외이며 개념 ID를 삭제하지 않는다."
+        },
+        "proposalFingerprint": "f0da54a49575487ec38a1cb258fa3873434aeeadf072fe24042823446792b489"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc21",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "공약수로 나누어 계수 줄이기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$12x+18=6x-6$처럼 모든 항에 공약수가 있으면 양변을 그 수로 {나누어} 계수를 {줄인} 뒤 푼다.",
+        "example": {
+          "prompt": "$12x+18=6x-6$의 해는?",
+          "answer": "$x=-4$"
+        },
+        "studentC": "$12x+18=6x-6$처럼 모든 항에 공약수가 있으면 양변을 그 수로 □ 계수를 □ 뒤 푼다.",
+        "answers": [
+          "나누어",
+          "줄인"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$12x+18=6x-6$의 네 항 $12x$, $18$, $6x$, $-6$을 모두 나눌 수 있는 가장 큰 자연수를 구하세요. 양변을 그 수로 나눈 식을 쓰고 해를 구하세요. 양변을 이렇게 나누어도 되는 근거도 쓰세요.",
+        "bAnswer": "$6$이다. 양변을 $6$으로 나누면 $2x+3=x-1$이므로 $x=-4$이다. 등식의 양변을 $0$이 아닌 같은 수로 나누어도 등식이 성립하기 때문이다.",
+        "bGoal": "모든 항에 공약수가 있으면 양변을 그 수로 나누어 간단히 한 뒤 푼다.",
+        "bReason": "제목 '공약수로 나누어 계수 줄이기'는 어떤 식의 공약수인지 없다. 구체 식에서 나눌 수, 나눈 식, 해, 근거를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$12x+18=6x-6$처럼 모든 항에 공약수가 있으면 양변을 그 공약수로 {나누어} 수를 작게 만든 뒤 푼다.",
+        "cAnswers": [
+          "나누어"
+        ],
+        "cReason": "둘째 빈칸 '줄인'은 '작게 한', '간단히 한' 등 여러 말이 가능해 답을 하나로 정하기 어렵다. 그 부분은 풀어 쓰고 해야 할 계산만 빈칸으로 남겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 자연수는 $6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변을 $6$으로 나눈 식 $2x+3=x-1$ (동치인 식 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=-4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "근거: 등식의 양변을 $0$이 아닌 같은 수로 나누어도 등식이 성립함 (같은 뜻의 표현 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "공약수로 양변 나눠 줄임",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1293,
+        "part": "m1plus",
+        "sourceFingerprint": "dfeb0687887fa01f305920563c217954a94ba64f28b94c2b538c4052f70aa9ae",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1293
+        },
+        "directReview": null,
+        "cMarkedSentence": "$12x+18=6x-6$처럼 모든 항에 공약수가 있으면 양변을 그 공약수로 {나누어} 수를 작게 만든 뒤 푼다.",
+        "cSlotAnswers": [
+          "나누어"
+        ],
+        "cStudentSentence": "$12x+18=6x-6$처럼 모든 항에 공약수가 있으면 양변을 그 공약수로 □ 수를 작게 만든 뒤 푼다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나누어",
+            "equivalentAnswers": [
+              "나누어",
+              "나눠"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "나누어",
+            "accept": [
+              "나눠"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나누어",
+            "나눠"
+          ]
+        ],
+        "proposalFingerprint": "e3cb36a47b2cdc4d44a857b15cfce683ada2eac9a46a09d0fd58b42bdca42a23"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc22",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "괄호가 겹친 방정식",
+        "kind": "방법",
+        "level": "상",
+        "definition": "괄호가 겹치면 {안쪽} 괄호부터 풀어 정리한 뒤 {이항}한다.",
+        "example": {
+          "prompt": "$2\\{x-(3-x)\\}=10$의 해는?",
+          "answer": "$x=4$"
+        },
+        "studentC": "괄호가 겹치면 □ 괄호부터 풀어 정리한 뒤 □한다.",
+        "answers": [
+          "안쪽",
+          "이항"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\{x-(3-x)\\}=10$처럼 괄호가 겹친 방정식에서 어느 괄호부터 푸는지 쓰고, 괄호를 차례로 푼 식과 해를 구하세요.",
+        "bAnswer": "안쪽 괄호 $(3-x)$부터 푼다. $x-(3-x)=2x-3$이므로 $2(2x-3)=10$, 곧 $4x-6=10$이다. $4x=16$에서 $x=4$이다.",
+        "bGoal": "괄호가 겹친 방정식은 안쪽 괄호부터 풀어 정리한 뒤 이항하여 푼다.",
+        "bReason": "제목 '괄호가 겹친 방정식'은 종류 이름이다. 중괄호와 소괄호가 겹친 식을 주고 푸는 순서, 중간 식, 해를 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\{x-(3-x)\\}=10$처럼 괄호가 겹친 방정식은 {안쪽} 괄호부터 풀어 정리한 뒤 이항한다.",
+        "cAnswers": [
+          "안쪽"
+        ],
+        "cReason": "원문 '괄호가 겹치면'은 어떤 모양인지 예가 없어 중1이 떠올리기 어렵다. 둘째 빈칸 '이항'은 m1-03-06-c1·xc3의 C와 답이 겹친다. 예시 식을 넣고 순서를 묻는 빈칸 하나만 남겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "안쪽 괄호 $(3-x)$부터 푼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "괄호를 차례로 푼 식: $2(2x-3)=10$, $4x-6=10$ (동치인 중간 식 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=4$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "안쪽 괄호부터 풀기",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1294,
+        "part": "m1plus",
+        "sourceFingerprint": "c2a261eee8e0f7a1ce3b5f1ff041e8c77088d7e5942284b82c4e018ba15f7542",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1294
+        },
+        "directReview": null,
+        "cMarkedSentence": "$2\\{x-(3-x)\\}=10$처럼 괄호가 겹친 방정식은 {안쪽} 괄호부터 풀어 정리한 뒤 이항한다.",
+        "cSlotAnswers": [
+          "안쪽"
+        ],
+        "cStudentSentence": "$2\\{x-(3-x)\\}=10$처럼 괄호가 겹친 방정식은 □ 괄호부터 풀어 정리한 뒤 이항한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "안쪽",
+            "equivalentAnswers": [
+              "안쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "안쪽"
+          ]
+        ],
+        "proposalFingerprint": "626cd7f4dd8f889713b401d9692a213aac74b7752f0a266cf2e60c9577eeafea"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-06-xc23",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "정수 항도 함께 곱하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "양변에 $10$을 곱한다는 것은 양변 전체를 $10$배 한다는 뜻이므로, 소수가 아닌 {정수 항}에도 똑같이 {곱해야} 한다.",
+        "example": {
+          "prompt": "$0.4x+1=0.2x-0.6$의 해는?",
+          "answer": "$x=-8$"
+        },
+        "studentC": "양변에 $10$을 곱한다는 것은 양변 전체를 $10$배 한다는 뜻이므로, 소수가 아닌 □에도 똑같이 □ 한다.",
+        "answers": [
+          "정수 항",
+          "곱해야"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.4x+1=0.2x-0.6$의 양변에 $10$을 곱한 식을 쓰세요. 어떤 학생이 $4x+1=2x-6$이라고 썼다면 어디가 왜 틀렸는지 설명하고, 바른 식으로 해를 구하세요.",
+        "bAnswer": "바른 식은 $4x+10=2x-6$이다. 양변에 $10$을 곱하는 것은 양변 전체를 $10$배 하는 것이므로 정수 항 $1$에도 $10$을 곱해야 하는데, 그 학생은 곱하지 않았다. $2x=-16$에서 $x=-8$이다.",
+        "bGoal": "양변에 수를 곱할 때 소수가 아닌 정수 항에도 똑같이 곱해야 함을 안다.",
+        "bReason": "제목 '정수 항도 함께 곱하기'는 무엇을 곱하는 상황인지 없다. 정수 항이 섞인 소수 계수 방정식과 흔한 잘못을 질문에 넣어 까닭을 말하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "양변에 $10$을 곱한다는 것은 양변 전체를 $10$배 한다는 뜻이므로, 소수가 있는 항뿐 아니라 {정수}인 항에도 똑같이 $10$을 곱해야 한다.",
+        "cAnswers": [
+          "정수"
+        ],
+        "cReason": "둘째 빈칸 '곱해야'는 앞의 '$10$을 곱한다'를 옮겨 쓰면 되는 말이다. 이 빈칸을 없애고, '소수가 있는 항뿐 아니라'로 견줄 대상을 주어 '정수'만 묻게 했다.",
+        "studentLabel": "소수 계수를 없앨 때 정수 항에도 곱하기",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바른 식 $4x+10=2x-6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "틀린 곳과 까닭: 정수 항 $1$에 $10$을 곱하지 않았음. 양변 전체(모든 항)에 $10$을 곱해야 함"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=-8$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "reason",
+        "roleReason": "양변 전체를 10배",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1295,
+        "part": "m1plus",
+        "sourceFingerprint": "38d750f1fe4450c80ea702e087ef9d1b4c8eb6746325c650135465c20f8c2db8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1295
+        },
+        "directReview": null,
+        "cMarkedSentence": "양변에 $10$을 곱한다는 것은 양변 전체를 $10$배 한다는 뜻이므로, 소수가 있는 항뿐 아니라 {정수}인 항에도 똑같이 $10$을 곱해야 한다.",
+        "cSlotAnswers": [
+          "정수"
+        ],
+        "cStudentSentence": "양변에 $10$을 곱한다는 것은 양변 전체를 $10$배 한다는 뜻이므로, 소수가 있는 항뿐 아니라 □인 항에도 똑같이 $10$을 곱해야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ]
+        ],
+        "proposalFingerprint": "0ba687907586f09dcee58ba72cb2f00520a782f897bf36d313c5cd56c8a23912"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-07-xc1",
+        "section": "중1::3. 방정식::일차방정식의 활용(해의 응용)",
+        "term": "해를 대입하는 자리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "해가 $x=p$이면 방정식의 {$x$}가 있는 자리마다 {$p$}를 넣는다.",
+        "example": {
+          "prompt": "$x=-1$을 $3x+a=2$에 넣으면?",
+          "answer": "$-3+a=2$"
+        },
+        "studentC": "해가 $x=p$이면 방정식의 □가 있는 자리마다 □를 넣는다.",
+        "answers": [
+          "$x$",
+          "$p$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-07-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $3x+a=2x-4$의 해가 $x=-1$이라고 한다. $x=-1$을 이 방정식의 어느 자리에 넣어야 하는지 설명하고, 넣은 뒤의 등식을 쓰시오. ($a$의 값은 구하지 않아도 된다.)",
+        "bAnswer": "$x$가 있는 자리 모두, 곧 좌변 $3x$의 $x$와 우변 $2x$의 $x$에 $-1$을 넣는다. $3\\times(-1)+a=2\\times(-1)-4$이므로 $-3+a=-6$이다.",
+        "bGoal": "해를 대입할 때 미지수가 있는 모든 자리에 같은 값을 넣어야 함을 안다.",
+        "bReason": "'또는'으로 한 문자열에 뭉친 대입식 대안을 anyOf로 분리",
+        "cDecision": "rewrite",
+        "cAfter": "방정식의 해가 $x=p$이면, $x$가 양변에 여러 번 나오더라도 $x$가 있는 {모든} 자리에 $p$를 넣는다.",
+        "cAnswers": [
+          "모든"
+        ],
+        "cReason": "원문의 두 답 $x$, $p$는 문장 앞의 '$x=p$'에서 그대로 베끼면 되는 빈칸이다. '자리마다'라는 요점을 묻는 한 낱말 빈칸으로 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 8,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$가 있는 모든 자리에 $-1$을 넣는다",
+              "좌변 $3x$의 $x$와 우변 $2x$의 $x$에 모두 $-1$을 넣는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\times(-1)+a=2\\times(-1)-4$",
+              "$-3+a=-6$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "x 자리마다 해를 넣음",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1296,
+        "part": "m1plus",
+        "sourceFingerprint": "2b1ac33f088eb95deebf557bc6dab6bd92a104894c5728526967c8217b245ede",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1296
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식의 해가 $x=p$이면, $x$가 양변에 여러 번 나오더라도 $x$가 있는 {모든} 자리에 $p$를 넣는다.",
+        "cSlotAnswers": [
+          "모든"
+        ],
+        "cStudentSentence": "방정식의 해가 $x=p$이면, $x$가 양변에 여러 번 나오더라도 $x$가 있는 □ 자리에 $p$를 넣는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모든",
+            "equivalentAnswers": [
+              "모든"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모든"
+          ]
+        ],
+        "proposalFingerprint": "b410445011dbe07968b4adf75cdf82cf5315fdf2dc4c81888c191d98abd85d73"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-07-xc2",
+        "section": "중1::3. 방정식::일차방정식의 활용(해의 응용)",
+        "term": "대입 뒤 남는 방정식",
+        "kind": "방법",
+        "level": "하",
+        "definition": "해를 대입하면 다른 문자가 만족해야 할 {등식}이 남는다. 그것이 그 문자에 대한 일차방정식이면 {풀어} 값을 구한다.",
+        "example": {
+          "prompt": "$ax-4=6$의 해가 $x=2$일 때 $a$의 값은?",
+          "answer": "$5$"
+        },
+        "studentC": "해를 대입하면 다른 문자가 만족해야 할 □이 남는다. 그것이 그 문자에 대한 일차방정식이면 □ 값을 구한다.",
+        "answers": [
+          "등식",
+          "풀어"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-07-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $ax-4=6$의 해가 $x=2$이다. $x=2$를 대입하면 어떤 문자에 대한 어떤 등식이 남는지 쓰고, 그 등식을 풀어 $a$의 값을 구하시오.",
+        "bAnswer": "$2a-4=6$이라는 $a$에 대한 일차방정식이 남는다. $2a=10$이므로 $a=5$이다.",
+        "bGoal": "해를 대입하면 다른 문자에 대한 방정식이 남고, 그것을 풀어 문자의 값을 구함을 안다.",
+        "bReason": "제목 '대입 뒤 남는 방정식'은 무엇을 어디에 대입하는지 없다. 대입 결과로 남는 등식과 그 풀이를 차례로 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "방정식 $ax-4=6$에 해 $x=2$를 대입하면 $x$는 없어지고 $a$만 남은 등식 {$2a-4=6$}이 된다. 이 등식을 $a$에 대한 일차방정식으로 보고 풀어 $a$의 값을 구한다.",
+        "cAnswers": [
+          "$2a-4=6$"
+        ],
+        "cReason": "원문은 '다른 문자'가 무엇인지 문장에 없고 둘째 답 '풀어'는 의미 없는 서술어 빈칸이다. 구체 방정식에서 대입 뒤 남는 등식을 직접 쓰게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 8,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a$에 대한 등식 $2a-4=6$이 남는다 (동치인 식 허용, '일차방정식'이라는 낱말은 필수 아님)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=5$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "대입 뒤 남는 식 풀기",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1297,
+        "part": "m1plus",
+        "sourceFingerprint": "57033a6aeb244b6a0b11a3898e63f49e301f6e02c5af9376149bd1c7afd6fa3d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1297
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식 $ax-4=6$에 해 $x=2$를 대입하면 $x$는 없어지고 $a$만 남은 등식 {$2a-4=6$}이 된다. 이 등식을 $a$에 대한 일차방정식으로 보고 풀어 $a$의 값을 구한다.",
+        "cSlotAnswers": [
+          "$2a-4=6$"
+        ],
+        "cStudentSentence": "방정식 $ax-4=6$에 해 $x=2$를 대입하면 $x$는 없어지고 $a$만 남은 등식 □이 된다. 이 등식을 $a$에 대한 일차방정식으로 보고 풀어 $a$의 값을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2a-4=6$",
+            "equivalentAnswers": [
+              "$2a-4=6$",
+              "$a\\times2-4=6$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2a-4=6$",
+            "accept": [
+              "$a\\times2-4=6$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$2a-4=6$",
+            "$a\\times2-4=6$"
+          ]
+        ],
+        "proposalFingerprint": "851aaca079cba21bc965f485f947be1894e80f907a1744126001f1693d7e39cb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-07-xc3",
+        "section": "중1::3. 방정식::일차방정식의 활용(해의 응용)",
+        "term": "구한 값 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "구한 문자의 값과 해를 함께 넣었을 때 양변이 {같으면} 맞게 {구한} 것이다.",
+        "example": {
+          "prompt": "$a=5$, $x=2$일 때 $ax-4$의 값은?",
+          "answer": "$6$"
+        },
+        "studentC": "구한 문자의 값과 해를 함께 넣었을 때 양변이 □ 맞게 □ 것이다.",
+        "answers": [
+          "같으면",
+          "구한"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-07-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $ax-4=6$의 해가 $x=2$일 때 $a=5$라고 구했다. 이 값이 맞는지 확인하려면 무엇을 어디에 넣어 무엇을 살펴야 하는지 설명하고, 실제로 확인하시오.",
+        "bAnswer": "$a=5$와 $x=2$를 방정식에 함께 넣어 좌변과 우변의 값이 같은지 본다. 좌변은 $5\\times2-4=6$, 우변은 $6$으로 같으므로 맞게 구했다.",
+        "bGoal": "구한 문자의 값과 해를 함께 대입해 양변이 같은지 확인하는 방법을 안다.",
+        "bReason": "제목 '구한 값 확인하기'는 무슨 값을 어떻게 확인하는지 지면에 없다. 구한 값과 해가 주어진 상황에서 확인 방법과 실행을 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "방정식의 해를 이용해 다른 문자의 값을 구했으면, 구한 문자의 값과 해를 방정식에 함께 넣어 본다. 이때 좌변의 값과 우변의 값이 {같으면} 문자의 값을 맞게 구한 것이다.",
+        "cAnswers": [
+          "같으면"
+        ],
+        "cReason": "둘째 빈칸 '구한'은 수학 내용이 아닌 임의 낱말이고, 어디에 넣는지도 문장에 없었다. 넣는 곳(방정식)을 밝히고 판단 기준 한 곳만 빈칸으로 남겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 8,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=5$와 $x=2$를 방정식 $ax-4=6$에 함께 대입한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "좌변과 우변의 값이 같은지 살핀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "확인: 좌변 $5\\times2-4=6$이 우변 $6$과 같으므로 맞다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "문자값과 해 함께 넣어 확인",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1298,
+        "part": "m1plus",
+        "sourceFingerprint": "520cbe12a7b99d42d587ec65b01820e5b8e13b7a3ef52de7409d58de4255654d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1298
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식의 해를 이용해 다른 문자의 값을 구했으면, 구한 문자의 값과 해를 방정식에 함께 넣어 본다. 이때 좌변의 값과 우변의 값이 {같으면} 문자의 값을 맞게 구한 것이다.",
+        "cSlotAnswers": [
+          "같으면"
+        ],
+        "cStudentSentence": "방정식의 해를 이용해 다른 문자의 값을 구했으면, 구한 문자의 값과 해를 방정식에 함께 넣어 본다. 이때 좌변의 값과 우변의 값이 □ 문자의 값을 맞게 구한 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같으면",
+            "equivalentAnswers": [
+              "같으면",
+              "같다면",
+              "일치하면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "같으면",
+            "accept": [
+              "같다면",
+              "일치하면"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같으면",
+            "같다면",
+            "일치하면"
+          ]
+        ],
+        "proposalFingerprint": "051a73355a48d3e7b1681fd9c5e5fb022d9cb92213bf83d70f27ff9eadab7f3a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-07-xc4",
+        "section": "중1::3. 방정식::일차방정식의 활용(해의 응용)",
+        "term": "상수항이 모르는 수일 때",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$2x+a=7$처럼 상수항이 모르는 수이면 해를 대입한 뒤 {이항}하여 그 수를 {구한다}.",
+        "example": {
+          "prompt": "$2x+a=7$의 해가 $x=3$일 때 $a$의 값은?",
+          "answer": "$1$"
+        },
+        "studentC": "$2x+a=7$처럼 상수항이 모르는 수이면 해를 대입한 뒤 □하여 그 수를 □.",
+        "answers": [
+          "이항",
+          "구한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-07-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $2x+a=7$의 해가 $x=3$이다. $x=3$을 대입한 뒤 어떤 계산으로 $a$의 값을 구하는지 과정을 쓰고, $a$의 값을 구하시오.",
+        "bAnswer": "대입하면 $6+a=7$이다. $6$을 우변으로 이항하면 $a=7-6$이므로 $a=1$이다.",
+        "bGoal": "상수항이 모르는 수인 방정식에서 해를 대입하고 이항하여 그 수를 구한다.",
+        "bReason": "'이항(또는 양변에서 빼기)'로 뭉친 대안을 anyOf로 분리",
+        "cDecision": "rewrite",
+        "cAfter": "$2x+a=7$처럼 상수항 $a$가 모르는 수이면, 해를 $x$에 대입한 뒤 $a$가 아닌 수를 반대쪽 변으로 {이항}하여 $a$의 값을 구한다.",
+        "cAnswers": [
+          "이항"
+        ],
+        "cReason": "둘째 빈칸 '구한다'는 문장 끝 서술어일 뿐 배울 내용이 아니다. 무엇을 이항하는지 밝히고 빈칸을 '이항' 하나로 줄였다.",
+        "exampleNeeded": true,
+        "authorBatch": 8,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6+a=7$",
+              "$2\\times3+a=7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$을 우변으로 이항하여 $a=7-6$",
+              "양변에서 $6$을 빼어 $a=7-6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=1$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "대입 후 이항해 상수 구함",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1299,
+        "part": "m1plus",
+        "sourceFingerprint": "00025012743ca09da9eab763e514887ccaf5d33f9a2d9af7de8da8a0ed289347",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1299
+        },
+        "directReview": null,
+        "cMarkedSentence": "$2x+a=7$처럼 상수항 $a$가 모르는 수이면, 해를 $x$에 대입한 뒤 $a$가 아닌 수를 반대쪽 변으로 {이항}하여 $a$의 값을 구한다.",
+        "cSlotAnswers": [
+          "이항"
+        ],
+        "cStudentSentence": "$2x+a=7$처럼 상수항 $a$가 모르는 수이면, 해를 $x$에 대입한 뒤 $a$가 아닌 수를 반대쪽 변으로 □하여 $a$의 값을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이항",
+            "equivalentAnswers": [
+              "이항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이항"
+          ]
+        ],
+        "proposalFingerprint": "754d208dccc37e6d37efc46905aafe18a73073baddde145109e69adbf664c0e8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-07-xc5",
+        "section": "중1::3. 방정식::일차방정식의 활용(해의 응용)",
+        "term": "계수가 모르는 수일 때",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$ax=12$처럼 계수가 모르는 수이면, $0$이 아닌 해를 대입한 뒤 양변을 해의 값으로 {나눈다}.",
+        "example": {
+          "prompt": "$ax=12$의 해가 $x=4$일 때 $a$의 값은?",
+          "answer": "$3$"
+        },
+        "studentC": "$ax=12$처럼 계수가 모르는 수이면, $0$이 아닌 해를 대입한 뒤 양변을 해의 값으로 □.",
+        "answers": [
+          "나눈다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-07-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $ax=12$의 해가 $x=4$이다. $x=4$를 대입한 뒤 어떤 계산으로 $a$의 값을 구하는지 쓰고, $a$의 값을 구하시오. 또 이 계산을 할 때 해가 $0$이 아니어야 하는 까닭도 쓰시오.",
+        "bAnswer": "대입하면 $4a=12$이고, 양변을 해의 값 $4$로 나누면 $a=3$이다. $0$으로는 나눌 수 없으므로 해가 $0$이 아닐 때만 이렇게 나눌 수 있다.",
+        "bGoal": "계수가 모르는 수인 방정식에서 해를 대입하고 양변을 해의 값으로 나누어 계수를 구한다.",
+        "bReason": "제목만으로는 계수가 모르는 수일 때 무엇을 묻는지 알 수 없다. 구체 방정식으로 계산 방법을 묻고 원문의 '$0$이 아닌 해' 조건도 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "예시 식, '$0$이 아닌 해'라는 조건, 대입 뒤 할 일이 한 문장에 다 있고 빈칸 '나눈다'가 핵심 동작이라 그대로 쓴다.",
+        "exampleNeeded": true,
+        "authorBatch": 8,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대입한 식 $4a=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변을 $4$(해의 값)로 나누어 $a=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: $0$으로는 나눌 수 없기 때문 (해가 $0$이면 해의 값으로 나누는 계산을 할 수 없다는 뜻이면 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "대입 후 해의 값으로 나눔",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1300,
+        "part": "m1plus",
+        "sourceFingerprint": "c4dce0b40707151445df7888201c6f637cb9993105179d035cdd9782c96e97c3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1300
+        },
+        "directReview": null,
+        "cFrozenSentence": "$ax=12$처럼 계수가 모르는 수이면, $0$이 아닌 해를 대입한 뒤 양변을 해의 값으로 □.",
+        "cFrozenDefinition": "$ax=12$처럼 계수가 모르는 수이면, $0$이 아닌 해를 대입한 뒤 양변을 해의 값으로 {나눈다}.",
+        "cFrozenAnswers": [
+          "나눈다"
+        ],
+        "cMarkedSentence": "$ax=12$처럼 계수가 모르는 수이면, $0$이 아닌 해를 대입한 뒤 양변을 해의 값으로 {나눈다}.",
+        "cSlotAnswers": [
+          "나눈다"
+        ],
+        "cStudentSentence": "$ax=12$처럼 계수가 모르는 수이면, $0$이 아닌 해를 대입한 뒤 양변을 해의 값으로 □.",
+        "cAnswers": [
+          "나눈다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나눈다",
+            "equivalentAnswers": [
+              "나눈다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나눈다"
+          ]
+        ],
+        "proposalFingerprint": "18c6eadd4e34700cde8b06567feb09e693d4894f51f9cdcecc6fba9df5bad323"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-07-xc6",
+        "section": "중1::3. 방정식::일차방정식의 활용(해의 응용)",
+        "term": "음수인 해의 대입",
+        "kind": "방법",
+        "level": "하",
+        "definition": "해가 음수이면 {괄호}를 쳐서 대입하고 곱셈의 {부호}에 주의한다.",
+        "example": {
+          "prompt": "$4x+a=0$의 해가 $x=-2$일 때 $a$의 값은?",
+          "answer": "$8$"
+        },
+        "studentC": "해가 음수이면 □를 쳐서 대입하고 곱셈의 □에 주의한다.",
+        "answers": [
+          "괄호",
+          "부호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-07-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $4x+a=0$의 해가 $x=-2$이다. 음수 $-2$를 $4x$의 $x$에 대입할 때 식을 어떻게 써야 하고 무엇에 주의해야 하는지 설명한 뒤, $a$의 값을 구하시오.",
+        "bAnswer": "$4\\times(-2)+a=0$처럼 괄호를 쳐서 대입하고, 양수와 음수의 곱은 음수가 된다는 부호에 주의한다. $-8+a=0$이므로 $a=8$이다.",
+        "bGoal": "음수인 해는 괄호를 쳐서 대입하고 곱의 부호를 바르게 정한다.",
+        "bReason": "제목 '음수인 해의 대입'은 주의할 점을 묻는지 계산을 묻는지 알 수 없다. 음수 해가 계수와 곱해지는 구체 식으로 쓰는 법과 주의점을 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "짧고 분명한 낱말 빈칸(괄호, 부호)이며 음수를 대입하는 상황이 문장에 드러나 있어 고칠 필요가 없다.",
+        "exampleNeeded": true,
+        "authorBatch": 8,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "괄호를 쳐서 $4\\times(-2)+a=0$처럼 대입한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱의 부호에 주의한다: 양수와 음수의 곱은 음수이므로 $-8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=8$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "음수 해는 괄호 쳐 대입",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1301,
+        "part": "m1plus",
+        "sourceFingerprint": "41888a960330eb0a6965ce5924c1fc38a928abffc57c479600d1456596a67eab",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1301
+        },
+        "directReview": null,
+        "cFrozenSentence": "해가 음수이면 □를 쳐서 대입하고 곱셈의 □에 주의한다.",
+        "cFrozenDefinition": "해가 음수이면 {괄호}를 쳐서 대입하고 곱셈의 {부호}에 주의한다.",
+        "cFrozenAnswers": [
+          "괄호",
+          "부호"
+        ],
+        "cMarkedSentence": "해가 음수이면 {괄호}를 쳐서 대입하고 곱셈의 {부호}에 주의한다.",
+        "cSlotAnswers": [
+          "괄호",
+          "부호"
+        ],
+        "cStudentSentence": "해가 음수이면 □를 쳐서 대입하고 곱셈의 □에 주의한다.",
+        "cAnswers": [
+          "괄호",
+          "부호"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ],
+          [
+            "부호"
+          ]
+        ],
+        "proposalFingerprint": "07f492c469fc73cfc72790be53dab3315edacafa17c245c65dee0ae301169738"
+      }
+    }
+  ]
+}
