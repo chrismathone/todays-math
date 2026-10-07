@@ -179,4 +179,4 @@ python scripts/import/textbook/report_load.py 'E:\todays-math-textbook-import' d
 - **«그림을 가리키는 말»** — «그래프» 라는 낱말만으로 미룬 771 가운데 630 이 글로 풀리는 문항이었다(«이차함수 …의 그래프가 x축과 만나는»). 낱말이 아니라 **가리킴**으로 가른다(`prepare.points_to_figure`).
 
 🔴 **한글로 그리기** — 지운 구역을 가리키는 곳(`content.hpf` · `container.rdf` · 머리의 `secCnt`)을 다 걷어야 한글이 연다(하나라도 남으면 «Open 실패»).
-`zipfile.writestr` 는 받은 ZipInfo 를 고쳐 쓴다 — 원본의 항목 정보를 새로 지어 넘긴다. 표 1,063개 · 묶음 993개, 실패 0.
+`zipfile.writestr` 는 받은 ZipInfo 를 고쳐 쓴다 — 원본의 항목 정보를 새로 지어 넘긴다. 표 1,167개 · 묶음 1,006개, 실패 0.
