@@ -23,7 +23,6 @@ const staff = {
 
 describe("effective workspace menu policy", () => {
   it("supports an exact bank/listening-only branch checklist", () => {
-    vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", staff.id);
     vi.stubEnv("ENGLISH_LISTENING_ENABLED", "true");
     const policy = effectiveWorkspaceMenuPolicy({
       ...staff,
@@ -94,29 +93,30 @@ describe("effective workspace menu policy", () => {
     expect(missing.menus).toEqual([]);
     expect(missing.branchMenus).toEqual([]);
   });
-  it("intersects pilot enrollment and kill switch with both stored policies", () => {
-    vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "teacher");
+  it("lets the stored policies alone decide listening, and intersects them with the kill switch", () => {
+    // The former pilot list is not read: an account it never named is treated like any other.
+    vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "someone-else");
     vi.stubEnv("ENGLISH_LISTENING_ENABLED", "true");
     const open = { ...staff, branch: { disabledMenus: [], menuRevision: 1 } };
-    expect(effectiveWorkspaceMenuPolicy(open).menus).toContain(
-      "english-listening",
-    );
-    expect(effectiveWorkspaceMenuPolicy(staff).menus).not.toContain(
-      "english-listening",
-    );
+    const allowed = effectiveWorkspaceMenuPolicy(open);
+    expect(allowed.menus).toContain("english-listening");
+    expect(allowed.unavailableMenus).toEqual([]);
+    const capped = effectiveWorkspaceMenuPolicy(staff);
+    expect(capped.menus).not.toContain("english-listening");
+    expect(capped.unavailableMenus).toEqual([]);
     expect(
       effectiveWorkspaceMenuPolicy({
         ...open,
         disabledMenus: ["english-listening"],
       }).menus,
     ).not.toContain("english-listening");
-    expect(
-      effectiveWorkspaceMenuPolicy({ ...open, id: "unenrolled" }).menus,
-    ).not.toContain("english-listening");
     vi.stubEnv("ENGLISH_LISTENING_ENABLED", "false");
-    expect(
-      effectiveWorkspaceMenuPolicy({ ...open, isSuperAdmin: true }).menus,
-    ).not.toContain("english-listening");
+    for (const account of [open, { ...open, isSuperAdmin: true }]) {
+      const off = effectiveWorkspaceMenuPolicy(account);
+      expect(off.menus).not.toContain("english-listening");
+      expect(off.unavailableMenus).toEqual(["english-listening"]);
+      expect(off.configuredMenus).toContain("english-listening");
+    }
   });
 });
 

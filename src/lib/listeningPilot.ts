@@ -2,37 +2,30 @@ import "server-only";
 import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
 import { workspaceMenusFromDisabled } from "@/contracts/accountAccess.contract";
 
-type PilotAccount = { id: string; isSuperAdmin?: boolean };
+type ListeningAccount = { id: string; isSuperAdmin?: boolean };
 
-/** Service administrators can run the initial pilot; other teachers are explicitly enrolled.
+/** English listening is an ordinary workspace menu: administrators switch it per account and per
+ * branch in the admin console, and those stored menus are the only grant. There is no enrolment
+ * list — `ENGLISH_LISTENING_TEACHER_IDS` is not read. What stays here is the service-wide switch.
  * Kept outside the English runtime so authentication never imports teacher content. */
-export function getListeningPilotAccess(account: PilotAccount) {
-  const grantedUserIds = (process.env.ENGLISH_LISTENING_TEACHER_IDS ?? "")
-    .split(",")
-    .map((id) => id.trim())
-    .filter(Boolean);
-  if (account.isSuperAdmin === true) grantedUserIds.push(account.id);
-  return {
-    enabled: process.env.ENGLISH_LISTENING_ENABLED !== "false",
-    grantedUserIds: [...new Set(grantedUserIds)],
-  };
+export function listeningServiceEnabled(): boolean {
+  return process.env.ENGLISH_LISTENING_ENABLED !== "false";
 }
 
+/** The account no longer decides anything; the parameter stays for the existing callers. */
 export function filterListeningPilotMenus(
-  account: PilotAccount,
+  _account: ListeningAccount,
   menus: readonly WorkspaceMenu[],
   disabledMenus: readonly string[],
 ): WorkspaceMenu[] {
-  const pilot = getListeningPilotAccess(account);
   const allowed =
-    pilot.enabled &&
-    pilot.grantedUserIds.includes(account.id) &&
+    listeningServiceEnabled() &&
     workspaceMenusFromDisabled(disabledMenus).includes("english-listening");
   return menus.filter((menu) => menu !== "english-listening" || allowed);
 }
 
 export function canAccessListeningPilot(
-  account: PilotAccount & { approvalStatus: string },
+  account: ListeningAccount & { approvalStatus: string },
   disabledMenus: readonly string[],
 ): boolean {
   return (

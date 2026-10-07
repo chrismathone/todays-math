@@ -5,8 +5,9 @@ import {
   workspaceMenusOf,
 } from "@/contracts/accountAccess.contract";
 import {
-  getListeningPilotAccess,
+  canAccessListeningPilot,
   filterListeningPilotMenus,
+  listeningServiceEnabled,
 } from "@/lib/listeningPilot";
 
 vi.mock("server-only", () => ({}));
@@ -33,40 +34,44 @@ describe("listening menu rollout", () => {
       "english-listening",
     );
   });
-  it("requires an explicit pilot grant or service administrator and honors the kill switch", () => {
+  it("follows the stored menus for every account, with no enrolment list, and honors the kill switch", () => {
     vi.stubEnv("ENGLISH_LISTENING_ENABLED", "true");
-    vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "teacher-one,teacher-two");
-    expect(
-      getListeningPilotAccess({ id: "teacher-one" }).grantedUserIds,
-    ).toContain("teacher-one");
-    expect(
-      filterListeningPilotMenus(
-        { id: "unlisted" },
-        workspaceMenusOf("english"),
-        [],
-      ),
-    ).not.toContain("english-listening");
-    expect(
-      filterListeningPilotMenus(
-        { id: "admin", isSuperAdmin: true },
-        workspaceMenusOf("english"),
-        [],
-      ),
-    ).toContain("english-listening");
-    expect(
-      filterListeningPilotMenus(
-        { id: "admin", isSuperAdmin: true },
-        workspaceMenusOf("english"),
-        ["english"],
-      ),
-    ).not.toContain("english-listening");
+    // The former pilot list neither grants nor withholds anything.
+    vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "teacher-one");
+    const accounts = [
+      { id: "teacher-one" },
+      { id: "unlisted" },
+      { id: "admin", isSuperAdmin: true },
+    ];
+    expect(listeningServiceEnabled()).toBe(true);
+    for (const account of accounts) {
+      expect(
+        filterListeningPilotMenus(account, workspaceMenusOf("english"), []),
+      ).toContain("english-listening");
+      for (const disabledMenus of [["english"], ["english-listening"]])
+        expect(
+          filterListeningPilotMenus(
+            account,
+            workspaceMenusOf("english"),
+            disabledMenus,
+          ),
+        ).not.toContain("english-listening");
+      expect(
+        canAccessListeningPilot({ ...account, approvalStatus: "approved" }, []),
+      ).toBe(true);
+      expect(
+        canAccessListeningPilot({ ...account, approvalStatus: "pending" }, []),
+      ).toBe(false);
+    }
     vi.stubEnv("ENGLISH_LISTENING_ENABLED", "false");
-    expect(
-      filterListeningPilotMenus(
-        { id: "admin", isSuperAdmin: true },
-        workspaceMenusOf("english"),
-        [],
-      ),
-    ).not.toContain("english-listening");
+    expect(listeningServiceEnabled()).toBe(false);
+    for (const account of accounts) {
+      expect(
+        filterListeningPilotMenus(account, workspaceMenusOf("english"), []),
+      ).not.toContain("english-listening");
+      expect(
+        canAccessListeningPilot({ ...account, approvalStatus: "approved" }, []),
+      ).toBe(false);
+    }
   });
 });
