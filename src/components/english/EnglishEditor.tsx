@@ -54,7 +54,7 @@ import {
   requestEnglish,
   statusOf,
 } from "./englishClient";
-import s from "./EnglishStudio.module.css";
+import s from "./EnglishLibrary.module.css";
 
 const CHOICES = Array.from({ length: ENGLISH_CHOICE_COUNT }, (_, i) =>
   String(i + 1),
@@ -384,23 +384,29 @@ export default function EnglishEditor({
         <button type="button" className={w.outlineButton} onClick={onBack}>
           목록
         </button>
-        <select
-          aria-label="검토 상태"
-          value={draft.status}
-          onChange={(event) =>
-            setDraft((current) =>
-              current
-                ? { ...current, status: event.target.value as EnglishSetStatus }
-                : current,
-            )
-          }
-        >
-          {ENGLISH_SET_STATUSES.map((status) => (
-            <option key={status} value={status}>
-              {status}
-            </option>
-          ))}
-        </select>
+        <label className={s.statusField}>
+          검토 상태
+          <select
+            aria-label="검토 상태"
+            value={draft.status}
+            onChange={(event) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      status: event.target.value as EnglishSetStatus,
+                    }
+                  : current,
+              )
+            }
+          >
+            {ENGLISH_SET_STATUSES.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </label>
         <span className={s.toolbarSpacer} />
         <button
           ref={printRef}
@@ -454,15 +460,19 @@ export default function EnglishEditor({
       )}
 
       <section className={s.card}>
-        <input
-          className={s.titleInput}
-          aria-label="세트 이름"
-          value={draft.title}
-          maxLength={SET_TITLE_MAX}
-          onChange={(event) =>
-            edit((set) => ({ ...set, title: event.target.value }))
-          }
-        />
+        <h2 className={s.sectionTitle}>지문과 세트 정보</h2>
+        <label className={s.field}>
+          세트 이름
+          <input
+            className={s.titleInput}
+            aria-label="세트 이름"
+            value={draft.title}
+            maxLength={SET_TITLE_MAX}
+            onChange={(event) =>
+              edit((set) => ({ ...set, title: event.target.value }))
+            }
+          />
+        </label>
         <p className={s.metaLine}>
           {SOURCE_LABEL[draft.source]} · {draft.questions.length}문항 ·{" "}
           {exam.school}
@@ -515,9 +525,9 @@ export default function EnglishEditor({
             className={`${s.card} ${s.question}`}
           >
             <div className={s.qHeadRow}>
-              <p className={s.qHead}>
+              <h3 className={s.qHead}>
                 {n}번 · {question.type}
-              </p>
+              </h3>
               <button
                 type="button"
                 className={w.outlineButton}

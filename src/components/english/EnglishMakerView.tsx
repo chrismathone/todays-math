@@ -1233,7 +1233,13 @@ export default function EnglishMakerView({
             </button>
           </div>
         </details>
-        <span className={s.methodHelp}>조건 설정 → 결과 검토 → 초안 저장</span>
+        <span className={s.methodHelp}>
+          {tab === "api"
+            ? "조건 설정 → 결과 검토 → 초안 저장"
+            : tab === "cloze"
+              ? "원문 복원 연습 · 초안 저장 후 검토"
+              : "외부 자료 가져오기 · 초안 저장 후 검토"}
+        </span>
       </div>
       <div className={s.workarea}>
         <div className={s.controls}>
@@ -1539,17 +1545,14 @@ export default function EnglishMakerView({
             />
           ) : (
             <div className={s.emptyResult}>
-              <span className={s.emptyMark} aria-hidden="true">
-                Aa
-              </span>
               <h2>
                 {busy === "generate"
                   ? "원문과 문항을 만들고 있습니다"
-                  : "제작 결과를 확인하는 곳"}
+                  : "제작 결과"}
               </h2>
               <p>
                 {tab === "api"
-                  ? "왼쪽에서 제작 조건을 정하면 원문, 문항, 정답·해설과 근거를 이곳에서 함께 확인할 수 있습니다."
+                  ? "제작 조건을 입력하고 생성하면 원문, 문항, 정답·해설과 근거가 여기에 표시됩니다."
                   : "보조 제작 방식은 초안 저장 후 검토 화면에서 원문과 문항을 확인합니다."}
               </p>
               <p>형식 검사와 교사의 내용 검토는 별개입니다.</p>
