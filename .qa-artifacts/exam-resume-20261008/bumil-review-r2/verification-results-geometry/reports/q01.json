@@ -1,0 +1,401 @@
+{
+  "status": "verified",
+  "studentDigest": "540ba2b796fa20c6fe9b0a14562a0b6ac52e8bafef917928f6a995b9f18c81a0",
+  "candidateDigest": "8485473a9cc1806b28f41041cb2591a69499671eb592f7b1b59a0bc56776d0dc",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "solveDigest": "0a1a40288bae4cf94e6c29fee4b22abb4de85238d8b3b3a931609b23cff61210",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 1,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q01",
+    "reviewedAtKst": "2026-10-08",
+    "independence": {
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "verifierIsDifferentAuthor": true,
+      "blindSolveCommit": "c998ea12a6447970c71679e6dd97d06d0fa3dc6b",
+      "answerExposure": "only after parent copied/hash-fixed this solver independent result",
+      "solveRawFileSha256": "55b78fd161aeb33ec0d1beb5aba0ec952728e6b6cb24622cc57e03b452a69d96",
+      "solveRawBytesMatchParent": true,
+      "solveFileUneditedSinceCommit": true,
+      "originalAnswersOrSolutionsRead": false,
+      "geometryAuthorCandidatesReviewed": false
+    },
+    "binding": {
+      "contract": "parent scripts/import/exam-twin/candidatePack.mjs bindCandidate(candidate.json); digest(independentSolve)",
+      "candidateObjectAndAssetBindingsRecomputed": true,
+      "allFourProvidedDigestsMatch": true,
+      "candidateFileSha256": "d8e2aaa7022f4e240ab571f397da0e13c8675d68765c6e85b20a21ce3953d025",
+      "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\verification\\verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "manifestInputHashMatched": true,
+      "alteredBytesPolicy": "fail closed; no altered candidate/student/spec/svg/solve detected",
+      "contractFileSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59"
+    },
+    "checkEvidence": {
+      "answerCorrect": {
+        "authorAnswer": "③",
+        "sealedIndependentAnswer": "③",
+        "codeChoiceMatches": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "calculation": {
+          "eligibleFirst": [
+            "라"
+          ],
+          "eligibleSecond": [
+            "마"
+          ]
+        }
+      },
+      "solutionCorrect": "저자 해설은 x>0의 증감으로 계수 부호를 먼저 고르고 절댓값으로 폭을 비교한다. 마의 |a|=1/2과 비교하는 첫 행에서 라만, |a|<1인 둘째 양수 행에서 마만 남는다. 실수 전체의 단조성으로 확대하지 않았다.",
+      "existenceUniqueness": "x>0에서만 증감을 판정했다. 다섯 계수는 모두 0이 아니며 두 빈칸의 적합 카드가 각각 유일하다.",
+      "choicesCorrect": {
+        "allFiveChecked": true,
+        "details": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "가는 x>0에서 증가하므로 첫 감소 조건에 맞지 않는다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "나는 음수 계수여서 두 번째 증가 조건에 맞지 않는다."
+          },
+          {
+            "choice": 3,
+            "matches": true,
+            "reason": "라는 감소하고 마보다 좁으며, 마는 증가하고 y=x²보다 넓다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "다는 |−1/5|<1/2이므로 마보다 넓다. 첫 폭 조건에 맞지 않는다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "가는 |3|>1이므로 y=x²보다 좁다. 두 번째 폭 조건에 맞지 않는다."
+          }
+        ],
+        "codeMatchesSealedBlindChoiceChecks": true
+      },
+      "figureConsistent": "그림 없음. 두 카드/조건 표의 열과 ㉠·㉡ 순서, 다섯 수식 및 보기를 렌더에서 확인했다.",
+      "sameCoreConceptAndProcedure": "답이 표시되지 않은 원본은 다섯 y=ax² 그래프 설명의 참·거짓 판정이다. 새 문항도 부호→x>0의 증감, |a|→폭이라는 동일 규칙을 순서대로 적용한다.",
+      "distinctPresentation": "원본의 단일 참 설명 선택을 두 조건의 교집합으로 두 카드 기록을 완성하는 구조로 바꾸었다. 카드 마와의 상대 폭 비교 및 카드쌍 선택이 추가되어 숫자·이름 교체를 넘는다.",
+      "naturalKorean": "두 조건을 모두 만족, 차례로, x>0 한정이 분명하고 표의 카드 이름을 일관되게 사용한다.",
+      "curriculumAppropriate": "y=ax², x>0에서의 증감과 계수 절댓값에 따른 폭만 묻는다. 중1 좌표, 중2 y=ax 그래프의 부호 읽기, 식의 값과 유리수의 대소가 선수이다. 미분·일반 단조성 이론은 필요 없다. 학교·AI·family 존재가 아니라 아래 공식 문구 및 실제 요구 절차로 판정했다.",
+      "allStudentSurfacesInScope": {
+        "stem": "y=ax², x>0에서의 증감과 계수 절댓값에 따른 폭만 묻는다.",
+        "choices": "모두 카드 두 개의 순서쌍이다. 잘못된 쌍에도 중3 밖의 명제·계산이 없다.",
+        "figuresAndTables": "그림 없음. 두 카드/조건 표의 열과 ㉠·㉡ 순서, 다섯 수식 및 보기를 렌더에서 확인했다.",
+        "notation": "정수·유리수 계수, 지수 2, 부등호, 카드 번호 표기만 사용한다.",
+        "answer": "라, 마라는 카드쌍과 선택표시 ③이며 새 고급 개념이 없다.",
+        "studentSolution": "저자 해설은 x>0의 증감으로 계수 부호를 먼저 고르고 절댓값으로 폭을 비교한다. 마의 |a|=1/2과 비교하는 첫 행에서 라만, |a|<1인 둘째 양수 행에서 마만 남는다. 실수 전체의 단조성으로 확대하지 않았다.",
+        "prerequisites": "중1 좌표, 중2 y=ax 그래프의 부호 읽기, 식의 값과 유리수의 대소가 선수이다. 미분·일반 단조성 이론은 필요 없다."
+      },
+      "unitFamilyFit": "live 06 규칙은 av>0/av<0로 볼록 방향·증감을, |av|>1로 폭을 판단한다. 새 |a| 비교 기준을 1/2로 바꾼 것은 동일 폭 규칙의 상대 비교이며 추가 이론이 아니다.",
+      "scoreAppropriate": "기본 제안 적정. 두 행에서 부호와 크기 각 한 번씩 판정하는 직접 성질 문제이다. 별도 방정식·그래프 구성 없이 네 개 조건 판단 및 쌍 매칭이어서 4점 객관식 부담이 적정하다."
+    },
+    "deterministicMath": {
+      "tool": "Python fractions.Fraction / decimal.Decimal / exact sign and symbolic-side classifications",
+      "executed": true,
+      "sourceOfInputs": "already blinded student statement/figures, not author facts or old answers",
+      "calculationCode": "coefficients=[3,-1/3,-1/5,-3,1/2]; first: a<0 and abs(a)>1/2; second: 0<a<1 (all fractions.Fraction)",
+      "results": {
+        "eligibleFirst": [
+          "라"
+        ],
+        "eligibleSecond": [
+          "마"
+        ]
+      },
+      "choiceMatches": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "matchesPreExposureSolve": true
+    },
+    "studentRenderReview": {
+      "localChromium": true,
+      "networkRequestsBlocked": true,
+      "katexThrowOnError": true,
+      "mathSpanCount": 28,
+      "reviewerViewedFullStemChoicesTablesFiguresAndNewSolution": true,
+      "inspectionPngSha256": "39a0e3a230a6d22b3ceb87f11efd9a188257a78cebdd1a513344bcf43d05c91e",
+      "inspectionArtifactRetained": false,
+      "layoutScope": "temporary neutral local review layout; no claim to parent production pagination",
+      "observations": "그림 없음. 두 카드/조건 표의 열과 ㉠·㉡ 순서, 다섯 수식 및 보기를 렌더에서 확인했다.",
+      "assets": []
+    },
+    "sourceComparison": {
+      "referencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\problems.json",
+      "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "questionNumber": 1,
+      "contentSha256": "7330d1796e68c77ec6b43fcf969bc579043b89fb5cf86e6ce71358c19ce40009",
+      "contentHashMatched": true,
+      "redactedAnswerFree": true,
+      "originalAnswerOrSolutionNotAccessed": true,
+      "figures": [],
+      "sameProcedure": "답이 표시되지 않은 원본은 다섯 y=ax² 그래프 설명의 참·거짓 판정이다. 새 문항도 부호→x>0의 증감, |a|→폭이라는 동일 규칙을 순서대로 적용한다.",
+      "substantiveDelta": "원본의 단일 참 설명 선택을 두 조건의 교집합으로 두 카드 기록을 완성하는 구조로 바꾸었다. 카드 마와의 상대 폭 비교 및 카드쌍 선택이 추가되어 숫자·이름 교체를 넘는다."
+    },
+    "curriculum": {
+      "targetGrade": "중3",
+      "targetEdition": "2015",
+      "status": "independently-reviewed-selected-student-surfaces",
+      "official2015Pdf": {
+        "id": "moe-2015-74-math-pdf",
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+        "archive_member": "별책8_수학과 교육과정.pdf",
+        "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "bytes": 2533289,
+        "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "primary": true,
+        "retrieved_date_kst": "2026-10-08",
+        "format": "pdf"
+      },
+      "evidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardRefs": [
+        {
+          "code": "9수03-09",
+          "verifiedText": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수03-10",
+          "verifiedText": "이차함수의 그래프의 성질을 이해한다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수03-01",
+          "verifiedText": "순서쌍과 좌표를 이해한다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수03-05",
+          "verifiedText": "일차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수02-02",
+          "verifiedText": "식의 값을 구할 수 있다.",
+          "physicalPages1Based": [
+            34
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        }
+      ],
+      "restrictionsVerified": [
+        {
+          "id": "no_vieta",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_ratio_identities",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "angle_range",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "real_quadratic_roots",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_function_applications",
+          "physicalPages1Based": [
+            37
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        }
+      ],
+      "surfaceEvidence": {
+        "stem": "y=ax², x>0에서의 증감과 계수 절댓값에 따른 폭만 묻는다.",
+        "choices": "모두 카드 두 개의 순서쌍이다. 잘못된 쌍에도 중3 밖의 명제·계산이 없다.",
+        "figuresAndTables": "그림 없음. 두 카드/조건 표의 열과 ㉠·㉡ 순서, 다섯 수식 및 보기를 렌더에서 확인했다.",
+        "notation": "정수·유리수 계수, 지수 2, 부등호, 카드 번호 표기만 사용한다.",
+        "answer": "라, 마라는 카드쌍과 선택표시 ③이며 새 고급 개념이 없다.",
+        "studentSolution": "저자 해설은 x>0의 증감으로 계수 부호를 먼저 고르고 절댓값으로 폭을 비교한다. 마의 |a|=1/2과 비교하는 첫 행에서 라만, |a|<1인 둘째 양수 행에서 마만 남는다. 실수 전체의 단조성으로 확대하지 않았다.",
+        "prerequisites": "중1 좌표, 중2 y=ax 그래프의 부호 읽기, 식의 값과 유리수의 대소가 선수이다. 미분·일반 단조성 이론은 필요 없다."
+      },
+      "rolloutSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "phaseInTextChecked": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "phaseInTextChecked": true
+        }
+      ],
+      "phaseInConclusion": "2015 중3 적용은 2020-03-01, 2022 중3 적용은 2027-03-01. 자료의 2025/2026 출처 연도 차이는 이 범위의 2015 적용 결론을 바꾸지 않는다. 출처 확정은 별도 보류.",
+      "normalization": "PDF 추출의 공백/줄바꿈/U+0001 제어 구분자만 제거하여 제공된 2020 HWP 추출 증거의 해당 문구와 2015 PDF를 대조했다. 새 HWP 추출을 수행했다고 주장하지 않는다.",
+      "amendmentReviewBoundary": "선택 문항의 기준·각도 범위·금지 방법·복잡도 제한 및 시행 시점에 한정했다. 관련 문구에서 실질 변경/불확실성은 발견되지 않았다. 전체 2015 개정 고시 연혁을 감사하거나 2022 재출판을 승인한 결과는 아니다.",
+      "specificForbiddenMethodsAvoided": "미분, 근과 계수 관계, 삼각비 항등식, 90° 밖 삼각비, 사인/코사인 법칙, 일반 삼각형 사인 넓이 암기식, 원과 비례/원의 거듭제곱, 라디안, 정사영/벡터 없음. q12 수선 높이와 q13 명시 단면만 사용."
+    },
+    "taxonomy": {
+      "unitSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+      "unitSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotScope": "parent supplied read-only 2026-10-07 snapshot; no DB call or claim of later live recapture",
+      "unit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "unitAppropriate": true,
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|06",
+      "registryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑴|06",
+        "grade": "중3",
+        "unitSection": "이차함수와 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑴",
+        "rpmType": "06",
+        "rpmTitle": "이차함수 의 그래프의 성질"
+      },
+      "liveCount": 12,
+      "liveFamilySnapshotMatch": true,
+      "generator": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "mode": "read-only relevant family source, no generator execution or edits",
+        "relevantLines1Based": [
+          732,
+          755
+        ]
+      },
+      "semanticDecision": "matched",
+      "reason": "live 06 규칙은 av>0/av<0로 볼록 방향·증감을, |av|>1로 폭을 판단한다. 새 |a| 비교 기준을 1/2로 바꾼 것은 동일 폭 규칙의 상대 비교이며 추가 이론이 아니다."
+    },
+    "objectiveDifficultyAndScore": {
+      "authorDifficultyProposal": "기본",
+      "reviewerDifficultyBand": "기본",
+      "candidateScore": 4,
+      "scoreAppropriate": true,
+      "candidateQuestionType": "객관식",
+      "authorProblemTypeProposal": "개념",
+      "reviewerProblemType": "개념",
+      "reason": "기본 제안 적정. 두 행에서 부호와 크기 각 한 번씩 판정하는 직접 성질 문제이다. 별도 방정식·그래프 구성 없이 네 개 조건 판단 및 쌍 매칭이어서 4점 객관식 부담이 적정하다.",
+      "empiricalCalibrationClaimed": false,
+      "sourceOrGeneratorDifficultyAutoApplied": false
+    },
+    "holds": [],
+    "nonblockingSuggestions": [],
+    "releaseBoundary": {
+      "reviewStatusCovers": "only these selected independent mathematics, full student-surface curriculum, presentation/language, difficulty/score and taxonomy dimensions",
+      "nativeProvenance": "blocked-parent-owned",
+      "rights": "blocked-parent-owned",
+      "sourceIdentity": "pending-parent-attestation",
+      "productionUseApproved": false,
+      "DBWrites": false,
+      "paidCalls": false,
+      "pushes": false,
+      "inferenceAPICalls": false
+    },
+    "consumerValidation": {
+      "module": "parent candidatePack.mjs evaluateReview",
+      "executed": true,
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "productionWrites": false,
+      "selectedReviewReasons": [],
+      "effect": "technical dimensions preserved separately; no production approval"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  }
+}
