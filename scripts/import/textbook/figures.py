@@ -423,12 +423,14 @@ def main() -> None:
             kept = [fig for fig in figs if fig["fate"] == "keep"]
             # 묶음째 그린 묶음 — 그 묶음의 그림들을 묶음 그림 하나로 접는다(라벨이 얹힌 채로)
             group_ids = {fig["group"] for fig in kept if fig.get("grouped") and fig.get("group")}
-            kept, stand_in = fold_groups(kept, {g for g in group_ids if (row["key"], g) in drawn_groups})
+            folded_groups = {g for g in group_ids if (row["key"], g) in drawn_groups}
+            kept, stand_in = fold_groups(kept, folded_groups)
             tables = set(real_tables) if tables_drawn else set()
             route = route_of(
                 row,
                 kept + [{"grouped": False} for _ in tables],
-                decoration_groups(figs),
+                # 묶음째 그린 묶음은 그림이 됐다 — 더는 «그려야 할 도형»이 아니다
+                decoration_groups(figs) | folded_groups,
                 points_to_figure(row["content"]),
                 tables_drawn=tables_drawn,
             )

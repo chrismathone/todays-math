@@ -307,6 +307,10 @@ def test_a_group_drawn_whole_stands_in_for_its_pictures():
     # 묶음 5 는 못 그렸다 — 그대로 묶음 그림으로 남아 «한글 도형» 갈래가 된다
     assert folded[2]["grouped"] is True
     assert folded[1]["grouped"] is False
+    # 그린 묶음은 갈래를 정할 때 도형으로 세지 않는다(장식 묶음과 같이 넘긴다)
+    row = {"tables": 0, "embeddedNumber": None, "shapeList": [["container", 20000, 15000, 4]]}
+    assert route_of(row, folded[:2]) == "group"
+    assert route_of(row, folded[:2], decor_groups={4}) == "figure"
 
 
 def test_a_drawn_table_is_a_figure_in_the_order_of_the_text():
