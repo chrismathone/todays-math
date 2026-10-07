@@ -1,0 +1,108 @@
+{
+  "studentDigest": "1c8ac8bd281d8f547e8db86ec1e3f8671e37a21d79ca707d9c4b57b81b63ffa4",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "answer": "②",
+  "solution": "y축의 방향으로 c만큼 평행이동한 그래프의 식은 y=2x²+c이다. 이동 후 그래프가 (-2,5)를 지나므로 5=2×(-2)²+c=8+c에서 c=-3이다. 따라서 y축의 음의 방향으로 3만큼 이동하였고, 정답은 ②이다. 이동한 그래프는 y=2x²-3이며 꼭짓점은 (0,-3)이다.",
+  "evidence": {
+    "questionNumber": 2,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q02",
+    "grade": "중3",
+    "curriculum": "2015",
+    "studentMethods": [
+      "이차함수의 y축 방향 평행이동",
+      "점의 좌표 대입",
+      "일차방정식"
+    ],
+    "studentInputFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind/student-problems.json",
+    "studentInputFileSha256": "be2aeecd199db093822fbbac30248945f9e021253f85138d43590238222ee515",
+    "figure": {
+      "path": "figures/q02-1.svg",
+      "sha256": "56e0794fdd035748ce9d5aebc8d664ca1fc11f193c7365c0a6956c4d4a2f2312",
+      "providedHashMatched": true,
+      "previewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2/q02.png",
+      "previewSha256": "fbcbeda54e0d949ae13fc5d0f662368043bd1dfb45291329104319801e493fd0",
+      "viewImageReviewed": true,
+      "observations": [
+        "그림에는 평행이동 전의 y=2x²가 표시되어 있다.",
+        "위로 열린 포물선의 꼭짓점이 원점 O에 있고 x축과 y축이 보인다.",
+        "(-2,5)는 이동 후 그래프의 기록표 조건이다. 그림을 이동 후의 그래프로 간주하지 않았다."
+      ],
+      "limit": "수치 답은 그림의 픽셀이나 축의 축척으로 추정하지 않고 주어진 식과 점에서 구했다.",
+      "earlierPreview": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview/q02.png",
+        "sha256": "3d2156b3775800bc7a529e884fd50bcf0d5de7e6cdef3a4661f34ddc20fc1d03",
+        "viewImageReviewed": true,
+        "renderingVersion": "legacy; superseded by r2"
+      },
+      "renderingVersion": "r2; viewed after rendering-only correction; student JSON/digest unchanged"
+    },
+    "independentCalculation": {
+      "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+      "executedCode": "from fractions import Fraction as F\nbase = 2 * F(-2)**2\nshift = F(5) - base\nshifts = [F(3), F(-3), F(5), F(-5), F(-8)]\ny_values = [base + c for c in shifts]\nvalid = [i+1 for i, y in enumerate(y_values) if y == 5]\nassert base == 8 and shift == -3 and valid == [2]\nprint(base, shift, y_values, valid)",
+      "actualResults": {
+        "baseYAtMinus2": "8",
+        "signedVerticalShift": "-3",
+        "distance": "3",
+        "direction": "y축의 음의 방향",
+        "choiceYAtMinus2": [
+          "11",
+          "5",
+          "13",
+          "3",
+          "0"
+        ],
+        "validChoiceNumbers": [
+          2
+        ],
+        "shiftedVertex": [
+          "0",
+          "-3"
+        ]
+      }
+    },
+    "choiceChecks": [
+      {
+        "number": 1,
+        "signedShift": "3",
+        "resultAtXMinus2": "11",
+        "passesGivenPoint": false
+      },
+      {
+        "number": 2,
+        "signedShift": "-3",
+        "resultAtXMinus2": "5",
+        "passesGivenPoint": true
+      },
+      {
+        "number": 3,
+        "signedShift": "5",
+        "resultAtXMinus2": "13",
+        "passesGivenPoint": false
+      },
+      {
+        "number": 4,
+        "signedShift": "-5",
+        "resultAtXMinus2": "3",
+        "passesGivenPoint": false
+      },
+      {
+        "number": 5,
+        "signedShift": "-8",
+        "resultAtXMinus2": "0",
+        "passesGivenPoint": false
+      }
+    ],
+    "existence": "y=2x²-3은 주어진 평행이동 조건을 만족하는 이차함수이며 (-2,5)를 실제로 지난다.",
+    "uniqueness": "계수 2와 수평 위치는 바뀌지 않는다. 8+c=5가 평행이동량 c를 하나로 결정한다. 만족하는 보기도 ② 하나이다.",
+    "signAndUnits": "부호 있는 평행이동량은 -3이고 이동 거리는 양수 3이다. 좌표 단위이며 cm 단위를 붙이지 않는다.",
+    "correctChoiceNumber": 2,
+    "answerValue": "y축의 음의 방향으로 3만큼",
+    "limits": [
+      "새 학생용 문제와 그림만으로 풀이했다. 저자 답/해설, 비공개 패키지, render-review.json, 과거 답/해설을 이번 작업에서 읽지 않았다.",
+      "이 결과는 독립 수학 풀이이며 저자 답과의 대조, 권리 검토, 최종 조판 승인을 포함하지 않는다."
+    ],
+    "authorAnswersSeenBeforeSolve": false,
+    "originalAnswerUsedAsApproval": false
+  },
+  "status": "solved"
+}

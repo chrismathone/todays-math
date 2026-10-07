@@ -1,0 +1,33 @@
+{
+  "curriculum": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "pending"
+  },
+  "calculationAuthority": "explicit-math-facts-not-image-pixels",
+  "pointRoles": {
+    "A": "첫 번째 측량 표지",
+    "B": "두 번째 측량 표지",
+    "C": "관개 제어함"
+  },
+  "facts": {
+    "givenBC": "20*sqrt(6)",
+    "angleA": 45,
+    "angleB": 75,
+    "angleC": 60,
+    "targetAB": 60
+  },
+  "factRelations": [
+    "drop perpendicular BH to AC",
+    "BH=BC*sin60=30sqrt2",
+    "AB=BH/sin45=60"
+  ],
+  "constraints": [
+    "45+75+60=180",
+    "positive lengths",
+    "H lies inside AC",
+    "unique triangle up to reflection/congruence; unique AB",
+    "no trig laws or addition relations in student solution"
+  ],
+  "rasterRole": "park setting only; named point roles and all conditions are in the separate diagram/record"
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "imagegen-scene-plus-engine-diagram/v1",
+  "panelLayout": "scene-left; exact-math-right; no cross-panel rays",
+  "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+  "rasterSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+  "engineSvgSha256": "65b10917fa11a186ac8b1e64b5ce2f2eacd693dcc024f9902eded31b4c962090",
+  "authoredSvgSha256": "2d03d431374553629a8764af00b4ff50e5e90e9438ef97678ed3ccc771b7f1f2",
+  "mathematicalBinding": {
+    "curriculum": {
+      "grade": "중3",
+      "edition": "2015",
+      "status": "pending"
+    },
+    "calculationAuthority": "explicit-math-facts-not-image-pixels",
+    "pointRoles": {
+      "A": "첫 번째 측량 표지",
+      "B": "두 번째 측량 표지",
+      "C": "관개 제어함"
+    },
+    "facts": {
+      "givenBC": "20*sqrt(6)",
+      "angleA": 45,
+      "angleB": 75,
+      "angleC": 60,
+      "targetAB": 60
+    },
+    "factRelations": [
+      "drop perpendicular BH to AC",
+      "BH=BC*sin60=30sqrt2",
+      "AB=BH/sin45=60"
+    ],
+    "constraints": [
+      "45+75+60=180",
+      "positive lengths",
+      "H lies inside AC",
+      "unique triangle up to reflection/congruence; unique AB",
+      "no trig laws or addition relations in student solution"
+    ],
+    "rasterRole": "park setting only; named point roles and all conditions are in the separate diagram/record"
+  },
+  "status": "authored-pending-independent-whole-curriculum-visual-print-rights-review",
+  "runtimeSkillInvocation": false
+}

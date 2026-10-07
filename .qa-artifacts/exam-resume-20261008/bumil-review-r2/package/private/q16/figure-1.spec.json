@@ -1,0 +1,103 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "O": [
+      120,
+      118
+    ],
+    "A": [
+      120,
+      26
+    ],
+    "B": [
+      49.52391123305402,
+      177.1364600911616
+    ],
+    "C": [
+      190.47608876694596,
+      177.1364600911616
+    ],
+    "M": [
+      84.76195561652702,
+      101.5682300455808
+    ],
+    "N": [
+      155.23804438347298,
+      101.5682300455808
+    ]
+  },
+  "circles": {
+    "circumcircle": {
+      "center": "O",
+      "radius": 92
+    }
+  },
+  "segments": {
+    "chordAB": [
+      "A",
+      "B"
+    ],
+    "chordAC": [
+      "A",
+      "C"
+    ],
+    "chordBC": [
+      "B",
+      "C"
+    ],
+    "normalOM": {
+      "points": [
+        "O",
+        "M"
+      ],
+      "dash": "5 3",
+      "ticks": 1
+    },
+    "normalON": {
+      "points": [
+        "O",
+        "N"
+      ],
+      "dash": "5 3",
+      "ticks": 1
+    }
+  },
+  "angles": {
+    "rightOMB": {
+      "vertex": "M",
+      "points": [
+        "O",
+        "B"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "rightONC": {
+      "vertex": "N",
+      "points": [
+        "O",
+        "C"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "givenABC": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "C"
+      ],
+      "label": "65°",
+      "radius": 20
+    }
+  },
+  "labels": {
+    "O": "O",
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "M": "M",
+    "N": "N"
+  }
+}

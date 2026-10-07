@@ -1,0 +1,107 @@
+{
+  "studentDigest": "d6095c275426e8f3728660cc3bb6d4f33a9cddb3014a708455585c5e159e82a9",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "answer": "④",
+  "solution": "축의 방정식이 x=-2이고 꼭짓점이 x축 위에 있으므로 꼭짓점은 (-2,0)이다. 따라서 이차함수의 식을 y=a(x+2)²(a≠0)로 놓을 수 있다. (0,20)을 대입하면 20=4a이므로 a=5이다. 이제 (-3,t)를 대입하면 t=5(-3+2)²=5이므로 정답은 ④이다.",
+  "evidence": {
+    "questionNumber": 3,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q03",
+    "grade": "중3",
+    "curriculum": "2015",
+    "studentMethods": [
+      "이차함수의 축과 꼭짓점",
+      "꼭짓점형 y=a(x-p)²+q",
+      "좌표 대입과 일차방정식"
+    ],
+    "studentInputFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind/student-problems.json",
+    "studentInputFileSha256": "be2aeecd199db093822fbbac30248945f9e021253f85138d43590238222ee515",
+    "figureReview": {
+      "figureCount": 0,
+      "previewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2/q03.png",
+      "previewSha256": "d742c5fe6e03ffe5837763bbd56ad5e05f0b043fa0338c2d0e255faf27a8e778",
+      "viewImageReviewed": true,
+      "observations": [
+        "학생 미리보기의 표에 축 x=-2, 꼭짓점은 x축 위, y축과 만나는 점 (0,20), 다른 점 (-3,t)가 보인다.",
+        "별도의 도형/그래프 조건을 추가하지 않았다. 다섯 보기는 -5,-1,1,5,20이다."
+      ],
+      "earlierPreview": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview/q03.png",
+        "sha256": "87c30c8e7e7e2ef82b7e65995a4eadb41c14c6238f2b4a264616e92634f6c59f",
+        "viewImageReviewed": true,
+        "renderingVersion": "legacy; superseded by r2"
+      },
+      "renderingVersion": "r2; viewed after rendering-only correction; student JSON/digest unchanged"
+    },
+    "independentCalculation": {
+      "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+      "executedCode": "from fractions import Fraction as F\na = F(20, 4)\nt = a * F(-3+2)**2\nchoices = [F(-5), F(-1), F(1), F(5), F(20)]\ny_intercepts = [4*v for v in choices]\nvalid = [i+1 for i, y in enumerate(y_intercepts) if y == 20]\nassert a != 0 and a == 5 and t == 5 and valid == [4]\nprint(a, t, y_intercepts, valid)",
+      "actualResults": {
+        "vertex": [
+          "-2",
+          "0"
+        ],
+        "a": "5",
+        "t": "5",
+        "choiceImpliedYIntercepts": [
+          "-20",
+          "-4",
+          "4",
+          "20",
+          "80"
+        ],
+        "validChoiceNumbers": [
+          4
+        ]
+      }
+    },
+    "choiceChecks": [
+      {
+        "number": 1,
+        "t": "-5",
+        "impliedA": "-5",
+        "impliedYIntercept": "-20",
+        "matches20": false
+      },
+      {
+        "number": 2,
+        "t": "-1",
+        "impliedA": "-1",
+        "impliedYIntercept": "-4",
+        "matches20": false
+      },
+      {
+        "number": 3,
+        "t": "1",
+        "impliedA": "1",
+        "impliedYIntercept": "4",
+        "matches20": false
+      },
+      {
+        "number": 4,
+        "t": "5",
+        "impliedA": "5",
+        "impliedYIntercept": "20",
+        "matches20": true
+      },
+      {
+        "number": 5,
+        "t": "20",
+        "impliedA": "20",
+        "impliedYIntercept": "80",
+        "matches20": false
+      }
+    ],
+    "existence": "y=5(x+2)²은 a≠0인 이차함수로서 축 x=-2, 꼭짓점 (-2,0), y절편 (0,20), 점 (-3,5)를 모두 만족한다.",
+    "uniqueness": "축과 꼭짓점이 p=-2,q=0을 결정하고 4a=20이 a=5를 결정한다. 따라서 t도 하나로 정해지며 맞는 보기는 ④ 하나이다.",
+    "signAndUnits": "a=5>0이므로 그래프는 위로 열리고 y값은 0 이상이다. t=5는 이 부호 조건과 일치한다. 좌표 값으로 별도의 길이 단위를 붙이지 않는다.",
+    "correctChoiceNumber": 4,
+    "answerValue": "5",
+    "limits": [
+      "새 학생용 기록표를 직접 사용했으며 저자 답/해설, 비공개 패키지, render-review.json, 과거 답/해설을 이번 작업에서 읽지 않았다.",
+      "성취기준 문서나 비공개 교육과정 메타데이터는 읽지 않았다. 학생 풀이에는 중3 이차함수의 꼭짓점형과 좌표 대입만 필요하다."
+    ],
+    "authorAnswersSeenBeforeSolve": false,
+    "originalAnswerUsedAsApproval": false
+  },
+  "status": "solved"
+}

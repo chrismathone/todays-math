@@ -1,0 +1,2203 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q02",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "content": "아래 그림의 이차함수 $y=2x^{2}$의 그래프를 $y$축의 방향으로 평행이동하였다. 다음은 이동 후 그래프에 대한 기록이다.\n\n| 항목 | 기록 |\n| --- | --- |\n| 그래프가 지나는 점 | $(-2,5)$ |\n| 이동 방향 | $\\square$ |\n| 이동 거리 | $\\square$ |\n\n이동한 방향과 거리를 바르게 짝지은 것은?",
+      "choices": [
+        "$y$축의 양의 방향으로 $3$만큼",
+        "$y$축의 음의 방향으로 $3$만큼",
+        "$y$축의 양의 방향으로 $5$만큼",
+        "$y$축의 음의 방향으로 $5$만큼",
+        "$y$축의 음의 방향으로 $8$만큼"
+      ],
+      "answer": "②",
+      "solution": "이동 후 그래프를 나타내는 이차함수의 식을 $y=2x^{2}+q$라 하자.\n이 그래프가 점 $(-2,5)$를 지나므로 $x=-2$, $y=5$를 대입하면\n$5=2\\times(-2)^{2}+q=8+q$이다.\n따라서 $q=5-8=-3$이다.\n즉, 원래 그래프를 $y$축의 음의 방향으로 $3$만큼 평행이동한 것이므로 정답은 ②이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "baseCoefficient": 2,
+        "horizontalShift": 0,
+        "pointAfterShift": [
+          -2,
+          5
+        ],
+        "baseYAtPointX": 8,
+        "verticalShift": -3,
+        "direction": "negative-y",
+        "distance": 3,
+        "shiftedEquation": "y=2x^2-3",
+        "figureShows": "baseline-only",
+        "movedPointShownIn": "native-stem-table"
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 65
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "이동 후 그림에서 얻은 이동량을 사용하여 점의 미지 y좌표를 구하는 구성이다.",
+        "after": "원래 그래프와 이동 후 점의 좌표 기록을 분리해 제시하고, 빈 이동 방향·거리 기록을 선택지로 완성한다. 이동 후 그래프와 꼭짓점 눈금은 제시하지 않는다.",
+        "sharedConcept": "이차함수의 y축 방향 평행이동과 그래프 위 점의 좌표",
+        "sharedProcedure": "수직 평행이동한 그래프의 식을 y=ax^2+q로 놓고 점의 좌표를 대입한다. 원문과 달리 y좌표를 조건으로 주어 q를 역으로 결정한다.",
+        "preparationAdjustment": "v2의 두 포물선 계획 대신 원래 y=2x^2 그래프만 새로 그렸다. 이동 후 점 (-2,5)는 본문의 별도 표에 두어 이동량이나 이동 후 꼭짓점이 그림에서 드러나지 않게 했다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수03-09",
+          "9수03-10",
+          "9수03-01",
+          "9수02-02"
+        ],
+        "allowedProcedure": [
+          "y축 방향 평행이동을 y=2x^2+q로 나타낸다.",
+          "순서쌍 (-2,5)의 좌표를 대입하고 정수의 제곱과 사칙연산으로 q를 구한다.",
+          "q의 부호를 이동 방향으로 해석하고 이동 거리는 양수 3으로 쓴다."
+        ],
+        "forbiddenAvoided": [
+          "도함수·미분·최적화",
+          "판별식·근과 계수의 관계",
+          "포물선의 초점·준선·일반 이차곡선 이론",
+          "벡터·내적·좌표 거리 공식",
+          "복잡한 함수 활용이나 새 생활 소재의 추가 선수 개념"
+        ],
+        "surfaceScope": {
+          "stem": "이차함수식·수직 평행이동·점의 순서쌍·기록표",
+          "choices": "좌표축의 양·음의 방향과 양수 이동 거리",
+          "figureAndNotation": "y=2x^2의 포물선과 x축·y축·원점 O만 표시하며 수치 눈금이나 이동 후 그래프를 넣지 않는다.",
+          "studentSolution": "수직 평행이동식·좌표 대입·일차식 계산",
+          "prerequisites": "순서쌍, 좌표축의 방향, 식의 값, 음수의 제곱, 일차식 계산"
+        },
+        "status": "author-proposed",
+        "evidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "mappingJsonPointer": "/question_mappings/1",
+          "standards": [
+            {
+              "code": "9수02-02",
+              "verified_text": "식의 값을 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3900,
+                "record_offset_in_uncompressed_stream": 199304,
+                "extracted_paragraph_1based": 793
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  34
+                ],
+                "printed_pages": [
+                  30
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수03-01",
+              "verified_text": "순서쌍과 좌표를 이해한다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4102,
+                "record_offset_in_uncompressed_stream": 208503,
+                "extracted_paragraph_1based": 838
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  36
+                ],
+                "printed_pages": [
+                  32
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수03-09",
+              "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4146,
+                "record_offset_in_uncompressed_stream": 210185,
+                "extracted_paragraph_1based": 849
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  36
+                ],
+                "printed_pages": [
+                  32
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수03-10",
+              "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4150,
+                "record_offset_in_uncompressed_stream": 210353,
+                "extracted_paragraph_1based": 850
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  36
+                ],
+                "printed_pages": [
+                  32
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            }
+          ],
+          "bandCaveat": {
+            "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+            "source_id": "moe-2020-236-math-hwp",
+            "locator": {
+              "stream": "BodyText/Section0",
+              "record_1based": 3713,
+              "record_offset_in_uncompressed_stream": 190162,
+              "text": "[중학교 1~3학년]"
+            },
+            "original_pdf_page_1based": 32,
+            "original_pdf_printed_page": 28
+          },
+          "versionLimitations": {
+            "verified_math_editions": [
+              "2015-74 book8 PDF",
+              "2020-236 amended book8 HWP"
+            ],
+            "post_2020_complete_amendment_chain_audited": false,
+            "final_candidate_approval_allowed": false,
+            "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+          }
+        }
+      },
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-2",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 2,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "d9a7dbce062b869cfdc44a9eb886053a88d578987dbcc9bb7def356e183bc9d7",
+        "sourceObservation": "그림에서 꼭짓점이 y축 위 -4이고 y=2x²를 수직 이동했다.",
+        "sharedConceptProcedure": "이동 후 식을 y=ax²+q로 놓고 그림의 꼭짓점에서 q를 읽은 뒤 주어진 x를 대입한다.",
+        "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "referenceJsonPointer": "/1/content",
+        "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+          "familyKey": "mid:3-1|이차함수의 그래프 ⑴|09",
+          "currentUnit": {
+            "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+            "grade": "중3",
+            "chapter": "4. 이차함수",
+            "section": "이차함수와 그래프",
+            "semester": 1,
+            "orderIndex": 478,
+            "problemCodePrefix": "J30401"
+          },
+          "currentRegistryMatch": {
+            "key": "3-1|이차함수의 그래프 ⑴|09",
+            "grade": "중3",
+            "unitSection": "이차함수와 그래프",
+            "rpmBook": "3-1",
+            "rpmMinor": "이차함수의 그래프 ⑴",
+            "rpmType": "09",
+            "rpmTitle": "이차함수 의 그래프"
+          },
+          "liveCount": 19,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "a=2가 이미 주어지고 y축 평행이동량을 꼭짓점에서 읽어 함숫값을 구한다. 미지의 a를 별도 점으로 정하는 ⑴11보다 ⑴09의 수직 평행이동 절차에 가깝다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수03-09",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4146,
+              "record_offset_in_uncompressed_stream": 210185,
+              "extracted_paragraph_1based": 849
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                36
+              ],
+              "printed_pages": [
+                32
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수03-10",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4150,
+              "record_offset_in_uncompressed_stream": 210353,
+              "extracted_paragraph_1based": 850
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                36
+              ],
+              "printed_pages": [
+                32
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수03-01",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4102,
+              "record_offset_in_uncompressed_stream": 208503,
+              "extracted_paragraph_1based": 838
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                36
+              ],
+              "printed_pages": [
+                32
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-02",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3900,
+              "record_offset_in_uncompressed_stream": 199304,
+              "extracted_paragraph_1based": 793
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "y축 방향 평행이동을 y=2x^2+q로 나타낸다. 순서쌍 (-2,5)의 좌표를 대입하고 정수의 제곱과 사칙연산으로 q를 구한다. q의 부호를 이동 방향으로 해석하고 이동 거리는 양수 3으로 쓴다.",
+        "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Func.ts:857"
+          ],
+          "authorObservation": {
+            "status": "author-proposed",
+            "path": "src/lib/middle/m3Func.ts",
+            "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+            "familyType": "09",
+            "matchingMode": 2,
+            "line": 857,
+            "scope": "procedure-read-only; metadata-assignment-not-approved",
+            "familyDifficulty": "basic",
+            "candidateDifficultyStatus": "pending-parent-review"
+          }
+        },
+        "source": "transformed",
+        "originProblemId": null,
+        "problemCode": null,
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate"
+        },
+        "publicationStatus": "author-proposed-not-approved",
+        "independentVerificationStatus": "pending-parent-blind-verification",
+        "gradeApprovalStatus": "pending-parent-review",
+        "rightsReviewStatus": "pending-parent-review",
+        "similarityReviewStatus": "pending-parent-review",
+        "directUseAllowed": false,
+        "curriculumSourceMethodProposal": "그림의 꼭짓점과 수직 평행이동량을 읽고 y=ax²+q에 좌표를 대입한다.",
+        "sourceCurriculumSpecificHold": "본문에서 빠진 그래프의 꼭짓점 눈금이 필수 조건이다.",
+        "authorChecks": {
+          "status": "completed-author-self-check-only",
+          "requiredFields": "present",
+          "choiceCount": 5,
+          "uniqueCorrectChoice": "②",
+          "mathSyntax": "katex-strict-pass",
+          "independent": false
+        },
+        "authorFigureRender": {
+          "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+          "options": {
+            "strict": true,
+            "typeset": true
+          },
+          "transport": "local-python",
+          "enginePath": "vendor/figure-engine",
+          "droppedDimensions": [],
+          "specSha256": "00d4f0b6ba18d801b8b4455448a306bb0a80e34cfc0360929e6f0f2cb7e69fd4",
+          "svgSha256": "56e0794fdd035748ce9d5aebc8d664ca1fc11f193c7365c0a6956c4d4a2f2312",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q02.preview.png",
+          "previewSha256": "cc96d57484d5e8949b1d9b3bb45651fc10640b2a666192a73de964b4c58eb0d1",
+          "inspection": "author-view-image-completed",
+          "finalFigureApproval": "pending-parent-review"
+        }
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package\\private\\q02\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package\\private\\q02\\figure-1.svg",
+        "specSha256": "00d4f0b6ba18d801b8b4455448a306bb0a80e34cfc0360929e6f0f2cb7e69fd4",
+        "svgSha256": "56e0794fdd035748ce9d5aebc8d664ca1fc11f193c7365c0a6956c4d4a2f2312",
+        "intendedWidthMm": 65,
+        "studentPath": "figures/q02-1.svg"
+      }
+    ],
+    "studentDigest": "1c8ac8bd281d8f547e8db86ec1e3f8671e37a21d79ca707d9c4b57b81b63ffa4",
+    "candidateDigest": "dcbb3d2ca3b945c8a0cfabb9c70793981123d6d57b82993c172bc20559ff7ed4",
+    "assetDigest": "d2dc51a1825bf305e102f3fdc5015b2e908a9ee243d5d7fe9820d22778019e4b",
+    "independentSolve": {
+      "studentDigest": "1c8ac8bd281d8f547e8db86ec1e3f8671e37a21d79ca707d9c4b57b81b63ffa4",
+      "solverId": "orca-codex-exam-twin-source-identity-20261008",
+      "answer": "②",
+      "solution": "y축의 방향으로 c만큼 평행이동한 그래프의 식은 y=2x²+c이다. 이동 후 그래프가 (-2,5)를 지나므로 5=2×(-2)²+c=8+c에서 c=-3이다. 따라서 y축의 음의 방향으로 3만큼 이동하였고, 정답은 ②이다. 이동한 그래프는 y=2x²-3이며 꼭짓점은 (0,-3)이다.",
+      "evidence": {
+        "questionNumber": 2,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q02",
+        "grade": "중3",
+        "curriculum": "2015",
+        "studentMethods": [
+          "이차함수의 y축 방향 평행이동",
+          "점의 좌표 대입",
+          "일차방정식"
+        ],
+        "studentInputFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind/student-problems.json",
+        "studentInputFileSha256": "be2aeecd199db093822fbbac30248945f9e021253f85138d43590238222ee515",
+        "figure": {
+          "path": "figures/q02-1.svg",
+          "sha256": "56e0794fdd035748ce9d5aebc8d664ca1fc11f193c7365c0a6956c4d4a2f2312",
+          "providedHashMatched": true,
+          "previewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2/q02.png",
+          "previewSha256": "fbcbeda54e0d949ae13fc5d0f662368043bd1dfb45291329104319801e493fd0",
+          "viewImageReviewed": true,
+          "observations": [
+            "그림에는 평행이동 전의 y=2x²가 표시되어 있다.",
+            "위로 열린 포물선의 꼭짓점이 원점 O에 있고 x축과 y축이 보인다.",
+            "(-2,5)는 이동 후 그래프의 기록표 조건이다. 그림을 이동 후의 그래프로 간주하지 않았다."
+          ],
+          "limit": "수치 답은 그림의 픽셀이나 축의 축척으로 추정하지 않고 주어진 식과 점에서 구했다.",
+          "earlierPreview": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview/q02.png",
+            "sha256": "3d2156b3775800bc7a529e884fd50bcf0d5de7e6cdef3a4661f34ddc20fc1d03",
+            "viewImageReviewed": true,
+            "renderingVersion": "legacy; superseded by r2"
+          },
+          "renderingVersion": "r2; viewed after rendering-only correction; student JSON/digest unchanged"
+        },
+        "independentCalculation": {
+          "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+          "executedCode": "from fractions import Fraction as F\nbase = 2 * F(-2)**2\nshift = F(5) - base\nshifts = [F(3), F(-3), F(5), F(-5), F(-8)]\ny_values = [base + c for c in shifts]\nvalid = [i+1 for i, y in enumerate(y_values) if y == 5]\nassert base == 8 and shift == -3 and valid == [2]\nprint(base, shift, y_values, valid)",
+          "actualResults": {
+            "baseYAtMinus2": "8",
+            "signedVerticalShift": "-3",
+            "distance": "3",
+            "direction": "y축의 음의 방향",
+            "choiceYAtMinus2": [
+              "11",
+              "5",
+              "13",
+              "3",
+              "0"
+            ],
+            "validChoiceNumbers": [
+              2
+            ],
+            "shiftedVertex": [
+              "0",
+              "-3"
+            ]
+          }
+        },
+        "choiceChecks": [
+          {
+            "number": 1,
+            "signedShift": "3",
+            "resultAtXMinus2": "11",
+            "passesGivenPoint": false
+          },
+          {
+            "number": 2,
+            "signedShift": "-3",
+            "resultAtXMinus2": "5",
+            "passesGivenPoint": true
+          },
+          {
+            "number": 3,
+            "signedShift": "5",
+            "resultAtXMinus2": "13",
+            "passesGivenPoint": false
+          },
+          {
+            "number": 4,
+            "signedShift": "-5",
+            "resultAtXMinus2": "3",
+            "passesGivenPoint": false
+          },
+          {
+            "number": 5,
+            "signedShift": "-8",
+            "resultAtXMinus2": "0",
+            "passesGivenPoint": false
+          }
+        ],
+        "existence": "y=2x²-3은 주어진 평행이동 조건을 만족하는 이차함수이며 (-2,5)를 실제로 지난다.",
+        "uniqueness": "계수 2와 수평 위치는 바뀌지 않는다. 8+c=5가 평행이동량 c를 하나로 결정한다. 만족하는 보기도 ② 하나이다.",
+        "signAndUnits": "부호 있는 평행이동량은 -3이고 이동 거리는 양수 3이다. 좌표 단위이며 cm 단위를 붙이지 않는다.",
+        "correctChoiceNumber": 2,
+        "answerValue": "y축의 음의 방향으로 3만큼",
+        "limits": [
+          "새 학생용 문제와 그림만으로 풀이했다. 저자 답/해설, 비공개 패키지, render-review.json, 과거 답/해설을 이번 작업에서 읽지 않았다.",
+          "이 결과는 독립 수학 풀이이며 저자 답과의 대조, 권리 검토, 최종 조판 승인을 포함하지 않는다."
+        ],
+        "authorAnswersSeenBeforeSolve": false,
+        "originalAnswerUsedAsApproval": false
+      },
+      "status": "solved"
+    },
+    "solveDigest": "3557163827092a8fc1375298c657f08ddc4abba0d026d0cea8dab59faf2f27d3"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 3,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q03",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "content": "어떤 이차함수의 그래프를 조사하여 다음 기록표를 만들었다.\n\n| 항목 | 기록 |\n| --- | --- |\n| 축의 방정식 | $x=-2$ |\n| 꼭짓점의 위치 | $x$축 위 |\n| $y$축과 만나는 점 | $(0,20)$ |\n| 그래프 위의 다른 점 | $(-3,t)$ |\n\n이 기록표에서 $t$의 값은?",
+      "choices": [
+        "$-5$",
+        "$-1$",
+        "$1$",
+        "$5$",
+        "$20$"
+      ],
+      "answer": "④",
+      "solution": "축의 방정식이 $x=-2$이고 꼭짓점이 $x$축 위에 있으므로 꼭짓점의 좌표는 $(-2,0)$이다.\n따라서 이차함수의 식을 $y=a(x+2)^{2}$ $(a\\ne0)$으로 놓을 수 있다.\n그래프가 $y$축과 점 $(0,20)$에서 만나므로 $x=0$, $y=20$을 대입하면\n$20=a(0+2)^{2}=4a$이므로 $a=5$이다.\n따라서 이차함수의 식은 $y=5(x+2)^{2}$이다.\n$x=-3$을 대입하면 $t=5(-3+2)^{2}=5\\times(-1)^{2}=5$이다.\n그러므로 정답은 ④이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "axisX": -2,
+        "vertex": [
+          -2,
+          0
+        ],
+        "yIntercept": [
+          0,
+          20
+        ],
+        "targetX": -3,
+        "coefficientDeterminingFactor": 4,
+        "coefficient": 5,
+        "targetY": 5,
+        "equation": "y=5(x+2)^2",
+        "nativeTable": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "축·x축 위 꼭짓점·다른 점의 좌표를 글머리표로 주고 y축과 만나는 점의 좌표를 묻는다.",
+        "after": "축·꼭짓점 위치·y절편 (0,20)을 기록표에 주고, x=-3일 때 빠진 y좌표 t를 묻는다.",
+        "sharedConcept": "이차함수의 축·꼭짓점과 한 점으로 이차함수의 식을 정하기",
+        "sharedProcedure": "축과 꼭짓점에서 y=a(x+2)^2를 세우고 알려진 점을 대입해 a를 정한 뒤 다른 x에서 y를 계산한다. 원문의 조건인 다른 점과 질문 대상인 y절편의 역할을 뒤집는다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수03-10",
+          "9수03-01",
+          "9수02-02"
+        ],
+        "allowedProcedure": [
+          "축 x=-2와 x축 위 꼭짓점에서 꼭짓점 (-2,0)을 정한다.",
+          "수평 평행이동형 y=a(x+2)^2에 y절편의 좌표 (0,20)을 대입해 4a=20을 푼다.",
+          "계수 a=5를 확인하고 x=-3을 대입해 식의 값을 구한다."
+        ],
+        "forbiddenAvoided": [
+          "도함수·미분·최적화",
+          "판별식·근과 계수의 관계",
+          "포물선의 초점·준선·일반 이차곡선 이론",
+          "벡터·내적·좌표 거리 공식",
+          "일반형의 축을 상위 학년 공식으로 구하는 풀이"
+        ],
+        "surfaceScope": {
+          "stem": "축의 방정식·꼭짓점 위치·y절편·좌표 기록표",
+          "choices": "정수인 식의 값",
+          "figureAndNotation": "그림 없이 네이티브 표와 순서쌍·x축·y축·이차함수식만 사용한다.",
+          "studentSolution": "꼭짓점형의 식 세우기·좌표 대입·일차식 계산·음수의 제곱",
+          "prerequisites": "순서쌍, 좌표축 위 점, 이차함수의 축·꼭짓점, 식의 값, 일차식 계산"
+        },
+        "status": "author-proposed",
+        "evidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "mappingJsonPointer": "/question_mappings/2",
+          "standards": [
+            {
+              "code": "9수02-02",
+              "verified_text": "식의 값을 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3900,
+                "record_offset_in_uncompressed_stream": 199304,
+                "extracted_paragraph_1based": 793
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  34
+                ],
+                "printed_pages": [
+                  30
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수03-01",
+              "verified_text": "순서쌍과 좌표를 이해한다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4102,
+                "record_offset_in_uncompressed_stream": 208503,
+                "extracted_paragraph_1based": 838
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  36
+                ],
+                "printed_pages": [
+                  32
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수03-10",
+              "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4150,
+                "record_offset_in_uncompressed_stream": 210353,
+                "extracted_paragraph_1based": 850
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  36
+                ],
+                "printed_pages": [
+                  32
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            }
+          ],
+          "bandCaveat": {
+            "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+            "source_id": "moe-2020-236-math-hwp",
+            "locator": {
+              "stream": "BodyText/Section0",
+              "record_1based": 3713,
+              "record_offset_in_uncompressed_stream": 190162,
+              "text": "[중학교 1~3학년]"
+            },
+            "original_pdf_page_1based": 32,
+            "original_pdf_printed_page": 28
+          },
+          "versionLimitations": {
+            "verified_math_editions": [
+              "2015-74 book8 PDF",
+              "2020-236 amended book8 HWP"
+            ],
+            "post_2020_complete_amendment_chain_audited": false,
+            "final_candidate_approval_allowed": false,
+            "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+          }
+        }
+      },
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-3",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 3,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "f7ee190e7954eae8043432f151f71985f10011ebf808a3a49888b8961fa5d2a1",
+        "sourceObservation": "꼭짓점은 x축 위, 축은 x=-2, 다른 점은 (-3,3), 목표는 y절편이다.",
+        "sharedConceptProcedure": "꼭짓점의 x좌표를 축에서 정하고 다른 한 점을 대입해 계수를 정한 뒤 x=0을 대입한다.",
+        "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "referenceJsonPointer": "/2/content",
+        "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": false,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+          "familyKey": "mid:3-1|이차함수의 그래프 ⑴|14",
+          "currentUnit": {
+            "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+            "grade": "중3",
+            "chapter": "4. 이차함수",
+            "section": "이차함수와 그래프",
+            "semester": 1,
+            "orderIndex": 478,
+            "problemCodePrefix": "J30401"
+          },
+          "currentRegistryMatch": {
+            "key": "3-1|이차함수의 그래프 ⑴|14",
+            "grade": "중3",
+            "unitSection": "이차함수와 그래프",
+            "rpmBook": "3-1",
+            "rpmMinor": "이차함수의 그래프 ⑴",
+            "rpmType": "14",
+            "rpmTitle": "이차함수의 식 구하기"
+          },
+          "liveCount": 24,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "x축 위의 꼭짓점과 축을 이용해 y=a(x-p)²로 놓고 다른 한 점으로 a를 정한다. 일반형 완전제곱보다 수평 이동형 식 결정이 주된 절차다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수03-10",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4150,
+              "record_offset_in_uncompressed_stream": 210353,
+              "extracted_paragraph_1based": 850
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                36
+              ],
+              "printed_pages": [
+                32
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수03-01",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4102,
+              "record_offset_in_uncompressed_stream": 208503,
+              "extracted_paragraph_1based": 838
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                36
+              ],
+              "printed_pages": [
+                32
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-02",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3900,
+              "record_offset_in_uncompressed_stream": 199304,
+              "extracted_paragraph_1based": 793
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "축 x=-2와 x축 위 꼭짓점에서 꼭짓점 (-2,0)을 정한다. 수평 평행이동형 y=a(x+2)^2에 y절편의 좌표 (0,20)을 대입해 4a=20을 푼다. 계수 a=5를 확인하고 x=-3을 대입해 식의 값을 구한다.",
+        "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Func.ts:1076"
+          ],
+          "authorObservation": {
+            "status": "author-proposed",
+            "path": "src/lib/middle/m3Func.ts",
+            "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+            "familyType": "14",
+            "matchingMode": 0,
+            "line": 1076,
+            "scope": "procedure-read-only; metadata-assignment-not-approved",
+            "familyDifficulty": "application",
+            "candidateDifficultyStatus": "pending-parent-review"
+          }
+        },
+        "source": "transformed",
+        "originProblemId": null,
+        "problemCode": null,
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate"
+        },
+        "publicationStatus": "author-proposed-not-approved",
+        "independentVerificationStatus": "pending-parent-blind-verification",
+        "gradeApprovalStatus": "pending-parent-review",
+        "rightsReviewStatus": "pending-parent-review",
+        "similarityReviewStatus": "pending-parent-review",
+        "directUseAllowed": false,
+        "curriculumSourceMethodProposal": "축과 꼭짓점에서 y=a(x-p)²+q를 구성하고 주어진 점, x=0을 차례로 대입한다.",
+        "sourceCurriculumSpecificHold": "도함수·최적화·포물선의 초점/준선 이론은 제외.",
+        "authorChecks": {
+          "status": "completed-author-self-check-only",
+          "requiredFields": "present",
+          "choiceCount": 5,
+          "uniqueCorrectChoice": "④",
+          "mathSyntax": "katex-strict-pass",
+          "independent": false
+        }
+      }
+    },
+    "assets": [],
+    "studentDigest": "d6095c275426e8f3728660cc3bb6d4f33a9cddb3014a708455585c5e159e82a9",
+    "candidateDigest": "4b763285173adb0385e1854674722bc90e619ce6b3e317104f2a8cf3959cea3d",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "d6095c275426e8f3728660cc3bb6d4f33a9cddb3014a708455585c5e159e82a9",
+      "solverId": "orca-codex-exam-twin-source-identity-20261008",
+      "answer": "④",
+      "solution": "축의 방정식이 x=-2이고 꼭짓점이 x축 위에 있으므로 꼭짓점은 (-2,0)이다. 따라서 이차함수의 식을 y=a(x+2)²(a≠0)로 놓을 수 있다. (0,20)을 대입하면 20=4a이므로 a=5이다. 이제 (-3,t)를 대입하면 t=5(-3+2)²=5이므로 정답은 ④이다.",
+      "evidence": {
+        "questionNumber": 3,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q03",
+        "grade": "중3",
+        "curriculum": "2015",
+        "studentMethods": [
+          "이차함수의 축과 꼭짓점",
+          "꼭짓점형 y=a(x-p)²+q",
+          "좌표 대입과 일차방정식"
+        ],
+        "studentInputFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind/student-problems.json",
+        "studentInputFileSha256": "be2aeecd199db093822fbbac30248945f9e021253f85138d43590238222ee515",
+        "figureReview": {
+          "figureCount": 0,
+          "previewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2/q03.png",
+          "previewSha256": "d742c5fe6e03ffe5837763bbd56ad5e05f0b043fa0338c2d0e255faf27a8e778",
+          "viewImageReviewed": true,
+          "observations": [
+            "학생 미리보기의 표에 축 x=-2, 꼭짓점은 x축 위, y축과 만나는 점 (0,20), 다른 점 (-3,t)가 보인다.",
+            "별도의 도형/그래프 조건을 추가하지 않았다. 다섯 보기는 -5,-1,1,5,20이다."
+          ],
+          "earlierPreview": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview/q03.png",
+            "sha256": "87c30c8e7e7e2ef82b7e65995a4eadb41c14c6238f2b4a264616e92634f6c59f",
+            "viewImageReviewed": true,
+            "renderingVersion": "legacy; superseded by r2"
+          },
+          "renderingVersion": "r2; viewed after rendering-only correction; student JSON/digest unchanged"
+        },
+        "independentCalculation": {
+          "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+          "executedCode": "from fractions import Fraction as F\na = F(20, 4)\nt = a * F(-3+2)**2\nchoices = [F(-5), F(-1), F(1), F(5), F(20)]\ny_intercepts = [4*v for v in choices]\nvalid = [i+1 for i, y in enumerate(y_intercepts) if y == 20]\nassert a != 0 and a == 5 and t == 5 and valid == [4]\nprint(a, t, y_intercepts, valid)",
+          "actualResults": {
+            "vertex": [
+              "-2",
+              "0"
+            ],
+            "a": "5",
+            "t": "5",
+            "choiceImpliedYIntercepts": [
+              "-20",
+              "-4",
+              "4",
+              "20",
+              "80"
+            ],
+            "validChoiceNumbers": [
+              4
+            ]
+          }
+        },
+        "choiceChecks": [
+          {
+            "number": 1,
+            "t": "-5",
+            "impliedA": "-5",
+            "impliedYIntercept": "-20",
+            "matches20": false
+          },
+          {
+            "number": 2,
+            "t": "-1",
+            "impliedA": "-1",
+            "impliedYIntercept": "-4",
+            "matches20": false
+          },
+          {
+            "number": 3,
+            "t": "1",
+            "impliedA": "1",
+            "impliedYIntercept": "4",
+            "matches20": false
+          },
+          {
+            "number": 4,
+            "t": "5",
+            "impliedA": "5",
+            "impliedYIntercept": "20",
+            "matches20": true
+          },
+          {
+            "number": 5,
+            "t": "20",
+            "impliedA": "20",
+            "impliedYIntercept": "80",
+            "matches20": false
+          }
+        ],
+        "existence": "y=5(x+2)²은 a≠0인 이차함수로서 축 x=-2, 꼭짓점 (-2,0), y절편 (0,20), 점 (-3,5)를 모두 만족한다.",
+        "uniqueness": "축과 꼭짓점이 p=-2,q=0을 결정하고 4a=20이 a=5를 결정한다. 따라서 t도 하나로 정해지며 맞는 보기는 ④ 하나이다.",
+        "signAndUnits": "a=5>0이므로 그래프는 위로 열리고 y값은 0 이상이다. t=5는 이 부호 조건과 일치한다. 좌표 값으로 별도의 길이 단위를 붙이지 않는다.",
+        "correctChoiceNumber": 4,
+        "answerValue": "5",
+        "limits": [
+          "새 학생용 기록표를 직접 사용했으며 저자 답/해설, 비공개 패키지, render-review.json, 과거 답/해설을 이번 작업에서 읽지 않았다.",
+          "성취기준 문서나 비공개 교육과정 메타데이터는 읽지 않았다. 학생 풀이에는 중3 이차함수의 꼭짓점형과 좌표 대입만 필요하다."
+        ],
+        "authorAnswersSeenBeforeSolve": false,
+        "originalAnswerUsedAsApproval": false
+      },
+      "status": "solved"
+    },
+    "solveDigest": "979ad4de3878095b55ef5315fcf81db15b046de702df7123d39211686ae82235"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 15,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q15",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "content": "둘레의 길이가 $15\\pi\\,\\mathrm{cm}$인 원형 전시 안내판에 길이가 $12\\,\\mathrm{cm}$인 현 $\\overline{AB}$를 경계선으로 표시하였다. 현 $\\overline{AB}$와 두 호 $AB$ 중 길이가 짧은 호로 둘러싸인 부분을 장식하려고 한다.\n짧은 호 $AB$의 중점을 $\\mathrm{P}$, 현 $\\overline{AB}$의 중점을 $\\mathrm{M}$이라 하면 $\\overline{MP}\\perp\\overline{AB}$이다. 장식할 부분의 높이인 $\\overline{MP}$의 길이는?\n(단, $\\mathrm{O}$는 안내판의 중심이고, $\\mathrm{P}$와 $\\mathrm{O}$는 직선 $AB$의 서로 반대쪽에 있다. 구하려는 높이는 $0<\\overline{MP}<\\text{안내판의 반지름의 길이}$를 만족하는 짧은 높이이다.)",
+      "choices": [
+        "$\\frac{3}{2}\\,\\mathrm{cm}$",
+        "$3\\,\\mathrm{cm}$",
+        "$\\frac{9}{2}\\,\\mathrm{cm}$",
+        "$6\\,\\mathrm{cm}$",
+        "$\\frac{15}{2}\\,\\mathrm{cm}$"
+      ],
+      "answer": "②",
+      "solution": "안내판의 반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $2\\pi r=15\\pi$이므로 $r=\\frac{15}{2}$이다.\n현의 수직이등분선은 원의 중심을 지나므로 세 점 $\\mathrm{O},\\mathrm{M},\\mathrm{P}$는 한 직선 위에 있다. 또 $\\overline{AM}=\\frac{12}{2}=6\\,\\mathrm{cm}$이다.\n반지름 $\\overline{OA}$를 그으면 직각삼각형 $\\mathrm{OMA}$에서 피타고라스 정리에 의해\n$\\overline{OM}^{\\,2}=\\left(\\frac{15}{2}\\right)^2-6^2=\\frac{81}{4}$이다.\n$\\overline{OM}$은 양의 길이이므로 $\\overline{OM}=\\frac{9}{2}\\,\\mathrm{cm}$이다. $\\mathrm{P}$와 $\\mathrm{O}$가 현의 반대쪽에 있으므로 $\\mathrm{M}$은 $\\mathrm{O}$와 $\\mathrm{P}$ 사이에 있다.\n따라서 $\\overline{MP}=\\overline{OP}-\\overline{OM}=\\frac{15}{2}-\\frac{9}{2}=3\\,\\mathrm{cm}$이므로 정답은 ②이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "unit": "cm",
+        "circumference": "15π",
+        "chordAB": "12",
+        "center": "O",
+        "M": "현 AB의 중점",
+        "P": "두 호 AB 중 짧은 호의 중점",
+        "perpendicular": "MP ⟂ AB",
+        "halfPlaneCondition": "P와 O는 직선 AB의 반대쪽",
+        "target": "MP의 길이",
+        "targetRange": "0 < MP < 반지름의 길이"
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 54,
+          "specSha256": "10fcbadf7ec9c6ac6d9a51728fc2302f3d9b299e4f16dae7b48496364afb7391",
+          "renderMode": "local-renderFigureSpec-strict",
+          "svgSha256": "f6f27e2e04d7f98fde4f6236f6e3fedef555fee37f160fefd2ca1573d97928e2",
+          "renderResult": {
+            "ok": true,
+            "strict": true,
+            "localOnly": true,
+            "typeset": true,
+            "droppedDimensions": []
+          }
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "before": "깨진 접시 조각에서 현의 길이와 작은 호 쪽 높이를 측정하여 원래 접시의 둘레를 구한다.",
+        "after": "원형 전시 안내판의 둘레와 장식 경계선인 현의 길이를 주고, 작은 장식 부분의 수직 높이 MP를 복구한다. 짧은 호와 짧은 양의 높이를 본문에서 제한한다.",
+        "sharedConcept": "현의 수직이등분선과 원의 중심, 반지름과 원주, 직각삼각형의 길이 관계",
+        "sharedProcedure": "현을 이등분하는 수선과 반지름으로 직각삼각형을 만들고 피타고라스 정리를 적용한다. 같은 원주·현·높이 관계를 역방향으로 사용한다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-19",
+          "9수04-16",
+          "9수02-05",
+          "6수03-08"
+        ],
+        "allowedProcedure": [
+          "원주=2πr로 반지름 구하기",
+          "현의 수직이등분선이 중심을 지나는 성질",
+          "현의 반길이와 중심에서 현까지의 거리로 직각삼각형 구성",
+          "피타고라스 정리와 양의 제곱근",
+          "반지름에서 중심-현 거리를 빼 짧은 높이 구하기"
+        ],
+        "forbiddenAvoided": [
+          "접선-할선 또는 할선-할선의 거듭제곱 정리",
+          "원과 비례에 관한 곱의 정리",
+          "원의 방정식·좌표를 이용한 학생용 접점 계산",
+          "미분·벡터·고등학교 삼각함수"
+        ],
+        "status": "author-proposed",
+        "standardEvidence": [
+          {
+            "code": "9수04-19",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4353,
+              "record_offset_in_uncompressed_stream": 219558,
+              "extracted_paragraph_1based": 894
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-16",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4333,
+              "record_offset_in_uncompressed_stream": 218866,
+              "extracted_paragraph_1based": 889
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3916,
+              "record_offset_in_uncompressed_stream": 199888,
+              "extracted_paragraph_1based": 797
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "6수03-08",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3445,
+              "record_offset_in_uncompressed_stream": 177155,
+              "extracted_paragraph_1based": 693
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                29
+              ],
+              "printed_pages": [
+                25
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "gradeBandCaveat": "9수 성취기준은 중1~중3 학년군이며, 중3 지정은 v2의 중3 Unit/live family 제안과 함께 검토해야 한다. 학년군 코드만으로 개별 학년 승인으로 간주하지 않는다.",
+        "surfaces": {
+          "content": {
+            "status": "author-proposed",
+            "evidence": "원주·현·짧은 호·중점·수선과 양의 길이 조건만 사용한다."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "양의 정수·유리수 길이 다섯 개, 단위 cm. 모든 보기를 새로 작성하였다."
+          },
+          "figure": {
+            "status": "author-proposed",
+            "evidence": "정원·현·중점·수선·직각 표시만 사용한다. 수치 답·반지름 계산값·중심-현 거리를 적지 않는다."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "다섯 보기 중 하나를 나타내는 원문자. 해당 보기의 길이는 정확한 유리수와 cm 단위로 표현한다."
+          },
+          "solution": {
+            "status": "author-proposed",
+            "evidence": "원주 공식, 현의 수직이등분선, 피타고라스 정리, 제곱근의 양의 값, 유리수 계산만 사용한다."
+          },
+          "requiredProcedure": {
+            "status": "author-proposed",
+            "evidence": "거듭제곱 정리나 원의 비례 정리 없이 현과 반지름으로 만든 직각삼각형을 푼다."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "초등 원주 공식, 중학교 유리수 계산·제곱근·피타고라스 정리."
+          }
+        },
+        "gate": {
+          "scope": [
+            "content",
+            "choices",
+            "figure",
+            "answer",
+            "solution",
+            "requiredProcedure",
+            "prerequisites"
+          ],
+          "outOfGrade": "reject",
+          "unclear": "hold",
+          "independentGradeApproval": false
+        }
+      },
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-15",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 15,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "6336b2123cb52285fe64a62a0bf54ccefcd8f45f198719b6a47e22857693ae4a",
+        "sourceObservation": "깨진 접시에서 현 8cm와 현 중앙부터 원둘레까지 수직거리 2cm가 표시된다.",
+        "sharedConceptProcedure": "현의 수직이등분선이 중심을 지나는 성질과 피타고라스 관계로 반지름을 정한 뒤 원주를 계산한다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q15",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "6336b2123cb52285fe64a62a0bf54ccefcd8f45f198719b6a47e22857693ae4a",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q15.png",
+            "sha256": "b1fd19b4d59c54ac4973f26232872282637f4c3092219d305248f7497215e1d7",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "활용",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+          "familyKey": "mid:3-2|원과 직선|03",
+          "currentUnit": {
+            "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원과 현",
+            "semester": 2,
+            "orderIndex": 484,
+            "problemCodePrefix": "J30601"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|원과 직선|03",
+            "grade": "중3",
+            "unitSection": "원과 현",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "03",
+            "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우"
+          },
+          "liveCount": 16,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "남은 원의 일부에서 현 길이와 활의 높이로 반지름을 복원하는 유형03과 일치한다. 원주 계산은 반지름 복원 뒤의 단순 후속 단계다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-19",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4353,
+              "record_offset_in_uncompressed_stream": 219558,
+              "extracted_paragraph_1based": 894
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-16",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4333,
+              "record_offset_in_uncompressed_stream": 218866,
+              "extracted_paragraph_1based": 889
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3916,
+              "record_offset_in_uncompressed_stream": 199888,
+              "extracted_paragraph_1based": 797
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "6수03-08",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3445,
+              "record_offset_in_uncompressed_stream": 177155,
+              "extracted_paragraph_1based": 693
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                29
+              ],
+              "printed_pages": [
+                25
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "원주=2πr로 반지름 구하기 → 현의 수직이등분선이 중심을 지나는 성질 → 현의 반길이와 중심에서 현까지의 거리로 직각삼각형 구성 → 피타고라스 정리와 양의 제곱근 → 반지름에서 중심-현 거리를 빼 짧은 높이 구하기",
+        "curriculumSpecificHold": "새 후보 전체의 학년 적합성·Unit/live family 적합성·생성 규칙 일치에 대한 별도 검수 전이며 승인되지 않았다. preparation v2의 실제 출처 확인 보류도 유지한다.",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": []
+        },
+        "authoringStatus": "author-proposed",
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate",
+          "candidateDisplayOccurrences": 0
+        }
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package\\private\\q15\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package\\private\\q15\\figure-1.svg",
+        "specSha256": "10fcbadf7ec9c6ac6d9a51728fc2302f3d9b299e4f16dae7b48496364afb7391",
+        "svgSha256": "f6f27e2e04d7f98fde4f6236f6e3fedef555fee37f160fefd2ca1573d97928e2",
+        "intendedWidthMm": 54,
+        "studentPath": "figures/q15-1.svg"
+      }
+    ],
+    "studentDigest": "bc3bd97b90cec786cce08661bc8312b7b160ca9997115ba07c151ba8745dd71d",
+    "candidateDigest": "9e8ed64b44fb0c74137b22cbb7288f8e14b831a87c83fd455efd05f25ffa6b2e",
+    "assetDigest": "efa7180539b3c8f4676f94d093466464fff9d82dfdee835b8a0d9e647c94a2f1",
+    "independentSolve": {
+      "studentDigest": "bc3bd97b90cec786cce08661bc8312b7b160ca9997115ba07c151ba8745dd71d",
+      "solverId": "orca-codex-exam-twin-source-identity-20261008",
+      "answer": "②",
+      "solution": "원주가 15π cm이므로 반지름은 15/2 cm이다. M은 현 AB의 중점이므로 AM=6 cm이고, 현의 수직이등분선은 원의 중심을 지나므로 OM⊥AB이다. 직각삼각형 OMA에서 OM²=(15/2)²-6²=81/4이다. 길이는 양수이므로 OM=9/2 cm이다. P와 O가 AB의 서로 반대쪽에 있고 O,M,P가 한 직선 위에 있으므로 OP=OM+MP이다. 따라서 MP=15/2-9/2=3 cm이며 정답은 ②이다.",
+      "evidence": {
+        "questionNumber": 15,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q15",
+        "grade": "중3",
+        "curriculum": "2015",
+        "studentMethods": [
+          "원주의 길이 2πr",
+          "현의 수직이등분선과 원의 중심",
+          "피타고라스 정리",
+          "양수인 길이와 제곱근"
+        ],
+        "studentInputFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind/student-problems.json",
+        "studentInputFileSha256": "be2aeecd199db093822fbbac30248945f9e021253f85138d43590238222ee515",
+        "figure": {
+          "path": "figures/q15-1.svg",
+          "sha256": "f6f27e2e04d7f98fde4f6236f6e3fedef555fee37f160fefd2ca1573d97928e2",
+          "providedHashMatched": true,
+          "previewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2/q15.png",
+          "previewSha256": "953b68c7a12f1fc1ac3e9fa6d712d6a44694d1cd4a2f87f3a2dcd5a130802e91",
+          "viewImageReviewed": true,
+          "observations": [
+            "P는 짧은 호 AB의 중점으로 표시되어 있다.",
+            "P는 현 AB의 위쪽, O는 아래쪽에 있고 M은 AB의 중점이며 MP와 OM은 같은 직선 위에 있다.",
+            "학생 미리보기에서 직각 표시가 M에 있고 위쪽의 작은 장식 부분이 음영으로 표시되어 있다."
+          ],
+          "svgGeometryChecks": {
+            "radiusPixels": 90,
+            "chordABPixels": 144,
+            "MPPixels": 36,
+            "OMPixels": 54,
+            "PAndOOppositeChordSides": true,
+            "midpointAndPerpendicularRelations": true,
+            "A_B_POnCircle": true,
+            "scalePixelsPerCmAfterIndependentSolve": 12,
+            "calculationMethod": "주어진 SVG의 표시점 좌표 차와 피타고라스 거리로 위 관계를 확인했다. 반지름 90, AB 144, MP 36, OM 54는 독립 풀이의 15/2,12,3,9/2에 같은 배율 12로 대응한다."
+          },
+          "limit": "학생 풀이의 답은 픽셀 측정에서 얻지 않았다. SVG 좌표는 풀이 후 그림 관계를 확인하는 보조 근거이다.",
+          "earlierPreview": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview/q15.png",
+            "sha256": "4cb599c26bfb13ea8362a4338f8567ee71328df9bbc463a3705b6bb061e7b7ce",
+            "viewImageReviewed": true,
+            "renderingVersion": "legacy; superseded by r2"
+          },
+          "renderingVersion": "r2; viewed after rendering-only correction; student JSON/digest unchanged"
+        },
+        "independentCalculation": {
+          "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+          "executedCode": "from fractions import Fraction as F\nr = F(15,2)\nhalf_chord = F(12,2)\nom_squared = r*r - half_chord*half_chord\nom = F(9,2)\nheight = r - om\nchoices = [F(3,2), F(3), F(9,2), F(6), F(15,2)]\nchecks = [(0<h<r, (r-h)**2+half_chord**2-r**2) for h in choices]\nvalid = [i+1 for i,(bound,residual) in enumerate(checks) if bound and residual==0]\nassert om*om==om_squared and 0<height<r and 12<2*r and valid==[2]\nassert (r-F(12))**2+half_chord**2-r**2==0 and not 0<F(12)<r\nprint(r, half_chord, om_squared, om, height, checks, valid)",
+          "actualResults": {
+            "radiusCm": "15/2",
+            "halfChordCm": "6",
+            "OMSquaredCm2": "81/4",
+            "OMCm": "9/2",
+            "MPCm": "3",
+            "quadraticHeightRootsCm": [
+              "3",
+              "12"
+            ],
+            "excludedLongHeightCm": "12",
+            "validChoiceNumbers": [
+              2
+            ]
+          }
+        },
+        "choiceChecks": [
+          {
+            "number": 1,
+            "heightCm": "3/2",
+            "satisfiesStrictShortHeightBound": true,
+            "pythagoreanResidualCm2": "63/4",
+            "valid": false
+          },
+          {
+            "number": 2,
+            "heightCm": "3",
+            "satisfiesStrictShortHeightBound": true,
+            "pythagoreanResidualCm2": "0",
+            "valid": true
+          },
+          {
+            "number": 3,
+            "heightCm": "9/2",
+            "satisfiesStrictShortHeightBound": true,
+            "pythagoreanResidualCm2": "-45/4",
+            "valid": false
+          },
+          {
+            "number": 4,
+            "heightCm": "6",
+            "satisfiesStrictShortHeightBound": true,
+            "pythagoreanResidualCm2": "-18",
+            "valid": false
+          },
+          {
+            "number": 5,
+            "heightCm": "15/2",
+            "satisfiesStrictShortHeightBound": false,
+            "pythagoreanResidualCm2": "-81/4",
+            "valid": false
+          }
+        ],
+        "choiceResidualDefinition": "(r-h)²+6²-r². 짧은 높이 h는 OM=r-h>0이어야 하며 잔차가 0이어야 한다.",
+        "existence": "0<AB=12<지름15이므로 해당 현이 존재한다. 반현6과 중심에서 현까지 거리9/2는 (9/2)²+6²=(15/2)²를 만족한다. P를 O와 현의 반대쪽에 잡으면 짧은 호의 높이 MP=3이 존재한다.",
+        "uniqueness": "OM>0이므로 OM²=81/4의 양수 해는 9/2 하나이다. P-M-O의 순서에서 MP=r-OM=3으로 정해진다. 높이 식을 제곱하여 얻을 수 있는 12는 MP<r=15/2를 위반하는 긴 높이이므로 제외한다. 다섯 보기 중 ②만 모든 조건을 만족한다.",
+        "signAndUnits": "AM,OM,OP,MP는 모두 양수 길이이고 단위는 cm이다. 0<3<15/2를 확인했다. 계산 중 제곱량/잔차의 단위는 cm²이다.",
+        "correctChoiceNumber": 2,
+        "answerValue": "3 cm",
+        "limits": [
+          "새 학생용 원주·현 길이와 짧은 호 조건만 사용했다. 기존 문제의 수치나 답을 승인 근거로 삼지 않았다.",
+          "저자 답/해설, 비공개 패키지, render-review.json, 과거 답/해설을 이번 작업에서 읽지 않았다. 최종 조판·권리 승인 결과는 아니다."
+        ],
+        "authorAnswersSeenBeforeSolve": false,
+        "originalAnswerUsedAsApproval": false
+      },
+      "status": "solved"
+    },
+    "solveDigest": "df957a2f705a0f2244d8152b8e857434dc2d5f1ba8d88996469dea6d01b96b59"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 21,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q21",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "content": "반원의 접선 길이를 측정한 기록에서 왼쪽 높이만 빠져 있다. 그림과 같이 지름 $\\overline{AB}$를 수평으로 놓고, 왼쪽 끝점을 $\\mathrm{A}$, 오른쪽 끝점을 $\\mathrm{B}$라 하였다. $\\overline{AD}$와 $\\overline{BC}$는 각각 $\\mathrm{A},\\mathrm{B}$에서의 접선이며, $\\mathrm{D}$와 $\\mathrm{C}$는 직선 $AB$의 위쪽, 즉 반원이 있는 쪽에 있다. $\\overline{CD}$는 반원에 $\\mathrm{E}$에서 접하고, $\\mathrm{E}$는 선분 $CD$의 두 끝점 사이에 있다. 또한 $\\overline{AD}>\\overline{BC}>0$이다.\n\n측정 기록\n∘ 지름 $\\overline{AB}$의 길이: $10\\,\\mathrm{cm}$\n∘ 오른쪽 접선 $\\overline{BC}$의 길이: $\\frac{25}{8}\\,\\mathrm{cm}$\n\n왼쪽 접선 $\\overline{AD}$의 길이를 구하고, 접선의 성질과 피타고라스 정리를 이용한 풀이 과정을 쓰시오.",
+      "choices": [],
+      "answer": "$8\\,\\mathrm{cm}$",
+      "solution": "원의 밖의 한 점에서 그은 두 접선의 길이는 같으므로 $\\overline{DE}=\\overline{DA}$, $\\overline{CE}=\\overline{CB}$이다. $\\mathrm{E}$가 선분 $CD$의 두 끝점 사이에 있으므로\n$\\overline{CD}=\\overline{DE}+\\overline{EC}=\\overline{AD}+\\overline{BC}$이다.\n접선은 접점의 반지름과 수직이므로 $\\overline{AD}$와 $\\overline{BC}$는 모두 $\\overline{AB}$에 수직이다. $\\mathrm{C}$에서 $\\overline{AD}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\overline{AD}>\\overline{BC}$이므로 $\\mathrm{H}$는 선분 $AD$의 내부에 있다. 사각형 $\\mathrm{ABCH}$는 직사각형이므로 $\\overline{HC}=\\overline{AB}=10\\,\\mathrm{cm}$, $\\overline{AH}=\\overline{BC}=\\frac{25}{8}\\,\\mathrm{cm}$이다.\n$\\overline{AD}=x\\,\\mathrm{cm}$라 하면 $\\overline{DH}=\\left(x-\\frac{25}{8}\\right)\\,\\mathrm{cm}$, $\\overline{CD}=\\left(x+\\frac{25}{8}\\right)\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{DHC}$에서 피타고라스 정리를 적용하면\n$\\left(x+\\frac{25}{8}\\right)^2=10^2+\\left(x-\\frac{25}{8}\\right)^2$이다.\n양변을 전개하여 정리하면 $\\frac{25}{2}x=100$이므로 $x=8$이다.\n따라서 왼쪽 접선 $\\overline{AD}$의 길이는 $8\\,\\mathrm{cm}$이다. 이는 $8>\\frac{25}{8}>0$을 만족한다.",
+      "score": 8,
+      "questionType": "서술형",
+      "facts": {
+        "unit": "cm",
+        "diameterAB": "10",
+        "rightTangentBC": "25/8",
+        "endpointOrder": "A는 왼쪽, B는 오른쪽",
+        "halfPlaneCondition": "C,D는 수평선 AB 위쪽의 반원이 있는 쪽",
+        "tangencies": [
+          "AD는 A에서 접한다",
+          "BC는 B에서 접한다",
+          "CD는 E에서 접한다"
+        ],
+        "E": "선분 CD의 두 끝점 사이에 있는 접점",
+        "heightOrder": "AD > BC > 0",
+        "target": "왼쪽 접선 AD의 길이와 풀이"
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 62,
+          "specSha256": "e1eb1787df56f758f8336984dd8826f954681530ecec1f75fc235aa9bdac106a",
+          "renderMode": "local-renderFigureSpec-strict",
+          "svgSha256": "ad84c6b289eef08dd2679624c2d7eb4279e97becb5e9cbe50c1921f06e573861",
+          "renderResult": {
+            "ok": true,
+            "strict": true,
+            "localOnly": true,
+            "typeset": true,
+            "droppedDimensions": []
+          }
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "반원의 지름과 왼쪽 접선 높이를 주고 오른쪽 접선 길이를 구한다.",
+        "after": "측정 기록의 지름과 오른쪽 접선 높이를 주고 빠진 왼쪽 높이를 복구한다. 좌우 위치·같은 반평면·높이 순서·선분 CD 내부의 접점을 본문에서 명시한다.",
+        "sharedConcept": "한 외부점에서 그은 두 접선의 길이, 접선과 반지름의 수직 관계, 직사각형과 피타고라스 정리",
+        "sharedProcedure": "DE=DA, CE=CB와 E의 내부 조건으로 CD=AD+BC를 먼저 세운다. 두 접선 높이의 차와 지름으로 만든 직각삼각형에 피타고라스 정리를 적용해 일차방정식으로 미지의 높이를 구한다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-19",
+          "9수04-16",
+          "9수04-12",
+          "9수02-05"
+        ],
+        "allowedProcedure": [
+          "같은 외부점에서 그은 접선 길이의 같음",
+          "E가 CD 내부라는 조건으로 CD=DE+EC=AD+BC 유도",
+          "접선과 반지름의 수직 관계로 AD∥BC 확인",
+          "C에서 AD에 수선을 내려 직사각형과 직각삼각형 구성",
+          "피타고라스 정리와 식의 전개",
+          "제곱항이 소거된 일차방정식 풀이"
+        ],
+        "forbiddenAvoided": [
+          "접선-할선 또는 할선-할선의 거듭제곱 정리",
+          "원과 비례에 관한 곱의 정리",
+          "원의 방정식·좌표를 이용한 학생용 접점 계산",
+          "미분·벡터·고등학교 삼각함수"
+        ],
+        "status": "author-proposed",
+        "standardEvidence": [
+          {
+            "code": "9수04-19",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4353,
+              "record_offset_in_uncompressed_stream": 219558,
+              "extracted_paragraph_1based": 894
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-16",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4333,
+              "record_offset_in_uncompressed_stream": 218866,
+              "extracted_paragraph_1based": 889
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-12",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4308,
+              "record_offset_in_uncompressed_stream": 217962,
+              "extracted_paragraph_1based": 883
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3916,
+              "record_offset_in_uncompressed_stream": 199888,
+              "extracted_paragraph_1based": 797
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "gradeBandCaveat": "9수 성취기준은 중1~중3 학년군이며, 중3 지정은 v2의 중3 Unit/live family 제안과 함께 검토해야 한다. 학년군 코드만으로 개별 학년 승인으로 간주하지 않는다.",
+        "surfaces": {
+          "content": {
+            "status": "author-proposed",
+            "evidence": "반원·지름·접점·접선·수직 높이와 유리수 길이만 사용한다. E의 내부 조건과 높이 순서를 명시한다."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "서술형으로 보기 없음."
+          },
+          "figure": {
+            "status": "author-proposed",
+            "evidence": "정확한 반원과 실제 접점 E, 지름 양끝의 수직 접선, 공통 접선만 그린다. 주어진 BC만 치수로 적고 미지 AD는 적지 않는다. H와 보조선은 학생이 도입한다."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "정확한 정수 길이와 cm 단위."
+          },
+          "solution": {
+            "status": "author-proposed",
+            "evidence": "CD=AD+BC를 접선의 성질로 유도한 뒤 직사각형·피타고라스·전개·일차방정식만 사용한다."
+          },
+          "requiredProcedure": {
+            "status": "author-proposed",
+            "evidence": "접선-할선 곱, 원과 비례, 거듭제곱 정리를 쓰지 않는다. 접선 길이의 합과 높이 차로 직접 유도한다."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "중학교 사각형의 성질·피타고라스 정리·유리수 계산·다항식 전개·일차방정식."
+          }
+        },
+        "gate": {
+          "scope": [
+            "content",
+            "choices",
+            "figure",
+            "answer",
+            "solution",
+            "requiredProcedure",
+            "prerequisites"
+          ],
+          "outOfGrade": "reject",
+          "unclear": "hold",
+          "independentGradeApproval": false
+        }
+      },
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-21",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 21,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "d3fcd3d376cc3fd415b847fff83307b3a86684e4af394d33e766a371cdfab1bd",
+        "sourceObservation": "반원 지름 AB=12cm, AD=10cm이고 AD·BC·CD가 접선이며 CD의 접점은 E다.",
+        "sharedConceptProcedure": "같은 외부점의 접선 길이를 이용해 CD를 두 수직 높이의 합으로 표현하고 직각삼각형 관계를 적용한다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q21",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "d3fcd3d376cc3fd415b847fff83307b3a86684e4af394d33e766a371cdfab1bd",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q21.png",
+            "sha256": "459d488b81244e031d7625cbca7bda2927802a5d09854d26d50878dd645b2504",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "서술형",
+        "score": 8,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "서술형",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "familyKey": "mid:3-2|원과 직선|11",
+          "currentUnit": {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|원과 직선|11",
+            "grade": "중3",
+            "unitSection": "원의 접선",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "11",
+            "rpmTitle": "반원에서의 접선"
+          },
+          "liveCount": 46,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "지름 양끝의 수직 접선과 공통 접선 CD를 가진 반원 구조가 유형11과 정확히 일치한다. 같은 외부점의 접선 길이와 직각삼각형 관계로 다른 높이를 정한다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-19",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4353,
+              "record_offset_in_uncompressed_stream": 219558,
+              "extracted_paragraph_1based": 894
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-16",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4333,
+              "record_offset_in_uncompressed_stream": 218866,
+              "extracted_paragraph_1based": 889
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-12",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4308,
+              "record_offset_in_uncompressed_stream": 217962,
+              "extracted_paragraph_1based": 883
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3916,
+              "record_offset_in_uncompressed_stream": 199888,
+              "extracted_paragraph_1based": 797
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "같은 외부점에서 그은 접선 길이의 같음 → E가 CD 내부라는 조건으로 CD=DE+EC=AD+BC 유도 → 접선과 반지름의 수직 관계로 AD∥BC 확인 → C에서 AD에 수선을 내려 직사각형과 직각삼각형 구성 → 피타고라스 정리와 식의 전개 → 제곱항이 소거된 일차방정식 풀이",
+        "curriculumSpecificHold": "새 후보 전체의 학년 적합성·Unit/live family 적합성·생성 규칙 일치에 대한 별도 검수 전이며 승인되지 않았다. preparation v2의 실제 출처 확인 보류도 유지한다.",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Tangent.ts:260",
+            "D:/todays-math/src/lib/middle/m3Tangent.ts:1081"
+          ]
+        },
+        "authoringStatus": "author-proposed",
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate",
+          "candidateDisplayOccurrences": 0
+        }
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package\\private\\q21\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package\\private\\q21\\figure-1.svg",
+        "specSha256": "e1eb1787df56f758f8336984dd8826f954681530ecec1f75fc235aa9bdac106a",
+        "svgSha256": "ad84c6b289eef08dd2679624c2d7eb4279e97becb5e9cbe50c1921f06e573861",
+        "intendedWidthMm": 62,
+        "studentPath": "figures/q21-1.svg"
+      }
+    ],
+    "studentDigest": "a6c2a3165a9cb2fd394a937d2d9182cbf86b1fe44c75f84c450bbd534f8ee15a",
+    "candidateDigest": "627739fd82bf6809efca3070e606a354df0aca4b0b8e305249ffdad6768c78fb",
+    "assetDigest": "481ea4702885cbc16cafa05ec9bd7cfd5df4e430c812dc6cbc07a19f3bbf87bf",
+    "independentSolve": {
+      "studentDigest": "a6c2a3165a9cb2fd394a937d2d9182cbf86b1fe44c75f84c450bbd534f8ee15a",
+      "solverId": "orca-codex-exam-twin-source-identity-20261008",
+      "answer": "8 cm",
+      "solution": "AD의 길이를 x cm라 하자. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 DE=DA=x, CE=CB=25/8이다. E가 선분 CD의 두 끝점 사이에 있으므로 CD=DE+EC=x+25/8이다. C를 지나 AB와 평행한 직선을 그어 AD와 만나는 점을 F라 하자. 접선은 접점에서의 반지름에 수직이므로 AD와 BC는 AB에 수직이다. 따라서 CF=AB=10, AF=BC=25/8이다. AD>BC>0이므로 F는 A와 D 사이에 있고 DF=x-25/8이다. 직각삼각형 DFC에서 피타고라스 정리를 적용하면 (x+25/8)²=10²+(x-25/8)²이다. 양변을 전개하여 정리하면 (25/2)x=100이므로 x=8이다. 따라서 AD의 길이는 8 cm이다. 8>25/8>0이므로 주어진 높이 조건도 만족한다.",
+      "evidence": {
+        "questionNumber": 21,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q21",
+        "grade": "중3",
+        "curriculum": "2015",
+        "studentMethods": [
+          "같은 점에서 그은 두 접선의 길이",
+          "접선과 접점에서의 반지름의 수직 관계",
+          "평행선과 직사각형의 성질",
+          "피타고라스 정리와 전개",
+          "일차방정식"
+        ],
+        "studentInputFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind/student-problems.json",
+        "studentInputFileSha256": "be2aeecd199db093822fbbac30248945f9e021253f85138d43590238222ee515",
+        "figure": {
+          "path": "figures/q21-1.svg",
+          "sha256": "ad84c6b289eef08dd2679624c2d7eb4279e97becb5e9cbe50c1921f06e573861",
+          "providedHashMatched": true,
+          "previewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2/q21.png",
+          "previewSha256": "e194c142e6c5acc4a2e4d492ba6e1985ee9648a245cbad011bb065e8cd873d32",
+          "viewImageReviewed": true,
+          "observations": [
+            "그림에서 AB는 수평 지름이고 AD와 BC는 위쪽으로 뻗으며 A와 B에 직각 표시가 있다.",
+            "D가 C보다 높고 E는 D와 C 사이의 위쪽 반원에 표시되어 있다.",
+            "BC 옆의 표시는 25/8 cm이고 AD의 수치 표시는 없다. 학생 풀이에서 AD를 그림의 배율로 읽어내지 않았다."
+          ],
+          "svgGeometryChecks": {
+            "ABPixels": 180,
+            "ADPixels": 144,
+            "BCPixels": 56.250000000000014,
+            "CDPixels": 200.25,
+            "DEPixels": 144.00020224985795,
+            "CEPixels": 56.249797759636444,
+            "OEPixels": 89.99912359573287,
+            "radiusPixels": 90,
+            "radiusErrorPixels": -0.0008764042671316474,
+            "conversePythagoreanResidualPixelsSquared": 0.09950400000889204,
+            "DEPlusCEMinusCDPixels": 9.49438572206418e-9,
+            "EBetweenDAndC": true,
+            "endpointTangentsPerpendicularToAB": true,
+            "CAndDAboveAB": true,
+            "scalePixelsPerCmAfterIndependentSolve": 18,
+            "calculationMethod": "표시점 좌표 차에 피타고라스 거리를 적용했다. OE와 반지름의 차, OD²-DE²-OE², DE+CE-CD를 계산하여 원 위의 접점·수직 관계·선분 내부 관계를 풀이 후 확인했다.",
+            "toleranceLimit": "SVG 표시점 좌표는 소수 셋째 자리로 반올림되어 있다. OE 반지름 오차는 0.002 SVG 단위 미만, 피타고라스 잔차는 1 SVG 단위² 미만이다. 이는 그림 검사용 근사이며 학생 답과 존재 검산은 유리수로 정확히 계산했다."
+          },
+          "earlierPreview": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview/q21.png",
+            "sha256": "944c9508dacb416faed5c7b2df9234efa9738b207bf7fed30826bdfe1b92549f",
+            "viewImageReviewed": true,
+            "renderingVersion": "legacy; superseded by r2"
+          },
+          "renderingVersion": "r2; viewed after rendering-only correction; student JSON/digest unchanged"
+        },
+        "independentCalculation": {
+          "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+          "executedCode": "from fractions import Fraction as F\nw = F(10)\nb = F(25,8)\nx = w*w/(4*b)\ncd = x+b\ndf = x-b\nassert x==8 and x>b>0\nassert cd*cd == w*w+df*df\nr = w/2\nod2 = x*x+r*r\noc2 = b*b+r*r\nde = (od2-oc2+cd*cd)/(2*cd)\nce = cd-de\noe2 = od2-de*de\nassert 0<de<cd and de==x and ce==b and oe2==r*r\nprint(x, b, cd, df, cd*cd, w*w+df*df, od2, oc2, de, ce, oe2, de/cd)",
+          "actualResults": {
+            "ADCm": "8",
+            "BCCm": "25/8",
+            "diameterCm": "10",
+            "radiusCm": "5",
+            "CDCm": "89/8",
+            "DFCm": "39/8",
+            "CDSquaredCm2": "7921/64",
+            "CFSquaredPlusDFSquaredCm2": "7921/64",
+            "fourTimesADTimesBCCm2": "100",
+            "linearCoefficientForX": "25/2",
+            "ODSquaredCm2": "89",
+            "OCSquaredCm2": "2225/64",
+            "DECmFromTwoPythagoreanEquations": "8",
+            "CECm": "25/8",
+            "OESquaredCm2": "25",
+            "fractionOfCDFromDToE": "64/89"
+          }
+        },
+        "choiceChecks": [],
+        "choiceChecksNotApplicableReason": "서술형이며 학생 입력의 choices는 빈 배열이다.",
+        "existence": "주어진 지름10과 위쪽 접선 높이8,25/8로 D,C를 잡으면 CD=89/8이다. OD²=8²+5²=89, OC²=(25/8)²+5²=2225/64이다. O에서 CD에 내린 수선의 발을 T라 하고 DT=z, OT=h라 하면 두 직각삼각형에서 OD²=z²+h², OC²=(CD-z)²+h²이다. 두 식을 빼면 z=(OD²-OC²+CD²)/(2CD)=8, h²=25이다. 0<8<89/8이므로 T는 선분 CD 내부에 있고 h=5는 반지름과 같다. 따라서 T를 E로 잡으면 CD는 반원에 실제로 접한다. E는 위쪽에 있는 D,C 사이의 점이므로 위쪽 반원에 있다. DE=8,CE=25/8도 확인되어 모든 접선 조건이 함께 성립한다.",
+        "uniqueness": "E가 C,D 사이에 있다는 조건으로 CD는 접선 길이의 합 x+25/8이다. AD>BC로 높이차는 x-25/8이다. 피타고라스 식을 전개하면 계수가 25/2≠0인 일차방정식 (25/2)x=100이 되어 양수 해 x=8 하나만 나온다. 계산한 해에서 접점과 양수 조건이 실제로 존재함도 별도로 확인했다.",
+        "signAndUnits": "AD=8>BC=25/8>0이고 DF=39/8>0이다. DE=8,CE=25/8,CD=89/8은 모두 양수 cm 길이이다. 0<64/89<1로 E가 선분 내부에 있음을 확인했다. 제곱 길이의 단위는 cm²이다.",
+        "answerValue": "8 cm",
+        "limits": [
+          "학생 풀이에 좌표의 원 방정식, 점과 직선 사이 거리 공식, 내적, 미분, 상위 학년 삼각함수를 사용하지 않았다. 존재 검산도 두 피타고라스 식의 차로 수행했다.",
+          "새 학생용 접선 조건으로 직접 관계를 유도했다. 원문 답이나 기억한 원문 수치를 새 답의 근거로 사용하지 않았다.",
+          "저자 답/해설, 비공개 패키지, render-review.json, 과거 답/해설을 이번 작업에서 읽지 않았다. SVG 좌표 검사는 학생 풀이 후 수행한 보조 그림 검산이다."
+        ],
+        "authorAnswersSeenBeforeSolve": false,
+        "originalAnswerUsedAsApproval": false
+      },
+      "status": "solved"
+    },
+    "solveDigest": "2d07c690eed3f4200a23762fae77c7b6d3c891b2a403c954b1e47277419f8e70"
+  }
+]

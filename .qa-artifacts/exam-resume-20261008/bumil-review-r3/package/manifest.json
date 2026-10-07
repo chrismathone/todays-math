@@ -1,0 +1,122 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-07T18:57:44.167Z",
+  "questionNumbers": [
+    6,
+    8,
+    9,
+    12,
+    13
+  ],
+  "packageDigest": "5e7cf375a61b02c32d2ed47546143d20d43aabf777ff993753001eae2aaa34a1",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "candidateFileSha256": "f315fb6af5e1fbfdf66fe3d7fdd573e070be06e4d7db8504764b5921cec6240a",
+      "studentDigest": "2bd42ccd5098fb0d9b9349e2d815b7d447a11625be456fa23aa8f30bfc533dd8",
+      "assetDigest": "e6887d771941784d10e83857bb099cbf68e25bc9d91725c71bef9a87d4d85598",
+      "candidateDigest": "47ebed960014bc5409cb8152f8c3c73ed920bb23d23ad25ab7a7b4f745164f7e",
+      "privateCandidatePath": "private/q06/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q06.json",
+        "sha256": "86810cd98db029a500ad514a71510dcbc895f6ed8a88d074910ad531514c5a79"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "f23f6146443bd79347326eba1fa58fa3097cb9a119b300ba5b084ffbdd2fb27e",
+          "svgSha256": "6753257982880fe3cd5782a38a5120d987c3ff90e365edb2b51a959ac10b3a3c",
+          "intendedWidthMm": 90,
+          "studentPath": "figures/q06-1.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "41c8315b0fcc45971ad3f2c943d20528d92e2c45f90529baaa17c462a8108dfc",
+      "studentDigest": "d8c1897e23b4400046a65e85765d617f744337da6fd43ede0a5b0522ca8ae41c",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateDigest": "7e62c0ac7c94734332108f1330dfd00a7d1c7f7860bb85543a57de21336b5619",
+      "privateCandidatePath": "private/q08/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q08.json",
+        "sha256": "41c8315b0fcc45971ad3f2c943d20528d92e2c45f90529baaa17c462a8108dfc"
+      },
+      "assets": []
+    },
+    {
+      "candidateFileSha256": "f5ef434096b7edb76ddcc688fcf151779a2c7eb8a29506768e210ac50291b2da",
+      "studentDigest": "eec76a7cd7525161485e0b7d51731dc7ab027d287c0bcc4d838d074f1829bb70",
+      "assetDigest": "739706ee201c80df5b14a5947bf122a55a6c7cb42fe9f0d4c231d2841a58ea69",
+      "candidateDigest": "be899f4423c4add9bc677013e190a78dadca66f2841d96effeed02009a0ce644",
+      "privateCandidatePath": "private/q09/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q09.json",
+        "sha256": "6c3d3785bfa60c763656bb0601721f7387ddcacdaa14db6a7447d04476c8cf38"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "fe31c5f3ded3ca3a9b591acf68b8647cc9a002e35f17e9554c6839e937f54e78",
+          "svgSha256": "34bd3dbd562aeb1bdf50ea5655d61b8638dea90e01ee4e7f6b4f39fb5dcb821b",
+          "intendedWidthMm": 75,
+          "studentPath": "figures/q09-1.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "db20af56091e8356264cf1c74aeb228a5181d24013d2f2e7953d854a85a0caca",
+      "studentDigest": "1d18d08c21c4e4cf632f9d43d194ba86c0e84d6e536daa0a94468657146965ad",
+      "assetDigest": "e276997e862902248020eb679caf83a9f5eb714ef2f660bdd37b7ba2dc438173",
+      "candidateDigest": "0a6e78f8d11c57baf2525b9c93cd4fb8d04e8adaec7f405f2947f49de3de110e",
+      "privateCandidatePath": "private/q12/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q12.json",
+        "sha256": "da7200b72e0cd8153d25a620e7024292a1d3383d9e696b7d6bb0a63b645e19c9"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "71755c43fe6ae1b65c54ca26e3a9095d0646f56fb8502dc8b2f88cef69af7af9",
+          "svgSha256": "7b6aa3b966e0fac866bbe4c0fbc9c1dd5c275a8957815c4301c2a27aacd2beb3",
+          "intendedWidthMm": 80,
+          "studentPath": "figures/q12-1.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "86ea15507db69f1eb5400da7ea39bcbe5d31823bd98c048905d6e6ab97269e70",
+      "studentDigest": "239e5959efba640245ef5e016922b2c3d1ba465a4a47affdd121846d8ac6aa5c",
+      "assetDigest": "ef7943638f592ebf74764764a3980d97860864995af79ffd539bc1ca0ebc8c08",
+      "candidateDigest": "028c686938d29d7e19b53cf6b4593578a2921752edc4d087ecd3b40906ce5f64",
+      "privateCandidatePath": "private/q13/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q13.json",
+        "sha256": "0ea9cb1bcf7776540523ab56207ec282be1ad22c7e9344278ed7a18ecb35eaf2"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "3859e7099253c684a5247f6e3f0e439fdbda6b119a146dad02fb92e8b6071c7b",
+          "svgSha256": "9ae1f4bc2e0d47c99967540212596e25dfd004916ddd0048851e647681ccb2da",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q13-1.svg"
+        },
+        {
+          "role": "stem",
+          "specSha256": "d54efed7cca85dbc728ca709d8e65ddaef7d4e0312cdc10e7643529d62a601cd",
+          "svgSha256": "7612b1082354efbadddcf0538f0c880621d007c4a7ecdde864fd1fcd3aca2571",
+          "intendedWidthMm": 65,
+          "studentPath": "figures/q13-2.svg"
+        }
+      ]
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

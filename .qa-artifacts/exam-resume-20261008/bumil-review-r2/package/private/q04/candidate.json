@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 4,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q04",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "이차함수 $y=ax^{2}-6x-b$의 그래프의 개략적인 모양이 아래 그림과 같다.\n이때 일차함수 $y=-ax+b$의 그래프로 알맞은 것은?\n(단, $a$, $b$는 상수이고, 보기의 그림은 기울기와 $y$절편의 부호를 나타낸 개략적인 그래프이다.)",
+  "choices": [
+    "![선택지 1의 그래프](.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-01.svg)",
+    "![선택지 2의 그래프](.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-02.svg)",
+    "![선택지 3의 그래프](.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-03.svg)",
+    "![선택지 4의 그래프](.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-04.svg)",
+    "![선택지 5의 그래프](.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-05.svg)"
+  ],
+  "answer": "⑤",
+  "solution": "주어진 포물선은 아래로 볼록하므로 $x^{2}$의 계수 $a$는 양수이다. 즉, $a>0$이다.\n또 포물선이 $y$축과 만나는 점은 $x$축보다 위에 있으므로 $y$절편 $-b$는 양수이다. 따라서 $b<0$이다.\n일차함수 $y=-ax+b$의 기울기는 $-a<0$이고 $y$절편은 $b<0$이다.\n그러므로 오른쪽으로 갈수록 내려가고, $y$축과 $x$축보다 아래에서 만나는 직선이어야 한다.\n보기 중 두 조건을 모두 만족하는 것은 ⑤이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "stemEquation": "y=ax^2-6x-b",
+    "targetEquation": "y=-ax+b",
+    "aSign": "positive",
+    "bSign": "negative",
+    "targetSlopeSign": "negative",
+    "targetYInterceptSign": "negative",
+    "renderOnlyStemExample": {
+      "a": 1,
+      "b": -5,
+      "coefficients": [
+        1,
+        -6,
+        5
+      ],
+      "vertex": [
+        3,
+        -4
+      ],
+      "yIntercept": [
+        0,
+        5
+      ]
+    },
+    "choiceExamples": [
+      {
+        "choiceNumber": 1,
+        "slope": 1,
+        "yIntercept": 2
+      },
+      {
+        "choiceNumber": 2,
+        "slope": -1,
+        "yIntercept": 2
+      },
+      {
+        "choiceNumber": 3,
+        "slope": 1,
+        "yIntercept": -2
+      },
+      {
+        "choiceNumber": 4,
+        "slope": -1,
+        "yIntercept": 0
+      },
+      {
+        "choiceNumber": 5,
+        "slope": -1,
+        "yIntercept": -2
+      }
+    ],
+    "numericRenderValuesAreNotGivens": true,
+    "numericTicksShown": false
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    },
+    {
+      "role": "choice",
+      "choiceNumber": 1,
+      "specPath": "figure-2.spec.json",
+      "svgPath": "figure-2.svg",
+      "intendedWidthMm": 50
+    },
+    {
+      "role": "choice",
+      "choiceNumber": 2,
+      "specPath": "figure-3.spec.json",
+      "svgPath": "figure-3.svg",
+      "intendedWidthMm": 50
+    },
+    {
+      "role": "choice",
+      "choiceNumber": 3,
+      "specPath": "figure-4.spec.json",
+      "svgPath": "figure-4.svg",
+      "intendedWidthMm": 50
+    },
+    {
+      "role": "choice",
+      "choiceNumber": 4,
+      "specPath": "figure-5.spec.json",
+      "svgPath": "figure-5.svg",
+      "intendedWidthMm": 50
+    },
+    {
+      "role": "choice",
+      "choiceNumber": 5,
+      "specPath": "figure-6.spec.json",
+      "svgPath": "figure-6.svg",
+      "intendedWidthMm": 50
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "포물선의 그림에서 계수의 부호를 읽고 직선이 지나지 않는 사분면의 이름을 고른다.",
+    "after": "포물선의 개략적인 모양에서 계수의 부호를 읽고, 기울기·y절편의 두 부호를 모두 만족하는 직선 그림을 다섯 개 중 고른다. 사분면 이름 보기 대신 양·음·0 절편을 포함한 새 그래프 보기를 쓴다.",
+    "sharedConcept": "이차함수의 볼록 방향·y절편에서 계수의 부호를 읽어 일차함수의 기울기·절편에 연결하기",
+    "sharedProcedure": "포물선에서 a>0과 -b>0을 구한 뒤 -a<0, b<0을 직선의 방향과 축 교차 위치로 해석한다.",
+    "preparationAdjustment": "숫자 눈금 없는 graph-1 사양으로 포물선과 다섯 직선을 모두 새로 그렸다. 본문에서 그림의 역할을 부호를 나타내는 개략 그래프로 한정하여 렌더용 계수 값을 주어진 조건으로 강제하지 않는다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-10",
+      "9수03-06",
+      "9수03-01",
+      "9수03-05",
+      "9수02-12"
+    ],
+    "allowedProcedure": [
+      "포물선의 볼록 방향으로 a의 부호를 읽는다.",
+      "x=0일 때 y=-b임을 이용해 y절편의 위치에서 b의 부호를 읽는다.",
+      "일차함수의 기울기와 y절편의 부호를 다섯 그림과 대조한다."
+    ],
+    "forbiddenAvoided": [
+      "도함수·미분",
+      "판별식·근과 계수의 관계",
+      "일반 직선-포물선 교점·접선 이론",
+      "이차함수의 최댓값·최솟값 최적화"
+    ],
+    "surfaceScope": {
+      "stem": "이차함수의 일반형과 기울기·y절편의 부호를 묻는 일차함수",
+      "choices": "수치 눈금 없이 양·음·0 절편과 양·음 기울기를 나타내는 직선 그림",
+      "figureAndNotation": "좌표축·원점·포물선·직선만 표시한다. 실제 수치나 일반적인 교점 이론을 요구하는 표기는 없다.",
+      "studentSolution": "볼록 방향·y절편 위치·부호 변화·일차함수 그래프의 성질",
+      "prerequisites": "좌표축의 양·음 방향, 일반형의 상수항, 일차함수의 기울기와 y절편"
+    },
+    "status": "author-proposed",
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "mappingJsonPointer": "/question_mappings/3",
+      "standards": [
+        {
+          "code": "9수02-12",
+          "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-01",
+          "verified_text": "순서쌍과 좌표를 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-05",
+          "verified_text": "일차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4122,
+            "record_offset_in_uncompressed_stream": 209259,
+            "extracted_paragraph_1based": 843
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-06",
+          "verified_text": "일차함수의 그래프의 성질을 이해하고, 이를 활용하여 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4126,
+            "record_offset_in_uncompressed_stream": 209427,
+            "extracted_paragraph_1based": 844
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-10",
+          "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "bandCaveat": {
+        "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+        "source_id": "moe-2020-236-math-hwp",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record_1based": 3713,
+          "record_offset_in_uncompressed_stream": 190162,
+          "text": "[중학교 1~3학년]"
+        },
+        "original_pdf_page_1based": 32,
+        "original_pdf_printed_page": 28
+      },
+      "versionLimitations": {
+        "verified_math_editions": [
+          "2015-74 book8 PDF",
+          "2020-236 amended book8 HWP"
+        ],
+        "post_2020_complete_amendment_chain_audited": false,
+        "final_candidate_approval_allowed": false,
+        "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+      }
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-4",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 4,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "10ab18dd65de059e4ea7117da630f0f3501e4f7df1ace4c0747236cc1d3782ff",
+    "sourceObservation": "y=ax²-8x-b의 그림은 아래로 볼록하고 y절편이 양수다.",
+    "sharedConceptProcedure": "그림에서 a와 상수항의 부호를 읽고 y=-ax+b의 기울기·절편 부호를 판단한다.",
+    "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "referenceJsonPointer": "/3/content",
+    "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "개념",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|09",
+      "currentUnit": {
+        "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수 y=ax^2+bx+c의 그래프",
+        "semester": 1,
+        "orderIndex": 479,
+        "problemCodePrefix": "J30402"
+      },
+      "currentRegistryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑵|09",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "09",
+        "rpmTitle": "이차함수 의 그래프에서 의 부호"
+      },
+      "liveCount": 11,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "포물선의 볼록 방향과 y절편에서 계수 부호를 알아내는 것이 핵심이다. 이후 직선의 사분면 판단은 그 부호를 쓰는 후속 절차다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-10",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-06",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4126,
+          "record_offset_in_uncompressed_stream": 209427,
+          "extracted_paragraph_1based": 844
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-01",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4102,
+          "record_offset_in_uncompressed_stream": 208503,
+          "extracted_paragraph_1based": 838
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4122,
+          "record_offset_in_uncompressed_stream": 209259,
+          "extracted_paragraph_1based": 843
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-12",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3956,
+          "record_offset_in_uncompressed_stream": 201534,
+          "extracted_paragraph_1based": 807
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "포물선의 볼록 방향으로 a의 부호를 읽는다. x=0일 때 y=-b임을 이용해 y절편의 위치에서 b의 부호를 읽는다. 일차함수의 기울기와 y절편의 부호를 다섯 그림과 대조한다.",
+    "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": [
+        "D:/todays-math/src/lib/middle/m3Func.ts:1695"
+      ],
+      "authorObservation": {
+        "status": "author-proposed-not-family-approval",
+        "path": "src/lib/middle/m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "scope": "read-only-procedure-comparison",
+        "familyType": "g2-09",
+        "line": 1693
+      }
+    },
+    "source": "transformed",
+    "originProblemId": null,
+    "problemCode": null,
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate"
+    },
+    "publicationStatus": "author-proposed-not-approved",
+    "independentVerificationStatus": "pending-parent-blind-verification",
+    "gradeApprovalStatus": "pending-parent-review",
+    "rightsReviewStatus": "pending-parent-review",
+    "similarityReviewStatus": "pending-parent-review",
+    "directUseAllowed": false,
+    "sourceQuestionType": "객관식",
+    "sourceScore": 4,
+    "formAndScoreStatus": "author-proposed-pending-parent-review",
+    "curriculumSourceMethodProposal": "그림의 볼록 방향과 y절편에서 a와 b의 부호를 읽어 일차함수의 기울기·절편과 사분면을 판단한다.",
+    "sourceCurriculumSpecificHold": "원점과 축 교차가 식과 일치해야 하며 추측한 그림이나 판별식 설명은 허용하지 않는다.",
+    "authorChecks": {
+      "status": "completed-author-self-check-only",
+      "independent": false,
+      "requiredFields": "present",
+      "choiceCount": 5,
+      "uniqueCorrectChoice": "⑤",
+      "mathSyntax": "katex-strict-pass",
+      "mathSpanCount": 19
+    },
+    "authorFigureRender": {
+      "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+      "options": {
+        "strict": true,
+        "typeset": true
+      },
+      "transport": "local-python",
+      "enginePath": "vendor/figure-engine",
+      "inspection": "author-view-image-completed",
+      "finalFigureApproval": "pending-parent-review",
+      "artifacts": [
+        {
+          "role": "stem",
+          "specSha256": "a9400e897cdc34347c1add405124432c02178b8f73e83856007be9ee17b22d64",
+          "svgSha256": "642cdc2a3553acf03ec144666dd1548604eb608d945308275c0a859e79437268",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.preview.png",
+          "previewSha256": "acde96bbed5d0c4075dd85e245485969ec910f193622bda5306d7308cf3b7bd9",
+          "droppedDimensions": []
+        },
+        {
+          "role": "choice",
+          "choiceNumber": 1,
+          "specSha256": "e7bed7c5b411a4265243ddc1c5ea0869a7f1132a55ec3bb5ae790264680bb1e0",
+          "svgSha256": "c2d865d397d2ae8a42158f6b62c1c78f143a83e0488c8640cdc3d51fae0a74e1",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-01.preview.png",
+          "previewSha256": "3aff25ca78f2d24efa0669b1b6f8311d4fba228ecc2312a99c27458188ffc8ce",
+          "droppedDimensions": []
+        },
+        {
+          "role": "choice",
+          "choiceNumber": 2,
+          "specSha256": "c06b74351d0f4ebe26e6df9c08aa9a625ed6d4bbb2ba56e3839f64b4de9b74ce",
+          "svgSha256": "ce356ff73613573dadbc8e8e2171fa59f243e8586b61c2ad8b9febd8e90eabdc",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-02.preview.png",
+          "previewSha256": "a61fdc80965571f5a16b8f2b7b45551d51e205eb59f3eb5568f44f18e24c3101",
+          "droppedDimensions": []
+        },
+        {
+          "role": "choice",
+          "choiceNumber": 3,
+          "specSha256": "0de838266df8ba2e8191b8d125823cb07731659a621e66e4e80c778d7a0215f6",
+          "svgSha256": "e75be1941f8d2496f9b38d6092ed393964fafb9c3e9bba83ffeea94c94457327",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-03.preview.png",
+          "previewSha256": "17deae560c05f9d7908b89958812a3f4bd5c92e9326ff580d3f774504570fca2",
+          "droppedDimensions": []
+        },
+        {
+          "role": "choice",
+          "choiceNumber": 4,
+          "specSha256": "f255752679b0ae054cd3ba7b020952857bea9043eec4c4b098b3be731ec50a65",
+          "svgSha256": "ff022f3e457a87623264344b26bb9a80bdeeb5aae7619b5b6806c7da3d73df06",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-04.preview.png",
+          "previewSha256": "81d4dc0662fdf31cb0d1cc8ba24d51bbaa74e20b39552f2cf6d82f7c00465969",
+          "droppedDimensions": []
+        },
+        {
+          "role": "choice",
+          "choiceNumber": 5,
+          "specSha256": "523041eddfacecc88091c1fdb6960e4a8887c9b8ade1c6f0ec3af5b7ac709fda",
+          "svgSha256": "042d13de9847c8e2ac1b2d951aacf8ff06902a3e3c9fe63e9a37b3fc03024a73",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-05.preview.png",
+          "previewSha256": "4d61f0ce3d5a9b7bcfff8e364a7c55186add1448977d7b4ecc94cbec3ada3c90",
+          "droppedDimensions": []
+        }
+      ],
+      "choiceSheet": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.choice-sheet.png",
+        "sha256": "e3d8ac3726de150c671b2258c261993530ba5b98e8305550c299b44d92aac83d",
+        "order": "choiceNumber 1..5; row-major"
+      }
+    }
+  }
+}

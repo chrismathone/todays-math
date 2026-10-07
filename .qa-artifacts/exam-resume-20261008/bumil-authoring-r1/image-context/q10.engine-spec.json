@@ -1,0 +1,78 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "A": [
+      25,
+      175
+    ],
+    "B": [
+      124.98125351496594,
+      175
+    ],
+    "C": [
+      124.98125351496594,
+      15
+    ],
+    "G": [
+      25,
+      207
+    ],
+    "E": [
+      124.98125351496594,
+      207
+    ]
+  },
+  "segments": {
+    "eyeHorizontal": {
+      "points": [
+        "A",
+        "B"
+      ],
+      "dash": "5 3"
+    },
+    "sight": [
+      "A",
+      "C"
+    ],
+    "wall": [
+      "C",
+      "E"
+    ],
+    "ground": [
+      "G",
+      "E"
+    ],
+    "eye": [
+      "G",
+      "A"
+    ]
+  },
+  "angles": {
+    "elevation": {
+      "vertex": "A",
+      "points": [
+        "B",
+        "C"
+      ],
+      "radius": 23,
+      "label": "58^\\circ"
+    },
+    "right": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "C"
+      ],
+      "right": true,
+      "radius": 9
+    }
+  },
+  "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "G": "G",
+    "E": "E"
+  }
+}

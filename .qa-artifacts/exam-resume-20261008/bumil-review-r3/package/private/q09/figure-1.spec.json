@@ -1,0 +1,111 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "canvas": {
+    "width": 330,
+    "height": 330
+  },
+  "points": {
+    "O": [
+      80,
+      260
+    ],
+    "A": [
+      240,
+      260
+    ],
+    "B": [
+      80,
+      100
+    ],
+    "P": {
+      "type": "on_circle",
+      "circle": "quarter",
+      "angle": 54
+    },
+    "H": [
+      174.0456403667957,
+      260
+    ],
+    "Q": [
+      240,
+      39.77889272461226
+    ]
+  },
+  "circles": {
+    "quarter": {
+      "center": "O",
+      "radius": 160,
+      "draw": false
+    }
+  },
+  "arcs": {
+    "quarterArc": {
+      "circle": "quarter",
+      "from": "A",
+      "to": "B",
+      "dir": "ccw"
+    }
+  },
+  "segments": {
+    "OA": [
+      "O",
+      "A"
+    ],
+    "OB": [
+      "O",
+      "B"
+    ],
+    "OP": [
+      "O",
+      "P"
+    ],
+    "PQ": [
+      "P",
+      "Q"
+    ],
+    "PH": [
+      "P",
+      "H"
+    ],
+    "AQ": [
+      "A",
+      "Q"
+    ]
+  },
+  "angles": {
+    "angleO": {
+      "vertex": "O",
+      "points": [
+        "A",
+        "P"
+      ],
+      "label": "$54^{\\circ}$",
+      "radius": 24,
+      "label_distance": 47
+    },
+    "rightH": {
+      "vertex": "H",
+      "points": [
+        "O",
+        "P"
+      ],
+      "right": true
+    },
+    "rightA": {
+      "vertex": "A",
+      "points": [
+        "O",
+        "Q"
+      ],
+      "right": true
+    }
+  },
+  "labels": {
+    "O": "$\\mathrm{O}$",
+    "A": "$\\mathrm{A}$",
+    "P": "$\\mathrm{P}$",
+    "H": "$\\mathrm{H}$",
+    "Q": "$\\mathrm{Q}$"
+  }
+}

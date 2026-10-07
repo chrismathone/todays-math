@@ -1,0 +1,731 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q14",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "직사각형 종이띠 $\\mathrm{ABCD}$에서 왼쪽 위 꼭짓점을 $\\mathrm{A}$, 왼쪽 아래를 $\\mathrm{B}$, 오른쪽 아래를 $\\mathrm{C}$, 오른쪽 위를 $\\mathrm{D}$라 하였다. $\\mathrm{P}$는 선분 $AD$의 내부, $\\mathrm{Q}$는 선분 $BC$의 내부에 있다.\n첫 번째 그림은 접기 전의 종이띠이고, 두 번째 그림은 선분 $PQ$를 따라 왼쪽 부분을 접어 점 $\\mathrm{A}$를 점 $\\mathrm{C}$와 일치시킨 모습이다. 접은 뒤 $\\mathrm{B}$의 위치를 $\\mathrm{B}'$로 표시하였다.\n\n접기 기록\n∘ 종이띠의 폭 $\\overline{AB}=3\\,\\mathrm{cm}$\n∘ 접은 뒤의 $\\angle CPQ=x$, $0^\\circ<x<90^\\circ$\n∘ $\\tan x=3$\n\n이 접기 기록을 만족하는 접기 전 선분 $\\overline{AP}$의 길이는?",
+  "choices": [
+    "$3\\,\\mathrm{cm}$",
+    "$4\\,\\mathrm{cm}$",
+    "$5\\,\\mathrm{cm}$",
+    "$6\\,\\mathrm{cm}$",
+    "$9\\,\\mathrm{cm}$"
+  ],
+  "answer": "③",
+  "solution": "접기 전후에 길이와 각의 크기가 보존되므로 $\\overline{PA}=\\overline{PC}$이고 $\\angle APQ=\\angle CPQ=x$이다. 또 점 $\\mathrm{A}$를 점 $\\mathrm{C}$에 겹치도록 접었으므로 접는 선 $PQ$는 선분 $AC$의 수직이등분선이다.\n선분 $AC$와 $PQ$의 교점을 $\\mathrm{K}$라 하자. 직각삼각형 $\\mathrm{APK}$에서 $\\angle APK=x$이므로 $\\angle PAK=90^\\circ-x$이다. $\\angle BAP=90^\\circ$이므로 $\\angle BAC=90^\\circ-(90^\\circ-x)=x$이다.\n접기 전 직각삼각형 $\\mathrm{ABC}$에서 삼각비의 정의를 적용하면 $\\tan x=\\frac{\\overline{BC}}{\\overline{AB}}=\\frac{\\overline{BC}}3=3$이다. 따라서 $\\overline{BC}=\\overline{AD}=9\\,\\mathrm{cm}$이다.\n$\\overline{AP}=t\\,\\mathrm{cm}$라 하면 $\\mathrm{P}$가 선분 $AD$의 내부에 있으므로 $0<t<9$이고, $\\overline{PD}=(9-t)\\,\\mathrm{cm}$이다. 접기에서 $\\overline{PC}=\\overline{PA}=t\\,\\mathrm{cm}$이고 $\\overline{DC}=\\overline{AB}=3\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{PDC}$에서 피타고라스 정리를 적용하면 $t^2=(9-t)^2+3^2$이다. 전개하여 정리하면 $18t=90$이므로 $t=5$이다.\n따라서 접기 전 $\\overline{AP}$의 길이는 $5\\,\\mathrm{cm}$이므로 정답은 ③이다.",
+  "score": 5,
+  "questionType": "객관식",
+  "facts": {
+    "unit": "cm",
+    "paper": "직사각형 종이띠 ABCD",
+    "cornerOrder": "A 왼쪽 위, B 왼쪽 아래, C 오른쪽 아래, D 오른쪽 위",
+    "P": "선분 AD 내부",
+    "Q": "선분 BC 내부",
+    "fold": "PQ를 따라 왼쪽 부분을 접어 A를 C에 일치시킨다",
+    "imageOfB": "B'",
+    "widthAB": "3",
+    "angleCPQ": "x",
+    "angleRange": "0° < x < 90°",
+    "givenTanX": "3",
+    "target": "접기 전 AP의 길이"
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 66,
+      "specSha256": "c1b1082fa6fd40463322cfc049102620983a24457930ad9067c433d502ee7c00",
+      "renderMode": "local-renderFigureSpec-strict",
+      "svgSha256": "e2b2ef401c08f88ada3b7b8df350fa9f5504a3e7fd32c923434187b029b8d623",
+      "renderResult": {
+        "ok": true,
+        "strict": true,
+        "localOnly": true,
+        "typeset": true,
+        "droppedDimensions": []
+      }
+    },
+    {
+      "role": "stem",
+      "specPath": "figure-2.spec.json",
+      "svgPath": "figure-2.svg",
+      "intendedWidthMm": 45,
+      "specSha256": "e3ad26b17d433131a2eb1276baef8fa1567aeeacfe49368787d00ef1ef2068db",
+      "renderMode": "local-renderFigureSpec-strict",
+      "svgSha256": "5825d50a282c4432beba489d50560506719b3cea76c6cdb75e64dfef2a7dabaa",
+      "renderResult": {
+        "ok": true,
+        "strict": true,
+        "localOnly": true,
+        "typeset": true,
+        "droppedDimensions": []
+      }
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target",
+      "representation"
+    ],
+    "before": "접힌 한 도형에서 폭과 AP를 주고 tan x를 고른다.",
+    "after": "접기 전후의 두 도형과 기록을 주고 폭·tan x에서 빠진 AP를 복구한다. 접기 전 대각선 AC를 보이게 하여 보조 관계를 추적하고 계산의 방향을 뒤집었다.",
+    "sharedConcept": "접기 합동의 길이·각 보존, 수직이등분선, 직각삼각형의 예각 삼각비와 피타고라스 정리",
+    "sharedProcedure": "접기에서 PA=PC와 ∠APQ=∠CPQ → 접는 선과 대각선의 수직 관계 → 직각삼각형의 삼각비 → 피타고라스와 일차방정식. 같은 폭·접는 위치·tan x의 관계를 역으로 사용한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-18",
+      "9수04-04",
+      "9수04-12",
+      "9수04-16",
+      "9수02-05",
+      "9수01-10",
+      "9수04-17"
+    ],
+    "allowedProcedure": [
+      "접기 합동에서 PA=PC, QA=QC 및 각의 보존",
+      "접는 선이 겹치는 두 점 AC의 수직이등분선임을 사용",
+      "이미 그린 대각선 AC와 접는 선 PQ의 교점 K만 도입",
+      "두 직각삼각형의 내각으로 ∠BAC=x 유도",
+      "접기 전 직각삼각형 ABC에서 tan x=BC/AB의 정의",
+      "직각삼각형 PDC의 피타고라스 정리",
+      "한 미지수 t의 제곱항이 소거된 일차방정식 풀이"
+    ],
+    "forbiddenAvoided": [
+      "삼각비 사이의 항등식",
+      "삼각비의 덧셈·뺄셈·반각 공식",
+      "사인 법칙·코사인 법칙",
+      "일반 삼각함수·라디안·90° 밖의 삼각비",
+      "거듭제곱 정리·원과 비례",
+      "학생용 벡터·좌표 회전/반사 공식"
+    ],
+    "status": "author-proposed",
+    "standardEvidence": [
+      {
+        "code": "9수04-18",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-04",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4264,
+          "record_offset_in_uncompressed_stream": 216294,
+          "extracted_paragraph_1based": 872
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-12",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4308,
+          "record_offset_in_uncompressed_stream": 217962,
+          "extracted_paragraph_1based": 883
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-16",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4333,
+          "record_offset_in_uncompressed_stream": 218866,
+          "extracted_paragraph_1based": 889
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수01-10",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-17",
+        "role": "prerequisite-author-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "author-proposal-not-candidate-approval"
+      }
+    ],
+    "gradeBandCaveat": "9수 기준은 중1~중3 학년군이다. 중3 단원·실제 새 풀이·생성 규칙과 함께 별도 검토해야 하며 학교 출제나 학년군 코드만으로 승인하지 않는다.",
+    "surfaces": {
+      "content": {
+        "status": "author-proposed",
+        "evidence": "접기 전후 대응·폭·예각 범위·단일 tan 값만 제공한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "새로 작성한 정수 길이 다섯 개와 cm 단위."
+      },
+      "figure": {
+        "status": "author-proposed",
+        "evidence": "한 배율의 접기 전 직사각형·대각선·접는 선, 정확히 반사된 접기 후 도형. 답 AP와 파생 전체 길이·Q 위치는 숫자로 적지 않는다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "정수 길이가 담긴 보기의 원문자."
+      },
+      "solution": {
+        "status": "author-proposed",
+        "evidence": "합동·수직이등분선·직각의 보각·예각 tan의 정의·피타고라스·일차방정식만 사용한다."
+      },
+      "requiredProcedure": {
+        "status": "author-proposed",
+        "evidence": "반각/덧셈 공식·삼각비 사이의 항등식·벡터/좌표 반사 공식을 학생에게 요구하지 않는다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중학교 합동·수직이등분선·직사각형·직각삼각형 각·삼각비·피타고라스·일차방정식."
+      }
+    },
+    "gate": {
+      "scope": [
+        "content",
+        "choices",
+        "figure",
+        "answer",
+        "solution",
+        "requiredProcedure",
+        "prerequisites"
+      ],
+      "outOfGrade": "reject",
+      "unclear": "hold",
+      "independentGradeApproval": false
+    },
+    "wholeCurriculumMethodAudit": {
+      "status": "author-proposed-pending-independent-review",
+      "evidencePath": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "officialRestrictions": [
+        {
+          "id": "no_ratio_identities",
+          "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4440,
+            "record_offset_in_uncompressed_stream": 224820,
+            "extracted_paragraph_1based": 908
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "angle_range",
+          "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4444,
+            "record_offset_in_uncompressed_stream": 224946,
+            "extracted_paragraph_1based": 909
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4071,
+            "record_offset_in_uncompressed_stream": 206968,
+            "extracted_paragraph_1based": 832
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4472,
+            "record_offset_in_uncompressed_stream": 226554,
+            "extracted_paragraph_1based": 916
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        }
+      ],
+      "methodScope": "합동·수직이등분선·직각삼각형 내각·0°~90° 안의 tan 정의·피타고라스·일차방정식으로 학생용 풀이를 제시했다. 원본 학교 출제는 허용 근거로 사용하지 않았다.",
+      "auxiliaryConstruction": {
+        "count": 1,
+        "object": "이미 그린 AC와 PQ의 교점 K",
+        "purpose": "직각삼각형 APK의 각에서 ∠BAC=x를 설명",
+        "newPerpendiculars": 0,
+        "extraHiddenPoints": 0
+      },
+      "foldingJustification": "PA=PC, QA=QC와 PQ 공통으로 △APQ≅△CPQ(SSS), 따라서 PQ가 ∠APC를 이등분한다. K에서 △APK≅△CPK(SAS)이므로 ∠AKP=∠CKP=90°이고 AK=CK다. 좌표 반사 공식은 학생용 풀이가 아니다.",
+      "algebraComplexity": "미지수 하나. t²=(9−t)²+9의 양변 제곱항이 소거되어 일차식 18t=90이 된다. 근의 공식·항등식·연립 비선형식이 필요하지 않다.",
+      "geometryRestrictionApplicability": "공식 복잡 도형 문구의 직접 대상은 넓이·둘레·겉넓이·부피이며 이 후보는 선분 길이이다. 이를 자동 승인 근거로 삼지 않고 접기 도형·교점·식 전개의 전체 복잡도도 별도 검토한다.",
+      "authorConclusion": "위 범위의 학생용 풀이가 있는 실제 저자 후보를 작성했다. taxonomy와 전체 교육과정/복잡도에 대한 독립 판정은 보류한다. 그 검토에서 과도한 작도 또는 학년 밖 방법이 필수라고 확인되면 hold/reject한다.",
+      "sourceSchoolIsApprovalEvidence": false,
+      "releaseStatus": "held-pending-taxonomy-and-whole-curriculum-review"
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-14",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 14,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "d85d7968d03bd611708edd8a7a8a8e41f21d66a76aa480cd9f2fe29d6f4b8eec",
+    "sourceObservation": "AB=2, AP=6인 직사각형 종이띠를 PQ로 접어 A와 C가 겹치며 ∠CPQ=x다.",
+    "sharedConceptProcedure": "접기 전후의 같은 길이·각을 이용해 보조 길이와 각 관계를 만든 뒤 tan x의 변의 비를 구한다.",
+    "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q14",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+    "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "answerFreeContentSha256": "d85d7968d03bd611708edd8a7a8a8e41f21d66a76aa480cd9f2fe29d6f4b8eec",
+    "referenceFigures": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q14.png",
+        "sha256": "4e557c5919d0f2c08d3a75adf2ba3e37f6876ffd305bd00ccd9296757e6fa2b7",
+        "role": "source-reference-only"
+      }
+    ],
+    "sourceAnswersSolutionsAccessed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 5,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "활용",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "종이띠 접기의 반사·길이 보존과 접는 선의 각 관계가 필수다. 현재 삼각비 등록 제목·절차에서 같은 접기 구조를 확인하지 못해 단순 직각삼각형 family로 고정하지 않는다.",
+      "candidates": [
+        {
+          "registryKey": "3-2|삼각비의 활용|01",
+          "registryTitle": "직각삼각형의 변의 길이 구하기",
+          "section": "삼각비의 활용",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "family": "mid:3-2|삼각비의 활용|01",
+          "confidence": "low",
+          "evidence": "최종 직각삼각형 길이 계산은 관련되지만 접기에서 보조 길이와 각을 만드는 핵심 단계가 없다.",
+          "sameUnitLiveCount": 24,
+          "currentUnit": {
+            "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 활용",
+            "semester": 2,
+            "orderIndex": 483,
+            "problemCodePrefix": "J30503"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|삼각비의 활용|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "01",
+            "rpmTitle": "직각삼각형의 변의 길이 구하기"
+          },
+          "currentLiveCount": 24
+        }
+      ]
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수04-18",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-04",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4264,
+          "record_offset_in_uncompressed_stream": 216294,
+          "extracted_paragraph_1based": 872
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-12",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4308,
+          "record_offset_in_uncompressed_stream": 217962,
+          "extracted_paragraph_1based": 883
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-16",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4333,
+          "record_offset_in_uncompressed_stream": 218866,
+          "extracted_paragraph_1based": 889
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수01-10",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-17",
+        "role": "prerequisite-author-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "author-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "접기 합동에서 PA=PC, QA=QC 및 각의 보존 → 접는 선이 겹치는 두 점 AC의 수직이등분선임을 사용 → 이미 그린 대각선 AC와 접는 선 PQ의 교점 K만 도입 → 두 직각삼각형의 내각으로 ∠BAC=x 유도 → 접기 전 직각삼각형 ABC에서 tan x=BC/AB의 정의 → 직각삼각형 PDC의 피타고라스 정리 → 한 미지수 t의 제곱항이 소거된 일차방정식 풀이",
+    "curriculumSpecificHold": "taxonomy는 pending/familyKey=null이다. 새 후보의 전체 교육과정·복잡도·독립 검산과 출처 검토 전이며 원본 학교의 출제로 승인하지 않는다.",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": []
+    },
+    "authoringStatus": "author-proposed",
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate",
+      "candidateDisplayOccurrences": 0
+    }
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "gradeCurriculum": "pending",
+    "equivalentConceptAndMethod": "pending",
+    "distinctPresentation": "pending",
+    "naturalKorean": "pending",
+    "mathematicalCorrectness": "pending",
+    "figure": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  },
+  "directUseAllowed": false
+}

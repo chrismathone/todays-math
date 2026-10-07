@@ -1,0 +1,26 @@
+{
+  "version": "graph-1",
+  "width": 340,
+  "height": 280,
+  "xRange": [-2.5, 4.5],
+  "yRange": [-5.5, 5],
+  "axes": true,
+  "curves": [{"coefficients": [1, -2, -3], "domain": [-2.5, 4.5]}],
+  "segments": [
+    {"from": [-1, 0], "to": [3, 0]},
+    {"from": [-1, 0], "to": [1, -4]},
+    {"from": [3, 0], "to": [1, -4]},
+    {"from": [1, -4], "to": [1, 0], "dashed": true}
+  ],
+  "points": [
+    {"at": [-1, 0], "radius": 3},
+    {"at": [3, 0], "radius": 3},
+    {"at": [1, -4], "radius": 3}
+  ],
+  "labels": [
+    {"at": [0, 0], "text": "$O$", "dx": -12, "dy": -10, "size": 20},
+    {"at": [-1, 0], "text": "$\\mathrm{A}$", "dx": -10, "dy": 21, "size": 20},
+    {"at": [3, 0], "text": "$\\mathrm{B}$", "dx": 12, "dy": 21, "size": 20},
+    {"at": [1, -4], "text": "$\\mathrm{C}$", "dy": 24, "size": 20}
+  ]
+}

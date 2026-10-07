@@ -1,0 +1,246 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-07T18:46:48.145Z",
+  "questionNumbers": [
+    1,
+    4,
+    5,
+    10,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "packageDigest": "4af5c72bca465ed4697fb58edbbcbe29b1bfb31361f6d52c6ec13ac6b80566dd",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "candidateFileSha256": "d8e2aaa7022f4e240ab571f397da0e13c8675d68765c6e85b20a21ce3953d025",
+      "studentDigest": "540ba2b796fa20c6fe9b0a14562a0b6ac52e8bafef917928f6a995b9f18c81a0",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateDigest": "8485473a9cc1806b28f41041cb2591a69499671eb592f7b1b59a0bc56776d0dc",
+      "privateCandidatePath": "private/q01/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q01.json",
+        "sha256": "d8e2aaa7022f4e240ab571f397da0e13c8675d68765c6e85b20a21ce3953d025"
+      },
+      "assets": []
+    },
+    {
+      "candidateFileSha256": "c0422d2e6587497e8966e10cf9962efbb8397dded9114b19fb480699cb515f57",
+      "studentDigest": "e594be5d73a48300b0f7ae14f07eb8d09e05c90999b8437e04a2a0497fc2e219",
+      "assetDigest": "48e6d07ad6907d9a1f33bf085b8eba8e12d49d64b12edc00d9e2be7bf9684885",
+      "candidateDigest": "ba79b61e1d200e68bbfde9477c9a4e451bde91db82406ef5d3fbf51eda2790ad",
+      "privateCandidatePath": "private/q04/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q04.json",
+        "sha256": "018ce9d854cd4c399f2f9535704fdc21894f322f223d6f336da2876d681062de"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "a9400e897cdc34347c1add405124432c02178b8f73e83856007be9ee17b22d64",
+          "svgSha256": "642cdc2a3553acf03ec144666dd1548604eb608d945308275c0a859e79437268",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q04-1.svg"
+        },
+        {
+          "role": "choice:1",
+          "specSha256": "e7bed7c5b411a4265243ddc1c5ea0869a7f1132a55ec3bb5ae790264680bb1e0",
+          "svgSha256": "c2d865d397d2ae8a42158f6b62c1c78f143a83e0488c8640cdc3d51fae0a74e1",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-2.svg"
+        },
+        {
+          "role": "choice:2",
+          "specSha256": "c06b74351d0f4ebe26e6df9c08aa9a625ed6d4bbb2ba56e3839f64b4de9b74ce",
+          "svgSha256": "ce356ff73613573dadbc8e8e2171fa59f243e8586b61c2ad8b9febd8e90eabdc",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-3.svg"
+        },
+        {
+          "role": "choice:3",
+          "specSha256": "0de838266df8ba2e8191b8d125823cb07731659a621e66e4e80c778d7a0215f6",
+          "svgSha256": "e75be1941f8d2496f9b38d6092ed393964fafb9c3e9bba83ffeea94c94457327",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-4.svg"
+        },
+        {
+          "role": "choice:4",
+          "specSha256": "f255752679b0ae054cd3ba7b020952857bea9043eec4c4b098b3be731ec50a65",
+          "svgSha256": "ff022f3e457a87623264344b26bb9a80bdeeb5aae7619b5b6806c7da3d73df06",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-5.svg"
+        },
+        {
+          "role": "choice:5",
+          "specSha256": "523041eddfacecc88091c1fdb6960e4a8887c9b8ade1c6f0ec3af5b7ac709fda",
+          "svgSha256": "042d13de9847c8e2ac1b2d951aacf8ff06902a3e3c9fe63e9a37b3fc03024a73",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-6.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "40dda286ec1630f66bb582e847c8564f3820a65c5d9c8960d2918e47fc917342",
+      "studentDigest": "8e74b40b3a420a33dd4cbff54fc95e8479fb59b096c8fc61d0dbf6e2b2cda962",
+      "assetDigest": "6cb5046ecd9c4bf7df0dcdbe11b4f10ee8664c6cfa51282776b4259b6159dd7d",
+      "candidateDigest": "f09ee6672bef661f8b4204a07fb86a7b91a4e1d3a66b37880c7cf431a2f7da58",
+      "privateCandidatePath": "private/q05/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q05.json",
+        "sha256": "2221faec82674818c0a13fbcc7d6254ad88dca5d22298ec18ab45b357295b1d8"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "b24cfc8fa9c7abf018e5c4db4fd3eeaf17936c066651e57bc1efbd631f5e121b",
+          "svgSha256": "d3471b102182c4de573c5bbd9ef3a70fd05cee74fb8692973cdde49162e5043a",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q05-1.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "2249b4d94875d1ad44d6385f12825ce857d0431b18d26e449068285d99e265a5",
+      "studentDigest": "fa3a4d05b624a90797c4e05c3996d48c41800f30e957bbcd7060eb0ff6500faf",
+      "assetDigest": "2fec6a0c2b2cc806b633e5ed1290e24e510e37eb8840ee5db09d0f5927807e29",
+      "candidateDigest": "68c0f9ffe4c7e13f051f65e1223ff88f5574924d658538c7597b8cf5f4833e28",
+      "privateCandidatePath": "private/q10/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\image-context\\q10.json",
+        "sha256": "4fc6124f69929f80ce79f233e9d81b16226b7460242ffd2941fe59ff375b3ea4"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "9d8c50f2ab07ef73154791026fb4fb5239779e8fbdb3601971168bd642714e25",
+          "svgSha256": "f9b1cb9351ffbf85b25df75c17873442ebf0ec1a4d422dea1450d47e7e0c03af",
+          "intendedWidthMm": 95,
+          "studentPath": "figures/q10-1.svg",
+          "resources": [
+            {
+              "sourceRasterPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q10\\figure-1-raster-1.png",
+              "sourceGenerationPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q10\\figure-1-generation-1.json",
+              "rasterSha256": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+              "generationSha256": "ac77edc7e2d7712cdb2a0cb45a4bdec2b527f033fafd812d3537a0b7341de155",
+              "widthPx": 1536,
+              "heightPx": 1024
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "ddb4b8ecd38969339b0dc554e558715cc91a1f6a7839c448e430f2ce6b3edf16",
+      "studentDigest": "818b8d74b4affcc33f5212e0e16936724f1732080c8ac4819ee3e7a09595790a",
+      "assetDigest": "28966973dc2a33441bec3dc01fb60c465a3a5c33a24b0917e4f26a4cf6227337",
+      "candidateDigest": "c422c4c43a5478a04fbc5cb9a3ae7412640cabbc26951e4a512bb87f5c765a5c",
+      "privateCandidatePath": "private/q16/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\geometry\\q16.json",
+        "sha256": "fe028ae29ccaa7e3f749ba4b4c498f16122576e7eb27e50ab4076b5e153391f0"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "9d860f61252cd19b1ad520cfc660dbf664093926dbfc477789c6ed72c054df25",
+          "svgSha256": "24e796e88d8ba1f5c3f3db7b03900fed1c11076c1ce875d8a71ee10f31b7e196",
+          "intendedWidthMm": 58,
+          "studentPath": "figures/q16-1.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "edbb44f08eaca5ab18d958e35c42be92cfc4c72c3813108fa8ae83d62a9faefe",
+      "studentDigest": "0c25f73a7384f79f9e43e21d6aab87b38e0678dcc569534b36f9fe1880c4a1ad",
+      "assetDigest": "ec8864f488728687631d38c5fa6a88f3df3337f13ee0a0a906263dda22c5e203",
+      "candidateDigest": "fde456694057f3794674322cf12b9fe47635349290e4c9f6d57319a6247beff8",
+      "privateCandidatePath": "private/q17/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\geometry\\q17.json",
+        "sha256": "052fa81ae4898d93046815527aa9341bd0b3e65e0f58dfb4dc65c0323f1819f3"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "c6e566a91289a9a7ac8f3cd6996ab3c95d83c2a7fa008e721961cb961591f42c",
+          "svgSha256": "283cc73162fca4b99d19610b3405ff5a9f96511868909a2c36326475982a753f",
+          "intendedWidthMm": 64,
+          "studentPath": "figures/q17-1.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6",
+      "studentDigest": "7560f9f6c5dcf51efcb593ccc24873d941d6d7fb26339aada218c7eba6af98ac",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateDigest": "0360d1fcae6d467e221d669743cadf3d60f560b7943da51d082f0d045f572e82",
+      "privateCandidatePath": "private/q18/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q18.json",
+        "sha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6"
+      },
+      "assets": []
+    },
+    {
+      "candidateFileSha256": "353c60637295defe9e841a4baa401ecdac232a808f272da598976012d416b5e5",
+      "studentDigest": "74893ff23a48dfaa5b298a8febb65c1849ec4f1b35d9b95294ea3b6e1947da81",
+      "assetDigest": "0cee6f64ba29ce274afa548e9e3565e1979c56512e12e5c2676a32e08c1873eb",
+      "candidateDigest": "192c7a8cd224e83cd323c1580622f333fb1443387fdd9529ce5a17d27b373004",
+      "privateCandidatePath": "private/q19/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\image-context\\q19.json",
+        "sha256": "cb09eff725b736e5580df0faa16317111770acade37d291ad8385871740fcf19"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "4e5c34910ecca21fcf2f160a30568a60630eafc3f4ef41e5c8f80e3760f8eeab",
+          "svgSha256": "2d03d431374553629a8764af00b4ff50e5e90e9438ef97678ed3ccc771b7f1f2",
+          "intendedWidthMm": 95,
+          "studentPath": "figures/q19-1.svg",
+          "resources": [
+            {
+              "sourceRasterPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q19\\figure-1-raster-1.png",
+              "sourceGenerationPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q19\\figure-1-generation-1.json",
+              "rasterSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+              "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+              "widthPx": 1536,
+              "heightPx": 1024
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "2eff78dc4ff77ca6d5e765b243ea3db0bb78be45be97dd10bdb734c36d81a382",
+      "studentDigest": "06788db5de931162daba02380191c669e768016ab2279a63fed039814378b94f",
+      "assetDigest": "3dc03367ac8af81399639781664334d7e94e08bf7a8a10e0e0b3f2deac8add6e",
+      "candidateDigest": "0ed9faa1f19680d76a59e80e96d2b84d18d4f0448278297b649473800cd23600",
+      "privateCandidatePath": "private/q20/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\geometry\\q20.json",
+        "sha256": "c6afd84bd14c5b2b9ff48b23524b13e6fc8f4718af3e3a1ea45e08d729a368c6"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "4473e58cdec9bda08889ecd6e5c4494c310702f82f2fa822669ee4a4043a4f67",
+          "svgSha256": "9f4ecc3d85b8608cefcd69840a458fd9a047347a2aca68e0f8752b30b6a0ade1",
+          "intendedWidthMm": 62,
+          "studentPath": "figures/q20-1.svg"
+        }
+      ]
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

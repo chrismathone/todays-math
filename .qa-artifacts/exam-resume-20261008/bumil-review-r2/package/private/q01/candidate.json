@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q01",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "다음 다섯 카드는 이차함수의 식을 나타낸다.\n\n| 카드 | 가 | 나 | 다 | 라 | 마 |\n| --- | --- | --- | --- | --- | --- |\n| 식 | $y=3x^{2}$ | $y=-\\frac{1}{3}x^{2}$ | $y=-\\frac{1}{5}x^{2}$ | $y=-3x^{2}$ | $y=\\frac{1}{2}x^{2}$ |\n\n각 행의 두 조건을 모두 만족하는 카드로 빈칸 ㉠, ㉡을 채우려고 한다.\n\n| 조건 1 | 조건 2 | 카드 |\n| --- | --- | --- |\n| $x>0$에서 $x$의 값이 증가하면 $y$의 값은 감소한다. | 카드 마의 그래프보다 폭이 좁다. | ㉠ |\n| $x>0$에서 $x$의 값이 증가하면 $y$의 값도 증가한다. | $y=x^{2}$의 그래프보다 폭이 넓다. | ㉡ |\n\n㉠, ㉡에 들어갈 카드를 차례로 바르게 짝지은 것은?",
+  "choices": [
+    "가, 마",
+    "라, 나",
+    "라, 마",
+    "다, 마",
+    "라, 가"
+  ],
+  "answer": "③",
+  "solution": "이차함수 $y=ax^{2}$에서 $x>0$일 때, $a<0$이면 $x$의 값이 증가할수록 $y$의 값이 감소하고, $a>0$이면 $y$의 값이 증가한다. 또 $a$의 절댓값이 클수록 그래프의 폭은 좁다.\n㉠의 조건 1을 만족하는 카드는 계수가 음수인 나, 다, 라이다. 이들의 계수의 절댓값은 각각 $\\frac{1}{3}$, $\\frac{1}{5}$, $3$이다. 카드 마의 계수의 절댓값은 $\\frac{1}{2}$이므로 마보다 폭이 좁은 것은 라이다. 따라서 ㉠은 라이다.\n㉡의 조건 1을 만족하는 카드는 계수가 양수인 가, 마이다. $y=x^{2}$의 그래프보다 폭이 넓으려면 계수의 절댓값이 $1$보다 작아야 한다. 가의 계수는 $3$, 마의 계수는 $\\frac{1}{2}$이므로 ㉡은 마이다.\n따라서 ㉠, ㉡에 들어갈 카드는 차례로 라, 마이고 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "cards": [
+      {
+        "label": "가",
+        "coefficientNumerator": 3,
+        "coefficientDenominator": 1
+      },
+      {
+        "label": "나",
+        "coefficientNumerator": -1,
+        "coefficientDenominator": 3
+      },
+      {
+        "label": "다",
+        "coefficientNumerator": -1,
+        "coefficientDenominator": 5
+      },
+      {
+        "label": "라",
+        "coefficientNumerator": -3,
+        "coefficientDenominator": 1
+      },
+      {
+        "label": "마",
+        "coefficientNumerator": 1,
+        "coefficientDenominator": 2
+      }
+    ],
+    "row1Condition1Candidates": [
+      "나",
+      "다",
+      "라"
+    ],
+    "row1Condition2Candidates": [
+      "가",
+      "라"
+    ],
+    "row2Condition1Candidates": [
+      "가",
+      "마"
+    ],
+    "row2Condition2Candidates": [
+      "나",
+      "다",
+      "마"
+    ],
+    "row1Match": "라",
+    "row2Match": "마",
+    "choicePairs": [
+      [
+        "가",
+        "마"
+      ],
+      [
+        "라",
+        "나"
+      ],
+      [
+        "라",
+        "마"
+      ],
+      [
+        "다",
+        "마"
+      ],
+      [
+        "라",
+        "가"
+      ]
+    ],
+    "nativeTables": true
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure"
+    ],
+    "before": "다섯 이차함수식에 대한 설명 목록에서 옳은 설명 하나를 고른다.",
+    "after": "함수 카드를 조건 대응표로 옮기고, 증감 조건과 폭 비교 조건을 함께 만족하는 두 카드를 순서쌍 보기로 고른다. 각 조건 하나만으로는 카드가 여러 개 남지만 두 조건을 함께 적용하면 각 빈칸이 하나로 정해진다.",
+    "sharedConcept": "y=ax^2에서 계수의 부호에 따른 x>0 구간의 증감과 계수의 절댓값에 따른 그래프의 폭",
+    "sharedProcedure": "계수의 부호와 절댓값을 그래프의 성질에 연결하여 각 조건의 참·거짓을 판정한다.",
+    "preparationAdjustment": "v2의 계수 제안은 유지하되 두 조건이 각각 여러 카드를 남기고 그 교집합이 한 카드인 조건표를 실제로 설계했다. 일반적인 직선-포물선 교점 판단은 요구하지 않는다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10",
+      "9수03-01",
+      "9수03-05",
+      "9수02-02"
+    ],
+    "allowedProcedure": [
+      "계수의 부호로 x>0에서의 증가·감소를 판정한다.",
+      "분수의 크기와 계수의 절댓값을 비교해 그래프의 폭을 판단한다.",
+      "각 행에서 두 조건을 모두 만족하는 카드를 고른다."
+    ],
+    "forbiddenAvoided": [
+      "도함수·미분",
+      "판별식·근과 계수의 관계",
+      "일반적인 직선-포물선 교점 이론",
+      "상위 학년 함수의 최댓값·최솟값 이론"
+    ],
+    "surfaceScope": {
+      "stem": "이차함수식과 증감·폭 조건의 대응표",
+      "choices": "두 카드 이름을 순서대로 제시하며 새로운 수학 개념을 요구하지 않는다.",
+      "figureAndNotation": "그림 없이 식과 네이티브 표를 사용한다. x>0은 범위 조건이다.",
+      "studentSolution": "계수의 부호·절댓값과 분수의 크기 비교",
+      "prerequisites": "양수·음수, 분수의 크기, 절댓값, 좌표와 그래프의 증감"
+    },
+    "status": "author-proposed",
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "mappingJsonPointer": "/question_mappings/0",
+      "standards": [
+        {
+          "code": "9수02-02",
+          "verified_text": "식의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-01",
+          "verified_text": "순서쌍과 좌표를 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-05",
+          "verified_text": "일차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4122,
+            "record_offset_in_uncompressed_stream": 209259,
+            "extracted_paragraph_1based": 843
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-09",
+          "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4146,
+            "record_offset_in_uncompressed_stream": 210185,
+            "extracted_paragraph_1based": 849
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-10",
+          "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "bandCaveat": {
+        "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+        "source_id": "moe-2020-236-math-hwp",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record_1based": 3713,
+          "record_offset_in_uncompressed_stream": 190162,
+          "text": "[중학교 1~3학년]"
+        },
+        "original_pdf_page_1based": 32,
+        "original_pdf_printed_page": 28
+      },
+      "versionLimitations": {
+        "verified_math_editions": [
+          "2015-74 book8 PDF",
+          "2020-236 amended book8 HWP"
+        ],
+        "post_2020_complete_amendment_chain_audited": false,
+        "final_candidate_approval_allowed": false,
+        "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+      }
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-1",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 1,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "7330d1796e68c77ec6b43fcf969bc579043b89fb5cf86e6ce71358c19ce40009",
+    "sourceObservation": "여러 y=ax² 식의 그래프 관계를 비교한다.",
+    "sharedConceptProcedure": "계수의 부호와 절댓값을 그래프의 모양·대칭·증감에 연결하고 문장별 참·거짓을 판정한다.",
+    "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "referenceJsonPointer": "/0/content",
+    "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "개념",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|06",
+      "currentUnit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "currentRegistryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑴|06",
+        "grade": "중3",
+        "unitSection": "이차함수와 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑴",
+        "rpmType": "06",
+        "rpmTitle": "이차함수 의 그래프의 성질"
+      },
+      "liveCount": 12,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "양수·음수 계수, 절댓값에 따른 폭, 대칭과 증가·감소를 함께 판정하므로 y=ax² 그래프의 성질 유형이다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-09",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-10",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-01",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4102,
+          "record_offset_in_uncompressed_stream": 208503,
+          "extracted_paragraph_1based": 838
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4122,
+          "record_offset_in_uncompressed_stream": 209259,
+          "extracted_paragraph_1based": 843
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-02",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3900,
+          "record_offset_in_uncompressed_stream": 199304,
+          "extracted_paragraph_1based": 793
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "계수의 부호로 x>0에서의 증가·감소를 판정한다. 분수의 크기와 계수의 절댓값을 비교해 그래프의 폭을 판단한다. 각 행에서 두 조건을 모두 만족하는 카드를 고른다.",
+    "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": [
+        "D:/todays-math/src/lib/middle/m3Func.ts:732"
+      ],
+      "authorObservation": {
+        "status": "author-proposed-not-family-approval",
+        "path": "src/lib/middle/m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "scope": "read-only-procedure-comparison",
+        "familyType": "g1-06",
+        "line": 732
+      }
+    },
+    "source": "transformed",
+    "originProblemId": null,
+    "problemCode": null,
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate"
+    },
+    "publicationStatus": "author-proposed-not-approved",
+    "independentVerificationStatus": "pending-parent-blind-verification",
+    "gradeApprovalStatus": "pending-parent-review",
+    "rightsReviewStatus": "pending-parent-review",
+    "similarityReviewStatus": "pending-parent-review",
+    "directUseAllowed": false,
+    "sourceQuestionType": "객관식",
+    "sourceScore": 4,
+    "formAndScoreStatus": "author-proposed-pending-parent-review",
+    "curriculumSourceMethodProposal": "계수의 부호·절댓값과 그래프의 방향·폭·대칭·증감. 보기의 y=x 만남은 공통점 (0,0)을 직접 대입하여 판단한다.",
+    "sourceCurriculumSpecificHold": "일반적인 직선-포물선 위치 관계나 판별식 이론을 요구하는 변형은 제외.",
+    "authorChecks": {
+      "status": "completed-author-self-check-only",
+      "independent": false,
+      "requiredFields": "present",
+      "choiceCount": 5,
+      "uniqueCorrectChoice": "③",
+      "mathSyntax": "katex-strict-pass",
+      "mathSpanCount": 28
+    }
+  }
+}

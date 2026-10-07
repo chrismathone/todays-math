@@ -1,0 +1,121 @@
+{
+  "studentDigest": "bc3bd97b90cec786cce08661bc8312b7b160ca9997115ba07c151ba8745dd71d",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "answer": "②",
+  "solution": "원주가 15π cm이므로 반지름은 15/2 cm이다. M은 현 AB의 중점이므로 AM=6 cm이고, 현의 수직이등분선은 원의 중심을 지나므로 OM⊥AB이다. 직각삼각형 OMA에서 OM²=(15/2)²-6²=81/4이다. 길이는 양수이므로 OM=9/2 cm이다. P와 O가 AB의 서로 반대쪽에 있고 O,M,P가 한 직선 위에 있으므로 OP=OM+MP이다. 따라서 MP=15/2-9/2=3 cm이며 정답은 ②이다.",
+  "evidence": {
+    "questionNumber": 15,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q15",
+    "grade": "중3",
+    "curriculum": "2015",
+    "studentMethods": [
+      "원주의 길이 2πr",
+      "현의 수직이등분선과 원의 중심",
+      "피타고라스 정리",
+      "양수인 길이와 제곱근"
+    ],
+    "studentInputFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind/student-problems.json",
+    "studentInputFileSha256": "be2aeecd199db093822fbbac30248945f9e021253f85138d43590238222ee515",
+    "figure": {
+      "path": "figures/q15-1.svg",
+      "sha256": "f6f27e2e04d7f98fde4f6236f6e3fedef555fee37f160fefd2ca1573d97928e2",
+      "providedHashMatched": true,
+      "previewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2/q15.png",
+      "previewSha256": "953b68c7a12f1fc1ac3e9fa6d712d6a44694d1cd4a2f87f3a2dcd5a130802e91",
+      "viewImageReviewed": true,
+      "observations": [
+        "P는 짧은 호 AB의 중점으로 표시되어 있다.",
+        "P는 현 AB의 위쪽, O는 아래쪽에 있고 M은 AB의 중점이며 MP와 OM은 같은 직선 위에 있다.",
+        "학생 미리보기에서 직각 표시가 M에 있고 위쪽의 작은 장식 부분이 음영으로 표시되어 있다."
+      ],
+      "svgGeometryChecks": {
+        "radiusPixels": 90,
+        "chordABPixels": 144,
+        "MPPixels": 36,
+        "OMPixels": 54,
+        "PAndOOppositeChordSides": true,
+        "midpointAndPerpendicularRelations": true,
+        "A_B_POnCircle": true,
+        "scalePixelsPerCmAfterIndependentSolve": 12,
+        "calculationMethod": "주어진 SVG의 표시점 좌표 차와 피타고라스 거리로 위 관계를 확인했다. 반지름 90, AB 144, MP 36, OM 54는 독립 풀이의 15/2,12,3,9/2에 같은 배율 12로 대응한다."
+      },
+      "limit": "학생 풀이의 답은 픽셀 측정에서 얻지 않았다. SVG 좌표는 풀이 후 그림 관계를 확인하는 보조 근거이다.",
+      "earlierPreview": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview/q15.png",
+        "sha256": "4cb599c26bfb13ea8362a4338f8567ee71328df9bbc463a3705b6bb061e7b7ce",
+        "viewImageReviewed": true,
+        "renderingVersion": "legacy; superseded by r2"
+      },
+      "renderingVersion": "r2; viewed after rendering-only correction; student JSON/digest unchanged"
+    },
+    "independentCalculation": {
+      "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+      "executedCode": "from fractions import Fraction as F\nr = F(15,2)\nhalf_chord = F(12,2)\nom_squared = r*r - half_chord*half_chord\nom = F(9,2)\nheight = r - om\nchoices = [F(3,2), F(3), F(9,2), F(6), F(15,2)]\nchecks = [(0<h<r, (r-h)**2+half_chord**2-r**2) for h in choices]\nvalid = [i+1 for i,(bound,residual) in enumerate(checks) if bound and residual==0]\nassert om*om==om_squared and 0<height<r and 12<2*r and valid==[2]\nassert (r-F(12))**2+half_chord**2-r**2==0 and not 0<F(12)<r\nprint(r, half_chord, om_squared, om, height, checks, valid)",
+      "actualResults": {
+        "radiusCm": "15/2",
+        "halfChordCm": "6",
+        "OMSquaredCm2": "81/4",
+        "OMCm": "9/2",
+        "MPCm": "3",
+        "quadraticHeightRootsCm": [
+          "3",
+          "12"
+        ],
+        "excludedLongHeightCm": "12",
+        "validChoiceNumbers": [
+          2
+        ]
+      }
+    },
+    "choiceChecks": [
+      {
+        "number": 1,
+        "heightCm": "3/2",
+        "satisfiesStrictShortHeightBound": true,
+        "pythagoreanResidualCm2": "63/4",
+        "valid": false
+      },
+      {
+        "number": 2,
+        "heightCm": "3",
+        "satisfiesStrictShortHeightBound": true,
+        "pythagoreanResidualCm2": "0",
+        "valid": true
+      },
+      {
+        "number": 3,
+        "heightCm": "9/2",
+        "satisfiesStrictShortHeightBound": true,
+        "pythagoreanResidualCm2": "-45/4",
+        "valid": false
+      },
+      {
+        "number": 4,
+        "heightCm": "6",
+        "satisfiesStrictShortHeightBound": true,
+        "pythagoreanResidualCm2": "-18",
+        "valid": false
+      },
+      {
+        "number": 5,
+        "heightCm": "15/2",
+        "satisfiesStrictShortHeightBound": false,
+        "pythagoreanResidualCm2": "-81/4",
+        "valid": false
+      }
+    ],
+    "choiceResidualDefinition": "(r-h)²+6²-r². 짧은 높이 h는 OM=r-h>0이어야 하며 잔차가 0이어야 한다.",
+    "existence": "0<AB=12<지름15이므로 해당 현이 존재한다. 반현6과 중심에서 현까지 거리9/2는 (9/2)²+6²=(15/2)²를 만족한다. P를 O와 현의 반대쪽에 잡으면 짧은 호의 높이 MP=3이 존재한다.",
+    "uniqueness": "OM>0이므로 OM²=81/4의 양수 해는 9/2 하나이다. P-M-O의 순서에서 MP=r-OM=3으로 정해진다. 높이 식을 제곱하여 얻을 수 있는 12는 MP<r=15/2를 위반하는 긴 높이이므로 제외한다. 다섯 보기 중 ②만 모든 조건을 만족한다.",
+    "signAndUnits": "AM,OM,OP,MP는 모두 양수 길이이고 단위는 cm이다. 0<3<15/2를 확인했다. 계산 중 제곱량/잔차의 단위는 cm²이다.",
+    "correctChoiceNumber": 2,
+    "answerValue": "3 cm",
+    "limits": [
+      "새 학생용 원주·현 길이와 짧은 호 조건만 사용했다. 기존 문제의 수치나 답을 승인 근거로 삼지 않았다.",
+      "저자 답/해설, 비공개 패키지, render-review.json, 과거 답/해설을 이번 작업에서 읽지 않았다. 최종 조판·권리 승인 결과는 아니다."
+    ],
+    "authorAnswersSeenBeforeSolve": false,
+    "originalAnswerUsedAsApproval": false
+  },
+  "status": "solved"
+}

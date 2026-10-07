@@ -1,0 +1,15 @@
+# 실제 쌍둥이 후보의 로컬 제작·검수
+
+이 경로는 범일중 중3·2015 첫 배치를 위한 오프라인 후보 계약이다. DB·네트워크·모델 호출·운영 적재기는 없다. `--apply`를 허용하지 않는다. 기존 원문 추출 loader의 `past_exam`, 원본 그림, 기본 승인 동작을 사용하지 않는다.
+
+1. 저자가 새 본문·분리한 보기·답·학생용 해설·메타데이터·변형 근거와 새 FigureSpec/SVG를 작성한다. `curriculumReview.status=author-proposed`, 새 ID, 독립 검산은 아직 없음.
+2. `review-exam-twins.mjs freeze <새폴더> <후보JSON...>`: 문제·답·해설·스펙·그림·생성 기록을 각각 해시로 연결하고 별도 버전에 복사한다.
+3. `blind <패키지> <새블라인드폴더>`: 답·해설·사실의 파생값·원문 메타데이터 없이 학생 문제/그림만 제공한다. 다른 작업자가 새 문제만 보고 허용된 학생 방법으로 계산한다.
+4. 독립 `solve/qNN.json`을 먼저 기록하고 `verify-pack <패키지> <블라인드> <새검수폴더>`로 답 공개 전 바이트/semantic digest를 고정한다. 그 뒤 새 답·해설·그림·변형·학년·Unit/family·난이도/배점을 검수한다.
+5. `collect <패키지> <블라인드> <검수> <새결과JSON>`은 변경·자기검수·누락·보류를 차단하며 수학/학년 차원을 따로 집계한다. 출처·분류·권리·유사성·운영 provenance는 별도이고 현재 적재 가능 수는 항상 0이다. `dry-run <패키지>`는 실제 제작 파일/자산의 정합성 검사이며 수학 승인이나 DB 중복 검사가 아니다.
+
+`render-preview.ts <새폴더> student|review <후보JSON...>`는 새 Markdown 표/문단을 보존하며 은행의 전처리와 KaTeX 옵션으로 로컬 지면을 만든다. 이미 구조화된 새 Markdown에 기존 OCR 재흐름을 적용하지 않는다. mathRenderQa의 기존 검사도 실행하지만 표 구조·그림/지면·학생 해설 적합성은 이미지와 독립 보고서로 별도 검수한다. 운영 Markdown/인쇄 경로까지 수정한 것으로 세지 않는다.
+
+`compose-image-figure.mjs <PNG> <엔진SVG> <생성기록JSON> <새SVG> <새스펙> <수학조건JSON>`는 내장 imagegen으로 제작한 픽셀을 수정하지 않고 상황 삽화와 정확한 기존 엔진 도형을 별도 패널로 조합한다. 점/길이/각/해의 근거는 수학 조건이다. 생성 PNG·도구/정확한 프롬프트·스펙·그림 해시를 연결하고 블라인드 자산에도 픽셀을 보존한다. 앱에서 스킬을 직접 호출한다고 가정하지 않으며 운영 보안/serializer/표시/선택 계약을 구현한 상태가 아니다.
+
+검사: `node --test scripts/import/exam-twin/candidatePack.test.mjs scripts/import/exam-twin/reviewWorkflow.test.mjs`. 합성 제어 시험은 실제 문항 독립 검산과 별도다.

@@ -1,0 +1,126 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "P": [
+      130,
+      30
+    ],
+    "Q": [
+      110,
+      90
+    ],
+    "C": [
+      210,
+      90
+    ],
+    "D": [
+      210,
+      30
+    ],
+    "R": [
+      174,
+      138
+    ]
+  },
+  "segments": {
+    "fixedPD": [
+      "P",
+      "D"
+    ],
+    "fixedDC": [
+      "D",
+      "C"
+    ],
+    "fixedCQ": {
+      "points": [
+        "C",
+        "Q"
+      ],
+      "dash": "4 3"
+    },
+    "creasePQ": [
+      "P",
+      "Q"
+    ],
+    "foldedPC": [
+      "P",
+      "C"
+    ],
+    "foldedCR": [
+      "C",
+      "R"
+    ],
+    "foldedRQ": [
+      "R",
+      "Q"
+    ]
+  },
+  "regions": {
+    "foldedPanel": {
+      "boundary": [
+        {
+          "seg": [
+            "P",
+            "C"
+          ]
+        },
+        {
+          "seg": [
+            "C",
+            "R"
+          ]
+        },
+        {
+          "seg": [
+            "R",
+            "Q"
+          ]
+        },
+        {
+          "seg": [
+            "Q",
+            "P"
+          ]
+        }
+      ],
+      "fill": "#f2f2f2"
+    }
+  },
+  "angles": {
+    "targetCPQ": {
+      "vertex": "P",
+      "points": [
+        "C",
+        "Q"
+      ],
+      "label": "x",
+      "radius": 17
+    },
+    "rightPDC": {
+      "vertex": "D",
+      "points": [
+        "P",
+        "C"
+      ],
+      "right": true,
+      "radius": 9
+    },
+    "rightPCR": {
+      "vertex": "C",
+      "points": [
+        "P",
+        "R"
+      ],
+      "right": true,
+      "radius": 9
+    }
+  },
+  "labels": {
+    "P": "P",
+    "Q": "Q",
+    "C": "C(A)",
+    "D": "D",
+    "R": "B′"
+  }
+}
