@@ -1,0 +1,88 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "O": [
+      120,
+      120
+    ],
+    "A": [
+      48,
+      66
+    ],
+    "B": [
+      192,
+      66
+    ],
+    "M": [
+      120,
+      66
+    ],
+    "P": [
+      120,
+      30
+    ]
+  },
+  "circles": {
+    "boardCircle": {
+      "center": "O",
+      "radius": 90
+    }
+  },
+  "segments": {
+    "chordAB": [
+      "A",
+      "B"
+    ],
+    "heightMP": [
+      "M",
+      "P"
+    ],
+    "centerOM": {
+      "points": [
+        "O",
+        "M"
+      ],
+      "dash": "5 3"
+    }
+  },
+  "regions": {
+    "smallDecoration": {
+      "boundary": [
+        {
+          "seg": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "arc": {
+            "circle": "boardCircle",
+            "from": "B",
+            "to": "A",
+            "dir": "ccw"
+          }
+        }
+      ],
+      "fill": "#f2f2f2"
+    }
+  },
+  "angles": {
+    "rightPMA": {
+      "vertex": "M",
+      "points": [
+        "P",
+        "A"
+      ],
+      "right": true,
+      "radius": 9
+    }
+  },
+  "labels": {
+    "O": "O",
+    "A": "A",
+    "B": "B",
+    "M": "M",
+    "P": "P"
+  }
+}

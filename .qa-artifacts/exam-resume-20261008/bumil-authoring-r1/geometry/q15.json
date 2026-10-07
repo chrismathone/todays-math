@@ -1,0 +1,443 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 15,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q15",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "둘레의 길이가 $15\\pi\\,\\mathrm{cm}$인 원형 전시 안내판에 길이가 $12\\,\\mathrm{cm}$인 현 $\\overline{AB}$를 경계선으로 표시하였다. 현 $\\overline{AB}$와 두 호 $AB$ 중 길이가 짧은 호로 둘러싸인 부분을 장식하려고 한다.\n짧은 호 $AB$의 중점을 $\\mathrm{P}$, 현 $\\overline{AB}$의 중점을 $\\mathrm{M}$이라 하면 $\\overline{MP}\\perp\\overline{AB}$이다. 장식할 부분의 높이인 $\\overline{MP}$의 길이는?\n(단, $\\mathrm{O}$는 안내판의 중심이고, $\\mathrm{P}$와 $\\mathrm{O}$는 직선 $AB$의 서로 반대쪽에 있다. 구하려는 높이는 $0<\\overline{MP}<\\text{안내판의 반지름의 길이}$를 만족하는 짧은 높이이다.)",
+  "choices": [
+    "$\\frac{3}{2}\\,\\mathrm{cm}$",
+    "$3\\,\\mathrm{cm}$",
+    "$\\frac{9}{2}\\,\\mathrm{cm}$",
+    "$6\\,\\mathrm{cm}$",
+    "$\\frac{15}{2}\\,\\mathrm{cm}$"
+  ],
+  "answer": "②",
+  "solution": "안내판의 반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $2\\pi r=15\\pi$이므로 $r=\\frac{15}{2}$이다.\n현의 수직이등분선은 원의 중심을 지나므로 세 점 $\\mathrm{O},\\mathrm{M},\\mathrm{P}$는 한 직선 위에 있다. 또 $\\overline{AM}=\\frac{12}{2}=6\\,\\mathrm{cm}$이다.\n반지름 $\\overline{OA}$를 그으면 직각삼각형 $\\mathrm{OMA}$에서 피타고라스 정리에 의해\n$\\overline{OM}^{\\,2}=\\left(\\frac{15}{2}\\right)^2-6^2=\\frac{81}{4}$이다.\n$\\overline{OM}$은 양의 길이이므로 $\\overline{OM}=\\frac{9}{2}\\,\\mathrm{cm}$이다. $\\mathrm{P}$와 $\\mathrm{O}$가 현의 반대쪽에 있으므로 $\\mathrm{M}$은 $\\mathrm{O}$와 $\\mathrm{P}$ 사이에 있다.\n따라서 $\\overline{MP}=\\overline{OP}-\\overline{OM}=\\frac{15}{2}-\\frac{9}{2}=3\\,\\mathrm{cm}$이므로 정답은 ②이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "unit": "cm",
+    "circumference": "15π",
+    "chordAB": "12",
+    "center": "O",
+    "M": "현 AB의 중점",
+    "P": "두 호 AB 중 짧은 호의 중점",
+    "perpendicular": "MP ⟂ AB",
+    "halfPlaneCondition": "P와 O는 직선 AB의 반대쪽",
+    "target": "MP의 길이",
+    "targetRange": "0 < MP < 반지름의 길이"
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.figure-spec.json",
+      "svgPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.svg",
+      "intendedWidthMm": 54,
+      "specSha256": "10fcbadf7ec9c6ac6d9a51728fc2302f3d9b299e4f16dae7b48496364afb7391",
+      "renderMode": "local-renderFigureSpec-strict",
+      "svgSha256": "f6f27e2e04d7f98fde4f6236f6e3fedef555fee37f160fefd2ca1573d97928e2",
+      "renderResult": {
+        "ok": true,
+        "strict": true,
+        "localOnly": true,
+        "typeset": true,
+        "droppedDimensions": []
+      }
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "context",
+      "structure",
+      "inverse-target"
+    ],
+    "before": "깨진 접시 조각에서 현의 길이와 작은 호 쪽 높이를 측정하여 원래 접시의 둘레를 구한다.",
+    "after": "원형 전시 안내판의 둘레와 장식 경계선인 현의 길이를 주고, 작은 장식 부분의 수직 높이 MP를 복구한다. 짧은 호와 짧은 양의 높이를 본문에서 제한한다.",
+    "sharedConcept": "현의 수직이등분선과 원의 중심, 반지름과 원주, 직각삼각형의 길이 관계",
+    "sharedProcedure": "현을 이등분하는 수선과 반지름으로 직각삼각형을 만들고 피타고라스 정리를 적용한다. 같은 원주·현·높이 관계를 역방향으로 사용한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16",
+      "9수02-05",
+      "6수03-08"
+    ],
+    "allowedProcedure": [
+      "원주=2πr로 반지름 구하기",
+      "현의 수직이등분선이 중심을 지나는 성질",
+      "현의 반길이와 중심에서 현까지의 거리로 직각삼각형 구성",
+      "피타고라스 정리와 양의 제곱근",
+      "반지름에서 중심-현 거리를 빼 짧은 높이 구하기"
+    ],
+    "forbiddenAvoided": [
+      "접선-할선 또는 할선-할선의 거듭제곱 정리",
+      "원과 비례에 관한 곱의 정리",
+      "원의 방정식·좌표를 이용한 학생용 접점 계산",
+      "미분·벡터·고등학교 삼각함수"
+    ],
+    "status": "author-proposed",
+    "standardEvidence": [
+      {
+        "code": "9수04-19",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4353,
+          "record_offset_in_uncompressed_stream": 219558,
+          "extracted_paragraph_1based": 894
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-16",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4333,
+          "record_offset_in_uncompressed_stream": 218866,
+          "extracted_paragraph_1based": 889
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "6수03-08",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3445,
+          "record_offset_in_uncompressed_stream": 177155,
+          "extracted_paragraph_1based": 693
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            29
+          ],
+          "printed_pages": [
+            25
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "gradeBandCaveat": "9수 성취기준은 중1~중3 학년군이며, 중3 지정은 v2의 중3 Unit/live family 제안과 함께 검토해야 한다. 학년군 코드만으로 개별 학년 승인으로 간주하지 않는다.",
+    "surfaces": {
+      "content": {
+        "status": "author-proposed",
+        "evidence": "원주·현·짧은 호·중점·수선과 양의 길이 조건만 사용한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "양의 정수·유리수 길이 다섯 개, 단위 cm. 모든 보기를 새로 작성하였다."
+      },
+      "figure": {
+        "status": "author-proposed",
+        "evidence": "정원·현·중점·수선·직각 표시만 사용한다. 수치 답·반지름 계산값·중심-현 거리를 적지 않는다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "다섯 보기 중 하나를 나타내는 원문자. 해당 보기의 길이는 정확한 유리수와 cm 단위로 표현한다."
+      },
+      "solution": {
+        "status": "author-proposed",
+        "evidence": "원주 공식, 현의 수직이등분선, 피타고라스 정리, 제곱근의 양의 값, 유리수 계산만 사용한다."
+      },
+      "requiredProcedure": {
+        "status": "author-proposed",
+        "evidence": "거듭제곱 정리나 원의 비례 정리 없이 현과 반지름으로 만든 직각삼각형을 푼다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "초등 원주 공식, 중학교 유리수 계산·제곱근·피타고라스 정리."
+      }
+    },
+    "gate": {
+      "scope": [
+        "content",
+        "choices",
+        "figure",
+        "answer",
+        "solution",
+        "requiredProcedure",
+        "prerequisites"
+      ],
+      "outOfGrade": "reject",
+      "unclear": "hold",
+      "independentGradeApproval": false
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-15",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 15,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "6336b2123cb52285fe64a62a0bf54ccefcd8f45f198719b6a47e22857693ae4a",
+    "sourceObservation": "깨진 접시에서 현 8cm와 현 중앙부터 원둘레까지 수직거리 2cm가 표시된다.",
+    "sharedConceptProcedure": "현의 수직이등분선이 중심을 지나는 성질과 피타고라스 관계로 반지름을 정한 뒤 원주를 계산한다.",
+    "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q15",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+    "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "answerFreeContentSha256": "6336b2123cb52285fe64a62a0bf54ccefcd8f45f198719b6a47e22857693ae4a",
+    "referenceFigures": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q15.png",
+        "sha256": "b1fd19b4d59c54ac4973f26232872282637f4c3092219d305248f7497215e1d7",
+        "role": "source-reference-only"
+      }
+    ],
+    "sourceAnswersSolutionsAccessed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "활용",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "familyKey": "mid:3-2|원과 직선|03",
+      "currentUnit": {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      "currentRegistryMatch": {
+        "key": "3-2|원과 직선|03",
+        "grade": "중3",
+        "unitSection": "원과 현",
+        "rpmBook": "3-2",
+        "rpmMinor": "원과 직선",
+        "rpmType": "03",
+        "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우"
+      },
+      "liveCount": 16,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "남은 원의 일부에서 현 길이와 활의 높이로 반지름을 복원하는 유형03과 일치한다. 원주 계산은 반지름 복원 뒤의 단순 후속 단계다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수04-19",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4353,
+          "record_offset_in_uncompressed_stream": 219558,
+          "extracted_paragraph_1based": 894
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-16",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4333,
+          "record_offset_in_uncompressed_stream": 218866,
+          "extracted_paragraph_1based": 889
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "6수03-08",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3445,
+          "record_offset_in_uncompressed_stream": 177155,
+          "extracted_paragraph_1based": 693
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            29
+          ],
+          "printed_pages": [
+            25
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "원주=2πr로 반지름 구하기 → 현의 수직이등분선이 중심을 지나는 성질 → 현의 반길이와 중심에서 현까지의 거리로 직각삼각형 구성 → 피타고라스 정리와 양의 제곱근 → 반지름에서 중심-현 거리를 빼 짧은 높이 구하기",
+    "curriculumSpecificHold": "새 후보 전체의 학년 적합성·Unit/live family 적합성·생성 규칙 일치에 대한 별도 검수 전이며 승인되지 않았다. preparation v2의 실제 출처 확인 보류도 유지한다.",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": []
+    },
+    "authoringStatus": "author-proposed",
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate",
+      "candidateDisplayOccurrences": 0
+    }
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "gradeCurriculum": "pending",
+    "equivalentConceptAndMethod": "pending",
+    "distinctPresentation": "pending",
+    "naturalKorean": "pending",
+    "mathematicalCorrectness": "pending",
+    "figure": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  },
+  "directUseAllowed": false
+}
