@@ -109,9 +109,14 @@ def _floats_below(node) -> bool:
     if pos is None or pos.get("treatAsChar") != "0" or pos.get("vertRelTo") != "PARA":
         return False
     try:
-        return int(pos.get("vertOffset", "0")) >= FLOAT_BELOW_MIN
+        offset = int(pos.get("vertOffset", "0"))
     except ValueError:
         return False
+    # 음수는 부호 없는 32비트로 적혀 있다(`4294967240` = −56). 그대로 견주면 «문단 위로 살짝 올린 번호 상자»가
+    # «아주 아래에 놓인 개체»가 돼, 번호가 발문 뒤로 밀리고 발문은 앞 문항의 끝에 붙는다(미래엔 «단원평가»).
+    if offset >= 1 << 31:
+        offset -= 1 << 32
+    return offset >= FLOAT_BELOW_MIN
 
 
 def _table_kind(cells: list[list[list["Para"]]]) -> str:

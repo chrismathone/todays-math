@@ -126,6 +126,25 @@ def test_an_inline_or_top_anchored_box_keeps_its_place():
     assert [p.text for p in paras_of(para(top, t("글")))][-1] == "글"
 
 
+def test_a_number_box_nudged_above_its_paragraph_is_not_far_below_it():
+    # 미래엔 «단원평가» — 번호 상자가 문단에서 −56 만큼 위에 떠 있다. 그 값이 부호 없는 32비트(4294967240)로 적혀 있다.
+    # 그대로 «1000 이상 아래»로 읽으면 번호가 발문 뒤로 밀려, 발문이 앞 문항의 끝에 붙는다(시범 검토자가 짚었다).
+    box = (
+        '<hp:rect><hp:drawText><hp:subList>' + para(t("03")) + "</hp:subList></hp:drawText>"
+        '<hp:pos treatAsChar="0" vertRelTo="PARA" vertOffset="4294967240"/></hp:rect>'
+    )
+    paras = paras_of(
+        para(t("02 공차를 구하시오."))
+        + para(t("① $3$ ② $4$"))
+        + para(box, t("등차수열 $a_n$에 대하여 제 $10$항은?"))
+        + para(t("① $22$ ② $24$"))
+    )
+    assert [p.text for p in paras] == ["02 공차를 구하시오.", "① $3$ ② $4$", "03", "등차수열 $a_n$에 대하여 제 $10$항은?", "① $22$ ② $24$"]
+    doc = segment(paras)
+    assert doc.problems[0].text == "공차를 구하시오.\n① $3$ ② $4$"
+    assert doc.problems[1].text.startswith("등차수열")
+
+
 def test_table_kinds_short_cells_are_data_and_frames_or_choices_are_not():
     data = paras_of(para(table([["$x$", "$1$", "$2$"], ["$y$", "$9$", "$b$"]])))
     assert {p.table_id for p in data} == {1}
