@@ -40,6 +40,33 @@ export function TextbookPaper({
   );
 }
 
+/** 지면의 글꼴 · 조판 CSS — 쪽을 여러 장 그리는 화면(완성 보기의 띠)이 한 번만 싣는다. */
+export function TextbookPaperStyle({
+  fontCss = previewFontCss,
+  katexCss = "",
+}: Pick<TextbookPaperProps, "fontCss" | "katexCss">) {
+  return <style>{fontCss + katexCss + TEXTBOOK_CSS}</style>;
+}
+
+/** 쪽 하나 — `TextbookPaperStyle` 이 실린 화면 안에서 쓴다. `pages` 는 그 구획의 쪽 전부다(`TextbookSpread` 와 같은 그리기). */
+export function TextbookPageHost({
+  page,
+  pages,
+  model,
+  resources,
+}: Pick<TextbookPaperProps, "page" | "model" | "resources"> & {
+  pages: TextbookPage[];
+}) {
+  return (
+    <div
+      data-textbook-paper-host
+      dangerouslySetInnerHTML={{
+        __html: renderPageHtml(page, model, resources, pages),
+      }}
+    />
+  );
+}
+
 export function TextbookSpread({
   pages,
   model,

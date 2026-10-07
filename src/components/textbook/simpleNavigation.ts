@@ -73,3 +73,49 @@ export function simpleSectionLabels(
     labels.set(contents.sectionId, `표지 · ${contents.title}`);
   return labels;
 }
+
+/** «내용 고르기» 창의 한 줄 — 구획 하나. `name` 은 묶음 안에서의 이름(활동 이름)이다. */
+export type ContentEntry = { sectionId: string; name: string; label: string };
+/** 같은 소단원의 활동들을 묶은 것. 활동으로 나뉘지 않는 구획은 저 혼자 한 묶음이다. */
+export type ContentGroup = { title: string; entries: ContentEntry[] };
+export type ContentUnit = {
+  unitKey: string;
+  title: string;
+  groups: ContentGroup[];
+};
+
+/**
+ * 교재의 구획을 «대단원 → 소단원 → 활동» 세 단으로 묶는다 — 완성 보기의 «내용 고르기» 창이 읽는다.
+ * 이름표가 «소단원 · 활동» 꼴이고 앞부분이 그 구획의 제목이면 활동으로 보고, 이웃한 같은 소단원끼리 한 묶음에 넣는다.
+ * 그 밖의 구획(표지 · 목차, 학습 안내, 단원 도입, 색인 …)은 이름표 그대로 저 혼자 한 묶음이다.
+ */
+export function contentOutline(
+  edition: EditionDetail,
+  labels: ReadonlyMap<string, string>,
+): ContentUnit[] {
+  return edition.units.map((unit) => {
+    const groups: ContentGroup[] = [];
+    for (const section of unit.sections) {
+      const label = labels.get(section.sectionId) ?? section.title;
+      const prefix = `${section.title} · `;
+      const activity = label.startsWith(prefix);
+      const title = activity ? section.title : label;
+      const entry = {
+        sectionId: section.sectionId,
+        name: activity ? label.slice(prefix.length) : label,
+        label,
+      };
+      const last = groups.at(-1);
+      // 활동이 아닌 구획은 제목이 같아도 묶지 않는다 — 고르면 바로 그 구획으로 간다.
+      if (
+        activity &&
+        last &&
+        last.title === title &&
+        last.entries[0]!.name !== last.entries[0]!.label
+      )
+        last.entries.push(entry);
+      else groups.push({ title, entries: [entry] });
+    }
+    return { unitKey: unit.unitKey, title: unit.title, groups };
+  });
+}

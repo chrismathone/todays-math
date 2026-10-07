@@ -2442,26 +2442,7 @@ export function PreviewPane({
     >
       <h2>미리보기</h2>
       {showModes ? (
-        <div className={styles.row} role="group" aria-label="지면 종류">
-          <ModeButton
-            current={input.mode}
-            mode="draft"
-            label="초안"
-            onMode={onMode}
-          />
-          <ModeButton
-            current={input.mode}
-            mode="student"
-            label="학생용"
-            onMode={onMode}
-          />
-          <ModeButton
-            current={input.mode}
-            mode="teacher"
-            label="교사용"
-            onMode={onMode}
-          />
-        </div>
+        <PreviewModeButtons current={input.mode} onMode={onMode} />
       ) : null}
       <div className={styles.row} role="group" aria-label="배율">
         <button
@@ -2529,6 +2510,33 @@ export function PreviewPane({
         </div>
       ) : null}
     </section>
+  );
+}
+
+/** 지면 종류 단추 셋 — 세부 편집의 미리보기와 완성 보기가 같이 쓴다. */
+export function PreviewModeButtons({
+  current,
+  onMode,
+}: {
+  current: PreviewMode;
+  onMode: (mode: PreviewMode) => void;
+}) {
+  return (
+    <div className={styles.row} role="group" aria-label="지면 종류">
+      <ModeButton current={current} mode="draft" label="초안" onMode={onMode} />
+      <ModeButton
+        current={current}
+        mode="student"
+        label="학생용"
+        onMode={onMode}
+      />
+      <ModeButton
+        current={current}
+        mode="teacher"
+        label="교사용"
+        onMode={onMode}
+      />
+    </div>
   );
 }
 

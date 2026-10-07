@@ -70,18 +70,120 @@
   gap: 12px;
   min-width: 0;
 }
-.simpleSections {
+/* 완성 보기 — 머리 한 줄(제목 · 하는 일) · 미리보기 카드(지금 보는 자리 · 내용 고르기 · 교재 전체의 쪽 띠) */
+.simpleHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.simpleHead h2 {
+  margin: 0;
+}
+.bookPreview {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px;
-  border: 1px solid var(--learn-track);
-  border-radius: 8px;
+  gap: 8px;
+  min-width: 0;
+}
+.previewHead,
+.previewWhere {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+.previewHead h2,
+.previewWhere p {
+  margin: 0;
+}
+.previewWhere p {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+/* 띠의 쪽 — 공용 띠가 내려 주는 배율로 A4 지면을 줄인다. 조판을 다시 흘리지 않도록 크기는 그대로 두고 통째로 줄인다. */
+.stripPage {
+  width: calc(210mm * var(--paper-strip-scale, 1));
+  height: calc(297mm * var(--paper-strip-scale, 1));
+  overflow: hidden;
+  background: #fff;
+  /* 쪽이 수백 장이어도 보이는 쪽만 그린다 — 크기는 정해져 있어 띠의 길이가 흔들리지 않는다. */
+  content-visibility: auto;
+  contain-intrinsic-size: calc(210mm * var(--paper-strip-scale, 1))
+    calc(297mm * var(--paper-strip-scale, 1));
+}
+.stripPage > :global([data-textbook-paper-host]) {
+  width: 210mm;
+  height: 297mm;
+  transform: scale(var(--paper-strip-scale, 1));
+  transform-origin: top left;
+}
+.stripWaiting {
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  color: var(--learn-muted);
+  font-size: 13px;
+  text-align: center;
   background: var(--learn-surface);
 }
-.simpleSections strong {
-  display: block;
-  margin-bottom: 8px;
+.stripWaiting p {
+  margin: 0;
+}
+/* 내용 고르기 창 — 대단원 · 소단원 · 활동 세 단 */
+.pickerColumns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1.2fr);
+  min-height: 100%;
+}
+.pickerColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px;
+}
+.pickerColumn + .pickerColumn {
+  border-left: 1px solid var(--learn-track);
+}
+button.pickerItem {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--learn-ink);
+  text-align: left;
+  cursor: pointer;
+}
+button.pickerItem:hover {
+  background: var(--learn-neutral);
+}
+button.pickerItem[aria-pressed="true"],
+button.pickerItem[aria-current="true"] {
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+  color: var(--learn-accent);
+}
+.pickerCount {
+  color: var(--learn-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 640px) {
+  .pickerColumns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pickerColumn + .pickerColumn {
+    border-left: 0;
+    border-top: 1px solid var(--learn-track);
+  }
 }
 .row {
   display: flex;

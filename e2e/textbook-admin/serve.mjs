@@ -20,6 +20,16 @@ await copyFile(
   here("../../public/fonts/PretendardVariable.woff2"),
   here(`../../${outDir}/fonts/PretendardVariable.woff2`),
 );
+// The paper fonts — without them the browser cannot measure a section and every
+// preview page reads «A network error occurred.» instead of the paper.
+await mkdir(here(`../../${outDir}/textbook/editorial/fonts`), {
+  recursive: true,
+});
+for (const weight of [400, 700])
+  await copyFile(
+    here(`../../public/textbook/editorial/fonts/NotoSansKR-${weight}.ttf`),
+    here(`../../${outDir}/textbook/editorial/fonts/NotoSansKR-${weight}.ttf`),
+  );
 await preview({
   configFile,
   build: buildOptions,
