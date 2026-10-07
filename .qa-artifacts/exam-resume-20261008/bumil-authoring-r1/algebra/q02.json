@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q02",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "아래 그림의 이차함수 $y=2x^{2}$의 그래프를 $y$축의 방향으로 평행이동하였다. 다음은 이동 후 그래프에 대한 기록이다.\n\n| 항목 | 기록 |\n| --- | --- |\n| 그래프가 지나는 점 | $(-2,5)$ |\n| 이동 방향 | $\\square$ |\n| 이동 거리 | $\\square$ |\n\n이동한 방향과 거리를 바르게 짝지은 것은?",
+  "choices": [
+    "$y$축의 양의 방향으로 $3$만큼",
+    "$y$축의 음의 방향으로 $3$만큼",
+    "$y$축의 양의 방향으로 $5$만큼",
+    "$y$축의 음의 방향으로 $5$만큼",
+    "$y$축의 음의 방향으로 $8$만큼"
+  ],
+  "answer": "②",
+  "solution": "이동 후 그래프를 나타내는 이차함수의 식을 $y=2x^{2}+q$라 하자.\n이 그래프가 점 $(-2,5)$를 지나므로 $x=-2$, $y=5$를 대입하면\n$5=2\\times(-2)^{2}+q=8+q$이다.\n따라서 $q=5-8=-3$이다.\n즉, 원래 그래프를 $y$축의 음의 방향으로 $3$만큼 평행이동한 것이므로 정답은 ②이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "baseCoefficient": 2,
+    "horizontalShift": 0,
+    "pointAfterShift": [
+      -2,
+      5
+    ],
+    "baseYAtPointX": 8,
+    "verticalShift": -3,
+    "direction": "negative-y",
+    "distance": 3,
+    "shiftedEquation": "y=2x^2-3",
+    "figureShows": "baseline-only",
+    "movedPointShownIn": "native-stem-table"
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q02.figure-spec.json",
+      "svgPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q02.svg",
+      "intendedWidthMm": 65
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "이동 후 그림에서 얻은 이동량을 사용하여 점의 미지 y좌표를 구하는 구성이다.",
+    "after": "원래 그래프와 이동 후 점의 좌표 기록을 분리해 제시하고, 빈 이동 방향·거리 기록을 선택지로 완성한다. 이동 후 그래프와 꼭짓점 눈금은 제시하지 않는다.",
+    "sharedConcept": "이차함수의 y축 방향 평행이동과 그래프 위 점의 좌표",
+    "sharedProcedure": "수직 평행이동한 그래프의 식을 y=ax^2+q로 놓고 점의 좌표를 대입한다. 원문과 달리 y좌표를 조건으로 주어 q를 역으로 결정한다.",
+    "preparationAdjustment": "v2의 두 포물선 계획 대신 원래 y=2x^2 그래프만 새로 그렸다. 이동 후 점 (-2,5)는 본문의 별도 표에 두어 이동량이나 이동 후 꼭짓점이 그림에서 드러나지 않게 했다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10",
+      "9수03-01",
+      "9수02-02"
+    ],
+    "allowedProcedure": [
+      "y축 방향 평행이동을 y=2x^2+q로 나타낸다.",
+      "순서쌍 (-2,5)의 좌표를 대입하고 정수의 제곱과 사칙연산으로 q를 구한다.",
+      "q의 부호를 이동 방향으로 해석하고 이동 거리는 양수 3으로 쓴다."
+    ],
+    "forbiddenAvoided": [
+      "도함수·미분·최적화",
+      "판별식·근과 계수의 관계",
+      "포물선의 초점·준선·일반 이차곡선 이론",
+      "벡터·내적·좌표 거리 공식",
+      "복잡한 함수 활용이나 새 생활 소재의 추가 선수 개념"
+    ],
+    "surfaceScope": {
+      "stem": "이차함수식·수직 평행이동·점의 순서쌍·기록표",
+      "choices": "좌표축의 양·음의 방향과 양수 이동 거리",
+      "figureAndNotation": "y=2x^2의 포물선과 x축·y축·원점 O만 표시하며 수치 눈금이나 이동 후 그래프를 넣지 않는다.",
+      "studentSolution": "수직 평행이동식·좌표 대입·일차식 계산",
+      "prerequisites": "순서쌍, 좌표축의 방향, 식의 값, 음수의 제곱, 일차식 계산"
+    },
+    "status": "author-proposed",
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "mappingJsonPointer": "/question_mappings/1",
+      "standards": [
+        {
+          "code": "9수02-02",
+          "verified_text": "식의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-01",
+          "verified_text": "순서쌍과 좌표를 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-09",
+          "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4146,
+            "record_offset_in_uncompressed_stream": 210185,
+            "extracted_paragraph_1based": 849
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-10",
+          "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "bandCaveat": {
+        "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+        "source_id": "moe-2020-236-math-hwp",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record_1based": 3713,
+          "record_offset_in_uncompressed_stream": 190162,
+          "text": "[중학교 1~3학년]"
+        },
+        "original_pdf_page_1based": 32,
+        "original_pdf_printed_page": 28
+      },
+      "versionLimitations": {
+        "verified_math_editions": [
+          "2015-74 book8 PDF",
+          "2020-236 amended book8 HWP"
+        ],
+        "post_2020_complete_amendment_chain_audited": false,
+        "final_candidate_approval_allowed": false,
+        "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+      }
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-2",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 2,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "d9a7dbce062b869cfdc44a9eb886053a88d578987dbcc9bb7def356e183bc9d7",
+    "sourceObservation": "그림에서 꼭짓점이 y축 위 -4이고 y=2x²를 수직 이동했다.",
+    "sharedConceptProcedure": "이동 후 식을 y=ax²+q로 놓고 그림의 꼭짓점에서 q를 읽은 뒤 주어진 x를 대입한다.",
+    "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "referenceJsonPointer": "/1/content",
+    "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "계산",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|09",
+      "currentUnit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "currentRegistryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑴|09",
+        "grade": "중3",
+        "unitSection": "이차함수와 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑴",
+        "rpmType": "09",
+        "rpmTitle": "이차함수 의 그래프"
+      },
+      "liveCount": 19,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "a=2가 이미 주어지고 y축 평행이동량을 꼭짓점에서 읽어 함숫값을 구한다. 미지의 a를 별도 점으로 정하는 ⑴11보다 ⑴09의 수직 평행이동 절차에 가깝다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-09",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-10",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-01",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4102,
+          "record_offset_in_uncompressed_stream": 208503,
+          "extracted_paragraph_1based": 838
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-02",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3900,
+          "record_offset_in_uncompressed_stream": 199304,
+          "extracted_paragraph_1based": 793
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "y축 방향 평행이동을 y=2x^2+q로 나타낸다. 순서쌍 (-2,5)의 좌표를 대입하고 정수의 제곱과 사칙연산으로 q를 구한다. q의 부호를 이동 방향으로 해석하고 이동 거리는 양수 3으로 쓴다.",
+    "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": [
+        "D:/todays-math/src/lib/middle/m3Func.ts:857"
+      ],
+      "authorObservation": {
+        "status": "author-proposed",
+        "path": "src/lib/middle/m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "familyType": "09",
+        "matchingMode": 2,
+        "line": 857,
+        "scope": "procedure-read-only; metadata-assignment-not-approved",
+        "familyDifficulty": "basic",
+        "candidateDifficultyStatus": "pending-parent-review"
+      }
+    },
+    "source": "transformed",
+    "originProblemId": null,
+    "problemCode": null,
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate"
+    },
+    "publicationStatus": "author-proposed-not-approved",
+    "independentVerificationStatus": "pending-parent-blind-verification",
+    "gradeApprovalStatus": "pending-parent-review",
+    "rightsReviewStatus": "pending-parent-review",
+    "similarityReviewStatus": "pending-parent-review",
+    "directUseAllowed": false,
+    "curriculumSourceMethodProposal": "그림의 꼭짓점과 수직 평행이동량을 읽고 y=ax²+q에 좌표를 대입한다.",
+    "sourceCurriculumSpecificHold": "본문에서 빠진 그래프의 꼭짓점 눈금이 필수 조건이다.",
+    "authorChecks": {
+      "status": "completed-author-self-check-only",
+      "requiredFields": "present",
+      "choiceCount": 5,
+      "uniqueCorrectChoice": "②",
+      "mathSyntax": "katex-strict-pass",
+      "independent": false
+    },
+    "authorFigureRender": {
+      "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+      "options": {
+        "strict": true,
+        "typeset": true
+      },
+      "transport": "local-python",
+      "enginePath": "vendor/figure-engine",
+      "droppedDimensions": [],
+      "specSha256": "00d4f0b6ba18d801b8b4455448a306bb0a80e34cfc0360929e6f0f2cb7e69fd4",
+      "svgSha256": "56e0794fdd035748ce9d5aebc8d664ca1fc11f193c7365c0a6956c4d4a2f2312",
+      "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q02.preview.png",
+      "previewSha256": "cc96d57484d5e8949b1d9b3bb45651fc10640b2a666192a73de964b4c58eb0d1",
+      "inspection": "author-view-image-completed",
+      "finalFigureApproval": "pending-parent-review"
+    }
+  }
+}
