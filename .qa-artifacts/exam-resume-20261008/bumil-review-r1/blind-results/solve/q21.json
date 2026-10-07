@@ -1,0 +1,96 @@
+{
+  "studentDigest": "a6c2a3165a9cb2fd394a937d2d9182cbf86b1fe44c75f84c450bbd534f8ee15a",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "answer": "8 cm",
+  "solution": "AD의 길이를 x cm라 하자. 같은 점에서 원에 그은 두 접선의 길이는 같으므로 DE=DA=x, CE=CB=25/8이다. E가 선분 CD의 두 끝점 사이에 있으므로 CD=DE+EC=x+25/8이다. C를 지나 AB와 평행한 직선을 그어 AD와 만나는 점을 F라 하자. 접선은 접점에서의 반지름에 수직이므로 AD와 BC는 AB에 수직이다. 따라서 CF=AB=10, AF=BC=25/8이다. AD>BC>0이므로 F는 A와 D 사이에 있고 DF=x-25/8이다. 직각삼각형 DFC에서 피타고라스 정리를 적용하면 (x+25/8)²=10²+(x-25/8)²이다. 양변을 전개하여 정리하면 (25/2)x=100이므로 x=8이다. 따라서 AD의 길이는 8 cm이다. 8>25/8>0이므로 주어진 높이 조건도 만족한다.",
+  "evidence": {
+    "questionNumber": 21,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q21",
+    "grade": "중3",
+    "curriculum": "2015",
+    "studentMethods": [
+      "같은 점에서 그은 두 접선의 길이",
+      "접선과 접점에서의 반지름의 수직 관계",
+      "평행선과 직사각형의 성질",
+      "피타고라스 정리와 전개",
+      "일차방정식"
+    ],
+    "studentInputFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind/student-problems.json",
+    "studentInputFileSha256": "be2aeecd199db093822fbbac30248945f9e021253f85138d43590238222ee515",
+    "figure": {
+      "path": "figures/q21-1.svg",
+      "sha256": "ad84c6b289eef08dd2679624c2d7eb4279e97becb5e9cbe50c1921f06e573861",
+      "providedHashMatched": true,
+      "previewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2/q21.png",
+      "previewSha256": "e194c142e6c5acc4a2e4d492ba6e1985ee9648a245cbad011bb065e8cd873d32",
+      "viewImageReviewed": true,
+      "observations": [
+        "그림에서 AB는 수평 지름이고 AD와 BC는 위쪽으로 뻗으며 A와 B에 직각 표시가 있다.",
+        "D가 C보다 높고 E는 D와 C 사이의 위쪽 반원에 표시되어 있다.",
+        "BC 옆의 표시는 25/8 cm이고 AD의 수치 표시는 없다. 학생 풀이에서 AD를 그림의 배율로 읽어내지 않았다."
+      ],
+      "svgGeometryChecks": {
+        "ABPixels": 180,
+        "ADPixels": 144,
+        "BCPixels": 56.250000000000014,
+        "CDPixels": 200.25,
+        "DEPixels": 144.00020224985795,
+        "CEPixels": 56.249797759636444,
+        "OEPixels": 89.99912359573287,
+        "radiusPixels": 90,
+        "radiusErrorPixels": -0.0008764042671316474,
+        "conversePythagoreanResidualPixelsSquared": 0.09950400000889204,
+        "DEPlusCEMinusCDPixels": 9.49438572206418e-09,
+        "EBetweenDAndC": true,
+        "endpointTangentsPerpendicularToAB": true,
+        "CAndDAboveAB": true,
+        "scalePixelsPerCmAfterIndependentSolve": 18,
+        "calculationMethod": "표시점 좌표 차에 피타고라스 거리를 적용했다. OE와 반지름의 차, OD²-DE²-OE², DE+CE-CD를 계산하여 원 위의 접점·수직 관계·선분 내부 관계를 풀이 후 확인했다.",
+        "toleranceLimit": "SVG 표시점 좌표는 소수 셋째 자리로 반올림되어 있다. OE 반지름 오차는 0.002 SVG 단위 미만, 피타고라스 잔차는 1 SVG 단위² 미만이다. 이는 그림 검사용 근사이며 학생 답과 존재 검산은 유리수로 정확히 계산했다."
+      },
+      "earlierPreview": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview/q21.png",
+        "sha256": "944c9508dacb416faed5c7b2df9234efa9738b207bf7fed30826bdfe1b92549f",
+        "viewImageReviewed": true,
+        "renderingVersion": "legacy; superseded by r2"
+      },
+      "renderingVersion": "r2; viewed after rendering-only correction; student JSON/digest unchanged"
+    },
+    "independentCalculation": {
+      "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+      "executedCode": "from fractions import Fraction as F\nw = F(10)\nb = F(25,8)\nx = w*w/(4*b)\ncd = x+b\ndf = x-b\nassert x==8 and x>b>0\nassert cd*cd == w*w+df*df\nr = w/2\nod2 = x*x+r*r\noc2 = b*b+r*r\nde = (od2-oc2+cd*cd)/(2*cd)\nce = cd-de\noe2 = od2-de*de\nassert 0<de<cd and de==x and ce==b and oe2==r*r\nprint(x, b, cd, df, cd*cd, w*w+df*df, od2, oc2, de, ce, oe2, de/cd)",
+      "actualResults": {
+        "ADCm": "8",
+        "BCCm": "25/8",
+        "diameterCm": "10",
+        "radiusCm": "5",
+        "CDCm": "89/8",
+        "DFCm": "39/8",
+        "CDSquaredCm2": "7921/64",
+        "CFSquaredPlusDFSquaredCm2": "7921/64",
+        "fourTimesADTimesBCCm2": "100",
+        "linearCoefficientForX": "25/2",
+        "ODSquaredCm2": "89",
+        "OCSquaredCm2": "2225/64",
+        "DECmFromTwoPythagoreanEquations": "8",
+        "CECm": "25/8",
+        "OESquaredCm2": "25",
+        "fractionOfCDFromDToE": "64/89"
+      }
+    },
+    "choiceChecks": [],
+    "choiceChecksNotApplicableReason": "서술형이며 학생 입력의 choices는 빈 배열이다.",
+    "existence": "주어진 지름10과 위쪽 접선 높이8,25/8로 D,C를 잡으면 CD=89/8이다. OD²=8²+5²=89, OC²=(25/8)²+5²=2225/64이다. O에서 CD에 내린 수선의 발을 T라 하고 DT=z, OT=h라 하면 두 직각삼각형에서 OD²=z²+h², OC²=(CD-z)²+h²이다. 두 식을 빼면 z=(OD²-OC²+CD²)/(2CD)=8, h²=25이다. 0<8<89/8이므로 T는 선분 CD 내부에 있고 h=5는 반지름과 같다. 따라서 T를 E로 잡으면 CD는 반원에 실제로 접한다. E는 위쪽에 있는 D,C 사이의 점이므로 위쪽 반원에 있다. DE=8,CE=25/8도 확인되어 모든 접선 조건이 함께 성립한다.",
+    "uniqueness": "E가 C,D 사이에 있다는 조건으로 CD는 접선 길이의 합 x+25/8이다. AD>BC로 높이차는 x-25/8이다. 피타고라스 식을 전개하면 계수가 25/2≠0인 일차방정식 (25/2)x=100이 되어 양수 해 x=8 하나만 나온다. 계산한 해에서 접점과 양수 조건이 실제로 존재함도 별도로 확인했다.",
+    "signAndUnits": "AD=8>BC=25/8>0이고 DF=39/8>0이다. DE=8,CE=25/8,CD=89/8은 모두 양수 cm 길이이다. 0<64/89<1로 E가 선분 내부에 있음을 확인했다. 제곱 길이의 단위는 cm²이다.",
+    "answerValue": "8 cm",
+    "limits": [
+      "학생 풀이에 좌표의 원 방정식, 점과 직선 사이 거리 공식, 내적, 미분, 상위 학년 삼각함수를 사용하지 않았다. 존재 검산도 두 피타고라스 식의 차로 수행했다.",
+      "새 학생용 접선 조건으로 직접 관계를 유도했다. 원문 답이나 기억한 원문 수치를 새 답의 근거로 사용하지 않았다.",
+      "저자 답/해설, 비공개 패키지, render-review.json, 과거 답/해설을 이번 작업에서 읽지 않았다. SVG 좌표 검사는 학생 풀이 후 수행한 보조 그림 검산이다."
+    ],
+    "authorAnswersSeenBeforeSolve": false,
+    "originalAnswerUsedAsApproval": false
+  },
+  "status": "solved"
+}
