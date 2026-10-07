@@ -1,0 +1,929 @@
+{
+  "status": "Actual before and authored normalized after awaiting direct reread and application; not independent approval",
+  "rows": [
+    {
+      "id": "m2-01-02-xc14",
+      "scope": "middle",
+      "reason": "한 순환마디 안의 같은 위치가 반복된다는 어색한 표현을 제거한다. 실제 소수에서 숫자 1이 다시 등장하는 간격을 묻고, 반복되는 묶음을 근거로 설명하게 한다. C도 순환마디의 첫째 자리 사이 간격을 명시한다.",
+      "beforeRaw": {
+        "id": "m2-01-02-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.123123123\\cdots$에서 같은 순환마디의 같은 위치에 있는 숫자가 다시 나오는 최소 간격은 몇 자리인가? 그 까닭을 순환마디로 설명하시오.",
+        "bAnswer": "순환마디가 $123$이므로 같은 위치의 숫자는 $3$자리 간격으로 다시 나온다.",
+        "bGoal": "순환마디의 같은 위치가 되풀이되는 간격을 설명한다.",
+        "bReason": "실제 m2-01-02-c5의 B 목표는 나머지를 이용한 특정 자리 숫자 찾기이다. 반복 간격을 설명하는 이 ID의 목표를 동일한 질문이라고 배제하지 않고 간격 자체를 묻는 B를 복구한다.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c5(소수점 아래 $n$번째 자리의 숫자)의 방법 질문에 포함되어 목표가 중복됨.",
+        "cDecision": "rewrite",
+        "cReason": "계속·무한히 등도 들어가던 문장 대신 숫자로 나타내야 하는 최소 반복 간격을 묻는다. 같은 숫자가 여러 위치에 있는 예에서도 같은 위치라고 특정한다.",
+        "learningRole": "reason",
+        "roleReason": "되풀이 간격",
+        "authorBatch": 26,
+        "readingProvenance": "Codex direct bounded correction of 27 current findings; not independent approval",
+        "sourceIndex": 2158,
+        "part": "m2plus",
+        "sourceFingerprint": "fcb2803cbc2e7958b411470d97bad94cc0a6bea29f6ad477d840868dde9bb2f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2158
+        },
+        "directReview": null,
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최소 간격은 $3$자리이다."
+            ]
+          },
+          {
+            "anyOf": [
+              "순환마디 $123$의 세 자리가 반복되므로 같은 위치가 세 자리 간격으로 되풀이된다."
+            ]
+          }
+        ],
+        "cMarkedSentence": "$0.121121121\\cdots$의 최소 순환마디에 있는 같은 위치의 숫자는 {$3$}자리 간격으로 다시 나온다.",
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "322bac03793143e421ff5f4f8d37332796c71dcf5ea23b39512a1fd247798d08",
+        "cAfter": "$0.121121121\\cdots$의 최소 순환마디에 있는 같은 위치의 숫자는 {$3$}자리 간격으로 다시 나온다.",
+        "coreAfter": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 순환마디의 {같은 위치}에 있는 숫자는 {$k$자리 간격}으로 되풀이된다.",
+        "coreReason": "같은 숫자가 한 순환마디 안에도 여러 번 있을 수 있으므로 숫자 자체의 모든 출현 간격을 순환마디 길이라고 하지 않는다. 같은 위치의 반복 간격을 말한다.",
+        "findingDecision": "False exclusion repaired; source generalization narrowed to same position.",
+        "authoringTaskId": "task_c687f2c40ea2",
+        "authoringDispatchId": "ctx_b868a7c064eb",
+        "cSlotAnswers": [
+          "$3$"
+        ],
+        "cAnswers": [
+          "$3$"
+        ],
+        "cStudentSentence": "$0.121121121\\cdots$의 최소 순환마디에 있는 같은 위치의 숫자는 □자리 간격으로 다시 나온다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "Codex direct semantic review; Root independent verification required"
+          }
+        ]
+      },
+      "before": {
+        "id": "m2-01-02-xc14",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-02-xc14",
+          "section": "중2::1. 수와 식::순환소수",
+          "term": "순환마디의 되풀이 간격",
+          "kind": "성질",
+          "level": "중",
+          "definition": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 {$k$자리마다} 다시 나온다.",
+          "example": {
+            "prompt": "$0.\\dot{1}2\\dot{3}$의 소수점 아래 $4$번째 숫자",
+            "answer": "$1$"
+          }
+        },
+        "B": {
+          "prompt": "$0.123123123\\cdots$에서 같은 순환마디의 같은 위치에 있는 숫자가 다시 나오는 최소 간격은 몇 자리인가? 그 까닭을 순환마디로 설명하시오.",
+          "answer": "순환마디가 $123$이므로 같은 위치의 숫자는 $3$자리 간격으로 다시 나온다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "최소 간격은 $3$자리이다."
+              ]
+            },
+            {
+              "anyOf": [
+                "순환마디 $123$의 세 자리가 반복되므로 같은 위치가 세 자리 간격으로 되풀이된다."
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$0.121121121\\cdots$의 최소 순환마디에 있는 같은 위치의 숫자는 {$3$}자리 간격으로 다시 나온다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "goal": "순환마디의 같은 위치가 되풀이되는 간격을 설명한다.",
+        "coreAfter": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 순환마디의 {같은 위치}에 있는 숫자는 {$k$자리 간격}으로 되풀이된다.",
+        "coreReason": "같은 숫자가 한 순환마디 안에도 여러 번 있을 수 있으므로 숫자 자체의 모든 출현 간격을 순환마디 길이라고 하지 않는다. 같은 위치의 반복 간격을 말한다.",
+        "hash": "201a620cdbf9ea34df970f798dc082bd11b00817f46021040b84e9de0a3b8aa5"
+      },
+      "proposedRaw": {
+        "id": "m2-01-02-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "순환소수 $0.123123123\\cdots$의 소수 첫째 자리 숫자 $1$은 이후 몇 자리 간격으로 다시 나오는가? 순환마디를 보고 그 이유를 설명하시오.",
+        "bAnswer": "$3$자리 간격으로 다시 나온다. 순환마디 $123$의 세 자리가 한 묶음으로 되풀이되고, 각 묶음에서 $1$은 첫째 자리에 한 번 나타나기 때문이다.",
+        "bGoal": "순환마디의 같은 위치가 되풀이되는 간격을 설명한다.",
+        "bReason": "한 순환마디 안의 같은 위치가 반복된다는 어색한 표현을 제거한다. 실제 소수에서 숫자 1이 다시 등장하는 간격을 묻고, 반복되는 묶음을 근거로 설명하게 한다. C도 순환마디의 첫째 자리 사이 간격을 명시한다.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c5(소수점 아래 $n$번째 자리의 숫자)의 방법 질문에 포함되어 목표가 중복됨.",
+        "cDecision": "rewrite",
+        "cReason": "한 순환마디 안의 같은 위치가 반복된다는 어색한 표현을 제거한다. 실제 소수에서 숫자 1이 다시 등장하는 간격을 묻고, 반복되는 묶음을 근거로 설명하게 한다. C도 순환마디의 첫째 자리 사이 간격을 명시한다.",
+        "learningRole": "reason",
+        "roleReason": "되풀이 간격",
+        "authorBatch": 26,
+        "readingProvenance": "Codex direct bounded correction of 27 current findings; not independent approval",
+        "sourceIndex": 2158,
+        "part": "m2plus",
+        "sourceFingerprint": "fcb2803cbc2e7958b411470d97bad94cc0a6bea29f6ad477d840868dde9bb2f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2158
+        },
+        "directReview": null,
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "간격은 $3$자리이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "순환마디 $123$이 반복되고 각 묶음의 첫째 자리에 $1$이 한 번씩 있어, 다음 묶음의 같은 위치까지 세 자리 간격이 된다"
+            ]
+          }
+        ],
+        "cMarkedSentence": "순환소수 $0.121121121\\cdots$의 순환마디는 $121$이다. 이 순환마디의 첫째 자리에서 다음 순환마디의 첫째 자리까지는 {$3$}자리 간격이다.",
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "011f584ae0ad39ad9e43ba10d505656e1799f1a31a97bc85ee29cb6f6f3d9732",
+        "cAfter": "순환소수 $0.121121121\\cdots$의 순환마디는 $121$이다. 이 순환마디의 첫째 자리에서 다음 순환마디의 첫째 자리까지는 {$3$}자리 간격이다.",
+        "coreAfter": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 순환마디의 {같은 위치}에 있는 숫자는 {$k$자리 간격}으로 되풀이된다.",
+        "coreReason": "같은 숫자가 한 순환마디 안에도 여러 번 있을 수 있으므로 숫자 자체의 모든 출현 간격을 순환마디 길이라고 하지 않는다. 같은 위치의 반복 간격을 말한다.",
+        "findingDecision": "False exclusion repaired; source generalization narrowed to same position.",
+        "authoringTaskId": "task_c687f2c40ea2",
+        "authoringDispatchId": "ctx_b868a7c064eb",
+        "cSlotAnswers": [
+          "$3$"
+        ],
+        "cAnswers": [
+          "$3$"
+        ],
+        "cStudentSentence": "순환소수 $0.121121121\\cdots$의 순환마디는 $121$이다. 이 순환마디의 첫째 자리에서 다음 순환마디의 첫째 자리까지는 □자리 간격이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "순환소수 $0.123123123\\cdots$의 소수 첫째 자리 숫자 $1$은 이후 몇 자리 간격으로 다시 나오는가? 순환마디를 보고 그 이유를 설명하시오.",
+          "answer": "$3$자리 간격으로 다시 나온다. 순환마디 $123$의 세 자리가 한 묶음으로 되풀이되고, 각 묶음에서 $1$은 첫째 자리에 한 번 나타나기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "간격은 $3$자리이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "순환마디 $123$이 반복되고 각 묶음의 첫째 자리에 $1$이 한 번씩 있어, 다음 묶음의 같은 위치까지 세 자리 간격이 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "순환소수 $0.121121121\\cdots$의 순환마디는 $121$이다. 이 순환마디의 첫째 자리에서 다음 순환마디의 첫째 자리까지는 {$3$}자리 간격이다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        }
+      },
+      "after": {
+        "id": "m2-01-02-xc14",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-02-xc14",
+          "section": "중2::1. 수와 식::순환소수",
+          "term": "순환마디의 되풀이 간격",
+          "kind": "성질",
+          "level": "중",
+          "definition": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 {$k$자리마다} 다시 나온다.",
+          "example": {
+            "prompt": "$0.\\dot{1}2\\dot{3}$의 소수점 아래 $4$번째 숫자",
+            "answer": "$1$"
+          }
+        },
+        "B": {
+          "prompt": "순환소수 $0.123123123\\cdots$의 소수 첫째 자리 숫자 $1$은 이후 몇 자리 간격으로 다시 나오는가? 순환마디를 보고 그 이유를 설명하시오.",
+          "answer": "$3$자리 간격으로 다시 나온다. 순환마디 $123$의 세 자리가 한 묶음으로 되풀이되고, 각 묶음에서 $1$은 첫째 자리에 한 번 나타나기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "간격은 $3$자리이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "순환마디 $123$이 반복되고 각 묶음의 첫째 자리에 $1$이 한 번씩 있어, 다음 묶음의 같은 위치까지 세 자리 간격이 된다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "순환소수 $0.121121121\\cdots$의 순환마디는 $121$이다. 이 순환마디의 첫째 자리에서 다음 순환마디의 첫째 자리까지는 {$3$}자리 간격이다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "goal": "순환마디의 같은 위치가 되풀이되는 간격을 설명한다.",
+        "coreAfter": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 순환마디의 {같은 위치}에 있는 숫자는 {$k$자리 간격}으로 되풀이된다.",
+        "coreReason": "같은 숫자가 한 순환마디 안에도 여러 번 있을 수 있으므로 숫자 자체의 모든 출현 간격을 순환마디 길이라고 하지 않는다. 같은 위치의 반복 간격을 말한다.",
+        "hash": "3efb2b5034d4867921e8e029eeb437bd9382d2a47f2237b9d471942a0f3ca60c"
+      }
+    },
+    {
+      "id": "m2-03-06-xc20",
+      "scope": "middle",
+      "reason": "계산으로 나온 나이가 유일한 값이라는 조건을 명시한다. 한 음수 해만 발견했다고 다른 가능한 나이까지 없다고 단정하지 않는다.",
+      "beforeRaw": {
+        "id": "m2-03-06-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "나이 문제를 풀어 얻은 해가 $-3$살이다. 세운 식과 계산을 확인했는데 모두 맞았다면 원래 조건을 만족하는 나이가 있는가? 음수 나이의 의미를 들어 이유를 쓰시오.",
+        "bAnswer": "조건을 만족하는 나이는 없다. 식과 계산이 맞아도 $-3$살은 가능한 나이가 아니므로 주어진 조건을 모두 만족하는 해가 없는 상황이다.",
+        "bGoal": "검토를 마친 음수 나이 해가 원래 조건에 맞지 않음을 설명한다.",
+        "bReason": "검토를 다시 했다는 물음의 말을 반복하던 필수 항목을 제거하고, 검토 후에도 음수 해이면 조건을 만족하는 나이가 없다는 결론과 이유만 평가한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "주어진 조건을 만족하는 나이가 없다."
+            ]
+          },
+          {
+            "anyOf": [
+              "계산의 오류가 없더라도 음수인 나이는 가능한 나이가 아니므로 원래 조건을 만족하지 못한다."
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "다시·없을이라는 부사와 문법 복원을 없앤다. 분수 나이를 무조건 배제하지 않고 정수 제한이 없는 상황을 명시해 음수만 제외하는 수치 판단을 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "해가 없을 수 있음을 판단",
+        "authorBatch": 36,
+        "readingProvenance": "Codex direct bounded correction of 27 current findings; not independent approval",
+        "sourceIndex": 2578,
+        "part": "m2plus",
+        "sourceFingerprint": "dec21586a8427eba4ce94f5591880844f77c8a559071ff54f5bb142599a508f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2578
+        },
+        "directReview": null,
+        "cMarkedSentence": "나이를 정수로 제한하지 않고 연속적인 시간으로 나타내는 문제에서 계산값 $-3$과 $3.5$ 중 나이로 사용할 수 있는 값은 {$3.5$}이다.",
+        "cAcceptedAnswers": [
+          [
+            "$3.5$",
+            "$\\frac72$"
+          ]
+        ],
+        "proposalFingerprint": "b166e00090d29e160c523a19ab1eec9f495b9cadafebe52a2000d8fde2890e93",
+        "cAfter": "나이를 정수로 제한하지 않고 연속적인 시간으로 나타내는 문제에서 계산값 $-3$과 $3.5$ 중 나이로 사용할 수 있는 값은 {$3.5$}이다.",
+        "coreAfter": "구한 나이가 음수이거나 문제에서 정한 범위를 벗어나면 먼저 식과 계산을 {다시} 살핀다. 둘 다 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다.",
+        "coreReason": "나이를정수로제한하지않은문제에서는분수나이도가능하므로허용범위를기준으로판단한다.",
+        "findingDecision": "B leaked criterion and C grammar restoration repaired; fractional ages remain possible.",
+        "authoringTaskId": "task_c687f2c40ea2",
+        "authoringDispatchId": "ctx_b868a7c064eb",
+        "cSlotAnswers": [
+          "$3.5$"
+        ],
+        "cAnswers": [
+          "$3.5$"
+        ],
+        "cStudentSentence": "나이를 정수로 제한하지 않고 연속적인 시간으로 나타내는 문제에서 계산값 $-3$과 $3.5$ 중 나이로 사용할 수 있는 값은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3.5$",
+            "equivalentAnswers": [
+              "$3.5$",
+              "$\\frac72$"
+            ],
+            "equivalenceReview": "Codex direct semantic review; Root independent verification required"
+          }
+        ]
+      },
+      "before": {
+        "id": "m2-03-06-xc20",
+        "grade": "중2",
+        "source": {
+          "id": "m2-03-06-xc20",
+          "section": "중2::3. 방정식::연립방정식의 활용(수, 평균, 나이)",
+          "term": "나이 문제의 해 검토",
+          "kind": "성질",
+          "level": "상",
+          "definition": "구한 나이가 음수나 분수이면 먼저 식을 {다시} 살핀다. 식이 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다."
+        },
+        "B": {
+          "prompt": "나이 문제를 풀어 얻은 해가 $-3$살이다. 세운 식과 계산을 확인했는데 모두 맞았다면 원래 조건을 만족하는 나이가 있는가? 음수 나이의 의미를 들어 이유를 쓰시오.",
+          "answer": "조건을 만족하는 나이는 없다. 식과 계산이 맞아도 $-3$살은 가능한 나이가 아니므로 주어진 조건을 모두 만족하는 해가 없는 상황이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "주어진 조건을 만족하는 나이가 없다."
+              ]
+            },
+            {
+              "anyOf": [
+                "계산의 오류가 없더라도 음수인 나이는 가능한 나이가 아니므로 원래 조건을 만족하지 못한다."
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "나이를 정수로 제한하지 않고 연속적인 시간으로 나타내는 문제에서 계산값 $-3$과 $3.5$ 중 나이로 사용할 수 있는 값은 {$3.5$}이다.",
+          "acceptedAnswers": [
+            [
+              "$3.5$",
+              "$\\frac72$"
+            ]
+          ]
+        },
+        "goal": "검토를 마친 음수 나이 해가 원래 조건에 맞지 않음을 설명한다.",
+        "coreAfter": "구한 나이가 음수이거나 문제에서 정한 범위를 벗어나면 먼저 식과 계산을 {다시} 살핀다. 둘 다 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다.",
+        "coreReason": "나이를정수로제한하지않은문제에서는분수나이도가능하므로허용범위를기준으로판단한다.",
+        "hash": "2ba8814bfd03d2f1d056f0129ad6e2d7ce0ede6450b5922eb4a1d138fedd123a"
+      },
+      "proposedRaw": {
+        "id": "m2-03-06-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "나이 문제의 연립방정식을 풀었더니 문제에서 구하는 나이의 계산값은 $-3$살 하나뿐이었다. 세운 식과 계산을 확인했는데 모두 맞았다면 원래 조건을 만족하는 나이가 있는가? 음수 나이의 의미를 들어 이유를 쓰시오.",
+        "bAnswer": "조건을 만족하는 나이는 없다. 식과 계산이 맞아도 $-3$살은 가능한 나이가 아니므로 주어진 조건을 모두 만족하는 해가 없는 상황이다.",
+        "bGoal": "검토를 마친 음수 나이 해가 원래 조건에 맞지 않음을 설명한다.",
+        "bReason": "검토를 다시 했다는 물음의 말을 반복하던 필수 항목을 제거하고, 검토 후에도 음수 해이면 조건을 만족하는 나이가 없다는 결론과 이유만 평가한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "주어진 조건을 만족하는 나이가 없다."
+            ]
+          },
+          {
+            "anyOf": [
+              "계산의 오류가 없더라도 음수인 나이는 가능한 나이가 아니므로 원래 조건을 만족하지 못한다."
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "다시·없을이라는 부사와 문법 복원을 없앤다. 분수 나이를 무조건 배제하지 않고 정수 제한이 없는 상황을 명시해 음수만 제외하는 수치 판단을 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "해가 없을 수 있음을 판단",
+        "authorBatch": 36,
+        "readingProvenance": "Codex direct bounded correction of 27 current findings; not independent approval",
+        "sourceIndex": 2578,
+        "part": "m2plus",
+        "sourceFingerprint": "dec21586a8427eba4ce94f5591880844f77c8a559071ff54f5bb142599a508f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2578
+        },
+        "directReview": null,
+        "cMarkedSentence": "나이를 정수로 제한하지 않고 연속적인 시간으로 나타내는 문제에서 계산값 $-3$과 $3.5$ 중 나이로 사용할 수 있는 값은 {$3.5$}이다.",
+        "cAcceptedAnswers": [
+          [
+            "$3.5$",
+            "$\\frac72$"
+          ]
+        ],
+        "proposalFingerprint": "347f3e8aa407c2fe97231ebb9b9fa29ed7c05260400c86fe54d3c6f856682b8b",
+        "cAfter": "나이를 정수로 제한하지 않고 연속적인 시간으로 나타내는 문제에서 계산값 $-3$과 $3.5$ 중 나이로 사용할 수 있는 값은 {$3.5$}이다.",
+        "coreAfter": "구한 나이가 음수이거나 문제에서 정한 범위를 벗어나면 먼저 식과 계산을 {다시} 살핀다. 둘 다 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다.",
+        "coreReason": "나이를정수로제한하지않은문제에서는분수나이도가능하므로허용범위를기준으로판단한다.",
+        "findingDecision": "B leaked criterion and C grammar restoration repaired; fractional ages remain possible.",
+        "authoringTaskId": "task_c687f2c40ea2",
+        "authoringDispatchId": "ctx_b868a7c064eb",
+        "cSlotAnswers": [
+          "$3.5$"
+        ],
+        "cAnswers": [
+          "$3.5$"
+        ],
+        "cStudentSentence": "나이를 정수로 제한하지 않고 연속적인 시간으로 나타내는 문제에서 계산값 $-3$과 $3.5$ 중 나이로 사용할 수 있는 값은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3.5$",
+            "equivalentAnswers": [
+              "$3.5$",
+              "$\\frac72$"
+            ],
+            "equivalenceReview": "Codex direct semantic review; Root independent verification required"
+          }
+        ],
+        "bQuestion": {
+          "prompt": "나이 문제의 연립방정식을 풀었더니 문제에서 구하는 나이의 계산값은 $-3$살 하나뿐이었다. 세운 식과 계산을 확인했는데 모두 맞았다면 원래 조건을 만족하는 나이가 있는가? 음수 나이의 의미를 들어 이유를 쓰시오.",
+          "answer": "조건을 만족하는 나이는 없다. 식과 계산이 맞아도 $-3$살은 가능한 나이가 아니므로 주어진 조건을 모두 만족하는 해가 없는 상황이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "주어진 조건을 만족하는 나이가 없다."
+              ]
+            },
+            {
+              "anyOf": [
+                "계산의 오류가 없더라도 음수인 나이는 가능한 나이가 아니므로 원래 조건을 만족하지 못한다."
+              ]
+            }
+          ]
+        }
+      },
+      "after": {
+        "id": "m2-03-06-xc20",
+        "grade": "중2",
+        "source": {
+          "id": "m2-03-06-xc20",
+          "section": "중2::3. 방정식::연립방정식의 활용(수, 평균, 나이)",
+          "term": "나이 문제의 해 검토",
+          "kind": "성질",
+          "level": "상",
+          "definition": "구한 나이가 음수나 분수이면 먼저 식을 {다시} 살핀다. 식이 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다."
+        },
+        "B": {
+          "prompt": "나이 문제의 연립방정식을 풀었더니 문제에서 구하는 나이의 계산값은 $-3$살 하나뿐이었다. 세운 식과 계산을 확인했는데 모두 맞았다면 원래 조건을 만족하는 나이가 있는가? 음수 나이의 의미를 들어 이유를 쓰시오.",
+          "answer": "조건을 만족하는 나이는 없다. 식과 계산이 맞아도 $-3$살은 가능한 나이가 아니므로 주어진 조건을 모두 만족하는 해가 없는 상황이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "주어진 조건을 만족하는 나이가 없다."
+              ]
+            },
+            {
+              "anyOf": [
+                "계산의 오류가 없더라도 음수인 나이는 가능한 나이가 아니므로 원래 조건을 만족하지 못한다."
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "나이를 정수로 제한하지 않고 연속적인 시간으로 나타내는 문제에서 계산값 $-3$과 $3.5$ 중 나이로 사용할 수 있는 값은 {$3.5$}이다.",
+          "acceptedAnswers": [
+            [
+              "$3.5$",
+              "$\\frac72$"
+            ]
+          ]
+        },
+        "goal": "검토를 마친 음수 나이 해가 원래 조건에 맞지 않음을 설명한다.",
+        "coreAfter": "구한 나이가 음수이거나 문제에서 정한 범위를 벗어나면 먼저 식과 계산을 {다시} 살핀다. 둘 다 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다.",
+        "coreReason": "나이를정수로제한하지않은문제에서는분수나이도가능하므로허용범위를기준으로판단한다.",
+        "hash": "297f544f990fec9409f75e8a944fe0a1ed504de5b6d7c4ea57cfc38a437892d0"
+      }
+    },
+    {
+      "id": "m1-03-05-xc24",
+      "scope": "middle",
+      "reason": "숫자 해만 고치는 계산에서 벗어나, 잘못 사용한 오른쪽 연산 기호를 양변에 같은 계산을 한다는 성질에 맞게 교정한다.",
+      "beforeRaw": {
+        "id": "m1-03-05-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "양변에 서로 다른 계산을 한 줄을 찾아 고친다.",
+        "bReason": "m1-03-05-xc14의 B 목표는 양변의 계산을 비교해 풀이 한 단계의 옳고 그름을 판단하는 것이다. 그 B가 이미 $2x=6$을 $x=6-2$로 바꾼 예에서 좌변은 나누기, 우변은 빼기임을 밝히고 잘못을 판단하게 하므로 같은 단계 오류를 다시 묻는 B는 제외한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$2x=6$을 풀며 다음 줄을 $x=4$라고 잘못 썼다. 원래 방정식을 만족하도록 이 줄을 고치면 $x=$ {$3$}이다.",
+        "cReason": "대입 계산의 우변을 복사하는 빈칸을 없애고 잘못된 줄의 해를 실제로 고치게 한다. 올바른 양변 나눗셈으로 원래 방정식의 해를 복구한다.",
+        "exclusionReason": "B 제외: m1-03-05-xc14 B에서 잘못된 양변 계산을 이미 판단한다. C는 실제 잘못 구한 값을 원래 식에 대입하여 검산하는 별도의 짧은 확인으로 유지한다.",
+        "studentLabel": "방정식 풀이에서 틀린 줄 찾기",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "Codex direct bounded correction of 27 current findings; not independent approval",
+        "bRequiredIdeas": [],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "양변 계산 다른 줄 찾기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1271,
+        "part": "m1plus",
+        "sourceFingerprint": "12e0f79e60edf940f7e6e4aaf09733f0f81dd5469f196a56ba0d882836f7555f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1271
+        },
+        "directReview": null,
+        "cMarkedSentence": "$2x=6$을 풀며 다음 줄을 $x=4$라고 잘못 썼다. 원래 방정식을 만족하도록 이 줄을 고치면 $x=$ {$3$}이다.",
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "584df3d9e8b205ed8fe1793e1cda8ca50f67db490549257c77c9e694ef778b90",
+        "coreAfter": "방정식 풀이에서 양변에 한 계산이 {같은지} 확인하고, 구한 값을 원래 방정식에 {대입}하여 좌변과 우변이 같은지도 살핀다. 한쪽에만 계산하거나 서로 다른 계산을 하면 원래 방정식의 해와 달라질 수 있다.",
+        "coreReason": "서로 다른 계산이 우연히 같은 결과를 줄 수도 있으므로 항상 틀렸다는 단정을 피하고 검산의 판단 근거를 밝힌다.",
+        "findingDecision": "B exclusion verified against actual matching ID/goal; C correction task restored.",
+        "authoringTaskId": "task_c687f2c40ea2",
+        "authoringDispatchId": "ctx_b868a7c064eb",
+        "cSlotAnswers": [
+          "$3$"
+        ],
+        "cAnswers": [
+          "$3$"
+        ],
+        "cStudentSentence": "$2x=6$을 풀며 다음 줄을 $x=4$라고 잘못 썼다. 원래 방정식을 만족하도록 이 줄을 고치면 $x=$ □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "Codex direct semantic review; Root independent verification required"
+          }
+        ]
+      },
+      "before": {
+        "id": "m1-03-05-xc24",
+        "grade": "중1",
+        "source": {
+          "id": "m1-03-05-xc24",
+          "section": "중1::3. 방정식::등식의 성질",
+          "term": "틀린 줄 찾기",
+          "kind": "방법",
+          "level": "상",
+          "definition": "풀이에서 한쪽 변에만 계산했거나 양변에 한 계산이 {다르면}, 그 줄은 등식의 성질로 {설명할 수 없는} 줄이다.",
+          "example": {
+            "prompt": "$\\frac{x}{3}=4$를 $x=\\frac{4}{3}$로 푼 잘못은?",
+            "answer": "양변에 $3$을 곱해야 한다"
+          }
+        },
+        "B": {
+          "excluded": "m1-03-05-xc14의 B 목표는 양변의 계산을 비교해 풀이 한 단계의 옳고 그름을 판단하는 것이다. 그 B가 이미 $2x=6$을 $x=6-2$로 바꾼 예에서 좌변은 나누기, 우변은 빼기임을 밝히고 잘못을 판단하게 하므로 같은 단계 오류를 다시 묻는 B는 제외한다."
+        },
+        "C": {
+          "sentence": "$2x=6$을 풀며 다음 줄을 $x=4$라고 잘못 썼다. 원래 방정식을 만족하도록 이 줄을 고치면 $x=$ {$3$}이다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "goal": "양변에 서로 다른 계산을 한 줄을 찾아 고친다.",
+        "coreAfter": "방정식 풀이에서 양변에 한 계산이 {같은지} 확인하고, 구한 값을 원래 방정식에 {대입}하여 좌변과 우변이 같은지도 살핀다. 한쪽에만 계산하거나 서로 다른 계산을 하면 원래 방정식의 해와 달라질 수 있다.",
+        "coreReason": "서로 다른 계산이 우연히 같은 결과를 줄 수도 있으므로 항상 틀렸다는 단정을 피하고 검산의 판단 근거를 밝힌다.",
+        "hash": "439108cf6b1f301e65f5766fb79198411a2208196c49a22382e12a61f3debfda"
+      },
+      "proposedRaw": {
+        "id": "m1-03-05-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "양변에 서로 다른 계산을 한 줄을 찾아 고친다.",
+        "bReason": "m1-03-05-xc14의 B 목표는 양변의 계산을 비교해 풀이 한 단계의 옳고 그름을 판단하는 것이다. 그 B가 이미 $2x=6$을 $x=6-2$로 바꾼 예에서 좌변은 나누기, 우변은 빼기임을 밝히고 잘못을 판단하게 하므로 같은 단계 오류를 다시 묻는 B는 제외한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$2x=6$을 풀면서 다음 줄을 $x=6-2$로 잘못 썼다. 원래 등식의 양변에 같은 계산을 하려면, 오른쪽의 빼기 기호 $-$를 {$\\div$} 기호로 바꾸어야 한다.",
+        "cReason": "숫자 해만 고치는 계산에서 벗어나, 잘못 사용한 오른쪽 연산 기호를 양변에 같은 계산을 한다는 성질에 맞게 교정한다.",
+        "exclusionReason": "B 제외: m1-03-05-xc14 B에서 잘못된 양변 계산을 이미 판단한다. C는 실제 잘못 구한 값을 원래 식에 대입하여 검산하는 별도의 짧은 확인으로 유지한다.",
+        "studentLabel": "방정식 풀이에서 틀린 줄 찾기",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "Codex direct bounded correction of 27 current findings; not independent approval",
+        "bRequiredIdeas": [],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "양변 계산 다른 줄 찾기",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1271,
+        "part": "m1plus",
+        "sourceFingerprint": "12e0f79e60edf940f7e6e4aaf09733f0f81dd5469f196a56ba0d882836f7555f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1271
+        },
+        "directReview": null,
+        "cMarkedSentence": "$2x=6$을 풀면서 다음 줄을 $x=6-2$로 잘못 썼다. 원래 등식의 양변에 같은 계산을 하려면, 오른쪽의 빼기 기호 $-$를 {$\\div$} 기호로 바꾸어야 한다.",
+        "cAcceptedAnswers": [
+          [
+            "$\\div$",
+            "$/$"
+          ]
+        ],
+        "proposalFingerprint": "59ce7c68a4aea9fe134c03979d397943dd8ed2e26e4dce1990797ddece44471b",
+        "coreAfter": "방정식 풀이에서 양변에 한 계산이 {같은지} 확인하고, 구한 값을 원래 방정식에 {대입}하여 좌변과 우변이 같은지도 살핀다. 한쪽에만 계산하거나 서로 다른 계산을 하면 원래 방정식의 해와 달라질 수 있다.",
+        "coreReason": "서로 다른 계산이 우연히 같은 결과를 줄 수도 있으므로 항상 틀렸다는 단정을 피하고 검산의 판단 근거를 밝힌다.",
+        "findingDecision": "B exclusion verified against actual matching ID/goal; C correction task restored.",
+        "authoringTaskId": "task_c687f2c40ea2",
+        "authoringDispatchId": "ctx_b868a7c064eb",
+        "cSlotAnswers": [
+          "$\\div$"
+        ],
+        "cAnswers": [
+          "$\\div$"
+        ],
+        "cStudentSentence": "$2x=6$을 풀면서 다음 줄을 $x=6-2$로 잘못 썼다. 원래 등식의 양변에 같은 계산을 하려면, 오른쪽의 빼기 기호 $-$를 □ 기호로 바꾸어야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\div$",
+            "equivalentAnswers": [
+              "$\\div$",
+              "$/$"
+            ]
+          }
+        ],
+        "clozeQuestion": {
+          "sentence": "$2x=6$을 풀면서 다음 줄을 $x=6-2$로 잘못 썼다. 원래 등식의 양변에 같은 계산을 하려면, 오른쪽의 빼기 기호 $-$를 {$\\div$} 기호로 바꾸어야 한다.",
+          "acceptedAnswers": [
+            [
+              "$\\div$",
+              "$/$"
+            ]
+          ]
+        }
+      },
+      "after": {
+        "id": "m1-03-05-xc24",
+        "grade": "중1",
+        "source": {
+          "id": "m1-03-05-xc24",
+          "section": "중1::3. 방정식::등식의 성질",
+          "term": "틀린 줄 찾기",
+          "kind": "방법",
+          "level": "상",
+          "definition": "풀이에서 한쪽 변에만 계산했거나 양변에 한 계산이 {다르면}, 그 줄은 등식의 성질로 {설명할 수 없는} 줄이다.",
+          "example": {
+            "prompt": "$\\frac{x}{3}=4$를 $x=\\frac{4}{3}$로 푼 잘못은?",
+            "answer": "양변에 $3$을 곱해야 한다"
+          }
+        },
+        "B": {
+          "excluded": "m1-03-05-xc14의 B 목표는 양변의 계산을 비교해 풀이 한 단계의 옳고 그름을 판단하는 것이다. 그 B가 이미 $2x=6$을 $x=6-2$로 바꾼 예에서 좌변은 나누기, 우변은 빼기임을 밝히고 잘못을 판단하게 하므로 같은 단계 오류를 다시 묻는 B는 제외한다."
+        },
+        "C": {
+          "sentence": "$2x=6$을 풀면서 다음 줄을 $x=6-2$로 잘못 썼다. 원래 등식의 양변에 같은 계산을 하려면, 오른쪽의 빼기 기호 $-$를 {$\\div$} 기호로 바꾸어야 한다.",
+          "acceptedAnswers": [
+            [
+              "$\\div$",
+              "$/$"
+            ]
+          ]
+        },
+        "goal": "양변에 서로 다른 계산을 한 줄을 찾아 고친다.",
+        "coreAfter": "방정식 풀이에서 양변에 한 계산이 {같은지} 확인하고, 구한 값을 원래 방정식에 {대입}하여 좌변과 우변이 같은지도 살핀다. 한쪽에만 계산하거나 서로 다른 계산을 하면 원래 방정식의 해와 달라질 수 있다.",
+        "coreReason": "서로 다른 계산이 우연히 같은 결과를 줄 수도 있으므로 항상 틀렸다는 단정을 피하고 검산의 판단 근거를 밝힌다.",
+        "hash": "dc4fd486d79dbe1f57de5bd43ecb3ef17def8a06ac00c29f0c45e10a369edc77"
+      }
+    },
+    {
+      "id": "m2-05-08-xc10",
+      "scope": "middle",
+      "reason": "방법을 SAS로 지정하되 학생이 실제 대응 변과 각의 같음을 설명하게 한다. 지정한 합동 조건 이름을 다시 쓰는 중복 필수 항목은 제거한다.",
+      "beforeRaw": {
+        "id": "m2-05-08-xc10",
+        "learningRole": "reason",
+        "roleReason": "등변사다리꼴 속 두 삼각형의 합동 조건",
+        "bDecision": "rewrite",
+        "bPrompt": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $\\triangle ABC$와 $\\triangle DCB$가 합동인 까닭을 대응하는 두 변과 그 끼인각으로 설명하고 합동 조건을 쓰시오.",
+        "bAnswer": "$AB=DC$, $BC=CB$이고 두 밑각 $\\angle ABC=\\angle DCB$가 같다. 두 변과 그 끼인각이 각각 같으므로 $\\mathrm{SAS}$ 합동이다.",
+        "bGoal": "등변사다리꼴 안의 두 삼각형의 대응 변·끼인각으로 SAS 합동을 설명한다.",
+        "bReason": "기존 제외 이유에는 실제 겹치는 ID와 질문이 없었다. 임의의 중복 근거를 새로 만들지 않고 등변사다리꼴의 조건으로 대응 변·끼인각을 보이는 완전한 B를 복구한다.",
+        "cDecision": "rewrite",
+        "cReason": "현재 C는 세 합동 근거를 주고 그 사이 관계인 SAS를 판별하는 짧은 수학 질문이다. 단순 명사 문법 복원과 다르며 이 유효한 합동 조건 판별은 유지한다. 대상인 두 삼각형의 이름을 문장 안에 명시하여 용어 또는 숨은 그림에 기대지 않도록 한다.",
+        "exclusionReason": "B 제외: $\\triangle ABC\\equiv\\triangle DCB$의 $\\mathrm{SAS}$ 합동을 묻는 목표가 m2-05-08-c4 B와 중복된다.",
+        "authorBatch": 44,
+        "readingProvenance": "Codex direct bounded correction of 27 current findings; not independent approval",
+        "sourceIndex": 2920,
+        "part": "m2plus",
+        "sourceFingerprint": "86160d5d3607436ef87314e8773a2c8bba2fd320e10ca34b3c23b8f88a023f08",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2920
+        },
+        "directReview": null,
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대응하는 변 $AB=DC$이고 $BC=CB$는 공통변이다."
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑각 $\\angle ABC=\\angle DCB$가 같다."
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변과 그 끼인각을 이용한 $\\mathrm{SAS}$ 합동이다."
+            ]
+          }
+        ],
+        "cMarkedSentence": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $AB=DC$, 공통변 $BC$, $\\angle ABC=\\angle DCB$를 이용하여 $\\triangle ABC$와 $\\triangle DCB$의 합동을 보이는 조건은 {$\\mathrm{SAS}$}이다.",
+        "cAcceptedAnswers": [
+          [
+            "$\\mathrm{SAS}$",
+            "두 변과 그 끼인각"
+          ]
+        ],
+        "proposalFingerprint": "6aacc6b970e45fff700d14fdd41875ad3320d6cdc241c4669497e456f79b3488",
+        "cAfter": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $AB=DC$, 공통변 $BC$, $\\angle ABC=\\angle DCB$를 이용하여 $\\triangle ABC$와 $\\triangle DCB$의 합동을 보이는 조건은 {$\\mathrm{SAS}$}이다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "findingDecision": "Unsupported B exclusion removed; concrete proof restored; valid short C retained.",
+        "authoringTaskId": "task_c687f2c40ea2",
+        "authoringDispatchId": "ctx_b868a7c064eb",
+        "cSlotAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cStudentSentence": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $AB=DC$, 공통변 $BC$, $\\angle ABC=\\angle DCB$를 이용하여 $\\triangle ABC$와 $\\triangle DCB$의 합동을 보이는 조건은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\mathrm{SAS}$",
+            "equivalentAnswers": [
+              "$\\mathrm{SAS}$",
+              "두 변과 그 끼인각"
+            ],
+            "equivalenceReview": "Codex direct semantic review; Root independent verification required"
+          }
+        ]
+      },
+      "before": {
+        "id": "m2-05-08-xc10",
+        "grade": "중2",
+        "source": {
+          "id": "m2-05-08-xc10",
+          "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+          "term": "등변사다리꼴 속 합동인 두 삼각형",
+          "kind": "성질",
+          "level": "중",
+          "definition": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\triangle ABC$와 $\\triangle DCB$는 {$\\mathrm{SAS}$} 합동이다."
+        },
+        "B": {
+          "prompt": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $\\triangle ABC$와 $\\triangle DCB$가 합동인 까닭을 대응하는 두 변과 그 끼인각으로 설명하고 합동 조건을 쓰시오.",
+          "answer": "$AB=DC$, $BC=CB$이고 두 밑각 $\\angle ABC=\\angle DCB$가 같다. 두 변과 그 끼인각이 각각 같으므로 $\\mathrm{SAS}$ 합동이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "대응하는 변 $AB=DC$이고 $BC=CB$는 공통변이다."
+              ]
+            },
+            {
+              "anyOf": [
+                "두 밑각 $\\angle ABC=\\angle DCB$가 같다."
+              ]
+            },
+            {
+              "anyOf": [
+                "두 변과 그 끼인각을 이용한 $\\mathrm{SAS}$ 합동이다."
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $AB=DC$, 공통변 $BC$, $\\angle ABC=\\angle DCB$를 이용하여 $\\triangle ABC$와 $\\triangle DCB$의 합동을 보이는 조건은 {$\\mathrm{SAS}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\mathrm{SAS}$",
+              "두 변과 그 끼인각"
+            ]
+          ]
+        },
+        "goal": "등변사다리꼴 안의 두 삼각형의 대응 변·끼인각으로 SAS 합동을 설명한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "7b55c1330b51622e190cc7221c4eb592f78a2c8e064fb774be130a95258c98dd"
+      },
+      "proposedRaw": {
+        "id": "m2-05-08-xc10",
+        "learningRole": "reason",
+        "roleReason": "등변사다리꼴 속 두 삼각형의 합동 조건",
+        "bDecision": "rewrite",
+        "bPrompt": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $\\mathrm{SAS}$ 합동 조건을 써서 $\\triangle ABC$와 $\\triangle DCB$가 합동인 까닭을 설명하시오.",
+        "bAnswer": "$AB=DC$, $BC=CB$이고 두 밑각 $\\angle ABC=\\angle DCB$가 같다. 두 변과 그 끼인각이 각각 같으므로 $\\mathrm{SAS}$ 합동이다.",
+        "bGoal": "SAS 합동 조건에 필요한 대응 변과 끼인각의 같음을 설명한다.",
+        "bReason": "방법을 SAS로 지정하되 학생이 실제 대응 변과 각의 같음을 설명하게 한다. 지정한 합동 조건 이름을 다시 쓰는 중복 필수 항목은 제거한다.",
+        "cDecision": "rewrite",
+        "cReason": "현재 C는 세 합동 근거를 주고 그 사이 관계인 SAS를 판별하는 짧은 수학 질문이다. 단순 명사 문법 복원과 다르며 이 유효한 합동 조건 판별은 유지한다. 대상인 두 삼각형의 이름을 문장 안에 명시하여 용어 또는 숨은 그림에 기대지 않도록 한다.",
+        "exclusionReason": "B 제외: $\\triangle ABC\\equiv\\triangle DCB$의 $\\mathrm{SAS}$ 합동을 묻는 목표가 m2-05-08-c4 B와 중복된다.",
+        "authorBatch": 44,
+        "readingProvenance": "Codex direct bounded correction of 27 current findings; not independent approval",
+        "sourceIndex": 2920,
+        "part": "m2plus",
+        "sourceFingerprint": "86160d5d3607436ef87314e8773a2c8bba2fd320e10ca34b3c23b8f88a023f08",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2920
+        },
+        "directReview": null,
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대응하는 변 $AB=DC$이고 $BC=CB$는 공통변이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑각 $\\angle ABC=\\angle DCB$가 같다"
+            ]
+          }
+        ],
+        "cMarkedSentence": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $AB=DC$, 공통변 $BC$, $\\angle ABC=\\angle DCB$를 이용하여 $\\triangle ABC$와 $\\triangle DCB$의 합동을 보이는 조건은 {$\\mathrm{SAS}$}이다.",
+        "cAcceptedAnswers": [
+          [
+            "$\\mathrm{SAS}$",
+            "두 변과 그 끼인각"
+          ]
+        ],
+        "proposalFingerprint": "1b258637cbdbfa7f14b0e837107adb69ab59126449ac695acab606575476a5e1",
+        "cAfter": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $AB=DC$, 공통변 $BC$, $\\angle ABC=\\angle DCB$를 이용하여 $\\triangle ABC$와 $\\triangle DCB$의 합동을 보이는 조건은 {$\\mathrm{SAS}$}이다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "findingDecision": "Unsupported B exclusion removed; concrete proof restored; valid short C retained.",
+        "authoringTaskId": "task_c687f2c40ea2",
+        "authoringDispatchId": "ctx_b868a7c064eb",
+        "cSlotAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cStudentSentence": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $AB=DC$, 공통변 $BC$, $\\angle ABC=\\angle DCB$를 이용하여 $\\triangle ABC$와 $\\triangle DCB$의 합동을 보이는 조건은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\mathrm{SAS}$",
+            "equivalentAnswers": [
+              "$\\mathrm{SAS}$",
+              "두 변과 그 끼인각"
+            ],
+            "equivalenceReview": "Codex direct semantic review; Root independent verification required"
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $\\mathrm{SAS}$ 합동 조건을 써서 $\\triangle ABC$와 $\\triangle DCB$가 합동인 까닭을 설명하시오.",
+          "answer": "$AB=DC$, $BC=CB$이고 두 밑각 $\\angle ABC=\\angle DCB$가 같다. 두 변과 그 끼인각이 각각 같으므로 $\\mathrm{SAS}$ 합동이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "대응하는 변 $AB=DC$이고 $BC=CB$는 공통변이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 밑각 $\\angle ABC=\\angle DCB$가 같다"
+              ]
+            }
+          ]
+        }
+      },
+      "after": {
+        "id": "m2-05-08-xc10",
+        "grade": "중2",
+        "source": {
+          "id": "m2-05-08-xc10",
+          "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+          "term": "등변사다리꼴 속 합동인 두 삼각형",
+          "kind": "성질",
+          "level": "중",
+          "definition": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\triangle ABC$와 $\\triangle DCB$는 {$\\mathrm{SAS}$} 합동이다."
+        },
+        "B": {
+          "prompt": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $\\mathrm{SAS}$ 합동 조건을 써서 $\\triangle ABC$와 $\\triangle DCB$가 합동인 까닭을 설명하시오.",
+          "answer": "$AB=DC$, $BC=CB$이고 두 밑각 $\\angle ABC=\\angle DCB$가 같다. 두 변과 그 끼인각이 각각 같으므로 $\\mathrm{SAS}$ 합동이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "대응하는 변 $AB=DC$이고 $BC=CB$는 공통변이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 밑각 $\\angle ABC=\\angle DCB$가 같다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$AD\\parallel BC$인 등변사다리꼴 $ABCD$에서 $AB=DC$, 공통변 $BC$, $\\angle ABC=\\angle DCB$를 이용하여 $\\triangle ABC$와 $\\triangle DCB$의 합동을 보이는 조건은 {$\\mathrm{SAS}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\mathrm{SAS}$",
+              "두 변과 그 끼인각"
+            ]
+          ]
+        },
+        "goal": "SAS 합동 조건에 필요한 대응 변과 끼인각의 같음을 설명한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "539b73722d9324efd49dd416b2da95acd47a7179af58cc9a132be0fe8c260d08"
+      }
+    }
+  ]
+}
