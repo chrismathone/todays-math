@@ -10,6 +10,8 @@
 import "server-only";
 
 import type { StudentSession } from "@/contracts/studentAccount.contract";
+import type { StudentOptionalMenu } from "@/contracts/studentLearningMenus.contract";
+import { getStudentLearningMenus } from "./studentLearningMenusStore";
 import { jsonError, unauthorizedError } from "@/lib/apiResponse";
 import { auth } from "@/lib/auth";
 import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
@@ -28,6 +30,7 @@ export type StudentGate =
  */
 export async function requireStudent(opts: {
   active: boolean;
+  menu?: StudentOptionalMenu;
 }): Promise<StudentGate> {
   const student = await getStudentSession();
   if (!student) return { student: null, response: unauthorizedError() };
@@ -36,5 +39,21 @@ export async function requireStudent(opts: {
       student: null,
       response: jsonError("FORBIDDEN", STUDENT_MUST_CHANGE_MESSAGE, 403),
     };
+  if (opts.menu) {
+    const menus = await getStudentLearningMenus(student.studentId).catch(
+      () => ({
+        enabled: [],
+      }),
+    );
+    if (!menus.enabled.includes(opts.menu))
+      return {
+        student: null,
+        response: jsonError(
+          "FORBIDDEN",
+          "지점장이 이 학생에게 열어 준 기능만 이용할 수 있습니다.",
+          403,
+        ),
+      };
+  }
   return { student, response: null };
 }

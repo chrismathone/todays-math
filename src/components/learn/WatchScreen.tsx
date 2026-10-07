@@ -78,7 +78,7 @@ export function WatchScreen({ lectureId }: { lectureId: string }) {
   const state = watchState(watch);
 
   return (
-    <div className={s.column}>
+    <div className={s.column} data-student-module-content="watch">
       <LearnTopBar student={data?.student ?? null} />
       <main className={`${s.body} ${s.watchBody}`}>
         <Link href="/learn/lectures" className={s.back}>

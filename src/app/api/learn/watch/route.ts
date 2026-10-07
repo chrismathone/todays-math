@@ -28,7 +28,7 @@ import { recordWatchReport } from "@/lib/learn/watchReport";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 async function handlePost(request: NextRequest) {
-  const gate = await requireStudent({ active: true });
+  const gate = await requireStudent({ active: true, menu: "lectures" });
   if (gate.response) return gate.response;
   if (!sameOriginMutation(request)) return crossSiteError();
 

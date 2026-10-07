@@ -1,6 +1,8 @@
-import Link from "next/link";
+"use client";
 import type { ComponentProps, MouseEventHandler, ReactNode } from "react";
 import { LearnTopBar } from "@/components/learn/LearnTopBar";
+import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
+import { useStudentChrome } from "@/components/learn/StudentChromeContext";
 import s from "./student-review-home.module.css";
 
 type Action = {
@@ -68,33 +70,33 @@ export function StudentReviewPage({
   setupClassName?: string;
   children: ReactNode;
 }) {
+  const chrome = useStudentChrome();
   return (
     <div
-      className={practicing ? practicePageClassName : s.page}
+      className={
+        chrome.managed
+          ? s.embedded
+          : practicing
+            ? practicePageClassName
+            : s.page
+      }
       data-student-practice={practicing ? "true" : undefined}
     >
       <LearnTopBar student={student} />
       <main
         className={
-          practicing
-            ? practiceMainClassName
-            : `${s.main} ${boardReady ? s.boardMain : ""} ${setupClassName ?? ""}`
+          chrome.managed
+            ? s.embeddedMain
+            : practicing
+              ? practiceMainClassName
+              : `${s.main} ${boardReady ? s.boardMain : ""} ${setupClassName ?? ""}`
         }
       >
         {practicing ? (
           <h1 className={s.srOnly}>{practiceTitle}</h1>
         ) : (
           <>
-            <nav className={s.nav} aria-label="학생 학습 메뉴">
-              <Link href="/learn" aria-current="page">
-                탐험
-              </Link>
-              <Link href="/learn?view=collection">도감</Link>
-              <Link href="/learn/lectures">강의</Link>
-              <Link href="/learn/english-listening" prefetch={false}>
-                영어듣기
-              </Link>
-            </nav>
+            {!chrome.managed && <StudentMobileNav desktop />}
             <StudentReviewHeading {...reviewCopy[kind]} />
           </>
         )}

@@ -18,6 +18,12 @@ const f = vi.hoisted(() => ({
   referencesAsset: vi.fn(),
 }));
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/learn/studentLearningMenusStore", () => ({
+  getStudentLearningMenus: vi.fn(async () => ({
+    enabled: ["textbook"],
+    updatedAt: null,
+  })),
+}));
 vi.mock("@/lib/auth", () => ({ auth: f.auth }));
 vi.mock("@/lib/db", () => ({ db: { student: { findUnique: f.student } } }));
 vi.mock("@/lib/errorLog/withErrorLog", () => ({
@@ -59,6 +65,7 @@ import {
   textbookStudentAttemptSchema,
 } from "@/contracts/textbookStudent.contract";
 import { TextbookError } from "@/lib/textbook/server/errors";
+import { getStudentLearningMenus } from "@/lib/learn/studentLearningMenusStore";
 import { studentAttemptOf } from "@/lib/textbook/studentProjection";
 import {
   ExplorerActionConflict,
@@ -177,6 +184,10 @@ async function expectStatus(response: Response, status: number) {
 
 beforeEach(() => {
   vi.resetAllMocks();
+  vi.mocked(getStudentLearningMenus).mockResolvedValue({
+    enabled: ["textbook"],
+    updatedAt: null,
+  });
   vi.stubEnv("AUTH_URL", ORIGIN);
   vi.stubEnv("NEXTAUTH_URL", "");
   f.auth.mockResolvedValue(session());
