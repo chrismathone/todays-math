@@ -1,0 +1,116 @@
+{
+  "studentDigest": "fa3a4d05b624a90797c4e05c3996d48c41800f30e957bbcd7060eb0ff6500faf",
+  "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+  "answer": "③",
+  "solution": "눈높이의 수평선과 수직인 벽, 수평인 지면이 만드는 사각형 $\\mathrm{ABEG}$는 직사각형이므로 $\\overline{BE}=\\overline{AG}=1.6\\,\\mathrm{m}$이고 $\\overline{GE}=\\overline{AB}$이다.\n따라서 직각삼각형 $\\mathrm{ABC}$의 높이 차는 $\\overline{BC}=\\overline{CE}-\\overline{BE}=9.6-1.6=8\\,\\mathrm{m}$이다.\n삼각비의 정의에서 $\\tan58^{\\circ}=\\frac{\\overline{BC}}{\\overline{AB}}$이므로 표의 값을 사용하면 $\\overline{GE}=\\overline{AB}=\\frac{8}{1.6003}\\fallingdotseq4.9991\\,\\mathrm{m}$이다.\n소수점 아래 둘째 자리에서 반올림하면 $5.0\\,\\mathrm{m}$이므로 정답은 ③이다.",
+  "evidence": {
+    "questionNumber": 10,
+    "answerValue": "$5.0\\,\\mathrm{m}$",
+    "method": [
+      "수평선·수직선과 직사각형의 마주 보는 변",
+      "직각삼각형의 tan 정의",
+      "주어진 삼각비 표 대입과 소수 반올림"
+    ],
+    "conditions": {
+      "heightDifferenceM": 8,
+      "acuteAngleDegrees": 58,
+      "positiveHorizontalDistance": true,
+      "rounding": "소수 둘째 자리에서 반올림하여 소수 첫째 자리까지",
+      "usesProvidedTable": true
+    },
+    "choiceReview": [
+      {
+        "choiceNumber": 1,
+        "correct": false,
+        "reason": "4.5 m는 8/1.6003의 반올림값과 다르다."
+      },
+      {
+        "choiceNumber": 2,
+        "correct": false,
+        "reason": "4.8 m는 8/1.6003의 반올림값과 다르다."
+      },
+      {
+        "choiceNumber": 3,
+        "correct": true,
+        "reason": "5.0 m만 소수 첫째 자리 반올림값과 같다."
+      },
+      {
+        "choiceNumber": 4,
+        "correct": false,
+        "reason": "5.2 m는 8/1.6003의 반올림값과 다르다."
+      },
+      {
+        "choiceNumber": 5,
+        "correct": false,
+        "reason": "8.0 m는 높이 차이고 요구한 수평거리가 아니다."
+      }
+    ],
+    "uniqueAnswer": true,
+    "figureObservation": "왼쪽은 환기창 관측의 새 래스터 삽화이고, 오른쪽 관계도는 AG·BE가 수직, AB·GE가 수평이며 C가 B 위에 있고 BAC가 58°인 직각삼각형으로 보인다. 삽화에서 길이를 재지 않고 본문의 표와 관계도만 계산에 사용했다.",
+    "input": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/student-problems.json",
+      "sha256": "252ea8959ca5d96e13959ea9bf4b393fe00b0ff476f2b457b292c568fe6763b4",
+      "studentDigest": "fa3a4d05b624a90797c4e05c3996d48c41800f30e957bbcd7060eb0ff6500faf",
+      "digestHandling": "copied verbatim from student-only export; no author package read",
+      "grade": "중3",
+      "curriculum": "2015"
+    },
+    "figures": [
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q10-1.svg",
+        "sha256": "f9b1cb9351ffbf85b25df75c17873442ebf0ec1a4d422dea1450d47e7e0c03af",
+        "matchesStudentExportHash": true,
+        "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/previews/q10-1.png",
+        "previewSha256": "3ac592ae523af9f57359822ba0d983709d82e3ddc1a79a5191b3090672f8f5dd",
+        "inspection": "view_image completed",
+        "embeddedRasterIncluded": true
+      }
+    ],
+    "calculation": {
+      "artifact": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/calculations.json",
+      "sha256": "2eaab47cbb07445bb57a79b0d7041bedf3f6f8e9e8918aa9fa8250dc8ff7fadc",
+      "jsonPointer": "/results/q10",
+      "data": {
+        "heightDifference": 8,
+        "tableTangent": 1.6003,
+        "rawDistance": 4.999062675748297,
+        "roundedDistance": 5,
+        "answer": "③",
+        "choices": [
+          {
+            "choiceNumber": 1,
+            "value": 4.5,
+            "matches": false
+          },
+          {
+            "choiceNumber": 2,
+            "value": 4.8,
+            "matches": false
+          },
+          {
+            "choiceNumber": 3,
+            "value": 5,
+            "matches": true
+          },
+          {
+            "choiceNumber": 4,
+            "value": 5.2,
+            "matches": false
+          },
+          {
+            "choiceNumber": 5,
+            "value": 8,
+            "matches": false
+          }
+        ]
+      }
+    },
+    "reviewBoundary": {
+      "authorAnswersRead": false,
+      "originalAnswersRead": false,
+      "selfAuthoredCandidateReviewed": false,
+      "scope": "independent blind solve; final curriculum/rights/publication approval not issued"
+    }
+  },
+  "status": "solved"
+}
