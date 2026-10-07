@@ -9,6 +9,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
 import ExplorerConceptMemory from "@/components/math-explorers/ExplorerConceptMemory";
 import { createLocalFadingSource } from "@/lib/fading/local";
+import { createLocalFadingRelearnSource } from "@/lib/fading/relearnLocal";
 import { fadingTargets, type FadingConcept } from "@/lib/fading/concepts";
 import { FadingSourceError, type FadingSource } from "@/lib/fading/source";
 import { createExplorerState, explorerView } from "@/lib/math-explorers/engine";
@@ -232,6 +233,196 @@ afterEach(() => {
 });
 
 describe("Explorer concept memory inside the old shell", () => {
+  it("queues cold checks via the first rating receipt and leaves long-term and explorer records unchanged by a minute check", async () => {
+    const { source } = await atFour();
+    let now = Date.UTC(2026, 9, 7);
+    const relearn = createLocalFadingRelearnSource({
+      main: source,
+      concepts: [concept],
+      now: () => now,
+    });
+    const record = vi.spyOn(relearn, "record");
+    const old = explorer();
+    const before = structuredClone(old);
+    render(
+      <StudentMathExplorers
+        conceptMemoryEnabled
+        fadingSource={source}
+        fadingRelearnSource={relearn}
+        initialState={old}
+        preview
+      />,
+    );
+    fireEvent.click(
+      await screen.findByRole("button", { name: "개념 풀이 이어하기" }),
+    );
+    await screen.findByRole("textbox", { name: /빈칸 답 입력/ });
+    for (const target of fadingTargets(concept)) {
+      const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
+      fireEvent.change(input, { target: { value: target.text } });
+      fireEvent.submit(input.closest("form")!);
+    }
+    await screen.findByText("4단계를 마쳤어요");
+    for (const _ of concept.propositions)
+      fireEvent.click(
+        screen.queryByRole("button", { name: "다음 문장 대조" }) ??
+          screen.getByRole("button", { name: "대조 마치기" }),
+      );
+    fireEvent.click(screen.getByRole("button", { name: /^알맞음/ }));
+    await screen.findByRole("heading", { name: "풀이를 마쳤어요" });
+    expect(record).toHaveBeenCalledWith(
+      expect.objectContaining({ kind: "rated", conceptId: concept.id }),
+    );
+    expect((await relearn.queue()).items).toHaveLength(
+      concept.propositions.length,
+    );
+    expect(
+      (await relearn.queue()).items.every((row) => row.origin === "exposed"),
+    ).toBe(true);
+    const longTerm = source.snapshot();
+    fireEvent.click(screen.getByRole("button", { name: "오늘의 복습으로" }));
+    now += 60000;
+    fireEvent(window, new Event("focus"));
+    fireEvent.click(
+      await screen.findByRole("button", { name: "추가 확인 시작" }),
+    );
+    const check = await screen.findByRole("dialog", {
+      name: "조금 뒤, 다시 떠올려 볼까요?",
+    });
+    fireEvent.change(within(check).getByLabelText("빈칸 1"), {
+      target: { value: "수직이등분선" },
+    });
+    fireEvent.click(within(check).getByRole("button", { name: "답 제출" }));
+    await within(check).findByRole("button", { name: "원래 학습으로" });
+    expect(source.snapshot()).toEqual(longTerm);
+    expect(old).toEqual(before);
+    expect((await relearn.queue()).today.checks).toBe(1);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+  it("records partial wrong/give-up evidence before the main step and keeps minute checks separate from explorer progress", async () => {
+    const { source, ref } = await atFour();
+    let now = 1000;
+    const relearn = createLocalFadingRelearnSource({
+      main: source,
+      concepts: [concept],
+      now: () => now,
+    });
+    const original = explorer();
+    const unchanged = structuredClone(original);
+    const mainAction = vi.spyOn(source, "act");
+    const record = vi.spyOn(relearn, "record");
+    render(
+      <StudentMathExplorers
+        conceptMemoryEnabled
+        fadingSource={source}
+        fadingRelearnSource={relearn}
+        initialState={original}
+        preview
+      />,
+    );
+    fireEvent.click(
+      await screen.findByRole("button", { name: "개념 풀이 이어하기" }),
+    );
+    const input = await screen.findByRole("textbox", { name: /빈칸 답 입력/ });
+    fireEvent.change(input, { target: { value: "외심" } });
+    fireEvent.click(screen.getByRole("button", { name: "입력" }));
+    await waitFor(() =>
+      expect(record).toHaveBeenCalledWith(
+        expect.objectContaining({
+          kind: "step",
+          ...ref,
+          step: 4,
+          placements: [{ targetId: "memory-p0#1", text: "외심" }],
+        }),
+      ),
+    );
+    expect((await source.state()).session?.step).toBe(4);
+    expect(source.snapshot().session?.phase).toBe("steps");
+    expect(
+      mainAction.mock.calls.some(([action]) => action.action === "step"),
+    ).toBe(false);
+    const queued = await relearn.queue();
+    expect(queued.items[0]?.dueAt).toBe(now + queued.intervals.retryMs);
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await waitFor(() =>
+      expect(record).toHaveBeenCalledWith(
+        expect.objectContaining({ gaveUpCards: ["memory-p0"] }),
+      ),
+    );
+    expect(source.snapshot().session?.phase).toBe("steps");
+    expect(original).toEqual(unchanged);
+    expect(fetch).not.toHaveBeenCalled();
+    now += 60000;
+    fireEvent(window, new Event("focus"));
+    await waitFor(() =>
+      expect(screen.getByLabelText("추가 재학습 현황")).toHaveTextContent(
+        "지금 1",
+      ),
+    );
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("offers a ready check at a completed sentence, preserves main drafts and pauses its keyboard while mounted", async () => {
+    const { source, ref } = await atFour();
+    let now = 1000;
+    const relearn = createLocalFadingRelearnSource({
+      main: source,
+      concepts: [concept],
+      now: () => now,
+    });
+    await relearn.record({
+      kind: "step",
+      ...ref,
+      step: 4,
+      placements: [],
+      gaveUpCards: ["memory-p1"],
+    });
+    render(
+      <ExplorerConceptMemory
+        source={source}
+        relearnSource={relearn}
+        preview
+        renderHome={(memory) => <div>{memory}</div>}
+      />,
+    );
+    fireEvent.click(
+      await screen.findByRole("button", { name: "개념 풀이 이어하기" }),
+    );
+    let input = await screen.findByRole("textbox", { name: /빈칸 답 입력/ });
+    fireEvent.keyDown(input, { key: "Tab" });
+    fireEvent.change(input, { target: { value: "기억 중인 답" } });
+    fireEvent.keyDown(input, { key: "Tab", shiftKey: true });
+    now += 60000;
+    fireEvent(window, new Event("focus"));
+    await waitFor(() =>
+      expect(screen.getByLabelText("추가 재학습 현황")).toHaveTextContent(
+        "지금 1",
+      ),
+    );
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    const mounted = document.querySelector('[data-fading-session="true"]');
+    fireEvent.change(input, { target: { value: "수직이등분선" } });
+    fireEvent.click(screen.getByRole("button", { name: "입력" }));
+    const check = await screen.findByRole("dialog", {
+      name: "조금 뒤, 다시 떠올려 볼까요?",
+    });
+    expect(document.querySelector('[data-fading-session="true"]')).toBe(
+      mounted,
+    );
+    expect(mounted).toHaveAttribute("inert");
+    const mainInput = mounted!.querySelector("input");
+    expect(mainInput).toHaveValue("기억 중인 답");
+    fireEvent.keyDown(window, { key: "Enter" });
+    expect(mainInput).toHaveValue("기억 중인 답");
+    fireEvent.click(
+      within(check).getByRole("button", { name: "추가 확인 닫기" }),
+    );
+    input = await screen.findByRole("textbox", { name: /빈칸 답 입력/ });
+    expect(input).toHaveValue("기억 중인 답");
+    expect(mounted).not.toHaveAttribute("inert");
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
   it.each(["state", "daily"] as const)(
     "fences the API source and remounts after a changed login reported by %s",
     async (origin) => {
@@ -270,9 +461,21 @@ describe("Explorer concept memory inside the old shell", () => {
         .mockImplementation((options) =>
           options?.studentId === original.student.id ? rejected : current,
         );
+      const emptyQueue = await createLocalFadingRelearnSource({
+        main: current,
+        concepts: [concept],
+      }).queue();
       const fetchState = vi.fn(
-        async () =>
-          new Response(JSON.stringify({ data: changed }), { status: 200 }),
+        async (url: string) =>
+          new Response(
+            JSON.stringify({
+              data:
+                url === "/api/learn/fading/relearn"
+                  ? { ...emptyQueue, enabled: false }
+                  : changed,
+            }),
+            { status: 200 },
+          ),
       );
       vi.stubGlobal("fetch", fetchState);
       render(
@@ -283,7 +486,11 @@ describe("Explorer concept memory inside the old shell", () => {
         expect(factory).toHaveBeenCalledWith({ studentId: changed.student.id }),
       );
       expect(factory).toHaveBeenCalledWith({ studentId: original.student.id });
-      expect(fetchState).toHaveBeenCalledTimes(1);
+      expect(
+        fetchState.mock.calls.filter(
+          ([url]) => url === "/api/learn/math-explorers",
+        ),
+      ).toHaveLength(1);
       expect(screen.getByText(/다음 학생 · 다음 반/)).toBeInTheDocument();
       expect(rejectedLocal.snapshot().concepts).toEqual({});
     },
@@ -608,16 +815,35 @@ describe("Explorer concept memory inside the old shell", () => {
     });
     const snapshot = source.snapshot();
     const actions = vi.spyOn(source, "act");
-    isolated(source);
+    const relearn = createLocalFadingRelearnSource({
+      main: source,
+      concepts: [concept],
+      now: () => Date.UTC(2026, 9, 7),
+    });
+    const evidence = vi.spyOn(relearn, "record");
+    render(
+      <StudentMathExplorers
+        conceptMemoryEnabled
+        fadingSource={source}
+        fadingRelearnSource={relearn}
+        initialState={explorer()}
+        preview
+      />,
+    );
     fireEvent.click(
       await screen.findByRole("button", { name: "배울 개념 고르기" }),
     );
     fireEvent.click(
       await screen.findByRole("button", { name: /삼각형 성질 1.*연습하기/ }),
     );
-    await screen.findByRole("button", { name: "모르겠어요" });
+    fireEvent.click(await screen.findByRole("button", { name: "모르겠어요" }));
+    const input = await screen.findByRole("textbox", { name: /빈칸 답 입력/ });
+    fireEvent.change(input, { target: { value: "외심" } });
+    fireEvent.submit(input.closest("form")!);
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
     await exit();
     expect(actions).not.toHaveBeenCalled();
+    expect(evidence).not.toHaveBeenCalled();
     expect(source.snapshot()).toEqual(snapshot);
     expect(fetch).not.toHaveBeenCalled();
   });

@@ -1,7 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import type {
   FadingCatalog,
   FadingState,
@@ -16,6 +23,16 @@ import {
   type FadingSource,
 } from "@/lib/fading/source";
 import { createApiFadingSource } from "@/components/fading/apiSource";
+import { createApiFadingRelearnSource } from "@/components/fading/apiRelearnSource";
+import type { FadingRelearnSource } from "@/lib/fading/relearnSource";
+import {
+  useFadingRelearn,
+  type FadingRelearnController,
+} from "@/components/fading/useFadingRelearn";
+import {
+  FadingRelearnModal,
+  FadingRelearnStatus,
+} from "@/components/fading/FadingRelearnCheck";
 import { curriculumName, dueLabel } from "@/components/fading/labels";
 import { ExplorerMath } from "./ExplorerMath";
 import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
@@ -235,6 +252,8 @@ function DailyPlanCards({
 /** Concept memory lives in the explorer home; its results never call an explorer action. */
 export default function ExplorerConceptMemory({
   source: suppliedSource,
+  relearnSource: suppliedRelearnSource,
+  relearnController,
   studentId,
   preview = false,
   busy: explorerBusy = false,
@@ -245,6 +264,8 @@ export default function ExplorerConceptMemory({
   renderHome,
 }: {
   source?: FadingSource;
+  relearnSource?: FadingRelearnSource;
+  relearnController?: FadingRelearnController;
   studentId?: string;
   preview?: boolean;
   busy?: boolean;
@@ -260,8 +281,28 @@ export default function ExplorerConceptMemory({
   ) => ReactNode;
 }) {
   // Preview callers must provide a local source. They never silently use the student API.
-  const [apiSource] = useState(() => createApiFadingSource({ studentId }));
-  const source = suppliedSource ?? (preview ? null : apiSource);
+  const apiSource = useMemo(
+    () => createApiFadingSource({ studentId }),
+    [studentId],
+  );
+  const apiRelearn = useMemo(
+    () =>
+      !preview && !suppliedSource
+        ? createApiFadingRelearnSource({ studentId })
+        : undefined,
+    [preview, suppliedSource, studentId],
+  );
+  const ownRelearn = useFadingRelearn(
+    relearnController ? undefined : (suppliedRelearnSource ?? apiRelearn),
+    onAccessFailure,
+  );
+  const relearn = relearnController ?? ownRelearn;
+  const baseSource = suppliedSource ?? (preview ? null : apiSource);
+  const wrapRelearn = relearn.wrap;
+  const source = useMemo(
+    () => (baseSource ? wrapRelearn(baseSource) : null),
+    [baseSource, wrapRelearn],
+  );
   const dailySource = source;
   const [dailyPlan, setDailyPlan] = useState<FadingDailyPlan | null>(null);
   const [dailyFailure, setDailyFailure] = useState<string | null>(null);
@@ -475,11 +516,17 @@ export default function ExplorerConceptMemory({
               {failure}
             </p>
           ) : null}
+          {!practice ? (
+            <FadingRelearnStatus controller={relearn} allowStart={false} />
+          ) : null}
           <FadingSessionView
             key={sessionKey}
             source={source}
             state={sessionState}
             practice={practice}
+            paused={!!relearn.active}
+            onEvidence={(observation) => void relearn.record(observation)}
+            onBoundary={relearn.boundary}
             onState={(next) => {
               setState(next);
               if (next.receipt) void refreshDailyPlan();
@@ -525,6 +572,9 @@ export default function ExplorerConceptMemory({
               </button>
             </div>
           ) : null}
+          {relearnController ? null : (
+            <FadingRelearnModal controller={relearn} />
+          )}
         </div>
       </div>
     );
@@ -548,6 +598,8 @@ export default function ExplorerConceptMemory({
       </header>
       <p className={s.note}>먼저 떠올려 보고, 빈칸에 직접 답을 써 보세요.</p>
       {preview ? <p className={s.note}>미리 보기 · 저장되지 않음</p> : null}
+      <FadingRelearnStatus controller={relearn} />
+      {relearnController ? null : <FadingRelearnModal controller={relearn} />}
       {!source ? (
         <p role="status" className={s.note}>
           미리 보기용 개념 자료를 준비해 주세요.

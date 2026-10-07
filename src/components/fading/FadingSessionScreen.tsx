@@ -20,12 +20,7 @@ import {
   type FadingSession,
   type FadingStepResult,
 } from "@/lib/fading/session";
-import {
-  FadingSourceError,
-  newFadingId,
-  type FadingConceptDetail,
-  type FadingSource,
-} from "@/lib/fading/source";
+import { FadingSourceError, newFadingId } from "@/lib/fading/source";
 import { curriculumName, ratingNames, stepNames } from "./labels";
 import { FadingIcon } from "./FadingIcon";
 import { FadingFigureView } from "./FadingFigureView";
@@ -41,6 +36,7 @@ import {
 } from "./FadingChipInput";
 import s from "./fading.module.css";
 import fill from "./FadingFillCard.module.css";
+import type { FadingSessionScreenProps } from "./FadingCardSessionScreen";
 
 function resumed(state: FadingState): FadingSession {
   const remote = state.session!;
@@ -164,14 +160,10 @@ export function FadingSessionScreen({
   onState,
   onReconcile,
   onExit,
-}: {
-  source: FadingSource;
-  state: FadingState;
-  practice?: FadingConceptDetail;
-  onState: (state: FadingState) => void;
-  onReconcile: (state: FadingState, message: string) => void;
-  onExit: () => void;
-}) {
+  paused = false,
+  onEvidence,
+  onBoundary,
+}: FadingSessionScreenProps) {
   const content = practice?.content ?? state.opened!;
   const concept = content.concept;
   const [local, setLocal] = useState(() =>
@@ -208,14 +200,14 @@ export function FadingSessionScreen({
   const [done, setDone] = useState(false);
   const [stageReady, setStageReady] = useState<FadingSession | null>(null);
   useLayoutEffect(() => {
-    if (!stageReady || !finishFromTyping.current) return;
+    if (paused || !stageReady || !finishFromTyping.current) return;
     finishFromTyping.current = false;
     sessionRoot.current
       ?.querySelector<HTMLButtonElement>(
         '[data-fading-action="true"]:not(:disabled)',
       )
       ?.focus();
-  }, [stageReady]);
+  }, [stageReady, paused]);
   const placements = useRef<FadingPlacement[]>([]);
   const pending = useRef<{
     action: FadingAction;
@@ -301,11 +293,12 @@ export function FadingSessionScreen({
   useFadingPendingScroll(
     sessionRoot,
     pendingBlank,
-    local.phase === "filling" && !compare && !done && !exit,
+    local.phase === "filling" && !compare && !done && !exit && !paused,
   );
   useEffect(() => {
     if (
       !restoreMissFocus.current ||
+      paused ||
       saving ||
       failure ||
       exit ||
@@ -319,7 +312,17 @@ export function FadingSessionScreen({
     restoreMissFocus.current = false;
     nativeTab.current = false;
     chipInput.current?.focus({ preventScroll: true });
-  }, [saving, failure, exit, compare, done, local.step, local.phase, wrong]);
+  }, [
+    saving,
+    failure,
+    exit,
+    compare,
+    done,
+    local.step,
+    local.phase,
+    wrong,
+    paused,
+  ]);
 
   async function send(
     action: FadingAction,
@@ -375,12 +378,14 @@ export function FadingSessionScreen({
         },
         () => {
           placements.current = [];
+          onBoundary?.();
         },
       );
   }
   function place(targetId: string, chipId: string, restoreInputFocus = false) {
     if (
       locked.current ||
+      paused ||
       failure ||
       local.phase !== "filling" ||
       stageReady ||
@@ -402,6 +407,13 @@ export function FadingSessionScreen({
     }
     const result = placeChip(local, concept, targetId, chipId, content.traps);
     placements.current.push({ targetId, chipId });
+    if (!result.correct && !practice)
+      onEvidence?.({
+        kind: "step",
+        ...ref,
+        step: local.step as 2 | 3 | 4,
+        placements: [...placements.current],
+      });
     setLastTarget(targetId);
     setActiveBlank(null);
     if (!result.correct) {
@@ -427,6 +439,18 @@ export function FadingSessionScreen({
       setLocal(result.session);
       setWrong(null);
       setFeedback("");
+      if (
+        !practice &&
+        blanks
+          .filter((target) =>
+            concept.propositions[cardIndex]!.pieces.some(
+              (piece) =>
+                piece.kind === "target" && piece.target.id === target.id,
+            ),
+          )
+          .every((target) => target.id in result.session.filled)
+      )
+        onBoundary?.();
     }
   }
   function chooseBlank(targetId: string) {
@@ -515,7 +539,7 @@ export function FadingSessionScreen({
     ...(safeLevel !== undefined ? [safeLevel] : []),
     `${concept.ordinal}/${concept.siblings}`,
   ].join(" · ");
-  const disabled = saving || !!failure;
+  const disabled = paused || saving || !!failure;
   function chooseNumber(index: number) {
     if (disabled || compare || done) return;
     if (local.phase === "rating") {
@@ -557,6 +581,8 @@ export function FadingSessionScreen({
       className={s.session}
       data-fading-session="true"
       data-step={local.step}
+      inert={paused}
+      aria-hidden={paused || undefined}
     >
       <header className={s.sessionHeader}>
         <div className={s.sessionTop}>
@@ -858,6 +884,7 @@ export function FadingSessionScreen({
                     () => {
                       setLocal(closeWithRating(local, choice.rating));
                       setDone(true);
+                      onBoundary?.();
                     },
                   );
                 }}
@@ -1193,9 +1220,10 @@ export function FadingSessionScreen({
                     const next = finishReading(local);
                     if (practice) setLocal(next);
                     else
-                      void send({ action: "read", ...ref }, () =>
-                        setLocal(next),
-                      );
+                      void send({ action: "read", ...ref }, () => {
+                        setLocal(next);
+                        onBoundary?.();
+                      });
                   }}
                 >
                   읽었어요 · 다음 단계
@@ -1219,7 +1247,17 @@ export function FadingSessionScreen({
                   className={s.secondary}
                   disabled={disabled || !!stageReady}
                   data-fading-action="true"
-                  onClick={() => complete(giveUpStep(local, concept), true)}
+                  onClick={() => {
+                    if (!practice)
+                      onEvidence?.({
+                        kind: "step",
+                        ...ref,
+                        step: local.step as 2 | 3 | 4,
+                        placements: [...placements.current],
+                        gaveUp: true,
+                      });
+                    complete(giveUpStep(local, concept), true);
+                  }}
                 >
                   아직 모르겠어요
                 </button>

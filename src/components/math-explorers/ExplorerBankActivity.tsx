@@ -51,13 +51,15 @@ export default function ExplorerBankActivity({
   onExit,
   onComplete,
   onConfirmedAnswer,
+  paused = false,
 }: ExpeditionActivityCallbacks & {
   kind: "elementary" | "middle";
+  paused?: boolean;
 }) {
   const expedition = { onExit, onComplete, onConfirmedAnswer };
   return kind === "elementary" ? (
-    <ElementaryActivity expedition={expedition} />
+    <ElementaryActivity expedition={expedition} paused={paused} />
   ) : (
-    <MiddleActivity expedition={expedition} />
+    <MiddleActivity expedition={expedition} paused={paused} />
   );
 }

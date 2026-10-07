@@ -6,11 +6,16 @@ import { normalizeStudentReturnTo } from "@/lib/learn/studentReturnTo";
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ReactNode,
 } from "react";
 import type { FadingSource } from "@/lib/fading/source";
+import type { FadingRelearnSource } from "@/lib/fading/relearnSource";
+import { createApiFadingRelearnSource } from "@/components/fading/apiRelearnSource";
+import { useFadingRelearn } from "@/components/fading/useFadingRelearn";
+import { FadingRelearnModal } from "@/components/fading/FadingRelearnCheck";
 import type { ExplorerMemoryHomeOptions } from "./ExplorerConceptMemory";
 import type {
   ExplorerAction,
@@ -121,6 +126,7 @@ export default function StudentMathExplorers({
   journeyTheme,
   conceptMemoryEnabled = false,
   fadingSource,
+  fadingRelearnSource,
   initialState,
   preview = false,
 }: {
@@ -129,6 +135,7 @@ export default function StudentMathExplorers({
   /** The server controls availability; the client does not read rollout flags. */
   conceptMemoryEnabled?: boolean;
   fadingSource?: FadingSource;
+  fadingRelearnSource?: FadingRelearnSource;
   initialState?: ExplorerState;
   /** A local concept source plus an explorer snapshot; old actions cannot save. */
   preview?: boolean;
@@ -144,6 +151,7 @@ export default function StudentMathExplorers({
             journeyTheme={journeyTheme}
             conceptMemoryEnabled={conceptMemoryEnabled}
             fadingSource={fadingSource}
+            fadingRelearnSource={fadingRelearnSource}
             initialState={initialState}
             preview={preview}
           />
@@ -158,6 +166,7 @@ function ExplorerGame({
   journeyTheme,
   conceptMemoryEnabled,
   fadingSource,
+  fadingRelearnSource,
   initialState,
   preview,
 }: {
@@ -165,6 +174,7 @@ function ExplorerGame({
   journeyTheme?: JourneyThemeId;
   conceptMemoryEnabled: boolean;
   fadingSource?: FadingSource;
+  fadingRelearnSource?: FadingRelearnSource;
   initialState?: ExplorerState;
   preview: boolean;
 }) {
@@ -180,6 +190,33 @@ function ExplorerGame({
   const [state, setState] = useState<ExplorerState | null>(
     initialState ?? null,
   );
+  const relearnSource = useMemo(
+    () =>
+      fadingRelearnSource ??
+      (!preview && !fadingSource && conceptMemoryEnabled && state?.student.id
+        ? createApiFadingRelearnSource({ studentId: state.student.id })
+        : undefined),
+    [
+      fadingRelearnSource,
+      preview,
+      fadingSource,
+      conceptMemoryEnabled,
+      state?.student.id,
+    ],
+  );
+  const relearn = useFadingRelearn(relearnSource, (failure) => {
+    if (failure.code === "UNAUTHORIZED") router.replace("/learn/login");
+    else if (
+      failure.code === "CONFLICT" &&
+      failure.message === STUDENT_CHANGED_MESSAGE
+    )
+      refresh();
+    else if (
+      failure.code === "FORBIDDEN" &&
+      failure.message === STUDENT_MUST_CHANGE_MESSAGE
+    )
+      router.replace("/learn/password");
+  });
   const [loading, setLoading] = useState(!initialState);
   const [inConceptMemory, setInConceptMemory] = useState(false);
   const [error, setError] = useState<Failure | null>(null);
@@ -519,6 +556,7 @@ function ExplorerGame({
           setCorrect(null);
           setBusy(false);
           pending.current = false;
+          relearn.boundary();
           if (action.type === "supplement-answer") {
             // 한 장이 끝나면(모음 · 못 모음) 홈으로 — 도감에서 시작했으면 도감을 다시 연다.
             if (!data.supplements?.activity) {
@@ -994,240 +1032,260 @@ function ExplorerGame({
 
   if (bankKind)
     return (
-      <ExplorerBankActivity
-        kind={bankKind}
-        onExit={exitBank}
-        onComplete={exitBank}
-        onConfirmedAnswer={(studentId) => {
-          if (
-            tileSound.current.studentId === studentId &&
-            tileSound.current.sawIncomplete
-          )
-            tileSound.current.confirmed = true;
-        }}
-      />
+      <>
+        <div
+          inert={!!relearn.active}
+          aria-hidden={!!relearn.active || undefined}
+        >
+          <ExplorerBankActivity
+            kind={bankKind}
+            paused={!!relearn.active}
+            onExit={exitBank}
+            onComplete={exitBank}
+            onConfirmedAnswer={(studentId) => {
+              if (studentId === state?.student.id) relearn.boundary();
+              if (
+                tileSound.current.studentId === studentId &&
+                tileSound.current.sawIncomplete
+              )
+                tileSound.current.confirmed = true;
+            }}
+          />
+        </div>
+        <FadingRelearnModal controller={relearn} />
+      </>
     );
 
   return (
-    <StudentReviewPage
-      kind="explorers"
-      student={state?.student ?? null}
-      practicing={inPractice || inSupplement || inConceptMemory || !state}
-      boardReady={!!state}
-      practiceTitle="수학 탐험"
-      practicePageClassName={s.practicePage}
-      practiceMainClassName={s.practiceMain}
-    >
-      {(inPractice || inSupplement) && error ? (
-        <div className={s.practiceError} role="alert">
-          <p>
-            {error.status === 409
-              ? "기록이 바뀌었어요. 최신 기록을 불러와 주세요."
-              : error.message}
-          </p>
-          <button
-            type="button"
-            disabled={busy}
-            onClick={() =>
-              error.request
-                ? void send(error.request.action, error.request)
-                : refresh()
-            }
-          >
-            {error.request ? "같은 요청 다시 시도" : "최신 기록 불러오기"}
-          </button>
-        </div>
-      ) : (
-        <StudentReviewStatus
-          loading={loading}
-          error={error}
-          busy={busy || saving}
-          onReload={refresh}
-          onRetry={
-            error?.request
-              ? () => void send(error.request!.action, error.request!)
-              : undefined
-          }
-        />
-      )}
-      {state && !loading ? (
-        inSupplement && supplement?.activity && supplement.session ? (
-          // 보충 한 장 — 본 카드와 같은 풀이 틀(§8.19). 행동만 보충 행동으로 바꿔 보낸다.
-          <ExplorerPractice
-            activity={supplement.activity}
-            session={{
-              title: supplement.session.title,
-              index: supplement.session.index,
-              total: supplement.session.total,
-              round: supplement.session.round,
-              reviewOnly: false,
-            }}
-            progressLabel={supplement.session.title}
-            units={state.units}
-            busy={busy || !!error || loading}
-            correct={correct}
-            eventKey={effectKey}
-            feedbackMessage={feedbackMessage}
-            onAction={(action) =>
-              void send(
-                action.type === "read"
-                  ? {
-                      type: "supplement-read",
-                      questionId: action.questionId,
-                    }
-                  : action.type === "answer"
-                    ? {
-                        type: "supplement-answer",
-                        questionId: action.questionId,
-                        choiceIds: action.choiceIds,
-                      }
-                    : action,
-              )
-            }
-            onHome={exitSupplement}
-          />
-        ) : inPractice && state.currentActivity && state.session ? (
-          introKind && showIntro ? (
-            <ExplorerSessionIntro
-              kind={introKind}
-              session={state.session}
-              units={state.units}
-              busy={busy || !!error || loading}
-              onStart={startAfterIntro}
-              onHome={exitPractice}
-            />
-          ) : attachedWorkshop ? (
-            <ExplorerWorkshop
-              workshop={workshop}
-              session={state.session}
-              busy={busy || !!error || loading}
-              correct={correct}
-              eventKey={effectKey}
-              onAction={(action) => void send(action)}
-              onHome={exitPractice}
-            />
-          ) : (
-            <ExplorerPractice
-              activity={state.currentActivity}
-              session={state.session}
-              units={state.units}
-              busy={busy || !!error || loading}
-              correct={correct}
-              eventKey={effectKey}
-              feedbackMessage={feedbackMessage}
-              onAction={(action) => void send(action)}
-              onHome={exitPractice}
-            />
-          )
-        ) : conceptMemoryEnabled ? (
-          <ExplorerConceptMemory
-            key={state.student.id}
-            source={fadingSource}
-            studentId={state.student.id}
-            preview={preview}
-            busy={busy || saving || !!error}
-            onSessionChange={setInConceptMemory}
-            onExit={() => void reconcileExplorerAfterMemory()}
-            onExplorerActivity={async (activity) => {
-              if (!(await reconcileExplorerAfterMemory())) return;
-              if (
-                activity.start === "continue" &&
-                activity.source.route === "memory"
-              )
-                resume();
-              else
-                await send({
-                  type:
-                    activity.source.route === "repair"
-                      ? "retry-unresolved"
-                      : "expedition-start",
-                });
-            }}
-            onAccessFailure={(failure) => {
-              if (failure.code === "UNAUTHORIZED")
-                router.replace("/learn/login");
-              else if (
-                failure.code === "CONFLICT" &&
-                failure.message === STUDENT_CHANGED_MESSAGE
-              )
-                refresh();
-              else if (
-                failure.code === "FORBIDDEN" &&
-                failure.message === STUDENT_MUST_CHANGE_MESSAGE
-              )
-                router.replace("/learn/password");
-            }}
-            renderHome={renderHome}
-          />
-        ) : (
-          renderHome()
-        )
-      ) : null}
-      {state && detail ? (
-        <ExplorerCardDialog
-          card={detail}
-          state={state}
-          solution={solution}
-          workshopSolution={workshopSolution}
-          busy={busy || saving}
-          onInspect={inspect}
-          onSolution={() => void send({ type: "solution", cardId: detail.id })}
-          onWorkshopSolution={() => void send({ type: "lab-solution" })}
-          onSetGoal={() => void send({ type: "goal", unitId: detail.unitId })}
-          onClose={() => {
-            setDetailId(null);
-            setSolution(null);
-            setWorkshopSolution(null);
-          }}
-        />
-      ) : null}
-      {state && supDetailId ? (
-        <ExplorerSupplementDialog
-          cardId={supDetailId}
-          state={state}
-          solution={solution}
-          busy={busy || saving}
-          locked={supplementLocked}
-          onStart={() => startSupplement(supDetailId, true)}
-          onSolution={() =>
-            void send({ type: "supplement-solution", cardId: supDetailId })
-          }
-          onClose={() => {
-            setSupDetailId(null);
-            setSolution(null);
-          }}
-        />
-      ) : null}
-      {reviewChoices ? (
-        <ExplorerSheet title="지난 학습 다시 풀기" onClose={closeReview}>
-          <div className={s.settingUnits}>
-            {reviewChoices.map((review) => (
+    <>
+      <div inert={!!relearn.active}>
+        <StudentReviewPage
+          kind="explorers"
+          student={state?.student ?? null}
+          practicing={inPractice || inSupplement || inConceptMemory || !state}
+          boardReady={!!state}
+          practiceTitle="수학 탐험"
+          practicePageClassName={s.practicePage}
+          practiceMainClassName={s.practiceMain}
+        >
+          {(inPractice || inSupplement) && error ? (
+            <div className={s.practiceError} role="alert">
+              <p>
+                {error.status === 409
+                  ? "기록이 바뀌었어요. 최신 기록을 불러와 주세요."
+                  : error.message}
+              </p>
               <button
                 type="button"
-                key={`${review.kind}:${review.dayId}`}
-                onClick={() => openReview(review)}
-                disabled={busy || saving}
+                disabled={busy}
+                onClick={() =>
+                  error.request
+                    ? void send(error.request.action, error.request)
+                    : refresh()
+                }
               >
-                <span>{review.title}</span>
-                <small>
-                  {review.subtitle} · {review.reviewCount}문제
-                </small>
+                {error.request ? "같은 요청 다시 시도" : "최신 기록 불러오기"}
               </button>
-            ))}
-          </div>
-        </ExplorerSheet>
-      ) : null}
-      {replay && replay.kind !== "explorers" ? (
-        <StudentReplayDialog
-          kind={replay.kind}
-          step={replayStep}
-          dayId={replay.dayId}
-          dayTitle={replay.title}
-          total={replay.reviewCount}
-          onClose={closeReview}
-        />
-      ) : null}
-      <TileRewardEffect stars={tileStars} />
-    </StudentReviewPage>
+            </div>
+          ) : (
+            <StudentReviewStatus
+              loading={loading}
+              error={error}
+              busy={busy || saving}
+              onReload={refresh}
+              onRetry={
+                error?.request
+                  ? () => void send(error.request!.action, error.request!)
+                  : undefined
+              }
+            />
+          )}
+          {state && !loading ? (
+            inSupplement && supplement?.activity && supplement.session ? (
+              // 보충 한 장 — 본 카드와 같은 풀이 틀(§8.19). 행동만 보충 행동으로 바꿔 보낸다.
+              <ExplorerPractice
+                activity={supplement.activity}
+                session={{
+                  title: supplement.session.title,
+                  index: supplement.session.index,
+                  total: supplement.session.total,
+                  round: supplement.session.round,
+                  reviewOnly: false,
+                }}
+                progressLabel={supplement.session.title}
+                units={state.units}
+                busy={busy || !!error || loading}
+                correct={correct}
+                eventKey={effectKey}
+                feedbackMessage={feedbackMessage}
+                onAction={(action) =>
+                  void send(
+                    action.type === "read"
+                      ? {
+                          type: "supplement-read",
+                          questionId: action.questionId,
+                        }
+                      : action.type === "answer"
+                        ? {
+                            type: "supplement-answer",
+                            questionId: action.questionId,
+                            choiceIds: action.choiceIds,
+                          }
+                        : action,
+                  )
+                }
+                onHome={exitSupplement}
+              />
+            ) : inPractice && state.currentActivity && state.session ? (
+              introKind && showIntro ? (
+                <ExplorerSessionIntro
+                  kind={introKind}
+                  session={state.session}
+                  units={state.units}
+                  busy={busy || !!error || loading}
+                  onStart={startAfterIntro}
+                  onHome={exitPractice}
+                />
+              ) : attachedWorkshop ? (
+                <ExplorerWorkshop
+                  workshop={workshop}
+                  session={state.session}
+                  busy={busy || !!error || loading}
+                  correct={correct}
+                  eventKey={effectKey}
+                  onAction={(action) => void send(action)}
+                  onHome={exitPractice}
+                />
+              ) : (
+                <ExplorerPractice
+                  activity={state.currentActivity}
+                  session={state.session}
+                  units={state.units}
+                  busy={busy || !!error || loading}
+                  correct={correct}
+                  eventKey={effectKey}
+                  feedbackMessage={feedbackMessage}
+                  onAction={(action) => void send(action)}
+                  onHome={exitPractice}
+                />
+              )
+            ) : conceptMemoryEnabled ? (
+              <ExplorerConceptMemory
+                key={state.student.id}
+                source={fadingSource}
+                relearnController={relearn}
+                studentId={state.student.id}
+                preview={preview}
+                busy={busy || saving || !!error}
+                onSessionChange={setInConceptMemory}
+                onExit={() => void reconcileExplorerAfterMemory()}
+                onExplorerActivity={async (activity) => {
+                  if (!(await reconcileExplorerAfterMemory())) return;
+                  if (
+                    activity.start === "continue" &&
+                    activity.source.route === "memory"
+                  )
+                    resume();
+                  else
+                    await send({
+                      type:
+                        activity.source.route === "repair"
+                          ? "retry-unresolved"
+                          : "expedition-start",
+                    });
+                }}
+                onAccessFailure={(failure) => {
+                  if (failure.code === "UNAUTHORIZED")
+                    router.replace("/learn/login");
+                  else if (
+                    failure.code === "CONFLICT" &&
+                    failure.message === STUDENT_CHANGED_MESSAGE
+                  )
+                    refresh();
+                  else if (
+                    failure.code === "FORBIDDEN" &&
+                    failure.message === STUDENT_MUST_CHANGE_MESSAGE
+                  )
+                    router.replace("/learn/password");
+                }}
+                renderHome={renderHome}
+              />
+            ) : (
+              renderHome()
+            )
+          ) : null}
+          {state && detail ? (
+            <ExplorerCardDialog
+              card={detail}
+              state={state}
+              solution={solution}
+              workshopSolution={workshopSolution}
+              busy={busy || saving}
+              onInspect={inspect}
+              onSolution={() =>
+                void send({ type: "solution", cardId: detail.id })
+              }
+              onWorkshopSolution={() => void send({ type: "lab-solution" })}
+              onSetGoal={() =>
+                void send({ type: "goal", unitId: detail.unitId })
+              }
+              onClose={() => {
+                setDetailId(null);
+                setSolution(null);
+                setWorkshopSolution(null);
+              }}
+            />
+          ) : null}
+          {state && supDetailId ? (
+            <ExplorerSupplementDialog
+              cardId={supDetailId}
+              state={state}
+              solution={solution}
+              busy={busy || saving}
+              locked={supplementLocked}
+              onStart={() => startSupplement(supDetailId, true)}
+              onSolution={() =>
+                void send({ type: "supplement-solution", cardId: supDetailId })
+              }
+              onClose={() => {
+                setSupDetailId(null);
+                setSolution(null);
+              }}
+            />
+          ) : null}
+          {reviewChoices ? (
+            <ExplorerSheet title="지난 학습 다시 풀기" onClose={closeReview}>
+              <div className={s.settingUnits}>
+                {reviewChoices.map((review) => (
+                  <button
+                    type="button"
+                    key={`${review.kind}:${review.dayId}`}
+                    onClick={() => openReview(review)}
+                    disabled={busy || saving}
+                  >
+                    <span>{review.title}</span>
+                    <small>
+                      {review.subtitle} · {review.reviewCount}문제
+                    </small>
+                  </button>
+                ))}
+              </div>
+            </ExplorerSheet>
+          ) : null}
+          {replay && replay.kind !== "explorers" ? (
+            <StudentReplayDialog
+              kind={replay.kind}
+              step={replayStep}
+              dayId={replay.dayId}
+              dayTitle={replay.title}
+              total={replay.reviewCount}
+              onClose={closeReview}
+            />
+          ) : null}
+          <TileRewardEffect stars={tileStars} />
+        </StudentReviewPage>
+      </div>
+      <FadingRelearnModal controller={relearn} />
+    </>
   );
 }

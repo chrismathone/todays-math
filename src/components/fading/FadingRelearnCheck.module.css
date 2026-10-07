@@ -1,0 +1,164 @@
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 14px 0;
+  padding: 16px 18px;
+  border: 1px solid #b8d4c4;
+  border-radius: 16px;
+  background: #f1f8f4;
+  color: #254d39;
+  font-size: 14px;
+}
+.status span {
+  color: #567363;
+}
+.status button,
+.dialog button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #c4d3c9;
+  border-radius: 12px;
+  background: #fff;
+  color: #254d39;
+  cursor: pointer;
+  font: inherit;
+}
+.dialog {
+  box-sizing: border-box;
+  width: min(560px, calc(100vw - 24px));
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  margin: auto;
+  padding: 24px;
+  border: 1px solid #d8e3db;
+  border-radius: 24px;
+  background: #fffdf7;
+  color: #27382d;
+  box-shadow: 0 20px 80px #112b2340;
+}
+.dialog::backdrop {
+  background: #112b2380;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.eyebrow {
+  color: #547161;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.dialog h2 {
+  margin: 18px 0 10px;
+  font-size: clamp(21px, 4vw, 26px);
+}
+.note {
+  color: #667568;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.sentence {
+  padding: 18px;
+  border-radius: 16px;
+  background: #f0f4ec;
+  font-size: 18px;
+  line-height: 2.1;
+  overflow-wrap: anywhere;
+}
+.blank {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 64px;
+  min-height: 36px;
+  margin: 0 4px;
+  border-bottom: 2px solid #59745f;
+  color: #59745f;
+  font-size: 13px;
+}
+.inputs {
+  display: grid;
+  gap: 12px;
+}
+.inputs label {
+  display: grid;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.inputs input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid #b7c9ba;
+  border-radius: 12px;
+  background: white;
+  color: #27382d;
+  font: inherit;
+  font-size: 16px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.dialog .primary {
+  background: #285d41;
+  color: white;
+  border-color: #285d41;
+}
+.dialog button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.dialog button:focus-visible,
+.inputs input:focus-visible,
+.status button:focus-visible {
+  outline: 3px solid #78a58a;
+  outline-offset: 3px;
+}
+.comparison {
+  padding: 12px 0;
+  border-bottom: 1px solid #dbe4dc;
+  overflow-wrap: anywhere;
+}
+.comparison p {
+  line-height: 1.65;
+}
+.comparison fieldset {
+  padding: 10px 0;
+  border: 0;
+}
+.comparison fieldset button {
+  margin: 6px 8px 0 0;
+}
+.comparison button[aria-pressed="true"] {
+  background: #d7eadb;
+  border-color: #477957;
+}
+.error {
+  padding: 12px;
+  margin-top: 14px;
+  border-radius: 12px;
+  background: #fff0e9;
+  color: #783c28;
+}
+@media (max-width: 480px) {
+  .dialog {
+    padding: 18px;
+    border-radius: 20px;
+  }
+  .actions > button {
+    flex: 1;
+  }
+  .status {
+    padding: 14px;
+  }
+}
