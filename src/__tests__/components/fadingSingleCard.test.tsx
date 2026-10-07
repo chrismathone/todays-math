@@ -163,26 +163,30 @@ describe("오늘의 기억 — 문장 한 장씩", () => {
     expect(document.querySelectorAll("[data-fading-sentence]")).toHaveLength(1);
   });
 
-  it("선택 빈칸을 따라 문장이 바뀌어도 입력 노드와 포커스는 유지하고 전체 칩 판을 둔다", async () => {
+  it("선택 빈칸을 따라 문장이 바뀌어도 입력 노드와 포커스는 유지하고 답 목록은 감춘다", async () => {
     const { source, state } = await startAt(4, concept, true);
     const act = vi.spyOn(source, "act");
     render(<FadingApp source={source} initialState={state} initialSession />);
-    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    const input = screen.getByRole("textbox", { name: "빈칸 답 입력" });
     input.focus();
     fireEvent.keyDown(input, { key: "Tab" });
     expect(visibleSentence()).toHaveAttribute(
       "data-fading-sentence",
       "sentence-1",
     );
-    expect(screen.getByRole("textbox", { name: "칩 글 입력" })).toBe(input);
+    expect(screen.getByRole("textbox", { name: "빈칸 답 입력" })).toBe(input);
     expect(input).toHaveFocus();
+    expect(screen.queryAllByRole("button", { name: /^칩 / })).toHaveLength(0);
+    expect(
+      document.querySelector("[data-fading-chip-text], [data-fading-chip]"),
+    ).toBeNull();
     for (const chip of chipTray(concept, 4, {
       seed: 42,
       traps: state.opened!.traps,
     })) {
       expect(
-        screen.getByRole("button", { name: `칩 ${chip.text}` }),
-      ).toBeInTheDocument();
+        document.querySelector("[data-fading-session]")!.innerHTML,
+      ).not.toContain(chip.text);
     }
     fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
     expect(visibleSentence()).toHaveAttribute(
@@ -199,10 +203,10 @@ describe("오늘의 기억 — 문장 한 장씩", () => {
     const { source, state } = await startAt(4, concept, true);
     const act = vi.spyOn(source, "act");
     render(<FadingApp source={source} initialState={state} initialSession />);
-    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    const input = screen.getByRole("textbox", { name: "빈칸 답 입력" });
     const typeChip = (text: string) => {
       fireEvent.change(input, { target: { value: text } });
-      fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+      fireEvent.submit(screen.getByRole("form", { name: "빈칸 답 입력" }));
     };
     typeChip("중심각");
     await waitFor(() =>
@@ -303,9 +307,9 @@ describe("오늘의 기억 — 문장 한 장씩", () => {
     const { source, state } = await startAt(4);
     const act = vi.spyOn(source, "act");
     render(<FadingApp source={source} initialState={state} initialSession />);
-    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    const input = screen.getByRole("textbox", { name: "빈칸 답 입력" });
     fireEvent.change(input, { target: { value: "수직이등분선" } });
-    fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    fireEvent.submit(screen.getByRole("form", { name: "빈칸 답 입력" }));
     expect(visibleSentence()).toHaveAttribute(
       "data-fading-sentence",
       "sentence-1",
@@ -318,7 +322,7 @@ describe("오늘의 기억 — 문장 한 장씩", () => {
     expect(input).toBeEnabled();
     fireEvent.change(input, { target: { value: "외심" } });
     expect(screen.getByRole("button", { name: "넣기" })).toBeDisabled();
-    fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    fireEvent.submit(screen.getByRole("form", { name: "빈칸 답 입력" }));
     fireEvent.keyDown(window, { key: "1", code: "Digit1" });
     expect(input).toHaveValue("외심");
     expect(act).not.toHaveBeenCalled();
@@ -337,7 +341,7 @@ describe("오늘의 기억 — 문장 한 장씩", () => {
       "sentence-1",
     );
     fireEvent.change(input, { target: { value: "외심" } });
-    fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    fireEvent.submit(screen.getByRole("form", { name: "빈칸 답 입력" }));
     expect(visibleSentence()).toHaveAttribute(
       "data-fading-sentence",
       "sentence-2",
@@ -364,7 +368,7 @@ describe("오늘의 기억 — 문장 한 장씩", () => {
       "data-fading-sentence",
       target.id.split("#")[0],
     );
-    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    const input = screen.getByRole("textbox", { name: "빈칸 답 입력" });
     expect(input).toBeEnabled();
     fireEvent.keyDown(input, { key: "Tab" });
     expect(visibleSentence()).toHaveAttribute(
