@@ -56,6 +56,9 @@
  *
  * 실린 문항의 본문 · 정답 · 해설 · 해설의 출처 · 잠금 다섯 칸을 계획에 맞춘다. 지우고 다시 넣지 않는다(번호 · id 가 그대로다).
  * 계획에서 빠진 문항은 잠근다. 고치기 전 값은 회차마다 새 파일(`load/refresh-<시각>.json`)에 남는다.
+ * 🔴 **사람이 고친 문항은 덮어쓰지 않는다** — 적재기가 마지막으로 쓴 다섯 칸의 지문을 `load/written.json` 에 두고, DB 의 값이
+ *    그 지문이 아니면(문제은행에서 고쳤다 · 잠금을 풀었다) 건드리지 않고 수만 알린다(`refreshPlan.ts`).
+ *    지문 원장이 없으면 고치지 않는다 — `--refresh --adopt` 는 지금 DB 를 기준으로 삼는다(아무도 손대지 않은 것이 확실할 때만).
  * 전부를 한꺼번에 잠그거나 목록으로 푸는 일은 `hold-school-textbook.ts`, 실린 것을 세는 일은 `census.ts`.
  */
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -81,6 +84,11 @@ import {
   tidyHwpNotation,
 } from "../../../src/lib/import/schoolTextbook/hwpNotation";
 import {
+  fingerprintOf,
+  planRefresh,
+  type RefreshColumns,
+} from "../../../src/lib/import/schoolTextbook/refreshPlan";
+import {
   buildVocabulary,
   unsplitWords,
 } from "../../../src/lib/import/schoolTextbook/unsplitWords";
@@ -99,6 +107,8 @@ const CHECK_DIRS = optionValues("--check");
 const APPLY = process.argv.includes("--apply");
 const REVERT = process.argv.includes("--revert");
 const REFRESH = process.argv.includes("--refresh");
+/** `--refresh --adopt` — 지금 DB 의 값을 «적재기가 쓴 값»으로 삼는다(지문 원장을 새로 만든다. DB 는 안 고친다) */
+const ADOPT = process.argv.includes("--adopt");
 if (!DIR)
   throw new Error(
     "사용: load-school-textbook.ts <작업 폴더> [--check <폴더>] [--refresh] [--apply] [--revert]",
@@ -113,6 +123,26 @@ if (APPLY && process.env.ALLOW_SHARED_IMPORT !== "1") {
 const OUT = join(DIR, "load");
 const PLAN = join(OUT, "plan.json");
 const LEDGER = join(OUT, "ledger.json");
+/** 적재기가 문항마다 마지막으로 쓴 다섯 칸의 지문 — `--refresh` 가 «사람이 고친 문항»을 가리는 데 쓴다(`refreshPlan.ts`) */
+const WRITTEN = join(OUT, "written.json");
+
+function readWritten(): Map<string, string> {
+  return new Map(
+    existsSync(WRITTEN)
+      ? Object.entries(
+          JSON.parse(readFileSync(WRITTEN, "utf8")) as Record<string, string>,
+        )
+      : [],
+  );
+}
+
+function writeWritten(written: Map<string, string>): void {
+  writeFileSync(
+    WRITTEN,
+    JSON.stringify(Object.fromEntries([...written].sort())),
+    "utf8",
+  );
+}
 /** 본문 · 정답 · 해설의 길이 상한 — `toLoadRows` 의 것과 같다 */
 const TEXT_MAX = 10_000;
 const DIFFICULTIES = [
@@ -632,36 +662,58 @@ async function refresh(
       directUseAllowed: true,
     },
   });
-  type Before = (typeof saved)[number];
-  const changes: Array<{
-    id: string;
-    externalId: string;
-    before: Omit<Before, "id" | "externalId">;
-    after: Omit<Before, "id" | "externalId">;
-    hold: string[];
-  }> = [];
-  for (const row of saved) {
-    const { id, externalId, ...before } = row;
-    const want = plan.get(externalId ?? "");
-    const after = want
-      ? {
-          content: want.content,
-          answer: want.answer,
-          solution: want.solution,
-          solutionSource: want.solutionSource,
-          directUseAllowed: want.hold.length === 0,
-        }
-      : { ...before, directUseAllowed: false };
-    if (JSON.stringify(before) !== JSON.stringify(after))
-      changes.push({
-        id,
-        externalId: externalId ?? "",
-        before,
-        after,
-        hold: want ? want.hold : ["지금의 계획에 없다 — 검토가 뒤집혔다"],
-      });
+  if (ADOPT) {
+    // 지금 DB 의 값이 **계획과 같은 문항만** «적재기가 쓴 값»으로 삼는다 — 계획과 다른 문항은 누가 고쳤는지 모른다
+    // (지문을 안 남기면 다음 회차가 «사람이 고친 문항»으로 보고 건드리지 않는다).
+    const written = readWritten();
+    let adopted = 0;
+    let left = 0;
+    for (const row of saved) {
+      const want = plan.get(row.externalId ?? "");
+      const same =
+        want &&
+        fingerprintOf(row) ===
+          fingerprintOf({
+            content: want.content,
+            answer: want.answer,
+            solution: want.solution,
+            solutionSource: want.solutionSource,
+            directUseAllowed: want.hold.length === 0,
+          });
+      if (same) {
+        written.set(row.externalId ?? "", fingerprintOf(row));
+        adopted += 1;
+      } else left += 1;
+    }
+    writeWritten(written);
+    console.log(
+      `계획과 같은 ${adopted}문항을 적재기가 쓴 값으로 삼았다 · 계획과 달라 남긴 것 ${left} — ${WRITTEN}`,
+    );
+    return;
   }
-  const differs = (key: keyof Omit<Before, "id" | "externalId">): number =>
+  if (!existsSync(WRITTEN))
+    throw new Error(
+      `지문 원장이 없다(${WRITTEN}) — 사람이 고친 문항을 가릴 수 없어 고치지 않는다. 아무도 손대지 않은 것이 확실하면 --refresh --adopt 로 지금 DB 를 기준으로 삼는다.`,
+    );
+  const written = readWritten();
+  const { changes, foreign } = planRefresh(
+    saved,
+    new Map(
+      loadable.map((row) => [
+        row.externalId,
+        {
+          content: row.content,
+          answer: row.answer,
+          solution: row.solution,
+          solutionSource: row.solutionSource,
+          directUseAllowed: row.hold.length === 0,
+          hold: row.hold,
+        },
+      ]),
+    ),
+    written,
+  );
+  const differs = (key: keyof RefreshColumns): number =>
     changes.filter((change) => change.before[key] !== change.after[key]).length;
   const after = new Map(changes.map((change) => [change.id, change.after]));
   const openAfter = saved.filter(
@@ -678,6 +730,8 @@ async function refresh(
           loadable.length -
           saved.filter((row) => plan.has(row.externalId ?? "")).length,
         고칠_문항: changes.length,
+        // 🔴 적재기가 쓴 값이 아니다 — 문제은행에서 사람이 고쳤거나 잠금을 풀었다. 건드리지 않는다
+        사람이_고쳐_건드리지_않는_문항: foreign.length,
         본문이_바뀜: differs("content"),
         정답이_바뀜: differs("answer"),
         해설이_바뀜: differs("solution"),
@@ -701,7 +755,7 @@ async function refresh(
     // 무엇이 바뀌는지 읽어 볼 수 있게 — 드라이런의 것은 덮어써도 된다(원장이 아니다)
     writeFileSync(
       join(OUT, "refresh-dryrun.json"),
-      JSON.stringify({ changes }, null, 1),
+      JSON.stringify({ foreign, changes }, null, 1),
       "utf8",
     );
     console.log(
@@ -709,6 +763,10 @@ async function refresh(
     );
     return;
   }
+  if (foreign.length > 0)
+    console.log(
+      `사람이 고친 문항 ${foreign.length} — 건드리지 않는다: ${foreign.slice(0, 8).join(" ")}${foreign.length > 8 ? " …" : ""}`,
+    );
   if (changes.length === 0) return;
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   const ledgerPath = join(OUT, `refresh-${stamp}.json`);
@@ -731,6 +789,10 @@ async function refresh(
     done = Math.min(start + 200, changes.length);
     console.log(`  ${done}/${changes.length}`);
   }
+  // 고친 문항의 지문을 새 값으로 — 다음 회차가 «내가 쓴 값»으로 알아본다
+  for (const change of changes)
+    written.set(change.externalId, fingerprintOf(change.after));
+  writeWritten(written);
   console.log(`\n고쳤다 — 문항 ${done}\n원장: ${ledgerPath}`);
 }
 
@@ -881,6 +943,20 @@ async function main(): Promise<void> {
       console.log(`  ${Math.min(start + 500, fresh.length)}/${fresh.length}`);
     }
 
+    // 이번에 넣은 문항의 지문 — `--refresh` 가 «내가 쓴 값»으로 알아본다
+    const written = readWritten();
+    for (const row of fresh)
+      written.set(
+        row.externalId,
+        fingerprintOf({
+          content: row.content,
+          answer: row.answer,
+          solution: row.solution,
+          solutionSource: row.solutionSource,
+          directUseAllowed: row.hold.length === 0,
+        }),
+      );
+    if (fresh.length > 0) writeWritten(written);
     const saved = await prisma.problem.findMany({
       where: { externalId: { in: loadable.map((row) => row.externalId) } },
       select: { id: true, externalId: true, problemCode: true },

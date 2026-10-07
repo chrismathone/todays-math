@@ -93,6 +93,9 @@ def main() -> None:
     problems = [json.loads(line) for line in (root / option("--extract", "extract2") / "problems.jsonl").open(encoding="utf-8")]
     prepared = {row["id"]: row for row in map(json.loads, (root / option("--prepared", "prepared2") / "prepared.jsonl").open(encoding="utf-8"))}
     plan = json.loads((root / "load" / "plan.json").read_text(encoding="utf-8"))
+    # 문항 번호(문제은행에서 찾는 값) — 적재기의 원장에서
+    ledger_path = root / "load" / "ledger.json"
+    codes = {row["externalId"]: row["problemCode"] for row in json.loads(ledger_path.read_text(encoding="utf-8"))["problems"]} if ledger_path.exists() else {}
 
     answered = [p for p in problems if p.get("kind") == "assessment" and p.get("isQuestion", True) and eligible(p) != "답이 없다"]
     deferred = [dict(p, reason=eligible(p)) for p in answered if eligible(p) in DEFERRED]
@@ -105,7 +108,7 @@ def main() -> None:
 
     skipped = [dict(located(s["externalId"]), reason=head_of(s["reason"]), why=s["reason"]) for s in plan["skipped"] if s["externalId"] in prepared]
     held = [
-        dict(located(row["externalId"]), reason=head_of(reason), why=reason)
+        dict(located(row["externalId"]), reason=head_of(reason), why=reason, code=codes.get(row["externalId"], ""), unit=row["section"])
         for row in plan["rows"]
         for reason in row["hold"]
     ]
@@ -174,7 +177,15 @@ def main() -> None:
     for reason, count in collections.Counter(row["reason"] for row in held).most_common():
         add(f"| {reason} | {count:,} |")
     add("")
-    listing(add, held, total_by_book, detail=True)
+    add("문제은행의 검색 칸에 **문항 번호**를 넣으면 그 문항이 나온다. 검수 화면의 «출제에서 빠져 있다» 줄에도 나온다 — 거기서 «통과»를 준 문항은")
+    add("`hold-school-textbook.ts --release-passed` 가 푼다. 문제은행에서 고친 글은 적재기가 다시 덮어쓰지 않는다.")
+    add("")
+    add("| 문항 번호 | 과목 · 차시 | 파일 · 번호 | 까닭 |")
+    add("|---|---|---|---|")
+    for row in sorted(held, key=lambda r: (r["grade"], r["unit"], r["code"])):
+        name = pathlib.PureWindowsPath(row["path"]).name
+        add(f"| `{row['code']}` | {row['grade']} · {row['unit']} | `{name}` {row['number']}번 | {row['why'].replace('|', '¦')[:200]} |")
+    add("")
 
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text("\n".join(lines) + "\n", encoding="utf-8")

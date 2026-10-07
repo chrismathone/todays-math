@@ -138,6 +138,16 @@ npx tsx --env-file=.env scripts/import/textbook/census.ts                       
 python scripts/import/textbook/report_load.py 'E:\todays-math-textbook-import' docs/planning/tracks/reports/textbook-import-20261007/not-loaded.md
 ```
 
+### 원장님의 직접 검수 (2026-10-08 «이건 직접 검수»)
+
+잠가 둔 118문항은 원장님이 직접 보신다. 목록은 `not-loaded.md` §3(문항 번호 · 까닭).
+
+- **보는 곳** — 검수 화면의 «출제에서 빠져 있다» 줄(잠긴 문항이 나온다) 또는 문제은행 검색 칸에 문항 번호.
+- **고치는 곳** — 문제은행(본문 · 정답 · 해설). 🔴 사람이 고친 문항은 적재기의 `--refresh` 가 **덮어쓰지 않는다** —
+  적재기가 마지막으로 쓴 다섯 칸의 지문(`load/written.json`)과 DB 가 다르면 «사람이 만졌다»로 보고 건드리지 않는다(`refreshPlan.ts`).
+- **푸는 길** — 검수 화면에서 «통과»를 주면 기록이 남고, `hold-school-textbook.ts --release-passed --apply` 가 «마지막 판정이 통과»인 잠긴
+  교과서 문항만 푼다. 화면의 통과 단추는 잠금을 풀지 않는다(지금 제품의 규칙 — 문항을 지면에 올리는 것은 따로 정한다).
+
 🔴 손질 규칙(`hwpNotation.ts` · `unsplitWords.ts`)을 고치면 **글자가 바뀐 문항의 지면 검토가 낡아 잠긴다** — 드라이런의 «잠그는 문항»을 보고,
 `final-check/check_batches.py` 로 그 문항만 묶어 다시 검토한 뒤 `--check` 에 그 폴더를 더한다. 빈칸만 바뀌는 손질은 판정을 낡게 하지 않는다.
 🔴 지문의 셈(`checkKey.ts` ↔ `check_collect.py` 의 `check_key`)은 두 쪽이 같아야 한다 — 두 시험이 같은 값을 쥐고 있다.
