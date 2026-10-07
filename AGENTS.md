@@ -40,8 +40,8 @@ override the replacement/navigation/drop plan below; the data ownership,
 authentication and compatibility requirements still apply.
 
 **Student menus (2026-10-07):** default to exploration and its collection.
-Branch managers may grant lectures and textbook QR learning per student in
-the student account panel. English listening is excluded from the student app.
+Branch managers may grant lectures, textbook QR learning and English listening
+per student in the student account panel. All additional menus default off.
 Use `studentLearningMenuPolicy.ts` and the authenticated per-student setting;
 enforce optional-module access in both proxy and route handlers.
 The existing `app_setting` table is server-only (RLS enabled, browser roles

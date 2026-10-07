@@ -1,14 +1,19 @@
-import { jsonError } from "@/lib/apiResponse";
 import { requireStudent } from "@/lib/learn/studentRequest";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 export const runtime = "nodejs";
-async function handle() {
-  const gate = await requireStudent({ active: true });
+type Context = { params: Promise<{ path?: string[] }> };
+async function handle(request: Request, context: Context) {
+  const gate = await requireStudent({
+    active: true,
+    menu: "english-listening",
+  });
   if (gate.response) return gate.response;
-  return jsonError(
-    "FORBIDDEN",
-    "학생 화면에서는 영어 듣기를 이용할 수 없습니다.",
-    403,
+  const { handleListeningHttp } =
+    await import("@/lib/english/listening/runtime/http");
+  return handleListeningHttp(
+    request,
+    (await context.params).path ?? [],
+    "student",
   );
 }
 export const GET = withErrorLog(

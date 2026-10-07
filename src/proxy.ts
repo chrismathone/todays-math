@@ -146,12 +146,11 @@ export const proxy = auth(async (req) => {
     );
     const optionalMenu = studentOptionalMenuForPath(pathname);
     if (gate.kind === "allow" && optionalMenu !== null) {
-      const menus =
-        optionalMenu === "english-listening"
-          ? { enabled: [] }
-          : await getStudentLearningMenus(student.studentId).catch(() => ({
-              enabled: [],
-            }));
+      const menus = await getStudentLearningMenus(student.studentId).catch(
+        () => ({
+          enabled: [],
+        }),
+      );
       if (!studentOptionalMenuAllowed(menus.enabled, pathname)) {
         const response = pathname.startsWith("/api/")
           ? NextResponse.json(

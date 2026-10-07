@@ -1,6 +1,13 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it, vi } from "vitest";
-const f = vi.hoisted(() => ({ auth: vi.fn(), menus: vi.fn() }));
+const f = vi.hoisted(() => ({
+  auth: vi.fn(),
+  menus: vi.fn(),
+  listening: vi.fn(),
+}));
+vi.mock("@/lib/english/listening/runtime/http", () => ({
+  handleListeningHttp: f.listening,
+}));
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/auth", () => ({ auth: f.auth }));
 vi.mock("@/lib/db", () => ({ db: {} }));
@@ -27,24 +34,32 @@ beforeEach(() => {
   vi.resetAllMocks();
   f.auth.mockResolvedValue({ student });
   f.menus.mockResolvedValue({ enabled: [], updatedAt: null });
+  f.listening.mockResolvedValue(Response.json({ data: "allowed" }));
 });
 describe("추가 메뉴의 라우트 자체 관문", () => {
   it("proxy를 거치지 않는 실제 강의 라우트도 기본 미허용 학생의 데이터는 읽지 않는다", async () => {
     expect((await lectures()).status).toBe(403);
   });
-  it("영어 듣기는 추가 메뉴 허용과 무관하게 학생 라우트 자체에서 닫힌다", async () => {
+  it("영어 듣기는 기본으로 닫히며 별도로 허용한 학생만 기존 재생기에 도달한다", async () => {
+    const request = new Request(
+      "https://example.test/api/english/learn/listening",
+    );
+    const context = { params: Promise.resolve({ path: [] }) };
     f.menus.mockResolvedValue({ enabled: ["lectures", "textbook"] });
     for (const handler of [listening, listeningWrite, listeningHead])
-      expect((await handler()).status).toBe(403);
-    expect(f.menus).not.toHaveBeenCalled();
+      expect((await handler(request, context)).status).toBe(403);
+    expect(f.listening).not.toHaveBeenCalled();
+    f.menus.mockResolvedValue({ enabled: ["english-listening"] });
+    expect((await listening(request, context)).status).toBe(200);
+    expect(f.listening).toHaveBeenCalledWith(request, [], "student");
     f.auth.mockResolvedValue(null);
-    expect((await listening()).status).toBe(401);
+    expect((await listening(request, context)).status).toBe(401);
   });
   it("미허용 메뉴는 403이고 탐험은 설정을 읽지 않는다", async () => {
     const core = await requireStudent({ active: true });
     expect(core.response).toBeNull();
     expect(f.menus).not.toHaveBeenCalled();
-    for (const menu of ["lectures", "textbook"] as const)
+    for (const menu of ["lectures", "textbook", "english-listening"] as const)
       expect(
         (await requireStudent({ active: true, menu })).response?.status,
       ).toBe(403);

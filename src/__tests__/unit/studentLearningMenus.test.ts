@@ -47,11 +47,12 @@ describe("학생별 추가 메뉴", () => {
   it.each([
     "/learn/english-listening",
     "/api/english/learn/listening/a/commands",
-  ])("%s 영어 듣기는 학생 수학 메뉴에서 제외한다", (path) =>
+  ])("%s 영어 듣기는 별도로 허용했을 때만 열린다", (path) => {
     expect(studentOptionalMenuAllowed(["lectures", "textbook"], path)).toBe(
       false,
-    ),
-  );
+    );
+    expect(studentOptionalMenuAllowed(["english-listening"], path)).toBe(true);
+  });
   it("다른 학생의 설정을 섞지 않으며 아직 없거나 잘못된 설정은 기본으로 닫는다", async () => {
     const findUnique = vi.fn(async ({ where }: { where: { key: string } }) =>
       where.key === studentLearningMenusKey(studentA)
@@ -74,7 +75,7 @@ describe("학생별 추가 메뉴", () => {
       await readStudentLearningMenus(studentA, {
         findUnique: async () => ({
           key: "bad",
-          value: { version: 1, enabled: ["english-listening"] },
+          value: { version: 1, enabled: ["unsupported-menu"] },
           updatedAt: new Date(),
           updatedById: null,
         }),
@@ -106,7 +107,7 @@ describe("학생별 추가 메뉴", () => {
     ).toBe(false);
     expect(
       studentLearningMenusRequestSchema.safeParse({
-        enabled: ["english-listening"],
+        enabled: ["unsupported-menu"],
       }).success,
     ).toBe(false);
   });

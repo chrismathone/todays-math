@@ -220,7 +220,7 @@ describe("scoped per-student learning menu management", () => {
     undefined,
     {},
     { enabled: "lectures" },
-    { enabled: ["english-listening"] },
+    { enabled: ["unsupported-menu"] },
     { enabled: ["lectures", "lectures"] },
     { enabled: ["unknown"] },
     { enabled: [], studentId: studentB },
@@ -290,6 +290,22 @@ describe("scoped per-student learning menu management", () => {
     },
   );
 
+  it("permits an explicit English grant and revokes it without affecting another student", async () => {
+    expect(
+      (await PUT(request("PUT", { enabled: ["english-listening"] }), ctx()))
+        .status,
+    ).toBe(200);
+    expect((await GET(request("GET"), ctx())).status).toBe(200);
+    expect(
+      (await (await GET(request("GET"), ctx(studentB))).json()).data.enabled,
+    ).toEqual([]);
+    expect((await PUT(request("PUT", { enabled: [] }), ctx())).status).toBe(
+      200,
+    );
+    expect(
+      (await (await GET(request("GET"), ctx())).json()).data.enabled,
+    ).toEqual([]);
+  });
   it("keeps two students independent, replaces grants and disables everything with []", async () => {
     const studentsBefore = structuredClone(fixture.tables.student);
     expect(

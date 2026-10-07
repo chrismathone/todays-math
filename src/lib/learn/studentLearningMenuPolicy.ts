@@ -3,7 +3,7 @@ import type { StudentOptionalMenu } from "@/contracts/studentLearningMenus.contr
 /** Optional-module paths only; exploration, authentication and shared assets keep their existing gates. */
 export function studentOptionalMenuForPath(
   path: string,
-): StudentOptionalMenu | "english-listening" | null {
+): StudentOptionalMenu | null {
   const under = (base: string) => path === base || path.startsWith(`${base}/`);
   if (
     under("/learn/lectures") ||
@@ -27,7 +27,5 @@ export function studentOptionalMenuAllowed(
   path: string,
 ): boolean {
   const menu = studentOptionalMenuForPath(path);
-  return (
-    menu === null || (menu !== "english-listening" && enabled.includes(menu))
-  );
+  return menu === null || enabled.includes(menu);
 }

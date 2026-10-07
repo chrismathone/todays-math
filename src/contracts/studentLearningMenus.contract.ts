@@ -1,7 +1,11 @@
 import { z } from "zod";
 
 /** Exploration and its collection are always available. Extra modules require a manager's grant. */
-export const STUDENT_OPTIONAL_MENUS = ["lectures", "textbook"] as const;
+export const STUDENT_OPTIONAL_MENUS = [
+  "lectures",
+  "textbook",
+  "english-listening",
+] as const;
 export const studentOptionalMenuSchema = z.enum(STUDENT_OPTIONAL_MENUS);
 export type StudentOptionalMenu = z.infer<typeof studentOptionalMenuSchema>;
 
@@ -16,6 +20,7 @@ export const studentLearningMenusSchema = z
 export const studentLearningMenuLabels: Record<StudentOptionalMenu, string> = {
   lectures: "강의",
   textbook: "교재 QR 학습",
+  "english-listening": "영어 듣기",
 };
 
 export const storedStudentLearningMenusSchema = z.strictObject({

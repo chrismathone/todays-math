@@ -102,7 +102,7 @@ describe("학생 아래 메뉴", () => {
       ["도감", "/learn?view=collection"],
     ]);
     expect(screen.queryByRole("link", { name: "강의" })).toBeNull();
-    expect(screen.queryByRole("link", { name: "영어듣기" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "영어 듣기" })).toBeNull();
     expect(screen.getByRole("link", { name: "탐험" })).not.toHaveAttribute(
       "aria-current",
     );
@@ -132,6 +132,32 @@ describe("학생 아래 메뉴", () => {
       "aria-current",
       "page",
     );
-    expect(screen.queryByRole("link", { name: "영어듣기" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "영어 듣기" })).toBeNull();
+  });
+  it("영어 듣기 메뉴도 학생별로 별도로 허용하고 해제할 수 있다", () => {
+    const view = render(
+      <StudentChromeContext.Provider
+        value={{
+          managed: false,
+          preview: false,
+          enabled: ["english-listening"],
+        }}
+      >
+        <StudentMobileNav />
+      </StudentChromeContext.Provider>,
+    );
+    expect(tabs()).toEqual([
+      ["탐험", "/learn"],
+      ["도감", "/learn?view=collection"],
+      ["영어 듣기", "/learn/english-listening"],
+    ]);
+    view.rerender(
+      <StudentChromeContext.Provider
+        value={{ managed: false, preview: false, enabled: [] }}
+      >
+        <StudentMobileNav />
+      </StudentChromeContext.Provider>,
+    );
+    expect(screen.queryByRole("link", { name: "영어 듣기" })).toBeNull();
   });
 });

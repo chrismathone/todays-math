@@ -10,9 +10,18 @@ const tabs = [
   { href: "/learn", label: "탐험", icon: "compass" },
   { href: "/learn?view=collection", label: "도감", icon: "book" },
   { href: "/learn/lectures", label: "강의", icon: "play" },
+  { href: "/learn/english-listening", label: "영어 듣기", icon: "headphones" },
 ] as const;
 
 function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
+  if (name === "headphones")
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 14v-3a8 8 0 0 1 16 0v3" />
+        <rect x="3" y="12" width="4" height="8" rx="2" />
+        <rect x="17" y="12" width="4" height="8" rx="2" />
+      </svg>
+    );
   if (name === "compass")
     return (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -58,6 +67,9 @@ export function StudentMobileNav({
   const collection = !previewPath && searchParams.get("view") === "collection";
   const lectures =
     pathname === "/learn/lectures" || pathname.startsWith("/learn/watch/");
+  const english =
+    pathname === "/learn/english-listening" ||
+    pathname.startsWith("/learn/english-listening/");
   if (
     pathname === "/learn/login" ||
     pathname === "/learn/password" ||
@@ -74,7 +86,10 @@ export function StudentMobileNav({
     >
       {tabs
         .filter(
-          (tab) => tab.icon !== "play" || chrome.enabled.includes("lectures"),
+          (tab) =>
+            (tab.icon !== "play" || chrome.enabled.includes("lectures")) &&
+            (tab.icon !== "headphones" ||
+              chrome.enabled.includes("english-listening")),
         )
         .map((tab) => {
           const current =
@@ -82,7 +97,9 @@ export function StudentMobileNav({
               ? lectures
               : tab.icon === "book"
                 ? collection
-                : !lectures && !collection;
+                : tab.icon === "headphones"
+                  ? english
+                  : !lectures && !collection && !english;
           return (
             <Link
               key={tab.href}

@@ -320,6 +320,13 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
     expect(passed(await run("GET", "/learn/lectures"))).toBe(true);
     expect(passed(await run("GET", `/q/${UUID}`))).toBe(false);
     expect(passed(await run("GET", "/learn/english-listening"))).toBe(false);
+    learningMenus.mockResolvedValue({
+      enabled: ["english-listening"],
+      updatedAt: null,
+    });
+    expect(passed(await run("GET", "/learn/english-listening"))).toBe(true);
+    expect(passed(await run("GET", "/api/english/learn/listening"))).toBe(true);
+    expect(passed(await run("GET", "/learn/lectures"))).toBe(false);
   });
 
   it("허용 상태를 읽지 못하면 추가 메뉴를 닫고 비밀번호 변경 전에는 설정조차 읽지 않는다", async () => {

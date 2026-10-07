@@ -31,12 +31,28 @@ afterEach(() => {
 });
 
 describe("per-student manager learning menu panel", () => {
+  it("can grant English listening explicitly for this student", async () => {
+    const user = userEvent.setup();
+    render(<StudentLearningMenuPanel studentId={studentA} />);
+    await user.click(await screen.findByLabelText("영어 듣기"));
+    fetchMock.mockResolvedValueOnce(json(payload(["english-listening"])));
+    await user.click(screen.getByRole("button", { name: "학습 메뉴 저장" }));
+    expect(await screen.findByText("저장했습니다.")).toBeInTheDocument();
+    expect(fetchMock.mock.calls[1]).toEqual([
+      `/api/students/${studentA}/learning-menus`,
+      expect.objectContaining({
+        method: "PUT",
+        body: JSON.stringify({ enabled: ["english-listening"] }),
+      }),
+    ]);
+    expect(screen.getByLabelText("영어 듣기")).toBeChecked();
+  });
   it("starts with only the fixed exploration/collection and unchecked optional menus, without writing", async () => {
     render(<StudentLearningMenuPanel studentId={studentA} />);
     expect(await screen.findByLabelText("강의")).not.toBeChecked();
     expect(screen.getByLabelText("교재 QR 학습")).not.toBeChecked();
-    expect(screen.getAllByRole("checkbox")).toHaveLength(2);
-    expect(screen.queryByLabelText(/영어/)).not.toBeInTheDocument();
+    expect(screen.getAllByRole("checkbox")).toHaveLength(3);
+    expect(screen.getByLabelText("영어 듣기")).not.toBeChecked();
     expect(screen.getByText(/탐험과 도감은 기본/)).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "학습 메뉴 저장" }),
@@ -113,7 +129,7 @@ describe("per-student manager learning menu panel", () => {
         fetchMock.mockRejectedValueOnce(new Error("offline"));
       if (failure === "server") fetchMock.mockResolvedValueOnce(json({}, 500));
       if (failure === "malformed")
-        fetchMock.mockResolvedValueOnce(json(payload(["english-listening"])));
+        fetchMock.mockResolvedValueOnce(json(payload(["unsupported-menu"])));
       const user = userEvent.setup();
       render(<StudentLearningMenuPanel studentId={studentA} />);
       expect(await screen.findByRole("alert")).toHaveTextContent(
