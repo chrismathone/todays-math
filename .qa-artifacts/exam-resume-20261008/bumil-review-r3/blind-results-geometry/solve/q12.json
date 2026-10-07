@@ -1,0 +1,89 @@
+{
+  "studentDigest": "1d18d08c21c4e4cf632f9d43d194ba86c0e84d6e536daa0a94468657146965ad",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "answer": "④",
+  "solution": "삼각형 $\\mathrm{ABC}$는 직각이 $\\mathrm{B}$이고 $\\angle CAB=45^\\circ$인 이등변 직각삼각형이다. 따라서 $\\overline{AB}=\\overline{BC}=8\\,\\mathrm{cm}$, $\\overline{AC}=8\\sqrt2\\,\\mathrm{cm}$이고 넓이는 $\\frac12\\times8\\times8=32\\,\\mathrm{cm}^2$이다. 전체 넓이에서 이를 빼면 삼각형 $\\mathrm{ACD}$의 넓이는 $12\\sqrt6\\,\\mathrm{cm}^2$이다. 밑변 AC와 높이 DH를 사용하면 $\\overline{DH}=\\frac{2\\times12\\sqrt6}{8\\sqrt2}=3\\sqrt3\\,\\mathrm{cm}$이다. 직각삼각형 $\\mathrm{DCH}$에서 $\\angle DCH=60^\\circ$이므로 $\\frac{\\overline{DH}}{\\overline{DC}}=\\frac{\\sqrt3}{2}$이다. 따라서 $\\overline{DC}=6\\,\\mathrm{cm}$이고 정답은 ④이다.",
+  "evidence": {
+    "questionNumber": 12,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q12",
+    "input": {
+      "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+      "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+      "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+      "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/figures/q12-1.svg",
+        "sha256": "7b6aa3b966e0fac866bbe4c0fbc9c1dd5c275a8957815c4301c2a27aacd2beb3",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "AC는 수평 대각선이고 B는 아래, D는 위. B의 직각, A의 45°, C의 60°, BC의 8cm, DH의 수선/직각 및 H의 내부 위치를 확인했다."
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "matches": false,
+        "reason": "DC=3이면 △ACD 넓이가 6√6이 되어 기록에 맞지 않는다."
+      },
+      {
+        "choice": 2,
+        "matches": false,
+        "reason": "DC=4이면 △ACD 넓이가 8√6이다."
+      },
+      {
+        "choice": 3,
+        "matches": false,
+        "reason": "DC=5이면 △ACD 넓이가 10√6이다."
+      },
+      {
+        "choice": 4,
+        "matches": true,
+        "reason": "DC=6이면 △ACD 넓이가 12√6으로 전체 기록과 일치한다."
+      },
+      {
+        "choice": 5,
+        "matches": false,
+        "reason": "DC=8이면 △ACD 넓이가 16√6이다."
+      }
+    ],
+    "codeCalculation": {
+      "tool": "Python fractions.Fraction for exact radical coefficients",
+      "AB": "8",
+      "BC": "8",
+      "AC": "8√2",
+      "areaABC": "32",
+      "areaACD": "12√6",
+      "DH": "3√3",
+      "DC": "6",
+      "candidateAreaACDSqrt6Coefficients": [
+        "6",
+        "8",
+        "10",
+        "12",
+        "16"
+      ],
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ]
+    },
+    "existenceUniquenessAndDomain": "그림에서 D와 B는 AC의 반대쪽에 있고 AC가 두 삼각형을 겹침 없이 나눈다. 모든 길이와 두 넓이는 양수이다. CH=DC/2=3<8√2=AC이므로 H가 선분 AC 내부에 존재한다. DC는 양의 비례식에서 유일하다. 사인 넓이 공식이나 사인/코사인 법칙을 쓰지 않았다.",
+    "blindness": {
+      "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+      "authorAnswerRead": false,
+      "authorSolutionRead": false,
+      "originalAnswersOrSolutionsRead": false,
+      "privateSpecOrPackageRead": false,
+      "parentHtmlOrSolutionPreviewRead": false,
+      "solverAuthoredThisCandidate": false
+    },
+    "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+  },
+  "status": "solved"
+}
