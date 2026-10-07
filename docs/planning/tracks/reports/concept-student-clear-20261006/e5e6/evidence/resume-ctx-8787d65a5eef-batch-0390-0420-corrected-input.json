@@ -1,0 +1,362 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-1-1-xc1",
+      "bDecision": "revise",
+      "bPrompt": "혼합 계산이란 어떤 계산인지 쓰고, $15+7-4$와 $15+7+4$ 가운데 혼합 계산인 식을 골라 그 식에 쓰인 계산 두 가지를 쓰시오.",
+      "bAnswer": "덧셈, 뺄셈, 곱셈, 나눗셈 가운데 두 가지 이상이 한 식에 섞여 있는 계산이다. $15+7-4$가 혼합 계산이고, 덧셈과 뺄셈이 쓰였다.",
+      "bGoal": "혼합 계산의 뜻을 말하고, 한 가지 계산만 있는 식과 구별한다.",
+      "bReason": "단원 이름으로 쓰이는 정식 용어라 뜻을 물었고, 이름 암기에 그치지 않도록 덧셈만 있는 식과 구별하게 했다.",
+      "studentLabel": "혼합 계산의 뜻",
+      "cDecision": "revise",
+      "cAfter": "덧셈, 뺄셈, 곱셈, 나눗셈 가운데 두 가지 이상이 한 식에 섞여 있는 계산을 {혼합 계산}이라고 한다.",
+      "cReason": "혼합계산은계산방법의이름이고혼합계산식은식이라는다른대상이다. 현재계산의이름을묻는C에서는띄어쓰기만다른진짜동의표현을인정한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'혼합계산'(붙여 쓰기), '혼합 계산식'은 인정한다. '섞여 있는 식'은 풀어 쓴 표현이라 채점 기준을 따로 정해야 한다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 식에 덧셈, 뺄셈, 곱셈, 나눗셈 중 서로 다른 계산이 둘 이상 섞여 있는 계산이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15+7-4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "덧셈과 뺄셈"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "혼합 계산",
+            "혼합계산"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0390-0420.json",
+      "codexFinalAmendedFromFingerprint": "6945ed7117fee248f478f10cbc28cc6d990079f1ea547ce269ec0be3258b88eb",
+      "sourceIndex": 393,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-1-xc1",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+        "term": "혼합 계산",
+        "kind": "정의",
+        "level": "하",
+        "definition": "한 식 안에 서로 다른 계산이 둘 이상 섞여 있으면 이를 {혼합 계산}이라 부른다.",
+        "example": {
+          "prompt": "$15+7-4$에 쓰인 계산 두 가지는?",
+          "answer": "덧셈, 뺄셈"
+        },
+        "studentC": "한 식 안에 서로 다른 계산이 둘 이상 섞여 있으면 이를 □이라 부른다.",
+        "answers": [
+          "혼합 계산"
+        ]
+      },
+      "sourceFingerprint": "c39d199357058967d95fae1e82f3c8608c083e48518970427f1c1e415cd4019b",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "혼합 계산"
+      ],
+      "cStudentAfter": "덧셈, 뺄셈, 곱셈, 나눗셈 가운데 두 가지 이상이 한 식에 섞여 있는 계산을 □이라고 한다.",
+      "cMarkedSentence": "덧셈, 뺄셈, 곱셈, 나눗셈 가운데 두 가지 이상이 한 식에 섞여 있는 계산을 {혼합 계산}이라고 한다.",
+      "cStudentSentence": "덧셈, 뺄셈, 곱셈, 나눗셈 가운데 두 가지 이상이 한 식에 섞여 있는 계산을 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "혼합 계산",
+          "equivalents": [
+            "혼합계산"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "혼합 계산이란 어떤 계산인지 쓰고, $15+7-4$와 $15+7+4$ 가운데 혼합 계산인 식을 골라 그 식에 쓰인 계산 두 가지를 쓰시오.",
+        "answer": "덧셈, 뺄셈, 곱셈, 나눗셈 가운데 두 가지 이상이 한 식에 섞여 있는 계산이다. $15+7-4$가 혼합 계산이고, 덧셈과 뺄셈이 쓰였다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 식에 덧셈, 뺄셈, 곱셈, 나눗셈 중 서로 다른 계산이 둘 이상 섞여 있는 계산이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15+7-4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "덧셈과 뺄셈"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "덧셈, 뺄셈, 곱셈, 나눗셈 가운데 두 가지 이상이 한 식에 섞여 있는 계산을 {혼합 계산}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "혼합 계산",
+            "혼합계산"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a54e57dc4aa0ba064a7e19ecc1c0da3a93db5300bdb42b8ac087101e4d8723cf",
+      "questionRevision": "planning-e5e6-20261006-a54e57dc4aa0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "괄호가 없는 식에서 원래 차례와 다른 부분을 먼저 계산하게 하려면 어떻게 해야 하는지 쓰시오. $24-8+4$에 괄호를 한 번 넣어 값이 $12$가 되는 식을 만든 뒤 계산으로 확인하시오.",
+      "bAnswer": "먼저 계산하고 싶은 부분을 괄호로 묶는다. $24-(8+4)=24-12=12$이다.",
+      "bGoal": "원하는 값이 나오도록 먼저 계산할 부분을 찾아 괄호로 묶는다.",
+      "bReason": "괄호를넣으면항상결과가바뀐다는오해를피해일반목표를계산차례의변경으로쓴다. 실제예에서는먼저계산할8+4를찾아12를만드는목표가남는다.",
+      "studentLabel": "괄호를 넣어 값 맞추기",
+      "cDecision": "revise",
+      "cAfter": "$18-6+3$에 괄호를 넣어 값이 $9$가 되게 하려면 {$6+3$}을 괄호로 묶어 먼저 계산하면 된다.",
+      "cReason": "원문은 '그 부분을' 뒤에 '괄호로 묶는다'만 채우면 되어 생각할 것이 없다. 실제로 어느 부분을 묶을지 찾게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$(6+3)$'처럼 괄호를 붙여 써도 인정한다. '$18-6$'은 값이 $15$라 오답이다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 계산하고 싶은 부분을 괄호로 묶는다",
+            "먼저 계산할 부분을 괄호로 묶는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24-(8+4)=12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6+3$",
+            "$(6+3)$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0390-0420.json",
+      "codexFinalAmendedFromFingerprint": "eaad27618fc2ca83dfd6d4def86c29cfce99466766ebc39ee52356d6f1ddf2ae",
+      "sourceIndex": 408,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-1-xc16",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+        "term": "괄호를 넣어 원하는 값 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원하는 값이 나오게 하려면 먼저 계산해야 할 부분을 찾아 그 부분을 {괄호로 묶는다}.",
+        "example": {
+          "prompt": "$18-6+3=9$가 되도록 괄호를 치시오.",
+          "answer": "$18-(6+3)=9$"
+        },
+        "studentC": "원하는 값이 나오게 하려면 먼저 계산해야 할 부분을 찾아 그 부분을 □.",
+        "answers": [
+          "괄호로 묶는다"
+        ]
+      },
+      "sourceFingerprint": "caed7c562b68a6e390bbe0813b35bd2a53c0e6890bd8f4352a86c391e53ea329",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$6+3$"
+      ],
+      "cStudentAfter": "$18-6+3$에 괄호를 넣어 값이 $9$가 되게 하려면 □을 괄호로 묶어 먼저 계산하면 된다.",
+      "cMarkedSentence": "$18-6+3$에 괄호를 넣어 값이 $9$가 되게 하려면 {$6+3$}을 괄호로 묶어 먼저 계산하면 된다.",
+      "cStudentSentence": "$18-6+3$에 괄호를 넣어 값이 $9$가 되게 하려면 □을 괄호로 묶어 먼저 계산하면 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6+3$",
+          "equivalents": [
+            "$(6+3)$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호가 없는 식에서 원래 차례와 다른 부분을 먼저 계산하게 하려면 어떻게 해야 하는지 쓰시오. $24-8+4$에 괄호를 한 번 넣어 값이 $12$가 되는 식을 만든 뒤 계산으로 확인하시오.",
+        "answer": "먼저 계산하고 싶은 부분을 괄호로 묶는다. $24-(8+4)=24-12=12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 계산하고 싶은 부분을 괄호로 묶는다",
+              "먼저 계산할 부분을 괄호로 묶는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24-(8+4)=12$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$18-6+3$에 괄호를 넣어 값이 $9$가 되게 하려면 {$6+3$}을 괄호로 묶어 먼저 계산하면 된다.",
+        "acceptedAnswers": [
+          [
+            "$6+3$",
+            "$(6+3)$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "56227203abaae3cd1943971ca5035e1a2d82b40421a097a1892395c1e34bc8d7",
+      "questionRevision": "planning-e5e6-20261006-56227203abaa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "물건 전체를 여러 사람에게 똑같이 나누어 줄 때, 그중 몇 사람이 받는 양을 구하려면 어떤 계산을 어떤 차례로 해야 하는지 쓰시오. 연필 $60$자루를 $5$명에게 똑같이 나누어 줄 때 $3$명이 받는 연필 수를 하나의 식으로 나타내어 구하시오.",
+      "bAnswer": "먼저 전체를 사람 수로 나누어 한 사람이 받는 양을 구하고, 거기에 구하려는 사람 수를 곱한다. $60\\div5\\times3=12\\times3=36$(자루)이다.",
+      "bGoal": "한 사람 몫을 구한 뒤 여러 사람 몫을 구하는 상황을 나눗셈 다음 곱셈의 한 식으로 세운다.",
+      "bReason": "원문에 예가 없고 '한 사람 몫', '몇 사람 몫'만으로는 상황이 떠오르지 않아, 구체적인 문장제를 넣었다.",
+      "studentLabel": "똑같이 나눈 뒤 몇 사람 몫 구하기",
+      "cDecision": "revise",
+      "cAfter": "연필 $48$자루를 $6$명에게 똑같이 나누어 줄 때, $4$명이 받는 연필 수를 구하는 하나의 식은 {$48\\div6\\times4$}이고, 그 값은 {$32$}자루이다.",
+      "cReason": "한사람몫8을4배한식은곱의두수를바꾼식도같다. 전체48의4배를6으로나눈식도같은4사람몫이므로하나의식이라는응답범위에서동치식을인정한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "식은 '$(48\\div6)\\times4$'도 인정한다. '$48\\div(6\\times4)$'는 값이 $2$인 다른 식이라 오답이다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 전체를 사람 수로 나누어 한 사람 몫을 구한 뒤 사람 수를 곱한다",
+            "나눗셈을 먼저 하고 곱셈을 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60\\div5\\times3$",
+            "$(60\\div5)\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$48\\div6\\times4$",
+            "$(48\\div6)\\times4$",
+            "$4\\times(48\\div6)$",
+            "$48\\times4\\div6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$32$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0390-0420.json",
+      "codexFinalAmendedFromFingerprint": "c139f4e0f7c0b1e7b83fa37d159669d169af0535bed0bd9f922af25b7e33b7c6",
+      "sourceIndex": 413,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-1-xc21",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+        "term": "나눈 뒤 곱하는 식 세우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 사람 몫을 구한 뒤 몇 사람 몫을 구할 때는 {나눗셈 다음 곱셈}의 차례로 식을 세운다.",
+        "studentC": "한 사람 몫을 구한 뒤 몇 사람 몫을 구할 때는 □의 차례로 식을 세운다.",
+        "answers": [
+          "나눗셈 다음 곱셈"
+        ]
+      },
+      "sourceFingerprint": "4f752443e38755eca97d266bf159dbe94eec0c4139eb627406a5fbe2152e276e",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$48\\div6\\times4$",
+        "$32$"
+      ],
+      "cStudentAfter": "연필 $48$자루를 $6$명에게 똑같이 나누어 줄 때, $4$명이 받는 연필 수를 구하는 하나의 식은 □이고, 그 값은 □자루이다.",
+      "cMarkedSentence": "연필 $48$자루를 $6$명에게 똑같이 나누어 줄 때, $4$명이 받는 연필 수를 구하는 하나의 식은 {$48\\div6\\times4$}이고, 그 값은 {$32$}자루이다.",
+      "cStudentSentence": "연필 $48$자루를 $6$명에게 똑같이 나누어 줄 때, $4$명이 받는 연필 수를 구하는 하나의 식은 □이고, 그 값은 □자루이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$48\\div6\\times4$",
+          "equivalents": [
+            "$(48\\div6)\\times4$",
+            "$4\\times(48\\div6)$",
+            "$48\\times4\\div6$"
+          ]
+        },
+        {
+          "key": "$32$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "물건 전체를 여러 사람에게 똑같이 나누어 줄 때, 그중 몇 사람이 받는 양을 구하려면 어떤 계산을 어떤 차례로 해야 하는지 쓰시오. 연필 $60$자루를 $5$명에게 똑같이 나누어 줄 때 $3$명이 받는 연필 수를 하나의 식으로 나타내어 구하시오.",
+        "answer": "먼저 전체를 사람 수로 나누어 한 사람이 받는 양을 구하고, 거기에 구하려는 사람 수를 곱한다. $60\\div5\\times3=12\\times3=36$(자루)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 전체를 사람 수로 나누어 한 사람 몫을 구한 뒤 사람 수를 곱한다",
+              "나눗셈을 먼저 하고 곱셈을 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\div5\\times3$",
+              "$(60\\div5)\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "연필 $48$자루를 $6$명에게 똑같이 나누어 줄 때, $4$명이 받는 연필 수를 구하는 하나의 식은 {$48\\div6\\times4$}이고, 그 값은 {$32$}자루이다.",
+        "acceptedAnswers": [
+          [
+            "$48\\div6\\times4$",
+            "$(48\\div6)\\times4$",
+            "$4\\times(48\\div6)$",
+            "$48\\times4\\div6$"
+          ],
+          [
+            "$32$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3af0c88432081a2a1815cd5d1259554ddc6de40dc0754ad48880748ab6de71ff",
+      "questionRevision": "planning-e5e6-20261006-3af0c8843208",
+      "requiresIndependentReview": true
+    }
+  ]
+}

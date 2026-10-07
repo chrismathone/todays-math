@@ -1,0 +1,223 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-4-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "비 $2:3$의 앞의 수에만 $2$를 곱해 $4:3$을 만들었다. 두 비의 비율을 구해 비교하고, 이처럼 앞의 수에만 $2$를 곱하면 비율이 어떻게 되는지 쓰시오.",
+      "bAnswer": "비율이 $\\frac{2}{3}$와 $\\frac{4}{3}$로 서로 다르다. $2:3$의 앞의 수에만 $2$를 곱하면 비율도 $2$배가 되어 달라진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 비율은 $\\frac{2}{3}$와 $\\frac{4}{3}$로 서로 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞의 수에만 $2$를 곱하면 비율이 달라진다",
+            "앞의 수에만 $2$를 곱하면 비율이 $2$배가 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "두 수에 같이 곱해야 비율이 유지됨을 반례로 확인한다.",
+      "bReason": "곱하는 수가 1인 예외까지 한꺼번에 일반화하지 않고 이 문항의 2배 상황에서 비율이 달라짐을 설명한다.",
+      "cDecision": "revise",
+      "cAfter": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 {달라진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "달라진다",
+            "변한다"
+          ]
+        }
+      ],
+      "cReason": "긴 수 조건 빈칸 대신 실제 비율 변화를 확인하는 한 빈칸으로 줄였다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-ratio-josa-patch.json",
+      "codexFinalAmendedFromFingerprint": "9e6c0f40462fb6c9af9af4e6027562422e550787d4fbebc601d862425fea6ed9",
+      "sourceIndex": 2420,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-1-xc5",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "term": "한쪽에만 곱한 비",
+        "kind": "성질",
+        "level": "하",
+        "definition": "비의 두 수가 모두 $0$이 아닐 때, 한쪽 수에만 {$0$도 $1$도 아닌 수}를 곱하거나 나누면 {비율이 달라진다}.",
+        "studentC": "비의 두 수가 모두 $0$이 아닐 때, 한쪽 수에만 □를 곱하거나 나누면 □.",
+        "answers": [
+          "$0$도 $1$도 아닌 수",
+          "비율이 달라진다"
+        ]
+      },
+      "sourceFingerprint": "16824a81e9c4f34a61a555f681b740054cb747c47a22e93f941682aa4a45d175",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "달라진다"
+      ],
+      "cStudentAfter": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 □.",
+      "cMarkedSentence": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 {달라진다}.",
+      "cStudentSentence": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "달라진다",
+          "equivalents": [
+            "변한다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $2:3$의 앞의 수에만 $2$를 곱해 $4:3$을 만들었다. 두 비의 비율을 구해 비교하고, 이처럼 앞의 수에만 $2$를 곱하면 비율이 어떻게 되는지 쓰시오.",
+        "answer": "비율이 $\\frac{2}{3}$와 $\\frac{4}{3}$로 서로 다르다. $2:3$의 앞의 수에만 $2$를 곱하면 비율도 $2$배가 되어 달라진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 비율은 $\\frac{2}{3}$와 $\\frac{4}{3}$로 서로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 수에만 $2$를 곱하면 비율이 달라진다",
+              "앞의 수에만 $2$를 곱하면 비율이 $2$배가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 {달라진다}.",
+        "acceptedAnswers": [
+          [
+            "달라진다",
+            "변한다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c5a2300ddfadbbd9e48342db3ca4b073696b88e7ff082aad04ab37364cbea34",
+      "questionRevision": "planning-e5e6-20261006-5c5a2300ddfa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "비 $12:18$을 $2:3$으로 간단히 하면 비율이 달라지는지 쓰고, 그 까닭을 두 항에 한 일로 설명하시오.",
+      "bAnswer": "비율은 같다. 두 항을 같은 수 $6$으로 나눈 것이므로 $\\frac{12}{18}=\\frac{2}{3}$로 변하지 않는다.",
+      "bGoal": "간단히 하는 것이 두 항에 같은 수를 나누는 일이라 비율이 유지됨을 설명한다.",
+      "bReason": "결과만이 아니라 같은 수로 나눈다는 이유를 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율은 같다",
+            "비율이 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 항을 같은 수로 나누었기 때문이다",
+            "약분한 것과 같기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$12:18$의 비율 $\\frac{12}{18}$를 기약분수로 나타내면 {$\\frac{2}{3}$}이다. 이를 $2:3$의 비율과 비교하면 두 비율은 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "'처음과 같다' 한 구절 대신 실제 비율을 계산해 확인하게 한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'같다', '변하지 않는다', '그대로이다'는 같은 의미로 인정한다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-ratio-josa-patch.json",
+      "codexFinalAmendedFromFingerprint": "00f3c452ff28d72a63d9b487eec5614e6f35b1b867c382c5e95112a24a149276",
+      "sourceIndex": 2436,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-2-xc6",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "term": "간단히 해도 같은 비율",
+        "kind": "성질",
+        "level": "하",
+        "definition": "간단한 자연수의 비로 바꾸어도 비율은 {처음과 같다}.",
+        "studentC": "간단한 자연수의 비로 바꾸어도 비율은 □.",
+        "answers": [
+          "처음과 같다"
+        ]
+      },
+      "sourceFingerprint": "41b5547956f1864b9b7856cf88af5f88da8d6666df462c1291531f0ab8a0280c",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{2}{3}$",
+        "같다"
+      ],
+      "cStudentAfter": "$12:18$의 비율 $\\frac{12}{18}$를 기약분수로 나타내면 □이다. 이를 $2:3$의 비율과 비교하면 두 비율은 □.",
+      "cMarkedSentence": "$12:18$의 비율 $\\frac{12}{18}$를 기약분수로 나타내면 {$\\frac{2}{3}$}이다. 이를 $2:3$의 비율과 비교하면 두 비율은 {같다}.",
+      "cStudentSentence": "$12:18$의 비율 $\\frac{12}{18}$를 기약분수로 나타내면 □이다. 이를 $2:3$의 비율과 비교하면 두 비율은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{2}{3}$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $12:18$을 $2:3$으로 간단히 하면 비율이 달라지는지 쓰고, 그 까닭을 두 항에 한 일로 설명하시오.",
+        "answer": "비율은 같다. 두 항을 같은 수 $6$으로 나눈 것이므로 $\\frac{12}{18}=\\frac{2}{3}$로 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율은 같다",
+              "비율이 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 항을 같은 수로 나누었기 때문이다",
+              "약분한 것과 같기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12:18$의 비율 $\\frac{12}{18}$를 기약분수로 나타내면 {$\\frac{2}{3}$}이다. 이를 $2:3$의 비율과 비교하면 두 비율은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{3}$"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "602897010228c2e2046a4829fb034f098b93b04823ee4ffcbcb571900f013a91",
+      "questionRevision": "planning-e5e6-20261006-602897010228",
+      "requiresIndependentReview": true
+    }
+  ]
+}

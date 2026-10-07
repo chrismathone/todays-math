@@ -1,0 +1,2384 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-3-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "$2.4\\div3$에서 일의 자리 몫이 $0$일 때, $2.4$를 어떤 단위의 몇 개로 바꾸어 나누면 되는지 쓰고, 그 계산 결과가 무엇을 뜻하는지 설명하시오.",
+      "bAnswer": "$2.4$를 $0.1$이 $24$개라고 보고 $24\\div3=8$로 나눈다. 결과 $8$은 한 몫에 든 $0.1$의 개수이므로 몫은 $0.8$이다.",
+      "bGoal": "일의 자리에서 나눌 수 없을 때 $0.1$의 개수로 바꾸어 나누는 방법과 결과의 뜻을 안다.",
+      "bReason": "단위를 바꾸는 절차와 결과의 뜻을 둘 다 묻고 구체적 식으로 답이 정해진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2.4$를$0.1$이$24$개로바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "결과는 한 몫에 든 $0.1$의 개수이다",
+            "$8$은 한 몫에 든 $0.1$이 $8$개라는 뜻이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 {$24$}개로 보고 나누면 한 몫에는 $0.1$이 {$8$}개 들어 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$",
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$",
+            "$8$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 바로 뒤 문장에서 베낄 수 있어 실제 개수를 구하는 값으로 바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "4cd0cc6ed83f8b47d932ef63fd5f3ed0da1c7b16f50f4713d78ecc5ecba330ea",
+      "sourceIndex": 1850,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc11",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "일의 자리에서 나누기 어려울 때의 단위",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수 부분이 나누는 수보다 작으면 일의 몫은 $0$이다. 자연수 부분과 소수 첫째 자리의 양을 {$0.1$의 개수}로 바꾸어 나누면, 그 결과는 한 몫에 든 $0.1$의 개수이다.",
+        "studentC": "자연수 부분이 나누는 수보다 작으면 일의 몫은 $0$이다. 자연수 부분과 소수 첫째 자리의 양을 □로 바꾸어 나누면, 그 결과는 한 몫에 든 $0.1$의 개수이다.",
+        "answers": [
+          "$0.1$의 개수"
+        ]
+      },
+      "sourceFingerprint": "b8f3ae58629362ca71a731510efcdbe8d687b4e1e75d3107ae361e97871d26b4",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$8$"
+      ],
+      "cStudentAfter": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 □개로 보고 나누면 한 몫에는 $0.1$이 □개 들어 있다.",
+      "cMarkedSentence": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 {$24$}개로 보고 나누면 한 몫에는 $0.1$이 {$8$}개 들어 있다.",
+      "cStudentSentence": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 □개로 보고 나누면 한 몫에는 $0.1$이 □개 들어 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.4\\div3$에서 일의 자리 몫이 $0$일 때, $2.4$를 어떤 단위의 몇 개로 바꾸어 나누면 되는지 쓰고, 그 계산 결과가 무엇을 뜻하는지 설명하시오.",
+        "answer": "$2.4$를 $0.1$이 $24$개라고 보고 $24\\div3=8$로 나눈다. 결과 $8$은 한 몫에 든 $0.1$의 개수이므로 몫은 $0.8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4$를$0.1$이$24$개로바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과는 한 몫에 든 $0.1$의 개수이다",
+              "$8$은 한 몫에 든 $0.1$이 $8$개라는 뜻이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 {$24$}개로 보고 나누면 한 몫에는 $0.1$이 {$8$}개 들어 있다.",
+        "acceptedAnswers": [
+          [
+            "$24$",
+            "$24$"
+          ],
+          [
+            "$8$",
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d97cb062258aef6a48a5266fb94a0b9ee811c3494f2c75246e37f037706f2e02",
+      "questionRevision": "planning-e5e6-20261006-d97cb062258a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "$2.4\\div3$의 몫을 $8$이라고 쓴 학생이 있다. $8$에 나누는 수 $3$을 곱한 값은 나누어지는 수 $2.4$의 몇 배인지 구하고, 이를 이용해 쓴 답 $8$이 올바른 몫의 몇 배인지 설명하시오.",
+      "bAnswer": "$8\\times3=24$는 $2.4$의 $10$배이다. 몫에 나누는 수를 곱하면 나누어지는 수가 되므로 쓴 답도 올바른 몫 $0.8$의 $10$배이다.",
+      "bGoal": "곱셈 확인으로 틀린 답이 올바른 몫의 몇 배인지 알아낸다.",
+      "bReason": "몫에 나누는 수를 곱해 보는 관계를 구체적 식으로 쓰게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$8\\times3=24$는 $2.4$의 $10$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "쓴 답 $8$은 올바른 몫의 $10$배이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$2.4\\div3$의 몫을 $8$이라고 잘못 썼다. $8\\times3=24$는 $2.4$의 {$10$}배이다. 그래서 쓴 답 $8$은 실제 몫 $0.8$의 {$10$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$",
+            "$10$",
+            "열"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$",
+            "$10$",
+            "열"
+          ]
+        }
+      ],
+      "cReason": "원문 '같은 배'는 막연해서 실제 곱셈 식으로 배수를 답하게 바꾼다.",
+      "exampleNeeded": false,
+      "coreAfter": null,
+      "coreReason": "원문의 '몇 배이면 …같은 배'가 모호해 같은 배수 관계로 분명히 한다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원문이 쓴 답·나누는 수·실제 몫의 배수 관계를 한 문장에 명시하고10배 예까지 주므로 대상이나 목표가 불분명하지 않다. 예를 없애는 설명 개정은 필요 없어 철회하고 원문 표적을 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "e445577b80f2ea9a7adf9b8fc5df416130f0a76e716f189682509e1df0b5b5c4",
+      "sourceIndex": 1854,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc24",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "곱셈으로 틀린 답의 크기 알기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "쓴 답에 나누는 수를 곱한 값이 나누어지는 수의 몇 배이면, 쓴 답도 실제 몫의 {같은 배}이다. $10$배이면 쓴 답이 실제 몫의 $10$배이다. 이것만으로 어떤 쓰기 실수인지 단정할 수는 없다.",
+        "studentC": "쓴 답에 나누는 수를 곱한 값이 나누어지는 수의 몇 배이면, 쓴 답도 실제 몫의 □이다. $10$배이면 쓴 답이 실제 몫의 $10$배이다. 이것만으로 어떤 쓰기 실수인지 단정할 수는 없다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "sourceFingerprint": "a8d67bb4c77c8474a467533dc7f99208243fa32dcab5c30b05e2d63d268e6100",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$10$"
+      ],
+      "cStudentAfter": "$2.4\\div3$의 몫을 $8$이라고 잘못 썼다. $8\\times3=24$는 $2.4$의 □배이다. 그래서 쓴 답 $8$은 실제 몫 $0.8$의 □배이다.",
+      "cMarkedSentence": "$2.4\\div3$의 몫을 $8$이라고 잘못 썼다. $8\\times3=24$는 $2.4$의 {$10$}배이다. 그래서 쓴 답 $8$은 실제 몫 $0.8$의 {$10$}배이다.",
+      "cStudentSentence": "$2.4\\div3$의 몫을 $8$이라고 잘못 썼다. $8\\times3=24$는 $2.4$의 □배이다. 그래서 쓴 답 $8$은 실제 몫 $0.8$의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": [
+            "열"
+          ]
+        },
+        {
+          "key": "$10$",
+          "equivalents": [
+            "열"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.4\\div3$의 몫을 $8$이라고 쓴 학생이 있다. $8$에 나누는 수 $3$을 곱한 값은 나누어지는 수 $2.4$의 몇 배인지 구하고, 이를 이용해 쓴 답 $8$이 올바른 몫의 몇 배인지 설명하시오.",
+        "answer": "$8\\times3=24$는 $2.4$의 $10$배이다. 몫에 나누는 수를 곱하면 나누어지는 수가 되므로 쓴 답도 올바른 몫 $0.8$의 $10$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$8\\times3=24$는 $2.4$의 $10$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "쓴 답 $8$은 올바른 몫의 $10$배이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4\\div3$의 몫을 $8$이라고 잘못 썼다. $8\\times3=24$는 $2.4$의 {$10$}배이다. 그래서 쓴 답 $8$은 실제 몫 $0.8$의 {$10$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "$10$",
+            "열"
+          ],
+          [
+            "$10$",
+            "$10$",
+            "열"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6c236d8c2c49beb152d507be41944a05f5100d5a849953d78171395e57c3c353",
+      "questionRevision": "planning-e5e6-20261006-6c236d8c2c49",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 큰가, 작은가? 전체를 똑같이 나눈다는 점으로 까닭을 설명하시오. $6.3\\div3$의 몫도 쓰시오.",
+      "bAnswer": "작다. 전체를 둘 이상으로 똑같이 나누므로 한 몫이 전체보다 작기 때문이다. $6.3\\div3=2.1$이고 $2.1$은 $6.3$보다 작다.",
+      "bGoal": "$1$보다 큰 자연수로 나눌 때 몫이 나누어지는 수보다 작아지는 까닭을 설명한다.",
+      "bReason": "조건($0$보다 큼, $1$보다 큰 자연수)을 질문에 두고 결론은 말하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 나누어지는 수보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체를 둘 이상으로 똑같이 나누므로 한 몫이 전체보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6.3\\div3=2.1$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        }
+      ],
+      "cReason": "원문의 빈칸은 조건 구절 전체를 외우게 해 의미 있는 두 낱말로 줄인다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "6045bd63256cd09d2f1bfb9a6261f8b96591936ac580766bb6f5f7a678491c76",
+      "sourceIndex": 1855,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc25",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "나누어지는 수보다 작은 몫",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누어지는 수가 {$0$보다 크고}, 나누는 수가 {$1$보다 큰 자연수}이면 몫은 나누어지는 수보다 작다.",
+        "studentC": "나누어지는 수가 □, 나누는 수가 □이면 몫은 나누어지는 수보다 작다.",
+        "answers": [
+          "$0$보다 크고",
+          "$1$보다 큰 자연수"
+        ]
+      },
+      "sourceFingerprint": "4a140759aa8ce1fe278a886d39b31e59fd7fae4b00e41c99fad91c943ff08bb5",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$0$보다 큰 수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 □.",
+      "cMarkedSentence": "$0$보다 큰 수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 {작다}.",
+      "cStudentSentence": "$0$보다 큰 수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 큰가, 작은가? 전체를 똑같이 나눈다는 점으로 까닭을 설명하시오. $6.3\\div3$의 몫도 쓰시오.",
+        "answer": "작다. 전체를 둘 이상으로 똑같이 나누므로 한 몫이 전체보다 작기 때문이다. $6.3\\div3=2.1$이고 $2.1$은 $6.3$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 나누어지는 수보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체를 둘 이상으로 똑같이 나누므로 한 몫이 전체보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6.3\\div3=2.1$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "더 작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "89fd657863bb601da82a0c387cac018a6375612589a4622babebb1b7f21f9087",
+      "questionRevision": "planning-e5e6-20261006-89fd657863bb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-3-xc3",
+      "bDecision": "revise",
+      "bPrompt": "$5.4\\div4$를 계산하려고 $5.4$ 대신 $540$을 $4$로 나누어 $135$를 얻었다. $540$은 $5.4$의 몇 배인지, 구하는 몫을 얻으려면 $135$를 어떻게 바꾸어야 하는지, $5.4\\div4$의 몫은 얼마인지 쓰시오.",
+      "bAnswer": "$540$은 $5.4$의 $100$배이다. 몫도 $100$배가 되었으므로 $135$의 $\\frac{1}{100}$배로 바꾸어 $1.35$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$540$은 $5.4$의 $100$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$135$의 $\\frac{1}{100}$배로 바꾼다",
+            "$135$를 $100$으로 나눈다",
+            "소수점을 두 칸 왼쪽으로 옮긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.35$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "나누어지는 수를 키운 만큼 몫을 되돌리는 방법을 쓴다.",
+      "bReason": "배 관계와 몫 조정을 구체적 식으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$5.4\\div4$를 구하려고 $540\\div4=135$를 계산했다. $540$은 $5.4$의 {$100$}배이므로, 원래 나눗셈의 몫은 {$1.35$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$",
+            "$100$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.35$"
+          ]
+        }
+      ],
+      "cReason": "실제 식으로 배 관계를 확인하게 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "601899ff0c8fc24ae4e72ce3e44145b9335c77b2f24bbe3d4a07c816134020e5",
+      "sourceIndex": 1858,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-3-xc3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "term": "소수점을 없애고 끝에 $0$을 붙여 자연수로 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 한 자리 수를 나눌 때 소수점을 없애고 끝에 $0$을 하나 붙여 자연수의 나눗셈으로 계산했으면, 그 몫의 {$\\frac{1}{100}$배}가 구하는 몫이다.",
+        "example": {
+          "prompt": "$5.4\\div4$를 $540\\div4$로 구하면 몫을 왜 $\\frac{1}{100}$배 하는가?",
+          "answer": "$5.4$가 $540$의 $\\frac{1}{100}$배라서"
+        },
+        "studentC": "소수 한 자리 수를 나눌 때 소수점을 없애고 끝에 $0$을 하나 붙여 자연수의 나눗셈으로 계산했으면, 그 몫의 □가 구하는 몫이다.",
+        "answers": [
+          "$\\frac{1}{100}$배"
+        ]
+      },
+      "sourceFingerprint": "bb05ff11beea68b8a1035655bf814491a6de8a913886f963db043b049b894ac5",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$100$",
+        "$1.35$"
+      ],
+      "cStudentAfter": "$5.4\\div4$를 구하려고 $540\\div4=135$를 계산했다. $540$은 $5.4$의 □배이므로, 원래 나눗셈의 몫은 □이다.",
+      "cMarkedSentence": "$5.4\\div4$를 구하려고 $540\\div4=135$를 계산했다. $540$은 $5.4$의 {$100$}배이므로, 원래 나눗셈의 몫은 {$1.35$}이다.",
+      "cStudentSentence": "$5.4\\div4$를 구하려고 $540\\div4=135$를 계산했다. $540$은 $5.4$의 □배이므로, 원래 나눗셈의 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": [
+            "$100$배"
+          ]
+        },
+        {
+          "key": "$1.35$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$5.4\\div4$를 계산하려고 $5.4$ 대신 $540$을 $4$로 나누어 $135$를 얻었다. $540$은 $5.4$의 몇 배인지, 구하는 몫을 얻으려면 $135$를 어떻게 바꾸어야 하는지, $5.4\\div4$의 몫은 얼마인지 쓰시오.",
+        "answer": "$540$은 $5.4$의 $100$배이다. 몫도 $100$배가 되었으므로 $135$의 $\\frac{1}{100}$배로 바꾸어 $1.35$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$540$은 $5.4$의 $100$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$135$의 $\\frac{1}{100}$배로 바꾼다",
+              "$135$를 $100$으로 나눈다",
+              "소수점을 두 칸 왼쪽으로 옮긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.35$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5.4\\div4$를 구하려고 $540\\div4=135$를 계산했다. $540$은 $5.4$의 {$100$}배이므로, 원래 나눗셈의 몫은 {$1.35$}이다.",
+        "acceptedAnswers": [
+          [
+            "$100$",
+            "$100$배"
+          ],
+          [
+            "$1.35$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "57ac6e8295cbb88e5bb74a82d9cf82f0e079bc4a85c05ca800cad9778bdc36c4",
+      "questionRevision": "planning-e5e6-20261006-57ac6e8295cb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-3-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "$0.1$과 $0.01$의 관계를 안다.",
+      "bReason": "단순 관계 사실이고 e6-1-3-3-c3이 이 관계를 적용해 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0.1$은 $0.01$이 {$10$}개 모인 수이다.",
+      "cReason": "짧고 정확한 자리값 관계를 한 빈칸으로 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "exclusionReason": "B: 단순 자리값 사실이며 e6-1-3-3-c3 B가 $0.1$을 $0.01$로 바꾸어 나누는 실제 방법에서 설명한다. 짧고 정확한 원래 C는 유지한다.",
+      "codexReview": "원문과 실제 제안 질문·답·기준을 직접 대조하여 빈칸 범위·사실 조건·형식 제외를 개별 교정함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$",
+            "열"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "ea16518deec0bc3021e284efc308bfcff7976b30122c533007b9478683e7b9fc",
+      "sourceIndex": 1863,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-3-xc9",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "term": "$0.1$과 $0.01$의 관계",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.1$ 하나는 {$0.01$이 $10$개}와 같다.",
+        "studentC": "$0.1$ 하나는 □와 같다.",
+        "answers": [
+          "$0.01$이 $10$개"
+        ]
+      },
+      "sourceFingerprint": "91e537df3abb54ae6d9c1317d97d03ae9146485e9bc52271de01d3e9ce53e5fa",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$10$"
+      ],
+      "cStudentAfter": "$0.1$은 $0.01$이 □개 모인 수이다.",
+      "cMarkedSentence": "$0.1$은 $0.01$이 {$10$}개 모인 수이다.",
+      "cStudentSentence": "$0.1$은 $0.01$이 □개 모인 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": [
+            "열"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.1$은 $0.01$이 {$10$}개 모인 수이다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "열"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B: 단순 자리값 사실이며 e6-1-3-3-c3 B가 $0.1$을 $0.01$로 바꾸어 나누는 실제 방법에서 설명한다. 짧고 정확한 원래 C는 유지한다."
+      },
+      "proposalFingerprint": "0f04b036d96164ce527a033b31065c875f4054eb13f31c3e9cbd8d2c1dd7bf9a",
+      "questionRevision": "planning-e5e6-20261006-0f04b036d961",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-3-xc11",
+      "bDecision": "revise",
+      "bPrompt": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생겼다. 소수 끝에 $0$을 하나 붙여 계속 나누면 어떻게 되는지 쓰고, $1.3\\div5$의 몫을 구하시오.",
+      "bAnswer": "$0$을 한 번만 내려도 나누어떨어진다. $1.30\\div5=0.26$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$을 한 번 내리면 나누어떨어진다",
+            "한 번만 내려도 나머지가 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.26$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "$2$나 $5$로 나누면 곧 나누어떨어진다는 성질을 예로 확인한다.",
+      "bReason": "일반 성질과 예의 정확한 몫을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누어도 {나누어떨어진다}.",
+      "cReason": "조건이 분명한 짧은 성질 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "8d7240c31c5c765e45a4b1909ee269b83ae1d6954a316852b3eae40a27eaed31",
+      "sourceIndex": 1864,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-3-xc11",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "term": "$2$나 $5$로 나눌 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수 한 자리 수를 $2$나 $5$로 나누면 $0$을 한 번만 내려도 {나누어떨어진다}.",
+        "studentC": "소수 한 자리 수를 $2$나 $5$로 나누면 $0$을 한 번만 내려도 □.",
+        "answers": [
+          "나누어떨어진다"
+        ]
+      },
+      "sourceFingerprint": "63182ecc2ecbd4a0044402c717b0c5200c40df89a504ab9abe3493f1254984f7",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "나누어떨어진다"
+      ],
+      "cStudentAfter": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누어도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어떨어진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누어도 {나누어떨어진다}.",
+      "cStudentSentence": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누어도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어떨어진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생겼다. 소수 끝에 $0$을 하나 붙여 계속 나누면 어떻게 되는지 쓰고, $1.3\\div5$의 몫을 구하시오.",
+        "answer": "$0$을 한 번만 내려도 나누어떨어진다. $1.30\\div5=0.26$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$을 한 번 내리면 나누어떨어진다",
+              "한 번만 내려도 나머지가 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.26$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누어도 {나누어떨어진다}.",
+        "acceptedAnswers": [
+          [
+            "나누어떨어진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "da5a2e6b9d6de29e1d39b21610ac57cfaa3d4316d91c6316802ca3a8bd80fe7b",
+      "questionRevision": "planning-e5e6-20261006-da5a2e6b9d6d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-4-xc13",
+      "bDecision": "revise",
+      "bPrompt": "나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫의 일의 자리와 소수 첫째 자리는 각각 어떤 수입니까? $0.24\\div6$의 몫을 구하고, 몫을 $0.01$의 개수로 설명하시오.",
+      "bAnswer": "일의 자리와 소수 첫째 자리가 모두 $0$이다. $0.24$는 $0.01$이 $24$개이고 $6$으로 나누면 $4$개이므로 몫은 $0.04$이다.",
+      "bGoal": "몫이 $0.0$으로 시작하는 경우를 $0.01$의 개수로 설명한다.",
+      "bReason": "$0.4$로 착각하기 쉬운 $0.04$를 단위 개수로 확인하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일의 자리와 소수 첫째 자리가 모두 $0$이다",
+            "몫이 $0.0$으로 시작한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.01$이$24$개를$6$로나누면한몫은$0.01$네개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은$0.04$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$0.24\\div6$처럼 나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫의 일의 자리와 소수 첫째 자리는 모두 {$0$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 두 자리가 모두 $0$이라는 짧은 값을 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "336e3c26ee68b3b9dc1cd46e10c5bc8cf6412ae42ff0bc9e11be44d5e0cb0ad7",
+      "sourceIndex": 1872,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-4-xc13",
+        "section": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "term": "일의 자리와 첫째 자리가 모두 $0$인 몫",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫은 {$0.0$으로 시작}한다.",
+        "example": {
+          "prompt": "$0.24\\div6$의 몫이 $0.4$가 아니라 $0.04$인 까닭은?",
+          "answer": "한 몫이 $0.01$ $4$개라서"
+        },
+        "studentC": "나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫은 □한다.",
+        "answers": [
+          "$0.0$으로 시작"
+        ]
+      },
+      "sourceFingerprint": "be60a1b1eb66a79b8bfa43f694ca0738771669bff17839ceef9a8ad62077a163",
+      "draftEvidence": "evidence/section-067-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "$0.24\\div6$처럼 나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫의 일의 자리와 소수 첫째 자리는 모두 □이다.",
+      "cMarkedSentence": "$0.24\\div6$처럼 나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫의 일의 자리와 소수 첫째 자리는 모두 {$0$}이다.",
+      "cStudentSentence": "$0.24\\div6$처럼 나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫의 일의 자리와 소수 첫째 자리는 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫의 일의 자리와 소수 첫째 자리는 각각 어떤 수입니까? $0.24\\div6$의 몫을 구하고, 몫을 $0.01$의 개수로 설명하시오.",
+        "answer": "일의 자리와 소수 첫째 자리가 모두 $0$이다. $0.24$는 $0.01$이 $24$개이고 $6$으로 나누면 $4$개이므로 몫은 $0.04$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리와 소수 첫째 자리가 모두 $0$이다",
+              "몫이 $0.0$으로 시작한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.01$이$24$개를$6$로나누면한몫은$0.01$네개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은$0.04$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.24\\div6$처럼 나누어지는 수가 나누는 수보다 작고 소수 첫째 자리에서도 나눌 양이 모자라면 몫의 일의 자리와 소수 첫째 자리는 모두 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fbe5c195cb41c775f34822f90e0da7d15639624aa7b2b2a14f70080b28a0fe88",
+      "questionRevision": "planning-e5e6-20261006-fbe5c195cb41",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-4-xc14",
+      "bDecision": "revise",
+      "bPrompt": "세로셈으로 $4.08\\div4$의 몫을 $0.12$라고 구했습니다. 어림으로 이 몫이 알맞은지 확인하는 방법을 설명하시오. 어림으로 알 수 있는 것과 알 수 없는 것도 말하시오.",
+      "bAnswer": "$4.08$을 $4$로 어림하면 $4\\div4=1$이므로 몫은 $1$ 가까이여야 한다. $0.12$는 너무 작아 잘못이다. 어림은 대략적인 크기만 확인하며 정확한 몫은 확정할 수 없다. 정확한 몫은 $1.02$이다.",
+      "bGoal": "어림으로 몫의 대략적인 크기를 확인하고 그 한계를 안다.",
+      "bReason": "틀린 몫을 어림으로 걸러 내는 상황으로 어림의 쓸모와 한계를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4.08$을 $4$ 정도로 어림해 몫이 약 $1$임을 안다",
+            "어림값과 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.12$는 어림한 크기와 달라 틀렸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어림만으로 정확한 몫은 확정할 수 없다",
+            "어림은 대략적인 크기만 알려 준다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$4.08\\div4$의 몫을 $1.02$라고 했을 때 $4.08$을 $4$로 어림하면 몫은 약 {$1$}이므로 크기가 알맞다. 하지만 이 어림값만으로는 $1.02$와 $1.2$ 중 어느 것이 정확한 몫인지 알 수 {없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ],
+      "cReason": "어림값과 어림의 한계를 구체적인 수로 보여 준다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "4f390f836c96bc8ff539cfc998c8e1ca37671c952badaee08fe32612a8ecc56d",
+      "sourceIndex": 1873,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-4-xc14",
+        "section": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "term": "어림하여 몫 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "어림값과 비교하여 {몫의 대략적인 크기}가 알맞은지 살핀다. 어림만으로 정확한 몫이 맞는지 {확정할 수는 없다}.",
+        "studentC": "어림값과 비교하여 □가 알맞은지 살핀다. 어림만으로 정확한 몫이 맞는지 □.",
+        "answers": [
+          "몫의 대략적인 크기",
+          "확정할 수는 없다"
+        ]
+      },
+      "sourceFingerprint": "f2b07ae70d57b7d25ba35c63b735544b40f807e233bf3a912a12dc993425f930",
+      "draftEvidence": "evidence/section-067-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$",
+        "없다"
+      ],
+      "cStudentAfter": "$4.08\\div4$의 몫을 $1.02$라고 했을 때 $4.08$을 $4$로 어림하면 몫은 약 □이므로 크기가 알맞다. 하지만 이 어림값만으로는 $1.02$와 $1.2$ 중 어느 것이 정확한 몫인지 알 수 □.",
+      "cMarkedSentence": "$4.08\\div4$의 몫을 $1.02$라고 했을 때 $4.08$을 $4$로 어림하면 몫은 약 {$1$}이므로 크기가 알맞다. 하지만 이 어림값만으로는 $1.02$와 $1.2$ 중 어느 것이 정확한 몫인지 알 수 {없다}.",
+      "cStudentSentence": "$4.08\\div4$의 몫을 $1.02$라고 했을 때 $4.08$을 $4$로 어림하면 몫은 약 □이므로 크기가 알맞다. 하지만 이 어림값만으로는 $1.02$와 $1.2$ 중 어느 것이 정확한 몫인지 알 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세로셈으로 $4.08\\div4$의 몫을 $0.12$라고 구했습니다. 어림으로 이 몫이 알맞은지 확인하는 방법을 설명하시오. 어림으로 알 수 있는 것과 알 수 없는 것도 말하시오.",
+        "answer": "$4.08$을 $4$로 어림하면 $4\\div4=1$이므로 몫은 $1$ 가까이여야 한다. $0.12$는 너무 작아 잘못이다. 어림은 대략적인 크기만 확인하며 정확한 몫은 확정할 수 없다. 정확한 몫은 $1.02$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4.08$을 $4$ 정도로 어림해 몫이 약 $1$임을 안다",
+              "어림값과 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.12$는 어림한 크기와 달라 틀렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "어림만으로 정확한 몫은 확정할 수 없다",
+              "어림은 대략적인 크기만 알려 준다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4.08\\div4$의 몫을 $1.02$라고 했을 때 $4.08$을 $4$로 어림하면 몫은 약 {$1$}이므로 크기가 알맞다. 하지만 이 어림값만으로는 $1.02$와 $1.2$ 중 어느 것이 정확한 몫인지 알 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8e464d8fda4132c5522c299b5a49427e3ecdfe0f0895c78504da0c683c97d153",
+      "questionRevision": "planning-e5e6-20261006-8e464d8fda41",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-4-xc16",
+      "bDecision": "revise",
+      "bPrompt": "$1.05$에서 가운데 $0$을 지우면 $1.5$가 되고, $1.50$에서 끝의 $0$을 지워도 $1.5$가 됩니다. 두 경우에 지우기 전후의 크기가 같은지 다른지 각각 말하고, 까닭을 설명하시오.",
+      "bAnswer": "$1.05$는 $0$을 지우면 $1.5$가 되어 크기가 달라진다. $5$가 $0.05$에서 $0.5$로 바뀌기 때문이다. $1.50$은 끝의 $0$을 지워도 $1.5$로 같다. 끝의 $0$은 그 자리에 단위가 없음을 나타낼 뿐 다른 숫자의 자리를 바꾸지 않기 때문이다.",
+      "bGoal": "가운데 $0$은 자리를 지켜 주고 끝의 $0$은 지워도 값이 같음을 구별한다.",
+      "bReason": "두 $0$의 차이를 숫자의 값이 변하는지로 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가운데 $0$을 지우면 크기가 달라진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "끝의 $0$을 지우면 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가운데$0$을지우면뒤숫자$5$가나타내는자리가바뀐다",
+            "가운데$0$은뒤숫자의자리를지킨다"
+          ]
+        },
+        {
+          "anyOf": [
+            "끝의$0$을지워도다른숫자의자리가바뀌지않는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 {지워도} 크기가 같다.",
+      "cReason": "$1.05$와 $1.50$의 비교가 분명하고 지워도 같은 짧은 답이라 원문을 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "092e6c3035b0d5e4da6295079d1fa307a220167c61566bb831a915d9135b5547",
+      "sourceIndex": 1874,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-4-xc16",
+        "section": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "term": "가운데 $0$과 끝의 $0$",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 {지워도} 크기가 같다.",
+        "studentC": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 □ 크기가 같다.",
+        "answers": [
+          "지워도"
+        ]
+      },
+      "sourceFingerprint": "3c922d524809642134a618859db9985509292f1f6cc80a1b664f3315962eec2a",
+      "draftEvidence": "evidence/section-067-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 {지워도} 크기가 같다.",
+      "cFrozenStudentSentence": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 □ 크기가 같다.",
+      "cProposedAnswers": [
+        "지워도"
+      ],
+      "cStudentAfter": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 □ 크기가 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "지워도"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 {지워도} 크기가 같다.",
+      "cStudentSentence": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 □ 크기가 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "지워도",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.05$에서 가운데 $0$을 지우면 $1.5$가 되고, $1.50$에서 끝의 $0$을 지워도 $1.5$가 됩니다. 두 경우에 지우기 전후의 크기가 같은지 다른지 각각 말하고, 까닭을 설명하시오.",
+        "answer": "$1.05$는 $0$을 지우면 $1.5$가 되어 크기가 달라진다. $5$가 $0.05$에서 $0.5$로 바뀌기 때문이다. $1.50$은 끝의 $0$을 지워도 $1.5$로 같다. 끝의 $0$은 그 자리에 단위가 없음을 나타낼 뿐 다른 숫자의 자리를 바꾸지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가운데 $0$을 지우면 크기가 달라진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝의 $0$을 지우면 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가운데$0$을지우면뒤숫자$5$가나타내는자리가바뀐다",
+              "가운데$0$은뒤숫자의자리를지킨다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝의$0$을지워도다른숫자의자리가바뀌지않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.05$의 가운데 $0$은 지울 수 없지만, $1.50$의 끝 $0$은 {지워도} 크기가 같다.",
+        "acceptedAnswers": [
+          [
+            "지워도"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a28fa966ce74ec18b8fd4e3871eb4c2c5fe08b841f0d126586f47cf321d7bca5",
+      "questionRevision": "planning-e5e6-20261006-a28fa966ce74",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-4-xc19",
+      "bDecision": "revise",
+      "bPrompt": "세로셈에서 몫의 한 자리를 구한 뒤 남은 수에 다음 숫자를 붙인 수가 나누는 수와 비교해 어떨 때 그 자리 몫에 $0$을 씁니까? $4.08\\div4$에서 소수 첫째 자리 몫이 $0$인 까닭도 설명하시오.",
+      "bAnswer": "붙인 수가 나누는 수보다 작을 때 $0$을 쓴다. $4\\div4=1$ 뒤 나머지가 $0$이고 다음 숫자 $0$을 붙인 수 $0$이 $4$보다 작아 $0.1$을 줄 수 없다. 몫은 $1.02$이다.",
+      "bGoal": "붙인 수와 나누는 수의 크기 비교로 몫의 $0$을 판단한다.",
+      "bReason": "조건을 비교로 말하고 $4.08\\div4$에 적용하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "붙인 수가 나누는 수보다 작을 때이다",
+            "나눌 수 없을 만큼 모자랄 때이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$이 $4$보다 작아 소수 첫째 자리 몫이 $0$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "소수를 자연수로 나누는 세로셈에서 남은 수에 다음 숫자를 붙인 수가 나누는 수보다 {작으면} 다음 자리 몫은 $0$이고, {크거나 같으면} 다음 자리 몫은 $1$ 이상이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작으면",
+            "적으면"
+          ]
+        },
+        {
+          "anyOf": [
+            "크거나 같으면",
+            "이상이면"
+          ]
+        }
+      ],
+      "cReason": "작으면/크거나 같으면 비교 형태로 바꿔 조건을 분명히 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "9376c3a85057c39cf5d89cfe99d918de0d13893de078a9d8fc8793f312203533",
+      "sourceIndex": 1876,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-4-xc19",
+        "section": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "term": "몫에 $0$이 생기는 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "몫을 한 자리 구한 뒤 남은 수에 다음 숫자를 붙여도 {나누는 수보다 작으면} 그 자리 몫은 $0$이다.",
+        "studentC": "몫을 한 자리 구한 뒤 남은 수에 다음 숫자를 붙여도 □ 그 자리 몫은 $0$이다.",
+        "answers": [
+          "나누는 수보다 작으면"
+        ]
+      },
+      "sourceFingerprint": "2645ff9f8ca598b5d8289509b3ca286747fb1fa3afa3d114ba14ab681ac4d7c9",
+      "draftEvidence": "evidence/section-067-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작으면",
+        "크거나 같으면"
+      ],
+      "cStudentAfter": "소수를 자연수로 나누는 세로셈에서 남은 수에 다음 숫자를 붙인 수가 나누는 수보다 □ 다음 자리 몫은 $0$이고, □ 다음 자리 몫은 $1$ 이상이다.",
+      "cMarkedSentence": "소수를 자연수로 나누는 세로셈에서 남은 수에 다음 숫자를 붙인 수가 나누는 수보다 {작으면} 다음 자리 몫은 $0$이고, {크거나 같으면} 다음 자리 몫은 $1$ 이상이다.",
+      "cStudentSentence": "소수를 자연수로 나누는 세로셈에서 남은 수에 다음 숫자를 붙인 수가 나누는 수보다 □ 다음 자리 몫은 $0$이고, □ 다음 자리 몫은 $1$ 이상이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작으면",
+          "equivalents": [
+            "적으면"
+          ]
+        },
+        {
+          "key": "크거나 같으면",
+          "equivalents": [
+            "이상이면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세로셈에서 몫의 한 자리를 구한 뒤 남은 수에 다음 숫자를 붙인 수가 나누는 수와 비교해 어떨 때 그 자리 몫에 $0$을 씁니까? $4.08\\div4$에서 소수 첫째 자리 몫이 $0$인 까닭도 설명하시오.",
+        "answer": "붙인 수가 나누는 수보다 작을 때 $0$을 쓴다. $4\\div4=1$ 뒤 나머지가 $0$이고 다음 숫자 $0$을 붙인 수 $0$이 $4$보다 작아 $0.1$을 줄 수 없다. 몫은 $1.02$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "붙인 수가 나누는 수보다 작을 때이다",
+              "나눌 수 없을 만큼 모자랄 때이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$이 $4$보다 작아 소수 첫째 자리 몫이 $0$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수를 자연수로 나누는 세로셈에서 남은 수에 다음 숫자를 붙인 수가 나누는 수보다 {작으면} 다음 자리 몫은 $0$이고, {크거나 같으면} 다음 자리 몫은 $1$ 이상이다.",
+        "acceptedAnswers": [
+          [
+            "작으면",
+            "적으면"
+          ],
+          [
+            "크거나 같으면",
+            "이상이면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "969bcefc529bdeaa482aaecbdc08258f48ba3cad5d0d3c03acadf0b65adc714f",
+      "questionRevision": "planning-e5e6-20261006-969bcefc529b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-xc6",
+      "bDecision": "revise",
+      "bPrompt": "$126\\div5$를 $125\\div5=25$로 어림했다. 계산한 몫이 $2.52$이면 어떤 점이 잘못되었다고 볼 수 있는가? 또 계산한 몫이 $25.8$처럼 어림값과 비슷할 때 정확하다고 말할 수 없는 까닭은 무엇인가?",
+      "bAnswer": "$2.52$는 $25$와 크게 달라 소수점 위치가 잘못되었다고 볼 수 있다. $25.8$은 $25$와 비슷해도 어림은 대략적인 값이라 숫자 계산이 틀렸는지는 알 수 없다. 실제 몫은 $25.2$이다.",
+      "bGoal": "어림으로 소수점 위치 오류는 찾지만 계산이 옳음은 보장하지 못함을 이해한다.",
+      "bReason": "원문의 두 가지 한계를 한 예로 나누어 판단하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어림값과 크게 달라 소수점 위치가 잘못되었다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비슷해도 숫자 계산이 틀렸을 수 있다",
+            "어림은 대략적인 값이라 정확한 계산을 보장하지 못한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$126\\div5$의 어림값은 $25$이므로 몫을 $2.52$라고 쓰면 소수점 위치가 {잘못}되었다. 몫을 $25.8$이라고 쓰면 어림값과 비슷하지만, 비슷하다는 이유만으로 정확하다고 할 수 {없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "잘못",
+            "틀리게"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ],
+      "cReason": "원문의 모호한 두 빈칸을 숫자 예에 맞춘 판단으로 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "65f9ad7442d76dcc6ccbab47f0ef693b13e3cb417ce10f74699a89aa6ec9f784",
+      "sourceIndex": 1881,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-5-xc6",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "term": "어림으로 소수점 위치 판단하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "어림값과 크기를 비교하면 {소수점 위치의 잘못}을 살필 수 있지만, 비슷하다고 해서 {계산 전체가 옳다는 것}까지 보장되지는 않는다.",
+        "studentC": "어림값과 크기를 비교하면 □을 살필 수 있지만, 비슷하다고 해서 □까지 보장되지는 않는다.",
+        "answers": [
+          "소수점 위치의 잘못",
+          "계산 전체가 옳다는 것"
+        ]
+      },
+      "sourceFingerprint": "5cb8567b6a18421b2d93c5e52c1f0d7ab9a46762cb472f7c8dceecceff5e5c83",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "잘못",
+        "없다"
+      ],
+      "cStudentAfter": "$126\\div5$의 어림값은 $25$이므로 몫을 $2.52$라고 쓰면 소수점 위치가 □되었다. 몫을 $25.8$이라고 쓰면 어림값과 비슷하지만, 비슷하다는 이유만으로 정확하다고 할 수 □.",
+      "cMarkedSentence": "$126\\div5$의 어림값은 $25$이므로 몫을 $2.52$라고 쓰면 소수점 위치가 {잘못}되었다. 몫을 $25.8$이라고 쓰면 어림값과 비슷하지만, 비슷하다는 이유만으로 정확하다고 할 수 {없다}.",
+      "cStudentSentence": "$126\\div5$의 어림값은 $25$이므로 몫을 $2.52$라고 쓰면 소수점 위치가 □되었다. 몫을 $25.8$이라고 쓰면 어림값과 비슷하지만, 비슷하다는 이유만으로 정확하다고 할 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "잘못",
+          "equivalents": [
+            "틀리게"
+          ]
+        },
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$126\\div5$를 $125\\div5=25$로 어림했다. 계산한 몫이 $2.52$이면 어떤 점이 잘못되었다고 볼 수 있는가? 또 계산한 몫이 $25.8$처럼 어림값과 비슷할 때 정확하다고 말할 수 없는 까닭은 무엇인가?",
+        "answer": "$2.52$는 $25$와 크게 달라 소수점 위치가 잘못되었다고 볼 수 있다. $25.8$은 $25$와 비슷해도 어림은 대략적인 값이라 숫자 계산이 틀렸는지는 알 수 없다. 실제 몫은 $25.2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어림값과 크게 달라 소수점 위치가 잘못되었다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비슷해도 숫자 계산이 틀렸을 수 있다",
+              "어림은 대략적인 값이라 정확한 계산을 보장하지 못한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$126\\div5$의 어림값은 $25$이므로 몫을 $2.52$라고 쓰면 소수점 위치가 {잘못}되었다. 몫을 $25.8$이라고 쓰면 어림값과 비슷하지만, 비슷하다는 이유만으로 정확하다고 할 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "잘못",
+            "틀리게"
+          ],
+          [
+            "없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "88ee21355a5a73f9fd9e77723e86cb813871d380cc594be640a311ee7000d984",
+      "questionRevision": "planning-e5e6-20261006-88ee21355a5a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-xc11",
+      "bDecision": "revise",
+      "bPrompt": "계산한 몫이 어림한 몫과 크게 다르면 무엇을 다시 확인해야 하는가? 소수점 위치만 보면 부족할 수 있는 까닭도 쓰시오.",
+      "bAnswer": "소수점 위치와 계산 과정을 다시 확인한다. 소수점 위치가 맞아도 숫자 계산이 틀렸을 수 있기 때문이다.",
+      "bGoal": "어림값과 크게 다를 때 소수점과 계산 과정을 함께 점검한다.",
+      "bReason": "원문 예의 '소수점만 고치면 되는가' 식의 유도 질문을 일반 방법 질문으로 바꿨다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수점 위치를 다시 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "계산 과정을 다시 확인한다",
+            "숫자 계산도 다시 살핀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "소수점위치가맞아도숫자계산이틀렸을수있다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$126\\div5$의 어림값이 $25$인데 계산한 몫이 $252$로 크게 다르면 몫의 {소수점 위치}를 다시 확인해야 하며, 바르게 쓴 몫은 {$25.2$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "소수점 위치",
+            "소수점의 위치",
+            "소수점"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25.2$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸 대신 실제 어림값과 몫을 비교하는 계산 문장으로 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "66ea4086502d40609bb319d8cc6c9bc9b8cfd400d5865f799cd525d22d0a22db",
+      "sourceIndex": 1883,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-5-xc11",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "term": "어림으로 계산 결과 살피기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "계산한 몫이 어림한 몫과 크게 다르면 {소수점 위치와 계산 과정}을 다시 확인한다.",
+        "example": {
+          "prompt": "어림값과 열 배쯤 다르면 소수점만 고치면 되는가?",
+          "answer": "아니다 — 숫자 계산도 살핀다"
+        },
+        "studentC": "계산한 몫이 어림한 몫과 크게 다르면 □을 다시 확인한다.",
+        "answers": [
+          "소수점 위치와 계산 과정"
+        ]
+      },
+      "sourceFingerprint": "dc617bd0127364fea40efe57dc099dd2f951d4945d05ea3d98ce4fed2cadac16",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "소수점 위치",
+        "$25.2$"
+      ],
+      "cStudentAfter": "$126\\div5$의 어림값이 $25$인데 계산한 몫이 $252$로 크게 다르면 몫의 □를 다시 확인해야 하며, 바르게 쓴 몫은 □이다.",
+      "cMarkedSentence": "$126\\div5$의 어림값이 $25$인데 계산한 몫이 $252$로 크게 다르면 몫의 {소수점 위치}를 다시 확인해야 하며, 바르게 쓴 몫은 {$25.2$}이다.",
+      "cStudentSentence": "$126\\div5$의 어림값이 $25$인데 계산한 몫이 $252$로 크게 다르면 몫의 □를 다시 확인해야 하며, 바르게 쓴 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "소수점 위치",
+          "equivalents": [
+            "소수점의 위치",
+            "소수점"
+          ]
+        },
+        {
+          "key": "$25.2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "계산한 몫이 어림한 몫과 크게 다르면 무엇을 다시 확인해야 하는가? 소수점 위치만 보면 부족할 수 있는 까닭도 쓰시오.",
+        "answer": "소수점 위치와 계산 과정을 다시 확인한다. 소수점 위치가 맞아도 숫자 계산이 틀렸을 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수점 위치를 다시 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "계산 과정을 다시 확인한다",
+              "숫자 계산도 다시 살핀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수점위치가맞아도숫자계산이틀렸을수있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$126\\div5$의 어림값이 $25$인데 계산한 몫이 $252$로 크게 다르면 몫의 {소수점 위치}를 다시 확인해야 하며, 바르게 쓴 몫은 {$25.2$}이다.",
+        "acceptedAnswers": [
+          [
+            "소수점 위치",
+            "소수점의 위치",
+            "소수점"
+          ],
+          [
+            "$25.2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "313ea247b8025cd1f861826aec5d858ac04a774ea92feb30e70cfa8529d2b1c1",
+      "questionRevision": "planning-e5e6-20261006-313ea247b802",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-xc12",
+      "bDecision": "revise",
+      "bPrompt": "분수 $\\frac{3}{4}$을 소수로 바꾸는 방법을 나눗셈으로 설명하고, 소수점 아래 몇 자리에서 끝나는 소수로 나타낼 수 있는 경우는 언제인지 쓰시오. 몫도 구하시오.",
+      "bAnswer": "분자를 분모로 나눈 $3\\div4$를 소수 아래 자리까지 계산한다. 나머지가 $0$이 되면 그 자리에서 끝나는 소수로 나타낼 수 있다. $\\frac{3}{4}=0.75$이다.",
+      "bGoal": "분수를 나눗셈으로 소수로 바꾸고 나머지 $0$ 조건을 이해한다.",
+      "bReason": "'나타낼 수 있다'만 묻는 대신 분수→소수 절차와 조건을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자를 분모로 나눈다",
+            "$3\\div4$를 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지가$0$이되면그자리에서끝나는소수로나타낼수있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $0.75$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{4}$은 $3\\div4$이다. $3.00\\div4$를 계산하면 나머지가 {$0$}이 되므로 $\\frac{3}{4}$은 소수 {$0.75$}로 정확히 나타낼 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$",
+            "영"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.75$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '나타낼 수'는 짐작하기 쉬워서 나머지와 몫 값을 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "49e13b4b6a966414c4f53787c902e73da25f9bdec4ad5e961070b6d6c26eebbc",
+      "sourceIndex": 1884,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-5-xc12",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "term": "분수를 소수로 바꾸는 방법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분수는 분자를 분모로 나눈 몫이다. 분자를 분모로 나누어 소수의 어떤 자리에서 나머지가 $0$이 되면 그 분수는 소수로 정확히 {나타낼 수} 있다.",
+        "studentC": "분수는 분자를 분모로 나눈 몫이다. 분자를 분모로 나누어 소수의 어떤 자리에서 나머지가 $0$이 되면 그 분수는 소수로 정확히 □ 있다.",
+        "answers": [
+          "나타낼 수"
+        ]
+      },
+      "sourceFingerprint": "863be3e20a609580d6c163508cbd7a1e1915d062bd9cd2c5c702b7af4aaf8b74",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0$",
+        "$0.75$"
+      ],
+      "cStudentAfter": "$\\frac{3}{4}$은 $3\\div4$이다. $3.00\\div4$를 계산하면 나머지가 □이 되므로 $\\frac{3}{4}$은 소수 □로 정확히 나타낼 수 있다.",
+      "cMarkedSentence": "$\\frac{3}{4}$은 $3\\div4$이다. $3.00\\div4$를 계산하면 나머지가 {$0$}이 되므로 $\\frac{3}{4}$은 소수 {$0.75$}로 정확히 나타낼 수 있다.",
+      "cStudentSentence": "$\\frac{3}{4}$은 $3\\div4$이다. $3.00\\div4$를 계산하면 나머지가 □이 되므로 $\\frac{3}{4}$은 소수 □로 정확히 나타낼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": [
+            "영"
+          ]
+        },
+        {
+          "key": "$0.75$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수 $\\frac{3}{4}$을 소수로 바꾸는 방법을 나눗셈으로 설명하고, 소수점 아래 몇 자리에서 끝나는 소수로 나타낼 수 있는 경우는 언제인지 쓰시오. 몫도 구하시오.",
+        "answer": "분자를 분모로 나눈 $3\\div4$를 소수 아래 자리까지 계산한다. 나머지가 $0$이 되면 그 자리에서 끝나는 소수로 나타낼 수 있다. $\\frac{3}{4}=0.75$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자를 분모로 나눈다",
+              "$3\\div4$를 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지가$0$이되면그자리에서끝나는소수로나타낼수있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $0.75$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{4}$은 $3\\div4$이다. $3.00\\div4$를 계산하면 나머지가 {$0$}이 되므로 $\\frac{3}{4}$은 소수 {$0.75$}로 정확히 나타낼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$0$",
+            "영"
+          ],
+          [
+            "$0.75$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "eb0f4b4375224cd33bee296f269b2d2a121a974c926707f847e6ca188624e774",
+      "questionRevision": "planning-e5e6-20261006-eb0f4b437522",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-xc15",
+      "bDecision": "revise",
+      "bPrompt": "$59\\div6$의 몫을 어림하려고 한다. $59$를 가장 가까운 $6$의 배수로 바꾸어 어림한 몫을 쓰고, 이 수로 바꾸면 계산하기 쉬운 까닭을 설명하시오.",
+      "bAnswer": "$59$와 가까운 수 중 나누는 수 $6$의 배수인 $60$으로 바꾼다. $60\\div6=10$이므로 몫은 약 $10$이다.",
+      "bGoal": "나누는 수의 배수에 가까운 수를 골라 어림한다.",
+      "bReason": "원문은 무엇을 바꾸는지 모호해서 나누어지는 수를 나누는 수의 배수로 바꾼다고 분명히 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$59$와가장가까운$6$의배수$60$으로바꾼다",
+            "$60$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$의배수여서나누어떨어진다",
+            "$60 \\div 6 = 10$으로쉽게계산된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어림한몫은$10$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "coreAfter": "어림할 때는 나누어지는 수를 가까운 수 중에서 {나누는 수의 배수}로 바꾸면 나누어떨어져 계산하기 쉽다.",
+      "coreReason": "원문은 '나누는 수로 바꾼다'로 읽혀 무엇을 바꾸는지 불명확하다.",
+      "cDecision": "revise",
+      "cAfter": "$59\\div6$을 어림할 때는 $59$를 $6$의 {배수}인 $60$으로 바꾸어 $60\\div6=$ {$10$}쯤으로 생각한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수",
+            "$6$의 배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cReason": "'나누어떨어지기 쉬운' 대신 배수라는 학생이 아는 말로 풀어 썼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "나누어떨어지기 쉬운이라는 애매한 정도 표현을 정확한 배수 조건으로 고친다. 바꾸는 대상은 나누어지는 수이고 가까운 편한 수로 어림한다는 일반 의미를 보존한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "f84fc07b5d36458c826573ce0cec9b27282c1428cd85a9bf9f50d036b35ac488",
+      "sourceIndex": 1886,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-5-xc15",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "term": "어림에 쓰는 수 고르기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "나누는 수로 {나누어떨어지기 쉬운} 가까운 수로 바꾸어 어림한다.",
+        "studentC": "나누는 수로 □ 가까운 수로 바꾸어 어림한다.",
+        "answers": [
+          "나누어떨어지기 쉬운"
+        ]
+      },
+      "sourceFingerprint": "9275cc9ec6ac2930365aa17b86b329380dcb3d8789aeb70adac1122778f7645a",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "배수",
+        "$10$"
+      ],
+      "cStudentAfter": "$59\\div6$을 어림할 때는 $59$를 $6$의 □인 $60$으로 바꾸어 $60\\div6=$ □쯤으로 생각한다.",
+      "cMarkedSentence": "$59\\div6$을 어림할 때는 $59$를 $6$의 {배수}인 $60$으로 바꾸어 $60\\div6=$ {$10$}쯤으로 생각한다.",
+      "cStudentSentence": "$59\\div6$을 어림할 때는 $59$를 $6$의 □인 $60$으로 바꾸어 $60\\div6=$ □쯤으로 생각한다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": [
+            "$6$의 배수"
+          ]
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$59\\div6$의 몫을 어림하려고 한다. $59$를 가장 가까운 $6$의 배수로 바꾸어 어림한 몫을 쓰고, 이 수로 바꾸면 계산하기 쉬운 까닭을 설명하시오.",
+        "answer": "$59$와 가까운 수 중 나누는 수 $6$의 배수인 $60$으로 바꾼다. $60\\div6=10$이므로 몫은 약 $10$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$59$와가장가까운$6$의배수$60$으로바꾼다",
+              "$60$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$의배수여서나누어떨어진다",
+              "$60 \\div 6 = 10$으로쉽게계산된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "어림한몫은$10$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$59\\div6$을 어림할 때는 $59$를 $6$의 {배수}인 $60$으로 바꾸어 $60\\div6=$ {$10$}쯤으로 생각한다.",
+        "acceptedAnswers": [
+          [
+            "배수",
+            "$6$의 배수"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6feb8196c1934c9318cc385a7b1767fbb6c50348f6f33344ccb148e14e8625f5",
+      "questionRevision": "planning-e5e6-20261006-6feb8196c193",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-xc16",
+      "bDecision": "revise",
+      "bPrompt": "$17\\div4$의 몫은 어떤 이웃한 두 자연수 사이에 있는가? $4$의 배수를 이용해 설명하시오.",
+      "bAnswer": "$4\\times4=16$, $4\\times5=20$이고 $17$은 $16$과 $20$ 사이에 있다. 그러므로 몫은 $4$와 $5$ 사이이다.",
+      "bGoal": "나누는 수의 이웃한 배수로 몫이 놓이는 자연수 범위를 찾는다.",
+      "bReason": "단순 계산이 아니라 배수 사이의 위치로 몫의 범위를 설명하는 질문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$17$은 $16$과 $20$ 사이이다",
+            "$4$의 이웃한 배수 $16$과 $20$ 사이에 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $4$와 $5$ 사이이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$17\\div4$에서 $17$은 $4$의 이웃한 배수 $16$과 {$20$} 사이에 있으므로 몫은 $4$와 {$5$} 사이이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cReason": "'이웃한 두 자연수 사이'를 직접 외우지 않고 실제 배수 사이의 값으로 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "b19ca4cc8556aa06a1e04a2d50dde870d2cbd782d2b0358d2e8794b46dabd346",
+      "sourceIndex": 1887,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-5-xc16",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "term": "몫이 놓이는 두 자연수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누어지는 수가 나누는 수의 이웃한 두 배수 사이에 있으면 몫은 {이웃한 두 자연수 사이}의 소수이다.",
+        "example": {
+          "prompt": "$17\\div4$의 몫이 $4$와 $5$ 사이인 까닭은?",
+          "answer": "$17$이 $16$과 $20$ 사이라서"
+        },
+        "studentC": "나누어지는 수가 나누는 수의 이웃한 두 배수 사이에 있으면 몫은 □의 소수이다.",
+        "answers": [
+          "이웃한 두 자연수 사이"
+        ]
+      },
+      "sourceFingerprint": "00602467679c79f3e02c7bd87bbeb754b697480d50a6a7b10af9c82bca9c2952",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$20$",
+        "$5$"
+      ],
+      "cStudentAfter": "$17\\div4$에서 $17$은 $4$의 이웃한 배수 $16$과 □ 사이에 있으므로 몫은 $4$와 □ 사이이다.",
+      "cMarkedSentence": "$17\\div4$에서 $17$은 $4$의 이웃한 배수 $16$과 {$20$} 사이에 있으므로 몫은 $4$와 {$5$} 사이이다.",
+      "cStudentSentence": "$17\\div4$에서 $17$은 $4$의 이웃한 배수 $16$과 □ 사이에 있으므로 몫은 $4$와 □ 사이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$17\\div4$의 몫은 어떤 이웃한 두 자연수 사이에 있는가? $4$의 배수를 이용해 설명하시오.",
+        "answer": "$4\\times4=16$, $4\\times5=20$이고 $17$은 $16$과 $20$ 사이에 있다. 그러므로 몫은 $4$와 $5$ 사이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$17$은 $16$과 $20$ 사이이다",
+              "$4$의 이웃한 배수 $16$과 $20$ 사이에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $4$와 $5$ 사이이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$17\\div4$에서 $17$은 $4$의 이웃한 배수 $16$과 {$20$} 사이에 있으므로 몫은 $4$와 {$5$} 사이이다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0819ea6e4d35398b9a13b27b48429a3122d5300674332133ed48630a9f76599b",
+      "questionRevision": "planning-e5e6-20261006-0819ea6e4d35",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-xc17",
+      "bDecision": "revise",
+      "bPrompt": "몫의 자연수 부분이 두 자리 수이면 몫은 어느 범위에 있는가? $250\\div8$의 몫의 자연수 부분이 몇 자리인지도 어림해서 쓰시오.",
+      "bAnswer": "몫은 $10$ 이상 $100$ 미만이다. $8\\times10=80$, $8\\times100=800$이고 $250$은 그 사이에 있으므로 두 자리이다.",
+      "bGoal": "자리 수와 몫의 범위를 연결해 자리 수를 어림한다.",
+      "bReason": "범위를 외우는 데서 끝나지 않고 나누는 수의 배수로 자리 수를 판단하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$ 이상 $100$ 미만이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$250\\div8$의 몫의 자연수 부분은 두 자리이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$250$은$8 \\times 10 = 80$과$8 \\times 100 = 800$사이에있다",
+            "$250 \\div 8$은$10$과$100$사이에있다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$250$은 $8\\times10=80$보다 크고 $8\\times100=800$보다 작다. 따라서 $250\\div8$의 몫은 $10$과 $100$ 사이이므로 자연수 부분은 {두} 자리이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두",
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "긴 범위 문장 대신 실제 나눗셈에서 자리 수를 판단하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "5990c9ea27c0361fc6897ccf6ddf064a720bdd49e47cd176342d01ef5bdb3afe",
+      "sourceIndex": 1888,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-5-xc17",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "term": "몫의 자연수 부분이 두 자리인 조건",
+        "kind": "성질",
+        "level": "중",
+        "definition": "몫의 자연수 부분이 두 자리라는 것은 몫이 {$10$ 이상 $100$ 미만}이라는 뜻이다.",
+        "studentC": "몫의 자연수 부분이 두 자리라는 것은 몫이 □이라는 뜻이다.",
+        "answers": [
+          "$10$ 이상 $100$ 미만"
+        ]
+      },
+      "sourceFingerprint": "bdc5eaf14e1daef0e61e9ae64efceaeb050dbe81c863a71af21faf97bd90ccc7",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "두"
+      ],
+      "cStudentAfter": "$250$은 $8\\times10=80$보다 크고 $8\\times100=800$보다 작다. 따라서 $250\\div8$의 몫은 $10$과 $100$ 사이이므로 자연수 부분은 □ 자리이다.",
+      "cMarkedSentence": "$250$은 $8\\times10=80$보다 크고 $8\\times100=800$보다 작다. 따라서 $250\\div8$의 몫은 $10$과 $100$ 사이이므로 자연수 부분은 {두} 자리이다.",
+      "cStudentSentence": "$250$은 $8\\times10=80$보다 크고 $8\\times100=800$보다 작다. 따라서 $250\\div8$의 몫은 $10$과 $100$ 사이이므로 자연수 부분은 □ 자리이다.",
+      "cSlotAnswers": [
+        {
+          "key": "두",
+          "equivalents": [
+            "$2$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "몫의 자연수 부분이 두 자리 수이면 몫은 어느 범위에 있는가? $250\\div8$의 몫의 자연수 부분이 몇 자리인지도 어림해서 쓰시오.",
+        "answer": "몫은 $10$ 이상 $100$ 미만이다. $8\\times10=80$, $8\\times100=800$이고 $250$은 그 사이에 있으므로 두 자리이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$ 이상 $100$ 미만이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$250\\div8$의 몫의 자연수 부분은 두 자리이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$250$은$8 \\times 10 = 80$과$8 \\times 100 = 800$사이에있다",
+              "$250 \\div 8$은$10$과$100$사이에있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$250$은 $8\\times10=80$보다 크고 $8\\times100=800$보다 작다. 따라서 $250\\div8$의 몫은 $10$과 $100$ 사이이므로 자연수 부분은 {두} 자리이다.",
+        "acceptedAnswers": [
+          [
+            "두",
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "91a86082bf1417c04234817af7945cea38f9bf61ac6532db5ad3c6ac4ce58c1c",
+      "questionRevision": "planning-e5e6-20261006-91a86082bf14",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-xc21",
+      "bDecision": "revise",
+      "bPrompt": "$3\\div8$을 자연수끼리 나눈 뒤 $0$을 계속 내려 소수로 계산하면 어떻게 되는가? 나누는 수가 $2$, $4$, $5$, $8$일 때 이렇게 되는 까닭을 $10$, $100$, $1000$과 연결해 설명하시오.",
+      "bAnswer": "$3.000\\div8=0.375$로 나누어떨어진다. $2$, $4$, $5$, $8$은 $10$, $100$, $1000$ 중 하나를 나누어떨어지게 하기 때문이다.",
+      "bGoal": "나누는 수가 $10$의 거듭제곱의 약수일 때 나누어떨어짐을 이해한다.",
+      "bReason": "$0$을 내리는 계산과 약수 관계를 연결해 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$을 내리다 보면 나머지가 $0$이 되어 나누어떨어진다",
+            "$3.000\\div8=0.375$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수가 $10$, $100$, $1000$ 중 하나의 약수이다",
+            "$10$, $100$, $1000$ 중 하나가 그 수로 나누어떨어진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$3\\div8$을 소수로 계산할 때 $0$을 {세} 번 내리면 처음으로 나누어떨어지고, 몫은 {$0.375$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세",
+            "$3$",
+            "$3$번"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.375$"
+          ]
+        }
+      ],
+      "cReason": "긴 문장 대신 몇 번 내리는지와 몫을 직접 확인하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "ba94b8832c5f1d010893099a2c42dcb1af0022bec9c076f6d4efdc355ea58c2b",
+      "sourceIndex": 1890,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-5-xc21",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "term": "나누어떨어지는 나누는 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누는 수가 $2$, $4$, $5$, $8$이면 자연수끼리 나눈 몫은 $0$을 몇 번 내리면 {나누어떨어진다}.",
+        "studentC": "나누는 수가 $2$, $4$, $5$, $8$이면 자연수끼리 나눈 몫은 $0$을 몇 번 내리면 □.",
+        "answers": [
+          "나누어떨어진다"
+        ]
+      },
+      "sourceFingerprint": "90d8fddd9266f0f2b0e2396261a6d6569ec3ff54890f7fd68a0276dfd685619a",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "세",
+        "$0.375$"
+      ],
+      "cStudentAfter": "$3\\div8$을 소수로 계산할 때 $0$을 □ 번 내리면 처음으로 나누어떨어지고, 몫은 □이다.",
+      "cMarkedSentence": "$3\\div8$을 소수로 계산할 때 $0$을 {세} 번 내리면 처음으로 나누어떨어지고, 몫은 {$0.375$}이다.",
+      "cStudentSentence": "$3\\div8$을 소수로 계산할 때 $0$을 □ 번 내리면 처음으로 나누어떨어지고, 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "세",
+          "equivalents": [
+            "$3$",
+            "$3$번"
+          ]
+        },
+        {
+          "key": "$0.375$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\div8$을 자연수끼리 나눈 뒤 $0$을 계속 내려 소수로 계산하면 어떻게 되는가? 나누는 수가 $2$, $4$, $5$, $8$일 때 이렇게 되는 까닭을 $10$, $100$, $1000$과 연결해 설명하시오.",
+        "answer": "$3.000\\div8=0.375$로 나누어떨어진다. $2$, $4$, $5$, $8$은 $10$, $100$, $1000$ 중 하나를 나누어떨어지게 하기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$을 내리다 보면 나머지가 $0$이 되어 나누어떨어진다",
+              "$3.000\\div8=0.375$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 $10$, $100$, $1000$ 중 하나의 약수이다",
+              "$10$, $100$, $1000$ 중 하나가 그 수로 나누어떨어진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\div8$을 소수로 계산할 때 $0$을 {세} 번 내리면 처음으로 나누어떨어지고, 몫은 {$0.375$}이다.",
+        "acceptedAnswers": [
+          [
+            "세",
+            "$3$",
+            "$3$번"
+          ],
+          [
+            "$0.375$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a3652c59b99f3a7adb477dd2dfb776c6d59799fcd1fd4cc5bf79800bf87b29c8",
+      "questionRevision": "planning-e5e6-20261006-a3652c59b99f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-xc22",
+      "bDecision": "revise",
+      "bPrompt": "같은 자연수 $12$를 $2$, $3$, $4$로 각각 나눈 몫을 비교하여 나누는 수와 몫 사이의 관계를 설명하시오.",
+      "bAnswer": "몫은 차례로 $6$, $4$, $3$이다. 나누는 수가 커질수록 몫은 작아진다.",
+      "bGoal": "같은 수를 나눌 때 나누는 수와 몫의 변화 관계를 이해한다.",
+      "bReason": "원문의 일반 관계를 같은 수 $12$로 직접 비교하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누는 수가 커질수록 몫은 작아진다",
+            "나누는 수가 클수록 몫이 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$를$2$,$3$,$4$로나눈몫은차례로$6$,$4$,$3$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "같은 수 $12$를 $3$으로 나눈 몫은 $4$이고 $4$로 나눈 몫은 $3$이므로, 나누는 수가 커지면 몫은 {작아진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작아진다",
+            "줄어든다"
+          ]
+        }
+      ],
+      "cReason": "긴 빈칸을 두 개의 실제 몫 비교로 제시해 한 방향만 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "80ce34147b72c37e98882df7799b05dff9be31ef5278586bc822f2a2002ead09",
+      "sourceIndex": 1891,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-5-xc22",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "term": "몫의 크기 비교",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 자연수를 자연수로 나눌 때, 나누는 수가 {커질수록 몫은 작아진다}.",
+        "studentC": "같은 자연수를 자연수로 나눌 때, 나누는 수가 □.",
+        "answers": [
+          "커질수록 몫은 작아진다"
+        ]
+      },
+      "sourceFingerprint": "6f13db0755c4c89b74a0dcd500aacb73747d374df3e9511811332d525ae3fe6f",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작아진다"
+      ],
+      "cStudentAfter": "같은 수 $12$를 $3$으로 나눈 몫은 $4$이고 $4$로 나눈 몫은 $3$이므로, 나누는 수가 커지면 몫은 □.",
+      "cMarkedSentence": "같은 수 $12$를 $3$으로 나눈 몫은 $4$이고 $4$로 나눈 몫은 $3$이므로, 나누는 수가 커지면 몫은 {작아진다}.",
+      "cStudentSentence": "같은 수 $12$를 $3$으로 나눈 몫은 $4$이고 $4$로 나눈 몫은 $3$이므로, 나누는 수가 커지면 몫은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아진다",
+          "equivalents": [
+            "줄어든다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 자연수 $12$를 $2$, $3$, $4$로 각각 나눈 몫을 비교하여 나누는 수와 몫 사이의 관계를 설명하시오.",
+        "answer": "몫은 차례로 $6$, $4$, $3$이다. 나누는 수가 커질수록 몫은 작아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수가 커질수록 몫은 작아진다",
+              "나누는 수가 클수록 몫이 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$를$2$,$3$,$4$로나눈몫은차례로$6$,$4$,$3$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 수 $12$를 $3$으로 나눈 몫은 $4$이고 $4$로 나눈 몫은 $3$이므로, 나누는 수가 커지면 몫은 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다",
+            "줄어든다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2e72ddd1e6aedcefcdea7b9f9ad0ac2de386088ebb75da03bc270cc2149ccbbd",
+      "questionRevision": "planning-e5e6-20261006-2e72ddd1e6ae",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-xc9",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 두 수에서 작은 수를 큰 수로 나눈 값의 크기 범위를 설명하시오. $6$이 $18$의 몇 배인지 구해 확인하시오.",
+      "bAnswer": "$1$보다 작은 분수나 소수의 배로 나타난다. $18$은 $6$의 $3$배이므로 $6$은 $18$의 $\\frac{1}{3}$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "값이 $1$보다 작다",
+            "$1$보다 작은 분수나 소수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$은 $18$의 $\\frac{1}{3}$배이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "작은 수가 큰 수의 몇 배인지는 $1$보다 작은 수임을 이해한다.",
+      "bReason": "원문 예를 질문에 넣어 일반 관계와 확인을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 두 수에서 나누어지는 수가 나누는 수보다 작으면 나눈 값은 $1$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "작은 수이다"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 양수 비교 문장으로 바꾸어 조건을 분명히 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "98a366ef9872d7f2b22e1ea1e0fb25cc44a634f93f781b05f3d0bfc56dc83415",
+      "sourceIndex": 1897,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc9",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "작은 수를 큰 수와 나눗셈으로 비교하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "작은 수를 큰 수와 나눗셈으로 비교하면 {$1$보다 작은 분수나 소수}의 배로 나타난다.",
+        "example": {
+          "prompt": "$6$이 $18$의 $3$배가 아닌 까닭은?",
+          "answer": "$18$이 $6$의 $3$배라서"
+        },
+        "studentC": "작은 수를 큰 수와 나눗셈으로 비교하면 □의 배로 나타난다.",
+        "answers": [
+          "$1$보다 작은 분수나 소수"
+        ]
+      },
+      "sourceFingerprint": "f540bd1ef7293b1a01258cae36cc9f07d8dd754f3855b26460d6d82caea1aad0",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$0$보다 큰 두 수에서 나누어지는 수가 나누는 수보다 작으면 나눈 값은 $1$보다 □.",
+      "cMarkedSentence": "$0$보다 큰 두 수에서 나누어지는 수가 나누는 수보다 작으면 나눈 값은 $1$보다 {작다}.",
+      "cStudentSentence": "$0$보다 큰 두 수에서 나누어지는 수가 나누는 수보다 작으면 나눈 값은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "작은 수이다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 두 수에서 작은 수를 큰 수로 나눈 값의 크기 범위를 설명하시오. $6$이 $18$의 몇 배인지 구해 확인하시오.",
+        "answer": "$1$보다 작은 분수나 소수의 배로 나타난다. $18$은 $6$의 $3$배이므로 $6$은 $18$의 $\\frac{1}{3}$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "값이 $1$보다 작다",
+              "$1$보다 작은 분수나 소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$은 $18$의 $\\frac{1}{3}$배이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 두 수에서 나누어지는 수가 나누는 수보다 작으면 나눈 값은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "작은 수이다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f66d24da4eca1e33846f20596873f57d9922d53229b0f710ae14f4bb4468bcd1",
+      "questionRevision": "planning-e5e6-20261006-f66d24da4eca",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-xc11",
+      "bDecision": "revise",
+      "bPrompt": "학생 $3$명마다 공 $1$개를 주면 $3$명에게는 $1$개, $6$명에게는 $2$개를 준다. 학생 수가 공 수의 몇 배인지 일정한지 알아보려면 뺄셈과 나눗셈 중 어느 비교가 알맞은지, 그 까닭과 함께 설명하시오.",
+      "bAnswer": "나눗셈이 알맞다. $3\\div1=3$, $6\\div2=3$으로 몇 배가 같지만 차는 $2$, $4$로 변한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눗셈",
+            "나누기"
+          ]
+        },
+        {
+          "anyOf": [
+            "몇 배를 나타내는 것은 나눗셈이다",
+            "나눈 값이 같으면 일정하다",
+            "차는 변하지만 나눈 값은 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "일정한 배 관계를 확인하는 데 나눗셈이 알맞음을 안다.",
+      "bReason": "두 비교 방법을 같은 자료에 적용해 선택 이유를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 {나눗셈}으로 비교하는 것이 알맞다.",
+      "cReason": "비교 방법을 고르는 짧은 낱말 문장이고 조건이 명확해 원문 유지.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "815551588a2421ec1ba1d5646b358acf2086a52368160cc9b15879fd20379e73",
+      "sourceIndex": 1898,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc11",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "관계가 일정한지 보는 비교",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 {나눗셈}으로 비교하는 것이 알맞다.",
+        "studentC": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 □으로 비교하는 것이 알맞다.",
+        "answers": [
+          "나눗셈"
+        ]
+      },
+      "sourceFingerprint": "ff2ea519306ff3ca7853239b6b6685615b379eb9b4b990c24451b45057896e02",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 {나눗셈}으로 비교하는 것이 알맞다.",
+      "cFrozenStudentSentence": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 □으로 비교하는 것이 알맞다.",
+      "cProposedAnswers": [
+        "나눗셈"
+      ],
+      "cStudentAfter": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 □으로 비교하는 것이 알맞다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나눗셈"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 {나눗셈}으로 비교하는 것이 알맞다.",
+      "cStudentSentence": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 □으로 비교하는 것이 알맞다.",
+      "cSlotAnswers": [
+        {
+          "key": "나눗셈",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "학생 $3$명마다 공 $1$개를 주면 $3$명에게는 $1$개, $6$명에게는 $2$개를 준다. 학생 수가 공 수의 몇 배인지 일정한지 알아보려면 뺄셈과 나눗셈 중 어느 비교가 알맞은지, 그 까닭과 함께 설명하시오.",
+        "answer": "나눗셈이 알맞다. $3\\div1=3$, $6\\div2=3$으로 몇 배가 같지만 차는 $2$, $4$로 변한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눗셈",
+              "나누기"
+            ]
+          },
+          {
+            "anyOf": [
+              "몇 배를 나타내는 것은 나눗셈이다",
+              "나눈 값이 같으면 일정하다",
+              "차는 변하지만 나눈 값은 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 양이 함께 변해도 한 양이 다른 양의 몇 배인지가 일정한지 보려면 {나눗셈}으로 비교하는 것이 알맞다.",
+        "acceptedAnswers": [
+          [
+            "나눗셈"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "48627e4b6b0a0f4d96ce86b624adc272a1d984bb2104816a8267277bd88fa747",
+      "questionRevision": "planning-e5e6-20261006-48627e4b6b0a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$9$가 $6$의 자연수 배가 아닐 때에도 몇 배인지 나타낼 수 있는지 말하고, 나타낼 수 있다면 어떻게 나타내는지 설명하시오.",
+      "bAnswer": "나타낼 수 있다. $9\\div6$의 값을 소수나 분수로 쓰면 $1.5$배 또는 $\\frac{3}{2}$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눈값을분수나소수로쓰면몇배인지나타낼수있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$",
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "자연수가 아닌 몇 배를 분수나 소수로 나타낸다.",
+      "bReason": "초6이 아는 소수·분수로 답하게 하며 예의 정확한 값도 포함했다.",
+      "cDecision": "revise",
+      "cAfter": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 {$\\frac{3}{2}$}배 또는 소수로 {$1.5$}배라고 나타낼 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$"
+          ]
+        }
+      ],
+      "cReason": "추상적 낱말 대신 실제 값을 쓰게 해 자연수 배가 아닌 경우를 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "8fdf4758c4b9e97c00d13d27664141506d59fbbea5c287bbb5f89f644bd4f200",
+      "sourceIndex": 1899,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc12",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "자연수가 아닌 몇 배",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나눗셈으로 비교한 값은 나누어떨어지지 않아도 {소수나 분수}로 나타낼 수 있다.",
+        "example": {
+          "prompt": "$9$가 $6$의 자연수 배가 아니어도 몇 배인지 나타낼 수 있는 까닭은?",
+          "answer": "나눈 값을 소수나 분수로 써서"
+        },
+        "studentC": "나눗셈으로 비교한 값은 나누어떨어지지 않아도 □로 나타낼 수 있다.",
+        "answers": [
+          "소수나 분수"
+        ]
+      },
+      "sourceFingerprint": "1c905a80f997ef9c0be02016d6b8d214ddf2d820cfa2f286cb5f25a5f7f759d1",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{2}$",
+        "$1.5$"
+      ],
+      "cStudentAfter": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 □배 또는 소수로 □배라고 나타낼 수 있다.",
+      "cMarkedSentence": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 {$\\frac{3}{2}$}배 또는 소수로 {$1.5$}배라고 나타낼 수 있다.",
+      "cStudentSentence": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 □배 또는 소수로 □배라고 나타낼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{2}$",
+          "equivalents": [
+            "$1\\frac{1}{2}$"
+          ]
+        },
+        {
+          "key": "$1.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$9$가 $6$의 자연수 배가 아닐 때에도 몇 배인지 나타낼 수 있는지 말하고, 나타낼 수 있다면 어떻게 나타내는지 설명하시오.",
+        "answer": "나타낼 수 있다. $9\\div6$의 값을 소수나 분수로 쓰면 $1.5$배 또는 $\\frac{3}{2}$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눈값을분수나소수로쓰면몇배인지나타낼수있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.5$",
+              "$\\frac{3}{2}$",
+              "$1\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 {$\\frac{3}{2}$}배 또는 소수로 {$1.5$}배라고 나타낼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ],
+          [
+            "$1.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7c55b2cff659b0bc52531e10f2ca69227b8a4c3dacae5ded9f192d782871e545",
+      "questionRevision": "planning-e5e6-20261006-7c55b2cff659",
+      "requiresIndependentReview": true
+    }
+  ]
+}

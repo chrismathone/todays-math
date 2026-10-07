@@ -1,0 +1,10 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {blankSentenceSchema,splitBlankSentence,visibleLength} from 'C:/Users/user/orca/workspaces/todays-math/student-clear-e5e6-20261006/src/contracts/conceptBlank.contract';
+const p='C:/Users/user/orca/workspaces/todays-math/student-clear-e5e6-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/e5e6';
+const d=JSON.parse(readFileSync(`${p}/audit.json`,'utf8'));
+const rows=d.rows.map((r:any)=>{const definition=r.coreAfter||r.source.definition;const result=blankSentenceSchema.safeParse(definition);return {id:r.id,sourceIndex:r.sourceIndex,sourceFingerprint:r.sourceFingerprint,proposalFingerprint:r.proposalFingerprint,proposed:!!r.coreAfter,definition,definitionFingerprint:createHash('sha256').update(definition).digest('hex'),visibleLength:visibleLength(definition),targets:splitBlankSentence(definition).filter(x=>x.kind==='key').map(x=>x.text),valid:result.success,issues:result.success?[]:result.error.issues};});
+const invalid=rows.filter((r:any)=>!r.valid);
+writeFileSync(`${p}/core-definition-validation.json`,JSON.stringify({sourceCommit:d.sourceCommit,scope:'Actual baseline blankSentenceSchema applied to each source definition or explicit coreAfter, all IDs in source order. Structural validation is not an editorial pass or student comprehension evidence.',checked:rows.length,proposed:rows.filter((r:any)=>r.proposed).length,invalidCount:invalid.length,rows},null,2)+'\n');
+console.log(JSON.stringify({checked:rows.length,proposed:rows.filter((r:any)=>r.proposed).length,invalid:invalid.length,firstInvalid:invalid.slice(0,5).map((r:any)=>({id:r.id,issues:r.issues}))}));
+if(invalid.length)process.exitCode=1;

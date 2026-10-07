@@ -1,0 +1,121 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-2-4-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "대분수끼리 곱할 때 자연수 부분끼리 곱한 값과 분수 부분끼리 곱한 값만 더하면 어떤 곱이 빠지나요? $1\\frac{1}{2}\\times2\\frac{1}{3}$을 예로, 빠진 곱셈 두 가지를 쓰고 설명하세요.",
+      "bAnswer": "한 대분수의 자연수 부분과 다른 대분수의 분수 부분을 곱한 값 두 가지가 빠진다. 이 예에서는 $1 \\times \\frac{1}{3}$과 $\\frac{1}{2} \\times 2$가 빠진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한대분수의자연수부분과다른대분수의분수부분을곱하는두항이빠진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1 \\times \\frac{1}{3}$과$\\frac{1}{2} \\times 2$"
+          ]
+        }
+      ],
+      "bGoal": "부분끼리만 곱하면 빠지는 곱이 무엇인지 설명한다.",
+      "bReason": "'빠지는 곱'이 무엇인지 구체적으로 말하게 해야 가분수로 고치는 까닭이 드러난다.",
+      "cDecision": "revise",
+      "cAfter": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 한 대분수의 자연수 부분과 다른 대분수의 {분수} 부분을 곱한 값이 빠진다. 대분수를 {가분수}로 고쳐 곱하면 빠지는 부분 없이 계산할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분수",
+            "진분수"
+          ]
+        },
+        {
+          "anyOf": [
+            "가분수"
+          ]
+        }
+      ],
+      "cReason": "'빠지는 곱'은 임의 구절이라 무엇이 빠지는지와 해결 방법을 낱말로 답하게 했다.",
+      "coreAfter": "대분수끼리 곱할 때 같은 부분끼리만 곱해 더하면, 한 수의 자연수 부분과 다른 수의 분수 부분을 곱한 값들이 빠진다. {가분수}로 고치면 각 수의 전체 양을 곱할 수 있다.",
+      "coreReason": "'빠지는 곱'이 무엇을 가리키는지 원문만으로는 알 수 없다.",
+      "exampleNeeded": true,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "빠지는 곱이라는 표적은 어떤 곱인지 답 범위가 없었다. 교차하는 두 부분의 곱을 일반 설명에 명시하고 표적은 이를 빠뜨리지 않는 정식 변환 이름 가분수로 정한다. 이유의 일반 뜻은 문장과 B에 보존한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1210.json",
+      "codexFinalAmendedFromFingerprint": "8998f3c1a9471c6363b7fee047d7795007cd8e719f4abfb9b0bce7b984fe0f92",
+      "sourceIndex": 1234,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc19",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "가분수로 고쳐 곱하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대분수를 그대로 부분끼리 곱하면 {빠지는 곱}이 생겨 가분수로 고쳐 곱한다.",
+        "studentC": "대분수를 그대로 부분끼리 곱하면 □이 생겨 가분수로 고쳐 곱한다.",
+        "answers": [
+          "빠지는 곱"
+        ]
+      },
+      "sourceFingerprint": "ea040bd51ae30482dcb93c7ffe24110d8e6954f9daabd21c2957b66a74ae41e9",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "분수",
+        "가분수"
+      ],
+      "cStudentAfter": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 한 대분수의 자연수 부분과 다른 대분수의 □ 부분을 곱한 값이 빠진다. 대분수를 □로 고쳐 곱하면 빠지는 부분 없이 계산할 수 있다.",
+      "cMarkedSentence": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 한 대분수의 자연수 부분과 다른 대분수의 {분수} 부분을 곱한 값이 빠진다. 대분수를 {가분수}로 고쳐 곱하면 빠지는 부분 없이 계산할 수 있다.",
+      "cStudentSentence": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 한 대분수의 자연수 부분과 다른 대분수의 □ 부분을 곱한 값이 빠진다. 대분수를 □로 고쳐 곱하면 빠지는 부분 없이 계산할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "분수",
+          "equivalents": [
+            "진분수"
+          ]
+        },
+        {
+          "key": "가분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수끼리 곱할 때 자연수 부분끼리 곱한 값과 분수 부분끼리 곱한 값만 더하면 어떤 곱이 빠지나요? $1\\frac{1}{2}\\times2\\frac{1}{3}$을 예로, 빠진 곱셈 두 가지를 쓰고 설명하세요.",
+        "answer": "한 대분수의 자연수 부분과 다른 대분수의 분수 부분을 곱한 값 두 가지가 빠진다. 이 예에서는 $1 \\times \\frac{1}{3}$과 $\\frac{1}{2} \\times 2$가 빠진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한대분수의자연수부분과다른대분수의분수부분을곱하는두항이빠진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1 \\times \\frac{1}{3}$과$\\frac{1}{2} \\times 2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 한 대분수의 자연수 부분과 다른 대분수의 {분수} 부분을 곱한 값이 빠진다. 대분수를 {가분수}로 고쳐 곱하면 빠지는 부분 없이 계산할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "분수",
+            "진분수"
+          ],
+          [
+            "가분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "da9276fc184a352bfad82ebc763d8198c0bab5cfeb422107d925ea1e734549ac",
+      "questionRevision": "planning-e5e6-20261006-da9276fc184a",
+      "requiresIndependentReview": true
+    }
+  ]
+}

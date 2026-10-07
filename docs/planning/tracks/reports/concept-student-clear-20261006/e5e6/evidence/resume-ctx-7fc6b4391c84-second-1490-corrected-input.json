@@ -1,0 +1,169 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-5-4-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "겨냥도에서 보이는 면이 세 개임을 안다.",
+      "bReason": "면의 수 하나만 답하는 내용이라 서술형으로 물을 가치가 낮다.",
+      "cDecision": "exclude",
+      "cAfter": "직육면체의 세 면이 보이게 그린 겨냥도에서 보이는 면은 {세 개}이다.",
+      "cReason": "그림없이보이는면이항상3개라고하면시점조건이빠진다. 세면이보이는그림이라고조건을주면답세개를그대로베끼므로C에서도제외한다. 실제겨냥도를보고보이는면을찾는예가필요하며원천ID와일반설명은보존한다.",
+      "exclusionReason": "그림없이보이는면이항상3개라고하면시점조건이빠진다. 세면이보이는그림이라고조건을주면답세개를그대로베끼므로C에서도제외한다. 실제겨냥도를보고보이는면을찾는예가필요하며원천ID와일반설명은보존한다.",
+      "exampleNeeded": true,
+      "synonymNotes": "'세 개', '$3$개'는 같은 답이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1490.json",
+      "codexFinalAmendedFromFingerprint": "2cf65193d6890f8ca09e97d384ddd6209087f575a922a77351ee4280795fa5a5",
+      "coreAfter": "직육면체의 모양을 알아보기 쉽게 겨냥도를 그릴 때에는 {세 면}이 보이도록 나타낼 수 있다.",
+      "sourceIndex": 1494,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-4-xc1",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "보이는 면의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 겨냥도에서 보이는 면은 {세 개}이다.",
+        "studentC": "직육면체의 겨냥도에서 보이는 면은 □이다.",
+        "answers": [
+          "세 개"
+        ]
+      },
+      "sourceFingerprint": "de38eecd8e9053dcd34b4642debce02e646ae9da57abd65adf3d16bc3c4fa437",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "그림없이보이는면이항상3개라고하면시점조건이빠진다. 세면이보이는그림이라고조건을주면답세개를그대로베끼므로C에서도제외한다. 실제겨냥도를보고보이는면을찾는예가필요하며원천ID와일반설명은보존한다.",
+        "cloze": "그림없이보이는면이항상3개라고하면시점조건이빠진다. 세면이보이는그림이라고조건을주면답세개를그대로베끼므로C에서도제외한다. 실제겨냥도를보고보이는면을찾는예가필요하며원천ID와일반설명은보존한다."
+      },
+      "proposalFingerprint": "3bbeb0e00802becea8b6e39d9688fd1640171e8dc700e0b6683466f196e2597a",
+      "questionRevision": "planning-e5e6-20261006-3bbeb0e00802",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-4-xc27",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 세 면이 보이게 겨냥도를 그립니다. 보이는 모서리를 실선으로 바르게 그린 뒤, 무엇의 자리를 먼저 정하고 거기에서 점선을 어떻게 그으면 되는지 순서대로 설명하세요.",
+      "bAnswer": "보이지 않는 꼭짓점의 자리를 먼저 정한다. 그 점에서 보이는 세 꼭짓점으로 가로, 세로, 높이 방향의 점선을 하나씩 잇는다. 같은 방향의 실선 모서리와 서로 평행하고 길이가 같도록 그린다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보이지 않는 꼭짓점의 자리를 먼저 정한다",
+            "점선 세 개가 만나는 한 점을 먼저 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒷꼭짓점에서보이는세꼭짓점까지세방향의점선을잇는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은방향의실선모서리와평행하고길이가같게그린다"
+          ]
+        }
+      ],
+      "bGoal": "보이지 않는 꼭짓점을 정한 뒤 세 방향으로 점선을 긋는 차례를 말한다.",
+      "bReason": "xc11의 '점선이 만나는 곳'까지 포함하도록, 정할 것과 긋는 방법을 차례로 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 서로 다른 {$3$} 방향으로 점선을 하나씩 잇는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '세 방향으로'는 구절이라 방향의 수 하나만 답하게 줄였다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1490.json",
+      "codexFinalAmendedFromFingerprint": "9ba9f646a104ac2675edb99d502f3a48bad8a6b7beb0958fcdd40e6188323b15",
+      "sourceIndex": 1519,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-4-xc27",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "점선 그리는 차례",
+        "kind": "방법",
+        "level": "상",
+        "definition": "점선은 보이지 않는 꼭짓점을 먼저 정하고 그 점에서 {세 방향으로} 긋는다.",
+        "studentC": "점선은 보이지 않는 꼭짓점을 먼저 정하고 그 점에서 □ 긋는다.",
+        "answers": [
+          "세 방향으로"
+        ]
+      },
+      "sourceFingerprint": "352ab42263ae65eddb664be0142d713e0895c4a6c481f246e67e42ba0809c3e0",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 서로 다른 □ 방향으로 점선을 하나씩 잇는다.",
+      "cMarkedSentence": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 서로 다른 {$3$} 방향으로 점선을 하나씩 잇는다.",
+      "cStudentSentence": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 서로 다른 □ 방향으로 점선을 하나씩 잇는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 세 면이 보이게 겨냥도를 그립니다. 보이는 모서리를 실선으로 바르게 그린 뒤, 무엇의 자리를 먼저 정하고 거기에서 점선을 어떻게 그으면 되는지 순서대로 설명하세요.",
+        "answer": "보이지 않는 꼭짓점의 자리를 먼저 정한다. 그 점에서 보이는 세 꼭짓점으로 가로, 세로, 높이 방향의 점선을 하나씩 잇는다. 같은 방향의 실선 모서리와 서로 평행하고 길이가 같도록 그린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "보이지 않는 꼭짓점의 자리를 먼저 정한다",
+              "점선 세 개가 만나는 한 점을 먼저 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒷꼭짓점에서보이는세꼭짓점까지세방향의점선을잇는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은방향의실선모서리와평행하고길이가같게그린다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 세 면이 보이게 겨냥도를 그릴 때, 보이지 않는 꼭짓점에서 보이는 꼭짓점들로 서로 다른 {$3$} 방향으로 점선을 하나씩 잇는다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bd36423b77652de151cf5d8aa00e67da31540c764e3ce1934ef5db6adc57e0fb",
+      "questionRevision": "planning-e5e6-20261006-bd36423b7765",
+      "requiresIndependentReview": true
+    }
+  ]
+}

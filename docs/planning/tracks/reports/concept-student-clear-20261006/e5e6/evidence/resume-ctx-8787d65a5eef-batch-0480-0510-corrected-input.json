@@ -1,0 +1,603 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-2-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "$10$의 배수는 일의 자리 숫자에 어떤 공통점이 있는지 쓰고, 그 이유를 $10$개씩 묶음과 낱개로 설명하시오. $130$을 예로 드시오.",
+      "bAnswer": "일의 자리 숫자가 모두 $0$이다. $10$의 배수는 $10$개씩 묶음만으로 이루어져 낱개가 남지 않기 때문이다. $130=10\\times13$은 $10$개씩 $13$묶음이고 낱개가 $0$개이다.",
+      "bGoal": "$10$의 배수의 일의 자리가 $0$인 까닭을 묶음과 낱개로 설명한다.",
+      "bReason": "일반공통점과묶음이유에더해130예를질문에서명시하므로그실제13묶음·낱개없음의적용도요청범위로확인한다.",
+      "studentLabel": "$10$의 배수의 일의 자리",
+      "cDecision": "keep",
+      "cAfter": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+      "cReason": "대상($10$의 배수)과 물음(일의 자리 숫자)이 분명하고 답이 숫자 하나다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일의 자리 숫자가 모두 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$개씩 묶음만 있어 낱개가 남지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$130$은 $10$개씩 $13$묶음이고 낱개가 $0$개이다",
+            "$130=10\\times13$으로 $10$묶음만 있고 낱개는 없다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0480-0510.json",
+      "codexFinalAmendedFromFingerprint": "892cdfb1c326eebca13c058b02e0c8288c0d6fcc903126942193750b4bcd1166",
+      "sourceIndex": 487,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc17",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "$10$의 배수의 일의 자리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+        "example": {
+          "prompt": "$10$의 배수의 일의 자리 숫자가 $0$인 까닭을 묶음으로 설명하시오.",
+          "answer": "$10$개씩 묶고 나면 낱개가 없어서"
+        },
+        "studentC": "$10$의 배수는 일의 자리 숫자가 모두 □이다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "sourceFingerprint": "773e0968c1c8e6cda900114a37edab77173e767d6d409680b915b6373a1c77e8",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+      "cFrozenStudentSentence": "$10$의 배수는 일의 자리 숫자가 모두 □이다.",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "$10$의 배수는 일의 자리 숫자가 모두 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+      "cStudentSentence": "$10$의 배수는 일의 자리 숫자가 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$10$의 배수는 일의 자리 숫자에 어떤 공통점이 있는지 쓰고, 그 이유를 $10$개씩 묶음과 낱개로 설명하시오. $130$을 예로 드시오.",
+        "answer": "일의 자리 숫자가 모두 $0$이다. $10$의 배수는 $10$개씩 묶음만으로 이루어져 낱개가 남지 않기 때문이다. $130=10\\times13$은 $10$개씩 $13$묶음이고 낱개가 $0$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리 숫자가 모두 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$개씩 묶음만 있어 낱개가 남지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$130$은 $10$개씩 $13$묶음이고 낱개가 $0$개이다",
+              "$130=10\\times13$으로 $10$묶음만 있고 낱개는 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cf0b028e0a49d4718eb5b387df7a614f04470e7240ccb06593f896d4c9d8ddd3",
+      "questionRevision": "planning-e5e6-20261006-cf0b028e0a49",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$2$의 배수는 일의 자리 숫자가 어떤 숫자들인지 쓰고, 십의 자리 숫자와 관계없이 그렇게 되는 이유를 $10$을 $2$씩 묶어 설명하시오. $74$를 예로 드시오.",
+      "bAnswer": "일의 자리 숫자는 $0$, $2$, $4$, $6$, $8$ 가운데 하나이다. $10$은 $2$씩 $5$묶음으로 남김없이 묶이므로 $10$개씩 묶음 부분은 언제나 $2$의 배수이고, 낱개인 일의 자리만 $2$씩 묶이는지 보면 된다. $74=70+4$에서 $70=2\\times35$, $4=2\\times2$이므로 $74=2\\times37$로 $2$의 배수이다.",
+      "bGoal": "$2$의 배수를 일의 자리만으로 가려낼 수 있는 까닭을 '10은 2씩 묶인다'로 설명한다.",
+      "bReason": "질문의74예를공통숫자와일반이유에추가해실제적용도확인한다. 숫자일곱·사와2씩묶음이라는초5목표를남긴다.",
+      "studentLabel": "$2$의 배수의 일의 자리",
+      "cDecision": "keep",
+      "cAfter": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+      "cReason": "다섯 숫자는 임의 구절이 아니라 $2$의 배수를 가려내는 기준 그 자체이므로 떠올려 쓰게 할 가치가 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "다섯 숫자의 순서는 따지지 않는다. '짝수'라고 쓴 답은 뜻은 맞지만 초등에서 $0$을 짝수로 분명히 다루지 않으므로, 숫자를 나열하도록 안내한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$, $2$, $4$, $6$, $8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$은 $2$씩 남김없이 묶이므로 십의 자리 이상은 언제나 $2$의 배수이고 일의 자리만 보면 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$74=70+4$에서 $70$도 $4$도 $2$의 배수이므로 $74$는 $2$의 배수이다",
+            "$74=2\\times37$로 $2$의 배수이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$, $2$, $4$, $6$, $8$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0480-0510.json",
+      "codexFinalAmendedFromFingerprint": "fc40268324cdd225df1925d1a01bf0f172006bc13c1436847313aa075ac2cbb4",
+      "sourceIndex": 489,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc19",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "$2$의 배수의 일의 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+        "example": {
+          "prompt": "$2$의 배수인지를 일의 자리 숫자만 보고 알 수 있는 까닭은?",
+          "answer": "$10$은 $2$씩 묶이니까"
+        },
+        "studentC": "$2$의 배수는 일의 자리 숫자가 □ 가운데 하나이다.",
+        "answers": [
+          "$0$, $2$, $4$, $6$, $8$"
+        ]
+      },
+      "sourceFingerprint": "46abfda3f988da8f53feae6184d9cb390faef018189a130b8e3b28906e5b073d",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+      "cFrozenStudentSentence": "$2$의 배수는 일의 자리 숫자가 □ 가운데 하나이다.",
+      "cProposedAnswers": [
+        "$0$, $2$, $4$, $6$, $8$"
+      ],
+      "cStudentAfter": "$2$의 배수는 일의 자리 숫자가 □ 가운데 하나이다.",
+      "cMarkedSentence": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+      "cStudentSentence": "$2$의 배수는 일의 자리 숫자가 □ 가운데 하나이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$, $2$, $4$, $6$, $8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2$의 배수는 일의 자리 숫자가 어떤 숫자들인지 쓰고, 십의 자리 숫자와 관계없이 그렇게 되는 이유를 $10$을 $2$씩 묶어 설명하시오. $74$를 예로 드시오.",
+        "answer": "일의 자리 숫자는 $0$, $2$, $4$, $6$, $8$ 가운데 하나이다. $10$은 $2$씩 $5$묶음으로 남김없이 묶이므로 $10$개씩 묶음 부분은 언제나 $2$의 배수이고, 낱개인 일의 자리만 $2$씩 묶이는지 보면 된다. $74=70+4$에서 $70=2\\times35$, $4=2\\times2$이므로 $74=2\\times37$로 $2$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$, $2$, $4$, $6$, $8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$은 $2$씩 남김없이 묶이므로 십의 자리 이상은 언제나 $2$의 배수이고 일의 자리만 보면 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$74=70+4$에서 $70$도 $4$도 $2$의 배수이므로 $74$는 $2$의 배수이다",
+              "$74=2\\times37$로 $2$의 배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+        "acceptedAnswers": [
+          [
+            "$0$, $2$, $4$, $6$, $8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b7365f37cce47aed158d1cc87056603db69d20ba4f8b42d6c879a5279c685811",
+      "questionRevision": "planning-e5e6-20261006-b7365f37cce4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "$1$부터 어떤 수까지의 자연수 가운데 어떤 자연수의 배수가 몇 개인지를 나눗셈으로 구하는 방법과, 그렇게 구할 수 있는 이유를 설명하시오. 나눗셈은 자연수의 몫과 나머지로 나타내시오. $1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수를 예로 드시오.",
+      "bAnswer": "끝 수를 그 자연수로 나눈 몫이 배수의 개수이다. 배수는 (그 수)$\\times1$, (그 수)$\\times2$, ……이므로 끝 수 안에 그 수가 몇 번 들어가는지가 곧 배수의 개수이기 때문이다. $50\\div6$은 몫이 $8$, 나머지가 $2$이므로 $6$의 배수는 $6\\times1$부터 $6\\times8=48$까지 $8$개이다.",
+      "bGoal": "범위 안의 배수 개수를 나눗셈의 몫으로 구하는 방법과 까닭을 말한다.",
+      "bReason": "50/6의정확한분수·소수몫과배수개수8을혼동하지않게자연수몫과나머지로나눈다는범위를학생질문에명시한다.",
+      "studentLabel": "범위 안의 배수 개수",
+      "cDecision": "revise",
+      "cAfter": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$을 자연수의 몫과 나머지로 나타냈을 때의 {몫}과 같다. 그래서 $6$의 배수는 모두 {$8$}개이고, 그중 가장 큰 수는 $48$이다.",
+      "cReason": "C에도자연수몫·나머지의뜻을명시하여개수8을정확한분수몫으로해석하지않도록한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "첫 빈칸은 '몫'만 맞다. '나머지', '값'은 다른 답이다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "끝 수를 그 자연수로 나눈 자연수 몫이 배수의 개수이다",
+            "나머지를 제외한 자연수 몫이 배수의 개수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "끝 수 안에 그 수가 완전히 몇 번 들어가는지가 배수의 개수이다",
+            "배수는 (그 수)$\\times1$, (그 수)$\\times2$, ...이므로 곱하는 자연수의 개수가 몫이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50\\div6$의 자연수 몫이 $8$이므로 $6$의 배수는 $8$개이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "몫"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0480-0510.json",
+      "codexFinalAmendedFromFingerprint": "0a722bbdf6fe37991acfa2dc34f7752ddca82b81aa74c48cde05caa882404c6d",
+      "sourceIndex": 491,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc21",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "어느 수까지의 배수 세기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어느 수까지 있는 배수를 셀 때는 그 끝 수를 배수의 기준 수로 {나눈 몫}을 이용한다.",
+        "example": {
+          "prompt": "$50$까지의 $6$의 배수의 개수를 $50\\div6$의 몫으로 아는 까닭은?",
+          "answer": "$6$씩 한 묶음에 배수 하나라서"
+        },
+        "studentC": "어느 수까지 있는 배수를 셀 때는 그 끝 수를 배수의 기준 수로 □을 이용한다.",
+        "answers": [
+          "나눈 몫"
+        ]
+      },
+      "sourceFingerprint": "17b608e713dcef500e6aac8f5172edfdd2ecf7bab5a6d07a52e02ef8af93b1b7",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "몫",
+        "$8$"
+      ],
+      "cStudentAfter": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$을 자연수의 몫과 나머지로 나타냈을 때의 □과 같다. 그래서 $6$의 배수는 모두 □개이고, 그중 가장 큰 수는 $48$이다.",
+      "cMarkedSentence": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$을 자연수의 몫과 나머지로 나타냈을 때의 {몫}과 같다. 그래서 $6$의 배수는 모두 {$8$}개이고, 그중 가장 큰 수는 $48$이다.",
+      "cStudentSentence": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$을 자연수의 몫과 나머지로 나타냈을 때의 □과 같다. 그래서 $6$의 배수는 모두 □개이고, 그중 가장 큰 수는 $48$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "몫",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$부터 어떤 수까지의 자연수 가운데 어떤 자연수의 배수가 몇 개인지를 나눗셈으로 구하는 방법과, 그렇게 구할 수 있는 이유를 설명하시오. 나눗셈은 자연수의 몫과 나머지로 나타내시오. $1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수를 예로 드시오.",
+        "answer": "끝 수를 그 자연수로 나눈 몫이 배수의 개수이다. 배수는 (그 수)$\\times1$, (그 수)$\\times2$, ……이므로 끝 수 안에 그 수가 몇 번 들어가는지가 곧 배수의 개수이기 때문이다. $50\\div6$은 몫이 $8$, 나머지가 $2$이므로 $6$의 배수는 $6\\times1$부터 $6\\times8=48$까지 $8$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "끝 수를 그 자연수로 나눈 자연수 몫이 배수의 개수이다",
+              "나머지를 제외한 자연수 몫이 배수의 개수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝 수 안에 그 수가 완전히 몇 번 들어가는지가 배수의 개수이다",
+              "배수는 (그 수)$\\times1$, (그 수)$\\times2$, ...이므로 곱하는 자연수의 개수가 몫이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50\\div6$의 자연수 몫이 $8$이므로 $6$의 배수는 $8$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$을 자연수의 몫과 나머지로 나타냈을 때의 {몫}과 같다. 그래서 $6$의 배수는 모두 {$8$}개이고, 그중 가장 큰 수는 $48$이다.",
+        "acceptedAnswers": [
+          [
+            "몫"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "90c3e88f9e68df4add27d83e94435ecf24e9c37cccee9e3f160556853b73802b",
+      "questionRevision": "planning-e5e6-20261006-90c3e88f9e68",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc22",
+      "bDecision": "revise",
+      "bPrompt": "물건을 쪼개지 않고 몇 명에게 남김없이 똑같이 나누어 주려면 사람 수와 전체 개수가 어떤 관계여야 하는지 설명하시오. 구슬 $18$개를 $4$명과 $6$명에게 각각 남김없이 똑같이 나누어 줄 수 있는지 판단하시오.",
+      "bAnswer": "사람 수가 전체 개수의 약수여야 한다(전체 개수를 사람 수로 나누면 나누어떨어져야 한다). $18\\div4$는 몫이 $4$, 나머지가 $2$이므로 $4$명에게는 나누어 줄 수 없다. $18\\div6=3$이므로 $6$명에게는 $3$개씩 나누어 줄 수 있다.",
+      "bGoal": "남김없이 똑같이 나누는 상황을 약수와 연결해 판단한다.",
+      "bReason": "분수몫으로쪼개어나누는경우까지포함하지않게물건을쪼개지않는다는조건을명시한다. 사람수의약수관계와구슬18개의적용을보존한다.",
+      "studentLabel": "남김없이 똑같이 나누기",
+      "cDecision": "revise",
+      "cAfter": "물건을 쪼개지 않고 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+      "cReason": "물건을쪼갤수있으면사람수가약수가아니어도똑같이나눌수있다. 쪼개지않는개수나눔이라는조건을C에도명시한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'약수'만 맞다. '배수'는 관계가 거꾸로다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사람 수가 전체 개수의 약수여야 한다",
+            "전체 개수를 사람 수로 나누면 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$명에게는 나누어 줄 수 없다",
+            "$18\\div4$는 나머지가 $2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$명에게는 나누어 줄 수 있다",
+            "$18\\div6=3$이므로 $3$개씩 나누어 줄 수 있다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "editorialOwner": "Codex",
+      "coreAfter": "물건을 쪼개지 않고 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+      "coreReason": "물건을 쪼갤 수 있으면 전체 개수의 약수가 아닌 사람 수로도 분수 몫을 나눌 수 있다. 물건의 개수를 자연수로 나누는 원래 목표와 약수 표적을 보존하면서 쪼개지 않는다는 필요한 조건을 일반 설명에 명시한다.",
+      "coreTargetReason": "원문의 약수 한 표적을 보존한다. 구슬처럼 물건을 쪼개지 않고 개수로 남김없이 나누는 범위임을 명시하여 분수 단위로 나누는 경우와 구별한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0480-0510.json",
+      "codexFinalAmendedFromFingerprint": "48981607edd19e70623d508302a4a32a8d5a3966245be6d3c87fc6e6c3d691cc",
+      "sourceIndex": 492,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc22",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "남김없이 똑같이 나누는 사람 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+        "example": {
+          "prompt": "구슬 $18$개를 $4$명에게 남김없이 똑같이 나눌 수 없는 까닭은?",
+          "answer": "$4$가 $18$의 약수가 아니다"
+        },
+        "studentC": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 □이다.",
+        "answers": [
+          "약수"
+        ]
+      },
+      "sourceFingerprint": "455390ec776fd9059e3a3ebdf7e56dc734ef7e5c8bf287da18e750683dd73a41",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "약수"
+      ],
+      "cStudentAfter": "물건을 쪼개지 않고 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 □이다.",
+      "cMarkedSentence": "물건을 쪼개지 않고 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+      "cStudentSentence": "물건을 쪼개지 않고 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "물건을 쪼개지 않고 몇 명에게 남김없이 똑같이 나누어 주려면 사람 수와 전체 개수가 어떤 관계여야 하는지 설명하시오. 구슬 $18$개를 $4$명과 $6$명에게 각각 남김없이 똑같이 나누어 줄 수 있는지 판단하시오.",
+        "answer": "사람 수가 전체 개수의 약수여야 한다(전체 개수를 사람 수로 나누면 나누어떨어져야 한다). $18\\div4$는 몫이 $4$, 나머지가 $2$이므로 $4$명에게는 나누어 줄 수 없다. $18\\div6=3$이므로 $6$명에게는 $3$개씩 나누어 줄 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사람 수가 전체 개수의 약수여야 한다",
+              "전체 개수를 사람 수로 나누면 나누어떨어져야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$명에게는 나누어 줄 수 없다",
+              "$18\\div4$는 나머지가 $2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$명에게는 나누어 줄 수 있다",
+              "$18\\div6=3$이므로 $3$개씩 나누어 줄 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "물건을 쪼개지 않고 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "19894899c26d7a703dfc68fe6d1f2c3c2457f0e41ebf475378d8bd76abeeb34a",
+      "questionRevision": "planning-e5e6-20261006-19894899c26d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc27",
+      "bDecision": "revise",
+      "bPrompt": "어떤 자연수의 약수를 하나 고르고 다시 그 수의 약수를 구하면, 구한 수는 처음 자연수와 어떤 관계인지 쓰고 곱셈식으로 이유를 설명하시오. $18$의 약수 $6$과 $6$의 약수 $3$을 예로 드시오.",
+      "bAnswer": "구한 수는 처음 자연수의 약수이다. $18=6\\times3$이고 $6=3\\times2$이므로 $18=3\\times2\\times3=3\\times6$이다. $18\\div3=6$으로 나누어떨어지므로 $3$은 $18$의 약수이다.",
+      "bGoal": "약수의 약수가 처음 수의 약수임을 곱셈식으로 설명한다.",
+      "bReason": "약수의약수라는일반관계를곱셈식으로보이라는질문에맞추어6을3의배수로바꾸는합성관계를확인한다. 직접18/3만계산하는대안은그합성이유를보이지않는다.",
+      "studentLabel": "약수의 약수",
+      "cDecision": "revise",
+      "cAfter": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times${$6$}이므로 $3$은 $18$의 {약수}이다.",
+      "cReason": "원문은 '약수의 약수', '처음 수'가 무엇을 가리키는지 맥락 없이 알기 어렵다. xc26과 같은 틀로 실제 수와 식을 넣었다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구한 수는 처음 자연수의 약수이다",
+            "$3$은 $18$의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18=6\\times3=3\\times2\\times3=3\\times6$",
+            "$6=3\\times2$를 $18=6\\times3$에 넣으면 $18=3\\times6$이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0480-0510.json",
+      "codexFinalAmendedFromFingerprint": "ce985036ac534a0d33eafb88c18f2f6406606548b26baa9c54f0f9407c41e4d9",
+      "sourceIndex": 497,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc27",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "약수의 약수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 수의 약수의 약수는 {처음 수의 약수}이다.",
+        "example": {
+          "prompt": "$3$은 $6$의 약수이고 $6$은 $18$의 약수이다. $3$이 $18$의 약수인 까닭은?",
+          "answer": "$18=3\\times2\\times3$이라서"
+        },
+        "studentC": "어떤 수의 약수의 약수는 □이다.",
+        "answers": [
+          "처음 수의 약수"
+        ]
+      },
+      "sourceFingerprint": "96016265e4d5e63ae797a1ddd1df7eb3ce1dbca823aae5734b728376bb501054",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$6$",
+        "약수"
+      ],
+      "cStudentAfter": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times$□이므로 $3$은 $18$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times${$6$}이므로 $3$은 $18$의 {약수}이다.",
+      "cStudentSentence": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times$□이므로 $3$은 $18$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 자연수의 약수를 하나 고르고 다시 그 수의 약수를 구하면, 구한 수는 처음 자연수와 어떤 관계인지 쓰고 곱셈식으로 이유를 설명하시오. $18$의 약수 $6$과 $6$의 약수 $3$을 예로 드시오.",
+        "answer": "구한 수는 처음 자연수의 약수이다. $18=6\\times3$이고 $6=3\\times2$이므로 $18=3\\times2\\times3=3\\times6$이다. $18\\div3=6$으로 나누어떨어지므로 $3$은 $18$의 약수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구한 수는 처음 자연수의 약수이다",
+              "$3$은 $18$의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18=6\\times3=3\\times2\\times3=3\\times6$",
+              "$6=3\\times2$를 $18=6\\times3$에 넣으면 $18=3\\times6$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times${$6$}이므로 $3$은 $18$의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d3a30aa5b7c889cb3bd42fedd4ca9a2038a4f01662d9536cff628463d25ea821",
+      "questionRevision": "planning-e5e6-20261006-d3a30aa5b7c8",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-5-2-xc25",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수의 분수 부분을 각각 $1$로 바꾸어 더하면 실제 합보다 커지는 까닭을 설명하세요. 이 방법으로 $4\\frac{5}{6}+3\\frac{7}{8}$보다 큰 자연수 하나를 구하세요.",
+      "bAnswer": "대분수의 분수 부분은 각각 $1$보다 작으므로 이를 $1$로 바꾸면 각각의 수가 커진다. $(4+1)+(3+1)=9$이므로 실제 합은 $9$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분은 각각$1$보다작아서$1$로바꾸면각수가커지고합도커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "($4 + 1$)$+$($3 + 1$)$= 9$이므로실제합은$9$보다작다"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분이 1보다 작다는 사실로 합의 위쪽 한계를 설명한다.",
+      "bReason": "원문 예의 '이웃한 두 자연수'는 계산해야 답할 수 있어 일반 범위의 근거를 묻도록 바꾸었다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\frac{5}{6}+3\\frac{7}{8}$에서 분수 부분을 각각 $1$로 바꾸면 두 수가 모두 커진다. 따라서 실제 합은 $(4+1)+(3+1)=${$9$}보다 작다.",
+      "cReason": "범위빈칸이9이상의여러값으로해석되지않도록두분수부분을각각1로어림하는계산과경계를학생문장에명시한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-0876.json",
+      "codexFinalAmendedFromFingerprint": "14436b0ceffdcd4c89220569ae1fbadbac47ebd72fc496a6fffb2979e2151b69",
+      "sourceIndex": 876,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc25",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "두 대분수의 합이 있는 범위",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 대분수의 합은 자연수 부분의 합과 그보다 {$2$ 큰 수} 사이에 있다.",
+        "example": {
+          "prompt": "$4\\frac{5}{6}+3\\frac{7}{8}$은 어느 이웃한 두 자연수 사이에 있는가?",
+          "answer": "$8$과 $9$"
+        },
+        "studentC": "두 대분수의 합은 자연수 부분의 합과 그보다 □ 사이에 있다.",
+        "answers": [
+          "$2$ 큰 수"
+        ]
+      },
+      "sourceFingerprint": "52eff6b1b80de717984437c59ec490a3aeb8e7e302e3b0419f6772b51d1b466d",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$9$"
+      ],
+      "cStudentAfter": "$4\\frac{5}{6}+3\\frac{7}{8}$에서 분수 부분을 각각 $1$로 바꾸면 두 수가 모두 커진다. 따라서 실제 합은 $(4+1)+(3+1)=$□보다 작다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$4\\frac{5}{6}+3\\frac{7}{8}$에서 분수 부분을 각각 $1$로 바꾸면 두 수가 모두 커진다. 따라서 실제 합은 $(4+1)+(3+1)=${$9$}보다 작다.",
+      "cStudentSentence": "$4\\frac{5}{6}+3\\frac{7}{8}$에서 분수 부분을 각각 $1$로 바꾸면 두 수가 모두 커진다. 따라서 실제 합은 $(4+1)+(3+1)=$□보다 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대분수의 분수 부분을 각각 $1$로 바꾸어 더하면 실제 합보다 커지는 까닭을 설명하세요. 이 방법으로 $4\\frac{5}{6}+3\\frac{7}{8}$보다 큰 자연수 하나를 구하세요.",
+        "answer": "대분수의 분수 부분은 각각 $1$보다 작으므로 이를 $1$로 바꾸면 각각의 수가 커진다. $(4+1)+(3+1)=9$이므로 실제 합은 $9$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분은 각각$1$보다작아서$1$로바꾸면각수가커지고합도커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "($4 + 1$)$+$($3 + 1$)$= 9$이므로실제합은$9$보다작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4\\frac{5}{6}+3\\frac{7}{8}$에서 분수 부분을 각각 $1$로 바꾸면 두 수가 모두 커진다. 따라서 실제 합은 $(4+1)+(3+1)=${$9$}보다 작다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7aecb78dc8e19e6a49a5cabfe0e003cd3495b51c94341ce21831eb19013e8af0",
+      "questionRevision": "planning-e5e6-20261006-7aecb78dc8e1",
+      "requiresIndependentReview": true
+    }
+  ]
+}

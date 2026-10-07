@@ -1,0 +1,138 @@
+{
+  "rows": [
+    {
+      "id": "e6-1-6-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 부피와 밑면의 넓이를 알 때 높이를 어떻게 구하나요? 높이가 $1$ $\\mathrm{cm}$인 한 층의 부피와 관련해 까닭을 말하고, 부피 $60$ $\\mathrm{cm} ^3$, 밑면의 넓이 $15$ $\\mathrm{cm} ^2$일 때 높이를 구해 보세요.",
+      "bAnswer": "부피를 밑면의 넓이로 나눈다. 밑면의 넓이가$15\\,\\mathrm{cm} ^2$이면 높이$1\\,\\mathrm{cm}$인 한 층의 부피는$15\\,\\mathrm{cm} ^3$이다. 전체$60\\,\\mathrm{cm} ^3$에는 이런 층이$60 \\div 15 = 4$개 들어가므로 높이는$4\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부피를 밑면의 넓이로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이$1\\,\\mathrm{cm}$인 한 층의 부피가$15\\,\\mathrm{cm} ^3$이고$60\\,\\mathrm{cm} ^3$에는$4$층 들어간다",
+            "$1\\,\\mathrm{cm}$높이 층의 개수가 $\\mathrm{cm}$로 잰 높이와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이는$4\\,\\mathrm{cm}$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "부피 공식을 거꾸로 써서 높이를 구한다.",
+      "bReason": "나눗셈의 의미를 층 수로 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 {$4$}개 들어가므로 높이는 {$4$} $\\mathrm{cm}$이다.",
+      "cReason": "한층의높이가1cm라는조건과한층15cm³를보여60cm³의4층과높이4cm를연결한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "$4$ $\\mathrm{cm}$",
+            "사"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "0fb70397b6cd6b2bdbfa135fee89775daf21510bf33bd8f4b883044802a6f136",
+      "coreAfter": "직육면체의 부피를 밑면의 넓이로 나누면 {높이}가 된다. 길이를 $\\mathrm{cm}$로 재면, 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 밑면의 넓이에 $1$ $\\mathrm{cm}$를 곱한 값이다. 이 층이 몇 층분인지 구한 값이 $\\mathrm{cm}$로 잰 높이이다.",
+      "coreReason": "Root의 실제 독해에서 한 층의 높이가 정해지지 않은 이유 설명을 발견했다. 원래 높이 구하기 개념과 목표를 유지하고 1cm층의 부피와 cm높이 사이 관계를 일반 설명에도 보였다.",
+      "coreTargetReason": "원래 목표 높이를 그대로 유지한다. 층의 높이1cm라는 조건이 있어야 층수의 수치가 cm로 잰 높이와 같으므로 그 조건을 학생이 읽는 일반 정의에 명시했다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 2135,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-2-xc11",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "term": "부피를 밑면의 넓이로 나눈 값",
+        "kind": "방법",
+        "level": "중",
+        "definition": "부피를 밑면의 넓이로 나누면 {높이}가 된다. 한 층의 부피가 몇 번 쌓였는지를 구하는 셈이다.",
+        "studentC": "부피를 밑면의 넓이로 나누면 □가 된다. 한 층의 부피가 몇 번 쌓였는지를 구하는 셈이다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "edf6afab809c50710481bddee558e06ea04d7e438100d414588cda8486cc2a98",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$4$"
+      ],
+      "cStudentAfter": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 □개 들어가므로 높이는 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 {$4$}개 들어가므로 높이는 {$4$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 □개 들어가므로 높이는 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": [
+            "네"
+          ]
+        },
+        {
+          "key": "$4$",
+          "equivalents": [
+            "$4$ $\\mathrm{cm}$",
+            "사"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 부피와 밑면의 넓이를 알 때 높이를 어떻게 구하나요? 높이가 $1$ $\\mathrm{cm}$인 한 층의 부피와 관련해 까닭을 말하고, 부피 $60$ $\\mathrm{cm} ^3$, 밑면의 넓이 $15$ $\\mathrm{cm} ^2$일 때 높이를 구해 보세요.",
+        "answer": "부피를 밑면의 넓이로 나눈다. 밑면의 넓이가$15\\,\\mathrm{cm} ^2$이면 높이$1\\,\\mathrm{cm}$인 한 층의 부피는$15\\,\\mathrm{cm} ^3$이다. 전체$60\\,\\mathrm{cm} ^3$에는 이런 층이$60 \\div 15 = 4$개 들어가므로 높이는$4\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "부피를 밑면의 넓이로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이$1\\,\\mathrm{cm}$인 한 층의 부피가$15\\,\\mathrm{cm} ^3$이고$60\\,\\mathrm{cm} ^3$에는$4$층 들어간다",
+              "$1\\,\\mathrm{cm}$높이 층의 개수가 $\\mathrm{cm}$로 잰 높이와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는$4\\,\\mathrm{cm}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 {$4$}개 들어가므로 높이는 {$4$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "네"
+          ],
+          [
+            "$4$",
+            "$4$ $\\mathrm{cm}$",
+            "사"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "98649367c7f140b57c18712849d1a3f8c155154af201cc64e146339c716751c6",
+      "questionRevision": "planning-e5e6-20261006-98649367c7f1",
+      "requiresIndependentReview": true
+    }
+  ]
+}

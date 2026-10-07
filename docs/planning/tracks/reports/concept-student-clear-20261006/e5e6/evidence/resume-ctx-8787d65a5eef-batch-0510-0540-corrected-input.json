@@ -1,0 +1,255 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-2-2-xc21",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수의 배수는 그 어떤 수의 약수로도 나누어떨어진다. 그 까닭을 $12$와 $12$의 약수 $4$를 예로 설명하고, 이것을 이용해 $50$이 $12$의 배수인지 판단하시오.",
+      "bAnswer": "$12=4\\times3$이므로 $12$의 배수는 모두 $4$에 자연수를 곱한 수, 곧 $4$의 배수이다. $50\\div4=12\\cdots2$로 나누어떨어지지 않으므로 $50$은 $4$의 배수가 아니고, 따라서 $12$의 배수도 아니다.",
+      "bGoal": "어떤 수의 배수는 그 수의 약수로도 나누어떨어짐을 이용해 배수가 아님을 판단한다.",
+      "bReason": "12의배수가4로나누어떨어진다는문제의주장을반복하기보다12=4×3의곱관계로왜그런지설명하는대안을둔다.50의판별과결론은그대로유지한다.",
+      "studentLabel": "약수로 나누어 배수가 아님을 알기",
+      "cDecision": "revise",
+      "cAfter": "$12$의 배수는 모두 $12$의 약수인 $4$로 나누어떨어진다. $50\\div4=12\\cdots$ {$2$}로 나누어떨어지지 않으므로 $50$은 $12$의 배수가 {아니다}.",
+      "cReason": "원문은 '어떤 수'가 거듭 나오고 빈칸이 문장 절반이라 학생이 읽어 내기 어렵다. $12$, $4$, $50$으로 풀어 나머지와 판단만 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$12=4\\times3$이므로 $12$의 배수는 $4$의 배수이다",
+            "$12$의 배수는 $4$에 $3$의 배수인 자연수를 곱한 수이므로 $4$의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50\\div4=12\\cdots2$로 나누어떨어지지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "따라서 $50$은 $12$의 배수가 아니다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0510-0540.json",
+      "codexFinalAmendedFromFingerprint": "cb590965b7e6bfc8c36f51615652c3c3085bdcc3c0f0919e0c74aa9ab7e11dd0",
+      "sourceIndex": 517,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc21",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "약수로 배수가 아님을 알기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 수의 약수로 나누어떨어지지 않는 수는 {그 어떤 수의 배수가 아니다}.",
+        "example": {
+          "prompt": "$50$이 $12$의 배수가 아님을 $12$의 약수 $4$로 아는 방법은?",
+          "answer": "$50\\div4$의 나머지를 본다"
+        },
+        "studentC": "어떤 수의 약수로 나누어떨어지지 않는 수는 □.",
+        "answers": [
+          "그 어떤 수의 배수가 아니다"
+        ]
+      },
+      "sourceFingerprint": "9a0a8cc8acbb40017b5915b591d05ee5746142c22d6430220ffacf094f6215e1",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "아니다"
+      ],
+      "cStudentAfter": "$12$의 배수는 모두 $12$의 약수인 $4$로 나누어떨어진다. $50\\div4=12\\cdots$ □로 나누어떨어지지 않으므로 $50$은 $12$의 배수가 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$12$의 배수는 모두 $12$의 약수인 $4$로 나누어떨어진다. $50\\div4=12\\cdots$ {$2$}로 나누어떨어지지 않으므로 $50$은 $12$의 배수가 {아니다}.",
+      "cStudentSentence": "$12$의 배수는 모두 $12$의 약수인 $4$로 나누어떨어진다. $50\\div4=12\\cdots$ □로 나누어떨어지지 않으므로 $50$은 $12$의 배수가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수의 배수는 그 어떤 수의 약수로도 나누어떨어진다. 그 까닭을 $12$와 $12$의 약수 $4$를 예로 설명하고, 이것을 이용해 $50$이 $12$의 배수인지 판단하시오.",
+        "answer": "$12=4\\times3$이므로 $12$의 배수는 모두 $4$에 자연수를 곱한 수, 곧 $4$의 배수이다. $50\\div4=12\\cdots2$로 나누어떨어지지 않으므로 $50$은 $4$의 배수가 아니고, 따라서 $12$의 배수도 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$12=4\\times3$이므로 $12$의 배수는 $4$의 배수이다",
+              "$12$의 배수는 $4$에 $3$의 배수인 자연수를 곱한 수이므로 $4$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50\\div4=12\\cdots2$로 나누어떨어지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "따라서 $50$은 $12$의 배수가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12$의 배수는 모두 $12$의 약수인 $4$로 나누어떨어진다. $50\\div4=12\\cdots$ {$2$}로 나누어떨어지지 않으므로 $50$은 $12$의 배수가 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "367501fbdad9db7a0173293cc54b6c71319ff87f6d31878498b7570999ddbdf8",
+      "questionRevision": "planning-e5e6-20261006-367501fbdad9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-3-xc7",
+      "bDecision": "revise",
+      "bPrompt": "두 가지 물건을 쪼개지 않고 몇 명에게 각각 남김없이 똑같이 나누어 주려고 한다. 나누어 줄 수 있는 사람 수는 두 물건의 개수와 어떤 관계여야 하는지 설명하고, 연필 $6$자루와 지우개 $9$개를 $2$명에게는 그렇게 나누어 줄 수 없는 이유를 쓰시오.",
+      "bAnswer": "사람 수로 두 물건의 개수가 모두 나누어떨어져야 하므로, 사람 수는 두 개수의 공약수여야 한다. $6\\div 2=3$이지만 $9\\div 2=4\\cdots 1$로 지우개가 $1$개 남으므로($2$는 $9$의 약수가 아니므로) $2$명에게는 나누어 줄 수 없다.",
+      "bGoal": "'남김없이 똑같이 나누기'를 '두 개수를 모두 나누어떨어지게 하는 수'로 읽어 공약수와 연결한다.",
+      "bReason": "분수몫으로물건을쪼개어나누는상황을제외하는조건을명시한다. 두종류모두나누어떨어져야한다는공약수목표와9개지우개가남는이유는남긴다.",
+      "studentLabel": "공약수로 나누어 주기",
+      "cDecision": "revise",
+      "cAfter": "연필 $6$자루와 지우개 $9$개를 쪼개지 않고 남김없이 똑같이 나누어 줄 수 있는 사람 수는 $6$과 $9$의 {공약수}인 $1$명 또는 {$3$}명이다.",
+      "cReason": "C에도물건을쪼개지않는조건을보여두개수의공약수인사람수1·3명을확인한다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사람 수는 두 물건의 개수의 공약수여야 한다",
+            "사람 수로 두 개수가 모두 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9\\div 2=4\\cdots 1$이라 지우개가 $1$개 남는다",
+            "$2$는 $9$의 약수가 아니다",
+            "$2$로 $9$가 나누어떨어지지 않는다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-005-rubric.json",
+      "editorialOwner": "Codex",
+      "coreAfter": "두 가지 물건을 쪼개지 않고 각각 남김없이 똑같이 나눌 수 있는 사람 수는 두 개수의 {공약수}이다.",
+      "coreReason": "물건을 쪼개어 분수 몫을 나누는 경우까지 포함하면 사람 수가 두 개수의 공약수라는 말은 성립하지 않는다. 물건을 쪼개지 않는 개수 나눔임을 명시하고 두 종류 모두에 같은 사람 수가 약수여야 하는 일반 목표를 보존한다.",
+      "coreTargetReason": "원문의 공약수 한 표적을 보존한다. 두 종류를 각각 자연수 개수로 남김없이 나누는 조건을 명시하여 한 종류만 나누어지는 약수와 구별하는 뜻을 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0510-0540.json",
+      "codexFinalAmendedFromFingerprint": "9b94551faa5518ffc9e25da5b3c31eea3ca0532746b8a64c5097ab4724bc19f6",
+      "sourceIndex": 529,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-3-xc7",
+        "section": "초5::1-2 약수와 배수::1-2-3 공약수와 최대공약수",
+        "term": "두 묶음을 똑같이 나누는 사람 수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 가지 물건을 남김없이 똑같이 나눌 수 있는 사람 수는 두 개수의 {공약수}이다.",
+        "example": {
+          "prompt": "연필 $6$자루와 지우개 $9$개를 $2$명에게 남김없이 똑같이 나눌 수 없는 까닭은?",
+          "answer": "$2$가 $9$의 약수가 아니라서"
+        },
+        "studentC": "두 가지 물건을 남김없이 똑같이 나눌 수 있는 사람 수는 두 개수의 □이다.",
+        "answers": [
+          "공약수"
+        ]
+      },
+      "sourceFingerprint": "e23939ef4da73085526d74d5d0ee8031b9672da6ee2f6011a1f8682aa6f689b5",
+      "draftEvidence": "evidence/section-005-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "공약수",
+        "$3$"
+      ],
+      "cStudentAfter": "연필 $6$자루와 지우개 $9$개를 쪼개지 않고 남김없이 똑같이 나누어 줄 수 있는 사람 수는 $6$과 $9$의 □인 $1$명 또는 □명이다.",
+      "cMarkedSentence": "연필 $6$자루와 지우개 $9$개를 쪼개지 않고 남김없이 똑같이 나누어 줄 수 있는 사람 수는 $6$과 $9$의 {공약수}인 $1$명 또는 {$3$}명이다.",
+      "cStudentSentence": "연필 $6$자루와 지우개 $9$개를 쪼개지 않고 남김없이 똑같이 나누어 줄 수 있는 사람 수는 $6$과 $9$의 □인 $1$명 또는 □명이다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 가지 물건을 쪼개지 않고 몇 명에게 각각 남김없이 똑같이 나누어 주려고 한다. 나누어 줄 수 있는 사람 수는 두 물건의 개수와 어떤 관계여야 하는지 설명하고, 연필 $6$자루와 지우개 $9$개를 $2$명에게는 그렇게 나누어 줄 수 없는 이유를 쓰시오.",
+        "answer": "사람 수로 두 물건의 개수가 모두 나누어떨어져야 하므로, 사람 수는 두 개수의 공약수여야 한다. $6\\div 2=3$이지만 $9\\div 2=4\\cdots 1$로 지우개가 $1$개 남으므로($2$는 $9$의 약수가 아니므로) $2$명에게는 나누어 줄 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사람 수는 두 물건의 개수의 공약수여야 한다",
+              "사람 수로 두 개수가 모두 나누어떨어져야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9\\div 2=4\\cdots 1$이라 지우개가 $1$개 남는다",
+              "$2$는 $9$의 약수가 아니다",
+              "$2$로 $9$가 나누어떨어지지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "연필 $6$자루와 지우개 $9$개를 쪼개지 않고 남김없이 똑같이 나누어 줄 수 있는 사람 수는 $6$과 $9$의 {공약수}인 $1$명 또는 {$3$}명이다.",
+        "acceptedAnswers": [
+          [
+            "공약수"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "501ca8562342f785a3d8c16f0431e10a7b95bf99574eefdeb5a34979716aa9b6",
+      "questionRevision": "planning-e5e6-20261006-501ca8562342",
+      "requiresIndependentReview": true
+    }
+  ]
+}

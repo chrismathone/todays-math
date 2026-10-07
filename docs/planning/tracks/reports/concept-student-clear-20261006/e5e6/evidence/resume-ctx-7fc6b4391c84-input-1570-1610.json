@@ -1,0 +1,3913 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T08:01:31.234162+00:00",
+  "rows": [
+    {
+      "id": "e5-2-6-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "평균을 자료의 가장 큰 값, 가장 작은 값과 견주면 어떤 범위에 있는지 쓰고, 많은 쪽에서 적은 쪽으로 옮겨 고르게 하는 방법으로 그 까닭을 설명하시오.",
+      "bAnswer": "평균은 가장 큰 값보다 클 수 없고 가장 작은 값보다 작을 수 없다. 고르게 하면 큰 값은 줄고 작은 값은 늘어나므로 같아진 값은 그 사이에 놓인다.",
+      "bGoal": "평균이 가장 작은 값과 가장 큰 값 사이에 있음을 고르게 하기로 설명한다.",
+      "bReason": "가장 큰 값과 가장 작은 값 성질이 짝이므로 한 질문에서 범위와 까닭을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균은 가장 큰 값보다 클 수 없고 가장 작은 값보다 작을 수 없다",
+            "평균은 가장 작은 값과 가장 큰 값 사이에 있거나 그 값과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "고르게 하면 큰 값은 줄고 작은 값은 늘어 같아진 값이 그 사이에 놓인다",
+            "많은 쪽에서 덜어 적은 쪽에 채우므로 가장 큰 값을 넘거나 가장 작은 값보다 내려갈 수 없다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "평균은 자료 가운데 가장 큰 값보다 {클} 수 없고, 자료의 값이 모두 같을 때에만 가장 큰 값과 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "클",
+            "커질"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "같아진다"
+          ]
+        }
+      ],
+      "cReason": "'클 수 없다' 전체 대신 비교 낱말만 묻고, 같아지는 경우를 덧붙였다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1570,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc5",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균과 가장 큰 값",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평균은 자료 가운데 가장 큰 값보다 {클 수 없다}.",
+        "studentC": "평균은 자료 가운데 가장 큰 값보다 □.",
+        "answers": [
+          "클 수 없다"
+        ]
+      },
+      "sourceFingerprint": "7805de40362e1fd9584fa2e186337ab4f3aa16a8d9a9fe4f4c4f594ac3abe51c",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "클",
+        "같다"
+      ],
+      "cStudentAfter": "평균은 자료 가운데 가장 큰 값보다 □ 수 없고, 자료의 값이 모두 같을 때에만 가장 큰 값과 □.",
+      "cMarkedSentence": "평균은 자료 가운데 가장 큰 값보다 {클} 수 없고, 자료의 값이 모두 같을 때에만 가장 큰 값과 {같다}.",
+      "cStudentSentence": "평균은 자료 가운데 가장 큰 값보다 □ 수 없고, 자료의 값이 모두 같을 때에만 가장 큰 값과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "클",
+          "equivalents": [
+            "커질"
+          ]
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "같아진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평균을 자료의 가장 큰 값, 가장 작은 값과 견주면 어떤 범위에 있는지 쓰고, 많은 쪽에서 적은 쪽으로 옮겨 고르게 하는 방법으로 그 까닭을 설명하시오.",
+        "answer": "평균은 가장 큰 값보다 클 수 없고 가장 작은 값보다 작을 수 없다. 고르게 하면 큰 값은 줄고 작은 값은 늘어나므로 같아진 값은 그 사이에 놓인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균은 가장 큰 값보다 클 수 없고 가장 작은 값보다 작을 수 없다",
+              "평균은 가장 작은 값과 가장 큰 값 사이에 있거나 그 값과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "고르게 하면 큰 값은 줄고 작은 값은 늘어 같아진 값이 그 사이에 놓인다",
+              "많은 쪽에서 덜어 적은 쪽에 채우므로 가장 큰 값을 넘거나 가장 작은 값보다 내려갈 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평균은 자료 가운데 가장 큰 값보다 {클} 수 없고, 자료의 값이 모두 같을 때에만 가장 큰 값과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "클",
+            "커질"
+          ],
+          [
+            "같다",
+            "같아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3db6a3298d8a804fb8834401704fdec014527fee8c26e438367af22be6537549",
+      "questionRevision": "planning-e5e6-20261006-3db6a3298d8a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "평균이 가장 작은 값보다 작을 수 없음을 안다.",
+      "bReason": "가장 큰 값 성질과 대칭이어서 따로 서술하게 하면 같은 설명을 되풀이한다.",
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "exclusionReason": "B만 제외. e5-2-6-1-xc5의 B가 가장 작은 값 쪽 범위와 까닭까지 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$3$, $5$, $10$의 평균 $6$은 가장 작은 값 $3$보다 크다. 이처럼 평균은 자료 가운데 가장 작은 값보다 {작을} 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작을",
+            "작아질"
+          ]
+        }
+      ],
+      "cReason": "구체적 자료를 앞에 두고 비교 낱말 하나만 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1571,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc6",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균과 가장 작은 값",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평균은 자료 가운데 가장 작은 값보다 {작을 수 없다}.",
+        "studentC": "평균은 자료 가운데 가장 작은 값보다 □.",
+        "answers": [
+          "작을 수 없다"
+        ]
+      },
+      "sourceFingerprint": "9777f4c438566416e77ba2d863e3cae71718b0b27a687104e04042eb31c98dc9",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "작을"
+      ],
+      "cStudentAfter": "$3$, $5$, $10$의 평균 $6$은 가장 작은 값 $3$보다 크다. 이처럼 평균은 자료 가운데 가장 작은 값보다 □ 수 없다.",
+      "cMarkedSentence": "$3$, $5$, $10$의 평균 $6$은 가장 작은 값 $3$보다 크다. 이처럼 평균은 자료 가운데 가장 작은 값보다 {작을} 수 없다.",
+      "cStudentSentence": "$3$, $5$, $10$의 평균 $6$은 가장 작은 값 $3$보다 크다. 이처럼 평균은 자료 가운데 가장 작은 값보다 □ 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "작을",
+          "equivalents": [
+            "작아질"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$3$, $5$, $10$의 평균 $6$은 가장 작은 값 $3$보다 크다. 이처럼 평균은 자료 가운데 가장 작은 값보다 {작을} 수 없다.",
+        "acceptedAnswers": [
+          [
+            "작을",
+            "작아질"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. e5-2-6-1-xc5의 B가 가장 작은 값 쪽 범위와 까닭까지 함께 묻는다."
+      },
+      "proposalFingerprint": "fcd039844a04d8cb0f487a08132aed9a8e2d1c002decb3020c4cbf2d3581ec73",
+      "questionRevision": "planning-e5e6-20261006-fcd039844a04",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "막대 높이를 옮겨 고르게 맞춘 높이가 평균임을 안다.",
+      "bReason": "구슬을 옮겨 고르게 하는 방법과 생각이 같고 표현만 막대로 바뀐 것이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "exclusionReason": "B만 제외. 같은 고르게 하기 방법을 e5-2-6-1-xc2의 B가 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "높이가 $3$칸, $7$칸인 두 막대에서 높은 막대의 {$2$}칸을 잘라 낮은 막대 위로 옮기면 두 막대의 높이가 모두 {$5$}칸으로 같아지고, 이 높이가 평균이다.",
+      "cReason": "'높이를 고르게'라는 구절 대신 그림 없이도 풀 수 있는 칸 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1572,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc7",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "막대로 평균 보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "막대의 높이를 잘라 옮겨 {높이를 고르게} 맞추면 그 높이가 평균이다.",
+        "studentC": "막대의 높이를 잘라 옮겨 □ 맞추면 그 높이가 평균이다.",
+        "answers": [
+          "높이를 고르게"
+        ]
+      },
+      "sourceFingerprint": "d54497e063c579d33d29646a047c1267ab0cef6fdfa5fb3f0f3a52864eaee672",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$5$"
+      ],
+      "cStudentAfter": "높이가 $3$칸, $7$칸인 두 막대에서 높은 막대의 □칸을 잘라 낮은 막대 위로 옮기면 두 막대의 높이가 모두 □칸으로 같아지고, 이 높이가 평균이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "높이가 $3$칸, $7$칸인 두 막대에서 높은 막대의 {$2$}칸을 잘라 낮은 막대 위로 옮기면 두 막대의 높이가 모두 {$5$}칸으로 같아지고, 이 높이가 평균이다.",
+      "cStudentSentence": "높이가 $3$칸, $7$칸인 두 막대에서 높은 막대의 □칸을 잘라 낮은 막대 위로 옮기면 두 막대의 높이가 모두 □칸으로 같아지고, 이 높이가 평균이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "높이가 $3$칸, $7$칸인 두 막대에서 높은 막대의 {$2$}칸을 잘라 낮은 막대 위로 옮기면 두 막대의 높이가 모두 {$5$}칸으로 같아지고, 이 높이가 평균이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 같은 고르게 하기 방법을 e5-2-6-1-xc2의 B가 다룬다."
+      },
+      "proposalFingerprint": "36a9741ee447625090633312d85ffc490b83efda2e626552d117844c44fe6611",
+      "questionRevision": "planning-e5e6-20261006-36a9741ee447",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc8",
+      "bDecision": "revise",
+      "bPrompt": "두 수의 평균은 두 수와 견주어 어디에 있는 수인지 설명하고, $4$와 $10$의 평균을 구해 그 평균과 두 수의 차를 각각 쓰시오.",
+      "bAnswer": "두 수의 한가운데에 있는 수이다. $4$와 $10$의 평균은 $7$이고, $7$과 두 수의 차는 각각 $3$으로 같다.",
+      "bGoal": "두 수의 평균이 두 수에서 같은 만큼 떨어진 한가운데 수임을 확인한다.",
+      "bReason": "위치 관계를 먼저 묻고 두 수와의 차가 같음을 예로 확인하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 한가운데에 있다",
+            "두 수에서 같은 만큼 떨어져 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균은 $7$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "차는 각각 $3$이다",
+            "$7-4=3$, $10-7=3$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "두 수의 평균은 두 수의 {한가운데}에 있는 수이다. 예를 들어 $4$와 $10$의 평균은 {$7$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한가운데",
+            "가운데",
+            "정가운데",
+            "중간"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "cReason": "'한가운데'와 같은 뜻의 표현을 인정하고 실제 값으로 확인하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'사이'는 한가운데가 아니어도 되므로 인정하지 않는다.",
+      "sourceIndex": 1573,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc8",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "두 수의 평균",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 수의 평균은 두 수의 {한가운데}에 있는 수이다.",
+        "studentC": "두 수의 평균은 두 수의 □에 있는 수이다.",
+        "answers": [
+          "한가운데"
+        ]
+      },
+      "sourceFingerprint": "1c8829b00521b7720c7154f2f191ef88c37eeab3fd3eda5575d0417190d1bf94",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "한가운데",
+        "$7$"
+      ],
+      "cStudentAfter": "두 수의 평균은 두 수의 □에 있는 수이다. 예를 들어 $4$와 $10$의 평균은 □이다.",
+      "cMarkedSentence": "두 수의 평균은 두 수의 {한가운데}에 있는 수이다. 예를 들어 $4$와 $10$의 평균은 {$7$}이다.",
+      "cStudentSentence": "두 수의 평균은 두 수의 □에 있는 수이다. 예를 들어 $4$와 $10$의 평균은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "한가운데",
+          "equivalents": [
+            "가운데",
+            "정가운데",
+            "중간"
+          ]
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수의 평균은 두 수와 견주어 어디에 있는 수인지 설명하고, $4$와 $10$의 평균을 구해 그 평균과 두 수의 차를 각각 쓰시오.",
+        "answer": "두 수의 한가운데에 있는 수이다. $4$와 $10$의 평균은 $7$이고, $7$과 두 수의 차는 각각 $3$으로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 한가운데에 있다",
+              "두 수에서 같은 만큼 떨어져 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 $7$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "차는 각각 $3$이다",
+              "$7-4=3$, $10-7=3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 수의 평균은 두 수의 {한가운데}에 있는 수이다. 예를 들어 $4$와 $10$의 평균은 {$7$}이다.",
+        "acceptedAnswers": [
+          [
+            "한가운데",
+            "가운데",
+            "정가운데",
+            "중간"
+          ],
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bb8e6ef924b47dde558f06e82fafea9d5684b25d069d849998b8ace2c173f774",
+      "questionRevision": "planning-e5e6-20261006-bb8e6ef924b4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "평균을 자료와 같은 단위로 나타낸다.",
+      "bReason": "단위를 그대로 쓴다는 표기 규칙이어서 서술로 설명할 내용이 거의 없다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "exclusionReason": "B만 제외. 사소한 표기 규칙이라 C로만 확인하며, 대체 B는 없다.",
+      "cDecision": "revise",
+      "cAfter": "키 $140$ $\\mathrm{cm}$와 $150$ $\\mathrm{cm}$의 평균은 $145$ {$\\mathrm{cm}$}이다. 이처럼 평균은 자료와 {같은} 단위로 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\mathrm{cm}$",
+            "센티미터"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "cReason": "'같은 단위'만 비우면 맥락이 없어 실제 단위를 쓰는 예를 넣었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1574,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc9",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균의 단위",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평균은 자료와 {같은 단위}로 나타낸다.",
+        "studentC": "평균은 자료와 □로 나타낸다.",
+        "answers": [
+          "같은 단위"
+        ]
+      },
+      "sourceFingerprint": "c8a0d59eba4c1d525675514f13b2d90eedf0b4450faac47b592ec5a0780cfa05",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$\\mathrm{cm}$",
+        "같은"
+      ],
+      "cStudentAfter": "키 $140$ $\\mathrm{cm}$와 $150$ $\\mathrm{cm}$의 평균은 $145$ □이다. 이처럼 평균은 자료와 □ 단위로 나타낸다.",
+      "cMarkedSentence": "키 $140$ $\\mathrm{cm}$와 $150$ $\\mathrm{cm}$의 평균은 $145$ {$\\mathrm{cm}$}이다. 이처럼 평균은 자료와 {같은} 단위로 나타낸다.",
+      "cStudentSentence": "키 $140$ $\\mathrm{cm}$와 $150$ $\\mathrm{cm}$의 평균은 $145$ □이다. 이처럼 평균은 자료와 □ 단위로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\mathrm{cm}$",
+          "equivalents": [
+            "센티미터"
+          ]
+        },
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "키 $140$ $\\mathrm{cm}$와 $150$ $\\mathrm{cm}$의 평균은 $145$ {$\\mathrm{cm}$}이다. 이처럼 평균은 자료와 {같은} 단위로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{cm}$",
+            "센티미터"
+          ],
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 사소한 표기 규칙이라 C로만 확인하며, 대체 B는 없다."
+      },
+      "proposalFingerprint": "ba5a19d666ac0adb2b68ab8c7959b3dd64bbb408e55eef2360aad51155120fe0",
+      "questionRevision": "planning-e5e6-20261006-ba5a19d666ac",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc11",
+      "bDecision": "revise",
+      "bPrompt": "평균은 반드시 자료에 들어 있는 값 가운데 하나여야 하는지 쓰고, $1$, $4$, $7$, $8$의 평균을 구해 설명하시오.",
+      "bAnswer": "아니다. $(1+4+7+8)\\div 4=5$인데 $5$는 자료에 없는 값이므로, 평균은 자료에 없는 값일 수도 있다.",
+      "bGoal": "평균이 자료에 없는 값일 수 있음을 예로 판단한다.",
+      "bReason": "원문 문장이 평균값을 미리 알려 주므로 학생이 직접 구해 판단하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반드시 자료에 있는 값일 필요는 없다",
+            "평균은 자료에 없는 값일 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균은 $5$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$1$, $4$, $7$, $8$의 평균은 {$5$}이다. 이처럼 평균은 자료에 {없는} 값일 수도 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "없는",
+            "들어 있지 않은"
+          ]
+        }
+      ],
+      "cReason": "'자료에 없는 값'이라는 구절 대신 평균값과 핵심 낱말을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1575,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc11",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "자료에 없는 평균",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1$, $4$, $7$, $8$의 평균 $5$처럼 평균이 {자료에 없는 값}일 수도 있다.",
+        "studentC": "$1$, $4$, $7$, $8$의 평균 $5$처럼 평균이 □일 수도 있다.",
+        "answers": [
+          "자료에 없는 값"
+        ]
+      },
+      "sourceFingerprint": "ac504652a93de08ad3b99a4878e3c14cbbef3f4e66072d2158b810f571c72e47",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "없는"
+      ],
+      "cStudentAfter": "$1$, $4$, $7$, $8$의 평균은 □이다. 이처럼 평균은 자료에 □ 값일 수도 있다.",
+      "cMarkedSentence": "$1$, $4$, $7$, $8$의 평균은 {$5$}이다. 이처럼 평균은 자료에 {없는} 값일 수도 있다.",
+      "cStudentSentence": "$1$, $4$, $7$, $8$의 평균은 □이다. 이처럼 평균은 자료에 □ 값일 수도 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "없는",
+          "equivalents": [
+            "들어 있지 않은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평균은 반드시 자료에 들어 있는 값 가운데 하나여야 하는지 쓰고, $1$, $4$, $7$, $8$의 평균을 구해 설명하시오.",
+        "answer": "아니다. $(1+4+7+8)\\div 4=5$인데 $5$는 자료에 없는 값이므로, 평균은 자료에 없는 값일 수도 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반드시 자료에 있는 값일 필요는 없다",
+              "평균은 자료에 없는 값일 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 $5$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$, $4$, $7$, $8$의 평균은 {$5$}이다. 이처럼 평균은 자료에 {없는} 값일 수도 있다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "없는",
+            "들어 있지 않은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "01ddec4885861080421a94aa21645135fa2728cfe7a314d8fc12e2e41872994b",
+      "questionRevision": "planning-e5e6-20261006-01ddec488586",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc12",
+      "bDecision": "revise",
+      "bPrompt": "자료에 값 하나가 새로 들어올 때, 그 값이 원래 평균보다 큰 경우, 작은 경우, 같은 경우에 평균이 각각 어떻게 달라지는지 쓰시오. 또 $4$, $6$에 $8$이 새로 들어올 때의 평균을 구하시오.",
+      "bAnswer": "평균보다 큰 값이 들어오면 평균은 커지고, 작은 값이 들어오면 작아지며, 같은 값이 들어오면 그대로이다. $(4+6+8)\\div 3=6$이므로 원래 평균 $5$보다 커진다.",
+      "bGoal": "새로 들어온 값과 원래 평균의 크기 관계에 따라 평균이 어떻게 변하는지 구분한다.",
+      "bReason": "큰 값·작은 값·같은 값 세 성질이 한 묶음이어서 여기서 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균보다 큰 값이 들어오면 평균이 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균보다 작은 값이 들어오면 평균이 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균과 같은 값이 들어오면 평균은 그대로이다",
+            "평균과 같은 값이 들어오면 평균은 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "새 평균은 $6$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "평균보다 큰 값이 새로 들어오면 평균은 {커진다}.",
+      "cReason": "평균보다 큰 값이라는 조건과 변화 방향 한 낱말을 묻는 짧은 비교 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'늘어난다', '높아진다'도 같은 뜻이다.",
+      "sourceIndex": 1576,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc12",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "큰 값이 들어올 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평균보다 큰 값이 새로 들어오면 평균은 {커진다}.",
+        "studentC": "평균보다 큰 값이 새로 들어오면 평균은 □.",
+        "answers": [
+          "커진다"
+        ]
+      },
+      "sourceFingerprint": "d866f8da209ca280148a6a2c8201d4a7045f5aa499abf4f9b78e0fbc3051f049",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cFrozenDefinition": "평균보다 큰 값이 새로 들어오면 평균은 {커진다}.",
+      "cFrozenStudentSentence": "평균보다 큰 값이 새로 들어오면 평균은 □.",
+      "cProposedAnswers": [
+        "커진다"
+      ],
+      "cStudentAfter": "평균보다 큰 값이 새로 들어오면 평균은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "평균보다 큰 값이 새로 들어오면 평균은 {커진다}.",
+      "cStudentSentence": "평균보다 큰 값이 새로 들어오면 평균은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "커진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료에 값 하나가 새로 들어올 때, 그 값이 원래 평균보다 큰 경우, 작은 경우, 같은 경우에 평균이 각각 어떻게 달라지는지 쓰시오. 또 $4$, $6$에 $8$이 새로 들어올 때의 평균을 구하시오.",
+        "answer": "평균보다 큰 값이 들어오면 평균은 커지고, 작은 값이 들어오면 작아지며, 같은 값이 들어오면 그대로이다. $(4+6+8)\\div 3=6$이므로 원래 평균 $5$보다 커진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균보다 큰 값이 들어오면 평균이 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균보다 작은 값이 들어오면 평균이 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균과 같은 값이 들어오면 평균은 그대로이다",
+              "평균과 같은 값이 들어오면 평균은 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 평균은 $6$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평균보다 큰 값이 새로 들어오면 평균은 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ebc4a4c87d64d9a065a1632bb84c9ca0ce00918bd717c7108feed8d468465c89",
+      "questionRevision": "planning-e5e6-20261006-ebc4a4c87d64",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc13",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "평균보다 작은 값이 들어오면 평균이 작아짐을 안다.",
+      "bReason": "큰 값이 들어올 때와 방향만 반대이고 설명 구조가 같다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "exclusionReason": "B만 제외. e5-2-6-1-xc12의 B가 작은 값이 들어오는 경우도 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "평균보다 작은 값이 새로 들어오면 평균은 {작아진다}.",
+      "cReason": "평균보다 작은 값이라는 조건이 문장 안에 있고 변화 방향만 짧게 답한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'줄어든다', '낮아진다'도 같은 뜻이다.",
+      "sourceIndex": 1577,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc13",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "작은 값이 들어올 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평균보다 작은 값이 새로 들어오면 평균은 {작아진다}.",
+        "studentC": "평균보다 작은 값이 새로 들어오면 평균은 □.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "sourceFingerprint": "74783a35c2486b689f91309c28a6c0545ec9fb82fb9aa14d3455f316a1cf61b3",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cFrozenDefinition": "평균보다 작은 값이 새로 들어오면 평균은 {작아진다}.",
+      "cFrozenStudentSentence": "평균보다 작은 값이 새로 들어오면 평균은 □.",
+      "cProposedAnswers": [
+        "작아진다"
+      ],
+      "cStudentAfter": "평균보다 작은 값이 새로 들어오면 평균은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작아진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "평균보다 작은 값이 새로 들어오면 평균은 {작아진다}.",
+      "cStudentSentence": "평균보다 작은 값이 새로 들어오면 평균은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "평균보다 작은 값이 새로 들어오면 평균은 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. e5-2-6-1-xc12의 B가 작은 값이 들어오는 경우도 함께 묻는다."
+      },
+      "proposalFingerprint": "ec3130fa193ef4457c043063e1cf493645d54641a45e65e7659617ec82007c43",
+      "questionRevision": "planning-e5e6-20261006-ec3130fa193e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "평균과 같은 값이 들어오면 평균이 변하지 않음을 안다.",
+      "bReason": "새 값이 들어오는 세 경우 가운데 하나라 따로 서술하게 하면 중복된다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "exclusionReason": "B만 제외. e5-2-6-1-xc12의 B가 같은 값이 들어오는 경우도 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$4$, $6$의 평균은 $5$이다. 여기에 평균과 같은 값 $5$가 새로 들어오면 새 평균은 {$5$}이다.",
+      "cReason": "'그대로이다'는 '변하지 않는다' 등 표현이 여럿이라 값으로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1578,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc14",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균과 같은 값이 들어올 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평균과 같은 값이 새로 들어오면 평균은 {그대로이다}.",
+        "studentC": "평균과 같은 값이 새로 들어오면 평균은 □.",
+        "answers": [
+          "그대로이다"
+        ]
+      },
+      "sourceFingerprint": "8fd23bc5f326a226b4dbb8b139da614faae287b8dc50c7a4ba340a99d7a78e61",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "$4$, $6$의 평균은 $5$이다. 여기에 평균과 같은 값 $5$가 새로 들어오면 새 평균은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$4$, $6$의 평균은 $5$이다. 여기에 평균과 같은 값 $5$가 새로 들어오면 새 평균은 {$5$}이다.",
+      "cStudentSentence": "$4$, $6$의 평균은 $5$이다. 여기에 평균과 같은 값 $5$가 새로 들어오면 새 평균은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$4$, $6$의 평균은 $5$이다. 여기에 평균과 같은 값 $5$가 새로 들어오면 새 평균은 {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. e5-2-6-1-xc12의 B가 같은 값이 들어오는 경우도 함께 묻는다."
+      },
+      "proposalFingerprint": "e8a570604b8695991256e3c9f47868a21c3e0e2a8d6ce89e3624170b83742254",
+      "questionRevision": "planning-e5e6-20261006-e8a570604b86",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc15",
+      "bDecision": "revise",
+      "bPrompt": "모든 자료에 같은 수를 더하면 평균은 어떻게 달라지는지 설명하고, $2$, $4$, $6$의 각 값에 $3$을 더한 자료의 평균을 구하시오.",
+      "bAnswer": "평균도 더한 수만큼 커진다. 새 자료 $5$, $7$, $9$의 평균은 $7$로, 원래 평균 $4$보다 $3$만큼 크다.",
+      "bGoal": "모든 자료에 같은 수를 더하면 평균도 그 수만큼 커짐을 확인한다.",
+      "bReason": "일반 관계를 먼저 묻고 작은 수의 자료로 확인하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균도 더한 수만큼 커진다",
+            "평균에 같은 수를 더한 값이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "새 평균은 $7$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료에 $3$씩 더한 $5$, $7$, $9$의 평균은 {$7$}이므로 평균도 {$3$}만큼 커진다.",
+      "cReason": "'그 수만큼'은 가리키는 말이라 실제 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1579,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc15",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "모든 자료에 같은 수를 더하기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "모든 자료에 같은 수를 더하면 평균도 {그 수만큼} 커진다.",
+        "studentC": "모든 자료에 같은 수를 더하면 평균도 □ 커진다.",
+        "answers": [
+          "그 수만큼"
+        ]
+      },
+      "sourceFingerprint": "2f32e541c7a816cf48b60b56cff13c64face6ec727b2cca58bcde4fd212282b0",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$7$",
+        "$3$"
+      ],
+      "cStudentAfter": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료에 $3$씩 더한 $5$, $7$, $9$의 평균은 □이므로 평균도 □만큼 커진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료에 $3$씩 더한 $5$, $7$, $9$의 평균은 {$7$}이므로 평균도 {$3$}만큼 커진다.",
+      "cStudentSentence": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료에 $3$씩 더한 $5$, $7$, $9$의 평균은 □이므로 평균도 □만큼 커진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모든 자료에 같은 수를 더하면 평균은 어떻게 달라지는지 설명하고, $2$, $4$, $6$의 각 값에 $3$을 더한 자료의 평균을 구하시오.",
+        "answer": "평균도 더한 수만큼 커진다. 새 자료 $5$, $7$, $9$의 평균은 $7$로, 원래 평균 $4$보다 $3$만큼 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균도 더한 수만큼 커진다",
+              "평균에 같은 수를 더한 값이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 평균은 $7$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료에 $3$씩 더한 $5$, $7$, $9$의 평균은 {$7$}이므로 평균도 {$3$}만큼 커진다.",
+        "acceptedAnswers": [
+          [
+            "$7$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "77d37652d25b420ef230c0a0d2a5b339bd26c2d8d466641f800513a993b6d285",
+      "questionRevision": "planning-e5e6-20261006-77d37652d25b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "사람 수가 다른 두 모둠의 기록을 공정하게 견주려면 기록의 합과 평균 가운데 무엇을 비교해야 하는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "평균을 비교한다. 사람 수가 많으면 합이 커질 수 있으므로 한 사람당 기록인 평균으로 견주어야 공정하다.",
+      "bGoal": "인원이 다른 집단은 합이 아니라 평균으로 견주어야 함을 설명한다.",
+      "bReason": "합과 평균을 대비시켜 평균을 쓰는 까닭을 구체적으로 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균을 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "사람 수가 다르면 합은 사람 수에 따라 달라져 공정하지 않다",
+            "평균은 한 사람당 기록을 나타낸다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 {평균}을 비교한다.",
+      "cReason": "사람 수가 다르다는 조건과 한 사람당 기록이라는 단서로 '평균'을 답하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1580,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc16",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "모둠끼리 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 {평균}을 비교한다.",
+        "studentC": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 □을 비교한다.",
+        "answers": [
+          "평균"
+        ]
+      },
+      "sourceFingerprint": "580a8a13afdd0591964cbd638d8f5282100dfc852a0cd55979771ce29657fa87",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cFrozenDefinition": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 {평균}을 비교한다.",
+      "cFrozenStudentSentence": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 □을 비교한다.",
+      "cProposedAnswers": [
+        "평균"
+      ],
+      "cStudentAfter": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 □을 비교한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평균"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 {평균}을 비교한다.",
+      "cStudentSentence": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 □을 비교한다.",
+      "cSlotAnswers": [
+        {
+          "key": "평균",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사람 수가 다른 두 모둠의 기록을 공정하게 견주려면 기록의 합과 평균 가운데 무엇을 비교해야 하는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "평균을 비교한다. 사람 수가 많으면 합이 커질 수 있으므로 한 사람당 기록인 평균으로 견주어야 공정하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균을 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "사람 수가 다르면 합은 사람 수에 따라 달라져 공정하지 않다",
+              "평균은 한 사람당 기록을 나타낸다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사람 수가 다른 두 모둠의 한 사람당 기록을 견주려면 각 모둠의 {평균}을 비교한다.",
+        "acceptedAnswers": [
+          [
+            "평균"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2ced97afddeb28712d28205c31ab4a7e927a2f67ac6782763d9a1c54e2c92768",
+      "questionRevision": "planning-e5e6-20261006-2ced97afddeb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "$98$, $100$, $105$, $101$의 평균을 구할 때, $100$을 기준으로 정하고 각 값이 $100$보다 넘치거나 모자란 양만 이용해 평균을 구하는 방법을 설명하고 평균을 쓰시오.",
+      "bAnswer": "넘치는 양은 $5+1=6$, 모자란 양은 $2$이므로 남는 양은 $4$이다. 이를 자료 $4$개에 고르게 나누면 $1$씩이므로 평균은 $100+1=101$이다.",
+      "bGoal": "기준 수를 넘거나 모자란 양을 맞추어 평균을 간단히 구한다.",
+      "bReason": "'기준을 정해 어림하기'는 예 없이는 뜻이 전달되지 않아 실제 수와 기준을 제시했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넘치는 양 $6$과 모자란 양 $2$를 맞추어 남는 $4$를 $4$개에 고르게 나눈다",
+            "기준 $100$과의 차 $-2$, $0$, $+5$, $+1$을 모아 개수 $4$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균은 $101$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$48$, $50$, $55$의 평균을 $50$을 기준으로 구하면, 넘치는 양 $5$에서 모자란 양 {$2$}를 뺀 $3$을 세 자료에 $1$씩 고르게 나누므로 평균은 {$51$}이다.",
+      "cReason": "'넘치는 양과 모자란 양'이라는 긴 구절 대신 실제 양과 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1581,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc17",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "기준을 정해 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "기준이 되는 수를 정해 {넘치는 양과 모자란 양}을 맞추면 평균을 어림할 수 있다.",
+        "studentC": "기준이 되는 수를 정해 □을 맞추면 평균을 어림할 수 있다.",
+        "answers": [
+          "넘치는 양과 모자란 양"
+        ]
+      },
+      "sourceFingerprint": "51ae2a755cca1b44346ce5fa0ea5460637cfa79d2dfed287769cb91bbf3e75b4",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$51$"
+      ],
+      "cStudentAfter": "$48$, $50$, $55$의 평균을 $50$을 기준으로 구하면, 넘치는 양 $5$에서 모자란 양 □를 뺀 $3$을 세 자료에 $1$씩 고르게 나누므로 평균은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$51$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$48$, $50$, $55$의 평균을 $50$을 기준으로 구하면, 넘치는 양 $5$에서 모자란 양 {$2$}를 뺀 $3$을 세 자료에 $1$씩 고르게 나누므로 평균은 {$51$}이다.",
+      "cStudentSentence": "$48$, $50$, $55$의 평균을 $50$을 기준으로 구하면, 넘치는 양 $5$에서 모자란 양 □를 뺀 $3$을 세 자료에 $1$씩 고르게 나누므로 평균은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$51$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$98$, $100$, $105$, $101$의 평균을 구할 때, $100$을 기준으로 정하고 각 값이 $100$보다 넘치거나 모자란 양만 이용해 평균을 구하는 방법을 설명하고 평균을 쓰시오.",
+        "answer": "넘치는 양은 $5+1=6$, 모자란 양은 $2$이므로 남는 양은 $4$이다. 이를 자료 $4$개에 고르게 나누면 $1$씩이므로 평균은 $100+1=101$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넘치는 양 $6$과 모자란 양 $2$를 맞추어 남는 $4$를 $4$개에 고르게 나눈다",
+              "기준 $100$과의 차 $-2$, $0$, $+5$, $+1$을 모아 개수 $4$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 $101$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$48$, $50$, $55$의 평균을 $50$을 기준으로 구하면, 넘치는 양 $5$에서 모자란 양 {$2$}를 뺀 $3$을 세 자료에 $1$씩 고르게 나누므로 평균은 {$51$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$51$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "20f8d3fc4d31d8dc0116af95b9d8b7e3ecb6a713615eb891a53e9da29b139cd4",
+      "questionRevision": "planning-e5e6-20261006-20f8d3fc4d31",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc19",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "개수와 합이 같으면 평균도 같음을 안다.",
+      "bReason": "합을 개수로 나눈다는 식에서 바로 나오는 사실이라 따로 서술할 내용이 없다.",
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "exclusionReason": "B만 제외. 평균 구하는 식의 자명한 결과이며 e5-2-6-1-c2의 B가 바탕 절차를 다룬다.",
+      "cDecision": "keep",
+      "cAfter": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 {같다}.",
+      "cReason": "개수와 합이 서로 같다는 두 조건이 문장에 있고 결과를 한 낱말로 답한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1582,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc19",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "개수와 합이 같은 자료",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 {같다}.",
+        "studentC": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "1918f11c5e71be56f5f42a79fdf3ca5be06d4bc4da9f511f9b181dabd9b8bf0d",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cFrozenDefinition": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 {같다}.",
+      "cFrozenStudentSentence": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 {같다}.",
+      "cStudentSentence": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 묶음의 자료에서 자료의 개수가 서로 같고 자료의 합도 서로 같으면 평균은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 평균 구하는 식의 자명한 결과이며 e5-2-6-1-c2의 B가 바탕 절차를 다룬다."
+      },
+      "proposalFingerprint": "c61a76b13503e2f0ae7e026ea02e79878ac75afd3a4b6156b3ddd0ccdbc46a4a",
+      "questionRevision": "planning-e5e6-20261006-c61a76b13503",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc20",
+      "bDecision": "revise",
+      "bPrompt": "자료 가운데 하나의 값만 커지면 평균은 얼마만큼 커지는지 설명하고, 자료 $4$개 가운데 하나가 $8$만큼 커질 때 평균이 얼마나 커지는지 구하시오.",
+      "bAnswer": "커진 양을 자료의 개수로 나눈 만큼 커진다. $8\\div 4=2$이므로 평균은 $2$만큼 커진다.",
+      "bGoal": "한 자료의 증가량이 개수만큼 나뉘어 평균에 반영됨을 설명한다.",
+      "bReason": "증가량과 평균 변화의 관계를 묻고 간단한 수로 적용하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "커진 양을 자료의 개수로 나눈 만큼 커진다",
+            "합이 커진 만큼을 개수로 고르게 나눈 만큼 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$만큼 커진다",
+            "$8\\div 4=2$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "자료 $4$개 가운데 하나만 $8$만큼 커지면 자료의 합은 {$8$}만큼 커지고, 평균은 {$2$}만큼 커진다.",
+      "cReason": "'자료의 개수로 나눈'은 구절 암기가 되기 쉬워 합과 평균의 변화량을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1583,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc20",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "자료 하나가 커질 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자료 가운데 하나가 커지면 평균은 커진 양을 {자료의 개수로 나눈} 만큼 커진다.",
+        "studentC": "자료 가운데 하나가 커지면 평균은 커진 양을 □ 만큼 커진다.",
+        "answers": [
+          "자료의 개수로 나눈"
+        ]
+      },
+      "sourceFingerprint": "abe904f8e7213e0c80533a31816b7a123c9f7a4ad467dd0e570d96c8b9cf078e",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$2$"
+      ],
+      "cStudentAfter": "자료 $4$개 가운데 하나만 $8$만큼 커지면 자료의 합은 □만큼 커지고, 평균은 □만큼 커진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자료 $4$개 가운데 하나만 $8$만큼 커지면 자료의 합은 {$8$}만큼 커지고, 평균은 {$2$}만큼 커진다.",
+      "cStudentSentence": "자료 $4$개 가운데 하나만 $8$만큼 커지면 자료의 합은 □만큼 커지고, 평균은 □만큼 커진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료 가운데 하나의 값만 커지면 평균은 얼마만큼 커지는지 설명하고, 자료 $4$개 가운데 하나가 $8$만큼 커질 때 평균이 얼마나 커지는지 구하시오.",
+        "answer": "커진 양을 자료의 개수로 나눈 만큼 커진다. $8\\div 4=2$이므로 평균은 $2$만큼 커진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "커진 양을 자료의 개수로 나눈 만큼 커진다",
+              "합이 커진 만큼을 개수로 고르게 나눈 만큼 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$만큼 커진다",
+              "$8\\div 4=2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자료 $4$개 가운데 하나만 $8$만큼 커지면 자료의 합은 {$8$}만큼 커지고, 평균은 {$2$}만큼 커진다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "34918d5e35561c92a61dd8240706891483555d4cfc53edf7291eb0260406bde2",
+      "questionRevision": "planning-e5e6-20261006-34918d5e3556",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "평균보다 큰 값들이 평균을 넘는 양의 합과 평균보다 작은 값들이 평균에 모자란 양의 합은 어떤 관계인지 쓰고, 평균이 $6$인 자료 $2$, $5$, $8$, $9$에서 두 합을 각각 구해 확인하시오.",
+      "bAnswer": "두 합은 서로 같다. 넘는 양의 합은 $2+3=5$이고 모자란 양의 합은 $4+1=5$이다.",
+      "bGoal": "평균을 넘는 양의 합과 모자란 양의 합이 같음을 자료로 확인한다.",
+      "bReason": "편집용 제목 대신 두 합이 무엇인지 풀어 쓰고 예로 계산하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 합은 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넘는 양의 합은 $5$이다",
+            "$2+3=5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "모자란 양의 합은 $5$이다",
+            "$4+1=5$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 {같다}.",
+      "cReason": "평균을 기준으로 한 두 합의 관계를 한 낱말로 답하는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'서로 같다', '똑같다'도 같은 답이다.",
+      "sourceIndex": 1584,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc21",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "넘치는 양과 모자란 양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 {같다}.",
+        "studentC": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "c9ccde6a992b5324a9941664b8faa380dd85fab2ddddf41c09199002e1f89a8f",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cFrozenDefinition": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 {같다}.",
+      "cFrozenStudentSentence": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 {같다}.",
+      "cStudentSentence": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평균보다 큰 값들이 평균을 넘는 양의 합과 평균보다 작은 값들이 평균에 모자란 양의 합은 어떤 관계인지 쓰고, 평균이 $6$인 자료 $2$, $5$, $8$, $9$에서 두 합을 각각 구해 확인하시오.",
+        "answer": "두 합은 서로 같다. 넘는 양의 합은 $2+3=5$이고 모자란 양의 합은 $4+1=5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 합은 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넘는 양의 합은 $5$이다",
+              "$2+3=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모자란 양의 합은 $5$이다",
+              "$4+1=5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평균보다 큰 값들이 넘치는 양의 합과 작은 값들이 모자란 양의 합은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f9af69b2ef00735844d5b0f3addb6a6e4fe6db9ed0f7708e830716167c73cdef",
+      "questionRevision": "planning-e5e6-20261006-f9af69b2ef00",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc23",
+      "bDecision": "revise",
+      "bPrompt": "모든 자료를 같은 수만큼 배 하면 평균은 어떻게 달라지는지 설명하고, $2$, $4$, $6$을 각각 $3$배 한 자료의 평균을 구하시오.",
+      "bAnswer": "평균도 같은 수만큼 배가 된다. 새 자료 $6$, $12$, $18$의 평균은 $12$로, 원래 평균 $4$의 $3$배이다.",
+      "bGoal": "모든 자료를 같은 배로 하면 평균도 같은 배가 됨을 확인한다.",
+      "bReason": "같은 수를 더하는 경우와 구분되도록 배 관계를 묻고 예로 확인하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균도 같은 수만큼 배가 된다",
+            "평균에 같은 수를 곱한 값이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "새 평균은 $12$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료를 $3$배 한 $6$, $12$, $18$의 평균은 {$12$}이므로 평균도 {$3$}배가 된다.",
+      "cReason": "'그만큼 배'는 모호한 구절이라 실제 평균과 배수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1585,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc23",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "모든 자료를 같은 수만큼 배 하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모든 자료를 같은 수만큼 배 하면 평균도 {그만큼 배}가 된다.",
+        "studentC": "모든 자료를 같은 수만큼 배 하면 평균도 □가 된다.",
+        "answers": [
+          "그만큼 배"
+        ]
+      },
+      "sourceFingerprint": "a563d6e43632405a7788dddc4ad5893bd07371c78a5cba4a2bf38c719b4d232f",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$3$"
+      ],
+      "cStudentAfter": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료를 $3$배 한 $6$, $12$, $18$의 평균은 □이므로 평균도 □배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료를 $3$배 한 $6$, $12$, $18$의 평균은 {$12$}이므로 평균도 {$3$}배가 된다.",
+      "cStudentSentence": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료를 $3$배 한 $6$, $12$, $18$의 평균은 □이므로 평균도 □배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모든 자료를 같은 수만큼 배 하면 평균은 어떻게 달라지는지 설명하고, $2$, $4$, $6$을 각각 $3$배 한 자료의 평균을 구하시오.",
+        "answer": "평균도 같은 수만큼 배가 된다. 새 자료 $6$, $12$, $18$의 평균은 $12$로, 원래 평균 $4$의 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균도 같은 수만큼 배가 된다",
+              "평균에 같은 수를 곱한 값이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 평균은 $12$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2$, $4$, $6$의 평균은 $4$이다. 모든 자료를 $3$배 한 $6$, $12$, $18$의 평균은 {$12$}이므로 평균도 {$3$}배가 된다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "641064167ba06dc81967c55dc4c36e86694e4e9a80511f7a32e0fb6d1de2cb45",
+      "questionRevision": "planning-e5e6-20261006-641064167ba0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc24",
+      "bDecision": "revise",
+      "bPrompt": "평균이 같은 두 자료 묶음은 자료의 값도 서로 같다고 할 수 있는지 쓰고, $5$, $5$, $5$와 $1$, $5$, $9$의 평균을 각각 구해 설명하시오.",
+      "bAnswer": "같다고 할 수 없다. 두 묶음의 평균은 모두 $5$이지만 한쪽은 값이 모두 같고 다른 쪽은 값이 서로 많이 달라 고른 정도가 다르다.",
+      "bGoal": "평균이 같아도 자료의 값과 고른 정도는 다를 수 있음을 예로 판단한다.",
+      "bReason": "'퍼져 있는지'는 초5에게 낯선 말이라 값이 고른 정도를 예로 비교하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균이 같아도 자료의 값은 다를 수 있다",
+            "같다고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 묶음의 평균은 모두 $5$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$5$, $5$, $5$와 $1$, $5$, $9$의 평균은 모두 {$5$}로 같지만, 자료의 값이 고른 정도는 서로 {다르다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "다르다",
+            "같지 않다"
+          ]
+        }
+      ],
+      "cReason": "'얼마나 고르게 퍼져 있는지'는 외워 쓰기 어려운 긴 구절이라 예와 짧은 답으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1586,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc24",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균만으로 알 수 없는 것",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평균이 같아도 자료가 {얼마나 고르게 퍼져 있는지}는 다를 수 있다.",
+        "studentC": "평균이 같아도 자료가 □는 다를 수 있다.",
+        "answers": [
+          "얼마나 고르게 퍼져 있는지"
+        ]
+      },
+      "sourceFingerprint": "16994719c0a928bdf78344adc20a4fe159ac5721d0ee906381698b24edb93c2b",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "다르다"
+      ],
+      "cStudentAfter": "$5$, $5$, $5$와 $1$, $5$, $9$의 평균은 모두 □로 같지만, 자료의 값이 고른 정도는 서로 □.",
+      "cMarkedSentence": "$5$, $5$, $5$와 $1$, $5$, $9$의 평균은 모두 {$5$}로 같지만, 자료의 값이 고른 정도는 서로 {다르다}.",
+      "cStudentSentence": "$5$, $5$, $5$와 $1$, $5$, $9$의 평균은 모두 □로 같지만, 자료의 값이 고른 정도는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "다르다",
+          "equivalents": [
+            "같지 않다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평균이 같은 두 자료 묶음은 자료의 값도 서로 같다고 할 수 있는지 쓰고, $5$, $5$, $5$와 $1$, $5$, $9$의 평균을 각각 구해 설명하시오.",
+        "answer": "같다고 할 수 없다. 두 묶음의 평균은 모두 $5$이지만 한쪽은 값이 모두 같고 다른 쪽은 값이 서로 많이 달라 고른 정도가 다르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균이 같아도 자료의 값은 다를 수 있다",
+              "같다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 묶음의 평균은 모두 $5$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5$, $5$, $5$와 $1$, $5$, $9$의 평균은 모두 {$5$}로 같지만, 자료의 값이 고른 정도는 서로 {다르다}.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "다르다",
+            "같지 않다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ed95a72ce9fa8eb0815422ba3dd6b63d7bc479bf0c62272f5a4113104f27fb83",
+      "questionRevision": "planning-e5e6-20261006-ed95a72ce9fa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc26",
+      "bDecision": "revise",
+      "bPrompt": "평균과 자료의 개수를 알 때 자료의 값을 모두 더한 합을 구하는 방법을 설명하고, 평균이 $7$인 자료 $5$개의 합을 구하시오.",
+      "bAnswer": "평균에 자료의 개수를 곱한다. $7\\times 5=35$이므로 합은 $35$이다.",
+      "bGoal": "평균과 개수를 곱해 자료의 합을 구한다.",
+      "bReason": "방법을 묻되 곱한다는 말은 질문에 넣지 않고 적용 예를 붙였다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균에 자료의 개수를 곱한다",
+            "(평균)$\\times$(자료의 개수)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "(자료의 합)$=$(평균)$\\times$({자료의 개수})이므로 평균이 $7$인 자료 $5$개의 합은 {$35$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자료의 개수",
+            "개수",
+            "자료의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35$"
+          ]
+        }
+      ],
+      "cReason": "'평균과 개수의 곱'이라는 구절 대신 식의 한 항과 계산값을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1587,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc26",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균으로 합 알기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "평균과 자료의 개수를 알면 {평균과 개수의 곱}으로 자료의 합을 알 수 있다.",
+        "studentC": "평균과 자료의 개수를 알면 □으로 자료의 합을 알 수 있다.",
+        "answers": [
+          "평균과 개수의 곱"
+        ]
+      },
+      "sourceFingerprint": "08f3cf7230f83f9c270d664241101e60a4264381c9047b742c864bcf1be2204a",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "자료의 개수",
+        "$35$"
+      ],
+      "cStudentAfter": "(자료의 합)$=$(평균)$\\times$(□)이므로 평균이 $7$인 자료 $5$개의 합은 □이다.",
+      "cMarkedSentence": "(자료의 합)$=$(평균)$\\times$({자료의 개수})이므로 평균이 $7$인 자료 $5$개의 합은 {$35$}이다.",
+      "cStudentSentence": "(자료의 합)$=$(평균)$\\times$(□)이므로 평균이 $7$인 자료 $5$개의 합은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "자료의 개수",
+          "equivalents": [
+            "개수",
+            "자료의 수"
+          ]
+        },
+        {
+          "key": "$35$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평균과 자료의 개수를 알 때 자료의 값을 모두 더한 합을 구하는 방법을 설명하고, 평균이 $7$인 자료 $5$개의 합을 구하시오.",
+        "answer": "평균에 자료의 개수를 곱한다. $7\\times 5=35$이므로 합은 $35$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균에 자료의 개수를 곱한다",
+              "(평균)$\\times$(자료의 개수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "(자료의 합)$=$(평균)$\\times$({자료의 개수})이므로 평균이 $7$인 자료 $5$개의 합은 {$35$}이다.",
+        "acceptedAnswers": [
+          [
+            "자료의 개수",
+            "개수",
+            "자료의 수"
+          ],
+          [
+            "$35$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6e3db0acd475eaf61bcb59e43d9a6e449f0ba15f60732841c5ff5ed1744fd8f8",
+      "questionRevision": "planning-e5e6-20261006-6e3db0acd475",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc27",
+      "bDecision": "revise",
+      "bPrompt": "평균이 같은 두 모둠을 하나로 합치면 전체 평균은 어떻게 되는지 쓰고, 평균이 $6$점인 $2$명 모둠과 평균이 $6$점인 $3$명 모둠을 합쳐 전체 평균을 구해 확인하시오.",
+      "bAnswer": "전체 평균은 그대로이다. 점수의 합은 $12+18=30$점이고 $30\\div 5=6$이므로 전체 평균도 $6$점이다.",
+      "bGoal": "평균이 같은 두 집단을 합쳐도 평균이 변하지 않음을 합과 인원으로 확인한다.",
+      "bReason": "인원이 다른 두 모둠의 합을 구해 직접 확인하도록 구체적 수를 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 평균은 그대로이다",
+            "전체 평균은 두 모둠의 평균과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 평균은 $6$점이다",
+            "$30\\div 5=6$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "평균이 $6$점인 $2$명 모둠과 평균이 $6$점인 $3$명 모둠을 합치면 점수의 합은 {$30$}점이고, $5$명의 평균은 {$6$}점이다.",
+      "cReason": "'그대로'는 표현이 여럿이라 합과 전체 평균을 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1588,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc27",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균이 같은 두 모둠",
+        "kind": "방법",
+        "level": "상",
+        "definition": "평균이 같은 두 모둠을 합쳐도 전체 평균은 {그대로}이다.",
+        "studentC": "평균이 같은 두 모둠을 합쳐도 전체 평균은 □이다.",
+        "answers": [
+          "그대로"
+        ]
+      },
+      "sourceFingerprint": "fa9a2524e38f84a616db597f5e4468ef080b9091a96c54d62507a8f0ab6ae042",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$30$",
+        "$6$"
+      ],
+      "cStudentAfter": "평균이 $6$점인 $2$명 모둠과 평균이 $6$점인 $3$명 모둠을 합치면 점수의 합은 □점이고, $5$명의 평균은 □점이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "평균이 $6$점인 $2$명 모둠과 평균이 $6$점인 $3$명 모둠을 합치면 점수의 합은 {$30$}점이고, $5$명의 평균은 {$6$}점이다.",
+      "cStudentSentence": "평균이 $6$점인 $2$명 모둠과 평균이 $6$점인 $3$명 모둠을 합치면 점수의 합은 □점이고, $5$명의 평균은 □점이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평균이 같은 두 모둠을 하나로 합치면 전체 평균은 어떻게 되는지 쓰고, 평균이 $6$점인 $2$명 모둠과 평균이 $6$점인 $3$명 모둠을 합쳐 전체 평균을 구해 확인하시오.",
+        "answer": "전체 평균은 그대로이다. 점수의 합은 $12+18=30$점이고 $30\\div 5=6$이므로 전체 평균도 $6$점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 평균은 그대로이다",
+              "전체 평균은 두 모둠의 평균과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 평균은 $6$점이다",
+              "$30\\div 5=6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평균이 $6$점인 $2$명 모둠과 평균이 $6$점인 $3$명 모둠을 합치면 점수의 합은 {$30$}점이고, $5$명의 평균은 {$6$}점이다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8e9d8cde1e6f0026481fbb3a62ae27af55e9c810cea7bbf101d2367ad3a726a2",
+      "questionRevision": "planning-e5e6-20261006-8e9d8cde1e6f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc2",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "평균이 높은 쪽을 더 잘했다고 판단하는 내용이다.",
+      "bReason": "평균이 높으면 잘했다는 자명한 판단이고, 평균으로 견주는 까닭은 xc7 B에서 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 {높은 쪽}을 더 잘했다고 볼 수 있다.",
+      "cReason": "'점수가 높을수록 좋은 경기'라는 조건이 문장에 있어 평균이 높은 쪽을 고르는 짧은 판단으로 쓸 수 있다.",
+      "exclusionReason": "B는 자명한 판단이며 e5-2-6-2-xc7과 목표가 겹친다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'높은 쪽', '큰 쪽', '높은 사람', '더 높은 쪽'은 같은 답으로 인정한다.",
+      "sourceIndex": 1589,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc2",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "평균으로 잘한 쪽 고르기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 {높은 쪽}을 더 잘했다고 볼 수 있다.",
+        "studentC": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 □을 더 잘했다고 볼 수 있다.",
+        "answers": [
+          "높은 쪽"
+        ]
+      },
+      "sourceFingerprint": "03ce8348d1528bd7a69563cf9ac7c959c76bacbbfa359088c1cfeb8452cf10e2",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cFrozenDefinition": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 {높은 쪽}을 더 잘했다고 볼 수 있다.",
+      "cFrozenStudentSentence": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 □을 더 잘했다고 볼 수 있다.",
+      "cProposedAnswers": [
+        "높은 쪽"
+      ],
+      "cStudentAfter": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 □을 더 잘했다고 볼 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "높은 쪽"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 {높은 쪽}을 더 잘했다고 볼 수 있다.",
+      "cStudentSentence": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 □을 더 잘했다고 볼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "높은 쪽",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "점수가 높을수록 좋은 경기에서 기록이 여러 번인 두 사람은 평균이 {높은 쪽}을 더 잘했다고 볼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "높은 쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 판단이며 e5-2-6-2-xc7과 목표가 겹친다."
+      },
+      "proposalFingerprint": "2d447b473b9641f6a71722879073c4a1900d1a2de77c52beda0e27d39e482b75",
+      "questionRevision": "planning-e5e6-20261006-2d447b473b96",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자료에 새 값 하나를 더 넣어 평균이 높아지게 하려면 새 값은 지금 평균과 견주어 어떠해야 하는지 쓰고, 지금 평균과 같은 값을 넣으면 평균이 어떻게 되는지도 쓰시오. 또 $4$, $6$, $8$에 $10$을 더 넣으면 평균이 얼마에서 얼마로 바뀌는지 구하시오.",
+      "bAnswer": "새 값이 지금 평균보다 커야 한다. 지금 평균과 같은 값을 넣으면 평균은 변하지 않는다. 예에서 평균은 $6$에서 $28\\div4=7$로 바뀐다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "새 값이 지금 평균보다 커야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균과 같은 값을 넣으면 평균은 변하지 않는다",
+            "평균이 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$에서 $7$로 바뀐다",
+            "$6$, $7$"
+          ]
+        }
+      ],
+      "bGoal": "새 값과 지금 평균의 크기 관계가 평균의 변화를 정함을 설명한다.",
+      "bReason": "원문 결론을 질문에 드러내지 않고 평균과 같은 값을 넣는 경우와 견주어 답하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "평균을 높이려면 지금 평균보다 {큰 값}을 더해야 한다.",
+      "cReason": "새 값을 지금 평균과 견주는 짧은 비교 문장이고 답 '큰 값'이 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'큰 값', '큰 수', '높은 값'은 같은 답으로 인정한다.",
+      "sourceIndex": 1590,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc4",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "평균을 높이려면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평균을 높이려면 지금 평균보다 {큰 값}을 더해야 한다.",
+        "studentC": "평균을 높이려면 지금 평균보다 □을 더해야 한다.",
+        "answers": [
+          "큰 값"
+        ]
+      },
+      "sourceFingerprint": "f5b1ad72be06b8e733e6df187aa726aba04d682e7318a8b15fed9fe6130d35e5",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cFrozenDefinition": "평균을 높이려면 지금 평균보다 {큰 값}을 더해야 한다.",
+      "cFrozenStudentSentence": "평균을 높이려면 지금 평균보다 □을 더해야 한다.",
+      "cProposedAnswers": [
+        "큰 값"
+      ],
+      "cStudentAfter": "평균을 높이려면 지금 평균보다 □을 더해야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "큰 값"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "평균을 높이려면 지금 평균보다 {큰 값}을 더해야 한다.",
+      "cStudentSentence": "평균을 높이려면 지금 평균보다 □을 더해야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "큰 값",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료에 새 값 하나를 더 넣어 평균이 높아지게 하려면 새 값은 지금 평균과 견주어 어떠해야 하는지 쓰고, 지금 평균과 같은 값을 넣으면 평균이 어떻게 되는지도 쓰시오. 또 $4$, $6$, $8$에 $10$을 더 넣으면 평균이 얼마에서 얼마로 바뀌는지 구하시오.",
+        "answer": "새 값이 지금 평균보다 커야 한다. 지금 평균과 같은 값을 넣으면 평균은 변하지 않는다. 예에서 평균은 $6$에서 $28\\div4=7$로 바뀐다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "새 값이 지금 평균보다 커야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균과 같은 값을 넣으면 평균은 변하지 않는다",
+              "평균이 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$에서 $7$로 바뀐다",
+              "$6$, $7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평균을 높이려면 지금 평균보다 {큰 값}을 더해야 한다.",
+        "acceptedAnswers": [
+          [
+            "큰 값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c7ba03ffb3e08e68d6aa44fb72b9de50bb24a61cb1804719c33eb59f2c1a13f",
+      "questionRevision": "planning-e5e6-20261006-5c7ba03ffb3e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "목표 평균에 개수를 곱해 필요한 합을 구하는 내용이다.",
+      "bReason": "c1의 (평균)$\\times$(개수)와 같은 관계라서 B로 다시 물으면 중복이다.",
+      "cDecision": "revise",
+      "cAfter": "$5$번 본 시험의 평균이 $80$점이 되려면 $5$번 점수의 합은 $80\\times${$5$}$=${$400$}점이어야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$400$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '개수를 곱하면'은 서술어 구절이라 어색하므로 목표 평균 상황의 식과 값으로 바꾸었다.",
+      "exclusionReason": "B는 e5-2-6-2-c1과 같은 관계를 묻게 되어 중복이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1591,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc5",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "목표 평균과 필요한 합",
+        "kind": "방법",
+        "level": "하",
+        "definition": "목표 평균에 {개수를 곱하면} 필요한 합을 알 수 있다.",
+        "studentC": "목표 평균에 □ 필요한 합을 알 수 있다.",
+        "answers": [
+          "개수를 곱하면"
+        ]
+      },
+      "sourceFingerprint": "80669ee823fb52192f2bd219021b98c6accaa3a9af0917486d4d144d24f99967",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$400$"
+      ],
+      "cStudentAfter": "$5$번 본 시험의 평균이 $80$점이 되려면 $5$번 점수의 합은 $80\\times$□$=$□점이어야 한다.",
+      "cMarkedSentence": "$5$번 본 시험의 평균이 $80$점이 되려면 $5$번 점수의 합은 $80\\times${$5$}$=${$400$}점이어야 한다.",
+      "cStudentSentence": "$5$번 본 시험의 평균이 $80$점이 되려면 $5$번 점수의 합은 $80\\times$□$=$□점이어야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$400$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$5$번 본 시험의 평균이 $80$점이 되려면 $5$번 점수의 합은 $80\\times${$5$}$=${$400$}점이어야 한다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$400$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-6-2-c1과 같은 관계를 묻게 되어 중복이다."
+      },
+      "proposalFingerprint": "c0f122261546b836b503c47331360c120a4b8759ac9761a5002428664036a64e",
+      "questionRevision": "planning-e5e6-20261006-c0f122261546",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc7",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "사람 수가 다른 두 모둠의 기록을 공정하게 견주려면 각 모둠의 어떤 값을 견주어야 하는지 쓰고, 기록의 합으로 견주면 어떤 문제가 생기는지 설명하시오.",
+      "bAnswer": "각 모둠의 평균(한 사람당 기록)을 견준다. 기록의 합은 사람 수가 많은 모둠이 더 커지기 쉬워서 공정하게 견줄 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균을 견준다",
+            "한 사람당 기록을 견준다"
+          ]
+        },
+        {
+          "anyOf": [
+            "사람 수가 많은 모둠의 합이 커지기 쉬워 공정하지 않다",
+            "합은 사람 수에 따라 달라진다"
+          ]
+        }
+      ],
+      "bGoal": "크기가 다른 집단을 견줄 때 합이 아니라 평균을 쓰는 까닭을 설명한다.",
+      "bReason": "원문은 '평균'이라는 낱말만 묻지만 B에서는 합으로 견줄 때의 문제까지 설명하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 {평균}을 쓴다.",
+      "cReason": "사람 수가 다르다는 조건과 '한 사람당 고르게'라는 뜻이 문장에 있어 답 '평균'이 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1592,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc7",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "모둠의 크기가 다를 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 {평균}을 쓴다.",
+        "studentC": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 □을 쓴다.",
+        "answers": [
+          "평균"
+        ]
+      },
+      "sourceFingerprint": "35294c90457332f541387456210be1320847e3a9a7a7f6363392afe994f3fee7",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cFrozenDefinition": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 {평균}을 쓴다.",
+      "cFrozenStudentSentence": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 □을 쓴다.",
+      "cProposedAnswers": [
+        "평균"
+      ],
+      "cStudentAfter": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 □을 쓴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평균"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 {평균}을 쓴다.",
+      "cStudentSentence": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 □을 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "평균",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사람 수가 다른 두 모둠의 기록을 공정하게 견주려면 각 모둠의 어떤 값을 견주어야 하는지 쓰고, 기록의 합으로 견주면 어떤 문제가 생기는지 설명하시오.",
+        "answer": "각 모둠의 평균(한 사람당 기록)을 견준다. 기록의 합은 사람 수가 많은 모둠이 더 커지기 쉬워서 공정하게 견줄 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균을 견준다",
+              "한 사람당 기록을 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "사람 수가 많은 모둠의 합이 커지기 쉬워 공정하지 않다",
+              "합은 사람 수에 따라 달라진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사람 수가 다른 두 모둠의 기록을 한 사람당 고르게 보아 견주려면 {평균}을 쓴다.",
+        "acceptedAnswers": [
+          [
+            "평균"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1d19dd30cacfe8ac08706d23a11f74ac57d2e2c04d44ce71bfbd630cb4271847",
+      "questionRevision": "planning-e5e6-20261006-1d19dd30cacf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc8",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "평균을 구해 각 자료와 견주는 단순 절차이다.",
+      "bReason": "평균을 구해 견준다는 자명한 행동이라 설명할 개념 관계가 없다.",
+      "cDecision": "revise",
+      "cAfter": "세 수 $3$, $5$, $10$의 평균은 {$6$}이고, 이 중 평균보다 큰 수는 {$10$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '견주어'는 수학 내용이 없는 낱말이라 실제로 평균을 구해 큰 자료를 찾게 바꾸었다.",
+      "exclusionReason": "B는 사소한 행동을 서술하는 것이어서 가치가 낮고, 확인되는 대체 문항은 없다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1593,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc8",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "평균보다 높은 자료 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "평균을 구한 뒤 각 자료와 {견주어} 평균보다 높은 것을 찾는다.",
+        "studentC": "평균을 구한 뒤 각 자료와 □ 평균보다 높은 것을 찾는다.",
+        "answers": [
+          "견주어"
+        ]
+      },
+      "sourceFingerprint": "59958d8d3d22a9493c5f28d18ca3cd65a4bfda16b266ac154ef330020f26b520",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$10$"
+      ],
+      "cStudentAfter": "세 수 $3$, $5$, $10$의 평균은 □이고, 이 중 평균보다 큰 수는 □이다.",
+      "cMarkedSentence": "세 수 $3$, $5$, $10$의 평균은 {$6$}이고, 이 중 평균보다 큰 수는 {$10$}이다.",
+      "cStudentSentence": "세 수 $3$, $5$, $10$의 평균은 □이고, 이 중 평균보다 큰 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "세 수 $3$, $5$, $10$의 평균은 {$6$}이고, 이 중 평균보다 큰 수는 {$10$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 사소한 행동을 서술하는 것이어서 가치가 낮고, 확인되는 대체 문항은 없다."
+      },
+      "proposalFingerprint": "08cb16d82b4973f6b9435e9d3f17862b25e054d85ee9609d611dec7bacf899c0",
+      "questionRevision": "planning-e5e6-20261006-08cb16d82b49",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc11",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "지금까지 기록의 평균을 알 때, 새 기록 하나를 더해 전체 평균이 목표한 값이 되게 하려면 새 기록을 어떻게 구하는지 설명하시오. 또 $3$번의 평균이 $80$점일 때 $4$번의 평균이 $85$점이 되려면 $4$번째 점수는 몇 점이어야 하는지 구하시오.",
+      "bAnswer": "목표 평균에 전체 횟수를 곱해 필요한 합을 구하고, 지금까지의 합을 뺀다. 예에서 필요한 합은 $85\\times4=340$점, 지금까지의 합은 $80\\times3=240$점이므로 $4$번째 점수는 $100$점이다. (앞의 $3$번이 $5$점씩 모두 $15$점 모자라므로 $85+15=100$점으로 구해도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "목표 평균에 전체 횟수를 곱한 합에서 지금까지의 합을 뺀다",
+            "앞 기록들이 목표 평균에 모자란 양을 모두 더한 만큼을 목표 평균에 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$점",
+            "$100$"
+          ]
+        }
+      ],
+      "bGoal": "목표 평균을 만들 새 기록을 합 또는 모자란 양으로 구한다.",
+      "bReason": "원문의 '모자란 양의 합'은 맥락 없이 어렵기 때문에 일반 방법을 묻고 구체적인 예를 붙였으며 두 풀이를 모두 인정한다.",
+      "cDecision": "revise",
+      "cAfter": "$4$번의 평균이 $70$점일 때 $5$번의 평균을 $72$점으로 올리려면, 앞의 $4$번이 목표보다 $2$점씩 모두 {$8$}점 모자라므로 $5$번째 점수는 $72+8=${$80$}점이어야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$80$"
+          ]
+        }
+      ],
+      "cReason": "원문은 추상적인 긴 문장에 구절 빈칸이라 실제 점수로 모자란 양의 합과 새 기록을 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1594,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc11",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "평균을 올리는 새 기록",
+        "kind": "방법",
+        "level": "중",
+        "definition": "새 기록 하나로 평균을 목표까지 올리려면, 앞 기록을 지금 평균으로 고르게 했을 때 목표에 {모자란 양의 합}만큼 새 기록이 목표 평균보다 커야 한다.",
+        "studentC": "새 기록 하나로 평균을 목표까지 올리려면, 앞 기록을 지금 평균으로 고르게 했을 때 목표에 □만큼 새 기록이 목표 평균보다 커야 한다.",
+        "answers": [
+          "모자란 양의 합"
+        ]
+      },
+      "sourceFingerprint": "da48d04516e06f5ad241cee5c76ab509740b93252a172e6ebb5445da6cbd93ee",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$80$"
+      ],
+      "cStudentAfter": "$4$번의 평균이 $70$점일 때 $5$번의 평균을 $72$점으로 올리려면, 앞의 $4$번이 목표보다 $2$점씩 모두 □점 모자라므로 $5$번째 점수는 $72+8=$□점이어야 한다.",
+      "cMarkedSentence": "$4$번의 평균이 $70$점일 때 $5$번의 평균을 $72$점으로 올리려면, 앞의 $4$번이 목표보다 $2$점씩 모두 {$8$}점 모자라므로 $5$번째 점수는 $72+8=${$80$}점이어야 한다.",
+      "cStudentSentence": "$4$번의 평균이 $70$점일 때 $5$번의 평균을 $72$점으로 올리려면, 앞의 $4$번이 목표보다 $2$점씩 모두 □점 모자라므로 $5$번째 점수는 $72+8=$□점이어야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$80$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "지금까지 기록의 평균을 알 때, 새 기록 하나를 더해 전체 평균이 목표한 값이 되게 하려면 새 기록을 어떻게 구하는지 설명하시오. 또 $3$번의 평균이 $80$점일 때 $4$번의 평균이 $85$점이 되려면 $4$번째 점수는 몇 점이어야 하는지 구하시오.",
+        "answer": "목표 평균에 전체 횟수를 곱해 필요한 합을 구하고, 지금까지의 합을 뺀다. 예에서 필요한 합은 $85\\times4=340$점, 지금까지의 합은 $80\\times3=240$점이므로 $4$번째 점수는 $100$점이다. (앞의 $3$번이 $5$점씩 모두 $15$점 모자라므로 $85+15=100$점으로 구해도 된다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "목표 평균에 전체 횟수를 곱한 합에서 지금까지의 합을 뺀다",
+              "앞 기록들이 목표 평균에 모자란 양을 모두 더한 만큼을 목표 평균에 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$점",
+              "$100$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4$번의 평균이 $70$점일 때 $5$번의 평균을 $72$점으로 올리려면, 앞의 $4$번이 목표보다 $2$점씩 모두 {$8$}점 모자라므로 $5$번째 점수는 $72+8=${$80$}점이어야 한다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$80$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3481a9482abfca35ad201868d06a940bd260fa8d1048f46bb03b57d78d70319d",
+      "questionRevision": "planning-e5e6-20261006-3481a9482abf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc14",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "평균이 같을 때 개수가 많으면 합이 크다는 성질이다.",
+      "bReason": "(합)$=$(평균)$\\times$(개수)에서 바로 나오는 결과라서 c1 B와 겹친다.",
+      "cDecision": "keep",
+      "cAfter": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 {합}이 더 크다.",
+      "cReason": "'$0$보다 큰 평균'이라는 조건이 유지된 짧은 비교 문장이고 답 '합'이 분명하다.",
+      "exclusionReason": "B는 e5-2-6-2-c1의 관계에서 바로 따라 나오는 내용이라 중복이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'합', '전체 합', '자료의 합'은 같은 답으로 인정한다.",
+      "sourceIndex": 1595,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc14",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "개수가 많으면 합도",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 {합}이 더 크다.",
+        "studentC": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 □이 더 크다.",
+        "answers": [
+          "합"
+        ]
+      },
+      "sourceFingerprint": "e8b04b19f86343879caae1cfbae9c26a8c8d4a3b73e3e396f208c4eff8c48185",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cFrozenDefinition": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 {합}이 더 크다.",
+      "cFrozenStudentSentence": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 □이 더 크다.",
+      "cProposedAnswers": [
+        "합"
+      ],
+      "cStudentAfter": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 □이 더 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 {합}이 더 크다.",
+      "cStudentSentence": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 □이 더 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "합",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 평균이 같아도 자료 개수가 많으면 {합}이 더 크다.",
+        "acceptedAnswers": [
+          [
+            "합"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-6-2-c1의 관계에서 바로 따라 나오는 내용이라 중복이다."
+      },
+      "proposalFingerprint": "d83c78047bb5a7e89f2fbe198442367c901765f721a43922993edb6463d80480",
+      "questionRevision": "planning-e5e6-20261006-d83c78047bb5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "여러 개의 자료에서 값 하나를 뺄 때, 뺀 값이 처음 평균보다 큰 경우와 작은 경우에 남은 자료의 평균은 각각 어떻게 달라지는지 쓰시오. 또 $2$, $4$, $9$에서 $9$를 빼면 평균이 얼마에서 얼마로 바뀌는지 구하시오.",
+      "bAnswer": "평균보다 큰 값을 빼면 남은 자료의 평균은 작아지고, 평균보다 작은 값을 빼면 커진다. 예에서 평균은 $15\\div3=5$에서 $6\\div2=3$으로 바뀐다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균보다 큰 값을 빼면 평균이 작아진다",
+            "평균보다 큰 값을 빼면 평균이 낮아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균보다 작은 값을 빼면 평균이 커진다",
+            "평균보다 작은 값을 빼면 평균이 높아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$에서 $3$으로 바뀐다",
+            "$5$, $3$"
+          ]
+        }
+      ],
+      "bGoal": "빼는 값과 평균의 크기 관계에 따라 남은 평균이 어떻게 변하는지 설명한다.",
+      "bReason": "두 경우를 나누어 묻고 수 예로 확인하게 해 방향을 외우기만 하는 것을 막았다.",
+      "cDecision": "revise",
+      "cAfter": "여러 개의 자료에서 평균보다 큰 값 하나를 빼면 남은 자료의 평균은 {작아지고}, 평균보다 작은 값 하나를 빼면 남은 자료의 평균은 {커진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작아지고",
+            "낮아지고",
+            "줄어들고"
+          ]
+        },
+        {
+          "anyOf": [
+            "커진다",
+            "높아진다",
+            "늘어난다"
+          ]
+        }
+      ],
+      "cReason": "원문은 뒤 절의 '커진다'가 앞 빈칸의 반대말을 알려 주므로 두 방향을 모두 빈칸으로 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1596,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc16",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "자료 하나를 뺄 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평균보다 큰 값을 빼면 남은 자료의 평균은 {작아지고}, 평균보다 작은 값을 빼면 커진다.",
+        "studentC": "평균보다 큰 값을 빼면 남은 자료의 평균은 □, 평균보다 작은 값을 빼면 커진다.",
+        "answers": [
+          "작아지고"
+        ]
+      },
+      "sourceFingerprint": "78c8e65502b869ef0880bb82c0f7f103fd3d5c349b707bce67dc8644d97119f7",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "작아지고",
+        "커진다"
+      ],
+      "cStudentAfter": "여러 개의 자료에서 평균보다 큰 값 하나를 빼면 남은 자료의 평균은 □, 평균보다 작은 값 하나를 빼면 남은 자료의 평균은 □.",
+      "cMarkedSentence": "여러 개의 자료에서 평균보다 큰 값 하나를 빼면 남은 자료의 평균은 {작아지고}, 평균보다 작은 값 하나를 빼면 남은 자료의 평균은 {커진다}.",
+      "cStudentSentence": "여러 개의 자료에서 평균보다 큰 값 하나를 빼면 남은 자료의 평균은 □, 평균보다 작은 값 하나를 빼면 남은 자료의 평균은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아지고",
+          "equivalents": [
+            "낮아지고",
+            "줄어들고"
+          ]
+        },
+        {
+          "key": "커진다",
+          "equivalents": [
+            "높아진다",
+            "늘어난다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "여러 개의 자료에서 값 하나를 뺄 때, 뺀 값이 처음 평균보다 큰 경우와 작은 경우에 남은 자료의 평균은 각각 어떻게 달라지는지 쓰시오. 또 $2$, $4$, $9$에서 $9$를 빼면 평균이 얼마에서 얼마로 바뀌는지 구하시오.",
+        "answer": "평균보다 큰 값을 빼면 남은 자료의 평균은 작아지고, 평균보다 작은 값을 빼면 커진다. 예에서 평균은 $15\\div3=5$에서 $6\\div2=3$으로 바뀐다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균보다 큰 값을 빼면 평균이 작아진다",
+              "평균보다 큰 값을 빼면 평균이 낮아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균보다 작은 값을 빼면 평균이 커진다",
+              "평균보다 작은 값을 빼면 평균이 높아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$에서 $3$으로 바뀐다",
+              "$5$, $3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "여러 개의 자료에서 평균보다 큰 값 하나를 빼면 남은 자료의 평균은 {작아지고}, 평균보다 작은 값 하나를 빼면 남은 자료의 평균은 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "작아지고",
+            "낮아지고",
+            "줄어들고"
+          ],
+          [
+            "커진다",
+            "높아진다",
+            "늘어난다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cc751746b236866fb2fc4c25b0fe69d4569bceca8d4095fd6c219058b9a696a2",
+      "questionRevision": "planning-e5e6-20261006-cc751746b236",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc18",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "날수가 다른 기록을 하루 평균으로 견주는 내용이다.",
+      "bReason": "개수가 다른 집단을 평균으로 견주는 까닭은 xc7 B와 같은 생각이다.",
+      "cDecision": "revise",
+      "cAfter": "가는 $4$일 동안 $60$쪽, 나는 $6$일 동안 $72$쪽을 읽었다. 하루 평균 읽은 쪽수는 가가 {$15$}쪽, 나가 {$12$}쪽이므로 하루에 더 많이 읽은 사람은 {가}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가"
+          ]
+        }
+      ],
+      "cReason": "원문은 '하루당 … 고르게'가 답 '하루 평균'을 거의 말해 주므로 실제 하루 평균을 구해 견주게 바꾸었다.",
+      "exclusionReason": "B는 e5-2-6-2-xc7과 같은 개념을 상황만 바꾸어 묻게 되어 중복이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1597,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc18",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "기간이 다른 기록 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "읽은 날수가 다른 두 사람의 하루당 읽은 양을 고르게 보아 견주려면 {하루 평균}을 쓴다.",
+        "studentC": "읽은 날수가 다른 두 사람의 하루당 읽은 양을 고르게 보아 견주려면 □을 쓴다.",
+        "answers": [
+          "하루 평균"
+        ]
+      },
+      "sourceFingerprint": "6dbbd92045d66228f54b1267e533308605b2c1b1ff97a58588256d93a4266fa7",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "$15$",
+        "$12$",
+        "가"
+      ],
+      "cStudentAfter": "가는 $4$일 동안 $60$쪽, 나는 $6$일 동안 $72$쪽을 읽었다. 하루 평균 읽은 쪽수는 가가 □쪽, 나가 □쪽이므로 하루에 더 많이 읽은 사람은 □이다.",
+      "cMarkedSentence": "가는 $4$일 동안 $60$쪽, 나는 $6$일 동안 $72$쪽을 읽었다. 하루 평균 읽은 쪽수는 가가 {$15$}쪽, 나가 {$12$}쪽이므로 하루에 더 많이 읽은 사람은 {가}이다.",
+      "cStudentSentence": "가는 $4$일 동안 $60$쪽, 나는 $6$일 동안 $72$쪽을 읽었다. 하루 평균 읽은 쪽수는 가가 □쪽, 나가 □쪽이므로 하루에 더 많이 읽은 사람은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "가",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가는 $4$일 동안 $60$쪽, 나는 $6$일 동안 $72$쪽을 읽었다. 하루 평균 읽은 쪽수는 가가 {$15$}쪽, 나가 {$12$}쪽이므로 하루에 더 많이 읽은 사람은 {가}이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ],
+          [
+            "$12$"
+          ],
+          [
+            "가"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-6-2-xc7과 같은 개념을 상황만 바꾸어 묻게 되어 중복이다."
+      },
+      "proposalFingerprint": "15ed9d3cbe170f7c47f14656a2cfbf3ba5fb90bef2c51b19cce519a69013c5a4",
+      "questionRevision": "planning-e5e6-20261006-15ed9d3cbe17",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "세 수 가, 나, 다에서 가와 나의 평균, 나와 다의 평균을 알 때 가와 다의 차를 구하는 방법을 두 수씩의 합을 이용하여 설명하시오. 또 가와 나의 평균이 $15$, 나와 다의 평균이 $19$일 때 다는 가보다 얼마나 큰지 구하시오.",
+      "bAnswer": "각 평균에 $2$를 곱해 가와 나의 합, 나와 다의 합을 구한다. 두 합에는 나가 똑같이 들어 있으므로 두 합의 차가 가와 다의 차이다. 예에서 두 합은 $30$과 $38$이므로 다는 가보다 $8$만큼 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 평균에 각각 $2$를 곱해 구한 두 합의 차가 가와 다의 차이다",
+            "나가 두 합에 똑같이 들어 있으므로 두 합의 차가 가와 다의 차이다",
+            "두 평균의 차의 $2$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "bGoal": "공통인 수가 있는 두 합을 견주어 나머지 두 수의 차를 구한다.",
+      "bReason": "원문 결론 '두 평균의 차의 $2$배'를 주지 않고 합을 이용해 관계를 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "가와 나의 평균이 $10$, 나와 다의 평균이 $13$이면 가와 나의 합은 {$20$}, 나와 다의 합은 {$26$}이므로 다는 가보다 {$6$}만큼 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '두 평균의 차의 $2$배'는 공식 구절 암기라서 두 합을 구해 차를 찾는 과정을 수로 채우게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1598,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc21",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "두 사람씩의 평균으로 차 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "가와 나의 평균, 나와 다의 평균을 알면 다와 가의 차는 {두 평균의 차의 $2$배}이다.",
+        "studentC": "가와 나의 평균, 나와 다의 평균을 알면 다와 가의 차는 □이다.",
+        "answers": [
+          "두 평균의 차의 $2$배"
+        ]
+      },
+      "sourceFingerprint": "5c166f99283418ce8ecbcad950c1903ee936c51ae5807286331328c7171ab111",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "$20$",
+        "$26$",
+        "$6$"
+      ],
+      "cStudentAfter": "가와 나의 평균이 $10$, 나와 다의 평균이 $13$이면 가와 나의 합은 □, 나와 다의 합은 □이므로 다는 가보다 □만큼 크다.",
+      "cMarkedSentence": "가와 나의 평균이 $10$, 나와 다의 평균이 $13$이면 가와 나의 합은 {$20$}, 나와 다의 합은 {$26$}이므로 다는 가보다 {$6$}만큼 크다.",
+      "cStudentSentence": "가와 나의 평균이 $10$, 나와 다의 평균이 $13$이면 가와 나의 합은 □, 나와 다의 합은 □이므로 다는 가보다 □만큼 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        },
+        {
+          "key": "$26$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세 수 가, 나, 다에서 가와 나의 평균, 나와 다의 평균을 알 때 가와 다의 차를 구하는 방법을 두 수씩의 합을 이용하여 설명하시오. 또 가와 나의 평균이 $15$, 나와 다의 평균이 $19$일 때 다는 가보다 얼마나 큰지 구하시오.",
+        "answer": "각 평균에 $2$를 곱해 가와 나의 합, 나와 다의 합을 구한다. 두 합에는 나가 똑같이 들어 있으므로 두 합의 차가 가와 다의 차이다. 예에서 두 합은 $30$과 $38$이므로 다는 가보다 $8$만큼 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 평균에 각각 $2$를 곱해 구한 두 합의 차가 가와 다의 차이다",
+              "나가 두 합에 똑같이 들어 있으므로 두 합의 차가 가와 다의 차이다",
+              "두 평균의 차의 $2$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가와 나의 평균이 $10$, 나와 다의 평균이 $13$이면 가와 나의 합은 {$20$}, 나와 다의 합은 {$26$}이므로 다는 가보다 {$6$}만큼 크다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ],
+          [
+            "$26$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a9854dcc4b024aaa77fc7dd06eaf60bec619748289c5fa21f5d2f7c797156802",
+      "questionRevision": "planning-e5e6-20261006-a9854dcc4b02",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자료를 평균과 견줄 때, 평균보다 큰 자료들이 평균을 넘는 양의 합과 평균보다 작은 자료들이 평균에 모자란 양의 합은 어떤 관계인지 쓰시오. 또 이 관계를 이용하여 세 수 $7$, $12$, $\\square$의 평균이 $10$일 때 $\\square$를 구하시오.",
+      "bAnswer": "넘는 양의 합과 모자란 양의 합은 같다. 예에서 $7$은 $3$ 모자라고 $12$는 $2$ 넘으므로 $\\square$는 평균보다 $1$ 넘어야 한다. 따라서 $\\square$는 $11$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넘는 양의 합과 모자란 양의 합은 같다",
+            "넘는 양과 모자란 양이 서로 맞는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$"
+          ]
+        }
+      ],
+      "bGoal": "평균을 기준으로 넘치는 양과 모자란 양이 같음을 이용해 모르는 값을 찾는다.",
+      "bReason": "c2의 합으로 구하는 방법과 구별되게 넘침과 모자람의 균형 관계를 직접 물었다.",
+      "cDecision": "revise",
+      "cAfter": "세 수 $6$, $13$, $\\square$의 평균이 $10$이다. $6$은 평균보다 $4$ 모자라고 $13$은 평균보다 {$3$} 넘치므로, $\\square$는 평균보다 {$1$} 넘치는 수 {$11$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '넘치는 양과 모자란 양이 맞도록'은 긴 구절이라 실제 수에서 넘침과 모자람을 맞추게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1599,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc23",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "넘치고 모자란 양으로 모르는 자료 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "평균과 나머지 자료를 알면 모르는 자료는 평균에서 {넘치는 양과 모자란 양이 맞도록} 정해진다.",
+        "studentC": "평균과 나머지 자료를 알면 모르는 자료는 평균에서 □ 정해진다.",
+        "answers": [
+          "넘치는 양과 모자란 양이 맞도록"
+        ]
+      },
+      "sourceFingerprint": "856a46913cf54fb152f65b5a9679618d5a9e5f1da027874a88a64197023c36ea",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$1$",
+        "$11$"
+      ],
+      "cStudentAfter": "세 수 $6$, $13$, $\\square$의 평균이 $10$이다. $6$은 평균보다 $4$ 모자라고 $13$은 평균보다 □ 넘치므로, $\\square$는 평균보다 □ 넘치는 수 □이다.",
+      "cMarkedSentence": "세 수 $6$, $13$, $\\square$의 평균이 $10$이다. $6$은 평균보다 $4$ 모자라고 $13$은 평균보다 {$3$} 넘치므로, $\\square$는 평균보다 {$1$} 넘치는 수 {$11$}이다.",
+      "cStudentSentence": "세 수 $6$, $13$, $\\square$의 평균이 $10$이다. $6$은 평균보다 $4$ 모자라고 $13$은 평균보다 □ 넘치므로, $\\square$는 평균보다 □ 넘치는 수 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$11$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료를 평균과 견줄 때, 평균보다 큰 자료들이 평균을 넘는 양의 합과 평균보다 작은 자료들이 평균에 모자란 양의 합은 어떤 관계인지 쓰시오. 또 이 관계를 이용하여 세 수 $7$, $12$, $\\square$의 평균이 $10$일 때 $\\square$를 구하시오.",
+        "answer": "넘는 양의 합과 모자란 양의 합은 같다. 예에서 $7$은 $3$ 모자라고 $12$는 $2$ 넘으므로 $\\square$는 평균보다 $1$ 넘어야 한다. 따라서 $\\square$는 $11$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넘는 양의 합과 모자란 양의 합은 같다",
+              "넘는 양과 모자란 양이 서로 맞는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "세 수 $6$, $13$, $\\square$의 평균이 $10$이다. $6$은 평균보다 $4$ 모자라고 $13$은 평균보다 {$3$} 넘치므로, $\\square$는 평균보다 {$1$} 넘치는 수 {$11$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$1$"
+          ],
+          [
+            "$11$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c9c98ad23ea247d559ef408b028181d378386d2353bfa15539feb4cac61de4ab",
+      "questionRevision": "planning-e5e6-20261006-c9c98ad23ea2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "평균이 서로 다른 두 모둠을 합친 전체의 평균은 두 모둠의 평균과 견주어 어떤 범위의 값인지 쓰시오. 또 평균이 $60$점인 모둠과 $80$점인 모둠을 합친 평균이 $85$점이 될 수 있는지 판단하시오.",
+      "bAnswer": "합친 평균은 두 평균 사이의 값이다. 곧 작은 평균보다 크고 큰 평균보다 작다. 따라서 $60$점과 $80$점 사이여야 하므로 $85$점은 될 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 평균 사이의 값이다",
+            "작은 평균보다 크고 큰 평균보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$85$점은 될 수 없다",
+            "될 수 없다"
+          ]
+        }
+      ],
+      "bGoal": "합친 평균이 두 평균 사이에 있음을 알고 가능한 값을 판단한다.",
+      "bReason": "범위를 일반적으로 묻고 범위 밖의 값을 판단하게 해 '사이'라는 낱말만 외우는 것을 막았다.",
+      "cDecision": "revise",
+      "cAfter": "평균이 $60$점인 모둠과 평균이 $80$점인 모둠을 합친 평균은 $60$점보다 {크고} $80$점보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크고",
+            "높고"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "낮다"
+          ]
+        }
+      ],
+      "cReason": "원문은 두 평균이 다르다는 조건이 없고 '사이' 한 낱말만 물어 실제 두 평균으로 범위를 답하게 했다.",
+      "coreAfter": "평균이 서로 다른 두 모둠을 합친 평균은 두 평균 {사이}의 값이다.",
+      "coreReason": "두 평균이 같으면 합친 평균도 그 값과 같아 '사이'라고 할 수 없으므로 '서로 다른'이라는 조건이 필요하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "사이라는 원문 표적을 보존하며 두 모둠 평균이 다른 조건을 명시해 평균이 같은 경우를 배제한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1600,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc26",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "합친 평균의 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 모둠을 합친 평균은 두 평균 {사이}의 값이다.",
+        "studentC": "두 모둠을 합친 평균은 두 평균 □의 값이다.",
+        "answers": [
+          "사이"
+        ]
+      },
+      "sourceFingerprint": "641c429aae19dc6cbd6d7871db4bb0400ee1be2edfe14b02144fba94a927c122",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "크고",
+        "작다"
+      ],
+      "cStudentAfter": "평균이 $60$점인 모둠과 평균이 $80$점인 모둠을 합친 평균은 $60$점보다 □ $80$점보다 □.",
+      "cMarkedSentence": "평균이 $60$점인 모둠과 평균이 $80$점인 모둠을 합친 평균은 $60$점보다 {크고} $80$점보다 {작다}.",
+      "cStudentSentence": "평균이 $60$점인 모둠과 평균이 $80$점인 모둠을 합친 평균은 $60$점보다 □ $80$점보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크고",
+          "equivalents": [
+            "높고"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "낮다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평균이 서로 다른 두 모둠을 합친 전체의 평균은 두 모둠의 평균과 견주어 어떤 범위의 값인지 쓰시오. 또 평균이 $60$점인 모둠과 $80$점인 모둠을 합친 평균이 $85$점이 될 수 있는지 판단하시오.",
+        "answer": "합친 평균은 두 평균 사이의 값이다. 곧 작은 평균보다 크고 큰 평균보다 작다. 따라서 $60$점과 $80$점 사이여야 하므로 $85$점은 될 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 평균 사이의 값이다",
+              "작은 평균보다 크고 큰 평균보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$85$점은 될 수 없다",
+              "될 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평균이 $60$점인 모둠과 평균이 $80$점인 모둠을 합친 평균은 $60$점보다 {크고} $80$점보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "크고",
+            "높고"
+          ],
+          [
+            "작다",
+            "낮다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6a92f83c0b8736fc2498d86105dc904e7edb77d0de6c3a225b053a5883b6edf4",
+      "questionRevision": "planning-e5e6-20261006-6a92f83c0b87",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc27",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "평균도 사람 수도 서로 다른 두 모둠을 합친 평균은 어느 모둠의 평균에 더 가까운지 쓰시오. 또 $1$명의 평균이 $60$점인 모둠과 $3$명의 평균이 $80$점인 모둠을 합친 평균을 구하여 확인하시오.",
+      "bAnswer": "사람 수가 많은 모둠의 평균에 더 가깝다. 예에서 전체 합은 $60+240=300$점, 전체 사람 수는 $4$명이므로 합친 평균은 $75$점이고, 이는 $3$명인 모둠의 평균 $80$점에 더 가깝다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사람 수가 많은 모둠의 평균에 더 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$75$점",
+            "$75$"
+          ]
+        }
+      ],
+      "bGoal": "합친 평균이 사람 수가 많은 쪽 평균에 가까워짐을 예로 확인한다.",
+      "bReason": "어느 쪽에 가까운지를 묻고 직접 계산해 확인하게 해 결론을 미리 주지 않았다.",
+      "cDecision": "keep",
+      "cAfter": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 {많은} 모둠의 평균에 더 가깝다.",
+      "cReason": "평균과 사람 수가 각각 다르다는 조건이 문장에 있고 답 '많은'이 분명한 짧은 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1601,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc27",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "합친 평균이 가까워지는 쪽",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 {많은} 모둠의 평균에 더 가깝다.",
+        "studentC": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 □ 모둠의 평균에 더 가깝다.",
+        "answers": [
+          "많은"
+        ]
+      },
+      "sourceFingerprint": "c4edcc3cee7cb033351d7816f1f83da940bab349b0d5b768b2490ea8640a4b9d",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cFrozenDefinition": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 {많은} 모둠의 평균에 더 가깝다.",
+      "cFrozenStudentSentence": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 □ 모둠의 평균에 더 가깝다.",
+      "cProposedAnswers": [
+        "많은"
+      ],
+      "cStudentAfter": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 □ 모둠의 평균에 더 가깝다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "많은"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 {많은} 모둠의 평균에 더 가깝다.",
+      "cStudentSentence": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 □ 모둠의 평균에 더 가깝다.",
+      "cSlotAnswers": [
+        {
+          "key": "많은",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평균도 사람 수도 서로 다른 두 모둠을 합친 평균은 어느 모둠의 평균에 더 가까운지 쓰시오. 또 $1$명의 평균이 $60$점인 모둠과 $3$명의 평균이 $80$점인 모둠을 합친 평균을 구하여 확인하시오.",
+        "answer": "사람 수가 많은 모둠의 평균에 더 가깝다. 예에서 전체 합은 $60+240=300$점, 전체 사람 수는 $4$명이므로 합친 평균은 $75$점이고, 이는 $3$명인 모둠의 평균 $80$점에 더 가깝다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사람 수가 많은 모둠의 평균에 더 가깝다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$75$점",
+              "$75$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 모둠의 평균과 사람 수가 각각 다르면, 합친 평균은 사람 수가 {많은} 모둠의 평균에 더 가깝다.",
+        "acceptedAnswers": [
+          [
+            "많은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4e86a0a3954b0929c031315796e1fd42cd413d4ee62b77ccacce1ec0a06ecd4d",
+      "questionRevision": "planning-e5e6-20261006-4e86a0a3954b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc1",
+      "learningRole": "naming",
+      "bDecision": "revise",
+      "bPrompt": "가능성을 말로 나타내는 다섯 가지 표현을 가능성이 가장 낮은 것부터 차례로 쓰시오.",
+      "bAnswer": "불가능하다, ~아닐 것 같다, 반반이다, ~일 것 같다, 확실하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "불가능하다, ~아닐 것 같다, 반반이다, ~일 것 같다, 확실하다의 순서로 쓴다"
+          ]
+        }
+      ],
+      "bGoal": "다섯 가지 가능성 표현을 낮은 순서대로 늘어놓는다.",
+      "bReason": "원문은 양 끝만 다루므로 B에서는 다섯 단계 전체의 순서를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘{확실하다}’까지 다섯 단계의 말로 나타낸다.",
+      "cReason": "가장 낮은 단계와 대비해 가장 높은 단계를 답하는 짧은 낱말 문항이다.",
+      "synonymNotes": "'아닐 것 같다', '일 것 같다'처럼 물결표 없이 써도 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1602,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc1",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성을 말로 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘{확실하다}’까지 다섯 단계의 말로 나타낸다.",
+        "studentC": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘□’까지 다섯 단계의 말로 나타낸다.",
+        "answers": [
+          "확실하다"
+        ]
+      },
+      "sourceFingerprint": "ce453952f13c466da562edbf6119e0b58053881b1be7d5bd09a1e91393779269",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘{확실하다}’까지 다섯 단계의 말로 나타낸다.",
+      "cFrozenStudentSentence": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘□’까지 다섯 단계의 말로 나타낸다.",
+      "cProposedAnswers": [
+        "확실하다"
+      ],
+      "cStudentAfter": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘□’까지 다섯 단계의 말로 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "확실하다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘{확실하다}’까지 다섯 단계의 말로 나타낸다.",
+      "cStudentSentence": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘□’까지 다섯 단계의 말로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "확실하다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가능성을 말로 나타내는 다섯 가지 표현을 가능성이 가장 낮은 것부터 차례로 쓰시오.",
+        "answer": "불가능하다, ~아닐 것 같다, 반반이다, ~일 것 같다, 확실하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "불가능하다, ~아닐 것 같다, 반반이다, ~일 것 같다, 확실하다의 순서로 쓴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가능성은 가장 낮은 ‘불가능하다’부터 가장 높은 ‘{확실하다}’까지 다섯 단계의 말로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "확실하다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6b1130bc589c4465c1d432f7724e5aa95f0c686c66d7fba1755cfb4bef6f3b3f",
+      "questionRevision": "planning-e5e6-20261006-6b1130bc589c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc2",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "동전을 한 번 던질 때 앞면이 나올 가능성을 말로 나타내고, 동전에서 나올 수 있는 면을 이용해 까닭을 설명하시오.",
+      "bAnswer": "반반이다. 나올 수 있는 면은 앞면과 뒷면 두 가지이고 두 면이 나올 가능성이 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반반이다",
+            "반반"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞면과 뒷면 두 가지가 나올 가능성이 같다",
+            "두 면 중 하나가 앞면이라 절반이다"
+          ]
+        }
+      ],
+      "bGoal": "동전의 두 면을 근거로 앞면이 나올 가능성이 반반임을 설명한다.",
+      "bReason": "값만 답하지 않도록 두 면이라는 근거를 함께 쓰게 했다.",
+      "cDecision": "keep",
+      "cAfter": "동전을 던질 때 앞면이 나올 가능성은 {반반이다}.",
+      "cReason": "대표 상황인 동전 던지기에서 가능성 표현 하나를 답하는 분명한 문항이다.",
+      "synonymNotes": "'반반', '반반이다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1603,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc2",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "동전의 앞면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "동전을 던질 때 앞면이 나올 가능성은 {반반이다}.",
+        "studentC": "동전을 던질 때 앞면이 나올 가능성은 □.",
+        "answers": [
+          "반반이다"
+        ]
+      },
+      "sourceFingerprint": "3d9b73cb1d20399039ccbe1d4de1d2fd6bc6c1eb400ae1aa0f7f1323dd96e304",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "동전을 던질 때 앞면이 나올 가능성은 {반반이다}.",
+      "cFrozenStudentSentence": "동전을 던질 때 앞면이 나올 가능성은 □.",
+      "cProposedAnswers": [
+        "반반이다"
+      ],
+      "cStudentAfter": "동전을 던질 때 앞면이 나올 가능성은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반반이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "동전을 던질 때 앞면이 나올 가능성은 {반반이다}.",
+      "cStudentSentence": "동전을 던질 때 앞면이 나올 가능성은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "반반이다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "동전을 한 번 던질 때 앞면이 나올 가능성을 말로 나타내고, 동전에서 나올 수 있는 면을 이용해 까닭을 설명하시오.",
+        "answer": "반반이다. 나올 수 있는 면은 앞면과 뒷면 두 가지이고 두 면이 나올 가능성이 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반반이다",
+              "반반"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞면과 뒷면 두 가지가 나올 가능성이 같다",
+              "두 면 중 하나가 앞면이라 절반이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "동전을 던질 때 앞면이 나올 가능성은 {반반이다}.",
+        "acceptedAnswers": [
+          [
+            "반반이다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9a913c0494926f87ed34b2e965560ebcf19c354de2de3b806350b71110c77d90",
+      "questionRevision": "planning-e5e6-20261006-9a913c049492",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc3",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "없는 결과가 나올 가능성이 불가능함을 판단한다.",
+      "bReason": "없는 것이 나올 수 없다는 판단은 xc10의 B와 같은 구조라 서술형으로 다시 물을 가치가 낮다.",
+      "exclusionReason": "B 제외: xc10(흰 공만 든 주머니에서 검은 공)과 내용이 겹친다. 대체 ID: e5-2-6-3-xc10.",
+      "cDecision": "keep",
+      "cAfter": "주사위에 없는 눈이 나올 가능성은 {불가능하다}.",
+      "cReason": "'주사위에 없는 눈'이라는 조건이 문장 안에 있어 가능성 표현을 바로 판단할 수 있다.",
+      "synonymNotes": "'불가능', '불가능하다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1604,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc3",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "나올 수 없는 눈",
+        "kind": "성질",
+        "level": "하",
+        "definition": "주사위에 없는 눈이 나올 가능성은 {불가능하다}.",
+        "studentC": "주사위에 없는 눈이 나올 가능성은 □.",
+        "answers": [
+          "불가능하다"
+        ]
+      },
+      "sourceFingerprint": "69028441c6cb2a2297f17abb8612a018ca02d50f501ae7d5b27668bae5fbfcea",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "주사위에 없는 눈이 나올 가능성은 {불가능하다}.",
+      "cFrozenStudentSentence": "주사위에 없는 눈이 나올 가능성은 □.",
+      "cProposedAnswers": [
+        "불가능하다"
+      ],
+      "cStudentAfter": "주사위에 없는 눈이 나올 가능성은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "불가능하다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "주사위에 없는 눈이 나올 가능성은 {불가능하다}.",
+      "cStudentSentence": "주사위에 없는 눈이 나올 가능성은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "불가능하다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "주사위에 없는 눈이 나올 가능성은 {불가능하다}.",
+        "acceptedAnswers": [
+          [
+            "불가능하다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc10(흰 공만 든 주머니에서 검은 공)과 내용이 겹친다. 대체 ID: e5-2-6-3-xc10."
+      },
+      "proposalFingerprint": "c46babef9c71bad5065a3099cb1709e22203675addc7e901bf65451a28b90afa",
+      "questionRevision": "planning-e5e6-20261006-c46babef9c71",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc4",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때, 일어날 가능성이 '확실하다'인 일을 하나 쓰고 그 일이 확실한 까닭을 설명하시오.",
+      "bAnswer": "예: $6$ 이하의 눈이 나오는 일. 주사위의 눈 $1$, $2$, $3$, $4$, $5$, $6$은 모두 $6$ 이하이므로 어떤 눈이 나와도 이 일이 일어난다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$ 이하의 눈이 나오는 일",
+            "$1$ 이상의 눈이 나오는 일",
+            "홀수 또는 짝수의 눈이 나오는 일",
+            "주사위의 모든 눈이 해당하는 일 하나"
+          ]
+        },
+        {
+          "anyOf": [
+            "어떤 눈이 나와도 그 일에 해당한다",
+            "주사위의 모든 눈이 그 일에 해당한다"
+          ]
+        }
+      ],
+      "bGoal": "모든 눈이 해당하는 일을 스스로 만들고 그것이 확실한 까닭을 말한다.",
+      "bReason": "'모든 눈이 해당하는 일'이라는 추상적인 말을 학생이 직접 예를 만드는 활동으로 바꿨다.",
+      "cDecision": "revise",
+      "cAfter": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 $6$ 이하의 눈이 나올 가능성은 {확실하다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "확실하다",
+            "확실"
+          ]
+        }
+      ],
+      "cReason": "원문 '모든 눈이 해당하는 일'은 맥락 없이 뜻을 알기 어려워 구체적인 일로 바꿨다.",
+      "coreAfter": "주사위를 굴릴 때 어떤 눈이 나와도 해당하는 일이 일어날 가능성은 {확실하다}.",
+      "coreReason": "'모든 눈이 해당하는 일'은 초5 학생에게 뜻이 불분명해 풀어 쓰고 예를 덧붙였다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "확실하다라는 원문 표적을 보존하고 모든 눈에 해당한다는 말을 어떤 눈이 나와도라고 풀어 쓴다. 주사위 면 숫자를 명시하지 않은6 이하 예는 필요 없어 제거한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1605,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc4",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "주사위에서 확실한 일",
+        "kind": "성질",
+        "level": "하",
+        "definition": "주사위의 모든 눈이 해당하는 일이 일어날 가능성은 {확실하다}.",
+        "studentC": "주사위의 모든 눈이 해당하는 일이 일어날 가능성은 □.",
+        "answers": [
+          "확실하다"
+        ]
+      },
+      "sourceFingerprint": "5f8a6d38fa5f7523b6c8ac2ce5faae0bd07e586a13145e77b5dbf55e73a5ac2c",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "확실하다"
+      ],
+      "cStudentAfter": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 $6$ 이하의 눈이 나올 가능성은 □.",
+      "cMarkedSentence": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 $6$ 이하의 눈이 나올 가능성은 {확실하다}.",
+      "cStudentSentence": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 $6$ 이하의 눈이 나올 가능성은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "확실하다",
+          "equivalents": [
+            "확실"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때, 일어날 가능성이 '확실하다'인 일을 하나 쓰고 그 일이 확실한 까닭을 설명하시오.",
+        "answer": "예: $6$ 이하의 눈이 나오는 일. 주사위의 눈 $1$, $2$, $3$, $4$, $5$, $6$은 모두 $6$ 이하이므로 어떤 눈이 나와도 이 일이 일어난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6$ 이하의 눈이 나오는 일",
+              "$1$ 이상의 눈이 나오는 일",
+              "홀수 또는 짝수의 눈이 나오는 일",
+              "주사위의 모든 눈이 해당하는 일 하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "어떤 눈이 나와도 그 일에 해당한다",
+              "주사위의 모든 눈이 그 일에 해당한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 $6$ 이하의 눈이 나올 가능성은 {확실하다}.",
+        "acceptedAnswers": [
+          [
+            "확실하다",
+            "확실"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "934a9c34ad397f6eb2047cc2d076cd264e18f05668268b81094e4cfdc6c64905",
+      "questionRevision": "planning-e5e6-20261006-934a9c34ad39",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc5",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "생활 속에서 확실한 일을 가능성 표현으로 나타낸다.",
+      "bReason": "해가 뜨는 방향은 수학적 근거보다 과학 상식에 기대는 예라 서술형으로 물을 내용이 없다.",
+      "exclusionReason": "B 제외: 수학적 설명 거리가 없고 '확실하다'의 뜻과 예는 c3, xc4에서 다룬다. 대체 ID: e5-2-6-3-c3, e5-2-6-3-xc4.",
+      "cDecision": "keep",
+      "cAfter": "내일 아침에 해가 동쪽에서 뜰 가능성은 {확실하다}.",
+      "cReason": "생활 속 확실한 일을 가능성 표현 하나로 답하는 짧은 문항이다.",
+      "synonymNotes": "'확실', '확실하다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1606,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc5",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "해가 뜨는 방향",
+        "kind": "성질",
+        "level": "하",
+        "definition": "내일 아침에 해가 동쪽에서 뜰 가능성은 {확실하다}.",
+        "studentC": "내일 아침에 해가 동쪽에서 뜰 가능성은 □.",
+        "answers": [
+          "확실하다"
+        ]
+      },
+      "sourceFingerprint": "ad3cccc870b626b8b806efb186fea0b1f9886ba7a017307d2f1039ed75693cae",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "내일 아침에 해가 동쪽에서 뜰 가능성은 {확실하다}.",
+      "cFrozenStudentSentence": "내일 아침에 해가 동쪽에서 뜰 가능성은 □.",
+      "cProposedAnswers": [
+        "확실하다"
+      ],
+      "cStudentAfter": "내일 아침에 해가 동쪽에서 뜰 가능성은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "확실하다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "내일 아침에 해가 동쪽에서 뜰 가능성은 {확실하다}.",
+      "cStudentSentence": "내일 아침에 해가 동쪽에서 뜰 가능성은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "확실하다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "내일 아침에 해가 동쪽에서 뜰 가능성은 {확실하다}.",
+        "acceptedAnswers": [
+          [
+            "확실하다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 수학적 설명 거리가 없고 '확실하다'의 뜻과 예는 c3, xc4에서 다룬다. 대체 ID: e5-2-6-3-c3, e5-2-6-3-xc4."
+      },
+      "proposalFingerprint": "631dec8c4c30f0983e3cc2bf464d5686a30bbbc50debc80384c03e622a3fc035",
+      "questionRevision": "planning-e5e6-20261006-631dec8c4c30",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc6",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "가능성을 말로 나타낼 때 '~일 것 같다'는 가능성이 어느 정도일 때 쓰는지, '반반이다'와 '확실하다'에 견주어 쓰시오.",
+      "bAnswer": "가능성이 반반보다 높지만 확실하지는 않을 때 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반반보다 가능성이 높다",
+            "반반보다 일어나기 쉽다"
+          ]
+        },
+        {
+          "anyOf": [
+            "확실하지는 않다",
+            "확실하다보다는 가능성이 낮다"
+          ]
+        }
+      ],
+      "bGoal": "'~일 것 같다'가 반반과 확실 사이의 정도임을 쓴다.",
+      "bReason": "두 기준 표현과 견주어 위치를 답하게 해 답의 범위를 분명히 했다.",
+      "cDecision": "keep",
+      "cAfter": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 {~일 것 같다}라고 한다.",
+      "cReason": "반반보다 높고 확실하지 않다는 두 조건으로 표현 하나를 찾는 명확한 문항이다.",
+      "synonymNotes": "'일 것 같다'처럼 물결표 없이 써도 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1607,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc6",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "~일 것 같다",
+        "kind": "정의",
+        "level": "하",
+        "definition": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 {~일 것 같다}라고 한다.",
+        "studentC": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 □라고 한다.",
+        "answers": [
+          "~일 것 같다"
+        ]
+      },
+      "sourceFingerprint": "c37cc9d02fc4f4bfd3830ca5c327f6c2940065692cc789dacb7928ec92a8b540",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 {~일 것 같다}라고 한다.",
+      "cFrozenStudentSentence": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 □라고 한다.",
+      "cProposedAnswers": [
+        "~일 것 같다"
+      ],
+      "cStudentAfter": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 □라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "~일 것 같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 {~일 것 같다}라고 한다.",
+      "cStudentSentence": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 □라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "~일 것 같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가능성을 말로 나타낼 때 '~일 것 같다'는 가능성이 어느 정도일 때 쓰는지, '반반이다'와 '확실하다'에 견주어 쓰시오.",
+        "answer": "가능성이 반반보다 높지만 확실하지는 않을 때 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반반보다 가능성이 높다",
+              "반반보다 일어나기 쉽다"
+            ]
+          },
+          {
+            "anyOf": [
+              "확실하지는 않다",
+              "확실하다보다는 가능성이 낮다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "반반보다 일어날 가능성이 높지만 확실하지는 않으면 {~일 것 같다}라고 한다.",
+        "acceptedAnswers": [
+          [
+            "~일 것 같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d9d6624ba02603d6e1082ff8caa47d948e47890d79868bf96e940f574ecbc7cb",
+      "questionRevision": "planning-e5e6-20261006-d9d6624ba026",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc7",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 $1$의 눈이 나올 가능성을 '불가능하다, ~아닐 것 같다, 반반이다, ~일 것 같다, 확실하다' 중에서 골라 쓰고, 그렇게 고른 까닭을 설명하시오.",
+      "bAnswer": "~아닐 것 같다. $6$개의 눈 중 $1$개뿐이라 반반보다 가능성이 낮지만, 나올 수는 있으므로 불가능하지는 않다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "~아닐 것 같다",
+            "아닐 것 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개의 눈 중 $1$개뿐이라 반반보다 가능성이 낮다",
+            "절반보다 적은 경우라 반반보다 가능성이 낮다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나올 수는 있으므로 불가능하지는 않다",
+            "$1$의 눈이 주사위에 있으므로 불가능하지 않다"
+          ]
+        }
+      ],
+      "bGoal": "반반보다 낮지만 불가능하지 않은 일을 '~아닐 것 같다'로 판단한다.",
+      "bReason": "xc6과 대칭인 뜻풀이를 되풀이하지 않고 주사위 상황에 적용하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 {~아닐 것 같다}라고 한다.",
+      "cReason": "반반보다 낮고 불가능하지 않다는 두 조건으로 표현 하나를 찾는 명확한 문항이다.",
+      "synonymNotes": "'아닐 것 같다'처럼 물결표 없이 써도 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1608,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc7",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "~아닐 것 같다",
+        "kind": "정의",
+        "level": "하",
+        "definition": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 {~아닐 것 같다}라고 한다.",
+        "studentC": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 □라고 한다.",
+        "answers": [
+          "~아닐 것 같다"
+        ]
+      },
+      "sourceFingerprint": "eb7ee9f42f30eb8fc30728ad41f5c5e41b74092a91f975d0b4b56a5496418755",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 {~아닐 것 같다}라고 한다.",
+      "cFrozenStudentSentence": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 □라고 한다.",
+      "cProposedAnswers": [
+        "~아닐 것 같다"
+      ],
+      "cStudentAfter": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 □라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "~아닐 것 같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 {~아닐 것 같다}라고 한다.",
+      "cStudentSentence": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 □라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "~아닐 것 같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 $1$의 눈이 나올 가능성을 '불가능하다, ~아닐 것 같다, 반반이다, ~일 것 같다, 확실하다' 중에서 골라 쓰고, 그렇게 고른 까닭을 설명하시오.",
+        "answer": "~아닐 것 같다. $6$개의 눈 중 $1$개뿐이라 반반보다 가능성이 낮지만, 나올 수는 있으므로 불가능하지는 않다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "~아닐 것 같다",
+              "아닐 것 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$개의 눈 중 $1$개뿐이라 반반보다 가능성이 낮다",
+              "절반보다 적은 경우라 반반보다 가능성이 낮다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나올 수는 있으므로 불가능하지는 않다",
+              "$1$의 눈이 주사위에 있으므로 불가능하지 않다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "반반보다 일어날 가능성이 낮지만 불가능하지는 않으면 {~아닐 것 같다}라고 한다.",
+        "acceptedAnswers": [
+          [
+            "~아닐 것 같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cd10a6fb9a5212211def3db18823dd117f3cf3d22487571e6adf3e5fa74af2d3",
+      "questionRevision": "planning-e5e6-20261006-cd10a6fb9a52",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc8",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 짝수의 눈이 나올 가능성을 수로 나타내고, 짝수인 눈의 개수와 전체 눈의 개수를 이용해 까닭을 설명하시오.",
+      "bAnswer": "$\\frac{1}{2}$이다. 전체 눈 $6$개 중 짝수는 $2$, $4$, $6$의 $3$개로 절반이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$0.5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "눈 $6$개 중 짝수가 $3$개로 절반이다",
+            "짝수 눈과 홀수 눈이 $3$개씩으로 같다"
+          ]
+        }
+      ],
+      "bGoal": "짝수 눈이 전체의 절반임을 근거로 가능성을 $\\frac{1}{2}$로 나타낸다.",
+      "bReason": "값만 답하지 않도록 눈의 개수를 세는 근거를 지정했다.",
+      "cDecision": "keep",
+      "cAfter": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 {$\\frac{1}{2}$}이다.",
+      "cReason": "주사위와 짝수라는 조건이 문장에 있고 답이 짧은 수 하나이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1609,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc8",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "주사위의 짝수 눈",
+        "kind": "성질",
+        "level": "중",
+        "definition": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 {$\\frac{1}{2}$}이다.",
+        "studentC": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 □이다.",
+        "answers": [
+          "$\\frac{1}{2}$"
+        ]
+      },
+      "sourceFingerprint": "4bef6f4d82ce496b42039f514079d983ebbb56b1e085338be974cdde9608749e",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 {$\\frac{1}{2}$}이다.",
+      "cFrozenStudentSentence": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 □이다.",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 {$\\frac{1}{2}$}이다.",
+      "cStudentSentence": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 짝수의 눈이 나올 가능성을 수로 나타내고, 짝수인 눈의 개수와 전체 눈의 개수를 이용해 까닭을 설명하시오.",
+        "answer": "$\\frac{1}{2}$이다. 전체 눈 $6$개 중 짝수는 $2$, $4$, $6$의 $3$개로 절반이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$0.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "눈 $6$개 중 짝수가 $3$개로 절반이다",
+              "짝수 눈과 홀수 눈이 $3$개씩으로 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주사위를 굴려 짝수의 눈이 나올 가능성은 수로 {$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9a6691a0990acc6fb0f91ad0e1be7f665f7a857cf63d445140bbccbccc134a80",
+      "questionRevision": "planning-e5e6-20261006-9a6691a0990a",
+      "requiresIndependentReview": true
+    }
+  ]
+}

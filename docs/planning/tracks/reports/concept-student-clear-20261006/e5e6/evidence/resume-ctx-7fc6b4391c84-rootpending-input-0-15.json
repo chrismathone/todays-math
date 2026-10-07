@@ -1,0 +1,2378 @@
+{
+  "rows": [
+    {
+      "id": "e6-1-6-2-xc21",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 가로와 세로는 그대로 두고 높이만 $3$배로 하면 부피는 어떻게 되는가? 부피를 구하는 방법을 이용해 그 까닭을 설명하시오.",
+      "bAnswer": "부피도 $3$배가 된다. 부피는 밑면의 넓이에 높이를 곱하는데 밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부피도 $3$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "한 길이만 배로 변할 때 부피가 같은 배로 변함을 설명한다.",
+      "bReason": "곱셈에서 한 수만 배가 되면 곱도 배가 되는 관계를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "가로와 세로는 그대로 두고 높이만 $3$배 하면 {부피}는 $3$배가 된다.",
+      "cReason": "무엇이 $3$배가 되는지 묻는 짧은 결과 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2144,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-2-xc21",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "term": "높이만 $3$배일 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가로와 세로는 그대로 두고 높이만 $3$배 하면 {부피}는 $3$배가 된다.",
+        "studentC": "가로와 세로는 그대로 두고 높이만 $3$배 하면 □는 $3$배가 된다.",
+        "answers": [
+          "부피"
+        ]
+      },
+      "sourceFingerprint": "cfc1bd8ca0b36253962dd2371a560ff612cb5acea306116e455afe90293cc29c",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "cFrozenDefinition": "가로와 세로는 그대로 두고 높이만 $3$배 하면 {부피}는 $3$배가 된다.",
+      "cFrozenStudentSentence": "가로와 세로는 그대로 두고 높이만 $3$배 하면 □는 $3$배가 된다.",
+      "cProposedAnswers": [
+        "부피"
+      ],
+      "cStudentAfter": "가로와 세로는 그대로 두고 높이만 $3$배 하면 □는 $3$배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "부피"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로와 세로는 그대로 두고 높이만 $3$배 하면 {부피}는 $3$배가 된다.",
+      "cStudentSentence": "가로와 세로는 그대로 두고 높이만 $3$배 하면 □는 $3$배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "부피",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 가로와 세로는 그대로 두고 높이만 $3$배로 하면 부피는 어떻게 되는가? 부피를 구하는 방법을 이용해 그 까닭을 설명하시오.",
+        "answer": "부피도 $3$배가 된다. 부피는 밑면의 넓이에 높이를 곱하는데 밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "부피도 $3$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로와 세로는 그대로 두고 높이만 $3$배 하면 {부피}는 $3$배가 된다.",
+        "acceptedAnswers": [
+          [
+            "부피"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "466b566eee26b5ac09d82c714ef495cab6fe11e9934e06e753cd7d1a134efdcd",
+      "questionRevision": "planning-e5e6-20261006-466b566eee26",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-3-xc12",
+      "bDecision": "revise",
+      "bPrompt": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 부피가 몇 배인지, 가로·세로·높이의 길이 관계를 이용해 설명하시오.",
+      "bAnswer": "가로, 세로, 높이가 각각 $100$배이므로 부피는 $100\\times100\\times100=1000000$배이다.",
+      "bGoal": "길이가 세 방향으로 각각 $100$배일 때 부피가 $1000000$배가 되는 이유를 설명한다.",
+      "bReason": "길이 배수에서 부피 배수로 가는 관계를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로·세로·높이가 각각 $100$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100\\times100\\times100$배",
+            "$1000000$배"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 가로, 세로, 높이가 각각 {$100$}배이므로 부피는 $100\\times100\\times100=${$1000000$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1000000$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 배수 두 값으로 줄여 목표를 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2155,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-3-xc12",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "term": "부피 단위가 $1000000$배인 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 모서리 $1\\,\\mathrm{m}$인 정육면체는 한 모서리 $1\\,\\mathrm{cm}$인 정육면체보다 {가로·세로·높이가 각각 $100$배}이므로 부피가 {$100\\times100\\times100$배}이다.",
+        "studentC": "한 모서리 $1\\,\\mathrm{m}$인 정육면체는 한 모서리 $1\\,\\mathrm{cm}$인 정육면체보다 □이므로 부피가 □이다.",
+        "answers": [
+          "가로·세로·높이가 각각 $100$배",
+          "$100\\times100\\times100$배"
+        ]
+      },
+      "sourceFingerprint": "c5549c5b28199303eaa2aa703b730160ddc186f5bea66265a28dbae401003689",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "cProposedAnswers": [
+        "$100$",
+        "$1000000$"
+      ],
+      "cStudentAfter": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 가로, 세로, 높이가 각각 □배이므로 부피는 $100\\times100\\times100=$□배이다.",
+      "cMarkedSentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 가로, 세로, 높이가 각각 {$100$}배이므로 부피는 $100\\times100\\times100=${$1000000$}배이다.",
+      "cStudentSentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 가로, 세로, 높이가 각각 □배이므로 부피는 $100\\times100\\times100=$□배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        },
+        {
+          "key": "$1000000$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 부피가 몇 배인지, 가로·세로·높이의 길이 관계를 이용해 설명하시오.",
+        "answer": "가로, 세로, 높이가 각각 $100$배이므로 부피는 $100\\times100\\times100=1000000$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로·세로·높이가 각각 $100$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100\\times100\\times100$배",
+              "$1000000$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 가로, 세로, 높이가 각각 {$100$}배이므로 부피는 $100\\times100\\times100=${$1000000$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ],
+          [
+            "$1000000$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7ceab2b1eb4f77207671005b3e45eb306b352796dfc187b0b16812f1009614e4",
+      "questionRevision": "planning-e5e6-20261006-7ceab2b1eb4f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-3-xc15",
+      "bDecision": "revise",
+      "bPrompt": "큰 정육면체를 작은 정육면체로 빈틈없이 채우는데 한 모서리에 작은 정육면체가 $5$개씩 놓인다. 모두 몇 개가 필요한지 구하는 방법과 그 까닭을 쓰시오.",
+      "bAnswer": "한 층에 $5\\times5=25$개이고 $5$층이므로 $25\\times5=125$개이다. 한 모서리에 놓이는 수를 세 번 곱하면 된다.",
+      "bGoal": "정육면체를 채우는 개수가 한 층 수와 층수의 곱임을 이해한다.",
+      "bReason": "세 번 곱하는 이유를 층 구조로 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 층에 $25$개씩 $5$층",
+            "$5\\times5\\times5$로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$125$개"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "한 모서리에 작은 정육면체가 $4$개씩 놓이면 한 층에 $4\\times4=${$16$}개씩 $4$층이므로 모두 {$64$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$64$"
+          ]
+        }
+      ],
+      "cReason": "추상적인 '세 번 곱한' 대신 층 구조가 보이는 계산으로 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2157,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-3-xc15",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "term": "큰 정육면체를 채우는 작은 정육면체의 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "큰 정육면체를 작은 정육면체로 빈틈없이 채울 때 그 수는 한 모서리에 놓이는 수를 {세 번 곱한} 값이다.",
+        "studentC": "큰 정육면체를 작은 정육면체로 빈틈없이 채울 때 그 수는 한 모서리에 놓이는 수를 □ 값이다.",
+        "answers": [
+          "세 번 곱한"
+        ]
+      },
+      "sourceFingerprint": "6ee2155402d0c144266e26a75adbd81a1bed15b97d43c049665817cd98cafcc2",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "cProposedAnswers": [
+        "$16$",
+        "$64$"
+      ],
+      "cStudentAfter": "한 모서리에 작은 정육면체가 $4$개씩 놓이면 한 층에 $4\\times4=$□개씩 $4$층이므로 모두 □개이다.",
+      "cMarkedSentence": "한 모서리에 작은 정육면체가 $4$개씩 놓이면 한 층에 $4\\times4=${$16$}개씩 $4$층이므로 모두 {$64$}개이다.",
+      "cStudentSentence": "한 모서리에 작은 정육면체가 $4$개씩 놓이면 한 층에 $4\\times4=$□개씩 $4$층이므로 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$16$",
+          "equivalents": []
+        },
+        {
+          "key": "$64$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "큰 정육면체를 작은 정육면체로 빈틈없이 채우는데 한 모서리에 작은 정육면체가 $5$개씩 놓인다. 모두 몇 개가 필요한지 구하는 방법과 그 까닭을 쓰시오.",
+        "answer": "한 층에 $5\\times5=25$개이고 $5$층이므로 $25\\times5=125$개이다. 한 모서리에 놓이는 수를 세 번 곱하면 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 층에 $25$개씩 $5$층",
+              "$5\\times5\\times5$로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$125$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 모서리에 작은 정육면체가 $4$개씩 놓이면 한 층에 $4\\times4=${$16$}개씩 $4$층이므로 모두 {$64$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$16$"
+          ],
+          [
+            "$64$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e2708931b9b24ae4158795784ef9738b72bf9510abfd5b83eb2a2ae7a20f97c5",
+      "questionRevision": "planning-e5e6-20261006-e2708931b9b2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-3-xc19",
+      "bDecision": "revise",
+      "bPrompt": "한 모서리가 $2\\,\\mathrm{cm}$인 정육면체를 가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체에 모서리 방향에 맞추어 빈틈없이 채운다. 필요한 개수를 구하는 방법과 개수를 쓰시오.",
+      "bAnswer": "가로에 $10\\div2=5$개, 세로에 $6\\div2=3$개, 높이에 $4\\div2=2$개가 놓이므로 $5\\times3\\times2=30$개이다.",
+      "bGoal": "세 방향에 놓이는 개수를 각각 구해 곱하는 방법을 쓴다.",
+      "bReason": "각 방향의 개수를 구한 뒤 곱하는 절차를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로 $5$개, 세로 $3$개, 높이 $2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "세 개수를 곱한다",
+            "$5\\times3\\times2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30$개"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "가로 $10\\,\\mathrm{cm}$에는 $2\\,\\mathrm{cm}$씩 {$5$}개, 세로 $6\\,\\mathrm{cm}$에는 {$3$}개, 높이 $4\\,\\mathrm{cm}$에는 {$2$}개가 놓이므로 모두 {$30$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 방향별 개수와 총 개수를 짧은 수로 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2159,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-3-xc19",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "term": "직육면체를 채우는 정육면체의 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 크기의 정육면체를 모서리 방향에 맞추어 직육면체에 빈틈없이 채우면, 개수는 가로·세로·높이에 놓이는 개수를 {각각 구하여 곱한} 값이다.",
+        "studentC": "같은 크기의 정육면체를 모서리 방향에 맞추어 직육면체에 빈틈없이 채우면, 개수는 가로·세로·높이에 놓이는 개수를 □ 값이다.",
+        "answers": [
+          "각각 구하여 곱한"
+        ]
+      },
+      "sourceFingerprint": "8c286d58e093cb20e22613dbcadbd21ce4314dbc8215e9772732e28edd0e2298",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$3$",
+        "$2$",
+        "$30$"
+      ],
+      "cStudentAfter": "가로 $10\\,\\mathrm{cm}$에는 $2\\,\\mathrm{cm}$씩 □개, 세로 $6\\,\\mathrm{cm}$에는 □개, 높이 $4\\,\\mathrm{cm}$에는 □개가 놓이므로 모두 □개이다.",
+      "cMarkedSentence": "가로 $10\\,\\mathrm{cm}$에는 $2\\,\\mathrm{cm}$씩 {$5$}개, 세로 $6\\,\\mathrm{cm}$에는 {$3$}개, 높이 $4\\,\\mathrm{cm}$에는 {$2$}개가 놓이므로 모두 {$30$}개이다.",
+      "cStudentSentence": "가로 $10\\,\\mathrm{cm}$에는 $2\\,\\mathrm{cm}$씩 □개, 세로 $6\\,\\mathrm{cm}$에는 □개, 높이 $4\\,\\mathrm{cm}$에는 □개가 놓이므로 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$30$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 모서리가 $2\\,\\mathrm{cm}$인 정육면체를 가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체에 모서리 방향에 맞추어 빈틈없이 채운다. 필요한 개수를 구하는 방법과 개수를 쓰시오.",
+        "answer": "가로에 $10\\div2=5$개, 세로에 $6\\div2=3$개, 높이에 $4\\div2=2$개가 놓이므로 $5\\times3\\times2=30$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로 $5$개, 세로 $3$개, 높이 $2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 개수를 곱한다",
+              "$5\\times3\\times2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $10\\,\\mathrm{cm}$에는 $2\\,\\mathrm{cm}$씩 {$5$}개, 세로 $6\\,\\mathrm{cm}$에는 {$3$}개, 높이 $4\\,\\mathrm{cm}$에는 {$2$}개가 놓이므로 모두 {$30$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$30$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b8d659b641006dc1096e90e3eaaa18cced62d4987d1b4c1ef3aa7280db53f9b9",
+      "questionRevision": "planning-e5e6-20261006-b8d659b64100",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-3-xc22",
+      "bDecision": "revise",
+      "bPrompt": "$1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2$이고 $1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3$인 것을 길이가 $100$배가 되는 방향의 수로 비교하여 설명하시오.",
+      "bAnswer": "넓이는 가로·세로 두 방향이 $100$배라 $100\\times100=10000$배이고, 부피는 가로·세로·높이 세 방향이 모두 $100$배라 $100\\times100\\times100=1000000$배이다.",
+      "bGoal": "넓이와 부피의 단위 환산 차이를 길이가 늘어나는 방향 수로 이해한다.",
+      "bReason": "두 방향과 세 방향이라는 핵심 차이를 짚는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이는 두 방향이 $100$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "부피는 세 방향이 $100$배"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=${$10000$}$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 {$3$}번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "'방향'이라는 추상어 대신 곱하는 횟수로 차이를 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2161,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-3-xc22",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "term": "넓이 단위와 부피 단위의 차이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1\\,\\mathrm{m}^2$는 {두 방향}이 $100$배라 $10000\\,\\mathrm{cm}^2$이고, $1\\,\\mathrm{m}^3$는 {세 방향}이 모두 $100$배라 $1000000\\,\\mathrm{cm}^3$이다.",
+        "studentC": "$1\\,\\mathrm{m}^2$는 □이 $100$배라 $10000\\,\\mathrm{cm}^2$이고, $1\\,\\mathrm{m}^3$는 □이 모두 $100$배라 $1000000\\,\\mathrm{cm}^3$이다.",
+        "answers": [
+          "두 방향",
+          "세 방향"
+        ]
+      },
+      "sourceFingerprint": "24863134633e98a468c803c210807dfe929b43c2dc02e6b5424561f7961ff1af",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "cProposedAnswers": [
+        "$10000$",
+        "$3$"
+      ],
+      "cStudentAfter": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=$□$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 □번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+      "cMarkedSentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=${$10000$}$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 {$3$}번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+      "cStudentSentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=$□$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 □번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10000$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2$이고 $1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3$인 것을 길이가 $100$배가 되는 방향의 수로 비교하여 설명하시오.",
+        "answer": "넓이는 가로·세로 두 방향이 $100$배라 $100\\times100=10000$배이고, 부피는 가로·세로·높이 세 방향이 모두 $100$배라 $100\\times100\\times100=1000000$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이는 두 방향이 $100$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "부피는 세 방향이 $100$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=${$10000$}$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 {$3$}번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$10000$"
+          ],
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4b34d407f1d97a799fef39e481fc7c06effae26baf877c1efea71866601cbd9c",
+      "questionRevision": "planning-e5e6-20261006-4b34d407f1d9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-xc4",
+      "bDecision": "revise",
+      "bPrompt": "분모가 $4$와 $6$인 두 분수를 통분할 때 공통분모로 어떤 공배수를 고르면 계산하기 편한지 쓰고, 그 까닭도 말하시오. 그 수는 얼마인가요?",
+      "bAnswer": "공배수 중 가장 작은 수(최소공배수)를 고른다. 수가 작아 분자와 분모가 작아지므로 계산이 쉽다. 이 경우 $12$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "공배수 중 가장 작은 수",
+            "최소공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자와 분모가 작아 계산이 쉽다",
+            "수가 작아서 계산하기 편하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "최소공배수를 공통분모로 쓰는 편리함을 설명한다.",
+      "bReason": "선택과 까닭을 함께 묻고 예의 정확한 값도 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "두 분모의 공배수 중 가장 작은 수인 {최소공배수}를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+      "cReason": "공배수 중 가장 작은 수라는 설명이 있어 답이 분명한 낱말 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2181,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc4",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "최소공배수로 통분하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 분모의 공배수 중 가장 작은 수인 {최소공배수}를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+        "studentC": "두 분모의 공배수 중 가장 작은 수인 □를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "sourceFingerprint": "d64c2c7eb5f4e69277f2630a188efe09449bb23ab31911df1034f021d507fafb",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "cFrozenDefinition": "두 분모의 공배수 중 가장 작은 수인 {최소공배수}를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+      "cFrozenStudentSentence": "두 분모의 공배수 중 가장 작은 수인 □를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+      "cProposedAnswers": [
+        "최소공배수"
+      ],
+      "cStudentAfter": "두 분모의 공배수 중 가장 작은 수인 □를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최소공배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 분모의 공배수 중 가장 작은 수인 {최소공배수}를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+      "cStudentSentence": "두 분모의 공배수 중 가장 작은 수인 □를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+      "cSlotAnswers": [
+        {
+          "key": "최소공배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 $4$와 $6$인 두 분수를 통분할 때 공통분모로 어떤 공배수를 고르면 계산하기 편한지 쓰고, 그 까닭도 말하시오. 그 수는 얼마인가요?",
+        "answer": "공배수 중 가장 작은 수(최소공배수)를 고른다. 수가 작아 분자와 분모가 작아지므로 계산이 쉽다. 이 경우 $12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "공배수 중 가장 작은 수",
+              "최소공배수"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자와 분모가 작아 계산이 쉽다",
+              "수가 작아서 계산하기 편하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 분모의 공배수 중 가장 작은 수인 {최소공배수}를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+        "acceptedAnswers": [
+          [
+            "최소공배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5eb9cdb13e49b8172b5075bf849f0e3b7105631d8389530e0f862cb7a12e4895",
+      "questionRevision": "planning-e5e6-20261006-5eb9cdb13e49",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 통분하면 각 분수를 같은 크기의 조각 몇 개로 나타낼 수 있는지 쓰시오.",
+      "bAnswer": "공통분모 $12$로 통분하면 $\\frac{2}{3}=\\frac{8}{12}$, $\\frac{3}{4}=\\frac{9}{12}$이므로 각각 $\\frac{1}{12}$ 조각 $8$개, $9$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$는 $\\frac{1}{12}$ 조각 $8$개",
+            "$\\frac{2}{3}=\\frac{8}{12}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$은 $\\frac{1}{12}$ 조각 $9$개",
+            "$\\frac{3}{4}=\\frac{9}{12}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "통분 결과를 같은 크기 조각의 개수로 읽는다.",
+      "bReason": "예 안에서 일반 의미를 읽게 하며 정확한 개수를 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "{통분}하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+      "cReason": "통분의 결과를 같은 크기의 조각 개수로 바꾼다는 짧은 낱말 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2182,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc6",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "같은 크기의 조각으로 바꾸기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "{통분}하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+        "studentC": "□하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+        "answers": [
+          "통분"
+        ]
+      },
+      "sourceFingerprint": "09b27db86b203641952f1e7784bef08935c83a5daba28a9fba1a9ce8d9d03dff",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[1].anyOf[0]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "{통분}하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+      "cFrozenStudentSentence": "□하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+      "cProposedAnswers": [
+        "통분"
+      ],
+      "cStudentAfter": "□하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "{통분}하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+      "cStudentSentence": "□하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+      "cSlotAnswers": [
+        {
+          "key": "통분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 통분하면 각 분수를 같은 크기의 조각 몇 개로 나타낼 수 있는지 쓰시오.",
+        "answer": "공통분모 $12$로 통분하면 $\\frac{2}{3}=\\frac{8}{12}$, $\\frac{3}{4}=\\frac{9}{12}$이므로 각각 $\\frac{1}{12}$ 조각 $8$개, $9$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{3}$는 $\\frac{1}{12}$ 조각 $8$개",
+              "$\\frac{2}{3}=\\frac{8}{12}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$은 $\\frac{1}{12}$ 조각 $9$개",
+              "$\\frac{3}{4}=\\frac{9}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "{통분}하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+        "acceptedAnswers": [
+          [
+            "통분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3dc44a95875aeaf94a48ea637633bccd45275554d537e536632c5a59ce3194ac",
+      "questionRevision": "planning-e5e6-20261006-3dc44a95875a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 두 분수의 나눗셈에서 나누는 분수가 나누어지는 분수보다 클 때, 몫을 $1$과 비교하면 어떠한지 쓰고 그 까닭을 설명하시오. $\\frac{2}{5}\\div\\frac{3}{4}$로도 확인하시오.",
+      "bAnswer": "몫은 $1$보다 작다. 나누어지는 양이 나누는 양보다 작아 나누는 양을 한 번도 덜어 낼 수 없기 때문이다. $\\frac{2}{5}\\div\\frac{3}{4}=\\frac{8}{20}\\div\\frac{15}{20}=\\frac{8}{15}$로 $1$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 $1$보다 작다",
+            "$1$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 양을 한 번도 덜어 낼 수 없다",
+            "나누어지는 양이 나누는 양보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{15}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "나누는 분수가 클 때 몫이 $1$보다 작은 까닭을 설명한다.",
+      "bReason": "비교 결과와 이유를 묻고 예의 계산값도 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 {작다}.",
+      "cReason": "양수 조건과 크기 비교가 분명하고 사용자가 인정한 원문 그대로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2185,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc12",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "몫이 $1$보다 작은 경우",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 {작다}.",
+        "studentC": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "c69ab02c89a4f01f3e9380624b98d13278c9a109df1eb6ffb588f20abe0a3f71",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "cFrozenDefinition": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 {작다}.",
+      "cFrozenStudentSentence": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 □.",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 {작다}.",
+      "cStudentSentence": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 두 분수의 나눗셈에서 나누는 분수가 나누어지는 분수보다 클 때, 몫을 $1$과 비교하면 어떠한지 쓰고 그 까닭을 설명하시오. $\\frac{2}{5}\\div\\frac{3}{4}$로도 확인하시오.",
+        "answer": "몫은 $1$보다 작다. 나누어지는 양이 나누는 양보다 작아 나누는 양을 한 번도 덜어 낼 수 없기 때문이다. $\\frac{2}{5}\\div\\frac{3}{4}=\\frac{8}{20}\\div\\frac{15}{20}=\\frac{8}{15}$로 $1$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 $1$보다 작다",
+              "$1$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 양을 한 번도 덜어 낼 수 없다",
+              "나누어지는 양이 나누는 양보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{8}{15}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "58d6575ee22eaebeea810476e64a8ccf49a5c3f9bb784a0a4288de6c56eb2ee7",
+      "questionRevision": "planning-e5e6-20261006-58d6575ee22e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-xc14",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 통분했을 때 몫이 자연수가 되려면 두 분자 사이에 어떤 관계가 있어야 하는지 쓰고, $\\frac{3}{4}\\div\\frac{3}{8}$과 $\\frac{5}{6}\\div\\frac{1}{4}$ 중 몫이 자연수인 것을 고르시오.",
+      "bAnswer": "나누어지는 분수의 분자가 나누는 분수의 분자의 배수이면 몫이 자연수이다. $\\frac{3}{4}\\div\\frac{3}{8}=\\frac{6}{8}\\div\\frac{3}{8}=2$이므로 앞의 식이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 분자가 나누는 분자의 배수",
+            "나누는 분자로 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}\\div\\frac{3}{8}$",
+            "앞의 식, 몫은 $2$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "통분 후 분자의 배수 관계로 자연수 몫을 판단한다.",
+      "bReason": "조건을 말하고 두 식에 적용해 구별하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 {배수}이면 몫은 자연수이다.",
+      "cReason": "양수와 통분 뒤라는 조건이 있고 빈칸이 분자의 배수 관계로 명확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2186,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc14",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "자연수 몫이 되는 조건",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 {배수}이면 몫은 자연수이다.",
+        "studentC": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 □이면 몫은 자연수이다.",
+        "answers": [
+          "배수"
+        ]
+      },
+      "sourceFingerprint": "4f789c61d81311d79e42815275b98b09cc5030c0199b42a28e502d5fe9f125ae",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "cFrozenDefinition": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 {배수}이면 몫은 자연수이다.",
+      "cFrozenStudentSentence": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 □이면 몫은 자연수이다.",
+      "cProposedAnswers": [
+        "배수"
+      ],
+      "cStudentAfter": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 □이면 몫은 자연수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 {배수}이면 몫은 자연수이다.",
+      "cStudentSentence": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 □이면 몫은 자연수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수를 통분했을 때 몫이 자연수가 되려면 두 분자 사이에 어떤 관계가 있어야 하는지 쓰고, $\\frac{3}{4}\\div\\frac{3}{8}$과 $\\frac{5}{6}\\div\\frac{1}{4}$ 중 몫이 자연수인 것을 고르시오.",
+        "answer": "나누어지는 분수의 분자가 나누는 분수의 분자의 배수이면 몫이 자연수이다. $\\frac{3}{4}\\div\\frac{3}{8}=\\frac{6}{8}\\div\\frac{3}{8}=2$이므로 앞의 식이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 분자가 나누는 분자의 배수",
+              "나누는 분자로 나누어떨어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}\\div\\frac{3}{8}$",
+              "앞의 식, 몫은 $2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 {배수}이면 몫은 자연수이다.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d1d30e75c53ad82db1f8a89c616559151a735f0380601f12e96aac869831f688",
+      "questionRevision": "planning-e5e6-20261006-d1d30e75c53a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{3}\\div\\frac{1}{5}$의 몫을 통분하여 구하고, 단위분수끼리 나눌 때 몫의 분자와 분모가 각각 어떤 수인지 설명하시오.",
+      "bAnswer": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{15}\\div\\frac{3}{15}=\\frac{5}{3}$이다. 몫의 분자는 나누는 단위분수의 분모이고, 몫의 분모는 나누어지는 단위분수의 분모이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $\\frac{5}{3}$이다",
+            "$\\frac{5}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 나누는 단위분수의 분모",
+            "분자는 나누는 수의 분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모는 나누어지는 단위분수의 분모",
+            "분모는 나누어지는 수의 분모"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "단위분수끼리 나눈 몫의 분자·분모 규칙을 찾는다.",
+      "bReason": "예의 계산에서 일반 규칙을 이끌어 말하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{3}$처럼 단위분수끼리 나누면 몫의 분자는 {나누는} 단위분수의 분모이고, 몫의 분모는 {나누어지는} 단위분수의 분모이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누는",
+            "나누는 수",
+            "나누는 분수"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는",
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        }
+      ],
+      "cReason": "실제 식을 보여 주고 나누는 쪽과 나누어지는 쪽을 구분하게 해 맥락을 보완한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2189,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc19",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "단위분수끼리 나눌 때의 규칙",
+        "kind": "성질",
+        "level": "상",
+        "definition": "단위분수끼리 나누면 몫은 {나누는 수}의 분모를 분자로, 나누어지는 수의 분모를 분모로 하는 분수이다.",
+        "studentC": "단위분수끼리 나누면 몫은 □의 분모를 분자로, 나누어지는 수의 분모를 분모로 하는 분수이다.",
+        "answers": [
+          "나누는 수"
+        ]
+      },
+      "sourceFingerprint": "1ffbf6a738a07d3f1faaf5b07927a076d8862c1cf32e56d50e34582da71d2979",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "cProposedAnswers": [
+        "나누는",
+        "나누어지는"
+      ],
+      "cStudentAfter": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{3}$처럼 단위분수끼리 나누면 몫의 분자는 □ 단위분수의 분모이고, 몫의 분모는 □ 단위분수의 분모이다.",
+      "cMarkedSentence": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{3}$처럼 단위분수끼리 나누면 몫의 분자는 {나누는} 단위분수의 분모이고, 몫의 분모는 {나누어지는} 단위분수의 분모이다.",
+      "cStudentSentence": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{3}$처럼 단위분수끼리 나누면 몫의 분자는 □ 단위분수의 분모이고, 몫의 분모는 □ 단위분수의 분모이다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누는",
+          "equivalents": [
+            "나누는 수",
+            "나누는 분수"
+          ]
+        },
+        {
+          "key": "나누어지는",
+          "equivalents": [
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{3}\\div\\frac{1}{5}$의 몫을 통분하여 구하고, 단위분수끼리 나눌 때 몫의 분자와 분모가 각각 어떤 수인지 설명하시오.",
+        "answer": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{15}\\div\\frac{3}{15}=\\frac{5}{3}$이다. 몫의 분자는 나누는 단위분수의 분모이고, 몫의 분모는 나누어지는 단위분수의 분모이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $\\frac{5}{3}$이다",
+              "$\\frac{5}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 나누는 단위분수의 분모",
+              "분자는 나누는 수의 분모"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 나누어지는 단위분수의 분모",
+              "분모는 나누어지는 수의 분모"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{3}$처럼 단위분수끼리 나누면 몫의 분자는 {나누는} 단위분수의 분모이고, 몫의 분모는 {나누어지는} 단위분수의 분모이다.",
+        "acceptedAnswers": [
+          [
+            "나누는",
+            "나누는 수",
+            "나누는 분수"
+          ],
+          [
+            "나누어지는",
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "43ab219350766eb4d81be4823c0fba10b2a8c623b2be668837f6faed5825967e",
+      "questionRevision": "planning-e5e6-20261006-43ab21935076",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-xc22",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫을 나누어지는 분수와 비교하여 어떠한지 쓰고 그 까닭을 설명하시오. $\\frac{3}{4}\\div\\frac{1}{2}$로도 확인하시오.",
+      "bAnswer": "몫이 나누어지는 분수보다 크다. 나누는 수가 $1$보다 작아 한 번에 덜어 내는 양이 $1$보다 적으므로 더 여러 번 덜어 낼 수 있다. $\\frac{3}{4}\\div\\frac{1}{2}=\\frac{3}{2}$이고 $\\frac{3}{2}$은 $\\frac{3}{4}$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 나누어지는 분수보다 크다",
+            "몫이 더 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수가 $1$보다 작아 더 여러 번 덜어 낼 수 있다",
+            "$1$보다 작은 수로 나누면 들어가는 횟수가 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "$1$보다 작은 분수로 나눌 때 몫이 커지는 까닭을 이해한다.",
+      "bReason": "나눗셈에서 몫이 줄어든다는 오해를 바로잡는 비교 문항이다.",
+      "cDecision": "keep",
+      "cAfter": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 {크다}.",
+      "cReason": "양수와 $1$보다 작은 수라는 조건이 분명한 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2190,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc22",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "$1$보다 작은 분수로 나눈 몫",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 {크다}.",
+        "studentC": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 □.",
+        "answers": [
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "0c77aa953754408ba2376a9aeb7a2783c698a422be30c9382c0e258c84f3da58",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "cFrozenDefinition": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 {크다}.",
+      "cFrozenStudentSentence": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 □.",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 {크다}.",
+      "cStudentSentence": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫을 나누어지는 분수와 비교하여 어떠한지 쓰고 그 까닭을 설명하시오. $\\frac{3}{4}\\div\\frac{1}{2}$로도 확인하시오.",
+        "answer": "몫이 나누어지는 분수보다 크다. 나누는 수가 $1$보다 작아 한 번에 덜어 내는 양이 $1$보다 적으므로 더 여러 번 덜어 낼 수 있다. $\\frac{3}{4}\\div\\frac{1}{2}=\\frac{3}{2}$이고 $\\frac{3}{2}$은 $\\frac{3}{4}$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 나누어지는 분수보다 크다",
+              "몫이 더 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 $1$보다 작아 더 여러 번 덜어 낼 수 있다",
+              "$1$보다 작은 수로 나누면 들어가는 횟수가 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0aafd85f11ea21da5a5027873de85e41b11fec10f6cde141d95c637765e6d886",
+      "questionRevision": "planning-e5e6-20261006-0aafd85f11ea",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}$을 $\\frac{1}{4}$로 나눈 몫과 $\\frac{1}{8}$로 나눈 몫을 각각 구하고, 어느 쪽이 더 큰지와 그 까닭을 설명하시오.",
+      "bAnswer": "$\\frac{3}{4}\\div\\frac{1}{4}=3$, $\\frac{3}{4}\\div\\frac{1}{8}=6$이다. $\\frac{1}{8}$로 나눈 몫이 더 크다. 나누는 수가 작을수록 한 번에 덜어 내는 양이 적어 더 여러 번 덜어 낼 수 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$과 $6$",
+            "$\\frac{1}{4}$로 나누면 $3$, $\\frac{1}{8}$로 나누면 $6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수가 더 작은 쪽의 몫이 더 크다",
+            "$\\frac{1}{8}$로 나눈 몫이 더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "덜어 내는 양이 적어 횟수가 늘어난다",
+            "한 번에 덜어 내는 양이 작아 더 여러 번 덜어 낼 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "나누어지는 수가 같을 때 나누는 수가 작을수록 몫이 큰 까닭을 설명한다.",
+      "bReason": "두 몫을 직접 비교하고 덜어 내는 횟수로 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 {작을수록} 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+      "cReason": "나누어지는 수가 일정하다는 조건이 있고 작을수록 몫이 크다는 관계가 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "작을수록과 작으면을 같은 뜻으로 본다.",
+      "sourceIndex": 2192,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc25",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "두 몫의 크기 견주기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 {작을수록} 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+        "studentC": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 □ 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+        "answers": [
+          "작을수록"
+        ]
+      },
+      "sourceFingerprint": "097e790aa68f6d68780d5b693d2dca8c3904f4b265f69f7aac9106899d01bd37",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 {작을수록} 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+      "cFrozenStudentSentence": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 □ 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+      "cProposedAnswers": [
+        "작을수록"
+      ],
+      "cStudentAfter": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 □ 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작을수록"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 {작을수록} 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+      "cStudentSentence": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 □ 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작을수록",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}$을 $\\frac{1}{4}$로 나눈 몫과 $\\frac{1}{8}$로 나눈 몫을 각각 구하고, 어느 쪽이 더 큰지와 그 까닭을 설명하시오.",
+        "answer": "$\\frac{3}{4}\\div\\frac{1}{4}=3$, $\\frac{3}{4}\\div\\frac{1}{8}=6$이다. $\\frac{1}{8}$로 나눈 몫이 더 크다. 나누는 수가 작을수록 한 번에 덜어 내는 양이 적어 더 여러 번 덜어 낼 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$과 $6$",
+              "$\\frac{1}{4}$로 나누면 $3$, $\\frac{1}{8}$로 나누면 $6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 더 작은 쪽의 몫이 더 크다",
+              "$\\frac{1}{8}$로 나눈 몫이 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "덜어 내는 양이 적어 횟수가 늘어난다",
+              "한 번에 덜어 내는 양이 작아 더 여러 번 덜어 낼 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 {작을수록} 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "작을수록"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "72aee53067ad7d79e42f4d67eab0d5c890a5dc2d05d6e8f16a444c0122f89ec4",
+      "questionRevision": "planning-e5e6-20261006-72aee53067ad",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-4-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "나누어지는 분수는 바꾸지 않는다는 점을 확인한다.",
+      "bReason": "c2의 방법 질문에서 함께 확인되어 별도 B는 중복이다.",
+      "exclusionReason": "c2 B가 어느 분수를 뒤집는지 이미 묻는다. 대체: e6-2-1-4-c2",
+      "cDecision": "keep",
+      "cAfter": "분수의 나눗셈을 곱셈으로 바꿀 때 {나누어지는 분수}는 그대로 둔다.",
+      "cReason": "나누어지는 분수를 그대로 둔다는 짧은 낱말 빈칸이라 c2와 짝으로 유용하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2205,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-4-xc4",
+        "section": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "term": "그대로 두는 앞의 분수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분수의 나눗셈을 곱셈으로 바꿀 때 {나누어지는 분수}는 그대로 둔다.",
+        "studentC": "분수의 나눗셈을 곱셈으로 바꿀 때 □는 그대로 둔다.",
+        "answers": [
+          "나누어지는 분수"
+        ]
+      },
+      "sourceFingerprint": "5134785a15b4a2e884539429cf85b88bf5f3a38d0ed90081cc226affb0025fda",
+      "draftEvidence": "evidence/section-086-draft.json",
+      "cFrozenDefinition": "분수의 나눗셈을 곱셈으로 바꿀 때 {나누어지는 분수}는 그대로 둔다.",
+      "cFrozenStudentSentence": "분수의 나눗셈을 곱셈으로 바꿀 때 □는 그대로 둔다.",
+      "cProposedAnswers": [
+        "나누어지는 분수"
+      ],
+      "cStudentAfter": "분수의 나눗셈을 곱셈으로 바꿀 때 □는 그대로 둔다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어지는 분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분수의 나눗셈을 곱셈으로 바꿀 때 {나누어지는 분수}는 그대로 둔다.",
+      "cStudentSentence": "분수의 나눗셈을 곱셈으로 바꿀 때 □는 그대로 둔다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어지는 분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "분수의 나눗셈을 곱셈으로 바꿀 때 {나누어지는 분수}는 그대로 둔다.",
+        "acceptedAnswers": [
+          [
+            "나누어지는 분수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c2 B가 어느 분수를 뒤집는지 이미 묻는다. 대체: e6-2-1-4-c2"
+      },
+      "proposalFingerprint": "9823608f9fc5f4b1590b33ab3c06f9cbaa00422bd58da47780eed3752930596d",
+      "questionRevision": "planning-e5e6-20261006-9823608f9fc5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-4-xc6",
+      "bDecision": "revise",
+      "bPrompt": "자연수로 나누는 것은 어떤 분수를 곱하는 것과 같습니까? $\\frac{3}{5}\\div4$를 곱셈식으로 바꾸어 값을 구하시오.",
+      "bAnswer": "그 자연수를 분모로 하는 단위분수를 곱하는 것과 같습니다. $\\frac{3}{5}\\div4=\\frac{3}{5}\\times\\frac{1}{4}=\\frac{3}{20}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수를 분모로 하는 단위분수를 곱한다",
+            "분자가 $1$이고 분모가 그 자연수인 분수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{20}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "자연수로 나누기를 단위분수 곱셈으로 바꾼다.",
+      "bReason": "일반 관계와 예 계산을 함께 묻는다.",
+      "synonymNotes": "단위분수는 분자가 $1$인 분수라고 풀어 써도 정답이다.",
+      "cDecision": "keep",
+      "cAfter": "자연수로 나누는 것은 그 자연수를 분모로 하는 {단위분수}를 곱하는 것과 같다.",
+      "cReason": "자연수로 나누기와 단위분수 곱의 관계를 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2207,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-4-xc6",
+        "section": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "term": "자연수로 나누기를 곱셈으로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수로 나누는 것은 그 자연수를 분모로 하는 {단위분수}를 곱하는 것과 같다.",
+        "studentC": "자연수로 나누는 것은 그 자연수를 분모로 하는 □를 곱하는 것과 같다.",
+        "answers": [
+          "단위분수"
+        ]
+      },
+      "sourceFingerprint": "fc58ee7edcd1fa7031bf961d4d4536b4aa60ba246d64dd94650d4310fa961f87",
+      "draftEvidence": "evidence/section-086-draft.json",
+      "cFrozenDefinition": "자연수로 나누는 것은 그 자연수를 분모로 하는 {단위분수}를 곱하는 것과 같다.",
+      "cFrozenStudentSentence": "자연수로 나누는 것은 그 자연수를 분모로 하는 □를 곱하는 것과 같다.",
+      "cProposedAnswers": [
+        "단위분수"
+      ],
+      "cStudentAfter": "자연수로 나누는 것은 그 자연수를 분모로 하는 □를 곱하는 것과 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "단위분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자연수로 나누는 것은 그 자연수를 분모로 하는 {단위분수}를 곱하는 것과 같다.",
+      "cStudentSentence": "자연수로 나누는 것은 그 자연수를 분모로 하는 □를 곱하는 것과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "단위분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수로 나누는 것은 어떤 분수를 곱하는 것과 같습니까? $\\frac{3}{5}\\div4$를 곱셈식으로 바꾸어 값을 구하시오.",
+        "answer": "그 자연수를 분모로 하는 단위분수를 곱하는 것과 같습니다. $\\frac{3}{5}\\div4=\\frac{3}{5}\\times\\frac{1}{4}=\\frac{3}{20}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수를 분모로 하는 단위분수를 곱한다",
+              "분자가 $1$이고 분모가 그 자연수인 분수를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{20}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자연수로 나누는 것은 그 자연수를 분모로 하는 {단위분수}를 곱하는 것과 같다.",
+        "acceptedAnswers": [
+          [
+            "단위분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "674573ceda6bbcda486e3341859762da84f2eb7d121451dd3406e50c43123244",
+      "questionRevision": "planning-e5e6-20261006-674573ceda6b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-4-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\div\\frac{4}{5}$에서 앞의 분수 $\\frac{2}{3}$만 뒤집어 $\\frac{3}{2}\\times\\frac{4}{5}$로 계산하면 올바른 몫과 같습니까? 두 양수에서 이렇게 해도 올바른 몫과 같아지는 경우는 언제인지 쓰시오.",
+      "bAnswer": "같지 않습니다. 올바른 몫은 $\\frac{2}{3}\\times\\frac{5}{4}=\\frac{5}{6}$이고 잘못 계산하면 $\\frac{6}{5}$입니다. 두 분수의 크기가 같을 때만 같아집니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "예에서는 같지 않다. 올바른 몫은 $\\frac{5}{6}$이고 잘못한 값은 $\\frac{6}{5}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 분수의 크기가 같을 때만 같다",
+            "두 수가 같을 때뿐이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "앞의 분수를 뒤집는 오류를 확인하고 같아지는 경우를 안다.",
+      "bReason": "흔한 오류를 예로 보이고 일반 조건까지 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+      "cReason": "조건이 분명하며 두 분수가 같을 때뿐이라는 짧은 낱말 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2210,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-4-xc12",
+        "section": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "term": "앞의 분수를 뒤집는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+        "studentC": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 □ 때뿐이다.",
+        "answers": [
+          "같을"
+        ]
+      },
+      "sourceFingerprint": "1a3f057d95b0f0ee4daddeced74d25064d427fcd2408b8203d68845ccb7a8c4d",
+      "draftEvidence": "evidence/section-086-draft.json",
+      "cFrozenDefinition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+      "cFrozenStudentSentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 □ 때뿐이다.",
+      "cProposedAnswers": [
+        "같을"
+      ],
+      "cStudentAfter": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 □ 때뿐이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같을"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+      "cStudentSentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 □ 때뿐이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같을",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}\\div\\frac{4}{5}$에서 앞의 분수 $\\frac{2}{3}$만 뒤집어 $\\frac{3}{2}\\times\\frac{4}{5}$로 계산하면 올바른 몫과 같습니까? 두 양수에서 이렇게 해도 올바른 몫과 같아지는 경우는 언제인지 쓰시오.",
+        "answer": "같지 않습니다. 올바른 몫은 $\\frac{2}{3}\\times\\frac{5}{4}=\\frac{5}{6}$이고 잘못 계산하면 $\\frac{6}{5}$입니다. 두 분수의 크기가 같을 때만 같아집니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "예에서는 같지 않다. 올바른 몫은 $\\frac{5}{6}$이고 잘못한 값은 $\\frac{6}{5}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 분수의 크기가 같을 때만 같다",
+              "두 수가 같을 때뿐이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+        "acceptedAnswers": [
+          [
+            "같을"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f21c00e1b00886ff8140f86c42f2e7a63e70539498407377fedb7e0d747055a2",
+      "questionRevision": "planning-e5e6-20261006-f21c00e1b008",
+      "requiresIndependentReview": true
+    }
+  ],
+  "rootFeedback": [
+    {
+      "id": "e6-1-6-2-xc21",
+      "sourceIndex": 2144,
+      "verdict": {
+        "id": "e6-1-6-2-xc21",
+        "sourceIndex": 2144,
+        "proposalFingerprint": "466b566eee26b5ac09d82c714ef495cab6fe11e9934e06e753cd7d1a134efdcd",
+        "learningRole": "reason",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "직육면체의 가로와 세로는 그대로 두고 높이만 $3$배로 하면 부피는 어떻게 되는가? 부피를 구하는 방법을 이용해 그 까닭을 설명하시오.",
+          "answer": "부피도 $3$배가 된다. 부피는 밑면의 넓이에 높이를 곱하는데 밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "부피도 $3$배가 된다"
+              ]
+            },
+            {
+              "anyOf": [
+                "밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "가로와 세로는 그대로 두고 높이만 $3$배 하면 {부피}는 $3$배가 된다.",
+          "acceptedAnswers": [
+            [
+              "부피"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "곱셈에서 한 수만 배가 되면 곱도 배가 되는 관계를 묻는다.",
+        "cReason": "무엇이 $3$배가 되는지 묻는 짧은 결과 문장이다.",
+        "bVerdict": "adopt",
+        "cVerdict": "revise",
+        "reason": "C는 직육면체라는 대상이 없고 높이 자체도3배여서 '무엇이3배인가'의 답이 부피로 정해지지 않는다. 부피를 지문에 명시하고 배수를 묻거나 실제 길이와 부피 값을 주어 짧은 계산을 답하게 좁혀야 한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2140-2170-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2140-2170-verdicts.json"
+    },
+    {
+      "id": "e6-1-6-3-xc12",
+      "sourceIndex": 2155,
+      "verdict": {
+        "id": "e6-1-6-3-xc12",
+        "sourceIndex": 2155,
+        "proposalFingerprint": "7ceab2b1eb4f77207671005b3e45eb306b352796dfc187b0b16812f1009614e4",
+        "learningRole": "reason",
+        "bDecision": "revise",
+        "cDecision": "revise",
+        "B": {
+          "prompt": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 부피가 몇 배인지, 가로·세로·높이의 길이 관계를 이용해 설명하시오.",
+          "answer": "가로, 세로, 높이가 각각 $100$배이므로 부피는 $100\\times100\\times100=1000000$배이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가로·세로·높이가 각각 $100$배"
+              ]
+            },
+            {
+              "anyOf": [
+                "$100\\times100\\times100$배",
+                "$1000000$배"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 가로, 세로, 높이가 각각 {$100$}배이므로 부피는 $100\\times100\\times100=${$1000000$}배이다.",
+          "acceptedAnswers": [
+            [
+              "$100$"
+            ],
+            [
+              "$1000000$"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "길이 배수에서 부피 배수로 가는 관계를 묻는다.",
+        "cReason": "긴 구절 빈칸을 배수 두 값으로 줄여 목표를 유지한다.",
+        "bVerdict": "adopt",
+        "cVerdict": "revise",
+        "reason": "C 첫 빈칸100은 바로 뒤 부피 식의100×100×100에서 그대로 보인다. 변환 배수를 답하게 하려면 뒤 식에서 그 수를 드러내지 않거나,100배 조건을 보이고 부피 배수 하나만 구하게 고쳐야 한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2140-2170-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2140-2170-verdicts.json"
+    },
+    {
+      "id": "e6-1-6-3-xc15",
+      "sourceIndex": 2157,
+      "verdict": {
+        "id": "e6-1-6-3-xc15",
+        "sourceIndex": 2157,
+        "proposalFingerprint": "e2708931b9b24ae4158795784ef9738b72bf9510abfd5b83eb2a2ae7a20f97c5",
+        "learningRole": "procedure",
+        "bDecision": "revise",
+        "cDecision": "revise",
+        "B": {
+          "prompt": "큰 정육면체를 작은 정육면체로 빈틈없이 채우는데 한 모서리에 작은 정육면체가 $5$개씩 놓인다. 모두 몇 개가 필요한지 구하는 방법과 그 까닭을 쓰시오.",
+          "answer": "한 층에 $5\\times5=25$개이고 $5$층이므로 $25\\times5=125$개이다. 한 모서리에 놓이는 수를 세 번 곱하면 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 층에 $25$개씩 $5$층",
+                "$5\\times5\\times5$로 구한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$125$개"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "한 모서리에 작은 정육면체가 $4$개씩 놓이면 한 층에 $4\\times4=${$16$}개씩 $4$층이므로 모두 {$64$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$16$"
+            ],
+            [
+              "$64$"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "세 번 곱하는 이유를 층 구조로 설명하게 한다.",
+        "cReason": "추상적인 '세 번 곱한' 대신 층 구조가 보이는 계산으로 확인한다.",
+        "bVerdict": "revise",
+        "cVerdict": "revise",
+        "reason": "B는 까닭도 묻지만 첫 기준에서5×5×5라는 식만으로 그 요구를 충족한다. 한 층의 개수와 층 수 또는 세 길이의 개수 관계를 실제 이유로 평가해야 한다. C에는 큰 정육면체를 작은 정육면체로 빈틈없이 채운다는 상황이 없어 한 모서리의4개만으로 모든 방향4개·4층을 정할 수 없다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2140-2170-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2140-2170-verdicts.json"
+    },
+    {
+      "id": "e6-1-6-3-xc19",
+      "sourceIndex": 2159,
+      "verdict": {
+        "id": "e6-1-6-3-xc19",
+        "sourceIndex": 2159,
+        "proposalFingerprint": "b8d659b641006dc1096e90e3eaaa18cced62d4987d1b4c1ef3aa7280db53f9b9",
+        "learningRole": "procedure",
+        "bDecision": "revise",
+        "cDecision": "revise",
+        "B": {
+          "prompt": "한 모서리가 $2\\,\\mathrm{cm}$인 정육면체를 가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체에 모서리 방향에 맞추어 빈틈없이 채운다. 필요한 개수를 구하는 방법과 개수를 쓰시오.",
+          "answer": "가로에 $10\\div2=5$개, 세로에 $6\\div2=3$개, 높이에 $4\\div2=2$개가 놓이므로 $5\\times3\\times2=30$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가로 $5$개, 세로 $3$개, 높이 $2$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 개수를 곱한다",
+                "$5\\times3\\times2$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$30$개"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "가로 $10\\,\\mathrm{cm}$에는 $2\\,\\mathrm{cm}$씩 {$5$}개, 세로 $6\\,\\mathrm{cm}$에는 {$3$}개, 높이 $4\\,\\mathrm{cm}$에는 {$2$}개가 놓이므로 모두 {$30$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$5$"
+            ],
+            [
+              "$3$"
+            ],
+            [
+              "$2$"
+            ],
+            [
+              "$30$"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "각 방향의 개수를 구한 뒤 곱하는 절차를 확인한다.",
+        "cReason": "긴 구절 대신 방향별 개수와 총 개수를 짧은 수로 확인한다.",
+        "bVerdict": "adopt",
+        "cVerdict": "revise",
+        "reason": "C는 무엇을 놓는지, 작은 입체의 모서리가 모든 방향2cm인지, 빈틈없이 채우는지 알려 주지 않는다. B처럼 한 모서리2cm 작은 정육면체를 모서리 방향에 맞추어 채운다고 독립 지문에 명시해야5·3·2·30을 정할 수 있다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2140-2170-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2140-2170-verdicts.json"
+    },
+    {
+      "id": "e6-1-6-3-xc22",
+      "sourceIndex": 2161,
+      "verdict": {
+        "id": "e6-1-6-3-xc22",
+        "sourceIndex": 2161,
+        "proposalFingerprint": "4b34d407f1d97a799fef39e481fc7c06effae26baf877c1efea71866601cbd9c",
+        "learningRole": "reason",
+        "bDecision": "revise",
+        "cDecision": "revise",
+        "B": {
+          "prompt": "$1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2$이고 $1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3$인 것을 길이가 $100$배가 되는 방향의 수로 비교하여 설명하시오.",
+          "answer": "넓이는 가로·세로 두 방향이 $100$배라 $100\\times100=10000$배이고, 부피는 가로·세로·높이 세 방향이 모두 $100$배라 $100\\times100\\times100=1000000$배이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "넓이는 두 방향이 $100$배"
+              ]
+            },
+            {
+              "anyOf": [
+                "부피는 세 방향이 $100$배"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=${$10000$}$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 {$3$}번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+          "acceptedAnswers": [
+            [
+              "$10000$"
+            ],
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "두 방향과 세 방향이라는 핵심 차이를 짚는다.",
+        "cReason": "'방향'이라는 추상어 대신 곱하는 횟수로 차이를 확인한다.",
+        "bVerdict": "revise",
+        "cVerdict": "adopt",
+        "reason": "B의 '길이가100배가 되는 방향의 수'는 가로·세로·높이 중 무엇을 비교해 쓰라는지 학생에게 낯설다. 넓이는 가로·세로 두 길이를, 부피는 가로·세로·높이 세 길이를 곱한다는 대상을 직접 명시해 두 환산의 차이를 설명하게 좁혀야 한다. C의 수와 곱하는 횟수는 구체적이다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2140-2170-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2140-2170-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-2-xc4",
+      "sourceIndex": 2181,
+      "verdict": {
+        "id": "e6-2-1-2-xc4",
+        "sourceIndex": 2181,
+        "proposalFingerprint": "5eb9cdb13e49b8172b5075bf849f0e3b7105631d8389530e0f862cb7a12e4895",
+        "learningRole": "reason",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "분모가 $4$와 $6$인 두 분수를 통분할 때 공통분모로 어떤 공배수를 고르면 계산하기 편한지 쓰고, 그 까닭도 말하시오. 그 수는 얼마인가요?",
+          "answer": "공배수 중 가장 작은 수(최소공배수)를 고른다. 수가 작아 분자와 분모가 작아지므로 계산이 쉽다. 이 경우 $12$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "공배수 중 가장 작은 수",
+                "최소공배수"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자와 분모가 작아 계산이 쉽다",
+                "수가 작아서 계산하기 편하다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$12$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "두 분모의 공배수 중 가장 작은 수인 {최소공배수}를 공통분모로 쓰면, 다른 공배수로 통분할 때보다 분자와 분모가 작아 계산하기 쉽다.",
+          "acceptedAnswers": [
+            [
+              "최소공배수"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "선택과 까닭을 함께 묻고 예의 정확한 값도 확인한다.",
+        "cReason": "공배수 중 가장 작은 수라는 설명이 있어 답이 분명한 낱말 문장이다.",
+        "bVerdict": "revise",
+        "cVerdict": "revise",
+        "reason": "최소공배수를 쓰면 분모는 작아지지만 분자가0인 분수의 분자는 여전히0이라 항상 분자와 분모가 모두 작아진다는 설명은 넓다. 양의 분수 조건을 명시하거나 분모가 작아 계산을 정리하기 편하다는 범위로 이유를 좁혀야 한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2170-2200-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2170-2200-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-2-xc6",
+      "sourceIndex": 2182,
+      "verdict": {
+        "id": "e6-2-1-2-xc6",
+        "sourceIndex": 2182,
+        "proposalFingerprint": "3dc44a95875aeaf94a48ea637633bccd45275554d537e536632c5a59ce3194ac",
+        "learningRole": "definition",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 통분하면 각 분수를 같은 크기의 조각 몇 개로 나타낼 수 있는지 쓰시오.",
+          "answer": "공통분모 $12$로 통분하면 $\\frac{2}{3}=\\frac{8}{12}$, $\\frac{3}{4}=\\frac{9}{12}$이므로 각각 $\\frac{1}{12}$ 조각 $8$개, $9$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{2}{3}$는 $\\frac{1}{12}$ 조각 $8$개",
+                "$\\frac{2}{3}=\\frac{8}{12}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{3}{4}$은 $\\frac{1}{12}$ 조각 $9$개",
+                "$\\frac{3}{4}=\\frac{9}{12}$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "{통분}하면 두 분수가 같은 크기의 조각 몇 개인지로 바뀐다.",
+          "acceptedAnswers": [
+            [
+              "통분"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "예 안에서 일반 의미를 읽게 하며 정확한 개수를 확인한다.",
+        "cReason": "통분의 결과를 같은 크기의 조각 개수로 바꾼다는 짧은 낱말 문장이다.",
+        "bVerdict": "revise",
+        "cVerdict": "revise",
+        "reason": "B는 공통분모를 지정하지 않고 통분한 조각 개수를 묻지만 기준은1/12의8개·9개만 인정한다.24로 통분한16개·18개도 옳다. 분모12 또는 가장 작은 공통분모를 명시하거나 모든 유효한 통분을 인정해야 한다. C는 조각의 크기를 설명하지 않고 통분이라는 동작을 유추하게 하므로 같은 분모로 바꾸는 대상을 직접 쓰거나 실제 분수로 묻게 고쳐야 한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2170-2200-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2170-2200-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-2-xc12",
+      "sourceIndex": 2185,
+      "verdict": {
+        "id": "e6-2-1-2-xc12",
+        "sourceIndex": 2185,
+        "proposalFingerprint": "58d6575ee22eaebeea810476e64a8ccf49a5c3f9bb784a0a4288de6c56eb2ee7",
+        "learningRole": "reason",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "$0$보다 큰 두 분수의 나눗셈에서 나누는 분수가 나누어지는 분수보다 클 때, 몫을 $1$과 비교하면 어떠한지 쓰고 그 까닭을 설명하시오. $\\frac{2}{5}\\div\\frac{3}{4}$로도 확인하시오.",
+          "answer": "몫은 $1$보다 작다. 나누어지는 양이 나누는 양보다 작아 나누는 양을 한 번도 덜어 낼 수 없기 때문이다. $\\frac{2}{5}\\div\\frac{3}{4}=\\frac{8}{20}\\div\\frac{15}{20}=\\frac{8}{15}$로 $1$보다 작다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "몫이 $1$보다 작다",
+                "$1$보다 작다"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누는 양을 한 번도 덜어 낼 수 없다",
+                "나누어지는 양이 나누는 양보다 작다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{8}{15}$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$0$보다 큰 두 분수에서 나누는 분수가 나누어지는 분수보다 크면, 몫은 $1$보다 {작다}.",
+          "acceptedAnswers": [
+            [
+              "작다"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "비교 결과와 이유를 묻고 예의 계산값도 확인한다.",
+        "cReason": "양수 조건과 크기 비교가 분명하고 사용자가 인정한 원문 그대로 유지한다.",
+        "bVerdict": "revise",
+        "cVerdict": "adopt",
+        "reason": "B 둘째 기준의 '나누어지는 양이 더 작다'는 질문에 이미 주어진 대소 관계를 복사한 것뿐이다. 그 이유를 요구한다면 나누는 양 한 번만큼도 들어가지 않아1보다 작은 몫이라는 설명을 평가해야 한다. 사용자 승인 짧은 작다 C는 유지한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2170-2200-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2170-2200-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-2-xc14",
+      "sourceIndex": 2186,
+      "verdict": {
+        "id": "e6-2-1-2-xc14",
+        "sourceIndex": 2186,
+        "proposalFingerprint": "d1d30e75c53ad82db1f8a89c616559151a735f0380601f12e96aac869831f688",
+        "learningRole": "application",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "분모가 다른 두 분수를 통분했을 때 몫이 자연수가 되려면 두 분자 사이에 어떤 관계가 있어야 하는지 쓰고, $\\frac{3}{4}\\div\\frac{3}{8}$과 $\\frac{5}{6}\\div\\frac{1}{4}$ 중 몫이 자연수인 것을 고르시오.",
+          "answer": "나누어지는 분수의 분자가 나누는 분수의 분자의 배수이면 몫이 자연수이다. $\\frac{3}{4}\\div\\frac{3}{8}=\\frac{6}{8}\\div\\frac{3}{8}=2$이므로 앞의 식이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나누어지는 분자가 나누는 분자의 배수",
+                "나누는 분자로 나누어떨어진다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{3}{4}\\div\\frac{3}{8}$",
+                "앞의 식, 몫은 $2$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$0$보다 큰 두 수를 진분수나 가분수로 나타내어 통분한 뒤, 나누어지는 분수의 분자가 나누는 분수의 분자의 {배수}이면 몫은 자연수이다.",
+          "acceptedAnswers": [
+            [
+              "배수"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "조건을 말하고 두 식에 적용해 구별하게 한다.",
+        "cReason": "양수와 통분 뒤라는 조건이 있고 빈칸이 분자의 배수 관계로 명확하다.",
+        "bVerdict": "revise",
+        "cVerdict": "adopt",
+        "reason": "C에는 두 수가0보다 크다고 명시했지만 B 일반 물음에는 없다. 분자가0이면 나누어떨어져도 몫0은 자연수가 아니므로 B의 일반 조건도 C와 맞춰 양의 두 분수로 명시해야 한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2170-2200-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2170-2200-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-2-xc19",
+      "sourceIndex": 2189,
+      "verdict": {
+        "id": "e6-2-1-2-xc19",
+        "sourceIndex": 2189,
+        "proposalFingerprint": "43ab219350766eb4d81be4823c0fba10b2a8c623b2be668837f6faed5825967e",
+        "learningRole": "application",
+        "bDecision": "revise",
+        "cDecision": "revise",
+        "B": {
+          "prompt": "$\\frac{1}{3}\\div\\frac{1}{5}$의 몫을 통분하여 구하고, 단위분수끼리 나눌 때 몫의 분자와 분모가 각각 어떤 수인지 설명하시오.",
+          "answer": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{15}\\div\\frac{3}{15}=\\frac{5}{3}$이다. 몫의 분자는 나누는 단위분수의 분모이고, 몫의 분모는 나누어지는 단위분수의 분모이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "몫은 $\\frac{5}{3}$이다",
+                "$\\frac{5}{3}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자는 나누는 단위분수의 분모",
+                "분자는 나누는 수의 분모"
+              ]
+            },
+            {
+              "anyOf": [
+                "분모는 나누어지는 단위분수의 분모",
+                "분모는 나누어지는 수의 분모"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{3}$처럼 단위분수끼리 나누면 몫의 분자는 {나누는} 단위분수의 분모이고, 몫의 분모는 {나누어지는} 단위분수의 분모이다.",
+          "acceptedAnswers": [
+            [
+              "나누는",
+              "나누는 수",
+              "나누는 분수"
+            ],
+            [
+              "나누어지는",
+              "나누어지는 수",
+              "나누어지는 분수"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "예의 계산에서 일반 규칙을 이끌어 말하게 한다.",
+        "cReason": "실제 식을 보여 주고 나누는 쪽과 나누어지는 쪽을 구분하게 해 맥락을 보완한다.",
+        "bVerdict": "revise",
+        "cVerdict": "adopt",
+        "reason": "B는 통분하여 구하라고 했지만 기준은5/3 결과와 분자·분모의 교환 설명뿐이라 역수 공식만 써도 통과한다. 공통분모로 고친 뒤 분자끼리 나눈 실제 방법을 평가하는 기준을 보완하되15만 강요하지 않아야 한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2170-2200-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2170-2200-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-2-xc22",
+      "sourceIndex": 2190,
+      "verdict": {
+        "id": "e6-2-1-2-xc22",
+        "sourceIndex": 2190,
+        "proposalFingerprint": "0aafd85f11ea21da5a5027873de85e41b11fec10f6cde141d95c637765e6d886",
+        "learningRole": "reason",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫을 나누어지는 분수와 비교하여 어떠한지 쓰고 그 까닭을 설명하시오. $\\frac{3}{4}\\div\\frac{1}{2}$로도 확인하시오.",
+          "answer": "몫이 나누어지는 분수보다 크다. 나누는 수가 $1$보다 작아 한 번에 덜어 내는 양이 $1$보다 적으므로 더 여러 번 덜어 낼 수 있다. $\\frac{3}{4}\\div\\frac{1}{2}=\\frac{3}{2}$이고 $\\frac{3}{2}$은 $\\frac{3}{4}$보다 크다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "몫이 나누어지는 분수보다 크다",
+                "몫이 더 커진다"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누는 수가 $1$보다 작아 더 여러 번 덜어 낼 수 있다",
+                "$1$보다 작은 수로 나누면 들어가는 횟수가 늘어난다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{3}{2}$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫은 나누어지는 분수보다 {크다}.",
+          "acceptedAnswers": [
+            [
+              "크다"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "나눗셈에서 몫이 줄어든다는 오해를 바로잡는 비교 문항이다.",
+        "cReason": "양수와 $1$보다 작은 수라는 조건이 분명한 비교 문장이다.",
+        "bVerdict": "revise",
+        "cVerdict": "adopt",
+        "reason": "B의 일반 이유를 '더 여러번 덜어 낼 수 있다'는 온전한 반복 횟수로만 설명하면1/10÷1/2처럼 한 번도 덜어 낼 수 없는 경우를 설명하지 못한다. 작은 분수를 곱한 몫이 처음 양이 되는 곱셈 관계나 부분 묶음까지 포함한 비율로 설명해야 한다. 양수와1보다 작은 제수라는 C 비교 조건은 맞다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2170-2200-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2170-2200-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-2-xc25",
+      "sourceIndex": 2192,
+      "verdict": {
+        "id": "e6-2-1-2-xc25",
+        "sourceIndex": 2192,
+        "proposalFingerprint": "72aee53067ad7d79e42f4d67eab0d5c890a5dc2d05d6e8f16a444c0122f89ec4",
+        "learningRole": "reason",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "$\\frac{3}{4}$을 $\\frac{1}{4}$로 나눈 몫과 $\\frac{1}{8}$로 나눈 몫을 각각 구하고, 어느 쪽이 더 큰지와 그 까닭을 설명하시오.",
+          "answer": "$\\frac{3}{4}\\div\\frac{1}{4}=3$, $\\frac{3}{4}\\div\\frac{1}{8}=6$이다. $\\frac{1}{8}$로 나눈 몫이 더 크다. 나누는 수가 작을수록 한 번에 덜어 내는 양이 적어 더 여러 번 덜어 낼 수 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$과 $6$",
+                "$\\frac{1}{4}$로 나누면 $3$, $\\frac{1}{8}$로 나누면 $6$"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누는 수가 더 작은 쪽의 몫이 더 크다",
+                "$\\frac{1}{8}$로 나눈 몫이 더 크다"
+              ]
+            },
+            {
+              "anyOf": [
+                "덜어 내는 양이 적어 횟수가 늘어난다",
+                "한 번에 덜어 내는 양이 작아 더 여러 번 덜어 낼 수 있다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "나누어지는 수가 $0$보다 크고 일정할 때, $0$보다 큰 나누는 분수가 {작을수록} 몫이 크다. 한 번에 덜어 내는 양이 줄어 더 여러 번 덜어 낼 수 있기 때문이다.",
+          "acceptedAnswers": [
+            [
+              "작을수록"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "두 몫을 직접 비교하고 덜어 내는 횟수로 설명하게 한다.",
+        "cReason": "나누어지는 수가 일정하다는 조건이 있고 작을수록 몫이 크다는 관계가 분명하다.",
+        "bVerdict": "adopt",
+        "cVerdict": "revise",
+        "reason": "B의 실제 두 나눗셈은3번과6번으로 온전한 반복이 맞는다. C의 일반 경우에서는 제수를 줄여도 온전한 덜어내기 횟수가 그대로일 수 있으므로 뒤의 '더 여러번 덜어 낼 수'를 제거하거나 부분 묶음을 포함한 정확한 설명으로 고쳐야 한다. 작을수록 몫이 크다는 짧은 본문은 보존한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2170-2200-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2170-2200-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-4-xc4",
+      "sourceIndex": 2205,
+      "verdict": {
+        "id": "e6-2-1-4-xc4",
+        "sourceIndex": 2205,
+        "proposalFingerprint": "9823608f9fc5f4b1590b33ab3c06f9cbaa00422bd58da47780eed3752930596d",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "B": null,
+        "C": {
+          "sentence": "분수의 나눗셈을 곱셈으로 바꿀 때 {나누어지는 분수}는 그대로 둔다.",
+          "acceptedAnswers": [
+            [
+              "나누어지는 분수"
+            ]
+          ]
+        },
+        "exclusions": {
+          "term": "c2 B가 어느 분수를 뒤집는지 이미 묻는다. 대체: e6-2-1-4-c2"
+        },
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "c2의 방법 질문에서 함께 확인되어 별도 B는 중복이다.",
+        "cReason": "나누어지는 분수를 그대로 둔다는 짧은 낱말 빈칸이라 c2와 짝으로 유용하다.",
+        "bVerdict": "adopt",
+        "cVerdict": "revise",
+        "reason": "C는 수식 없이 '그대로 두는 분수'의 긴 이름을 추측하게 한다. 사용자가 지적한 몫·나누어지는 분수 이름만 복원하는 문제와 같은 위험이 있어 실제 나눗셈과 바꾼 곱셈식에서 그대로 남는 분수 값을 쓰게 좁히는 편이 명확하다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2200-2230-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2200-2230-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-4-xc6",
+      "sourceIndex": 2207,
+      "verdict": {
+        "id": "e6-2-1-4-xc6",
+        "sourceIndex": 2207,
+        "proposalFingerprint": "674573ceda6bbcda486e3341859762da84f2eb7d121451dd3406e50c43123244",
+        "learningRole": "definition",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "자연수로 나누는 것은 어떤 분수를 곱하는 것과 같습니까? $\\frac{3}{5}\\div4$를 곱셈식으로 바꾸어 값을 구하시오.",
+          "answer": "그 자연수를 분모로 하는 단위분수를 곱하는 것과 같습니다. $\\frac{3}{5}\\div4=\\frac{3}{5}\\times\\frac{1}{4}=\\frac{3}{20}$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "자연수를 분모로 하는 단위분수를 곱한다",
+                "분자가 $1$이고 분모가 그 자연수인 분수를 곱한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{3}{20}$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "자연수로 나누는 것은 그 자연수를 분모로 하는 {단위분수}를 곱하는 것과 같다.",
+          "acceptedAnswers": [
+            [
+              "단위분수"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "일반 관계와 예 계산을 함께 묻는다.",
+        "cReason": "자연수로 나누기와 단위분수 곱의 관계를 묻는 짧은 문장이다.",
+        "bVerdict": "revise",
+        "cVerdict": "adopt",
+        "reason": "B는3/5÷4를 실제 곱셈식으로 바꾸라고 했지만 기준은 일반 단위분수 설명과3/20 결과뿐이다. 해당3/5×1/4의 동치 곱셈식을 썼는지도 평가해야 한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2200-2230-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2200-2230-verdicts.json"
+    },
+    {
+      "id": "e6-2-1-4-xc12",
+      "sourceIndex": 2210,
+      "verdict": {
+        "id": "e6-2-1-4-xc12",
+        "sourceIndex": 2210,
+        "proposalFingerprint": "f21c00e1b00886ff8140f86c42f2e7a63e70539498407377fedb7e0d747055a2",
+        "learningRole": "application",
+        "bDecision": "revise",
+        "cDecision": "keep",
+        "B": {
+          "prompt": "$\\frac{2}{3}\\div\\frac{4}{5}$에서 앞의 분수 $\\frac{2}{3}$만 뒤집어 $\\frac{3}{2}\\times\\frac{4}{5}$로 계산하면 올바른 몫과 같습니까? 두 양수에서 이렇게 해도 올바른 몫과 같아지는 경우는 언제인지 쓰시오.",
+          "answer": "같지 않습니다. 올바른 몫은 $\\frac{2}{3}\\times\\frac{5}{4}=\\frac{5}{6}$이고 잘못 계산하면 $\\frac{6}{5}$입니다. 두 분수의 크기가 같을 때만 같아집니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예에서는 같지 않다. 올바른 몫은 $\\frac{5}{6}$이고 잘못한 값은 $\\frac{6}{5}$이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 분수의 크기가 같을 때만 같다",
+                "두 수가 같을 때뿐이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+          "acceptedAnswers": [
+            [
+              "같을"
+            ]
+          ]
+        },
+        "exclusions": {},
+        "coreAfter": null,
+        "coreReason": null,
+        "bReason": "흔한 오류를 예로 보이고 일반 조건까지 묻는다.",
+        "cReason": "조건이 분명하며 두 분수가 같을 때뿐이라는 짧은 낱말 빈칸이다.",
+        "bVerdict": "revise",
+        "cVerdict": "adopt",
+        "reason": "B는 두값이 같은지와 일반적으로 언제 같은지만 물었는데 첫필수기준은5/6·6/5 두계산값까지 요구한다. 두값을 각각 구하라는 요청을 추가하거나 요구하지 않은 숫자는 참고설명으로 두고 기준에서 빼야 한다.",
+        "reader": "Root Codex direct final question/answer/criteria reading",
+        "recordedAfterDirectReading": true
+      },
+      "inputEvidence": "evidence/root-original-root-e5e6-final-2200-2230-input.json",
+      "verdictEvidence": "evidence/root-original-root-e5e6-final-2200-2230-verdicts.json"
+    }
+  ]
+}

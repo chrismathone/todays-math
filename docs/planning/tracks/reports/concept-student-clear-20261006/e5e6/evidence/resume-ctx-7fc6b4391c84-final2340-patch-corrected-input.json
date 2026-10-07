@@ -1,0 +1,2001 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-3-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "주어진 정보에 맞는 쌓은 모양이 여러 가지일 때, 쌓기나무 전체 개수를 하나로 정할 수 있는 경우는 언제인지 쓰시오.",
+      "bAnswer": "가능한 모든 모양의 쌓기나무 개수가 서로 같을 때 전체 개수를 하나로 정할 수 있다.",
+      "bGoal": "모양이 여럿이어도 개수가 같으면 하나로 정해짐을 안다.",
+      "bReason": "모양이 다르다는 사실과 개수가 다르다는 사실을 구별하는 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "조건에 맞는 모든 모양에 사용한 쌓기나무 개수가 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 {모두 같으면} 전체 개수를 하나로 정할 수 있다.",
+      "cReason": "모양이 여럿이어도 개수가 모두 같으면 정해진다는 조건이 명확한 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "415cc591747df3dc39b8d822f1c47cd3d5869e834ae984d244c2aa989bb1cebb",
+      "sourceIndex": 2340,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-2-xc25",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "term": "개수를 하나로 정하는 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 {모두 같으면} 전체 개수를 하나로 정할 수 있다.",
+        "studentC": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 □ 전체 개수를 하나로 정할 수 있다.",
+        "answers": [
+          "모두 같으면"
+        ]
+      },
+      "sourceFingerprint": "37da0596e5c45b084a9ea58bf52d47cefd3e382ec5a7dbaa5d615af549411f61",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 {모두 같으면} 전체 개수를 하나로 정할 수 있다.",
+      "cFrozenStudentSentence": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 □ 전체 개수를 하나로 정할 수 있다.",
+      "cProposedAnswers": [
+        "모두 같으면"
+      ],
+      "cStudentAfter": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 □ 전체 개수를 하나로 정할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모두 같으면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 {모두 같으면} 전체 개수를 하나로 정할 수 있다.",
+      "cStudentSentence": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 □ 전체 개수를 하나로 정할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "모두 같으면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "주어진 정보에 맞는 쌓은 모양이 여러 가지일 때, 쌓기나무 전체 개수를 하나로 정할 수 있는 경우는 언제인지 쓰시오.",
+        "answer": "가능한 모든 모양의 쌓기나무 개수가 서로 같을 때 전체 개수를 하나로 정할 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "조건에 맞는 모든 모양에 사용한 쌓기나무 개수가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주어진 정보에 맞는 쌓은 모양이 여러 가지여도 그 모양들의 쌓기나무 개수가 {모두 같으면} 전체 개수를 하나로 정할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "모두 같으면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3db7e59cc9b36860ecd224c962fdb6eda48dc98c97876d7371dfeda93d011382",
+      "questionRevision": "planning-e5e6-20261006-3db7e59cc9b3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc8",
+      "bDecision": "revise",
+      "bPrompt": "앞에서 본 모양에 세로줄이 $3$개 있고 각 줄의 높이가 $2$층, $3$층, $1$층입니다. 앞에서 보이는 칸은 모두 몇 칸인지 구하고 어떻게 셌는지 설명하시오.",
+      "bAnswer": "$6$칸이다. 각 세로줄에 보이는 층수를 모두 더해 $2+3+1=6$으로 센다.",
+      "bGoal": "앞에서 본 칸 수가 각 세로줄의 보이는 높이의 합임을 안다.",
+      "bReason": "셈 방법을 설명하고 예의 값도 확인한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 세로줄의 층수를 더한다",
+            "각 줄 높이를 합한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$칸"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 앞에서 본 모양의 칸 수는 각 세로줄의 {층수}를 모두 더한 것이다.",
+      "cReason": "'세로줄마다 가장 높은 층을 더한다'는 방법이 분명해 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "층수",
+            "층 수",
+            "칸 수"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "b5c342c8b60fa46d3e7a5b01b920f183292920e293072c241a63308c9c909f4e",
+      "sourceIndex": 2349,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc8",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "앞에서 보이는 칸 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "앞에서 본 모양의 칸 수는 각 세로줄의 {가장 높은 층}을 모두 더한 것이다.",
+        "studentC": "앞에서 본 모양의 칸 수는 각 세로줄의 □을 모두 더한 것이다.",
+        "answers": [
+          "가장 높은 층"
+        ]
+      },
+      "sourceFingerprint": "c3d6934a2b6f3d231ddbcf36e303509b9cd7b4f453ea912c08a1dc1f0a91e906",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "층수"
+      ],
+      "cStudentAfter": "쌓기나무를 앞에서 본 모양의 칸 수는 각 세로줄의 □를 모두 더한 것이다.",
+      "cMarkedSentence": "쌓기나무를 앞에서 본 모양의 칸 수는 각 세로줄의 {층수}를 모두 더한 것이다.",
+      "cStudentSentence": "쌓기나무를 앞에서 본 모양의 칸 수는 각 세로줄의 □를 모두 더한 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "층수",
+          "equivalents": [
+            "층 수",
+            "칸 수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞에서 본 모양에 세로줄이 $3$개 있고 각 줄의 높이가 $2$층, $3$층, $1$층입니다. 앞에서 보이는 칸은 모두 몇 칸인지 구하고 어떻게 셌는지 설명하시오.",
+        "answer": "$6$칸이다. 각 세로줄에 보이는 층수를 모두 더해 $2+3+1=6$으로 센다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 세로줄의 층수를 더한다",
+              "각 줄 높이를 합한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$칸"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 앞에서 본 모양의 칸 수는 각 세로줄의 {층수}를 모두 더한 것이다.",
+        "acceptedAnswers": [
+          [
+            "층수",
+            "층 수",
+            "칸 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "242935fbb054da63e2dacf0fe5c64741509769c7dcb8cc6537303a8a2606e06b",
+      "questionRevision": "planning-e5e6-20261006-242935fbb054",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "각 칸에 최소 하나가 있음.",
+      "bReason": "xc6의 위에서 본 모양과 쌓기나무 관계와 겹치는 자명한 내용이다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "exclusionReason": "위에서 본 칸에 쌓기나무가 있다는 점은 c1·xc6이 다룬다. 대체 ID: e6-2-3-3-xc6.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에는 쌓기나무가 적어도 {$1$}개 있다.",
+      "cReason": "사용자 인정 C로 원문 그대로 유지하며 최소 개수를 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "한"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "fba169e55e0c3b11fefe09bd404fa44916804f1d32d4aa7b646a36af1246d597",
+      "sourceIndex": 2351,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc11",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "각 칸의 가장 적은 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "위에서 본 모양의 각 칸에는 적어도 {$1$개}가 있다.",
+        "studentC": "위에서 본 모양의 각 칸에는 적어도 □가 있다.",
+        "answers": [
+          "$1$개"
+        ]
+      },
+      "sourceFingerprint": "08c801b5ec4a7c175adce80b7b90d1aac45b57df08e87736ff4b1ba2e9303d31",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에는 쌓기나무가 적어도 □개 있다.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에는 쌓기나무가 적어도 {$1$}개 있다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에는 쌓기나무가 적어도 □개 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "한"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에는 쌓기나무가 적어도 {$1$}개 있다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "한"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "위에서 본 칸에 쌓기나무가 있다는 점은 c1·xc6이 다룬다. 대체 ID: e6-2-3-3-xc6."
+      },
+      "proposalFingerprint": "9e4b25a205568f627d30a0eb286965e9109d579a4b5c15b68b086189cb6dfc0e",
+      "questionRevision": "planning-e5e6-20261006-9e4b25a20556",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc12",
+      "bDecision": "revise",
+      "bPrompt": "앞뒤로 놓인 두 기둥이 있을 때 뒤쪽 기둥이 앞쪽 기둥보다 높지 않으면 앞에서 볼 때 어떻게 보이는지 설명하고, 뒤쪽 기둥이 더 높으면 어떻게 달라지는지도 쓰시오.",
+      "bAnswer": "뒤쪽 기둥이 앞쪽과 같거나 낮으면 완전히 가려져 보이지 않는다. 뒤쪽이 더 높으면 앞쪽 기둥 위로 윗부분이 보인다.",
+      "bGoal": "앞뒤 기둥의 높이 비교로 가려짐을 판단한다.",
+      "bReason": "높지 않은 경우와 높은 경우를 대비해 가려짐 판단 기준을 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같거나 낮으면 가려진다",
+            "높지 않으면 보이지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 높으면 윗부분이 보인다",
+            "높으면 앞쪽 기둥 위로 보인다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 쌓은 두 기둥이 앞뒤로 같은 줄에 있다. 뒤쪽 기둥이 앞쪽 기둥보다 높지 않으면 앞에서 볼 때 뒤쪽 기둥은 {완전히 가려진다}.",
+      "cReason": "두 빈칸의 조건과 결과를 함께 바꾸면 반대 상황도 성립하므로 높이 조건을 고정하고 가림 결과만 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "완전히 가려진다",
+            "가려진다",
+            "보이지 않는다",
+            "안 보인다"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "43a1c7694db4958574a25e2e47e4417d06705f6bb57728e5081af95b75da01a8",
+      "sourceIndex": 2352,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc12",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "앞에서 가려지는 기둥",
+        "kind": "성질",
+        "level": "중",
+        "definition": "앞뒤로 놓인 기둥 중 앞쪽 기둥보다 {높지 않은} 뒤쪽 기둥은 앞에서 볼 때 {완전히 가려진다}.",
+        "studentC": "앞뒤로 놓인 기둥 중 앞쪽 기둥보다 □ 뒤쪽 기둥은 앞에서 볼 때 □.",
+        "answers": [
+          "높지 않은",
+          "완전히 가려진다"
+        ]
+      },
+      "sourceFingerprint": "0270699f9ed19ee6579cb492dc46502023aabe4e4ec64a15b44508754bb91faf",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "완전히 가려진다"
+      ],
+      "cStudentAfter": "쌓기나무를 쌓은 두 기둥이 앞뒤로 같은 줄에 있다. 뒤쪽 기둥이 앞쪽 기둥보다 높지 않으면 앞에서 볼 때 뒤쪽 기둥은 □.",
+      "cMarkedSentence": "쌓기나무를 쌓은 두 기둥이 앞뒤로 같은 줄에 있다. 뒤쪽 기둥이 앞쪽 기둥보다 높지 않으면 앞에서 볼 때 뒤쪽 기둥은 {완전히 가려진다}.",
+      "cStudentSentence": "쌓기나무를 쌓은 두 기둥이 앞뒤로 같은 줄에 있다. 뒤쪽 기둥이 앞쪽 기둥보다 높지 않으면 앞에서 볼 때 뒤쪽 기둥은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "완전히 가려진다",
+          "equivalents": [
+            "가려진다",
+            "보이지 않는다",
+            "안 보인다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞뒤로 놓인 두 기둥이 있을 때 뒤쪽 기둥이 앞쪽 기둥보다 높지 않으면 앞에서 볼 때 어떻게 보이는지 설명하고, 뒤쪽 기둥이 더 높으면 어떻게 달라지는지도 쓰시오.",
+        "answer": "뒤쪽 기둥이 앞쪽과 같거나 낮으면 완전히 가려져 보이지 않는다. 뒤쪽이 더 높으면 앞쪽 기둥 위로 윗부분이 보인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같거나 낮으면 가려진다",
+              "높지 않으면 보이지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "더 높으면 윗부분이 보인다",
+              "높으면 앞쪽 기둥 위로 보인다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 쌓은 두 기둥이 앞뒤로 같은 줄에 있다. 뒤쪽 기둥이 앞쪽 기둥보다 높지 않으면 앞에서 볼 때 뒤쪽 기둥은 {완전히 가려진다}.",
+        "acceptedAnswers": [
+          [
+            "완전히 가려진다",
+            "가려진다",
+            "보이지 않는다",
+            "안 보인다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3b986e06e5d12ce4c1ae2b6e138882e91d5cffa1dd5926eaf278679748b8999d",
+      "questionRevision": "planning-e5e6-20261006-3b986e06e5d1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc13",
+      "bDecision": "revise",
+      "bPrompt": "세 방향 모양을 그대로 두면서 쌓기나무를 가장 많이 쓰려면 위에서 보이는 각 칸을 몇 층까지 쌓을 수 있는지 정하는 방법을 설명하시오. 어떤 칸이 속한 앞 줄의 높이가 $3$층이고 옆 줄의 높이가 $2$층이면 그 칸은 최대 몇 층인지도 쓰시오.",
+      "bAnswer": "그 칸이 속한 앞 줄과 옆 줄의 높이 중 작은 쪽까지 쌓는다. 그 칸은 최대 $2$층이다.",
+      "bGoal": "최대 쌓기 개수를 위해 각 칸의 높이를 앞·옆 줄 높이의 작은 쪽으로 정한다.",
+      "bReason": "xc16과 같은 규칙을 최대 개수 목적으로 묻고 예의 값도 확인한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞 줄과 옆 줄 높이 중 작은 쪽까지",
+            "두 높이 중 더 낮은 쪽까지"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$층"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 최대한 많이 쌓으려면, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 {작은 쪽까지} 쌓는다. 그러면 위, 앞, 옆에서 본 모양이 달라지지 않는다.",
+      "cReason": "앞·옆 높이 중 작은 쪽이라는 핵심 규칙을 묻는 짧은 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "42bdcca33327b5a905760319ac7f27bb485405180e230d00b4a3b3f9d78f0d76",
+      "sourceIndex": 2353,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc13",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "가장 많은 개수 생각하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "위에서 보이는 각 칸을 그 칸이 속한 앞·옆 줄의 높이 중 {작은 쪽까지} 쌓으면, 세 모양을 유지하면서 개수가 가장 많아진다.",
+        "studentC": "위에서 보이는 각 칸을 그 칸이 속한 앞·옆 줄의 높이 중 □ 쌓으면, 세 모양을 유지하면서 개수가 가장 많아진다.",
+        "answers": [
+          "작은 쪽까지"
+        ]
+      },
+      "sourceFingerprint": "075738bf26fd844f6b1265e1f12a8e31dd5fa8e795b9813176c60561377ee6bb",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작은 쪽까지"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 최대한 많이 쌓으려면, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 □ 쌓는다. 그러면 위, 앞, 옆에서 본 모양이 달라지지 않는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작은 쪽까지"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 최대한 많이 쌓으려면, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 {작은 쪽까지} 쌓는다. 그러면 위, 앞, 옆에서 본 모양이 달라지지 않는다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 최대한 많이 쌓으려면, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 □ 쌓는다. 그러면 위, 앞, 옆에서 본 모양이 달라지지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "작은 쪽까지",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세 방향 모양을 그대로 두면서 쌓기나무를 가장 많이 쓰려면 위에서 보이는 각 칸을 몇 층까지 쌓을 수 있는지 정하는 방법을 설명하시오. 어떤 칸이 속한 앞 줄의 높이가 $3$층이고 옆 줄의 높이가 $2$층이면 그 칸은 최대 몇 층인지도 쓰시오.",
+        "answer": "그 칸이 속한 앞 줄과 옆 줄의 높이 중 작은 쪽까지 쌓는다. 그 칸은 최대 $2$층이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞 줄과 옆 줄 높이 중 작은 쪽까지",
+              "두 높이 중 더 낮은 쪽까지"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$층"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 최대한 많이 쌓으려면, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 {작은 쪽까지} 쌓는다. 그러면 위, 앞, 옆에서 본 모양이 달라지지 않는다.",
+        "acceptedAnswers": [
+          [
+            "작은 쪽까지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "49a128a19abebdf7659ce6bf3a122a5b7b26fe9dd1189285b2aca9c55e49eb0e",
+      "questionRevision": "planning-e5e6-20261006-49a128a19abe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc15",
+      "bDecision": "revise",
+      "bPrompt": "앞쪽을 같은 쪽으로 정해 비교한 두 쌓기나무 모양이 있습니다. 앞에서 본 모양과 옆에서 본 모양은 각각 같지만 위에서 본 모양이 서로 다릅니다. 쌓기나무가 놓인 자리도 똑같은지 쓰고, 까닭을 설명하세요.",
+      "bAnswer": "놓인 자리는 다르다. 같은 바닥 자리에 쌓았다면 위에서 본 모양도 같아야 하는데 다르기 때문이다.",
+      "bGoal": "위에서 본 모양이 다르면 앞·옆이 같아도 쌓은 모양이 다름을 이유와 함께 이해한다.",
+      "bReason": "돌려서 같은 입체인지와 혼동하지 않도록 앞쪽 기준을 고정하고 놓인 자리의 같고 다름으로 범위를 한정했다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓기나무가 놓인 자리는 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 자리에 쌓았다면 위에서 본 모양도 같아야 한다",
+            "위에서 본 모양은 쌓기나무가 놓인 바닥 자리를 보여 준다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "앞쪽을 같은 쪽으로 정해 두 쌓기나무 모양을 비교했다. 앞과 옆에서 본 모양이 각각 같아도 위에서 본 모양이 다르면 쌓기나무가 놓인 자리는 {다르다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다르다",
+            "같지 않다"
+          ]
+        }
+      ],
+      "cReason": "'쌓은 모양' 낱말 맞히기보다 같은지 다른지 판단하는 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "1bc2b696b893a68039ae357908b85a963c979f4b9d8c5965f3031181806bd465",
+      "sourceIndex": 2355,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc15",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "앞과 옆이 같고 위가 다를 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "앞과 옆에서 본 모양이 같아도 위에서 본 모양이 다르면 {쌓은 모양}이 다르다.",
+        "studentC": "앞과 옆에서 본 모양이 같아도 위에서 본 모양이 다르면 □이 다르다.",
+        "answers": [
+          "쌓은 모양"
+        ]
+      },
+      "sourceFingerprint": "19bc081dafbea5b467d06c18378907da6eb921a74d6eecb4a94b8cacfaabcfe8",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "다르다"
+      ],
+      "cStudentAfter": "앞쪽을 같은 쪽으로 정해 두 쌓기나무 모양을 비교했다. 앞과 옆에서 본 모양이 각각 같아도 위에서 본 모양이 다르면 쌓기나무가 놓인 자리는 □.",
+      "cMarkedSentence": "앞쪽을 같은 쪽으로 정해 두 쌓기나무 모양을 비교했다. 앞과 옆에서 본 모양이 각각 같아도 위에서 본 모양이 다르면 쌓기나무가 놓인 자리는 {다르다}.",
+      "cStudentSentence": "앞쪽을 같은 쪽으로 정해 두 쌓기나무 모양을 비교했다. 앞과 옆에서 본 모양이 각각 같아도 위에서 본 모양이 다르면 쌓기나무가 놓인 자리는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "다르다",
+          "equivalents": [
+            "같지 않다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞쪽을 같은 쪽으로 정해 비교한 두 쌓기나무 모양이 있습니다. 앞에서 본 모양과 옆에서 본 모양은 각각 같지만 위에서 본 모양이 서로 다릅니다. 쌓기나무가 놓인 자리도 똑같은지 쓰고, 까닭을 설명하세요.",
+        "answer": "놓인 자리는 다르다. 같은 바닥 자리에 쌓았다면 위에서 본 모양도 같아야 하는데 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓기나무가 놓인 자리는 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 자리에 쌓았다면 위에서 본 모양도 같아야 한다",
+              "위에서 본 모양은 쌓기나무가 놓인 바닥 자리를 보여 준다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "앞쪽을 같은 쪽으로 정해 두 쌓기나무 모양을 비교했다. 앞과 옆에서 본 모양이 각각 같아도 위에서 본 모양이 다르면 쌓기나무가 놓인 자리는 {다르다}.",
+        "acceptedAnswers": [
+          [
+            "다르다",
+            "같지 않다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "467edd816bac805be8222a7bb4cb59a94073cb0fa6e789eb44ba6ad15f4ff763",
+      "questionRevision": "planning-e5e6-20261006-467edd816bac",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc16",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "각 칸 높이의 한계.",
+      "bReason": "xc13 B와 같은 규칙이라 중복이다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "exclusionReason": "xc13 B가 같은 규칙과 예를 묻는다. 대체 ID: e6-2-3-3-xc13.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 한 칸에 쌓을 수 있는 높이는, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 {작은 쪽}을 넘을 수 없다.",
+      "cReason": "앞·옆 줄 높이 가운데 작은 쪽이 한계라는 규칙을 묻는 짧은 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "bea1ad52a42674217a985846751dfaac5f5fd1809c3d653ca71ffc04dabe9e69",
+      "sourceIndex": 2356,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc16",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "칸마다 높이의 한계",
+        "kind": "방법",
+        "level": "중",
+        "definition": "각 칸의 높이는 그 칸이 속한 앞의 줄과 옆의 줄 높이 가운데 {작은 쪽}을 넘을 수 없다.",
+        "studentC": "각 칸의 높이는 그 칸이 속한 앞의 줄과 옆의 줄 높이 가운데 □을 넘을 수 없다.",
+        "answers": [
+          "작은 쪽"
+        ]
+      },
+      "sourceFingerprint": "02bea34d56bdc1b92b55a21808be2c7fce58e161842b4447c92f245d7c083e91",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작은 쪽"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 한 칸에 쌓을 수 있는 높이는, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 □을 넘을 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작은 쪽"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 한 칸에 쌓을 수 있는 높이는, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 {작은 쪽}을 넘을 수 없다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 한 칸에 쌓을 수 있는 높이는, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 □을 넘을 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "작은 쪽",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 한 칸에 쌓을 수 있는 높이는, 그 칸이 속한 앞줄과 옆줄에서 보이는 높이 중 {작은 쪽}을 넘을 수 없다.",
+        "acceptedAnswers": [
+          [
+            "작은 쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc13 B가 같은 규칙과 예를 묻는다. 대체 ID: e6-2-3-3-xc13."
+      },
+      "proposalFingerprint": "48b06cf101f8db13abfd73a3c9b406b290b16844018f556fe919c43722d9e0d9",
+      "questionRevision": "planning-e5e6-20261006-48b06cf101f8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc22",
+      "bDecision": "revise",
+      "bPrompt": "앞에서 본 모양에서 어떤 세로줄이 $1$층으로 보입니다. 그 줄에서 쌓기나무가 놓인 칸은 각각 몇 층인지 쓰고, 왜 그렇게 말할 수 있는지 설명하시오.",
+      "bAnswer": "모두 $1$층이다. $2$층 이상인 기둥이 있으면 앞에서 그 줄이 $2$층 이상으로 보이기 때문이다.",
+      "bGoal": "앞에서 본 줄의 높이가 그 줄 모든 기둥의 높이 한계임을 사용한다.",
+      "bReason": "한계 조건을 이유로 설명하게 한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모두 $1$층"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 높으면 앞에서 더 높게 보인다",
+            "$2$층 이상이면 $1$층으로 보일 수 없다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "쌓기나무가 놓인 칸이라는 긴 조건 구절을 복원하는 빈칸이며, 같은 1층 판단을 B와 xc27에서 더 분명히 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "exclusionReason": "C의 긴 조건 복원 대신 B와 xc27의 직접적인 층수 판단을 사용한다.",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "f766fd096cfa5013e337742171dd06b972848e56f5c84eb66e7ca6eeb03748f5",
+      "sourceIndex": 2358,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc22",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "앞에서 $1$층인 줄",
+        "kind": "방법",
+        "level": "상",
+        "definition": "앞에서 본 줄이 $1$층이면 그 줄에서 {쌓기나무가 놓인 칸}은 모두 $1$층이다.",
+        "studentC": "앞에서 본 줄이 $1$층이면 그 줄에서 □은 모두 $1$층이다.",
+        "answers": [
+          "쌓기나무가 놓인 칸"
+        ]
+      },
+      "sourceFingerprint": "1c64d20d943a0a45c6666c752e85a4cb10af66dc075dae67124db3de7a70bf40",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "앞에서 본 모양에서 어떤 세로줄이 $1$층으로 보입니다. 그 줄에서 쌓기나무가 놓인 칸은 각각 몇 층인지 쓰고, 왜 그렇게 말할 수 있는지 설명하시오.",
+        "answer": "모두 $1$층이다. $2$층 이상인 기둥이 있으면 앞에서 그 줄이 $2$층 이상으로 보이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모두 $1$층"
+            ]
+          },
+          {
+            "anyOf": [
+              "더 높으면 앞에서 더 높게 보인다",
+              "$2$층 이상이면 $1$층으로 보일 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C의 긴 조건 복원 대신 B와 xc27의 직접적인 층수 판단을 사용한다."
+      },
+      "proposalFingerprint": "62473350cbe3a136726cf9dd2e46a987141c6edd507008e8c05387a05f41a83a",
+      "questionRevision": "planning-e5e6-20261006-62473350cbe3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc23",
+      "bDecision": "revise",
+      "bPrompt": "앞에서 가장 높게 보이는 줄과 옆에서 가장 높게 보이는 줄이 있습니다. 가장 높은 기둥을 어느 칸에 둘 수 있는지 설명하고, 그 칸이 위에서 본 모양에 없으면 어떻게 되는지도 쓰시오.",
+      "bAnswer": "두 줄이 만나는 칸에 둘 수 있다. 그 칸이 위에서 본 모양에 없으면 그 칸에는 쌓기나무를 둘 수 없다.",
+      "bGoal": "앞·옆 줄의 교차 칸과 위에서 본 모양의 칸 조건을 함께 판단한다.",
+      "bReason": "교차 칸과 위에서 본 모양 조건을 함께 요구한다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞 줄과 옆 줄이 만나는 칸",
+            "두 줄이 겹치는 칸"
+          ]
+        },
+        {
+          "anyOf": [
+            "위에서 본 모양에 없으면 둘 수 없다",
+            "그 칸에 쌓기나무가 없어야 한다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "줄이 만나는 칸이라는 긴 주어를 복원하는 문장이라 그림 없이 지시 대상이 흐리며, B에서 두 줄과 위쪽 칸 조건을 함께 설명하도록 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "exclusionReason": "긴 주어 복원 C는 제외하고 조건이 명시된 B를 유지한다.",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "db1dffb3539c24252a2b8561b14c01f708aaefa1d0f1e17a69f30f7a79010e9e",
+      "sourceIndex": 2359,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc23",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "가장 높은 기둥의 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "앞에서도 옆에서도 가장 높게 보이는 {줄이 만나는 칸}이 위에서 본 모양에 있으면 그 칸에 가장 높은 기둥을 둘 수 있다.",
+        "studentC": "앞에서도 옆에서도 가장 높게 보이는 □이 위에서 본 모양에 있으면 그 칸에 가장 높은 기둥을 둘 수 있다.",
+        "answers": [
+          "줄이 만나는 칸"
+        ]
+      },
+      "sourceFingerprint": "c78970123207e77c21e7ac026bb1622ed1de5c6a8757614944a6440af5f6a41c",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "앞에서 가장 높게 보이는 줄과 옆에서 가장 높게 보이는 줄이 있습니다. 가장 높은 기둥을 어느 칸에 둘 수 있는지 설명하고, 그 칸이 위에서 본 모양에 없으면 어떻게 되는지도 쓰시오.",
+        "answer": "두 줄이 만나는 칸에 둘 수 있다. 그 칸이 위에서 본 모양에 없으면 그 칸에는 쌓기나무를 둘 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞 줄과 옆 줄이 만나는 칸",
+              "두 줄이 겹치는 칸"
+            ]
+          },
+          {
+            "anyOf": [
+              "위에서 본 모양에 없으면 둘 수 없다",
+              "그 칸에 쌓기나무가 없어야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "긴 주어 복원 C는 제외하고 조건이 명시된 B를 유지한다."
+      },
+      "proposalFingerprint": "36566ecc4b1292527815b1698ed4425a9055eeac0d537e0752a58f36de985cbd",
+      "questionRevision": "planning-e5e6-20261006-36566ecc4b12",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-xc25",
+      "bDecision": "revise",
+      "bPrompt": "앞에서 보면 $1$층이 가로로 $2$칸이고 옆에서 보면 $1$층이 가로로 $2$칸입니다. 이때 쌓기나무가 놓인 바닥 자리의 수는 몇 곳에서 몇 곳까지 가능한지 쓰고, 하나로 정해지는지 설명하시오.",
+      "bAnswer": "$2$곳에서 $4$곳까지 가능하다. 앞·옆 모양만으로는 위에서 본 모양이 하나로 정해지지 않아 바닥 자리의 수도 하나로 정해지지 않는다.",
+      "bGoal": "앞과 옆 모양만으로는 바닥 자리의 수가 하나로 정해지지 않음을 안다.",
+      "bReason": "작은 예로 가능한 범위를 확인하며 정해지지 않음을 설명하게 한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$곳에서 $4$곳",
+            "최소 $2$곳 최대 $4$곳"
+          ]
+        },
+        {
+          "anyOf": [
+            "하나로 정해지지 않는다",
+            "여러 가지가 가능하다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 앞과 옆에서 본 모양만으로는 쌓기나무가 놓인 {바닥 자리}가 몇 곳인지 하나로 정해지지 않을 수 있다.",
+      "cReason": "앞과 옆만 아는 조건에서 바닥 자리를 묻는 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "82afe070a389a586ea3d03f038460b36f0bb76c9fda47c46edbf52d311dd781d",
+      "sourceIndex": 2360,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-3-xc25",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "term": "위에서 본 모양 없이는",
+        "kind": "성질",
+        "level": "상",
+        "definition": "앞과 옆에서 본 모양만으로는 {바닥 자리}가 몇 곳인지 하나로 정해지지 않을 수 있다.",
+        "studentC": "앞과 옆에서 본 모양만으로는 □가 몇 곳인지 하나로 정해지지 않을 수 있다.",
+        "answers": [
+          "바닥 자리"
+        ]
+      },
+      "sourceFingerprint": "56bcb7dcfd1f74d2ad88ff67e9443003df7720413ae0e9f2e33758390867e665",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "바닥 자리"
+      ],
+      "cStudentAfter": "쌓기나무를 앞과 옆에서 본 모양만으로는 쌓기나무가 놓인 □가 몇 곳인지 하나로 정해지지 않을 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "바닥 자리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "쌓기나무를 앞과 옆에서 본 모양만으로는 쌓기나무가 놓인 {바닥 자리}가 몇 곳인지 하나로 정해지지 않을 수 있다.",
+      "cStudentSentence": "쌓기나무를 앞과 옆에서 본 모양만으로는 쌓기나무가 놓인 □가 몇 곳인지 하나로 정해지지 않을 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "바닥 자리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞에서 보면 $1$층이 가로로 $2$칸이고 옆에서 보면 $1$층이 가로로 $2$칸입니다. 이때 쌓기나무가 놓인 바닥 자리의 수는 몇 곳에서 몇 곳까지 가능한지 쓰고, 하나로 정해지는지 설명하시오.",
+        "answer": "$2$곳에서 $4$곳까지 가능하다. 앞·옆 모양만으로는 위에서 본 모양이 하나로 정해지지 않아 바닥 자리의 수도 하나로 정해지지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$곳에서 $4$곳",
+              "최소 $2$곳 최대 $4$곳"
+            ]
+          },
+          {
+            "anyOf": [
+              "하나로 정해지지 않는다",
+              "여러 가지가 가능하다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 앞과 옆에서 본 모양만으로는 쌓기나무가 놓인 {바닥 자리}가 몇 곳인지 하나로 정해지지 않을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "바닥 자리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7cab2e413f7faca480f57e7abcdff68073f28950740b05c56988b237f2fca7be",
+      "questionRevision": "planning-e5e6-20261006-7cab2e413f7f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "1이 적힌 칸의 층수를 말하는 것이다.",
+      "bReason": "c1의 수 의미를 한 값에 적용한 것이라 따로 묻는 가치가 낮다.",
+      "exclusionReason": "개수 1의 자명한 적용 대신 각 칸에 쓴 수의 뜻을 묻는 일반 문항을 사용한다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "칸에 적힌 수가 쌓은 개수라는 규칙을 설명하면 답 1을 그대로 베끼게 되며, 규칙을 생략하면 학생에게 숫자의 뜻이 주어지지 않는다. 일반 규칙 c1로 평가한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'한 층'과 '1개'는 같은 뜻이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "84c734d509981426df528e4424faf187001a4bdb134e2bf305db5d1fbe301711",
+      "sourceIndex": 2362,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc2",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "$1$이 적힌 칸",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$이 적힌 칸에는 쌓기나무가 {한 층}만 있다.",
+        "studentC": "$1$이 적힌 칸에는 쌓기나무가 □만 있다.",
+        "answers": [
+          "한 층"
+        ]
+      },
+      "sourceFingerprint": "33b69a0658cd0707e7df8e63f57c0d9d5e7587334b2be312e5b6bd4925f54d2d",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "개수 1의 자명한 적용 대신 각 칸에 쓴 수의 뜻을 묻는 일반 문항을 사용한다.",
+        "cloze": "개수 1의 자명한 적용 대신 각 칸에 쓴 수의 뜻을 묻는 일반 문항을 사용한다."
+      },
+      "proposalFingerprint": "ee620cc85a386867d201d158250d3fd94feb3993669edb3403e1b481e855f40f",
+      "questionRevision": "planning-e5e6-20261006-ee620cc85a38",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc3",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양의 각 칸에 쌓인 개수가 적혀 있을 때, 적힌 수 중 가장 큰 수는 쌓은 모양의 무엇을 알려 주는지 쓰고 그 까닭을 말하시오.",
+      "bAnswer": "가장 높이 쌓인 곳의 층수(가장 높은 높이)를 알려 준다. 각 수가 그 칸에 쌓인 개수, 곧 높이이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 높은 층수",
+            "가장 높게 쌓인 곳의 높이",
+            "쌓은 모양의 최고 높이"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 칸의 수가 그 칸에 쌓인 개수(높이)이므로",
+            "수가 클수록 높게 쌓였으므로"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "가장 큰 수가 최고 높이를 뜻하는 까닭을 말한다.",
+      "bReason": "단순 암기가 아니라 수의 의미에서 결론을 이끌게 한다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 적힌 수 중 가장 큰 수는 쌓은 모양의 {가장 높은 층수}를 알려 준다.",
+      "cReason": "'가장 높은 층'은 가장 큰 수의 뜻을 짧게 확인하는 낱말 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 높은 층수",
+            "최고 층수",
+            "전체 층수"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "242086f912cf0648e111c094bbfd4e426f0186164c398e451dc9037db5c98c7b",
+      "sourceIndex": 2363,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc3",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "가장 큰 수와 높이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "위에서 본 모양에 적힌 가장 큰 수가 쌓은 모양의 {가장 높은 층}이다.",
+        "studentC": "위에서 본 모양에 적힌 가장 큰 수가 쌓은 모양의 □이다.",
+        "answers": [
+          "가장 높은 층"
+        ]
+      },
+      "sourceFingerprint": "b5053b323a89fcded133dda8ac0bc11a193c5d71e3c0265070629fe68e8a1765",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가장 높은 층수"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 적힌 수 중 가장 큰 수는 쌓은 모양의 □를 알려 준다.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 적힌 수 중 가장 큰 수는 쌓은 모양의 {가장 높은 층수}를 알려 준다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 적힌 수 중 가장 큰 수는 쌓은 모양의 □를 알려 준다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 높은 층수",
+          "equivalents": [
+            "최고 층수",
+            "전체 층수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양의 각 칸에 쌓인 개수가 적혀 있을 때, 적힌 수 중 가장 큰 수는 쌓은 모양의 무엇을 알려 주는지 쓰고 그 까닭을 말하시오.",
+        "answer": "가장 높이 쌓인 곳의 층수(가장 높은 높이)를 알려 준다. 각 수가 그 칸에 쌓인 개수, 곧 높이이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 높은 층수",
+              "가장 높게 쌓인 곳의 높이",
+              "쌓은 모양의 최고 높이"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 칸의 수가 그 칸에 쌓인 개수(높이)이므로",
+              "수가 클수록 높게 쌓였으므로"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 적힌 수 중 가장 큰 수는 쌓은 모양의 {가장 높은 층수}를 알려 준다.",
+        "acceptedAnswers": [
+          [
+            "가장 높은 층수",
+            "최고 층수",
+            "전체 층수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "213f8d2b9328b62067d77100cc52980e8d72d978b0d54778bcf44f1c90b88e41",
+      "questionRevision": "planning-e5e6-20261006-213f8d2b9328",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc10",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "앞에서 본 모양의 높이를 겹친 수의 가장 큰 값으로 정한다.",
+      "bReason": "c3의 일반 질문과 같은 규칙이다.",
+      "exclusionReason": "c3 B와 중복이다. 대체: e6-2-3-4-c3.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 앞에서 본 모양의 한 세로줄은, 그 줄에 앞뒤로 놓인 수 중 {가장 큰 수}만큼의 층으로 그린다.",
+      "cReason": "앞에서 볼 때 좌우 줄별로 앞뒤 수를 비교한다는 조건이 있고 빈칸이 짧아 방향별 연습으로 유용하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "c40925f827fbb86afb50f38aec25680eefa24587779178379deea95e9355cd4a",
+      "sourceIndex": 2366,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc10",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "앞에서 본 모양 그리기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "앞에서 본 모양은 좌우 각 줄에서 앞뒤로 놓인 수 가운데 {가장 큰 수}만큼 그린다.",
+        "studentC": "앞에서 본 모양은 좌우 각 줄에서 앞뒤로 놓인 수 가운데 □만큼 그린다.",
+        "answers": [
+          "가장 큰 수"
+        ]
+      },
+      "sourceFingerprint": "817c7c20247699360c7834144fd299548f169db8b479f143fa851746a3ffda6d",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가장 큰 수"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 앞에서 본 모양의 한 세로줄은, 그 줄에 앞뒤로 놓인 수 중 □만큼의 층으로 그린다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 큰 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 앞에서 본 모양의 한 세로줄은, 그 줄에 앞뒤로 놓인 수 중 {가장 큰 수}만큼의 층으로 그린다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 앞에서 본 모양의 한 세로줄은, 그 줄에 앞뒤로 놓인 수 중 □만큼의 층으로 그린다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 큰 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 앞에서 본 모양의 한 세로줄은, 그 줄에 앞뒤로 놓인 수 중 {가장 큰 수}만큼의 층으로 그린다.",
+        "acceptedAnswers": [
+          [
+            "가장 큰 수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c3 B와 중복이다. 대체: e6-2-3-4-c3."
+      },
+      "proposalFingerprint": "7eef963a56379b287152f94683380ce95eec1f86142c792ce2162b0e5611440b",
+      "questionRevision": "planning-e5e6-20261006-7eef963a5637",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "옆에서 본 모양의 높이를 겹친 수의 가장 큰 값으로 정한다.",
+      "bReason": "c3의 일반 질문과 같은 규칙이다.",
+      "exclusionReason": "c3 B와 중복이다. 대체: e6-2-3-4-c3.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 옆에서 본 모양의 한 세로줄은, 그 줄에 좌우로 놓인 수 중 {가장 큰 수}만큼의 층으로 그린다.",
+      "cReason": "옆에서 볼 때 좌우 방향 수를 비교한다는 조건이 있어 앞 모양과 방향을 구별하는 C로 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "59bdddd07262156f632e5bb6f223af658bc5f5e046ce2be18d5ba71b605dfdde",
+      "sourceIndex": 2367,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc11",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "옆에서 본 모양 그리기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "옆에서 본 모양은 앞뒤 각 줄에서 좌우로 놓인 수 가운데 {가장 큰 수}만큼 그린다.",
+        "studentC": "옆에서 본 모양은 앞뒤 각 줄에서 좌우로 놓인 수 가운데 □만큼 그린다.",
+        "answers": [
+          "가장 큰 수"
+        ]
+      },
+      "sourceFingerprint": "3278e2b8e9c4c81d07ab061b5a638edeebdf1fd4c253430d383decc872645cd4",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가장 큰 수"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 옆에서 본 모양의 한 세로줄은, 그 줄에 좌우로 놓인 수 중 □만큼의 층으로 그린다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 큰 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 옆에서 본 모양의 한 세로줄은, 그 줄에 좌우로 놓인 수 중 {가장 큰 수}만큼의 층으로 그린다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 옆에서 본 모양의 한 세로줄은, 그 줄에 좌우로 놓인 수 중 □만큼의 층으로 그린다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 큰 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 쌓은 개수를 적었다. 옆에서 본 모양의 한 세로줄은, 그 줄에 좌우로 놓인 수 중 {가장 큰 수}만큼의 층으로 그린다.",
+        "acceptedAnswers": [
+          [
+            "가장 큰 수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c3 B와 중복이다. 대체: e6-2-3-4-c3."
+      },
+      "proposalFingerprint": "8bfc92aa1148b277d81ac8cfe1be55898c89f89964b4fd97458cfd35933c7231",
+      "questionRevision": "planning-e5e6-20261006-8bfc92aa1148",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "1층 쌓기나무 수가 수가 적힌 칸의 수와 같음을 말한다.",
+      "bReason": "xc13의 층수를 1로 둔 특수한 경우이다.",
+      "exclusionReason": "xc13 B의 일반 규칙에 포함된다. 대체: e6-2-3-4-xc13.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. $1$층의 쌓기나무 수는 수가 적힌 {칸의 수}와 같다.",
+      "cReason": "'칸의 수'는 짧은 낱말이고 1층에는 수가 적힌 모든 칸에 쌓기나무가 있음을 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "4abcec6e9906e0727a4f82496a08825e45604fad2e8867ce878313037df7dfa3",
+      "sourceIndex": 2369,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc14",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "$1$층에 있는 개수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$1$층에 놓인 쌓기나무 수는 수가 적힌 {칸의 수}와 같다.",
+        "studentC": "$1$층에 놓인 쌓기나무 수는 수가 적힌 □와 같다.",
+        "answers": [
+          "칸의 수"
+        ]
+      },
+      "sourceFingerprint": "d4e05e2e932eb5666b88b1057f15eb8d8007ae9cf8ab3e5bebad80fd074eb38e",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "칸의 수"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. $1$층의 쌓기나무 수는 수가 적힌 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "칸의 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. $1$층의 쌓기나무 수는 수가 적힌 {칸의 수}와 같다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. $1$층의 쌓기나무 수는 수가 적힌 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "칸의 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. $1$층의 쌓기나무 수는 수가 적힌 {칸의 수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "칸의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc13 B의 일반 규칙에 포함된다. 대체: e6-2-3-4-xc13."
+      },
+      "proposalFingerprint": "73bd231a2ae2fb086204a292bc7ea4e01271976fe90670aa2240c0caba5c3484",
+      "questionRevision": "planning-e5e6-20261006-73bd231a2ae2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc16",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양의 각 칸에 쌓인 개수가 적혀 있고, 모든 칸을 가장 높은 칸과 같은 높이로 맞추려 한다. 한 칸에 몇 개를 더 쌓아야 하는지 구하는 방법을 쓰고, 세 칸의 수가 $3$, $1$, $2$일 때 칸마다 더 쌓을 개수와 모두 몇 개가 더 필요한지 구하시오.",
+      "bAnswer": "가장 큰 수에서 그 칸의 수를 뺀 개수만큼 더 쌓는다. 세 칸은 $0$개, $2$개, $1$개이고 모두 $3$개가 더 필요하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 수에서 그 칸의 수를 뺀 만큼",
+            "가장 높은 칸과 그 칸의 높이 차만큼"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$개, $2$개, $1$개",
+            "$0$, $2$, $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "모두 $3$개",
+            "$3$개"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "가장 큰 수와의 차로 더 쌓을 개수를 구한다.",
+      "bReason": "뺄셈으로 높이를 맞추는 방법을 일반 방법과 예로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 가장 큰 수가 $4$이고 어떤 칸의 수가 $1$이면, 그 칸에 {$3$}개를 더 쌓아야 가장 높은 칸과 같아진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$3$개"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절을 외우게 하므로 차를 구하는 짧은 값으로 바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "522cb099b73671f84e4e2e81b3b0560ec2de0efd0102cf533079b24d80a4dc9e",
+      "sourceIndex": 2371,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc16",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "모두 같은 높이로 만들기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "모든 칸을 가장 높은 층에 맞추려면 칸마다 {가장 큰 수와의 차}만큼 더 쌓는다.",
+        "studentC": "모든 칸을 가장 높은 층에 맞추려면 칸마다 □만큼 더 쌓는다.",
+        "answers": [
+          "가장 큰 수와의 차"
+        ]
+      },
+      "sourceFingerprint": "3f9ed6b0b5987fd8110ebc266d2997d8dca7e1ca08da526374e13f1be6efa167",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 가장 큰 수가 $4$이고 어떤 칸의 수가 $1$이면, 그 칸에 □개를 더 쌓아야 가장 높은 칸과 같아진다.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 가장 큰 수가 $4$이고 어떤 칸의 수가 $1$이면, 그 칸에 {$3$}개를 더 쌓아야 가장 높은 칸과 같아진다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 가장 큰 수가 $4$이고 어떤 칸의 수가 $1$이면, 그 칸에 □개를 더 쌓아야 가장 높은 칸과 같아진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "$3$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양의 각 칸에 쌓인 개수가 적혀 있고, 모든 칸을 가장 높은 칸과 같은 높이로 맞추려 한다. 한 칸에 몇 개를 더 쌓아야 하는지 구하는 방법을 쓰고, 세 칸의 수가 $3$, $1$, $2$일 때 칸마다 더 쌓을 개수와 모두 몇 개가 더 필요한지 구하시오.",
+        "answer": "가장 큰 수에서 그 칸의 수를 뺀 개수만큼 더 쌓는다. 세 칸은 $0$개, $2$개, $1$개이고 모두 $3$개가 더 필요하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 수에서 그 칸의 수를 뺀 만큼",
+              "가장 높은 칸과 그 칸의 높이 차만큼"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$개, $2$개, $1$개",
+              "$0$, $2$, $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모두 $3$개",
+              "$3$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 가장 큰 수가 $4$이고 어떤 칸의 수가 $1$이면, 그 칸에 {$3$}개를 더 쌓아야 가장 높은 칸과 같아진다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "$3$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ac84b4a4a43fe1c089096f91b908e814f6e12f39112ec1bda47bf29acc05ad01",
+      "questionRevision": "planning-e5e6-20261006-ac84b4a4a43f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc18",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양의 각 칸에 쌓인 개수가 적혀 있다. 층마다 쌓기나무 수를 세어 더한 값이 칸에 적힌 수를 모두 더한 값과 같은 까닭을 설명하시오.",
+      "bAnswer": "두 방법 모두 쌓기나무를 하나도 빠뜨리거나 겹치지 않고 한 번씩 센 것이므로 전체 개수가 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 방법 모두 모든 쌓기나무를 한 번씩 센다",
+            "빠뜨리거나 겹치게 세지 않고 전체를 센다",
+            "세는 순서만 다르고 같은 쌓기나무를 센다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "층별로 세어도 칸별로 세어도 전체 개수가 같은 까닭을 말한다.",
+      "bReason": "두 가지 세는 방법이 같은 전체를 센다는 관계를 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 각 층의 개수를 모두 더한 값과 각 칸에 적힌 수를 모두 더한 값은 모두 쌓기나무의 {전체 개수}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "전체 개수",
+            "전체 수",
+            "총개수",
+            "총수"
+          ]
+        }
+      ],
+      "cReason": "원문은 앞의 '합'을 그대로 빈칸 '합'에 베끼게 해서 바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "0a1d8822fa77ce9b65821e049a850400e0ca9ceaf8607f840d7dca4075b9e00f",
+      "sourceIndex": 2373,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc18",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "층별 개수의 합",
+        "kind": "방법",
+        "level": "중",
+        "definition": "층별로 센 개수의 합은 칸에 적힌 수의 {합}과 같다.",
+        "studentC": "층별로 센 개수의 합은 칸에 적힌 수의 □과 같다.",
+        "answers": [
+          "합"
+        ]
+      },
+      "sourceFingerprint": "ef0c5e438a9fc01b82c5057c1225fd660809b625577c5d18fd1b92d4ddd36b9f",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "전체 개수"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 각 층의 개수를 모두 더한 값과 각 칸에 적힌 수를 모두 더한 값은 모두 쌓기나무의 □이다.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 각 층의 개수를 모두 더한 값과 각 칸에 적힌 수를 모두 더한 값은 모두 쌓기나무의 {전체 개수}이다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 각 층의 개수를 모두 더한 값과 각 칸에 적힌 수를 모두 더한 값은 모두 쌓기나무의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "전체 개수",
+          "equivalents": [
+            "전체 수",
+            "총개수",
+            "총수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양의 각 칸에 쌓인 개수가 적혀 있다. 층마다 쌓기나무 수를 세어 더한 값이 칸에 적힌 수를 모두 더한 값과 같은 까닭을 설명하시오.",
+        "answer": "두 방법 모두 쌓기나무를 하나도 빠뜨리거나 겹치지 않고 한 번씩 센 것이므로 전체 개수가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 방법 모두 모든 쌓기나무를 한 번씩 센다",
+              "빠뜨리거나 겹치게 세지 않고 전체를 센다",
+              "세는 순서만 다르고 같은 쌓기나무를 센다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 각 층의 개수를 모두 더한 값과 각 칸에 적힌 수를 모두 더한 값은 모두 쌓기나무의 {전체 개수}이다.",
+        "acceptedAnswers": [
+          [
+            "전체 개수",
+            "전체 수",
+            "총개수",
+            "총수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "af6c33003fc7f453c0046dcd6ae6b30298f0103ed287babd4e4348f95011ed8d",
+      "questionRevision": "planning-e5e6-20261006-af6c33003fc7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc22",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양의 각 칸에 쌓인 개수가 적혀 있다. 일부 칸의 쌓기나무를 줄여도 앞에서 본 모양이 바뀌지 않으려면 어떤 조건이 필요한지 쓰시오.",
+      "bAnswer": "앞뒤로 겹치는 각 줄에서 가장 큰 수가 줄인 뒤에도 그대로 남아 있어야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞뒤로 겹치는 줄의 가장 큰 수가 그대로 남아야 한다",
+            "각 줄의 최고 높이가 그대로이면 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "앞모양의 높이를 정하는 가장 큰 수가 유지되는 조건을 말한다.",
+      "bReason": "앞모양 규칙을 거꾸로 이용해 줄여도 되는 칸을 판단하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 앞에서 볼 때 같은 세로줄로 보이는 두 자리에 각각 $3$개, $2$개가 쌓여 있다. $2$개인 자리에서 하나를 빼도 앞에서 보이는 이 줄의 높이는 {$3$}층이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "칸의 수라는 모호한 말 대신 각 자리에 쌓은 개수를 밝혀 최대 높이 유지 여부를 묻는다. 높이의 단위가 아닌 개 대체답을 제거했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "2127082be24aa623b5985179e873ebe05dbfdd598257ac95406339b8edee6b41",
+      "sourceIndex": 2375,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc22",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "줄여도 같은 앞모양",
+        "kind": "방법",
+        "level": "상",
+        "definition": "{앞뒤로 겹치는 각 줄의 가장 큰 수}가 그대로이면 다른 칸의 수를 줄여도 앞에서 본 모양은 바뀌지 않는다.",
+        "studentC": "□가 그대로이면 다른 칸의 수를 줄여도 앞에서 본 모양은 바뀌지 않는다.",
+        "answers": [
+          "앞뒤로 겹치는 각 줄의 가장 큰 수"
+        ]
+      },
+      "sourceFingerprint": "a0c0b774e592f89b7f972de5d9703f20584772d6d7cc67e1ba110429d51ae9b8",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "쌓기나무를 앞에서 볼 때 같은 세로줄로 보이는 두 자리에 각각 $3$개, $2$개가 쌓여 있다. $2$개인 자리에서 하나를 빼도 앞에서 보이는 이 줄의 높이는 □층이다.",
+      "cMarkedSentence": "쌓기나무를 앞에서 볼 때 같은 세로줄로 보이는 두 자리에 각각 $3$개, $2$개가 쌓여 있다. $2$개인 자리에서 하나를 빼도 앞에서 보이는 이 줄의 높이는 {$3$}층이다.",
+      "cStudentSentence": "쌓기나무를 앞에서 볼 때 같은 세로줄로 보이는 두 자리에 각각 $3$개, $2$개가 쌓여 있다. $2$개인 자리에서 하나를 빼도 앞에서 보이는 이 줄의 높이는 □층이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양의 각 칸에 쌓인 개수가 적혀 있다. 일부 칸의 쌓기나무를 줄여도 앞에서 본 모양이 바뀌지 않으려면 어떤 조건이 필요한지 쓰시오.",
+        "answer": "앞뒤로 겹치는 각 줄에서 가장 큰 수가 줄인 뒤에도 그대로 남아 있어야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞뒤로 겹치는 줄의 가장 큰 수가 그대로 남아야 한다",
+              "각 줄의 최고 높이가 그대로이면 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 앞에서 볼 때 같은 세로줄로 보이는 두 자리에 각각 $3$개, $2$개가 쌓여 있다. $2$개인 자리에서 하나를 빼도 앞에서 보이는 이 줄의 높이는 {$3$}층이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fd265fbe5bf75b7f573d4e32f39cd1a22c9e05834f0c506591b242c3579f8da5",
+      "questionRevision": "planning-e5e6-20261006-fd265fbe5bf7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc24",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었습니다. 칸은 $5$개이고 적힌 수 중 가장 큰 수가 $4$입니다. 쌓기나무를 가장 적게 쓰는 방법과 그때의 전체 개수를 쓰세요.",
+      "bAnswer": "한 칸은 $4$개를 쌓고 나머지 $4$칸은 $1$개씩 쌓는다. 전체 개수는 $4+4=8$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 수인 칸은 한 칸만 $4$로 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지 $4$칸은 $1$개씩 쌓는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$개",
+            "$8$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "가장 큰 수와 칸 수가 정해졌을 때 최소 개수를 구한다.",
+      "bReason": "각 칸에 최소 1개가 있다는 조건에서 가장 적은 경우를 추론하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 칸은 $5$개이고 적힌 수 중 가장 큰 수가 $4$일 때, 쌓기나무는 적어도 {$8$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$",
+            "$8$개"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 질문 결론 '가장 적다'를 되풀이해서 구체적 개수를 쓰게 바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "1e0e1539b0c0f9693f5ecbcf0062ef279c9b450c3de4c60c648671cb8b9eeec2",
+      "sourceIndex": 2376,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc24",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "가장 적게 쌓는 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "위에서 본 칸 수와 가장 큰 수가 정해져 있을 때, 한 칸을 그 수만큼 쌓고 나머지를 $1$층으로 쌓으면 {전체 개수가 가장 적다}.",
+        "studentC": "위에서 본 칸 수와 가장 큰 수가 정해져 있을 때, 한 칸을 그 수만큼 쌓고 나머지를 $1$층으로 쌓으면 □.",
+        "answers": [
+          "전체 개수가 가장 적다"
+        ]
+      },
+      "sourceFingerprint": "be28730c0d0bfdef370793b6e8a3672cf5fc39f4aeab42bbbce50b7420e6dd65",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$8$"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 칸은 $5$개이고 적힌 수 중 가장 큰 수가 $4$일 때, 쌓기나무는 적어도 □개이다.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 칸은 $5$개이고 적힌 수 중 가장 큰 수가 $4$일 때, 쌓기나무는 적어도 {$8$}개이다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 칸은 $5$개이고 적힌 수 중 가장 큰 수가 $4$일 때, 쌓기나무는 적어도 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": [
+            "$8$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었습니다. 칸은 $5$개이고 적힌 수 중 가장 큰 수가 $4$입니다. 쌓기나무를 가장 적게 쓰는 방법과 그때의 전체 개수를 쓰세요.",
+        "answer": "한 칸은 $4$개를 쌓고 나머지 $4$칸은 $1$개씩 쌓는다. 전체 개수는 $4+4=8$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 수인 칸은 한 칸만 $4$로 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 $4$칸은 $1$개씩 쌓는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$개",
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 칸은 $5$개이고 적힌 수 중 가장 큰 수가 $4$일 때, 쌓기나무는 적어도 {$8$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$8$",
+            "$8$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ce8f78a8b55764d0451474f3911cba700c7ac3a094f1f8eccf7ef4b380470f66",
+      "questionRevision": "planning-e5e6-20261006-ce8f78a8b557",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-xc26",
+      "bDecision": "revise",
+      "bPrompt": "앞에서 본 모양에서 보이는 정사각형 칸의 수와, 위에서 본 모양의 칸에 적힌 수를 모두 더한 값(쌓기나무 전체 개수)의 크기를 비교하고 그 까닭을 쓰시오.",
+      "bAnswer": "앞에서 보이는 칸 수는 전체 개수보다 크지 않다(작거나 같다). 보이는 칸 하나는 서로 다른 쌓기나무 하나의 앞면이므로 쌓기나무 전체 개수를 넘을 수 없기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보이는 칸 수가 합보다 크지 않다",
+            "작거나 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "보이는 칸마다 서로 다른 쌓기나무가 있으므로",
+            "보이는 칸 하나에 쌓기나무가 하나 이상 대응하므로"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "앞에서 보이는 칸 수가 쌓기나무 전체 개수를 넘지 않는 까닭을 말한다.",
+      "bReason": "보이는 면과 쌓은 개수의 관계를 추론하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 앞에서 본 모양의 칸 수는 적힌 수를 모두 더한 값보다 {크지 않다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크지 않다",
+            "작거나 같다"
+          ]
+        }
+      ],
+      "cReason": "원문의 '보이는 칸 수'가 어느 칸인지 모호해 기준을 분명히 쓰고 동치인 답을 허용한다.",
+      "coreAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적는다. 앞에서 본 모양의 정사각형 수는 적힌 수를 모두 더한 값, 곧 쌓기나무 전체 개수보다 {크지 않다}.",
+      "coreReason": "'칸 수'와 '칸에 적힌 수'가 어느 모양의 칸인지 구분되지 않아 명시한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "크지 않다라는 원문 비교 표적을 보존한다. 앞에서 본 정사각형과 위에서 본 개수 숫자라는 서로 다른 자료를 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "31297af2f5f79fcf46dd156d51876f401fa8333722a832452243d2e6dc3c4ec3",
+      "sourceIndex": 2377,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-4-xc26",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "term": "보이는 칸 수와 전체 개수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "앞에서 보이는 칸 수는 칸에 적힌 수의 합보다 {크지 않다}.",
+        "studentC": "앞에서 보이는 칸 수는 칸에 적힌 수의 합보다 □.",
+        "answers": [
+          "크지 않다"
+        ]
+      },
+      "sourceFingerprint": "da40a01b4076126100790c90e8fce4350be36ee2d40588769d5ec497eaae4952",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "크지 않다"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 앞에서 본 모양의 칸 수는 적힌 수를 모두 더한 값보다 □.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 앞에서 본 모양의 칸 수는 적힌 수를 모두 더한 값보다 {크지 않다}.",
+      "cStudentSentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 앞에서 본 모양의 칸 수는 적힌 수를 모두 더한 값보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크지 않다",
+          "equivalents": [
+            "작거나 같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞에서 본 모양에서 보이는 정사각형 칸의 수와, 위에서 본 모양의 칸에 적힌 수를 모두 더한 값(쌓기나무 전체 개수)의 크기를 비교하고 그 까닭을 쓰시오.",
+        "answer": "앞에서 보이는 칸 수는 전체 개수보다 크지 않다(작거나 같다). 보이는 칸 하나는 서로 다른 쌓기나무 하나의 앞면이므로 쌓기나무 전체 개수를 넘을 수 없기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "보이는 칸 수가 합보다 크지 않다",
+              "작거나 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "보이는 칸마다 서로 다른 쌓기나무가 있으므로",
+              "보이는 칸 하나에 쌓기나무가 하나 이상 대응하므로"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 모양의 각 칸에 그 자리에 쌓은 개수를 적었다. 앞에서 본 모양의 칸 수는 적힌 수를 모두 더한 값보다 {크지 않다}.",
+        "acceptedAnswers": [
+          [
+            "크지 않다",
+            "작거나 같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fa394c271a7156d14faeeff17aeccb3db3c78b442d297eff0f38bea1a2449945",
+      "questionRevision": "planning-e5e6-20261006-fa394c271a71",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-5-xc2",
+      "bDecision": "revise",
+      "bPrompt": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려 쌓았습니다. $1$층 모양과 위에서 본 모양을 비교하면 어떤 관계인가요?",
+      "bAnswer": "서로 같다. 위에서 보이는 모든 자리의 맨 아래에 $1$층 쌓기나무가 있기 때문이다.",
+      "bGoal": "$1$층 모양과 위에서 본 모양의 관계를 설명한다.",
+      "bReason": "원문에 빠진 '공중에 뜬 것이 없다'는 조건을 질문에 넣는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 같다",
+            "똑같다",
+            "일치한다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려 쌓으면, $1$층 모양은 위에서 본 모양과 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "일치한다"
+          ]
+        }
+      ],
+      "cReason": "성립 조건이 없는 문장이라 공중에 뜬 쌓기나무가 없다는 조건을 더한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "f09afd24b30a2bdad070651f67c2239e2ce95db1a6aab288e94efb965ab25b75",
+      "sourceIndex": 2378,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-5-xc2",
+        "section": "초6::2-3 공간과 입체::2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4)",
+        "term": "$1$층 모양과 위에서 본 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$층 모양은 위에서 본 모양과 {같다}.",
+        "studentC": "$1$층 모양은 위에서 본 모양과 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "9744dc9505c3a4098078c9aa5be30845b6e674f357a5c4346eb6dbf93508cba0",
+      "draftEvidence": "evidence/section-097-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려 쌓으면, $1$층 모양은 위에서 본 모양과 □.",
+      "cMarkedSentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려 쌓으면, $1$층 모양은 위에서 본 모양과 {같다}.",
+      "cStudentSentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려 쌓으면, $1$층 모양은 위에서 본 모양과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다",
+            "일치한다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려 쌓았습니다. $1$층 모양과 위에서 본 모양을 비교하면 어떤 관계인가요?",
+        "answer": "서로 같다. 위에서 보이는 모든 자리의 맨 아래에 $1$층 쌓기나무가 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 같다",
+              "똑같다",
+              "일치한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려 쌓으면, $1$층 모양은 위에서 본 모양과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다",
+            "일치한다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "afbb2880e42297f7cdb045da2e4529f16c59828af153f3d0e2bec78d48e6de77",
+      "questionRevision": "planning-e5e6-20261006-afbb2880e422",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-5-xc3",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 쌓은 모양을 각 층을 한 장씩 나타낸 그림의 장 수를 보면 쌓은 모양의 무엇을 알 수 있는가? 그림이 $4$장이면 그것은 얼마인지도 쓰시오.",
+      "bAnswer": "몇 층까지 쌓았는지, 즉 가장 높은 층을 알 수 있다. 그림이 $4$장이면 $4$층까지 쌓은 것이다.",
+      "bGoal": "그림 장 수와 쌓은 높이의 관계를 설명한다.",
+      "bReason": "일반 관계를 묻고 짧은 예 $4$장을 함께 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓은 층 수를 알 수 있다",
+            "가장 높은 층을 알 수 있다",
+            "몇 층까지 쌓았는지 알 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$층",
+            "$4$층까지 쌓았다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 {가장 높은 층수}를 알 수 있다.",
+      "cReason": "그림 장 수와 가장 높은 층의 관계를 짧게 묻는 원문이 이미 분명하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 높은 층수",
+            "전체 층수",
+            "몇 층까지 쌓았는지"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-patch.json",
+      "codexFinalAmendedFromFingerprint": "97ca0298306f7700b6be071c13c6587ee44ea4602ce2f4a23e4550f2ca0cef9b",
+      "sourceIndex": 2379,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-5-xc3",
+        "section": "초6::2-3 공간과 입체::2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4)",
+        "term": "층별 모양의 장 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "층별로 나타낸 모양이 몇 장인지 보면 {가장 높은 층}을 알 수 있다.",
+        "studentC": "층별로 나타낸 모양이 몇 장인지 보면 □을 알 수 있다.",
+        "answers": [
+          "가장 높은 층"
+        ]
+      },
+      "sourceFingerprint": "e4350d9e95aa75cb8e2f49ef40226cdc10907fb3e17a9dc03268d3d5ed76ca9f",
+      "draftEvidence": "evidence/section-097-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가장 높은 층수"
+      ],
+      "cStudentAfter": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 □를 알 수 있다.",
+      "cMarkedSentence": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 {가장 높은 층수}를 알 수 있다.",
+      "cStudentSentence": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 □를 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 높은 층수",
+          "equivalents": [
+            "전체 층수",
+            "몇 층까지 쌓았는지"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무를 쌓은 모양을 각 층을 한 장씩 나타낸 그림의 장 수를 보면 쌓은 모양의 무엇을 알 수 있는가? 그림이 $4$장이면 그것은 얼마인지도 쓰시오.",
+        "answer": "몇 층까지 쌓았는지, 즉 가장 높은 층을 알 수 있다. 그림이 $4$장이면 $4$층까지 쌓은 것이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓은 층 수를 알 수 있다",
+              "가장 높은 층을 알 수 있다",
+              "몇 층까지 쌓았는지 알 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$층",
+              "$4$층까지 쌓았다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 {가장 높은 층수}를 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가장 높은 층수",
+            "전체 층수",
+            "몇 층까지 쌓았는지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "50ff800273ad093b10f9789fa5691acf618c1a4faeb79000a732992822145fa4",
+      "questionRevision": "planning-e5e6-20261006-50ff800273ad",
+      "requiresIndependentReview": true
+    }
+  ]
+}

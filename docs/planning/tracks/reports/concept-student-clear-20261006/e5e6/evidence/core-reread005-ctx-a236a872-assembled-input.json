@@ -1,0 +1,36 @@
+{
+  "sourceCommit": "13bf05dce",
+  "scope": "Actual assembled learning definitions read by Codex; capture alone is not adoption.",
+  "rows": [
+    {
+      "id": "e6-2-1-1-c1",
+      "sourceIndex": 292,
+      "sourceFingerprint": "037a03e2d84f46dee607fea3f45fa23095c8ca6b70c310ca964271d28eb274c9",
+      "proposalFingerprint": "686ed7243023c90efaf267cab957ac90038e49f797d415845c9854d3b241b3ba",
+      "proposed": true,
+      "definition": "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수가 $0$이 아니면, 두 분수의 {분자}끼리 나누어 몫을 구한다.",
+      "definitionFingerprint": "b2f15cb63ddc7dee4e5fd4730c25acd4fffb8c511a4ae188c6281de81f87522c",
+      "visibleLength": 65,
+      "targets": [
+        "분자"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-1-1-xc17",
+      "sourceIndex": 2174,
+      "sourceFingerprint": "e38264a881d53ad6a402a963aa012c41ae6673d2d916bd46d893171aafd46406",
+      "proposalFingerprint": "bb62cac6d5fedf59bb85dd04e05a14d1fc4cc9d9ea556d25a6c1d3363b7d1c42",
+      "proposed": true,
+      "definition": "분모가 같고 나누는 분수가 $0$이 아닌 두 분수의 나눗셈에서는, 두 분수의 분모가 이미 같으므로 {통분} 과정을 생략할 수 있다.",
+      "definitionFingerprint": "3cc135534d51f45aebb0c1cee581f890d16b8bfbfbd11f2259bbe0b297853e03",
+      "visibleLength": 69,
+      "targets": [
+        "통분"
+      ],
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

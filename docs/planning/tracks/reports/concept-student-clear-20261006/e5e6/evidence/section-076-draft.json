@@ -1,0 +1,644 @@
+{
+  "rows": [
+    {
+      "id": "e6-1-5-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프에서 항목별 백분율은 전체와 항목의 수를 어떻게 이용해 나타낸 값인가? 전체 수와 항목의 수가 각각 기준량인지 비교하는 양인지도 말하시오.",
+      "bAnswer": "전체 수를 $100$으로 보았을 때 항목의 수가 얼마에 해당하는지 나타낸 값이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체를 $100$으로 본다",
+            "전체 수를 $100$으로 보았을 때의 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "항목의 수가 그중 얼마인지 나타낸다",
+            "항목 수에 해당하는 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 수는 기준량이고 항목의 수는 비교하는 양이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "백분율을 기준량과 비교하는 양의 관계로 이해한다.",
+      "bReason": "정의와 두 양의 역할을 함께 물어 용어를 알게 한다.",
+      "cDecision": "revise",
+      "cAfter": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 {$25$}$\\%$이다. 이때 기준량은 {전체 수}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25$",
+            "$25\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 수",
+            "전체",
+            "$200$명"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 암기 대신 값을 구하고 기준량을 고르게 한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "항목의 백분율이 앞에서부터 $30\\%$, $45\\%$, $25\\%$일 때, 띠그래프의 띠에 조각의 경계를 어떤 방법으로 표시하는지 설명하고 두 경계의 위치를 구하시오.",
+      "bAnswer": "앞에서부터 백분율을 차례로 더한 위치에 경계를 표시한다. 첫째 경계는 $30\\%$, 둘째 경계는 $30+45=75$이므로 $75\\%$ 위치이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞에서부터 백분율을 차례로 더한 위치에 표시한다",
+            "누적한 합의 위치에 경계를 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30\\%$",
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$75\\%$",
+            "$75$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "백분율을 누적하여 띠의 경계를 정하는 방법을 안다.",
+      "bReason": "예를 붙여 방법을 말하게 하고 값도 확인하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 {$75$}$\\%$ 위치이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$75$",
+            "$75\\%$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절이라 누적 계산 값으로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프를 다 그린 뒤 각 조각이 빈틈없이 띠를 채우는지 확인할 때, 반올림하지 않은 항목별 백분율의 합은 얼마여야 하는지 말하시오.",
+      "bAnswer": "합이 $100\\%$여야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100\\%$",
+            "$100$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "띠 전체가 $100\\%$임을 이용해 그래프를 검토한다.",
+      "bReason": "검토 기준이 되는 합을 묻는 짧은 문항이다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "반올림 전 비율의 합이라는 조건이 있어 빈칸 $100\\%$가 명확하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "표 정리 순서를 안다.",
+      "bReason": "표에 정리한다는 단순 절차 낱말이라 개념 평가 가치가 낮다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '표'가 사소한 낱말이다.",
+      "exclusionReason": "그리기 순서의 사소한 문장이다. 대체: e6-1-5-2-xc17.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "백분율만큼 띠를 나눈다.",
+      "bReason": "c2와 xc11이 같은 관계를 더 구체적으로 다룬다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 구절이 문장 의미를 거의 그대로 알려 준다.",
+      "exclusionReason": "중복이다. 대체: e6-1-5-2-c2, e6-1-5-2-xc11.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "조각에 쓸 내용을 안다.",
+      "bReason": "그래프 꾸미기 규칙을 외우는 문항이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "수학 개념이 아닌 표기 습관이다.",
+      "exclusionReason": "사소한 작성 규칙이다. 대체: e6-1-5-2-c2.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "제목의 역할을 안다.",
+      "bReason": "제목 쓰기는 수학 개념 이해와 거리가 멀다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 빈칸 구절을 외우게 하는 문장이다.",
+      "exclusionReason": "사소한 행동이다. 대체: e6-1-5-2-c3.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "조사한 대상을 여러 항목으로 나눠 센 뒤 항목의 수를 모두 더한 값이 전체 수와 같으려면 각 대상을 어떻게 세어야 하는지 말하시오. 빠뜨리거나 중복해서 세면 어떻게 되는지도 말하시오.",
+      "bAnswer": "각 대상이 빠짐없이 한 항목에만 속하도록 세어야 한다. 빠뜨리거나 중복해서 세면 항목의 수의 합이 전체 수와 맞지 않을 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빠짐없이 센다",
+            "하나도 빠뜨리지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 항목에만 속하게 센다",
+            "중복하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빠뜨리거나 중복하면 합이 전체 수와 달라질 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "항목 합과 전체 수가 같아지는 조건을 이해한다.",
+      "bReason": "집합 분할 조건을 학생 말로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "학생 $20$명을 각각 한 항목에만 속하게 세면 항목의 수의 합은 {$20$}명이다. 한 학생을 두 항목에 중복해서 세면 합은 $20$명보다 {커진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$",
+            "$20$명"
+          ]
+        },
+        {
+          "anyOf": [
+            "커진다",
+            "더 커진다",
+            "크다"
+          ]
+        }
+      ],
+      "cReason": "긴 조건 구절 대신 구체적 값으로 중복 효과를 확인하게 한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc7",
+      "bDecision": "revise",
+      "bPrompt": "띠의 눈금 간격이 모두 같을 때 조각이 차지한 칸 수로 백분율을 나타낼 수 있는 까닭을 설명하시오. 전체가 $20$칸인 띠에서 한 조각이 $5$칸이면 백분율은 얼마인지도 구하시오.",
+      "bAnswer": "눈금 간격이 같으면 칸 수의 비율과 길이의 비율이 같기 때문이다. $5\\div20=0.25$이므로 $25\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "칸 수의 비율과 길이의 비율이 같다",
+            "칸 수의 비가 길이의 비와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "같은 간격일 때 칸 수 비율이 길이 비율과 같음을 안다.",
+      "bReason": "까닭과 계산을 함께 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "간격이 같다는 조건과 칸 수 비율 대 길이 비율의 관계가 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "그리기 전 합을 확인한다.",
+      "bReason": "c3과 같은 $100\\%$ 확인이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c3과 같은 빈칸이다.",
+      "exclusionReason": "중복이다. 대체: e6-1-5-2-c3, e6-1-5-2-xc13.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc9",
+      "bDecision": "revise",
+      "bPrompt": "비율이 아주 작은 항목이 여러 개일 때 띠그래프에서 어떻게 나타낼 수 있는지 말하시오. $2\\%$, $3\\%$, $1\\%$인 세 항목을 이렇게 나타내면 조각의 백분율은 얼마인지도 구하시오.",
+      "bAnswer": "작은 항목들을 하나로 묶어 기타로 나타낼 수 있다. 묶은 조각은 $2+3+1=6$이므로 $6\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 항목들을 하나로 묶는다",
+            "기타로 묶는다",
+            "그 밖의 항목으로 묶는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\%$",
+            "$6$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "작은 항목을 묶고 백분율을 합해 나타낸다.",
+      "bReason": "묶는 방법과 합 계산을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\%$, $3\\%$, $1\\%$인 작은 항목 세 개를 하나로 묶으면 묶은 조각은 {$6$}$\\%$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$",
+            "$6\\%$"
+          ]
+        }
+      ],
+      "cReason": "낱말 '기타'만 외우게 하지 않고 합을 계산하게 한다.",
+      "synonymNotes": "기타 대신 그 밖의 항목 같은 표현도 가능하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프에서 한 항목의 비율은 그 조각의 길이로 어떻게 나타나는지 설명하시오.",
+      "bAnswer": "조각의 길이가 띠 전체 길이에서 차지하는 비율로 항목의 비율을 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "조각 길이가 띠 전체 길이에서 차지하는 비율",
+            "띠 전체 길이에 대한 조각 길이의 비율"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "조각 길이와 항목 비율의 대응을 안다.",
+      "bReason": "띠그래프를 읽는 핵심 관계를 직접 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "띠 전체 길이와 차지하는 비율이라는 두 핵심 말이 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "백분율을 정한 자리까지 어림하여 나타낼 때는 어느 자리의 수를 보고 어떻게 해야 하는지 말하시오. $33.46\\%$를 일의 자리까지, 소수 첫째 자리까지 나타내시오.",
+      "bAnswer": "정한 자리의 바로 아래 자리에서 반올림한다. $33.46\\%$는 일의 자리까지 $33\\%$, 소수 첫째 자리까지 $33.5\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정한 자리의 바로 아래 자리에서 반올림한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$33\\%$",
+            "$33$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$33.5\\%$",
+            "$33.5$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "백분율 반올림의 자리 기준을 안다.",
+      "bReason": "방법과 두 자리의 결과를 함께 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$47.58\\%$를 소수 첫째 자리까지 반올림하여 나타내면 {$47.6$}$\\%$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$47.6$",
+            "$47.6\\%$"
+          ]
+        }
+      ],
+      "cReason": "원문 구절 빈칸을 실제 반올림 값으로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc13",
+      "bDecision": "revise",
+      "bPrompt": "반올림한 백분율의 합이 $100\\%$이면 각 항목의 백분율이 모두 정확한 값이라고 할 수 있는지 말하고, 그 까닭을 설명하시오.",
+      "bAnswer": "할 수 없다. 반올림하면서 커진 양과 작아진 양이 서로 같아져 합이 $100\\%$가 될 수도 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정확하다고 할 수 없다",
+            "모두 정확한 값은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "커진 양과 작아진 양이 같을 수 있다",
+            "오차가 서로 상쇄될 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "합이 맞아도 반올림 오차가 있을 수 있음을 이해한다.",
+      "bReason": "합 확인의 한계를 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "반올림 합이 $100\\%$인 조건 아래 정확한 값이 아님을 묻는 명확한 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc16",
+      "bDecision": "revise",
+      "bPrompt": "같은 자료의 띠그래프를 전체 길이 $10\\,\\mathrm{cm}$와 $20\\,\\mathrm{cm}$로 각각 그릴 때, $30\\%$인 항목의 조각이 차지하는 비율은 달라지는가? 두 띠에서 그 조각의 길이도 구하시오.",
+      "bAnswer": "달라지지 않고 모두 $30\\%$이다. 길이는 $10\\,\\mathrm{cm}$ 띠에서 $3\\,\\mathrm{cm}$, $20\\,\\mathrm{cm}$ 띠에서 $6\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율은 같다",
+            "달라지지 않는다",
+            "모두 $30\\%$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{cm}$",
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\,\\mathrm{cm}$",
+            "$6$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "띠 길이가 달라도 비율은 같고 조각 길이만 달라짐을 안다.",
+      "bReason": "비율 불변과 길이 계산을 연결한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "전체 길이를 달라지게 해도 같은 것이 비율이라는 짧은 낱말 문장이다.",
+      "synonymNotes": "비율 대신 백분율도 같은 의미로 인정할 수 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc17",
+      "bDecision": "revise",
+      "bPrompt": "자료 표에 합계 칸이 있으면 백분율을 구할 때 어떤 점이 편리한지 설명하시오.",
+      "bAnswer": "백분율의 기준량인 전체 수를 바로 알 수 있어, 항목의 수를 전체 수와 비교해 백분율을 구하기 쉽다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 수를 바로 알 수 있다",
+            "기준량을 바로 알 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "합계가 기준량임을 연결한다.",
+      "bReason": "표 정리가 백분율 계산에 도움이 되는 점을 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "기준량이 전체 수임을 묻는 짧은 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc18",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프를 그릴 때 먼저 항목별 백분율을 구한 뒤 띠를 나누는 것은, 백분율이 띠의 조각에서 무엇을 정해 주기 때문인지 설명하시오.",
+      "bAnswer": "항목별 백분율이 각 조각이 띠 전체에서 차지할 크기, 곧 길이를 정해 주기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "백분율이 각 조각의 크기를 정한다",
+            "백분율이 조각의 길이를 정한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "백분율과 조각 크기의 관계를 안다.",
+      "bReason": "왜냐를 조각 크기 관계로 좁혔다.",
+      "cDecision": "revise",
+      "cAfter": "띠 전체 길이가 $20\\,\\mathrm{cm}$이고 한 항목의 백분율이 $40\\%$이면 그 조각의 길이는 {$8$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$",
+            "$8\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "원문 구절 대신 백분율에서 길이를 구하게 한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "전체 사람 수가 $20$명으로 일정할 때 한 사람이 차지하는 백분율은 얼마인가? 한 항목의 사람 수가 $3$배가 되면 그 항목의 백분율은 어떻게 되고, 그 까닭은 무엇인지 설명하시오.",
+      "bAnswer": "한 사람은 $5\\%$이다. 사람 수가 $3$배가 되면 백분율도 $3$배가 된다. 각 사람이 차지하는 몫이 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5\\%$",
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$배가 된다",
+            "백분율도 $3$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 사람의 몫이 같다",
+            "한 사람이 차지하는 비율이 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "한 사람의 몫이 같아 사람 수와 백분율이 같은 배로 변함을 안다.",
+      "bReason": "값과 배 관계의 까닭을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "전체가 $20$명이면 한 사람은 {$5$}$\\%$이고, 한 항목이 $4$명이면 {$20$}$\\%$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$",
+            "$5\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$",
+            "$20\\%$"
+          ]
+        }
+      ],
+      "cReason": "추상적 '똑같이' 대신 한 사람 몫을 계산하게 한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc21",
+      "bDecision": "revise",
+      "bPrompt": "전체 수가 $100$의 약수일 때와 약수가 아닐 때 한 항목의 백분율이 어떻게 달라질 수 있는지 설명하시오. 전체가 $4$명일 때와 $8$명일 때 한 사람의 백분율도 구하시오.",
+      "bAnswer": "전체 수가 $100$의 약수가 아니면 백분율이 소수로 나오기도 한다. 전체가 $4$명이면 한 사람은 $25\\%$, $8$명이면 $12.5\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100$의 약수가 아니면 소수로 나오기도 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12.5\\%$",
+            "$12.5$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "전체 수와 백분율의 소수 여부를 연결한다.",
+      "bReason": "조건과 두 계산값을 함께 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "소수로 나오는 조건이 '$100$의 약수가 아니면'이라는 짧은 말로 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프 항목들의 백분율 합이 $105\\%$로 나왔다. 반올림 때문이라고 보기 어려운 까닭을 말하고, 무엇을 다시 확인해야 하는지 쓰시오.",
+      "bAnswer": "$100\\%$와 크게 달라 반올림 차이만으로 보기 어렵다. 각 항목의 백분율 계산을 다시 확인해야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100\\%$와 크게 다르다",
+            "차이가 반올림 오차보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "백분율 계산을 다시 확인한다",
+            "각 항목의 계산을 다시 본다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "합 오차가 클 때 계산 오류를 의심한다.",
+      "bReason": "반올림 오차와 계산 실수를 구분하게 한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "합이 $105\\%$처럼 크게 다르면 계산을 확인한다는 명확한 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "전체 수가 다른 두 자료를 같은 길이의 띠그래프로 그리면 무엇을 바로 견줄 수 있는지 말하고 그 까닭을 설명하시오.",
+      "bAnswer": "항목의 비율을 바로 견줄 수 있다. 두 띠의 전체 길이가 같아서 조각의 길이로 비율을 비교할 수 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율",
+            "백분율"
+          ]
+        },
+        {
+          "anyOf": [
+            "띠 전체 길이가 같아서 조각 길이로 비교할 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "전체 수가 달라도 같은 길이 띠로 비율을 비교함을 안다.",
+      "bReason": "비교 이유를 띠 길이 조건으로 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "같은 길이 띠일 때 견줄 수 있는 것이 비율이라는 분명한 낱말 문장이다.",
+      "synonymNotes": "비율과 백분율을 모두 인정할 수 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-5-2-xc26",
+      "bDecision": "revise",
+      "bPrompt": "띠 전체 길이가 $20\\,\\mathrm{cm}$일 때 띠에서 $1\\,\\mathrm{cm}$가 나타내는 백분율은 어떻게 구하는지 설명하고 그 값을 쓰시오.",
+      "bAnswer": "$1\\,\\mathrm{cm}$가 띠 전체 길이에서 차지하는 비율을 백분율로 나타낸다. $1\\div20=0.05$이므로 $5\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{cm}$를 띠 전체 길이와 비교한 비율을 구한다",
+            "$1\\div20$을 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\%$",
+            "$5$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "단위 길이가 나타내는 백분율을 구한다.",
+      "bReason": "방법과 값을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "띠 전체 길이가 $50\\,\\mathrm{cm}$이면 $1\\,\\mathrm{cm}$는 {$2$}$\\%$를 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "$2\\%$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸을 구체적인 길이 계산으로 바꿨다.",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "xc1·xc3·xc4·xc5·xc8은 사소한 작성 규칙이거나 c2·c3과 중복이라 B와 C를 모두 제외했다.",
+    "B는 모두 일반 관계를 묻고 필요한 곳에만 짧은 수치를 붙였으며, 길이를 구하는 문항은 글과 수식만으로 해결된다."
+  ]
+}

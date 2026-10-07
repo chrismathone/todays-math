@@ -1,0 +1,4185 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:43:36.490212+00:00",
+  "rows": [
+    {
+      "id": "e5-2-4-3-xc13",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "같은 자연수에 서로 다른 두 소수를 각각 곱할 때, 계산하지 않고 어느 곱이 더 큰지 알아내는 방법을 쓰고, $9\\times0.3$과 $9\\times0.7$ 중 더 큰 것을 고르시오.",
+      "bAnswer": "곱하는 소수의 크기를 비교한다. 더 큰 소수를 곱한 쪽의 곱이 더 크다. $0.7$이 $0.3$보다 크므로 $9\\times0.7$이 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱하는 소수가 더 큰 쪽의 곱이 더 크다",
+            "두 소수의 크기를 비교하면 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9\\times0.7$이 더 크다",
+            "$9\\times0.7>9\\times0.3$"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 소수의 크기만 비교해 두 곱의 크기를 판단한다.",
+      "bReason": "제목이 문장 중간에서 끊긴 편집용 말이라 계산 없이 비교하는 방법을 묻는 완전한 질문으로 바꾸었다.",
+      "cDecision": "keep",
+      "cAfter": "같은 자연수에 곱하는 소수가 클수록 곱도 {크다}.",
+      "cReason": "'같은 자연수'라는 조건이 있고 곱하는 수와 곱의 크기 관계를 한 낱말로 묻는다.",
+      "synonymNotes": "C 답 '크다'와 '커진다'는 같은 답으로 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1370,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc13",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "곱하는 소수가 클수록",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 자연수에 곱하는 소수가 클수록 곱도 {크다}.",
+        "studentC": "같은 자연수에 곱하는 소수가 클수록 곱도 □.",
+        "answers": [
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "d0a9fc039b9de090b036a3e08e7407f05f7d1f7d6e993d72c51a535b5366fbc6",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cFrozenDefinition": "같은 자연수에 곱하는 소수가 클수록 곱도 {크다}.",
+      "cFrozenStudentSentence": "같은 자연수에 곱하는 소수가 클수록 곱도 □.",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "같은 자연수에 곱하는 소수가 클수록 곱도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 자연수에 곱하는 소수가 클수록 곱도 {크다}.",
+      "cStudentSentence": "같은 자연수에 곱하는 소수가 클수록 곱도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 자연수에 서로 다른 두 소수를 각각 곱할 때, 계산하지 않고 어느 곱이 더 큰지 알아내는 방법을 쓰고, $9\\times0.3$과 $9\\times0.7$ 중 더 큰 것을 고르시오.",
+        "answer": "곱하는 소수의 크기를 비교한다. 더 큰 소수를 곱한 쪽의 곱이 더 크다. $0.7$이 $0.3$보다 크므로 $9\\times0.7$이 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱하는 소수가 더 큰 쪽의 곱이 더 크다",
+              "두 소수의 크기를 비교하면 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9\\times0.7$이 더 크다",
+              "$9\\times0.7>9\\times0.3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 자연수에 곱하는 소수가 클수록 곱도 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "42a45b1a019d4a4d8dce43fc0d1a1c10a305c489ed096731d27f0330504e062e",
+      "questionRevision": "planning-e5e6-20261006-42a45b1a019d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc21",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "같은 자연수에 두 소수를 각각 곱한 값의 차를, 두 곱을 따로 계산하지 않고 곱셈 한 번으로 구하는 방법을 설명하고, 그 방법으로 $20\\times0.7$과 $20\\times0.3$의 차를 구하시오.",
+      "bAnswer": "두 소수의 차를 먼저 구해 그 자연수에 곱한다. $0.7-0.3=0.4$이므로 $20\\times0.4=8$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 소수의 차를 자연수에 곱한다",
+            "$20\\times(0.7-0.3)$으로 계산한다",
+            "$20\\times0.4$로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "bGoal": "두 곱의 차를 자연수에 두 소수의 차를 곱해 한 번에 구한다.",
+      "bReason": "제목 '두 소수 배의 차'만으로는 무엇을 묻는지 알 수 없어 조건과 구체적인 식을 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "$30\\times0.9$와 $30\\times0.4$의 차는 $30\\times${$0.5$}와 같고, 그 값은 {$15$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "cReason": "원문 답 '두 소수의 차'는 긴 구절을 외워 써야 하므로 실제 식에서 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1371,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc21",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "두 소수 배의 차",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 자연수에 두 소수를 각각 곱한 값의 차는 그 자연수에 {두 소수의 차}를 곱한 값과 같다.",
+        "studentC": "같은 자연수에 두 소수를 각각 곱한 값의 차는 그 자연수에 □를 곱한 값과 같다.",
+        "answers": [
+          "두 소수의 차"
+        ]
+      },
+      "sourceFingerprint": "4c95703c562ffaac4bd9c6d43e813c52c43a230251b4330f131e2413d5a5d0f1",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cProposedAnswers": [
+        "$0.5$",
+        "$15$"
+      ],
+      "cStudentAfter": "$30\\times0.9$와 $30\\times0.4$의 차는 $30\\times$□와 같고, 그 값은 □이다.",
+      "cMarkedSentence": "$30\\times0.9$와 $30\\times0.4$의 차는 $30\\times${$0.5$}와 같고, 그 값은 {$15$}이다.",
+      "cStudentSentence": "$30\\times0.9$와 $30\\times0.4$의 차는 $30\\times$□와 같고, 그 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.5$",
+          "equivalents": [
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "key": "$15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 자연수에 두 소수를 각각 곱한 값의 차를, 두 곱을 따로 계산하지 않고 곱셈 한 번으로 구하는 방법을 설명하고, 그 방법으로 $20\\times0.7$과 $20\\times0.3$의 차를 구하시오.",
+        "answer": "두 소수의 차를 먼저 구해 그 자연수에 곱한다. $0.7-0.3=0.4$이므로 $20\\times0.4=8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 소수의 차를 자연수에 곱한다",
+              "$20\\times(0.7-0.3)$으로 계산한다",
+              "$20\\times0.4$로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$30\\times0.9$와 $30\\times0.4$의 차는 $30\\times${$0.5$}와 같고, 그 값은 {$15$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$15$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d6e99f81865954df1372f9d8b095a4b3960a50ef186af8934bf2e76d3d46f4c4",
+      "questionRevision": "planning-e5e6-20261006-d6e99f818659",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc23",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "어떤 양에서 그 양의 $1$보다 작은 소수 배만큼을 덜어 냈을 때, 남은 양이 처음 양의 몇 배인지 구하는 방법을 설명하시오. 또 $50\\,\\mathrm{m}$인 끈의 $0.2$배를 쓰고 남은 길이를 구하시오.",
+      "bAnswer": "$1$에서 그 소수를 빼면 남은 양이 처음 양의 몇 배인지 알 수 있다. $1-0.2=0.8$이므로 남은 길이는 $50\\times0.8=40\\,(\\mathrm{m})$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$에서 그 소수를 뺀다",
+            "남은 양은 처음 양의 ($1-$소수)배이다",
+            "$1-0.2=0.8$이므로 $0.8$배가 남는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40\\,\\mathrm{m}$",
+            "$40$"
+          ]
+        }
+      ],
+      "bGoal": "덜어 내고 남은 양을 처음 양의 ($1-$소수)배로 구한다.",
+      "bReason": "제목만으로는 소수 배를 덜어 낸다는 조건이 보이지 않아 상황과 수를 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "$20\\,\\mathrm{L}$의 $0.3$배를 쓰면 남은 양은 $20\\,\\mathrm{L}$의 {$0.7$}배이므로 {$14$}$\\,\\mathrm{L}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.7$",
+            "$\\frac{7}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "cReason": "원문 답 '$1$에서 그 소수를 뺀 배'는 초5가 쓰기 어려운 긴 구절이라 실제 양에서 배와 남은 양을 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1372,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc23",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "덜어 내고 남은 양",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수가 $0$보다 크고 $1$보다 작을 때, 어떤 양의 그 소수 배를 덜어 내면 남은 양은 그 양의 {$1$에서 그 소수를 뺀 배}이다.",
+        "example": {
+          "prompt": "$20\\,\\mathrm{L}$의 $0.3$배를 쓰고 남은 양을 곱셈식으로 나타내면?",
+          "answer": "$20\\times0.7$"
+        },
+        "studentC": "소수가 $0$보다 크고 $1$보다 작을 때, 어떤 양의 그 소수 배를 덜어 내면 남은 양은 그 양의 □이다.",
+        "answers": [
+          "$1$에서 그 소수를 뺀 배"
+        ]
+      },
+      "sourceFingerprint": "8d54a1a025a97600ed75b31345d7c5e8d7f7fdbcc0198b3c81724d7fb223bc7f",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cProposedAnswers": [
+        "$0.7$",
+        "$14$"
+      ],
+      "cStudentAfter": "$20\\,\\mathrm{L}$의 $0.3$배를 쓰면 남은 양은 $20\\,\\mathrm{L}$의 □배이므로 □$\\,\\mathrm{L}$이다.",
+      "cMarkedSentence": "$20\\,\\mathrm{L}$의 $0.3$배를 쓰면 남은 양은 $20\\,\\mathrm{L}$의 {$0.7$}배이므로 {$14$}$\\,\\mathrm{L}$이다.",
+      "cStudentSentence": "$20\\,\\mathrm{L}$의 $0.3$배를 쓰면 남은 양은 $20\\,\\mathrm{L}$의 □배이므로 □$\\,\\mathrm{L}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.7$",
+          "equivalents": [
+            "$\\frac{7}{10}$"
+          ]
+        },
+        {
+          "key": "$14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 양에서 그 양의 $1$보다 작은 소수 배만큼을 덜어 냈을 때, 남은 양이 처음 양의 몇 배인지 구하는 방법을 설명하시오. 또 $50\\,\\mathrm{m}$인 끈의 $0.2$배를 쓰고 남은 길이를 구하시오.",
+        "answer": "$1$에서 그 소수를 빼면 남은 양이 처음 양의 몇 배인지 알 수 있다. $1-0.2=0.8$이므로 남은 길이는 $50\\times0.8=40\\,(\\mathrm{m})$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$에서 그 소수를 뺀다",
+              "남은 양은 처음 양의 ($1-$소수)배이다",
+              "$1-0.2=0.8$이므로 $0.8$배가 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40\\,\\mathrm{m}$",
+              "$40$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20\\,\\mathrm{L}$의 $0.3$배를 쓰면 남은 양은 $20\\,\\mathrm{L}$의 {$0.7$}배이므로 {$14$}$\\,\\mathrm{L}$이다.",
+        "acceptedAnswers": [
+          [
+            "$0.7$",
+            "$\\frac{7}{10}$"
+          ],
+          [
+            "$14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "29710474cad7daf10213bb909650ee4899454c5667ac17fcdfba64b0f5917ffe",
+      "questionRevision": "planning-e5e6-20261006-29710474cad7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc24",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 수에 $0$보다 크고 $1$보다 작은 소수를 곱한 값이 원래 수보다 작아지는 까닭을, 그 소수 배가 원래 수의 얼마만큼을 뜻하는지를 써서 설명하시오.",
+      "bAnswer": "$0$보다 크고 $1$보다 작은 소수 배는 원래 수 전체($1$배)가 아니라 그 일부만큼을 뜻한다. 예를 들어 $0.7$배는 똑같이 $10$으로 나눈 것 중 $7$만큼이다. 그래서 곱이 원래 수보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$보다 작은 소수 배는 원래 수의 일부만큼이다",
+            "원래 수의 $1$배보다 적은 만큼이다",
+            "원래 수를 똑같이 나눈 것 중 일부만 모은 것이다",
+            "원래 수의 몇 분의 몇(진분수)만큼이다"
+          ]
+        }
+      ],
+      "bGoal": "곱이 작아지는 까닭을 '$1$배보다 적은 일부만큼'이라는 배의 뜻으로 설명한다.",
+      "bReason": "c3이 결과만 묻는 데 비해 이 행은 까닭이 목표이므로, 무엇을 근거로 설명할지 질문에서 정해 주었다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 수의 $0.7$배는 그 수를 똑같이 $10$으로 나눈 것 중 {$7$}만큼이므로, $0$보다 큰 수에 $0.7$을 곱한 값은 원래 수보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$",
+            "$7$부분"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "작아진다"
+          ]
+        }
+      ],
+      "cReason": "원문 답 '일부'는 '부분', '몇 분의 몇' 등으로도 쓸 수 있는 낱말이라 구체적인 $0.7$배로 근거와 결론을 채우게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1373,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc24",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "곱이 작아지는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0$보다 큰 수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 원래 수의 {일부}만 구하므로 곱이 원래 수보다 작아진다.",
+        "studentC": "$0$보다 큰 수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 원래 수의 □만 구하므로 곱이 원래 수보다 작아진다.",
+        "answers": [
+          "일부"
+        ]
+      },
+      "sourceFingerprint": "4a1d9a3f47084f103b570cddb838e9efd03133516cec0a290d6fb24f54901427",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cProposedAnswers": [
+        "$7$",
+        "작다"
+      ],
+      "cStudentAfter": "어떤 수의 $0.7$배는 그 수를 똑같이 $10$으로 나눈 것 중 □만큼이므로, $0$보다 큰 수에 $0.7$을 곱한 값은 원래 수보다 □.",
+      "cMarkedSentence": "어떤 수의 $0.7$배는 그 수를 똑같이 $10$으로 나눈 것 중 {$7$}만큼이므로, $0$보다 큰 수에 $0.7$을 곱한 값은 원래 수보다 {작다}.",
+      "cStudentSentence": "어떤 수의 $0.7$배는 그 수를 똑같이 $10$으로 나눈 것 중 □만큼이므로, $0$보다 큰 수에 $0.7$을 곱한 값은 원래 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": [
+            "$7$부분"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "작아진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 수에 $0$보다 크고 $1$보다 작은 소수를 곱한 값이 원래 수보다 작아지는 까닭을, 그 소수 배가 원래 수의 얼마만큼을 뜻하는지를 써서 설명하시오.",
+        "answer": "$0$보다 크고 $1$보다 작은 소수 배는 원래 수 전체($1$배)가 아니라 그 일부만큼을 뜻한다. 예를 들어 $0.7$배는 똑같이 $10$으로 나눈 것 중 $7$만큼이다. 그래서 곱이 원래 수보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$보다 작은 소수 배는 원래 수의 일부만큼이다",
+              "원래 수의 $1$배보다 적은 만큼이다",
+              "원래 수를 똑같이 나눈 것 중 일부만 모은 것이다",
+              "원래 수의 몇 분의 몇(진분수)만큼이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수의 $0.7$배는 그 수를 똑같이 $10$으로 나눈 것 중 {$7$}만큼이므로, $0$보다 큰 수에 $0.7$을 곱한 값은 원래 수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "$7$",
+            "$7$부분"
+          ],
+          [
+            "작다",
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "81e8976ce257e70b207f2788648f00e5819e9678fa77b46b9ae58c586b43fb98",
+      "questionRevision": "planning-e5e6-20261006-81e8976ce257",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc1",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1.5=1+0.5$임을 이용하여 어떤 수의 $1.5$배를 쉽게 구하는 방법을 설명하고, $12$의 $1.5$배를 구하시오.",
+      "bAnswer": "그 수에 그 수의 절반($0.5$배)을 더한다. $12+6=18$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 수에 그 수의 절반을 더한다",
+            "$1$배와 $0.5$배를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$",
+            "$12+6=18$"
+          ]
+        }
+      ],
+      "bGoal": "$1.5$배를 원래 수와 그 절반의 합으로 구한다.",
+      "bReason": "'$1.5$배의 뜻'만 물으면 답의 범위가 넓어 $1+0.5$로 나누는 관점을 지정했다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 수의 $1.5$배는 그 수와 그 수의 {절반}을 더한 것이다.",
+      "cReason": "$0.5$배가 절반임을 묻는 한 낱말 빈칸으로 짧고 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'반', '$0.5$배', '$\\frac{1}{2}$'도 같은 뜻이다.",
+      "sourceIndex": 1374,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc1",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "$1.5$배의 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "어떤 수의 $1.5$배는 그 수와 그 수의 {절반}을 더한 것이다.",
+        "studentC": "어떤 수의 $1.5$배는 그 수와 그 수의 □을 더한 것이다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "sourceFingerprint": "2a1acf03d62dfd11fb064c383e09c28699b63ea466d1ccf3db14cca7782bbe24",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "cFrozenDefinition": "어떤 수의 $1.5$배는 그 수와 그 수의 {절반}을 더한 것이다.",
+      "cFrozenStudentSentence": "어떤 수의 $1.5$배는 그 수와 그 수의 □을 더한 것이다.",
+      "cProposedAnswers": [
+        "절반"
+      ],
+      "cStudentAfter": "어떤 수의 $1.5$배는 그 수와 그 수의 □을 더한 것이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "절반"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 수의 $1.5$배는 그 수와 그 수의 {절반}을 더한 것이다.",
+      "cStudentSentence": "어떤 수의 $1.5$배는 그 수와 그 수의 □을 더한 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "절반",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.5=1+0.5$임을 이용하여 어떤 수의 $1.5$배를 쉽게 구하는 방법을 설명하고, $12$의 $1.5$배를 구하시오.",
+        "answer": "그 수에 그 수의 절반($0.5$배)을 더한다. $12+6=18$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 수에 그 수의 절반을 더한다",
+              "$1$배와 $0.5$배를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$",
+              "$12+6=18$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수의 $1.5$배는 그 수와 그 수의 {절반}을 더한 것이다.",
+        "acceptedAnswers": [
+          [
+            "절반"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "946c145912ede654bfe5c1830551fd4376830dbaa7a3c7c19be1f34625a65576",
+      "questionRevision": "planning-e5e6-20261006-946c145912ed",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc4",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "소수를 자연수 부분과 소수 부분으로 나누어 곱하고 더한다.",
+      "bReason": "c1의 B가 같은 나누어 더하기를 예와 함께 이미 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\times 2.5$는 $4\\times 2=8$과 $4\\times 0.5=${$2$}를 더하여 {$10$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cReason": "'더해도'는 말투를 맞히는 빈칸이라 나누어 곱한 값을 직접 계산하게 바꿨다.",
+      "exclusionReason": "B는 e5-2-4-4-c1과 중복이므로 C 계산 문항만 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1375,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc4",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "자연수 부분과 소수 부분으로 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수에 $1$보다 큰 소수를 곱할 때 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 {더해도} 된다.",
+        "studentC": "자연수에 $1$보다 큰 소수를 곱할 때 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 □ 된다.",
+        "answers": [
+          "더해도"
+        ]
+      },
+      "sourceFingerprint": "bb6f5fde1f9983320c8d63256dd88f3ee9339c1ac8983c56370fb78804ebca21",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$10$"
+      ],
+      "cStudentAfter": "$4\\times 2.5$는 $4\\times 2=8$과 $4\\times 0.5=$□를 더하여 □이다.",
+      "cMarkedSentence": "$4\\times 2.5$는 $4\\times 2=8$과 $4\\times 0.5=${$2$}를 더하여 {$10$}이다.",
+      "cStudentSentence": "$4\\times 2.5$는 $4\\times 2=8$과 $4\\times 0.5=$□를 더하여 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$4\\times 2.5$는 $4\\times 2=8$과 $4\\times 0.5=${$2$}를 더하여 {$10$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-4-4-c1과 중복이므로 C 계산 문항만 둔다."
+      },
+      "proposalFingerprint": "0deeccc4a3691533c67feb20c68ee114e061971b6f352c26280d5fe1429a7ad9",
+      "questionRevision": "planning-e5e6-20261006-0deeccc4a369",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc5",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱이 커지는 까닭을 원래 수에 더해지는 양으로 이해한다.",
+      "bReason": "곱이 커지는 까닭은 c3의 B가, 더해지는 양은 xc17이 묻고 있어 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'더 보태는'은 임의의 말 암기이고, 수로 바꾸면 xc17의 C와 같은 문항이 된다.",
+      "exclusionReason": "e5-2-4-4-c3(B)과 e5-2-4-4-xc17(B·C)이 대신한다.",
+      "exampleNeeded": false,
+      "coreAfter": "$0$보다 큰 자연수에 $1$보다 큰 소수를 곱하면, 원래 수에 $\\text{원래 수}\\times(\\text{곱하는 소수}-1)$을 {더 보태는} 것이므로 곱이 원래 수보다 커진다.",
+      "coreReason": "'그 수의 몇 배를 더 보태는'은 어떤 배인지 불분명하다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "더 보태는이라는 원문 표적을 보존한다. 더하는 양을 원래 수와 곱하는 소수의1을 넘는 부분의 곱으로 명시하며 양수가 필요한 조건도 밝힌다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1376,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc5",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "곱이 커지는 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "자연수에 $1$보다 큰 소수를 곱하면 원래 수에 그 수의 몇 배를 {더 보태는} 셈이라 곱이 커진다.",
+        "studentC": "자연수에 $1$보다 큰 소수를 곱하면 원래 수에 그 수의 몇 배를 □ 셈이라 곱이 커진다.",
+        "answers": [
+          "더 보태는"
+        ]
+      },
+      "sourceFingerprint": "4dfb79c9807bb3dfafd395f489a803699030fedf2c48968237a53ded6c997680",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e5-2-4-4-c3(B)과 e5-2-4-4-xc17(B·C)이 대신한다.",
+        "cloze": "e5-2-4-4-c3(B)과 e5-2-4-4-xc17(B·C)이 대신한다."
+      },
+      "proposalFingerprint": "51347e768fc1dce34a442fb726f2fcc8ff525317095cb2ed68f6fd49381eb1bd",
+      "questionRevision": "planning-e5e6-20261006-51347e768fc1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc8",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수와 소수의 곱도 순서를 바꾸면 같음을 안다.",
+      "bReason": "자연수의 곱셈에서 이미 아는 사실을 되풀이하는 것이라 서술형으로 설명할 내용이 없다.",
+      "cDecision": "revise",
+      "cAfter": "자연수와 소수의 곱은 곱하는 두 수의 {순서}를 바꾸어도 같으므로 $2.5\\times 4=4\\times${$2.5$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "순서",
+            "차례",
+            "자리"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.5$"
+          ]
+        }
+      ],
+      "cReason": "'순서를 바꾸어도'라는 구절 대신 핵심 낱말 하나와 실제 식의 수를 쓰게 했다.",
+      "exclusionReason": "B는 자명한 성질이라 C만 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1377,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc8",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "곱하는 순서 바꾸기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "자연수와 $1$보다 큰 소수의 곱은 두 수의 {순서를 바꾸어도} 같다.",
+        "studentC": "자연수와 $1$보다 큰 소수의 곱은 두 수의 □ 같다.",
+        "answers": [
+          "순서를 바꾸어도"
+        ]
+      },
+      "sourceFingerprint": "e72c769af3bf1e87d67128eec41d8ee767c08362fa6c2b5cf52e6aa14d3f964f",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "cProposedAnswers": [
+        "순서",
+        "$2.5$"
+      ],
+      "cStudentAfter": "자연수와 소수의 곱은 곱하는 두 수의 □를 바꾸어도 같으므로 $2.5\\times 4=4\\times$□이다.",
+      "cMarkedSentence": "자연수와 소수의 곱은 곱하는 두 수의 {순서}를 바꾸어도 같으므로 $2.5\\times 4=4\\times${$2.5$}이다.",
+      "cStudentSentence": "자연수와 소수의 곱은 곱하는 두 수의 □를 바꾸어도 같으므로 $2.5\\times 4=4\\times$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "순서",
+          "equivalents": [
+            "차례",
+            "자리"
+          ]
+        },
+        {
+          "key": "$2.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "자연수와 소수의 곱은 곱하는 두 수의 {순서}를 바꾸어도 같으므로 $2.5\\times 4=4\\times${$2.5$}이다.",
+        "acceptedAnswers": [
+          [
+            "순서",
+            "차례",
+            "자리"
+          ],
+          [
+            "$2.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 성질이라 C만 둔다."
+      },
+      "proposalFingerprint": "5cb58bcaf91b2c80beb52a9ab698b7cc0c4e9b713acf842921c47db7f09cf0ae",
+      "questionRevision": "planning-e5e6-20261006-5cb58bcaf91b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 $1$보다 큰 소수를 곱한 곱이 자연수인지 알아보려면, 소수의 어느 부분과 자연수의 곱을 살펴보면 되는지 까닭과 함께 쓰고, $4\\times 2.5$의 곱이 자연수인지 판단하시오.",
+      "bAnswer": "자연수와 소수 부분의 곱을 살펴본다. 자연수 부분과의 곱은 항상 자연수이므로 소수 부분과의 곱이 자연수이면 전체 곱도 자연수이다. $4\\times 0.5=2$가 자연수이므로 $4\\times 2.5=10$은 자연수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수와 소수 부분의 곱을 살펴본다",
+            "$4\\times 0.5$를 살펴본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수 부분과의 곱은 항상 자연수이다",
+            "자연수끼리의 곱과 합은 자연수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수이다",
+            "$4\\times 2.5=10$"
+          ]
+        }
+      ],
+      "bGoal": "곱이 자연수가 되는지를 소수 부분과의 곱으로 판단한다.",
+      "bReason": "원문 조건을 그대로 말해 주지 않고 살펴볼 부분과 까닭을 답하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\times 2.5$에서 $4\\times 2=8$은 자연수이고 $4\\times${$0.5$}$=2$도 자연수이므로, 곱 {$10$}은 자연수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cReason": "'소수 부분의 곱'은 문장 속에서 뜻이 모호한 구절이라 실제 식으로 확인하게 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1378,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc11",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "곱이 자연수가 되는 경우",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수에 $1$보다 큰 소수를 곱할 때 자연수와 {소수 부분의 곱}이 자연수이면 전체 곱도 자연수가 된다.",
+        "studentC": "자연수에 $1$보다 큰 소수를 곱할 때 자연수와 □이 자연수이면 전체 곱도 자연수가 된다.",
+        "answers": [
+          "소수 부분의 곱"
+        ]
+      },
+      "sourceFingerprint": "2d7978e349f491af526e8071dc27d8608f5d9867d01e0e1e4b7b47055f5a1cba",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "cProposedAnswers": [
+        "$0.5$",
+        "$10$"
+      ],
+      "cStudentAfter": "$4\\times 2.5$에서 $4\\times 2=8$은 자연수이고 $4\\times$□$=2$도 자연수이므로, 곱 □은 자연수이다.",
+      "cMarkedSentence": "$4\\times 2.5$에서 $4\\times 2=8$은 자연수이고 $4\\times${$0.5$}$=2$도 자연수이므로, 곱 {$10$}은 자연수이다.",
+      "cStudentSentence": "$4\\times 2.5$에서 $4\\times 2=8$은 자연수이고 $4\\times$□$=2$도 자연수이므로, 곱 □은 자연수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.5$",
+          "equivalents": [
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수에 $1$보다 큰 소수를 곱한 곱이 자연수인지 알아보려면, 소수의 어느 부분과 자연수의 곱을 살펴보면 되는지 까닭과 함께 쓰고, $4\\times 2.5$의 곱이 자연수인지 판단하시오.",
+        "answer": "자연수와 소수 부분의 곱을 살펴본다. 자연수 부분과의 곱은 항상 자연수이므로 소수 부분과의 곱이 자연수이면 전체 곱도 자연수이다. $4\\times 0.5=2$가 자연수이므로 $4\\times 2.5=10$은 자연수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수와 소수 부분의 곱을 살펴본다",
+              "$4\\times 0.5$를 살펴본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수 부분과의 곱은 항상 자연수이다",
+              "자연수끼리의 곱과 합은 자연수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수이다",
+              "$4\\times 2.5=10$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4\\times 2.5$에서 $4\\times 2=8$은 자연수이고 $4\\times${$0.5$}$=2$도 자연수이므로, 곱 {$10$}은 자연수이다.",
+        "acceptedAnswers": [
+          [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5d3146096fe08594c1219735b190034deedeb3bfac9719a4b7521667da916cb5",
+      "questionRevision": "planning-e5e6-20261006-5d3146096fe0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 소수를 곱한 곱의 크기를 정확히 계산하기 전에 어림하는 방법을 설명하고, $6\\times 2.9$의 곱을 어림하시오.",
+      "bAnswer": "소수를 가까운 자연수로 바꾸어 곱한다. $2.9$는 $3$에 가까우므로 $6\\times 3=18$, 곱은 약 $18$(조금 작다)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수를 가까운 자연수로 바꾸어 곱한다",
+            "$2.9$를 $3$으로 보고 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약 $18$",
+            "$18$보다 조금 작다",
+            "$18$쯤"
+          ]
+        }
+      ],
+      "bGoal": "소수를 가까운 자연수로 바꾸어 곱을 어림한다.",
+      "bReason": "어림 방법과 그 방법을 쓴 구체적 어림값을 함께 묻도록 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "$6\\times 2.9$는 $2.9$를 가까운 자연수 {$3$}으로 바꾸어 곱하면 약 {$18$}로 어림할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "cReason": "'곱의 대략적인 크기'는 긴 구절 암기라 실제 어림 과정을 채우게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1379,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc12",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "곱의 어림",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수에 소수를 곱할 때 소수를 가까운 자연수로 바꾸어 곱하면 {곱의 대략적인 크기}를 어림할 수 있다.",
+        "studentC": "자연수에 소수를 곱할 때 소수를 가까운 자연수로 바꾸어 곱하면 □를 어림할 수 있다.",
+        "answers": [
+          "곱의 대략적인 크기"
+        ]
+      },
+      "sourceFingerprint": "1d456e0f0769db8e4455ad7ff5383e11e65ea5f14fa3edf05e36af18014b63d6",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$3$",
+        "$18$"
+      ],
+      "cStudentAfter": "$6\\times 2.9$는 $2.9$를 가까운 자연수 □으로 바꾸어 곱하면 약 □로 어림할 수 있다.",
+      "cMarkedSentence": "$6\\times 2.9$는 $2.9$를 가까운 자연수 {$3$}으로 바꾸어 곱하면 약 {$18$}로 어림할 수 있다.",
+      "cStudentSentence": "$6\\times 2.9$는 $2.9$를 가까운 자연수 □으로 바꾸어 곱하면 약 □로 어림할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수에 소수를 곱한 곱의 크기를 정확히 계산하기 전에 어림하는 방법을 설명하고, $6\\times 2.9$의 곱을 어림하시오.",
+        "answer": "소수를 가까운 자연수로 바꾸어 곱한다. $2.9$는 $3$에 가까우므로 $6\\times 3=18$, 곱은 약 $18$(조금 작다)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수를 가까운 자연수로 바꾸어 곱한다",
+              "$2.9$를 $3$으로 보고 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약 $18$",
+              "$18$보다 조금 작다",
+              "$18$쯤"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6\\times 2.9$는 $2.9$를 가까운 자연수 {$3$}으로 바꾸어 곱하면 약 {$18$}로 어림할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "70c9e403bb8e65fda648e7aea272afdd443b3edbfcb4df15b57c66d2e42aa064",
+      "questionRevision": "planning-e5e6-20261006-70c9e403bb8e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "같은 자연수에 서로 다른 두 소수를 각각 곱할 때, 계산하지 않고 어느 곱이 더 큰지 알아내는 방법을 설명하고, $7\\times 1.4$와 $7\\times 1.8$ 중 곱이 더 큰 것을 고르시오.",
+      "bAnswer": "곱하는 소수가 더 큰 쪽의 곱이 더 크다. $1.8$이 $1.4$보다 크므로 $7\\times 1.8$이 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱하는 소수가 클수록 곱이 크다",
+            "곱하는 소수끼리 크기를 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\times 1.8$",
+            "$1.8$을 곱한 쪽"
+          ]
+        }
+      ],
+      "bGoal": "같은 수에 곱하는 소수의 크기로 곱의 크기를 비교한다.",
+      "bReason": "원문 결론을 숨기고 비교 방법과 예의 판단을 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "같은 자연수에 곱하는 소수가 클수록 곱은 더 {커진다}. 그래서 $7\\times 1.4$는 $7\\times 1.8$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커진다",
+            "크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "'$1$보다 클수록'이라는 어색한 조건을 풀고 실제 비교 하나를 덧붙였다.",
+      "exampleNeeded": false,
+      "coreAfter": "$0$보다 큰 같은 자연수에 곱하는 소수가 클수록 곱도 {더 커진다}.",
+      "coreReason": "'소수가 $1$보다 클수록'은 무엇이 커지는지 불분명한 표현이다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "더 커진다라는 원문 표적을 유지한다. 무엇이 커지는지 소수의 값으로 명시하고0의 곱이 같은 예외를 제외한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1380,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc15",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "곱하는 소수가 커지면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 자연수에 곱하는 소수가 $1$보다 클수록 곱은 {더 커진다}.",
+        "studentC": "같은 자연수에 곱하는 소수가 $1$보다 클수록 곱은 □.",
+        "answers": [
+          "더 커진다"
+        ]
+      },
+      "sourceFingerprint": "ef56674c2ccd74e49480584516622805d5049c5a03736582d43d039193ddf7d3",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "커진다",
+        "작다"
+      ],
+      "cStudentAfter": "같은 자연수에 곱하는 소수가 클수록 곱은 더 □. 그래서 $7\\times 1.4$는 $7\\times 1.8$보다 □.",
+      "cMarkedSentence": "같은 자연수에 곱하는 소수가 클수록 곱은 더 {커진다}. 그래서 $7\\times 1.4$는 $7\\times 1.8$보다 {작다}.",
+      "cStudentSentence": "같은 자연수에 곱하는 소수가 클수록 곱은 더 □. 그래서 $7\\times 1.4$는 $7\\times 1.8$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "커진다",
+          "equivalents": [
+            "크다"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 자연수에 서로 다른 두 소수를 각각 곱할 때, 계산하지 않고 어느 곱이 더 큰지 알아내는 방법을 설명하고, $7\\times 1.4$와 $7\\times 1.8$ 중 곱이 더 큰 것을 고르시오.",
+        "answer": "곱하는 소수가 더 큰 쪽의 곱이 더 크다. $1.8$이 $1.4$보다 크므로 $7\\times 1.8$이 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱하는 소수가 클수록 곱이 크다",
+              "곱하는 소수끼리 크기를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7\\times 1.8$",
+              "$1.8$을 곱한 쪽"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 자연수에 곱하는 소수가 클수록 곱은 더 {커진다}. 그래서 $7\\times 1.4$는 $7\\times 1.8$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "커진다",
+            "크다"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a38c0373627e0092e0179f2666dedb48fe703d058a3b9fa56db3251bdd3c1604",
+      "questionRevision": "planning-e5e6-20261006-a38c0373627e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 $1$보다 큰 소수를 곱했을 때 곱이 원래 수보다 얼마나 더 큰지 구하는 방법을 설명하고, $20\\times 1.3$은 $20$보다 얼마나 큰지 구하시오.",
+      "bAnswer": "곱한 소수에서 $1$을 뺀 수를 원래 수에 곱한 만큼 크다. $1.3-1=0.3$이고 $20\\times 0.3=6$이므로 $6$만큼 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수에서 $1$을 뺀 수를 원래 수에 곱한다",
+            "원래 수의 소수 부분 배만큼 크다",
+            "$20\\times 0.3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "bGoal": "곱이 원래 수보다 늘어난 양을 (소수$-1$)배로 구한다.",
+      "bReason": "제목 '늘어난 양'만으로는 대상을 알 수 없어 무엇과 무엇의 차인지 질문에 밝혔다.",
+      "cDecision": "revise",
+      "cAfter": "$20\\times 1.3$은 $20$보다 $20$의 {$0.3$}배인 {$6$}만큼 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.3$",
+            "$\\frac{3}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cReason": "'그 소수에서 $1$을 뺀 배'는 외우기 어려운 구절이라 구체적인 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1381,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc17",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "늘어난 양",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수에 $1$보다 큰 소수를 곱하면 곱은 원래 수보다 원래 수의 {그 소수에서 $1$을 뺀 배}만큼 크다.",
+        "studentC": "자연수에 $1$보다 큰 소수를 곱하면 곱은 원래 수보다 원래 수의 □만큼 크다.",
+        "answers": [
+          "그 소수에서 $1$을 뺀 배"
+        ]
+      },
+      "sourceFingerprint": "bc589fc87e0258246b7210299df97e135ce0a69eb86de18940c7c6c145d60a16",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "cProposedAnswers": [
+        "$0.3$",
+        "$6$"
+      ],
+      "cStudentAfter": "$20\\times 1.3$은 $20$보다 $20$의 □배인 □만큼 크다.",
+      "cMarkedSentence": "$20\\times 1.3$은 $20$보다 $20$의 {$0.3$}배인 {$6$}만큼 크다.",
+      "cStudentSentence": "$20\\times 1.3$은 $20$보다 $20$의 □배인 □만큼 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.3$",
+          "equivalents": [
+            "$\\frac{3}{10}$"
+          ]
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수에 $1$보다 큰 소수를 곱했을 때 곱이 원래 수보다 얼마나 더 큰지 구하는 방법을 설명하고, $20\\times 1.3$은 $20$보다 얼마나 큰지 구하시오.",
+        "answer": "곱한 소수에서 $1$을 뺀 수를 원래 수에 곱한 만큼 크다. $1.3-1=0.3$이고 $20\\times 0.3=6$이므로 $6$만큼 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수에서 $1$을 뺀 수를 원래 수에 곱한다",
+              "원래 수의 소수 부분 배만큼 크다",
+              "$20\\times 0.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20\\times 1.3$은 $20$보다 $20$의 {$0.3$}배인 {$6$}만큼 크다.",
+        "acceptedAnswers": [
+          [
+            "$0.3$",
+            "$\\frac{3}{10}$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "49d51b7b67cedef0d5043be87ccf4ec839f86df47171154e9f9f14c1b55675d4",
+      "questionRevision": "planning-e5e6-20261006-49d51b7b67ce",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 어떤 소수를 곱했더니 곱이 원래 자연수보다 커졌다. 곱한 소수는 $1$과 비교해 어떤 수인지 까닭과 함께 쓰고, $12\\times\\square=18$의 $\\square$에 대해 판단하시오.",
+      "bAnswer": "$1$보다 큰 수이다. $1$을 곱하면 원래 수 그대로이고 $1$보다 작은 수를 곱하면 원래 수보다 작아지기 때문이다. $18$이 $12$보다 크므로 $\\square$는 $1$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱한 소수는 $1$보다 크다",
+            "$\\square$는 $1$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$을 곱하면 그대로이고 $1$보다 작은 수를 곱하면 작아진다",
+            "$1$보다 큰 수를 곱해야만 곱이 원래 수보다 커진다"
+          ]
+        }
+      ],
+      "bGoal": "곱과 원래 수의 크기 비교에서 곱한 수가 $1$보다 큼을 거꾸로 추론한다.",
+      "bReason": "원문 예의 $12\\times\\square=18$을 살리고, 답을 유도하던 '큰 까닭은?'을 판단과 까닭을 묻는 꼴로 고쳤다.",
+      "cDecision": "revise",
+      "cAfter": "$12\\times\\square=18$에서 곱 $18$이 $12$보다 크므로 $\\square$는 $1$보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다",
+            "큰 수이다"
+          ]
+        }
+      ],
+      "cReason": "문장 끝 전체가 빈칸이라 답의 범위가 열려 있어 식을 제시하고 낱말 하나로 좁혔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1382,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc19",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "곱이 커졌을 때 곱한 소수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자연수에 어떤 소수를 곱한 곱이 원래 수보다 크면 그 소수는 {$1$보다 크다}.",
+        "example": {
+          "prompt": "$12\\times\\square=18$에서 $\\square$가 $1$보다 큰 까닭은?",
+          "answer": "곱이 $12$보다 커서"
+        },
+        "studentC": "자연수에 어떤 소수를 곱한 곱이 원래 수보다 크면 그 소수는 □.",
+        "answers": [
+          "$1$보다 크다"
+        ]
+      },
+      "sourceFingerprint": "3df9971010ed16f0d7472dae044c9651cd1f17339c7bc173852e9848702e1c9c",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "$12\\times\\square=18$에서 곱 $18$이 $12$보다 크므로 $\\square$는 $1$보다 □.",
+      "cMarkedSentence": "$12\\times\\square=18$에서 곱 $18$이 $12$보다 크므로 $\\square$는 $1$보다 {크다}.",
+      "cStudentSentence": "$12\\times\\square=18$에서 곱 $18$이 $12$보다 크므로 $\\square$는 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": [
+            "큰 수이다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수에 어떤 소수를 곱했더니 곱이 원래 자연수보다 커졌다. 곱한 소수는 $1$과 비교해 어떤 수인지 까닭과 함께 쓰고, $12\\times\\square=18$의 $\\square$에 대해 판단하시오.",
+        "answer": "$1$보다 큰 수이다. $1$을 곱하면 원래 수 그대로이고 $1$보다 작은 수를 곱하면 원래 수보다 작아지기 때문이다. $18$이 $12$보다 크므로 $\\square$는 $1$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱한 소수는 $1$보다 크다",
+              "$\\square$는 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$을 곱하면 그대로이고 $1$보다 작은 수를 곱하면 작아진다",
+              "$1$보다 큰 수를 곱해야만 곱이 원래 수보다 커진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12\\times\\square=18$에서 곱 $18$이 $12$보다 크므로 $\\square$는 $1$보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다",
+            "큰 수이다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9bf3c18d17ae475b340703a2aaf239f0666413cd4ec1bd8ec34743c6d432e138",
+      "questionRevision": "planning-e5e6-20261006-9bf3c18d17ae",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc26",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 $2$보다 큰 소수를 곱한 곱은 그 자연수의 $2$배와 비교해 어떠한지 까닭과 함께 쓰고, $15\\times 2.4$가 $30$보다 큰지 계산하지 않고 판단하시오.",
+      "bAnswer": "$2$배보다 크다. $2$를 곱하면 꼭 $2$배인데 그보다 큰 수를 곱했기 때문이다. $2.4$가 $2$보다 크므로 $15\\times 2.4$는 $15\\times 2=30$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$배보다 크다",
+            "처음 수의 두 배를 넘는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$보다 큰 수를 곱했기 때문이다",
+            "곱하는 수가 클수록 곱이 크기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30$보다 크다",
+            "$15\\times 2.4$가 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 수를 $2$와 비교해 곱이 $2$배를 넘는지 판단한다.",
+      "bReason": "기준을 $1$에서 $2$로 넓힌 내용이라 계산 없이 판단하는 예와 함께 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$2.4$는 $2$보다 크므로 $15\\times 2.4$는 $15\\times 2=${$30$}보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cReason": "'$2$배보다 크다' 전체를 쓰게 하던 구절 빈칸을 기준값과 비교 낱말로 나눴다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1383,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc26",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "곱이 처음 수의 두 배를 넘을 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자연수에 $2$보다 큰 소수를 곱하면 곱은 처음 수의 {$2$배보다 크다}.",
+        "studentC": "자연수에 $2$보다 큰 소수를 곱하면 곱은 처음 수의 □.",
+        "answers": [
+          "$2$배보다 크다"
+        ]
+      },
+      "sourceFingerprint": "666569d7e85b050dbc20e4cd4d48d58d9c2f989f855e818d116955e1ecb74aa1",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "cProposedAnswers": [
+        "$30$",
+        "크다"
+      ],
+      "cStudentAfter": "$2.4$는 $2$보다 크므로 $15\\times 2.4$는 $15\\times 2=$□보다 □.",
+      "cMarkedSentence": "$2.4$는 $2$보다 크므로 $15\\times 2.4$는 $15\\times 2=${$30$}보다 {크다}.",
+      "cStudentSentence": "$2.4$는 $2$보다 크므로 $15\\times 2.4$는 $15\\times 2=$□보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수에 $2$보다 큰 소수를 곱한 곱은 그 자연수의 $2$배와 비교해 어떠한지 까닭과 함께 쓰고, $15\\times 2.4$가 $30$보다 큰지 계산하지 않고 판단하시오.",
+        "answer": "$2$배보다 크다. $2$를 곱하면 꼭 $2$배인데 그보다 큰 수를 곱했기 때문이다. $2.4$가 $2$보다 크므로 $15\\times 2.4$는 $15\\times 2=30$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배보다 크다",
+              "처음 수의 두 배를 넘는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$보다 큰 수를 곱했기 때문이다",
+              "곱하는 수가 클수록 곱이 크기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30$보다 크다",
+              "$15\\times 2.4$가 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4$는 $2$보다 크므로 $15\\times 2.4$는 $15\\times 2=${$30$}보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ],
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "71f6b890bef17c1ba250b6693dcf1a31ad129df4e15c425690a98b5be9f42c3c",
+      "questionRevision": "planning-e5e6-20261006-71f6b890bef1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-4-xc27",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 양을 $1.7$배 한 다음 다시 $10$배 하면 처음 양의 몇 배가 되는지 쓰고, $1.7$을 분수로 나타내어 그 까닭을 설명하시오.",
+      "bAnswer": "$17$배가 된다. $1.7=\\frac{17}{10}$이므로 $10$배 하면 $\\frac{17}{10}\\times 10=17$이 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$17$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.7=\\frac{17}{10}$이라서 $10$배 하면 분모 $10$이 없어진다",
+            "$\\frac{17}{10}\\times 10=17$",
+            "$1.7\\times 10=17$"
+          ]
+        }
+      ],
+      "bGoal": "소수 배를 $10$배 하면 분자만큼의 배가 됨을 분수로 설명한다.",
+      "bReason": "원문은 '분자만큼의 배'가 추상적이어서 $1.7$이라는 구체적 수로 관계를 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1.7=\\frac{17}{10}$이므로 어떤 양을 $1.7$배 한 뒤 다시 $10$배 하면 처음 양의 {$17$}배이다. 그래서 $3\\times 1.7$은 $3\\times 17=51$을 {$10$}으로 나눈 $5.1$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$17$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cReason": "'분자만큼의 배'는 맥락 없이 이해하기 어려워 실제 수와 계산 연결로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1384,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc27",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "소수 배 한 뒤 $10$배 하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 한 자리 수를 분모가 $10$인 분수로 나타내면, 그 소수 배 한 양을 다시 $10$배 한 것은 처음 양의 {분자만큼의 배}이다.",
+        "studentC": "소수 한 자리 수를 분모가 $10$인 분수로 나타내면, 그 소수 배 한 양을 다시 $10$배 한 것은 처음 양의 □이다.",
+        "answers": [
+          "분자만큼의 배"
+        ]
+      },
+      "sourceFingerprint": "21b8b465961f893a54ff1a26e51e66d7fbf1396ab8b824a0cf368cccd51893b5",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "cProposedAnswers": [
+        "$17$",
+        "$10$"
+      ],
+      "cStudentAfter": "$1.7=\\frac{17}{10}$이므로 어떤 양을 $1.7$배 한 뒤 다시 $10$배 하면 처음 양의 □배이다. 그래서 $3\\times 1.7$은 $3\\times 17=51$을 □으로 나눈 $5.1$이다.",
+      "cMarkedSentence": "$1.7=\\frac{17}{10}$이므로 어떤 양을 $1.7$배 한 뒤 다시 $10$배 하면 처음 양의 {$17$}배이다. 그래서 $3\\times 1.7$은 $3\\times 17=51$을 {$10$}으로 나눈 $5.1$이다.",
+      "cStudentSentence": "$1.7=\\frac{17}{10}$이므로 어떤 양을 $1.7$배 한 뒤 다시 $10$배 하면 처음 양의 □배이다. 그래서 $3\\times 1.7$은 $3\\times 17=51$을 □으로 나눈 $5.1$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$17$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 양을 $1.7$배 한 다음 다시 $10$배 하면 처음 양의 몇 배가 되는지 쓰고, $1.7$을 분수로 나타내어 그 까닭을 설명하시오.",
+        "answer": "$17$배가 된다. $1.7=\\frac{17}{10}$이므로 $10$배 하면 $\\frac{17}{10}\\times 10=17$이 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$17$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.7=\\frac{17}{10}$이라서 $10$배 하면 분모 $10$이 없어진다",
+              "$\\frac{17}{10}\\times 10=17$",
+              "$1.7\\times 10=17$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.7=\\frac{17}{10}$이므로 어떤 양을 $1.7$배 한 뒤 다시 $10$배 하면 처음 양의 {$17$}배이다. 그래서 $3\\times 1.7$은 $3\\times 17=51$을 {$10$}으로 나눈 $5.1$이다.",
+        "acceptedAnswers": [
+          [
+            "$17$"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "05f9b761127548be32a52f83da9c8923f109b6ad204773aefbb4ce7d758c0024",
+      "questionRevision": "planning-e5e6-20261006-05f9b7611275",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc1",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "소수 한 자리 수끼리의 곱셈을 분수의 곱셈으로 고쳐 계산하는 방법을 쓰고, 그 방법으로 $0.3\\times0.2$를 계산하시오.",
+      "bAnswer": "두 소수를 분모가 $10$인 분수로 고쳐 곱한 다음 다시 소수로 고친다. $\\frac{3}{10}\\times\\frac{2}{10}=\\frac{6}{100}=0.06$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 소수를 분모가 $10$인 분수로 고쳐 곱한다",
+            "소수를 분수로 고쳐 분자끼리, 분모끼리 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.3\\times0.2=0.06$",
+            "$\\frac{6}{100}=0.06$"
+          ]
+        }
+      ],
+      "bGoal": "소수 한 자리 수의 곱을 분수의 곱으로 고쳐 계산한다.",
+      "bReason": "원문 예시는 분모를 $10$으로 쓰는 까닭만 물어, 고쳐서 곱하는 전체 방법을 묻도록 바꾸었다.",
+      "cDecision": "keep",
+      "cAfter": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 {$100$}인 분수가 된다.",
+      "cReason": "분모가 $10$인 두 분수의 곱이라는 조건이 문장에 있어 분모 $100$을 스스로 구할 수 있는 짧은 계산 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1385,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc1",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "소수 한 자리 수끼리 분수로 고쳐 곱하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 {$100$}인 분수가 된다.",
+        "example": {
+          "prompt": "$0.3$과 $0.2$를 분수로 고칠 때 분모를 모두 $10$으로 쓰는 까닭은?",
+          "answer": "둘 다 $0.1$이 몇 개인 수라서"
+        },
+        "studentC": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 □인 분수가 된다.",
+        "answers": [
+          "$100$"
+        ]
+      },
+      "sourceFingerprint": "972a3a4be3b8488a7c81b21b6486f0df1c453401bb80e9f198f867827b0eb97c",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cFrozenDefinition": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 {$100$}인 분수가 된다.",
+      "cFrozenStudentSentence": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 □인 분수가 된다.",
+      "cProposedAnswers": [
+        "$100$"
+      ],
+      "cStudentAfter": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 □인 분수가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 {$100$}인 분수가 된다.",
+      "cStudentSentence": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 □인 분수가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 한 자리 수끼리의 곱셈을 분수의 곱셈으로 고쳐 계산하는 방법을 쓰고, 그 방법으로 $0.3\\times0.2$를 계산하시오.",
+        "answer": "두 소수를 분모가 $10$인 분수로 고쳐 곱한 다음 다시 소수로 고친다. $\\frac{3}{10}\\times\\frac{2}{10}=\\frac{6}{100}=0.06$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 소수를 분모가 $10$인 분수로 고쳐 곱한다",
+              "소수를 분수로 고쳐 분자끼리, 분모끼리 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.3\\times0.2=0.06$",
+              "$\\frac{6}{100}=0.06$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 한 자리 수끼리의 곱은 분모가 $10$인 두 분수의 곱으로 고치면 분모가 {$100$}인 분수가 된다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c550f648a95575c07aafc6fb4195a7dcb6402c5f943d18b90e48563e70fb266f",
+      "questionRevision": "planning-e5e6-20261006-c550f648a955",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc3",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "소수 한 자리 수끼리의 곱을 $0.01$의 개수로 본다.",
+      "bReason": "$0.01$이 몇 개인지로 곱을 설명하는 내용은 xc4의 B 답에 그대로 들어 있다.",
+      "exclusionReason": "B는 e5-2-4-5-xc4(소수점 위치의 까닭)와 e5-2-4-5-c3이 같은 생각을 다루어 대체한다.",
+      "cDecision": "revise",
+      "cAfter": "$0.3\\times0.4$는 $0.01$이 {$12$}개인 수이므로 {$0.12$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.12$"
+          ]
+        }
+      ],
+      "cReason": "단위 $0.01$만 채우는 추상 문장이라 실제 식에서 개수와 곱을 답하게 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1386,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc3",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "$0.01$의 개수로 보는 곱",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수 한 자리 수끼리의 곱은 {$0.01$}이 몇 개인지로 나타낼 수 있다.",
+        "studentC": "소수 한 자리 수끼리의 곱은 □이 몇 개인지로 나타낼 수 있다.",
+        "answers": [
+          "$0.01$"
+        ]
+      },
+      "sourceFingerprint": "9283b9ecfb2d4f862671d36a78df7a7dbb789e4389265b59839f7a46546f60d9",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$0.12$"
+      ],
+      "cStudentAfter": "$0.3\\times0.4$는 $0.01$이 □개인 수이므로 □이다.",
+      "cMarkedSentence": "$0.3\\times0.4$는 $0.01$이 {$12$}개인 수이므로 {$0.12$}이다.",
+      "cStudentSentence": "$0.3\\times0.4$는 $0.01$이 □개인 수이므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.3\\times0.4$는 $0.01$이 {$12$}개인 수이므로 {$0.12$}이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$0.12$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-4-5-xc4(소수점 위치의 까닭)와 e5-2-4-5-c3이 같은 생각을 다루어 대체한다."
+      },
+      "proposalFingerprint": "82c73b2ca9d0d3135d6451836f47c9424cad7194d4addc85132e87a8c2e8c8b2",
+      "questionRevision": "planning-e5e6-20261006-82c73b2ca9d0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0.6\\times0.7$을 $6\\times7=42$로 계산한 뒤 소수점을 찍으려고 한다. 곱을 쓰고, 소수점을 그 자리에 찍는 까닭을 $0.1\\times0.1$의 크기를 이용해 설명하시오.",
+      "bAnswer": "곱은 $0.42$이다. $0.6$은 $0.1$이 $6$개, $0.7$은 $0.1$이 $7$개이고 $0.1\\times0.1=0.01$이므로, 곱은 $0.01$이 $42$개인 수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.6\\times0.7=0.42$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.1\\times0.1=0.01$이므로 곱은 $0.01$이 $42$개인 수이다",
+            "$\\frac{1}{10}\\times\\frac{1}{10}=\\frac{1}{100}$이므로 곱은 $\\frac{42}{100}$이다"
+          ]
+        }
+      ],
+      "bGoal": "소수 한 자리 수끼리의 곱이 소수 두 자리가 되는 까닭을 설명한다.",
+      "bReason": "방법은 c1에서 묻으므로 여기서는 소수점 위치의 까닭을 구체적인 식으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0.8\\times0.4$는 $8\\times4=32$에서 소수점 아래가 {$2$}자리가 되도록 소수점을 찍어 {$0.32$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.32$"
+          ]
+        }
+      ],
+      "cReason": "'끝에서 두 자리'는 외워야 하는 구절이라 실제 식에서 자리 수와 곱을 답하게 바꾸었다.",
+      "coreAfter": "소수 한 자리 수끼리 곱할 때는 자연수처럼 곱하고 자릿수가 모자라면 앞에 $0$을 쓴다. 그런 뒤 오른쪽에서 {두 자리}를 세어 소수점을 찍는다.",
+      "coreReason": "자연수의 곱이 한 자리 수이면($2\\times3=6$) '끝에서 두 자리 앞'이라는 설명을 적용할 수 없다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "끝에서 두 자리라는 원문 표적의 방향은 오른쪽으로 명시하고 핵심 수 두 자리를 유지한다. 곱이 한 자리인 때 필요한0 보완을 설명한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1387,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc4",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "소수 한 자리 수끼리의 곱",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 한 자리 수끼리 곱할 때는 자연수처럼 곱한 값의 {끝에서 두 자리} 앞에 소수점을 찍는다.",
+        "studentC": "소수 한 자리 수끼리 곱할 때는 자연수처럼 곱한 값의 □ 앞에 소수점을 찍는다.",
+        "answers": [
+          "끝에서 두 자리"
+        ]
+      },
+      "sourceFingerprint": "1c664a6705d2c09d289180f4be80832e962701492e73f1af9b13925e75276995",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$0.32$"
+      ],
+      "cStudentAfter": "$0.8\\times0.4$는 $8\\times4=32$에서 소수점 아래가 □자리가 되도록 소수점을 찍어 □이다.",
+      "cMarkedSentence": "$0.8\\times0.4$는 $8\\times4=32$에서 소수점 아래가 {$2$}자리가 되도록 소수점을 찍어 {$0.32$}이다.",
+      "cStudentSentence": "$0.8\\times0.4$는 $8\\times4=32$에서 소수점 아래가 □자리가 되도록 소수점을 찍어 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        },
+        {
+          "key": "$0.32$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.6\\times0.7$을 $6\\times7=42$로 계산한 뒤 소수점을 찍으려고 한다. 곱을 쓰고, 소수점을 그 자리에 찍는 까닭을 $0.1\\times0.1$의 크기를 이용해 설명하시오.",
+        "answer": "곱은 $0.42$이다. $0.6$은 $0.1$이 $6$개, $0.7$은 $0.1$이 $7$개이고 $0.1\\times0.1=0.01$이므로, 곱은 $0.01$이 $42$개인 수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.6\\times0.7=0.42$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1\\times0.1=0.01$이므로 곱은 $0.01$이 $42$개인 수이다",
+              "$\\frac{1}{10}\\times\\frac{1}{10}=\\frac{1}{100}$이므로 곱은 $\\frac{42}{100}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.8\\times0.4$는 $8\\times4=32$에서 소수점 아래가 {$2$}자리가 되도록 소수점을 찍어 {$0.32$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ],
+          [
+            "$0.32$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0e7a852f6c5989edbbeb5d7ea07fd4883963505592bba8ceabcecd99348a1f82",
+      "questionRevision": "planning-e5e6-20261006-0e7a852f6c59",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "가로 $0.4\\,\\mathrm{m}$, 세로 $0.3\\,\\mathrm{m}$인 직사각형을 한 변이 $0.1\\,\\mathrm{m}$인 작은 정사각형으로 나누어 넓이를 구하려고 한다. 작은 정사각형 하나의 넓이와 개수를 이용해 넓이를 구하는 방법을 설명하시오.",
+      "bAnswer": "작은 정사각형 하나의 넓이는 $0.01\\,\\mathrm{m}^2$이다. 가로로 $4$개, 세로로 $3$개씩 모두 $12$개이므로 넓이는 $0.12\\,\\mathrm{m}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 정사각형 하나의 넓이는 $0.01\\,\\mathrm{m}^2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은 정사각형은 $4\\times3=12$개이다",
+            "작은 정사각형은 $12$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이는 $0.12\\,\\mathrm{m}^2$이다"
+          ]
+        }
+      ],
+      "bGoal": "소수의 곱을 작은 정사각형의 넓이와 개수로 구한다.",
+      "bReason": "그림 없이도 풀 수 있게 치수와 작은 정사각형의 크기를 질문 안에 모두 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $0.5\\,\\mathrm{m}$, 세로 $0.3\\,\\mathrm{m}$인 직사각형은 한 변이 $0.1\\,\\mathrm{m}$인 정사각형 {$15$}개로 채워지고, 이 정사각형 하나의 넓이가 $0.01\\,\\mathrm{m}^2$이므로 넓이는 {$0.15$}$\\,\\mathrm{m}^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.15$"
+          ]
+        }
+      ],
+      "cReason": "'개수'라는 낱말만 채우면 배우는 것이 없어 실제 개수와 넓이를 구하게 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1388,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc5",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "작은 정사각형으로 세는 넓이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "가로와 세로를 $\\mathrm{m}$로 나타낸 값이 소수 한 자리 수이면, 넓이는 한 변이 $0.1\\,\\mathrm{m}$인 정사각형의 {개수}로 셀 수 있다.",
+        "studentC": "가로와 세로를 $\\mathrm{m}$로 나타낸 값이 소수 한 자리 수이면, 넓이는 한 변이 $0.1\\,\\mathrm{m}$인 정사각형의 □로 셀 수 있다.",
+        "answers": [
+          "개수"
+        ]
+      },
+      "sourceFingerprint": "bf42556ecff8ca049f5a94a603686d4ddfda587fd76f2a8ca628441ae13ad387",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$15$",
+        "$0.15$"
+      ],
+      "cStudentAfter": "가로 $0.5\\,\\mathrm{m}$, 세로 $0.3\\,\\mathrm{m}$인 직사각형은 한 변이 $0.1\\,\\mathrm{m}$인 정사각형 □개로 채워지고, 이 정사각형 하나의 넓이가 $0.01\\,\\mathrm{m}^2$이므로 넓이는 □$\\,\\mathrm{m}^2$이다.",
+      "cMarkedSentence": "가로 $0.5\\,\\mathrm{m}$, 세로 $0.3\\,\\mathrm{m}$인 직사각형은 한 변이 $0.1\\,\\mathrm{m}$인 정사각형 {$15$}개로 채워지고, 이 정사각형 하나의 넓이가 $0.01\\,\\mathrm{m}^2$이므로 넓이는 {$0.15$}$\\,\\mathrm{m}^2$이다.",
+      "cStudentSentence": "가로 $0.5\\,\\mathrm{m}$, 세로 $0.3\\,\\mathrm{m}$인 직사각형은 한 변이 $0.1\\,\\mathrm{m}$인 정사각형 □개로 채워지고, 이 정사각형 하나의 넓이가 $0.01\\,\\mathrm{m}^2$이므로 넓이는 □$\\,\\mathrm{m}^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로 $0.4\\,\\mathrm{m}$, 세로 $0.3\\,\\mathrm{m}$인 직사각형을 한 변이 $0.1\\,\\mathrm{m}$인 작은 정사각형으로 나누어 넓이를 구하려고 한다. 작은 정사각형 하나의 넓이와 개수를 이용해 넓이를 구하는 방법을 설명하시오.",
+        "answer": "작은 정사각형 하나의 넓이는 $0.01\\,\\mathrm{m}^2$이다. 가로로 $4$개, 세로로 $3$개씩 모두 $12$개이므로 넓이는 $0.12\\,\\mathrm{m}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "작은 정사각형 하나의 넓이는 $0.01\\,\\mathrm{m}^2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "작은 정사각형은 $4\\times3=12$개이다",
+              "작은 정사각형은 $12$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이는 $0.12\\,\\mathrm{m}^2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $0.5\\,\\mathrm{m}$, 세로 $0.3\\,\\mathrm{m}$인 직사각형은 한 변이 $0.1\\,\\mathrm{m}$인 정사각형 {$15$}개로 채워지고, 이 정사각형 하나의 넓이가 $0.01\\,\\mathrm{m}^2$이므로 넓이는 {$0.15$}$\\,\\mathrm{m}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ],
+          [
+            "$0.15$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "676d1a79fa207ba44072f9477e11397a676853d89077360cc07c3207cbb0e3c2",
+      "questionRevision": "planning-e5e6-20261006-676d1a79fa20",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수에 $0.5$를 곱한 값은 처음 수와 어떤 관계인지 쓰고, 그 까닭을 $0.5$를 분수로 고쳐 설명하시오. 또 $0.8\\times0.5$를 구하시오.",
+      "bAnswer": "처음 수의 절반이 된다. $0.5=\\frac{1}{2}$이므로 $0.5$를 곱하는 것은 $\\frac{1}{2}$을 곱하는 것과 같다. $0.8\\times0.5=0.4$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 수의 절반이 된다",
+            "처음 수의 $\\frac{1}{2}$이 된다",
+            "처음 수를 $2$로 나눈 값이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5=\\frac{1}{2}$이다",
+            "$0.5=\\frac{5}{10}$이고 이것은 $\\frac{1}{2}$과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.8\\times0.5=0.4$"
+          ]
+        }
+      ],
+      "bGoal": "$0.5$를 곱하면 절반이 되는 까닭을 분수로 설명한다.",
+      "bReason": "결론인 '절반'을 질문에서 말하지 않고 관계와 까닭을 묻도록 했다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 소수에 $0.5$를 곱하면 그 소수의 {절반}이 된다.",
+      "cReason": "$0.5$를 곱한 결과와 처음 수의 관계를 낱말 하나로 답하는 짧고 분명한 문장이다.",
+      "synonymNotes": "'반', '$\\frac{1}{2}$'도 같은 답으로 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1389,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc6",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "$0.5$를 곱하면 절반",
+        "kind": "성질",
+        "level": "하",
+        "definition": "어떤 소수에 $0.5$를 곱하면 그 소수의 {절반}이 된다.",
+        "studentC": "어떤 소수에 $0.5$를 곱하면 그 소수의 □이 된다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "sourceFingerprint": "eb43fcdffb3a24bcde7234eee5b5c67f4a52a1f3def9b83aaa88c25e04a65251",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cFrozenDefinition": "어떤 소수에 $0.5$를 곱하면 그 소수의 {절반}이 된다.",
+      "cFrozenStudentSentence": "어떤 소수에 $0.5$를 곱하면 그 소수의 □이 된다.",
+      "cProposedAnswers": [
+        "절반"
+      ],
+      "cStudentAfter": "어떤 소수에 $0.5$를 곱하면 그 소수의 □이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "절반"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 소수에 $0.5$를 곱하면 그 소수의 {절반}이 된다.",
+      "cStudentSentence": "어떤 소수에 $0.5$를 곱하면 그 소수의 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "절반",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수에 $0.5$를 곱한 값은 처음 수와 어떤 관계인지 쓰고, 그 까닭을 $0.5$를 분수로 고쳐 설명하시오. 또 $0.8\\times0.5$를 구하시오.",
+        "answer": "처음 수의 절반이 된다. $0.5=\\frac{1}{2}$이므로 $0.5$를 곱하는 것은 $\\frac{1}{2}$을 곱하는 것과 같다. $0.8\\times0.5=0.4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 수의 절반이 된다",
+              "처음 수의 $\\frac{1}{2}$이 된다",
+              "처음 수를 $2$로 나눈 값이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5=\\frac{1}{2}$이다",
+              "$0.5=\\frac{5}{10}$이고 이것은 $\\frac{1}{2}$과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.8\\times0.5=0.4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 소수에 $0.5$를 곱하면 그 소수의 {절반}이 된다.",
+        "acceptedAnswers": [
+          [
+            "절반"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b93279bc50c4889eff0e0280069a5419555fc831b107749c3c7ade03cd98dc94",
+      "questionRevision": "planning-e5e6-20261006-b93279bc50c4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc7",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 어떤 소수에 다른 소수를 곱했더니 곱이 처음 소수보다 작아졌다. 곱한 소수는 $1$과 비교해 어떤 수인지 쓰고, $1$을 곱할 때와 견주어 그 까닭을 설명하시오.",
+      "bAnswer": "곱한 소수는 $1$보다 작은 수이다. $1$을 곱하면 처음 수 그대로이고, $1$보다 작은 수를 곱하면 처음 수의 일부만 되어 작아지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱한 소수는 $1$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$을 곱하면 처음 수와 같고 $1$보다 작은 수를 곱하면 처음 수보다 작아진다",
+            "$1$배보다 적게 곱하면 처음 수의 일부만 된다"
+          ]
+        }
+      ],
+      "bGoal": "곱이 작아진 것에서 곱한 수가 $1$보다 작음을 추론한다.",
+      "bReason": "'곱과 곱해지는 수'라는 제목 대신 상황과 비교 기준 $1$을 질문에 밝혔다.",
+      "cDecision": "revise",
+      "cAfter": "$0$이 아닌 소수에 어떤 소수를 곱한 곱이 처음 소수보다 작으면 곱한 소수는 $1$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "작은 수이다"
+          ]
+        }
+      ],
+      "cReason": "문장 끝이 통째로 빈칸이면 어떤 꼴로 답할지 알 수 없어 기준 $1$을 보여 주고 크기 비교만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1390,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc7",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "곱과 곱해지는 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0$이 아닌 소수에 어떤 소수를 곱한 곱이 처음 소수보다 작으면 곱한 소수는 {$1$보다 작다}.",
+        "studentC": "$0$이 아닌 소수에 어떤 소수를 곱한 곱이 처음 소수보다 작으면 곱한 소수는 □.",
+        "answers": [
+          "$1$보다 작다"
+        ]
+      },
+      "sourceFingerprint": "2b375b2364d14c7e4d759757fa42445b9fdd4b2a0c8c6fa1c854a86d8ac96a1d",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$0$이 아닌 소수에 어떤 소수를 곱한 곱이 처음 소수보다 작으면 곱한 소수는 $1$보다 □.",
+      "cMarkedSentence": "$0$이 아닌 소수에 어떤 소수를 곱한 곱이 처음 소수보다 작으면 곱한 소수는 $1$보다 {작다}.",
+      "cStudentSentence": "$0$이 아닌 소수에 어떤 소수를 곱한 곱이 처음 소수보다 작으면 곱한 소수는 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "작은 수이다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 어떤 소수에 다른 소수를 곱했더니 곱이 처음 소수보다 작아졌다. 곱한 소수는 $1$과 비교해 어떤 수인지 쓰고, $1$을 곱할 때와 견주어 그 까닭을 설명하시오.",
+        "answer": "곱한 소수는 $1$보다 작은 수이다. $1$을 곱하면 처음 수 그대로이고, $1$보다 작은 수를 곱하면 처음 수의 일부만 되어 작아지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱한 소수는 $1$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$을 곱하면 처음 수와 같고 $1$보다 작은 수를 곱하면 처음 수보다 작아진다",
+              "$1$배보다 적게 곱하면 처음 수의 일부만 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$이 아닌 소수에 어떤 소수를 곱한 곱이 처음 소수보다 작으면 곱한 소수는 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "작은 수이다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0d2371d32d5e7861cf5c2baa2147a104d8ad7834af8c558d297c5dcc5460802a",
+      "questionRevision": "planning-e5e6-20261006-0d2371d32d5e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc8",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 소수의 곱은 순서를 바꾸어도 같음을 안다.",
+      "bReason": "자연수와 분수에서 이미 아는 성질이라 서술형으로 물을 내용이 없다.",
+      "exclusionReason": "B는 자명한 성질 확인이라 가치가 낮다. 순서를 바꾸어 곱하는 활용은 e5-2-4-5-xc22의 B가 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "$0.6\\times0.9=0.54$이므로 $0.9\\times0.6=$ {$0.54$}이다. 두 소수를 곱할 때 순서를 바꾸어도 곱은 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.54$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "'순서를 바꾸어도'라는 구절을 빈칸으로 두면 답이 여러 가지라 식의 값과 결론 낱말로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1391,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc8",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "곱하는 순서 바꾸기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 소수를 곱할 때 {순서를 바꾸어도} 곱이 같다.",
+        "studentC": "두 소수를 곱할 때 □ 곱이 같다.",
+        "answers": [
+          "순서를 바꾸어도"
+        ]
+      },
+      "sourceFingerprint": "9d68f6e3e428876fbd2dd1c064b937a0373303e4ab09013f3e805cc801f01061",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$0.54$",
+        "같다"
+      ],
+      "cStudentAfter": "$0.6\\times0.9=0.54$이므로 $0.9\\times0.6=$ □이다. 두 소수를 곱할 때 순서를 바꾸어도 곱은 □.",
+      "cMarkedSentence": "$0.6\\times0.9=0.54$이므로 $0.9\\times0.6=$ {$0.54$}이다. 두 소수를 곱할 때 순서를 바꾸어도 곱은 {같다}.",
+      "cStudentSentence": "$0.6\\times0.9=0.54$이므로 $0.9\\times0.6=$ □이다. 두 소수를 곱할 때 순서를 바꾸어도 곱은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.54$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.6\\times0.9=0.54$이므로 $0.9\\times0.6=$ {$0.54$}이다. 두 소수를 곱할 때 순서를 바꾸어도 곱은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$0.54$"
+          ],
+          [
+            "같다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 성질 확인이라 가치가 낮다. 순서를 바꾸어 곱하는 활용은 e5-2-4-5-xc22의 B가 다룬다."
+      },
+      "proposalFingerprint": "3a575626e17002c329720e4a60d6555ff0cde10b077dd4486a24cf590489df06",
+      "questionRevision": "planning-e5e6-20261006-3a575626e170",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc9",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$0.01$이 몇 개인 수와 $0.1$이 몇 개인 수를 곱하면, 곱은 얼마가 몇 개인 수가 되는지 까닭과 함께 쓰시오. 또 이를 이용해 $0.07\\times0.5$를 구하시오.",
+      "bAnswer": "$0.01\\times0.1=0.001$이므로 곱은 $0.001$이 (두 개수의 곱)개인 수이다. $0.07\\times0.5$는 $0.001$이 $7\\times5=35$개이므로 $0.035$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.01\\times0.1=0.001$이다",
+            "$\\frac{1}{100}\\times\\frac{1}{10}=\\frac{1}{1000}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱은 $0.001$이 두 개수를 곱한 만큼 있는 수이다",
+            "곱은 $0.001$이 몇 개인 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.07\\times0.5=0.035$"
+          ]
+        }
+      ],
+      "bGoal": "소수 두 자리 수와 한 자리 수의 곱을 $0.001$의 개수로 구한다.",
+      "bReason": "단위 $0.001$을 질문에서 알려 주지 않고 단위끼리의 곱에서 스스로 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.12$는 $0.01$이 $12$개, $0.3$은 $0.1$이 $3$개이므로 $0.12\\times0.3$은 {$0.001$}이 {$36$}개인 수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.001$",
+            "$\\frac{1}{1000}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36$"
+          ]
+        }
+      ],
+      "cReason": "'$0.001$의 개수'를 통째로 묻던 빈칸을 단위와 개수로 나누어 실제 식에서 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1392,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc9",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "소수 두 자리 수와 소수 한 자리 수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 두 자리 수는 $0.01$의 개수이고 한 자리 수는 $0.1$의 개수이므로, 두 수의 곱은 {$0.001$의 개수}로 나타낸다.",
+        "studentC": "소수 두 자리 수는 $0.01$의 개수이고 한 자리 수는 $0.1$의 개수이므로, 두 수의 곱은 □로 나타낸다.",
+        "answers": [
+          "$0.001$의 개수"
+        ]
+      },
+      "sourceFingerprint": "413d4967d6821195c79f8374b81fd46afb3ca2f642e5407aff74d1d1331ffc3b",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$0.001$",
+        "$36$"
+      ],
+      "cStudentAfter": "$0.12$는 $0.01$이 $12$개, $0.3$은 $0.1$이 $3$개이므로 $0.12\\times0.3$은 □이 □개인 수이다.",
+      "cMarkedSentence": "$0.12$는 $0.01$이 $12$개, $0.3$은 $0.1$이 $3$개이므로 $0.12\\times0.3$은 {$0.001$}이 {$36$}개인 수이다.",
+      "cStudentSentence": "$0.12$는 $0.01$이 $12$개, $0.3$은 $0.1$이 $3$개이므로 $0.12\\times0.3$은 □이 □개인 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.001$",
+          "equivalents": [
+            "$\\frac{1}{1000}$"
+          ]
+        },
+        {
+          "key": "$36$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.01$이 몇 개인 수와 $0.1$이 몇 개인 수를 곱하면, 곱은 얼마가 몇 개인 수가 되는지 까닭과 함께 쓰시오. 또 이를 이용해 $0.07\\times0.5$를 구하시오.",
+        "answer": "$0.01\\times0.1=0.001$이므로 곱은 $0.001$이 (두 개수의 곱)개인 수이다. $0.07\\times0.5$는 $0.001$이 $7\\times5=35$개이므로 $0.035$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.01\\times0.1=0.001$이다",
+              "$\\frac{1}{100}\\times\\frac{1}{10}=\\frac{1}{1000}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱은 $0.001$이 두 개수를 곱한 만큼 있는 수이다",
+              "곱은 $0.001$이 몇 개인 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.07\\times0.5=0.035$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.12$는 $0.01$이 $12$개, $0.3$은 $0.1$이 $3$개이므로 $0.12\\times0.3$은 {$0.001$}이 {$36$}개인 수이다.",
+        "acceptedAnswers": [
+          [
+            "$0.001$",
+            "$\\frac{1}{1000}$"
+          ],
+          [
+            "$36$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6f46c4e1f0f9b2dcd6fe6415956886e7ecfc34b6a36e58b2eed21c8e9408b1d8",
+      "questionRevision": "planning-e5e6-20261006-6f46c4e1f0f9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수에 $0.1$을 곱하면 그 수의 크기와 소수점의 위치가 어떻게 달라지는지 쓰고, $0.4\\times0.1$을 구하시오.",
+      "bAnswer": "처음 수의 $\\frac{1}{10}$이 되고, 소수점이 왼쪽으로 한 자리 옮겨진다. $0.4\\times0.1=0.04$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 수의 $\\frac{1}{10}$이 된다",
+            "처음 수를 $10$으로 나눈 값이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "소수점이 왼쪽으로 한 자리 옮겨진다",
+            "숫자들이 오른쪽으로 한 자리씩 옮겨진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.4\\times0.1=0.04$"
+          ]
+        }
+      ],
+      "bGoal": "$0.1$을 곱할 때의 크기 변화와 소수점 이동을 연결한다.",
+      "bReason": "소수점 규칙만 외우지 않도록 크기 변화도 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 수에 $0.1$을 곱하면 소수점이 {왼쪽}으로 {한} 자리 옮겨진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "왼쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "한",
+            "$1$"
+          ]
+        }
+      ],
+      "cReason": "방향과 자리 수가 한 빈칸에 묶여 있어 두 빈칸으로 나누어 답의 꼴을 분명히 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1393,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc10",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "$0.1$을 곱하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "어떤 수에 $0.1$을 곱하면 소수점이 {왼쪽으로 한 자리} 옮겨진다.",
+        "studentC": "어떤 수에 $0.1$을 곱하면 소수점이 □ 옮겨진다.",
+        "answers": [
+          "왼쪽으로 한 자리"
+        ]
+      },
+      "sourceFingerprint": "7ef390e112918879b0fc3765f376b2791c444d8347008df1291239f9f2f452be",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "왼쪽",
+        "한"
+      ],
+      "cStudentAfter": "어떤 수에 $0.1$을 곱하면 소수점이 □으로 □ 자리 옮겨진다.",
+      "cMarkedSentence": "어떤 수에 $0.1$을 곱하면 소수점이 {왼쪽}으로 {한} 자리 옮겨진다.",
+      "cStudentSentence": "어떤 수에 $0.1$을 곱하면 소수점이 □으로 □ 자리 옮겨진다.",
+      "cSlotAnswers": [
+        {
+          "key": "왼쪽",
+          "equivalents": []
+        },
+        {
+          "key": "한",
+          "equivalents": [
+            "$1$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수에 $0.1$을 곱하면 그 수의 크기와 소수점의 위치가 어떻게 달라지는지 쓰고, $0.4\\times0.1$을 구하시오.",
+        "answer": "처음 수의 $\\frac{1}{10}$이 되고, 소수점이 왼쪽으로 한 자리 옮겨진다. $0.4\\times0.1=0.04$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 수의 $\\frac{1}{10}$이 된다",
+              "처음 수를 $10$으로 나눈 값이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수점이 왼쪽으로 한 자리 옮겨진다",
+              "숫자들이 오른쪽으로 한 자리씩 옮겨진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.4\\times0.1=0.04$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수에 $0.1$을 곱하면 소수점이 {왼쪽}으로 {한} 자리 옮겨진다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽"
+          ],
+          [
+            "한",
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "767bf80c14d0eb0ed142fcac680a523d6f094e69e87a6689579fe3d095769c6c",
+      "questionRevision": "planning-e5e6-20261006-767bf80c14d0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "소수의 곱을 정확히 계산하기 전에 곱이 대략 얼마쯤인지 알아보는 방법을 쓰시오. 또 그 방법으로 $0.52\\times0.29$의 곱이 $0.15$와 $1.5$ 중 어느 쪽에 가까운지 판단하시오.",
+      "bAnswer": "두 소수를 각각 가까운 쉬운 수로 바꾸어 곱한다. $0.52$는 $0.5$로, $0.29$는 $0.3$으로 바꾸면 $0.5\\times0.3=0.15$이므로 $0.15$에 가깝다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 소수를 가까운 쉬운 수로 바꾸어 곱한다",
+            "두 소수를 어림한 수로 바꾸어 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5\\times0.3=0.15$이므로 $0.15$에 가깝다",
+            "곱은 $0.15$에 가깝다"
+          ]
+        }
+      ],
+      "bGoal": "쉬운 수로 바꾸어 곱의 크기를 어림하고 소수점 위치를 점검한다.",
+      "bReason": "어림이 실제로 쓰이는 소수점 위치 판단 상황을 예로 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "$0.49\\times0.82$의 곱은 $0.49$를 $0.5$로, $0.82$를 {$0.8$}로 바꾸어 곱한 {$0.4$}에 가깝다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.4$",
+            "$0.40$"
+          ]
+        }
+      ],
+      "cReason": "'대략적인 크기'는 외워야 하는 구절이라 실제로 어림한 수와 값을 답하게 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1394,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc12",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "곱의 어림",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 소수를 각각 가까운 쉬운 소수로 바꾸어 곱하면 곱의 {대략적인 크기}를 알 수 있다.",
+        "studentC": "두 소수를 각각 가까운 쉬운 소수로 바꾸어 곱하면 곱의 □를 알 수 있다.",
+        "answers": [
+          "대략적인 크기"
+        ]
+      },
+      "sourceFingerprint": "5b176ef882a394eb3b36f447cfe609a6d82ac54b19071b1326f6efaa37c2cb69",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$0.8$",
+        "$0.4$"
+      ],
+      "cStudentAfter": "$0.49\\times0.82$의 곱은 $0.49$를 $0.5$로, $0.82$를 □로 바꾸어 곱한 □에 가깝다.",
+      "cMarkedSentence": "$0.49\\times0.82$의 곱은 $0.49$를 $0.5$로, $0.82$를 {$0.8$}로 바꾸어 곱한 {$0.4$}에 가깝다.",
+      "cStudentSentence": "$0.49\\times0.82$의 곱은 $0.49$를 $0.5$로, $0.82$를 □로 바꾸어 곱한 □에 가깝다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.8$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.4$",
+          "equivalents": [
+            "$0.40$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수의 곱을 정확히 계산하기 전에 곱이 대략 얼마쯤인지 알아보는 방법을 쓰시오. 또 그 방법으로 $0.52\\times0.29$의 곱이 $0.15$와 $1.5$ 중 어느 쪽에 가까운지 판단하시오.",
+        "answer": "두 소수를 각각 가까운 쉬운 수로 바꾸어 곱한다. $0.52$는 $0.5$로, $0.29$는 $0.3$으로 바꾸면 $0.5\\times0.3=0.15$이므로 $0.15$에 가깝다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 소수를 가까운 쉬운 수로 바꾸어 곱한다",
+              "두 소수를 어림한 수로 바꾸어 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5\\times0.3=0.15$이므로 $0.15$에 가깝다",
+              "곱은 $0.15$에 가깝다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.49\\times0.82$의 곱은 $0.49$를 $0.5$로, $0.82$를 {$0.8$}로 바꾸어 곱한 {$0.4$}에 가깝다.",
+        "acceptedAnswers": [
+          [
+            "$0.8$"
+          ],
+          [
+            "$0.4$",
+            "$0.40$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9d7ae494e3d9ad1a55aaa31afddef3ce6972fa99853b73e2b6c6748417fb0587",
+      "questionRevision": "planning-e5e6-20261006-9d7ae494e3d9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0.2\\times0.4$를 $2\\times4=8$로 계산한 뒤 소수로 나타내려고 한다. 바르게 나타낸 곱을 쓰고, 이때 소수 첫째 자리에 쓰는 숫자가 어떤 역할을 하는지 설명하시오.",
+      "bAnswer": "곱은 $0.08$이다. 곱은 $0.01$이 $8$개인 수라서 $8$이 소수 둘째 자리에 있어야 한다. 소수 첫째 자리에는 $0.1$이 하나도 없으므로 $0$을 써서 자리를 채운다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.2\\times0.4=0.08$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$은 $8$이 소수 둘째 자리에 오도록 자리를 채워 준다",
+            "소수 첫째 자리에 $0.1$이 하나도 없음을 $0$으로 나타낸다"
+          ]
+        }
+      ],
+      "bGoal": "곱의 자리가 모자랄 때 $0$을 채워 쓰는 까닭을 설명한다.",
+      "bReason": "'빈 자리'라는 말 대신 자리가 모자라는 실제 식으로 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$0.2\\times0.3$은 $2\\times3=6$이고 소수점 아래가 두 자리여야 하므로, 소수 첫째 자리에 {$0$}을 써서 {$0.06$}으로 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.06$"
+          ]
+        }
+      ],
+      "cReason": "'하나도 없음'과 '자리의 단위'는 학생에게 추상적이라 자리를 채우는 실제 식으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1395,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc13",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "빈 자리의 $0$",
+        "kind": "방법",
+        "level": "중",
+        "definition": "곱을 소수로 나타낼 때 빈 자리에 쓰는 $0$은 그 자리의 단위가 {하나도 없음}을 나타내며 다른 숫자의 자리를 지켜 준다.",
+        "studentC": "곱을 소수로 나타낼 때 빈 자리에 쓰는 $0$은 그 자리의 단위가 □을 나타내며 다른 숫자의 자리를 지켜 준다.",
+        "answers": [
+          "하나도 없음"
+        ]
+      },
+      "sourceFingerprint": "3329b815bb75217e68324e3efa222bb7afa4c8a017a3b68889f501eef207b631",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$0$",
+        "$0.06$"
+      ],
+      "cStudentAfter": "$0.2\\times0.3$은 $2\\times3=6$이고 소수점 아래가 두 자리여야 하므로, 소수 첫째 자리에 □을 써서 □으로 나타낸다.",
+      "cMarkedSentence": "$0.2\\times0.3$은 $2\\times3=6$이고 소수점 아래가 두 자리여야 하므로, 소수 첫째 자리에 {$0$}을 써서 {$0.06$}으로 나타낸다.",
+      "cStudentSentence": "$0.2\\times0.3$은 $2\\times3=6$이고 소수점 아래가 두 자리여야 하므로, 소수 첫째 자리에 □을 써서 □으로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.06$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.2\\times0.4$를 $2\\times4=8$로 계산한 뒤 소수로 나타내려고 한다. 바르게 나타낸 곱을 쓰고, 이때 소수 첫째 자리에 쓰는 숫자가 어떤 역할을 하는지 설명하시오.",
+        "answer": "곱은 $0.08$이다. 곱은 $0.01$이 $8$개인 수라서 $8$이 소수 둘째 자리에 있어야 한다. 소수 첫째 자리에는 $0.1$이 하나도 없으므로 $0$을 써서 자리를 채운다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.2\\times0.4=0.08$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$은 $8$이 소수 둘째 자리에 오도록 자리를 채워 준다",
+              "소수 첫째 자리에 $0.1$이 하나도 없음을 $0$으로 나타낸다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.2\\times0.3$은 $2\\times3=6$이고 소수점 아래가 두 자리여야 하므로, 소수 첫째 자리에 {$0$}을 써서 {$0.06$}으로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$0.06$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9c5ba7954e09db3d6ad0f94e5c36b5414b84f6505eec3c1d2899e58c009bad75",
+      "questionRevision": "planning-e5e6-20261006-9c5ba7954e09",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 양의 소수 배를 구한 다음 그 값을 다시 소수 배 했다. 결과가 처음 양의 몇 배인지 구하는 방법을 쓰고, $0.8$배를 다시 $0.5$배 하면 처음 양의 몇 배인지 구하시오.",
+      "bAnswer": "두 소수를 곱하면 된다. $0.8\\times0.5=0.4$이므로 처음 양의 $0.4$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 소수를 곱한다",
+            "두 배수를 곱한 만큼의 배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 양의 $0.4$배이다",
+            "$0.8\\times0.5=0.4$"
+          ]
+        }
+      ],
+      "bGoal": "소수 배를 거듭하면 두 소수의 곱만큼의 배가 됨을 적용한다.",
+      "bReason": "'배의 배'라는 편집용 제목 대신 상황을 풀어서 물었다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 양의 $0.5$배를 다시 $0.4$배 하면 처음 양의 {$0.2$}배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.2$",
+            "$0.20$"
+          ]
+        }
+      ],
+      "cReason": "'두 소수를 곱한'이라는 구절 대신 구체적인 배수로 값을 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1396,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc16",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "배의 배",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 양의 소수 배를 다시 소수 배 하면 처음 양의 {두 소수를 곱한} 배가 된다.",
+        "studentC": "어떤 양의 소수 배를 다시 소수 배 하면 처음 양의 □ 배가 된다.",
+        "answers": [
+          "두 소수를 곱한"
+        ]
+      },
+      "sourceFingerprint": "ce84a6b8976185ae9c01605493bbcca74927c5bd016112e358ac221f1af9ccfa",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$0.2$"
+      ],
+      "cStudentAfter": "어떤 양의 $0.5$배를 다시 $0.4$배 하면 처음 양의 □배가 된다.",
+      "cMarkedSentence": "어떤 양의 $0.5$배를 다시 $0.4$배 하면 처음 양의 {$0.2$}배가 된다.",
+      "cStudentSentence": "어떤 양의 $0.5$배를 다시 $0.4$배 하면 처음 양의 □배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.2$",
+          "equivalents": [
+            "$0.20$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 양의 소수 배를 구한 다음 그 값을 다시 소수 배 했다. 결과가 처음 양의 몇 배인지 구하는 방법을 쓰고, $0.8$배를 다시 $0.5$배 하면 처음 양의 몇 배인지 구하시오.",
+        "answer": "두 소수를 곱하면 된다. $0.8\\times0.5=0.4$이므로 처음 양의 $0.4$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 소수를 곱한다",
+              "두 배수를 곱한 만큼의 배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 양의 $0.4$배이다",
+              "$0.8\\times0.5=0.4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 양의 $0.5$배를 다시 $0.4$배 하면 처음 양의 {$0.2$}배가 된다.",
+        "acceptedAnswers": [
+          [
+            "$0.2$",
+            "$0.20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2ea1df8207407d2e5db03e2d520d22315aff4467f43715379eb7a8cb7e3bcc53",
+      "questionRevision": "planning-e5e6-20261006-2ea1df820740",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc17",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 크고 $1$보다 작은 두 소수를 곱하면, 곱의 크기는 두 수 각각과 비교해 어떠한지 쓰시오. 또 그 까닭을 '$1$보다 작은 수를 곱한다'는 것의 뜻으로 설명하시오.",
+      "bAnswer": "곱은 두 수 각각보다 작다. $1$보다 작은 수를 곱하면 그 수의 일부만 되는데, 두 수 모두 $1$보다 작으므로 곱은 어느 수와 비교해도 그 수의 일부이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 두 수 각각보다 작다",
+            "곱은 두 수 모두보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$보다 작은 수를 곱하면 그 수의 일부가 된다",
+            "$1$보다 작은 수를 곱하면 $1$배보다 적어져 처음 수보다 작아진다"
+          ]
+        }
+      ],
+      "bGoal": "$1$보다 작은 두 소수의 곱이 두 수보다 작은 까닭을 설명한다.",
+      "bReason": "까닭을 무엇으로 설명할지 정해 주고 결론은 학생이 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.6\\times0.3$은 $0.6$의 $0.3$배이므로 $0.6$보다 {작고}, $0.3$의 $0.6$배이므로 $0.3$보다도 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작고",
+            "작으며"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "'일부'라는 빈칸은 뜻이 막연해 구체적인 식에서 두 수와 각각 비교하게 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1397,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc17",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "곱이 두 수보다 작은 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수가 모두 $0$보다 크고 $1$보다 작으면, 곱은 각 수의 {일부}이므로 두 수 각각보다 작다.",
+        "studentC": "두 수가 모두 $0$보다 크고 $1$보다 작으면, 곱은 각 수의 □이므로 두 수 각각보다 작다.",
+        "answers": [
+          "일부"
+        ]
+      },
+      "sourceFingerprint": "eba25ccfa9694e8f2d162cfbf5cd81277cb30cd19280c38e6d26fc72b6245462",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "작고",
+        "작다"
+      ],
+      "cStudentAfter": "$0.6\\times0.3$은 $0.6$의 $0.3$배이므로 $0.6$보다 □, $0.3$의 $0.6$배이므로 $0.3$보다도 □.",
+      "cMarkedSentence": "$0.6\\times0.3$은 $0.6$의 $0.3$배이므로 $0.6$보다 {작고}, $0.3$의 $0.6$배이므로 $0.3$보다도 {작다}.",
+      "cStudentSentence": "$0.6\\times0.3$은 $0.6$의 $0.3$배이므로 $0.6$보다 □, $0.3$의 $0.6$배이므로 $0.3$보다도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작고",
+          "equivalents": [
+            "작으며"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 크고 $1$보다 작은 두 소수를 곱하면, 곱의 크기는 두 수 각각과 비교해 어떠한지 쓰시오. 또 그 까닭을 '$1$보다 작은 수를 곱한다'는 것의 뜻으로 설명하시오.",
+        "answer": "곱은 두 수 각각보다 작다. $1$보다 작은 수를 곱하면 그 수의 일부만 되는데, 두 수 모두 $1$보다 작으므로 곱은 어느 수와 비교해도 그 수의 일부이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 두 수 각각보다 작다",
+              "곱은 두 수 모두보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$보다 작은 수를 곱하면 그 수의 일부가 된다",
+              "$1$보다 작은 수를 곱하면 $1$배보다 적어져 처음 수보다 작아진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.6\\times0.3$은 $0.6$의 $0.3$배이므로 $0.6$보다 {작고}, $0.3$의 $0.6$배이므로 $0.3$보다도 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작고",
+            "작으며"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "37d5330a49458e47a7f57d2fd2bbf050edc62e401702541d89453a0770852be4",
+      "questionRevision": "planning-e5e6-20261006-37d5330a4945",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "소수 두 자리 수와 소수 한 자리 수의 곱은 언제나 소수 세 자리 수로 나타나는지 판단하고, $0.15\\times0.4$를 계산해 설명하시오.",
+      "bAnswer": "언제나 그렇지는 않다. $15\\times4=60$이므로 $0.15\\times0.4=0.060$이고, 끝의 $0$을 지우면 $0.06$으로 소수 두 자리 수가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "언제나 소수 세 자리 수가 되는 것은 아니다",
+            "소수 세 자리보다 짧아질 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.15\\times0.4=0.06$",
+            "$0.060$에서 끝의 $0$을 지우면 $0.06$이다"
+          ]
+        }
+      ],
+      "bGoal": "끝의 $0$을 지우면 곱의 소수 자리 수가 줄 수 있음을 예로 확인한다.",
+      "bReason": "결론을 알려 주지 않고 판단하게 한 뒤 끝이 $0$이 되는 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.25\\times0.4$는 $25\\times4=100$에서 $0.100$이고, 끝의 $0$을 지우면 {$0.1$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.1$"
+          ]
+        }
+      ],
+      "cReason": "'짧아질'이라는 낱말 대신 끝의 $0$을 지운 실제 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1398,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc18",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "소수 두 자리 수와 소수 한 자리 수의 곱",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 두 자리 수와 소수 한 자리 수의 곱은 끝의 $0$을 지우면 소수 세 자리보다 {짧아질} 수 있다.",
+        "studentC": "소수 두 자리 수와 소수 한 자리 수의 곱은 끝의 $0$을 지우면 소수 세 자리보다 □ 수 있다.",
+        "answers": [
+          "짧아질"
+        ]
+      },
+      "sourceFingerprint": "6a9a4bc8d4269b59e5f219e51e979cc877cb82ea00caa86462da5af1101c4b83",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$0.1$"
+      ],
+      "cStudentAfter": "$0.25\\times0.4$는 $25\\times4=100$에서 $0.100$이고, 끝의 $0$을 지우면 □이다.",
+      "cMarkedSentence": "$0.25\\times0.4$는 $25\\times4=100$에서 $0.100$이고, 끝의 $0$을 지우면 {$0.1$}이다.",
+      "cStudentSentence": "$0.25\\times0.4$는 $25\\times4=100$에서 $0.100$이고, 끝의 $0$을 지우면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 두 자리 수와 소수 한 자리 수의 곱은 언제나 소수 세 자리 수로 나타나는지 판단하고, $0.15\\times0.4$를 계산해 설명하시오.",
+        "answer": "언제나 그렇지는 않다. $15\\times4=60$이므로 $0.15\\times0.4=0.060$이고, 끝의 $0$을 지우면 $0.06$으로 소수 두 자리 수가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "언제나 소수 세 자리 수가 되는 것은 아니다",
+              "소수 세 자리보다 짧아질 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.15\\times0.4=0.06$",
+              "$0.060$에서 끝의 $0$을 지우면 $0.06$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.25\\times0.4$는 $25\\times4=100$에서 $0.100$이고, 끝의 $0$을 지우면 {$0.1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "eabce3b095c3263176c3bac8dde667fad3ba2d0a29cb9c6b493a60d67324f5d4",
+      "questionRevision": "planning-e5e6-20261006-eabce3b095c3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "세 소수를 곱할 때 먼저 곱하는 두 수를 다르게 고르면 곱이 어떻게 되는지 쓰시오. 또 이를 이용해 $0.5\\times0.9\\times0.2$를 쉽게 계산하는 방법을 설명하시오.",
+      "bAnswer": "어느 두 수를 먼저 곱해도 곱은 같다. $0.5\\times0.2=0.1$을 먼저 계산하면 $0.1\\times0.9=0.09$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어느 두 수를 먼저 곱해도 곱은 같다",
+            "곱하는 순서를 바꾸어도 곱은 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5\\times0.2=0.1$을 먼저 계산한다",
+            "$0.5$와 $0.2$를 먼저 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱은 $0.09$이다"
+          ]
+        }
+      ],
+      "bGoal": "세 소수의 곱에서 쉬운 두 수를 먼저 곱해 계산한다.",
+      "bReason": "성질만 말하면 자명하므로 쉽게 계산하는 활용을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0.5\\times0.7\\times0.2$에서 $0.5\\times0.2=$ {$0.1$}을 먼저 계산해도 곱은 같으므로, 세 수의 곱은 {$0.07$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.1$",
+            "$0.10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.07$",
+            "$0.070$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절을 빈칸으로 두지 않고 먼저 곱한 값과 전체 곱을 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1399,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc22",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "세 소수의 곱",
+        "kind": "성질",
+        "level": "상",
+        "definition": "세 소수를 곱할 때 {어느 두 수를 먼저 곱해도} 곱이 같다.",
+        "studentC": "세 소수를 곱할 때 □ 곱이 같다.",
+        "answers": [
+          "어느 두 수를 먼저 곱해도"
+        ]
+      },
+      "sourceFingerprint": "cca00ac7387eb6e35423725d94a4f3cfbd3614c441cb14f5349d60e63aaaf52f",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$0.1$",
+        "$0.07$"
+      ],
+      "cStudentAfter": "$0.5\\times0.7\\times0.2$에서 $0.5\\times0.2=$ □을 먼저 계산해도 곱은 같으므로, 세 수의 곱은 □이다.",
+      "cMarkedSentence": "$0.5\\times0.7\\times0.2$에서 $0.5\\times0.2=$ {$0.1$}을 먼저 계산해도 곱은 같으므로, 세 수의 곱은 {$0.07$}이다.",
+      "cStudentSentence": "$0.5\\times0.7\\times0.2$에서 $0.5\\times0.2=$ □을 먼저 계산해도 곱은 같으므로, 세 수의 곱은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.1$",
+          "equivalents": [
+            "$0.10$"
+          ]
+        },
+        {
+          "key": "$0.07$",
+          "equivalents": [
+            "$0.070$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세 소수를 곱할 때 먼저 곱하는 두 수를 다르게 고르면 곱이 어떻게 되는지 쓰시오. 또 이를 이용해 $0.5\\times0.9\\times0.2$를 쉽게 계산하는 방법을 설명하시오.",
+        "answer": "어느 두 수를 먼저 곱해도 곱은 같다. $0.5\\times0.2=0.1$을 먼저 계산하면 $0.1\\times0.9=0.09$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어느 두 수를 먼저 곱해도 곱은 같다",
+              "곱하는 순서를 바꾸어도 곱은 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5\\times0.2=0.1$을 먼저 계산한다",
+              "$0.5$와 $0.2$를 먼저 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱은 $0.09$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.5\\times0.7\\times0.2$에서 $0.5\\times0.2=$ {$0.1$}을 먼저 계산해도 곱은 같으므로, 세 수의 곱은 {$0.07$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$",
+            "$0.10$"
+          ],
+          [
+            "$0.07$",
+            "$0.070$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0bd763fec0a7394835475d5959e3dc36df58028b446ef9374668adf11549184e",
+      "questionRevision": "planning-e5e6-20261006-0bd763fec0a7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$0.4\\times0.06$과 $0.04\\times0.6$의 곱이 같은지를 끝까지 계산하지 않고 알아보려고 한다. 두 식에서 무엇과 무엇을 비교하면 되는지 쓰고, 두 곱이 같은지 판단하시오.",
+      "bAnswer": "자연수처럼 곱한 값과 두 수의 소수 자리 수의 합을 비교한다. 두 식 모두 자연수처럼 곱한 값이 $24$이고 소수 자리 수의 합이 $3$이므로 곱은 $0.024$로 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수처럼 곱한 값을 비교한다",
+            "두 식 모두 자연수처럼 곱한 값이 $24$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수의 소수 자리 수의 합을 비교한다",
+            "두 식 모두 소수 자리 수의 합이 $3$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱은 같다",
+            "두 곱은 모두 $0.024$이다"
+          ]
+        }
+      ],
+      "bGoal": "자연수의 곱과 소수 자리 수의 합으로 두 곱이 같은지 판단한다.",
+      "bReason": "조건 두 가지를 질문에서 알려 주지 않고 학생이 찾아 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.4\\times0.06$과 $0.04\\times0.6$은 자연수처럼 곱한 값이 모두 $24$이고 소수 자리 수의 합이 모두 {$3$}이므로 두 곱은 모두 {$0.024$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.024$"
+          ]
+        }
+      ],
+      "cReason": "'곱이 같다'는 뻔한 결론 대신 자리 수의 합과 실제 곱을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1400,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc23",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "곱이 같은 두 식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 소수의 곱에서 자연수처럼 곱한 값과 소수 자리 수의 합이 각각 같으면 {곱이 같다}.",
+        "studentC": "두 소수의 곱에서 자연수처럼 곱한 값과 소수 자리 수의 합이 각각 같으면 □.",
+        "answers": [
+          "곱이 같다"
+        ]
+      },
+      "sourceFingerprint": "e7cc998922651d7e4f51355db8b86efa9e22875b3ff318199e83a436dc3474d5",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$0.024$"
+      ],
+      "cStudentAfter": "$0.4\\times0.06$과 $0.04\\times0.6$은 자연수처럼 곱한 값이 모두 $24$이고 소수 자리 수의 합이 모두 □이므로 두 곱은 모두 □이다.",
+      "cMarkedSentence": "$0.4\\times0.06$과 $0.04\\times0.6$은 자연수처럼 곱한 값이 모두 $24$이고 소수 자리 수의 합이 모두 {$3$}이므로 두 곱은 모두 {$0.024$}이다.",
+      "cStudentSentence": "$0.4\\times0.06$과 $0.04\\times0.6$은 자연수처럼 곱한 값이 모두 $24$이고 소수 자리 수의 합이 모두 □이므로 두 곱은 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.024$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.4\\times0.06$과 $0.04\\times0.6$의 곱이 같은지를 끝까지 계산하지 않고 알아보려고 한다. 두 식에서 무엇과 무엇을 비교하면 되는지 쓰고, 두 곱이 같은지 판단하시오.",
+        "answer": "자연수처럼 곱한 값과 두 수의 소수 자리 수의 합을 비교한다. 두 식 모두 자연수처럼 곱한 값이 $24$이고 소수 자리 수의 합이 $3$이므로 곱은 $0.024$로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수처럼 곱한 값을 비교한다",
+              "두 식 모두 자연수처럼 곱한 값이 $24$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수의 소수 자리 수의 합을 비교한다",
+              "두 식 모두 소수 자리 수의 합이 $3$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 곱은 같다",
+              "두 곱은 모두 $0.024$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.4\\times0.06$과 $0.04\\times0.6$은 자연수처럼 곱한 값이 모두 $24$이고 소수 자리 수의 합이 모두 {$3$}이므로 두 곱은 모두 {$0.024$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$0.024$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ae58021c3cfe3162569fc3e911877e7ec16864c603aeb942832b1bb1e15a3ad2",
+      "questionRevision": "planning-e5e6-20261006-ae58021c3cfe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc25",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$0.5\\times0.2$와 $0.25\\times0.4$를 각각 계산하여 두 곱을 비교하시오. 또 두 식에서 자연수처럼 곱한 값과 소수 자리 수의 합이 서로 같은지도 쓰시오.",
+      "bAnswer": "두 곱은 모두 $0.1$로 같다. 자연수처럼 곱한 값은 $10$과 $100$, 소수 자리 수의 합은 $2$와 $3$으로 서로 다르다. $0.10$과 $0.100$은 끝의 $0$을 지우면 같은 수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 곱은 모두 $0.1$이다",
+            "두 곱은 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수처럼 곱한 값은 $10$과 $100$으로 다르다",
+            "소수 자리 수의 합은 $2$와 $3$으로 다르다",
+            "자연수처럼 곱한 값과 소수 자리 수의 합은 서로 다르다"
+          ]
+        }
+      ],
+      "bGoal": "곱이 같아도 자연수의 곱과 자리 수의 합은 다를 수 있음을 예로 확인한다.",
+      "bReason": "'같을 필요는 없다'는 추상적인 말 대신 끝의 $0$ 때문에 생기는 실제 예를 계산하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.5\\times0.2=0.10$이고 $0.25\\times0.4=0.100$이다. 자연수처럼 곱한 값은 $10$과 $100$으로 다르지만, 끝의 $0$을 지우면 두 곱은 모두 {$0.1$}로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cReason": "'각각 같을 필요는 없다'는 긴 구절을 외우게 하는 빈칸이라 반례의 값과 결론으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1401,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc25",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "곱이 같을 때의 소수 자리 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 소수의 곱이 같아도 자연수처럼 곱한 값과 소수 자리 수의 합이 {각각 같을 필요는 없다}.",
+        "studentC": "두 소수의 곱이 같아도 자연수처럼 곱한 값과 소수 자리 수의 합이 □.",
+        "answers": [
+          "각각 같을 필요는 없다"
+        ]
+      },
+      "sourceFingerprint": "c531cb8474d855bf45ee64184749a079519ee0ed66915cda755edf665676af27",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$0.1$",
+        "같다"
+      ],
+      "cStudentAfter": "$0.5\\times0.2=0.10$이고 $0.25\\times0.4=0.100$이다. 자연수처럼 곱한 값은 $10$과 $100$으로 다르지만, 끝의 $0$을 지우면 두 곱은 모두 □로 □.",
+      "cMarkedSentence": "$0.5\\times0.2=0.10$이고 $0.25\\times0.4=0.100$이다. 자연수처럼 곱한 값은 $10$과 $100$으로 다르지만, 끝의 $0$을 지우면 두 곱은 모두 {$0.1$}로 {같다}.",
+      "cStudentSentence": "$0.5\\times0.2=0.10$이고 $0.25\\times0.4=0.100$이다. 자연수처럼 곱한 값은 $10$과 $100$으로 다르지만, 끝의 $0$을 지우면 두 곱은 모두 □로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.1$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.5\\times0.2$와 $0.25\\times0.4$를 각각 계산하여 두 곱을 비교하시오. 또 두 식에서 자연수처럼 곱한 값과 소수 자리 수의 합이 서로 같은지도 쓰시오.",
+        "answer": "두 곱은 모두 $0.1$로 같다. 자연수처럼 곱한 값은 $10$과 $100$, 소수 자리 수의 합은 $2$와 $3$으로 서로 다르다. $0.10$과 $0.100$은 끝의 $0$을 지우면 같은 수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 곱은 모두 $0.1$이다",
+              "두 곱은 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수처럼 곱한 값은 $10$과 $100$으로 다르다",
+              "소수 자리 수의 합은 $2$와 $3$으로 다르다",
+              "자연수처럼 곱한 값과 소수 자리 수의 합은 서로 다르다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.5\\times0.2=0.10$이고 $0.25\\times0.4=0.100$이다. 자연수처럼 곱한 값은 $10$과 $100$으로 다르지만, 끝의 $0$을 지우면 두 곱은 모두 {$0.1$}로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$0.1$"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "089f4345fca794bf5caf98b6053a661d6513dbf945dbe902a5f1333936322853",
+      "questionRevision": "planning-e5e6-20261006-089f4345fca7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-5-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "소수 한 자리 수와 소수 두 자리 수를 곱할 때, 끝의 $0$을 지우기 전 곱은 소수 몇 자리 수가 되는지 쓰시오. 또 그 까닭을 두 수를 분수로 고쳤을 때의 분모를 이용해 설명하시오.",
+      "bAnswer": "소수 세 자리 수가 된다. 소수 한 자리 수는 분모가 $10$인 분수, 소수 두 자리 수는 분모가 $100$인 분수이므로 곱의 분모는 $10\\times100=1000$이 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수 세 자리 수가 된다",
+            "소수점 아래 $3$자리가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모가 $10$과 $100$인 분수의 곱이라 분모가 $1000$이 된다",
+            "$\\frac{1}{10}\\times\\frac{1}{100}=\\frac{1}{1000}$이다"
+          ]
+        }
+      ],
+      "bGoal": "곱의 소수 자리 수가 두 수의 자리 수의 합이 되는 까닭을 분모로 설명한다.",
+      "bReason": "까닭을 분수의 분모로 설명하도록 범위를 정하고 결론인 자리 수는 학생이 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "소수 한 자리 수는 분모가 $10$인 분수로, 소수 두 자리 수는 분모가 $100$인 분수로 고칠 수 있으므로, 두 수의 곱은 분모가 {$1000$}인 분수가 되어 끝의 $0$을 지우기 전에는 소수 {$3$}자리 수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 분모와 자리 수를 답하는 두 빈칸으로 바꾸고 끝의 $0$ 조건은 유지했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1402,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-5-xc26",
+        "section": "초5::2-4 소수의 곱셈::2-4-5 (1보다 작은 소수)×(1보다 작은 소수)의 계산",
+        "term": "자리 수를 더하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 한 자리 수는 $\\frac{1}{10}$, 두 자리 수는 $\\frac{1}{100}$의 개수이므로 끝의 $0$을 지우기 전 곱의 소수 자리 수는 {두 수의 소수 자리 수의 합}이 된다.",
+        "studentC": "소수 한 자리 수는 $\\frac{1}{10}$, 두 자리 수는 $\\frac{1}{100}$의 개수이므로 끝의 $0$을 지우기 전 곱의 소수 자리 수는 □이 된다.",
+        "answers": [
+          "두 수의 소수 자리 수의 합"
+        ]
+      },
+      "sourceFingerprint": "c5258eba7f3a45879ea9f82fefc460eb5e6f714100d5f6935344820fd1c3e425",
+      "draftEvidence": "evidence/section-044-draft.json",
+      "cProposedAnswers": [
+        "$1000$",
+        "$3$"
+      ],
+      "cStudentAfter": "소수 한 자리 수는 분모가 $10$인 분수로, 소수 두 자리 수는 분모가 $100$인 분수로 고칠 수 있으므로, 두 수의 곱은 분모가 □인 분수가 되어 끝의 $0$을 지우기 전에는 소수 □자리 수이다.",
+      "cMarkedSentence": "소수 한 자리 수는 분모가 $10$인 분수로, 소수 두 자리 수는 분모가 $100$인 분수로 고칠 수 있으므로, 두 수의 곱은 분모가 {$1000$}인 분수가 되어 끝의 $0$을 지우기 전에는 소수 {$3$}자리 수이다.",
+      "cStudentSentence": "소수 한 자리 수는 분모가 $10$인 분수로, 소수 두 자리 수는 분모가 $100$인 분수로 고칠 수 있으므로, 두 수의 곱은 분모가 □인 분수가 되어 끝의 $0$을 지우기 전에는 소수 □자리 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1000$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 한 자리 수와 소수 두 자리 수를 곱할 때, 끝의 $0$을 지우기 전 곱은 소수 몇 자리 수가 되는지 쓰시오. 또 그 까닭을 두 수를 분수로 고쳤을 때의 분모를 이용해 설명하시오.",
+        "answer": "소수 세 자리 수가 된다. 소수 한 자리 수는 분모가 $10$인 분수, 소수 두 자리 수는 분모가 $100$인 분수이므로 곱의 분모는 $10\\times100=1000$이 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수 세 자리 수가 된다",
+              "소수점 아래 $3$자리가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모가 $10$과 $100$인 분수의 곱이라 분모가 $1000$이 된다",
+              "$\\frac{1}{10}\\times\\frac{1}{100}=\\frac{1}{1000}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 한 자리 수는 분모가 $10$인 분수로, 소수 두 자리 수는 분모가 $100$인 분수로 고칠 수 있으므로, 두 수의 곱은 분모가 {$1000$}인 분수가 되어 끝의 $0$을 지우기 전에는 소수 {$3$}자리 수이다.",
+        "acceptedAnswers": [
+          [
+            "$1000$"
+          ],
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5360d4ed150961af2e7ecc7673f95958cb3e057f8c97dda8b5eeb6db99ae9d9d",
+      "questionRevision": "planning-e5e6-20261006-5360d4ed1509",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$3.7\\times4.2$를 계산하지 않고 어림하려고 합니다. 두 소수를 각각 그 수보다 큰 가장 가까운 자연수로 바꾸어 곱하면 얼마입니까? 또 실제 곱은 그 값보다 큰지 작은지, 바꾼 수와 원래 수의 크기를 비교하여 설명하세요.",
+      "bAnswer": "$3.7$은 $4$로, $4.2$는 $5$로 바꾸면 $4\\times5=20$이다. $3.7$은 $4$보다 작고 $4.2$는 $5$보다 작으므로 실제 곱은 $20$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4\\times5=20$",
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "실제 곱은 $20$보다 작다",
+            "실제 곱이 더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "원래 두 수가 바꾼 자연수보다 각각 작다",
+            "$3.7$은 $4$보다 작고 $4.2$는 $5$보다 작다",
+            "더 큰 수끼리 곱했으므로 그 곱이 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "두 수를 올려 어림한 곱이 실제 곱보다 큰 까닭을 설명한다.",
+      "bReason": "원문 예의 까닭 설명을 살리되 수를 바꾸고 비교할 대상을 질문에 명시했다.",
+      "cDecision": "revise",
+      "cAfter": "$1.5\\times2.5$에서 $1.5$는 $2$보다 작고 $2.5$는 $3$보다 작으므로, 곱은 $2\\times3=${$6$}보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "'자연수 부분보다 각각 $1$ 큰 수끼리의 곱'은 맥락 없이 읽기 어려워 실제 식으로 풀었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1403,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc4",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "곱의 위쪽 어림",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$1$보다 큰 두 소수의 곱은 두 수의 자연수 부분보다 각각 $1$ 큰 수끼리의 곱보다 {작다}.",
+        "example": {
+          "prompt": "$1.5\\times2.5$가 $2\\times3$보다 작은 까닭은?",
+          "answer": "곱하는 두 수가 각각 작아서"
+        },
+        "studentC": "$1$보다 큰 두 소수의 곱은 두 수의 자연수 부분보다 각각 $1$ 큰 수끼리의 곱보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "5766ef5cf33db670f19197e5a707f9f4846624500acf817b86c48a9ef3d12755",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "작다"
+      ],
+      "cStudentAfter": "$1.5\\times2.5$에서 $1.5$는 $2$보다 작고 $2.5$는 $3$보다 작으므로, 곱은 $2\\times3=$□보다 □.",
+      "cMarkedSentence": "$1.5\\times2.5$에서 $1.5$는 $2$보다 작고 $2.5$는 $3$보다 작으므로, 곱은 $2\\times3=${$6$}보다 {작다}.",
+      "cStudentSentence": "$1.5\\times2.5$에서 $1.5$는 $2$보다 작고 $2.5$는 $3$보다 작으므로, 곱은 $2\\times3=$□보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3.7\\times4.2$를 계산하지 않고 어림하려고 합니다. 두 소수를 각각 그 수보다 큰 가장 가까운 자연수로 바꾸어 곱하면 얼마입니까? 또 실제 곱은 그 값보다 큰지 작은지, 바꾼 수와 원래 수의 크기를 비교하여 설명하세요.",
+        "answer": "$3.7$은 $4$로, $4.2$는 $5$로 바꾸면 $4\\times5=20$이다. $3.7$은 $4$보다 작고 $4.2$는 $5$보다 작으므로 실제 곱은 $20$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4\\times5=20$",
+              "$20$"
+            ]
+          },
+          {
+            "anyOf": [
+              "실제 곱은 $20$보다 작다",
+              "실제 곱이 더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원래 두 수가 바꾼 자연수보다 각각 작다",
+              "$3.7$은 $4$보다 작고 $4.2$는 $5$보다 작다",
+              "더 큰 수끼리 곱했으므로 그 곱이 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.5\\times2.5$에서 $1.5$는 $2$보다 작고 $2.5$는 $3$보다 작으므로, 곱은 $2\\times3=${$6$}보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "39753d28c62b1f70613cc5c787a8836fc387a8e81807606aeb08506b581df4a1",
+      "questionRevision": "planning-e5e6-20261006-39753d28c62b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 소수 ㉮와 ㉯를 곱했더니 곱이 ㉮보다도 크고 ㉯보다도 컸습니다. ㉮와 ㉯는 각각 $1$과 비교하여 어떤 수입니까? 한 수가 $1$보다 작거나 $1$과 같을 때 곱이 어떻게 되는지를 이용하여 설명하세요.",
+      "bAnswer": "㉮와 ㉯는 모두 $1$보다 크다. 어떤 수에 $1$을 곱하면 곱이 그 수와 같고 $1$보다 작은 수를 곱하면 곱이 그 수보다 작아지므로, 곱이 두 수 모두보다 크려면 두 수가 모두 $1$보다 커야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수 모두 $1$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$보다 작은 수를 곱하면 곱이 곱해지는 수보다 작아진다",
+            "$1$ 이하인 수를 곱하면 곱이 곱해지는 수보다 커지지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "곱의 크기에서 거꾸로 곱한 두 수가 $1$보다 큼을 추론한다.",
+      "bReason": "c2의 거꾸로 방향이므로 $1$ 이하인 수를 곱한 경우와 비교하는 설명 범위를 지정했다.",
+      "cDecision": "keep",
+      "cAfter": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 {$1$보다 크다}.",
+      "cReason": "곱이 두 수 모두보다 크다는 조건에서 두 수의 크기를 답하는 짧은 비교 문장이라 그대로 쓸 수 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$1$보다 큰 수이다'도 같은 답으로 인정.",
+      "sourceIndex": 1404,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc5",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "곱과 두 수의 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 {$1$보다 크다}.",
+        "studentC": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 □.",
+        "answers": [
+          "$1$보다 크다"
+        ]
+      },
+      "sourceFingerprint": "a0823071b8d33cf8730e89407e4b99096adadac017894482726fa78cf3a994d8",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cFrozenDefinition": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 {$1$보다 크다}.",
+      "cFrozenStudentSentence": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 □.",
+      "cProposedAnswers": [
+        "$1$보다 크다"
+      ],
+      "cStudentAfter": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$보다 크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 {$1$보다 크다}.",
+      "cStudentSentence": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$보다 크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 소수 ㉮와 ㉯를 곱했더니 곱이 ㉮보다도 크고 ㉯보다도 컸습니다. ㉮와 ㉯는 각각 $1$과 비교하여 어떤 수입니까? 한 수가 $1$보다 작거나 $1$과 같을 때 곱이 어떻게 되는지를 이용하여 설명하세요.",
+        "answer": "㉮와 ㉯는 모두 $1$보다 크다. 어떤 수에 $1$을 곱하면 곱이 그 수와 같고 $1$보다 작은 수를 곱하면 곱이 그 수보다 작아지므로, 곱이 두 수 모두보다 크려면 두 수가 모두 $1$보다 커야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수 모두 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$보다 작은 수를 곱하면 곱이 곱해지는 수보다 작아진다",
+              "$1$ 이하인 수를 곱하면 곱이 곱해지는 수보다 커지지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 소수의 곱이 두 수 어느 것보다도 크면 두 소수는 모두 {$1$보다 크다}.",
+        "acceptedAnswers": [
+          [
+            "$1$보다 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5f0320d479a722f7c060c2df9b22d7d301d96dc2b133ab2f61e857b8bb0206dc",
+      "questionRevision": "planning-e5e6-20261006-5f0320d479a7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc6",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱하는 순서를 바꾸어도 곱이 같음을 확인하는 정도이다.",
+      "bReason": "자연수 곱셈에서 이미 아는 자명한 성질이라 서술형으로 물을 내용이 없다.",
+      "exclusionReason": "B 제외: 순서를 바꾸어도 곱이 같다는 사실은 설명할 관계가 따로 없어 이 행의 C로 충분하다.",
+      "cDecision": "revise",
+      "cAfter": "$2.4\\times1.5=3.6$이므로 $1.5\\times2.4=${$3.6$}이다. 이처럼 곱하는 두 수의 {순서}를 바꾸어도 곱은 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3.6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "순서",
+            "차례",
+            "자리"
+          ]
+        }
+      ],
+      "cReason": "빈칸 '순서를 바꾸어도'는 구절을 맞혀야 해서 실제 식의 값과 낱말 하나로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1405,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc6",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "곱하는 순서 바꾸기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$보다 큰 두 소수를 곱할 때도 {순서를 바꾸어도} 곱이 같다.",
+        "studentC": "$1$보다 큰 두 소수를 곱할 때도 □ 곱이 같다.",
+        "answers": [
+          "순서를 바꾸어도"
+        ]
+      },
+      "sourceFingerprint": "b15d4fc173b258ed2fdf83b5620f07e7997bae9cfce6448e4ea7d10dc99a14e8",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cProposedAnswers": [
+        "$3.6$",
+        "순서"
+      ],
+      "cStudentAfter": "$2.4\\times1.5=3.6$이므로 $1.5\\times2.4=$□이다. 이처럼 곱하는 두 수의 □를 바꾸어도 곱은 같다.",
+      "cMarkedSentence": "$2.4\\times1.5=3.6$이므로 $1.5\\times2.4=${$3.6$}이다. 이처럼 곱하는 두 수의 {순서}를 바꾸어도 곱은 같다.",
+      "cStudentSentence": "$2.4\\times1.5=3.6$이므로 $1.5\\times2.4=$□이다. 이처럼 곱하는 두 수의 □를 바꾸어도 곱은 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3.6$",
+          "equivalents": []
+        },
+        {
+          "key": "순서",
+          "equivalents": [
+            "차례",
+            "자리"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2.4\\times1.5=3.6$이므로 $1.5\\times2.4=${$3.6$}이다. 이처럼 곱하는 두 수의 {순서}를 바꾸어도 곱은 같다.",
+        "acceptedAnswers": [
+          [
+            "$3.6$"
+          ],
+          [
+            "순서",
+            "차례",
+            "자리"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 순서를 바꾸어도 곱이 같다는 사실은 설명할 관계가 따로 없어 이 행의 C로 충분하다."
+      },
+      "proposalFingerprint": "0f45230c3369237c041aa5a930002bbcb2bbaa92d21f7dc97279b1901cdc0a0d",
+      "questionRevision": "planning-e5e6-20261006-0f45230c3369",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$2.6\\times3.4$를 자연수 부분끼리만 곱하면 $2\\times3$입니다. 실제 곱은 이 값보다 큰지 작은지, 곱하는 두 수의 크기를 각각 비교하여 설명하세요.",
+      "bAnswer": "실제 곱이 더 크다. $2.6$은 $2$보다 크고 $3.4$는 $3$보다 크므로 $2.6\\times3.4$는 $2\\times3=6$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "실제 곱이 더 크다",
+            "$2.6\\times3.4$는 $6$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.6$은 $2$보다 크고 $3.4$는 $3$보다 크다",
+            "두 소수가 각각 자연수 부분보다 크다",
+            "더 작은 수끼리 곱했으므로 그 곱이 더 작다"
+          ]
+        }
+      ],
+      "bGoal": "자연수 부분끼리의 곱이 실제 곱보다 작은 까닭을 설명한다.",
+      "bReason": "xc4와 반대 방향의 어림이므로 다른 수로 아래쪽 비교만 묻도록 했다.",
+      "cDecision": "keep",
+      "cAfter": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 {크다}.",
+      "cReason": "소수 부분이 있다는 조건과 자연수 부분끼리의 곱이라는 비교 대상이 분명한 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'더 크다'도 같은 답으로 인정.",
+      "sourceIndex": 1406,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc8",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "자연수 부분끼리 어림",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 {크다}.",
+        "studentC": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 □.",
+        "answers": [
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "e52ec75f4e245caca90a7e8daada0e45fd4c9cb8bbe0d616bb8a5e435f90d1bf",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cFrozenDefinition": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 {크다}.",
+      "cFrozenStudentSentence": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 □.",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 {크다}.",
+      "cStudentSentence": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.6\\times3.4$를 자연수 부분끼리만 곱하면 $2\\times3$입니다. 실제 곱은 이 값보다 큰지 작은지, 곱하는 두 수의 크기를 각각 비교하여 설명하세요.",
+        "answer": "실제 곱이 더 크다. $2.6$은 $2$보다 크고 $3.4$는 $3$보다 크므로 $2.6\\times3.4$는 $2\\times3=6$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "실제 곱이 더 크다",
+              "$2.6\\times3.4$는 $6$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.6$은 $2$보다 크고 $3.4$는 $3$보다 크다",
+              "두 소수가 각각 자연수 부분보다 크다",
+              "더 작은 수끼리 곱했으므로 그 곱이 더 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 부분이 있는 두 소수의 곱은 자연수 부분끼리 곱한 값보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6de78163bcb54c24cc1e411beb470f2acecbf0e8ba6cb14a959eed4f082f81cc",
+      "questionRevision": "planning-e5e6-20261006-6de78163bcb5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수의 $1.5$배를 곱셈을 하지 않고 덧셈으로 구하려면 그 수에 무엇을 더하면 되는지 설명하고, 이 방법으로 $2.4$의 $1.5$배를 구하세요.",
+      "bAnswer": "그 수에 그 수의 절반을 더한다. $2.4$의 절반은 $1.2$이므로 $2.4+1.2=3.6$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 수의 절반을 더한다",
+            "그 수의 $0.5$배를 더한다",
+            "그 수를 $2$로 나눈 값을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.4+1.2=3.6$",
+            "$3.6$"
+          ]
+        }
+      ],
+      "bGoal": "$1.5$배를 처음 수와 그 절반의 합으로 구한다.",
+      "bReason": "더하는 양을 질문에서 말하지 않고 묻고 예의 값까지 구하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 {절반}을 더한 것이다.",
+      "cReason": "$1.5$배가 처음 수와 그 절반의 합이라는 관계를 낱말 하나로 답하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'반', '$0.5$배', '$\\frac{1}{2}$'도 같은 답으로 인정.",
+      "sourceIndex": 1407,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc9",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "$1.5$배 하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 {절반}을 더한 것이다.",
+        "studentC": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 □을 더한 것이다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "sourceFingerprint": "e19ceb1e3200a17008b5969986e81fac9928129b7ef208fce1cd1da5f8ef16f4",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cFrozenDefinition": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 {절반}을 더한 것이다.",
+      "cFrozenStudentSentence": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 □을 더한 것이다.",
+      "cProposedAnswers": [
+        "절반"
+      ],
+      "cStudentAfter": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 □을 더한 것이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "절반"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 {절반}을 더한 것이다.",
+      "cStudentSentence": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 □을 더한 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "절반",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수의 $1.5$배를 곱셈을 하지 않고 덧셈으로 구하려면 그 수에 무엇을 더하면 되는지 설명하고, 이 방법으로 $2.4$의 $1.5$배를 구하세요.",
+        "answer": "그 수에 그 수의 절반을 더한다. $2.4$의 절반은 $1.2$이므로 $2.4+1.2=3.6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 수의 절반을 더한다",
+              "그 수의 $0.5$배를 더한다",
+              "그 수를 $2$로 나눈 값을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.4+1.2=3.6$",
+              "$3.6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 소수의 $1.5$배는 그 소수에 그 소수의 {절반}을 더한 것이다.",
+        "acceptedAnswers": [
+          [
+            "절반"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6279be05063b42dc163ce40bdcbcaf35f89c45ca80aa44b9b7a73ca4bc9cf9b0",
+      "questionRevision": "planning-e5e6-20261006-6279be05063b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc10",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1.25\\times2.3$을 구하려고 $125\\times23=2875$를 계산했습니다. $1.25$와 $2.3$을 각각 몇 배 한 것인지를 이용하여 소수점을 어디에 찍어야 하는지 설명하고, $1.25\\times2.3$의 값을 쓰세요.",
+      "bAnswer": "$1.25$는 $100$배, $2.3$은 $10$배 했으므로 곱은 $1000$배가 되었다. 그래서 $2875$를 $1000$으로 나누어, 오른쪽에서 세 자리를 센 곳에 소수점을 찍으면 $2.875$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱이 $1000$배가 되었다",
+            "$100$배와 $10$배를 했으므로 $1000$으로 나눈다",
+            "소수점을 왼쪽으로 세 자리 옮긴다",
+            "오른쪽에서 세 자리를 세어 소수점을 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.25\\times2.3=2.875$",
+            "$2.875$"
+          ]
+        }
+      ],
+      "bGoal": "소수 두 자리 수와 한 자리 수의 곱에서 소수점 위치를 배수 관계로 정한다.",
+      "bReason": "c1의 일반 방법과 겹치지 않도록 $100$배와 $10$배가 섞인 구체적 식에 적용하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 {$1000$배} 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+      "cReason": "$100$배와 $10$배를 한 곱이 몇 배가 되는지 짧은 값으로 답하고 뒤의 세 자리와 연결되는 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$1000$'만 써도 인정.",
+      "sourceIndex": 1408,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc10",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "소수 두 자리 수와 한 자리 수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 {$1000$배} 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+        "studentC": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 □ 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+        "answers": [
+          "$1000$배"
+        ]
+      },
+      "sourceFingerprint": "ec6e55966f8997a24d3fc60860e20f02f8db0f56b9a9829485d9721e235c79e5",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cFrozenDefinition": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 {$1000$배} 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+      "cFrozenStudentSentence": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 □ 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+      "cProposedAnswers": [
+        "$1000$배"
+      ],
+      "cStudentAfter": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 □ 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1000$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 {$1000$배} 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+      "cStudentSentence": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 □ 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1000$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.25\\times2.3$을 구하려고 $125\\times23=2875$를 계산했습니다. $1.25$와 $2.3$을 각각 몇 배 한 것인지를 이용하여 소수점을 어디에 찍어야 하는지 설명하고, $1.25\\times2.3$의 값을 쓰세요.",
+        "answer": "$1.25$는 $100$배, $2.3$은 $10$배 했으므로 곱은 $1000$배가 되었다. 그래서 $2875$를 $1000$으로 나누어, 오른쪽에서 세 자리를 센 곳에 소수점을 찍으면 $2.875$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱이 $1000$배가 되었다",
+              "$100$배와 $10$배를 했으므로 $1000$으로 나눈다",
+              "소수점을 왼쪽으로 세 자리 옮긴다",
+              "오른쪽에서 세 자리를 세어 소수점을 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.25\\times2.3=2.875$",
+              "$2.875$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 수를 각각 $100$배, $10$배 해 곱하면 곱이 {$1000$배} 되므로, 자연수 곱의 오른쪽에서 세 자리를 세어 소수점을 찍는다.",
+        "acceptedAnswers": [
+          [
+            "$1000$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8c0ff1e545d6379d32e6e0192ab5a25e0500e8033df6fe135acae183f7673af7",
+      "questionRevision": "planning-e5e6-20261006-8c0ff1e545d6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc13",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "소수끼리 곱하면 곱은 항상 소수 부분이 있는 수가 됩니까? $1.25\\times1.6$을 계산하여 답하세요.",
+      "bAnswer": "항상 그렇지는 않다. $125\\times16=2000$이고 곱이 $1000$배가 된 것이므로 $1.25\\times1.6=2.000=2$로, 곱이 자연수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 그렇지는 않다",
+            "곱이 자연수가 될 수도 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.25\\times1.6=2$",
+            "$2$"
+          ]
+        }
+      ],
+      "bGoal": "소수끼리의 곱이 자연수가 될 수 있음을 계산으로 확인한다.",
+      "bReason": "원문 예를 그대로 계산하게 하되 결론은 질문에서 말하지 않았다.",
+      "cDecision": "keep",
+      "cAfter": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 {자연수}가 될 수 있다.",
+      "cReason": "$1.25\\times1.6$이라는 실제 식이 있어 곱의 종류를 낱말 하나로 답할 수 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1409,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc13",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "곱이 자연수인 경우",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 {자연수}가 될 수 있다.",
+        "studentC": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 □가 될 수 있다.",
+        "answers": [
+          "자연수"
+        ]
+      },
+      "sourceFingerprint": "e0db493abebb8106a1f759f4e16bdaca095561119c3cea9826a9b82c28cdb232",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cFrozenDefinition": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 {자연수}가 될 수 있다.",
+      "cFrozenStudentSentence": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 □가 될 수 있다.",
+      "cProposedAnswers": [
+        "자연수"
+      ],
+      "cStudentAfter": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 □가 될 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자연수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 {자연수}가 될 수 있다.",
+      "cStudentSentence": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 □가 될 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "자연수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수끼리 곱하면 곱은 항상 소수 부분이 있는 수가 됩니까? $1.25\\times1.6$을 계산하여 답하세요.",
+        "answer": "항상 그렇지는 않다. $125\\times16=2000$이고 곱이 $1000$배가 된 것이므로 $1.25\\times1.6=2.000=2$로, 곱이 자연수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 그렇지는 않다",
+              "곱이 자연수가 될 수도 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.25\\times1.6=2$",
+              "$2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.25\\times1.6$처럼 소수끼리 곱해도 곱이 {자연수}가 될 수 있다.",
+        "acceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6bf8a84f0b16170a2c7e2fdb54556c01566b2ea1f4b2392ad51499eb8c4463ad",
+      "questionRevision": "planning-e5e6-20261006-6bf8a84f0b16",
+      "requiresIndependentReview": true
+    }
+  ]
+}

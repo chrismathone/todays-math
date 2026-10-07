@@ -1,0 +1,1563 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-5-2-xc7",
+      "bDecision": "revise",
+      "bPrompt": "띠의 눈금 간격이 모두 같을 때 조각이 차지한 칸 수로 백분율을 나타낼 수 있는 까닭을 설명하시오. 전체가 $20$칸인 띠에서 한 조각이 $5$칸이면 백분율은 얼마인지도 구하시오.",
+      "bAnswer": "눈금 간격이 같으면 칸 수의 비율과 길이의 비율이 같기 때문이다. $5\\div20=0.25$이므로 $25\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "칸 수의 비율과 길이의 비율이 같다",
+            "칸 수의 비가 길이의 비와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "같은 간격일 때 칸 수 비율이 길이 비율과 같음을 안다.",
+      "bReason": "까닭과 계산을 함께 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "눈금 간격이 모두 같은 띠 전체가 $20$칸이고 한 조각이 $5$칸이면, 그 조각의 길이는 띠 전체 길이의 {$\\frac{1}{4}$}이고 백분율은 {$25\\%$}이다.",
+      "cReason": "똑같은 칸20개 중5개라는 구체 길이비율1/4와25%를 묻는다. 길이의 비율이라는 긴 구절을 추측하는 빈칸을 없앴다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$",
+            "$\\frac{5}{20}$",
+            "$0.25$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$퍼센트"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "f4fc3ba26b6be98f0c02ee4c639104b0f2b5cfb34fba88bcdaa623ab95ca2d2c",
+      "sourceIndex": 2029,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-2-xc7",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "term": "눈금 칸 수와 백분율",
+        "kind": "방법",
+        "level": "하",
+        "definition": "눈금 간격이 같으면 칸 수의 비율과 {길이의 비율}이 같으므로 칸 수로 백분율을 나타낼 수 있다.",
+        "example": {
+          "prompt": "눈금 간격이 제각각이어도 칸 수만 세어 백분율을 나타낼 수 있는가?",
+          "answer": "없다 — 칸마다 길이가 달라서"
+        },
+        "studentC": "눈금 간격이 같으면 칸 수의 비율과 □이 같으므로 칸 수로 백분율을 나타낼 수 있다.",
+        "answers": [
+          "길이의 비율"
+        ]
+      },
+      "sourceFingerprint": "a6d5be051bfea66e3804c6b52e8a0866b1e6b7ab48050f84d2fa48f1fb1db2d6",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{4}$",
+        "$25\\%$"
+      ],
+      "cStudentAfter": "눈금 간격이 모두 같은 띠 전체가 $20$칸이고 한 조각이 $5$칸이면, 그 조각의 길이는 띠 전체 길이의 □이고 백분율은 □이다.",
+      "cMarkedSentence": "눈금 간격이 모두 같은 띠 전체가 $20$칸이고 한 조각이 $5$칸이면, 그 조각의 길이는 띠 전체 길이의 {$\\frac{1}{4}$}이고 백분율은 {$25\\%$}이다.",
+      "cStudentSentence": "눈금 간격이 모두 같은 띠 전체가 $20$칸이고 한 조각이 $5$칸이면, 그 조각의 길이는 띠 전체 길이의 □이고 백분율은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": [
+            "$\\frac{5}{20}$",
+            "$0.25$"
+          ]
+        },
+        {
+          "key": "$25\\%$",
+          "equivalents": [
+            "$25$퍼센트"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠의 눈금 간격이 모두 같을 때 조각이 차지한 칸 수로 백분율을 나타낼 수 있는 까닭을 설명하시오. 전체가 $20$칸인 띠에서 한 조각이 $5$칸이면 백분율은 얼마인지도 구하시오.",
+        "answer": "눈금 간격이 같으면 칸 수의 비율과 길이의 비율이 같기 때문이다. $5\\div20=0.25$이므로 $25\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "칸 수의 비율과 길이의 비율이 같다",
+              "칸 수의 비가 길이의 비와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25\\%$",
+              "$25$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "눈금 간격이 모두 같은 띠 전체가 $20$칸이고 한 조각이 $5$칸이면, 그 조각의 길이는 띠 전체 길이의 {$\\frac{1}{4}$}이고 백분율은 {$25\\%$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$",
+            "$\\frac{5}{20}$",
+            "$0.25$"
+          ],
+          [
+            "$25\\%$",
+            "$25$퍼센트"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7e3ecbea7e569ff7775abb295a91ab612212c07e5f51380bc2a42624b279b6bd",
+      "questionRevision": "planning-e5e6-20261006-7e3ecbea7e56",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프에서 한 항목의 비율은 그 조각의 길이로 어떻게 나타나는지 설명하시오.",
+      "bAnswer": "조각의 길이가 띠 전체 길이에서 차지하는 비율로 항목의 비율을 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "조각 길이가 띠 전체 길이에서 차지하는 비율",
+            "띠 전체 길이에 대한 조각 길이의 비율"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "조각 길이와 항목 비율의 대응을 안다.",
+      "bReason": "띠그래프를 읽는 핵심 관계를 직접 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "띠그래프에서 조각 길이의 띠 전체 길이에 대한 비율로 항목의 비율을 나타낸다. 띠 전체가 $20$ $\\mathrm{cm}$이고 한 조각이 $5$ $\\mathrm{cm}$이면 그 항목은 전체의 {$25\\%$}이다.",
+      "cReason": "조각길이5cm와전체20cm에서 항목의 비율25%를 구한다. 길이비율의 뜻은 문장에 보여 주고 수량관계를 짧게 답한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$퍼센트",
+            "$\\frac{1}{4}$",
+            "$0.25$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "6245afbf9d9fb1556caa9bef211499a9c716fefe02b309f7f4794f4197416b8b",
+      "sourceIndex": 2032,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-2-xc11",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "term": "조각의 길이와 항목의 비율",
+        "kind": "방법",
+        "level": "중",
+        "definition": "띠그래프에서는 조각의 길이가 {띠 전체 길이}에서 {차지하는 비율}로 항목의 비율을 나타낸다.",
+        "studentC": "띠그래프에서는 조각의 길이가 □에서 □로 항목의 비율을 나타낸다.",
+        "answers": [
+          "띠 전체 길이",
+          "차지하는 비율"
+        ]
+      },
+      "sourceFingerprint": "46f21940eac45073f82b59a256adcf13a2412ff18f03c116423cfb6ccd46e695",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$25\\%$"
+      ],
+      "cStudentAfter": "띠그래프에서 조각 길이의 띠 전체 길이에 대한 비율로 항목의 비율을 나타낸다. 띠 전체가 $20$ $\\mathrm{cm}$이고 한 조각이 $5$ $\\mathrm{cm}$이면 그 항목은 전체의 □이다.",
+      "cMarkedSentence": "띠그래프에서 조각 길이의 띠 전체 길이에 대한 비율로 항목의 비율을 나타낸다. 띠 전체가 $20$ $\\mathrm{cm}$이고 한 조각이 $5$ $\\mathrm{cm}$이면 그 항목은 전체의 {$25\\%$}이다.",
+      "cStudentSentence": "띠그래프에서 조각 길이의 띠 전체 길이에 대한 비율로 항목의 비율을 나타낸다. 띠 전체가 $20$ $\\mathrm{cm}$이고 한 조각이 $5$ $\\mathrm{cm}$이면 그 항목은 전체의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$25\\%$",
+          "equivalents": [
+            "$25$퍼센트",
+            "$\\frac{1}{4}$",
+            "$0.25$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠그래프에서 한 항목의 비율은 그 조각의 길이로 어떻게 나타나는지 설명하시오.",
+        "answer": "조각의 길이가 띠 전체 길이에서 차지하는 비율로 항목의 비율을 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "조각 길이가 띠 전체 길이에서 차지하는 비율",
+              "띠 전체 길이에 대한 조각 길이의 비율"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "띠그래프에서 조각 길이의 띠 전체 길이에 대한 비율로 항목의 비율을 나타낸다. 띠 전체가 $20$ $\\mathrm{cm}$이고 한 조각이 $5$ $\\mathrm{cm}$이면 그 항목은 전체의 {$25\\%$}이다.",
+        "acceptedAnswers": [
+          [
+            "$25\\%$",
+            "$25$퍼센트",
+            "$\\frac{1}{4}$",
+            "$0.25$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c33f57ece7f6e0223876f998f8ba5e4068cd6fc3d4341ff4a53fe276c03be99e",
+      "questionRevision": "planning-e5e6-20261006-c33f57ece7f6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-xc13",
+      "bDecision": "revise",
+      "bPrompt": "반올림한 백분율의 합이 $100\\%$이면 각 항목의 백분율이 모두 정확한 값이라고 할 수 있는지 말하고, 그 까닭을 설명하시오.",
+      "bAnswer": "할 수 없다. 반올림하면서 커진 양과 작아진 양이 서로 같아져 합이 $100\\%$가 될 수도 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정확하다고 할 수 없다",
+            "모두 정확한 값은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "커진 양과 작아진 양이 같을 수 있다",
+            "오차가 서로 상쇄될 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "합이 맞아도 반올림 오차가 있을 수 있음을 이해한다.",
+      "bReason": "합 확인의 한계를 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "두 항목의 백분율 $49.6\\%$와 $50.4\\%$를 일의 자리까지 반올림하면 각각 {$50\\%$}, {$50\\%$}이다. 합은 $100\\%$여도 각 항목의 값은 반올림하기 전과 {다르다}.",
+      "cReason": "49.6%와50.4%가둘다50%로반올림되는 실제 값을 주어 합100%와각값정확성을구별한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$50\\%$",
+            "$50$퍼센트"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50\\%$",
+            "$50$퍼센트"
+          ]
+        },
+        {
+          "anyOf": [
+            "다르다",
+            "같지 않다"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "7bb6c6686113a85e0fa71224c1df654702e17b4c6e2ef7c93570699829861f18",
+      "sourceIndex": 2034,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-2-xc13",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "term": "반올림한 합이 알려 주는 것",
+        "kind": "성질",
+        "level": "중",
+        "definition": "반올림한 백분율의 합이 $100\\%$여도 각 항목의 백분율이 모두 {정확한 값}이라는 뜻은 아니다. 반올림하면서 커진 양과 작아진 양이 같을 수도 있다.",
+        "studentC": "반올림한 백분율의 합이 $100\\%$여도 각 항목의 백분율이 모두 □이라는 뜻은 아니다. 반올림하면서 커진 양과 작아진 양이 같을 수도 있다.",
+        "answers": [
+          "정확한 값"
+        ]
+      },
+      "sourceFingerprint": "bddb35c5ea99f0b32dd65922d20307cd272862eead61be5138ad8c1a900b88ed",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$50\\%$",
+        "$50\\%$",
+        "다르다"
+      ],
+      "cStudentAfter": "두 항목의 백분율 $49.6\\%$와 $50.4\\%$를 일의 자리까지 반올림하면 각각 □, □이다. 합은 $100\\%$여도 각 항목의 값은 반올림하기 전과 □.",
+      "cMarkedSentence": "두 항목의 백분율 $49.6\\%$와 $50.4\\%$를 일의 자리까지 반올림하면 각각 {$50\\%$}, {$50\\%$}이다. 합은 $100\\%$여도 각 항목의 값은 반올림하기 전과 {다르다}.",
+      "cStudentSentence": "두 항목의 백분율 $49.6\\%$와 $50.4\\%$를 일의 자리까지 반올림하면 각각 □, □이다. 합은 $100\\%$여도 각 항목의 값은 반올림하기 전과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$50\\%$",
+          "equivalents": [
+            "$50$퍼센트"
+          ]
+        },
+        {
+          "key": "$50\\%$",
+          "equivalents": [
+            "$50$퍼센트"
+          ]
+        },
+        {
+          "key": "다르다",
+          "equivalents": [
+            "같지 않다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "반올림한 백분율의 합이 $100\\%$이면 각 항목의 백분율이 모두 정확한 값이라고 할 수 있는지 말하고, 그 까닭을 설명하시오.",
+        "answer": "할 수 없다. 반올림하면서 커진 양과 작아진 양이 서로 같아져 합이 $100\\%$가 될 수도 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정확하다고 할 수 없다",
+              "모두 정확한 값은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "커진 양과 작아진 양이 같을 수 있다",
+              "오차가 서로 상쇄될 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 항목의 백분율 $49.6\\%$와 $50.4\\%$를 일의 자리까지 반올림하면 각각 {$50\\%$}, {$50\\%$}이다. 합은 $100\\%$여도 각 항목의 값은 반올림하기 전과 {다르다}.",
+        "acceptedAnswers": [
+          [
+            "$50\\%$",
+            "$50$퍼센트"
+          ],
+          [
+            "$50\\%$",
+            "$50$퍼센트"
+          ],
+          [
+            "다르다",
+            "같지 않다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5e21dd5ec3742bf14e464d20c1c2d5b0e4283853c9321e71e9515044770ea51d",
+      "questionRevision": "planning-e5e6-20261006-5e21dd5ec374",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-xc16",
+      "bDecision": "revise",
+      "bPrompt": "같은 자료의 띠그래프를 전체 길이 $10\\,\\mathrm{cm}$와 $20\\,\\mathrm{cm}$로 각각 그릴 때, $30\\%$인 항목의 조각이 차지하는 비율은 달라지는가? 두 띠에서 그 조각의 길이도 구하시오.",
+      "bAnswer": "달라지지 않고 모두 $30\\%$이다. 길이는 $10\\,\\mathrm{cm}$ 띠에서 $3\\,\\mathrm{cm}$, $20\\,\\mathrm{cm}$ 띠에서 $6\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율은 같다",
+            "달라지지 않는다",
+            "모두 $30\\%$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{cm}$",
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\,\\mathrm{cm}$",
+            "$6$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "띠 길이가 달라도 비율은 같고 조각 길이만 달라짐을 안다.",
+      "bReason": "비율 불변과 길이 계산을 연결한다.",
+      "cDecision": "revise",
+      "cAfter": "같은 자료를 띠그래프로 나타낼 때, 띠 전체의 길이를 다르게 그려도 각 조각이 차지하는 {비율}은 같다.",
+      "cReason": "같은자료의띠라는조건을보여 전체길이가달라도 조각의비율이같음을묻는다.",
+      "synonymNotes": "비율 대신 백분율도 같은 의미로 인정할 수 있다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "02dbb491d6671df39c06468b16f7711836150d0fa629822d5ce2c3176030a9f5",
+      "sourceIndex": 2035,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-2-xc16",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "term": "띠 길이가 달라도 같은 것",
+        "kind": "성질",
+        "level": "중",
+        "definition": "띠 전체의 길이를 다르게 그려도 각 조각이 차지하는 {비율}은 같다.",
+        "studentC": "띠 전체의 길이를 다르게 그려도 각 조각이 차지하는 □은 같다.",
+        "answers": [
+          "비율"
+        ]
+      },
+      "sourceFingerprint": "1651ad4d88cfaa5cdec790e041732e29c1d225aca97036f7e3a80d010ddcce40",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "비율"
+      ],
+      "cStudentAfter": "같은 자료를 띠그래프로 나타낼 때, 띠 전체의 길이를 다르게 그려도 각 조각이 차지하는 □은 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비율"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 자료를 띠그래프로 나타낼 때, 띠 전체의 길이를 다르게 그려도 각 조각이 차지하는 {비율}은 같다.",
+      "cStudentSentence": "같은 자료를 띠그래프로 나타낼 때, 띠 전체의 길이를 다르게 그려도 각 조각이 차지하는 □은 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "비율",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 자료의 띠그래프를 전체 길이 $10\\,\\mathrm{cm}$와 $20\\,\\mathrm{cm}$로 각각 그릴 때, $30\\%$인 항목의 조각이 차지하는 비율은 달라지는가? 두 띠에서 그 조각의 길이도 구하시오.",
+        "answer": "달라지지 않고 모두 $30\\%$이다. 길이는 $10\\,\\mathrm{cm}$ 띠에서 $3\\,\\mathrm{cm}$, $20\\,\\mathrm{cm}$ 띠에서 $6\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율은 같다",
+              "달라지지 않는다",
+              "모두 $30\\%$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\,\\mathrm{cm}$",
+              "$3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\,\\mathrm{cm}$",
+              "$6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 자료를 띠그래프로 나타낼 때, 띠 전체의 길이를 다르게 그려도 각 조각이 차지하는 {비율}은 같다.",
+        "acceptedAnswers": [
+          [
+            "비율"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0f06c699b75c2128ffe145d72ccd132b42b20eccf795fe90d9863d0b48741652",
+      "questionRevision": "planning-e5e6-20261006-0f06c699b75c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-xc21",
+      "bDecision": "revise",
+      "bPrompt": "전체 수가 $100$의 약수일 때와 약수가 아닐 때 한 항목의 백분율이 어떻게 달라질 수 있는지 설명하시오. 전체가 $4$명일 때와 $8$명일 때 한 사람의 백분율도 구하시오.",
+      "bAnswer": "전체 수가 $100$의 약수이면 $100$을 전체 수로 나눈 값이 자연수이므로 한 사람의 백분율과 그 몇 배인 각 항목의 백분율이 정수로 나온다. 전체 수가 $100$의 약수가 아니면 백분율이 소수로 나오기도 한다. 전체가 $4$명이면 한 사람은 $25\\%$, $8$명이면 $12.5\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 수가 $100$의 약수이면 항목의 백분율이 정수로 나온다",
+            "$100 \\div$전체 수가 자연수이므로 사람 수를 곱한 백분율도 정수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$의 약수가 아니면 백분율이 소수로 나오기도 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$퍼센트"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12.5\\%$",
+            "$12.5$퍼센트"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "전체 수와 백분율의 소수 여부를 연결한다.",
+      "bReason": "조건과 두 계산값을 함께 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "전체가 $4$명이면 한 사람의 백분율은 {$25\\%$}이고, 전체가 $8$명이면 한 사람의 백분율은 {$12.5\\%$}이다. 전체 수에 따라 백분율이 소수로 나오기도 한다.",
+      "cReason": "전체4명·8명에서한사람의백분율25%·12.5%를묻는다. 성립조건전체를빈칸으로추측시키지않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$퍼센트"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12.5\\%$",
+            "$12.5$퍼센트"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "208e2cb0536df1e5329225a482bd935612d7e1248c9814277546a67f3320dde9",
+      "sourceIndex": 2039,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-2-xc21",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "term": "소수로 나오는 백분율",
+        "kind": "성질",
+        "level": "상",
+        "definition": "전체 수가 {$100$의 약수가 아니면} 백분율이 소수로 나오기도 한다.",
+        "studentC": "전체 수가 □ 백분율이 소수로 나오기도 한다.",
+        "answers": [
+          "$100$의 약수가 아니면"
+        ]
+      },
+      "sourceFingerprint": "63df903adee59eebca2e6131ddf48e3a4dc40262b35591e26d8e34bef941c6d2",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$25\\%$",
+        "$12.5\\%$"
+      ],
+      "cStudentAfter": "전체가 $4$명이면 한 사람의 백분율은 □이고, 전체가 $8$명이면 한 사람의 백분율은 □이다. 전체 수에 따라 백분율이 소수로 나오기도 한다.",
+      "cMarkedSentence": "전체가 $4$명이면 한 사람의 백분율은 {$25\\%$}이고, 전체가 $8$명이면 한 사람의 백분율은 {$12.5\\%$}이다. 전체 수에 따라 백분율이 소수로 나오기도 한다.",
+      "cStudentSentence": "전체가 $4$명이면 한 사람의 백분율은 □이고, 전체가 $8$명이면 한 사람의 백분율은 □이다. 전체 수에 따라 백분율이 소수로 나오기도 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$25\\%$",
+          "equivalents": [
+            "$25$퍼센트"
+          ]
+        },
+        {
+          "key": "$12.5\\%$",
+          "equivalents": [
+            "$12.5$퍼센트"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체 수가 $100$의 약수일 때와 약수가 아닐 때 한 항목의 백분율이 어떻게 달라질 수 있는지 설명하시오. 전체가 $4$명일 때와 $8$명일 때 한 사람의 백분율도 구하시오.",
+        "answer": "전체 수가 $100$의 약수이면 $100$을 전체 수로 나눈 값이 자연수이므로 한 사람의 백분율과 그 몇 배인 각 항목의 백분율이 정수로 나온다. 전체 수가 $100$의 약수가 아니면 백분율이 소수로 나오기도 한다. 전체가 $4$명이면 한 사람은 $25\\%$, $8$명이면 $12.5\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 수가 $100$의 약수이면 항목의 백분율이 정수로 나온다",
+              "$100 \\div$전체 수가 자연수이므로 사람 수를 곱한 백분율도 정수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$의 약수가 아니면 백분율이 소수로 나오기도 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25\\%$",
+              "$25$퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12.5\\%$",
+              "$12.5$퍼센트"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전체가 $4$명이면 한 사람의 백분율은 {$25\\%$}이고, 전체가 $8$명이면 한 사람의 백분율은 {$12.5\\%$}이다. 전체 수에 따라 백분율이 소수로 나오기도 한다.",
+        "acceptedAnswers": [
+          [
+            "$25\\%$",
+            "$25$퍼센트"
+          ],
+          [
+            "$12.5\\%$",
+            "$12.5$퍼센트"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "68a258beed509327e6c2540ff4d6718a3b2646bc8234e3b3a76ed329fdc45a6e",
+      "questionRevision": "planning-e5e6-20261006-68a258beed50",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "학생 $20$명이 좋아하는 과일을 한 가지씩 골랐습니다. 사과 $8$명, 배 $7$명, 귤 $5$명인데 한 학생은 백분율을 각각 $40\\%$, $35\\%$, $30\\%$라고 적어 합이 $105\\%$가 되었습니다. 어떤 항목의 백분율을 잘못 구했는지 계산으로 확인하고, 바르게 고친 합을 구해 보세요.",
+      "bAnswer": "귤은 $5\\div20\\times100=25$이므로 $30\\%$가 아니라 $25\\%$이다. 고친 합은 $40+35+25=100$이므로 $100\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "귤의 백분율을 잘못 구했다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5 \\div 20 \\times 100 = 25$이므로 $25\\%$이다",
+            "전체 $20$명 중 $5$명은 $\\frac{1}{4}$이므로 $25\\%$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "고친 합은 $100\\%$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "각 항목의 수와 전체 수로 백분율 계산을 확인하고 바르게 고친 합을 구한다.",
+      "bReason": "항목 수·반올림 자리 없이 105%를 오류라고 단정하던 물음 대신 실제 인원으로 잘못된 계산을 검증한다.",
+      "cDecision": "revise",
+      "cAfter": "학생 $20$명이 좋아하는 과일을 한 가지씩 골랐다. 사과 $8$명은 $40\\%$, 배 $7$명은 $35\\%$이며, 귤 $5$명은 {$25\\%$}이다. 세 백분율의 합은 {$100\\%$}이다.",
+      "cReason": "실제20명의단일선택자료로5명인귤의25%와전체합100%를구한다. 합105%만으로오류를단정하지않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$퍼센트"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100\\%$",
+            "$100$퍼센트"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "1bba168842d0fa4fc434bc3cb0d5de257d600fe36db10e67fd310f753a3740c8",
+      "sourceIndex": 2040,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-2-xc24",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "term": "합이 맞지 않는 띠",
+        "kind": "성질",
+        "level": "상",
+        "definition": "띠그래프에서 백분율의 합이 $105\\%$처럼 $100\\%$와 크게 다르면 각 항목의 {백분율 계산}을 다시 확인한다.",
+        "studentC": "띠그래프에서 백분율의 합이 $105\\%$처럼 $100\\%$와 크게 다르면 각 항목의 □을 다시 확인한다.",
+        "answers": [
+          "백분율 계산"
+        ]
+      },
+      "sourceFingerprint": "162feedfbf94c72754b36a8dd1c5fc51e24af402f72cdda2505e7b86bccff8e2",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$25\\%$",
+        "$100\\%$"
+      ],
+      "cStudentAfter": "학생 $20$명이 좋아하는 과일을 한 가지씩 골랐다. 사과 $8$명은 $40\\%$, 배 $7$명은 $35\\%$이며, 귤 $5$명은 □이다. 세 백분율의 합은 □이다.",
+      "cMarkedSentence": "학생 $20$명이 좋아하는 과일을 한 가지씩 골랐다. 사과 $8$명은 $40\\%$, 배 $7$명은 $35\\%$이며, 귤 $5$명은 {$25\\%$}이다. 세 백분율의 합은 {$100\\%$}이다.",
+      "cStudentSentence": "학생 $20$명이 좋아하는 과일을 한 가지씩 골랐다. 사과 $8$명은 $40\\%$, 배 $7$명은 $35\\%$이며, 귤 $5$명은 □이다. 세 백분율의 합은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$25\\%$",
+          "equivalents": [
+            "$25$퍼센트"
+          ]
+        },
+        {
+          "key": "$100\\%$",
+          "equivalents": [
+            "$100$퍼센트"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "학생 $20$명이 좋아하는 과일을 한 가지씩 골랐습니다. 사과 $8$명, 배 $7$명, 귤 $5$명인데 한 학생은 백분율을 각각 $40\\%$, $35\\%$, $30\\%$라고 적어 합이 $105\\%$가 되었습니다. 어떤 항목의 백분율을 잘못 구했는지 계산으로 확인하고, 바르게 고친 합을 구해 보세요.",
+        "answer": "귤은 $5\\div20\\times100=25$이므로 $30\\%$가 아니라 $25\\%$이다. 고친 합은 $40+35+25=100$이므로 $100\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "귤의 백분율을 잘못 구했다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5 \\div 20 \\times 100 = 25$이므로 $25\\%$이다",
+              "전체 $20$명 중 $5$명은 $\\frac{1}{4}$이므로 $25\\%$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "고친 합은 $100\\%$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "학생 $20$명이 좋아하는 과일을 한 가지씩 골랐다. 사과 $8$명은 $40\\%$, 배 $7$명은 $35\\%$이며, 귤 $5$명은 {$25\\%$}이다. 세 백분율의 합은 {$100\\%$}이다.",
+        "acceptedAnswers": [
+          [
+            "$25\\%$",
+            "$25$퍼센트"
+          ],
+          [
+            "$100\\%$",
+            "$100$퍼센트"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "01334b12828ad8e343327ca3e48d51ce30fb7cc4f2b197530d0febe69bff7b16",
+      "questionRevision": "planning-e5e6-20261006-01334b12828a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-xc1",
+      "bDecision": "revise",
+      "bPrompt": "그림그래프에서 큰 사과 그림 하나는 $100$개, 작은 사과 그림 하나는 $10$개를 나타냅니다. 가 마을은 큰 그림 $2$개와 작은 그림 $3$개, 나 마을은 큰 그림 $1$개와 작은 그림 $8$개입니다. 사과 수를 비교하려면 그림을 어떻게 읽어야 하는지 설명하고 어느 마을이 몇 개 더 많은지 구해 보세요.",
+      "bAnswer": "그림 개수만 세지 않고 크기마다 나타내는 수를 곱해 더한다. 가는 $200+30=230$개, 나는 $100+80=180$개이므로 가가 $50$개 더 많다.",
+      "bGoal": "서로 다른 크기의 그림이 나타내는 수를 읽어 실제 수량을 비교한다.",
+      "bReason": "쓰임을 묻되 '무엇으로'로 답의 범위를 좁혀 준다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 크기의 그림이 나타내는 수와 그림 개수를 곱해 더한다",
+            "큰 그림은$100$개씩, 작은 그림은$10$개씩으로 읽어 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가 마을이 $50$개 더 많다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "그림그래프에서 큰 사과 그림 하나는 $100$개, 작은 그림 하나는 $10$개이다. 큰 그림 $2$개와 작은 그림 $3$개는 사과 {$230$}개를 나타낸다.",
+      "cReason": "큰그림100개와작은그림10개라는단위와개수를제시해230개를읽는다. 그림크기와개수라는긴구절을회상시키지않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$230$",
+            "$230$개",
+            "이백삼십"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "593e7d522dd74d65799965f8835e2ea57ab54bd935fce5c0e5a7714a95e67aae",
+      "sourceIndex": 2081,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-5-xc1",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "term": "그림그래프의 쓰임",
+        "kind": "성질",
+        "level": "하",
+        "definition": "그림그래프는 지역별 수량처럼 {그림의 크기와 개수}로 많고 적음을 한눈에 보여 준다.",
+        "studentC": "그림그래프는 지역별 수량처럼 □로 많고 적음을 한눈에 보여 준다.",
+        "answers": [
+          "그림의 크기와 개수"
+        ]
+      },
+      "sourceFingerprint": "e149e9cffd5712b2d2e8115962f05e2f3e4fead366ba33237b6c6597c2ffa69a",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$230$"
+      ],
+      "cStudentAfter": "그림그래프에서 큰 사과 그림 하나는 $100$개, 작은 그림 하나는 $10$개이다. 큰 그림 $2$개와 작은 그림 $3$개는 사과 □개를 나타낸다.",
+      "cMarkedSentence": "그림그래프에서 큰 사과 그림 하나는 $100$개, 작은 그림 하나는 $10$개이다. 큰 그림 $2$개와 작은 그림 $3$개는 사과 {$230$}개를 나타낸다.",
+      "cStudentSentence": "그림그래프에서 큰 사과 그림 하나는 $100$개, 작은 그림 하나는 $10$개이다. 큰 그림 $2$개와 작은 그림 $3$개는 사과 □개를 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$230$",
+          "equivalents": [
+            "$230$개",
+            "이백삼십"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "그림그래프에서 큰 사과 그림 하나는 $100$개, 작은 사과 그림 하나는 $10$개를 나타냅니다. 가 마을은 큰 그림 $2$개와 작은 그림 $3$개, 나 마을은 큰 그림 $1$개와 작은 그림 $8$개입니다. 사과 수를 비교하려면 그림을 어떻게 읽어야 하는지 설명하고 어느 마을이 몇 개 더 많은지 구해 보세요.",
+        "answer": "그림 개수만 세지 않고 크기마다 나타내는 수를 곱해 더한다. 가는 $200+30=230$개, 나는 $100+80=180$개이므로 가가 $50$개 더 많다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 크기의 그림이 나타내는 수와 그림 개수를 곱해 더한다",
+              "큰 그림은$100$개씩, 작은 그림은$10$개씩으로 읽어 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가 마을이 $50$개 더 많다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "그림그래프에서 큰 사과 그림 하나는 $100$개, 작은 그림 하나는 $10$개이다. 큰 그림 $2$개와 작은 그림 $3$개는 사과 {$230$}개를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$230$",
+            "$230$개",
+            "이백삼십"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d714965d6ddd871e6517d60142c9dcc4da0cce0dff6f1a059785023f0d212798",
+      "questionRevision": "planning-e5e6-20261006-d714965d6ddd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "막대그래프의 쓰임을 안다.",
+      "bReason": "c1에서 이미 막대그래프와 띠그래프의 쓰임을 비교해 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "막대그래프는 항목별 {수량}을 비교하기 좋다.",
+      "cReason": "항목별수량이라는짧은대상을묻고 양·수량의차이등의같은뜻학생표현을허용한다.",
+      "exclusionReason": "B는 e6-1-5-5-c1과 중복이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수량",
+            "양",
+            "수량의 크기",
+            "수량의 차이",
+            "항목별 수량의 차이"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "f0341c5759970baa1b399f346aee290c6254d75c2dccb8aa7ff2b810a75c130c",
+      "sourceIndex": 2082,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-5-xc2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "term": "막대그래프의 쓰임",
+        "kind": "성질",
+        "level": "하",
+        "definition": "막대그래프는 항목별 {수량의 크기}를 비교하기 좋다.",
+        "studentC": "막대그래프는 항목별 □를 비교하기 좋다.",
+        "answers": [
+          "수량의 크기"
+        ]
+      },
+      "sourceFingerprint": "6a32b3f1ad1108bebdc8f0d335233e51852a11592c6670e934b0acbc1a7ac297",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "수량"
+      ],
+      "cStudentAfter": "막대그래프는 항목별 □을 비교하기 좋다.",
+      "cMarkedSentence": "막대그래프는 항목별 {수량}을 비교하기 좋다.",
+      "cStudentSentence": "막대그래프는 항목별 □을 비교하기 좋다.",
+      "cSlotAnswers": [
+        {
+          "key": "수량",
+          "equivalents": [
+            "양",
+            "수량의 크기",
+            "수량의 차이",
+            "항목별 수량의 차이"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "막대그래프는 항목별 {수량}을 비교하기 좋다.",
+        "acceptedAnswers": [
+          [
+            "수량",
+            "양",
+            "수량의 크기",
+            "수량의 차이",
+            "항목별 수량의 차이"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e6-1-5-5-c1과 중복이다."
+      },
+      "proposalFingerprint": "0978da36a9b640d8e226c82bc0fc4ca964e189c79c078f5b551acada92bfe621",
+      "questionRevision": "planning-e5e6-20261006-0978da36a9b6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "비율을 나타낸 그래프에 직접 없는 정보를 안다.",
+      "bReason": "xc27에서 실제 수와 전체 수의 관계를 더 구체적으로 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "원그래프에 한 항목이 $30\\%$라고만 적혀 있고 전체 인원은 알려 주지 않았다. 이 정보만으로 그 항목의 인원을 {정할 수 없다}.",
+      "cReason": "30%만보이고전체인원을알려주지않았다는조건에서 항목인원을정할수없다는판단을묻는다.",
+      "exclusionReason": "B는 e6-1-5-5-xc27과 중복이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정할 수 없다",
+            "알 수 없다",
+            "구할 수 없다"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "5929f98a6bbc2cfae874bd7d99894ccd1e58d841b05f101bb6a13a785446dc89",
+      "sourceIndex": 2094,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-5-xc14",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "term": "비율그래프에 없는 정보",
+        "kind": "성질",
+        "level": "중",
+        "definition": "띠그래프나 원그래프에는 보통 각 항목의 {실제 수}가 직접 나타나지 않는다.",
+        "studentC": "띠그래프나 원그래프에는 보통 각 항목의 □가 직접 나타나지 않는다.",
+        "answers": [
+          "실제 수"
+        ]
+      },
+      "sourceFingerprint": "4db046817e8d07e373152ba5a2275e912841e6a6d211a980e2936e29bdfbc38a",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "정할 수 없다"
+      ],
+      "cStudentAfter": "원그래프에 한 항목이 $30\\%$라고만 적혀 있고 전체 인원은 알려 주지 않았다. 이 정보만으로 그 항목의 인원을 □.",
+      "cMarkedSentence": "원그래프에 한 항목이 $30\\%$라고만 적혀 있고 전체 인원은 알려 주지 않았다. 이 정보만으로 그 항목의 인원을 {정할 수 없다}.",
+      "cStudentSentence": "원그래프에 한 항목이 $30\\%$라고만 적혀 있고 전체 인원은 알려 주지 않았다. 이 정보만으로 그 항목의 인원을 □.",
+      "cSlotAnswers": [
+        {
+          "key": "정할 수 없다",
+          "equivalents": [
+            "알 수 없다",
+            "구할 수 없다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원그래프에 한 항목이 $30\\%$라고만 적혀 있고 전체 인원은 알려 주지 않았다. 이 정보만으로 그 항목의 인원을 {정할 수 없다}.",
+        "acceptedAnswers": [
+          [
+            "정할 수 없다",
+            "알 수 없다",
+            "구할 수 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e6-1-5-5-xc27과 중복이다."
+      },
+      "proposalFingerprint": "ca7dede79d21c0dc04e6a576d5cc58384958d8200a0d9651294ce82bd3d090eb",
+      "questionRevision": "planning-e5e6-20261006-ca7dede79d21",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-xc19",
+      "bDecision": "revise",
+      "bPrompt": "작년에 $20$명 중 한 항목이 $50\\%$였고, 올해는 전체가 $100$명으로 늘어 같은 항목이 $30\\%$일 때, 비율은 줄었지만 그 항목의 실제 인원은 어떻게 변했는지 구하고 그 까닭을 설명하시오.",
+      "bAnswer": "작년은 $10$명, 올해는 $30$명이므로 $20$명 늘었다. 전체 수가 크게 늘면 비율이 줄어도 실제 수는 늘 수 있기 때문이다.",
+      "bGoal": "비율이 줄어도 실제 수가 늘 수 있는 이유를 안다.",
+      "bReason": "예와 일반 이유를 함께 묻고 정확한 값을 답에 포함한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$명에서 $30$명으로 늘었다",
+            "$20$명 늘었다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 수가 크게 늘었기 때문이다",
+            "전체 수가 커져서 비율이 줄어도 실제 수는 늘 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "작년에는 전체 $20$명 중 한 항목이 $50\\%$여서 $10$명이었다. 올해는 전체 $100$명 중 $30\\%$여서 {$30$}명이다. 비율은 줄었지만 그 항목의 인원은 {늘었다}.",
+      "cReason": "20명의50%와100명의30%를제시해30명과늘었다를묻는다. 실제수라는포괄낱말을추측하지않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$",
+            "$30$명",
+            "삼십"
+          ]
+        },
+        {
+          "anyOf": [
+            "늘었다",
+            "증가했다",
+            "많아졌다"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "bad85a05138a8b45f7bc9b31b1398baeb05ac39d8de3c79f36f1d46eb1064756",
+      "sourceIndex": 2099,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-5-xc19",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "term": "비율이 줄어도 수가 늘 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "전체 수가 크게 늘면 한 항목의 비율이 줄어도 그 항목의 {실제 수}는 늘 수 있다.",
+        "studentC": "전체 수가 크게 늘면 한 항목의 비율이 줄어도 그 항목의 □는 늘 수 있다.",
+        "answers": [
+          "실제 수"
+        ]
+      },
+      "sourceFingerprint": "8b67ded62a848a41a6c85f5665315f7e78817251e106a27884ca2b52d339ca4d",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$30$",
+        "늘었다"
+      ],
+      "cStudentAfter": "작년에는 전체 $20$명 중 한 항목이 $50\\%$여서 $10$명이었다. 올해는 전체 $100$명 중 $30\\%$여서 □명이다. 비율은 줄었지만 그 항목의 인원은 □.",
+      "cMarkedSentence": "작년에는 전체 $20$명 중 한 항목이 $50\\%$여서 $10$명이었다. 올해는 전체 $100$명 중 $30\\%$여서 {$30$}명이다. 비율은 줄었지만 그 항목의 인원은 {늘었다}.",
+      "cStudentSentence": "작년에는 전체 $20$명 중 한 항목이 $50\\%$여서 $10$명이었다. 올해는 전체 $100$명 중 $30\\%$여서 □명이다. 비율은 줄었지만 그 항목의 인원은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": [
+            "$30$명",
+            "삼십"
+          ]
+        },
+        {
+          "key": "늘었다",
+          "equivalents": [
+            "증가했다",
+            "많아졌다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "작년에 $20$명 중 한 항목이 $50\\%$였고, 올해는 전체가 $100$명으로 늘어 같은 항목이 $30\\%$일 때, 비율은 줄었지만 그 항목의 실제 인원은 어떻게 변했는지 구하고 그 까닭을 설명하시오.",
+        "answer": "작년은 $10$명, 올해는 $30$명이므로 $20$명 늘었다. 전체 수가 크게 늘면 비율이 줄어도 실제 수는 늘 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$명에서 $30$명으로 늘었다",
+              "$20$명 늘었다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 수가 크게 늘었기 때문이다",
+              "전체 수가 커져서 비율이 줄어도 실제 수는 늘 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "작년에는 전체 $20$명 중 한 항목이 $50\\%$여서 $10$명이었다. 올해는 전체 $100$명 중 $30\\%$여서 {$30$}명이다. 비율은 줄었지만 그 항목의 인원은 {늘었다}.",
+        "acceptedAnswers": [
+          [
+            "$30$",
+            "$30$명",
+            "삼십"
+          ],
+          [
+            "늘었다",
+            "증가했다",
+            "많아졌다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5b12744bcb95c019ee65b494108f3d67b17e45002380269c331f94099cdbaa4a",
+      "questionRevision": "planning-e5e6-20261006-5b12744bcb95",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-xc1",
+      "bDecision": "revise",
+      "bPrompt": "모양이 다른 두 상자를 크기가 같은 쌓기나무로 각각 빈틈없이 채웠다. 어느 상자의 부피가 더 큰지 어떻게 알 수 있는지 설명하시오.",
+      "bAnswer": "들어간 쌓기나무의 개수를 비교한다. 개수가 더 많은 상자의 부피가 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓기나무의 개수를 비교한다",
+            "들어간 쌓기나무 수를 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "개수가 더 많은 쪽의 부피가 더 크다",
+            "더 많이 들어가는 쪽이 더 크다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "같은 크기의 단위로 채워 부피를 비교한다.",
+      "bReason": "비교 방법과 판단 결과를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "크기가 같은 쌓기나무로 두 상자를 각각 빈틈없이 채웠다. 들어간 {쌓기나무의 개수}로 두 상자의 부피를 비교할 수 있다.",
+      "cReason": "같은크기쌓기나무로각각빈틈없이채운조건을보여개수로부피를비교한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "쌓기나무의 개수",
+            "쌓기나무 수",
+            "개수"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "33261263fdf84e0012b193639e334778e61e116572f1158f74f8717281d7cfae",
+      "sourceIndex": 2129,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-2-xc1",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "term": "쌓기나무로 부피 비교하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "크기가 같은 쌓기나무로 두 상자를 채워 {쌓기나무의 개수}로 부피를 비교할 수 있다.",
+        "studentC": "크기가 같은 쌓기나무로 두 상자를 채워 □로 부피를 비교할 수 있다.",
+        "answers": [
+          "쌓기나무의 개수"
+        ]
+      },
+      "sourceFingerprint": "bc0a43975f96305b33a72bd9c2cbc8a93a8786d74acea106989a36b1b7113b5a",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "쌓기나무의 개수"
+      ],
+      "cStudentAfter": "크기가 같은 쌓기나무로 두 상자를 각각 빈틈없이 채웠다. 들어간 □로 두 상자의 부피를 비교할 수 있다.",
+      "cMarkedSentence": "크기가 같은 쌓기나무로 두 상자를 각각 빈틈없이 채웠다. 들어간 {쌓기나무의 개수}로 두 상자의 부피를 비교할 수 있다.",
+      "cStudentSentence": "크기가 같은 쌓기나무로 두 상자를 각각 빈틈없이 채웠다. 들어간 □로 두 상자의 부피를 비교할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "쌓기나무의 개수",
+          "equivalents": [
+            "쌓기나무 수",
+            "개수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모양이 다른 두 상자를 크기가 같은 쌓기나무로 각각 빈틈없이 채웠다. 어느 상자의 부피가 더 큰지 어떻게 알 수 있는지 설명하시오.",
+        "answer": "들어간 쌓기나무의 개수를 비교한다. 개수가 더 많은 상자의 부피가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓기나무의 개수를 비교한다",
+              "들어간 쌓기나무 수를 센다"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수가 더 많은 쪽의 부피가 더 크다",
+              "더 많이 들어가는 쪽이 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "크기가 같은 쌓기나무로 두 상자를 각각 빈틈없이 채웠다. 들어간 {쌓기나무의 개수}로 두 상자의 부피를 비교할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "쌓기나무의 개수",
+            "쌓기나무 수",
+            "개수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bb0e9dc715b67f821a0c8846bb714e8fbaac1516636b8a7ef1763365f575f148",
+      "questionRevision": "planning-e5e6-20261006-bb0e9dc715b6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 부피와 밑면의 넓이를 알 때 높이를 어떻게 구하나요? 높이가 $1$ $\\mathrm{cm}$인 한 층의 부피와 관련해 까닭을 말하고, 부피 $60$ $\\mathrm{cm} ^3$, 밑면의 넓이 $15$ $\\mathrm{cm} ^2$일 때 높이를 구해 보세요.",
+      "bAnswer": "부피를 밑면의 넓이로 나눈다. 밑면의 넓이가$15\\,\\mathrm{cm} ^2$이면 높이$1\\,\\mathrm{cm}$인 한 층의 부피는$15\\,\\mathrm{cm} ^3$이다. 전체$60\\,\\mathrm{cm} ^3$에는 이런 층이$60 \\div 15 = 4$개 들어가므로 높이는$4\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부피를 밑면의 넓이로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이$1\\,\\mathrm{cm}$인 한 층의 부피가$15\\,\\mathrm{cm} ^3$이고$60\\,\\mathrm{cm} ^3$에는$4$층 들어간다",
+            "$1\\,\\mathrm{cm}$높이 층의 개수가 $\\mathrm{cm}$로 잰 높이와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이는$4\\,\\mathrm{cm}$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "부피 공식을 거꾸로 써서 높이를 구한다.",
+      "bReason": "나눗셈의 의미를 층 수로 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 {$4$}개 들어가므로 높이는 {$4$} $\\mathrm{cm}$이다.",
+      "cReason": "한층의높이가1cm라는조건과한층15cm³를보여60cm³의4층과높이4cm를연결한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "$4$ $\\mathrm{cm}$",
+            "사"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "0fb70397b6cd6b2bdbfa135fee89775daf21510bf33bd8f4b883044802a6f136",
+      "sourceIndex": 2135,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-2-xc11",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "term": "부피를 밑면의 넓이로 나눈 값",
+        "kind": "방법",
+        "level": "중",
+        "definition": "부피를 밑면의 넓이로 나누면 {높이}가 된다. 한 층의 부피가 몇 번 쌓였는지를 구하는 셈이다.",
+        "studentC": "부피를 밑면의 넓이로 나누면 □가 된다. 한 층의 부피가 몇 번 쌓였는지를 구하는 셈이다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "edf6afab809c50710481bddee558e06ea04d7e438100d414588cda8486cc2a98",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$4$"
+      ],
+      "cStudentAfter": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 □개 들어가므로 높이는 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 {$4$}개 들어가므로 높이는 {$4$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 □개 들어가므로 높이는 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": [
+            "네"
+          ]
+        },
+        {
+          "key": "$4$",
+          "equivalents": [
+            "$4$ $\\mathrm{cm}$",
+            "사"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 부피와 밑면의 넓이를 알 때 높이를 어떻게 구하나요? 높이가 $1$ $\\mathrm{cm}$인 한 층의 부피와 관련해 까닭을 말하고, 부피 $60$ $\\mathrm{cm} ^3$, 밑면의 넓이 $15$ $\\mathrm{cm} ^2$일 때 높이를 구해 보세요.",
+        "answer": "부피를 밑면의 넓이로 나눈다. 밑면의 넓이가$15\\,\\mathrm{cm} ^2$이면 높이$1\\,\\mathrm{cm}$인 한 층의 부피는$15\\,\\mathrm{cm} ^3$이다. 전체$60\\,\\mathrm{cm} ^3$에는 이런 층이$60 \\div 15 = 4$개 들어가므로 높이는$4\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "부피를 밑면의 넓이로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이$1\\,\\mathrm{cm}$인 한 층의 부피가$15\\,\\mathrm{cm} ^3$이고$60\\,\\mathrm{cm} ^3$에는$4$층 들어간다",
+              "$1\\,\\mathrm{cm}$높이 층의 개수가 $\\mathrm{cm}$로 잰 높이와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는$4\\,\\mathrm{cm}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면의 넓이가 $15$ $\\mathrm{cm} ^2$인 직육면체에서 높이 $1$ $\\mathrm{cm}$인 한 층의 부피는 $15$ $\\mathrm{cm} ^3$이다. 전체 부피가 $60$ $\\mathrm{cm} ^3$이면 이런 층이 {$4$}개 들어가므로 높이는 {$4$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "네"
+          ],
+          [
+            "$4$",
+            "$4$ $\\mathrm{cm}$",
+            "사"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ed1fca10325855289bfff26bca586da87c8e62c8989d7c80ea77697fa52d7a32",
+      "questionRevision": "planning-e5e6-20261006-ed1fca103258",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-xc15",
+      "bDecision": "revise",
+      "bPrompt": "높이가 같은 두 직육면체 중 부피가 더 큰 쪽은 어느 쪽인가? 부피를 구하는 방법과 관련해 그 까닭을 말하시오.",
+      "bAnswer": "밑면의 넓이가 더 큰 쪽이다. 부피는 밑면의 넓이에 높이를 곱하는데 높이가 같으므로 밑면의 넓이가 클수록 부피가 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 넓이가 더 큰 쪽이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이가 같으므로 밑면의 넓이가 클수록 부피가 크다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "높이가 같을 때 밑면의 넓이로 부피를 비교한다.",
+      "bReason": "c2와 비슷하지만 같은 조건이 높이이므로 별도로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "두 직육면체의 높이는 같고 밑면의 넓이는 각각 $12$ $\\mathrm{cm} ^2$, $18$ $\\mathrm{cm} ^2$이다. 부피는 밑면의 넓이가 {$18$} $\\mathrm{cm} ^2$인 쪽이 더 크다.",
+      "cReason": "같은높이에서밑면넓이12cm²와18cm²를제시하여더큰부피의밑면값18을답한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$18$",
+            "$18$ $\\mathrm{cm} ^2$",
+            "십팔"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "126e1335afb91b30c20e3a6b8375665016389044b15301a9a0b9abd5cef045c9",
+      "sourceIndex": 2139,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-2-xc15",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "term": "높이가 같을 때 부피 비교",
+        "kind": "성질",
+        "level": "중",
+        "definition": "높이가 같은 두 직육면체는 {밑면의 넓이}가 넓은 쪽의 부피가 더 크다.",
+        "studentC": "높이가 같은 두 직육면체는 □가 넓은 쪽의 부피가 더 크다.",
+        "answers": [
+          "밑면의 넓이"
+        ]
+      },
+      "sourceFingerprint": "c7e9f244565cfe0d1d8d45f8491c05d78932b5e7761c727c1e3be0edc4fea04d",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$18$"
+      ],
+      "cStudentAfter": "두 직육면체의 높이는 같고 밑면의 넓이는 각각 $12$ $\\mathrm{cm} ^2$, $18$ $\\mathrm{cm} ^2$이다. 부피는 밑면의 넓이가 □ $\\mathrm{cm} ^2$인 쪽이 더 크다.",
+      "cMarkedSentence": "두 직육면체의 높이는 같고 밑면의 넓이는 각각 $12$ $\\mathrm{cm} ^2$, $18$ $\\mathrm{cm} ^2$이다. 부피는 밑면의 넓이가 {$18$} $\\mathrm{cm} ^2$인 쪽이 더 크다.",
+      "cStudentSentence": "두 직육면체의 높이는 같고 밑면의 넓이는 각각 $12$ $\\mathrm{cm} ^2$, $18$ $\\mathrm{cm} ^2$이다. 부피는 밑면의 넓이가 □ $\\mathrm{cm} ^2$인 쪽이 더 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$18$",
+          "equivalents": [
+            "$18$ $\\mathrm{cm} ^2$",
+            "십팔"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "높이가 같은 두 직육면체 중 부피가 더 큰 쪽은 어느 쪽인가? 부피를 구하는 방법과 관련해 그 까닭을 말하시오.",
+        "answer": "밑면의 넓이가 더 큰 쪽이다. 부피는 밑면의 넓이에 높이를 곱하는데 높이가 같으므로 밑면의 넓이가 클수록 부피가 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 넓이가 더 큰 쪽이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 같으므로 밑면의 넓이가 클수록 부피가 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 직육면체의 높이는 같고 밑면의 넓이는 각각 $12$ $\\mathrm{cm} ^2$, $18$ $\\mathrm{cm} ^2$이다. 부피는 밑면의 넓이가 {$18$} $\\mathrm{cm} ^2$인 쪽이 더 크다.",
+        "acceptedAnswers": [
+          [
+            "$18$",
+            "$18$ $\\mathrm{cm} ^2$",
+            "십팔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "93b92d9031675c400494af6a6f3137fe6f3e2704dccb3ef66614a53081e4b5c4",
+      "questionRevision": "planning-e5e6-20261006-93b92d903167",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-xc21",
+      "bDecision": "revise",
+      "bPrompt": "막대그래프에서 세로 눈금이 $0$보다 큰 값부터 시작하도록 아래 부분을 생략했습니다. 막대 길이만 보고 수량의 비율을 판단하면 막대 사이의 차이에 어떤 오해가 생길 수 있나요?",
+      "bAnswer": "막대 사이의 차이가 실제 수량에 비해 크게 보일 수 있다. 예를 들어 수량$100$과$110$을 눈금$90$에서부터 그리면 보이는 길이는$10$과$20$이 되어 실제 수량이$2$배인 것처럼 오해할 수 있다.",
+      "bGoal": "세로 눈금 시작값이 그래프 인상에 주는 영향을 안다.",
+      "bReason": "그래프를 비판적으로 읽는 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수량의 차이가 실제 수량에 비해 크게 보일 수 있다",
+            "$100$과$110$을$90$에서부터그리면보이는길이$10$과$20$으로실제수량의비율을오해할수있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "막대그래프에서 $0$보다 큰 값 아래의 부분을 생략하면, 막대 길이만 비교할 때 수량의 차이가 실제에 비해 {크게} 보일 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크게",
+            "더 크게"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 핵심 낱말 하나를 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-rootfix-2020-2140-second.json",
+      "codexFinalAmendedFromFingerprint": "6317a35cf6d9e88d8a50533d217dfcab5f932c27dc4a72b6e2254df899ee4801",
+      "sourceIndex": 2101,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-5-xc21",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "term": "세로 눈금의 함정",
+        "kind": "성질",
+        "level": "상",
+        "definition": "막대그래프의 세로 눈금이 $0$에서 시작하지 않으면 차이가 {실제보다 커 보일} 수 있다.",
+        "studentC": "막대그래프의 세로 눈금이 $0$에서 시작하지 않으면 차이가 □ 수 있다.",
+        "answers": [
+          "실제보다 커 보일"
+        ]
+      },
+      "sourceFingerprint": "4082799eac7ecf013c10c7b18b697bc6416da2292916c29d0a915269f13a2d24",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "크게"
+      ],
+      "cStudentAfter": "막대그래프에서 $0$보다 큰 값 아래의 부분을 생략하면, 막대 길이만 비교할 때 수량의 차이가 실제에 비해 □ 보일 수 있다.",
+      "cMarkedSentence": "막대그래프에서 $0$보다 큰 값 아래의 부분을 생략하면, 막대 길이만 비교할 때 수량의 차이가 실제에 비해 {크게} 보일 수 있다.",
+      "cStudentSentence": "막대그래프에서 $0$보다 큰 값 아래의 부분을 생략하면, 막대 길이만 비교할 때 수량의 차이가 실제에 비해 □ 보일 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "크게",
+          "equivalents": [
+            "더 크게"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "막대그래프에서 세로 눈금이 $0$보다 큰 값부터 시작하도록 아래 부분을 생략했습니다. 막대 길이만 보고 수량의 비율을 판단하면 막대 사이의 차이에 어떤 오해가 생길 수 있나요?",
+        "answer": "막대 사이의 차이가 실제 수량에 비해 크게 보일 수 있다. 예를 들어 수량$100$과$110$을 눈금$90$에서부터 그리면 보이는 길이는$10$과$20$이 되어 실제 수량이$2$배인 것처럼 오해할 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수량의 차이가 실제 수량에 비해 크게 보일 수 있다",
+              "$100$과$110$을$90$에서부터그리면보이는길이$10$과$20$으로실제수량의비율을오해할수있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "막대그래프에서 $0$보다 큰 값 아래의 부분을 생략하면, 막대 길이만 비교할 때 수량의 차이가 실제에 비해 {크게} 보일 수 있다.",
+        "acceptedAnswers": [
+          [
+            "크게",
+            "더 크게"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7122bff6fe970de5ca7dc96e10c40da177f280d1adbef279e6c321e9e0577e23",
+      "questionRevision": "planning-e5e6-20261006-7122bff6fe97",
+      "requiresIndependentReview": true
+    }
+  ]
+}

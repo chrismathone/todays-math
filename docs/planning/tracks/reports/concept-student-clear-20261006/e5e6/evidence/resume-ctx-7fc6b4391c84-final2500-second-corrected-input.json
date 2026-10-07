@@ -1,0 +1,104 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-5-3-xc15",
+      "bDecision": "revise",
+      "bPrompt": "원의 넓이가 두 값 사이에 있다는 것만 알 때, 두 끝값의 가운데 값으로 어림하려고 합니다. 이 가운데 값을 계산하는 방법을 설명하세요. 원의 넓이가 (반지름)$\\times$(반지름)의 $2$배보다 크고 $4$배보다 작다면, 이 방법으로 어림한 넓이는 몇 배인지도 구하세요.",
+      "bAnswer": "두 끝값을 더해 $2$로 나눈다. $2$와 $4$의 가운데 값은 ($2 + 4$)$\\div 2 = 3$이므로 약 $3$배로 어림한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 끝값을 더해 $2$로 나눈다",
+            "두 끝값의 평균을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$배",
+            "$3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "범위의 두 끝 사이 가운데 값으로 하나의 어림값을 정한다.",
+      "bReason": "여러 유효한 어림 방법 중 가운데 값을 쓰는 방법만 채점하던 문제를 없애 질문에서 그 방법을 선택했다고 명시했다.",
+      "cDecision": "revise",
+      "cAfter": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 {$25$}$\\,\\mathrm{cm}^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25$"
+          ]
+        }
+      ],
+      "cReason": "'가운데 값' 낱말 암기 대신 실제 범위에서 가운데 값을 구하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2500-second.json",
+      "codexFinalAmendedFromFingerprint": "d5d0ec41c9ec74ec9e7477dc47b8e99d1c141e63bbd58e4c25b3204b4049c6fd",
+      "sourceIndex": 2523,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc15",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "범위로 넓이를 하나로 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원 넓이의 범위를 알면 두 끝의 {가운데 값}으로 넓이를 하나로 어림할 수 있다.",
+        "studentC": "원 넓이의 범위를 알면 두 끝의 □으로 넓이를 하나로 어림할 수 있다.",
+        "answers": [
+          "가운데 값"
+        ]
+      },
+      "sourceFingerprint": "66d7abbb13be2a2f554de520e959c1206984c856fe832fbd0b8ed586e2317dd9",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$25$"
+      ],
+      "cStudentAfter": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 □$\\,\\mathrm{cm}^2$이다.",
+      "cMarkedSentence": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 {$25$}$\\,\\mathrm{cm}^2$이다.",
+      "cStudentSentence": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 □$\\,\\mathrm{cm}^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$25$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 넓이가 두 값 사이에 있다는 것만 알 때, 두 끝값의 가운데 값으로 어림하려고 합니다. 이 가운데 값을 계산하는 방법을 설명하세요. 원의 넓이가 (반지름)$\\times$(반지름)의 $2$배보다 크고 $4$배보다 작다면, 이 방법으로 어림한 넓이는 몇 배인지도 구하세요.",
+        "answer": "두 끝값을 더해 $2$로 나눈다. $2$와 $4$의 가운데 값은 ($2 + 4$)$\\div 2 = 3$이므로 약 $3$배로 어림한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 끝값을 더해 $2$로 나눈다",
+              "두 끝값의 평균을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$배",
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 {$25$}$\\,\\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$25$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a7b4cec7df9428110a3eac29b58fae8ccd5d5e5648a584ef733e05946478e7f5",
+      "questionRevision": "planning-e5e6-20261006-a7b4cec7df94",
+      "requiresIndependentReview": true
+    }
+  ]
+}

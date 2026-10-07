@@ -1,0 +1,192 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-5-1-xc15",
+      "bDecision": "exclude",
+      "bPrompt": "원주가 지름의 $3$배보다 길고 $4$배보다 짧다는 것을 확인하려면, 원 안과 밖에 꼭 맞게 그린 어떤 도형의 둘레와 비교하면 되는지 각각 쓰고 비교 결과를 설명하시오.",
+      "bAnswer": "원 안의 정육각형 둘레(지름의 $3$배)는 원주보다 짧고, 원 밖의 정사각형 둘레(지름의 $4$배)는 원주보다 길다.",
+      "bGoal": "안쪽 정육각형과 바깥쪽 정사각형으로 원주의 범위를 설명한다.",
+      "bReason": "지름 3배·4배 경계에 쓰는 안팎 도형을 고르게 하려면 실제 배치를 보여 주어야 한다. 예시 그림 필요 표시만으로 그림 없는 B를 활성화하지 않고, 현재 글·수식 형식에서는 제외한다. 구체적인 원래 제안과 학습 설명은 증거에 보존한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "안쪽 정육각형 둘레가 원주보다 짧다",
+            "정육각형 둘레는 지름의 $3$배이고 원주보다 짧다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바깥쪽 정사각형 둘레가 원주보다 길다",
+            "정사각형 둘레는 지름의 $4$배이고 원주보다 길다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "어떤 안팎 도형인지 그림 없이 이름을 복원시키므로 현재 C에서는 제외한다. 짧은 원주 크기 비교는 xc6·xc8에 남기고 이 두 도형의 배치·경계 설명은 그림 지원 이후 재검토한다.",
+      "exampleNeeded": true,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-diagram-scope-patch.json",
+      "codexFinalAmendedFromFingerprint": "92ffa744712fb380ad99a66c2bdcc0cb8389b6168d3c8967b13936b99d42d7cf",
+      "exclusionReason": "원·안쪽 정육각형·바깥 정사각형의 배치 그림이 필요한 문항으로 현재 글·수식 B/C에서는 제외한다.",
+      "sourceIndex": 2499,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc15",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "지름의 $3$배와 $4$배 사이인 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원주는 원 안에 꼭 맞는 {정육각형}의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 {정사각형}의 둘레(지름의 $4$배)보다 짧다.",
+        "studentC": "원주는 원 안에 꼭 맞는 □의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 □의 둘레(지름의 $4$배)보다 짧다.",
+        "answers": [
+          "정육각형",
+          "정사각형"
+        ]
+      },
+      "sourceFingerprint": "344215c7acdd4c064a056a5e6ee472ee995577a73b7ccf93b41aa202f250c9db",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "원·안쪽 정육각형·바깥 정사각형의 배치 그림이 필요한 문항으로 현재 글·수식 B/C에서는 제외한다.",
+        "cloze": "원·안쪽 정육각형·바깥 정사각형의 배치 그림이 필요한 문항으로 현재 글·수식 B/C에서는 제외한다."
+      },
+      "proposalFingerprint": "e83df38aedb7adc33765068656d13a6a3ed170f53d3c920e89e316683ff0bb03",
+      "questionRevision": "planning-e5e6-20261006-e83df38aedb7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc18",
+      "bDecision": "exclude",
+      "bPrompt": "원 밖에 꼭 맞는 정사각형과 원 밖에 꼭 맞는 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 어느 쪽이며, 그 까닭은 무엇인지 설명하시오.",
+      "bAnswer": "정육각형이다. 변이 더 많아 원에 더 붙어 있어서 원과 도형 사이에 남는 부분이 더 적기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정육각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "원과 도형 사이에 남는 부분이 더 적다",
+            "원 모양에 더 가깝다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "변이 많은 도형이 원에 더 가까운 까닭을 설명한다.",
+      "bReason": "바깥 정사각형과 정육각형 사이 남는 넓이를 비교하려면 같은 원에 접한 두 도형의 실제 배치 그림이 필요하다. 그림을 학생이 복원하게 하는 현재 B에서는 제외하고 구체 제안은 보존한다.",
+      "cDecision": "exclude",
+      "cAfter": "원 밖에 꼭 맞는 정사각형과 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 {정육각형}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정육각형"
+          ]
+        }
+      ],
+      "cReason": "같은 원에 접한 두 바깥 도형을 실제로 볼 수 없으면 정육각형이라는 이름을 외워 쓰게 된다. 현재 글·수식 C에서는 제외하고 그림을 제공하는 평가로 재검토한다.",
+      "exampleNeeded": true,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-diagram-scope-patch.json",
+      "codexFinalAmendedFromFingerprint": "71540861997148fd6d299b5eebae9aa4205c348e482fa657f102533f953990e2",
+      "exclusionReason": "같은 원과 두 바깥 도형의 넓이를 비교할 그림이 필요한 문항으로 현재 B/C에서는 제외한다.",
+      "sourceIndex": 2526,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc18",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "정육각형으로 더 가깝게",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원 밖에 꼭 맞는 도형은 정사각형보다 정육각형일 때 넓이가 원에 {더 가깝다}.",
+        "studentC": "원 밖에 꼭 맞는 도형은 정사각형보다 정육각형일 때 넓이가 원에 □.",
+        "answers": [
+          "더 가깝다"
+        ]
+      },
+      "sourceFingerprint": "1584a501753358c2777816039c039e48bcb0b6f328bd17de608c209edea168c2",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "같은 원과 두 바깥 도형의 넓이를 비교할 그림이 필요한 문항으로 현재 B/C에서는 제외한다.",
+        "cloze": "같은 원과 두 바깥 도형의 넓이를 비교할 그림이 필요한 문항으로 현재 B/C에서는 제외한다."
+      },
+      "proposalFingerprint": "0cb7bf99f76b1e99c1a3948f5b4298efbde5feca68b68d24e52e10c335b2a565",
+      "questionRevision": "planning-e5e6-20261006-0cb7bf99f76b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc18",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "조각을 잘게 할수록 직사각형에 가까워짐을 안다.",
+      "bReason": "c3의 직사각형 질문에 포함되고 그림 없이 한 낱말만 묻게 된다.",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "위아래로 번갈아 붙였다는 말만으로 곡선과 뾰족한 끝의 정확한 배치를 정하기 어렵다. 기본 c3과 같은 이유로 현재 글·수식 C에서는 제외하고, 조각을 이어 붙인 실제 그림과 함께 재검토한다.",
+      "exclusionReason": "원의 조각을 번갈아 배열한 실제 그림 없이는 배치를 복원해야 하므로 현재 B/C에서는 제외한다.",
+      "exampleNeeded": true,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-diagram-scope-patch.json",
+      "codexFinalAmendedFromFingerprint": "cbdcc855c47098da2ccd65304eb8258305d16f9b363a6c30c9e38518922c8f14",
+      "sourceIndex": 2541,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc18",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "잘게 자를수록 가까워지는 모양",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+        "studentC": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "21a6cd211fdc60bf46a92b89c9120ea7a066d235cbd460a9f7665466ac6e4c5f",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "원의 조각을 번갈아 배열한 실제 그림 없이는 배치를 복원해야 하므로 현재 B/C에서는 제외한다.",
+        "cloze": "원의 조각을 번갈아 배열한 실제 그림 없이는 배치를 복원해야 하므로 현재 B/C에서는 제외한다."
+      },
+      "proposalFingerprint": "5acc0bf4f7691f2c6b6e7a93502cb9ddf5dc53ec4e8ac31514518859ea6093d1",
+      "questionRevision": "planning-e5e6-20261006-5acc0bf4f769",
+      "requiresIndependentReview": true
+    }
+  ]
+}

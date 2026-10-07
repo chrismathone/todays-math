@@ -1,0 +1,405 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-1-4-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "소수를 올림하여 소수 첫째 자리까지 나타내는 방법을 설명하고, $2.154$를 올림하여 소수 첫째 자리까지 나타내시오.",
+      "bAnswer": "소수 첫째 자리 아래에 $0$이 아닌 숫자가 있으면 아래 자리를 버린 수에 $0.1$을 더한다. 아래 숫자가 모두 $0$이면 그대로 둔다. $2.154$는 $2.1+0.1=2.2$가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수첫째자리아래에$0$아닌숫자가있으면아래자리를버린수에$0.1$을더한다",
+            "아래수를$0.1$로보고올리고필요하면윗자리로받아올림한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "아래숫자가모두$0$이면그대로둔다"
+          ]
+        }
+      ],
+      "bGoal": "자연수의 올림 방법을 소수 자리에 그대로 적용한다.",
+      "bReason": "나타낼 자리를 소수 첫째 자리로 정해 방법과 결과를 함께 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$2.154$를 올림하여 소수 첫째 자리까지 나타내면 {$2.2$}이고, 소수 둘째 자리까지 나타내면 {$2.16$}이다.",
+      "cReason": "원문 빈칸은 긴 조건 구절을 외우게 하고 '한 단위'가 어려워 실제 소수 값으로 바꾸었다.",
+      "coreAfter": "소수를 올림할 때, 나타낼 자리의 아래에 {$0$이 아닌 숫자가 있으면} 그 자리의 단위만큼 더한 뒤 아래 자리는 버린다. 단위는 소수 첫째 자리면 $0.1$, 둘째 자리면 $0.01$이다.",
+      "coreReason": "'한 단위를 더하고'는 초5 학생에게 뜻이 불분명하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "0이 아닌 숫자가 있으면이라는 원문 표적을 유지한다. 현재 초안의 자리 숫자를1 크게 한다는 말은9에서 올림할 때 맞지 않아 단위값의 덧셈과 아래 자리 버림으로 정확히 설명한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1090.json",
+      "codexFinalAmendedFromFingerprint": "7a70fd14897c498a481347a2855e277e9cc7e605ccdbcf97f6c99e3bad074453",
+      "sourceIndex": 1107,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-4-xc4",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-4 올림 알아보기",
+        "term": "소수의 올림",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수도 나타낼 자리 아래에 {$0$이 아닌 숫자가 있으면} 나타낼 자리의 한 단위를 더하고 아래 자리는 버린다.",
+        "studentC": "소수도 나타낼 자리 아래에 □ 나타낼 자리의 한 단위를 더하고 아래 자리는 버린다.",
+        "answers": [
+          "$0$이 아닌 숫자가 있으면"
+        ]
+      },
+      "sourceFingerprint": "c3f897169f7ceb6065a70a5ec35c1930ed2734ca42bc4d98b09ea13f2150e7a3",
+      "draftEvidence": "evidence/section-029-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2.2$",
+        "$2.16$"
+      ],
+      "cStudentAfter": "$2.154$를 올림하여 소수 첫째 자리까지 나타내면 □이고, 소수 둘째 자리까지 나타내면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2.2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.16$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2.154$를 올림하여 소수 첫째 자리까지 나타내면 {$2.2$}이고, 소수 둘째 자리까지 나타내면 {$2.16$}이다.",
+      "cStudentSentence": "$2.154$를 올림하여 소수 첫째 자리까지 나타내면 □이고, 소수 둘째 자리까지 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2.2$",
+          "equivalents": []
+        },
+        {
+          "key": "$2.16$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수를 올림하여 소수 첫째 자리까지 나타내는 방법을 설명하고, $2.154$를 올림하여 소수 첫째 자리까지 나타내시오.",
+        "answer": "소수 첫째 자리 아래에 $0$이 아닌 숫자가 있으면 아래 자리를 버린 수에 $0.1$을 더한다. 아래 숫자가 모두 $0$이면 그대로 둔다. $2.154$는 $2.1+0.1=2.2$가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수첫째자리아래에$0$아닌숫자가있으면아래자리를버린수에$0.1$을더한다",
+              "아래수를$0.1$로보고올리고필요하면윗자리로받아올림한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래숫자가모두$0$이면그대로둔다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.154$를 올림하여 소수 첫째 자리까지 나타내면 {$2.2$}이고, 소수 둘째 자리까지 나타내면 {$2.16$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2.2$"
+          ],
+          [
+            "$2.16$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1fc8df7c420ecc66920e68dbdbbc6e99f712a83843155c12f7528014fd73307a",
+      "questionRevision": "planning-e5e6-20261006-1fc8df7c420e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-4-xc13",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$347$을 십의 자리까지 올림한 수와 버림한 수를 각각 구하고 두 수의 차를 쓰세요. 또, 어떤 자연수를 십의 자리까지 올림한 수와 버림한 수의 차가 $0$이 되려면 처음 자연수의 일의 자리 숫자는 무엇이어야 하나요? 까닭도 설명하세요.",
+      "bAnswer": "올림하면 $350$, 버림하면 $340$이고 차는 $10$이다. $340$처럼 일의 자리 숫자가 $0$인 수는 올림해도 버림해도 그대로여서 차가 $0$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$350$과 $340$"
+          ]
+        },
+        {
+          "anyOf": [
+            "차는 $10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "일의 자리 숫자가 $0$인 수",
+            "십의 자리 아래가 $0$인 수",
+            "올림해도 버림해도 그대로인 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "일의자리가$0$이면올리거나버릴수가없어두결과가같다"
+          ]
+        }
+      ],
+      "bGoal": "올림한 값과 버림한 값의 차가 그 자리의 값 하나이거나 0임을 예로 확인한다.",
+      "bReason": "'한 단위'라는 말 대신 실제 수의 차와 차가 0인 경우를 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$347$을 십의 자리까지 올림하면 {$350$}, 버림하면 {$340$}이므로 두 수의 차는 {$10$}이다.",
+      "cReason": "'한 단위만큼'은 학생이 쓰기 어려운 구절이라 실제 값과 차를 구하게 했다.",
+      "coreAfter": "같은 수를 같은 자리까지 올림·버림했을 때, 원래 수의 그 자리 아래에 $0$ 아닌 숫자가 있으면 차가 {한 단위만큼} 나고 없으면 차가 $0$이다. 한 단위는 십의 자리 $10$, 백의 자리 $100$이다.",
+      "coreReason": "'한 단위만큼 차이 날 수 있다'는 뜻이 불분명하고 차가 0인 경우가 드러나지 않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "한 단위만큼이라는 원문 표적을 보존하며 원래 수의 아래 자리 조건을 밝힌다. 단위의 뜻을 실제 자리별 값으로 풀고 차가0인 경우도 포함한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1090.json",
+      "codexFinalAmendedFromFingerprint": "079d96fedaa1b6d4c457b45c9d011dbdc98f61e72cbc56e91efa96ad601eaa0b",
+      "sourceIndex": 1114,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-4-xc13",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-4 올림 알아보기",
+        "term": "올림한 값과 버림한 값의 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 수를 올림한 값과 버림한 값은 나타낸 자리의 {한 단위만큼} 차이 날 수 있다.",
+        "studentC": "같은 수를 올림한 값과 버림한 값은 나타낸 자리의 □ 차이 날 수 있다.",
+        "answers": [
+          "한 단위만큼"
+        ]
+      },
+      "sourceFingerprint": "bacc70235667b7671c79a7e1690f1bdc60be95d2f5f5e0eb64e90e1ef33bef12",
+      "draftEvidence": "evidence/section-029-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$350$",
+        "$340$",
+        "$10$"
+      ],
+      "cStudentAfter": "$347$을 십의 자리까지 올림하면 □, 버림하면 □이므로 두 수의 차는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$350$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$340$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$347$을 십의 자리까지 올림하면 {$350$}, 버림하면 {$340$}이므로 두 수의 차는 {$10$}이다.",
+      "cStudentSentence": "$347$을 십의 자리까지 올림하면 □, 버림하면 □이므로 두 수의 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$350$",
+          "equivalents": []
+        },
+        {
+          "key": "$340$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$347$을 십의 자리까지 올림한 수와 버림한 수를 각각 구하고 두 수의 차를 쓰세요. 또, 어떤 자연수를 십의 자리까지 올림한 수와 버림한 수의 차가 $0$이 되려면 처음 자연수의 일의 자리 숫자는 무엇이어야 하나요? 까닭도 설명하세요.",
+        "answer": "올림하면 $350$, 버림하면 $340$이고 차는 $10$이다. $340$처럼 일의 자리 숫자가 $0$인 수는 올림해도 버림해도 그대로여서 차가 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$350$과 $340$"
+            ]
+          },
+          {
+            "anyOf": [
+              "차는 $10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "일의 자리 숫자가 $0$인 수",
+              "십의 자리 아래가 $0$인 수",
+              "올림해도 버림해도 그대로인 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "일의자리가$0$이면올리거나버릴수가없어두결과가같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$347$을 십의 자리까지 올림하면 {$350$}, 버림하면 {$340$}이므로 두 수의 차는 {$10$}이다.",
+        "acceptedAnswers": [
+          [
+            "$350$"
+          ],
+          [
+            "$340$"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "300a8e702915335776cef10147e5dbb4181d72f9da37e1c0c0003ff78799b6e8",
+      "questionRevision": "planning-e5e6-20261006-300a8e702915",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-4-xc20",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$53$명이 한 대에 $8$명씩 탈 수 있는 보트에 모두 타려고 합니다. 나눗셈의 몫과 나머지를 이용하여 필요한 보트 수를 구하는 방법을 설명하고, 보트가 최소 몇 대 필요한지 쓰세요.",
+      "bAnswer": "$53\\div 8=6\\cdots 5$이다. $6$대에 타고 남은 $5$명도 타야 하므로 몫에 $1$을 더해 $7$대가 필요하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 $6$이고 $5$명이 남는다",
+            "$6$대에 $48$명이 타고 $5$명이 남는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "남은 사람이 탈 보트가 $1$대 더 필요하다",
+            "몫에 $1$을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$대"
+          ]
+        }
+      ],
+      "bGoal": "나머지가 있을 때 몫보다 1 큰 수가 필요한 묶음 수임을 식으로 설명한다.",
+      "bReason": "c3이 까닭을 묻는 것과 달리 몫과 나머지로 구하는 절차를 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$53$명이 한 대에 $8$명까지 타는 보트에 모두 타려고 한다. $53÷8$의 몫은 $6$이고 나머지는 {$5$}이므로 보트는 최소 {$7$}대 필요하다.",
+      "cReason": "'1을 더한'이라는 구절 대신 원문 예의 나머지와 필요한 수를 구하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1090.json",
+      "codexFinalAmendedFromFingerprint": "5d9c81dee76220aa97501eedbe8c009ecb814bbca4b1ae83cc540b9b8842c19d",
+      "sourceIndex": 1119,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-4-xc20",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-4 올림 알아보기",
+        "term": "나머지가 있을 때의 묶음 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "나누어 남은 것이 있으면 몫에 {$1$을 더한} 수가 필요한 묶음 수이다.",
+        "example": {
+          "prompt": "$53$명이 $8$명씩 탈 수 있는 보트에 모두 타려면 보트는 몇 대인가?",
+          "answer": "$7$대"
+        },
+        "studentC": "나누어 남은 것이 있으면 몫에 □ 수가 필요한 묶음 수이다.",
+        "answers": [
+          "$1$을 더한"
+        ]
+      },
+      "sourceFingerprint": "2c1bb8e983a0fbb22c8e1a082223526487c7a337e6188e25df7885b471e4f103",
+      "draftEvidence": "evidence/section-029-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$7$"
+      ],
+      "cStudentAfter": "$53$명이 한 대에 $8$명까지 타는 보트에 모두 타려고 한다. $53÷8$의 몫은 $6$이고 나머지는 □이므로 보트는 최소 □대 필요하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$53$명이 한 대에 $8$명까지 타는 보트에 모두 타려고 한다. $53÷8$의 몫은 $6$이고 나머지는 {$5$}이므로 보트는 최소 {$7$}대 필요하다.",
+      "cStudentSentence": "$53$명이 한 대에 $8$명까지 타는 보트에 모두 타려고 한다. $53÷8$의 몫은 $6$이고 나머지는 □이므로 보트는 최소 □대 필요하다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$53$명이 한 대에 $8$명씩 탈 수 있는 보트에 모두 타려고 합니다. 나눗셈의 몫과 나머지를 이용하여 필요한 보트 수를 구하는 방법을 설명하고, 보트가 최소 몇 대 필요한지 쓰세요.",
+        "answer": "$53\\div 8=6\\cdots 5$이다. $6$대에 타고 남은 $5$명도 타야 하므로 몫에 $1$을 더해 $7$대가 필요하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 $6$이고 $5$명이 남는다",
+              "$6$대에 $48$명이 타고 $5$명이 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 사람이 탈 보트가 $1$대 더 필요하다",
+              "몫에 $1$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$대"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$53$명이 한 대에 $8$명까지 타는 보트에 모두 타려고 한다. $53÷8$의 몫은 $6$이고 나머지는 {$5$}이므로 보트는 최소 {$7$}대 필요하다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fd1382dea5f5f41afb4131271b8fe1ac5b28be65168dd3d0b81e843aae2e4e99",
+      "questionRevision": "planning-e5e6-20261006-fd1382dea5f5",
+      "requiresIndependentReview": true
+    }
+  ]
+}

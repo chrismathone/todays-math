@@ -1,0 +1,3071 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T06:57:40.471580+00:00",
+  "rows": [
+    {
+      "id": "e5-1-5-3-xc2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분모가 다르면 먼저 통분해야 함을 안다.",
+      "bReason": "통분을 먼저 한다는 내용은 c1의 B가 절차 전체로 이미 물어 중복됨.",
+      "exclusionReason": "B는 e5-1-5-3-c1과 중복(대체: e5-1-5-3-c1).",
+      "cDecision": "revise",
+      "cAfter": "분모가 다른 두 진분수를 빼려면 먼저 {통분}하여 분모를 같게 만든다.",
+      "cReason": "원문은 조건 '분모가 다른'을 빈칸으로 두어 답이 막연하므로 해야 할 행동인 통분을 답하게 바꿈.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분",
+            "통분을"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 880,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc2",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "분모가 다를 때 먼저 통분하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "{분모가 다른} 진분수를 빼려면 먼저 통분한다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}-\\frac{1}{3}$을 계산하시오.",
+          "answer": "$\\frac{1}{6}$"
+        },
+        "studentC": "□ 진분수를 빼려면 먼저 통분한다.",
+        "answers": [
+          "분모가 다른"
+        ]
+      },
+      "sourceFingerprint": "532e8fb499915eeb53f18844cf19443d857e23dbfc13b542a7217e1ace06af18",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "통분"
+      ],
+      "cStudentAfter": "분모가 다른 두 진분수를 빼려면 먼저 □하여 분모를 같게 만든다.",
+      "cMarkedSentence": "분모가 다른 두 진분수를 빼려면 먼저 {통분}하여 분모를 같게 만든다.",
+      "cStudentSentence": "분모가 다른 두 진분수를 빼려면 먼저 □하여 분모를 같게 만든다.",
+      "cSlotAnswers": [
+        {
+          "key": "통분",
+          "equivalents": [
+            "통분을"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "분모가 다른 두 진분수를 빼려면 먼저 {통분}하여 분모를 같게 만든다.",
+        "acceptedAnswers": [
+          [
+            "통분",
+            "통분을"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-3-c1과 중복(대체: e5-1-5-3-c1)."
+      },
+      "proposalFingerprint": "ecf4013a881cf3f0825313fc2397f76fea27eac0c189b4da4ac24fba291b3455",
+      "questionRevision": "planning-e5e6-20261006-ecf4013a881c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc3",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 분모의 곱을 공통분모로 쓸 수 있음을 안다.",
+      "bReason": "분모의 곱으로 통분하는 방법은 xc19의 B에서 최소공배수 방법과 함께 계산하게 되어 따로 물으면 계산값만 남음.",
+      "exclusionReason": "B는 e5-1-5-3-xc19에서 두 통분 방법 비교로 다룸(대체: e5-1-5-3-xc19).",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{4}-\\frac{2}{5}$는 두 분모의 곱인 {$20$}을 공통분모로 하여 통분하면 차가 {$\\frac{7}{20}$}이다.",
+      "cReason": "공통분모의 답이 뒤 식에 이미 나오는 단서를 제거하고 공통분모와 차를 직접 계산하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{20}$"
+          ]
+        }
+      ],
+      "codexReview": "미리 읽은 실제 제안 지면에서 발견한 답 복사·서로 다른 유효 답·중복을 개별 수정했다. 전체 최종 질문/답/기준 판정은 별도 진행한다.",
+      "sourceIndex": 881,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc3",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "분모의 곱으로 통분해 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 다른 두 분수를 뺄 때 두 분모를 서로 {곱한 값}을 공통분모로 하여 통분해도 된다.",
+        "example": {
+          "prompt": "$\\frac{3}{4}-\\frac{2}{5}$를 계산하시오.",
+          "answer": "$\\frac{7}{20}$"
+        },
+        "studentC": "분모가 다른 두 분수를 뺄 때 두 분모를 서로 □을 공통분모로 하여 통분해도 된다.",
+        "answers": [
+          "곱한 값"
+        ]
+      },
+      "sourceFingerprint": "b23e822be480a26619241712fa3ed5fbd6d692c3f9761359fdb8bfae93021f90",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$20$",
+        "$\\frac{7}{20}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{4}-\\frac{2}{5}$는 두 분모의 곱인 □을 공통분모로 하여 통분하면 차가 □이다.",
+      "cMarkedSentence": "$\\frac{3}{4}-\\frac{2}{5}$는 두 분모의 곱인 {$20$}을 공통분모로 하여 통분하면 차가 {$\\frac{7}{20}$}이다.",
+      "cStudentSentence": "$\\frac{3}{4}-\\frac{2}{5}$는 두 분모의 곱인 □을 공통분모로 하여 통분하면 차가 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{7}{20}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{4}-\\frac{2}{5}$는 두 분모의 곱인 {$20$}을 공통분모로 하여 통분하면 차가 {$\\frac{7}{20}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ],
+          [
+            "$\\frac{7}{20}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-3-xc19에서 두 통분 방법 비교로 다룸(대체: e5-1-5-3-xc19)."
+      },
+      "proposalFingerprint": "3e49dec0c20889344f75c1cfba48658d5532fc47100b68b7c4f29563f7cb7689",
+      "questionRevision": "planning-e5e6-20261006-3e49dec0c208",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 뺄 때, 두 분모의 곱 대신 두 분모의 최소공배수를 공통분모로 쓰면 계산에서 무엇이 편해지는지 설명하고, $\\frac{5}{6}-\\frac{3}{8}$을 최소공배수로 통분하여 계산하시오.",
+      "bAnswer": "분모와 분자의 수가 작아져서 계산이 쉽다(약분할 일도 줄어든다). $6$과 $8$의 최소공배수는 $24$이므로 $\\frac{20}{24}-\\frac{9}{24}=\\frac{11}{24}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자의 수가 작아져 계산이 쉽다",
+            "수가 작아진다",
+            "나중에 약분할 일이 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{11}{24}$"
+          ]
+        }
+      ],
+      "bGoal": "최소공배수로 통분하면 수가 작아 계산이 간단해지는 까닭을 말한다.",
+      "bReason": "'수가 작아 간단하다'는 결론을 질문에 넣지 않고 편리한 점을 스스로 말하게 함.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 {$24$}로 통분하여 빼면 차는 {$\\frac{11}{24}$}이다.",
+      "cReason": "최소공배수의 답을 뒤 식에서 복사하는 단서와 모호한 작아라는 빈칸을 없애고 구체적인 공통분모와 차를 계산하게 한다. 방법의 편리함은 B에서 설명한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{11}{24}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexReview": "미리 읽은 실제 제안 지면에서 발견한 답 복사·서로 다른 유효 답·중복을 개별 수정했다. 전체 최종 질문/답/기준 판정은 별도 진행한다.",
+      "sourceIndex": 882,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc4",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "최소공배수로 통분해 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 분모의 최소공배수로 통분하면 {수가 작아} 빼기가 간단하다.",
+        "example": {
+          "prompt": "$\\frac{5}{6}-\\frac{3}{8}$을 계산하시오.",
+          "answer": "$\\frac{11}{24}$"
+        },
+        "studentC": "두 분모의 최소공배수로 통분하면 □ 빼기가 간단하다.",
+        "answers": [
+          "수가 작아"
+        ]
+      },
+      "sourceFingerprint": "1f846979107891e3520a873cca7883b72e2c427b4323e27203f9e04ad1e31e0a",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$\\frac{11}{24}$"
+      ],
+      "cStudentAfter": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 □로 통분하여 빼면 차는 □이다.",
+      "cMarkedSentence": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 {$24$}로 통분하여 빼면 차는 {$\\frac{11}{24}$}이다.",
+      "cStudentSentence": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 □로 통분하여 빼면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{11}{24}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수를 뺄 때, 두 분모의 곱 대신 두 분모의 최소공배수를 공통분모로 쓰면 계산에서 무엇이 편해지는지 설명하고, $\\frac{5}{6}-\\frac{3}{8}$을 최소공배수로 통분하여 계산하시오.",
+        "answer": "분모와 분자의 수가 작아져서 계산이 쉽다(약분할 일도 줄어든다). $6$과 $8$의 최소공배수는 $24$이므로 $\\frac{20}{24}-\\frac{9}{24}=\\frac{11}{24}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모와 분자의 수가 작아져 계산이 쉽다",
+              "수가 작아진다",
+              "나중에 약분할 일이 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{11}{24}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 {$24$}로 통분하여 빼면 차는 {$\\frac{11}{24}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$\\frac{11}{24}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "30272d4f52e462106ad4a9095b038e51626ad957a94ea2316cd7337b614d14b9",
+      "questionRevision": "planning-e5e6-20261006-30272d4f52e4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "뺀 결과를 약분해 기약분수로 나타낸다.",
+      "bReason": "마무리 약분은 설명할 관계가 없는 습관 규칙이라 B로 물으면 계산값 하나만 남음.",
+      "exclusionReason": "B는 단순 계산 마무리 단계라 가치가 낮음(절차는 e5-1-5-3-xc10의 C에서 확인).",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 {$\\frac{1}{2}$}이다.",
+      "cReason": "조건절 '약분할 수 있으면'을 외우게 하는 대신 실제 차를 기약분수로 고치게 함.",
+      "exampleNeeded": false,
+      "sourceIndex": 883,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc5",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "차를 기약분수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "뺀 결과는 {약분할 수 있으면} 기약분수로 나타낸다.",
+        "example": {
+          "prompt": "$\\frac{7}{10}-\\frac{1}{5}$을 계산하시오.",
+          "answer": "$\\frac{1}{2}$"
+        },
+        "studentC": "뺀 결과는 □ 기약분수로 나타낸다.",
+        "answers": [
+          "약분할 수 있으면"
+        ]
+      },
+      "sourceFingerprint": "90cc10312524f68ff7fb8739138833caf01eea0cda2fa24384c80cda9135e729",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 {$\\frac{1}{2}$}이다.",
+      "cStudentSentence": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 {$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순 계산 마무리 단계라 가치가 낮음(절차는 e5-1-5-3-xc10의 C에서 확인)."
+      },
+      "proposalFingerprint": "f320ac4d35af208e5a3a09e0f2883b83b10766be599abb8c75f7c51ef380153a",
+      "questionRevision": "planning-e5e6-20261006-f320ac4d35af",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc6",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "통분한 뒤 분모는 빼지 않음을 안다.",
+      "bReason": "공통분모를 그대로 둔다는 내용은 c1의 절차와 xc11의 오류 설명에 모두 들어 있음.",
+      "exclusionReason": "B·C 모두 e5-1-5-3-c1(분모는 그대로)과 e5-1-5-3-xc11(분모끼리 빼는 잘못)과 중복.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c1의 둘째 빈칸 '그대로'와 같은 내용을 '빼지 않고'로 다시 묻는 문장이라 제외.",
+      "exampleNeeded": false,
+      "sourceIndex": 884,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc6",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "빼지 않는 공통분모",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분수를 뺄 때 공통분모는 {빼지 않고} 그대로 둔다.",
+        "studentC": "분수를 뺄 때 공통분모는 □ 그대로 둔다.",
+        "answers": [
+          "빼지 않고"
+        ]
+      },
+      "sourceFingerprint": "f95d3e96310c53473caf8e16d6ab54d958461205f9888365e3da7a997dfdd332",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 모두 e5-1-5-3-c1(분모는 그대로)과 e5-1-5-3-xc11(분모끼리 빼는 잘못)과 중복.",
+        "cloze": "B·C 모두 e5-1-5-3-c1(분모는 그대로)과 e5-1-5-3-xc11(분모끼리 빼는 잘못)과 중복."
+      },
+      "proposalFingerprint": "4f488c6ea3f8eacf3176a0bcf7b8d32b7e8ae466b1d424ff1e556aa3189db741",
+      "questionRevision": "planning-e5e6-20261006-4f488c6ea3f8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc7",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$1$에서 진분수를 뺄 때 $1$을 어떤 분수로 바꾸어 계산하는지 설명하고, $1-\\frac{3}{7}$을 계산하시오.",
+      "bAnswer": "$1$을 빼는 분수와 분모가 같고 분자와 분모가 같은 분수로 바꾼다. $1=\\frac{7}{7}$이므로 $\\frac{7}{7}-\\frac{3}{7}=\\frac{4}{7}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$을 분자와 분모가 같은 분수로 바꾼다",
+            "$1$을 빼는 분수와 분모가 같은 분수로 바꾼다",
+            "$1=\\frac{7}{7}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{7}$"
+          ]
+        }
+      ],
+      "bGoal": "1을 빼는 분수와 같은 분모의 분수로 바꾸어 뺄 수 있음을 설명한다.",
+      "bReason": "1을 어떤 분수로 바꾸는지와 실제 계산을 함께 물어 답의 범위를 분명히 함.",
+      "cDecision": "revise",
+      "cAfter": "$1-\\frac{3}{7}$에서 $1$을 {$\\frac{7}{7}$}로 바꾸어 빼면 차는 {$\\frac{4}{7}$}이다.",
+      "cReason": "첫 빈칸의 답을 뒤에 반복한 식을 제거한다. 같은 분모로 나타낼 $1$과 차를 직접 쓰게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{7}{7}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{7}$"
+          ]
+        }
+      ],
+      "codexReview": "미리 읽은 실제 제안 지면에서 발견한 답 복사·서로 다른 유효 답·중복을 개별 수정했다. 전체 최종 질문/답/기준 판정은 별도 진행한다.",
+      "sourceIndex": 885,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc7",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "$1$에서 진분수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$1$에서 진분수를 뺄 때는 $1$을 {분모와 분자가 같은 분수}로 바꾼다.",
+        "example": {
+          "prompt": "$1-\\frac{3}{7}$을 계산하시오.",
+          "answer": "$\\frac{4}{7}$"
+        },
+        "studentC": "$1$에서 진분수를 뺄 때는 $1$을 □로 바꾼다.",
+        "answers": [
+          "분모와 분자가 같은 분수"
+        ]
+      },
+      "sourceFingerprint": "6024b538776b70dbcb524b3c7de55d35c38a7bae118bab273410daa62fb41f48",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{7}{7}$",
+        "$\\frac{4}{7}$"
+      ],
+      "cStudentAfter": "$1-\\frac{3}{7}$에서 $1$을 □로 바꾸어 빼면 차는 □이다.",
+      "cMarkedSentence": "$1-\\frac{3}{7}$에서 $1$을 {$\\frac{7}{7}$}로 바꾸어 빼면 차는 {$\\frac{4}{7}$}이다.",
+      "cStudentSentence": "$1-\\frac{3}{7}$에서 $1$을 □로 바꾸어 빼면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{7}{7}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{4}{7}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$에서 진분수를 뺄 때 $1$을 어떤 분수로 바꾸어 계산하는지 설명하고, $1-\\frac{3}{7}$을 계산하시오.",
+        "answer": "$1$을 빼는 분수와 분모가 같고 분자와 분모가 같은 분수로 바꾼다. $1=\\frac{7}{7}$이므로 $\\frac{7}{7}-\\frac{3}{7}=\\frac{4}{7}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$을 분자와 분모가 같은 분수로 바꾼다",
+              "$1$을 빼는 분수와 분모가 같은 분수로 바꾼다",
+              "$1=\\frac{7}{7}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{7}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1-\\frac{3}{7}$에서 $1$을 {$\\frac{7}{7}$}로 바꾸어 빼면 차는 {$\\frac{4}{7}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{7}{7}$"
+          ],
+          [
+            "$\\frac{4}{7}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "64369ba543da0a1171f9eb58dec31fbae733a0dd5f23ee2be8be2f15e34bcc5a",
+      "questionRevision": "planning-e5e6-20261006-64369ba543da",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc8",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "모양이 달라도 크기가 같은 분수의 차는 0임을 안다.",
+      "bReason": "같은 크기끼리 빼면 0이라는 것은 자명해 설명형 질문으로 만들 내용이 없음.",
+      "exclusionReason": "B는 자명한 문장이라 제외하고 C의 구체적 식으로만 확인.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 {같은} 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=${$0$}이다.",
+      "cReason": "원문은 주어 구절 전체가 빈칸이라 분모가 다른 실제 두 분수로 크기 관계와 차를 답하게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 886,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc8",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "차가 $0$일 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "{크기가 같은 분수끼리} 빼면 차는 $0$이다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}-\\frac{4}{6}$의 값은?",
+          "answer": "$0$"
+        },
+        "studentC": "□ 빼면 차는 $0$이다.",
+        "answers": [
+          "크기가 같은 분수끼리"
+        ]
+      },
+      "sourceFingerprint": "32cfa1f9fee6e29327e9903f92c99d9b8fe2dd31c47b779e684477cf1d66fa28",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "같은",
+        "$0$"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 □ 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=$□이다.",
+      "cMarkedSentence": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 {같은} 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=${$0$}이다.",
+      "cStudentSentence": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 □ 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        },
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 {같은} 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=${$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ],
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 문장이라 제외하고 C의 구체적 식으로만 확인."
+      },
+      "proposalFingerprint": "219939452e1072896ba7dec9c8ba431521e2617039f176a075ccd43ef9493359",
+      "questionRevision": "planning-e5e6-20261006-219939452e10",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc9",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "남은 양을 구하는 상황을 분수의 뺄셈식으로 나타낸다.",
+      "bReason": "남은 양을 뺄셈으로 구하는 것은 저학년부터 아는 내용이고 두 번 쓰는 상황은 xc25의 B가 다룸.",
+      "exclusionReason": "B는 단순 연산 선택이라 가치가 낮음(대체: e5-1-5-3-xc25).",
+      "cDecision": "revise",
+      "cAfter": "우유 $\\frac{3}{4}$ $\\mathrm{L}$ 중 $\\frac{1}{2}$ $\\mathrm{L}$를 마셨을 때 남은 양은 $\\frac{3}{4}$ {$-$} $\\frac{1}{2}$로 구하고, 그 값은 {$\\frac{1}{4}$} $\\mathrm{L}$이다.",
+      "cReason": "'쓴 양을 빼어'라는 구절 대신 실제 상황에서 연산 기호와 값을 답하게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$-$",
+            "빼기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$",
+            "$\\frac{2}{8}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 887,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc9",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "남은 양 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "‘남은 양’은 처음 양에서 {쓴 양을 빼어} 구한다.",
+        "example": {
+          "prompt": "우유 $\\frac{3}{4}\\,\\mathrm{L}$ 중 $\\frac{1}{2}\\,\\mathrm{L}$를 마시면 남은 양은?",
+          "answer": "$\\frac{1}{4}\\,\\mathrm{L}$"
+        },
+        "studentC": "‘남은 양’은 처음 양에서 □ 구한다.",
+        "answers": [
+          "쓴 양을 빼어"
+        ]
+      },
+      "sourceFingerprint": "70b0cb9b2578ea225b81cd160f4497ffc0f83b6fce86b0ea86b774df1bd78d8d",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "$-$",
+        "$\\frac{1}{4}$"
+      ],
+      "cStudentAfter": "우유 $\\frac{3}{4}$ $\\mathrm{L}$ 중 $\\frac{1}{2}$ $\\mathrm{L}$를 마셨을 때 남은 양은 $\\frac{3}{4}$ □ $\\frac{1}{2}$로 구하고, 그 값은 □ $\\mathrm{L}$이다.",
+      "cMarkedSentence": "우유 $\\frac{3}{4}$ $\\mathrm{L}$ 중 $\\frac{1}{2}$ $\\mathrm{L}$를 마셨을 때 남은 양은 $\\frac{3}{4}$ {$-$} $\\frac{1}{2}$로 구하고, 그 값은 {$\\frac{1}{4}$} $\\mathrm{L}$이다.",
+      "cStudentSentence": "우유 $\\frac{3}{4}$ $\\mathrm{L}$ 중 $\\frac{1}{2}$ $\\mathrm{L}$를 마셨을 때 남은 양은 $\\frac{3}{4}$ □ $\\frac{1}{2}$로 구하고, 그 값은 □ $\\mathrm{L}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$-$",
+          "equivalents": [
+            "빼기"
+          ]
+        },
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": [
+            "$\\frac{2}{8}$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "우유 $\\frac{3}{4}$ $\\mathrm{L}$ 중 $\\frac{1}{2}$ $\\mathrm{L}$를 마셨을 때 남은 양은 $\\frac{3}{4}$ {$-$} $\\frac{1}{2}$로 구하고, 그 값은 {$\\frac{1}{4}$} $\\mathrm{L}$이다.",
+        "acceptedAnswers": [
+          [
+            "$-$",
+            "빼기"
+          ],
+          [
+            "$\\frac{1}{4}$",
+            "$\\frac{2}{8}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순 연산 선택이라 가치가 낮음(대체: e5-1-5-3-xc25)."
+      },
+      "proposalFingerprint": "78a96ba0c428f0b14a5f1ad6ee70da3a4d10a4016cdd522ed7ab8579b3b22333",
+      "questionRevision": "planning-e5e6-20261006-78a96ba0c428",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc10",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분수 뺄셈의 통분–빼기–약분 차례를 안다.",
+      "bReason": "계산 차례는 c1의 B가 이미 설명하게 하므로 같은 질문이 됨.",
+      "exclusionReason": "B는 e5-1-5-3-c1과 중복(대체: e5-1-5-3-c1).",
+      "cDecision": "revise",
+      "cAfter": "분모가 다른 분수의 뺄셈은 통분하기 → 분자끼리 빼기 → 결과가 기약분수가 아니면 {약분}하기의 차례로 한다.",
+      "cReason": "'분모가 다른'과 약분이 필요한 조건이 빠져 있어 조건을 넣고 마지막 단계만 묻게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약분"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 888,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc10",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "분수 뺄셈의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분수의 뺄셈은 통분하기, 분자 빼기, {약분하기}의 차례로 한다.",
+        "studentC": "분수의 뺄셈은 통분하기, 분자 빼기, □의 차례로 한다.",
+        "answers": [
+          "약분하기"
+        ]
+      },
+      "sourceFingerprint": "7cf26189a4f0f688177904a4447e68d534b430b5372c3c18070563e245fdf4e1",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "약분"
+      ],
+      "cStudentAfter": "분모가 다른 분수의 뺄셈은 통분하기 → 분자끼리 빼기 → 결과가 기약분수가 아니면 □하기의 차례로 한다.",
+      "cMarkedSentence": "분모가 다른 분수의 뺄셈은 통분하기 → 분자끼리 빼기 → 결과가 기약분수가 아니면 {약분}하기의 차례로 한다.",
+      "cStudentSentence": "분모가 다른 분수의 뺄셈은 통분하기 → 분자끼리 빼기 → 결과가 기약분수가 아니면 □하기의 차례로 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "약분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "분모가 다른 분수의 뺄셈은 통분하기 → 분자끼리 빼기 → 결과가 기약분수가 아니면 {약분}하기의 차례로 한다.",
+        "acceptedAnswers": [
+          [
+            "약분"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-3-c1과 중복(대체: e5-1-5-3-c1)."
+      },
+      "proposalFingerprint": "f4c4d658b979c4f973cfed310a1abdec6c2d3796f3ad83b382b91b8b1b7cfe25",
+      "questionRevision": "planning-e5e6-20261006-f4c4d658b979",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 학생이 $\\frac{3}{4}-\\frac{1}{2}$을 분자끼리, 분모끼리 따로 빼서 $\\frac{2}{2}$라고 답했다. 이 방법이 틀린 까닭을 두 분수의 조각 크기와 관련지어 설명하고, 바르게 계산하시오.",
+      "bAnswer": "$\\frac{1}{4}$짜리 조각과 $\\frac{1}{2}$짜리 조각은 크기가 달라 조각 수를 바로 뺄 수 없고, 분모는 조각의 크기를 나타내므로 빼는 수가 아니다. 통분하면 $\\frac{3}{4}-\\frac{2}{4}=\\frac{1}{4}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분수의 조각 크기가 서로 다르다",
+            "분모가 다르면 같은 크기의 조각이 아니다",
+            "분모는 조각의 크기를 나타내므로 빼면 안 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "분모가 다르면 조각 크기가 달라 그대로 뺄 수 없음을 설명한다.",
+      "bReason": "원문의 추상적 오류 설명을 실제 틀린 풀이를 보고 까닭을 말하는 질문으로 바꿈.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{4}-\\frac{1}{2}$에서 $\\frac{1}{4}$짜리 조각과 $\\frac{1}{2}$짜리 조각은 크기가 {다르므로} 분자끼리 바로 뺄 수 없다. $\\frac{1}{2}$을 {$\\frac{2}{4}$}로 바꾸어 빼면 차는 {$\\frac{1}{4}$}이다.",
+      "cReason": "빈칸 '크기가 다른 조각의 수를 뺀 것'은 통째로 외워야 하는 긴 구절이라 짧은 낱말과 값으로 나눔.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다르므로",
+            "달라서",
+            "다르기 때문에"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 889,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc11",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "분모끼리도 빼는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 다른 두 분수를 위의 수끼리, 아래의 수끼리 따로 빼면 {크기가 다른 조각의 수를 뺀 것}이 되어 틀린다.",
+        "example": {
+          "prompt": "$\\frac{3}{4}-\\frac{1}{2}$에서 분모끼리 뺀 $2$를 분모로 쓰면 안 되는 까닭은?",
+          "answer": "남는 것도 $\\frac{1}{4}$ 크기의 조각이라서"
+        },
+        "studentC": "분모가 다른 두 분수를 위의 수끼리, 아래의 수끼리 따로 빼면 □이 되어 틀린다.",
+        "answers": [
+          "크기가 다른 조각의 수를 뺀 것"
+        ]
+      },
+      "sourceFingerprint": "c08a41569880e573c8e6edc7439238c76050dd2184e927c189d091e8658487e4",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "다르므로",
+        "$\\frac{2}{4}$",
+        "$\\frac{1}{4}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{4}-\\frac{1}{2}$에서 $\\frac{1}{4}$짜리 조각과 $\\frac{1}{2}$짜리 조각은 크기가 □ 분자끼리 바로 뺄 수 없다. $\\frac{1}{2}$을 □로 바꾸어 빼면 차는 □이다.",
+      "cMarkedSentence": "$\\frac{3}{4}-\\frac{1}{2}$에서 $\\frac{1}{4}$짜리 조각과 $\\frac{1}{2}$짜리 조각은 크기가 {다르므로} 분자끼리 바로 뺄 수 없다. $\\frac{1}{2}$을 {$\\frac{2}{4}$}로 바꾸어 빼면 차는 {$\\frac{1}{4}$}이다.",
+      "cStudentSentence": "$\\frac{3}{4}-\\frac{1}{2}$에서 $\\frac{1}{4}$짜리 조각과 $\\frac{1}{2}$짜리 조각은 크기가 □ 분자끼리 바로 뺄 수 없다. $\\frac{1}{2}$을 □로 바꾸어 빼면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "다르므로",
+          "equivalents": [
+            "달라서",
+            "다르기 때문에"
+          ]
+        },
+        {
+          "key": "$\\frac{2}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 학생이 $\\frac{3}{4}-\\frac{1}{2}$을 분자끼리, 분모끼리 따로 빼서 $\\frac{2}{2}$라고 답했다. 이 방법이 틀린 까닭을 두 분수의 조각 크기와 관련지어 설명하고, 바르게 계산하시오.",
+        "answer": "$\\frac{1}{4}$짜리 조각과 $\\frac{1}{2}$짜리 조각은 크기가 달라 조각 수를 바로 뺄 수 없고, 분모는 조각의 크기를 나타내므로 빼는 수가 아니다. 통분하면 $\\frac{3}{4}-\\frac{2}{4}=\\frac{1}{4}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 분수의 조각 크기가 서로 다르다",
+              "분모가 다르면 같은 크기의 조각이 아니다",
+              "분모는 조각의 크기를 나타내므로 빼면 안 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{4}-\\frac{1}{2}$에서 $\\frac{1}{4}$짜리 조각과 $\\frac{1}{2}$짜리 조각은 크기가 {다르므로} 분자끼리 바로 뺄 수 없다. $\\frac{1}{2}$을 {$\\frac{2}{4}$}로 바꾸어 빼면 차는 {$\\frac{1}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "다르므로",
+            "달라서",
+            "다르기 때문에"
+          ],
+          [
+            "$\\frac{2}{4}$"
+          ],
+          [
+            "$\\frac{1}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dff749e1a19c9e2e35928f6f1d8c06afab5dfe2f62974c6e2c3c0ad29ada900a",
+      "questionRevision": "planning-e5e6-20261006-dff749e1a19c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 분수의 차를 구하려는데 어느 분수가 더 큰지 바로 알 수 없을 때 어떻게 해야 하는지 설명하고, $\\frac{2}{5}$와 $\\frac{3}{7}$의 차를 구하시오.",
+      "bAnswer": "통분하여 크기를 비교한 다음 큰 수에서 작은 수를 뺀다. $\\frac{2}{5}=\\frac{14}{35}$, $\\frac{3}{7}=\\frac{15}{35}$이므로 $\\frac{3}{7}-\\frac{2}{5}=\\frac{1}{35}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분하여 크기를 비교한다",
+            "두 분수의 크기를 먼저 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "큰 수에서 작은 수를 뺀다",
+            "$\\frac{3}{7}$에서 $\\frac{2}{5}$를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{35}$"
+          ]
+        }
+      ],
+      "bGoal": "차를 구할 때 통분으로 크기를 비교한 뒤 큰 수에서 작은 수를 뺀다.",
+      "bReason": "크기 비교가 실제로 필요한 두 분수를 주어 방법과 계산을 함께 물음.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{5}=\\frac{14}{35}$, $\\frac{3}{7}=\\frac{15}{35}$이므로 더 큰 분수는 {$\\frac{3}{7}$}이고, 두 분수의 차는 {$\\frac{1}{35}$}이다.",
+      "cReason": "원문은 바로 뒤의 '작은 쪽'에서 답 '큰 쪽'이 드러나므로 실제 비교와 차를 답하게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{7}$",
+            "$\\frac{15}{35}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{35}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 890,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc12",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "빼기 전에 크기 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 분수의 차를 구할 때 어느 쪽이 큰지 모르면 먼저 통분하여 {큰 쪽}에서 작은 쪽을 뺀다.",
+        "example": {
+          "prompt": "$\\frac{2}{5}$와 $\\frac{3}{7}$의 차는?",
+          "answer": "$\\frac{1}{35}$"
+        },
+        "studentC": "두 분수의 차를 구할 때 어느 쪽이 큰지 모르면 먼저 통분하여 □에서 작은 쪽을 뺀다.",
+        "answers": [
+          "큰 쪽"
+        ]
+      },
+      "sourceFingerprint": "42ce9115aaa8d8fc1d86fd67031c2c61148eb2394823b62c663b4c0824969c81",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{7}$",
+        "$\\frac{1}{35}$"
+      ],
+      "cStudentAfter": "$\\frac{2}{5}=\\frac{14}{35}$, $\\frac{3}{7}=\\frac{15}{35}$이므로 더 큰 분수는 □이고, 두 분수의 차는 □이다.",
+      "cMarkedSentence": "$\\frac{2}{5}=\\frac{14}{35}$, $\\frac{3}{7}=\\frac{15}{35}$이므로 더 큰 분수는 {$\\frac{3}{7}$}이고, 두 분수의 차는 {$\\frac{1}{35}$}이다.",
+      "cStudentSentence": "$\\frac{2}{5}=\\frac{14}{35}$, $\\frac{3}{7}=\\frac{15}{35}$이므로 더 큰 분수는 □이고, 두 분수의 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{7}$",
+          "equivalents": [
+            "$\\frac{15}{35}$"
+          ]
+        },
+        {
+          "key": "$\\frac{1}{35}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 분수의 차를 구하려는데 어느 분수가 더 큰지 바로 알 수 없을 때 어떻게 해야 하는지 설명하고, $\\frac{2}{5}$와 $\\frac{3}{7}$의 차를 구하시오.",
+        "answer": "통분하여 크기를 비교한 다음 큰 수에서 작은 수를 뺀다. $\\frac{2}{5}=\\frac{14}{35}$, $\\frac{3}{7}=\\frac{15}{35}$이므로 $\\frac{3}{7}-\\frac{2}{5}=\\frac{1}{35}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "통분하여 크기를 비교한다",
+              "두 분수의 크기를 먼저 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "큰 수에서 작은 수를 뺀다",
+              "$\\frac{3}{7}$에서 $\\frac{2}{5}$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{35}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{5}=\\frac{14}{35}$, $\\frac{3}{7}=\\frac{15}{35}$이므로 더 큰 분수는 {$\\frac{3}{7}$}이고, 두 분수의 차는 {$\\frac{1}{35}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{7}$",
+            "$\\frac{15}{35}$"
+          ],
+          [
+            "$\\frac{1}{35}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d085ce1f317029f97d6ef3b4cd1d23115eab47a886099749350220279d24a6bf",
+      "questionRevision": "planning-e5e6-20261006-d085ce1f3170",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{2}+\\frac{1}{5}=\\frac{7}{10}$이라는 덧셈식을 알면 따로 계산하지 않고 알 수 있는 뺄셈식 두 개를 쓰고, 그렇게 알 수 있는 까닭을 덧셈과 뺄셈의 관계로 설명하시오.",
+      "bAnswer": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{1}{2}$, $\\frac{7}{10}-\\frac{1}{2}=\\frac{1}{5}$. 두 수를 더한 합에서 한 수를 빼면 다른 한 수가 남기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{7}{10}-\\frac{1}{5}=\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{10}-\\frac{1}{2}=\\frac{1}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "합에서 더한 한 수를 빼면 다른 한 수가 남는다",
+            "뺄셈은 더한 것을 도로 덜어 내는 계산이다"
+          ]
+        }
+      ],
+      "bGoal": "덧셈식 하나에서 뺄셈식 둘이 나오는 덧셈·뺄셈의 관계를 설명한다.",
+      "bReason": "원문 예는 한 식만 묻지만 성질은 두 식이므로 두 식과 까닭을 모두 요구함.",
+      "cDecision": "keep",
+      "cAfter": "두 수를 더한 합에서 한 수를 빼면 {다른 한 수}가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+      "cReason": "합에서 한 수를 빼면 무엇이 남는지 묻는 짧은 관계 문장이라 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'다른 한 수', '나머지 한 수', '다른 수' 인정.",
+      "sourceIndex": 891,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc13",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "덧셈식에서 뺄셈식 알기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수를 더한 합에서 한 수를 빼면 {다른 한 수}가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}+\\frac{1}{5}=\\frac{7}{10}$에서 $\\frac{7}{10}-\\frac{1}{5}$의 값을 바로 아는 까닭은?",
+          "answer": "더한 $\\frac{1}{5}$을 도로 덜어서"
+        },
+        "studentC": "두 수를 더한 합에서 한 수를 빼면 □가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+        "answers": [
+          "다른 한 수"
+        ]
+      },
+      "sourceFingerprint": "5fb83f414662f598fa3d0d0e56ee56972adeb255001d7d80280a9351725d82eb",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cFrozenDefinition": "두 수를 더한 합에서 한 수를 빼면 {다른 한 수}가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+      "cFrozenStudentSentence": "두 수를 더한 합에서 한 수를 빼면 □가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+      "cProposedAnswers": [
+        "다른 한 수"
+      ],
+      "cStudentAfter": "두 수를 더한 합에서 한 수를 빼면 □가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다른 한 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 수를 더한 합에서 한 수를 빼면 {다른 한 수}가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+      "cStudentSentence": "두 수를 더한 합에서 한 수를 빼면 □가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "다른 한 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{2}+\\frac{1}{5}=\\frac{7}{10}$이라는 덧셈식을 알면 따로 계산하지 않고 알 수 있는 뺄셈식 두 개를 쓰고, 그렇게 알 수 있는 까닭을 덧셈과 뺄셈의 관계로 설명하시오.",
+        "answer": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{1}{2}$, $\\frac{7}{10}-\\frac{1}{2}=\\frac{1}{5}$. 두 수를 더한 합에서 한 수를 빼면 다른 한 수가 남기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{10}-\\frac{1}{5}=\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{10}-\\frac{1}{2}=\\frac{1}{5}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "합에서 더한 한 수를 빼면 다른 한 수가 남는다",
+              "뺄셈은 더한 것을 도로 덜어 내는 계산이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 수를 더한 합에서 한 수를 빼면 {다른 한 수}가 남으므로, 덧셈식 하나에서 뺄셈식 둘을 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "다른 한 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1c58f9fce5d4b2bef49145b8516c2470c5c372b60ff877762acde1712451dd59",
+      "questionRevision": "planning-e5e6-20261006-1c58f9fce5d4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc14",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{7}{8}-\\frac{1}{4}$처럼 한 분모가 다른 분모의 배수일 때 공통분모를 무엇으로 정하면 되는지와 그 까닭을 설명하고, 이 식을 계산하시오.",
+      "bAnswer": "큰 분모인 $8$을 공통분모로 한다. $8$이 $4$의 배수이므로 $8$이 두 분모의 최소공배수이기 때문이다. $\\frac{7}{8}-\\frac{2}{8}=\\frac{5}{8}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 분모를 공통분모로 한다",
+            "$8$을 공통분모로 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "큰 분모가 두 분모의 최소공배수이다",
+            "큰 분모가 두 분모의 공배수이다",
+            "분모가 작은 분수만 바꾸면 분모가 같아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{8}$"
+          ]
+        }
+      ],
+      "bGoal": "한 분모가 다른 분모의 배수이면 큰 분모가 공통분모가 됨을 설명한다.",
+      "bReason": "조건은 질문에 주고 어떤 공통분모를 쓰는지와 까닭을 답하게 좁힘.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{7}{8}-\\frac{1}{4}$에서 $8$은 $4$의 {배수}이므로 공통분모를 {$8$}로 하면 $\\frac{7}{8}-\\frac{2}{8}=${$\\frac{5}{8}$}이다.",
+      "cReason": "원문은 조건 구절 전체가 빈칸이라 떠올리기 어려워 실제 식에서 낱말·공통분모·차를 묻게 함.",
+      "exampleNeeded": false,
+      "sourceIndex": 892,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc14",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "큰 분모로 통분해 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "{한 분모가 다른 분모의 배수}이면 큰 분모로 통분하여 뺀다.",
+        "example": {
+          "prompt": "$\\frac{7}{8}-\\frac{1}{4}$을 계산하시오.",
+          "answer": "$\\frac{5}{8}$"
+        },
+        "studentC": "□이면 큰 분모로 통분하여 뺀다.",
+        "answers": [
+          "한 분모가 다른 분모의 배수"
+        ]
+      },
+      "sourceFingerprint": "4ef76df51d1c6f6d300430f3479d92a5920e8c9cd5bb14dd2365147e5cdd1ac6",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "배수",
+        "$8$",
+        "$\\frac{5}{8}$"
+      ],
+      "cStudentAfter": "$\\frac{7}{8}-\\frac{1}{4}$에서 $8$은 $4$의 □이므로 공통분모를 □로 하면 $\\frac{7}{8}-\\frac{2}{8}=$□이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{8}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{7}{8}-\\frac{1}{4}$에서 $8$은 $4$의 {배수}이므로 공통분모를 {$8$}로 하면 $\\frac{7}{8}-\\frac{2}{8}=${$\\frac{5}{8}$}이다.",
+      "cStudentSentence": "$\\frac{7}{8}-\\frac{1}{4}$에서 $8$은 $4$의 □이므로 공통분모를 □로 하면 $\\frac{7}{8}-\\frac{2}{8}=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{5}{8}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{7}{8}-\\frac{1}{4}$처럼 한 분모가 다른 분모의 배수일 때 공통분모를 무엇으로 정하면 되는지와 그 까닭을 설명하고, 이 식을 계산하시오.",
+        "answer": "큰 분모인 $8$을 공통분모로 한다. $8$이 $4$의 배수이므로 $8$이 두 분모의 최소공배수이기 때문이다. $\\frac{7}{8}-\\frac{2}{8}=\\frac{5}{8}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 분모를 공통분모로 한다",
+              "$8$을 공통분모로 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "큰 분모가 두 분모의 최소공배수이다",
+              "큰 분모가 두 분모의 공배수이다",
+              "분모가 작은 분수만 바꾸면 분모가 같아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{8}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{7}{8}-\\frac{1}{4}$에서 $8$은 $4$의 {배수}이므로 공통분모를 {$8$}로 하면 $\\frac{7}{8}-\\frac{2}{8}=${$\\frac{5}{8}$}이다.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "$8$"
+          ],
+          [
+            "$\\frac{5}{8}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "baef2d3f64b939937e0e60bc5d5d03d5b433c360baea09d370c31c63a0fb2fea",
+      "questionRevision": "planning-e5e6-20261006-baef2d3f64b9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc15",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "크기가 가까운 두 분수의 차는 0에 가까움을 안다.",
+      "bReason": "가까우면 차가 작다는 것은 자명하고 차의 어림은 xc24의 B에서 다룸.",
+      "exclusionReason": "B는 자명한 문장이라 제외(대체: e5-1-5-3-xc24).",
+      "cDecision": "revise",
+      "cAfter": "두 분수의 크기가 서로 가까울수록 두 분수의 차는 {$0$}에 가까워진다.",
+      "cReason": "원문 빈칸은 '작다', '0에 가깝다' 등 여러 표현이 가능해 수 하나로 답하게 함.",
+      "exampleNeeded": false,
+      "sourceIndex": 893,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc15",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "가까운 두 분수의 차",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 분수의 크기가 서로 가까우면 차는 {$0$에 가깝다}.",
+        "example": {
+          "prompt": "$\\frac{5}{8}-\\frac{4}{7}$의 값은?",
+          "answer": "$\\frac{3}{56}$"
+        },
+        "studentC": "두 분수의 크기가 서로 가까우면 차는 □.",
+        "answers": [
+          "$0$에 가깝다"
+        ]
+      },
+      "sourceFingerprint": "50c6b0dafca27ad0462d93e190bf5a092f0ea3220a50bc742c87f8a03c6cb947",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "두 분수의 크기가 서로 가까울수록 두 분수의 차는 □에 가까워진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 분수의 크기가 서로 가까울수록 두 분수의 차는 {$0$}에 가까워진다.",
+      "cStudentSentence": "두 분수의 크기가 서로 가까울수록 두 분수의 차는 □에 가까워진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 분수의 크기가 서로 가까울수록 두 분수의 차는 {$0$}에 가까워진다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 문장이라 제외(대체: e5-1-5-3-xc24)."
+      },
+      "proposalFingerprint": "3682e9990a497877690d09fce5caf735181f7d1b399e7a04fdb5fbc67b23f6f4",
+      "questionRevision": "planning-e5e6-20261006-3682e9990a49",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "같은 수에서 빼는 수가 커지면 차는 어떻게 변하는지 설명하고, 이를 이용해 $\\frac{5}{6}-\\frac{1}{3}$과 $\\frac{5}{6}-\\frac{1}{2}$ 중 차가 더 작은 식을 계산하지 않고 고르시오.",
+      "bAnswer": "빼는 수가 커지면 차는 작아진다. $\\frac{1}{2}$이 $\\frac{1}{3}$보다 크므로 $\\frac{5}{6}-\\frac{1}{2}$의 차가 더 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빼는 수가 커지면 차는 작아진다",
+            "많이 뺄수록 남는 것이 적다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{6}-\\frac{1}{2}$이 더 작다",
+            "$\\frac{1}{2}$을 빼는 식"
+          ]
+        }
+      ],
+      "bGoal": "빼는 수와 차의 크기 관계로 계산 없이 두 차를 비교한다.",
+      "bReason": "일반 관계를 먼저 묻고 원문 예로 계산 없이 판단하게 함.",
+      "cDecision": "keep",
+      "cAfter": "같은 수에서 빼는 수가 커지면 차는 {작아진다}.",
+      "cReason": "같은 수에서 빼는 수가 커질 때 차의 변화를 한 낱말로 답하는 명확한 비교 문장이라 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'작아진다', '줄어든다' 인정.",
+      "sourceIndex": 894,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc16",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "빼는 수가 커질 때의 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 수에서 빼는 수가 커지면 차는 {작아진다}.",
+        "example": {
+          "prompt": "$\\frac{5}{6}-\\frac{1}{3}$과 $\\frac{5}{6}-\\frac{1}{2}$ 중 차가 작은 식은?",
+          "answer": "$\\frac{5}{6}-\\frac{1}{2}$"
+        },
+        "studentC": "같은 수에서 빼는 수가 커지면 차는 □.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "sourceFingerprint": "ea5080c621c7ca668646aa01fb4204f46ff432fff3f2037d6bd153334aae9dda",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cFrozenDefinition": "같은 수에서 빼는 수가 커지면 차는 {작아진다}.",
+      "cFrozenStudentSentence": "같은 수에서 빼는 수가 커지면 차는 □.",
+      "cProposedAnswers": [
+        "작아진다"
+      ],
+      "cStudentAfter": "같은 수에서 빼는 수가 커지면 차는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작아진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 수에서 빼는 수가 커지면 차는 {작아진다}.",
+      "cStudentSentence": "같은 수에서 빼는 수가 커지면 차는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 수에서 빼는 수가 커지면 차는 어떻게 변하는지 설명하고, 이를 이용해 $\\frac{5}{6}-\\frac{1}{3}$과 $\\frac{5}{6}-\\frac{1}{2}$ 중 차가 더 작은 식을 계산하지 않고 고르시오.",
+        "answer": "빼는 수가 커지면 차는 작아진다. $\\frac{1}{2}$이 $\\frac{1}{3}$보다 크므로 $\\frac{5}{6}-\\frac{1}{2}$의 차가 더 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "빼는 수가 커지면 차는 작아진다",
+              "많이 뺄수록 남는 것이 적다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}-\\frac{1}{2}$이 더 작다",
+              "$\\frac{1}{2}$을 빼는 식"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 수에서 빼는 수가 커지면 차는 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c2ba1d7151a8ea11062d7054fc4459a5605b09bd531b1d9a9375088be2d69daf",
+      "questionRevision": "planning-e5e6-20261006-c2ba1d7151a8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc17",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "'얼마나 더 많은가'를 묻는 상황에 뺄셈을 고른다.",
+      "bReason": "연산 이름 하나를 고르는 내용이라 B로 만들면 계산값만 묻게 되고 원문 예도 상황 없이 차만 구함.",
+      "exclusionReason": "B는 단순 연산 선택이라 가치가 낮아 C로만 확인.",
+      "cDecision": "keep",
+      "cAfter": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 {뺄셈}으로 구한다.",
+      "cReason": "두 양을 비교해 더 많은 정도를 물을 때 쓰는 연산을 한 낱말로 답하는 짧은 문장이라 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'뺄셈', '빼기' 인정.",
+      "sourceIndex": 895,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc17",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "얼마나 더 많은지 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 {뺄셈}으로 구한다.",
+        "example": {
+          "prompt": "$\\frac{3}{5}$과 $\\frac{1}{4}$의 차는?",
+          "answer": "$\\frac{7}{20}$"
+        },
+        "studentC": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 □으로 구한다.",
+        "answers": [
+          "뺄셈"
+        ]
+      },
+      "sourceFingerprint": "c2818e334e574b05764ec0453f3e70a2348aa3a839ba5d3421438b3b188a8b2c",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cFrozenDefinition": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 {뺄셈}으로 구한다.",
+      "cFrozenStudentSentence": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 □으로 구한다.",
+      "cProposedAnswers": [
+        "뺄셈"
+      ],
+      "cStudentAfter": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 □으로 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "뺄셈"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 {뺄셈}으로 구한다.",
+      "cStudentSentence": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 □으로 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "뺄셈",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 양을 견주어 ‘얼마나 더 많은가’를 물으면 {뺄셈}으로 구한다.",
+        "acceptedAnswers": [
+          [
+            "뺄셈"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순 연산 선택이라 가치가 낮아 C로만 확인."
+      },
+      "proposalFingerprint": "354bbdd6003848527d5501a1f6669fcfb5ecbcfe7c12efe8207e7a58656f4a44",
+      "questionRevision": "planning-e5e6-20261006-354bbdd60038",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc18",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "통분하지 않고 분자만 빼면 틀림을 실제 식으로 확인한다.",
+      "bReason": "조각 크기가 달라 바로 뺄 수 없다는 까닭은 xc11의 B가 이미 설명하게 함.",
+      "exclusionReason": "B는 e5-1-5-3-xc11과 같은 까닭을 묻는 중복(대체: e5-1-5-3-xc11).",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}-\\frac{1}{3}$을 통분하지 않고 분자끼리만 빼면 $1-1=${$0$}이 되어 틀린다. 통분하여 계산하면 $\\frac{3}{6}-\\frac{2}{6}=${$\\frac{1}{6}$}이다.",
+      "cReason": "'조각의 크기가 달라'는 xc11과 겹치는 구절이라 틀린 결과와 바른 결과를 직접 견주는 식으로 바꿈.",
+      "exampleNeeded": false,
+      "sourceIndex": 896,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc18",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "통분하지 않고 빼는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 다른데 분자끼리만 빼면 {조각의 크기가 달라} 바른 차가 나오지 않는다.",
+        "studentC": "분모가 다른데 분자끼리만 빼면 □ 바른 차가 나오지 않는다.",
+        "answers": [
+          "조각의 크기가 달라"
+        ]
+      },
+      "sourceFingerprint": "e90f8987c90a3e3000296f2ffe36a1edf12d1527f468b871a47de036892b99a3",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "$0$",
+        "$\\frac{1}{6}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}-\\frac{1}{3}$을 통분하지 않고 분자끼리만 빼면 $1-1=$□이 되어 틀린다. 통분하여 계산하면 $\\frac{3}{6}-\\frac{2}{6}=$□이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{1}{2}-\\frac{1}{3}$을 통분하지 않고 분자끼리만 빼면 $1-1=${$0$}이 되어 틀린다. 통분하여 계산하면 $\\frac{3}{6}-\\frac{2}{6}=${$\\frac{1}{6}$}이다.",
+      "cStudentSentence": "$\\frac{1}{2}-\\frac{1}{3}$을 통분하지 않고 분자끼리만 빼면 $1-1=$□이 되어 틀린다. 통분하여 계산하면 $\\frac{3}{6}-\\frac{2}{6}=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{6}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}-\\frac{1}{3}$을 통분하지 않고 분자끼리만 빼면 $1-1=${$0$}이 되어 틀린다. 통분하여 계산하면 $\\frac{3}{6}-\\frac{2}{6}=${$\\frac{1}{6}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$\\frac{1}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-3-xc11과 같은 까닭을 묻는 중복(대체: e5-1-5-3-xc11)."
+      },
+      "proposalFingerprint": "a2e8b35474b21c8c08a486632853cfc4a09bf4f3c0222c8a6afe474526fff422",
+      "questionRevision": "planning-e5e6-20261006-a2e8b35474b2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{5}{6}-\\frac{1}{4}$을 두 분모의 곱으로 통분하여 계산하고, 두 분모의 최소공배수로 통분하여서도 계산하시오. 약분한 두 결과를 비교하고, 그렇게 되는 까닭을 통분과 분수의 크기의 관계로 설명하시오.",
+      "bAnswer": "곱 $24$로 통분: $\\frac{20}{24}-\\frac{6}{24}=\\frac{14}{24}=\\frac{7}{12}$. 최소공배수 $12$로 통분: $\\frac{10}{12}-\\frac{3}{12}=\\frac{7}{12}$. 두 결과는 같다. 통분은 분수의 크기를 바꾸지 않기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 방법 모두 $\\frac{7}{12}$이다",
+            "두 결과가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "통분해도 분수의 크기는 변하지 않는다",
+            "어느 공통분모로 바꾸어도 크기가 같은 분수이다"
+          ]
+        }
+      ],
+      "bGoal": "공통분모를 달리해도 차가 같은 까닭을 통분의 뜻으로 설명한다.",
+      "bReason": "원문 예는 한 방법만 계산시키므로 두 방법을 비교하고 까닭까지 묻게 넓힘.",
+      "cDecision": "keep",
+      "cAfter": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+      "cReason": "두 통분 방법으로 구해 약분한 차의 관계를 한 낱말로 답하는 분명한 문장이라 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'같다', '똑같다' 인정.",
+      "sourceIndex": 897,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc19",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "두 통분 방법으로 구한 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+        "example": {
+          "prompt": "$\\frac{5}{6}-\\frac{1}{4}$을 분모의 곱으로 통분해 계산한 뒤 약분하면?",
+          "answer": "$\\frac{7}{12}$"
+        },
+        "studentC": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "a2296ec9e1fedf60709eb8d0a77c1016b4fee38d76cf05b1d607ee81d4e6b526",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cFrozenDefinition": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+      "cFrozenStudentSentence": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+      "cStudentSentence": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{5}{6}-\\frac{1}{4}$을 두 분모의 곱으로 통분하여 계산하고, 두 분모의 최소공배수로 통분하여서도 계산하시오. 약분한 두 결과를 비교하고, 그렇게 되는 까닭을 통분과 분수의 크기의 관계로 설명하시오.",
+        "answer": "곱 $24$로 통분: $\\frac{20}{24}-\\frac{6}{24}=\\frac{14}{24}=\\frac{7}{12}$. 최소공배수 $12$로 통분: $\\frac{10}{12}-\\frac{3}{12}=\\frac{7}{12}$. 두 결과는 같다. 통분은 분수의 크기를 바꾸지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 방법 모두 $\\frac{7}{12}$이다",
+              "두 결과가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "통분해도 분수의 크기는 변하지 않는다",
+              "어느 공통분모로 바꾸어도 크기가 같은 분수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dd5675ab49c5cd658cbcd79f1232fb9d729bccd1be78a6384f3e0ac65bfce39b",
+      "questionRevision": "planning-e5e6-20261006-dd5675ab49c5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{5}{6}-\\square=\\frac{1}{3}$에서 $\\square$를 구하려면 어떤 식을 계산하면 되는지와 그렇게 구할 수 있는 까닭을 설명하고, $\\square$의 값을 구하시오.",
+      "bAnswer": "$\\frac{5}{6}-\\frac{1}{3}$을 계산한다. $\\square$와 차 $\\frac{1}{3}$을 더하면 처음 수 $\\frac{5}{6}$가 되기 때문이다. $\\square=\\frac{5}{6}-\\frac{2}{6}=\\frac{3}{6}=\\frac{1}{2}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{5}{6}-\\frac{1}{3}$을 계산한다",
+            "처음 수에서 차를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는 수와 차를 더하면 처음 수가 된다",
+            "$\\square+\\frac{1}{3}=\\frac{5}{6}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "빼는 수와 차의 합이 처음 수라는 관계로 모르는 빼는 수를 구한다.",
+      "bReason": "원문 예는 구하는 식을 미리 알려 주므로 식과 까닭을 모두 학생이 말하게 함.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{6}-\\square=\\frac{1}{3}$에서 $\\square+\\frac{1}{3}=${$\\frac{5}{6}$}이므로 $\\square=\\frac{5}{6}-\\frac{1}{3}=${$\\frac{1}{2}$}이다.",
+      "cReason": "문장 앞머리 긴 구절이 통째로 빈칸이라 맥락 없이 답할 수 없어 실제 식의 값으로 바꿈.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{5}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 898,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc20",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "빼는 수 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "{빼는 수와 차를 합하면 처음 수}가 되므로, 처음 수에서 차를 빼면 빼는 수를 구할 수 있다.",
+        "example": {
+          "prompt": "$\\frac{5}{6}-\\square=\\frac{1}{3}$의 $\\square$를 $\\frac{5}{6}-\\frac{1}{3}$로 구하는 까닭은?",
+          "answer": "$\\square$와 차의 합이 처음 수라서"
+        },
+        "studentC": "□가 되므로, 처음 수에서 차를 빼면 빼는 수를 구할 수 있다.",
+        "answers": [
+          "빼는 수와 차를 합하면 처음 수"
+        ]
+      },
+      "sourceFingerprint": "ccfbd8ae025c23a79469bac0002fa6b0018c2f723d096e13a7329db62709faee",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{5}{6}$",
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$\\frac{5}{6}-\\square=\\frac{1}{3}$에서 $\\square+\\frac{1}{3}=$□이므로 $\\square=\\frac{5}{6}-\\frac{1}{3}=$□이다.",
+      "cMarkedSentence": "$\\frac{5}{6}-\\square=\\frac{1}{3}$에서 $\\square+\\frac{1}{3}=${$\\frac{5}{6}$}이므로 $\\square=\\frac{5}{6}-\\frac{1}{3}=${$\\frac{1}{2}$}이다.",
+      "cStudentSentence": "$\\frac{5}{6}-\\square=\\frac{1}{3}$에서 $\\square+\\frac{1}{3}=$□이므로 $\\square=\\frac{5}{6}-\\frac{1}{3}=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{5}{6}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{5}{6}-\\square=\\frac{1}{3}$에서 $\\square$를 구하려면 어떤 식을 계산하면 되는지와 그렇게 구할 수 있는 까닭을 설명하고, $\\square$의 값을 구하시오.",
+        "answer": "$\\frac{5}{6}-\\frac{1}{3}$을 계산한다. $\\square$와 차 $\\frac{1}{3}$을 더하면 처음 수 $\\frac{5}{6}$가 되기 때문이다. $\\square=\\frac{5}{6}-\\frac{2}{6}=\\frac{3}{6}=\\frac{1}{2}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{5}{6}-\\frac{1}{3}$을 계산한다",
+              "처음 수에서 차를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "빼는 수와 차를 더하면 처음 수가 된다",
+              "$\\square+\\frac{1}{3}=\\frac{5}{6}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$\\frac{3}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{6}-\\square=\\frac{1}{3}$에서 $\\square+\\frac{1}{3}=${$\\frac{5}{6}$}이므로 $\\square=\\frac{5}{6}-\\frac{1}{3}=${$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{5}{6}$"
+          ],
+          [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f78842613d5369dcb61ce791e96479f98315a93b25ab5136a04210e299f69ace",
+      "questionRevision": "planning-e5e6-20261006-f78842613d53",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "여러 분수 중 두 개를 골라 차를 가장 크게 하려면 어떤 두 수를 골라야 하는지 설명하고, $\\frac{1}{2}$, $\\frac{5}{6}$, $\\frac{1}{4}$ 중 두 수의 가장 큰 차를 구하시오.",
+      "bAnswer": "가장 큰 수에서 가장 작은 수를 뺀다. $\\frac{5}{6}-\\frac{1}{4}=\\frac{10}{12}-\\frac{3}{12}=\\frac{7}{12}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 수와 가장 작은 수를 고른다",
+            "가장 큰 수에서 가장 작은 수를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "차가 가장 크려면 가장 큰 수와 가장 작은 수를 골라야 함을 알고 적용한다.",
+      "bReason": "고르는 기준을 먼저 묻고 원문 세 분수로 실제 차를 구하게 함.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}$, $\\frac{5}{6}$, $\\frac{1}{4}$ 중 두 수를 골라 차를 가장 크게 하려면 가장 {큰} 수 $\\frac{5}{6}$에서 가장 {작은} 수 $\\frac{1}{4}$을 빼며, 그 차는 {$\\frac{7}{12}$}이다.",
+      "cReason": "긴 구절 빈칸을 큰/작은 두 낱말과 실제 차로 나누어 답하기 쉽게 함.",
+      "exampleNeeded": false,
+      "sourceIndex": 899,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc22",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "차가 가장 크게 고르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "여러 분수 중 두 개를 골라 차를 가장 크게 하려면 {가장 큰 수에서 가장 작은 수}를 뺀다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}$, $\\frac{5}{6}$, $\\frac{1}{4}$ 중 두 수의 차가 가장 클 때 그 차는?",
+          "answer": "$\\frac{7}{12}$"
+        },
+        "studentC": "여러 분수 중 두 개를 골라 차를 가장 크게 하려면 □를 뺀다.",
+        "answers": [
+          "가장 큰 수에서 가장 작은 수"
+        ]
+      },
+      "sourceFingerprint": "41b3fc1cee4cac6edbbd7474f437ab1ef47c4fd5b5d20c119699057331254433",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "큰",
+        "작은",
+        "$\\frac{7}{12}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}$, $\\frac{5}{6}$, $\\frac{1}{4}$ 중 두 수를 골라 차를 가장 크게 하려면 가장 □ 수 $\\frac{5}{6}$에서 가장 □ 수 $\\frac{1}{4}$을 빼며, 그 차는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "큰"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{1}{2}$, $\\frac{5}{6}$, $\\frac{1}{4}$ 중 두 수를 골라 차를 가장 크게 하려면 가장 {큰} 수 $\\frac{5}{6}$에서 가장 {작은} 수 $\\frac{1}{4}$을 빼며, 그 차는 {$\\frac{7}{12}$}이다.",
+      "cStudentSentence": "$\\frac{1}{2}$, $\\frac{5}{6}$, $\\frac{1}{4}$ 중 두 수를 골라 차를 가장 크게 하려면 가장 □ 수 $\\frac{5}{6}$에서 가장 □ 수 $\\frac{1}{4}$을 빼며, 그 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "큰",
+          "equivalents": []
+        },
+        {
+          "key": "작은",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{7}{12}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "여러 분수 중 두 개를 골라 차를 가장 크게 하려면 어떤 두 수를 골라야 하는지 설명하고, $\\frac{1}{2}$, $\\frac{5}{6}$, $\\frac{1}{4}$ 중 두 수의 가장 큰 차를 구하시오.",
+        "answer": "가장 큰 수에서 가장 작은 수를 뺀다. $\\frac{5}{6}-\\frac{1}{4}=\\frac{10}{12}-\\frac{3}{12}=\\frac{7}{12}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 수와 가장 작은 수를 고른다",
+              "가장 큰 수에서 가장 작은 수를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}$, $\\frac{5}{6}$, $\\frac{1}{4}$ 중 두 수를 골라 차를 가장 크게 하려면 가장 {큰} 수 $\\frac{5}{6}$에서 가장 {작은} 수 $\\frac{1}{4}$을 빼며, 그 차는 {$\\frac{7}{12}$}이다.",
+        "acceptedAnswers": [
+          [
+            "큰"
+          ],
+          [
+            "작은"
+          ],
+          [
+            "$\\frac{7}{12}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "71b73b128b09e5d40bac1c1d4386cd77d7fca774fdf7ad496a0b081b5553092a",
+      "questionRevision": "planning-e5e6-20261006-71b73b128b09",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc23",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "괄호 없이 분수의 덧셈과 뺄셈이 섞여 있는 식은 어떤 순서로 계산하는지 설명하고, $\\frac{3}{4}-\\frac{1}{2}+\\frac{1}{3}$을 계산하시오.",
+      "bAnswer": "앞에서부터 차례로 계산한다. $\\frac{3}{4}-\\frac{1}{2}=\\frac{1}{4}$, $\\frac{1}{4}+\\frac{1}{3}=\\frac{3}{12}+\\frac{4}{12}=\\frac{7}{12}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞에서부터 차례로 계산한다",
+            "왼쪽부터 순서대로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "덧셈·뺄셈이 섞인 분수 식을 앞에서부터 차례로 계산한다.",
+      "bReason": "순서를 바꾸면 값이 달라지는 원문 예를 그대로 써서 순서와 계산을 함께 물음.",
+      "cDecision": "revise",
+      "cAfter": "괄호 없이 분수의 덧셈과 뺄셈이 섞인 식은 {앞}에서부터 차례로 계산한다. $\\frac{3}{4}-\\frac{1}{2}+\\frac{1}{3}=\\frac{1}{4}+\\frac{1}{3}=${$\\frac{7}{12}$}",
+      "cReason": "'쓰인 순서대로'는 같은 뜻의 표현이 많아 한 낱말과 계산값으로 답하게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "앞",
+            "왼쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 900,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc23",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "덧셈과 뺄셈이 섞인 분수 계산",
+        "kind": "방법",
+        "level": "상",
+        "definition": "괄호 없이 분수의 덧셈과 뺄셈이 섞이면 {쓰인 순서대로} 계산한다.",
+        "example": {
+          "prompt": "$\\frac{3}{4}-\\frac{1}{2}+\\frac{1}{3}$을 계산하시오.",
+          "answer": "$\\frac{7}{12}$"
+        },
+        "studentC": "괄호 없이 분수의 덧셈과 뺄셈이 섞이면 □ 계산한다.",
+        "answers": [
+          "쓰인 순서대로"
+        ]
+      },
+      "sourceFingerprint": "f5d9a043965368ee8bf6055be549eb4c0ead0eb00fcef5039acdedf039b371d6",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "앞",
+        "$\\frac{7}{12}$"
+      ],
+      "cStudentAfter": "괄호 없이 분수의 덧셈과 뺄셈이 섞인 식은 □에서부터 차례로 계산한다. $\\frac{3}{4}-\\frac{1}{2}+\\frac{1}{3}=\\frac{1}{4}+\\frac{1}{3}=$□",
+      "cMarkedSentence": "괄호 없이 분수의 덧셈과 뺄셈이 섞인 식은 {앞}에서부터 차례로 계산한다. $\\frac{3}{4}-\\frac{1}{2}+\\frac{1}{3}=\\frac{1}{4}+\\frac{1}{3}=${$\\frac{7}{12}$}",
+      "cStudentSentence": "괄호 없이 분수의 덧셈과 뺄셈이 섞인 식은 □에서부터 차례로 계산한다. $\\frac{3}{4}-\\frac{1}{2}+\\frac{1}{3}=\\frac{1}{4}+\\frac{1}{3}=$□",
+      "cSlotAnswers": [
+        {
+          "key": "앞",
+          "equivalents": [
+            "왼쪽"
+          ]
+        },
+        {
+          "key": "$\\frac{7}{12}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호 없이 분수의 덧셈과 뺄셈이 섞여 있는 식은 어떤 순서로 계산하는지 설명하고, $\\frac{3}{4}-\\frac{1}{2}+\\frac{1}{3}$을 계산하시오.",
+        "answer": "앞에서부터 차례로 계산한다. $\\frac{3}{4}-\\frac{1}{2}=\\frac{1}{4}$, $\\frac{1}{4}+\\frac{1}{3}=\\frac{3}{12}+\\frac{4}{12}=\\frac{7}{12}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞에서부터 차례로 계산한다",
+              "왼쪽부터 순서대로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "괄호 없이 분수의 덧셈과 뺄셈이 섞인 식은 {앞}에서부터 차례로 계산한다. $\\frac{3}{4}-\\frac{1}{2}+\\frac{1}{3}=\\frac{1}{4}+\\frac{1}{3}=${$\\frac{7}{12}$}",
+        "acceptedAnswers": [
+          [
+            "앞",
+            "왼쪽"
+          ],
+          [
+            "$\\frac{7}{12}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ef156b3270e7c911096abfcd8ea9c96809a406abc69893a40345967c4b45ba63",
+      "questionRevision": "planning-e5e6-20261006-ef156b3270e7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{7}{8}$과 $\\frac{1}{9}$을 각각 $0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수로 바꾸어 $\\frac{7}{8}-\\frac{1}{9}$의 크기를 어림하려고 한다. 두 분수를 각각 어떤 수로 바꾸는지와 어림한 차를 쓰시오.",
+      "bAnswer": "$\\frac{7}{8}$은 $1$에, $\\frac{1}{9}$은 $0$에 가까우므로 차는 약 $1-0=1$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{7}{8}$을 $1$로 바꾼다",
+            "$\\frac{7}{8}$은 $1$에 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{9}$을 $0$으로 바꾼다",
+            "$\\frac{1}{9}$은 $0$에 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "차는 약 $1$이다",
+            "$1$에 가깝다"
+          ]
+        }
+      ],
+      "bGoal": "분수를 0, 1/2, 1 중 가까운 수로 바꾸어 차를 어림한다.",
+      "bReason": "원문 예는 '1에 가깝다'는 결론을 미리 주므로 기준 수만 주고 어림 과정을 답하게 함.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{7}{8}$은 {$1$}에 가깝고 $\\frac{1}{9}$은 {$0$}에 가까우므로 $\\frac{7}{8}-\\frac{1}{9}$은 약 {$1$}이다.",
+      "cReason": "세 기준 수를 나열해 외우게 하는 빈칸 대신 실제 분수에 가까운 수와 어림값을 답하게 함.",
+      "exampleNeeded": false,
+      "sourceIndex": 901,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc24",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "가까운 수로 차 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 분수를 각각 {$0$, $\\frac{1}{2}$, $1$} 가운데 가까운 수로 바꾸어 빼면 차의 크기를 짐작할 수 있다.",
+        "example": {
+          "prompt": "$\\frac{7}{8}-\\frac{1}{9}$의 차가 $1$에 가깝다고 어림하는 까닭은?",
+          "answer": "$1$과 $0$에 가까운 두 수라서"
+        },
+        "studentC": "두 분수를 각각 □ 가운데 가까운 수로 바꾸어 빼면 차의 크기를 짐작할 수 있다.",
+        "answers": [
+          "$0$, $\\frac{1}{2}$, $1$"
+        ]
+      },
+      "sourceFingerprint": "2c646abe077d67215f5a53e09fdb745fc1b11cbfbf0f32a5fbca5473364e23ae",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$0$",
+        "$1$"
+      ],
+      "cStudentAfter": "$\\frac{7}{8}$은 □에 가깝고 $\\frac{1}{9}$은 □에 가까우므로 $\\frac{7}{8}-\\frac{1}{9}$은 약 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{7}{8}$은 {$1$}에 가깝고 $\\frac{1}{9}$은 {$0$}에 가까우므로 $\\frac{7}{8}-\\frac{1}{9}$은 약 {$1$}이다.",
+      "cStudentSentence": "$\\frac{7}{8}$은 □에 가깝고 $\\frac{1}{9}$은 □에 가까우므로 $\\frac{7}{8}-\\frac{1}{9}$은 약 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{7}{8}$과 $\\frac{1}{9}$을 각각 $0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수로 바꾸어 $\\frac{7}{8}-\\frac{1}{9}$의 크기를 어림하려고 한다. 두 분수를 각각 어떤 수로 바꾸는지와 어림한 차를 쓰시오.",
+        "answer": "$\\frac{7}{8}$은 $1$에, $\\frac{1}{9}$은 $0$에 가까우므로 차는 약 $1-0=1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{8}$을 $1$로 바꾼다",
+              "$\\frac{7}{8}$은 $1$에 가깝다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{9}$을 $0$으로 바꾼다",
+              "$\\frac{1}{9}$은 $0$에 가깝다"
+            ]
+          },
+          {
+            "anyOf": [
+              "차는 약 $1$이다",
+              "$1$에 가깝다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{7}{8}$은 {$1$}에 가깝고 $\\frac{1}{9}$은 {$0$}에 가까우므로 $\\frac{7}{8}-\\frac{1}{9}$은 약 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$0$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "01f34572fa5504f0b58c6844dc124e242420c721af892f7d7c5d76ea65296215",
+      "questionRevision": "planning-e5e6-20261006-01f34572fa55",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc25",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "처음 양에서 두 번 쓰고 남은 양을 구하는 방법 두 가지를 설명하고, 물 $1$ $\\mathrm{L}$에서 $\\frac{1}{4}$ $\\mathrm{L}$와 $\\frac{1}{3}$ $\\mathrm{L}$를 쓰고 남은 양을 구하시오.",
+      "bAnswer": "처음 양에서 쓴 양을 차례로 두 번 빼거나, 쓴 양을 먼저 더한 뒤 한 번에 뺀다. $\\frac{1}{4}+\\frac{1}{3}=\\frac{7}{12}$, $1-\\frac{7}{12}=\\frac{5}{12}$ $\\mathrm{L}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쓴 양을 차례로 두 번 뺀다",
+            "$1-\\frac{1}{4}-\\frac{1}{3}$로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "쓴 양을 더해서 한 번에 뺀다",
+            "$1-(\\frac{1}{4}+\\frac{1}{3})$으로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{12}$ $\\mathrm{L}$",
+            "$\\frac{5}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "두 번 쓴 뒤 남은 양을 구하는 두 방법을 알고 계산한다.",
+      "bReason": "두 방법이 모두 핵심이므로 방법 두 가지를 분명히 요구하고 원문 상황으로 계산하게 함.",
+      "cDecision": "revise",
+      "cAfter": "$1$ $\\mathrm{L}$에서 $\\frac{1}{4}$ $\\mathrm{L}$와 $\\frac{1}{3}$ $\\mathrm{L}$를 썼다. 쓴 양의 합은 {$\\frac{7}{12}$} $\\mathrm{L}$이고 남은 양은 {$\\frac{5}{12}$} $\\mathrm{L}$이다.",
+      "cReason": "쓴 양의 합을 뒤 식에서 그대로 복사할 수 있던 단서를 제거하고 쓴 양과 남은 양을 계산하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{7}{12}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{12}$"
+          ]
+        }
+      ],
+      "codexReview": "미리 읽은 실제 제안 지면에서 발견한 답 복사·서로 다른 유효 답·중복을 개별 수정했다. 전체 최종 질문/답/기준 판정은 별도 진행한다.",
+      "sourceIndex": 902,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc25",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "두 번 쓰고 남은 양",
+        "kind": "방법",
+        "level": "상",
+        "definition": "처음 양에서 두 번 쓰고 남은 양을 구할 때는 {두 번 빼거나} 쓴 양을 더해 한 번에 뺀다.",
+        "example": {
+          "prompt": "$1\\,\\mathrm{L}$에서 $\\frac{1}{4}\\,\\mathrm{L}$, $\\frac{1}{3}\\,\\mathrm{L}$를 쓰면 남은 양은?",
+          "answer": "$\\frac{5}{12}\\,\\mathrm{L}$"
+        },
+        "studentC": "처음 양에서 두 번 쓰고 남은 양을 구할 때는 □ 쓴 양을 더해 한 번에 뺀다.",
+        "answers": [
+          "두 번 빼거나"
+        ]
+      },
+      "sourceFingerprint": "4351df6546a97ceed83759c685542b57980d8b6815b6b3d81131b17f8edc7b5a",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bRequiredIdeas[0].anyOf[1]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{7}{12}$",
+        "$\\frac{5}{12}$"
+      ],
+      "cStudentAfter": "$1$ $\\mathrm{L}$에서 $\\frac{1}{4}$ $\\mathrm{L}$와 $\\frac{1}{3}$ $\\mathrm{L}$를 썼다. 쓴 양의 합은 □ $\\mathrm{L}$이고 남은 양은 □ $\\mathrm{L}$이다.",
+      "cMarkedSentence": "$1$ $\\mathrm{L}$에서 $\\frac{1}{4}$ $\\mathrm{L}$와 $\\frac{1}{3}$ $\\mathrm{L}$를 썼다. 쓴 양의 합은 {$\\frac{7}{12}$} $\\mathrm{L}$이고 남은 양은 {$\\frac{5}{12}$} $\\mathrm{L}$이다.",
+      "cStudentSentence": "$1$ $\\mathrm{L}$에서 $\\frac{1}{4}$ $\\mathrm{L}$와 $\\frac{1}{3}$ $\\mathrm{L}$를 썼다. 쓴 양의 합은 □ $\\mathrm{L}$이고 남은 양은 □ $\\mathrm{L}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{7}{12}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{5}{12}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "처음 양에서 두 번 쓰고 남은 양을 구하는 방법 두 가지를 설명하고, 물 $1$ $\\mathrm{L}$에서 $\\frac{1}{4}$ $\\mathrm{L}$와 $\\frac{1}{3}$ $\\mathrm{L}$를 쓰고 남은 양을 구하시오.",
+        "answer": "처음 양에서 쓴 양을 차례로 두 번 빼거나, 쓴 양을 먼저 더한 뒤 한 번에 뺀다. $\\frac{1}{4}+\\frac{1}{3}=\\frac{7}{12}$, $1-\\frac{7}{12}=\\frac{5}{12}$ $\\mathrm{L}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쓴 양을 차례로 두 번 뺀다",
+              "$1-\\frac{1}{4}-\\frac{1}{3}$로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "쓴 양을 더해서 한 번에 뺀다",
+              "$1-(\\frac{1}{4}+\\frac{1}{3})$으로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{12}$ $\\mathrm{L}$",
+              "$\\frac{5}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$ $\\mathrm{L}$에서 $\\frac{1}{4}$ $\\mathrm{L}$와 $\\frac{1}{3}$ $\\mathrm{L}$를 썼다. 쓴 양의 합은 {$\\frac{7}{12}$} $\\mathrm{L}$이고 남은 양은 {$\\frac{5}{12}$} $\\mathrm{L}$이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{7}{12}$"
+          ],
+          [
+            "$\\frac{5}{12}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c919b20f98af714d6c8ce46cc3d3d9000cd5788f9124616733ca39ea71346956",
+      "questionRevision": "planning-e5e6-20261006-c919b20f98af",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "뺄셈식에서 처음 수와 빼는 수에 똑같은 수를 각각 더하면 차는 어떻게 되는지 설명하고, 이를 이용해 $\\frac{5}{6}-\\frac{1}{2}$과 $1-\\frac{2}{3}$의 차가 같은지 판단하시오.",
+      "bAnswer": "두 수에 같은 수를 더해도 차는 변하지 않는다. $\\frac{5}{6}+\\frac{1}{6}=1$, $\\frac{1}{2}+\\frac{1}{6}=\\frac{2}{3}$이므로 두 식의 차는 같다(둘 다 $\\frac{1}{3}$).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차는 변하지 않는다",
+            "차는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 식의 차가 같다",
+            "두 식 모두 차가 $\\frac{1}{3}$이다"
+          ]
+        }
+      ],
+      "bGoal": "빼어지는 수와 빼는 수에 같은 수를 더해도 차가 같음을 설명하고 적용한다.",
+      "bReason": "'빼지는 수'라는 낯선 말을 '처음 수'로 풀고 결론을 드러내지 않게 물음.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-${$\\frac{2}{3}$}가 되고, 두 뺄셈식의 차는 서로 {같다}.",
+      "cReason": "빈칸 '같은 수를 더해도'는 구절 암기라 실제 식에서 바뀐 수와 차의 관계를 답하게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$",
+            "$\\frac{4}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 903,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc26",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "차가 같은 두 뺄셈식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "빼지는 수와 빼는 수에 {같은 수를 더해도} 차는 같다.",
+        "example": {
+          "prompt": "$\\frac{5}{6}-\\frac{1}{2}$과 $1-\\frac{2}{3}$의 차는 같은가?",
+          "answer": "같다"
+        },
+        "studentC": "빼지는 수와 빼는 수에 □ 차는 같다.",
+        "answers": [
+          "같은 수를 더해도"
+        ]
+      },
+      "sourceFingerprint": "a1c9e9a7524981277d589149ebfa883c3c90e2aa97264d2a04142f1995e753ad",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{2}{3}$",
+        "같다"
+      ],
+      "cStudentAfter": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-$□가 되고, 두 뺄셈식의 차는 서로 □.",
+      "cMarkedSentence": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-${$\\frac{2}{3}$}가 되고, 두 뺄셈식의 차는 서로 {같다}.",
+      "cStudentSentence": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-$□가 되고, 두 뺄셈식의 차는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{2}{3}$",
+          "equivalents": [
+            "$\\frac{4}{6}$"
+          ]
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "뺄셈식에서 처음 수와 빼는 수에 똑같은 수를 각각 더하면 차는 어떻게 되는지 설명하고, 이를 이용해 $\\frac{5}{6}-\\frac{1}{2}$과 $1-\\frac{2}{3}$의 차가 같은지 판단하시오.",
+        "answer": "두 수에 같은 수를 더해도 차는 변하지 않는다. $\\frac{5}{6}+\\frac{1}{6}=1$, $\\frac{1}{2}+\\frac{1}{6}=\\frac{2}{3}$이므로 두 식의 차는 같다(둘 다 $\\frac{1}{3}$).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "차는 변하지 않는다",
+              "차는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 식의 차가 같다",
+              "두 식 모두 차가 $\\frac{1}{3}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-${$\\frac{2}{3}$}가 되고, 두 뺄셈식의 차는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{3}$",
+            "$\\frac{4}{6}$"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "59696fb9a2c877eeb93090be81d8b1303dac2642af6ca1affaa2d9e866c5ba1a",
+      "questionRevision": "planning-e5e6-20261006-59696fb9a2c8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc27",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수에 $\\frac{1}{4}$을 더해야 하는데 잘못하여 빼었더니 $\\frac{1}{3}$이 되었다. 바르게 계산한 값을 구하려면 무엇을 먼저 구해야 하는지 설명하고, 바르게 계산한 값을 구하시오.",
+      "bAnswer": "먼저 잘못 계산한 식으로 어떤 수를 구한다. 어떤 수는 $\\frac{1}{3}+\\frac{1}{4}=\\frac{7}{12}$이고, 바르게 계산하면 $\\frac{7}{12}+\\frac{1}{4}=\\frac{10}{12}=\\frac{5}{6}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 어떤 수를 구한다",
+            "어떤 수는 $\\frac{7}{12}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{6}$",
+            "$\\frac{10}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "잘못 계산한 결과에서 처음 수를 되찾은 뒤 바르게 계산한다.",
+      "bReason": "원문 예에는 '잘못 계산했다'는 상황이 빠져 있어 상황을 온전히 넣고 차례와 값을 물음.",
+      "cDecision": "revise",
+      "cAfter": "어떤 수에서 $\\frac{1}{4}$을 뺐더니 $\\frac{1}{3}$이 되었다면 어떤 수는 $\\frac{1}{3}+\\frac{1}{4}=${$\\frac{7}{12}$}이고, 이 수에 $\\frac{1}{4}$을 더한 값은 {$\\frac{5}{6}$}이다.",
+      "cReason": "빈칸 '어떤 수'는 상황 없이 답할 수 없는 말이라 실제 수로 처음 수와 바른 값을 구하게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{7}{12}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{6}$",
+            "$\\frac{10}{12}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 904,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc27",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "잘못 계산한 결과로 되찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "더해야 할 것을 빼었다면 먼저 잘못 계산한 결과로 {어떤 수}를 되찾는다.",
+        "example": {
+          "prompt": "어떤 수에서 $\\frac{1}{4}$을 뺐더니 $\\frac{1}{3}$이었다. 어떤 수에 $\\frac{1}{4}$을 더하면?",
+          "answer": "$\\frac{5}{6}$"
+        },
+        "studentC": "더해야 할 것을 빼었다면 먼저 잘못 계산한 결과로 □를 되찾는다.",
+        "answers": [
+          "어떤 수"
+        ]
+      },
+      "sourceFingerprint": "a17768fe89fb81947c56d1cb642b41bb33deaea5e80b3e1ae13bd04e66e73049",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{7}{12}$",
+        "$\\frac{5}{6}$"
+      ],
+      "cStudentAfter": "어떤 수에서 $\\frac{1}{4}$을 뺐더니 $\\frac{1}{3}$이 되었다면 어떤 수는 $\\frac{1}{3}+\\frac{1}{4}=$□이고, 이 수에 $\\frac{1}{4}$을 더한 값은 □이다.",
+      "cMarkedSentence": "어떤 수에서 $\\frac{1}{4}$을 뺐더니 $\\frac{1}{3}$이 되었다면 어떤 수는 $\\frac{1}{3}+\\frac{1}{4}=${$\\frac{7}{12}$}이고, 이 수에 $\\frac{1}{4}$을 더한 값은 {$\\frac{5}{6}$}이다.",
+      "cStudentSentence": "어떤 수에서 $\\frac{1}{4}$을 뺐더니 $\\frac{1}{3}$이 되었다면 어떤 수는 $\\frac{1}{3}+\\frac{1}{4}=$□이고, 이 수에 $\\frac{1}{4}$을 더한 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{7}{12}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{5}{6}$",
+          "equivalents": [
+            "$\\frac{10}{12}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수에 $\\frac{1}{4}$을 더해야 하는데 잘못하여 빼었더니 $\\frac{1}{3}$이 되었다. 바르게 계산한 값을 구하려면 무엇을 먼저 구해야 하는지 설명하고, 바르게 계산한 값을 구하시오.",
+        "answer": "먼저 잘못 계산한 식으로 어떤 수를 구한다. 어떤 수는 $\\frac{1}{3}+\\frac{1}{4}=\\frac{7}{12}$이고, 바르게 계산하면 $\\frac{7}{12}+\\frac{1}{4}=\\frac{10}{12}=\\frac{5}{6}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 어떤 수를 구한다",
+              "어떤 수는 $\\frac{7}{12}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}$",
+              "$\\frac{10}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수에서 $\\frac{1}{4}$을 뺐더니 $\\frac{1}{3}$이 되었다면 어떤 수는 $\\frac{1}{3}+\\frac{1}{4}=${$\\frac{7}{12}$}이고, 이 수에 $\\frac{1}{4}$을 더한 값은 {$\\frac{5}{6}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{7}{12}$"
+          ],
+          [
+            "$\\frac{5}{6}$",
+            "$\\frac{10}{12}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "44eeb4d844fe0ddb5258ef9049e35e1f2b81e16d917f62e921850d5c04e88c49",
+      "questionRevision": "planning-e5e6-20261006-44eeb4d844fe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc28",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "수직선 위에 두 분수를 점으로 나타냈을 때 두 분수의 차는 수직선에서 무엇으로 나타나는지 설명하고, $\\frac{1}{4}$과 $\\frac{3}{4}$의 경우로 예를 들어 보시오.",
+      "bAnswer": "두 분수를 나타낸 두 점 사이의 거리가 두 분수의 차이다. $\\frac{1}{4}$과 $\\frac{3}{4}$ 사이의 거리는 $\\frac{2}{4}=\\frac{1}{2}$이고, 이것이 $\\frac{3}{4}-\\frac{1}{4}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 점 사이의 거리",
+            "두 점 사이의 간격",
+            "두 점 사이의 길이"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{2}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "두 분수의 차를 수직선 위 두 점 사이의 거리로 이해한다.",
+      "bReason": "그림 없이도 말로 설명할 수 있도록 분모가 같은 쉬운 두 분수를 예로 붙임.",
+      "cDecision": "keep",
+      "cAfter": "수직선에서 두 분수 사이의 {거리}가 두 분수의 차이다.",
+      "cReason": "수직선에서 차가 두 분수 사이의 무엇인지 한 낱말로 답하는 짧은 문장이라 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'거리', '간격', '길이' 인정.",
+      "sourceIndex": 905,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc28",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "수직선 위의 차",
+        "kind": "성질",
+        "level": "상",
+        "definition": "수직선에서 두 분수 사이의 {거리}가 두 분수의 차이다.",
+        "studentC": "수직선에서 두 분수 사이의 □가 두 분수의 차이다.",
+        "answers": [
+          "거리"
+        ]
+      },
+      "sourceFingerprint": "1c8f85f32add8de1c1eb76d71b4875bcb12a51b17ece740eefbad7d2c222547e",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cFrozenDefinition": "수직선에서 두 분수 사이의 {거리}가 두 분수의 차이다.",
+      "cFrozenStudentSentence": "수직선에서 두 분수 사이의 □가 두 분수의 차이다.",
+      "cProposedAnswers": [
+        "거리"
+      ],
+      "cStudentAfter": "수직선에서 두 분수 사이의 □가 두 분수의 차이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "거리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수직선에서 두 분수 사이의 {거리}가 두 분수의 차이다.",
+      "cStudentSentence": "수직선에서 두 분수 사이의 □가 두 분수의 차이다.",
+      "cSlotAnswers": [
+        {
+          "key": "거리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "수직선 위에 두 분수를 점으로 나타냈을 때 두 분수의 차는 수직선에서 무엇으로 나타나는지 설명하고, $\\frac{1}{4}$과 $\\frac{3}{4}$의 경우로 예를 들어 보시오.",
+        "answer": "두 분수를 나타낸 두 점 사이의 거리가 두 분수의 차이다. $\\frac{1}{4}$과 $\\frac{3}{4}$ 사이의 거리는 $\\frac{2}{4}=\\frac{1}{2}$이고, 이것이 $\\frac{3}{4}-\\frac{1}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 점 사이의 거리",
+              "두 점 사이의 간격",
+              "두 점 사이의 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$\\frac{2}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수직선에서 두 분수 사이의 {거리}가 두 분수의 차이다.",
+        "acceptedAnswers": [
+          [
+            "거리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8cfedd452ac675a082fa445624d5b58876ec7bed92b7a6af94fc484abba9258c",
+      "questionRevision": "planning-e5e6-20261006-8cfedd452ac6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc1",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$3\\frac{4}{5}-1\\frac{1}{5}$의 분수 부분을 뺄 때 분자끼리만 빼고 분모 $5$는 그대로 두는 까닭을 $\\frac{1}{5}$이 몇 개인지로 설명하고, 차를 구하시오.",
+      "bAnswer": "$\\frac{4}{5}$는 $\\frac{1}{5}$이 $4$개, $\\frac{1}{5}$은 $1$개이므로 빼면 $\\frac{1}{5}$이 $3$개 남아 $\\frac{3}{5}$이다. 조각의 크기($\\frac{1}{5}$)는 변하지 않으므로 분모는 그대로이다. 차는 $2\\frac{3}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{5}$이 $4$개에서 $1$개를 빼면 $3$개가 남는다",
+            "같은 크기의 조각의 개수만 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "분모가 같을 때 분자끼리만 빼는 까닭을 같은 크기 조각의 개수로 설명한다.",
+      "bReason": "절차 자체는 이전 학년 내용이라 분모가 그대로인 까닭을 묻는 쪽이 가치가 있다.",
+      "cDecision": "keep",
+      "cAfter": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 {빼고} 공통분모는 그대로 둔다.",
+      "cReason": "분모가 같고 분수 부분끼리 뺄 수 있다는 조건이 문장에 있고 '빼고' 한 낱말로 분자 처리 방법을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 906,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc1",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "분모가 같은 대분수의 뺄셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 {빼고} 공통분모는 그대로 둔다.",
+        "example": {
+          "prompt": "$3\\frac{4}{5}-1\\frac{1}{5}$을 계산하시오.",
+          "answer": "$2\\frac{3}{5}$"
+        },
+        "studentC": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 □ 공통분모는 그대로 둔다.",
+        "answers": [
+          "빼고"
+        ]
+      },
+      "sourceFingerprint": "9a02565893d02f92491f1e083e2a7dda2c4e1ee2822159006c46f83ed461409d",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "cFrozenDefinition": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 {빼고} 공통분모는 그대로 둔다.",
+      "cFrozenStudentSentence": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 □ 공통분모는 그대로 둔다.",
+      "cProposedAnswers": [
+        "빼고"
+      ],
+      "cStudentAfter": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 □ 공통분모는 그대로 둔다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "빼고"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 {빼고} 공통분모는 그대로 둔다.",
+      "cStudentSentence": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 □ 공통분모는 그대로 둔다.",
+      "cSlotAnswers": [
+        {
+          "key": "빼고",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\frac{4}{5}-1\\frac{1}{5}$의 분수 부분을 뺄 때 분자끼리만 빼고 분모 $5$는 그대로 두는 까닭을 $\\frac{1}{5}$이 몇 개인지로 설명하고, 차를 구하시오.",
+        "answer": "$\\frac{4}{5}$는 $\\frac{1}{5}$이 $4$개, $\\frac{1}{5}$은 $1$개이므로 빼면 $\\frac{1}{5}$이 $3$개 남아 $\\frac{3}{5}$이다. 조각의 크기($\\frac{1}{5}$)는 변하지 않으므로 분모는 그대로이다. 차는 $2\\frac{3}{5}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{5}$이 $4$개에서 $1$개를 빼면 $3$개가 남는다",
+              "같은 크기의 조각의 개수만 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{3}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 같은 대분수의 뺄셈에서 분수 부분끼리 뺄 수 있으면, 자연수 부분끼리 뺀 뒤 분수 부분은 분자끼리 {빼고} 공통분모는 그대로 둔다.",
+        "acceptedAnswers": [
+          [
+            "빼고"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4262a8df7b8bc70306559e7571ece3d73bf8c5a48d7415312a5902016ee42f09",
+      "questionRevision": "planning-e5e6-20261006-4262a8df7b8b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분모가 다르면 통분부터 한다는 점을 확인한다.",
+      "bReason": "통분 후 빼는 절차는 c1과 xc10의 B가 이미 묻는다.",
+      "exclusionReason": "B 중복: e5-1-5-4-c1, e5-1-5-4-xc10이 대체",
+      "cDecision": "keep",
+      "cAfter": "분모가 다른 대분수는 분수 부분을 {통분}한 뒤 뺀다.",
+      "cReason": "분모가 다를 때 먼저 할 일을 '통분' 한 낱말로 확인하는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 907,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc2",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "분모가 다른 대분수의 뺄셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 다른 대분수는 분수 부분을 {통분}한 뒤 뺀다.",
+        "example": {
+          "prompt": "$2\\frac{1}{2}-1\\frac{1}{3}$을 계산하시오.",
+          "answer": "$1\\frac{1}{6}$"
+        },
+        "studentC": "분모가 다른 대분수는 분수 부분을 □한 뒤 뺀다.",
+        "answers": [
+          "통분"
+        ]
+      },
+      "sourceFingerprint": "dcdd5b8ad8000b8d16fe0dc6c6308bb0ca0a1c64673ea98ec163f38028f6eb60",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "cFrozenDefinition": "분모가 다른 대분수는 분수 부분을 {통분}한 뒤 뺀다.",
+      "cFrozenStudentSentence": "분모가 다른 대분수는 분수 부분을 □한 뒤 뺀다.",
+      "cProposedAnswers": [
+        "통분"
+      ],
+      "cStudentAfter": "분모가 다른 대분수는 분수 부분을 □한 뒤 뺀다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모가 다른 대분수는 분수 부분을 {통분}한 뒤 뺀다.",
+      "cStudentSentence": "분모가 다른 대분수는 분수 부분을 □한 뒤 뺀다.",
+      "cSlotAnswers": [
+        {
+          "key": "통분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "분모가 다른 대분수는 분수 부분을 {통분}한 뒤 뺀다.",
+        "acceptedAnswers": [
+          [
+            "통분"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-1-5-4-c1, e5-1-5-4-xc10이 대체"
+      },
+      "proposalFingerprint": "a796877092318cae7b5ec63b59ffabb9d5726fee1652c3a7b65f640843a13932",
+      "questionRevision": "planning-e5e6-20261006-a79687709231",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수 부분과 분수 부분을 따로 빼지 않고 대분수를 가분수로 고쳐서 빼는 방법의 순서를 설명하고, 그 방법으로 $2\\frac{1}{4}-1\\frac{1}{2}$을 계산하시오.",
+      "bAnswer": "두 대분수를 가분수로 고치고 통분한 뒤 분자끼리 뺀다. $\\frac{9}{4}-\\frac{3}{2}=\\frac{9}{4}-\\frac{6}{4}=\\frac{3}{4}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가분수로 고친 뒤 통분하여 뺀다",
+            "가분수로 바꾸고 분모를 같게 하여 분자끼리 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "가분수로 고쳐 통분해 빼는 절차를 설명하고 적용한다.",
+      "bReason": "원문 예가 받아내림이 필요한 식이라 이 방법의 쓸모를 그대로 보여 준다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{4}-1\\frac{1}{2}$을 가분수로 고치면 {$\\frac{9}{4}$}$-\\frac{3}{2}$이고, 분모를 $4$로 통분하여 빼면 차는 {$\\frac{3}{4}$}이다.",
+      "cReason": "'통분한 뒤'는 어절 암기라 가분수로 고친 값과 차를 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 908,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc3",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "가분수로 바꾸어 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수를 가분수로 고쳐 {통분한 뒤} 뺄 수도 있다.",
+        "example": {
+          "prompt": "$2\\frac{1}{4}-1\\frac{1}{2}$을 가분수로 바꾸어 계산하면?",
+          "answer": "$\\frac{3}{4}$"
+        },
+        "studentC": "대분수를 가분수로 고쳐 □ 뺄 수도 있다.",
+        "answers": [
+          "통분한 뒤"
+        ]
+      },
+      "sourceFingerprint": "e1f15d6fad0a5be20aaa053f0319829e36dde3012cfb33ca380b039abda78ad8",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{9}{4}$",
+        "$\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "$2\\frac{1}{4}-1\\frac{1}{2}$을 가분수로 고치면 □$-\\frac{3}{2}$이고, 분모를 $4$로 통분하여 빼면 차는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{9}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2\\frac{1}{4}-1\\frac{1}{2}$을 가분수로 고치면 {$\\frac{9}{4}$}$-\\frac{3}{2}$이고, 분모를 $4$로 통분하여 빼면 차는 {$\\frac{3}{4}$}이다.",
+      "cStudentSentence": "$2\\frac{1}{4}-1\\frac{1}{2}$을 가분수로 고치면 □$-\\frac{3}{2}$이고, 분모를 $4$로 통분하여 빼면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{9}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수 부분과 분수 부분을 따로 빼지 않고 대분수를 가분수로 고쳐서 빼는 방법의 순서를 설명하고, 그 방법으로 $2\\frac{1}{4}-1\\frac{1}{2}$을 계산하시오.",
+        "answer": "두 대분수를 가분수로 고치고 통분한 뒤 분자끼리 뺀다. $\\frac{9}{4}-\\frac{3}{2}=\\frac{9}{4}-\\frac{6}{4}=\\frac{3}{4}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가분수로 고친 뒤 통분하여 뺀다",
+              "가분수로 바꾸고 분모를 같게 하여 분자끼리 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{4}-1\\frac{1}{2}$을 가분수로 고치면 {$\\frac{9}{4}$}$-\\frac{3}{2}$이고, 분모를 $4$로 통분하여 빼면 차는 {$\\frac{3}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{9}{4}$"
+          ],
+          [
+            "$\\frac{3}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "baba109ab05e47a2f58ff86e421e0cd051e755660f13831296b529fc5274c666",
+      "questionRevision": "planning-e5e6-20261006-baba109ab05e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수에는 분수 부분이 없는데, 자연수에서 대분수를 빼려면 자연수를 어떻게 바꾸어 계산하는지 설명하고 $3-1\\frac{2}{5}$를 계산하시오.",
+      "bAnswer": "자연수에서 $1$을 떼어 빼는 수와 분모가 같은 분수로 바꾼다. $3=2\\frac{5}{5}$이므로 $2\\frac{5}{5}-1\\frac{2}{5}=1\\frac{3}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수에서 $1$을 떼어 분수로 바꾼다",
+            "$3$을 $2\\frac{5}{5}$로 바꾼다",
+            "자연수를 분모가 같은 가분수로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수를 대분수 꼴로 바꾸어 대분수를 빼는 방법을 설명한다.",
+      "bReason": "분수 부분이 없는 자연수를 어떻게 다루는지가 이 행의 핵심이다.",
+      "cDecision": "revise",
+      "cAfter": "$3-1\\frac{2}{5}$를 계산할 때 $3$을 {$2\\frac{5}{5}$}로 바꾸어 빼면 차는 {$1\\frac{3}{5}$}이다.",
+      "cReason": "'$1$을 떼어'는 표현 암기라 바꾼 꼴과 결과를 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 909,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc4",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "자연수에서 대분수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수에서 대분수를 뺄 때는 자연수에서 {$1$을 떼어} 분수로 바꾼 뒤 뺀다.",
+        "example": {
+          "prompt": "$3-1\\frac{2}{5}$를 계산하시오.",
+          "answer": "$1\\frac{3}{5}$"
+        },
+        "studentC": "자연수에서 대분수를 뺄 때는 자연수에서 □ 분수로 바꾼 뒤 뺀다.",
+        "answers": [
+          "$1$을 떼어"
+        ]
+      },
+      "sourceFingerprint": "4cf3f1335d36ae63f79596adc978461e99f4c2145e3d4d18c1988ae974c446fb",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "cProposedAnswers": [
+        "$2\\frac{5}{5}$",
+        "$1\\frac{3}{5}$"
+      ],
+      "cStudentAfter": "$3-1\\frac{2}{5}$를 계산할 때 $3$을 □로 바꾸어 빼면 차는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2\\frac{5}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$3-1\\frac{2}{5}$를 계산할 때 $3$을 {$2\\frac{5}{5}$}로 바꾸어 빼면 차는 {$1\\frac{3}{5}$}이다.",
+      "cStudentSentence": "$3-1\\frac{2}{5}$를 계산할 때 $3$을 □로 바꾸어 빼면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2\\frac{5}{5}$",
+          "equivalents": []
+        },
+        {
+          "key": "$1\\frac{3}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수에는 분수 부분이 없는데, 자연수에서 대분수를 빼려면 자연수를 어떻게 바꾸어 계산하는지 설명하고 $3-1\\frac{2}{5}$를 계산하시오.",
+        "answer": "자연수에서 $1$을 떼어 빼는 수와 분모가 같은 분수로 바꾼다. $3=2\\frac{5}{5}$이므로 $2\\frac{5}{5}-1\\frac{2}{5}=1\\frac{3}{5}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수에서 $1$을 떼어 분수로 바꾼다",
+              "$3$을 $2\\frac{5}{5}$로 바꾼다",
+              "자연수를 분모가 같은 가분수로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\frac{3}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3-1\\frac{2}{5}$를 계산할 때 $3$을 {$2\\frac{5}{5}$}로 바꾸어 빼면 차는 {$1\\frac{3}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2\\frac{5}{5}$"
+          ],
+          [
+            "$1\\frac{3}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3b127e7f94a96f4b3408f385ef2c8ce035409ac9f6ce55ee65215606b138115e",
+      "questionRevision": "planning-e5e6-20261006-3b127e7f94a9",
+      "requiresIndependentReview": true
+    }
+  ]
+}

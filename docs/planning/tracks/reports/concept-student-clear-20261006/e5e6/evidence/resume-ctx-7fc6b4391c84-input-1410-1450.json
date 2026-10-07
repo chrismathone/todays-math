@@ -1,0 +1,3711 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:46:52.816384+00:00",
+  "rows": [
+    {
+      "id": "e5-2-4-6-xc14",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "막대의 어느 부분이든 같은 길이의 무게가 같습니다. 이 막대의 $1\\,\\mathrm{m}$ 무게를 알 때, 길이가 소수로 주어진 막대 전체의 무게를 구하는 방법을 설명하시오. $1\\,\\mathrm{m}$의 무게가 $1.5\\,\\mathrm{kg}$인 막대 $2.4\\,\\mathrm{m}$의 무게도 구하시오.",
+      "bAnswer": "$1\\,\\mathrm{m}$의 무게에 길이를 $\\mathrm{m}$로 나타낸 수를 곱한다. 같은 길이의 무게가 같으므로 길이가 $2.4$배이면 무게도 $2.4$배이다. $1.5\\times2.4=3.6$이므로 $3.6\\,\\mathrm{kg}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{m}$의 무게에 길이를 $\\mathrm{m}$로 나타낸 수를 곱한다",
+            "길이가 $1\\,\\mathrm{m}$의 몇 배인지 구하여 $1\\,\\mathrm{m}$의 무게에 그 배를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.6\\,\\mathrm{kg}$",
+            "$3.6$"
+          ]
+        }
+      ],
+      "bGoal": "같은 길이에 같은 무게가 대응하는 조건에서 한 단위 길이의 무게로 전체 무게를 구하는 방법을 설명하고 적용한다.",
+      "bReason": "첫 초안의 일정한 굵기만으로는 같은 길이의 무게가 같다고 단정할 수 없다. 원문의 같은 길이·같은 무게 조건을 쉬운 문장으로 보존하고 길이의 단위도 질문에 정한다.",
+      "cDecision": "revise",
+      "cAfter": "철근의 어느 부분이든 같은 길이의 무게가 같다. $1\\,\\mathrm{m}$의 무게가 $2.5\\,\\mathrm{kg}$이면 $1.8\\,\\mathrm{m}$의 무게는 $2.5\\times${$1.8$}$=${$4.5$} $\\mathrm{kg}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1.8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4.5$"
+          ]
+        }
+      ],
+      "cReason": "원문의 같은 길이·같은 무게 조건을 학생 문장에 보존하고, 실제 길이 배수와 무게를 계산하게 한다.",
+      "exampleNeeded": false,
+      "coreAfter": "어느 부분이든 같은 길이의 무게가 같은 물체에서는, $1\\,\\mathrm{m}$의 무게에 길이를 $\\mathrm{m}$로 나타낸 수를 곱하면 {전체 무게}가 된다.",
+      "coreReason": "첫 초안의 굵기가 일정하다는 조건만으로는 단위 길이의 무게가 일정하다고 할 수 없다. 원문의 실제 대응 조건을 보존하며 길이를 나타내는 수의 단위를 분명히 한다.",
+      "editorialOwner": "Codex",
+      "codexReview": "일반 설명과 실제 B/C의 조건을 직접 대조하여 원문 조건을 약화한 새 오류를 수정함.",
+      "coreTargetReason": "전체 무게라는 원문 표적과 실제 단위 길이의 무게가 같다는 조건을 보존한다. 굵기 조건으로 대체하지 않고 길이 수의m 단위를 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1410,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc14",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "단위량의 소수 배",
+        "kind": "방법",
+        "level": "중",
+        "definition": "길이가 같은 부분의 무게가 일정한 물체는 $1\\,\\mathrm{m}$의 무게에 길이의 수를 곱하면 {전체 무게}가 된다.",
+        "studentC": "길이가 같은 부분의 무게가 일정한 물체는 $1\\,\\mathrm{m}$의 무게에 길이의 수를 곱하면 □가 된다.",
+        "answers": [
+          "전체 무게"
+        ]
+      },
+      "sourceFingerprint": "75dc6577d713f6e29b2314de08ee5492c06211cf77c569f03e7fb767b6c816a2",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1.8$",
+        "$4.5$"
+      ],
+      "cStudentAfter": "철근의 어느 부분이든 같은 길이의 무게가 같다. $1\\,\\mathrm{m}$의 무게가 $2.5\\,\\mathrm{kg}$이면 $1.8\\,\\mathrm{m}$의 무게는 $2.5\\times$□$=$□ $\\mathrm{kg}$이다.",
+      "cMarkedSentence": "철근의 어느 부분이든 같은 길이의 무게가 같다. $1\\,\\mathrm{m}$의 무게가 $2.5\\,\\mathrm{kg}$이면 $1.8\\,\\mathrm{m}$의 무게는 $2.5\\times${$1.8$}$=${$4.5$} $\\mathrm{kg}$이다.",
+      "cStudentSentence": "철근의 어느 부분이든 같은 길이의 무게가 같다. $1\\,\\mathrm{m}$의 무게가 $2.5\\,\\mathrm{kg}$이면 $1.8\\,\\mathrm{m}$의 무게는 $2.5\\times$□$=$□ $\\mathrm{kg}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1.8$",
+          "equivalents": []
+        },
+        {
+          "key": "$4.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "막대의 어느 부분이든 같은 길이의 무게가 같습니다. 이 막대의 $1\\,\\mathrm{m}$ 무게를 알 때, 길이가 소수로 주어진 막대 전체의 무게를 구하는 방법을 설명하시오. $1\\,\\mathrm{m}$의 무게가 $1.5\\,\\mathrm{kg}$인 막대 $2.4\\,\\mathrm{m}$의 무게도 구하시오.",
+        "answer": "$1\\,\\mathrm{m}$의 무게에 길이를 $\\mathrm{m}$로 나타낸 수를 곱한다. 같은 길이의 무게가 같으므로 길이가 $2.4$배이면 무게도 $2.4$배이다. $1.5\\times2.4=3.6$이므로 $3.6\\,\\mathrm{kg}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{m}$의 무게에 길이를 $\\mathrm{m}$로 나타낸 수를 곱한다",
+              "길이가 $1\\,\\mathrm{m}$의 몇 배인지 구하여 $1\\,\\mathrm{m}$의 무게에 그 배를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.6\\,\\mathrm{kg}$",
+              "$3.6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "철근의 어느 부분이든 같은 길이의 무게가 같다. $1\\,\\mathrm{m}$의 무게가 $2.5\\,\\mathrm{kg}$이면 $1.8\\,\\mathrm{m}$의 무게는 $2.5\\times${$1.8$}$=${$4.5$} $\\mathrm{kg}$이다.",
+        "acceptedAnswers": [
+          [
+            "$1.8$"
+          ],
+          [
+            "$4.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a634d7814d1e7b715ca9bd94db3aa751f035d0949ca5a617259cc2af2e95dbd3",
+      "questionRevision": "planning-e5e6-20261006-a634d7814d1e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc15",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$3.2\\times2.5$를 한 번에 곱하지 않고, 곱하는 수 $2.5$를 자연수 부분과 소수 부분으로 나누어 계산하려고 합니다. 계산 방법을 설명하고 곱을 구하세요.",
+      "bAnswer": "$2.5$를 $2$와 $0.5$로 나누어 $3.2\\times2=6.4$와 $3.2\\times0.5=1.6$을 구한 뒤 더한다. $6.4+1.6=8$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3.2\\times2$와 $3.2\\times0.5$를 각각 구해 더한다",
+            "$6.4+1.6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.2\\times2.5=8$",
+            "$8$"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 소수를 자연수 부분과 소수 부분으로 나누어 곱한 뒤 더하는 방법을 적용한다.",
+      "bReason": "방법의 조건을 질문에 주고 마지막에 더하는 단계는 학생이 말하도록 남겼다.",
+      "cDecision": "keep",
+      "cAfter": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 {더해도} 된다.",
+      "cReason": "나누어 곱한 두 값을 어떻게 합치는지 묻는 짧은 낱말 문장이라 그대로 쓸 수 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'더하면', '합해도'도 같은 답으로 인정.",
+      "sourceIndex": 1411,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc15",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "나누어 곱하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 {더해도} 된다.",
+        "studentC": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 □ 된다.",
+        "answers": [
+          "더해도"
+        ]
+      },
+      "sourceFingerprint": "02c1dab3f9c5c777b923184ea1db404ae411116c4dbc2aa29b28a8d54c30595a",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cFrozenDefinition": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 {더해도} 된다.",
+      "cFrozenStudentSentence": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 □ 된다.",
+      "cProposedAnswers": [
+        "더해도"
+      ],
+      "cStudentAfter": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 □ 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더해도"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 {더해도} 된다.",
+      "cStudentSentence": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 □ 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "더해도",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3.2\\times2.5$를 한 번에 곱하지 않고, 곱하는 수 $2.5$를 자연수 부분과 소수 부분으로 나누어 계산하려고 합니다. 계산 방법을 설명하고 곱을 구하세요.",
+        "answer": "$2.5$를 $2$와 $0.5$로 나누어 $3.2\\times2=6.4$와 $3.2\\times0.5=1.6$을 구한 뒤 더한다. $6.4+1.6=8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3.2\\times2$와 $3.2\\times0.5$를 각각 구해 더한다",
+              "$6.4+1.6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.2\\times2.5=8$",
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$보다 큰 소수를 곱할 때 곱하는 소수를 자연수 부분과 소수 부분으로 나누어 각각 곱해 {더해도} 된다.",
+        "acceptedAnswers": [
+          [
+            "더해도"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "90030de67b02bcd453d5ae3c6fa55cf7f67dcb7a1eeeb7d0f62f73813cd1eb51",
+      "questionRevision": "planning-e5e6-20261006-90030de67b02",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 수에 $1$보다 큰 수를 곱하면 곱이 처음 수보다 커집니다. 그 까닭을 곱하는 수를 $1$과 나머지 부분으로 나누어 설명하세요.",
+      "bAnswer": "처음 수에 $1$을 곱하면 처음 수 그대로이고, 여기에 처음 수에 나머지 부분($1$을 넘는 부분)을 곱한 $0$보다 큰 값을 더하게 되므로 곱은 처음 수보다 크다. 예를 들어 $3\\times1.2$는 $3$에 $3\\times0.2=0.6$을 더한 $3.6$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 수에 $1$을 곱한 값은 처음 수와 같다",
+            "처음 수의 $1$배는 처음 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 수에 나머지 부분을 곱한 값만큼 더해진다",
+            "$0$보다 큰 값이 처음 수에 더해진다"
+          ]
+        }
+      ],
+      "bGoal": "$1$보다 큰 수를 곱하면 곱이 커지는 까닭을 $1$배와 나머지의 합으로 설명한다.",
+      "bReason": "막연한 '왜' 대신 곱하는 수를 $1$과 나머지로 나누는 설명 방법을 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "$3\\times1.2$는 $3\\times1$에 $3\\times${$0.2$}를 더한 것이므로 곱은 처음 수 $3$보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다",
+            "커진다"
+          ]
+        }
+      ],
+      "cReason": "빈칸 '$0$보다 큰 양을 더하는'은 외워야 하는 긴 구절이라 실제 식의 값과 비교 낱말로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1412,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc23",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "곱이 커지는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0$보다 큰 수에 $1$보다 큰 수를 곱하면 처음 수에 {$0$보다 큰 양을 더하는} 것이므로 곱이 커진다.",
+        "studentC": "$0$보다 큰 수에 $1$보다 큰 수를 곱하면 처음 수에 □ 것이므로 곱이 커진다.",
+        "answers": [
+          "$0$보다 큰 양을 더하는"
+        ]
+      },
+      "sourceFingerprint": "cbe72d4fdb7536badc5478448cfa42874cb7196b21f80011a0019105d1ec380c",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cProposedAnswers": [
+        "$0.2$",
+        "크다"
+      ],
+      "cStudentAfter": "$3\\times1.2$는 $3\\times1$에 $3\\times$□를 더한 것이므로 곱은 처음 수 $3$보다 □.",
+      "cMarkedSentence": "$3\\times1.2$는 $3\\times1$에 $3\\times${$0.2$}를 더한 것이므로 곱은 처음 수 $3$보다 {크다}.",
+      "cStudentSentence": "$3\\times1.2$는 $3\\times1$에 $3\\times$□를 더한 것이므로 곱은 처음 수 $3$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.2$",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": [
+            "커진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 수에 $1$보다 큰 수를 곱하면 곱이 처음 수보다 커집니다. 그 까닭을 곱하는 수를 $1$과 나머지 부분으로 나누어 설명하세요.",
+        "answer": "처음 수에 $1$을 곱하면 처음 수 그대로이고, 여기에 처음 수에 나머지 부분($1$을 넘는 부분)을 곱한 $0$보다 큰 값을 더하게 되므로 곱은 처음 수보다 크다. 예를 들어 $3\\times1.2$는 $3$에 $3\\times0.2=0.6$을 더한 $3.6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 수에 $1$을 곱한 값은 처음 수와 같다",
+              "처음 수의 $1$배는 처음 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 수에 나머지 부분을 곱한 값만큼 더해진다",
+              "$0$보다 큰 값이 처음 수에 더해진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\times1.2$는 $3\\times1$에 $3\\times${$0.2$}를 더한 것이므로 곱은 처음 수 $3$보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "$0.2$"
+          ],
+          [
+            "크다",
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e2ddb71e9946900c01c4a6032c99c3e1b2dc7604fd3be685e4d5c76b7a5a99a6",
+      "questionRevision": "planning-e5e6-20261006-e2ddb71e9946",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 가로와 세로를 각각 몇 배씩 늘였을 때, 넓이가 처음 넓이의 몇 배가 되는지 구하는 방법을 설명하세요. 또 가로를 $2.5$배, 세로를 $1.2$배로 늘이면 넓이는 처음의 몇 배가 됩니까?",
+      "bAnswer": "가로를 늘인 배수와 세로를 늘인 배수를 곱하면 넓이가 몇 배가 되는지 알 수 있다. $2.5\\times1.2=3$이므로 넓이는 처음의 $3$배가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로의 배수와 세로의 배수를 곱한다",
+            "두 배수를 곱한 만큼 넓이가 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.5\\times1.2=3$",
+            "$3$배",
+            "$3$"
+          ]
+        }
+      ],
+      "bGoal": "가로와 세로를 각각 소수 배 했을 때 넓이가 몇 배가 되는지 구한다.",
+      "bReason": "두 배수를 곱한다는 결론을 질문에서 말하지 않고 일반 방법과 예의 값을 함께 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직사각형의 가로를 $1.5$배, 세로를 $1.2$배로 늘이면 넓이는 처음 넓이의 $1.5\\times1.2=${$1.8$}(배)가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1.8$"
+          ]
+        }
+      ],
+      "cReason": "빈칸 '두 소수를 곱한'은 표현이 여러 가지로 갈리는 구절이라 실제 배수의 값으로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1413,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc24",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "가로와 세로를 함께 늘인 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형의 가로와 세로를 각각 소수 배로 늘이면 넓이는 처음 넓이의 {두 소수를 곱한} 배가 된다.",
+        "studentC": "직사각형의 가로와 세로를 각각 소수 배로 늘이면 넓이는 처음 넓이의 □ 배가 된다.",
+        "answers": [
+          "두 소수를 곱한"
+        ]
+      },
+      "sourceFingerprint": "60d3db1be7b038817d2e3b24f0f06d7d03c28723e081ee1bd31bf43e6c057fd0",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cProposedAnswers": [
+        "$1.8$"
+      ],
+      "cStudentAfter": "직사각형의 가로를 $1.5$배, 세로를 $1.2$배로 늘이면 넓이는 처음 넓이의 $1.5\\times1.2=$□(배)가 된다.",
+      "cMarkedSentence": "직사각형의 가로를 $1.5$배, 세로를 $1.2$배로 늘이면 넓이는 처음 넓이의 $1.5\\times1.2=${$1.8$}(배)가 된다.",
+      "cStudentSentence": "직사각형의 가로를 $1.5$배, 세로를 $1.2$배로 늘이면 넓이는 처음 넓이의 $1.5\\times1.2=$□(배)가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1.8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형의 가로와 세로를 각각 몇 배씩 늘였을 때, 넓이가 처음 넓이의 몇 배가 되는지 구하는 방법을 설명하세요. 또 가로를 $2.5$배, 세로를 $1.2$배로 늘이면 넓이는 처음의 몇 배가 됩니까?",
+        "answer": "가로를 늘인 배수와 세로를 늘인 배수를 곱하면 넓이가 몇 배가 되는지 알 수 있다. $2.5\\times1.2=3$이므로 넓이는 처음의 $3$배가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로의 배수와 세로의 배수를 곱한다",
+              "두 배수를 곱한 만큼 넓이가 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.5\\times1.2=3$",
+              "$3$배",
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형의 가로를 $1.5$배, 세로를 $1.2$배로 늘이면 넓이는 처음 넓이의 $1.5\\times1.2=${$1.8$}(배)가 된다.",
+        "acceptedAnswers": [
+          [
+            "$1.8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c4c9668d89beac39fc95f6774a0175c27f62dbcd3f1fa10c4e13717d0dbb18c",
+      "questionRevision": "planning-e5e6-20261006-5c4c9668d89b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-6-xc27",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$2.4\\times2.6$과 $2.3\\times2.6$은 어림하면 둘 다 약 $6$입니다. 어림만으로 두 곱이 각각 $6$보다 큰지 작은지 정할 수 있는지 쓰고, 실제로 계산하여 확인하세요.",
+      "bAnswer": "어림만으로는 정할 수 없다. $2.4\\times2.6=6.24$는 $6$보다 크고, $2.3\\times2.6=5.98$은 $6$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어림만으로는 정할 수 없다",
+            "실제로 계산해야 알 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.4\\times2.6=6.24$",
+            "$6.24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.3\\times2.6=5.98$",
+            "$5.98$"
+          ]
+        }
+      ],
+      "bGoal": "어림값이 같아도 실제 곱이 기준 자연수보다 클 수도 작을 수도 있음을 확인한다.",
+      "bReason": "원문이 추상적인 말뿐이어서 어림은 같고 결과가 갈리는 두 식을 제시했다.",
+      "cDecision": "revise",
+      "cAfter": "$2.3\\times2.6$은 약 $6$으로 어림할 수 있지만, 실제 곱은 {$5.98$}이므로 $6$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5.98$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "빈칸 '큰지, 같은지, 작은지'는 나열을 외우게 하는 구절이라 실제 계산값과 비교 결과로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1414,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-6-xc27",
+        "section": "초5::2-4 소수의 곱셈::2-4-6 (1보다 큰 소수)×(1보다 큰 소수)의 계산",
+        "term": "어림의 한계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어림한 값만으로는 실제 곱이 어떤 자연수보다 {큰지, 같은지, 작은지} 확정하지 못할 때가 있다.",
+        "studentC": "어림한 값만으로는 실제 곱이 어떤 자연수보다 □ 확정하지 못할 때가 있다.",
+        "answers": [
+          "큰지, 같은지, 작은지"
+        ]
+      },
+      "sourceFingerprint": "3566be77f7f99ddce89cde0f03ece987d4f45f1d57c1f2dbffd7ad0a54c223ae",
+      "draftEvidence": "evidence/section-045-draft.json",
+      "cProposedAnswers": [
+        "$5.98$",
+        "작다"
+      ],
+      "cStudentAfter": "$2.3\\times2.6$은 약 $6$으로 어림할 수 있지만, 실제 곱은 □이므로 $6$보다 □.",
+      "cMarkedSentence": "$2.3\\times2.6$은 약 $6$으로 어림할 수 있지만, 실제 곱은 {$5.98$}이므로 $6$보다 {작다}.",
+      "cStudentSentence": "$2.3\\times2.6$은 약 $6$으로 어림할 수 있지만, 실제 곱은 □이므로 $6$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$5.98$",
+          "equivalents": []
+        },
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.4\\times2.6$과 $2.3\\times2.6$은 어림하면 둘 다 약 $6$입니다. 어림만으로 두 곱이 각각 $6$보다 큰지 작은지 정할 수 있는지 쓰고, 실제로 계산하여 확인하세요.",
+        "answer": "어림만으로는 정할 수 없다. $2.4\\times2.6=6.24$는 $6$보다 크고, $2.3\\times2.6=5.98$은 $6$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어림만으로는 정할 수 없다",
+              "실제로 계산해야 알 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.4\\times2.6=6.24$",
+              "$6.24$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.3\\times2.6=5.98$",
+              "$5.98$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.3\\times2.6$은 약 $6$으로 어림할 수 있지만, 실제 곱은 {$5.98$}이므로 $6$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "$5.98$"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1804ce6dea68815cb27f0ada806c0b72681666dc32e066efcbf7fea386e8c015",
+      "questionRevision": "planning-e5e6-20261006-1804ce6dea68",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc7",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "옮겨지는 자리 수와 곱하는 수의 $0$의 개수의 관계를 안다.",
+      "bReason": "e5-2-4-7-c1의 B가 방향과 자리 수를 이미 묻고 있어 같은 답이 반복된다.",
+      "exclusionReason": "B 중복: e5-2-4-7-c1로 대체한다. C는 유지한다.",
+      "cDecision": "keep",
+      "cAfter": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 {$0$의 개수}와 같다.",
+      "cReason": "$10$, $100$, $1000$이라는 조건이 문장에 있고 '$0$의 개수'라는 짧은 관계를 답하는 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$0$의 수', '$0$이 몇 개인지'도 같은 답으로 인정한다.",
+      "sourceIndex": 1415,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc7",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "곱하는 수의 $0$ 개수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 {$0$의 개수}와 같다.",
+        "studentC": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 □와 같다.",
+        "answers": [
+          "$0$의 개수"
+        ]
+      },
+      "sourceFingerprint": "25fe510f3e2bb74b2958e39358543cc4ed2d92ee502b3809c8939cdef29470f9",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cFrozenDefinition": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 {$0$의 개수}와 같다.",
+      "cFrozenStudentSentence": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 □와 같다.",
+      "cProposedAnswers": [
+        "$0$의 개수"
+      ],
+      "cStudentAfter": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$의 개수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 {$0$의 개수}와 같다.",
+      "cStudentSentence": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$의 개수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$10$, $100$, $1000$을 곱할 때 소수점이 옮겨지는 자리 수는 곱하는 수의 {$0$의 개수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "$0$의 개수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-4-7-c1로 대체한다. C는 유지한다."
+      },
+      "proposalFingerprint": "15d84057912ff1804c85225a3d634b9c1fbdcb6745183b133ec5f50ae4bf1539",
+      "questionRevision": "planning-e5e6-20261006-15d84057912f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc8",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "왼쪽으로 옮겨지는 자리 수와 곱하는 소수의 소수점 아래 자리 수의 관계를 안다.",
+      "bReason": "e5-2-4-7-c2의 B가 같은 방향·자리 수를 묻고 있어 따로 물을 내용이 없다.",
+      "exclusionReason": "B 중복: e5-2-4-7-c2로 대체한다. C는 유지한다.",
+      "cDecision": "keep",
+      "cAfter": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 {소수 자리 수}와 같다.",
+      "cReason": "곱하는 수와 방향이 문장에 있어, 옮겨지는 자리 수가 곱하는 수의 무엇과 같은지만 짧게 답하면 된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'소수점 아래 자리 수', '소수 자릿수'는 같은 답이고, '$0$의 개수'는 다른 답이다($0.01$은 $0$이 $2$개이지만 $2$자리, $0.1$은 $0$이 $1$개이지만 $1$자리로 우연히 맞을 뿐이다).",
+      "sourceIndex": 1416,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc8",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "곱하는 소수의 자리 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 {소수 자리 수}와 같다.",
+        "studentC": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 □와 같다.",
+        "answers": [
+          "소수 자리 수"
+        ]
+      },
+      "sourceFingerprint": "c3ba9715384459c0345ff89faf75d25fcefa1620b72238e5915dc09fb183f06e",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cFrozenDefinition": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 {소수 자리 수}와 같다.",
+      "cFrozenStudentSentence": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 □와 같다.",
+      "cProposedAnswers": [
+        "소수 자리 수"
+      ],
+      "cStudentAfter": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "소수 자리 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 {소수 자리 수}와 같다.",
+      "cStudentSentence": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "소수 자리 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.1$, $0.01$, $0.001$을 곱할 때 소수점이 왼쪽으로 옮겨지는 자리 수는 곱하는 수의 {소수 자리 수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "소수 자리 수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-4-7-c2로 대체한다. C는 유지한다."
+      },
+      "proposalFingerprint": "3872c9058c192af55c3ad991dcff87241aa7c450dee9517a71c4e840e9803500",
+      "questionRevision": "planning-e5e6-20261006-3872c9058c19",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc9",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "소수점을 옮기는 방향에 따라 수가 커지는지 작아지는지 안다.",
+      "bReason": "방향과 크기 관계는 c1·c2의 B에 답하면서 드러나고, 따로 물으면 한 낱말 답이 된다.",
+      "exclusionReason": "B는 한 낱말 답의 자명한 문장이라 제외한다. e5-2-4-7-c1, e5-2-4-7-c2로 대체한다.",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 수의 소수점을 오른쪽으로 옮기면 수가 {커지고}, 왼쪽으로 옮기면 수가 {작아진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커지고",
+            "커진다",
+            "커지며"
+          ]
+        },
+        {
+          "anyOf": [
+            "작아진다",
+            "작아짐"
+          ]
+        }
+      ],
+      "cReason": "원문 첫 빈칸 '$0$보다 큰 수'는 학생이 떠올릴 수 없는 조건이라 문장에 드러내고 양쪽 방향을 대비시켰다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1417,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc9",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "소수점이 옮겨지는 방향과 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "{$0$보다 큰 수}의 소수점을 오른쪽으로 옮기면 수가 {커진다}.",
+        "studentC": "□의 소수점을 오른쪽으로 옮기면 수가 □.",
+        "answers": [
+          "$0$보다 큰 수",
+          "커진다"
+        ]
+      },
+      "sourceFingerprint": "197bd9eb94264e374de3edcc13a3b64f6880e73c869ab6d455999933bcb4b4de",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cProposedAnswers": [
+        "커지고",
+        "작아진다"
+      ],
+      "cStudentAfter": "$0$보다 큰 수의 소수점을 오른쪽으로 옮기면 수가 □, 왼쪽으로 옮기면 수가 □.",
+      "cMarkedSentence": "$0$보다 큰 수의 소수점을 오른쪽으로 옮기면 수가 {커지고}, 왼쪽으로 옮기면 수가 {작아진다}.",
+      "cStudentSentence": "$0$보다 큰 수의 소수점을 오른쪽으로 옮기면 수가 □, 왼쪽으로 옮기면 수가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "커지고",
+          "equivalents": [
+            "커진다",
+            "커지며"
+          ]
+        },
+        {
+          "key": "작아진다",
+          "equivalents": [
+            "작아짐"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 수의 소수점을 오른쪽으로 옮기면 수가 {커지고}, 왼쪽으로 옮기면 수가 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "커지고",
+            "커진다",
+            "커지며"
+          ],
+          [
+            "작아진다",
+            "작아짐"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 한 낱말 답의 자명한 문장이라 제외한다. e5-2-4-7-c1, e5-2-4-7-c2로 대체한다."
+      },
+      "proposalFingerprint": "f8ddd4559d0ad1d4b9c2ab42cd265c93d18d227c65335d26c7134bd61abb47a8",
+      "questionRevision": "planning-e5e6-20261006-f8ddd4559d0a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc12",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "곱셈식에서 곱하는 두 수를 각각 $0.1$배 하면 곱은 처음 곱의 몇 배가 되는지 쓰고, $32\\times 14=448$을 이용하여 $3.2\\times 1.4$의 값을 구하시오.",
+      "bAnswer": "곱은 처음 곱의 $0.01$배가 된다. $3.2\\times 1.4=448\\times 0.01=4.48$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱이 $0.01$배가 된다",
+            "곱이 $\\frac{1}{100}$배가 된다",
+            "곱의 소수점이 왼쪽으로 $2$자리 옮겨진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4.48$"
+          ]
+        }
+      ],
+      "bGoal": "두 수를 각각 $0.1$배 하면 곱이 $0.01$배가 됨을 알고 자연수의 곱에서 소수의 곱을 구한다.",
+      "bReason": "제목만으로는 물음이 되지 않아, 일반 관계와 자연수 곱을 활용하는 예를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "곱하는 두 수를 각각 $0.1$배 하면 곱은 {$0.01$배}가 된다.",
+      "cReason": "두 수를 각각 $0.1$배 한다는 조건이 분명하고 답이 '$0.01$배' 하나로 짧다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$\\frac{1}{100}$배'는 같은 답이다.",
+      "sourceIndex": 1418,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc12",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "두 수를 $0.1$배씩 한 곱",
+        "kind": "성질",
+        "level": "중",
+        "definition": "곱하는 두 수를 각각 $0.1$배 하면 곱은 {$0.01$배}가 된다.",
+        "studentC": "곱하는 두 수를 각각 $0.1$배 하면 곱은 □가 된다.",
+        "answers": [
+          "$0.01$배"
+        ]
+      },
+      "sourceFingerprint": "1c36c52beaeeb99006a21f32fa01a6d8c76046d2276ead446f2ca732645a4f17",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cFrozenDefinition": "곱하는 두 수를 각각 $0.1$배 하면 곱은 {$0.01$배}가 된다.",
+      "cFrozenStudentSentence": "곱하는 두 수를 각각 $0.1$배 하면 곱은 □가 된다.",
+      "cProposedAnswers": [
+        "$0.01$배"
+      ],
+      "cStudentAfter": "곱하는 두 수를 각각 $0.1$배 하면 곱은 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.01$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "곱하는 두 수를 각각 $0.1$배 하면 곱은 {$0.01$배}가 된다.",
+      "cStudentSentence": "곱하는 두 수를 각각 $0.1$배 하면 곱은 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.01$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "곱셈식에서 곱하는 두 수를 각각 $0.1$배 하면 곱은 처음 곱의 몇 배가 되는지 쓰고, $32\\times 14=448$을 이용하여 $3.2\\times 1.4$의 값을 구하시오.",
+        "answer": "곱은 처음 곱의 $0.01$배가 된다. $3.2\\times 1.4=448\\times 0.01=4.48$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱이 $0.01$배가 된다",
+              "곱이 $\\frac{1}{100}$배가 된다",
+              "곱의 소수점이 왼쪽으로 $2$자리 옮겨진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4.48$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "곱하는 두 수를 각각 $0.1$배 하면 곱은 {$0.01$배}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$0.01$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e1f5456f37936d5b9182fea2ae14157a76fc9ac51b393c9304d8ea23ff2132e0",
+      "questionRevision": "planning-e5e6-20261006-e1f5456f3793",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "곱셈식에서 한 수는 그대로 두고 다른 수만 $0.1$배 하면 곱은 어떻게 달라지는지 쓰고, $25\\times 7=175$를 이용하여 $25\\times 0.7$의 값을 구하시오.",
+      "bAnswer": "곱도 처음 곱의 $0.1$배가 된다. $25\\times 0.7=175\\times 0.1=17.5$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱도 $0.1$배가 된다",
+            "곱이 $\\frac{1}{10}$배가 된다",
+            "곱의 소수점이 왼쪽으로 $1$자리 옮겨진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17.5$"
+          ]
+        }
+      ],
+      "bGoal": "한 수만 $0.1$배 하면 곱도 $0.1$배가 됨을 알고 아는 곱에서 새 곱을 구한다.",
+      "bReason": "$10$배와 $0.1$배를 한꺼번에 물으면 답이 길어져 $0.1$배 한 경우로 좁혔다.",
+      "cDecision": "revise",
+      "cAfter": "$12\\times 3=36$에서 $12$를 $10$배 한 $120\\times 3$의 곱은 $36$의 {$10$}배이고, $3$을 $0.1$배 한 $12\\times 0.3$의 곱은 $36$의 {$0.1$}배인 {$3.6$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.1$",
+            "$\\frac{1}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.6$"
+          ]
+        }
+      ],
+      "cReason": "'같은 배'는 뜻이 흐린 구절이라 $10$배와 $0.1$배를 실제 곱셈식에서 각각 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1419,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc15",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "한 수만 $10$배, $0.1$배 할 때 곱의 변화",
+        "kind": "성질",
+        "level": "중",
+        "definition": "곱하는 두 수 가운데 한 수는 그대로 두고 다른 수를 $10$배, $0.1$배 하면 곱도 {같은 배}가 된다.",
+        "studentC": "곱하는 두 수 가운데 한 수는 그대로 두고 다른 수를 $10$배, $0.1$배 하면 곱도 □가 된다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "sourceFingerprint": "4d3e160b51d2b19370f2503c5f18b448b5329cc690854cab90b421fc71876ee4",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$0.1$",
+        "$3.6$"
+      ],
+      "cStudentAfter": "$12\\times 3=36$에서 $12$를 $10$배 한 $120\\times 3$의 곱은 $36$의 □배이고, $3$을 $0.1$배 한 $12\\times 0.3$의 곱은 $36$의 □배인 □이다.",
+      "cMarkedSentence": "$12\\times 3=36$에서 $12$를 $10$배 한 $120\\times 3$의 곱은 $36$의 {$10$}배이고, $3$을 $0.1$배 한 $12\\times 0.3$의 곱은 $36$의 {$0.1$}배인 {$3.6$}이다.",
+      "cStudentSentence": "$12\\times 3=36$에서 $12$를 $10$배 한 $120\\times 3$의 곱은 $36$의 □배이고, $3$을 $0.1$배 한 $12\\times 0.3$의 곱은 $36$의 □배인 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.1$",
+          "equivalents": [
+            "$\\frac{1}{10}$"
+          ]
+        },
+        {
+          "key": "$3.6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "곱셈식에서 한 수는 그대로 두고 다른 수만 $0.1$배 하면 곱은 어떻게 달라지는지 쓰고, $25\\times 7=175$를 이용하여 $25\\times 0.7$의 값을 구하시오.",
+        "answer": "곱도 처음 곱의 $0.1$배가 된다. $25\\times 0.7=175\\times 0.1=17.5$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱도 $0.1$배가 된다",
+              "곱이 $\\frac{1}{10}$배가 된다",
+              "곱의 소수점이 왼쪽으로 $1$자리 옮겨진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$17.5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12\\times 3=36$에서 $12$를 $10$배 한 $120\\times 3$의 곱은 $36$의 {$10$}배이고, $3$을 $0.1$배 한 $12\\times 0.3$의 곱은 $36$의 {$0.1$}배인 {$3.6$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$0.1$",
+            "$\\frac{1}{10}$"
+          ],
+          [
+            "$3.6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b2ed73a15e3ef9b2a410c3424f8928f2c2195215bc8bd066a9b965d11f15ed00",
+      "questionRevision": "planning-e5e6-20261006-b2ed73a15e3e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc16",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "$10$배와 $0.1$배가 서로 되돌리는 관계임을 안다.",
+      "bReason": "답이 '처음 수'로 정해진 자명한 문장이고, 이어 곱하는 일반 경우는 e5-2-4-7-xc26이 다룬다.",
+      "exclusionReason": "B는 자명하고 e5-2-4-7-xc26과 겹쳐 제외한다. C는 유지한다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 수를 $10$배 한 다음 $0.1$배 하면 {처음 수}가 된다.",
+      "cReason": "$10$배 한 다음 $0.1$배 한다는 순서가 분명하고 결과만 짧게 답하는 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'원래 수', '처음과 같은 수', '어떤 수'는 같은 답이다.",
+      "sourceIndex": 1420,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc16",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "$10$배 했다가 $0.1$배 하기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 수를 $10$배 한 다음 $0.1$배 하면 {처음 수}가 된다.",
+        "studentC": "어떤 수를 $10$배 한 다음 $0.1$배 하면 □가 된다.",
+        "answers": [
+          "처음 수"
+        ]
+      },
+      "sourceFingerprint": "3b2b8fdc4b31eb98af61bb43293ff0da667564728ef8233dca117eba4b67335c",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cFrozenDefinition": "어떤 수를 $10$배 한 다음 $0.1$배 하면 {처음 수}가 된다.",
+      "cFrozenStudentSentence": "어떤 수를 $10$배 한 다음 $0.1$배 하면 □가 된다.",
+      "cProposedAnswers": [
+        "처음 수"
+      ],
+      "cStudentAfter": "어떤 수를 $10$배 한 다음 $0.1$배 하면 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "처음 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 수를 $10$배 한 다음 $0.1$배 하면 {처음 수}가 된다.",
+      "cStudentSentence": "어떤 수를 $10$배 한 다음 $0.1$배 하면 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "처음 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "어떤 수를 $10$배 한 다음 $0.1$배 하면 {처음 수}가 된다.",
+        "acceptedAnswers": [
+          [
+            "처음 수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명하고 e5-2-4-7-xc26과 겹쳐 제외한다. C는 유지한다."
+      },
+      "proposalFingerprint": "0aa0ec6a5891cabaa7c839c644fdfebda2df75f51de3f28204ae96898517d904",
+      "questionRevision": "planning-e5e6-20261006-0aa0ec6a5891",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc20",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "곱셈식에서 한 수를 $10$배 하고 다른 수를 $0.1$배 하면 곱은 어떻게 되는지 쓰고, $2.5\\times 40$과 곱이 같도록 $25\\times\\square$의 $\\square$에 알맞은 수를 구하시오.",
+      "bAnswer": "곱은 변하지 않는다. $2.5$를 $10$배 하여 $25$가 되었으므로 $40$을 $0.1$배 한 $4$가 알맞다. ($2.5\\times 40=25\\times 4=100$)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 변하지 않는다",
+            "곱이 처음과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "bGoal": "한 수를 $10$배, 다른 수를 $0.1$배 하면 곱이 변하지 않음을 알고 곱이 같은 식을 만든다.",
+      "bReason": "편집용 제목 대신 조건을 질문에 쓰고, 곱이 같은 식을 만드는 예로 이해를 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$2.5\\times 40$에서 $2.5$를 $10$배 하고 $40$을 $0.1$배 한 식은 $25\\times${$4$}이고, 두 식의 곱은 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "같음",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "문장 끝 전체가 빈칸이라 '변하지 않는다' 등 여러 표현이 나올 수 있어 식의 수와 한 낱말로 나눴다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1421,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc20",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "곱이 같게 소수점 옮기기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "곱하는 두 수 가운데 한 수를 $10$배 하고 다른 수를 $0.1$배 하면 {곱이 같다}.",
+        "studentC": "곱하는 두 수 가운데 한 수를 $10$배 하고 다른 수를 $0.1$배 하면 □.",
+        "answers": [
+          "곱이 같다"
+        ]
+      },
+      "sourceFingerprint": "cd18738035da3c863e170b534d26eb4e38adcef6e3376475ba5ca89cd94efd1e",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "같다"
+      ],
+      "cStudentAfter": "$2.5\\times 40$에서 $2.5$를 $10$배 하고 $40$을 $0.1$배 한 식은 $25\\times$□이고, 두 식의 곱은 서로 □.",
+      "cMarkedSentence": "$2.5\\times 40$에서 $2.5$를 $10$배 하고 $40$을 $0.1$배 한 식은 $25\\times${$4$}이고, 두 식의 곱은 서로 {같다}.",
+      "cStudentSentence": "$2.5\\times 40$에서 $2.5$를 $10$배 하고 $40$을 $0.1$배 한 식은 $25\\times$□이고, 두 식의 곱은 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "같음",
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "곱셈식에서 한 수를 $10$배 하고 다른 수를 $0.1$배 하면 곱은 어떻게 되는지 쓰고, $2.5\\times 40$과 곱이 같도록 $25\\times\\square$의 $\\square$에 알맞은 수를 구하시오.",
+        "answer": "곱은 변하지 않는다. $2.5$를 $10$배 하여 $25$가 되었으므로 $40$을 $0.1$배 한 $4$가 알맞다. ($2.5\\times 40=25\\times 4=100$)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 변하지 않는다",
+              "곱이 처음과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.5\\times 40$에서 $2.5$를 $10$배 하고 $40$을 $0.1$배 한 식은 $25\\times${$4$}이고, 두 식의 곱은 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "같다",
+            "같음",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "33b4ae8151f6d2fca2c5fc24dafdcf8e94a4859886008d9159a19d6b2224ffb5",
+      "questionRevision": "planning-e5e6-20261006-33b4ae8151f6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc22",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$0.38$과 $38$처럼 숫자가 놓인 순서는 같고 소수점의 위치만 다른 두 수가 있을 때, 한 수가 다른 수의 몇 배인지 어떻게 알 수 있는지 설명하고, $38$은 $0.38$의 몇 배인지 구하시오.",
+      "bAnswer": "소수점이 어느 쪽으로 몇 자리 옮겨졌는지 보면 알 수 있다. $38$은 $0.38$의 소수점을 오른쪽으로 $2$자리 옮긴 수이므로 $100$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수점이 몇 자리 옮겨졌는지 본다",
+            "각 숫자의 자리가 몇 자리 달라졌는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$배"
+          ]
+        }
+      ],
+      "bGoal": "소수점 위치만 다른 두 수의 배 관계를 소수점이 옮겨진 자리 수로 알아낸다.",
+      "bReason": "'숫자 배열'은 학생에게 낯선 말이라 실제 두 수를 보여 주며 풀어 썼다.",
+      "cDecision": "revise",
+      "cAfter": "$4.7$과 $470$은 숫자가 놓인 순서가 같고 소수점의 위치만 다르다. $470$은 $4.7$의 소수점을 오른쪽으로 {$2$}자리 옮긴 수이므로 $4.7$의 {$100$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '몇 배'는 문맥만으로 채워지고 '숫자 배열'도 낯설어, 옮긴 자리 수와 배를 답하게 했다.",
+      "coreAfter": "$0$보다 큰 두 수의 숫자 순서는 같고 소수점 위치만 다르면, 소수점이 몇 자리 옮겨졌는지 보아 한 수가 다른 수의 {몇 배}인지 알 수 있다.",
+      "coreReason": "'숫자 배열이 같은 두 수'는 초5 학생에게 뜻이 분명하지 않아 풀어 썼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "몇 배라는 원문 표적을 보존하고 숫자 배열의 의미를 풀어 쓴다.0과0의 유일한 배수를 결정할 수 없으므로 양수 두 수로 조건을 정한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1422,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc22",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "숫자 배열이 같은 두 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "숫자 배열이 같은 두 수는 소수점이 몇 자리 옮겨졌는지 보면 한 수가 다른 수의 {몇 배}인지 알 수 있다.",
+        "example": {
+          "prompt": "$38$과 $0.38$에서 숫자 $3$이 나타내는 값이 다른 까닭은?",
+          "answer": "놓인 자리가 달라서"
+        },
+        "studentC": "숫자 배열이 같은 두 수는 소수점이 몇 자리 옮겨졌는지 보면 한 수가 다른 수의 □인지 알 수 있다.",
+        "answers": [
+          "몇 배"
+        ]
+      },
+      "sourceFingerprint": "dedb2676e462857a434e1cd73fcf59080f4785257cd22fe172e667fddc985021",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$100$"
+      ],
+      "cStudentAfter": "$4.7$과 $470$은 숫자가 놓인 순서가 같고 소수점의 위치만 다르다. $470$은 $4.7$의 소수점을 오른쪽으로 □자리 옮긴 수이므로 $4.7$의 □배이다.",
+      "cMarkedSentence": "$4.7$과 $470$은 숫자가 놓인 순서가 같고 소수점의 위치만 다르다. $470$은 $4.7$의 소수점을 오른쪽으로 {$2$}자리 옮긴 수이므로 $4.7$의 {$100$}배이다.",
+      "cStudentSentence": "$4.7$과 $470$은 숫자가 놓인 순서가 같고 소수점의 위치만 다르다. $470$은 $4.7$의 소수점을 오른쪽으로 □자리 옮긴 수이므로 $4.7$의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        },
+        {
+          "key": "$100$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.38$과 $38$처럼 숫자가 놓인 순서는 같고 소수점의 위치만 다른 두 수가 있을 때, 한 수가 다른 수의 몇 배인지 어떻게 알 수 있는지 설명하고, $38$은 $0.38$의 몇 배인지 구하시오.",
+        "answer": "소수점이 어느 쪽으로 몇 자리 옮겨졌는지 보면 알 수 있다. $38$은 $0.38$의 소수점을 오른쪽으로 $2$자리 옮긴 수이므로 $100$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수점이 몇 자리 옮겨졌는지 본다",
+              "각 숫자의 자리가 몇 자리 달라졌는지 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4.7$과 $470$은 숫자가 놓인 순서가 같고 소수점의 위치만 다르다. $470$은 $4.7$의 소수점을 오른쪽으로 {$2$}자리 옮긴 수이므로 $4.7$의 {$100$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ],
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6bc1b2649e5a7435c606be02214efbe5ec3106302d81ea2ed710c179248566f3",
+      "questionRevision": "planning-e5e6-20261006-6bc1b2649e5a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$0.3\\times 0.4$를 계산하면서 $3\\times 4=12$에서 소수점 아래를 한 자리만 잡아 $1.2$라고 답했습니다. 소수점 위치를 정한 방법에서 잘못된 점을 설명하고 바른 값을 구하시오.",
+      "bAnswer": "두 수의 소수점 아래 자리 수를 더한 $1+1=2$자리로 잡아야 하는데 한 수의 자리 수만큼만 잡았다. 바른 값은 $0.12$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 소수점 아래 자리 수를 더한 $2$자리로 잡아야 한다",
+            "한 수의 소수점 아래 자리 수만 세어 한 자리가 모자란다",
+            "두 수가 각각 $0.1$배이므로 곱은 $12$의 $0.01$배여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.12$"
+          ]
+        }
+      ],
+      "bGoal": "소수 자리를 한 수의 자리 수만큼만 잡은 오류를 찾아 바르게 고친다.",
+      "bReason": "e5-2-4-7-c3과 방법은 같지만 틀린 계산을 고치는 물음이라 따로 둘 만하다.",
+      "cDecision": "revise",
+      "cAfter": "$0.3\\times 0.4$를 $3\\times 4=12$로 계산한 뒤 소수점 아래를 한 자리만 잡으면 $1.2$가 되어 바른 값 {$0.12$}보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다",
+            "커진다",
+            "큼"
+          ]
+        }
+      ],
+      "cReason": "'바른 값보다 커진다'는 긴 구절 빈칸이고 원문 상황이 추상적이어서 실제 식의 바른 값과 대소를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1423,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc23",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "소수 자리를 잘못 잡은 곱",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$0$보다 큰 두 소수를 자연수처럼 곱한 뒤 소수 자리를 한 수의 소수 자리 수만큼만 잡으면 곱이 {바른 값보다 커진다}.",
+        "studentC": "$0$보다 큰 두 소수를 자연수처럼 곱한 뒤 소수 자리를 한 수의 소수 자리 수만큼만 잡으면 곱이 □.",
+        "answers": [
+          "바른 값보다 커진다"
+        ]
+      },
+      "sourceFingerprint": "fbb37303b8f2e8e9f436a388770be8e1f424916354184109428986e6b5c8e62e",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cProposedAnswers": [
+        "$0.12$",
+        "크다"
+      ],
+      "cStudentAfter": "$0.3\\times 0.4$를 $3\\times 4=12$로 계산한 뒤 소수점 아래를 한 자리만 잡으면 $1.2$가 되어 바른 값 □보다 □.",
+      "cMarkedSentence": "$0.3\\times 0.4$를 $3\\times 4=12$로 계산한 뒤 소수점 아래를 한 자리만 잡으면 $1.2$가 되어 바른 값 {$0.12$}보다 {크다}.",
+      "cStudentSentence": "$0.3\\times 0.4$를 $3\\times 4=12$로 계산한 뒤 소수점 아래를 한 자리만 잡으면 $1.2$가 되어 바른 값 □보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.12$",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": [
+            "커진다",
+            "큼"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.3\\times 0.4$를 계산하면서 $3\\times 4=12$에서 소수점 아래를 한 자리만 잡아 $1.2$라고 답했습니다. 소수점 위치를 정한 방법에서 잘못된 점을 설명하고 바른 값을 구하시오.",
+        "answer": "두 수의 소수점 아래 자리 수를 더한 $1+1=2$자리로 잡아야 하는데 한 수의 자리 수만큼만 잡았다. 바른 값은 $0.12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 소수점 아래 자리 수를 더한 $2$자리로 잡아야 한다",
+              "한 수의 소수점 아래 자리 수만 세어 한 자리가 모자란다",
+              "두 수가 각각 $0.1$배이므로 곱은 $12$의 $0.01$배여야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.12$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.3\\times 0.4$를 $3\\times 4=12$로 계산한 뒤 소수점 아래를 한 자리만 잡으면 $1.2$가 되어 바른 값 {$0.12$}보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "$0.12$"
+          ],
+          [
+            "크다",
+            "커진다",
+            "큼"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e97d7bffc0aacb331743227723f70963aee509b6eba9d5edacd5b3b9bc0e17d2",
+      "questionRevision": "planning-e5e6-20261006-e97d7bffc0aa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$\\mathrm{km}$로 나타낸 길이를 $\\mathrm{m}$로 바꾸면 소수점이 어느 쪽으로 몇 자리 옮겨지는지 $1\\,\\mathrm{km}$와 $1\\,\\mathrm{m}$의 관계를 이용해 설명하고, $2.35\\,\\mathrm{km}$는 몇 $\\mathrm{m}$인지 구하시오.",
+      "bAnswer": "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이므로 $1000$을 곱하게 되어 소수점이 오른쪽으로 $3$자리 옮겨진다. $2.35\\,\\mathrm{km}=2350\\,\\mathrm{m}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이다",
+            "$\\mathrm{km}$를 $\\mathrm{m}$로 바꾸려면 $1000$을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "소수점이 오른쪽으로 $3$자리 옮겨진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2350\\,\\mathrm{m}$",
+            "$2350$"
+          ]
+        }
+      ],
+      "bGoal": "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$임을 이용해 단위를 바꿀 때 소수점이 옮겨지는 방향과 자리 수를 설명한다.",
+      "bReason": "단위 관계에서 $1000$을 곱하는 까닭까지 말하게 하고 빈 자리에 $0$이 생기는 예를 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이므로 $2.35\\,\\mathrm{km}$를 $\\mathrm{m}$로 바꾸면 소수점이 {오른쪽}으로 {$3$}자리 옮겨져 {$2350$}$\\,\\mathrm{m}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "오른쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2350$"
+          ]
+        }
+      ],
+      "cReason": "'오른쪽으로 세 자리'를 한 빈칸에 쓰게 하면 표기가 갈려 방향·자리 수·값으로 나눴다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1424,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc24",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "$\\mathrm{km}$를 $\\mathrm{m}$로 바꾸기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$1\\,\\mathrm{km}$는 $1000\\,\\mathrm{m}$이므로 $\\mathrm{km}$로 나타낸 길이를 $\\mathrm{m}$로 바꾸면 소수점이 {오른쪽으로 세 자리} 옮겨진다.",
+        "studentC": "$1\\,\\mathrm{km}$는 $1000\\,\\mathrm{m}$이므로 $\\mathrm{km}$로 나타낸 길이를 $\\mathrm{m}$로 바꾸면 소수점이 □ 옮겨진다.",
+        "answers": [
+          "오른쪽으로 세 자리"
+        ]
+      },
+      "sourceFingerprint": "418c1bb92a4abe9ec5c2ff3c74bb00879cfe3ac5aaba653149ade0da5b56c0cd",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "cProposedAnswers": [
+        "오른쪽",
+        "$3$",
+        "$2350$"
+      ],
+      "cStudentAfter": "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이므로 $2.35\\,\\mathrm{km}$를 $\\mathrm{m}$로 바꾸면 소수점이 □으로 □자리 옮겨져 □$\\,\\mathrm{m}$이다.",
+      "cMarkedSentence": "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이므로 $2.35\\,\\mathrm{km}$를 $\\mathrm{m}$로 바꾸면 소수점이 {오른쪽}으로 {$3$}자리 옮겨져 {$2350$}$\\,\\mathrm{m}$이다.",
+      "cStudentSentence": "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이므로 $2.35\\,\\mathrm{km}$를 $\\mathrm{m}$로 바꾸면 소수점이 □으로 □자리 옮겨져 □$\\,\\mathrm{m}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "오른쪽",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        },
+        {
+          "key": "$2350$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\mathrm{km}$로 나타낸 길이를 $\\mathrm{m}$로 바꾸면 소수점이 어느 쪽으로 몇 자리 옮겨지는지 $1\\,\\mathrm{km}$와 $1\\,\\mathrm{m}$의 관계를 이용해 설명하고, $2.35\\,\\mathrm{km}$는 몇 $\\mathrm{m}$인지 구하시오.",
+        "answer": "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이므로 $1000$을 곱하게 되어 소수점이 오른쪽으로 $3$자리 옮겨진다. $2.35\\,\\mathrm{km}=2350\\,\\mathrm{m}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이다",
+              "$\\mathrm{km}$를 $\\mathrm{m}$로 바꾸려면 $1000$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수점이 오른쪽으로 $3$자리 옮겨진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2350\\,\\mathrm{m}$",
+              "$2350$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\,\\mathrm{km}=1000\\,\\mathrm{m}$이므로 $2.35\\,\\mathrm{km}$를 $\\mathrm{m}$로 바꾸면 소수점이 {오른쪽}으로 {$3$}자리 옮겨져 {$2350$}$\\,\\mathrm{m}$이다.",
+        "acceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "$3$",
+            "세"
+          ],
+          [
+            "$2350$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "91b078e67f4325c348a55a31556e17f39ef0bb529307ed9f9424fbae72d581b0",
+      "questionRevision": "planning-e5e6-20261006-91b078e67f43",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-7-xc26",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수에 $100$을 곱한 다음 $0.001$을 곱하면 소수점은 결국 어느 쪽으로 몇 자리 옮겨지는지 설명하고, $0.72\\times 100\\times 0.001$의 값을 구하시오.",
+      "bAnswer": "오른쪽으로 $2$자리, 왼쪽으로 $3$자리 옮기므로 결국 왼쪽으로 $1$자리 옮겨진다. $0.72\\times 100\\times 0.001=0.072$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "결국 왼쪽으로 $1$자리 옮겨진다",
+            "$0.1$을 곱한 것과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.072$"
+          ]
+        }
+      ],
+      "bGoal": "$100$과 $0.001$을 이어 곱할 때 소수점이 결국 옮겨지는 방향과 자리 수를 구한다.",
+      "bReason": "'자리 수의 차'만으로는 방향을 알 수 없어 구체적인 두 수로 방향까지 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$4.56\\times 1000\\times 0.01$은 소수점을 오른쪽으로 $3$자리, 왼쪽으로 $2$자리 옮기므로 결국 {오른쪽}으로 {$1$}자리 옮긴 {$45.6$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "오른쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$",
+            "한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$45.6$"
+          ]
+        }
+      ],
+      "cReason": "'자리 수의 차'는 외워야 하는 구절이고 방향이 빠져 있어 실제 식에서 방향·자리 수·값을 답하게 했다.",
+      "coreAfter": "$10$, $100$, $1000$과 $0.1$, $0.01$, $0.001$을 이어 곱하면, 소수점은 오른쪽·왼쪽으로 옮긴 {자리 수의 차}만큼 더 많이 옮긴 쪽으로 간다. 자리 수가 같으면 제자리이다.",
+      "coreReason": "원문은 '양쪽으로 옮긴 자리 수의 차'만 말해 결국 어느 쪽으로 옮겨지는지가 분명하지 않다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "자리 수의 차라는 원문 표적을 보존하고 더 많이 옮긴 방향을 명시한다. 차가0이면 방향을 정할 필요 없이 제자리라는 조건도 포함한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1425,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-7-xc26",
+        "section": "초5::2-4 소수의 곱셈::2-4-7 곱의 소수점의 위치",
+        "term": "$10$배와 $0.1$배를 이어 곱하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$10$, $100$, $1000$과 $0.1$, $0.01$, $0.001$을 이어 곱하면 소수점은 양쪽으로 옮긴 {자리 수의 차}만큼 옮겨진다.",
+        "studentC": "$10$, $100$, $1000$과 $0.1$, $0.01$, $0.001$을 이어 곱하면 소수점은 양쪽으로 옮긴 □만큼 옮겨진다.",
+        "answers": [
+          "자리 수의 차"
+        ]
+      },
+      "sourceFingerprint": "ad011703c0401157949b78bd47aeb6c1d51bc0b136cb0a0e9669d3d8b4211f15",
+      "draftEvidence": "evidence/section-046-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "오른쪽",
+        "$1$",
+        "$45.6$"
+      ],
+      "cStudentAfter": "$4.56\\times 1000\\times 0.01$은 소수점을 오른쪽으로 $3$자리, 왼쪽으로 $2$자리 옮기므로 결국 □으로 □자리 옮긴 □이다.",
+      "cMarkedSentence": "$4.56\\times 1000\\times 0.01$은 소수점을 오른쪽으로 $3$자리, 왼쪽으로 $2$자리 옮기므로 결국 {오른쪽}으로 {$1$}자리 옮긴 {$45.6$}이다.",
+      "cStudentSentence": "$4.56\\times 1000\\times 0.01$은 소수점을 오른쪽으로 $3$자리, 왼쪽으로 $2$자리 옮기므로 결국 □으로 □자리 옮긴 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "오른쪽",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": [
+            "한"
+          ]
+        },
+        {
+          "key": "$45.6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수에 $100$을 곱한 다음 $0.001$을 곱하면 소수점은 결국 어느 쪽으로 몇 자리 옮겨지는지 설명하고, $0.72\\times 100\\times 0.001$의 값을 구하시오.",
+        "answer": "오른쪽으로 $2$자리, 왼쪽으로 $3$자리 옮기므로 결국 왼쪽으로 $1$자리 옮겨진다. $0.72\\times 100\\times 0.001=0.072$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "결국 왼쪽으로 $1$자리 옮겨진다",
+              "$0.1$을 곱한 것과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.072$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4.56\\times 1000\\times 0.01$은 소수점을 오른쪽으로 $3$자리, 왼쪽으로 $2$자리 옮기므로 결국 {오른쪽}으로 {$1$}자리 옮긴 {$45.6$}이다.",
+        "acceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "$1$",
+            "한"
+          ],
+          [
+            "$45.6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a10c8700199b0370f7a331d53897d6900679059d2f69e05dd18e2aa9cbe73c6f",
+      "questionRevision": "planning-e5e6-20261006-a10c8700199b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "직육면체의 면이 직사각형임을 안다.",
+      "bReason": "e5-2-5-1-c4의 정의 물음과 답이 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "e5-2-5-1-c4와 빈칸 답이 같은 '직사각형'인 반복 문장이다.",
+      "exclusionReason": "e5-2-5-1-c4와 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1426,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc1",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "한 면의 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 면은 모두 {직사각형} 모양이다.",
+        "studentC": "직육면체의 면은 모두 □ 모양이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "2388b9b9f0af42e692ef3ec5ba3436fee3ebd38ec3869c92a72e538c65eed62a",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e5-2-5-1-c4와 중복된다.",
+        "cloze": "e5-2-5-1-c4와 중복된다."
+      },
+      "proposalFingerprint": "4202d95c1ffe7fe47ecbd31b11e9916bb0495bf938bf32b8c833d2c906148605",
+      "questionRevision": "planning-e5e6-20261006-4202d95c1ffe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc2",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 면의 모서리가 $4$개임을 안다.",
+      "bReason": "직사각형의 변의 수를 묻는 것과 같아 서술할 내용이 없다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 한 면에는 모서리가 {네 개} 있다.",
+      "cReason": "한 면이라는 조건에서 모서리 수만 짧게 답하며 모서리 세기의 바탕이 된다.",
+      "exclusionReason": "B는 단일 수치이고 e5-2-5-1-c6의 B에서 이 사실을 쓴다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$4$개'와 '네 개'는 같은 답이다.",
+      "sourceIndex": 1427,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc2",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "한 면의 모서리 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 한 면에는 모서리가 {네 개} 있다.",
+        "studentC": "직육면체의 한 면에는 모서리가 □ 있다.",
+        "answers": [
+          "네 개"
+        ]
+      },
+      "sourceFingerprint": "9f5e09d6a774021a28b0c1d228ffb682e9585500cccc742036f3bc74a7654044",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cFrozenDefinition": "직육면체의 한 면에는 모서리가 {네 개} 있다.",
+      "cFrozenStudentSentence": "직육면체의 한 면에는 모서리가 □ 있다.",
+      "cProposedAnswers": [
+        "네 개"
+      ],
+      "cStudentAfter": "직육면체의 한 면에는 모서리가 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "네 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 한 면에는 모서리가 {네 개} 있다.",
+      "cStudentSentence": "직육면체의 한 면에는 모서리가 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "네 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 한 면에는 모서리가 {네 개} 있다.",
+        "acceptedAnswers": [
+          [
+            "네 개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단일 수치이고 e5-2-5-1-c6의 B에서 이 사실을 쓴다."
+      },
+      "proposalFingerprint": "acde7e4786de530d7b0023a1c61268b8ffdfa0e7899c3a650e592a6decef9ce5",
+      "questionRevision": "planning-e5e6-20261006-acde7e4786de",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc3",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 꼭짓점에서 만나는 면이 $3$개임을 안다.",
+      "bReason": "개수 하나만 답하는 물음이라 서술형으로는 가치가 낮다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 한 꼭짓점에서는 면 {세 개}가 만난다.",
+      "cReason": "한 꼭짓점이라는 조건에서 만나는 면의 수를 묻는 짧고 분명한 문장이다.",
+      "exclusionReason": "B는 단일 수치이며 e5-2-5-1-xc17의 C에서 이 관계를 쓴다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$3$개'와 '세 개'는 같은 답이다.",
+      "sourceIndex": 1428,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc3",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "한 꼭짓점에서 만나는 면 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 한 꼭짓점에서는 면 {세 개}가 만난다.",
+        "studentC": "직육면체의 한 꼭짓점에서는 면 □가 만난다.",
+        "answers": [
+          "세 개"
+        ]
+      },
+      "sourceFingerprint": "bfd3f68029516e19e2cd849dbb74f2f07d28604f658ebfb3bc75ea27c226d9a5",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cFrozenDefinition": "직육면체의 한 꼭짓점에서는 면 {세 개}가 만난다.",
+      "cFrozenStudentSentence": "직육면체의 한 꼭짓점에서는 면 □가 만난다.",
+      "cProposedAnswers": [
+        "세 개"
+      ],
+      "cStudentAfter": "직육면체의 한 꼭짓점에서는 면 □가 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 한 꼭짓점에서는 면 {세 개}가 만난다.",
+      "cStudentSentence": "직육면체의 한 꼭짓점에서는 면 □가 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 한 꼭짓점에서는 면 {세 개}가 만난다.",
+        "acceptedAnswers": [
+          [
+            "세 개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단일 수치이며 e5-2-5-1-xc17의 C에서 이 관계를 쓴다."
+      },
+      "proposalFingerprint": "ed2e37f2b978345fb302e79961e9d44e00c1a53e9597fcdc2e4c50ec2cd1e181",
+      "questionRevision": "planning-e5e6-20261006-ed2e37f2b978",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc4",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 모서리에서 만나는 면이 $2$개임을 안다.",
+      "bReason": "모서리의 뜻(e5-2-5-1-c2)과 두 번 세기(e5-2-5-1-c6)의 B가 이미 같은 내용을 다룬다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 한 모서리에서는 면 {두 개}가 만난다.",
+      "cReason": "한 모서리에서 만나는 면의 수를 묻는 짧은 문장으로 모서리의 뜻과 이어진다.",
+      "exclusionReason": "B는 e5-2-5-1-c2, e5-2-5-1-c6과 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$2$개'와 '두 개'는 같은 답이다.",
+      "sourceIndex": 1429,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc4",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "한 모서리에서 만나는 면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 한 모서리에서는 면 {두 개}가 만난다.",
+        "studentC": "직육면체의 한 모서리에서는 면 □가 만난다.",
+        "answers": [
+          "두 개"
+        ]
+      },
+      "sourceFingerprint": "9e155f2f9493834a5528e618e3cd053332da74c1556f1a5373388578b13e4794",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cFrozenDefinition": "직육면체의 한 모서리에서는 면 {두 개}가 만난다.",
+      "cFrozenStudentSentence": "직육면체의 한 모서리에서는 면 □가 만난다.",
+      "cProposedAnswers": [
+        "두 개"
+      ],
+      "cStudentAfter": "직육면체의 한 모서리에서는 면 □가 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 한 모서리에서는 면 {두 개}가 만난다.",
+      "cStudentSentence": "직육면체의 한 모서리에서는 면 □가 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "두 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 한 모서리에서는 면 {두 개}가 만난다.",
+        "acceptedAnswers": [
+          [
+            "두 개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-1-c2, e5-2-5-1-c6과 중복된다."
+      },
+      "proposalFingerprint": "3ecd7b3d97a2e24e538e3b1a0767b6187ef934efd15b136c8f7b8795c4bc5d20",
+      "questionRevision": "planning-e5e6-20261006-3ecd7b3d97a2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "면의 모양으로 직육면체인지 판별한다.",
+      "bReason": "판별 기준이 정의와 같고, 실제 판별은 e5-2-5-1-xc13에서 예로 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "답이 e5-2-5-1-c4와 같은 '직사각형'인 반복 문장이다.",
+      "exclusionReason": "e5-2-5-1-c4(정의), e5-2-5-1-xc13(판별)과 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1430,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc5",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "직육면체인지 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "여섯 면이 모두 {직사각형}인지 보면 직육면체인지 알 수 있다.",
+        "studentC": "여섯 면이 모두 □인지 보면 직육면체인지 알 수 있다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "088d4ae7fd040c0497e48f5eaf8d9a02d011d27b5f658f95e57878ba25015ff8",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e5-2-5-1-c4(정의), e5-2-5-1-xc13(판별)과 중복된다.",
+        "cloze": "e5-2-5-1-c4(정의), e5-2-5-1-xc13(판별)과 중복된다."
+      },
+      "proposalFingerprint": "a83d5d87095b9172225dc493ec3e6da63a77962e710f471f4182442e57a5af48",
+      "questionRevision": "planning-e5e6-20261006-a83d5d87095b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc6",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "주변 물건에서 직육면체 모양을 찾는다.",
+      "bReason": "물건 이름을 대는 활동이라 채점할 수학적 내용이 정의 말고는 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답 '면이 모두 직사각형인'은 긴 구절이고 내용은 정의의 반복이다.",
+      "exclusionReason": "e5-2-5-1-c4와 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1431,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc6",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "주변의 직육면체",
+        "kind": "성질",
+        "level": "하",
+        "definition": "상자, 벽돌처럼 {면이 모두 직사각형인} 물건은 직육면체 모양이다.",
+        "studentC": "상자, 벽돌처럼 □ 물건은 직육면체 모양이다.",
+        "answers": [
+          "면이 모두 직사각형인"
+        ]
+      },
+      "sourceFingerprint": "a22fab656697d91c4c2fe855bc3a8555dd83c7e4774098ade2621aa6f5daa9df",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e5-2-5-1-c4와 중복된다.",
+        "cloze": "e5-2-5-1-c4와 중복된다."
+      },
+      "proposalFingerprint": "4d0a84b0aa0447bdcc520452b2a2c7e6fe299307557308b1162f6aa5722948c4",
+      "questionRevision": "planning-e5e6-20261006-4d0a84b0aa04",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc7",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 면의 꼭짓점이 $4$개임을 안다.",
+      "bReason": "직사각형의 꼭짓점 수와 같아 서술할 내용이 없다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 한 면에는 꼭짓점이 {네 개} 있다.",
+      "cReason": "한 면의 꼭짓점 수만 묻는 짧은 문장으로 꼭짓점 세기의 바탕이 된다.",
+      "exclusionReason": "B는 단일 수치이며 e5-2-5-1-xc17의 C에서 쓴다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$4$개'와 '네 개'는 같은 답이다.",
+      "sourceIndex": 1432,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc7",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "한 면의 꼭짓점 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체의 한 면에는 꼭짓점이 {네 개} 있다.",
+        "studentC": "직육면체의 한 면에는 꼭짓점이 □ 있다.",
+        "answers": [
+          "네 개"
+        ]
+      },
+      "sourceFingerprint": "e7375cdc650942e3138430631fd830f73938b217a3cbd768fd0b75c930f9007a",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cFrozenDefinition": "직육면체의 한 면에는 꼭짓점이 {네 개} 있다.",
+      "cFrozenStudentSentence": "직육면체의 한 면에는 꼭짓점이 □ 있다.",
+      "cProposedAnswers": [
+        "네 개"
+      ],
+      "cStudentAfter": "직육면체의 한 면에는 꼭짓점이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "네 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 한 면에는 꼭짓점이 {네 개} 있다.",
+      "cStudentSentence": "직육면체의 한 면에는 꼭짓점이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "네 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 한 면에는 꼭짓점이 {네 개} 있다.",
+        "acceptedAnswers": [
+          [
+            "네 개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단일 수치이며 e5-2-5-1-xc17의 C에서 쓴다."
+      },
+      "proposalFingerprint": "2fc01ea87783d42c1f1c627037a9fc0fad08f7d89022c00a0a66ccfd6c7e9ef3",
+      "questionRevision": "planning-e5e6-20261006-2fc01ea87783",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc8",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "가로, 세로, 높이가 모두 다른 직육면체의 모서리 $12$개를 길이가 같은 것끼리 묶으면 몇 개씩 몇 묶음이 되는지 쓰고, 가로 $5$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 직육면체에서 길이가 $3$ $\\mathrm{cm}$인 모서리는 몇 개인지 써 보세요.",
+      "bAnswer": "$4$개씩 $3$묶음이 되고, 길이가 $3$ $\\mathrm{cm}$인 모서리는 $4$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$개씩 $3$묶음",
+            "길이가 같은 모서리가 $4$개씩 세 가지"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$ $\\mathrm{cm}$인 모서리는 $4$개",
+            "$4$개"
+          ]
+        }
+      ],
+      "bGoal": "길이가 같은 모서리가 $4$개씩 $3$묶음임을 알고 예에 적용한다.",
+      "bReason": "세 길이가 모두 다르다는 조건을 넣어 묶음 수가 하나로 정해지게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 서로 평행한 모서리는 길이가 같고, 이런 모서리가 {$4$}개씩 {$3$}묶음 있다.",
+      "cReason": "원문 답 '네 개씩'을 수 빈칸으로 바꾸고 묶음 수도 함께 묻게 했다.",
+      "exampleNeeded": false,
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "sourceIndex": 1433,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc8",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "길이가 같은 모서리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체에는 서로 평행하고 길이가 같은 모서리가 {네 개씩} 세 묶음 있다.",
+        "studentC": "직육면체에는 서로 평행하고 길이가 같은 모서리가 □ 세 묶음 있다.",
+        "answers": [
+          "네 개씩"
+        ]
+      },
+      "sourceFingerprint": "4d677f3ecd29984212fd4829d4b02a235d6d0ea038e9f44726285dd17096ac7e",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$3$"
+      ],
+      "cStudentAfter": "직육면체에서 서로 평행한 모서리는 길이가 같고, 이런 모서리가 □개씩 □묶음 있다.",
+      "cMarkedSentence": "직육면체에서 서로 평행한 모서리는 길이가 같고, 이런 모서리가 {$4$}개씩 {$3$}묶음 있다.",
+      "cStudentSentence": "직육면체에서 서로 평행한 모서리는 길이가 같고, 이런 모서리가 □개씩 □묶음 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": [
+            "네"
+          ]
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로, 세로, 높이가 모두 다른 직육면체의 모서리 $12$개를 길이가 같은 것끼리 묶으면 몇 개씩 몇 묶음이 되는지 쓰고, 가로 $5$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 직육면체에서 길이가 $3$ $\\mathrm{cm}$인 모서리는 몇 개인지 써 보세요.",
+        "answer": "$4$개씩 $3$묶음이 되고, 길이가 $3$ $\\mathrm{cm}$인 모서리는 $4$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$개씩 $3$묶음",
+              "길이가 같은 모서리가 $4$개씩 세 가지"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$ $\\mathrm{cm}$인 모서리는 $4$개",
+              "$4$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체에서 서로 평행한 모서리는 길이가 같고, 이런 모서리가 {$4$}개씩 {$3$}묶음 있다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "네"
+          ],
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a01d6b12197ee20f29917d04a4367661ffa8421cff94a05f16890e422e704643",
+      "questionRevision": "planning-e5e6-20261006-a01d6b12197e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 모든 모서리 길이의 합을 가로, 세로, 높이를 이용해 구하는 방법을 설명하고, 가로 $5$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 직육면체에서 그 합을 구해 보세요.",
+      "bAnswer": "가로, 세로, 높이와 길이가 같은 모서리가 $4$개씩 있으므로 (가로$+$세로$+$높이)$\\times4$로 구한다. $(5+3+2)\\times4=40$($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(가로$+$세로$+$높이)$\\times4$",
+            "가로, 세로, 높이를 각각 $4$배 하여 더한다",
+            "가로, 세로, 높이와 같은 모서리가 $4$개씩 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "모서리 길이의 합을 구하는 방법을 설명하고 계산한다.",
+      "bReason": "일반 방법을 먼저 묻고 구체적인 수로 확인하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 {$4$배}이다.",
+      "cReason": "세 길이의 합과 모서리 전체 길이 사이의 관계를 '$4$배'로 짧게 답하는 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1434,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc9",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "모서리 길이의 합",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 {$4$배}이다.",
+        "studentC": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 □이다.",
+        "answers": [
+          "$4$배"
+        ]
+      },
+      "sourceFingerprint": "cca9c915218d3c829bf3bf6055ae5f52a08f0edfb9b0d3f3f4ef7970c04ae36d",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cFrozenDefinition": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 {$4$배}이다.",
+      "cFrozenStudentSentence": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 □이다.",
+      "cProposedAnswers": [
+        "$4$배"
+      ],
+      "cStudentAfter": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 {$4$배}이다.",
+      "cStudentSentence": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 모든 모서리 길이의 합을 가로, 세로, 높이를 이용해 구하는 방법을 설명하고, 가로 $5$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 직육면체에서 그 합을 구해 보세요.",
+        "answer": "가로, 세로, 높이와 길이가 같은 모서리가 $4$개씩 있으므로 (가로$+$세로$+$높이)$\\times4$로 구한다. $(5+3+2)\\times4=40$($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "(가로$+$세로$+$높이)$\\times4$",
+              "가로, 세로, 높이를 각각 $4$배 하여 더한다",
+              "가로, 세로, 높이와 같은 모서리가 $4$개씩 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40$ $\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 모든 모서리 길이의 합은 (가로)$+$(세로)$+$(높이)의 {$4$배}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d3d4a9469579ccd61019e2a22ad725cc585ca4a0ed43fb110b58668ab422932a",
+      "questionRevision": "planning-e5e6-20261006-d3d4a9469579",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc10",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "면·모서리·꼭짓점 개수를 모두 더한다는 원문 목표를 검토한다.",
+      "bReason": "서로 다른 구성 요소 개수를 하나로 더한 26은 도형의 구조를 새롭게 설명하지 않는다. 이를 또 하나의 B 설명 문제로 만들 학습 가치가 낮다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "26이라는 임의의 합을 외우거나 6+12+8을 계산하는 것보다 각 구성 요소의 개수와 세는 까닭을 확인하는 항목이 유용하다.",
+      "exclusionReason": "B와 C에서만 제외. e5-2-5-1-c5의 면 6개·모서리 12개·꼭짓점 8개와 c6의 중복 세기 설명으로 의미 있는 목표를 확인한다. ID와 일반 원문은 보존한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexRubricReview": "Direct deletion and copying review: only requested mathematical meanings are required; alternatives are separate strings.",
+      "sourceIndex": 1435,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc10",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "면, 모서리, 꼭짓점 수의 합",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직육면체의 면, 모서리, 꼭짓점의 수를 모두 더하면 {$26$}이다.",
+        "studentC": "직육면체의 면, 모서리, 꼭짓점의 수를 모두 더하면 □이다.",
+        "answers": [
+          "$26$"
+        ]
+      },
+      "sourceFingerprint": "650827bdb539112e5e5b3214effadcb246d5219604275f3bf99d384c7a377034",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B와 C에서만 제외. e5-2-5-1-c5의 면 6개·모서리 12개·꼭짓점 8개와 c6의 중복 세기 설명으로 의미 있는 목표를 확인한다. ID와 일반 원문은 보존한다.",
+        "cloze": "B와 C에서만 제외. e5-2-5-1-c5의 면 6개·모서리 12개·꼭짓점 8개와 c6의 중복 세기 설명으로 의미 있는 목표를 확인한다. ID와 일반 원문은 보존한다."
+      },
+      "proposalFingerprint": "b65d7dce05687ebdf66f654bebb71629ee352b39a550bb7a595e1d4590a83787",
+      "questionRevision": "planning-e5e6-20261006-b65d7dce0568",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 꼭짓점 수를 위에 있는 면과 아래에 있는 면으로 나누어 세는 방법을 설명해 보세요.",
+      "bAnswer": "위에 있는 면에 꼭짓점 $4$개, 아래에 있는 면에 꼭짓점 $4$개가 있으므로 $4+4=8$(개)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위에 있는 면과 아래에 있는 면에 꼭짓점이 $4$개씩 있다",
+            "$4+4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$개"
+          ]
+        }
+      ],
+      "bGoal": "꼭짓점을 위와 아래의 면으로 나누어 빠짐없이 센다.",
+      "bReason": "수만 묻지 않고 나누어 세는 방법을 설명하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 {$8$개}이다.",
+      "cReason": "위 $4$개와 아래 $4$개라는 세는 방법이 제시되어 합 $8$개만 답하면 된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1436,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc11",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "꼭짓점 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 {$8$개}이다.",
+        "studentC": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 □이다.",
+        "answers": [
+          "$8$개"
+        ]
+      },
+      "sourceFingerprint": "afb2de7ec94fb561f42ecb29bad8ee95b500127e51e3eef13d7ebc499c8066a2",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cFrozenDefinition": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 {$8$개}이다.",
+      "cFrozenStudentSentence": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 □이다.",
+      "cProposedAnswers": [
+        "$8$개"
+      ],
+      "cStudentAfter": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 {$8$개}이다.",
+      "cStudentSentence": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 꼭짓점 수를 위에 있는 면과 아래에 있는 면으로 나누어 세는 방법을 설명해 보세요.",
+        "answer": "위에 있는 면에 꼭짓점 $4$개, 아래에 있는 면에 꼭짓점 $4$개가 있으므로 $4+4=8$(개)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위에 있는 면과 아래에 있는 면에 꼭짓점이 $4$개씩 있다",
+              "$4+4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "위 면에 $4$개, 아래 면에 $4$개이므로 직육면체의 꼭짓점은 {$8$개}이다.",
+        "acceptedAnswers": [
+          [
+            "$8$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7464ba8fee5ec908cfb78d9fcfb759d7d163f48f11a901bce34330d70f18ceff",
+      "questionRevision": "planning-e5e6-20261006-7464ba8fee5e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 모서리를 위에 있는 면의 모서리, 아래에 있는 면의 모서리, 두 면을 잇는 모서리로 나누어 세면 각각 몇 개이고 모두 몇 개인지 설명해 보세요.",
+      "bAnswer": "위에 있는 면에 $4$개, 아래에 있는 면에 $4$개, 두 면을 잇는 모서리가 $4$개이므로 $4+4+4=12$(개)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세 부분에 $4$개씩 있다",
+            "$4+4+4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$개"
+          ]
+        }
+      ],
+      "bGoal": "모서리를 세 부분으로 나누어 빠짐없이 센다.",
+      "bReason": "원문의 '옆으로 세운'을 '두 면을 잇는 모서리'로 풀어 물었다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 모서리는 위에 있는 면에 $4$개, 아래에 있는 면에 $4$개, 위와 아래의 면을 잇는 모서리가 {$4$}개이므로 모두 {$12$}개이다.",
+      "cReason": "'옆으로 세운 $4$개'가 무엇인지 학생에게 불분명해 풀어 쓰고 빈칸을 수로 했다.",
+      "coreAfter": "직육면체의 위 면 모서리 $4$개, 아래 면 모서리 $4$개, 두 면을 잇는 모서리 $4$개를 더하면 모서리는 {$12$개}이다.",
+      "coreReason": "'위 면 $4$개', '옆으로 세운 $4$개'가 모서리를 가리키는지 분명하지 않다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "12개라는 원문 표적을 유지한다. 위 면4개를 면의 수로 읽지 않게 세 무리 모두 모서리임을 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1437,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc12",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "모서리 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "위 면 $4$개, 아래 면 $4$개, 옆으로 세운 $4$개를 더하면 모서리는 {$12$개}이다.",
+        "studentC": "위 면 $4$개, 아래 면 $4$개, 옆으로 세운 $4$개를 더하면 모서리는 □이다.",
+        "answers": [
+          "$12$개"
+        ]
+      },
+      "sourceFingerprint": "19824c6f80e537198588e24f8f7adfa989116c30290d206535f20150ba0a9f3a",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$12$"
+      ],
+      "cStudentAfter": "직육면체의 모서리는 위에 있는 면에 $4$개, 아래에 있는 면에 $4$개, 위와 아래의 면을 잇는 모서리가 □개이므로 모두 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 모서리는 위에 있는 면에 $4$개, 아래에 있는 면에 $4$개, 위와 아래의 면을 잇는 모서리가 {$4$}개이므로 모두 {$12$}개이다.",
+      "cStudentSentence": "직육면체의 모서리는 위에 있는 면에 $4$개, 아래에 있는 면에 $4$개, 위와 아래의 면을 잇는 모서리가 □개이므로 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 모서리를 위에 있는 면의 모서리, 아래에 있는 면의 모서리, 두 면을 잇는 모서리로 나누어 세면 각각 몇 개이고 모두 몇 개인지 설명해 보세요.",
+        "answer": "위에 있는 면에 $4$개, 아래에 있는 면에 $4$개, 두 면을 잇는 모서리가 $4$개이므로 $4+4+4=12$(개)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 부분에 $4$개씩 있다",
+              "$4+4+4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 모서리는 위에 있는 면에 $4$개, 아래에 있는 면에 $4$개, 위와 아래의 면을 잇는 모서리가 {$4$}개이므로 모두 {$12$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "970859cac63b439e036a65fb738f4de7b22ff692830627bea439a35ca095d6a0",
+      "questionRevision": "planning-e5e6-20261006-970859cac63b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc13",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "면이 $6$개인 입체도형이 있습니다. 그중 $4$개는 직사각형이고 $2$개는 직사각형이 아닌 사다리꼴입니다. 이 도형이 직육면체인지 아닌지 쓰고, 면의 모양을 근거로 설명해 보세요.",
+      "bAnswer": "직육면체가 아니다. 직육면체는 면 $6$개가 모두 직사각형이어야 하는데 직사각형이 아닌 면이 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직육면체가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면이 모두 직사각형이어야 한다",
+            "직사각형이 아닌 면이 있다",
+            "사다리꼴인 면이 있다"
+          ]
+        }
+      ],
+      "bGoal": "정의를 써서 직육면체가 아닌 입체를 판별한다.",
+      "bReason": "일반 문장을 구체적인 입체에 적용하고 근거를 대게 했다.",
+      "cDecision": "revise",
+      "cAfter": "면이 $6$개이지만 그중 $2$개가 직사각형이 아닌 사다리꼴인 입체도형은 직육면체가 {아니다}. 직육면체는 면 {$6$}개가 모두 {직사각형}이어야 하기 때문이다.",
+      "cReason": "원문 답 '직육면체가 아니다'는 문장 끝을 통째로 쓰는 것이라 판별과 근거를 짧은 낱말로 나누었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다",
+            "아닙니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$",
+            "여섯"
+          ]
+        },
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1438,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc13",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "직육면체가 아닌 입체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "면 가운데 하나라도 직사각형이 아니면 {직육면체가 아니다}.",
+        "studentC": "면 가운데 하나라도 직사각형이 아니면 □.",
+        "answers": [
+          "직육면체가 아니다"
+        ]
+      },
+      "sourceFingerprint": "a3b10608f70c46015e6f115f172d8e521c80094a8bea1300f7e1a6150d541cad",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [
+        "아니다",
+        "$6$",
+        "직사각형"
+      ],
+      "cStudentAfter": "면이 $6$개이지만 그중 $2$개가 직사각형이 아닌 사다리꼴인 입체도형은 직육면체가 □. 직육면체는 면 □개가 모두 □이어야 하기 때문이다.",
+      "cMarkedSentence": "면이 $6$개이지만 그중 $2$개가 직사각형이 아닌 사다리꼴인 입체도형은 직육면체가 {아니다}. 직육면체는 면 {$6$}개가 모두 {직사각형}이어야 하기 때문이다.",
+      "cStudentSentence": "면이 $6$개이지만 그중 $2$개가 직사각형이 아닌 사다리꼴인 입체도형은 직육면체가 □. 직육면체는 면 □개가 모두 □이어야 하기 때문이다.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": [
+            "아닙니다"
+          ]
+        },
+        {
+          "key": "$6$",
+          "equivalents": [
+            "여섯"
+          ]
+        },
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "면이 $6$개인 입체도형이 있습니다. 그중 $4$개는 직사각형이고 $2$개는 직사각형이 아닌 사다리꼴입니다. 이 도형이 직육면체인지 아닌지 쓰고, 면의 모양을 근거로 설명해 보세요.",
+        "answer": "직육면체가 아니다. 직육면체는 면 $6$개가 모두 직사각형이어야 하는데 직사각형이 아닌 면이 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직육면체가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면이 모두 직사각형이어야 한다",
+              "직사각형이 아닌 면이 있다",
+              "사다리꼴인 면이 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "면이 $6$개이지만 그중 $2$개가 직사각형이 아닌 사다리꼴인 입체도형은 직육면체가 {아니다}. 직육면체는 면 {$6$}개가 모두 {직사각형}이어야 하기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "아니다",
+            "아닙니다"
+          ],
+          [
+            "$6$",
+            "여섯"
+          ],
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b637f60a7d6d3adcc4992efadaa0d84ba6ebacdbe5d52b7566baeffdd2d972ca",
+      "questionRevision": "planning-e5e6-20261006-b637f60a7d6d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 꼭짓점 $8$개에는 모서리가 $3$개씩 모여 있습니다. $8\\times3=24$로 세면 실제 모서리의 수보다 많아지는 까닭을 모서리 하나의 양 끝과 관련지어 설명하고, 모서리의 수를 구해 보세요.",
+      "bAnswer": "모서리 하나는 양 끝의 꼭짓점 $2$개에서 한 번씩, 모두 두 번 세어지므로 $24\\div2=12$(개)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리 하나가 꼭짓점 $2$개를 잇는다",
+            "모서리가 양 끝에서 두 번씩 세어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24\\div2=12$",
+            "$12$개"
+          ]
+        }
+      ],
+      "bGoal": "꼭짓점으로 셀 때 모서리가 두 번씩 세어지는 까닭을 설명한다.",
+      "bReason": "e5-2-5-1-c6과 세는 기준이 달라 따로 물을 가치가 있다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 꼭짓점 $8$개마다 모서리가 $3$개씩 모이므로 모두 세면 $8\\times3=24$(개)이다. 모서리 하나는 꼭짓점 {$2$}개를 이으므로 모서리의 수는 $24\\div${$2$}$=${$12$}(개)이다.",
+      "cReason": "원문 답 '$2$로 나눈'은 구절이고 바로 뒤에 $12$가 보여 수 빈칸 식으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1439,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc16",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "꼭짓점으로 모서리 세기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "꼭짓점마다 모서리 $3$개가 모이고 모서리는 꼭짓점 둘을 이으므로 모서리 수는 $8\\times3$을 {$2$로 나눈} $12$이다.",
+        "studentC": "꼭짓점마다 모서리 $3$개가 모이고 모서리는 꼭짓점 둘을 이으므로 모서리 수는 $8\\times3$을 □ $12$이다.",
+        "answers": [
+          "$2$로 나눈"
+        ]
+      },
+      "sourceFingerprint": "9dbcd61a36e8c986310c1a2431ae0201a195d7c8485d61987faca55ac97913bd",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$2$",
+        "$12$"
+      ],
+      "cStudentAfter": "직육면체의 꼭짓점 $8$개마다 모서리가 $3$개씩 모이므로 모두 세면 $8\\times3=24$(개)이다. 모서리 하나는 꼭짓점 □개를 이으므로 모서리의 수는 $24\\div$□$=$□(개)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 꼭짓점 $8$개마다 모서리가 $3$개씩 모이므로 모두 세면 $8\\times3=24$(개)이다. 모서리 하나는 꼭짓점 {$2$}개를 이으므로 모서리의 수는 $24\\div${$2$}$=${$12$}(개)이다.",
+      "cStudentSentence": "직육면체의 꼭짓점 $8$개마다 모서리가 $3$개씩 모이므로 모두 세면 $8\\times3=24$(개)이다. 모서리 하나는 꼭짓점 □개를 이으므로 모서리의 수는 $24\\div$□$=$□(개)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 꼭짓점 $8$개에는 모서리가 $3$개씩 모여 있습니다. $8\\times3=24$로 세면 실제 모서리의 수보다 많아지는 까닭을 모서리 하나의 양 끝과 관련지어 설명하고, 모서리의 수를 구해 보세요.",
+        "answer": "모서리 하나는 양 끝의 꼭짓점 $2$개에서 한 번씩, 모두 두 번 세어지므로 $24\\div2=12$(개)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모서리 하나가 꼭짓점 $2$개를 잇는다",
+              "모서리가 양 끝에서 두 번씩 세어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24\\div2=12$",
+              "$12$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 꼭짓점 $8$개마다 모서리가 $3$개씩 모이므로 모두 세면 $8\\times3=24$(개)이다. 모서리 하나는 꼭짓점 {$2$}개를 이으므로 모서리의 수는 $24\\div${$2$}$=${$12$}(개)이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ce50fd0ef7c48857087da9cd4ee22c864a63bdd62cbf3846b9847fa688382940",
+      "questionRevision": "planning-e5e6-20261006-ce50fd0ef7c4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc17",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "면으로 셀 때 꼭짓점이 세 번씩 세어짐을 안다.",
+      "bReason": "겹쳐 센 만큼 나눈다는 설명은 e5-2-5-1-c6, e5-2-5-1-xc16의 B와 같은 유형이다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 면 $6$개마다 꼭짓점이 $4$개씩 있으므로 모두 세면 $6\\times4=24$(개)이다. 꼭짓점 하나는 면 {$3$}개에 함께 들어 있으므로 꼭짓점의 수는 $24\\div${$3$}$=${$8$}(개)이다.",
+      "cReason": "원문 답 '$3$으로 나눈'은 구절이어서 수 빈칸으로 바꿨다.",
+      "exclusionReason": "B는 e5-2-5-1-c6, e5-2-5-1-xc16과 같은 유형의 반복이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1440,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc17",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "면으로 꼭짓점 세기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "면마다 꼭짓점이 $4$개이고 꼭짓점 하나에 면 $3$개가 모이므로 꼭짓점 수는 $6\\times4$를 {$3$으로 나눈} $8$이다.",
+        "studentC": "면마다 꼭짓점이 $4$개이고 꼭짓점 하나에 면 $3$개가 모이므로 꼭짓점 수는 $6\\times4$를 □ $8$이다.",
+        "answers": [
+          "$3$으로 나눈"
+        ]
+      },
+      "sourceFingerprint": "883fb354003e68a0ad32fe14862f6bba5487b43a2a486125688fe331a21eabce",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$3$",
+        "$8$"
+      ],
+      "cStudentAfter": "직육면체의 면 $6$개마다 꼭짓점이 $4$개씩 있으므로 모두 세면 $6\\times4=24$(개)이다. 꼭짓점 하나는 면 □개에 함께 들어 있으므로 꼭짓점의 수는 $24\\div$□$=$□(개)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 면 $6$개마다 꼭짓점이 $4$개씩 있으므로 모두 세면 $6\\times4=24$(개)이다. 꼭짓점 하나는 면 {$3$}개에 함께 들어 있으므로 꼭짓점의 수는 $24\\div${$3$}$=${$8$}(개)이다.",
+      "cStudentSentence": "직육면체의 면 $6$개마다 꼭짓점이 $4$개씩 있으므로 모두 세면 $6\\times4=24$(개)이다. 꼭짓점 하나는 면 □개에 함께 들어 있으므로 꼭짓점의 수는 $24\\div$□$=$□(개)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 면 $6$개마다 꼭짓점이 $4$개씩 있으므로 모두 세면 $6\\times4=24$(개)이다. 꼭짓점 하나는 면 {$3$}개에 함께 들어 있으므로 꼭짓점의 수는 $24\\div${$3$}$=${$8$}(개)이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-1-c6, e5-2-5-1-xc16과 같은 유형의 반복이다."
+      },
+      "proposalFingerprint": "f86218535d599328a1d28a3094966c6089fb8f1451238c55078118634fa97403",
+      "questionRevision": "planning-e5e6-20261006-f86218535d59",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 모든 모서리 길이의 합을 알 때 가로, 세로, 높이의 합을 구하는 방법을 설명하고, 모든 모서리 길이의 합이 $48$ $\\mathrm{cm}$이고 가로가 $5$ $\\mathrm{cm}$, 세로가 $4$ $\\mathrm{cm}$인 직육면체의 높이를 구해 보세요.",
+      "bAnswer": "모든 모서리 길이의 합을 $4$로 나누면 가로, 세로, 높이의 합이 된다. $48\\div4=12$이므로 높이는 $12-5-4=3$($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모든 모서리 길이의 합을 $4$로 나눈다",
+            "$48\\div4=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이는 $3$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "모서리 길이의 합에서 거꾸로 세 길이의 합과 모르는 길이를 구한다.",
+      "bReason": "e5-2-5-1-xc9의 역방향이어서 높이를 구하는 예를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "모든 모서리 길이의 합이 $48$ $\\mathrm{cm}$인 직육면체에서 가로, 세로, 높이의 합은 $48\\div${$4$}$=${$12$}($\\mathrm{cm}$)이다.",
+      "cReason": "원문 답 '가로, 세로, 높이의 합'은 긴 구절이어서 실제 수로 계산하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1441,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc18",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "모서리 합으로 세 길이의 합 알기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직육면체의 모든 모서리 길이의 합을 $4$로 나누면 {가로, 세로, 높이의 합}이 된다.",
+        "studentC": "직육면체의 모든 모서리 길이의 합을 $4$로 나누면 □이 된다.",
+        "answers": [
+          "가로, 세로, 높이의 합"
+        ]
+      },
+      "sourceFingerprint": "c12683b636bb7e0aec2827ed27af5533cf07780cd9714e1fb10d088c8a224d16",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$12$"
+      ],
+      "cStudentAfter": "모든 모서리 길이의 합이 $48$ $\\mathrm{cm}$인 직육면체에서 가로, 세로, 높이의 합은 $48\\div$□$=$□($\\mathrm{cm}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "모든 모서리 길이의 합이 $48$ $\\mathrm{cm}$인 직육면체에서 가로, 세로, 높이의 합은 $48\\div${$4$}$=${$12$}($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "모든 모서리 길이의 합이 $48$ $\\mathrm{cm}$인 직육면체에서 가로, 세로, 높이의 합은 $48\\div$□$=$□($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 모든 모서리 길이의 합을 알 때 가로, 세로, 높이의 합을 구하는 방법을 설명하고, 모든 모서리 길이의 합이 $48$ $\\mathrm{cm}$이고 가로가 $5$ $\\mathrm{cm}$, 세로가 $4$ $\\mathrm{cm}$인 직육면체의 높이를 구해 보세요.",
+        "answer": "모든 모서리 길이의 합을 $4$로 나누면 가로, 세로, 높이의 합이 된다. $48\\div4=12$이므로 높이는 $12-5-4=3$($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모든 모서리 길이의 합을 $4$로 나눈다",
+              "$48\\div4=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 $3$ $\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모든 모서리 길이의 합이 $48$ $\\mathrm{cm}$인 직육면체에서 가로, 세로, 높이의 합은 $48\\div${$4$}$=${$12$}($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3e96ab0df91f6890601ea8389fbc53aae117499e2716e1a002548ed3fa4d62c6",
+      "questionRevision": "planning-e5e6-20261006-3e96ab0df91f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc19",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "가로, 세로, 높이가 모두 다른 직육면체에서 가장 넓은 면은 세 길이 가운데 어떤 두 길이를 변으로 하는 면인지 쓰고, 가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $3$ $\\mathrm{cm}$인 직육면체에서 가장 넓은 면의 넓이를 구해 보세요.",
+      "bAnswer": "가장 긴 길이와 둘째로 긴 길이를 변으로 하는 면이다. 넓이는 $6\\times4=24$ ($\\mathrm{cm} ^2$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "긴 두 길이를 변으로 하는 면",
+            "가장 짧은 길이를 뺀 두 길이를 변으로 하는 면"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$ $\\mathrm{cm} ^2$"
+          ]
+        }
+      ],
+      "bGoal": "면의 넓이가 두 변의 길이로 정해짐을 써서 가장 넓은 면을 찾는다.",
+      "bReason": "세 길이가 모두 다르다는 조건을 넣고 넓이 계산으로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $3$ $\\mathrm{cm}$인 직육면체에서 가장 넓은 면은 두 변의 길이가 {$6$} $\\mathrm{cm}$와 {$4$} $\\mathrm{cm}$인 직사각형이고, 그 넓이는 {$24$} $\\mathrm{cm} ^2$이다.",
+      "cReason": "원문 답 '긴 두 길이'는 임의 구절이어서 실제 길이와 넓이를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1442,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc19",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "가장 넓은 면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직육면체에서 가장 넓은 면은 가로, 세로, 높이 가운데 {긴 두 길이}로 이루어진 면이다.",
+        "studentC": "직육면체에서 가장 넓은 면은 가로, 세로, 높이 가운데 □로 이루어진 면이다.",
+        "answers": [
+          "긴 두 길이"
+        ]
+      },
+      "sourceFingerprint": "9dd1a27b87258962218db6feb60e75a4bb78612061ee71d0a047b73a1b052543",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$4$",
+        "$24$"
+      ],
+      "cStudentAfter": "가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $3$ $\\mathrm{cm}$인 직육면체에서 가장 넓은 면은 두 변의 길이가 □ $\\mathrm{cm}$와 □ $\\mathrm{cm}$인 직사각형이고, 그 넓이는 □ $\\mathrm{cm} ^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $3$ $\\mathrm{cm}$인 직육면체에서 가장 넓은 면은 두 변의 길이가 {$6$} $\\mathrm{cm}$와 {$4$} $\\mathrm{cm}$인 직사각형이고, 그 넓이는 {$24$} $\\mathrm{cm} ^2$이다.",
+      "cStudentSentence": "가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $3$ $\\mathrm{cm}$인 직육면체에서 가장 넓은 면은 두 변의 길이가 □ $\\mathrm{cm}$와 □ $\\mathrm{cm}$인 직사각형이고, 그 넓이는 □ $\\mathrm{cm} ^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로, 세로, 높이가 모두 다른 직육면체에서 가장 넓은 면은 세 길이 가운데 어떤 두 길이를 변으로 하는 면인지 쓰고, 가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $3$ $\\mathrm{cm}$인 직육면체에서 가장 넓은 면의 넓이를 구해 보세요.",
+        "answer": "가장 긴 길이와 둘째로 긴 길이를 변으로 하는 면이다. 넓이는 $6\\times4=24$ ($\\mathrm{cm} ^2$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "긴 두 길이를 변으로 하는 면",
+              "가장 짧은 길이를 뺀 두 길이를 변으로 하는 면"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$ $\\mathrm{cm} ^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $3$ $\\mathrm{cm}$인 직육면체에서 가장 넓은 면은 두 변의 길이가 {$6$} $\\mathrm{cm}$와 {$4$} $\\mathrm{cm}$인 직사각형이고, 그 넓이는 {$24$} $\\mathrm{cm} ^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fbb4d3b2e7560d97a3df6fa714c539062c9a32aaa2fdacc0d4482eb6b0be1a13",
+      "questionRevision": "planning-e5e6-20261006-fbb4d3b2e756",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc20",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 서로 마주 보는 두 면의 모양과 크기는 어떤 관계인지 쓰고, 서로 마주 보는 면이 모두 몇 쌍인지 써 보세요.",
+      "bAnswer": "마주 보는 두 면은 모양과 크기가 같고(합동이고), 모두 $3$쌍이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모양과 크기가 같다",
+            "합동이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$쌍",
+            "세 쌍"
+          ]
+        }
+      ],
+      "bGoal": "마주 보는 면이 합동이고 $3$쌍임을 안다.",
+      "bReason": "두 면의 관계와 쌍의 수를 함께 물어 e5-2-5-1-xc21의 내용까지 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "가로, 세로, 높이가 모두 다른 직육면체에서 모양과 크기가 같은 두 면은 서로 {마주 보는} 면이고, 이런 면은 모두 {$3$}쌍 있다.",
+      "cReason": "원문 답 '모양과 크기'는 두 낱말을 한 칸에 강요해 위치 관계와 쌍의 수를 묻게 바꿨다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "마주 보는",
+            "마주보는",
+            "평행한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "synonymNotes": "'합동이다'는 '모양과 크기가 같다'와 같은 답이다.",
+      "sourceIndex": 1443,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc20",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "마주 보는 면의 모양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직육면체의 서로 마주 보는 면은 {모양과 크기}가 같다.",
+        "studentC": "직육면체의 서로 마주 보는 면은 □가 같다.",
+        "answers": [
+          "모양과 크기"
+        ]
+      },
+      "sourceFingerprint": "507a9a2a69c222a39d444de375da239caac1de0dc593c4a05425e674751b8012",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [
+        "마주 보는",
+        "$3$"
+      ],
+      "cStudentAfter": "가로, 세로, 높이가 모두 다른 직육면체에서 모양과 크기가 같은 두 면은 서로 □ 면이고, 이런 면은 모두 □쌍 있다.",
+      "cMarkedSentence": "가로, 세로, 높이가 모두 다른 직육면체에서 모양과 크기가 같은 두 면은 서로 {마주 보는} 면이고, 이런 면은 모두 {$3$}쌍 있다.",
+      "cStudentSentence": "가로, 세로, 높이가 모두 다른 직육면체에서 모양과 크기가 같은 두 면은 서로 □ 면이고, 이런 면은 모두 □쌍 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "마주 보는",
+          "equivalents": [
+            "마주보는",
+            "평행한"
+          ]
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 서로 마주 보는 두 면의 모양과 크기는 어떤 관계인지 쓰고, 서로 마주 보는 면이 모두 몇 쌍인지 써 보세요.",
+        "answer": "마주 보는 두 면은 모양과 크기가 같고(합동이고), 모두 $3$쌍이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모양과 크기가 같다",
+              "합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$쌍",
+              "세 쌍"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로, 세로, 높이가 모두 다른 직육면체에서 모양과 크기가 같은 두 면은 서로 {마주 보는} 면이고, 이런 면은 모두 {$3$}쌍 있다.",
+        "acceptedAnswers": [
+          [
+            "마주 보는",
+            "마주보는",
+            "평행한"
+          ],
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b70d9e30f7f39b62168e2a2bf7721e0651b3abdca13e1591a436746f18819cc4",
+      "questionRevision": "planning-e5e6-20261006-b70d9e30f7f3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc21",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "세 길이가 모두 다르면 크기가 다른 면이 세 가지임을 안다.",
+      "bReason": "마주 보는 면이 $3$쌍이라는 e5-2-5-1-xc20의 B와 답의 내용이 겹친다.",
+      "cDecision": "keep",
+      "cAfter": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 {세 가지} 있다.",
+      "cReason": "세 길이가 모두 다르다는 조건이 분명하고 '세 가지'만 짧게 답하면 된다.",
+      "exclusionReason": "B는 e5-2-5-1-xc20과 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$3$가지'와 '세 가지'는 같은 답이다.",
+      "sourceIndex": 1444,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc21",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "크기가 다른 면의 가짓수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 {세 가지} 있다.",
+        "studentC": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 □ 있다.",
+        "answers": [
+          "세 가지"
+        ]
+      },
+      "sourceFingerprint": "46ff21e8106c4559dd843fc796f864e446228045cb278f80b63ef396f3f3e9b1",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cFrozenDefinition": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 {세 가지} 있다.",
+      "cFrozenStudentSentence": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 □ 있다.",
+      "cProposedAnswers": [
+        "세 가지"
+      ],
+      "cStudentAfter": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 가지"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 {세 가지} 있다.",
+      "cStudentSentence": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 가지",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가로, 세로, 높이가 모두 다른 직육면체에는 크기가 다른 면이 {세 가지} 있다.",
+        "acceptedAnswers": [
+          [
+            "세 가지"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-1-xc20과 중복된다."
+      },
+      "proposalFingerprint": "02a51173fcacb2776965885a3e54820a5058644fb75eda5a5b66a8f47e5b5d51",
+      "questionRevision": "planning-e5e6-20261006-02a51173fcac",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc22",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": "직육면체의 한 꼭짓점에서 모서리만 따라 움직여, 그 꼭짓점과 같은 면에 있지 않은 꼭짓점까지 가려고 합니다. 모서리를 적어도 몇 개 지나야 하는지 쓰고, 가로·세로·높이 방향의 모서리와 관련지어 그 까닭을 설명해 보세요.",
+      "bAnswer": "적어도 $3$개 지나야 한다. 가로 방향, 세로 방향, 높이 방향으로 모두 한 번씩 움직여야 그 꼭짓점에 닿기 때문이다.",
+      "bRequiredIdeas": [],
+      "bGoal": "반대쪽 꼭짓점까지 가는 가장 짧은 모서리 길을 방향으로 설명한다.",
+      "bReason": "한 꼭짓점과 같은 면에 있지 않은 꼭짓점을 골라 세 방향의 모서리 경로를 설명하려면 출발·도착점이 보이는 겨냥도가 필요하다. 이 관계를 글로 복원하게 하는 현재 B/C에서는 제외한다.",
+      "cDecision": "exclude",
+      "cAfter": "직육면체의 한 꼭짓점에서 모서리만 따라 그 꼭짓점과 같은 면에 있지 않은 꼭짓점까지 가려면 모서리를 적어도 {$3$}개 지나야 한다.",
+      "cReason": "한 꼭짓점과 같은 면에 있지 않은 꼭짓점을 골라 세 방향의 모서리 경로를 설명하려면 출발·도착점이 보이는 겨냥도가 필요하다. 이 관계를 글로 복원하게 하는 현재 B/C에서는 제외한다.",
+      "coreAfter": "직육면체의 한 꼭짓점에서 모서리만 따라 그 꼭짓점과 같은 면에 있지 않은 꼭짓점까지 가려면 모서리를 적어도 {$3$}개 지나야 한다.",
+      "coreReason": "'가장 먼 꼭짓점'은 거리 기준이 없어 초5 학생이 어느 점인지 알기 어렵다.",
+      "exampleNeeded": true,
+      "exampleReason": "꼭짓점에 기호를 붙인 직육면체 겨냥도에 출발점과 도착점을 표시한 그림이 있어야 대상이 분명해진다.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [],
+      "exclusionReason": "B/C: 한 꼭짓점과 같은 면에 있지 않은 꼭짓점을 골라 세 방향의 모서리 경로를 설명하려면 출발·도착점이 보이는 겨냥도가 필요하다. 이 관계를 글로 복원하게 하는 현재 B/C에서는 제외한다.",
+      "diagramResearchProposal": {
+        "bPrompt": "직육면체의 한 꼭짓점에서 모서리만 따라 움직여, 그 꼭짓점과 같은 면에 있지 않은 꼭짓점까지 가려고 합니다. 모서리를 적어도 몇 개 지나야 하는지 쓰고, 가로·세로·높이 방향의 모서리와 관련지어 그 까닭을 설명해 보세요.",
+        "bAnswer": "적어도 $3$개 지나야 한다. 가로 방향, 세로 방향, 높이 방향으로 모두 한 번씩 움직여야 그 꼭짓점에 닿기 때문이다.",
+        "cAfter": "직육면체의 한 꼭짓점에서 모서리만 따라 그 꼭짓점과 같은 면에 있지 않은 꼭짓점까지 가려면 모서리를 적어도 {$3$}개 지나야 한다."
+      },
+      "codexReview": "개별 원문·첫 초안·필수 그림 사양을 직접 읽은 뒤 글·수식 전용 계약에 맞게 형식 제외함. 일반 학습 설명·ID·이력은 보존함.",
+      "coreTargetReason": "3이라는 원문 표적을 보존한다. 거리 기준이 없는 가장 먼 꼭짓점은 시작점과 같은 면에 있지 않은 점으로 명확히 한다. 평가 B·C의 그림 필요 제외와 일반 학습 설명은 분리한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1445,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc22",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "가장 먼 꼭짓점까지",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직육면체의 한 꼭짓점에서 모서리를 따라 가장 먼 꼭짓점까지 가려면 모서리를 적어도 {$3$}개 지나야 한다.",
+        "studentC": "직육면체의 한 꼭짓점에서 모서리를 따라 가장 먼 꼭짓점까지 가려면 모서리를 적어도 □개 지나야 한다.",
+        "answers": [
+          "$3$"
+        ]
+      },
+      "sourceFingerprint": "f1769e40f24f2f729aa58078fdffb899d4684c165c9c854898290198cc7358e3",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B/C: 한 꼭짓점과 같은 면에 있지 않은 꼭짓점을 골라 세 방향의 모서리 경로를 설명하려면 출발·도착점이 보이는 겨냥도가 필요하다. 이 관계를 글로 복원하게 하는 현재 B/C에서는 제외한다.",
+        "cloze": "B/C: 한 꼭짓점과 같은 면에 있지 않은 꼭짓점을 골라 세 방향의 모서리 경로를 설명하려면 출발·도착점이 보이는 겨냥도가 필요하다. 이 관계를 글로 복원하게 하는 현재 B/C에서는 제외한다."
+      },
+      "proposalFingerprint": "e26dd86b86e02b2197934614a165b39f5baf96c98160d0c6964f3db0b17e57c4",
+      "questionRevision": "planning-e5e6-20261006-e26dd86b86e0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-1-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "똑같은 직육면체 $2$개를 붙여서 다시 직육면체 하나를 만들려면 어떤 면끼리 어떻게 붙여야 하는지 설명해 보세요.",
+      "bAnswer": "크기가 같은 면끼리 어긋나지 않게 꼭 맞게 붙인다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "크기가 같은 면끼리 붙인다",
+            "합동인 면끼리 붙인다",
+            "같은 면끼리 붙인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭 맞게 붙인다",
+            "어긋나지 않게 붙인다",
+            "면 전체가 겹치게 붙인다"
+          ]
+        }
+      ],
+      "bGoal": "두 직육면체를 붙여 직육면체가 되는 조건을 설명한다.",
+      "bReason": "원문에서 빈칸이던 조건을 학생이 직접 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 똑같은 직육면체 $2$개를 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$인 면끼리 꼭 맞게 붙이면 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 {$4$} $\\mathrm{cm}$인 {직육면체}가 된다.",
+      "cReason": "원문 답 '크기가 같은 면끼리 꼭 맞게'는 긴 구절이어서 실제 치수와 결과 도형을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1446,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-1-xc23",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "두 직육면체를 붙이기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 직육면체 두 개를 {크기가 같은 면끼리 꼭 맞게} 붙여도 직육면체가 된다.",
+        "studentC": "같은 직육면체 두 개를 □ 붙여도 직육면체가 된다.",
+        "answers": [
+          "크기가 같은 면끼리 꼭 맞게"
+        ]
+      },
+      "sourceFingerprint": "2103a617c6dfeecf55216ea6a6c9f5d87414c363e5d1755f121fb4a004657656",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "직육면체"
+      ],
+      "cStudentAfter": "가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 똑같은 직육면체 $2$개를 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$인 면끼리 꼭 맞게 붙이면 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 □ $\\mathrm{cm}$인 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "직육면체"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 똑같은 직육면체 $2$개를 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$인 면끼리 꼭 맞게 붙이면 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 {$4$} $\\mathrm{cm}$인 {직육면체}가 된다.",
+      "cStudentSentence": "가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 똑같은 직육면체 $2$개를 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$인 면끼리 꼭 맞게 붙이면 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 □ $\\mathrm{cm}$인 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "직육면체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "똑같은 직육면체 $2$개를 붙여서 다시 직육면체 하나를 만들려면 어떤 면끼리 어떻게 붙여야 하는지 설명해 보세요.",
+        "answer": "크기가 같은 면끼리 어긋나지 않게 꼭 맞게 붙인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 같은 면끼리 붙인다",
+              "합동인 면끼리 붙인다",
+              "같은 면끼리 붙인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭 맞게 붙인다",
+              "어긋나지 않게 붙인다",
+              "면 전체가 겹치게 붙인다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $2$ $\\mathrm{cm}$인 똑같은 직육면체 $2$개를 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$인 면끼리 꼭 맞게 붙이면 가로 $4$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 {$4$} $\\mathrm{cm}$인 {직육면체}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "직육면체"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5700945a63cd582479745a7385fd3c586ddbfa2169e3463766eb046e87570d19",
+      "questionRevision": "planning-e5e6-20261006-5700945a63cd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정육면체의 면의 모양을 안다.",
+      "bReason": "면이 크기가 같은 정사각형이라는 내용은 c1의 정의 질문과 같은 답이 된다.",
+      "exclusionReason": "B는 e5-2-5-2-c1과 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 면 $6$개는 모두 크기가 같은 {정사각형}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        }
+      ],
+      "cReason": "'크기가 같은 정사각형' 구절 전체 대신 도형 이름만 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1447,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc1",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체의 면 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정육면체의 면은 모두 {크기가 같은 정사각형}이다.",
+        "studentC": "정육면체의 면은 모두 □이다.",
+        "answers": [
+          "크기가 같은 정사각형"
+        ]
+      },
+      "sourceFingerprint": "033221f1a1912e3581a8e3dbe977c6cb0d8e633ba87ea658dfe843647d2da8e9",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "정사각형"
+      ],
+      "cStudentAfter": "정육면체의 면 $6$개는 모두 크기가 같은 □이다.",
+      "cMarkedSentence": "정육면체의 면 $6$개는 모두 크기가 같은 {정사각형}이다.",
+      "cStudentSentence": "정육면체의 면 $6$개는 모두 크기가 같은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육면체의 면 $6$개는 모두 크기가 같은 {정사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "정사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-2-c1과 중복된다."
+      },
+      "proposalFingerprint": "387142523354f0f50fab0118830d04f105dc53773c04756c492c8a4e35046ee2",
+      "questionRevision": "planning-e5e6-20261006-387142523354",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc2",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정육면체의 면의 수를 안다.",
+      "bReason": "수 하나만 답하는 사실이고, 면·모서리·꼭짓점 수는 xc13에서 함께 묻는다.",
+      "exclusionReason": "단순한 수 하나라 B 가치가 낮다. e5-2-5-2-xc13 B로 대체한다.",
+      "cDecision": "keep",
+      "cAfter": "정육면체의 면은 {$6$}개이다.",
+      "cReason": "면의 수 $6$을 짧게 확인하는 문장으로 빈칸의 뜻이 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1448,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc2",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체의 면 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정육면체의 면은 {$6$}개이다.",
+        "studentC": "정육면체의 면은 □개이다.",
+        "answers": [
+          "$6$"
+        ]
+      },
+      "sourceFingerprint": "cd2cbab988c43b404a19b35bb3f1be9d82f87d72c5bae0016dc94bc5de4b570a",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cFrozenDefinition": "정육면체의 면은 {$6$}개이다.",
+      "cFrozenStudentSentence": "정육면체의 면은 □개이다.",
+      "cProposedAnswers": [
+        "$6$"
+      ],
+      "cStudentAfter": "정육면체의 면은 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체의 면은 {$6$}개이다.",
+      "cStudentSentence": "정육면체의 면은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육면체의 면은 {$6$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "단순한 수 하나라 B 가치가 낮다. e5-2-5-2-xc13 B로 대체한다."
+      },
+      "proposalFingerprint": "dff3782820dfec62adbab385f2f92e4672922c8c12d26827b62588a0c573d175",
+      "questionRevision": "planning-e5e6-20261006-dff3782820df",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc3",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정육면체의 모서리의 수를 안다.",
+      "bReason": "모서리 수 $12$ 하나만 답하는 사실이라 xc13에서 함께 묻는 것으로 충분하다.",
+      "exclusionReason": "단순한 수 하나라 B 가치가 낮다. e5-2-5-2-xc13 B로 대체한다.",
+      "cDecision": "keep",
+      "cAfter": "정육면체의 모서리는 {$12$}개이다.",
+      "cReason": "모서리 수 $12$를 묻는 짧고 분명한 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1449,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc3",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체의 모서리 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정육면체의 모서리는 {$12$}개이다.",
+        "studentC": "정육면체의 모서리는 □개이다.",
+        "answers": [
+          "$12$"
+        ]
+      },
+      "sourceFingerprint": "113bcff3a3254cf236c71e0385048f200048d1cd570298d1b20ba6f1a9af6426",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cFrozenDefinition": "정육면체의 모서리는 {$12$}개이다.",
+      "cFrozenStudentSentence": "정육면체의 모서리는 □개이다.",
+      "cProposedAnswers": [
+        "$12$"
+      ],
+      "cStudentAfter": "정육면체의 모서리는 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체의 모서리는 {$12$}개이다.",
+      "cStudentSentence": "정육면체의 모서리는 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육면체의 모서리는 {$12$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "단순한 수 하나라 B 가치가 낮다. e5-2-5-2-xc13 B로 대체한다."
+      },
+      "proposalFingerprint": "d3a8c3c68e5f2515ccfd48b1024187626c80de15bbdd617de4feaa1f880cf142",
+      "questionRevision": "planning-e5e6-20261006-d3a8c3c68e5f",
+      "requiresIndependentReview": true
+    }
+  ]
+}

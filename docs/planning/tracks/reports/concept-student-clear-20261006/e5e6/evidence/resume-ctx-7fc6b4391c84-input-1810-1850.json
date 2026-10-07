@@ -1,0 +1,4042 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T08:19:46.224143+00:00",
+  "rows": [
+    {
+      "id": "e6-1-2-5-xc8",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 꼭짓점의 수를 밑면의 꼭짓점의 수로 구하는 방법을 쓰고, 그렇게 되는 이유를 꼭짓점이 있는 위치로 설명하시오.",
+      "bAnswer": "밑면의 꼭짓점의 수에 $1$을 더한다. 꼭짓점은 밑면 위에 있는 것과 꼭대기에 있는 한 개뿐이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 꼭짓점의 수에 $1$을 더한다",
+            "밑면의 꼭짓점의 수$+1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭대기에 꼭짓점이 한 개 더 있다",
+            "꼭대기의 꼭짓점이 $1$개이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "꼭짓점을 밑면 위의 점과 꼭대기 점으로 나누어 센다.",
+      "bReason": "방법과 함께 꼭짓점 위치로 이유를 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'$1$을 더한다'만 묻는 빈칸으로 c6 C와 같다.",
+      "exclusionReason": "C: 중복, 대체 e6-1-2-5-c6.",
+      "exampleNeeded": false,
+      "sourceIndex": 1810,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc8",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "꼭짓점의 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "각뿔의 꼭짓점의 수는 밑면의 꼭짓점 수에 {$1$}을 더한 것이다.",
+        "studentC": "각뿔의 꼭짓점의 수는 밑면의 꼭짓점 수에 □을 더한 것이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "9672a63da708ad77d2a245577b31de51dedd6d0273175f364fb7cb9074edc5ba",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "각뿔의 꼭짓점의 수를 밑면의 꼭짓점의 수로 구하는 방법을 쓰고, 그렇게 되는 이유를 꼭짓점이 있는 위치로 설명하시오.",
+        "answer": "밑면의 꼭짓점의 수에 $1$을 더한다. 꼭짓점은 밑면 위에 있는 것과 꼭대기에 있는 한 개뿐이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 꼭짓점의 수에 $1$을 더한다",
+              "밑면의 꼭짓점의 수$+1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭대기에 꼭짓점이 한 개 더 있다",
+              "꼭대기의 꼭짓점이 $1$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C: 중복, 대체 e6-1-2-5-c6."
+      },
+      "proposalFingerprint": "f8533ce306dc463b324307722f6266ac24fe212f2193f3e49f84318a9c732df6",
+      "questionRevision": "planning-e5e6-20261006-f8533ce306dc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc9",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 모서리는 밑면 둘레의 모서리와 꼭대기로 가는 모서리로 나뉜다. 두 종류의 모서리 수가 서로 같은 이유를 설명하고, 이를 이용해 각뿔의 모서리 수를 밑면의 변의 수로 나타내시오.",
+      "bAnswer": "밑면의 꼭짓점마다 꼭대기로 가는 모서리가 하나씩 있고, 밑면의 꼭짓점 수는 변의 수와 같다. 그래서 모서리의 수는 밑면의 변의 수의 $2$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 꼭짓점마다 꼭대기로 가는 모서리가 하나씩 있다",
+            "밑면의 변마다 꼭대기로 가는 모서리가 하나씩 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리의 수는 변의 수의 $2$배",
+            "변의 수$\\times2$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "두 종류의 모서리가 같은 수인 이유로 모서리 수를 구한다.",
+      "bReason": "'$2$배'의 근거를 일대일 대응으로 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 {$2$배}이다.",
+      "cReason": "문장 안에 근거가 있어 '$2$배'를 이유와 연결해 확인하는 좋은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1811,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc9",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "모서리의 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 {$2$배}이다.",
+        "studentC": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 □이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "cf6a2a28fc5c9e39a112df2bec1d3d76c002fced87de6c88fc59fda2a7f9648e",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 {$2$배}이다.",
+      "cFrozenStudentSentence": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 □이다.",
+      "cProposedAnswers": [
+        "$2$배"
+      ],
+      "cStudentAfter": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 {$2$배}이다.",
+      "cStudentSentence": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 모서리는 밑면 둘레의 모서리와 꼭대기로 가는 모서리로 나뉜다. 두 종류의 모서리 수가 서로 같은 이유를 설명하고, 이를 이용해 각뿔의 모서리 수를 밑면의 변의 수로 나타내시오.",
+        "answer": "밑면의 꼭짓점마다 꼭대기로 가는 모서리가 하나씩 있고, 밑면의 꼭짓점 수는 변의 수와 같다. 그래서 모서리의 수는 밑면의 변의 수의 $2$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 꼭짓점마다 꼭대기로 가는 모서리가 하나씩 있다",
+              "밑면의 변마다 꼭대기로 가는 모서리가 하나씩 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리의 수는 변의 수의 $2$배",
+              "변의 수$\\times2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면 둘레의 모서리와 꼭대기로 가는 모서리의 수가 같아서 각뿔의 모서리는 밑면 변의 수의 {$2$배}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2b21e99508b11d0f208fe03507b73c04c2f8a793a9354ac52d900323d40cf07b",
+      "questionRevision": "planning-e5e6-20261006-2b21e99508b1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc10",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 면의 수와 꼭짓점의 수를 비교하고, 그렇게 되는 이유를 밑면의 변의 수로 설명하시오.",
+      "bAnswer": "면의 수와 꼭짓점의 수는 같다. 둘 다 밑면의 변의 수에 $1$을 더한 수이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘 다 변의 수에 $1$을 더한 수",
+            "둘 다 변의 수$+1$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "면과 꼭짓점이 모두 변의 수보다 $1$ 큰 이유로 둘이 같음을 설명한다.",
+      "bReason": "비교 결과와 근거를 모두 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "각뿔은 면의 수와 꼭짓점의 수가 {같다}.",
+      "cReason": "면의 수와 꼭짓점의 수를 비교하는 명확한 한 단어 빈칸이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "똑같다도 허용.",
+      "sourceIndex": 1812,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc10",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "면과 꼭짓점의 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각뿔은 면의 수와 꼭짓점의 수가 {같다}.",
+        "studentC": "각뿔은 면의 수와 꼭짓점의 수가 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "28c2611ed090d2ba20eb22d9b0422c367390468e605b48feaa23ff36b6a537b2",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "각뿔은 면의 수와 꼭짓점의 수가 {같다}.",
+      "cFrozenStudentSentence": "각뿔은 면의 수와 꼭짓점의 수가 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "각뿔은 면의 수와 꼭짓점의 수가 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔은 면의 수와 꼭짓점의 수가 {같다}.",
+      "cStudentSentence": "각뿔은 면의 수와 꼭짓점의 수가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 면의 수와 꼭짓점의 수를 비교하고, 그렇게 되는 이유를 밑면의 변의 수로 설명하시오.",
+        "answer": "면의 수와 꼭짓점의 수는 같다. 둘 다 밑면의 변의 수에 $1$을 더한 수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "똑같다",
+              "서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘 다 변의 수에 $1$을 더한 수",
+              "둘 다 변의 수$+1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔은 면의 수와 꼭짓점의 수가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b1c55db9ae2f3c544b3559e723d43150f247586f54e4c17930c22bc0b71ee3d4",
+      "questionRevision": "planning-e5e6-20261006-b1c55db9ae2f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc11",
+      "bDecision": "revise",
+      "bPrompt": "꼭대기가 밑면의 한가운데 바로 위에 있는 각뿔에서, 꼭대기와 밑면의 꼭짓점을 잇는 모서리의 길이와 높이를 비교하시오. 그렇게 되는 이유도 설명하시오.",
+      "bAnswer": "모서리가 높이보다 길다. 높이는 꼭대기에서 밑면까지 수직으로 가장 짧게 잰 길이이고, 모서리는 비스듬히 뻗어 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리가 높이보다 길다",
+            "높이가 모서리보다 짧다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이는 수직으로 잰 가장 짧은 길이이다",
+            "모서리는 비스듬하다",
+            "모서리는 비스듬히 뻗어 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "수직으로 잰 높이가 비스듬한 모서리보다 짧음을 설명한다.",
+      "bReason": "조건이 글로 명확해 그림 없이 길이 비교와 이유를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 {높이보다 길다}.",
+      "cReason": "조건이 문장에 모두 있고 길이 비교만 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "더 길다도 허용.",
+      "sourceIndex": 1813,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc11",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "높이보다 긴 모서리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 {높이보다 길다}.",
+        "studentC": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 □.",
+        "answers": [
+          "높이보다 길다"
+        ]
+      },
+      "sourceFingerprint": "67675f0f63949cbfe5a56d029b11eaab894faa963343ce83683bf92fa4dc9831",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 {높이보다 길다}.",
+      "cFrozenStudentSentence": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 □.",
+      "cProposedAnswers": [
+        "높이보다 길다"
+      ],
+      "cStudentAfter": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "높이보다 길다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 {높이보다 길다}.",
+      "cStudentSentence": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "높이보다 길다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "꼭대기가 밑면의 한가운데 바로 위에 있는 각뿔에서, 꼭대기와 밑면의 꼭짓점을 잇는 모서리의 길이와 높이를 비교하시오. 그렇게 되는 이유도 설명하시오.",
+        "answer": "모서리가 높이보다 길다. 높이는 꼭대기에서 밑면까지 수직으로 가장 짧게 잰 길이이고, 모서리는 비스듬히 뻗어 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모서리가 높이보다 길다",
+              "높이가 모서리보다 짧다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 수직으로 잰 가장 짧은 길이이다",
+              "모서리는 비스듬하다",
+              "모서리는 비스듬히 뻗어 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "꼭대기가 밑면 한가운데 위에 있으면 꼭대기와 밑면 꼭짓점을 잇는 모서리는 {높이보다 길다}.",
+        "acceptedAnswers": [
+          [
+            "높이보다 길다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d57fa3fbb703414bf47ab52a262428f48351e7cbe3ecb4a96df1169d433e05e6",
+      "questionRevision": "planning-e5e6-20261006-d57fa3fbb703",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc12",
+      "bDecision": "revise",
+      "bPrompt": "밑면의 모양이 같은 각기둥과 각뿔 중 꼭짓점이 더 많은 것은 어느 것인지 쓰시오. 밑면이 사각형일 때 각각의 꼭짓점 수도 쓰시오.",
+      "bAnswer": "각기둥이 더 많다. 사각기둥은 $8$개, 사각뿔은 $5$개이다. 각기둥은 위아래 밑면에 꼭짓점이 있고, 각뿔은 밑면과 꼭대기에만 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각기둥이 더 많다",
+            "각뿔이 더 적다"
+          ]
+        },
+        {
+          "anyOf": [
+            "사각기둥 $8$개, 사각뿔 $5$개"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "각기둥과 각뿔의 꼭짓점 수를 비교하고 구한다.",
+      "bReason": "비교와 사각형 예를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 {많다}.",
+      "cReason": "밑면 모양이 같다는 조건에서 많다/적다를 고르는 명확한 비교이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1814,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc12",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "각기둥과 각뿔의 꼭짓점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 {많다}.",
+        "studentC": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 □.",
+        "answers": [
+          "많다"
+        ]
+      },
+      "sourceFingerprint": "4b378fd5418fb038a73d29f652ad046bf76e7473fa547479c92e640572d580f5",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 {많다}.",
+      "cFrozenStudentSentence": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 □.",
+      "cProposedAnswers": [
+        "많다"
+      ],
+      "cStudentAfter": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "많다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 {많다}.",
+      "cStudentSentence": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "많다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면의 모양이 같은 각기둥과 각뿔 중 꼭짓점이 더 많은 것은 어느 것인지 쓰시오. 밑면이 사각형일 때 각각의 꼭짓점 수도 쓰시오.",
+        "answer": "각기둥이 더 많다. 사각기둥은 $8$개, 사각뿔은 $5$개이다. 각기둥은 위아래 밑면에 꼭짓점이 있고, 각뿔은 밑면과 꼭대기에만 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각기둥이 더 많다",
+              "각뿔이 더 적다"
+            ]
+          },
+          {
+            "anyOf": [
+              "사각기둥 $8$개, 사각뿔 $5$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면 모양이 같으면 각기둥의 꼭짓점이 각뿔보다 {많다}.",
+        "acceptedAnswers": [
+          [
+            "많다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c1699aaf0b0242d7d3c6d6119e61ddad63ebfdd2c43e3ec809bd643f2e9eeb1",
+      "questionRevision": "planning-e5e6-20261006-5c1699aaf0b0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc13",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "삼각뿔의 구성 요소 개수를 센다.",
+      "bReason": "c6 공식에 $3$을 넣은 것이라 따로 묻는 가치가 낮다.",
+      "cDecision": "keep",
+      "cAfter": "삼각뿔에는 밑면이 $1$개, 옆면이 {$3$}개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 {$1$}개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 {$3$}개이다.",
+      "cReason": "옆면, 꼭대기, 모서리 개수를 삼각뿔에서 직접 확인하는 구체적 문장이다.",
+      "exclusionReason": "B: 중복, 대체 e6-1-2-5-c6.",
+      "exampleNeeded": false,
+      "sourceIndex": 1815,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc13",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "삼각뿔의 구성 요소",
+        "kind": "성질",
+        "level": "중",
+        "definition": "삼각뿔에는 밑면이 $1$개, 옆면이 {$3$}개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 {$1$}개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 {$3$}개이다.",
+        "studentC": "삼각뿔에는 밑면이 $1$개, 옆면이 □개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 □개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 □개이다.",
+        "answers": [
+          "$3$",
+          "$1$",
+          "$3$"
+        ]
+      },
+      "sourceFingerprint": "82bd8506efffe7253539b713d6a363aba14abb6a52dc2868d0b57e6f7f607958",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "삼각뿔에는 밑면이 $1$개, 옆면이 {$3$}개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 {$1$}개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 {$3$}개이다.",
+      "cFrozenStudentSentence": "삼각뿔에는 밑면이 $1$개, 옆면이 □개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 □개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 □개이다.",
+      "cProposedAnswers": [
+        "$3$",
+        "$1$",
+        "$3$"
+      ],
+      "cStudentAfter": "삼각뿔에는 밑면이 $1$개, 옆면이 □개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 □개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "삼각뿔에는 밑면이 $1$개, 옆면이 {$3$}개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 {$1$}개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 {$3$}개이다.",
+      "cStudentSentence": "삼각뿔에는 밑면이 $1$개, 옆면이 □개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 □개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "삼각뿔에는 밑면이 $1$개, 옆면이 {$3$}개 있고, 밑면의 꼭짓점이 $3$개, 꼭대기가 {$1$}개 있다. 밑면의 모서리와 꼭대기로 가는 모서리는 각각 {$3$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$1$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B: 중복, 대체 e6-1-2-5-c6."
+      },
+      "proposalFingerprint": "215dce3f626ad35155e23db422cd7003b0c73f6c67b0970915cc12550380b111",
+      "questionRevision": "planning-e5e6-20261006-215dce3f626a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc14",
+      "bDecision": "revise",
+      "bPrompt": "밑면의 모양이 같은 사각뿔과 사각기둥에서 옆면의 모양은 각각 어떻게 다른지 쓰시오.",
+      "bAnswer": "사각뿔의 옆면은 삼각형이고, 사각기둥의 옆면은 직사각형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사각뿔의 옆면은 삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "사각기둥의 옆면은 직사각형",
+            "사각기둥의 옆면은 사각형"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "각뿔과 각기둥의 옆면 모양을 구별한다.",
+      "bReason": "두 입체의 옆면을 대비해 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 {삼각형}이다.",
+      "cReason": "사각뿔의 옆면 모양을 묻는 짧은 낱말 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1816,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc14",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "사각뿔과 사각기둥",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 {삼각형}이다.",
+        "studentC": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 □이다.",
+        "answers": [
+          "삼각형"
+        ]
+      },
+      "sourceFingerprint": "9767c3fa5c1233aa0781d6d436c148c762935cae871e4d05f9c07904ceec6a05",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 {삼각형}이다.",
+      "cFrozenStudentSentence": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 □이다.",
+      "cProposedAnswers": [
+        "삼각형"
+      ],
+      "cStudentAfter": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 {삼각형}이다.",
+      "cStudentSentence": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면의 모양이 같은 사각뿔과 사각기둥에서 옆면의 모양은 각각 어떻게 다른지 쓰시오.",
+        "answer": "사각뿔의 옆면은 삼각형이고, 사각기둥의 옆면은 직사각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사각뿔의 옆면은 삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "사각기둥의 옆면은 직사각형",
+              "사각기둥의 옆면은 사각형"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사각뿔과 사각기둥은 밑면 모양이 같지만 사각뿔의 옆면은 {삼각형}이다.",
+        "acceptedAnswers": [
+          [
+            "삼각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c7b2666c3a2c50151141da8980a8c50adf99a3e509d1bcfa30b2d5711a090662",
+      "questionRevision": "planning-e5e6-20261006-c7b2666c3a2c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc15",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 면의 수를 알 때 모서리의 수를 구하는 방법을 설명하시오. 면이 $5$개인 각뿔의 모서리는 몇 개인지도 구하시오.",
+      "bAnswer": "면의 수에서 밑면 $1$개를 빼면 밑면의 변의 수가 되고, 모서리의 수는 그 $2$배이다. 면이 $5$개이면 변이 $4$개이므로 모서리는 $8$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면의 수에서 $1$을 빼서 변의 수를 구한다",
+            "면의 수$-1$이 변의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 수의 $2$배",
+            "변의 수$\\times2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$개"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "면의 수에서 변의 수를 거쳐 모서리 수를 구한다.",
+      "bReason": "면의 수를 알 때 모서리 수를 구하는 풀이 순서를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "각뿔의 모서리 수는 면의 수의 $2$배보다 $2$ {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "적다",
+            "작은 수이다"
+          ]
+        }
+      ],
+      "cReason": "'$2$ 작다' 구절 대신 크기 비교 낱말만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1817,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc15",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "모서리 수와 면의 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각뿔의 모서리 수는 면의 수의 $2$배보다 {$2$ 작다}.",
+        "studentC": "각뿔의 모서리 수는 면의 수의 $2$배보다 □.",
+        "answers": [
+          "$2$ 작다"
+        ]
+      },
+      "sourceFingerprint": "863e923e2ed9eff4f883fe6ba3140e9535f6ab042e66b704cfd1d87992b197d5",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "각뿔의 모서리 수는 면의 수의 $2$배보다 $2$ □.",
+      "cMarkedSentence": "각뿔의 모서리 수는 면의 수의 $2$배보다 $2$ {작다}.",
+      "cStudentSentence": "각뿔의 모서리 수는 면의 수의 $2$배보다 $2$ □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "적다",
+            "작은 수이다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 면의 수를 알 때 모서리의 수를 구하는 방법을 설명하시오. 면이 $5$개인 각뿔의 모서리는 몇 개인지도 구하시오.",
+        "answer": "면의 수에서 밑면 $1$개를 빼면 밑면의 변의 수가 되고, 모서리의 수는 그 $2$배이다. 면이 $5$개이면 변이 $4$개이므로 모서리는 $8$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면의 수에서 $1$을 빼서 변의 수를 구한다",
+              "면의 수$-1$이 변의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 수의 $2$배",
+              "변의 수$\\times2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 모서리 수는 면의 수의 $2$배보다 $2$ {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "적다",
+            "작은 수이다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a76eb447511d7bafbe38d513f91fa86b8f55db7bfa670282925990226b01c919",
+      "questionRevision": "planning-e5e6-20261006-a76eb447511d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc16",
+      "bDecision": "revise",
+      "bPrompt": "모서리가 $14$개인 각뿔의 이름을 알아내는 방법을 설명하고, 그 이름을 쓰시오.",
+      "bAnswer": "모서리의 수는 밑면의 변의 수의 $2$배이므로 $14\\div2=7$로 밑면의 변이 $7$개이다. 따라서 칠각뿔이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리 수를 $2$로 나누어 변의 수를 구한다",
+            "모서리 수의 절반이 변의 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "칠각뿔"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "모서리 수에서 밑면의 변의 수를 거꾸로 구해 이름을 정한다.",
+      "bReason": "모서리 수와 변의 수의 관계를 거꾸로 이용하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "모서리가 $12$개인 각뿔은 밑면의 변이 {$6$}개이므로 {육각뿔}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$",
+            "$6$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각뿔"
+          ]
+        }
+      ],
+      "cReason": "긴 풀이 구절 대신 실제 수로 변의 수와 이름을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1818,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc16",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "모서리 수로 이름 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각뿔의 모서리 수를 {$2$로 나누면} 밑면의 변의 수가 나오므로 그것으로 이름을 정한다.",
+        "studentC": "각뿔의 모서리 수를 □ 밑면의 변의 수가 나오므로 그것으로 이름을 정한다.",
+        "answers": [
+          "$2$로 나누면"
+        ]
+      },
+      "sourceFingerprint": "54290600c552fc30530530e4da5ebd40f06062d789dc4bad4e335934ea1f3452",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "육각뿔"
+      ],
+      "cStudentAfter": "모서리가 $12$개인 각뿔은 밑면의 변이 □개이므로 □이다.",
+      "cMarkedSentence": "모서리가 $12$개인 각뿔은 밑면의 변이 {$6$}개이므로 {육각뿔}이다.",
+      "cStudentSentence": "모서리가 $12$개인 각뿔은 밑면의 변이 □개이므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": [
+            "$6$개"
+          ]
+        },
+        {
+          "key": "육각뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모서리가 $14$개인 각뿔의 이름을 알아내는 방법을 설명하고, 그 이름을 쓰시오.",
+        "answer": "모서리의 수는 밑면의 변의 수의 $2$배이므로 $14\\div2=7$로 밑면의 변이 $7$개이다. 따라서 칠각뿔이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모서리 수를 $2$로 나누어 변의 수를 구한다",
+              "모서리 수의 절반이 변의 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "칠각뿔"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모서리가 $12$개인 각뿔은 밑면의 변이 {$6$}개이므로 {육각뿔}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$",
+            "$6$개"
+          ],
+          [
+            "육각뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "26f72d92960591f6755aecd20b0ebc63420d066994da16c5e1661e55841fa138",
+      "questionRevision": "planning-e5e6-20261006-26f72d929605",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc17",
+      "bDecision": "revise",
+      "bPrompt": "꼭짓점이 $9$개인 각뿔의 이름을 알아내는 방법을 설명하고, 그 이름을 쓰시오.",
+      "bAnswer": "꼭짓점 중 꼭대기 한 점을 빼면 밑면의 꼭짓점이 $9-1=8$개이므로 팔각뿔이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭짓점 수에서 꼭대기 $1$개를 뺀다",
+            "꼭짓점 수에서 $1$을 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "팔각뿔"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "꼭짓점 수에서 밑면의 변의 수를 구해 이름을 정한다.",
+      "bReason": "꼭대기 한 점을 제외하는 이유를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "꼭짓점이 $9$개인 각뿔은 밑면의 꼭짓점이 {$8$}개이므로 {팔각뿔}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$",
+            "$8$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "팔각뿔"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 값 두 개로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1819,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc17",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "꼭짓점 수로 이름 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각뿔의 꼭짓점 수에서 {꼭대기 한 점을 빼면} 밑면의 꼭짓점 수, 곧 밑면의 변의 수가 나오므로 그것으로 이름을 정한다.",
+        "studentC": "각뿔의 꼭짓점 수에서 □ 밑면의 꼭짓점 수, 곧 밑면의 변의 수가 나오므로 그것으로 이름을 정한다.",
+        "answers": [
+          "꼭대기 한 점을 빼면"
+        ]
+      },
+      "sourceFingerprint": "8e62d3aac4bc4850b2fd1331fdbfc9c3fcec0f6f8ae9150d9b7caad4d134dea4",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "$8$",
+        "팔각뿔"
+      ],
+      "cStudentAfter": "꼭짓점이 $9$개인 각뿔은 밑면의 꼭짓점이 □개이므로 □이다.",
+      "cMarkedSentence": "꼭짓점이 $9$개인 각뿔은 밑면의 꼭짓점이 {$8$}개이므로 {팔각뿔}이다.",
+      "cStudentSentence": "꼭짓점이 $9$개인 각뿔은 밑면의 꼭짓점이 □개이므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": [
+            "$8$개"
+          ]
+        },
+        {
+          "key": "팔각뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "꼭짓점이 $9$개인 각뿔의 이름을 알아내는 방법을 설명하고, 그 이름을 쓰시오.",
+        "answer": "꼭짓점 중 꼭대기 한 점을 빼면 밑면의 꼭짓점이 $9-1=8$개이므로 팔각뿔이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점 수에서 꼭대기 $1$개를 뺀다",
+              "꼭짓점 수에서 $1$을 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "팔각뿔"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "꼭짓점이 $9$개인 각뿔은 밑면의 꼭짓점이 {$8$}개이므로 {팔각뿔}이다.",
+        "acceptedAnswers": [
+          [
+            "$8$",
+            "$8$개"
+          ],
+          [
+            "팔각뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "69116278832c36c6c9f5d8e49648f0c071a86d9ac4f84a712847611b1c344e37",
+      "questionRevision": "planning-e5e6-20261006-69116278832c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc18",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "모서리 수가 항상 짝수인 이유를 안다.",
+      "bReason": "xc9의 '$2$배' 설명에서 바로 나오는 결과다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc9 C와 같은 '$2$배' 빈칸이다.",
+      "exclusionReason": "중복: 대체 e6-1-2-5-xc9.",
+      "exampleNeeded": false,
+      "sourceIndex": 1820,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc18",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "모서리 수는 짝수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각뿔의 모서리의 수는 밑면의 변의 수의 {$2$배}이므로 언제나 짝수이다.",
+        "studentC": "각뿔의 모서리의 수는 밑면의 변의 수의 □이므로 언제나 짝수이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "8143bb97bbab66306a477de3ec4b2009c1bb24dbb1d667f3a0abe6df7b8b2d26",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "중복: 대체 e6-1-2-5-xc9.",
+        "cloze": "중복: 대체 e6-1-2-5-xc9."
+      },
+      "proposalFingerprint": "08bd058ad234f74182d7c5b9562a6cdff569cd290bd6ccae87881e1fe759579e",
+      "questionRevision": "planning-e5e6-20261006-08bd058ad234",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc19",
+      "bDecision": "revise",
+      "bPrompt": "밑면의 변이 $5$개인 각뿔에서 (면의 수)$+$(꼭짓점의 수)와 모서리의 수를 구해 비교하시오. 밑면의 변의 수가 달라져도 같은 관계가 되는 이유도 설명하시오.",
+      "bAnswer": "면 $6$개, 꼭짓점 $6$개이므로 합은 $12$이고, 모서리는 $10$개라서 합이 $2$ 크다. 밑면의 변이 몇 개이든 면과 꼭짓점은 각각 변의 수보다 $1$ 크고 모서리는 변의 수의 $2$배라서 합이 항상 $2$ 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합 $12$, 모서리 $10$, 합이 $2$ 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면과 꼭짓점은 각각 변의 수보다 $1$ 크고 모서리는 변의 수의 $2$배이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "면·꼭짓점·모서리 수의 관계를 변의 수로 설명한다.",
+      "bReason": "오각뿔로 확인하고 일반 이유를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "오각뿔의 면은 $6$개, 꼭짓점은 $6$개, 모서리는 $10$개이다. 면의 수와 꼭짓점의 수의 합은 모서리의 수보다 {$2$} 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "추상적인 '$2$ 크다'를 오각뿔의 실제 수로 바꾸어 읽을 수 있게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1821,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc19",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "면 · 꼭짓점 · 모서리 수의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각뿔의 면의 수와 꼭짓점의 수를 더하면 모서리의 수보다 {$2$ 크다}.",
+        "studentC": "각뿔의 면의 수와 꼭짓점의 수를 더하면 모서리의 수보다 □.",
+        "answers": [
+          "$2$ 크다"
+        ]
+      },
+      "sourceFingerprint": "4a95eecb391a6824deb272113c9a025f821b69504f8c1b03af2325ad3f207cbf",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "오각뿔의 면은 $6$개, 꼭짓점은 $6$개, 모서리는 $10$개이다. 면의 수와 꼭짓점의 수의 합은 모서리의 수보다 □ 크다.",
+      "cMarkedSentence": "오각뿔의 면은 $6$개, 꼭짓점은 $6$개, 모서리는 $10$개이다. 면의 수와 꼭짓점의 수의 합은 모서리의 수보다 {$2$} 크다.",
+      "cStudentSentence": "오각뿔의 면은 $6$개, 꼭짓점은 $6$개, 모서리는 $10$개이다. 면의 수와 꼭짓점의 수의 합은 모서리의 수보다 □ 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면의 변이 $5$개인 각뿔에서 (면의 수)$+$(꼭짓점의 수)와 모서리의 수를 구해 비교하시오. 밑면의 변의 수가 달라져도 같은 관계가 되는 이유도 설명하시오.",
+        "answer": "면 $6$개, 꼭짓점 $6$개이므로 합은 $12$이고, 모서리는 $10$개라서 합이 $2$ 크다. 밑면의 변이 몇 개이든 면과 꼭짓점은 각각 변의 수보다 $1$ 크고 모서리는 변의 수의 $2$배라서 합이 항상 $2$ 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "합 $12$, 모서리 $10$, 합이 $2$ 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면과 꼭짓점은 각각 변의 수보다 $1$ 크고 모서리는 변의 수의 $2$배이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "오각뿔의 면은 $6$개, 꼭짓점은 $6$개, 모서리는 $10$개이다. 면의 수와 꼭짓점의 수의 합은 모서리의 수보다 {$2$} 크다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fecfd8edfc14e264ca91d27ef957ec9f7ce6d4c685850a4fbc16263731edcb68",
+      "questionRevision": "planning-e5e6-20261006-fecfd8edfc14",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc20",
+      "bDecision": "revise",
+      "bPrompt": "밑면의 모양이 같은 각기둥과 각뿔의 모서리 수는 얼마나 차이 나는지 설명하시오. 밑면이 육각형일 때 각각의 모서리 수도 쓰시오.",
+      "bAnswer": "각기둥이 각뿔보다 밑면의 변의 수만큼 모서리가 더 많다. 육각기둥은 $18$개, 육각뿔은 $12$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각기둥이 각뿔보다 밑면의 변의 수만큼 더 많다",
+            "차이는 밑면의 변의 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각기둥 $18$개, 육각뿔 $12$개"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "각기둥과 각뿔의 모서리 수 차이를 밑면의 변의 수로 설명한다.",
+      "bReason": "차를 일반 관계로 묻고 육각형으로 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 {밑면의 변의 수}만큼 많다.",
+      "cReason": "밑면 모양이 같다는 조건에서 모서리 차의 크기를 밑면의 변의 수와 연결한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "밑면의 변의 수 외에 밑면의 모서리 수, 밑면 변의 개수도 허용.",
+      "sourceIndex": 1822,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc20",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "각기둥과 각뿔의 모서리 차",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 {밑면의 변의 수}만큼 많다.",
+        "studentC": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 □만큼 많다.",
+        "answers": [
+          "밑면의 변의 수"
+        ]
+      },
+      "sourceFingerprint": "401b01c5b9e8bc617015214d8286ec80697152c806cf2f634977cede4bafb094",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 {밑면의 변의 수}만큼 많다.",
+      "cFrozenStudentSentence": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 □만큼 많다.",
+      "cProposedAnswers": [
+        "밑면의 변의 수"
+      ],
+      "cStudentAfter": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 □만큼 많다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면의 변의 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 {밑면의 변의 수}만큼 많다.",
+      "cStudentSentence": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 □만큼 많다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면의 변의 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면의 모양이 같은 각기둥과 각뿔의 모서리 수는 얼마나 차이 나는지 설명하시오. 밑면이 육각형일 때 각각의 모서리 수도 쓰시오.",
+        "answer": "각기둥이 각뿔보다 밑면의 변의 수만큼 모서리가 더 많다. 육각기둥은 $18$개, 육각뿔은 $12$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각기둥이 각뿔보다 밑면의 변의 수만큼 더 많다",
+              "차이는 밑면의 변의 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "육각기둥 $18$개, 육각뿔 $12$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면 모양이 같으면 각기둥의 모서리가 각뿔보다 {밑면의 변의 수}만큼 많다.",
+        "acceptedAnswers": [
+          [
+            "밑면의 변의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d7dde0ea104bc9f2cd3130a3be3092d0e49e0c2cfde7ad4a2a16aa1baf30a9fd",
+      "questionRevision": "planning-e5e6-20261006-d7dde0ea104b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc21",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "꼭짓점 수와 모서리 수가 같은 변의 수를 준다는 점을 확인한다.",
+      "bReason": "xc16, xc17에서 더 구체적으로 다룬다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 구절 두 개를 외우게 하는 메타적 문장이다.",
+      "exclusionReason": "추상적 메타 문장: 대체 e6-1-2-5-xc16, e6-1-2-5-xc17.",
+      "exampleNeeded": false,
+      "sourceIndex": 1823,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc21",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "구성 요소 수의 일치 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각뿔의 꼭짓점 수에서 {꼭대기 한 점을 뺀 수}와 {모서리 수의 반}은 모두 밑면의 변 수이므로 같아야 한다.",
+        "studentC": "각뿔의 꼭짓점 수에서 □와 □은 모두 밑면의 변 수이므로 같아야 한다.",
+        "answers": [
+          "꼭대기 한 점을 뺀 수",
+          "모서리 수의 반"
+        ]
+      },
+      "sourceFingerprint": "5a2d0f3f32b24d71f15915fd3267e17dc2bbc9d9ecb4366b105ef712ef20a653",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "추상적 메타 문장: 대체 e6-1-2-5-xc16, e6-1-2-5-xc17.",
+        "cloze": "추상적 메타 문장: 대체 e6-1-2-5-xc16, e6-1-2-5-xc17."
+      },
+      "proposalFingerprint": "f814d505d558a34bea59ed84f258bc2a18075463336c2cd538cdf770e7cb4592",
+      "questionRevision": "planning-e5e6-20261006-f814d505d558",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc22",
+      "bDecision": "revise",
+      "bPrompt": "꼭짓점의 수가 가장 적은 각뿔은 어떤 각뿔인지 쓰고, 그 이유를 밑면의 모양으로 설명하시오.",
+      "bAnswer": "삼각뿔이다. 밑면이 변이 가장 적은 삼각형이라 꼭짓점이 $3+1=4$개이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각뿔"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 변이 가장 적다",
+            "밑면의 꼭짓점이 $3$개이다",
+            "밑면이 삼각형이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면의 변의 수가 가장 적은 삼각뿔에서 꼭짓점이 가장 적음을 설명한다.",
+      "bReason": "이름과 이유를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "꼭짓점이 가장 적은 각뿔은 {삼각뿔}로 꼭짓점이 $4$개이다.",
+      "cReason": "꼭짓점이 $4$개라는 단서로 삼각뿔을 찾는 짧은 낱말 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1824,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc22",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "꼭짓점이 가장 적은 각뿔",
+        "kind": "성질",
+        "level": "상",
+        "definition": "꼭짓점이 가장 적은 각뿔은 {삼각뿔}로 꼭짓점이 $4$개이다.",
+        "studentC": "꼭짓점이 가장 적은 각뿔은 □로 꼭짓점이 $4$개이다.",
+        "answers": [
+          "삼각뿔"
+        ]
+      },
+      "sourceFingerprint": "5ffb2377f844295d574178835768e7fa2c867b6d7590cb9260687ad9c3493145",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "꼭짓점이 가장 적은 각뿔은 {삼각뿔}로 꼭짓점이 $4$개이다.",
+      "cFrozenStudentSentence": "꼭짓점이 가장 적은 각뿔은 □로 꼭짓점이 $4$개이다.",
+      "cProposedAnswers": [
+        "삼각뿔"
+      ],
+      "cStudentAfter": "꼭짓점이 가장 적은 각뿔은 □로 꼭짓점이 $4$개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각뿔"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "꼭짓점이 가장 적은 각뿔은 {삼각뿔}로 꼭짓점이 $4$개이다.",
+      "cStudentSentence": "꼭짓점이 가장 적은 각뿔은 □로 꼭짓점이 $4$개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "꼭짓점의 수가 가장 적은 각뿔은 어떤 각뿔인지 쓰고, 그 이유를 밑면의 모양으로 설명하시오.",
+        "answer": "삼각뿔이다. 밑면이 변이 가장 적은 삼각형이라 꼭짓점이 $3+1=4$개이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각뿔"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 변이 가장 적다",
+              "밑면의 꼭짓점이 $3$개이다",
+              "밑면이 삼각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "꼭짓점이 가장 적은 각뿔은 {삼각뿔}로 꼭짓점이 $4$개이다.",
+        "acceptedAnswers": [
+          [
+            "삼각뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "91e4712ced7099cf853a797594dc9de5fdc03b67b9f0586e17ef39219e2128b1",
+      "questionRevision": "planning-e5e6-20261006-91e4712ced70",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc23",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 한 변 $5$ $\\mathrm{cm}$인 정사각형이고 꼭대기로 가는 모서리가 모두 $8$ $\\mathrm{cm}$인 사각뿔이 있다. 모서리 길이의 합을 구하는 방법을 설명하고 값을 구하시오.",
+      "bAnswer": "밑면의 모서리 $4$개의 합은 $5\\times4=20$ $\\mathrm{cm}$, 꼭대기로 가는 모서리 $4$개의 합은 $8\\times4=32$ $\\mathrm{cm}$이다. 모서리 길이의 합은 $52$ $\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 모서리 길이의 합은 $20$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭대기로 가는 모서리 $4$개의 길이의 합은 $32$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$52$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "밑면 모서리와 꼭대기로 가는 모서리를 나누어 길이의 합을 구한다.",
+      "bReason": "방법과 값을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "밑면이 한 변 $3$ $\\mathrm{cm}$인 정사각형이고 꼭대기로 가는 모서리가 모두 $5$ $\\mathrm{cm}$인 사각뿔에서, 밑면의 모서리 길이의 합은 {$12$} $\\mathrm{cm}$, 꼭대기로 가는 모서리 길이의 합은 {$20$} $\\mathrm{cm}$이므로 모든 모서리 길이의 합은 {$32$} $\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$",
+            "$12$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$",
+            "$20$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$32$",
+            "$32$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 실제 길이로 단계별 계산을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1825,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc23",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "사각뿔의 모서리 길이의 합",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑면이 정사각형이고 꼭대기로 가는 모서리가 모두 같은 각뿔의 모서리 길이의 합은 밑면의 둘레에 {꼭대기로 가는 모서리 $4$개}의 길이를 더한 것이다.",
+        "studentC": "밑면이 정사각형이고 꼭대기로 가는 모서리가 모두 같은 각뿔의 모서리 길이의 합은 밑면의 둘레에 □의 길이를 더한 것이다.",
+        "answers": [
+          "꼭대기로 가는 모서리 $4$개"
+        ]
+      },
+      "sourceFingerprint": "0d79563185cbad07829126c641748de1bc8472ba8d66527307234a90aed67322",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$20$",
+        "$32$"
+      ],
+      "cStudentAfter": "밑면이 한 변 $3$ $\\mathrm{cm}$인 정사각형이고 꼭대기로 가는 모서리가 모두 $5$ $\\mathrm{cm}$인 사각뿔에서, 밑면의 모서리 길이의 합은 □ $\\mathrm{cm}$, 꼭대기로 가는 모서리 길이의 합은 □ $\\mathrm{cm}$이므로 모든 모서리 길이의 합은 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "밑면이 한 변 $3$ $\\mathrm{cm}$인 정사각형이고 꼭대기로 가는 모서리가 모두 $5$ $\\mathrm{cm}$인 사각뿔에서, 밑면의 모서리 길이의 합은 {$12$} $\\mathrm{cm}$, 꼭대기로 가는 모서리 길이의 합은 {$20$} $\\mathrm{cm}$이므로 모든 모서리 길이의 합은 {$32$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "밑면이 한 변 $3$ $\\mathrm{cm}$인 정사각형이고 꼭대기로 가는 모서리가 모두 $5$ $\\mathrm{cm}$인 사각뿔에서, 밑면의 모서리 길이의 합은 □ $\\mathrm{cm}$, 꼭대기로 가는 모서리 길이의 합은 □ $\\mathrm{cm}$이므로 모든 모서리 길이의 합은 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": [
+            "$12$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "key": "$20$",
+          "equivalents": [
+            "$20$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "key": "$32$",
+          "equivalents": [
+            "$32$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 한 변 $5$ $\\mathrm{cm}$인 정사각형이고 꼭대기로 가는 모서리가 모두 $8$ $\\mathrm{cm}$인 사각뿔이 있다. 모서리 길이의 합을 구하는 방법을 설명하고 값을 구하시오.",
+        "answer": "밑면의 모서리 $4$개의 합은 $5\\times4=20$ $\\mathrm{cm}$, 꼭대기로 가는 모서리 $4$개의 합은 $8\\times4=32$ $\\mathrm{cm}$이다. 모서리 길이의 합은 $52$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 모서리 길이의 합은 $20$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭대기로 가는 모서리 $4$개의 길이의 합은 $32$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$52$ $\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 한 변 $3$ $\\mathrm{cm}$인 정사각형이고 꼭대기로 가는 모서리가 모두 $5$ $\\mathrm{cm}$인 사각뿔에서, 밑면의 모서리 길이의 합은 {$12$} $\\mathrm{cm}$, 꼭대기로 가는 모서리 길이의 합은 {$20$} $\\mathrm{cm}$이므로 모든 모서리 길이의 합은 {$32$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$12$",
+            "$12$ $\\mathrm{cm}$"
+          ],
+          [
+            "$20$",
+            "$20$ $\\mathrm{cm}$"
+          ],
+          [
+            "$32$",
+            "$32$ $\\mathrm{cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bf3dcbae88e82929cff2f4ff36fa9cc026d95f789fbec341b43aabf112656ce7",
+      "questionRevision": "planning-e5e6-20261006-bf3dcbae88e8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-xc24",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 밑면의 변이 $1$개 늘어나면 면, 꼭짓점, 모서리의 수는 각각 몇 개씩 늘어나는지 쓰시오. 모서리가 그만큼 늘어나는 이유도 설명하시오.",
+      "bAnswer": "면과 꼭짓점은 $1$개씩, 모서리는 $2$개 늘어난다. 새 밑면의 모서리 $1$개와, 새 밑면 꼭짓점에서 꼭대기로 가는 모서리 $1$개가 생기기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면과 꼭짓점은 각각 $1$개씩 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리는 $2$개 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 모서리 $1$개와 꼭대기로 가는 모서리 $1$개가 생긴다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면의 변 수가 변할 때 각 구성 요소가 달라지는 정도를 이유와 함께 설명한다.",
+      "bReason": "변화량으로 공식을 이해하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 {$2$개} 늘어난다.",
+      "cReason": "면과 꼭짓점이 $1$개씩 늘 때 모서리가 늘어나는 개수를 묻는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1826,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-5-xc24",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "term": "밑면의 변이 하나 늘 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 {$2$개} 늘어난다.",
+        "studentC": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 □ 늘어난다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "sourceFingerprint": "7980faa4875036dfe71215660ef1a09d1a900c58e754979ed7a43535075c1dc8",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 {$2$개} 늘어난다.",
+      "cFrozenStudentSentence": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 □ 늘어난다.",
+      "cProposedAnswers": [
+        "$2$개"
+      ],
+      "cStudentAfter": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 □ 늘어난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 {$2$개} 늘어난다.",
+      "cStudentSentence": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 □ 늘어난다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 밑면의 변이 $1$개 늘어나면 면, 꼭짓점, 모서리의 수는 각각 몇 개씩 늘어나는지 쓰시오. 모서리가 그만큼 늘어나는 이유도 설명하시오.",
+        "answer": "면과 꼭짓점은 $1$개씩, 모서리는 $2$개 늘어난다. 새 밑면의 모서리 $1$개와, 새 밑면 꼭짓점에서 꼭대기로 가는 모서리 $1$개가 생기기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면과 꼭짓점은 각각 $1$개씩 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리는 $2$개 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 모서리 $1$개와 꼭대기로 가는 모서리 $1$개가 생긴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면의 변이 하나 늘면 각뿔의 면과 꼭짓점은 $1$개씩, 모서리는 {$2$개} 늘어난다.",
+        "acceptedAnswers": [
+          [
+            "$2$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "383d90b180bc8534e770a373beb6c7e022d367c3902c49271a1f13508a218319",
+      "questionRevision": "planning-e5e6-20261006-383d90b180bc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc1",
+      "bDecision": "revise",
+      "bPrompt": "$8.4\\div2$를 소수점을 없앤 자연수의 나눗셈으로 계산하는 방법을 설명하시오. 몫의 소수점은 어떻게 정하는지도 쓰시오.",
+      "bAnswer": "$84\\div2=42$를 먼저 구한다. $8.4$는 $84$의 $\\frac{1}{10}$배이므로 몫도 $42$의 $\\frac{1}{10}$배인 $4.2$이다.",
+      "bGoal": "자연수 나눗셈 결과를 나누어지는 수의 변화에 맞춰 몫으로 고치는 방법을 안다.",
+      "bReason": "소수점 위치를 몫에 어떻게 반영하는지 구체적 식으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$8.4\\div2$는 $84\\div2=42$를 먼저 구한다. $8.4$는 $84$의 $\\frac{1}{10}$배이므로 몫은 $42$의 {$\\frac{1}{10}$}배인 {$4.2$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{10}$",
+            "$0.1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4.2$"
+          ]
+        }
+      ],
+      "cReason": "원문의 '같은 배로 작게'가 모호해 실제 식과 수치로 확인하게 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수점을 빼고 $84\\div2=42$를 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8.4$가 $84$의 $\\frac{1}{10}$배이므로 몫도 $\\frac{1}{10}$배로 한다",
+            "몫 $42$의 소수점을 한 자리 옮긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $4.2$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 1827,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc1",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "자연수의 나눗셈을 이용하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "(소수)$\\div$(자연수)는 소수점을 뺀 자연수의 나눗셈을 한 다음, 나누어지는 수가 작아진 만큼 {몫도 같은 배로 작게} 한다.",
+        "studentC": "(소수)$\\div$(자연수)는 소수점을 뺀 자연수의 나눗셈을 한 다음, 나누어지는 수가 작아진 만큼 □ 한다.",
+        "answers": [
+          "몫도 같은 배로 작게"
+        ]
+      },
+      "sourceFingerprint": "9bde09d5ef3cfc1ec2b4e6267b5429ce8aa0c54ec57e611db4e3fefa3359faa2",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{10}$",
+        "$4.2$"
+      ],
+      "cStudentAfter": "$8.4\\div2$는 $84\\div2=42$를 먼저 구한다. $8.4$는 $84$의 $\\frac{1}{10}$배이므로 몫은 $42$의 □배인 □이다.",
+      "cMarkedSentence": "$8.4\\div2$는 $84\\div2=42$를 먼저 구한다. $8.4$는 $84$의 $\\frac{1}{10}$배이므로 몫은 $42$의 {$\\frac{1}{10}$}배인 {$4.2$}이다.",
+      "cStudentSentence": "$8.4\\div2$는 $84\\div2=42$를 먼저 구한다. $8.4$는 $84$의 $\\frac{1}{10}$배이므로 몫은 $42$의 □배인 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{10}$",
+          "equivalents": [
+            "$0.1$"
+          ]
+        },
+        {
+          "key": "$4.2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$8.4\\div2$를 소수점을 없앤 자연수의 나눗셈으로 계산하는 방법을 설명하시오. 몫의 소수점은 어떻게 정하는지도 쓰시오.",
+        "answer": "$84\\div2=42$를 먼저 구한다. $8.4$는 $84$의 $\\frac{1}{10}$배이므로 몫도 $42$의 $\\frac{1}{10}$배인 $4.2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수점을 빼고 $84\\div2=42$를 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8.4$가 $84$의 $\\frac{1}{10}$배이므로 몫도 $\\frac{1}{10}$배로 한다",
+              "몫 $42$의 소수점을 한 자리 옮긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $4.2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$8.4\\div2$는 $84\\div2=42$를 먼저 구한다. $8.4$는 $84$의 $\\frac{1}{10}$배이므로 몫은 $42$의 {$\\frac{1}{10}$}배인 {$4.2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{10}$",
+            "$0.1$"
+          ],
+          [
+            "$4.2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9f4044d6d6be0736f2e7318839a4de17e823d3ed081233161364c7cccd8fc6af",
+      "questionRevision": "planning-e5e6-20261006-9f4044d6d6be",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc2",
+      "bDecision": "revise",
+      "bPrompt": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 몫은 어떻게 변하는지 쓰시오. 그리고 $96\\div3=32$를 이용해 $9.6\\div3$의 몫을 구하시오.",
+      "bAnswer": "몫도 $\\frac{1}{10}$배가 된다. $9.6$은 $96$의 $\\frac{1}{10}$배이므로 $9.6\\div3=3.2$이다.",
+      "bGoal": "나누어지는 수가 $\\frac{1}{10}$배일 때 몫의 변화를 알고 적용한다.",
+      "bReason": "일반 관계를 묻고 하나의 예로 적용하게 해 계산값만 묻는 것을 피한다.",
+      "cDecision": "keep",
+      "cAfter": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 {몫}도 $\\frac{1}{10}$배가 된다.",
+      "cReason": "나누는 수가 같을 때 나누어지는 수와 몫의 변화를 짧게 묻는 명확한 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫도 $\\frac{1}{10}$배가 된다",
+            "몫도 $0.1$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9.6\\div3=3.2$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 1828,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc2",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "나누어지는 수가 $\\frac{1}{10}$배일 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 {몫}도 $\\frac{1}{10}$배가 된다.",
+        "studentC": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 □도 $\\frac{1}{10}$배가 된다.",
+        "answers": [
+          "몫"
+        ]
+      },
+      "sourceFingerprint": "b5f740d30ce79fc0bee3f70e02fcc258d18f483f9b3b8275b5f06ec5a465d70f",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cFrozenDefinition": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 {몫}도 $\\frac{1}{10}$배가 된다.",
+      "cFrozenStudentSentence": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 □도 $\\frac{1}{10}$배가 된다.",
+      "cProposedAnswers": [
+        "몫"
+      ],
+      "cStudentAfter": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 □도 $\\frac{1}{10}$배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "몫"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 {몫}도 $\\frac{1}{10}$배가 된다.",
+      "cStudentSentence": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 □도 $\\frac{1}{10}$배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "몫",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 몫은 어떻게 변하는지 쓰시오. 그리고 $96\\div3=32$를 이용해 $9.6\\div3$의 몫을 구하시오.",
+        "answer": "몫도 $\\frac{1}{10}$배가 된다. $9.6$은 $96$의 $\\frac{1}{10}$배이므로 $9.6\\div3=3.2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫도 $\\frac{1}{10}$배가 된다",
+              "몫도 $0.1$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9.6\\div3=3.2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누는 수가 같을 때 나누어지는 수가 $\\frac{1}{10}$배가 되면 {몫}도 $\\frac{1}{10}$배가 된다.",
+        "acceptedAnswers": [
+          [
+            "몫"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d8c3226f7bce2825f350dde79f844b0035fd133f78654401af2472c8cd115538",
+      "questionRevision": "planning-e5e6-20261006-d8c3226f7bce",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc4",
+      "bDecision": "revise",
+      "bPrompt": "$2.4\\div2$를 분수의 나눗셈으로 바꾸어 계산하려고 한다. $2.4$를 어떤 분수로 나타내야 하는지 쓰고, 계산 과정과 몫을 쓰시오.",
+      "bAnswer": "$2.4$를 분모가 $10$인 분수 $\\frac{24}{10}$로 나타낸다. $\\frac{24}{10}\\div2=\\frac{12}{10}=1.2$이다.",
+      "bGoal": "소수를 분모가 $10$, $100$ 등인 분수로 바꾸어 나누는 방법을 안다.",
+      "bReason": "분수로 바꾼 뒤 나누는 전체 절차를 구체적 식으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$2.4\\div2$에서 $2.4=$ {$\\frac{24}{10}$}이므로 $\\frac{24}{10}\\div2=\\frac{12}{10}=$ {$1.2$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{24}{10}$",
+            "$\\frac{240}{100}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.2$"
+          ]
+        }
+      ],
+      "cReason": "긴 낱말 빈칸을 실제 분수 변환과 결과 확인으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2.4=\\frac{24}{10}$",
+            "$2.4$를 분모가 $10$인 분수로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{24}{10}\\div2=\\frac{12}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $1.2$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 1829,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc4",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "분수의 나눗셈으로 바꾸어 계산하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수를 {분모가 $10$, $100$, $1000$ 등인 분수}로 바꾸면 (소수)$\\div$(자연수)를 (분수)$\\div$(자연수)로 계산할 수 있다.",
+        "example": {
+          "prompt": "$2.4\\div2$를 $\\frac{24}{10}\\div2$로 바꾸면 분자 $24$는 무엇을 나타내는가?",
+          "answer": "$0.1$이 $24$개라는 것"
+        },
+        "studentC": "소수를 □로 바꾸면 (소수)$\\div$(자연수)를 (분수)$\\div$(자연수)로 계산할 수 있다.",
+        "answers": [
+          "분모가 $10$, $100$, $1000$ 등인 분수"
+        ]
+      },
+      "sourceFingerprint": "648fad9f37b19011b5b89b47a2b02d6a8ff76df10bcdd6c9155e9fc148edaf8a",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{24}{10}$",
+        "$1.2$"
+      ],
+      "cStudentAfter": "$2.4\\div2$에서 $2.4=$ □이므로 $\\frac{24}{10}\\div2=\\frac{12}{10}=$ □이다.",
+      "cMarkedSentence": "$2.4\\div2$에서 $2.4=$ {$\\frac{24}{10}$}이므로 $\\frac{24}{10}\\div2=\\frac{12}{10}=$ {$1.2$}이다.",
+      "cStudentSentence": "$2.4\\div2$에서 $2.4=$ □이므로 $\\frac{24}{10}\\div2=\\frac{12}{10}=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{24}{10}$",
+          "equivalents": [
+            "$\\frac{240}{100}$"
+          ]
+        },
+        {
+          "key": "$1.2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.4\\div2$를 분수의 나눗셈으로 바꾸어 계산하려고 한다. $2.4$를 어떤 분수로 나타내야 하는지 쓰고, 계산 과정과 몫을 쓰시오.",
+        "answer": "$2.4$를 분모가 $10$인 분수 $\\frac{24}{10}$로 나타낸다. $\\frac{24}{10}\\div2=\\frac{12}{10}=1.2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4=\\frac{24}{10}$",
+              "$2.4$를 분모가 $10$인 분수로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{24}{10}\\div2=\\frac{12}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $1.2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4\\div2$에서 $2.4=$ {$\\frac{24}{10}$}이므로 $\\frac{24}{10}\\div2=\\frac{12}{10}=$ {$1.2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{24}{10}$",
+            "$\\frac{240}{100}$"
+          ],
+          [
+            "$1.2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c9cf8016ee0ff15f595942f5f54bf60742a77c5978fc76cddb3463f3423b42c9",
+      "questionRevision": "planning-e5e6-20261006-c9cf8016ee0f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "$3.6\\div3$을 $0.1$의 개수로 계산한 뒤, 몫을 소수로 나타내는 방법을 설명하시오.",
+      "bAnswer": "$3.6$은 $0.1$이 $36$개이고 $36\\div3=12$이므로 몫은 $0.1$이 $12$개이다. 따라서 $1.2$이다.",
+      "bGoal": "$0.1$의 개수로 구한 몫을 소수로 고치는 방법을 안다.",
+      "bReason": "개수 계산에서 소수로 되돌리는 마지막 단계를 구체적으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$4.8\\div3$은 $0.1$이 $48$개를 $3$으로 나눈 것이므로 몫은 $0.1$이 {$16$}개, 즉 {$1.6$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.6$"
+          ]
+        }
+      ],
+      "cReason": "추상적인 '그만큼 모인 소수'를 실제 개수에서 소수로 바꾸는 계산으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3.6$을 $0.1$이 $36$개로 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36\\div3=12$이므로 몫은 $0.1$이 $12$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.1$이 $12$개이므로 $1.2$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 1830,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc5",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "$0.1$의 개수로 구한 몫을 소수로 고치기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$0.1$의 개수로 구한 몫은 {$0.1$이 그만큼 모인 소수}로 고쳐 쓴다. $0.1$이 $16$개이면 $1.6$이다.",
+        "studentC": "$0.1$의 개수로 구한 몫은 □로 고쳐 쓴다. $0.1$이 $16$개이면 $1.6$이다.",
+        "answers": [
+          "$0.1$이 그만큼 모인 소수"
+        ]
+      },
+      "sourceFingerprint": "b83b5d1cf82ac0325da0f3e789eb4667c108ab305683b98b8c00a3523ca56199",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$16$",
+        "$1.6$"
+      ],
+      "cStudentAfter": "$4.8\\div3$은 $0.1$이 $48$개를 $3$으로 나눈 것이므로 몫은 $0.1$이 □개, 즉 □이다.",
+      "cMarkedSentence": "$4.8\\div3$은 $0.1$이 $48$개를 $3$으로 나눈 것이므로 몫은 $0.1$이 {$16$}개, 즉 {$1.6$}이다.",
+      "cStudentSentence": "$4.8\\div3$은 $0.1$이 $48$개를 $3$으로 나눈 것이므로 몫은 $0.1$이 □개, 즉 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$16$",
+          "equivalents": []
+        },
+        {
+          "key": "$1.6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3.6\\div3$을 $0.1$의 개수로 계산한 뒤, 몫을 소수로 나타내는 방법을 설명하시오.",
+        "answer": "$3.6$은 $0.1$이 $36$개이고 $36\\div3=12$이므로 몫은 $0.1$이 $12$개이다. 따라서 $1.2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3.6$을 $0.1$이 $36$개로 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36\\div3=12$이므로 몫은 $0.1$이 $12$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $12$개이므로 $1.2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4.8\\div3$은 $0.1$이 $48$개를 $3$으로 나눈 것이므로 몫은 $0.1$이 {$16$}개, 즉 {$1.6$}이다.",
+        "acceptedAnswers": [
+          [
+            "$16$"
+          ],
+          [
+            "$1.6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "444450b27afa6d7086088478b13c53e6c2e8b82cba29185c408d6decc6df43ba",
+      "questionRevision": "planning-e5e6-20261006-444450b27afa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc6",
+      "bDecision": "revise",
+      "bPrompt": "$3.6$은 $0.1$이 몇 개 모인 수인지 쓰고, 그 까닭을 자릿값으로 설명하시오.",
+      "bAnswer": "$0.1$이 $36$개이다. $3$은 $0.1$이 $30$개이고 $6$은 $0.1$이 $6$개이므로 합하면 $36$개이다.",
+      "bGoal": "소수 한 자리 수를 $0.1$의 개수로 나타내는 까닭을 이해한다.",
+      "bReason": "소수점을 뺀 수가 $0.1$의 개수가 되는 이유를 자릿값으로 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "소수 한 자리 수는 소수점을 뺀 자연수만큼 {$0.1$}이 모인 수이다.",
+      "cReason": "소수 한 자리 수를 이루는 단위를 묻는 짧고 명확한 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3.6$은 $0.1$이 $36$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$은 $0.1$이 $30$개이고 $6$은 $0.1$이 $6$개이다",
+            "일의 자리 $3$은 $0.1$이 $30$개, 소수 첫째 자리 $6$은 $0.1$이 $6$개이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 1831,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc6",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "소수 한 자리 수를 이루는 단위",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수 한 자리 수는 소수점을 뺀 자연수만큼 {$0.1$}이 모인 수이다.",
+        "example": {
+          "prompt": "$3.6$이 $0.1$이 $36$개인 까닭은?",
+          "answer": "$0.1$이 $30$개와 $6$개라서"
+        },
+        "studentC": "소수 한 자리 수는 소수점을 뺀 자연수만큼 □이 모인 수이다.",
+        "answers": [
+          "$0.1$"
+        ]
+      },
+      "sourceFingerprint": "4a2aa3f6bb55a85ee5eb29900d57b729c2a9d8896f4803b56e3c977ce5b2e37e",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cFrozenDefinition": "소수 한 자리 수는 소수점을 뺀 자연수만큼 {$0.1$}이 모인 수이다.",
+      "cFrozenStudentSentence": "소수 한 자리 수는 소수점을 뺀 자연수만큼 □이 모인 수이다.",
+      "cProposedAnswers": [
+        "$0.1$"
+      ],
+      "cStudentAfter": "소수 한 자리 수는 소수점을 뺀 자연수만큼 □이 모인 수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 한 자리 수는 소수점을 뺀 자연수만큼 {$0.1$}이 모인 수이다.",
+      "cStudentSentence": "소수 한 자리 수는 소수점을 뺀 자연수만큼 □이 모인 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3.6$은 $0.1$이 몇 개 모인 수인지 쓰고, 그 까닭을 자릿값으로 설명하시오.",
+        "answer": "$0.1$이 $36$개이다. $3$은 $0.1$이 $30$개이고 $6$은 $0.1$이 $6$개이므로 합하면 $36$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3.6$은 $0.1$이 $36$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$은 $0.1$이 $30$개이고 $6$은 $0.1$이 $6$개이다",
+              "일의 자리 $3$은 $0.1$이 $30$개, 소수 첫째 자리 $6$은 $0.1$이 $6$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 한 자리 수는 소수점을 뺀 자연수만큼 {$0.1$}이 모인 수이다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a31c57b2c5102f2159518fe1b45f185ea2ce6486708fbe7a4e4ae8cd2bd89c42",
+      "questionRevision": "planning-e5e6-20261006-a31c57b2c510",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "소수 한 자리 수라는 이름을 아는 것이다.",
+      "bReason": "소수점 아래 숫자가 하나인 소수의 이름만 묻는 용어 암기라 가치가 낮다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "설명에 이미 답이 드러나는 이름 빈칸이라 변별력이 없다.",
+      "exclusionReason": "이름 암기 위주다. 소수 한 자리 수를 $0.1$의 개수로 보는 개념은 e6-1-3-1-xc6이 다룬다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "sourceIndex": 1832,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc8",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "소수 한 자리 수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$4.8$처럼 소수점 아래 숫자가 하나인 소수를 {소수 한 자리 수}라 한다.",
+        "studentC": "$4.8$처럼 소수점 아래 숫자가 하나인 소수를 □라 한다.",
+        "answers": [
+          "소수 한 자리 수"
+        ]
+      },
+      "sourceFingerprint": "f57fa959d88dfbddd4cd23e77e5f11e05586ceb5987b759ccdb8d43f7b713ddf",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "이름 암기 위주다. 소수 한 자리 수를 $0.1$의 개수로 보는 개념은 e6-1-3-1-xc6이 다룬다.",
+        "cloze": "이름 암기 위주다. 소수 한 자리 수를 $0.1$의 개수로 보는 개념은 e6-1-3-1-xc6이 다룬다."
+      },
+      "proposalFingerprint": "0026ef731a182c5e9a7fdcc44d5db5031b1656551d070e9e5c1618f1563ba343",
+      "questionRevision": "planning-e5e6-20261006-0026ef731a18",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc9",
+      "bDecision": "revise",
+      "bPrompt": "$6.3\\,\\mathrm{m}$를 똑같이 $3$도막으로 나눌 때 식 $6.3\\div3$에서 $3$과 몫은 각각 무엇을 뜻하는지 설명하고, 몫을 구하시오.",
+      "bAnswer": "$3$은 똑같이 나누는 도막의 수이고, 몫은 한 도막의 길이이다. 한 도막은 $2.1\\,\\mathrm{m}$이다.",
+      "bGoal": "소수를 자연수로 나누는 식의 각 수가 무엇을 뜻하는지 안다.",
+      "bReason": "나누는 수와 몫의 상황적 의미를 묻고 예의 정확한 값도 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$6.3\\,\\mathrm{m}$를 똑같이 $3$도막으로 나눌 때 한 도막의 길이는 $6.3\\div3=$ {$2.1\\,\\mathrm{m}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2.1\\,\\mathrm{m}$",
+            "$2.1$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 문장 전체라 모호해 구체적 등분 상황의 값으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$은 똑같이 나눈 도막의 수이다",
+            "$3$은 몇 등분인지를 뜻한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 한 도막의 길이이다",
+            "몫은 똑같이 나눈 한 몫의 크기이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 도막은 $2.1\\,\\mathrm{m}$이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "sourceIndex": 1833,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc9",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "소수를 자연수로 나누는 뜻",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수로 나타낸 양을 자연수만큼 {똑같이 나누었을 때 한 몫의 크기}를 구하는 계산이다.",
+        "example": {
+          "prompt": "$6.3\\,\\mathrm{m}$를 $3$등분할 때 식 $6.3\\div3$의 $3$은 무엇을 뜻하는가?",
+          "answer": "똑같이 나누는 도막의 수"
+        },
+        "studentC": "소수로 나타낸 양을 자연수만큼 □를 구하는 계산이다.",
+        "answers": [
+          "똑같이 나누었을 때 한 몫의 크기"
+        ]
+      },
+      "sourceFingerprint": "cad48b9a283779d4cf860e127681c41309e4cd806ec182218a1c0cc3823b2662",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$2.1\\,\\mathrm{m}$"
+      ],
+      "cStudentAfter": "$6.3\\,\\mathrm{m}$를 똑같이 $3$도막으로 나눌 때 한 도막의 길이는 $6.3\\div3=$ □이다.",
+      "cMarkedSentence": "$6.3\\,\\mathrm{m}$를 똑같이 $3$도막으로 나눌 때 한 도막의 길이는 $6.3\\div3=$ {$2.1\\,\\mathrm{m}$}이다.",
+      "cStudentSentence": "$6.3\\,\\mathrm{m}$를 똑같이 $3$도막으로 나눌 때 한 도막의 길이는 $6.3\\div3=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2.1\\,\\mathrm{m}$",
+          "equivalents": [
+            "$2.1$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6.3\\,\\mathrm{m}$를 똑같이 $3$도막으로 나눌 때 식 $6.3\\div3$에서 $3$과 몫은 각각 무엇을 뜻하는지 설명하고, 몫을 구하시오.",
+        "answer": "$3$은 똑같이 나누는 도막의 수이고, 몫은 한 도막의 길이이다. 한 도막은 $2.1\\,\\mathrm{m}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$은 똑같이 나눈 도막의 수이다",
+              "$3$은 몇 등분인지를 뜻한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 한 도막의 길이이다",
+              "몫은 똑같이 나눈 한 몫의 크기이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 도막은 $2.1\\,\\mathrm{m}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6.3\\,\\mathrm{m}$를 똑같이 $3$도막으로 나눌 때 한 도막의 길이는 $6.3\\div3=$ {$2.1\\,\\mathrm{m}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2.1\\,\\mathrm{m}$",
+            "$2.1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ba44b2673b771be33bdb2775e084035d358e3407c17691508ca5cc4fc09443b9",
+      "questionRevision": "planning-e5e6-20261006-ba44b2673b77",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc11",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 소수를 $1$보다 큰 자연수로 똑같이 나눌 때 몫과 나누어지는 수 중 어느 것이 더 큰지 쓰고, 그 까닭을 설명하시오. $4.8\\div2$로 확인하시오.",
+      "bAnswer": "몫이 나누어지는 수보다 작다. 전체를 둘 이상으로 똑같이 나눈 한 몫이므로 전체보다 작다. $4.8\\div2=2.4$이고 $2.4<4.8$이다.",
+      "bGoal": "똑같이 나눈 한 몫이 전체보다 작다는 관계를 설명한다.",
+      "bReason": "크기 비교 결론과 그 까닭을 나눗셈의 뜻으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 소수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "더 작다",
+            "작아진다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 구 전체라 '작다'/'크다' 비교 낱말 하나로 줄이고 조건은 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 나누어지는 수보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "똑같이 나눈 한 몫이어서 전체의 일부이기 때문이다",
+            "전체를 여러 부분으로 나눈 것 중 하나라서 더 작다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 1834,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc11",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "몫과 나누어지는 수의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$보다 큰 소수를 $1$보다 큰 자연수로 나누면 몫은 {나누어지는 수보다 작다}. 똑같이 나눈 한 몫이기 때문이다.",
+        "studentC": "$0$보다 큰 소수를 $1$보다 큰 자연수로 나누면 몫은 □. 똑같이 나눈 한 몫이기 때문이다.",
+        "answers": [
+          "나누어지는 수보다 작다"
+        ]
+      },
+      "sourceFingerprint": "7a3ca53a5bde99663549f17fa9817b69d6bbb148fd9e486777846c5555d86e23",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$0$보다 큰 소수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 □.",
+      "cMarkedSentence": "$0$보다 큰 소수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 {작다}.",
+      "cStudentSentence": "$0$보다 큰 소수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다",
+            "작아진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 소수를 $1$보다 큰 자연수로 똑같이 나눌 때 몫과 나누어지는 수 중 어느 것이 더 큰지 쓰고, 그 까닭을 설명하시오. $4.8\\div2$로 확인하시오.",
+        "answer": "몫이 나누어지는 수보다 작다. 전체를 둘 이상으로 똑같이 나눈 한 몫이므로 전체보다 작다. $4.8\\div2=2.4$이고 $2.4<4.8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 나누어지는 수보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "똑같이 나눈 한 몫이어서 전체의 일부이기 때문이다",
+              "전체를 여러 부분으로 나눈 것 중 하나라서 더 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 소수를 $1$보다 큰 자연수로 나누면 몫은 나누어지는 수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "더 작다",
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6b8719cbeab5fb8fc233975a042f8cdfc89ca7613d16dd60c9f901cede4ea8ca",
+      "questionRevision": "planning-e5e6-20261006-6b8719cbeab5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc12",
+      "bDecision": "revise",
+      "bPrompt": "나누어지는 수를 계산하기 쉬운 수로 바꾸어 몫의 크기를 어림하는 방법을 설명하시오. $13.2\\div4$를 $12\\div4$로 어림한 값 $3$과 정확한 몫 중 어느 쪽이 더 큰지 까닭과 함께 쓰시오.",
+      "bAnswer": "$13.2$를 가까운 $12$로 바꾸어 $12\\div4=3$을 구한다. $13.2$가 $12$보다 크므로 정확한 몫은 $3$보다 크다.",
+      "bGoal": "몫을 어림하는 방법과 어림값이 정확한 값보다 작거나 큰 까닭을 설명한다.",
+      "bReason": "어림 방법과 오차의 방향을 나누어지는 수의 크기 비교로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$13.2\\div4$를 어림하려고 $13.2$를 $12$로 바꾸어 $12\\div4=3$을 구했다. $13.2$는 $12$보다 {큰} 수이므로 정확한 몫은 $3$보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "큰",
+            "더 큰"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다",
+            "더 크다"
+          ]
+        }
+      ],
+      "cReason": "'몫의 대략적인 크기' 빈칸은 막연해 실제 어림의 크기 비교로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수를 가까운 계산하기 쉬운 수로 바꾸어 나눈다",
+            "$13.2$를 $12$로 바꾸어 $12\\div4=3$을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13.2$가 $12$보다 크므로 정확한 몫은 $3$보다 크다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 1835,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc12",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "몫의 크기 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "나누어지는 수를 가까운 계산하기 쉬운 수로 바꾸어 나누면 {몫의 대략적인 크기}를 짐작할 수 있다.",
+        "example": {
+          "prompt": "$13.2\\div4$를 $12\\div4=3$으로 어림했다. 정확한 몫이 $3$보다 큰 까닭은?",
+          "answer": "$13.2$를 더 작은 $12$로 바꿔서"
+        },
+        "studentC": "나누어지는 수를 가까운 계산하기 쉬운 수로 바꾸어 나누면 □를 짐작할 수 있다.",
+        "answers": [
+          "몫의 대략적인 크기"
+        ]
+      },
+      "sourceFingerprint": "12becbe73ddbd1188ca3cdfd4fcdffa8de0995f2bf88de061976657bf89aa3f9",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "큰",
+        "크다"
+      ],
+      "cStudentAfter": "$13.2\\div4$를 어림하려고 $13.2$를 $12$로 바꾸어 $12\\div4=3$을 구했다. $13.2$는 $12$보다 □ 수이므로 정확한 몫은 $3$보다 □.",
+      "cMarkedSentence": "$13.2\\div4$를 어림하려고 $13.2$를 $12$로 바꾸어 $12\\div4=3$을 구했다. $13.2$는 $12$보다 {큰} 수이므로 정확한 몫은 $3$보다 {크다}.",
+      "cStudentSentence": "$13.2\\div4$를 어림하려고 $13.2$를 $12$로 바꾸어 $12\\div4=3$을 구했다. $13.2$는 $12$보다 □ 수이므로 정확한 몫은 $3$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "큰",
+          "equivalents": [
+            "더 큰"
+          ]
+        },
+        {
+          "key": "크다",
+          "equivalents": [
+            "더 크다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어지는 수를 계산하기 쉬운 수로 바꾸어 몫의 크기를 어림하는 방법을 설명하시오. $13.2\\div4$를 $12\\div4$로 어림한 값 $3$과 정확한 몫 중 어느 쪽이 더 큰지 까닭과 함께 쓰시오.",
+        "answer": "$13.2$를 가까운 $12$로 바꾸어 $12\\div4=3$을 구한다. $13.2$가 $12$보다 크므로 정확한 몫은 $3$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수를 가까운 계산하기 쉬운 수로 바꾸어 나눈다",
+              "$13.2$를 $12$로 바꾸어 $12\\div4=3$을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$13.2$가 $12$보다 크므로 정확한 몫은 $3$보다 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$13.2\\div4$를 어림하려고 $13.2$를 $12$로 바꾸어 $12\\div4=3$을 구했다. $13.2$는 $12$보다 {큰} 수이므로 정확한 몫은 $3$보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "큰",
+            "더 큰"
+          ],
+          [
+            "크다",
+            "더 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "34303e5dab1113b658212ace4878352c16c8caa22f09820494e35fe5e954704f",
+      "questionRevision": "planning-e5e6-20261006-34303e5dab11",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc15",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{24}{10}\\div2$로 계산하는 것과 $0.1$이 $24$개인 수를 $2$로 나누는 것이 같은 계산인 까닭을 설명하시오.",
+      "bAnswer": "$2.4=\\frac{24}{10}$이고 분자 $24$는 $0.1$이 $24$개라는 뜻이므로 두 방법 모두 $2.4$를 $2$로 나누는 것이다. 몫은 $1.2$이다.",
+      "bGoal": "분수의 분자와 $0.1$의 개수가 같아 두 방법이 같은 계산임을 설명한다.",
+      "bReason": "두 방법이 같은 수를 나눈다는 관계를 분자의 뜻으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$2.4=\\frac{24}{10}$에서 분자 {$24$}는 $0.1$의 개수와 같다. 그래서 $\\frac{24}{10}\\div2$와 $0.1$이 $24$개인 수를 $2$로 나누기는 둘 다 {$2.4$}를 $2$로 나누는 것이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.4$"
+          ]
+        }
+      ],
+      "cReason": "추상 빈칸 '분자/같은 수를 나누는'을 구체적 수 $24$와 $2.4$로 확인하게 한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2.4=\\frac{24}{10}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자 $24$는 $0.1$이 $24$개라는 뜻이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 방법 모두 같은 수 $2.4$를 $2$로 나눈다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 1836,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc15",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "분수로 나누기와 $0.1$의 개수로 나누기가 같은 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수 한 자리 수를 분모가 $10$인 분수로 나타내면 {분자}가 곧 $0.1$의 개수이다. 따라서 분수로 바꾸어 나누기와 $0.1$의 개수로 나누기는 {같은 수를 나누는} 방법이다.",
+        "studentC": "소수 한 자리 수를 분모가 $10$인 분수로 나타내면 □가 곧 $0.1$의 개수이다. 따라서 분수로 바꾸어 나누기와 $0.1$의 개수로 나누기는 □ 방법이다.",
+        "answers": [
+          "분자",
+          "같은 수를 나누는"
+        ]
+      },
+      "sourceFingerprint": "904a47173389bbfb5ebe3e20bcd4b0cd454d0524ea1db4f7723e4c9740e5a872",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$2.4$"
+      ],
+      "cStudentAfter": "$2.4=\\frac{24}{10}$에서 분자 □는 $0.1$의 개수와 같다. 그래서 $\\frac{24}{10}\\div2$와 $0.1$이 $24$개인 수를 $2$로 나누기는 둘 다 □를 $2$로 나누는 것이다.",
+      "cMarkedSentence": "$2.4=\\frac{24}{10}$에서 분자 {$24$}는 $0.1$의 개수와 같다. 그래서 $\\frac{24}{10}\\div2$와 $0.1$이 $24$개인 수를 $2$로 나누기는 둘 다 {$2.4$}를 $2$로 나누는 것이다.",
+      "cStudentSentence": "$2.4=\\frac{24}{10}$에서 분자 □는 $0.1$의 개수와 같다. 그래서 $\\frac{24}{10}\\div2$와 $0.1$이 $24$개인 수를 $2$로 나누기는 둘 다 □를 $2$로 나누는 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$2.4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{24}{10}\\div2$로 계산하는 것과 $0.1$이 $24$개인 수를 $2$로 나누는 것이 같은 계산인 까닭을 설명하시오.",
+        "answer": "$2.4=\\frac{24}{10}$이고 분자 $24$는 $0.1$이 $24$개라는 뜻이므로 두 방법 모두 $2.4$를 $2$로 나누는 것이다. 몫은 $1.2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4=\\frac{24}{10}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자 $24$는 $0.1$이 $24$개라는 뜻이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 방법 모두 같은 수 $2.4$를 $2$로 나눈다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4=\\frac{24}{10}$에서 분자 {$24$}는 $0.1$의 개수와 같다. 그래서 $\\frac{24}{10}\\div2$와 $0.1$이 $24$개인 수를 $2$로 나누기는 둘 다 {$2.4$}를 $2$로 나누는 것이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$2.4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2f39fb1d545354cafde964ca50bd018649af773bc20f6944ae590918f2f8470f",
+      "questionRevision": "planning-e5e6-20261006-2f39fb1d5453",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "$84\\div2=42$를 이용해 $8.4\\div2$와 $0.84\\div2$의 몫을 구하시오. 나누는 수가 같고 나누어지는 수의 소수점 위치만 다르면 몫이 어떻게 다른지 설명하시오.",
+      "bAnswer": "$8.4\\div2=4.2$, $0.84\\div2=0.42$이다. 몫의 숫자는 같고, 나누어지는 수의 소수점이 옮겨진 만큼 몫의 소수점도 같은 방향·같은 칸 수로 옮겨진다.",
+      "bGoal": "나누어지는 수의 소수점 이동에 따라 몫의 소수점 위치가 달라지는 관계를 안다.",
+      "bReason": "일반 관계와 두 예의 정확한 값을 함께 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$84\\div2=42$이면 $8.4\\div2=$ {$4.2$}이고, $0.84\\div2=$ {$0.42$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4.2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.42$"
+          ]
+        }
+      ],
+      "cReason": "'같은 만큼 다르다'는 모호하므로 같은 숫자 몫의 소수점 위치로 확인하게 한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$8.4\\div2=4.2$이고 $0.84\\div2=0.42$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫의 숫자는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫의 소수점도 나누어지는 수와 같은 방향으로 같은 칸 수만큼 옮겨진다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 1837,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc16",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "소수점만 다른 두 나눗셈",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누는 수가 같고 나누어지는 수가 소수점 위치만 다르면, 몫도 숫자는 같고 {소수점 위치만 같은 만큼} 다르다.",
+        "studentC": "나누는 수가 같고 나누어지는 수가 소수점 위치만 다르면, 몫도 숫자는 같고 □ 다르다.",
+        "answers": [
+          "소수점 위치만 같은 만큼"
+        ]
+      },
+      "sourceFingerprint": "a8c2df349151448e05570d98872788f40167e76ba0cb87c640495bbbe0e8d6cc",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$4.2$",
+        "$0.42$"
+      ],
+      "cStudentAfter": "$84\\div2=42$이면 $8.4\\div2=$ □이고, $0.84\\div2=$ □이다.",
+      "cMarkedSentence": "$84\\div2=42$이면 $8.4\\div2=$ {$4.2$}이고, $0.84\\div2=$ {$0.42$}이다.",
+      "cStudentSentence": "$84\\div2=42$이면 $8.4\\div2=$ □이고, $0.84\\div2=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4.2$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.42$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$84\\div2=42$를 이용해 $8.4\\div2$와 $0.84\\div2$의 몫을 구하시오. 나누는 수가 같고 나누어지는 수의 소수점 위치만 다르면 몫이 어떻게 다른지 설명하시오.",
+        "answer": "$8.4\\div2=4.2$, $0.84\\div2=0.42$이다. 몫의 숫자는 같고, 나누어지는 수의 소수점이 옮겨진 만큼 몫의 소수점도 같은 방향·같은 칸 수로 옮겨진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$8.4\\div2=4.2$이고 $0.84\\div2=0.42$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫의 숫자는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫의 소수점도 나누어지는 수와 같은 방향으로 같은 칸 수만큼 옮겨진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$84\\div2=42$이면 $8.4\\div2=$ {$4.2$}이고, $0.84\\div2=$ {$0.42$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4.2$"
+          ],
+          [
+            "$0.42$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0807dd16fbb325b4a1c41b261326ad92aaa3aec0bc60cc2b47c64069c29fa95c",
+      "questionRevision": "planning-e5e6-20261006-0807dd16fbb3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "$4.5\\,\\mathrm{m}\\div3$을 $450\\,\\mathrm{cm}\\div3$으로 바꾸어 계산해도 되는 까닭을 설명하고, 몫을 $\\mathrm{m}$ 단위로 쓰시오.",
+      "bAnswer": "$4.5\\,\\mathrm{m}=450\\,\\mathrm{cm}$로 같은 길이를 단위만 바꾼 것이다. $450\\div3=150$이므로 $150\\,\\mathrm{cm}=1.5\\,\\mathrm{m}$이다.",
+      "bGoal": "단위를 바꾸어 나눈 뒤 처음 단위로 되돌리는 방법을 안다.",
+      "bReason": "단위 변환이 가능한 까닭과 몫을 되돌리는 방법을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$4.5\\,\\mathrm{m}\\div3$은 $450\\,\\mathrm{cm}\\div3=$ {$150$}$\\,\\mathrm{cm}$로 구한 뒤, 몫을 $\\mathrm{m}$로 고치면 {$1.5$}$\\,\\mathrm{m}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$150$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$"
+          ]
+        }
+      ],
+      "cReason": "추상 빈칸을 실제 단위 변환 계산으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4.5\\,\\mathrm{m}$와 $450\\,\\mathrm{cm}$는 같은 길이이다",
+            "같은 길이를 단위만 바꾼 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$450\\div3=150\\,\\mathrm{cm}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$150\\,\\mathrm{cm}=1.5\\,\\mathrm{m}$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 1838,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc17",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "단위를 바꾸어 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수로 나타낸 양을 자연수로 나타낼 수 있는 {더 작은 단위}로 바꾸어 나눈 뒤, 몫을 {처음 단위로 고칠} 수 있다.",
+        "example": {
+          "prompt": "$4.5\\,\\mathrm{m}\\div3$을 $450\\,\\mathrm{cm}\\div3$으로 바꾸어도 되는 까닭은?",
+          "answer": "같은 길이를 단위만 바꾼 것이라"
+        },
+        "studentC": "소수로 나타낸 양을 자연수로 나타낼 수 있는 □로 바꾸어 나눈 뒤, 몫을 □ 수 있다.",
+        "answers": [
+          "더 작은 단위",
+          "처음 단위로 고칠"
+        ]
+      },
+      "sourceFingerprint": "661032f5b1da9c1f334f132e7d752523d8dd64197b4181704e53ac8afa7348c5",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$150$",
+        "$1.5$"
+      ],
+      "cStudentAfter": "$4.5\\,\\mathrm{m}\\div3$은 $450\\,\\mathrm{cm}\\div3=$ □$\\,\\mathrm{cm}$로 구한 뒤, 몫을 $\\mathrm{m}$로 고치면 □$\\,\\mathrm{m}$이다.",
+      "cMarkedSentence": "$4.5\\,\\mathrm{m}\\div3$은 $450\\,\\mathrm{cm}\\div3=$ {$150$}$\\,\\mathrm{cm}$로 구한 뒤, 몫을 $\\mathrm{m}$로 고치면 {$1.5$}$\\,\\mathrm{m}$이다.",
+      "cStudentSentence": "$4.5\\,\\mathrm{m}\\div3$은 $450\\,\\mathrm{cm}\\div3=$ □$\\,\\mathrm{cm}$로 구한 뒤, 몫을 $\\mathrm{m}$로 고치면 □$\\,\\mathrm{m}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$150$",
+          "equivalents": []
+        },
+        {
+          "key": "$1.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$4.5\\,\\mathrm{m}\\div3$을 $450\\,\\mathrm{cm}\\div3$으로 바꾸어 계산해도 되는 까닭을 설명하고, 몫을 $\\mathrm{m}$ 단위로 쓰시오.",
+        "answer": "$4.5\\,\\mathrm{m}=450\\,\\mathrm{cm}$로 같은 길이를 단위만 바꾼 것이다. $450\\div3=150$이므로 $150\\,\\mathrm{cm}=1.5\\,\\mathrm{m}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4.5\\,\\mathrm{m}$와 $450\\,\\mathrm{cm}$는 같은 길이이다",
+              "같은 길이를 단위만 바꾼 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$450\\div3=150\\,\\mathrm{cm}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$150\\,\\mathrm{cm}=1.5\\,\\mathrm{m}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4.5\\,\\mathrm{m}\\div3$은 $450\\,\\mathrm{cm}\\div3=$ {$150$}$\\,\\mathrm{cm}$로 구한 뒤, 몫을 $\\mathrm{m}$로 고치면 {$1.5$}$\\,\\mathrm{m}$이다.",
+        "acceptedAnswers": [
+          [
+            "$150$"
+          ],
+          [
+            "$1.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "98628cd7856e890f984adf0dbb28d4479ca30d747a8f8d73bb25bc9996b528c0",
+      "questionRevision": "planning-e5e6-20261006-98628cd7856e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc18",
+      "bDecision": "revise",
+      "bPrompt": "나누는 수가 같을 때 나누어지는 소수의 크기와 몫의 크기는 어떤 관계인지 쓰시오. $7.2\\div3$과 $5.4\\div3$의 몫을 구해 비교하시오.",
+      "bAnswer": "나누어지는 수가 클수록 몫도 크다. $7.2\\div3=2.4$, $5.4\\div3=1.8$이므로 $7.2\\div3$의 몫이 더 크다.",
+      "bGoal": "나누는 수가 같을 때 나누어지는 수와 몫의 크기 관계를 안다.",
+      "bReason": "일반 관계를 묻고 예의 정확한 값을 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "나누는 수가 같으면 나누어지는 소수가 클수록 {몫도 크다}.",
+      "cReason": "나누는 수가 같을 때 나누어지는 수와 몫의 크기 관계를 짧게 묻는 명확한 비교 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수가 클수록 몫도 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7.2\\div3=2.4$이고 $5.4\\div3=1.8$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 1839,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc18",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "나누는 수가 같은 두 몫",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누는 수가 같으면 나누어지는 소수가 클수록 {몫도 크다}.",
+        "studentC": "나누는 수가 같으면 나누어지는 소수가 클수록 □.",
+        "answers": [
+          "몫도 크다"
+        ]
+      },
+      "sourceFingerprint": "6d0cffa4dfdd86c0cbe449f6fc24e948aedbe293ceb4f7f1a74907d57a955d83",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cFrozenDefinition": "나누는 수가 같으면 나누어지는 소수가 클수록 {몫도 크다}.",
+      "cFrozenStudentSentence": "나누는 수가 같으면 나누어지는 소수가 클수록 □.",
+      "cProposedAnswers": [
+        "몫도 크다"
+      ],
+      "cStudentAfter": "나누는 수가 같으면 나누어지는 소수가 클수록 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "몫도 크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나누는 수가 같으면 나누어지는 소수가 클수록 {몫도 크다}.",
+      "cStudentSentence": "나누는 수가 같으면 나누어지는 소수가 클수록 □.",
+      "cSlotAnswers": [
+        {
+          "key": "몫도 크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누는 수가 같을 때 나누어지는 소수의 크기와 몫의 크기는 어떤 관계인지 쓰시오. $7.2\\div3$과 $5.4\\div3$의 몫을 구해 비교하시오.",
+        "answer": "나누어지는 수가 클수록 몫도 크다. $7.2\\div3=2.4$, $5.4\\div3=1.8$이므로 $7.2\\div3$의 몫이 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수가 클수록 몫도 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7.2\\div3=2.4$이고 $5.4\\div3=1.8$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누는 수가 같으면 나누어지는 소수가 클수록 {몫도 크다}.",
+        "acceptedAnswers": [
+          [
+            "몫도 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "14af3414d9aef131e0b270dc3eaf124d39cfa1e89ad3ba718de48db8ff746881",
+      "questionRevision": "planning-e5e6-20261006-14af3414d9ae",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$6.4\\div4$의 몫을 $0.16$이라고 했다. 몫에 나누는 수를 곱해 이 몫이 틀렸는지 알아보고, 어떤 부분이 틀렸는지 설명하시오. 바른 몫도 쓰시오.",
+      "bAnswer": "$0.16\\times4=0.64$이고 이는 $6.4$의 $\\frac{1}{10}$배이므로 틀렸다. 몫의 소수점 위치가 틀렸다. 바른 몫은 $1.6$이다.",
+      "bGoal": "몫에 나누는 수를 곱해 소수점 위치 오류를 찾는 방법을 안다.",
+      "bReason": "곱셈 확인 결과가 $\\frac{1}{10}$배인 상황을 해석하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$6.4\\div4$의 몫을 $0.16$이라 했다. $0.16\\times4=$ {$0.64$}이고 이는 $6.4$의 $\\frac{1}{10}$배이므로 몫의 {소수점 위치}가 틀렸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.64$"
+          ]
+        },
+        {
+          "anyOf": [
+            "소수점 위치",
+            "소수점의 위치",
+            "소수점"
+          ]
+        }
+      ],
+      "cReason": "추상 설명을 실제 곱셈 확인과 소수점 오류 판단으로 구체화한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.16\\times4=0.64$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.64$는 $6.4$와 다르고 $\\frac{1}{10}$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫의 소수점 위치가 틀렸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바른 몫은 $1.6$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 1840,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc19",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "소수점이 틀린 몫 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "몫에 나누는 수를 곱한 값이 나누어지는 수의 $10$배나 $\\frac{1}{10}$배이면 {몫의 소수점 위치}가 틀린 것이다.",
+        "studentC": "몫에 나누는 수를 곱한 값이 나누어지는 수의 $10$배나 $\\frac{1}{10}$배이면 □가 틀린 것이다.",
+        "answers": [
+          "몫의 소수점 위치"
+        ]
+      },
+      "sourceFingerprint": "fcdd5a69810e3f75ff1cd6752140be3e69d8f0441911303894cee0eafb7bd930",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$0.64$",
+        "소수점 위치"
+      ],
+      "cStudentAfter": "$6.4\\div4$의 몫을 $0.16$이라 했다. $0.16\\times4=$ □이고 이는 $6.4$의 $\\frac{1}{10}$배이므로 몫의 □가 틀렸다.",
+      "cMarkedSentence": "$6.4\\div4$의 몫을 $0.16$이라 했다. $0.16\\times4=$ {$0.64$}이고 이는 $6.4$의 $\\frac{1}{10}$배이므로 몫의 {소수점 위치}가 틀렸다.",
+      "cStudentSentence": "$6.4\\div4$의 몫을 $0.16$이라 했다. $0.16\\times4=$ □이고 이는 $6.4$의 $\\frac{1}{10}$배이므로 몫의 □가 틀렸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.64$",
+          "equivalents": []
+        },
+        {
+          "key": "소수점 위치",
+          "equivalents": [
+            "소수점의 위치",
+            "소수점"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6.4\\div4$의 몫을 $0.16$이라고 했다. 몫에 나누는 수를 곱해 이 몫이 틀렸는지 알아보고, 어떤 부분이 틀렸는지 설명하시오. 바른 몫도 쓰시오.",
+        "answer": "$0.16\\times4=0.64$이고 이는 $6.4$의 $\\frac{1}{10}$배이므로 틀렸다. 몫의 소수점 위치가 틀렸다. 바른 몫은 $1.6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.16\\times4=0.64$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.64$는 $6.4$와 다르고 $\\frac{1}{10}$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫의 소수점 위치가 틀렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "바른 몫은 $1.6$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6.4\\div4$의 몫을 $0.16$이라 했다. $0.16\\times4=$ {$0.64$}이고 이는 $6.4$의 $\\frac{1}{10}$배이므로 몫의 {소수점 위치}가 틀렸다.",
+        "acceptedAnswers": [
+          [
+            "$0.64$"
+          ],
+          [
+            "소수점 위치",
+            "소수점의 위치",
+            "소수점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "090b46e13638babdef23b3f9e4a456ba4f572e183ef9162526391596116ae851",
+      "questionRevision": "planning-e5e6-20261006-090b46e13638",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc23",
+      "bDecision": "revise",
+      "bPrompt": "$7.2\\div3$의 몫을 $2.4$라고 구했다. 이 몫이 맞는지 곱셈으로 확인하는 식을 쓰고, 그 결과가 어떤 수와 같아야 하는지 설명하시오.",
+      "bAnswer": "$2.4\\times3=7.2$로 확인한다. 몫에 나누는 수를 곱한 값이 나누어지는 수 $7.2$와 같아야 한다.",
+      "bGoal": "나눗셈의 몫을 곱셈으로 확인하는 방법을 안다.",
+      "bReason": "맥락 없는 문장 대신 실제 나눗셈 식과 확인 곱셈을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$7.2\\div3=2.4$가 맞는지 확인하려면 $2.4\\times3=$ {$7.2$}이므로 맞다. 이처럼 몫에 나누는 수를 곱하면 {나누어지는 수}가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7.2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수",
+            "$7.2$"
+          ]
+        }
+      ],
+      "cReason": "맥락 없이 어려운 문장을 실제 식의 곱셈 확인으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2.4\\times3$을 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱이 나누어지는 수 $7.2$와 같아야 한다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 1841,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc23",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "몫과 나누는 수의 곱",
+        "kind": "성질",
+        "level": "상",
+        "definition": "(소수)$\\div$(자연수)의 몫에 나누는 수를 곱하면 {나누어지는 수}가 되어야 한다.",
+        "studentC": "(소수)$\\div$(자연수)의 몫에 나누는 수를 곱하면 □가 되어야 한다.",
+        "answers": [
+          "나누어지는 수"
+        ]
+      },
+      "sourceFingerprint": "fd109e4b95ce5aa02a3ddb946c51e12093656046d978ee1b4632238da52078fd",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$7.2$",
+        "나누어지는 수"
+      ],
+      "cStudentAfter": "$7.2\\div3=2.4$가 맞는지 확인하려면 $2.4\\times3=$ □이므로 맞다. 이처럼 몫에 나누는 수를 곱하면 □가 된다.",
+      "cMarkedSentence": "$7.2\\div3=2.4$가 맞는지 확인하려면 $2.4\\times3=$ {$7.2$}이므로 맞다. 이처럼 몫에 나누는 수를 곱하면 {나누어지는 수}가 된다.",
+      "cStudentSentence": "$7.2\\div3=2.4$가 맞는지 확인하려면 $2.4\\times3=$ □이므로 맞다. 이처럼 몫에 나누는 수를 곱하면 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7.2$",
+          "equivalents": []
+        },
+        {
+          "key": "나누어지는 수",
+          "equivalents": [
+            "$7.2$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7.2\\div3$의 몫을 $2.4$라고 구했다. 이 몫이 맞는지 곱셈으로 확인하는 식을 쓰고, 그 결과가 어떤 수와 같아야 하는지 설명하시오.",
+        "answer": "$2.4\\times3=7.2$로 확인한다. 몫에 나누는 수를 곱한 값이 나누어지는 수 $7.2$와 같아야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4\\times3$을 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱이 나누어지는 수 $7.2$와 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7.2\\div3=2.4$가 맞는지 확인하려면 $2.4\\times3=$ {$7.2$}이므로 맞다. 이처럼 몫에 나누는 수를 곱하면 {나누어지는 수}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$7.2$"
+          ],
+          [
+            "나누어지는 수",
+            "$7.2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8e50cf754aaa38acaf31eaf726f6afd6977320f396ebe926e4a550a0a57a520d",
+      "questionRevision": "planning-e5e6-20261006-8e50cf754aaa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc24",
+      "bDecision": "revise",
+      "bPrompt": "$1.2\\div4$와 $12\\div40$의 몫을 비교하시오. 나누는 수와 나누어지는 수를 모두 같은 배로 늘리면 몫이 어떻게 되는지 쓰고, 그 까닭을 한 몫의 크기로 설명하시오.",
+      "bAnswer": "$1.2\\div4=0.3$, $12\\div40=0.3$으로 같다. 둘 다 $10$배로 늘렸을 때 몫은 변하지 않는다. 전체와 나누는 수를 같은 배로 늘려도 한 몫은 같기 때문이다.",
+      "bGoal": "나누는 수와 나누어지는 수를 같은 배로 바꿔도 몫이 같음을 이해한다.",
+      "bReason": "두 나눗셈의 몫을 비교해 몫의 불변을 확인하고 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$1.2\\div4=0.3$이고 $12\\div40=$ {$0.3$}이다. 나누는 수와 나누어지는 수를 함께 $10$배로 해도 몫은 {변하지 않는다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "변하지 않는다",
+            "같다",
+            "그대로이다"
+          ]
+        }
+      ],
+      "cReason": "'같은 배' 빈칸을 구체적인 몫 비교와 불변 결론으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1.2\\div4=0.3$이고 $12\\div40=0.3$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체와 나누는 수를 같은 배로 늘려도 한 몫은 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 1842,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc24",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "몫이 같은 두 나눗셈",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누는 수와 나누어지는 수를 함께 {같은 배}로 늘려도 몫은 변하지 않는다.",
+        "studentC": "나누는 수와 나누어지는 수를 함께 □로 늘려도 몫은 변하지 않는다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "sourceFingerprint": "5331ee5491a26617af2db99f1e26cbfb5b262a306108dd48e1431659e2ed3d7e",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$0.3$",
+        "변하지 않는다"
+      ],
+      "cStudentAfter": "$1.2\\div4=0.3$이고 $12\\div40=$ □이다. 나누는 수와 나누어지는 수를 함께 $10$배로 해도 몫은 □.",
+      "cMarkedSentence": "$1.2\\div4=0.3$이고 $12\\div40=$ {$0.3$}이다. 나누는 수와 나누어지는 수를 함께 $10$배로 해도 몫은 {변하지 않는다}.",
+      "cStudentSentence": "$1.2\\div4=0.3$이고 $12\\div40=$ □이다. 나누는 수와 나누어지는 수를 함께 $10$배로 해도 몫은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.3$",
+          "equivalents": []
+        },
+        {
+          "key": "변하지 않는다",
+          "equivalents": [
+            "같다",
+            "그대로이다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.2\\div4$와 $12\\div40$의 몫을 비교하시오. 나누는 수와 나누어지는 수를 모두 같은 배로 늘리면 몫이 어떻게 되는지 쓰고, 그 까닭을 한 몫의 크기로 설명하시오.",
+        "answer": "$1.2\\div4=0.3$, $12\\div40=0.3$으로 같다. 둘 다 $10$배로 늘렸을 때 몫은 변하지 않는다. 전체와 나누는 수를 같은 배로 늘려도 한 몫은 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1.2\\div4=0.3$이고 $12\\div40=0.3$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체와 나누는 수를 같은 배로 늘려도 한 몫은 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.2\\div4=0.3$이고 $12\\div40=$ {$0.3$}이다. 나누는 수와 나누어지는 수를 함께 $10$배로 해도 몫은 {변하지 않는다}.",
+        "acceptedAnswers": [
+          [
+            "$0.3$"
+          ],
+          [
+            "변하지 않는다",
+            "같다",
+            "그대로이다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ce19a0d51b26685e12a13ccb76d7d8448d571aa883b13ff7f7b304dd243eae8a",
+      "questionRevision": "planning-e5e6-20261006-ce19a0d51b26",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc25",
+      "bDecision": "revise",
+      "bPrompt": "$7.6\\div5$와 $3.9\\div4$ 중 몫이 $1$보다 작은 것은 어느 것인지 고르고, 나누어지는 수와 나누는 수를 비교해 그 까닭을 설명하시오.",
+      "bAnswer": "$3.9\\div4$이다. $3.9$가 $4$보다 작으므로 몫이 $1$보다 작다. $7.6\\div5$는 $7.6$이 $5$보다 크므로 몫이 $1$보다 크다.",
+      "bGoal": "나누어지는 수와 나누는 수의 크기 비교로 몫이 $1$보다 큰지 작은지 판단한다.",
+      "bReason": "자연수 부분 비교 대신 나누어지는 수와 나누는 수를 직접 비교해 판단하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 소수를 자연수로 나눌 때 나누어지는 수가 나누는 수보다 {작으면} 몫은 $1$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작으면",
+            "작을 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        }
+      ],
+      "cReason": "자연수 부분 조건이 헷갈리므로 양수 조건을 둔 명확한 비교 문장으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3.9\\div4$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수 $3.9$가 나누는 수 $4$보다 작으면 몫이 $1$보다 작다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 1843,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc25",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "몫이 $1$ 이상인 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누어지는 수의 자연수 부분이 나누는 수보다 {크거나 같으면} 몫은 $1$ 이상이다.",
+        "studentC": "나누어지는 수의 자연수 부분이 나누는 수보다 □ 몫은 $1$ 이상이다.",
+        "answers": [
+          "크거나 같으면"
+        ]
+      },
+      "sourceFingerprint": "2b3abd8b5855596cbe300e4274866983a29ba4c30cd0fface610a4c106ee84db",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "작으면",
+        "작다"
+      ],
+      "cStudentAfter": "$0$보다 큰 소수를 자연수로 나눌 때 나누어지는 수가 나누는 수보다 □ 몫은 $1$보다 □.",
+      "cMarkedSentence": "$0$보다 큰 소수를 자연수로 나눌 때 나누어지는 수가 나누는 수보다 {작으면} 몫은 $1$보다 {작다}.",
+      "cStudentSentence": "$0$보다 큰 소수를 자연수로 나눌 때 나누어지는 수가 나누는 수보다 □ 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작으면",
+          "equivalents": [
+            "작을 때"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7.6\\div5$와 $3.9\\div4$ 중 몫이 $1$보다 작은 것은 어느 것인지 고르고, 나누어지는 수와 나누는 수를 비교해 그 까닭을 설명하시오.",
+        "answer": "$3.9\\div4$이다. $3.9$가 $4$보다 작으므로 몫이 $1$보다 작다. $7.6\\div5$는 $7.6$이 $5$보다 크므로 몫이 $1$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3.9\\div4$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 수 $3.9$가 나누는 수 $4$보다 작으면 몫이 $1$보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 소수를 자연수로 나눌 때 나누어지는 수가 나누는 수보다 {작으면} 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작으면",
+            "작을 때"
+          ],
+          [
+            "작다",
+            "더 작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2d77570eaad37e33163aa8a4d33c4bc4c26f38c6b070ddd7d533dca0bb0edc83",
+      "questionRevision": "planning-e5e6-20261006-2d77570eaad3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-xc27",
+      "bDecision": "revise",
+      "bPrompt": "$5.6\\div4$에서 자연수 부분 $5$를 $4$로 나누고 남은 $1$을 어떻게 이어서 나누는지 설명하고, 몫을 구하시오.",
+      "bAnswer": "$5\\div4=1$이고 $1$이 남는다. 남은 $1$은 $0.1$이 $10$개이므로 $6$과 합쳐 $0.1$이 $16$개를 $4$로 나누면 $4$이다. 몫은 $1.4$이다.",
+      "bGoal": "자연수 부분을 나눈 뒤 남은 수를 $0.1$ 단위로 바꾸어 계속 나누는 방법을 안다.",
+      "bReason": "나머지를 다음 자리로 내려 계산하는 절차를 구체적으로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$5.6\\div4$에서 $5\\div4$의 나머지 $1$은 $0.1$이 {$10$}개이므로 소수 첫째 자리의 $6$과 합치면 $0.1$이 {$16$}개이다. $16\\div4=4$이므로 몫은 {$1.4$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.4$"
+          ]
+        }
+      ],
+      "cReason": "'$0.1$이 $10$개씩' 어구 대신 실제 식의 개수 계산으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5\\div4=1$이고 $1$이 남는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "남은 $1$을 $0.1$이 $10$개로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$과 합쳐 $0.1$이 $16$개를 $4$로 나눈다",
+            "$16\\div4=4$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $1.4$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 1844,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-1-xc27",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "term": "자연수 부분을 나누고 남은 수 바꾸기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "자연수 부분을 나누고 남은 수는 {$0.1$이 $10$개씩}인 수로 바꾸어 소수 첫째 자리 수와 합친 뒤 계속 나눈다.",
+        "example": {
+          "prompt": "$5.6\\div4$에서 $5$를 나누고 남은 $1$은 어떻게 되는가?",
+          "answer": "$0.1$ $10$개로 바꾸어 더 나눈다"
+        },
+        "studentC": "자연수 부분을 나누고 남은 수는 □인 수로 바꾸어 소수 첫째 자리 수와 합친 뒤 계속 나눈다.",
+        "answers": [
+          "$0.1$이 $10$개씩"
+        ]
+      },
+      "sourceFingerprint": "e591b259ed08b99a87ddf00953216b7de07d7b20cb89ee887cf3bc8577730e41",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$16$",
+        "$1.4$"
+      ],
+      "cStudentAfter": "$5.6\\div4$에서 $5\\div4$의 나머지 $1$은 $0.1$이 □개이므로 소수 첫째 자리의 $6$과 합치면 $0.1$이 □개이다. $16\\div4=4$이므로 몫은 □이다.",
+      "cMarkedSentence": "$5.6\\div4$에서 $5\\div4$의 나머지 $1$은 $0.1$이 {$10$}개이므로 소수 첫째 자리의 $6$과 합치면 $0.1$이 {$16$}개이다. $16\\div4=4$이므로 몫은 {$1.4$}이다.",
+      "cStudentSentence": "$5.6\\div4$에서 $5\\div4$의 나머지 $1$은 $0.1$이 □개이므로 소수 첫째 자리의 $6$과 합치면 $0.1$이 □개이다. $16\\div4=4$이므로 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$16$",
+          "equivalents": []
+        },
+        {
+          "key": "$1.4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$5.6\\div4$에서 자연수 부분 $5$를 $4$로 나누고 남은 $1$을 어떻게 이어서 나누는지 설명하고, 몫을 구하시오.",
+        "answer": "$5\\div4=1$이고 $1$이 남는다. 남은 $1$은 $0.1$이 $10$개이므로 $6$과 합쳐 $0.1$이 $16$개를 $4$로 나누면 $4$이다. 몫은 $1.4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5\\div4=1$이고 $1$이 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 $1$을 $0.1$이 $10$개로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과 합쳐 $0.1$이 $16$개를 $4$로 나눈다",
+              "$16\\div4=4$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $1.4$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5.6\\div4$에서 $5\\div4$의 나머지 $1$은 $0.1$이 {$10$}개이므로 소수 첫째 자리의 $6$과 합치면 $0.1$이 {$16$}개이다. $16\\div4=4$이므로 몫은 {$1.4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$16$"
+          ],
+          [
+            "$1.4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c360f97792caaf0539742a724182ca6799987747012f18237da4fa81ea5e9352",
+      "questionRevision": "planning-e5e6-20261006-c360f97792ca",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "나누어지는 수가 나누는 수보다 작을 때 일의 자리에 $0$을 쓴다.",
+      "bReason": "같은 규칙을 c2가 까닭과 함께 묻고 있어 B가 중복된다.",
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 {작으면} 몫의 일의 자리에 $0$을 쓴다.",
+      "cReason": "$2.4\\div3$에서 비교 낱말 '작으면'을 묻는 분명한 비교 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "exclusionReason": "B는 c2와 중복되며 대체 ID는 e6-1-3-2-c2이다.",
+      "sourceIndex": 1845,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc1",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "일의 자리에 $0$ 쓰기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 {작으면} 몫의 일의 자리에 $0$을 쓴다.",
+        "studentC": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 □ 몫의 일의 자리에 $0$을 쓴다.",
+        "answers": [
+          "작으면"
+        ]
+      },
+      "sourceFingerprint": "285ad679c25777a523fa22c4e851ad1543902a8ff70b12476a15d7f7230d0e74",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "cFrozenDefinition": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 {작으면} 몫의 일의 자리에 $0$을 쓴다.",
+      "cFrozenStudentSentence": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 □ 몫의 일의 자리에 $0$을 쓴다.",
+      "cProposedAnswers": [
+        "작으면"
+      ],
+      "cStudentAfter": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 □ 몫의 일의 자리에 $0$을 쓴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작으면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 {작으면} 몫의 일의 자리에 $0$을 쓴다.",
+      "cStudentSentence": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 □ 몫의 일의 자리에 $0$을 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "작으면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2.4\\div3$처럼 나누어지는 수가 나누는 수보다 {작으면} 몫의 일의 자리에 $0$을 쓴다.",
+        "acceptedAnswers": [
+          [
+            "작으면"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c2와 중복되며 대체 ID는 e6-1-3-2-c2이다."
+      },
+      "proposalFingerprint": "1b52600e02f9feb779b08432cf8a80fa1a708e474ec0604a3e04f80c675f590e",
+      "questionRevision": "planning-e5e6-20261006-1b52600e02f9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "$0.7$ 같은 소수가 $1$보다 작다는 것을 안다.",
+      "bReason": "소수점 왼쪽이 $0$이면 $1$보다 작다는 것은 거의 자명해서 B로 묻는 가치가 낮다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "$0.7$처럼 소수점 왼쪽의 수가 {$0$}인 소수는 $1$보다 작다.",
+      "cReason": "$0.7$이라는 예와 조건이 분명한 짧은 낱말 문장이라 C로는 쓸 만하다.",
+      "exampleNeeded": false,
+      "exclusionReason": "자명한 문장이라 B에서 제외하며 대체 ID는 e6-1-3-2-xc7이다.",
+      "sourceIndex": 1846,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc5",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "$1$보다 작은 소수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$0.7$처럼 소수점 왼쪽의 수가 {$0$}인 소수는 $1$보다 작다.",
+        "studentC": "$0.7$처럼 소수점 왼쪽의 수가 □인 소수는 $1$보다 작다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "sourceFingerprint": "5e3aca9d34032bb4df85bc54bd849311ef2bb1b1749b61f13fbb40d7e539f51d",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "cFrozenDefinition": "$0.7$처럼 소수점 왼쪽의 수가 {$0$}인 소수는 $1$보다 작다.",
+      "cFrozenStudentSentence": "$0.7$처럼 소수점 왼쪽의 수가 □인 소수는 $1$보다 작다.",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "$0.7$처럼 소수점 왼쪽의 수가 □인 소수는 $1$보다 작다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0.7$처럼 소수점 왼쪽의 수가 {$0$}인 소수는 $1$보다 작다.",
+      "cStudentSentence": "$0.7$처럼 소수점 왼쪽의 수가 □인 소수는 $1$보다 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.7$처럼 소수점 왼쪽의 수가 {$0$}인 소수는 $1$보다 작다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "자명한 문장이라 B에서 제외하며 대체 ID는 e6-1-3-2-xc7이다."
+      },
+      "proposalFingerprint": "784b1116b045b55e7a5279f55c4ff341eacc62b6238f4116dbf48a0065a73e7d",
+      "questionRevision": "planning-e5e6-20261006-784b1116b045",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "$0.6\\div2$를 세로셈으로 계산할 때 몫의 소수점은 어디에 찍어야 하는지 쓰고, $0.1$이 몇 개인지로 생각해 그 까닭을 설명하시오.",
+      "bAnswer": "나누어지는 수의 소수점과 같은 위치(바로 위)에 찍는다. $0.6$은 $0.1$이 $6$개이고 $6\\div2=3$이므로 한 몫은 $0.1$이 $3$개, 즉 $0.3$이어서 자리의 단위가 그대로 유지되기 때문이다.",
+      "bGoal": "몫의 소수점 위치를 같은 단위의 개수를 나눈 것으로 설명한다.",
+      "bReason": "원문의 '같은 단위의 개수'를 $0.1$의 개수라는 구체적 설명으로 풀어 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수의 소수점과 같은 위치에 찍는다",
+            "나누어지는 수의 소수점 바로 위에 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.6$은 $0.1$이 $6$개이므로 $6\\div2=3$이고 $0.1$이 $3$개이다",
+            "각 자리의 수를 나눈 결과도 같은 단위의 개수이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$0.6\\div2$에서 $0.6$은 $0.1$이 $6$개이므로 $6\\div2=3$은 $0.1$이 {$3$}개이다. 그래서 몫은 {$0.3$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.3$",
+            "$0.3$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '같은 단위의 개수'는 맥락 없이 암기하기 쉬워서 실제 식으로 값을 답하게 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1847,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc6",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "세로셈에서 몫의 소수점 위치",
+        "kind": "방법",
+        "level": "하",
+        "definition": "각 자리의 양을 나눈 결과도 {같은 단위의 개수}이므로, 몫의 소수점을 나누어지는 수의 소수점에 맞춘다.",
+        "studentC": "각 자리의 양을 나눈 결과도 □이므로, 몫의 소수점을 나누어지는 수의 소수점에 맞춘다.",
+        "answers": [
+          "같은 단위의 개수"
+        ]
+      },
+      "sourceFingerprint": "6557dea03ebe9a86071158a209357d11925970cd5005ae4ac32effb006f3f081",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$0.3$"
+      ],
+      "cStudentAfter": "$0.6\\div2$에서 $0.6$은 $0.1$이 $6$개이므로 $6\\div2=3$은 $0.1$이 □개이다. 그래서 몫은 □이다.",
+      "cMarkedSentence": "$0.6\\div2$에서 $0.6$은 $0.1$이 $6$개이므로 $6\\div2=3$은 $0.1$이 {$3$}개이다. 그래서 몫은 {$0.3$}이다.",
+      "cStudentSentence": "$0.6\\div2$에서 $0.6$은 $0.1$이 $6$개이므로 $6\\div2=3$은 $0.1$이 □개이다. 그래서 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.6\\div2$를 세로셈으로 계산할 때 몫의 소수점은 어디에 찍어야 하는지 쓰고, $0.1$이 몇 개인지로 생각해 그 까닭을 설명하시오.",
+        "answer": "나누어지는 수의 소수점과 같은 위치(바로 위)에 찍는다. $0.6$은 $0.1$이 $6$개이고 $6\\div2=3$이므로 한 몫은 $0.1$이 $3$개, 즉 $0.3$이어서 자리의 단위가 그대로 유지되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수의 소수점과 같은 위치에 찍는다",
+              "나누어지는 수의 소수점 바로 위에 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.6$은 $0.1$이 $6$개이므로 $6\\div2=3$이고 $0.1$이 $3$개이다",
+              "각 자리의 수를 나눈 결과도 같은 단위의 개수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.6\\div2$에서 $0.6$은 $0.1$이 $6$개이므로 $6\\div2=3$은 $0.1$이 {$3$}개이다. 그래서 몫은 {$0.3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "$3$"
+          ],
+          [
+            "$0.3$",
+            "$0.3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c5637649d0dcd62e0bb210ba0bc71e91c4a2ea13c0d34cc6fad30a9a763c3ebb",
+      "questionRevision": "planning-e5e6-20261006-c5637649d0dc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-xc7",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 수를 자연수로 나눌 때, 나누어지는 수와 나누는 수를 비교하면 몫이 $1$보다 큰지, $1$인지, $1$보다 작은지 어떻게 알 수 있는지 쓰시오. 예를 들어 $7.2\\div6$, $6\\div6$, $4.8\\div6$의 몫은 각각 $1$과 비교해 어떠한지도 쓰시오.",
+      "bAnswer": "나누어지는 수가 나누는 수보다 크면 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다. $7.2\\div6$은 $1$보다 크고, $6\\div6$은 $1$이며, $4.8\\div6$은 $1$보다 작다.",
+      "bGoal": "나누어지는 수와 나누는 수의 크기로 몫과 $1$의 크기를 세 경우로 가른다.",
+      "bReason": "세 경우를 모두 포함하는 일반 규칙이라 c1·xc1·xc17을 대표하며 예로 적용도 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수가 나누는 수보다 크면 몫은 $1$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수가 나누는 수와 같으면 몫은 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 작다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "나누어지는 소수가 나누는 수보다 {크면} 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+      "cReason": "세 경우를 한 문장에 비교하며 '크면'을 묻는 명확한 비교라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1848,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc7",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "몫과 $1$의 크기 가르기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "나누어지는 소수가 나누는 수보다 {크면} 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+        "studentC": "나누어지는 소수가 나누는 수보다 □ 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+        "answers": [
+          "크면"
+        ]
+      },
+      "sourceFingerprint": "f5cc8fc43e28fd38ee1fe390faa1368d31dfc323c8be3102c69094138dad032c",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "cFrozenDefinition": "나누어지는 소수가 나누는 수보다 {크면} 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+      "cFrozenStudentSentence": "나누어지는 소수가 나누는 수보다 □ 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+      "cProposedAnswers": [
+        "크면"
+      ],
+      "cStudentAfter": "나누어지는 소수가 나누는 수보다 □ 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나누어지는 소수가 나누는 수보다 {크면} 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+      "cStudentSentence": "나누어지는 소수가 나누는 수보다 □ 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "크면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 수를 자연수로 나눌 때, 나누어지는 수와 나누는 수를 비교하면 몫이 $1$보다 큰지, $1$인지, $1$보다 작은지 어떻게 알 수 있는지 쓰시오. 예를 들어 $7.2\\div6$, $6\\div6$, $4.8\\div6$의 몫은 각각 $1$과 비교해 어떠한지도 쓰시오.",
+        "answer": "나누어지는 수가 나누는 수보다 크면 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다. $7.2\\div6$은 $1$보다 크고, $6\\div6$은 $1$이며, $4.8\\div6$은 $1$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수가 나누는 수보다 크면 몫은 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 수가 나누는 수와 같으면 몫은 $1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누어지는 소수가 나누는 수보다 {크면} 몫은 $1$보다 크고, 같으면 $1$, 작으면 $1$보다 작다.",
+        "acceptedAnswers": [
+          [
+            "크면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5d2f1e0a250a94262f48a9f616545e9554651526a6ffb836a2d68bdbdb3be559",
+      "questionRevision": "planning-e5e6-20261006-5d2f1e0a250a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-xc10",
+      "bDecision": "revise",
+      "bPrompt": "$2.4\\div3$의 몫을 $8$이라고 쓴 학생이 있다. 이 답이 틀린 까닭을 나누어지는 수와 나누는 수의 크기로 설명하고, 올바른 몫을 쓰시오.",
+      "bAnswer": "$2.4$가 $3$보다 작아 몫은 $1$보다 작아야 하는데 $8$은 $1$보다 크므로 틀렸다. 올바른 몫은 $0.8$이다(소수점과 일의 자리 $0$을 빠뜨렸다).",
+      "bGoal": "몫의 크기를 어림해 일의 자리 $0$과 소수점을 빠뜨린 답을 찾아 바로잡는다.",
+      "bReason": "잘못 쓴 답을 크기 비교로 검토하는 적용 문항이라 단순 계산이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2.4$가 $3$보다 작아 몫은 $1$보다 작아야 한다",
+            "나누어지는 수가 나누는 수보다 작으므로 몫이 $1$보다 작아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "올바른 몫은 $0.8$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$2.4\\div3$의 몫을 $8$로 쓰면 소수점과 일의 자리의 {$0$}을 빠뜨린 것이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$",
+            "$0$",
+            "영"
+          ]
+        }
+      ],
+      "cReason": "원문은 정답 '일의 자리의 $0$'이 길고 표현이 갈릴 수 있어 빈칸을 $0$ 하나로 줄인다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1849,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc10",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "일의 자리 $0$을 빠뜨리는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$2.4\\div3$의 몫을 $8$로 쓰면 소수점과 {일의 자리의 $0$}을 빠뜨린 것이다.",
+        "studentC": "$2.4\\div3$의 몫을 $8$로 쓰면 소수점과 □을 빠뜨린 것이다.",
+        "answers": [
+          "일의 자리의 $0$"
+        ]
+      },
+      "sourceFingerprint": "ba993e67e95525d71a8591cef483cd2b1532151975ba0a14389cb448033a101a",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "$2.4\\div3$의 몫을 $8$로 쓰면 소수점과 일의 자리의 □을 빠뜨린 것이다.",
+      "cMarkedSentence": "$2.4\\div3$의 몫을 $8$로 쓰면 소수점과 일의 자리의 {$0$}을 빠뜨린 것이다.",
+      "cStudentSentence": "$2.4\\div3$의 몫을 $8$로 쓰면 소수점과 일의 자리의 □을 빠뜨린 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": [
+            "영"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.4\\div3$의 몫을 $8$이라고 쓴 학생이 있다. 이 답이 틀린 까닭을 나누어지는 수와 나누는 수의 크기로 설명하고, 올바른 몫을 쓰시오.",
+        "answer": "$2.4$가 $3$보다 작아 몫은 $1$보다 작아야 하는데 $8$은 $1$보다 크므로 틀렸다. 올바른 몫은 $0.8$이다(소수점과 일의 자리 $0$을 빠뜨렸다).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4$가 $3$보다 작아 몫은 $1$보다 작아야 한다",
+              "나누어지는 수가 나누는 수보다 작으므로 몫이 $1$보다 작아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "올바른 몫은 $0.8$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4\\div3$의 몫을 $8$로 쓰면 소수점과 일의 자리의 {$0$}을 빠뜨린 것이다.",
+        "acceptedAnswers": [
+          [
+            "$0$",
+            "$0$",
+            "영"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "166a60b577d2b49fbdf73899132b94837802668b7779987d74aa8c252221ad68",
+      "questionRevision": "planning-e5e6-20261006-166a60b577d2",
+      "requiresIndependentReview": true
+    }
+  ]
+}

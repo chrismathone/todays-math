@@ -1,0 +1,104 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-3-1-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "첫 짝이 같아도 규칙이 다를 수 있다는 내용은 xc20의 '한 짝에 맞는 규칙이 둘'과 같은 생각이다.",
+      "bReason": "첫 짝이 같아도 규칙이 다를 수 있다는 생각은 xc20의 '한 짝에 맞는 규칙이 여럿'과 같다.",
+      "cDecision": "revise",
+      "cAfter": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 '$\\square$에 $2$를 {더한다}'이고 나의 규칙은 '$\\square$에 $2$를 {곱한다}'이다.",
+      "cReason": "한 짝은 같지만 둘째 짝에서 덧셈과 곱셈을 구별하는 목적을 유지하고 찾는 규칙의 범위를 학생에게 명시했다.",
+      "exclusionReason": "B만 제외한다. 대체: e5-1-3-1-xc20.",
+      "exampleNeeded": false,
+      "synonymNotes": "'더한다/더하면 △', '곱한다/곱하면 △' 모두 인정.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더한다",
+            "더하면"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한다",
+            "곱하면"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-second-0652.json",
+      "codexFinalAmendedFromFingerprint": "f9f9b94a44565541d5e374fd4588a3380c23f09897af8e882a915095b50eebe0",
+      "sourceIndex": 652,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc25",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "첫 짝이 같은 두 대응표",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 표의 첫 짝이 같아도 {같은 수에 대응하는 다음 값}이 다르면 규칙이 다르다.",
+        "example": {
+          "prompt": "가: $2\\to4$, $3\\to5$ / 나: $2\\to4$, $3\\to6$의 규칙이 다른 까닭은?",
+          "answer": "$3$에 대응하는 값이 달라서"
+        },
+        "studentC": "두 표의 첫 짝이 같아도 □이 다르면 규칙이 다르다.",
+        "answers": [
+          "같은 수에 대응하는 다음 값"
+        ]
+      },
+      "sourceFingerprint": "054ff5f269e18cb890bd72bc6e530d6d124e798914a3efc69d975e5acb2add6c",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "더한다",
+        "곱한다"
+      ],
+      "cStudentAfter": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 '$\\square$에 $2$를 □'이고 나의 규칙은 '$\\square$에 $2$를 □'이다.",
+      "cMarkedSentence": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 '$\\square$에 $2$를 {더한다}'이고 나의 규칙은 '$\\square$에 $2$를 {곱한다}'이다.",
+      "cStudentSentence": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 '$\\square$에 $2$를 □'이고 나의 규칙은 '$\\square$에 $2$를 □'이다.",
+      "cSlotAnswers": [
+        {
+          "key": "더한다",
+          "equivalents": [
+            "더하면"
+          ]
+        },
+        {
+          "key": "곱한다",
+          "equivalents": [
+            "곱하면"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 표는 $\\square$에 같은 수를 더하거나 같은 수를 곱해 $\\triangle$를 구하는 규칙 중 하나를 쓴다. 가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 가의 규칙은 '$\\square$에 $2$를 {더한다}'이고 나의 규칙은 '$\\square$에 $2$를 {곱한다}'이다.",
+        "acceptedAnswers": [
+          [
+            "더한다",
+            "더하면"
+          ],
+          [
+            "곱한다",
+            "곱하면"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체: e5-1-3-1-xc20."
+      },
+      "proposalFingerprint": "8663a7d457a87e786e8cd61dfc832da141c64396da435c0a9e2768bfdb3e4809",
+      "questionRevision": "planning-e5e6-20261006-8663a7d457a8",
+      "requiresIndependentReview": true
+    }
+  ]
+}

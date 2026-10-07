@@ -1,0 +1,3050 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:02:35.420416+00:00",
+  "rows": [
+    {
+      "id": "e5-1-6-1-xc9",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "마주 보는 변의 길이가 같아 이웃한 두 변만으로 둘레를 구할 수 있음을 안다.",
+      "bReason": "같은 근거와 같은 수(5 cm, 7 cm)의 계산을 c4의 B에 넣었다.",
+      "exclusionReason": "B는 e5-1-6-1-c4와 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "평행사변형에서 마주 보는 두 변의 길이는 서로 {같다}. 그래서 이웃한 두 변의 길이만 알면 둘레를 구할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '길이가 같아'는 문장 중간의 어미까지 맞춰야 해서 성질만 답하도록 문장을 나누었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 940,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc9",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "평행사변형의 마주 보는 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형은 서로 마주한 변끼리 {길이가 같아} 이웃한 두 변만 알면 둘레를 구할 수 있다.",
+        "example": {
+          "prompt": "이웃한 두 변이 $5\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$인 평행사변형의 둘레는?",
+          "answer": "$24\\,\\mathrm{cm}$"
+        },
+        "studentC": "평행사변형은 서로 마주한 변끼리 □ 이웃한 두 변만 알면 둘레를 구할 수 있다.",
+        "answers": [
+          "길이가 같아"
+        ]
+      },
+      "sourceFingerprint": "df4c306e16ba7e2dc76290ec59e4171218bf170d754e8036a6af37d04f76ea99",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "평행사변형에서 마주 보는 두 변의 길이는 서로 □. 그래서 이웃한 두 변의 길이만 알면 둘레를 구할 수 있다.",
+      "cMarkedSentence": "평행사변형에서 마주 보는 두 변의 길이는 서로 {같다}. 그래서 이웃한 두 변의 길이만 알면 둘레를 구할 수 있다.",
+      "cStudentSentence": "평행사변형에서 마주 보는 두 변의 길이는 서로 □. 그래서 이웃한 두 변의 길이만 알면 둘레를 구할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "평행사변형에서 마주 보는 두 변의 길이는 서로 {같다}. 그래서 이웃한 두 변의 길이만 알면 둘레를 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-6-1-c4와 중복된다."
+      },
+      "proposalFingerprint": "487278940deb2bdc6c92f932a1c616653457258a1173a0032590b06b7e7cbd10",
+      "questionRevision": "planning-e5e6-20261006-487278940deb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정다각형의 둘레와 변의 수를 알 때 한 변의 길이를 구하는 방법을 쓰고, 그렇게 구할 수 있는 까닭을 설명하시오. 또 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이를 구하시오.",
+      "bAnswer": "둘레를 변의 수로 나눈다. 정다각형은 변의 길이가 모두 같아서 둘레를 변의 수만큼 똑같이 나눈 것이 한 변이기 때문이다. 정오각형의 한 변은 $40 \\div 5 = 8$($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레를 변의 수로 나눈다",
+            "둘레$\\div$변의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 길이가 모두 같다",
+            "둘레는 한 변의 길이에 변의 수를 곱한 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "정다각형의 둘레에서 거꾸로 한 변의 길이를 구하고 그 근거를 말한다.",
+      "bReason": "나눗셈을 쓰는 까닭을 변의 길이가 같다는 성질과 연결하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "정다각형의 한 변의 길이는 둘레를 {변의 수}로 나누어 구한다. 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이는 {$8$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수",
+            "변의 개수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cReason": "'변의 수로 나누면'이라는 구절 빈칸을 낱말과 계산값으로 나누었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 941,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc10",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "정다각형의 한 변 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정다각형의 둘레를 {변의 수로 나누면} 한 변의 길이가 된다.",
+        "example": {
+          "prompt": "둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변은?",
+          "answer": "$8\\,\\mathrm{cm}$"
+        },
+        "studentC": "정다각형의 둘레를 □ 한 변의 길이가 된다.",
+        "answers": [
+          "변의 수로 나누면"
+        ]
+      },
+      "sourceFingerprint": "87ac91382e41e2536beea81b6d3db91a62569a318556d8ed61e7290a77b3e329",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "변의 수",
+        "$8$"
+      ],
+      "cStudentAfter": "정다각형의 한 변의 길이는 둘레를 □로 나누어 구한다. 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이는 □$\\,\\mathrm{cm}$이다.",
+      "cMarkedSentence": "정다각형의 한 변의 길이는 둘레를 {변의 수}로 나누어 구한다. 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이는 {$8$}$\\,\\mathrm{cm}$이다.",
+      "cStudentSentence": "정다각형의 한 변의 길이는 둘레를 □로 나누어 구한다. 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이는 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "변의 수",
+          "equivalents": [
+            "변의 개수"
+          ]
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정다각형의 둘레와 변의 수를 알 때 한 변의 길이를 구하는 방법을 쓰고, 그렇게 구할 수 있는 까닭을 설명하시오. 또 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이를 구하시오.",
+        "answer": "둘레를 변의 수로 나눈다. 정다각형은 변의 길이가 모두 같아서 둘레를 변의 수만큼 똑같이 나눈 것이 한 변이기 때문이다. 정오각형의 한 변은 $40 \\div 5 = 8$($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘레를 변의 수로 나눈다",
+              "둘레$\\div$변의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이가 모두 같다",
+              "둘레는 한 변의 길이에 변의 수를 곱한 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정다각형의 한 변의 길이는 둘레를 {변의 수}로 나누어 구한다. 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이는 {$8$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "변의 수",
+            "변의 개수"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "556ad15f6ba9774d180d06315f8dc053203fc7f2887a006743910738dae2a8c1",
+      "questionRevision": "planning-e5e6-20261006-556ad15f6ba9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 둘레와 가로의 길이를 알 때 세로의 길이를 구하는 방법을 순서대로 설명하고, 둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형의 세로를 구하시오.",
+      "bAnswer": "둘레를 $2$로 나누면 가로와 세로의 합이 되고, 여기서 가로를 빼면 세로이다. $30 \\div 2 = 15$, $15 - 9 = 6$이므로 세로는 $6\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레를 $2$로 나눈 값에서 가로를 뺀다",
+            "둘레에서 가로의 $2$배를 뺀 뒤 $2$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "직사각형의 둘레 식을 거꾸로 써서 모르는 변의 길이를 구한다.",
+      "bReason": "두 가지 풀이 순서를 모두 인정하도록 방법만 묻고 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형에서 가로와 세로의 합은 $30\\div2=${$15$}$(\\mathrm{cm})$이므로 세로는 {$6$}$\\,\\mathrm{cm}$이다.",
+      "cReason": "'가로를 빼면'이라는 구절 대신 둘레의 절반이 가로와 세로의 합임을 실제 수로 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 942,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc11",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "직사각형의 세로 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직사각형의 둘레를 $2$로 나눈 값에서 {가로를 빼면} 세로가 된다.",
+        "example": {
+          "prompt": "둘레 $30\\,\\mathrm{cm}$, 가로 $9\\,\\mathrm{cm}$인 직사각형의 세로는?",
+          "answer": "$6\\,\\mathrm{cm}$"
+        },
+        "studentC": "직사각형의 둘레를 $2$로 나눈 값에서 □ 세로가 된다.",
+        "answers": [
+          "가로를 빼면"
+        ]
+      },
+      "sourceFingerprint": "459e2be46e1fe85fcc3d965205d457852bd8e926ef04cdad3c95ae5b7b4d4c98",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "$15$",
+        "$6$"
+      ],
+      "cStudentAfter": "둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형에서 가로와 세로의 합은 $30\\div2=$□$(\\mathrm{cm})$이므로 세로는 □$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형에서 가로와 세로의 합은 $30\\div2=${$15$}$(\\mathrm{cm})$이므로 세로는 {$6$}$\\,\\mathrm{cm}$이다.",
+      "cStudentSentence": "둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형에서 가로와 세로의 합은 $30\\div2=$□$(\\mathrm{cm})$이므로 세로는 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형의 둘레와 가로의 길이를 알 때 세로의 길이를 구하는 방법을 순서대로 설명하고, 둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형의 세로를 구하시오.",
+        "answer": "둘레를 $2$로 나누면 가로와 세로의 합이 되고, 여기서 가로를 빼면 세로이다. $30 \\div 2 = 15$, $15 - 9 = 6$이므로 세로는 $6\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘레를 $2$로 나눈 값에서 가로를 뺀다",
+              "둘레에서 가로의 $2$배를 뺀 뒤 $2$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형에서 가로와 세로의 합은 $30\\div2=${$15$}$(\\mathrm{cm})$이므로 세로는 {$6$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b0bfde7a0533a1408d681f4c3e643eeb1736a6b5cf195f70bcd8a87a0e074ce6",
+      "questionRevision": "planning-e5e6-20261006-b0bfde7a0533",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc12",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정사각형과 마름모의 둘레를 같은 식으로 구함을 안다.",
+      "bReason": "네 변의 길이가 같아 4를 곱한다는 설명은 c5의 B와 같다.",
+      "exclusionReason": "B는 e5-1-6-1-c5와 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "한 변의 길이가 $7\\,\\mathrm{cm}$인 정사각형의 둘레와 한 변의 길이가 $7\\,\\mathrm{cm}$인 마름모의 둘레는 둘 다 {$28$}$\\,\\mathrm{cm}$로 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$28$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '같은 방법'은 뜻이 막연하므로 한 변의 길이가 같으면 둘레도 같다는 것을 수로 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 943,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc12",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "정사각형과 마름모의 둘레",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형과 마름모는 모두 네 변의 길이가 같아 둘레를 {같은 방법}으로 구한다.",
+        "studentC": "정사각형과 마름모는 모두 네 변의 길이가 같아 둘레를 □으로 구한다.",
+        "answers": [
+          "같은 방법"
+        ]
+      },
+      "sourceFingerprint": "7275eace7d36a418ef2ca2bcd0aed69a518dda85252e779fbdf27c35012f3d55",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "$28$",
+        "같다"
+      ],
+      "cStudentAfter": "한 변의 길이가 $7\\,\\mathrm{cm}$인 정사각형의 둘레와 한 변의 길이가 $7\\,\\mathrm{cm}$인 마름모의 둘레는 둘 다 □$\\,\\mathrm{cm}$로 서로 □.",
+      "cMarkedSentence": "한 변의 길이가 $7\\,\\mathrm{cm}$인 정사각형의 둘레와 한 변의 길이가 $7\\,\\mathrm{cm}$인 마름모의 둘레는 둘 다 {$28$}$\\,\\mathrm{cm}$로 서로 {같다}.",
+      "cStudentSentence": "한 변의 길이가 $7\\,\\mathrm{cm}$인 정사각형의 둘레와 한 변의 길이가 $7\\,\\mathrm{cm}$인 마름모의 둘레는 둘 다 □$\\,\\mathrm{cm}$로 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$28$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 변의 길이가 $7\\,\\mathrm{cm}$인 정사각형의 둘레와 한 변의 길이가 $7\\,\\mathrm{cm}$인 마름모의 둘레는 둘 다 {$28$}$\\,\\mathrm{cm}$로 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$28$"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-6-1-c5와 중복된다."
+      },
+      "proposalFingerprint": "83ebb6392ac2b3b6f6f8875d68cedbf3bd8a8787d3a9416bcb0d9dedcfcfba3c",
+      "questionRevision": "planning-e5e6-20261006-83ebb6392ac2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 둘레를 구하는 두 식 (가로)$\\times2+$(세로)$\\times2$와 ((가로)$+$(세로))$\\times2$는 값이 같습니다. 두 식이 각각 직사각형의 네 변을 어떻게 묶어서 더한 것인지 설명하시오.",
+      "bAnswer": "앞의 식은 가로 $2$개를 묶고 세로 $2$개를 묶어서 더한 것이다. 뒤의 식은 가로 $1$개와 세로 $1$개를 한 묶음으로 하여 그런 묶음 $2$개를 더한 것이다. 둘 다 네 변을 모두 더한 것이므로 값이 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 식은 가로끼리 $2$개, 세로끼리 $2$개를 묶어 더한 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒤의 식은 가로 하나와 세로 하나를 묶은 것이 $2$묶음이다"
+          ]
+        }
+      ],
+      "bGoal": "두 식이 같은 네 변을 다르게 묶어 더한 것임을 설명한다.",
+      "bReason": "c3는 2배의 까닭을 묻고, 이 문항은 묶는 방법을 지정해 두 식의 관계를 묻도록 구별했다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $7\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 둘레는 $7\\times2+3\\times2=${$20$}$(\\mathrm{cm})$이고, $(7+3)\\times${$2$}로 구해도 값이 같다.",
+      "cReason": "괄호가 겹친 식 전체를 빈칸으로 쓰게 하면 표기 암기가 되므로 수를 넣어 두 식의 값이 같음을 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 944,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc13",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "직사각형 둘레를 구하는 두 식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형의 둘레는 (가로)$\\times2+$(세로)$\\times2$로도, {((가로)$+$(세로))$\\times2$}로도 구한다.",
+        "studentC": "직사각형의 둘레는 (가로)$\\times2+$(세로)$\\times2$로도, □로도 구한다.",
+        "answers": [
+          "((가로)$+$(세로))$\\times2$"
+        ]
+      },
+      "sourceFingerprint": "34ca7d8f9b0e6f03256febc1881afb07a41a2ddb28cee3184f76d4ae670f245d",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "$20$",
+        "$2$"
+      ],
+      "cStudentAfter": "가로 $7\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 둘레는 $7\\times2+3\\times2=$□$(\\mathrm{cm})$이고, $(7+3)\\times$□로 구해도 값이 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $7\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 둘레는 $7\\times2+3\\times2=${$20$}$(\\mathrm{cm})$이고, $(7+3)\\times${$2$}로 구해도 값이 같다.",
+      "cStudentSentence": "가로 $7\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 둘레는 $7\\times2+3\\times2=$□$(\\mathrm{cm})$이고, $(7+3)\\times$□로 구해도 값이 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형의 둘레를 구하는 두 식 (가로)$\\times2+$(세로)$\\times2$와 ((가로)$+$(세로))$\\times2$는 값이 같습니다. 두 식이 각각 직사각형의 네 변을 어떻게 묶어서 더한 것인지 설명하시오.",
+        "answer": "앞의 식은 가로 $2$개를 묶고 세로 $2$개를 묶어서 더한 것이다. 뒤의 식은 가로 $1$개와 세로 $1$개를 한 묶음으로 하여 그런 묶음 $2$개를 더한 것이다. 둘 다 네 변을 모두 더한 것이므로 값이 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞의 식은 가로끼리 $2$개, 세로끼리 $2$개를 묶어 더한 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒤의 식은 가로 하나와 세로 하나를 묶은 것이 $2$묶음이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $7\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 둘레는 $7\\times2+3\\times2=${$20$}$(\\mathrm{cm})$이고, $(7+3)\\times${$2$}로 구해도 값이 같다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7423ede0d05468320317fe953f06cae0697dc2bdf954e60865f1242051ee1d05",
+      "questionRevision": "planning-e5e6-20261006-7423ede0d054",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 같은 정다각형들에서 변의 수가 많아지면 한 변의 길이는 어떻게 되는지 쓰고, 그 까닭을 한 변의 길이를 구하는 계산과 관련지어 설명하시오. 또 둘레가 $24\\,\\mathrm{cm}$인 정삼각형과 정육각형의 한 변의 길이를 각각 구하시오.",
+      "bAnswer": "한 변의 길이는 짧아진다. 같은 둘레를 더 큰 수로 나누면 몫이 작아지기 때문이다. 정삼각형의 한 변은 $24 \\div 3 = 8$($\\mathrm{cm}$), 정육각형의 한 변은 $24 \\div 6 = 4$($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변의 길이가 짧아진다",
+            "한 변의 길이가 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 둘레를 더 큰 수로 나누게 된다",
+            "같은 길이를 더 많은 변으로 똑같이 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 일정할 때 변의 수와 한 변의 길이의 관계를 나눗셈으로 설명한다.",
+      "bReason": "결론만 외우지 않도록 나누는 수가 커진다는 근거와 수 예를 함께 요구했다.",
+      "cDecision": "revise",
+      "cAfter": "둘레가 같으면 변의 수가 많은 정다각형일수록 한 변의 길이가 {짧다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "짧다",
+            "짧아진다",
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '한 변이 짧다'는 구절 전체를 써야 해서 비교하는 낱말 하나만 남겼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 945,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc14",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "둘레가 같은 정다각형의 한 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "둘레가 같으면 변의 수가 많은 정다각형일수록 {한 변이 짧다}.",
+        "example": {
+          "prompt": "둘레가 $24\\,\\mathrm{cm}$인 정삼각형과 정육각형의 한 변을 차례로 쓰시오.",
+          "answer": "$8\\,\\mathrm{cm},\\ 4\\,\\mathrm{cm}$"
+        },
+        "studentC": "둘레가 같으면 변의 수가 많은 정다각형일수록 □.",
+        "answers": [
+          "한 변이 짧다"
+        ]
+      },
+      "sourceFingerprint": "5de9b697f4154657b4b049d18297bdd1af3f904b77ae84624f99693531d2793e",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "짧다"
+      ],
+      "cStudentAfter": "둘레가 같으면 변의 수가 많은 정다각형일수록 한 변의 길이가 □.",
+      "cMarkedSentence": "둘레가 같으면 변의 수가 많은 정다각형일수록 한 변의 길이가 {짧다}.",
+      "cStudentSentence": "둘레가 같으면 변의 수가 많은 정다각형일수록 한 변의 길이가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "짧다",
+          "equivalents": [
+            "짧아진다",
+            "작다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "둘레가 같은 정다각형들에서 변의 수가 많아지면 한 변의 길이는 어떻게 되는지 쓰고, 그 까닭을 한 변의 길이를 구하는 계산과 관련지어 설명하시오. 또 둘레가 $24\\,\\mathrm{cm}$인 정삼각형과 정육각형의 한 변의 길이를 각각 구하시오.",
+        "answer": "한 변의 길이는 짧아진다. 같은 둘레를 더 큰 수로 나누면 몫이 작아지기 때문이다. 정삼각형의 한 변은 $24 \\div 3 = 8$($\\mathrm{cm}$), 정육각형의 한 변은 $24 \\div 6 = 4$($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 변의 길이가 짧아진다",
+              "한 변의 길이가 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 둘레를 더 큰 수로 나누게 된다",
+              "같은 길이를 더 많은 변으로 똑같이 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "둘레가 같으면 변의 수가 많은 정다각형일수록 한 변의 길이가 {짧다}.",
+        "acceptedAnswers": [
+          [
+            "짧다",
+            "짧아진다",
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c3a534f10e73ed9f271e599fcf3bddfe08a2655e4f59efd8449b16cc2fc9536",
+      "questionRevision": "planning-e5e6-20261006-5c3a534f10e7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc15",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "변의 길이가 $\\mathrm{m}$와 $\\mathrm{cm}$로 섞여 주어진 도형의 둘레를 구할 때 변의 길이를 더하기 전에 먼저 해야 할 일을 쓰고, 가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레는 몇 $\\mathrm{cm}$인지 구하시오.",
+      "bAnswer": "길이를 같은 단위로 바꾼다. $1\\,\\mathrm{m} = 100\\,\\mathrm{cm}$이므로 둘레는 ($100 + 40$)$\\times 2 = 280$($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 단위로 바꾼다",
+            "단위를 하나로 맞춘다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$280\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "단위가 다른 길이를 같은 단위로 고친 뒤 둘레를 구한다.",
+      "bReason": "1+40으로 잘못 더하는 오류를 겨냥해 먼저 할 일과 실제 계산을 함께 물었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레를 $\\mathrm{cm}$로 구하려면 먼저 $1\\,\\mathrm{m}$를 {$100$}$\\,\\mathrm{cm}$로 바꾼다. 둘레는 $(100+40)\\times2=${$280$}$(\\mathrm{cm})$이다.",
+      "cReason": "'같은 단위로 바꾼'이라는 구절을 외우게 하는 대신 실제로 단위를 바꾸어 계산하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 946,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc15",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "단위를 맞추어 둘레 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "변의 길이가 $\\mathrm{m}$와 $\\mathrm{cm}$로 섞여 있으면 {같은 단위로 바꾼} 뒤 더한다.",
+        "example": {
+          "prompt": "가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레는 몇 $\\mathrm{cm}$인가?",
+          "answer": "$280\\,\\mathrm{cm}$"
+        },
+        "studentC": "변의 길이가 $\\mathrm{m}$와 $\\mathrm{cm}$로 섞여 있으면 □ 뒤 더한다.",
+        "answers": [
+          "같은 단위로 바꾼"
+        ]
+      },
+      "sourceFingerprint": "dc465c0eebcbd38e04e6ba6271c4a4a7c0b20ab6e4aa146d17a35d7071b2e041",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "$100$",
+        "$280$"
+      ],
+      "cStudentAfter": "가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레를 $\\mathrm{cm}$로 구하려면 먼저 $1\\,\\mathrm{m}$를 □$\\,\\mathrm{cm}$로 바꾼다. 둘레는 $(100+40)\\times2=$□$(\\mathrm{cm})$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$280$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레를 $\\mathrm{cm}$로 구하려면 먼저 $1\\,\\mathrm{m}$를 {$100$}$\\,\\mathrm{cm}$로 바꾼다. 둘레는 $(100+40)\\times2=${$280$}$(\\mathrm{cm})$이다.",
+      "cStudentSentence": "가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레를 $\\mathrm{cm}$로 구하려면 먼저 $1\\,\\mathrm{m}$를 □$\\,\\mathrm{cm}$로 바꾼다. 둘레는 $(100+40)\\times2=$□$(\\mathrm{cm})$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        },
+        {
+          "key": "$280$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "변의 길이가 $\\mathrm{m}$와 $\\mathrm{cm}$로 섞여 주어진 도형의 둘레를 구할 때 변의 길이를 더하기 전에 먼저 해야 할 일을 쓰고, 가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레는 몇 $\\mathrm{cm}$인지 구하시오.",
+        "answer": "길이를 같은 단위로 바꾼다. $1\\,\\mathrm{m} = 100\\,\\mathrm{cm}$이므로 둘레는 ($100 + 40$)$\\times 2 = 280$($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 단위로 바꾼다",
+              "단위를 하나로 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$280\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레를 $\\mathrm{cm}$로 구하려면 먼저 $1\\,\\mathrm{m}$를 {$100$}$\\,\\mathrm{cm}$로 바꾼다. 둘레는 $(100+40)\\times2=${$280$}$(\\mathrm{cm})$이다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ],
+          [
+            "$280$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2c579343825ca675bd84ddc14ed942dcb803fe1d70b8a672345932aef28a4380",
+      "questionRevision": "planning-e5e6-20261006-2c579343825c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 한 가지뿐입니까? 가로와 세로의 합이 얼마여야 하는지 쓰고, 가로와 세로의 길이가 서로 다른 직사각형의 예를 두 가지 드시오.",
+      "bAnswer": "한 가지뿐이 아니다. 가로와 세로의 합이 $10\\,\\mathrm{cm}$이면 되므로, 예를 들어 가로 $6\\,\\mathrm{cm}$·세로 $4\\,\\mathrm{cm}$, 가로 $7\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형이 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 가지가 아니다",
+            "여러 가지가 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로와 세로의 합이 $10\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "합이 $10\\,\\mathrm{cm}$가 되는 가로·세로 쌍 두 가지"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 정해져도 가로와 세로의 합만 정해질 뿐 직사각형은 여러 가지임을 보인다.",
+      "bReason": "'여러 가지'라는 말만 답하지 않도록 조건(합 10 cm)과 예 두 가지를 요구했다.",
+      "cDecision": "revise",
+      "cAfter": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 가로와 세로의 합이 {$10$}$\\,\\mathrm{cm}$이면 되므로, 가로 $6\\,\\mathrm{cm}$·세로 $4\\,\\mathrm{cm}$, 가로 $7\\,\\mathrm{cm}$·세로 {$3$}$\\,\\mathrm{cm}$처럼 여러 가지가 있다.",
+      "cReason": "원문 빈칸 '여러 가지'는 수학 내용 없이 낱말만 맞히게 되어 합의 조건과 예를 채우게 했다.",
+      "synonymNotes": "B의 예는 합이 10 cm인 쌍이면 모두 정답이다. 5 cm·5 cm인 정사각형도 직사각형이므로 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 947,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc16",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "둘레가 같은 여러 직사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "둘레가 같아도 가로와 세로는 {여러 가지}로 정해질 수 있다.",
+        "example": {
+          "prompt": "둘레가 $20\\,\\mathrm{cm}$인 직사각형의 가로와 세로를 한 가지 쓰시오.",
+          "answer": "예: $6\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$"
+        },
+        "studentC": "둘레가 같아도 가로와 세로는 □로 정해질 수 있다.",
+        "answers": [
+          "여러 가지"
+        ]
+      },
+      "sourceFingerprint": "7db10625b2822cfe62862fc778b395c80de88c1a64a4a790cd275a1d8652e0de",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$3$"
+      ],
+      "cStudentAfter": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 가로와 세로의 합이 □$\\,\\mathrm{cm}$이면 되므로, 가로 $6\\,\\mathrm{cm}$·세로 $4\\,\\mathrm{cm}$, 가로 $7\\,\\mathrm{cm}$·세로 □$\\,\\mathrm{cm}$처럼 여러 가지가 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 가로와 세로의 합이 {$10$}$\\,\\mathrm{cm}$이면 되므로, 가로 $6\\,\\mathrm{cm}$·세로 $4\\,\\mathrm{cm}$, 가로 $7\\,\\mathrm{cm}$·세로 {$3$}$\\,\\mathrm{cm}$처럼 여러 가지가 있다.",
+      "cStudentSentence": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 가로와 세로의 합이 □$\\,\\mathrm{cm}$이면 되므로, 가로 $6\\,\\mathrm{cm}$·세로 $4\\,\\mathrm{cm}$, 가로 $7\\,\\mathrm{cm}$·세로 □$\\,\\mathrm{cm}$처럼 여러 가지가 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 한 가지뿐입니까? 가로와 세로의 합이 얼마여야 하는지 쓰고, 가로와 세로의 길이가 서로 다른 직사각형의 예를 두 가지 드시오.",
+        "answer": "한 가지뿐이 아니다. 가로와 세로의 합이 $10\\,\\mathrm{cm}$이면 되므로, 예를 들어 가로 $6\\,\\mathrm{cm}$·세로 $4\\,\\mathrm{cm}$, 가로 $7\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형이 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 가지가 아니다",
+              "여러 가지가 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로와 세로의 합이 $10\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "합이 $10\\,\\mathrm{cm}$가 되는 가로·세로 쌍 두 가지"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 가로와 세로의 합이 {$10$}$\\,\\mathrm{cm}$이면 되므로, 가로 $6\\,\\mathrm{cm}$·세로 $4\\,\\mathrm{cm}$, 가로 $7\\,\\mathrm{cm}$·세로 {$3$}$\\,\\mathrm{cm}$처럼 여러 가지가 있다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "353b223790979c2a219b52e008d6a5bc02e5e6a828eb7c0c3890112f3f731454",
+      "questionRevision": "planning-e5e6-20261006-353b22379097",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc17",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 꼭 맞게 붙여 직사각형을 만들었습니다. 이 직사각형의 둘레는 두 정사각형의 둘레를 더한 값과 같은지 다른지 쓰고, 그 까닭을 맞닿은 변과 관련지어 설명한 뒤 직사각형의 둘레를 구하시오.",
+      "bAnswer": "다르다(더 짧다). 맞닿은 변은 도형의 안쪽에 있어 테두리가 아니므로 둘레에 들어가지 않는다. 두 정사각형의 둘레의 합 $24\\,\\mathrm{cm}$에서 맞닿은 변 $2$개($6\\,\\mathrm{cm}$)가 빠져 $18\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다르다",
+            "두 둘레의 합보다 짧다"
+          ]
+        },
+        {
+          "anyOf": [
+            "맞닿은 변은 테두리가 아니다",
+            "맞닿은 변은 안쪽에 있어 둘레에 넣지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "이어 붙이면 맞닿은 변이 둘레에서 빠진다는 것을 예로 설명한다.",
+      "bReason": "두 둘레를 그냥 더하는 오류를 직접 비교하게 하고 설명할 대상을 맞닿은 변으로 정했다.",
+      "cDecision": "revise",
+      "cAfter": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 붙여 만든 직사각형은 가로 {$6$}$\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$이므로 둘레는 {$18$}$\\,\\mathrm{cm}$이다. 맞닿은 변은 테두리가 아니므로 둘레에 넣지 않는다.",
+      "cReason": "'둘레에서 빠진다'는 구절 빈칸을 붙인 도형의 실제 변의 길이와 둘레를 구하는 빈칸으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 948,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc17",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "이어 붙인 도형의 둘레",
+        "kind": "방법",
+        "level": "상",
+        "definition": "도형을 이어 붙이면 맞닿은 변은 {둘레에서 빠진다}.",
+        "example": {
+          "prompt": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 붙인 직사각형의 둘레는?",
+          "answer": "$18\\,\\mathrm{cm}$"
+        },
+        "studentC": "도형을 이어 붙이면 맞닿은 변은 □.",
+        "answers": [
+          "둘레에서 빠진다"
+        ]
+      },
+      "sourceFingerprint": "1c395b807e79704b97f4eea44f0a52a42ad4d02d53d0e4f08250e364fb4b5346",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$18$"
+      ],
+      "cStudentAfter": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 붙여 만든 직사각형은 가로 □$\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$이므로 둘레는 □$\\,\\mathrm{cm}$이다. 맞닿은 변은 테두리가 아니므로 둘레에 넣지 않는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 붙여 만든 직사각형은 가로 {$6$}$\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$이므로 둘레는 {$18$}$\\,\\mathrm{cm}$이다. 맞닿은 변은 테두리가 아니므로 둘레에 넣지 않는다.",
+      "cStudentSentence": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 붙여 만든 직사각형은 가로 □$\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$이므로 둘레는 □$\\,\\mathrm{cm}$이다. 맞닿은 변은 테두리가 아니므로 둘레에 넣지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 꼭 맞게 붙여 직사각형을 만들었습니다. 이 직사각형의 둘레는 두 정사각형의 둘레를 더한 값과 같은지 다른지 쓰고, 그 까닭을 맞닿은 변과 관련지어 설명한 뒤 직사각형의 둘레를 구하시오.",
+        "answer": "다르다(더 짧다). 맞닿은 변은 도형의 안쪽에 있어 테두리가 아니므로 둘레에 들어가지 않는다. 두 정사각형의 둘레의 합 $24\\,\\mathrm{cm}$에서 맞닿은 변 $2$개($6\\,\\mathrm{cm}$)가 빠져 $18\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다르다",
+              "두 둘레의 합보다 짧다"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞닿은 변은 테두리가 아니다",
+              "맞닿은 변은 안쪽에 있어 둘레에 넣지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 붙여 만든 직사각형은 가로 {$6$}$\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$이므로 둘레는 {$18$}$\\,\\mathrm{cm}$이다. 맞닿은 변은 테두리가 아니므로 둘레에 넣지 않는다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3df0d65963d4c24cd88161430862487f811dd5df45240389b247d2db87d40de7",
+      "questionRevision": "planning-e5e6-20261006-3df0d65963d4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "길이가 $36\\,\\mathrm{cm}$인 철사를 남김없이, 겹치지 않게 써서 정육각형을 만들었습니다. 철사의 길이는 이 정육각형의 무엇과 같은지 쓰고, 한 변의 길이를 구하는 과정을 설명하시오.",
+      "bAnswer": "철사의 길이는 정육각형의 둘레와 같다. 정육각형은 길이가 같은 변이 $6$개이므로 한 변은 $36 \\div 6 = 6$($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36 \\div 6 = 6$이므로 $6\\,\\mathrm{cm}$",
+            "둘레를 $6$으로 나누어 $6\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "철사 상황에서 철사의 길이가 둘레임을 알아보고 한 변의 길이를 구한다.",
+      "bReason": "상황을 둘레로 바꾸어 읽는 것이 목표이므로 조건을 갖춘 장면과 구할 것을 함께 제시했다.",
+      "cDecision": "keep",
+      "cAfter": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 {둘레}이다.",
+      "cReason": "'남김없이'라는 조건이 문장에 있고 철사의 길이가 둘레라는 연결을 한 낱말로 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 949,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc18",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "철사로 만든 정다각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 {둘레}이다.",
+        "example": {
+          "prompt": "$36\\,\\mathrm{cm}$ 철사로 만든 정육각형의 한 변은?",
+          "answer": "$6\\,\\mathrm{cm}$"
+        },
+        "studentC": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 □이다.",
+        "answers": [
+          "둘레"
+        ]
+      },
+      "sourceFingerprint": "fd50ff4c1499d68e5da69160171241eefdf2f7ea2d9fbfa1ac7320798faaeaec",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cFrozenDefinition": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 {둘레}이다.",
+      "cFrozenStudentSentence": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 □이다.",
+      "cProposedAnswers": [
+        "둘레"
+      ],
+      "cStudentAfter": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "둘레"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 {둘레}이다.",
+      "cStudentSentence": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "둘레",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "길이가 $36\\,\\mathrm{cm}$인 철사를 남김없이, 겹치지 않게 써서 정육각형을 만들었습니다. 철사의 길이는 이 정육각형의 무엇과 같은지 쓰고, 한 변의 길이를 구하는 과정을 설명하시오.",
+        "answer": "철사의 길이는 정육각형의 둘레와 같다. 정육각형은 길이가 같은 변이 $6$개이므로 한 변은 $36 \\div 6 = 6$($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘레와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36 \\div 6 = 6$이므로 $6\\,\\mathrm{cm}$",
+              "둘레를 $6$으로 나누어 $6\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "철사 한 줄을 남김없이 써서 정다각형을 만들면 철사의 길이가 그 도형의 {둘레}이다.",
+        "acceptedAnswers": [
+          [
+            "둘레"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "762b3ee9adb7a601f31871d9866fe71af7ab33fae7fbbce312971a5e4cc9c3f7",
+      "questionRevision": "planning-e5e6-20261006-762b3ee9adb7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc19",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "한 변이 $6\\,\\mathrm{cm}$인 정사각형을 만든 끈을 풀어서 남김없이, 겹치지 않게 정삼각형 하나를 만들었습니다. 두 도형에서 서로 같은 것은 무엇인지 쓰고, 정삼각형의 한 변의 길이를 구하는 과정을 설명하시오.",
+      "bAnswer": "두 도형의 둘레가 같다. 정사각형의 둘레는 $6 \\times 4 = 24$($\\mathrm{cm}$)이고, 정삼각형의 둘레도 $24\\,\\mathrm{cm}$이므로 한 변은 $24 \\div 3 = 8$($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레가 같다",
+            "끈의 길이가 같아 둘레가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 $24\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "같은 끈으로 만든 두 도형의 둘레가 같음을 이용해 다른 도형의 변을 구한다.",
+      "bReason": "둘레를 구하고 다시 나누는 두 단계를 설명하게 하여 단순 계산 문항이 되지 않게 했다.",
+      "cDecision": "revise",
+      "cAfter": "같은 끈을 남김없이, 겹치지 않게 테두리로 쓴 두 도형은 모양이 달라도 {둘레}가 같다.",
+      "cReason": "빈칸을 '둘레가 같다' 구절에서 낱말 '둘레'로 줄였고 조건은 그대로 두었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 950,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc19",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "같은 끈으로 만든 두 도형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 끈을 남김없이, 겹치지 않게 테두리로 쓴 두 도형은 모양이 달라도 {둘레가 같다}.",
+        "example": {
+          "prompt": "한 변이 $6\\,\\mathrm{cm}$인 정사각형을 만든 끈으로 정삼각형을 만들면 한 변은?",
+          "answer": "$8\\,\\mathrm{cm}$"
+        },
+        "studentC": "같은 끈을 남김없이, 겹치지 않게 테두리로 쓴 두 도형은 모양이 달라도 □.",
+        "answers": [
+          "둘레가 같다"
+        ]
+      },
+      "sourceFingerprint": "50f4471693b664c03e07712a68e5bfde2b2632347ffb5871e8db1f27329be599",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "둘레"
+      ],
+      "cStudentAfter": "같은 끈을 남김없이, 겹치지 않게 테두리로 쓴 두 도형은 모양이 달라도 □가 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "둘레"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 끈을 남김없이, 겹치지 않게 테두리로 쓴 두 도형은 모양이 달라도 {둘레}가 같다.",
+      "cStudentSentence": "같은 끈을 남김없이, 겹치지 않게 테두리로 쓴 두 도형은 모양이 달라도 □가 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "둘레",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 변이 $6\\,\\mathrm{cm}$인 정사각형을 만든 끈을 풀어서 남김없이, 겹치지 않게 정삼각형 하나를 만들었습니다. 두 도형에서 서로 같은 것은 무엇인지 쓰고, 정삼각형의 한 변의 길이를 구하는 과정을 설명하시오.",
+        "answer": "두 도형의 둘레가 같다. 정사각형의 둘레는 $6 \\times 4 = 24$($\\mathrm{cm}$)이고, 정삼각형의 둘레도 $24\\,\\mathrm{cm}$이므로 한 변은 $24 \\div 3 = 8$($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘레가 같다",
+              "끈의 길이가 같아 둘레가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레는 $24\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 끈을 남김없이, 겹치지 않게 테두리로 쓴 두 도형은 모양이 달라도 {둘레}가 같다.",
+        "acceptedAnswers": [
+          [
+            "둘레"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "68d8f86a7dd21095127ed2b5226edab017b24f329c35a84c37c5ca4cd706fef4",
+      "questionRevision": "planning-e5e6-20261006-68d8f86a7dd2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc20",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 한 귀퉁이를 작은 직사각형 모양으로 잘라 내어 ㄱ자 모양 도형을 만들었습니다. 이 도형의 둘레는 처음 직사각형의 둘레와 비교하여 어떠한지 쓰고, 잘려 없어진 변과 새로 생긴 변의 길이를 비교하여 까닭을 설명하시오.",
+      "bAnswer": "처음 직사각형의 둘레와 같은 $26\\,\\mathrm{cm}$이다. 잘려 없어진 가로 부분과 세로 부분의 길이만큼 안쪽에 길이가 같은 새 변이 두 개 생기기 때문이다.",
+      "bRequiredIdeas": [],
+      "bGoal": "귀퉁이를 잘라도 둘레가 변하지 않는 까닭을 변의 길이를 비교해 설명한다.",
+      "bReason": "귀퉁이를 잘라 만든 ㄱ자 도형에서 없어진 변과 새 변을 대응시키는 설명은 실제 잘린 그림이 있어야 초5 학생에게 분명하다. 첫 초안의 C는 뒤 문장에 둘레가 같다는 까닭까지 알려 주며 비교 답이 유도된다. 그림 전용 지원이 없는 현재 B/C에서는 제외한다.",
+      "cDecision": "exclude",
+      "cAfter": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 한 귀퉁이를 직사각형 모양으로 잘라 낸 ㄱ자 도형의 둘레는 처음 직사각형의 둘레와 {같은} {$26$}$\\,\\mathrm{cm}$이다. 잘려 없어진 두 변의 길이만큼 새 변이 생기기 때문이다.",
+      "cAcceptedAnswers": [],
+      "cReason": "귀퉁이를 잘라 만든 ㄱ자 도형에서 없어진 변과 새 변을 대응시키는 설명은 실제 잘린 그림이 있어야 초5 학생에게 분명하다. 첫 초안의 C는 뒤 문장에 둘레가 같다는 까닭까지 알려 주며 비교 답이 유도된다. 그림 전용 지원이 없는 현재 B/C에서는 제외한다.",
+      "exampleNeeded": true,
+      "exampleReason": "글만으로는 잘린 모양을 떠올리기 어렵다. 가로 8 cm, 세로 5 cm 직사각형의 오른쪽 위 귀퉁이에서 가로 3 cm, 세로 2 cm 직사각형을 잘라 낸 ㄱ자 도형 그림이 필요하며, 없어진 변은 점선으로, 새로 생긴 두 변은 굵은 선으로 표시한다.",
+      "editorialOwner": "Codex",
+      "exclusionReason": "B/C: 귀퉁이를 잘라 만든 ㄱ자 도형에서 없어진 변과 새 변을 대응시키는 설명은 실제 잘린 그림이 있어야 초5 학생에게 분명하다. 첫 초안의 C는 뒤 문장에 둘레가 같다는 까닭까지 알려 주며 비교 답이 유도된다. 그림 전용 지원이 없는 현재 B/C에서는 제외한다.",
+      "diagramResearchProposal": {
+        "bPrompt": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 한 귀퉁이를 작은 직사각형 모양으로 잘라 내어 ㄱ자 모양 도형을 만들었습니다. 이 도형의 둘레는 처음 직사각형의 둘레와 비교하여 어떠한지 쓰고, 잘려 없어진 변과 새로 생긴 변의 길이를 비교하여 까닭을 설명하시오.",
+        "bAnswer": "처음 직사각형의 둘레와 같은 $26\\,\\mathrm{cm}$이다. 잘려 없어진 가로 부분과 세로 부분의 길이만큼 안쪽에 길이가 같은 새 변이 두 개 생기기 때문이다.",
+        "cAfter": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 한 귀퉁이를 직사각형 모양으로 잘라 낸 ㄱ자 도형의 둘레는 처음 직사각형의 둘레와 {같은} {$26$}$\\,\\mathrm{cm}$이다. 잘려 없어진 두 변의 길이만큼 새 변이 생기기 때문이다."
+      },
+      "codexReview": "개별 원문·첫 초안·필수 그림 사양을 직접 읽은 뒤 글·수식 전용 계약에 맞게 형식 제외함. 일반 학습 설명·ID·이력은 보존함.",
+      "sourceIndex": 951,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc20",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "귀퉁이를 잘라 낸 도형의 둘레",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형의 한 귀퉁이를 직사각형 모양으로 잘라 낸 ㄱ자 도형의 {둘레}는 처음 직사각형의 둘레와 같다. 잘린 두 변의 길이만큼 새 변이 생기기 때문이다.",
+        "example": {
+          "prompt": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 한 귀퉁이를 직사각형 모양으로 잘라 낸 ㄱ자 도형의 둘레는?",
+          "answer": "$26\\,\\mathrm{cm}$"
+        },
+        "studentC": "직사각형의 한 귀퉁이를 직사각형 모양으로 잘라 낸 ㄱ자 도형의 □는 처음 직사각형의 둘레와 같다. 잘린 두 변의 길이만큼 새 변이 생기기 때문이다.",
+        "answers": [
+          "둘레"
+        ]
+      },
+      "sourceFingerprint": "59732f203bb48670a136db94406034322433a2c2a2663e2b16ab2a4146aa2038",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B/C: 귀퉁이를 잘라 만든 ㄱ자 도형에서 없어진 변과 새 변을 대응시키는 설명은 실제 잘린 그림이 있어야 초5 학생에게 분명하다. 첫 초안의 C는 뒤 문장에 둘레가 같다는 까닭까지 알려 주며 비교 답이 유도된다. 그림 전용 지원이 없는 현재 B/C에서는 제외한다.",
+        "cloze": "B/C: 귀퉁이를 잘라 만든 ㄱ자 도형에서 없어진 변과 새 변을 대응시키는 설명은 실제 잘린 그림이 있어야 초5 학생에게 분명하다. 첫 초안의 C는 뒤 문장에 둘레가 같다는 까닭까지 알려 주며 비교 답이 유도된다. 그림 전용 지원이 없는 현재 B/C에서는 제외한다."
+      },
+      "proposalFingerprint": "558da333308dfcb989c645280451fbc3e2cb2d40d852f74d15ae2aa7e55c6f72",
+      "questionRevision": "planning-e5e6-20261006-558da333308d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc21",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레는 처음의 몇 배가 되는지 쓰고, 그 까닭을 네 변의 길이와 관련지어 설명하시오.",
+      "bAnswer": "$2$배가 된다. 네 변이 모두 $2$배씩 길어지므로 네 변의 길이의 합도 $2$배가 되기 때문이다. 예를 들어 한 변이 $3\\,\\mathrm{cm}$에서 $6\\,\\mathrm{cm}$가 되면 둘레는 $12\\,\\mathrm{cm}$에서 $24\\,\\mathrm{cm}$가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 변이 모두 $2$배가 되어 합도 $2$배가 된다",
+            "(한 변$\\times 2$)$\\times 4$는 (한 변$\\times 4$)$\\times 2$와 같다"
+          ]
+        }
+      ],
+      "bGoal": "한 변의 길이가 2배가 되면 둘레도 2배가 되는 까닭을 설명한다.",
+      "bReason": "4배라고 잘못 답하기 쉬운 내용이라 배수와 근거를 함께 물었고, 예는 선택 사항이라 필수 기준에서 뺐다.",
+      "cDecision": "keep",
+      "cAfter": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 {$2$}배가 된다.",
+      "cReason": "조건과 결과가 한 문장에 분명하고 답이 수 하나(2)로 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 952,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc21",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "정사각형의 한 변을 $2$배로 늘릴 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 {$2$}배가 된다.",
+        "studentC": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 □배가 된다.",
+        "answers": [
+          "$2$"
+        ]
+      },
+      "sourceFingerprint": "fd3d55b632832baee0a68c313b12aad59d6632adb0e1651fb4bb197ac9a72b3f",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cFrozenDefinition": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 {$2$}배가 된다.",
+      "cFrozenStudentSentence": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 □배가 된다.",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 □배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 {$2$}배가 된다.",
+      "cStudentSentence": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 □배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레는 처음의 몇 배가 되는지 쓰고, 그 까닭을 네 변의 길이와 관련지어 설명하시오.",
+        "answer": "$2$배가 된다. 네 변이 모두 $2$배씩 길어지므로 네 변의 길이의 합도 $2$배가 되기 때문이다. 예를 들어 한 변이 $3\\,\\mathrm{cm}$에서 $6\\,\\mathrm{cm}$가 되면 둘레는 $12\\,\\mathrm{cm}$에서 $24\\,\\mathrm{cm}$가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 변이 모두 $2$배가 되어 합도 $2$배가 된다",
+              "(한 변$\\times 2$)$\\times 4$는 (한 변$\\times 4$)$\\times 2$와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형의 한 변의 길이를 $2$배로 늘려 새 정사각형을 만들면 둘레도 {$2$}배가 된다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "71212224bf9e96aa97838fd75dd3d766b955b8838442ef5b964d7eba2b9ac0c3",
+      "questionRevision": "planning-e5e6-20261006-71212224bf9e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc22",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "울타리 길이를 구하는 상황이 둘레를 구하는 것임을 알아본다.",
+      "bReason": "상황을 둘레로 읽는 판단은 xc18의 B에서 하고, 남는 것은 (12+8)×2 계산 하나뿐이다.",
+      "exclusionReason": "B는 e5-1-6-1-xc18과 같은 유형이고 단순 계산이다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $12\\,\\mathrm{m}$, 세로 $8\\,\\mathrm{m}$인 직사각형 모양 밭의 가장자리를 따라 한 바퀴 치는 울타리의 길이는 밭의 {둘레}와 같으므로 {$40$}$\\,\\mathrm{m}$이다.",
+      "cReason": "원문은 '땅 둘레에'라는 말에 빈칸 답이 이미 들어 있어 '가장자리를 따라 한 바퀴'로 풀어 쓰고 값도 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 953,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc22",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "울타리 길이 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "땅 둘레에 울타리를 치는 문제는 {둘레}를 구하는 문제이다.",
+        "example": {
+          "prompt": "가로 $12\\,\\mathrm{m}$, 세로 $8\\,\\mathrm{m}$인 밭 둘레에 칠 울타리는 몇 $\\mathrm{m}$인가?",
+          "answer": "$40\\,\\mathrm{m}$"
+        },
+        "studentC": "땅 둘레에 울타리를 치는 문제는 □를 구하는 문제이다.",
+        "answers": [
+          "둘레"
+        ]
+      },
+      "sourceFingerprint": "2bd84b9c0f6ed75501fbe83db1dbf1b7aeb54b9ad40557df66e382eaf77e886c",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "둘레",
+        "$40$"
+      ],
+      "cStudentAfter": "가로 $12\\,\\mathrm{m}$, 세로 $8\\,\\mathrm{m}$인 직사각형 모양 밭의 가장자리를 따라 한 바퀴 치는 울타리의 길이는 밭의 □와 같으므로 □$\\,\\mathrm{m}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "둘레"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $12\\,\\mathrm{m}$, 세로 $8\\,\\mathrm{m}$인 직사각형 모양 밭의 가장자리를 따라 한 바퀴 치는 울타리의 길이는 밭의 {둘레}와 같으므로 {$40$}$\\,\\mathrm{m}$이다.",
+      "cStudentSentence": "가로 $12\\,\\mathrm{m}$, 세로 $8\\,\\mathrm{m}$인 직사각형 모양 밭의 가장자리를 따라 한 바퀴 치는 울타리의 길이는 밭의 □와 같으므로 □$\\,\\mathrm{m}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "둘레",
+          "equivalents": []
+        },
+        {
+          "key": "$40$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가로 $12\\,\\mathrm{m}$, 세로 $8\\,\\mathrm{m}$인 직사각형 모양 밭의 가장자리를 따라 한 바퀴 치는 울타리의 길이는 밭의 {둘레}와 같으므로 {$40$}$\\,\\mathrm{m}$이다.",
+        "acceptedAnswers": [
+          [
+            "둘레"
+          ],
+          [
+            "$40$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-6-1-xc18과 같은 유형이고 단순 계산이다."
+      },
+      "proposalFingerprint": "948cea1914f7cd8fdcc27440f9e3b16c76ed3714d8a334df4239a939f80ba54f",
+      "questionRevision": "planning-e5e6-20261006-948cea1914f7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc23",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정다각형의 둘레와 한 변의 길이를 알 때 어떤 정다각형인지 알아내는 방법을 설명하고, 한 변이 $4\\,\\mathrm{cm}$, 둘레가 $28\\,\\mathrm{cm}$인 정다각형의 이름을 쓰시오.",
+      "bAnswer": "둘레를 한 변의 길이로 나누면 변의 수가 나온다. $28 \\div 4 = 7$이므로 변이 $7$개인 정칠각형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레를 한 변의 길이로 나누어 변의 수를 구한다",
+            "한 변의 길이에 몇을 곱해야 둘레가 되는지 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정칠각형"
+          ]
+        }
+      ],
+      "bGoal": "둘레와 한 변의 길이로 변의 수를 구해 정다각형의 이름을 정한다.",
+      "bReason": "제목만으로는 무엇이 주어지는지 알 수 없어 조건을 질문에 넣고 방법과 예의 답을 함께 요구했다.",
+      "cDecision": "keep",
+      "cAfter": "둘레를 한 변의 길이로 나누면 {변의 수}가 나와 어떤 정다각형인지 알 수 있다.",
+      "cReason": "나눗셈의 몫이 무엇을 뜻하는지를 '변의 수' 한 낱말로 묻는 분명한 문장이다.",
+      "synonymNotes": "'변의 개수'도 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 954,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc23",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "정다각형의 이름 알아내기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "둘레를 한 변의 길이로 나누면 {변의 수}가 나와 어떤 정다각형인지 알 수 있다.",
+        "example": {
+          "prompt": "한 변이 $4\\,\\mathrm{cm}$, 둘레가 $28\\,\\mathrm{cm}$인 정다각형은?",
+          "answer": "정칠각형"
+        },
+        "studentC": "둘레를 한 변의 길이로 나누면 □가 나와 어떤 정다각형인지 알 수 있다.",
+        "answers": [
+          "변의 수"
+        ]
+      },
+      "sourceFingerprint": "8a52f1d211f58cef1197861ead91e8e06294a93995cb52044c13740c00f6bd1b",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cFrozenDefinition": "둘레를 한 변의 길이로 나누면 {변의 수}가 나와 어떤 정다각형인지 알 수 있다.",
+      "cFrozenStudentSentence": "둘레를 한 변의 길이로 나누면 □가 나와 어떤 정다각형인지 알 수 있다.",
+      "cProposedAnswers": [
+        "변의 수"
+      ],
+      "cStudentAfter": "둘레를 한 변의 길이로 나누면 □가 나와 어떤 정다각형인지 알 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "둘레를 한 변의 길이로 나누면 {변의 수}가 나와 어떤 정다각형인지 알 수 있다.",
+      "cStudentSentence": "둘레를 한 변의 길이로 나누면 □가 나와 어떤 정다각형인지 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "변의 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정다각형의 둘레와 한 변의 길이를 알 때 어떤 정다각형인지 알아내는 방법을 설명하고, 한 변이 $4\\,\\mathrm{cm}$, 둘레가 $28\\,\\mathrm{cm}$인 정다각형의 이름을 쓰시오.",
+        "answer": "둘레를 한 변의 길이로 나누면 변의 수가 나온다. $28 \\div 4 = 7$이므로 변이 $7$개인 정칠각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘레를 한 변의 길이로 나누어 변의 수를 구한다",
+              "한 변의 길이에 몇을 곱해야 둘레가 되는지 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정칠각형"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "둘레를 한 변의 길이로 나누면 {변의 수}가 나와 어떤 정다각형인지 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "변의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "156f5eac6164ed3f39f05defb8c5071876b087e68fb291cd8e794c6bc73776f8",
+      "questionRevision": "planning-e5e6-20261006-156f5eac6164",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-1-xc24",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 사각형의 둘레를 각각 구해 길이를 비교한다.",
+      "bReason": "'각각 구해 비교한다'는 당연한 행동 안내라 설명할 개념이 없고, 계산은 c4·c5로 충분하다.",
+      "exclusionReason": "B는 자명한 절차 안내이며 계산은 e5-1-6-1-c4, e5-1-6-1-c5와 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "한 변이 $6\\,\\mathrm{cm}$인 마름모의 둘레는 {$24$}$\\,\\mathrm{cm}$, 이웃한 두 변이 $5\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 평행사변형의 둘레는 {$26$}$\\,\\mathrm{cm}$이므로 {평행사변형}의 둘레가 더 길다.",
+      "cReason": "'둘레를 각각 구해'라는 구절을 외우는 대신 두 둘레를 실제로 구해 비교하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 955,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-1-xc24",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-1 정다각형과 사각형의 둘레",
+        "term": "두 사각형의 둘레 견주기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "변의 길이를 아는 두 사각형의 둘레를 견줄 때는 {둘레를 각각 구해} 비교한다.",
+        "example": {
+          "prompt": "한 변이 $6\\,\\mathrm{cm}$인 마름모와 이웃한 두 변이 $5\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 평행사변형 중 둘레가 긴 것은?",
+          "answer": "평행사변형"
+        },
+        "studentC": "변의 길이를 아는 두 사각형의 둘레를 견줄 때는 □ 비교한다.",
+        "answers": [
+          "둘레를 각각 구해"
+        ]
+      },
+      "sourceFingerprint": "adcdf50cc8350318d85ce516f9a7ec1407a147be31d8609f215633602329954f",
+      "draftEvidence": "evidence/section-021-draft.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$26$",
+        "평행사변형"
+      ],
+      "cStudentAfter": "한 변이 $6\\,\\mathrm{cm}$인 마름모의 둘레는 □$\\,\\mathrm{cm}$, 이웃한 두 변이 $5\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 평행사변형의 둘레는 □$\\,\\mathrm{cm}$이므로 □의 둘레가 더 길다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26$"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행사변형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 변이 $6\\,\\mathrm{cm}$인 마름모의 둘레는 {$24$}$\\,\\mathrm{cm}$, 이웃한 두 변이 $5\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 평행사변형의 둘레는 {$26$}$\\,\\mathrm{cm}$이므로 {평행사변형}의 둘레가 더 길다.",
+      "cStudentSentence": "한 변이 $6\\,\\mathrm{cm}$인 마름모의 둘레는 □$\\,\\mathrm{cm}$, 이웃한 두 변이 $5\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 평행사변형의 둘레는 □$\\,\\mathrm{cm}$이므로 □의 둘레가 더 길다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$26$",
+          "equivalents": []
+        },
+        {
+          "key": "평행사변형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 변이 $6\\,\\mathrm{cm}$인 마름모의 둘레는 {$24$}$\\,\\mathrm{cm}$, 이웃한 두 변이 $5\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 평행사변형의 둘레는 {$26$}$\\,\\mathrm{cm}$이므로 {평행사변형}의 둘레가 더 길다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$26$"
+          ],
+          [
+            "평행사변형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 절차 안내이며 계산은 e5-1-6-1-c4, e5-1-6-1-c5와 겹친다."
+      },
+      "proposalFingerprint": "2b0a91ed2fe997b520f5cd7878fa0aad6476d6db07d95ab62ea9a1a1550fbd61",
+      "questionRevision": "planning-e5e6-20261006-2b0a91ed2fe9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "도형의 넓이는 무엇을 나타내는지 쓰고, 도형의 둘레가 나타내는 것과 어떻게 다른지 쓰세요.",
+      "bAnswer": "넓이는 도형이 평면에서 차지하는 크기이고, 둘레는 도형의 가장자리를 한 바퀴 돈 길이이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "도형이 차지하는 크기",
+            "도형 안쪽 면의 크기",
+            "$1\\,\\mathrm{cm} ^2$ 정사각형이 들어가는 개수로 나타내는 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 가장자리의 길이",
+            "둘레는 변의 길이의 합",
+            "둘레는 테두리를 한 바퀴 돈 길이"
+          ]
+        }
+      ],
+      "bGoal": "넓이가 차지하는 크기임을 둘레와 구별해 말한다.",
+      "bReason": "낱말 뜻만 물으면 답이 막연해 둘레와 견주어 답의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "평면에서 도형이 차지하는 크기를 그 도형의 {넓이}라 한다.",
+      "cReason": "'차지하는 크기'는 표현이 여러 가지라 낱말 '넓이'를 빈칸으로 옮겼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 956,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc1",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "넓이",
+        "kind": "정의",
+        "level": "하",
+        "definition": "평면에서 도형이 {차지하는 크기}를 넓이라 한다.",
+        "example": {
+          "prompt": "$\\mathrm{cm}$와 $\\mathrm{cm}^2$ 중 넓이를 나타내는 단위는?",
+          "answer": "$\\mathrm{cm}^2$"
+        },
+        "studentC": "평면에서 도형이 □를 넓이라 한다.",
+        "answers": [
+          "차지하는 크기"
+        ]
+      },
+      "sourceFingerprint": "a9dc9f23ca8a720a080551c226162abc560074d481c6ebdfe73fd5fafa79632d",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "넓이"
+      ],
+      "cStudentAfter": "평면에서 도형이 차지하는 크기를 그 도형의 □라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "넓이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "평면에서 도형이 차지하는 크기를 그 도형의 {넓이}라 한다.",
+      "cStudentSentence": "평면에서 도형이 차지하는 크기를 그 도형의 □라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "넓이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "도형의 넓이는 무엇을 나타내는지 쓰고, 도형의 둘레가 나타내는 것과 어떻게 다른지 쓰세요.",
+        "answer": "넓이는 도형이 평면에서 차지하는 크기이고, 둘레는 도형의 가장자리를 한 바퀴 돈 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "도형이 차지하는 크기",
+              "도형 안쪽 면의 크기",
+              "$1\\,\\mathrm{cm} ^2$ 정사각형이 들어가는 개수로 나타내는 크기"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레는 가장자리의 길이",
+              "둘레는 변의 길이의 합",
+              "둘레는 테두리를 한 바퀴 돈 길이"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평면에서 도형이 차지하는 크기를 그 도형의 {넓이}라 한다.",
+        "acceptedAnswers": [
+          [
+            "넓이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "90ba4624f796f91d5db2e9d7d8e3c5900673804ce4d184d27b2f3b3c18a9f902",
+      "questionRevision": "planning-e5e6-20261006-90ba4624f796",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc2",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "1cm²를 바르게 읽는다.",
+      "bReason": "읽는 법 하나는 서술할 내용이 없어 C 빈칸으로 충분하다.",
+      "cDecision": "keep",
+      "cAfter": "$1\\,\\mathrm{cm}^2$는 {$1$ 제곱센티미터}라고 읽는다.",
+      "cReason": "기호를 읽는 말 하나만 묻는 짧고 분명한 문장이다.",
+      "exclusionReason": "B만 제외. 단순한 읽기라 C로 평가한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'일 제곱센티미터', '1제곱센티미터'도 정답으로 인정한다.",
+      "sourceIndex": 957,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc2",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "$1\\,\\mathrm{cm}^2$ 읽기",
+        "kind": "단위",
+        "level": "하",
+        "definition": "$1\\,\\mathrm{cm}^2$는 {$1$ 제곱센티미터}라고 읽는다.",
+        "studentC": "$1\\,\\mathrm{cm}^2$는 □라고 읽는다.",
+        "answers": [
+          "$1$ 제곱센티미터"
+        ]
+      },
+      "sourceFingerprint": "7c3a5eb5ac7f5cb0076f77fdd67f477d1c4eb02a7c338d6a4be26939d17a9de6",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cFrozenDefinition": "$1\\,\\mathrm{cm}^2$는 {$1$ 제곱센티미터}라고 읽는다.",
+      "cFrozenStudentSentence": "$1\\,\\mathrm{cm}^2$는 □라고 읽는다.",
+      "cProposedAnswers": [
+        "$1$ 제곱센티미터"
+      ],
+      "cStudentAfter": "$1\\,\\mathrm{cm}^2$는 □라고 읽는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$ 제곱센티미터"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\,\\mathrm{cm}^2$는 {$1$ 제곱센티미터}라고 읽는다.",
+      "cStudentSentence": "$1\\,\\mathrm{cm}^2$는 □라고 읽는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$ 제곱센티미터",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1\\,\\mathrm{cm}^2$는 {$1$ 제곱센티미터}라고 읽는다.",
+        "acceptedAnswers": [
+          [
+            "$1$ 제곱센티미터"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 단순한 읽기라 C로 평가한다."
+      },
+      "proposalFingerprint": "1f6725b89ff70b68efdd69283b4d229c1f6257159ef78b8b69aef60afb10a880",
+      "questionRevision": "planning-e5e6-20261006-1f6725b89ff7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$1\\,\\mathrm{cm}^2$인 정사각형을 이용해 도형의 넓이를 수로 나타내는 방법을 쓰고, $1\\,\\mathrm{cm}^2$인 정사각형 $12$개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이를 쓰세요.",
+      "bAnswer": "$1\\,\\mathrm{cm}^2$인 정사각형이 몇 개 들어가는지 세어 그 수에 $\\mathrm{cm}^2$를 붙인다. $12\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{cm} ^2$ 정사각형이 몇 개 들어가는지 센다",
+            "덮는 정사각형의 개수를 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\,\\mathrm{cm} ^2$"
+          ]
+        }
+      ],
+      "bGoal": "넓이를 1cm²의 개수로 나타낸다.",
+      "bReason": "'단위넓이'는 학생이 모르는 말이라 1cm²인 정사각형으로 풀어 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{cm}^2$인 정사각형 {$12$}개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이는 $12\\,\\mathrm{cm}^2$이다.",
+      "cReason": "'몇 개 들어가는지'라는 구절 대신 개수와 넓이의 수가 같음을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 958,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc3",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "단위넓이의 개수 세기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "넓이는 $1\\,\\mathrm{cm}^2$인 정사각형이 {몇 개 들어가는지} 세어 나타낸다.",
+        "example": {
+          "prompt": "$1\\,\\mathrm{cm}^2$가 $12$개 들어가는 도형의 넓이는?",
+          "answer": "$12\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "넓이는 $1\\,\\mathrm{cm}^2$인 정사각형이 □ 세어 나타낸다.",
+        "answers": [
+          "몇 개 들어가는지"
+        ]
+      },
+      "sourceFingerprint": "c1c980f697f95b4fa5542d0837818ce3a0d36544b3bcfb27745eaa72e49d662f",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "$12$"
+      ],
+      "cStudentAfter": "$1\\,\\mathrm{cm}^2$인 정사각형 □개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이는 $12\\,\\mathrm{cm}^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\,\\mathrm{cm}^2$인 정사각형 {$12$}개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이는 $12\\,\\mathrm{cm}^2$이다.",
+      "cStudentSentence": "$1\\,\\mathrm{cm}^2$인 정사각형 □개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이는 $12\\,\\mathrm{cm}^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\,\\mathrm{cm}^2$인 정사각형을 이용해 도형의 넓이를 수로 나타내는 방법을 쓰고, $1\\,\\mathrm{cm}^2$인 정사각형 $12$개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이를 쓰세요.",
+        "answer": "$1\\,\\mathrm{cm}^2$인 정사각형이 몇 개 들어가는지 세어 그 수에 $\\mathrm{cm}^2$를 붙인다. $12\\,\\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{cm} ^2$ 정사각형이 몇 개 들어가는지 센다",
+              "덮는 정사각형의 개수를 센다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\,\\mathrm{cm} ^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\,\\mathrm{cm}^2$인 정사각형 {$12$}개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이는 $12\\,\\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e17e98293fab4a22e81e9c8766eb98a1688b145c05a90f09279f6296a2dffa53",
+      "questionRevision": "planning-e5e6-20261006-e17e98293fab",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc6",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "넓이에 cm²를 붙여 쓴다.",
+      "bReason": "단위를 붙인다는 사소한 표기 행동이고 xc9의 단위 구별과 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 xc9와 같은 cm²이고 '처럼'이라 답의 범위도 흐리다.",
+      "exclusionReason": "B·C 모두 제외. 대체: e5-1-6-2-xc9.",
+      "exampleNeeded": false,
+      "sourceIndex": 959,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc6",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "넓이에 단위 붙이기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "넓이를 쓸 때는 수 뒤에 {$\\mathrm{cm}^2$}처럼 넓이의 단위를 붙인다.",
+        "studentC": "넓이를 쓸 때는 수 뒤에 □처럼 넓이의 단위를 붙인다.",
+        "answers": [
+          "$\\mathrm{cm}^2$"
+        ]
+      },
+      "sourceFingerprint": "fdc037ee6fcdf68b8e43e76da65a8b3300a81a7a7eea144e08afd5fb7c03609c",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 모두 제외. 대체: e5-1-6-2-xc9.",
+        "cloze": "B·C 모두 제외. 대체: e5-1-6-2-xc9."
+      },
+      "proposalFingerprint": "fba209061876520457be5a246f07a471e7ce562e45eb1ea22bbb11d4a5494560",
+      "questionRevision": "planning-e5e6-20261006-fba209061876",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc7",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "모눈의 칸 수로 넓이를 구한다.",
+      "bReason": "칸을 세는 방법은 xc3와 같고 3줄에 4칸씩인 예는 c4와 겹친다.",
+      "cDecision": "keep",
+      "cAfter": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 {칸 수}만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+      "cReason": "한 칸 1cm²와 선을 따라 그린다는 조건이 있어 칸 수가 넓이임이 분명하다.",
+      "exclusionReason": "B만 제외. 대체: e5-1-6-2-xc3, e5-1-6-2-c4.",
+      "exampleNeeded": false,
+      "synonymNotes": "'칸의 수', '칸의 개수'도 정답으로 인정한다.",
+      "sourceIndex": 960,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc7",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "모눈종이로 넓이 세기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 {칸 수}만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+        "example": {
+          "prompt": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈 $3$줄에 $4$칸씩 칠했다. 넓이는?",
+          "answer": "$12\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 □만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+        "answers": [
+          "칸 수"
+        ]
+      },
+      "sourceFingerprint": "fb02647ae5ecb892bf993afb794860da92b581e7cf09a1288df5d5818ea5b8fa",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cFrozenDefinition": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 {칸 수}만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+      "cFrozenStudentSentence": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 □만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+      "cProposedAnswers": [
+        "칸 수"
+      ],
+      "cStudentAfter": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 □만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "칸 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 {칸 수}만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+      "cStudentSentence": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 □만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "칸 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 칸이 $1\\,\\mathrm{cm}^2$인 모눈에 칸의 선을 따라 그린 도형은 덮은 {칸 수}만큼의 $\\mathrm{cm}^2$가 넓이이다.",
+        "acceptedAnswers": [
+          [
+            "칸 수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 대체: e5-1-6-2-xc3, e5-1-6-2-c4."
+      },
+      "proposalFingerprint": "ec89ec7fcfbf22514cf562b8a7b82361512dc65fd6f36e66628c50537f3abffb",
+      "questionRevision": "planning-e5e6-20261006-ec89ec7fcfbf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "모양이 다른 두 도형의 넓이가 같은지 $1\\,\\mathrm{cm}^2$인 정사각형을 이용해 알아보는 방법을 쓰세요. 또 $1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형의 넓이를 비교하세요.",
+      "bAnswer": "각 도형에 들어가는 $1\\,\\mathrm{cm}^2$ 정사각형의 개수를 세어 비교한다. 두 도형 모두 $6\\,\\mathrm{cm}^2$로 넓이가 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{cm} ^2$ 정사각형의 개수를 세어 비교한다",
+            "들어가는 정사각형의 수가 같으면 넓이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 도형의 넓이가 같다",
+            "둘 다 $6\\,\\mathrm{cm} ^2$"
+          ]
+        }
+      ],
+      "bGoal": "모양이 달라도 1cm²의 개수가 같으면 넓이가 같음을 안다.",
+      "bReason": "결론을 알려 주지 않고 비교 방법과 구체적인 두 도형을 함께 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형은 모양이 다르지만 넓이는 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "'개수가 같으면'이라는 조건 구절 대신 실제 두 도형의 결론을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 961,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc8",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "모양이 다른 같은 넓이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모양이 달라도 $1\\,\\mathrm{cm}^2$의 {개수가 같으면} 넓이가 같다.",
+        "studentC": "모양이 달라도 $1\\,\\mathrm{cm}^2$의 □ 넓이가 같다.",
+        "answers": [
+          "개수가 같으면"
+        ]
+      },
+      "sourceFingerprint": "fe1f49d811a7bace957f1072d518fbc0eb130c97ad392b7f1142b6c5a7be1b09",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "$1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형은 모양이 다르지만 넓이는 서로 □.",
+      "cMarkedSentence": "$1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형은 모양이 다르지만 넓이는 서로 {같다}.",
+      "cStudentSentence": "$1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형은 모양이 다르지만 넓이는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모양이 다른 두 도형의 넓이가 같은지 $1\\,\\mathrm{cm}^2$인 정사각형을 이용해 알아보는 방법을 쓰세요. 또 $1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형의 넓이를 비교하세요.",
+        "answer": "각 도형에 들어가는 $1\\,\\mathrm{cm}^2$ 정사각형의 개수를 세어 비교한다. 두 도형 모두 $6\\,\\mathrm{cm}^2$로 넓이가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{cm} ^2$ 정사각형의 개수를 세어 비교한다",
+              "들어가는 정사각형의 수가 같으면 넓이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 도형의 넓이가 같다",
+              "둘 다 $6\\,\\mathrm{cm} ^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형은 모양이 다르지만 넓이는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e2ca1bc8dff346157dd68f997b024461b3abff7be19634d62c7d5d85873d4794",
+      "questionRevision": "planning-e5e6-20261006-e2ca1bc8dff3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc9",
+      "learningRole": "naming",
+      "bDecision": "revise",
+      "bPrompt": "$\\mathrm{cm}$와 $\\mathrm{cm}^2$는 각각 무엇을 나타낼 때 쓰는 단위인지 쓰고, 직사각형의 둘레와 넓이에는 각각 어느 단위를 쓰는지 쓰세요.",
+      "bAnswer": "$\\mathrm{cm}$는 길이의 단위라 둘레에 쓰고, $\\mathrm{cm}^2$는 넓이의 단위라 넓이에 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\mathrm{cm}$는 길이의 단위",
+            "$\\mathrm{cm}$는 둘레에 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\mathrm{cm} ^2$는 넓이의 단위",
+            "$\\mathrm{cm} ^2$는 넓이에 쓴다"
+          ]
+        }
+      ],
+      "bGoal": "길이 단위와 넓이 단위를 구별한다.",
+      "bReason": "두 단위의 쓰임을 둘레와 넓이에 이어 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "$\\mathrm{cm}$는 길이, {$\\mathrm{cm}^2$}는 넓이의 단위이다.",
+      "cReason": "cm와 대비해 넓이 단위 하나만 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 962,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc9",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "길이 단위와 넓이 단위",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$\\mathrm{cm}$는 길이, {$\\mathrm{cm}^2$}는 넓이의 단위이다.",
+        "studentC": "$\\mathrm{cm}$는 길이, □는 넓이의 단위이다.",
+        "answers": [
+          "$\\mathrm{cm}^2$"
+        ]
+      },
+      "sourceFingerprint": "4468b2dab46a495a527904082b71e3df0330d15e21c49f2c2b3a1db4ff3fb7e0",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cFrozenDefinition": "$\\mathrm{cm}$는 길이, {$\\mathrm{cm}^2$}는 넓이의 단위이다.",
+      "cFrozenStudentSentence": "$\\mathrm{cm}$는 길이, □는 넓이의 단위이다.",
+      "cProposedAnswers": [
+        "$\\mathrm{cm}^2$"
+      ],
+      "cStudentAfter": "$\\mathrm{cm}$는 길이, □는 넓이의 단위이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\mathrm{cm}^2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\mathrm{cm}$는 길이, {$\\mathrm{cm}^2$}는 넓이의 단위이다.",
+      "cStudentSentence": "$\\mathrm{cm}$는 길이, □는 넓이의 단위이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\mathrm{cm}^2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\mathrm{cm}$와 $\\mathrm{cm}^2$는 각각 무엇을 나타낼 때 쓰는 단위인지 쓰고, 직사각형의 둘레와 넓이에는 각각 어느 단위를 쓰는지 쓰세요.",
+        "answer": "$\\mathrm{cm}$는 길이의 단위라 둘레에 쓰고, $\\mathrm{cm}^2$는 넓이의 단위라 넓이에 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{cm}$는 길이의 단위",
+              "$\\mathrm{cm}$는 둘레에 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{cm} ^2$는 넓이의 단위",
+              "$\\mathrm{cm} ^2$는 넓이에 쓴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\mathrm{cm}$는 길이, {$\\mathrm{cm}^2$}는 넓이의 단위이다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{cm}^2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6a61b0461d233484b1c533721569bb95449c91d6f67227b79b0392238f714a01",
+      "questionRevision": "planning-e5e6-20261006-6a61b0461d23",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 넓이와 가로를 알 때 세로를 구하는 방법을, 넓이를 구하는 식과 관련지어 설명하세요. 또 넓이가 $48\\,\\mathrm{cm}^2$, 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로를 구하세요.",
+      "bAnswer": "(가로)$\\times$(세로)$=$(넓이)이므로 넓이를 가로로 나누면 세로가 된다. $48\\div8=6$이므로 $6\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이를 가로로 나눈다",
+            "가로에 곱해서 넓이가 되는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\,\\mathrm{cm}$",
+            "$6$"
+          ]
+        }
+      ],
+      "bGoal": "곱셈과 나눗셈의 관계로 넓이에서 세로를 구한다.",
+      "bReason": "방법만이 아니라 넓이 식과의 관계를 설명하도록 정했다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $48\\,\\mathrm{cm}^2$이고 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로는 $48${$\\div$}$8=${$6$}$(\\mathrm{cm})$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\div$",
+            "나누기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cReason": "'가로로 나누면'이라는 구절 대신 연산과 값을 실제 식에서 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 963,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc10",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "넓이로 세로 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직사각형의 넓이를 {가로로 나누면} 세로가 된다.",
+        "example": {
+          "prompt": "넓이 $48\\,\\mathrm{cm}^2$, 가로 $8\\,\\mathrm{cm}$인 직사각형의 세로는?",
+          "answer": "$6\\,\\mathrm{cm}$"
+        },
+        "studentC": "직사각형의 넓이를 □ 세로가 된다.",
+        "answers": [
+          "가로로 나누면"
+        ]
+      },
+      "sourceFingerprint": "274ac000d4c8a49d44fced240681ecf92cdd1371e402f7498737332b631207dc",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "$\\div$",
+        "$6$"
+      ],
+      "cStudentAfter": "넓이가 $48\\,\\mathrm{cm}^2$이고 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로는 $48$□$8=$□$(\\mathrm{cm})$이다.",
+      "cMarkedSentence": "넓이가 $48\\,\\mathrm{cm}^2$이고 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로는 $48${$\\div$}$8=${$6$}$(\\mathrm{cm})$이다.",
+      "cStudentSentence": "넓이가 $48\\,\\mathrm{cm}^2$이고 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로는 $48$□$8=$□$(\\mathrm{cm})$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\div$",
+          "equivalents": [
+            "나누기"
+          ]
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형의 넓이와 가로를 알 때 세로를 구하는 방법을, 넓이를 구하는 식과 관련지어 설명하세요. 또 넓이가 $48\\,\\mathrm{cm}^2$, 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로를 구하세요.",
+        "answer": "(가로)$\\times$(세로)$=$(넓이)이므로 넓이를 가로로 나누면 세로가 된다. $48\\div8=6$이므로 $6\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이를 가로로 나눈다",
+              "가로에 곱해서 넓이가 되는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\,\\mathrm{cm}$",
+              "$6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $48\\,\\mathrm{cm}^2$이고 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로는 $48${$\\div$}$8=${$6$}$(\\mathrm{cm})$이다.",
+        "acceptedAnswers": [
+          [
+            "$\\div$",
+            "나누기"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4fbe785b5a3e635149b7b2cec1f5fd9afcf7f28ec7ef1918c74431c02d63421c",
+      "questionRevision": "planning-e5e6-20261006-4fbe785b5a3e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정사각형의 넓이만 알 때 한 변의 길이를 찾는 방법을 설명하고, 넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이를 구하세요.",
+      "bAnswer": "같은 수를 두 번 곱해서 넓이가 되는 수를 찾는다. $8\\times8=64$이므로 $8\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 수를 두 번 곱해 넓이가 되는 수를 찾는다",
+            "어떤 수$\\times$어떤 수$=$넓이가 되는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\,\\mathrm{cm}$",
+            "$8$"
+          ]
+        }
+      ],
+      "bGoal": "같은 수끼리의 곱으로 정사각형의 한 변을 찾는다.",
+      "bReason": "제곱근을 배우지 않은 학년이라 곱해 보며 찾는 방법을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이는 같은 수를 두 번 곱해 $64$가 되는 수인 {$8$}$\\mathrm{cm}$이다.",
+      "cReason": "'같은 두 수를 곱해'라는 구절 대신 찾은 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 964,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc11",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "넓이로 정사각형의 한 변 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정사각형의 넓이를 알면 {같은 두 수를 곱해} 그 넓이가 되는 수를 찾아 한 변을 구한다.",
+        "example": {
+          "prompt": "넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변은?",
+          "answer": "$8\\,\\mathrm{cm}$"
+        },
+        "studentC": "정사각형의 넓이를 알면 □ 그 넓이가 되는 수를 찾아 한 변을 구한다.",
+        "answers": [
+          "같은 두 수를 곱해"
+        ]
+      },
+      "sourceFingerprint": "0693534f07620e80af209c25f9f25089586b25d74b63b367061bbef878019718",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "$8$"
+      ],
+      "cStudentAfter": "넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이는 같은 수를 두 번 곱해 $64$가 되는 수인 □$\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이는 같은 수를 두 번 곱해 $64$가 되는 수인 {$8$}$\\mathrm{cm}$이다.",
+      "cStudentSentence": "넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이는 같은 수를 두 번 곱해 $64$가 되는 수인 □$\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형의 넓이만 알 때 한 변의 길이를 찾는 방법을 설명하고, 넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이를 구하세요.",
+        "answer": "같은 수를 두 번 곱해서 넓이가 되는 수를 찾는다. $8\\times8=64$이므로 $8\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 수를 두 번 곱해 넓이가 되는 수를 찾는다",
+              "어떤 수$\\times$어떤 수$=$넓이가 되는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$",
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이는 같은 수를 두 번 곱해 $64$가 되는 수인 {$8$}$\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "be3c60da2c1622e14cf72f7acc38d2a236b2a459dc4765ba71a3497c752f7a56",
+      "questionRevision": "planning-e5e6-20261006-be3c60da2c16",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 가로와 세로로 넓이를 구하는 방법과 둘레를 구하는 방법이 어떻게 다른지 쓰고, 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 넓이와 둘레를 각각 구하세요.",
+      "bAnswer": "넓이는 가로와 세로를 곱하고, 둘레는 가로와 세로를 더한 뒤 $2$배 한다. 넓이는 $15\\,\\mathrm{cm}^2$, 둘레는 $16\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이는 가로와 세로를 곱한다",
+            "넓이는 가로$\\times$세로"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 가로와 세로를 더해 $2$배 한다",
+            "둘레는 네 변의 길이를 모두 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이 $15\\,\\mathrm{cm} ^2$",
+            "넓이 $15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레 $16\\,\\mathrm{cm}$",
+            "둘레 $16$"
+          ]
+        }
+      ],
+      "bGoal": "넓이와 둘레 구하는 방법을 구별한다.",
+      "bReason": "'섞는 잘못'은 편집용 제목이라 두 방법의 차이를 직접 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "가로와 세로를 {곱해야} 넓이이고, 더해서 $2$배 하면 둘레이다.",
+      "cReason": "넓이의 연산을 둘레 계산과 대비해 한 낱말로 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'곱하면', '곱해서'도 정답으로 인정한다.",
+      "sourceIndex": 965,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc12",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "넓이와 둘레를 섞는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가로와 세로를 {곱해야} 넓이이고, 더해서 $2$배 하면 둘레이다.",
+        "studentC": "가로와 세로를 □ 넓이이고, 더해서 $2$배 하면 둘레이다.",
+        "answers": [
+          "곱해야"
+        ]
+      },
+      "sourceFingerprint": "a76c52ab5de7a5b7cad56ba538b785e6e84c1c213ef023008c6b2079f22e4ab0",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cFrozenDefinition": "가로와 세로를 {곱해야} 넓이이고, 더해서 $2$배 하면 둘레이다.",
+      "cFrozenStudentSentence": "가로와 세로를 □ 넓이이고, 더해서 $2$배 하면 둘레이다.",
+      "cProposedAnswers": [
+        "곱해야"
+      ],
+      "cStudentAfter": "가로와 세로를 □ 넓이이고, 더해서 $2$배 하면 둘레이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱해야"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로와 세로를 {곱해야} 넓이이고, 더해서 $2$배 하면 둘레이다.",
+      "cStudentSentence": "가로와 세로를 □ 넓이이고, 더해서 $2$배 하면 둘레이다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱해야",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형의 가로와 세로로 넓이를 구하는 방법과 둘레를 구하는 방법이 어떻게 다른지 쓰고, 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 넓이와 둘레를 각각 구하세요.",
+        "answer": "넓이는 가로와 세로를 곱하고, 둘레는 가로와 세로를 더한 뒤 $2$배 한다. 넓이는 $15\\,\\mathrm{cm}^2$, 둘레는 $16\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이는 가로와 세로를 곱한다",
+              "넓이는 가로$\\times$세로"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레는 가로와 세로를 더해 $2$배 한다",
+              "둘레는 네 변의 길이를 모두 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이 $15\\,\\mathrm{cm} ^2$",
+              "넓이 $15$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레 $16\\,\\mathrm{cm}$",
+              "둘레 $16$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로와 세로를 {곱해야} 넓이이고, 더해서 $2$배 하면 둘레이다.",
+        "acceptedAnswers": [
+          [
+            "곱해야"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2fea75a91ec09803428fb4b4e184ac44ccc2cbb5a6b8e8bb73ce3c86ef51f3f9",
+      "questionRevision": "planning-e5e6-20261006-2fea75a91ec0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 같은 두 직사각형은 넓이도 반드시 같을까요? 가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형의 둘레와 넓이를 구해 답하세요.",
+      "bAnswer": "반드시 같지는 않다. 둘레는 둘 다 $16\\,\\mathrm{cm}$이지만 넓이는 $7\\,\\mathrm{cm}^2$와 $16\\,\\mathrm{cm}^2$로 다르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 반드시 같지는 않다",
+            "넓이가 다를 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레가 둘 다 $16\\,\\mathrm{cm}$",
+            "둘레가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이가 $7\\,\\mathrm{cm} ^2$와 $16\\,\\mathrm{cm} ^2$"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 같아도 넓이가 다를 수 있음을 예로 보인다.",
+      "bReason": "결론을 주지 않고 원문 예의 두 도형으로 판단과 근거를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형은 둘레가 모두 {$16$}$\\mathrm{cm}$이지만 넓이는 {$7$}$\\mathrm{cm}^2$와 {$16$}$\\mathrm{cm}^2$로 서로 다르다.",
+      "cReason": "'다를 수 있다'는 표현이 여러 가지라 실제 값으로 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 966,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc13",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "둘레가 같아도 다른 넓이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "둘레가 같은 두 직사각형도 넓이는 {다를 수 있다}.",
+        "example": {
+          "prompt": "둘레가 $16\\,\\mathrm{cm}$인 가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$와 가로·세로 $4\\,\\mathrm{cm}$인 직사각형의 넓이는?",
+          "answer": "$7\\,\\mathrm{cm}^2,\\ 16\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "둘레가 같은 두 직사각형도 넓이는 □.",
+        "answers": [
+          "다를 수 있다"
+        ]
+      },
+      "sourceFingerprint": "07c40d7d89301613083f8b88d45a87ebf7104108f9eeacbc2936c510924b91da",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "$16$",
+        "$7$",
+        "$16$"
+      ],
+      "cStudentAfter": "가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형은 둘레가 모두 □$\\mathrm{cm}$이지만 넓이는 □$\\mathrm{cm}^2$와 □$\\mathrm{cm}^2$로 서로 다르다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형은 둘레가 모두 {$16$}$\\mathrm{cm}$이지만 넓이는 {$7$}$\\mathrm{cm}^2$와 {$16$}$\\mathrm{cm}^2$로 서로 다르다.",
+      "cStudentSentence": "가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형은 둘레가 모두 □$\\mathrm{cm}$이지만 넓이는 □$\\mathrm{cm}^2$와 □$\\mathrm{cm}^2$로 서로 다르다.",
+      "cSlotAnswers": [
+        {
+          "key": "$16$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "$16$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "둘레가 같은 두 직사각형은 넓이도 반드시 같을까요? 가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형의 둘레와 넓이를 구해 답하세요.",
+        "answer": "반드시 같지는 않다. 둘레는 둘 다 $16\\,\\mathrm{cm}$이지만 넓이는 $7\\,\\mathrm{cm}^2$와 $16\\,\\mathrm{cm}^2$로 다르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 반드시 같지는 않다",
+              "넓이가 다를 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레가 둘 다 $16\\,\\mathrm{cm}$",
+              "둘레가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이가 $7\\,\\mathrm{cm} ^2$와 $16\\,\\mathrm{cm} ^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형은 둘레가 모두 {$16$}$\\mathrm{cm}$이지만 넓이는 {$7$}$\\mathrm{cm}^2$와 {$16$}$\\mathrm{cm}^2$로 서로 다르다.",
+        "acceptedAnswers": [
+          [
+            "$16$"
+          ],
+          [
+            "$7$"
+          ],
+          [
+            "$16$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "50510f69a62068ab8da7bbbc21f52e540a1692ecc005f5f9fd703427836c2fcc",
+      "questionRevision": "planning-e5e6-20261006-50510f69a620",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "넓이가 같은 두 직사각형은 둘레도 반드시 같을까요? 가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형의 넓이와 둘레를 구해 답하세요.",
+      "bAnswer": "반드시 같지는 않다. 넓이는 둘 다 $12\\,\\mathrm{cm}^2$이지만 둘레는 $16\\,\\mathrm{cm}$와 $14\\,\\mathrm{cm}$로 다르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레가 반드시 같지는 않다",
+            "둘레가 다를 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이가 둘 다 $12\\,\\mathrm{cm} ^2$",
+            "넓이가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레가 $16\\,\\mathrm{cm}$와 $14\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "넓이가 같아도 둘레가 다를 수 있음을 예로 보인다.",
+      "bReason": "xc13의 반대 방향이므로 따로 두고 같은 형식으로 판단과 근거를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형은 넓이가 모두 {$12$}$\\mathrm{cm}^2$이지만 둘레는 {$16$}$\\mathrm{cm}$와 {$14$}$\\mathrm{cm}$로 서로 다르다.",
+      "cReason": "원문은 바로 뒤 문장이 '둘레는 다르다'고 답을 알려 주므로 값을 구하게 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 967,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc14",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "넓이가 같아도 다른 둘레",
+        "kind": "성질",
+        "level": "중",
+        "definition": "넓이가 같은 두 직사각형의 둘레가 항상 같은 것은 {아니다}. 가로와 세로가 $6$과 $2$인 직사각형과 $4$와 $3$인 직사각형은 넓이는 같지만 둘레는 다르다.",
+        "example": {
+          "prompt": "가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$와 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형의 둘레는?",
+          "answer": "$16\\,\\mathrm{cm},\\ 14\\,\\mathrm{cm}$"
+        },
+        "studentC": "넓이가 같은 두 직사각형의 둘레가 항상 같은 것은 □. 가로와 세로가 $6$과 $2$인 직사각형과 $4$와 $3$인 직사각형은 넓이는 같지만 둘레는 다르다.",
+        "answers": [
+          "아니다"
+        ]
+      },
+      "sourceFingerprint": "d091af4b693a0d645275607968b52a12dd37ebfe51834bd598bce71ce649a439",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$16$",
+        "$14$"
+      ],
+      "cStudentAfter": "가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형은 넓이가 모두 □$\\mathrm{cm}^2$이지만 둘레는 □$\\mathrm{cm}$와 □$\\mathrm{cm}$로 서로 다르다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형은 넓이가 모두 {$12$}$\\mathrm{cm}^2$이지만 둘레는 {$16$}$\\mathrm{cm}$와 {$14$}$\\mathrm{cm}$로 서로 다르다.",
+      "cStudentSentence": "가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형은 넓이가 모두 □$\\mathrm{cm}^2$이지만 둘레는 □$\\mathrm{cm}$와 □$\\mathrm{cm}$로 서로 다르다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$16$",
+          "equivalents": []
+        },
+        {
+          "key": "$14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "넓이가 같은 두 직사각형은 둘레도 반드시 같을까요? 가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형의 넓이와 둘레를 구해 답하세요.",
+        "answer": "반드시 같지는 않다. 넓이는 둘 다 $12\\,\\mathrm{cm}^2$이지만 둘레는 $16\\,\\mathrm{cm}$와 $14\\,\\mathrm{cm}$로 다르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘레가 반드시 같지는 않다",
+              "둘레가 다를 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이가 둘 다 $12\\,\\mathrm{cm} ^2$",
+              "넓이가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레가 $16\\,\\mathrm{cm}$와 $14\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형은 넓이가 모두 {$12$}$\\mathrm{cm}^2$이지만 둘레는 {$16$}$\\mathrm{cm}$와 {$14$}$\\mathrm{cm}$로 서로 다르다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$16$"
+          ],
+          [
+            "$14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3a76799c50e34011070165aa7831f0cdc04587d52c2fda3ebd61f33e923e0615",
+      "questionRevision": "planning-e5e6-20261006-3a76799c50e3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직사각형이 아닌 ㄱ자 모양 도형의 넓이를 직사각형의 넓이 구하는 방법으로 구하려면 어떻게 하면 되는지 쓰세요. 또 가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 이어 붙인 도형의 넓이를 구하세요.",
+      "bAnswer": "직사각형 여러 개로 나누어 각각의 넓이를 구해 더한다. $10+6=16$이므로 $16\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직사각형으로 나누어 넓이를 더한다",
+            "큰 직사각형에서 빈 부분의 넓이를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16\\,\\mathrm{cm} ^2$",
+            "$16$"
+          ]
+        }
+      ],
+      "bGoal": "복합 도형을 직사각형으로 나누어 넓이를 구한다.",
+      "bReason": "그림 없이도 풀리도록 붙인 두 직사각형의 치수를 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 붙여 만든 도형의 넓이는 $10+${$6$}$=${$16$}$(\\mathrm{cm}^2)$이다.",
+      "cReason": "'직사각형 두 개로 나누어'는 그림 없이 외우는 구절이라 계산으로 바꿨다.",
+      "exampleNeeded": false,
+      "exampleReason": "글만으로 풀 수 있으나 ㄱ자 도형 그림을 붙이면 더 좋다.",
+      "sourceIndex": 968,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc15",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "나누어 넓이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "ㄱ자 도형은 {직사각형 두 개로 나누어} 넓이를 더한다.",
+        "example": {
+          "prompt": "가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$와 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 붙인 도형의 넓이는?",
+          "answer": "$16\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "ㄱ자 도형은 □ 넓이를 더한다.",
+        "answers": [
+          "직사각형 두 개로 나누어"
+        ]
+      },
+      "sourceFingerprint": "5fdf59f5e9a7314f77ff0cb1a7e558f41c22852c40a79fbcc1a100781ea299f0",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$16$"
+      ],
+      "cStudentAfter": "가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 붙여 만든 도형의 넓이는 $10+$□$=$□$(\\mathrm{cm}^2)$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 붙여 만든 도형의 넓이는 $10+${$6$}$=${$16$}$(\\mathrm{cm}^2)$이다.",
+      "cStudentSentence": "가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 붙여 만든 도형의 넓이는 $10+$□$=$□$(\\mathrm{cm}^2)$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$16$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형이 아닌 ㄱ자 모양 도형의 넓이를 직사각형의 넓이 구하는 방법으로 구하려면 어떻게 하면 되는지 쓰세요. 또 가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 이어 붙인 도형의 넓이를 구하세요.",
+        "answer": "직사각형 여러 개로 나누어 각각의 넓이를 구해 더한다. $10+6=16$이므로 $16\\,\\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형으로 나누어 넓이를 더한다",
+              "큰 직사각형에서 빈 부분의 넓이를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16\\,\\mathrm{cm} ^2$",
+              "$16$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 붙여 만든 도형의 넓이는 $10+${$6$}$=${$16$}$(\\mathrm{cm}^2)$이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$16$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "decf0ae0e07bdb4d1def5401bf4411885e13b2bb1446982d1ac29be4dc8e1d17",
+      "questionRevision": "planning-e5e6-20261006-decf0ae0e07b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-2-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형 종이의 한 귀퉁이에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 냈습니다. 남은 종이의 넓이를 처음 직사각형의 넓이를 이용해 구하는 방법을 설명하고, 넓이를 구하세요.",
+      "bAnswer": "처음 직사각형의 넓이에서 잘라 낸 정사각형의 넓이를 뺀다. $30-4=26$이므로 $26\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 넓이에서 잘라 낸 부분의 넓이를 뺀다",
+            "$30 - 4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26\\,\\mathrm{cm} ^2$",
+            "$26$"
+          ]
+        }
+      ],
+      "bGoal": "전체 넓이에서 없는 부분을 빼어 넓이를 구한다.",
+      "bReason": "'빈 부분'이 무엇인지 알 수 있게 잘라 낸 상황을 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 내면 남은 넓이는 {$30$}$-${$4$}$=${$26$}$(\\mathrm{cm}^2)$이다.",
+      "cReason": "'빈 부분의 넓이를 빼어'라는 긴 구절 대신 두 넓이와 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 969,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-2-xc16",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
+        "term": "전체에서 빼어 넓이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "큰 직사각형에서 {빈 부분의 넓이를 빼어} 도형의 넓이를 구할 수도 있다.",
+        "example": {
+          "prompt": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 내고 남은 넓이는?",
+          "answer": "$26\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "큰 직사각형에서 □ 도형의 넓이를 구할 수도 있다.",
+        "answers": [
+          "빈 부분의 넓이를 빼어"
+        ]
+      },
+      "sourceFingerprint": "fadbdd7c4500eda00515b054cce749e8ee87e88348abb3669e9f9bdeebea8c99",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "cProposedAnswers": [
+        "$30$",
+        "$4$",
+        "$26$"
+      ],
+      "cStudentAfter": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 내면 남은 넓이는 □$-$□$=$□$(\\mathrm{cm}^2)$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 내면 남은 넓이는 {$30$}$-${$4$}$=${$26$}$(\\mathrm{cm}^2)$이다.",
+      "cStudentSentence": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 내면 남은 넓이는 □$-$□$=$□$(\\mathrm{cm}^2)$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$26$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형 종이의 한 귀퉁이에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 냈습니다. 남은 종이의 넓이를 처음 직사각형의 넓이를 이용해 구하는 방법을 설명하고, 넓이를 구하세요.",
+        "answer": "처음 직사각형의 넓이에서 잘라 낸 정사각형의 넓이를 뺀다. $30-4=26$이므로 $26\\,\\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 넓이에서 잘라 낸 부분의 넓이를 뺀다",
+              "$30 - 4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$26\\,\\mathrm{cm} ^2$",
+              "$26$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 내면 남은 넓이는 {$30$}$-${$4$}$=${$26$}$(\\mathrm{cm}^2)$이다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "$26$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e8fd13a7f4826f0fe6fbaadd5fc450c45486f294c65b47d25572a89ed8c4a534",
+      "questionRevision": "planning-e5e6-20261006-e8fd13a7f482",
+      "requiresIndependentReview": true
+    }
+  ]
+}

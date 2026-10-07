@@ -1,0 +1,140 @@
+{
+  "rows": [
+    {
+      "id": "e6-1-1-3-xc16",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{6}{5}\\div3$을 '분자를 $3$으로 나누기'와 '분모에 $3$ 곱하기'로 계산할 때, 두 방법에서 조각의 크기와 개수가 각각 어떻게 다른지 설명하고 몫을 쓰세요.",
+      "bAnswer": "분자를 나누면 크기는 $\\frac{1}{5}$로 그대로이고 한 몫의 조각 수는 $6\\div3=2$개이다. 분모에 $3$을 곱하면 조각의 크기는 $\\frac{1}{15}$로 작아지고 한 몫에 그 조각 $6$개를 모은다. 몫은 $\\frac{2}{5}=\\frac{6}{15}$로 같다.",
+      "bGoal": "두 방법을 조각 크기와 개수의 관점에서 구별한다.",
+      "bReason": "구체 예에서 두 방법의 의미 차이를 비교하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자를 나누면 크기는 $\\frac{1}{5}$ 그대로이고 한 몫은 $2$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모에 $3$을 곱하면 크기는 $\\frac{1}{15}$이고 한 몫은 $6$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$",
+            "$\\frac{6}{15}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ {$\\frac{6}{15}$}이고, 약분하면 {$\\frac{2}{5}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{6}{15}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$"
+          ]
+        }
+      ],
+      "cReason": "긴 설명 구절 암기 대신 분모에 곱한 값과 약분한 값을 구하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final-1690-1730.json",
+      "codexFinalAmendedFromFingerprint": "1c24e47cbf30511bc80e97127dc02213751925121b2d7206f86e418980a6e587",
+      "sourceIndex": 1692,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc16",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "분자를 나눌 때와 분모에 곱할 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분자를 나누는 방법은 조각의 {크기를 유지하며 개수를} 나누는 것이고, 분모에 곱하는 방법은 {각 조각을 더 작게} 나누어 한 몫씩 모으는 것이다.",
+        "studentC": "분자를 나누는 방법은 조각의 □ 나누는 것이고, 분모에 곱하는 방법은 □ 나누어 한 몫씩 모으는 것이다.",
+        "answers": [
+          "크기를 유지하며 개수를",
+          "각 조각을 더 작게"
+        ]
+      },
+      "sourceFingerprint": "fd213000897a2c04617d34408f405302c5a484b37a22a205e6f305c8615bf8df",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{6}{15}$",
+        "$\\frac{2}{5}$"
+      ],
+      "cStudentAfter": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ □이고, 약분하면 □이다.",
+      "cMarkedSentence": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ {$\\frac{6}{15}$}이고, 약분하면 {$\\frac{2}{5}$}이다.",
+      "cStudentSentence": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ □이고, 약분하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{6}{15}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{2}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{6}{5}\\div3$을 '분자를 $3$으로 나누기'와 '분모에 $3$ 곱하기'로 계산할 때, 두 방법에서 조각의 크기와 개수가 각각 어떻게 다른지 설명하고 몫을 쓰세요.",
+        "answer": "분자를 나누면 크기는 $\\frac{1}{5}$로 그대로이고 한 몫의 조각 수는 $6\\div3=2$개이다. 분모에 $3$을 곱하면 조각의 크기는 $\\frac{1}{15}$로 작아지고 한 몫에 그 조각 $6$개를 모은다. 몫은 $\\frac{2}{5}=\\frac{6}{15}$로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자를 나누면 크기는 $\\frac{1}{5}$ 그대로이고 한 몫은 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모에 $3$을 곱하면 크기는 $\\frac{1}{15}$이고 한 몫은 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{5}$",
+              "$\\frac{6}{15}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ {$\\frac{6}{15}$}이고, 약분하면 {$\\frac{2}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{6}{15}$"
+          ],
+          [
+            "$\\frac{2}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f72ab9242d24f9977aadd4bc6d1d7895262c05d855b7a3e05728904a02ba3111",
+      "questionRevision": "planning-e5e6-20261006-f72ab9242d24",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-1-1-3-xc16",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "B분자나눔은1/5두개, 분모곱셈은1/15여섯개로 질문의크기·개수둘다설명한다. 분수표기교정후A·R와C6/15=2/5를읽었다.",
+        "reader": "Codex worker final direct reading",
+        "sourceIndex": 1692,
+        "proposalFingerprintReviewed": "f72ab9242d24f9977aadd4bc6d1d7895262c05d855b7a3e05728904a02ba3111",
+        "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-final-1690-1730-corrected-input.json",
+        "learningRole": "reason",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "구체 예에서 두 방법의 의미 차이를 비교하게 한다.",
+        "cSourceReason": "긴 설명 구절 암기 대신 분모에 곱한 값과 약분한 값을 구하게 한다.",
+        "recordedAfterDirectReading": "2026-10-07T08:13:59.474238+00:00"
+      }
+    }
+  ]
+}
