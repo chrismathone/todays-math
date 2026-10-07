@@ -5,6 +5,10 @@ import type {
   FadingState,
   fadingConceptResponseSchema,
 } from "@/contracts/fadingApi.contract";
+import type {
+  FadingDailyOptions,
+  FadingDailyPlan,
+} from "@/contracts/fadingDaily.contract";
 
 /**
  * 화면이 «오늘의 기억»의 자료를 얻는 길 — 넷이고, 학생 API 의 네 길과 꼴이 같다 (`docs/planning/srs-overhaul-20261006.md` §14).
@@ -52,6 +56,11 @@ export type FadingSource = {
   catalog(grade?: string): Promise<FadingCatalog>;
   /** 개념 하나 — 읽기와, 복습일 전의 연습(연습은 아무것도 보내지 않는다). */
   concept(id: string): Promise<FadingConceptDetail>;
+  /**
+   * «오늘 할 일» — 하루 분량을 정하는 엔진의 계획(`fadingDaily.contract.ts`). **선택 길**이다: 없는 원천도 위의 넷만으로 그대로 돈다.
+   * 읽기뿐이다 — 활동은 위의 `act` 와 탐험의 지금 있는 길로 시작하고 끝낸다. `quota` 는 오늘 분량(넘지 않는 합계 · 1 ~ 60)이다.
+   */
+  dailyPlan?(options?: FadingDailyOptions): Promise<FadingDailyPlan>;
 };
 
 /**
