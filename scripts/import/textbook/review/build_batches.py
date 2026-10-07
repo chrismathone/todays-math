@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """준비된 문항 → 검토 묶음 (교과서 이관 · 2026-10-07).
 
-  python build_batches.py <prepared.jsonl> <units.json> <출력 폴더> [--size 40]
+  python build_batches.py <prepared.jsonl> <units.json> <출력 폴더> [--size 40] [--changed-from <앞 판 prepared.jsonl>]
+
+`--changed-from` 을 주면 **본문이나 정답이 앞 판과 달라진 문항만** 묶는다 — 수식 변환을 고쳐 본문이 바뀌면,
+앞 판의 검토는 그 문항에 대해 낡았다(고친 본문으로 다시 풀어야 한다). 풀이만 바뀐 문항은 다시 검토하지 않는다.
 
 과목마다 `units/<과목>.json`(차시 목록)과 `batch/<과목>-NNN.json`(문항 묶음)을 쓴다.
 묶음에는 **정답을 넣지 않는다** — 검토자가 직접 풀고, 그 답을 `collect.py` 가 출판사 정답과 대조한다.
@@ -45,6 +48,13 @@ def main() -> None:
     size = int(sys.argv[sys.argv.index("--size") + 1]) if "--size" in sys.argv else 40
     rows = [json.loads(line) for line in prepared.open(encoding="utf-8")]
     rows = [row for row in rows if not row["bad"]]
+    if "--changed-from" in sys.argv:
+        before = {
+            row["id"]: (row["content"], row["answer"])
+            for row in map(json.loads, pathlib.Path(sys.argv[sys.argv.index("--changed-from") + 1]).open(encoding="utf-8"))
+            if not row["bad"]
+        }
+        rows = [row for row in rows if before.get(row["id"]) != (row["content"], row["answer"])]
     units = json.loads(units_path.read_text(encoding="utf-8"))
     for name in ("units", "batch", "key", "out"):
         (out / name).mkdir(parents=True, exist_ok=True)

@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from prepare import balance_braces, brace_scripts, close_set_brace, eligible, post_convert, pre_convert, roman_escapes  # noqa: E402
+from prepare import balance_braces, brace_over, brace_roots, brace_scripts, close_set_brace, eligible, post_convert, pre_convert, roman_escapes  # noqa: E402
 
 
 def test_a_script_runs_until_the_space_as_the_hancom_editor_reads_it():
@@ -37,6 +37,59 @@ def test_a_script_stops_at_alignment_commas_spacing_marks_and_an_unmatched_paren
     # 끝에 매달린 등호는 첨자가 아니다
     assert brace_scripts("`_n rmC it_r= 5") == "`_n rmC it_r= 5"
     assert brace_scripts("a_n-1= 5") == "a_{n-1}= 5"
+
+
+def test_a_fraction_takes_everything_up_to_the_space_on_both_sides():
+    # 둘째 검토자가 «본문의 분수가 깨졌다»로 짚은 꼴들 — 전부 실제 자료의 수식이다
+    assert brace_over("a+3i over2-i") == "{a+3i} over {2-i}"
+    assert brace_over("2a-3 over5 + a+6 over5") == "{2a-3} over 5 + {a+6} over 5"
+    assert brace_over("y = 1+i over 1-i") == "y = {1+i} over {1-i}"
+    assert brace_over("4 over 1-i = 4(1+i) over {(1-i)(1+i)} = 4+4i over 1+1 =2+2i") == (
+        "4 over {1-i} = {4(1+i)} over {(1-i)(1+i)} = {4+4i} over {1+1} =2+2i"
+    )
+    assert brace_over("= ac+bd over {c^2 +d^2} + bc-ad over {c^2 +d^2} i") == (
+        "= {ac+bd} over {c^2 +d^2} + {bc-ad} over {c^2 +d^2} i"
+    )
+    assert brace_over("1 overn ge 2n overn+1") == "1 over n ge {2n} over {n+1}"
+    # 괄호 안의 분수 — 몫은 괄호를 넘지 않는다
+    assert brace_over("left(1+i over root2 right)^m") == "left({1+i} over {root2} right)^m"
+    assert brace_over("(a+3i over 2-i)") == "({a+3i} over {2-i})"
+    # 등호 · 쉼표는 몫을 가른다(띄어 쓰지 않았어도)
+    assert brace_over("f(x)=x+1 over x-2") == "f(x)={x+1} over {x-2}"
+    assert brace_over("2x-1 over x-2,") == "{2x-1} over {x-2},"
+
+
+def test_simple_or_already_braced_fractions_and_other_over_words_are_left_alone():
+    for script in ("1 over 2", "{1} over {2}", "a over b", "11 over2 ,~ 5", "{x+1} over {x-2}", "overline {AB}", "x overline y"):
+        assert brace_over(script) in (script, script.replace("over2", "over 2"))
+    assert brace_over("11 over2") == "11 over 2"
+
+
+def test_a_root_covers_everything_up_to_the_space():
+    assert brace_roots("i = root-1") == "i = root{-1}"
+    assert brace_roots("sqrt a sqrt b =sqrt ab") == "sqrt a sqrt b =sqrt {ab}"
+    assert brace_roots("sqrtx sqrty = sqrtxy") == "sqrtx sqrty = sqrt{xy}"
+    assert brace_roots("root2x+1 - root1-x") == "root{2x+1} - root{1-x}"
+    assert brace_roots("y= 2rootx = root4x") == "y= 2rootx = root{4x}"
+    assert brace_roots("sqrt(-5)^2") == "sqrt{(-5)^2}"
+    assert brace_roots("(sqrtab )^2") == "(sqrt{ab} )^2"
+    assert brace_roots("rootx over{root3-2x}") == "rootx over{root{3-2x}}"
+    # 줄바꿈(#) · 괄호는 몫을 끊는다 · 원자와 이미 묶인 것은 그대로
+    assert brace_roots("cases{ x=2sqrt7#y=-sqrt7}") == "cases{ x=2sqrt7#y=-sqrt7}"
+    for script in ("sqrt {x+1}", "root 2", "2SQRT6", "SQRT21", "root {3} of {8}", "root 3 of x+1"):
+        assert brace_roots(script) == script
+    # 분수와 같이 — 근호가 먼저 묶이고, 그 덩이가 분수의 몫이 된다
+    assert pre_convert("$a+b over 2 geq sqrtab$") == "${a+b} over 2 geq sqrt{ab}$"
+    assert pre_convert("$root2 over 1+i$") == "${root2} over {1+i}$"
+
+
+def test_an_operator_word_stuck_between_digits_and_brackets_is_spaced_out():
+    assert pre_convert("$(4a-6)div2$") == "$(4a-6) div 2$"
+    assert pre_convert("$(-10x+25)div5$") == "$(-10x+25) div 5$"
+    assert pre_convert("$3times(-2)$") == "$3 times (-2)$"
+    # 이미 띄어 쓴 것 · 글자 사이의 것은 그대로
+    assert pre_convert("$6 div x$") == "$6 div x$"
+    assert pre_convert("$a div b$") == "$a div b$"
 
 
 def test_backslash_letters_become_upright_groups():

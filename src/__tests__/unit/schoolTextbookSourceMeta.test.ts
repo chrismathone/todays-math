@@ -538,6 +538,21 @@ describe("parseSourceMaterial — 파일 이름 → 자료 종류 · 교과서 �
       levelRaw: "기본",
       chapterNo: 3,
     });
+    // «해결해요» — 종류를 말하는 낱말이 없는 이름(문항 269개가 «기타»로 떨어지고 있었다)
+    expect(
+      material(
+        G(
+          "중2",
+          "동아출판 중학 수학 2 (강옥기) (22개정)\\평가자료\\기본\\(동아출판) 중학_수학2_해결해요_1_3_기본.hwp",
+        ),
+      ),
+    ).toMatchObject({
+      kind: "수준별 문제",
+      kindRaw: "해결해요",
+      chapterNo: 1,
+      middleNo: 3,
+      levelRaw: "기본",
+    });
     const advanced = material(
       G(
         "중2",
