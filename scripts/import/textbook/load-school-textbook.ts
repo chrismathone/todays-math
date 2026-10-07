@@ -1173,7 +1173,9 @@ async function main(): Promise<void> {
           copied += 1;
         }
       console.log(
-        `\n그림 파일 — 새로 놓은 것 ${copied} · 이미 있던 것 ${kept} → ${FIGURE_PUBLIC_DIR}\n커밋해서 main 에 배포한 뒤에 문항을 싣는다.`,
+        `\n그림 파일 — 새로 놓은 것 ${copied} · 이미 있던 것 ${kept} → ${FIGURE_PUBLIC_DIR}\n` +
+          "🔴 그냥 main 에 밀면 운영 빌드가 깨진다(SHARED_FIGURE_ASSETS_EXTERNALIZED — 추적 그림 목록이 검증된 목록과 같아야 한다).\n" +
+          "커밋 → scripts/storage/shared-figures-cli.mjs manifest · upload · verify → src/config 두 파일 → main → 배포 Ready 뒤에 문항을 싣는다(10-handoff §0-ZS).",
       );
       return;
     }
