@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "canvas": {"width": 400, "height": 170},
+  "points": {"P": [25, 110], "Q": [85, 110], "R": [85, 65], "S": [160, 35], "T": [160, 99], "U": [208, 99], "V": [335, 115], "W": [263, 115], "X": [263, 61]},
+  "segments": {"PQ": ["P", "Q"], "QR": ["Q", "R"], "RP": ["R", "P"], "ST": ["S", "T"], "TU": ["T", "U"], "US": ["U", "S"], "VW": ["V", "W"], "WX": ["W", "X"], "XV": ["X", "V"]},
+  "angles": {
+    "acuteP": {"vertex": "P", "points": ["Q", "R"], "label": "$\\theta$", "radius": 13, "label_distance": 28},
+    "acuteS": {"vertex": "S", "points": ["T", "U"], "label": "$\\theta$", "radius": 13, "label_distance": 28},
+    "acuteV": {"vertex": "V", "points": ["W", "X"], "label": "$\\theta$", "radius": 13, "label_distance": 28},
+    "rightQ": {"vertex": "Q", "points": ["P", "R"], "right": true},
+    "rightT": {"vertex": "T", "points": ["S", "U"], "right": true},
+    "rightW": {"vertex": "W", "points": ["V", "X"], "right": true}
+  },
+  "labels": {"P": "$\\mathrm{P}$", "Q": "$\\mathrm{Q}$", "R": "$\\mathrm{R}$", "S": "$\\mathrm{S}$", "T": "$\\mathrm{T}$", "U": "$\\mathrm{U}$", "V": "$\\mathrm{V}$", "W": "$\\mathrm{W}$", "X": "$\\mathrm{X}$"}
+}

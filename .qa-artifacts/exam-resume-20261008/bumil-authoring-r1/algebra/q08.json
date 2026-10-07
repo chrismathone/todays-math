@@ -1,0 +1,452 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q08",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "다음 다섯 계산 카드를 계산한 값이 작은 것부터 큰 것 순서로 놓으려고 한다.\n\n| 카드 | 계산식 |\n| --- | --- |\n| 가 | $2\\cos60^{\\circ}\\div\\sin45^{\\circ}$ |\n| 나 | $\\sin90^{\\circ}+2\\sin30^{\\circ}$ |\n| 다 | $(1+\\cos60^{\\circ})(1-\\cos60^{\\circ})$ |\n| 라 | $\\tan60^{\\circ}\\div\\cos0^{\\circ}$ |\n| 마 | $\\cos30^{\\circ}\\div\\tan30^{\\circ}$ |\n\n세 번째 칸에 놓일 카드와 그 계산값을 바르게 짝지은 것은?",
+  "choices": [
+    "가, $\\sqrt{2}$",
+    "라, $\\sqrt{3}$",
+    "마, $\\frac{3}{2}$",
+    "나, $2$",
+    "다, $\\frac{3}{4}$"
+  ],
+  "answer": "③",
+  "solution": "각 카드에 특수각의 삼각비 값을 직접 대입한다.\n가: $2\\times\\frac{1}{2}\\div\\frac{\\sqrt{2}}{2}=\\sqrt{2}$\n나: $1+2\\times\\frac{1}{2}=2$\n다: $(1+\\frac{1}{2})(1-\\frac{1}{2})=\\frac{3}{2}\\times\\frac{1}{2}=\\frac{3}{4}$\n라: $\\sqrt{3}\\div1=\\sqrt{3}$\n마: $\\frac{\\sqrt{3}}{2}\\div\\frac{\\sqrt{3}}{3}=\\frac{3}{2}$\n모두 양수이고 $2<\\frac{9}{4}<3<4$이므로 $\\sqrt{2}<\\frac{3}{2}<\\sqrt{3}<2$이다. 또 $\\frac{3}{4}<1<\\sqrt{2}$이다.\n따라서 작은 것부터 다, 가, 마, 라, 나의 순서이며, 세 번째 카드는 마이고 값은 $\\frac{3}{2}$이다. 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "cardValues": {
+      "가": "sqrt(2)",
+      "나": "2",
+      "다": "3/4",
+      "라": "sqrt(3)",
+      "마": "3/2"
+    },
+    "ascendingOrder": [
+      "다",
+      "가",
+      "마",
+      "라",
+      "나"
+    ],
+    "targetRank": 3,
+    "targetCard": "마",
+    "targetValueNumerator": 3,
+    "targetValueDenominator": 2,
+    "anglesDegrees": [
+      0,
+      30,
+      45,
+      60,
+      90
+    ],
+    "nativeTable": true
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "다섯 삼각비 계산식 중 계산값이 가장 큰 식의 번호를 고른다.",
+    "after": "계산식 카드를 수치 크기 순서로 배치하여 가운데 순위의 카드와 계산값을 복구한다. 모든 보기의 카드와 값 자체는 올바르게 연결되어 있으므로 순위를 판단해야 한다.",
+    "sharedConcept": "특수각과 경계각의 삼각비 대입, 근호 식 계산과 양수의 크기 비교",
+    "sharedProcedure": "정의 가능한 0°·30°·45°·60°·90° 삼각비 값을 각각 대입해 다섯 식을 계산하고 근호의 크기를 비교한다.",
+    "preparationAdjustment": "v2의 최댓값 카드·값 대응에서 세 번째 순위의 카드·값 대응으로 질문 대상을 바꾸었다. 원문의 계산·비교 절차와 기본 난이도 제안을 유지하되 최종 난이도 판정은 보류한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수01-09",
+      "9수01-10",
+      "9수02-12"
+    ],
+    "allowedProcedure": [
+      "특수각·경계각의 정의 가능한 삼각비 값을 직접 대입한다.",
+      "분수와 근호의 사칙계산을 수행한다.",
+      "양수인 값의 제곱을 비교하여 다섯 계산값의 순서를 정한다."
+    ],
+    "forbiddenAvoided": [
+      "삼각비 사이의 관계식·삼각함수 항등식",
+      "덧셈·배각·반각 공식",
+      "tan90°·0으로 나누기",
+      "라디안·0°~90° 밖의 일반각"
+    ],
+    "surfaceScope": {
+      "stem": "다섯 특수각 계산 카드와 세 번째 순위 질문",
+      "choices": "카드 이름과 정확한 계산값",
+      "figureAndNotation": "그림 없이 도 단위와 sin·cos·tan을 사용하며 tan90°는 없다.",
+      "studentSolution": "각 값을 직접 대입한 사칙계산과 양수 근호의 대소 비교",
+      "prerequisites": "특수각의 삼각비, 실수의 대소, 근호의 사칙계산, 분수 계산"
+    },
+    "status": "author-proposed",
+    "reviewStatus": "pending",
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "mappingJsonPointer": "/question_mappings/7",
+      "standards": [
+        {
+          "code": "9수01-09",
+          "verified_text": "실수의 대소 관계를 판단할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3784,
+            "record_offset_in_uncompressed_stream": 193153,
+            "extracted_paragraph_1based": 770
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수01-10",
+          "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수02-12",
+          "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "bandCaveat": {
+        "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+        "source_id": "moe-2020-236-math-hwp",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record_1based": 3713,
+          "record_offset_in_uncompressed_stream": 190162,
+          "text": "[중학교 1~3학년]"
+        },
+        "original_pdf_page_1based": 32,
+        "original_pdf_printed_page": 28
+      },
+      "versionLimitations": {
+        "verified_math_editions": [
+          "2015-74 book8 PDF",
+          "2020-236 amended book8 HWP"
+        ],
+        "post_2020_complete_amendment_chain_audited": false,
+        "final_candidate_approval_allowed": false,
+        "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+      }
+    }
+  },
+  "independentVerification": null,
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-8",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 8,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "0c929304dd97121656bd6c8a41b8ae692ed7266a437c0df6f40bb097b65161c6",
+    "sourceObservation": "다섯 식에 0°,30°,45°,60°,90°의 sin·cos·tan과 곱셈·나눗셈이 섞여 있다.",
+    "sharedConceptProcedure": "특수각 및 경계각 삼각비 값을 대입하고 각 식을 정리한 뒤 값의 크기를 비교한다.",
+    "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "referenceJsonPointer": "/7/content",
+    "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "계산",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "familyKey": "mid:3-2|삼각비|13",
+      "currentUnit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "currentRegistryMatch": {
+        "key": "3-2|삼각비|13",
+        "grade": "중3",
+        "unitSection": "삼각비의 값",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비",
+        "rpmType": "13",
+        "rpmTitle": "의 삼각비의 값"
+      },
+      "liveCount": 18,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "0°·90°와 30°·45°·60°의 알려진 값을 대입해 식을 계산한다. 기존 14/15는 각의 구간에 따른 대소·부호 판단이 핵심이어서 계산 후 선택지 비교라는 겉형식만으로 선택하지 않는다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수04-17",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수01-09",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3784,
+          "record_offset_in_uncompressed_stream": 193153,
+          "extracted_paragraph_1based": 770
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수01-10",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-12",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3956,
+          "record_offset_in_uncompressed_stream": 201534,
+          "extracted_paragraph_1based": 807
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "특수각·경계각의 정의 가능한 삼각비 값을 직접 대입한다. 분수와 근호의 사칙계산을 수행한다. 양수인 값의 제곱을 비교하여 다섯 계산값의 순서를 정한다.",
+    "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": [
+        "D:/todays-math/src/lib/middle/m3Trig.ts:1382",
+        "D:/todays-math/src/lib/middle/m3Trig.ts:1410"
+      ],
+      "authorObservation": {
+        "status": "author-proposed-not-family-approval",
+        "path": "src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "scope": "read-only-procedure-comparison",
+        "familyType": "trig-13"
+      }
+    },
+    "source": "transformed",
+    "originProblemId": null,
+    "problemCode": null,
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate"
+    },
+    "publicationStatus": "author-proposed-not-approved",
+    "independentVerificationStatus": "pending-parent-blind-verification",
+    "gradeApprovalStatus": "pending-parent-review",
+    "rightsReviewStatus": "pending-parent-review",
+    "similarityReviewStatus": "pending-parent-review",
+    "directUseAllowed": false,
+    "sourceQuestionType": "객관식",
+    "sourceScore": 4,
+    "objectiveDifficultyScorePolicy": "preserve-v2-difficulty-proposal-and-source-score; final-objective-review-pending",
+    "curriculumSourceMethodProposal": "30°,45°,60°의 직각삼각형에서 얻은 값과 0°,90°의 정의 가능한 값을 직접 대입하여 근호 식의 값을 비교한다.",
+    "sourceCurriculumSpecificHold": "삼각비 항등식으로 정리하지 않는다. 0°~90°라 하여 tan90°나 0으로 나누기를 허용하지 않는다.",
+    "authorSanityChecks": {
+      "reportedBy": "author",
+      "independent": false,
+      "reviewDecision": null,
+      "requiredFields": "present",
+      "uniqueCorrectChoice": "③",
+      "mathSpanCount": 19,
+      "mathSyntax": "katex-strict-pass",
+      "difficultyAndScore": "source-score-and-v2-difficulty-preserved; objective-review-pending"
+    }
+  },
+  "review": {
+    "status": "pending",
+    "gradeCurriculum": "pending",
+    "equivalentConceptAndMethod": "pending",
+    "distinctPresentation": "pending",
+    "naturalKorean": "pending",
+    "mathematicalCorrectness": "pending",
+    "figure": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "canvas": {"width": 320, "height": 230},
+  "points": {"S": [55, 55], "O": [55, 155], "A": [228.20508075688772, 155]},
+  "segments": {"SO": ["S", "O"], "OA": ["O", "A"], "AS": ["A", "S"]},
+  "angles": {"rightO": {"vertex": "O", "points": ["S", "A"], "right": true}, "acuteA": {"vertex": "A", "points": ["O", "S"], "label": "$30^{\\circ}$", "radius": 17, "label_distance": 35}},
+  "dimensions": {"slant": {"points": ["S", "A"], "label": "$8\\,\\mathrm{cm}$", "side": "auto"}},
+  "labels": {"S": "$\\mathrm{S}$", "O": "$\\mathrm{O}$", "A": "$\\mathrm{A}$"}
+}
