@@ -336,6 +336,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/fading",
         "GET /api/learn/fading/catalog",
         `GET /api/learn/fading/concepts/${UUID}`,
+        "GET /api/learn/fading/daily",
         // Existing test-console policy permits both; its handler restricts test accounts.
         "GET /api/learn/test-console",
         "POST /api/learn/test-console",
