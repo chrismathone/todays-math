@@ -9,6 +9,7 @@
  */
 import { errorLogPurgeResponseSchema } from "@/contracts/errorLog.contract";
 import { jsonError, jsonOk } from "@/lib/apiResponse";
+import { cronSecretMatches } from "@/lib/cronSecret";
 import { purgeExpiredErrorLogs } from "@/lib/errorLog/purge";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -20,7 +21,7 @@ async function handleGet(request: Request) {
       "CRON_SECRET 이 설정되지 않았습니다.",
       503,
     );
-  if (request.headers.get("authorization") !== `Bearer ${secret}`)
+  if (!cronSecretMatches(request, secret))
     return jsonError("UNAUTHORIZED", "cron 시크릿이 다릅니다.", 401);
   const result = await purgeExpiredErrorLogs(new Date());
   return jsonOk(errorLogPurgeResponseSchema, { data: result });

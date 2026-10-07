@@ -14,7 +14,11 @@ import * as api from "@/components/math-srs/mathSrsApi";
 import { effectAppears } from "../helpers/answerFeedback";
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 vi.mock("@/components/math-srs/mathSrsApi", () => ({
   fetchMathSrs: vi.fn(),
   startMathSrs: vi.fn(),
@@ -468,9 +472,7 @@ describe("account-based math practice", () => {
       await screen.findByRole("button", { name: "오답 다시 풀기 · 1문제" }),
     );
     expect(screen.getByText("모아 둔 오답 다시 풀기")).toBeInTheDocument();
-    await user.click(
-      screen.getByRole("button", { name: "학습 홈" }),
-    );
+    await user.click(screen.getByRole("button", { name: "학습 홈" }));
     expect(
       await screen.findByRole("button", { name: "오답 다시 풀기 · 1문제" }),
     ).toBeInTheDocument();
