@@ -10,6 +10,8 @@ const variants = [
   ['d', 'd-question-library.html'],
   ['e', 'e-class-packet.html'],
 ];
+const only = process.argv.find(arg => arg.startsWith('--only='))?.slice(7).toLowerCase();
+if (only && !variants.some(([id]) => id === only)) throw new Error('Unknown variant: ' + only);
 const output = path.resolve('.qa-artifacts/english-hifi');
 fs.mkdirSync(output, { recursive: true });
 const edge = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
@@ -18,6 +20,7 @@ const browser = await chromium.launch({ headless: true, ...(executablePath ? { e
 const report = [];
 try {
   for (const [id, file] of variants) {
+    if (only && id !== only) continue;
     const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -35,7 +38,7 @@ try {
 } finally {
   await browser.close();
 }
-fs.writeFileSync(path.join(output, 'capture-report.json'), JSON.stringify(report, null, 2));
+fs.writeFileSync(path.join(output, only ? `capture-${only}-report.json` : 'capture-report.json'), JSON.stringify(report, null, 2));
 console.log(JSON.stringify(report));
 if (report.some(item => item.errors.length || item.desktop.scrollWidth > item.desktop.width || item.phone.scrollWidth > item.phone.width)) {
   process.exitCode = 1;

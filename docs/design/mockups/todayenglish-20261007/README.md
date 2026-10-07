@@ -1,5 +1,7 @@
 # 오늘의 영어 — Hi-fi 5안
 
+**선택 확정: D + 오늘의 수학 구성.** `index.html#D` 또는 `d-question-library.html`을 열면 최신 선택안을 확인할 수 있다. A·B·C·E는 최초 비교 기록으로 보존한다. D에는 수학 작업실의 공통 탐색·시험지 구성과 AI로 원문부터 제작하는 흐름을 반영한다.
+
 `index.html`은 다섯 시안과 첫 화면 이미지를 모두 포함한 독립 HTML이다. 브라우저로 직접 열거나 Orca artifact로 공유할 수 있다. 폰트 CDN이 닿지 않으면 설치된 한국어 글꼴로 표시한다.
 
 | 파일 | 시작점 |
@@ -20,6 +22,8 @@
 node scripts/design/capture-todayenglish-hifi.mjs
 node scripts/design/build-todayenglish-hifi-gallery.mjs
 ```
+
+기존 다섯 썸네일이 있으면 D 후속 변경은 `node scripts/design/capture-todayenglish-hifi.mjs --only=d`로 D만 다시 캡처한 후 갤러리를 빌드한다.
 
 캡처는 기존 Playwright 의존성을 사용한다. Windows에서는 설치된 Edge를 사용하며, 다른 브라우저 실행 파일은 `HIFI_BROWSER_EXECUTABLE`로 지정할 수 있다. 캡처와 보고서는 `.qa-artifacts/english-hifi/`에 생성되고 갤러리의 썸네일은 HTML에 내장된다.
 
