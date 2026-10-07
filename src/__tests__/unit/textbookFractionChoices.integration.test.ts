@@ -235,9 +235,9 @@ function measureRows(rowClass: string): Measured[] {
     for (const row of rows) {
       const mathLines: Array<{ baseline: number; boxes: Box[] }> = [];
       for (const base of Array.from(
-        row.querySelectorAll<HTMLElement>(".katex-html > .base"),
+        row.querySelectorAll<HTMLElement>(".katex-html > .katex-base"),
       )) {
-        const strut = base.querySelector<HTMLElement>(":scope > .strut");
+        const strut = base.querySelector<HTMLElement>(":scope > .katex-strut");
         if (!strut) continue;
         const align = getComputedStyle(strut).verticalAlign;
         const shift = align === "baseline" ? 0 : parseFloat(align);

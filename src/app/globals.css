@@ -326,8 +326,8 @@ summary::-webkit-details-marker {
 :root {
   --op-limit-scale: 0.6em;
 }
-.katex .mop .sizing.reset-size6.size3,
-.katex .mop .sizing.reset-size6.size2 {
+.katex .mop .katex-sizing.reset-size6.size3,
+.katex .mop .katex-sizing.reset-size6.size2 {
   font-size: var(--op-limit-scale);
 }
 

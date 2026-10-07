@@ -5,7 +5,7 @@
  *
  * KaTeX 가 수식 모드에서 붉은 글자 없이 그리는 명령 이름(역슬래시 뺌, 공백 구분).
  */
-export const KATEX_COMMANDS_VERSION = "0.16.47";
+export const KATEX_COMMANDS_VERSION = "0.18.2";
 
 export const KATEX_COMMAND_NAMES =
   "AA Alpha And Bbb Bbbk Beta Box Bra Braket Bumpeq Cap Chi Colonapprox Coloneq " +
