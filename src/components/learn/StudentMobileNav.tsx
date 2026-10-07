@@ -11,12 +11,6 @@ const tabs = [
   { href: "/learn/lectures", label: "강의", icon: "play" },
   { href: "/learn/english-listening", label: "영어듣기", icon: "headphones" },
 ] as const;
-/** 서버 문이 켜져 있을 때 — «탐험 · 도감» 자리에 «오늘의 기억» 하나가 선다(그 앱 안에서는 이 메뉴를 그리지 않는다). */
-const fadingTabs = [
-  { href: "/learn/fading", label: "오늘의 기억", icon: "compass" },
-  tabs[2],
-  tabs[3],
-] as const;
 
 function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
   if (name === "headphones")
@@ -58,10 +52,9 @@ function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
 
 export function StudentMobileNav({
   previewPath,
-  fading = false,
 }: {
   previewPath?: string;
-  /** 서버 문이 켜져 있다(`fadingEnabled()` — 서버에서 읽어 내려 준다). */
+  /** Kept for older preview callers; concept recall now lives inside exploration. */
   fading?: boolean;
 }) {
   const actualPathname = usePathname();
@@ -83,7 +76,7 @@ export function StudentMobileNav({
 
   return (
     <nav className={s.nav} aria-label="학생 학습 메뉴">
-      {(fading ? fadingTabs : tabs).map((tab) => {
+      {tabs.map((tab) => {
         const current =
           tab.icon === "headphones"
             ? listening
@@ -91,8 +84,7 @@ export function StudentMobileNav({
               ? lectures
               : tab.icon === "book"
                 ? collection && !listening
-                : // «오늘의 기억» 탭은 그 앱 밖에서만 보이므로 지금 쪽이 될 일이 없다.
-                  !fading && !lectures && !collection && !listening;
+                : !lectures && !collection && !listening;
         return (
           <Link
             key={tab.href}

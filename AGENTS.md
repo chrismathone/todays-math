@@ -26,6 +26,19 @@ sessions where they help finish this task.
 
 # Student SRS redesign ("오늘의 기억") — who owns what
 
+**Owner direction updated 2026-10-07:** the existing **StudentMathExplorers**
+(journey, progress, problem practice and review) is the student SRS base.
+Integrate the new recall/typed-cloze flow into that experience; do not replace
+it with the separate v2 home or redirect `/learn` to `/learn/fading`.
+Preserve both record domains and keep the standalone fading source usable.
+The daily engine combines spaced review, prerequisite checks and progress;
+a configured base quota (for example 20) may grow to **20+n** for necessary
+same-session relearning after **1 minute / 5 minutes**. These short repeats
+must not double-update long-term FSRS. Read
+`docs/planning/srs-explorer-integration-20261007.md`. These newer decisions
+override the replacement/navigation/drop plan below; the data ownership,
+authentication and compatibility requirements still apply.
+
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
 (concept data contract, schedule, session rules, numbers, storage, tests).
