@@ -14,6 +14,7 @@ import {
 import { fadingDateOf, fadingDayOfDate } from "@/lib/fading/schedule";
 import { newFadingId } from "@/lib/fading/source";
 import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
+import { StudentAppShell } from "@/components/learn/StudentAppShell";
 import styles from "./preview.module.css";
 
 type Props = {
@@ -131,13 +132,15 @@ export function ExplorerSrsPreview(props: Props) {
         <p role="alert">{failure}</p>
       ) : source ? (
         <div className={styles.frame} data-preview-mode={mode}>
-          <StudentMathExplorers
-            conceptMemoryEnabled
-            fadingSource={source}
-            initialState={props.explorer}
-            journeyTheme="classic"
-            preview
-          />
+          <StudentAppShell student={props.explorer.student} preview>
+            <StudentMathExplorers
+              conceptMemoryEnabled
+              fadingSource={source}
+              initialState={props.explorer}
+              journeyTheme="classic"
+              preview
+            />
+          </StudentAppShell>
         </div>
       ) : (
         <p role="status">미리 보기를 준비하고 있습니다…</p>

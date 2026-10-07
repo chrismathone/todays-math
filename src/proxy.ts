@@ -33,6 +33,11 @@ import {
 import type { AccountAccess } from "@/contracts/accountAccess.contract";
 import { CLIENT_LOG_ENDPOINT } from "@/contracts/errorLogValues";
 import { logRejectedResponse } from "@/lib/errorLog/withErrorLog";
+import { getStudentLearningMenus } from "@/lib/learn/studentLearningMenusStore";
+import {
+  studentOptionalMenuAllowed,
+  studentOptionalMenuForPath,
+} from "@/lib/learn/studentLearningMenuPolicy";
 
 /** 학생 관문의 판정 → 응답. 막힌 API 는 403 **JSON**(화면용 되돌림을 fetch 가 파싱하다 죽는다). */
 function learnGateResponse(gate: LearnGate, url: URL): Response {
@@ -133,15 +138,40 @@ export const proxy = auth(async (req) => {
    * (src/lib/studentRouteAccess.ts)으로 여기서 끝낸다. 학생 요청은 아래 줄을 하나도 타지 않는다.
    */
   const student = req.auth?.student;
-  if (student)
-    return rejected(
-      req,
-      learnGateResponse(
-        studentGateFor(student.mustChangePassword, req.method, pathname),
-        req.nextUrl,
-      ),
-      { student: student.accountId },
+  if (student) {
+    const gate = studentGateFor(
+      student.mustChangePassword,
+      req.method,
+      pathname,
     );
+    const optionalMenu = studentOptionalMenuForPath(pathname);
+    if (gate.kind === "allow" && optionalMenu !== null) {
+      const menus =
+        optionalMenu === "english-listening"
+          ? { enabled: [] }
+          : await getStudentLearningMenus(student.studentId).catch(() => ({
+              enabled: [],
+            }));
+      if (!studentOptionalMenuAllowed(menus.enabled, pathname)) {
+        const response = pathname.startsWith("/api/")
+          ? NextResponse.json(
+              {
+                error: {
+                  code: "FORBIDDEN",
+                  message:
+                    "지점장이 이 학생에게 열어 준 기능만 이용할 수 있습니다.",
+                },
+              },
+              { status: 403 },
+            )
+          : NextResponse.redirect(new URL("/learn", req.nextUrl));
+        return rejected(req, response, { student: student.accountId });
+      }
+    }
+    return rejected(req, learnGateResponse(gate, req.nextUrl), {
+      student: student.accountId,
+    });
+  }
   // 로그인 안 한 사람의 /learn — 원장님 /login 이 아니라 학생 로그인으로(D-125 ⑷). /learn 밖은 null.
   if (!req.auth?.user?.id) {
     const learn = anonymousLearnGate(req.method, pathname);

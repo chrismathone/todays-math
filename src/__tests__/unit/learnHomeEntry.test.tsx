@@ -28,6 +28,7 @@ vi.mock("@/components/learn/textbook/TextbookReturnLink", () => ({
 
 import LearnHomePage from "@/app/learn/page";
 import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
+import { StudentChromeContext } from "@/components/learn/StudentChromeContext";
 
 const open = (query: Record<string, string> = {}) =>
   LearnHomePage({ searchParams: Promise.resolve(query) });
@@ -94,30 +95,43 @@ describe("학생 아래 메뉴", () => {
       .getAllByRole("link")
       .map((link) => [link.textContent, link.getAttribute("href")]);
 
-  it("개념 복습이 켜져 있어도 탐험·도감 메뉴를 유지한다", () => {
+  it("개념 복습이 켜져 있어도 기본은 탐험·도감뿐이다", () => {
     render(<StudentMobileNav fading />);
     expect(tabs()).toEqual([
       ["탐험", "/learn"],
       ["도감", "/learn?view=collection"],
-      ["강의", "/learn/lectures"],
-      ["영어듣기", "/learn/english-listening"],
     ]);
-    expect(screen.getByRole("link", { name: "강의" })).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
+    expect(screen.queryByRole("link", { name: "강의" })).toBeNull();
+    expect(screen.queryByRole("link", { name: "영어듣기" })).toBeNull();
     expect(screen.getByRole("link", { name: "탐험" })).not.toHaveAttribute(
       "aria-current",
     );
   });
 
-  it("꺼져 있으면 지금까지의 네 탭이다", () => {
+  it("개념 복습 문이 꺼져 있어도 탐험과 도감은 남는다", () => {
     render(<StudentMobileNav />);
     expect(tabs()).toEqual([
       ["탐험", "/learn"],
       ["도감", "/learn?view=collection"],
-      ["강의", "/learn/lectures"],
-      ["영어듣기", "/learn/english-listening"],
     ]);
+  });
+  it("지점장이 허용한 학생에게만 강의를 표시하고 영어듣기는 표시하지 않는다", () => {
+    render(
+      <StudentChromeContext.Provider
+        value={{ managed: false, preview: false, enabled: ["lectures"] }}
+      >
+        <StudentMobileNav />
+      </StudentChromeContext.Provider>,
+    );
+    expect(tabs()).toEqual([
+      ["탐험", "/learn"],
+      ["도감", "/learn?view=collection"],
+      ["강의", "/learn/lectures"],
+    ]);
+    expect(screen.getByRole("link", { name: "강의" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    expect(screen.queryByRole("link", { name: "영어듣기" })).toBeNull();
   });
 });

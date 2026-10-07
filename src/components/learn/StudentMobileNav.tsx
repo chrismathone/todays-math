@@ -4,23 +4,15 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import s from "./StudentMobileNav.module.css";
+import { useStudentChrome } from "./StudentChromeContext";
 
 const tabs = [
   { href: "/learn", label: "탐험", icon: "compass" },
   { href: "/learn?view=collection", label: "도감", icon: "book" },
   { href: "/learn/lectures", label: "강의", icon: "play" },
-  { href: "/learn/english-listening", label: "영어듣기", icon: "headphones" },
 ] as const;
 
 function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
-  if (name === "headphones")
-    return (
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 14v-3a8 8 0 0 1 16 0v3" />
-        <rect x="3" y="12" width="4" height="8" rx="2" />
-        <rect x="17" y="12" width="4" height="8" rx="2" />
-      </svg>
-    );
   if (name === "compass")
     return (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -52,20 +44,20 @@ function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
 
 export function StudentMobileNav({
   previewPath,
+  desktop = false,
 }: {
   previewPath?: string;
+  desktop?: boolean;
   /** Kept for older preview callers; concept recall now lives inside exploration. */
   fading?: boolean;
 }) {
+  const chrome = useStudentChrome();
   const actualPathname = usePathname();
   const searchParams = useSearchParams();
   const pathname = previewPath ?? actualPathname;
   const collection = !previewPath && searchParams.get("view") === "collection";
   const lectures =
     pathname === "/learn/lectures" || pathname.startsWith("/learn/watch/");
-  const listening =
-    pathname === "/learn/english-listening" ||
-    pathname.startsWith("/learn/english-listening/");
   if (
     pathname === "/learn/login" ||
     pathname === "/learn/password" ||
@@ -75,29 +67,40 @@ export function StudentMobileNav({
     return null;
 
   return (
-    <nav className={s.nav} aria-label="학생 학습 메뉴">
-      {tabs.map((tab) => {
-        const current =
-          tab.icon === "headphones"
-            ? listening
-            : tab.icon === "play"
+    <nav
+      className={`${s.nav} ${desktop ? s.desktop : ""}`}
+      aria-label="학생 학습 메뉴"
+      data-student-global-nav="true"
+    >
+      {tabs
+        .filter(
+          (tab) => tab.icon !== "play" || chrome.enabled.includes("lectures"),
+        )
+        .map((tab) => {
+          const current =
+            tab.icon === "play"
               ? lectures
               : tab.icon === "book"
-                ? collection && !listening
-                : !lectures && !collection && !listening;
-        return (
-          <Link
-            key={tab.href}
-            href={tab.href}
-            prefetch={false}
-            className={s.tab}
-            aria-current={current ? "page" : undefined}
-          >
-            <TabIcon name={tab.icon} />
-            <span>{tab.label}</span>
-          </Link>
-        );
-      })}
+                ? collection
+                : !lectures && !collection;
+          return (
+            <Link
+              key={tab.href}
+              href={tab.href}
+              prefetch={false}
+              aria-disabled={chrome.preview || undefined}
+              tabIndex={chrome.preview ? -1 : undefined}
+              onClick={
+                chrome.preview ? (event) => event.preventDefault() : undefined
+              }
+              className={s.tab}
+              aria-current={current ? "page" : undefined}
+            >
+              <TabIcon name={tab.icon} />
+              <span>{tab.label}</span>
+            </Link>
+          );
+        })}
     </nav>
   );
 }

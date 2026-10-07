@@ -4,6 +4,15 @@
   color: var(--math-atelier-ink, var(--learn-ink));
   background: var(--math-atelier-bg, var(--learn-bg));
 }
+.embedded {
+  min-width: 0;
+  color: var(--math-atelier-ink, var(--learn-ink));
+}
+.embeddedMain {
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-pretendard), Pretendard, sans-serif;
+}
 .main {
   width: min(100%, 1120px);
   max-width: 1120px;

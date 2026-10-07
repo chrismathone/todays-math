@@ -71,13 +71,14 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 11px 14px;
+  min-height: 68px;
+  padding: 10px max(16px, calc((100% - 1600px) / 2));
   background: var(--s-card, #fff);
   border-bottom: 1px solid var(--s-line, #dce5f1);
 }
 .top > b {
   flex: none;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.4px;
 }
@@ -86,9 +87,9 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
-  gap: 0 4px;
+  gap: 8px;
   min-width: 0;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--s-muted);
   text-align: right;
 }
@@ -96,17 +97,39 @@
   overflow-wrap: anywhere;
 }
 .textButton {
-  margin: -10px -8px;
-  padding: 10px 8px;
-  border: 0;
-  background: none;
-  color: inherit;
+  min-height: 44px;
+  min-width: 88px;
+  padding: 10px 14px;
+  border: 1px solid var(--s-line, #dce5f1);
+  border-radius: 12px;
+  background: var(--learn-soft, #edf2ff);
+  color: var(--s-ink, #192f52);
   font: inherit;
   cursor: pointer;
+  font-weight: 700;
 }
 .textButton:hover {
   color: var(--s-ink);
   text-decoration: underline;
+}
+.textButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+@media (max-width: 480px) {
+  .top {
+    gap: 8px;
+  }
+  .top > b {
+    font-size: 17px;
+  }
+  .who {
+    font-size: 12px;
+  }
+  .who > span:first-child {
+    max-width: 120px;
+  }
 }
 
 .body {
@@ -169,6 +192,34 @@
 }
 .listHeading p {
   display: none;
+}
+.lectureBody {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  gap: 20px;
+}
+.lectureBody
+  > :is(.listHeading, .mobileWelcome, .lectureEmpty, .line, .error, .primary) {
+  grid-column: 1 / -1;
+}
+.lectureEmpty {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 12px;
+  min-height: 240px;
+  padding: 32px 20px;
+  border: 1px solid var(--s-line, #dce5f1);
+  border-radius: 20px;
+  background: var(--s-card, #fff);
+  text-align: center;
+}
+.lectureEmpty strong {
+  font-size: 20px;
+}
+.lectureEmpty p {
+  margin: 0;
+  color: var(--s-muted);
+  font-size: 14px;
 }
 .h {
   margin: 0;

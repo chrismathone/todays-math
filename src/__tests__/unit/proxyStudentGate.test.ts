@@ -18,7 +18,13 @@ import path from "node:path";
 import { NextRequest } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { session } = vi.hoisted(() => ({ session: vi.fn() }));
+const { session, learningMenus } = vi.hoisted(() => ({
+  session: vi.fn(),
+  learningMenus: vi.fn(),
+}));
+vi.mock("@/lib/learn/studentLearningMenusStore", () => ({
+  getStudentLearningMenus: learningMenus,
+}));
 vi.mock("@/lib/auth", () => ({
   auth: (handler: (req: unknown) => unknown) => (request: NextRequest) =>
     handler(Object.assign(request, { auth: session() })),
@@ -208,6 +214,17 @@ const SIGNED_RECEIVER = [
 /** 브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기 한 메서드 · 한 경로뿐 */
 const REPORT = ["POST /api/logs/client"];
 
+const REMOVED_ENGLISH_REQUESTS = [
+  "GET /api/english/learn/listening",
+  `GET /api/english/learn/listening/${UUID}`,
+  `POST /api/english/learn/listening/${UUID}/prepare`,
+  `POST /api/english/learn/listening/${UUID}/commands`,
+  `GET /api/english/learn/listening/${UUID}/media/${UUID}`,
+  `HEAD /api/english/learn/listening/${UUID}/media/${UUID}`,
+  "GET /api/english/learn/listening/sound-check",
+  "HEAD /api/english/learn/listening/sound-check",
+];
+
 /**
  * 수학 랩실 화면 읽기 — 누구든 연다(D-135 ⑼, 원장님 2026-09-21 «추천대로 가»). 랩실은 서버·DB 를 안 부른다.
  * 🔴 손으로 적는다 — 관문의 판정(`/lab` 과 그 아래)을 여기서 다시 쓰면 세는 쪽과 고치는 쪽이 같이 눈이 먼다.
@@ -230,6 +247,10 @@ const LAB = [...LAB_PAGES, ...LAB_ROUTES].flatMap((p) => [
 
 beforeEach(() => {
   session.mockReset();
+  learningMenus.mockReset().mockResolvedValue({
+    enabled: ["lectures", "textbook"],
+    updatedAt: null,
+  });
   vi.mocked(recordAudit).mockClear();
 });
 
@@ -277,6 +298,40 @@ describe("모집단 — 파일 목록에서 뽑았다 (분모부터 검산)", ()
 });
 
 describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합이 정확히 이것이다", () => {
+  it("기본은 탐험뿐이고 추가 메뉴는 로그인한 학생에게 허용한 것만 연다", async () => {
+    session.mockReturnValue(studentSession(false));
+    learningMenus.mockResolvedValue({ enabled: [], updatedAt: null });
+    expect(passed(await run("GET", "/learn"))).toBe(true);
+    expect(passed(await run("GET", "/learn/math-explorers"))).toBe(true);
+    for (const p of ["/learn/lectures", `/learn/watch/${UUID}`, `/q/${UUID}`])
+      expect(
+        new URL((await run("GET", p)).headers.get("location")!).pathname,
+      ).toBe("/learn");
+    for (const p of [
+      "/api/learn/lectures",
+      "/api/learn/watch",
+      `/api/learn/textbook/q/${UUID}`,
+    ]) {
+      const response = await run(p.endsWith("watch") ? "POST" : "GET", p);
+      expect(response.status).toBe(403);
+    }
+    expect(learningMenus).toHaveBeenCalledWith(UUID);
+    learningMenus.mockResolvedValue({ enabled: ["lectures"], updatedAt: null });
+    expect(passed(await run("GET", "/learn/lectures"))).toBe(true);
+    expect(passed(await run("GET", `/q/${UUID}`))).toBe(false);
+    expect(passed(await run("GET", "/learn/english-listening"))).toBe(false);
+  });
+
+  it("허용 상태를 읽지 못하면 추가 메뉴를 닫고 비밀번호 변경 전에는 설정조차 읽지 않는다", async () => {
+    session.mockReturnValue(studentSession(false));
+    learningMenus.mockRejectedValue(new Error("offline"));
+    expect((await run("GET", "/api/learn/lectures")).status).toBe(403);
+    learningMenus.mockClear();
+    session.mockReturnValue(studentSession(true));
+    expect((await run("GET", "/api/learn/lectures")).status).toBe(403);
+    expect(learningMenus).not.toHaveBeenCalled();
+  });
+
   it("학생 학습 화면 · 학생 API · 나가기 · 세션 · 브랜드 이미지 · 랩실 읽기뿐", async () => {
     session.mockReturnValue(studentSession(false));
     const { pass } = await sweep();
@@ -285,8 +340,6 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         ...[
           `/q/${UUID}`,
           `/learn/textbook/${UUID}/concepts/${UUID}`,
-          "/learn/english-listening",
-          `/learn/english-listening/${UUID}`,
           "/learn",
           "/learn/lectures",
           "/learn/password",
@@ -306,14 +359,6 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         `POST /api/learn/textbook/editions/${UUID}/concepts/${UUID}/attempts`,
         `POST /api/learn/textbook/editions/${UUID}/concepts/${UUID}/review`,
         "GET /api/learn/lectures",
-        "GET /api/english/learn/listening",
-        `GET /api/english/learn/listening/${UUID}`,
-        `POST /api/english/learn/listening/${UUID}/prepare`,
-        `POST /api/english/learn/listening/${UUID}/commands`,
-        `GET /api/english/learn/listening/${UUID}/media/${UUID}`,
-        `HEAD /api/english/learn/listening/${UUID}/media/${UUID}`,
-        "GET /api/english/learn/listening/sound-check",
-        "HEAD /api/english/learn/listening/sound-check",
         `GET /api/learn/lectures/${UUID}`,
         "POST /api/learn/watch",
         "POST /api/learn/password",
@@ -361,7 +406,12 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
       if (p.startsWith("/api/")) {
         expect(res.status, key).toBe(403);
         expect(await res.json(), key).toStrictEqual({
-          error: { code: "FORBIDDEN", message: STUDENT_FORBIDDEN_MESSAGE },
+          error: {
+            code: "FORBIDDEN",
+            message: REMOVED_ENGLISH_REQUESTS.includes(key)
+              ? "지점장이 이 학생에게 열어 준 기능만 이용할 수 있습니다."
+              : STUDENT_FORBIDDEN_MESSAGE,
+          },
         });
       } else if (method === "GET" || method === "HEAD") {
         expect(res.status, key).toBe(307);

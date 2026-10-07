@@ -406,7 +406,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
       return {
         bar: bar.className,
         brand: bar.firstElementChild?.textContent,
-        leave: within(bar).getByRole("button", { name: "나가기" }).className,
+        leave: within(bar).getByRole("button", { name: "로그아웃" }).className,
       };
     };
     await renderList();
@@ -425,7 +425,7 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
         screen.getByRole("form", { name: "비밀번호 바꾸기" }),
       ) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
-    await user.click(within(bar).getByRole("button", { name: "나가기" }));
+    await user.click(within(bar).getByRole("button", { name: "로그아웃" }));
     await waitFor(() =>
       expect(router.replace).toHaveBeenCalledWith("/learn/login"),
     );
@@ -451,11 +451,11 @@ describe("첫 로그인 — 비밀번호 바꾸기 (/learn/password — 시안 s
     // 다른 학생 아이디로 잘못 들어온 학생이 윗줄 이름으로 바로 안다 — 그러면 «나가기»
     render(<StudentPasswordForm studentName="이서준" />);
     expect(screen.getByRole("banner").textContent).toBe(
-      "오늘의수학이서준·나가기",
+      "오늘의수학이서준·로그아웃",
     );
     cleanup();
     render(<StudentPasswordForm studentName={null} />);
-    expect(screen.getByRole("banner").textContent).toBe("오늘의수학나가기");
+    expect(screen.getByRole("banner").textContent).toBe("오늘의수학로그아웃");
   });
 
   it("학생 세션이 없으면(받은 번호 탓이 아닌 401) 학생 로그인으로", async () => {
@@ -482,7 +482,7 @@ const TODAY = new Date("2026-09-15T08:00:00.000Z");
 async function renderList(opts: { now?: Date; set?: LearnHifiSet } = {}) {
   set = opts.set ?? "mockup";
   render(<LectureList now={opts.now ?? TODAY} />);
-  await screen.findByRole("heading", { name: "오늘의 개념" });
+  await screen.findByRole("heading", { name: "강의 자료" });
   await waitFor(() =>
     expect(screen.queryByText("불러오는 중…")).not.toBeInTheDocument(),
   );
@@ -499,7 +499,7 @@ describe("🔴 ③ 목록 (/learn — 시안 sList) — 수업한 날로 묶는�
     expect(top).toHaveTextContent("오늘의수학");
     expect(top).toHaveTextContent("김도윤 · 중1 A반");
     expect(
-      within(top).getByRole("button", { name: "나가기" }),
+      within(top).getByRole("button", { name: "로그아웃" }),
     ).toBeInTheDocument();
   });
 
@@ -586,13 +586,13 @@ describe("🔴 ③ 목록 (/learn — 시안 sList) — 수업한 날로 묶는�
 
   it("볼 강의가 없으면 한 줄", async () => {
     await renderList({ set: "empty" });
-    expect(screen.getByText("아직 볼 강의가 없습니다.")).toBeInTheDocument();
+    expect(screen.getByText("아직 배정된 강의가 없어요")).toBeInTheDocument();
   });
 
   it("나가기 — 학생 로그아웃 API 를 부르고 학생 로그인으로", async () => {
     const user = userEvent.setup();
     await renderList();
-    await user.click(screen.getByRole("button", { name: "나가기" }));
+    await user.click(screen.getByRole("button", { name: "로그아웃" }));
     await waitFor(() =>
       expect(router.replace).toHaveBeenCalledWith("/learn/login"),
     );
