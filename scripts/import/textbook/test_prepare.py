@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from prepare import balance_braces, brace_over, brace_roots, brace_scripts, close_set_brace, eligible, points_to_figure, post_convert, pre_convert, roman_escapes  # noqa: E402
+from prepare import balance_braces, brace_over, brace_roots, brace_scripts, close_set_brace, converts_answer, eligible, points_to_figure, post_convert, pre_convert, roman_escapes  # noqa: E402
 
 
 def test_a_script_runs_until_the_space_as_the_hancom_editor_reads_it():
@@ -184,3 +184,10 @@ def test_decoration_only_pictures_do_not_hold_a_problem_back():
 def test_an_answer_read_from_the_answer_picture_is_taken_like_any_other_key():
     """정답 칸이 그림인 자료 — 구독 모델이 읽은 답(`picture`)도 다른 출처처럼 검토로 간다(검토가 정답을 안 보고 풀어 대조한다)."""
     assert eligible({**ROW, "answerFrom": "picture"}) is None
+
+
+def test_an_answer_read_from_a_picture_is_already_latex_and_is_not_converted_again():
+    """🔴 정답 그림에서 읽은 답은 이미 LaTeX 다 — 한글 수식 변환을 한 번 더 걸면 `\frac{5}{18}` 이 `\mathrm{frac}518` 로 깨진다
+    (2026-10-08 — 정답 그림 자료 816문항 가운데 326이 «답이 다르다»로 나와 찾았다)."""
+    assert converts_answer({**ROW, "answerFrom": "key"}) is True
+    assert converts_answer({**ROW, "answerFrom": "picture"}) is False

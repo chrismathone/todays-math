@@ -68,6 +68,11 @@ _POINTS_AT = re.compile(
 )
 
 
+def converts_answer(row: dict) -> bool:
+    """정답을 한글 수식에서 LaTeX 로 바꾸나 — 정답 그림에서 읽은 답(`picture`)은 이미 LaTeX 다. 한 번 더 바꾸면 깨진다."""
+    return row.get("answerFrom") != "picture"
+
+
 def points_to_figure(content: str) -> bool:
     return bool(_POINTS_AT.search(content))
 
@@ -375,7 +380,8 @@ def main() -> None:
     for row in chosen:
         rid = external_id(row)
         pieces.append({"id": f"{rid}#c", "text": pre_convert(close_set_brace(normalize_content(row["content"], corpus)))})
-        pieces.append({"id": f"{rid}#a", "text": pre_convert(close_set_brace(row["answer"].strip()))})
+        if converts_answer(row):
+            pieces.append({"id": f"{rid}#a", "text": pre_convert(close_set_brace(row["answer"].strip()))})
         solution = (row.get("solution") or "").strip()
         if solution:
             pieces.append({"id": f"{rid}#s", "text": pre_convert(close_set_brace(normalize_solution(solution, corpus)))})
@@ -403,6 +409,9 @@ def main() -> None:
         run(["npx", "tsx", "scripts/import/textbook/tidy-pieces.ts", str(fixed), str(tidied)], out_dir / "tidy.log")
         fixed = tidied
     text_of = {piece["id"]: piece["text"] for piece in json.loads(fixed.read_text(encoding="utf-8"))}
+    for row in chosen:
+        if not converts_answer(row):
+            text_of[f"{external_id(row)}#a"] = row["answer"].strip()
     bad: dict[str, list[str]] = {}
     for line in (out_dir / "fix.log").read_text(encoding="utf-8").splitlines():
         match = re.match(r"^\[문(.+?)#([cas])\]\s*(.*)$", line)
