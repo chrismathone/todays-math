@@ -1,0 +1,1057 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-middle-final-3600-3625-input.json",
+  "rows": [
+    {
+      "id": "m3-06-01-xc23",
+      "sourceIndex": 3600,
+      "proposalFingerprint": "32e3b577b93f8db691cf9365703e8d23c50a2649d0e86b5d82c6728b5039b7d3",
+      "normalizedHash": "fb2773c3789d4efbbe7c438d1ef24052e672ce1f4942d81bb3ec96a2e606cbfd",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "가장 긴 현이 지름이고 길이 $2r$임은 xc2 B가 이미 묻는다."
+      },
+      "C": {
+        "sentence": "반지름이 $r$인 원의 현의 길이는 $0$보다 크고 {$2r$} 이하이며, {지름}일 때 가장 길다.",
+        "acceptedAnswers": [
+          [
+            "$2r$"
+          ],
+          [
+            "지름"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "가장 긴 현이 지름이고 길이 $2r$임은 xc2 B가 이미 묻는다.",
+      "cReason": "현의 길이 범위 $2r$과 지름을 묻는 분명한 빈칸이다."
+    },
+    {
+      "id": "m3-06-02-xc1",
+      "sourceIndex": 3601,
+      "proposalFingerprint": "9cf76b335e88c6b0d3914fef6b98063ef212e9e0a8d72e27983476afc0c2eca9",
+      "normalizedHash": "25def994f02e3572376a6b695f9e969b978400435f98e0316f9c2e2e72f01fcd",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 평면 위에서 직선과 원이 만나는 점의 개수에 따라 둘의 위치 관계를 모두 쓰시오. 그중 직선이 원에 접하는 경우는 어느 것인가?",
+        "answer": "두 점에서 만나는 경우, 한 점에서 만나는 경우, 만나지 않는 경우가 있다. 한 점에서 만날 때 직선이 원에 접한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 점에서 만난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 점에서 만난다(접한다)"
+            ]
+          },
+          {
+            "anyOf": [
+              "만나지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직선과 원은 두 점에서 만나거나, {한 점}에서 만나거나(접한다), {만나지 않는} 세 가지 관계가 있다.",
+        "acceptedAnswers": [
+          [
+            "한 점"
+          ],
+          [
+            "만나지 않는"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "만나는 점의 개수를 기준으로 경우를 모두 나누게 했다.",
+      "cReason": "세 경우 중 두 개를 묻는 짧고 분명한 분류 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc2",
+      "sourceIndex": 3602,
+      "proposalFingerprint": "eae8397129996db64ecf73a323a59d2f1299b8020bcd471c4e4effffeb9c11cd",
+      "normalizedHash": "54c56a31a1b4d4ea035cc16161bce7afc75af66888bf85a878c3715b14041246",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "반지름이 $r$인 원의 중심에서 직선 $l$까지의 거리를 $d$라 하자. $d$와 $r$이 어떤 관계일 때 $l$이 원의 접선인가?",
+        "answer": "$d=r$일 때이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$d=r$",
+              "거리가 반지름과 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원의 중심에서 직선까지의 거리가 반지름과 {같으면} 그 직선은 원의 {접선}이다.",
+        "acceptedAnswers": [
+          [
+            "같으면"
+          ],
+          [
+            "접선"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$d$, $r$ 기호를 정의해 접선이 되는 조건을 묻도록 했다.",
+      "cReason": "조건과 결론을 하나씩 묻는 분명한 판정 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc3",
+      "sourceIndex": 3603,
+      "proposalFingerprint": "2e29c831ed42b2bc3aa469ae93aea9a7c10dd35cb8453824a594b839e5b39a9f",
+      "normalizedHash": "edb16171c5220f4ec45b2626b4909c98f43394294d76af418d784c38f85fd682",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$ 위의 점 $A$에서 원의 접선을 그리려면 어떤 직선을 그으면 되는가? 그 직선이 접선인 까닭도 쓰시오.",
+        "answer": "$A$를 지나고 반지름 $OA$에 수직인 직선을 긋는다. 중심 $O$에서 이 직선까지의 거리가 $\\overline{OA}$로 반지름과 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$A$를 지나고 $OA$에 수직인 직선"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심에서 직선까지 거리가 반지름과 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 $O$ 위의 점 $A$를 지나고 반지름 $OA$에 {수직}인 직선은 그 원의 {접선}이다 — 중심에서 그 직선까지의 거리가 반지름과 같기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ],
+          [
+            "접선"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점 $A$를 주고 작도 방법과 거리 근거를 함께 묻도록 했다.",
+      "cReason": "수직과 접선을 묻고 근거가 함께 있는 유용한 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc4",
+      "sourceIndex": 3604,
+      "proposalFingerprint": "6d3632808ae10bf06000d22ad93efce306ef522536bc4ce37e6fea539f7eb527",
+      "normalizedHash": "6fa5ebeaeda8581b74ce588605e4b7a44bf6829501f7db133217e3636aead604",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$의 접선 $l$이 점 $T$에서 접한다. $l$ 위의 점 중 $T$가 아닌 점 $Q$는 원의 안, 위, 밖 중 어디에 있는가? 그 까닭도 쓰시오.",
+        "answer": "원의 밖에 있다. $\\triangle OTQ$는 $\\angle OTQ=90^\\circ$인 직각삼각형이라 빗변 $\\overline{OQ}$가 반지름 $\\overline{OT}$보다 길기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원의 밖"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{OQ}>\\overline{OT}$",
+              "빗변이 반지름보다 길다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "접선 위의 점 가운데 {접점}만 원 위에 있고, 나머지 점은 모두 원의 {바깥}에 있다.",
+        "acceptedAnswers": [
+          [
+            "접점"
+          ],
+          [
+            "바깥"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점 $Q$를 정해 위치와 직각삼각형 근거를 묻도록 했다.",
+      "cReason": "접점과 바깥을 묻는 짧고 분명한 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc5",
+      "sourceIndex": 3605,
+      "proposalFingerprint": "7f6deefa2d039eda17bcbbe77b0002fa75b2984d5e5cad1328b7daaf6f4f59a8",
+      "normalizedHash": "0bd739c9d87aca09cef194a7584f18ddf53d3ce8696112e7bf51979ad78b8c66",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 원에 그을 수 있는 접선은 몇 개인가? 원 위의 점과 접선의 관계를 이용해 까닭을 쓰시오.",
+        "answer": "셀 수 없이 많다. 원 위의 각 점마다 그 점을 접점으로 하는 접선이 하나씩 있고, 원 위의 점은 셀 수 없이 많기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "셀 수 없이 많다",
+              "무수히 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원 위의 점마다 접선이 하나",
+              "원 위의 점이 셀 수 없이 많다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 위의 점마다 그 점을 접점으로 하는 접선을 {하나}씩 그을 수 있으므로, 한 원의 접선은 {셀 수 없이 많다}.",
+        "acceptedAnswers": [
+          [
+            "하나"
+          ],
+          [
+            "셀 수 없이 많다",
+            "무수히 많다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "개수 답과 함께 점마다 하나라는 근거를 요구했다.",
+      "cReason": "'하나'와 결론을 묻는 짧은 문장으로 근거가 함께 있다."
+    },
+    {
+      "id": "m3-06-02-xc6",
+      "sourceIndex": 3606,
+      "proposalFingerprint": "88c4b1ca73cfa17ee7c793269dbf4ce14254a5c11178033f668c13d7a8d1232d",
+      "normalizedHash": "f135af51b8a29e44bdeb0e710b60a0865dc15f3d9e5d0fd174f50b2e58165601",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "점 $P$가 원 위에 있을 때와 원 안에 있을 때, $P$를 지나는 원의 접선은 각각 몇 개 그을 수 있는가? 원 안의 경우는 까닭도 쓰시오.",
+        "answer": "원 위에 있으면 $1$개, 원 안에 있으면 그을 수 없다. 원 안의 점을 지나는 직선은 모두 원과 두 점에서 만나기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원 위: $1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "원 안: 그을 수 없다",
+              "원 안: $0$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "원 안의 점을 지나는 직선은 원과 두 점에서 만난다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 위의 한 점에서는 접선을 {하나}만 그을 수 있고, 원 안의 점에서는 {그을 수 없다}.",
+        "acceptedAnswers": [
+          [
+            "하나"
+          ],
+          [
+            "그을 수 없다",
+            "하나도 그을 수 없다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원 위와 원 안 두 경우로 범위를 정하고 원 안의 근거를 물었다.",
+      "cReason": "두 경우의 접선 수를 묻는 짧은 비교 빈칸이다."
+    },
+    {
+      "id": "m3-06-02-xc7",
+      "sourceIndex": 3607,
+      "proposalFingerprint": "26be7f22248646353f4dbeda0cfcea993b125c9101a4f2deb6f0f761dc09be2f",
+      "normalizedHash": "920dab02352a9d043243466d177f97f86a76b86ea76d67288b59274c0e6a1473",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "삼각형의 내접원은 어떤 원인가? 또 그 중심을 무엇이라 하는가?",
+        "answer": "삼각형의 세 변에 모두 접하는 원이고, 그 중심을 내심이라 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 변에 모두 접하는 원"
+            ]
+          },
+          {
+            "anyOf": [
+              "내심"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 세 변에 모두 {접하는} 원을 그 삼각형의 {내접원}이라 하고, 그 중심이 내심이다.",
+        "acceptedAnswers": [
+          [
+            "접하는"
+          ],
+          [
+            "내접원"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "내접원의 조건과 중심의 이름을 함께 묻도록 했다.",
+      "cReason": "'접하는'과 '내접원'을 묻는 분명한 정의 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc8",
+      "sourceIndex": 3608,
+      "proposalFingerprint": "2a4efb9c57e4c4a24edb34d5a1c3f4001bd7737106f814962e1ddbed99974fbe",
+      "normalizedHash": "802bd37ee8a631c411907ef8e55ed8d7c4dddb83baf298e9ead987e2ffe51348",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "사각형 $ABCD$가 어떤 원에 외접한다는 것은 사각형의 네 변과 원이 어떤 관계라는 뜻인가? 이때 원은 사각형의 안과 밖 중 어디에 있는가?",
+        "answer": "네 변이 모두 그 원에 접한다는 뜻이고, 원은 사각형의 안에 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "네 변이 모두 원에 접한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원은 사각형 안"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "네 변이 모두 한 원에 접하는 사각형을 그 원에 {외접}하는 사각형이라 한다 — 원이 사각형 {안}에 있다.",
+        "acceptedAnswers": [
+          [
+            "외접"
+          ],
+          [
+            "안"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'외접'이 변과 원의 어떤 관계인지와 원의 위치를 묻도록 했다.",
+      "cReason": "외접과 안을 묻는 짧고 명확한 정의 빈칸이다."
+    },
+    {
+      "id": "m3-06-02-xc9",
+      "sourceIndex": 3609,
+      "proposalFingerprint": "26988129aa2e7642f940bd703c04c7059117932756b579f1be2cc4fe3b20885e",
+      "normalizedHash": "35f3b176b210b4d71dd91941485518cf9d6b77d556937195c2aacc1364930638",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "중심이 $O$, 반지름이 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 할 때, 접선의 길이 $\\overline{PA}$를 $\\overline{OP}$와 $r$로 나타내고 그 까닭을 쓰시오.",
+        "answer": "$\\sqrt{\\overline{OP}^2-r^2}$이다. 접선과 반지름이 수직이라 $\\triangle OAP$는 $\\angle OAP=90^\\circ$인 직각삼각형이고 빗변이 $\\overline{OP}$이므로 $\\overline{PA}^2=\\overline{OP}^2-r^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sqrt{\\overline{OP}^2-r^2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle OAP=90^\\circ$",
+              "접선과 반지름이 수직"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "중심 $O$, 반지름 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 하면 접선의 길이는 직각삼각형 $OAP$에서 {$\\sqrt{\\overline{OP}^2-r^2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\sqrt{\\overline{OP}^2-r^2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "공식만이 아니라 직각과 빗변을 근거로 쓰게 했다.",
+      "cReason": "기호가 모두 정의된 식 하나를 묻는 짧은 빈칸이다."
+    },
+    {
+      "id": "m3-06-02-xc10",
+      "sourceIndex": 3610,
+      "proposalFingerprint": "a46c68489b720a458fd2594011da1a07bfd1eae772cc1147e522aacfc4a7c467",
+      "normalizedHash": "05b5d46846ace7335a479e45003885f31650e6d9139da6adfc33d049b294f009",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 할 때, $\\angle APB+\\angle AOB$의 크기를 구하고 사각형 $PAOB$의 내각을 이용해 까닭을 쓰시오.",
+        "answer": "$180^\\circ$이다. 사각형의 내각의 합은 $360^\\circ$이고 $\\angle PAO=\\angle PBO=90^\\circ$이므로 $\\angle APB+\\angle AOB=360^\\circ-180^\\circ=180^\\circ$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle PAO=\\angle PBO=90^\\circ$",
+              "접선과 반지름이 수직"
+            ]
+          },
+          {
+            "anyOf": [
+              "사각형의 내각의 합 $360^\\circ$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하면 사각형 $PAOB$에서 $\\angle APB+\\angle AOB=$ {$180^\\circ$}이다 — $\\angle PAO$, $\\angle PBO$가 {직각}이다.",
+        "acceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "직각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "사각형 $PAOB$를 지정해 각의 합과 직각 근거를 묻도록 했다.",
+      "cReason": "$180^\\circ$와 직각을 묻는 짧고 유용한 빈칸이다."
+    },
+    {
+      "id": "m3-06-02-xc11",
+      "sourceIndex": 3611,
+      "proposalFingerprint": "65d01f0dad4f42bfa3bc6756438bbf83fcc4ff27dd020fd0a5c94e57f89df303",
+      "normalizedHash": "f3c636869389fc4160d0eef31b89701eccb02ddf49ac348809faf505186ca673",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. $\\triangle PAB$는 어떤 삼각형이며, 크기가 같은 두 각은 무엇인가?",
+        "answer": "$\\overline{PA}=\\overline{PB}$이므로 이등변삼각형이고, $\\angle PAB=\\angle PBA$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{PA}=\\overline{PB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle PAB=\\angle PBA$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 밖의 점 $P$에서 그은 두 접선의 접점이 $A$, $B$이면 {$\\overline{PA}=\\overline{PB}$}이므로 $\\triangle PAB$는 {이등변삼각형}이고 두 밑각의 크기가 같다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{PA}=\\overline{PB}$"
+          ],
+          [
+            "이등변삼각형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$\\triangle PAB$를 지정해 종류와 같은 두 각을 묻도록 했다.",
+      "cReason": "근거 식과 삼각형 이름을 묻는 분명한 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc12",
+      "sourceIndex": 3612,
+      "proposalFingerprint": "a60aa3149707f3453263d1010a24977460468709396606816e57c1b179ea4a9a",
+      "normalizedHash": "5359af3a35ba1d093f9ee4baed57765bc5e561dbbfe07c78af0d021566bba293",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 내접원이 변 $BC$와 점 $D$에서 접한다. 꼭짓점 $B$, $C$에서 내접원까지의 접선의 길이를 각각 $y$, $z$라 할 때, $\\overline{BC}$를 $y$, $z$로 나타내고 그 까닭을 쓰시오.",
+        "answer": "$\\overline{BC}=y+z$이다. $\\overline{BD}$는 $B$에서 그은 접선의 길이 $y$이고, $\\overline{DC}$는 $C$에서 그은 접선의 길이 $z$이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$y+z$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}=y$, $\\overline{DC}=z$",
+              "변이 접점에서 두 접선의 길이로 나뉜다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "내접원의 접점으로 나뉜 삼각형의 각 변은 두 꼭짓점에서 나온 {접선의 길이}의 {합}이다.",
+        "acceptedAnswers": [
+          [
+            "접선의 길이"
+          ],
+          [
+            "합"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "접점과 접선 길이를 기호로 정해 변의 표현을 묻도록 했다.",
+      "cReason": "접선의 길이와 합을 묻는 짧고 분명한 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc13",
+      "sourceIndex": 3613,
+      "proposalFingerprint": "3d72c3fde91a7379b61c3a2f58ac2f04e49eae5668dfc9f780185e75ccb77db9",
+      "normalizedHash": "0ea7b409dd51e8862345077e3e5bf8c91b18f5aa4f798f901048056f01371278",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 할 때, $\\angle APO$와 $\\angle BPO$는 어떤 관계인가? 그 까닭도 쓰시오.",
+        "answer": "크기가 같다. 즉 $\\overline{PO}$는 $\\angle APB$를 이등분한다. $\\triangle OAP$와 $\\triangle OBP$가 $\\mathrm{RHS}$ 합동이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle APO=\\angle BPO$",
+              "$\\overline{PO}$가 $\\angle APB$를 이등분"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle OAP\\equiv\\triangle OBP$",
+              "$\\mathrm{RHS}$ 합동"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하면, 선분 $PO$는 $\\angle APB$를 {이등분}한다 — $\\triangle OAP$와 $\\triangle OBP$가 {합동}이기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "이등분"
+          ],
+          [
+            "합동"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 각을 지정해 관계와 합동 근거를 묻도록 했다.",
+      "cReason": "이등분과 합동을 묻는 짧고 근거 있는 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc14",
+      "sourceIndex": 3614,
+      "proposalFingerprint": "2ace629ff77571339aa9a664d54c4e12f9fe53a86eec01f42248ca9a9f5a0c61",
+      "normalizedHash": "5bebdc2618ed8b9981a6ca92a7b5ac229fa08033734b0fc3384dc0b7567da52e",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$의 내접원(중심 $I$, 반지름 $r$)이 변 $CA$, $CB$와 각각 점 $E$, $F$에서 접한다. 사각형 $CEIF$는 어떤 사각형이며 그 까닭은?",
+        "answer": "한 변의 길이가 $r$인 정사각형이다. $\\angle C$, $\\angle CEI$, $\\angle CFI$가 모두 $90^\\circ$라 네 각이 직각인 직사각형이고, 이웃한 두 변 $\\overline{IE}=\\overline{IF}=r$이 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 변이 $r$",
+              "변의 길이가 내접원의 반지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각이 직각",
+              "접점에서 반지름이 변에 수직"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{IE}=\\overline{IF}$",
+              "$\\overline{CE}=\\overline{CF}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직각삼각형의 직각인 꼭짓점, 직각을 낀 두 변 위의 접점, 내심이 만드는 사각형은 한 변의 길이가 {내접원의 반지름}인 {정사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "내접원의 반지름"
+          ],
+          [
+            "정사각형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점 순서와 직각 위치를 밝혀 사각형의 종류와 근거를 묻도록 했다.",
+      "cReason": "반지름과 정사각형을 묻는 짧고 명확한 빈칸이다."
+    },
+    {
+      "id": "m3-06-02-xc15",
+      "sourceIndex": 3615,
+      "proposalFingerprint": "643aef19d94289123514072470c59721b79b3ec224616296d7f2f53494d1b792",
+      "normalizedHash": "0be684d6012eb8ab564ab5acf5d78bfbc7c831b8cf0e2fd33b55abd16851b359",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "둘레가 마주 보는 변의 합의 $2$배임은 c8 관계에서 곧바로 나온다."
+      },
+      "C": {
+        "sentence": "원에 외접한 사각형의 둘레는 마주 보는 두 변의 합의 {$2$}배이다 — 두 쌍의 합이 {같기} 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "같기"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "둘레가 마주 보는 변의 합의 $2$배임은 c8 관계에서 곧바로 나온다.",
+      "cReason": "$2$배와 그 근거를 묻는 짧은 계산 빈칸으로 유용하다."
+    },
+    {
+      "id": "m3-06-02-xc16",
+      "sourceIndex": 3616,
+      "proposalFingerprint": "c100162e32d7cc00fd1a3c51fc4fa7f85c7d5751fcda6af030a9c1564e67bbd8",
+      "normalizedHash": "b78d5a14883866d47185b7e7f8cff48a4d7cd8b1abbb3f7cc1f377ae329d46fa",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "세 변의 길이가 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름 $r$을 $a$, $b$, $c$로 나타내고, 접선의 길이를 이용해 까닭을 쓰시오.",
+        "answer": "$r=\\frac{a+b-c}{2}$이다. 직각인 꼭짓점에서 그은 두 접선의 길이는 $r$이므로 나머지 두 꼭짓점의 접선의 길이는 $a-r$, $b-r$이고, 빗변은 그 합이라 $c=(a-r)+(b-r)$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$r=\\frac{a+b-c}{2}$",
+              "$r=\\frac{1}{2}(a+b-c)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$c=(a-r)+(b-r)$",
+              "직각인 꼭짓점의 접선의 길이가 $r$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "세 변이 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름은 {$\\frac{a+b-c}{2}$}이다 — 직각 쪽 두 접선의 길이가 $r$이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{a+b-c}{2}$",
+            "$\\frac{1}{2}(a+b-c)$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "빗변을 지정하고 공식의 접선 길이 근거를 묻도록 했다.",
+      "cReason": "빗변이 지정된 식 하나를 묻고 근거 힌트가 있다."
+    },
+    {
+      "id": "m3-06-02-xc17",
+      "sourceIndex": 3617,
+      "proposalFingerprint": "43be722042d7c953c3e04e87e762b602322606d836679563b0050a50a9850680",
+      "normalizedHash": "080eb200a0a749a5954da07b0531efbc06b3bfacdf64141bcf51bb75fa0c71c2",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 세 꼭짓점 $A$, $B$, $C$에서 내접원까지 그은 접선의 길이가 각각 $x$, $y$, $z$이다. 삼각형의 둘레를 $x$, $y$, $z$로 나타내고 그 까닭을 쓰시오.",
+        "answer": "$2(x+y+z)$이다. 세 변은 각각 $x+y$, $y+z$, $z+x$이므로 더하면 각 접선의 길이가 두 번씩 들어간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2(x+y+z)$",
+              "$2x+2y+2z$"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변이 $x+y$, $y+z$, $z+x$",
+              "각 접선의 길이가 두 번씩 들어간다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 세 꼭짓점에서 내접원까지의 접선의 길이를 $x$, $y$, $z$라 하면 둘레는 {$2(x+y+z)$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2(x+y+z)$",
+            "$2x+2y+2z$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "꼭짓점별 접선 길이를 정해 둘레 식과 근거를 묻도록 했다.",
+      "cReason": "$x$, $y$, $z$가 정의된 식 하나를 묻는 빈칸이다."
+    },
+    {
+      "id": "m3-06-02-xc18",
+      "sourceIndex": 3618,
+      "proposalFingerprint": "5293a91efa9d8f34e886520c386ec5bee21dc0c930b259ba1e61ec4600d00ee2",
+      "normalizedHash": "90f99a7363fbc377c3d7ba15636b712409900e4aefa3b2ec9cc3faf1d83e803b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$ 위의 점 $C$와 선분 $PB$ 위의 점 $D$(모두 양 끝 점이 아님)를 이은 선분 $CD$가 원과 점 $E$에서 접할 때, $\\triangle PCD$의 둘레를 $\\overline{PA}$, $\\overline{PB}$로 나타내고 그 까닭을 쓰시오.",
+        "answer": "$\\overline{PA}+\\overline{PB}$이다. $\\overline{CE}=\\overline{CA}$, $\\overline{DE}=\\overline{DB}$이므로 둘레 $\\overline{PC}+\\overline{CE}+\\overline{ED}+\\overline{DP}=\\overline{PC}+\\overline{CA}+\\overline{DB}+\\overline{PD}=\\overline{PA}+\\overline{PB}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{PA}+\\overline{PB}$",
+              "$2\\overline{PA}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{CE}=\\overline{CA}$, $\\overline{DE}=\\overline{DB}$",
+              "$C$, $D$에서 그은 두 접선의 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$, $PB$ 위에 있고 양 끝 점이 아닌 두 점 $C$, $D$를 이은 직선이 원에 접하면 $\\triangle PCD$의 둘레는 {$\\overline{PA}+\\overline{PB}$}와 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{PA}+\\overline{PB}$",
+            "$\\overline{PB}+\\overline{PA}$",
+            "$2\\overline{PA}$"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점 $C$, $D$, $E$의 위치를 밝혀 둘레 식과 근거를 묻도록 했다.",
+      "cReason": "조건이 모두 주어진 상태에서 둘레를 묻는 분명한 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc19",
+      "sourceIndex": 3619,
+      "proposalFingerprint": "706878b0d45612955f50470eef69fb656efe9b4fdfd8b5472e85f0b05601b682",
+      "normalizedHash": "f57a4eeee58b95037047cbd57e7025286d30de903db60cf29d8a78f9d13e089a",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원에 외접하는 등변사다리꼴에서 평행한 두 밑변의 길이가 $a$, $b$이다. 평행하지 않은 변(다리) 하나의 길이를 구하고 그 까닭을 쓰시오.",
+        "answer": "$\\frac{a+b}{2}$이다. 원에 외접하는 사각형은 마주 보는 두 변의 합이 같아 두 다리의 합이 $a+b$이고, 등변사다리꼴이라 두 다리의 길이가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{a+b}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 다리의 합이 $a+b$",
+              "마주 보는 두 변의 합이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 다리의 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원에 외접하는 등변사다리꼴은 두 밑변의 합이 두 {다리}의 합과 같아, 다리 하나는 두 밑변의 합의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "다리"
+          ],
+          [
+            "절반"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "밑변을 기호로 주고 다리 길이와 두 근거를 묻도록 했다.",
+      "cReason": "다리와 절반을 묻는 짧은 적용 빈칸이다."
+    },
+    {
+      "id": "m3-06-02-xc21",
+      "sourceIndex": 3620,
+      "proposalFingerprint": "f2ad517d186ba8a3d9092a79eeae5803f1f1487a5b38bc0846a889196120db2e",
+      "normalizedHash": "ea5dcb6bdd361d0ca313766b742070e5a42d8f0d797e3935ba537c2d0275e1dd",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. $\\triangle OAB$의 밑각 $\\angle OAB$를 $\\angle APB$로 나타내고 그 까닭을 쓰시오.",
+        "answer": "$\\angle OAB=\\frac{1}{2}\\angle APB$이다. $\\overline{OA}=\\overline{OB}$라 $\\triangle OAB$는 이등변삼각형이고, $\\angle AOB=180^\\circ-\\angle APB$이므로 $\\angle OAB=\\frac{1}{2}(180^\\circ-\\angle AOB)=\\frac{1}{2}\\angle APB$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle OAB=\\frac{1}{2}\\angle APB$",
+              "$\\frac{\\angle APB}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OB}$",
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle AOB=180^\\circ-\\angle APB$",
+              "$\\angle OAB=90^\\circ-\\angle PAB$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점 $A$, $B$와 중심이 만드는 $\\triangle OAB$는 두 변이 반지름이라 {이등변삼각형}이고, 그 밑각의 크기는 {$\\frac{1}{2}\\angle APB$}이다.",
+        "acceptedAnswers": [
+          [
+            "이등변삼각형"
+          ],
+          [
+            "$\\frac{1}{2}\\angle APB$",
+            "$\\frac{\\angle APB}{2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "밑각과 기준 각을 지정해 식과 각의 근거를 묻도록 했다.",
+      "cReason": "이등변삼각형과 밑각 식을 묻는 분명한 문장이다."
+    },
+    {
+      "id": "m3-06-02-xc22",
+      "sourceIndex": 3621,
+      "proposalFingerprint": "9fb20e891e6520ad86a953c871e755cd9173c12fb0e5adf3f836d4b8c396e701",
+      "normalizedHash": "debbcebc1bcac0fa7427556fc90dfcc1db6fef69f4cadd5ddae178e1e715b186",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "반지름이 $r$인 원의 중심에서 원 밖의 점 $P$까지의 거리가 $d$이면 $P$에서 그은 접선의 길이는 $\\sqrt{d^2-r^2}$이다. 같은 원에서 $P$가 중심에서 멀어져 $d$가 커지면 접선의 길이는 어떻게 변하는가? 그 까닭도 쓰시오.",
+        "answer": "길어진다. $r$은 그대로이고 $d$가 커지면 $d^2-r^2$이 커져 $\\sqrt{d^2-r^2}$도 커지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길어진다",
+              "커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$d^2-r^2$이 커진다",
+              "$d$가 커지면 $\\sqrt{d^2-r^2}$도 커진다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "반지름이 $r$인 원에서 원 밖의 점과 중심 사이의 거리가 $d$이면 접선의 길이는 {$\\sqrt{d^2-r^2}$}이다 — 같은 원에서는 $d$가 클수록 접선의 길이가 {길다}.",
+        "acceptedAnswers": [
+          [
+            "$\\sqrt{d^2-r^2}$"
+          ],
+          [
+            "길다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc9와 겹치지 않게 식은 주고 변화 방향과 근거만 묻도록 했다.",
+      "cReason": "식과 변화 방향을 묻는 짧고 분명한 빈칸이다."
+    },
+    {
+      "id": "m3-06-03-xc1",
+      "sourceIndex": 3622,
+      "proposalFingerprint": "0057a5e19b372e3dee72908b7bdbdd91f1dae7f77526942bb6296a5bdca1bc05",
+      "normalizedHash": "46439e695cca491a73f5d86dd3af30ec0ab8bc805a1cf2d81f24df1df4460a51",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "원 $O$ 위의 두 점 $A$, $B$가 있다. 호 $AB$에 대한 중심각은 어떤 각인가? 꼭짓점과 두 변을 밝혀 쓰시오.",
+        "answer": "원의 중심 $O$가 꼭짓점이고, 두 반지름 $OA$, $OB$가 이루는 $\\angle AOB$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점이 원의 중심 $O$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변이 반지름 $OA$, $OB$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 $O$ 위의 두 점 $A$, $B$에 대하여 두 {반지름} $OA$, $OB$가 이루는 $\\angle AOB$를 호 $AB$에 대한 {중심각}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "반지름"
+          ],
+          [
+            "중심각"
+          ]
+        ]
+      },
+      "coreBefore": "원의 중심에 꼭짓점이 있고 두 변이 {반지름}인 각을 그 호에 대한 {중심각}이라 한다.",
+      "coreAfter": "원의 중심 $O$에 꼭짓점이 있고 두 변이 {반지름} $OA$, $OB$인 $\\angle AOB$를 호 $AB$에 대한 {중심각}이라 한다.",
+      "coreReason": "그 호의 두 끝점을 A·B로 밝히되 반지름과 중심각이라는 기존의 유효한 학습 표적을 보존한다.",
+      "bReason": "원문의 그 호가 가리키는 대상이 없어 원 $O$와 호 $AB$를 주고 꼭짓점과 변을 묻게 했다.",
+      "cReason": "원문의 그 호가 어느 호인지 없어 호 $AB$와 $\\angle AOB$를 밝혔다."
+    },
+    {
+      "id": "m3-06-03-xc2",
+      "sourceIndex": 3623,
+      "proposalFingerprint": "3d15af08379b12849a7a762d298b863f2a564117e20d4086e5d211b9820decfb",
+      "normalizedHash": "0e3fed0cae580d36ac49f3507a13a1618a41d60358ec4ff1829f880c4d27c18a",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "c1 B와 xc1 B의 꼭짓점·두 변 질문을 합친 것과 목표가 같다."
+      },
+      "C": {
+        "sentence": "꼭짓점이 원의 중심이고 두 변이 {반지름}인 각은 {중심각}, 꼭짓점이 원 위에 있고 두 변이 {현}인 각은 {원주각}이다.",
+        "acceptedAnswers": [
+          [
+            "반지름"
+          ],
+          [
+            "중심각"
+          ],
+          [
+            "현"
+          ],
+          [
+            "원주각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1 B와 xc1 B의 꼭짓점·두 변 질문을 합친 것과 목표가 같다.",
+      "cReason": "네 빈칸이 반지름–중심각, 현–원주각을 짝지어 짧게 대비한다."
+    },
+    {
+      "id": "m3-06-03-xc4",
+      "sourceIndex": 3624,
+      "proposalFingerprint": "7755485b17fd6fbe9809643f6ece7a7e892958422d51f02809f17853cf7b1aef",
+      "normalizedHash": "146165b359c256c5eaaf0683c073aa0d0ea5fe40ac4bb38e55da11f04b5138f7",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 원에서 어떤 호에 대한 원주각의 크기는 어떤 범위에 있는가? 같은 호에 대한 중심각을 이용해 까닭과 함께 쓰시오.",
+        "answer": "원주각은 $0^\\circ$보다 크고 $180^\\circ$보다 작다. 중심각은 $0^\\circ$보다 크고 $360^\\circ$보다 작은데, 원주각은 그 절반이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$보다 작다",
+              "$0^\\circ<$(원주각)$<180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심각이 $360^\\circ$보다 작고 원주각은 그 절반이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 {$180^\\circ$}보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "범위의 상한이 중심각에서 나오는 까닭까지 답하도록 특정했다.",
+      "cReason": "$180^\\circ$와 작다라는 두 빈칸이 범위를 근거와 함께 묻는다."
+    }
+  ]
+}
