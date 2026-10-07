@@ -32,4 +32,8 @@ node node_modules/tsx/dist/cli.mjs scripts/qa/concept-blank/student-clear/invent
 
 `source-plan.ts`는 새로 검증한 내용 계획·실제 기준 은행·현재 코드의 대응을 확인하고14개 코드와 별도 질문 표의 파일 내용을 준비한다. 파일은 쓰지 않는다. 실제 적용자는 준비된 모든 `before` 값과 현재 파일을 다시 대조하고, 기존 질문 표가 뜻밖에 존재하면 덮어쓰지 않는다.
 
+원천 사례의 수식 뒤 조사만 틀린 경우 `compile.ts`의 선택 옵션 `--example-corrections <교정 배열.json>`을 쓸 수 있다. 기존 필수 옵션은 그대로다. 배열 각 행은 정확히 `{ part, id, before, after, reason }`이며 `before`는 불변 기준의 `example.prompt` 전체 문자열이다. ID 중복, 다른 part·이전 prompt, 빈 이유, 추가 필드(답·일반 설명 등), 수식이나 다른 문구 변경은 거절한다. 원래 prompt에 `josaFaults` 결함이 정확히 하나 있고, 그 수식 뒤 조사 하나를 올바른 짝으로 바꾼 뒤 결함이 없어야 한다. 답은 원래 그대로다. 교정 파일도 `capturedSources`에 SHA256을 남긴다.
+
+이 경로는 `normalizeProposal`이나 B/C 검토 지문을 바꾸지 않는다. 후보에만 교정을 적용한 뒤 전체 표기 검사와 `candidateBankHash`를 계산하고, 별도 `examplePromptChanges`를 계획에 싣는다. 교정이 없으면 이 필드가 없어서 기존 계획 모양을 보존한다. `source-plan.ts`도 같은 검증과 교정을 해 후보 지문을 대조한다. `example-source.ts`는 `definitionLiterals`의 ID 결합 위치로 사례 prompt를 찾는다(plusSection 개념 튜플은 일반 설명이 요소 3, `[prompt, answer]`가 요소 4). 해당 prompt 리터럴만 고치며 답·다른 ID·순서·helper·OX·적용·그림은 그대로 남긴다. 원천 코드의 prompt나 답이 이동·변경되면 거절하고, 파일 쓰기는 계속 호출자 소유다. 교정 목록은 전체 독립 검토나 인쇄·복습 활성화를 대신하지 않는다.
+
 `opening-source.ts`는 기존 도입부의 핵심 원천 ID·순서·학습 내용 지문을 먼저 확인하고, 교정 일반 설명에 해당하는 소단원·대단원의 출처 지문만 갱신할 계획을 만든다. 도입 질문·설명·목표·기존 검토자와 날짜는 바꾸지 않는다. 바뀐 일반 설명과 기존 목표를 실제로 다시 읽은 기록이 있어야 적용한다. 학습 내용 지문에서 `questionRevision`, `bQuestion`, `clozeQuestion`, `questionExclusions`를 제외하여 평가 물음만 바뀐 경우 원래 목표의 출처를 바꾸지 않는다. 학생 질문의 정확한 동결 대응은 별도의 전체 payload 검사로 유지한다.

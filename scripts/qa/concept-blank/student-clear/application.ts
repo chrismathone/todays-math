@@ -14,6 +14,11 @@ import {
 } from "./editorial";
 import type { IndependentEvidence } from "./independent";
 import {
+  validateExamplePromptChanges,
+  withExamplePromptChange,
+  type ExamplePromptChange,
+} from "./example-corrections";
+import {
   contentHash,
   normalizeProposal,
   proposedEntry,
@@ -41,6 +46,8 @@ export type ContentApplicationPlan = {
     reason: string;
     contentHash: string;
   }[];
+  /** Separate grammar-only source corrections; omitted when empty for compatibility. */
+  examplePromptChanges?: ExamplePromptChange[];
   reviewedRows: {
     id: string;
     part: string;
@@ -56,6 +63,7 @@ export function compileContentApplicationPlan(input: {
   current: BankParts;
   scopes: ApplicationScope[];
   independent: IndependentEvidence[];
+  exampleCorrections?: unknown;
 }): ContentApplicationPlan {
   const baselineHash = contentHash(input.baseline);
   if (baselineHash !== input.expectedBaselineHash)
@@ -70,6 +78,13 @@ export function compileContentApplicationPlan(input: {
   const byId = new Map(originals.map((row) => [row.entry.id, row]));
   if (byId.size !== originals.length || !originals.length)
     throw new Error("원천 ID가 중복되거나 은행이 비었습니다.");
+  const examplePromptChanges = validateExamplePromptChanges(
+    input.baseline,
+    input.exampleCorrections,
+  );
+  const examples = new Map(
+    examplePromptChanges.map((change) => [change.id, change]),
+  );
   const roles = new Set([
     "definition",
     "procedure",
@@ -96,7 +111,10 @@ export function compileContentApplicationPlan(input: {
         throw new Error(`범위 사이 중복 ID: ${raw.id}`);
       const proposal = normalizeProposal(raw, original.entry);
       if (!proposal) throw new Error(`미완 문항: ${raw.id}`);
-      const entry = proposedEntry(proposal);
+      const entry = withExamplePromptChange(
+        proposedEntry(proposal),
+        examples.get(raw.id),
+      );
       candidates.set(raw.id, entry);
       const issues = verifyEditorialRow(
         scope.scope,
@@ -189,6 +207,7 @@ export function compileContentApplicationPlan(input: {
         originals.findIndex((row) => row.entry.id === a.id) -
         originals.findIndex((row) => row.entry.id === b.id),
     ),
+    ...(examplePromptChanges.length ? { examplePromptChanges } : {}),
     reviewedRows: originals.map((row) =>
       reviewed.find((item) => item.id === row.entry.id)!,
     ),

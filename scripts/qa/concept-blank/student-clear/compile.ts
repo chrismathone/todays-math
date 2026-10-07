@@ -11,7 +11,7 @@ import {
 import { canonicalProposalFile } from "./files";
 import { readIndependentEvidence } from "./independent";
 
-const names = new Set([
+const requiredNames = new Set([
   "baseline",
   "baseline-hash",
   "e3e4",
@@ -20,6 +20,7 @@ const names = new Set([
   "reviews",
   "out",
 ]);
+const names = new Set([...requiredNames, "example-corrections"]);
 const args: Record<string, string> = {};
 for (let index = 2; index < process.argv.length; index += 2) {
   const key = process.argv[index]?.replace(/^--/, "");
@@ -28,7 +29,8 @@ for (let index = 2; index < process.argv.length; index += 2) {
     throw new Error(`명령행 옵션을 확인하세요: ${process.argv[index]}`);
   args[key] = value;
 }
-for (const key of names) if (!args[key]) throw new Error(`옵션 필요: --${key}`);
+for (const key of requiredNames)
+  if (!args[key]) throw new Error(`옵션 필요: --${key}`);
 if (!/^[a-f0-9]{64}$/.test(args["baseline-hash"]!))
   throw new Error("기준 지문은 SHA256입니다.");
 const read = <T>(file: string): T =>
@@ -56,12 +58,20 @@ for (const [scope, ledger] of [
   });
 }
 const independent = readIndependentEvidence(resolve(args.reviews!));
+const exampleCorrectionPath = args["example-corrections"]
+  ? resolve(args["example-corrections"]!)
+  : undefined;
+const exampleCorrections = exampleCorrectionPath
+  ? read<unknown>(exampleCorrectionPath)
+  : undefined;
+if (exampleCorrectionPath) sourceFiles.push(exampleCorrectionPath);
 const plan = compileContentApplicationPlan({
   baseline: baseline.parts,
   expectedBaselineHash: args["baseline-hash"]!,
   current: BANK_PARTS,
   scopes,
   independent: independent.evidence,
+  exampleCorrections,
 });
 const capturedSources = sourceFiles.map((file) => ({
   file,
@@ -89,6 +99,9 @@ console.log(
       baselineHash: plan.baselineHash,
       candidateBankHash: plan.candidateBankHash,
       changedDefinitions: plan.definitionChanges.length,
+      ...(plan.examplePromptChanges?.length
+        ? { changedExamplePrompts: plan.examplePromptChanges.length }
+        : {}),
       studentRecordsWritten: false,
       productionBankWritten: false,
     },

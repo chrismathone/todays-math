@@ -4,6 +4,11 @@ import { withAssessments } from "@/lib/concept-blank/bank/assessment";
 import type { ContentApplicationPlan } from "./application";
 import { attachAssessmentSource } from "./bank-source";
 import { definitionLiterals, replaceDefinitions } from "./definition-source";
+import {
+  validateExamplePromptChanges,
+  withExamplePromptChange,
+} from "./example-corrections";
+import { replaceExamplePrompts } from "./example-source";
 import { contentHash } from "./proposals";
 
 export type BankSourceChange = {
@@ -71,21 +76,33 @@ export function prepareBankSourceChanges(input: {
     )
       throw new Error(`일반 설명의 출처가 다릅니다: ${change.id}`);
   }
+  const examplePromptChanges = validateExamplePromptChanges(
+    baseline,
+    plan.examplePromptChanges,
+  );
+  const examples = new Map(
+    examplePromptChanges.map((change) => [change.id, change]),
+  );
   const candidateParts: Record<string, ConceptBlankBank> = {};
   for (const [part, bank] of Object.entries(baseline)) {
     candidateParts[part] = withAssessments(
       {
         ...bank,
-        concepts: bank.concepts.map((entry) => ({
-          ...entry,
-          definition: definitions.get(entry.id)?.after ?? entry.definition,
-        })),
+        concepts: bank.concepts.map((entry) =>
+          withExamplePromptChange(
+            {
+              ...entry,
+              definition: definitions.get(entry.id)?.after ?? entry.definition,
+            },
+            examples.get(entry.id),
+          ),
+        ),
       },
       plan.assessmentTables[part]!,
     );
   }
   if (contentHash(candidateParts) !== plan.candidateBankHash)
-    throw new Error("질문 표·일반 설명이 검토 후보 은행과 다릅니다.");
+    throw new Error("질문 표·일반 설명·예문이 검토 후보 은행과 다릅니다.");
   const changes: BankSourceChange[] = [];
   for (const part of parts) {
     const grade = part.replace(/plus$/, "");
@@ -107,7 +124,16 @@ export function prepareBankSourceChanges(input: {
       file: `src/lib/concept-blank/bank/${name}.ts`,
       before,
       after: attachAssessmentSource(
-        replaceDefinitions(before, grade, definitionsForPart),
+        replaceExamplePrompts(
+          replaceDefinitions(before, grade, definitionsForPart),
+          grade,
+          examplePromptChanges
+            .filter((row) => row.part === part)
+            .map((row) => ({
+              ...row,
+              answer: originalById.get(row.id)!.entry.example!.answer,
+            })),
+        ),
         part,
       ),
     });
