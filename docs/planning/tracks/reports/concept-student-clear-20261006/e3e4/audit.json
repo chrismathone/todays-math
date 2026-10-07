@@ -74596,33 +74596,34 @@
       "part": "e3plus",
       "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
       "sourceFingerprint": "f8cabdfd4fa275168ba59be4df1f0ced74e51176238730cbb1b73974b6f5bd81",
-      "proposalFingerprint": "3d01de7795d27baec872983ee4d06378e0e4e958dcd20907841a44d993ad21ae",
+      "proposalFingerprint": "088b1fdeab61763165aa2dcb61590ecbfefcd13384e7b58c93ec0e33ae1c7ebe",
       "reviewStatus": "draft",
       "id": "e3-1-6-1-xc2",
       "bDecision": "rewrite",
-      "bPrompt": "색종이 한 장을 세 조각으로 나누었습니다. 세 조각을 차례로 포개 보니 두 조각은 테두리가 완전히 맞았지만, 나머지 한 조각은 벗어나는 부분이 있었습니다. 이 색종이를 똑같이 나누었다고 할 수 있나요? 포개 본 결과를 이용하여 까닭도 설명하세요.",
-      "bAnswer": "똑같이 나누었다고 할 수 없습니다. 나머지 한 조각은 포갰을 때 꼭 겹치지 않으므로, 세 조각의 모양과 크기가 모두 같은 것은 아니기 때문입니다.",
+      "bPrompt": "같은 크기의 정사각형 칸 $9$개로 된 색종이를 세 부분으로 나누었습니다. 각 부분에는 칸이 $2$개, $3$개, $4$개씩 있습니다. 같은 크기의 세 부분으로 나눈 것인가요? 칸의 개수를 비교하여 이유도 쓰세요.",
+      "bAnswer": "아닙니다. 각 부분에 든 칸 수가 서로 달라 세 부분의 넓이가 다르기 때문입니다.",
       "bRequiredIdeas": [
         {
           "anyOf": [
-            "똑같이 나누었다고 할 수 없다"
+            "같은 크기로 나눈 것이 아니다",
+            "아니다"
           ]
         },
         {
           "anyOf": [
-            "한 조각이 포갰을 때 꼭 겹치지 않아 세 조각의 모양과 크기가 모두 같지는 않다",
-            "나머지 한 조각의 모양이나 크기가 다르다"
+            "칸 수가 달라 각 부분의 넓이가 다르다",
+            "칸이 더 많은 부분이 더 넓어 세 부분의 크기가 같지 않다"
           ]
         }
       ],
-      "bGoal": "조각을 포개어 모양과 크기가 모두 같은지 확인하여 똑같이 나누었는지 판정한다.",
-      "bReason": "B는원문의포개보기기준으로모양과크기가모두같은지판정한다. C의같은칸개수에따른크기비교는그대로유지하며별도모양관찰과같은크기의뜻을혼동하지않는다.",
+      "bGoal": "같은 정사각형 칸으로 나눈 종이에서 부분들의 넓이를 비교한다.",
+      "bReason": "분수에서 종이를 같은 크기로 나누는 기준은 넓이이며, 모양이 꼭 같아야 하는 것은 아니다. 포개지지 않는다는 사실만으로 같은 크기가 아니라고 판단하던 B를 철회하고, 같은 정사각형 칸의 개수로 각 부분의 실제 넓이를 비교하게 한다. 일반 설명도 종이의 넓이라는 대상을 명시한다.",
       "cDecision": "rewrite",
       "cReason": "세개조각의모양이모두서로다르다는불가능할수있는조건을없애고모양이다른부분도있다는성립가능한조건을준다. 같은크기칸의개수가같으므로각부분크기가같다는수학적비교는유지한다.",
       "answerNotes": "같은 크기의 칸을 각각 세 개 포함한다는 조건으로 부분 크기를 비교한다. 서로 다른 모양도 등분일 수 있다는 일반 설명은 보존한다.",
       "cAfter": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 {같다}.",
-      "coreAfter": null,
-      "coreReason": null,
+      "coreAfter": "색종이를 같은 크기의 부분으로 똑같이 나누려면 각 부분의 {넓이}가 같아야 한다. 모양이 달라도 넓이가 같으면 같은 크기로 나눈 것이다.",
+      "coreReason": "분수의 같은 크기 부분은 종이에서는 같은 넓이로 판단한다. 같은 모양으로 완전히 포개지는 것은 넓이가 같음을 확인하는 한 방법이며, 모양이 다르다고 넓이가 다르다고 단정하지 않는다.",
       "exampleNeeded": "같은 칸 아홉 개를 각각 세 칸인 서로 다른 세 모양으로 나눈 그림은 선택 설명 자료다. B/C는 칸의 크기와 개수를 문장으로 제시하므로 보이지 않는 그림을 가리키지 않는다.",
       "reviewerEdited": true,
       "learningRole": "reason",
@@ -74649,18 +74650,19 @@
         }
       ],
       "bQuestion": {
-        "prompt": "색종이 한 장을 세 조각으로 나누었습니다. 세 조각을 차례로 포개 보니 두 조각은 테두리가 완전히 맞았지만, 나머지 한 조각은 벗어나는 부분이 있었습니다. 이 색종이를 똑같이 나누었다고 할 수 있나요? 포개 본 결과를 이용하여 까닭도 설명하세요.",
-        "answer": "똑같이 나누었다고 할 수 없습니다. 나머지 한 조각은 포갰을 때 꼭 겹치지 않으므로, 세 조각의 모양과 크기가 모두 같은 것은 아니기 때문입니다.",
+        "prompt": "같은 크기의 정사각형 칸 $9$개로 된 색종이를 세 부분으로 나누었습니다. 각 부분에는 칸이 $2$개, $3$개, $4$개씩 있습니다. 같은 크기의 세 부분으로 나눈 것인가요? 칸의 개수를 비교하여 이유도 쓰세요.",
+        "answer": "아닙니다. 각 부분에 든 칸 수가 서로 달라 세 부분의 넓이가 다르기 때문입니다.",
         "requiredIdeas": [
           {
             "anyOf": [
-              "똑같이 나누었다고 할 수 없다"
+              "같은 크기로 나눈 것이 아니다",
+              "아니다"
             ]
           },
           {
             "anyOf": [
-              "한 조각이 포갰을 때 꼭 겹치지 않아 세 조각의 모양과 크기가 모두 같지는 않다",
-              "나머지 한 조각의 모양이나 크기가 다르다"
+              "칸 수가 달라 각 부분의 넓이가 다르다",
+              "칸이 더 많은 부분이 더 넓어 세 부분의 크기가 같지 않다"
             ]
           }
         ]
@@ -74680,19 +74682,18 @@
       "editorialReview": {
         "id": "e3-1-6-1-xc2",
         "sourceIndex": 820,
-        "proposalFingerprint": "3d01de7795d27baec872983ee4d06378e0e4e958dcd20907841a44d993ad21ae",
-        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
-        "readAt": "2026-10-07T13:42:27.686Z",
+        "proposalFingerprint": "088b1fdeab61763165aa2dcb61590ecbfefcd13384e7b58c93ec0e33ae1c7ebe",
         "learningRole": "reason",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T16:09:09.836Z",
+        "bReason": "주어진 한 칸의 크기와 수치를 필수로 다시 쓰게 하지 않는다. 결론과, 칸 수가 달라 부분의 넓이가 다르다는 비교 판단만 필수로 확인한다. 넓이를 기준으로 한 일반 설명과 실제 C는 유지한다.",
+        "cReason": "주어진 한 칸의 크기와 수치를 필수로 다시 쓰게 하지 않는다. 결론과, 칸 수가 달라 부분의 넓이가 다르다는 비교 판단만 필수로 확인한다. 넓이를 기준으로 한 일반 설명과 실제 C는 유지한다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-fraction-area-criteria-proposals-20261007.json",
+        "isIndependentApproval": false,
         "bDecision": "rewrite",
         "cDecision": "rewrite",
-        "verdict": "retain-planning-proposal",
-        "bReason": "B는원문의포개보기기준으로모양과크기가모두같은지판정한다. C의같은칸개수에따른크기비교는그대로유지하며별도모양관찰과같은크기의뜻을혼동하지않는다.",
-        "cReason": "B는원문의포개보기기준으로모양과크기가모두같은지판정한다. C의같은칸개수에따른크기비교는그대로유지하며별도모양관찰과같은크기의뜻을혼동하지않는다.",
-        "issues": [],
-        "isIndependentApproval": false,
-        "isReleaseApproval": false,
-        "inputEvidence": "../design-evidence/root-e3e4-final-reasons-proposals-20261007.json"
+        "verdict": "retain-planning-proposal"
       },
       "cAcceptedAnswers": [
         [

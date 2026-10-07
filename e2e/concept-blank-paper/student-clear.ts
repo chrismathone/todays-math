@@ -5,7 +5,7 @@ import {
 import { composeSheets } from "../../src/lib/concept-blank/compose";
 import fixtures from "./student-clear-fixtures.json";
 
-/** 학년별 구조 표본이다. 운영 은행의 전수 교정 완료를 뜻하지 않는다. */
+/** 최종 적용 은행에서 선택한 학년별 표본이다. 실제 학생 학습 효과는 별도 검증이 필요하다. */
 export function studentClearFixtureSheets(): ConceptBlankSheet[] {
   const entries = fixtures.entries.map((entry) =>
     conceptEntrySchema.parse(entry),

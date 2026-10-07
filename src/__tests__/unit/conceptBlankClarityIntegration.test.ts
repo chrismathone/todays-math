@@ -6,9 +6,13 @@ import { fadingCatalog } from "@/lib/fading/catalog";
 import { listConceptCatalog } from "@/lib/textbook/concepts";
 import { conceptScriptFor } from "@/lib/textbook/conceptScripts";
 import changes from "../../../docs/planning/tracks/reports/concept-cloze-fix-all-20261006/applied-changes.json";
+import finalChanges from "../../../docs/planning/tracks/reports/concept-student-clear-20261006/applied-definition-changes.json";
 
 type Revision = { id: string; before: string; after: string };
-const revised = changes.changes as Revision[];
+const originalRevisions = changes.changes as Revision[];
+const finalRevisions = finalChanges.changes as Revision[];
+const revised = [...new Map([...originalRevisions, ...finalRevisions]
+  .map((row) => [row.id, row])).values()];
 const entries = new Map(
   CONCEPT_BLANK_BANK.concepts.map((entry) => [entry.id, entry]),
 );
@@ -25,6 +29,13 @@ const plain = (text: string) =>
     .join("");
 
 describe("reviewed concept wording is shared by worksheets, recall and new textbooks", () => {
+  it("preserves the earlier review and joins later revisions at the exact previous wording", () => {
+    expect(finalRevisions).toHaveLength(607);
+    const prior = new Map(originalRevisions.map((row) => [row.id, row]));
+    for (const row of finalRevisions) {
+      if (prior.has(row.id)) expect(row.before, row.id).toBe(prior.get(row.id)!.after);
+    }
+  });
   it("has applied revisions in every supported grade", () => {
     expect(revised.length).toBeGreaterThan(0);
     expect(

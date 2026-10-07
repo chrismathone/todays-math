@@ -1,5 +1,8 @@
 import type { ConceptBlankBank } from "@/contracts/conceptBlank.contract";
 import { markGivenCases } from "./plus";
+import { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";
+import reviewedQuestionData from "./assessments/e3.json";
+
 
 /** 초3 고정 문항 은행(D-150). 교육과정 순서이며 모든 뜻·물음은 새로 썼다. */
 export const bank: ConceptBlankBank = {
@@ -3438,3 +3441,6 @@ export const bank: ConceptBlankBank = {
  * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
  */
 markGivenCases(bank, []);
+
+// 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.
+bank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;

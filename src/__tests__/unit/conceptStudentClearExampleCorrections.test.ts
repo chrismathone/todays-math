@@ -35,7 +35,11 @@ import type { IndependentEvidence } from "../../../scripts/qa/concept-blank/stud
 
 // The isolated harness points reads at Root; ordinary repository tests use their cwd.
 const root = process.env.CONCEPT_EXAMPLE_SOURCE_ROOT ?? process.cwd();
-const genuine = BANK_PARTS.m2plus!.concepts.find(
+// The correction compiler tests its immutable input, even after production adoption.
+const originalParts = JSON.parse(readFileSync(resolve(root,
+  "docs/planning/tracks/reports/concept-student-clear-20261006/baseline.json"), "utf8"))
+  .parts as Record<string, ConceptBlankBank>;
+const genuine = originalParts.m2plus!.concepts.find(
   (entry) => entry.id === "m2-01-01-xc20",
 )!;
 const correction: ExamplePromptChange = {
@@ -303,10 +307,15 @@ describe("bounded source-example grammar corrections", () => {
 });
 
 describe("ID-bound source prompt editing", () => {
-  const realSource = readFileSync(
+  const installedSource = readFileSync(
     resolve(root, "src/lib/concept-blank/bank/m2-plus.ts"),
     "utf8",
   );
+  // Reconstruct only the pre-adoption prompt literal; production remains corrected.
+  const installedLocation = examplePromptLiterals(installedSource, "m2", [genuine.id]).get(genuine.id)!;
+  const realSource = installedLocation.value === correction.after
+    ? installedSource.slice(0, installedLocation.start) + "r`" + correction.before + "`" + installedSource.slice(installedLocation.end)
+    : installedSource;
   const sourceChange = { ...correction, answer: genuine.example!.answer };
   it("edits the exact real plusSection tuple and retains every byte outside its prompt literal", () => {
     const location = examplePromptLiterals(realSource, "m2", [genuine.id]).get(
@@ -344,6 +353,9 @@ describe("ID-bound source prompt editing", () => {
       exports,
       require: (name: string) => {
         if (name === "./plus") return { plusSection, joinBanks, RETIRED };
+        if (name === "./assessment") return { withAssessments };
+        if (name === "./assessments/m2-plus.json") return { default: JSON.parse(readFileSync(resolve(root,
+          "src/lib/concept-blank/bank/assessments/m2-plus.json"), "utf8")) };
         throw Error("Unexpected dependency " + name);
       },
     });

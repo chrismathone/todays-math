@@ -53,7 +53,15 @@ describe("reviewed table attachment source plan", () => {
         `src/lib/concept-blank/bank/${part.replace(/plus$/, "-plus")}.ts`,
         "utf8",
       );
-      const after = attachAssessmentSource(text, part);
+      const attached = text.includes("attachReviewedQuestions");
+      if (attached) expect(() => attachAssessmentSource(text, part)).toThrow("기존");
+      // Keep exercising the migration against every real source after adoption.
+      const original = attached ? text
+        .replace(/^import \{ withAssessments as attachReviewedQuestions[^\n]*\n/m, "")
+        .replace(/^import reviewedQuestionData[^\n]*\n/m, "")
+        .replace(/^\/\/ 원래 단원·그림·사례 helper[^\n]*\n/m, "")
+        .replace(/^bank\.concepts = attachReviewedQuestions[^\n]*\n?/m, "") : text;
+      const after = attachAssessmentSource(original, part);
       expect(after).toContain(
         `./assessments/${part.replace(/plus$/, "-plus")}.json`,
       );

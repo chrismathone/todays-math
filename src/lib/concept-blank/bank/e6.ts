@@ -5,6 +5,9 @@ import type {
   OxItem,
   ApplyItem,
 } from "@/contracts/conceptBlank.contract";
+import { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";
+import reviewedQuestionData from "./assessments/e6.json";
+
 
 /** 수식이 든 글은 `r` 로 쓴다 — 역슬래시를 그대로 둔다. */
 const r = String.raw;
@@ -67,7 +70,7 @@ const sections: SectionBank[] = [
         "하",
         "방법",
         "한 몫은 처음 양의 몇 분의 일인가",
-        r`분수만큼의 양을 자연수로 똑같이 나눈 한 몫은 처음 양의 나누는 수를 {분모로 하는 단위분수}만큼이다. 셋으로 나누면 처음 양의 $\frac{1}{3}$이다.`,
+        r`어떤 양을 똑같이 나눌 때, 한 몫이 처음 양에서 차지하는 부분을 분수로 나타낼 수 있다. 이 분수의 분자는 {$1$}이고, 분모는 {똑같이 나눈 부분의 수}이다.`,
       ],
       [
         "중",
@@ -138,7 +141,7 @@ const sections: SectionBank[] = [
         "하",
         "정의",
         "각기둥",
-        "같은 다각형 두 장을 평행하게 놓고, 둘레의 짝인 변을 {직사각형}으로 이어 만든 입체가 각기둥이다.",
+        "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 {직사각형}인 입체도형이다.",
       ],
       [
         "하",
@@ -267,7 +270,7 @@ const sections: SectionBank[] = [
         "하",
         "정의",
         "밑면",
-        "각뿔을 만들 때 바탕으로 삼은 {다각형 한 면}을 밑면이라 한다.",
+        "각뿔에서 꼭대기 점에 닿지 않는 다각형 모양의 면 $1$개를 {밑면}이라 한다.",
       ],
       [
         "중",
@@ -1068,7 +1071,7 @@ const sections: SectionBank[] = [
         "하",
         "방법",
         "분모가 같은 (분수)$\\div$(분수)",
-        "진분수나 가분수로 나타낸 두 수의 분모가 같고 나누는 수가 $0$이 아니면, 두 수의 배 관계는 조각의 개수인 {분자}끼리 나누어 구한다.",
+        "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수가 $0$이 아니면, 두 분수의 {분자}끼리 나누어 몫을 구한다.",
       ],
       [
         "중",
@@ -1530,7 +1533,7 @@ const sections: SectionBank[] = [
         "하",
         "정의",
         "위에서 본 모양의 수",
-        "위에서 본 칸에 적힌 수는 그 자리에서 {쌓아 올린 블록의 개수}이다.",
+        "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 {쌓기나무의 개수}이다.",
       ],
       [
         "중",
@@ -1578,7 +1581,7 @@ const sections: SectionBank[] = [
         "상",
         "성질",
         "위층을 받치는 자리",
-        "공중에 뜬 블록 없이 쌓으면 위층의 모든 자리에는 {바로 아래층의 블록}이 있어야 한다.",
+        "공중에 뜬 쌓기나무 없이 쌓으면, 위층에 쌓기나무가 놓인 모든 자리에는 {바로 아래층의 쌓기나무}가 있어야 한다.",
       ],
     ],
     ox: [
@@ -1964,7 +1967,7 @@ const sections: SectionBank[] = [
         "하",
         "방법",
         "원 조각 옮기기",
-        "원을 잘게 나눈 조각을 빈틈없이 옮겨 붙여도 {넓이는 보존}된다.",
+        "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여도 {넓이는 변하지 않는다}.",
       ],
       [
         "중",
@@ -2619,3 +2622,6 @@ export const bank: ConceptBlankBank = {
   })),
   figures,
 };
+
+// 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.
+bank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;
