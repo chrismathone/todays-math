@@ -316,8 +316,8 @@ afterEach(() => {
   vi.unstubAllEnvs();
 });
 
-describe("쓰는 길의 문 — 값이 없으면 닫힘", () => {
-  it("`on` 일 때만 열린다 — 값 없음 · 빈 값 · 모르는 값은 닫힘이고, 학생 라우트의 문이 `on` 이 아니면 늘 닫힘이다", () => {
+describe("쓰는 길의 문 — 값이 없으면 열림 · `off` 로 닫는다", () => {
+  it("값 없음 · 빈 값 · `on` 은 열림, `off` 와 모르는 값은 닫힘이고, 학생 라우트의 문이 `on` 이 아니면 늘 닫힘이다", () => {
     const gate = (
       relearn: string | undefined,
       main: string | undefined = "on",
@@ -326,13 +326,17 @@ describe("쓰는 길의 문 — 값이 없으면 닫힘", () => {
       vi.stubEnv("MATH_FADING_RELEARN", relearn);
       return fadingRelearnEnabled();
     };
-    expect(gate("on")).toBe(true);
-    // 학생 라우트의 문은 값이 없으면 켜짐이다 — 대기열의 문은 그래도 제 값이 `on` 이어야 한다.
-    expect(gate("on", undefined)).toBe(true);
-    for (const value of [undefined, "", "off", "ON", "On", "true", "1", "read"])
-      expect(gate(value), String(value)).toBe(false);
+    for (const value of ["on", undefined, ""]) {
+      expect(gate(value), String(value)).toBe(true);
+      // 학생 라우트의 문도 값이 없으면 켜짐이다.
+      expect(gate(value, undefined), String(value)).toBe(true);
+    }
+    // 끄는 값은 `off` 다. 모르는 값도 닫힘이다 — 끄려다 낸 오타가 문을 열어 두지 않는다.
+    for (const value of ["off", "of", "OFF", "ON", "On", "true", "1", "read"])
+      expect(gate(value), value).toBe(false);
     for (const main of ["off", "read", "nope"])
-      expect(gate("on", main), main).toBe(false);
+      for (const value of ["on", undefined])
+        expect(gate(value, main), main).toBe(false);
   });
 
   it("닫혀 있으면 읽기는 «꺼짐 · 빈 대기열»이고 학생 기록을 읽지 않는다 — 행동은 404 이고 아무것도 쓰지 않는다", async () => {
@@ -344,7 +348,7 @@ describe("쓰는 길의 문 — 값이 없으면 닫힘", () => {
       observation: { kind: "rated", conceptId: c.id, requestId: uuid(2) },
     });
     const kept = JSON.stringify(row());
-    vi.stubEnv("MATH_FADING_RELEARN", undefined);
+    vi.stubEnv("MATH_FADING_RELEARN", "off");
     f.reads = 0;
     f.writes = 0;
     expect(await queue(await get())).toEqual({

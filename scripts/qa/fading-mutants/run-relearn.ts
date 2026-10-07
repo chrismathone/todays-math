@@ -324,15 +324,27 @@ const MUTANTS: Mutant[] = [
   },
   {
     file: "fading/relearnEnabled.ts",
-    note: "쓰는 길의 문이 값이 없어도 열린다",
-    from: 'process.env.MATH_FADING_RELEARN === "on"',
-    to: 'process.env.MATH_FADING_RELEARN !== "off"',
+    note: "쓰는 길의 문이 모르는 값에도 열린다",
+    from: 'return value === undefined || value === "" || value === "on";',
+    to: 'return value !== "off";',
+  },
+  {
+    file: "fading/relearnEnabled.ts",
+    note: "쓰는 길의 문이 값이 없으면 닫힌다",
+    from: 'return value === undefined || value === "" || value === "on";',
+    to: 'return value === "on";',
+  },
+  {
+    file: "fading/relearnEnabled.ts",
+    note: "쓰는 길의 문이 `off` 로도 닫히지 않는다",
+    from: 'return value === undefined || value === "" || value === "on";',
+    to: "return true;",
   },
   {
     file: "fading/relearnEnabled.ts",
     note: "학생 라우트의 문이 꺼져도 쓰는 길이 열린다",
-    from: "return fadingEnabled() && ",
-    to: "return ",
+    from: "if (!fadingEnabled()) return false;",
+    to: "",
   },
   {
     file: "fading/relearnRoutes.ts",
