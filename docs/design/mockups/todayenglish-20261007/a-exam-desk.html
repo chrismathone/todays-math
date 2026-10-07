@@ -1,0 +1,1874 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>오늘의 영어 — A 시험 작업대</title>
+    <style>
+      :root {
+        --ink: #19344e;
+        --muted: #607487;
+        --blue: #315ed0;
+        --blue-light: #eaf0ff;
+        --line: #dbe3eb;
+        --surface: #f0f4f8;
+        --green: #28705b;
+        --amber: #9a611c;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--surface);
+        font:
+          14px/1.55 "Segoe UI",
+          "Malgun Gothic",
+          sans-serif;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.45;
+      }
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        outline-offset: 4px;
+      }
+      :focus-visible {
+        outline: 3px solid #557bde;
+      }
+      button {
+        color: inherit;
+      }
+      button svg {
+        flex-shrink: 0;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1 {
+        font-size: 29px;
+        line-height: 1.25;
+        letter-spacing: -1.2px;
+        font-weight: 750;
+      }
+      h2 {
+        font-size: 18px;
+        letter-spacing: -0.5px;
+      }
+      h3 {
+        font-size: 15px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .small {
+        font-size: 12px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 7px;
+        padding: 10px 15px;
+        font-weight: 650;
+        min-height: 42px;
+      }
+      .btn:hover {
+        background: #f4f7fc;
+        border-color: #aebfda;
+      }
+      .btn.primary {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: white;
+      }
+      .btn.primary:hover {
+        background: #254cb1;
+      }
+      .btn.quiet {
+        border-color: transparent;
+        background: transparent;
+      }
+      .btn.icon {
+        padding: 9px;
+      }
+      .text-button {
+        border: 0;
+        background: none;
+        color: var(--blue);
+        padding: 6px 0;
+        font-weight: 650;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 4px;
+        padding: 3px 7px;
+        font-size: 11px;
+        font-weight: 650;
+        white-space: nowrap;
+        background: #edf1f5;
+        color: #516679;
+      }
+      .badge.review {
+        background: #fff2db;
+        color: #805316;
+      }
+      .badge.done {
+        background: #e8f3ee;
+        color: #23624d;
+      }
+      .badge.blue {
+        background: var(--blue-light);
+        color: #315bb7;
+      }
+      .topbar {
+        height: 70px;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 26px;
+        gap: 20px;
+      }
+      .brand {
+        font-size: 19px;
+        letter-spacing: -0.7px;
+        font-weight: 800;
+        display: flex;
+        gap: 11px;
+        align-items: center;
+        white-space: nowrap;
+      }
+      .brand-mark {
+        background: var(--ink);
+        width: 30px;
+        height: 33px;
+        border-radius: 7px 7px 7px 1px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font:
+          italic 24px Georgia,
+          serif;
+      }
+      .mainnav {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-right: auto;
+        margin-left: 52px;
+      }
+      .mainnav button {
+        padding: 12px 14px;
+        border: 0;
+        background: none;
+        font-weight: 650;
+        color: var(--muted);
+        border-radius: 6px;
+        white-space: nowrap;
+      }
+      .mainnav button:hover,
+      .mainnav button.active {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+      .prototype {
+        font-size: 11px;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+      .avatar {
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        width: 31px;
+        height: 31px;
+        background: #e7edf2;
+        font-weight: 700;
+      }
+      .app {
+        display: grid;
+        grid-template-columns: 224px minmax(0, 1fr);
+        min-height: calc(100vh - 70px);
+      }
+      .sidebar {
+        background: #f8fafc;
+        border-right: 1px solid var(--line);
+        padding: 28px 17px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .side-label {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        padding: 0 9px;
+      }
+      .school {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 9px;
+        font-weight: 700;
+      }
+      .school span {
+        margin-left: auto;
+        color: var(--muted);
+      }
+      .exams {
+        padding-left: 15px;
+        display: grid;
+        gap: 7px;
+      }
+      .exam {
+        position: relative;
+        text-align: left;
+        border: 0;
+        background: none;
+        padding: 13px 12px;
+        color: var(--muted);
+        border-radius: 7px;
+      }
+      .exam.active {
+        background: #e4ecf6;
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .exam.active:before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        top: 18px;
+        width: 4px;
+        height: 18px;
+        border-radius: 3px;
+        background: var(--blue);
+      }
+      .exam small {
+        display: block;
+        font-size: 11px;
+        font-weight: 400;
+        margin-top: 4px;
+        color: var(--muted);
+      }
+      .sidebar-note {
+        margin-top: auto;
+        border-top: 1px solid var(--line);
+        padding: 17px 9px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .sidebar-note strong {
+        display: block;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+      .workspace {
+        padding: 24px 32px 28px;
+        min-width: 0;
+      }
+      .breadcrumb {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 12px;
+        display: flex;
+        gap: 9px;
+      }
+      .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .heading p {
+        margin-top: 7px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .tabs {
+        display: flex;
+        gap: 27px;
+        border-bottom: 1px solid #d2dce6;
+        margin: 20px 0;
+      }
+      .tabs button {
+        background: none;
+        border: 0;
+        padding: 0 0 12px;
+        font-weight: 650;
+        color: var(--muted);
+        position: relative;
+      }
+      .tabs button[aria-selected="true"] {
+        color: var(--blue);
+      }
+      .tabs button[aria-selected="true"]:after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--blue);
+        border-radius: 2px;
+      }
+      .desk-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 336px;
+        gap: 26px;
+      }
+      .desk-main {
+        min-width: 0;
+      }
+      .make-panel {
+        background: #e4ecf7;
+        border: 1px solid #d5e0ef;
+        border-radius: 10px;
+        padding: 21px;
+        position: relative;
+        overflow: hidden;
+      }
+      .make-panel h2 {
+        font-size: 22px;
+        line-height: 1.4;
+        letter-spacing: -0.8px;
+        max-width: 350px;
+      }
+      .make-panel p {
+        font-size: 13px;
+        color: #516982;
+        margin: 8px 0 18px;
+        max-width: 300px;
+      }
+      .make-actions {
+        display: flex;
+        gap: 8px;
+        position: relative;
+        z-index: 1;
+      }
+      .paper-stack {
+        position: absolute;
+        right: 28px;
+        top: 27px;
+        width: 105px;
+        height: 130px;
+        transform: rotate(9deg);
+        background: #fff;
+        border: 1px solid #cad6e5;
+        border-radius: 3px;
+        box-shadow: 7px 8px 0 -2px #cad8eb;
+        padding: 20px 14px;
+        opacity: 0.65;
+      }
+      .paper-stack i {
+        display: block;
+        border-top: 2px solid #a3b4cf;
+        margin: 10px 0;
+        width: 75%;
+      }
+      .paper-stack i:first-child {
+        border-top: 5px solid #7a94bf;
+        width: 43%;
+      }
+      .source-line {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        margin: 16px 0 20px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .source-line .source-icon {
+        width: 34px;
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        display: grid;
+        place-items: center;
+        background: white;
+      }
+      .source-line strong {
+        font-size: 13px;
+        color: var(--ink);
+      }
+      .source-line button {
+        margin-left: auto;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 12px;
+      }
+      .section-head h2 span {
+        color: var(--muted);
+        font-weight: 400;
+        margin-left: 7px;
+        font-size: 13px;
+      }
+      .set-list {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        overflow: hidden;
+      }
+      .set-row {
+        display: grid;
+        grid-template-columns: 40px 1fr auto;
+        gap: 12px;
+        padding: 14px 17px;
+        align-items: center;
+      }
+      .set-row + .set-row {
+        border-top: 1px solid var(--line);
+      }
+      .set-icon {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 43px;
+        border: 1px solid #dce4ef;
+        border-radius: 5px;
+        color: #7189a0;
+        background: #f7f9fc;
+      }
+      .set-row strong {
+        display: block;
+        font-size: 13px;
+        margin: 6px 0 4px;
+      }
+      .set-row p {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .set-row button {
+        font-size: 12px;
+        padding: 8px 11px;
+        min-height: 36px;
+      }
+      .assembly {
+        margin-top: 23px;
+      }
+      .assembly-list {
+        border-top: 1px solid var(--line);
+      }
+      .assembly-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 2px;
+        border-bottom: 1px solid var(--line);
+        font-size: 12px;
+      }
+      .assembly-item .num {
+        color: #7c8fa3;
+        width: 17px;
+      }
+      .assembly-item strong {
+        font-size: 12px;
+      }
+      .assembly-item .remove {
+        margin-left: auto;
+        border: 0;
+        background: none;
+        padding: 6px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1;
+      }
+      .preview-panel {
+        min-width: 0;
+      }
+      .preview-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .preview-head h2 {
+        font-size: 14px;
+      }
+      .preview-head span {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .paper-wrap {
+        background: #dfe6ed;
+        padding: 16px;
+        border: 1px solid #d5dfe8;
+        border-radius: 8px;
+      }
+      .paper {
+        width: 100%;
+        aspect-ratio: 210/297;
+        background: white;
+        padding: 17px 18px;
+        box-shadow: 0 3px 7px #273a5012;
+        color: #20272d;
+        display: flex;
+        flex-direction: column;
+        font-size: 7px;
+      }
+      .paper-school {
+        font-size: 7px;
+        letter-spacing: 0.5px;
+        text-align: center;
+      }
+      .paper h3 {
+        text-align: center;
+        font-size: 14px;
+        letter-spacing: -0.4px;
+        margin: 7px 0 6px;
+      }
+      .paper-sub {
+        border-top: 2px solid #293641;
+        border-bottom: 1px solid #9da5ab;
+        font-size: 6px;
+        padding: 5px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+      .paper-source {
+        margin: 10px 0 6px;
+        padding: 7px;
+        border: 1px solid #bec5ca;
+        font:
+          6.8px/1.5 Georgia,
+          serif;
+      }
+      .paper-source strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 7px;
+      }
+      .paper-q {
+        padding: 6px 0 1px;
+        font-size: 6px;
+      }
+      .paper-q b {
+        font-size: 6.5px;
+      }
+      .paper-q p {
+        margin-top: 4px;
+        font:
+          6px/1.35 Georgia,
+          serif;
+      }
+      .paper-answer {
+        color: #2b614f;
+        margin-top: 3px;
+        font-size: 6.5px;
+      }
+      .paper-foot {
+        margin-top: auto;
+        padding-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #c8cdd1;
+        font-size: 6px;
+      }
+      .preview-controls {
+        display: flex;
+        gap: 5px;
+        border: 1px solid var(--line);
+        padding: 4px;
+        border-radius: 6px;
+        margin: 13px 0;
+      }
+      .preview-controls button {
+        background: transparent;
+        border: 0;
+        border-radius: 4px;
+        flex: 1;
+        padding: 6px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .preview-controls button.active {
+        background: #fff;
+        color: var(--ink);
+        box-shadow: 0 1px 4px #25415b19;
+      }
+      .preview-caption {
+        text-align: center;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.8;
+      }
+      .bank-tools {
+        display: flex;
+        gap: 10px;
+        margin: 18px 0;
+      }
+      .search {
+        position: relative;
+        flex: 1;
+      }
+      .search input {
+        width: 100%;
+        padding: 11px 13px 11px 38px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--ink);
+      }
+      .search svg {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        width: 17px;
+        height: 17px;
+      }
+      select {
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: white;
+        color: var(--ink);
+      }
+      .bank-list {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .bank-row {
+        display: grid;
+        grid-template-columns: 20px 1fr auto;
+        gap: 14px;
+        padding: 18px;
+        align-items: start;
+        border-bottom: 1px solid var(--line);
+      }
+      .bank-row:last-child {
+        border: 0;
+      }
+      .bank-row input {
+        accent-color: var(--blue);
+        width: 17px;
+        height: 17px;
+        margin-top: 6px;
+      }
+      .bank-row h3 {
+        font-size: 14px;
+        margin: 7px 0;
+      }
+      .bank-row p {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .bank-actions {
+        position: sticky;
+        bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--ink);
+        color: white;
+        padding: 13px 18px;
+        border-radius: 8px;
+        margin-top: 16px;
+        box-shadow: 0 7px 20px #1c30482b;
+      }
+      .review-layout {
+        display: grid;
+        grid-template-columns: 185px minmax(0, 1fr);
+        gap: 24px;
+      }
+      .review-nav {
+        display: grid;
+        gap: 8px;
+        align-content: start;
+      }
+      .review-nav button {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        text-align: left;
+        padding: 13px;
+      }
+      .review-nav button.active {
+        border-color: var(--blue);
+        box-shadow: inset 3px 0 var(--blue);
+        color: var(--blue);
+      }
+      .review-nav small {
+        display: block;
+        color: var(--muted);
+        margin-top: 5px;
+      }
+      .question-card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 27px;
+      }
+      .question-card h2 {
+        font-size: 20px;
+        margin: 16px 0;
+      }
+      .passage {
+        font:
+          16px/1.9 Georgia,
+          "Malgun Gothic",
+          serif;
+        background: #f7f9fc;
+        border: 1px solid var(--line);
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .option {
+        padding: 9px 12px;
+        margin-top: 7px;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        font-family: Georgia, "Malgun Gothic", serif;
+      }
+      .answer-box {
+        background: #eef6f2;
+        border-left: 3px solid #72a38b;
+        padding: 16px 18px;
+        margin: 22px 0;
+      }
+      .answer-box strong {
+        display: block;
+        margin-bottom: 7px;
+      }
+      .answer-box p {
+        font-size: 13px;
+      }
+      .answer-box blockquote {
+        font:
+          15px/1.7 Georgia,
+          serif;
+        margin: 10px 0;
+        color: #35574a;
+      }
+      .review-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .print-view {
+        max-width: 780px;
+        margin: auto;
+      }
+      .print-view .paper-wrap {
+        padding: 30px;
+      }
+      .print-view .paper {
+        padding: 45px;
+        font-size: 12px;
+        min-height: 950px;
+      }
+      .print-view .paper-school {
+        font-size: 12px;
+      }
+      .print-view .paper h3 {
+        font-size: 26px;
+      }
+      .print-view .paper-sub {
+        font-size: 10px;
+        padding: 10px 0;
+      }
+      .print-view .paper-source {
+        font-size: 14px;
+        line-height: 1.65;
+        padding: 17px;
+        margin-top: 21px;
+      }
+      .print-view .paper-source strong {
+        font-size: 17px;
+      }
+      .print-view .paper-q {
+        font-size: 12px;
+        padding-top: 14px;
+      }
+      .print-view .paper-q b {
+        font-size: 12.5px;
+      }
+      .print-view .paper-q p {
+        font-size: 12px;
+        line-height: 1.7;
+      }
+      .print-view .paper-answer {
+        font-size: 11px;
+      }
+      .print-view .paper-foot {
+        font-size: 10px;
+      }
+      .print-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .empty {
+        padding: 30px;
+        text-align: center;
+        color: var(--muted);
+      }
+      dialog {
+        padding: 0;
+        width: min(650px, calc(100vw - 30px));
+        max-height: 90vh;
+        border: 1px solid #ced9e4;
+        border-radius: 12px;
+        color: var(--ink);
+        box-shadow: 0 25px 100px #152d4955;
+      }
+      dialog::backdrop {
+        background: #19344e77;
+        backdrop-filter: blur(3px);
+      }
+      .dialog-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 21px 25px;
+        border-bottom: 1px solid var(--line);
+      }
+      .dialog-head h2 {
+        font-size: 20px;
+      }
+      .dialog-body {
+        padding: 24px;
+      }
+      .dialog-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        border-top: 1px solid var(--line);
+        padding: 17px 24px;
+        background: #f8fafc;
+      }
+      .form-label {
+        display: block;
+        font-weight: 700;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+      .field {
+        margin: 0 0 23px;
+      }
+      .field select {
+        width: 100%;
+      }
+      .type-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+      .type-option {
+        position: relative;
+        display: flex;
+        gap: 7px;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 11px 9px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      .type-option:has(input:checked) {
+        background: var(--blue-light);
+        border-color: #6c8bda;
+        color: #234daf;
+      }
+      .type-option input {
+        accent-color: var(--blue);
+        margin: 0;
+      }
+      .notice {
+        background: #f0f4f8;
+        border-radius: 6px;
+        padding: 12px 14px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .source-detail {
+        font:
+          17px/1.85 Georgia,
+          serif;
+        border: 1px solid var(--line);
+        padding: 22px;
+        margin: 18px 0;
+        border-radius: 6px;
+      }
+      .source-meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .listening-empty {
+        text-align: center;
+        padding: 25px 10px;
+      }
+      .listening-empty svg {
+        width: 44px;
+        height: 44px;
+        color: #68829c;
+        margin: 10px 0 18px;
+      }
+      .listening-empty h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .listening-empty p {
+        max-width: 360px;
+        margin: 0 auto 22px;
+        color: var(--muted);
+      }
+      .toast {
+        position: fixed;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--ink);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 7px;
+        box-shadow: 0 4px 20px #0002;
+        font-size: 13px;
+        z-index: 20;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      @media (min-width: 1500px) {
+        .workspace {
+          max-width: 1400px;
+          width: 100%;
+          margin: auto;
+        }
+        .desk-grid {
+          grid-template-columns: minmax(0, 1fr) 380px;
+        }
+      }
+      @media (max-width: 1220px) {
+        .app {
+          grid-template-columns: 195px minmax(0, 1fr);
+        }
+        .workspace {
+          padding: 26px 23px;
+        }
+        .desk-grid {
+          grid-template-columns: minmax(0, 1fr) 275px;
+          gap: 20px;
+        }
+        .paper-stack {
+          right: 10px;
+          opacity: 0.3;
+        }
+        .mainnav {
+          margin-left: 20px;
+        }
+        .make-panel h2 {
+          max-width: 300px;
+        }
+        .topbar {
+          padding: 0 20px;
+        }
+        .prototype {
+          max-width: 110px;
+        }
+        .set-row {
+          padding: 15px 12px;
+          gap: 8px;
+        }
+        .make-actions {
+          flex-wrap: wrap;
+        }
+        .paper {
+          padding: 16px;
+        }
+        .paper-source {
+          font-size: 6.7px;
+        }
+        .paper-q {
+          font-size: 6px;
+        }
+        .paper h3 {
+          font-size: 12px;
+        }
+      }
+      @media (max-width: 1000px) {
+        .desk-grid {
+          grid-template-columns: 1fr;
+        }
+        .preview-panel {
+          display: none;
+        }
+        .mainnav {
+          gap: 0;
+          margin-left: 12px;
+        }
+        .mainnav button {
+          padding: 10px;
+        }
+        .prototype {
+          display: none;
+        }
+        .paper-stack {
+          opacity: 0.65;
+          right: 30px;
+        }
+        .review-layout {
+          grid-template-columns: 150px minmax(0, 1fr);
+          gap: 15px;
+        }
+      }
+      @media (max-width: 650px) {
+        .topbar {
+          height: auto;
+          min-height: 100px;
+          padding: 14px 17px 0;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .brand {
+          font-size: 17px;
+        }
+        .brand-mark {
+          width: 26px;
+          height: 29px;
+        }
+        .avatar {
+          display: none;
+        }
+        .prototype {
+          display: block;
+          max-width: none;
+          margin-left: auto;
+          font-size: 9px;
+        }
+        .mainnav {
+          order: 3;
+          width: 100%;
+          margin: 0;
+          justify-content: space-between;
+          overflow: auto;
+        }
+        .mainnav button {
+          padding: 12px 7px;
+          font-size: 12px;
+        }
+        .app {
+          display: block;
+        }
+        .sidebar {
+          padding: 14px 17px;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          gap: 0;
+          display: block;
+        }
+        .side-label,
+        .sidebar-note,
+        .school {
+          display: none;
+        }
+        .exams {
+          padding: 0;
+          display: flex;
+          gap: 7px;
+        }
+        .exam {
+          padding: 9px 12px;
+          font-size: 12px;
+          flex: 1;
+        }
+        .exam small {
+          font-size: 10px;
+          margin-top: 2px;
+        }
+        .exam.active:before {
+          display: none;
+        }
+        .workspace {
+          padding: 22px 17px 30px;
+        }
+        .breadcrumb {
+          font-size: 11px;
+        }
+        h1 {
+          font-size: 24px;
+        }
+        .heading {
+          align-items: flex-start;
+        }
+        .heading > .btn {
+          font-size: 11px;
+          padding: 9px;
+          min-height: 36px;
+        }
+        .heading > .btn svg {
+          display: none;
+        }
+        .heading p {
+          font-size: 11px;
+          max-width: 210px;
+        }
+        .tabs {
+          margin: 20px 0;
+          gap: 23px;
+          font-size: 12px;
+        }
+        .make-panel {
+          padding: 20px;
+        }
+        .make-panel h2 {
+          font-size: 21px;
+          max-width: 260px;
+        }
+        .make-panel p {
+          max-width: 255px;
+          font-size: 12px;
+        }
+        .paper-stack {
+          display: none;
+        }
+        .make-actions .btn {
+          font-size: 12px;
+          flex: 1;
+          padding: 10px 8px;
+        }
+        .make-actions svg {
+          width: 16px;
+          height: 16px;
+        }
+        .source-line {
+          gap: 8px;
+        }
+        .source-line strong {
+          font-size: 12px;
+        }
+        .source-line .small {
+          font-size: 10px;
+        }
+        .set-row {
+          grid-template-columns: 32px minmax(0, 1fr) auto;
+          padding: 15px 12px;
+          gap: 9px;
+        }
+        .set-icon {
+          width: 30px;
+          height: 36px;
+        }
+        .set-row strong {
+          font-size: 12px;
+        }
+        .set-row p {
+          font-size: 10px;
+        }
+        .set-row button {
+          font-size: 11px;
+          padding: 7px 9px;
+        }
+        .bank-tools {
+          flex-wrap: wrap;
+        }
+        .search {
+          flex-basis: 100%;
+        }
+        .bank-tools select {
+          flex: 1;
+          font-size: 12px;
+        }
+        .bank-row {
+          padding: 14px;
+          gap: 10px;
+          grid-template-columns: 18px minmax(0, 1fr);
+        }
+        .bank-row > .badge {
+          grid-column: 2;
+          justify-self: start;
+        }
+        .bank-row h3 {
+          font-size: 13px;
+        }
+        .bank-actions {
+          padding: 12px;
+          font-size: 12px;
+        }
+        .review-layout {
+          display: block;
+        }
+        .review-nav {
+          display: flex;
+          overflow: auto;
+          gap: 7px;
+          margin-bottom: 17px;
+          padding-bottom: 4px;
+        }
+        .review-nav button {
+          min-width: 106px;
+          font-size: 12px;
+        }
+        .review-nav small {
+          font-size: 10px;
+        }
+        .question-card {
+          padding: 19px;
+        }
+        .question-card h2 {
+          font-size: 17px;
+        }
+        .passage {
+          font-size: 15px;
+          padding: 14px;
+        }
+        .option {
+          font-size: 13px;
+        }
+        .review-footer {
+          font-size: 12px;
+        }
+        .review-footer .btn {
+          width: 100%;
+        }
+        .type-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .dialog-body {
+          padding: 20px;
+        }
+        .dialog-head {
+          padding: 17px 20px;
+        }
+        .dialog-foot {
+          padding: 15px 20px;
+          align-items: flex-start;
+        }
+        .dialog-foot .small {
+          max-width: 130px;
+        }
+        .dialog-foot .btn {
+          font-size: 12px;
+        }
+        .print-view .paper-wrap {
+          padding: 10px;
+          overflow: auto;
+        }
+        .print-view .paper {
+          width: 620px;
+          min-height: 877px;
+          padding: 38px;
+        }
+        .print-toolbar {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .print-toolbar h2 {
+          font-size: 15px;
+        }
+        .print-toolbar .btn {
+          font-size: 11px;
+        }
+        .toast {
+          width: calc(100% - 32px);
+          text-align: center;
+          font-size: 12px;
+        }
+        .source-detail {
+          font-size: 15px;
+        }
+        .preview-caption {
+          text-align: left;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+      @page {
+        size: A4;
+        margin: 14mm;
+      }
+      @media print {
+        body {
+          background: #fff;
+        }
+        .topbar,
+        .sidebar,
+        .heading,
+        .breadcrumb,
+        .tabs,
+        .print-toolbar,
+        .preview-caption,
+        dialog,
+        .toast {
+          display: none !important;
+        }
+        .app,
+        .workspace {
+          display: block;
+          padding: 0;
+          margin: 0;
+        }
+        .print-view {
+          max-width: none;
+        }
+        .print-view .paper-wrap {
+          border: 0;
+          background: none;
+          padding: 0;
+        }
+        .print-view .paper {
+          width: auto;
+          min-height: 0;
+          height: 257mm;
+          aspect-ratio: auto;
+          box-shadow: none;
+          padding: 0;
+        }
+        .print-view .paper-source {
+          font-size: 13px;
+          line-height: 1.65;
+        }
+        .print-view .paper-q p {
+          font-size: 11.5px;
+          line-height: 1.55;
+        }
+        .print-view .paper-answer {
+          font-size: 10.5px;
+        }
+        .print-view .paper-wrap {
+          break-after: page;
+          margin-bottom: 0 !important;
+        }
+        .print-view .paper-wrap:last-child {
+          break-after: auto;
+        }
+        .paper-q {
+          break-inside: avoid;
+        }
+        .paper-foot {
+          margin-top: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg aria-hidden="true" style="display: none">
+      <defs>
+        <symbol id="i-grid" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24">
+          <path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z" />
+          <path d="m20 2 .5 1.5L22 4l-1.5.5L20 6l-.5-1.5L18 4l1.5-.5Z" />
+        </symbol>
+        <symbol id="i-file" viewBox="0 0 24 24">
+          <path d="M14 3H5v18h14V8Z" />
+          <path d="M14 3v6h5M8 13h8M8 17h6" />
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24">
+          <circle cx="10" cy="10" r="6" />
+          <path d="m15 15 6 6" />
+        </symbol>
+        <symbol id="i-print" viewBox="0 0 24 24">
+          <path d="M6 8V3h12v5M6 16H3V8h18v8h-3M6 13h12v8H6Z" />
+          <path d="M17 11h1" />
+        </symbol>
+        <symbol id="i-headphones" viewBox="0 0 24 24">
+          <path d="M4 15v-3a8 8 0 0 1 16 0v3" />
+          <rect x="3" y="12" width="4" height="8" rx="2" />
+          <rect x="17" y="12" width="4" height="8" rx="2" />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </symbol>
+      </defs>
+    </svg>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">e</span>오늘의 영어</div>
+      <nav class="mainnav" aria-label="주요 메뉴">
+        <button onclick="openMaker()">AI 문제 제작</button
+        ><button id="navBank" onclick="showView('bank')">문제은행</button
+        ><button onclick="openResource()">자료은행</button
+        ><button onclick="openListening()">듣기</button>
+      </nav>
+      <span class="prototype">A 시험 작업대 · 예시 데이터</span
+      ><span class="avatar" aria-label="예시 교사">김</span>
+    </header>
+    <div class="app">
+      <aside class="sidebar" aria-label="학교와 시험 탐색">
+        <div>
+          <div class="side-label">시험 준비</div>
+          <div class="school">
+            <svg><use href="#i-grid" /></svg> 한빛고
+          </div>
+          <div class="exams">
+            <button
+              class="exam active"
+              data-exam="mid"
+              onclick="switchExam('mid')"
+            >
+              2학기 중간고사<small>고1 · 독해와 어휘</small></button
+            ><button
+              class="exam"
+              data-exam="final"
+              onclick="switchExam('final')"
+            >
+              2학기 기말고사<small>고1 · 준비 전</small>
+            </button>
+          </div>
+        </div>
+        <div class="sidebar-note">
+          <strong>한빛고 영어 작업실</strong>시험 범위에 맞춰 준비하고<br />만든
+          문항은 은행에서 다시 꺼내세요.
+        </div>
+      </aside>
+      <main class="workspace">
+        <div class="breadcrumb">
+          <span>시험 준비</span><span>›</span><span>한빛고</span><span>›</span
+          ><span>고1</span>
+        </div>
+        <div class="heading">
+          <div>
+            <h1 id="examTitle">2학기 중간고사</h1>
+            <p id="examSubtitle">
+              도시의 작은 정원 · 원문 1개로 준비하는 영어 시험
+            </p>
+          </div>
+          <button class="btn" onclick="showView('print')">
+            <svg><use href="#i-print" /></svg>인쇄 미리보기
+          </button>
+        </div>
+        <div class="tabs" role="tablist" aria-label="시험 작업">
+          <button
+            role="tab"
+            id="tab-desk"
+            aria-selected="true"
+            onclick="showView('desk')"
+          >
+            준비 작업대</button
+          ><button
+            role="tab"
+            id="tab-bank"
+            aria-selected="false"
+            onclick="showView('bank')"
+          >
+            문제은행</button
+          ><button
+            role="tab"
+            id="tab-review"
+            aria-selected="false"
+            onclick="startReview(0)"
+          >
+            세트 검토
+          </button>
+        </div>
+        <div id="view"></div>
+      </main>
+    </div>
+    <dialog id="modal" aria-labelledby="modalTitle">
+      <div class="dialog-head">
+        <h2 id="modalTitle"></h2>
+        <button class="btn quiet icon" onclick="closeModal()" aria-label="닫기">
+          <svg><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <div id="modalBody"></div>
+    </dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <script>
+      const $ = (s) => document.querySelector(s);
+      const icon = (id) =>
+        `<svg aria-hidden="true"><use href="#i-${id}"/></svg>`;
+      const esc = (s) =>
+        String(s).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const passage =
+        "An empty lot stood between two apartment buildings. Last spring, the neighbors turned it into a small garden. They planted vegetables and left one corner for wildflowers. The flowers attracted bees, which helped the vegetables grow. Every Saturday, people shared tools and worked together. The garden did more than provide fresh food. It gave neighbors a reason to talk to one another.";
+      const questions = [
+        {
+          id: 1,
+          type: "주제",
+          title: "이 글의 주제로 가장 적절한 것은?",
+          options: [
+            "The cost of building new apartments",
+            "How a small garden brought neighbors together",
+            "Why people should stop growing vegetables",
+            "The history of farming tools",
+            "How to keep bees away from cities",
+          ],
+          answer: "② How a small garden brought neighbors together",
+          evidence: "It gave neighbors a reason to talk to one another.",
+          note: "채소 수확뿐 아니라 이웃 간 교류가 생겼다는 글의 중심 내용을 담습니다.",
+        },
+        {
+          id: 2,
+          type: "내용 일치",
+          title: "글의 내용과 일치하는 것은?",
+          options: [
+            "The garden replaced an apartment building.",
+            "The neighbors planted only wildflowers.",
+            "The flowers attracted bees.",
+            "People worked together every Sunday.",
+            "The garden did not provide food.",
+          ],
+          answer: "③ The flowers attracted bees.",
+          evidence:
+            "The flowers attracted bees, which helped the vegetables grow.",
+          note: "꽃이 벌을 불러들였다는 원문의 진술과 일치합니다.",
+        },
+        {
+          id: 3,
+          type: "빈칸 추론",
+          title: "글의 마지막 문장 빈칸에 들어갈 말로 가장 적절한 것은?",
+          stem: "It gave neighbors a reason to __________.",
+          options: [
+            "leave the city",
+            "buy more tools",
+            "build new apartments",
+            "talk to one another",
+            "remove all the flowers",
+          ],
+          answer: "④ talk to one another",
+          evidence: "Every Saturday, people shared tools and worked together.",
+          note: "함께 일하고 도구를 나누는 활동이 이웃 사이의 대화로 이어집니다.",
+        },
+        {
+          id: 4,
+          type: "어휘",
+          title: "본문의 provide와 의미가 가장 가까운 것은?",
+          options: ["forget", "offer", "hide", "collect", "lose"],
+          answer: "② offer",
+          evidence: "The garden did more than provide fresh food.",
+          note: "provide는 이 문맥에서 ‘제공하다’라는 뜻으로 offer와 가깝습니다.",
+        },
+        {
+          id: 5,
+          type: "서술형",
+          title:
+            "정원이 신선한 먹거리 외에 이웃에게 준 것은 무엇인가? 영어로 쓰시오.",
+          answer: "It gave neighbors a reason to talk to one another.",
+          evidence: "It gave neighbors a reason to talk to one another.",
+          note: "이웃이 서로 대화할 계기를 얻었다는 의미가 포함되면 인정하는 예시 기준입니다.",
+        },
+        {
+          id: 6,
+          type: "단어 배열",
+          title: "주어진 단어를 배열하여 본문의 문장을 완성하시오.",
+          stem: "tools / people / together / shared / worked / and",
+          answer: "People shared tools and worked together.",
+          evidence: "Every Saturday, people shared tools and worked together.",
+          note: "주어 people 뒤에 shared tools와 worked together를 and로 연결합니다.",
+        },
+        {
+          id: 7,
+          type: "해석",
+          title: "다음 문장을 우리말로 옮기시오.",
+          stem: "The flowers attracted bees, which helped the vegetables grow.",
+          answer: "꽃은 벌을 불러들였고, 그 벌들은 채소가 자라는 것을 도왔다.",
+          evidence:
+            "The flowers attracted bees, which helped the vegetables grow.",
+          note: "which가 bees를 가리킨다는 관계를 반영한 예시 답안입니다.",
+        },
+        {
+          id: 8,
+          type: "영영풀이",
+          title:
+            "“a piece of land used for growing flowers or vegetables”에 해당하는 본문의 단어는?",
+          answer: "garden",
+          evidence: "Last spring, the neighbors turned it into a small garden.",
+          note: "꽃이나 채소를 기르는 땅을 뜻하는 garden이 정답입니다.",
+        },
+      ];
+      let view = "desk",
+        exam = "mid",
+        teacher = false,
+        selected = new Set(),
+        filter = "",
+        query = "",
+        activeSet = 0,
+        activeQ = 0;
+      const compositions = { mid: [1, 2, 3], final: [] };
+      const sets = [
+        {
+          name: "도시의 작은 정원 · 독해",
+          ids: [1, 2, 3],
+          status: "검토 중",
+          reviewed: new Set(),
+        },
+        {
+          name: "도시의 작은 정원 · 어휘·서술",
+          ids: [4, 5, 6],
+          status: "초안",
+          reviewed: new Set(),
+        },
+      ];
+      const qById = (id) => questions.find((q) => q.id === id);
+      const statusClass = (s) =>
+        s === "검토 완료" ? "done" : s === "검토 중" ? "review" : "";
+      const statusTag = (s) =>
+        `<span class="badge ${statusClass(s)}">${s}</span>`;
+      function announce(text) {
+        $("#toast").textContent = text;
+        $("#toast").hidden = false;
+        clearTimeout(window.toastTimer);
+        window.toastTimer = setTimeout(() => ($("#toast").hidden = true), 3600);
+      }
+      function showView(next) {
+        view = next;
+        document
+          .querySelectorAll("[role=tab]")
+          .forEach((t) =>
+            t.setAttribute("aria-selected", t.id === "tab-" + next),
+          );
+        $("#navBank").classList.toggle("active", next === "bank");
+        render();
+      }
+      function switchExam(next) {
+        exam = next;
+        $("#examTitle").textContent =
+          next === "mid" ? "2학기 중간고사" : "2학기 기말고사";
+        $("#examSubtitle").textContent =
+          next === "mid"
+            ? "도시의 작은 정원 · 원문 1개로 준비하는 영어 시험"
+            : "고1 영어 · 문제은행에서 문항을 골라 구성을 시작하세요";
+        document
+          .querySelectorAll(".exam")
+          .forEach((b) =>
+            b.classList.toggle("active", b.dataset.exam === next),
+          );
+        showView("desk");
+      }
+      function paperHTML(
+        ids = compositions[exam].slice(0, 3),
+        page = 1,
+        total = Math.max(1, Math.ceil(compositions[exam].length / 3)),
+      ) {
+        return `<div class="paper"><div class="paper-school">한빛고등학교 · 1학년 영어</div><h3>${exam === "mid" ? "2학기 중간고사" : "2학기 기말고사"} 대비</h3><div class="paper-sub"><span>${teacher ? "교사용 · 정답 및 근거" : "학생용 · 독해 연습"}</span><span>이름 ______________</span></div><div class="paper-source"><strong>Small gardens, big changes</strong>${passage}</div>${
+          ids.length
+            ? ids
+                .map((id, i) => {
+                  const q = qById(id);
+                  return `<div class="paper-q"><b>${(page - 1) * 3 + i + 1}. ${esc(q.title)}</b>${q.stem ? `<p>${esc(q.stem)}</p>` : ""}${q.options ? `<p>${q.options.map((o, j) => `${["①", "②", "③", "④", "⑤"][j]} ${esc(o)}`).join("<br>")}</p>` : "<p>________________________________________________________________</p>"}${teacher ? `<div class="paper-answer">정답: ${esc(q.answer)}<br>근거: ${esc(q.evidence)}</div>` : ""}</div>`;
+                })
+                .join("")
+            : '<p style="margin-top:20px">선택한 문항이 없습니다.</p>'
+        }<div class="paper-foot"><span>오늘의 영어 · 자체 제작 예시</span><span>${page} / ${total} · 예시 지면</span></div></div>`;
+      }
+      function render() {
+        if (view === "desk") renderDesk();
+        if (view === "bank") renderBank();
+        if (view === "review") renderReview();
+        if (view === "print") renderPrint();
+      }
+      function renderDesk() {
+        const ids = compositions[exam];
+        $("#view").innerHTML =
+          `<div class="desk-grid"><div class="desk-main"><section class="make-panel"><div class="paper-stack" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><h2>시험에 필요한 문제,<br>여기서 준비하세요.</h2><p>원문으로 새 문항을 만들거나<br>문제은행에서 골라 한 세트로 구성하세요.</p><div class="make-actions"><button class="btn primary" onclick="openMaker()">${icon("spark")}AI 문제 제작</button><button class="btn" onclick="showView('bank')">${icon("grid")}문제은행에서 담기</button></div></section><div class="source-line"><span class="source-icon">${icon("file")}</span><div><strong>도시의 작은 정원</strong><div class="small">직접 창작한 원문 · 고1 · 62단어</div></div><button class="text-button small" onclick="openResource()">원문 보기</button></div><section><div class="section-head"><h2>세트 검토 <span>${sets.length}개</span></h2><span class="small muted">검토 대기 ${sets.filter((s) => s.status !== "검토 완료").length}개</span></div><div class="set-list">${sets.map((s, i) => `<div class="set-row"><span class="set-icon">${icon("file")}</span><div>${statusTag(s.status)}<strong>${s.name}</strong><p>고1 · ${s.ids.length}문항 · ${s.ids.map((id) => qById(id).type).join(", ")}</p></div><button class="btn" onclick="startReview(${i})">${s.status === "검토 완료" ? "다시 보기" : "검토하기"}</button></div>`).join("")}</div></section><section class="assembly"><div class="section-head"><h2>시험지 구성 <span>${ids.length}문항</span></h2><button class="text-button small" onclick="showView('bank')">문항 추가 +</button></div><div class="assembly-list">${ids.length ? ids.map((id, i) => `<div class="assembly-item"><span class="num">${String(i + 1).padStart(2, "0")}</span><strong>${qById(id).type}</strong><span class="muted">도시의 작은 정원</span><button class="remove" onclick="removeQuestion(${id})" aria-label="${qById(id).type} 문항 빼기">×</button></div>`).join("") : '<div class="empty">문제은행에서 첫 문항을 담아 보세요.</div>'}</div></section></div><aside class="preview-panel" aria-label="A4 시험지 미리보기"><div class="preview-head"><h2>시험지 미리보기</h2><span>A4 · ${ids.length}문항</span></div><div class="paper-wrap">${paperHTML()}</div><div class="preview-controls"><button class="${!teacher ? "active" : ""}" onclick="setTeacher(false)">학생용</button><button class="${teacher ? "active" : ""}" onclick="setTeacher(true)">교사용 · 정답 포함</button></div><p class="preview-caption">첫 페이지를 표시합니다.<br>전체 지면은 크게 보기에서 확인하세요.</p><button class="text-button small" style="width:100%;margin-top:9px" onclick="showView('print')">크게 보기 ↗</button></aside></div>`;
+      }
+      function setTeacher(value) {
+        teacher = value;
+        render();
+      }
+      function removeQuestion(id) {
+        compositions[exam] = compositions[exam].filter((x) => x !== id);
+        renderDesk();
+      }
+      function renderBank() {
+        const list = questions.filter(
+          (q) =>
+            (!filter || q.type === filter) &&
+            (!query || `${q.type} ${q.title} 도시의 작은 정원`.includes(query)),
+        );
+        $("#view").innerHTML =
+          `<div class="section-head"><div><h2>문제은행</h2><p class="muted small" style="margin-top:6px">원문과 연결된 문항을 골라 현재 시험에 담으세요.</p></div><span class="badge blue">자체 예시 8문항</span></div><div class="bank-tools"><label class="search">${icon("search")}<span class="sr-only">문항 검색</span><input id="bankSearch" value="${esc(query)}" placeholder="원문 이름, 유형, 문항 검색" oninput="updateSearch(this.value)"></label><select aria-label="문항 유형 필터" onchange="filter=this.value;renderBank()"><option value="">모든 유형</option>${questions.map((q) => `<option ${filter === q.type ? "selected" : ""}>${q.type}</option>`).join("")}</select><span class="btn" style="cursor:default;font-size:12px">고1</span></div><div class="bank-list">${list.length ? list.map((q) => `<label class="bank-row"><input type="checkbox" aria-label="${q.type} 문항 선택" ${selected.has(q.id) ? "checked" : ""} onchange="toggleSelection(${q.id},this.checked)"><div><span class="badge blue">${q.type}</span><h3>${q.title}</h3><p>도시의 작은 정원 · 자체 창작 · 고1</p></div>${statusTag(sets.some((s) => s.status === "검토 완료" && s.ids.includes(q.id)) ? "검토 완료" : "초안")}</label>`).join("") : '<div class="empty">검색한 문항이 없습니다. 다른 단어나 유형을 선택하세요.</div>'}</div><div class="bank-actions"><span id="selectionCount">${selected.size}문항 선택</span><button class="btn" id="addSelected" ${!selected.size ? "disabled" : ""} onclick="addToExam()">현재 시험에 담기</button></div><p class="small muted" style="margin-top:14px">이 시안의 선택과 검토 상태는 새로고침하면 초기화됩니다.</p>`;
+      }
+      function updateSearch(value) {
+        const pos = $("#bankSearch").selectionStart;
+        query = value;
+        renderBank();
+        $("#bankSearch").focus();
+        $("#bankSearch").setSelectionRange(pos, pos);
+      }
+      function toggleSelection(id, on) {
+        on ? selected.add(id) : selected.delete(id);
+        $("#selectionCount").textContent = selected.size + "문항 선택";
+        $("#addSelected").disabled = !selected.size;
+      }
+      function addToExam() {
+        let old = compositions[exam].length;
+        compositions[exam] = [...new Set([...compositions[exam], ...selected])];
+        selected.clear();
+        showView("desk");
+        announce(
+          `${compositions[exam].length - old}문항을 시험지 구성에 추가했습니다. (시안 내 반영)`,
+        );
+      }
+      function startReview(index) {
+        activeSet = index;
+        activeQ = 0;
+        showView("review");
+      }
+      function renderReview() {
+        const s = sets[activeSet],
+          q = qById(s.ids[activeQ]);
+        $("#view").innerHTML =
+          `<div class="section-head" style="margin-bottom:22px"><div><h2>${s.name}</h2><p class="small muted" style="margin-top:6px">정답과 근거를 읽고 문항별로 확인해 주세요.</p></div>${statusTag(s.status)}</div><div class="review-layout"><nav class="review-nav" aria-label="검토 문항">${s.ids.map((id, i) => `<button class="${i === activeQ ? "active" : ""}" onclick="activeQ=${i};renderReview()">${String(i + 1).padStart(2, "0")} · ${qById(id).type}<small>${s.reviewed.has(id) ? "✓ 직접 확인함" : "검토 대기"}</small></button>`).join("")}</nav><section class="question-card"><span class="badge blue">${q.type} · ${activeQ + 1} / ${s.ids.length}</span><h2>${q.title}</h2><div class="passage">${q.stem ? esc(q.stem) : passage}</div>${q.options ? q.options.map((o, i) => `<div class="option">${["①", "②", "③", "④", "⑤"][i]} &nbsp; ${o}</div>`).join("") : ""}<div class="answer-box"><strong>정답 &nbsp; ${q.answer}</strong><blockquote>“${q.evidence}”</blockquote><p>${q.note}</p></div><div class="review-footer"><label><input type="checkbox" ${s.reviewed.has(q.id) ? "checked" : ""} onchange="markReviewed(${q.id},this.checked)" style="accent-color:var(--blue)"> 정답과 원문 근거를 직접 확인했습니다</label><button class="btn primary" onclick="nextReview()">${activeQ === s.ids.length - 1 ? "세트 검토 마치기" : "다음 문항"} ${activeQ === s.ids.length - 1 ? "✓" : "→"}</button></div><p class="small muted" style="margin-top:17px">${s.reviewed.size} / ${s.ids.length}문항 확인 · 자동 검증 결과가 아닙니다.</p></section></div>`;
+      }
+      function markReviewed(id, on) {
+        const s = sets[activeSet];
+        on ? s.reviewed.add(id) : s.reviewed.delete(id);
+        s.status = "검토 중";
+        renderReview();
+      }
+      function nextReview() {
+        const s = sets[activeSet];
+        if (!s.reviewed.has(s.ids[activeQ])) {
+          announce("현재 문항의 정답과 근거를 확인한 뒤 체크해 주세요.");
+          return;
+        }
+        if (activeQ < s.ids.length - 1) {
+          activeQ++;
+          renderReview();
+        } else if (s.reviewed.size === s.ids.length) {
+          s.status = "검토 완료";
+          showView("desk");
+          announce("이 시안에서 세트 검토를 완료했습니다.");
+        } else {
+          activeQ = s.ids.findIndex((id) => !s.reviewed.has(id));
+          renderReview();
+          announce("아직 확인하지 않은 문항이 있습니다.");
+        }
+      }
+      function renderPrint() {
+        $("#view").innerHTML =
+          `<div class="print-view"><div class="print-toolbar"><h2>A4 지면 미리보기</h2><div style="display:flex;gap:8px"><button class="btn" onclick="setTeacher(!teacher)">${teacher ? "학생용 보기" : "교사용 보기"}</button><button class="btn primary" onclick="window.print()">${icon("print")}브라우저 인쇄</button></div></div><p class="preview-caption" style="margin-bottom:14px">${teacher ? "교사용 · 정답과 근거 포함" : "학생용 · 정답 제외"} · 문항 수에 따라 인쇄 페이지가 나뉩니다. 인쇄 창에서 최종 확인하세요.</p>${Array.from({ length: Math.max(1, Math.ceil(compositions[exam].length / 3)) }, (_, i) => `<div class="paper-wrap" style="margin-bottom:20px">${paperHTML(compositions[exam].slice(i * 3, i * 3 + 3), i + 1, Math.max(1, Math.ceil(compositions[exam].length / 3)))}</div>`).join("")}</div>`;
+      }
+      function openModal(title, html) {
+        $("#modalTitle").textContent = title;
+        $("#modalBody").innerHTML = html;
+        $("#modal").showModal();
+      }
+      function closeModal() {
+        $("#modal").close();
+      }
+      function openMaker() {
+        openModal(
+          "AI 문제 제작",
+          `<form onsubmit="event.preventDefault();makeDraft()"><div class="dialog-body"><div class="field"><label class="form-label" for="sourceChoice">제작할 원문</label><select id="sourceChoice"><option>도시의 작은 정원 / Small gardens, big changes</option></select><p class="small muted" style="margin-top:8px">자료은행의 자체 창작 예시 · 원문 내용 유지</p></div><div class="field"><label class="form-label" for="gradeChoice">학년</label><select id="gradeChoice"><option>고1</option></select></div><fieldset class="field" style="border:0;padding:0"><legend class="form-label">문항 유형 <span class="muted" style="font-weight:400">유형별 1문항 · 3~8개 선택</span></legend><div class="type-grid">${questions.map((q, i) => `<label class="type-option"><input type="checkbox" name="type" value="${q.id}" ${i < 3 ? "checked" : ""} onchange="updateDraftCount()">${q.type}</label>`).join("")}</div></fieldset><div class="notice">선택한 유형의 자체 샘플을 초안으로 구성합니다. 실제 AI 호출이나 정답 자동 검증은 하지 않습니다.</div></div><div class="dialog-foot"><span class="small muted" id="draftCount">3문항 · 제작 후 직접 검토</span><button class="btn primary" id="makeButton" type="submit">${icon("spark")}샘플 초안 만들기</button></div></form>`,
+        );
+      }
+      function updateDraftCount() {
+        const n = document.querySelectorAll("[name=type]:checked").length;
+        $("#draftCount").textContent =
+          n < 3
+            ? "3개 이상의 유형을 선택하세요."
+            : `${n}문항 · 제작 후 직접 검토`;
+        $("#makeButton").disabled = n < 3 || n > 8;
+      }
+      function makeDraft() {
+        const ids = [...document.querySelectorAll("[name=type]:checked")].map(
+          (x) => Number(x.value),
+        );
+        if (ids.length < 3 || ids.length > 8) return;
+        sets.push({
+          name: "도시의 작은 정원 · 새 세트 " + (sets.length - 1),
+          ids,
+          status: "초안",
+          reviewed: new Set(),
+        });
+        closeModal();
+        startReview(sets.length - 1);
+      }
+      function openResource() {
+        openModal(
+          "자료은행",
+          `<div class="dialog-body"><div class="source-meta"><span class="badge blue">원문</span><span class="badge">고1</span><span class="badge">자체 창작 예시</span></div><h2 style="margin:15px 0 4px">도시의 작은 정원</h2><p class="muted small">Small gardens, big changes · 텍스트 원문</p><div class="source-detail">${passage}</div><p class="small muted">출처: 이 디자인 시안을 위해 직접 작성한 영어 지문.<br>이 자료와 연결된 예시 문항 8개를 문제은행에서 볼 수 있습니다.</p></div><div class="dialog-foot"><span class="small muted">원문 1개</span><button class="btn primary" onclick="closeModal();openMaker()">이 원문으로 제작</button></div>`,
+        );
+      }
+      function openListening() {
+        openModal(
+          "듣기 자료",
+          `<div class="dialog-body"><div class="listening-empty">${icon("headphones")}<h3>연결된 음원이 없습니다</h3><p>듣기 문제를 준비하려면 사용할 음원과 대본을 먼저 연결해야 합니다.</p><span class="badge">음원 연결 필요</span></div><div class="notice">이 시안에는 재생 가능한 음원이 없습니다. 자료은행의 읽기 원문은 확인할 수 있습니다.</div></div><div class="dialog-foot"><span class="small muted">음원 0개</span><button class="btn" onclick="closeModal();openResource()">원문 자료 보기</button></div>`,
+        );
+      }
+      $("#modal").addEventListener("click", (e) => {
+        if (e.target === $("#modal")) {
+          const r = e.target.getBoundingClientRect();
+          if (
+            e.clientX < r.left ||
+            e.clientX > r.right ||
+            e.clientY < r.top ||
+            e.clientY > r.bottom
+          )
+            closeModal();
+        }
+      });
+      render();
+    </script>
+  </body>
+</html>
