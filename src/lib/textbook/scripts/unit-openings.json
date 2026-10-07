@@ -8,7 +8,7 @@
     "chapters": 72,
     "sections": 360,
     "concepts": 1657,
-    "sectionHash": "sha256(stableJson({ section, concepts })) — keys sorted, core bank cards in bank order",
+    "sectionHash": "sha256(stableJson({ section, concepts })) — keys sorted, core bank learning cards in bank order; excludes questionRevision, bQuestion, clozeQuestion, questionExclusions",
     "chapterHash": "sha256(section hashes joined by a line feed, in catalogue order)"
   },
   "review": {
