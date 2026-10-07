@@ -136,7 +136,7 @@ const BASE_RANK: Record<PaperCandidate["source"], number> = {
   // RPM 교재본이면 1(자작과 같은 ③), AI 변형본이면 2(④). 아래에서 가른다.
   transformed: 2,
   ai_generated: 3,
-  // 교과서 평가 자료 — 사람이 낸 문항이다. 자작 · RPM 교재본과 같은 ③ (D-160).
+  // 교과서 평가 자료 — 사람이 낸 문항이다. 자작 · RPM 교재본과 같은 ③ (D-161).
   school_textbook: 1,
 };
 

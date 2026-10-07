@@ -20,7 +20,7 @@ export const PROVENANCE_CENSUS_20260825 = {
   origin: {
     past_exam: 41_084,
     workbook: 3_526,
-    /** 교과서 출판사 자료(D-160) — 이 표를 잰 2026-08-25 에는 출처 값 자체가 없었다. 다시 세면 갱신할 것. */
+    /** 교과서 출판사 자료(D-161) — 이 표를 잰 2026-08-25 에는 출처 값 자체가 없었다. 다시 세면 갱신할 것. */
     school_textbook: 0,
     elem_engine: 1_751,
     middle_engine: 662,

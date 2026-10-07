@@ -48,7 +48,7 @@ async function seedUnits(): Promise<void> {
       section: unit.section,
       orderIndex: unit.orderIndex,
       problemCodePrefix: unit.prefix,
-      // 차시의 학기(D-160) — 규칙은 `semesterOfUnit` 한 곳. 이미 차시가 든 DB 는
+      // 차시의 학기(D-161) — 규칙은 `semesterOfUnit` 한 곳. 이미 차시가 든 DB 는
       // scripts/qa/apply-source-material-migration.ts 가 같은 규칙으로 채웠다.
       semester: semesterOfUnit(unit.grade, unit.chapter),
     })),

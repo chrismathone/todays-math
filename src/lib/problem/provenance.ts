@@ -99,7 +99,7 @@ export type ProblemOrigin =
   | "workbook"
   /**
    * 교과서 — 출판사가 교과서에 딸려 낸 평가 · 수업 자료에서 옮긴 것 — `[교]`.
-   * 원장님 지시 2026-10-07 「문제를 전부 추출해서 문제은행에 넣고 싶은데 '교과서 라벨'을 붙여서」(D-160).
+   * 원장님 지시 2026-10-07 「문제를 전부 추출해서 문제은행에 넣고 싶은데 '교과서 라벨'을 붙여서」(D-161).
    * 문제집 `[문]` 과 다른 갈래다 — 출판사 · 저자 · 자료 종류가 `SourceMaterial` 에 기록돼 있다.
    */
   | "school_textbook"
@@ -187,7 +187,7 @@ const SCAN_PREFIX = "/figures/";
  */
 export function classifyOrigin(problem: ProvenanceInput): ProblemOrigin {
   if (problem.source === "ai_generated") return "ai";
-  // 교과서는 **출처 값이 곧 갈래**다(D-160) — `transformed` 처럼 다른 칸을 같이 봐야 갈리지 않는다.
+  // 교과서는 **출처 값이 곧 갈래**다(D-161) — `transformed` 처럼 다른 칸을 같이 봐야 갈리지 않는다.
   // 그래서 맨 앞에서 정한다: 무리 표지나 원본 참조가 붙어 있어도 이 판정은 안 바뀐다.
   if (problem.source === "school_textbook") return "school_textbook";
   if (problem.source === "transformed") {

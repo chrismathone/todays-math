@@ -4,7 +4,7 @@ import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 
 import { semesterOfUnit } from "@/lib/curriculum/unitSemester";
 
-describe("semesterOfUnit — 차시가 속한 학기 (D-160)", () => {
+describe("semesterOfUnit — 차시가 속한 학기 (D-161)", () => {
   it("초등은 대단원 이름의 앞 숫자가 학기다", () => {
     expect(semesterOfUnit("초3", "1-6 분수와 소수")).toBe(1);
     expect(semesterOfUnit("초3", "2-1 곱셈")).toBe(2);

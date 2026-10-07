@@ -1,6 +1,6 @@
 // @vitest-environment node
 /**
- * 출처 «교과서» · 출처 책/자료 표 · 차시의 학기 칸(D-160) — 마이그레이션 셋과 적용 도구를 **실제 Postgres 엔진**(PGlite)에서 잰다.
+ * 출처 «교과서» · 출처 책/자료 표 · 차시의 학기 칸(D-161) — 마이그레이션 셋과 적용 도구를 **실제 Postgres 엔진**(PGlite)에서 잰다.
  *
  * 공유 DB 에 대기 전에 여기서 먼저 돈다: 저장소의 마이그레이션을 처음부터 차례로 올린 DB 에, 적용 도구
  * (`scripts/qa/apply-source-material-migration.ts`)가 공유 DB 에서 하는 그대로 — 한 트랜잭션에 셋을 적용하고,

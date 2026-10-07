@@ -1,5 +1,5 @@
 /**
- * 출처 «교과서» · 출처 책/자료 표 · 차시의 학기 칸을 적용한다 (D-160 · 원장님 2026-10-07
+ * 출처 «교과서» · 출처 책/자료 표 · 차시의 학기 칸을 적용한다 (D-161 · 원장님 2026-10-07
  * «근본 해결로 진행할것» · «supabase sql은 적용할거 있으면 npx나 cli 로 적용시켜»).
  *
  *   npx tsx --env-file=.env scripts/qa/apply-source-material-migration.ts            # 드라이런 — 다 해 보고 ROLLBACK
