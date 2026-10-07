@@ -161,9 +161,7 @@ describe("[EnglishStudio] 오늘의 작업", () => {
     expect(sets.getByText("초안")).toBeVisible();
     expect(sets.getByText("검토 완료")).toBeVisible();
     expect(sets.getAllByText("3")).not.toHaveLength(0);
-    expect(
-      sets.getByRole("button", { name: "학교 맞춤 문제 만들기" }),
-    ).toBeVisible();
+    expect(sets.getByRole("button", { name: "AI 문제 제작" })).toBeVisible();
     expect(sets.getByText("모든 문제는 강사 검토 뒤에 씁니다.")).toBeVisible();
 
     // 뷰를 오가도 시험 목록은 다시 읽지 않는다
@@ -550,14 +548,12 @@ describe("[EnglishStudio] 오늘의 작업", () => {
     ).toBeVisible();
   });
 
-  it("«학교 맞춤 문제 만들기»는 전체 AI 제작 화면으로 이동한다", async () => {
+  it("«AI 문제 제작»은 전체 AI 제작 화면으로 이동한다", async () => {
     // 트랙 시절의 자리표(«준비 중»)는 병합 때 ai 트랙의 실제 화면으로 바뀌었다(25 §11.1) — 머리는 뿌리, 탭부터가 화면
     const log = makeLog();
     render(<Harness log={log} />);
     await screen.findByRole("heading", { name: "오늘의 작업" });
-    fireEvent.click(
-      screen.getByRole("button", { name: "학교 맞춤 문제 만들기" }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: "AI 문제 제작" }));
     expect(currentView()).toBe("english-maker");
     expect(await screen.findByLabelText("AI로 원문부터")).toBeVisible();
     expect(
@@ -674,7 +670,7 @@ describe("[EnglishStudio] 오늘의 작업", () => {
       screen.queryByRole("button", { name: "전체 보기" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: /학교 맞춤 문제 만들기/ }),
+      screen.queryByRole("button", { name: /AI 문제 제작/ }),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: / 열기$/ }),

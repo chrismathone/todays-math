@@ -308,7 +308,7 @@ export default function EnglishPrepView({
                   className={w.primaryButton}
                   onClick={() => onNavigate("english-maker")}
                 >
-                  학교 맞춤 문제 만들기
+                  AI 문제 제작
                   <Icon name="arrow" size={18} />
                 </button>
               )}
@@ -372,9 +372,7 @@ export default function EnglishPrepView({
             ) : (
               <div className={p.empty}>
                 <p>아직 만든 문제 세트가 없습니다.</p>
-                {canMake && (
-                  <span>학교 맞춤 문제 만들기에서 첫 초안을 준비하세요.</span>
-                )}
+                {canMake && <span>AI 문제 제작에서 첫 초안을 준비하세요.</span>}
               </div>
             )}
             <div className={p.sectionFoot}>
