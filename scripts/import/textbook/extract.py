@@ -21,6 +21,7 @@ from segment import (
     CIRCLED,
     Segmented,
     content_score,
+    embedded_number,
     looks_like_question,
     merge_answer_file,
     segment,
@@ -261,6 +262,8 @@ def main() -> None:
                     answered += 1
                 problems_out.write(json.dumps({
                     "path": source,
+                    #: 변환본의 이름(원본 경로의 sha1 앞 16자) — 출처 자료의 열쇠 · 그림 폴더 이름과 같은 값
+                    "key": hwpx.stem,
                     "kind": kind,
                     #: 물음 끝이나 보기가 있어야 문항이다 — 교과서 본문의 설명 덩이 · 표 조각을 거른다
                     "isQuestion": has_choices or looks_like_question(text),
@@ -278,6 +281,10 @@ def main() -> None:
                     "solution": doc.solutions.get(problem.key),
                     "pictures": [[p.bin_id, p.width, p.height] for p in problem.pictures],
                     "shapes": problem.shapes,
+                    #: 자료 표의 수 — 문제은행은 표를 글로 싣지 않는다. 0 이 아니면 글만으로는 못 싣는 문항이다
+                    "tables": problem.tables,
+                    #: 본문 안에 다른 문항의 머리로 보이는 줄이 있다(그 번호) — 두 문항이 붙었을 수 있다
+                    "embeddedNumber": embedded_number(problem),
                     #: 본문이 그림 · 표 · 그래프를 가리킨다 — 그림 파일도 도형도 없으면 «그림 못 찾음»
                     "figureMention": bool(_FIGURE_WORD.search(text)),
                 }, ensure_ascii=False) + "\n")
