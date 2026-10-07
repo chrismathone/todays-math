@@ -195,6 +195,20 @@ describe("[EnglishEditor] 검토·편집", () => {
     fireEvent.click(
       within(alert).getByRole("button", { name: "다시 불러오기" }),
     );
+    const discard = within(
+      screen.getByRole("dialog", {
+        name: "저장하지 않은 변경 사항을 버릴까요?",
+      }),
+    );
+    fireEvent.click(discard.getByRole("button", { name: "취소" }));
+    expect(screen.getByRole("textbox", { name: "세트 이름" })).toHaveValue(
+      "충돌 나는 이름",
+    );
+    expect(alert).toBeVisible();
+    fireEvent.click(
+      within(alert).getByRole("button", { name: "다시 불러오기" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "변경 사항 버리기" }));
     await waitFor(() =>
       expect(screen.getByRole("textbox", { name: "세트 이름" })).toHaveValue(
         "협력의 가치 · 외부지문 기본 훈련",
