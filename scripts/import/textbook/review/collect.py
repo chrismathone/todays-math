@@ -212,6 +212,8 @@ def main() -> None:
             for key, item in zip(keys, items):
                 mine = blocks.get(key["i"])
                 record = {"id": key["id"], "batch": name, "i": key["i"], "grade": batch["grade"], "keyAnswer": key["answer"], "answerFrom": key["answerFrom"]}
+                if "figureKeys" in key:
+                    record["figureKeys"] = key["figureKeys"]  # 검토자가 본 그림의 지문 — 적재기가 지금 그림과 견준다
                 if mine is None:
                     verdict = "missing"
                 else:

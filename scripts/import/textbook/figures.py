@@ -50,7 +50,7 @@ from PIL import Image, ImageOps, ImageStat
 
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 
-from prepare import ANSWER_SOURCES, CONTENT_MAX, external_id  # noqa: E402
+from prepare import ANSWER_SOURCES, CONTENT_MAX, external_id, points_to_figure  # noqa: E402
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
@@ -194,12 +194,42 @@ def place_markers(marked: str, keep: set[int]) -> str:
     return "\n".join(lines)
 
 
-def route_of(row: dict, kept: list[dict]) -> str:
-    big_shapes = [shape for shape in row.get("shapeList") or [] if max(shape[1], shape[2]) > SMALL_SHAPE]
+def rescue_strips(figs: list[dict], points: bool) -> None:
+    """본문이 그림을 가리키는데 남긴 그림이 하나도 없으면, 띠로 보고 버린 그림을 되살린다(`fate` 를 `keep` 으로).
+
+    수직선 · 한 직선 위의 점은 가로로 긴 띠다(75×8mm). 띠 규칙은 쪽을 가로지르는 색 띠를 걷으려는 것이라 이런 그림까지
+    버렸다(2026-10-08 — «다음 수직선에서 네 점 A, B, C, D 가 나타내는 수» 의 그림이 없었다). 실오라기(굵기 `STRIP_MM` 미만)는
+    되살리지 않는다. 되살린 그림이 이 문항의 그림인지는 검토자가 그림을 보고 가른다."""
+    if not points or any(fig["fate"] == "keep" for fig in figs):
+        return
+    for fig in figs:
+        if fig["fate"] == "strip" and min(to_mm(fig["w"]), to_mm(fig["h"])) >= STRIP_MM:
+            fig["fate"] = "keep"
+            fig["rescued"] = True
+
+
+def decoration_groups(figs: list[dict]) -> set[int]:
+    """든 그림이 전부 장식인 묶음의 번호 — 여러 파일에 겹치는 머리 띠 · 딱지를 글상자와 함께 묶어 둔 것이다."""
+    with_pictures = {fig["group"] for fig in figs if fig.get("group")}
+    return with_pictures - {fig["group"] for fig in figs if fig.get("group") and fig["fate"] == "keep"}
+
+
+def route_of(row: dict, kept: list[dict], decor_groups: set[int] | frozenset[int] = frozenset(), points: bool = True) -> str:
+    """문항의 갈래. `points` — 본문이 그림 · 표를 가리킨다(`prepare.points_to_figure`).
+
+    남긴 그림이 없고 본문이 아무것도 가리키지 않으면 도형은 꾸밈이다(보기를 두른 상자 · 구분선 · 머리 상자 —
+    2026-10-08 표본 215문항이 거의 다 그랬다). 글 문항으로 보내 검토자가 «글만으로 풀리나»를 가른다."""
+    big_shapes = [
+        shape
+        for shape in row.get("shapeList") or []
+        if max(shape[1], shape[2]) > SMALL_SHAPE and not (shape[0] == "container" and len(shape) > 3 and shape[3] in decor_groups)
+    ]
     if row.get("embeddedNumber") is not None:
         return "joined"
     if row.get("tables"):
         return "table"
+    if not kept and not points:
+        return "text"
     if big_shapes or any(fig["grouped"] for fig in kept):
         return "group"
     return "figure" if kept else "text"
@@ -245,8 +275,7 @@ def main() -> None:
                     files_of[digest].add(key)
 
     # ── 문항마다 ────────────────────────────────────────────────────────────
-    for name in ("figure", "text"):
-        (out / name).mkdir(parents=True, exist_ok=True)
+    (out / "figure").mkdir(parents=True, exist_ok=True)
     routes: collections.Counter[str] = collections.Counter()
     fates: collections.Counter[str] = collections.Counter()
     skipped: collections.Counter[str] = collections.Counter()
@@ -255,9 +284,7 @@ def main() -> None:
     exported_bytes = 0
     with (out / "meta.jsonl").open("w", encoding="utf-8") as meta_out, (out / "figure" / "problems.jsonl").open(
         "w", encoding="utf-8"
-    ) as figure_out, (out / "text" / "problems.jsonl").open("w", encoding="utf-8") as text_out, (out / "loaded.jsonl").open(
-        "w", encoding="utf-8"
-    ) as loaded_out:
+    ) as figure_out, (out / "loaded.jsonl").open("w", encoding="utf-8") as loaded_out:
         for row in rows:
             if row.get("kind") != "assessment" or not row.get("isQuestion", True):
                 continue
@@ -274,10 +301,12 @@ def main() -> None:
             for index, fig in enumerate(row.get("figs") or []):
                 digest = digest_of.get((row["key"], fig["bin"]))
                 fate = fate_of(fig, len(files_of.get(digest, ())), flat_of.get(digest, True)) if digest else "missing"
-                fates[fate] += 1
                 figs.append({**fig, "k": index, "sha": digest, "fate": fate})
+            rescue_strips(figs, points_to_figure(row["content"]))
+            for fig in figs:
+                fates["rescued" if fig.get("rescued") else fig["fate"]] += 1
             kept = [fig for fig in figs if fig["fate"] == "keep"]
-            route = route_of(row, kept)
+            route = route_of(row, kept, decoration_groups(figs), points_to_figure(row["content"]))
             if rid in loaded:
                 # 글만으로 된 문항으로 이미 실렸다 — 그런데 그림 · 도형이 딸려 있었다(번호가 있는 첫 문단의 것을 전에는 버렸다).
                 # 장식뿐이면 그대로 두면 되고, 진짜 그림이 있으면 그 문항은 그림 없이 실린 것이다. 따로 적어 둔다.
@@ -311,10 +340,9 @@ def main() -> None:
                         exported += 1
                         exported_bytes += len(data)
             meta_out.write(json.dumps({"id": rid, "key": row["key"], "route": route, "figures": files, "dropped": [{"k": f["k"], "fate": f["fate"]} for f in figs if f["fate"] != "keep"]}, ensure_ascii=False) + "\n")
+            # 그림이 장식뿐인 문항(text 갈래)은 글 문항이다 — `prepare.py --decor <이 meta.jsonl>` 이 추출에서 바로 고른다
             if route == "figure":
                 figure_out.write(json.dumps({**row, "content": content, "figureCount": len(kept)}, ensure_ascii=False) + "\n")
-            elif route == "text":
-                text_out.write(json.dumps({**row, "content": content}, ensure_ascii=False) + "\n")
     print(json.dumps({"갈래": dict(routes.most_common()), "그림의 처분": dict(fates.most_common()), "건너뜀": dict(skipped), "꺼낸 그림": exported, "꺼낸 그림의 용량(MB)": round(exported_bytes / 1e6, 1)}, ensure_ascii=False))
 
 

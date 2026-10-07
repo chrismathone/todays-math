@@ -10,7 +10,29 @@ import {
   choiceIndexOf,
   countMarkers,
   dropFigureMarkers,
+  figuresSeen,
 } from "@/lib/import/schoolTextbook/figurePlacement";
+
+describe("figuresSeen — 검토자가 본 그림이 지금 싣는 그림인가", () => {
+  // 추출을 고치면 같은 문항 번호에 다른 그림이 붙을 수 있다(그림이 한 문항씩 밀렸던 것을 바로잡은 2026-10-08).
+  // 본문이 같아도 그림이 바뀌었으면 그 검토는 다른 문항에 대한 것이다.
+  it("지문이 차례까지 같으면 same", () => {
+    expect(figuresSeen(["a", "b"], ["a", "b"])).toBe("same");
+    expect(figuresSeen([], [])).toBe("same");
+  });
+
+  it("하나라도 다르거나 차례가 바뀌었으면 changed", () => {
+    expect(figuresSeen(["a", "b"], ["b", "a"])).toBe("changed");
+    expect(figuresSeen(["a"], ["a", "b"])).toBe("changed");
+    expect(figuresSeen(["a", "b"], ["a"])).toBe("changed");
+  });
+
+  it("그림을 본 기록이 없는 검토를 그림 문항에 쓰지 않는다 — unseen", () => {
+    expect(figuresSeen(undefined, ["a"])).toBe("unseen");
+    // 그림 없는 문항이면 기록이 없어도 된다
+    expect(figuresSeen(undefined, [])).toBe("same");
+  });
+});
 
 describe("countMarkers · dropFigureMarkers", () => {
   const content =

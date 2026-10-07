@@ -129,6 +129,16 @@ class Problem:
         self.shapes += para.shapes
         self.shape_list.extend(para.shape_list)
 
+    def release(self, para: Para) -> None:
+        """이 문단에서 받은 그림 · 도형을 도로 내놓는다 — 닻이 다음 번호의 문단에 있었다(`segment` 의 `adopt`)."""
+        gone = {id(picture) for picture in (*para.pictures, *para.group_pictures)}
+        self.figs = [fig for fig in self.figs if id(fig.picture) not in gone]
+        self.pictures = [picture for picture in self.pictures if id(picture) not in gone]
+        self.shapes -= para.shapes
+        for shape in para.shape_list:
+            if shape in self.shape_list:
+                self.shape_list.remove(shape)
+
     @property
     def marked_text(self) -> str:
         """본문에 그림의 자리를 `[[FIG:k]]`(k 는 `figs` 의 번호)로 적은 글 — 그림 문항을 싣는 쪽이 쓴다."""
@@ -330,6 +340,44 @@ def segment(paras: list[Para]) -> Segmented:
                 break
         return False
 
+    #: 지금 문항이 시작된 문단의 번호(`paras` 의 자리) — 그 앞의 것은 이미 주인이 정해졌다
+    started_at = -1
+
+    def adopt(index: int, problem: Problem, previous: Problem | None) -> None:
+        """번호와 **같은 문단에 닻을 둔** 그림 · 도형을 이 문항으로 옮긴다.
+
+        떠 있는 개체의 닻은 문단의 맨 앞에 놓이기 쉽다. 번호가 글상자에 든 책은 그 그림이 번호 상자보다 먼저 흘러나오고
+        (문단이 상자에서 끊긴다), 묶음 개체는 만나는 자리에서 끊어 내므로 번호가 문단의 글에 있어도 먼저 나온다.
+        문서 차례대로만 달면 그 그림이 **앞 문항**에 붙는다 — 그림이 한 문항씩 밀리고 첫 문항의 그림은 사라진다.
+
+        옮기는 것은 번호 바로 앞에 이어진, 글 없는 개체 문단뿐이다: 이 번호와 같은 문단에서 나왔거나(`host`), 이 번호가 든
+        글상자 · 표가 매인 문단에서 나온 것(`parent`). 제 문단에 홀로 선 그림은 앞 문항의 것 그대로다.
+        """
+        para = paras[index]
+        homes = {para.host, para.parent} - {0}
+        moved: list[Para] = []
+        for j in range(index - 1, started_at, -1):
+            before = paras[j]
+            if para.host and before.parent == para.host:
+                continue  # 이 문단의 글상자 안 글(묶음 안의 라벨) — 건너뛴다
+            if before.host in homes and not before.text:
+                if before.pictures or before.group_pictures or before.shapes:
+                    moved.append(before)
+                continue
+            break
+        if not moved:
+            return
+        ahead = Problem(problem.section, problem.number, [], [])
+        for before in reversed(moved):  # 문서 차례로
+            if previous is not None:
+                previous.release(before)
+            ahead.attach(before, None)
+            ahead.take_objects(before)
+        problem.figs[:0] = ahead.figs
+        problem.pictures[:0] = ahead.pictures
+        problem.shapes += ahead.shapes
+        problem.shape_list[:0] = ahead.shape_list
+
     #: 여러 문항이 같이 쓰는 지시문 «[04~05] 다음 전개도로 만든 원기둥의 겉넓이를 구하시오.» — (묶음, 처음, 끝, 글)
     groups: list[tuple[int, int, int, str, Para]] = []
 
@@ -429,6 +477,9 @@ def segment(paras: list[Para]) -> Segmented:
                 current.shape_list.extend(para.shape_list)
                 problems.append(current)
                 glyph_mode, started = True, True
+        if started:
+            adopt(index, current, problems[-2] if len(problems) >= 2 else None)
+            started_at = index
         if started or current is None:
             continue
         added = bool(text) and not is_noise(text)

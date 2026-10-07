@@ -61,3 +61,19 @@ export function choiceIndexOf(content: string): number[] | null {
   }
   return index;
 }
+
+/**
+ * 검토자가 본 그림(그 지문들)이 지금 싣는 그림인가.
+ *
+ * 추출을 고치면 같은 문항 번호에 다른 그림이 붙을 수 있다 — 본문이 한 글자도 같아도 그 검토는 다른 문항에 대한 것이다
+ * (2026-10-08 그림이 한 문항씩 밀렸던 것을 바로잡으면서). 차례까지 같아야 `same` 이다.
+ * 그림을 본 기록이 없는 검토(`seen` 이 없다)는 그림 문항에 쓰지 않는다 — `unseen`.
+ */
+export function figuresSeen(
+  seen: readonly string[] | undefined,
+  now: readonly string[],
+): "same" | "changed" | "unseen" {
+  if (seen === undefined) return now.length === 0 ? "same" : "unseen";
+  if (seen.length !== now.length) return "changed";
+  return seen.every((key, index) => key === now[index]) ? "same" : "changed";
+}

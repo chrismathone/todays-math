@@ -66,6 +66,8 @@ class Picture:
     flip: tuple[bool, bool] = (False, False)
     #: 묶음 개체(`hp:container`) 안의 그림 — 글상자 · 선과 함께 묶여 있어 그림 파일만으로는 다 안 그려진다
     grouped: bool = False
+    #: 묶음 안의 그림이면 그 묶음의 번호(문서 안에서 1부터) — 도형 목록의 `("container", 가로, 세로, 번호)` 와 같은 번호다
+    group: int = 0
 
     @property
     def is_glyph(self) -> bool:
@@ -92,6 +94,11 @@ class Para:
     group_pictures: list[Picture] = dataclasses.field(default_factory=list)
     #: `shapes` 로 센 도형 하나하나 — (종류, 가로, 세로) HWPUNIT. 번호 딱지 같은 작은 묶음과 진짜 그림을 가릴 때 쓴다
     shape_list: list[tuple[str, int, int]] = dataclasses.field(default_factory=list)
+    #: 이 글을 낸 문단(`hp:p`)의 번호 — 문단 하나가 글상자 · 표에서 끊겨 여러 `Para` 로 나와도 번호는 같다.
+    #: 떠 있는 개체의 닻은 문단이다: 같은 문단에서 나온 그림과 번호는 **한 문항의 것**이다(문서 차례로는 그림이 먼저 나와도).
+    host: int = 0
+    #: 이 문단이 글상자 · 표 안에 있으면 그 상자가 매인 문단의 번호, 아니면 0
+    parent: int = 0
 
 
 def _size(node) -> tuple[int, int]:
@@ -108,7 +115,7 @@ def _size(node) -> tuple[int, int]:
     return 0, 0
 
 
-def _picture(el, *, grouped: bool = False) -> Picture:
+def _picture(el, *, grouped: bool = False, group: int = 0) -> Picture:
     """`hp:pic` 하나 — 보이는 크기 · 잘림 · 놓인 꼴."""
     img = el.find(HC + "img")
     width, height = _size(el)
@@ -141,6 +148,7 @@ def _picture(el, *, grouped: bool = False) -> Picture:
         rotation=rotation,
         flip=flips,
         grouped=grouped,
+        group=group,
     )
 
 
@@ -207,18 +215,22 @@ def _table_kind(cells: list[list[list["Para"]]]) -> str:
 
 
 class _Walker:
-    def __init__(self, counter: list[int] | None = None) -> None:
+    def __init__(self, counter: list[int] | None = None, ids: list[int] | None = None, parent: int = 0) -> None:
         self.paras: list[Para] = []
         #: 자료 표의 번호를 세는 자리 — 칸을 읽는 안쪽 워커와 같이 쓴다
         self.counter = counter if counter is not None else [0]
+        #: 문단의 번호(`Para.host`) · 묶음 개체의 번호(`Picture.group`)를 세는 자리 — 안쪽 워커와 같이 쓴다
+        self.ids = ids if ids is not None else [0, 0]
+        #: 지금 읽는 글상자 · 표가 매인 문단의 번호(`Para.parent`)
+        self.parent = parent
 
-    def table(self, tbl, depth: int) -> None:
+    def table(self, tbl, depth: int, host: int = 0) -> None:
         cells: list[list[list[Para]]] = []
         # 바로 아래 줄만 — 칸 안에 든 안쪽 표의 줄은 그 칸을 읽는 워커가 읽는다
         for tr in tbl.findall(HP + "tr"):
             row: list[list[Para]] = []
             for tc in tr.findall(HP + "tc"):
-                inner = _Walker(self.counter)
+                inner = _Walker(self.counter, self.ids, host)
                 inner.walk(tc, depth + 1)
                 row.append(inner.paras)
             if row:
@@ -249,6 +261,8 @@ class _Walker:
         notes: list[str] = []
         lead: Picture | None = None
         shapes = 0
+        self.ids[0] += 1
+        host = self.ids[0]
 
         def emit_text(value: str) -> None:
             buf.append(value)
@@ -269,6 +283,7 @@ class _Walker:
                     Para(
                         text, list(pictures), lead, depth, list(notes), shapes,
                         group_pictures=list(group_pics), shape_list=list(shape_list),
+                        host=host, parent=self.parent,
                     )
                 )
             buf.clear()
@@ -326,23 +341,27 @@ class _Walker:
             tag = el.tag
             if tag == HP + "tbl":
                 flush()
-                self.table(el, depth)
+                self.table(el, depth, host)
                 return
             # 글상자 · 묶음 안의 문단. 글이 없는 도형(삼각형 · 원 …)은 그린 그림으로 센다
-            if tag in (HP + "ellipse", HP + "polygon", HP + "container") or (
-                tag == HP + "rect" and el.find(HP + "drawText") is None
-            ):
+            if tag == HP + "container":
+                self.ids[1] += 1
+                shapes += 1
+                shape_list.append(("container", *_size(el), self.ids[1]))
+            elif tag in (HP + "ellipse", HP + "polygon") or (tag == HP + "rect" and el.find(HP + "drawText") is None):
                 shapes += 1
                 shape_list.append((tag.replace(HP, ""), *_size(el)))
             if tag == HP + "container":
                 # 묶음 안의 그림 — 글상자 · 선과 함께 묶인 그림이다. 여기까지의 글 끝에 놓인 것으로 적는다
                 for pic in el.iter(HP + "pic"):
-                    picture = _picture(pic, grouped=True)
+                    picture = _picture(pic, grouped=True, group=self.ids[1])
                     group_pics.append(picture)
                     marked.append(picture)
                     buf.append(_PIC_MARK)
             flush()
+            outer, self.parent = self.parent, host
             self.walk(el, depth)
+            self.parent = outer
 
         below: list = []
         visit(p)

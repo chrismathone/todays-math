@@ -88,6 +88,7 @@ import {
   choiceIndexOf,
   countMarkers,
   dropFigureMarkers,
+  figuresSeen,
 } from "../../../src/lib/import/schoolTextbook/figurePlacement";
 import {
   cleanContent,
@@ -238,6 +239,8 @@ interface Reviewed {
   needSolution?: boolean;
   /** 그림 문항 — 검토자가 «이 문항의 그림이 아니다»라고 한 그림의 번호(1부터) */
   noFigure?: number[];
+  /** 그림 문항 — 검토자가 본 그림의 지문(sha) 차례대로. 지금 싣는 그림과 견준다(`figuresSeen`) */
+  figureKeys?: string[];
 }
 /** `figures.py --export` 가 낸 한 줄 — 문항에 딸린 그림 파일들(본문의 `[그림]` 차례대로) */
 interface FigureMeta {
@@ -664,6 +667,19 @@ function buildRowsOf(
     if (meta) {
       if (countMarkers(source.content) !== meta.figures.length) {
         skip("본문의 [그림] 표지와 그림 파일의 수가 다르다");
+        continue;
+      }
+      // 검토자가 본 그림이 지금 싣는 그림인가 — 추출을 고쳐 그림이 바뀌었으면 본문이 같아도 그 검토는 낡았다
+      const seen = figuresSeen(
+        review.figureKeys,
+        meta.figures.map((figure) => figure.sha),
+      );
+      if (seen !== "same") {
+        skip(
+          seen === "changed"
+            ? "검토 뒤에 그림이 바뀌었다 — 다시 검토해야 한다"
+            : "그림을 본 검토가 아니다",
+        );
         continue;
       }
       // 빠지는 그림 둘 — 검토자가 뺀 줄에 있던 것 · 검토자가 «이 문항의 그림이 아니다»(장식 · 다른 문항의 그림)라고 한 것

@@ -299,6 +299,7 @@ def main() -> None:
                             "line": fig.line,
                             "offset": fig.offset,
                             "grouped": fig.picture.grouped,
+                            "group": fig.picture.group,
                             "behind": fig.picture.behind,
                             "clip": fig.picture.clip,
                             "rot": fig.picture.rotation,
