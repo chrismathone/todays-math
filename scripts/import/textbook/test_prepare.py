@@ -134,6 +134,7 @@ def test_only_self_contained_text_problems_with_an_answer_are_taken():
         ({"embeddedNumber": 3}, "붙은 문항"),
         ({"answer": None}, "답이 없다"),
         ({"answerFrom": "rejected-mismatch"}, "답이 없다"),
+        ({"answerFrom": "picture-unread"}, "답이 없다"),
         ({"answer": "풀이 참조"}, "답이 «풀이 참조»"),
         ({"kind": "textbook"}, "평가 자료가 아니다"),
         ({"content": "가" * 1300}, "본문이 너무 길다"),
@@ -178,3 +179,8 @@ def test_decoration_only_pictures_do_not_hold_a_problem_back():
     assert eligible(row) == "그림"
     assert eligible(row, decor=True) is None
     assert eligible({**row, "content": "오른쪽 그림에서 $x$의 값은?"}, decor=True) == "그림을 가리키는 말"
+
+
+def test_an_answer_read_from_the_answer_picture_is_taken_like_any_other_key():
+    """정답 칸이 그림인 자료 — 구독 모델이 읽은 답(`picture`)도 다른 출처처럼 검토로 간다(검토가 정답을 안 보고 풀어 대조한다)."""
+    assert eligible({**ROW, "answerFrom": "picture"}) is None

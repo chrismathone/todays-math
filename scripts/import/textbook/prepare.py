@@ -29,7 +29,9 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")  # 윈도 콘솔(cp949)은 «» 를 못 찍는다
 
 REPO = Path(__file__).resolve().parents[3]
-ANSWER_SOURCES = {"key", "solution-short", "solution-choice", "solution-last"}
+#: 답의 출처 — `picture` 는 정답 칸의 그림을 구독 모델이 읽은 답(`answer_pictures.py`). 확인된 답이 아니다 —
+#: 검토자가 정답을 안 보고 푼 답과 대조해 같을 때만(다르면 둘째 검토) 싣는다. 다른 출처와 같은 길이다
+ANSWER_SOURCES = {"key", "solution-short", "solution-choice", "solution-last", "picture"}
 #: 본문이 이보다 길면 문항 하나가 아니다(붙은 문항 · 활동지)
 CONTENT_MAX = 1200
 _FIGURE_IN_SOLUTION = re.compile(r"그림|그래프는?\s*(?:다음|오른쪽|아래)|다음과\s*같(?:이|은)\s*(?:그래프|표)|수직선\s*위에\s*나타내면")

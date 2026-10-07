@@ -200,6 +200,8 @@ class Segmented:
     answer_is_picture: bool
     #: 정답 칸의 원문(보고서에 쓴다)
     answer_text: str
+    #: 정답 칸이 그림뿐일 때 그 그림들(문서 차례) — 구독 모델이 읽어 정답으로 쓴다(`answer_pictures.py`)
+    answer_pictures: list = dataclasses.field(default_factory=list)
 
 
 #: 기호 글꼴이 쓰는 사용자 영역 글자(화살표 · 손가락 그림 따위) — 군더더기를 알아볼 때만 걷는다
@@ -532,14 +534,17 @@ def segment(paras: list[Para]) -> Segmented:
     solutions: dict[tuple[int, int], str] = {}
     answer_text = ""
     answer_is_picture = False
+    answer_pictures: list = []
     if answer_start is not None:
         tail = paras[answer_start:]
         answer_text = "\n".join(p.text for p in tail if p.text)
         has_text = any(p.text and not is_answer_head(p.text) for p in tail)
         answer_is_picture = not has_text and any(not pic.is_glyph for p in tail for pic in p.pictures)
+        if answer_is_picture:
+            answer_pictures = [pic for p in tail for pic in (*p.pictures, *p.group_pictures) if not pic.is_glyph]
         runs = _answer_runs(tail, padded)
         _assign(runs, problems, keys, solutions)
-    return Segmented(problems, keys, solutions, answer_start is not None, answer_is_picture, answer_text)
+    return Segmented(problems, keys, solutions, answer_start is not None, answer_is_picture, answer_text, answer_pictures)
 
 
 def merge_answer_file(doc: Segmented, answer_paras: list[Para], padded: bool | None = None) -> int:
