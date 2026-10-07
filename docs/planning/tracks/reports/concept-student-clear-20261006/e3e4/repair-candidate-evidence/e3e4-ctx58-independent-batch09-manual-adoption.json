@@ -1,0 +1,1101 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-2-4-6-xc8",
+      "sourceIndex": 1172,
+      "beforeProposal": {
+        "sourceIndex": 1172,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-6 분모가 같은 분수의 크기 비교",
+        "sourceFingerprint": "f7f566ba467b2401d28ba305755d43652cdc38e7decc1e7dda25d8bc34b79a4c",
+        "proposalFingerprint": "67001ca27a62d35f342258290d3b547e8ea147ccd1caf5fa106ffb6c1a753ab8",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-6-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "없음(B 제외)",
+        "bReason": "분모가 같은 분수의 분자 비교는 e3-2-4-6-xc1에서 이유까지 묻는다",
+        "exclusionReason": "'분자가 가장 큰 것이 가장 크다'는 e3-2-4-6-xc1의 B(분모가 같으면 분자로 비교하는 까닭)를 여러 개에 되풀이 적용한 것이라 새 설명 목표가 없다",
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 다 있고 '가장 크다/가장 작다' 가운데 고르는 짧은 비교 빈칸임",
+        "answerNotes": "'가장 크다', '제일 크다' 인정.",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가장 큰 가분수 고르기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 가분수 가운데 분자가 가장 큰 것이 {가장 크다}.",
+        "cStudentSentence": "분모가 같은 가분수 가운데 분자가 가장 큰 것이 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "가장 크다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모가 같은 가분수 가운데 분자가 가장 큰 것이 □.",
+          "answers": [
+            "가장 크다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "분모가 같은 가분수 가운데 분자가 가장 큰 것이 {가장 크다}.",
+          "acceptedAnswers": [
+            [
+              "가장 크다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "분모가 같은 분수의 분자 비교는 e3-2-4-6-xc1에서 이유까지 묻는다"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-4-6-xc8",
+          "sourceIndex": 1172,
+          "proposalFingerprint": "67001ca27a62d35f342258290d3b547e8ea147ccd1caf5fa106ffb6c1a753ab8",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은분모의분자최대방법은1166과겹쳐B를 제외한다.",
+          "cReason": "같은분모가분수의최대분자와최대분수관계다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{7}{4}$, $\\frac{9}{4}$, $\\frac{11}{4}$ 가운데 가장 큰 분수는 {$\\frac{11}{4}$}이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-1-xc7",
+      "sourceIndex": 1900,
+      "beforeProposal": {
+        "sourceIndex": 1900,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-1 막대그래프 알아보기",
+        "sourceFingerprint": "d5261baea746f8d3d9c03ad3c8a1ff5be27e42284a0347ebf889e6587c9ac12f",
+        "proposalFingerprint": "2135ddf3e579d45f2339101ca843dce9982a1a6dd652ee3d712190c6c4e42063",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-1-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 조사 결과를 표와 막대그래프로 나타냈다. 한 항목의 수량을 정확한 값으로 읽을 때와 여러 항목의 많고 적음을 한눈에 비교할 때, 표와 막대그래프 중 각각 어느 쪽이 더 편한지 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "정확한 값을 읽을 때는 수가 적혀 있는 표가 편하고, 여러 항목의 많고 적음을 비교할 때는 막대 길이로 한눈에 견줄 수 있는 막대그래프가 편하다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정확한 값을 읽을 때는 수량이 숫자로 적힌 표가 편하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "여러 항목의 많고 적음을 비교할 때는 막대 길이로 한눈에 견줄 수 있는 막대그래프가 편하다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "정확한 값 읽기와 여러 항목 비교에서 표와 막대그래프의 쓰임 구분",
+        "bReason": "자유로운 좋은 점 묻기 대신 읽기 상황 두 가지로 응답 범위를 정함",
+        "cDecision": "rewrite",
+        "cAfter": "표에 사과를 좋아하는 학생이 $12$명, 배를 좋아하는 학생이 $8$명이라고 적혀 있다. 이를 같은 눈금의 막대그래프로 나타내면 사과 막대가 배 막대보다 {길고}, 두 막대가 나타내는 수의 차는 {$4$}명이다.",
+        "cReason": "'수' 한 낱말 채우기 대신 표의 수를 막대그래프의 길이 비교와 차 계산으로 이어 읽는 실제 예로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "더 길고"
+          ],
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "표와 막대그래프",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "표에 사과를 좋아하는 학생이 $12$명, 배를 좋아하는 학생이 $8$명이라고 적혀 있다. 이를 같은 눈금의 막대그래프로 나타내면 사과 막대가 배 막대보다 {길고}, 두 막대가 나타내는 수의 차는 {$4$}명이다.",
+        "cStudentSentence": "표에 사과를 좋아하는 학생이 $12$명, 배를 좋아하는 학생이 $8$명이라고 적혀 있다. 이를 같은 눈금의 막대그래프로 나타내면 사과 막대가 배 막대보다 □, 두 막대가 나타내는 수의 차는 □명이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "길고",
+            "equivalents": [
+              "더 길고"
+            ]
+          },
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 조사 결과를 표와 막대그래프로 나타냈다. 한 항목의 수량을 정확한 값으로 읽을 때와 여러 항목의 많고 적음을 한눈에 비교할 때, 표와 막대그래프 중 각각 어느 쪽이 더 편한지 쓰고 그 까닭을 쓰시오.",
+          "answer": "정확한 값을 읽을 때는 수가 적혀 있는 표가 편하고, 여러 항목의 많고 적음을 비교할 때는 막대 길이로 한눈에 견줄 수 있는 막대그래프가 편하다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정확한 값을 읽을 때는 수량이 숫자로 적힌 표가 편하다"
+              ]
+            },
+            {
+              "anyOf": [
+                "여러 항목의 많고 적음을 비교할 때는 막대 길이로 한눈에 견줄 수 있는 막대그래프가 편하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "표에 사과를 좋아하는 학생이 $12$명, 배를 좋아하는 학생이 $8$명이라고 적혀 있다. 이를 같은 눈금의 막대그래프로 나타내면 사과 막대가 배 막대보다 {길고}, 두 막대가 나타내는 수의 차는 {$4$}명이다.",
+          "acceptedAnswers": [
+            [
+              "길고",
+              "더 길고"
+            ],
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-1-xc7",
+          "sourceIndex": 1900,
+          "proposalFingerprint": "2135ddf3e579d45f2339101ca843dce9982a1a6dd652ee3d712190c6c4e42063",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "정확한 값과 한눈 비교의 두 목적을 나눠 매체 선택과 이유를 함께 받는다.",
+          "cReason": "실제 12명과 8명으로 길고와 차 4명을 구하며 문장에 맞는 대체 답을 둔다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "좋아하는 과일을 조사해 표와 막대그래프로 나타냈다. 어느 과일을 고른 학생이 더 많은지 여러 항목을 한눈에 견주기에는 표와 막대그래프 중 {막대그래프}가 더 편하다.",
+        "cSlotEquivalents": [
+          [
+            "막대 그래프"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-5-1-xc8",
+      "sourceIndex": 1189,
+      "beforeProposal": {
+        "sourceIndex": 1189,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-1 들이 비교하기",
+        "sourceFingerprint": "0d5ab2bad322082ac6975c1acbd7be3a54ff286adb9afe13586a9826a3cfd6f1",
+        "proposalFingerprint": "e692256464fe665df07ea015fbe0e11b7b6219ad62f5a48b45c14e7d80991f7d",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-1-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "없음(B 제외)",
+        "bReason": "물을 쌀·콩으로 바꾼 것뿐이라 옮겨 붓기 비교와 설명 내용이 같다",
+        "exclusionReason": "물 대신 쌀이나 콩을 쓰는 것은 e3-2-5-1-xc2·xc3의 옮겨 붓기 비교와 방법과 이유가 같고 재료만 달라 B에서 새로 설명할 목표가 없다",
+        "cDecision": "rewrite",
+        "cAfter": "물이 없을 때는 쌀이나 콩처럼 부을 수 있는 것을 그릇에 가득 담아 옮겨 보아도 두 그릇의 {들이}를 비교할 수 있다.",
+        "cReason": "'부을 수 있는'은 '작은', '알갱이로 된' 등 답이 흩어져 단원의 익숙한 용어 '들이'를 빈칸으로 바꿈",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "물 대신 쓰는 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "물이 없을 때는 쌀이나 콩처럼 부을 수 있는 것을 그릇에 가득 담아 옮겨 보아도 두 그릇의 {들이}를 비교할 수 있다.",
+        "cStudentSentence": "물이 없을 때는 쌀이나 콩처럼 부을 수 있는 것을 그릇에 가득 담아 옮겨 보아도 두 그릇의 □를 비교할 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "들이",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "물이 없을 때는 쌀이나 콩처럼 부을 수 있는 것을 그릇에 가득 담아 옮겨 보아도 두 그릇의 {들이}를 비교할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "들이"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "물을 쌀·콩으로 바꾼 것뿐이라 옮겨 붓기 비교와 설명 내용이 같다"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-1-xc8",
+          "sourceIndex": 1189,
+          "proposalFingerprint": "e692256464fe665df07ea015fbe0e11b7b6219ad62f5a48b45c14e7d80991f7d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "재료만쌀·콩으로바뀐옮겨붓기B중복을 제외한다.",
+          "cReason": "같은재료를가득옮겨두들이를비교하는측정대상을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "물을 쓸 수 없을 때는 쌀이나 콩을 그릇에 가득 담아 옮겨 보아도 두 그릇의 들이를 비교할 수 {있다}.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-1-xc16",
+      "sourceIndex": 1909,
+      "beforeProposal": {
+        "sourceIndex": 1909,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-1 막대그래프 알아보기",
+        "sourceFingerprint": "46ef311754da19efbe56ef064e24894cf2090f4416b8f9c1ef51d138055132d4",
+        "proposalFingerprint": "21da414325e332adb4990c743f3d8ff64496e9d8e6a8a3125fded32e470ec222",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-1-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "막대그래프에서 막대의 길이와 눈금은 그대로 두고 막대 사이의 간격만 넓히면 각 항목의 수량이 달라지는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "달라지지 않는다. 수량은 막대의 길이로 나타내기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "달라지지 않는다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수량을 나타내는 막대의 길이와 눈금이 그대로이기 때문이다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "막대 간격과 수량의 관계",
+        "bReason": "간격을 바꾸는 구체 상황으로 판단하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "막대와 막대 사이의 간격을 넓게 그려도 수량은 {그대로이다}.",
+        "cReason": "'관계없다' 복원 대신 쉬운 말로 결론만 가림",
+        "cSlotEquivalents": [
+          [
+            "같다",
+            "변하지 않는다",
+            "달라지지 않는다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "막대 사이의 간격",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대와 막대 사이의 간격을 넓게 그려도 수량은 {그대로이다}.",
+        "cStudentSentence": "막대와 막대 사이의 간격을 넓게 그려도 수량은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "그대로이다",
+            "equivalents": [
+              "같다",
+              "변하지 않는다",
+              "달라지지 않는다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "막대그래프에서 막대의 길이와 눈금은 그대로 두고 막대 사이의 간격만 넓히면 각 항목의 수량이 달라지는지 쓰고, 그 까닭을 설명하시오.",
+          "answer": "달라지지 않는다. 수량은 막대의 길이로 나타내기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "달라지지 않는다",
+                "그대로이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "수량을 나타내는 막대의 길이와 눈금이 그대로이기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "막대와 막대 사이의 간격을 넓게 그려도 수량은 {그대로이다}.",
+          "acceptedAnswers": [
+            [
+              "그대로이다",
+              "같다",
+              "변하지 않는다",
+              "달라지지 않는다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-1-xc16",
+          "sourceIndex": 1909,
+          "proposalFingerprint": "21da414325e332adb4990c743f3d8ff64496e9d8e6a8a3125fded32e470ec222",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "간격만 바꾼다고 명시하고 수량은 길이로 나타낸다는 이유를 요청한다.",
+          "cReason": "간격 변화와 수량 불변의 짧은 비교다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수량은 달라지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수량은 막대 사이 간격이 아니라 눈금으로 읽는 막대의 길이로 나타낸다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-1-xc20",
+      "sourceIndex": 1913,
+      "beforeProposal": {
+        "sourceIndex": 1913,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-1 막대그래프 알아보기",
+        "sourceFingerprint": "ed7163558cda8f24b0ca308532b5b846611a5cdbbed08df822fed2330ab24beb",
+        "proposalFingerprint": "a0635f60364651b418ce5474b12373c1bb327fe4e99e99d4c2d5fd3830750929",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-1-xc20",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "",
+        "bReason": "눈금이 다른 그래프의 수량 비교는 e4-1-5-3-xc27의 B에서 다룬다.",
+        "exclusionReason": "B만 제외: e4-1-5-3-xc27의 서로 다른 한 칸 수량을 확인하는 목표와 겹친다.",
+        "cDecision": "rewrite",
+        "cAfter": "서로 다른 그래프의 막대를 견줄 때는 먼저 눈금 한 칸이 {얼마}인지 확인한다.",
+        "cReason": "'눈금 한 칸의 크기' 긴 구절을 쉬운 '얼마'로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "몇 명",
+            "몇 개"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "다른 그래프의 막대 견주기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "서로 다른 그래프의 막대를 견줄 때는 먼저 눈금 한 칸이 {얼마}인지 확인한다.",
+        "cStudentSentence": "서로 다른 그래프의 막대를 견줄 때는 먼저 눈금 한 칸이 □인지 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "얼마",
+            "equivalents": [
+              "몇 명",
+              "몇 개"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "서로 다른 그래프의 막대를 견줄 때는 먼저 눈금 한 칸이 {얼마}인지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "얼마",
+              "몇 명",
+              "몇 개"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "눈금이 다른 그래프의 수량 비교는 e4-1-5-3-xc27의 B에서 다룬다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-1-xc20",
+          "sourceIndex": 1913,
+          "proposalFingerprint": "a0635f60364651b418ce5474b12373c1bb327fe4e99e99d4c2d5fd3830750929",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "실제로 확인한 e4-1-5-3-xc27에 B의 중복 근거를 연결했다.",
+          "cReason": "얼마인지에 들어맞는 수량 표현을 받고 크기인지는 제거했다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "얼마라는 의문사 복원은 눈금 해석을 확인하지 못한다. 실제로 서로 다른 한 칸 수량을 비교하는 e4-1-5-3-xc27에서 확인한다.",
+        "exclusionReason": "B/C: 눈금 한 칸의 서로 다른 수량을 비교하는 e4-1-5-3-xc27에 목표를 남기고 얼마라는 의문사 복원은 제외한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-1-xc24",
+      "sourceIndex": 1917,
+      "beforeProposal": {
+        "sourceIndex": 1917,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-1 막대그래프 알아보기",
+        "sourceFingerprint": "999d4f1388256ff2a661662e6bc8109e03c549a557a30af35fcdd815cb114986",
+        "proposalFingerprint": "a9646f959c502ba83281dee6232d89ed7cba38d930603e749d60d022e60a8fbb",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-1-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "",
+        "bReason": "",
+        "exclusionReason": "표와 막대그래프 비교 B와 같은 목표(많고 적음을 견주기)라 중복",
+        "cDecision": "rewrite",
+        "cAfter": "막대그래프는 항목별 수량이 {많고} 적음을 한눈에 견주기 좋다.",
+        "cReason": "'많고 적음' 구절 전체 대신 '많고'만 가려 부담 낮춤",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "막대그래프의 좋은 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대그래프는 항목별 수량이 {많고} 적음을 한눈에 견주기 좋다.",
+        "cStudentSentence": "막대그래프는 항목별 수량이 □ 적음을 한눈에 견주기 좋다.",
+        "cSlotAnswers": [
+          {
+            "expected": "많고",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "막대그래프는 항목별 수량이 {많고} 적음을 한눈에 견주기 좋다.",
+          "acceptedAnswers": [
+            [
+              "많고"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": ""
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-1-xc24",
+          "sourceIndex": 1917,
+          "proposalFingerprint": "a9646f959c502ba83281dee6232d89ed7cba38d930603e749d60d022e60a8fbb",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "표와 막대그래프 비교의 설명 목표와 중복된 B 제외를 유지한다.",
+          "cReason": "많고 적음이라는 문장에 연결되지 않는 대체 답을 제거했다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "많고 적음의 앞말만 복원하는 빈칸으로 실제 수량이나 표현 방법을 판단하지 못한다.",
+        "bReason": "표와 막대그래프의 쓰임을 비교하는 e4-1-5-1-xc7 B와 같은 목표이다.",
+        "exclusionReason": "B/C: 막대그래프의 비교상 이점은 e4-1-5-1-xc7에서 설명하고 많고 적음이라는 짝말 복원은 제외한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-1-xc27",
+      "sourceIndex": 1920,
+      "beforeProposal": {
+        "sourceIndex": 1920,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-1 막대그래프 알아보기",
+        "sourceFingerprint": "1c5812fbc149e67b1c3db9471f603f282f49dc206a100e77674817be21fea701",
+        "proposalFingerprint": "fd32d356c283198d083c228f4fe446062d4630910af4933fd861170e04259414",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-1-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 자료의 막대그래프에서 눈금과 각 막대의 길이는 그대로 두고 막대를 놓는 순서만 바꾸었다. 각 항목의 수량이 달라지는지 쓰고 그 까닭을 설명하시오.",
+        "bAnswer": "달라지지 않는다. 각 막대의 길이는 그대로이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "달라지지 않는다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수량을 나타내는 막대 길이와 눈금이 그대로이다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "막대 순서와 수량의 관계",
+        "bReason": "순서만 바뀌는 상황에서 수량 불변을 확인",
+        "cDecision": "rewrite",
+        "cReason": "짧고 익숙한 빈칸, 길이도 맞는 답이라 대안 허용",
+        "cSlotEquivalents": [
+          [
+            "같다",
+            "변하지 않는다",
+            "달라지지 않는다"
+          ]
+        ],
+        "cAfter": "막대그래프에서 눈금과 각 막대의 길이를 그대로 두고 막대 순서만 바꾸면, 각 항목의 수량은 {그대로이다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "막대의 순서를 바꾸어 그릴 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대그래프에서 눈금과 각 막대의 길이를 그대로 두고 막대 순서만 바꾸면, 각 항목의 수량은 {그대로이다}.",
+        "cStudentSentence": "막대그래프에서 눈금과 각 막대의 길이를 그대로 두고 막대 순서만 바꾸면, 각 항목의 수량은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "그대로이다",
+            "equivalents": [
+              "같다",
+              "변하지 않는다",
+              "달라지지 않는다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 자료의 막대그래프에서 눈금과 각 막대의 길이는 그대로 두고 막대를 놓는 순서만 바꾸었다. 각 항목의 수량이 달라지는지 쓰고 그 까닭을 설명하시오.",
+          "answer": "달라지지 않는다. 각 막대의 길이는 그대로이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "달라지지 않는다",
+                "그대로이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "수량을 나타내는 막대 길이와 눈금이 그대로이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "막대그래프에서 눈금과 각 막대의 길이를 그대로 두고 막대 순서만 바꾸면, 각 항목의 수량은 {그대로이다}.",
+          "acceptedAnswers": [
+            [
+              "그대로이다",
+              "같다",
+              "변하지 않는다",
+              "달라지지 않는다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-1-xc27",
+          "sourceIndex": 1920,
+          "proposalFingerprint": "fd32d356c283198d083c228f4fe446062d4630910af4933fd861170e04259414",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "순서만 바꾸는 조건에서 막대 길이와 눈금이 같아 수량이 같다는 이유를 요청한다.",
+          "cReason": "항목의 길이라는 다른 대상 답 대신 수량 불변을 짧게 묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "달라지지 않습니다. 각 항목의 수량은 막대가 놓인 순서가 아니라 눈금으로 읽는 막대의 길이로 나타내기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "달라지지 않는다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수량은 막대 순서가 아니라 눈금으로 읽는 각 막대의 길이로 나타내기 때문이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-2-xc2",
+      "sourceIndex": 1922,
+      "beforeProposal": {
+        "sourceIndex": 1922,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-2 막대그래프 그리기",
+        "sourceFingerprint": "cb01bcc30351f5bdc82e2c6c1168d9e73d283c97a3a19f2f2c5ea2f92db8d97a",
+        "proposalFingerprint": "6f3ee04a2b055a94f1fdcdc32a21f1d0c8877407670755908474244425259ead",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-2-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$20$명, $40$명, $60$명인 자료를 세로 $10$칸 안에 막대그래프로 그리려 한다. 막대 끝이 모두 눈금 선에 맞도록 눈금 한 칸이 나타낼 수량을 한 가지 정하고, 그 수량으로 정해도 되는 까닭을 쓰시오.",
+        "bAnswer": "예를 들어 한 칸을 $10$명으로 정한다. 막대는 각각 $2$칸, $4$칸, $6$칸이므로 모두 눈금 선에 맞고 $10$칸 안에 들어간다. 한 칸을 $20$명으로 정해도 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20$, $40$, $60$을 모두 나누어떨어지게 하고 가장 큰 $60$명이 $10$칸 안에 들어가는 한 칸의 수량을 한 가지 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 막대 끝이 모두 눈금 선에 맞고 가장 긴 막대가 $10$칸을 넘지 않음을 설명한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "자료에 맞는 한 칸 크기",
+        "bReason": "조사한 수량을 보고 한 칸을 정하게 함",
+        "cDecision": "rewrite",
+        "cReason": "'수량에 맞게' 빈칸이 짧아 의미가 통함",
+        "cSlotEquivalents": [
+          []
+        ],
+        "cAfter": "가장 큰 수량이 $60$명인 자료를 세로 $10$칸 안에 그리려 한다. 한 칸을 $5$명으로 정하면 가장 긴 막대는 {$12$}칸이므로 $10$칸 안에 들어가지 않는다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "눈금 한 칸의 크기 정하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가장 큰 수량이 $60$명인 자료를 세로 $10$칸 안에 그리려 한다. 한 칸을 $5$명으로 정하면 가장 긴 막대는 {$12$}칸이므로 $10$칸 안에 들어가지 않는다.",
+        "cStudentSentence": "가장 큰 수량이 $60$명인 자료를 세로 $10$칸 안에 그리려 한다. 한 칸을 $5$명으로 정하면 가장 긴 막대는 □칸이므로 $10$칸 안에 들어가지 않는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$12$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$20$명, $40$명, $60$명인 자료를 세로 $10$칸 안에 막대그래프로 그리려 한다. 막대 끝이 모두 눈금 선에 맞도록 눈금 한 칸이 나타낼 수량을 한 가지 정하고, 그 수량으로 정해도 되는 까닭을 쓰시오.",
+          "answer": "예를 들어 한 칸을 $10$명으로 정한다. 막대는 각각 $2$칸, $4$칸, $6$칸이므로 모두 눈금 선에 맞고 $10$칸 안에 들어간다. 한 칸을 $20$명으로 정해도 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$20$, $40$, $60$을 모두 나누어떨어지게 하고 가장 큰 $60$명이 $10$칸 안에 들어가는 한 칸의 수량을 한 가지 정한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 막대 끝이 모두 눈금 선에 맞고 가장 긴 막대가 $10$칸을 넘지 않음을 설명한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가장 큰 수량이 $60$명인 자료를 세로 $10$칸 안에 그리려 한다. 한 칸을 $5$명으로 정하면 가장 긴 막대는 {$12$}칸이므로 $10$칸 안에 들어가지 않는다.",
+          "acceptedAnswers": [
+            [
+              "$12$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-2-xc2",
+          "sourceIndex": 1922,
+          "proposalFingerprint": "6f3ee04a2b055a94f1fdcdc32a21f1d0c8877407670755908474244425259ead",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "10칸 이내와 눈금 선에 맞는 조건을 만족하는 선택 및 이유를 받아 하나의 수만 강제하지 않는다.",
+          "cReason": "한 칸 5명일 때 60명은 12칸이라 범위를 넘는 실제 사례다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$20$명, $40$명, $60$명인 자료를 세로 $10$칸 안에 막대그래프로 그리려 한다. 막대 끝이 모두 눈금 선에 맞도록 눈금 한 칸이 나타낼 사람 수를 자연수로 한 가지 정하시오. 그때 세 막대는 각각 몇 칸이 되는지 써서 이 수량으로 정해도 되는 까닭을 설명하시오.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 칸을 $10$명으로 정하고 막대는 각각 $2$, $4$, $6$칸이라고 쓴다",
+              "한 칸을 $20$명으로 정하고 막대는 각각 $1$, $2$, $3$칸이라고 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각각 온전한 칸 수이고 가장 긴 막대도 $10$칸을 넘지 않는다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-5-1-xc19",
+      "sourceIndex": 1199,
+      "beforeProposal": {
+        "sourceIndex": 1199,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-1 들이 비교하기",
+        "sourceFingerprint": "7118b64cd8df464a7be0aa4c0e194de1b4ba1f85eb90e7e27a574593fde49c69",
+        "proposalFingerprint": "4cfff8015f32b98e80223acf1a805533250da5e323d7ab3ea6fc3aee319495b6",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-1-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "가 그릇은 큰 컵으로 $4$번, 나 그릇은 작은 컵으로 $6$번 부어 가득 찼습니다. '$6$번이 더 많으니 나 그릇의 들이가 더 크다'고 말할 수 없는 까닭을 설명해 보세요.",
+        "bAnswer": "컵의 크기가 달라 한 번에 붓는 양이 다르므로 횟수만으로는 물의 양을 비교할 수 없다. 같은 컵으로 다시 재어야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "컵의 크기가 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "횟수만으로 비교할 수 없다"
+            ]
+          }
+        ],
+        "bGoal": "다른 컵으로 잰 횟수는 비교할 수 없음을 설명",
+        "bReason": "잘못된 결론을 제시하고 그 이유를 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "가 그릇은 큰 컵으로 $4$번, 나 그릇은 작은 컵으로 $6$번 부어 가득 찼다. 컵의 크기가 서로 다르므로 컵 수만으로는 두 그릇의 들이를 비교할 수 {없다}.",
+        "cReason": "'비교할 수 없다'는 긴 서술 빈칸이라 까닭을 문장에 밝히고 있다/없다 한 낱말로 줄임",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "다른 컵으로 잰 결과",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가 그릇은 큰 컵으로 $4$번, 나 그릇은 작은 컵으로 $6$번 부어 가득 찼다. 컵의 크기가 서로 다르므로 컵 수만으로는 두 그릇의 들이를 비교할 수 {없다}.",
+        "cStudentSentence": "가 그릇은 큰 컵으로 $4$번, 나 그릇은 작은 컵으로 $6$번 부어 가득 찼다. 컵의 크기가 서로 다르므로 컵 수만으로는 두 그릇의 들이를 비교할 수 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "없다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "가 그릇은 큰 컵으로 $4$번, 나 그릇은 작은 컵으로 $6$번 부어 가득 찼습니다. '$6$번이 더 많으니 나 그릇의 들이가 더 크다'고 말할 수 없는 까닭을 설명해 보세요.",
+          "answer": "컵의 크기가 달라 한 번에 붓는 양이 다르므로 횟수만으로는 물의 양을 비교할 수 없다. 같은 컵으로 다시 재어야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "컵의 크기가 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "횟수만으로 비교할 수 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가 그릇은 큰 컵으로 $4$번, 나 그릇은 작은 컵으로 $6$번 부어 가득 찼다. 컵의 크기가 서로 다르므로 컵 수만으로는 두 그릇의 들이를 비교할 수 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-1-xc19",
+          "sourceIndex": 1199,
+          "proposalFingerprint": "4cfff8015f32b98e80223acf1a805533250da5e323d7ab3ea6fc3aee319495b6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "큰컵4·작은컵6의다른단위량으로횟수만비교못하는이유다.",
+          "cReason": "다른컵조건에서비교할수없다는결론이 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 번에 붓는 물의 양이 서로 달라 붓는 횟수만으로 전체 물의 양을 비교할 수 없다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-2-xc16",
+      "sourceIndex": 1934,
+      "beforeProposal": {
+        "sourceIndex": 1934,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-2 막대그래프 그리기",
+        "sourceFingerprint": "a26d9c6d2081ca3e09983e880e523d5f4b1aff7927bd707f520adc5ce52f14b8",
+        "proposalFingerprint": "69dbf9f322e825302210f56067d0d1108bcaafc568cca5ab03eb73470fba4250",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-2-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "막대를 수량이 많은 차례로 늘어놓으면 각 항목이 몇 번째로 많은지 알아볼 때 어떤 점이 좋은지 쓰시오.",
+        "bAnswer": "긴 막대부터 이미 차례대로 놓여 있어 항목의 순서를 바로 읽을 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "많은 차례로 놓여 있어 몇 번째로 많은지 바로 읽기 쉽다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "막대 차례 정하는 까닭",
+        "bReason": "차례대로 놓을 때의 좋은 점을 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "막대를 수량이 많은 차례로 늘어놓으면 수량이 {많고} 적음이 더 잘 보인다.",
+        "cReason": "'많고 적음' 구절 전체 대신 한 낱말만 가림",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "막대를 늘어놓는 순서",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대를 수량이 많은 차례로 늘어놓으면 수량이 {많고} 적음이 더 잘 보인다.",
+        "cStudentSentence": "막대를 수량이 많은 차례로 늘어놓으면 수량이 □ 적음이 더 잘 보인다.",
+        "cSlotAnswers": [
+          {
+            "expected": "많고",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "막대를 수량이 많은 차례로 늘어놓으면 각 항목이 몇 번째로 많은지 알아볼 때 어떤 점이 좋은지 쓰시오.",
+          "answer": "긴 막대부터 이미 차례대로 놓여 있어 항목의 순서를 바로 읽을 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "많은 차례로 놓여 있어 몇 번째로 많은지 바로 읽기 쉽다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "막대를 수량이 많은 차례로 늘어놓으면 수량이 {많고} 적음이 더 잘 보인다.",
+          "acceptedAnswers": [
+            [
+              "많고"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-2-xc16",
+          "sourceIndex": 1934,
+          "proposalFingerprint": "69dbf9f322e825302210f56067d0d1108bcaafc568cca5ab03eb73470fba4250",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "좋은 점의 범위를 순서 읽기로 좁혀 기준과 맞췄다.",
+          "cReason": "많고 적음에 어색한 많은지와 큰지 대체 답을 뺐다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bDecision": "exclude",
+        "bPrompt": "",
+        "bAnswer": "",
+        "bRequiredIdeas": [],
+        "bReason": "많은 순서로 두면 많고 적음이 잘 보인다는 이점만 반복하는 설명은 별도 평가 가치가 약하다. 수량을 실제 순서로 정하는 C는 남긴다.",
+        "cDecision": "rewrite",
+        "cAfter": "사과를 고른 학생은 $12$명, 배는 $8$명, 포도는 $15$명이다. 막대를 수량이 많은 차례로 왼쪽부터 놓으면 맨 왼쪽에는 {포도} 막대를 놓는다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exclusionReason": "B: 보기 편하다는 이점만 되풀이하는 설명은 제외하고 수량 순서대로 막대를 배열하는 실제 판단은 C에 남긴다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-2-xc25",
+      "sourceIndex": 1942,
+      "beforeProposal": {
+        "sourceIndex": 1942,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-2 막대그래프 그리기",
+        "sourceFingerprint": "b211c91fb5ac9995d284c5062f003828f04d40abb2ff60123ad24e48306bed11",
+        "proposalFingerprint": "c4f91e04d8037c015289716b48941c4d1228d3cc92dd47dedf692fe92dae1c90",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-2-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "한 칸이 $2$명인 세로 막대그래프에서 한 막대가 $5$칸이다. 눈금 한 칸의 크기를 그대로 두고 가로 막대그래프로 바꾸어 그리면 이 막대는 몇 칸이 되는지, 이유와 함께 쓰라.",
+        "bAnswer": "$5$칸이다. 수량과 한 칸의 크기가 그대로라서 칸 수도 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$칸"
+            ]
+          },
+          {
+            "anyOf": [
+              "수량과 한 칸의 크기가 그대로라서"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "방향을 바꿔도 칸 수 유지",
+        "bReason": "방향만 바뀔 때 칸 수가 유지됨을 확인함",
+        "cDecision": "rewrite",
+        "cReason": "각 막대의 □가 칸 수로 이어지는 선명한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "똑같다",
+            "변하지 않는다",
+            "달라지지 않는다"
+          ]
+        ],
+        "cAfter": "같은 자료를 세로 막대그래프에서 가로 막대그래프로 바꿀 때, 눈금 한 칸이 나타내는 수량을 그대로 두면 각 막대를 그리는 데 필요한 칸 수는 {같다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "세로를 가로로 바꾸어 그리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 자료를 세로 막대그래프에서 가로 막대그래프로 바꿀 때, 눈금 한 칸이 나타내는 수량을 그대로 두면 각 막대를 그리는 데 필요한 칸 수는 {같다}.",
+        "cStudentSentence": "같은 자료를 세로 막대그래프에서 가로 막대그래프로 바꿀 때, 눈금 한 칸이 나타내는 수량을 그대로 두면 각 막대를 그리는 데 필요한 칸 수는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다",
+              "변하지 않는다",
+              "달라지지 않는다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 칸이 $2$명인 세로 막대그래프에서 한 막대가 $5$칸이다. 눈금 한 칸의 크기를 그대로 두고 가로 막대그래프로 바꾸어 그리면 이 막대는 몇 칸이 되는지, 이유와 함께 쓰라.",
+          "answer": "$5$칸이다. 수량과 한 칸의 크기가 그대로라서 칸 수도 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5$칸"
+              ]
+            },
+            {
+              "anyOf": [
+                "수량과 한 칸의 크기가 그대로라서"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 자료를 세로 막대그래프에서 가로 막대그래프로 바꿀 때, 눈금 한 칸이 나타내는 수량을 그대로 두면 각 막대를 그리는 데 필요한 칸 수는 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다",
+              "변하지 않는다",
+              "달라지지 않는다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-2-xc25",
+          "sourceIndex": 1942,
+          "proposalFingerprint": "c4f91e04d8037c015289716b48941c4d1228d3cc92dd47dedf692fe92dae1c90",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "수량과 한 칸 수량이 같아 세로와 가로의 칸 수가 같음을 설명한다.",
+          "cReason": "실제 종이 길이와 다른 칸 수의 불변을 짧은 비교로 묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "$5$칸입니다. 이 막대는 $2\\times5=10$(명)을 나타내므로 가로로 그려도 한 칸이 $2$명이면 $10\\div2=5$(칸)이 필요합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$칸"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$명을 한 칸에 $2$명씩 나타내므로 $10\\div2=5$칸이다",
+              "칸 수는 나타낼 수량을 한 칸의 수량으로 나눈 값이라 같은 수량과 같은 눈금이면 칸 수가 같다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

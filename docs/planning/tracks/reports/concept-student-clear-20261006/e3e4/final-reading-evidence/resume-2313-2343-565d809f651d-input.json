@@ -1,0 +1,2771 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2313,
+  "end": 2343,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2313,
+        "sourceFingerprint": "d5ebb95730906806cfd0129f07c75396993d8881aa0244f7eda61b2e727f744e",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc11",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "끝에 영을 붙여 자릿수 맞추기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자릿수가 다른 소수는 끝에 $0$을 붙여 {자릿수를 맞추면} 같은 단위의 개수로 견줄 수 있다.",
+        "example": {
+          "prompt": "$0.4$를 $0.40$으로 바꾸어 견주어도 되는 까닭은?",
+          "answer": "끝의 영은 크기를 안 바꿔서"
+        },
+        "studentC": "자릿수가 다른 소수는 끝에 $0$을 붙여 □ 같은 단위의 개수로 견줄 수 있다.",
+        "answers": [
+          "자릿수를 맞추면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2313,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "d5ebb95730906806cfd0129f07c75396993d8881aa0244f7eda61b2e727f744e",
+        "proposalFingerprint": "50be63f4874f08f74698cf0381b2a2ece12db5d153c33f5bac818a08f97e5db9",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.4$와 $0.37$ 중 더 큰 수를 쓰시오. $0.4$를 $0.40$으로 바꾸어 비교하는 방법과, 그렇게 바꾸어도 되는 까닭을 쓰시오.",
+        "bAnswer": "$0.4$. $0.40$은 $0.01$이 $40$개, $0.37$은 $37$개이다. 끝에 $0$을 붙여도 크기가 변하지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.4$가 더 크다",
+              "$0.37<0.4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.40$으로 바꾸어 $40$과 $37$ 비교",
+              "$0.01$의 개수 $40$과 $37$ 비교"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝의 $0$은 크기를 바꾸지 않는다",
+              "$0.4=0.40$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "끝에 0을 붙여 자릿수 맞춤",
+        "bReason": "방법과 크기 불변 이유를 함께 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$0.4$와 $0.37$을 견줄 때 $0.4$의 끝에 $0$을 붙여 {$0.40$}으로 쓰면 $0.01$이 몇 개인지 견줄 수 있다.",
+        "cReason": "문장형 정답을 구체 수 빈칸으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "끝에 영을 붙여 자릿수 맞추기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.4$와 $0.37$을 견줄 때 $0.4$의 끝에 $0$을 붙여 {$0.40$}으로 쓰면 $0.01$이 몇 개인지 견줄 수 있다.",
+        "cStudentSentence": "$0.4$와 $0.37$을 견줄 때 $0.4$의 끝에 $0$을 붙여 □으로 쓰면 $0.01$이 몇 개인지 견줄 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.40$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.4$와 $0.37$ 중 더 큰 수를 쓰시오. $0.4$를 $0.40$으로 바꾸어 비교하는 방법과, 그렇게 바꾸어도 되는 까닭을 쓰시오.",
+          "answer": "$0.4$. $0.40$은 $0.01$이 $40$개, $0.37$은 $37$개이다. 끝에 $0$을 붙여도 크기가 변하지 않는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.4$가 더 크다",
+                "$0.37<0.4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.40$으로 바꾸어 $40$과 $37$ 비교",
+                "$0.01$의 개수 $40$과 $37$ 비교"
+              ]
+            },
+            {
+              "anyOf": [
+                "끝의 $0$은 크기를 바꾸지 않는다",
+                "$0.4=0.40$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.4$와 $0.37$을 견줄 때 $0.4$의 끝에 $0$을 붙여 {$0.40$}으로 쓰면 $0.01$이 몇 개인지 견줄 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$0.40$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2314,
+        "sourceFingerprint": "1ab6ab9fec985a3cf890f8258cbfb163939060e8eb979518d42ad373b7e086d7",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc12",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "여러 소수의 차례",
+        "kind": "방법",
+        "level": "중",
+        "definition": "여러 소수를 늘어놓을 때는 {높은 자리}부터 차례로 비교한다.",
+        "studentC": "여러 소수를 늘어놓을 때는 □부터 차례로 비교한다.",
+        "answers": [
+          "높은 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2314,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "1ab6ab9fec985a3cf890f8258cbfb163939060e8eb979518d42ad373b7e086d7",
+        "proposalFingerprint": "3a8aa634a2b7f611217b70957b33b232a545780ee977f32bcbf6c29b91370290",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.52$, $0.5$, $0.58$을 작은 수부터 차례로 쓰고, 어떤 자리부터 비교했는지 쓰시오.",
+        "bAnswer": "$0.5$, $0.52$, $0.58$. 높은 자리부터 차례로 비교한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.5$, $0.52$, $0.58$",
+              "$0.5<0.52<0.58$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높은 자리부터 비교",
+              "큰 자리부터 차례로 비교"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "여러 소수 차례로 비교",
+        "bReason": "세 수의 순서와 비교 순서를 확인",
+        "cDecision": "keep",
+        "cReason": "'높은 자리' 짧은 낱말 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "여러 소수의 차례",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "여러 소수를 늘어놓을 때는 {높은 자리}부터 차례로 비교한다.",
+        "cStudentSentence": "여러 소수를 늘어놓을 때는 □부터 차례로 비교한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "높은 자리",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "여러 소수를 늘어놓을 때는 □부터 차례로 비교한다.",
+          "answers": [
+            "높은 자리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.52$, $0.5$, $0.58$을 작은 수부터 차례로 쓰고, 어떤 자리부터 비교했는지 쓰시오.",
+          "answer": "$0.5$, $0.52$, $0.58$. 높은 자리부터 차례로 비교한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.5$, $0.52$, $0.58$",
+                "$0.5<0.52<0.58$"
+              ]
+            },
+            {
+              "anyOf": [
+                "높은 자리부터 비교",
+                "큰 자리부터 차례로 비교"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "여러 소수를 늘어놓을 때는 {높은 자리}부터 차례로 비교한다.",
+          "acceptedAnswers": [
+            [
+              "높은 자리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2315,
+        "sourceFingerprint": "1e85f8c46668165b7fd0c0d83bc17f41f55e1269f074ca77633fa4d82fc045dc",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc13",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "소수점을 맞추어 비교하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수를 비교할 때는 소수점을 맞추어 {같은 자리 숫자}끼리 견준다.",
+        "studentC": "소수를 비교할 때는 소수점을 맞추어 □끼리 견준다.",
+        "answers": [
+          "같은 자리 숫자"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2315,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "1e85f8c46668165b7fd0c0d83bc17f41f55e1269f074ca77633fa4d82fc045dc",
+        "proposalFingerprint": "46daff4e65a94fdeeabca018e5aecca9120af3ce48af3df3d0da26d4452ab6a6",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$3.28$과 $3.5$의 크기를 비교할 때 소수점을 맞추어 쓰면 어떤 숫자끼리 견주는지 쓰고, 더 큰 수를 쓰시오.",
+        "bAnswer": "같은 자리 숫자끼리 견준다. 소수 첫째 자리 $2$와 $5$를 비교하여 $3.5$가 더 크다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 자리 숫자끼리",
+              "같은 자리의 숫자끼리 비교"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.5$가 더 크다",
+              "$3.28<3.5$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "소수점을 맞춘 비교",
+        "bReason": "자리 맞춤 기준과 결과를 함께 묻는다",
+        "cDecision": "keep",
+        "cReason": "'같은 자리 숫자' 친숙한 구절 빈칸",
+        "cSlotEquivalents": [
+          [
+            "같은 자리의 숫자"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "소수점을 맞추어 비교하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수를 비교할 때는 소수점을 맞추어 {같은 자리 숫자}끼리 견준다.",
+        "cStudentSentence": "소수를 비교할 때는 소수점을 맞추어 □끼리 견준다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 자리 숫자",
+            "equivalents": [
+              "같은 자리의 숫자"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수를 비교할 때는 소수점을 맞추어 □끼리 견준다.",
+          "answers": [
+            "같은 자리 숫자"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3.28$과 $3.5$의 크기를 비교할 때 소수점을 맞추어 쓰면 어떤 숫자끼리 견주는지 쓰고, 더 큰 수를 쓰시오.",
+          "answer": "같은 자리 숫자끼리 견준다. 소수 첫째 자리 $2$와 $5$를 비교하여 $3.5$가 더 크다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 자리 숫자끼리",
+                "같은 자리의 숫자끼리 비교"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3.5$가 더 크다",
+                "$3.28<3.5$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수를 비교할 때는 소수점을 맞추어 {같은 자리 숫자}끼리 견준다.",
+          "acceptedAnswers": [
+            [
+              "같은 자리 숫자",
+              "같은 자리의 숫자"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2316,
+        "sourceFingerprint": "0903174893680e9ad8ec84e745fbb1a202c8d73d3cad312b51340ec7a7b4be4e",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc15",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "단위가 다른 양 비교하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "단위가 다른 두 양은 {같은 단위로 바꾼} 뒤에 비교한다.",
+        "example": {
+          "prompt": "$1.2\\,\\mathrm{kg}$과 $980\\,\\mathrm{g}$을 $1.2$와 $980$으로 견주면 안 되는 까닭은?",
+          "answer": "단위가 서로 달라서"
+        },
+        "studentC": "단위가 다른 두 양은 □ 뒤에 비교한다.",
+        "answers": [
+          "같은 단위로 바꾼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2316,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "0903174893680e9ad8ec84e745fbb1a202c8d73d3cad312b51340ec7a7b4be4e",
+        "proposalFingerprint": "d1bcab1f4d4914687ba1f50277b09357db98e9b1a6e3ff009395254d900c2a3a",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.2\\,\\mathrm{kg}$과 $980\\,\\mathrm{g}$ 중 더 무거운 쪽을 쓰고, 비교하는 방법을 쓰시오.",
+        "bAnswer": "$1.2\\,\\mathrm{kg}$이 더 무겁다. $1.2\\,\\mathrm{kg}=1200\\,\\mathrm{g}$처럼 같은 단위로 바꾸어 $1200$과 $980$을 비교한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.2\\,\\mathrm{kg}$이 더 무겁다",
+              "$1.2\\,\\mathrm{kg}>980\\,\\mathrm{g}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 단위로 바꾸어 비교",
+              "$1200\\,\\mathrm{g}$과 $980\\,\\mathrm{g}$ 비교"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "단위를 같게 한 비교",
+        "bReason": "숫자만 비교하는 실수를 막는다",
+        "cDecision": "rewrite",
+        "cAfter": "단위가 다른 두 양은 {같은} 단위로 바꾼 뒤에 비교한다.",
+        "cReason": "긴 구절 정답을 낱말 '같은'으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위가 다른 양 비교하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "단위가 다른 두 양은 {같은} 단위로 바꾼 뒤에 비교한다.",
+        "cStudentSentence": "단위가 다른 두 양은 □ 단위로 바꾼 뒤에 비교한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1.2\\,\\mathrm{kg}$과 $980\\,\\mathrm{g}$ 중 더 무거운 쪽을 쓰고, 비교하는 방법을 쓰시오.",
+          "answer": "$1.2\\,\\mathrm{kg}$이 더 무겁다. $1.2\\,\\mathrm{kg}=1200\\,\\mathrm{g}$처럼 같은 단위로 바꾸어 $1200$과 $980$을 비교한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.2\\,\\mathrm{kg}$이 더 무겁다",
+                "$1.2\\,\\mathrm{kg}>980\\,\\mathrm{g}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 단위로 바꾸어 비교",
+                "$1200\\,\\mathrm{g}$과 $980\\,\\mathrm{g}$ 비교"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "단위가 다른 두 양은 {같은} 단위로 바꾼 뒤에 비교한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2317,
+        "sourceFingerprint": "07dd061cacb81439d09e5672c05b1cb8b925d6c781c8c01f52c06f37b9d252bc",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc17",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "빈칸이 있는 소수 비교",
+        "kind": "방법",
+        "level": "중",
+        "definition": "빈칸보다 높은 자리 숫자가 모두 같고 {빈칸 자리의 숫자가 서로 다르면} 그 자리 숫자가 큰 수가 크다.",
+        "example": {
+          "prompt": "$0.4\\square>0.47$의 $\\square$에 $7$이 들어갈 수 없는 까닭은?",
+          "answer": "두 수가 같아져서"
+        },
+        "studentC": "빈칸보다 높은 자리 숫자가 모두 같고 □ 그 자리 숫자가 큰 수가 크다.",
+        "answers": [
+          "빈칸 자리의 숫자가 서로 다르면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2317,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "07dd061cacb81439d09e5672c05b1cb8b925d6c781c8c01f52c06f37b9d252bc",
+        "proposalFingerprint": "bc958934f28aa3e6f62be37929dfab892229c193b60062dff9bfead6fa763795",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.4\\square>0.47$에서 $\\square$에 $7$이 들어갈 수 없는 까닭과 들어갈 수 있는 수를 모두 쓰시오.",
+        "bAnswer": "$7$이면 $0.47$로 두 수가 같아지기 때문이다. $\\square$에는 $8$, $9$가 들어갈 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7$이면 두 수가 같아진다",
+              "$0.47=0.47$이라 $>$가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$, $9$",
+              "$8$과 $9$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "빈칸 소수 비교 추론",
+        "bReason": "같은 경우를 제외하고 범위까지 판단",
+        "cDecision": "rewrite",
+        "cAfter": "$0.45$와 $0.43$은 소수 둘째 자리 숫자만 다르다. 이때 둘째 자리 숫자가 {큰} 수가 더 큰 수이다.",
+        "cReason": "숨은 빈칸 설명 대신 구체 비교 문장",
+        "cSlotEquivalents": [
+          [
+            "더 큰"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빈칸이 있는 소수 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.45$와 $0.43$은 소수 둘째 자리 숫자만 다르다. 이때 둘째 자리 숫자가 {큰} 수가 더 큰 수이다.",
+        "cStudentSentence": "$0.45$와 $0.43$은 소수 둘째 자리 숫자만 다르다. 이때 둘째 자리 숫자가 □ 수가 더 큰 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "큰",
+            "equivalents": [
+              "더 큰"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.4\\square>0.47$에서 $\\square$에 $7$이 들어갈 수 없는 까닭과 들어갈 수 있는 수를 모두 쓰시오.",
+          "answer": "$7$이면 $0.47$로 두 수가 같아지기 때문이다. $\\square$에는 $8$, $9$가 들어갈 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7$이면 두 수가 같아진다",
+                "$0.47=0.47$이라 $>$가 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$8$, $9$",
+                "$8$과 $9$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.45$와 $0.43$은 소수 둘째 자리 숫자만 다르다. 이때 둘째 자리 숫자가 {큰} 수가 더 큰 수이다.",
+          "acceptedAnswers": [
+            [
+              "큰",
+              "더 큰"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2318,
+        "sourceFingerprint": "26a6d37d096b8ec24e77ddce9eada856266bfb2b59152780142d3b45ca0f7f27",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc18",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "자연수 부분이 다른 두 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수 부분이 다르면 소수 부분과 관계없이 {자연수 부분이 큰 수}가 크다.",
+        "example": {
+          "prompt": "$0.999$가 $1$보다 작은 까닭은?",
+          "answer": "자연수 부분이 $0$이라서"
+        },
+        "studentC": "자연수 부분이 다르면 소수 부분과 관계없이 □가 크다.",
+        "answers": [
+          "자연수 부분이 큰 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2318,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "26a6d37d096b8ec24e77ddce9eada856266bfb2b59152780142d3b45ca0f7f27",
+        "proposalFingerprint": "08c4958a3e5cb0aa0e58a96843776404ccbb8d74e719d9d130fad6e828eef16d",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.999$와 $1$ 중 더 큰 수를 쓰고, 소수 부분이 아니라 자연수 부분을 비교하는 까닭을 쓰시오.",
+        "bAnswer": "$1$. 자연수 부분이 $0$과 $1$로 다르고 $1$이 더 크므로 소수 부분과 관계없이 $1$이 크다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$이 더 크다",
+              "$0.999<1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수 부분이 $0$과 $1$로 다르다",
+              "자연수 부분이 큰 수가 크다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자연수 부분이 다른 수 비교",
+        "bReason": "소수 부분 착각을 반례로 점검",
+        "cDecision": "rewrite",
+        "cAfter": "자연수 부분이 다르면 소수 부분과 관계없이 자연수 부분이 {큰} 수가 크다.",
+        "cReason": "같은 말 반복 빈칸을 '큰' 하나로 줄임",
+        "cSlotEquivalents": [
+          [
+            "더 큰"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "자연수 부분이 다른 두 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자연수 부분이 다르면 소수 부분과 관계없이 자연수 부분이 {큰} 수가 크다.",
+        "cStudentSentence": "자연수 부분이 다르면 소수 부분과 관계없이 자연수 부분이 □ 수가 크다.",
+        "cSlotAnswers": [
+          {
+            "expected": "큰",
+            "equivalents": [
+              "더 큰"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.999$와 $1$ 중 더 큰 수를 쓰고, 소수 부분이 아니라 자연수 부분을 비교하는 까닭을 쓰시오.",
+          "answer": "$1$. 자연수 부분이 $0$과 $1$로 다르고 $1$이 더 크므로 소수 부분과 관계없이 $1$이 크다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1$이 더 크다",
+                "$0.999<1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "자연수 부분이 $0$과 $1$로 다르다",
+                "자연수 부분이 큰 수가 크다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자연수 부분이 다르면 소수 부분과 관계없이 자연수 부분이 {큰} 수가 크다.",
+          "acceptedAnswers": [
+            [
+              "큰",
+              "더 큰"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2319,
+        "sourceFingerprint": "132904ce01e779677d49ddddda132d6efa1d4adfab805b69f13128da69e8fb10",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc19",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "자릿수만 보는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0.125$와 $0.2$를 자릿수만 보고 견주면 틀리기 쉬워 {소수 첫째 자리}부터 견준다.",
+        "studentC": "$0.125$와 $0.2$를 자릿수만 보고 견주면 틀리기 쉬워 □부터 견준다.",
+        "answers": [
+          "소수 첫째 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2319,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "132904ce01e779677d49ddddda132d6efa1d4adfab805b69f13128da69e8fb10",
+        "proposalFingerprint": "71fe10aab2045ae961b87c40ae70beeea13c43a18e353ade08cc9402a0cc6658",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "자릿수만 보는 오류 확인",
+        "bReason": "$0.125$, $0.2$ 비교는 xc10 B와 중복",
+        "exclusionReason": "xc10 B가 같은 $0.125$, $0.2$ 비교와 같은 목표를 다룬다.",
+        "cDecision": "keep",
+        "cReason": "짧은 낱말 빈칸으로 충분히 명확",
+        "cSlotEquivalents": [
+          [
+            "첫째 자리",
+            "소수 첫째 자리 숫자"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "자릿수만 보는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.125$와 $0.2$를 자릿수만 보고 견주면 틀리기 쉬워 {소수 첫째 자리}부터 견준다.",
+        "cStudentSentence": "$0.125$와 $0.2$를 자릿수만 보고 견주면 틀리기 쉬워 □부터 견준다.",
+        "cSlotAnswers": [
+          {
+            "expected": "소수 첫째 자리",
+            "equivalents": [
+              "첫째 자리",
+              "소수 첫째 자리 숫자"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.125$와 $0.2$를 자릿수만 보고 견주면 틀리기 쉬워 □부터 견준다.",
+          "answers": [
+            "소수 첫째 자리"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$0.125$와 $0.2$를 자릿수만 보고 견주면 틀리기 쉬워 {소수 첫째 자리}부터 견준다.",
+          "acceptedAnswers": [
+            [
+              "소수 첫째 자리",
+              "첫째 자리",
+              "소수 첫째 자리 숫자"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "$0.125$, $0.2$ 비교는 xc10 B와 중복"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2320,
+        "sourceFingerprint": "7184d104f67347c249c31247833627ed5770d1461db59c65bda4ae151701e9a7",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc20",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "$0.1$ 차이인 두 소수 한 자리 수 사이의 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 한 자리 수 $0.1$과 $0.2$ 사이에는 소수 한 자리 수가 없지만 $0.15$처럼 소수 {두} 자리 수는 있다.",
+        "example": {
+          "prompt": "$0.6$과 $0.7$ 사이에 $0.65$가 있는 까닭은?",
+          "answer": "$0.60$보다 크고 $0.70$보다 작아서"
+        },
+        "studentC": "소수 한 자리 수 $0.1$과 $0.2$ 사이에는 소수 한 자리 수가 없지만 $0.15$처럼 소수 □ 자리 수는 있다.",
+        "answers": [
+          "두"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2320,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "7184d104f67347c249c31247833627ed5770d1461db59c65bda4ae151701e9a7",
+        "proposalFingerprint": "267986cd3b2f5bc41c45bb8f94cbd084fa6186344e244a051c81eeb6c395a8e9",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.6$과 $0.7$ 사이에 소수 한 자리 수가 있는지 쓰고, $0.65$가 두 수 사이에 있는 까닭을 쓰시오.",
+        "bAnswer": "소수 한 자리 수는 없다. $0.65$는 $0.60$보다 크고 $0.70$보다 작아서 사이에 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수 한 자리 수는 없다",
+              "사이에 소수 한 자리 수는 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.60$보다 크고 $0.70$보다 작다",
+              "$0.01$이 $65$개로 $60$개와 $70$개 사이"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "소수 두 자리 수가 사이에 있음",
+        "bReason": "사이의 수를 두 자리로 확장해 확인",
+        "cDecision": "keep",
+        "cReason": "'두' 한 낱말 빈칸으로 명확",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.1$ 차이인 두 소수 한 자리 수 사이의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 한 자리 수 $0.1$과 $0.2$ 사이에는 소수 한 자리 수가 없지만 $0.15$처럼 소수 {두} 자리 수는 있다.",
+        "cStudentSentence": "소수 한 자리 수 $0.1$과 $0.2$ 사이에는 소수 한 자리 수가 없지만 $0.15$처럼 소수 □ 자리 수는 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 한 자리 수 $0.1$과 $0.2$ 사이에는 소수 한 자리 수가 없지만 $0.15$처럼 소수 □ 자리 수는 있다.",
+          "answers": [
+            "두"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.6$과 $0.7$ 사이에 소수 한 자리 수가 있는지 쓰고, $0.65$가 두 수 사이에 있는 까닭을 쓰시오.",
+          "answer": "소수 한 자리 수는 없다. $0.65$는 $0.60$보다 크고 $0.70$보다 작아서 사이에 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "소수 한 자리 수는 없다",
+                "사이에 소수 한 자리 수는 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.60$보다 크고 $0.70$보다 작다",
+                "$0.01$이 $65$개로 $60$개와 $70$개 사이"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 한 자리 수 $0.1$과 $0.2$ 사이에는 소수 한 자리 수가 없지만 $0.15$처럼 소수 {두} 자리 수는 있다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2321,
+        "sourceFingerprint": "15db8ef803f6ed43efb63acab559dcef8c907f2ad423b0b4469f507d061ae529",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc21",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "가장 작은 소수 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "숫자 카드를 한 번씩 써서 자연수 부분이 한 자리인 가장 작은 소수를 만들려면 {작은 숫자부터 높은 자리에} 놓는다.",
+        "example": {
+          "prompt": "카드 $3$, $7$, $0$으로 가장 작은 소수 두 자리 수를 만들 때 $0$을 자연수 부분에 놓는 까닭은?",
+          "answer": "$0$이 가장 작은 숫자라서"
+        },
+        "studentC": "숫자 카드를 한 번씩 써서 자연수 부분이 한 자리인 가장 작은 소수를 만들려면 □ 놓는다.",
+        "answers": [
+          "작은 숫자부터 높은 자리에"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2321,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "15db8ef803f6ed43efb63acab559dcef8c907f2ad423b0b4469f507d061ae529",
+        "proposalFingerprint": "567346a4ed3358b837a8c4a8c65d97a6c5c84debb30cd1df8ba6f717eeb833e3",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 카드 $3$, $7$, $0$을 한 번씩 써서 $\\square.\\square\\square$ 꼴의 가장 작은 소수를 만들고, 방법을 쓰시오.",
+        "bAnswer": "$0.37$. 높은 자리부터 작은 숫자를 차례로 놓는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.37$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높은 자리부터 작은 숫자",
+              "작은 숫자부터 높은 자리에"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "가장 작은 소수 만들기",
+        "bReason": "$0$ 위치와 순서 방법을 함께 확인",
+        "cDecision": "rewrite",
+        "cAfter": "숫자 카드를 한 번씩 써서 자연수 부분이 한 자리인 가장 작은 소수를 만들려면 높은 자리부터 {작은} 숫자를 놓는다.",
+        "cReason": "긴 문장 정답 대신 '작은' 한 단어",
+        "cSlotEquivalents": [
+          [
+            "가장 작은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가장 작은 소수 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "숫자 카드를 한 번씩 써서 자연수 부분이 한 자리인 가장 작은 소수를 만들려면 높은 자리부터 {작은} 숫자를 놓는다.",
+        "cStudentSentence": "숫자 카드를 한 번씩 써서 자연수 부분이 한 자리인 가장 작은 소수를 만들려면 높은 자리부터 □ 숫자를 놓는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작은",
+            "equivalents": [
+              "가장 작은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "숫자 카드 $3$, $7$, $0$을 한 번씩 써서 $\\square.\\square\\square$ 꼴의 가장 작은 소수를 만들고, 방법을 쓰시오.",
+          "answer": "$0.37$. 높은 자리부터 작은 숫자를 차례로 놓는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.37$"
+              ]
+            },
+            {
+              "anyOf": [
+                "높은 자리부터 작은 숫자",
+                "작은 숫자부터 높은 자리에"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "숫자 카드를 한 번씩 써서 자연수 부분이 한 자리인 가장 작은 소수를 만들려면 높은 자리부터 {작은} 숫자를 놓는다.",
+          "acceptedAnswers": [
+            [
+              "작은",
+              "가장 작은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2322,
+        "sourceFingerprint": "376499102a4531ef2396ce7243fd1934c02d20132e60594c6e921121fbbe11da",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc25",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "$0.9$, $0.85$, $0.123$을 숫자 개수로 늘어놓는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0.9$, $0.85$, $0.123$을 소수점 아래 숫자가 적은 차례로 쓰면 작은 수부터가 아니라 {큰 수부터} 쓴 차례가 된다.",
+        "studentC": "$0.9$, $0.85$, $0.123$을 소수점 아래 숫자가 적은 차례로 쓰면 작은 수부터가 아니라 □ 쓴 차례가 된다.",
+        "answers": [
+          "큰 수부터"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2322,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "376499102a4531ef2396ce7243fd1934c02d20132e60594c6e921121fbbe11da",
+        "proposalFingerprint": "f715ac8b7f51ff8b1eeb8db8641875fae950e568df2fb6cfe6e0619a64e013ec",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.9$, $0.85$, $0.123$을 작은 수부터 차례로 쓰고, 소수점 아래 숫자가 적은 차례로 쓰면 틀리는 까닭을 쓰시오.",
+        "bAnswer": "$0.123$, $0.85$, $0.9$. 숫자가 적은 차례는 $0.9$, $0.85$, $0.123$이라 큰 수부터 쓴 차례가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.123$, $0.85$, $0.9$",
+              "$0.123<0.85<0.9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "숫자 개수가 아니라 높은 자리부터 비교한다",
+              "큰 수부터 쓴 차례가 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자릿수와 크기 순서 구분",
+        "bReason": "반대 차례가 되는 이유까지 묻는다",
+        "cDecision": "keep",
+        "cReason": "'큰 수부터' 짧은 낱말형 빈칸",
+        "cSlotEquivalents": [
+          [
+            "큰 것부터"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.9$, $0.85$, $0.123$을 숫자 개수로 늘어놓는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.9$, $0.85$, $0.123$을 소수점 아래 숫자가 적은 차례로 쓰면 작은 수부터가 아니라 {큰 수부터} 쓴 차례가 된다.",
+        "cStudentSentence": "$0.9$, $0.85$, $0.123$을 소수점 아래 숫자가 적은 차례로 쓰면 작은 수부터가 아니라 □ 쓴 차례가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "큰 수부터",
+            "equivalents": [
+              "큰 것부터"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.9$, $0.85$, $0.123$을 소수점 아래 숫자가 적은 차례로 쓰면 작은 수부터가 아니라 □ 쓴 차례가 된다.",
+          "answers": [
+            "큰 수부터"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.9$, $0.85$, $0.123$을 작은 수부터 차례로 쓰고, 소수점 아래 숫자가 적은 차례로 쓰면 틀리는 까닭을 쓰시오.",
+          "answer": "$0.123$, $0.85$, $0.9$. 숫자가 적은 차례는 $0.9$, $0.85$, $0.123$이라 큰 수부터 쓴 차례가 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.123$, $0.85$, $0.9$",
+                "$0.123<0.85<0.9$"
+              ]
+            },
+            {
+              "anyOf": [
+                "숫자 개수가 아니라 높은 자리부터 비교한다",
+                "큰 수부터 쓴 차례가 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.9$, $0.85$, $0.123$을 소수점 아래 숫자가 적은 차례로 쓰면 작은 수부터가 아니라 {큰 수부터} 쓴 차례가 된다.",
+          "acceptedAnswers": [
+            [
+              "큰 수부터",
+              "큰 것부터"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2323,
+        "sourceFingerprint": "992737fabceeca2efbdfcadea896f7cd89406ce3d05bf264dac67a8c30b75e8e",
+        "part": "e4plus",
+        "id": "e4-2-3-2-xc26",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "term": "수직선에서 소수 두 자리 수의 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 {$0.01$}이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+        "example": {
+          "prompt": "한 칸이 $0.01$인 수직선에서 $0.47$이 $0$에서 $47$칸 간 곳인 까닭은?",
+          "answer": "$0.01$이 $47$개라서"
+        },
+        "studentC": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 □이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+        "answers": [
+          "$0.01$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2323,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "992737fabceeca2efbdfcadea896f7cd89406ce3d05bf264dac67a8c30b75e8e",
+        "proposalFingerprint": "b4335e9eea1d6da45b6ab0acb2a28edce505fa5e9203589242eece3232384707",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸이 나타내는 수를 쓰고, $0.47$이 $0$에서 몇 칸 간 곳인지 쓰시오.",
+        "bAnswer": "한 칸은 $0.01$이고, $0.47$은 $0.01$이 $47$개이므로 $0$에서 $47$칸 간 곳이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.01$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$47$칸",
+              "$0.01$이 $47$개"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "수직선에서 두 자리 소수 위치",
+        "bReason": "한 칸의 값과 칸 수를 연결",
+        "cDecision": "keep",
+        "cReason": "한 칸의 값을 묻는 짧은 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "수직선에서 소수 두 자리 수의 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 {$0.01$}이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+        "cStudentSentence": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 □이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.01$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 □이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+          "answers": [
+            "$0.01$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸이 나타내는 수를 쓰고, $0.47$이 $0$에서 몇 칸 간 곳인지 쓰시오.",
+          "answer": "한 칸은 $0.01$이고, $0.47$은 $0.01$이 $47$개이므로 $0$에서 $47$칸 간 곳이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.01$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$47$칸",
+                "$0.01$이 $47$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 {$0.01$}이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+          "acceptedAnswers": [
+            [
+              "$0.01$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2324,
+        "sourceFingerprint": "34e6a54ea0c441e593dc303c5593b1c29179bf068217177cb5363bc8915f8c57",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc1",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$1$의 $\\frac{1}{10}$",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$의 $\\frac{1}{10}$은 {$0.1$}이다.",
+        "studentC": "$1$의 $\\frac{1}{10}$은 □이다.",
+        "answers": [
+          "$0.1$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2324,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "34e6a54ea0c441e593dc303c5593b1c29179bf068217177cb5363bc8915f8c57",
+        "proposalFingerprint": "b0a171c2332ae70f4f147ad41075121f700198a7356fe6153cc226db41e4e69c",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$의 $\\frac{1}{10}$을 소수로 나타내고, $1$을 어떻게 나눈 것 중 하나인지 쓰시오.",
+        "bAnswer": "$0.1$. $1$을 똑같이 $10$으로 나눈 것 중 하나이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$을 똑같이 $10$으로 나눈 것 중 하나",
+              "$1$을 $10$등분한 한 부분"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "$\\frac{1}{10}$의 뜻과 $0.1$",
+        "bReason": "십분의 일을 나눔 의미로 설명",
+        "cDecision": "keep",
+        "cReason": "친숙한 짧은 수 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$1$의 $\\frac{1}{10}$",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1$의 $\\frac{1}{10}$은 {$0.1$}이다.",
+        "cStudentSentence": "$1$의 $\\frac{1}{10}$은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.1$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$1$의 $\\frac{1}{10}$은 □이다.",
+          "answers": [
+            "$0.1$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1$의 $\\frac{1}{10}$을 소수로 나타내고, $1$을 어떻게 나눈 것 중 하나인지 쓰시오.",
+          "answer": "$0.1$. $1$을 똑같이 $10$으로 나눈 것 중 하나이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1$을 똑같이 $10$으로 나눈 것 중 하나",
+                "$1$을 $10$등분한 한 부분"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1$의 $\\frac{1}{10}$은 {$0.1$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0.1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2325,
+        "sourceFingerprint": "eff84639e05067c5c9240ffbd1a6c2aabd0f66b5756e0c46f1155043a6b1f288",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc2",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$0.1$의 $\\frac{1}{10}$",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.1$의 $\\frac{1}{10}$은 {$0.01$}이다.",
+        "studentC": "$0.1$의 $\\frac{1}{10}$은 □이다.",
+        "answers": [
+          "$0.01$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2325,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "eff84639e05067c5c9240ffbd1a6c2aabd0f66b5756e0c46f1155043a6b1f288",
+        "proposalFingerprint": "b24b57a9931f08b460dbfdd94c0843acb353232819b4b0e4770edafdbbf37c04",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "$0.1$의 $\\frac{1}{10}$ 계산",
+        "bReason": "xc1의 $\\frac{1}{10}$ 의미와 같은 반복",
+        "exclusionReason": "xc1 B가 $\\frac{1}{10}$의 뜻을 다루고 이 항목은 같은 목표의 반복 계산이다.",
+        "cDecision": "keep",
+        "cReason": "선명한 한 값 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.1$의 $\\frac{1}{10}$",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.1$의 $\\frac{1}{10}$은 {$0.01$}이다.",
+        "cStudentSentence": "$0.1$의 $\\frac{1}{10}$은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.01$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.1$의 $\\frac{1}{10}$은 □이다.",
+          "answers": [
+            "$0.01$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$0.1$의 $\\frac{1}{10}$은 {$0.01$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0.01$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc1의 $\\frac{1}{10}$ 의미와 같은 반복"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2326,
+        "sourceFingerprint": "82daf27639256cd2c3572a08c241fe4b4e7d913d2f5baf6b439e882fc32e7fca",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc3",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$0.01$의 $\\frac{1}{10}$",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.01$의 $\\frac{1}{10}$은 {$0.001$}이다.",
+        "studentC": "$0.01$의 $\\frac{1}{10}$은 □이다.",
+        "answers": [
+          "$0.001$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2326,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "82daf27639256cd2c3572a08c241fe4b4e7d913d2f5baf6b439e882fc32e7fca",
+        "proposalFingerprint": "3db1aac85dc213e432ad3db1b304b1b718211b4969fb427ab077a83e1027c165",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "$0.01$의 $\\frac{1}{10}$ 계산",
+        "bReason": "xc1과 같은 $\\frac{1}{10}$ 반복 계산",
+        "exclusionReason": "xc1 B와 같은 목표로 값만 바뀐 반복 계산이다.",
+        "cDecision": "keep",
+        "cReason": "선명한 한 값 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.01$의 $\\frac{1}{10}$",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.01$의 $\\frac{1}{10}$은 {$0.001$}이다.",
+        "cStudentSentence": "$0.01$의 $\\frac{1}{10}$은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.001$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.01$의 $\\frac{1}{10}$은 □이다.",
+          "answers": [
+            "$0.001$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$0.01$의 $\\frac{1}{10}$은 {$0.001$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0.001$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc1과 같은 $\\frac{1}{10}$ 반복 계산"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2327,
+        "sourceFingerprint": "474870a41ee0f94a8c3ae1bb5110dab52a6aa4f624bb1fdba098db92ab78a87a",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc4",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$0.1$의 $10$배",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.1$을 $10$배 하면 {$1$}이 된다.",
+        "studentC": "$0.1$을 $10$배 하면 □이 된다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2327,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "474870a41ee0f94a8c3ae1bb5110dab52a6aa4f624bb1fdba098db92ab78a87a",
+        "proposalFingerprint": "5289ee3ef8b3b352b6b5977809049b6097823eb794df21225bb4ba0e4e983da4",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "$0.1$의 $10$배 계산",
+        "bReason": "xc6 소수점 이동 B와 같은 목표",
+        "exclusionReason": "xc6 B가 $10$배 규칙을 다루고 이 항목은 값만 바뀐 단순 계산이다.",
+        "cDecision": "keep",
+        "cReason": "짧고 선명한 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.1$의 $10$배",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.1$을 $10$배 하면 {$1$}이 된다.",
+        "cStudentSentence": "$0.1$을 $10$배 하면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.1$을 $10$배 하면 □이 된다.",
+          "answers": [
+            "$1$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$0.1$을 $10$배 하면 {$1$}이 된다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc6 소수점 이동 B와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2328,
+        "sourceFingerprint": "fbc740ff196d3c4f9e950a1ffb9d7783ea0619981fbaa2a0e84796c49d9cb0ba",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc5",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$0.01$의 $10$배",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.01$을 $10$배 하면 {$0.1$}이 된다.",
+        "studentC": "$0.01$을 $10$배 하면 □이 된다.",
+        "answers": [
+          "$0.1$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2328,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "fbc740ff196d3c4f9e950a1ffb9d7783ea0619981fbaa2a0e84796c49d9cb0ba",
+        "proposalFingerprint": "cf84b9a9c4ce5bb923e6ec9096faf9681af1b6b40bd79d559d0ed99df615782e",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "$0.01$의 $10$배 계산",
+        "bReason": "xc6 소수점 이동 B와 같은 목표",
+        "exclusionReason": "xc6 B와 같은 $10$배 규칙의 반복 계산이다.",
+        "cDecision": "keep",
+        "cReason": "짧고 선명한 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.01$의 $10$배",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.01$을 $10$배 하면 {$0.1$}이 된다.",
+        "cStudentSentence": "$0.01$을 $10$배 하면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.1$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.01$을 $10$배 하면 □이 된다.",
+          "answers": [
+            "$0.1$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$0.01$을 $10$배 하면 {$0.1$}이 된다.",
+          "acceptedAnswers": [
+            [
+              "$0.1$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc6 소수점 이동 B와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2329,
+        "sourceFingerprint": "a01fa22d0b8156669ce026d9e12e652e4d6a704eb5573aa473312c7a3d07258b",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc6",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$10$배 할 때 소수점의 이동",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수를 $10$배 하면 소수점이 {오른쪽}으로 한 자리 옮겨진다.",
+        "studentC": "소수를 $10$배 하면 소수점이 □으로 한 자리 옮겨진다.",
+        "answers": [
+          "오른쪽"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2329,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "a01fa22d0b8156669ce026d9e12e652e4d6a704eb5573aa473312c7a3d07258b",
+        "proposalFingerprint": "346bf5668dad51d00663edfd275610d297d83637ad4e074dfa61f7a9b08bef32",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.35$를 $10$배 한 수를 쓰고, 소수점이 어느 쪽으로 몇 자리 옮겨졌는지 쓰시오.",
+        "bAnswer": "$3.5$. 소수점이 오른쪽으로 한 자리 옮겨진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽으로 한 자리",
+              "오른쪽 한 칸"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$10$배와 소수점 이동",
+        "bReason": "결과와 방향·자리 수를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "방향 낱말 하나만 묻는 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$10$배 할 때 소수점의 이동",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수를 $10$배 하면 소수점이 {오른쪽}으로 한 자리 옮겨진다.",
+        "cStudentSentence": "소수를 $10$배 하면 소수점이 □으로 한 자리 옮겨진다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "오른쪽",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수를 $10$배 하면 소수점이 □으로 한 자리 옮겨진다.",
+          "answers": [
+            "오른쪽"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.35$를 $10$배 한 수를 쓰고, 소수점이 어느 쪽으로 몇 자리 옮겨졌는지 쓰시오.",
+          "answer": "$3.5$. 소수점이 오른쪽으로 한 자리 옮겨진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3.5$"
+              ]
+            },
+            {
+              "anyOf": [
+                "오른쪽으로 한 자리",
+                "오른쪽 한 칸"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수를 $10$배 하면 소수점이 {오른쪽}으로 한 자리 옮겨진다.",
+          "acceptedAnswers": [
+            [
+              "오른쪽"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2330,
+        "sourceFingerprint": "21244b7d7bf7b46969e1f682b191282e00054dcbd75482c52a6f85a955aba06d",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc7",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$\\frac{1}{10}$로 할 때 소수점의 이동",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수의 $\\frac{1}{10}$은 소수점이 {왼쪽}으로 한 자리 옮겨진 수이다.",
+        "studentC": "소수의 $\\frac{1}{10}$은 소수점이 □으로 한 자리 옮겨진 수이다.",
+        "answers": [
+          "왼쪽"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2330,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "21244b7d7bf7b46969e1f682b191282e00054dcbd75482c52a6f85a955aba06d",
+        "proposalFingerprint": "65c13b853c29b8050751159272d5f6de73256d16332f8a1848466881da446435",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$4.6$의 $\\frac{1}{10}$을 쓰고, 소수점이 어느 쪽으로 몇 자리 옮겨졌는지 쓰시오.",
+        "bAnswer": "$0.46$. 소수점이 왼쪽으로 한 자리 옮겨진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.46$"
+            ]
+          },
+          {
+            "anyOf": [
+              "왼쪽으로 한 자리",
+              "왼쪽 한 칸"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$\\frac{1}{10}$과 소수점 이동",
+        "bReason": "방향과 자리 수를 결과로 확인",
+        "cDecision": "keep",
+        "cReason": "방향 낱말 하나만 묻는 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$\\frac{1}{10}$로 할 때 소수점의 이동",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수의 $\\frac{1}{10}$은 소수점이 {왼쪽}으로 한 자리 옮겨진 수이다.",
+        "cStudentSentence": "소수의 $\\frac{1}{10}$은 소수점이 □으로 한 자리 옮겨진 수이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "왼쪽",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수의 $\\frac{1}{10}$은 소수점이 □으로 한 자리 옮겨진 수이다.",
+          "answers": [
+            "왼쪽"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$4.6$의 $\\frac{1}{10}$을 쓰고, 소수점이 어느 쪽으로 몇 자리 옮겨졌는지 쓰시오.",
+          "answer": "$0.46$. 소수점이 왼쪽으로 한 자리 옮겨진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.46$"
+              ]
+            },
+            {
+              "anyOf": [
+                "왼쪽으로 한 자리",
+                "왼쪽 한 칸"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수의 $\\frac{1}{10}$은 소수점이 {왼쪽}으로 한 자리 옮겨진 수이다.",
+          "acceptedAnswers": [
+            [
+              "왼쪽"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2331,
+        "sourceFingerprint": "002b8521788267945771cf0941bcc337ca5f8df7ede213d08ba882e98c1a05cc",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc8",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$0.01$의 $100$배",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.01$을 $100$배 하면 {$1$}이다.",
+        "studentC": "$0.01$을 $100$배 하면 □이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2331,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "002b8521788267945771cf0941bcc337ca5f8df7ede213d08ba882e98c1a05cc",
+        "proposalFingerprint": "ce3a7550cc7c2aea157e0cc3d554f0408ccfa5ee322554b6579e31ec23ccac45",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "$0.01$의 $100$배 계산",
+        "bReason": "xc11 $100$배 B와 같은 목표",
+        "exclusionReason": "xc11 B와 같은 $100$배 규칙의 반복 계산이다.",
+        "cDecision": "keep",
+        "cReason": "짧고 선명한 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.01$의 $100$배",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.01$을 $100$배 하면 {$1$}이다.",
+        "cStudentSentence": "$0.01$을 $100$배 하면 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.01$을 $100$배 하면 □이다.",
+          "answers": [
+            "$1$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$0.01$을 $100$배 하면 {$1$}이다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc11 $100$배 B와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2332,
+        "sourceFingerprint": "7a1818a52a22dec54f7054810281f2a8eb45cc29bbf3dc4abf0ec5fb6c503115",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc9",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$0.001$의 $1000$배",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0.001$을 $1000$배 하면 {$1$}이다.",
+        "studentC": "$0.001$을 $1000$배 하면 □이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2332,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "7a1818a52a22dec54f7054810281f2a8eb45cc29bbf3dc4abf0ec5fb6c503115",
+        "proposalFingerprint": "840c6949d8aca152e26c7d2580867ad4934ea96e5de9c3c00da128b3c18fa273",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "$0.001$의 $1000$배 계산",
+        "bReason": "배 규칙의 반복 계산",
+        "exclusionReason": "xc6, xc11 B의 소수점 이동 규칙과 같은 목표인 값만 바뀐 계산이다.",
+        "cDecision": "keep",
+        "cReason": "짧고 선명한 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.001$의 $1000$배",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.001$을 $1000$배 하면 {$1$}이다.",
+        "cStudentSentence": "$0.001$을 $1000$배 하면 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.001$을 $1000$배 하면 □이다.",
+          "answers": [
+            "$1$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$0.001$을 $1000$배 하면 {$1$}이다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "배 규칙의 반복 계산"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2333,
+        "sourceFingerprint": "beaf8b3d6c08c0b0b0d45c88114bc91a9c5def3e44db5d3c0bf7ac9e13e419a8",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc11",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$100$배 할 때 소수점의 이동",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수를 $100$배 하면 소수점이 오른쪽으로 {두 자리} 옮겨진다.",
+        "studentC": "소수를 $100$배 하면 소수점이 오른쪽으로 □ 옮겨진다.",
+        "answers": [
+          "두 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2333,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "beaf8b3d6c08c0b0b0d45c88114bc91a9c5def3e44db5d3c0bf7ac9e13e419a8",
+        "proposalFingerprint": "52494d261d98dc7a7391f42291e76cc52f0d174811b29e4e59c904f9cf414232",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.047$을 $100$배 한 수를 쓰고, 소수점이 어느 쪽으로 몇 자리 옮겨졌는지 쓰시오.",
+        "bAnswer": "$4.7$. 소수점이 오른쪽으로 두 자리 옮겨진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽으로 두 자리",
+              "오른쪽 두 칸"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$100$배와 소수점 이동",
+        "bReason": "두 자리 이동과 결과를 확인",
+        "cDecision": "keep",
+        "cReason": "자리 수 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$자리"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$100$배 할 때 소수점의 이동",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수를 $100$배 하면 소수점이 오른쪽으로 {두 자리} 옮겨진다.",
+        "cStudentSentence": "소수를 $100$배 하면 소수점이 오른쪽으로 □ 옮겨진다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 자리",
+            "equivalents": [
+              "$2$자리"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수를 $100$배 하면 소수점이 오른쪽으로 □ 옮겨진다.",
+          "answers": [
+            "두 자리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.047$을 $100$배 한 수를 쓰고, 소수점이 어느 쪽으로 몇 자리 옮겨졌는지 쓰시오.",
+          "answer": "$4.7$. 소수점이 오른쪽으로 두 자리 옮겨진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "오른쪽으로 두 자리",
+                "오른쪽 두 칸"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수를 $100$배 하면 소수점이 오른쪽으로 {두 자리} 옮겨진다.",
+          "acceptedAnswers": [
+            [
+              "두 자리",
+              "$2$자리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2334,
+        "sourceFingerprint": "e346ac17ba3b73abacee5c31cfad93204d48e7b566930f893925d97d5eabe0f7",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc12",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$\\frac{1}{100}$로 할 때 소수점의 이동",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수의 $\\frac{1}{100}$은 소수점이 왼쪽으로 {두 자리} 옮겨진 수이다.",
+        "studentC": "소수의 $\\frac{1}{100}$은 소수점이 왼쪽으로 □ 옮겨진 수이다.",
+        "answers": [
+          "두 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2334,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "e346ac17ba3b73abacee5c31cfad93204d48e7b566930f893925d97d5eabe0f7",
+        "proposalFingerprint": "76c0ef0d698122e5672a2a78443e4f6b48f2f4f52d1932b4fc39b2cab277a717",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$25.6$의 $\\frac{1}{100}$을 쓰고, 소수점이 어느 쪽으로 몇 자리 옮겨졌는지 쓰시오.",
+        "bAnswer": "$0.256$. 소수점이 왼쪽으로 두 자리 옮겨진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.256$"
+            ]
+          },
+          {
+            "anyOf": [
+              "왼쪽으로 두 자리",
+              "왼쪽 두 칸"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$\\frac{1}{100}$과 소수점 이동",
+        "bReason": "방향과 자리 수를 결과로 확인",
+        "cDecision": "keep",
+        "cReason": "자리 수 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$자리"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$\\frac{1}{100}$로 할 때 소수점의 이동",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수의 $\\frac{1}{100}$은 소수점이 왼쪽으로 {두 자리} 옮겨진 수이다.",
+        "cStudentSentence": "소수의 $\\frac{1}{100}$은 소수점이 왼쪽으로 □ 옮겨진 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 자리",
+            "equivalents": [
+              "$2$자리"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수의 $\\frac{1}{100}$은 소수점이 왼쪽으로 □ 옮겨진 수이다.",
+          "answers": [
+            "두 자리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$25.6$의 $\\frac{1}{100}$을 쓰고, 소수점이 어느 쪽으로 몇 자리 옮겨졌는지 쓰시오.",
+          "answer": "$0.256$. 소수점이 왼쪽으로 두 자리 옮겨진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.256$"
+              ]
+            },
+            {
+              "anyOf": [
+                "왼쪽으로 두 자리",
+                "왼쪽 두 칸"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수의 $\\frac{1}{100}$은 소수점이 왼쪽으로 {두 자리} 옮겨진 수이다.",
+          "acceptedAnswers": [
+            [
+              "두 자리",
+              "$2$자리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2335,
+        "sourceFingerprint": "aa4b9adca2ac934a32db229b0127d945c452ff738bcf53acc2e622d0638ba82f",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc13",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "십분의 일로 하면 숫자가 내려간다",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 {$\\frac{1}{10}$이 되어} 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+        "example": {
+          "prompt": "$27$의 $\\frac{1}{10}$에서 $2$가 일의 자리로 가는 까닭은?",
+          "answer": "$20$의 $\\frac{1}{10}$은 $2$라서"
+        },
+        "studentC": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 □ 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+        "answers": [
+          "$\\frac{1}{10}$이 되어"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2335,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "aa4b9adca2ac934a32db229b0127d945c452ff738bcf53acc2e622d0638ba82f",
+        "proposalFingerprint": "7924c0cb105d60c9639a1fb5c009da6d59f41e6c6e67b1c333a3ef1bc3f62d40",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$27$의 $\\frac{1}{10}$을 구하고, $2$가 일의 자리로 가는 까닭을 쓰시오.",
+        "bAnswer": "$2.7$. $20$의 $\\frac{1}{10}$이 $2$이므로 $2$가 일의 자리로 간다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$의 $\\frac{1}{10}$은 $2$",
+              "각 숫자의 값이 $\\frac{1}{10}$이 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$\\frac{1}{10}$로 한 자리 내려감",
+        "bReason": "자리 이동을 숫자 값의 변화로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 {$\\frac{1}{10}$}이 되어 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+        "cReason": "문장 복원을 짧은 분수 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "십분의 일"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "십분의 일로 하면 숫자가 내려간다",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 {$\\frac{1}{10}$}이 되어 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+        "cStudentSentence": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 □이 되어 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{1}{10}$",
+            "equivalents": [
+              "십분의 일"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$27$의 $\\frac{1}{10}$을 구하고, $2$가 일의 자리로 가는 까닭을 쓰시오.",
+          "answer": "$2.7$. $20$의 $\\frac{1}{10}$이 $2$이므로 $2$가 일의 자리로 간다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$20$의 $\\frac{1}{10}$은 $2$",
+                "각 숫자의 값이 $\\frac{1}{10}$이 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 {$\\frac{1}{10}$}이 되어 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{1}{10}$",
+              "십분의 일"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2336,
+        "sourceFingerprint": "12ae909facf7e8fd73817bd61abc5ad0317a1e1e0d9f63728339fdf6d528aed4",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc15",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "소수점을 옮긴 뒤의 빈 자리",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수점을 옮기다 숫자가 없는 자리가 생기면 {빈 자리에 $0$을} 채운다.",
+        "example": {
+          "prompt": "$0.003$에서 소수점과 $3$ 사이의 두 영은 무엇을 나타내는가?",
+          "answer": "$0.1$과 $0.01$이 하나도 없음"
+        },
+        "studentC": "소수점을 옮기다 숫자가 없는 자리가 생기면 □ 채운다.",
+        "answers": [
+          "빈 자리에 $0$을"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2336,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "12ae909facf7e8fd73817bd61abc5ad0317a1e1e0d9f63728339fdf6d528aed4",
+        "proposalFingerprint": "6b9bdcb7cbb601b29e809b4653a6f6d2b34f748fec6f47dfde778effc4019948",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.003$에서 소수점과 $3$ 사이의 $0$ 두 개는 각각 무엇을 나타내는지 쓰시오.",
+        "bAnswer": "소수 첫째 자리와 소수 둘째 자리에 $0.1$과 $0.01$이 하나도 없음을 나타낸다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수 첫째 자리와 둘째 자리가 $0$",
+              "$0.1$과 $0.01$이 하나도 없다",
+              "빈 자리를 $0$으로 채운 것"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "빈 자리의 0 뜻",
+        "bReason": "자리 채움 $0$의 의미를 직접 설명",
+        "cDecision": "rewrite",
+        "cAfter": "소수점을 옮기다 숫자가 없는 자리가 생기면 빈 자리에 숫자 {$0$}을 채운다.",
+        "cReason": "문장형 정답을 숫자 $0$ 하나로 좁힘",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "소수점을 옮긴 뒤의 빈 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수점을 옮기다 숫자가 없는 자리가 생기면 빈 자리에 숫자 {$0$}을 채운다.",
+        "cStudentSentence": "소수점을 옮기다 숫자가 없는 자리가 생기면 빈 자리에 숫자 □을 채운다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.003$에서 소수점과 $3$ 사이의 $0$ 두 개는 각각 무엇을 나타내는지 쓰시오.",
+          "answer": "소수 첫째 자리와 소수 둘째 자리에 $0.1$과 $0.01$이 하나도 없음을 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "소수 첫째 자리와 둘째 자리가 $0$",
+                "$0.1$과 $0.01$이 하나도 없다",
+                "빈 자리를 $0$으로 채운 것"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수점을 옮기다 숫자가 없는 자리가 생기면 빈 자리에 숫자 {$0$}을 채운다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2337,
+        "sourceFingerprint": "330fd40e9b92e2d59b794558d59a13499de3db60e16ad5728c7781240ef6dd48",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc17",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$\\mathrm{mm}$와 $\\mathrm{cm}$의 관계",
+        "kind": "단위",
+        "level": "중",
+        "definition": "$1\\,\\mathrm{mm}$는 $0.1\\,\\mathrm{cm}$이고, $10\\,\\mathrm{mm}$가 {$1\\,\\mathrm{cm}$}이다.",
+        "studentC": "$1\\,\\mathrm{mm}$는 $0.1\\,\\mathrm{cm}$이고, $10\\,\\mathrm{mm}$가 □이다.",
+        "answers": [
+          "$1\\,\\mathrm{cm}$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2337,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "330fd40e9b92e2d59b794558d59a13499de3db60e16ad5728c7781240ef6dd48",
+        "proposalFingerprint": "d36772d870fcd7d465603cf6c64b52ef96c1f52189573e97ff226dee7cf848ee",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\,\\mathrm{mm}$는 몇 $\\mathrm{cm}$인지 소수로 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "$0.1\\,\\mathrm{cm}$. $1\\,\\mathrm{cm}$를 똑같이 $10$칸으로 나눈 한 칸이 $1\\,\\mathrm{mm}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.1\\,\\mathrm{cm}$",
+              "$0.1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10\\,\\mathrm{mm}$가 $1\\,\\mathrm{cm}$",
+              "$1\\,\\mathrm{cm}$를 $10$칸으로 나눈 한 칸"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "mm와 cm 소수 관계",
+        "bReason": "$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$ 근거로 설명",
+        "cDecision": "keep",
+        "cReason": "단위 관계 짧은 빈칸",
+        "roleEvidence": {
+          "sourceKind": "단위",
+          "sourceTerm": "$\\mathrm{mm}$와 $\\mathrm{cm}$의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1\\,\\mathrm{mm}$는 $0.1\\,\\mathrm{cm}$이고, $10\\,\\mathrm{mm}$가 {$1\\,\\mathrm{cm}$}이다.",
+        "cStudentSentence": "$1\\,\\mathrm{mm}$는 $0.1\\,\\mathrm{cm}$이고, $10\\,\\mathrm{mm}$가 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1\\,\\mathrm{cm}$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$1\\,\\mathrm{mm}$는 $0.1\\,\\mathrm{cm}$이고, $10\\,\\mathrm{mm}$가 □이다.",
+          "answers": [
+            "$1\\,\\mathrm{cm}$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1\\,\\mathrm{mm}$는 몇 $\\mathrm{cm}$인지 소수로 쓰고, 그 까닭을 쓰시오.",
+          "answer": "$0.1\\,\\mathrm{cm}$. $1\\,\\mathrm{cm}$를 똑같이 $10$칸으로 나눈 한 칸이 $1\\,\\mathrm{mm}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.1\\,\\mathrm{cm}$",
+                "$0.1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$10\\,\\mathrm{mm}$가 $1\\,\\mathrm{cm}$",
+                "$1\\,\\mathrm{cm}$를 $10$칸으로 나눈 한 칸"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1\\,\\mathrm{mm}$는 $0.1\\,\\mathrm{cm}$이고, $10\\,\\mathrm{mm}$가 {$1\\,\\mathrm{cm}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$1\\,\\mathrm{cm}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2338,
+        "sourceFingerprint": "1504c711060ebb686ff3ed2b5f418fb368853ad63a5d06e8f91b5b0bea0c63ec",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc18",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$10$배와 $\\frac{1}{10}$의 되돌리기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 소수를 $10$배 한 뒤 다시 $\\frac{1}{10}$로 하면 {처음 수}가 된다.",
+        "studentC": "어떤 소수를 $10$배 한 뒤 다시 $\\frac{1}{10}$로 하면 □가 된다.",
+        "answers": [
+          "처음 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2338,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "1504c711060ebb686ff3ed2b5f418fb368853ad63a5d06e8f91b5b0bea0c63ec",
+        "proposalFingerprint": "b2977f2c1eca8aa94f85d07e98db19bae1eacd5c7eb482a78da65bfa575161b3",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.8$을 $10$배 한 수를 쓰고, 그 수의 $\\frac{1}{10}$을 쓰시오. 어떤 소수에서도 처음 수가 되는 까닭을 쓰시오.",
+        "bAnswer": "$8$, $0.8$. $10$배는 소수점을 오른쪽으로 한 자리, $\\frac{1}{10}$은 왼쪽으로 한 자리 옮겨 처음으로 돌아온다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8$과 $0.8$",
+              "$8$, $0.8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽 한 자리 뒤 왼쪽 한 자리",
+              "$10$배와 $\\frac{1}{10}$은 반대로 되돌린다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$10$배와 $\\frac{1}{10}$의 되돌림",
+        "bReason": "반대 과정이라는 이유를 구체 예로 확인",
+        "cDecision": "keep",
+        "cReason": "'처음 수' 친숙한 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$10$배와 $\\frac{1}{10}$의 되돌리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 소수를 $10$배 한 뒤 다시 $\\frac{1}{10}$로 하면 {처음 수}가 된다.",
+        "cStudentSentence": "어떤 소수를 $10$배 한 뒤 다시 $\\frac{1}{10}$로 하면 □가 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "처음 수",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "어떤 소수를 $10$배 한 뒤 다시 $\\frac{1}{10}$로 하면 □가 된다.",
+          "answers": [
+            "처음 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.8$을 $10$배 한 수를 쓰고, 그 수의 $\\frac{1}{10}$을 쓰시오. 어떤 소수에서도 처음 수가 되는 까닭을 쓰시오.",
+          "answer": "$8$, $0.8$. $10$배는 소수점을 오른쪽으로 한 자리, $\\frac{1}{10}$은 왼쪽으로 한 자리 옮겨 처음으로 돌아온다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$8$과 $0.8$",
+                "$8$, $0.8$"
+              ]
+            },
+            {
+              "anyOf": [
+                "오른쪽 한 자리 뒤 왼쪽 한 자리",
+                "$10$배와 $\\frac{1}{10}$은 반대로 되돌린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 소수를 $10$배 한 뒤 다시 $\\frac{1}{10}$로 하면 {처음 수}가 된다.",
+          "acceptedAnswers": [
+            [
+              "처음 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2339,
+        "sourceFingerprint": "dfa6cc01c9d0a2485343d627e252679375f3829053d7cde18d52ec19e1ff7d7e",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc19",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$\\frac{1}{10}$을 두 번 하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 수의 $\\frac{1}{10}$의 $\\frac{1}{10}$은 그 수의 {$\\frac{1}{100}$}이다.",
+        "studentC": "어떤 수의 $\\frac{1}{10}$의 $\\frac{1}{10}$은 그 수의 □이다.",
+        "answers": [
+          "$\\frac{1}{100}$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2339,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "dfa6cc01c9d0a2485343d627e252679375f3829053d7cde18d52ec19e1ff7d7e",
+        "proposalFingerprint": "cc10cb0b2e2ef81714b6c6310dc202f899ed57ae2d87d0aa30be138c06ae4e95",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$50$의 $\\frac{1}{10}$의 $\\frac{1}{10}$을 구하고, 그 값이 $50$의 몇 분의 몇인지 쓰시오.",
+        "bAnswer": "$0.5$. $50$의 $\\frac{1}{100}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50$의 $\\frac{1}{100}$",
+              "백분의 일"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "$\\frac{1}{10}$을 두 번 한 값",
+        "bReason": "두 번의 $\\frac{1}{10}$을 $\\frac{1}{100}$로 연결",
+        "cDecision": "keep",
+        "cReason": "분수 하나만 묻는 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$\\frac{1}{10}$을 두 번 하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수의 $\\frac{1}{10}$의 $\\frac{1}{10}$은 그 수의 {$\\frac{1}{100}$}이다.",
+        "cStudentSentence": "어떤 수의 $\\frac{1}{10}$의 $\\frac{1}{10}$은 그 수의 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{1}{100}$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "어떤 수의 $\\frac{1}{10}$의 $\\frac{1}{10}$은 그 수의 □이다.",
+          "answers": [
+            "$\\frac{1}{100}$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$50$의 $\\frac{1}{10}$의 $\\frac{1}{10}$을 구하고, 그 값이 $50$의 몇 분의 몇인지 쓰시오.",
+          "answer": "$0.5$. $50$의 $\\frac{1}{100}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.5$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$50$의 $\\frac{1}{100}$",
+                "백분의 일"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수의 $\\frac{1}{10}$의 $\\frac{1}{10}$은 그 수의 {$\\frac{1}{100}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{1}{100}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2340,
+        "sourceFingerprint": "5f2383a60cd1589ce663ba78c7068fbec1bc18d71cb3819b2172587045baf966",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc20",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "십 배 하기 전의 수 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어떤 수의 $10$배를 알면 처음 수는 {그 결과의 $\\frac{1}{10}$}이다.",
+        "example": {
+          "prompt": "$10$배가 $3.6$인 수를 찾을 때 $3.6$을 열 등분하는 까닭은?",
+          "answer": "처음 수 열 개를 모은 양이라서"
+        },
+        "studentC": "어떤 수의 $10$배를 알면 처음 수는 □이다.",
+        "answers": [
+          "그 결과의 $\\frac{1}{10}$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2340,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "5f2383a60cd1589ce663ba78c7068fbec1bc18d71cb3819b2172587045baf966",
+        "proposalFingerprint": "26de5196d8e7539f23a0e18e26afc924828a368349363e92572dec8c0c9a9b31",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 수의 $10$배가 $3.6$입니다. 어떤 수를 구하고, $3.6$을 열 등분하는 까닭을 쓰시오.",
+        "bAnswer": "$0.36$. $3.6$은 처음 수를 $10$개 모은 양이라서 $10$으로 나누면 처음 수가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.36$"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 수 $10$개를 모은 양",
+              "$10$배의 반대로 $\\frac{1}{10}$을 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$10$배 전의 수 구하기",
+        "bReason": "$10$배를 되돌리는 이유를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수의 $10$배가 $3.6$이면 처음 수는 $3.6$의 {$\\frac{1}{10}$}이다.",
+        "cReason": "긴 구절을 구체 수와 분수 빈칸으로",
+        "cSlotEquivalents": [
+          [
+            "십분의 일"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "십 배 하기 전의 수 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수의 $10$배가 $3.6$이면 처음 수는 $3.6$의 {$\\frac{1}{10}$}이다.",
+        "cStudentSentence": "어떤 수의 $10$배가 $3.6$이면 처음 수는 $3.6$의 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{1}{10}$",
+            "equivalents": [
+              "십분의 일"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 수의 $10$배가 $3.6$입니다. 어떤 수를 구하고, $3.6$을 열 등분하는 까닭을 쓰시오.",
+          "answer": "$0.36$. $3.6$은 처음 수를 $10$개 모은 양이라서 $10$으로 나누면 처음 수가 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.36$"
+              ]
+            },
+            {
+              "anyOf": [
+                "처음 수 $10$개를 모은 양",
+                "$10$배의 반대로 $\\frac{1}{10}$을 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수의 $10$배가 $3.6$이면 처음 수는 $3.6$의 {$\\frac{1}{10}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{1}{10}$",
+              "십분의 일"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2341,
+        "sourceFingerprint": "e0f4c7b09856ff121d1338a3d07355cef1a40ba6776e110429263f7851ffe292",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc22",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$\\mathrm{g}$과 $\\mathrm{kg}$의 관계",
+        "kind": "단위",
+        "level": "상",
+        "definition": "$1\\,\\mathrm{g}$은 $1\\,\\mathrm{kg}$의 {$\\frac{1}{1000}$}이므로 $0.001\\,\\mathrm{kg}$이다.",
+        "studentC": "$1\\,\\mathrm{g}$은 $1\\,\\mathrm{kg}$의 □이므로 $0.001\\,\\mathrm{kg}$이다.",
+        "answers": [
+          "$\\frac{1}{1000}$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2341,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "e0f4c7b09856ff121d1338a3d07355cef1a40ba6776e110429263f7851ffe292",
+        "proposalFingerprint": "237d6862d8c7abc5664129ab6990944faa0f8c0b4eebae3e358f6f816584f287",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\,\\mathrm{g}$을 $\\mathrm{kg}$ 단위의 소수로 나타내고, 그 까닭을 쓰시오.",
+        "bAnswer": "$0.001\\,\\mathrm{kg}$. $1\\,\\mathrm{kg}=1000\\,\\mathrm{g}$이므로 $1\\,\\mathrm{g}$은 $1\\,\\mathrm{kg}$의 $\\frac{1}{1000}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.001\\,\\mathrm{kg}$",
+              "$0.001$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{kg}=1000\\,\\mathrm{g}$",
+              "$1\\,\\mathrm{kg}$의 $\\frac{1}{1000}$"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "g와 kg 소수 관계",
+        "bReason": "단위 관계를 분수와 소수로 연결",
+        "cDecision": "keep",
+        "cReason": "분수 하나만 묻는 단위 빈칸",
+        "roleEvidence": {
+          "sourceKind": "단위",
+          "sourceTerm": "$\\mathrm{g}$과 $\\mathrm{kg}$의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1\\,\\mathrm{g}$은 $1\\,\\mathrm{kg}$의 {$\\frac{1}{1000}$}이므로 $0.001\\,\\mathrm{kg}$이다.",
+        "cStudentSentence": "$1\\,\\mathrm{g}$은 $1\\,\\mathrm{kg}$의 □이므로 $0.001\\,\\mathrm{kg}$이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{1}{1000}$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$1\\,\\mathrm{g}$은 $1\\,\\mathrm{kg}$의 □이므로 $0.001\\,\\mathrm{kg}$이다.",
+          "answers": [
+            "$\\frac{1}{1000}$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1\\,\\mathrm{g}$을 $\\mathrm{kg}$ 단위의 소수로 나타내고, 그 까닭을 쓰시오.",
+          "answer": "$0.001\\,\\mathrm{kg}$. $1\\,\\mathrm{kg}=1000\\,\\mathrm{g}$이므로 $1\\,\\mathrm{g}$은 $1\\,\\mathrm{kg}$의 $\\frac{1}{1000}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.001\\,\\mathrm{kg}$",
+                "$0.001$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1\\,\\mathrm{kg}=1000\\,\\mathrm{g}$",
+                "$1\\,\\mathrm{kg}$의 $\\frac{1}{1000}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1\\,\\mathrm{g}$은 $1\\,\\mathrm{kg}$의 {$\\frac{1}{1000}$}이므로 $0.001\\,\\mathrm{kg}$이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{1}{1000}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2342,
+        "sourceFingerprint": "6c355030c543f4fff3d317c6ec5848e1b1cdbfe7fdc9e4f2b4d298232e46abf3",
+        "part": "e4plus",
+        "id": "e4-2-3-3-xc23",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "$100$원의 $\\frac{1}{10}$의 $\\frac{1}{10}$",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$100$원의 $\\frac{1}{10}$은 $10$원이고, 그 $\\frac{1}{10}$은 {$1$원}이다.",
+        "studentC": "$100$원의 $\\frac{1}{10}$은 $10$원이고, 그 $\\frac{1}{10}$은 □이다.",
+        "answers": [
+          "$1$원"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2342,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "6c355030c543f4fff3d317c6ec5848e1b1cdbfe7fdc9e4f2b4d298232e46abf3",
+        "proposalFingerprint": "718428dcae3cc1fee8acab2f993d18340bb45b0f21727840d9c05d7b774655f2",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "$100$원의 $\\frac{1}{10}$ 두 번",
+        "bReason": "xc19의 $\\frac{1}{10}$ 두 번과 중복",
+        "exclusionReason": "xc19 B가 $\\frac{1}{10}$을 두 번 하는 같은 목표를 다룬다.",
+        "cDecision": "keep",
+        "cReason": "돈 상황으로 친숙한 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$100$원의 $\\frac{1}{10}$의 $\\frac{1}{10}$",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$100$원의 $\\frac{1}{10}$은 $10$원이고, 그 $\\frac{1}{10}$은 {$1$원}이다.",
+        "cStudentSentence": "$100$원의 $\\frac{1}{10}$은 $10$원이고, 그 $\\frac{1}{10}$은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1$원",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$100$원의 $\\frac{1}{10}$은 $10$원이고, 그 $\\frac{1}{10}$은 □이다.",
+          "answers": [
+            "$1$원"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$100$원의 $\\frac{1}{10}$은 $10$원이고, 그 $\\frac{1}{10}$은 {$1$원}이다.",
+          "acceptedAnswers": [
+            [
+              "$1$원"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc19의 $\\frac{1}{10}$ 두 번과 중복"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

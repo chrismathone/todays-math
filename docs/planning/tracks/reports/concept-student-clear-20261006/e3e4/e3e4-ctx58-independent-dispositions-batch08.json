@@ -1,0 +1,3435 @@
+{
+  "sourceCommit": "13bf05dce",
+  "status": "direct-planning-response-not-independent-pass",
+  "rows": [
+    {
+      "id": "e4-1-2-5-xc26",
+      "sourceIndex": 1620,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-2-5-xc26",
+          "grade": "초4",
+          "reviewedHash": "834e6448c6e3f59026eb505e70b3170b76b1a1be364881a99fee85cd9962aa81",
+          "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+          "evidence": "cohort-2026-10-07T06-32-05-830Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-2-5-xc26",
+              "pass",
+              "revise",
+              "none",
+              "C '두 각이 각각 같으면 나머지 한 각도 □'에서 '같다'가 병렬 구조로 그대로 드러난다(답 노출). 세 각의 합 180°를 쓰는 이유를 묻는 칸이 아니다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-2-5-xc26",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-2-5-xc26",
+              "section": "초4::1-2 각도::1-2-5 삼각형의 세 각의 크기의 합",
+              "term": "두 각이 같은 두 삼각형",
+              "kind": "성질",
+              "level": "상",
+              "definition": "두 삼각형에서 두 각이 각각 같으면 나머지 한 각도 {같다}."
+            },
+            "B": {
+              "prompt": "두 삼각형에서 두 각의 크기가 각각 같으면 나머지 한 각의 크기도 같아지는 까닭을 설명하세요.",
+              "answer": "두 삼각형 모두 세 각의 합이 $180^\\circ$이다. 두 삼각형에서 같은 두 각을 $180^\\circ$에서 빼므로 남는 한 각도 같다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "두 삼각형 모두 세 각의 합이 $180^\\circ$이다",
+                    "삼각형의 세 각의 합은 $180^\\circ$로 같다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$180^\\circ$에서 같은 두 각을 빼므로 남는 각도 같다",
+                    "같은 수에서 같은 두 각을 빼면 나머지도 같다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "두 삼각형에서 두 각이 각각 같으면 나머지 한 각도 {같다}.",
+              "acceptedAnswers": [
+                [
+                  "같다"
+                ]
+              ]
+            },
+            "goal": "두 각이 각각 같으면 나머지 각도 같은 까닭",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "834e6448c6e3f59026eb505e70b3170b76b1a1be364881a99fee85cd9962aa81"
+          },
+          "currentNormalizedHash": "834e6448c6e3f59026eb505e70b3170b76b1a1be364881a99fee85cd9962aa81",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "029548475939bf26b794976fa2a51bb6c15ac3bcbb16ca115ca72d2145955b0f",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "029548475939bf26b794976fa2a51bb6c15ac3bcbb16ca115ca72d2145955b0f",
+      "currentProposal": {
+        "sourceIndex": 1620,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-5 삼각형의 세 각의 크기의 합",
+        "sourceFingerprint": "2827103cefe899ace98256494e6ed6794a01e06cd0a0023a92b8495a48b24fa7",
+        "proposalFingerprint": "029548475939bf26b794976fa2a51bb6c15ac3bcbb16ca115ca72d2145955b0f",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-5-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "두 삼각형에서 두 각의 크기가 각각 같으면 나머지 한 각의 크기도 같아지는 까닭을 설명하세요.",
+        "bAnswer": "두 삼각형 모두 세 각의 합이 $180^\\circ$이다. 두 삼각형에서 같은 두 각을 $180^\\circ$에서 빼므로 남는 한 각도 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 삼각형 모두 세 각의 합이 $180^\\circ$이다",
+              "삼각형의 세 각의 합은 $180^\\circ$로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ$에서 같은 두 각을 빼므로 남는 각도 같다",
+              "같은 수에서 같은 두 각을 빼면 나머지도 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "두 각이 각각 같으면 나머지 각도 같은 까닭",
+        "bReason": "합이 $180^\\circ$라는 말만으로는 남은 각이 같은 이유가 되지 않으므로, 합 $180^\\circ$와 함께 같은 두 각을 빼면 남는 각도 같다는 관계를 별도 필수 기준으로 둠.",
+        "cDecision": "keep",
+        "cReason": "조건이 분명하고 '같다' 비교 빈칸",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 각이 같은 두 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 삼각형에서 두 각이 각각 같으면 나머지 한 각도 {같다}.",
+        "cStudentSentence": "두 삼각형에서 두 각이 각각 같으면 나머지 한 각도 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 삼각형에서 두 각이 각각 같으면 나머지 한 각도 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "두 삼각형에서 두 각의 크기가 각각 같으면 나머지 한 각의 크기도 같아지는 까닭을 설명하세요.",
+          "answer": "두 삼각형 모두 세 각의 합이 $180^\\circ$이다. 두 삼각형에서 같은 두 각을 $180^\\circ$에서 빼므로 남는 한 각도 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 삼각형 모두 세 각의 합이 $180^\\circ$이다",
+                "삼각형의 세 각의 합은 $180^\\circ$로 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180^\\circ$에서 같은 두 각을 빼므로 남는 각도 같다",
+                "같은 수에서 같은 두 각을 빼면 나머지도 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 삼각형에서 두 각이 각각 같으면 나머지 한 각도 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-5-xc26",
+          "sourceIndex": 1620,
+          "proposalFingerprint": "029548475939bf26b794976fa2a51bb6c15ac3bcbb16ca115ca72d2145955b0f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "합180도뿐아니라같은두각을같은합에서빼는관계도평가한다.",
+          "cReason": "각각같은두각의남은각같음이라는짧은관계를유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-2-5-xc26",
+        "sourceIndex": 1620,
+        "proposalFingerprint": "029548475939bf26b794976fa2a51bb6c15ac3bcbb16ca115ca72d2145955b0f",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "180에서 같은 두 각을 빼는 관계까지 설명한다.",
+        "cReason": "이미 같은 두 각과 남은 한 각은 다른 대상이라 같다는 비교는 독립 판단이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "주어진 두 각과 남은 한 각은 서로 다른 대상이다. 남은 각도 같은지 판단하는 짧은 비교는 유용하다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-2-6-xc19",
+      "sourceIndex": 1640,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-2-6-xc19",
+          "grade": "초4",
+          "reviewedHash": "387ce1997e9b96004aa9a42323a28ecd2073e0d3d674e1a6279ea3fc7edf4175",
+          "inputHash": "9007dee2a63781f183d31e75950a1fbce62ec0f0b480136de613524cb506e2ca",
+          "evidence": "cohort-2026-10-07T06-32-05-861Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-2-6-xc19",
+              "revise",
+              "pass",
+              "none",
+              "B 문구 '서로 다른 두 각의 짝'이 한 짝 안의 두 각이 서로 달라야 하는 것처럼 읽힌다. 그런데 참고답과 requiredIdeas는 (80°,80°)를 예로 들어 충돌한다. xc28처럼 '서로 다른 두 쌍'으로 쓰거나 80°와 80°를 예에서 빼야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-2-6-xc19",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-2-6-xc19",
+              "section": "초4::1-2 각도::1-2-6 사각형의 네 각의 크기의 합 알아보기",
+              "term": "두 각을 알 때 나머지 두 각",
+              "kind": "성질",
+              "level": "중",
+              "definition": "사각형의 두 각을 알면 나머지 두 각의 {합}은 정해지지만, 두 각 각각의 크기는 정해지지 않는다.",
+              "example": {
+                "prompt": "두 각의 합이 $200^\\circ$인 사각형의 나머지 두 각이 하나로 정해지지 않는 까닭은?",
+                "answer": "합만 $160^\\circ$이면 돼서"
+              }
+            },
+            "B": {
+              "prompt": "두 각의 합이 $200^\\circ$인 사각형에서 나머지 두 각의 크기가 한 가지로 정해지지 않는 까닭을, 서로 다른 두 각의 짝을 두 가지 예로 들어 설명하세요. 두 각의 순서만 바꾼 것은 같은 예입니다.",
+              "answer": "나머지 두 각의 합은 $360^\\circ-200^\\circ=160^\\circ$로 정해지지만, 합이 $160^\\circ$이기만 하면 되므로 $80^\\circ$와 $80^\\circ$, $70^\\circ$와 $90^\\circ$처럼 여러 가지가 될 수 있다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "나머지 두 각의 합이 $160^\\circ$이면 된다",
+                    "나머지 두 각의 합만 $160^\\circ$로 정해진다",
+                    "$360^\\circ-200^\\circ=160^\\circ$이다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "합이 $160^\\circ$인 서로 다른 두 각의 짝을 두 가지 든다",
+                    "예를 들어 $80^\\circ$와 $80^\\circ$, $70^\\circ$와 $90^\\circ$처럼 합이 $160^\\circ$인 짝 두 가지를 쓴다",
+                    "예를 들어 $60^\\circ$와 $100^\\circ$, $50^\\circ$와 $110^\\circ$처럼 합이 $160^\\circ$인 짝 두 가지를 쓴다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "사각형의 두 각을 알면 나머지 두 각의 {합}은 정해지지만, 두 각 각각의 크기는 정해지지 않는다.",
+              "acceptedAnswers": [
+                [
+                  "합"
+                ]
+              ]
+            },
+            "goal": "합만 정해지고 각각은 정해지지 않는 까닭을 서로 다른 두 예로 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "387ce1997e9b96004aa9a42323a28ecd2073e0d3d674e1a6279ea3fc7edf4175"
+          },
+          "currentNormalizedHash": "387ce1997e9b96004aa9a42323a28ecd2073e0d3d674e1a6279ea3fc7edf4175",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "13f2da7f82ac0efc0037cfc9e3d0aad97c3d25116ff2b2c0f3b7731f13b40796",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "1514a512bbbb1501155b44837dce8e170e945414a78d280d25194f35183ecdd8",
+      "currentProposal": {
+        "sourceIndex": 1640,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-6 사각형의 네 각의 크기의 합 알아보기",
+        "sourceFingerprint": "d27e98624b386cd3902bebbfb38a8045af72b3e85639e6c211793f79b651e580",
+        "proposalFingerprint": "1514a512bbbb1501155b44837dce8e170e945414a78d280d25194f35183ecdd8",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-6-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "두 각의 합이 $200^\\circ$인 사각형에서 나머지 두 각의 크기가 한 가지로 정해지지 않는 까닭을 설명하세요. 나머지 두 각의 크기를 한 쌍으로 묶어 서로 다른 두 쌍을 예로 드세요. 순서만 바꾼 것은 같은 예입니다.",
+        "bAnswer": "나머지 두 각의 합은 $360^\\circ-200^\\circ=160^\\circ$로 정해지지만, 합이 $160^\\circ$이기만 하면 되므로 $80^\\circ$와 $80^\\circ$, $70^\\circ$와 $90^\\circ$처럼 여러 가지가 될 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 두 각의 합만 $160^\\circ$로 정해진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합이 $160^\\circ$인 서로 다른 두 쌍을 예로 든다. 예: $80^\\circ$와 $80^\\circ$, $70^\\circ$와 $90^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "합만 정해지고 각각은 정해지지 않는 까닭을 서로 다른 두 예로 설명",
+        "bReason": "두 쌍이 서로 다르다는 뜻을 분명히 하여 한 쌍 안에서 같은 각 두 개를 고르는 경우도 허용한다.",
+        "cDecision": "keep",
+        "cReason": "뒤 절의 '각각'과 대비되어 '합'이 분명함",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 각을 알 때 나머지 두 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형의 두 각을 알면 나머지 두 각의 {합}은 정해지지만, 두 각 각각의 크기는 정해지지 않는다.",
+        "cStudentSentence": "사각형의 두 각을 알면 나머지 두 각의 □은 정해지지만, 두 각 각각의 크기는 정해지지 않는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "합",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형의 두 각을 알면 나머지 두 각의 □은 정해지지만, 두 각 각각의 크기는 정해지지 않는다.",
+          "answers": [
+            "합"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "두 각의 합이 $200^\\circ$인 사각형에서 나머지 두 각의 크기가 한 가지로 정해지지 않는 까닭을 설명하세요. 나머지 두 각의 크기를 한 쌍으로 묶어 서로 다른 두 쌍을 예로 드세요. 순서만 바꾼 것은 같은 예입니다.",
+          "answer": "나머지 두 각의 합은 $360^\\circ-200^\\circ=160^\\circ$로 정해지지만, 합이 $160^\\circ$이기만 하면 되므로 $80^\\circ$와 $80^\\circ$, $70^\\circ$와 $90^\\circ$처럼 여러 가지가 될 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나머지 두 각의 합만 $160^\\circ$로 정해진다"
+              ]
+            },
+            {
+              "anyOf": [
+                "합이 $160^\\circ$인 서로 다른 두 쌍을 예로 든다. 예: $80^\\circ$와 $80^\\circ$, $70^\\circ$와 $90^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형의 두 각을 알면 나머지 두 각의 {합}은 정해지지만, 두 각 각각의 크기는 정해지지 않는다.",
+          "acceptedAnswers": [
+            [
+              "합"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-2-6-xc19",
+        "sourceIndex": 1640,
+        "proposalFingerprint": "1514a512bbbb1501155b44837dce8e170e945414a78d280d25194f35183ecdd8",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "서로 다른 두 쌍이라고 고쳐80도와80도도 한 쌍으로 허용한다.",
+        "cReason": "합은 정해져도 각각은 정해지지 않는 차이를 유지했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "서로 다른 두 쌍이라고 고쳐 한 쌍 안의 각은 같아도 된다는 뜻을 분명히 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-2-xc27",
+      "sourceIndex": 1129,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-2-xc27",
+          "grade": "초3",
+          "reviewedHash": "9bf8745cd2f2e33068f0483c523c12803de266f65367fbccfe1628fb8e4ea436",
+          "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+          "evidence": "cohort-2026-10-07T06-58-35-763Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-2-xc27",
+              "pass",
+              "revise",
+              "none",
+              "C 첫 빈칸 2는 앞의 '2개씩'과 같은 수라 베낄 수 있다. 둘째 빈칸 '쪼개지 않고는 ~ 수 없다'는 문법상 '없다'로 복원된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-2-xc27",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-2-xc27",
+              "section": "초3::2-4 분수::2-4-2 분수만큼은 얼마인지 알아보기 (1)",
+              "term": "쪼개지 않고 나누기",
+              "kind": "성질",
+              "level": "상",
+              "definition": "물건을 쪼개지 않고 단위분수만큼을 고르려면 전체가 {분모만큼의 묶음으로 남김없이} 똑같이 나누어져야 한다."
+            },
+            "B": {
+              "prompt": "사탕 $12$개의 $\\frac{1}{4}$은 사탕을 쪼개지 않고 고를 수 있지만, 사탕 $10$개의 $\\frac{1}{4}$은 그럴 수 없습니다. 그 까닭을 설명해 보세요.",
+              "answer": "$12$개는 $4$묶음으로 남김없이 $3$개씩 나누어진다. $10$개는 $4$묶음으로 똑같이 나누면 $2$개씩 넣고 $2$개가 남아 쪼개지 않고는 나눌 수 없다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$12$개는 $4$묶음으로 남김없이 나누어진다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$10$개는 남는 것이 생긴다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "사탕 $10$개를 쪼개지 않고 $4$묶음으로 똑같이 나누면 한 묶음에 $2$개씩 넣고 {$2$}개가 남는다. 그래서 사탕을 쪼개지 않고는 $10$개의 $\\frac{1}{4}$을 고를 수 {없다}.",
+              "acceptedAnswers": [
+                [
+                  "$2$"
+                ],
+                [
+                  "없다"
+                ]
+              ]
+            },
+            "goal": "쪼개지 않고 단위분수만큼을 고를 수 있는 조건 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "9bf8745cd2f2e33068f0483c523c12803de266f65367fbccfe1628fb8e4ea436"
+          },
+          "currentNormalizedHash": "9bf8745cd2f2e33068f0483c523c12803de266f65367fbccfe1628fb8e4ea436",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "bd379b034ed87c4630a76f0e3df035130452de57188112f4553b7f95a0e61a12",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "bd379b034ed87c4630a76f0e3df035130452de57188112f4553b7f95a0e61a12",
+      "currentProposal": {
+        "sourceIndex": 1129,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-2 분수만큼은 얼마인지 알아보기 (1)",
+        "sourceFingerprint": "f2a19eb6974764e427879a00c56e148e6ffb51b08f8b19aeca03017d554b24e8",
+        "proposalFingerprint": "bd379b034ed87c4630a76f0e3df035130452de57188112f4553b7f95a0e61a12",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-2-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "사탕 $12$개의 $\\frac{1}{4}$은 사탕을 쪼개지 않고 고를 수 있지만, 사탕 $10$개의 $\\frac{1}{4}$은 그럴 수 없습니다. 그 까닭을 설명해 보세요.",
+        "bAnswer": "$12$개는 $4$묶음으로 남김없이 $3$개씩 나누어진다. $10$개는 $4$묶음으로 똑같이 나누면 $2$개씩 넣고 $2$개가 남아 쪼개지 않고는 나눌 수 없다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12$개는 $4$묶음으로 남김없이 나누어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$개는 남는 것이 생긴다"
+            ]
+          }
+        ],
+        "bGoal": "쪼개지 않고 단위분수만큼을 고를 수 있는 조건 설명",
+        "bReason": "되는 경우와 안 되는 경우를 나란히 주어 조건을 스스로 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "사탕 $10$개를 쪼개지 않고 $4$묶음으로 똑같이 나누면 한 묶음에 $2$개씩 넣고 {$2$}개가 남는다. 그래서 사탕을 쪼개지 않고는 $10$개의 $\\frac{1}{4}$을 고를 수 {없다}.",
+        "cReason": "'분모만큼의 묶음으로 남김없이'는 긴 조건 구절이라 나머지 계산과 있다/없다 빈칸으로 바꿈",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "쪼개지 않고 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사탕 $10$개를 쪼개지 않고 $4$묶음으로 똑같이 나누면 한 묶음에 $2$개씩 넣고 {$2$}개가 남는다. 그래서 사탕을 쪼개지 않고는 $10$개의 $\\frac{1}{4}$을 고를 수 {없다}.",
+        "cStudentSentence": "사탕 $10$개를 쪼개지 않고 $4$묶음으로 똑같이 나누면 한 묶음에 $2$개씩 넣고 □개가 남는다. 그래서 사탕을 쪼개지 않고는 $10$개의 $\\frac{1}{4}$을 고를 수 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          },
+          {
+            "expected": "없다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사탕 $12$개의 $\\frac{1}{4}$은 사탕을 쪼개지 않고 고를 수 있지만, 사탕 $10$개의 $\\frac{1}{4}$은 그럴 수 없습니다. 그 까닭을 설명해 보세요.",
+          "answer": "$12$개는 $4$묶음으로 남김없이 $3$개씩 나누어진다. $10$개는 $4$묶음으로 똑같이 나누면 $2$개씩 넣고 $2$개가 남아 쪼개지 않고는 나눌 수 없다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$12$개는 $4$묶음으로 남김없이 나누어진다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$10$개는 남는 것이 생긴다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사탕 $10$개를 쪼개지 않고 $4$묶음으로 똑같이 나누면 한 묶음에 $2$개씩 넣고 {$2$}개가 남는다. 그래서 사탕을 쪼개지 않고는 $10$개의 $\\frac{1}{4}$을 고를 수 {없다}.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ],
+            [
+              "없다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-4-2-xc27",
+          "sourceIndex": 1129,
+          "proposalFingerprint": "bd379b034ed87c4630a76f0e3df035130452de57188112f4553b7f95a0e61a12",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "사탕쪼개지않는조건을명시해12는남김없이·10은남아못나누는이유를 묻는다.",
+          "cReason": "남은2와쪼개지않으면불가능한경계조건이 명확하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-4-2-xc27",
+        "sourceIndex": 1129,
+        "proposalFingerprint": "bd379b034ed87c4630a76f0e3df035130452de57188112f4553b7f95a0e61a12",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "12는 남김없이 나누고10은 남는다는 이유가 맞다.",
+        "cReason": "한 묶음2개와 나머지2개는 다른 수량이며 우연히 값이 같을 뿐 계산이 필요하다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "몫과 나머지는 서로 다른 수량이고 우연히2가 같을 뿐이다. 없다도 남는 조각 때문에 성립하는 가능성 판단이다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-3-xc6",
+      "sourceIndex": 1131,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-3-xc6",
+          "grade": "초3",
+          "reviewedHash": "e06d056bfa272a29c7498aa4d62a24944512c35ed3bdfabdfd2f7a78e9b535e5",
+          "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+          "evidence": "cohort-2026-10-07T06-58-35-763Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-3-xc6",
+              "revise",
+              "revise",
+              "none",
+              "B 둘째 필수 기준 '전체와 같다'는 물음에 이미 주어진 결론('9와 같은')이라 복사로 충족된다. C 첫 빈칸 9는 문장 앞 '9의 3/3'에서 베끼고, 둘째 빈칸 '전체와 같다'는 앞 결론의 반복이다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-3-xc6",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-3-xc6",
+              "section": "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+              "term": "분모와 분자가 같은 분수만큼",
+              "kind": "성질",
+              "level": "하",
+              "definition": "분모와 분자가 같은 분수만큼은 {전체와 같다}.",
+              "example": {
+                "prompt": "$9$의 $\\frac{3}{3}$이 $9$인 까닭은?",
+                "answer": "세 묶음을 모두 모아서"
+              }
+            },
+            "B": {
+              "prompt": "$9$의 $\\frac{3}{3}$이 $9$와 같은 까닭을 묶음으로 설명해 보세요.",
+              "answer": "$9$를 $3$묶음으로 똑같이 나눈 뒤 $3$묶음을 모두 모으는 것이므로 전체 $9$가 된다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$3$묶음으로 나눈 것 중 $3$묶음 모두"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "전체와 같다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$9$의 $\\frac{3}{3}$은 $9$를 $3$묶음으로 똑같이 나눈 것 중 $3$묶음 모두이므로 {$9$}이다. 이처럼 분모와 분자가 같은 분수만큼은 전체와 {같다}.",
+              "acceptedAnswers": [
+                [
+                  "$9$"
+                ],
+                [
+                  "같다"
+                ]
+              ]
+            },
+            "goal": "분모와 분자가 같은 분수만큼이 전체인 까닭 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "e06d056bfa272a29c7498aa4d62a24944512c35ed3bdfabdfd2f7a78e9b535e5"
+          },
+          "currentNormalizedHash": "e06d056bfa272a29c7498aa4d62a24944512c35ed3bdfabdfd2f7a78e9b535e5",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "8aab61c698f9a3201b0d8ab761ff63e347e6038fcbb76ef57eca478975031702",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "1cd510dfcfc92a7a5d5b62caa61df7867dbe1b037343542d8da32d066cc47c93",
+      "currentProposal": {
+        "sourceIndex": 1131,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+        "sourceFingerprint": "aa0dfcadd92119847d74dffd26faf5e859d4cc81100f791be549f6ccfa9a007a",
+        "proposalFingerprint": "1cd510dfcfc92a7a5d5b62caa61df7867dbe1b037343542d8da32d066cc47c93",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-3-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$9$의 $\\frac{3}{3}$이 $9$와 같은 까닭을 묶음으로 설명해 보세요.",
+        "bAnswer": "$9$를 $3$묶음으로 똑같이 나눈 뒤 $3$묶음을 모두 모으는 것이므로 전체 $9$가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9$를 $3$묶음으로 나눈 것 중 $3$묶음을 모두 모으기 때문이다"
+            ]
+          }
+        ],
+        "bGoal": "분모와 분자가 같은 분수만큼이 전체인 까닭 설명",
+        "bReason": "원문 예시를 써서 이유를 묻는 자립 질문으로 만듦",
+        "cDecision": "rewrite",
+        "cAfter": "$9$의 $\\frac{3}{3}$은 $9$를 $3$묶음으로 똑같이 나눈 것 중 $3$묶음을 모두 모은 양이다. 이 양은 처음 전체와 {같다}.",
+        "cReason": "원문은 서술어 전체('전체와 같다')가 빈칸이라 계산 하나와 같다/다르다 비교로 나눔",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모와 분자가 같은 분수만큼",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$9$의 $\\frac{3}{3}$은 $9$를 $3$묶음으로 똑같이 나눈 것 중 $3$묶음을 모두 모은 양이다. 이 양은 처음 전체와 {같다}.",
+        "cStudentSentence": "$9$의 $\\frac{3}{3}$은 $9$를 $3$묶음으로 똑같이 나눈 것 중 $3$묶음을 모두 모은 양이다. 이 양은 처음 전체와 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$9$의 $\\frac{3}{3}$이 $9$와 같은 까닭을 묶음으로 설명해 보세요.",
+          "answer": "$9$를 $3$묶음으로 똑같이 나눈 뒤 $3$묶음을 모두 모으는 것이므로 전체 $9$가 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$9$를 $3$묶음으로 나눈 것 중 $3$묶음을 모두 모으기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$9$의 $\\frac{3}{3}$은 $9$를 $3$묶음으로 똑같이 나눈 것 중 $3$묶음을 모두 모은 양이다. 이 양은 처음 전체와 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-4-3-xc6",
+        "sourceIndex": 1131,
+        "proposalFingerprint": "1cd510dfcfc92a7a5d5b62caa61df7867dbe1b037343542d8da32d066cc47c93",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "모든 묶음을 모으는 이유로 기준을 합쳤다.",
+        "cReason": "9 복사 빈칸을 빼고 원래 전체와 같은지 비교한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "B의 중복 결론을 합치고 C의9 복사 빈칸을 제거했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-3-xc11",
+      "sourceIndex": 1132,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-3-xc11",
+          "grade": "초3",
+          "reviewedHash": "b75608d9ee5177c58b367c7a4a7e4e3d8f1b63c0b41f7ae99afe41bf74988d62",
+          "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+          "evidence": "cohort-2026-10-07T06-58-35-763Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-3-xc11",
+              "pass",
+              "revise",
+              "none",
+              "C '나누는 수는 □이고 곱하는 수는 분자이다'에서 분자가 주어져 있어 소거법으로 분모가 정해진다. 대비 구조로 답이 노출된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-3-xc11",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-3-xc11",
+              "section": "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+              "term": "나누는 수와 곱하는 수",
+              "kind": "방법",
+              "level": "중",
+              "definition": "분수만큼을 구할 때 나누는 수는 {분모}이고 곱하는 수는 분자이다."
+            },
+            "B": {
+              "prompt": "$20$의 $\\frac{3}{5}$을 구할 때 $20$을 어떤 수로 나누고 그 결과에 어떤 수를 곱하는지 쓰고, 그렇게 하는 까닭을 설명해 보세요.",
+              "answer": "분모 $5$로 나누고 분자 $3$을 곱한다. $20$을 $5$묶음으로 똑같이 나눈 한 묶음 $4$를 $3$묶음 모으는 것이기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "분모 $5$로 나눈다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "분자 $3$을 곱한다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "똑같이 나눈 한 묶음을 분자만큼 모은다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "분수만큼을 구할 때 나누는 수는 {분모}이고 곱하는 수는 분자이다.",
+              "acceptedAnswers": [
+                [
+                  "분모"
+                ]
+              ]
+            },
+            "goal": "분수만큼 구하기에서 분모·분자의 역할 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "b75608d9ee5177c58b367c7a4a7e4e3d8f1b63c0b41f7ae99afe41bf74988d62"
+          },
+          "currentNormalizedHash": "b75608d9ee5177c58b367c7a4a7e4e3d8f1b63c0b41f7ae99afe41bf74988d62",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "7e0223d8f0bb5665f2ed01e0d97213e63c79105e7e970511052c81aa41968dd5",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "7e0223d8f0bb5665f2ed01e0d97213e63c79105e7e970511052c81aa41968dd5",
+      "currentProposal": {
+        "sourceIndex": 1132,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+        "sourceFingerprint": "ce1ae5683982f532780c122a7e942d493858b4afbd70bec91795f5065b5ecaed",
+        "proposalFingerprint": "7e0223d8f0bb5665f2ed01e0d97213e63c79105e7e970511052c81aa41968dd5",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-3-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$20$의 $\\frac{3}{5}$을 구할 때 $20$을 어떤 수로 나누고 그 결과에 어떤 수를 곱하는지 쓰고, 그렇게 하는 까닭을 설명해 보세요.",
+        "bAnswer": "분모 $5$로 나누고 분자 $3$을 곱한다. $20$을 $5$묶음으로 똑같이 나눈 한 묶음 $4$를 $3$묶음 모으는 것이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모 $5$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자 $3$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "똑같이 나눈 한 묶음을 분자만큼 모은다"
+            ]
+          }
+        ],
+        "bGoal": "분수만큼 구하기에서 분모·분자의 역할 설명",
+        "bReason": "낱말만 맞히지 않고 두 수의 역할과 이유를 구체 수로 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "빈칸이 익숙한 낱말 '분모'이고 짝이 되는 '분자'가 문장에 있어 답할 종류가 분명함",
+        "answerNotes": "정답 '분모'. '분자'는 오답.",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "나누는 수와 곱하는 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분수만큼을 구할 때 나누는 수는 {분모}이고 곱하는 수는 분자이다.",
+        "cStudentSentence": "분수만큼을 구할 때 나누는 수는 □이고 곱하는 수는 분자이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "분모",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분수만큼을 구할 때 나누는 수는 □이고 곱하는 수는 분자이다.",
+          "answers": [
+            "분모"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$20$의 $\\frac{3}{5}$을 구할 때 $20$을 어떤 수로 나누고 그 결과에 어떤 수를 곱하는지 쓰고, 그렇게 하는 까닭을 설명해 보세요.",
+          "answer": "분모 $5$로 나누고 분자 $3$을 곱한다. $20$을 $5$묶음으로 똑같이 나눈 한 묶음 $4$를 $3$묶음 모으는 것이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분모 $5$로 나눈다"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자 $3$을 곱한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "똑같이 나눈 한 묶음을 분자만큼 모은다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분수만큼을 구할 때 나누는 수는 {분모}이고 곱하는 수는 분자이다.",
+          "acceptedAnswers": [
+            [
+              "분모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-4-3-xc11",
+          "sourceIndex": 1132,
+          "proposalFingerprint": "7e0223d8f0bb5665f2ed01e0d97213e63c79105e7e970511052c81aa41968dd5",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "나눌5·곱할3과동일한한묶음을세번모으는까닭을 요청한다.",
+          "cReason": "분모로나눈한묶음에분자를곱하는역할이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-4-3-xc11",
+        "sourceIndex": 1132,
+        "proposalFingerprint": "7e0223d8f0bb5665f2ed01e0d97213e63c79105e7e970511052c81aa41968dd5",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "분모로 나누고 분자만큼 모으는 뜻을 설명한다.",
+        "cReason": "분모와 분자의 서로 다른 역할을 구별하는 짧은 개념 빈칸이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "분모와 분자가 각각 나누기와 곱하기에 쓰이는 역할을 구별하는 목표이다. 한 역할을 제시하는 것이 다른 역할의 답 노출은 아니다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-3-4-xc18",
+      "sourceIndex": 1724,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-3-4-xc18",
+          "grade": "초4",
+          "reviewedHash": "574c5c0ee2e26b2599db9cbadb159587fda681fe4997bfd6dca2b2d5cfeaba6a",
+          "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+          "evidence": "cohort-2026-10-07T06-58-35-763Z-0",
+          "blind": [
+            [
+              "e4-1-3-4-xc18",
+              "C",
+              "작아지거나 같다",
+              "revise",
+              "'작아진다'와 '작아지거나 같다' 중 어느 답을 요구하는지 정해지지 않고, 그대로인 경우를 짚지 않으면 틀린 개념이 정답처럼 보인다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-3-4-xc18",
+              "pass",
+              "revise",
+              "none",
+              "C 빈칸이 '작아진다'와 '작아지거나 같다' 중 어느 쪽을 요구하는지 문장에서 정해지지 않는다. 그대로인 경우를 짚지 않으면 틀린 개념('작아진다')이 정답처럼 보인다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-3-4-xc18",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-3-4-xc18",
+              "section": "초4::1-3 곱셈과 나눗셈::1-3-4 몇십으로 나누기",
+              "term": "나누는 수가 커질 때",
+              "kind": "성질",
+              "level": "중",
+              "definition": "같은 수를 나눌 때 나누는 수가 커지면 몫은 {작아지거나 같다}."
+            },
+            "B": {
+              "prompt": "$130\\div40$과 $130\\div60$의 몫을 각각 구하시오. 나머지가 있으면 남겨 두고 몫은 일의 자리까지 구합니다. 같은 자연수를 나눌 때 나누는 자연수가 커지면 몫은 언제나 작아지는지, 그대로일 수도 있는지 쓰시오.",
+              "answer": "$130\\div40$의 몫은 $3$, $130\\div60$의 몫은 $2$로 이 예에서는 몫이 작아졌다. 일반적으로 같은 수를 나눌 때 나누는 수가 커지면 몫은 작아지거나 같다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$130\\div40$의 몫은 $3$이고 $130\\div60$의 몫은 $2$이다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "나누는 수가 커지면 몫은 작아지거나 같다",
+                    "나누는 수가 커지면 몫은 커지지 않는다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "몫을 일의 자리까지 구하고 나머지는 남겨 둘 때, 같은 자연수를 더 큰 자연수로 나누면 몫은 {작아지거나 같다}.",
+              "acceptedAnswers": [
+                [
+                  "작아지거나 같다",
+                  "커지지 않는다",
+                  "작아지거나 같아진다"
+                ]
+              ]
+            },
+            "goal": "나누는 수와 몫의 크기 관계",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "574c5c0ee2e26b2599db9cbadb159587fda681fe4997bfd6dca2b2d5cfeaba6a"
+          },
+          "currentNormalizedHash": "574c5c0ee2e26b2599db9cbadb159587fda681fe4997bfd6dca2b2d5cfeaba6a",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "6f49a7ba1798a982b0b82e80ecec14a5b1a4a430c3df368cad819bec58bf3b40",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "6f49a7ba1798a982b0b82e80ecec14a5b1a4a430c3df368cad819bec58bf3b40",
+      "currentProposal": {
+        "sourceIndex": 1724,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-4 몇십으로 나누기",
+        "sourceFingerprint": "6f0a0e20e5339dbebeb57b47c2b2f62f7e5edc8d4beaafdccff9bb0e91eb2f32",
+        "proposalFingerprint": "6f49a7ba1798a982b0b82e80ecec14a5b1a4a430c3df368cad819bec58bf3b40",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$130\\div40$과 $130\\div60$의 몫을 각각 구하시오. 나머지가 있으면 남겨 두고 몫은 일의 자리까지 구합니다. 같은 자연수를 나눌 때 나누는 자연수가 커지면 몫은 언제나 작아지는지, 그대로일 수도 있는지 쓰시오.",
+        "bAnswer": "$130\\div40$의 몫은 $3$, $130\\div60$의 몫은 $2$로 이 예에서는 몫이 작아졌다. 일반적으로 같은 수를 나눌 때 나누는 수가 커지면 몫은 작아지거나 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$130\\div40$의 몫은 $3$이고 $130\\div60$의 몫은 $2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 커지면 몫은 작아지거나 같다",
+              "나누는 수가 커지면 몫은 커지지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "나누는 수와 몫의 크기 관계",
+        "bReason": "이 예에서 몫이 작아진 것과 일반 관계인 작아지거나 같음을 구분하고, 엄격한 작아짐만 일반 답으로 받지 않게 함",
+        "cDecision": "rewrite",
+        "cReason": "비교 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "커지지 않는다",
+            "작아지거나 같아진다"
+          ]
+        ],
+        "cAfter": "몫을 일의 자리까지 구하고 나머지는 남겨 둘 때, 같은 자연수를 더 큰 자연수로 나누면 몫은 {작아지거나 같다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "나누는 수가 커질 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "몫을 일의 자리까지 구하고 나머지는 남겨 둘 때, 같은 자연수를 더 큰 자연수로 나누면 몫은 {작아지거나 같다}.",
+        "cStudentSentence": "몫을 일의 자리까지 구하고 나머지는 남겨 둘 때, 같은 자연수를 더 큰 자연수로 나누면 몫은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아지거나 같다",
+            "equivalents": [
+              "커지지 않는다",
+              "작아지거나 같아진다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$130\\div40$과 $130\\div60$의 몫을 각각 구하시오. 나머지가 있으면 남겨 두고 몫은 일의 자리까지 구합니다. 같은 자연수를 나눌 때 나누는 자연수가 커지면 몫은 언제나 작아지는지, 그대로일 수도 있는지 쓰시오.",
+          "answer": "$130\\div40$의 몫은 $3$, $130\\div60$의 몫은 $2$로 이 예에서는 몫이 작아졌다. 일반적으로 같은 수를 나눌 때 나누는 수가 커지면 몫은 작아지거나 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$130\\div40$의 몫은 $3$이고 $130\\div60$의 몫은 $2$이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누는 수가 커지면 몫은 작아지거나 같다",
+                "나누는 수가 커지면 몫은 커지지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "몫을 일의 자리까지 구하고 나머지는 남겨 둘 때, 같은 자연수를 더 큰 자연수로 나누면 몫은 {작아지거나 같다}.",
+          "acceptedAnswers": [
+            [
+              "작아지거나 같다",
+              "커지지 않는다",
+              "작아지거나 같아진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-4-xc18",
+          "sourceIndex": 1724,
+          "proposalFingerprint": "6f49a7ba1798a982b0b82e80ecec14a5b1a4a430c3df368cad819bec58bf3b40",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "일의 자리까지만 몫을 구하고 나머지를 남기는 범위를 밝혀 같을 수도 있는 정수 몫을 다룬다.",
+          "cReason": "자연수 두 수와 나머지 조건 안에서 작아지거나 같다는 관계를 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-3-4-xc18",
+        "sourceIndex": 1724,
+        "proposalFingerprint": "6f49a7ba1798a982b0b82e80ecec14a5b1a4a430c3df368cad819bec58bf3b40",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "일의 자리 몫에서 작아지거나 같은 관계를 정확히 구별한다.",
+        "cReason": "일반 조건에서는 작아진다만 쓰면 거짓이므로 같은 경우까지 포함하는 답이 정해진다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "일의 자리 몫과 나머지를 명시했으므로 일반 관계는 작아지거나 같다로 정해진다. 작아진다는 모든 경우에 참이 아니므로 동등한 다른 정답이 아니다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-3-xc19",
+      "sourceIndex": 1136,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-3-xc19",
+          "grade": "초3",
+          "reviewedHash": "13bf7149029a75e5275e31bac0b51d0f8a88baad69f2f4b48b76264c3eee7bd4",
+          "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+          "evidence": "cohort-2026-10-07T06-58-35-763Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-3-xc19",
+              "pass",
+              "revise",
+              "none",
+              "C 둘째 빈칸 15는 첫 빈칸 답의 반복이다. 셋째 빈칸 5는 문장 앞 '1/4인 5개'에서 베껴도 정답이 되어 계산 없이 채워진다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-3-xc19",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-3-xc19",
+              "section": "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+              "term": "남은 것을 새 전체로",
+              "kind": "성질",
+              "level": "상",
+              "definition": "쓰고 남은 것의 분수만큼을 구할 때는 {남은 양을 새 전체로} 삼아 똑같이 나눈다.",
+              "example": {
+                "prompt": "사탕 $20$개의 $\\frac{1}{4}$을 쓰고 남은 것의 $\\frac{1}{3}$을 구할 때 $15$를 셋으로 나누는 까닭은?",
+                "answer": "남은 $15$개가 전체라서"
+              }
+            },
+            "B": {
+              "prompt": "사탕 $20$개 중 $\\frac{1}{4}$을 먹고, 남은 것의 $\\frac{1}{3}$을 동생에게 주었습니다. 동생에게 준 사탕 수를 구할 때 $20$이 아니라 $15$를 $3$으로 나누는 까닭을 설명해 보세요.",
+              "answer": "'남은 것의 $\\frac{1}{3}$'이므로 이때의 전체는 처음 $20$개가 아니라 먹고 남은 $15$개이기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "남은 $15$개가 새 전체"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "사탕 $20$개의 $\\frac{1}{4}$인 $5$개를 쓰면 {$15$}개가 남는다. 남은 것의 $\\frac{1}{3}$은 $20$개가 아니라 남은 {$15$}개를 $3$묶음으로 똑같이 나눈 한 묶음인 {$5$}개이다.",
+              "acceptedAnswers": [
+                [
+                  "$15$"
+                ],
+                [
+                  "$15$"
+                ],
+                [
+                  "$5$"
+                ]
+              ]
+            },
+            "goal": "기준이 되는 전체가 바뀌는 상황 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "13bf7149029a75e5275e31bac0b51d0f8a88baad69f2f4b48b76264c3eee7bd4"
+          },
+          "currentNormalizedHash": "13bf7149029a75e5275e31bac0b51d0f8a88baad69f2f4b48b76264c3eee7bd4",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "897f81fc2f2f20b979889762926a086a71c94f8acfe9d3b39d5776b2e0198da5",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "bd5356b4fc7f5ebab166865e1744ba03cdd3c4dfd8997e1eb3de952d0b15b0fe",
+      "currentProposal": {
+        "sourceIndex": 1136,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
+        "sourceFingerprint": "46b9eaafdf451218466df38d381dfa2b1f4c63a417178e0d08d3255ac64feccb",
+        "proposalFingerprint": "bd5356b4fc7f5ebab166865e1744ba03cdd3c4dfd8997e1eb3de952d0b15b0fe",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-3-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "사탕 $20$개 중 $\\frac{1}{4}$을 먹고, 남은 것의 $\\frac{1}{3}$을 동생에게 주었습니다. 동생에게 준 사탕 수를 구할 때 $20$이 아니라 $15$를 $3$으로 나누는 까닭을 설명해 보세요.",
+        "bAnswer": "'남은 것의 $\\frac{1}{3}$'이므로 이때의 전체는 처음 $20$개가 아니라 먹고 남은 $15$개이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "남은 $15$개가 새 전체"
+            ]
+          }
+        ],
+        "bGoal": "기준이 되는 전체가 바뀌는 상황 설명",
+        "bReason": "원문 예시를 상황 문장으로 풀어 새 전체가 무엇인지 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "사탕 $20$개 중 $\\frac{1}{4}$을 먹었다. 남은 것의 $\\frac{1}{3}$을 구할 때는 처음 $20$개가 아니라 남은 {$15$}개를 $3$묶음으로 똑같이 나누어야 하므로, 남은 것의 $\\frac{1}{3}$은 {$5$}개이다.",
+        "cReason": "'남은 양을 새 전체로'는 초3에게 낯선 긴 구절이라 실제 상황의 계산 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [],
+          []
+        ],
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "남은 것을 새 전체로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사탕 $20$개 중 $\\frac{1}{4}$을 먹었다. 남은 것의 $\\frac{1}{3}$을 구할 때는 처음 $20$개가 아니라 남은 {$15$}개를 $3$묶음으로 똑같이 나누어야 하므로, 남은 것의 $\\frac{1}{3}$은 {$5$}개이다.",
+        "cStudentSentence": "사탕 $20$개 중 $\\frac{1}{4}$을 먹었다. 남은 것의 $\\frac{1}{3}$을 구할 때는 처음 $20$개가 아니라 남은 □개를 $3$묶음으로 똑같이 나누어야 하므로, 남은 것의 $\\frac{1}{3}$은 □개이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$15$",
+            "equivalents": []
+          },
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사탕 $20$개 중 $\\frac{1}{4}$을 먹고, 남은 것의 $\\frac{1}{3}$을 동생에게 주었습니다. 동생에게 준 사탕 수를 구할 때 $20$이 아니라 $15$를 $3$으로 나누는 까닭을 설명해 보세요.",
+          "answer": "'남은 것의 $\\frac{1}{3}$'이므로 이때의 전체는 처음 $20$개가 아니라 먹고 남은 $15$개이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "남은 $15$개가 새 전체"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사탕 $20$개 중 $\\frac{1}{4}$을 먹었다. 남은 것의 $\\frac{1}{3}$을 구할 때는 처음 $20$개가 아니라 남은 {$15$}개를 $3$묶음으로 똑같이 나누어야 하므로, 남은 것의 $\\frac{1}{3}$은 {$5$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$15$"
+            ],
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-4-3-xc19",
+        "sourceIndex": 1136,
+        "proposalFingerprint": "bd5356b4fc7f5ebab166865e1744ba03cdd3c4dfd8997e1eb3de952d0b15b0fe",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "남은15개가 새 전체라는 이유를 확인한다.",
+        "cReason": "먹은5를 먼저 주지 않고 남은15와 그 삼분의 일5를 구하도록 정리했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "반복된15 빈칸과 주어진5를 지워 남은 전체와 삼분의 일을 직접 계산하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-4-xc3",
+      "sourceIndex": 1140,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-4-xc3",
+          "grade": "초3",
+          "reviewedHash": "9d6fdba496b9bf65b90795f4ef53111810c9cbeedd745cbba18c2dac6365e494",
+          "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+          "evidence": "cohort-2026-10-07T06-58-35-763Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-4-xc3",
+              "revise",
+              "pass",
+              "none",
+              "B 둘째 필수 기준 '전체 1'은 물음의 '1과 같은'에 이미 있는 결론이라 복사로 충족된다. 실질 기준은 '3조각 중 3조각 모두' 하나뿐이다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-4-xc3",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-4-xc3",
+              "section": "초3::2-4 분수::2-4-4 진분수와 가분수 알아보기",
+              "term": "$1$을 분수로",
+              "kind": "성질",
+              "level": "하",
+              "definition": "$1$은 $\\frac{2}{2}$, $\\frac{3}{3}$처럼 {분자와 분모가 같은} 분수로 나타낼 수 있다."
+            },
+            "B": {
+              "prompt": "$\\frac{3}{3}$이 $1$과 같은 까닭을 전체를 똑같이 나눈 조각으로 설명해 보세요.",
+              "answer": "전체 $1$을 똑같이 $3$조각으로 나눈 것 중 $3$조각을 모두 모으면 전체 $1$이 되기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "똑같이 $3$조각으로 나눈 것 중 $3$조각 모두"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "전체 $1$"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$1$은 $\\frac{2}{2}$, $\\frac{3}{3}$처럼 분자와 분모가 서로 {같은} 분수로 나타낼 수 있다.",
+              "acceptedAnswers": [
+                [
+                  "같은"
+                ]
+              ]
+            },
+            "goal": "분자와 분모가 같은 분수가 1인 까닭 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "9d6fdba496b9bf65b90795f4ef53111810c9cbeedd745cbba18c2dac6365e494"
+          },
+          "currentNormalizedHash": "9d6fdba496b9bf65b90795f4ef53111810c9cbeedd745cbba18c2dac6365e494",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "e69873567624f5bc6658b1ee4a1077b96506db468e6208d4f4444b6e97f446ee",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "36dbc731051fa451b8b4cb1f29b4560f6c231c3f320e6da20617c515bb188c7f",
+      "currentProposal": {
+        "sourceIndex": 1140,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-4 진분수와 가분수 알아보기",
+        "sourceFingerprint": "70806bf3d6390d0f493479d211a0af3430bf20db75539f84d16630d4c2b14282",
+        "proposalFingerprint": "36dbc731051fa451b8b4cb1f29b4560f6c231c3f320e6da20617c515bb188c7f",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-4-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{3}$이 $1$과 같은 까닭을 전체를 똑같이 나눈 조각으로 설명해 보세요.",
+        "bAnswer": "전체 $1$을 똑같이 $3$조각으로 나눈 것 중 $3$조각을 모두 모으면 전체 $1$이 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "전체를 똑같이 $3$조각으로 나눈 것 중 $3$조각을 모두 모으기 때문이다"
+            ]
+          }
+        ],
+        "bGoal": "분자와 분모가 같은 분수가 1인 까닭 설명",
+        "bReason": "모양 관찰이 아니라 이유를 묻도록 한 분수를 정해 줌",
+        "cDecision": "rewrite",
+        "cAfter": "$1$은 $\\frac{2}{2}$, $\\frac{3}{3}$처럼 분자와 분모가 서로 {같은} 분수로 나타낼 수 있다.",
+        "cReason": "'분자와 분모가 같은'이라는 구절 전체 대신 같다/다르다 한 낱말만 쓰게 줄임",
+        "answerNotes": "'같은', '똑같은' 인정.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$1$을 분수로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1$은 $\\frac{2}{2}$, $\\frac{3}{3}$처럼 분자와 분모가 서로 {같은} 분수로 나타낼 수 있다.",
+        "cStudentSentence": "$1$은 $\\frac{2}{2}$, $\\frac{3}{3}$처럼 분자와 분모가 서로 □ 분수로 나타낼 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{3}{3}$이 $1$과 같은 까닭을 전체를 똑같이 나눈 조각으로 설명해 보세요.",
+          "answer": "전체 $1$을 똑같이 $3$조각으로 나눈 것 중 $3$조각을 모두 모으면 전체 $1$이 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "전체를 똑같이 $3$조각으로 나눈 것 중 $3$조각을 모두 모으기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1$은 $\\frac{2}{2}$, $\\frac{3}{3}$처럼 분자와 분모가 서로 {같은} 분수로 나타낼 수 있다.",
+          "acceptedAnswers": [
+            [
+              "같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-4-4-xc3",
+        "sourceIndex": 1140,
+        "proposalFingerprint": "36dbc731051fa451b8b4cb1f29b4560f6c231c3f320e6da20617c515bb188c7f",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "전체의 세 조각을 모두 모은다는 이유만 기준으로 남겼다.",
+        "cReason": "분자 분모가 같은 분수는1이라는 비교 성질을 확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "전체1이라는 주어진 결론 기준을 이유와 합쳤다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-3-6-xc5",
+      "sourceIndex": 1756,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-3-6-xc5",
+          "grade": "초4",
+          "reviewedHash": "7828d6cc4639241eb217ad022d0074e716166ae1ca8a9781633fc89af6dbbad4",
+          "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+          "evidence": "cohort-2026-10-07T06-58-35-763Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-3-6-xc5",
+              "pass",
+              "revise",
+              "none",
+              "C 빈칸 '십의 자리'가 같은 문장 앞 '몫의 십의 자리 숫자'에서 그대로 복사된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-3-6-xc5",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-3-6-xc5",
+              "section": "초4::1-3 곱셈과 나눗셈::1-3-6 몇십몇으로 나누기 (2)",
+              "term": "몫의 십의 자리 숫자를 쓰는 자리",
+              "kind": "방법",
+              "level": "하",
+              "definition": "몫의 십의 자리 숫자는 나누어지는 수의 {십의 자리} 위에 쓴다. 나누는 수가 몇십 번 들어가는지를 나타내기 때문이다.",
+              "example": {
+                "prompt": "$312\\div24$의 몫 $13$에서 $1$이 뜻하는 것은?",
+                "answer": "$24$가 $10$번 들어감"
+              }
+            },
+            "B": {
+              "prompt": "$312\\div24=13$에서 몫의 십의 자리 숫자 $1$이 뜻하는 것을, 몫 $13$ 전체가 뜻하는 것과 구분해서 쓰시오.",
+              "answer": "십의 자리 숫자 $1$은 $24$를 $10$번 덜어 내는 열 묶음 부분($240$)을 뜻한다. 몫 $13$ 전체는 $312$에서 $24$를 모두 $13$번 덜어 낼 수 있다는 뜻이고, 일의 자리 $3$은 남은 $72$에서 $24$를 $3$번 더 덜어 낸다는 뜻이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "십의 자리 몫 $1$은 $24$가 $10$번 들어가는 부분이다",
+                    "십의 자리 몫 $1$은 $24$를 $10$번 묶은 $240$에 해당한다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "몫 $13$ 전체는 $24$가 모두 $13$번 들어간다는 뜻이다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "몫의 십의 자리 숫자는 나누어지는 수의 {십의 자리} 위에 쓴다. 나누는 수가 몇십 번 들어가는지를 나타내기 때문이다.",
+              "acceptedAnswers": [
+                [
+                  "십의 자리",
+                  "십 자리"
+                ]
+              ]
+            },
+            "goal": "몫의 십의 자리 숫자의 뜻",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "7828d6cc4639241eb217ad022d0074e716166ae1ca8a9781633fc89af6dbbad4"
+          },
+          "currentNormalizedHash": "7828d6cc4639241eb217ad022d0074e716166ae1ca8a9781633fc89af6dbbad4",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "0b98053dcc73785a59ff661def50222d369dee8e481e28d25a2af4d5e96dbe65",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "25e31d84620e5a24d16013f226c2c4ae02a591474f8b71f5bae7a59c0c8f5c5e",
+      "currentProposal": {
+        "sourceIndex": 1756,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-6 몇십몇으로 나누기 (2)",
+        "sourceFingerprint": "191a8bb09df2d447d1c4d66e4d07bb88c47bc0f929c95768d93bd48164e51a27",
+        "proposalFingerprint": "25e31d84620e5a24d16013f226c2c4ae02a591474f8b71f5bae7a59c0c8f5c5e",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-6-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$312\\div24=13$에서 몫의 십의 자리 숫자 $1$이 뜻하는 것을, 몫 $13$ 전체가 뜻하는 것과 구분해서 쓰시오.",
+        "bAnswer": "십의 자리 숫자 $1$은 $24$를 $10$번 덜어 내는 열 묶음 부분($240$)을 뜻한다. 몫 $13$ 전체는 $312$에서 $24$를 모두 $13$번 덜어 낼 수 있다는 뜻이고, 일의 자리 $3$은 남은 $72$에서 $24$를 $3$번 더 덜어 낸다는 뜻이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십의 자리 몫 $1$은 $24$가 $10$번 들어가는 부분이다",
+              "십의 자리 몫 $1$은 $24$를 $10$번 묶은 $240$에 해당한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫 $13$ 전체는 $24$가 모두 $13$번 들어간다는 뜻이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "몫의 십의 자리 숫자의 뜻",
+        "bReason": "312 전체에 24가 열 번만 들어간다는 오해를 막고 십의 자리 몫이 열 묶음 부분임을 몫 전체와 구분해 확인함",
+        "cDecision": "rewrite",
+        "cReason": "설명이 붙은 익숙한 자리 빈칸",
+        "cSlotEquivalents": [
+          []
+        ],
+        "cAfter": "$312\\div24=13$에서 몫 $13$의 십의 자리 숫자 $1$은 $24$가 {$10$}번 들어가는 부분을 나타낸다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몫의 십의 자리 숫자를 쓰는 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$312\\div24=13$에서 몫 $13$의 십의 자리 숫자 $1$은 $24$가 {$10$}번 들어가는 부분을 나타낸다.",
+        "cStudentSentence": "$312\\div24=13$에서 몫 $13$의 십의 자리 숫자 $1$은 $24$가 □번 들어가는 부분을 나타낸다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$10$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$312\\div24=13$에서 몫의 십의 자리 숫자 $1$이 뜻하는 것을, 몫 $13$ 전체가 뜻하는 것과 구분해서 쓰시오.",
+          "answer": "십의 자리 숫자 $1$은 $24$를 $10$번 덜어 내는 열 묶음 부분($240$)을 뜻한다. 몫 $13$ 전체는 $312$에서 $24$를 모두 $13$번 덜어 낼 수 있다는 뜻이고, 일의 자리 $3$은 남은 $72$에서 $24$를 $3$번 더 덜어 낸다는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리 몫 $1$은 $24$가 $10$번 들어가는 부분이다",
+                "십의 자리 몫 $1$은 $24$를 $10$번 묶은 $240$에 해당한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "몫 $13$ 전체는 $24$가 모두 $13$번 들어간다는 뜻이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$312\\div24=13$에서 몫 $13$의 십의 자리 숫자 $1$은 $24$가 {$10$}번 들어가는 부분을 나타낸다.",
+          "acceptedAnswers": [
+            [
+              "$10$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-3-6-xc5",
+        "sourceIndex": 1756,
+        "proposalFingerprint": "25e31d84620e5a24d16013f226c2c4ae02a591474f8b71f5bae7a59c0c8f5c5e",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "몫 십의 자리1과 전체13의 뜻을 구별한다.",
+        "cReason": "적는 자리의 십을 복사하지 않고24의 열 묶음이라는 값을 묻는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "적는 자리의 십 복사 대신 몫1이 뜻하는 열 묶음을 묻게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-4-xc9",
+      "sourceIndex": 1145,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-4-xc9",
+          "grade": "초3",
+          "reviewedHash": "a760601e7b00f724f3192382f65b545fb35ea3a8c2b22d681bac1696f2f3d29b",
+          "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+          "evidence": "cohort-2026-10-07T06-58-35-763Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-4-xc9",
+              "pass",
+              "revise",
+              "none",
+              "C 첫 빈칸 9가 같은 문장 '9/5'의 분자를 그대로 베낀 것이다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-4-xc9",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-4-xc9",
+              "section": "초3::2-4 분수::2-4-4 진분수와 가분수 알아보기",
+              "term": "가분수와 단위분수",
+              "kind": "성질",
+              "level": "중",
+              "definition": "가분수도 {단위분수가 분자만큼 모인} 수이므로 분자가 분모보다 크면 $1$보다 크다.",
+              "example": {
+                "prompt": "$\\frac{9}{5}$가 $1$보다 큰 까닭은?",
+                "answer": "$\\frac{1}{5}$이 $5$개보다 많아서"
+              }
+            },
+            "B": {
+              "prompt": "$\\frac{9}{5}$가 $1$보다 큰 까닭을 $\\frac{1}{5}$이 몇 개인지를 이용하여 설명해 보세요.",
+              "answer": "$\\frac{9}{5}$는 $\\frac{1}{5}$이 $9$개이고 $1$은 $\\frac{1}{5}$이 $5$개이다. $9$개가 $5$개보다 많으므로 $1$보다 크다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$\\frac{9}{5}$는 $\\frac{1}{5}$이 $9$개"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$1$은 $\\frac{1}{5}$이 $5$개"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$\\frac{9}{5}$는 $\\frac{1}{5}$이 {$9$}개 모인 수이다. $\\frac{1}{5}$이 $5$개이면 $1$이므로 $\\frac{9}{5}$는 $1$보다 {크다}.",
+              "acceptedAnswers": [
+                [
+                  "$9$"
+                ],
+                [
+                  "크다"
+                ]
+              ]
+            },
+            "goal": "가분수를 단위분수 개수로 보아 1과 비교",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "a760601e7b00f724f3192382f65b545fb35ea3a8c2b22d681bac1696f2f3d29b"
+          },
+          "currentNormalizedHash": "a760601e7b00f724f3192382f65b545fb35ea3a8c2b22d681bac1696f2f3d29b",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "6dd8e4ae578c26085bd83228b69089b8fef9f84e32e720c24f854ea06c654b53",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "5999aad3b1a2f7b74dac590a8a84b83d68bda70f90a99dc6b45c7c9af47843c2",
+      "currentProposal": {
+        "sourceIndex": 1145,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-4 진분수와 가분수 알아보기",
+        "sourceFingerprint": "18a25b21902ab05fe02b6a934b8b56d4af636406f89c4107aafbd50cdadf123e",
+        "proposalFingerprint": "5999aad3b1a2f7b74dac590a8a84b83d68bda70f90a99dc6b45c7c9af47843c2",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-4-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{9}{5}$가 $1$보다 큰 까닭을 $\\frac{1}{5}$이 몇 개인지를 이용하여 설명해 보세요.",
+        "bAnswer": "$\\frac{9}{5}$는 $\\frac{1}{5}$이 $9$개이고 $1$은 $\\frac{1}{5}$이 $5$개이다. $9$개가 $5$개보다 많으므로 $1$보다 크다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{9}{5}$는 $\\frac{1}{5}$이 $9$개이고 $1$은 $\\frac{1}{5}$이 $5$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 $\\frac{1}{5}$이 $9$개로 $5$개보다 많으므로 $1$보다 크다"
+            ]
+          }
+        ],
+        "bGoal": "가분수를 단위분수 개수로 보아 1과 비교",
+        "bReason": "원문 예시를 써서 단위분수 개수라는 답할 틀을 밝힘",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{9}{5}$는 $\\frac{1}{5}$이 {$9$}개 모인 수이다. $\\frac{1}{5}$이 $5$개이면 $1$이므로 $\\frac{9}{5}$는 $1$보다 {크다}.",
+        "cReason": "'단위분수가 분자만큼 모인'은 긴 구절 복원이라 개수 쓰기와 크다/작다 비교로 바꿈",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "가분수와 단위분수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{9}{5}$는 $\\frac{1}{5}$이 {$9$}개 모인 수이다. $\\frac{1}{5}$이 $5$개이면 $1$이므로 $\\frac{9}{5}$는 $1$보다 {크다}.",
+        "cStudentSentence": "$\\frac{9}{5}$는 $\\frac{1}{5}$이 □개 모인 수이다. $\\frac{1}{5}$이 $5$개이면 $1$이므로 $\\frac{9}{5}$는 $1$보다 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$9$",
+            "equivalents": []
+          },
+          {
+            "expected": "크다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{9}{5}$가 $1$보다 큰 까닭을 $\\frac{1}{5}$이 몇 개인지를 이용하여 설명해 보세요.",
+          "answer": "$\\frac{9}{5}$는 $\\frac{1}{5}$이 $9$개이고 $1$은 $\\frac{1}{5}$이 $5$개이다. $9$개가 $5$개보다 많으므로 $1$보다 크다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{9}{5}$는 $\\frac{1}{5}$이 $9$개이고 $1$은 $\\frac{1}{5}$이 $5$개이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 $\\frac{1}{5}$이 $9$개로 $5$개보다 많으므로 $1$보다 크다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{9}{5}$는 $\\frac{1}{5}$이 {$9$}개 모인 수이다. $\\frac{1}{5}$이 $5$개이면 $1$이므로 $\\frac{9}{5}$는 $1$보다 {크다}.",
+          "acceptedAnswers": [
+            [
+              "$9$"
+            ],
+            [
+              "크다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-4-4-xc9",
+        "sourceIndex": 1145,
+        "proposalFingerprint": "5999aad3b1a2f7b74dac590a8a84b83d68bda70f90a99dc6b45c7c9af47843c2",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "단위분수 개수9와5를 실제로 비교하는 연결까지 기준에 넣었다.",
+        "cReason": "분자9를 단위분수의 개수로 해석하는 것은 표기의 뜻 확인이므로 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "C는 분자와 단위분수 개수의 해석으로 유지한다. 추가 읽기에서 B 기준에9와5의 실제 비교를 넣었다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-4-xc16",
+      "sourceIndex": 1149,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-4-xc16",
+          "grade": "초3",
+          "reviewedHash": "fd5ada4cc8a07d486b503c9462d9a932111f21daeb93c41c9a1c4c5fd9de1027",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-4-xc16",
+              "pass",
+              "revise",
+              "none",
+              "C 빈칸 답 '2'가 같은 문장의 '분모의 2배'에서 그대로 복사된다. 개념을 이해하지 않아도 채울 수 있다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-4-xc16",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-4-xc16",
+              "section": "초3::2-4 분수::2-4-4 진분수와 가분수 알아보기",
+              "term": "분자가 분모의 두 배",
+              "kind": "성질",
+              "level": "중",
+              "definition": "분자가 분모의 $2$배인 가분수는 {$2$}와 같다."
+            },
+            "B": {
+              "prompt": "$\\frac{6}{3}$처럼 분자가 분모의 $2$배인 가분수가 $2$와 같은 까닭을 설명해 보세요.",
+              "answer": "$\\frac{3}{3}$이 $1$이고 $\\frac{6}{3}$은 $\\frac{3}{3}$이 $2$번 모인 수이므로 $2$이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$\\frac{3}{3}$이 $1$"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$\\frac{6}{3}$은 $\\frac{3}{3}$이 $2$번"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "분자가 분모의 $2$배인 가분수는 {$2$}와 같다.",
+              "acceptedAnswers": [
+                [
+                  "$2$"
+                ]
+              ]
+            },
+            "goal": "분자가 분모의 2배인 가분수가 2인 까닭 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "fd5ada4cc8a07d486b503c9462d9a932111f21daeb93c41c9a1c4c5fd9de1027"
+          },
+          "currentNormalizedHash": "fd5ada4cc8a07d486b503c9462d9a932111f21daeb93c41c9a1c4c5fd9de1027",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "34c537c378167ecff07f522c2b109aedc4da2ec80ced066eedfd5e3eca874374",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "34c537c378167ecff07f522c2b109aedc4da2ec80ced066eedfd5e3eca874374",
+      "currentProposal": {
+        "sourceIndex": 1149,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-4 진분수와 가분수 알아보기",
+        "sourceFingerprint": "2bb659e44bcc6b86c155df6fdadc5992c59e60b01a07dc31abc2a4dc3a5e36a1",
+        "proposalFingerprint": "34c537c378167ecff07f522c2b109aedc4da2ec80ced066eedfd5e3eca874374",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-4-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{6}{3}$처럼 분자가 분모의 $2$배인 가분수가 $2$와 같은 까닭을 설명해 보세요.",
+        "bAnswer": "$\\frac{3}{3}$이 $1$이고 $\\frac{6}{3}$은 $\\frac{3}{3}$이 $2$번 모인 수이므로 $2$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{3}$이 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{3}$은 $\\frac{3}{3}$이 $2$번"
+            ]
+          }
+        ],
+        "bGoal": "분자가 분모의 2배인 가분수가 2인 까닭 설명",
+        "bReason": "C가 결과를 맡으므로 B는 한 예를 들어 이유를 묻게 함",
+        "cDecision": "keep",
+        "cReason": "조건이 분명하고 답이 수 하나($2$)인 선명한 빈칸임",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분자가 분모의 두 배",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분자가 분모의 $2$배인 가분수는 {$2$}와 같다.",
+        "cStudentSentence": "분자가 분모의 $2$배인 가분수는 □와 같다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분자가 분모의 $2$배인 가분수는 □와 같다.",
+          "answers": [
+            "$2$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{6}{3}$처럼 분자가 분모의 $2$배인 가분수가 $2$와 같은 까닭을 설명해 보세요.",
+          "answer": "$\\frac{3}{3}$이 $1$이고 $\\frac{6}{3}$은 $\\frac{3}{3}$이 $2$번 모인 수이므로 $2$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{3}{3}$이 $1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{6}{3}$은 $\\frac{3}{3}$이 $2$번"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분자가 분모의 $2$배인 가분수는 {$2$}와 같다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-4-4-xc16",
+          "sourceIndex": 1149,
+          "proposalFingerprint": "34c537c378167ecff07f522c2b109aedc4da2ec80ced066eedfd5e3eca874374",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "3/3두묶음이각1이어서6/3=2인실제예의이유다.",
+          "cReason": "분자분모두배관계의정수2를 구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-4-4-xc16",
+        "sourceIndex": 1149,
+        "proposalFingerprint": "34c537c378167ecff07f522c2b109aedc4da2ec80ced066eedfd5e3eca874374",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "전체1이 두 번 모인다는 이유를 설명한다.",
+        "cReason": "분자 분모의 배 관계와 분수의 값을 연결하는 다른 개념이므로2가 반복돼도 복사 문항으로 보지 않는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "분자가 분모의 두 배라는 비와 분수값2의 연결은 같은 숫자라도 다른 개념이므로 유지한다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-3-7-xc17",
+      "sourceIndex": 1782,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-3-7-xc17",
+          "grade": "초4",
+          "reviewedHash": "417feee1aaf26e4f4baa7288d3aa6882076ea0799056085b54bd47977fd1a8fc",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [
+            [
+              "e4-1-3-7-xc17",
+              "C",
+              "나누는 수(몇십)",
+              "revise",
+              "'□로 바로 나누어지는 수'의 답이 나누는 수/몇십/30 등으로 열려 있어 범위가 불분명하다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-3-7-xc17",
+              "pass",
+              "revise",
+              "none",
+              "C '□로 바로 나누어지는 수'가 열려 있다. '곱셈구구'뿐 아니라 '나누는 수(몇십)'로 바로 나누어지는 수도 수학적으로 타당해, 정답이 하나로 정해지지 않는다. 앞에 '곱셈구구로 나누기 쉬운' 같은 단서를 주어야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-3-7-xc17",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-3-7-xc17",
+              "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+              "term": "나누기 쉬운 수로 어림하기",
+              "kind": "방법",
+              "level": "중",
+              "definition": "나눗셈을 어림할 때는 {곱셈구구}로 바로 나누어지는 수로 바꾸면 편하다."
+            },
+            "B": {
+              "prompt": "$598\\div31$의 몫을 쉽게 어림하려고 $598$을 가장 가까운 몇백으로, $31$을 가장 가까운 몇십으로 바꾼다. 바꾼 나눗셈식과 그 몫을 구하는 과정을 쓰고, 그 수로 바꾸면 편한 까닭도 쓰시오.",
+              "answer": "$600\\div30$으로 바꾼다. $600\\div30$은 $60\\div3$과 같고 $6\\div3=2$를 이용하면 몫은 $2$의 $10$배인 $20$이다. 곱셈구구로 바로 나눌 수 있는 수라서 편하다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$600\\div30$으로 바꾼다",
+                    "$598$을 $600$으로, $31$을 $30$으로 본다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$600\\div30=20$",
+                    "$60\\div3=20$이므로 몫은 약 $20$",
+                    "$6\\div3=2$를 이용해 몫은 약 $20$"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "곱셈구구로 바로 나눌 수 있는 수라서 편하다",
+                    "$6\\div3$ 같은 쉬운 나눗셈으로 바꿀 수 있어 편하다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "나눗셈을 어림할 때는 {곱셈구구}로 바로 나누어지는 수로 바꾸면 편하다.",
+              "acceptedAnswers": [
+                [
+                  "곱셈구구",
+                  "구구단"
+                ]
+              ]
+            },
+            "goal": "곱셈구구로 나누기 쉬운 수로 바꾸어 몫 어림하기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "417feee1aaf26e4f4baa7288d3aa6882076ea0799056085b54bd47977fd1a8fc"
+          },
+          "currentNormalizedHash": "417feee1aaf26e4f4baa7288d3aa6882076ea0799056085b54bd47977fd1a8fc",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "3569f81803ddcc27c4d55eb448463760390dcb7d5dcb07d70a799f100c317175",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "49a4e542c25216326546c3484325eed8cfcb36288ebde187d4889405caf4578c",
+      "currentProposal": {
+        "sourceIndex": 1782,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+        "sourceFingerprint": "4685a40e704b3ac2076fa0443211cd2a69cad9d43122617766f77333b9666a8c",
+        "proposalFingerprint": "49a4e542c25216326546c3484325eed8cfcb36288ebde187d4889405caf4578c",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-7-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$598\\div31$의 몫을 쉽게 어림하려고 $598$을 가장 가까운 몇백으로, $31$을 가장 가까운 몇십으로 바꾼다. 바꾼 나눗셈식과 그 몫을 구하는 과정을 쓰고, 그 수로 바꾸면 편한 까닭도 쓰시오.",
+        "bAnswer": "$600\\div30$으로 바꾼다. $600\\div30$은 $60\\div3$과 같고 $6\\div3=2$를 이용하면 몫은 $2$의 $10$배인 $20$이다. 곱셈구구로 바로 나눌 수 있는 수라서 편하다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$600\\div30$으로 바꾼다",
+              "$598$을 $600$으로, $31$을 $30$으로 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$600\\div30=20$",
+              "$60\\div3=20$이므로 몫은 약 $20$",
+              "$6\\div3=2$를 이용해 몫은 약 $20$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱셈구구로 바로 나눌 수 있는 수라서 편하다",
+              "$6\\div3$ 같은 쉬운 나눗셈으로 바꿀 수 있어 편하다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "곱셈구구로 나누기 쉬운 수로 바꾸어 몫 어림하기",
+        "bReason": "$600\\div30$의 몫이 $6\\div3$의 결과 $2$가 아니라 $20$임을 과정에서 확인하고 바꾸는 까닭도 함께 묻도록 고침",
+        "cDecision": "rewrite",
+        "cReason": "익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          []
+        ],
+        "cAfter": "$598\\div31$의 몫을 어림하려고 $598$을 $600$으로, $31$을 $30$으로 바꿨다. $600\\div30$을 곱셈구구를 이용해 계산하면 몫은 {$20$}이다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "나누기 쉬운 수로 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$598\\div31$의 몫을 어림하려고 $598$을 $600$으로, $31$을 $30$으로 바꿨다. $600\\div30$을 곱셈구구를 이용해 계산하면 몫은 {$20$}이다.",
+        "cStudentSentence": "$598\\div31$의 몫을 어림하려고 $598$을 $600$으로, $31$을 $30$으로 바꿨다. $600\\div30$을 곱셈구구를 이용해 계산하면 몫은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$20$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$598\\div31$의 몫을 쉽게 어림하려고 $598$을 가장 가까운 몇백으로, $31$을 가장 가까운 몇십으로 바꾼다. 바꾼 나눗셈식과 그 몫을 구하는 과정을 쓰고, 그 수로 바꾸면 편한 까닭도 쓰시오.",
+          "answer": "$600\\div30$으로 바꾼다. $600\\div30$은 $60\\div3$과 같고 $6\\div3=2$를 이용하면 몫은 $2$의 $10$배인 $20$이다. 곱셈구구로 바로 나눌 수 있는 수라서 편하다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$600\\div30$으로 바꾼다",
+                "$598$을 $600$으로, $31$을 $30$으로 본다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$600\\div30=20$",
+                "$60\\div3=20$이므로 몫은 약 $20$",
+                "$6\\div3=2$를 이용해 몫은 약 $20$"
+              ]
+            },
+            {
+              "anyOf": [
+                "곱셈구구로 바로 나눌 수 있는 수라서 편하다",
+                "$6\\div3$ 같은 쉬운 나눗셈으로 바꿀 수 있어 편하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$598\\div31$의 몫을 어림하려고 $598$을 $600$으로, $31$을 $30$으로 바꿨다. $600\\div30$을 곱셈구구를 이용해 계산하면 몫은 {$20$}이다.",
+          "acceptedAnswers": [
+            [
+              "$20$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-3-7-xc17",
+        "sourceIndex": 1782,
+        "proposalFingerprint": "49a4e542c25216326546c3484325eed8cfcb36288ebde187d4889405caf4578c",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "쉬운 수로 바꾸는 식과 몫20 및 이유가 맞다.",
+        "cReason": "열린 낱말 곱셈구구를 맞히는 대신 실제 어림한 몫을 계산한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "곱셈구구라는 열린 낱말 대신 실제 어림한 몫20을 계산하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-4-xc21",
+      "sourceIndex": 1152,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-4-xc21",
+          "grade": "초3",
+          "reviewedHash": "9b4fb0a6dd59ba9456a1c5f9bfc8b4b598ef4c239b6704884c0da441e3bf96e3",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-4-xc21",
+              "pass",
+              "revise",
+              "none",
+              "C 빈칸 '크다'가 바로 앞 '클수록'을 반복한다. 복사만으로 채워져 평가 가치가 없다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-4-xc21",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-4-xc21",
+              "section": "초3::2-4 분수::2-4-4 진분수와 가분수 알아보기",
+              "term": "가분수끼리의 크기",
+              "kind": "성질",
+              "level": "상",
+              "definition": "분모가 같은 가분수는 분자가 클수록 {크다}."
+            },
+            "B": {
+              "prompt": "$\\frac{7}{4}$과 $\\frac{9}{4}$ 중 더 큰 분수를 쓰고 그 까닭을 설명해 보세요.",
+              "answer": "$\\frac{9}{4}$가 더 크다. 둘 다 $\\frac{1}{4}$이 모인 수인데 $9$개가 $7$개보다 많기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$\\frac{9}{4}$가 더 크다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "같은 $\\frac{1}{4}$이 더 많이 모였다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "분모가 같은 가분수는 분자가 클수록 {크다}.",
+              "acceptedAnswers": [
+                [
+                  "크다"
+                ]
+              ]
+            },
+            "goal": "분모가 같은 가분수의 크기 비교와 이유",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "9b4fb0a6dd59ba9456a1c5f9bfc8b4b598ef4c239b6704884c0da441e3bf96e3"
+          },
+          "currentNormalizedHash": "9b4fb0a6dd59ba9456a1c5f9bfc8b4b598ef4c239b6704884c0da441e3bf96e3",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "6c6208214aaf8249af19fc60fa8a4f7984a4b5b1be7900da0ca8da5f7238959a",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "6c6208214aaf8249af19fc60fa8a4f7984a4b5b1be7900da0ca8da5f7238959a",
+      "currentProposal": {
+        "sourceIndex": 1152,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-4 진분수와 가분수 알아보기",
+        "sourceFingerprint": "f7b81461e51006ef4a8dd77d4c9d70c3853548a3469b5c08c784d608c608ef9f",
+        "proposalFingerprint": "6c6208214aaf8249af19fc60fa8a4f7984a4b5b1be7900da0ca8da5f7238959a",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-4-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{7}{4}$과 $\\frac{9}{4}$ 중 더 큰 분수를 쓰고 그 까닭을 설명해 보세요.",
+        "bAnswer": "$\\frac{9}{4}$가 더 크다. 둘 다 $\\frac{1}{4}$이 모인 수인데 $9$개가 $7$개보다 많기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{9}{4}$가 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 $\\frac{1}{4}$이 더 많이 모였다"
+            ]
+          }
+        ],
+        "bGoal": "분모가 같은 가분수의 크기 비교와 이유",
+        "bReason": "구체적인 두 가분수를 주어 비교와 이유를 함께 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "'분자가 클수록 크다'는 짧은 크기 비교 빈칸임",
+        "answerNotes": "'크다', '더 크다' 인정.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "가분수끼리의 크기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 가분수는 분자가 클수록 {크다}.",
+        "cStudentSentence": "분모가 같은 가분수는 분자가 클수록 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "크다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모가 같은 가분수는 분자가 클수록 □.",
+          "answers": [
+            "크다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{7}{4}$과 $\\frac{9}{4}$ 중 더 큰 분수를 쓰고 그 까닭을 설명해 보세요.",
+          "answer": "$\\frac{9}{4}$가 더 크다. 둘 다 $\\frac{1}{4}$이 모인 수인데 $9$개가 $7$개보다 많기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{9}{4}$가 더 크다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 $\\frac{1}{4}$이 더 많이 모였다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 가분수는 분자가 클수록 {크다}.",
+          "acceptedAnswers": [
+            [
+              "크다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-4-4-xc21",
+          "sourceIndex": 1152,
+          "proposalFingerprint": "6c6208214aaf8249af19fc60fa8a4f7984a4b5b1be7900da0ca8da5f7238959a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은1/4의더많은9개로9/4가크다는선택·이유다.",
+          "cReason": "같은분모의가분수도큰분자가큰수인관계다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-4-4-xc21",
+        "sourceIndex": 1152,
+        "proposalFingerprint": "6c6208214aaf8249af19fc60fa8a4f7984a4b5b1be7900da0ca8da5f7238959a",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "같은 단위분수의 개수로 가분수를 비교한다.",
+        "cReason": "분자와 분수의 크기는 다른 양으로 유용한 짧은 비교다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "분자의 크기와 분수의 크기는 다른 대상이다. 사용자 허용 짧은 비교를 기계적으로 배제하지 않는다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-3-7-xc20",
+      "sourceIndex": 1783,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-3-7-xc20",
+          "grade": "초4",
+          "reviewedHash": "ed1359dfb94ba188161948d82791b4652b061caf3f049c5ca790d93a17c20111",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [
+            [
+              "e4-1-3-7-xc20",
+              "B",
+              "21개(20개도 38×20=760≥610이라 충분)",
+              "revise",
+              "'몇 개 준비하면 넉넉한가'는 17개 이상이면 모두 맞아 답이 하나로 정해지지 않는다. '몫에 1을 더한 수로'처럼 기준을 줘야 한다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-3-7-xc20",
+              "revise",
+              "pass",
+              "none",
+              "B '몇 개 준비하면 넉넉한가'는 610/38≈16.05이므로 17개 이상이면 모두 맞다. 38×20=760≥610이므로 20개도 충분하다. 필수 답을 '21개'로만 두면 수학적으로 유일하지 않다. '몫에 1을 더한 수로'처럼 기준을 물음에 명시해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-3-7-xc20",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-3-7-xc20",
+              "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+              "term": "묶음 수를 넉넉하게 잡는 어림",
+              "kind": "방법",
+              "level": "상",
+              "definition": "전체 수는 그대로 두고 한 묶음의 크기를 작게 어림한 뒤, 나머지가 있으면 몫에 $1$을 더해 {넉넉한 묶음 수}를 잡는다."
+            },
+            "B": {
+              "prompt": "$610$개를 한 상자에 $38$개씩 담으려고 한다. 한 상자에 담는 수를 $30$으로 작게 어림해 $610\\div30$을 계산하면 몫 $20$, 나머지 $10$이다. 이 결과를 이용해 상자를 몇 개 준비하면 넉넉한지 쓰고, 그렇게 정한 까닭을 쓰시오. 까닭은 어림한 계산으로 설명해도 되고, 실제로 $38$개씩 담는 수를 곱해 확인해도 된다.",
+              "answer": "$21$개이다. 한 상자를 작게 어림했으므로 실제보다 상자가 더 필요하게 계산되어 넉넉하고, 나머지 $10$개도 담으려고 몫에 $1$을 더한다. 실제로 $38\\times21=798$이 $610$보다 커서 모두 담을 수 있다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$21$개"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "한 상자에 담을 수를 실제보다 작게 잡고 남은 $10$개를 위한 상자까지 하나 더 준비해서 넉넉하다",
+                    "$38\\times21=798$이 $610$보다 커서 $21$개에 모두 담을 수 있다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$610$개를 $38$개씩 담을 때 $38$을 더 작은 $30$으로 보고 $610\\div30=20\\cdots10$이므로, 몫에 $1$을 더한 {$21$}개의 상자면 넉넉하다.",
+              "acceptedAnswers": [
+                [
+                  "$21$"
+                ]
+              ]
+            },
+            "goal": "작게 어림한 한 묶음 크기로 넉넉한 묶음 수 잡기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "ed1359dfb94ba188161948d82791b4652b061caf3f049c5ca790d93a17c20111"
+          },
+          "currentNormalizedHash": "ed1359dfb94ba188161948d82791b4652b061caf3f049c5ca790d93a17c20111",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "3dc32d060e4bb7f2a6df6c617dcb0bb8b28f96bf35ed00841bc2e1abb1862052",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "2fc679dfdf6ce5b10875521f50efc27baf29f90830521d200555defd7ecca8d0",
+      "currentProposal": {
+        "sourceIndex": 1783,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+        "sourceFingerprint": "cc2248e5780582c9ee2e111cb8b3b024aaaa028f1fdd9932676c9f96bd9e54a1",
+        "proposalFingerprint": "2fc679dfdf6ce5b10875521f50efc27baf29f90830521d200555defd7ecca8d0",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-7-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$610$개를 한 상자에 $38$개씩 담으려고 한다. 한 상자에 담는 수를 $30$으로 작게 어림해 계산하니 $610\\div30$의 몫은 $20$, 나머지는 $10$이다. $30$개씩 담는다고 생각하여 남은 것까지 모두 담을 최소 상자 수를 정하시오. 이만큼 준비하면 실제로 $38$개씩 담아도 넉넉한 까닭을 쓰시오.",
+        "bAnswer": "$21$개를 준비합니다. $30$개씩 $20$상자에 담고 남은 $10$개를 담을 상자 하나가 더 필요합니다. 실제 상자에는 이보다 많은 $38$개씩 담을 수 있으므로 $21$개면 넉넉합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$21$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "실제 상자는 $30$개보다 많은 $38$개씩 담을 수 있어서 넉넉하다",
+              "$38\\times21=798$이 $610$보다 커서 모두 담을 수 있다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "작게 어림한 한 묶음 크기로 넉넉한 묶음 수 잡기",
+        "bReason": "임의의 넉넉한 수가 아니라 30개씩 담을 때 남은 것까지 담는 최소 수를 정하도록 범위를 좁혔다. 실제 포장량이 더 크다는 이유와 실제 곱셈 확인을 모두 허용한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$610$개를 $38$개씩 담을 때 $38$을 더 작은 $30$으로 보고 $610\\div30=20\\cdots10$이므로, 몫에 $1$을 더한 {$21$}개의 상자면 넉넉하다.",
+        "cReason": "'넉넉한 묶음 수' 구절 대신 실제 수로 고침",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "묶음 수를 넉넉하게 잡는 어림",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$610$개를 $38$개씩 담을 때 $38$을 더 작은 $30$으로 보고 $610\\div30=20\\cdots10$이므로, 몫에 $1$을 더한 {$21$}개의 상자면 넉넉하다.",
+        "cStudentSentence": "$610$개를 $38$개씩 담을 때 $38$을 더 작은 $30$으로 보고 $610\\div30=20\\cdots10$이므로, 몫에 $1$을 더한 □개의 상자면 넉넉하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$21$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$610$개를 한 상자에 $38$개씩 담으려고 한다. 한 상자에 담는 수를 $30$으로 작게 어림해 계산하니 $610\\div30$의 몫은 $20$, 나머지는 $10$이다. $30$개씩 담는다고 생각하여 남은 것까지 모두 담을 최소 상자 수를 정하시오. 이만큼 준비하면 실제로 $38$개씩 담아도 넉넉한 까닭을 쓰시오.",
+          "answer": "$21$개를 준비합니다. $30$개씩 $20$상자에 담고 남은 $10$개를 담을 상자 하나가 더 필요합니다. 실제 상자에는 이보다 많은 $38$개씩 담을 수 있으므로 $21$개면 넉넉합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$21$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "실제 상자는 $30$개보다 많은 $38$개씩 담을 수 있어서 넉넉하다",
+                "$38\\times21=798$이 $610$보다 커서 모두 담을 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$610$개를 $38$개씩 담을 때 $38$을 더 작은 $30$으로 보고 $610\\div30=20\\cdots10$이므로, 몫에 $1$을 더한 {$21$}개의 상자면 넉넉하다.",
+          "acceptedAnswers": [
+            [
+              "$21$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-3-7-xc20",
+        "sourceIndex": 1783,
+        "proposalFingerprint": "2fc679dfdf6ce5b10875521f50efc27baf29f90830521d200555defd7ecca8d0",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "30개씩 담는 최소 상자 수로 응답 범위를 좁혀21로 정해지게 했다.",
+        "cReason": "20몫에 남는10을 담을 상자를 추가해21을 구한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "30개씩 담는다고 생각한 최소 상자 수를 물어21로 범위를 정했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-3-7-xc25",
+      "sourceIndex": 1787,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-3-7-xc25",
+          "grade": "초4",
+          "reviewedHash": "2abdde1110e3308bda7796493a5aadcb9ea0a2ecf3579c7f10dca56312a86dcd",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [
+            [
+              "e4-1-3-7-xc25",
+              "C",
+              "자릿수",
+              "revise",
+              "'□부터 다르면'에서 '자릿수' 외에 '크게', '처음부터' 등도 가능해 답이 정해지지 않고 표현이 어색하다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-3-7-xc25",
+              "pass",
+              "pass",
+              "none",
+              ""
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-3-7-xc25",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-3-7-xc25",
+              "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+              "term": "어림과 크게 다른 몫",
+              "kind": "방법",
+              "level": "상",
+              "definition": "계산한 몫이 어림한 몫과 {자릿수}부터 다르면 계산을 다시 살핀다."
+            },
+            "B": {
+              "prompt": "$612\\div34$의 몫을 $600\\div30$으로 어림하면 약 $20$인데, 직접 계산한 몫이 $180$이 나왔다. 이때 무엇을 해야 하는지 쓰고, 어림한 몫과 비교하여 그렇게 판단한 까닭도 쓰시오.",
+              "answer": "계산을 다시 살펴야 한다. $180$은 세 자리 수이고 어림한 몫 $20$은 두 자리 수라서 자릿수부터 다르기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "계산을 다시 살핀다",
+                    "계산이 맞는지 다시 확인한다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$180$은 세 자리 수이고 $20$은 두 자리 수라서 자릿수가 다르다",
+                    "어림한 몫 $20$과 $180$이 크게 다르다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "계산한 몫이 어림한 몫과 {자릿수}부터 다르면 계산을 다시 살핀다.",
+              "acceptedAnswers": [
+                [
+                  "자릿수",
+                  "자리 수"
+                ]
+              ]
+            },
+            "goal": "어림한 몫과 자릿수부터 다른 몫 점검하기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "2abdde1110e3308bda7796493a5aadcb9ea0a2ecf3579c7f10dca56312a86dcd"
+          },
+          "currentNormalizedHash": "2abdde1110e3308bda7796493a5aadcb9ea0a2ecf3579c7f10dca56312a86dcd",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "db8cb6679a638f1fe7cb09f1271c445fa95244f6b839a57f6afae9549de98bca",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "bb6a20d0c496719d92beb840c5866d3d9b2f9cd382b84f4689e8813b5d4dbdbe",
+      "currentProposal": {
+        "sourceIndex": 1787,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+        "sourceFingerprint": "1c9e75db89053cf0d1fefa7c9a7dd95ce2925fc0f012c45eac5f1f65768fc732",
+        "proposalFingerprint": "bb6a20d0c496719d92beb840c5866d3d9b2f9cd382b84f4689e8813b5d4dbdbe",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-7-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$612\\div34$의 몫을 $600\\div30$으로 어림하면 약 $20$인데, 직접 계산한 몫이 $180$이 나왔다. 이때 무엇을 해야 하는지 쓰고, 어림한 몫과 비교하여 그렇게 판단한 까닭도 쓰시오.",
+        "bAnswer": "계산을 다시 살펴야 한다. $180$은 세 자리 수이고 어림한 몫 $20$은 두 자리 수라서 자릿수부터 다르기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "계산을 다시 살핀다",
+              "계산이 맞는지 다시 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180$은 세 자리 수이고 $20$은 두 자리 수라서 자릿수가 다르다",
+              "어림한 몫 $20$과 $180$이 크게 다르다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "어림한 몫과 자릿수부터 다른 몫 점검하기",
+        "bReason": "해야 할 일과 그 까닭을 함께 묻도록 질문을 고쳐 기준의 이유 항목과 맞춤",
+        "cDecision": "exclude",
+        "cReason": "자릿수부터라는 구절은 다른 표현이 열려 있고 어림한 값과 다른 것을 확인하는 실제 판단은 B에서 충분히 다룬다.",
+        "exclusionReason": "C: 자릿수부터라는 어휘 복원 빈칸은 제외하고 실제180과 어림한20을 비교하는 B는 유지한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "어림과 크게 다른 몫",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "$612\\div34$의 몫을 $600\\div30$으로 어림하면 약 $20$인데, 직접 계산한 몫이 $180$이 나왔다. 이때 무엇을 해야 하는지 쓰고, 어림한 몫과 비교하여 그렇게 판단한 까닭도 쓰시오.",
+          "answer": "계산을 다시 살펴야 한다. $180$은 세 자리 수이고 어림한 몫 $20$은 두 자리 수라서 자릿수부터 다르기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "계산을 다시 살핀다",
+                "계산이 맞는지 다시 확인한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180$은 세 자리 수이고 $20$은 두 자리 수라서 자릿수가 다르다",
+                "어림한 몫 $20$과 $180$이 크게 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "자릿수부터라는 구절은 다른 표현이 열려 있고 어림한 값과 다른 것을 확인하는 실제 판단은 B에서 충분히 다룬다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-3-7-xc25",
+        "sourceIndex": 1787,
+        "proposalFingerprint": "bb6a20d0c496719d92beb840c5866d3d9b2f9cd382b84f4689e8813b5d4dbdbe",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "20과180의 큰 차이로 계산을 다시 점검하는 이유다.",
+        "cReason": "자릿수부터라는 열린 구절 복원을 제외했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "자릿수부터라는 열린 구절 복원 C를 제외했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-1-xc4",
+      "sourceIndex": 1794,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-1-xc4",
+          "grade": "초4",
+          "reviewedHash": "95559230e0b5777b97c21a9f57b0f5fe213dafd0659c4dac06322e6de52bd144",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-1-xc4",
+              "revise",
+              "pass",
+              "none",
+              "B 물음에 '오른쪽으로, 위쪽으로'가 적혀 있어 방향 수 '두 가지'는 세기만 하면 나온다. 두 번째 필수 항목 '오른쪽과 위쪽으로 나누어 옮겼다'도 물음 문구 복사로 만족되고, 물음이 이미 답을 노출한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-1-xc4",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-1-xc4",
+              "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+              "term": "가로와 세로가 모두 다른 곳으로 점 옮기기",
+              "kind": "방법",
+              "level": "하",
+              "definition": "오른쪽으로 $2$칸, 위쪽으로 $3$칸처럼 {두 방향}으로 나누어 점을 옮길 수 있다."
+            },
+            "B": {
+              "prompt": "점이 오른쪽으로 $2$칸, 위쪽으로 $3$칸 옮겨 갔다. 이 이동을 말로 나타내려면 몇 가지 방향이 필요한가? 까닭도 쓰시오.",
+              "answer": "두 가지이다. 가로 방향과 세로 방향으로 모두 옮겼기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "두 방향",
+                    "$2$가지"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "가로와 세로로 모두 옮겼다",
+                    "오른쪽과 위쪽으로 나누어 옮겼다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "오른쪽으로 $2$칸, 위쪽으로 $3$칸처럼 {두 방향}으로 나누어 점을 옮길 수 있다.",
+              "acceptedAnswers": [
+                [
+                  "두 방향",
+                  "가로와 세로 방향",
+                  "가로와 세로 두 방향",
+                  "두 가지 방향"
+                ]
+              ]
+            },
+            "goal": "두 방향으로 나눠 이동",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "95559230e0b5777b97c21a9f57b0f5fe213dafd0659c4dac06322e6de52bd144"
+          },
+          "currentNormalizedHash": "95559230e0b5777b97c21a9f57b0f5fe213dafd0659c4dac06322e6de52bd144",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "cb8cd8ed3995b977076b8f652eaf03c7a9a39365837ac9584cbc702174e7f210",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "f3381df6e394d4267d6b2cda9762c485c457c7729ca9753e7974fa6314b46e09",
+      "currentProposal": {
+        "sourceIndex": 1794,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "712a6e51dacfd6ab22cca6d31beae5d22f875704ec1e9fad4a36046b0634f934",
+        "proposalFingerprint": "f3381df6e394d4267d6b2cda9762c485c457c7729ca9753e7974fa6314b46e09",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc4",
+        "bDecision": "exclude",
+        "bPrompt": "",
+        "bAnswer": "",
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "두 방향으로 나눠 이동",
+        "bReason": "이미 가로 세로 이동을 모두 준 뒤 두 가지라고 세어 쓰는 설명은 학습 목표가 약하다. 비스듬한 위치를 가로와 세로로 나누는 방법은 e4-1-4-1-xc13 B에 남긴다.",
+        "cDecision": "keep",
+        "cReason": "'두 번에'는 방향의 개수가 아니라 횟수이므로 대체 답에서 제거함",
+        "cSlotEquivalents": [
+          [
+            "가로와 세로 방향",
+            "가로와 세로 두 방향",
+            "두 가지 방향"
+          ]
+        ],
+        "exclusionReason": "B: 두 방향을 나열한 뒤 개수를 쓰는 설명은 제외하고 이동을 분해하는 방법은 e4-1-4-1-xc13 B에서 다룬다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가로와 세로가 모두 다른 곳으로 점 옮기기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "오른쪽으로 $2$칸, 위쪽으로 $3$칸처럼 {두 방향}으로 나누어 점을 옮길 수 있다.",
+        "cStudentSentence": "오른쪽으로 $2$칸, 위쪽으로 $3$칸처럼 □으로 나누어 점을 옮길 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 방향",
+            "equivalents": [
+              "가로와 세로 방향",
+              "가로와 세로 두 방향",
+              "두 가지 방향"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "오른쪽으로 $2$칸, 위쪽으로 $3$칸처럼 □으로 나누어 점을 옮길 수 있다.",
+          "answers": [
+            "두 방향"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "오른쪽으로 $2$칸, 위쪽으로 $3$칸처럼 {두 방향}으로 나누어 점을 옮길 수 있다.",
+          "acceptedAnswers": [
+            [
+              "두 방향",
+              "가로와 세로 방향",
+              "가로와 세로 두 방향",
+              "두 가지 방향"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "이미 가로 세로 이동을 모두 준 뒤 두 가지라고 세어 쓰는 설명은 학습 목표가 약하다. 비스듬한 위치를 가로와 세로로 나누는 방법은 e4-1-4-1-xc13 B에 남긴다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-1-xc4",
+        "sourceIndex": 1794,
+        "proposalFingerprint": "f3381df6e394d4267d6b2cda9762c485c457c7729ca9753e7974fa6314b46e09",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "주어진 두 방향을 세기만 하는 B를 제외하고 분해 방법은xc13에 남겼다.",
+        "cReason": "두 방향으로 나타내는 짧은 분류는 C에서 확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "B의 단순 방향 개수 설명은 제외하고 실제 분해 설명은xc13에 남겼다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-1-xc5",
+      "sourceIndex": 1795,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-1-xc5",
+          "grade": "초4",
+          "reviewedHash": "122377486267dc17a8fb09a2128392214c3283faec9647bcf070e69a4badc98f",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-1-xc5",
+              "revise",
+              "revise",
+              "none",
+              "B 필수 항목 '가로선과 세로선이 만나는 곳'과 '같은 가로선 위 오른쪽 한 칸'은 물음 문구를 그대로 반복해도 만족된다. C 빈칸 '만나는 곳'도 앞 구절 '선이 만나는 곳에 있던 점'에서 그대로 복사된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-1-xc5",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-1-xc5",
+              "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+              "term": "옮긴 점을 찍는 곳",
+              "kind": "방법",
+              "level": "하",
+              "definition": "모눈의 선이 만나는 곳에 있던 점을 한 칸씩 옮기면 옮긴 점도 가로선과 세로선이 {만나는 곳}에 찍는다."
+            },
+            "B": {
+              "prompt": "모눈의 가로선과 세로선이 만나는 곳에 점 ㄱ이 있다. 이 점을 오른쪽으로 $1$칸 옮긴 점 ㄴ을 찍어야 하는 위치를 점 ㄱ과의 위치 관계와 모눈선을 이용해 쓰시오.",
+              "answer": "점 ㄱ이 있는 가로선을 따라 오른쪽으로 한 칸 간 곳, 곧 그 가로선과 바로 오른쪽 세로선이 만나는 곳에 찍는다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "점 ㄱ과 같은 가로선 위에서 오른쪽으로 한 칸 떨어진 곳",
+                    "점 ㄱ에서 오른쪽으로 한 칸 간 같은 가로선 위의 다음 만나는 곳"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "가로선과 세로선이 만나는 곳"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "모눈의 선이 만나는 곳에 있던 점을 한 칸씩 옮기면 옮긴 점도 가로선과 세로선이 {만나는 곳}에 찍는다.",
+              "acceptedAnswers": [
+                [
+                  "만나는 곳",
+                  "만나는 점",
+                  "교차하는 곳"
+                ]
+              ]
+            },
+            "goal": "옮긴 점을 찍는 위치 정하기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "122377486267dc17a8fb09a2128392214c3283faec9647bcf070e69a4badc98f"
+          },
+          "currentNormalizedHash": "122377486267dc17a8fb09a2128392214c3283faec9647bcf070e69a4badc98f",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "add3dea70ac1161c23aa945172a0bb1a9a68138c57885a2445a0d6dd2e669f13",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "cfae8911c5f46ad7a8faf56e4b99538b903573688b10cb3ed66e3e99e5470da9",
+      "currentProposal": {
+        "sourceIndex": 1795,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "ca01a6ea6bbae62316d76f7b8edbb7fe82a5a81cafa380979ce9fb39d7451b43",
+        "proposalFingerprint": "cfae8911c5f46ad7a8faf56e4b99538b903573688b10cb3ed66e3e99e5470da9",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈의 가로선과 세로선이 만나는 곳에 점 ㄱ이 있다. 이 점을 오른쪽으로 $1$칸 옮긴 점 ㄴ을 찍어야 하는 위치를 점 ㄱ과의 위치 관계와 모눈선을 이용해 쓰시오.",
+        "bAnswer": "점 ㄱ이 있는 가로선을 따라 오른쪽으로 한 칸 간 곳, 곧 그 가로선과 바로 오른쪽 세로선이 만나는 곳에 찍는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "점 ㄱ이 있는 가로선과 바로 오른쪽 세로선이 만나는 곳",
+              "같은 가로선 위 오른쪽의 다음 세로선과 만나는 곳"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "옮긴 점을 찍는 위치 정하기",
+        "bReason": "기존 점에서 같은 가로선 위로 한 칸 간 위치와 선이 만나는 곳이라는 조건을 답과 기준에 모두 담음",
+        "cDecision": "exclude",
+        "cReason": "앞에서 만나는 곳이라고 준 뒤 같은 낱말을 복원한다. B에서 어느 가로선과 세로선의 만나는 곳인지 실제로 설명하도록 남긴다.",
+        "exclusionReason": "C: 만나는 곳이라는 표현을 반복하는 빈칸은 제외하고 모눈선으로 새 위치를 설명하는 B는 유지한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "옮긴 점을 찍는 곳",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "모눈의 가로선과 세로선이 만나는 곳에 점 ㄱ이 있다. 이 점을 오른쪽으로 $1$칸 옮긴 점 ㄴ을 찍어야 하는 위치를 점 ㄱ과의 위치 관계와 모눈선을 이용해 쓰시오.",
+          "answer": "점 ㄱ이 있는 가로선을 따라 오른쪽으로 한 칸 간 곳, 곧 그 가로선과 바로 오른쪽 세로선이 만나는 곳에 찍는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "점 ㄱ이 있는 가로선과 바로 오른쪽 세로선이 만나는 곳",
+                "같은 가로선 위 오른쪽의 다음 세로선과 만나는 곳"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "앞에서 만나는 곳이라고 준 뒤 같은 낱말을 복원한다. B에서 어느 가로선과 세로선의 만나는 곳인지 실제로 설명하도록 남긴다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-1-xc5",
+        "sourceIndex": 1795,
+        "proposalFingerprint": "cfae8911c5f46ad7a8faf56e4b99538b903573688b10cb3ed66e3e99e5470da9",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "같은 가로선과 바로 오른쪽 세로선이라는 새 위치의 관계만 기준으로 둔다.",
+        "cReason": "만나는 곳을 그대로 반복하는 C는 제외했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "B에서 새 위치의 가로선과 세로선 관계만 필수로 남기고 같은 표현을 반복하는 C는 제외했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-5-xc15",
+      "sourceIndex": 1161,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-5-xc15",
+          "grade": "초3",
+          "reviewedHash": "0352538ce6f617ae5069e71115bfce781b94df335ec3935f33dac5111affcfa4",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-5-xc15",
+              "pass",
+              "revise",
+              "none",
+              "C 문장 안에 '분수에서 아래에 쓰는 수인'이라는 분모의 정의가 있어 답 '분모'가 그대로 노출된다. 분모가 그대로인 까닭(조각의 크기)을 평가하지 못하는 용어 채우기뿐이다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-5-xc15",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-5-xc15",
+              "section": "초3::2-4 분수::2-4-5 대분수 알아보기",
+              "term": "바뀌지 않는 분모",
+              "kind": "성질",
+              "level": "중",
+              "definition": "대분수를 가분수로 고쳐 쓸 때 분자는 달라지지만, 분수에서 아래에 쓰는 수인 {분모}는 그대로이다."
+            },
+            "B": {
+              "prompt": "$2\\frac{1}{4}$을 가분수로 바꾸면 $\\frac{9}{4}$입니다. 분자는 $1$에서 $9$로 바뀌었는데 분모 $4$는 그대로인 까닭을 설명해 보세요.",
+              "answer": "자연수 $2$도 $\\frac{1}{4}$ 크기의 조각 $8$개로 바꾸어 세기 때문이다. 조각의 크기는 그대로이고 조각 수만 늘어난다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "조각의 크기($\\frac{1}{4}$)는 그대로"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "조각 수만 달라진다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "대분수를 가분수로 고쳐 쓸 때 분자는 달라지지만, 분수에서 아래에 쓰는 수인 {분모}는 그대로이다.",
+              "acceptedAnswers": [
+                [
+                  "분모"
+                ]
+              ]
+            },
+            "goal": "대분수를 가분수로 바꿀 때 분모가 변하지 않는 까닭",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "0352538ce6f617ae5069e71115bfce781b94df335ec3935f33dac5111affcfa4"
+          },
+          "currentNormalizedHash": "0352538ce6f617ae5069e71115bfce781b94df335ec3935f33dac5111affcfa4",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "32b48235dbfec206c1c7a02df73226dc1f69daf8263e12873aa17c6b2bd0e115",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "30d13bc1b62c47e0e8febd04b4bf54f8b9a19fca53d3b29809c956301cbf0edb",
+      "currentProposal": {
+        "sourceIndex": 1161,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-5 대분수 알아보기",
+        "sourceFingerprint": "b1bb9025a58d4b8eb2e2a63fd59813d879d20352d59f34711084660ac2625ff6",
+        "proposalFingerprint": "30d13bc1b62c47e0e8febd04b4bf54f8b9a19fca53d3b29809c956301cbf0edb",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-5-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\frac{1}{4}$을 가분수로 바꾸면 $\\frac{9}{4}$입니다. 분자는 $1$에서 $9$로 바뀌었는데 분모 $4$는 그대로인 까닭을 설명해 보세요.",
+        "bAnswer": "자연수 $2$도 $\\frac{1}{4}$ 크기의 조각 $8$개로 바꾸어 세기 때문이다. 조각의 크기는 그대로이고 조각 수만 늘어난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조각의 크기($\\frac{1}{4}$)는 그대로"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각 수만 달라진다"
+            ]
+          }
+        ],
+        "bGoal": "대분수를 가분수로 바꿀 때 분모가 변하지 않는 까닭",
+        "bReason": "구체적인 수를 주어 분모가 조각의 크기라는 생각을 끌어냄",
+        "cDecision": "rewrite",
+        "cReason": "분모의 뜻이 문장에 풀려 있고 빈칸이 익숙한 용어 하나임",
+        "cAfter": "대분수를 가분수로 고쳐 쓸 때 분자는 달라지지만 {분모}는 그대로이다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "바뀌지 않는 분모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "대분수를 가분수로 고쳐 쓸 때 분자는 달라지지만 {분모}는 그대로이다.",
+        "cStudentSentence": "대분수를 가분수로 고쳐 쓸 때 분자는 달라지지만 □는 그대로이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "분모",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\frac{1}{4}$을 가분수로 바꾸면 $\\frac{9}{4}$입니다. 분자는 $1$에서 $9$로 바뀌었는데 분모 $4$는 그대로인 까닭을 설명해 보세요.",
+          "answer": "자연수 $2$도 $\\frac{1}{4}$ 크기의 조각 $8$개로 바꾸어 세기 때문이다. 조각의 크기는 그대로이고 조각 수만 늘어난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조각의 크기($\\frac{1}{4}$)는 그대로"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각 수만 달라진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "대분수를 가분수로 고쳐 쓸 때 분자는 달라지지만 {분모}는 그대로이다.",
+          "acceptedAnswers": [
+            [
+              "분모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-4-5-xc15",
+        "sourceIndex": 1161,
+        "proposalFingerprint": "30d13bc1b62c47e0e8febd04b4bf54f8b9a19fca53d3b29809c956301cbf0edb",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "단위조각의 크기가 유지되므로 분모가 같다는 이유다.",
+        "cReason": "아래에 쓰는 수라는 정의 단서를 빼고 변하지 않는 성질만 묻는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "분모 정의 단서를 지우고 변환에서 그대로인 부분을 판단하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-5-xc16",
+      "sourceIndex": 1162,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-5-xc16",
+          "grade": "초3",
+          "reviewedHash": "971b3890201debf27d5f55d1aed66b91f776571524772b8cf2de602d75bdf8fd",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-5-xc16",
+              "pass",
+              "revise",
+              "none",
+              "C 두 번째 빈칸 '2'가 같은 문장의 '몫이 2'에서 그대로 복사된다. 첫 빈칸 '0'도 '자연수로 나타낸다'는 서술에서 짐작된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-5-xc16",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-5-xc16",
+              "section": "초3::2-4 분수::2-4-5 대분수 알아보기",
+              "term": "자연수가 되는 가분수",
+              "kind": "성질",
+              "level": "중",
+              "definition": "가분수의 분자를 분모로 나눈 {나머지가 없으면} 대분수가 아닌 자연수가 된다."
+            },
+            "B": {
+              "prompt": "$\\frac{8}{4}$과 $\\frac{9}{4}$ 중 대분수가 아니라 자연수로 나타내어지는 것을 고르고 그 까닭을 설명해 보세요.",
+              "answer": "$\\frac{8}{4}$이다. $8\\div4=2$로 나머지가 없어 $\\frac{4}{4}$가 꼭 $2$번이므로 $2$이다. $\\frac{9}{4}$는 $\\frac{1}{4}$이 남아 $2\\frac{1}{4}$이 된다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$\\frac{8}{4}$"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "분자를 분모로 나누면 나머지가 없다",
+                    "$8\\div4$는 나누어떨어져서 남는 것이 없다",
+                    "$\\frac{4}{4}$가 꼭 $2$번이라 남는 조각이 없다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$\\frac{8}{4}$은 분자 $8$을 분모 $4$로 나누면 몫이 $2$이고 나머지가 {$0$}이다. 그래서 대분수가 아니라 자연수 {$2$}로 나타낸다.",
+              "acceptedAnswers": [
+                [
+                  "$0$"
+                ],
+                [
+                  "$2$"
+                ]
+              ]
+            },
+            "goal": "가분수가 자연수가 되는 조건 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "971b3890201debf27d5f55d1aed66b91f776571524772b8cf2de602d75bdf8fd"
+          },
+          "currentNormalizedHash": "971b3890201debf27d5f55d1aed66b91f776571524772b8cf2de602d75bdf8fd",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "7f342bd16a0876cc9afda2b4c916f23b44d9d08cdddf4ddd95fc4dd3642b2a6e",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "571dccb8d6a4ce3bf44d5cf73a1d82cd2cd06fa19d83d861a0952b48ff7489fc",
+      "currentProposal": {
+        "sourceIndex": 1162,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-5 대분수 알아보기",
+        "sourceFingerprint": "aaa5944f3ca6aee08c49e06c7b7276f584316dd054b42633e7228c9cc7f39ef0",
+        "proposalFingerprint": "571dccb8d6a4ce3bf44d5cf73a1d82cd2cd06fa19d83d861a0952b48ff7489fc",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-5-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{8}{4}$과 $\\frac{9}{4}$ 중 대분수가 아니라 자연수로 나타내어지는 것을 고르고 그 까닭을 설명해 보세요.",
+        "bAnswer": "$\\frac{8}{4}$이다. $8\\div4=2$로 나머지가 없어 $\\frac{4}{4}$가 꼭 $2$번이므로 $2$이다. $\\frac{9}{4}$는 $\\frac{1}{4}$이 남아 $2\\frac{1}{4}$이 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{8}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자를 분모로 나누면 나머지가 없다",
+              "$8\\div4$는 나누어떨어져서 남는 것이 없다",
+              "$\\frac{4}{4}$가 꼭 $2$번이라 남는 조각이 없다"
+            ]
+          }
+        ],
+        "bGoal": "가분수가 자연수가 되는 조건 설명",
+        "bReason": "질문이 자연수의 값을 요청하지 않으므로 별도 필수였던 결과 $2$를 기준에서 빼고 고른 분수와 나머지가 없다는 까닭만 평가함",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{8}{4}$의 분자 $8$을 분모 $4$로 나누면 나머지는 {$0$}이다. 따라서 $\\frac{8}{4}$은 대분수가 아니라 자연수 {$2$}로 나타낸다.",
+        "cReason": "'나머지가 없으면'은 조건절 전체를 가린 빈칸이라 실제 나눗셈의 나머지와 결과를 쓰게 함",
+        "answerNotes": "첫 빈칸은 $0$ 또는 '없다'는 뜻의 답 인정.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "자연수가 되는 가분수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{8}{4}$의 분자 $8$을 분모 $4$로 나누면 나머지는 {$0$}이다. 따라서 $\\frac{8}{4}$은 대분수가 아니라 자연수 {$2$}로 나타낸다.",
+        "cStudentSentence": "$\\frac{8}{4}$의 분자 $8$을 분모 $4$로 나누면 나머지는 □이다. 따라서 $\\frac{8}{4}$은 대분수가 아니라 자연수 □로 나타낸다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          },
+          {
+            "expected": "$2$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{8}{4}$과 $\\frac{9}{4}$ 중 대분수가 아니라 자연수로 나타내어지는 것을 고르고 그 까닭을 설명해 보세요.",
+          "answer": "$\\frac{8}{4}$이다. $8\\div4=2$로 나머지가 없어 $\\frac{4}{4}$가 꼭 $2$번이므로 $2$이다. $\\frac{9}{4}$는 $\\frac{1}{4}$이 남아 $2\\frac{1}{4}$이 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{8}{4}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자를 분모로 나누면 나머지가 없다",
+                "$8\\div4$는 나누어떨어져서 남는 것이 없다",
+                "$\\frac{4}{4}$가 꼭 $2$번이라 남는 조각이 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{8}{4}$의 분자 $8$을 분모 $4$로 나누면 나머지는 {$0$}이다. 따라서 $\\frac{8}{4}$은 대분수가 아니라 자연수 {$2$}로 나타낸다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ],
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-4-5-xc16",
+        "sourceIndex": 1162,
+        "proposalFingerprint": "571dccb8d6a4ce3bf44d5cf73a1d82cd2cd06fa19d83d861a0952b48ff7489fc",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "분자를 분모로 남김없이 나누는 조건을 설명한다.",
+        "cReason": "몫2를 미리 주지 않고0과2를 계산한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "몫2를 앞에서 지워 결과를 직접 계산하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-4-6-xc1",
+      "sourceIndex": 1166,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-4-6-xc1",
+          "grade": "초3",
+          "reviewedHash": "98e08c0b42fea01d8e6571dcd94dda0fe6d22fb1a9433dcdad20d5040f49ecdc",
+          "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+          "evidence": "cohort-2026-10-07T06-58-35-794Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-4-6-xc1",
+              "pass",
+              "revise",
+              "none",
+              "C 빈칸 '큰'이 바로 뒤 '더 큰 분수'를 반복해 복사만으로 채워진다. 조각 크기가 같으면 분자로 비교한다는 이해를 평가하지 못한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-4-6-xc1",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-4-6-xc1",
+              "section": "초3::2-4 분수::2-4-6 분모가 같은 분수의 크기 비교",
+              "term": "분모가 같으면 분자로 견주는 까닭",
+              "kind": "성질",
+              "level": "하",
+              "definition": "분모가 같은 분수는 {같은 크기의 조각}으로 되어 있어 조각 수인 분자가 클수록 크다."
+            },
+            "B": {
+              "prompt": "$\\frac{3}{5}$과 $\\frac{4}{5}$ 중 더 큰 분수를 쓰고, 분모가 같을 때 분자만 비교해도 되는 까닭을 설명해 보세요.",
+              "answer": "$\\frac{4}{5}$가 더 크다. 분모가 같으면 조각 하나의 크기가 같아서 조각 수가 많은 쪽이 더 크기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$\\frac{4}{5}$가 더 크다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "조각의 크기가 같다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "조각 수(분자)가 많은 쪽이 크다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$\\frac{3}{5}$과 $\\frac{4}{5}$는 모두 $\\frac{1}{5}$ 크기의 조각으로 되어 있다. 조각의 크기가 같으므로 조각 수인 분자가 {큰} 쪽이 더 큰 분수이다.",
+              "acceptedAnswers": [
+                [
+                  "큰"
+                ]
+              ]
+            },
+            "goal": "분모가 같으면 분자로 비교하는 까닭 설명",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "98e08c0b42fea01d8e6571dcd94dda0fe6d22fb1a9433dcdad20d5040f49ecdc"
+          },
+          "currentNormalizedHash": "98e08c0b42fea01d8e6571dcd94dda0fe6d22fb1a9433dcdad20d5040f49ecdc",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "ea07fe4865ad8c961beb2cca5f3aefe82248a479f1cd5406f305fe0aed231096",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "ea07fe4865ad8c961beb2cca5f3aefe82248a479f1cd5406f305fe0aed231096",
+      "currentProposal": {
+        "sourceIndex": 1166,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-4 분수::2-4-6 분모가 같은 분수의 크기 비교",
+        "sourceFingerprint": "4f6814554b42a569090222537cfeb5223fa658be361ef325dd6b663abff8c0d1",
+        "proposalFingerprint": "ea07fe4865ad8c961beb2cca5f3aefe82248a479f1cd5406f305fe0aed231096",
+        "reviewStatus": "draft",
+        "id": "e3-2-4-6-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{5}$과 $\\frac{4}{5}$ 중 더 큰 분수를 쓰고, 분모가 같을 때 분자만 비교해도 되는 까닭을 설명해 보세요.",
+        "bAnswer": "$\\frac{4}{5}$가 더 크다. 분모가 같으면 조각 하나의 크기가 같아서 조각 수가 많은 쪽이 더 크기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{4}{5}$가 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각 수(분자)가 많은 쪽이 크다"
+            ]
+          }
+        ],
+        "bGoal": "분모가 같으면 분자로 비교하는 까닭 설명",
+        "bReason": "구체적인 두 분수로 비교하고 조각의 크기를 근거로 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{3}{5}$과 $\\frac{4}{5}$는 모두 $\\frac{1}{5}$ 크기의 조각으로 되어 있다. 조각의 크기가 같으므로 조각 수인 분자가 {큰} 쪽이 더 큰 분수이다.",
+        "cReason": "'같은 크기의 조각'은 구절 복원이라 예시를 보이고 크다/작다 비교 빈칸으로 바꿈",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모가 같으면 분자로 견주는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{3}{5}$과 $\\frac{4}{5}$는 모두 $\\frac{1}{5}$ 크기의 조각으로 되어 있다. 조각의 크기가 같으므로 조각 수인 분자가 {큰} 쪽이 더 큰 분수이다.",
+        "cStudentSentence": "$\\frac{3}{5}$과 $\\frac{4}{5}$는 모두 $\\frac{1}{5}$ 크기의 조각으로 되어 있다. 조각의 크기가 같으므로 조각 수인 분자가 □ 쪽이 더 큰 분수이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "큰",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{3}{5}$과 $\\frac{4}{5}$ 중 더 큰 분수를 쓰고, 분모가 같을 때 분자만 비교해도 되는 까닭을 설명해 보세요.",
+          "answer": "$\\frac{4}{5}$가 더 크다. 분모가 같으면 조각 하나의 크기가 같아서 조각 수가 많은 쪽이 더 크기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{4}{5}$가 더 크다"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각 수(분자)가 많은 쪽이 크다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{3}{5}$과 $\\frac{4}{5}$는 모두 $\\frac{1}{5}$ 크기의 조각으로 되어 있다. 조각의 크기가 같으므로 조각 수인 분자가 {큰} 쪽이 더 큰 분수이다.",
+          "acceptedAnswers": [
+            [
+              "큰"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-4-6-xc1",
+          "sourceIndex": 1166,
+          "proposalFingerprint": "ea07fe4865ad8c961beb2cca5f3aefe82248a479f1cd5406f305fe0aed231096",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은크기조각과큰개수로4/5선택의이유를 요청한다.",
+          "cReason": "같은1/5의조각수인큰분자를 비교한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e3-2-4-6-xc1",
+        "sourceIndex": 1166,
+        "proposalFingerprint": "ea07fe4865ad8c961beb2cca5f3aefe82248a479f1cd5406f305fe0aed231096",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "같은 조각의 크기와 조각 수를 구별하여 비교한다.",
+        "cReason": "조각 수와 분수의 크기를 연결하는 비교를 보존했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "분자와 분수 크기의 관계는 다른 두 양의 비교라 큰이라는 낱말이 반복돼도 무의미한 복사가 아니다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    }
+  ]
+}

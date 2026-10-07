@@ -1,0 +1,9 @@
+{
+  "status": "unadopted-candidate-with-manually-corrected-id-echo",
+  "notModelValidationPass": true,
+  "originalFailure": "Model added an extra 1-6 segment to only the first ID. All 20 input proposal fingerprints were echoed exactly and other 19 IDs/order matched.",
+  "originalModelId": "e3-1-6-5-6-xc8",
+  "sourceId": "e3-1-5-6-xc8",
+  "inputSha256": "c1b06355f5581f0a344048f95c59a440d1365b23c7d150aaf325daea0239557f",
+  "next": "Directly read the proposed math and original source for all 20, then explicitly choose whether to adopt. No editorial verdict or hash refreshed."
+}

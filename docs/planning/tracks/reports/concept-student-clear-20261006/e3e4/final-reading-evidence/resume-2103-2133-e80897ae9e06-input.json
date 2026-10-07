@@ -1,0 +1,2782 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2103,
+  "end": 2133,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2103,
+        "sourceFingerprint": "0233456fa9985d6992d1677755f7ce4d9644254406825321b6faa835ec4aba7d",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc14",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "세 분수의 덧셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모가 같으면 분수가 셋 이상이어도 {분자를 모두 더하고} 분모는 그대로 둔다.",
+        "example": {
+          "prompt": "$\\frac{1}{8}+\\frac{2}{8}+\\frac{3}{8}$에서 분자 셋을 한꺼번에 더해도 되는 까닭은?",
+          "answer": "모두 $\\frac{1}{8}$짜리 조각이라서"
+        },
+        "studentC": "분모가 같으면 분수가 셋 이상이어도 □ 분모는 그대로 둔다.",
+        "answers": [
+          "분자를 모두 더하고"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2103,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "0233456fa9985d6992d1677755f7ce4d9644254406825321b6faa835ec4aba7d",
+        "proposalFingerprint": "6e0262c7ff9a7b7263901621063e15946ad88985af4332ea9d63c37ffa7bb97a",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{8}+\\frac{2}{8}+\\frac{3}{8}$을 분자 셋을 모두 더하는 방식으로 계산해도 되는 까닭을 설명하시오.",
+        "bAnswer": "세 분수가 모두 $\\frac{1}{8}$짜리 조각이라 조각 수 $1$, $2$, $3$만 더하면 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모두 $\\frac{1}{8}$짜리 조각이다",
+              "분모가 같아 조각의 크기가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분자만 더해도 되는 까닭",
+        "bReason": "세 분수에서도 같은 단위 조각임을 설명",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 분수가 셋 이상이어도 {분자}끼리 모두 더하고 분모는 그대로 둔다.",
+        "cReason": "'분자를 모두 더하고' 긴 구절을 '분자' 낱말로 축소",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "세 분수의 덧셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 분수가 셋 이상이어도 {분자}끼리 모두 더하고 분모는 그대로 둔다.",
+        "cStudentSentence": "분모가 같은 분수가 셋 이상이어도 □끼리 모두 더하고 분모는 그대로 둔다.",
+        "cSlotAnswers": [
+          {
+            "expected": "분자",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{1}{8}+\\frac{2}{8}+\\frac{3}{8}$을 분자 셋을 모두 더하는 방식으로 계산해도 되는 까닭을 설명하시오.",
+          "answer": "세 분수가 모두 $\\frac{1}{8}$짜리 조각이라 조각 수 $1$, $2$, $3$만 더하면 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "모두 $\\frac{1}{8}$짜리 조각이다",
+                "분모가 같아 조각의 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 분수가 셋 이상이어도 {분자}끼리 모두 더하고 분모는 그대로 둔다.",
+          "acceptedAnswers": [
+            [
+              "분자"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2104,
+        "sourceFingerprint": "90ae606d0f5d9275cbda8edb6b72e81e51ee97dfc5e97d98a06c9497133589f7",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc15",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "분모가 같은 두 진분수의 합이 $1$보다 작을 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 같은 두 진분수는 {분자의 합이 분모보다 작으면} 합이 $1$보다 작다.",
+        "studentC": "분모가 같은 두 진분수는 □ 합이 $1$보다 작다.",
+        "answers": [
+          "분자의 합이 분모보다 작으면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2104,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "90ae606d0f5d9275cbda8edb6b72e81e51ee97dfc5e97d98a06c9497133589f7",
+        "proposalFingerprint": "916201cae7227360b0f6b9785c4cc1f85e3b4d704ec3fe0bed188745ce7cb125",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{7}+\\frac{3}{7}$이 $1$보다 작은지 분자를 이용해 판단하고, 그렇게 판단하는 까닭을 쓰시오.",
+        "bAnswer": "분자의 합 $2+3=5$가 분모 $7$보다 작아서 $1$보다 작다. $\\frac{7}{7}=1$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자의 합이 분모보다 작다",
+              "$5$가 $7$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{7}=1$보다 작다",
+              "$1$이 되려면 $7$조각이 필요하다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "합이 $1$보다 작은 판단",
+        "bReason": "분자의 합과 분모를 비교하는 근거 확인",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 두 진분수는 분자의 합이 분모보다 {작으면} 합이 $1$보다 작다.",
+        "cReason": "긴 조건 구절을 '작으면' 짧은 비교 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "적으면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모가 같은 두 진분수의 합이 $1$보다 작을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 두 진분수는 분자의 합이 분모보다 {작으면} 합이 $1$보다 작다.",
+        "cStudentSentence": "분모가 같은 두 진분수는 분자의 합이 분모보다 □ 합이 $1$보다 작다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작으면",
+            "equivalents": [
+              "적으면"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{2}{7}+\\frac{3}{7}$이 $1$보다 작은지 분자를 이용해 판단하고, 그렇게 판단하는 까닭을 쓰시오.",
+          "answer": "분자의 합 $2+3=5$가 분모 $7$보다 작아서 $1$보다 작다. $\\frac{7}{7}=1$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분자의 합이 분모보다 작다",
+                "$5$가 $7$보다 작다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{7}{7}=1$보다 작다",
+                "$1$이 되려면 $7$조각이 필요하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 두 진분수는 분자의 합이 분모보다 {작으면} 합이 $1$보다 작다.",
+          "acceptedAnswers": [
+            [
+              "작으면",
+              "적으면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2105,
+        "sourceFingerprint": "6fc93eb3311d3473e5925b9a776ba503ae32b8bfd9f1f531fade7a76cee94c2f",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc16",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "분모가 같은 두 진분수의 합이 $1$보다 클 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 같은 두 진분수는 {분자의 합이 분모보다 크면} 합이 $1$보다 크다.",
+        "studentC": "분모가 같은 두 진분수는 □ 합이 $1$보다 크다.",
+        "answers": [
+          "분자의 합이 분모보다 크면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2105,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "6fc93eb3311d3473e5925b9a776ba503ae32b8bfd9f1f531fade7a76cee94c2f",
+        "proposalFingerprint": "d60f73b43e55d49410c26f5c321216a15a9414e10790e4b92b5a5bf64a9f8ec3",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "합이 $1$보다 큰 판단",
+        "bReason": "xc15와 같은 비교 규칙의 반대 방향",
+        "exclusionReason": "xc15의 분자 합과 분모 비교 설명과 같은 목표라 B 중복",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 두 진분수는 분자의 합이 분모보다 {크면} 합이 $1$보다 크다.",
+        "cReason": "긴 조건 구절을 '크면' 짧은 비교 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "많으면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모가 같은 두 진분수의 합이 $1$보다 클 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 두 진분수는 분자의 합이 분모보다 {크면} 합이 $1$보다 크다.",
+        "cStudentSentence": "분모가 같은 두 진분수는 분자의 합이 분모보다 □ 합이 $1$보다 크다.",
+        "cSlotAnswers": [
+          {
+            "expected": "크면",
+            "equivalents": [
+              "많으면"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "분모가 같은 두 진분수는 분자의 합이 분모보다 {크면} 합이 $1$보다 크다.",
+          "acceptedAnswers": [
+            [
+              "크면",
+              "많으면"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc15와 같은 비교 규칙의 반대 방향"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2106,
+        "sourceFingerprint": "2d1850f5f17543978d5816de667a87a956d085fa1f6e608ea91b7d5004d92613",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc17",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "빈칸이 있는 분수 덧셈식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 크기의 조각이 $7$개가 되게 하려면 $\\frac{3}{8}+\\frac{\\triangle}{8}=\\frac{7}{8}$에서 더 필요한 조각 수를 구한다. $\\triangle$에는 {$4$}가 들어간다.",
+        "example": {
+          "prompt": "$\\frac{2}{9}+\\square=\\frac{7}{9}$의 $\\square$는 어떤 양인가?",
+          "answer": "보태어 합을 만드는 양"
+        },
+        "studentC": "같은 크기의 조각이 $7$개가 되게 하려면 $\\frac{3}{8}+\\frac{\\triangle}{8}=\\frac{7}{8}$에서 더 필요한 조각 수를 구한다. $\\triangle$에는 □가 들어간다.",
+        "answers": [
+          "$4$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2106,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "2d1850f5f17543978d5816de667a87a956d085fa1f6e608ea91b7d5004d92613",
+        "proposalFingerprint": "dc3603d1f0f21a7afb62a987f2bbb8893e20142e1e6dd5fe942a560c00f17cbc",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{9}+\\square=\\frac{7}{9}$에서 $\\square$에 들어갈 분수를 구하고, $\\frac{1}{9}$짜리 조각 수로 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{5}{9}$이다. $\\frac{1}{9}$이 $2$개에서 $7$개가 되려면 $5$개가 더 필요하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{5}{9}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{9}$이 $2$개에서 $7$개가 되려면 $5$개 더 필요하다",
+              "$7-2=5$개를 더 넣는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "빈칸 분수를 조각 수로 구하기",
+        "bReason": "'어떤 양' 모호한 원문 대신 구할 값을 지정",
+        "cDecision": "keep",
+        "cReason": "식을 보고 $7-3=4$로 답이 하나로 정해지는 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빈칸이 있는 분수 덧셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 크기의 조각이 $7$개가 되게 하려면 $\\frac{3}{8}+\\frac{\\triangle}{8}=\\frac{7}{8}$에서 더 필요한 조각 수를 구한다. $\\triangle$에는 {$4$}가 들어간다.",
+        "cStudentSentence": "같은 크기의 조각이 $7$개가 되게 하려면 $\\frac{3}{8}+\\frac{\\triangle}{8}=\\frac{7}{8}$에서 더 필요한 조각 수를 구한다. $\\triangle$에는 □가 들어간다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 크기의 조각이 $7$개가 되게 하려면 $\\frac{3}{8}+\\frac{\\triangle}{8}=\\frac{7}{8}$에서 더 필요한 조각 수를 구한다. $\\triangle$에는 □가 들어간다.",
+          "answers": [
+            "$4$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{2}{9}+\\square=\\frac{7}{9}$에서 $\\square$에 들어갈 분수를 구하고, $\\frac{1}{9}$짜리 조각 수로 까닭을 설명하시오.",
+          "answer": "$\\frac{5}{9}$이다. $\\frac{1}{9}$이 $2$개에서 $7$개가 되려면 $5$개가 더 필요하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{5}{9}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{1}{9}$이 $2$개에서 $7$개가 되려면 $5$개 더 필요하다",
+                "$7-2=5$개를 더 넣는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 크기의 조각이 $7$개가 되게 하려면 $\\frac{3}{8}+\\frac{\\triangle}{8}=\\frac{7}{8}$에서 더 필요한 조각 수를 구한다. $\\triangle$에는 {$4$}가 들어간다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2107,
+        "sourceFingerprint": "8b9e614523fac1604cf4e47185e6785537db500e3cd90e5772ef8a0f65e63ee7",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc18",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "같은 전체의 분수끼리 더하기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 같은 두 분수로 나타낸 양을 분자끼리 더하려면, 똑같이 나누기 전의 {전체} 크기도 같아야 한다.",
+        "example": {
+          "prompt": "큰 피자의 $\\frac{3}{8}$과 작은 피자의 $\\frac{2}{8}$를 큰 피자의 $\\frac{5}{8}$라 할 수 없는 까닭은?",
+          "answer": "작은 피자 조각이 더 작아서"
+        },
+        "studentC": "분모가 같은 두 분수로 나타낸 양을 분자끼리 더하려면, 똑같이 나누기 전의 □ 크기도 같아야 한다.",
+        "answers": [
+          "전체"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2107,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "8b9e614523fac1604cf4e47185e6785537db500e3cd90e5772ef8a0f65e63ee7",
+        "proposalFingerprint": "1a46b9afbf9521600147a7526db9d89fca2aa663d7d69e3e1fecb5a3404e5b96",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "큰 피자의 $\\frac{3}{8}$과 작은 피자의 $\\frac{2}{8}$를 더해 '큰 피자의 $\\frac{5}{8}$'라고 하면 안 되는 까닭을 설명하시오.",
+        "bAnswer": "두 피자의 크기가 달라 한 조각의 크기도 서로 다르기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 피자의 크기가 다르다",
+              "피자 조각의 크기가 다르다",
+              "전체가 같지 않다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "전체가 같아야 더하는 까닭",
+        "bReason": "전체 크기가 다르면 분수 합이 안 되는 이유",
+        "cDecision": "keep",
+        "cReason": "'나누기 전의 □ 크기'에서 '전체'가 자연스러운 낱말 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 전체의 분수끼리 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 두 분수로 나타낸 양을 분자끼리 더하려면, 똑같이 나누기 전의 {전체} 크기도 같아야 한다.",
+        "cStudentSentence": "분모가 같은 두 분수로 나타낸 양을 분자끼리 더하려면, 똑같이 나누기 전의 □ 크기도 같아야 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "전체",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모가 같은 두 분수로 나타낸 양을 분자끼리 더하려면, 똑같이 나누기 전의 □ 크기도 같아야 한다.",
+          "answers": [
+            "전체"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "큰 피자의 $\\frac{3}{8}$과 작은 피자의 $\\frac{2}{8}$를 더해 '큰 피자의 $\\frac{5}{8}$'라고 하면 안 되는 까닭을 설명하시오.",
+          "answer": "두 피자의 크기가 달라 한 조각의 크기도 서로 다르기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 피자의 크기가 다르다",
+                "피자 조각의 크기가 다르다",
+                "전체가 같지 않다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 두 분수로 나타낸 양을 분자끼리 더하려면, 똑같이 나누기 전의 {전체} 크기도 같아야 한다.",
+          "acceptedAnswers": [
+            [
+              "전체"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2108,
+        "sourceFingerprint": "b43694d0f4eed759337a6daef30931c86ab222517a9a300bcf00d3231f9290ed",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc20",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "가장 큰 합 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모가 같은 서로 다른 두 진분수의 합을 가장 크게 하려면 {가장 큰 분자}와 {그다음으로 큰 분자}를 고른다.",
+        "example": {
+          "prompt": "분모가 $9$인 두 진분수의 합이 $\\frac{17}{9}$이 될 수 없는 까닭은?",
+          "answer": "분자는 많아야 $8$이라서"
+        },
+        "studentC": "분모가 같은 서로 다른 두 진분수의 합을 가장 크게 하려면 □와 □를 고른다.",
+        "answers": [
+          "가장 큰 분자",
+          "그다음으로 큰 분자"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2108,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "b43694d0f4eed759337a6daef30931c86ab222517a9a300bcf00d3231f9290ed",
+        "proposalFingerprint": "642cf405e967d8027ec18d8a9caa895e5c3819def8f0c3f4b8fe6e578903abe4",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "분모가 $9$인 서로 다른 두 진분수를 골라 합을 가장 크게 만들려고 한다. 어떤 분자를 가진 두 분수를 골라야 하는지 쓰시오.",
+        "bAnswer": "분자가 가장 큰 $8$인 분수와 그다음으로 큰 $7$인 분수, 즉 $\\frac{8}{9}$과 $\\frac{7}{9}$을 고른다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자가 $8$과 $7$인 분수",
+              "$\\frac{8}{9}$과 $\\frac{7}{9}$",
+              "가장 큰 분자와 그다음으로 큰 분자"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "가장 큰 합이 되는 두 분수 고르기",
+        "bReason": "분모가 같을 때 분자가 큰 분수를 고르는 방법",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 서로 다른 두 진분수의 합을 가장 크게 하려면 분자가 {가장 큰} 분수와 분자가 {그다음으로 큰} 분수를 고른다.",
+        "cReason": "빈칸 두 개가 무엇인지 몰랐던 원문에 '분자'를 보여 줌",
+        "cSlotEquivalents": [
+          [
+            "제일 큰"
+          ],
+          [
+            "두 번째로 큰",
+            "둘째로 큰"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가장 큰 합 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 서로 다른 두 진분수의 합을 가장 크게 하려면 분자가 {가장 큰} 분수와 분자가 {그다음으로 큰} 분수를 고른다.",
+        "cStudentSentence": "분모가 같은 서로 다른 두 진분수의 합을 가장 크게 하려면 분자가 □ 분수와 분자가 □ 분수를 고른다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가장 큰",
+            "equivalents": [
+              "제일 큰"
+            ]
+          },
+          {
+            "expected": "그다음으로 큰",
+            "equivalents": [
+              "두 번째로 큰",
+              "둘째로 큰"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "분모가 $9$인 서로 다른 두 진분수를 골라 합을 가장 크게 만들려고 한다. 어떤 분자를 가진 두 분수를 골라야 하는지 쓰시오.",
+          "answer": "분자가 가장 큰 $8$인 분수와 그다음으로 큰 $7$인 분수, 즉 $\\frac{8}{9}$과 $\\frac{7}{9}$을 고른다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분자가 $8$과 $7$인 분수",
+                "$\\frac{8}{9}$과 $\\frac{7}{9}$",
+                "가장 큰 분자와 그다음으로 큰 분자"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 서로 다른 두 진분수의 합을 가장 크게 하려면 분자가 {가장 큰} 분수와 분자가 {그다음으로 큰} 분수를 고른다.",
+          "acceptedAnswers": [
+            [
+              "가장 큰",
+              "제일 큰"
+            ],
+            [
+              "그다음으로 큰",
+              "두 번째로 큰",
+              "둘째로 큰"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2109,
+        "sourceFingerprint": "82490ea3f3860e5321b8c2e4290493c7b8d859c506eddb06969ba22361353186",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc22",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "두 진분수의 합의 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모가 같은 두 진분수는 각각 $1$보다 작으므로 그 합은 $2$보다 {작다}.",
+        "studentC": "분모가 같은 두 진분수는 각각 $1$보다 작으므로 그 합은 $2$보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2109,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "82490ea3f3860e5321b8c2e4290493c7b8d859c506eddb06969ba22361353186",
+        "proposalFingerprint": "e30dfb8c443c38a8ff5ab9ae8ff9e4a47e50cd288cc0261bfec639969663bb98",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "분모가 같은 두 진분수의 합이 $2$보다 작은 까닭을 설명하시오.",
+        "bAnswer": "진분수는 각각 $1$보다 작아서 두 수를 더해도 $1+1=2$보다 작기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "진분수는 각각 $1$보다 작다",
+              "두 분수 모두 $1$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "진분수 합이 $2$ 미만인 까닭",
+        "bReason": "각각 $1$보다 작다는 근거를 직접 설명",
+        "cDecision": "keep",
+        "cReason": "이유가 문장에 있고 '작다' 한 낱말만 묻는 짧은 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 진분수의 합의 범위",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 두 진분수는 각각 $1$보다 작으므로 그 합은 $2$보다 {작다}.",
+        "cStudentSentence": "분모가 같은 두 진분수는 각각 $1$보다 작으므로 그 합은 $2$보다 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "작다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모가 같은 두 진분수는 각각 $1$보다 작으므로 그 합은 $2$보다 □.",
+          "answers": [
+            "작다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "분모가 같은 두 진분수의 합이 $2$보다 작은 까닭을 설명하시오.",
+          "answer": "진분수는 각각 $1$보다 작아서 두 수를 더해도 $1+1=2$보다 작기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "진분수는 각각 $1$보다 작다",
+                "두 분수 모두 $1$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 두 진분수는 각각 $1$보다 작으므로 그 합은 $2$보다 {작다}.",
+          "acceptedAnswers": [
+            [
+              "작다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2110,
+        "sourceFingerprint": "e5ba68f0fca8bdeec6a85febadfa89c8795ae2e92742b3aeab7dacdf61d1fd78",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc23",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "더하는 순서를 바꾼 분수의 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\frac{2}{9}+\\frac{5}{9}$와 $\\frac{5}{9}+\\frac{2}{9}$는 합이 {같다}.",
+        "studentC": "$\\frac{2}{9}+\\frac{5}{9}$와 $\\frac{5}{9}+\\frac{2}{9}$는 합이 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2110,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "e5ba68f0fca8bdeec6a85febadfa89c8795ae2e92742b3aeab7dacdf61d1fd78",
+        "proposalFingerprint": "ff021d07e96866d73331b387cce512e12f418dd1a35a8586cdc71e330a3be265",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{9}+\\frac{5}{9}$와 $\\frac{5}{9}+\\frac{2}{9}$의 합은 같은지 다른지 쓰고, 까닭을 설명하시오.",
+        "bAnswer": "같다. 어느 쪽이든 $\\frac{1}{9}$이 $2+5=7$개라 $\\frac{7}{9}$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합이 같다",
+              "같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{9}$이 $2$개와 $5$개를 합친 것이라 같다",
+              "더하는 순서가 달라도 조각 수의 합이 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "더하는 순서를 바꿔도 같은 합",
+        "bReason": "같음을 판단하고 조각 수로 이유를 말함",
+        "cDecision": "keep",
+        "cReason": "두 식이 보이고 '같다'만 묻는 짧은 비교 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "더하는 순서를 바꾼 분수의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{2}{9}+\\frac{5}{9}$와 $\\frac{5}{9}+\\frac{2}{9}$는 합이 {같다}.",
+        "cStudentSentence": "$\\frac{2}{9}+\\frac{5}{9}$와 $\\frac{5}{9}+\\frac{2}{9}$는 합이 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$\\frac{2}{9}+\\frac{5}{9}$와 $\\frac{5}{9}+\\frac{2}{9}$는 합이 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{2}{9}+\\frac{5}{9}$와 $\\frac{5}{9}+\\frac{2}{9}$의 합은 같은지 다른지 쓰고, 까닭을 설명하시오.",
+          "answer": "같다. 어느 쪽이든 $\\frac{1}{9}$이 $2+5=7$개라 $\\frac{7}{9}$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "합이 같다",
+                "같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{1}{9}$이 $2$개와 $5$개를 합친 것이라 같다",
+                "더하는 순서가 달라도 조각 수의 합이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{2}{9}+\\frac{5}{9}$와 $\\frac{5}{9}+\\frac{2}{9}$는 합이 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2111,
+        "sourceFingerprint": "bed453e50b1b320fa7d0f65b10df26d738d81f5169108a03a31ecfed92ec97f1",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc24",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "$1$을 기준으로 합 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 진분수의 합이 $2$에 얼마나 가까운지는 {각 분수가 $1$에서 모자란 양}을 모아 본다.",
+        "example": {
+          "prompt": "$\\frac{6}{7}+\\frac{5}{7}$가 $2$보다 $\\frac{3}{7}$ 작은 까닭은?",
+          "answer": "$\\frac{1}{7}$과 $\\frac{2}{7}$가 모자라서"
+        },
+        "studentC": "두 진분수의 합이 $2$에 얼마나 가까운지는 □을 모아 본다.",
+        "answers": [
+          "각 분수가 $1$에서 모자란 양"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2111,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "bed453e50b1b320fa7d0f65b10df26d738d81f5169108a03a31ecfed92ec97f1",
+        "proposalFingerprint": "b721338d1354457690df0888def2ab6b7c1168b851f311503826143b7261ae85",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{6}{7}+\\frac{5}{7}$는 $2$보다 얼마나 작은지, 각 분수가 $1$보다 얼마나 작은지를 이용해 구하고 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{6}{7}$은 $1$보다 $\\frac{1}{7}$, $\\frac{5}{7}$는 $1$보다 $\\frac{2}{7}$ 작아서 합은 $2$보다 $\\frac{1}{7}+\\frac{2}{7}=\\frac{3}{7}$ 작다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 분수가 $1$보다 모자란 양 $\\frac{1}{7}$, $\\frac{2}{7}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모자란 양을 더하면 $\\frac{3}{7}$",
+              "$\\frac{3}{7}$ 작다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$1$에서 모자란 양으로 어림",
+        "bReason": "모자란 양을 모아 $2$와의 차를 구함",
+        "cDecision": "rewrite",
+        "cAfter": "두 진분수의 합이 $2$에 얼마나 가까운지는 각 분수가 $1$에서 {모자란} 양을 모아 본다.",
+        "cReason": "긴 구절 빈칸을 '모자란' 한 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "부족한",
+            "덜 찬"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$1$을 기준으로 합 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 진분수의 합이 $2$에 얼마나 가까운지는 각 분수가 $1$에서 {모자란} 양을 모아 본다.",
+        "cStudentSentence": "두 진분수의 합이 $2$에 얼마나 가까운지는 각 분수가 $1$에서 □ 양을 모아 본다.",
+        "cSlotAnswers": [
+          {
+            "expected": "모자란",
+            "equivalents": [
+              "부족한",
+              "덜 찬"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{6}{7}+\\frac{5}{7}$는 $2$보다 얼마나 작은지, 각 분수가 $1$보다 얼마나 작은지를 이용해 구하고 까닭을 설명하시오.",
+          "answer": "$\\frac{6}{7}$은 $1$보다 $\\frac{1}{7}$, $\\frac{5}{7}$는 $1$보다 $\\frac{2}{7}$ 작아서 합은 $2$보다 $\\frac{1}{7}+\\frac{2}{7}=\\frac{3}{7}$ 작다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각 분수가 $1$보다 모자란 양 $\\frac{1}{7}$, $\\frac{2}{7}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "모자란 양을 더하면 $\\frac{3}{7}$",
+                "$\\frac{3}{7}$ 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 진분수의 합이 $2$에 얼마나 가까운지는 각 분수가 $1$에서 {모자란} 양을 모아 본다.",
+          "acceptedAnswers": [
+            [
+              "모자란",
+              "부족한",
+              "덜 찬"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2112,
+        "sourceFingerprint": "4c1f8b132d40462b3d497738d523963948472aabe445c98fff9351dcb7c0181a",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc25",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "분자끼리만 더하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모가 같으면 단위분수의 크기가 같아서 {단위분수의 개수}만 더하면 된다.",
+        "studentC": "분모가 같으면 단위분수의 크기가 같아서 □만 더하면 된다.",
+        "answers": [
+          "단위분수의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2112,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "4c1f8b132d40462b3d497738d523963948472aabe445c98fff9351dcb7c0181a",
+        "proposalFingerprint": "82ecf61c52eecf39465a20ca645017ca31ee962d70d3db360ff85dcb86ed6dbe",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{9}+\\frac{3}{9}$에서 분모는 더하지 않고 분자끼리만 더하는 까닭을 $\\frac{1}{9}$을 이용해 설명하시오.",
+        "bAnswer": "$\\frac{2}{9}$는 $\\frac{1}{9}$이 $2$개, $\\frac{3}{9}$은 $\\frac{1}{9}$이 $3$개로 조각의 크기가 같아서 개수 $2+3$만 더하면 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{9}$짜리 조각으로 크기가 같다",
+              "단위분수의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각의 개수만 더한다",
+              "$2+3$만 더한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분자만 더하는 까닭",
+        "bReason": "단위분수의 개수를 더한다는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같으면 단위분수의 크기가 같아서 단위분수의 {개수}만 더하면 된다.",
+        "cReason": "'단위분수의 개수'를 '개수' 하나만 묻는 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          [
+            "수",
+            "분자",
+            "조각 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분자끼리만 더하는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같으면 단위분수의 크기가 같아서 단위분수의 {개수}만 더하면 된다.",
+        "cStudentSentence": "분모가 같으면 단위분수의 크기가 같아서 단위분수의 □만 더하면 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "개수",
+            "equivalents": [
+              "수",
+              "분자",
+              "조각 수"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{2}{9}+\\frac{3}{9}$에서 분모는 더하지 않고 분자끼리만 더하는 까닭을 $\\frac{1}{9}$을 이용해 설명하시오.",
+          "answer": "$\\frac{2}{9}$는 $\\frac{1}{9}$이 $2$개, $\\frac{3}{9}$은 $\\frac{1}{9}$이 $3$개로 조각의 크기가 같아서 개수 $2+3$만 더하면 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{1}{9}$짜리 조각으로 크기가 같다",
+                "단위분수의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각의 개수만 더한다",
+                "$2+3$만 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같으면 단위분수의 크기가 같아서 단위분수의 {개수}만 더하면 된다.",
+          "acceptedAnswers": [
+            [
+              "개수",
+              "수",
+              "분자",
+              "조각 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2113,
+        "sourceFingerprint": "3ae4c5dd2b43f9e7e7bd1d59137ad32810343348e9dfeef73841159ce8de936f",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc2",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "분모가 같은 분수를 뺄 때 분모를 다루는 법",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분모가 같은 분수를 뺄 때 분모는 {그대로} 둔다.",
+        "studentC": "분모가 같은 분수를 뺄 때 분모는 □ 둔다.",
+        "answers": [
+          "그대로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2113,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "3ae4c5dd2b43f9e7e7bd1d59137ad32810343348e9dfeef73841159ce8de936f",
+        "proposalFingerprint": "9c95ce968d828f810015b3020e70b4a1cf160004e643bdd3001d6abd6b5b91f1",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{5}{7}-\\frac{2}{7}$를 계산할 때 분모 $7$을 빼지 않고 그대로 두는 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{1}{7}$짜리 조각 $5$개에서 $2$개를 덜어 내도 조각의 크기는 그대로라서 분모는 그대로 두고 분자만 뺀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조각의 크기가 그대로이다",
+              "$\\frac{1}{7}$짜리 조각이라 크기가 변하지 않는다",
+              "단위분수가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분모를 그대로 두는 까닭",
+        "bReason": "조각 크기 불변이라는 이유를 설명",
+        "cDecision": "keep",
+        "cReason": "'그대로'만 묻는 짧고 친숙한 낱말 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모가 같은 분수를 뺄 때 분모를 다루는 법",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 분수를 뺄 때 분모는 {그대로} 둔다.",
+        "cStudentSentence": "분모가 같은 분수를 뺄 때 분모는 □ 둔다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "그대로",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모가 같은 분수를 뺄 때 분모는 □ 둔다.",
+          "answers": [
+            "그대로"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{5}{7}-\\frac{2}{7}$를 계산할 때 분모 $7$을 빼지 않고 그대로 두는 까닭을 설명하시오.",
+          "answer": "$\\frac{1}{7}$짜리 조각 $5$개에서 $2$개를 덜어 내도 조각의 크기는 그대로라서 분모는 그대로 두고 분자만 뺀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조각의 크기가 그대로이다",
+                "$\\frac{1}{7}$짜리 조각이라 크기가 변하지 않는다",
+                "단위분수가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 분수를 뺄 때 분모는 {그대로} 둔다.",
+          "acceptedAnswers": [
+            [
+              "그대로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2114,
+        "sourceFingerprint": "a5c1f5e98b6819e4863c472ef6f5a7a6a997bc4ef6d350aeb6048f2b73883375",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc3",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "$1$을 분수로 나타내기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$은 $\\frac{5}{5}$, $\\frac{8}{8}$처럼 {분자와 분모가 같은} 분수로 나타낼 수 있다.",
+        "studentC": "$1$은 $\\frac{5}{5}$, $\\frac{8}{8}$처럼 □ 분수로 나타낼 수 있다.",
+        "answers": [
+          "분자와 분모가 같은"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2114,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "a5c1f5e98b6819e4863c472ef6f5a7a6a997bc4ef6d350aeb6048f2b73883375",
+        "proposalFingerprint": "5d832bb05c3cc6ef7847263360750f3f57bc0c6357268c01c6f65bf4047a4573",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$을 분모가 $6$인 분수로 나타내고, 그렇게 나타낼 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{6}{6}$이다. $\\frac{1}{6}$짜리 조각 $6$개를 모으면 전체 $1$이 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{6}{6}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$이 $6$개 모이면 $1$이다",
+              "분자와 분모가 같으면 $1$이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$1$을 분수로 바꾸기",
+        "bReason": "$\\frac{6}{6}$을 쓰고 $1$과 같은 이유를 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$1$은 $\\frac{5}{5}$, $\\frac{8}{8}$처럼 분자와 분모가 {같은} 분수로 나타낼 수 있다.",
+        "cReason": "긴 구절 대신 '같은' 한 낱말만 묻는 빈칸으로 변경",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$1$을 분수로 나타내기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1$은 $\\frac{5}{5}$, $\\frac{8}{8}$처럼 분자와 분모가 {같은} 분수로 나타낼 수 있다.",
+        "cStudentSentence": "$1$은 $\\frac{5}{5}$, $\\frac{8}{8}$처럼 분자와 분모가 □ 분수로 나타낼 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1$을 분모가 $6$인 분수로 나타내고, 그렇게 나타낼 수 있는 까닭을 쓰시오.",
+          "answer": "$\\frac{6}{6}$이다. $\\frac{1}{6}$짜리 조각 $6$개를 모으면 전체 $1$이 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{6}{6}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{1}{6}$이 $6$개 모이면 $1$이다",
+                "분자와 분모가 같으면 $1$이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1$은 $\\frac{5}{5}$, $\\frac{8}{8}$처럼 분자와 분모가 {같은} 분수로 나타낼 수 있다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2115,
+        "sourceFingerprint": "8ea80921a9bd5075558ba88ece1713adc1a850b3d921bf0b561c7a38bc16894c",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc4",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "$1$에서 분수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$1$에서 분수를 뺄 때는 $1$을 {빼는 분수와 분모가 같은 분수}로 바꾼다.",
+        "example": {
+          "prompt": "$1-\\frac{3}{5}$에서 $1$을 $\\frac{5}{5}$로 바꾸는 까닭은?",
+          "answer": "조각의 크기를 같게 하려고"
+        },
+        "studentC": "$1$에서 분수를 뺄 때는 $1$을 □로 바꾼다.",
+        "answers": [
+          "빼는 분수와 분모가 같은 분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2115,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "8ea80921a9bd5075558ba88ece1713adc1a850b3d921bf0b561c7a38bc16894c",
+        "proposalFingerprint": "1544c0d4d17bc2b3dd8676582d85322dfd0523293e554ba2786e2eb1ee628cce",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$1-\\frac{3}{5}$을 계산할 때 $1$을 $\\frac{5}{5}$로 바꾸는 까닭을 설명하시오.",
+        "bAnswer": "빼는 $\\frac{3}{5}$과 조각의 크기를 같게 해서 분자끼리 뺄 수 있게 하려는 것이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모를 같게 하려고",
+              "조각의 크기를 같게 하려고",
+              "분자끼리 뺄 수 있게 하려고"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$1$을 분수로 바꾸는 까닭",
+        "bReason": "분모를 맞춰야 뺄 수 있다는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$1$에서 분수를 뺄 때는 $1$을 빼는 분수와 {분모}가 같은 분수로 바꾼다.",
+        "cReason": "긴 구절 빈칸을 '분모' 한 낱말로 좁힘",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$1$에서 분수 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1$에서 분수를 뺄 때는 $1$을 빼는 분수와 {분모}가 같은 분수로 바꾼다.",
+        "cStudentSentence": "$1$에서 분수를 뺄 때는 $1$을 빼는 분수와 □가 같은 분수로 바꾼다.",
+        "cSlotAnswers": [
+          {
+            "expected": "분모",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1-\\frac{3}{5}$을 계산할 때 $1$을 $\\frac{5}{5}$로 바꾸는 까닭을 설명하시오.",
+          "answer": "빼는 $\\frac{3}{5}$과 조각의 크기를 같게 해서 분자끼리 뺄 수 있게 하려는 것이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분모를 같게 하려고",
+                "조각의 크기를 같게 하려고",
+                "분자끼리 뺄 수 있게 하려고"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1$에서 분수를 뺄 때는 $1$을 빼는 분수와 {분모}가 같은 분수로 바꾼다.",
+          "acceptedAnswers": [
+            [
+              "분모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2116,
+        "sourceFingerprint": "086793f33c172a57aa33156cb236fb1e5b07380bfb4a3c168c431aedc6b3fbf5",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc5",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "그림으로 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "전체를 {같은 크기의 칸}으로 나눈 그림에서 빼는 만큼 지우고 남은 칸을 세면 차를 구할 수 있다.",
+        "studentC": "전체를 □으로 나눈 그림에서 빼는 만큼 지우고 남은 칸을 세면 차를 구할 수 있다.",
+        "answers": [
+          "같은 크기의 칸"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2116,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "086793f33c172a57aa33156cb236fb1e5b07380bfb4a3c168c431aedc6b3fbf5",
+        "proposalFingerprint": "e3f08fc239f4cb8064f4a9481057479b2b6e7fca7569d3380f609f95afc409d1",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "전체를 $8$칸으로 똑같이 나눈 그림이 있다고 하자. $5$칸에 색칠한 양에서 $\\frac{2}{8}$를 빼는 방법과 남는 양을 쓰시오.",
+        "bAnswer": "색칠한 $5$칸 중 $2$칸을 지우고 남은 $3$칸을 세면 $\\frac{3}{8}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$칸을 지운다",
+              "빼는 만큼 칸을 지운다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 칸을 세어 $\\frac{3}{8}$",
+              "$\\frac{3}{8}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "그림에서 칸을 지워 빼기",
+        "bReason": "그림 설명을 글로 주어 혼자 풀 수 있게 함",
+        "cDecision": "rewrite",
+        "cAfter": "전체를 {같은} 크기의 칸으로 나눈 그림에서 빼는 만큼 지우고 남은 칸을 세면 차를 구할 수 있다.",
+        "cReason": "'□으로' 조사 문제와 긴 구절을 '같은' 낱말로 정리",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그림으로 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "전체를 {같은} 크기의 칸으로 나눈 그림에서 빼는 만큼 지우고 남은 칸을 세면 차를 구할 수 있다.",
+        "cStudentSentence": "전체를 □ 크기의 칸으로 나눈 그림에서 빼는 만큼 지우고 남은 칸을 세면 차를 구할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "전체를 $8$칸으로 똑같이 나눈 그림이 있다고 하자. $5$칸에 색칠한 양에서 $\\frac{2}{8}$를 빼는 방법과 남는 양을 쓰시오.",
+          "answer": "색칠한 $5$칸 중 $2$칸을 지우고 남은 $3$칸을 세면 $\\frac{3}{8}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$칸을 지운다",
+                "빼는 만큼 칸을 지운다"
+              ]
+            },
+            {
+              "anyOf": [
+                "남은 칸을 세어 $\\frac{3}{8}$",
+                "$\\frac{3}{8}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "전체를 {같은} 크기의 칸으로 나눈 그림에서 빼는 만큼 지우고 남은 칸을 세면 차를 구할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2117,
+        "sourceFingerprint": "874484e9c319ba743594d0c4226a049ee8dd7048a5299d81804083980cdab43a",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc6",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "같은 분수끼리의 차",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$\\frac{4}{9}-\\frac{4}{9}$처럼 같은 분수를 빼면 차는 {$0$}이다.",
+        "studentC": "$\\frac{4}{9}-\\frac{4}{9}$처럼 같은 분수를 빼면 차는 □이다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2117,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "874484e9c319ba743594d0c4226a049ee8dd7048a5299d81804083980cdab43a",
+        "proposalFingerprint": "3017f9f61fd182053291f9defd558c664086cb862d24a0ee8c64584bdddc88fd",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{4}{9}-\\frac{4}{9}$의 값을 구하고, 그 까닭을 쓰시오.",
+        "bAnswer": "$0$이다. 같은 양을 모두 덜어 내면 남는 것이 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 양을 빼면 남는 것이 없다",
+              "$4$조각에서 $4$조각을 빼서 $0$조각"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "같은 분수를 뺀 차",
+        "bReason": "값 $0$과 이유를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "식이 보이고 $0$ 한 답만 묻는 선명한 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 분수끼리의 차",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{4}{9}-\\frac{4}{9}$처럼 같은 분수를 빼면 차는 {$0$}이다.",
+        "cStudentSentence": "$\\frac{4}{9}-\\frac{4}{9}$처럼 같은 분수를 빼면 차는 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$\\frac{4}{9}-\\frac{4}{9}$처럼 같은 분수를 빼면 차는 □이다.",
+          "answers": [
+            "$0$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{4}{9}-\\frac{4}{9}$의 값을 구하고, 그 까닭을 쓰시오.",
+          "answer": "$0$이다. 같은 양을 모두 덜어 내면 남는 것이 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0$"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 양을 빼면 남는 것이 없다",
+                "$4$조각에서 $4$조각을 빼서 $0$조각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{4}{9}-\\frac{4}{9}$처럼 같은 분수를 빼면 차는 {$0$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2118,
+        "sourceFingerprint": "059f75f9e00712586786580b699d2b3ce7c274f78338dc556675912f11b4a0b6",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc7",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "수직선에서 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "수직선에서 $\\frac{5}{6}$부터 $\\frac{1}{6}$짜리 $2$칸을 {되돌아가면} $\\frac{3}{6}$이다.",
+        "studentC": "수직선에서 $\\frac{5}{6}$부터 $\\frac{1}{6}$짜리 $2$칸을 □ $\\frac{3}{6}$이다.",
+        "answers": [
+          "되돌아가면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2118,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "059f75f9e00712586786580b699d2b3ce7c274f78338dc556675912f11b4a0b6",
+        "proposalFingerprint": "7371c612d310a783d44ab0c5de06266b77b2e5587da5f3f43725c888d95c4aea",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "수직선에서 $\\frac{5}{6}$부터 $\\frac{1}{6}$짜리 $2$칸을 빼는 방법을 쓰고, 도착하는 수를 쓰시오.",
+        "bAnswer": "$0$이 있는 왼쪽으로 $\\frac{1}{6}$짜리 $2$칸 되돌아가 $\\frac{3}{6}$에 도착한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "왼쪽으로 간다",
+              "$0$ 쪽으로 되돌아간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{6}$에 도착한다",
+              "$\\frac{3}{6}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "수직선에서 되돌아가며 빼기",
+        "bReason": "방향과 도착한 수를 함께 묻는 질문",
+        "cDecision": "rewrite",
+        "cAfter": "수직선에서 $\\frac{5}{6}$부터 $\\frac{1}{6}$짜리 $2$칸을 {왼쪽}으로 가면 $\\frac{3}{6}$이다.",
+        "cReason": "'되돌아가면'보다 친숙한 '왼쪽' 낱말 빈칸으로 변경",
+        "cSlotEquivalents": [
+          [
+            "뒤쪽",
+            "$0$ 쪽"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "수직선에서 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수직선에서 $\\frac{5}{6}$부터 $\\frac{1}{6}$짜리 $2$칸을 {왼쪽}으로 가면 $\\frac{3}{6}$이다.",
+        "cStudentSentence": "수직선에서 $\\frac{5}{6}$부터 $\\frac{1}{6}$짜리 $2$칸을 □으로 가면 $\\frac{3}{6}$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "왼쪽",
+            "equivalents": [
+              "뒤쪽",
+              "$0$ 쪽"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "수직선에서 $\\frac{5}{6}$부터 $\\frac{1}{6}$짜리 $2$칸을 빼는 방법을 쓰고, 도착하는 수를 쓰시오.",
+          "answer": "$0$이 있는 왼쪽으로 $\\frac{1}{6}$짜리 $2$칸 되돌아가 $\\frac{3}{6}$에 도착한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "왼쪽으로 간다",
+                "$0$ 쪽으로 되돌아간다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{3}{6}$에 도착한다",
+                "$\\frac{3}{6}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수직선에서 $\\frac{5}{6}$부터 $\\frac{1}{6}$짜리 $2$칸을 {왼쪽}으로 가면 $\\frac{3}{6}$이다.",
+          "acceptedAnswers": [
+            [
+              "왼쪽",
+              "뒤쪽",
+              "$0$ 쪽"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2119,
+        "sourceFingerprint": "227c8d43bb379422adac164db0a1f5dcb21a2220110fa4465f865adeafb08d41",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc10",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "분모끼리 빼는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 같은 분수를 뺄 때 분모끼리 빼면 {분모가 $0$이 되는} 잘못이 생긴다.",
+        "studentC": "분모가 같은 분수를 뺄 때 분모끼리 빼면 □ 잘못이 생긴다.",
+        "answers": [
+          "분모가 $0$이 되는"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2119,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "227c8d43bb379422adac164db0a1f5dcb21a2220110fa4465f865adeafb08d41",
+        "proposalFingerprint": "744998473bded9f5e23f4756b3ee2996d0cb2740e23d02d27368e46a153a55fc",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc10",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "분모끼리 빼는 오류",
+        "bReason": "xc2와 같은 분모 처리 목표",
+        "exclusionReason": "분모를 그대로 두는 이유를 묻는 xc2와 같은 목표라 B 중복",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 분수를 뺄 때 분모끼리 빼면 분모가 {$0$}이 되는 잘못이 생긴다.",
+        "cReason": "'분모가 $0$이 되는' 구절 대신 $0$ 한 답만 묻는 빈칸으로 축소",
+        "cSlotEquivalents": [
+          [
+            "영"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모끼리 빼는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 분수를 뺄 때 분모끼리 빼면 분모가 {$0$}이 되는 잘못이 생긴다.",
+        "cStudentSentence": "분모가 같은 분수를 뺄 때 분모끼리 빼면 분모가 □이 되는 잘못이 생긴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": [
+              "영"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "분모가 같은 분수를 뺄 때 분모끼리 빼면 분모가 {$0$}이 되는 잘못이 생긴다.",
+          "acceptedAnswers": [
+            [
+              "$0$",
+              "영"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc2와 같은 분모 처리 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2120,
+        "sourceFingerprint": "be693ff54eb6dd2f496208eb72caa6ca4e8c1092bb14db4858c4551c7722f976",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc11",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "덧셈으로 뺄셈 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$는 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$로 {확인한다}.",
+        "studentC": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$는 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$로 □.",
+        "answers": [
+          "확인한다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2120,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "be693ff54eb6dd2f496208eb72caa6ca4e8c1092bb14db4858c4551c7722f976",
+        "proposalFingerprint": "1d9fa5f1bca0a9851729b9f3f4dca6358b65ac70c0246e8c4b42154de9cf9777",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$가 맞는지 덧셈식으로 확인하는 방법을 쓰시오.",
+        "bAnswer": "차와 빼는 수를 더해 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$이 처음 수와 같은지 본다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "차와 빼는 수를 더한다",
+              "$\\frac{4}{9}+\\frac{3}{9}$을 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 수와 같은지 본다",
+              "$\\frac{7}{9}$이 되는지 본다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 검산",
+        "bReason": "검산 방법과 비교 대상을 확인",
+        "cDecision": "keep",
+        "cReason": "두 식이 보이는 짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "검산한다",
+            "확인할 수 있다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$는 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$로 {확인한다}.",
+        "cStudentSentence": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$는 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "확인한다",
+            "equivalents": [
+              "검산한다",
+              "확인할 수 있다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$는 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$로 □.",
+          "answers": [
+            "확인한다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$가 맞는지 덧셈식으로 확인하는 방법을 쓰시오.",
+          "answer": "차와 빼는 수를 더해 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$이 처음 수와 같은지 본다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "차와 빼는 수를 더한다",
+                "$\\frac{4}{9}+\\frac{3}{9}$을 계산한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "처음 수와 같은지 본다",
+                "$\\frac{7}{9}$이 되는지 본다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$는 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$로 {확인한다}.",
+          "acceptedAnswers": [
+            [
+              "확인한다",
+              "검산한다",
+              "확인할 수 있다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2121,
+        "sourceFingerprint": "ed44c1525159877edfef5aa6808ed2449337cff3ea6c4f595d6ac9dcef16b8ea",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc12",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "빼는 수를 모를 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "뺄셈식에서 빼는 수를 모르면 {처음 수에서 차를 빼서} 구한다.",
+        "example": {
+          "prompt": "$\\frac{6}{7}-\\square=\\frac{2}{7}$의 $\\square$를 $\\frac{6}{7}-\\frac{2}{7}$로 구하는 까닭은?",
+          "answer": "$\\square$와 차를 더하면 처음 수라서"
+        },
+        "studentC": "뺄셈식에서 빼는 수를 모르면 □ 구한다.",
+        "answers": [
+          "처음 수에서 차를 빼서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2121,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "ed44c1525159877edfef5aa6808ed2449337cff3ea6c4f595d6ac9dcef16b8ea",
+        "proposalFingerprint": "0907b5d84d9a049ebd576dbaa9581d681ab9577656f12b80c907a03c9f919d18",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{6}{7}-\\square=\\frac{2}{7}$의 $\\square$를 $\\frac{6}{7}-\\frac{2}{7}$로 구하는 까닭을 설명하시오.",
+        "bAnswer": "$\\square$와 차 $\\frac{2}{7}$를 더하면 처음 수 $\\frac{6}{7}$이 되므로, 처음 수에서 차를 빼면 $\\square$가 남기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빼는 수와 차를 더하면 처음 수가 된다",
+              "처음 수에서 차를 빼면 빼는 수가 남는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "빼는 수를 뺄셈으로 구하는 까닭",
+        "bReason": "덧셈식 관계로 뺄셈 선택 이유를 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{6}{7}-\\square=\\frac{2}{7}$에서 $\\square$는 $\\frac{6}{7}$에서 $\\frac{2}{7}$를 {빼서} 구한다.",
+        "cReason": "숨은 수 이름 대신 실제 식을 보이고 '빼서'만 묻도록 변경",
+        "cSlotEquivalents": [
+          [
+            "뺀",
+            "뺄셈으로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빼는 수를 모를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{6}{7}-\\square=\\frac{2}{7}$에서 $\\square$는 $\\frac{6}{7}$에서 $\\frac{2}{7}$를 {빼서} 구한다.",
+        "cStudentSentence": "$\\frac{6}{7}-\\square=\\frac{2}{7}$에서 $\\square$는 $\\frac{6}{7}$에서 $\\frac{2}{7}$를 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빼서",
+            "equivalents": [
+              "뺀",
+              "뺄셈으로"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{6}{7}-\\square=\\frac{2}{7}$의 $\\square$를 $\\frac{6}{7}-\\frac{2}{7}$로 구하는 까닭을 설명하시오.",
+          "answer": "$\\square$와 차 $\\frac{2}{7}$를 더하면 처음 수 $\\frac{6}{7}$이 되므로, 처음 수에서 차를 빼면 $\\square$가 남기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "빼는 수와 차를 더하면 처음 수가 된다",
+                "처음 수에서 차를 빼면 빼는 수가 남는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{6}{7}-\\square=\\frac{2}{7}$에서 $\\square$는 $\\frac{6}{7}$에서 $\\frac{2}{7}$를 {빼서} 구한다.",
+          "acceptedAnswers": [
+            [
+              "빼서",
+              "뺀",
+              "뺄셈으로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2122,
+        "sourceFingerprint": "8d53be6d22229097c6649d67ec02ff38ea3c97ec7ebbc9db1896e133e6f6e229",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc13",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "처음 수를 모를 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "뺄셈식에서 빼어지는 수를 모르면 {차에 빼는 수를 더해서} 구한다.",
+        "example": {
+          "prompt": "$\\square-\\frac{3}{10}=\\frac{5}{10}$의 $\\square$를 덧셈으로 구하는 까닭은?",
+          "answer": "덜어 낸 것을 되돌려 놓아서"
+        },
+        "studentC": "뺄셈식에서 빼어지는 수를 모르면 □ 구한다.",
+        "answers": [
+          "차에 빼는 수를 더해서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2122,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "8d53be6d22229097c6649d67ec02ff38ea3c97ec7ebbc9db1896e133e6f6e229",
+        "proposalFingerprint": "b22ed3ab49d50843945abcd4f4b8df82a8b506362a2291b4451fafd57c7c2d52",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\square-\\frac{3}{10}=\\frac{5}{10}$의 $\\square$를 덧셈으로 구하는 까닭을 설명하시오.",
+        "bAnswer": "덜어 낸 $\\frac{3}{10}$을 남은 $\\frac{5}{10}$에 되돌려 놓으면 처음 수가 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "덜어 낸 것을 다시 더하면 처음 수가 된다",
+              "차와 빼는 수를 더하면 처음 수이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "처음 수를 덧셈으로 구하는 까닭",
+        "bReason": "덜어 낸 양을 되돌린다는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$\\square-\\frac{3}{10}=\\frac{5}{10}$에서 $\\square$는 $\\frac{5}{10}$와 $\\frac{3}{10}$을 {더해서} 구한다.",
+        "cReason": "'빼어지는 수' 숨은 이름을 없애고 식에서 '더해서' 묻도록 변경",
+        "cSlotEquivalents": [
+          [
+            "합해서",
+            "더하여"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "처음 수를 모를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\square-\\frac{3}{10}=\\frac{5}{10}$에서 $\\square$는 $\\frac{5}{10}$와 $\\frac{3}{10}$을 {더해서} 구한다.",
+        "cStudentSentence": "$\\square-\\frac{3}{10}=\\frac{5}{10}$에서 $\\square$는 $\\frac{5}{10}$와 $\\frac{3}{10}$을 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "더해서",
+            "equivalents": [
+              "합해서",
+              "더하여"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\square-\\frac{3}{10}=\\frac{5}{10}$의 $\\square$를 덧셈으로 구하는 까닭을 설명하시오.",
+          "answer": "덜어 낸 $\\frac{3}{10}$을 남은 $\\frac{5}{10}$에 되돌려 놓으면 처음 수가 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "덜어 낸 것을 다시 더하면 처음 수가 된다",
+                "차와 빼는 수를 더하면 처음 수이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\square-\\frac{3}{10}=\\frac{5}{10}$에서 $\\square$는 $\\frac{5}{10}$와 $\\frac{3}{10}$을 {더해서} 구한다.",
+          "acceptedAnswers": [
+            [
+              "더해서",
+              "합해서",
+              "더하여"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2123,
+        "sourceFingerprint": "003b53eb298c7b0bb63713931b0461131730203e74357c5f8372be575f870565",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc14",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "$1$에서 뺀 차의 분자",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1-\\frac{\\square}{9}$의 차의 분자는 $9$에서 $\\square$를 {뺀 수}이다.",
+        "studentC": "$1-\\frac{\\square}{9}$의 차의 분자는 $9$에서 $\\square$를 □이다.",
+        "answers": [
+          "뺀 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2123,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "003b53eb298c7b0bb63713931b0461131730203e74357c5f8372be575f870565",
+        "proposalFingerprint": "c511c9de3ced165e63bdc6bf41d5ccc7a570c738292a6b73cb0db39f780f760d",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "$1$에서 뺀 차의 분자",
+        "bReason": "xc4의 $1$ 바꿔 빼기와 같은 목표",
+        "exclusionReason": "$1$을 분모가 같은 분수로 바꿔 분자끼리 빼는 방법이 xc4와 중복",
+        "cDecision": "rewrite",
+        "cAfter": "$1-\\frac{2}{9}$를 $\\frac{9}{9}-\\frac{2}{9}$로 바꾸어 계산하면 분자는 $9-2=$ {$7$}이다.",
+        "cReason": "원문은 $\\square$와 빈칸 □가 겹쳐 혼동되어 실제 식으로 교체",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$1$에서 뺀 차의 분자",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1-\\frac{2}{9}$를 $\\frac{9}{9}-\\frac{2}{9}$로 바꾸어 계산하면 분자는 $9-2=$ {$7$}이다.",
+        "cStudentSentence": "$1-\\frac{2}{9}$를 $\\frac{9}{9}-\\frac{2}{9}$로 바꾸어 계산하면 분자는 $9-2=$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$7$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$1-\\frac{2}{9}$를 $\\frac{9}{9}-\\frac{2}{9}$로 바꾸어 계산하면 분자는 $9-2=$ {$7$}이다.",
+          "acceptedAnswers": [
+            [
+              "$7$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4의 $1$ 바꿔 빼기와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2124,
+        "sourceFingerprint": "5bc2f8fbaf228c1991f63ea5fac1abf97146c07a33998001412d85764365b505",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc17",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "두 분수의 차를 구할 때 빼는 차례",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 분수의 크기의 차를 구할 때는 큰 분수에서 {작은 분수}를 뺀다.",
+        "studentC": "두 분수의 크기의 차를 구할 때는 큰 분수에서 □를 뺀다.",
+        "answers": [
+          "작은 분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2124,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "5bc2f8fbaf228c1991f63ea5fac1abf97146c07a33998001412d85764365b505",
+        "proposalFingerprint": "7a42aae6643249ea5600d8912af235b00ed2c7bd7607b0aa943a5ee12c1e0589",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{7}$와 $\\frac{5}{7}$의 크기의 차를 구하는 뺄셈식을 쓰시오.",
+        "bAnswer": "$\\frac{5}{7}-\\frac{2}{7}$ (큰 분수에서 작은 분수를 뺀다)",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{5}{7}-\\frac{2}{7}$",
+              "큰 분수에서 작은 분수를 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "큰 분수에서 작은 분수 빼기",
+        "bReason": "차를 구하는 식의 순서를 직접 확인",
+        "cDecision": "keep",
+        "cReason": "큰/작은 비교 낱말만 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "작은 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 분수의 차를 구할 때 빼는 차례",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 분수의 크기의 차를 구할 때는 큰 분수에서 {작은 분수}를 뺀다.",
+        "cStudentSentence": "두 분수의 크기의 차를 구할 때는 큰 분수에서 □를 뺀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작은 분수",
+            "equivalents": [
+              "작은 수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 분수의 크기의 차를 구할 때는 큰 분수에서 □를 뺀다.",
+          "answers": [
+            "작은 분수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{2}{7}$와 $\\frac{5}{7}$의 크기의 차를 구하는 뺄셈식을 쓰시오.",
+          "answer": "$\\frac{5}{7}-\\frac{2}{7}$ (큰 분수에서 작은 분수를 뺀다)",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{5}{7}-\\frac{2}{7}$",
+                "큰 분수에서 작은 분수를 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 분수의 크기의 차를 구할 때는 큰 분수에서 {작은 분수}를 뺀다.",
+          "acceptedAnswers": [
+            [
+              "작은 분수",
+              "작은 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2125,
+        "sourceFingerprint": "ae2254bce9a53e02e6f19dfbeee6a774b3a1f47236c382ad2ebe1007f78c5841",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc18",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "세 분수의 뺄셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모가 같은 분수를 이어서 뺄 때는 분모는 그대로 두고 {분자에서 차례로 뺀다}.",
+        "example": {
+          "prompt": "$\\frac{8}{9}-\\frac{2}{9}-\\frac{3}{9}$에서 분자만 차례로 빼도 되는 까닭은?",
+          "answer": "모두 $\\frac{1}{9}$짜리 조각이라서"
+        },
+        "studentC": "분모가 같은 분수를 이어서 뺄 때는 분모는 그대로 두고 □.",
+        "answers": [
+          "분자에서 차례로 뺀다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2125,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "ae2254bce9a53e02e6f19dfbeee6a774b3a1f47236c382ad2ebe1007f78c5841",
+        "proposalFingerprint": "9ea8783c40e4956c1ac2d8cf481015695d032dab9add02fcf92b389ea32c1ad4",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{8}{9}-\\frac{2}{9}-\\frac{3}{9}$에서 분자만 차례로 빼도 되는 까닭을 설명하시오.",
+        "bAnswer": "세 분수가 모두 $\\frac{1}{9}$짜리 조각이라 $8$개에서 $2$개, $3$개를 차례로 덜어 내면 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모두 $\\frac{1}{9}$짜리 조각이다",
+              "분모가 같아 조각의 크기가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분자만 차례로 빼는 까닭",
+        "bReason": "세 분수에서도 단위 조각이 같음을 설명",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 분수를 이어서 뺄 때는 분모는 그대로 두고 {분자}끼리 차례로 뺀다.",
+        "cReason": "문장 복원 빈칸을 '분자' 낱말 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "세 분수의 뺄셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 분수를 이어서 뺄 때는 분모는 그대로 두고 {분자}끼리 차례로 뺀다.",
+        "cStudentSentence": "분모가 같은 분수를 이어서 뺄 때는 분모는 그대로 두고 □끼리 차례로 뺀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "분자",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{8}{9}-\\frac{2}{9}-\\frac{3}{9}$에서 분자만 차례로 빼도 되는 까닭을 설명하시오.",
+          "answer": "세 분수가 모두 $\\frac{1}{9}$짜리 조각이라 $8$개에서 $2$개, $3$개를 차례로 덜어 내면 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "모두 $\\frac{1}{9}$짜리 조각이다",
+                "분모가 같아 조각의 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 분수를 이어서 뺄 때는 분모는 그대로 두고 {분자}끼리 차례로 뺀다.",
+          "acceptedAnswers": [
+            [
+              "분자"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2126,
+        "sourceFingerprint": "adaa157e2978117e7f6f2369e7fcc924f3f52a6d7855f8a56ecc9a57a83fcbbf",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc19",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "차례로 빼기와 한꺼번에 빼기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 수에서 두 분수를 차례로 빼는 것은 {두 분수의 합을 한 번에 빼는 것}과 결과가 같다.",
+        "example": {
+          "prompt": "$1-\\frac{2}{7}-\\frac{3}{7}$을 $1-\\frac{5}{7}$로 계산해도 되는 까닭은?",
+          "answer": "덜어 낸 양이 모두 $\\frac{5}{7}$라서"
+        },
+        "studentC": "같은 수에서 두 분수를 차례로 빼는 것은 □과 결과가 같다.",
+        "answers": [
+          "두 분수의 합을 한 번에 빼는 것"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2126,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "adaa157e2978117e7f6f2369e7fcc924f3f52a6d7855f8a56ecc9a57a83fcbbf",
+        "proposalFingerprint": "0c27609871b377ef6ebdda7f9325b3f70eb7b59a98c02b130890630f953a67f0",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$1-\\frac{2}{7}-\\frac{3}{7}$을 $1-\\frac{5}{7}$로 계산해도 되는 까닭을 설명하시오.",
+        "bAnswer": "덜어 낸 양 $\\frac{2}{7}$와 $\\frac{3}{7}$을 합하면 한꺼번에 덜어 낸 $\\frac{5}{7}$와 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "덜어 낸 양을 합치면 $\\frac{5}{7}$이다",
+              "두 분수의 합을 한 번에 빼도 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차례로 빼기와 합을 빼기",
+        "bReason": "덜어 낸 양의 합이 같다는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$1-\\frac{2}{7}-\\frac{3}{7}$은 두 분수를 먼저 더해 한 번에 빼는 $1-$ {$\\frac{5}{7}$}와 결과가 같다.",
+        "cReason": "긴 구절 빈칸 대신 실제 계산 $\\frac{5}{7}$를 묻도록 변경 분수는 분자를 마지막에 읽는 소리에 맞춰 조사를 고친다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차례로 빼기와 한꺼번에 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1-\\frac{2}{7}-\\frac{3}{7}$은 두 분수를 먼저 더해 한 번에 빼는 $1-$ {$\\frac{5}{7}$}와 결과가 같다.",
+        "cStudentSentence": "$1-\\frac{2}{7}-\\frac{3}{7}$은 두 분수를 먼저 더해 한 번에 빼는 $1-$ □와 결과가 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{5}{7}$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1-\\frac{2}{7}-\\frac{3}{7}$을 $1-\\frac{5}{7}$로 계산해도 되는 까닭을 설명하시오.",
+          "answer": "덜어 낸 양 $\\frac{2}{7}$와 $\\frac{3}{7}$을 합하면 한꺼번에 덜어 낸 $\\frac{5}{7}$와 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "덜어 낸 양을 합치면 $\\frac{5}{7}$이다",
+                "두 분수의 합을 한 번에 빼도 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1-\\frac{2}{7}-\\frac{3}{7}$은 두 분수를 먼저 더해 한 번에 빼는 $1-$ {$\\frac{5}{7}$}와 결과가 같다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{5}{7}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2127,
+        "sourceFingerprint": "7e8cfdc0a765a0d5456f1fb64fbd0ce1358d2adb43d079c649a32f7483e24177",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc20",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "가장 큰 차 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "주어진 분수들로 차를 가장 크게 만들려면 {가장 큰 분수에서 가장 작은 분수}를 뺀다.",
+        "example": {
+          "prompt": "분모가 $8$인 두 진분수의 차가 $\\frac{7}{8}$이 될 수 없는 까닭은?",
+          "answer": "가장 큰 차도 $\\frac{7}{8}-\\frac{1}{8}$이라서"
+        },
+        "studentC": "주어진 분수들로 차를 가장 크게 만들려면 □를 뺀다.",
+        "answers": [
+          "가장 큰 분수에서 가장 작은 분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2127,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "7e8cfdc0a765a0d5456f1fb64fbd0ce1358d2adb43d079c649a32f7483e24177",
+        "proposalFingerprint": "6c43ff7ab3a0e5a314075e1cabc180b30b60ea86d8a2352d14affa320fa8c7ad",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "분모가 $8$인 두 진분수의 차가 $\\frac{7}{8}$이 될 수 없는 까닭을 쓰시오.",
+        "bAnswer": "진분수의 분자는 $1$부터 $7$까지라서 가장 큰 차도 $\\frac{7}{8}-\\frac{1}{8}=\\frac{6}{8}$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 차는 가장 큰 분수에서 가장 작은 분수를 뺀 $\\frac{6}{8}$이다",
+              "가장 큰 차도 $\\frac{7}{8}$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가장 큰 차의 한계 이해",
+        "bReason": "가장 큰 수에서 가장 작은 수를 빼는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "주어진 분수들로 차를 가장 크게 만들려면 가장 큰 분수에서 {가장 작은} 분수를 뺀다.",
+        "cReason": "긴 구절을 '가장 작은' 짧은 비교 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "제일 작은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가장 큰 차 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "주어진 분수들로 차를 가장 크게 만들려면 가장 큰 분수에서 {가장 작은} 분수를 뺀다.",
+        "cStudentSentence": "주어진 분수들로 차를 가장 크게 만들려면 가장 큰 분수에서 □ 분수를 뺀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가장 작은",
+            "equivalents": [
+              "제일 작은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "분모가 $8$인 두 진분수의 차가 $\\frac{7}{8}$이 될 수 없는 까닭을 쓰시오.",
+          "answer": "진분수의 분자는 $1$부터 $7$까지라서 가장 큰 차도 $\\frac{7}{8}-\\frac{1}{8}=\\frac{6}{8}$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가장 큰 차는 가장 큰 분수에서 가장 작은 분수를 뺀 $\\frac{6}{8}$이다",
+                "가장 큰 차도 $\\frac{7}{8}$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "주어진 분수들로 차를 가장 크게 만들려면 가장 큰 분수에서 {가장 작은} 분수를 뺀다.",
+          "acceptedAnswers": [
+            [
+              "가장 작은",
+              "제일 작은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2128,
+        "sourceFingerprint": "fbc7f954cac359c30c5bd29423e123c17ea53407a466047556c3065fed57d474",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc22",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "덧셈식과 뺄셈식의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분수의 덧셈식에서 합에서 한 분수를 빼면 {다른 분수}가 남는다.",
+        "example": {
+          "prompt": "$\\frac{2}{7}+\\frac{3}{7}=\\frac{5}{7}$일 때 $\\frac{5}{7}-\\frac{3}{7}$이 $\\frac{2}{7}$인 까닭은?",
+          "answer": "합에서 한쪽을 덜어 내서"
+        },
+        "studentC": "분수의 덧셈식에서 합에서 한 분수를 빼면 □가 남는다.",
+        "answers": [
+          "다른 분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2128,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "fbc7f954cac359c30c5bd29423e123c17ea53407a466047556c3065fed57d474",
+        "proposalFingerprint": "f6b039a78d42fdc668083fbf2d58ec1025f4de9adef7fe9fdb4866dbee796d9e",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{7}+\\frac{3}{7}=\\frac{5}{7}$일 때 $\\frac{5}{7}-\\frac{3}{7}$이 $\\frac{2}{7}$가 되는 까닭을 설명하시오.",
+        "bAnswer": "합 $\\frac{5}{7}$는 $\\frac{2}{7}$와 $\\frac{3}{7}$을 합친 것이라 $\\frac{3}{7}$을 덜어 내면 $\\frac{2}{7}$가 남기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합에서 한쪽을 덜어 내면 다른 쪽이 남는다",
+              "더한 것 중 하나를 빼면 나머지가 남는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "덧셈식과 뺄셈식의 관계",
+        "bReason": "합에서 한 수를 빼면 다른 수가 남는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "분수의 덧셈식에서 합에서 한 분수를 빼면 {나머지} 분수가 남는다.",
+        "cReason": "'다른 분수' 대신 쉬운 '나머지' 낱말 빈칸으로 명확화",
+        "cSlotEquivalents": [
+          [
+            "다른",
+            "남은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "덧셈식과 뺄셈식의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분수의 덧셈식에서 합에서 한 분수를 빼면 {나머지} 분수가 남는다.",
+        "cStudentSentence": "분수의 덧셈식에서 합에서 한 분수를 빼면 □ 분수가 남는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "나머지",
+            "equivalents": [
+              "다른",
+              "남은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{2}{7}+\\frac{3}{7}=\\frac{5}{7}$일 때 $\\frac{5}{7}-\\frac{3}{7}$이 $\\frac{2}{7}$가 되는 까닭을 설명하시오.",
+          "answer": "합 $\\frac{5}{7}$는 $\\frac{2}{7}$와 $\\frac{3}{7}$을 합친 것이라 $\\frac{3}{7}$을 덜어 내면 $\\frac{2}{7}$가 남기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "합에서 한쪽을 덜어 내면 다른 쪽이 남는다",
+                "더한 것 중 하나를 빼면 나머지가 남는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분수의 덧셈식에서 합에서 한 분수를 빼면 {나머지} 분수가 남는다.",
+          "acceptedAnswers": [
+            [
+              "나머지",
+              "다른",
+              "남은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2129,
+        "sourceFingerprint": "af01af20a81d4d059b84c3f8d9da0a6775ddeaf92dcd0d374bddb1dcfa1865bf",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc24",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "빼는 분수가 커질 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 분수에서 빼는 분수가 커지면 차는 {작아진다}.",
+        "studentC": "같은 분수에서 빼는 분수가 커지면 차는 □.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2129,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "af01af20a81d4d059b84c3f8d9da0a6775ddeaf92dcd0d374bddb1dcfa1865bf",
+        "proposalFingerprint": "971726f237a70278e47a51acd0cf4789a22b8775a584a30f46e0fa5c82c16403",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{7}{8}-\\frac{2}{8}$와 $\\frac{7}{8}-\\frac{3}{8}$ 중 차가 더 큰 것은 어느 것인지 쓰고, 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{7}{8}-\\frac{2}{8}$이다. 같은 수에서 덜어 내는 양이 적을수록 남는 양이 크기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{8}-\\frac{2}{8}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "빼는 수가 클수록 차가 작다",
+              "적게 덜어 내면 더 많이 남는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "빼는 수가 커질 때 차의 변화",
+        "bReason": "비교 결과와 변화 이유를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "'작아진다' 한 변화만 묻는 짧은 비교 빈칸",
+        "cSlotEquivalents": [
+          [
+            "줄어든다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "빼는 분수가 커질 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 분수에서 빼는 분수가 커지면 차는 {작아진다}.",
+        "cStudentSentence": "같은 분수에서 빼는 분수가 커지면 차는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아진다",
+            "equivalents": [
+              "줄어든다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 분수에서 빼는 분수가 커지면 차는 □.",
+          "answers": [
+            "작아진다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{7}{8}-\\frac{2}{8}$와 $\\frac{7}{8}-\\frac{3}{8}$ 중 차가 더 큰 것은 어느 것인지 쓰고, 까닭을 설명하시오.",
+          "answer": "$\\frac{7}{8}-\\frac{2}{8}$이다. 같은 수에서 덜어 내는 양이 적을수록 남는 양이 크기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{7}{8}-\\frac{2}{8}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "빼는 수가 클수록 차가 작다",
+                "적게 덜어 내면 더 많이 남는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 분수에서 빼는 분수가 커지면 차는 {작아진다}.",
+          "acceptedAnswers": [
+            [
+              "작아진다",
+              "줄어든다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2130,
+        "sourceFingerprint": "3d93b8c15ae146462357e417f72a7e2a7bb686852b73794025a0761cdc4eb537",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc25",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "빼어지는 분수가 커질 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "빼는 분수가 같을 때 빼어지는 분수가 커지면 차는 {커진다}.",
+        "studentC": "빼는 분수가 같을 때 빼어지는 분수가 커지면 차는 □.",
+        "answers": [
+          "커진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2130,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "3d93b8c15ae146462357e417f72a7e2a7bb686852b73794025a0761cdc4eb537",
+        "proposalFingerprint": "745b7f3ab970681936fbcdb904fb03ce4b41556763e0846e93ced8bf9f0761d0",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc25",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "처음 분수가 커질 때 차의 변화",
+        "bReason": "xc24와 같은 차의 변화 관계",
+        "exclusionReason": "빼는 수가 커질 때 차 변화를 묻는 xc24의 반대 방향이라 B 중복",
+        "cDecision": "rewrite",
+        "cAfter": "같은 분수를 뺄 때 처음 분수가 $\\frac{5}{9}$에서 $\\frac{7}{9}$로 커지면 차는 {커진다}.",
+        "cReason": "'빼어지는 분수' 숨은 이름 대신 '처음 분수'와 수를 제시",
+        "cSlotEquivalents": [
+          [
+            "늘어난다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "빼어지는 분수가 커질 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 분수를 뺄 때 처음 분수가 $\\frac{5}{9}$에서 $\\frac{7}{9}$로 커지면 차는 {커진다}.",
+        "cStudentSentence": "같은 분수를 뺄 때 처음 분수가 $\\frac{5}{9}$에서 $\\frac{7}{9}$로 커지면 차는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "커진다",
+            "equivalents": [
+              "늘어난다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "같은 분수를 뺄 때 처음 분수가 $\\frac{5}{9}$에서 $\\frac{7}{9}$로 커지면 차는 {커진다}.",
+          "acceptedAnswers": [
+            [
+              "커진다",
+              "늘어난다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc24와 같은 차의 변화 관계"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2131,
+        "sourceFingerprint": "505afede87d7c450d00b44e8440a7e84078db9b5e7818015b8d165bbc5619876",
+        "part": "e4plus",
+        "id": "e4-2-1-2-xc26",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "term": "차가 영보다 클 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모가 같은 분수의 차가 $0$보다 크려면 빼는 분수의 분자가 {빼어지는 분수의 분자보다 작아야} 한다.",
+        "example": {
+          "prompt": "분모가 같은 두 분수의 차가 $0$보다 크려면 빼는 분수의 조각 수는 어떠해야 하는가?",
+          "answer": "처음 조각 수보다 적어야"
+        },
+        "studentC": "분모가 같은 분수의 차가 $0$보다 크려면 빼는 분수의 분자가 □ 한다.",
+        "answers": [
+          "빼어지는 분수의 분자보다 작아야"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2131,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "505afede87d7c450d00b44e8440a7e84078db9b5e7818015b8d165bbc5619876",
+        "proposalFingerprint": "34048e28bbe878c8a880b6f518c06aa8eb072645bc5e2584e3842dc6f72e18b6",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "분모가 $8$인 $\\frac{5}{8}$에서 분모가 $8$인 분수를 빼서 차가 $0$보다 크려면 빼는 분수의 분자는 $5$보다 커야 하는지 작아야 하는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "$5$보다 작아야 한다. $5$조각보다 적게 덜어 내야 남는 조각이 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$보다 작아야 한다",
+              "더 적어야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남는 조각이 있어야 한다",
+              "$5$조각보다 적게 덜어 낸다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차가 $0$보다 크기 위한 조건",
+        "bReason": "분자 크기 조건과 남는 조각 이유를 확인",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 분수의 차가 $0$보다 크려면 빼는 분수의 분자가 처음 분수의 분자보다 {작아야} 한다.",
+        "cReason": "'빼어지는 분수' 이름과 긴 구절을 '작아야' 빈칸으로 축소",
+        "cSlotEquivalents": [
+          [
+            "적어야"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 영보다 클 조건",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 분수의 차가 $0$보다 크려면 빼는 분수의 분자가 처음 분수의 분자보다 {작아야} 한다.",
+        "cStudentSentence": "분모가 같은 분수의 차가 $0$보다 크려면 빼는 분수의 분자가 처음 분수의 분자보다 □ 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아야",
+            "equivalents": [
+              "적어야"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "분모가 $8$인 $\\frac{5}{8}$에서 분모가 $8$인 분수를 빼서 차가 $0$보다 크려면 빼는 분수의 분자는 $5$보다 커야 하는지 작아야 하는지 쓰고 까닭을 설명하시오.",
+          "answer": "$5$보다 작아야 한다. $5$조각보다 적게 덜어 내야 남는 조각이 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5$보다 작아야 한다",
+                "더 적어야 한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "남는 조각이 있어야 한다",
+                "$5$조각보다 적게 덜어 낸다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 분수의 차가 $0$보다 크려면 빼는 분수의 분자가 처음 분수의 분자보다 {작아야} 한다.",
+          "acceptedAnswers": [
+            [
+              "작아야",
+              "적어야"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2132,
+        "sourceFingerprint": "1c3f7815c5122016e0a9df353e427d21a5a6c171ea8731504e9fa787a26e19b3",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc1",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "자연수끼리, 분수끼리 더하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 같은 대분수끼리 더할 때는 {자연수 부분끼리}, 분수 부분끼리 더한다.",
+        "studentC": "분모가 같은 대분수끼리 더할 때는 □, 분수 부분끼리 더한다.",
+        "answers": [
+          "자연수 부분끼리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2132,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "1c3f7815c5122016e0a9df353e427d21a5a6c171ea8731504e9fa787a26e19b3",
+        "proposalFingerprint": "1ee2dc3199da4087e98dc06ebfcfd8a43e7805790642026d7c34c57a88b81b59",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\frac{2}{7}+2\\frac{3}{7}$을 자연수 부분과 분수 부분으로 나누어 계산하는 방법을 쓰시오.",
+        "bAnswer": "자연수끼리 $1+2=3$, 분수끼리 $\\frac{2}{7}+\\frac{3}{7}=\\frac{5}{7}$를 더해 $3\\frac{5}{7}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분끼리 더한다",
+              "$1+2=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 부분끼리 더한다",
+              "$\\frac{2}{7}+\\frac{3}{7}=\\frac{5}{7}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "대분수를 부분별로 더하기",
+        "bReason": "자연수·분수 부분을 따로 더하는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 대분수끼리 더할 때는 {자연수} 부분끼리, 분수 부분끼리 더한다.",
+        "cReason": "'자연수 부분끼리' 구절을 '자연수' 낱말 빈칸으로 축소",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자연수끼리, 분수끼리 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 대분수끼리 더할 때는 {자연수} 부분끼리, 분수 부분끼리 더한다.",
+        "cStudentSentence": "분모가 같은 대분수끼리 더할 때는 □ 부분끼리, 분수 부분끼리 더한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자연수",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1\\frac{2}{7}+2\\frac{3}{7}$을 자연수 부분과 분수 부분으로 나누어 계산하는 방법을 쓰시오.",
+          "answer": "자연수끼리 $1+2=3$, 분수끼리 $\\frac{2}{7}+\\frac{3}{7}=\\frac{5}{7}$를 더해 $3\\frac{5}{7}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "자연수 부분끼리 더한다",
+                "$1+2=3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 부분끼리 더한다",
+                "$\\frac{2}{7}+\\frac{3}{7}=\\frac{5}{7}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 대분수끼리 더할 때는 {자연수} 부분끼리, 분수 부분끼리 더한다.",
+          "acceptedAnswers": [
+            [
+              "자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

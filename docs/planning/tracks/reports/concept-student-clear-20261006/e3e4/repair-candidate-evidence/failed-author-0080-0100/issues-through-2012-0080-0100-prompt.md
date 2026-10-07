@@ -1,0 +1,1154 @@
+제공 순서 모든 ID에 대해 JSON 배열만 출력한다. 각 행은 수정 패치 {id,inputProposalFingerprint,변경하는필드들}이다. id와 현재 지문 해시는 필수이고 바뀌지 않은 필드는 복사하지 않는다. 직접 독자의 B/C 지적을 실제 문장과 채점 기준의 수정으로 해소하라. 지적이 수학적으로 틀렸으면 변경 대신 repairDisagreement에 이유와 실제 올바른 수학을 써라. 코멘트나 카운트만 고쳐서 문제를 해결했다고 하지 마라.
+B를 바꾸면 bDecision,bPrompt,bAnswer,bRequiredIdeas,bGoal,bReason을 함께 완성한다. bDecision은 rewrite/exclude. exclude는 bPrompt,bAnswer null, bRequiredIdeas [], exclusionReason에 B만 제외하는 구체 이유와 알려진 실제 대응 ID를 기록한다. 초등에 익숙한 이름의 정의 질문은 가능하지만 제목 하나+설명하시오, 답 하나 대기, 의미 없는 이유 묻기는 금지한다. 설명 목표·조건·대상·응답 범위를 명시하고 질문에 예상 답은 넣지 않는다. 구체적 계산은 일반 방법·뜻·관계도 확인한다. requiredIdeas=[{anyOf:['한 가지 필수 의미의 유효한 표현', '그 의미를 만족하는 별도의 다른 방법']}]; 꼭 요청한 것만 필수다. 결과·식·방법·조건을 쓰라고 했으면 실제로 기준에 담고 묻지 않았으면 강제하지 않는다. 단순한 입력 되풀이를 설명으로 받지 않는다. 서로 다른 올바른 풀이의 필수 단계를 AND로 섞지 말고 전체 대체 풀이를 독립 anyOf 문자열로 적는다. 특정 예시만을 정답으로 강제하지 않는다. 역할을 바꾸면 learningRole=definition/procedure/reason/application/naming 중 실제 질문에 맞게 적는다.
+C를 바꾸면 cDecision,cAfter,cSlotEquivalents,cReason을 함께 적는다. rewrite의 cAfter는 정답 부분을 {답}으로 표시한 실제 완성 학생 문장이고 1~4슬롯이다. 짧고 유용한 비교·계산 빈칸을 보존한다. 실제 대상 없이 긴 키워드를 복원하거나 부사만 채우게 하지 않는다. 빈칸과 같은 값을 다른 곳에서 공개하지 않는다. 입력의 수가 바뀐 역할에서 다시 답인 유용한 관계(몫 검산, 같은 거리 등)는 무조건 복사로 취급하지 않는다. 순서 없는 두 답은 같은 말을 두 번 써도 통과하는 슬롯별 대안으로 해결하지 말고 순서를 명시하거나 한 빈칸으로 줄인다. cSlotEquivalents는 각 슬롯의 대체 답 배열로서 수·읽기·단위·자리·횟수의 역할을 구별하되 그 문장에서 옳은 서로 다른 답은 허용한다. cDecision=keep은 원본 C 그대로 고정이므로 새 문장을 주지 않는다. exclude는 해당 C의 구체적인 낮은 이점 또는 반복 이유를 cReason으로 기록하고 cAfter=null, cSlotEquivalents=[]로 쓴다. 별도 remove:['cAfter','cSlotEquivalents'] 등으로 이전 필드 제거를 요청할 수 있다.
+일반 학습 설명 A/SRS는 C와 별개다. coreAfter를 고칠 때는 실제 수학 오류나 빠진 조건을 고칠 때만이며 원래 표적과 일반 뜻을 보존한다. coreReason을 함께 기록한다. coreAfter도 {답} 1~4개, 보이는 전체 길이 8~160자로 만든다. C를 고쳤다는 이유로 A를 자동 대체하지 않는다.
+숫자·수학 기호는 $...$ KaTeX, 곱은 	imes, 나눗셈은 div, 계산 내 빈칸 기호는 square이며 표시용 {답}과 LaTex의 중괄호를 혼동하지 않는다. 모든 조사·괄호·수식이 학생에게 실제로 읽혀야 한다. 쉬운 학년 말로 쓰고 새로운 이름이나 낯선 문자 변수를 만들지 않는다. 그림이 필요한 현재 질문은 실제 위치·수·이름을 텍스트에 제시하여 자립시키거나 그 form만 제외한다. 꼭 필요한 새 그림·조작 사례는 exampleNeeded에 무엇인지 적되 없는 그림을 이미 있는 것처럼 참조하지 않는다.
+최종 승인·자동 테스트 pass·실제 독자가 재독했다는 말은 출력하지 않는다. 우리는 이 후보를 나중에 직접 읽고 원본과 확인한다. 다음 자료의 모든 ID를 빠짐없이 처리하라.
+
+[
+  {
+    "id": "e3-1-5-6-xc8",
+    "sourceIndex": 807,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 807,
+      "sourceFingerprint": "5f2c5af01673108348b78d39b4435b6438f12aecebb6f9623c46d7cb5968da39",
+      "part": "e3plus",
+      "id": "e3-1-5-6-xc8",
+      "section": "초3::1-5 길이와 시간::1-5-6 시간의 뺄셈",
+      "term": "세로로 쓰는 시간의 뺄셈",
+      "kind": "방법",
+      "level": "하",
+      "definition": "시간의 뺄셈도 시, 분, 초를 {같은 줄}에 맞추어 쓴 뒤 뺀다.",
+      "studentC": "시간의 뺄셈도 시, 분, 초를 □에 맞추어 쓴 뒤 뺀다.",
+      "answers": [
+        "같은 줄"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-5-6-xc8",
+      "proposalFingerprint": "49a2b21eb9e75fa3733abae77a3ba15277a805b0bbad702e29a742d8f289c559",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$5$분 $40$초 $-$ $2$분 $10$초를 세로로 쓸 때 무엇끼리 위아래로 맞추어 써야 하는지 쓰고, 그 까닭을 쓰세요.",
+      "bAnswer": "분은 분끼리, 초는 초끼리 맞추어 쓴다. 같은 단위끼리 빼야 하기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분은 분끼리, 초는 초끼리 맞춤"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 단위끼리 뺀다"
+          ]
+        }
+      ],
+      "bGoal": "세로셈에서 같은 단위를 맞추어 쓰는 방법과 까닭",
+      "bReason": "'같은 줄'이라는 모호한 말 대신 무엇끼리 맞추는지와 까닭을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "'같은 줄'이 가로줄인지 세로줄인지 알 수 없어 답이 정해지지 않음. 단위 이름을 쓰는 빈칸으로 바꿈",
+      "cSlotEquivalents": [],
+      "coreAfter": "시간의 뺄셈을 세로로 쓸 때에는 시는 시끼리, 분은 분끼리, 초는 초끼리 {위아래로 맞추어} 쓴 뒤 뺀다.",
+      "coreReason": "같은 줄이라는 원래 표적의 세로단위 대응 의미를 위아래로 맞추어로 명시한다."
+    },
+    "currentCMarkedSentence": "시간의 뺄셈을 세로로 쓸 때에는 시는 시끼리, 분은 {분}끼리, 초는 {초}끼리 위아래로 맞추어 쓴 뒤 뺀다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "분",
+        "equivalents": []
+      },
+      {
+        "expected": "초",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "분·초 위아래 정렬과 같은 단위끼리 뺀다는 B 이유는 분명하다.",
+      "c": "분은 분·초는 초의 그대로 반복하는 문법 슬롯보다 같은 단위의 실제 수를 맞추어 계산하거나 정렬할 대상을 고르게 한다; 일반 정의의 위아래 맞춤은 유지한다."
+    }
+  },
+  {
+    "id": "e3-1-6-1-xc1",
+    "sourceIndex": 819,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 819,
+      "sourceFingerprint": "d1ee9cbf4d24b4ec999fd9465354fedf97fa08429ce0f801c71f165b19d90bc7",
+      "part": "e3plus",
+      "id": "e3-1-6-1-xc1",
+      "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+      "term": "똑같이 둘로 나누기",
+      "kind": "정의",
+      "level": "하",
+      "definition": "전체를 크기가 같은 두 부분으로 나누는 것을 {똑같이 둘로} 나눈다고 한다.",
+      "studentC": "전체를 크기가 같은 두 부분으로 나누는 것을 □ 나눈다고 한다.",
+      "answers": [
+        "똑같이 둘로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-1-xc1",
+      "proposalFingerprint": "cc03502fbd455aec0a7ac99a3ea443acb68592fab1ad23d15e30f639e853cbe5",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "bPrompt": "'똑같이 둘로 나눈다'는 것은 나눈 두 부분이 어떠해야 한다는 뜻인지 쓰세요.",
+      "bAnswer": "나눈 두 부분의 크기(와 모양)가 서로 같아야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 부분의 크기가 같다"
+          ]
+        }
+      ],
+      "bGoal": "똑같이 둘로 나누기의 뜻",
+      "bReason": "보통 말인 '똑같이 둘로'에서 어떤 성질을 답할지 좁힌 정의 질문",
+      "cDecision": "rewrite",
+      "cReason": "'똑같이 둘로'라는 구절 빈칸은 '반으로', '둘로'도 가능해 답이 흔들림. 핵심 낱말을 묻게 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "'크기', '모양과 크기' 인정. '개수'는 오답."
+    },
+    "currentCMarkedSentence": "전체를 {크기}가 같은 두 부분으로 나누는 것을 똑같이 둘로 나눈다고 한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "크기",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "정답 문장의 크기와 모양을 모두 같아야 한다는 선택 표현은 일반 등분에서 틀리므로 크기만 같아야 한다고 고친다; 기준의 크기만은 맞다.",
+      "c": "똑같이 둘은 두 부분의 크기 같음이며 모양 동일은 요구하지 않는다."
+    }
+  },
+  {
+    "id": "e3-1-6-1-xc5",
+    "sourceIndex": 823,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 823,
+      "sourceFingerprint": "c5574ee90fe0983515d4359c5e443f618c2e1e6debd8244ac6dae6cdf6460269",
+      "part": "e3plus",
+      "id": "e3-1-6-1-xc5",
+      "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+      "term": "접어서 나누기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "종이를 반으로 접었다 펴서 {접힌 선}을 따라 자르면 똑같이 둘로 나뉜다.",
+      "studentC": "종이를 반으로 접었다 펴서 □을 따라 자르면 똑같이 둘로 나뉜다.",
+      "answers": [
+        "접힌 선"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-1-xc5",
+      "proposalFingerprint": "e16930facbf588413722270709cd4223f2350522baf7b53e814ff7736c9fdafa",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "종이를 반으로 접었다 펴서 접힌 선을 따라 자르면 똑같이 둘로 나뉩니다. 그 까닭을 쓰세요.",
+      "bAnswer": "반으로 접으면 두 부분이 꼭 겹치므로 접힌 선 양쪽의 모양과 크기가 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "접으면 두 부분이 꼭 겹친다(모양과 크기가 같다)"
+          ]
+        }
+      ],
+      "bGoal": "접어서 나누면 똑같이 나뉘는 까닭",
+      "bReason": "방법 문장에 이유를 묻는 질문을 붙임",
+      "cDecision": "keep",
+      "cReason": "'반으로 접었다 펴서'가 주어져 따라 자르는 대상이 정해짐",
+      "cSlotEquivalents": [],
+      "answerNotes": "'접힌 선', '접은 선', '접힌 자국' 인정."
+    },
+    "currentCMarkedSentence": "종이를 반으로 접었다 펴서 {접힌 선}을 따라 자르면 똑같이 둘로 나뉜다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "접힌 선",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "아무 종이의 반 접기가 반드시 꼭 겹친다는 단정 대신 직사각형의 마주 보는 변을 겹치게 접는 조건으로 범위를 명시한다.",
+      "c": "같은 겹침 조건의 종이를 접힌 선으로 자르는 예를 주면 두 같은 크기를 확인할 수 있다."
+    }
+  },
+  {
+    "id": "e3-1-6-1-xc9",
+    "sourceIndex": 826,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 826,
+      "sourceFingerprint": "241a83facedb36fd442a193670f0517272442a6a0736c9eca343e57dbbd7e6c3",
+      "part": "e3plus",
+      "id": "e3-1-6-1-xc9",
+      "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+      "term": "끈을 똑같이 나누기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "끈을 똑같이 나눌 때에는 자로 재어 각 부분의 {길이}가 같게 자른다.",
+      "studentC": "끈을 똑같이 나눌 때에는 자로 재어 각 부분의 □가 같게 자른다.",
+      "answers": [
+        "길이"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-1-xc9",
+      "proposalFingerprint": "7c1870513aa5bc609bc2c20716ba88e06444667c893b3cb497368167dfb94aa4",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "끈을 똑같이 셋으로 나누려고 합니다. 세 부분의 무엇이 같아야 하는지 쓰고, 그것을 어떻게 확인하는지 쓰세요.",
+      "bAnswer": "세 부분의 길이가 같아야 하고, 자로 재어 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자로 잰다"
+          ]
+        }
+      ],
+      "bGoal": "끈을 똑같이 나눌 때의 기준과 확인 방법",
+      "bReason": "같아야 하는 것과 확인 방법 두 가지로 범위를 정함",
+      "cDecision": "keep",
+      "cReason": "'자로 재어'가 단서가 되어 '길이'가 분명한 익숙한 낱말 빈칸",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "끈을 똑같이 나눌 때에는 자로 재어 각 부분의 {길이}가 같게 자른다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "길이",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "길이 같음과 확인 방법을 묻되 자로 재기 외 곧게 펴 끝을 맞춰 길이를 비교하는 유효 방법도 대안으로 허용해야 한다.",
+      "c": "끈의 등분에서 같은 길이가 기준임을 확인한다."
+    }
+  },
+  {
+    "id": "e3-1-6-1-xc12",
+    "sourceIndex": 829,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 829,
+      "sourceFingerprint": "c2c97cc5733bfff5d62d1f4ae5f22370b0c6255ef1240f0a49d359ea62c38eb5",
+      "part": "e3plus",
+      "id": "e3-1-6-1-xc12",
+      "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+      "term": "똑같이 여섯으로 나누기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "직사각형을 곧은 선으로 가로 두 줄, 세로 세 칸이 되도록 똑같이 나누어 자르면 조각은 {여섯} 개가 된다.",
+      "studentC": "직사각형을 곧은 선으로 가로 두 줄, 세로 세 칸이 되도록 똑같이 나누어 자르면 조각은 □ 개가 된다.",
+      "answers": [
+        "여섯"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-1-xc12",
+      "proposalFingerprint": "98ce4c6644e3e0a40315009baedb970dd94ca0c89049afc0ae1fe4d12b4b11bd",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "직사각형을 가로 두 줄, 세로 세 칸이 되도록 똑같이 나누면 조각이 $6$개가 되는 까닭을 쓰세요.",
+      "bAnswer": "한 줄에 $3$조각씩 두 줄이므로 $3+3=6$(또는 $3\\times 2=6$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 줄에 $3$조각씩 두 줄"
+          ]
+        }
+      ],
+      "bGoal": "줄과 칸으로 조각 수를 세는 방법",
+      "bReason": "결과를 주고 세는 까닭만 답하게 함",
+      "cDecision": "keep",
+      "cReason": "나누는 방법이 모두 드러나 있고 답이 수 하나인 선명한 문장",
+      "cSlotEquivalents": [],
+      "answerNotes": "'여섯', '$6$' 인정."
+    },
+    "currentCMarkedSentence": "직사각형을 곧은 선으로 가로 두 줄, 세로 세 칸이 되도록 똑같이 나누어 자르면 조각은 {여섯} 개가 된다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "여섯",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "가로 두 줄·세로 세 칸을 한 줄3칸씩 두 줄처럼 배치가 드러나는 말로 고치거나 그림을 제공한다.",
+      "c": "같은 배치 조건을 한 줄3칸씩두줄로 풀어 여섯 조각을 구하게 한다."
+    }
+  },
+  {
+    "id": "e3-1-6-1-xc21",
+    "sourceIndex": 834,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 834,
+      "sourceFingerprint": "f71d09c3e90fb1af6024b5893d14996f72c9844eb983d8895465928a338c3279",
+      "part": "e3plus",
+      "id": "e3-1-6-1-xc21",
+      "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+      "term": "넷으로 나누는 두 방법",
+      "kind": "방법",
+      "level": "상",
+      "definition": "정사각형은 가로와 세로 가운데 선으로도, 마주 보는 꼭짓점을 잇는 선 두 개로도 {똑같이 넷으로} 나눌 수 있다.",
+      "studentC": "정사각형은 가로와 세로 가운데 선으로도, 마주 보는 꼭짓점을 잇는 선 두 개로도 □ 나눌 수 있다.",
+      "answers": [
+        "똑같이 넷으로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-1-xc21",
+      "proposalFingerprint": "e305d310739b88cb108716de25288e13a5d8a609ab9b8c579cbba8097e4e28d0",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "정사각형을 곧은 선 두 개로 똑같이 넷으로 나누는 서로 다른 방법을 두 가지 쓰세요.",
+      "bAnswer": "가로의 가운데 선과 세로의 가운데 선으로 나눈다. 마주 보는 꼭짓점을 잇는 선 두 개로 나눈다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로·세로 가운데 선"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 꼭짓점을 잇는 선 두 개"
+          ]
+        }
+      ],
+      "bGoal": "정사각형을 똑같이 넷으로 나누는 두 방법",
+      "bReason": "방법 두 가지를 직접 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "'똑같이 넷으로' 구절 빈칸을 수 낱말 하나로 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'넷', '$4$' 인정."
+    },
+    "currentCMarkedSentence": "정사각형은 가로와 세로 가운데 선으로도, 마주 보는 꼭짓점을 잇는 선 두 개로도 똑같이 {넷}으로 나눌 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "넷",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "중앙에서 직각으로 교차하는 다른 방향의 두 선도 가능한데 기준이 가로·세로와 대각선 두 특정 방법만 강제한다; 서로 다른 두 유효 등분 방법을 허용한다.",
+      "c": "제시한 두 방법이 모두 네 등분이라는 결과는 옳다."
+    }
+  },
+  {
+    "id": "e3-1-6-1-xc27",
+    "sourceIndex": 839,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 839,
+      "sourceFingerprint": "7694920d23a81952ba51650bf8d60b885f34079a95304a25672be045364ad62b",
+      "part": "e3plus",
+      "id": "e3-1-6-1-xc27",
+      "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+      "term": "직사각형을 셋으로",
+      "kind": "방법",
+      "level": "상",
+      "definition": "직사각형의 긴 변을 같은 길이씩 셋으로 나누어 자르면 {똑같이 셋으로} 나뉜다.",
+      "studentC": "직사각형의 긴 변을 같은 길이씩 셋으로 나누어 자르면 □ 나뉜다.",
+      "answers": [
+        "똑같이 셋으로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-1-xc27",
+      "proposalFingerprint": "c68e3f241e8ce9ad01c73b5c6bc92568f59635e92287c32fc2e61054ff40bf1b",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "직사각형 종이를 똑같이 셋으로 나누어 자르는 방법을 설명하세요. 어느 변을 어떻게 나누는지 쓰세요.",
+      "bAnswer": "긴 변을 자로 재어 같은 길이씩 셋으로 나누고, 나눈 자리에서 곧게 자른다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변을 같은 길이씩 셋으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눈 자리에서 곧게 자른다"
+          ]
+        }
+      ],
+      "bGoal": "직사각형을 똑같이 셋으로 나누는 방법",
+      "bReason": "방법을 직접 쓰게 하고 답할 내용을 정함",
+      "cDecision": "rewrite",
+      "cReason": "'똑같이 셋으로' 구절 빈칸을 수 낱말 하나로 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'셋', '$3$' 인정."
+    },
+    "currentCMarkedSentence": "직사각형의 긴 변을 같은 길이씩 셋으로 나누어 자르면 직사각형은 똑같이 {셋}으로 나뉜다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "셋",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "한 변의 삼등분점에서 곧게 자르는 것만으로는 자르는 방향이 정해지지 않는다; 가로로 둔 긴 변의 표시에서 세로로 잘라 같은 폭을 만드는 방향을 명시한다.",
+      "c": "긴 변을 셋으로 나누어 자른다는 말도 같은 절단 방향 조건 또는 그림이 필요하다."
+    }
+  },
+  {
+    "id": "e3-1-6-2-xc8",
+    "sourceIndex": 843,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 843,
+      "sourceFingerprint": "fe0ef46ef988eab4653ca71b37f712ac7d4b4b5aa3319649950e4ff8f341fd1b",
+      "part": "e3plus",
+      "id": "e3-1-6-2-xc8",
+      "section": "초3::1-6 분수와 소수::1-6-2 분수 알아보기(1)",
+      "term": "분수로 나타낼 수 있는 조건",
+      "kind": "성질",
+      "level": "중",
+      "definition": "전체를 {똑같이} 나누지 않으면 조각의 수만 세어서는 부분을 분수로 나타낼 수 없다.",
+      "studentC": "전체를 □ 나누지 않으면 조각의 수만 세어서는 부분을 분수로 나타낼 수 없다.",
+      "answers": [
+        "똑같이"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-2-xc8",
+      "proposalFingerprint": "3d99c78dfbd9372fee8abbfb3c7701941494e273fd97c47abffcf3aada116f41",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "종이를 크기가 서로 다른 세 조각으로 나누고 그중 한 조각을 색칠했습니다. 색칠한 부분을 $\\frac{1}{3}$이라고 할 수 없는 까닭을 쓰세요.",
+      "bAnswer": "전체를 똑같이 나누지 않았기 때문이다. $\\frac{1}{3}$은 똑같이 셋으로 나눈 것 중 하나여야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "똑같이 나누지 않았다"
+          ]
+        }
+      ],
+      "bGoal": "분수로 나타내려면 똑같이 나누어야 함을 설명",
+      "bReason": "잘못된 상황을 주고 까닭을 묻게 함",
+      "cDecision": "keep",
+      "cReason": "'조각의 수만 세어서는'과 대비되어 '똑같이'가 분명히 정해지는 문장",
+      "cSlotEquivalents": [],
+      "answerNotes": "'똑같이', '같은 크기로' 인정."
+    },
+    "currentCMarkedSentence": "전체를 {똑같이} 나누지 않으면 조각의 수만 세어서는 부분을 분수로 나타낼 수 없다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "똑같이",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "크기가 서로 다른 세 조각 중 한 조각이 우연히 정확히1/3일 수도 있다; 1/3이라고 할 수 없다 대신 조각 수만 보고1/3이라고 정할 수 없는 까닭으로 고친다.",
+      "c": "조각 수만으로는 결정 못 한다는 C의 제한은 맞다."
+    }
+  },
+  {
+    "id": "e3-1-6-2-xc22",
+    "sourceIndex": 853,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 853,
+      "sourceFingerprint": "4723caf220863a9be77eccd715c531dbc6192daf32601b8380992bcc98e8f849",
+      "part": "e3plus",
+      "id": "e3-1-6-2-xc22",
+      "section": "초3::1-6 분수와 소수::1-6-2 분수 알아보기(1)",
+      "term": "작은 조각으로 다시 나누기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "크기가 다른 조각은 작은 조각 크기로 {다시 나누어} 세면 분수로 나타낼 수 있다.",
+      "studentC": "크기가 다른 조각은 작은 조각 크기로 □ 세면 분수로 나타낼 수 있다.",
+      "answers": [
+        "다시 나누어"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-2-xc22",
+      "proposalFingerprint": "8f00da7dfb9881e0b7cfcae53ccffa710ae80d22be790ed40d04fd80db910865",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "직사각형의 반을 큰 조각 하나로 두고, 나머지 반을 똑같이 둘로 나누어 작은 조각 $2$개를 만들었습니다. 작은 조각 하나가 전체의 얼마인지 알아내는 방법을 쓰고 분수로 나타내세요.",
+      "bAnswer": "큰 조각도 작은 조각 크기로 둘로 나누면 전체가 똑같은 $4$조각이 된다. 작은 조각 하나는 $\\frac{1}{4}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 조각을 작은 조각 크기로 다시 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체가 똑같은 $4$조각"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "크기가 다른 조각을 작은 조각으로 다시 나누어 분수로 나타내기",
+      "bReason": "그림 없이도 알 수 있게 조각의 크기 관계를 말로 밝힌 상황을 새로 만듦",
+      "cDecision": "rewrite",
+      "cReason": "'다시 나누어'는 그림 없이는 무엇을 어떻게 하는지 알 수 없어, 크기 관계를 밝힌 사례로 바꿈",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "직사각형을 세로로 반 나눈 뒤 왼쪽 반은 그대로(큰 조각), 오른쪽 반은 위아래로 똑같이 나눈(작은 조각 $2$개) 그림"
+    },
+    "currentCMarkedSentence": "전체를 큰 조각 $1$개와 작은 조각 $2$개로 나누었고, 큰 조각은 작은 조각 $2$개와 크기가 같다. 큰 조각을 작은 조각 크기로 다시 나누면 전체는 똑같은 조각 {$4$}개가 되므로 작은 조각 하나는 {$\\frac{1}{4}$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$",
+        "equivalents": []
+      },
+      {
+        "expected": "$\\frac{1}{4}$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "큰 반 조각을 다시 나눠 동일한 네 조각으로 확인하는 B는 타당하다; 조각 그림 예가 도움이 된다.",
+      "c": "작은 두 조각의 크기가 같다는 조건이 C에는 빠졌으므로 크기가 같은 작은 조각2개라고 명시해야 작은 하나1/4를 확정할 수 있다."
+    }
+  },
+  {
+    "id": "e3-1-6-3-xc24",
+    "sourceIndex": 866,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 866,
+      "sourceFingerprint": "c93f2732407033ce48eeb42cf07f6513e33f58ebe4e6fae1f74b26d7a58fc16e",
+      "part": "e3plus",
+      "id": "e3-1-6-3-xc24",
+      "section": "초3::1-6 분수와 소수::1-6-3 분수 알아보기(2)",
+      "term": "조각 수가 같고 분모가 다른 분수",
+      "kind": "성질",
+      "level": "상",
+      "definition": "$\\frac{3}{4}$과 $\\frac{3}{8}$은 조각 수는 같지만 한 조각의 {크기}가 다르다.",
+      "studentC": "$\\frac{3}{4}$과 $\\frac{3}{8}$은 조각 수는 같지만 한 조각의 □가 다르다.",
+      "answers": [
+        "크기"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-3-xc24",
+      "proposalFingerprint": "d6e90ab8c6194e9e22f3d778643310d01289b7e3b1c9eaf825c3eaf36aa4e66c",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "크기가 같은 전체에서 $\\frac{3}{4}$과 $\\frac{3}{8}$은 둘 다 조각이 $3$개입니다. 그런데도 두 분수의 크기가 다른 까닭을 쓰세요.",
+      "bAnswer": "한 조각의 크기가 다르기 때문이다. 똑같이 $4$로 나눈 한 조각이 $8$로 나눈 한 조각보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 조각의 크기가 다르다"
+          ]
+        }
+      ],
+      "bGoal": "분자가 같아도 분모가 다르면 크기가 다른 까닭",
+      "bReason": "'크기가 같은 전체'라는 조건을 밝혀 까닭을 묻게 함",
+      "cDecision": "keep",
+      "cReason": "'조각 수는 같지만'과 대비되어 '크기'가 정해지는 문장",
+      "cSlotEquivalents": [],
+      "answerNotes": "'크기' 정답. '수', '개수'는 오답."
+    },
+    "currentCMarkedSentence": "$\\frac{3}{4}$과 $\\frac{3}{8}$은 조각 수는 같지만 한 조각의 {크기}가 다르다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "크기",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "B는 같은 전체를 명시해 한 조각 크기 차이를 설명한다.",
+      "c": "한 조각의 크기를 물리적으로 비교하므로 C도 같은 크기의 전체에서라는 기준을 주어야 한다."
+    }
+  },
+  {
+    "id": "e3-1-6-4-xc9",
+    "sourceIndex": 876,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 876,
+      "sourceFingerprint": "ec057785249d833da6a17548cdaeabb71fff1832b3cca6ca5ede0a546225e628",
+      "part": "e3plus",
+      "id": "e3-1-6-4-xc9",
+      "section": "초3::1-6 분수와 소수::1-6-4 분모가 같은 분수의 크기 비교",
+      "term": "전체와 같은 분수와 비교",
+      "kind": "성질",
+      "level": "하",
+      "definition": "분모가 같을 때 분자가 분모보다 작은 분수는 전체와 같은 분수보다 {작다}.",
+      "example": {
+        "prompt": "$\\frac{11}{12}$이 $\\frac{12}{12}$보다 작은 까닭은?",
+        "answer": "$\\frac{1}{12}$ 조각 하나가 모자라서"
+      },
+      "studentC": "분모가 같을 때 분자가 분모보다 작은 분수는 전체와 같은 분수보다 □.",
+      "answers": [
+        "작다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-4-xc9",
+      "proposalFingerprint": "bb57294d602d6924df83ca9151bd266009387503e1fb9e98718c1c78c4f6d500",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{11}{12}$이 $\\frac{12}{12}$보다 작은 까닭을 쓰세요.",
+      "bAnswer": "$\\frac{12}{12}$는 전체이고, $\\frac{11}{12}$은 전체에서 $\\frac{1}{12}$인 조각 하나가 모자라기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{12}$ 조각 하나가 모자란다(분자 $11$이 $12$보다 작다)"
+          ]
+        }
+      ],
+      "bGoal": "분자가 분모보다 작은 분수가 전체와 같은 분수보다 작은 까닭",
+      "bReason": "원문 예시를 그대로 사용",
+      "cDecision": "keep",
+      "cReason": "조건이 드러난 짧은 크기 비교(작다) 문장",
+      "cSlotEquivalents": [],
+      "answerNotes": "'작다' 정답."
+    },
+    "currentCMarkedSentence": "분모가 같을 때 분자가 분모보다 작은 분수는 전체와 같은 분수보다 {작다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "작다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "한1/12 조각 부족 설명과11<12의 분자 비교는 별개로 충분한 이유이므로 한 문자열 괄호 대신 anyOf 대안으로 명시한다.",
+      "c": "분자<분모인 분수와 전체의 작은 관계를 확인한다."
+    }
+  },
+  {
+    "id": "e3-1-6-4-xc18",
+    "sourceIndex": 883,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 883,
+      "sourceFingerprint": "529bbe7543469b62f5ec739f96369dd1b18307a9d80358a6012e0cb6c310a92b",
+      "part": "e3plus",
+      "id": "e3-1-6-4-xc18",
+      "section": "초3::1-6 분수와 소수::1-6-4 분모가 같은 분수의 크기 비교",
+      "term": "전체에 가까운 분수",
+      "kind": "성질",
+      "level": "중",
+      "definition": "분모가 같을 때 {분자가 분모에 가까울수록} 전체에 가깝다.",
+      "studentC": "분모가 같을 때 □ 전체에 가깝다.",
+      "answers": [
+        "분자가 분모에 가까울수록"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-4-xc18",
+      "proposalFingerprint": "db466669220f7eb146e2e4f3e79d54add8fa4301d2b032f5d0176a2e618a3c86",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{3}{8}$과 $\\frac{7}{8}$ 가운데 전체에 더 가까운 분수를 고르고 그 까닭을 쓰세요.",
+      "bAnswer": "$\\frac{7}{8}$이다. 전체인 $\\frac{8}{8}$까지 $\\frac{1}{8}$ 하나만 모자라고 $\\frac{3}{8}$은 다섯 개가 모자라기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{7}{8}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체까지 모자란 조각이 더 적다(분자가 분모에 더 가깝다)"
+          ]
+        }
+      ],
+      "bGoal": "분자가 분모에 가까울수록 전체에 가까움을 설명",
+      "bReason": "구체 분수를 새로 만들어 선택과 까닭을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "'분자가 분모에 가까울수록'이라는 조건 구절 전체가 빈칸이라 구체 분수를 고르게 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$\\frac{3}{8}$과 $\\frac{7}{8}$ 가운데 분자가 분모 $8$에 더 가까운 {$\\frac{7}{8}$}이 전체에 더 가깝다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$\\frac{7}{8}$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "전체까지 부족한 조각 비교와 분자가 분모에 가까움의 충분한 설명을 괄호 한 문자열 대신 anyOf 대안으로 분리한다.",
+      "c": "두 실제 후보 중 분자7이8에 가까운7/8을 고른다."
+    }
+  },
+  {
+    "id": "e3-1-6-4-xc19",
+    "sourceIndex": 884,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 884,
+      "sourceFingerprint": "9378679861bcd8155f4ce82acc0491a0c9fb4be4ae1b2decc23d32ee2e996936",
+      "part": "e3plus",
+      "id": "e3-1-6-4-xc19",
+      "section": "초3::1-6 분수와 소수::1-6-4 분모가 같은 분수의 크기 비교",
+      "term": "두 분수 사이의 분수",
+      "kind": "성질",
+      "level": "상",
+      "definition": "분모가 같은 두 분수 사이에 있는 같은 분모의 분수는 {분자가 두 분자 사이의 수}인 분수이다.",
+      "example": {
+        "prompt": "$\\frac{4}{7}$가 $\\frac{3}{7}$과 $\\frac{6}{7}$ 사이에 있는 까닭은?",
+        "answer": "$4$가 $3$과 $6$ 사이라서"
+      },
+      "studentC": "분모가 같은 두 분수 사이에 있는 같은 분모의 분수는 □인 분수이다.",
+      "answers": [
+        "분자가 두 분자 사이의 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-4-xc19",
+      "proposalFingerprint": "b27ffb25c9b4bede3ea173112de85c6965bf300b40202dcf02bee6f08e98974a",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{4}{7}$가 $\\frac{3}{7}$과 $\\frac{6}{7}$ 사이에 있는 분수인 까닭을 쓰세요.",
+      "bAnswer": "분모가 같아 분자로 견주는데, $4$가 $3$보다 크고 $6$보다 작기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자 $4$가 $3$과 $6$ 사이"
+          ]
+        }
+      ],
+      "bGoal": "분모가 같은 두 분수 사이의 분수 찾기",
+      "bReason": "원문 예시를 그대로 사용",
+      "cDecision": "rewrite",
+      "cReason": "'분자가 두 분자 사이의 수'라는 긴 구절 빈칸 대신 원문 예시에서 분수를 쓰게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "두 분수의 순서는 바뀌어도 인정."
+    },
+    "currentCMarkedSentence": "분모가 $7$인 분수 가운데 $\\frac{3}{7}$보다 크고 $\\frac{6}{7}$보다 작은 분수는 {$\\frac{4}{7}$}와 {$\\frac{5}{7}$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$\\frac{4}{7}$",
+        "equivalents": []
+      },
+      {
+        "expected": "$\\frac{5}{7}$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은 분모와3<4<6의 실제 이유를 묻는 B는 명확하다.",
+      "c": "4/7·5/7 나열 순서는 자유이므로 작은 것부터 같은 순서를 명시해야 고정 슬롯 채점이 가능하다."
+    }
+  },
+  {
+    "id": "e3-1-6-5-xc17",
+    "sourceIndex": 902,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 902,
+      "sourceFingerprint": "2528be79b1fb81c7dbad5d2895b70aff6f02afec6195ae6a79772342213de176",
+      "part": "e3plus",
+      "id": "e3-1-6-5-xc17",
+      "section": "초3::1-6 분수와 소수::1-6-5 단위분수의 크기 비교",
+      "term": "분모가 같은 분수 가운데 단위분수",
+      "kind": "성질",
+      "level": "중",
+      "definition": "$\\frac{1}{7}$은 분자가 $1$ 이상이고 분모가 $7$인 분수 가운데 {가장 작다}.",
+      "studentC": "$\\frac{1}{7}$은 분자가 $1$ 이상이고 분모가 $7$인 분수 가운데 □.",
+      "answers": [
+        "가장 작다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-5-xc17",
+      "proposalFingerprint": "81f2eaea0151037e87e82914fc20cc0636509ca39ad39b5ee69a03ee1e56b6d5",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{1}{7}$, $\\frac{2}{7}$, $\\frac{3}{7}$처럼 분모가 $7$인 분수 가운데 $\\frac{1}{7}$이 가장 작은 까닭을 써 보세요.",
+      "bAnswer": "분모가 같으면 분자가 작을수록 작습니다. $\\frac{1}{7}$은 $\\frac{1}{7}$이 한 개뿐이고 다른 분수는 $\\frac{1}{7}$이 $2$개, $3$개씩이므로 $\\frac{1}{7}$이 가장 작습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 같으면 분자($\\frac{1}{7}$의 개수)로 비교"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{7}$은 한 개뿐이라 가장 작다"
+          ]
+        }
+      ],
+      "bGoal": "분모가 같은 분수 가운데 단위분수가 가장 작은 까닭",
+      "bReason": "'분자가 1 이상'이라는 조건을 예시 분수로 바꾸어 초3이 혼자 읽을 수 있게 함",
+      "cDecision": "rewrite",
+      "cReason": "'이상'은 초3이 배우지 않은 말이고 빈칸이 문장 끝 구절 전체임. 예를 들어 주고 '작다'만 묻게 함",
+      "cSlotEquivalents": [],
+      "coreAfter": "$\\frac{1}{7}$, $\\frac{2}{7}$, $\\frac{3}{7}$처럼 분자가 $1$이거나 $1$보다 크고 분모가 $7$인 분수 가운데 $\\frac{1}{7}$이 {가장 작다}.",
+      "coreReason": "가장작다라는 원래 비교 표적과분자1포함조건을 보존하며 이상을쉬운말로푼다."
+    },
+    "currentCMarkedSentence": "$\\frac{1}{7}$, $\\frac{3}{7}$, $\\frac{5}{7}$처럼 분모가 $7$인 분수 가운데 $\\frac{1}{7}$이 가장 {작다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "작다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "분모7인 분수 모두에는0/7도 있으므로 coreAfter처럼 분자가1이거나 더 큰 조건을 B에도 명시해야 한다.",
+      "c": "C도 같은 분자1이상 범위 또는 제시한세후보중으로 한정해야 가장 작다가 참이다."
+    }
+  },
+  {
+    "id": "e3-1-6-5-xc24",
+    "sourceIndex": 907,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 907,
+      "sourceFingerprint": "5a1b22993f3855c807145aa63a5b2396a49c677f2a13cc133d80d22cd10f65ce",
+      "part": "e3plus",
+      "id": "e3-1-6-5-xc24",
+      "section": "초3::1-6 분수와 소수::1-6-5 단위분수의 크기 비교",
+      "term": "$\\frac{1}{2}$보다 작은 단위분수",
+      "kind": "성질",
+      "level": "상",
+      "definition": "분모가 $2$보다 큰 단위분수는 모두 $\\frac{1}{2}$보다 {작다}.",
+      "studentC": "분모가 $2$보다 큰 단위분수는 모두 $\\frac{1}{2}$보다 □.",
+      "answers": [
+        "작다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-5-xc24",
+      "proposalFingerprint": "17b62aa09ef3a44264a9e14846de37942d9bb06fc3bca97e67a43645371e929f",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{1}{3}$, $\\frac{1}{4}$, $\\frac{1}{5}$처럼 분모가 $2$보다 큰 단위분수가 모두 $\\frac{1}{2}$보다 작은 까닭을 써 보세요.",
+      "bAnswer": "전체를 $2$조각보다 더 많은 조각으로 똑같이 나눈 한 조각이므로 반인 $\\frac{1}{2}$보다 작습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$조각보다 더 많이 나눈 한 조각"
+          ]
+        },
+        {
+          "anyOf": [
+            "그래서 $\\frac{1}{2}$보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "분모가 2보다 큰 단위분수가 1/2보다 작은 까닭",
+      "bReason": "예시 분수를 붙여 '분모가 2보다 큰 단위분수'가 무엇인지 바로 알게 함",
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 다 있고 빈칸이 '작다' 한 낱말인 선명한 비교임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'작습니다'도 정답."
+    },
+    "currentCMarkedSentence": "분모가 $2$보다 큰 단위분수는 모두 $\\frac{1}{2}$보다 {작다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "작다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "왜1/2보다 작은지의 이유를 묻는데 이미 주어진 작은 결론을 독립 필수로 반복하도록 요구하지 않게 두 번째 기준을 정리한다.",
+      "c": "분모2보다 큰 단위분수의1/2보다 작은 관계가 옳다."
+    }
+  },
+  {
+    "id": "e3-1-6-7-xc7",
+    "sourceIndex": 924,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 924,
+      "sourceFingerprint": "926c22313f0ccb7bfceee2c7a50bf94ae6db522983ffd308ad90b86e972b40cd",
+      "part": "e3plus",
+      "id": "e3-1-6-7-xc7",
+      "section": "초3::1-6 분수와 소수::1-6-7 소수의 크기 비교",
+      "term": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 소수",
+      "kind": "방법",
+      "level": "하",
+      "definition": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 것은 {$0.1$의 개수가 가장 많은} $0.9$이다.",
+      "studentC": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 것은 □ $0.9$이다.",
+      "answers": [
+        "$0.1$의 개수가 가장 많은"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-7-xc7",
+      "proposalFingerprint": "2d3c77d7338cca25c06b15b468580c49143b5ec83bd5f316d38584188c8810b2",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 수를 고르고, $0.1$이 각각 몇 개인지를 이용해 까닭을 써 보세요.",
+      "bAnswer": "$0.9$입니다. $0.1$이 각각 $3$개, $9$개, $6$개인데 $9$개가 가장 많기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.9$를 고름"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.1$이 $9$개로 가장 많다"
+          ]
+        }
+      ],
+      "bGoal": "0.1의 개수로 소수의 크기를 비교하는 방법",
+      "bReason": "원문은 답 0.9를 보여 주므로 고르기와 0.1 개수 설명을 함께 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '0.1의 개수가 가장 많은'은 긴 구절이고 결과가 이미 보임. 가장 큰 수를 고르게 함",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 수는 {$0.9$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$0.9$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "각각0.1이몇개인지 이용하라고 했으므로9개 최대뿐 아니라3·9·6의 실제 대응도 기준에 확인해야 한다.",
+      "c": "세 실제 소수 중최대0.9를 고른다."
+    }
+  },
+  {
+    "id": "e3-1-6-7-xc25",
+    "sourceIndex": 935,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 935,
+      "sourceFingerprint": "7f0216af44d7a3611eb75300271b6b2eb59b1772208dfb3cd06082b4a8cc40e0",
+      "part": "e3plus",
+      "id": "e3-1-6-7-xc25",
+      "section": "초3::1-6 분수와 소수::1-6-7 소수의 크기 비교",
+      "term": "$\\frac{3}{10}$, $0.5$, $\\frac{1}{10}$을 작은 수부터 늘어놓기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "$\\frac{3}{10}=0.3$이고 $\\frac{1}{10}=0.1$이므로, 이 두 분수와 $0.5$를 작은 수부터 쓰면 {$\\frac{1}{10}$}, {$\\frac{3}{10}$}, {$0.5$}이다.",
+      "studentC": "$\\frac{3}{10}=0.3$이고 $\\frac{1}{10}=0.1$이므로, 이 두 분수와 $0.5$를 작은 수부터 쓰면 □, □, □이다.",
+      "answers": [
+        "$\\frac{1}{10}$",
+        "$\\frac{3}{10}$",
+        "$0.5$"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-6-7-xc25",
+      "proposalFingerprint": "78c62fdc0e98174d63d2f2b198b5f9a392b5bd8e2648878099d447d6285d96f7",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{3}{10}$, $0.5$, $\\frac{1}{10}$을 작은 수부터 차례로 쓰고, 분수와 소수가 섞여 있을 때 어떻게 비교했는지 써 보세요.",
+      "bAnswer": "$\\frac{1}{10}$, $\\frac{3}{10}$, $0.5$입니다. 분수를 소수로 바꾸면 $0.3$, $0.1$이므로 $0.1$, $0.3$, $0.5$의 순서입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{10}$, $\\frac{3}{10}$, $0.5$ 순서"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수를 소수로(같은 꼴로) 바꾸어 비교"
+          ]
+        }
+      ],
+      "bGoal": "분수와 소수가 섞인 수의 크기 비교 방법",
+      "bReason": "순서와 함께 같은 꼴로 바꾸는 방법을 쓰게 함",
+      "cDecision": "keep",
+      "cReason": "바꾼 소수가 문장에 주어져 있고 세 빈칸에 수를 차례로 쓰면 되는 선명한 문제임",
+      "cSlotEquivalents": [],
+      "answerNotes": "세 빈칸의 순서가 맞아야 정답. B에서 0.5를 $\\frac{5}{10}$로 바꾸어 분자로 비교해도 정답."
+    },
+    "currentCMarkedSentence": "$\\frac{3}{10}=0.3$이고 $\\frac{1}{10}=0.1$이므로, 이 두 분수와 $0.5$를 작은 수부터 쓰면 {$\\frac{1}{10}$}, {$\\frac{3}{10}$}, {$0.5$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$\\frac{1}{10}$",
+        "equivalents": []
+      },
+      {
+        "expected": "$\\frac{3}{10}$",
+        "equivalents": []
+      },
+      {
+        "expected": "$0.5$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "B의 서로다른 표기를 같은꼴로 바꾸어 순서를 비교하는 방법은 적절하다.",
+      "c": "순서답0.1·0.3·0.5도 같은수를 가리키므로 첫두슬롯에0.1·0.3의 맥락대안을 허용하거나 원래표기로쓰라는 범위를 명시한다."
+    }
+  },
+  {
+    "id": "e3-2-1-1-xc2",
+    "sourceIndex": 936,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 936,
+      "sourceFingerprint": "c1be965b9711aa7bcdb4ebb4af02eb29ba717ed7c20ed92bd9ea4bdef83179cf",
+      "part": "e3plus",
+      "id": "e3-2-1-1-xc2",
+      "section": "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
+      "term": "곱을 같은 자리에 쓰기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "올림이 없는 (세 자리 수)$\\times$(한 자리 수)에서는 {각 자리의 곱}을 그 숫자와 같은 자리에 쓴다.",
+      "studentC": "올림이 없는 (세 자리 수)$\\times$(한 자리 수)에서는 □을 그 숫자와 같은 자리에 쓴다.",
+      "answers": [
+        "각 자리의 곱"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-1-1-xc2",
+      "proposalFingerprint": "2e9f0e35d2814b61e9205f4bcade4789c8119e12b82ee82bb3c86905ba8f078d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$231\\times3$을 계산할 때 일, 십, 백의 자리 숫자에 $3$을 곱한 값을 각각 쓰고, 그 값을 곱의 어느 자리에 쓰는지 설명해 보세요.",
+      "bAnswer": "$1\\times3=3$은 일의 자리에, $3\\times3=9$는 십의 자리에, $2\\times3=6$은 백의 자리에 써서 $693$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 자리 숫자와 $3$의 곱 $3$, $9$, $6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한 숫자와 같은 자리에 쓴다"
+          ]
+        }
+      ],
+      "bGoal": "올림이 없는 곱셈에서 각 자리의 곱을 쓰는 자리",
+      "bReason": "일반 규칙을 올림이 없는 식 231×3으로 자립시킴",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '각 자리의 곱'은 학생이 떠올리기 어려운 말임. 구체 식에서 자리 이름을 쓰게 함",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$231\\times3$에서 십의 자리 숫자 $3$과 곱하는 수 $3$의 곱 $9$는 곱의 {십}의 자리에 쓴다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "십",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "각자리 실제곱3·9·6과 같은자리쓰기를 요청하는 B는 적절하다.",
+      "c": "십이라는 단어를 바로복사하기보다 가운데숫자3의 곱이실제90임을 나타내는 자리값 적용으로 고친다."
+    }
+  },
+  {
+    "id": "e3-2-1-1-xc20",
+    "sourceIndex": 947,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 947,
+      "sourceFingerprint": "0a56479d23a29da88def32ebff34837f177cf4206057d417856ccc13ec66aa00",
+      "part": "e3plus",
+      "id": "e3-2-1-1-xc20",
+      "section": "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
+      "term": "올림 없는 곱의 가장 큰 값",
+      "kind": "성질",
+      "level": "상",
+      "definition": "올림이 없는 (세 자리 수)$\\times$(한 자리 수)의 곱은 가장 커도 {$999$}이다.",
+      "studentC": "올림이 없는 (세 자리 수)$\\times$(한 자리 수)의 곱은 가장 커도 □이다.",
+      "answers": [
+        "$999$"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-1-1-xc20",
+      "proposalFingerprint": "7b71d7e596357336830dc5c042e930009d3cee7fd7fd08c545657795a6d7059e",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "올림이 없는 (세 자리 수)$\\times$(한 자리 수)의 곱이 $999$보다 클 수 없는 까닭을 각 자리의 곱으로 설명해 보세요.",
+      "bAnswer": "올림이 없으면 각 자리의 곱이 $9$까지이므로 곱의 각 자리 숫자는 가장 커도 $9$입니다. 그래서 가장 큰 곱은 $333\\times3$과 같은 $999$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "올림이 없으면 각 자리의 곱은 $9$까지"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱의 각 자리 숫자가 $9$를 넘지 못한다"
+          ]
+        }
+      ],
+      "bGoal": "올림 없는 곱의 가장 큰 값이 999인 까닭",
+      "bReason": "값 999는 주고 그 까닭을 각 자리의 곱으로 쓰도록 범위를 정함",
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 다 있고 '가장 커도 □'에 수 하나를 쓰면 됨",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "올림이 없는 (세 자리 수)$\\times$(한 자리 수)의 곱은 가장 커도 {$999$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$999$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "올림없어 각자리곱이9까지이고 그숫자를쓴다는 하나의범위이유를 서로같은두기준으로 반복요구하지 않도록 합친다.",
+      "c": "올림없는세자리곱의 최대999를 확인한다."
+    }
+  },
+  {
+    "id": "e3-2-1-2-xc13",
+    "sourceIndex": 959,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 959,
+      "sourceFingerprint": "2dbce72aacb15fd3fd63f8f3fa6ddd0c72433c3871c2208941b8035cbecd1568",
+      "part": "e3plus",
+      "id": "e3-2-1-2-xc13",
+      "section": "초3::2-1 곱셈::2-1-2 (세 자리 수)×(한 자리 수) (2)",
+      "term": "몇백으로 어림하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "세 자리 수를 가까운 몇백으로 바꾸어 곱하면 곱이 {어느 정도인지} 미리 알 수 있다.",
+      "example": {
+        "prompt": "$298\\times3$의 곱이 $900$보다 작은 까닭은?",
+        "answer": "$298$이 $300$보다 작아서"
+      },
+      "studentC": "세 자리 수를 가까운 몇백으로 바꾸어 곱하면 곱이 □ 미리 알 수 있다.",
+      "answers": [
+        "어느 정도인지"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-1-2-xc13",
+      "proposalFingerprint": "c00791946ef565f29878ab8ef7d18a754a4b6885c92378166989b4232eb82ea8",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$298\\times3$을 계산하기 전에 곱을 어림하는 방법을 쓰고, 실제 곱이 어림한 값보다 큰지 작은지 까닭과 함께 써 보세요.",
+      "bAnswer": "$298$을 가까운 $300$으로 바꾸어 $300\\times3=900$으로 어림합니다. $298$이 $300$보다 작으므로 실제 곱은 $900$보다 작습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$300$으로 바꾸어 약 $900$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$298$이 $300$보다 작아 실제 곱은 더 작다"
+          ]
+        }
+      ],
+      "bGoal": "가까운 몇백으로 곱을 어림하는 방법",
+      "bReason": "원문 예제 298×3을 써서 어림 방법과 크기 판단을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '어느 정도인지'는 답할 범위가 뚜렷하지 않음. 실제 어림값을 쓰게 함",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$298\\times3$은 $298$을 가까운 몇백인 $300$으로 바꾸어 어림하면 약 {$900$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$900$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "어림 방법을 자유롭게 묻고300으로만 채점하므로 가까운 몇백으로 바꾸라는 범위를 B에 명시해야 한다.",
+      "c": "가까운300을 명시한 곱 약900은 분명하다."
+    }
+  }
+]

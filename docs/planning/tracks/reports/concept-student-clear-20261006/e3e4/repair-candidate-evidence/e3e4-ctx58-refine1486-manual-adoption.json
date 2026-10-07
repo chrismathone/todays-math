@@ -1,0 +1,114 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-1-1-7-xc19",
+      "sourceIndex": 1486,
+      "beforeProposal": {
+        "sourceIndex": 1486,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+        "sourceFingerprint": "09f9d39f0b7268791b66965fe29f33574598548b4ea28162924976cbb2bb8cb1",
+        "proposalFingerprint": "01d5b7a1f2aa605fcc9cceac1e84b7cf349c672b53704333ca5a848651afdd01",
+        "reviewStatus": "draft",
+        "id": "e4-1-1-7-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$45\\square21$과 $45621$의 크기를 비교하려고 합니다. $\\square$ 안의 숫자에 따라 어느 자리를 어떻게 비교해야 하는지 설명하세요.",
+        "bAnswer": "만, 천의 자리 숫자가 같으므로 $\\square$와 백의 자리 숫자 $6$을 비교합니다. 같으면 그 뒤의 자리를 비교하는데, 여기서는 $21$로 같아 두 수가 같습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\square$와 $6$을 비교한다",
+              "백의 자리 숫자를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같으면 그 뒤의 자리를 비교한다",
+              "$\\square$가 $6$이면 두 수가 같다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모르는 숫자가 있는 수 비교",
+        "bReason": "원문의 두 수로 비교할 자리와 같을 때의 처리를 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 {$6$}을 비교한다. 가려진 숫자도 $6$이면 두 수의 크기는 {같다}.",
+        "cReason": "수식의 $\\square$와 빈칸 □가 같은 모양이라 어느 것이 답 칸인지 헷갈림",
+        "cSlotEquivalents": [
+          [
+            "육"
+          ],
+          [
+            "서로 같다",
+            "똑같다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$\\square$가 있는 수 비교하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 {$6$}을 비교한다. 가려진 숫자도 $6$이면 두 수의 크기는 {같다}.",
+        "cStudentSentence": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 □을 비교한다. 가려진 숫자도 $6$이면 두 수의 크기는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": [
+              "육"
+            ]
+          },
+          {
+            "expected": "같다",
+            "equivalents": [
+              "서로 같다",
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$45\\square21$과 $45621$의 크기를 비교하려고 합니다. $\\square$ 안의 숫자에 따라 어느 자리를 어떻게 비교해야 하는지 설명하세요.",
+          "answer": "만, 천의 자리 숫자가 같으므로 $\\square$와 백의 자리 숫자 $6$을 비교합니다. 같으면 그 뒤의 자리를 비교하는데, 여기서는 $21$로 같아 두 수가 같습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\square$와 $6$을 비교한다",
+                "백의 자리 숫자를 비교한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같으면 그 뒤의 자리를 비교한다",
+                "$\\square$가 $6$이면 두 수가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 {$6$}을 비교한다. 가려진 숫자도 $6$이면 두 수의 크기는 {같다}.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "육"
+            ],
+            [
+              "같다",
+              "서로 같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cAfter": "앞의 두 자리가 $45$, 끝의 두 자리가 $21$이고 백의 자리 숫자만 가려진 다섯 자리 수가 있다. 이 수를 $45621$과 비교하려면 가려진 숫자와 {$6$}을 비교한다. 비교한 두 숫자가 같으면 두 수의 크기는 {같다}."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}
