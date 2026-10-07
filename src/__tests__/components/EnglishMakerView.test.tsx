@@ -130,8 +130,8 @@ const writeText = vi.fn();
 const onSaved = vi.fn();
 const onNotice = vi.fn();
 
-function setup(nextExam: EnglishExam = exam) {
-  return render(
+function setup(nextExam: EnglishExam = exam, external = true) {
+  const view = render(
     <EnglishMakerView
       exam={nextExam}
       materials={materials}
@@ -139,13 +139,23 @@ function setup(nextExam: EnglishExam = exam) {
       onNotice={onNotice}
     />,
   );
+  if (external) fireEvent.click(method("외부 자료 가져오기"));
+  return view;
 }
 
-const tab = (name: string) => screen.getByRole("tab", { name });
+const method = (name: string) => {
+  if (name !== "AI 문제 제작") {
+    const summary = screen.getByText("다른 제작 방식");
+    if (!summary.parentElement?.hasAttribute("open")) fireEvent.click(summary);
+  }
+  return screen.getByRole("button", { name });
+};
 const button = (name: string | RegExp) => screen.getByRole("button", { name });
 
 function fillTopic(value = "등굣길") {
-  fireEvent.change(screen.getByLabelText("소재"), { target: { value } });
+  fireEvent.change(screen.getByLabelText("원문의 주제와 요청"), {
+    target: { value },
+  });
 }
 
 async function lastRequestBody() {
@@ -169,28 +179,23 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-describe("EnglishMakerView — 세 탭", () => {
-  it("탭 셋부터 시작한다(머리는 뿌리 EnglishStudio 가 그린다) · 첫 탭이 ChatGPT · 화살표로 옮긴다", () => {
-    setup();
+describe("EnglishMakerView — 전체 제작 작업 화면", () => {
+  it("AI 제작으로 시작하고 보조 방식은 접힌 영역에 둔다", () => {
+    setup(exam, false);
     expect(screen.queryByRole("heading", { level: 1 })).toBeNull();
-    const list = screen.getByRole("tablist", { name: "문제 만들기 방법" });
-    const tabs = within(list).getAllByRole("tab");
-    expect(tabs.map((el) => el.textContent)).toEqual([
-      "ChatGPT 로 제작",
-      "원문 복원",
-      "API 직접 생성",
-    ]);
-    expect(tab("ChatGPT 로 제작")).toHaveAttribute("aria-selected", "true");
-    expect(screen.getByText(/API 키가 필요 없습니다/)).toBeInTheDocument();
-
-    fireEvent.keyDown(tab("ChatGPT 로 제작"), { key: "ArrowRight" });
-    expect(tab("원문 복원")).toHaveAttribute("aria-selected", "true");
-    expect(screen.getByText(/AI 추론형 문항과 다릅니다/)).toBeInTheDocument();
-
-    fireEvent.click(tab("API 직접 생성"));
+    expect(method("AI 문제 제작")).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByLabelText("AI로 원문부터")).toBeChecked();
+    expect(screen.getByText("중2")).toBeVisible();
+    expect(screen.queryByRole("tablist")).toBeNull();
+    expect(screen.queryByLabelText("ChatGPT 결과 붙여넣기")).toBeNull();
     expect(
-      screen.getByText("생성 시 소재·지문을 AI 서버로 보냅니다."),
-    ).toBeInTheDocument();
+      screen.getByText("다른 제작 방식").parentElement,
+    ).not.toHaveAttribute("open");
+    fireEvent.click(method("원문 복원 연습"));
+    expect(screen.getByText(/AI 추론형 문항과 다릅니다/)).toBeVisible();
+    fireEvent.click(method("외부 자료 가져오기"));
+    expect(screen.getByLabelText("ChatGPT 결과 붙여넣기")).toBeVisible();
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("조건은 ChatGPT 탭과 API 탭이 같이 쓴다 — 자료 불러오기 · 출제 설정 불러오기", () => {
@@ -207,14 +212,14 @@ describe("EnglishMakerView — 세 탭", () => {
     expect(screen.getByLabelText("서술형")).not.toBeChecked();
 
     // 원문 유지로 바꾸면 소재 대신 원문 칸 — 저장한 텍스트 자료만 목록에 온다(파일 자료는 없다)
-    fireEvent.click(screen.getByLabelText("원문 유지"));
+    fireEvent.click(screen.getByLabelText("기존 원문으로"));
     const picker = screen.getByLabelText("저장한 자료 불러오기");
     expect(within(picker).queryByText("시험 범위.pdf")).toBeNull();
     fireEvent.change(picker, { target: { value: materials[0]!.id } });
     expect(screen.getByLabelText("원문")).toHaveValue(passage);
 
     // API 탭으로 가도 같은 값이다
-    fireEvent.click(tab("API 직접 생성"));
+    fireEvent.click(method("AI 문제 제작"));
     expect(screen.getByLabelText("원문")).toHaveValue(passage);
     expect(screen.getByLabelText("원문 유지")).toBeChecked();
   });
@@ -558,7 +563,7 @@ describe("원문 복원", () => {
   it("자료를 불러와 연습문제를 만들고 저장한다 — 최대 문항 수를 지킨다", async () => {
     fetchMock.mockResolvedValue(jsonResponse(savedSet("set-2", "cloze"), 201));
     setup();
-    fireEvent.click(tab("원문 복원"));
+    fireEvent.click(method("원문 복원 연습"));
     fireEvent.change(screen.getByLabelText("저장한 자료 불러오기"), {
       target: { value: materials[0]!.id },
     });
@@ -588,7 +593,7 @@ describe("원문 복원", () => {
 
   it("쓸 만한 문장이 없으면 사유를 보이고 저장하지 않는다", async () => {
     setup();
-    fireEvent.click(tab("원문 복원"));
+    fireEvent.click(method("원문 복원 연습"));
     fireEvent.change(screen.getByLabelText("복원할 원문"), {
       target: { value: "Go now." },
     });
@@ -614,14 +619,14 @@ describe("API 직접 생성", () => {
       ),
     );
     setup();
-    fireEvent.click(tab("API 직접 생성"));
+    fireEvent.click(method("AI 문제 제작"));
     expect(screen.getByRole("status")).toHaveTextContent("확인 전");
     fillTopic();
     await act(async () => {
-      fireEvent.click(button("AI 지문·문제 생성"));
+      fireEvent.click(button("원문·문항 생성"));
     });
     expect(screen.getByRole("status")).toHaveTextContent("연결 대기");
-    expect(button("AI 지문·문제 생성")).toBeDisabled();
+    expect(button("원문·문항 생성")).toBeDisabled();
     expect(screen.getByRole("alert")).toHaveTextContent(
       "AI 연결이 설정되지 않았습니다.",
     );
@@ -629,7 +634,7 @@ describe("API 직접 생성", () => {
     expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
   });
 
-  it("200 이면 초안을 세트로 저장하고 onSaved — 상태 줄은 «AI 연결됨»", async () => {
+  it("200 결과를 먼저 보여주고 명시적 초안 저장 후 onSaved — 상태 줄은 «AI 연결됨»", async () => {
     fetchMock
       .mockResolvedValueOnce(
         jsonResponse({
@@ -639,13 +644,17 @@ describe("API 직접 생성", () => {
       )
       .mockResolvedValueOnce(jsonResponse(savedSet("set-3", "deepseek"), 201));
     setup();
-    fireEvent.click(tab("API 직접 생성"));
+    fireEvent.click(method("AI 문제 제작"));
     fillTopic("등굣길의 놀이");
     fireEvent.change(screen.getByLabelText("문항 수"), {
       target: { value: "3" },
     });
     await act(async () => {
-      fireEvent.click(button("AI 지문·문제 생성"));
+      fireEvent.click(button("원문·문항 생성"));
+    });
+    expect(onSaved).not.toHaveBeenCalled();
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
     });
     expect(fetchMock).toHaveBeenCalledTimes(2);
     const [generateUrl, generateInit] = fetchMock.mock.calls[0] as [
@@ -698,16 +707,16 @@ describe("API 직접 생성", () => {
       ),
     );
     setup();
-    fireEvent.click(tab("API 직접 생성"));
+    fireEvent.click(method("AI 문제 제작"));
     fillTopic();
     await act(async () => {
-      fireEvent.click(button("AI 지문·문제 생성"));
+      fireEvent.click(button("원문·문항 생성"));
     });
     const alert = screen.getByRole("alert");
     expect(alert).toHaveTextContent("검증을 통과하지 못했습니다");
     expect(alert).toHaveTextContent("2번 문항");
     expect(alert).toHaveTextContent("5개");
-    expect(button("AI 지문·문제 생성")).not.toBeDisabled();
+    expect(button("원문·문항 생성")).not.toBeDisabled();
     expect(onSaved).not.toHaveBeenCalled();
     expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
   });
@@ -728,13 +737,17 @@ describe("API 직접 생성", () => {
       )
       .mockResolvedValueOnce(jsonResponse(savedSet("set-4", "deepseek"), 201));
     setup();
-    fireEvent.click(tab("API 직접 생성"));
+    fireEvent.click(method("AI 문제 제작"));
     fillTopic("등굣길의 놀이");
     fireEvent.change(screen.getByLabelText("문항 수"), {
       target: { value: "3" },
     });
     await act(async () => {
-      fireEvent.click(button("AI 지문·문제 생성"));
+      fireEvent.click(button("원문·문항 생성"));
+    });
+    expect(onSaved).not.toHaveBeenCalled();
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
     });
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(screen.getByRole("status")).toHaveTextContent("AI 연결됨");
@@ -775,13 +788,17 @@ describe("API 직접 생성", () => {
       )
       .mockResolvedValueOnce(jsonResponse(savedSet("set-5", "deepseek"), 201));
     const view = setup();
-    fireEvent.click(tab("API 직접 생성"));
+    fireEvent.click(method("AI 문제 제작"));
     fillTopic("등굣길의 놀이");
     fireEvent.change(screen.getByLabelText("문항 수"), {
       target: { value: "3" },
     });
     await act(async () => {
-      fireEvent.click(button("AI 지문·문제 생성"));
+      fireEvent.click(button("원문·문항 생성"));
+    });
+    expect(onSaved).not.toHaveBeenCalled();
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
     });
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(button("다시 저장")).toBeInTheDocument();
@@ -807,6 +824,171 @@ describe("API 직접 생성", () => {
       `/api/english/exams/${exam.id}/sets`,
     );
     expect(onSaved).toHaveBeenCalledWith("set-5");
+  });
+});
+
+describe("AI 제작 — 저장 전 검토와 비동기 보호", () => {
+  async function generate() {
+    fillTopic();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    await act(async () => {
+      fireEvent.click(button("원문·문항 생성"));
+    });
+  }
+  const generated = () =>
+    jsonResponse({ data: { ...goodDraft, source: "deepseek" } });
+  const otherExam = {
+    ...exam,
+    id: "20000000-0000-4000-8000-000000000009",
+    grade: "중3" as const,
+  };
+  const props = { materials, onSaved, onNotice };
+
+  it("생성만으로 저장하지 않고 원문·보기·정답·해설·근거를 보여준다", async () => {
+    fetchMock.mockResolvedValueOnce(generated());
+    setup(exam, false);
+    expect(screen.queryByText("형식·근거 인용 검사 통과")).toBeNull();
+    await generate();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(onSaved).not.toHaveBeenCalled();
+    expect(screen.getByText("AI 제작 원문")).toBeVisible();
+    expect(screen.getByText(passage)).toBeVisible();
+    expect(screen.getByText(goodDraft.questions[0]!.options[0]!)).toBeVisible();
+    expect(screen.getAllByText("정답")).toHaveLength(3);
+    expect(screen.getByText(goodDraft.questions[0]!.explanation)).toBeVisible();
+    expect(screen.getByText(goodDraft.questions[0]!.evidence)).toBeVisible();
+    expect(button("초안 저장")).toBeEnabled();
+  });
+
+  it("실제 검증 실패를 보이고 교사 수정 뒤 다시 검사해 저장한다", async () => {
+    const invalid = {
+      ...goodDraft,
+      source: "deepseek",
+      questions: goodDraft.questions.map((q, i) =>
+        i === 0 ? { ...q, evidence: "not in the source" } : q,
+      ),
+    };
+    fetchMock
+      .mockResolvedValueOnce(jsonResponse({ data: invalid }))
+      .mockResolvedValueOnce(
+        jsonResponse(savedSet("corrected", "deepseek"), 201),
+      );
+    setup(exam, false);
+    await generate();
+    expect(screen.queryByText("형식·근거 인용 검사 통과")).toBeNull();
+    expect(screen.getByRole("alert")).toHaveTextContent("1번 문항");
+    expect(button("초안 저장")).toBeDisabled();
+    fireEvent.click(button("교사 수정"));
+    fireEvent.change(screen.getByLabelText("1번 근거"), {
+      target: { value: goodDraft.questions[0]!.evidence },
+    });
+    fireEvent.change(screen.getByLabelText("1번 보기 1"), {
+      target: { value: "small games help us practice patience" },
+    });
+    expect(screen.getByText("형식·근거 인용 검사 통과")).toBeVisible();
+    expect(button("초안 저장")).toBeEnabled();
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
+    });
+    const saved = await lastRequestBody();
+    expect(saved.passage).toBe(passage);
+    expect(saved.source).toBe("deepseek");
+    expect(saved.questions).toEqual(
+      invalid.questions.map((q, i) =>
+        i === 0
+          ? {
+              ...q,
+              evidence: goodDraft.questions[0]!.evidence,
+              options: [
+                "small games help us practice patience",
+                ...q.options.slice(1),
+              ],
+            }
+          : q,
+      ),
+    );
+    expect(onSaved).toHaveBeenCalledExactlyOnceWith("corrected");
+  });
+
+  it.each(["시험 변경", "생성 취소", "화면 이탈"])(
+    "%s 뒤 늦은 생성 결과는 저장하거나 표시하지 않는다",
+    async (action) => {
+      let resolve!: (response: Response) => void;
+      fetchMock.mockImplementationOnce(
+        () =>
+          new Promise<Response>((done) => {
+            resolve = done;
+          }),
+      );
+      const view = setup(exam, false);
+      await generate();
+      const signal = fetchMock.mock.calls[0]![1].signal as AbortSignal;
+      if (action === "시험 변경") {
+        view.rerender(<EnglishMakerView exam={otherExam} {...props} />);
+        view.rerender(<EnglishMakerView exam={exam} {...props} />);
+      } else if (action === "생성 취소") fireEvent.click(button("생성 취소"));
+      else view.unmount();
+      expect(signal.aborted).toBe(true);
+      await act(async () => {
+        resolve(generated());
+      });
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(onSaved).not.toHaveBeenCalled();
+      expect(screen.queryByRole("button", { name: "초안 저장" })).toBeNull();
+      expect(screen.queryByText("저장 전 초안")).toBeNull();
+    },
+  );
+
+  it("저장 응답 중 시험을 바꾸면 이전 시험의 saved callback을 실행하지 않는다", async () => {
+    let resolve!: (response: Response) => void;
+    fetchMock
+      .mockResolvedValueOnce(generated())
+      .mockImplementationOnce(
+        () =>
+          new Promise<Response>((done) => {
+            resolve = done;
+          }),
+      )
+      .mockResolvedValueOnce(
+        jsonResponse(savedSet("saved-once", "deepseek"), 201),
+      );
+    const view = setup(exam, false);
+    await generate();
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
+    });
+    const first = await lastRequestBody();
+    view.rerender(<EnglishMakerView exam={otherExam} {...props} />);
+    await act(async () => {
+      resolve(jsonResponse(savedSet("saved-once", "deepseek"), 201));
+    });
+    expect(onSaved).not.toHaveBeenCalled();
+    view.rerender(<EnglishMakerView exam={exam} {...props} />);
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
+    });
+    expect(await lastRequestBody()).toEqual(first);
+    expect(onSaved).toHaveBeenCalledExactlyOnceWith("saved-once");
+  });
+
+  it("미저장 결과의 재생성을 취소하면 원래 결과를 유지한다", async () => {
+    fetchMock.mockResolvedValueOnce(generated());
+    setup(exam, false);
+    await generate();
+    const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
+    try {
+      fireEvent.click(button("원문·문항 생성"));
+      expect(confirm).toHaveBeenCalledTimes(1);
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      expect(screen.getByText("저장 전 초안")).toBeVisible();
+      const event = new Event("beforeunload", { cancelable: true });
+      window.dispatchEvent(event);
+      expect(event.defaultPrevented).toBe(true);
+    } finally {
+      confirm.mockRestore();
+    }
   });
 });
 
@@ -930,7 +1112,7 @@ describe("유형 확장 (D-158)", () => {
 
   it("원문 칸의 안내는 지금 하한(20자)을 말한다", () => {
     setup();
-    fireEvent.click(screen.getByLabelText("원문 유지"));
+    fireEvent.click(screen.getByLabelText("기존 원문으로"));
     expect(
       screen.getByPlaceholderText("영어 원문을 붙여 넣으세요 (20자 이상)."),
     ).toBeInTheDocument();
@@ -1153,7 +1335,7 @@ describe("자료은행 → 기존 만들기", () => {
   it("다른 시험 seed는 인계 callback 없이는 보류한다", async () => {
     const other = { ...seed, examId: "20000000-0000-4000-8000-000000000099" };
     const view = await bankSetup(other);
-    expect(screen.getByLabelText("소재")).toHaveValue("");
+    expect(screen.getByLabelText("원문의 주제와 요청")).toHaveValue("");
     expect(handled).not.toHaveBeenCalled();
     view.rerender(
       <EnglishMakerView
@@ -1185,7 +1367,9 @@ describe("자료은행 → 기존 만들기", () => {
       />,
     );
     await act(async () => {});
-    expect(screen.getByLabelText("소재")).toHaveValue("기존 소재");
+    expect(screen.getByLabelText("원문의 주제와 요청")).toHaveValue(
+      "기존 소재",
+    );
     expect(screen.getByLabelText("ChatGPT 결과 붙여넣기")).toHaveValue(
       "기존 결과",
     );
@@ -1209,7 +1393,7 @@ describe("자료은행 → 기존 만들기", () => {
       />,
     );
     await act(async () => {});
-    expect(tab("API 직접 생성")).toHaveAttribute("aria-selected", "true");
+    expect(method("AI 문제 제작")).toHaveAttribute("aria-pressed", "true");
     expect(accepted).toHaveBeenCalledExactlyOnceWith(other.examId);
     expect(accepted.mock.invocationCallOrder[0]).toBeLessThan(
       handled.mock.invocationCallOrder[0]!,
@@ -1233,9 +1417,9 @@ describe("자료은행 → 기존 만들기", () => {
       path: "chatgpt",
       textRevision: 1,
     });
-    fireEvent.click(tab("API 직접 생성"));
+    fireEvent.click(method("AI 문제 제작"));
     await act(async () => {
-      fireEvent.click(button("AI 지문·문제 생성"));
+      fireEvent.click(button("원문·문항 생성"));
     });
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(JSON.parse(String(fetchMock.mock.calls[1]![1].body)).path).toBe(
@@ -1424,9 +1608,12 @@ describe("자료은행 → 기존 만들기", () => {
         jsonResponse(savedSet("old-draft", "deepseek"), 201),
       );
     const view = setup();
-    fireEvent.click(tab("API 직접 생성"));
+    fireEvent.click(method("AI 문제 제작"));
     fillTopic("진행 중인 소재");
-    fireEvent.click(button("AI 지문·문제 생성"));
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    fireEvent.click(button("원문·문항 생성"));
     await act(async () => {});
     view.rerender(
       <EnglishMakerView
@@ -1446,7 +1633,12 @@ describe("자료은행 → 기존 만들기", () => {
     });
     expect(handled).toHaveBeenCalledExactlyOnceWith(seed.requestId);
     expect(window.confirm).toHaveBeenCalledTimes(1);
-    expect(screen.getByLabelText("소재")).toHaveValue("진행 중인 소재");
+    expect(screen.getByLabelText("원문의 주제와 요청")).toHaveValue(
+      "진행 중인 소재",
+    );
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
+    });
     const bundle = await lastRequestBody();
     await act(async () => {
       fireEvent.click(button("다시 저장"));
@@ -1459,6 +1651,9 @@ describe("자료은행 → 기존 만들기", () => {
     const apiSeed = { ...seed, path: "api" as const };
     await bankSetup(apiSeed);
     fireEvent.click(screen.getByLabelText("원문 변형"));
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
     const generated = {
       ...goodDraft,
       source: "deepseek",
@@ -1471,7 +1666,16 @@ describe("자료은행 → 기존 만들기", () => {
         jsonResponse(savedSet("variation", "deepseek"), 201),
       );
     await act(async () => {
-      fireEvent.click(button("AI 지문·문제 생성"));
+      fireEvent.click(button("원문·문항 생성"));
+    });
+    expect(onSaved).not.toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    fireEvent.click(button("교사 수정"));
+    fireEvent.change(screen.getByLabelText("1번 해설"), {
+      target: { value: "교사가 원문과 대조한 해설" },
+    });
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
     });
     expect(fetchMock.mock.calls.map((call) => call[0])).toEqual([
       `/api/english/passages/${seed.passageRef.passageId}/prepare`,
@@ -1485,6 +1689,9 @@ describe("자료은행 → 기존 만들기", () => {
     });
     const saved = await lastRequestBody();
     expect(saved.passage).toBe(generated.passage);
+    expect(
+      (saved.questions as typeof goodDraft.questions)[0]!.explanation,
+    ).toBe("교사가 원문과 대조한 해설");
     expect(saved.meta).toMatchObject({
       path: "api",
       mode: "variation",
@@ -1520,7 +1727,7 @@ describe("자료은행 → 기존 만들기", () => {
       />,
     );
     await act(async () => {});
-    fireEvent.click(screen.getByLabelText("새 지문 생성"));
+    fireEvent.click(screen.getByLabelText("AI로 원문부터"));
     fillTopic();
     fetchMock.mockClear();
     await act(async () => {
@@ -1556,7 +1763,7 @@ describe("자료은행 → 기존 만들기", () => {
     });
     expect((await lastRequestBody()).meta).not.toHaveProperty("passageRef");
     expect(fetchMock).toHaveBeenCalledTimes(1);
-    fireEvent.click(tab("ChatGPT 로 제작"));
+    fireEvent.click(method("외부 자료 가져오기"));
     expect(screen.getByLabelText("원문")).toHaveValue(passage);
     fetchMock.mockResolvedValueOnce(prepare());
     await act(async () => {
@@ -1611,9 +1818,9 @@ describe("자료은행 → 기존 만들기", () => {
       ),
     );
     await act(async () => {
-      fireEvent.click(button("AI 지문·문제 생성"));
+      fireEvent.click(button("원문·문항 생성"));
     });
-    expect(button("AI 지문·문제 생성")).toBeEnabled();
+    expect(button("원문·문항 생성")).toBeEnabled();
     expect(
       screen.getByText("AI 연결 확인 전 — 첫 생성 때 확인합니다."),
     ).toBeVisible();
