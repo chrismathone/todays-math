@@ -14,6 +14,8 @@ import { fadingTargets, type FadingConcept } from "@/lib/fading/concepts";
 import type { FadingState } from "@/contracts/fadingApi.contract";
 import { erasedTargets } from "@/lib/fading/erasure";
 import { fadingCardBlanks } from "@/lib/fading/cards";
+import { chipTray } from "@/lib/fading/chips";
+import { FadingFillCard } from "@/components/fading/FadingFillCard";
 
 vi.mock("@/components/math-explorers/ExplorerMath", () => ({
   ExplorerMath: ({ text }: { text: string }) => <>{text}</>,
@@ -99,6 +101,26 @@ async function atFour() {
     });
   return { local, state, ref };
 }
+async function atChipStep(cards: boolean, step: 2 | 3 | 4) {
+  const { local, state: initial } = await learning(cards);
+  const ref = { conceptId: concept.id, sessionId: initial.session!.id };
+  let state = await local.act({
+    action: "read",
+    ...ref,
+    ...(cards ? { seen: "123" } : {}),
+  });
+  for (const current of [2, 3] as const) {
+    if (current >= step) break;
+    state = await local.act({
+      action: "step",
+      ...ref,
+      step: current,
+      placements: [],
+      gaveUp: true,
+    });
+  }
+  return { local, state };
+}
 async function cold() {
   const { local, ref } = await atFour();
   await local.act({
@@ -126,7 +148,7 @@ function app(local: ReturnType<typeof source>, state: FadingState) {
   );
 }
 function answer(text: string) {
-  const input = screen.getByRole("textbox", { name: /핵심 답 입력/ });
+  const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
   fireEvent.change(input, { target: { value: text } });
   fireEvent.submit(input.closest("form")!);
 }
@@ -144,6 +166,175 @@ function finishComparison() {
 }
 
 describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
+  it.each([
+    [true, 2],
+    [true, 3],
+    [false, 2],
+    [false, 3],
+    [false, 4],
+  ] as const)(
+    "cards=%s step=%s는 답을 DOM에 노출하지 않고 숫자키로 숨은 답을 넣지 않는다",
+    async (cards, step) => {
+      const { local, state } = await atChipStep(cards, step);
+      const send = vi.spyOn(local, "act");
+      app(local, { ...state, mode: "cards" });
+      const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
+      expect(input).toHaveAttribute("placeholder", "빈칸 답을 쓰고 Enter");
+      expect(
+        document.querySelectorAll(
+          "[data-fading-chip], [data-fading-chip-text]",
+        ),
+      ).toHaveLength(0);
+      expect(screen.queryByText("문장을 채우는 칩")).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("complementary", { name: "칩 고르기" }),
+      ).not.toBeInTheDocument();
+      const before = document.querySelector(
+        "[data-fading-sentence]",
+      )!.innerHTML;
+      for (const key of "1234567890") {
+        fireEvent.keyDown(window, { key, code: `Digit${key}` });
+        fireEvent.keyDown(window, { key, code: `Numpad${key}` });
+        fireEvent.keyDown(window, { key, code: `Digit${key}`, shiftKey: true });
+      }
+      expect(document.querySelector("[data-fading-sentence]")!.innerHTML).toBe(
+        before,
+      );
+      expect(send).not.toHaveBeenCalled();
+      for (const target of erasedTargets(concept, step)) {
+        const row = concept.propositions.find((proposition) =>
+          proposition.pieces.some(
+            (piece) => piece.kind === "target" && piece.target.id === target.id,
+          ),
+        )!;
+        const visible = document.querySelector("[data-fading-sentence]");
+        if (visible?.getAttribute("data-fading-sentence") === row.id)
+          expect(visible.innerHTML).not.toContain(target.text);
+      }
+      input.focus();
+      fireEvent.keyDown(input, { key: "Tab" });
+      fireEvent.change(input, { target: { value: "떠오르지 않는 표현" } });
+      fireEvent.submit(input.closest("form")!);
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "입력한 답을 확인해 주세요",
+      );
+      expect(screen.getByRole("status").textContent).not.toContain("칩");
+      expect(send).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each([true, false])(
+    "cards=%s는 수식과 띄어 쓴 답을 source 칩 ID로 보내고 Tab·IME 입력을 지킨다",
+    async (cards) => {
+      const { local, state } = await atChipStep(cards, 3);
+      const send = vi.spyOn(local, "act");
+      app(local, state);
+      const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
+      input.focus();
+      fireEvent.change(input, { target: { value: "외 심" } });
+      expect(
+        fireEvent.keyDown(input, { key: "Enter", isComposing: true }),
+      ).toBe(false);
+      expect(fireEvent.keyDown(input, { key: "Enter", keyCode: 229 })).toBe(
+        false,
+      );
+      expect(input).toHaveValue("외 심");
+      expect(fireEvent.keyDown(input, { key: "Tab", isComposing: true })).toBe(
+        true,
+      );
+      expect(send).not.toHaveBeenCalled();
+      fireEvent.keyDown(input, { key: "Tab" });
+      expect(input).toHaveFocus();
+      fireEvent.keyDown(input, { key: "Tab", shiftKey: true });
+      for (const target of erasedTargets(concept, 3)) {
+        const entry =
+          target.tier === "math" ? "90deg" : target.text.split("").join(" ");
+        fireEvent.change(input, { target: { value: entry } });
+        fireEvent.submit(input.closest("form")!);
+      }
+      fireEvent.click(screen.getByRole("button", { name: /^단계 마치기/ }));
+      const tray = chipTray(concept, 3, {
+        seed: state.session!.seed,
+        traps: state.opened!.traps,
+      });
+      await waitFor(() =>
+        expect(send).toHaveBeenCalledWith(
+          expect.objectContaining({
+            action: "step",
+            step: 3,
+            placements: erasedTargets(concept, 3).map((target) => ({
+              targetId: target.id,
+              chipId: tray.find((chip) => chip.text === target.text)!.id,
+            })),
+          }),
+        ),
+      );
+    },
+  );
+
+  it("4단계의 빈칸은 답의 길이나 원문을 DOM에 넣지 않는다", async () => {
+    const { local, state } = await atFour();
+    app(local, state);
+    for (const target of fadingTargets(concept)) {
+      expect(document.body.innerHTML).not.toContain(target.text);
+    }
+    for (const slot of document.querySelectorAll("[data-fading-slot]")) {
+      expect(slot).not.toHaveAttribute("style");
+      expect(slot).not.toHaveAttribute("title");
+    }
+  });
+
+  it.each([false, true])(
+    "typed=%s의 채운 상자는 긴 답 전체를 보이고 수식 렌더 경로를 유지한다",
+    (typed) => {
+      const text =
+        "합동이 아니라 닮음이며 대응하는 변의 길이의 비가 모두 같아요";
+      const proposition = {
+        ...concept.propositions[0]!,
+        pieces: [
+          {
+            kind: "target" as const,
+            target: { id: "long", text, tier: "text" as const },
+          },
+          {
+            kind: "target" as const,
+            target: {
+              id: "math",
+              text: "$90^{\\circ}$",
+              tier: "math" as const,
+            },
+          },
+        ],
+      };
+      render(
+        <FadingFillCard
+          proposition={proposition}
+          caption="문장 1"
+          erased={[{ id: "long" }, { id: "math" }]}
+          answers={{ long: text, math: "$90^{\\circ}$" }}
+          missed={[]}
+          active={null}
+          wrong={null}
+          typed={typed}
+          disabled={false}
+          onBlank={vi.fn()}
+        />,
+      );
+      expect(
+        document.querySelector('[data-fading-slot="long"]'),
+      ).toHaveTextContent(text);
+      expect(
+        document.querySelector('[data-fading-slot="math"]'),
+      ).toHaveTextContent("$90^{\\circ}$");
+      if (!typed)
+        expect(
+          document.querySelector(
+            '[data-fading-slot="math"] [data-fading-math-ready]',
+          ),
+        ).toBeInTheDocument();
+    },
+  );
+
   it("수식만 있는 개념도 source의 2단계 빈칸을 채우고 실패 없이 3단계로 이어진다", async () => {
     let number = 0;
     const math: FadingConcept = {
@@ -158,7 +349,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
                 target: {
                   ...piece.target,
                   tier: "math",
-                  text: `$${++number}$`,
+                  text: ++number === 1 ? "$90^{\\circ}$" : `$${number}$`,
                 },
               }
             : piece,
@@ -180,11 +371,17 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     });
     app(local, state);
     expect(erasedTargets(math, 2).length).toBeGreaterThan(0);
-    const input = screen.getByRole("textbox", { name: /칩 글 입력/ });
+    const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
     input.focus();
     fireEvent.keyDown(input, { key: "Tab" });
     for (const target of erasedTargets(math, 2)) {
-      fireEvent.change(input, { target: { value: target.text } });
+      fireEvent.change(input, {
+        target: {
+          value: target.text.includes("circ")
+            ? "90deg"
+            : target.text.replace(/\$/g, ""),
+        },
+      });
       fireEvent.submit(input.closest("form")!);
     }
     expect(screen.getByRole("button", { name: "단계 마치기" })).toHaveFocus();
@@ -274,7 +471,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     );
     for (let index = 0; index < emptyCard; index += 1)
       fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
-    const input = screen.getByRole("textbox", { name: /칩 글 입력/ });
+    const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
     expect(input).toBeEnabled();
     input.focus();
     fireEvent.change(input, { target: { value: "숨은 카드에 넣지 않음" } });
@@ -355,7 +552,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     );
   });
 
-  it("3단계 칩 글 입력은 한 문장씩 이어지며 사용한 칩도 같은 묶음 판에 남는다", async () => {
+  it("3단계 답 입력은 칩을 노출하지 않고 source 칩 배치를 순서대로 보낸다", async () => {
     const { local, state: opened } = await learning();
     const ref = { conceptId: concept.id, sessionId: opened.session!.id };
     await local.act({ action: "read", ...ref, seen: "123" });
@@ -367,19 +564,27 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
       gaveUp: true,
     });
     app(local, state);
-    const trayText = () =>
-      Array.from(document.querySelectorAll("[data-fading-chip]")).map(
-        (node) => node.textContent,
-      );
-    const initialTray = trayText();
+    const send = vi.spyOn(local, "act");
+    const assertNoTray = () => {
+      expect(
+        document.querySelectorAll(
+          "[data-fading-chip], [data-fading-chip-text]",
+        ),
+      ).toHaveLength(0);
+      expect(
+        screen.queryByRole("complementary", { name: "칩 고르기" }),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText("문장을 채우는 칩")).not.toBeInTheDocument();
+    };
+    assertNoTray();
     for (const target of erasedTargets(concept, 3)) {
       expect(document.querySelectorAll("[data-fading-sentence]")).toHaveLength(
         1,
       );
-      const input = screen.getByRole("textbox", { name: /칩 글 입력/ });
+      const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
       fireEvent.change(input, { target: { value: target.text } });
       fireEvent.submit(input.closest("form")!);
-      expect(trayText()).toEqual(initialTray);
+      assertNoTray();
     }
     const finish = screen.getByRole("button", { name: "단계 마치기" });
     expect(finish).toHaveFocus();
@@ -388,6 +593,20 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
       expect(
         screen.getByRole("heading", { name: "3단계를 마쳤어요" }),
       ).toBeInTheDocument(),
+    );
+    const tray = chipTray(concept, 3, {
+      seed: state.session!.seed,
+      traps: state.opened!.traps,
+    });
+    expect(send).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: "step",
+        step: 3,
+        placements: erasedTargets(concept, 3).map((target) => ({
+          targetId: target.id,
+          chipId: tray.find((chip) => chip.text === target.text)!.id,
+        })),
+      }),
     );
   });
 
@@ -439,7 +658,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     const { local, state } = await atFour();
     app(local, state);
     const user = userEvent.setup();
-    const input = screen.getByRole("textbox", { name: /핵심 답 입력/ });
+    const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
     await user.type(input, "외심{Enter}");
     expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
       "aria-pressed",
@@ -495,7 +714,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     expect(document.querySelectorAll("[data-fading-chip]")).toHaveLength(0);
     expect(document.body.innerHTML).not.toContain("외심");
     confidence();
-    expect(screen.getByRole("textbox", { name: /핵심 답 입력/ })).toHaveFocus();
+    expect(screen.getByRole("textbox", { name: /빈칸 답 입력/ })).toHaveFocus();
     expect(send).not.toHaveBeenCalled();
     expect(local.snapshot().concepts[concept.id]!.reviews).toBe(1);
   });
@@ -602,7 +821,7 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
   it("Space는 공백이며 Enter 조합/229를 무시하고 Tab은 빈칸으로, Escape 뒤 Tab은 밖으로 간다", async () => {
     const { local, state } = await atFour();
     app(local, state);
-    const input = screen.getByRole("textbox", { name: /핵심 답 입력/ });
+    const input = screen.getByRole("textbox", { name: /빈칸 답 입력/ });
     input.focus();
     fireEvent.change(input, { target: { value: "내 답 123" } });
     expect(fireEvent.keyDown(input, { key: " ", code: "Space" })).toBe(true);

@@ -7,6 +7,7 @@ import { FADING_TYPED_MAX } from "@/contracts/fading.contract";
 import { chipTray } from "@/lib/fading/chips";
 import { erasedTargets, erasureRate } from "@/lib/fading/erasure";
 import { toPercent } from "@/lib/fading/numbers";
+import { typedKey } from "@/lib/fading/typed";
 import {
   allowedRatings,
   closeWithRating,
@@ -48,14 +49,9 @@ import { FadingComparisonSheet } from "./FadingComparisonSheet";
 import { FadingFigureView } from "./FadingFigureView";
 import { FadingSentencePager } from "./FadingSentencePager";
 import { FadingIcon } from "./FadingIcon";
-import { FadingMath } from "./FadingMath";
 import { conceptSentenceLabel, curriculumName, ratingNames } from "./labels";
 import {
-  FadingDraggedChip,
   fadingChipChoices,
-  fadingChipInputText,
-  useFadingBlankSize,
-  useFadingChipDrag,
   useFadingKeyboard,
   useFadingPendingScroll,
 } from "./FadingChipInput";
@@ -144,7 +140,7 @@ export function FadingCardSessionScreen({
         })
       : [];
   const used = new Set(Object.values(local.filled));
-  // Preserve the complete step tray and its order, including already used texts.
+  // Resolve recalled text to source chip IDs without rendering answer choices.
   const choices = fadingChipChoices(tray, used);
   const proposition = concept.propositions[cardIndex]!;
   const cardBlanks = fadingCardBlanks(concept, local.step, proposition.id);
@@ -209,12 +205,6 @@ export function FadingCardSessionScreen({
           ]),
         );
 
-  useFadingBlankSize({
-    root,
-    targets: inputKind === "chips" ? blanks : [],
-    tray,
-    step: local.step,
-  });
   useFadingPendingScroll(root, pending, filling && !needsSure && !exit);
   useLayoutEffect(() => {
     if (!focusInput.current || disabled || compare || exit || done) return;
@@ -364,26 +354,20 @@ export function FadingCardSessionScreen({
     }
   }
 
-  function chooseChip(text: string) {
-    if (!pending) {
-      setFeedback("Tab으로 빈칸이 있는 문장으로 이동해 주세요.");
-      return;
-    }
-    const choice = choices.find((item) => item.text === text);
-    if (choice?.chipId) place({ targetId: pending, chipId: choice.chipId });
-    else setFeedback("다른 칩을 골라 주세요.");
-  }
-
   function submit() {
     if (disabled || needsSure || !pending || !typed.trim()) return;
     if (inputKind === "typed") place({ targetId: pending, text: typed });
     else {
+      const key = typedKey(typed);
       const matching = choices.filter(
-        (choice) =>
-          fadingChipInputText(choice.text) === fadingChipInputText(typed),
+        (choice) => choice.chipId && typedKey(choice.text) === key,
       );
-      if (matching.length === 1) chooseChip(matching[0]!.text);
-      else setFeedback("칩에 있는 글을 입력해 주세요.");
+      if (key && matching.length === 1)
+        place({ targetId: pending, chipId: matching[0]!.chipId! });
+      else
+        setFeedback(
+          "입력한 답을 확인해 주세요. 다시 입력하거나 아직 모르겠어요를 눌러 주세요.",
+        );
     }
   }
 
@@ -596,8 +580,7 @@ export function FadingCardSessionScreen({
           const choice = state.session?.ratings[index];
           if (choice) rate(choice.rating);
         }
-      } else if (inputKind === "chips" && filling && choices[index])
-        chooseChip(choices[index]!.text);
+      }
     },
     onAdvance: () => {
       if (local.phase === "reading" && !revealed) setRevealed(true);
@@ -616,10 +599,6 @@ export function FadingCardSessionScreen({
       setWrong(null);
       setFeedback("");
     },
-  });
-  const dragging = useFadingChipDrag({
-    disabled: disabled || !filling || inputKind !== "chips" || exit,
-    onPlace: (targetId, chipId) => place({ targetId, chipId }),
   });
 
   return (
@@ -862,7 +841,7 @@ export function FadingCardSessionScreen({
                 <FadingAnkiCard
                   proposition={proposition}
                   revealed={revealed}
-                  disabled={disabled}
+                  disabled={disabled || exit}
                   onReveal={() => setRevealed(true)}
                   onSeen={seenCard}
                 />
@@ -878,7 +857,6 @@ export function FadingCardSessionScreen({
                   typed={inputKind === "typed"}
                   disabled={disabled || needsSure}
                   onBlank={position}
-                  drag={{ active: !!dragging.drag, over: dragging.over }}
                 />
               )}
               {local.phase !== "reading" && (
@@ -915,7 +893,7 @@ export function FadingCardSessionScreen({
                     }}
                   >
                     <label htmlFor={inputId}>
-                      {inputKind === "typed" ? "핵심 답 입력" : "칩 글 입력"}
+                      빈칸 답 입력
                       {pending
                         ? ` · 빈칸 ${blanks.findIndex((target) => target.id === pending) + 1}`
                         : " · 이 문장에는 남은 빈칸이 없어요"}
@@ -939,11 +917,7 @@ export function FadingCardSessionScreen({
                           nativeTab.current = false;
                         }}
                         onKeyDown={inputKeys}
-                        placeholder={
-                          inputKind === "typed"
-                            ? "직접 쓰고 Enter"
-                            : "칩 글을 쓰고 Enter"
-                        }
+                        placeholder="빈칸 답을 쓰고 Enter"
                       />
                       <button
                         type="submit"
@@ -961,43 +935,6 @@ export function FadingCardSessionScreen({
                 )
               )}
             </section>
-            {inputKind === "chips" && (
-              <aside className={`${s.card} ${s.tray}`} aria-label="칩 고르기">
-                <h2 className={s.subheading}>문장을 채우는 칩</h2>
-                <div className={s.chips}>
-                  {choices.map((choice, index) => (
-                    <button
-                      type="button"
-                      key={choice.id}
-                      className={s.chip}
-                      disabled={disabled}
-                      data-fading-chip="true"
-                      aria-label={`칩 ${choice.text}`}
-                      onKeyDown={inputKeys}
-                      {...dragging.handlers(
-                        choice.chipId ?? choice.id,
-                        choice.text,
-                        !choice.chipId,
-                      )}
-                      onClick={(event) => {
-                        if (dragging.consumeClick()) {
-                          event.preventDefault();
-                          return;
-                        }
-                        chooseChip(choice.text);
-                      }}
-                    >
-                      <span className={s.chipNumber} aria-hidden="true">
-                        {index + 1}
-                      </span>
-                      <span data-fading-chip-text={choice.chipId ?? choice.id}>
-                        <FadingMath text={choice.text} />
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </aside>
-            )}
           </div>
           <p className={s.feedback} role="status">
             {actions.busy ? "저장하고 있어요…" : feedback}
@@ -1031,7 +968,6 @@ export function FadingCardSessionScreen({
           )}
         </>
       )}
-      <FadingDraggedChip drag={dragging.drag} />
       {exit && (
         <FadingCardExitDialog
           practice={!!practice}
