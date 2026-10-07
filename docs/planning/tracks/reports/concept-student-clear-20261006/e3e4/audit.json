@@ -237317,12 +237317,12 @@
       "part": "e4plus",
       "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
       "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
-      "proposalFingerprint": "44144acba9ee441e2504b7d24a8fd4d5c97ac17f9d37e88188772c2a88a1445d",
+      "proposalFingerprint": "8db47cc7f5746fe4fbb272ae23e3c91e783ac911e5bdca2aa82181387c5b4380",
       "reviewStatus": "draft",
       "id": "e4-2-5-3-xc20",
       "bDecision": "rewrite",
       "bPrompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
-      "bAnswer": "다음 날의 기온도 실제로 재어 본 값이라고 오해할 수 있습니다. 예상한 점에 예상값이라고 쓰거나, 다른 색·다른 점 모양·점선으로 표시하고 그것이 예상값을 뜻한다고 설명합니다.",
+      "bAnswer": "다음 날의 기온을 실제로 재어 본 값이라고 오해할 수 있습니다. 예상값이라고 적거나, 예상한 부분을 다른 색·다른 점 모양·점선 중 한 가지로 표시할 수 있습니다.",
       "bRequiredIdeas": [
         {
           "anyOf": [
@@ -237331,7 +237331,10 @@
         },
         {
           "anyOf": [
-            "예상값이라고 쓰거나, 조사한 점과 다른 색·점 모양·점선 등을 사용하고 예상값임을 알 수 있게 설명한다"
+            "예상값이라고 적는다",
+            "예상한 점을 다른 색으로 표시한다",
+            "예상한 점을 속이 빈 점 등 다른 점 모양으로 표시한다",
+            "예상한 부분을 점선으로 표시한다"
           ]
         }
       ],
@@ -237370,7 +237373,7 @@
       },
       "bQuestion": {
         "prompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
-        "answer": "다음 날의 기온도 실제로 재어 본 값이라고 오해할 수 있습니다. 예상한 점에 예상값이라고 쓰거나, 다른 색·다른 점 모양·점선으로 표시하고 그것이 예상값을 뜻한다고 설명합니다.",
+        "answer": "다음 날의 기온을 실제로 재어 본 값이라고 오해할 수 있습니다. 예상값이라고 적거나, 예상한 부분을 다른 색·다른 점 모양·점선 중 한 가지로 표시할 수 있습니다.",
         "requiredIdeas": [
           {
             "anyOf": [
@@ -237379,7 +237382,10 @@
           },
           {
             "anyOf": [
-              "예상값이라고 쓰거나, 조사한 점과 다른 색·점 모양·점선 등을 사용하고 예상값임을 알 수 있게 설명한다"
+              "예상값이라고 적는다",
+              "예상한 점을 다른 색으로 표시한다",
+              "예상한 점을 속이 빈 점 등 다른 점 모양으로 표시한다",
+              "예상한 부분을 점선으로 표시한다"
             ]
           }
         ]
@@ -237401,19 +237407,18 @@
       "editorialReview": {
         "id": "e4-2-5-3-xc20",
         "sourceIndex": 2663,
-        "proposalFingerprint": "44144acba9ee441e2504b7d24a8fd4d5c97ac17f9d37e88188772c2a88a1445d",
-        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
-        "readAt": "2026-10-07T13:42:27.689Z",
+        "proposalFingerprint": "8db47cc7f5746fe4fbb272ae23e3c91e783ac911e5bdca2aa82181387c5b4380",
         "learningRole": "procedure",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:23.024Z",
+        "bReason": "물음은 예상값의 표시 방법 하나만 요구한다. 오해의 원인과 표시 대안을 분리하고, 범례 설명까지 필수로 강제하지 않는다. 맞는 표시 방법들을 각각의 anyOf 대안으로 둔다.",
+        "cReason": "물음은 예상값의 표시 방법 하나만 요구한다. 오해의 원인과 표시 대안을 분리하고, 범례 설명까지 필수로 강제하지 않는다. 맞는 표시 방법들을 각각의 anyOf 대안으로 둔다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
         "bDecision": "rewrite",
         "cDecision": "rewrite",
-        "verdict": "retain-planning-proposal",
-        "bReason": "표시이름의뜻을되풀이하는대신예상점을측정점처럼그렸을때생기는오해와구별방법을서로다른기준으로묻는다.",
-        "cReason": "표시이름의뜻을되풀이하는대신예상점을측정점처럼그렸을때생기는오해와구별방법을서로다른기준으로묻는다.",
-        "issues": [],
-        "isIndependentApproval": false,
-        "isReleaseApproval": false,
-        "inputEvidence": "../design-evidence/root-e3e4-final-reasons-proposals-20261007.json"
+        "verdict": "retain-planning-proposal"
       },
       "cAfter": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
       "cAcceptedAnswers": [
