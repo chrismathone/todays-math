@@ -1,0 +1,82 @@
+{
+  "studentDigest": "eec76a7cd7525161485e0b7d51731dc7ab027d287c0bcc4d838d074f1829bb70",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "answer": "②",
+  "solution": "반지름 $\\overline{OP}=\\overline{OA}=1$이다. 직각삼각형 $\\mathrm{OPH}$에서 $\\overline{OH}=\\cos54^\\circ\\approx0.59$, $\\overline{PH}=\\sin54^\\circ\\approx0.81$이다. 직각삼각형 $\\mathrm{OAQ}$에서는 $\\overline{AQ}=\\tan54^\\circ\\approx1.38$이다. 문제의 표에 있는 근삿값을 그대로 쓰면 $(1.38-0.59)\\times0.81=0.6399$이다. 소수점 아래 셋째 자리에서 반올림하면 $0.64$이므로 정답은 ②이다.",
+  "evidence": {
+    "questionNumber": 9,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q09",
+    "input": {
+      "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+      "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+      "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+      "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/figures/q09-1.svg",
+        "sha256": "34bd3dbd562aeb1bdf50ea5655d61b8638dea90e01ee4e7f6b4f39fb5dcb821b",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "O-A가 수평, PH와 AQ가 수직이며 O-P-Q가 한 반직선 위에 있다. P는 사분원 위, H는 OA 내부, Q는 원 밖이고 54°는 O에 있다."
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "matches": false,
+        "reason": "표의 값으로 계산한 0.6399를 반올림한 수가 아니다."
+      },
+      {
+        "choice": 2,
+        "matches": true,
+        "reason": "정확한 표 계산 결과 0.6399를 두 자리로 반올림하면 0.64이다."
+      },
+      {
+        "choice": 3,
+        "matches": false,
+        "reason": "0.79는 AQ−OH의 값만 계산하고 PH를 곱하지 않은 수이다."
+      },
+      {
+        "choice": 4,
+        "matches": false,
+        "reason": "표 계산 및 지정된 반올림 결과와 다르다."
+      },
+      {
+        "choice": 5,
+        "matches": false,
+        "reason": "표 계산 및 지정된 반올림 결과와 다르다."
+      }
+    ],
+    "codeCalculation": {
+      "tool": "Python Decimal, precision=50, ROUND_HALF_UP",
+      "usedPrintedTableOnly": true,
+      "AQ": "1.38",
+      "OH": "0.59",
+      "PH": "0.81",
+      "difference": "0.79",
+      "unrounded": "0.6399",
+      "rounded": "0.64",
+      "choiceMatches": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ]
+    },
+    "existenceUniquenessAndDomain": "54°는 예각이며 0<OH<OA=1, PH>0, AQ>0이다. Q는 반직선 OP 위에서 P보다 먼 점이고 A에서 OA에 수직인 선 위에 있다. 표는 근삿값이므로 그 값들에 정확한 삼각비 항등식을 강요하지 않았다. 그림과 본문에 길이 단위가 없어 임의의 cm 단위를 추가하지 않았다.",
+    "blindness": {
+      "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+      "authorAnswerRead": false,
+      "authorSolutionRead": false,
+      "originalAnswersOrSolutionsRead": false,
+      "privateSpecOrPackageRead": false,
+      "parentHtmlOrSolutionPreviewRead": false,
+      "solverAuthoredThisCandidate": false
+    },
+    "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+  },
+  "status": "solved"
+}
