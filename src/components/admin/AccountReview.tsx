@@ -128,8 +128,8 @@ export default function AccountReview({
     if (unavailableMenus.includes(menu))
       reasons.push(
         account.unavailableMenus
-          ? "시범 이용 대상이 아님"
-          : "시범 이용 대상 확인 필요",
+          ? "서비스에서 사용 중지됨"
+          : "사용 가능 여부 확인 필요",
       );
     return reasons.length
       ? `${reasons.join(" · ")} · ${menus.includes(menu) ? "개인 선택 보존" : "개인 선택 안 함"}`
@@ -887,7 +887,9 @@ export default function AccountReview({
                 <button
                   className={s.reject}
                   type="button"
-                  disabled={busy || conflict || refreshRequired || authError || dirty}
+                  disabled={
+                    busy || conflict || refreshRequired || authError || dirty
+                  }
                   onClick={() => setConfirmReject(true)}
                 >
                   승인 거절
@@ -944,7 +946,9 @@ export default function AccountReview({
           ) : (
             <>
               {passwordCode === "source_auth" ? (
-                <p>에이와 인증 계정은 원본 시스템에서만 비밀번호를 복구합니다.</p>
+                <p>
+                  에이와 인증 계정은 원본 시스템에서만 비밀번호를 복구합니다.
+                </p>
               ) : null}
               <div className={s.buttonRow}>
                 <button
@@ -984,7 +988,8 @@ export default function AccountReview({
               </div>
             </>
           )}
-          {branchAssignmentLocked && passwordCode !== "source_auth" &&
+          {branchAssignmentLocked &&
+          passwordCode !== "source_auth" &&
           !account.deletedAt ? (
             <label className="mt-3 grid gap-1 text-sm">
               복구 근거 (30자 이상)
