@@ -8,6 +8,7 @@
  * 첫 요청이 진짜 서버로 새어 나간다(`/dev/concept-hifi` 와 같은 까닭).
  */
 import { useState } from "react";
+import { useScreenQuery } from "@/hooks/useScreenQuery";
 
 import s from "@/components/learn/learn.module.css";
 import { LectureList } from "@/components/learn/LectureList";
@@ -50,6 +51,7 @@ export interface LearnHifiOptions {
 declare global {
   interface Window {
     __learnHifiFetch?: typeof fetch;
+    __learnHifiMenus?: Map<string, StudentOptionalMenu[]>;
   }
 }
 
@@ -133,7 +135,9 @@ function installFixtureFetch(options: LearnHifiOptions) {
   const original = window.__learnHifiFetch ?? window.fetch.bind(window);
   window.__learnHifiFetch = original;
   const accounts = new Map<string, StudentAccountStatus | null>();
-  const menus = new Map<string, StudentOptionalMenu[]>();
+  const menus =
+    window.__learnHifiMenus ?? new Map<string, StudentOptionalMenu[]>();
+  window.__learnHifiMenus = menus;
   window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = new URL(
       typeof input === "string" || input instanceof URL
@@ -325,6 +329,7 @@ function hifiPlayer(at: number | null): CreatePlayer {
 }
 
 export function LearnHifiClient({ options }: { options: LearnHifiOptions }) {
+  const query = useScreenQuery();
   useState(() => {
     if (typeof window !== "undefined") installFixtureFetch(options);
     return true;
@@ -337,6 +342,7 @@ export function LearnHifiClient({ options }: { options: LearnHifiOptions }) {
         <div className="mx-auto max-w-[360px] rounded-[14px] border border-[#d4dce8] bg-white p-6">
           <StudentList
             canManageAccounts
+            requestedStudentId={query.get("studentId") ?? ""}
             students={HIFI_STUDENTS}
             selectedClass={HIFI_CLASS}
             status="ready"
