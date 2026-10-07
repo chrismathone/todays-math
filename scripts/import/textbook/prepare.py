@@ -325,6 +325,10 @@ def post_convert(text: str) -> str:
         # 줄 맞춤 `&` 가 환경 밖에 남은 것 — KaTeX 가 포기한다
         if "&" in body and "\\begin{" not in body:
             body = body.replace("&", "")
+        # `rm {bar{PF prime}}` → `\mathrm{\overline{PF'}}` — 뜻이 같은 `\overline{\mathrm{PF'}}` 로(판정기가 «삼킨 바»로 막는다)
+        body = re.sub(r"\\mathrm\{\\overline\{([^{}]*)\}\}", r"\\overline{\\mathrm{\1}}", body)
+        # 남은 기울임 `\mathit{x}` — 수식은 기울임이 기본이다
+        body = re.sub(r"\\mathit\{([^{}]*)\}", r"\1", body)
         return f"${body}$"
 
     return re.sub(r"\$([^$]*)\$", fix, text)

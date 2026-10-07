@@ -186,6 +186,16 @@ def test_an_answer_read_from_the_answer_picture_is_taken_like_any_other_key():
     assert eligible({**ROW, "answerFrom": "picture"}) is None
 
 
+def test_an_upright_bar_is_written_with_the_bar_outside_and_a_leftover_italic_is_dropped():
+    """`rm {bar{PF prime}}` 은 `\\mathrm{\\overline{PF'}}` 로 나온다 — 그려지기는 하지만 기출 판정기가 «\\mathrm 이 삼킨 바»로 막는다
+    (2026-10-08 렌더 실패 85 가운데 60). 뜻이 같은 `\\overline{\\mathrm{PF'}}` 로 쓴다. 남은 `\\mathit{x}` 는 기울임이 기본이라 `x` 다."""
+    assert post_convert(r"$\mathrm{\overline{PF'}}<\overline{PF}$") == r"$\overline{\mathrm{PF'}}<\overline{PF}$"
+    assert post_convert(r"$\mathrm{\overline{A'B'}}=3$") == r"$\overline{\mathrm{A'B'}}=3$"
+    assert post_convert(r"$\mathit{x}+\mathit{}1$") == r"$x+1$"
+    # 수식 밖은 건드리지 않는다
+    assert post_convert(r"\mathit{x}") == r"\mathit{x}"
+
+
 def test_an_answer_read_from_a_picture_is_already_latex_and_is_not_converted_again():
     """🔴 정답 그림에서 읽은 답은 이미 LaTeX 다 — 한글 수식 변환을 한 번 더 걸면 `\frac{5}{18}` 이 `\mathrm{frac}518` 로 깨진다
     (2026-10-08 — 정답 그림 자료 816문항 가운데 326이 «답이 다르다»로 나와 찾았다)."""
