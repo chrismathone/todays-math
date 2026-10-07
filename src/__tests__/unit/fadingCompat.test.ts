@@ -111,6 +111,9 @@ const LEGACY: StoredFading = {
   ],
 };
 
+/** 4단계를 푼 내용의 지문 — 지금 은행의 A 그대로(풀고 나서 문장이 고쳐지지 않은 풀이). */
+const SOLVED = fadingConceptDigest(A);
+
 /** 쓰는 판이 남길 수 있는 선택 칸을 전부 채운 기록 — 4단계를 마치고 대조를 기다리는 풀이 · 진단이 붙은 개념. */
 const ARRIVING = {
   ...LEGACY,
@@ -133,7 +136,7 @@ const ARRIVING = {
     seen: "123",
     sure: "300",
     unjudged: [{ targetId: `${A.id}#3`, text: "가장 긴 변" }],
-    digest: "0a1b2c3d",
+    digest: SOLVED,
   },
 } as const;
 
@@ -263,6 +266,7 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
   });
 
   it("풀이를 옮기는 함수는 풀이의 선택 칸을 그대로 둔다 — 정독 · 4단계 틀림 · 4단계 마침 · 같은 개념 다시 열기", () => {
+    // 칩으로 푸는 풀이에 지문 · 진단만 붙은 꼴(카드 풀이의 4단계는 `fadingCards.test.ts` 가 본다).
     const open: Record<string, unknown> = {
       ...ARRIVING.session,
       phase: "steps",
@@ -270,9 +274,9 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
     };
     delete open.unjudged;
     delete open.digest;
+    delete open.mode;
     const steps = storedFadingSchema.parse({ ...ARRIVING, session: open });
     const extras = {
-      mode: "cards",
       seen: "123",
       sure: "300",
     };
@@ -316,55 +320,93 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
     ).toBe(learning.session);
   });
 
-  it("대조를 기다리는 글이 남은 풀이는 이 판에서 «다시»로만 닫힌다 — 판정 없이 «같은 뜻»으로 읽지 않는다", () => {
+  it("대조를 기다리는 글은 학생이 고르기 전에 «같은 뜻»으로 읽지 않는다 — 다 골라야 닫히고, «다름»이면 «다시»뿐이다", () => {
     const waiting = storedFadingSchema.parse({
       ...ARRIVING,
       session: { ...ARRIVING.session, missedAtFour: [] },
     });
-    expect(fadingRatingsFor(waiting.session!)).toEqual(["again"]);
-    expect(() =>
-      rateFadingSession(
-        waiting,
-        A,
-        waiting.session!.id,
-        "good",
-        "2026-10-09",
-        uuid(30),
-      ),
-    ).toThrow(FadingConflict);
-    const rated = storedFadingSchema.parse(
-      rateFadingSession(
-        waiting,
-        A,
-        waiting.session!.id,
-        "again",
-        "2026-10-09",
-        uuid(30),
-      ),
+    const id = waiting.session!.id;
+    const target = `${A.id}#3`;
+    const rate = (
+      rating: "good" | "again",
+      judged?: Record<string, "same" | "different">,
+    ) =>
+      rateFadingSession(waiting, A, id, rating, "2026-10-09", uuid(30), {
+        judged,
+      });
+    // 고르기 전에는 넓게 열어 두되, 고르지 않고는 닫히지 않는다 — «다시»로도.
+    expect(fadingRatingsFor(waiting.session!)).toHaveLength(4);
+    expect(() => rate("good")).toThrow(FadingConflict);
+    expect(() => rate("again")).toThrow(FadingConflict);
+    expect(() => rate("good", { [`${A.id}#1`]: "same" })).toThrow(
+      FadingConflict,
     );
-    expect(rated.session).toBeNull();
-    // 새 평가가 앞의 진단을 덮는다 — 이 판은 진단을 적지 않으므로 앞의 것이 남지 않게 걷는다.
-    expect(rated.concepts[A.id]).not.toHaveProperty("marks");
-    expect(rated.concepts[A.id]!.step).toBe(3);
+    expect(
+      fadingRatingsFor(waiting.session!, { [target]: "different" }),
+    ).toEqual(["again"]);
+    expect(() => rate("good", { [target]: "different" })).toThrow(
+      FadingConflict,
+    );
+    const lapsed = storedFadingSchema.parse(
+      rate("again", { [target]: "different" }),
+    );
+    expect(lapsed.session).toBeNull();
+    expect(lapsed.concepts[A.id]!.step).toBe(3);
+    expect(lapsed.concepts[A.id]!.marks).toEqual({
+      digest: SOLVED,
+      seen: "123",
+      sure: "300",
+      missed: [target],
+    });
+    const passed = storedFadingSchema.parse(rate("good", { [target]: "same" }));
+    expect(passed.concepts[A.id]!.step).toBe(4);
+    expect(passed.concepts[A.id]!.marks).toEqual({
+      digest: SOLVED,
+      seen: "123",
+      sure: "300",
+    });
+    // 카드 풀이가 아닌데 대조를 기다리는 글이 있으면(쓰는 길이 없는 꼴) «다시»뿐이다 — 판정 없이 «같은 뜻»으로 읽지 않는다.
+    const chips: Record<string, unknown> = { ...waiting.session! };
+    delete chips.mode;
+    const odd = storedFadingSchema.parse({ ...waiting, session: chips });
+    expect(fadingRatingsFor(odd.session!)).toEqual(["again"]);
     const view = fadingStateView({
       fading: waiting,
       revision: 3,
       today: "2026-10-09",
       concepts: new Map([[A.id, A]]),
     });
-    expect(view.session!.ratings.map((r) => r.rating)).toEqual(["again"]);
-    expect(Object.keys(view.session!).sort()).toEqual(
-      [
-        "conceptId",
-        "id",
-        "missedAtFour",
-        "phase",
-        "ratings",
-        "seed",
-        "startStep",
-        "step",
-      ].sort(),
+    expect(view.session!.ratings).toHaveLength(4);
+    expect(view.session!.unjudged).toEqual([
+      { targetId: target, text: "가장 긴 변" },
+    ]);
+    expect(view.session!.mode).toBe("cards");
+    expect(view.session).not.toHaveProperty("stale");
+    // 4단계를 푼 뒤에 문장이 고쳐졌으면 대조를 받지 않는다 — «같은 뜻»을 골라도 «다시»뿐이고, 고르지 않아도 닫힌다.
+    const edited = storedFadingSchema.parse({
+      ...waiting,
+      session: { ...waiting.session!, digest: "0a1b2c3d" },
+    });
+    expect(fadingRatingsFor(edited.session!, { [target]: "same" }, A)).toEqual([
+      "again",
+    ]);
+    expect(() =>
+      rateFadingSession(edited, A, id, "good", "2026-10-09", uuid(31), {
+        judged: { [target]: "same" },
+      }),
+    ).toThrow(FadingConflict);
+    const closed = storedFadingSchema.parse(
+      rateFadingSession(edited, A, id, "again", "2026-10-09", uuid(31)),
     );
+    expect(closed.concepts[A.id]!.digest).toBe("0a1b2c3d");
+    const editedView = fadingStateView({
+      fading: edited,
+      revision: 3,
+      today: "2026-10-09",
+      concepts: new Map([[A.id, A]]),
+    });
+    expect(editedView.session!.stale).toBe(true);
+    expect(editedView.session!.ratings.map((r) => r.rating)).toEqual(["again"]);
   });
 
   it("선택 칸의 꼴이 어긋나면 거절한다 — 상한 · 글자 · 겹침 · 평가 전 진단 · 4단계 밖의 대조 · 모르는 키", () => {
@@ -432,16 +474,25 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
         },
       }).success,
     ).toBe(false);
-    expect(
+    // 대조를 기다리는 글 하나만 다르게 — 다른 규칙(평가 차례에서만 적는 지문 · 시작 단계)이 먼저 거절하지 않게 맞춘다.
+    const waitingSteps: Record<string, unknown> = {
+      ...ARRIVING.session,
+      phase: "steps",
+      missedAtFour: [],
+      startStep: 3,
+    };
+    delete waitingSteps.digest;
+    const standingAt = (step: number) =>
       storedFadingSchema.safeParse({
         ...ARRIVING,
-        session: { ...ARRIVING.session, phase: "steps", missedAtFour: [] },
+        session: waitingSteps,
         concepts: {
           ...ARRIVING.concepts,
-          [A.id]: { ...ARRIVING.concepts[A.id], step: 3 },
+          [A.id]: { ...ARRIVING.concepts[A.id], step },
         },
-      }).success,
-    ).toBe(false);
+      }).success;
+    expect(standingAt(4)).toBe(true);
+    expect(standingAt(3)).toBe(false);
   });
 });
 

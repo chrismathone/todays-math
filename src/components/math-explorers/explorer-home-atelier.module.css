@@ -221,6 +221,10 @@ dialog.sheet button.soundPreview:disabled {
   .home .journey {
     grid-column: 2;
     grid-row: 1 / -1;
+    position: sticky;
+    /* 학생 헤더 68px + 간격 16px — 왼쪽 학습 목록을 내려도 여정은 헤더 아래에 남는다. */
+    top: calc(84px + env(safe-area-inset-top, 0px));
+    align-self: start;
   }
   .home .tools {
     grid-column: 1;
@@ -230,5 +234,19 @@ dialog.sheet button.soundPreview:disabled {
     grid-column: 1;
     grid-row: 3;
     margin: 0;
+  }
+  div.home.withMemory {
+    grid-template-rows: auto auto auto auto 1fr;
+  }
+  .home.withMemory .memory {
+    grid-column: 1;
+    grid-row: 2;
+    min-width: 0;
+  }
+  .home.withMemory .tools {
+    grid-row: 3;
+  }
+  .home.withMemory .review {
+    grid-row: 4;
   }
 }

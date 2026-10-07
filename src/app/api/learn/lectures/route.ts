@@ -20,7 +20,7 @@ import { requireStudent } from "@/lib/learn/studentRequest";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 async function handleGet() {
-  const gate = await requireStudent({ active: true });
+  const gate = await requireStudent({ active: true, menu: "lectures" });
   if (gate.response) return gate.response;
 
   const scope = await loadStudentLectureScope(gate.student.studentId);

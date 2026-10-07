@@ -13,14 +13,16 @@ export function FadingPreview({
   today,
   traps,
   figures,
+  cards = false,
 }: {
   concepts: readonly FadingConcept[];
   today: string;
   traps: Readonly<Record<string, readonly FadingTrap[]>>;
   figures: Readonly<Record<string, FadingFigure>>;
+  cards?: boolean;
 }) {
   const [source] = useState(() =>
-    createLocalFadingSource({ concepts, today, traps, figures }),
+    createLocalFadingSource({ concepts, today, traps, figures, cards }),
   );
   const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
   return (

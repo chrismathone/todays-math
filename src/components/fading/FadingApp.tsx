@@ -15,7 +15,7 @@ import { FadingHome } from "./FadingHome";
 import { FadingEraseScreen } from "./FadingEraseScreen";
 import { FadingStats } from "./FadingStats";
 import { FadingCatalogScreen } from "./FadingCatalogScreen";
-import { FadingSessionScreen } from "./FadingSessionScreen";
+import { FadingSessionView } from "./FadingSessionView";
 import { FadingScrollFade } from "./FadingScrollFade";
 import { FadingIcon } from "./FadingIcon";
 import { FadingConceptReader } from "./FadingConceptReader";
@@ -282,7 +282,7 @@ export function FadingApp({
           ) : inSession &&
             (practising || (sessionState?.session && sessionState.opened)) ? (
             <main>
-              <FadingSessionScreen
+              <FadingSessionView
                 key={sessionKey}
                 source={source}
                 state={sessionState ?? state}

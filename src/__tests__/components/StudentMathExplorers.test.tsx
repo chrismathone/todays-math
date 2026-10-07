@@ -8,6 +8,9 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
+import { createLocalFadingSource } from "@/lib/fading/local";
+import { createLocalFadingRelearnSource } from "@/lib/fading/relearnLocal";
+import type { FadingConcept } from "@/lib/fading/concepts";
 import {
   applyExplorerAction,
   createExplorerState,
@@ -45,20 +48,27 @@ vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
 }));
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 vi.mock("@/components/math-explorers/ExplorerBankActivity", () => ({
   default: ({
     kind,
     onExit,
     onComplete,
     onConfirmedAnswer,
+    paused,
   }: {
     kind: string;
     onExit: () => void;
     onComplete: () => void;
     onConfirmedAnswer?: (studentId: string) => void;
+    paused?: boolean;
   }) => (
-    <section aria-label={`은행 활동 ${kind}`}>
+    <section aria-label={`은행 활동 ${kind}`} data-paused={paused || undefined}>
+      <input aria-label="은행 입력 초안" defaultValue="" />
       <button onClick={onExit}>탐험판으로</button>
       <button onClick={onComplete}>은행 완료</button>
       <button onClick={() => onConfirmedAnswer?.("student-ui")}>
@@ -120,6 +130,95 @@ afterEach(() => {
 });
 
 describe("StudentMathExplorers", () => {
+  it("offers additional checks only after a confirmed bank answer and keeps the bank mounted and paused", async () => {
+    const concept: FadingConcept = {
+      id: "bank-minute-concept",
+      section: "중2::도형::삼각형",
+      level: "하",
+      ordinal: 1,
+      siblings: 1,
+      propositions: [
+        {
+          id: "bank-p0",
+          term: "중심",
+          kind: "정의",
+          pieces: [
+            { kind: "text", text: "이 중심은 " },
+            {
+              kind: "target",
+              target: { id: "bank-p0#1", text: "외심", tier: "text" },
+            },
+            { kind: "text", text: "입니다." },
+          ],
+        },
+      ],
+    };
+    let clock = 1000;
+    const main = createLocalFadingSource({
+      concepts: [concept],
+      today: now,
+      cards: true,
+    });
+    await main.act({ action: "pick", conceptId: concept.id });
+    const opened = await main.act({ action: "open", conceptId: concept.id });
+    const ref = { conceptId: concept.id, sessionId: opened.session!.id };
+    await main.act({ action: "read", ...ref, seen: "1" });
+    const relearn = createLocalFadingRelearnSource({
+      main,
+      concepts: [concept],
+      now: () => clock,
+    });
+    await relearn.record({
+      kind: "step",
+      ...ref,
+      step: 2,
+      placements: [],
+      gaveUp: true,
+    });
+    clock += 60000;
+    const initial = stateView();
+    const active = {
+      ...initial,
+      expedition: {
+        ...initial.expedition!,
+        mission: mission("elementary"),
+        next: null,
+      },
+    };
+    const api = vi.fn(async (_url, options) =>
+      response(options?.body ? active : initial),
+    );
+    vi.stubGlobal("fetch", api);
+    render(
+      <StudentMathExplorers
+        conceptMemoryEnabled
+        fadingSource={{ ...main, dailyPlan: undefined }}
+        fadingRelearnSource={relearn}
+        initialState={initial}
+      />,
+    );
+    await userEventClickStart();
+    const bank = await screen.findByLabelText("은행 활동 elementary");
+    const draft = screen.getByLabelText("은행 입력 초안");
+    fireEvent.change(draft, { target: { value: "아직 쓰는 중" } });
+    fireEvent(window, new Event("focus"));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "은행 확정 답" }));
+    const modal = await screen.findByRole("dialog", {
+      name: "조금 뒤, 다시 떠올려 볼까요?",
+    });
+    expect(screen.getByLabelText("은행 활동 elementary")).toBe(bank);
+    expect(bank).toHaveAttribute("data-paused", "true");
+    expect(draft).toHaveValue("아직 쓰는 중");
+    fireEvent.click(
+      within(modal).getByRole("button", { name: "추가 확인 닫기" }),
+    );
+    expect(bank).not.toHaveAttribute("data-paused");
+    expect(draft).toHaveValue("아직 쓰는 중");
+    expect(
+      api.mock.calls.every(([url]) => url === "/api/learn/math-explorers"),
+    ).toBe(true);
+  });
   it.each(["graded", "unknown", "workshop"] as const)(
     "commits answer and completion sounds at existing transitions: %s",
     async (mode) => {
@@ -258,9 +357,11 @@ describe("StudentMathExplorers", () => {
       fireEvent.click(screen.getByRole("button", { name: "은행 완료" }));
       await screen.findByText("오늘의 한 칸 완료");
       if (mode === "confirmed")
-        expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
-          "complete",
-          `complete:${student.id}:${mission().id}`,
+        await waitFor(() =>
+          expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+            "complete",
+            `complete:${student.id}:${mission().id}`,
+          ),
         );
       else expect(sounds.play).not.toHaveBeenCalled();
       expect(sounds.resetStudent).toHaveBeenCalledTimes(2);
@@ -649,9 +750,7 @@ describe("StudentMathExplorers", () => {
         expect(screen.queryByText("오늘의 한 칸 완료")).not.toBeInTheDocument();
         expect(await screen.findByText("오늘의 한 칸 완료")).toBeVisible();
       } else {
-        fireEvent.click(
-          screen.getByRole("button", { name: "진도판" }),
-        );
+        fireEvent.click(screen.getByRole("button", { name: "진도판" }));
         expect(
           await screen.findByRole("button", { name: /이어서 탐험하기/ }),
         ).toBeVisible();

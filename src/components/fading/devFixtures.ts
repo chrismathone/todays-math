@@ -37,6 +37,7 @@ export type FadingDevOptions = {
   scene: FadingDevScene;
   conceptId: string;
   preview: boolean;
+  cards?: boolean;
 };
 
 async function open(source: LocalFadingSource, concept: FadingConcept) {
@@ -60,6 +61,8 @@ async function complete(
     });
     const taken = new Set<string>();
     const placements = erasedTargets(concept, step).map((target) => {
+      if (state.session!.mode === "cards" && step === 4)
+        return { targetId: target.id, text: target.text };
       const chip = tray.find(
         (item) =>
           !taken.has(item.id) &&
@@ -82,6 +85,7 @@ export async function prepareFadingDev(
     concepts.find((c) => c.id === options.conceptId) ?? concepts[0]!;
   const source = createLocalFadingSource({
     concepts,
+    cards: options.cards === true,
     traps,
     figures,
     today: "2026-10-06",
@@ -108,6 +112,18 @@ export async function prepareFadingDev(
           gaveUp: true,
         });
     if (options.scene === "rating") await complete(source, selected, state);
+    if (options.cards && options.scene === "step4") {
+      // A due review starts cold at four, rather than showing stage-one backs first.
+      state = await complete(source, selected, state);
+      const rated = await source.act({
+        action: "rate",
+        ...ref,
+        rating: "good",
+        requestId: newFadingId(),
+      });
+      source.setToday(rated.receipt!.dueOn);
+      await source.act({ action: "open", conceptId: selected.id });
+    }
   } else if (options.scene === "risk-colors") {
     for (const [i, date] of [
       "2025-01-01",

@@ -94,7 +94,7 @@ describe("학생 앱 기기 미리 보기", () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
-  it("기기를 바꿔도 단계와 아직 제출하지 않은 칩 배치를 보존한다", async () => {
+  it("기기를 바꿔도 단계와 아직 제출하지 않은 입력을 보존한다", async () => {
     const { container } = preview();
     fireEvent.click(
       await screen.findByRole("button", { name: "첫 개념 시작" }),
@@ -120,11 +120,11 @@ describe("학생 앱 기기 미리 보기", () => {
     );
     const blank = await screen.findByRole("button", { name: "빈칸 1" });
     fireEvent.click(blank);
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: `칩 ${erasedTargets(concept, 2)[0]!.text}`,
-      }),
-    );
+    const input = screen.getByRole("textbox", { name: "빈칸 답 입력" });
+    fireEvent.change(input, {
+      target: { value: erasedTargets(concept, 2)[0]!.text },
+    });
+    fireEvent.submit(input.closest("form")!);
     await waitFor(() =>
       expect(
         screen.queryByRole("button", { name: "빈칸 1" }),

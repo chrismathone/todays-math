@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Suspense, type ReactNode } from "react";
 
 import s from "@/components/learn/learn.module.css";
-import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
 import { TestConsole } from "@/components/learn/TestConsole";
-import { fadingEnabled } from "@/lib/fading/enabled";
+import { StudentAppShell } from "@/components/learn/StudentAppShell";
+import { getStudentLearningMenus } from "@/lib/learn/studentLearningMenusStore";
+import type { StudentSession } from "@/contracts/studentAccount.contract";
 import { getStudentSession } from "@/lib/learn/studentRequest";
 import { testConsoleLoginId } from "@/lib/learn/testConsoleServer";
 
@@ -19,9 +20,10 @@ export const metadata: Metadata = {
 };
 
 /** 시험용 학생 계정(`test_s`)이면 테스트 도구판을 싣는다(원장님 2026-09-28). 판정이 실패하면 안 싣는다. */
-async function showTestConsole(): Promise<boolean> {
+async function showTestConsole(
+  student: StudentSession | null,
+): Promise<boolean> {
   try {
-    const student = await getStudentSession();
     return student ? !!(await testConsoleLoginId(student.studentId)) : false;
   } catch {
     return false;
@@ -33,14 +35,27 @@ export default async function LearnLayout({
 }: {
   children: ReactNode;
 }) {
-  const testConsole = await showTestConsole();
+  const student = await getStudentSession();
+  const [testConsole, menus] = await Promise.all([
+    showTestConsole(student),
+    student && !student.mustChangePassword
+      ? getStudentLearningMenus(student.studentId).catch(() => ({
+          enabled: [],
+        }))
+      : Promise.resolve({ enabled: [] }),
+  ]);
+  const content =
+    student && !student.mustChangePassword ? (
+      <StudentAppShell student={student} enabled={menus.enabled}>
+        {children}
+        {testConsole && <TestConsole />}
+      </StudentAppShell>
+    ) : (
+      children
+    );
   return (
     <div className={s.page}>
-      {children}
-      <Suspense fallback={null}>
-        <StudentMobileNav fading={fadingEnabled()} />
-      </Suspense>
-      {testConsole && <TestConsole />}
+      <Suspense fallback={null}>{content}</Suspense>
     </div>
   );
 }

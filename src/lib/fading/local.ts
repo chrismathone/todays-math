@@ -12,12 +12,23 @@ import {
   type FadingState,
 } from "@/contracts/fadingApi.contract";
 import {
+  fadingDailyPlanSchema,
+  fadingDailyQuotaSchema,
+  type FadingDailyOptions,
+  type FadingDailyPlan,
+} from "@/contracts/fadingDaily.contract";
+import {
   applyFadingAction,
   fadingActionConceptId,
   fadingActionNeedsConcept,
 } from "./actions";
 import type { FadingTrap } from "./chips";
 import type { FadingConcept } from "./concepts";
+import {
+  buildFadingDailyPlan,
+  type FadingDailyWorkload,
+  type FadingPrerequisiteBasis,
+} from "./explorerDaily";
 import type { FadingFigure } from "./figures";
 import {
   FadingSourceError,
@@ -45,7 +56,16 @@ import {
 const NOT_FOUND = "개념을(를) 찾을 수 없습니다.";
 const INVALID = "요청 값이 올바르지 않습니다.";
 
+export type LocalFadingDaily = {
+  quota?: number;
+  workload?: FadingDailyWorkload | null;
+  prerequisite?: FadingPrerequisiteBasis | null;
+  progressSections?: readonly string[];
+};
+
 export type LocalFadingSource = FadingSource & {
+  /** «오늘 할 일» — 서버의 읽기와 같은 함수(`buildFadingDailyPlan`)로 짓는다. 여기서는 늘 있다. */
+  dailyPlan(options?: FadingDailyOptions): Promise<FadingDailyPlan>;
   /** 지금의 «오늘»(한국 날짜 글). */
   today(): string;
   /** «오늘»을 옮긴다 — 미리 보기에서 며칠 뒤의 대기열 · 밀림 · 오래 쉰 상태를 본다. */
@@ -71,6 +91,13 @@ export function createLocalFadingSource(input: {
   figures?: Readonly<Record<string, FadingFigure>>;
   /** 풀이를 열 때의 번호와 칩 차례의 씨앗 — 시험이 고정값을 넣는다. */
   fresh?: () => { sessionId: string; seed: number };
+  /** 새로 여는 풀이를 카드 풀이로(1단계 카드 · 4단계 자판) — 서버의 하위 문 `MATH_FADING_CARDS` 와 같은 자리다. 안 주면 칩 풀이. */
+  cards?: boolean;
+  /**
+   * «오늘 할 일»의 재료 — 안 주면 «오늘의 기억»만으로 짓는다(탐험 없이 · 선수 안내 없이). 탐험의 한 덩이 · 선수 안내 · 오늘 진도의 소단원은
+   * 부르는 쪽이 읽어 내려준다(이 파일은 탐험의 기록을 모른다). 함수로 주면 부를 때마다 다시 읽는다.
+   */
+  daily?: LocalFadingDaily | (() => LocalFadingDaily);
 }): LocalFadingSource {
   const byId = new Map(input.concepts.map((c) => [c.id, c]));
   const fresh =
@@ -97,6 +124,7 @@ export function createLocalFadingSource(input: {
         requestId,
         trapsOf,
         figureOf,
+        cards: input.cards,
       }),
     );
 
@@ -109,6 +137,26 @@ export function createLocalFadingSource(input: {
 
     async state() {
       return view();
+    },
+
+    async dailyPlan(options) {
+      const daily =
+        typeof input.daily === "function" ? input.daily() : input.daily;
+      // 분량은 학생 라우트의 `?quota=` 와 같은 꼴을 지난다.
+      if (
+        options?.quota !== undefined &&
+        !fadingDailyQuotaSchema.safeParse(options.quota).success
+      )
+        throw new FadingSourceError("VALIDATION_ERROR", INVALID, 400);
+      return fadingDailyPlanSchema.parse(
+        buildFadingDailyPlan({
+          today,
+          fading,
+          concepts: byId,
+          ...daily,
+          ...(options?.quota === undefined ? {} : { quota: options.quota }),
+        }),
+      );
     },
 
     async act(raw) {
@@ -129,6 +177,7 @@ export function createLocalFadingSource(input: {
           today,
           fresh(),
           concept ? trapsOf(concept) : [],
+          { cards: input.cards },
         );
       } catch (error) {
         if (error instanceof FadingConflict)
@@ -182,6 +231,7 @@ export function createLocalFadingSource(input: {
             figure: figureOf(concept),
           },
           status: stored ? fadingConceptStatus(concept, stored, today) : null,
+          ...(input.cards ? { mode: "cards" as const } : {}),
         },
       }).data;
     },

@@ -34,7 +34,11 @@ import type {
 import type { ExpeditionMission } from "@/contracts/mathExpedition.contract";
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 
 const today = "2026-09-28";
 const student = { id: "student-sup-ui", name: "김하늘", className: "초3반" };
@@ -457,9 +461,7 @@ describe("학생 화면 흐름 — 단원 끝 줄에서 한 장을 풀고 홈으
     expect(bodies[0]).toMatchObject({
       action: { type: "supplement-start", cardId: "sup-line" },
     });
-    fireEvent.click(
-      screen.getByRole("button", { name: "진도판" }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: "진도판" }));
     await waitFor(() =>
       expect(
         screen.getByRole("button", { name: /이어서 하기|살펴보기/ }),

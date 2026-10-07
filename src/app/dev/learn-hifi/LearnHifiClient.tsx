@@ -8,6 +8,7 @@
  * 첫 요청이 진짜 서버로 새어 나간다(`/dev/concept-hifi` 와 같은 까닭).
  */
 import { useState } from "react";
+import { useScreenQuery } from "@/hooks/useScreenQuery";
 
 import s from "@/components/learn/learn.module.css";
 import { LectureList } from "@/components/learn/LectureList";
@@ -16,7 +17,11 @@ import {
   type CreatePlayer,
 } from "@/components/learn/playerAdapter";
 import { StudentLoginForm } from "@/components/learn/StudentLoginForm";
-import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
+import { StudentAppShell } from "@/components/learn/StudentAppShell";
+import {
+  studentLearningMenusRequestSchema,
+  type StudentOptionalMenu,
+} from "@/contracts/studentLearningMenus.contract";
 import { StudentPasswordForm } from "@/components/learn/StudentPasswordForm";
 import { WatchScreen } from "@/components/learn/WatchScreen";
 import { StudentList } from "@/components/class/StudentList";
@@ -46,6 +51,7 @@ export interface LearnHifiOptions {
 declare global {
   interface Window {
     __learnHifiFetch?: typeof fetch;
+    __learnHifiMenus?: Map<string, StudentOptionalMenu[]>;
   }
 }
 
@@ -129,6 +135,9 @@ function installFixtureFetch(options: LearnHifiOptions) {
   const original = window.__learnHifiFetch ?? window.fetch.bind(window);
   window.__learnHifiFetch = original;
   const accounts = new Map<string, StudentAccountStatus | null>();
+  const menus =
+    window.__learnHifiMenus ?? new Map<string, StudentOptionalMenu[]>();
+  window.__learnHifiMenus = menus;
   window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = new URL(
       typeof input === "string" || input instanceof URL
@@ -139,6 +148,39 @@ function installFixtureFetch(options: LearnHifiOptions) {
     const method = init?.method ?? "GET";
     const path = url.pathname;
     const body = () => (init?.body ? JSON.parse(String(init.body)) : {});
+
+    const studentMenus = /^\/api\/students\/([^/]+)\/learning-menus$/.exec(
+      path,
+    );
+    if (studentMenus) {
+      const studentId = studentMenus[1]!;
+      if (method === "PUT") {
+        const parsed = studentLearningMenusRequestSchema.safeParse(body());
+        if (!parsed.success)
+          return json(
+            {
+              error: {
+                code: "VALIDATION_ERROR",
+                message: "메뉴를 확인하세요.",
+              },
+            },
+            400,
+          );
+        menus.set(studentId, parsed.data.enabled);
+      }
+      if (method === "GET" || method === "PUT")
+        return json({
+          data: {
+            enabled: menus.get(studentId) ?? [],
+            canManage: true,
+            updatedAt: null,
+          },
+        });
+      return json(
+        { error: { code: "FORBIDDEN", message: "지원하지 않는 요청입니다." } },
+        403,
+      );
+    }
 
     if (path === "/api/learn/lectures" && method === "GET")
       return json({ data: learnHifiList(options.set) });
@@ -287,6 +329,7 @@ function hifiPlayer(at: number | null): CreatePlayer {
 }
 
 export function LearnHifiClient({ options }: { options: LearnHifiOptions }) {
+  const query = useScreenQuery();
   useState(() => {
     if (typeof window !== "undefined") installFixtureFetch(options);
     return true;
@@ -298,6 +341,8 @@ export function LearnHifiClient({ options }: { options: LearnHifiOptions }) {
       <main className="min-h-dvh bg-[#f4f6fa] px-4 py-6">
         <div className="mx-auto max-w-[360px] rounded-[14px] border border-[#d4dce8] bg-white p-6">
           <StudentList
+            canManageAccounts
+            requestedStudentId={query.get("studentId") ?? ""}
             students={HIFI_STUDENTS}
             selectedClass={HIFI_CLASS}
             status="ready"
@@ -322,20 +367,25 @@ export function LearnHifiClient({ options }: { options: LearnHifiOptions }) {
             studentName={learnHifiList(options.set).student.name}
           />
         ) : null}
-        {options.screen === "list" ? <LectureList now={now} /> : null}
-        {options.screen === "watch" ? (
-          <WatchScreen lectureId={lectureId} />
+        {options.screen === "list" || options.screen === "watch" ? (
+          <StudentAppShell
+            student={learnHifiList(options.set).student}
+            enabled={["lectures"]}
+            preview
+            previewPath={
+              options.screen === "watch"
+                ? `/learn/watch/${lectureId}`
+                : "/learn/lectures"
+            }
+          >
+            {options.screen === "list" ? (
+              <LectureList now={now} />
+            ) : (
+              <WatchScreen lectureId={lectureId} />
+            )}
+          </StudentAppShell>
         ) : null}
       </PlayerFactoryContext.Provider>
-      <StudentMobileNav
-        previewPath={
-          options.screen === "watch"
-            ? `/learn/watch/${lectureId}`
-            : options.screen === "list"
-              ? "/learn"
-              : `/learn/${options.screen}`
-        }
-      />
     </div>
   );
 }

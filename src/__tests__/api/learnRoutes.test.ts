@@ -33,6 +33,12 @@ const savedEnv = vi.hoisted(() => {
 });
 
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/learn/studentLearningMenusStore", () => ({
+  getStudentLearningMenus: vi.fn(async () => ({
+    enabled: ["lectures"],
+    updatedAt: null,
+  })),
+}));
 vi.mock(
   "next/headers",
   async () => (await import("../helpers/authRequestContext")).nextHeadersModule,

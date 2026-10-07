@@ -265,8 +265,8 @@
   padding: 16px;
   box-shadow: 0 2px 12px #1e22380d;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto minmax(132px, 1fr) auto auto auto;
   gap: 10px;
   position: relative;
 }
@@ -325,6 +325,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 .termPreview > div,
 .previewTerms {
@@ -332,12 +333,14 @@
   flex-wrap: wrap;
   gap: 6px;
   min-width: 0;
+  align-items: flex-start;
 }
 .termChip {
   background: #fff;
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 14px;
+  min-width: 0;
   max-width: 100%;
   overflow-wrap: anywhere;
 }
@@ -346,6 +349,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 5px 12px;
+  align-content: flex-start;
   color: #536176;
   font-size: 12px;
 }
@@ -367,7 +371,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-top: auto;
+  align-self: end;
 }
 .quiet {
   background: transparent;
@@ -666,6 +670,14 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
   }
+  .conceptCard {
+    /* Share header, title, preview, facts, progress and actions within each row. */
+    grid-row: span 6;
+    grid-template-rows: subgrid;
+  }
+  .termPreview {
+    min-height: 156px;
+  }
   .unitHero {
     padding: 24px;
   }
@@ -761,6 +773,11 @@
   .detailDock {
     bottom: 16px;
     width: 100cqw;
+  }
+}
+@container fading-catalog (min-width: 1400px) {
+  .cardGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 @container fading-catalog (max-width: 359px) {

@@ -66,11 +66,11 @@ export function LectureList({ now }: { now?: Date }) {
   const failed = state.status === "error" || grouped === null;
 
   return (
-    <div className={s.column}>
+    <div className={s.column} data-student-module-content="lectures">
       <LearnTopBar
         student={state.status === "ready" ? state.data.student : null}
       />
-      <main className={s.body}>
+      <main className={`${s.body} ${s.lectureBody}`}>
         {state.status === "ready" ? (
           <div className={s.mobileWelcome}>
             <p>오늘도 한 걸음씩</p>
@@ -78,7 +78,7 @@ export function LectureList({ now }: { now?: Date }) {
           </div>
         ) : null}
         <div className={s.listHeading}>
-          <h1 className={s.h}>오늘의 개념</h1>
+          <h1 className={s.h}>강의 자료</h1>
           <p>수업에서 배운 강의를 이어서 봐요.</p>
         </div>
         {state.status === "loading" ? (
@@ -104,7 +104,10 @@ export function LectureList({ now }: { now?: Date }) {
           </>
         ) : null}
         {state.status === "ready" && grouped?.length === 0 ? (
-          <p className={s.empty}>아직 볼 강의가 없습니다.</p>
+          <div className={s.lectureEmpty} role="status">
+            <strong>아직 배정된 강의가 없어요</strong>
+            <p>선생님이 강의를 배정하면 이곳에서 이어 볼 수 있어요.</p>
+          </div>
         ) : null}
         {grouped?.map((group, i) => (
           <DaySection key={group.day} group={group} latest={i === 0} />

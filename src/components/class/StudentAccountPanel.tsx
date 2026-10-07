@@ -19,6 +19,7 @@ import {
 } from "@/lib/class/studentAccountApi";
 
 import s from "./StudentAccountPanel.module.css";
+import { StudentLearningMenuPanel } from "./StudentLearningMenuPanel";
 
 type PanelState =
   | { status: "loading" }
@@ -214,6 +215,9 @@ export function StudentAccountPanel({
           onDisabled={onDisabled}
         />
       )}
+      {state.status === "ready" && !state.data.withdrawn ? (
+        <StudentLearningMenuPanel studentId={student.id} />
+      ) : null}
     </section>
   );
 }
