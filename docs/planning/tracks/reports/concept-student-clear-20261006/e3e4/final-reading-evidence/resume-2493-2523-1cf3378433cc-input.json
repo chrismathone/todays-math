@@ -1,0 +1,2694 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2493,
+  "end": 2523,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2493,
+        "sourceFingerprint": "fe963751f39946cca3ba6c079bf59ceb4c3706911d4283115078a56ec98c96fc",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc24",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "수선의 길이로 평행 판단하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}.",
+        "studentC": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 □.",
+        "answers": [
+          "않다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2493,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "fe963751f39946cca3ba6c079bf59ceb4c3706911d4283115078a56ec98c96fc",
+        "proposalFingerprint": "f5e75c6545c0be037a7de855677188a658267f88494ef2ab176d62489e5d2bd1",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+        "bAnswer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선은 거리가 어디서나 같다",
+              "수선의 길이가 같아야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "수선 길이로 평행 판단",
+        "bReason": "평행선 거리가 일정함으로 판단하게 한다",
+        "cDecision": "keep",
+        "cReason": "않다 빈칸이 짧아 유지",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "수선의 길이로 평행 판단하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}.",
+        "cStudentSentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "않다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 □.",
+          "answers": [
+            "않다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+          "answer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행하지 않다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행선은 거리가 어디서나 같다",
+                "수선의 길이가 같아야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}.",
+          "acceptedAnswers": [
+            [
+              "않다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2494,
+        "sourceFingerprint": "dcd94f13afa8bead9166a4091aae9941118ceac018260df5eb260c6d7fd20017",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc27",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리와 길이가 같은 선분",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 {수선}뿐이다.",
+        "studentC": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 □뿐이다.",
+        "answers": [
+          "수선"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2494,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "dcd94f13afa8bead9166a4091aae9941118ceac018260df5eb260c6d7fd20017",
+        "proposalFingerprint": "8a0e3ebd187d110228337658693efe7bcae775ec48718fe3ec71bddebbe7163b",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc27",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "거리와 같은 선분은 수선",
+        "bReason": "xc2와 같은 목표",
+        "exclusionReason": "거리와 길이가 같은 선분이 수선이라는 목표가 xc2 B와 같다",
+        "cDecision": "keep",
+        "cReason": "수선 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "수직인 선분",
+            "수직선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거리와 길이가 같은 선분",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 {수선}뿐이다.",
+        "cStudentSentence": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 □뿐이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수선",
+            "equivalents": [
+              "수직인 선분",
+              "수직선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 □뿐이다.",
+          "answers": [
+            "수선"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 {수선}뿐이다.",
+          "acceptedAnswers": [
+            [
+              "수선",
+              "수직인 선분",
+              "수직선"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc2와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2495,
+        "sourceFingerprint": "1d903c8aa5314e02dd6923df1ca801c176d078ea417e6cd7726f449900122ae8",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc28",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "붙인 직사각형의 위아래 거리",
+        "kind": "방법",
+        "level": "상",
+        "definition": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 {두 세로의 합}인 $7\\,\\mathrm{cm}$이다.",
+        "studentC": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 □인 $7\\,\\mathrm{cm}$이다.",
+        "answers": [
+          "두 세로의 합"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2495,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "1d903c8aa5314e02dd6923df1ca801c176d078ea417e6cd7726f449900122ae8",
+        "proposalFingerprint": "0df93a4f71fb6ca5b0841d4d19d907da876aceb10767969e61d21e1b9471546c",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 가로 한 변을 맞대어 위아래로 붙였습니다. 맨 위 변과 맨 아래 변 사이의 거리를 구하고 그 까닭을 쓰시오.",
+        "bAnswer": "$7\\,\\mathrm{cm}$이다. 각 직사각형의 세로가 위아래 변 사이의 거리이므로 $3+4=7$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 세로를 더한다",
+              "$3+4$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "붙인 직사각형의 위아래 거리",
+        "bReason": "원문 상황을 완성 질문으로 만든다",
+        "cDecision": "rewrite",
+        "cAfter": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 {합}인 $7\\,\\mathrm{cm}$이다.",
+        "cReason": "긴 구절 빈칸을 합 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "더한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "붙인 직사각형의 위아래 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 {합}인 $7\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 □인 $7\\,\\mathrm{cm}$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "합",
+            "equivalents": [
+              "더한 값"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 가로 한 변을 맞대어 위아래로 붙였습니다. 맨 위 변과 맨 아래 변 사이의 거리를 구하고 그 까닭을 쓰시오.",
+          "answer": "$7\\,\\mathrm{cm}$이다. 각 직사각형의 세로가 위아래 변 사이의 거리이므로 $3+4=7$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7\\,\\mathrm{cm}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 세로를 더한다",
+                "$3+4$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 {합}인 $7\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "합",
+              "더한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2496,
+        "sourceFingerprint": "505e6b70b3fb1f77fe92b3c5c5794a281bbd9313a5a5fc7ef434729fda732fa9",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc1",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "사다리꼴의 평행한 변의 자리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사다리꼴에서 서로 평행한 두 변은 {마주 보는} 변이다.",
+        "studentC": "사다리꼴에서 서로 평행한 두 변은 □ 변이다.",
+        "answers": [
+          "마주 보는"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2496,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "505e6b70b3fb1f77fe92b3c5c5794a281bbd9313a5a5fc7ef434729fda732fa9",
+        "proposalFingerprint": "d9052c6e5e38941abd0b700b8fa99db33a619486f2cabd70822d4f5b8a7db378",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴은 어떤 사각형입니까? 평행한 변이 어디에 있는지 함께 쓰시오.",
+        "bAnswer": "마주 보는 한 쌍의 변이 서로 평행한 사각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 변이 평행하다",
+              "평행한 변이 한 쌍 이상 있다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "사다리꼴의 뜻",
+        "bReason": "정의와 평행한 변의 자리를 묻는다",
+        "cDecision": "keep",
+        "cReason": "마주 보는 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사다리꼴의 평행한 변의 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴에서 서로 평행한 두 변은 {마주 보는} 변이다.",
+        "cStudentSentence": "사다리꼴에서 서로 평행한 두 변은 □ 변이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "마주 보는",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴에서 서로 평행한 두 변은 □ 변이다.",
+          "answers": [
+            "마주 보는"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사다리꼴은 어떤 사각형입니까? 평행한 변이 어디에 있는지 함께 쓰시오.",
+          "answer": "마주 보는 한 쌍의 변이 서로 평행한 사각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "마주 보는 변이 평행하다",
+                "평행한 변이 한 쌍 이상 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴에서 서로 평행한 두 변은 {마주 보는} 변이다.",
+          "acceptedAnswers": [
+            [
+              "마주 보는"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2497,
+        "sourceFingerprint": "b0c3c86cc6a8acd5fe8bb5079f6bae9a616da924dcc159e7eda0681dd80edbe1",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc2",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "사다리꼴의 변의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사다리꼴은 사각형이므로 변이 {$4$개}이다.",
+        "studentC": "사다리꼴은 사각형이므로 변이 □이다.",
+        "answers": [
+          "$4$개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2497,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "b0c3c86cc6a8acd5fe8bb5079f6bae9a616da924dcc159e7eda0681dd80edbe1",
+        "proposalFingerprint": "1f34a5f9363f58390ca24b88f8ed69a12147d6a36a848a7521de79581eda7b6f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "사다리꼴 변의 수",
+        "bReason": "사각형이라 변이 $4$개",
+        "exclusionReason": "사각형의 변이 $4$개라는 단순 사실이라 설명 목표가 없다",
+        "cDecision": "keep",
+        "cReason": "선명한 숫자 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "네 개",
+            "$4$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사다리꼴의 변의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴은 사각형이므로 변이 {$4$개}이다.",
+        "cStudentSentence": "사다리꼴은 사각형이므로 변이 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$개",
+            "equivalents": [
+              "네 개",
+              "$4$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴은 사각형이므로 변이 □이다.",
+          "answers": [
+            "$4$개"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사다리꼴은 사각형이므로 변이 {$4$개}이다.",
+          "acceptedAnswers": [
+            [
+              "$4$개",
+              "네 개",
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "사각형이라 변이 $4$개"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2498,
+        "sourceFingerprint": "b3440d8ea4bfc34580a69f27e6b8a1be5a64a1473b2332b22cab36933a708a10",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc3",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "직사각형과 사다리꼴",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직사각형은 {평행한 변이 있으므로} 사다리꼴이기도 하다.",
+        "studentC": "직사각형은 □ 사다리꼴이기도 하다.",
+        "answers": [
+          "평행한 변이 있으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2498,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "b3440d8ea4bfc34580a69f27e6b8a1be5a64a1473b2332b22cab36933a708a10",
+        "proposalFingerprint": "88e549dfa96a442f35c12cffb9a14568d4747190a98aaf65991e85f41a5e96c4",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형도 사다리꼴이라고 할 수 있습니까? 그 까닭을 쓰시오.",
+        "bAnswer": "그렇다. 직사각형은 마주 보는 변이 평행하여 사다리꼴의 조건을 만족하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그렇다",
+              "사다리꼴이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 변이 평행하다",
+              "평행한 변이 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직사각형도 사다리꼴인 까닭",
+        "bReason": "정의를 직사각형에 적용해 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형은 마주 보는 변이 {평행}하므로 사다리꼴이기도 하다.",
+        "cReason": "이유절 빈칸을 평행 한 낱말로 줄임",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형과 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형은 마주 보는 변이 {평행}하므로 사다리꼴이기도 하다.",
+        "cStudentSentence": "직사각형은 마주 보는 변이 □하므로 사다리꼴이기도 하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형도 사다리꼴이라고 할 수 있습니까? 그 까닭을 쓰시오.",
+          "answer": "그렇다. 직사각형은 마주 보는 변이 평행하여 사다리꼴의 조건을 만족하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "그렇다",
+                "사다리꼴이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "마주 보는 변이 평행하다",
+                "평행한 변이 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형은 마주 보는 변이 {평행}하므로 사다리꼴이기도 하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2499,
+        "sourceFingerprint": "4f7992042a5447731118edc153ccc43c79127c325c8e4a5c491dbbbd6bfc143a",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc4",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "삼각자로 사다리꼴 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사다리꼴인지 알아보려면 {마주 보는 변이 평행한지} 삼각자로 확인한다.",
+        "studentC": "사다리꼴인지 알아보려면 □ 삼각자로 확인한다.",
+        "answers": [
+          "마주 보는 변이 평행한지"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2499,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "4f7992042a5447731118edc153ccc43c79127c325c8e4a5c491dbbbd6bfc143a",
+        "proposalFingerprint": "bf8f066c3d8588b4da9ed5afb7a6196ebaecbfa7ec40d9e93db8aa77a694ccbb",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "삼각자로 사다리꼴 찾기",
+        "bReason": "xc1·xc3과 같은 목표",
+        "exclusionReason": "마주 보는 변의 평행 확인은 xc1 정의 B와 xc3 B에서 다룬다",
+        "cDecision": "rewrite",
+        "cAfter": "사다리꼴인지 알아보려면 삼각자로 마주 보는 두 변이 {평행}한지 확인한다.",
+        "cReason": "긴 구절 빈칸을 평행 한 낱말로 줄임",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각자로 사다리꼴 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴인지 알아보려면 삼각자로 마주 보는 두 변이 {평행}한지 확인한다.",
+        "cStudentSentence": "사다리꼴인지 알아보려면 삼각자로 마주 보는 두 변이 □한지 확인한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사다리꼴인지 알아보려면 삼각자로 마주 보는 두 변이 {평행}한지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc1·xc3과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2500,
+        "sourceFingerprint": "9cd3ac1ef5f85e3e5eafc8dd0b465cef6888e1a2539c308816db231e9cbb711a",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc5",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "모눈종이의 가로줄로 사다리꼴 그리기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "모눈종이의 두 가로줄 위에 마주 보는 두 변을 그리면 {그 두 변이 평행하므로} 사다리꼴이다.",
+        "studentC": "모눈종이의 두 가로줄 위에 마주 보는 두 변을 그리면 □ 사다리꼴이다.",
+        "answers": [
+          "그 두 변이 평행하므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2500,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "9cd3ac1ef5f85e3e5eafc8dd0b465cef6888e1a2539c308816db231e9cbb711a",
+        "proposalFingerprint": "ec711f68965a522f43ab59e9d497698b466c889415a3516a7797bd3239d6fb5d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈종이의 두 가로줄 위에 마주 보는 두 변을 그려 사각형을 만들었다. 이 사각형이 사다리꼴인 까닭을 쓰시오.",
+        "bAnswer": "두 가로줄은 평행하므로 그 위의 마주 보는 두 변이 평행하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 두 변이 평행하다",
+              "평행한 변이 한 쌍 있다",
+              "두 변이 나란하다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "평행한 두 변으로 사다리꼴 설명",
+        "bReason": "가로줄이 평행이라는 근거를 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "모눈종이의 두 가로줄 위에 마주 보는 두 변을 그리면 두 변이 서로 {평행}하므로 사다리꼴이다.",
+        "cReason": "긴 이유 구절 빈칸을 낱말 '평행'으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈종이의 가로줄로 사다리꼴 그리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이의 두 가로줄 위에 마주 보는 두 변을 그리면 두 변이 서로 {평행}하므로 사다리꼴이다.",
+        "cStudentSentence": "모눈종이의 두 가로줄 위에 마주 보는 두 변을 그리면 두 변이 서로 □하므로 사다리꼴이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모눈종이의 두 가로줄 위에 마주 보는 두 변을 그려 사각형을 만들었다. 이 사각형이 사다리꼴인 까닭을 쓰시오.",
+          "answer": "두 가로줄은 평행하므로 그 위의 마주 보는 두 변이 평행하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "마주 보는 두 변이 평행하다",
+                "평행한 변이 한 쌍 있다",
+                "두 변이 나란하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모눈종이의 두 가로줄 위에 마주 보는 두 변을 그리면 두 변이 서로 {평행}하므로 사다리꼴이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2501,
+        "sourceFingerprint": "e844c3b3fb230e7595a9af66a63f016eb3d3028e6d83a4716aa64e1caa712faa",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc6",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "사다리꼴의 네 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사다리꼴의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+        "studentC": "사다리꼴의 네 각을 모두 더하면 □이다.",
+        "answers": [
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2501,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "e844c3b3fb230e7595a9af66a63f016eb3d3028e6d83a4716aa64e1caa712faa",
+        "proposalFingerprint": "879446de9e34f5d2679a3822715114b5de65b2a3c5a4723bafe2af1567a0848e",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴의 네 각의 크기를 모두 더하면 몇 도인지 쓰시오.",
+        "bAnswer": "$360^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "사각형 네 각의 합 알기",
+        "bReason": "네 각의 합은 이 항목에서 한 번만 묻는다",
+        "cDecision": "keep",
+        "cReason": "짧은 수치 빈칸이라 정답이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$360$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사다리꼴의 네 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+        "cStudentSentence": "사다리꼴의 네 각을 모두 더하면 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$360^\\circ$",
+            "equivalents": [
+              "$360$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴의 네 각을 모두 더하면 □이다.",
+          "answers": [
+            "$360^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사다리꼴의 네 각의 크기를 모두 더하면 몇 도인지 쓰시오.",
+          "answer": "$360^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$360^\\circ$",
+                "$360$도"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2502,
+        "sourceFingerprint": "797cdfb3f85d1d5e4f0782ab7ffcfadfd807f40900f6a406eb5a70599045ec9f",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc7",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "삼각형을 잘라 사다리꼴 만들기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "삼각형에서 {한 변과 평행한 선분}을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+        "studentC": "삼각형에서 □을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+        "answers": [
+          "한 변과 평행한 선분"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2502,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "797cdfb3f85d1d5e4f0782ab7ffcfadfd807f40900f6a406eb5a70599045ec9f",
+        "proposalFingerprint": "7b4f2a3411e323813dd43f6d1f51bd2fc504d790f899890b55549e2341dfd5df",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 한 귀퉁이를 잘라 내어 남은 사각형이 사다리꼴이 되게 하려면 어떤 선분을 그어야 하는지 쓰시오.",
+        "bAnswer": "삼각형의 한 변과 평행한 선분을 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변과 평행한 선분",
+              "한 변과 나란한 선분",
+              "한 변과 평행하게 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "사다리꼴을 만드는 선분 고르기",
+        "bReason": "답을 본문에 두지 않고 긋는 방법을 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형에서 한 변과 {평행}한 선분을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+        "cReason": "'한 변과 평행한 선분' 구절을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각형을 잘라 사다리꼴 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형에서 한 변과 {평행}한 선분을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+        "cStudentSentence": "삼각형에서 한 변과 □한 선분을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형 한 귀퉁이를 잘라 내어 남은 사각형이 사다리꼴이 되게 하려면 어떤 선분을 그어야 하는지 쓰시오.",
+          "answer": "삼각형의 한 변과 평행한 선분을 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 변과 평행한 선분",
+                "한 변과 나란한 선분",
+                "한 변과 평행하게 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형에서 한 변과 {평행}한 선분을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2503,
+        "sourceFingerprint": "984aabffb4046c3d820cec025a4439bd4253e6d8abe231927a87383a583afbcf",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc8",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "사다리꼴의 둘레",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사다리꼴의 둘레는 네 변의 길이를 모두 {더해} 구한다.",
+        "studentC": "사다리꼴의 둘레는 네 변의 길이를 모두 □ 구한다.",
+        "answers": [
+          "더해"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2503,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "984aabffb4046c3d820cec025a4439bd4253e6d8abe231927a87383a583afbcf",
+        "proposalFingerprint": "935eab34c6515227ab93dac563efc24dc9650af61e6210fd7530f20d6b68775e",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴의 둘레를 구하는 방법을 쓰시오.",
+        "bAnswer": "네 변의 길이를 모두 더한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 변의 길이를 모두 더한다",
+              "네 변을 합한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "둘레 구하는 방법 말하기",
+        "bReason": "둘레의 의미를 계산 방법으로 확인함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '더해' 하나라 그대로 둠",
+        "cSlotEquivalents": [
+          [
+            "더하여",
+            "합해",
+            "합하여"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "사다리꼴의 둘레",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴의 둘레는 네 변의 길이를 모두 {더해} 구한다.",
+        "cStudentSentence": "사다리꼴의 둘레는 네 변의 길이를 모두 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "더해",
+            "equivalents": [
+              "더하여",
+              "합해",
+              "합하여"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴의 둘레는 네 변의 길이를 모두 □ 구한다.",
+          "answers": [
+            "더해"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사다리꼴의 둘레를 구하는 방법을 쓰시오.",
+          "answer": "네 변의 길이를 모두 더한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 변의 길이를 모두 더한다",
+                "네 변을 합한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴의 둘레는 네 변의 길이를 모두 {더해} 구한다.",
+          "acceptedAnswers": [
+            [
+              "더해",
+              "더하여",
+              "합해",
+              "합하여"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2504,
+        "sourceFingerprint": "61d7374e9ebd8c3c981677f7f3858b7a22ea41b1768e472e446b751b4e6592b3",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc9",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "사다리꼴의 평행한 두 변을 늘이면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사다리꼴의 평행한 두 변을 길게 늘이면 {평행선}이 된다.",
+        "studentC": "사다리꼴의 평행한 두 변을 길게 늘이면 □이 된다.",
+        "answers": [
+          "평행선"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2504,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "61d7374e9ebd8c3c981677f7f3858b7a22ea41b1768e472e446b751b4e6592b3",
+        "proposalFingerprint": "9ffe08d3736e5634859cc15785e4b1f0cdadceaa5a4523761dbbd5c3fac1609a",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴의 평행한 두 변을 끝없이 길게 늘이면 두 직선은 서로 만나는지 만나지 않는지 쓰시오.",
+        "bAnswer": "만나지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "만나지 않는다",
+              "만나지 않고 나란하다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행한 두 직선의 성질 말하기",
+        "bReason": "평행선 뜻을 만남 여부로 좁혀 물음",
+        "cDecision": "rewrite",
+        "cAfter": "사다리꼴의 평행한 두 변을 길게 늘여도 두 직선은 서로 {만나지} 않는다.",
+        "cReason": "'평행선' 빈칸은 직선·평행 등 답이 갈려 좁힘",
+        "answerNotes": "'평행선'이라는 이름만 쓴 답은 만나지 않는다는 뜻을 안 썼으므로 부족함",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사다리꼴의 평행한 두 변을 늘이면",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴의 평행한 두 변을 길게 늘여도 두 직선은 서로 {만나지} 않는다.",
+        "cStudentSentence": "사다리꼴의 평행한 두 변을 길게 늘여도 두 직선은 서로 □ 않는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "만나지",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사다리꼴의 평행한 두 변을 끝없이 길게 늘이면 두 직선은 서로 만나는지 만나지 않는지 쓰시오.",
+          "answer": "만나지 않는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "만나지 않는다",
+                "만나지 않고 나란하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴의 평행한 두 변을 길게 늘여도 두 직선은 서로 {만나지} 않는다.",
+          "acceptedAnswers": [
+            [
+              "만나지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2505,
+        "sourceFingerprint": "09c7df5c4b3edd0d514c6646674c3dfac5ec90e521f1aaaa83d742873445db78",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc10",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "직사각형을 잘라 사다리꼴 만들기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직사각형에서 서로 마주 보는 두 변에 꼭짓점이 아닌 점을 하나씩 잡아 곧게 이어 자르면, 두 조각에 원래 평행한 변의 일부가 남으므로 모두 {사다리꼴}이다.",
+        "studentC": "직사각형에서 서로 마주 보는 두 변에 꼭짓점이 아닌 점을 하나씩 잡아 곧게 이어 자르면, 두 조각에 원래 평행한 변의 일부가 남으므로 모두 □이다.",
+        "answers": [
+          "사다리꼴"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2505,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "09c7df5c4b3edd0d514c6646674c3dfac5ec90e521f1aaaa83d742873445db78",
+        "proposalFingerprint": "c37291c3b8d4f93c4f15997fa41b2ee4a2eed0239cc123243ba10a79bbe6dfc8",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형에서 서로 마주 보는 두 변에 꼭짓점이 아닌 점을 하나씩 잡아 곧게 이어 자른다. 생긴 두 조각은 각각 어떤 사각형이며 그렇게 말할 수 있는 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "두 조각 모두 사다리꼴이다. 원래 평행한 두 변의 일부가 각 조각에 남아 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행한 변이 남는다",
+              "원래 평행한 변의 일부가 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자른 조각이 사다리꼴인 까닭",
+        "bReason": "평행한 변이 남는다는 근거를 설명하게 함",
+        "cDecision": "keep",
+        "cReason": "긴 문장이나 단서가 있고 빈칸은 익숙한 낱말",
+        "answerNotes": "'사각형'만 쓰면 평행한 변이 한 쌍 있다는 사다리꼴의 뜻이 빠져 오답",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직사각형을 잘라 사다리꼴 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형에서 서로 마주 보는 두 변에 꼭짓점이 아닌 점을 하나씩 잡아 곧게 이어 자르면, 두 조각에 원래 평행한 변의 일부가 남으므로 모두 {사다리꼴}이다.",
+        "cStudentSentence": "직사각형에서 서로 마주 보는 두 변에 꼭짓점이 아닌 점을 하나씩 잡아 곧게 이어 자르면, 두 조각에 원래 평행한 변의 일부가 남으므로 모두 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "사다리꼴",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형에서 서로 마주 보는 두 변에 꼭짓점이 아닌 점을 하나씩 잡아 곧게 이어 자르면, 두 조각에 원래 평행한 변의 일부가 남으므로 모두 □이다.",
+          "answers": [
+            "사다리꼴"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직사각형에서 서로 마주 보는 두 변에 꼭짓점이 아닌 점을 하나씩 잡아 곧게 이어 자른다. 생긴 두 조각은 각각 어떤 사각형이며 그렇게 말할 수 있는 까닭은 무엇인지 쓰시오.",
+          "answer": "두 조각 모두 사다리꼴이다. 원래 평행한 두 변의 일부가 각 조각에 남아 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사다리꼴"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행한 변이 남는다",
+                "원래 평행한 변의 일부가 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형에서 서로 마주 보는 두 변에 꼭짓점이 아닌 점을 하나씩 잡아 곧게 이어 자르면, 두 조각에 원래 평행한 변의 일부가 남으므로 모두 {사다리꼴}이다.",
+          "acceptedAnswers": [
+            [
+              "사다리꼴"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2506,
+        "sourceFingerprint": "e141d3df49a7f23d6db754d0bff38b5506c11ce5d057a33a177808e70271bde1",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc12",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "평행하지 않은 두 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}.",
+        "studentC": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 □.",
+        "answers": [
+          "만난다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2506,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "e141d3df49a7f23d6db754d0bff38b5506c11ce5d057a33a177808e70271bde1",
+        "proposalFingerprint": "383447340023d481be90f3d95895a6b1eece8fb0fbbc096adf854077071587dd",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 변이 한 쌍뿐인 사다리꼴에서 평행하지 않은 두 변을 끝없이 길게 늘이면 어떻게 되는지 쓰시오.",
+        "bAnswer": "서로 만난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 만난다",
+              "만나게 된다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행하지 않은 변의 성질 말하기",
+        "bReason": "평행하지 않은 두 변의 늘임 결과를 확인함",
+        "cDecision": "keep",
+        "cReason": "만난다/만나지 않는다 중 고르는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "서로 만난다",
+            "만나게 된다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행하지 않은 두 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}.",
+        "cStudentSentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "만난다",
+            "equivalents": [
+              "서로 만난다",
+              "만나게 된다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 □.",
+          "answers": [
+            "만난다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행한 변이 한 쌍뿐인 사다리꼴에서 평행하지 않은 두 변을 끝없이 길게 늘이면 어떻게 되는지 쓰시오.",
+          "answer": "서로 만난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 만난다",
+                "만나게 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}.",
+          "acceptedAnswers": [
+            [
+              "만난다",
+              "서로 만난다",
+              "만나게 된다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2507,
+        "sourceFingerprint": "641e62264e2de1ae868db08372dff605e1c1993dd0fc690412e196b9f6520605",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc13",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "직각이 있는 사다리꼴",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형이 아닌 사다리꼴에 직각이 있으면 직각은 {두} 개이다.",
+        "studentC": "직사각형이 아닌 사다리꼴에 직각이 있으면 직각은 □ 개이다.",
+        "answers": [
+          "두"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2507,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "641e62264e2de1ae868db08372dff605e1c1993dd0fc690412e196b9f6520605",
+        "proposalFingerprint": "29f15d6d08a65df75621007a66bb4c782a845af8b040d24f471a169f2c2a65fc",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형이 아닌 사다리꼴에 직각이 하나라도 있으면 직각은 모두 몇 개인지 쓰시오.",
+        "bAnswer": "두 개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 개",
+              "$2$개"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "직각 사다리꼴의 직각 수 알기",
+        "bReason": "직각 개수를 묻되 암기 문장은 요구하지 않음",
+        "cDecision": "keep",
+        "cReason": "숫자 낱말 하나 빈칸이고 답이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각이 있는 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형이 아닌 사다리꼴에 직각이 있으면 직각은 {두} 개이다.",
+        "cStudentSentence": "직사각형이 아닌 사다리꼴에 직각이 있으면 직각은 □ 개이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형이 아닌 사다리꼴에 직각이 있으면 직각은 □ 개이다.",
+          "answers": [
+            "두"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직사각형이 아닌 사다리꼴에 직각이 하나라도 있으면 직각은 모두 몇 개인지 쓰시오.",
+          "answer": "두 개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 개",
+                "$2$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형이 아닌 사다리꼴에 직각이 있으면 직각은 {두} 개이다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2508,
+        "sourceFingerprint": "81428511f7acdb68c78833f613ddec1c4cae2de1bc2e5d3c7e793a76f0a654a9",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc15",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "돌려 놓은 사다리꼴",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사다리꼴을 돌려 놓아도 {평행한 변은 그대로}이므로 사다리꼴이다.",
+        "studentC": "사다리꼴을 돌려 놓아도 □이므로 사다리꼴이다.",
+        "answers": [
+          "평행한 변은 그대로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2508,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "81428511f7acdb68c78833f613ddec1c4cae2de1bc2e5d3c7e793a76f0a654a9",
+        "proposalFingerprint": "d2aed1b28b11e046be703c78d95860ea7ee55527b88d73c8e72006cb1a03284f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴 모양 종이를 돌려 비스듬하게 놓았다. 이 도형은 여전히 사다리꼴인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "여전히 사다리꼴이다. 돌려도 평행한 두 변은 그대로 평행하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사다리꼴이다",
+              "그대로 사다리꼴이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행한 변이 그대로이다",
+              "돌려도 평행하다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "돌려도 사다리꼴인 까닭",
+        "bReason": "방향이 바뀌어도 성질이 유지됨을 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "사다리꼴을 돌려 놓아도 평행한 두 변은 여전히 {평행}하므로 사다리꼴이다.",
+        "cReason": "긴 구절 빈칸을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "돌려 놓은 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴을 돌려 놓아도 평행한 두 변은 여전히 {평행}하므로 사다리꼴이다.",
+        "cStudentSentence": "사다리꼴을 돌려 놓아도 평행한 두 변은 여전히 □하므로 사다리꼴이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사다리꼴 모양 종이를 돌려 비스듬하게 놓았다. 이 도형은 여전히 사다리꼴인지 쓰고 까닭을 설명하시오.",
+          "answer": "여전히 사다리꼴이다. 돌려도 평행한 두 변은 그대로 평행하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사다리꼴이다",
+                "그대로 사다리꼴이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행한 변이 그대로이다",
+                "돌려도 평행하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴을 돌려 놓아도 평행한 두 변은 여전히 {평행}하므로 사다리꼴이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2509,
+        "sourceFingerprint": "52788ba64223a9f9b350ae3be6dd635f1aecad3d660fe124af12d18ffdf437e8",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc16",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "마주 보는 변의 짝",
+        "kind": "방법",
+        "level": "중",
+        "definition": "사각형에서 서로 마주 보는 변의 짝은 {두 쌍}이므로 사다리꼴이 아니라고 하려면 두 쌍을 모두 살펴야 한다.",
+        "studentC": "사각형에서 서로 마주 보는 변의 짝은 □이므로 사다리꼴이 아니라고 하려면 두 쌍을 모두 살펴야 한다.",
+        "answers": [
+          "두 쌍"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2509,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "52788ba64223a9f9b350ae3be6dd635f1aecad3d660fe124af12d18ffdf437e8",
+        "proposalFingerprint": "c40cc26513f307676be03fa7641201557a8ec90ef34e49a2ca9363cd26e3d0c7",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 사각형이 사다리꼴이 아니라고 말하려면 마주 보는 변을 어떻게 살펴야 하는지 쓰시오.",
+        "bAnswer": "마주 보는 두 쌍의 변을 모두 살펴서 어느 쌍도 평행하지 않은지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 두 쌍을 모두 살핀다",
+              "두 쌍 다 평행하지 않은지 본다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "사다리꼴이 아님을 확인하는 법",
+        "bReason": "한 쌍만 보고 판단하는 실수를 막는 확인법",
+        "cDecision": "rewrite",
+        "cAfter": "사각형에서 마주 보는 변의 짝은 {두} 쌍이므로 사다리꼴이 아니라고 하려면 짝을 모두 살펴야 한다.",
+        "cReason": "원문은 뒤 문장에 '두 쌍'이 또 나와 정답이 드러남",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "마주 보는 변의 짝",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형에서 마주 보는 변의 짝은 {두} 쌍이므로 사다리꼴이 아니라고 하려면 짝을 모두 살펴야 한다.",
+        "cStudentSentence": "사각형에서 마주 보는 변의 짝은 □ 쌍이므로 사다리꼴이 아니라고 하려면 짝을 모두 살펴야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 사각형이 사다리꼴이 아니라고 말하려면 마주 보는 변을 어떻게 살펴야 하는지 쓰시오.",
+          "answer": "마주 보는 두 쌍의 변을 모두 살펴서 어느 쌍도 평행하지 않은지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "마주 보는 두 쌍을 모두 살핀다",
+                "두 쌍 다 평행하지 않은지 본다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형에서 마주 보는 변의 짝은 {두} 쌍이므로 사다리꼴이 아니라고 하려면 짝을 모두 살펴야 한다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2510,
+        "sourceFingerprint": "ea1174cfa972db7456b73545f0494da11fdf0dfbebd2842f972292d417df2f62",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc17",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "평행한 두 변 사이의 거리",
+        "kind": "방법",
+        "level": "중",
+        "definition": "사다리꼴의 평행한 두 변 사이의 거리는 두 변을 늘인 직선에 {수직}인 선분으로 잰다.",
+        "studentC": "사다리꼴의 평행한 두 변 사이의 거리는 두 변을 늘인 직선에 □인 선분으로 잰다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2510,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "ea1174cfa972db7456b73545f0494da11fdf0dfbebd2842f972292d417df2f62",
+        "proposalFingerprint": "d920f2270cbf8a5a5681ccfd0082828d2e4816c1b7b32ecccdddb0629f274fd9",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴의 평행한 두 변 사이의 거리를 잴 때 어떤 선분의 길이를 재야 하는지 쓰시오.",
+        "bAnswer": "두 변을 늘인 직선에 수직인 선분의 길이를 잰다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 변에 수직인 선분",
+              "두 변과 직각으로 만나는 선분"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "두 변 사이 거리 재는 방법",
+        "bReason": "거리를 재는 선분의 조건을 직접 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '수직' 하나라 그대로 둠",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "평행한 두 변 사이의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴의 평행한 두 변 사이의 거리는 두 변을 늘인 직선에 {수직}인 선분으로 잰다.",
+        "cStudentSentence": "사다리꼴의 평행한 두 변 사이의 거리는 두 변을 늘인 직선에 □인 선분으로 잰다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴의 평행한 두 변 사이의 거리는 두 변을 늘인 직선에 □인 선분으로 잰다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사다리꼴의 평행한 두 변 사이의 거리를 잴 때 어떤 선분의 길이를 재야 하는지 쓰시오.",
+          "answer": "두 변을 늘인 직선에 수직인 선분의 길이를 잰다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 변에 수직인 선분",
+                "두 변과 직각으로 만나는 선분"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴의 평행한 두 변 사이의 거리는 두 변을 늘인 직선에 {수직}인 선분으로 잰다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2511,
+        "sourceFingerprint": "778f1255e1b164d0a8ff1353dddd8b50c0647917b7dc263ef5f2b6b1ee3f7670",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc18",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "평행한 두 변의 길이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사다리꼴의 평행한 두 변은 길이가 같을 수도 {다를 수도} 있다.",
+        "studentC": "사다리꼴의 평행한 두 변은 길이가 같을 수도 □ 있다.",
+        "answers": [
+          "다를 수도"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2511,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "778f1255e1b164d0a8ff1353dddd8b50c0647917b7dc263ef5f2b6b1ee3f7670",
+        "proposalFingerprint": "966f7901249054c637b3fb7e136195479d884910340dda801cb351fbcc35ba3f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴에서 평행한 두 변의 길이는 반드시 같은지 쓰고, 어떤 경우가 가능한지 쓰시오.",
+        "bAnswer": "반드시 같지는 않다. 같을 수도 있고 다를 수도 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같을 수도 다를 수도 있다",
+              "반드시 같지는 않다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행한 두 변 길이의 관계",
+        "bReason": "항상 같다는 오개념을 점검함",
+        "cDecision": "keep",
+        "cReason": "같다/다르다 짧은 비교 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 두 변의 길이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴의 평행한 두 변은 길이가 같을 수도 {다를 수도} 있다.",
+        "cStudentSentence": "사다리꼴의 평행한 두 변은 길이가 같을 수도 □ 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "다를 수도",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴의 평행한 두 변은 길이가 같을 수도 □ 있다.",
+          "answers": [
+            "다를 수도"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사다리꼴에서 평행한 두 변의 길이는 반드시 같은지 쓰고, 어떤 경우가 가능한지 쓰시오.",
+          "answer": "반드시 같지는 않다. 같을 수도 있고 다를 수도 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같을 수도 다를 수도 있다",
+                "반드시 같지는 않다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴의 평행한 두 변은 길이가 같을 수도 {다를 수도} 있다.",
+          "acceptedAnswers": [
+            [
+              "다를 수도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2512,
+        "sourceFingerprint": "e28e68df2b88658aae30af5c7c9b5ad6dcd1cd9b9a9bcd2536d5040d9b51cbf9",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc19",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "직각이 셋인 사다리꼴",
+        "kind": "성질",
+        "level": "상",
+        "definition": "사다리꼴의 세 각이 직각이면 {네 각의 합이 $360^\\circ$}이므로 나머지 한 각도 직각이다.",
+        "studentC": "사다리꼴의 세 각이 직각이면 □이므로 나머지 한 각도 직각이다.",
+        "answers": [
+          "네 각의 합이 $360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2512,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "e28e68df2b88658aae30af5c7c9b5ad6dcd1cd9b9a9bcd2536d5040d9b51cbf9",
+        "proposalFingerprint": "c831645efd7ab0fb76ed26c5c892ee1f235a6d2f7e76517be2976fd82f13bc07",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴에서 세 각이 모두 직각이다. 나머지 한 각은 몇 도인지 쓰고, 어떻게 구했는지 쓰시오.",
+        "bAnswer": "$90^\\circ$이다. 네 각의 합이 $360^\\circ$이므로 $360^\\circ-90^\\circ-90^\\circ-90^\\circ=90^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 각의 합 $360^\\circ$에서 뺀다",
+              "$360^\\circ-90^\\circ\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ$",
+              "직각"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "네 각의 합으로 남은 각 구하기",
+        "bReason": "각 합 360도를 이용한 풀이를 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "사다리꼴의 네 각의 합은 $360^\\circ$이다. 세 각이 모두 직각이면 나머지 한 각은 $360^\\circ-90^\\circ-90^\\circ-90^\\circ=$ {$90^\\circ$}이다.",
+        "cReason": "긴 구절 빈칸을 실제 계산식 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "$90$도",
+            "$90$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각이 셋인 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴의 네 각의 합은 $360^\\circ$이다. 세 각이 모두 직각이면 나머지 한 각은 $360^\\circ-90^\\circ-90^\\circ-90^\\circ=$ {$90^\\circ$}이다.",
+        "cStudentSentence": "사다리꼴의 네 각의 합은 $360^\\circ$이다. 세 각이 모두 직각이면 나머지 한 각은 $360^\\circ-90^\\circ-90^\\circ-90^\\circ=$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "$90$도",
+              "$90$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사다리꼴에서 세 각이 모두 직각이다. 나머지 한 각은 몇 도인지 쓰고, 어떻게 구했는지 쓰시오.",
+          "answer": "$90^\\circ$이다. 네 각의 합이 $360^\\circ$이므로 $360^\\circ-90^\\circ-90^\\circ-90^\\circ=90^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 각의 합 $360^\\circ$에서 뺀다",
+                "$360^\\circ-90^\\circ\\times3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$90^\\circ$",
+                "직각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴의 네 각의 합은 $360^\\circ$이다. 세 각이 모두 직각이면 나머지 한 각은 $360^\\circ-90^\\circ-90^\\circ-90^\\circ=$ {$90^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "$90$도",
+              "$90$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2513,
+        "sourceFingerprint": "df210a3589beb0b34a9bdc5edcf8e4b3bd0c5b09827160565aee1a2cfebd8ff8",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc21",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "정삼각형을 잘라 생긴 도형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정삼각형의 두 변 위에 꼭짓점이 아닌 점을 잡아 나머지 한 변과 평행하게 자르면, 그 변 쪽 조각은 사다리꼴이고 맞은편 꼭짓점 쪽 조각은 세 각이 모두 {$60$}도인 정삼각형이다.",
+        "studentC": "정삼각형의 두 변 위에 꼭짓점이 아닌 점을 잡아 나머지 한 변과 평행하게 자르면, 그 변 쪽 조각은 사다리꼴이고 맞은편 꼭짓점 쪽 조각은 세 각이 모두 □도인 정삼각형이다.",
+        "answers": [
+          "$60$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2513,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "df210a3589beb0b34a9bdc5edcf8e4b3bd0c5b09827160565aee1a2cfebd8ff8",
+        "proposalFingerprint": "052d26cb7010d6405224530ddb6d52fc3aa13f71c8c824660140241673900611",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형의 두 변 위에 꼭짓점이 아닌 점을 잡아 나머지 한 변과 평행하게 자른다. 맞은편 꼭짓점 쪽 조각은 어떤 삼각형이며 세 각은 각각 몇 도인지 쓰시오.",
+        "bAnswer": "정삼각형이고 세 각은 각각 $60^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "각각 $60^\\circ$",
+              "$60^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "잘라 낸 삼각형의 이름과 각",
+        "bReason": "모양 이름과 각의 크기를 함께 확인함",
+        "cDecision": "keep",
+        "cReason": "정삼각형이므로 수 빈칸 $60$이 분명함",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형을 잘라 생긴 도형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형의 두 변 위에 꼭짓점이 아닌 점을 잡아 나머지 한 변과 평행하게 자르면, 그 변 쪽 조각은 사다리꼴이고 맞은편 꼭짓점 쪽 조각은 세 각이 모두 {$60$}도인 정삼각형이다.",
+        "cStudentSentence": "정삼각형의 두 변 위에 꼭짓점이 아닌 점을 잡아 나머지 한 변과 평행하게 자르면, 그 변 쪽 조각은 사다리꼴이고 맞은편 꼭짓점 쪽 조각은 세 각이 모두 □도인 정삼각형이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$60$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형의 두 변 위에 꼭짓점이 아닌 점을 잡아 나머지 한 변과 평행하게 자르면, 그 변 쪽 조각은 사다리꼴이고 맞은편 꼭짓점 쪽 조각은 세 각이 모두 □도인 정삼각형이다.",
+          "answers": [
+            "$60$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형의 두 변 위에 꼭짓점이 아닌 점을 잡아 나머지 한 변과 평행하게 자른다. 맞은편 꼭짓점 쪽 조각은 어떤 삼각형이며 세 각은 각각 몇 도인지 쓰시오.",
+          "answer": "정삼각형이고 세 각은 각각 $60^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "각각 $60^\\circ$",
+                "$60^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형의 두 변 위에 꼭짓점이 아닌 점을 잡아 나머지 한 변과 평행하게 자르면, 그 변 쪽 조각은 사다리꼴이고 맞은편 꼭짓점 쪽 조각은 세 각이 모두 {$60$}도인 정삼각형이다.",
+          "acceptedAnswers": [
+            [
+              "$60$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2514,
+        "sourceFingerprint": "5e49bc4cdc58583b6964d0358a610f3687132b807c0080b3d391c4bfd02d48bd",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc23",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "정삼각형 세 개로 사다리꼴",
+        "kind": "방법",
+        "level": "상",
+        "definition": "모양과 크기가 같은 정삼각형 세 개를 {한 변씩 맞대어 한 줄로} 이어 붙이면 사다리꼴이 된다.",
+        "studentC": "모양과 크기가 같은 정삼각형 세 개를 □ 이어 붙이면 사다리꼴이 된다.",
+        "answers": [
+          "한 변씩 맞대어 한 줄로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2514,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "5e49bc4cdc58583b6964d0358a610f3687132b807c0080b3d391c4bfd02d48bd",
+        "proposalFingerprint": "4f7bf11ba893a18a6f7ed40baae3aaf7d9a25bbc3fc4269c7fbe578ff6316c3a",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "bAnswer": "한 변씩 맞대어 한 줄로 이어 붙인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변씩 맞대어 붙인다",
+              "변끼리 맞붙인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 줄로",
+              "일렬로"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정삼각형으로 사다리꼴 만들기",
+        "bReason": "붙이는 방법을 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "모양과 크기가 같은 정삼각형 세 개를 한 변씩 맞대어 한 줄로 이어 붙이면 평행한 변이 한 쌍뿐인 {사다리꼴}이 된다.",
+        "cReason": "긴 방법 구절 대신 익숙한 도형 이름 빈칸으로",
+        "exampleNeeded": "정삼각형 세 개를 번갈아 뒤집어 한 줄로 이어 붙여 사다리꼴이 된 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형 세 개로 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모양과 크기가 같은 정삼각형 세 개를 한 변씩 맞대어 한 줄로 이어 붙이면 평행한 변이 한 쌍뿐인 {사다리꼴}이 된다.",
+        "cStudentSentence": "모양과 크기가 같은 정삼각형 세 개를 한 변씩 맞대어 한 줄로 이어 붙이면 평행한 변이 한 쌍뿐인 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "사다리꼴",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+          "answer": "한 변씩 맞대어 한 줄로 이어 붙인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 변씩 맞대어 붙인다",
+                "변끼리 맞붙인다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 줄로",
+                "일렬로"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모양과 크기가 같은 정삼각형 세 개를 한 변씩 맞대어 한 줄로 이어 붙이면 평행한 변이 한 쌍뿐인 {사다리꼴}이 된다.",
+          "acceptedAnswers": [
+            [
+              "사다리꼴"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2515,
+        "sourceFingerprint": "b79cd32e46acd90a82791ebcd128236e0c34bf9aaff2e49d78e8bebcf2420239",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc24",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "직각이 두 개인 사다리꼴의 나머지 두 각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합에서 {두 직각을 뺀} $180^\\circ$이다.",
+        "example": {
+          "prompt": "직각이 두 개인 사다리꼴에서 나머지 두 각이 모두 둔각일 수 없는 까닭은?",
+          "answer": "두 각의 합이 $180^\\circ$라서"
+        },
+        "studentC": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합에서 □ $180^\\circ$이다.",
+        "answers": [
+          "두 직각을 뺀"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2515,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "b79cd32e46acd90a82791ebcd128236e0c34bf9aaff2e49d78e8bebcf2420239",
+        "proposalFingerprint": "14f75bcbe78948170065cc72f02c2032225a691a6d7151e232ec81428c92e541",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합을 구하는 식과 답을 쓰시오.",
+        "bAnswer": "$360^\\circ-90^\\circ-90^\\circ=180^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ-90^\\circ-90^\\circ$",
+              "네 각의 합에서 두 직각을 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "나머지 두 각의 합 구하기",
+        "bReason": "계산식과 결과를 함께 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합 $360^\\circ$에서 두 직각을 뺀 $360^\\circ-90^\\circ-90^\\circ=$ {$180^\\circ$}이다.",
+        "cReason": "'두 직각을 뺀' 구절 빈칸을 실제 계산 결과로",
+        "cSlotEquivalents": [
+          [
+            "$180$도",
+            "$180$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각이 두 개인 사다리꼴의 나머지 두 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합 $360^\\circ$에서 두 직각을 뺀 $360^\\circ-90^\\circ-90^\\circ=$ {$180^\\circ$}이다.",
+        "cStudentSentence": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합 $360^\\circ$에서 두 직각을 뺀 $360^\\circ-90^\\circ-90^\\circ=$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$180^\\circ$",
+            "equivalents": [
+              "$180$도",
+              "$180$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합을 구하는 식과 답을 쓰시오.",
+          "answer": "$360^\\circ-90^\\circ-90^\\circ=180^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$360^\\circ-90^\\circ-90^\\circ$",
+                "네 각의 합에서 두 직각을 뺀다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합 $360^\\circ$에서 두 직각을 뺀 $360^\\circ-90^\\circ-90^\\circ=$ {$180^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$180^\\circ$",
+              "$180$도",
+              "$180$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2516,
+        "sourceFingerprint": "b444e960a8a068c84cbae3871c66b0764ed9f84758e1f5e15773cdb0aceb54af",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc25",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "평행한 변과 평행하게 자르기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "사다리꼴을 평행한 변과 평행한 선분으로 잘라 둘로 나누면 두 조각은 모두 {사다리꼴}이다.",
+        "studentC": "사다리꼴을 평행한 변과 평행한 선분으로 잘라 둘로 나누면 두 조각은 모두 □이다.",
+        "answers": [
+          "사다리꼴"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2516,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "b444e960a8a068c84cbae3871c66b0764ed9f84758e1f5e15773cdb0aceb54af",
+        "proposalFingerprint": "d176ec7e841fc134e9b2c4b45a0fa1d3726b507d26ad5d93779fdef8f0265f10",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴을 평행한 변과 평행한 선분으로 잘라 둘로 나누었다. 두 조각은 각각 어떤 사각형이며 그 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "두 조각 모두 사다리꼴이다. 각 조각에 평행한 변이 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행한 변이 있다",
+              "평행한 변이 남는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자른 두 조각의 이름과 까닭",
+        "bReason": "평행한 변이 남는다는 근거를 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "사다리꼴을 평행한 변과 평행한 선분으로 잘라 둘로 나누면 두 조각에도 평행한 변이 있으므로 모두 {사다리꼴}이다.",
+        "cReason": "'사각형'도 답이 될 수 있어 단서를 넣음",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 변과 평행하게 자르기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴을 평행한 변과 평행한 선분으로 잘라 둘로 나누면 두 조각에도 평행한 변이 있으므로 모두 {사다리꼴}이다.",
+        "cStudentSentence": "사다리꼴을 평행한 변과 평행한 선분으로 잘라 둘로 나누면 두 조각에도 평행한 변이 있으므로 모두 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "사다리꼴",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사다리꼴을 평행한 변과 평행한 선분으로 잘라 둘로 나누었다. 두 조각은 각각 어떤 사각형이며 그 까닭은 무엇인지 쓰시오.",
+          "answer": "두 조각 모두 사다리꼴이다. 각 조각에 평행한 변이 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사다리꼴"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행한 변이 있다",
+                "평행한 변이 남는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴을 평행한 변과 평행한 선분으로 잘라 둘로 나누면 두 조각에도 평행한 변이 있으므로 모두 {사다리꼴}이다.",
+          "acceptedAnswers": [
+            [
+              "사다리꼴"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2517,
+        "sourceFingerprint": "6c71fb76bf36e9cfd323e862e7098c9e7d573f2c3da6c621db2571f9d0d16403",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc26",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "두 직각 사이의 변",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직각이 두 개인 사다리꼴에서 두 직각 사이의 변은 평행한 두 변 사이의 {거리}와 길이가 같다.",
+        "studentC": "직각이 두 개인 사다리꼴에서 두 직각 사이의 변은 평행한 두 변 사이의 □와 길이가 같다.",
+        "answers": [
+          "거리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2517,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "6c71fb76bf36e9cfd323e862e7098c9e7d573f2c3da6c621db2571f9d0d16403",
+        "proposalFingerprint": "8b61d14f660628c812d92792a6b3d2a79a926b8b705839eb947c851fd1f4add3",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "직각이 두 개인 사다리꼴에서 두 직각 사이에 있는 변의 길이는 무엇과 같은지 쓰시오.",
+        "bAnswer": "평행한 두 변 사이의 거리와 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 두 변 사이의 거리",
+              "두 평행한 변의 간격"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "직각 사이 변과 거리의 관계",
+        "bReason": "거리 개념과 변의 길이를 연결함",
+        "cDecision": "keep",
+        "cReason": "'거리'는 익숙한 낱말이라 빈칸으로 적절",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 직각 사이의 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각이 두 개인 사다리꼴에서 두 직각 사이의 변은 평행한 두 변 사이의 {거리}와 길이가 같다.",
+        "cStudentSentence": "직각이 두 개인 사다리꼴에서 두 직각 사이의 변은 평행한 두 변 사이의 □와 길이가 같다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "거리",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직각이 두 개인 사다리꼴에서 두 직각 사이의 변은 평행한 두 변 사이의 □와 길이가 같다.",
+          "answers": [
+            "거리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직각이 두 개인 사다리꼴에서 두 직각 사이에 있는 변의 길이는 무엇과 같은지 쓰시오.",
+          "answer": "평행한 두 변 사이의 거리와 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행한 두 변 사이의 거리",
+                "두 평행한 변의 간격"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직각이 두 개인 사다리꼴에서 두 직각 사이의 변은 평행한 두 변 사이의 {거리}와 길이가 같다.",
+          "acceptedAnswers": [
+            [
+              "거리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2518,
+        "sourceFingerprint": "52679385227f8337d4e57db4bd5eb0b284af3eeb21fe0cdeb2ffc74d1d6737bc",
+        "part": "e4plus",
+        "id": "e4-2-4-4-xc28",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "직사각형을 두 번 잘라 생긴 조각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형의 위 변과 아래 변을 잇는 선분 두 개로 꼭짓점을 지나지 않고 서로 만나지 않게 자르면 {사다리꼴} 세 조각이 생긴다.",
+        "studentC": "직사각형의 위 변과 아래 변을 잇는 선분 두 개로 꼭짓점을 지나지 않고 서로 만나지 않게 자르면 □ 세 조각이 생긴다.",
+        "answers": [
+          "사다리꼴"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2518,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "52679385227f8337d4e57db4bd5eb0b284af3eeb21fe0cdeb2ffc74d1d6737bc",
+        "proposalFingerprint": "d0df2e4051413a67c1243ce6220a13d4fd9eba60d65227a2e462d9bca8a67e1c",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc28",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "두 번 잘라 생긴 조각의 이름",
+        "bReason": "xc10과 같은 '잘라도 사다리꼴' 목표",
+        "exclusionReason": "직사각형을 곧게 잘라 사다리꼴 조각을 얻는 xc10과 같은 목표이고 선분 수만 다름",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 위 변과 아래 변을 잇는 선분 두 개로 꼭짓점을 지나지 않고 서로 만나지 않게 자르면 평행한 변이 남아 {사다리꼴} 세 조각이 생긴다.",
+        "cReason": "'사각형'도 답이 될 수 있어 평행 단서를 넣음",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직사각형을 두 번 잘라 생긴 조각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형의 위 변과 아래 변을 잇는 선분 두 개로 꼭짓점을 지나지 않고 서로 만나지 않게 자르면 평행한 변이 남아 {사다리꼴} 세 조각이 생긴다.",
+        "cStudentSentence": "직사각형의 위 변과 아래 변을 잇는 선분 두 개로 꼭짓점을 지나지 않고 서로 만나지 않게 자르면 평행한 변이 남아 □ 세 조각이 생긴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "사다리꼴",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직사각형의 위 변과 아래 변을 잇는 선분 두 개로 꼭짓점을 지나지 않고 서로 만나지 않게 자르면 평행한 변이 남아 {사다리꼴} 세 조각이 생긴다.",
+          "acceptedAnswers": [
+            [
+              "사다리꼴"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc10과 같은 '잘라도 사다리꼴' 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2519,
+        "sourceFingerprint": "1e15176a5a0f1a121a8cf7c23dd91ecf8487e5ff2def83329d7cc7394f30caf1",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc1",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "평행사변형과 사다리꼴",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형은 {평행한 변이 있으므로} 사다리꼴이기도 하다.",
+        "studentC": "평행사변형은 □ 사다리꼴이기도 하다.",
+        "answers": [
+          "평행한 변이 있으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2519,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "1e15176a5a0f1a121a8cf7c23dd91ecf8487e5ff2def83329d7cc7394f30caf1",
+        "proposalFingerprint": "8897f6de251414f6060c96ea0e3ab29c7eb609e6ccc8fc408395bbb8bb7865e0",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형을 사다리꼴이라고도 부를 수 있는 까닭을 쓰시오.",
+        "bAnswer": "평행한 변이 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변이 있다",
+              "평행한 변이 한 쌍 이상 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "사다리꼴로도 부르는 까닭",
+        "bReason": "사다리꼴의 조건을 평행사변형에 적용함",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형은 {평행}한 변이 있으므로 사다리꼴이기도 하다.",
+        "cReason": "긴 이유 구절 빈칸을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행사변형과 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형은 {평행}한 변이 있으므로 사다리꼴이기도 하다.",
+        "cStudentSentence": "평행사변형은 □한 변이 있으므로 사다리꼴이기도 하다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형을 사다리꼴이라고도 부를 수 있는 까닭을 쓰시오.",
+          "answer": "평행한 변이 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행한 변이 있다",
+                "평행한 변이 한 쌍 이상 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형은 {평행}한 변이 있으므로 사다리꼴이기도 하다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2520,
+        "sourceFingerprint": "cc2fa134ee59c2e8898a56c79f0a38bb41cf6241a7cc2a33ff76ac434e98b3fe",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc2",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "한 변의 양 끝에 있는 두 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형에서 한 변의 양 끝에 있는 두 각을 더하면 {$180^\\circ$}이다.",
+        "studentC": "평행사변형에서 한 변의 양 끝에 있는 두 각을 더하면 □이다.",
+        "answers": [
+          "$180^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2520,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "cc2fa134ee59c2e8898a56c79f0a38bb41cf6241a7cc2a33ff76ac434e98b3fe",
+        "proposalFingerprint": "9dd6fbad8da0d3c4e0bd954a7141bd2c76c5f3a4c6b7c62f74e40842d805b154",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형에서 한 변의 양 끝에 있는 두 각의 크기를 더하면 몇 도인지 쓰시오.",
+        "bAnswer": "$180^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$",
+              "$180$도"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "이웃한 두 각의 합 알기",
+        "bReason": "이웃한 각 합 성질을 직접 확인함",
+        "cDecision": "keep",
+        "cReason": "짧은 수치 빈칸이라 정답이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$180$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 변의 양 끝에 있는 두 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형에서 한 변의 양 끝에 있는 두 각을 더하면 {$180^\\circ$}이다.",
+        "cStudentSentence": "평행사변형에서 한 변의 양 끝에 있는 두 각을 더하면 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$180^\\circ$",
+            "equivalents": [
+              "$180$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행사변형에서 한 변의 양 끝에 있는 두 각을 더하면 □이다.",
+          "answers": [
+            "$180^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행사변형에서 한 변의 양 끝에 있는 두 각의 크기를 더하면 몇 도인지 쓰시오.",
+          "answer": "$180^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$180^\\circ$",
+                "$180$도"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형에서 한 변의 양 끝에 있는 두 각을 더하면 {$180^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$180^\\circ$",
+              "$180$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2521,
+        "sourceFingerprint": "f3ccaa483e7e6aa750d75d1a7c7871a886bffafc6fd11ede132daa5c749dbaf7",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc3",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "평행사변형의 둘레",
+        "kind": "방법",
+        "level": "하",
+        "definition": "평행사변형의 둘레는 이웃한 두 변의 길이의 합을 {$2$배} 하여 구한다.",
+        "studentC": "평행사변형의 둘레는 이웃한 두 변의 길이의 합을 □ 하여 구한다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2521,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "f3ccaa483e7e6aa750d75d1a7c7871a886bffafc6fd11ede132daa5c749dbaf7",
+        "proposalFingerprint": "6e476cb38934ad0471a35e289f045498d36b65ac88bcd92b2eb64d4e2b4bb510",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형에서 이웃한 두 변의 길이가 각각 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$일 때 둘레를 구하는 식과 답을 쓰시오.",
+        "bAnswer": "$(4+7)\\times2=22\\,\\mathrm{cm}$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(4+7)\\times2$",
+              "$4+7+4+7$",
+              "이웃한 두 변의 합의 $2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$22\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "평행사변형 둘레 구하기",
+        "bReason": "마주 보는 변이 같음을 이용한 식을 확인함",
+        "cDecision": "keep",
+        "cReason": "짧은 계산 빈칸이라 그대로 유지",
+        "cSlotEquivalents": [
+          [
+            "두 배"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "평행사변형의 둘레",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 둘레는 이웃한 두 변의 길이의 합을 {$2$배} 하여 구한다.",
+        "cStudentSentence": "평행사변형의 둘레는 이웃한 두 변의 길이의 합을 □ 하여 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$배",
+            "equivalents": [
+              "두 배"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행사변형의 둘레는 이웃한 두 변의 길이의 합을 □ 하여 구한다.",
+          "answers": [
+            "$2$배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행사변형에서 이웃한 두 변의 길이가 각각 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$일 때 둘레를 구하는 식과 답을 쓰시오.",
+          "answer": "$(4+7)\\times2=22\\,\\mathrm{cm}$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$(4+7)\\times2$",
+                "$4+7+4+7$",
+                "이웃한 두 변의 합의 $2$배"
+              ]
+            },
+            {
+              "anyOf": [
+                "$22\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 둘레는 이웃한 두 변의 길이의 합을 {$2$배} 하여 구한다.",
+          "acceptedAnswers": [
+            [
+              "$2$배",
+              "두 배"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2522,
+        "sourceFingerprint": "a0f37e4b02591241af32dc7dc83a20820746debe56b87baa0e26f27747acacad",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc4",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "직사각형과 평행사변형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직사각형은 {마주 보는 변이 두 쌍 모두 평행}하므로 평행사변형이다.",
+        "studentC": "직사각형은 □하므로 평행사변형이다.",
+        "answers": [
+          "마주 보는 변이 두 쌍 모두 평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2522,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "a0f37e4b02591241af32dc7dc83a20820746debe56b87baa0e26f27747acacad",
+        "proposalFingerprint": "c1e05387ddd283fbb598ca503d33db4737a0726447d74362b372794ea435eb35",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형을 평행사변형이라고도 부를 수 있는 까닭을 쓰시오.",
+        "bAnswer": "마주 보는 두 쌍의 변이 모두 평행하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 두 쌍의 변이 모두 평행하다",
+              "두 쌍이 모두 평행하다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직사각형이 평행사변형인 까닭",
+        "bReason": "평행사변형 조건을 직사각형에 적용함",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형은 마주 보는 변이 두 쌍 모두 {평행}하므로 평행사변형이다.",
+        "cReason": "긴 구절 빈칸을 낱말 '평행'으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형과 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형은 마주 보는 변이 두 쌍 모두 {평행}하므로 평행사변형이다.",
+        "cStudentSentence": "직사각형은 마주 보는 변이 두 쌍 모두 □하므로 평행사변형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형을 평행사변형이라고도 부를 수 있는 까닭을 쓰시오.",
+          "answer": "마주 보는 두 쌍의 변이 모두 평행하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "마주 보는 두 쌍의 변이 모두 평행하다",
+                "두 쌍이 모두 평행하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형은 마주 보는 변이 두 쌍 모두 {평행}하므로 평행사변형이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

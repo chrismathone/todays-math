@@ -1,0 +1,2817 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2403,
+  "end": 2433,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2403,
+        "sourceFingerprint": "5cc78cf3c7924f921658ef0f7330c4b3d0566ac740a950316d5d95d5b7b6f730",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc3",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "차의 소수점 자리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "세로셈에서 차의 소수점은 위의 {소수점과 같은 자리}에 찍는다.",
+        "studentC": "세로셈에서 차의 소수점은 위의 □에 찍는다.",
+        "answers": [
+          "소수점과 같은 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2403,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "5cc78cf3c7924f921658ef0f7330c4b3d0566ac740a950316d5d95d5b7b6f730",
+        "proposalFingerprint": "217b8170483f5292170bd9fff1a61420bffd180e384e3856eff501b14a5125ee",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "세로셈으로 $3.84-1.27$을 계산할 때 차의 소수점을 어디에 찍어야 하는지 쓰시오.",
+        "bAnswer": "위의 수의 소수점과 위아래로 같은 자리에 찍는다. 차는 $2.57$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "위의 소수점과 같은 자리",
+              "소수점끼리 위아래로 맞추어 찍는다",
+              "위의 소수점 바로 아래"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "세로셈 차의 소수점 위치",
+        "bReason": "구체 식으로 소수점 위치를 직접 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "세로셈에서 차의 소수점은 위의 소수점과 같은 {자리}에 찍는다.",
+        "cReason": "긴 구절 빈칸을 한 낱말 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          [
+            "곳",
+            "줄",
+            "위치",
+            "세로줄"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차의 소수점 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세로셈에서 차의 소수점은 위의 소수점과 같은 {자리}에 찍는다.",
+        "cStudentSentence": "세로셈에서 차의 소수점은 위의 소수점과 같은 □에 찍는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자리",
+            "equivalents": [
+              "곳",
+              "줄",
+              "위치",
+              "세로줄"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "세로셈으로 $3.84-1.27$을 계산할 때 차의 소수점을 어디에 찍어야 하는지 쓰시오.",
+          "answer": "위의 수의 소수점과 위아래로 같은 자리에 찍는다. 차는 $2.57$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "위의 소수점과 같은 자리",
+                "소수점끼리 위아래로 맞추어 찍는다",
+                "위의 소수점 바로 아래"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세로셈에서 차의 소수점은 위의 소수점과 같은 {자리}에 찍는다.",
+          "acceptedAnswers": [
+            [
+              "자리",
+              "곳",
+              "줄",
+              "위치",
+              "세로줄"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2404,
+        "sourceFingerprint": "00c6dbfb2eb44e10089dc0feb4a13b149f4abf4810bdd5f88aabd9df11cc5153",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc4",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "$1$에서 소수 두 자리 수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$1$에서 소수 두 자리 수를 뺄 때는 $1$을 {$0.01$이 $100$개인 수}로 본다.",
+        "example": {
+          "prompt": "$1-0.35$가 $0.65$인 까닭은?",
+          "answer": "$0.01$ $100$개에서 $35$개를 빼서"
+        },
+        "studentC": "$1$에서 소수 두 자리 수를 뺄 때는 $1$을 □로 본다.",
+        "answers": [
+          "$0.01$이 $100$개인 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2404,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "00c6dbfb2eb44e10089dc0feb4a13b149f4abf4810bdd5f88aabd9df11cc5153",
+        "proposalFingerprint": "8a2e61b76e58b3038ffb5a628abd6758f5570e91e5bb57a2a433c7bb1e3276e3",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$1-0.35$를 $0.01$이 몇 개인지로 바꾸어 계산하는 방법을 쓰고 답을 구하시오.",
+        "bAnswer": "$1$은 $0.01$이 $100$개, $0.35$는 $0.01$이 $35$개이므로 $100-35=65$개, 곧 $0.65$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$을 $0.01$이 $100$개로 본다",
+              "$1=0.01$이 $100$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100-35=65$",
+              "$0.01$이 $65$개",
+              "$0.65$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$1$을 $0.01$ $100$개로 보고 빼기",
+        "bReason": "원문 예제와 같은 식으로 방법과 결과를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$1$에서 소수 두 자리 수를 뺄 때는 $1$을 $0.01$이 {$100$}개인 수로 본다.",
+        "cReason": "긴 구절 빈칸 대신 짧은 숫자 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "백"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$1$에서 소수 두 자리 수 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1$에서 소수 두 자리 수를 뺄 때는 $1$을 $0.01$이 {$100$}개인 수로 본다.",
+        "cStudentSentence": "$1$에서 소수 두 자리 수를 뺄 때는 $1$을 $0.01$이 □개인 수로 본다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$100$",
+            "equivalents": [
+              "백"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1-0.35$를 $0.01$이 몇 개인지로 바꾸어 계산하는 방법을 쓰고 답을 구하시오.",
+          "answer": "$1$은 $0.01$이 $100$개, $0.35$는 $0.01$이 $35$개이므로 $100-35=65$개, 곧 $0.65$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1$을 $0.01$이 $100$개로 본다",
+                "$1=0.01$이 $100$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$100-35=65$",
+                "$0.01$이 $65$개",
+                "$0.65$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1$에서 소수 두 자리 수를 뺄 때는 $1$을 $0.01$이 {$100$}개인 수로 본다.",
+          "acceptedAnswers": [
+            [
+              "$100$",
+              "백"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2405,
+        "sourceFingerprint": "2be7e86e060502bda9fa9218f3352c900c09450fbc93aed1950129f8399210bf",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc5",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "같은 소수끼리의 차",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$2.47-2.47$은 {$0$}이다.",
+        "studentC": "$2.47-2.47$은 □이다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2405,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "2be7e86e060502bda9fa9218f3352c900c09450fbc93aed1950129f8399210bf",
+        "proposalFingerprint": "50b82487eead3e818024d89eb5a9c277208b281b7c38f67461586799f6ca9979",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "같은 수의 차는 $0$",
+        "bReason": "설명할 목표 없는 단순 계산",
+        "exclusionReason": "$2.47-2.47$은 설명 목표가 없는 한 번의 단순 계산이라 B 가치가 낮다",
+        "cDecision": "keep",
+        "cReason": "선명한 짧은 계산이라 유지",
+        "cSlotEquivalents": [
+          [
+            "영"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 소수끼리의 차",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2.47-2.47$은 {$0$}이다.",
+        "cStudentSentence": "$2.47-2.47$은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": [
+              "영"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$2.47-2.47$은 □이다.",
+          "answers": [
+            "$0$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$2.47-2.47$은 {$0$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0$",
+              "영"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "설명할 목표 없는 단순 계산"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2406,
+        "sourceFingerprint": "46a3ebab3e65d343cc4679caa695a3cceb0fb136ac601931312a98d6850396e7",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc6",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "자릿수가 다른 소수의 뺄셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수의 끝에 $0$을 붙여도 {값이 같으므로} 필요한 자리에 $0$을 써서 같은 자리끼리 뺄 수 있다.",
+        "studentC": "소수의 끝에 $0$을 붙여도 □ 필요한 자리에 $0$을 써서 같은 자리끼리 뺄 수 있다.",
+        "answers": [
+          "값이 같으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2406,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "46a3ebab3e65d343cc4679caa695a3cceb0fb136ac601931312a98d6850396e7",
+        "proposalFingerprint": "538d4028107874d06d14e5f3cc8a850d3323edbe6fec3481adba42b25d1a5e44",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$5.3-2.46$을 세로셈으로 계산하려면 $5.3$을 어떻게 고쳐 써야 하고, 그렇게 고쳐 써도 되는 까닭은 무엇입니까?",
+        "bAnswer": "$5.3$을 $5.30$으로 쓴다. 소수 끝에 $0$을 붙여도 값이 같기 때문이다. 계산하면 $2.84$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5.30$으로 쓴다",
+              "끝에 $0$을 붙인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값이 같다",
+              "크기가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자릿수 맞추려 $0$ 붙이는 까닭",
+        "bReason": "구체 식으로 방법과 까닭을 함께 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "소수의 끝에 $0$을 붙여도 {값}이 같으므로 필요한 자리에 $0$을 써서 같은 자리끼리 뺄 수 있다.",
+        "cReason": "이유절 전체 빈칸을 낱말 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "크기"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자릿수가 다른 소수의 뺄셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수의 끝에 $0$을 붙여도 {값}이 같으므로 필요한 자리에 $0$을 써서 같은 자리끼리 뺄 수 있다.",
+        "cStudentSentence": "소수의 끝에 $0$을 붙여도 □이 같으므로 필요한 자리에 $0$을 써서 같은 자리끼리 뺄 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "값",
+            "equivalents": [
+              "크기"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5.3-2.46$을 세로셈으로 계산하려면 $5.3$을 어떻게 고쳐 써야 하고, 그렇게 고쳐 써도 되는 까닭은 무엇입니까?",
+          "answer": "$5.3$을 $5.30$으로 쓴다. 소수 끝에 $0$을 붙여도 값이 같기 때문이다. 계산하면 $2.84$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5.30$으로 쓴다",
+                "끝에 $0$을 붙인다"
+              ]
+            },
+            {
+              "anyOf": [
+                "값이 같다",
+                "크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수의 끝에 $0$을 붙여도 {값}이 같으므로 필요한 자리에 $0$을 써서 같은 자리끼리 뺄 수 있다.",
+          "acceptedAnswers": [
+            [
+              "값",
+              "크기"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2407,
+        "sourceFingerprint": "615f416bd44d50b2cd427120fe4b5b666d1b156416a5954d00889af982a88543",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc7",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "$0.01$의 개수로 보기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수 두 자리 수의 뺄셈은 $0.01$이 {몇 개 남는지} 세는 것과 같다.",
+        "studentC": "소수 두 자리 수의 뺄셈은 $0.01$이 □ 세는 것과 같다.",
+        "answers": [
+          "몇 개 남는지"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2407,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "615f416bd44d50b2cd427120fe4b5b666d1b156416a5954d00889af982a88543",
+        "proposalFingerprint": "7b3f471ce404b8f5b91e62988a5ac9a227e5b0a256d9d5bc403f820ed9a78845",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.58-0.23$을 $0.01$이 몇 개인지 세는 방법으로 풀어 설명하시오.",
+        "bAnswer": "$0.58$은 $0.01$이 $58$개, $0.23$은 $0.01$이 $23$개이므로 $58-23=35$, $0.01$이 $35$개 남아 $0.35$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.01$이 $58$개에서 $23$개를 뺀다",
+              "$58-23$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35$개가 남는다",
+              "$0.35$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "뺄셈을 $0.01$의 개수로 보기",
+        "bReason": "추상 표현 대신 구체 식으로 의미를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$0.58-0.23$은 $0.01$이 $58$개에서 $23$개를 빼면 {$35$}개가 남는 것과 같다.",
+        "cReason": "'몇 개 남는지' 구절을 선명한 계산으로 교체",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.01$의 개수로 보기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.58-0.23$은 $0.01$이 $58$개에서 $23$개를 빼면 {$35$}개가 남는 것과 같다.",
+        "cStudentSentence": "$0.58-0.23$은 $0.01$이 $58$개에서 $23$개를 빼면 □개가 남는 것과 같다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$35$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.58-0.23$을 $0.01$이 몇 개인지 세는 방법으로 풀어 설명하시오.",
+          "answer": "$0.58$은 $0.01$이 $58$개, $0.23$은 $0.01$이 $23$개이므로 $58-23=35$, $0.01$이 $35$개 남아 $0.35$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.01$이 $58$개에서 $23$개를 뺀다",
+                "$58-23$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$35$개가 남는다",
+                "$0.35$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.58-0.23$은 $0.01$이 $58$개에서 $23$개를 빼면 {$35$}개가 남는 것과 같다.",
+          "acceptedAnswers": [
+            [
+              "$35$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2408,
+        "sourceFingerprint": "8050e8f7d382cb6303dfef4f895b3f020c305d67d2032f2757f6856bab8b960a",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc11",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "받아내림이 두 번 있을 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 둘째 자리에 내어 준 뒤 소수 첫째 자리도 모자라면 {일의 자리에서 다시} 받아내린다.",
+        "example": {
+          "prompt": "$1.23-0.56$에서 일의 자리에서도 받아내리는 까닭은?",
+          "answer": "첫째 자리가 $1$만 남아서"
+        },
+        "studentC": "소수 둘째 자리에 내어 준 뒤 소수 첫째 자리도 모자라면 □ 받아내린다.",
+        "answers": [
+          "일의 자리에서 다시"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2408,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "8050e8f7d382cb6303dfef4f895b3f020c305d67d2032f2757f6856bab8b960a",
+        "proposalFingerprint": "fa09bfe75a594052d35e354273d58aa6d2da00a6fbcc3ff13ea6e1d5f1f5be44",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.23-0.56$을 세로셈으로 계산할 때 소수 둘째 자리와 소수 첫째 자리에서 모두 받아내림해야 합니다. 소수 첫째 자리에서도 받아내림하는 까닭과 어느 자리에서 받아내리는지 쓰시오.",
+        "bAnswer": "소수 둘째 자리에 $1$을 내어 주면 소수 첫째 자리에 $1$만 남아 $5$를 뺄 수 없으므로 일의 자리에서 받아내린다. 답은 $0.67$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수 첫째 자리에 $1$만 남아 $5$를 뺄 수 없다",
+              "첫째 자리가 모자라다"
+            ]
+          },
+          {
+            "anyOf": [
+              "일의 자리에서 받아내린다",
+              "일의 자리에서 $1$을 내린다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "받아내림이 두 번 필요한 까닭",
+        "bReason": "원문 예제를 완성 질문으로 만들어 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "소수 둘째 자리에 내어 준 뒤 소수 첫째 자리도 모자라면 {일}의 자리에서 다시 받아내린다.",
+        "cReason": "긴 구절 빈칸을 자리 이름 하나로 줄임",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "받아내림이 두 번 있을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 둘째 자리에 내어 준 뒤 소수 첫째 자리도 모자라면 {일}의 자리에서 다시 받아내린다.",
+        "cStudentSentence": "소수 둘째 자리에 내어 준 뒤 소수 첫째 자리도 모자라면 □의 자리에서 다시 받아내린다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "일",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1.23-0.56$을 세로셈으로 계산할 때 소수 둘째 자리와 소수 첫째 자리에서 모두 받아내림해야 합니다. 소수 첫째 자리에서도 받아내림하는 까닭과 어느 자리에서 받아내리는지 쓰시오.",
+          "answer": "소수 둘째 자리에 $1$을 내어 주면 소수 첫째 자리에 $1$만 남아 $5$를 뺄 수 없으므로 일의 자리에서 받아내린다. 답은 $0.67$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "소수 첫째 자리에 $1$만 남아 $5$를 뺄 수 없다",
+                "첫째 자리가 모자라다"
+              ]
+            },
+            {
+              "anyOf": [
+                "일의 자리에서 받아내린다",
+                "일의 자리에서 $1$을 내린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 둘째 자리에 내어 준 뒤 소수 첫째 자리도 모자라면 {일}의 자리에서 다시 받아내린다.",
+          "acceptedAnswers": [
+            [
+              "일"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2409,
+        "sourceFingerprint": "2224b7c18cc43451b6a42e5f4a011cb3cfd21dd71467a59803cad3c760322660",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc12",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "자연수에서 소수 두 자리 수 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수는 소수 부분의 {각 자리 숫자가 $0$인 수}로 나타낼 수 있고, 빼는 수의 소수 부분이 $0$이 아니면 받아내림하여 뺀다.",
+        "studentC": "자연수는 소수 부분의 □로 나타낼 수 있고, 빼는 수의 소수 부분이 $0$이 아니면 받아내림하여 뺀다.",
+        "answers": [
+          "각 자리 숫자가 $0$인 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2409,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "2224b7c18cc43451b6a42e5f4a011cb3cfd21dd71467a59803cad3c760322660",
+        "proposalFingerprint": "78470d2e0b22307bf531796119537c53e04dfaec5324345a4a5b8947b292a157",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$4-1.35$를 세로셈으로 계산하는 방법을 쓰고 답을 구하시오.",
+        "bAnswer": "$4$를 $4.00$으로 고쳐 쓰고 소수 부분이 모자라므로 받아내림하여 계산한다. 답은 $2.65$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4.00$으로 고쳐 쓴다",
+              "소수 부분을 $0$으로 채워 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "받아내림한다",
+              "받아내려 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "자연수에서 소수 빼는 방법",
+        "bReason": "구체 식으로 방법을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$4-1.35$를 세로셈으로 계산할 때는 $4$를 {$4.00$}으로 고쳐 쓰고 받아내림하여 뺀다.",
+        "cReason": "숨은 수 이름 대신 구체 수 $4.00$으로 교체",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자연수에서 소수 두 자리 수 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4-1.35$를 세로셈으로 계산할 때는 $4$를 {$4.00$}으로 고쳐 쓰고 받아내림하여 뺀다.",
+        "cStudentSentence": "$4-1.35$를 세로셈으로 계산할 때는 $4$를 □으로 고쳐 쓰고 받아내림하여 뺀다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$4.00$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4-1.35$를 세로셈으로 계산하는 방법을 쓰고 답을 구하시오.",
+          "answer": "$4$를 $4.00$으로 고쳐 쓰고 소수 부분이 모자라므로 받아내림하여 계산한다. 답은 $2.65$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4.00$으로 고쳐 쓴다",
+                "소수 부분을 $0$으로 채워 쓴다"
+              ]
+            },
+            {
+              "anyOf": [
+                "받아내림한다",
+                "받아내려 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4-1.35$를 세로셈으로 계산할 때는 $4$를 {$4.00$}으로 고쳐 쓰고 받아내림하여 뺀다.",
+          "acceptedAnswers": [
+            [
+              "$4.00$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2410,
+        "sourceFingerprint": "d91c39638df79dee631642f31a257b859aaea569d1f35169c9bd44dd848c7ba6",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc13",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "덧셈으로 뺄셈 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 {확인한다}.",
+        "studentC": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 □.",
+        "answers": [
+          "확인한다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2410,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "d91c39638df79dee631642f31a257b859aaea569d1f35169c9bd44dd848c7ba6",
+        "proposalFingerprint": "abe9aea62a14998b7857a835884d19b543f6c5e62bc0c2335963e66e1bbbefa4",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$4.13-1.58=2.55$라고 계산했습니다. 이 답이 맞는지 덧셈으로 확인하는 방법과 결과를 쓰시오.",
+        "bAnswer": "차 $2.55$와 빼는 수 $1.58$을 더하면 $2.55+1.58=4.13$으로 처음 수와 같으므로 맞다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.55+1.58$",
+              "차와 빼는 수를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4.13$과 같다",
+              "처음 수와 같다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 검산하기",
+        "bReason": "계산 결과가 맞는 식으로 검산 방법을 묻는다",
+        "cDecision": "keep",
+        "cReason": "식이 주어져 짧은 동사 빈칸으로 충분",
+        "cSlotEquivalents": [
+          [
+            "검산한다",
+            "확인할 수 있다",
+            "맞는지 확인한다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 {확인한다}.",
+        "cStudentSentence": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "확인한다",
+            "equivalents": [
+              "검산한다",
+              "확인할 수 있다",
+              "맞는지 확인한다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 □.",
+          "answers": [
+            "확인한다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$4.13-1.58=2.55$라고 계산했습니다. 이 답이 맞는지 덧셈으로 확인하는 방법과 결과를 쓰시오.",
+          "answer": "차 $2.55$와 빼는 수 $1.58$을 더하면 $2.55+1.58=4.13$으로 처음 수와 같으므로 맞다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.55+1.58$",
+                "차와 빼는 수를 더한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4.13$과 같다",
+                "처음 수와 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4.13-1.58=2.55$는 $2.55+1.58=4.13$으로 {확인한다}.",
+          "acceptedAnswers": [
+            [
+              "확인한다",
+              "검산한다",
+              "확인할 수 있다",
+              "맞는지 확인한다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2411,
+        "sourceFingerprint": "74d21e6aa9bf5ee2416b2a9f289692a049e625b373c29708475fb2c3e8015e84",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc14",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "영점영일의 개수로 바꾸어 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 두 자리 수를 각각 {$0.01$의 개수}로 나타내면 두 개수의 차가 남은 $0.01$의 개수이다.",
+        "studentC": "소수 두 자리 수를 각각 □로 나타내면 두 개수의 차가 남은 $0.01$의 개수이다.",
+        "answers": [
+          "$0.01$의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2411,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "74d21e6aa9bf5ee2416b2a9f289692a049e625b373c29708475fb2c3e8015e84",
+        "proposalFingerprint": "c485f42dcd2e8229536670bf0f575fcbcf6205a4e03be83c127579bc0c29f7ce",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "$0.01$의 개수로 빼기",
+        "bReason": "xc7과 같은 목표",
+        "exclusionReason": "$0.01$의 개수로 세어 빼는 목표가 xc7 B와 같다",
+        "cDecision": "rewrite",
+        "cAfter": "$1.52$는 $0.01$이 $152$개, $0.78$은 $0.01$이 $78$개이므로 $0.01$이 $152-78=74$개이다. 따라서 $1.52-0.78=${$0.74$}이다.",
+        "cReason": "숨은 개수 구절 대신 선명한 계산으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "영점영일의 개수로 바꾸어 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1.52$는 $0.01$이 $152$개, $0.78$은 $0.01$이 $78$개이므로 $0.01$이 $152-78=74$개이다. 따라서 $1.52-0.78=${$0.74$}이다.",
+        "cStudentSentence": "$1.52$는 $0.01$이 $152$개, $0.78$은 $0.01$이 $78$개이므로 $0.01$이 $152-78=74$개이다. 따라서 $1.52-0.78=$□이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.74$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$1.52$는 $0.01$이 $152$개, $0.78$은 $0.01$이 $78$개이므로 $0.01$이 $152-78=74$개이다. 따라서 $1.52-0.78=${$0.74$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0.74$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc7과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2412,
+        "sourceFingerprint": "9a7474fbc5bdf14fdcdf671875a2cb955ff41195c23c25a36f5e6a42320f4849",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc15",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "빼는 수를 모를 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "뺄셈식에서 빼는 수를 모르면 {처음 수에서 차를 빼서} 구한다.",
+        "example": {
+          "prompt": "$1.5-\\square=0.73$의 $\\square$를 $1.5-0.73$으로 구하는 까닭은?",
+          "answer": "$\\square$와 차를 더하면 처음 수라서"
+        },
+        "studentC": "뺄셈식에서 빼는 수를 모르면 □ 구한다.",
+        "answers": [
+          "처음 수에서 차를 빼서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2412,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "9a7474fbc5bdf14fdcdf671875a2cb955ff41195c23c25a36f5e6a42320f4849",
+        "proposalFingerprint": "1cffc9afa43f3fc3c6c2b6e9bc9b71d105ab9ef448f1779492bfd8505f6b44ce",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.5$에서 어떤 수를 빼었더니 $0.73$이 되었습니다. 어떤 수를 구하는 식을 쓰고, 그 식으로 구하는 까닭을 쓰시오.",
+        "bAnswer": "$1.5-0.73=0.77$이다. 어떤 수와 차 $0.73$을 더하면 처음 수 $1.5$가 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.5-0.73$"
+            ]
+          },
+          {
+            "anyOf": [
+              "어떤 수와 차를 더하면 처음 수가 된다",
+              "어떤 수와 $0.73$을 더하면 $1.5$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "빼는 수를 구하는 식과 까닭",
+        "bReason": "예제의 빈칸 기호 대신 말로 쓴 완성 질문",
+        "cDecision": "rewrite",
+        "cAfter": "$1.5$에서 어떤 수를 빼었더니 $0.73$이 되었다면, 어떤 수는 $1.5$에서 $0.73$을 {빼서} 구한다.",
+        "cReason": "□ 기호와 빈칸 혼동 피해 말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "빼어",
+            "뺄셈으로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빼는 수를 모를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1.5$에서 어떤 수를 빼었더니 $0.73$이 되었다면, 어떤 수는 $1.5$에서 $0.73$을 {빼서} 구한다.",
+        "cStudentSentence": "$1.5$에서 어떤 수를 빼었더니 $0.73$이 되었다면, 어떤 수는 $1.5$에서 $0.73$을 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빼서",
+            "equivalents": [
+              "빼어",
+              "뺄셈으로"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1.5$에서 어떤 수를 빼었더니 $0.73$이 되었습니다. 어떤 수를 구하는 식을 쓰고, 그 식으로 구하는 까닭을 쓰시오.",
+          "answer": "$1.5-0.73=0.77$이다. 어떤 수와 차 $0.73$을 더하면 처음 수 $1.5$가 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.5-0.73$"
+              ]
+            },
+            {
+              "anyOf": [
+                "어떤 수와 차를 더하면 처음 수가 된다",
+                "어떤 수와 $0.73$을 더하면 $1.5$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1.5$에서 어떤 수를 빼었더니 $0.73$이 되었다면, 어떤 수는 $1.5$에서 $0.73$을 {빼서} 구한다.",
+          "acceptedAnswers": [
+            [
+              "빼서",
+              "빼어",
+              "뺄셈으로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2413,
+        "sourceFingerprint": "daf6ccf809171b720634ae099968d9e8bca4cf50b32b98dcc2827862f255cae2",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc16",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "단위를 맞추어 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "단위가 다른 두 양의 차는 {같은 단위로 바꾼} 뒤 구한다.",
+        "studentC": "단위가 다른 두 양의 차는 □ 뒤 구한다.",
+        "answers": [
+          "같은 단위로 바꾼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2413,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "daf6ccf809171b720634ae099968d9e8bca4cf50b32b98dcc2827862f255cae2",
+        "proposalFingerprint": "e6f13c86749a7216c4a79e31dc3eb2682d12298bb122ea51c83ed1181645488d",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$의 차를 구하려면 먼저 무엇을 해야 하는지 쓰고, 차를 구하시오.",
+        "bAnswer": "단위를 같게 바꾼다. $1.2\\,\\mathrm{m}=120\\,\\mathrm{cm}$이므로 $120-35=85$, 차는 $85\\,\\mathrm{cm}$($0.85\\,\\mathrm{m}$)이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 단위로 바꾼다",
+              "m나 cm 하나로 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$85\\,\\mathrm{cm}$",
+              "$0.85\\,\\mathrm{m}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "단위를 맞춘 뒤 빼기",
+        "bReason": "단위가 다른 구체 양으로 방법을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "단위가 다른 두 양의 차는 {같은} 단위로 바꾼 뒤 구한다.",
+        "cReason": "앞 구절 빈칸을 짧은 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "똑같은",
+            "하나의"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위를 맞추어 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "단위가 다른 두 양의 차는 {같은} 단위로 바꾼 뒤 구한다.",
+        "cStudentSentence": "단위가 다른 두 양의 차는 □ 단위로 바꾼 뒤 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은",
+              "하나의"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$의 차를 구하려면 먼저 무엇을 해야 하는지 쓰고, 차를 구하시오.",
+          "answer": "단위를 같게 바꾼다. $1.2\\,\\mathrm{m}=120\\,\\mathrm{cm}$이므로 $120-35=85$, 차는 $85\\,\\mathrm{cm}$($0.85\\,\\mathrm{m}$)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 단위로 바꾼다",
+                "m나 cm 하나로 맞춘다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$85\\,\\mathrm{cm}$",
+                "$0.85\\,\\mathrm{m}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "단위가 다른 두 양의 차는 {같은} 단위로 바꾼 뒤 구한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은",
+              "하나의"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2414,
+        "sourceFingerprint": "75ffbc6e36dbf81c676bac81fad6dc07cab5ab39a8a545aaccbb3908b2d18a78",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc17",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "차 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 두 자리 수의 차는 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "example": {
+          "prompt": "$5.02-1.98$을 $5-2$로 어림하는 까닭은?",
+          "answer": "두 수가 $5$와 $2$에 가까워서"
+        },
+        "studentC": "소수 두 자리 수의 차는 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "answers": [
+          "가까운 자연수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2414,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "75ffbc6e36dbf81c676bac81fad6dc07cab5ab39a8a545aaccbb3908b2d18a78",
+        "proposalFingerprint": "395a72258dd5d20048fc1f8e2edb8577748049a4179d26e77c10f266f9d332ee",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$5.02-1.98$의 차가 대략 얼마인지 쉽게 알아보는 방법을 쓰시오.",
+        "bAnswer": "$5.02$는 $5$에, $1.98$은 $2$에 가까우므로 $5-2=3$ 정도라고 어림한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 수를 가까운 자연수로 바꾼다",
+              "$5$와 $2$로 어림한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$ 정도",
+              "약 $3$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "가까운 자연수로 차 어림",
+        "bReason": "원문 예제를 완성 질문으로 만든다",
+        "cDecision": "rewrite",
+        "cAfter": "$5.02-1.98$은 $5.02$를 $5$로, $1.98$을 $2$로 어림하여 약 {$3$}이라고 알 수 있다.",
+        "cReason": "어려운 구절 대신 선명한 어림 계산으로 교체",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5.02-1.98$은 $5.02$를 $5$로, $1.98$을 $2$로 어림하여 약 {$3$}이라고 알 수 있다.",
+        "cStudentSentence": "$5.02-1.98$은 $5.02$를 $5$로, $1.98$을 $2$로 어림하여 약 □이라고 알 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5.02-1.98$의 차가 대략 얼마인지 쉽게 알아보는 방법을 쓰시오.",
+          "answer": "$5.02$는 $5$에, $1.98$은 $2$에 가까우므로 $5-2=3$ 정도라고 어림한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각 수를 가까운 자연수로 바꾼다",
+                "$5$와 $2$로 어림한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3$ 정도",
+                "약 $3$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5.02-1.98$은 $5.02$를 $5$로, $1.98$을 $2$로 어림하여 약 {$3$}이라고 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2415,
+        "sourceFingerprint": "df83e8b1104c20c5b277da127f62474b86d102c0a0c3bf350bc5967943c4bdc6",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc18",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "차례로 빼기와 한꺼번에 빼기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 수에서 두 소수를 차례로 빼는 것은 {두 소수의 합을 한 번에 빼는 것}과 같다.",
+        "studentC": "같은 수에서 두 소수를 차례로 빼는 것은 □과 같다.",
+        "answers": [
+          "두 소수의 합을 한 번에 빼는 것"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2415,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "df83e8b1104c20c5b277da127f62474b86d102c0a0c3bf350bc5967943c4bdc6",
+        "proposalFingerprint": "1efaf407cee0749970b34c5332bfa576f937b82e5a0f39466ddd49f8eb42f1cb",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$5-1.2-0.8$을 한 번에 빼려면 $5$에서 어떤 수를 빼면 되는지, 그 까닭과 함께 쓰시오.",
+        "bAnswer": "$1.2+0.8=2$를 한 번에 뺀다. $1.2$와 $0.8$을 차례로 빼면 모두 $2$를 뺀 것이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.2+0.8=2$를 뺀다",
+              "두 수의 합을 한 번에 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "차례로 빼면 둘을 모두 뺀 것이다",
+              "나누어 빼도 합만큼 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차례로 빼기와 합 한 번 빼기",
+        "bReason": "구체 식으로 같은 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$5-1.2-0.8$은 $5$에서 $1.2$와 $0.8$의 {합}을 한 번에 뺀 것과 같다.",
+        "cReason": "긴 구절 빈칸을 합이라는 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "더한 값",
+            "더한 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차례로 빼기와 한꺼번에 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5-1.2-0.8$은 $5$에서 $1.2$와 $0.8$의 {합}을 한 번에 뺀 것과 같다.",
+        "cStudentSentence": "$5-1.2-0.8$은 $5$에서 $1.2$와 $0.8$의 □을 한 번에 뺀 것과 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "합",
+            "equivalents": [
+              "더한 값",
+              "더한 수"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5-1.2-0.8$을 한 번에 빼려면 $5$에서 어떤 수를 빼면 되는지, 그 까닭과 함께 쓰시오.",
+          "answer": "$1.2+0.8=2$를 한 번에 뺀다. $1.2$와 $0.8$을 차례로 빼면 모두 $2$를 뺀 것이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.2+0.8=2$를 뺀다",
+                "두 수의 합을 한 번에 뺀다"
+              ]
+            },
+            {
+              "anyOf": [
+                "차례로 빼면 둘을 모두 뺀 것이다",
+                "나누어 빼도 합만큼 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5-1.2-0.8$은 $5$에서 $1.2$와 $0.8$의 {합}을 한 번에 뺀 것과 같다.",
+          "acceptedAnswers": [
+            [
+              "합",
+              "더한 값",
+              "더한 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2416,
+        "sourceFingerprint": "cfbc9126f209fdd47c71ebd046c86007677ff8af77d134b001173bdf52a59380",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc19",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "소수의 끝에 영 붙이기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수의 끝에 $0$을 붙여도 원래 숫자들의 {자리가 변하지 않으므로} 값이 같다.",
+        "example": {
+          "prompt": "$4.3$을 $4.03$으로 바꾸면 값이 달라지는 까닭은?",
+          "answer": "$3$이 둘째 자리로 내려가서"
+        },
+        "studentC": "소수의 끝에 $0$을 붙여도 원래 숫자들의 □ 값이 같다.",
+        "answers": [
+          "자리가 변하지 않으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2416,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "cfbc9126f209fdd47c71ebd046c86007677ff8af77d134b001173bdf52a59380",
+        "proposalFingerprint": "85953d8d8a9f4210a8867bfa95ac346dab04c4bf27472fa440f73cd5c6cdb3f6",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$4.3$ 끝에 $0$을 붙인 $4.30$은 $4.3$과 값이 같습니다. 숫자의 자리를 이용해 그 까닭을 쓰시오.",
+        "bAnswer": "$4.30$에서도 $4$는 일의 자리, $3$은 소수 첫째 자리에 그대로 있고 끝에 $0$이 하나 늘었을 뿐이라 값이 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원래 숫자들의 자리가 변하지 않는다",
+              "$3$이 소수 첫째 자리 그대로다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "끝에 $0$ 붙여도 값이 같은 까닭",
+        "bReason": "자리 개념으로 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "소수의 끝에 $0$을 붙여도 원래 숫자들의 {자리}가 변하지 않으므로 값이 같다.",
+        "cReason": "이유절 전체 대신 자리 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "위치"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "소수의 끝에 영 붙이기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수의 끝에 $0$을 붙여도 원래 숫자들의 {자리}가 변하지 않으므로 값이 같다.",
+        "cStudentSentence": "소수의 끝에 $0$을 붙여도 원래 숫자들의 □가 변하지 않으므로 값이 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자리",
+            "equivalents": [
+              "위치"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4.3$ 끝에 $0$을 붙인 $4.30$은 $4.3$과 값이 같습니다. 숫자의 자리를 이용해 그 까닭을 쓰시오.",
+          "answer": "$4.30$에서도 $4$는 일의 자리, $3$은 소수 첫째 자리에 그대로 있고 끝에 $0$이 하나 늘었을 뿐이라 값이 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "원래 숫자들의 자리가 변하지 않는다",
+                "$3$이 소수 첫째 자리 그대로다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수의 끝에 $0$을 붙여도 원래 숫자들의 {자리}가 변하지 않으므로 값이 같다.",
+          "acceptedAnswers": [
+            [
+              "자리",
+              "위치"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2417,
+        "sourceFingerprint": "cac7aeaf5fe45d733d2f1762ec148ed676316b331024b1b34405aff170b8b1bd",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc20",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "차가 자연수가 되는 뺄셈",
+        "kind": "성질",
+        "level": "상",
+        "definition": "큰 소수에서 작은 소수를 뺄 때 $6.75-2.75$처럼 {소수 부분이 같으면} 차는 자연수이다.",
+        "studentC": "큰 소수에서 작은 소수를 뺄 때 $6.75-2.75$처럼 □ 차는 자연수이다.",
+        "answers": [
+          "소수 부분이 같으면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2417,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "cac7aeaf5fe45d733d2f1762ec148ed676316b331024b1b34405aff170b8b1bd",
+        "proposalFingerprint": "8af8795599fc53f1f9758e4a6b1770771bf4b1c2b0809506778606dda3413bf8",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$6.75-2.75$의 차는 자연수입니다. 두 수의 소수 부분에 주목하여 그 까닭을 쓰시오.",
+        "bAnswer": "$6.75-2.75=4$이다. 두 수의 소수 부분 $0.75$가 같아서 빼면 없어지기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수 부분이 같아서 빼면 $0$이 된다",
+              "소수 부분이 서로 없어진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "소수 부분이 같으면 차는 자연수",
+        "bReason": "조건과 결론 관계의 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$6.75-2.75$처럼 두 소수의 소수 부분이 같으면 차의 소수 부분은 {$0$}이어서 자연수이다.",
+        "cReason": "가려진 조건 대신 짧은 숫자 빈칸으로 교체",
+        "cSlotEquivalents": [
+          [
+            "영"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 자연수가 되는 뺄셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$6.75-2.75$처럼 두 소수의 소수 부분이 같으면 차의 소수 부분은 {$0$}이어서 자연수이다.",
+        "cStudentSentence": "$6.75-2.75$처럼 두 소수의 소수 부분이 같으면 차의 소수 부분은 □이어서 자연수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": [
+              "영"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$6.75-2.75$의 차는 자연수입니다. 두 수의 소수 부분에 주목하여 그 까닭을 쓰시오.",
+          "answer": "$6.75-2.75=4$이다. 두 수의 소수 부분 $0.75$가 같아서 빼면 없어지기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "소수 부분이 같아서 빼면 $0$이 된다",
+                "소수 부분이 서로 없어진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$6.75-2.75$처럼 두 소수의 소수 부분이 같으면 차의 소수 부분은 {$0$}이어서 자연수이다.",
+          "acceptedAnswers": [
+            [
+              "$0$",
+              "영"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2418,
+        "sourceFingerprint": "101f1bf7793675c9734ec98e1d3679b051edb9497a4024709c9976005dd88238",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc21",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "차가 큰 뺄셈식 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 {작게} 만든다.",
+        "studentC": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 □ 만든다.",
+        "answers": [
+          "작게"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2418,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "101f1bf7793675c9734ec98e1d3679b051edb9497a4024709c9976005dd88238",
+        "proposalFingerprint": "64863b32d07d745b48337b3a462c4292683cb59cb44494b4dae44d085b63725a",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 카드 $1,2,3,5,7,9$를 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 수 두 개를 만들어 큰 수에서 작은 수를 뺀 차를 가장 크게 하려고 합니다. 빼어지는 수(앞의 수)와 빼는 수(뒤의 수)를 각각 크게 만들어야 하는지 작게 만들어야 하는지 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "빼어지는 수는 크게, 빼는 수는 작게 만든다. 앞의 수가 클수록, 뒤의 수가 작을수록 차가 커지기 때문이다. 예: $9.75-1.23$.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빼어지는 수는 크게, 빼는 수는 작게",
+              "앞의 수는 크게 뒤의 수는 작게"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 수가 클수록 차가 커지고 뒤의 수가 작을수록 차가 커진다",
+              "덜 빼야 더 많이 남는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차를 크게 하는 수 만들기",
+        "bReason": "카드 상황에서 방향과 까닭을 함께 묻는다",
+        "cDecision": "keep",
+        "cReason": "크게/작게 대비 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "더 작게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차가 큰 뺄셈식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 {작게} 만든다.",
+        "cStudentSentence": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 □ 만든다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작게",
+            "equivalents": [
+              "더 작게"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 □ 만든다.",
+          "answers": [
+            "작게"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "숫자 카드 $1,2,3,5,7,9$를 한 번씩 써서 $\\circ.\\circ\\circ$ 꼴의 수 두 개를 만들어 큰 수에서 작은 수를 뺀 차를 가장 크게 하려고 합니다. 빼어지는 수(앞의 수)와 빼는 수(뒤의 수)를 각각 크게 만들어야 하는지 작게 만들어야 하는지 쓰고 그 까닭을 쓰시오.",
+          "answer": "빼어지는 수는 크게, 빼는 수는 작게 만든다. 앞의 수가 클수록, 뒤의 수가 작을수록 차가 커지기 때문이다. 예: $9.75-1.23$.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "빼어지는 수는 크게, 빼는 수는 작게",
+                "앞의 수는 크게 뒤의 수는 작게"
+              ]
+            },
+            {
+              "anyOf": [
+                "앞의 수가 클수록 차가 커지고 뒤의 수가 작을수록 차가 커진다",
+                "덜 빼야 더 많이 남는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "숫자 카드로 소수 두 자리 수 두 개를 만들어 차를 크게 하려면 빼어지는 수는 크게, 빼는 수는 {작게} 만든다.",
+          "acceptedAnswers": [
+            [
+              "작게",
+              "더 작게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2419,
+        "sourceFingerprint": "1b0367944ecc84af1a4f1a9a9e64d879e6fec3fc1a08db4aff8923902360521b",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc23",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "처음 수를 모를 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "빼어지는 수는 빼는 수와 차를 합한 수이므로, 빼어지는 수를 모르면 {차에 빼는 수를 더해서} 구한다.",
+        "studentC": "빼어지는 수는 빼는 수와 차를 합한 수이므로, 빼어지는 수를 모르면 □ 구한다.",
+        "answers": [
+          "차에 빼는 수를 더해서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2419,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "1b0367944ecc84af1a4f1a9a9e64d879e6fec3fc1a08db4aff8923902360521b",
+        "proposalFingerprint": "25e8bb76f43abe4b56d8c20728b64a3fe97398e289c339b490023f89dc5b2e85",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 수에서 $0.85$를 빼었더니 $2.15$가 되었습니다. 어떤 수를 구하는 식을 쓰고, 그렇게 구하는 까닭을 쓰시오.",
+        "bAnswer": "$2.15+0.85=3$이다. 처음 수는 빼는 수와 차를 합한 수이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.15+0.85$"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 수는 빼는 수와 차를 합한 수다",
+              "뺀 것을 다시 더하면 처음 수가 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "처음 수를 구하는 식과 까닭",
+        "bReason": "구체 수로 되돌려 더하는 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수에서 $0.85$를 빼었더니 $2.15$가 되었다면, 어떤 수는 $2.15$에 $0.85$를 {더해서} 구한다.",
+        "cReason": "긴 구절 빈칸 대신 더하기/빼기 선택 빈칸",
+        "cSlotEquivalents": [
+          [
+            "더하여",
+            "덧셈으로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "처음 수를 모를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수에서 $0.85$를 빼었더니 $2.15$가 되었다면, 어떤 수는 $2.15$에 $0.85$를 {더해서} 구한다.",
+        "cStudentSentence": "어떤 수에서 $0.85$를 빼었더니 $2.15$가 되었다면, 어떤 수는 $2.15$에 $0.85$를 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "더해서",
+            "equivalents": [
+              "더하여",
+              "덧셈으로"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 수에서 $0.85$를 빼었더니 $2.15$가 되었습니다. 어떤 수를 구하는 식을 쓰고, 그렇게 구하는 까닭을 쓰시오.",
+          "answer": "$2.15+0.85=3$이다. 처음 수는 빼는 수와 차를 합한 수이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.15+0.85$"
+              ]
+            },
+            {
+              "anyOf": [
+                "처음 수는 빼는 수와 차를 합한 수다",
+                "뺀 것을 다시 더하면 처음 수가 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수에서 $0.85$를 빼었더니 $2.15$가 되었다면, 어떤 수는 $2.15$에 $0.85$를 {더해서} 구한다.",
+          "acceptedAnswers": [
+            [
+              "더해서",
+              "더하여",
+              "덧셈으로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2420,
+        "sourceFingerprint": "4c49b3ad7c405a061ae8319de7c5d67324fadf05391f1f0214f9642ff74c5ab3",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc26",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "잘못 더한 값 바로잡기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "빼야 할 수를 잘못 더했으면 그 결과에서 {그 수를 두 번} 빼야 바른 차가 된다.",
+        "example": {
+          "prompt": "$0.48$을 빼야 할 것을 더했을 때 $0.48$을 두 번 빼는 까닭은?",
+          "answer": "더한 것을 되돌리고 또 빼서"
+        },
+        "studentC": "빼야 할 수를 잘못 더했으면 그 결과에서 □ 빼야 바른 차가 된다.",
+        "answers": [
+          "그 수를 두 번"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2420,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "4c49b3ad7c405a061ae8319de7c5d67324fadf05391f1f0214f9642ff74c5ab3",
+        "proposalFingerprint": "6030805f6d47c1ccddcc2a7817095169a6370e0fe6f9d8ec21dfda8bed5c66af",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 수에서 $0.48$을 빼야 하는데 잘못하여 더했더니 $2.3$이 되었습니다. 바르게 계산한 값을 구하고, 그렇게 구하는 까닭을 쓰시오.",
+        "bAnswer": "$2.3$에서 $0.48$을 두 번 빼어 $1.34$이다. 더한 것을 되돌리려 한 번 빼고, 원래 해야 할 뺄셈으로 한 번 더 빼야 하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.48$을 두 번 뺀다",
+              "$2.3-0.96$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.34$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "잘못 더한 값 바로잡기",
+        "bReason": "원문 예제를 값과 까닭이 있는 질문으로 만든다",
+        "cDecision": "rewrite",
+        "cAfter": "빼야 할 수를 잘못 더했으면, 그 결과에서 빼야 할 수를 {두} 번 빼야 바른 차가 된다.",
+        "cReason": "긴 구절 빈칸을 횟수 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "잘못 더한 값 바로잡기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "빼야 할 수를 잘못 더했으면, 그 결과에서 빼야 할 수를 {두} 번 빼야 바른 차가 된다.",
+        "cStudentSentence": "빼야 할 수를 잘못 더했으면, 그 결과에서 빼야 할 수를 □ 번 빼야 바른 차가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 수에서 $0.48$을 빼야 하는데 잘못하여 더했더니 $2.3$이 되었습니다. 바르게 계산한 값을 구하고, 그렇게 구하는 까닭을 쓰시오.",
+          "answer": "$2.3$에서 $0.48$을 두 번 빼어 $1.34$이다. 더한 것을 되돌리려 한 번 빼고, 원래 해야 할 뺄셈으로 한 번 더 빼야 하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.48$을 두 번 뺀다",
+                "$2.3-0.96$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1.34$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "빼야 할 수를 잘못 더했으면, 그 결과에서 빼야 할 수를 {두} 번 빼야 바른 차가 된다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2421,
+        "sourceFingerprint": "dc2ffa1f3ebf1bd9241a2ad3715e5879dd1458799f35021832bb2d7240f964e1",
+        "part": "e4plus",
+        "id": "e4-2-3-7-xc28",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "내어 준 양을 줄이지 않은 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 {바른 값보다 $0.1$ 커진다}.",
+        "studentC": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 □.",
+        "answers": [
+          "바른 값보다 $0.1$ 커진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2421,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "sourceFingerprint": "dc2ffa1f3ebf1bd9241a2ad3715e5879dd1458799f35021832bb2d7240f964e1",
+        "proposalFingerprint": "7dfcfabdb60000ab82a53926c90e48f7d7da390dbb08abee7857d0a6017b0383",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-7-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.53-0.28$을 계산하면서 소수 둘째 자리로 $0.1$을 내어 주고도 소수 첫째 자리 숫자 $5$를 줄이지 않아 $0.35$가 되었습니다. 바른 차는 $0.25$입니다. 틀린 값은 바른 값보다 얼마나 크거나 작은지, 그 까닭과 함께 쓰시오.",
+        "bAnswer": "$0.1$ 더 크다. 내어 준 $0.1$을 줄이지 않아 $0.1$을 더 가진 채 계산했기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.1$ 크다",
+              "$0.1$ 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "내어 준 $0.1$을 줄이지 않았다",
+              "$0.1$을 더 가지고 계산했다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "줄이지 않은 받아내림 오류",
+        "bReason": "새 계산 예로 오류 크기와 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 {$0.1$} 커진다.",
+        "cReason": "긴 결론 구절 대신 크기만 빈칸",
+        "cSlotEquivalents": [
+          [
+            "영 점 일"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "내어 준 양을 줄이지 않은 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 {$0.1$} 커진다.",
+        "cStudentSentence": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 □ 커진다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.1$",
+            "equivalents": [
+              "영 점 일"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.53-0.28$을 계산하면서 소수 둘째 자리로 $0.1$을 내어 주고도 소수 첫째 자리 숫자 $5$를 줄이지 않아 $0.35$가 되었습니다. 바른 차는 $0.25$입니다. 틀린 값은 바른 값보다 얼마나 크거나 작은지, 그 까닭과 함께 쓰시오.",
+          "answer": "$0.1$ 더 크다. 내어 준 $0.1$을 줄이지 않아 $0.1$을 더 가진 채 계산했기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.1$ 크다",
+                "$0.1$ 더 크다"
+              ]
+            },
+            {
+              "anyOf": [
+                "내어 준 $0.1$을 줄이지 않았다",
+                "$0.1$을 더 가지고 계산했다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 {$0.1$} 커진다.",
+          "acceptedAnswers": [
+            [
+              "$0.1$",
+              "영 점 일"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2422,
+        "sourceFingerprint": "e18343f277df7f9e967b29809559035cde1036ccedd0344aca624b787188cf35",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc1",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "수직인 두 직선이 만든 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 직선이 서로 수직이면 만난 점 둘레의 네 각은 모두 {$90^\\circ$}이다.",
+        "studentC": "두 직선이 서로 수직이면 만난 점 둘레의 네 각은 모두 □이다.",
+        "answers": [
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2422,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "e18343f277df7f9e967b29809559035cde1036ccedd0344aca624b787188cf35",
+        "proposalFingerprint": "c03779282c6b80607e782d7d10eb022418d73ca216edcabb65f57c92c06e2730",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "수직이면 네 각이 직각",
+        "bReason": "xc8 정의 B와 같은 목표",
+        "exclusionReason": "수직과 직각의 관계는 xc8 수직 정의 B에서 다룬다",
+        "cDecision": "keep",
+        "cReason": "짧은 각도 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "수직인 두 직선이 만든 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 직선이 서로 수직이면 만난 점 둘레의 네 각은 모두 {$90^\\circ$}이다.",
+        "cStudentSentence": "두 직선이 서로 수직이면 만난 점 둘레의 네 각은 모두 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 직선이 서로 수직이면 만난 점 둘레의 네 각은 모두 □이다.",
+          "answers": [
+            "$90^\\circ$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 직선이 서로 수직이면 만난 점 둘레의 네 각은 모두 {$90^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc8 정의 B와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2423,
+        "sourceFingerprint": "a46ebb266adc7086eb85be3bc3753d71596faa0efa1cb1e4ac1225c202adc3c7",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc2",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직각 표시",
+        "kind": "성질",
+        "level": "하",
+        "definition": "그림에서 두 선이 만나는 곳에 그린 작은 직각 표시는 그 각이 {$90^\\circ$}임을 나타낸다.",
+        "studentC": "그림에서 두 선이 만나는 곳에 그린 작은 직각 표시는 그 각이 □임을 나타낸다.",
+        "answers": [
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2423,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "a46ebb266adc7086eb85be3bc3753d71596faa0efa1cb1e4ac1225c202adc3c7",
+        "proposalFingerprint": "922504b852d3e19efdb43be1f0b03e6e1f205452f0deb0eba9f0ddf34b4744ea",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "직각 표시 읽기",
+        "bReason": "기호 읽기뿐인 항목",
+        "exclusionReason": "작은 네모 표시가 $90^\\circ$임을 읽는 단순 기호 읽기라 설명할 목표가 없다",
+        "cDecision": "rewrite",
+        "cAfter": "두 선이 만나는 곳에 작은 네모 모양 표시가 있으면 그 각은 {$90^\\circ$}이다.",
+        "cReason": "'직각 표시'가 답을 말하고 있어 네모 표시로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 선이 만나는 곳에 작은 네모 모양 표시가 있으면 그 각은 {$90^\\circ$}이다.",
+        "cStudentSentence": "두 선이 만나는 곳에 작은 네모 모양 표시가 있으면 그 각은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 선이 만나는 곳에 작은 네모 모양 표시가 있으면 그 각은 {$90^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "기호 읽기뿐인 항목"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2424,
+        "sourceFingerprint": "a62074a14f2131099acbd9c750887a29715d9e8b5d663c59c657b7d269a5dae8",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc3",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "삼각자로 수직 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 직선이 만나는 곳에 삼각자의 {직각} 부분을 대어 꼭 맞는지 본다.",
+        "studentC": "두 직선이 만나는 곳에 삼각자의 □ 부분을 대어 꼭 맞는지 본다.",
+        "answers": [
+          "직각"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2424,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "a62074a14f2131099acbd9c750887a29715d9e8b5d663c59c657b7d269a5dae8",
+        "proposalFingerprint": "c939f4b6183980cdb7ac4bbb19bb3bf34cdf6b3e33bad9c013892f0e9f1c1ddf",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선이 서로 수직인지 삼각자로 확인하는 방법을 쓰시오.",
+        "bAnswer": "두 직선이 만나는 곳에 삼각자의 직각 부분을 대어 꼭 맞으면 수직이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "삼각자의 직각 부분을 만나는 곳에 댄다",
+              "직각 부분을 대어 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭 맞으면 수직이다",
+              "꼭 맞는지 본다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "삼각자로 수직 확인",
+        "bReason": "도구 사용 방법을 묻는 완성 질문",
+        "cDecision": "keep",
+        "cReason": "직각이라는 익숙한 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각자로 수직 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 직선이 만나는 곳에 삼각자의 {직각} 부분을 대어 꼭 맞는지 본다.",
+        "cStudentSentence": "두 직선이 만나는 곳에 삼각자의 □ 부분을 대어 꼭 맞는지 본다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 직선이 만나는 곳에 삼각자의 □ 부분을 대어 꼭 맞는지 본다.",
+          "answers": [
+            "직각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "두 직선이 서로 수직인지 삼각자로 확인하는 방법을 쓰시오.",
+          "answer": "두 직선이 만나는 곳에 삼각자의 직각 부분을 대어 꼭 맞으면 수직이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "삼각자의 직각 부분을 만나는 곳에 댄다",
+                "직각 부분을 대어 본다"
+              ]
+            },
+            {
+              "anyOf": [
+                "꼭 맞으면 수직이다",
+                "꼭 맞는지 본다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 직선이 만나는 곳에 삼각자의 {직각} 부분을 대어 꼭 맞는지 본다.",
+          "acceptedAnswers": [
+            [
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2425,
+        "sourceFingerprint": "1eec79e466a590a062e27c8ae369e0920326b27337a29a9df5e8f07403974e16",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc4",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "서로의 수선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직선 가가 직선 나의 수선이면 {직선 나도 직선 가의} 수선이다.",
+        "studentC": "직선 가가 직선 나의 수선이면 □ 수선이다.",
+        "answers": [
+          "직선 나도 직선 가의"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2425,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "1eec79e466a590a062e27c8ae369e0920326b27337a29a9df5e8f07403974e16",
+        "proposalFingerprint": "8a29b4357de5cdf0a6139a4b72201d5dae44c640f0c8453b0a689c06445874ca",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 가가 직선 나의 수선입니다. 직선 나를 직선 가에 대해 무엇이라고 할 수 있는지 그 까닭과 함께 쓰시오.",
+        "bAnswer": "직선 나도 직선 가의 수선이다. 두 직선이 서로 수직이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직선 나도 직선 가의 수선이다",
+              "서로 수선이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 수직이다",
+              "두 직선이 직각으로 만난다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "수선은 서로의 관계",
+        "bReason": "가와 나의 대칭 관계를 까닭으로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "직선 가가 직선 나의 수선이면 직선 {나}도 직선 가의 수선이다.",
+        "cReason": "긴 구절 빈칸을 직선 이름 하나로 줄임",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "서로의 수선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 가가 직선 나의 수선이면 직선 {나}도 직선 가의 수선이다.",
+        "cStudentSentence": "직선 가가 직선 나의 수선이면 직선 □도 직선 가의 수선이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "나",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직선 가가 직선 나의 수선입니다. 직선 나를 직선 가에 대해 무엇이라고 할 수 있는지 그 까닭과 함께 쓰시오.",
+          "answer": "직선 나도 직선 가의 수선이다. 두 직선이 서로 수직이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직선 나도 직선 가의 수선이다",
+                "서로 수선이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "서로 수직이다",
+                "두 직선이 직각으로 만난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직선 가가 직선 나의 수선이면 직선 {나}도 직선 가의 수선이다.",
+          "acceptedAnswers": [
+            [
+              "나"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2426,
+        "sourceFingerprint": "e4a24cd795e2faaed0c60ffc276d787dab635fa3345439196e97823fbac59fcb",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc5",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "모눈종이의 가로줄과 세로줄",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모눈종이에 그어진 가로줄과 세로줄은 서로 {수직}이다.",
+        "studentC": "모눈종이에 그어진 가로줄과 세로줄은 서로 □이다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2426,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "e4a24cd795e2faaed0c60ffc276d787dab635fa3345439196e97823fbac59fcb",
+        "proposalFingerprint": "5df671ff825de700dcf0af84ae7198abbebc0a0f861e258f6471be4ebe4273e5",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "모눈 줄의 수직",
+        "bReason": "수직 예시 목록",
+        "exclusionReason": "모눈종이 사례는 xc8 수직 정의 B와 같은 목표다",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "모눈종이의 가로줄과 세로줄",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이에 그어진 가로줄과 세로줄은 서로 {수직}이다.",
+        "cStudentSentence": "모눈종이에 그어진 가로줄과 세로줄은 서로 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모눈종이에 그어진 가로줄과 세로줄은 서로 □이다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "모눈종이에 그어진 가로줄과 세로줄은 서로 {수직}이다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "수직 예시 목록"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2427,
+        "sourceFingerprint": "4494eec023e3a039d3c78dbab28a5616d79f9f0c3a7e7e8314bc550486ac6806",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc6",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직사각형의 이웃한 두 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직사각형에서 한 꼭짓점에 모인 두 변은 서로 {수직}이다.",
+        "studentC": "직사각형에서 한 꼭짓점에 모인 두 변은 서로 □이다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2427,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "4494eec023e3a039d3c78dbab28a5616d79f9f0c3a7e7e8314bc550486ac6806",
+        "proposalFingerprint": "46c99e0c503b06a2a5cfee76fde984a934179cf9a23f3139293963b32d0da51d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형에서 한 꼭짓점에 모인 두 변은 서로 어떤 관계인지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "서로 수직이다. 직사각형은 네 각이 모두 직각이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 수직이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각이 모두 직각이다",
+              "꼭짓점의 각이 직각이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직사각형 이웃한 변의 수직",
+        "bReason": "직사각형 정의로 수직을 설명한다",
+        "cDecision": "keep",
+        "cReason": "수직 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형의 이웃한 두 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형에서 한 꼭짓점에 모인 두 변은 서로 {수직}이다.",
+        "cStudentSentence": "직사각형에서 한 꼭짓점에 모인 두 변은 서로 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형에서 한 꼭짓점에 모인 두 변은 서로 □이다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직사각형에서 한 꼭짓점에 모인 두 변은 서로 어떤 관계인지 쓰고, 그 까닭을 쓰시오.",
+          "answer": "서로 수직이다. 직사각형은 네 각이 모두 직각이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 수직이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "네 각이 모두 직각이다",
+                "꼭짓점의 각이 직각이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형에서 한 꼭짓점에 모인 두 변은 서로 {수직}이다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2428,
+        "sourceFingerprint": "3fe57008a80b6750afacd78b2638211a7e8dedb3cb2c1a71ca851968713ced5c",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc7",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "각도기로 수선 긋기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "각도기의 중심을 직선 위의 한 점에, 밑금을 직선에 맞추고 {$90^\\circ$} 눈금에 점을 찍어 그 점과 이으면 수선이 된다.",
+        "studentC": "각도기의 중심을 직선 위의 한 점에, 밑금을 직선에 맞추고 □ 눈금에 점을 찍어 그 점과 이으면 수선이 된다.",
+        "answers": [
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2428,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "3fe57008a80b6750afacd78b2638211a7e8dedb3cb2c1a71ca851968713ced5c",
+        "proposalFingerprint": "79489ea5619fa9a43d4a03968e621cd619ac2de723a2243404ae46b816247d4c",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "각도기로 직선 위의 한 점에서 그 직선의 수선을 긋는 방법을 쓰시오.",
+        "bAnswer": "각도기의 중심을 그 점에, 밑금을 직선에 맞추고 $90^\\circ$ 눈금에 점을 찍어 그 점과 직선 위의 점을 잇는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각도기 중심을 점에, 밑금을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ$ 눈금에 점을 찍어 잇는다",
+              "직각 눈금에 표시하고 잇는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "각도기로 수선 긋기",
+        "bReason": "도구 사용 순서를 직접 묻는다",
+        "cDecision": "keep",
+        "cReason": "각도 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "$90$",
+            "$90$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "각도기로 수선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "각도기의 중심을 직선 위의 한 점에, 밑금을 직선에 맞추고 {$90^\\circ$} 눈금에 점을 찍어 그 점과 이으면 수선이 된다.",
+        "cStudentSentence": "각도기의 중심을 직선 위의 한 점에, 밑금을 직선에 맞추고 □ 눈금에 점을 찍어 그 점과 이으면 수선이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "$90$",
+              "$90$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "각도기의 중심을 직선 위의 한 점에, 밑금을 직선에 맞추고 □ 눈금에 점을 찍어 그 점과 이으면 수선이 된다.",
+          "answers": [
+            "$90^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "각도기로 직선 위의 한 점에서 그 직선의 수선을 긋는 방법을 쓰시오.",
+          "answer": "각도기의 중심을 그 점에, 밑금을 직선에 맞추고 $90^\\circ$ 눈금에 점을 찍어 그 점과 직선 위의 점을 잇는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각도기 중심을 점에, 밑금을 직선에 맞춘다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$90^\\circ$ 눈금에 점을 찍어 잇는다",
+                "직각 눈금에 표시하고 잇는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "각도기의 중심을 직선 위의 한 점에, 밑금을 직선에 맞추고 {$90^\\circ$} 눈금에 점을 찍어 그 점과 이으면 수선이 된다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "$90$",
+              "$90$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2429,
+        "sourceFingerprint": "2b207012304343f10335935f304aa4974741308ededdb32c72985aaf26b026e7",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc8",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "생활 속 수직",
+        "kind": "성질",
+        "level": "하",
+        "definition": "창틀의 가로 막대와 세로 막대처럼 {직각으로 만나는} 두 선은 서로 수직이다.",
+        "studentC": "창틀의 가로 막대와 세로 막대처럼 □ 두 선은 서로 수직이다.",
+        "answers": [
+          "직각으로 만나는"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2429,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "2b207012304343f10335935f304aa4974741308ededdb32c72985aaf26b026e7",
+        "proposalFingerprint": "2aaf3341e6923708f374629e1d8fb9dc0362f2875036873fb233bcf71299c270",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선이 서로 수직이라고 하려면 어떤 조건을 만족해야 하는지 쓰시오. 창틀의 가로 막대와 세로 막대를 예로 들어도 좋습니다.",
+        "bAnswer": "두 직선이 만나서 이루는 각이 직각이면 서로 수직이다. 창틀의 가로 막대와 세로 막대는 직각으로 만나므로 수직이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "만나서 이루는 각이 직각이다",
+              "직각으로 만난다",
+              "$90^\\circ$로 만난다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "수직의 뜻",
+        "bReason": "수직 정의를 생활 예로 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "창틀의 가로 막대와 세로 막대처럼 {직각}으로 만나는 두 선은 서로 수직이다.",
+        "cReason": "'□ 두 선' 구절 대신 조건 낱말만 가림",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "생활 속 수직",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "창틀의 가로 막대와 세로 막대처럼 {직각}으로 만나는 두 선은 서로 수직이다.",
+        "cStudentSentence": "창틀의 가로 막대와 세로 막대처럼 □으로 만나는 두 선은 서로 수직이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": [
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "두 직선이 서로 수직이라고 하려면 어떤 조건을 만족해야 하는지 쓰시오. 창틀의 가로 막대와 세로 막대를 예로 들어도 좋습니다.",
+          "answer": "두 직선이 만나서 이루는 각이 직각이면 서로 수직이다. 창틀의 가로 막대와 세로 막대는 직각으로 만나므로 수직이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "만나서 이루는 각이 직각이다",
+                "직각으로 만난다",
+                "$90^\\circ$로 만난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "창틀의 가로 막대와 세로 막대처럼 {직각}으로 만나는 두 선은 서로 수직이다.",
+          "acceptedAnswers": [
+            [
+              "직각",
+              "$90^\\circ$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2430,
+        "sourceFingerprint": "df3c034394e07d3c34f9b1f9c9cf37de9375f52bb415d9fea1029a5e523ff30c",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc9",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "삼각자로 수선 긋기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 {수직}이 되므로 수선을 그을 수 있다.",
+        "studentC": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 □이 되므로 수선을 그을 수 있다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2430,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "df3c034394e07d3c34f9b1f9c9cf37de9375f52bb415d9fea1029a5e523ff30c",
+        "proposalFingerprint": "395663f99b59bf4835d16f94494b847bbf608da36a024e8e7ad4da15f5c4ac05",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각자로 직선 위의 한 점을 지나는 그 직선의 수선을 긋는 방법을 쓰시오.",
+        "bAnswer": "삼각자의 직각을 낀 한 변을 직선에 맞추고 그 점에 대어 직각을 낀 다른 한 변을 따라 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 한 변을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 변을 따라 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "삼각자로 수선 긋기",
+        "bReason": "삼각자 작도 순서를 묻는다",
+        "cDecision": "keep",
+        "cReason": "수직 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각자로 수선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 {수직}이 되므로 수선을 그을 수 있다.",
+        "cStudentSentence": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 □이 되므로 수선을 그을 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 □이 되므로 수선을 그을 수 있다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각자로 직선 위의 한 점을 지나는 그 직선의 수선을 긋는 방법을 쓰시오.",
+          "answer": "삼각자의 직각을 낀 한 변을 직선에 맞추고 그 점에 대어 직각을 낀 다른 한 변을 따라 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각을 낀 한 변을 직선에 맞춘다"
+              ]
+            },
+            {
+              "anyOf": [
+                "다른 한 변을 따라 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각자의 직각을 낀 한 변을 직선에 맞추고 직각을 낀 다른 한 변을 따라 그으면 두 직선이 {수직}이 되므로 수선을 그을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2431,
+        "sourceFingerprint": "c5ed9eb9fa25d7ce156b5edd4dc8d5987f5bc632caddfc6e2d4d743221979df1",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc10",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직선 위의 한 점을 지나는 수선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직선 위의 한 점을 지나는 그 직선의 수선은 {하나}만 그을 수 있다.",
+        "studentC": "직선 위의 한 점을 지나는 그 직선의 수선은 □만 그을 수 있다.",
+        "answers": [
+          "하나"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2431,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "c5ed9eb9fa25d7ce156b5edd4dc8d5987f5bc632caddfc6e2d4d743221979df1",
+        "proposalFingerprint": "44d546734547aabf85ce5292fd8f566be11a0e3caef777ff73b76c7e2a9c179b",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 위의 한 점을 지나면서 그 직선과 수직인 직선은 몇 개 그을 수 있습니까?",
+        "bAnswer": "한 개뿐이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "하나",
+              "한 개",
+              "$1$개"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "한 점의 수선은 하나뿐",
+        "bReason": "개수 성질을 짧게 묻는다",
+        "cDecision": "keep",
+        "cReason": "하나라는 짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "한 개",
+            "$1$개"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직선 위의 한 점을 지나는 수선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 위의 한 점을 지나는 그 직선의 수선은 {하나}만 그을 수 있다.",
+        "cStudentSentence": "직선 위의 한 점을 지나는 그 직선의 수선은 □만 그을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "하나",
+            "equivalents": [
+              "한 개",
+              "$1$개"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직선 위의 한 점을 지나는 그 직선의 수선은 □만 그을 수 있다.",
+          "answers": [
+            "하나"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직선 위의 한 점을 지나면서 그 직선과 수직인 직선은 몇 개 그을 수 있습니까?",
+          "answer": "한 개뿐이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "하나",
+                "한 개",
+                "$1$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직선 위의 한 점을 지나는 그 직선의 수선은 {하나}만 그을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "하나",
+              "한 개",
+              "$1$개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2432,
+        "sourceFingerprint": "aa472483753340a9c43c064f4afe75fbda213b0869e98bcd1d6e354da076ccb8",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc11",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직각을 둘로 나눈 두 각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "수직인 두 직선 사이의 직각을 반직선 하나가 둘로 나누면 두 각의 합은 {$90^\\circ$}이다.",
+        "studentC": "수직인 두 직선 사이의 직각을 반직선 하나가 둘로 나누면 두 각의 합은 □이다.",
+        "answers": [
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2432,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "aa472483753340a9c43c064f4afe75fbda213b0869e98bcd1d6e354da076ccb8",
+        "proposalFingerprint": "464eb13c87ea6d3fbe89757ffd989bff792347dcc277fe18a626462ae1b6194d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "수직인 두 직선 사이의 직각을 반직선 하나가 둘로 나누었습니다. 한 각이 $35^\\circ$이면 다른 각은 몇 도이며, 그 까닭은 무엇입니까?",
+        "bAnswer": "$55^\\circ$이다. 두 각의 합이 직각 $90^\\circ$이므로 $90^\\circ-35^\\circ=55^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$55^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각의 합이 $90^\\circ$다",
+              "직각을 둘로 나눈 것이다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "직각을 나눈 두 각의 합",
+        "bReason": "새 수로 각을 구하고 까닭을 묻는다",
+        "cDecision": "keep",
+        "cReason": "각도 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각을 둘로 나눈 두 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수직인 두 직선 사이의 직각을 반직선 하나가 둘로 나누면 두 각의 합은 {$90^\\circ$}이다.",
+        "cStudentSentence": "수직인 두 직선 사이의 직각을 반직선 하나가 둘로 나누면 두 각의 합은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "수직인 두 직선 사이의 직각을 반직선 하나가 둘로 나누면 두 각의 합은 □이다.",
+          "answers": [
+            "$90^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "수직인 두 직선 사이의 직각을 반직선 하나가 둘로 나누었습니다. 한 각이 $35^\\circ$이면 다른 각은 몇 도이며, 그 까닭은 무엇입니까?",
+          "answer": "$55^\\circ$이다. 두 각의 합이 직각 $90^\\circ$이므로 $90^\\circ-35^\\circ=55^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$55^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 각의 합이 $90^\\circ$다",
+                "직각을 둘로 나눈 것이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수직인 두 직선 사이의 직각을 반직선 하나가 둘로 나누면 두 각의 합은 {$90^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

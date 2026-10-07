@@ -1,0 +1,2129 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-1-6-1-c1",
+      "sourceIndex": 84,
+      "beforeProposal": {
+        "sourceIndex": 84,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "e11baed52300ee4a5ede5546cd7f0d07b3df55b082a42769bcd0f3562c6390b0",
+        "proposalFingerprint": "e0486e8865ec3a40850597b50e12e04b83bbff3fa0c5242cbd51755252877883",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "'전체를 똑같이 나눈다'는 것은 어떻게 나누는 것인지, 색종이 한 장을 $4$조각으로 나누는 경우를 예로 들어 설명하세요.",
+        "bAnswer": "나누어진 네 조각의 크기가 모두 같도록 나누는 것이다. 조각의 모양까지 꼭 같아야 하는 것은 아니다.",
+        "bGoal": "똑같이 나눈다는 것이 부분의 크기가 모두 같다는 뜻임을 설명",
+        "bReason": "원문은 크기만 같게 나눈다고 정확하게 쓴다. 초안이 잘못 추가한 같은 모양·꼭 포개짐 조건을 제거한다.",
+        "studentLabel": "똑같이 나누기",
+        "cDecision": "keep",
+        "cReason": "각 부분의 크기가 같다는 원문은 이미 짧고 정확하다.",
+        "answerNotes": "크기, 모양과 크기 인정. 개수, 수는 오답.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나눈 네 조각의 크기가 모두 같아야 한다.",
+              "색종이 한 장을 크기가 같은 네 부분으로 나눈다."
+            ]
+          }
+        ],
+        "exampleNeeded": "크기가 같아도 모양이 다른 조각이 가능한 모습은 e3-1-6-1-xc2의 별도 예시로 확인한다. 이 B의 정답에 조각 모양 일치를 강제하지 않는다.",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "전체를 똑같이 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 전체를 나눌 때 각 부분의 {크기}가 같도록 나눈다.",
+        "cStudentSentence": "한 전체를 나눌 때 각 부분의 □가 같도록 나눈다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "크기",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 전체를 나눌 때 각 부분의 □가 같도록 나눈다.",
+          "answers": [
+            "크기"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "'전체를 똑같이 나눈다'는 것은 어떻게 나누는 것인지, 색종이 한 장을 $4$조각으로 나누는 경우를 예로 들어 설명하세요.",
+          "answer": "나누어진 네 조각의 크기가 모두 같도록 나누는 것이다. 조각의 모양까지 꼭 같아야 하는 것은 아니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나눈 네 조각의 크기가 모두 같아야 한다.",
+                "색종이 한 장을 크기가 같은 네 부분으로 나눈다."
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 전체를 나눌 때 각 부분의 {크기}가 같도록 나눈다.",
+          "acceptedAnswers": [
+            [
+              "크기"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-c1",
+          "sourceIndex": 84,
+          "proposalFingerprint": "e0486e8865ec3a40850597b50e12e04b83bbff3fa0c5242cbd51755252877883",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은크기의네부분으로나눈다는뜻이며모양일치를강제하지않는다.",
+          "cReason": "이미정확한원문의크기빈칸은동결유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "나누어진 네 조각의 크기가 모두 같도록 나누는 것이다.",
+        "bReason": "질문이 요청한 똑같이 나누기의 뜻만 참고답에 남기며 모양 일치를 필수 조건으로 추가하지 않는다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc6",
+      "sourceIndex": 1950,
+      "beforeProposal": {
+        "sourceIndex": 1950,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "060e09c3cd87aa611072fa45f3bdb857be54356ee3ef9ec7b57795cdb070bf6f",
+        "proposalFingerprint": "215ffe34de036a3b4aa67ed7f2f72d587565a936d84e6d4f911f1ad42c93fc2d",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "",
+        "bReason": "",
+        "exclusionReason": "1-5-1 표와 막대그래프 비교와 같은 목표(수량·많고 적음)",
+        "cDecision": "keep",
+        "cReason": "'각 항목의 □' 수량이 익숙한 낱말",
+        "cSlotEquivalents": [
+          [
+            "수",
+            "개수",
+            "양"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "막대그래프에서 알 수 있는 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대그래프로 각 항목의 {수량}과 많고 적음을 알 수 있다.",
+        "cStudentSentence": "막대그래프로 각 항목의 □과 많고 적음을 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수량",
+            "equivalents": [
+              "수",
+              "개수",
+              "양"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "막대그래프로 각 항목의 □과 많고 적음을 알 수 있다.",
+          "answers": [
+            "수량"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "막대그래프로 각 항목의 {수량}과 많고 적음을 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "수량",
+              "수",
+              "개수",
+              "양"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": ""
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc6",
+          "sourceIndex": 1950,
+          "proposalFingerprint": "215ffe34de036a3b4aa67ed7f2f72d587565a936d84e6d4f911f1ad42c93fc2d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "표와 그래프 비교의 실제 대응 ID를 제외 근거에 명시해야 한다.",
+          "cReason": "각 항목의 수량과 많고 적음을 알 수 있다는 그래프의 뜻을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "표와 막대그래프에서 읽을 수 있는 값과 비교의 뜻은 e4-1-5-1-xc7의 B에서 설명한다.",
+        "exclusionReason": "B만 제외: e4-1-5-1-xc7의 수량 읽기와 많고 적음 비교 목표를 반복한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc7",
+      "sourceIndex": 1951,
+      "beforeProposal": {
+        "sourceIndex": 1951,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "8df76690984eb10ce894c4a48d05505dbb44a333bb84193417eda3662ec34679",
+        "proposalFingerprint": "94b8ee7874b35260746dd4ad6147f1d4b3d4dee48d88fa169d76793bc577e30e",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "",
+        "bReason": "",
+        "exclusionReason": "1-5-1 표와 막대그래프 비교 B와 같은 목표라 중복",
+        "cDecision": "rewrite",
+        "cAfter": "막대그래프를 표와 함께 보면 정확한 수와 어느 것이 더 {많은지} 함께 알 수 있다.",
+        "cReason": "'많고 적음' 구절 복원 대신 쉬운 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "큰지",
+            "적은지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "표와 함께 보기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대그래프를 표와 함께 보면 정확한 수와 어느 것이 더 {많은지} 함께 알 수 있다.",
+        "cStudentSentence": "막대그래프를 표와 함께 보면 정확한 수와 어느 것이 더 □ 함께 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "많은지",
+            "equivalents": [
+              "큰지",
+              "적은지"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "막대그래프를 표와 함께 보면 정확한 수와 어느 것이 더 {많은지} 함께 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "많은지",
+              "큰지",
+              "적은지"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": ""
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc7",
+          "sourceIndex": 1951,
+          "proposalFingerprint": "94b8ee7874b35260746dd4ad6147f1d4b3d4dee48d88fa169d76793bc577e30e",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "표와 그래프 비교의 실제 대응 ID를 제외 근거에 명시해야 한다.",
+          "cReason": "어느 항목이 더 적은지도 읽는 것이 옳아 문맥상 적은지는 많은지와 다른 유효한 비교 답이며 일반 동의어는 아니다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "표와 막대그래프의 비교는 e4-1-5-1-xc7의 B에서 다룬다.",
+        "exclusionReason": "B만 제외: e4-1-5-1-xc7과 정확한 수 및 많고 적음 비교라는 목표가 같다.",
+        "answerNotes": "C의 많은지와 적은지는 동의어가 아니라 둘 다 그래프로 알 수 있는 서로 다른 유효한 비교다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc8",
+      "sourceIndex": 1952,
+      "beforeProposal": {
+        "sourceIndex": 1952,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "48d7eae46adaef95f73e6448c5a7765be1e16d4ecf29ff477b5b560270694e7c",
+        "proposalFingerprint": "99f1a60d5cf2de5f7582d814f022fa1f2739585aafab21b30f8c79b604297737",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "",
+        "bReason": "",
+        "exclusionReason": "사실을 문장으로 쓴다는 낱말 확인뿐이라 설명 목표 없음",
+        "cDecision": "keep",
+        "cReason": "알게 된 사실을 □으로 쓴다에서 문장이 익숙함",
+        "cSlotEquivalents": [
+          [
+            "글",
+            "말"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "알게 된 사실 쓰기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대그래프를 읽고 알게 된 사실을 {문장}으로 쓸 수 있다.",
+        "cStudentSentence": "막대그래프를 읽고 알게 된 사실을 □으로 쓸 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "문장",
+            "equivalents": [
+              "글",
+              "말"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "막대그래프를 읽고 알게 된 사실을 □으로 쓸 수 있다.",
+          "answers": [
+            "문장"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "막대그래프를 읽고 알게 된 사실을 {문장}으로 쓸 수 있다.",
+          "acceptedAnswers": [
+            [
+              "문장",
+              "글",
+              "말"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": ""
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc8",
+          "sourceIndex": 1952,
+          "proposalFingerprint": "99f1a60d5cf2de5f7582d814f022fa1f2739585aafab21b30f8c79b604297737",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "글로 표현하기만 묻는 B 제외를 유지한다.",
+          "cReason": "문장이나 말로 쓸 수 있다는 일반 표현은 수학 확인 목표가 낮으므로 실제 그래프에서 읽은 사실의 빈칸으로 바꾸거나 C 제외를 제안한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "문장·글이라는 표현 형식을 외우는 빈칸으로 수량이나 그래프 읽기 목표를 확인하지 못한다.",
+        "exclusionReason": "B와 C 평가만 제외: 알게 된 사실을 글로 쓴다는 일반 활동을 반복한다. 개념과 원문 일반 설명은 보존한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc11",
+      "sourceIndex": 1955,
+      "beforeProposal": {
+        "sourceIndex": 1955,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "8020f4b5c568ca7ba4f3bf4440eb82d39cb8945bc4e9179c9577d6d831602059",
+        "proposalFingerprint": "e677862e10d066b727d7c72e3ded4e77a7159d2ffb8b39b8df5ecfa99e3d25cc",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "한 사람이 한 가지씩 고른 조사에 $25$명이 참여했는데 막대의 수량을 모두 더하니 $27$명이었다. 어떤 일이 있을 수 있고 어떻게 해야 하는지 쓰라.",
+        "bAnswer": "합계가 사람 수와 다르므로 막대를 잘못 읽었을 수 있다. 막대를 다시 읽어 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합계가 사람 수와 다르다",
+              "잘못 읽은 막대가 있을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "막대를 다시 읽어 확인한다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "합계로 잘못 읽은 막대 찾기",
+        "bReason": "합계와 사람 수 비교를 검산에 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "더한 값과 비교할 □가 조사한 사람 수로 이어짐",
+        "cSlotEquivalents": [
+          [
+            "전체 사람 수",
+            "학생 수",
+            "인원"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합계로 잘못 읽은 막대 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 사람이 한 가지씩 고른 조사에서 막대의 수량을 모두 더한 값이 {조사한 사람 수}와 다르면 잘못 읽은 막대가 있을 수 있다.",
+        "cStudentSentence": "한 사람이 한 가지씩 고른 조사에서 막대의 수량을 모두 더한 값이 □와 다르면 잘못 읽은 막대가 있을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "조사한 사람 수",
+            "equivalents": [
+              "전체 사람 수",
+              "학생 수",
+              "인원"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 사람이 한 가지씩 고른 조사에서 막대의 수량을 모두 더한 값이 □와 다르면 잘못 읽은 막대가 있을 수 있다.",
+          "answers": [
+            "조사한 사람 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 사람이 한 가지씩 고른 조사에 $25$명이 참여했는데 막대의 수량을 모두 더하니 $27$명이었다. 어떤 일이 있을 수 있고 어떻게 해야 하는지 쓰라.",
+          "answer": "합계가 사람 수와 다르므로 막대를 잘못 읽었을 수 있다. 막대를 다시 읽어 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "합계가 사람 수와 다르다",
+                "잘못 읽은 막대가 있을 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "막대를 다시 읽어 확인한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 사람이 한 가지씩 고른 조사에서 막대의 수량을 모두 더한 값이 {조사한 사람 수}와 다르면 잘못 읽은 막대가 있을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "조사한 사람 수",
+              "전체 사람 수",
+              "학생 수",
+              "인원"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc11",
+          "sourceIndex": 1955,
+          "proposalFingerprint": "e677862e10d066b727d7c72e3ded4e77a7159d2ffb8b39b8df5ecfa99e3d25cc",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "합계 불일치에는 잘못 읽기뿐 아니라 잘못 집계하거나 그린 경우도 가능하므로 실제 가능한 점검 이유와 행동을 허용해야 한다.",
+          "cReason": "한 사람 한 항목 조건을 주고 전체 사람 수와 다른 합계의 점검을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "합계가 조사한 25명과 다르므로 막대를 잘못 읽었거나, 조사 결과를 잘못 세거나 그렸을 수 있다. 그래프를 다시 읽고 조사 기록과 비교해 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "막대를 잘못 읽었을 수 있다",
+              "조사 결과를 잘못 세었을 수 있다",
+              "막대를 잘못 그렸을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "막대를 다시 읽거나 조사 기록과 비교해 오류를 확인한다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc14",
+      "sourceIndex": 1958,
+      "beforeProposal": {
+        "sourceIndex": 1958,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "9d83ebd10d01b0ab62983502de87d72e35bbdbb21356450d08dd0763a28772c4",
+        "proposalFingerprint": "7ad2f1a5f13b2d1d1efe371d8e32621d301ee1d0ec9d3bf657d3d56074d239e2",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "학생들이 고른 간식을 한 명에게 한 개씩 나누어 주려 한다. 항목마다 몇 개를 준비해야 하는지 어떻게 정하는지 쓰라.",
+        "bAnswer": "항목마다 막대그래프가 나타내는 수량만큼 준비한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "막대의 수량만큼 준비한다",
+              "고른 학생 수만큼"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "그래프로 준비할 양 정하기",
+        "bReason": "그래프 수량을 실제 준비에 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "학생들이 고른 대로 한 명에게 한 개씩 나누어 줄 때는 항목마다 막대가 나타내는 {수량}만큼 준비한다.",
+        "cReason": "'막대그래프의 수량' 긴 구절 대신 '수량'만 가림",
+        "cSlotEquivalents": [
+          [
+            "학생 수",
+            "사람 수",
+            "인원"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "준비할 양 정하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "학생들이 고른 대로 한 명에게 한 개씩 나누어 줄 때는 항목마다 막대가 나타내는 {수량}만큼 준비한다.",
+        "cStudentSentence": "학생들이 고른 대로 한 명에게 한 개씩 나누어 줄 때는 항목마다 막대가 나타내는 □만큼 준비한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수량",
+            "equivalents": [
+              "학생 수",
+              "사람 수",
+              "인원"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "학생들이 고른 간식을 한 명에게 한 개씩 나누어 주려 한다. 항목마다 몇 개를 준비해야 하는지 어떻게 정하는지 쓰라.",
+          "answer": "항목마다 막대그래프가 나타내는 수량만큼 준비한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "막대의 수량만큼 준비한다",
+                "고른 학생 수만큼"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "학생들이 고른 대로 한 명에게 한 개씩 나누어 줄 때는 항목마다 막대가 나타내는 {수량}만큼 준비한다.",
+          "acceptedAnswers": [
+            [
+              "수량",
+              "학생 수",
+              "사람 수",
+              "인원"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc14",
+          "sourceIndex": 1958,
+          "proposalFingerprint": "7ad2f1a5f13b2d1d1efe371d8e32621d301ee1d0ec9d3bf657d3d56074d239e2",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "B에는 막대그래프가 있다는 정보가 없으므로 그래프를 이용하라는 질문 범위를 명시해야 한다.",
+          "cReason": "학생 한 명 한 개라는 조건으로 막대에 표시된 인원만큼 준비하는 관계가 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "학생들이 한 가지씩 고른 간식을 막대그래프로 나타냈다. 학생 한 명에게 자신이 고른 간식을 한 개씩 나누어 주려 한다. 그래프를 이용해 간식 종류마다 몇 개를 준비할지 정하는 방법을 쓰시오."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc18",
+      "sourceIndex": 1961,
+      "beforeProposal": {
+        "sourceIndex": 1961,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "1deb1c2fe051bd65f0a9bca01f19f4693f84f024c53dce2fadfffe946c111111",
+        "proposalFingerprint": "ef3225610622ac9e1b947b8f3a384cbc5fb281f2a408ee638dc09f49f9d3522a",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "반 친구들이 좋아하는 간식을 조사해 막대그래프로 나타냈다. 이 그래프로 할 수 있는 일을 한 가지 쓰라.",
+        "bAnswer": "조사 결과를 친구들에게 알리고, 가장 많은 친구가 좋아하는 간식을 정할 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조사한 결과를 알린다",
+              "무엇을 정하는 데 쓴다",
+              "가장 많이 고른 것을 정한다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "막대그래프의 쓰임",
+        "bReason": "간식 조사 상황으로 쓰임을 한 가지 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "막대그래프는 조사한 {결과}를 알리고 무엇을 정하는 데 쓰인다.",
+        "cReason": "'조사한 결과' 긴 구절 대신 '결과'만 가림",
+        "cSlotEquivalents": [
+          [
+            "내용",
+            "자료"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "막대그래프의 쓰임",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "막대그래프는 조사한 {결과}를 알리고 무엇을 정하는 데 쓰인다.",
+        "cStudentSentence": "막대그래프는 조사한 □를 알리고 무엇을 정하는 데 쓰인다.",
+        "cSlotAnswers": [
+          {
+            "expected": "결과",
+            "equivalents": [
+              "내용",
+              "자료"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "반 친구들이 좋아하는 간식을 조사해 막대그래프로 나타냈다. 이 그래프로 할 수 있는 일을 한 가지 쓰라.",
+          "answer": "조사 결과를 친구들에게 알리고, 가장 많은 친구가 좋아하는 간식을 정할 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조사한 결과를 알린다",
+                "무엇을 정하는 데 쓴다",
+                "가장 많이 고른 것을 정한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "막대그래프는 조사한 {결과}를 알리고 무엇을 정하는 데 쓰인다.",
+          "acceptedAnswers": [
+            [
+              "결과",
+              "내용",
+              "자료"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc18",
+          "sourceIndex": 1961,
+          "proposalFingerprint": "ef3225610622ac9e1b947b8f3a384cbc5fb281f2a408ee638dc09f49f9d3522a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "그래프로 할 수 있는 일을 자유롭게 묻는 질문에 항목 인원 읽기나 차 계산도 유효하므로 이를 받거나 결정과 알리기의 범위로 질문을 좁혀야 한다.",
+          "cReason": "결과라는 일반 낱말만 받는 C는 실제 간식 선택의 구체적 빈칸으로 바꾸거나 제외할 수 있다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "반 친구들이 좋아하는 간식을 조사해 막대그래프로 나타냈다. 가장 많은 친구가 고른 간식을 행사 간식으로 정하려 한다. 그래프의 막대를 어떻게 살펴 간식을 정할지 쓰시오.",
+        "bAnswer": "가장 긴 막대가 나타내는 간식을 고른다. 그 간식을 고른 친구가 가장 많기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 긴 막대가 나타내는 간식을 고른다"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "결과라는 일반 낱말만 반복하는 C는 그래프의 구체적인 읽기나 선택을 확인하지 못한다.",
+        "exclusionReason": "C만 제외: 결과라는 일반 낱말의 복원보다 B의 실제 간식 선택에서 그래프의 쓰임을 확인한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc21",
+      "sourceIndex": 1964,
+      "beforeProposal": {
+        "sourceIndex": 1964,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "2a683279fdf9e510e5020059572b1663cf8971a5c8c6bd8a67ea9c242a09227e",
+        "proposalFingerprint": "c51444c96c7460e8be86e68c6b001d2da41226c415a6c4cc85fdd487e154bb51",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "눈금이 $5$명, $10$명으로 표시된 막대그래프에서 $5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 어디에 있는지 쓰라.",
+        "bAnswer": "$5$명 눈금과 $10$명 눈금 사이에 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 눈금 사이",
+              "$5$와 $10$ 눈금 사이"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "조건에 맞는 항목 찾기",
+        "bReason": "수량 조건을 막대 끝 위치로 바꾸게 함",
+        "cDecision": "keep",
+        "cReason": "막대 끝이 두 눈금 □, 사이로 쉽게 이어짐",
+        "cSlotEquivalents": [
+          [
+            "가운데"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "조건에 맞는 항목 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 {사이}에 있는 항목이다.",
+        "cStudentSentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 □에 있는 항목이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "사이",
+            "equivalents": [
+              "가운데"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 □에 있는 항목이다.",
+          "answers": [
+            "사이"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "눈금이 $5$명, $10$명으로 표시된 막대그래프에서 $5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 어디에 있는지 쓰라.",
+          "answer": "$5$명 눈금과 $10$명 눈금 사이에 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 눈금 사이",
+                "$5$와 $10$ 눈금 사이"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5$명보다 많고 $10$명보다 적은 항목은 막대 끝이 두 눈금 {사이}에 있는 항목이다.",
+          "acceptedAnswers": [
+            [
+              "사이",
+              "가운데"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc21",
+          "sourceIndex": 1964,
+          "proposalFingerprint": "c51444c96c7460e8be86e68c6b001d2da41226c415a6c4cc85fdd487e154bb51",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "5와 10의 경계 사이에 있는 막대 끝의 위치를 확인한다.",
+          "cReason": "가운데는 정확한 중간으로도 읽히므로 전체 범위인 사이와 혼동하지 않게 대체 답을 정리해야 한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc26",
+      "sourceIndex": 1969,
+      "beforeProposal": {
+        "sourceIndex": 1969,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "bcfca6af8f44e7fe018568fd2f026ca4d893490a89df2b80e0ed1c750bf6255c",
+        "proposalFingerprint": "6417f5652f173c2795ecd04a1ab2b9d5fa4225a9ffe644c0fe50eedf69f73189",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "가는 $8$명, 나는 $6$명, 다는 $12$명이다. 가와 나를 합친 것과 다 중 어느 쪽이 더 많은지 구하고 방법을 쓰라.",
+        "bAnswer": "가와 나를 더해 $8+6=14$명이고 $14>12$이므로 가와 나를 합친 쪽이 더 많다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8+6=14$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14$가 $12$보다 크다",
+              "가와 나를 합친 쪽이 많다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 항목의 합과 한 항목 견주기",
+        "bReason": "합을 구한 뒤 한 막대와 견주게 함",
+        "cDecision": "rewrite",
+        "cAfter": "가 $8$명, 나 $6$명, 다 $12$명이면 가와 나를 합한 $8+6=${$14$}명이 다 $12$명보다 {많다}.",
+        "cReason": "'두 항목을 합친 것' 긴 구절 대신 계산과 비교로 바꿈",
+        "cSlotEquivalents": [
+          [],
+          [
+            "크다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 항목의 합과 한 항목 견주기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가 $8$명, 나 $6$명, 다 $12$명이면 가와 나를 합한 $8+6=${$14$}명이 다 $12$명보다 {많다}.",
+        "cStudentSentence": "가 $8$명, 나 $6$명, 다 $12$명이면 가와 나를 합한 $8+6=$□명이 다 $12$명보다 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "$14$",
+            "equivalents": []
+          },
+          {
+            "expected": "많다",
+            "equivalents": [
+              "크다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "가는 $8$명, 나는 $6$명, 다는 $12$명이다. 가와 나를 합친 것과 다 중 어느 쪽이 더 많은지 구하고 방법을 쓰라.",
+          "answer": "가와 나를 더해 $8+6=14$명이고 $14>12$이므로 가와 나를 합친 쪽이 더 많다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$8+6=14$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$14$가 $12$보다 크다",
+                "가와 나를 합친 쪽이 많다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가 $8$명, 나 $6$명, 다 $12$명이면 가와 나를 합한 $8+6=${$14$}명이 다 $12$명보다 {많다}.",
+          "acceptedAnswers": [
+            [
+              "$14$"
+            ],
+            [
+              "많다",
+              "크다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc26",
+          "sourceIndex": 1969,
+          "proposalFingerprint": "6417f5652f173c2795ecd04a1ab2b9d5fa4225a9ffe644c0fe50eedf69f73189",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "가, 나, 다가 실제 조사 항목의 이름이라는 조건을 질문과 C에 명시하여 막연한 글자만 사람 수처럼 제시하지 않아야 한다.",
+          "cReason": "두 항목 합 14와 다 항목 12의 비교는 보존한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "막대그래프에서 세 조사 항목 가, 나, 다를 고른 학생 수는 각각 $8$명, $6$명, $12$명이다. 가와 나를 합친 학생 수와 다를 고른 학생 수 중 어느 쪽이 더 많은지 쓰고, 구한 방법을 설명하시오.",
+        "cDecision": "rewrite",
+        "cAfter": "막대그래프에서 항목 가는 $8$명, 나는 $6$명, 다는 $12$명이다. 가와 나의 합 $8+6=${$14$}명은 다의 $12$명보다 {많다}."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc1",
+      "sourceIndex": 1972,
+      "beforeProposal": {
+        "sourceIndex": 1972,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "d4463d165cf22b206b9b20eea70734d14b3dcb12f18e8cc7b31985fe4681b0ad",
+        "proposalFingerprint": "8764ec1ec0ac81d62e5324b6cead6f6592842459e43cb4b8214529a99bc90a9a",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$3$, $7$, $11$, $15$는 어떤 규칙으로 커지는지 쓰고, 그렇게 말할 수 있는 까닭을 쓰라.",
+        "bAnswer": "$4$씩 커진다. 이웃한 두 수의 차가 모두 $4$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이웃한 수의 차가 모두 같다",
+              "차가 모두 $4$이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "일정하게 커지는 규칙 알기",
+        "bReason": "차가 모두 같음을 근거로 규칙을 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$3$, $7$, $11$, $15$는 이웃한 수의 차가 모두 $4$이므로 $4$씩 {커지는} 규칙이다.",
+        "cReason": "긴 규칙 구절 복원 대신 수 예에서 '커지는'만 가림",
+        "cSlotEquivalents": [
+          [
+            "늘어나는",
+            "커진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "일정하게 커지는 규칙",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3$, $7$, $11$, $15$는 이웃한 수의 차가 모두 $4$이므로 $4$씩 {커지는} 규칙이다.",
+        "cStudentSentence": "$3$, $7$, $11$, $15$는 이웃한 수의 차가 모두 $4$이므로 $4$씩 □ 규칙이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "커지는",
+            "equivalents": [
+              "늘어나는",
+              "커진다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3$, $7$, $11$, $15$는 어떤 규칙으로 커지는지 쓰고, 그렇게 말할 수 있는 까닭을 쓰라.",
+          "answer": "$4$씩 커진다. 이웃한 두 수의 차가 모두 $4$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이웃한 수의 차가 모두 같다",
+                "차가 모두 $4$이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3$, $7$, $11$, $15$는 이웃한 수의 차가 모두 $4$이므로 $4$씩 {커지는} 규칙이다.",
+          "acceptedAnswers": [
+            [
+              "커지는",
+              "늘어나는",
+              "커진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc1",
+          "sourceIndex": 1972,
+          "proposalFingerprint": "8764ec1ec0ac81d62e5324b6cead6f6592842459e43cb4b8214529a99bc90a9a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "어떤 규칙인지와 이유를 모두 묻는 범위에서 이웃한 차가 같다는 말만이 아니라 4씩 커지는 실제 규칙도 기준에 요구해야 한다.",
+          "cReason": "커진다를 넣으면 커진다 규칙이 되므로 커지는처럼 문장에 맞는 답만 받아야 한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$씩 커진다",
+              "앞의 수에 $4$를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 수의 차가 모두 $4$이다"
+            ]
+          }
+        ],
+        "cSlotEquivalents": [
+          [
+            "늘어나는"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc2",
+      "sourceIndex": 1973,
+      "beforeProposal": {
+        "sourceIndex": 1973,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "db7653589fcdb45a23645d55c5540b865854832526160e53d03eb6b06e02aadc",
+        "proposalFingerprint": "66adbf60c72dd6783ca3890771a7b964cf2b193bc334966cc976836a542289c1",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$50$, $45$, $40$의 규칙을 '$5$씩 달라진다'라고만 말하면 어떤 점이 부족한지 쓰라.",
+        "bAnswer": "커지는지 작아지는지 말하지 않았다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "커지는지 작아지는지 알 수 없다",
+              "커지는지 작아지는지 말하지 않았다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "규칙을 말할 때 빠뜨림",
+        "bReason": "얼마씩과 함께 방향도 말해야 함을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$50$, $45$, $40$은 $5$씩 {작아지는} 규칙이다.",
+        "cReason": "'커지는지 작아지는지' 구절 대신 수 예로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "줄어드는",
+            "작아진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "규칙을 말할 때 빠뜨리면 안 되는 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$50$, $45$, $40$은 $5$씩 {작아지는} 규칙이다.",
+        "cStudentSentence": "$50$, $45$, $40$은 $5$씩 □ 규칙이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아지는",
+            "equivalents": [
+              "줄어드는",
+              "작아진다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$50$, $45$, $40$의 규칙을 '$5$씩 달라진다'라고만 말하면 어떤 점이 부족한지 쓰라.",
+          "answer": "커지는지 작아지는지 말하지 않았다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "커지는지 작아지는지 알 수 없다",
+                "커지는지 작아지는지 말하지 않았다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$50$, $45$, $40$은 $5$씩 {작아지는} 규칙이다.",
+          "acceptedAnswers": [
+            [
+              "작아지는",
+              "줄어드는",
+              "작아진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc2",
+          "sourceIndex": 1973,
+          "proposalFingerprint": "66adbf60c72dd6783ca3890771a7b964cf2b193bc334966cc976836a542289c1",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "방향 정보가 빠졌다는 B의 설명 목표는 분명하다.",
+          "cReason": "작아진다를 넣으면 작아진다 규칙이 되므로 작아지는과 줄어드는처럼 문장에 맞는 답만 받아야 한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          [
+            "줄어드는"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc4",
+      "sourceIndex": 1975,
+      "beforeProposal": {
+        "sourceIndex": 1975,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "2a171c58e527f701d67721350248a051f1f03de776df9266a6c74783468d7593",
+        "proposalFingerprint": "4b57037851b21ba9fa5ac0399d939b640cb2e97cc2b3b0bd71c5c9a8076ad6d6",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "수 배열표에서 가로 방향의 규칙과 세로 방향의 규칙은 각각 어느 칸의 수와 견주어 찾는지 쓰라.",
+        "bAnswer": "가로의 규칙은 옆 칸의 수와, 세로의 규칙은 아래 칸의 수와 견주어 찾는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가로는 옆 칸의 수와 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로는 아래(위) 칸의 수와 견준다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "가로·세로 규칙 찾는 방법",
+        "bReason": "견주는 칸과 방향을 연결해 답하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "수 배열표에서 옆 칸의 수와 견주면 {가로}의 규칙을 찾을 수 있다.",
+        "cReason": "'가로의 규칙' 복원 대신 '가로'만 가림",
+        "cSlotEquivalents": [
+          [
+            "가로 방향"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가로 방향의 규칙",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수 배열표에서 옆 칸의 수와 견주면 {가로}의 규칙을 찾을 수 있다.",
+        "cStudentSentence": "수 배열표에서 옆 칸의 수와 견주면 □의 규칙을 찾을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가로",
+            "equivalents": [
+              "가로 방향"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "수 배열표에서 가로 방향의 규칙과 세로 방향의 규칙은 각각 어느 칸의 수와 견주어 찾는지 쓰라.",
+          "answer": "가로의 규칙은 옆 칸의 수와, 세로의 규칙은 아래 칸의 수와 견주어 찾는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가로는 옆 칸의 수와 견준다"
+              ]
+            },
+            {
+              "anyOf": [
+                "세로는 아래(위) 칸의 수와 견준다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수 배열표에서 옆 칸의 수와 견주면 {가로}의 규칙을 찾을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "가로",
+              "가로 방향"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc4",
+          "sourceIndex": 1975,
+          "proposalFingerprint": "4b57037851b21ba9fa5ac0399d939b640cb2e97cc2b3b0bd71c5c9a8076ad6d6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "세로 비교의 위와 아래를 실제 대체 표현으로 각각 나누어 기준에 담아야 한다.",
+          "cReason": "옆 칸과 가로 방향의 규칙을 연결한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가로는 옆 칸의 수와 견준다",
+              "가로는 왼쪽이나 오른쪽 이웃 칸과 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로는 아래 칸의 수와 견준다",
+              "세로는 위 칸의 수와 견준다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc8",
+      "sourceIndex": 1979,
+      "beforeProposal": {
+        "sourceIndex": 1979,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "f14b7e8f2157b3ebe3377f4d37f083ec5137f627a068fd0b817d230bd15adc16",
+        "proposalFingerprint": "d1d5e812d78b5d3564c11b132e13da4dea81ae3872251aaa36322692f19e4389",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "",
+        "bReason": "",
+        "exclusionReason": "규칙을 말로 나타낸다는 낱말 확인뿐이라 설명 목표 없음",
+        "cDecision": "keep",
+        "cReason": "100씩 커진다처럼 □로 나타낸다, 말이 익숙함",
+        "cSlotEquivalents": [
+          [
+            "글",
+            "문장"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "규칙을 말로 나타내기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "찾은 규칙은 $100$씩 커진다처럼 {말}로 나타낼 수 있다.",
+        "cStudentSentence": "찾은 규칙은 $100$씩 커진다처럼 □로 나타낼 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "말",
+            "equivalents": [
+              "글",
+              "문장"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "찾은 규칙은 $100$씩 커진다처럼 □로 나타낼 수 있다.",
+          "answers": [
+            "말"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "찾은 규칙은 $100$씩 커진다처럼 {말}로 나타낼 수 있다.",
+          "acceptedAnswers": [
+            [
+              "말",
+              "글",
+              "문장"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": ""
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc8",
+          "sourceIndex": 1979,
+          "proposalFingerprint": "d1d5e812d78b5d3564c11b132e13da4dea81ae3872251aaa36322692f19e4389",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "규칙을 말로 표현하는 것만 묻는 B 제외를 유지한다.",
+          "cReason": "말이나 글이라는 일반 표현만 채우는 C는 실제 수에서 증가량과 방향을 묻는 문장으로 바꾸거나 제외를 제안한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "말·글이라는 표현 형식만 묻고 실제 수의 규칙을 찾거나 쓰는 능력은 확인하지 못한다.",
+        "exclusionReason": "B와 C 평가만 제외: 말로 나타낸다는 일반 표현을 반복한다. 실제 규칙 찾기는 e4-1-6-1-xc1 등의 문항에 유지한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc10",
+      "sourceIndex": 1981,
+      "beforeProposal": {
+        "sourceIndex": 1981,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "044754c87d13bd56550cb52f48d08d99a08287f651a44a54727f9f83b3f853c7",
+        "proposalFingerprint": "b83e9136ebdcf84aee1d9983694a627c85d767abc279488cb50065bfd875c56d",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커질 수 있다. 가로 규칙과 세로 규칙이 항상 같아야 하는지 쓰라.",
+        "bAnswer": "항상 같지 않다. 방향마다 규칙이 다를 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "방향마다 규칙이 다를 수 있다",
+              "같지 않아도 된다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "방향마다 다른 규칙",
+        "bReason": "가로·세로 규칙이 다를 수 있음을 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 {다를} 수 있다.",
+        "cReason": "'규칙이 다를 수 있다' 구절 대신 '다를'만 가림",
+        "cSlotEquivalents": [
+          [
+            "달라질"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "방향마다 다른 규칙",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 {다를} 수 있다.",
+        "cStudentSentence": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 □ 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "다를",
+            "equivalents": [
+              "달라질"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커질 수 있다. 가로 규칙과 세로 규칙이 항상 같아야 하는지 쓰라.",
+          "answer": "항상 같지 않다. 방향마다 규칙이 다를 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "방향마다 규칙이 다를 수 있다",
+                "같지 않아도 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수 배열표에서 가로로는 $10$씩, 세로로는 $1000$씩 커지는 것처럼 방향마다 규칙이 {다를} 수 있다.",
+          "acceptedAnswers": [
+            [
+              "다를",
+              "달라질"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc10",
+          "sourceIndex": 1981,
+          "proposalFingerprint": "b83e9136ebdcf84aee1d9983694a627c85d767abc279488cb50065bfd875c56d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "다른 두 규칙을 이미 주고 같아야 하는지만 묻는 B보다 실제 표에서 두 방향 규칙을 찾아 설명하도록 보완해야 한다.",
+          "cReason": "두 방향 규칙이 다를 수 있다는 관계는 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "수 배열표의 윗줄은 왼쪽부터 $10$, $20$, $30$이고, 바로 아랫줄은 $1010$, $1020$, $1030$이다. 오른쪽 이웃 칸으로 갈 때와 바로 아래 칸으로 갈 때 각각 얼마씩 커지는지 쓰고, 두 방향의 규칙이 같은지 비교하시오.",
+        "bAnswer": "오른쪽으로는 $10$씩, 아래쪽으로는 $1000$씩 커진다. 방향마다 커지는 양이 달라 두 규칙은 다르다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽으로 $10$씩 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래쪽으로 $1000$씩 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 방향의 규칙이 다르다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc11",
+      "sourceIndex": 1982,
+      "beforeProposal": {
+        "sourceIndex": 1982,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "03e6ef8bbdc7a0e755dec3ca045f4dc3594cd57c2371c4f433ef47d9517b543f",
+        "proposalFingerprint": "08c261a1a96afdd44b90770fbf385a87a1d8a48ddf85381f832c3a15ea0529e6",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "수 배열표에서 오른쪽으로 한 칸 가면 $10$씩, 아래쪽으로 한 칸 가면 $1000$씩 커진다. 오른쪽 아래로 비스듬히 한 칸 가면 얼마나 커지는지 구하라.",
+        "bAnswer": "두 방향으로 커지는 수를 합쳐 $10+1000=1010$만큼 커진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10+1000$",
+              "두 방향의 수를 합친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1010$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "비스듬한 방향 규칙",
+        "bReason": "두 방향의 수를 합쳐 비스듬한 규칙을 구하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "오른쪽으로 $10$씩, 아래쪽으로 $1000$씩 커지는 수 배열표에서 오른쪽 아래로 한 칸 가면 $10+1000=${$1010$}만큼 커진다.",
+        "cReason": "'합친 만큼' 복원 대신 선명한 계산으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "비스듬한 방향의 규칙",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "오른쪽으로 $10$씩, 아래쪽으로 $1000$씩 커지는 수 배열표에서 오른쪽 아래로 한 칸 가면 $10+1000=${$1010$}만큼 커진다.",
+        "cStudentSentence": "오른쪽으로 $10$씩, 아래쪽으로 $1000$씩 커지는 수 배열표에서 오른쪽 아래로 한 칸 가면 $10+1000=$□만큼 커진다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1010$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "수 배열표에서 오른쪽으로 한 칸 가면 $10$씩, 아래쪽으로 한 칸 가면 $1000$씩 커진다. 오른쪽 아래로 비스듬히 한 칸 가면 얼마나 커지는지 구하라.",
+          "answer": "두 방향으로 커지는 수를 합쳐 $10+1000=1010$만큼 커진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$10+1000$",
+                "두 방향의 수를 합친다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1010$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "오른쪽으로 $10$씩, 아래쪽으로 $1000$씩 커지는 수 배열표에서 오른쪽 아래로 한 칸 가면 $10+1000=${$1010$}만큼 커진다.",
+          "acceptedAnswers": [
+            [
+              "$1010$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc11",
+          "sourceIndex": 1982,
+          "proposalFingerprint": "08c261a1a96afdd44b90770fbf385a87a1d8a48ddf85381f832c3a15ea0529e6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "값만 구하라는 B에도 가로와 세로 증가량을 합하는 방법을 요청하여 기준과 맞추어야 한다.",
+          "cReason": "오른쪽과 아래쪽의 일정한 변화가 주어져 비스듬한 한 칸의 1010을 구할 수 있다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "수 배열표에서 오른쪽으로 한 칸 가면 $10$씩, 아래쪽으로 한 칸 가면 $1000$씩 커진다. 오른쪽 아래로 비스듬히 한 칸 가면 얼마나 커지는지 구하고, 구한 방법을 쓰시오."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc12",
+      "sourceIndex": 1983,
+      "beforeProposal": {
+        "sourceIndex": 1983,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "16c659d7ac6c06af4bd83ea30a1e674fc3d0ff0ba87813fab29410b50f676be4",
+        "proposalFingerprint": "dc5c6651a9f79d44e79c82d9737cdd8ab8b14e48a10f30343b7ea50a8fb0221f",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$2$, $6$, $18$은 이웃한 수의 차가 $4$, $12$로 일정하지 않다. 다음에 어떤 규칙을 살펴볼 수 있는지 찾아 쓰라.",
+        "bAnswer": "앞의 수에 $3$을 곱하면 다음 수가 되는 곱하는 규칙을 살펴본다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "곱하는 규칙",
+              "앞의 수에 같은 수를 곱한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "차가 다를 때 곱셈 규칙 보기",
+        "bReason": "차가 일정하지 않을 때 곱셈으로 살피게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$2$, $6$, $18$은 차가 일정하지 않지만 앞의 수에 $3$을 곱하면 다음 수가 되고, 다음 수는 $18\\times3=${$54$}이다.",
+        "cReason": "'차가 일정하지 않으면' 긴 구절 대신 수 예로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "곱하는 규칙 살펴보기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2$, $6$, $18$은 차가 일정하지 않지만 앞의 수에 $3$을 곱하면 다음 수가 되고, 다음 수는 $18\\times3=${$54$}이다.",
+        "cStudentSentence": "$2$, $6$, $18$은 차가 일정하지 않지만 앞의 수에 $3$을 곱하면 다음 수가 되고, 다음 수는 $18\\times3=$□이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$54$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2$, $6$, $18$은 이웃한 수의 차가 $4$, $12$로 일정하지 않다. 다음에 어떤 규칙을 살펴볼 수 있는지 찾아 쓰라.",
+          "answer": "앞의 수에 $3$을 곱하면 다음 수가 되는 곱하는 규칙을 살펴본다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "곱하는 규칙",
+                "앞의 수에 같은 수를 곱한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2$, $6$, $18$은 차가 일정하지 않지만 앞의 수에 $3$을 곱하면 다음 수가 되고, 다음 수는 $18\\times3=${$54$}이다.",
+          "acceptedAnswers": [
+            [
+              "$54$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc12",
+          "sourceIndex": 1983,
+          "proposalFingerprint": "dc5c6651a9f79d44e79c82d9737cdd8ab8b14e48a10f30343b7ea50a8fb0221f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "어떤 실제 규칙인지 찾는 질문으로 구체화하고 곱하는 규칙이라는 제목만 아니라 3배 관계를 기준에 확인해야 한다.",
+          "cReason": "3배 규칙을 명시한 실제 다음 수 54의 계산은 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$2$, $6$, $18$에서 앞의 수에 같은 수를 곱해 다음 수를 만드는 규칙을 찾아 쓰시오.",
+        "bAnswer": "앞의 수에 $3$을 곱하면 다음 수가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "앞의 수에 $3$을 곱한다",
+              "앞 수의 $3$배가 다음 수이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc14",
+      "sourceIndex": 1984,
+      "beforeProposal": {
+        "sourceIndex": 1984,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "6b176e3a019fd81ac15f53fb352253ffeac48c7a1625846e4b448f34a85f9373",
+        "proposalFingerprint": "14b8f8cfcbbe99737b17d021f24716111412fd30cfc9fb2c582a1934836528db",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$800$, $400$, $200$, $100$이 같은 수씩 빼는 규칙이 아닌 까닭과 어떤 규칙인지 쓰라.",
+        "bAnswer": "줄어드는 수가 $400$, $200$, $100$으로 달라서 빼는 규칙이 아니다. 앞의 수를 $2$로 나누는 규칙이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "줄어드는 수가 일정하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 수를 $2$로 나눈다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "나누는 규칙 알기",
+        "bReason": "빼기가 아님을 보이고 나누기 규칙을 찾게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$800$, $400$, $200$, $100$은 앞의 수를 {$2$}로 나누면 다음 수가 되는 규칙이다.",
+        "cReason": "'같은 수로 나누면' 복원 대신 수 예로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "나누는 규칙",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$800$, $400$, $200$, $100$은 앞의 수를 {$2$}로 나누면 다음 수가 되는 규칙이다.",
+        "cStudentSentence": "$800$, $400$, $200$, $100$은 앞의 수를 □로 나누면 다음 수가 되는 규칙이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$800$, $400$, $200$, $100$이 같은 수씩 빼는 규칙이 아닌 까닭과 어떤 규칙인지 쓰라.",
+          "answer": "줄어드는 수가 $400$, $200$, $100$으로 달라서 빼는 규칙이 아니다. 앞의 수를 $2$로 나누는 규칙이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "줄어드는 수가 일정하지 않다"
+              ]
+            },
+            {
+              "anyOf": [
+                "앞의 수를 $2$로 나눈다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$800$, $400$, $200$, $100$은 앞의 수를 {$2$}로 나누면 다음 수가 되는 규칙이다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc14",
+          "sourceIndex": 1984,
+          "proposalFingerprint": "14b8f8cfcbbe99737b17d021f24716111412fd30cfc9fb2c582a1934836528db",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "같은 수를 빼는 규칙이 아니라는 범위를 답에서도 보존하고 모든 빼는 규칙이 아니라고 일반화하지 않아야 한다.",
+          "cReason": "앞 수를 둘로 나누는 실제 규칙을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "줄어드는 수가 $400$, $200$, $100$으로 달라서 같은 수씩 빼는 규칙은 아니다. 앞의 수를 $2$로 나누는 규칙이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc19",
+      "sourceIndex": 1989,
+      "beforeProposal": {
+        "sourceIndex": 1989,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "67636c707ca9ed90135acfc5bc95c6dbb57799d887f9f5ccb15d5c1ca137ffec",
+        "proposalFingerprint": "beeb843a56bbcd6e4eba29b98645301e3a5e53451cf9b0bf00a272f2a454460c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$5$에서 시작해 $3$씩 커질 때 열째 수를 구하려면 $3$을 몇 번 더해야 하는지 쓰고 그 까닭을 쓰라.",
+        "bAnswer": "$9$번 더한다. 첫째 수 $5$는 아직 더하기 전이라서 열째까지는 $9$번이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9$번"
+            ]
+          },
+          {
+            "anyOf": [
+              "첫째 수는 더하기 전이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "몇째 수의 덧셈 횟수",
+        "bReason": "순서보다 하나 적은 횟수를 근거와 함께 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$5$에서 시작해 $3$씩 커질 때 열째 수는 $3$을 {$9$}번 더한 $5+3\\times9=32$이다.",
+        "cReason": "'순서보다 하나 적은 횟수' 긴 구절을 수 예로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몇째 수 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5$에서 시작해 $3$씩 커질 때 열째 수는 $3$을 {$9$}번 더한 $5+3\\times9=32$이다.",
+        "cStudentSentence": "$5$에서 시작해 $3$씩 커질 때 열째 수는 $3$을 □번 더한 $5+3\\times9=32$이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$9$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5$에서 시작해 $3$씩 커질 때 열째 수를 구하려면 $3$을 몇 번 더해야 하는지 쓰고 그 까닭을 쓰라.",
+          "answer": "$9$번 더한다. 첫째 수 $5$는 아직 더하기 전이라서 열째까지는 $9$번이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$9$번"
+              ]
+            },
+            {
+              "anyOf": [
+                "첫째 수는 더하기 전이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5$에서 시작해 $3$씩 커질 때 열째 수는 $3$을 {$9$}번 더한 $5+3\\times9=32$이다.",
+          "acceptedAnswers": [
+            [
+              "$9$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc19",
+          "sourceIndex": 1989,
+          "proposalFingerprint": "beeb843a56bbcd6e4eba29b98645301e3a5e53451cf9b0bf00a272f2a454460c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "첫째 수는 더하기 전이므로 열째까지 아홉 번 더한다는 이유를 설명한다.",
+          "cReason": "빈칸 9가 뒤의 곱셈식에서 공개되므로 식의 9를 없애거나 실제 열째 값을 묻는 형태로 바꾸어야 한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "첫째 수가 $5$이고 다음 수로 갈 때마다 $3$씩 커진다. 열째 수를 구하려면 첫째 수 $5$에 $3$을 {$9$}번 더한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc22",
+      "sourceIndex": 1992,
+      "beforeProposal": {
+        "sourceIndex": 1992,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "302a52601df300ad0e85a991bb9c45b34b6174c41d7f5f414cb04b4bd2edf6a3",
+        "proposalFingerprint": "17ab76fc9af3cbbdb2f59c2629cdc1880502563faed86222b6f9d034bcf7f13c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$5$씩 커지는 배열 $5$, $10$, $15$, $19$, $25$에서 규칙에 맞지 않는 수를 찾고 그 까닭을 쓰라.",
+        "bAnswer": "$19$이다. $15$와의 차는 $4$, $25$와의 차는 $6$이라 $5$가 아니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$19$"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞뒤와의 차가 $5$가 아니다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "규칙에 맞지 않는 수 찾기",
+        "bReason": "앞뒤와의 차로 어긋난 수를 찾게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$5$씩 커지는 배열 $5$, $10$, $15$, $19$, $25$에서 앞의 수와의 차가 $5$가 아닌 {$19$}가 규칙에 맞지 않는다.",
+        "cReason": "'앞뒤 수와의 차' 긴 구절 대신 수 예로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "규칙에 맞지 않는 수 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5$씩 커지는 배열 $5$, $10$, $15$, $19$, $25$에서 앞의 수와의 차가 $5$가 아닌 {$19$}가 규칙에 맞지 않는다.",
+        "cStudentSentence": "$5$씩 커지는 배열 $5$, $10$, $15$, $19$, $25$에서 앞의 수와의 차가 $5$가 아닌 □가 규칙에 맞지 않는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$19$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5$씩 커지는 배열 $5$, $10$, $15$, $19$, $25$에서 규칙에 맞지 않는 수를 찾고 그 까닭을 쓰라.",
+          "answer": "$19$이다. $15$와의 차는 $4$, $25$와의 차는 $6$이라 $5$가 아니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$19$"
+              ]
+            },
+            {
+              "anyOf": [
+                "앞뒤와의 차가 $5$가 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5$씩 커지는 배열 $5$, $10$, $15$, $19$, $25$에서 앞의 수와의 차가 $5$가 아닌 {$19$}가 규칙에 맞지 않는다.",
+          "acceptedAnswers": [
+            [
+              "$19$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc22",
+          "sourceIndex": 1992,
+          "proposalFingerprint": "17ab76fc9af3cbbdb2f59c2629cdc1880502563faed86222b6f9d034bcf7f13c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "19의 앞이나 뒤 어느 한 차 또는 바른 수 20과의 차로도 오류를 설명할 수 있어 두 차를 반드시 쓰는 기준으로 읽히지 않아야 한다.",
+          "cReason": "앞 수와의 차가 5 아닌 수는 19와 25 둘 다이므로 잘못 쓴 한 수 또는 고칠 값을 명확히 묻도록 바꾸어야 한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$5$에서 시작하여 $5$씩 커지는 배열을 $5$, $10$, $15$, $19$, $25$로 썼다. 잘못 쓴 수 하나를 찾고, 왜 잘못되었는지 쓰시오.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$19$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15$보다 $5$ 커야 하므로 $20$이어야 한다",
+              "$25$보다 $5$ 작아야 하므로 $20$이어야 한다",
+              "$19$와 이웃한 수의 차가 $5$가 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$5$에서 시작해 $5$씩 커지는 배열을 $5$, $10$, $15$, $19$, $25$로 썼다. 잘못 쓴 수 하나인 $19$는 {$20$}으로 고쳐야 한다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc24",
+      "sourceIndex": 1993,
+      "beforeProposal": {
+        "sourceIndex": 1993,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "f64a8ef8d5680cfd11f05054b8499ba919eb11a6264be3d515302eff9117f6e2",
+        "proposalFingerprint": "da2930ea27b57b6aef54872215acacd14c61d922f1924695076bda8839426eb0",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$2$, $4$, $8$, $16$은 $2$를 곱하는 규칙이다. 이웃한 수의 차가 $2$, $4$, $8$로 점점 커지는 까닭을 쓰라.",
+        "bAnswer": "이미 커진 수에 다시 $2$를 곱해 늘어나는 양이 점점 커지기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "커진 수에 다시 곱해서",
+              "늘어나는 양이 점점 커진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "곱하기 규칙의 차가 커짐",
+        "bReason": "곱할 때 차가 점점 커지는 까닭을 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$2$, $4$, $8$, $16$은 $2$를 곱하는 규칙이라 이웃한 수의 차가 $2$, $4$, $8$로 점점 {커진다}.",
+        "cReason": "'$0$보다 큰 수…' 긴 조건 대신 수 예로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "늘어난다",
+            "커지는"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "더하는 규칙과 곱하는 규칙의 차이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2$, $4$, $8$, $16$은 $2$를 곱하는 규칙이라 이웃한 수의 차가 $2$, $4$, $8$로 점점 {커진다}.",
+        "cStudentSentence": "$2$, $4$, $8$, $16$은 $2$를 곱하는 규칙이라 이웃한 수의 차가 $2$, $4$, $8$로 점점 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "커진다",
+            "equivalents": [
+              "늘어난다",
+              "커지는"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2$, $4$, $8$, $16$은 $2$를 곱하는 규칙이다. 이웃한 수의 차가 $2$, $4$, $8$로 점점 커지는 까닭을 쓰라.",
+          "answer": "이미 커진 수에 다시 $2$를 곱해 늘어나는 양이 점점 커지기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "커진 수에 다시 곱해서",
+                "늘어나는 양이 점점 커진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2$, $4$, $8$, $16$은 $2$를 곱하는 규칙이라 이웃한 수의 차가 $2$, $4$, $8$로 점점 {커진다}.",
+          "acceptedAnswers": [
+            [
+              "커진다",
+              "늘어난다",
+              "커지는"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc24",
+          "sourceIndex": 1993,
+          "proposalFingerprint": "da2930ea27b57b6aef54872215acacd14c61d922f1924695076bda8839426eb0",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "늘어나는 양이 커진다는 질문을 되풀이하는 기준 대신 앞 수가 커져 그 수만큼 더 늘어나는 이유를 확인해야 한다.",
+          "cReason": "커지는을 넣으면 문장이 끝나지 않으므로 커진다와 늘어난다처럼 문장에 맞는 표현만 받아야 한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "앞의 수를 두 배로 만드는 것은 앞의 수만큼 더하는 것이다. 앞의 수가 $2$, $4$, $8$로 커지므로 더해지는 양도 커진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 배로 만들 때 앞의 수만큼 더하는데 앞의 수가 점점 커지기 때문이다"
+            ]
+          }
+        ],
+        "cSlotEquivalents": [
+          [
+            "늘어난다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-1-xc26",
+      "sourceIndex": 1994,
+      "beforeProposal": {
+        "sourceIndex": 1994,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-1 수의 배열에서 규칙 찾기",
+        "sourceFingerprint": "4e8ef8b9b8951fca90ea3b456ac3df1b23adf622bdadf4a0319f5da6afac6560",
+        "proposalFingerprint": "5d080c37aadf2afb109e42be9e2915dda57cdc5b66cbe45c50672b8f60ac5006",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-1-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$4$씩 커지는 배열에서 $20$의 바로 앞 수를 구하는 방법과 그 까닭을 쓰라.",
+        "bAnswer": "$20-4=16$이다. 더한 $4$를 되돌려야 하므로 뺀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$를 뺀다",
+              "$20-4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "더한 것을 되돌린다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "거꾸로 앞의 수 구하기",
+        "bReason": "커지는 규칙을 거꾸로 되돌리는 까닭을 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$4$씩 커지는 배열에서 $20$의 바로 앞 수는 $20$에서 $4$를 {빼서} 구한다.",
+        "cReason": "어디를 가릴지 모호한 문장을 수 예로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "빼면",
+            "뺀"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "거꾸로 가서 앞의 수 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4$씩 커지는 배열에서 $20$의 바로 앞 수는 $20$에서 $4$를 {빼서} 구한다.",
+        "cStudentSentence": "$4$씩 커지는 배열에서 $20$의 바로 앞 수는 $20$에서 $4$를 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빼서",
+            "equivalents": [
+              "빼면",
+              "뺀"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4$씩 커지는 배열에서 $20$의 바로 앞 수를 구하는 방법과 그 까닭을 쓰라.",
+          "answer": "$20-4=16$이다. 더한 $4$를 되돌려야 하므로 뺀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$를 뺀다",
+                "$20-4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "더한 것을 되돌린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4$씩 커지는 배열에서 $20$의 바로 앞 수는 $20$에서 $4$를 {빼서} 구한다.",
+          "acceptedAnswers": [
+            [
+              "빼서",
+              "빼면",
+              "뺀"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-1-xc26",
+          "sourceIndex": 1994,
+          "proposalFingerprint": "5d080c37aadf2afb109e42be9e2915dda57cdc5b66cbe45c50672b8f60ac5006",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "더한 4를 거꾸로 빼는 방법과 이유의 B는 범위가 분명하다.",
+          "cReason": "빼면과 뺀을 넣으면 뒤의 구한다와 자연스럽게 이어지지 않으므로 빼서와 빼어처럼 문장에 맞추어야 한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          [
+            "빼어"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

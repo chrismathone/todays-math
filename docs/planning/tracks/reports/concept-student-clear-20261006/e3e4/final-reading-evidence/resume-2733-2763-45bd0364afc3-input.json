@@ -1,0 +1,2831 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2733,
+  "end": 2763,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2733,
+        "sourceFingerprint": "2917d344d0d834911a9290634a8d86d3e28f235c16903d1e75b8f2b92ccc7f4d",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc10",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "오각형의 한 꼭짓점에서 잇기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "오각형에서 한 꼭짓점을 잡으면 자기 자신과 양옆을 제외한 {두 꼭짓점}에 대각선을 이을 수 있다.",
+        "studentC": "오각형에서 한 꼭짓점을 잡으면 자기 자신과 양옆을 제외한 □에 대각선을 이을 수 있다.",
+        "answers": [
+          "두 꼭짓점"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2733,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "2917d344d0d834911a9290634a8d86d3e28f235c16903d1e75b8f2b92ccc7f4d",
+        "proposalFingerprint": "637f5596023581c75d182e04e610dddc88e5b3a1f8da1f0ff26b531906001cb4",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "오각형의 한 꼭짓점에서 그을 수 있는 대각선은 몇 개인지 구하고 까닭을 쓰시오.",
+        "bAnswer": "$2$개이다. 꼭짓점 $5$개 중 자기 자신과 양옆 $3$개를 빼면 $5-3=2$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "자기 자신과 양옆의 꼭짓점은 이을 수 없다",
+              "$5-3=2$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "오각형 한 점의 대각선 수",
+        "bReason": "빼는 세 점을 이용한 세기 방법을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "오각형은 꼭짓점이 $5$개이다. 한 꼭짓점에서 자기 자신과 양옆의 꼭짓점을 빼면 대각선을 그을 수 있는 꼭짓점은 {$2$}개이다.",
+        "cReason": "'두 꼭짓점' 구를 구체 수 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "오각형의 한 꼭짓점에서 잇기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "오각형은 꼭짓점이 $5$개이다. 한 꼭짓점에서 자기 자신과 양옆의 꼭짓점을 빼면 대각선을 그을 수 있는 꼭짓점은 {$2$}개이다.",
+        "cStudentSentence": "오각형은 꼭짓점이 $5$개이다. 한 꼭짓점에서 자기 자신과 양옆의 꼭짓점을 빼면 대각선을 그을 수 있는 꼭짓점은 □개이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "오각형의 한 꼭짓점에서 그을 수 있는 대각선은 몇 개인지 구하고 까닭을 쓰시오.",
+          "answer": "$2$개이다. 꼭짓점 $5$개 중 자기 자신과 양옆 $3$개를 빼면 $5-3=2$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$개",
+                "두 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "자기 자신과 양옆의 꼭짓점은 이을 수 없다",
+                "$5-3=2$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "오각형은 꼭짓점이 $5$개이다. 한 꼭짓점에서 자기 자신과 양옆의 꼭짓점을 빼면 대각선을 그을 수 있는 꼭짓점은 {$2$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2734,
+        "sourceFingerprint": "a0ab88e16755476ad9db5eb9f51cc76608457c9738f5bfc4c0c6be014d94e956",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc11",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "직사각형의 대각선 비교",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형의 대각선을 각각 재면 두 길이가 {일치한다}.",
+        "studentC": "직사각형의 대각선을 각각 재면 두 길이가 □.",
+        "answers": [
+          "일치한다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2734,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "a0ab88e16755476ad9db5eb9f51cc76608457c9738f5bfc4c0c6be014d94e956",
+        "proposalFingerprint": "077249c509863867a0ec85abfae7f5fe1d74ce479b6a38c4a962d4e6851962ef",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형에 대각선 두 개를 긋고 길이를 비교하면 어떠한지 쓰시오.",
+        "bAnswer": "두 대각선의 길이가 서로 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 같다",
+              "일치한다",
+              "똑같다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "직사각형 대각선 길이",
+        "bReason": "직사각형 대각선의 같은 길이 성질을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 두 대각선의 길이는 서로 {같다}.",
+        "cReason": "'일치한다'를 학년 친숙한 비교 낱말로 고침",
+        "cSlotEquivalents": [
+          [
+            "똑같다",
+            "일치한다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형의 대각선 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형의 두 대각선의 길이는 서로 {같다}.",
+        "cStudentSentence": "직사각형의 두 대각선의 길이는 서로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다",
+              "일치한다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형에 대각선 두 개를 긋고 길이를 비교하면 어떠한지 쓰시오.",
+          "answer": "두 대각선의 길이가 서로 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "길이가 같다",
+                "일치한다",
+                "똑같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형의 두 대각선의 길이는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다",
+              "일치한다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2735,
+        "sourceFingerprint": "da6d915affd61bff889881be573cf1cfa4642bb931046a197143a01fa15eedac",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc12",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "마름모 대각선의 만나는 각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "마름모의 대각선이 만나는 곳에는 {직각}이 생긴다.",
+        "studentC": "마름모의 대각선이 만나는 곳에는 □이 생긴다.",
+        "answers": [
+          "직각"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2735,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "da6d915affd61bff889881be573cf1cfa4642bb931046a197143a01fa15eedac",
+        "proposalFingerprint": "44c7a83f3ba9ab5901d2751d82e1fb4e29316df8c7a9804b0741fa859ec3e81d",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모의 두 대각선이 만나면 어떤 각이 생기는지 쓰시오.",
+        "bAnswer": "직각이 생긴다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각",
+              "$90^\\circ$",
+              "수직"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "마름모 대각선이 만나는 각",
+        "bReason": "대각선이 수직으로 만나는 성질을 확인",
+        "cDecision": "keep",
+        "cReason": "만나는 각을 묻는 짧은 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "수직",
+            "$90^\\circ$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모 대각선의 만나는 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모의 대각선이 만나는 곳에는 {직각}이 생긴다.",
+        "cStudentSentence": "마름모의 대각선이 만나는 곳에는 □이 생긴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": [
+              "수직",
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모의 대각선이 만나는 곳에는 □이 생긴다.",
+          "answers": [
+            "직각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "마름모의 두 대각선이 만나면 어떤 각이 생기는지 쓰시오.",
+          "answer": "직각이 생긴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각",
+                "$90^\\circ$",
+                "수직"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모의 대각선이 만나는 곳에는 {직각}이 생긴다.",
+          "acceptedAnswers": [
+            [
+              "직각",
+              "수직",
+              "$90^\\circ$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2736,
+        "sourceFingerprint": "8ba1ab6a7c0adeac14a50bc904f45bafb86e2ef8520f2083ab1adf459cbbcfdd",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc13",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "정사각형 대각선의 두 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형의 대각선은 길이도 같으며 만날 때 {수직}이다.",
+        "studentC": "정사각형의 대각선은 길이도 같으며 만날 때 □이다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2736,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "8ba1ab6a7c0adeac14a50bc904f45bafb86e2ef8520f2083ab1adf459cbbcfdd",
+        "proposalFingerprint": "8d524c41a1e274a5229950bd8d2257200d110774b16f155fd537a0c84895804f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형의 두 대각선에는 길이와 만나는 모양에서 어떤 성질이 있는지 두 가지 쓰시오.",
+        "bAnswer": "두 대각선의 길이가 같고, 서로 수직으로 만난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직으로 만난다",
+              "직각으로 만난다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "정사각형 대각선 두 성질",
+        "bReason": "길이 성질과 수직 성질을 모두 말해야 함",
+        "cDecision": "keep",
+        "cReason": "길이 같음에 이어 만나는 모양을 묻는 빈칸",
+        "cSlotEquivalents": [
+          [
+            "직각",
+            "$90^\\circ$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형 대각선의 두 성질",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형의 대각선은 길이도 같으며 만날 때 {수직}이다.",
+        "cStudentSentence": "정사각형의 대각선은 길이도 같으며 만날 때 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": [
+              "직각",
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정사각형의 대각선은 길이도 같으며 만날 때 □이다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정사각형의 두 대각선에는 길이와 만나는 모양에서 어떤 성질이 있는지 두 가지 쓰시오.",
+          "answer": "두 대각선의 길이가 같고, 서로 수직으로 만난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "길이가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "수직으로 만난다",
+                "직각으로 만난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정사각형의 대각선은 길이도 같으며 만날 때 {수직}이다.",
+          "acceptedAnswers": [
+            [
+              "수직",
+              "직각",
+              "$90^\\circ$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2737,
+        "sourceFingerprint": "e5ff44c5059b826dd1df88ded8037d82c3ab915747da9be0e4f1269f05fbd208",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc14",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "평행사변형 대각선의 절반",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형에서 대각선의 만나는 점은 각 대각선을 {같은 길이의 두 부분}으로 나눈다.",
+        "studentC": "평행사변형에서 대각선의 만나는 점은 각 대각선을 □으로 나눈다.",
+        "answers": [
+          "같은 길이의 두 부분"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2737,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "e5ff44c5059b826dd1df88ded8037d82c3ab915747da9be0e4f1269f05fbd208",
+        "proposalFingerprint": "28511d7123e19eb02c216f2dd5778b02a5abde8896769d8a542f32acd089aec9",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 두 대각선이 한 점에서 만난다. 이 점은 각 대각선을 어떻게 나누는지 쓰시오.",
+        "bAnswer": "각 대각선을 길이가 같은 두 부분, 곧 반으로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "반으로 나눈다",
+              "같은 길이의 두 부분으로 나눈다",
+              "똑같이 둘로 나눈다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행사변형 대각선 이등분",
+        "bReason": "만나는 점이 대각선을 반으로 나눔을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형의 두 대각선이 만나는 점은 각 대각선을 {반}으로 나눈다.",
+        "cReason": "긴 구 정답을 친숙한 낱말 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "절반",
+            "똑같이 둘",
+            "같은 길이의 두 부분"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행사변형 대각선의 절반",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 두 대각선이 만나는 점은 각 대각선을 {반}으로 나눈다.",
+        "cStudentSentence": "평행사변형의 두 대각선이 만나는 점은 각 대각선을 □으로 나눈다.",
+        "cSlotAnswers": [
+          {
+            "expected": "반",
+            "equivalents": [
+              "절반",
+              "똑같이 둘",
+              "같은 길이의 두 부분"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형의 두 대각선이 한 점에서 만난다. 이 점은 각 대각선을 어떻게 나누는지 쓰시오.",
+          "answer": "각 대각선을 길이가 같은 두 부분, 곧 반으로 나눈다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "반으로 나눈다",
+                "같은 길이의 두 부분으로 나눈다",
+                "똑같이 둘로 나눈다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 두 대각선이 만나는 점은 각 대각선을 {반}으로 나눈다.",
+          "acceptedAnswers": [
+            [
+              "반",
+              "절반",
+              "똑같이 둘",
+              "같은 길이의 두 부분"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2738,
+        "sourceFingerprint": "d982a62c5be6f73054cc6ea22b05a59b89d3f136000c375f14a58c1cb4dc0ff5",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc15",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "사각형을 대각선으로 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "안으로 들어간 곳이 없는 사각형에 대각선 하나를 그으면 {삼각형 두 개}로 나뉜다.",
+        "studentC": "안으로 들어간 곳이 없는 사각형에 대각선 하나를 그으면 □로 나뉜다.",
+        "answers": [
+          "삼각형 두 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2738,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "d982a62c5be6f73054cc6ea22b05a59b89d3f136000c375f14a58c1cb4dc0ff5",
+        "proposalFingerprint": "2d946fdd73a7523cfacd0c3d4aaca2155c489da587b6d005bf1839656f5325a6",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "안으로 들어간 곳이 없는 사각형에 대각선을 하나 그으면 어떤 도형 몇 개로 나뉘는지 쓰시오.",
+        "bAnswer": "삼각형 $2$개로 나뉜다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형 $2$개",
+              "삼각형 두 개"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "대각선으로 사각형 나누기",
+        "bReason": "대각선이 사각형을 삼각형 둘로 나눔을 확인",
+        "cDecision": "keep",
+        "cReason": "나뉘는 도형과 개수를 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "삼각형 $2$개"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "사각형을 대각선으로 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "안으로 들어간 곳이 없는 사각형에 대각선 하나를 그으면 {삼각형 두 개}로 나뉜다.",
+        "cStudentSentence": "안으로 들어간 곳이 없는 사각형에 대각선 하나를 그으면 □로 나뉜다.",
+        "cSlotAnswers": [
+          {
+            "expected": "삼각형 두 개",
+            "equivalents": [
+              "삼각형 $2$개"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "안으로 들어간 곳이 없는 사각형에 대각선 하나를 그으면 □로 나뉜다.",
+          "answers": [
+            "삼각형 두 개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "안으로 들어간 곳이 없는 사각형에 대각선을 하나 그으면 어떤 도형 몇 개로 나뉘는지 쓰시오.",
+          "answer": "삼각형 $2$개로 나뉜다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "삼각형 $2$개",
+                "삼각형 두 개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "안으로 들어간 곳이 없는 사각형에 대각선 하나를 그으면 {삼각형 두 개}로 나뉜다.",
+          "acceptedAnswers": [
+            [
+              "삼각형 두 개",
+              "삼각형 $2$개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2739,
+        "sourceFingerprint": "5ceaafae22add7077bf3376bc757097ee7c60e3deb26e8593f1a2b3a1c94d2c4",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc16",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "같은 대각선을 거꾸로 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "이웃하지 않은 두 꼭짓점을 잇는 선은 어느 끝에서 출발해도 같은 대각선이므로 {중복해 세지 않는다}.",
+        "studentC": "이웃하지 않은 두 꼭짓점을 잇는 선은 어느 끝에서 출발해도 같은 대각선이므로 □.",
+        "answers": [
+          "중복해 세지 않는다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2739,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "5ceaafae22add7077bf3376bc757097ee7c60e3deb26e8593f1a2b3a1c94d2c4",
+        "proposalFingerprint": "95e01c273ed0d954769c11b157b1f11ecf79f6cc95d85f0b361f76bfc7918742",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "같은 대각선 중복 세기",
+        "bReason": "양쪽에서 센 경우 항목과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "이웃하지 않은 두 꼭짓점을 잇는 선은 어느 끝에서 출발해도 같은 대각선이므로 {한 번}만 센다.",
+        "cReason": "'중복해 세지 않는다' 구를 짧은 횟수 빈칸으로 고침",
+        "exclusionReason": "같은 대각선을 양쪽에서 세는 문제는 e4-2-6-3-xc20 B에서 육각형 예로 함께 다룬다.",
+        "cSlotEquivalents": [
+          [
+            "$1$번",
+            "하나로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 대각선을 거꾸로 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이웃하지 않은 두 꼭짓점을 잇는 선은 어느 끝에서 출발해도 같은 대각선이므로 {한 번}만 센다.",
+        "cStudentSentence": "이웃하지 않은 두 꼭짓점을 잇는 선은 어느 끝에서 출발해도 같은 대각선이므로 □만 센다.",
+        "cSlotAnswers": [
+          {
+            "expected": "한 번",
+            "equivalents": [
+              "$1$번",
+              "하나로"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "이웃하지 않은 두 꼭짓점을 잇는 선은 어느 끝에서 출발해도 같은 대각선이므로 {한 번}만 센다.",
+          "acceptedAnswers": [
+            [
+              "한 번",
+              "$1$번",
+              "하나로"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "양쪽에서 센 경우 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2740,
+        "sourceFingerprint": "b1e08b50d0131d0101374270ed545ccd13108daa5dde7fdf142c9da5b0441785",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc17",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "직사각형 대각선의 직각 여부",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형의 대각선은 길이는 같아도 서로 수직이라고 {항상 말할 수는 없다}.",
+        "studentC": "직사각형의 대각선은 길이는 같아도 서로 수직이라고 □.",
+        "answers": [
+          "항상 말할 수는 없다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2740,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "b1e08b50d0131d0101374270ed545ccd13108daa5dde7fdf142c9da5b0441785",
+        "proposalFingerprint": "36dc2b62b7f044beb72da67ca78bae5defd9a3dfec6c495174a6814ea3ba341e",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "가로와 세로가 다른 직사각형의 두 대각선은 길이가 같다. 이 두 대각선이 서로 수직으로 만나는지 쓰시오.",
+        "bAnswer": "수직으로 만나지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직으로 만나지 않는다",
+              "직각으로 만나지 않는다",
+              "수직이 아니다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "직사각형 대각선 수직 여부",
+        "bReason": "길이는 같아도 수직이 아님을 구분하게 함",
+        "exampleNeeded": "가로와 세로가 다른 직사각형에 대각선 두 개를 그은 그림",
+        "cDecision": "rewrite",
+        "cAfter": "가로와 세로가 다른 직사각형의 두 대각선은 길이는 같지만 서로 수직으로 만나지 {않는다}.",
+        "cReason": "'항상 말할 수는 없다' 구를 정확한 짧은 서술로 고침",
+        "cSlotEquivalents": [
+          [
+            "만나지 않는다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형 대각선의 직각 여부",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가로와 세로가 다른 직사각형의 두 대각선은 길이는 같지만 서로 수직으로 만나지 {않는다}.",
+        "cStudentSentence": "가로와 세로가 다른 직사각형의 두 대각선은 길이는 같지만 서로 수직으로 만나지 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "않는다",
+            "equivalents": [
+              "만나지 않는다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "가로와 세로가 다른 직사각형의 두 대각선은 길이가 같다. 이 두 대각선이 서로 수직으로 만나는지 쓰시오.",
+          "answer": "수직으로 만나지 않는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수직으로 만나지 않는다",
+                "직각으로 만나지 않는다",
+                "수직이 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가로와 세로가 다른 직사각형의 두 대각선은 길이는 같지만 서로 수직으로 만나지 {않는다}.",
+          "acceptedAnswers": [
+            [
+              "않는다",
+              "만나지 않는다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2741,
+        "sourceFingerprint": "ba78066ad4f7be2aa7f861835a6c59a35c2703a2b96e09ca1161b8be97df698c",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc18",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "마름모 대각선의 길이 여부",
+        "kind": "성질",
+        "level": "중",
+        "definition": "마름모의 대각선은 수직이지만 길이까지 반드시 {같은 것은 아니다}.",
+        "studentC": "마름모의 대각선은 수직이지만 길이까지 반드시 □.",
+        "answers": [
+          "같은 것은 아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2741,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "ba78066ad4f7be2aa7f861835a6c59a35c2703a2b96e09ca1161b8be97df698c",
+        "proposalFingerprint": "7d13d720eaecf442f7ed56a95a31358b8553b3ec1673da031e55379ee7bdaab5",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모의 두 대각선은 서로 수직으로 만난다. 두 대각선의 길이도 항상 같다고 할 수 있는지 쓰시오.",
+        "bAnswer": "항상 같다고 할 수 없다. 길이가 다른 마름모도 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "항상 같다고 할 수 없다",
+              "다를 수 있다",
+              "같지 않을 수 있다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "마름모 대각선 길이 여부",
+        "bReason": "수직이어도 길이는 다를 수 있음을 구분",
+        "cDecision": "rewrite",
+        "cAfter": "마름모의 두 대각선은 수직으로 만나지만 길이는 서로 {다를 수 있다}.",
+        "cReason": "긴 부정 구 빈칸을 쉬운 비교 구로 고침",
+        "cSlotEquivalents": [
+          [
+            "같지 않을 수 있다",
+            "다르다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모 대각선의 길이 여부",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모의 두 대각선은 수직으로 만나지만 길이는 서로 {다를 수 있다}.",
+        "cStudentSentence": "마름모의 두 대각선은 수직으로 만나지만 길이는 서로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "다를 수 있다",
+            "equivalents": [
+              "같지 않을 수 있다",
+              "다르다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "마름모의 두 대각선은 서로 수직으로 만난다. 두 대각선의 길이도 항상 같다고 할 수 있는지 쓰시오.",
+          "answer": "항상 같다고 할 수 없다. 길이가 다른 마름모도 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "항상 같다고 할 수 없다",
+                "다를 수 있다",
+                "같지 않을 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모의 두 대각선은 수직으로 만나지만 길이는 서로 {다를 수 있다}.",
+          "acceptedAnswers": [
+            [
+              "다를 수 있다",
+              "같지 않을 수 있다",
+              "다르다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2742,
+        "sourceFingerprint": "5479320dc25b7ac4c79ef922984291062d8e94054368aabc19bc05a978db053e",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc19",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "육각형 한 점의 대각선 세기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "육각형의 한 꼭짓점에서 자기 자신과 양옆을 빼면 이을 곳이 {세 군데} 남는다.",
+        "studentC": "육각형의 한 꼭짓점에서 자기 자신과 양옆을 빼면 이을 곳이 □ 남는다.",
+        "answers": [
+          "세 군데"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2742,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "5479320dc25b7ac4c79ef922984291062d8e94054368aabc19bc05a978db053e",
+        "proposalFingerprint": "d4f81f42057d648bbc9ffdb4758909a63822cfc9deadd8c663cf7aa36bc4b893",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "육각형 한 점의 대각선 수",
+        "bReason": "오각형 항목과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "육각형은 꼭짓점이 $6$개이다. 한 꼭짓점에서 자기 자신과 양옆의 꼭짓점을 빼면 대각선을 그을 수 있는 꼭짓점은 {$3$}개이다.",
+        "cReason": "'세 군데' 표현을 구체 수 빈칸으로 고침",
+        "exclusionReason": "오각형과 같은 '자기 자신과 양옆을 뺀다' 방법이며 칠각형·육각형 비교 항목에서 육각형 값도 다룬다.",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "육각형 한 점의 대각선 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "육각형은 꼭짓점이 $6$개이다. 한 꼭짓점에서 자기 자신과 양옆의 꼭짓점을 빼면 대각선을 그을 수 있는 꼭짓점은 {$3$}개이다.",
+        "cStudentSentence": "육각형은 꼭짓점이 $6$개이다. 한 꼭짓점에서 자기 자신과 양옆의 꼭짓점을 빼면 대각선을 그을 수 있는 꼭짓점은 □개이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "육각형은 꼭짓점이 $6$개이다. 한 꼭짓점에서 자기 자신과 양옆의 꼭짓점을 빼면 대각선을 그을 수 있는 꼭짓점은 {$3$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "오각형 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2743,
+        "sourceFingerprint": "07d30d2610b5e975bff5d7e7e18c7254a46dde6323f98db0e6e075f522398e6e",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc20",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "대각선을 양쪽에서 센 경우",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각 꼭짓점에서 나온 대각선을 모두 세었다면 같은 선을 {두 번씩} 셌는지 확인한다.",
+        "studentC": "각 꼭짓점에서 나온 대각선을 모두 세었다면 같은 선을 □ 셌는지 확인한다.",
+        "answers": [
+          "두 번씩"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2743,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "07d30d2610b5e975bff5d7e7e18c7254a46dde6323f98db0e6e075f522398e6e",
+        "proposalFingerprint": "70dbef8f924d92f0435fafcfe09c2ec5abc30f87de77480c1058678e6c15ab79",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "육각형의 각 꼭짓점에서 대각선을 $3$개씩 센 뒤 $6\\times3=18$이라고 했다. $18$이 육각형의 대각선 수와 같은지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "같지 않다. 같은 대각선을 양 끝에서 두 번씩 세었으므로 $18\\div2=9$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같지 않다",
+              "$18$개가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 대각선을 두 번씩 세었다",
+              "$18\\div2$",
+              "$9$개"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "대각선 중복 세기 보정",
+        "bReason": "양쪽에서 센 값을 반으로 줄이는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "각 꼭짓점에서 나온 대각선을 모두 세면 같은 대각선을 {$2$}번씩 센 것이다.",
+        "cReason": "'두 번씩' 확인 문장을 사실 문장 수 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "대각선을 양쪽에서 센 경우",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "각 꼭짓점에서 나온 대각선을 모두 세면 같은 대각선을 {$2$}번씩 센 것이다.",
+        "cStudentSentence": "각 꼭짓점에서 나온 대각선을 모두 세면 같은 대각선을 □번씩 센 것이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "육각형의 각 꼭짓점에서 대각선을 $3$개씩 센 뒤 $6\\times3=18$이라고 했다. $18$이 육각형의 대각선 수와 같은지 쓰고 까닭을 설명하시오.",
+          "answer": "같지 않다. 같은 대각선을 양 끝에서 두 번씩 세었으므로 $18\\div2=9$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같지 않다",
+                "$18$개가 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 대각선을 두 번씩 세었다",
+                "$18\\div2$",
+                "$9$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "각 꼭짓점에서 나온 대각선을 모두 세면 같은 대각선을 {$2$}번씩 센 것이다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2744,
+        "sourceFingerprint": "6888edc7166ec5d001f2c99fabebbec306b06cbea126a95c0aa8d74017fd0ed7",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc21",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "만나는 점에서 전체 길이 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "평행사변형의 대각선에서 만나는 점부터 한쪽 끝까지 길이를 알면 {두 배} 하여 전체를 구한다.",
+        "studentC": "평행사변형의 대각선에서 만나는 점부터 한쪽 끝까지 길이를 알면 □ 하여 전체를 구한다.",
+        "answers": [
+          "두 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2744,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "6888edc7166ec5d001f2c99fabebbec306b06cbea126a95c0aa8d74017fd0ed7",
+        "proposalFingerprint": "9f76a49d56d1b3d9bb368c625a0c2cb96572ba3a5ca976944fc7d33fb45d233f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 두 대각선이 만나는 점에서 한 대각선의 한쪽 끝까지 길이가 $5$ cm이다. 이 대각선 전체의 길이는 몇 cm인지 구하고 방법을 쓰시오.",
+        "bAnswer": "$10$ cm이다. 만나는 점이 대각선을 반으로 나누므로 $5$ cm를 두 배 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 배 한다",
+              "$5\\times2$",
+              "$5+5$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "반의 길이로 전체 구하기",
+        "bReason": "만나는 점이 반으로 나눈다는 성질을 계산에 적용",
+        "cDecision": "keep",
+        "cReason": "반의 길이를 두 배 하는 짧은 연산 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$배",
+            "두 배로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "만나는 점에서 전체 길이 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 대각선에서 만나는 점부터 한쪽 끝까지 길이를 알면 {두 배} 하여 전체를 구한다.",
+        "cStudentSentence": "평행사변형의 대각선에서 만나는 점부터 한쪽 끝까지 길이를 알면 □ 하여 전체를 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 배",
+            "equivalents": [
+              "$2$배",
+              "두 배로"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행사변형의 대각선에서 만나는 점부터 한쪽 끝까지 길이를 알면 □ 하여 전체를 구한다.",
+          "answers": [
+            "두 배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행사변형의 두 대각선이 만나는 점에서 한 대각선의 한쪽 끝까지 길이가 $5$ cm이다. 이 대각선 전체의 길이는 몇 cm인지 구하고 방법을 쓰시오.",
+          "answer": "$10$ cm이다. 만나는 점이 대각선을 반으로 나누므로 $5$ cm를 두 배 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$10$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 배 한다",
+                "$5\\times2$",
+                "$5+5$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 대각선에서 만나는 점부터 한쪽 끝까지 길이를 알면 {두 배} 하여 전체를 구한다.",
+          "acceptedAnswers": [
+            [
+              "두 배",
+              "$2$배",
+              "두 배로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2745,
+        "sourceFingerprint": "270be87cba8a2068e45f85f4677908002c87af1bbf1d057797bf042ff52b912e",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc22",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "직사각형 대각선의 네 조각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형의 두 대각선을 만나는 점에서 나눈 네 선분은 {길이가 모두 같다}.",
+        "studentC": "직사각형의 두 대각선을 만나는 점에서 나눈 네 선분은 □.",
+        "answers": [
+          "길이가 모두 같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2745,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "270be87cba8a2068e45f85f4677908002c87af1bbf1d057797bf042ff52b912e",
+        "proposalFingerprint": "d1262add057106a5a7bd41e5b3d4c5adade99e8ce98aea10a0ab8a25df36684f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 두 대각선은 길이가 같고, 만나는 점은 각 대각선을 반으로 나눈다. 이때 나뉜 네 선분의 길이는 어떠한지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "네 선분의 길이가 모두 같다. 두 대각선의 길이가 같고 각각 반으로 나뉘므로 반의 길이도 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 모두 같다",
+              "네 선분이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각선 길이가 같고 반으로 나뉘기 때문",
+              "대각선의 반끼리 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직사각형 대각선 네 조각",
+        "bReason": "대각선 성질을 이어 네 조각이 같은 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 두 대각선이 만나는 점에서 나뉜 네 선분은 길이가 모두 {같다}.",
+        "cReason": "긴 구 정답을 짧은 비교 낱말 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형 대각선의 네 조각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형의 두 대각선이 만나는 점에서 나뉜 네 선분은 길이가 모두 {같다}.",
+        "cStudentSentence": "직사각형의 두 대각선이 만나는 점에서 나뉜 네 선분은 길이가 모두 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형의 두 대각선은 길이가 같고, 만나는 점은 각 대각선을 반으로 나눈다. 이때 나뉜 네 선분의 길이는 어떠한지 쓰고 까닭을 설명하시오.",
+          "answer": "네 선분의 길이가 모두 같다. 두 대각선의 길이가 같고 각각 반으로 나뉘므로 반의 길이도 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "길이가 모두 같다",
+                "네 선분이 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "대각선 길이가 같고 반으로 나뉘기 때문",
+                "대각선의 반끼리 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형의 두 대각선이 만나는 점에서 나뉜 네 선분은 길이가 모두 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2746,
+        "sourceFingerprint": "8c2832697c33c7ada745baffc0c2e19749a6c3c193998b0fdf7084c0a776bd24",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc23",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "마름모 대각선의 네 조각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "마름모에서는 한 대각선의 양쪽 반은 같지만 다른 대각선의 반과는 {다를 수 있다}.",
+        "studentC": "마름모에서는 한 대각선의 양쪽 반은 같지만 다른 대각선의 반과는 □.",
+        "answers": [
+          "다를 수 있다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2746,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "8c2832697c33c7ada745baffc0c2e19749a6c3c193998b0fdf7084c0a776bd24",
+        "proposalFingerprint": "bd85b86b91c2e9c7ec5a4f400d030de3a7a321f05701c363b7863e46428f9c26",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "마름모 대각선 네 조각",
+        "bReason": "마름모 대각선 길이 항목과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "마름모의 두 대각선이 만나는 점에서 나뉜 한 대각선의 양쪽 반은 같지만, 다른 대각선의 반과는 길이가 {다를 수 있다}.",
+        "cReason": "'반'이 무엇의 반인지 분명하게 문장을 고침",
+        "exclusionReason": "마름모의 두 대각선 길이가 같지 않을 수 있다는 목표를 e4-2-6-3-xc18 B에서 이미 묻는다.",
+        "cSlotEquivalents": [
+          [
+            "다르다",
+            "같지 않을 수 있다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모 대각선의 네 조각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모의 두 대각선이 만나는 점에서 나뉜 한 대각선의 양쪽 반은 같지만, 다른 대각선의 반과는 길이가 {다를 수 있다}.",
+        "cStudentSentence": "마름모의 두 대각선이 만나는 점에서 나뉜 한 대각선의 양쪽 반은 같지만, 다른 대각선의 반과는 길이가 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "다를 수 있다",
+            "equivalents": [
+              "다르다",
+              "같지 않을 수 있다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "마름모의 두 대각선이 만나는 점에서 나뉜 한 대각선의 양쪽 반은 같지만, 다른 대각선의 반과는 길이가 {다를 수 있다}.",
+          "acceptedAnswers": [
+            [
+              "다를 수 있다",
+              "다르다",
+              "같지 않을 수 있다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "마름모 대각선 길이 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2747,
+        "sourceFingerprint": "0e71482b2927d56c206a5f895d57332346d94f4ea9b92bcc5a4afc64c7250ad3",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc24",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "정사각형을 두 대각선으로 나누기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정사각형의 두 대각선을 따라 자르면 작은 {직각이등변삼각형} 네 개가 생긴다.",
+        "studentC": "정사각형의 두 대각선을 따라 자르면 작은 □ 네 개가 생긴다.",
+        "answers": [
+          "직각이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2747,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "0e71482b2927d56c206a5f895d57332346d94f4ea9b92bcc5a4afc64c7250ad3",
+        "proposalFingerprint": "f583284115d4de3dfa20428a6d435cb826d1788bed260ea3a24a015edacec8fe",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형을 두 대각선을 따라 자르면 어떤 삼각형이 몇 개 생기는지 쓰시오.",
+        "bAnswer": "작은 직각이등변삼각형이 $4$개 생긴다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$개",
+              "네 개"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 대각선으로 나눈 삼각형",
+        "bReason": "삼각형 종류와 개수를 함께 확인",
+        "cDecision": "rewrite",
+        "cAfter": "정사각형의 두 대각선을 따라 자르면 작은 직각이등변삼각형이 {$4$}개 생긴다.",
+        "cReason": "어려운 삼각형 이름 복원 대신 개수를 묻게 고침",
+        "cSlotEquivalents": [
+          [
+            "네"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형을 두 대각선으로 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형의 두 대각선을 따라 자르면 작은 직각이등변삼각형이 {$4$}개 생긴다.",
+        "cStudentSentence": "정사각형의 두 대각선을 따라 자르면 작은 직각이등변삼각형이 □개 생긴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": [
+              "네"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정사각형을 두 대각선을 따라 자르면 어떤 삼각형이 몇 개 생기는지 쓰시오.",
+          "answer": "작은 직각이등변삼각형이 $4$개 생긴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각이등변삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4$개",
+                "네 개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정사각형의 두 대각선을 따라 자르면 작은 직각이등변삼각형이 {$4$}개 생긴다.",
+          "acceptedAnswers": [
+            [
+              "$4$",
+              "네"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2748,
+        "sourceFingerprint": "3ce2f18985e6122a6ebc71a046b9575fc23edc5073873cfeb451bdc4e539786e",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc25",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "꼭짓점을 하나 더 가진 도형 비교",
+        "kind": "성질",
+        "level": "상",
+        "definition": "꼭짓점 한 곳에서 출발하는 대각선은 칠각형이 육각형보다 {하나 많다}.",
+        "studentC": "꼭짓점 한 곳에서 출발하는 대각선은 칠각형이 육각형보다 □.",
+        "answers": [
+          "하나 많다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2748,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "3ce2f18985e6122a6ebc71a046b9575fc23edc5073873cfeb451bdc4e539786e",
+        "proposalFingerprint": "f56f8ce80ff19de2c41a4acc422d93e317e83178519feceba62f730ad1cc1772",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "한 꼭짓점에서 그을 수 있는 대각선의 수를 칠각형과 육각형에서 각각 구하고, 어느 쪽이 몇 개 더 많은지 쓰시오.",
+        "bAnswer": "칠각형 $7-3=4$개, 육각형 $6-3=3$개이므로 칠각형이 $1$개 더 많다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "칠각형 $4$개, 육각형 $3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "칠각형이 $1$개 더 많다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "꼭짓점 수 늘면 대각선 하나 증가",
+        "bReason": "자기 자신과 양옆을 빼는 방법으로 비교",
+        "cDecision": "rewrite",
+        "cAfter": "한 꼭짓점에서 그을 수 있는 대각선은 칠각형이 육각형보다 {$1$}개 더 많다.",
+        "cReason": "'하나 많다' 구를 짧은 수 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "한"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "꼭짓점을 하나 더 가진 도형 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 꼭짓점에서 그을 수 있는 대각선은 칠각형이 육각형보다 {$1$}개 더 많다.",
+        "cStudentSentence": "한 꼭짓점에서 그을 수 있는 대각선은 칠각형이 육각형보다 □개 더 많다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": [
+              "한"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 꼭짓점에서 그을 수 있는 대각선의 수를 칠각형과 육각형에서 각각 구하고, 어느 쪽이 몇 개 더 많은지 쓰시오.",
+          "answer": "칠각형 $7-3=4$개, 육각형 $6-3=3$개이므로 칠각형이 $1$개 더 많다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "칠각형 $4$개, 육각형 $3$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "칠각형이 $1$개 더 많다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 꼭짓점에서 그을 수 있는 대각선은 칠각형이 육각형보다 {$1$}개 더 많다.",
+          "acceptedAnswers": [
+            [
+              "$1$",
+              "한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2749,
+        "sourceFingerprint": "201b519148bcc26b9562dbce5de9b50c44f9f3e16a68fd85f1127b880959fef6",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc26",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "직사각형의 대각선과 둘레",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형의 대각선 길이를 둘레에 넣어 더하는 것은 {잘못}이다.",
+        "studentC": "직사각형의 대각선 길이를 둘레에 넣어 더하는 것은 □이다.",
+        "answers": [
+          "잘못"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2749,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "201b519148bcc26b9562dbce5de9b50c44f9f3e16a68fd85f1127b880959fef6",
+        "proposalFingerprint": "523f80094009c4043b09a85d677b8e822fc0062f290b8e904f672a9736317107",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $5$ cm, 세로 $3$ cm인 직사각형의 둘레를 구할 때 대각선의 길이를 더하면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "둘레는 도형의 바깥을 이루는 변의 길이를 더한 것인데 대각선은 안쪽에 있어 변이 아니기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘레는 바깥 변의 길이를 더한 것이다",
+              "대각선은 변이 아니다",
+              "대각선은 안쪽에 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "둘레에 대각선 넣지 않기",
+        "bReason": "둘레의 뜻과 대각선의 위치를 연결해 설명",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 둘레는 바깥을 이루는 변의 길이만 더하므로, 대각선의 길이를 넣어 더하면 {틀린다}.",
+        "cReason": "'잘못' 단독 빈칸을 이유가 있는 서술로 고침",
+        "cSlotEquivalents": [
+          [
+            "잘못이다",
+            "안 된다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형의 대각선과 둘레",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형의 둘레는 바깥을 이루는 변의 길이만 더하므로, 대각선의 길이를 넣어 더하면 {틀린다}.",
+        "cStudentSentence": "직사각형의 둘레는 바깥을 이루는 변의 길이만 더하므로, 대각선의 길이를 넣어 더하면 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "틀린다",
+            "equivalents": [
+              "잘못이다",
+              "안 된다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "가로 $5$ cm, 세로 $3$ cm인 직사각형의 둘레를 구할 때 대각선의 길이를 더하면 안 되는 까닭을 쓰시오.",
+          "answer": "둘레는 도형의 바깥을 이루는 변의 길이를 더한 것인데 대각선은 안쪽에 있어 변이 아니기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "둘레는 바깥 변의 길이를 더한 것이다",
+                "대각선은 변이 아니다",
+                "대각선은 안쪽에 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형의 둘레는 바깥을 이루는 변의 길이만 더하므로, 대각선의 길이를 넣어 더하면 {틀린다}.",
+          "acceptedAnswers": [
+            [
+              "틀린다",
+              "잘못이다",
+              "안 된다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2750,
+        "sourceFingerprint": "cd966982f7e09a70d08dc197bbb2e8ad9c4a595ec805869722d4e5642d83e130",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc27",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "길이가 같은 대각선의 한계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형도 두 대각선의 길이가 같으므로, 두 대각선의 길이가 같다는 사실만으로 사각형이 {정사각형}이라고 단정하지 않는다.",
+        "studentC": "직사각형도 두 대각선의 길이가 같으므로, 두 대각선의 길이가 같다는 사실만으로 사각형이 □이라고 단정하지 않는다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2750,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "cd966982f7e09a70d08dc197bbb2e8ad9c4a595ec805869722d4e5642d83e130",
+        "proposalFingerprint": "a792abd86ee4f785a46e4d519098c6266354fbef84d37ff1ba702ff5dc14528a",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "두 대각선의 길이가 같은 사각형을 보고 정사각형이라고 할 수 있는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "정사각형이라고 할 수 없다. 직사각형도 두 대각선의 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형이라고 할 수 없다",
+              "단정할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직사각형도 두 대각선의 길이가 같다",
+              "가로와 세로가 다른 직사각형"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "대각선 길이만으로 단정 금지",
+        "bReason": "반례인 직사각형을 들어 근거 부족을 설명",
+        "cDecision": "keep",
+        "cReason": "직사각형 단서 뒤 정사각형을 묻는 짧은 이름 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "길이가 같은 대각선의 한계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형도 두 대각선의 길이가 같으므로, 두 대각선의 길이가 같다는 사실만으로 사각형이 {정사각형}이라고 단정하지 않는다.",
+        "cStudentSentence": "직사각형도 두 대각선의 길이가 같으므로, 두 대각선의 길이가 같다는 사실만으로 사각형이 □이라고 단정하지 않는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형도 두 대각선의 길이가 같으므로, 두 대각선의 길이가 같다는 사실만으로 사각형이 □이라고 단정하지 않는다.",
+          "answers": [
+            "정사각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "두 대각선의 길이가 같은 사각형을 보고 정사각형이라고 할 수 있는지 쓰고 까닭을 설명하시오.",
+          "answer": "정사각형이라고 할 수 없다. 직사각형도 두 대각선의 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정사각형이라고 할 수 없다",
+                "단정할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "직사각형도 두 대각선의 길이가 같다",
+                "가로와 세로가 다른 직사각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형도 두 대각선의 길이가 같으므로, 두 대각선의 길이가 같다는 사실만으로 사각형이 {정사각형}이라고 단정하지 않는다.",
+          "acceptedAnswers": [
+            [
+              "정사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2751,
+        "sourceFingerprint": "92fe8c625f19a4c787dc30430ca5aed19259a87cd2dfe57c80b0684978dcc3dd",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc1",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "도형 조각의 빈틈",
+        "kind": "정의",
+        "level": "하",
+        "definition": "조각을 놓고도 덮이지 않아 드러난 자리를 {빈틈}이라고 한다.",
+        "studentC": "조각을 놓고도 덮이지 않아 드러난 자리를 □이라고 한다.",
+        "answers": [
+          "빈틈"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2751,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "92fe8c625f19a4c787dc30430ca5aed19259a87cd2dfe57c80b0684978dcc3dd",
+        "proposalFingerprint": "276038830d800add3bee0364dff430236713b649ccd9ee5b7a2d6919c43edcbe",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "도형 조각으로 모양을 채울 때 '빈틈'은 어떤 자리를 말하는지 쓰시오.",
+        "bAnswer": "조각을 놓고도 덮이지 않고 비어 있는 자리이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조각을 놓고도 덮이지 않은 자리",
+              "비어 있는 자리",
+              "빈 곳"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "빈틈의 뜻",
+        "bReason": "조각을 놓은 상황에서 빈틈의 뜻을 설명",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말을 묻는 짧은 정의 빈칸",
+        "cSlotEquivalents": [
+          [
+            "빈 곳",
+            "빈자리",
+            "틈"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "도형 조각의 빈틈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조각을 놓고도 덮이지 않아 드러난 자리를 {빈틈}이라고 한다.",
+        "cStudentSentence": "조각을 놓고도 덮이지 않아 드러난 자리를 □이라고 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빈틈",
+            "equivalents": [
+              "빈 곳",
+              "빈자리",
+              "틈"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "조각을 놓고도 덮이지 않아 드러난 자리를 □이라고 한다.",
+          "answers": [
+            "빈틈"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "도형 조각으로 모양을 채울 때 '빈틈'은 어떤 자리를 말하는지 쓰시오.",
+          "answer": "조각을 놓고도 덮이지 않고 비어 있는 자리이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조각을 놓고도 덮이지 않은 자리",
+                "비어 있는 자리",
+                "빈 곳"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조각을 놓고도 덮이지 않아 드러난 자리를 {빈틈}이라고 한다.",
+          "acceptedAnswers": [
+            [
+              "빈틈",
+              "빈 곳",
+              "빈자리",
+              "틈"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2752,
+        "sourceFingerprint": "a69ac35fd4df89d6f17d6e6973ba46b679bcb9c350201d9f8dc18f40e3dbf0ba",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc2",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "도형 조각의 겹침",
+        "kind": "정의",
+        "level": "하",
+        "definition": "두 조각이 같은 자리를 포개어 차지한 부분은 {겹침}이다.",
+        "studentC": "두 조각이 같은 자리를 포개어 차지한 부분은 □이다.",
+        "answers": [
+          "겹침"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2752,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "a69ac35fd4df89d6f17d6e6973ba46b679bcb9c350201d9f8dc18f40e3dbf0ba",
+        "proposalFingerprint": "406d6e7b53a89a68030c108504903591329c85246de5e8e20be00ae49b9be04a",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "도형 조각을 놓을 때 '겹침'은 어떤 부분을 말하는지 쓰시오.",
+        "bAnswer": "두 조각이 같은 자리를 포개어 차지한 부분이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 조각이 같은 자리를 포갠 부분",
+              "포개어진 부분",
+              "겹쳐진 부분"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "겹침의 뜻",
+        "bReason": "두 조각이 포개진 상황으로 뜻을 설명",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말을 묻는 짧은 정의 빈칸",
+        "cSlotEquivalents": [
+          [
+            "겹친 부분",
+            "겹쳐진 곳",
+            "포개짐"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "도형 조각의 겹침",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 조각이 같은 자리를 포개어 차지한 부분은 {겹침}이다.",
+        "cStudentSentence": "두 조각이 같은 자리를 포개어 차지한 부분은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "겹침",
+            "equivalents": [
+              "겹친 부분",
+              "겹쳐진 곳",
+              "포개짐"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 조각이 같은 자리를 포개어 차지한 부분은 □이다.",
+          "answers": [
+            "겹침"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "도형 조각을 놓을 때 '겹침'은 어떤 부분을 말하는지 쓰시오.",
+          "answer": "두 조각이 같은 자리를 포개어 차지한 부분이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 조각이 같은 자리를 포갠 부분",
+                "포개어진 부분",
+                "겹쳐진 부분"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 조각이 같은 자리를 포개어 차지한 부분은 {겹침}이다.",
+          "acceptedAnswers": [
+            [
+              "겹침",
+              "겹친 부분",
+              "겹쳐진 곳",
+              "포개짐"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2753,
+        "sourceFingerprint": "d0e3486248759c79a7c930f7234c26eeaadccb8fbb24261b79b5fb7058c5455b",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc3",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "조각을 돌려 맞추기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "빈자리와 모양과 크기가 같은데 방향만 달라 맞지 않는 조각은 {돌려서} 맞춘다.",
+        "studentC": "빈자리와 모양과 크기가 같은데 방향만 달라 맞지 않는 조각은 □ 맞춘다.",
+        "answers": [
+          "돌려서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2753,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "d0e3486248759c79a7c930f7234c26eeaadccb8fbb24261b79b5fb7058c5455b",
+        "proposalFingerprint": "beb0bebaf2efa85321abd4d7fe61d5d5890b396b5edafb95ca8a57f3218246cc",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "빈자리와 모양과 크기가 같은 조각이 방향만 달라서 들어가지 않을 때 어떻게 하면 맞출 수 있는지 쓰시오.",
+        "bAnswer": "조각을 돌려서 방향을 맞춘다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "돌린다",
+              "돌려서 맞춘다",
+              "방향을 바꾼다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "조각 돌려 맞추기",
+        "bReason": "방향 차이를 돌리기로 해결하는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "'방향만 달라'가 돌리기를 가리키는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "돌려"
+          ]
+        ],
+        "answerNotes": "뒤집어서는 앞뒤를 바꾸는 움직임이므로 방향만 다른 경우의 답으로 보지 않는다.",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "조각을 돌려 맞추기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "빈자리와 모양과 크기가 같은데 방향만 달라 맞지 않는 조각은 {돌려서} 맞춘다.",
+        "cStudentSentence": "빈자리와 모양과 크기가 같은데 방향만 달라 맞지 않는 조각은 □ 맞춘다.",
+        "cSlotAnswers": [
+          {
+            "expected": "돌려서",
+            "equivalents": [
+              "돌려"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "빈자리와 모양과 크기가 같은데 방향만 달라 맞지 않는 조각은 □ 맞춘다.",
+          "answers": [
+            "돌려서"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "빈자리와 모양과 크기가 같은 조각이 방향만 달라서 들어가지 않을 때 어떻게 하면 맞출 수 있는지 쓰시오.",
+          "answer": "조각을 돌려서 방향을 맞춘다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "돌린다",
+                "돌려서 맞춘다",
+                "방향을 바꾼다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "빈자리와 모양과 크기가 같은데 방향만 달라 맞지 않는 조각은 {돌려서} 맞춘다.",
+          "acceptedAnswers": [
+            [
+              "돌려서",
+              "돌려"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2754,
+        "sourceFingerprint": "1585a8596d75e1654381077fdd76d8d33e8aed444dc6620a44e26fc53cc72b8d",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc4",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "조각을 뒤집어 맞추기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "종이 도형의 앞뒤를 바꾸어 놓는 움직임을 {뒤집기}라고 한다.",
+        "studentC": "종이 도형의 앞뒤를 바꾸어 놓는 움직임을 □라고 한다.",
+        "answers": [
+          "뒤집기"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2754,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "1585a8596d75e1654381077fdd76d8d33e8aed444dc6620a44e26fc53cc72b8d",
+        "proposalFingerprint": "d003b433dfe759d69477ede015ad2bd1ba2286e83cdff5772aeb32f0965ee391",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "종이 도형을 뒤집는다는 것은 도형을 어떻게 움직이는 것인지 쓰시오.",
+        "bAnswer": "도형의 앞뒤를 바꾸어 놓는 것이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "앞뒤를 바꾸어 놓는다",
+              "뒷면이 위로 오게 한다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "뒤집기의 뜻",
+        "bReason": "돌리기와 구분되는 앞뒤 바꾸기를 설명",
+        "cDecision": "keep",
+        "cReason": "움직임의 이름을 묻는 짧은 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "뒤집는 것"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "조각을 뒤집어 맞추기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "종이 도형의 앞뒤를 바꾸어 놓는 움직임을 {뒤집기}라고 한다.",
+        "cStudentSentence": "종이 도형의 앞뒤를 바꾸어 놓는 움직임을 □라고 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "뒤집기",
+            "equivalents": [
+              "뒤집는 것"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "종이 도형의 앞뒤를 바꾸어 놓는 움직임을 □라고 한다.",
+          "answers": [
+            "뒤집기"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "종이 도형을 뒤집는다는 것은 도형을 어떻게 움직이는 것인지 쓰시오.",
+          "answer": "도형의 앞뒤를 바꾸어 놓는 것이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "앞뒤를 바꾸어 놓는다",
+                "뒷면이 위로 오게 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "종이 도형의 앞뒤를 바꾸어 놓는 움직임을 {뒤집기}라고 한다.",
+          "acceptedAnswers": [
+            [
+              "뒤집기",
+              "뒤집는 것"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2755,
+        "sourceFingerprint": "69ae754ceff1d279853764467c9144f723afab5dcbcaf9fb9d56e990ae3d978f",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc5",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "붙여 만든 도형의 이름 정하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "조각들을 붙여 만든 도형의 이름은 전체의 {바깥선}을 보고 정한다.",
+        "studentC": "조각들을 붙여 만든 도형의 이름은 전체의 □을 보고 정한다.",
+        "answers": [
+          "바깥선"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2755,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "69ae754ceff1d279853764467c9144f723afab5dcbcaf9fb9d56e990ae3d978f",
+        "proposalFingerprint": "5cb6e48f80295bbd63404a6d87f9a9d80122e9ab8bcecb50c43d26370b932c15",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "크기가 같은 정사각형 두 개를 한 변 전체끼리 붙여 만든 도형의 이름은 무엇인지 쓰고, 이름을 어떻게 정했는지 설명하시오.",
+        "bAnswer": "직사각형이다. 조각이 아니라 전체의 바깥 모양을 보고 정한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체의 바깥 모양을 본다",
+              "바깥쪽 모양을 보고 정한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "붙인 도형 이름 정하는 방법",
+        "bReason": "조각이 아닌 전체 바깥 모양으로 이름을 정함",
+        "cDecision": "rewrite",
+        "cAfter": "조각들을 붙여 만든 도형의 이름은 전체의 {바깥 모양}을 보고 정한다.",
+        "cReason": "'바깥선'은 낯설어 쉬운 낱말로 고침",
+        "cSlotEquivalents": [
+          [
+            "바깥선",
+            "테두리",
+            "겉모양"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "붙여 만든 도형의 이름 정하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조각들을 붙여 만든 도형의 이름은 전체의 {바깥 모양}을 보고 정한다.",
+        "cStudentSentence": "조각들을 붙여 만든 도형의 이름은 전체의 □을 보고 정한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "바깥 모양",
+            "equivalents": [
+              "바깥선",
+              "테두리",
+              "겉모양"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "크기가 같은 정사각형 두 개를 한 변 전체끼리 붙여 만든 도형의 이름은 무엇인지 쓰고, 이름을 어떻게 정했는지 설명하시오.",
+          "answer": "직사각형이다. 조각이 아니라 전체의 바깥 모양을 보고 정한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체의 바깥 모양을 본다",
+                "바깥쪽 모양을 보고 정한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조각들을 붙여 만든 도형의 이름은 전체의 {바깥 모양}을 보고 정한다.",
+          "acceptedAnswers": [
+            [
+              "바깥 모양",
+              "바깥선",
+              "테두리",
+              "겉모양"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2756,
+        "sourceFingerprint": "30ce68135e83bf86434fd16e0b71c1610330667873841e6ed5af93dcb9f74abe",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc6",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "정사각형을 줄지어 놓기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "크기가 같은 정사각형을 한 줄로 나란히, 이웃한 변 전체가 맞닿게 붙이면 길쭉한 {직사각형}을 만들 수 있다.",
+        "studentC": "크기가 같은 정사각형을 한 줄로 나란히, 이웃한 변 전체가 맞닿게 붙이면 길쭉한 □을 만들 수 있다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2756,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "30ce68135e83bf86434fd16e0b71c1610330667873841e6ed5af93dcb9f74abe",
+        "proposalFingerprint": "52cbb13c18216b87d8f8513f4931a6ef3c73d7d0f6528f3048b66bb12350227f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "정사각형 줄지어 놓기",
+        "bReason": "붙인 도형 이름 항목과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "붙여 만든 도형을 묻는 짧은 이름 빈칸",
+        "exclusionReason": "정사각형 둘을 붙여 직사각형이 되는 예를 e4-2-6-4-xc5 B에서 이미 다룬다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정사각형을 줄지어 놓기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "크기가 같은 정사각형을 한 줄로 나란히, 이웃한 변 전체가 맞닿게 붙이면 길쭉한 {직사각형}을 만들 수 있다.",
+        "cStudentSentence": "크기가 같은 정사각형을 한 줄로 나란히, 이웃한 변 전체가 맞닿게 붙이면 길쭉한 □을 만들 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "직사각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "크기가 같은 정사각형을 한 줄로 나란히, 이웃한 변 전체가 맞닿게 붙이면 길쭉한 □을 만들 수 있다.",
+          "answers": [
+            "직사각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "크기가 같은 정사각형을 한 줄로 나란히, 이웃한 변 전체가 맞닿게 붙이면 길쭉한 {직사각형}을 만들 수 있다.",
+          "acceptedAnswers": [
+            [
+              "직사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "붙인 도형 이름 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2757,
+        "sourceFingerprint": "2b2f46610cb11942b4d05a4dca946df7a1cbe4f8e8d94991736cacced5f954de",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc7",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "정삼각형 두 조각 붙이기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "같은 정삼각형 둘을 한 변 전체끼리 붙인 모양은 {마름모}이다.",
+        "studentC": "같은 정삼각형 둘을 한 변 전체끼리 붙인 모양은 □이다.",
+        "answers": [
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2757,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "2b2f46610cb11942b4d05a4dca946df7a1cbe4f8e8d94991736cacced5f954de",
+        "proposalFingerprint": "218e36e0a89237eb1d49bc4f55d53ca10d55626aa493584f0988e23edb1f9c96",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "크기가 같은 정삼각형 두 개를 한 변 전체끼리 붙이면 어떤 사각형이 되는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "마름모이다. 네 변이 모두 정삼각형의 한 변이라 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마름모"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 변의 길이가 모두 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정삼각형 둘로 마름모",
+        "bReason": "네 변이 같아 마름모가 되는 이유 설명",
+        "cDecision": "keep",
+        "cReason": "붙인 모양의 이름을 묻는 짧은 낱말 빈칸",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형 두 조각 붙이기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 정삼각형 둘을 한 변 전체끼리 붙인 모양은 {마름모}이다.",
+        "cStudentSentence": "같은 정삼각형 둘을 한 변 전체끼리 붙인 모양은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "마름모",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 정삼각형 둘을 한 변 전체끼리 붙인 모양은 □이다.",
+          "answers": [
+            "마름모"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "크기가 같은 정삼각형 두 개를 한 변 전체끼리 붙이면 어떤 사각형이 되는지 쓰고 까닭을 설명하시오.",
+          "answer": "마름모이다. 네 변이 모두 정삼각형의 한 변이라 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "마름모"
+              ]
+            },
+            {
+              "anyOf": [
+                "네 변의 길이가 모두 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 정삼각형 둘을 한 변 전체끼리 붙인 모양은 {마름모}이다.",
+          "acceptedAnswers": [
+            [
+              "마름모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2758,
+        "sourceFingerprint": "bf00a720b7fb695fa527bc1566f0b883d5f732eb2b8ef33a20cc7f7224187f97",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc8",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "주어진 모양 채우기 확인",
+        "kind": "방법",
+        "level": "하",
+        "definition": "조각으로 모양을 채운 뒤에는 남은 자리와 {포개진 자리}가 없는지 확인한다.",
+        "studentC": "조각으로 모양을 채운 뒤에는 남은 자리와 □가 없는지 확인한다.",
+        "answers": [
+          "포개진 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2758,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "bf00a720b7fb695fa527bc1566f0b883d5f732eb2b8ef33a20cc7f7224187f97",
+        "proposalFingerprint": "ee5320b1703bfa46181aef23b5f5497778d594f868b2bd4b66cd85e3c4a59aa8",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "조각으로 주어진 모양을 채운 뒤 잘 채웠는지 확인하려면 무엇을 살펴야 하는지 두 가지 쓰시오.",
+        "bAnswer": "남은 자리(빈틈)가 없는지, 포개진 조각이 없는지 살핀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빈틈이 없는지",
+              "남은 자리가 없는지"
+            ]
+          },
+          {
+            "anyOf": [
+              "겹친 곳이 없는지",
+              "포개진 자리가 없는지"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "채우기 확인 두 가지",
+        "bReason": "빈틈과 겹침 두 기준을 모두 확인",
+        "cDecision": "keep",
+        "cReason": "남은 자리와 짝을 이루는 겹침 빈칸",
+        "cSlotEquivalents": [
+          [
+            "겹친 곳",
+            "겹친 자리",
+            "겹침",
+            "포개진 곳"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "주어진 모양 채우기 확인",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조각으로 모양을 채운 뒤에는 남은 자리와 {포개진 자리}가 없는지 확인한다.",
+        "cStudentSentence": "조각으로 모양을 채운 뒤에는 남은 자리와 □가 없는지 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "포개진 자리",
+            "equivalents": [
+              "겹친 곳",
+              "겹친 자리",
+              "겹침",
+              "포개진 곳"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "조각으로 모양을 채운 뒤에는 남은 자리와 □가 없는지 확인한다.",
+          "answers": [
+            "포개진 자리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "조각으로 주어진 모양을 채운 뒤 잘 채웠는지 확인하려면 무엇을 살펴야 하는지 두 가지 쓰시오.",
+          "answer": "남은 자리(빈틈)가 없는지, 포개진 조각이 없는지 살핀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "빈틈이 없는지",
+                "남은 자리가 없는지"
+              ]
+            },
+            {
+              "anyOf": [
+                "겹친 곳이 없는지",
+                "포개진 자리가 없는지"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조각으로 모양을 채운 뒤에는 남은 자리와 {포개진 자리}가 없는지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "포개진 자리",
+              "겹친 곳",
+              "겹친 자리",
+              "겹침",
+              "포개진 곳"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2759,
+        "sourceFingerprint": "0d1714f52f518d7d644b9b1a6680fe603caf09d42e776acc0b12774409328548",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc9",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "도형의 이동과 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "도형 조각을 밀거나 돌려도 그 조각의 크기는 {달라지지 않는다}.",
+        "studentC": "도형 조각을 밀거나 돌려도 그 조각의 크기는 □.",
+        "answers": [
+          "달라지지 않는다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2759,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "0d1714f52f518d7d644b9b1a6680fe603caf09d42e776acc0b12774409328548",
+        "proposalFingerprint": "5b35d530b6416254c5e57e94a0a01e6ed2e760e7a604453226cce368d6a62963",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "도형 조각을 밀거나 돌려 놓으면 조각의 크기가 달라지는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "달라지지 않는다. 위치나 방향만 바뀌고 크기는 그대로이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "달라지지 않는다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "위치와 방향만 바뀐다",
+              "크기는 그대로이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "이동해도 크기 유지",
+        "bReason": "밀기·돌리기가 위치·방향만 바꿈을 설명",
+        "cDecision": "keep",
+        "cReason": "이동 뒤 크기 변화를 묻는 짧은 서술 빈칸",
+        "cSlotEquivalents": [
+          [
+            "변하지 않는다",
+            "그대로이다",
+            "같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "도형의 이동과 크기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "도형 조각을 밀거나 돌려도 그 조각의 크기는 {달라지지 않는다}.",
+        "cStudentSentence": "도형 조각을 밀거나 돌려도 그 조각의 크기는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "달라지지 않는다",
+            "equivalents": [
+              "변하지 않는다",
+              "그대로이다",
+              "같다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "도형 조각을 밀거나 돌려도 그 조각의 크기는 □.",
+          "answers": [
+            "달라지지 않는다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "도형 조각을 밀거나 돌려 놓으면 조각의 크기가 달라지는지 쓰고 까닭을 설명하시오.",
+          "answer": "달라지지 않는다. 위치나 방향만 바뀌고 크기는 그대로이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "달라지지 않는다",
+                "그대로이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "위치와 방향만 바뀐다",
+                "크기는 그대로이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "도형 조각을 밀거나 돌려도 그 조각의 크기는 {달라지지 않는다}.",
+          "acceptedAnswers": [
+            [
+              "달라지지 않는다",
+              "변하지 않는다",
+              "그대로이다",
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2760,
+        "sourceFingerprint": "aec13d76536ba23efc264d188d47b921b0d4de30e11a07cfa77c679d43280b38",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc10",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "정사각형 네 개가 모이는 각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형의 각 $90^\\circ$가 네 개 모이면 합이 {$360^\\circ$}가 된다.",
+        "studentC": "정사각형의 각 $90^\\circ$가 네 개 모이면 합이 □가 된다.",
+        "answers": [
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2760,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "aec13d76536ba23efc264d188d47b921b0d4de30e11a07cfa77c679d43280b38",
+        "proposalFingerprint": "cfef7ca04ed513b74fb1a3b7abd68836f5bb6801656b1b6ed9de37a86b18441a",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형의 한 각은 $90^\\circ$이다. 이 각 $4$개를 한 점에 모으면 합은 몇 도이고 한 점 둘레가 어떻게 되는지 쓰시오.",
+        "bAnswer": "$90^\\circ\\times4=360^\\circ$이다. 한 점 둘레를 한 바퀴 꼭 채운다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 바퀴를 채운다",
+              "빈틈없이 둘러싼다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "직각 네 개의 합",
+        "bReason": "각의 합과 한 바퀴의 의미를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "선명한 곱셈 결과를 묻는 짧은 계산 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$360$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형 네 개가 모이는 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형의 각 $90^\\circ$가 네 개 모이면 합이 {$360^\\circ$}가 된다.",
+        "cStudentSentence": "정사각형의 각 $90^\\circ$가 네 개 모이면 합이 □가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$360^\\circ$",
+            "equivalents": [
+              "$360$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정사각형의 각 $90^\\circ$가 네 개 모이면 합이 □가 된다.",
+          "answers": [
+            "$360^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정사각형의 한 각은 $90^\\circ$이다. 이 각 $4$개를 한 점에 모으면 합은 몇 도이고 한 점 둘레가 어떻게 되는지 쓰시오.",
+          "answer": "$90^\\circ\\times4=360^\\circ$이다. 한 점 둘레를 한 바퀴 꼭 채운다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$360^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 바퀴를 채운다",
+                "빈틈없이 둘러싼다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정사각형의 각 $90^\\circ$가 네 개 모이면 합이 {$360^\\circ$}가 된다.",
+          "acceptedAnswers": [
+            [
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2761,
+        "sourceFingerprint": "7162b8a25099237016fda02b73a7353641393717b1f9c2ab4f3ed31259294e28",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc11",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "정삼각형이 모이는 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 각이 $60^\\circ$인 정삼각형으로 한 점을 둘러싸려면 {$6$개}를 모은다.",
+        "studentC": "한 각이 $60^\\circ$인 정삼각형으로 한 점을 둘러싸려면 □를 모은다.",
+        "answers": [
+          "$6$개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2761,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "7162b8a25099237016fda02b73a7353641393717b1f9c2ab4f3ed31259294e28",
+        "proposalFingerprint": "fb06875e089991121c60b9923a63494c6b1d71edc74720815668fca61f4f5c98",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "한 각이 $60^\\circ$인 정삼각형을 한 점에 모아 빈틈없이 한 바퀴($360^\\circ$)를 채우려면 몇 개가 필요한지 구하시오.",
+        "bAnswer": "$360\\div60=6$이므로 $6$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$360\\div60$",
+              "$60^\\circ\\times6=360^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "한 바퀴 채우는 개수 구하기",
+        "bReason": "한 바퀴를 한 각으로 나누는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "한 점을 한 바퀴($360^\\circ$) 둘러싸려면 한 각이 $60^\\circ$인 정삼각형을 {$6$}개 모아야 한다.",
+        "cReason": "한 바퀴가 몇 도인지 보이게 계산 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "여섯"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형이 모이는 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 점을 한 바퀴($360^\\circ$) 둘러싸려면 한 각이 $60^\\circ$인 정삼각형을 {$6$}개 모아야 한다.",
+        "cStudentSentence": "한 점을 한 바퀴($360^\\circ$) 둘러싸려면 한 각이 $60^\\circ$인 정삼각형을 □개 모아야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": [
+              "여섯"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 각이 $60^\\circ$인 정삼각형을 한 점에 모아 빈틈없이 한 바퀴($360^\\circ$)를 채우려면 몇 개가 필요한지 구하시오.",
+          "answer": "$360\\div60=6$이므로 $6$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$360\\div60$",
+                "$60^\\circ\\times6=360^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 점을 한 바퀴($360^\\circ$) 둘러싸려면 한 각이 $60^\\circ$인 정삼각형을 {$6$}개 모아야 한다.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "여섯"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2762,
+        "sourceFingerprint": "0963da3c3d3bd051952a400e3bd5c1e0e321f5b8c8a0007de62f5fb0ec993415",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc12",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "정육각형이 모이는 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정육각형의 한 각을 $120^\\circ$로 보면 한 점 둘레에 {$3$개}가 꼭 맞는다.",
+        "studentC": "정육각형의 한 각을 $120^\\circ$로 보면 한 점 둘레에 □가 꼭 맞는다.",
+        "answers": [
+          "$3$개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2762,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "0963da3c3d3bd051952a400e3bd5c1e0e321f5b8c8a0007de62f5fb0ec993415",
+        "proposalFingerprint": "71dde4bb3d096cc0ed74ab8c6c3cf5fad8431b2ac32d3b1c68a208b7817399ac",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc12",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "정육각형 한 점 채우기",
+        "bReason": "정삼각형 개수 구하기와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "한 각이 $120^\\circ$인 정육각형을 한 점 둘레에 {$3$}개 모으면 $360^\\circ$가 되어 꼭 맞는다.",
+        "cReason": "'보면' 표현을 풀어 쓰고 개수 빈칸을 선명하게 함",
+        "exclusionReason": "한 바퀴 $360^\\circ$를 한 각으로 나눠 개수를 구하는 같은 목표를 e4-2-6-4-xc11 B에서 다룬다.",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정육각형이 모이는 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 각이 $120^\\circ$인 정육각형을 한 점 둘레에 {$3$}개 모으면 $360^\\circ$가 되어 꼭 맞는다.",
+        "cStudentSentence": "한 각이 $120^\\circ$인 정육각형을 한 점 둘레에 □개 모으면 $360^\\circ$가 되어 꼭 맞는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "한 각이 $120^\\circ$인 정육각형을 한 점 둘레에 {$3$}개 모으면 $360^\\circ$가 되어 꼭 맞는다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "정삼각형 개수 구하기와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

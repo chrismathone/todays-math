@@ -1,0 +1,1363 @@
+[
+  {
+    "id": "e4-1-1-5-xc4",
+    "sourceIndex": 1423,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1423,
+      "sourceFingerprint": "bfc80d438b9386f67d8c9af18a1caf6290db82debfdc16f6ecab45113d23fb70",
+      "part": "e4plus",
+      "id": "e4-1-1-5-xc4",
+      "section": "초4::1-1 큰 수::1-1-5 조 알아보기",
+      "term": "새 단위 이름이 필요한 까닭",
+      "kind": "성질",
+      "level": "하",
+      "definition": "억의 묶음 수가 $10000$개 이상으로 커지면 {더 큰 단위}로 다시 묶어 이름을 붙여야 큰 수를 {간단히} 나타낼 수 있다.",
+      "example": {
+        "prompt": "$10000$억을 $1$조로 나타낼 수 있는 까닭은?",
+        "answer": "억 $10000$개가 조 $1$개라서"
+      },
+      "studentC": "억의 묶음 수가 $10000$개 이상으로 커지면 □로 다시 묶어 이름을 붙여야 큰 수를 □ 나타낼 수 있다.",
+      "answers": [
+        "더 큰 단위",
+        "간단히"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-5-xc4",
+      "proposalFingerprint": "91baa696e8cbe8b9d303ca47f872ee83e126b20d0185dbea20cb0998b25760b7",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "억이 $10000$개인 수는 $10000$억이라고 하지 않고 '조'라는 새 단위 이름을 붙여 $1$조라고 합니다. 이렇게 새 단위 이름을 붙이면 무엇이 좋은지 설명하세요.",
+      "bAnswer": "억의 개수가 아주 커져도 더 큰 단위로 묶어 큰 수를 짧고 간단하게 나타낼 수 있습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 수를 간단히 나타낼 수 있다",
+            "짧게 쓰고 읽을 수 있다",
+            "쉽게 나타낼 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "새 단위 이름이 필요한 까닭",
+      "bReason": "$10000$억과 $1$조를 견주어 간단해지는 점을 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "'더 큰 단위', '간단히'는 여러 말이 들어갈 수 있는 빈칸임",
+      "cSlotEquivalents": [
+        [
+          "만",
+          "$1$만"
+        ],
+        [
+          "$1$조",
+          "일조"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "억이 {$10000$}개 모이면 더 큰 단위로 다시 묶어 {조}라는 이름을 붙인다. 이렇게 하면 큰 수를 간단히 나타낼 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$10000$",
+        "equivalents": [
+          "만",
+          "$1$만"
+        ]
+      },
+      {
+        "expected": "조",
+        "equivalents": [
+          "$1$조",
+          "일조"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "10000억도 올바른 수량 표현이므로 쓰면 안 된다는 질문 전제를 큰 단위로 읽는 편리함을 묻는 형태로 고쳐야 한다.",
+      "c": "새 단위의 이름을 묻는지 한 조의 읽기를 묻는지 범위를 맞추고 수량과 단위 이름을 섞지 않아야 한다."
+    }
+  },
+  {
+    "id": "e4-1-1-5-xc23",
+    "sourceIndex": 1439,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1439,
+      "sourceFingerprint": "4c03f87d7e1c5dd0d4ac16fce1f15d18251a714a1485a03da927709f2976c49f",
+      "part": "e4plus",
+      "id": "e4-1-1-5-xc23",
+      "section": "초4::1-1 큰 수::1-1-5 조 알아보기",
+      "term": "몇조를 쓸 때 붙는 $0$의 수",
+      "kind": "성질",
+      "level": "상",
+      "definition": "$8$조를 숫자로 쓰면 $8$ 뒤에 $0$이 {열두 개} 붙는다.",
+      "studentC": "$8$조를 숫자로 쓰면 $8$ 뒤에 $0$이 □ 붙는다.",
+      "answers": [
+        "열두 개"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-5-xc23",
+      "proposalFingerprint": "9219981f375659f1ab0a03f4fec8e2e4a1d5b1d8f724a49ad6f659a5da0d0595",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$8$조를 숫자로 쓰면 $8$ 뒤에 $0$이 몇 개 붙는지 쓰고, 조 아래에 어떤 단위들이 몇 자리씩 있는지로 그 까닭을 설명하세요.",
+      "bAnswer": "$12$개입니다. 조 아래에 억, 만, 일 단위가 네 자리씩 있어 $0$이 $4$개씩 $3$묶음이기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$12$개",
+            "열두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "억, 만, 일 단위가 네 자리씩",
+            "네 자리씩 세 묶음",
+            "$4+4+4=12$"
+          ]
+        }
+      ],
+      "bGoal": "몇조 뒤 $0$이 열두 개인 까닭",
+      "bReason": "$0$의 개수를 네 자리 묶음 셋으로 설명하게 함",
+      "cDecision": "keep",
+      "cReason": "$8$조가 보이고 $0$의 개수 하나만 쓰면 됨",
+      "cSlotEquivalents": [
+        [
+          "$12$개"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "$8$조를 숫자로 쓰면 $8$ 뒤에 $0$이 {열두 개} 붙는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "열두 개",
+        "equivalents": [
+          "$12$개"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "질문이 어떤 단위 묶음인지까지 요구하므로 4+4+4만 적은 기준은 억, 만, 일 묶음의 이름을 빠뜨리지 않도록 보완해야 한다.",
+      "c": "8조 뒤에 0이 열두 개 붙는다는 자리 개수 빈칸은 유용하다."
+    }
+  },
+  {
+    "id": "e4-1-1-5-xc24",
+    "sourceIndex": 1440,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1440,
+      "sourceFingerprint": "32e6d53f37ea14d96230c8a84b321db521d097df9b808fde70b9e5bd701ef429",
+      "part": "e4plus",
+      "id": "e4-1-1-5-xc24",
+      "section": "초4::1-1 큰 수::1-1-5 조 알아보기",
+      "term": "수와 단위 이름을 섞어 쓰기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "큰 수를 네 자리씩 끊어 묶음마다 수와 단위 이름을 함께 쓰면, 숫자가 모두 $0$인 묶음은 {쓰지 않아도 된다}.",
+      "example": {
+        "prompt": "$2500000000000$을 $2$조 $5000$억으로 쓰면 $0$을 세지 않아도 크기를 아는 까닭은?",
+        "answer": "단위 이름이 자리를 알려 줘서"
+      },
+      "studentC": "큰 수를 네 자리씩 끊어 묶음마다 수와 단위 이름을 함께 쓰면, 숫자가 모두 $0$인 묶음은 □.",
+      "answers": [
+        "쓰지 않아도 된다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-5-xc24",
+      "proposalFingerprint": "f68bc57d1f2e639af0eeb0c943bd733692c2719692f047350f9e443da3a963ae",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$2500000000000$을 $2$조 $5000$억으로 나타내면 $0$을 세지 않아도 수의 크기를 알 수 있습니다. 그 까닭을 설명하세요.",
+      "bAnswer": "조, 억 같은 단위 이름이 숫자가 어느 자리에 있는지 알려 주기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "단위 이름이 자리를 알려 준다",
+            "조, 억이 붙어 있어 크기를 바로 알 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "단위 이름을 섞어 쓰는 좋은 점",
+      "bReason": "원문 예로 단위 이름이 자리를 알려 준다는 점을 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "문장 끝 '쓰지 않아도 된다'를 통째로 되살려야 하는 빈칸임",
+      "cSlotEquivalents": [
+        [
+          "이"
+        ],
+        [
+          "오천"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "$2500000000000$을 수와 단위 이름을 함께 써서 나타내면 {$2$}조 {$5000$}억이다. 만 단위와 일 단위의 묶음은 모두 $0$이라 쓰지 않는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$2$",
+        "equivalents": [
+          "이"
+        ]
+      },
+      {
+        "expected": "$5000$",
+        "equivalents": [
+          "오천"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "조와 억을 붙이면 크기를 알 수 있다는 기준은 질문의 이점을 반복하므로 각 단위가 숫자의 자리를 알려 준다는 근거로 좁혀야 한다.",
+      "c": "주어진 숫자를 2조 5000억으로 나누어 읽는 두 값은 명확하다."
+    }
+  },
+  {
+    "id": "e4-1-1-5-xc26",
+    "sourceIndex": 1442,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1442,
+      "sourceFingerprint": "51c620886dcdcf07ba8f6539ca2ff0c1c2cca00e7042fec65e5ba261b99a6679",
+      "part": "e4plus",
+      "id": "e4-1-1-5-xc26",
+      "section": "초4::1-1 큰 수::1-1-5 조 알아보기",
+      "term": "만, 억, 조는 앞 단위의 몇 배마다 붙는 이름인가",
+      "kind": "법칙",
+      "level": "상",
+      "definition": "만, 억, 조는 앞 단위의 {$10000$배}가 될 때마다 새 이름이 붙는다.",
+      "studentC": "만, 억, 조는 앞 단위의 □가 될 때마다 새 이름이 붙는다.",
+      "answers": [
+        "$10000$배"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-5-xc26",
+      "proposalFingerprint": "c4748b03aee21965daab6e2a0000ad0dd810444f3f9eab708e275a7e5b3251a1",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "bPrompt": "만, 억, 조는 각각 바로 앞 단위의 몇 배인지 쓰고, 그래서 새 단위 이름이 몇 자리마다 붙는지 쓰세요.",
+      "bAnswer": "일의 $10000$배가 만, 만의 $10000$배가 억, 억의 $10000$배가 조입니다. 그래서 네 자리마다 새 단위 이름이 붙습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10000$배",
+            "만 배"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 자리마다"
+          ]
+        }
+      ],
+      "bGoal": "$10000$배마다 새 단위 이름",
+      "bReason": "배 관계와 네 자리 간격을 이어서 말하게 함",
+      "cDecision": "keep",
+      "cReason": "세 단위가 보이고 몇 배인지 하나만 쓰면 됨",
+      "cSlotEquivalents": [
+        [
+          "만 배",
+          "$1$만 배"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "만, 억, 조는 앞 단위의 {$10000$배}가 될 때마다 새 이름이 붙는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$10000$배",
+        "equivalents": [
+          "만 배",
+          "$1$만 배"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "바로 앞 단위가 천인지 일인지 불명확하므로 일에서 만, 만에서 억, 억에서 조의 관계를 명시해야 한다.",
+      "c": "앞 단위라는 숨은 기준을 없애고 네 자리 묶음의 단위를 구체적으로 제시해야 한다."
+    }
+  },
+  {
+    "id": "e4-1-1-6-xc8",
+    "sourceIndex": 1451,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1451,
+      "sourceFingerprint": "d6ed2e717c670607caf4f9b8f6a33fef8d6407e0dd423979f2f9d9f97e350d47",
+      "part": "e4plus",
+      "id": "e4-1-1-6-xc8",
+      "section": "초4::1-1 큰 수::1-1-6 수 뛰어서 세기",
+      "term": "정한 횟수만큼 뛰어 세기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "몇 번 뛰어 셀지 정해지면 같은 양을 {그 횟수만큼} 차례로 더한다.",
+      "studentC": "몇 번 뛰어 셀지 정해지면 같은 양을 □ 차례로 더한다.",
+      "answers": [
+        "그 횟수만큼"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-6-xc8",
+      "proposalFingerprint": "a2d1c238dcd7bbf0cfd6def9b7619695ce2683dd1162e5242fd07bbf0d9afa45",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$2000$에서 $1000$씩 $3$번 뛰어 세는 방법을 설명하고, 뛰어 센 수를 차례로 쓰세요.",
+      "bAnswer": "$1000$을 $3$번 차례로 더합니다. $3000$, $4000$, $5000$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1000$을 $3$번 더한다",
+            "$1000$씩 세 번 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3000$, $4000$, $5000$"
+          ]
+        }
+      ],
+      "bGoal": "정한 횟수만큼 뛰어 세는 방법",
+      "bReason": "횟수만큼 더한다는 방법을 구체 수로 보이게 함",
+      "cDecision": "rewrite",
+      "cReason": "답 '그 횟수만큼'은 가리키는 말이라 무엇을 쓸지 모호함",
+      "cSlotEquivalents": [
+        [
+          "세"
+        ],
+        [
+          "오천"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "$2000$에서 $1000$씩 $3$번 뛰어 세려면 $1000$을 {$3$}번 차례로 더한다. 그래서 마지막 수는 {$5000$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$3$",
+        "equivalents": [
+          "세"
+        ]
+      },
+      {
+        "expected": "$5000$",
+        "equivalents": [
+          "오천"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "세 번 더하는 방법과 실제 세 결과를 모두 명시한 B는 분명하다.",
+      "c": "세 번이라고 이미 준 수를 그대로 쓰는 첫 빈칸은 빼고 마지막 결과 빈칸을 보존한다."
+    }
+  },
+  {
+    "id": "e4-1-1-6-xc20",
+    "sourceIndex": 1461,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1461,
+      "sourceFingerprint": "623562417b88b2804900259e9a87a011e61efc9810190e209a6e2de4fb935ac1",
+      "part": "e4plus",
+      "id": "e4-1-1-6-xc20",
+      "section": "초4::1-1 큰 수::1-1-6 수 뛰어서 세기",
+      "term": "거꾸로 세어 처음 수 찾기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "뛰어 센 뒤의 수에서 {같은 양을 같은 횟수만큼} 빼면 처음 수를 찾을 수 있다.",
+      "example": {
+        "prompt": "처음 수에서 $2000$씩 $3$번 뛰었다. 같은 양을 세 번 빼면 처음 수가 되는 까닭은?",
+        "answer": "늘린 양을 그대로 덜어서"
+      },
+      "studentC": "뛰어 센 뒤의 수에서 □ 빼면 처음 수를 찾을 수 있다.",
+      "answers": [
+        "같은 양을 같은 횟수만큼"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-6-xc20",
+      "proposalFingerprint": "d71ad7c797b00c3a980835593f2fd9b8e2532868fdaa3b939ba97fa173450841",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 수에서 $2000$씩 $3$번 뛰어 세었더니 $9000$이 되었습니다. 처음 수를 구하는 방법을 설명하고 처음 수를 쓰세요.",
+      "bAnswer": "늘린 양을 그대로 덜어야 하므로 $9000$에서 $2000$을 $3$번 뺍니다. 처음 수는 $3000$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2000$을 $3$번 뺀다",
+            "$6000$을 뺀다",
+            "$2000$씩 거꾸로 $3$번 뛰어 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3000$"
+          ]
+        }
+      ],
+      "bGoal": "거꾸로 세어 처음 수 찾기",
+      "bReason": "끝 수를 정해 같은 양을 같은 횟수만큼 빼는 방법을 보이게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸이 '같은 양을 같은 횟수만큼'이라는 긴 구절임",
+      "cSlotEquivalents": [
+        [
+          "세"
+        ],
+        [
+          "삼천"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "어떤 수에서 $2000$씩 $3$번 뛰어 세어 $9000$이 되었다. 처음 수는 $9000$에서 $2000$을 {$3$}번 빼서 구한 {$3000$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$3$",
+        "equivalents": [
+          "세"
+        ]
+      },
+      {
+        "expected": "$3000$",
+        "equivalents": [
+          "삼천"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "늘린 양을 거꾸로 빼는 방법과 처음 수를 모두 확인한다.",
+      "c": "세 번이라는 입력을 그대로 옮기는 첫 빈칸을 빼고 처음 수 3000을 묻는 빈칸을 보존한다."
+    }
+  },
+  {
+    "id": "e4-1-1-6-xc26",
+    "sourceIndex": 1465,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1465,
+      "sourceFingerprint": "e45c8721dde89ec6894f4176ef501a593ddd4862d0431426c946dd9d5bc87b26",
+      "part": "e4plus",
+      "id": "e4-1-1-6-xc26",
+      "section": "초4::1-1 큰 수::1-1-6 수 뛰어서 세기",
+      "term": "생활 속 뛰어 세기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "같은 양이 {일정하게 되풀이해} 늘거나 주는 상황은 그 양만큼씩 뛰어 세기로 나타낼 수 있다.",
+      "example": {
+        "prompt": "매달 $10$만 원씩 모으는 돈을 뛰어 세기로 나타낼 수 있는 까닭은?",
+        "answer": "달마다 같은 양이 늘어난다"
+      },
+      "studentC": "같은 양이 □ 늘거나 주는 상황은 그 양만큼씩 뛰어 세기로 나타낼 수 있다.",
+      "answers": [
+        "일정하게 되풀이해"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-6-xc26",
+      "proposalFingerprint": "9615dd0d3461d323578c91855edad80d1d5172f1d0a843d8816ec8ca8069c1f2",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "bPrompt": "매달 $10$만 원씩 저금합니다. 모은 돈을 뛰어 세기로 나타낼 수 있는 까닭을 설명하고, 석 달 동안 모은 돈을 달마다 차례로 쓰세요.",
+      "bAnswer": "달마다 같은 양인 $10$만 원이 늘어나기 때문입니다. $10$만 원, $20$만 원, $30$만 원입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "달마다 같은 양이 늘어난다",
+            "매번 $10$만 원씩 똑같이 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$만, $20$만, $30$만"
+          ]
+        }
+      ],
+      "bGoal": "생활 상황을 뛰어 세기로 나타내기",
+      "bReason": "원문 예의 저금 상황으로 같은 양이 되풀이됨을 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "답 '일정하게 되풀이해'는 어려운 말이고 문장을 되살려야 함",
+      "cSlotEquivalents": [
+        [
+          "똑같은",
+          "일정한"
+        ],
+        [
+          "$100000$",
+          "십만"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "매달 $10$만 원씩 모으면 달마다 {같은} 양이 늘어나므로, 모은 돈은 {$10$만}씩 뛰어 세기로 나타낼 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "같은",
+        "equivalents": [
+          "똑같은",
+          "일정한"
+        ]
+      },
+      {
+        "expected": "$10$만",
+        "equivalents": [
+          "$100000$",
+          "십만"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "달마다 같은 금액이 늘어나는 이유와 석 달 동안의 누적값을 구체적으로 묻는다.",
+      "c": "같은 양이라는 관계는 남기고 문장 앞의 10만을 그대로 옮기는 두 번째 빈칸은 빼야 한다."
+    }
+  },
+  {
+    "id": "e4-1-1-7-xc8",
+    "sourceIndex": 1475,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1475,
+      "sourceFingerprint": "f2ab58816703445326ab438df0d5132c95c860c8d94ef14c5c826d5c9227043b",
+      "part": "e4plus",
+      "id": "e4-1-1-7-xc8",
+      "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+      "term": "단위가 다른 큰 수 비교",
+      "kind": "방법",
+      "level": "하",
+      "definition": "만, 억, 조 가운데 서로 다른 단위로 나타낸 두 수에서 단위 앞의 수가 $1$ 이상 $10000$ 미만이면 {큰 단위}가 붙은 수가 더 크다.",
+      "studentC": "만, 억, 조 가운데 서로 다른 단위로 나타낸 두 수에서 단위 앞의 수가 $1$ 이상 $10000$ 미만이면 □가 붙은 수가 더 크다.",
+      "answers": [
+        "큰 단위"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-7-xc8",
+      "proposalFingerprint": "74b27b8ca7ba03338e0dff62a4bec774ac089e7e43477e1eb20d48dc2aac12c5",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$9999$만과 $2$억 중 어느 수가 더 큰지 쓰고, 단위 앞의 수는 $9999$가 더 큰데도 그렇게 되는 까닭을 설명하세요.",
+      "bAnswer": "$2$억이 더 큽니다. $1$억은 만이 $10000$개인 수라서 만이 $9999$개인 수보다 크기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$억"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$억은 만이 $10000$개",
+            "$9999$만은 $1$억이 안 된다",
+            "억이 만보다 큰 단위"
+          ]
+        }
+      ],
+      "bGoal": "단위가 다른 큰 수 비교의 까닭",
+      "bReason": "앞의 수가 커도 큰 단위가 이기는 까닭을 구체 수로 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "'$1$ 이상 $10000$ 미만'은 초4가 배우지 않은 말이라 읽기 어려움",
+      "cSlotEquivalents": [
+        [
+          "높은"
+        ],
+        [
+          "$200000000$"
+        ]
+      ],
+      "coreAfter": "만, 억, 조 가운데 서로 다른 단위로 나타낸 두 수에서 단위 앞의 수가 모두 $1$부터 $9999$까지의 수이면 {큰 단위}가 붙은 수가 더 크다.",
+      "coreReason": "큰단위라는 표적과단위앞값의1~9999조건을보존하며이상·미만을숫자끝값으로푼다."
+    },
+    "currentCMarkedSentence": "$9999$만과 $2$억처럼 단위 앞의 수가 네 자리 이하이면, 더 {큰} 단위가 붙은 수가 더 크다. 그래서 두 수 중 {$2$억}이 더 크다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "큰",
+        "equivalents": [
+          "높은"
+        ]
+      },
+      {
+        "expected": "$2$억",
+        "equivalents": [
+          "$200000000$"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "단위가 다르다는 말만으로는 9999와 2의 차이를 설명하지 못하므로 만 10000개가 억 하나인 근거를 기준에 남겨야 한다.",
+      "c": "단위 앞의 수가 네 자리라는 조건만으로 모든 서로 다른 단위에 성립하지 않으므로 만, 억, 조와 1부터 9999 조건을 명시해야 한다."
+    }
+  },
+  {
+    "id": "e4-1-1-7-xc12",
+    "sourceIndex": 1479,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1479,
+      "sourceFingerprint": "7ed9af472eb2240ae70b72178510bd3e5015c4fc7011e5fc199b4528f8e3b526",
+      "part": "e4plus",
+      "id": "e4-1-1-7-xc12",
+      "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+      "term": "네 자리 수와 다섯 자리 수의 경계",
+      "kind": "성질",
+      "level": "중",
+      "definition": "가장 큰 네 자리 수에 $1$을 더하면 {만이 $1$개}가 되어 다섯 자리 수가 된다. 따라서 모든 네 자리 수는 $10000$보다 작다.",
+      "studentC": "가장 큰 네 자리 수에 $1$을 더하면 □가 되어 다섯 자리 수가 된다. 따라서 모든 네 자리 수는 $10000$보다 작다.",
+      "answers": [
+        "만이 $1$개"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-7-xc12",
+      "proposalFingerprint": "9149b1f890ba1f9f56e4fcc07990442ea2ac22ba1e3af52a8cd9b8220e59c562",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "네 자리 수는 어떤 수이든 $10000$보다 작습니다. 그 까닭을 가장 큰 네 자리 수를 써서 설명하세요.",
+      "bAnswer": "가장 큰 네 자리 수는 $9999$이고, 여기에 $1$을 더해야 $10000$이 되므로 모든 네 자리 수는 $10000$보다 작습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 네 자리 수는 $9999$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9999$에 $1$을 더해야 $10000$",
+            "$9999$는 $10000$보다 $1$ 작다"
+          ]
+        }
+      ],
+      "bGoal": "네 자리 수가 $10000$보다 작은 까닭",
+      "bReason": "가장 큰 네 자리 수를 근거로 경계를 설명하게 함",
+      "cDecision": "rewrite",
+      "cReason": "답 '만이 $1$개'는 낯선 표현이고 뒤 문장에 $10000$이 나와 있음",
+      "cSlotEquivalents": [
+        [
+          "구천구백구십구"
+        ],
+        [
+          "$1$만",
+          "만",
+          "일만"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "가장 큰 네 자리 수 {$9999$}에 $1$을 더하면 가장 작은 다섯 자리 수 {$10000$}이 된다. 따라서 모든 네 자리 수는 다섯 자리 수보다 작다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$9999$",
+        "equivalents": [
+          "구천구백구십구"
+        ]
+      },
+      {
+        "expected": "$10000$",
+        "equivalents": [
+          "$1$만",
+          "만",
+          "일만"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "가장 큰 네 자리 수 9999가 10000보다 작다는 근거로 충분하며 반드시 1을 더한다는 방법만 강제하지 않아야 한다.",
+      "c": "가장 큰 네 자리 수와 가장 작은 다섯 자리 수를 연결하는 계산은 분명하다."
+    }
+  },
+  {
+    "id": "e4-1-1-7-xc13",
+    "sourceIndex": 1480,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1480,
+      "sourceFingerprint": "125c3805a742ef55251247a7674e30b51eaa070ee4fdc72102d5177d6a2bfc64",
+      "part": "e4plus",
+      "id": "e4-1-1-7-xc13",
+      "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+      "term": "꼴이 다른 수 비교하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "한글로 쓴 수와 숫자로 쓴 수를 비교할 때는 {같은 꼴}로 바꾸어 비교한다.",
+      "studentC": "한글로 쓴 수와 숫자로 쓴 수를 비교할 때는 □로 바꾸어 비교한다.",
+      "answers": [
+        "같은 꼴"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-7-xc13",
+      "proposalFingerprint": "4cf5d9a808d2e4cbd1e1c2226564e4354113ee1ef9fe909e2a688ef86795a7d9",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "'삼만 오천'과 $34000$의 크기를 비교하는 방법을 설명하고, 더 큰 수를 쓰세요.",
+      "bAnswer": "한글로 쓴 수를 숫자 $35000$으로 바꾸어 같은 꼴로 맞춘 뒤 비교합니다. 삼만 오천이 더 큽니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "숫자로 바꾸어 비교한다",
+            "둘 다 같은 꼴로 바꾼다",
+            "$34000$을 삼만 사천으로 읽어 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "삼만 오천",
+            "$35000$"
+          ]
+        }
+      ],
+      "bGoal": "꼴이 다른 두 수 비교 방법",
+      "bReason": "한글 수와 숫자를 주어 같은 꼴로 맞추는 방법을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "답 '같은 꼴'은 낯선 말이라 구체 수를 바꾸는 문장으로 고침",
+      "cSlotEquivalents": [
+        [
+          "$3$만 $5000$"
+        ],
+        [
+          "$35000$"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "'삼만 오천'과 $34000$을 비교할 때는 '삼만 오천'을 숫자 {$35000$}으로 바꾸어 비교한다. 두 수 중 더 큰 수는 {삼만 오천}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$35000$",
+        "equivalents": [
+          "$3$만 $5000$"
+        ]
+      },
+      {
+        "expected": "삼만 오천",
+        "equivalents": [
+          "$35000$"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "한글을 숫자로 또는 숫자를 한글로 맞추어 비교하는 실제 두 방법을 허용한다.",
+      "c": "두 빈칸이 같은 35000을 반복 요구하므로 숫자 변환과 큰 수 판단 중 유용한 한 목표로 정리해야 한다."
+    }
+  },
+  {
+    "id": "e4-1-1-7-xc14",
+    "sourceIndex": 1481,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1481,
+      "sourceFingerprint": "e38cf5034cbda009eaf8cf02a9e2b126d7b5412cd427b12a0d6de95f767cd83a",
+      "part": "e4plus",
+      "id": "e4-1-1-7-xc14",
+      "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+      "term": "여러 수의 차례 정하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "여러 수를 작은 수부터 늘어놓을 때는 {두 수씩 비교하여} 차례를 정한다.",
+      "studentC": "여러 수를 작은 수부터 늘어놓을 때는 □ 차례를 정한다.",
+      "answers": [
+        "두 수씩 비교하여"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-7-xc14",
+      "proposalFingerprint": "c30eda00b28479bca886cf072e93170ff1806ebdbcce9bbc4148ee18268b462b",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$5200$, $4900$, $5100$을 작은 수부터 차례로 쓰고, 어떻게 차례를 정했는지 설명하세요.",
+      "bAnswer": "$4900$, $5100$, $5200$입니다. 두 수씩 높은 자리부터 비교하여 가장 작은 수부터 차례를 정했습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4900$, $5100$, $5200$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수씩 비교한다",
+            "높은 자리부터 숫자를 비교한다",
+            "천의 자리, 백의 자리 차례로 비교한다"
+          ]
+        }
+      ],
+      "bGoal": "여러 수의 차례 정하기",
+      "bReason": "세 수를 주어 두 수씩 견주는 방법을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '두 수씩 비교하여'가 구절이라 떠올리기 어려움",
+      "cSlotEquivalents": [
+        [
+          "견주어"
+        ],
+        [],
+        []
+      ]
+    },
+    "currentCMarkedSentence": "$5200$, $4900$, $5100$을 작은 수부터 늘어놓으려면 두 수씩 크기를 {비교}하여 차례를 정한다. 작은 수부터 쓰면 {$4900$}, $5100$, {$5200$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "비교",
+        "equivalents": [
+          "견주어"
+        ]
+      },
+      {
+        "expected": "$4900$",
+        "equivalents": []
+      },
+      {
+        "expected": "$5200$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "실제 세 수의 순서와 높은 자리의 비교 방법을 함께 확인한다.",
+      "c": "견주어를 넣으면 견주어하여가 되므로 문장 구조를 바꾸거나 대체 답을 문장에 맞추어야 한다."
+    }
+  },
+  {
+    "id": "e4-1-1-7-xc25",
+    "sourceIndex": 1491,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1491,
+      "sourceFingerprint": "4b24ea5487ae439031f7637c175bd94c14df43b69cedd14e5f0b4bb4af8b50e2",
+      "part": "e4plus",
+      "id": "e4-1-1-7-xc25",
+      "section": "초4::1-1 큰 수::1-1-7 수의 크기 비교",
+      "term": "앞 숫자가 같아 보이는 수",
+      "kind": "방법",
+      "level": "상",
+      "definition": "$7777$만과 $7777$억처럼 앞 숫자가 같아 보여도 {단위}를 확인해야 한다.",
+      "studentC": "$7777$만과 $7777$억처럼 앞 숫자가 같아 보여도 □를 확인해야 한다.",
+      "answers": [
+        "단위"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-1-7-xc25",
+      "proposalFingerprint": "b82dd7eca69949e5c5cb7981aadc1ab88d053a70189f55630d3d1ef44a4ac4b9",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$7777$만과 $7777$억 중 더 큰 수를 쓰고, 앞의 숫자가 같은데도 크기가 다른 까닭을 설명하세요.",
+      "bAnswer": "$7777$억이 더 큽니다. 앞의 수는 같지만 억이 만보다 큰 단위이기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7777$억"
+          ]
+        },
+        {
+          "anyOf": [
+            "억이 만보다 큰 단위",
+            "단위가 다르다",
+            "억은 만의 $10000$배"
+          ]
+        }
+      ],
+      "bGoal": "앞 숫자가 같을 때 단위 확인",
+      "bReason": "원문의 두 수로 단위가 크기를 정함을 말하게 함",
+      "cDecision": "keep",
+      "cReason": "두 수가 보이고 확인할 것을 익숙한 낱말 하나로 쓰면 됨",
+      "cSlotEquivalents": [
+        [
+          "단위 이름",
+          "뒤의 단위"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "$7777$만과 $7777$억처럼 앞 숫자가 같아 보여도 {단위}를 확인해야 한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "단위",
+        "equivalents": [
+          "단위 이름",
+          "뒤의 단위"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "단위가 다르다는 말만으로는 어느 쪽이 큰지 설명하지 못하므로 억이 만보다 크다는 방향을 기준에 남겨야 한다.",
+      "c": "같은 앞 숫자에서도 단위를 확인해야 한다는 관계는 분명하다."
+    }
+  },
+  {
+    "id": "e4-1-2-1-xc4",
+    "sourceIndex": 1497,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1497,
+      "sourceFingerprint": "1d3b4bc4f4c53011e94eafee6c18e9461a65eb3b6f51fd9bf56ce0aa6834d3af",
+      "part": "e4plus",
+      "id": "e4-1-2-1-xc4",
+      "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+      "term": "본떠서 비교하기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "투명 종이에 한 각을 본떠 다른 각 위에 {겹쳐} 보면 크기를 비교할 수 있다.",
+      "studentC": "투명 종이에 한 각을 본떠 다른 각 위에 □ 보면 크기를 비교할 수 있다.",
+      "answers": [
+        "겹쳐"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-2-1-xc4",
+      "proposalFingerprint": "ec55e2fc65e8f735676278d77dc44dc08b4619454bfa14c848af12f1faf36cbd",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "직접 겹칠 수 없는 두 각의 크기를 투명 종이로 비교하는 방법을 차례로 설명하세요.",
+      "bAnswer": "투명 종이에 한 각을 본뜬 다음, 다른 각 위에 꼭짓점과 한 변을 맞추어 겹쳐 보고 어느 각의 변이 더 벌어졌는지 봅니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "투명 종이에 한 각을 본뜬다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다른 각 위에 겹쳐 본다",
+            "포개어 본다"
+          ]
+        }
+      ],
+      "bGoal": "본떠서 각을 비교하는 방법",
+      "bReason": "본뜨기와 겹치기 두 단계를 차례로 말하게 함",
+      "cDecision": "keep",
+      "cReason": "본뜬 뒤 하는 행동을 익숙한 낱말 하나로 쓰면 됨",
+      "cSlotEquivalents": [
+        [
+          "포개어",
+          "겹쳐서",
+          "포개"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "투명 종이에 한 각을 본떠 다른 각 위에 {겹쳐} 보면 크기를 비교할 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "겹쳐",
+        "equivalents": [
+          "포개어",
+          "겹쳐서",
+          "포개"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "본뜬 각을 꼭짓점과 한 변에 맞추는 과정이 빠져도 기준을 만족하므로 올바른 겹치기 조건을 기준에 추가해야 한다.",
+      "c": "본뜬 각을 겹치는 비교 방법은 짧고 분명하다."
+    }
+  },
+  {
+    "id": "e4-1-2-1-xc7",
+    "sourceIndex": 1500,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1500,
+      "sourceFingerprint": "4e1b744604ff3c5ffae5a2b4f125d8ba375ba0e02310b5c98fb94034a2e7033c",
+      "part": "e4plus",
+      "id": "e4-1-2-1-xc7",
+      "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+      "term": "직각을 대어 비교하기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "삼각자의 직각을 대어 보면 각이 직각보다 {큰지 작은지} 알 수 있다.",
+      "studentC": "삼각자의 직각을 대어 보면 각이 직각보다 □ 알 수 있다.",
+      "answers": [
+        "큰지 작은지"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-2-1-xc7",
+      "proposalFingerprint": "e77b8e508a7c7bd0afaa27ff5f644c6d8e6a755f0a33217e56696fbf16ff40f0",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 각이 직각보다 큰지 작은지를 각도기 없이 삼각자로 알아보려고 합니다. 삼각자를 어떻게 대고 무엇을 보면 되는지 쓰세요.",
+      "bAnswer": "삼각자의 직각 부분을 각의 꼭짓점과 한 변에 맞추어 대고, 각의 다른 변이 직각의 안쪽에 있는지 바깥쪽에 있는지 본다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각자의 직각을 각에 맞추어 댄다",
+            "직각 부분을 각에 겹쳐 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다른 변이 직각 안쪽인지 바깥쪽인지 본다",
+            "직각보다 더 벌어졌는지 덜 벌어졌는지 본다"
+          ]
+        }
+      ],
+      "bGoal": "삼각자 직각으로 각 견주는 방법",
+      "bReason": "대는 곳과 살필 것을 좁혀 방법을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "'큰지 작은지'는 구절 복원이라 짧은 비교 답으로 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "삼각자의 직각을 대었을 때 직각보다 더 벌어진 각은 직각보다 {크다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "크다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "삼각자의 직각을 각의 꼭짓점과 한 변에 맞추어 대는 필수 과정이 기준에서도 확인되어야 한다.",
+      "c": "직각보다 더 벌어진 각이 더 크다는 비교는 분명하다."
+    }
+  },
+  {
+    "id": "e4-1-2-1-xc8",
+    "sourceIndex": 1501,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1501,
+      "sourceFingerprint": "088c780c71f7442224c214eae54df1ab3b59a7afdbad61d52ba11a3eb5847563",
+      "part": "e4plus",
+      "id": "e4-1-2-1-xc8",
+      "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+      "term": "단위 각",
+      "kind": "정의",
+      "level": "하",
+      "definition": "작은 각 하나를 정해 두고 그 각이 {몇 번} 들어가는지 세어 각의 크기를 나타낼 수 있다.",
+      "studentC": "작은 각 하나를 정해 두고 그 각이 □ 들어가는지 세어 각의 크기를 나타낼 수 있다.",
+      "answers": [
+        "몇 번"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-2-1-xc8",
+      "proposalFingerprint": "f4fc605db04d34c5601a414f01b149941c301de50cf363a7718ca00b6943c63b",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "작은 각 하나를 기준(단위 각)으로 정했습니다. 이 단위 각을 써서 다른 각의 크기를 나타내는 방법을 쓰세요.",
+      "bAnswer": "나타내려는 각 안에 단위 각이 몇 번 들어가는지 세어 그 횟수로 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "단위 각이 몇 번 들어가는지 센다",
+            "단위 각이 들어간 횟수로 나타낸다"
+          ]
+        }
+      ],
+      "bGoal": "단위 각으로 크기 나타내기",
+      "bReason": "'단위 각'을 기준 각으로 풀어 주고 세는 방법을 묻게 함",
+      "cDecision": "keep",
+      "cReason": "'세어'와 이어져 '몇 번'이 바로 떠오르는 쉬운 빈칸",
+      "cSlotEquivalents": [
+        [
+          "몇 개"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "작은 각 하나를 정해 두고 그 각이 {몇 번} 들어가는지 세어 각의 크기를 나타낼 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "몇 번",
+        "equivalents": [
+          "몇 개"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "기준 각이 정확히 여러 번 들어가는 경우라는 조건이나 구체적인 예를 넣어 온전한 개수로 셀 수 있음을 분명히 해야 한다.",
+      "c": "몇 번 들어가는지 세는 방법은 유지하되 같은 조건을 학생 문장에도 제시해야 한다."
+    }
+  },
+  {
+    "id": "e4-1-2-1-xc14",
+    "sourceIndex": 1507,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1507,
+      "sourceFingerprint": "eb4705a800f9cad95fefc6ee72b4b5496baed564e138b7d5fec39ebf2174a5de",
+      "part": "e4plus",
+      "id": "e4-1-2-1-xc14",
+      "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+      "term": "세 각의 차례 정하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "각도기 없이 세 각의 크기를 비교할 때는 두 각씩 꼭짓점과 한 변을 맞추어 {겹쳐} 보고 차례를 정한다.",
+      "studentC": "각도기 없이 세 각의 크기를 비교할 때는 두 각씩 꼭짓점과 한 변을 맞추어 □ 보고 차례를 정한다.",
+      "answers": [
+        "겹쳐"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-2-1-xc14",
+      "proposalFingerprint": "3b5fb7bfc3de2b31d7617180b85e99603588c754437932861331d7d44f115522",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "각도기 없이, 종이에 그려 오린 세 각을 큰 것부터 차례로 늘어놓으려고 합니다. 어떻게 비교하면 되는지 쓰세요.",
+      "bAnswer": "두 각씩 꼭짓점과 한 변을 맞추어 겹쳐 보며 어느 각이 더 큰지 알아보고, 그 결과로 차례를 정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 각씩 겹쳐 비교한다",
+            "두 개씩 짝지어 겹쳐 본다"
+          ]
+        }
+      ],
+      "bGoal": "세 각을 두 각씩 겹쳐 비교",
+      "bReason": "각도기 없는 조건과 세 각을 밝혀 비교 방법을 쓰게 함",
+      "cDecision": "keep",
+      "cReason": "맞추어 다음에 오는 '겹쳐'는 익숙한 한 낱말",
+      "cSlotEquivalents": [
+        [
+          "겹쳐서",
+          "포개어"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "각도기 없이 세 각의 크기를 비교할 때는 두 각씩 꼭짓점과 한 변을 맞추어 {겹쳐} 보고 차례를 정한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "겹쳐",
+        "equivalents": [
+          "겹쳐서",
+          "포개어"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "두 개씩 겹친다는 말만으로는 정확한 비교가 되지 않으므로 꼭짓점과 한 변 정렬을 기준에도 포함해야 한다.",
+      "c": "정렬 조건을 이미 명시한 C는 겹치기 방법을 분명히 확인한다."
+    }
+  },
+  {
+    "id": "e4-1-2-1-xc15",
+    "sourceIndex": 1508,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1508,
+      "sourceFingerprint": "4db0ddb992b180b513115ce56c10b06fed24beacd3d8849c2f2f557727b78e1f",
+      "part": "e4plus",
+      "id": "e4-1-2-1-xc15",
+      "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+      "term": "옮길 수 없는 각 비교하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "책에 그려진 각처럼 옮길 수 없으면 {투명 종이}에 본떠 겹쳐 본다.",
+      "studentC": "책에 그려진 각처럼 옮길 수 없으면 □에 본떠 겹쳐 본다.",
+      "answers": [
+        "투명 종이"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-2-1-xc15",
+      "proposalFingerprint": "a7bca569785112ded0323514d1ba63c3907352a41442b1be3267afbbbca8fe92",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "책에 그려진 두 각은 오려서 옮길 수 없습니다. 각도기 없이 두 각의 크기를 비교하는 방법을 쓰세요.",
+      "bAnswer": "한 각을 투명 종이에 본떠 그린 다음, 다른 각 위에 꼭짓점과 한 변을 맞추어 겹쳐 본다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "투명 종이에 본뜬다",
+            "비치는 종이에 따라 그린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다른 각에 겹쳐 본다",
+            "다른 각 위에 포개어 본다"
+          ]
+        }
+      ],
+      "bGoal": "옮길 수 없는 각 본떠 비교",
+      "bReason": "오릴 수 없는 조건을 밝혀 본뜨고 겹치는 두 단계를 묻게 함",
+      "cDecision": "keep",
+      "cReason": "'본떠'가 단서가 되어 익숙한 물건 이름을 쓰면 됨",
+      "cSlotEquivalents": [
+        [
+          "투명한 종이",
+          "기름종이"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "책에 그려진 각처럼 옮길 수 없으면 {투명 종이}에 본떠 겹쳐 본다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "투명 종이",
+        "equivalents": [
+          "투명한 종이",
+          "기름종이"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "본뜨기와 겹치기뿐 아니라 꼭짓점과 한 변 정렬을 기준에서도 확인해야 한다.",
+      "c": "옮길 수 없는 각을 본뜨는 종이의 성질과 도구를 확인한다."
+    }
+  },
+  {
+    "id": "e4-1-2-1-xc18",
+    "sourceIndex": 1511,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1511,
+      "sourceFingerprint": "10afdc72ca258df9e53e0d7381fe9dc02695ef6b5b3e677850062e190db5e733",
+      "part": "e4plus",
+      "id": "e4-1-2-1-xc18",
+      "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+      "term": "생활 속 각의 크기",
+      "kind": "성질",
+      "level": "중",
+      "definition": "문을 닫힌 자리에서 여는 동안, 위에서 본 닫힌 문짝의 자리와 열린 문짝 사이의 각은 {점점 커진다}.",
+      "studentC": "문을 닫힌 자리에서 여는 동안, 위에서 본 닫힌 문짝의 자리와 열린 문짝 사이의 각은 □.",
+      "answers": [
+        "점점 커진다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-2-1-xc18",
+      "proposalFingerprint": "482d3e633b35ebbb8b3a3d89d8b76573d57de82b1a9391557c90eed7c5a1f64c",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "bPrompt": "닫혀 있던 문을 조금씩 더 엽니다. 문이 닫혀 있던 자리와 문 사이의 각의 크기는 어떻게 변하는지 쓰고, 그 까닭을 쓰세요.",
+      "bAnswer": "점점 커진다. 문을 열수록 닫혀 있던 자리와 문 사이가 더 많이 벌어지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점점 커진다",
+            "각이 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 많이 벌어진다",
+            "벌어진 정도가 커진다"
+          ]
+        }
+      ],
+      "bGoal": "문 여는 동안 각의 변화",
+      "bReason": "어느 두 곳 사이의 각인지 쉬운 말로 밝혀 변화를 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "'위에서 본 닫힌 문짝의 자리'가 어려워 쉬운 말로 바꿈",
+      "cSlotEquivalents": [],
+      "coreAfter": "문을 위에서 볼 때, 닫혀 있던 문을 점점 더 열면 닫힌 문짝의 자리와 열린 문짝 사이의 각은 {점점 커진다}.",
+      "coreReason": "점점커진다라는 원래표적과 위에서보는조건을보존한다. 초안이빼버린시점을복원하고 두문짝자리의각을명시한다."
+    },
+    "currentCMarkedSentence": "닫혀 있던 문을 점점 더 열면, 문이 닫혀 있던 자리와 문 사이의 각은 점점 {커진다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "커진다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "문을 위에서 본다는 시점을 질문에도 넣어 닫힌 문과 열린 문의 각을 특정해야 한다.",
+      "c": "핵심 설명에는 복원된 위에서 보는 조건이 C에도 보여야 한다."
+    }
+  },
+  {
+    "id": "e4-1-2-1-xc26",
+    "sourceIndex": 1518,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1518,
+      "sourceFingerprint": "20c8067c7b10565209a96a6e7873633fd51e947e0907643c4be8af63487615df",
+      "part": "e4plus",
+      "id": "e4-1-2-1-xc26",
+      "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+      "term": "시곗바늘이 이루는 각 견주기",
+      "kind": "성질",
+      "level": "상",
+      "definition": "두 시곗바늘이 이루는 각은 바늘의 길이와 관계없이 두 바늘 사이가 {더 벌어진} 시각일수록 크다.",
+      "example": {
+        "prompt": "$3$시의 각이 $2$시의 각보다 큰 까닭은?",
+        "answer": "눈금 한 칸 더 벌어져서"
+      },
+      "studentC": "두 시곗바늘이 이루는 각은 바늘의 길이와 관계없이 두 바늘 사이가 □ 시각일수록 크다.",
+      "answers": [
+        "더 벌어진"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-2-1-xc26",
+      "proposalFingerprint": "9218a1760876b52c3519b5665fb7916fc3b4c8ae465ff1277e0e6cc29b6931f8",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "bPrompt": "$2$시와 $3$시 중 두 시곗바늘이 이루는 작은 쪽 각이 더 큰 시각을 쓰고, 그 까닭을 쓰세요.",
+      "bAnswer": "$3$시이다. $3$시에는 두 바늘 사이가 $2$시보다 숫자 한 칸만큼 더 벌어져 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$시"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 바늘 사이가 더 벌어져 있다",
+            "숫자 칸이 더 많이 벌어졌다"
+          ]
+        }
+      ],
+      "bGoal": "시곗바늘 각을 벌어짐으로 비교",
+      "bReason": "원문 예의 $2$시·$3$시로 벌어진 정도 판단을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "'더 벌어진'은 넓은·먼 등으로 갈려 크다/작다로 바꿈",
+      "cSlotEquivalents": [
+        [
+          "커진다"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "두 시곗바늘이 이루는 각은 바늘의 길이와 관계없이 두 바늘 사이가 더 많이 벌어질수록 {크다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "크다",
+        "equivalents": [
+          "커진다"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "2시와 3시에서 작은 쪽 각을 비교한다는 B 조건은 명확하다.",
+      "c": "C도 두 바늘 사이의 작은 쪽 각을 특정하여 두 각 중 어느 쪽인지 숨기지 않아야 한다."
+    }
+  },
+  {
+    "id": "e4-1-2-1-xc27",
+    "sourceIndex": 1519,
+    "grade": "e4",
+    "source": {
+      "sourceIndex": 1519,
+      "sourceFingerprint": "c50c6381e862e5f093c2bc06fdddd02039086dd6f6348ae58305726af1bf2539",
+      "part": "e4plus",
+      "id": "e4-1-2-1-xc27",
+      "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+      "term": "작은 단위 각의 좋은 점",
+      "kind": "성질",
+      "level": "상",
+      "definition": "단위 각이 작을수록 각의 크기를 {더 자세히} 나타낼 수 있다.",
+      "studentC": "단위 각이 작을수록 각의 크기를 □ 나타낼 수 있다.",
+      "answers": [
+        "더 자세히"
+      ]
+    },
+    "currentProposal": {
+      "id": "e4-1-2-1-xc27",
+      "proposalFingerprint": "eb73fed41facd425e9bf811e30b43055f35f0584c2951a224f5b973c7268496b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "큰 단위 각으로 잴 때보다 작은 단위 각으로 잴 때 각의 크기를 더 자세히 나타낼 수 있는 까닭을 쓰세요.",
+      "bAnswer": "단위 각이 작으면 꼭 맞지 않고 남는 부분이 줄어들어, 조금씩 다른 각의 크기도 구별해 나타낼 수 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남는 부분이 줄어든다",
+            "조금 다른 각도 구별할 수 있다",
+            "더 잘게 나누어 잴 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "작은 단위 각이 자세한 까닭",
+      "bReason": "좋은 점은 주고 왜 더 자세한지 까닭을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "'더 자세히'는 정확히·큰 수로 등 답이 갈려 큰/작은 고르기로 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "큰 단위 각과 작은 단위 각 중에서 각의 크기를 더 자세히 나타낼 수 있는 것은 {작은} 단위 각이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "작은",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "작은 기준 각을 쓰면 실제 남는 부분이 반드시 줄어드는 것은 아니므로 더 잘게 구별한다는 근거로 질문과 답을 맞추어야 한다.",
+      "c": "큰 기준과 작은 기준의 세밀함 비교는 유용하다."
+    }
+  }
+]

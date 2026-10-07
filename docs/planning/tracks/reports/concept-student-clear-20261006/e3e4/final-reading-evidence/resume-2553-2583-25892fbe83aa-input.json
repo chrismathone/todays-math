@@ -1,0 +1,2501 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2553,
+  "end": 2583,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2553,
+        "sourceFingerprint": "909481d7f8ad7e9e3dfdf7c6ac66f7b85644a5f79b1fa0b52e7da9178ccc91e5",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc14",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "정삼각형 두 개로 마름모",
+        "kind": "방법",
+        "level": "중",
+        "definition": "모양과 크기가 같은 정삼각형 두 개를 {한 변끼리 붙이면} 마름모가 된다.",
+        "studentC": "모양과 크기가 같은 정삼각형 두 개를 □ 마름모가 된다.",
+        "answers": [
+          "한 변끼리 붙이면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2553,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "909481d7f8ad7e9e3dfdf7c6ac66f7b85644a5f79b1fa0b52e7da9178ccc91e5",
+        "proposalFingerprint": "4931ac2ab9a925bf9543e1c6d18742b7e0db2b8a4543b9bff4e6ba7100505cdb",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "모양과 크기가 같은 정삼각형 두 개로 마름모를 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "bAnswer": "한 변끼리 맞대어 붙인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변끼리 맞대어 붙인다",
+              "변끼리 붙인다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정삼각형 두 개로 마름모",
+        "bReason": "붙이는 방법을 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "모양과 크기가 같은 정삼각형 두 개를 한 변끼리 붙이면 네 변의 길이가 같은 {마름모}가 된다.",
+        "cReason": "긴 방법 구절 대신 익숙한 도형 이름 빈칸으로",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형 두 개로 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모양과 크기가 같은 정삼각형 두 개를 한 변끼리 붙이면 네 변의 길이가 같은 {마름모}가 된다.",
+        "cStudentSentence": "모양과 크기가 같은 정삼각형 두 개를 한 변끼리 붙이면 네 변의 길이가 같은 □가 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "마름모",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모양과 크기가 같은 정삼각형 두 개로 마름모를 만들려면 어떻게 붙여야 하는지 쓰시오.",
+          "answer": "한 변끼리 맞대어 붙인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 변끼리 맞대어 붙인다",
+                "변끼리 붙인다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모양과 크기가 같은 정삼각형 두 개를 한 변끼리 붙이면 네 변의 길이가 같은 {마름모}가 된다.",
+          "acceptedAnswers": [
+            [
+              "마름모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2554,
+        "sourceFingerprint": "aa57c604a59471b6398e8458605db47a5a716fb4f99ed7baf19acc2eb16847fe",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc15",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "정삼각형 두 개로 만든 마름모의 둔각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정삼각형 두 개를 붙여 만든 마름모의 둔각은 {$120^\\circ$}이다.",
+        "studentC": "정삼각형 두 개를 붙여 만든 마름모의 둔각은 □이다.",
+        "answers": [
+          "$120^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2554,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "aa57c604a59471b6398e8458605db47a5a716fb4f99ed7baf19acc2eb16847fe",
+        "proposalFingerprint": "29228759a0deca68e2ee13a5bbb8964df9e22d1f43f612cd015c142e3c812f7c",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형 두 개를 한 변끼리 붙여 마름모를 만들었다. 이 마름모의 둔각은 몇 도인지 구하시오.",
+        "bAnswer": "$60^\\circ+60^\\circ=120^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$120^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "붙여 만든 마름모의 둔각",
+        "bReason": "정삼각형의 각을 더해 둔각을 구하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형 두 개를 붙여 만든 마름모의 둔각은 $60^\\circ+60^\\circ=$ {$120^\\circ$}이다.",
+        "cReason": "결과만 있던 빈칸을 실제 계산식으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "$120$도",
+            "$120$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형 두 개로 만든 마름모의 둔각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형 두 개를 붙여 만든 마름모의 둔각은 $60^\\circ+60^\\circ=$ {$120^\\circ$}이다.",
+        "cStudentSentence": "정삼각형 두 개를 붙여 만든 마름모의 둔각은 $60^\\circ+60^\\circ=$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$120^\\circ$",
+            "equivalents": [
+              "$120$도",
+              "$120$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형 두 개를 한 변끼리 붙여 마름모를 만들었다. 이 마름모의 둔각은 몇 도인지 구하시오.",
+          "answer": "$60^\\circ+60^\\circ=120^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$120^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형 두 개를 붙여 만든 마름모의 둔각은 $60^\\circ+60^\\circ=$ {$120^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$120^\\circ$",
+              "$120$도",
+              "$120$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2555,
+        "sourceFingerprint": "524634f7ca5d7d6294a6f964fd642fe981a68b959f22532eb8ff3904129c5825",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc16",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "직각이 있는 마름모",
+        "kind": "성질",
+        "level": "중",
+        "definition": "마름모의 네 각이 모두 직각이면 그 마름모는 {정사각형}이다.",
+        "studentC": "마름모의 네 각이 모두 직각이면 그 마름모는 □이다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2555,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "524634f7ca5d7d6294a6f964fd642fe981a68b959f22532eb8ff3904129c5825",
+        "proposalFingerprint": "0811a32478ca08683f7cfad304c1a2fa6ecc35e088e401b4a47e76458897e910",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "네 각이 직각인 마름모",
+        "bReason": "4-7 xc10과 같은 목표",
+        "exclusionReason": "직사각형과 마름모 조건을 함께 만족하면 정사각형이라는 4-7 xc10과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "익숙한 도형 이름 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직사각형"
+          ]
+        ],
+        "answerNotes": "네 각이 직각인 마름모는 직사각형이기도 하므로 직사각형도 맞음",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각이 있는 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모의 네 각이 모두 직각이면 그 마름모는 {정사각형}이다.",
+        "cStudentSentence": "마름모의 네 각이 모두 직각이면 그 마름모는 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": [
+              "직사각형"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모의 네 각이 모두 직각이면 그 마름모는 □이다.",
+          "answers": [
+            "정사각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "마름모의 네 각이 모두 직각이면 그 마름모는 {정사각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정사각형",
+              "직사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "4-7 xc10과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2556,
+        "sourceFingerprint": "a51a484e0c62ba4a7fbb7ca9533344ed4ac1d574b7da50c38cbf1d8f06309c22",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc17",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모의 예각과 둔각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형이 아닌 마름모에는 예각과 둔각이 {두 개씩} 있다.",
+        "studentC": "정사각형이 아닌 마름모에는 예각과 둔각이 □ 있다.",
+        "answers": [
+          "두 개씩"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2556,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "a51a484e0c62ba4a7fbb7ca9533344ed4ac1d574b7da50c38cbf1d8f06309c22",
+        "proposalFingerprint": "db34efc8449dcc53854309da6b2a63e85ede8de6c6ab44634df699eafebd8cbe",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "마름모의 예각과 둔각 수",
+        "bReason": "평행사변형 예각·둔각과 같은 목표",
+        "exclusionReason": "평행사변형 4-5 xc14의 예각·둔각 개수와 같은 목표",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$2$개씩"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모의 예각과 둔각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형이 아닌 마름모에는 예각과 둔각이 {두 개씩} 있다.",
+        "cStudentSentence": "정사각형이 아닌 마름모에는 예각과 둔각이 □ 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 개씩",
+            "equivalents": [
+              "$2$개씩"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정사각형이 아닌 마름모에는 예각과 둔각이 □ 있다.",
+          "answers": [
+            "두 개씩"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "정사각형이 아닌 마름모에는 예각과 둔각이 {두 개씩} 있다.",
+          "acceptedAnswers": [
+            [
+              "두 개씩",
+              "$2$개씩"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "평행사변형 예각·둔각과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2557,
+        "sourceFingerprint": "d96c89ad6c03049bec5349a9ff1b813594452c6196c1c0016da706b55bfa3285",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc18",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모를 둘로 자른 삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "마름모를 마주 보는 두 꼭짓점을 잇는 선분으로 자르면 {이등변삼각형} 두 개가 생긴다.",
+        "studentC": "마름모를 마주 보는 두 꼭짓점을 잇는 선분으로 자르면 □ 두 개가 생긴다.",
+        "answers": [
+          "이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2557,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "d96c89ad6c03049bec5349a9ff1b813594452c6196c1c0016da706b55bfa3285",
+        "proposalFingerprint": "f4521a6af5d3ef8426036b85a1cc3d57816ce51faa97b673c9c6350f4b2ef85d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모를 마주 보는 두 꼭짓점을 잇는 선분으로 자르면 어떤 삼각형이 두 개 생기며 그 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "이등변삼각형이다. 마름모의 네 변의 길이가 같아 삼각형의 두 변이 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "마름모의 변이 모두 같아 두 변이 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자른 삼각형의 이름과 까닭",
+        "bReason": "변의 길이로 삼각형 종류를 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "마름모를 마주 보는 두 꼭짓점을 잇는 선분으로 자르면 두 변의 길이가 같은 삼각형, 곧 {이등변삼각형} 두 개가 생긴다.",
+        "cReason": "'삼각형'만 쓰는 답을 막으려 단서를 넣음",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모를 둘로 자른 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모를 마주 보는 두 꼭짓점을 잇는 선분으로 자르면 두 변의 길이가 같은 삼각형, 곧 {이등변삼각형} 두 개가 생긴다.",
+        "cStudentSentence": "마름모를 마주 보는 두 꼭짓점을 잇는 선분으로 자르면 두 변의 길이가 같은 삼각형, 곧 □ 두 개가 생긴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "이등변삼각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "마름모를 마주 보는 두 꼭짓점을 잇는 선분으로 자르면 어떤 삼각형이 두 개 생기며 그 까닭은 무엇인지 쓰시오.",
+          "answer": "이등변삼각형이다. 마름모의 네 변의 길이가 같아 삼각형의 두 변이 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이등변삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "마름모의 변이 모두 같아 두 변이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모를 마주 보는 두 꼭짓점을 잇는 선분으로 자르면 두 변의 길이가 같은 삼각형, 곧 {이등변삼각형} 두 개가 생긴다.",
+          "acceptedAnswers": [
+            [
+              "이등변삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2558,
+        "sourceFingerprint": "26c28defa885477ebfe8cb73a097d268a80d9bc85f899ae62c704a14d5a278b5",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc23",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모를 넷으로 자른 삼각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "마름모를 마주 보는 꼭짓점을 둘씩 이은 두 선분으로 자르면 {직각삼각형} 네 개가 생긴다.",
+        "studentC": "마름모를 마주 보는 꼭짓점을 둘씩 이은 두 선분으로 자르면 □ 네 개가 생긴다.",
+        "answers": [
+          "직각삼각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2558,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "26c28defa885477ebfe8cb73a097d268a80d9bc85f899ae62c704a14d5a278b5",
+        "proposalFingerprint": "8e9b6562060405bac43a2c98fdb27f485178f22ac66155f0fd4aaf512c0e5f98",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분으로 자르면 어떤 삼각형이 네 개 생기는지 쓰시오.",
+        "bAnswer": "직각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "넷으로 자른 삼각형 이름",
+        "bReason": "선분이 수직으로 만나는 성질을 적용함",
+        "cDecision": "rewrite",
+        "cAfter": "마름모를 마주 보는 꼭짓점을 둘씩 이은 두 선분으로 자르면 두 선분이 수직으로 만나므로 {직각삼각형} 네 개가 생긴다.",
+        "cReason": "'삼각형'만 쓰는 답을 막으려 수직 단서를 넣음",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모를 넷으로 자른 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모를 마주 보는 꼭짓점을 둘씩 이은 두 선분으로 자르면 두 선분이 수직으로 만나므로 {직각삼각형} 네 개가 생긴다.",
+        "cStudentSentence": "마름모를 마주 보는 꼭짓점을 둘씩 이은 두 선분으로 자르면 두 선분이 수직으로 만나므로 □ 네 개가 생긴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각삼각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분으로 자르면 어떤 삼각형이 네 개 생기는지 쓰시오.",
+          "answer": "직각삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모를 마주 보는 꼭짓점을 둘씩 이은 두 선분으로 자르면 두 선분이 수직으로 만나므로 {직각삼각형} 네 개가 생긴다.",
+          "acceptedAnswers": [
+            [
+              "직각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2559,
+        "sourceFingerprint": "7862e2586c1d6fc613d836f5ba93fca75d76d9f103ffc39f474e47f38a764f2d",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc24",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "정사각형과 마름모의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모든 정사각형은 마름모이지만 모든 마름모가 정사각형인 것은 {아니다}.",
+        "studentC": "모든 정사각형은 마름모이지만 모든 마름모가 정사각형인 것은 □.",
+        "answers": [
+          "아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2559,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "7862e2586c1d6fc613d836f5ba93fca75d76d9f103ffc39f474e47f38a764f2d",
+        "proposalFingerprint": "a24026156223ffb8e94e6ab551dd8b919be96aa2e70c4b12167c772e3a1f6566",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "정사각형과 마름모의 포함 관계",
+        "bReason": "직사각형·평행사변형 관계와 같은 목표",
+        "exclusionReason": "4-5 xc26의 '반대 방향은 성립하지 않는다' 반례 설명과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "짧은 '아니다' 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형과 마름모의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모든 정사각형은 마름모이지만 모든 마름모가 정사각형인 것은 {아니다}.",
+        "cStudentSentence": "모든 정사각형은 마름모이지만 모든 마름모가 정사각형인 것은 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모든 정사각형은 마름모이지만 모든 마름모가 정사각형인 것은 □.",
+          "answers": [
+            "아니다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "모든 정사각형은 마름모이지만 모든 마름모가 정사각형인 것은 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "직사각형·평행사변형 관계와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2560,
+        "sourceFingerprint": "b7e5bf1d9b03052b323f5947fef59bde80968a676cd77944eeea5b5e7673d5fd",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc25",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "둘레가 같은 마름모와 정사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "둘레가 같은 마름모와 정사각형은 한 변의 길이가 {같다}.",
+        "studentC": "둘레가 같은 마름모와 정사각형은 한 변의 길이가 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2560,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "b7e5bf1d9b03052b323f5947fef59bde80968a676cd77944eeea5b5e7673d5fd",
+        "proposalFingerprint": "13ac7f97d9ec62e6c49969fc7728359b717f4e2c3d0ef0964c6eb0a119dfb888",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "둘레가 같은 마름모와 정사각형의 한 변의 길이는 어떤 관계인지 까닭과 함께 쓰시오.",
+        "bAnswer": "같다. 둘 다 네 변의 길이가 같아 둘레를 $4$로 나눈 값이 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레를 $4$로 나눈다",
+              "네 변의 길이가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "둘레가 같을 때 한 변의 길이",
+        "bReason": "둘레와 한 변의 관계를 설명하게 함",
+        "cDecision": "keep",
+        "cReason": "같다/다르다 짧은 비교 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "둘레가 같은 마름모와 정사각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "둘레가 같은 마름모와 정사각형은 한 변의 길이가 {같다}.",
+        "cStudentSentence": "둘레가 같은 마름모와 정사각형은 한 변의 길이가 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "둘레가 같은 마름모와 정사각형은 한 변의 길이가 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "둘레가 같은 마름모와 정사각형의 한 변의 길이는 어떤 관계인지 까닭과 함께 쓰시오.",
+          "answer": "같다. 둘 다 네 변의 길이가 같아 둘레를 $4$로 나눈 값이 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "둘레를 $4$로 나눈다",
+                "네 변의 길이가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "둘레가 같은 마름모와 정사각형은 한 변의 길이가 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2561,
+        "sourceFingerprint": "f0d137d9e891275a97782ca91d2b9fd44222638bd0f46d43634908c800b6141a",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc26",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "직사각형 변의 가운데 점 잇기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형의 네 변의 가운데 점을 차례로 이으면 {마름모}가 된다.",
+        "studentC": "직사각형의 네 변의 가운데 점을 차례로 이으면 □가 된다.",
+        "answers": [
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2561,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "f0d137d9e891275a97782ca91d2b9fd44222638bd0f46d43634908c800b6141a",
+        "proposalFingerprint": "3ae86a160268edc94202e77df14b3631710fa66540ddbb8fe0876042c10db906",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 네 변의 가운데 점을 차례로 이으면 어떤 사각형이 되는지 쓰시오.",
+        "bAnswer": "마름모이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마름모"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "가운데 점을 이은 사각형",
+        "bReason": "만든 도형의 이름을 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 네 변의 가운데 점을 차례로 이으면 네 변의 길이가 같은 {마름모}가 된다.",
+        "cReason": "평행사변형 등 다른 답을 막으려 단서를 넣음",
+        "exampleNeeded": "직사각형의 네 변의 가운데 점을 이은 도형 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직사각형 변의 가운데 점 잇기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형의 네 변의 가운데 점을 차례로 이으면 네 변의 길이가 같은 {마름모}가 된다.",
+        "cStudentSentence": "직사각형의 네 변의 가운데 점을 차례로 이으면 네 변의 길이가 같은 □가 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "마름모",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형의 네 변의 가운데 점을 차례로 이으면 어떤 사각형이 되는지 쓰시오.",
+          "answer": "마름모이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "마름모"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형의 네 변의 가운데 점을 차례로 이으면 네 변의 길이가 같은 {마름모}가 된다.",
+          "acceptedAnswers": [
+            [
+              "마름모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2562,
+        "sourceFingerprint": "f48b7c54f6de074a9846c5aba9514e11dbb09d3fc0130f1e860a25b6bdbcdf8a",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc1",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "직사각형을 고르는 기준",
+        "kind": "정의",
+        "level": "하",
+        "definition": "사각형의 각을 하나씩 살펴 모두 {직각}이면 직사각형으로 분류한다.",
+        "studentC": "사각형의 각을 하나씩 살펴 모두 □이면 직사각형으로 분류한다.",
+        "answers": [
+          "직각"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2562,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "f48b7c54f6de074a9846c5aba9514e11dbb09d3fc0130f1e860a25b6bdbcdf8a",
+        "proposalFingerprint": "dabed8998334e20d3216277c1305d54bce79e0677ff630b34a29d446492501d3",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형이 직사각형인지 알아보려면 각을 어떻게 살펴야 하는지 쓰시오.",
+        "bAnswer": "네 각이 모두 직각인지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 각이 모두 직각",
+              "모든 각이 직각"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "직사각형 판별 기준",
+        "bReason": "직사각형의 정의를 기준으로 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '직각' 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "직사각형을 고르는 기준",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형의 각을 하나씩 살펴 모두 {직각}이면 직사각형으로 분류한다.",
+        "cStudentSentence": "사각형의 각을 하나씩 살펴 모두 □이면 직사각형으로 분류한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형의 각을 하나씩 살펴 모두 □이면 직사각형으로 분류한다.",
+          "answers": [
+            "직각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사각형이 직사각형인지 알아보려면 각을 어떻게 살펴야 하는지 쓰시오.",
+          "answer": "네 각이 모두 직각인지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 각이 모두 직각",
+                "모든 각이 직각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형의 각을 하나씩 살펴 모두 {직각}이면 직사각형으로 분류한다.",
+          "acceptedAnswers": [
+            [
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2563,
+        "sourceFingerprint": "6ed4a24b8a5fa131b72115c2106c8d9af29c1b71910e47bec7c6364dcfad6126",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc2",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "정사각형에서 변 길이 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직사각형의 변 길이를 재어 네 값이 {같으면} 정사각형이라고도 부른다.",
+        "studentC": "직사각형의 변 길이를 재어 네 값이 □ 정사각형이라고도 부른다.",
+        "answers": [
+          "같으면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2563,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "6ed4a24b8a5fa131b72115c2106c8d9af29c1b71910e47bec7c6364dcfad6126",
+        "proposalFingerprint": "a3ba73613bfeb1ababfddaba5d31e4acad410592fa4f3177757b815e6526d887",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형을 정사각형이라고도 부르려면 변의 길이를 재어 무엇을 확인해야 하는지 쓰시오.",
+        "bAnswer": "네 변의 길이가 모두 같은지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 변의 길이가 같다",
+              "네 값이 같다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정사각형 확인 방법",
+        "bReason": "직사각형에서 정사각형을 가려내는 기준",
+        "cDecision": "keep",
+        "cReason": "같다/다르다 짧은 비교 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "똑같으면",
+            "일치하면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정사각형에서 변 길이 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형의 변 길이를 재어 네 값이 {같으면} 정사각형이라고도 부른다.",
+        "cStudentSentence": "직사각형의 변 길이를 재어 네 값이 □ 정사각형이라고도 부른다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으면",
+            "equivalents": [
+              "똑같으면",
+              "일치하면"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형의 변 길이를 재어 네 값이 □ 정사각형이라고도 부른다.",
+          "answers": [
+            "같으면"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직사각형을 정사각형이라고도 부르려면 변의 길이를 재어 무엇을 확인해야 하는지 쓰시오.",
+          "answer": "네 변의 길이가 모두 같은지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 변의 길이가 같다",
+                "네 값이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형의 변 길이를 재어 네 값이 {같으면} 정사각형이라고도 부른다.",
+          "acceptedAnswers": [
+            [
+              "같으면",
+              "똑같으면",
+              "일치하면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2564,
+        "sourceFingerprint": "5ccf60eb8ea1cd00f08bb1255d764c6940558e3ba59369f476d513c7f0b3d6e2",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc3",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "마름모를 고르는 기준",
+        "kind": "정의",
+        "level": "하",
+        "definition": "사각형의 변을 재었을 때 {네 값이 일치하면} 마름모에 넣는다.",
+        "studentC": "사각형의 변을 재었을 때 □ 마름모에 넣는다.",
+        "answers": [
+          "네 값이 일치하면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2564,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "5ccf60eb8ea1cd00f08bb1255d764c6940558e3ba59369f476d513c7f0b3d6e2",
+        "proposalFingerprint": "52c1249134280fea3423430a622589203cfa2388ca90279ee6447a2c410b0b08",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형을 마름모에 넣으려면 변을 재어 무엇을 확인해야 하는지 쓰시오.",
+        "bAnswer": "네 변의 길이가 모두 같은지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 변의 길이가 같다",
+              "네 값이 일치한다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "마름모 판별 기준",
+        "bReason": "마름모 정의를 변의 길이로 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "사각형의 네 변의 길이를 재었을 때 모두 {같으면} 마름모에 넣는다.",
+        "cReason": "'네 값이 일치하면' 구절을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같으면",
+            "일치하면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "마름모를 고르는 기준",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형의 네 변의 길이를 재었을 때 모두 {같으면} 마름모에 넣는다.",
+        "cStudentSentence": "사각형의 네 변의 길이를 재었을 때 모두 □ 마름모에 넣는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으면",
+            "equivalents": [
+              "똑같으면",
+              "일치하면"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사각형을 마름모에 넣으려면 변을 재어 무엇을 확인해야 하는지 쓰시오.",
+          "answer": "네 변의 길이가 모두 같은지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 변의 길이가 같다",
+                "네 값이 일치한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형의 네 변의 길이를 재었을 때 모두 {같으면} 마름모에 넣는다.",
+          "acceptedAnswers": [
+            [
+              "같으면",
+              "똑같으면",
+              "일치하면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2565,
+        "sourceFingerprint": "5b056d009a59eca54f3033c65eeffc1819e98c0c56672a8328a573f00570c547",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc4",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "사다리꼴에서 확인할 변",
+        "kind": "정의",
+        "level": "하",
+        "definition": "사다리꼴을 찾을 때에는 서로 {평행}한 변이 있는지 살핀다.",
+        "studentC": "사다리꼴을 찾을 때에는 서로 □한 변이 있는지 살핀다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2565,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "5b056d009a59eca54f3033c65eeffc1819e98c0c56672a8328a573f00570c547",
+        "proposalFingerprint": "bc96d54199bf93d17f10f40a725c9d512e36703c9b1883caf41286a2f68bc4db",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형이 사다리꼴인지 알아볼 때 어떤 변이 있는지 살피는지 쓰시오.",
+        "bAnswer": "서로 평행한 변이 있는지 살핀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변",
+              "나란한 변"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "사다리꼴 판별 기준",
+        "bReason": "사다리꼴의 정의를 기준으로 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '평행' 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "사다리꼴에서 확인할 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴을 찾을 때에는 서로 {평행}한 변이 있는지 살핀다.",
+        "cStudentSentence": "사다리꼴을 찾을 때에는 서로 □한 변이 있는지 살핀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴을 찾을 때에는 서로 □한 변이 있는지 살핀다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사각형이 사다리꼴인지 알아볼 때 어떤 변이 있는지 살피는지 쓰시오.",
+          "answer": "서로 평행한 변이 있는지 살핀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행한 변",
+                "나란한 변"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴을 찾을 때에는 서로 {평행}한 변이 있는지 살핀다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2566,
+        "sourceFingerprint": "921b81d424f3ed1a31bb2ab33b38f8b4f99db6b924865e7b5d2d8645a7d3f136",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc5",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "평행사변형에서 확인할 두 쌍",
+        "kind": "정의",
+        "level": "하",
+        "definition": "맞은편 변끼리 짝지은 {두 쌍이 모두 평행}하면 평행사변형이다.",
+        "studentC": "맞은편 변끼리 짝지은 □하면 평행사변형이다.",
+        "answers": [
+          "두 쌍이 모두 평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2566,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "921b81d424f3ed1a31bb2ab33b38f8b4f99db6b924865e7b5d2d8645a7d3f136",
+        "proposalFingerprint": "2d5c970dafa451ceb270c0a9738bfabdc210bbed53b9e60ce73422d420d1d402",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "평행사변형 판별 기준",
+        "bReason": "4-5 xc13과 같은 목표",
+        "exclusionReason": "평행사변형은 평행한 변이 두 쌍 있어야 한다는 4-5 xc13과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "맞은편 변끼리 짝지은 두 쌍이 모두 {평행}하면 평행사변형이다.",
+        "cReason": "긴 구절 빈칸을 낱말 '평행'으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "평행사변형에서 확인할 두 쌍",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "맞은편 변끼리 짝지은 두 쌍이 모두 {평행}하면 평행사변형이다.",
+        "cStudentSentence": "맞은편 변끼리 짝지은 두 쌍이 모두 □하면 평행사변형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "맞은편 변끼리 짝지은 두 쌍이 모두 {평행}하면 평행사변형이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "4-5 xc13과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2567,
+        "sourceFingerprint": "4359f7922f993bfd2f83ba20434596bfb44f965e21deb716a3165ec00411717f",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc6",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "직각인지 알아보는 도구",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사각형의 꼭짓점에 {삼각자의 직각 부분}을 대어 직각인지 알아본다.",
+        "studentC": "사각형의 꼭짓점에 □을 대어 직각인지 알아본다.",
+        "answers": [
+          "삼각자의 직각 부분"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2567,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "4359f7922f993bfd2f83ba20434596bfb44f965e21deb716a3165ec00411717f",
+        "proposalFingerprint": "48ee2e142e7aa22c56c4dadc76ca6c9f99fa79832661a2e9d50eda0844f15b38",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형의 각이 직각인지 알아보려면 무엇을 어떻게 하는지 쓰시오.",
+        "bAnswer": "삼각자의 직각 부분을 꼭짓점에 대어 본다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "삼각자의 직각 부분을 댄다",
+              "각도기로 $90^\\circ$인지 잰다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "직각 확인 도구 쓰기",
+        "bReason": "직각을 확인하는 방법을 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "사각형의 꼭짓점에 {삼각자}의 직각 부분을 대어 직각인지 알아본다.",
+        "cReason": "'삼각자의 직각 부분' 구절을 낱말 하나로 좁힘",
+        "answerNotes": "각도기로 $90^\\circ$를 잰다는 답도 방법으로 인정",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직각인지 알아보는 도구",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형의 꼭짓점에 {삼각자}의 직각 부분을 대어 직각인지 알아본다.",
+        "cStudentSentence": "사각형의 꼭짓점에 □의 직각 부분을 대어 직각인지 알아본다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "삼각자",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사각형의 각이 직각인지 알아보려면 무엇을 어떻게 하는지 쓰시오.",
+          "answer": "삼각자의 직각 부분을 꼭짓점에 대어 본다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "삼각자의 직각 부분을 댄다",
+                "각도기로 $90^\\circ$인지 잰다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형의 꼭짓점에 {삼각자}의 직각 부분을 대어 직각인지 알아본다.",
+          "acceptedAnswers": [
+            [
+              "삼각자"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2568,
+        "sourceFingerprint": "dda55e73361bbea2504e2c541e4b34755f581eae3d0f6e7afd4d15305d235b22",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc7",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "사각형을 돌려 놓았을 때의 이름",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정사각형 종이를 비스듬하게 돌려 놓아도 {변의 길이와 각의 크기가 그대로}이므로 정사각형이다.",
+        "studentC": "정사각형 종이를 비스듬하게 돌려 놓아도 □이므로 정사각형이다.",
+        "answers": [
+          "변의 길이와 각의 크기가 그대로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2568,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "dda55e73361bbea2504e2c541e4b34755f581eae3d0f6e7afd4d15305d235b22",
+        "proposalFingerprint": "e03c33ab877de1ad52ec8bbc085e28e2e15cbb04b6f0dd5c2039cdcf0ce9a0c4",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형 모양 종이를 비스듬하게 돌려 놓았다. 이 도형은 여전히 정사각형인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "여전히 정사각형이다. 돌려도 변의 길이와 각의 크기가 그대로이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형이다",
+              "그대로 정사각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이와 각의 크기가 그대로이다",
+              "돌려도 변하지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "돌려도 정사각형인 까닭",
+        "bReason": "방향이 바뀌어도 변과 각이 유지됨을 설명",
+        "cDecision": "rewrite",
+        "cAfter": "정사각형 종이를 비스듬하게 돌려 놓아도 변의 길이와 각의 크기는 {그대로}이므로 정사각형이다.",
+        "cReason": "긴 구절 빈칸을 낱말 '그대로'로 좁힘",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사각형을 돌려 놓았을 때의 이름",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형 종이를 비스듬하게 돌려 놓아도 변의 길이와 각의 크기는 {그대로}이므로 정사각형이다.",
+        "cStudentSentence": "정사각형 종이를 비스듬하게 돌려 놓아도 변의 길이와 각의 크기는 □이므로 정사각형이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "그대로",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정사각형 모양 종이를 비스듬하게 돌려 놓았다. 이 도형은 여전히 정사각형인지 쓰고 까닭을 설명하시오.",
+          "answer": "여전히 정사각형이다. 돌려도 변의 길이와 각의 크기가 그대로이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정사각형이다",
+                "그대로 정사각형이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "변의 길이와 각의 크기가 그대로이다",
+                "돌려도 변하지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정사각형 종이를 비스듬하게 돌려 놓아도 변의 길이와 각의 크기는 {그대로}이므로 정사각형이다.",
+          "acceptedAnswers": [
+            [
+              "그대로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2569,
+        "sourceFingerprint": "372e84135df25bf933abea01b6f6d6540980cc7178eb4edbe4445f69ac221934",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc8",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "사각형의 분류와 색깔",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사각형을 수학적 성질로 나눌 때 색깔보다 {변}과 {각}을 살핀다.",
+        "studentC": "사각형을 수학적 성질로 나눌 때 색깔보다 □과 □을 살핀다.",
+        "answers": [
+          "변",
+          "각"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2569,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "372e84135df25bf933abea01b6f6d6540980cc7178eb4edbe4445f69ac221934",
+        "proposalFingerprint": "8f2725434e32d74122c38b6cdbf38a5eff7b931a4d3c6798446337d785a938d4",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형을 이름에 따라 나눌 때 색깔 말고 무엇을 살펴야 하는지 두 가지를 쓰시오.",
+        "bAnswer": "변(의 길이)과 각(의 크기)을 살핀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변",
+              "변의 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "각",
+              "각의 크기"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "사각형 분류 기준 알기",
+        "bReason": "색이 아닌 변과 각을 기준으로 삼게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '변'과 '각' 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "각"
+          ],
+          [
+            "변"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "사각형의 분류와 색깔",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형을 수학적 성질로 나눌 때 색깔보다 {변}과 {각}을 살핀다.",
+        "cStudentSentence": "사각형을 수학적 성질로 나눌 때 색깔보다 □과 □을 살핀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변",
+            "equivalents": [
+              "각"
+            ]
+          },
+          {
+            "expected": "각",
+            "equivalents": [
+              "변"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형을 수학적 성질로 나눌 때 색깔보다 □과 □을 살핀다.",
+          "answers": [
+            "변",
+            "각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사각형을 이름에 따라 나눌 때 색깔 말고 무엇을 살펴야 하는지 두 가지를 쓰시오.",
+          "answer": "변(의 길이)과 각(의 크기)을 살핀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "변",
+                "변의 길이"
+              ]
+            },
+            {
+              "anyOf": [
+                "각",
+                "각의 크기"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형을 수학적 성질로 나눌 때 색깔보다 {변}과 {각}을 살핀다.",
+          "acceptedAnswers": [
+            [
+              "변",
+              "각"
+            ],
+            [
+              "각",
+              "변"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2570,
+        "sourceFingerprint": "28d735ddea174a6382a1e25f48789447d9f935e08f10c9e97fb10e56726ead60",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc9",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "같은 사각형에 붙는 여러 이름",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 {여러 개} 붙일 수 있다.",
+        "studentC": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 □ 붙일 수 있다.",
+        "answers": [
+          "여러 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2570,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "28d735ddea174a6382a1e25f48789447d9f935e08f10c9e97fb10e56726ead60",
+        "proposalFingerprint": "d5835af0db447d7f40e5878dd50dbfaf63523472ca508edb35e5926c5cdaadb6",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형에는 직사각형, 마름모 같은 다른 이름도 붙일 수 있다. 그 까닭을 쓰시오.",
+        "bAnswer": "정사각형이 직사각형과 마름모 같은 여러 분류의 조건을 모두 만족하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "여러 분류의 조건을 모두 만족한다",
+              "직사각형과 마름모의 조건을 모두 가진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "이름이 여러 개 붙는 까닭",
+        "bReason": "여러 조건을 동시에 만족함을 설명하게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '여러 개' 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "여러 가지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 사각형에 붙는 여러 이름",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 {여러 개} 붙일 수 있다.",
+        "cStudentSentence": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 □ 붙일 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "여러 개",
+            "equivalents": [
+              "여러 가지"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 □ 붙일 수 있다.",
+          "answers": [
+            "여러 개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정사각형에는 직사각형, 마름모 같은 다른 이름도 붙일 수 있다. 그 까닭을 쓰시오.",
+          "answer": "정사각형이 직사각형과 마름모 같은 여러 분류의 조건을 모두 만족하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "여러 분류의 조건을 모두 만족한다",
+                "직사각형과 마름모의 조건을 모두 가진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 {여러 개} 붙일 수 있다.",
+          "acceptedAnswers": [
+            [
+              "여러 개",
+              "여러 가지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2571,
+        "sourceFingerprint": "a355e2eb8c8b0127f8c179cdf02abfad6d0127d3e1876c511a0112ab4a27afee",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc10",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "직사각형과 마름모에 함께 넣기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형 조건과 마름모 조건을 함께 만족하는 도형은 {정사각형}이다.",
+        "studentC": "직사각형 조건과 마름모 조건을 함께 만족하는 도형은 □이다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2571,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "a355e2eb8c8b0127f8c179cdf02abfad6d0127d3e1876c511a0112ab4a27afee",
+        "proposalFingerprint": "acf448434ffb602197a4af74e9d0f9142d98584e02bbdfab42c2d2587b1ef6d8",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "네 각이 모두 직각이라는 직사각형의 조건과 네 변의 길이가 모두 같다는 마름모의 조건을 함께 만족하는 사각형의 이름을 쓰시오.",
+        "bAnswer": "정사각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "두 조건을 만족하는 도형 이름",
+        "bReason": "조건에서 이름을 찾아내는지 확인함",
+        "cDecision": "keep",
+        "cReason": "익숙한 도형 이름 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형과 마름모에 함께 넣기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형 조건과 마름모 조건을 함께 만족하는 도형은 {정사각형}이다.",
+        "cStudentSentence": "직사각형 조건과 마름모 조건을 함께 만족하는 도형은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형 조건과 마름모 조건을 함께 만족하는 도형은 □이다.",
+          "answers": [
+            "정사각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "네 각이 모두 직각이라는 직사각형의 조건과 네 변의 길이가 모두 같다는 마름모의 조건을 함께 만족하는 사각형의 이름을 쓰시오.",
+          "answer": "정사각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정사각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형 조건과 마름모 조건을 함께 만족하는 도형은 {정사각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2572,
+        "sourceFingerprint": "48f5c409bb016608f219ecf0c7560ca0cd46d68bb7796fadc4121d9a8bfaa4e3",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc11",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "정사각형을 직사각형으로 분류하기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형 분류에 정사각형도 넣는 까닭은 {직각 네 개}를 갖추었기 때문이다.",
+        "studentC": "직사각형 분류에 정사각형도 넣는 까닭은 □를 갖추었기 때문이다.",
+        "answers": [
+          "직각 네 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2572,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "48f5c409bb016608f219ecf0c7560ca0cd46d68bb7796fadc4121d9a8bfaa4e3",
+        "proposalFingerprint": "49155e045e368a2e00e0b20b83a6f9971eadd7042508fcbcf60b761307e1b44e",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형을 직사각형으로도 분류하는 까닭을 쓰시오.",
+        "bAnswer": "네 각이 모두 직각이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 각이 모두 직각",
+              "직각이 네 개"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정사각형이 직사각형인 까닭",
+        "bReason": "직사각형의 조건을 정사각형에 적용함",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형 분류에 정사각형도 넣는 까닭은 정사각형의 네 각이 모두 {직각}이기 때문이다.",
+        "cReason": "'직각 네 개를' 조사 맞춤 빈칸을 낱말로 좁힘",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형을 직사각형으로 분류하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형 분류에 정사각형도 넣는 까닭은 정사각형의 네 각이 모두 {직각}이기 때문이다.",
+        "cStudentSentence": "직사각형 분류에 정사각형도 넣는 까닭은 정사각형의 네 각이 모두 □이기 때문이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정사각형을 직사각형으로도 분류하는 까닭을 쓰시오.",
+          "answer": "네 각이 모두 직각이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 각이 모두 직각",
+                "직각이 네 개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형 분류에 정사각형도 넣는 까닭은 정사각형의 네 각이 모두 {직각}이기 때문이다.",
+          "acceptedAnswers": [
+            [
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2573,
+        "sourceFingerprint": "6be1bd647bb06952b60cfa2a850804460e05dc058bb3b8115e25a02f8f41decc",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc12",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "정사각형을 마름모로 분류하기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형의 변을 재면 {네 길이가 일치하므로} 마름모 무리에도 들어간다.",
+        "studentC": "정사각형의 변을 재면 □ 마름모 무리에도 들어간다.",
+        "answers": [
+          "네 길이가 일치하므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2573,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "6be1bd647bb06952b60cfa2a850804460e05dc058bb3b8115e25a02f8f41decc",
+        "proposalFingerprint": "b4886eaf1d757c7b54fcf68227720450e7d14b58407293fa927bf163407d6075",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc12",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "정사각형이 마름모인 까닭",
+        "bReason": "4-6 xc4와 같은 목표",
+        "exclusionReason": "정사각형은 네 변이 같으므로 마름모라는 4-6 xc4와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "정사각형의 변을 재면 네 길이가 {같으므로} 마름모 무리에도 들어간다.",
+        "cReason": "'네 길이가 일치하므로' 구절을 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같으므로",
+            "일치하므로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형을 마름모로 분류하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형의 변을 재면 네 길이가 {같으므로} 마름모 무리에도 들어간다.",
+        "cStudentSentence": "정사각형의 변을 재면 네 길이가 □ 마름모 무리에도 들어간다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으므로",
+            "equivalents": [
+              "똑같으므로",
+              "일치하므로"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "정사각형의 변을 재면 네 길이가 {같으므로} 마름모 무리에도 들어간다.",
+          "acceptedAnswers": [
+            [
+              "같으므로",
+              "똑같으므로",
+              "일치하므로"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "4-6 xc4와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2574,
+        "sourceFingerprint": "d071a886f4159d36e013c751186e47afcd99c56700e11dc49497fa9fcc532263",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc13",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "길쭉한 직사각형의 분류",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이웃한 변의 길이가 다른 직사각형은 네 변의 길이가 모두 {같아야} 한다는 정사각형의 조건에 맞지 않는다.",
+        "studentC": "이웃한 변의 길이가 다른 직사각형은 네 변의 길이가 모두 □ 한다는 정사각형의 조건에 맞지 않는다.",
+        "answers": [
+          "같아야"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2574,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "d071a886f4159d36e013c751186e47afcd99c56700e11dc49497fa9fcc532263",
+        "proposalFingerprint": "f26719fa2f823b7b5e5911173808411981abd5ddff8ddffcc1c709d635c5b929",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "길쭉한 직사각형은 정사각형 아님",
+        "bReason": "xc18과 같은 목표",
+        "exclusionReason": "이웃한 변의 길이가 다르면 정사각형이 아니라는 xc18과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "이웃한 변의 길이가 다른 직사각형은 네 변의 길이가 모두 {같다}는 정사각형의 조건에 맞지 않는다.",
+        "cReason": "'같아야 한다는' 붙은 빈칸을 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "길쭉한 직사각형의 분류",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이웃한 변의 길이가 다른 직사각형은 네 변의 길이가 모두 {같다}는 정사각형의 조건에 맞지 않는다.",
+        "cStudentSentence": "이웃한 변의 길이가 다른 직사각형은 네 변의 길이가 모두 □는 정사각형의 조건에 맞지 않는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "이웃한 변의 길이가 다른 직사각형은 네 변의 길이가 모두 {같다}는 정사각형의 조건에 맞지 않는다.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc18과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2575,
+        "sourceFingerprint": "00c6c96865e0ceae2b97c9046861b01fd7a350ab0bf4ad927d6cbb26a9166056",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc14",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "직각 없는 마름모의 분류",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다.",
+        "studentC": "직각이 없는 마름모는 네 각이 모두 □이어야 하는 직사각형으로 부를 수 없다.",
+        "answers": [
+          "직각"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2575,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "00c6c96865e0ceae2b97c9046861b01fd7a350ab0bf4ad927d6cbb26a9166056",
+        "proposalFingerprint": "a6f3d9fca0f61b63bfdf6c5b56e5bd3e519323227e3d9b4ba8825402c4dffccb",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "직각이 없는 마름모를 직사각형이라고 부를 수 없는 까닭을 쓰시오.",
+        "bAnswer": "직사각형은 네 각이 모두 직각이어야 하는데 직각이 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형은 네 각이 모두 직각이어야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "마름모가 직사각형 아닌 까닭",
+        "bReason": "직사각형 조건으로 이름 붙이기를 점검함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '직각' 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각 없는 마름모의 분류",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다.",
+        "cStudentSentence": "직각이 없는 마름모는 네 각이 모두 □이어야 하는 직사각형으로 부를 수 없다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직각이 없는 마름모는 네 각이 모두 □이어야 하는 직사각형으로 부를 수 없다.",
+          "answers": [
+            "직각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직각이 없는 마름모를 직사각형이라고 부를 수 없는 까닭을 쓰시오.",
+          "answer": "직사각형은 네 각이 모두 직각이어야 하는데 직각이 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직사각형은 네 각이 모두 직각이어야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다.",
+          "acceptedAnswers": [
+            [
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2576,
+        "sourceFingerprint": "cb9cbe8faa5295be3dc962563008e5f8dc78c951debd6dd121503b4fc4bff88c",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc15",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "사다리꼴과 평행사변형의 포함 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형에는 {평행한 변이 있으므로} 사다리꼴이라는 이름도 붙는다.",
+        "studentC": "평행사변형에는 □ 사다리꼴이라는 이름도 붙는다.",
+        "answers": [
+          "평행한 변이 있으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2576,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "cb9cbe8faa5295be3dc962563008e5f8dc78c951debd6dd121503b4fc4bff88c",
+        "proposalFingerprint": "7229602ea013a4227730a443469caba0804a2ad00cfd1a44a2f7004831f629a0",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "평행사변형이 사다리꼴인 까닭",
+        "bReason": "4-5 xc1과 같은 목표",
+        "exclusionReason": "평행사변형에 평행한 변이 있어 사다리꼴이라는 4-5 xc1과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형에는 {평행}한 변이 있으므로 사다리꼴이라는 이름도 붙는다.",
+        "cReason": "긴 이유 구절 빈칸을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사다리꼴과 평행사변형의 포함 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형에는 {평행}한 변이 있으므로 사다리꼴이라는 이름도 붙는다.",
+        "cStudentSentence": "평행사변형에는 □한 변이 있으므로 사다리꼴이라는 이름도 붙는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행사변형에는 {평행}한 변이 있으므로 사다리꼴이라는 이름도 붙는다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "4-5 xc1과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2577,
+        "sourceFingerprint": "baa801d7baa48a58bf6a57ce7618c48156d3f454b8b34452f0f69b0023cda6dc",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc16",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "분류에 쓰는 조건을 모두 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "사각형을 정사각형이라고 하려면 변의 길이뿐 아니라 {각의 크기}도 확인한다.",
+        "studentC": "사각형을 정사각형이라고 하려면 변의 길이뿐 아니라 □도 확인한다.",
+        "answers": [
+          "각의 크기"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2577,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "baa801d7baa48a58bf6a57ce7618c48156d3f454b8b34452f0f69b0023cda6dc",
+        "proposalFingerprint": "6c60481c36941233c9166e377c41cee86b6946fba483641c37036c0b7faee5de",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형을 정사각형이라고 하려면 변의 길이 말고 무엇도 확인해야 하는지 쓰시오.",
+        "bAnswer": "각의 크기(네 각이 모두 직각인지)도 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각의 크기",
+              "네 각이 직각인지"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정사각형 확인 조건 모두 보기",
+        "bReason": "변만으로는 부족함을 알게 함",
+        "cDecision": "keep",
+        "cReason": "짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "각",
+            "각도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "분류에 쓰는 조건을 모두 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형을 정사각형이라고 하려면 변의 길이뿐 아니라 {각의 크기}도 확인한다.",
+        "cStudentSentence": "사각형을 정사각형이라고 하려면 변의 길이뿐 아니라 □도 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "각의 크기",
+            "equivalents": [
+              "각",
+              "각도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형을 정사각형이라고 하려면 변의 길이뿐 아니라 □도 확인한다.",
+          "answers": [
+            "각의 크기"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사각형을 정사각형이라고 하려면 변의 길이 말고 무엇도 확인해야 하는지 쓰시오.",
+          "answer": "각의 크기(네 각이 모두 직각인지)도 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각의 크기",
+                "네 각이 직각인지"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형을 정사각형이라고 하려면 변의 길이뿐 아니라 {각의 크기}도 확인한다.",
+          "acceptedAnswers": [
+            [
+              "각의 크기",
+              "각",
+              "각도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2578,
+        "sourceFingerprint": "d1eedca4cb8f149df3fa309bf6df50634dfe4926892b1595a36f87a95796fd44",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc17",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "직사각형의 둘레 계산",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직사각형은 맞은편 변끼리 같으므로 이웃한 변 길이를 더한 뒤 {두 배} 하여 둘레를 구한다.",
+        "studentC": "직사각형은 맞은편 변끼리 같으므로 이웃한 변 길이를 더한 뒤 □ 하여 둘레를 구한다.",
+        "answers": [
+          "두 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2578,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "d1eedca4cb8f149df3fa309bf6df50634dfe4926892b1595a36f87a95796fd44",
+        "proposalFingerprint": "0e65592baef27147ce53863352146303f10e6352eea617430e1f3208d2a87cf8",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "직사각형 둘레 구하기",
+        "bReason": "평행사변형 둘레와 같은 방법",
+        "exclusionReason": "이웃한 두 변의 합을 두 배 하는 4-5 xc3과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "짧은 계산 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$2$배"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직사각형의 둘레 계산",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형은 맞은편 변끼리 같으므로 이웃한 변 길이를 더한 뒤 {두 배} 하여 둘레를 구한다.",
+        "cStudentSentence": "직사각형은 맞은편 변끼리 같으므로 이웃한 변 길이를 더한 뒤 □ 하여 둘레를 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 배",
+            "equivalents": [
+              "$2$배"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형은 맞은편 변끼리 같으므로 이웃한 변 길이를 더한 뒤 □ 하여 둘레를 구한다.",
+          "answers": [
+            "두 배"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직사각형은 맞은편 변끼리 같으므로 이웃한 변 길이를 더한 뒤 {두 배} 하여 둘레를 구한다.",
+          "acceptedAnswers": [
+            [
+              "두 배",
+              "$2$배"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "평행사변형 둘레와 같은 방법"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2579,
+        "sourceFingerprint": "95cde79d31876a191bca70c9c7401e17bcbf4239b35b2bae06ebd6219f6bb00b",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc18",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "직사각형이 정사각형인지 알아보기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형은 마주 보는 변의 길이가 이미 같으므로 {이웃한 두 변의 길이}만 비교하면 정사각형인지 알 수 있다.",
+        "example": {
+          "prompt": "가로 $6\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형이 정사각형이 아닌 까닭은?",
+          "answer": "이웃한 두 변이 달라서"
+        },
+        "studentC": "직사각형은 마주 보는 변의 길이가 이미 같으므로 □만 비교하면 정사각형인지 알 수 있다.",
+        "answers": [
+          "이웃한 두 변의 길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2579,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "95cde79d31876a191bca70c9c7401e17bcbf4239b35b2bae06ebd6219f6bb00b",
+        "proposalFingerprint": "e28b92d765e0d4ba607b84f9e78081be47bc9733c6d9a99f076a217bb8381a47",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $6\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형이 정사각형이 아닌 까닭을 쓰시오.",
+        "bAnswer": "이웃한 두 변의 길이가 $6\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$로 달라서 네 변이 모두 같지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이웃한 두 변의 길이가 다르다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정사각형이 아닌 까닭",
+        "bReason": "이웃한 두 변만 비교하는 방법을 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형은 마주 보는 변의 길이가 이미 같으므로 {이웃한} 두 변의 길이만 비교하면 정사각형인지 알 수 있다.",
+        "cReason": "긴 구절 빈칸을 낱말 '이웃한'으로 좁힘",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직사각형이 정사각형인지 알아보기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형은 마주 보는 변의 길이가 이미 같으므로 {이웃한} 두 변의 길이만 비교하면 정사각형인지 알 수 있다.",
+        "cStudentSentence": "직사각형은 마주 보는 변의 길이가 이미 같으므로 □ 두 변의 길이만 비교하면 정사각형인지 알 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "이웃한",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "가로 $6\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형이 정사각형이 아닌 까닭을 쓰시오.",
+          "answer": "이웃한 두 변의 길이가 $6\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$로 달라서 네 변이 모두 같지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이웃한 두 변의 길이가 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형은 마주 보는 변의 길이가 이미 같으므로 {이웃한} 두 변의 길이만 비교하면 정사각형인지 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "이웃한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2580,
+        "sourceFingerprint": "24d186b99ae6a04dbea7f33c74a3a4eea1f9b312b89939b2355d7022211d9a25",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc19",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "마름모라는 조건에 직각 더하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "마름모에 직각인 각이 하나라도 있으면 나머지 각도 직각이 되어 {정사각형}이 된다.",
+        "studentC": "마름모에 직각인 각이 하나라도 있으면 나머지 각도 직각이 되어 □이 된다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2580,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "24d186b99ae6a04dbea7f33c74a3a4eea1f9b312b89939b2355d7022211d9a25",
+        "proposalFingerprint": "8b2e1ca4cfe2d634b44003d1d15c314bdac9ddb42de0846e86e0adf5e2bda048",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모에 직각인 각이 하나라도 있으면 어떤 사각형이 되며 그 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "정사각형이 된다. 나머지 각도 모두 직각이 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 각도 직각이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직각이 있는 마름모의 이름",
+        "bReason": "한 직각이 네 직각이 됨을 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "마름모에 직각인 각이 하나라도 있으면 나머지 각도 직각이 되어 직사각형이면서 마름모인 {정사각형}이 된다.",
+        "cReason": "직사각형도 답이 되어 정사각형으로 좁힘",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모라는 조건에 직각 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모에 직각인 각이 하나라도 있으면 나머지 각도 직각이 되어 직사각형이면서 마름모인 {정사각형}이 된다.",
+        "cStudentSentence": "마름모에 직각인 각이 하나라도 있으면 나머지 각도 직각이 되어 직사각형이면서 마름모인 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "마름모에 직각인 각이 하나라도 있으면 어떤 사각형이 되며 그 까닭은 무엇인지 쓰시오.",
+          "answer": "정사각형이 된다. 나머지 각도 모두 직각이 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "나머지 각도 직각이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모에 직각인 각이 하나라도 있으면 나머지 각도 직각이 되어 직사각형이면서 마름모인 {정사각형}이 된다.",
+          "acceptedAnswers": [
+            [
+              "정사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2581,
+        "sourceFingerprint": "1ba395dbacc6b10b4703d64d0620f61743054941146f0b6788e90ac674abcf88",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc20",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "이웃한 변이 같고 직각이 있는 평행사변형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형에서 이웃한 변 길이가 같고 그 사이가 직각이면 {정사각형}으로 좁혀 부를 수 있다.",
+        "studentC": "평행사변형에서 이웃한 변 길이가 같고 그 사이가 직각이면 □으로 좁혀 부를 수 있다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2581,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "1ba395dbacc6b10b4703d64d0620f61743054941146f0b6788e90ac674abcf88",
+        "proposalFingerprint": "252c6a7ddef4dadb0bba3533d5391faadfc430540b9bd125f87c7b1f88089bce",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc20",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "이웃한 변이 같고 직각인 도형",
+        "bReason": "4-7 xc19와 같은 목표",
+        "exclusionReason": "직각과 같은 변이 있으면 정사각형이라는 xc19, 4-5 xc27과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형에서 이웃한 변의 길이가 같고 그 사이가 직각이면 직사각형이면서 마름모이기도 한 {정사각형}이다.",
+        "cReason": "마름모·직사각형도 답이 되어 정사각형으로 좁힘",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이웃한 변이 같고 직각이 있는 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형에서 이웃한 변의 길이가 같고 그 사이가 직각이면 직사각형이면서 마름모이기도 한 {정사각형}이다.",
+        "cStudentSentence": "평행사변형에서 이웃한 변의 길이가 같고 그 사이가 직각이면 직사각형이면서 마름모이기도 한 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행사변형에서 이웃한 변의 길이가 같고 그 사이가 직각이면 직사각형이면서 마름모이기도 한 {정사각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "4-7 xc19와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2582,
+        "sourceFingerprint": "2c774dc5c539d364dbc7fc902bd0131494dad3ef1dff5dcbbf02741c0d7d68a1",
+        "part": "e4plus",
+        "id": "e4-2-4-7-xc21",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "정사각형이 아닌 평행사변형 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "평행사변형에 둔각이 하나라도 있다면 네 각이 모두 {직각}이어야 하는 정사각형일 수 없다.",
+        "studentC": "평행사변형에 둔각이 하나라도 있다면 네 각이 모두 □이어야 하는 정사각형일 수 없다.",
+        "answers": [
+          "직각"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2582,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "2c774dc5c539d364dbc7fc902bd0131494dad3ef1dff5dcbbf02741c0d7d68a1",
+        "proposalFingerprint": "f94d5b9a39cb76c49e8676cd30c42717944c15b3cbc73d3bab0cbe08e575ce0f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "둔각 있는 평행사변형의 이름",
+        "bReason": "4-7 xc14와 같은 목표",
+        "exclusionReason": "직각이 아닌 각이 있어 직사각형·정사각형이 아니라는 xc14와 같은 목표",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '직각' 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정사각형이 아닌 평행사변형 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형에 둔각이 하나라도 있다면 네 각이 모두 {직각}이어야 하는 정사각형일 수 없다.",
+        "cStudentSentence": "평행사변형에 둔각이 하나라도 있다면 네 각이 모두 □이어야 하는 정사각형일 수 없다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행사변형에 둔각이 하나라도 있다면 네 각이 모두 □이어야 하는 정사각형일 수 없다.",
+          "answers": [
+            "직각"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행사변형에 둔각이 하나라도 있다면 네 각이 모두 {직각}이어야 하는 정사각형일 수 없다.",
+          "acceptedAnswers": [
+            [
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "4-7 xc14와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

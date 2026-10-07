@@ -1,0 +1,2676 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2133,
+  "end": 2163,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2133,
+        "sourceFingerprint": "fbcb3fa779e86533d00c677ba1cf85218f58f04bc6993f2b4fa8233bb722d0ea",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc3",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "가분수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "분모보다 분자가 크거나 두 수가 같은 분수를 {가분수}라 한다.",
+        "studentC": "분모보다 분자가 크거나 두 수가 같은 분수를 □라 한다.",
+        "answers": [
+          "가분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2133,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "fbcb3fa779e86533d00c677ba1cf85218f58f04bc6993f2b4fa8233bb722d0ea",
+        "proposalFingerprint": "ad4f57624419af6ac1136ad0ee7bcc7d39188bb4871f680dac53dd0d46705216",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{5}$, $\\frac{5}{5}$, $\\frac{7}{5}$ 중 가분수를 모두 고르고, 고른 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{5}{5}$와 $\\frac{7}{5}$이다. 분자가 분모와 같거나 분모보다 크기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{5}{5}$와 $\\frac{7}{5}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자가 분모와 같거나 크다",
+              "분모보다 분자가 크거나 같다"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "가분수를 고르는 기준",
+        "bReason": "가분수의 정의를 예로 적용",
+        "cDecision": "keep",
+        "cReason": "정의 뒤 가분수 낱말만 묻는 친숙한 빈칸",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "가분수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모보다 분자가 크거나 두 수가 같은 분수를 {가분수}라 한다.",
+        "cStudentSentence": "분모보다 분자가 크거나 두 수가 같은 분수를 □라 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "가분수",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모보다 분자가 크거나 두 수가 같은 분수를 □라 한다.",
+          "answers": [
+            "가분수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{3}{5}$, $\\frac{5}{5}$, $\\frac{7}{5}$ 중 가분수를 모두 고르고, 고른 까닭을 쓰시오.",
+          "answer": "$\\frac{5}{5}$와 $\\frac{7}{5}$이다. 분자가 분모와 같거나 분모보다 크기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{5}{5}$와 $\\frac{7}{5}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자가 분모와 같거나 크다",
+                "분모보다 분자가 크거나 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모보다 분자가 크거나 두 수가 같은 분수를 {가분수}라 한다.",
+          "acceptedAnswers": [
+            [
+              "가분수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2134,
+        "sourceFingerprint": "3160708caa78c14d042fb6c9b11eb639176734483e63d9fb8b675b413747e56b",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc4",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "대분수를 가분수로 바꾸기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수를 가분수로 바꿀 때는 자연수 부분을 {분모가 같은 분수}로 바꾸어 분수 부분과 합한다.",
+        "example": {
+          "prompt": "$1\\frac{2}{5}$가 $\\frac{7}{5}$인 까닭은?",
+          "answer": "$1$이 $\\frac{5}{5}$라서"
+        },
+        "studentC": "대분수를 가분수로 바꿀 때는 자연수 부분을 □로 바꾸어 분수 부분과 합한다.",
+        "answers": [
+          "분모가 같은 분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2134,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "3160708caa78c14d042fb6c9b11eb639176734483e63d9fb8b675b413747e56b",
+        "proposalFingerprint": "73630a18b5f29e4699ea7aa3a4ce69562c0426578294d1a5662826325514bb31",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\frac{2}{5}$가 $\\frac{7}{5}$과 같은 까닭을 설명하시오.",
+        "bAnswer": "$1=\\frac{5}{5}$이므로 $\\frac{5}{5}+\\frac{2}{5}=\\frac{7}{5}$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$을 $\\frac{5}{5}$로 바꿔 분수 부분과 합한다",
+              "$\\frac{5}{5}+\\frac{2}{5}=\\frac{7}{5}$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "대분수를 가분수로 바꾸기",
+        "bReason": "자연수를 분수로 바꾸어 합치는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "대분수를 가분수로 바꿀 때는 자연수 부분을 분수 부분과 {분모}가 같은 분수로 바꾸어 합한다.",
+        "cReason": "'분모가 같은 분수' 긴 구절을 '분모' 낱말로 축소",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "대분수를 가분수로 바꾸기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "대분수를 가분수로 바꿀 때는 자연수 부분을 분수 부분과 {분모}가 같은 분수로 바꾸어 합한다.",
+        "cStudentSentence": "대분수를 가분수로 바꿀 때는 자연수 부분을 분수 부분과 □가 같은 분수로 바꾸어 합한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "분모",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1\\frac{2}{5}$가 $\\frac{7}{5}$과 같은 까닭을 설명하시오.",
+          "answer": "$1=\\frac{5}{5}$이므로 $\\frac{5}{5}+\\frac{2}{5}=\\frac{7}{5}$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1$을 $\\frac{5}{5}$로 바꿔 분수 부분과 합한다",
+                "$\\frac{5}{5}+\\frac{2}{5}=\\frac{7}{5}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "대분수를 가분수로 바꿀 때는 자연수 부분을 분수 부분과 {분모}가 같은 분수로 바꾸어 합한다.",
+          "acceptedAnswers": [
+            [
+              "분모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2135,
+        "sourceFingerprint": "3fba1e74223bf842cab21fba7999f6005108ba48ead2d98e48be950c3c383deb",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc5",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "가분수로 바꾸어 더하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 같은 두 대분수의 덧셈은 모두 {가분수}로 고쳐 쓴 뒤, 분모는 그대로 두고 분자끼리 더해 계산할 수도 있다.",
+        "studentC": "분모가 같은 두 대분수의 덧셈은 모두 □로 고쳐 쓴 뒤, 분모는 그대로 두고 분자끼리 더해 계산할 수도 있다.",
+        "answers": [
+          "가분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2135,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "3fba1e74223bf842cab21fba7999f6005108ba48ead2d98e48be950c3c383deb",
+        "proposalFingerprint": "c5d7931a14360b3e5d377062d774e5073aa08c5c34bb7b80927249078ce59485",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\frac{2}{5}+2\\frac{1}{5}$을 가분수로 고쳐서 계산하는 과정을 쓰시오.",
+        "bAnswer": "$1\\frac{2}{5}=\\frac{7}{5}$, $2\\frac{1}{5}=\\frac{11}{5}$로 고치고 분자끼리 더해 $\\frac{18}{5}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{5}$과 $\\frac{11}{5}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자끼리 더해 $\\frac{18}{5}$",
+              "$\\frac{18}{5}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "가분수로 바꿔 더하기",
+        "bReason": "변환과 분자 덧셈 과정을 확인",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '가분수' 빈칸이고 앞 설명으로 답이 정해짐",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가분수로 바꾸어 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 두 대분수의 덧셈은 모두 {가분수}로 고쳐 쓴 뒤, 분모는 그대로 두고 분자끼리 더해 계산할 수도 있다.",
+        "cStudentSentence": "분모가 같은 두 대분수의 덧셈은 모두 □로 고쳐 쓴 뒤, 분모는 그대로 두고 분자끼리 더해 계산할 수도 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "가분수",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모가 같은 두 대분수의 덧셈은 모두 □로 고쳐 쓴 뒤, 분모는 그대로 두고 분자끼리 더해 계산할 수도 있다.",
+          "answers": [
+            "가분수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1\\frac{2}{5}+2\\frac{1}{5}$을 가분수로 고쳐서 계산하는 과정을 쓰시오.",
+          "answer": "$1\\frac{2}{5}=\\frac{7}{5}$, $2\\frac{1}{5}=\\frac{11}{5}$로 고치고 분자끼리 더해 $\\frac{18}{5}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{7}{5}$과 $\\frac{11}{5}$로 고친다"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자끼리 더해 $\\frac{18}{5}$",
+                "$\\frac{18}{5}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 두 대분수의 덧셈은 모두 {가분수}로 고쳐 쓴 뒤, 분모는 그대로 두고 분자끼리 더해 계산할 수도 있다.",
+          "acceptedAnswers": [
+            [
+              "가분수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2136,
+        "sourceFingerprint": "8bdc818a96ce6d64e281f69051da62b3756f656689293b9d8e74a9a8b6d93b0c",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc6",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "자연수와 대분수의 덧셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수와 대분수를 더할 때는 {자연수 부분끼리만} 더하고 분수 부분은 그대로 둔다.",
+        "example": {
+          "prompt": "$2+1\\frac{3}{8}$에서 분수 부분이 그대로인 까닭은?",
+          "answer": "$2$에는 분수 부분이 없어서"
+        },
+        "studentC": "자연수와 대분수를 더할 때는 □ 더하고 분수 부분은 그대로 둔다.",
+        "answers": [
+          "자연수 부분끼리만"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2136,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "8bdc818a96ce6d64e281f69051da62b3756f656689293b9d8e74a9a8b6d93b0c",
+        "proposalFingerprint": "4150e4bd7df70733b7b666d8f688ddc8fe1a8832701238589b436810da2429eb",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$2+1\\frac{3}{8}$을 계산할 때 분수 부분 $\\frac{3}{8}$이 그대로인 까닭을 설명하시오.",
+        "bAnswer": "$2$에는 분수 부분이 없어 더할 분수가 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$에는 분수 부분이 없다",
+              "더할 분수 부분이 없다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자연수에는 분수 부분이 없음",
+        "bReason": "분수 부분이 변하지 않는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "자연수와 대분수를 더할 때는 {자연수} 부분끼리만 더하고 분수 부분은 그대로 둔다.",
+        "cReason": "긴 구절을 '자연수' 한 낱말 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자연수와 대분수의 덧셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자연수와 대분수를 더할 때는 {자연수} 부분끼리만 더하고 분수 부분은 그대로 둔다.",
+        "cStudentSentence": "자연수와 대분수를 더할 때는 □ 부분끼리만 더하고 분수 부분은 그대로 둔다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자연수",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2+1\\frac{3}{8}$을 계산할 때 분수 부분 $\\frac{3}{8}$이 그대로인 까닭을 설명하시오.",
+          "answer": "$2$에는 분수 부분이 없어 더할 분수가 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$에는 분수 부분이 없다",
+                "더할 분수 부분이 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자연수와 대분수를 더할 때는 {자연수} 부분끼리만 더하고 분수 부분은 그대로 둔다.",
+          "acceptedAnswers": [
+            [
+              "자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2137,
+        "sourceFingerprint": "0a4ef035cf72b8698a6fcb53c990ca04b994f3d1f6d57487e01027224f9e7eb9",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc8",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "대분수 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수는 자연수 부분을 먼저 읽고 {~와}로 이어 분수 부분을 읽는다.",
+        "example": {
+          "prompt": "$2\\frac{3}{4}$을 읽으면?",
+          "answer": "$2$와 $4$분의 $3$"
+        },
+        "studentC": "대분수는 자연수 부분을 먼저 읽고 □로 이어 분수 부분을 읽는다.",
+        "answers": [
+          "~와"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2137,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "0a4ef035cf72b8698a6fcb53c990ca04b994f3d1f6d57487e01027224f9e7eb9",
+        "proposalFingerprint": "584d85d24346ed383dfc140ad180edd14c659864f3857e30e6bd037b1318c176",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "대분수 읽는 말",
+        "bReason": "읽는 방법은 단순 읽기",
+        "exclusionReason": "$2\\frac{3}{4}$ 읽기는 설명할 이유 없는 단순 기호 읽기라 B 제외",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\frac{3}{4}$은 '$2$ {와} $4$분의 $3$'이라고 읽는다.",
+        "cReason": "'~와' 표기 빈칸 대신 읽기 예시 속 '와'를 묻도록 변경 분수는 분자를 마지막에 읽는 소리에 맞춰 조사를 고친다.",
+        "cSlotEquivalents": [
+          [
+            "과"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "대분수 읽기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2\\frac{3}{4}$은 '$2$ {와} $4$분의 $3$'이라고 읽는다.",
+        "cStudentSentence": "$2\\frac{3}{4}$은 '$2$ □ $4$분의 $3$'이라고 읽는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "와",
+            "equivalents": [
+              "과"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$2\\frac{3}{4}$은 '$2$ {와} $4$분의 $3$'이라고 읽는다.",
+          "acceptedAnswers": [
+            [
+              "와",
+              "과"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "읽는 방법은 단순 읽기"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2138,
+        "sourceFingerprint": "6e62964876fb4388c53ea1d2d7f9c8b07a37a383c78dbb1c4dd56dd947b672a4",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc9",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "분수 부분의 합이 $1$일 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분수 부분끼리의 합이 $1$이 되면 두 대분수의 합은 {자연수}가 된다.",
+        "example": {
+          "prompt": "$1\\frac{2}{6}+1\\frac{4}{6}$가 $3$인 까닭은?",
+          "answer": "분수 부분의 합이 $1$이라서"
+        },
+        "studentC": "분수 부분끼리의 합이 $1$이 되면 두 대분수의 합은 □가 된다.",
+        "answers": [
+          "자연수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2138,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "6e62964876fb4388c53ea1d2d7f9c8b07a37a383c78dbb1c4dd56dd947b672a4",
+        "proposalFingerprint": "d2b0acad89c62852dfbf579a4a7cc558a98a8347f2a6095c9d8fdd48019255ec",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\frac{2}{6}+1\\frac{4}{6}$의 합이 $3$인 까닭을 설명하시오.",
+        "bAnswer": "분수 부분의 합 $\\frac{2}{6}+\\frac{4}{6}=1$이 되어 자연수 $1+1$에 $1$이 더해지기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분의 합이 $1$이다",
+              "$\\frac{2}{6}+\\frac{4}{6}=1$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분수 부분의 합이 $1$일 때",
+        "bReason": "분수 부분 합 $1$이 자연수를 만드는 이유",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '자연수'만 묻는 짧은 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분수 부분의 합이 $1$일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분수 부분끼리의 합이 $1$이 되면 두 대분수의 합은 {자연수}가 된다.",
+        "cStudentSentence": "분수 부분끼리의 합이 $1$이 되면 두 대분수의 합은 □가 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "자연수",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분수 부분끼리의 합이 $1$이 되면 두 대분수의 합은 □가 된다.",
+          "answers": [
+            "자연수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1\\frac{2}{6}+1\\frac{4}{6}$의 합이 $3$인 까닭을 설명하시오.",
+          "answer": "분수 부분의 합 $\\frac{2}{6}+\\frac{4}{6}=1$이 되어 자연수 $1+1$에 $1$이 더해지기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분수 부분의 합이 $1$이다",
+                "$\\frac{2}{6}+\\frac{4}{6}=1$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분수 부분끼리의 합이 $1$이 되면 두 대분수의 합은 {자연수}가 된다.",
+          "acceptedAnswers": [
+            [
+              "자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2139,
+        "sourceFingerprint": "2d3f9412c572bcd3b149b34f9694d2af08947fdb80b4163e967ad141df2d3724",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc12",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "두 방법의 결과",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 {같다}.",
+        "studentC": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2139,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "2d3f9412c572bcd3b149b34f9694d2af08947fdb80b4163e967ad141df2d3724",
+        "proposalFingerprint": "83c9ba1147b7c47b51fa6b006ba39dba299607023ed0fffbd986cf22ec83fe56",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\frac{2}{5}+1\\frac{1}{5}$을 자연수끼리 분수끼리 더하는 방법과 가분수로 바꾸어 더하는 방법으로 각각 계산하고, 두 결과를 비교하시오.",
+        "bAnswer": "$2+\\frac{3}{5}=2\\frac{3}{5}$, $\\frac{7}{5}+\\frac{6}{5}=\\frac{13}{5}=2\\frac{3}{5}$으로 두 결과는 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 방법의 결과가 같다",
+              "같은 수 $2\\frac{3}{5}$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 계산 방법의 결과 비교",
+        "bReason": "두 방법을 직접 계산해 같음을 확인",
+        "cDecision": "keep",
+        "cReason": "'같다' 한 낱말만 묻는 짧은 비교 빈칸",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 방법의 결과",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 {같다}.",
+        "cStudentSentence": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1\\frac{2}{5}+1\\frac{1}{5}$을 자연수끼리 분수끼리 더하는 방법과 가분수로 바꾸어 더하는 방법으로 각각 계산하고, 두 결과를 비교하시오.",
+          "answer": "$2+\\frac{3}{5}=2\\frac{3}{5}$, $\\frac{7}{5}+\\frac{6}{5}=\\frac{13}{5}=2\\frac{3}{5}$으로 두 결과는 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 방법의 결과가 같다",
+                "같은 수 $2\\frac{3}{5}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자연수끼리 분수끼리 더한 결과와 가분수로 바꾸어 더한 결과는 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2140,
+        "sourceFingerprint": "686ee791ff072029b0a0d254c50b90d46fae8fe13f3d1b38e88c0bc323b19cbe",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc14",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "대분수의 분수 부분",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대분수의 분수 부분은 언제나 {진분수}이다.",
+        "studentC": "대분수의 분수 부분은 언제나 □이다.",
+        "answers": [
+          "진분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2140,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "686ee791ff072029b0a0d254c50b90d46fae8fe13f3d1b38e88c0bc323b19cbe",
+        "proposalFingerprint": "418063407986e21b5c0cb7b603cfabdd68ad62730d0e78e908f1733fbd7cea66",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "대분수의 분수 부분은 어떤 종류의 분수이어야 하는지 쓰고, $2\\frac{5}{4}$를 대분수라고 쓰지 않는 까닭을 설명하시오.",
+        "bAnswer": "진분수이다. $\\frac{5}{4}$는 $1$보다 커서 자연수로 더 바꿀 수 있어 $3\\frac{1}{4}$로 쓰기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "진분수"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자가 분모보다 커서 자연수로 더 바꿀 수 있다",
+              "$\\frac{5}{4}$는 $1$보다 크다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "대분수의 분수 부분은 진분수",
+        "bReason": "분수 부분의 종류와 이유를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "짧고 친숙한 낱말 '진분수' 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "대분수의 분수 부분",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "대분수의 분수 부분은 언제나 {진분수}이다.",
+        "cStudentSentence": "대분수의 분수 부분은 언제나 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "진분수",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "대분수의 분수 부분은 언제나 □이다.",
+          "answers": [
+            "진분수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "대분수의 분수 부분은 어떤 종류의 분수이어야 하는지 쓰고, $2\\frac{5}{4}$를 대분수라고 쓰지 않는 까닭을 설명하시오.",
+          "answer": "진분수이다. $\\frac{5}{4}$는 $1$보다 커서 자연수로 더 바꿀 수 있어 $3\\frac{1}{4}$로 쓰기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "진분수"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자가 분모보다 커서 자연수로 더 바꿀 수 있다",
+                "$\\frac{5}{4}$는 $1$보다 크다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "대분수의 분수 부분은 언제나 {진분수}이다.",
+          "acceptedAnswers": [
+            [
+              "진분수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2141,
+        "sourceFingerprint": "a65dc8290343dffbf5d257dfbf840ce6c8ca88d797691aaa09ed9114f4ee279f",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc15",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "합이 놓이는 범위",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 대분수의 분수 부분의 합이 $1$보다 작으면 합은 {자연수 부분의 합}과 그보다 $1$ 큰 수 사이에 있다.",
+        "example": {
+          "prompt": "$2\\frac{1}{6}+3\\frac{2}{6}$의 합이 $6$보다 작은 까닭은?",
+          "answer": "분수 부분의 합이 $1$보다 작아서"
+        },
+        "studentC": "두 대분수의 분수 부분의 합이 $1$보다 작으면 합은 □과 그보다 $1$ 큰 수 사이에 있다.",
+        "answers": [
+          "자연수 부분의 합"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2141,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "a65dc8290343dffbf5d257dfbf840ce6c8ca88d797691aaa09ed9114f4ee279f",
+        "proposalFingerprint": "6ed734057d5f1edf64f6a6babe218067953dd36d6774cd3c80f780f0da677aac",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\frac{1}{6}+3\\frac{2}{6}$의 합이 $6$보다 작은 까닭을 설명하시오.",
+        "bAnswer": "자연수 부분의 합이 $5$이고 분수 부분의 합 $\\frac{3}{6}$이 $1$보다 작아서 합은 $5$와 $6$ 사이이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분의 합이 $1$보다 작다",
+              "$\\frac{3}{6}$이 $1$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "합이 놓이는 범위 설명",
+        "bReason": "분수 부분 합이 $1$ 미만이라는 근거",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\frac{1}{6}+3\\frac{2}{6}$는 분수 부분의 합이 $1$보다 작으므로 합이 $5$보다 크고 {$6$}보다 작다.",
+        "cReason": "긴 구절 대신 실제 식으로 범위의 끝 $6$을 묻도록 변경 분수는 분자를 마지막에 읽는 소리에 맞춰 조사를 고친다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "합이 놓이는 범위",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2\\frac{1}{6}+3\\frac{2}{6}$는 분수 부분의 합이 $1$보다 작으므로 합이 $5$보다 크고 {$6$}보다 작다.",
+        "cStudentSentence": "$2\\frac{1}{6}+3\\frac{2}{6}$는 분수 부분의 합이 $1$보다 작으므로 합이 $5$보다 크고 □보다 작다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\frac{1}{6}+3\\frac{2}{6}$의 합이 $6$보다 작은 까닭을 설명하시오.",
+          "answer": "자연수 부분의 합이 $5$이고 분수 부분의 합 $\\frac{3}{6}$이 $1$보다 작아서 합은 $5$와 $6$ 사이이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분수 부분의 합이 $1$보다 작다",
+                "$\\frac{3}{6}$이 $1$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2\\frac{1}{6}+3\\frac{2}{6}$는 분수 부분의 합이 $1$보다 작으므로 합이 $5$보다 크고 {$6$}보다 작다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2142,
+        "sourceFingerprint": "c7e8a61077e4941fe906e10c4985e21a3621c5344f3b0b5eda318e9b07006036",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc17",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "빈칸이 있는 대분수 덧셈식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분수 부분의 합이 $1$보다 작은 $1\\frac{2}{7}+\\triangle=3\\frac{6}{7}$에서는 자연수 부분의 차 $3-1$과 분수 부분의 차 $\\frac{6}{7}-\\frac{2}{7}$의 합을 구한다. 따라서 $\\triangle=$ {$2\\frac{4}{7}$}이다.",
+        "example": {
+          "prompt": "$1\\frac{2}{7}+\\square=3\\frac{5}{7}$에서 빈칸의 자연수 부분과 분수 부분을 따로 구해도 되는 까닭은?",
+          "answer": "분수끼리의 합이 $1$이 안 돼서"
+        },
+        "studentC": "분수 부분의 합이 $1$보다 작은 $1\\frac{2}{7}+\\triangle=3\\frac{6}{7}$에서는 자연수 부분의 차 $3-1$과 분수 부분의 차 $\\frac{6}{7}-\\frac{2}{7}$의 합을 구한다. 따라서 $\\triangle=$ □이다.",
+        "answers": [
+          "$2\\frac{4}{7}$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2142,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "c7e8a61077e4941fe906e10c4985e21a3621c5344f3b0b5eda318e9b07006036",
+        "proposalFingerprint": "a89bd999803fa8cfa3565505ca782894cc926a78e7f661602e7810b19289cb58",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\frac{2}{7}+\\square=3\\frac{5}{7}$에서 $\\square$의 자연수 부분과 분수 부분을 따로 뺄셈으로 구해도 되는 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{2}{7}$와 더해 $\\frac{5}{7}$가 되는 분수 부분이 $1$을 넘지 않아 자연수로 올림하지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분의 합이 $1$보다 작아 올림이 없다",
+              "분수끼리의 합이 $1$이 안 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "빈칸을 부분별로 구해도 되는 까닭",
+        "bReason": "올림이 없는 조건을 설명",
+        "cDecision": "keep",
+        "cReason": "계산 과정이 주어져 $2\\frac{4}{7}$로 정해지는 선명한 계산",
+        "cSlotEquivalents": [
+          [
+            "$\\frac{18}{7}$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빈칸이 있는 대분수 덧셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분수 부분의 합이 $1$보다 작은 $1\\frac{2}{7}+\\triangle=3\\frac{6}{7}$에서는 자연수 부분의 차 $3-1$과 분수 부분의 차 $\\frac{6}{7}-\\frac{2}{7}$의 합을 구한다. 따라서 $\\triangle=$ {$2\\frac{4}{7}$}이다.",
+        "cStudentSentence": "분수 부분의 합이 $1$보다 작은 $1\\frac{2}{7}+\\triangle=3\\frac{6}{7}$에서는 자연수 부분의 차 $3-1$과 분수 부분의 차 $\\frac{6}{7}-\\frac{2}{7}$의 합을 구한다. 따라서 $\\triangle=$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2\\frac{4}{7}$",
+            "equivalents": [
+              "$\\frac{18}{7}$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분수 부분의 합이 $1$보다 작은 $1\\frac{2}{7}+\\triangle=3\\frac{6}{7}$에서는 자연수 부분의 차 $3-1$과 분수 부분의 차 $\\frac{6}{7}-\\frac{2}{7}$의 합을 구한다. 따라서 $\\triangle=$ □이다.",
+          "answers": [
+            "$2\\frac{4}{7}$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1\\frac{2}{7}+\\square=3\\frac{5}{7}$에서 $\\square$의 자연수 부분과 분수 부분을 따로 뺄셈으로 구해도 되는 까닭을 설명하시오.",
+          "answer": "$\\frac{2}{7}$와 더해 $\\frac{5}{7}$가 되는 분수 부분이 $1$을 넘지 않아 자연수로 올림하지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분수 부분의 합이 $1$보다 작아 올림이 없다",
+                "분수끼리의 합이 $1$이 안 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분수 부분의 합이 $1$보다 작은 $1\\frac{2}{7}+\\triangle=3\\frac{6}{7}$에서는 자연수 부분의 차 $3-1$과 분수 부분의 차 $\\frac{6}{7}-\\frac{2}{7}$의 합을 구한다. 따라서 $\\triangle=$ {$2\\frac{4}{7}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$2\\frac{4}{7}$",
+              "$\\frac{18}{7}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2143,
+        "sourceFingerprint": "0d89b6f8a1c4d22e47da7ba4c75a074b4b1e39add0159bf4bfb3fc370811bd5b",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc19",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "합이 큰 덧셈식 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모가 정해진 대분수 두 개를 숫자 카드로 만들 때 합을 크게 하려면 {자연수 부분}에 가장 큰 숫자들을 놓는다.",
+        "studentC": "분모가 정해진 대분수 두 개를 숫자 카드로 만들 때 합을 크게 하려면 □에 가장 큰 숫자들을 놓는다.",
+        "answers": [
+          "자연수 부분"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2143,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "0d89b6f8a1c4d22e47da7ba4c75a074b4b1e39add0159bf4bfb3fc370811bd5b",
+        "proposalFingerprint": "b6be1d06aef5aa157ff1b9cf59ff6dd780193cb38a9e31173fe6743c930f5556",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 카드 $2$, $3$, $6$, $7$을 한 번씩만 써서 분모가 $9$인 대분수 두 개를 만들 때, 합이 가장 커지도록 큰 숫자들을 어디에 놓아야 하는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "큰 숫자 $7$과 $6$을 자연수 부분에 놓는다. 분수 부분은 $1$보다 작아 자연수 부분이 합에 더 크게 영향을 주기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "큰 숫자 $7$과 $6$을 자연수 부분에 놓는다",
+              "자연수 부분에 가장 큰 숫자들을 놓는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 부분은 $1$보다 작다",
+              "자연수 부분이 합에 더 크게 영향을 준다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "합이 큰 대분수 만들기",
+        "bReason": "카드 상황을 글로 주어 자립시킴",
+        "cDecision": "rewrite",
+        "cAfter": "숫자 카드 $4$장으로 분모가 $9$인 대분수 두 개를 만들어 합을 가장 크게 하려면 가장 큰 숫자들을 {자연수} 부분에 놓는다.",
+        "cReason": "'숫자 카드 $4$장' 상황을 보이고 빈칸을 '자연수'로 좁힘",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합이 큰 덧셈식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "숫자 카드 $4$장으로 분모가 $9$인 대분수 두 개를 만들어 합을 가장 크게 하려면 가장 큰 숫자들을 {자연수} 부분에 놓는다.",
+        "cStudentSentence": "숫자 카드 $4$장으로 분모가 $9$인 대분수 두 개를 만들어 합을 가장 크게 하려면 가장 큰 숫자들을 □ 부분에 놓는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자연수",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "숫자 카드 $2$, $3$, $6$, $7$을 한 번씩만 써서 분모가 $9$인 대분수 두 개를 만들 때, 합이 가장 커지도록 큰 숫자들을 어디에 놓아야 하는지 쓰고 까닭을 설명하시오.",
+          "answer": "큰 숫자 $7$과 $6$을 자연수 부분에 놓는다. 분수 부분은 $1$보다 작아 자연수 부분이 합에 더 크게 영향을 주기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "큰 숫자 $7$과 $6$을 자연수 부분에 놓는다",
+                "자연수 부분에 가장 큰 숫자들을 놓는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 부분은 $1$보다 작다",
+                "자연수 부분이 합에 더 크게 영향을 준다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "숫자 카드 $4$장으로 분모가 $9$인 대분수 두 개를 만들어 합을 가장 크게 하려면 가장 큰 숫자들을 {자연수} 부분에 놓는다.",
+          "acceptedAnswers": [
+            [
+              "자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2144,
+        "sourceFingerprint": "378e8f250ddc932e15b8c608986b52aacade56116d32fc7e0cce9bf281ae1c72",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc21",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "가분수와 대분수의 덧셈",
+        "kind": "방법",
+        "level": "상",
+        "definition": "가분수와 대분수를 더할 때는 둘을 {같은 꼴}로 바꾸어 더한다.",
+        "example": {
+          "prompt": "$\\frac{9}{4}+1\\frac{3}{4}$에서 $\\frac{9}{4}$를 $2\\frac{1}{4}$로 바꾸는 까닭은?",
+          "answer": "자연수끼리 분수끼리 더하려고"
+        },
+        "studentC": "가분수와 대분수를 더할 때는 둘을 □로 바꾸어 더한다.",
+        "answers": [
+          "같은 꼴"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2144,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "378e8f250ddc932e15b8c608986b52aacade56116d32fc7e0cce9bf281ae1c72",
+        "proposalFingerprint": "a022f8d98b483fd43c17bf6fb0e7bd6c10fea4a9f8d1e3af0d1b45b7bbd09da6",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{9}{4}+1\\frac{3}{4}$을 계산할 때 $\\frac{9}{4}$를 $2\\frac{1}{4}$로 바꾸는 까닭을 설명하시오.",
+        "bAnswer": "$1\\frac{3}{4}$과 같은 대분수 꼴로 맞추어 자연수 부분끼리, 분수 부분끼리 더하려는 것이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수를 같은 꼴로 맞추려고",
+              "자연수 부분끼리 분수 부분끼리 더하려고"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가분수를 대분수로 맞추는 까닭",
+        "bReason": "같은 꼴로 맞춰 더하는 이유를 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{9}{4}+1\\frac{3}{4}$을 자연수끼리, 분수끼리 더하려면 $\\frac{9}{4}$를 {대분수}로 바꾼다.",
+        "cReason": "어려운 '같은 꼴' 대신 친숙한 '대분수' 낱말 빈칸으로 변경 분수는 분자를 마지막에 읽는 소리에 맞춰 조사를 고친다.",
+        "cSlotEquivalents": [
+          [
+            "$2\\frac{1}{4}$"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가분수와 대분수의 덧셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{9}{4}+1\\frac{3}{4}$을 자연수끼리, 분수끼리 더하려면 $\\frac{9}{4}$를 {대분수}로 바꾼다.",
+        "cStudentSentence": "$\\frac{9}{4}+1\\frac{3}{4}$을 자연수끼리, 분수끼리 더하려면 $\\frac{9}{4}$를 □로 바꾼다.",
+        "cSlotAnswers": [
+          {
+            "expected": "대분수",
+            "equivalents": [
+              "$2\\frac{1}{4}$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{9}{4}+1\\frac{3}{4}$을 계산할 때 $\\frac{9}{4}$를 $2\\frac{1}{4}$로 바꾸는 까닭을 설명하시오.",
+          "answer": "$1\\frac{3}{4}$과 같은 대분수 꼴로 맞추어 자연수 부분끼리, 분수 부분끼리 더하려는 것이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 수를 같은 꼴로 맞추려고",
+                "자연수 부분끼리 분수 부분끼리 더하려고"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{9}{4}+1\\frac{3}{4}$을 자연수끼리, 분수끼리 더하려면 $\\frac{9}{4}$를 {대분수}로 바꾼다.",
+          "acceptedAnswers": [
+            [
+              "대분수",
+              "$2\\frac{1}{4}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2145,
+        "sourceFingerprint": "54c6d621db74a9085ac41a6f1a458b64ed3aa354f9092f3fba93021537c6a2ee",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc25",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "더하는 순서를 골라 쉽게",
+        "kind": "방법",
+        "level": "상",
+        "definition": "세 대분수를 더할 때 분수 부분의 합이 $1$인 둘을 먼저 더하면 그 둘의 합은 {자연수}가 되어 나머지 수와 더하기 쉽다.",
+        "studentC": "세 대분수를 더할 때 분수 부분의 합이 $1$인 둘을 먼저 더하면 그 둘의 합은 □가 되어 나머지 수와 더하기 쉽다.",
+        "answers": [
+          "자연수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2145,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "54c6d621db74a9085ac41a6f1a458b64ed3aa354f9092f3fba93021537c6a2ee",
+        "proposalFingerprint": "f375d1675990564f6e873dd396d67bb5f9449b87dccaa99f50449c12e4dd1f98",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\frac{2}{7}+2\\frac{3}{7}+1\\frac{5}{7}$를 계산할 때 어떤 두 수를 먼저 더하면 쉬운지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "$1\\frac{2}{7}$와 $1\\frac{5}{7}$를 먼저 더한다. 분수 부분의 합이 $1$이라 합이 자연수 $3$이 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\frac{2}{7}$와 $1\\frac{5}{7}$를 먼저 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 부분의 합이 $1$이라 자연수가 된다",
+              "합이 자연수 $3$이 된다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "합이 자연수가 되는 짝 찾기",
+        "bReason": "분수 부분 합 $1$인 두 수를 골라 설명",
+        "cDecision": "keep",
+        "cReason": "친숙한 낱말 '자연수' 하나를 묻는 빈칸",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "더하는 순서를 골라 쉽게",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 대분수를 더할 때 분수 부분의 합이 $1$인 둘을 먼저 더하면 그 둘의 합은 {자연수}가 되어 나머지 수와 더하기 쉽다.",
+        "cStudentSentence": "세 대분수를 더할 때 분수 부분의 합이 $1$인 둘을 먼저 더하면 그 둘의 합은 □가 되어 나머지 수와 더하기 쉽다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "자연수",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 대분수를 더할 때 분수 부분의 합이 $1$인 둘을 먼저 더하면 그 둘의 합은 □가 되어 나머지 수와 더하기 쉽다.",
+          "answers": [
+            "자연수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1\\frac{2}{7}+2\\frac{3}{7}+1\\frac{5}{7}$를 계산할 때 어떤 두 수를 먼저 더하면 쉬운지 쓰고 까닭을 설명하시오.",
+          "answer": "$1\\frac{2}{7}$와 $1\\frac{5}{7}$를 먼저 더한다. 분수 부분의 합이 $1$이라 합이 자연수 $3$이 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1\\frac{2}{7}$와 $1\\frac{5}{7}$를 먼저 더한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 부분의 합이 $1$이라 자연수가 된다",
+                "합이 자연수 $3$이 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세 대분수를 더할 때 분수 부분의 합이 $1$인 둘을 먼저 더하면 그 둘의 합은 {자연수}가 되어 나머지 수와 더하기 쉽다.",
+          "acceptedAnswers": [
+            [
+              "자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2146,
+        "sourceFingerprint": "0e01c8158a7dacf649da3f31c9ccb04ee8fe7eda73ae9ac8a939c1c07df2cc45",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc27",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "분모까지 더하는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1\\frac{2}{5}+1\\frac{1}{5}=2\\frac{3}{10}$은 {분모까지 더한} 잘못이다.",
+        "studentC": "$1\\frac{2}{5}+1\\frac{1}{5}=2\\frac{3}{10}$은 □ 잘못이다.",
+        "answers": [
+          "분모까지 더한"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2146,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "0e01c8158a7dacf649da3f31c9ccb04ee8fe7eda73ae9ac8a939c1c07df2cc45",
+        "proposalFingerprint": "df7d94f1db442fda1caa96be08f26fcee26c95edc4beaf18afa0ce941f1109d2",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc27",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "대분수 덧셈에서 분모를 더한 오류",
+        "bReason": "xc13과 같은 오류 진단 목표",
+        "exclusionReason": "분모까지 더한 잘못을 진단하는 2-1-1-xc13과 같은 목표라 B 중복",
+        "cDecision": "rewrite",
+        "cAfter": "$1\\frac{2}{5}+1\\frac{1}{5}=2\\frac{3}{10}$은 분자와 함께 {분모}까지 더한 잘못이다.",
+        "cReason": "'분모까지 더한' 구절을 '분모' 한 낱말 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          [
+            "분모를"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모까지 더하는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1\\frac{2}{5}+1\\frac{1}{5}=2\\frac{3}{10}$은 분자와 함께 {분모}까지 더한 잘못이다.",
+        "cStudentSentence": "$1\\frac{2}{5}+1\\frac{1}{5}=2\\frac{3}{10}$은 분자와 함께 □까지 더한 잘못이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "분모",
+            "equivalents": [
+              "분모를"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$1\\frac{2}{5}+1\\frac{1}{5}=2\\frac{3}{10}$은 분자와 함께 {분모}까지 더한 잘못이다.",
+          "acceptedAnswers": [
+            [
+              "분모",
+              "분모를"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc13과 같은 오류 진단 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2147,
+        "sourceFingerprint": "75dff096467b6cbdd1158d8c109225e1deb4b39a5e35b2f3bc95e0f29907e7ca",
+        "part": "e4plus",
+        "id": "e4-2-1-3-xc28",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "term": "합 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분수 부분이 $1$에 가까운 대분수는 {자연수 부분보다 $1$ 큰 수}로 보고 합을 어림한다.",
+        "example": {
+          "prompt": "$3\\frac{6}{7}+2\\frac{5}{7}$를 $4+3$으로 어림하는 까닭은?",
+          "answer": "분수 부분이 $1$에 가까워서"
+        },
+        "studentC": "분수 부분이 $1$에 가까운 대분수는 □로 보고 합을 어림한다.",
+        "answers": [
+          "자연수 부분보다 $1$ 큰 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2147,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-3 대분수의 덧셈",
+        "sourceFingerprint": "75dff096467b6cbdd1158d8c109225e1deb4b39a5e35b2f3bc95e0f29907e7ca",
+        "proposalFingerprint": "b3d5614aab3ade021662e65ae14b38e7142092614d092b2493648f1a55a43b6c",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "$3\\frac{6}{7}+2\\frac{5}{7}$를 $4+3$으로 어림하는 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{6}{7}$과 $\\frac{5}{7}$가 $1$에 가까워서 $3\\frac{6}{7}$은 $4$에, $2\\frac{5}{7}$는 $3$에 가깝기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분이 $1$에 가까워서",
+              "자연수 부분보다 $1$ 큰 수에 가깝다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "대분수 합을 어림하는 까닭",
+        "bReason": "분수 부분이 $1$에 가까워 올려 보는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "$3\\frac{6}{7}$은 분수 부분이 $1$에 가까우므로 합을 어림할 때 {$4$}로 본다.",
+        "cReason": "긴 구절 빈칸 대신 실제 수 $4$를 묻도록 변경",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3\\frac{6}{7}$은 분수 부분이 $1$에 가까우므로 합을 어림할 때 {$4$}로 본다.",
+        "cStudentSentence": "$3\\frac{6}{7}$은 분수 부분이 $1$에 가까우므로 합을 어림할 때 □로 본다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3\\frac{6}{7}+2\\frac{5}{7}$를 $4+3$으로 어림하는 까닭을 설명하시오.",
+          "answer": "$\\frac{6}{7}$과 $\\frac{5}{7}$가 $1$에 가까워서 $3\\frac{6}{7}$은 $4$에, $2\\frac{5}{7}$는 $3$에 가깝기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분수 부분이 $1$에 가까워서",
+                "자연수 부분보다 $1$ 큰 수에 가깝다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3\\frac{6}{7}$은 분수 부분이 $1$에 가까우므로 합을 어림할 때 {$4$}로 본다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2148,
+        "sourceFingerprint": "8a8c66cfe8fddc38ca3401a91a82cfdd8040b7524a6ff119502a633a24e1bf61",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc1",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "자연수끼리, 분수끼리 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 같은 대분수끼리 뺄 때 분수 부분끼리 뺄 수 있으면 {자연수 부분끼리}, 분수 부분끼리 뺀다.",
+        "studentC": "분모가 같은 대분수끼리 뺄 때 분수 부분끼리 뺄 수 있으면 □, 분수 부분끼리 뺀다.",
+        "answers": [
+          "자연수 부분끼리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2148,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "8a8c66cfe8fddc38ca3401a91a82cfdd8040b7524a6ff119502a633a24e1bf61",
+        "proposalFingerprint": "39942e86333fcb69379f1b2d3a1abcb0690f1dd068ad5989ebcf24cfb22aa562",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$4\\frac{5}{8}-2\\frac{3}{8}$을 자연수 부분과 분수 부분으로 나누어 계산하는 방법을 쓰시오.",
+        "bAnswer": "자연수끼리 $4-2=2$, 분수끼리 $\\frac{5}{8}-\\frac{3}{8}=\\frac{2}{8}$를 빼 $2\\frac{2}{8}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분끼리 뺀다",
+              "$4-2=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 부분끼리 뺀다",
+              "$\\frac{5}{8}-\\frac{3}{8}=\\frac{2}{8}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "대분수를 부분별로 빼기",
+        "bReason": "뺄 수 있을 때 부분별로 빼는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 대분수끼리 뺄 때 분수 부분끼리 뺄 수 있으면 {자연수} 부분끼리, 분수 부분끼리 뺀다.",
+        "cReason": "'자연수 부분끼리' 구절을 '자연수' 낱말로 축소",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자연수끼리, 분수끼리 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 대분수끼리 뺄 때 분수 부분끼리 뺄 수 있으면 {자연수} 부분끼리, 분수 부분끼리 뺀다.",
+        "cStudentSentence": "분모가 같은 대분수끼리 뺄 때 분수 부분끼리 뺄 수 있으면 □ 부분끼리, 분수 부분끼리 뺀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자연수",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4\\frac{5}{8}-2\\frac{3}{8}$을 자연수 부분과 분수 부분으로 나누어 계산하는 방법을 쓰시오.",
+          "answer": "자연수끼리 $4-2=2$, 분수끼리 $\\frac{5}{8}-\\frac{3}{8}=\\frac{2}{8}$를 빼 $2\\frac{2}{8}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "자연수 부분끼리 뺀다",
+                "$4-2=2$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 부분끼리 뺀다",
+                "$\\frac{5}{8}-\\frac{3}{8}=\\frac{2}{8}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 대분수끼리 뺄 때 분수 부분끼리 뺄 수 있으면 {자연수} 부분끼리, 분수 부분끼리 뺀다.",
+          "acceptedAnswers": [
+            [
+              "자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2149,
+        "sourceFingerprint": "a2941e8b876dc6bb6d5943fc1fcbf0ecaca324ef50e58d8652667f9c8b881252",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc4",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "자연수를 대분수 꼴로 바꾸기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수에서 $1$을 떼어 {분자와 분모가 같은 분수}로 바꾸면 자연수를 대분수 꼴로 쓸 수 있다.",
+        "example": {
+          "prompt": "$4$를 $3\\frac{6}{6}$으로 써도 같은 수인 까닭은?",
+          "answer": "$\\frac{6}{6}$이 $1$이라서"
+        },
+        "studentC": "자연수에서 $1$을 떼어 □로 바꾸면 자연수를 대분수 꼴로 쓸 수 있다.",
+        "answers": [
+          "분자와 분모가 같은 분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2149,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "a2941e8b876dc6bb6d5943fc1fcbf0ecaca324ef50e58d8652667f9c8b881252",
+        "proposalFingerprint": "cc7337f4816402e4797ecde4d09a83e289824d8339c11a5f2c33cb6aed81f7c7",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$4$를 $3\\frac{6}{6}$으로 써도 같은 수인 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{6}{6}=1$이라 $3+1=4$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{6}{6}=1$이다",
+              "$3+1=4$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자연수를 대분수 꼴로 쓰기",
+        "bReason": "$\\frac{6}{6}$이 $1$이라는 근거 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$4$에서 $1$을 떼어 분모가 $6$인 분수로 바꾸면 $4=3+$ {$\\frac{6}{6}$}이다.",
+        "cReason": "긴 구절 대신 실제 수 $\\frac{6}{6}$을 묻는 계산 빈칸",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자연수를 대분수 꼴로 바꾸기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4$에서 $1$을 떼어 분모가 $6$인 분수로 바꾸면 $4=3+$ {$\\frac{6}{6}$}이다.",
+        "cStudentSentence": "$4$에서 $1$을 떼어 분모가 $6$인 분수로 바꾸면 $4=3+$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{6}{6}$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4$를 $3\\frac{6}{6}$으로 써도 같은 수인 까닭을 설명하시오.",
+          "answer": "$\\frac{6}{6}=1$이라 $3+1=4$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{6}{6}=1$이다",
+                "$3+1=4$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4$에서 $1$을 떼어 분모가 $6$인 분수로 바꾸면 $4=3+$ {$\\frac{6}{6}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{6}{6}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2150,
+        "sourceFingerprint": "a3984d175ce2b6d38156380df67b6d14c5cc9f599bcf0226137aabdac22abef0",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc5",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "대분수에서 진분수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수에서 진분수를 뺄 때 분수 부분에서 뺄 수 있으면 {분수 부분에서만} 빼고 자연수 부분은 그대로 둔다.",
+        "example": {
+          "prompt": "$2\\frac{5}{8}-\\frac{3}{8}$에서 자연수 부분이 그대로인 까닭은?",
+          "answer": "분수 부분에서 다 덜 수 있어서"
+        },
+        "studentC": "대분수에서 진분수를 뺄 때 분수 부분에서 뺄 수 있으면 □ 빼고 자연수 부분은 그대로 둔다.",
+        "answers": [
+          "분수 부분에서만"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2150,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "a3984d175ce2b6d38156380df67b6d14c5cc9f599bcf0226137aabdac22abef0",
+        "proposalFingerprint": "939353733571f25c9c55956226e4334e5525d7d6a68a38383b8d60f56b9d97f1",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\frac{5}{8}-\\frac{3}{8}$을 계산할 때 자연수 부분 $2$가 그대로인 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{5}{8}$에서 $\\frac{3}{8}$을 다 덜어 낼 수 있어 자연수에서 가져올 필요가 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분에서 다 뺄 수 있다",
+              "자연수에서 빌릴 필요가 없다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자연수 부분이 그대로인 까닭",
+        "bReason": "분수 부분에서 뺄 수 있는 조건 확인",
+        "cDecision": "rewrite",
+        "cAfter": "대분수에서 진분수를 뺄 때 분수 부분이 빼는 분수보다 크거나 같으면 {분수} 부분에서만 빼고 자연수 부분은 그대로 둔다.",
+        "cReason": "'□ 빼고' 모호한 구절을 '분수' 낱말 빈칸으로 명확화",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "대분수에서 진분수 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "대분수에서 진분수를 뺄 때 분수 부분이 빼는 분수보다 크거나 같으면 {분수} 부분에서만 빼고 자연수 부분은 그대로 둔다.",
+        "cStudentSentence": "대분수에서 진분수를 뺄 때 분수 부분이 빼는 분수보다 크거나 같으면 □ 부분에서만 빼고 자연수 부분은 그대로 둔다.",
+        "cSlotAnswers": [
+          {
+            "expected": "분수",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\frac{5}{8}-\\frac{3}{8}$을 계산할 때 자연수 부분 $2$가 그대로인 까닭을 설명하시오.",
+          "answer": "$\\frac{5}{8}$에서 $\\frac{3}{8}$을 다 덜어 낼 수 있어 자연수에서 가져올 필요가 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분수 부분에서 다 뺄 수 있다",
+                "자연수에서 빌릴 필요가 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "대분수에서 진분수를 뺄 때 분수 부분이 빼는 분수보다 크거나 같으면 {분수} 부분에서만 빼고 자연수 부분은 그대로 둔다.",
+          "acceptedAnswers": [
+            [
+              "분수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2151,
+        "sourceFingerprint": "ca3cf4d0e7a23e3ebee1140fd9cbb4f9241f8c264f98ee5497d552337417eb52",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc7",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "가분수로 고쳐 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 같은 두 대분수의 뺄셈에서 빼어지는 수가 빼는 수보다 크거나 같으면, 모두 {가분수}로 고쳐 쓴 뒤 분모는 그대로 두고 분자끼리 빼서 계산할 수도 있다.",
+        "studentC": "분모가 같은 두 대분수의 뺄셈에서 빼어지는 수가 빼는 수보다 크거나 같으면, 모두 □로 고쳐 쓴 뒤 분모는 그대로 두고 분자끼리 빼서 계산할 수도 있다.",
+        "answers": [
+          "가분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2151,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "ca3cf4d0e7a23e3ebee1140fd9cbb4f9241f8c264f98ee5497d552337417eb52",
+        "proposalFingerprint": "ecc97a22ca2c93dd2592f80e99e7125e45e9c3ec25d8ff88ac65ae7280711d2e",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$3\\frac{2}{5}-1\\frac{4}{5}$를 가분수로 고쳐서 계산하는 과정을 쓰시오.",
+        "bAnswer": "$3\\frac{2}{5}=\\frac{17}{5}$, $1\\frac{4}{5}=\\frac{9}{5}$로 고치고 분자끼리 빼서 $\\frac{8}{5}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{17}{5}$과 $\\frac{9}{5}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자끼리 빼 $\\frac{8}{5}$",
+              "$\\frac{8}{5}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "가분수로 고쳐 빼기",
+        "bReason": "변환 후 분자끼리 빼는 과정 확인",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 두 대분수의 뺄셈은 모두 {가분수}로 고쳐 쓴 뒤 분모는 그대로 두고 분자끼리 빼서 계산할 수도 있다.",
+        "cReason": "'빼어지는 수' 숨은 용어와 긴 조건을 없앰",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가분수로 고쳐 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 두 대분수의 뺄셈은 모두 {가분수}로 고쳐 쓴 뒤 분모는 그대로 두고 분자끼리 빼서 계산할 수도 있다.",
+        "cStudentSentence": "분모가 같은 두 대분수의 뺄셈은 모두 □로 고쳐 쓴 뒤 분모는 그대로 두고 분자끼리 빼서 계산할 수도 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가분수",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3\\frac{2}{5}-1\\frac{4}{5}$를 가분수로 고쳐서 계산하는 과정을 쓰시오.",
+          "answer": "$3\\frac{2}{5}=\\frac{17}{5}$, $1\\frac{4}{5}=\\frac{9}{5}$로 고치고 분자끼리 빼서 $\\frac{8}{5}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{17}{5}$과 $\\frac{9}{5}$로 고친다"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자끼리 빼 $\\frac{8}{5}$",
+                "$\\frac{8}{5}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 두 대분수의 뺄셈은 모두 {가분수}로 고쳐 쓴 뒤 분모는 그대로 두고 분자끼리 빼서 계산할 수도 있다.",
+          "acceptedAnswers": [
+            [
+              "가분수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2152,
+        "sourceFingerprint": "9b8feea309aee17ed744a3be9faf67c8f2512786688542c0a4fc525a4cf214c5",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc8",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "차가 자연수인 뺄셈",
+        "kind": "성질",
+        "level": "하",
+        "definition": "큰 대분수에서 작은 대분수를 뺄 때 $4\\frac{2}{9}-1\\frac{2}{9}$처럼 {분수 부분이 같으면} 차는 자연수이다.",
+        "studentC": "큰 대분수에서 작은 대분수를 뺄 때 $4\\frac{2}{9}-1\\frac{2}{9}$처럼 □ 차는 자연수이다.",
+        "answers": [
+          "분수 부분이 같으면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2152,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "9b8feea309aee17ed744a3be9faf67c8f2512786688542c0a4fc525a4cf214c5",
+        "proposalFingerprint": "76733168f53ad497fe1b925b9da911f57af86640097c07a5ab43b8a617396b22",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$4\\frac{2}{9}-1\\frac{2}{9}$의 차가 자연수가 되는 까닭을 설명하시오.",
+        "bAnswer": "분수 부분 $\\frac{2}{9}-\\frac{2}{9}=0$이라 자연수 부분의 차 $3$만 남기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분끼리 빼면 $0$이다",
+              "분수 부분이 같아서 남지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차가 자연수가 되는 까닭",
+        "bReason": "분수 부분의 차가 $0$이 되는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "$4\\frac{2}{9}-1\\frac{2}{9}$처럼 두 대분수의 분수 부분이 {같으면} 차는 자연수이다.",
+        "cReason": "긴 조건 구절을 '같으면' 짧은 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "똑같으면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 자연수인 뺄셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4\\frac{2}{9}-1\\frac{2}{9}$처럼 두 대분수의 분수 부분이 {같으면} 차는 자연수이다.",
+        "cStudentSentence": "$4\\frac{2}{9}-1\\frac{2}{9}$처럼 두 대분수의 분수 부분이 □ 차는 자연수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으면",
+            "equivalents": [
+              "똑같으면"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4\\frac{2}{9}-1\\frac{2}{9}$의 차가 자연수가 되는 까닭을 설명하시오.",
+          "answer": "분수 부분 $\\frac{2}{9}-\\frac{2}{9}=0$이라 자연수 부분의 차 $3$만 남기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분수 부분끼리 빼면 $0$이다",
+                "분수 부분이 같아서 남지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4\\frac{2}{9}-1\\frac{2}{9}$처럼 두 대분수의 분수 부분이 {같으면} 차는 자연수이다.",
+          "acceptedAnswers": [
+            [
+              "같으면",
+              "똑같으면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2153,
+        "sourceFingerprint": "30a6f4d63dd2bc70dd3f50f08f006d01f15c70908fafeafae6fd6afa8be872b3",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc11",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "가분수로 고쳐 빼면 좋은 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "{분모가 같은} 대분수를 가분수로 고쳐 빼면 받아내림을 따로 하지 않아도 분자끼리 뺄 수 있다.",
+        "example": {
+          "prompt": "$2\\frac{1}{4}-1\\frac{3}{4}$을 $\\frac{9}{4}-\\frac{7}{4}$로 고치면 바로 뺄 수 있는 까닭은?",
+          "answer": "자연수 부분도 조각으로 바꿔서"
+        },
+        "studentC": "□ 대분수를 가분수로 고쳐 빼면 받아내림을 따로 하지 않아도 분자끼리 뺄 수 있다.",
+        "answers": [
+          "분모가 같은"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2153,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "30a6f4d63dd2bc70dd3f50f08f006d01f15c70908fafeafae6fd6afa8be872b3",
+        "proposalFingerprint": "f2f58c36723f9272c1c92601b421dafb0c8ec89b2ac92317ce413c06db711507",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\frac{1}{4}-1\\frac{3}{4}$을 $\\frac{9}{4}-\\frac{7}{4}$로 고치면 바로 뺄 수 있는 까닭을 설명하시오.",
+        "bAnswer": "자연수 부분도 $\\frac{1}{4}$짜리 조각으로 바꾸어 모두 분수 조각이 되므로 분자끼리 빼면 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분도 조각으로 바꾼다",
+              "분모가 같은 조각 수끼리 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가분수로 고쳐 빼면 좋은 점",
+        "bReason": "받아내림 없이 뺄 수 있는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 같은 대분수를 가분수로 고쳐 빼면 {받아내림}을 따로 하지 않아도 분자끼리 뺄 수 있다.",
+        "cReason": "문장 앞 조건 빈칸 대신 핵심 낱말 '받아내림'을 묻도록 변경",
+        "cSlotEquivalents": [
+          [
+            "받아내리기"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "가분수로 고쳐 빼면 좋은 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 대분수를 가분수로 고쳐 빼면 {받아내림}을 따로 하지 않아도 분자끼리 뺄 수 있다.",
+        "cStudentSentence": "분모가 같은 대분수를 가분수로 고쳐 빼면 □을 따로 하지 않아도 분자끼리 뺄 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "받아내림",
+            "equivalents": [
+              "받아내리기"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\frac{1}{4}-1\\frac{3}{4}$을 $\\frac{9}{4}-\\frac{7}{4}$로 고치면 바로 뺄 수 있는 까닭을 설명하시오.",
+          "answer": "자연수 부분도 $\\frac{1}{4}$짜리 조각으로 바꾸어 모두 분수 조각이 되므로 분자끼리 빼면 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "자연수 부분도 조각으로 바꾼다",
+                "분모가 같은 조각 수끼리 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 같은 대분수를 가분수로 고쳐 빼면 {받아내림}을 따로 하지 않아도 분자끼리 뺄 수 있다.",
+          "acceptedAnswers": [
+            [
+              "받아내림",
+              "받아내리기"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2154,
+        "sourceFingerprint": "533ca7c51799ec6b897fcb8aeddfd09ee2af26d768c2ce0fddd474010148f436",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc13",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "덧셈으로 뺄셈 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$5\\frac{1}{6}-2\\frac{4}{6}=2\\frac{3}{6}$은 $2\\frac{3}{6}+2\\frac{4}{6}=5\\frac{1}{6}$로 {확인한다}.",
+        "studentC": "$5\\frac{1}{6}-2\\frac{4}{6}=2\\frac{3}{6}$은 $2\\frac{3}{6}+2\\frac{4}{6}=5\\frac{1}{6}$로 □.",
+        "answers": [
+          "확인한다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2154,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "533ca7c51799ec6b897fcb8aeddfd09ee2af26d768c2ce0fddd474010148f436",
+        "proposalFingerprint": "3233d4bbc5ab4ceda52d972f255c774cf4d75cf673c5d639cf6e2143c62dd152",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 확인",
+        "bReason": "2-1-2-xc11과 같은 검산 목표",
+        "exclusionReason": "덧셈으로 뺄셈을 확인하는 2-1-2-xc11과 같은 목표라 B 중복",
+        "cDecision": "keep",
+        "cReason": "두 식이 보이고 '확인한다'만 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "검산한다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5\\frac{1}{6}-2\\frac{4}{6}=2\\frac{3}{6}$은 $2\\frac{3}{6}+2\\frac{4}{6}=5\\frac{1}{6}$로 {확인한다}.",
+        "cStudentSentence": "$5\\frac{1}{6}-2\\frac{4}{6}=2\\frac{3}{6}$은 $2\\frac{3}{6}+2\\frac{4}{6}=5\\frac{1}{6}$로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "확인한다",
+            "equivalents": [
+              "검산한다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$5\\frac{1}{6}-2\\frac{4}{6}=2\\frac{3}{6}$은 $2\\frac{3}{6}+2\\frac{4}{6}=5\\frac{1}{6}$로 □.",
+          "answers": [
+            "확인한다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$5\\frac{1}{6}-2\\frac{4}{6}=2\\frac{3}{6}$은 $2\\frac{3}{6}+2\\frac{4}{6}=5\\frac{1}{6}$로 {확인한다}.",
+          "acceptedAnswers": [
+            [
+              "확인한다",
+              "검산한다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-1-2-xc11과 같은 검산 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2155,
+        "sourceFingerprint": "509480338cbdbbb352c0ed3ee6ec74f36a521d76c7e61cd2e27694812a1563f2",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc14",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 거꾸로 빼는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 {빼는 순서를 바꾼} 잘못이다.",
+        "studentC": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 □ 잘못이다.",
+        "answers": [
+          "빼는 순서를 바꾼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2155,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "509480338cbdbbb352c0ed3ee6ec74f36a521d76c7e61cd2e27694812a1563f2",
+        "proposalFingerprint": "0909743623625a641081948a293bb6b40e614896850e97bb0d5dd53a7112747d",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$3\\frac{2}{7}-1\\frac{5}{7}$를 계산하면서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 뺐다. 잘못된 점을 설명하시오.",
+        "bAnswer": "처음 수의 분수 부분 $\\frac{2}{7}$에서 빼는 수의 분수 부분 $\\frac{5}{7}$를 빼야 하는데 빼는 순서를 바꾸었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빼는 순서를 바꾸었다",
+              "처음 수에서 빼야 하는데 거꾸로 뺐다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "거꾸로 빼는 오류 진단",
+        "bReason": "뺄셈의 순서가 중요하다는 점 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 빼는 {순서}를 바꾼 잘못이다.",
+        "cReason": "긴 구절 빈칸을 '순서' 한 낱말로 축소",
+        "cSlotEquivalents": [
+          [
+            "차례"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 거꾸로 빼는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 빼는 {순서}를 바꾼 잘못이다.",
+        "cStudentSentence": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 빼는 □를 바꾼 잘못이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "순서",
+            "equivalents": [
+              "차례"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3\\frac{2}{7}-1\\frac{5}{7}$를 계산하면서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 뺐다. 잘못된 점을 설명하시오.",
+          "answer": "처음 수의 분수 부분 $\\frac{2}{7}$에서 빼는 수의 분수 부분 $\\frac{5}{7}$를 빼야 하는데 빼는 순서를 바꾸었다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "빼는 순서를 바꾸었다",
+                "처음 수에서 빼야 하는데 거꾸로 뺐다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3\\frac{2}{7}-1\\frac{5}{7}$에서 분수 부분을 $\\frac{5}{7}-\\frac{2}{7}$로 거꾸로 빼면 빼는 {순서}를 바꾼 잘못이다.",
+          "acceptedAnswers": [
+            [
+              "순서",
+              "차례"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2156,
+        "sourceFingerprint": "1c7a92681151fbaaf80bebc5c2542a652812db81baea22c62ac172bc56097aaa",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc15",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "차가 놓이는 범위",
+        "kind": "성질",
+        "level": "중",
+        "definition": "받아내림이 있는 대분수의 뺄셈에서 차는 {자연수 부분의 차보다 작다}. 자연수 부분의 차보다 $1$ 작은 수보다는 크다.",
+        "example": {
+          "prompt": "$5\\frac{1}{6}-2\\frac{4}{6}$의 차가 $3$보다 작은 까닭은?",
+          "answer": "분수 부분이 모자라 $1$을 빌려서"
+        },
+        "studentC": "받아내림이 있는 대분수의 뺄셈에서 차는 □. 자연수 부분의 차보다 $1$ 작은 수보다는 크다.",
+        "answers": [
+          "자연수 부분의 차보다 작다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2156,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "1c7a92681151fbaaf80bebc5c2542a652812db81baea22c62ac172bc56097aaa",
+        "proposalFingerprint": "849ad5281237d56f31ee34691c11c494ef86631f8d1ca122520dd4afc6d7b32c",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$5\\frac{1}{6}-2\\frac{4}{6}$의 차가 $3$보다 작은 까닭을 설명하시오.",
+        "bAnswer": "분수 부분 $\\frac{1}{6}$에서 $\\frac{4}{6}$를 뺄 수 없어 자연수 $1$을 빌려 오므로 $5-2=3$에서 $1$이 줄기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분이 모자라 자연수 $1$을 빌려 온다",
+              "받아내림 때문에 자연수 부분이 $1$ 줄어든다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "받아내림 있는 차의 범위",
+        "bReason": "받아내림으로 자연수 부분이 줄어드는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "$5\\frac{1}{6}-2\\frac{4}{6}$는 분수 부분이 모자라 받아내림이 있으므로 차는 자연수 부분의 차 $3$보다 {작다}.",
+        "cReason": "긴 문장 빈칸 대신 실제 식으로 '작다' 비교를 묻도록 변경 분수는 분자를 마지막에 읽는 소리에 맞춰 조사를 고친다.",
+        "cSlotEquivalents": [
+          [
+            "적다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 놓이는 범위",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5\\frac{1}{6}-2\\frac{4}{6}$는 분수 부분이 모자라 받아내림이 있으므로 차는 자연수 부분의 차 $3$보다 {작다}.",
+        "cStudentSentence": "$5\\frac{1}{6}-2\\frac{4}{6}$는 분수 부분이 모자라 받아내림이 있으므로 차는 자연수 부분의 차 $3$보다 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "작다",
+            "equivalents": [
+              "적다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5\\frac{1}{6}-2\\frac{4}{6}$의 차가 $3$보다 작은 까닭을 설명하시오.",
+          "answer": "분수 부분 $\\frac{1}{6}$에서 $\\frac{4}{6}$를 뺄 수 없어 자연수 $1$을 빌려 오므로 $5-2=3$에서 $1$이 줄기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분수 부분이 모자라 자연수 $1$을 빌려 온다",
+                "받아내림 때문에 자연수 부분이 $1$ 줄어든다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5\\frac{1}{6}-2\\frac{4}{6}$는 분수 부분이 모자라 받아내림이 있으므로 차는 자연수 부분의 차 $3$보다 {작다}.",
+          "acceptedAnswers": [
+            [
+              "작다",
+              "적다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2157,
+        "sourceFingerprint": "c4054d21fcc749ea4b904fd20b9af3b0108ee23d9c2677610a35cdecd86a114d",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc16",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "빼는 수를 모를 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "대분수의 뺄셈식에서 빼는 수를 모르면 {처음 수에서 차를 빼서} 구한다.",
+        "example": {
+          "prompt": "$4\\frac{5}{8}-\\square=2\\frac{1}{8}$의 $\\square$를 $4\\frac{5}{8}-2\\frac{1}{8}$로 구하는 까닭은?",
+          "answer": "$\\square$와 차를 더하면 처음 수라서"
+        },
+        "studentC": "대분수의 뺄셈식에서 빼는 수를 모르면 □ 구한다.",
+        "answers": [
+          "처음 수에서 차를 빼서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2157,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "c4054d21fcc749ea4b904fd20b9af3b0108ee23d9c2677610a35cdecd86a114d",
+        "proposalFingerprint": "500e19f77cde2c0bea38ddb64338e70e4c29bce2eafa9d53f00ec66da47da8af",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "대분수에서 빼는 수 구하기",
+        "bReason": "2-1-2-xc12와 같은 목표",
+        "exclusionReason": "빼는 수를 처음 수에서 차를 빼서 구하는 2-1-2-xc12와 같은 목표라 B 중복",
+        "cDecision": "rewrite",
+        "cAfter": "$4\\frac{5}{8}-\\square=2\\frac{1}{8}$에서 $\\square$는 $4\\frac{5}{8}$에서 $2\\frac{1}{8}$을 {빼서} 구한다.",
+        "cReason": "숨은 수 이름 대신 실제 식을 주고 '빼서' 빈칸으로 변경",
+        "cSlotEquivalents": [
+          [
+            "뺀",
+            "뺄셈으로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빼는 수를 모를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4\\frac{5}{8}-\\square=2\\frac{1}{8}$에서 $\\square$는 $4\\frac{5}{8}$에서 $2\\frac{1}{8}$을 {빼서} 구한다.",
+        "cStudentSentence": "$4\\frac{5}{8}-\\square=2\\frac{1}{8}$에서 $\\square$는 $4\\frac{5}{8}$에서 $2\\frac{1}{8}$을 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빼서",
+            "equivalents": [
+              "뺀",
+              "뺄셈으로"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$4\\frac{5}{8}-\\square=2\\frac{1}{8}$에서 $\\square$는 $4\\frac{5}{8}$에서 $2\\frac{1}{8}$을 {빼서} 구한다.",
+          "acceptedAnswers": [
+            [
+              "빼서",
+              "뺀",
+              "뺄셈으로"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-1-2-xc12와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2158,
+        "sourceFingerprint": "7f3f894a822b9961bca5e03ed5db5539edbe8822d5912c66af425751db3a1e47",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc18",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "자연수에서 진분수를 빼는 방법",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수에서 진분수를 뺄 때는 자연수에서 {$1$}을 분수로 바꾸어 뺀다.",
+        "studentC": "자연수에서 진분수를 뺄 때는 자연수에서 □을 분수로 바꾸어 뺀다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2158,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "7f3f894a822b9961bca5e03ed5db5539edbe8822d5912c66af425751db3a1e47",
+        "proposalFingerprint": "19ec7ef9b7741ce875d8c8e0b1c8646fa2d0e65cc742885ada991c36bde3d445",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$3-\\frac{2}{5}$를 계산하는 방법을 쓰시오.",
+        "bAnswer": "$3$에서 $1$을 떼어 $\\frac{5}{5}$로 바꾸어 $2\\frac{5}{5}-\\frac{2}{5}=2\\frac{3}{5}$으로 계산한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$에서 $1$을 떼어 $\\frac{5}{5}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수끼리 빼서 $\\frac{3}{5}$",
+              "$2\\frac{3}{5}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "자연수에서 진분수 빼기",
+        "bReason": "$1$을 분수로 바꾸어 빼는 과정 확인",
+        "cDecision": "keep",
+        "cReason": "'자연수에서 $1$을 분수로'로 답 $1$이 짧고 분명",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "자연수에서 진분수를 빼는 방법",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자연수에서 진분수를 뺄 때는 자연수에서 {$1$}을 분수로 바꾸어 뺀다.",
+        "cStudentSentence": "자연수에서 진분수를 뺄 때는 자연수에서 □을 분수로 바꾸어 뺀다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "자연수에서 진분수를 뺄 때는 자연수에서 □을 분수로 바꾸어 뺀다.",
+          "answers": [
+            "$1$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3-\\frac{2}{5}$를 계산하는 방법을 쓰시오.",
+          "answer": "$3$에서 $1$을 떼어 $\\frac{5}{5}$로 바꾸어 $2\\frac{5}{5}-\\frac{2}{5}=2\\frac{3}{5}$으로 계산한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$에서 $1$을 떼어 $\\frac{5}{5}$로 바꾼다"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수끼리 빼서 $\\frac{3}{5}$",
+                "$2\\frac{3}{5}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자연수에서 진분수를 뺄 때는 자연수에서 {$1$}을 분수로 바꾸어 뺀다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2159,
+        "sourceFingerprint": "764725081e357aa34a535dda099dc51a9b740a26a029c5d2889232b799b39075",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc20",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "차가 큰 뺄셈식 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 대분수를 만들어 차를 크게 하려면 빼어지는 수는 {크게}, 빼는 수는 작게 만든다.",
+        "studentC": "두 대분수를 만들어 차를 크게 하려면 빼어지는 수는 □, 빼는 수는 작게 만든다.",
+        "answers": [
+          "크게"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2159,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "764725081e357aa34a535dda099dc51a9b740a26a029c5d2889232b799b39075",
+        "proposalFingerprint": "9c379cb6571c7143d1cbdab1c40986fe7c11b3132a98758b95066bf55b901879",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 카드 $1$, $2$, $5$, $6$을 한 번씩만 써서 분모가 $7$인 대분수 두 개를 만들고, 첫째 수에서 둘째 수를 뺄 때 차가 가장 커지는 두 수를 쓰시오.",
+        "bAnswer": "첫째 수는 가장 크게 $6\\frac{5}{7}$, 둘째 수는 가장 작게 $1\\frac{2}{7}$로 만든다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "첫째 수를 가장 크게 $6\\frac{5}{7}$",
+              "처음 수는 크게 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "빼는 수를 가장 작게 $1\\frac{2}{7}$",
+              "빼는 수는 작게 만든다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "차가 큰 뺄셈식 만들기",
+        "bReason": "큰 수에서 작은 수를 빼는 원리를 적용",
+        "cDecision": "rewrite",
+        "cAfter": "두 대분수를 만들어 차를 크게 하려면 처음 수는 {크게}, 빼는 수는 작게 만든다.",
+        "cReason": "'빼어지는 수' 숨은 이름을 '처음 수'로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차가 큰 뺄셈식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 대분수를 만들어 차를 크게 하려면 처음 수는 {크게}, 빼는 수는 작게 만든다.",
+        "cStudentSentence": "두 대분수를 만들어 차를 크게 하려면 처음 수는 □, 빼는 수는 작게 만든다.",
+        "cSlotAnswers": [
+          {
+            "expected": "크게",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "숫자 카드 $1$, $2$, $5$, $6$을 한 번씩만 써서 분모가 $7$인 대분수 두 개를 만들고, 첫째 수에서 둘째 수를 뺄 때 차가 가장 커지는 두 수를 쓰시오.",
+          "answer": "첫째 수는 가장 크게 $6\\frac{5}{7}$, 둘째 수는 가장 작게 $1\\frac{2}{7}$로 만든다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "첫째 수를 가장 크게 $6\\frac{5}{7}$",
+                "처음 수는 크게 만든다"
+              ]
+            },
+            {
+              "anyOf": [
+                "빼는 수를 가장 작게 $1\\frac{2}{7}$",
+                "빼는 수는 작게 만든다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 대분수를 만들어 차를 크게 하려면 처음 수는 {크게}, 빼는 수는 작게 만든다.",
+          "acceptedAnswers": [
+            [
+              "크게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2160,
+        "sourceFingerprint": "ad558572c0b086a2da3199f79fca0239ae125962f0d29fb073bf903fee8092c2",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc21",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "더하기 전의 수 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어떤 수에 더한 결과를 알면 어떤 수는 {결과에서 더한 수를 빼서} 구한다.",
+        "example": {
+          "prompt": "어떤 수에 $1\\frac{3}{5}$을 더해 $4\\frac{1}{5}$이 되었을 때 뺄셈을 하는 까닭은?",
+          "answer": "더한 것을 되돌려야 해서"
+        },
+        "studentC": "어떤 수에 더한 결과를 알면 어떤 수는 □ 구한다.",
+        "answers": [
+          "결과에서 더한 수를 빼서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2160,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "ad558572c0b086a2da3199f79fca0239ae125962f0d29fb073bf903fee8092c2",
+        "proposalFingerprint": "7d0dec18d404f56efc5800511dc1ba0fe91e843be266631416c42069a0408ccc",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 수에 $1\\frac{3}{5}$을 더했더니 $4\\frac{1}{5}$이 되었다. 어떤 수를 뺄셈으로 구하는 까닭을 설명하시오.",
+        "bAnswer": "더해서 커진 수에서 더한 수를 되돌려 덜어 내면 처음 어떤 수가 나오기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "더한 것을 되돌려야 한다",
+              "결과에서 더한 수를 빼면 어떤 수가 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "더하기 전 수를 뺄셈으로 구하기",
+        "bReason": "더한 수를 되돌리는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수에 $1\\frac{3}{5}$을 더했더니 $4\\frac{1}{5}$이 되었다면 어떤 수는 $4\\frac{1}{5}$에서 $1\\frac{3}{5}$을 {빼서} 구한다.",
+        "cReason": "긴 구절 대신 실제 수와 '빼서' 한 낱말 빈칸으로 변경",
+        "cSlotEquivalents": [
+          [
+            "뺀",
+            "뺄셈으로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "더하기 전의 수 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수에 $1\\frac{3}{5}$을 더했더니 $4\\frac{1}{5}$이 되었다면 어떤 수는 $4\\frac{1}{5}$에서 $1\\frac{3}{5}$을 {빼서} 구한다.",
+        "cStudentSentence": "어떤 수에 $1\\frac{3}{5}$을 더했더니 $4\\frac{1}{5}$이 되었다면 어떤 수는 $4\\frac{1}{5}$에서 $1\\frac{3}{5}$을 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빼서",
+            "equivalents": [
+              "뺀",
+              "뺄셈으로"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 수에 $1\\frac{3}{5}$을 더했더니 $4\\frac{1}{5}$이 되었다. 어떤 수를 뺄셈으로 구하는 까닭을 설명하시오.",
+          "answer": "더해서 커진 수에서 더한 수를 되돌려 덜어 내면 처음 어떤 수가 나오기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "더한 것을 되돌려야 한다",
+                "결과에서 더한 수를 빼면 어떤 수가 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수에 $1\\frac{3}{5}$을 더했더니 $4\\frac{1}{5}$이 되었다면 어떤 수는 $4\\frac{1}{5}$에서 $1\\frac{3}{5}$을 {빼서} 구한다.",
+          "acceptedAnswers": [
+            [
+              "빼서",
+              "뺀",
+              "뺄셈으로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2161,
+        "sourceFingerprint": "cc97507c7109136618bbab1418d7f0871323f0af898e9f5f3d77e0bc664608b2",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc25",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "차 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분수 부분이 $0$이나 $1$에 가까운 대분수는 {가까운 자연수}로 보고 차를 어림한다.",
+        "example": {
+          "prompt": "$6\\frac{1}{8}-2\\frac{7}{8}$을 $6-3$으로 어림하는 까닭은?",
+          "answer": "두 수가 $6$과 $3$에 가까워서"
+        },
+        "studentC": "분수 부분이 $0$이나 $1$에 가까운 대분수는 □로 보고 차를 어림한다.",
+        "answers": [
+          "가까운 자연수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2161,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "cc97507c7109136618bbab1418d7f0871323f0af898e9f5f3d77e0bc664608b2",
+        "proposalFingerprint": "8896eda0b98cb3c48b1cdffcfb265877f64bfd6dc8f4bd4d2b5d4634ab20b604",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$6\\frac{1}{8}-2\\frac{7}{8}$을 $6-3$으로 어림하는 까닭을 설명하시오.",
+        "bAnswer": "$6\\frac{1}{8}$은 $6$에, $2\\frac{7}{8}$은 $3$에 가깝기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분이 $0$이나 $1$에 가깝다",
+              "각각 $6$과 $3$에 가깝다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가까운 자연수로 차 어림",
+        "bReason": "분수 부분이 $0$이나 $1$에 가까워 어림하는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\frac{7}{8}$처럼 분수 부분이 $1$에 가까운 대분수는 가장 가까운 자연수 {$3$}으로 보고 차를 어림한다.",
+        "cReason": "긴 구절 대신 실제 대분수의 가까운 자연수 $3$을 묻도록 변경",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2\\frac{7}{8}$처럼 분수 부분이 $1$에 가까운 대분수는 가장 가까운 자연수 {$3$}으로 보고 차를 어림한다.",
+        "cStudentSentence": "$2\\frac{7}{8}$처럼 분수 부분이 $1$에 가까운 대분수는 가장 가까운 자연수 □으로 보고 차를 어림한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$6\\frac{1}{8}-2\\frac{7}{8}$을 $6-3$으로 어림하는 까닭을 설명하시오.",
+          "answer": "$6\\frac{1}{8}$은 $6$에, $2\\frac{7}{8}$은 $3$에 가깝기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분수 부분이 $0$이나 $1$에 가깝다",
+                "각각 $6$과 $3$에 가깝다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2\\frac{7}{8}$처럼 분수 부분이 $1$에 가까운 대분수는 가장 가까운 자연수 {$3$}으로 보고 차를 어림한다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2162,
+        "sourceFingerprint": "1b20e50b74b2e460161f87029e4bb04b1f2248255f57a62f0bc2cd56379ae1c4",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc27",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "받아내림이 필요한 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모가 같은 대분수를 자연수끼리, 분수끼리 빼려 할 때 빼는 수의 분수 부분이 빼어지는 수의 {분수 부분보다 크면} 받아내림이 필요하다.",
+        "example": {
+          "prompt": "$3\\frac{2}{5}-1\\frac{4}{5}$를 두 부분으로 나누어 뺄 때 받아내림이 필요한 까닭은?",
+          "answer": "$\\frac{2}{5}$에서 $\\frac{4}{5}$를 뺄 수 없어서"
+        },
+        "studentC": "분모가 같은 대분수를 자연수끼리, 분수끼리 빼려 할 때 빼는 수의 분수 부분이 빼어지는 수의 □ 받아내림이 필요하다.",
+        "answers": [
+          "분수 부분보다 크면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2162,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "1b20e50b74b2e460161f87029e4bb04b1f2248255f57a62f0bc2cd56379ae1c4",
+        "proposalFingerprint": "beb6a985a34cfcddd8c528f5cd1196ae80203821115bd832af912639b597eada",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "$3\\frac{2}{5}-1\\frac{4}{5}$를 자연수 부분과 분수 부분으로 나누어 뺄 때 받아내림이 필요한 까닭을 설명하시오.",
+        "bAnswer": "처음 수의 분수 부분 $\\frac{2}{5}$에서 $\\frac{4}{5}$를 뺄 수 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{5}$에서 $\\frac{4}{5}$를 뺄 수 없다",
+              "빼는 분수 부분이 더 크다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "받아내림이 필요한 까닭",
+        "bReason": "분수 부분을 뺄 수 없는 경우를 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$3\\frac{2}{5}-1\\frac{4}{5}$처럼 빼는 수의 분수 부분이 처음 수의 분수 부분보다 {크면} 받아내림이 필요하다.",
+        "cReason": "'빼어지는 수' 숨은 이름을 없애고 '크면' 비교 빈칸으로 변경",
+        "cSlotEquivalents": [
+          [
+            "더 크면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "받아내림이 필요한 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3\\frac{2}{5}-1\\frac{4}{5}$처럼 빼는 수의 분수 부분이 처음 수의 분수 부분보다 {크면} 받아내림이 필요하다.",
+        "cStudentSentence": "$3\\frac{2}{5}-1\\frac{4}{5}$처럼 빼는 수의 분수 부분이 처음 수의 분수 부분보다 □ 받아내림이 필요하다.",
+        "cSlotAnswers": [
+          {
+            "expected": "크면",
+            "equivalents": [
+              "더 크면"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3\\frac{2}{5}-1\\frac{4}{5}$를 자연수 부분과 분수 부분으로 나누어 뺄 때 받아내림이 필요한 까닭을 설명하시오.",
+          "answer": "처음 수의 분수 부분 $\\frac{2}{5}$에서 $\\frac{4}{5}$를 뺄 수 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{2}{5}$에서 $\\frac{4}{5}$를 뺄 수 없다",
+                "빼는 분수 부분이 더 크다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3\\frac{2}{5}-1\\frac{4}{5}$처럼 빼는 수의 분수 부분이 처음 수의 분수 부분보다 {크면} 받아내림이 필요하다.",
+          "acceptedAnswers": [
+            [
+              "크면",
+              "더 크면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

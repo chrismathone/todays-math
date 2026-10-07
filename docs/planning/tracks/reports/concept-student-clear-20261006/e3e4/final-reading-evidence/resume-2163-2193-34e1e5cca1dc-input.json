@@ -1,0 +1,2608 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2163,
+  "end": 2193,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2163,
+        "sourceFingerprint": "3ae896a32504ab78ec5118eec784c1e3b683dd519cd1334747030f5a7f558d0e",
+        "part": "e4plus",
+        "id": "e4-2-1-4-xc28",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "term": "받아내림의 뜻",
+        "kind": "성질",
+        "level": "상",
+        "definition": "받아내림은 자연수 $1$을 분자와 분모가 같은 분수로 바꾸어 {분수 부분에 보태는} 것이다.",
+        "studentC": "받아내림은 자연수 $1$을 분자와 분모가 같은 분수로 바꾸어 □ 것이다.",
+        "answers": [
+          "분수 부분에 보태는"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2163,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "3ae896a32504ab78ec5118eec784c1e3b683dd519cd1334747030f5a7f558d0e",
+        "proposalFingerprint": "a808d37bca10a2bd73487f741ed7fb17e4df15eadfb21232244b6d3240e98deb",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "$3\\frac{2}{5}-1\\frac{4}{5}$에서 받아내림을 할 때 $3\\frac{2}{5}$를 어떻게 바꾸어 쓰는지 설명하시오.",
+        "bAnswer": "자연수 $3$에서 $1$을 떼어 $\\frac{5}{5}$로 바꾸어 분수 부분 $\\frac{2}{5}$에 더해 $2\\frac{7}{5}$로 쓴다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$을 $\\frac{5}{5}$로 바꾸어 분수 부분에 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{7}{5}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "받아내림의 방법",
+        "bReason": "$1$을 분수로 바꿔 보태는 과정 확인",
+        "cDecision": "rewrite",
+        "cAfter": "받아내림은 자연수 $1$을 분자와 분모가 같은 분수로 바꾸어 분수 부분에 {더하는} 것이다.",
+        "cReason": "'보태는' 구절 빈칸을 쉬운 낱말 '더하는'으로 변경",
+        "cSlotEquivalents": [
+          [
+            "보태는",
+            "합치는"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "받아내림의 뜻",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "받아내림은 자연수 $1$을 분자와 분모가 같은 분수로 바꾸어 분수 부분에 {더하는} 것이다.",
+        "cStudentSentence": "받아내림은 자연수 $1$을 분자와 분모가 같은 분수로 바꾸어 분수 부분에 □ 것이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "더하는",
+            "equivalents": [
+              "보태는",
+              "합치는"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3\\frac{2}{5}-1\\frac{4}{5}$에서 받아내림을 할 때 $3\\frac{2}{5}$를 어떻게 바꾸어 쓰는지 설명하시오.",
+          "answer": "자연수 $3$에서 $1$을 떼어 $\\frac{5}{5}$로 바꾸어 분수 부분 $\\frac{2}{5}$에 더해 $2\\frac{7}{5}$로 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1$을 $\\frac{5}{5}$로 바꾸어 분수 부분에 더한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$2\\frac{7}{5}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "받아내림은 자연수 $1$을 분자와 분모가 같은 분수로 바꾸어 분수 부분에 {더하는} 것이다.",
+          "acceptedAnswers": [
+            [
+              "더하는",
+              "보태는",
+              "합치는"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2164,
+        "sourceFingerprint": "642eafb290a94e7e5f3c606298754cd69098248648a59e1882cd558ac6148e49",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc1",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "변의 길이로 분류하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "삼각형을 변으로 분류할 때는 같은 {길이}의 변이 몇 개인지 살핀다.",
+        "studentC": "삼각형을 변으로 분류할 때는 같은 □의 변이 몇 개인지 살핀다.",
+        "answers": [
+          "길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2164,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "642eafb290a94e7e5f3c606298754cd69098248648a59e1882cd558ac6148e49",
+        "proposalFingerprint": "2bf3306321666cfa2b1f4f023694c1e50838bce68ad868e9cfa79c2e698aaecb",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형을 변의 길이에 따라 이등변삼각형, 정삼각형 등으로 나눌 때 무엇을 살펴보는지 쓰시오.",
+        "bAnswer": "길이가 같은 변이 몇 개인지 살핀다. 두 개면 이등변삼각형, 세 개면 정삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 같은 변이 몇 개인지",
+              "같은 길이의 변의 수"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "변으로 분류할 때 살필 것",
+        "bReason": "분류 기준을 직접 묻는 질문",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '길이' 하나를 묻는 짧은 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "변의 길이로 분류하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형을 변으로 분류할 때는 같은 {길이}의 변이 몇 개인지 살핀다.",
+        "cStudentSentence": "삼각형을 변으로 분류할 때는 같은 □의 변이 몇 개인지 살핀다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "길이",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "삼각형을 변으로 분류할 때는 같은 □의 변이 몇 개인지 살핀다.",
+          "answers": [
+            "길이"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형을 변의 길이에 따라 이등변삼각형, 정삼각형 등으로 나눌 때 무엇을 살펴보는지 쓰시오.",
+          "answer": "길이가 같은 변이 몇 개인지 살핀다. 두 개면 이등변삼각형, 세 개면 정삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "길이가 같은 변이 몇 개인지",
+                "같은 길이의 변의 수"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형을 변으로 분류할 때는 같은 {길이}의 변이 몇 개인지 살핀다.",
+          "acceptedAnswers": [
+            [
+              "길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2165,
+        "sourceFingerprint": "6eb49b99f9a3a03d85036162fd1ea9ea9069afb578d14a17c3fe1badbaaee5f3",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc2",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "자로 재어 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "삼각형의 세 변을 자로 재어 {같은 길이의 변}이 있는지 확인한다.",
+        "studentC": "삼각형의 세 변을 자로 재어 □이 있는지 확인한다.",
+        "answers": [
+          "같은 길이의 변"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2165,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "6eb49b99f9a3a03d85036162fd1ea9ea9069afb578d14a17c3fe1badbaaee5f3",
+        "proposalFingerprint": "0a987da215122e92bce0ba7169618b4ffb4309b0d02a9ac2ade636dc134946f0",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "자로 재어 같은 변 찾기",
+        "bReason": "도구 사용 설명이라 목표가 약함",
+        "exclusionReason": "자로 재는 단순 도구 사용으로 xc1·xc25의 분류·확인 목표와 중복",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 변을 {자}로 재어 길이가 같은 변이 있는지 확인한다.",
+        "cReason": "'같은 길이의 변' 구절 대신 도구 낱말 '자' 빈칸으로 변경",
+        "cSlotEquivalents": [
+          [
+            "눈금자"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자로 재어 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 세 변을 {자}로 재어 길이가 같은 변이 있는지 확인한다.",
+        "cStudentSentence": "삼각형의 세 변을 □로 재어 길이가 같은 변이 있는지 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자",
+            "equivalents": [
+              "눈금자"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "삼각형의 세 변을 {자}로 재어 길이가 같은 변이 있는지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "자",
+              "눈금자"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "도구 사용 설명이라 목표가 약함"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2166,
+        "sourceFingerprint": "c231dd9fe5d88de5534baa665fa843e49141852f0394001542f922ff913c668e",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc3",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "정삼각형의 한 변과 나머지 두 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정삼각형은 한 변의 길이만 알면 {나머지 두 변의 길이}도 안다.",
+        "example": {
+          "prompt": "한 변이 $4\\,\\mathrm{cm}$인 정삼각형의 다른 변이 $5\\,\\mathrm{cm}$일 수 없는 까닭은?",
+          "answer": "세 변의 길이가 모두 같아서"
+        },
+        "studentC": "정삼각형은 한 변의 길이만 알면 □도 안다.",
+        "answers": [
+          "나머지 두 변의 길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2166,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "c231dd9fe5d88de5534baa665fa843e49141852f0394001542f922ff913c668e",
+        "proposalFingerprint": "ce60ca0b390251f1eb0364a98da5b1735a3a5e4b68ac8eafd1a7c61ade8fb571",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $4\\,\\mathrm{cm}$인 정삼각형의 다른 변이 $5\\,\\mathrm{cm}$일 수 없는 까닭을 설명하시오.",
+        "bAnswer": "정삼각형은 세 변의 길이가 모두 같아서 다른 변도 $4\\,\\mathrm{cm}$여야 하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 변의 길이가 모두 같다",
+              "다른 변도 $4\\,\\mathrm{cm}$여야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정삼각형의 세 변은 모두 같음",
+        "bReason": "한 변으로 나머지를 아는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형은 한 변의 길이만 알면 나머지 {두 변}의 길이도 안다.",
+        "cReason": "'나머지 두 변의 길이' 긴 구절을 '두 변'으로 축소",
+        "cSlotEquivalents": [
+          [
+            "두 변들"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형의 한 변과 나머지 두 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형은 한 변의 길이만 알면 나머지 {두 변}의 길이도 안다.",
+        "cStudentSentence": "정삼각형은 한 변의 길이만 알면 나머지 □의 길이도 안다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 변",
+            "equivalents": [
+              "두 변들"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 변이 $4\\,\\mathrm{cm}$인 정삼각형의 다른 변이 $5\\,\\mathrm{cm}$일 수 없는 까닭을 설명하시오.",
+          "answer": "정삼각형은 세 변의 길이가 모두 같아서 다른 변도 $4\\,\\mathrm{cm}$여야 하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 변의 길이가 모두 같다",
+                "다른 변도 $4\\,\\mathrm{cm}$여야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형은 한 변의 길이만 알면 나머지 {두 변}의 길이도 안다.",
+          "acceptedAnswers": [
+            [
+              "두 변",
+              "두 변들"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2167,
+        "sourceFingerprint": "516b8e18e58f3c6cc0e6cb916b23e0114d0f9d5fbb5a1281a7d607579fe76fd0",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc4",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "이등변삼각형의 나머지 한 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 {다를 수도} 있다.",
+        "studentC": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 □ 있다.",
+        "answers": [
+          "다를 수도"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2167,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "516b8e18e58f3c6cc0e6cb916b23e0114d0f9d5fbb5a1281a7d607579fe76fd0",
+        "proposalFingerprint": "bda8e960723d8572ab26d1adea3814f4092afd881ea39b579f1e45e920be4a58",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 길이가 같은 두 변 말고 나머지 한 변은 그 두 변과 길이가 같아야만 하는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "아니다. 나머지 한 변이 달라도 이등변삼각형이고, 같으면 정삼각형이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같지 않아도 된다",
+              "나머지 변은 달라도 된다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "이등변삼각형의 나머지 한 변",
+        "bReason": "같은 두 변만 조건이라는 점 확인",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+        "cReason": "정삼각형도 이등변이라 '다를 수도'만 정답이 아님을 반영",
+        "cSlotEquivalents": [
+          [
+            "다르더라도"
+          ]
+        ],
+        "answerNotes": "정삼각형이 이등변삼각형에 들므로 '같아도 되고'는 문장에서 주어지며 빈칸은 '달라도'이다.",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이등변삼각형의 나머지 한 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+        "cStudentSentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 □ 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "달라도",
+            "equivalents": [
+              "다르더라도"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 길이가 같은 두 변 말고 나머지 한 변은 그 두 변과 길이가 같아야만 하는지 쓰고 까닭을 설명하시오.",
+          "answer": "아니다. 나머지 한 변이 달라도 이등변삼각형이고, 같으면 정삼각형이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같지 않아도 된다",
+                "나머지 변은 달라도 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+          "acceptedAnswers": [
+            [
+              "달라도",
+              "다르더라도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2168,
+        "sourceFingerprint": "454edc44ae6af2813c11fc5e448f953f4718fff29f016cd4a23da133811bf7ed",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc5",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "세 변이 모두 다른 삼각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "세 변의 길이가 모두 다르면 이등변삼각형이 {될 수 없다}.",
+        "studentC": "세 변의 길이가 모두 다르면 이등변삼각형이 □.",
+        "answers": [
+          "될 수 없다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2168,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "454edc44ae6af2813c11fc5e448f953f4718fff29f016cd4a23da133811bf7ed",
+        "proposalFingerprint": "0005c2df162ddee2104ad51edda44b896850a954d84c9bcd923ca58ce66dacbf",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 길이가 $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 삼각형이 이등변삼각형인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "아니다. 길이가 같은 변이 하나도 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 같은 변이 없다",
+              "세 변이 모두 다르다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "세 변이 다르면 이등변삼각형 아님",
+        "bReason": "같은 변이 없는 삼각형을 판단",
+        "cDecision": "keep",
+        "cReason": "'될 수 없다' 짧은 판단 빈칸이고 조건이 문장에 있음",
+        "cSlotEquivalents": [
+          [
+            "아니다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "세 변이 모두 다른 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 변의 길이가 모두 다르면 이등변삼각형이 {될 수 없다}.",
+        "cStudentSentence": "세 변의 길이가 모두 다르면 이등변삼각형이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "될 수 없다",
+            "equivalents": [
+              "아니다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 변의 길이가 모두 다르면 이등변삼각형이 □.",
+          "answers": [
+            "될 수 없다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "세 변의 길이가 $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 삼각형이 이등변삼각형인지 쓰고 까닭을 설명하시오.",
+          "answer": "아니다. 길이가 같은 변이 하나도 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "길이가 같은 변이 없다",
+                "세 변이 모두 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세 변의 길이가 모두 다르면 이등변삼각형이 {될 수 없다}.",
+          "acceptedAnswers": [
+            [
+              "될 수 없다",
+              "아니다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2169,
+        "sourceFingerprint": "0e9e9af3bf9182461fbef0e75e3926bf4606cd6063ca900609a798968b165bfd",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc6",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "모눈종이에 이등변삼각형 그리기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "모눈종이에 이등변삼각형을 그릴 때는 두 변의 길이를 {같게} 그린다.",
+        "studentC": "모눈종이에 이등변삼각형을 그릴 때는 두 변의 길이를 □ 그린다.",
+        "answers": [
+          "같게"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2169,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "0e9e9af3bf9182461fbef0e75e3926bf4606cd6063ca900609a798968b165bfd",
+        "proposalFingerprint": "56e7b0b4689d88036b5d49122608a25e993fb7dd4f897ae51d77737933d2a58f",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈종이에 이등변삼각형을 그릴 때 세 변을 어떤 조건으로 그려야 하는지 쓰시오.",
+        "bAnswer": "세 변 중 두 변의 길이(칸 수)가 같게 그린다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 변의 길이를 같게",
+              "두 변의 칸 수를 같게"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈종이에 이등변삼각형 그리기",
+        "bReason": "그릴 때 지킬 조건을 직접 확인",
+        "cDecision": "keep",
+        "cReason": "'같게' 한 낱말만 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "똑같이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈종이에 이등변삼각형 그리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이에 이등변삼각형을 그릴 때는 두 변의 길이를 {같게} 그린다.",
+        "cStudentSentence": "모눈종이에 이등변삼각형을 그릴 때는 두 변의 길이를 □ 그린다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같게",
+            "equivalents": [
+              "똑같이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모눈종이에 이등변삼각형을 그릴 때는 두 변의 길이를 □ 그린다.",
+          "answers": [
+            "같게"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "모눈종이에 이등변삼각형을 그릴 때 세 변을 어떤 조건으로 그려야 하는지 쓰시오.",
+          "answer": "세 변 중 두 변의 길이(칸 수)가 같게 그린다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 변의 길이를 같게",
+                "두 변의 칸 수를 같게"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모눈종이에 이등변삼각형을 그릴 때는 두 변의 길이를 {같게} 그린다.",
+          "acceptedAnswers": [
+            [
+              "같게",
+              "똑같이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2170,
+        "sourceFingerprint": "619c48062c5a41a35542cbbd1ef046a63a1906734b0c1264c348d45a8f89aa78",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc7",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "종이를 접어 오리기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직사각형 종이를 마주 보는 두 변이 겹치게 반으로 접고, 접은 선과 가장자리가 만나는 모서리를 한 직선으로 잘라 낸 조각을 펼치면 {이등변삼각형}이 된다.",
+        "studentC": "직사각형 종이를 마주 보는 두 변이 겹치게 반으로 접고, 접은 선과 가장자리가 만나는 모서리를 한 직선으로 잘라 낸 조각을 펼치면 □이 된다.",
+        "answers": [
+          "이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2170,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "619c48062c5a41a35542cbbd1ef046a63a1906734b0c1264c348d45a8f89aa78",
+        "proposalFingerprint": "c14db3bd439c4d44c8866ed339c3da07e3250452ba3f61f7f44cd43d454bb712",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 종이를 반으로 접고 접은 선 쪽 모서리를 한 번 비스듬히 오려 낸 조각을 펼쳤다. 어떤 삼각형이 되고, 그 까닭은 무엇인지 설명하시오.",
+        "bAnswer": "이등변삼각형이다. 접은 선을 기준으로 양쪽이 꼭 겹치므로 두 변의 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "양쪽이 겹쳐 두 변의 길이가 같다",
+              "접은 선을 기준으로 같은 모양이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "접어 오려 이등변삼각형 만들기",
+        "bReason": "접은 양쪽이 같아 두 변이 같은 이유",
+        "cDecision": "rewrite",
+        "cAfter": "반으로 접은 종이의 접은 선 쪽 모서리를 비스듬히 오려 낸 조각을 펼치면 {이등변삼각형}이 된다.",
+        "cReason": "복잡한 오리기 설명을 간단히 줄이고 그림 필요 표시",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exampleNeeded": "반으로 접은 직사각형 종이에서 접은 선 쪽 모서리를 한 번 비스듬히 자르는 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "종이를 접어 오리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "반으로 접은 종이의 접은 선 쪽 모서리를 비스듬히 오려 낸 조각을 펼치면 {이등변삼각형}이 된다.",
+        "cStudentSentence": "반으로 접은 종이의 접은 선 쪽 모서리를 비스듬히 오려 낸 조각을 펼치면 □이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "이등변삼각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형 종이를 반으로 접고 접은 선 쪽 모서리를 한 번 비스듬히 오려 낸 조각을 펼쳤다. 어떤 삼각형이 되고, 그 까닭은 무엇인지 설명하시오.",
+          "answer": "이등변삼각형이다. 접은 선을 기준으로 양쪽이 꼭 겹치므로 두 변의 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이등변삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "양쪽이 겹쳐 두 변의 길이가 같다",
+                "접은 선을 기준으로 같은 모양이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "반으로 접은 종이의 접은 선 쪽 모서리를 비스듬히 오려 낸 조각을 펼치면 {이등변삼각형}이 된다.",
+          "acceptedAnswers": [
+            [
+              "이등변삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2171,
+        "sourceFingerprint": "aa826b3ecb1e63924c5aa1f374537b2e380f4a26466a47eedfed1ce562764519",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc8",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "원으로 만든 이등변삼각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원의 중심과, 중심과 한 직선 위에 있지 않은 원 위의 두 점을 이으면 {두 변이 반지름이라} 이등변삼각형이 된다.",
+        "studentC": "원의 중심과, 중심과 한 직선 위에 있지 않은 원 위의 두 점을 이으면 □ 이등변삼각형이 된다.",
+        "answers": [
+          "두 변이 반지름이라"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2171,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "aa826b3ecb1e63924c5aa1f374537b2e380f4a26466a47eedfed1ce562764519",
+        "proposalFingerprint": "d57526779a3db8e7b472796419a97df014ee1175331d76ee6a6a269bd2b87386",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "원의 중심과 원 위의 서로 다른 두 점을 이어 삼각형을 만들었다. 이 삼각형이 이등변삼각형인 까닭을 설명하시오.",
+        "bAnswer": "중심에서 원 위의 점까지는 모두 반지름이라 두 변의 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 변이 반지름이다",
+              "두 변이 모두 반지름이라 길이가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "원으로 이등변삼각형 만들기",
+        "bReason": "반지름이 같다는 근거로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "원의 중심과 원 위의 서로 다른 두 점을 이어 삼각형을 만들면 두 변이 모두 {반지름}이라 이등변삼각형이 된다.",
+        "cReason": "긴 조건 구절 빈칸을 '반지름' 낱말로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exampleNeeded": "원의 중심에서 원 위의 두 점으로 이은 삼각형 그림",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "원으로 만든 이등변삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "원의 중심과 원 위의 서로 다른 두 점을 이어 삼각형을 만들면 두 변이 모두 {반지름}이라 이등변삼각형이 된다.",
+        "cStudentSentence": "원의 중심과 원 위의 서로 다른 두 점을 이어 삼각형을 만들면 두 변이 모두 □이라 이등변삼각형이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "반지름",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "원의 중심과 원 위의 서로 다른 두 점을 이어 삼각형을 만들었다. 이 삼각형이 이등변삼각형인 까닭을 설명하시오.",
+          "answer": "중심에서 원 위의 점까지는 모두 반지름이라 두 변의 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 변이 반지름이다",
+                "두 변이 모두 반지름이라 길이가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "원의 중심과 원 위의 서로 다른 두 점을 이어 삼각형을 만들면 두 변이 모두 {반지름}이라 이등변삼각형이 된다.",
+          "acceptedAnswers": [
+            [
+              "반지름"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2172,
+        "sourceFingerprint": "7bc55cbe8c4b18ca332486c7c25893bb4e5f7ec0daf6db93760bfc5904b4b05d",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc9",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "정삼각형이 아닌 이등변삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 변의 길이는 같고 {나머지 한 변의 길이는 다른} 삼각형은 이등변삼각형이지만 정삼각형은 아니다.",
+        "studentC": "두 변의 길이는 같고 □ 삼각형은 이등변삼각형이지만 정삼각형은 아니다.",
+        "answers": [
+          "나머지 한 변의 길이는 다른"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2172,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "7bc55cbe8c4b18ca332486c7c25893bb4e5f7ec0daf6db93760bfc5904b4b05d",
+        "proposalFingerprint": "9a4469496dafbba4b6d25d2ea10a5eba4376f6a1d5ec34837afcf7665628c539",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "정삼각형이 아닌 이등변삼각형",
+        "bReason": "xc4와 같은 목표",
+        "exclusionReason": "이등변삼각형의 나머지 한 변이 달라도 됨을 묻는 xc4와 같은 목표라 B 중복",
+        "cDecision": "rewrite",
+        "cAfter": "두 변의 길이는 같고 나머지 한 변은 길이가 {다른} 삼각형은 이등변삼각형이지만 정삼각형은 아니다.",
+        "cReason": "긴 구절 빈칸을 '다른' 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "다르다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형이 아닌 이등변삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 변의 길이는 같고 나머지 한 변은 길이가 {다른} 삼각형은 이등변삼각형이지만 정삼각형은 아니다.",
+        "cStudentSentence": "두 변의 길이는 같고 나머지 한 변은 길이가 □ 삼각형은 이등변삼각형이지만 정삼각형은 아니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "다른",
+            "equivalents": [
+              "다르다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 변의 길이는 같고 나머지 한 변은 길이가 {다른} 삼각형은 이등변삼각형이지만 정삼각형은 아니다.",
+          "acceptedAnswers": [
+            [
+              "다른",
+              "다르다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2173,
+        "sourceFingerprint": "78b0fb7df7acaa58a8be50218210f6aa96f54f119e29cb53aa020cefa6ff6464",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc10",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "정삼각형의 세 변의 합",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정삼각형의 세 변의 길이의 합은 한 변의 길이의 {$3$배}이다.",
+        "example": {
+          "prompt": "한 변이 $9\\,\\mathrm{cm}$인 정삼각형의 세 변의 합은?",
+          "answer": "$27\\,\\mathrm{cm}$"
+        },
+        "studentC": "정삼각형의 세 변의 길이의 합은 한 변의 길이의 □이다.",
+        "answers": [
+          "$3$배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2173,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "78b0fb7df7acaa58a8be50218210f6aa96f54f119e29cb53aa020cefa6ff6464",
+        "proposalFingerprint": "075074f6491ac1a9fe892722a28ebe570da178da439bea59f86e585462e22f29",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $9\\,\\mathrm{cm}$인 정삼각형의 세 변의 길이의 합을 구하는 방법을 쓰시오.",
+        "bAnswer": "세 변이 모두 $9\\,\\mathrm{cm}$이므로 $9\\times3=27\\,\\mathrm{cm}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변의 길이에 $3$을 곱한다",
+              "$9$를 세 번 더한다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "정삼각형 세 변의 합 구하기",
+        "bReason": "세 변이 같다는 성질로 합을 구하는 방법",
+        "cDecision": "keep",
+        "cReason": "'$3$배' 짧은 낱말 빈칸이고 성질이 선명",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형의 세 변의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형의 세 변의 길이의 합은 한 변의 길이의 {$3$배}이다.",
+        "cStudentSentence": "정삼각형의 세 변의 길이의 합은 한 변의 길이의 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3$배",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형의 세 변의 길이의 합은 한 변의 길이의 □이다.",
+          "answers": [
+            "$3$배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 변이 $9\\,\\mathrm{cm}$인 정삼각형의 세 변의 길이의 합을 구하는 방법을 쓰시오.",
+          "answer": "세 변이 모두 $9\\,\\mathrm{cm}$이므로 $9\\times3=27\\,\\mathrm{cm}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 변의 길이에 $3$을 곱한다",
+                "$9$를 세 번 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형의 세 변의 길이의 합은 한 변의 길이의 {$3$배}이다.",
+          "acceptedAnswers": [
+            [
+              "$3$배"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2174,
+        "sourceFingerprint": "37e32b4c188090783aec4883611f25fd47d392b3f65f03c59cdcccc947561b21",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc11",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "이등변삼각형의 세 변의 합",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이등변삼각형의 세 변의 합은 {같은 변 길이의 두 배}에 나머지 한 변을 더한 것이다.",
+        "example": {
+          "prompt": "같은 두 변이 각각 $6\\,\\mathrm{cm}$일 때 세 변의 합을 구하며 $6$을 두 번 더하는 까닭은?",
+          "answer": "$6\\,\\mathrm{cm}$인 변이 두 개라서"
+        },
+        "studentC": "이등변삼각형의 세 변의 합은 □에 나머지 한 변을 더한 것이다.",
+        "answers": [
+          "같은 변 길이의 두 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2174,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "37e32b4c188090783aec4883611f25fd47d392b3f65f03c59cdcccc947561b21",
+        "proposalFingerprint": "2954ad14021e78a2b051405cebba48d77f3b6c6fe2aaba324a9238d3891a2f03",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 같은 두 변이 각각 $6\\,\\mathrm{cm}$이고 나머지 한 변이 $4\\,\\mathrm{cm}$이다. 세 변의 합을 구할 때 $6$을 두 번 더하는 까닭을 설명하시오.",
+        "bAnswer": "$6\\,\\mathrm{cm}$인 변이 두 개 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6\\,\\mathrm{cm}$인 변이 두 개이다",
+              "같은 변이 두 개이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "같은 변을 두 번 더하는 까닭",
+        "bReason": "변이 두 개라 두 번 더하는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형의 세 변의 합은 같은 변의 길이의 {두 배}에 나머지 한 변을 더한 것이다.",
+        "cReason": "긴 구절을 '두 배' 짧은 빈칸으로 변경",
+        "cSlotEquivalents": [
+          [
+            "$2$배"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이등변삼각형의 세 변의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형의 세 변의 합은 같은 변의 길이의 {두 배}에 나머지 한 변을 더한 것이다.",
+        "cStudentSentence": "이등변삼각형의 세 변의 합은 같은 변의 길이의 □에 나머지 한 변을 더한 것이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 배",
+            "equivalents": [
+              "$2$배"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 같은 두 변이 각각 $6\\,\\mathrm{cm}$이고 나머지 한 변이 $4\\,\\mathrm{cm}$이다. 세 변의 합을 구할 때 $6$을 두 번 더하는 까닭을 설명하시오.",
+          "answer": "$6\\,\\mathrm{cm}$인 변이 두 개 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6\\,\\mathrm{cm}$인 변이 두 개이다",
+                "같은 변이 두 개이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형의 세 변의 합은 같은 변의 길이의 {두 배}에 나머지 한 변을 더한 것이다.",
+          "acceptedAnswers": [
+            [
+              "두 배",
+              "$2$배"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2175,
+        "sourceFingerprint": "b534a665967476de79505b95df38c23dce621389b85db8c06b35e5335a037e5a",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc12",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "합으로 정삼각형의 한 변 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정삼각형의 한 변은 세 변의 합을 {$3$으로 나눈} 길이이다.",
+        "example": {
+          "prompt": "세 변의 합이 $21\\,\\mathrm{cm}$인 정삼각형의 한 변을 $21\\div3$으로 구하는 까닭은?",
+          "answer": "같은 길이 세 개로 나뉘어서"
+        },
+        "studentC": "정삼각형의 한 변은 세 변의 합을 □ 길이이다.",
+        "answers": [
+          "$3$으로 나눈"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2175,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "b534a665967476de79505b95df38c23dce621389b85db8c06b35e5335a037e5a",
+        "proposalFingerprint": "710b61d96c26fea20f578750f16c3268c49932c440bf6cf4c3b2396faf5a7c80",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 합이 $21\\,\\mathrm{cm}$인 정삼각형의 한 변을 $21\\div3$으로 구하는 까닭을 설명하시오.",
+        "bAnswer": "세 변이 모두 같아서 합 $21\\,\\mathrm{cm}$를 같은 길이 $3$개로 똑같이 나누면 한 변이 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 변의 길이가 같다",
+              "같은 길이 세 개로 나눈다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "합으로 한 변 구하는 까닭",
+        "bReason": "세 변이 같아 $3$으로 나누는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형의 한 변은 세 변의 합을 {$3$}으로 나눈 길이이다.",
+        "cReason": "긴 구절을 숫자 $3$ 한 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합으로 정삼각형의 한 변 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형의 한 변은 세 변의 합을 {$3$}으로 나눈 길이이다.",
+        "cStudentSentence": "정삼각형의 한 변은 세 변의 합을 □으로 나눈 길이이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "세 변의 합이 $21\\,\\mathrm{cm}$인 정삼각형의 한 변을 $21\\div3$으로 구하는 까닭을 설명하시오.",
+          "answer": "세 변이 모두 같아서 합 $21\\,\\mathrm{cm}$를 같은 길이 $3$개로 똑같이 나누면 한 변이 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 변의 길이가 같다",
+                "같은 길이 세 개로 나눈다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형의 한 변은 세 변의 합을 {$3$}으로 나눈 길이이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2176,
+        "sourceFingerprint": "763487d6ae722ba03c6fd6d0d110e377cf4f87332dc68356290f44c43d3c069d",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc13",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "합으로 이등변삼각형의 같은 두 변 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "이등변삼각형의 같은 한 변은 세 변의 합에서 나머지 한 변을 빼고 {둘로 똑같이 나눈} 길이이다.",
+        "example": {
+          "prompt": "이등변삼각형의 세 변의 합이 $20\\,\\mathrm{cm}$, 같은 두 변이 아닌 변이 $6\\,\\mathrm{cm}$일 때 남은 $14\\,\\mathrm{cm}$를 둘로 나누는 까닭은?",
+          "answer": "길이가 같은 두 변의 합이라서"
+        },
+        "studentC": "이등변삼각형의 같은 한 변은 세 변의 합에서 나머지 한 변을 빼고 □ 길이이다.",
+        "answers": [
+          "둘로 똑같이 나눈"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2176,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "763487d6ae722ba03c6fd6d0d110e377cf4f87332dc68356290f44c43d3c069d",
+        "proposalFingerprint": "2821e9adc3d1d3b02e32e62caa3ed71a2b48077b0b1439798363de51ca8f8be4",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형의 세 변의 합이 $20\\,\\mathrm{cm}$이고 같은 두 변이 아닌 나머지 변이 $6\\,\\mathrm{cm}$이다. $20-6=14$를 $2$로 나누어 같은 변의 길이를 구하는 까닭을 설명하시오.",
+        "bAnswer": "$14\\,\\mathrm{cm}$가 길이가 같은 두 변의 합이므로 둘로 똑같이 나누면 한 변의 길이이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$14\\,\\mathrm{cm}$가 같은 두 변의 합이다",
+              "같은 두 변의 합을 둘로 나눈다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "같은 두 변 길이를 구하는 까닭",
+        "bReason": "남은 길이를 둘로 나누는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형의 같은 한 변은 세 변의 합에서 나머지 한 변을 빼고 {$2$}로 나눈 길이이다.",
+        "cReason": "긴 구절을 숫자 $2$ 한 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          [
+            "둘"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합으로 이등변삼각형의 같은 두 변 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형의 같은 한 변은 세 변의 합에서 나머지 한 변을 빼고 {$2$}로 나눈 길이이다.",
+        "cStudentSentence": "이등변삼각형의 같은 한 변은 세 변의 합에서 나머지 한 변을 빼고 □로 나눈 길이이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "둘"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "이등변삼각형의 세 변의 합이 $20\\,\\mathrm{cm}$이고 같은 두 변이 아닌 나머지 변이 $6\\,\\mathrm{cm}$이다. $20-6=14$를 $2$로 나누어 같은 변의 길이를 구하는 까닭을 설명하시오.",
+          "answer": "$14\\,\\mathrm{cm}$가 길이가 같은 두 변의 합이므로 둘로 똑같이 나누면 한 변의 길이이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$14\\,\\mathrm{cm}$가 같은 두 변의 합이다",
+                "같은 두 변의 합을 둘로 나눈다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형의 같은 한 변은 세 변의 합에서 나머지 한 변을 빼고 {$2$}로 나눈 길이이다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "둘"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2177,
+        "sourceFingerprint": "8874ae1c34d3f1d2bbc083328ed0389fc02eb104e123084cdebf71393f95f7f6",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc14",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "이등변삼각형이 정삼각형이 될 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이등변삼각형에서 {나머지 한 변도} 같은 두 변과 {길이가 같으면} 정삼각형이다.",
+        "studentC": "이등변삼각형에서 □ 같은 두 변과 □ 정삼각형이다.",
+        "answers": [
+          "나머지 한 변도",
+          "길이가 같으면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2177,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "8874ae1c34d3f1d2bbc083328ed0389fc02eb104e123084cdebf71393f95f7f6",
+        "proposalFingerprint": "2d85c2fbf4a85772fe58cbbea8946f4b9ab89d66f1fe28405812d2c370fe71ff",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 두 변이 각각 $5\\,\\mathrm{cm}$인 이등변삼각형이 정삼각형이 되려면 나머지 한 변은 몇 cm여야 하는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "$5\\,\\mathrm{cm}$이다. 정삼각형은 세 변의 길이가 모두 같아야 하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변의 길이가 모두 같다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "이등변삼각형이 정삼각형이 될 때",
+        "bReason": "세 변이 모두 같아야 한다는 조건 적용",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형에서 나머지 한 변도 같은 두 변과 길이가 {같으면} 정삼각형이다.",
+        "cReason": "빈칸 두 개를 한 개의 짧은 비교 빈칸으로 정리",
+        "cSlotEquivalents": [
+          [
+            "똑같으면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이등변삼각형이 정삼각형이 될 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형에서 나머지 한 변도 같은 두 변과 길이가 {같으면} 정삼각형이다.",
+        "cStudentSentence": "이등변삼각형에서 나머지 한 변도 같은 두 변과 길이가 □ 정삼각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으면",
+            "equivalents": [
+              "똑같으면"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 두 변이 각각 $5\\,\\mathrm{cm}$인 이등변삼각형이 정삼각형이 되려면 나머지 한 변은 몇 cm여야 하는지 쓰고 까닭을 설명하시오.",
+          "answer": "$5\\,\\mathrm{cm}$이다. 정삼각형은 세 변의 길이가 모두 같아야 하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5\\,\\mathrm{cm}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 변의 길이가 모두 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형에서 나머지 한 변도 같은 두 변과 길이가 {같으면} 정삼각형이다.",
+          "acceptedAnswers": [
+            [
+              "같으면",
+              "똑같으면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2178,
+        "sourceFingerprint": "2d5b7caffe0f6d81df4d8818940442e068d9c9feaaad15374b438e72d152d09a",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc15",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "같은 막대 세 개로 만든 삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "길이가 같은 막대 $3$개로 만든 삼각형은 {정삼각형}이다.",
+        "studentC": "길이가 같은 막대 $3$개로 만든 삼각형은 □이다.",
+        "answers": [
+          "정삼각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2178,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "2d5b7caffe0f6d81df4d8818940442e068d9c9feaaad15374b438e72d152d09a",
+        "proposalFingerprint": "cdc694ee2f9f41daf9c50cc8c88d77598649e44237b15190331968ae2110e968",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 모두 $7\\,\\mathrm{cm}$인 막대 $3$개로 삼각형을 만들었다. 어떤 삼각형인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "정삼각형이다. 세 변의 길이가 모두 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변의 길이가 모두 같다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 막대 세 개로 만든 삼각형",
+        "bReason": "세 변이 같으면 정삼각형임을 적용",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '정삼각형'을 묻는 짧은 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 막대 세 개로 만든 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "길이가 같은 막대 $3$개로 만든 삼각형은 {정삼각형}이다.",
+        "cStudentSentence": "길이가 같은 막대 $3$개로 만든 삼각형은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "길이가 같은 막대 $3$개로 만든 삼각형은 □이다.",
+          "answers": [
+            "정삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "길이가 모두 $7\\,\\mathrm{cm}$인 막대 $3$개로 삼각형을 만들었다. 어떤 삼각형인지 쓰고 까닭을 설명하시오.",
+          "answer": "정삼각형이다. 세 변의 길이가 모두 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 변의 길이가 모두 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "길이가 같은 막대 $3$개로 만든 삼각형은 {정삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2179,
+        "sourceFingerprint": "2c9653199e22f1ebc72ccff285bbeb75a2af47a44cec63d4d8d2160e5311cdd6",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc16",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "같은 막대 두 개로 만든 삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "길이가 같은 막대 $2$개와 다른 막대 $1$개로 삼각형을 만들면 {이등변삼각형}이 된다.",
+        "studentC": "길이가 같은 막대 $2$개와 다른 막대 $1$개로 삼각형을 만들면 □이 된다.",
+        "answers": [
+          "이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2179,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "2c9653199e22f1ebc72ccff285bbeb75a2af47a44cec63d4d8d2160e5311cdd6",
+        "proposalFingerprint": "896fe6a100aba6580951bf7689193728af370090050bef0dea9f5f791c3d8265",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "같은 막대 두 개로 만든 삼각형",
+        "bReason": "xc15의 변 개수 분류와 같은 목표",
+        "exclusionReason": "같은 변의 개수로 삼각형을 이름 붙이는 xc15와 같은 목표라 B 중복",
+        "cDecision": "keep",
+        "cReason": "막대 개수 조건이 선명하고 '이등변삼각형'만 묻는 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 막대 두 개로 만든 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "길이가 같은 막대 $2$개와 다른 막대 $1$개로 삼각형을 만들면 {이등변삼각형}이 된다.",
+        "cStudentSentence": "길이가 같은 막대 $2$개와 다른 막대 $1$개로 삼각형을 만들면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "이등변삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "길이가 같은 막대 $2$개와 다른 막대 $1$개로 삼각형을 만들면 □이 된다.",
+          "answers": [
+            "이등변삼각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "길이가 같은 막대 $2$개와 다른 막대 $1$개로 삼각형을 만들면 {이등변삼각형}이 된다.",
+          "acceptedAnswers": [
+            [
+              "이등변삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc15의 변 개수 분류와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2180,
+        "sourceFingerprint": "9e2fbdabcc3f4dad18956879045fe540f40c33892b4e673dafe0debcd968c175",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc17",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "같은 길이의 변 표시",
+        "kind": "방법",
+        "level": "중",
+        "definition": "그림에서 길이가 같은 변에는 {같은 표시}를 하여 나타내기도 한다.",
+        "studentC": "그림에서 길이가 같은 변에는 □를 하여 나타내기도 한다.",
+        "answers": [
+          "같은 표시"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2180,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "9e2fbdabcc3f4dad18956879045fe540f40c33892b4e673dafe0debcd968c175",
+        "proposalFingerprint": "ca0cd3a36a186ceb53715bcb580071be7beec73eb31ba0f40d0bb381752fea1d",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "같은 변 표시 약속",
+        "bReason": "표시 약속만 묻는 질문",
+        "exclusionReason": "그림 표시 약속을 알려 줄 뿐 설명할 의미나 이유가 없는 단순 기호 읽기",
+        "cDecision": "rewrite",
+        "cAfter": "그림에서 길이가 같은 변에는 {같은} 표시를 하여 나타내기도 한다.",
+        "cReason": "'같은 표시' 구절을 '같은' 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 길이의 변 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "그림에서 길이가 같은 변에는 {같은} 표시를 하여 나타내기도 한다.",
+        "cStudentSentence": "그림에서 길이가 같은 변에는 □ 표시를 하여 나타내기도 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "그림에서 길이가 같은 변에는 {같은} 표시를 하여 나타내기도 한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "표시 약속만 묻는 질문"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2181,
+        "sourceFingerprint": "2e5635635c7dc3d1a7ae9dd2e75300dca5656b9cc7c023a8d11e6d806d7c9daa",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc20",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "두 변을 알 때 이등변삼각형의 나머지 변",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이등변삼각형의 길이가 서로 다른 두 변을 알면 나머지 한 변은 {둘 가운데 하나와 같은 길이}이다.",
+        "example": {
+          "prompt": "두 변이 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$인 이등변삼각형의 나머지 변이 $5\\,\\mathrm{cm}$일 수 없는 까닭은?",
+          "answer": "같은 두 변이 생기지 않아서"
+        },
+        "studentC": "이등변삼각형의 길이가 서로 다른 두 변을 알면 나머지 한 변은 □이다.",
+        "answers": [
+          "둘 가운데 하나와 같은 길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2181,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "2e5635635c7dc3d1a7ae9dd2e75300dca5656b9cc7c023a8d11e6d806d7c9daa",
+        "proposalFingerprint": "b5f26329a48152bfac62101c6a986c5f8b90214cf60b596351ca0857ce9105ca",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형의 두 변이 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$일 때 나머지 변이 $5\\,\\mathrm{cm}$일 수 없는 까닭을 설명하시오.",
+        "bAnswer": "$5\\,\\mathrm{cm}$이면 세 변이 모두 달라 같은 두 변이 생기지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 두 변이 없다",
+              "세 변이 모두 달라진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "두 변을 알 때 나머지 변",
+        "bReason": "같은 두 변이 있어야 한다는 조건 적용",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형의 두 변이 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$로 서로 다르면 나머지 한 변은 $4\\,\\mathrm{cm}$ 또는 {$7\\,\\mathrm{cm}$}이다.",
+        "cReason": "긴 구절 빈칸을 실제 수 $7$ cm 빈칸으로 변경",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 변을 알 때 이등변삼각형의 나머지 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형의 두 변이 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$로 서로 다르면 나머지 한 변은 $4\\,\\mathrm{cm}$ 또는 {$7\\,\\mathrm{cm}$}이다.",
+        "cStudentSentence": "이등변삼각형의 두 변이 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$로 서로 다르면 나머지 한 변은 $4\\,\\mathrm{cm}$ 또는 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$7\\,\\mathrm{cm}$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "이등변삼각형의 두 변이 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$일 때 나머지 변이 $5\\,\\mathrm{cm}$일 수 없는 까닭을 설명하시오.",
+          "answer": "$5\\,\\mathrm{cm}$이면 세 변이 모두 달라 같은 두 변이 생기지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 두 변이 없다",
+                "세 변이 모두 달라진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형의 두 변이 $4\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$로 서로 다르면 나머지 한 변은 $4\\,\\mathrm{cm}$ 또는 {$7\\,\\mathrm{cm}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$7\\,\\mathrm{cm}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2182,
+        "sourceFingerprint": "0a390817e74b5cde87e0ae4cfc081f4ec9dc42efc4a44d84e38149ae82f32661",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc22",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "붙인 도형의 바깥 변",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 도형을 겹치지 않게 길이가 같은 한 변 전체끼리 맞붙이면, 맞붙은 변은 새 도형의 {안쪽}에 놓이므로 바깥쪽 변의 길이의 합을 구할 때 더하지 않는다.",
+        "example": {
+          "prompt": "한 변이 $3\\,\\mathrm{cm}$인 정삼각형 $2$개를 한 변끼리 붙인 도형의 바깥 변의 합이 $18\\,\\mathrm{cm}$가 아닌 까닭은?",
+          "answer": "맞붙은 두 변이 안쪽에 있어서"
+        },
+        "studentC": "두 도형을 겹치지 않게 길이가 같은 한 변 전체끼리 맞붙이면, 맞붙은 변은 새 도형의 □에 놓이므로 바깥쪽 변의 길이의 합을 구할 때 더하지 않는다.",
+        "answers": [
+          "안쪽"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2182,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "0a390817e74b5cde87e0ae4cfc081f4ec9dc42efc4a44d84e38149ae82f32661",
+        "proposalFingerprint": "298e4a281b51df9bb3b97512ac77e22251406908314ef44c7473f1ccf498168f",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $3\\,\\mathrm{cm}$인 정삼각형 $2$개를 겹치지 않게 한 변끼리 붙였다. 바깥쪽 변의 합이 $18\\,\\mathrm{cm}$가 아닌 까닭을 설명하시오.",
+        "bAnswer": "맞붙은 두 변은 도형의 안쪽에 있어 바깥쪽 변에 들지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "맞붙은 변은 안쪽에 있다",
+              "맞붙은 변은 바깥 변이 아니다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "맞붙은 변은 안쪽에 있음",
+        "bReason": "바깥 변에서 빠지는 변을 구분",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형 $2$개를 한 변끼리 붙이면 맞붙은 변은 도형의 {안쪽}에 놓여 바깥 변의 합에 더하지 않는다.",
+        "cReason": "긴 문장을 줄이고 '안쪽'만 묻도록 정리",
+        "cSlotEquivalents": [
+          [
+            "안"
+          ]
+        ],
+        "exampleNeeded": "정삼각형 $2$개를 한 변끼리 붙여 만든 도형 그림",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "붙인 도형의 바깥 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형 $2$개를 한 변끼리 붙이면 맞붙은 변은 도형의 {안쪽}에 놓여 바깥 변의 합에 더하지 않는다.",
+        "cStudentSentence": "정삼각형 $2$개를 한 변끼리 붙이면 맞붙은 변은 도형의 □에 놓여 바깥 변의 합에 더하지 않는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "안쪽",
+            "equivalents": [
+              "안"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 변이 $3\\,\\mathrm{cm}$인 정삼각형 $2$개를 겹치지 않게 한 변끼리 붙였다. 바깥쪽 변의 합이 $18\\,\\mathrm{cm}$가 아닌 까닭을 설명하시오.",
+          "answer": "맞붙은 두 변은 도형의 안쪽에 있어 바깥쪽 변에 들지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "맞붙은 변은 안쪽에 있다",
+                "맞붙은 변은 바깥 변이 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형 $2$개를 한 변끼리 붙이면 맞붙은 변은 도형의 {안쪽}에 놓여 바깥 변의 합에 더하지 않는다.",
+          "acceptedAnswers": [
+            [
+              "안쪽",
+              "안"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2183,
+        "sourceFingerprint": "0119c7cd4a0aedefa3d708cba5b81b07b81c9862bbb244437a4e7222852fddb9",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc23",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "포함 관계의 반대",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정삼각형은 언제나 이등변삼각형에 들지만, 이등변삼각형이 언제나 {정삼각형인 것은 아니다}.",
+        "studentC": "정삼각형은 언제나 이등변삼각형에 들지만, 이등변삼각형이 언제나 □.",
+        "answers": [
+          "정삼각형인 것은 아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2183,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "0119c7cd4a0aedefa3d708cba5b81b07b81c9862bbb244437a4e7222852fddb9",
+        "proposalFingerprint": "89ff6a4ad7962f0d8b3df0eac0bbab4cb4734b9d1aa61364d03b4a328bd03d4b",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형은 이등변삼각형이라고 할 수 있지만, 이등변삼각형이 모두 정삼각형은 아닌 까닭을 설명하시오.",
+        "bAnswer": "정삼각형은 세 변이 같아 두 변이 같다는 조건을 만족하지만, 이등변삼각형은 나머지 한 변이 달라도 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형은 나머지 변이 달라도 된다",
+              "정삼각형은 두 변이 같은 조건도 만족한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정삼각형과 이등변삼각형의 관계",
+        "bReason": "포함 관계의 방향을 이유로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+        "cReason": "긴 구절 빈칸을 '아니다' 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "아니"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "포함 관계의 반대",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+        "cStudentSentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": [
+              "아니"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형은 이등변삼각형이라고 할 수 있지만, 이등변삼각형이 모두 정삼각형은 아닌 까닭을 설명하시오.",
+          "answer": "정삼각형은 세 변이 같아 두 변이 같다는 조건을 만족하지만, 이등변삼각형은 나머지 한 변이 달라도 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이등변삼각형은 나머지 변이 달라도 된다",
+                "정삼각형은 두 변이 같은 조건도 만족한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다",
+              "아니"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2184,
+        "sourceFingerprint": "660b41a72719eef64f6b8aea0ba045b215f973a67e1ba44620f7b8a5255ce133",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc24",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "두 원으로 정삼각형 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "반지름이 같은 두 원이 서로의 중심을 지나면, 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 {세 변이 모두 반지름이어서} 정삼각형이다.",
+        "studentC": "반지름이 같은 두 원이 서로의 중심을 지나면, 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 □ 정삼각형이다.",
+        "answers": [
+          "세 변이 모두 반지름이어서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2184,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "660b41a72719eef64f6b8aea0ba045b215f973a67e1ba44620f7b8a5255ce133",
+        "proposalFingerprint": "c521b1c30600177db7f3003ee430fab33c04cbd6a18c258b547b050be644cfc3",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름이 같은 두 원이 서로의 중심을 지나도록 겹쳐 그렸다. 두 중심과 두 원이 만나는 한 점을 이으면 정삼각형이 되는 까닭을 설명하시오.",
+        "bAnswer": "세 변이 모두 원의 반지름이라 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 변이 모두 반지름이다",
+              "세 변의 길이가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "두 원으로 정삼각형 만들기",
+        "bReason": "세 변이 모두 반지름이라는 근거",
+        "cDecision": "rewrite",
+        "cAfter": "반지름이 같은 두 원이 서로의 중심을 지날 때 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 세 변이 모두 {반지름}과 같아 정삼각형이다.",
+        "cReason": "긴 구절을 '반지름' 낱말 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exampleNeeded": "서로의 중심을 지나는 반지름이 같은 두 원과 두 중심, 한 교점을 이은 삼각형 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 원으로 정삼각형 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "반지름이 같은 두 원이 서로의 중심을 지날 때 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 세 변이 모두 {반지름}과 같아 정삼각형이다.",
+        "cStudentSentence": "반지름이 같은 두 원이 서로의 중심을 지날 때 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 세 변이 모두 □과 같아 정삼각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "반지름",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "반지름이 같은 두 원이 서로의 중심을 지나도록 겹쳐 그렸다. 두 중심과 두 원이 만나는 한 점을 이으면 정삼각형이 되는 까닭을 설명하시오.",
+          "answer": "세 변이 모두 원의 반지름이라 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 변이 모두 반지름이다",
+                "세 변의 길이가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "반지름이 같은 두 원이 서로의 중심을 지날 때 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 세 변이 모두 {반지름}과 같아 정삼각형이다.",
+          "acceptedAnswers": [
+            [
+              "반지름"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2185,
+        "sourceFingerprint": "c9757cbce70f2fc355d058a36992c272c2357a13544d43bb46873c763c482155",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc25",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "보이는 것만으로 분류하는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 변이 같아 보인다는 것만으로 이등변삼각형이라 하지 말고 {길이를 재어} 확인해야 한다.",
+        "studentC": "두 변이 같아 보인다는 것만으로 이등변삼각형이라 하지 말고 □ 확인해야 한다.",
+        "answers": [
+          "길이를 재어"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2185,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "c9757cbce70f2fc355d058a36992c272c2357a13544d43bb46873c763c482155",
+        "proposalFingerprint": "dd0a8e467eb906f8a2c53a6b61b41af2b977e390279bc11a7ace3c1c9a65b081",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 두 변이 같아 보인다고 이등변삼각형이라고 하면 안 되는 까닭과 확인 방법을 쓰시오.",
+        "bAnswer": "눈으로는 길이가 달라도 같아 보일 수 있으므로 자로 재어 두 변의 길이가 같은지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "눈으로 보면 틀릴 수 있다",
+              "같아 보여도 다를 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자로 재어 확인한다",
+              "길이를 재어 본다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "보이는 것만으로 분류하는 잘못",
+        "bReason": "눈짐작의 한계와 확인 방법을 함께 확인",
+        "cDecision": "rewrite",
+        "cAfter": "두 변이 같아 보인다는 것만으로 이등변삼각형이라 하지 말고 자로 {재어} 확인해야 한다.",
+        "cReason": "'길이를 재어' 긴 구절을 '재어' 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "재서",
+            "측정해"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "보이는 것만으로 분류하는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 변이 같아 보인다는 것만으로 이등변삼각형이라 하지 말고 자로 {재어} 확인해야 한다.",
+        "cStudentSentence": "두 변이 같아 보인다는 것만으로 이등변삼각형이라 하지 말고 자로 □ 확인해야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "재어",
+            "equivalents": [
+              "재서",
+              "측정해"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형의 두 변이 같아 보인다고 이등변삼각형이라고 하면 안 되는 까닭과 확인 방법을 쓰시오.",
+          "answer": "눈으로는 길이가 달라도 같아 보일 수 있으므로 자로 재어 두 변의 길이가 같은지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "눈으로 보면 틀릴 수 있다",
+                "같아 보여도 다를 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "자로 재어 확인한다",
+                "길이를 재어 본다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 변이 같아 보인다는 것만으로 이등변삼각형이라 하지 말고 자로 {재어} 확인해야 한다.",
+          "acceptedAnswers": [
+            [
+              "재어",
+              "재서",
+              "측정해"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2186,
+        "sourceFingerprint": "840234575c40a878f701afb7ee20aa1566c0a977533b7f98d086440dc2eb17cb",
+        "part": "e4plus",
+        "id": "e4-2-2-1-xc26",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "term": "정삼각형의 세 변의 합과 나눗셈",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 {나누어떨어진다}.",
+        "studentC": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 □.",
+        "answers": [
+          "나누어떨어진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2186,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "840234575c40a878f701afb7ee20aa1566c0a977533b7f98d086440dc2eb17cb",
+        "proposalFingerprint": "9064b745c07321781ea641b5e95155d99d2b42ef054828475b1cd5e3add90ab5",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc26",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "정삼각형의 합과 나눗셈",
+        "bReason": "xc10·xc12와 같은 목표",
+        "exclusionReason": "세 변의 합이 한 변의 $3$배라는 xc10·xc12와 같은 목표라 B 중복",
+        "cDecision": "keep",
+        "cReason": "'나누어떨어진다' 한 낱말만 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "나누어진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형의 세 변의 합과 나눗셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 {나누어떨어진다}.",
+        "cStudentSentence": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "나누어떨어진다",
+            "equivalents": [
+              "나누어진다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 □.",
+          "answers": [
+            "나누어떨어진다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 {나누어떨어진다}.",
+          "acceptedAnswers": [
+            [
+              "나누어떨어진다",
+              "나누어진다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc10·xc12와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2187,
+        "sourceFingerprint": "8948ccd85bdf923a8922176c6e24f5f3b97ff80dbea3b929f8693846e3462ee8",
+        "part": "e4plus",
+        "id": "e4-2-2-2-xc1",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "term": "접어서 두 각 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 {포개진다}.",
+        "studentC": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 □.",
+        "answers": [
+          "포개진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2187,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "8948ccd85bdf923a8922176c6e24f5f3b97ff80dbea3b929f8693846e3462ee8",
+        "proposalFingerprint": "f95a7027aad816c2e0d9514d29e04e3b15afa87afb538ce35e04509026f47fbd",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각의 크기는 어떻게 되는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "크기가 같다. 접었을 때 두 각이 꼭 포개지기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 각의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각이 꼭 포개진다",
+              "접으면 겹친다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "접어서 같은 두 각 확인",
+        "bReason": "접어 포개지는 모습으로 두 각이 같음을 확인",
+        "cDecision": "keep",
+        "cReason": "'포개진다' 친숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "겹쳐진다",
+            "겹친다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "접어서 두 각 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 {포개진다}.",
+        "cStudentSentence": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "포개진다",
+            "equivalents": [
+              "겹쳐진다",
+              "겹친다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 □.",
+          "answers": [
+            "포개진다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각의 크기는 어떻게 되는지 쓰고 까닭을 설명하시오.",
+          "answer": "크기가 같다. 접었을 때 두 각이 꼭 포개지기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 각의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 각이 꼭 포개진다",
+                "접으면 겹친다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 {포개진다}.",
+          "acceptedAnswers": [
+            [
+              "포개진다",
+              "겹쳐진다",
+              "겹친다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2188,
+        "sourceFingerprint": "ceaff38797dcf6e3c621cff492c8b5c9d301ba5a22134a996db39d1d17e0a648",
+        "part": "e4plus",
+        "id": "e4-2-2-2-xc2",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "term": "각도기로 같은 두 각 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "이등변삼각형의 세 각을 {각도기로 재어} 크기가 같은 두 각을 찾을 수 있다.",
+        "studentC": "이등변삼각형의 세 각을 □ 크기가 같은 두 각을 찾을 수 있다.",
+        "answers": [
+          "각도기로 재어"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2188,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "ceaff38797dcf6e3c621cff492c8b5c9d301ba5a22134a996db39d1d17e0a648",
+        "proposalFingerprint": "678c853e05d51685b2d6c6e931c6027c1fcf060f5dd9fb56ff1b9de9f4daf4d6",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "각도기로 같은 두 각 찾기",
+        "bReason": "도구 사용 설명이라 목표가 약함",
+        "exclusionReason": "각도기를 쓰는 도구 사용 설명이고 같은 두 각의 의미는 xc1·xc3에서 다룸",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형의 세 각을 {각도기}로 재어 크기가 같은 두 각을 찾을 수 있다.",
+        "cReason": "'각도기로 재어' 긴 구절을 도구 낱말 '각도기'로 줄임",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "각도기로 같은 두 각 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형의 세 각을 {각도기}로 재어 크기가 같은 두 각을 찾을 수 있다.",
+        "cStudentSentence": "이등변삼각형의 세 각을 □로 재어 크기가 같은 두 각을 찾을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "각도기",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "이등변삼각형의 세 각을 {각도기}로 재어 크기가 같은 두 각을 찾을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "각도기"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "도구 사용 설명이라 목표가 약함"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2189,
+        "sourceFingerprint": "4b5973ea9d774f255193f58ad77b95c0a2c47f48b3e9c8fcf45e7abc5891db71",
+        "part": "e4plus",
+        "id": "e4-2-2-2-xc3",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "term": "같은 두 각 가운데 하나를 알 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 {$50^\\circ$}이다.",
+        "studentC": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 □이다.",
+        "answers": [
+          "$50^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2189,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "4b5973ea9d774f255193f58ad77b95c0a2c47f48b3e9c8fcf45e7abc5891db71",
+        "proposalFingerprint": "bff59e6a8b55f0740cd6a3fc81b7a2b01a926061389d3ce5f823cdbad5c0b708",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이다. 다른 하나의 크기와 까닭을 쓰시오.",
+        "bAnswer": "$50^\\circ$이다. 이등변삼각형에서 크기가 같은 두 각은 크기가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$50^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 두 각은 크기가 같다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 두 각 중 하나로 다른 각",
+        "bReason": "같은 두 각의 크기를 이용해 판단",
+        "cDecision": "keep",
+        "cReason": "'$50^\\circ$' 같은 값을 묻는 선명한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$50$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 두 각 가운데 하나를 알 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 {$50^\\circ$}이다.",
+        "cStudentSentence": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$50^\\circ$",
+            "equivalents": [
+              "$50$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 □이다.",
+          "answers": [
+            "$50^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이다. 다른 하나의 크기와 까닭을 쓰시오.",
+          "answer": "$50^\\circ$이다. 이등변삼각형에서 크기가 같은 두 각은 크기가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$50^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 두 각은 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 {$50^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$50^\\circ$",
+              "$50$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2190,
+        "sourceFingerprint": "9aefea1ac2eb35c89e7b759cf01c32ab14b007f65783c8979b057d1edbfc9649",
+        "part": "e4plus",
+        "id": "e4-2-2-2-xc4",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "term": "같은 각을 그려 만들기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "선분의 양 끝에서 {같은 크기}의 각을 그려 두 선이 만나게 하면 이등변삼각형이 된다.",
+        "studentC": "선분의 양 끝에서 □의 각을 그려 두 선이 만나게 하면 이등변삼각형이 된다.",
+        "answers": [
+          "같은 크기"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2190,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "9aefea1ac2eb35c89e7b759cf01c32ab14b007f65783c8979b057d1edbfc9649",
+        "proposalFingerprint": "7203d021d8b0fd65a1e2d77f456750c742a01fed991fe0658437e9c594ddc73d",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "선분의 양 끝에서 같은 크기의 각을 그려 두 선이 만나게 하면 어떤 삼각형이 되는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "이등변삼각형이다. 두 각의 크기가 같으면 마주 보는 두 변의 길이도 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각이 같으면 마주 보는 두 변이 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "같은 각을 그려 이등변삼각형",
+        "bReason": "같은 각이 두 변이 같다는 근거",
+        "cDecision": "rewrite",
+        "cAfter": "선분의 양 끝에서 {같은} 크기의 각을 그려 두 선이 만나게 하면 이등변삼각형이 된다.",
+        "cReason": "'□의 각' 모호한 구절을 '같은' 낱말 빈칸으로 변경",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 각을 그려 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "선분의 양 끝에서 {같은} 크기의 각을 그려 두 선이 만나게 하면 이등변삼각형이 된다.",
+        "cStudentSentence": "선분의 양 끝에서 □ 크기의 각을 그려 두 선이 만나게 하면 이등변삼각형이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "선분의 양 끝에서 같은 크기의 각을 그려 두 선이 만나게 하면 어떤 삼각형이 되는지 쓰고 까닭을 설명하시오.",
+          "answer": "이등변삼각형이다. 두 각의 크기가 같으면 마주 보는 두 변의 길이도 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이등변삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 각이 같으면 마주 보는 두 변이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "선분의 양 끝에서 {같은} 크기의 각을 그려 두 선이 만나게 하면 이등변삼각형이 된다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2191,
+        "sourceFingerprint": "b90860af4d8e2bc35abadc70004eb9422ae163bb6f5128dc70feb5bdb03397f8",
+        "part": "e4plus",
+        "id": "e4-2-2-2-xc5",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "term": "두 각이 같은 삼각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "삼각형에서 두 각의 크기가 같으면 그 두 각과 마주 보는 변의 길이도 같다. 변의 길이로 분류하면 {이등변삼각형}이다.",
+        "studentC": "삼각형에서 두 각의 크기가 같으면 그 두 각과 마주 보는 변의 길이도 같다. 변의 길이로 분류하면 □이다.",
+        "answers": [
+          "이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2191,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "b90860af4d8e2bc35abadc70004eb9422ae163bb6f5128dc70feb5bdb03397f8",
+        "proposalFingerprint": "fbaae8e07c96b679cc8117eabe10f40ea0308cdadadbec8dd4d601094bbc64b4",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "두 각이 같은 삼각형",
+        "bReason": "xc4와 같은 목표",
+        "exclusionReason": "두 각이 같으면 이등변삼각형이 된다는 xc4와 같은 목표라 B 중복",
+        "cDecision": "keep",
+        "cReason": "앞 문장이 답을 직접 주지 않고 이름 낱말만 묻는 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 각이 같은 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형에서 두 각의 크기가 같으면 그 두 각과 마주 보는 변의 길이도 같다. 변의 길이로 분류하면 {이등변삼각형}이다.",
+        "cStudentSentence": "삼각형에서 두 각의 크기가 같으면 그 두 각과 마주 보는 변의 길이도 같다. 변의 길이로 분류하면 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "이등변삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "삼각형에서 두 각의 크기가 같으면 그 두 각과 마주 보는 변의 길이도 같다. 변의 길이로 분류하면 □이다.",
+          "answers": [
+            "이등변삼각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "삼각형에서 두 각의 크기가 같으면 그 두 각과 마주 보는 변의 길이도 같다. 변의 길이로 분류하면 {이등변삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "이등변삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2192,
+        "sourceFingerprint": "9faea8b7440149a668cb18f2857dcdaf81c3bf8081e991d41b3abc551380f813",
+        "part": "e4plus",
+        "id": "e4-2-2-2-xc6",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "term": "이등변삼각형의 세 각의 합",
+        "kind": "성질",
+        "level": "하",
+        "definition": "이등변삼각형의 세 각을 모두 더해도 다른 삼각형처럼 {$180^\\circ$}이다.",
+        "studentC": "이등변삼각형의 세 각을 모두 더해도 다른 삼각형처럼 □이다.",
+        "answers": [
+          "$180^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2192,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "9faea8b7440149a668cb18f2857dcdaf81c3bf8081e991d41b3abc551380f813",
+        "proposalFingerprint": "4c3616d2127ce5826865e5729b505314fb3722c1e224f3f84819bfc574f03a84",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "이등변삼각형 세 각의 합",
+        "bReason": "xc10에서 합 $180^\\circ$를 이유로 다룸",
+        "exclusionReason": "세 각의 합 $180^\\circ$는 xc10의 나머지 각 구하는 이유로 중복",
+        "cDecision": "keep",
+        "cReason": "익숙한 값 $180^\\circ$를 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$180$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이등변삼각형의 세 각의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형의 세 각을 모두 더해도 다른 삼각형처럼 {$180^\\circ$}이다.",
+        "cStudentSentence": "이등변삼각형의 세 각을 모두 더해도 다른 삼각형처럼 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$180^\\circ$",
+            "equivalents": [
+              "$180$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "이등변삼각형의 세 각을 모두 더해도 다른 삼각형처럼 □이다.",
+          "answers": [
+            "$180^\\circ$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "이등변삼각형의 세 각을 모두 더해도 다른 삼각형처럼 {$180^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$180^\\circ$",
+              "$180$도"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc10에서 합 $180^\\circ$를 이유로 다룸"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

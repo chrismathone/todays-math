@@ -1,0 +1,1775 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-1-3-4-xc9",
+      "sourceIndex": 621,
+      "beforeProposal": {
+        "sourceIndex": 621,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
+        "sourceFingerprint": "c1079c57b711c592f1210155ea63ec1610c1e96dad6d8aa1d0e29f2aff2eaa8e",
+        "proposalFingerprint": "4c550d4d9942dd6524710c09af0708dffb8f2878b10dc20ea0ec7d3bdbeee17b",
+        "reviewStatus": "draft",
+        "id": "e3-1-3-4-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$48\\div6$의 몫을 곱셈구구로 구하는 방법을 차례대로 설명해 보세요. 몇 단을 보는지, 어떤 식을 찾는지, 그 식의 어느 수가 몫인지 모두 써야 합니다.",
+        "bAnswer": "$6$단에서 곱이 $48$인 식 $6\\times8=48$을 찾는다. $6$에 곱한 수 $8$이 몫이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$단을 봄"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱이 $48$인 식을 찾음"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱한 수 $8$이 몫"
+            ]
+          }
+        ],
+        "bGoal": "곱셈구구로 몫을 찾는 전체 과정",
+        "bReason": "원문에 예가 없어 48÷6을 주고 써야 할 세 가지를 밝힘",
+        "cDecision": "rewrite",
+        "cAfter": "$48\\div6$의 몫을 구할 때 {$6$}단에서 $6\\times8=48$을 찾으면, $6$에 곱한 수 {$8$}이 몫이다.",
+        "cReason": "두 빈칸이 모두 긴 구절(나누어지는 수와 같은 곱, 곱하는 수)이라 단과 몫을 쓰는 짧은 답으로 바꿈",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몫이 되는 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$48\\div6$의 몫을 구할 때 {$6$}단에서 $6\\times8=48$을 찾으면, $6$에 곱한 수 {$8$}이 몫이다.",
+        "cStudentSentence": "$48\\div6$의 몫을 구할 때 □단에서 $6\\times8=48$을 찾으면, $6$에 곱한 수 □이 몫이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": []
+          },
+          {
+            "expected": "$8$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$48\\div6$의 몫을 곱셈구구로 구하는 방법을 차례대로 설명해 보세요. 몇 단을 보는지, 어떤 식을 찾는지, 그 식의 어느 수가 몫인지 모두 써야 합니다.",
+          "answer": "$6$단에서 곱이 $48$인 식 $6\\times8=48$을 찾는다. $6$에 곱한 수 $8$이 몫이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$단을 봄"
+              ]
+            },
+            {
+              "anyOf": [
+                "곱이 $48$인 식을 찾음"
+              ]
+            },
+            {
+              "anyOf": [
+                "곱한 수 $8$이 몫"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$48\\div6$의 몫을 구할 때 {$6$}단에서 $6\\times8=48$을 찾으면, $6$에 곱한 수 {$8$}이 몫이다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ],
+            [
+              "$8$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-3-4-xc9",
+          "sourceIndex": 621,
+          "proposalFingerprint": "4c550d4d9942dd6524710c09af0708dffb8f2878b10dc20ea0ec7d3bdbeee17b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "6단·곱 48·곱한 수 8이라는 구구 몫 찾기의 세 단계를 명시한다.",
+          "cReason": "실제 식에서 단 6과 몫 8의 역할을 구별한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$48\\div6$의 몫은 $6$단에서 곱이 $48$인 식을 찾아 구한다. $6$에 곱하여 $48$이 되는 수는 {$8$}이므로 이 수가 몫이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-3-4-xc19",
+      "sourceIndex": 627,
+      "beforeProposal": {
+        "sourceIndex": 627,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
+        "sourceFingerprint": "83db7c7d829bd8525d3010484b40aba597bbb7f38600d35c4ed32c3def189063",
+        "proposalFingerprint": "54198888c84cc1180609b1bfbb8bb0ede68d736eb351060fa21626a2a12e4c2f",
+        "reviewStatus": "draft",
+        "id": "e3-1-3-4-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$40\\div8$의 몫을 구하려는데 $8$단 대신 $5$단의 $5\\times8=40$이 떠올랐습니다. 이 식으로도 몫을 알 수 있는 까닭을 설명하고 몫을 쓰세요.",
+        "bAnswer": "$5\\times8=40$에서 곱한 두 수 가운데 $8$이 나누는 수이므로 나머지 $5$가 몫이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "곱한 두 수 중 $8$이 나누는 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 $5$가 몫"
+            ]
+          }
+        ],
+        "bGoal": "다른 단의 곱셈식에서 몫 읽기",
+        "bReason": "원문 예를 그대로 써서 상황을 밝힘",
+        "cDecision": "rewrite",
+        "cAfter": "$40\\div8$의 몫을 $5$단의 $5\\times8=40$에서 찾았다. 곱한 두 수 중 $8$이 나누는 수이므로 나머지 수 {$5$}가 몫이다.",
+        "cReason": "식 없이 '하나가 □이면 나머지가 몫'이라는 수 이름 복원형이라 실제 식에서 몫을 고르게 함",
+        "answerNotes": "'$8\\times5$도 $40$이라서'처럼 순서를 바꾸어 설명해도 인정",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "다른 단의 곱셈식으로 몫 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$40\\div8$의 몫을 $5$단의 $5\\times8=40$에서 찾았다. 곱한 두 수 중 $8$이 나누는 수이므로 나머지 수 {$5$}가 몫이다.",
+        "cStudentSentence": "$40\\div8$의 몫을 $5$단의 $5\\times8=40$에서 찾았다. 곱한 두 수 중 $8$이 나누는 수이므로 나머지 수 □가 몫이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$40\\div8$의 몫을 구하려는데 $8$단 대신 $5$단의 $5\\times8=40$이 떠올랐습니다. 이 식으로도 몫을 알 수 있는 까닭을 설명하고 몫을 쓰세요.",
+          "answer": "$5\\times8=40$에서 곱한 두 수 가운데 $8$이 나누는 수이므로 나머지 $5$가 몫이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "곱한 두 수 중 $8$이 나누는 수"
+              ]
+            },
+            {
+              "anyOf": [
+                "나머지 $5$가 몫"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$40\\div8$의 몫을 $5$단의 $5\\times8=40$에서 찾았다. 곱한 두 수 중 $8$이 나누는 수이므로 나머지 수 {$5$}가 몫이다.",
+          "acceptedAnswers": [
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-3-4-xc19",
+          "sourceIndex": 627,
+          "proposalFingerprint": "54198888c84cc1180609b1bfbb8bb0ede68d736eb351060fa21626a2a12e4c2f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "반대 순서의 구구에서도 8 아닌 나머지 인수 5가 몫인 까닭을 설명한다.",
+          "cReason": "곱한 두 수 중 나누는 수를 빼고 남은 5를 찾는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$40\\div8$의 몫은 곱하는 순서를 바꾼 식으로도 찾을 수 있다. {$5$}에 $8$을 곱하면 $40$이므로 이 수가 몫이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-3-4-xc24",
+      "sourceIndex": 628,
+      "beforeProposal": {
+        "sourceIndex": 628,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
+        "sourceFingerprint": "5484355feb929b31166ad5f99821d9a1bac0c4a2218686300ed2a2532bc74d5d",
+        "proposalFingerprint": "3f2494b266a29485eac184c23e9acda157d8387c51baf3ca38722fc83d344570",
+        "reviewStatus": "draft",
+        "id": "e3-1-3-4-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "단에 없으면 남김없이 나눌 수 없음을 판단",
+        "bReason": "같은 절 항목과 설명이 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "$42$를 $5$로 남김없이 나눌 수 있는지 알아보려면 {$5$}단 곱셈구구에 $42$가 있는지 살펴본다.",
+        "cReason": "답 '남김없이'는 '똑같이', '나머지 없이' 등으로도 쓸 수 있어 답이 흔들림. 제목의 목표인 '어느 단을 살피는지'를 수로 묻게 함",
+        "exclusionReason": "e3-1-3-4-xc15가 25÷4로 '단에 없어서 남김없이 나눌 수 없다'는 같은 까닭을 묻는다",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단에 있는지 살피기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$42$를 $5$로 남김없이 나눌 수 있는지 알아보려면 {$5$}단 곱셈구구에 $42$가 있는지 살펴본다.",
+        "cStudentSentence": "$42$를 $5$로 남김없이 나눌 수 있는지 알아보려면 □단 곱셈구구에 $42$가 있는지 살펴본다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$42$를 $5$로 남김없이 나눌 수 있는지 알아보려면 {$5$}단 곱셈구구에 $42$가 있는지 살펴본다.",
+          "acceptedAnswers": [
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "같은 절 항목과 설명이 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-3-4-xc24",
+          "sourceIndex": 628,
+          "proposalFingerprint": "3f2494b266a29485eac184c23e9acda157d8387c51baf3ca38722fc83d344570",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "단에 없어 남김없이 안 나누어지는 이유는 624와 겹친다.",
+          "cReason": "42를 5로 나누려면 5단을 살핀다는 방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$5$단 곱셈구구에는 $40$ 다음에 $45$가 있고 $42$는 없다. 그러므로 $42$를 $5$로 남김없이 나눌 수 {없다}.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-4-1-xc21",
+      "sourceIndex": 640,
+      "beforeProposal": {
+        "sourceIndex": 640,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-1 (몇십)×(몇)",
+        "sourceFingerprint": "f3d15a68b5dbed15c79d7863fbd6c1cabb470f61c60d9fe35ce535a6e8f6c9cc",
+        "proposalFingerprint": "4f3a0e9b2c34860792e87c33d970cc17ae90f1a96441a01e4508c8ec88669fe6",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-1-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$20\\times3=60$입니다. 이것을 이용해 $20\\times6$의 곱이 $60$의 몇 배인지 말하고, 그 까닭을 묶음으로 설명해 보세요.",
+        "bAnswer": "$2$배($120$)이다. $20$씩 $6$묶음은 $20$씩 $3$묶음이 두 번 있는 것이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$묶음이 두 번이면 $6$묶음"
+            ]
+          }
+        ],
+        "bGoal": "곱하는 수가 2배가 되면 곱도 2배가 됨",
+        "bReason": "원문 예의 수를 써서 몇 배인지와 까닭을 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$20\\times3=60$이다. 곱하는 수를 $2$배로 한 $20\\times6$의 곱은 $60$의 {$2$}배인 {$120$}이다.",
+        "cReason": "'곱해지는 수', '곱하는 수'만 있는 추상 문장에서 '곱'을 복원하게 하므로 실제 식으로 바꿈",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "곱하는 수가 $2$배일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$20\\times3=60$이다. 곱하는 수를 $2$배로 한 $20\\times6$의 곱은 $60$의 {$2$}배인 {$120$}이다.",
+        "cStudentSentence": "$20\\times3=60$이다. 곱하는 수를 $2$배로 한 $20\\times6$의 곱은 $60$의 □배인 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          },
+          {
+            "expected": "$120$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$20\\times3=60$입니다. 이것을 이용해 $20\\times6$의 곱이 $60$의 몇 배인지 말하고, 그 까닭을 묶음으로 설명해 보세요.",
+          "answer": "$2$배($120$)이다. $20$씩 $6$묶음은 $20$씩 $3$묶음이 두 번 있는 것이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$배"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3$묶음이 두 번이면 $6$묶음"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$20\\times3=60$이다. 곱하는 수를 $2$배로 한 $20\\times6$의 곱은 $60$의 {$2$}배인 {$120$}이다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ],
+            [
+              "$120$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-4-1-xc21",
+          "sourceIndex": 640,
+          "proposalFingerprint": "4f3a0e9b2c34860792e87c33d970cc17ae90f1a96441a01e4508c8ec88669fe6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "곱하는 묶음 수 3→6의 두 배로 곱도 두 배인 이유를 묻는다.",
+          "cReason": "배수 2와 실제 곱 120을 연결한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$20\\times3=60$이다. 곱하는 수를 $3$에서 $6$으로 바꾼 $20\\times6$의 곱은 $60$의 {$2$}배인 {$120$}이다.",
+        "cSlotEquivalents": [
+          [],
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-4-2-xc4",
+      "sourceIndex": 647,
+      "beforeProposal": {
+        "sourceIndex": 647,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-4 곱셈::1-4-2 올림이 없는 (몇십몇)×(몇)",
+        "sourceFingerprint": "09c7e2faddd7a08dea42d0fdcc3a3e367606cc0df41d194e48ab10e9ff250801",
+        "proposalFingerprint": "25ed32d33d1d90bcac390a51ad25506f3eb02a2781b3b9e798da1e31209579ee",
+        "reviewStatus": "draft",
+        "id": "e3-1-4-2-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "각 자리 곱을 자리에 맞추어 쓰기",
+        "bReason": "쓰는 자리만 말하면 되는 내용",
+        "cDecision": "keep",
+        "cReason": "앞부분과 짝을 이루는 문장이라 '십의 자리'를 혼자 쓸 수 있음",
+        "exclusionReason": "십의 자리 곱을 십의 자리에 쓰는 까닭(십의 묶음 수)은 e3-1-4-2-xc3에서 묻고, 여기서는 자리 이름만 대면 끝남",
+        "answerNotes": "'십의 자리', '십' 인정",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "곱을 자리에 맞추어 쓰기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "일의 자리 곱은 일의 자리에, 십의 자리 곱은 {십의 자리}에 맞추어 쓴다.",
+        "cStudentSentence": "일의 자리 곱은 일의 자리에, 십의 자리 곱은 □에 맞추어 쓴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "십의 자리",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "일의 자리 곱은 일의 자리에, 십의 자리 곱은 □에 맞추어 쓴다.",
+          "answers": [
+            "십의 자리"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "일의 자리 곱은 일의 자리에, 십의 자리 곱은 {십의 자리}에 맞추어 쓴다.",
+          "acceptedAnswers": [
+            [
+              "십의 자리"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "쓰는 자리만 말하면 되는 내용"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-4-2-xc4",
+          "sourceIndex": 647,
+          "proposalFingerprint": "25ed32d33d1d90bcac390a51ad25506f3eb02a2781b3b9e798da1e31209579ee",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "십 자리 곱의 뜻은 646에서 설명하므로 자리 이름만의 B를 제외한다.",
+          "cReason": "십 자리 곱을 십 자리에 맞춰 쓰는 방법을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "앞의 십의 자리라는 답을 그대로 옮기는 문장이며 실제 자리값은 e3-1-4-2-xc3에서 확인한다.",
+        "exclusionReason": "B/C: 십의 자리 곱의 실제 자리값은 e3-1-4-2-xc3에서 확인하고 이 자리 이름 반복은 제외한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-4-xc18",
+      "sourceIndex": 1588,
+      "beforeProposal": {
+        "sourceIndex": 1588,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-4 각의 크기를 어림하고 각도의 합과 차 계산하기",
+        "sourceFingerprint": "93ab0ce9896f1a3e19f3cbe003c9f1901bdd0453b9c1c5377443ed7b3b5ace2c",
+        "proposalFingerprint": "9314b0125c90a7c75300c871d95d6e487b305dd3b12d7ef93967c9c26a07ce14",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "직각보다 조금 더 벌어진 각의 크기를 어림하려고 합니다. $50^\\circ$, $100^\\circ$, $170^\\circ$ 중 가장 알맞은 것을 고르고, 그 까닭을 쓰세요.",
+        "bAnswer": "$100^\\circ$이다. 직각 $90^\\circ$보다 조금 더 벌어졌으므로 $90^\\circ$보다 조금 큰 각도가 알맞다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ$보다 조금 크다",
+              "직각보다 조금 크다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "직각 기준으로 각도 어림",
+        "bReason": "세 값 중 고르게 해 직각 기준 어림을 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "직각보다 조금 더 벌어진 각은 $90^\\circ$보다 조금 {큰} 각도로 어림한다.",
+        "cReason": "'$90^\\circ$보다 조금 큰' 구절을 큰/작은 한 낱말로 줄임",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직각보다 조금 큰 각 어림",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각보다 조금 더 벌어진 각은 $90^\\circ$보다 조금 {큰} 각도로 어림한다.",
+        "cStudentSentence": "직각보다 조금 더 벌어진 각은 $90^\\circ$보다 조금 □ 각도로 어림한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "큰",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직각보다 조금 더 벌어진 각의 크기를 어림하려고 합니다. $50^\\circ$, $100^\\circ$, $170^\\circ$ 중 가장 알맞은 것을 고르고, 그 까닭을 쓰세요.",
+          "answer": "$100^\\circ$이다. 직각 $90^\\circ$보다 조금 더 벌어졌으므로 $90^\\circ$보다 조금 큰 각도가 알맞다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$100^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$90^\\circ$보다 조금 크다",
+                "직각보다 조금 크다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직각보다 조금 더 벌어진 각은 $90^\\circ$보다 조금 {큰} 각도로 어림한다.",
+          "acceptedAnswers": [
+            [
+              "큰"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-4-xc18",
+          "sourceIndex": 1588,
+          "proposalFingerprint": "9314b0125c90a7c75300c871d95d6e487b305dd3b12d7ef93967c9c26a07ce14",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "세 선택값을 제시하여 직각보다 조금 큰 각도의 합리적인 어림을 설명한다.",
+          "cReason": "직각보다 조금 벌어졌다는 조건으로 90보다 큰 쪽을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각은 $90^\\circ$이고 $100^\\circ$는 이보다 조금 크다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-5-xc1",
+      "sourceIndex": 1596,
+      "beforeProposal": {
+        "sourceIndex": 1596,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-5 삼각형의 세 각의 크기의 합",
+        "sourceFingerprint": "be837a9d718a041aa2fa07ee0bf2e179562140fa56cbfa5175400004515593fb",
+        "proposalFingerprint": "0a00544c639cf766f460138297aa54c1e12fd910c032c0a7cc5fe56e746be2f8",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-5-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 세 각을 잘라 꼭짓점이 한 점에 모이게 겹치지 않게 이어 붙였더니 일직선이 되었습니다. 이것으로 삼각형의 세 각의 크기의 합에 대해 알 수 있는 것을 쓰세요.",
+        "bAnswer": "일직선을 이루는 각은 $180^\\circ$이므로 삼각형의 세 각의 크기의 합은 $180^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 각의 크기의 합은 $180^\\circ$이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "이어 붙인 결과로 합 알기",
+        "bReason": "활동 결과는 주고 그 뜻을 각의 합으로 풀게 함",
+        "cDecision": "keep",
+        "cReason": "이어 붙이는 방법이 다 보이고 모양 이름 하나를 쓰면 됨",
+        "cSlotEquivalents": [
+          [
+            "직선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "세 각을 잘라 모으기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 세 각을 잘라 꼭짓점이 한 점에 모이게 겹치지 않게 이어 붙이면 {일직선}이 된다.",
+        "cStudentSentence": "삼각형의 세 각을 잘라 꼭짓점이 한 점에 모이게 겹치지 않게 이어 붙이면 □이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "일직선",
+            "equivalents": [
+              "직선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "삼각형의 세 각을 잘라 꼭짓점이 한 점에 모이게 겹치지 않게 이어 붙이면 □이 된다.",
+          "answers": [
+            "일직선"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형의 세 각을 잘라 꼭짓점이 한 점에 모이게 겹치지 않게 이어 붙였더니 일직선이 되었습니다. 이것으로 삼각형의 세 각의 크기의 합에 대해 알 수 있는 것을 쓰세요.",
+          "answer": "일직선을 이루는 각은 $180^\\circ$이므로 삼각형의 세 각의 크기의 합은 $180^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 각의 크기의 합은 $180^\\circ$이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형의 세 각을 잘라 꼭짓점이 한 점에 모이게 겹치지 않게 이어 붙이면 {일직선}이 된다.",
+          "acceptedAnswers": [
+            [
+              "일직선",
+              "직선"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-5-xc1",
+          "sourceIndex": 1596,
+          "proposalFingerprint": "0a00544c639cf766f460138297aa54c1e12fd910c032c0a7cc5fe56e746be2f8",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "잘라 모은 세 각이 일직선이라는 관찰에서 합 180도를 알아내는 목표가 분명하다.",
+          "cReason": "꼭짓점과 겹침 없는 이어 붙이기의 결과를 확인하며 조작 그림이 있으면 좋다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각을 잘라 꼭짓점이 한 점에 모이게 겹치지 않게 이어 붙이면 양끝의 변이 일직선을 이룬다. 따라서 세 각의 크기의 합은 {$180^\\circ$}이다.",
+        "cSlotEquivalents": [
+          [
+            "$180$도"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-5-xc2",
+      "sourceIndex": 1597,
+      "beforeProposal": {
+        "sourceIndex": 1597,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-5 삼각형의 세 각의 크기의 합",
+        "sourceFingerprint": "5255f5b00a68482f64291767de510195fe4feca9eeef19d201dda9d465ad2275",
+        "proposalFingerprint": "acbac104f9180351258d62b9b3d872cdf14e3e431ea30e0ddc7d83948fbde4bb",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-5-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 세 각의 크기의 합을 각도기를 써서 알아보는 방법을 쓰세요.",
+        "bAnswer": "세 각의 크기를 각각 각도기로 잰 다음 세 각도를 모두 더한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 각을 각각 잰다"
+            ]
+          },
+          {
+            "anyOf": [
+              "잰 각도를 모두 더한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "재어 더해 합 알아보기",
+        "bReason": "각도기를 쓴다는 조건을 주고 두 단계를 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "각도기로 삼각형의 세 각을 각각 재어 모두 {더하면} 세 각의 크기의 합을 알 수 있다.",
+        "cReason": "'재어 더하면' 두 동작 구절을 '더하면' 하나로 줄임",
+        "cSlotEquivalents": [
+          [
+            "합하면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "세 각을 재어 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "각도기로 삼각형의 세 각을 각각 재어 모두 {더하면} 세 각의 크기의 합을 알 수 있다.",
+        "cStudentSentence": "각도기로 삼각형의 세 각을 각각 재어 모두 □ 세 각의 크기의 합을 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "더하면",
+            "equivalents": [
+              "합하면"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형의 세 각의 크기의 합을 각도기를 써서 알아보는 방법을 쓰세요.",
+          "answer": "세 각의 크기를 각각 각도기로 잰 다음 세 각도를 모두 더한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 각을 각각 잰다"
+              ]
+            },
+            {
+              "anyOf": [
+                "잰 각도를 모두 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "각도기로 삼각형의 세 각을 각각 재어 모두 {더하면} 세 각의 크기의 합을 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "더하면",
+              "합하면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-5-xc2",
+          "sourceIndex": 1597,
+          "proposalFingerprint": "acbac104f9180351258d62b9b3d872cdf14e3e431ea30e0ddc7d83948fbde4bb",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "세 각을 각각 재고 모두 더하는 두 행동을 기준에서도 확인한다.",
+          "cReason": "세 측정값을 더하는 방법이 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "합을 알려고 더한다는 동작만 복원하므로 각을 각각 재어 합하는 방법은 B에서 확인한다.",
+        "exclusionReason": "C: 합이라는 말에서 더하면만 복원하는 빈칸은 제외한다. B와 일반 설명은 유지한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-5-xc3",
+      "sourceIndex": 1598,
+      "beforeProposal": {
+        "sourceIndex": 1598,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-5 삼각형의 세 각의 크기의 합",
+        "sourceFingerprint": "e8c34eb2453c04d50cd8f53679b63e96d5a965fd52f353e3308a3de1e4e8fb25",
+        "proposalFingerprint": "044a10f1fd84ff6161e0fb4159cfd52262ae0b588a3f3d5575d7499453becb5d",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-5-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "삼각형의 각은 세 개",
+        "bReason": "각의 개수 사실 하나라 설명거리가 없음",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형에는 꼭짓점이 세 개 있으므로 각의 수도 {세} 개이다.",
+        "cReason": "'각도 □ 있다'의 '각도'가 각의 크기로 읽힐 수 있음",
+        "cSlotEquivalents": [
+          [
+            "$3$"
+          ]
+        ],
+        "coreAfter": "삼각형에는 꼭짓점이 세 개 있으므로 각의 수도 {세 개}이다.",
+        "coreReason": "세개라는 원래표적을보존한다.각도세개를 각의수세개로고쳐각도라는낱말의오독을피한다.",
+        "exclusionReason": "각이 세 개라는 한마디 답뿐이라 C 빈칸과 구별되는 설명이 없음",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "삼각형의 각의 개수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형에는 꼭짓점이 세 개 있으므로 각의 수도 {세} 개이다.",
+        "cStudentSentence": "삼각형에는 꼭짓점이 세 개 있으므로 각의 수도 □ 개이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "세",
+            "equivalents": [
+              "$3$"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "삼각형에는 꼭짓점이 세 개 있으므로 각의 수도 {세} 개이다.",
+          "acceptedAnswers": [
+            [
+              "세",
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "각의 개수 사실 하나라 설명거리가 없음"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-5-xc3",
+          "sourceIndex": 1598,
+          "proposalFingerprint": "044a10f1fd84ff6161e0fb4159cfd52262ae0b588a3f3d5575d7499453becb5d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "각의 수 한 가지 사실만 반복하는 B 제외를 유지한다.",
+          "cReason": "꼭짓점과 각이 각각 대응하는 삼각형의 각 개수를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 각은 모두 {$3$}개이다.",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-5-xc8",
+      "sourceIndex": 1603,
+      "beforeProposal": {
+        "sourceIndex": 1603,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-5 삼각형의 세 각의 크기의 합",
+        "sourceFingerprint": "97fc638446e3929973b42e2bd43eabe062b9b0a4fe502fcc6c3eda359fe71308",
+        "proposalFingerprint": "94dcb16e7125c3c7929b990b3dc56d3a590f0bd224516f024f06053a45697420",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-5-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "각도기로 삼각형의 세 각을 재어 더했더니 $179^\\circ$가 나왔습니다. 이 삼각형의 세 각의 합이 $180^\\circ$가 아니라고 말할 수 없는 까닭을 쓰세요.",
+        "bAnswer": "각도기로 재는 과정에서 조금씩 차이가 생길 수 있기 때문이다. 실제 세 각의 합은 $180^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "재는 과정에서 생긴 차이이다",
+              "각도기로 잴 때 조금 틀릴 수 있다",
+              "정확히 재기 어렵다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "잰 값이 조금 다른 까닭",
+        "bReason": "$179^\\circ$ 사례로 재는 과정의 차이임을 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각을 각도기로 재어 더한 값이 $180^\\circ$와 조금 다르면, 각도를 {재는} 과정에서 생긴 차이일 수 있다.",
+        "cReason": "'재는 과정' 구절 복원을 익숙한 낱말 하나로 줄임",
+        "cSlotEquivalents": [
+          [
+            "잰",
+            "측정하는"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "잰 값의 작은 차이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 세 각을 각도기로 재어 더한 값이 $180^\\circ$와 조금 다르면, 각도를 {재는} 과정에서 생긴 차이일 수 있다.",
+        "cStudentSentence": "삼각형의 세 각을 각도기로 재어 더한 값이 $180^\\circ$와 조금 다르면, 각도를 □ 과정에서 생긴 차이일 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "재는",
+            "equivalents": [
+              "잰",
+              "측정하는"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "각도기로 삼각형의 세 각을 재어 더했더니 $179^\\circ$가 나왔습니다. 이 삼각형의 세 각의 합이 $180^\\circ$가 아니라고 말할 수 없는 까닭을 쓰세요.",
+          "answer": "각도기로 재는 과정에서 조금씩 차이가 생길 수 있기 때문이다. 실제 세 각의 합은 $180^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "재는 과정에서 생긴 차이이다",
+                "각도기로 잴 때 조금 틀릴 수 있다",
+                "정확히 재기 어렵다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형의 세 각을 각도기로 재어 더한 값이 $180^\\circ$와 조금 다르면, 각도를 {재는} 과정에서 생긴 차이일 수 있다.",
+          "acceptedAnswers": [
+            [
+              "재는",
+              "잰",
+              "측정하는"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-5-xc8",
+          "sourceIndex": 1603,
+          "proposalFingerprint": "94dcb16e7125c3c7929b990b3dc56d3a590f0bd224516f024f06053a45697420",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "측정 과정의 작은 오차와 삼각형의 실제 합을 구분하는 이유를 설명한다.",
+          "cReason": "조금 다른 측정값이 재는 과정의 차이일 수 있다는 조건부 관계를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "재어라는 앞의 말을 재는으로 바꾸는 문법 복원이다. B에서 179도인 측정 결과와 실제 각 합의 차이를 설명하게 한다.",
+        "exclusionReason": "C: 재는 동작의 어형 복원은 제외한다. B의 측정 오차 판단과 원래 일반 설명은 유지한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-5-3-xc24",
+      "sourceIndex": 766,
+      "beforeProposal": {
+        "sourceIndex": 766,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-5 길이와 시간::1-5-3 길이와 거리를 어림하고 재어 보기",
+        "sourceFingerprint": "4971b2bb7a2651083c0ab9372e5a742d7205f825914a3d1c1b370ffb1762a1b5",
+        "proposalFingerprint": "385b8c99209b269dad18c9492a0ad6156c3672b8adaa7ab2e8f0eb0f7db7dc67",
+        "reviewStatus": "draft",
+        "id": "e3-1-5-3-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "약 $3\\,\\mathrm{m}$인 끈 두 개를 이은 길이를 '$6\\,\\mathrm{m}$'가 아니라 '약 $6\\,\\mathrm{m}$'라고 써야 하는 까닭을 설명해 보세요.",
+        "bAnswer": "두 끈의 길이가 모두 어림한 값이어서, 더한 길이도 정확한 값이 아니라 어림한 값이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 길이가 어림한 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "더한 값도 어림한 값"
+            ]
+          }
+        ],
+        "bGoal": "어림한 길이의 합에도 '약'을 붙이는 까닭 설명",
+        "bReason": "원문 예제의 끈 두 개로 까닭을 스스로 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "약 $3\\,\\mathrm{m}$인 끈 두 개를 이은 길이도 어림한 값이므로 {약} $6\\,\\mathrm{m}$라고 쓴다.",
+        "cReason": "원문 빈칸 '어림한 값'은 앞 구절을 되풀이하는 답이어서 실제 합 앞에 붙일 말을 쓰게 함",
+        "answerNotes": "'대략'은 뜻은 같지만 길이 앞에 쓰는 말은 '약'이므로 '약'을 기준 답으로 함.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "어림한 길이를 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "약 $3\\,\\mathrm{m}$인 끈 두 개를 이은 길이도 어림한 값이므로 {약} $6\\,\\mathrm{m}$라고 쓴다.",
+        "cStudentSentence": "약 $3\\,\\mathrm{m}$인 끈 두 개를 이은 길이도 어림한 값이므로 □ $6\\,\\mathrm{m}$라고 쓴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "약",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "약 $3\\,\\mathrm{m}$인 끈 두 개를 이은 길이를 '$6\\,\\mathrm{m}$'가 아니라 '약 $6\\,\\mathrm{m}$'라고 써야 하는 까닭을 설명해 보세요.",
+          "answer": "두 끈의 길이가 모두 어림한 값이어서, 더한 길이도 정확한 값이 아니라 어림한 값이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 길이가 어림한 값"
+              ]
+            },
+            {
+              "anyOf": [
+                "더한 값도 어림한 값"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "약 $3\\,\\mathrm{m}$인 끈 두 개를 이은 길이도 어림한 값이므로 {약} $6\\,\\mathrm{m}$라고 쓴다.",
+          "acceptedAnswers": [
+            [
+              "약"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-5-3-xc24",
+          "sourceIndex": 766,
+          "proposalFingerprint": "385b8c99209b269dad18c9492a0ad6156c3672b8adaa7ab2e8f0eb0f7db7dc67",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "입력이 어림값이므로 합도 약을 붙이는 이유를 요청한다.",
+          "cReason": "두 어림 길이를 더한 결과도 약6m로 표시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "어림한 길이가 각각 $3\\,\\mathrm{m}$쯤인 끈 두 개를 이으면 전체 길이도 어림한 값이므로 {약} $6\\,\\mathrm{m}$라고 쓴다.",
+        "cSlotEquivalents": [
+          [
+            "대략"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-6-xc1",
+      "sourceIndex": 1622,
+      "beforeProposal": {
+        "sourceIndex": 1622,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-6 사각형의 네 각의 크기의 합 알아보기",
+        "sourceFingerprint": "92223010992eeb4c48689fb0b973bc6486b05f1f4b473abaa036c772c59e707d",
+        "proposalFingerprint": "13226c0627397330a086da78ee93fa4332cade79110dd49c8eab4a6c9b86dd1a",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-6-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "사각형의 각의 개수",
+        "bReason": "꼭짓점 수를 세면 끝나 설명할 내용이 없음",
+        "exclusionReason": "각이 네 개라는 단순 사실이라 설명형으로 물을 의미·이유·방법이 없음",
+        "cDecision": "keep",
+        "cReason": "꼭짓점 네 개가 주어져 개수 답이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$4$개",
+            "넷"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "사각형의 각의 개수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형에는 꼭짓점이 네 개 있어 각도 {네 개} 있다.",
+        "cStudentSentence": "사각형에는 꼭짓점이 네 개 있어 각도 □ 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "네 개",
+            "equivalents": [
+              "$4$개",
+              "넷"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형에는 꼭짓점이 네 개 있어 각도 □ 있다.",
+          "answers": [
+            "네 개"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사각형에는 꼭짓점이 네 개 있어 각도 {네 개} 있다.",
+          "acceptedAnswers": [
+            [
+              "네 개",
+              "$4$개",
+              "넷"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "꼭짓점 수를 세면 끝나 설명할 내용이 없음"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-6-xc1",
+          "sourceIndex": 1622,
+          "proposalFingerprint": "13226c0627397330a086da78ee93fa4332cade79110dd49c8eab4a6c9b86dd1a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "각의 개수 한 가지 사실만 반복하는 B 제외를 유지한다.",
+          "cReason": "꼭짓점과 각의 개수가 대응하는 사각형의 네 각을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "사각형의 각은 모두 {$4$}개이다.",
+        "cSlotEquivalents": [
+          [
+            "네"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-5-5-xc7",
+      "sourceIndex": 792,
+      "beforeProposal": {
+        "sourceIndex": 792,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-5 길이와 시간::1-5-5 시간의 덧셈",
+        "sourceFingerprint": "9e28e0851d4d71748405e96c5360df43afa5f7edb7e949c5233a4c150f4132c0",
+        "proposalFingerprint": "a7e2334bce1804f36264620baeb718d67658df916bc0d9d8545331bbbe51f4d2",
+        "reviewStatus": "draft",
+        "id": "e3-1-5-5-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$시간 $20$분 동안 책을 읽고 $30$분 동안 그림을 그렸습니다. 두 값을 더한 $1$시간 $50$분은 시각인지 시간인지 쓰고, 까닭을 설명해 보세요.",
+        "bAnswer": "시간이다. 두 가지 일을 하는 데 걸린 시간의 길이를 합한 것이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "시간"
+            ]
+          },
+          {
+            "anyOf": [
+              "걸린 시간의 길이를 합한 것"
+            ]
+          }
+        ],
+        "bGoal": "시간에 시간을 더한 결과가 시간임을 설명",
+        "bReason": "추상적인 문장에 실제 상황을 주어 결과가 무엇인지 판단하게 함",
+        "cDecision": "keep",
+        "cReason": "'시각'과 '시간' 중 하나를 쓰는 짧은 낱말 빈칸",
+        "answerNotes": "'시각'은 오답.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "시간과 시간의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "시간에 시간을 더하면 {시간}이 된다.",
+        "cStudentSentence": "시간에 시간을 더하면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "시간",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "시간에 시간을 더하면 □이 된다.",
+          "answers": [
+            "시간"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1$시간 $20$분 동안 책을 읽고 $30$분 동안 그림을 그렸습니다. 두 값을 더한 $1$시간 $50$분은 시각인지 시간인지 쓰고, 까닭을 설명해 보세요.",
+          "answer": "시간이다. 두 가지 일을 하는 데 걸린 시간의 길이를 합한 것이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "시간"
+              ]
+            },
+            {
+              "anyOf": [
+                "걸린 시간의 길이를 합한 것"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "시간에 시간을 더하면 {시간}이 된다.",
+          "acceptedAnswers": [
+            [
+              "시간"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-5-5-xc7",
+          "sourceIndex": 792,
+          "proposalFingerprint": "a7e2334bce1804f36264620baeb718d67658df916bc0d9d8545331bbbe51f4d2",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두 활동의 걸린 길이를 합했으므로 시간이 된다는 이유를 묻는다.",
+          "cReason": "걸린 시간끼리의 합도 시간이라는 관계다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "책을 $20$분 동안 읽고 그림을 $30$분 동안 그렸다면, 두 일을 하는 데 모두 걸린 $50$분은 시각이 아니라 {시간}이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-5-6-xc7",
+      "sourceIndex": 806,
+      "beforeProposal": {
+        "sourceIndex": 806,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-5 길이와 시간::1-5-6 시간의 뺄셈",
+        "sourceFingerprint": "e0792966bad30c9320c78d7da6143b3576da0ad67c8233b9b4020414994a427a",
+        "proposalFingerprint": "a32d92e9dddb77bea2858355ea50ed9667a4e5c64f96372c5121cb59c79d6601",
+        "reviewStatus": "draft",
+        "id": "e3-1-5-6-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "숙제를 하는 데 $50$분, 책을 읽는 데 $20$분이 걸렸습니다. $50$분에서 $20$분을 빼어 나온 $30$분은 무엇을 나타내는지 쓰세요.",
+        "bAnswer": "숙제가 책 읽기보다 $30$분 더 걸렸다는 것, 곧 두 걸린 시간의 차를 나타낸다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 걸린 시간의 차(더 걸린 시간)"
+            ]
+          }
+        ],
+        "bGoal": "시간에서 시간을 뺀 결과가 시간(차)임을 상황으로 설명",
+        "bReason": "xc5·xc6과 구별되게 '걸린 시간의 차'라는 뜻을 상황으로 묻게 함",
+        "cDecision": "keep",
+        "cReason": "주어가 '걸린 시간'으로 드러나 있고 답이 익숙한 한 낱말이라 유지",
+        "answerNotes": "'시간', '걸린 시간' 인정. '시각'은 오답.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "시간에서 시간을 뺀 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "걸린 시간에서 걸린 시간을 빼면 {시간}이 된다.",
+        "cStudentSentence": "걸린 시간에서 걸린 시간을 빼면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "시간",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "걸린 시간에서 걸린 시간을 빼면 □이 된다.",
+          "answers": [
+            "시간"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "숙제를 하는 데 $50$분, 책을 읽는 데 $20$분이 걸렸습니다. $50$분에서 $20$분을 빼어 나온 $30$분은 무엇을 나타내는지 쓰세요.",
+          "answer": "숙제가 책 읽기보다 $30$분 더 걸렸다는 것, 곧 두 걸린 시간의 차를 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 걸린 시간의 차(더 걸린 시간)"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "걸린 시간에서 걸린 시간을 빼면 {시간}이 된다.",
+          "acceptedAnswers": [
+            [
+              "시간"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-5-6-xc7",
+          "sourceIndex": 806,
+          "proposalFingerprint": "a32d92e9dddb77bea2858355ea50ed9667a4e5c64f96372c5121cb59c79d6601",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "50분과20분의 차30분이 더 걸린 시간이라는 실제 의미를 묻는다.",
+          "cReason": "걸린 시간 두 개의 차도 시간의 길이라는 관계다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "숙제를 하는 데 $50$분, 책을 읽는 데 $20$분이 걸렸다. 숙제에 더 걸린 $30$분은 시각이 아니라 {시간}이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-1-xc6",
+      "sourceIndex": 824,
+      "beforeProposal": {
+        "sourceIndex": 824,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "6cfb6086c2a1d9e48c66abca257402dddbe42dc2289f3d4a6179a9cd0951edcf",
+        "proposalFingerprint": "eae58479861b0f2b437445895360e01e90cbba2300d7536bd422da79dc1e8e0f",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "피자를 똑같이 넷으로 나누었습니다. 조각을 몇 개 모아야 나누기 전의 피자 한 판과 같아지는지 쓰고, 그 까닭을 쓰세요.",
+        "bAnswer": "$4$개. 전체를 넷으로 나눈 것이므로 네 조각을 모두 모아야 전체가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눈 조각을 모두 모으면 전체"
+            ]
+          }
+        ],
+        "bGoal": "나눈 조각을 모두 모으면 전체가 됨을 알기",
+        "bReason": "구체 상황으로 개수와 까닭을 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "똑같이 넷으로 나눈 조각을 {$4$}개 모두 모으면 나누기 전의 전체가 된다.",
+        "cReason": "'모두 모으면'이라는 구절 빈칸은 '합치면', '붙이면' 등으로 흩어져 수를 쓰는 빈칸으로 바꿈",
+        "answerNotes": "'$4$', '네' 인정.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "나누기 전의 전체",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "똑같이 넷으로 나눈 조각을 {$4$}개 모두 모으면 나누기 전의 전체가 된다.",
+        "cStudentSentence": "똑같이 넷으로 나눈 조각을 □개 모두 모으면 나누기 전의 전체가 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "피자를 똑같이 넷으로 나누었습니다. 조각을 몇 개 모아야 나누기 전의 피자 한 판과 같아지는지 쓰고, 그 까닭을 쓰세요.",
+          "answer": "$4$개. 전체를 넷으로 나눈 것이므로 네 조각을 모두 모아야 전체가 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "나눈 조각을 모두 모으면 전체"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "똑같이 넷으로 나눈 조각을 {$4$}개 모두 모으면 나누기 전의 전체가 된다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc6",
+          "sourceIndex": 824,
+          "proposalFingerprint": "eae58479861b0f2b437445895360e01e90cbba2300d7536bd422da79dc1e8e0f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "넷으로 나눈 네 조각을 모두 모아 전체를 되찾는 이유를 묻는다.",
+          "cReason": "전체를 만들 조각 수4를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "피자를 똑같이 넷으로 나누었다. 그중 두 조각을 모았다면 나누기 전의 피자 한 판을 만들려면 {$2$}조각을 더 모아야 한다.",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-1-xc7",
+      "sourceIndex": 825,
+      "beforeProposal": {
+        "sourceIndex": 825,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "7e728d5a8ed0743954c5117c5bda74c97a8cadf62b8a171d7c0e0d9a578e8a3d",
+        "proposalFingerprint": "dfa55ccd6b7d571a897569660d3665564f21d1649da8c8ad914d99414da27ee3",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "똑같이 셋으로 나누기의 뜻",
+        "bReason": "e3-1-6-1-xc1의 정의 질문에서 수만 둘에서 셋으로 바꾼 내용",
+        "exclusionReason": "B에서는 e3-1-6-1-xc1(똑같이 둘로의 뜻)과 설명할 내용이 같고, 크기가 다른 조각의 판단은 xc19에서 다루므로 새로 설명할 것이 없음",
+        "cDecision": "rewrite",
+        "cAfter": "피자를 크기가 같은 세 조각으로 자르면 똑같이 {셋}으로 나눈 것이다.",
+        "cReason": "'똑같이 셋으로' 구절 빈칸을 수 낱말 하나로 줄여 답 범위를 분명히 함",
+        "answerNotes": "'셋', '$3$' 인정.",
+        "learningRole": "definition",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "똑같이 셋으로 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "피자를 크기가 같은 세 조각으로 자르면 똑같이 {셋}으로 나눈 것이다.",
+        "cStudentSentence": "피자를 크기가 같은 세 조각으로 자르면 똑같이 □으로 나눈 것이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "셋",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "피자를 크기가 같은 세 조각으로 자르면 똑같이 {셋}으로 나눈 것이다.",
+          "acceptedAnswers": [
+            [
+              "셋"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "e3-1-6-1-xc1의 정의 질문에서 수만 둘에서 셋으로 바꾼 내용"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc7",
+          "sourceIndex": 825,
+          "proposalFingerprint": "dfa55ccd6b7d571a897569660d3665564f21d1649da8c8ad914d99414da27ee3",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "둘의 등분 정의를 셋으로 바꾼 B 중복을 제외한다.",
+          "cReason": "크기가 같은 세 조각이라는 조건에서 셋으로 나눈 뜻이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "피자를 세 조각으로 잘랐다. 똑같이 셋으로 나눈 것이 되려면 세 조각의 {크기}가 모두 같아야 한다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-2-xc25",
+      "sourceIndex": 1684,
+      "beforeProposal": {
+        "sourceIndex": 1684,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+        "sourceFingerprint": "d732701e42ab03436f6d4b61932b79dfcc3a6f0d7b4b419aea1e9a5876dc4b69",
+        "proposalFingerprint": "96b48405f9b650b1013825d558465a11af3f6e540c5e11d241aabd485978ad14",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-2-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$251\\times43$을 끝까지 계산하지 않고도 곱이 다섯 자리 수임을 알 수 있는 까닭을 더 작은 수의 곱을 이용해 설명하세요.",
+        "bAnswer": "두 수를 더 작은 $250$과 $40$으로 바꾸어도 $250\\times40=10000$으로 이미 다섯 자리 수이고, 실제 곱은 이보다 크기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$250\\times40=10000$"
+            ]
+          },
+          {
+            "anyOf": [
+              "실제 곱은 그보다 크다",
+              "더 작게 바꾼 곱이 이미 다섯 자리 수이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "곱의 자릿수 미리 알기",
+        "bReason": "원문 예제로 더 작은 곱과 견주는 근거를 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$251\\times43$에서 두 수를 더 작은 $250$과 $40$으로 바꾸어 곱해도 $250\\times40=$ {$10000$}이므로, $251\\times43$의 곱은 {다섯} 자리 수이다.",
+        "cReason": "추상 조건문을 원문 예제의 구체 식으로 바꿈",
+        "cSlotEquivalents": [
+          [],
+          [
+            "$5$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "곱의 자릿수 미리 알기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$251\\times43$에서 두 수를 더 작은 $250$과 $40$으로 바꾸어 곱해도 $250\\times40=$ {$10000$}이므로, $251\\times43$의 곱은 {다섯} 자리 수이다.",
+        "cStudentSentence": "$251\\times43$에서 두 수를 더 작은 $250$과 $40$으로 바꾸어 곱해도 $250\\times40=$ □이므로, $251\\times43$의 곱은 □ 자리 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$10000$",
+            "equivalents": []
+          },
+          {
+            "expected": "다섯",
+            "equivalents": [
+              "$5$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$251\\times43$을 끝까지 계산하지 않고도 곱이 다섯 자리 수임을 알 수 있는 까닭을 더 작은 수의 곱을 이용해 설명하세요.",
+          "answer": "두 수를 더 작은 $250$과 $40$으로 바꾸어도 $250\\times40=10000$으로 이미 다섯 자리 수이고, 실제 곱은 이보다 크기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$250\\times40=10000$"
+              ]
+            },
+            {
+              "anyOf": [
+                "실제 곱은 그보다 크다",
+                "더 작게 바꾼 곱이 이미 다섯 자리 수이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$251\\times43$에서 두 수를 더 작은 $250$과 $40$으로 바꾸어 곱해도 $250\\times40=$ {$10000$}이므로, $251\\times43$의 곱은 {다섯} 자리 수이다.",
+          "acceptedAnswers": [
+            [
+              "$10000$"
+            ],
+            [
+              "다섯",
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-2-xc25",
+          "sourceIndex": 1684,
+          "proposalFingerprint": "96b48405f9b650b1013825d558465a11af3f6e540c5e11d241aabd485978ad14",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "더 작은 두 수의 곱이 이미 10000이라는 하한으로 제시된 곱의 자리 수를 설명한다.",
+          "cReason": "작게 바꾼 실제 곱과 다섯 자리 예상이 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$251\\times43$을 끝까지 계산하지 않고 곱이 다섯 자리 수임을 알아보려고 한다. 두 수를 더 작게 바꾼 곱과 더 크게 바꾼 곱을 각각 이용하여 그 까닭을 설명하시오.",
+        "bAnswer": "$250\\times40=10000$보다 크고, $300\\times50=15000$보다 작다. 따라서 실제 곱은 $10000$보다 크고 $15000$보다 작아서 다섯 자리 수이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$250\\times40=10000$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$300\\times50=15000$보다 작다",
+              "$1000\\times100=100000$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "따라서 다섯 자리 수이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$251\\times43$은 $250\\times40=10000$보다 크고 $300\\times50=15000$보다 작다. 따라서 이 곱은 {다섯} 자리 수이다.",
+        "cSlotEquivalents": [
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-1-xc20",
+      "sourceIndex": 833,
+      "beforeProposal": {
+        "sourceIndex": 833,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "4d8d5a724b9ad825e46b535e890244ff7f6a7bd2ccd7ebc85a25e0714246e74c",
+        "proposalFingerprint": "a4240eb3979804e1642fab2876bb437fadebf5938c7f1bf87dc783b0f62bbd09",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형을 곧은 선 하나로 똑같이 둘로 나누는 서로 다른 방법을 두 가지 쓰세요.",
+        "bAnswer": "가로의 가운데 선으로 나눈다. 세로의 가운데 선으로 나눈다. (마주 보는 꼭짓점을 잇는 선도 됨)",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 다른 방법 두 가지"
+            ]
+          },
+          {
+            "anyOf": [
+              "모두 똑같이 둘로 나뉨"
+            ]
+          }
+        ],
+        "bGoal": "똑같이 둘로 나누는 방법이 여러 가지임을 알기",
+        "bReason": "'여러 가지'라는 말 대신 실제 방법 두 가지를 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "정사각형은 가로 가운데 선, 세로 가운데 선, 마주 보는 꼭짓점을 잇는 선처럼 {여러} 가지 방법으로 똑같이 둘로 나눌 수 있다.",
+        "cReason": "'□로 그을 수 있다'는 '가로', '세로', '대각선'도 들어가 답이 정해지지 않음. 예를 보여 주고 '여러'를 쓰게 함",
+        "answerNotes": "'여러', '많은' 인정. 문장에 든 방법이 세 가지이므로 '세'도 인정. '한'은 오답.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "둘로 나누는 여러 방법",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형은 가로 가운데 선, 세로 가운데 선, 마주 보는 꼭짓점을 잇는 선처럼 {여러} 가지 방법으로 똑같이 둘로 나눌 수 있다.",
+        "cStudentSentence": "정사각형은 가로 가운데 선, 세로 가운데 선, 마주 보는 꼭짓점을 잇는 선처럼 □ 가지 방법으로 똑같이 둘로 나눌 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "여러",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정사각형을 곧은 선 하나로 똑같이 둘로 나누는 서로 다른 방법을 두 가지 쓰세요.",
+          "answer": "가로의 가운데 선으로 나눈다. 세로의 가운데 선으로 나눈다. (마주 보는 꼭짓점을 잇는 선도 됨)",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 다른 방법 두 가지"
+              ]
+            },
+            {
+              "anyOf": [
+                "모두 똑같이 둘로 나뉨"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정사각형은 가로 가운데 선, 세로 가운데 선, 마주 보는 꼭짓점을 잇는 선처럼 {여러} 가지 방법으로 똑같이 둘로 나눌 수 있다.",
+          "acceptedAnswers": [
+            [
+              "여러"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc20",
+          "sourceIndex": 833,
+          "proposalFingerprint": "a4240eb3979804e1642fab2876bb437fadebf5938c7f1bf87dc783b0f62bbd09",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "서로 다른 두 유효 반분 방법을 자유롭게 쓰는 범위이며 가로·세로·대각선 예를 허용한다.",
+          "cReason": "여러 방향으로 반을 나눌 수 있다는 짧은 관계다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형 한가운데를 지나는 서로 다른 곧은 선 두 개를 실제로 제시한다. 예: 가로 가운데 선과 세로 가운데 선 또는 마주 보는 꼭짓점을 잇는 선"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정사각형을 가로 가운데 선으로 나누거나 세로 가운데 선으로 나누면, 나누는 선의 방향이 달라도 두 조각의 크기는 서로 {같다}.",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}
