@@ -41,6 +41,7 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 1000 });
   await page.goto(`${base}/dev/learn-hifi?screen=issue&state=issued`, { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => typeof window.__learnHifiFetch === "function");
   await page.getByRole("button", { name: "김도윤", exact: true }).click();
   const panel = page.getByRole("form", { name: "학생 학습 메뉴 설정" });
   await panel.waitFor();
