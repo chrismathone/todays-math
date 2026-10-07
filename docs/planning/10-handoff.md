@@ -38,8 +38,14 @@
   5. main 에 합쳐 밀고(관문 넷) 운영 배포 Ready 를 본 **뒤에** `ALLOW_SHARED_IMPORT=1 … --apply` 와 `--refresh --apply`(이미 실린 30문항이 그림을 얻는다)
   🔴 `.env` 에 저장소 쓰기 키가 없다 — 원장님이 주시거나 직접 3 · 4 를 돌리셔야 한다.
 - **글 문항은 따로 실었다** — `load/sets-text.json`(글 묶음 둘만)으로 `--apply`. 그림 문항은 위 절차 뒤에 `load/sets.json` 으로.
-- **잔고** — 그리지 못한 한글 도형 32 · 붙은 문항 94 · «풀이 참조» 98 · 렌더 안 되는 수식 75 · 정답을 아직 못 붙인 것(`unmapped.md` — 정답 없음 · 풀이만 · 번호 없음).
-  거르기 화면(출판사 · 자료 종류 · 학기) Wire 5안은 `/dev/bank-source-wire`(원장님께 아직 안 보여 드림). 엔진 보강은 추출이 끝난 뒤.
+- **잔고** — `not-loaded.md` §1(그리지 못한 한글 도형 · 붙은 문항 · «풀이 참조» · 그림을 못 잡은 것 677) · 렌더 안 되는 수식 56 · 정답을 아직 못 붙인 것(`unmapped.md` — 정답 없음 · 풀이만 · 번호 없음).
+  거르기 화면(출판사 · 자료 종류 · 학기) Wire 5안 캡처는 `tracks/reports/textbook-import-20261007/bank-source-wire/`(원장님 고르기 대기).
+- **엔진 보강(원장님 «추출이 끝나면 엔진 업그레이드»)** — 빈 곳 지도 [`engine-gaps.md`](tracks/reports/textbook-import-20261007/engine-gaps.md):
+  엔진이 과목째 없는 곳이 공통수학2 · 대수 · 미적분1 · 확률과 통계 · 기하(교과서의 23%), 엔진이 있는 차시의 빈 곳은 «묻는 꼴»
+  (계산 판정 «옳지 않은 것은?» 212 · 설명 판정 · 분류 · 모두 고르기 · 서술형 231 · 소문항 묶음 997). 🔴 **새 묻는 꼴은 원장님 승인이 먼저다**
+  (`src/lib/middle/combo.ts` 머리 «문형을 늘리려면 원장님 승인이 먼저다» · D-07) — 그리고 등록만 하고 적재를 안 하면 `checkUnloadedTypes` 가 모든 main 푸시를 막는다.
+  기존 유형을 넓히는 일(행렬 2×2 밖 · «(1)/(2)» 차시 붙임)은 이미 실린 엔진 문항의 제자리 갱신(`refresh-engine-content.ts`)이 같이 간다. 그래서 **코드는 아직 안 고쳤다** —
+  여쭐 것: ① 계산 판정 · 비교 객관식 틀(346문항 · 새 수학 없음) ② 설명 판정 — 개념 백지 은행 ○× 문장을 시험지 재료로 써도 되나 ③ 공통수학2 엔진(물결 2)을 오르카 다중 세션으로 띄울지.
 - **이어서 할 때**: 작업트리 `D:\todays-math-textbook-import`(가지 `chrismathone/textbook-import` — origin/main 을 합쳐 둠 · 미푸시). 저장소 밖 `E:\todays-math-textbook-import\`:
   `extract6` · `objects`(표) · `objects-groups`(묶음) · `answers`(정답 그림) · `figures8`(그림 갈래 · 꺼낸 그림) · `prepared-text6` · `prepared-fig9` ·
   `review-*`(검토자 출력 — 다시 못 만든다) · `final-check-*` · `load/sets.json`. 도구 사용법은 `scripts/import/textbook/README.md`.
