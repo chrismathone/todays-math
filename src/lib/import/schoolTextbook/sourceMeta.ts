@@ -121,6 +121,8 @@ const KIND_PHRASES: ReadonlyArray<readonly [string, SourceMaterialKind]> = [
   ["대단원 도전 문제", "수준별 문제"],
   ["도전 문제", "수준별 문제"],
   ["실력 UP 문제", "수준별 문제"],
+  // 동아 «해결해요 1_3 기본 · 발전» — 수준을 갈라 낸 문제집이다(수준은 파일 이름 끝의 «기본 · 발전»)
+  ["해결해요", "수준별 문제"],
   ["보충[,_]? 심화 문제", "수준별 문제"],
   ["중단원 평가 문제", "중단원 평가"],
   ["중단원 평가", "중단원 평가"],
@@ -135,6 +137,7 @@ const KIND_PHRASES: ReadonlyArray<readonly [string, SourceMaterialKind]> = [
   ["소단원 확인하기", "소단원 평가"],
   ["소단원 문제", "소단원 평가"],
   ["대단원 평가 문제", "대단원 평가"],
+  ["대단원 문제", "대단원 평가"],
   ["대단원 종합 문제", "대단원 평가"],
   ["대단원 마무리 문제", "대단원 평가"],
   ["대단원 마무리", "대단원 평가"],
@@ -170,7 +173,8 @@ const THREE_LEVELS = new RegExp(
 const TWO_LEVELS = new RegExp(`${HEAD}${N}${SEP}(\\d{1,2})(?!\\d|${SEP}\\d)`);
 /** `1단원` · `4_단원 평가` — 「소단원 · 중단원 · 대단원」의 단원이 아니라 숫자 바로 뒤의 단원 */
 const CHAPTER_WORD = /(\d{1,2})\s*_?\s*단원/;
-const ROMAN_ALONE = new RegExp(`${HEAD}([${ROMAN}])(?=[_.\\s)]|$)`);
+/** `Ⅰ_대단원 평가` · `Ⅰ. 수와 연산` · `Ⅵ-A. 확률`(같은 대단원의 A · B 형) */
+const ROMAN_ALONE = new RegExp(`${HEAD}([${ROMAN}])(?=[_.\\s)]|-[A-Z]|$)`);
 /** `_2_방정식과부등식` — 밑줄 사이에 홀로 선 수. 파일 일련번호(`_01_YBM…`)가 앞에 있어 **마지막 것**을 쓴다 */
 const BETWEEN_UNDERSCORES = /_(\d{1,2})(?=_)/g;
 
