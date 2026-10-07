@@ -45,7 +45,8 @@ _BROKEN_ESCAPES = (
 def repair_escapes(text: str) -> str:
     for control, letter, tails in _BROKEN_ESCAPES:
         text = re.sub(re.escape(control) + rf"(?={tails})", lambda _m, letter=letter: "\\" + letter, text)
-    return text
+    # 남은 `\r` 은 줄 끝이다(파일을 바이트로 읽으므로 여기서 맞춘다)
+    return text.replace("\r\n", "\n").replace("\r", "\n")
 
 
 def parse_output(text: str) -> dict[int, dict]:
@@ -205,7 +206,8 @@ def main() -> None:
             done += 1
             keys = json.loads((root / "key" / f"{name}.json").read_text(encoding="utf-8"))
             items = json.loads((root / "batch" / f"{name}.json").read_text(encoding="utf-8"))
-            blocks = parse_output(result.read_text(encoding="utf-8"))
+            # 바이트로 읽는다 — 글로 읽으면 `\r`(= `\right` 의 머리가 깨진 것)이 줄바꿈으로 바뀌어 `repair_escapes` 가 못 알아본다
+            blocks = parse_output(result.read_bytes().decode("utf-8"))
             units = json.loads((root / "units" / f"{batch['grade']}.json").read_text(encoding="utf-8"))
             for key, item in zip(keys, items):
                 mine = blocks.get(key["i"])
