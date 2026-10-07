@@ -1,0 +1,872 @@
+{
+  "checkedAt": "2026-10-07T11:47:01.644Z",
+  "execution": {
+    "tsx": "Root node_modules/.bin/tsx.cmd",
+    "tsconfig": "C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006/tsconfig.json",
+    "modules": [
+      "Root normalizeProposal",
+      "Root workerFingerprint(middle)",
+      "Root conceptBlank.contract",
+      "Root bankNotationFaults",
+      "Root blankClashes"
+    ]
+  },
+  "summary": {
+    "count": 116,
+    "uniqueIds": 116,
+    "actualRawProposals": 97,
+    "reasonedRetentions": 19,
+    "initialStaleHashCount": 0,
+    "unprocessed": 0,
+    "contractErrorCount": 0,
+    "notationErrorCount": 0,
+    "preservationErrorCount": 0,
+    "keepOriginalMismatchCount": 0,
+    "scopeBlankClashCount": 0,
+    "wholeMiddleScopeBlankClashCount": 0,
+    "wholeMiddleConcepts": 3719,
+    "latestUnexpectedDrift": 0,
+    "latestExpectedCandidateOrRetained": 19,
+    "latestOriginalAwaitingPrimary": 97,
+    "generalDefinitionRepairIds": [
+      "m3-04-03-xc19",
+      "m2-01-06-xc24",
+      "m2-01-08-xc8",
+      "m2-02-05-xc8",
+      "m2-02-05-xc24",
+      "m2-03-01-xc10"
+    ],
+    "restoredBIds": [
+      "m2-05-03-xc20"
+    ],
+    "restoredCIds": [
+      "m2-07-04-xc8",
+      "m2-08-02-xc17"
+    ],
+    "maximumVisibleGeneralDefinition": 121,
+    "maximumVisibleB": 160,
+    "maximumCSlots": 3
+  },
+  "notationErrors": [],
+  "scopeClashes": [],
+  "wholeMiddleClashes": [],
+  "wholeMiddleScopeClashes": [],
+  "latestAudit": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/audit.json",
+    "byteSha256": "06ba871039c97dbabd3be800892a089f94b965f62fa37ddfaddb85fbd1e6157e",
+    "states": [
+      {
+        "id": "m1-03-08-xc16",
+        "originalDisputeIndex": 160,
+        "normalizedHash": "5311b911ee0458b08d0e668f96bb295c515aef40973a9eb6bd901dc643057ab3",
+        "fingerprint": "b9b5a7a816f0dfa4df5db2462d8763317a1d73885d521113baa81c34aff0c081",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-05-xc13",
+        "originalDisputeIndex": 161,
+        "normalizedHash": "b4468c118b7badd62a59f37605e7ad0dda6e9ac36ed427d2eedd1a5a23688ae7",
+        "fingerprint": "b083d12f6b983d2a5e2ffbcdb989d332eaa1e5d68d620097a205184b1d95c48f",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-06-xc2",
+        "originalDisputeIndex": 162,
+        "normalizedHash": "ef96e1184c9d9af2003d713dc5278aeb749481f4a929b7167ea506ce93801c13",
+        "fingerprint": "3c1a9c8c03c8f676f8c96fb6ebf6dd2c138d3a82c5f294acef86a729771c6ed2",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-07-xc9",
+        "originalDisputeIndex": 163,
+        "normalizedHash": "1bb827dc8ca2175cbefda6d46021ff725880df8d558df0f993d68fc1fbb93742",
+        "fingerprint": "fc9f69f3af62a53eda160fa51147d94cc353d77dcb251fcbe38c010f6a94aac7",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-04-01-xc9",
+        "originalDisputeIndex": 164,
+        "normalizedHash": "a5b6ecde3e977a04a11f4590f30bf7a6c468877fa87ef1903d5fc17c45c91d9c",
+        "fingerprint": "d4ca1abc91c3541b3722ed9a7d09695a9d2ffae96617968af76a1c03347246c6",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-04-01-xc15",
+        "originalDisputeIndex": 165,
+        "normalizedHash": "4ef210b6935fe6a6cbf5d9d3a4f8ca110a6f44635e08c2be68d63c9d9b728e2c",
+        "fingerprint": "f0e8dbba1b8f5cb1ad48508ed4d3788f2ac63be58f977c6a6428ed949cfba056",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-07-xc23",
+        "originalDisputeIndex": 166,
+        "normalizedHash": "38687860a9b28bd4c60dbbc9fe66017f567283dcd10308ccf891bc4a7154bf07",
+        "fingerprint": "cc8e634dc5a4b68fcb91c7396d1a2bb42babf4fb989d81c49e494225d375b8ef",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-04-01-xc19",
+        "originalDisputeIndex": 167,
+        "normalizedHash": "fbaa7221b34676ad0c95b2c18d1673c761862bab39595c55a268dc31ede96184",
+        "fingerprint": "4a4aedfb544637837ed86aaf6bc4cd3b55c1b73e9f7d81636870cc586298e5f1",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m1-04-01-xc7",
+        "originalDisputeIndex": 168,
+        "normalizedHash": "11309586f79c125810bf648373b0b84841ccae6bd6d1ad40b70bcec4a7b13e98",
+        "fingerprint": "a3ff73bd62e6a69f1a31bb0f95b9998bdc6856bf6e640cd71a4bbe8a4cd313f0",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m2-03-08-xc9",
+        "originalDisputeIndex": 169,
+        "normalizedHash": "44df980dea70cf567864f735fdd5957fb0fd9fc135e6ffd8f7ddcf55df3f1da2",
+        "fingerprint": "ad90ccc6d481a7ab723f7621c1f212f0f45a92a2845eeaea83e54547f1938937",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-09-xc14",
+        "originalDisputeIndex": 170,
+        "normalizedHash": "dc67f5998dbb1541ea54e08541543b724c68937a7b37ee8b461bcce6fa6241f0",
+        "fingerprint": "8d08ebc8de12e0935889b1995870378df0368329c1f9917e2f4e702f7f50572d",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-04-03-xc1",
+        "originalDisputeIndex": 171,
+        "normalizedHash": "c5b38edd760a3a9040e4e3b1040545cadc8ed01bbfab599f0ccead62859cb679",
+        "fingerprint": "83a75e06c811a7c7ee3cb7d7554106c5d1babed411f4d64c1d91b9978f768991",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-04-03-xc3",
+        "originalDisputeIndex": 172,
+        "normalizedHash": "6dbd01810de2bc43019ff660d3477db0df6de9523745e720eb49d09835ae12e2",
+        "fingerprint": "654e9a0f0caa0808de77b97e24807438b89c31ec2e0dddd0ef89dd4054ef4cbf",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-09-xc21",
+        "originalDisputeIndex": 173,
+        "normalizedHash": "a73e3f7e3c9e6734e30ca8e1c302d7aeccb4dc6e1c4a264a13106e5b8d982c9f",
+        "fingerprint": "1379dd34074e90eb3efcf6dc8fb20f2b782767515369b2e5215f3eb5b8348435",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-04-03-xc2",
+        "originalDisputeIndex": 174,
+        "normalizedHash": "295b4c96ae22d2159fcb734193007bf3213f64c37d14769477f472f1f7bdee40",
+        "fingerprint": "357b5c800d9e7ce41137ecaa0cd5b30aafaa3035014192401604b9a838cabdd4",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-04-03-xc10",
+        "originalDisputeIndex": 175,
+        "normalizedHash": "875e8382ee25675968248f1ab34349bf5d03c30a86693f37f194038b72a65340",
+        "fingerprint": "6e16b9d800b7e731be57394156072e2a87549b4618a63a2492167c94c9d9be23",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-04-04-xc8",
+        "originalDisputeIndex": 176,
+        "normalizedHash": "75a125163885df61e0ed81dd497f78fe5430a97d2a60ca31958676504bf91adf",
+        "fingerprint": "3fbf92486d869ac20e217326f04b841d26b0efbbe0f370d6f004c630c2d5554f",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-04-04-xc12",
+        "originalDisputeIndex": 177,
+        "normalizedHash": "71c065205aa36eae43463348e9bb38681c01a3d78f1125b2dfe9fa19c7a10d45",
+        "fingerprint": "7c446490dde22c9a5251a6ae014136df9e58c5622e2efb44378a90961ba950b3",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m1-04-04-xc13",
+        "originalDisputeIndex": 178,
+        "normalizedHash": "f8f51fa6aee1398a06ca9e17f1a564441e7e141c38ba04e3ab72c7169bc0441d",
+        "fingerprint": "78c961345ecabdcff5fee7f02b9f305ac978f53ea1ffcf7250f356c3382da20c",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-04-05-xc19",
+        "originalDisputeIndex": 179,
+        "normalizedHash": "f7604b6681b14dffd1a58aa9a2ad25c2ad3dcf99b735c81d36177217097f2b69",
+        "fingerprint": "eb25e565f27f26db645281837b129ac3f1d3694aad2b930c35f4f8b46c6a47ca",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-04-05-xc2",
+        "originalDisputeIndex": 180,
+        "normalizedHash": "c03a11772572bf2ebe548f5ec02523132eaef6c4ecbf0a49f4aaea2f1837ce6f",
+        "fingerprint": "4767fa3d67ef73f5bafee0ba3555e2a69b038f2b0bba50518f69435a86289668",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-04-06-xc7",
+        "originalDisputeIndex": 181,
+        "normalizedHash": "7a4d1fdb8d3c191b46e2eda88f7af1de7d5863cd59f06f9127997c22a0d980c5",
+        "fingerprint": "b5c771914d97f9cf0c215e9912bafb36abb5968485aa97b302f66d4ec2b39903",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-04-06-xc15",
+        "originalDisputeIndex": 182,
+        "normalizedHash": "8147905425d9f071f404d6aeb101ce3897a1023a0a2b9fb6e68b46b2165fec3d",
+        "fingerprint": "6813f2d4b9071a3cabc8fb21701e050a1068e1e62d632b9863171461fc4114d8",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-04-06-xc23",
+        "originalDisputeIndex": 183,
+        "normalizedHash": "8ce1d2cc7ea25645afd411601ca059529ad4419425088f4c4d301352205c5a0c",
+        "fingerprint": "78944f878adb0c5fdd53f2c80cb6f165ecfde962188d5b4c3dae3f57be16f8b8",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-04-06-xc24",
+        "originalDisputeIndex": 184,
+        "normalizedHash": "bd85d4c174260e224edcda9e0036b883c7aabef2acd7675b7da8aac6efeb2eee",
+        "fingerprint": "6f0b9e2198666dd28c28d4d435081f5f92f37e6b42aca14015aa366c9ce1a327",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-05-01-xc8",
+        "originalDisputeIndex": 185,
+        "normalizedHash": "ba804626a6d086f79d3c35701b88a5f05f8681e6682fa3c74a5b5599aca8ba90",
+        "fingerprint": "cbd8728455806c28d26b163902acc19de4628b0487736756be50241b5f7159d9",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-05-03-xc2",
+        "originalDisputeIndex": 186,
+        "normalizedHash": "8b07d631de1380df9501976a07cccfb5a15bea1b38b573088939f115ef8352c3",
+        "fingerprint": "676fdf627099b5ff230c675fdd0af55cdb2630f9943efdae28b163ccbf124b50",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m1-05-03-xc12",
+        "originalDisputeIndex": 187,
+        "normalizedHash": "c84399cad0c1c104cd21fdaa38867c9642933a5acc7609290de8f5fb2e6ab23a",
+        "fingerprint": "1f99010f5dc2093028a9ce48930eb365df9a194e2e7d536a134a415c91221a96",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-05-03-xc17",
+        "originalDisputeIndex": 188,
+        "normalizedHash": "a1a55dff6f884fb0a54dfcbd46beec39429e8db3241864d512270b7db335dd90",
+        "fingerprint": "459f6ba04a029f4adf82db447334d07a76e966f65d3bcec1f66949655dfda567",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-05-01-xc6",
+        "originalDisputeIndex": 189,
+        "normalizedHash": "105aab3ba1fa68826527acdc5b201368ab9d4116222cefa471be86f18373f7d9",
+        "fingerprint": "0778d72cac4416e215485c2b219daf39348e2036ef6590384cdb950d6f482a8b",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m1-05-03-xc22",
+        "originalDisputeIndex": 190,
+        "normalizedHash": "98bfeb15204f76616f9b590d7a844b217d13aeb2a24aeeb3c76b2d1e95655920",
+        "fingerprint": "38d44ca4f27d30f9d069ca4b0d1e14258a81498b770dacc2db2eabc7612f86a5",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m1-03-04-xc19",
+        "originalDisputeIndex": 191,
+        "normalizedHash": "3abe8a543e69ea5ad98d2ac83a62df7778f18bb8184015ba958bab95e21091d3",
+        "fingerprint": "af7053ed93b1baa8fd633b1da3590fedbd791d5079533f8589d06194677d1a5f",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m1-05-04-xc4",
+        "originalDisputeIndex": 192,
+        "normalizedHash": "e15dbb412067aaa21c6c21eb7958d16787ffaf271edccb30beefdabbce63f0fa",
+        "fingerprint": "be1401f978799169f3d6d72a96e6726659b3980cba7b268b630cd3ad474a3c7d",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-05-04-xc14",
+        "originalDisputeIndex": 193,
+        "normalizedHash": "caeeb5404830a5504b66d97e68b6a1d0313eab8d1f09c5d0752cbb6b52449d4d",
+        "fingerprint": "006d60ff10e9d05de13560daea9b694c8249deaa2fdf68d8b6592a3dd17beef7",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-05-03-xc20",
+        "originalDisputeIndex": 194,
+        "normalizedHash": "a04d298f4163064996ec2df07344565b3eeb99d7305068948e43994444ec0f5b",
+        "fingerprint": "9f7985e80e259eb0dad1f2ca4d8cb028c0835ca13761b9a9901a6b02195e5092",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-05-05-xc20",
+        "originalDisputeIndex": 195,
+        "normalizedHash": "1cd418c2da003497e7e96254c3d758ce28695b434fbaf850177a3e59b95d3d63",
+        "fingerprint": "f9e826740a1ed1e9758cb8697bc2830f9d259730fe0cadc3e0f8e62a0a8354e0",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-05-05-xc21",
+        "originalDisputeIndex": 196,
+        "normalizedHash": "efe2cb71f32791e5b72e56c02e72bac87d9a089d31f75d86ecd94011e71bb8cc",
+        "fingerprint": "17ae7ce0bbb61ae7e914a4abff75f27b83eac34535382a8ae67b72fbba4ee848",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-05-04-xc10",
+        "originalDisputeIndex": 197,
+        "normalizedHash": "7959a2428906bfaaf767ac46c1059b0c5184eca0c0254129c82cca37bbc1f60e",
+        "fingerprint": "c86cc05a79bcac7385e32e658aaf00d764a2504755517a0fee175768af2155c1",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-05-06-xc20",
+        "originalDisputeIndex": 198,
+        "normalizedHash": "bc2d2a9c4be0388181542d99d9af1be08a49b4dcd661edd22cbd781f96fdb2ec",
+        "fingerprint": "d5073b866def229eb71394bffc8fef24191aabb85da42048a7ffe52bb95cd3e5",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-05-07-xc19",
+        "originalDisputeIndex": 199,
+        "normalizedHash": "9c2dc3d61abe3dc6f8255e4977ce58f0023aa786d03108f816fa1780e2d45186",
+        "fingerprint": "7e89d5657ef60ca7614ad0fd1c14520d3c8f1363f5fc55fb388e92eea7c86e52",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-05-07-xc2",
+        "originalDisputeIndex": 200,
+        "normalizedHash": "86528fc8d4190475ddeba55a638f4cdebea032cb3b1d9caf80c9b2508853f5aa",
+        "fingerprint": "b0a5f30f77804835af86bcaf80b621dadafb2e9dcb8b7937e1df28f67a1da800",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-06-01-xc20",
+        "originalDisputeIndex": 201,
+        "normalizedHash": "5bd00c4a29d6a9c5f6cf930b660a4fdcb1d4e47548156fc8f5fa804e7db52890",
+        "fingerprint": "c261c7457c439a28a14d8ebdf3486936aa51c53ba525bdbebd03cd34f4cdefab",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-05-07-xc13",
+        "originalDisputeIndex": 202,
+        "normalizedHash": "10f887b678f11270416452716171ca903ed2a7e61a7604977d0402d9f69daa00",
+        "fingerprint": "3ce5a87e6cb26b9e73f96afe9bdf9540353c8ef7ffa1c0ea0fe875cc8d4bade1",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m2-05-08-xc16",
+        "originalDisputeIndex": 203,
+        "normalizedHash": "b81e76447a70d5ab67a3610d0db6088b296f7807e8f442210e7ce5392f780b4e",
+        "fingerprint": "662baea2340de10e2759330502050873998717273620f84466712440b0ebcce5",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-06-01-xc6",
+        "originalDisputeIndex": 204,
+        "normalizedHash": "d8da88e6fa2d1df8f89038769e92a339e60f15fd5f5d1936f7e97f4d2d550a7c",
+        "fingerprint": "c6129d5344bc15c510502ec3d58c8a3815825ffbdf084c82cdc66c1dedb44cbc",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-06-01-xc10",
+        "originalDisputeIndex": 205,
+        "normalizedHash": "cb4893f9fc565c8d569fe2536c1377ba7765dc6e7db6d28582a1763c85275501",
+        "fingerprint": "724408db64144a3b59e2ebb950d9efa5062747f600ba9f161475dfcb9648e9c2",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-06-02-xc16",
+        "originalDisputeIndex": 206,
+        "normalizedHash": "b1e491a3479a8ee7d7ca9f2ed31a34cdb9bb7a5dea1b36df5c4009f41e9a7b78",
+        "fingerprint": "a85a55cfc9fd32bd64bd64578eb3206edcbcb760075d0bcc9c37622a8549a76c",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-01-xc2",
+        "originalDisputeIndex": 207,
+        "normalizedHash": "0aac99a5124af99b8f085764daf2ba5d8b2d0f0c4903c9e88572e390381a852d",
+        "fingerprint": "77989d4cc895c4fe5c9c85ac54bbf25f4ec72324b5fa4b3d36046d25ce8bde6a",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-01-xc6",
+        "originalDisputeIndex": 208,
+        "normalizedHash": "d1c367d9376929a859082dde40bf38d22201c3ac5246155ea83a3dc376872799",
+        "fingerprint": "53012d522cb5159e51addf8eee98456102ceca9e784c42813933db0f8c829160",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-01-xc10",
+        "originalDisputeIndex": 209,
+        "normalizedHash": "fc3f541c79426b04d59076fc9034bd9e152a6f3a0b83baef3739687e143876c0",
+        "fingerprint": "dc9a98da529ad99fc495385e541c96d47e44fa2be6f5feb765efa190eca0aeda",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-02-xc2",
+        "originalDisputeIndex": 210,
+        "normalizedHash": "aabef455804b97153f703bc9d8a27431fc6eb67a8e5e20feeaca2ce86d9075e0",
+        "fingerprint": "6323379ee1a081ae726baa5d4aa05c0d70c95842b341bf55e80c577c873c7814",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-07-01-xc21",
+        "originalDisputeIndex": 211,
+        "normalizedHash": "4e1076f92436a667ec21bcb6a93a2466a6dc14851809d493d62197e69dec07e6",
+        "fingerprint": "ee3ed4dd0cb4293efdf8f54edab7f2411a368cf95ed39e72b0a1f85b1e702da7",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-03-xc3",
+        "originalDisputeIndex": 212,
+        "normalizedHash": "a6d80cb68609cfb6c01f2883ddc3507f5f84349a5e62f154fb20bce7b6a17979",
+        "fingerprint": "3a58945f3c2f7ae70c81987abde4370dc79e4c4f9e87551f162ba2c075364bc8",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-03-xc16",
+        "originalDisputeIndex": 213,
+        "normalizedHash": "9fad1810cc88a786dc005ba0644aa58f0f24876e308efd78178f9474bc20ee44",
+        "fingerprint": "ec83080f047bb3849736510705b319a29df8e86d6dde106e48ecfc5da8ce3ec5",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-04-xc8",
+        "originalDisputeIndex": 214,
+        "normalizedHash": "47c89fff34420be1ace5ce13b69c6548844d8be4907483a10b73530f12aa50be",
+        "fingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-04-xc9",
+        "originalDisputeIndex": 215,
+        "normalizedHash": "516beb7f923e711208f17f1c98f3cdb7c689ab719a08426b29f7ab2e9dda520b",
+        "fingerprint": "a1b729a2b000caf4d8753e706ccbcd743205ca871f6771302f7f0b13dca5f221",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-04-xc11",
+        "originalDisputeIndex": 216,
+        "normalizedHash": "2edfa66f3b507643ec388226b695443696a2972db9916b4f2653c0f4c1ceab80",
+        "fingerprint": "dfdebcc36a1b91db3dc23cb970fdaf230afba2db978cb32060431bf041e6d46c",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m3-04-03-xc19",
+        "originalDisputeIndex": 217,
+        "normalizedHash": "9edac6dae7dee82f521dc7699a5581c1ab751b22ab20900318234ac6847c7402",
+        "fingerprint": "a7d00b2f873f474ab609dd87428cebfcb9f2daefebe2ba2d9183fade49c174d0",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-07-04-xc15",
+        "originalDisputeIndex": 218,
+        "normalizedHash": "5ea60f083553009286632150f3cb08653a8e29f7f39821f4a99f4323e70342f4",
+        "fingerprint": "94614786de289d181e30d1e5c5f779844c80726ea18be21eba8558f988c045c2",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-01-02-xc2",
+        "originalDisputeIndex": 219,
+        "normalizedHash": "e3c820d8811a5e10215f4eec8be8c9dd34f3857bf6c1779150bc81e590596fb7",
+        "fingerprint": "8606b63e23ac3c3eff54ac37133734fb771b5475cd8ed74d0a1f89c1d07689c7",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-07-04-xc19",
+        "originalDisputeIndex": 220,
+        "normalizedHash": "0dd759339fcd0f4684d81f53e3b5dac66949955f236d43d7291ee55a803adc69",
+        "fingerprint": "7dd1f9e0f42ef1ca9d3cd61ebffe36c08011ce3e128ae798b95188f15eef9830",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-07-06-xc7",
+        "originalDisputeIndex": 221,
+        "normalizedHash": "380c9db23904fb74a3bea6cde9da46e42034b139f9c4c650da86001a5b901f51",
+        "fingerprint": "2430222aa382fc4d6c7168c88fdcde8f80cd4b0b0e752af6a646885c809a3fc0",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m3-05-01-xc14",
+        "originalDisputeIndex": 222,
+        "normalizedHash": "ce16c459d1133c4ccac2e6954da8a40fa99bbf67aca1b8072306a126ceb28d94",
+        "fingerprint": "4d9f4f919b4ffbb8a7ce9fd0f951d9475bdf10e0d3b3847db83a3e7d8ee82678",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-06-xc1",
+        "originalDisputeIndex": 223,
+        "normalizedHash": "86229d1b144d0be9a693cbadb907738d280d39e7ce9080c114b64c24cb6b5bb7",
+        "fingerprint": "e8e6ef712c1bb1690e91cf80587c86b1989286c47e78eb2b8521d9774c356034",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-06-xc2",
+        "originalDisputeIndex": 224,
+        "normalizedHash": "15f28c01fd5d9827786cc8a65a4e925473b6ef348d0b6a7222dc2b25f4432e9e",
+        "fingerprint": "5089933bddcd091cd73c38a11c528c61dd2a4deff8269c89a5dd9c9030e686ff",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m2-07-06-xc4",
+        "originalDisputeIndex": 225,
+        "normalizedHash": "160f2a837c0eb436e7e79b7e8ad1a075d0dcf6db2238fe060aee42b738107fb1",
+        "fingerprint": "f904d4560c975491820cc7edf63c19ba29c43bd15a768594f4a727c1a3e6372d",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-07-06-xc23",
+        "originalDisputeIndex": 226,
+        "normalizedHash": "3f23e0c187a1d012b41284f0c0e2849e6acceb3f3295de520304d208dd7e7e5b",
+        "fingerprint": "6fa0814914148086aa70e984cbe5a64da1cc5cdc78c0f3b5412199e5b8779ef4",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-06-xc10",
+        "originalDisputeIndex": 227,
+        "normalizedHash": "df2a8014d95d03a618d575257f864b499f41141f332a59d27e39d0bb39ac1b0d",
+        "fingerprint": "b22aae0872cec712fb048e4c6a6f3e97e14ac1def9b22f27dfcc8a957b449177",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-06-xc11",
+        "originalDisputeIndex": 228,
+        "normalizedHash": "f8c3ccbb37fc12abc392739ccd262b673dda6e63a0a0878ca58609d4f0b70164",
+        "fingerprint": "24fe4804f79d4933361c78f289600cb4714d2513bfdf8f55ed27fc7ae3ea0544",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-01-xc3",
+        "originalDisputeIndex": 229,
+        "normalizedHash": "fcd8a7d3a192e4ce09f8d5a7e1d7549f8b53707a061e0d14a7df1f8cd888ba44",
+        "fingerprint": "a5ac7a7641ea4315726641a28eb16dfb5bb87038118a6b41163a41168d4eb50b",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-01-xc4",
+        "originalDisputeIndex": 230,
+        "normalizedHash": "bab2269c6adfb3a3d935a3eafbc80432c9f9872aadf545e39a2f6fe84d7b687d",
+        "fingerprint": "db78ded8c51dcfee72fb307e711789a404cf8a545512beabf792172ea68197e5",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-07-06-xc18",
+        "originalDisputeIndex": 231,
+        "normalizedHash": "334365184645784b98b03f3bd9863f064a2c93a9645930ace2bd7113971fad21",
+        "fingerprint": "93b1ac0216edb6a33ddb79838e6c6209d5595ffa7103efa3322cea4c40a3b016",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-08-01-xc7",
+        "originalDisputeIndex": 232,
+        "normalizedHash": "dca9aa4a5de4807f2c6dc16d6691b176fe349233165a516da38897b132e1c0d1",
+        "fingerprint": "21125760b5da47870db56e416fbd0eb69cf5f2ac223246f8c9f3be80a2c9d6ec",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-02-xc4",
+        "originalDisputeIndex": 233,
+        "normalizedHash": "3bda7dfa600bc8229e968a8d0048937d011bdf339c468f57afcbb814977d96e9",
+        "fingerprint": "77696fc371c6adcff23797971aff4290b6d21e28932f68c89fb801cc3e206664",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-08-01-xc14",
+        "originalDisputeIndex": 234,
+        "normalizedHash": "882d4cb619cd5dfdf76d4500047944041afb4c34d9519518d231a44185c7233a",
+        "fingerprint": "7253c5fb3badb35b730bb117a036a3a86c35f2d4f42c28056b7a848dab023227",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-02-xc10",
+        "originalDisputeIndex": 235,
+        "normalizedHash": "82fba232d6ef6793b0fdc735dae23f26904b1dda65a9a742014b620a598d3ed1",
+        "fingerprint": "be5985e3a2c631e38ebc1e4bd9610fa94f1c8fcd157cec027747737a3bdab944",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m3-05-03-xc20",
+        "originalDisputeIndex": 236,
+        "normalizedHash": "00a4e34719873264c74711a4b0e500a22b938d485a7c067310dc5a84acb92810",
+        "fingerprint": "1a14464c4cfcc44affab52f162f68bfa0d3768b09a8aa71076fd1384ddb5b3c6",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m3-06-01-xc17",
+        "originalDisputeIndex": 237,
+        "normalizedHash": "69fd8391f5c93c4521e3249257d14f36005fd8cfdc6110bfc4fd517d487614c4",
+        "fingerprint": "13e66801089108304e99f19d4bbcfe2f05f3fb32ecc913e42e4b1b1e9e0fa04a",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-08-02-xc12",
+        "originalDisputeIndex": 238,
+        "normalizedHash": "1b2bb4ac3baee8f523aa5682fe6ea124671226db0a219b0e4cd52b6d0a2ab006",
+        "fingerprint": "15024955cdb71d2a8d21fa5c07690019cf3562c79a0a53b6b67315e26775c3ab",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m3-06-04-xc8",
+        "originalDisputeIndex": 239,
+        "normalizedHash": "f808ef730c3c234d00edb2e27d30c6a282659600db8652f0c9404debffdfa5bc",
+        "fingerprint": "c788509cc7ba57b037989f3599826d0f3a6f3a94e1100bb132925a00fcee51dd",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-08-02-xc17",
+        "originalDisputeIndex": 240,
+        "normalizedHash": "e292c56e6b142bf19adb4d3a8a950cd4e0e31a9663eba88cbce51c92d868dbfb",
+        "fingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m3-07-02-xc3",
+        "originalDisputeIndex": 241,
+        "normalizedHash": "669db5dfe42b69466eb7c80cea1fab7a3570c308ab02628b47eb811518097f16",
+        "fingerprint": "8ecf933bc4689af2fda407c180eda479ad4f7be71e24c76ce486eb24d694bec4",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m3-07-02-xc4",
+        "originalDisputeIndex": 242,
+        "normalizedHash": "26a9553bb1322c0589fdb37ab115b6f046031020af7410f70bafaadd02e3258a",
+        "fingerprint": "52098d7bd21bcef363a12497080498a65e0a1aecb61feaabf2b9dea61949a255",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m3-07-02-xc5",
+        "originalDisputeIndex": 243,
+        "normalizedHash": "4704249ceb2191e78e307e86f7ffa31a462efb751cd4067602732b10e53dcadf",
+        "fingerprint": "1602e79714d7fbe7a73cdd5d9d8c3048dab3010c44bf8b71a05a5a4eb305f094",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m3-07-02-xc12",
+        "originalDisputeIndex": 244,
+        "normalizedHash": "e7e99bbfa855ad146e9aabd9bd72164683301fc176d5ca8e3c74527d9a3acf78",
+        "fingerprint": "3f73e60e5816721f25b756bcabf15d3fe25d842380c5886d0a9755c56dfb16e4",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m3-07-02-xc18",
+        "originalDisputeIndex": 245,
+        "normalizedHash": "640d03f1f4f0d5b52852ca1f06c86a171693ecafbb03c56b0e9a5c7b864bc4e3",
+        "fingerprint": "b253a463819707cf03bb3e0f84211d3744d531fcf7b5a943f53d4aadcb14f001",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-03-xc17",
+        "originalDisputeIndex": 246,
+        "normalizedHash": "43a13353759f2756a3895ad3097cac775ea51e235d729fb4c26c9f60b34af5f9",
+        "fingerprint": "bf893b2625c0eb0bc9113841cf95f19f2a37c270613a097ee735d5522a8917e5",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m1-08-03-xc20",
+        "originalDisputeIndex": 247,
+        "normalizedHash": "216df26b1e18ccdfa39aeb7832b7b87f97881ce2f46be0730200cc4c40d7a2b3",
+        "fingerprint": "b6e9996de9888b3f2396af347260727fd78e837e84178bde3574ea5da2031dfd",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m2-09-01-xc14",
+        "originalDisputeIndex": 248,
+        "normalizedHash": "a7bf59256bec0a2bde56356ddddb83716cf56e51bd4c5b7a35a87919d5cd35cc",
+        "fingerprint": "b7fe237f985eeb134474b236b03d6c234e5e79e39106f5ef2e61daf6285516df",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-01-xc16",
+        "originalDisputeIndex": 249,
+        "normalizedHash": "6f4ce427b96cb0554de1694d8139307b81d8ac938bb4f9fc9a8fa340f2491ea2",
+        "fingerprint": "dfc57c7d825c0d66c47e1ffdeb020309d9852f077d335935cb0d454419a50fe9",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-01-xc20",
+        "originalDisputeIndex": 250,
+        "normalizedHash": "86acd46ef8b6c5633b7d6496d680cab9d35649a4eded35304016b0f6264ff30f",
+        "fingerprint": "fa465b15157d31f00c0e61e3bde5e71277657b775363d01340da2b2868c4b0ae",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-04-xc23",
+        "originalDisputeIndex": 251,
+        "normalizedHash": "ff857450afa20789161565343a1bc9b9d50ac3b7b3ab85e701147ce657652efa",
+        "fingerprint": "6dd894ebb982c78d16690a6c7d5332ee2d09cd5cbfcb3196880e23a06942c765",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m2-09-01-xc22",
+        "originalDisputeIndex": 252,
+        "normalizedHash": "f04c904eba00904563631cf868388bb41f3c5102cc670f279beb3fe8c9bd0bc6",
+        "fingerprint": "d6c7a78563224e39e985ea221f5aedfd44fd567f7a6b827d913f3439680e83c2",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-02-xc2",
+        "originalDisputeIndex": 253,
+        "normalizedHash": "4296a4d97042624f1e5962818bb2f130fb3c04c28edfe3cb31516457bf8bfddc",
+        "fingerprint": "54d7beb20ab711170148af62800e3c36add4c9beefde3664e6e00624b20c4676",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-05-xc9",
+        "originalDisputeIndex": 254,
+        "normalizedHash": "6159b1c9c18d68d9c6088f8cbdc81155fd566a14f882363430e7ff6ecd39b282",
+        "fingerprint": "b823862542c09ee7d9716d56becb6362bfdeb8c4c3be6146ea8c20bfc3602003",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m2-09-02-xc13",
+        "originalDisputeIndex": 255,
+        "normalizedHash": "7d1f5fcb5757cd6133500c9da770072ec75c865772cdb59facb262f17adbbca6",
+        "fingerprint": "572f23be18414b48ae18efd68a81db2a92a25ecf28d768043e3f245215f6ef60",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-05-xc15",
+        "originalDisputeIndex": 256,
+        "normalizedHash": "791fe919934be99934f82db4af1ac13e65e7be413b342e086893719a048b80ab",
+        "fingerprint": "433654e08fbf92f5bcf00e75729591cc7989d53f310e4d73bfe66daa112eba6e",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m1-08-05-xc20",
+        "originalDisputeIndex": 257,
+        "normalizedHash": "068420aeac3d7d2efc5c902efb7a50d986266441b286bda341ae37212c38fc82",
+        "fingerprint": "59dae6d4aecfbe1f5e8a3e1d01663c92f9d50c085baf16a4c5e1ed1ae98dec9c",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-05-xc24",
+        "originalDisputeIndex": 258,
+        "normalizedHash": "c47ea28b33d12df93023e8fa553e0d67a4a1cb4c5f5206b722f5ab77b7f7bf04",
+        "fingerprint": "d422f52e4b1143d79ef049ae1598d5ef97d44412b58d704588665e48a0c0c198",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-01-06-xc10",
+        "originalDisputeIndex": 259,
+        "normalizedHash": "8ecfb1cea0f2013d939b398054938b32ad225c1da98d226c18468b6a706c7199",
+        "fingerprint": "07455fbb44249dec8816d1ccfb904da88cc86e7d541a36e62af22cebcec601ec",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m2-01-06-xc24",
+        "originalDisputeIndex": 260,
+        "normalizedHash": "d74eb7f852c0c48b172d712a855ffb0227453b5ccc48f5713187b4b734694fa0",
+        "fingerprint": "be009695349f926649d0a34676a59910cb70cf67a0a2b58b744e57cfd1fc316c",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m1-08-06-xc20",
+        "originalDisputeIndex": 261,
+        "normalizedHash": "709e52a554a8d5e8797b6a02e989fa980613a95e8968d4abb4239623a9c2bc39",
+        "fingerprint": "9e4522b3ae29a615b89fb57d08a37bd6c7b3964374356f5e380baaa4330e8532",
+        "state": "expected-candidate-or-retained"
+      },
+      {
+        "id": "m2-01-07-xc23",
+        "originalDisputeIndex": 262,
+        "normalizedHash": "79d2d5485ff416c368a3832d43dc65e6c716c3a1f8b9670431bfb61d0f57ef1d",
+        "fingerprint": "fb0ac643e378e50620f1670678bbf2c21bef9a619441e607944bb5768bddab85",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-01-08-xc8",
+        "originalDisputeIndex": 263,
+        "normalizedHash": "c9a8bfb10c0aaa1ffa899a1a8d8d2a9408baae4c9fcd39652b1c202162cd5bce",
+        "fingerprint": "d146e6be9d77e289606c4d443fdcbaeb2c0b8922f36ca3903a0f64a16e956e3e",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-02-04-xc17",
+        "originalDisputeIndex": 264,
+        "normalizedHash": "3a9ae942b54c7d38d5e45b26a209086ad0f071d10ef7ed3e1d58384b3fb28d2a",
+        "fingerprint": "b05928c7a19be6c5a26417b4707f48f655f4b77d69a383e3f87cb3b22a731ee6",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-02-05-xc8",
+        "originalDisputeIndex": 265,
+        "normalizedHash": "239e66a2c96424366fe24e58cb937959d59a37ee036e627a9e6822e1d4fe0e1d",
+        "fingerprint": "50543110a431ad546c9ffd4b38298eae4442dd7d187fd11298c4bb27b0888b39",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-02-xc24",
+        "originalDisputeIndex": 266,
+        "normalizedHash": "0df8ea12d93dfb2c4a70125d7b2af09ab1f4f2b7b1c999119db618df1cc37b90",
+        "fingerprint": "6b046d3d8834af23c007bf3644e96646192c7ab360044a838315a3ac482e0ed3",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-03-xc4",
+        "originalDisputeIndex": 267,
+        "normalizedHash": "f13a5b50bd83c5c31d75323248268b2f900265ad3b13b91f35ed88b4061a3c22",
+        "fingerprint": "2bfc0a47224a3057daf506160370a0e053213e7ba25b6c268b4a11ad48acb6bb",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-03-xc9",
+        "originalDisputeIndex": 268,
+        "normalizedHash": "33931e26976fd3865cabd2b8185c375e633ef21cdd6a07ef662cee8b4a2b4b05",
+        "fingerprint": "bdea1c635a454b11c5380831472a77b652fb23b455084d6ff6c3d3c4c86e6e6e",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-03-xc15",
+        "originalDisputeIndex": 269,
+        "normalizedHash": "cd9ea6c8c1d367c8fe4d79ab6634070a44be833ba8486bcc45b2862efd0f7b83",
+        "fingerprint": "c127c338b601c94cad9ad05e39546205eeb77a1824f44fc748c851f6dc0dd82f",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-03-xc22",
+        "originalDisputeIndex": 270,
+        "normalizedHash": "2e9ff58fd8fb33913a5e86b67a462d5441517cc6ef889e5232389e62b57f8d11",
+        "fingerprint": "fc672ba55e59d022b6e94c9e7d523fccc0709fb094f1718b19303766bfdf4a97",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-09-04-xc13",
+        "originalDisputeIndex": 271,
+        "normalizedHash": "c5953ee20bc6c4ba09b41db5557d5051111dfefaf5878c1755cfa8c29d0cd7c2",
+        "fingerprint": "64a1d74467e44e1c3430a1b654e0f4d577834f0a5eb937ff6bbc4f0b2d853193",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-02-05-xc24",
+        "originalDisputeIndex": 272,
+        "normalizedHash": "aebd5513f155da7203f82b52cf7d66b2700a0a2025a47a13decc279c8539653c",
+        "fingerprint": "8fbf9914426efe723857d1d828f10badd064043c309898187e3a76be9fbe4896",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-01-xc10",
+        "originalDisputeIndex": 273,
+        "normalizedHash": "0fd34bf4ca92454bfe8773add9c0f0978f6f1fa8d887b231603c5528767ba5ac",
+        "fingerprint": "c103294710ff97c8cc254ec58b98cb5fd452a1099ac2b242d7193c560249f123",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-01-xc21",
+        "originalDisputeIndex": 274,
+        "normalizedHash": "2d94e245f74359dd8bbed1f0fa651ed7f3b15f673fddfb0e06415b25b9dc8a7c",
+        "fingerprint": "d6f46cdc03419167f2a134d82cee0fc58e2ad5dee1ef80259737a18d81a051ab",
+        "state": "captured-original-awaiting-primary"
+      },
+      {
+        "id": "m2-03-03-xc14",
+        "originalDisputeIndex": 275,
+        "normalizedHash": "2dc94c30dd5d1b452fc7c14f9003b6a8c0d901769e7f2f34e34712d3988a3b86",
+        "fingerprint": "b6b223ed67a42aca1da44c8d729f879a1a81e557bbb6f749acaec0bbcac980fe",
+        "state": "captured-original-awaiting-primary"
+      }
+    ]
+  }
+}
