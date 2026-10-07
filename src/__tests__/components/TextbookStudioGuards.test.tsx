@@ -39,6 +39,11 @@ import type {
 import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 import { textbookSemanticSchema } from "@/contracts/textbookSemantic.contract";
 import { TextbookStudioView } from "@/components/textbook/TextbookStudioView";
+import {
+  contentPickerButton,
+  installDialogPolyfill,
+  pickContent,
+} from "@/__tests__/helpers/textbookContentPicker";
 
 const book: BookSummary = {
   bookId: "book-1",
@@ -233,6 +238,8 @@ function deferred<T>() {
   return { promise, resolve, reject };
 }
 
+installDialogPolyfill();
+
 async function openStudio(
   client: TextbookStudioApi,
   quickApi?: QuickCreateApi,
@@ -396,13 +403,12 @@ describe("B02 — 문항 가져오기 · 개념 저장이 도는 사이", () => 
 
   it("가져오기가 도는 동안에는 다른 구획으로 옮기지 않는다 — 응답이 다른 구획의 편집기에 떨어지지 않는다", async () => {
     const request = deferred<Captured>();
-    const { getSection, fresh } = await startCapture(request.promise);
-    const before = getSection.mock.calls.length;
+    const { fresh } = await startCapture(request.promise);
     fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
-    const other = screen.getByRole("button", { name: "연습" });
-    expect(other).toBeDisabled();
-    fireEvent.click(other);
-    expect(getSection).toHaveBeenCalledTimes(before);
+    // 처리 중에는 «내용 고르기» 가 잠긴다 — 다른 구획으로 옮길 길이 없다(띠가 읽는 것은 원고에 닿지 않는다).
+    expect(contentPickerButton()).toBeDisabled();
+    fireEvent.click(contentPickerButton());
+    expect(screen.queryByRole("dialog", { name: "내용 고르기" })).toBeNull();
 
     await act(async () => {
       request.resolve({
@@ -411,9 +417,7 @@ describe("B02 — 문항 가져오기 · 개념 저장이 도는 사이", () => 
         aggregateRevision: 10,
       } as Captured);
     });
-    await waitFor(() =>
-      expect(screen.getByRole("button", { name: "연습" })).toBeEnabled(),
-    );
+    await waitFor(() => expect(contentPickerButton()).toBeEnabled());
   });
 
   it("가져오기가 실패해도 잠금은 풀린다", async () => {
@@ -1215,7 +1219,7 @@ describe("늦은 응답 — 그사이 다른 판본이 열렸을 때", () => {
     const view = await openStudio(client);
     // 다른 구획으로 옮기는 중 — 그 구획을 읽고 있다
     fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
-    fireEvent.click(screen.getByRole("button", { name: "연습" }));
+    pickContent({ group: "연습" });
     await waitFor(() =>
       expect(getSection).toHaveBeenCalledWith("edition-1", "section-2"),
     );
@@ -1261,7 +1265,7 @@ describe("늦은 응답 — 그사이 다른 판본이 열렸을 때", () => {
     });
     const view = await openStudio(client);
     fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
-    fireEvent.click(screen.getByRole("button", { name: "연습" }));
+    pickContent({ group: "연습" });
     await waitFor(() =>
       expect(getSection).toHaveBeenCalledWith("edition-1", "section-2"),
     );
@@ -1584,12 +1588,11 @@ describe("B02 인접 — 문항 하나의 작업 · 삭제 · 검색이 도는 �
     fireEvent.click(screen.getByRole("button", { name: "다시 고정" }));
     await waitFor(() => expect(recaptureItem).toHaveBeenCalledOnce());
     expect(line()).toBeDisabled();
-    const before = getSection.mock.calls.length;
     fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
-    const other = screen.getByRole("button", { name: "연습" });
-    expect(other).toBeDisabled();
-    fireEvent.click(other);
-    expect(getSection).toHaveBeenCalledTimes(before);
+    // 처리 중에는 «내용 고르기» 가 잠긴다 — 다른 구획으로 옮길 길이 없다(띠가 읽는 것은 원고에 닿지 않는다).
+    expect(contentPickerButton()).toBeDisabled();
+    fireEvent.click(contentPickerButton());
+    expect(screen.queryByRole("dialog", { name: "내용 고르기" })).toBeNull();
 
     await act(async () => {
       request.resolve({
@@ -1652,12 +1655,11 @@ describe("B02 인접 — 문항 하나의 작업 · 삭제 · 검색이 도는 �
     fireEvent.click(screen.getByRole("button", { name: "구획 삭제" }));
     await waitFor(() => expect(deleteSection).toHaveBeenCalledOnce());
     expect(line()).toBeDisabled();
-    const before = getSection.mock.calls.length;
     fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
-    const other = screen.getByRole("button", { name: "연습" });
-    expect(other).toBeDisabled();
-    fireEvent.click(other);
-    expect(getSection).toHaveBeenCalledTimes(before);
+    // 처리 중에는 «내용 고르기» 가 잠긴다 — 다른 구획으로 옮길 길이 없다(띠가 읽는 것은 원고에 닿지 않는다).
+    expect(contentPickerButton()).toBeDisabled();
+    fireEvent.click(contentPickerButton());
+    expect(screen.queryByRole("dialog", { name: "내용 고르기" })).toBeNull();
 
     await act(async () => {
       request.resolve();

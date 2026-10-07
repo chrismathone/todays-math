@@ -40,6 +40,10 @@ import {
   TextbookStudioView,
   leavingHref,
 } from "@/components/textbook/TextbookStudioView";
+import {
+  installDialogPolyfill,
+  pickContent,
+} from "@/__tests__/helpers/textbookContentPicker";
 import { requestTextbookNavigation } from "@/lib/textbook/navigation";
 
 const book: BookSummary = {
@@ -245,6 +249,8 @@ const edit = (value: string) =>
   });
 
 /** 새로고침 · 탭 닫기를 흉내 낸다 — 화면이 막으면 true */
+installDialogPolyfill();
+
 const closing = () => {
   const event = new Event("beforeunload", { cancelable: true });
   window.dispatchEvent(event);
@@ -419,15 +425,12 @@ describe("T01 — 구획 정답 메모", () => {
 
 describe("T02 · T03 — 저장하지 않은 원고를 덮는 이동", () => {
   it("완성 보기에서 다른 구획을 눌러도 원고를 덮지 않고 묻는다", async () => {
-    const getSection = vi.fn(async () => section());
-    await openStudio(api({ getSection }));
+    await openStudio(api());
     edit("고친 문장");
     fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
-    const before = getSection.mock.calls.length;
-    fireEvent.click(screen.getByRole("button", { name: "연습" }));
-    // 경고는 완성 보기에서도 보인다 — 구획을 읽으러 가지 않았다
+    pickContent({ group: "연습" });
+    // 경고는 완성 보기에서도 보인다 — 원고를 덮지 않았다(아래에서 고친 문장이 그대로인 것을 본다)
     expect(prompt()).toBeVisible();
-    expect(getSection).toHaveBeenCalledTimes(before);
     fireEvent.click(
       within(prompt()).getByRole("button", { name: "계속 편집" }),
     );
