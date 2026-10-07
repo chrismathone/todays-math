@@ -315,7 +315,7 @@ export async function collectHwpxLayout(
                 ?.textContent;
           if (!latex) throw new Error("원본 식을 찾지 못한 수식이 있습니다.");
           const strut = el.querySelector<HTMLElement>(
-            ".katex-html > .base > .strut",
+            ".katex-html > .katex-base > .katex-strut",
           );
           const baseline = strut
             ? strut.getBoundingClientRect().bottom +

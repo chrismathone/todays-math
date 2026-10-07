@@ -23,14 +23,14 @@ export const CHOICE_FORMULA_CLEARANCE_EM = 0.36;
 export const TALL_FORMULA_EM = { up: 1, down: 0.32 } as const;
 
 /**
- * The margin belongs to KaTeX's `.base`, the inline-block that carries a formula's box. A line
+ * The margin belongs to KaTeX's `.katex-base`, the inline-block that carries a formula's box. A line
  * therefore grows only where a formula would otherwise reach its edge; a formula that breaks
  * across lines keeps the clearance on each of them, and plain rows keep their height.
  */
-export const FRACTION_CHOICE_CSS = `.tb-problem .${CHOICE_ROW_CLASS} .katex .base{margin-block:${CHOICE_FORMULA_CLEARANCE_EM}em}`;
+export const FRACTION_CHOICE_CSS = `.tb-problem .${CHOICE_ROW_CLASS} .katex .katex-base{margin-block:${CHOICE_FORMULA_CLEARANCE_EM}em}`;
 
 const STRUT =
-  /<span class="strut" style="height:([0-9.]+)em;(?:vertical-align:(-?[0-9.]+)em;)?"><\/span>/g;
+  /<span class="katex-strut" style="height:([0-9.]+)em;(?:vertical-align:(-?[0-9.]+)em;)?"><\/span>/g;
 
 /** How far the formulas in rendered HTML reach above and below the baseline, in KaTeX em. */
 export function formulaExtentEm(html: string): { up: number; down: number } {
