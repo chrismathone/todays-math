@@ -122,6 +122,10 @@ describe("ListeningStudio connected teacher flow", () => {
         <ListeningStudio openSetRequest={{ id: detail.id, version: 1 }} />,
       );
       await screen.findByRole("heading", { name: detail.document.title });
+      expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+      expect(
+        container.querySelectorAll("[data-workspace-page-header]"),
+      ).toHaveLength(1);
       expect(screen.getByText("회차 전체 원본 음원")).toBeInTheDocument();
       expect(container.querySelector("audio")).toHaveAttribute(
         "src",

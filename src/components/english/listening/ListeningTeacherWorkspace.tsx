@@ -9,6 +9,7 @@ import {
 } from "react";
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import { ListeningTeacherAudio } from "./ListeningTeacherAudio";
+import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import { usesWholeSourceAssessmentAudio } from "@/lib/english/listening/wholeSource";
 import styles from "./ListeningTeacherWorkspace.module.css";
 import {
@@ -116,16 +117,15 @@ function TeacherSession({
   );
 
   return (
-    <section className={styles.workspace} aria-label="교사 영어듣기 작업대">
+    <section
+      className={`${styles.workspace} ${embedded ? styles.embedded : styles.standalone}`}
+      aria-label="교사 영어듣기 작업대"
+    >
       {!embedded ? (
-        <header className={styles.heading}>
-          <div>
-            <p className={styles.eyebrow}>오늘의 영어 · 교사</p>
-            <h1>영어듣기</h1>
-            <p className={styles.muted}>
-              음원과 문항을 확인하고 수업에서 재생합니다.
-            </p>
-          </div>
+        <WorkspacePageHeader
+          title="영어듣기"
+          description="음원과 문항을 확인하고 수업에서 재생합니다."
+        >
           {onCreate ? (
             <button
               type="button"
@@ -142,7 +142,7 @@ function TeacherSession({
               자료 만들기
             </button>
           ) : null}
-        </header>
+        </WorkspacePageHeader>
       ) : null}
 
       <div
@@ -164,12 +164,16 @@ function TeacherSession({
       <div className={styles.split}>
         <aside className={styles.catalog} aria-label="듣기 자료 목록">
           <h2>
-            듣기 자료 <span className={styles.muted}>{materials.length}</span>
+            듣기 자료 <span className={styles.count}>{materials.length}개</span>
           </h2>
           {materials.length === 0 ? (
             <p className={styles.empty}>등록된 듣기 자료가 없습니다.</p>
           ) : (
-            <ul className={styles.materials}>
+            <ul
+              className={styles.materials}
+              aria-label="듣기 자료 선택"
+              tabIndex={0}
+            >
               {materials.map((material) => (
                 <li key={material.id}>
                   <button
@@ -212,13 +216,10 @@ function TeacherSession({
           ) : document ? (
             <>
               <div className={styles.documentHeading}>
-                <p className={styles.eyebrow}>
-                  교사용 · 개정 {document.revision}
-                </p>
                 <h2>{document.title}</h2>
-                <p className={styles.muted}>
+                <p className={styles.eyebrow}>
                   {document.level ?? "수준 미지정"} · {document.groups.length}
-                  묶음 · {questionCount}문항
+                  묶음 · {questionCount}문항 · 개정 {document.revision}
                 </p>
               </div>
               <dl className={styles.metadata}>
