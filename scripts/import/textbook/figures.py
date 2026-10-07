@@ -251,6 +251,24 @@ def is_decoration_shape(shape: list, decor_groups, picture_groups) -> bool:
     return False
 
 
+#: 쪽 폭만 한 묶음(mm) · 넓고(mm) 얇은(mm) 묶음 — 쪽 머리 띠다
+BANNER_PAGE_MM = 180
+BANNER_WIDE_MM = 120
+BANNER_THIN_MM = 30
+
+
+def banner_groups(shape_list: list) -> set[int]:
+    """쪽 머리 띠 꼴의 묶음 번호 — 그 안의 그림(캐릭터 · 제목 글씨)은 문항의 그림이 아니다."""
+    out = set()
+    for shape in shape_list or []:
+        if shape[0] != "container" or len(shape) < 4:
+            continue
+        width, height = to_mm(shape[1]), to_mm(shape[2])
+        if width >= BANNER_PAGE_MM or (width >= BANNER_WIDE_MM and height <= BANNER_THIN_MM):
+            out.add(shape[3])
+    return out
+
+
 def fold_groups(kept: list[dict], drawn: set[int]) -> tuple[list[dict], dict[int, int]]:
     """한글이 묶음째 그린 묶음(`drawn`)의 그림들을 묶음 그림 하나로 접는다 — 첫 그림의 자리에 묶음 그림이 서고 나머지는 걷는다.
     돌려주는 것: 접은 목록 · {그 자리의 k: 묶음 번호}."""
@@ -391,10 +409,14 @@ def main() -> None:
             real_tables = [table for table in table_ids if (row["key"], table) not in decor_tables]
             fates["decor-table"] += len(table_ids) - len(real_tables)
             tables_drawn = bool(table_ids) and all((row["key"], table) in drawn_tables for table in real_tables)
+            banners = banner_groups(row.get("shapeList"))
             for fig in figs:
                 # 자료 표의 칸 안 그림 — 표를 그린 그림에 들어 있다
                 if fig.get("inTable") and fig["inTable"] in table_ids:
                     fig["fate"] = "in-table"
+                # 쪽 머리 띠 꼴의 묶음 안 그림
+                elif fig.get("grouped") and fig.get("group") in banners and fig["fate"] == "keep":
+                    fig["fate"] = "banner"
             rescue_strips(figs, points_to_figure(row["content"]))
             for fig in figs:
                 fates["rescued" if fig.get("rescued") else fig["fate"]] += 1

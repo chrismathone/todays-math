@@ -256,6 +256,7 @@ import io  # noqa: E402
 from PIL import Image  # noqa: E402
 
 from figures import (  # noqa: E402
+    banner_groups,
     clip_box,
     decoration_groups,
     fate_of,
@@ -283,6 +284,13 @@ def test_rules_and_thin_empty_boxes_are_decoration():
     assert route_of({**base, "shapeList": [["container", 20000, 15000, 7]]}, kept) == "group"
     # 그림이 든 묶음(라벨이 얹힌 그림)은 얇아도 도형이다
     assert route_of({**base, "shapeList": [["container", 48182, 3060, 7]]}, [{"grouped": True, "group": 7}]) == "group"
+
+
+def test_a_group_shaped_like_a_page_banner_is_decoration():
+    """쪽 머리 띠(«중단원 평가 문제 · I-1 소인수분해» + 캐릭터)가 그림이 든 묶음으로 첫 문항에 붙었다(2026-10-08 묶음째 그려 보고 찾았다).
+    쪽 폭만 한 묶음 · 넓고 얇은 묶음은 꾸밈이다."""
+    mm = lambda v: round(v / 25.4 * 7200)  # noqa: E731
+    assert banner_groups([["container", mm(128.8), mm(27), 3], ["container", mm(58), mm(29), 4], ["container", mm(210), mm(40), 5], ["rect", mm(210), mm(10)]]) == {3, 5}
 
 
 def test_a_group_drawn_whole_stands_in_for_its_pictures():
