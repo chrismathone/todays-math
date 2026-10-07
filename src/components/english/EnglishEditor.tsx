@@ -8,7 +8,15 @@
  * 내용을 고치면 상태는 «초안»으로 내려간다(ChatGPT 앱 규칙). 상태만 바꾸는 것은 내용 편집이 아니다.
  * 보내기 전에 공용 검증기(`validateEnglishDraft`)를 한 번 지난다 — 어느 문항·어느 규칙인지 한 줄씩.
  */
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+  type Ref,
+} from "react";
 
 import ConfirmDialog from "@/components/unified/ConfirmDialog";
 import Icon from "@/components/unified/WorkspaceIcon";
@@ -65,6 +73,17 @@ const OPTION_GAP_MESSAGE =
 const SET_TITLE_MAX = 160;
 const OPTION_MAX = 1_500;
 
+/** Only editable, persisted fields determine whether leaving loses work. */
+function draftKey(set: EnglishSet | null) {
+  return set
+    ? JSON.stringify([set.title, set.status, set.passage, set.questions])
+    : null;
+}
+
+export type EnglishEditorHandle = {
+  requestLeave: (proceed: () => void) => void;
+};
+
 /** «확인함»한 열쇠 — 브라우저 저장소(못 쓰면 빈 것). 개인 창 · 막힌 저장소에서도 화면은 그대로 선다 */
 function readAcks(storageKey: string): ReadonlySet<string> {
   try {
@@ -89,6 +108,7 @@ function writeAcks(storageKey: string, keys: ReadonlySet<string>) {
 }
 
 export default function EnglishEditor({
+  ref,
   setId,
   initialSet,
   exam,
@@ -97,6 +117,7 @@ export default function EnglishEditor({
   onDeleted,
   onNotice,
 }: {
+  ref?: Ref<EnglishEditorHandle>;
   setId: string;
   /** 딥링크가 이미 읽어 둔 세트 — 있으면 다시 읽지 않는다 */
   initialSet?: EnglishSet;
@@ -107,10 +128,16 @@ export default function EnglishEditor({
   /** 셸의 알림 줄 — «확인함» 같은 짧은 알림 */
   onNotice?: (message: string) => void;
 }) {
-  const seeded = Boolean(initialSet && initialSet.id === setId);
-  const [draft, setDraft] = useState<EnglishSet | null>(
-    seeded ? (initialSet ?? null) : null,
-  );
+  // The parent keys editors by set id. Later onSaved props must never trigger
+  // another initial read (including after a conflict reload).
+  const [seed] = useState(() => (initialSet?.id === setId ? initialSet : null));
+  const [draft, setDraft] = useState<EnglishSet | null>(seed);
+  const [acknowledged, setAcknowledged] = useState(draft);
+  const dirty = draftKey(draft) !== draftKey(acknowledged);
+  const [loading, setLoading] = useState(!seed);
+  const [pendingLeave, setPendingLeave] = useState<(() => void) | null>(null);
+  const leaveRef = useRef<HTMLElement | null>(null);
+  const saveInFlight = useRef(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [reload, setReload] = useState(0);
   const [conflict, setConflict] = useState<string | null>(null);
@@ -120,6 +147,34 @@ export default function EnglishEditor({
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const busy = saving || deleting || loading;
+  const printReady = !dirty && !busy && !conflict;
+  const requestLeave = (proceed: () => void) => {
+    if (busy || saveInFlight.current) {
+      onNotice?.("처리 중입니다. 완료된 뒤 다시 시도해 주세요.");
+      return;
+    }
+    if (!dirty) {
+      proceed();
+      return;
+    }
+    leaveRef.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+    setPendingLeave(() => proceed);
+  };
+  useImperativeHandle(ref, () => ({ requestLeave }));
+
+  useEffect(() => {
+    if (!dirty && !saving && !deleting) return;
+    const preventUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", preventUnload);
+    return () => window.removeEventListener("beforeunload", preventUnload);
+  }, [dirty, saving, deleting]);
   // 고칠 칸이 열린 문항(0부터) — 처음엔 모두 읽기 모양(지면과 같은 규칙으로 그린 것)이다
   const [editing, setEditing] = useState<ReadonlySet<number>>(() => new Set());
   const printRef = useRef<HTMLButtonElement>(null);
@@ -130,7 +185,7 @@ export default function EnglishEditor({
   // «확인해 볼 곳»(3자 합의 25 §12.13) — 치는 도중이 아니라 칸을 벗어날 때 · 불러올 때 · 저장한 뒤 · «수정 끝»에 다시 센다.
   // 치는 도중에 칸 아래 줄이 섰다 사라지면 아래 내용이 흔들리고 한글 조합도 끊긴다. 세트 전체를 센다(정답 번호 쏠림은 세트 단위).
   const [settled, setSettled] = useState<EnglishQuestion[] | null>(
-    seeded ? (initialSet?.questions ?? null) : null,
+    seed?.questions ?? null,
   );
   // 칸을 벗어날 때 읽을 «지금 글» — 그린 뒤에 맞춘다(그리는 도중에 ref 를 바꾸지 않는다)
   const latest = useRef(draft);
@@ -204,7 +259,7 @@ export default function EnglishEditor({
   const headNotes = visibleNotes.filter((note) => note.place === "head");
 
   useEffect(() => {
-    if (reload === 0 && seeded) return;
+    if (reload === 0 && seed) return;
     let cancelled = false;
     (async () => {
       try {
@@ -213,18 +268,21 @@ export default function EnglishEditor({
         );
         if (cancelled) return;
         setDraft(body.data);
+        setAcknowledged(body.data);
         setSettled(body.data.questions);
         setLoadError(null);
         setConflict(null);
         setError(null);
       } catch (caught) {
         if (!cancelled) setLoadError(messageOf(caught));
+      } finally {
+        if (!cancelled) setLoading(false);
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [setId, reload, seeded]);
+  }, [setId, reload, seed]);
 
   /** 내용 편집 — 상태가 «초안»으로 내려간다 */
   const edit = (change: (set: EnglishSet) => EnglishSet) =>
@@ -261,7 +319,7 @@ export default function EnglishEditor({
     );
 
   const save = async () => {
-    if (!draft || saving) return;
+    if (!draft || busy || saveInFlight.current || pendingLeave) return;
     // 채운 보기 사이의 빈 칸 — 걷으면 뒤 보기의 번호가 당겨진다. 보기 넷을 받는 유형에서는 그 채로 검증을 지나
     // 정답이 다른 보기를 가리키게 된다(D-158 검토 #1). 다른 유형은 아래 보기 수 규칙이 사유를 낸다.
     const gaps = draft.questions.flatMap((question, index) =>
@@ -291,8 +349,8 @@ export default function EnglishEditor({
       openIssues(verdict.issues);
       return;
     }
+    saveInFlight.current = true;
     setSaving(true);
-    setConflict(null);
     setError(null);
     try {
       const body = englishSetResponseSchema.parse(
@@ -310,6 +368,8 @@ export default function EnglishEditor({
       // The response acknowledges the submitted snapshot. Edits made while it
       // was in flight still need saving, but must use the acknowledged revision.
       const editedWhileSaving = latest.current !== draft;
+      setConflict(null);
+      setAcknowledged(body.data);
       setDraft((current) =>
         current && current !== draft
           ? {
@@ -336,12 +396,13 @@ export default function EnglishEditor({
         openIssues(caught.issues);
       } else setError(messageOf(caught));
     } finally {
+      saveInFlight.current = false;
       setSaving(false);
     }
   };
 
   const remove = async () => {
-    if (!draft) return;
+    if (!draft || busy || saveInFlight.current) return;
     setDeleting(true);
     setDeleteError(null);
     try {
@@ -357,7 +418,7 @@ export default function EnglishEditor({
     }
   };
 
-  if (loadError)
+  if (loadError && !draft)
     return (
       <div role="alert" className={s.loadError}>
         <Icon name="warning" size={18} />
@@ -367,7 +428,7 @@ export default function EnglishEditor({
         </button>
       </div>
     );
-  if (!draft)
+  if (!draft || loading)
     return (
       <WorkProgress
         className={w.loading}
@@ -381,7 +442,12 @@ export default function EnglishEditor({
   return (
     <div className={s.editor} onBlur={settle}>
       <div className={s.toolbar}>
-        <button type="button" className={w.outlineButton} onClick={onBack}>
+        <button
+          type="button"
+          className={w.outlineButton}
+          disabled={busy}
+          onClick={() => requestLeave(onBack)}
+        >
           목록
         </button>
         <label className={s.statusField}>
@@ -421,6 +487,7 @@ export default function EnglishEditor({
           ref={deleteRef}
           type="button"
           className={w.outlineButton}
+          disabled={busy}
           onClick={() => {
             setDeleteError(null);
             setDeleteOpen(true);
@@ -431,12 +498,26 @@ export default function EnglishEditor({
         <button
           type="button"
           className={w.primaryButton}
-          disabled={saving}
+          disabled={busy || Boolean(pendingLeave)}
           onClick={() => void save()}
         >
-          저장
+          {saving ? "저장 중…" : "저장"}
         </button>
       </div>
+      <p role="status" className={s.metaLine}>
+        {saving
+          ? "변경 사항을 저장하고 있습니다."
+          : conflict
+            ? "최신 저장 내용을 확인해 주세요."
+            : dirty
+              ? "저장하지 않은 변경 사항이 있습니다."
+              : "모든 변경 사항이 저장되었습니다."}
+      </p>
+      {loadError && (
+        <p role="alert" className={s.formError}>
+          {loadError}
+        </p>
+      )}
       {conflict && (
         <div role="alert" className={s.conflict}>
           <Icon name="warning" size={18} />
@@ -444,10 +525,13 @@ export default function EnglishEditor({
           <button
             type="button"
             className={w.outlineButton}
-            onClick={() => {
-              setConflict(null);
-              setReload((count) => count + 1);
-            }}
+            disabled={busy}
+            onClick={() =>
+              requestLeave(() => {
+                setLoading(true);
+                setReload((count) => count + 1);
+              })
+            }
           >
             다시 불러오기
           </button>
@@ -657,27 +741,77 @@ export default function EnglishEditor({
           onClose={() => setPrintOpen(false)}
         >
           <div className={s.printLinks}>
-            <a
-              className={w.outlineButton}
-              href={`/english/sets/${draft.id}/print?view=student`}
-              target="_blank"
-              rel="noopener"
-            >
-              학생용
-            </a>
-            <a
-              className={w.outlineButton}
-              href={`/english/sets/${draft.id}/print?view=teacher`}
-              target="_blank"
-              rel="noopener"
-            >
-              교사용
-            </a>
+            {(
+              [
+                ["student", "학생용"],
+                ["teacher", "교사용"],
+              ] as const
+            ).map(([view, label]) =>
+              printReady ? (
+                <a
+                  key={view}
+                  className={w.outlineButton}
+                  href={`/english/sets/${draft.id}/print?view=${view}`}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {label}
+                </a>
+              ) : (
+                <button
+                  key={view}
+                  type="button"
+                  className={w.outlineButton}
+                  disabled
+                >
+                  {label}
+                </button>
+              ),
+            )}
           </div>
-          {draft.status !== "검토 완료" && (
+          {!printReady && (
+            <>
+              <p className={s.printNote} role="status">
+                {conflict
+                  ? "저장된 내용이 변경되었습니다. 창을 닫고 다시 불러온 뒤 인쇄해 주세요."
+                  : "현재 변경 사항을 저장한 뒤 인쇄할 수 있습니다."}
+              </p>
+              {!conflict && (
+                <button
+                  type="button"
+                  className={w.primaryButton}
+                  disabled={busy}
+                  onClick={() => void save()}
+                >
+                  {saving ? "저장 중…" : "변경 사항 저장"}
+                </button>
+              )}
+              {error && (
+                <p role="alert" className={s.formError}>
+                  {error}
+                </p>
+              )}
+            </>
+          )}
+          {!conflict && acknowledged?.status !== "검토 완료" && (
             <p className={s.printNote}>아직 검토 완료하지 않은 문제입니다.</p>
           )}
         </EnglishDialog>
+      )}
+      {pendingLeave && (
+        <ConfirmDialog
+          title="저장하지 않은 변경 사항을 버릴까요?"
+          description="마지막으로 저장한 뒤 수정한 내용이 사라집니다."
+          confirmLabel="변경 사항 버리기"
+          returnFocus={leaveRef}
+          busy={busy}
+          onCancel={() => setPendingLeave(null)}
+          onConfirm={() => {
+            if (busy || saveInFlight.current) return;
+            setPendingLeave(null);
+            pendingLeave();
+          }}
+        />
       )}
       {deleteOpen && (
         <ConfirmDialog
