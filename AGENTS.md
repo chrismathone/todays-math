@@ -39,6 +39,22 @@ must not double-update long-term FSRS. Read
 override the replacement/navigation/drop plan below; the data ownership,
 authentication and compatibility requirements still apply.
 
+**Student menus (2026-10-07):** default to exploration and its collection.
+Branch managers may grant lectures and textbook QR learning per student in
+the student account panel. English listening is excluded from the student app.
+Use `studentLearningMenuPolicy.ts` and the authenticated per-student setting;
+enforce optional-module access in both proxy and route handlers.
+The existing `app_setting` table is server-only (RLS enabled, browser roles
+revoked); do not grant direct browser access to these authorization settings.
+
+**Minute relearning compatibility:** `fading.relearn` is optional, persisted
+separately from long-term FSRS and expedition credits. Main containing
+`11fdbf48d` is the reader floor: after activation, never run older code against
+the shared database or roll production back before that commit. The writer
+gate `MATH_FADING_RELEARN` is open when unset or `on`, and closed otherwise.
+The reader floor was verified in production at `7c9e9a4b8` (2026-10-07,
+GitHub deployment 6900206486) before this default was enabled.
+
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
 (concept data contract, schedule, session rules, numbers, storage, tests).

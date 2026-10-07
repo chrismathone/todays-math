@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  createLocalFadingRelearnSource,
+  type LocalFadingRelearnSource,
+} from "@/lib/fading/relearnLocal";
 import type { ExplorerState } from "@/contracts/mathExplorers.contract";
 import type { FadingConcept } from "@/lib/fading/concepts";
 import type { FadingTrap } from "@/lib/fading/chips";
@@ -30,6 +34,8 @@ declare global {
     __EXPLORER_SRS_PREVIEW__?: {
       source: LocalFadingSource;
       concepts: FadingConcept[];
+      relearn?: LocalFadingRelearnSource;
+      advance?: (milliseconds: number) => void;
     };
   }
 }
@@ -78,15 +84,38 @@ async function createPreviewSource({ concepts, traps, figures, today }: Props) {
   return source;
 }
 
+function createPreviewRelearn(source: LocalFadingSource, props: Props) {
+  let offset = 0;
+  const started = performance.now();
+  const base = Date.parse(`${props.today}T03:00:00Z`);
+  return {
+    source: createLocalFadingRelearnSource({
+      main: source,
+      concepts: props.concepts,
+      traps: props.traps,
+      now: () => base + Math.floor(performance.now() - started) + offset,
+    }),
+    advance: (milliseconds: number) => {
+      offset += milliseconds;
+    },
+  };
+}
+
 export function ExplorerSrsPreview(props: Props) {
   const [mode, setMode] = useState<"pc" | "mobile">("pc");
   const [source, setSource] = useState<LocalFadingSource | null>(null);
+  const [shortRecall, setShortRecall] = useState<ReturnType<
+    typeof createPreviewRelearn
+  > | null>(null);
   const [failure, setFailure] = useState<string | null>(null);
   useEffect(() => {
     let live = true;
     void createPreviewSource(props)
       .then((next) => {
-        if (live) setSource(next);
+        if (live) {
+          setShortRecall(createPreviewRelearn(next, props));
+          setSource(next);
+        }
       })
       .catch((error) => {
         if (live)
@@ -102,13 +131,18 @@ export function ExplorerSrsPreview(props: Props) {
   }, [props]);
   useEffect(() => {
     if (!source) return;
-    const fixture = { source, concepts: props.concepts };
+    const fixture = {
+      source,
+      concepts: props.concepts,
+      relearn: shortRecall?.source,
+      advance: shortRecall?.advance,
+    };
     window.__EXPLORER_SRS_PREVIEW__ = fixture;
     return () => {
       if (window.__EXPLORER_SRS_PREVIEW__ === fixture)
         delete window.__EXPLORER_SRS_PREVIEW__;
     };
-  }, [source, props.concepts]);
+  }, [source, props.concepts, shortRecall]);
   return (
     <div className={styles.page}>
       <div className={styles.toolbar} aria-label="미리 보기 화면 크기">
@@ -136,6 +170,7 @@ export function ExplorerSrsPreview(props: Props) {
             <StudentMathExplorers
               conceptMemoryEnabled
               fadingSource={source}
+              fadingRelearnSource={shortRecall?.source}
               initialState={props.explorer}
               journeyTheme="classic"
               preview
