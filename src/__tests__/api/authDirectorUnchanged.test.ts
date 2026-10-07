@@ -115,10 +115,8 @@ function seedDirector(overrides: Record<string, unknown> = {}) {
   });
 }
 
-// The new pilot is opt-in; the established teacher token retains its previous grants.
-const MENUS_WITHOUT_STUDIO = ALL_WORKSPACE_MENUS.filter(
-  (m) => m !== "studio" && m !== "english-listening",
-);
+// Listening is an ordinary menu: a teacher who never disabled it has it, like the rest.
+const MENUS_WITHOUT_STUDIO = ALL_WORKSPACE_MENUS.filter((m) => m !== "studio");
 
 beforeAll(async () => {
   assertTestAuthEnv();
@@ -288,14 +286,20 @@ describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 �
     expect(restored?.user?.menus).not.toContain("studio");
   });
 
-  it("listening pilot grants and revocations refresh an existing teacher session", async () => {
+  it("an administrator's listening switch and the service switch refresh an existing teacher session", async () => {
     await signInDirector();
     carryJarToNextRequest();
-    expect((await auth())?.user?.menus).not.toContain("english-listening");
-    vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", DIRECTOR_ID);
+    // No enrolment list: the account was never named in the former pilot list.
+    expect((await auth())?.user?.menus).toContain("english-listening");
+    for (const disabledMenus of [["english-listening"], ["english"]]) {
+      seedDirector({ disabledMenus });
+      resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
+      expect((await auth())?.user?.menus).not.toContain("english-listening");
+    }
+    seedDirector({ disabledMenus: [] });
     resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
     expect((await auth())?.user?.menus).toContain("english-listening");
-    seedDirector({ disabledMenus: ["english"] });
+    vi.stubEnv("ENGLISH_LISTENING_ENABLED", "false");
     resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
     expect((await auth())?.user?.menus).not.toContain("english-listening");
   });
