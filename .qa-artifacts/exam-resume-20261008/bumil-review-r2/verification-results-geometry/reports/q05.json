@@ -1,0 +1,436 @@
+{
+  "status": "pending",
+  "studentDigest": "8e74b40b3a420a33dd4cbff54fc95e8479fb59b096c8fc61d0dbf6e2b2cda962",
+  "candidateDigest": "f09ee6672bef661f8b4204a07fb86a7b91a4e1d3a66b37880c7cf431a2f7da58",
+  "assetDigest": "6cb5046ecd9c4bf7df0dcdbe11b4f10ee8664c6cfa51282776b4259b6159dd7d",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "solveDigest": "cc9b86049c62a6abd781092bd2a11cf4a568c9c283bb519e6d10d1d48005df52",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 5,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q05",
+    "reviewedAtKst": "2026-10-08",
+    "independence": {
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "verifierIsDifferentAuthor": true,
+      "blindSolveCommit": "c998ea12a6447970c71679e6dd97d06d0fa3dc6b",
+      "answerExposure": "only after parent copied/hash-fixed this solver independent result",
+      "solveRawFileSha256": "847c7debcfbfd0d17ee8d947182ec0904eb23d7cfc6a7a52194ef502777ba881",
+      "solveRawBytesMatchParent": true,
+      "solveFileUneditedSinceCommit": true,
+      "originalAnswersOrSolutionsRead": false,
+      "geometryAuthorCandidatesReviewed": false
+    },
+    "binding": {
+      "contract": "parent scripts/import/exam-twin/candidatePack.mjs bindCandidate(candidate.json); digest(independentSolve)",
+      "candidateObjectAndAssetBindingsRecomputed": true,
+      "allFourProvidedDigestsMatch": true,
+      "candidateFileSha256": "40dda286ec1630f66bb582e847c8564f3820a65c5d9c8960d2918e47fc917342",
+      "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\verification\\verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "manifestInputHashMatched": true,
+      "alteredBytesPolicy": "fail closed; no altered candidate/student/spec/svg/solve detected",
+      "contractFileSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59"
+    },
+    "checkEvidence": {
+      "answerCorrect": {
+        "authorAnswer": "④",
+        "sealedIndependentAnswer": "④",
+        "codeChoiceMatches": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "calculation": {
+          "roots": [
+            -1,
+            3
+          ],
+          "vertex": [
+            1,
+            -4
+          ],
+          "base": "4",
+          "height": "4",
+          "area": "8"
+        }
+      },
+      "solutionCorrect": "y=0을 인수분해하여 -1,3 두 근을 얻고 완전제곱 (x-1)²-4로 꼭짓점 (1,-4)를 정한다. x축 밑변 4와 양의 높이 |-4|=4로 1/2×4×4=8을 구한다. 부호 있는 y좌표를 높이로 잘못 쓰지 않았다.",
+      "existenceUniqueness": "두 실근은 서로 다르고 A의 x좌표가 B보다 작다. 꼭짓점의 y좌표가 음수여도 높이는 양수 4이다. 세 점이 일직선이 아니므로 삼각형 넓이 8이 양수이다.",
+      "choicesCorrect": {
+        "allFiveChecked": true,
+        "details": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "밑변을 2로 기록하여 틀렸다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "꼭짓점에서 x축까지의 높이는 3이 아니라 4이다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "밑변·높이는 맞지만 삼각형 넓이는 16이 아니라 8이다."
+          },
+          {
+            "choice": 4,
+            "matches": true,
+            "reason": "밑변 4, 높이 4, 넓이 8이 모두 맞다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "밑변 6과 넓이 12가 실제 도형에 맞지 않는다."
+          }
+        ],
+        "codeMatchesSealedBlindChoiceChecks": true
+      },
+      "figureConsistent": "새 그림은 x절편 A(-1,0), B(3,0), 꼭짓점 C(1,-4), x축으로의 점선 높이와 두 삼각형 변을 표시한다. C는 y절편이 아니다. 표와 새 해설 모두 base4/height4/area8의 같은 점 역할이다.",
+      "sameCoreConceptAndProcedure": "원본은 꼭짓점 A와 두 x절편 B,C의 삼각형 넓이이다. 새 문항도 인수분해→꼭짓점→축 위 밑변/수직 높이→삼각형 넓이의 동일 절차이다.",
+      "distinctPresentation": "아래로 열린 원본을 위로 열린 그래프로 바꾸며 꼭짓점이 x축 아래에 오도록 구조를 바꿨다. 점의 역할을 A,B=절편/C=꼭짓점으로 재조직하고 넓이 한 값 대신 밑변·높이·넓이 기록표를 요구한다.",
+      "naturalKorean": "x좌표가 작은 것부터 A,B를 정하고 C를 꼭짓점으로 명시하므로 점 역할과 높이 해석이 일관된다.",
+      "curriculumAppropriate": "이차방정식의 실근, 이차함수 꼭짓점, 삼각형 넓이의 단순 결합이다. 중1 좌표/축, 중3 인수분해·실근 방정식, 초등 삼각형 넓이. 근과 계수의 관계 및 거리 공식은 필요 없다. 학교·AI·family 존재가 아니라 아래 공식 문구 및 실제 요구 절차로 판정했다.",
+      "allStudentSurfacesInScope": {
+        "stem": "이차방정식의 실근, 이차함수 꼭짓점, 삼각형 넓이의 단순 결합이다.",
+        "choices": "다섯 정수 삼중항이며 밑변·높이·넓이 중 어떤 값이 틀린지 기존 독립 풀이에서 모두 판정했다. 고급 오답 표현이 없다.",
+        "figuresAndTables": "새 그림은 x절편 A(-1,0), B(3,0), 꼭짓점 C(1,-4), x축으로의 점선 높이와 두 삼각형 변을 표시한다. C는 y절편이 아니다. 표와 새 해설 모두 base4/height4/area8의 같은 점 역할이다.",
+        "notation": "좌표 A,B,C와 x², 인수분해, 완전제곱, ㉠㉡㉢ 및 양의 길이/넓이만 사용한다.",
+        "answer": "4,4,8의 정수 기록 및 ④로 충분하다.",
+        "studentSolution": "y=0을 인수분해하여 -1,3 두 근을 얻고 완전제곱 (x-1)²-4로 꼭짓점 (1,-4)를 정한다. x축 밑변 4와 양의 높이 |-4|=4로 1/2×4×4=8을 구한다. 부호 있는 y좌표를 높이로 잘못 쓰지 않았다.",
+        "prerequisites": "중1 좌표/축, 중3 인수분해·실근 방정식, 초등 삼각형 넓이. 근과 계수의 관계 및 거리 공식은 필요 없다."
+      },
+      "unitFamilyFit": "Unit 일반형 이차함수는 적정하나 live family08은 C=(0,상수항)의 y절편을 높이로 쓰며 y=0, x=0 대입 후 넓이를 구한다. 새 C는 꼭짓점이어서 완전제곱으로 높이를 복구한다. 넓이라는 제목만으로 절차까지 같은 family라고 승인할 수 없다.",
+      "scoreAppropriate": "기본 제안과 4점은 적정. 작은 정수로 인수분해 한 번, 완전제곱 한 번, 길이/절댓값 및 넓이 기록을 한다. 원본 5점을 근거로 자동 유지하지 않았으며 표가 중간값을 나누어 안내하고 삼중항 객관식으로 확인 부담을 낮춘다."
+    },
+    "deterministicMath": {
+      "tool": "Python fractions.Fraction / decimal.Decimal / exact sign and symbolic-side classifications",
+      "executed": true,
+      "sourceOfInputs": "already blinded student statement/figures, not author facts or old answers",
+      "calculationCode": "roots=(-1,3); vertex f(1)=-4; base=3-(-1); height=abs(-4); area=base*height/2 (Fraction)",
+      "results": {
+        "roots": [
+          -1,
+          3
+        ],
+        "vertex": [
+          1,
+          -4
+        ],
+        "base": "4",
+        "height": "4",
+        "area": "8"
+      },
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "matchesPreExposureSolve": true
+    },
+    "studentRenderReview": {
+      "localChromium": true,
+      "networkRequestsBlocked": true,
+      "katexThrowOnError": true,
+      "mathSpanCount": 30,
+      "reviewerViewedFullStemChoicesTablesFiguresAndNewSolution": true,
+      "inspectionPngSha256": "70f84605cc66367c42e52b9420b4c915e9aa78bbc36d53488194775b6c3483d4",
+      "inspectionArtifactRetained": false,
+      "layoutScope": "temporary neutral local review layout; no claim to parent production pagination",
+      "observations": "새 그림은 x절편 A(-1,0), B(3,0), 꼭짓점 C(1,-4), x축으로의 점선 높이와 두 삼각형 변을 표시한다. C는 y절편이 아니다. 표와 새 해설 모두 base4/height4/area8의 같은 점 역할이다.",
+      "assets": [
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q05\\figure-1.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q05\\figure-1.svg",
+          "specSha256": "b24cfc8fa9c7abf018e5c4db4fd3eeaf17936c066651e57bc1efbd631f5e121b",
+          "svgSha256": "d3471b102182c4de573c5bbd9ef3a70fd05cee74fb8692973cdde49162e5043a",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q05-1.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        }
+      ]
+    },
+    "sourceComparison": {
+      "referencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\problems.json",
+      "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "questionNumber": 5,
+      "contentSha256": "9d7184823e0d2561574b0c2944dcb5e5ad2429613d8e467c42504f80545adeb7",
+      "contentHashMatched": true,
+      "redactedAnswerFree": true,
+      "originalAnswerOrSolutionNotAccessed": true,
+      "figures": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q05.png",
+          "sha256": "24b6901ce82af2086683ec54ab8608ca00dc77ed3830e35168174ebc16c1f841",
+          "purpose": "answer-free reference, no copied stem/choice asset",
+          "visuallyReviewed": true
+        }
+      ],
+      "sameProcedure": "원본은 꼭짓점 A와 두 x절편 B,C의 삼각형 넓이이다. 새 문항도 인수분해→꼭짓점→축 위 밑변/수직 높이→삼각형 넓이의 동일 절차이다.",
+      "substantiveDelta": "아래로 열린 원본을 위로 열린 그래프로 바꾸며 꼭짓점이 x축 아래에 오도록 구조를 바꿨다. 점의 역할을 A,B=절편/C=꼭짓점으로 재조직하고 넓이 한 값 대신 밑변·높이·넓이 기록표를 요구한다."
+    },
+    "curriculum": {
+      "targetGrade": "중3",
+      "targetEdition": "2015",
+      "status": "independently-reviewed-selected-student-surfaces",
+      "official2015Pdf": {
+        "id": "moe-2015-74-math-pdf",
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+        "archive_member": "별책8_수학과 교육과정.pdf",
+        "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "bytes": 2533289,
+        "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "primary": true,
+        "retrieved_date_kst": "2026-10-08",
+        "format": "pdf"
+      },
+      "evidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardRefs": [
+        {
+          "code": "9수03-10",
+          "verifiedText": "이차함수의 그래프의 성질을 이해한다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수02-13",
+          "verifiedText": "이차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "physicalPages1Based": [
+            34
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수02-12",
+          "verifiedText": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "physicalPages1Based": [
+            34
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수03-01",
+          "verifiedText": "순서쌍과 좌표를 이해한다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "6수03-06",
+          "verifiedText": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "physicalPages1Based": [
+            29
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        }
+      ],
+      "restrictionsVerified": [
+        {
+          "id": "no_vieta",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_ratio_identities",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "angle_range",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "real_quadratic_roots",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_function_applications",
+          "physicalPages1Based": [
+            37
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        }
+      ],
+      "surfaceEvidence": {
+        "stem": "이차방정식의 실근, 이차함수 꼭짓점, 삼각형 넓이의 단순 결합이다.",
+        "choices": "다섯 정수 삼중항이며 밑변·높이·넓이 중 어떤 값이 틀린지 기존 독립 풀이에서 모두 판정했다. 고급 오답 표현이 없다.",
+        "figuresAndTables": "새 그림은 x절편 A(-1,0), B(3,0), 꼭짓점 C(1,-4), x축으로의 점선 높이와 두 삼각형 변을 표시한다. C는 y절편이 아니다. 표와 새 해설 모두 base4/height4/area8의 같은 점 역할이다.",
+        "notation": "좌표 A,B,C와 x², 인수분해, 완전제곱, ㉠㉡㉢ 및 양의 길이/넓이만 사용한다.",
+        "answer": "4,4,8의 정수 기록 및 ④로 충분하다.",
+        "studentSolution": "y=0을 인수분해하여 -1,3 두 근을 얻고 완전제곱 (x-1)²-4로 꼭짓점 (1,-4)를 정한다. x축 밑변 4와 양의 높이 |-4|=4로 1/2×4×4=8을 구한다. 부호 있는 y좌표를 높이로 잘못 쓰지 않았다.",
+        "prerequisites": "중1 좌표/축, 중3 인수분해·실근 방정식, 초등 삼각형 넓이. 근과 계수의 관계 및 거리 공식은 필요 없다."
+      },
+      "rolloutSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "phaseInTextChecked": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "phaseInTextChecked": true
+        }
+      ],
+      "phaseInConclusion": "2015 중3 적용은 2020-03-01, 2022 중3 적용은 2027-03-01. 자료의 2025/2026 출처 연도 차이는 이 범위의 2015 적용 결론을 바꾸지 않는다. 출처 확정은 별도 보류.",
+      "normalization": "PDF 추출의 공백/줄바꿈/U+0001 제어 구분자만 제거하여 제공된 2020 HWP 추출 증거의 해당 문구와 2015 PDF를 대조했다. 새 HWP 추출을 수행했다고 주장하지 않는다.",
+      "amendmentReviewBoundary": "선택 문항의 기준·각도 범위·금지 방법·복잡도 제한 및 시행 시점에 한정했다. 관련 문구에서 실질 변경/불확실성은 발견되지 않았다. 전체 2015 개정 고시 연혁을 감사하거나 2022 재출판을 승인한 결과는 아니다.",
+      "specificForbiddenMethodsAvoided": "미분, 근과 계수 관계, 삼각비 항등식, 90° 밖 삼각비, 사인/코사인 법칙, 일반 삼각형 사인 넓이 암기식, 원과 비례/원의 거듭제곱, 라디안, 정사영/벡터 없음. q12 수선 높이와 q13 명시 단면만 사용."
+    },
+    "taxonomy": {
+      "unitSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+      "unitSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotScope": "parent supplied read-only 2026-10-07 snapshot; no DB call or claim of later live recapture",
+      "unit": {
+        "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수 y=ax^2+bx+c의 그래프",
+        "semester": 1,
+        "orderIndex": 479,
+        "problemCodePrefix": "J30402"
+      },
+      "unitAppropriate": true,
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|08",
+      "registryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑵|08",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "08",
+        "rpmTitle": "이차함수의 그래프와 삼각형의 넓이"
+      },
+      "liveCount": 22,
+      "liveFamilySnapshotMatch": true,
+      "generator": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "mode": "read-only relevant family source, no generator execution or edits",
+        "relevantLines1Based": [
+          1660,
+          1686
+        ]
+      },
+      "semanticDecision": "pending",
+      "reason": "Unit 일반형 이차함수는 적정하나 live family08은 C=(0,상수항)의 y절편을 높이로 쓰며 y=0, x=0 대입 후 넓이를 구한다. 새 C는 꼭짓점이어서 완전제곱으로 높이를 복구한다. 넓이라는 제목만으로 절차까지 같은 family라고 승인할 수 없다."
+    },
+    "objectiveDifficultyAndScore": {
+      "authorDifficultyProposal": "기본",
+      "reviewerDifficultyBand": "기본",
+      "candidateScore": 4,
+      "scoreAppropriate": true,
+      "candidateQuestionType": "객관식",
+      "authorProblemTypeProposal": "활용",
+      "reviewerProblemType": "활용",
+      "reason": "기본 제안과 4점은 적정. 작은 정수로 인수분해 한 번, 완전제곱 한 번, 길이/절댓값 및 넓이 기록을 한다. 원본 5점을 근거로 자동 유지하지 않았으며 표가 중간값을 나누어 안내하고 삼중항 객관식으로 확인 부담을 낮춘다.",
+      "empiricalCalibrationClaimed": false,
+      "sourceOrGeneratorDifficultyAutoApplied": false
+    },
+    "holds": [
+      "taxonomy: 현재 family08의 y절편 높이 절차와 새 꼭짓점 높이 절차가 다르다. 꼭짓점 변형을 포함하는 정확한 family 규칙/승인된 하위 변형 근거 또는 부모의 재분류가 필요하다. 수학·2015 범위 판정은 통과한다."
+    ],
+    "nonblockingSuggestions": [],
+    "releaseBoundary": {
+      "reviewStatusCovers": "only these selected independent mathematics, full student-surface curriculum, presentation/language, difficulty/score and taxonomy dimensions",
+      "nativeProvenance": "blocked-parent-owned",
+      "rights": "blocked-parent-owned",
+      "sourceIdentity": "pending-parent-attestation",
+      "productionUseApproved": false,
+      "DBWrites": false,
+      "paidCalls": false,
+      "pushes": false,
+      "inferenceAPICalls": false
+    },
+    "consumerValidation": {
+      "module": "parent candidatePack.mjs evaluateReview",
+      "executed": true,
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "productionWrites": false,
+      "selectedReviewReasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed"
+      ],
+      "effect": "technical dimensions preserved separately; no production approval"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  }
+}

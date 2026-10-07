@@ -1,0 +1,549 @@
+{
+  "status": "verified",
+  "studentDigest": "e594be5d73a48300b0f7ae14f07eb8d09e05c90999b8437e04a2a0497fc2e219",
+  "candidateDigest": "ba79b61e1d200e68bbfde9477c9a4e451bde91db82406ef5d3fbf51eda2790ad",
+  "assetDigest": "48e6d07ad6907d9a1f33bf085b8eba8e12d49d64b12edc00d9e2be7bf9684885",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "solveDigest": "95aa1e458acaf5fa661260a8acde43ab7f5c43428cdd60d14cb20d6fb25fbe7c",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 4,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q04",
+    "reviewedAtKst": "2026-10-08",
+    "independence": {
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "verifierIsDifferentAuthor": true,
+      "blindSolveCommit": "c998ea12a6447970c71679e6dd97d06d0fa3dc6b",
+      "answerExposure": "only after parent copied/hash-fixed this solver independent result",
+      "solveRawFileSha256": "eff1594ba81938e7bf2ab75932fb9f91fb7f5e618c46c17988197f04b1262e90",
+      "solveRawBytesMatchParent": true,
+      "solveFileUneditedSinceCommit": true,
+      "originalAnswersOrSolutionsRead": false,
+      "geometryAuthorCandidatesReviewed": false
+    },
+    "binding": {
+      "contract": "parent scripts/import/exam-twin/candidatePack.mjs bindCandidate(candidate.json); digest(independentSolve)",
+      "candidateObjectAndAssetBindingsRecomputed": true,
+      "allFourProvidedDigestsMatch": true,
+      "candidateFileSha256": "c0422d2e6587497e8966e10cf9962efbb8397dded9114b19fb480699cb515f57",
+      "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\verification\\verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "manifestInputHashMatched": true,
+      "alteredBytesPolicy": "fail closed; no altered candidate/student/spec/svg/solve detected",
+      "contractFileSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59"
+    },
+    "checkEvidence": {
+      "answerCorrect": {
+        "authorAnswer": "⑤",
+        "sealedIndependentAnswer": "⑤",
+        "codeChoiceMatches": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "calculation": {
+          "choiceSigns": [
+            [
+              1,
+              1
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              -1,
+              0
+            ],
+            [
+              -1,
+              -1
+            ]
+          ],
+          "requiredSigns": [
+            -1,
+            -1
+          ],
+          "existenceWitness": {
+            "a": 1,
+            "b": -5,
+            "roots": [
+              1,
+              5
+            ],
+            "vertex": [
+              3,
+              -4
+            ],
+            "yIntercept": 5
+          }
+        }
+      },
+      "solutionCorrect": "위로 열린 개략 포물선에서 a>0, y절편 -b>0에서 b<0을 얻는다. 새 일차함수의 기울기 -a<0과 y절편 b<0을 비교해 ⑤만 고른다. 그림의 기울기 크기나 좌표 수치를 추측하지 않는다.",
+      "existenceUniqueness": "그림은 부호를 나타내는 개략도이므로 a,b의 수치나 정확한 기울기를 그림에서 읽지 않았다. a>0, b<0을 만족하는 실제 이차함수가 존재한다. 선택할 부호 조합은 ⑤ 하나이다.",
+      "choicesCorrect": {
+        "allFiveChecked": true,
+        "details": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "기울기 양수, y절편 양수. 두 부호 모두 맞지 않는다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "기울기 음수이나 y절편이 양수이다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "y절편 음수이나 기울기가 양수이다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "기울기는 음수이나 원점을 지나 y절편이 0이다."
+          },
+          {
+            "choice": 5,
+            "matches": true,
+            "reason": "기울기와 y절편이 모두 음수이다."
+          }
+        ],
+        "codeMatchesSealedBlindChoiceChecks": true
+      },
+      "figureConsistent": "stem은 위로 열린 포물선이며 양의 y절편이다. choice:1(+,+), 2(-,+), 3(+,-), 4(-,0), 5(-,-)를 실제 SVG 여섯 장에서 각각 확인했다. 부호 개략도라는 본문 조건과 일치하며 ⑤만 두 부호를 만족한다.",
+      "sameCoreConceptAndProcedure": "원본의 포물선 계수 부호→연결된 직선의 기울기·절편 부호 판정과 새 절차가 같다. 원본의 지나지 않는 사분면 결과를 새 직선 그림 결과로 바꿨다.",
+      "distinctPresentation": "사분면 번호를 고르는 원본을 새로 그린 서로 다른 다섯 직선 중 적합한 그래프를 고르는 시각적 표현으로 바꿨다. -8x→-6x 수치 변경만으로 성립하는 변형이 아니다.",
+      "naturalKorean": "본문의 개략적인 그래프 및 부호 설명으로 수치 스케일의 오해를 막는다. 해설의 마지막 위치 표현은 앞선 b<0 판정 덕분에 뜻이 분명하지만 문장 개선을 권고한다.",
+      "curriculumAppropriate": "이차함수 개형 및 일차함수의 기울기·절편 성질을 연결한다. 축 공식이나 판별식까지 요구하지 않는다. 좌표축/원점 및 중2 일차함수 기울기와 y절편을 읽는 성질이 선수이다. 도함수·해석기하 공식은 필요 없다. 학교·AI·family 존재가 아니라 아래 공식 문구 및 실제 요구 절차로 판정했다.",
+      "allStudentSurfacesInScope": {
+        "stem": "이차함수 개형 및 일차함수의 기울기·절편 성질을 연결한다. 축 공식이나 판별식까지 요구하지 않는다.",
+        "choices": "다섯 그래프의 부호 조합과 원점을 지나는 경우를 확인했다. 모든 오답도 중2 일차함수 그래프 범위이다.",
+        "figuresAndTables": "stem은 위로 열린 포물선이며 양의 y절편이다. choice:1(+,+), 2(-,+), 3(+,-), 4(-,0), 5(-,-)를 실제 SVG 여섯 장에서 각각 확인했다. 부호 개략도라는 본문 조건과 일치하며 ⑤만 두 부호를 만족한다.",
+        "notation": "a,b 상수와 y=ax²-6x-b 및 y=-ax+b, 직교좌표의 x,y,O만 사용한다.",
+        "answer": "선택표시 ⑤와 기울기·절편의 음수 판정은 중3까지의 내용이다.",
+        "studentSolution": "위로 열린 개략 포물선에서 a>0, y절편 -b>0에서 b<0을 얻는다. 새 일차함수의 기울기 -a<0과 y절편 b<0을 비교해 ⑤만 고른다. 그림의 기울기 크기나 좌표 수치를 추측하지 않는다.",
+        "prerequisites": "좌표축/원점 및 중2 일차함수 기울기와 y절편을 읽는 성질이 선수이다. 도함수·해석기하 공식은 필요 없다."
+      },
+      "unitFamilyFit": "live 09에서 열린 방향과 y축 교점 위치로 a와 상수항의 부호를 판정하는 규칙이 직접 확인된다. 새 후보는 그 두 부호를 중2 직선 기울기·절편으로 전환한다. 여러 계수 전체 부호나 f(±1)를 요구하는 live 갈래보다 짧은 같은 핵심 규칙의 변형이다.",
+      "scoreAppropriate": "기본 제안 적정. 두 그림 특징에서 두 부호를 읽고 각각 한 번 부호를 전환한다. 다섯 그래프 중 선택하는 4점 문제로 적정하며 live family의 심화하 명칭을 그대로 난이도로 적용하지 않았다."
+    },
+    "deterministicMath": {
+      "tool": "Python fractions.Fraction / decimal.Decimal / exact sign and symbolic-side classifications",
+      "executed": true,
+      "sourceOfInputs": "already blinded student statement/figures, not author facts or old answers",
+      "calculationCode": "observed choice signs=[(+,+),(-,+),(+,-),(-,0),(-,-)]; required=(-,-); witness f(x)=x*x-6*x+5",
+      "results": {
+        "choiceSigns": [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            -1
+          ]
+        ],
+        "requiredSigns": [
+          -1,
+          -1
+        ],
+        "existenceWitness": {
+          "a": 1,
+          "b": -5,
+          "roots": [
+            1,
+            5
+          ],
+          "vertex": [
+            3,
+            -4
+          ],
+          "yIntercept": 5
+        }
+      },
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "matchesPreExposureSolve": true
+    },
+    "studentRenderReview": {
+      "localChromium": true,
+      "networkRequestsBlocked": true,
+      "katexThrowOnError": true,
+      "mathSpanCount": 19,
+      "reviewerViewedFullStemChoicesTablesFiguresAndNewSolution": true,
+      "inspectionPngSha256": "5b9c059e43ad9e729af8de8788466e7cd300cbef889b7e07433380e64936cc11",
+      "inspectionArtifactRetained": false,
+      "layoutScope": "temporary neutral local review layout; no claim to parent production pagination",
+      "observations": "stem은 위로 열린 포물선이며 양의 y절편이다. choice:1(+,+), 2(-,+), 3(+,-), 4(-,0), 5(-,-)를 실제 SVG 여섯 장에서 각각 확인했다. 부호 개략도라는 본문 조건과 일치하며 ⑤만 두 부호를 만족한다.",
+      "assets": [
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-1.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-1.svg",
+          "specSha256": "a9400e897cdc34347c1add405124432c02178b8f73e83856007be9ee17b22d64",
+          "svgSha256": "642cdc2a3553acf03ec144666dd1548604eb608d945308275c0a859e79437268",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q04-1.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        },
+        {
+          "role": "choice:1",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-2.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-2.svg",
+          "specSha256": "e7bed7c5b411a4265243ddc1c5ea0869a7f1132a55ec3bb5ae790264680bb1e0",
+          "svgSha256": "c2d865d397d2ae8a42158f6b62c1c78f143a83e0488c8640cdc3d51fae0a74e1",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-2.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        },
+        {
+          "role": "choice:2",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-3.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-3.svg",
+          "specSha256": "c06b74351d0f4ebe26e6df9c08aa9a625ed6d4bbb2ba56e3839f64b4de9b74ce",
+          "svgSha256": "ce356ff73613573dadbc8e8e2171fa59f243e8586b61c2ad8b9febd8e90eabdc",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-3.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        },
+        {
+          "role": "choice:3",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-4.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-4.svg",
+          "specSha256": "0de838266df8ba2e8191b8d125823cb07731659a621e66e4e80c778d7a0215f6",
+          "svgSha256": "e75be1941f8d2496f9b38d6092ed393964fafb9c3e9bba83ffeea94c94457327",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-4.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        },
+        {
+          "role": "choice:4",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-5.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-5.svg",
+          "specSha256": "f255752679b0ae054cd3ba7b020952857bea9043eec4c4b098b3be731ec50a65",
+          "svgSha256": "ff022f3e457a87623264344b26bb9a80bdeeb5aae7619b5b6806c7da3d73df06",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-5.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        },
+        {
+          "role": "choice:5",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-6.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q04\\figure-6.svg",
+          "specSha256": "523041eddfacecc88091c1fdb6960e4a8887c9b8ade1c6f0ec3af5b7ac709fda",
+          "svgSha256": "042d13de9847c8e2ac1b2d951aacf8ff06902a3e3c9fe63e9a37b3fc03024a73",
+          "intendedWidthMm": 50,
+          "studentPath": "figures/q04-6.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        }
+      ]
+    },
+    "sourceComparison": {
+      "referencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\problems.json",
+      "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "questionNumber": 4,
+      "contentSha256": "10ab18dd65de059e4ea7117da630f0f3501e4f7df1ace4c0747236cc1d3782ff",
+      "contentHashMatched": true,
+      "redactedAnswerFree": true,
+      "originalAnswerOrSolutionNotAccessed": true,
+      "figures": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q04.png",
+          "sha256": "55acc5eef95c50b1ec4bdc87bf8e8b13b8f57165368dd2bedd7197daea001338",
+          "purpose": "answer-free reference, no copied stem/choice asset",
+          "visuallyReviewed": true
+        }
+      ],
+      "sameProcedure": "원본의 포물선 계수 부호→연결된 직선의 기울기·절편 부호 판정과 새 절차가 같다. 원본의 지나지 않는 사분면 결과를 새 직선 그림 결과로 바꿨다.",
+      "substantiveDelta": "사분면 번호를 고르는 원본을 새로 그린 서로 다른 다섯 직선 중 적합한 그래프를 고르는 시각적 표현으로 바꿨다. -8x→-6x 수치 변경만으로 성립하는 변형이 아니다."
+    },
+    "curriculum": {
+      "targetGrade": "중3",
+      "targetEdition": "2015",
+      "status": "independently-reviewed-selected-student-surfaces",
+      "official2015Pdf": {
+        "id": "moe-2015-74-math-pdf",
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+        "archive_member": "별책8_수학과 교육과정.pdf",
+        "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "bytes": 2533289,
+        "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "primary": true,
+        "retrieved_date_kst": "2026-10-08",
+        "format": "pdf"
+      },
+      "evidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardRefs": [
+        {
+          "code": "9수03-10",
+          "verifiedText": "이차함수의 그래프의 성질을 이해한다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수03-06",
+          "verifiedText": "일차함수의 그래프의 성질을 이해하고, 이를 활용하여 문제를 해결할 수 있다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수03-01",
+          "verifiedText": "순서쌍과 좌표를 이해한다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수03-05",
+          "verifiedText": "일차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수02-12",
+          "verifiedText": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "physicalPages1Based": [
+            34
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        }
+      ],
+      "restrictionsVerified": [
+        {
+          "id": "no_vieta",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_ratio_identities",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "angle_range",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "real_quadratic_roots",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_function_applications",
+          "physicalPages1Based": [
+            37
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        }
+      ],
+      "surfaceEvidence": {
+        "stem": "이차함수 개형 및 일차함수의 기울기·절편 성질을 연결한다. 축 공식이나 판별식까지 요구하지 않는다.",
+        "choices": "다섯 그래프의 부호 조합과 원점을 지나는 경우를 확인했다. 모든 오답도 중2 일차함수 그래프 범위이다.",
+        "figuresAndTables": "stem은 위로 열린 포물선이며 양의 y절편이다. choice:1(+,+), 2(-,+), 3(+,-), 4(-,0), 5(-,-)를 실제 SVG 여섯 장에서 각각 확인했다. 부호 개략도라는 본문 조건과 일치하며 ⑤만 두 부호를 만족한다.",
+        "notation": "a,b 상수와 y=ax²-6x-b 및 y=-ax+b, 직교좌표의 x,y,O만 사용한다.",
+        "answer": "선택표시 ⑤와 기울기·절편의 음수 판정은 중3까지의 내용이다.",
+        "studentSolution": "위로 열린 개략 포물선에서 a>0, y절편 -b>0에서 b<0을 얻는다. 새 일차함수의 기울기 -a<0과 y절편 b<0을 비교해 ⑤만 고른다. 그림의 기울기 크기나 좌표 수치를 추측하지 않는다.",
+        "prerequisites": "좌표축/원점 및 중2 일차함수 기울기와 y절편을 읽는 성질이 선수이다. 도함수·해석기하 공식은 필요 없다."
+      },
+      "rolloutSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "phaseInTextChecked": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "phaseInTextChecked": true
+        }
+      ],
+      "phaseInConclusion": "2015 중3 적용은 2020-03-01, 2022 중3 적용은 2027-03-01. 자료의 2025/2026 출처 연도 차이는 이 범위의 2015 적용 결론을 바꾸지 않는다. 출처 확정은 별도 보류.",
+      "normalization": "PDF 추출의 공백/줄바꿈/U+0001 제어 구분자만 제거하여 제공된 2020 HWP 추출 증거의 해당 문구와 2015 PDF를 대조했다. 새 HWP 추출을 수행했다고 주장하지 않는다.",
+      "amendmentReviewBoundary": "선택 문항의 기준·각도 범위·금지 방법·복잡도 제한 및 시행 시점에 한정했다. 관련 문구에서 실질 변경/불확실성은 발견되지 않았다. 전체 2015 개정 고시 연혁을 감사하거나 2022 재출판을 승인한 결과는 아니다.",
+      "specificForbiddenMethodsAvoided": "미분, 근과 계수 관계, 삼각비 항등식, 90° 밖 삼각비, 사인/코사인 법칙, 일반 삼각형 사인 넓이 암기식, 원과 비례/원의 거듭제곱, 라디안, 정사영/벡터 없음. q12 수선 높이와 q13 명시 단면만 사용."
+    },
+    "taxonomy": {
+      "unitSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+      "unitSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotScope": "parent supplied read-only 2026-10-07 snapshot; no DB call or claim of later live recapture",
+      "unit": {
+        "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수 y=ax^2+bx+c의 그래프",
+        "semester": 1,
+        "orderIndex": 479,
+        "problemCodePrefix": "J30402"
+      },
+      "unitAppropriate": true,
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|09",
+      "registryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑵|09",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "09",
+        "rpmTitle": "이차함수 의 그래프에서 의 부호"
+      },
+      "liveCount": 11,
+      "liveFamilySnapshotMatch": true,
+      "generator": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "mode": "read-only relevant family source, no generator execution or edits",
+        "relevantLines1Based": [
+          1693,
+          1716
+        ]
+      },
+      "semanticDecision": "matched",
+      "reason": "live 09에서 열린 방향과 y축 교점 위치로 a와 상수항의 부호를 판정하는 규칙이 직접 확인된다. 새 후보는 그 두 부호를 중2 직선 기울기·절편으로 전환한다. 여러 계수 전체 부호나 f(±1)를 요구하는 live 갈래보다 짧은 같은 핵심 규칙의 변형이다."
+    },
+    "objectiveDifficultyAndScore": {
+      "authorDifficultyProposal": "기본",
+      "reviewerDifficultyBand": "기본",
+      "candidateScore": 4,
+      "scoreAppropriate": true,
+      "candidateQuestionType": "객관식",
+      "authorProblemTypeProposal": "개념",
+      "reviewerProblemType": "개념",
+      "reason": "기본 제안 적정. 두 그림 특징에서 두 부호를 읽고 각각 한 번 부호를 전환한다. 다섯 그래프 중 선택하는 4점 문제로 적정하며 live family의 심화하 명칭을 그대로 난이도로 적용하지 않았다.",
+      "empiricalCalibrationClaimed": false,
+      "sourceOrGeneratorDifficultyAutoApplied": false
+    },
+    "holds": [],
+    "nonblockingSuggestions": [
+      "해설의 “y축과 x축보다 아래에서 만나는”을 “y축과의 교점이 x축 아래에 있는”으로 다듬기를 권고한다. 비차단 문장 제안이며 내용·정답은 명확하다."
+    ],
+    "releaseBoundary": {
+      "reviewStatusCovers": "only these selected independent mathematics, full student-surface curriculum, presentation/language, difficulty/score and taxonomy dimensions",
+      "nativeProvenance": "blocked-parent-owned",
+      "rights": "blocked-parent-owned",
+      "sourceIdentity": "pending-parent-attestation",
+      "productionUseApproved": false,
+      "DBWrites": false,
+      "paidCalls": false,
+      "pushes": false,
+      "inferenceAPICalls": false
+    },
+    "consumerValidation": {
+      "module": "parent candidatePack.mjs evaluateReview",
+      "executed": true,
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "productionWrites": false,
+      "selectedReviewReasons": [],
+      "effect": "technical dimensions preserved separately; no production approval"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  }
+}

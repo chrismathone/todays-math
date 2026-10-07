@@ -1,0 +1,430 @@
+{
+  "status": "verified",
+  "studentDigest": "1d18d08c21c4e4cf632f9d43d194ba86c0e84d6e536daa0a94468657146965ad",
+  "candidateDigest": "0a6e78f8d11c57baf2525b9c93cd4fb8d04e8adaec7f405f2947f49de3de110e",
+  "assetDigest": "e276997e862902248020eb679caf83a9f5eb714ef2f660bdd37b7ba2dc438173",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "solveDigest": "b4207797d473bfd6edf8fedcf6813a327c3b77dc3b2ea6fcfe91d1fc4f9edfbd",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 12,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q12",
+    "reviewedAtKst": "2026-10-08",
+    "independence": {
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "verifierIsDifferentAuthor": true,
+      "blindSolveCommit": "c998ea12a6447970c71679e6dd97d06d0fa3dc6b",
+      "answerExposure": "only after parent copied/hash-fixed this solver independent result",
+      "solveRawFileSha256": "3bef084dbc1fd24c03e0c79cbc24ec5aaf25d5a84b72d16c8b2a10501e8b7129",
+      "solveRawBytesMatchParent": true,
+      "solveFileUneditedSinceCommit": true,
+      "originalAnswersOrSolutionsRead": false,
+      "geometryAuthorCandidatesReviewed": false
+    },
+    "binding": {
+      "contract": "parent scripts/import/exam-twin/candidatePack.mjs bindCandidate(candidate.json); digest(independentSolve)",
+      "candidateObjectAndAssetBindingsRecomputed": true,
+      "allFourProvidedDigestsMatch": true,
+      "candidateFileSha256": "db20af56091e8356264cf1c74aeb228a5181d24013d2f2e7953d854a85a0caca",
+      "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\verification-inputs.json",
+      "verificationInputsSha256": "7a65c7e1dafec63917ad2ce53b0ba6e88dd1d70c58fe86640976fce44142c145",
+      "manifestInputHashMatched": true,
+      "alteredBytesPolicy": "fail closed; no altered candidate/student/spec/svg/solve detected",
+      "contractFileSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59"
+    },
+    "checkEvidence": {
+      "answerCorrect": {
+        "authorAnswer": "④",
+        "sealedIndependentAnswer": "④",
+        "codeChoiceMatches": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "calculation": {
+          "AB": "8",
+          "AC": "8√2",
+          "areaABC": "32",
+          "areaACD": "12√6",
+          "DH": "3√3",
+          "DC": "6",
+          "CH": "3",
+          "HInteriorChecked": true,
+          "choiceAreaSqrt6Coefficients": [
+            6,
+            8,
+            10,
+            12,
+            16
+          ]
+        }
+      },
+      "solutionCorrect": "ABC에서 tan45=1, sin45=√2/2로 AB=8, AC=8√2를 얻는다. 전체 넓이에서 32를 빼 ACD 넓이12√6을 구하고, 실제 높이 DH의 밑변×높이/2 식으로 DH=3√3을 복구한다. DCH에서 sin60=DH/DC로 DC=6을 얻는다. 일반 삼각형 사인 넓이 암기식이나 사인/코사인 법칙을 호출하지 않는다.",
+      "existenceUniqueness": "그림에서 D와 B는 AC의 반대쪽에 있고 AC가 두 삼각형을 겹침 없이 나눈다. 모든 길이와 두 넓이는 양수이다. CH=DC/2=3<8√2=AC이므로 H가 선분 AC 내부에 존재한다. DC는 양의 비례식에서 유일하다. 사인 넓이 공식이나 사인/코사인 법칙을 쓰지 않았다.",
+      "choicesCorrect": {
+        "allFiveChecked": true,
+        "details": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "DC=3이면 △ACD 넓이가 6√6이 되어 기록에 맞지 않는다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "DC=4이면 △ACD 넓이가 8√6이다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "DC=5이면 △ACD 넓이가 10√6이다."
+          },
+          {
+            "choice": 4,
+            "matches": true,
+            "reason": "DC=6이면 △ACD 넓이가 12√6으로 전체 기록과 일치한다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "DC=8이면 △ACD 넓이가 16√6이다."
+          }
+        ],
+        "codeMatchesSealedBlindChoiceChecks": true
+      },
+      "figureConsistent": "B 직각과 A의45°, C의60°, BC8cm, 대각선AC 및 DH수선/직각/H가 새 SVG에서 명확하다. D와 B는 대각선 반대쪽에 있어 두 넓이를 더할 수 있다. CH=3<AC=8√2로 H가 선분 내부인 실제 도형이 존재한다.",
+      "sameCoreConceptAndProcedure": "원본은 45° 직각삼각형으로 공통 AC를 정한 뒤 60° 수선 높이로 둘째 삼각형 넓이를 얻어 합한다. 새 후보는 같은 AC·높이·면적 관계에서 전체 넓이를 주고 DC를 역산한다.",
+      "distinctPresentation": "주어진 DC에서 전체 넓이를 구하는 원본을 전체 넓이/지워진 두 부분 기록으로 DC를 복구하는 역목표로 바꿨다. 필요한 H를 새 도형과 본문에 제공하여 수선 절차를 학생에게 보인다.",
+      "naturalKorean": "전체 넓이와 지워진 두 기록, 복원 목표 DC 및 H의 정의가 본문·표·그림에서 일관된다.",
+      "curriculumAppropriate": "두 삼각형으로 나눈 단순 사각형과 45°/60° 직각삼각비이다. 복잡하게 변형된 넓이 도형이나 추가 보조선 탐색이 없다. 초등 삼각형 넓이, 근호 사칙계산과 삼각비의 직접 정의. H와 AC가 이미 제시되어 복잡한 작도·원 비례·일반 삼각형 정리가 필요 없다. 학교·AI·family 존재가 아니라 아래 공식 문구 및 실제 요구 절차로 판정했다.",
+      "allStudentSurfacesInScope": {
+        "stem": "두 삼각형으로 나눈 단순 사각형과 45°/60° 직각삼각비이다. 복잡하게 변형된 넓이 도형이나 추가 보조선 탐색이 없다.",
+        "choices": "양의 cm 정수3,4,5,6,8. 각 값의 둘째 넓이는 각각6√6,8√6,10√6,12√6,16√6으로 ④만 전체 기록에 맞는다.",
+        "figuresAndTables": "B 직각과 A의45°, C의60°, BC8cm, 대각선AC 및 DH수선/직각/H가 새 SVG에서 명확하다. D와 B는 대각선 반대쪽에 있어 두 넓이를 더할 수 있다. CH=3<AC=8√2로 H가 선분 내부인 실제 도형이 존재한다.",
+        "notation": "cm/cm², √2/√3/√6, 선분, 수선, 45°/60°/90° 및 넓이 표기이다. sin120°, 일반 삼각형 사인 넓이 공식, 법칙 표현이 없다.",
+        "answer": "DC=6cm 및 ④이다. 높이 복구와 정의만으로 나온다.",
+        "studentSolution": "ABC에서 tan45=1, sin45=√2/2로 AB=8, AC=8√2를 얻는다. 전체 넓이에서 32를 빼 ACD 넓이12√6을 구하고, 실제 높이 DH의 밑변×높이/2 식으로 DH=3√3을 복구한다. DCH에서 sin60=DH/DC로 DC=6을 얻는다. 일반 삼각형 사인 넓이 암기식이나 사인/코사인 법칙을 호출하지 않는다.",
+        "prerequisites": "초등 삼각형 넓이, 근호 사칙계산과 삼각비의 직접 정의. H와 AC가 이미 제시되어 복잡한 작도·원 비례·일반 삼각형 정리가 필요 없다."
+      },
+      "unitFamilyFit": "live 삼각비의 활용10은 공통 대각선AC로 나눈 두 삼각형의 넓이를 합하는 절차를 실제 코드에서 확인한다. 새 후보도 그 분할/공통 변/높이 면적 관계를 사용하고 역방향 DC 복구를 한다. live 출력의 사인 넓이 약식은 학생 후보에 복사하지 않았으며 이 family의 모든 갈래나 원본 학교 자체를 범위 승인한 것은 아니다.",
+      "scoreAppropriate": "응용 제안 및 4점 적정. 직각삼각형 길이2개→첫 넓이→면적 차→높이→끝 변의 짧은 연결이 필요하다. 특수각/작은 근호이며 높이/분할이 제공되어 과도한 구성 문제가 아니다."
+    },
+    "deterministicMath": {
+      "tool": "Python fractions.Fraction / decimal.Decimal / exact sign and symbolic-side classifications",
+      "executed": true,
+      "sourceOfInputs": "already blinded student statement/figures, not author facts or old answers",
+      "calculationCode": "AB=8; AC=8√2; areaABC=8*8/2; areaACD=12√6; DH coefficient=12*2/8=3 in √3; DC=3/(1/2)=6; CH=3<8√2",
+      "results": {
+        "AB": "8",
+        "AC": "8√2",
+        "areaABC": "32",
+        "areaACD": "12√6",
+        "DH": "3√3",
+        "DC": "6",
+        "CH": "3",
+        "HInteriorChecked": true,
+        "choiceAreaSqrt6Coefficients": [
+          6,
+          8,
+          10,
+          12,
+          16
+        ]
+      },
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "matchesPreExposureSolve": true
+    },
+    "studentRenderReview": {
+      "localChromium": true,
+      "networkRequestsBlocked": true,
+      "katexThrowOnError": true,
+      "mathSpanCount": 31,
+      "reviewerViewedFullStemChoicesTablesFiguresAndNewSolution": true,
+      "inspectionPngSha256": "23fe8b7995eb7854db6f7604c8273d8acf112926e73dab8538ec97b26df42fc3",
+      "inspectionArtifactRetained": false,
+      "layoutScope": "temporary neutral local review layout; no claim to parent production pagination",
+      "observations": "B 직각과 A의45°, C의60°, BC8cm, 대각선AC 및 DH수선/직각/H가 새 SVG에서 명확하다. D와 B는 대각선 반대쪽에 있어 두 넓이를 더할 수 있다. CH=3<AC=8√2로 H가 선분 내부인 실제 도형이 존재한다.",
+      "assets": [
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q12\\figure-1.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q12\\figure-1.svg",
+          "specSha256": "71755c43fe6ae1b65c54ca26e3a9095d0646f56fb8502dc8b2f88cef69af7af9",
+          "svgSha256": "7b6aa3b966e0fac866bbe4c0fbc9c1dd5c275a8957815c4301c2a27aacd2beb3",
+          "intendedWidthMm": 80,
+          "studentPath": "figures/q12-1.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        }
+      ]
+    },
+    "sourceComparison": {
+      "referencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\problems.json",
+      "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "questionNumber": 12,
+      "contentSha256": "e2590bd5a6113fd693dd09ed231a6afb94aa3205ca06475d2f33afba7e6d7303",
+      "contentHashMatched": true,
+      "redactedAnswerFree": true,
+      "originalAnswerOrSolutionNotAccessed": true,
+      "figures": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q12.png",
+          "sha256": "0d8d8dd145c0f6722abb2fd47c979037c16f8c116529f86c0cfca26815868ee8",
+          "purpose": "answer-free reference, no copied stem/choice asset",
+          "visuallyReviewed": true
+        }
+      ],
+      "sameProcedure": "원본은 45° 직각삼각형으로 공통 AC를 정한 뒤 60° 수선 높이로 둘째 삼각형 넓이를 얻어 합한다. 새 후보는 같은 AC·높이·면적 관계에서 전체 넓이를 주고 DC를 역산한다.",
+      "substantiveDelta": "주어진 DC에서 전체 넓이를 구하는 원본을 전체 넓이/지워진 두 부분 기록으로 DC를 복구하는 역목표로 바꿨다. 필요한 H를 새 도형과 본문에 제공하여 수선 절차를 학생에게 보인다."
+    },
+    "curriculum": {
+      "targetGrade": "중3",
+      "targetEdition": "2015",
+      "status": "independently-reviewed-selected-student-surfaces",
+      "official2015Pdf": {
+        "id": "moe-2015-74-math-pdf",
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+        "archive_member": "별책8_수학과 교육과정.pdf",
+        "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "bytes": 2533289,
+        "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "primary": true,
+        "retrieved_date_kst": "2026-10-08",
+        "format": "pdf"
+      },
+      "evidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardRefs": [
+        {
+          "code": "9수04-18",
+          "verifiedText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "physicalPages1Based": [
+            38
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수04-17",
+          "verifiedText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "physicalPages1Based": [
+            38
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "6수03-06",
+          "verifiedText": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "physicalPages1Based": [
+            29
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수01-10",
+          "verifiedText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "physicalPages1Based": [
+            33
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        }
+      ],
+      "restrictionsVerified": [
+        {
+          "id": "no_vieta",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_ratio_identities",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "angle_range",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "real_quadratic_roots",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_function_applications",
+          "physicalPages1Based": [
+            37
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        }
+      ],
+      "surfaceEvidence": {
+        "stem": "두 삼각형으로 나눈 단순 사각형과 45°/60° 직각삼각비이다. 복잡하게 변형된 넓이 도형이나 추가 보조선 탐색이 없다.",
+        "choices": "양의 cm 정수3,4,5,6,8. 각 값의 둘째 넓이는 각각6√6,8√6,10√6,12√6,16√6으로 ④만 전체 기록에 맞는다.",
+        "figuresAndTables": "B 직각과 A의45°, C의60°, BC8cm, 대각선AC 및 DH수선/직각/H가 새 SVG에서 명확하다. D와 B는 대각선 반대쪽에 있어 두 넓이를 더할 수 있다. CH=3<AC=8√2로 H가 선분 내부인 실제 도형이 존재한다.",
+        "notation": "cm/cm², √2/√3/√6, 선분, 수선, 45°/60°/90° 및 넓이 표기이다. sin120°, 일반 삼각형 사인 넓이 공식, 법칙 표현이 없다.",
+        "answer": "DC=6cm 및 ④이다. 높이 복구와 정의만으로 나온다.",
+        "studentSolution": "ABC에서 tan45=1, sin45=√2/2로 AB=8, AC=8√2를 얻는다. 전체 넓이에서 32를 빼 ACD 넓이12√6을 구하고, 실제 높이 DH의 밑변×높이/2 식으로 DH=3√3을 복구한다. DCH에서 sin60=DH/DC로 DC=6을 얻는다. 일반 삼각형 사인 넓이 암기식이나 사인/코사인 법칙을 호출하지 않는다.",
+        "prerequisites": "초등 삼각형 넓이, 근호 사칙계산과 삼각비의 직접 정의. H와 AC가 이미 제시되어 복잡한 작도·원 비례·일반 삼각형 정리가 필요 없다."
+      },
+      "rolloutSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "phaseInTextChecked": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "phaseInTextChecked": true
+        }
+      ],
+      "phaseInConclusion": "2015 중3 적용은 2020-03-01, 2022 중3 적용은 2027-03-01. 자료의 2025/2026 출처 연도 차이는 이 범위의 2015 적용 결론을 바꾸지 않는다. 출처 확정은 별도 보류.",
+      "normalization": "PDF 추출의 공백/줄바꿈/U+0001 제어 구분자만 제거하여 제공된 2020 HWP 추출 증거의 해당 문구와 2015 PDF를 대조했다. 새 HWP 추출을 수행했다고 주장하지 않는다.",
+      "amendmentReviewBoundary": "선택 문항의 기준·각도 범위·금지 방법·복잡도 제한 및 시행 시점에 한정했다. 관련 문구에서 실질 변경/불확실성은 발견되지 않았다. 전체 2015 개정 고시 연혁을 감사하거나 2022 재출판을 승인한 결과는 아니다.",
+      "specificForbiddenMethodsAvoided": "미분, 근과 계수 관계, 삼각비 항등식, 90° 밖 삼각비, 사인/코사인 법칙, 일반 삼각형 사인 넓이 암기식, 원과 비례/원의 거듭제곱, 라디안, 정사영/벡터 없음. q12 수선 높이와 q13 명시 단면만 사용."
+    },
+    "taxonomy": {
+      "unitSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+      "unitSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotScope": "parent supplied read-only 2026-10-07 snapshot; no DB call or claim of later live recapture",
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "unitAppropriate": true,
+      "familyKey": "mid:3-2|삼각비의 활용|10",
+      "registryMatch": {
+        "key": "3-2|삼각비의 활용|10",
+        "grade": "중3",
+        "unitSection": "삼각비의 활용",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비의 활용",
+        "rpmType": "10",
+        "rpmTitle": "다각형의 넓이"
+      },
+      "liveCount": 18,
+      "liveFamilySnapshotMatch": true,
+      "generator": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "mode": "read-only relevant family source, no generator execution or edits",
+        "relevantLines1Based": [
+          2284,
+          2305
+        ]
+      },
+      "semanticDecision": "matched",
+      "reason": "live 삼각비의 활용10은 공통 대각선AC로 나눈 두 삼각형의 넓이를 합하는 절차를 실제 코드에서 확인한다. 새 후보도 그 분할/공통 변/높이 면적 관계를 사용하고 역방향 DC 복구를 한다. live 출력의 사인 넓이 약식은 학생 후보에 복사하지 않았으며 이 family의 모든 갈래나 원본 학교 자체를 범위 승인한 것은 아니다."
+    },
+    "objectiveDifficultyAndScore": {
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyBand": "응용",
+      "candidateScore": 4,
+      "scoreAppropriate": true,
+      "candidateQuestionType": "객관식",
+      "authorProblemTypeProposal": "활용",
+      "reviewerProblemType": "활용",
+      "reason": "응용 제안 및 4점 적정. 직각삼각형 길이2개→첫 넓이→면적 차→높이→끝 변의 짧은 연결이 필요하다. 특수각/작은 근호이며 높이/분할이 제공되어 과도한 구성 문제가 아니다.",
+      "empiricalCalibrationClaimed": false,
+      "sourceOrGeneratorDifficultyAutoApplied": false
+    },
+    "holds": [],
+    "nonblockingSuggestions": [],
+    "releaseBoundary": {
+      "reviewStatusCovers": "only these selected independent mathematics, full student-surface curriculum, presentation/language, difficulty/score and taxonomy dimensions",
+      "nativeProvenance": "blocked-parent-owned",
+      "rights": "blocked-parent-owned",
+      "sourceIdentity": "pending-parent-attestation",
+      "productionUseApproved": false,
+      "DBWrites": false,
+      "paidCalls": false,
+      "pushes": false,
+      "inferenceAPICalls": false
+    },
+    "consumerValidation": {
+      "module": "parent candidatePack.mjs evaluateReview",
+      "executed": true,
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "productionWrites": false,
+      "selectedReviewReasons": [],
+      "effect": "technical dimensions preserved separately; no production approval"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  }
+}
