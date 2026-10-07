@@ -14,6 +14,7 @@ import {
   AiConfigError,
   AiGenerationError,
 } from "@/lib/ai/errors";
+import { AI_BUSY_MESSAGE, admitAiWork } from "@/lib/aiAdmission";
 import {
   jsonError,
   jsonOk,
@@ -52,6 +53,10 @@ async function handlePost(request: NextRequest) {
 
   const unit = await db.unit.findUnique({ where: { id: parsed.data.unitId } });
   if (!unit) return notFoundError("단원");
+
+  // 한 사람이 동시에 띄우는 유료 호출은 둘까지 — 호출 하나가 40초 ~ 2분이고 한도가 없었다(2026-10-07 검수).
+  const release = admitAiWork("problems", session.id);
+  if (!release) return jsonError("AI_GENERATION_FAILED", AI_BUSY_MESSAGE, 429);
 
   try {
     const drafts = await generateProblems({
@@ -119,6 +124,8 @@ async function handlePost(request: NextRequest) {
       );
     }
     throw error;
+  } finally {
+    release();
   }
 }
 
