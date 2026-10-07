@@ -23,6 +23,8 @@ node scripts/design/capture-todayenglish-hifi.mjs
 node scripts/design/build-todayenglish-hifi-gallery.mjs
 ```
 
+기존 다섯 썸네일이 있으면 D 후속 변경은 `node scripts/design/capture-todayenglish-hifi.mjs --only=d`로 D만 다시 캡처한 후 갤러리를 빌드한다.
+
 캡처는 기존 Playwright 의존성을 사용한다. Windows에서는 설치된 Edge를 사용하며, 다른 브라우저 실행 파일은 `HIFI_BROWSER_EXECUTABLE`로 지정할 수 있다. 캡처와 보고서는 `.qa-artifacts/english-hifi/`에 생성되고 갤러리의 썸네일은 HTML에 내장된다.
 
 PC 1440×1000 및 모바일 390×844에서 화면 오류·가로 넘침을 확인한다. 인터랙션 검증과 시각 검토 결과는 `docs/design/reviews/todayenglish-hifi-20261007.md`에 남긴다.

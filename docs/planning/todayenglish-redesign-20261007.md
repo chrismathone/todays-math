@@ -23,7 +23,7 @@
 | 공통 페이지 제목·행동 버튼 | 같은 제목 계층, 버튼 크기·위치, 선택 수와 다음 행동의 표현 |
 | 수학의 학년·단원·난이도 필터 | 영어의 학년·유형·원문·검토 상태로 대응. 원문은행·듣기는 영어 전용 메뉴 |
 
-근거: `UnifiedWorkspace.tsx`의 `mathNav` 및 숨겨진 내보내기 메뉴, `WorkspacePageHeader.tsx`, `BankView.tsx`, `BankBasket.tsx`. 자세한 대응 근거는 [구성 조사](../design/reviews/todayenglish-d-math-alignment-20261007.md)에 기록한다. 메뉴명 변경은 권한 계약 변경과 별개다. 운영 연결 시 기존 메뉴 ID·소유 범위·딥링크 호환을 먼저 매핑한다.
+근거: `UnifiedWorkspace.tsx`와 실제로 가져오는 `Workroom.module.css`, `WorkspacePageHeader.tsx`, `BankView.tsx`, `BankBasket.tsx`. `Workspace.module.css`는 이전 셸의 스타일이므로 기준으로 쓰지 않는다. 자세한 대응 근거는 [구성 조사](../design/reviews/todayenglish-d-math-alignment-20261007.md)에 기록한다. 메뉴명 변경은 권한 계약 변경과 별개다. 운영 연결 시 기존 메뉴 ID·소유 범위·딥링크 호환을 먼저 매핑한다.
 
 ## 목표와 범위
 
