@@ -215,7 +215,14 @@ def _table_kind(cells: list[list[list["Para"]]]) -> str:
 
 
 class _Walker:
-    def __init__(self, counter: list[int] | None = None, ids: list[int] | None = None, parent: int = 0) -> None:
+    def __init__(
+        self,
+        counter: list[int] | None = None,
+        ids: list[int] | None = None,
+        parent: int = 0,
+        elements: dict | None = None,
+        groups: dict | None = None,
+    ) -> None:
         self.paras: list[Para] = []
         #: 자료 표의 번호를 세는 자리 — 칸을 읽는 안쪽 워커와 같이 쓴다
         self.counter = counter if counter is not None else [0]
@@ -223,6 +230,10 @@ class _Walker:
         self.ids = ids if ids is not None else [0, 0]
         #: 지금 읽는 글상자 · 표가 매인 문단의 번호(`Para.parent`)
         self.parent = parent
+        #: 자료 표의 번호 → 그 표의 XML 요소 — `data_tables` 가 표를 그림으로 그릴 때 쓴다(안쪽 워커와 같이 쓴다)
+        self.elements = elements
+        #: 묶음 개체의 번호(`Picture.group`) → 그 묶음의 XML 요소 — 라벨이 얹힌 그림을 묶음째 그릴 때 쓴다
+        self.groups = groups
 
     def table(self, tbl, depth: int, host: int = 0) -> None:
         cells: list[list[list[Para]]] = []
@@ -230,7 +241,7 @@ class _Walker:
         for tr in tbl.findall(HP + "tr"):
             row: list[list[Para]] = []
             for tc in tr.findall(HP + "tc"):
-                inner = _Walker(self.counter, self.ids, host)
+                inner = _Walker(self.counter, self.ids, host, self.elements, self.groups)
                 inner.walk(tc, depth + 1)
                 row.append(inner.paras)
             if row:
@@ -238,6 +249,8 @@ class _Walker:
         flat = [para for row in cells for cell in row for para in cell]
         if _table_kind(cells) == "data":
             self.counter[0] += 1
+            if self.elements is not None:
+                self.elements[self.counter[0]] = tbl
             for para in flat:
                 para.table_id = self.counter[0]
         self.paras.extend(flat)
@@ -346,6 +359,8 @@ class _Walker:
             # 글상자 · 묶음 안의 문단. 글이 없는 도형(삼각형 · 원 …)은 그린 그림으로 센다
             if tag == HP + "container":
                 self.ids[1] += 1
+                if self.groups is not None:
+                    self.groups[self.ids[1]] = el
                 shapes += 1
                 shape_list.append(("container", *_size(el), self.ids[1]))
             elif tag in (HP + "ellipse", HP + "polygon") or (tag == HP + "rect" and el.find(HP + "drawText") is None):
@@ -382,6 +397,26 @@ def read_paras(hwpx: Path) -> list[Para]:
         for name in sections:
             walker.walk(ET.fromstring(z.read(name)), 0)
     return walker.paras
+
+
+def data_tables(hwpx: Path) -> dict[int, ET.Element]:
+    """자료 표의 번호(`Para.table_id` — `read_paras` 와 같은 번호) → 그 표의 XML 요소."""
+    return drawable_objects(hwpx)[0]
+
+
+def drawable_objects(hwpx: Path) -> tuple[dict[int, ET.Element], dict[int, ET.Element]]:
+    """(자료 표의 번호 → 표 요소, 묶음 개체의 번호 → 묶음 요소) — 번호는 `read_paras` 와 같다."""
+    elements: dict[int, ET.Element] = {}
+    groups: dict[int, ET.Element] = {}
+    with zipfile.ZipFile(hwpx) as z:
+        sections = sorted(
+            (n for n in z.namelist() if re.match(r"Contents/section\d+\.xml$", n)),
+            key=lambda n: int(re.search(r"(\d+)", n).group(1)),
+        )
+        walker = _Walker(elements=elements, groups=groups)
+        for name in sections:
+            walker.walk(ET.fromstring(z.read(name)), 0)
+    return elements, groups
 
 
 def binary_items(hwpx: Path) -> dict[str, str]:

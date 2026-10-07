@@ -208,13 +208,109 @@ def test_an_object_is_handed_over_only_once_inside_one_table():
     assert second.figs == []
 
 
+def cell(*runs: str) -> str:
+    return "<hp:tc><hp:subList>" + para(*runs) + "</hp:subList></hp:tc>"
+
+
+def test_a_data_table_becomes_one_place_and_a_picture_inside_it_belongs_to_the_table():
+    """자료 표는 그림으로 그려 붙인다(`render_objects.py`) — 본문에는 표의 칸 글 대신 표 하나의 자리 `[[TBL:번호]]` 가 선다.
+    표 칸 안의 그림은 표를 그린 그림에 들어 있으므로 따로 자리를 두지 않는다. 표 뒤에 홀로 선 그림은 표 뒤에 선다."""
+    table = (
+        "<hp:tbl><hp:tr>" + cell(t("$x$")) + cell(t("$1$")) + cell(t("$2$")) + "</hp:tr>"
+        + "<hp:tr>" + cell(t("$y$")) + cell(t("$3$")) + cell(pic("inner")) + "</hp:tr></hp:tbl>"
+    )
+    doc = segment(paras_of(
+        para(t("01 다음 표를 보고 $a$의 값을 구하시오."))
+        + para(table)
+        + para(pic("after"))
+        + para(t("(단, $a>0$)"))
+    ))
+    (problem,) = doc.problems
+    assert problem.tables == 1
+    assert problem.marked_text.splitlines() == [
+        "다음 표를 보고 $a$의 값을 구하시오.",
+        "[[TBL:1]]",
+        "[[FIG:1]]",
+        "(단, $a>0$)",
+    ]
+    inner, after = problem.figs
+    assert (inner.picture.bin_id, inner.in_table) == ("inner", 1)
+    assert (after.picture.bin_id, after.in_table) == ("after", 0)
+
+
+def test_data_tables_are_found_by_the_same_number_as_the_flow():
+    from hwpx_flow import data_tables  # noqa: F401 — 번호가 흐름의 `table_id` 와 같아야 한다(파일을 여는 함수라 여기서는 이름만)
+
+    layout = "<hp:tbl><hp:tr>" + cell(t("① $1$")) + cell(t("② $2$")) + "</hp:tr></hp:tbl>"
+    data = "<hp:tbl><hp:tr>" + cell(t("$x$")) + cell(t("$1$")) + "</hp:tr></hp:tbl>"
+    walker = _Walker(elements={})
+    walker.walk(ET.fromstring(f"<hp:sec {NS}>{para(layout)}{para(data)}</hp:sec>"), 0)
+    assert list(walker.elements) == [1]
+    assert {p.table_id for p in walker.paras} == {0, 1}
+
+
 # ── 그림의 처분 · 문항의 갈래 · 자리 표지 (`figures.py`) ─────────────────────────
 
 import io  # noqa: E402
 
 from PIL import Image  # noqa: E402
 
-from figures import clip_box, decoration_groups, fate_of, is_flat, place_markers, render, rescue_strips, route_of  # noqa: E402
+from figures import (  # noqa: E402
+    clip_box,
+    decoration_groups,
+    fate_of,
+    fold_groups,
+    is_flat,
+    ordered_figures,
+    place_markers,
+    render,
+    rescue_strips,
+    route_of,
+)
+
+
+def test_rules_and_thin_empty_boxes_are_decoration():
+    """2026-10-08 «한글 도형» 갈래 155문항을 뜯어 보니: 선은 전부 75.6×0mm 구분선, 그림 없는 묶음은 27.9×5.5mm 딱지와
+    170×10.8mm 머리 띠였다. 굵기 없는 선 · 그림 없는 얇은 묶음은 도형으로 치지 않는다."""
+    kept = [{"grouped": False}]
+    base = {"tables": 0, "embeddedNumber": None}
+    assert route_of({**base, "shapeList": [["line", 21433, 1]]}, kept) == "figure"
+    assert route_of({**base, "shapeList": [["line", 21433, 9000]]}, kept) == "group"
+    # 그림 없는 얇은 묶음(번호 7 — 든 그림이 없다)
+    assert route_of({**base, "shapeList": [["container", 7907, 1566, 7]]}, kept) == "figure"
+    assert route_of({**base, "shapeList": [["container", 48182, 3060, 7]]}, kept) == "figure"
+    # 그림 없는 큰 묶음 — 선 · 글상자로 그린 그림이다
+    assert route_of({**base, "shapeList": [["container", 20000, 15000, 7]]}, kept) == "group"
+    # 그림이 든 묶음(라벨이 얹힌 그림)은 얇아도 도형이다
+    assert route_of({**base, "shapeList": [["container", 48182, 3060, 7]]}, [{"grouped": True, "group": 7}]) == "group"
+
+
+def test_a_group_drawn_whole_stands_in_for_its_pictures():
+    """라벨 · 선과 묶인 그림은 묶음째 한글이 그린 그림으로 붙인다 — 묶음의 첫 그림 자리에 묶음 그림 하나, 나머지 그림은 걷는다."""
+    kept = [
+        {"k": 0, "grouped": False, "group": 0},
+        {"k": 1, "grouped": True, "group": 4},
+        {"k": 2, "grouped": True, "group": 4},
+        {"k": 3, "grouped": True, "group": 5},
+    ]
+    folded, stand_in = fold_groups(kept, drawn={4})
+    assert [fig["k"] for fig in folded] == [0, 1, 3]
+    assert stand_in == {1: 4}
+    # 묶음 5 는 못 그렸다 — 그대로 묶음 그림으로 남아 «한글 도형» 갈래가 된다
+    assert folded[2]["grouped"] is True
+    assert folded[1]["grouped"] is False
+
+
+def test_a_drawn_table_is_a_figure_in_the_order_of_the_text():
+    """그림으로 그린 자료 표는 그림이다 — 본문의 자리 차례대로 그림 파일이 선다(그림 · 표가 섞여도)."""
+    marked = "[[FIG:0]]\n다음 표를 보고 물음에 답하시오.\n[[TBL:3]]\n오른쪽 그림에서 [[FIG:1]] [[FIG:2]]"
+    assert place_markers(marked, {1, 2}, tables={3}) == "다음 표를 보고 물음에 답하시오.\n[그림]\n오른쪽 그림에서 [그림] [그림]"
+    assert ordered_figures(marked, {1, 2}, {3}) == [("tbl", 3), ("fig", 1), ("fig", 2)]
+    # 그리지 못한 표는 자리를 걷는다(그런 문항은 표 갈래로 남는다)
+    assert place_markers(marked, {1}, tables=set()) == "다음 표를 보고 물음에 답하시오.\n오른쪽 그림에서 [그림]"
+    base = {"shapeList": [], "tables": 1, "embeddedNumber": None}
+    assert route_of(base, [{"grouped": False}]) == "table"
+    assert route_of(base, [{"grouped": False}], tables_drawn=True) == "figure"
 
 
 def fig(width_mm: float, height_mm: float, **over) -> dict:
@@ -335,3 +431,8 @@ def test_the_unit_of_a_clip_follows_the_resolution_of_the_picture():
     # 해상도를 모르고 가로 세로 비가 그림과 같다 — 전체를 다른 단위로 적은 것
     assert clip_box((272, 111), [0, 0, 6528, 2664], None) is None
     assert clip_box((400, 200), None, (96, 96)) is None
+    # 🔴 BMP 에 90dpi 라고 적혀 있어도 한글은 1픽셀 = 75 로 적었다(224×169 → [0, 0, 16800, 12660]) — 해상도 단위로 읽으면
+    # 오른쪽 14픽셀 · 아래 11픽셀을 잘라 축 이름 «x» 가 반쯤 잘렸다(2026-10-08 그림 지면 검토 시범이 짚었다).
+    # 왼 · 위가 0 이고 가로 세로 비가 그림과 같으면 어느 단위든 «전체»다
+    assert clip_box((224, 169), [0, 0, 16800, 12660], (90, 90)) is None
+    assert clip_box((222, 227), [0, 0, 16680, 17040], (90, 90)) is None

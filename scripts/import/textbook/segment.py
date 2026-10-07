@@ -65,6 +65,8 @@ class Fig:
     line: int
     #: 줄 안의 자리(글자 수) — 홀로 선 그림은 -1
     offset: int
+    #: 자료 표의 칸 안에 든 그림이면 그 표의 번호 — 표를 그린 그림에 들어 있으므로 따로 자리를 두지 않는다
+    in_table: int = 0
 
 
 @dataclasses.dataclass
@@ -118,9 +120,9 @@ class Problem:
                     offset = max(0, picture.offset - (len(para.text) - len(line_text)))
                 else:
                     offset = len(line_text)
-                self.figs.append(Fig(picture, last, offset))
+                self.figs.append(Fig(picture, last, offset, para.table_id))
             else:
-                self.figs.append(Fig(picture, last, -1))
+                self.figs.append(Fig(picture, last, -1, para.table_id))
 
     def take_objects(self, para: Para) -> None:
         """번호가 있는 첫 문단의 그림 · 도형을 센다 — 전에는 이 문단의 것을 버려, 첫 문단에 그림이 든 문항이
@@ -141,13 +143,29 @@ class Problem:
 
     @property
     def marked_text(self) -> str:
-        """본문에 그림의 자리를 `[[FIG:k]]`(k 는 `figs` 의 번호)로 적은 글 — 그림 문항을 싣는 쪽이 쓴다."""
+        """본문에 그림의 자리를 `[[FIG:k]]`(k 는 `figs` 의 번호)로 적은 글 — 그림 문항을 싣는 쪽이 쓴다.
+
+        자료 표는 칸의 글 대신 표 하나의 자리 `[[TBL:번호]]` 로 적는다(표는 그림으로 그려 붙인다 — `render_objects.py`).
+        표 칸 안의 그림은 그 표의 그림에 들어 있으므로 자리를 따로 두지 않는다."""
         by_line: dict[int, list[tuple[int, int]]] = {}
+        drawn = set(self.line_tables) - {0}
         for k, fig in enumerate(self.figs):
+            # 이 문항에 칸 글이 든 표의 그림만 — 칸 글이 하나도 안 든 표(잡음만 든 머리 상자)는 표 자리가 안 선다
+            if fig.in_table in drawn:
+                continue
             by_line.setdefault(fig.line, []).append((fig.offset, k))
         out = [f"[[FIG:{k}]]" for _offset, k in by_line.get(-1, [])]
+        previous_table = 0
         for index, line in enumerate(self.lines):
             items = by_line.get(index, [])
+            table = self.line_tables[index] if index < len(self.line_tables) else 0
+            if table:
+                if table != previous_table:
+                    out.append(f"[[TBL:{table}]]")
+                previous_table = table
+                out.extend(f"[[FIG:{k}]]" for offset, k in items if offset < 0)
+                continue
+            previous_table = 0
             text = line
             for offset, k in sorted((item for item in items if item[0] >= 0), reverse=True):
                 text = f"{text[:offset]} [[FIG:{k}]] {text[offset:]}"

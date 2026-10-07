@@ -250,6 +250,8 @@ interface FigureMeta {
     mm: number;
     sha: string;
     px?: [number, number];
+    /** 꺼낸 그림 파일(지면에 나가는 바이트)의 지문 — 잘라 보이기 · 회색을 바꾸면 달라진다. 지면 검토의 지문은 이것으로 묶는다 */
+    imgSha?: string;
   }>;
 }
 /** 실을 그림 하나 */
@@ -719,7 +721,8 @@ function buildRowsOf(
         width: figure.px![0],
         height: figure.px![1],
         mm: figure.mm,
-        sha: figure.sha,
+        // 지면 검토는 «지면에 나가는 그림»을 봤다 — 꺼낸 파일이 바뀌면(자르기를 고쳤다) 그 판정은 낡는다
+        sha: figure.imgSha ?? figure.sha,
       }));
       const index = choiceIndexOf(content);
       // 🔴 짝을 모르면 아무 그림이나 ① 에 붙이지 않는다 — 빈 배열(«모른다»)로 싣고 잠근다

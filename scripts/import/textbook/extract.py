@@ -300,6 +300,8 @@ def main() -> None:
                             "offset": fig.offset,
                             "grouped": fig.picture.grouped,
                             "group": fig.picture.group,
+                            #: 자료 표의 칸 안에 든 그림이면 그 표의 번호(표를 그린 그림에 들어 있다)
+                            "inTable": fig.in_table,
                             "behind": fig.picture.behind,
                             "clip": fig.picture.clip,
                             "rot": fig.picture.rotation,
@@ -307,8 +309,10 @@ def main() -> None:
                         }
                         for fig in problem.figs
                     ],
-                    #: 본문에 그림의 자리를 `[[FIG:k]]` 로 적은 글(k 는 `figs` 의 번호)
-                    "contentFig": problem.marked_text if problem.figs else None,
+                    #: 본문에 그림의 자리를 `[[FIG:k]]` 로 · 자료 표의 자리를 `[[TBL:번호]]` 로 적은 글(k 는 `figs` 의 번호)
+                    "contentFig": problem.marked_text if problem.figs or problem.tables else None,
+                    #: 이 문항에 든 자료 표의 번호들(`hwpx_flow.data_tables` 의 번호)
+                    "tableIds": sorted({table for table in problem.line_tables if table}),
                 }, ensure_ascii=False) + "\n")
             summary.update(
                 problems=len(doc.problems),

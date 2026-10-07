@@ -73,6 +73,9 @@ EXPORT_MAX_WIDTH = 1000
 DEFAULT_DPI = 96
 
 _TOKEN = re.compile(r"\[\[FIG:(\d+)\]\]")
+#: 자료 표의 자리(`segment.Problem.marked_text`) — 표는 한글이 그린 그림으로 붙인다(`render_objects.py`)
+_TABLE_TOKEN = re.compile(r"\[\[TBL:(\d+)\]\]")
+_ANY_TOKEN = re.compile(r"\[\[(FIG|TBL):(\d+)\]\]")
 MARKER = "[그림]"
 
 
@@ -114,8 +117,10 @@ def clip_box(size: tuple[int, int], clip, dpi) -> tuple[int, int, int, int] | No
     # 그림 전체와 두 픽셀 안쪽 차이면 자르지 않는다(값의 반올림)
     if box[0] <= 2 and box[1] <= 2 and width - box[2] <= 2 and height - box[3] <= 2:
         return None
-    # 해상도를 모르는 그림 — 왼 · 위가 0 이고 가로 세로 비가 그림과 같으면 «전체를 다른 단위로 적은 것»이다
-    if dpi_x < 30 and clip[0] == 0 and clip[1] == 0:
+    # 왼 · 위가 0 이고 가로 세로 비가 그림과 같으면 «전체를 다른 단위로 적은 것»이다 — 해상도를 몰라도, 알아도.
+    # 🔴 BMP 에 90dpi 가 적혀 있어도 한글은 1픽셀 = 75 로 적었다(224×169 → [0, 0, 16800, 12660]). 해상도 단위로 읽으면
+    # 오른쪽 · 아래를 잘라 축 이름이 반쯤 잘렸다(2026-10-08 그림 지면 검토 시범이 짚었다)
+    if clip[0] == 0 and clip[1] == 0:
         ratio_x, ratio_y = clip[2] / width, clip[3] / height
         if abs(ratio_x - ratio_y) <= 0.02 * max(ratio_x, ratio_y):
             return None
@@ -183,11 +188,23 @@ def fate_of(fig: dict, files: int, flat: bool) -> str:
     return "keep"
 
 
-def place_markers(marked: str, keep: set[int]) -> str:
-    """`[[FIG:k]]` → 남기는 그림은 `[그림]`, 버리는 그림은 걷는다. 빈 줄 · 겹친 빈칸을 다듬는다."""
+def ordered_figures(marked: str, keep: set[int], tables: set[int]) -> list[tuple[str, int]]:
+    """본문의 자리 차례대로의 그림 — `("fig", k)` · `("tbl", 표 번호)`. 버린 그림 · 그리지 못한 표는 뺀다.
+    그림 파일의 차례는 **이것**이다(본문의 `[그림]` 차례와 같아야 한다 — `place_markers` 와 같은 표지를 읽는다)."""
+    out: list[tuple[str, int]] = []
+    for match in _ANY_TOKEN.finditer(marked):
+        kind, number = match.group(1), int(match.group(2))
+        if (kind == "FIG" and number in keep) or (kind == "TBL" and number in tables):
+            out.append(("fig" if kind == "FIG" else "tbl", number))
+    return out
+
+
+def place_markers(marked: str, keep: set[int], tables: set[int] | frozenset[int] = frozenset()) -> str:
+    """`[[FIG:k]]` · `[[TBL:번호]]` → 남기는 그림 · 그린 표는 `[그림]`, 나머지는 걷는다. 빈 줄 · 겹친 빈칸을 다듬는다."""
     lines = []
     for line in marked.split("\n"):
         line = _TOKEN.sub(lambda m: MARKER if int(m.group(1)) in keep else "", line)
+        line = _TABLE_TOKEN.sub(lambda m: MARKER if int(m.group(1)) in tables else "", line)
         line = re.sub(r" {2,}", " ", line).strip()
         if line:
             lines.append(line)
@@ -214,19 +231,66 @@ def decoration_groups(figs: list[dict]) -> set[int]:
     return with_pictures - {fig["group"] for fig in figs if fig.get("group") and fig["fate"] == "keep"}
 
 
-def route_of(row: dict, kept: list[dict], decor_groups: set[int] | frozenset[int] = frozenset(), points: bool = True) -> str:
+#: 굵기가 이보다 얇은 선은 구분선이다(HWPUNIT ≈ 1mm)
+RULE_MAX = 300
+#: 그림이 안 든 묶음이 이보다 얇으면 딱지 · 머리 띠다(HWPUNIT ≈ 12mm)
+BADGE_MAX = 3400
+
+
+def is_decoration_shape(shape: list, decor_groups, picture_groups) -> bool:
+    """도형 하나가 꾸밈인가 — 구분선 · 장식뿐인 묶음 · 그림이 안 든 얇은 묶음(딱지 · 머리 띠)."""
+    kind, width, height = shape[0], shape[1], shape[2]
+    group = shape[3] if len(shape) > 3 else 0
+    if kind == "line" and min(width, height) < RULE_MAX:
+        return True
+    if kind == "container" and group:
+        if group in decor_groups:
+            return True
+        if group not in picture_groups and min(width, height) < BADGE_MAX:
+            return True
+    return False
+
+
+def fold_groups(kept: list[dict], drawn: set[int]) -> tuple[list[dict], dict[int, int]]:
+    """한글이 묶음째 그린 묶음(`drawn`)의 그림들을 묶음 그림 하나로 접는다 — 첫 그림의 자리에 묶음 그림이 서고 나머지는 걷는다.
+    돌려주는 것: 접은 목록 · {그 자리의 k: 묶음 번호}."""
+    folded: list[dict] = []
+    stand_in: dict[int, int] = {}
+    seen: set[int] = set()
+    for fig in kept:
+        group = fig.get("group") or 0
+        if fig.get("grouped") and group in drawn:
+            if group in seen:
+                continue
+            seen.add(group)
+            stand_in[fig["k"]] = group
+            folded.append({**fig, "grouped": False})
+        else:
+            folded.append(fig)
+    return folded, stand_in
+
+
+def route_of(
+    row: dict,
+    kept: list[dict],
+    decor_groups: set[int] | frozenset[int] = frozenset(),
+    points: bool = True,
+    tables_drawn: bool = False,
+) -> str:
     """문항의 갈래. `points` — 본문이 그림 · 표를 가리킨다(`prepare.points_to_figure`).
+    `tables_drawn` — 이 문항의 자료 표를 전부 그림으로 그렸다(`render_objects.py`). 그러면 표는 그림이다(`kept` 에 든다).
 
     남긴 그림이 없고 본문이 아무것도 가리키지 않으면 도형은 꾸밈이다(보기를 두른 상자 · 구분선 · 머리 상자 —
     2026-10-08 표본 215문항이 거의 다 그랬다). 글 문항으로 보내 검토자가 «글만으로 풀리나»를 가른다."""
+    picture_groups = {fig.get("group") for fig in kept if fig.get("group")} | set(decor_groups)
     big_shapes = [
         shape
         for shape in row.get("shapeList") or []
-        if max(shape[1], shape[2]) > SMALL_SHAPE and not (shape[0] == "container" and len(shape) > 3 and shape[3] in decor_groups)
+        if max(shape[1], shape[2]) > SMALL_SHAPE and not is_decoration_shape(shape, decor_groups, picture_groups)
     ]
     if row.get("embeddedNumber") is not None:
         return "joined"
-    if row.get("tables"):
+    if row.get("tables") and not tables_drawn:
         return "table"
     if not kept and not points:
         return "text"
@@ -243,6 +307,27 @@ def main() -> None:
     rows = [json.loads(line) for line in (root / option("--extract", "extract3") / "problems.jsonl").open(encoding="utf-8")]
     ledger_path = root / "load" / "ledger.json"
     loaded = {row["externalId"] for row in json.loads(ledger_path.read_text(encoding="utf-8"))["problems"]} if ledger_path.exists() else set()
+    # `--objects <폴더>` — 한글이 그린 자료 표(`render_objects.py`). 문항의 표를 전부 그렸으면 그 표는 그림이다
+    objects_dir = root / option("--objects", "") if "--objects" in sys.argv else None
+    drawn_tables: dict[tuple[str, int], dict] = {}
+    decor_tables: set[tuple[str, int]] = set()
+    if objects_dir is not None:
+        files_of_table: dict[str, set[str]] = collections.defaultdict(set)
+        for entry in map(json.loads, (objects_dir / "index.jsonl").open(encoding="utf-8")):
+            if entry.get("file"):
+                entry["img"] = hashlib.sha1((objects_dir / "img" / entry["file"]).read_bytes()).hexdigest()[:16]
+                drawn_tables[(entry["key"], entry["table"])] = entry
+                files_of_table[entry["img"]].add(entry["key"])
+        # 같은 표가 넷 넘는 파일에 똑같이 그려졌다 — «반 · 번 · 이름» 칸 · 성취도 안내표 같은 꾸밈이다(그림의 `shared` 와 같은 규칙)
+        decor_tables = {place for place, entry in drawn_tables.items() if len(files_of_table[entry["img"]]) >= SHARED_FILES}
+    # `--groups <폴더>` — 한글이 묶음째 그린 «라벨 · 선과 묶인 그림»(`render_objects.py --kind groups`)
+    groups_dir = root / option("--groups", "") if "--groups" in sys.argv else None
+    drawn_groups: dict[tuple[str, int], dict] = {}
+    if groups_dir is not None:
+        for entry in map(json.loads, (groups_dir / "index.jsonl").open(encoding="utf-8")):
+            if entry.get("file"):
+                drawn_groups[(entry["key"], entry["group"])] = entry
+    order_changed = 0
 
     # ── 그림 파일의 지문 — 같은 그림이 몇 파일에 있나(문항이든 아니든 전부 센다) ──
     by_key: dict[str, list[dict]] = collections.defaultdict(list)
@@ -302,11 +387,29 @@ def main() -> None:
                 digest = digest_of.get((row["key"], fig["bin"]))
                 fate = fate_of(fig, len(files_of.get(digest, ())), flat_of.get(digest, True)) if digest else "missing"
                 figs.append({**fig, "k": index, "sha": digest, "fate": fate})
+            table_ids = row.get("tableIds") or []
+            real_tables = [table for table in table_ids if (row["key"], table) not in decor_tables]
+            fates["decor-table"] += len(table_ids) - len(real_tables)
+            tables_drawn = bool(table_ids) and all((row["key"], table) in drawn_tables for table in real_tables)
+            for fig in figs:
+                # 자료 표의 칸 안 그림 — 표를 그린 그림에 들어 있다
+                if fig.get("inTable") and fig["inTable"] in table_ids:
+                    fig["fate"] = "in-table"
             rescue_strips(figs, points_to_figure(row["content"]))
             for fig in figs:
                 fates["rescued" if fig.get("rescued") else fig["fate"]] += 1
             kept = [fig for fig in figs if fig["fate"] == "keep"]
-            route = route_of(row, kept, decoration_groups(figs), points_to_figure(row["content"]))
+            # 묶음째 그린 묶음 — 그 묶음의 그림들을 묶음 그림 하나로 접는다(라벨이 얹힌 채로)
+            group_ids = {fig["group"] for fig in kept if fig.get("grouped") and fig.get("group")}
+            kept, stand_in = fold_groups(kept, {g for g in group_ids if (row["key"], g) in drawn_groups})
+            tables = set(real_tables) if tables_drawn else set()
+            route = route_of(
+                row,
+                kept + [{"grouped": False} for _ in tables],
+                decoration_groups(figs),
+                points_to_figure(row["content"]),
+                tables_drawn=tables_drawn,
+            )
             if rid in loaded:
                 # 글만으로 된 문항으로 이미 실렸다 — 그런데 그림 · 도형이 딸려 있었다(번호가 있는 첫 문단의 것을 전에는 버렸다).
                 # 장식뿐이면 그대로 두면 되고, 진짜 그림이 있으면 그 문항은 그림 없이 실린 것이다. 따로 적어 둔다.
@@ -317,33 +420,58 @@ def main() -> None:
                 # 진짜 그림이 있던 문항은 그림 문항의 길로 다시 보낸다 — 실린 줄을 그림과 함께 제자리에서 고친다
                 if route != "figure":
                     continue
-            content = place_markers(row["contentFig"], {fig["k"] for fig in kept}) if row.get("contentFig") else row["content"]
+            keep_k = {fig["k"] for fig in kept}
+            marked = row.get("contentFig")
+            content = place_markers(marked, keep_k, tables) if marked else row["content"]
             if route in ("figure", "text") and len(content) > CONTENT_MAX:
                 route = "long"
             if route == "figure" and re.search(r"풀이\s*참조|해설\s*참조", row["answer"]):
                 route = "open"
             routes[route] += 1
+            # 그림 파일의 차례 = 본문의 자리 차례(그림 · 표가 섞여도)
+            order = ordered_figures(marked, keep_k, tables) if marked else [("fig", fig["k"]) for fig in kept]
+            if [number for kind, number in order if kind == "fig"] != [fig["k"] for fig in kept]:
+                order_changed += 1
+            # 묶음 그림이 선 자리 — («grp», 묶음 번호)
+            order = [("grp", stand_in[number]) if kind == "fig" and number in stand_in else (kind, number) for kind, number in order]
+            by_k = {fig["k"]: fig for fig in kept}
             files = []
-            for order, fig in enumerate(kept, 1):
-                files.append({"n": order, "k": fig["k"], "file": f"{row['key']}/{rid}-{order}.png", "mm": to_mm(fig["w"]), "sha": fig["sha"], "grouped": fig["grouped"]})
+            sources = []
+            for n, (kind, number) in enumerate(order, 1):
+                if kind == "fig":
+                    fig = by_k[number]
+                    files.append({"n": n, "k": number, "file": f"{row['key']}/{rid}-{n}.png", "mm": to_mm(fig["w"]), "sha": fig["sha"], "grouped": fig["grouped"]})
+                else:
+                    drawn = (drawn_tables if kind == "tbl" else drawn_groups)[(row["key"], number)]
+                    files.append({"n": n, "table" if kind == "tbl" else "group": number, "file": f"{row['key']}/{rid}-{n}.png", "mm": drawn["mm"], "sha": drawn["sha"], "grouped": False})
+                sources.append((kind, number))
             if export and route == "figure":
                 with zipfile.ZipFile(root / "hwpx" / f"{row['key']}.hwpx") as z:
                     names = {pathlib.PurePosixPath(n).stem: n for n in z.namelist() if n.startswith("BinData/")}
-                    for item, fig in zip(files, kept):
-                        image = render(z.read(names[fig["bin"]]), fig)
-                        data, extension = encode(image)
+                    for item, (kind, number) in zip(files, sources):
+                        if kind == "fig":
+                            image = render(z.read(names[by_k[number]["bin"]]), by_k[number])
+                            data, extension = encode(image)
+                            size = [image.width, image.height]
+                        else:
+                            drawn = (drawn_tables if kind == "tbl" else drawn_groups)[(row["key"], number)]
+                            data = ((objects_dir if kind == "tbl" else groups_dir) / "img" / drawn["file"]).read_bytes()
+                            extension = pathlib.PurePosixPath(drawn["file"]).suffix
+                            size = drawn["px"]
                         item["file"] = item["file"][: -len(".png")] + extension
                         target = out / "img" / item["file"]
                         target.parent.mkdir(parents=True, exist_ok=True)
                         target.write_bytes(data)
-                        item["px"] = [image.width, image.height]
+                        item["px"] = size
+                        # 지면에 나가는 바이트의 지문 — 자르기 · 회색을 바꾸면 달라진다(지면 검토의 판정을 이것에 묶는다)
+                        item["imgSha"] = hashlib.sha1(data).hexdigest()[:16]
                         exported += 1
                         exported_bytes += len(data)
             meta_out.write(json.dumps({"id": rid, "key": row["key"], "route": route, "figures": files, "dropped": [{"k": f["k"], "fate": f["fate"]} for f in figs if f["fate"] != "keep"]}, ensure_ascii=False) + "\n")
             # 그림이 장식뿐인 문항(text 갈래)은 글 문항이다 — `prepare.py --decor <이 meta.jsonl>` 이 추출에서 바로 고른다
             if route == "figure":
-                figure_out.write(json.dumps({**row, "content": content, "figureCount": len(kept)}, ensure_ascii=False) + "\n")
-    print(json.dumps({"갈래": dict(routes.most_common()), "그림의 처분": dict(fates.most_common()), "건너뜀": dict(skipped), "꺼낸 그림": exported, "꺼낸 그림의 용량(MB)": round(exported_bytes / 1e6, 1)}, ensure_ascii=False))
+                figure_out.write(json.dumps({**row, "content": content, "figureCount": len(files)}, ensure_ascii=False) + "\n")
+    print(json.dumps({"갈래": dict(routes.most_common()), "그림의 처분": dict(fates.most_common()), "건너뜀": dict(skipped), "꺼낸 그림": exported, "꺼낸 그림의 용량(MB)": round(exported_bytes / 1e6, 1), "그림 차례가 남긴 차례와 다른 문항": order_changed}, ensure_ascii=False))
 
 
 if __name__ == "__main__":
