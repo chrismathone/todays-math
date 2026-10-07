@@ -1,0 +1,128 @@
+{
+  "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+  "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+  "answer": "$90\\,\\mathrm{m}$",
+  "solution": "삼각형 ABC의 내각의 합은 $180^\\circ$이므로 $\\angle ACB=180^\\circ-45^\\circ-75^\\circ=60^\\circ$이다. B에서 변 AC에 수선을 내리고 그 발을 H라 하자. A와 C의 각이 모두 예각이므로 H는 변 AC 위에 있다.\n\n직각삼각형 BCH에서 $\\sin 60^\\circ=\\dfrac{\\overline{BH}}{\\overline{BC}}$이므로 $\\overline{BH}=30\\sqrt{6}\\times\\dfrac{\\sqrt{3}}{2}=15\\sqrt{18}=45\\sqrt{2}\\,\\mathrm{m}$이다. 직각삼각형 ABH에서는 $\\angle BAH=45^\\circ$이므로 $\\sin 45^\\circ=\\dfrac{\\overline{BH}}{\\overline{AB}}$이다. 따라서 $\\overline{AB}=\\dfrac{45\\sqrt{2}}{\\sqrt{2}/2}=90\\,\\mathrm{m}$이다.",
+  "evidence": {
+    "mode": "fresh-blind-student-only",
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+    "grade": "중3",
+    "curriculum": "2015",
+    "scoreObserved": 7,
+    "answerValue": {
+      "exact": "90",
+      "unit": "m"
+    },
+    "studentMethods": [
+      "삼각형의 내각의 합",
+      "변에 내린 수선으로 두 직각삼각형 만들기",
+      "60°·45° 직각삼각형의 사인",
+      "제곱근의 곱셈과 나눗셈"
+    ],
+    "conditionChecks": [
+      "새 학생 입력의 BC=30√6m, A=45°, B=75°를 사용했다. C=60°로 세 각은 모두 0°보다 크고 180°보다 작다.",
+      "A와 C가 모두 예각이므로 B에서 AC에 내린 수선의 발 H는 AC 내부에 있다. 75°의 삼각비를 계산할 필요가 없다.",
+      "BH=45√2m, CH=15√6m, AH=45√2m, AB=90m, AC=45√2+15√6m로 모든 길이가 양수이다.",
+      "직각삼각형 BCH의 B쪽 각은 30°이고 ABH의 B쪽 각은 45°이므로 둘을 합친 ABC의 B쪽 각은 기록과 같은 75°이다.",
+      "코드로 BCH·ABH의 피타고라스 관계와 ABC의 세 삼각부등식을 확인했다. 계산 오차를 제외한 잔차는 0이다.",
+      "BC의 길이와 양 끝 각 B=75°, C=60°가 정해져 삼각형은 합동 조건으로 하나로 정해진다. 두 직각삼각형에서 BH와 AB도 각각 하나의 양수로 결정된다."
+    ],
+    "choiceReview": [],
+    "choiceReviewNote": "서술형이며 학생 입력의 choices는 빈 배열이다. 비교할 보기는 없다.",
+    "uniqueAnswer": true,
+    "figureReview": {
+      "viewed": true,
+      "authoritativeStudentLayout": "student-preview-r2/q19.png",
+      "sourceOrder": "왼쪽 장면, 오른쪽 관계도",
+      "separateAssetWidthMm": 70,
+      "observations": [
+        "새 A4 배치 미리보기에서 측량 기록의 30√6m·45°·75°와 AB를 구하라는 문장이 선명하며 두 그림이 잘리지 않는다.",
+        "왼쪽 장면에는 공원·표지·제어함이 보이고 오른쪽에는 별도의 삼각형 관계도가 있다. 장면 픽셀을 길이·각의 근거로 사용하지 않았다.",
+        "70mm 관계도에서 A는 왼쪽 밑점, B는 오른쪽 밑점, C는 위쪽 점으로 구분된다. A의 45°와 B의 75° 표기는 각각 해당 각호 안쪽에 읽히고 선·점 이름과 겹치지 않는다.",
+        "그림은 C가 예각인 삼각형과 일치한다. 보조점 H는 주어진 그림의 점이 아니라 학생 풀이에서 새로 정한 수선의 발이다.",
+        "이 문항의 두 학생용 SVG 바이트 해시가 제공된 값과 같다. 독립 풀이에는 내각의 합과 60°·45°의 직각삼각비만 사용했다."
+      ]
+    },
+    "scope": "독립 풀이와 학생용 시각 확인만 완료. 저자 답·해설·비공개 스펙을 읽지 않았으며 최종 교육과정·분류·권리 승인을 뜻하지 않는다.",
+    "bindings": {
+      "studentInputPath": "bumil-review-r5/blind/student-problems.json",
+      "studentInputSha256": "b0a75b81b9618e1450fc90dad49f17ad4a043dd45c6ed557dfc28407b03d3212",
+      "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "studentFigures": [
+        {
+          "questionNumber": 19,
+          "role": "stem",
+          "studentSvgPath": "figures/q19-1.svg",
+          "studentSvgSha256": "0c1e6d3c4ab1c275f1f87b238b504830a92b5ca24e15af527b5a46bb43ffa0ae",
+          "intendedWidthMm": 70,
+          "previewPath": "previews/q19-1-70mm.png",
+          "previewSha256": "3375db4524124b634b45178755666a417262052dc73e88a36b4741b73e34effb",
+          "previewPixels": [
+            265,
+            177
+          ],
+          "densityDpi": 96,
+          "renderedWidthMm": 70.11458333333333,
+          "labelText": [],
+          "embeddedImageCount": 1,
+          "studentViewBox": [
+            0,
+            0,
+            1536,
+            1024
+          ]
+        },
+        {
+          "questionNumber": 19,
+          "role": "stem",
+          "studentSvgPath": "figures/q19-2.svg",
+          "studentSvgSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+          "intendedWidthMm": 70,
+          "previewPath": "previews/q19-2-70mm.png",
+          "previewSha256": "30897577bba5b73d0191c3a8683bf3f961e7335f7800ee7fe6214df7efc50d45",
+          "previewPixels": [
+            265,
+            217
+          ],
+          "densityDpi": 96,
+          "renderedWidthMm": 70.11458333333333,
+          "labelText": [
+            "45^\\circ",
+            "75^\\circ",
+            "A",
+            "B",
+            "C"
+          ],
+          "embeddedImageCount": 0,
+          "studentViewBox": [
+            0,
+            0,
+            249.9,
+            204.602
+          ]
+        }
+      ],
+      "authoritativePrintPreview": {
+        "questionNumber": 19,
+        "path": "student-preview-r2/q19.png",
+        "sha256": "af9e456934a4410755c423552041189c10eef1fda3fef31c9faf298725eb2b6c",
+        "layout": "separate70mm-side-by-side-source-order-left-to-right",
+        "viewed": true
+      },
+      "native70mmProof": {
+        "questionNumber": 19,
+        "nativeProofPath": "previews/q19-70mm-proof.svg",
+        "nativeProofSha256": "0274b6f59a30e5b53338cd66839b93c9b407052c44fc948c0d0a2e7e4df20b8e",
+        "previewPath": "previews/q19-70mm-proof.png",
+        "previewSha256": "739b0391ced7515e611a7514aac7e17b99a36f75be753d4e0716dbaec93de2ed",
+        "pageWidthMm": 210,
+        "assetWidthMm": 70,
+        "separateAssets": 2
+      },
+      "calculationPath": "calculations.json",
+      "calculationSha256": "3e08649559dcf283164ce4cd87e54a323dfbf3d282a19b27c66e557538dc1816"
+    }
+  },
+  "status": "solved"
+}

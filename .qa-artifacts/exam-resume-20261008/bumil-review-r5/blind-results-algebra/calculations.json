@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "mode": "fresh-blind-student-only",
+  "studentInputSha256": "b0a75b81b9618e1450fc90dad49f17ad4a043dd45c6ed557dfc28407b03d3212",
+  "bindings": [
+    {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934"
+    },
+    {
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75"
+    }
+  ],
+  "q10": {
+    "inputs": {
+      "CE": 12.8,
+      "AG": 1.6,
+      "angleBAC": 58,
+      "sinTable": 0.848,
+      "cosTable": 0.5299,
+      "tanTable": 1.6003
+    },
+    "BE": 1.6,
+    "CB": 11.200000000000001,
+    "GE": 6.998687746047617,
+    "roundedGE": 7,
+    "roundedDecimalPlaces": 1,
+    "formula": "GE=(CE-AG)/tanTable",
+    "positive": true,
+    "acuteAngle": true,
+    "optionChecks": [
+      {
+        "mark": "①",
+        "text": "$6.5\\,\\mathrm{m}$",
+        "valueM": 6.5,
+        "matchesRoundedAnswer": false,
+        "heightImpliedByTangent": 10.401950000000001
+      },
+      {
+        "mark": "②",
+        "text": "$6.8\\,\\mathrm{m}$",
+        "valueM": 6.8,
+        "matchesRoundedAnswer": false,
+        "heightImpliedByTangent": 10.88204
+      },
+      {
+        "mark": "③",
+        "text": "$7.0\\,\\mathrm{m}$",
+        "valueM": 7,
+        "matchesRoundedAnswer": true,
+        "heightImpliedByTangent": 11.2021
+      },
+      {
+        "mark": "④",
+        "text": "$7.2\\,\\mathrm{m}$",
+        "valueM": 7.2,
+        "matchesRoundedAnswer": false,
+        "heightImpliedByTangent": 11.522160000000001
+      },
+      {
+        "mark": "⑤",
+        "text": "$11.2\\,\\mathrm{m}$",
+        "valueM": 11.2,
+        "matchesRoundedAnswer": false,
+        "heightImpliedByTangent": 17.92336
+      }
+    ],
+    "uniqueMatchingChoice": "③",
+    "tableSanity": {
+      "sin": "0.8480",
+      "cos": "0.5299",
+      "tan": "1.6003",
+      "roundingDigits": 4,
+      "studentComputationUsesSuppliedTan": true
+    }
+  },
+  "q19": {
+    "inputs": {
+      "BCExpression": "30*sqrt(6)",
+      "angleA": 45,
+      "angleB": 75
+    },
+    "angleC": 60,
+    "studentMethods": [
+      "triangle angle sum",
+      "perpendicular from B onto AC",
+      "right-triangle sine at 60 degrees",
+      "right-triangle sine at 45 degrees"
+    ],
+    "exact": {
+      "BH": "45*sqrt(2)",
+      "CH": "15*sqrt(6)",
+      "AH": "45*sqrt(2)",
+      "AB": "90",
+      "AC": "45*sqrt(2)+15*sqrt(6)"
+    },
+    "BC": 73.48469228349533,
+    "BH": 63.639610306789265,
+    "CH": 36.74234614174767,
+    "AH": 63.639610306789265,
+    "AB": 89.99999999999997,
+    "AC": 100.38195644853693,
+    "positiveLengths": true,
+    "footInsideAC": true,
+    "triangleInequalities": [
+      true,
+      true,
+      true
+    ],
+    "pythagoreanResidualBCH": -9.094947017729282e-13,
+    "pythagoreanResidualABH": 2.7284841053187847e-12,
+    "reconstructedB": 75,
+    "choicesPresent": 0
+  },
+  "assets": [
+    {
+      "questionNumber": 10,
+      "role": "stem",
+      "studentSvgPath": "figures/q10-1.svg",
+      "studentSvgSha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+      "intendedWidthMm": 70,
+      "previewPath": "previews/q10-1-70mm.png",
+      "previewSha256": "387b57b0a6f141e4e4b7930d475aac9f1fe4cd7269e241671eb16d9807f17912",
+      "previewPixels": [
+        265,
+        177
+      ],
+      "densityDpi": 96,
+      "renderedWidthMm": 70.11458333333333,
+      "labelText": [],
+      "embeddedImageCount": 1,
+      "studentViewBox": [
+        0,
+        0,
+        1536,
+        1024
+      ]
+    },
+    {
+      "questionNumber": 10,
+      "role": "stem",
+      "studentSvgPath": "figures/q10-2.svg",
+      "studentSvgSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+      "intendedWidthMm": 70,
+      "previewPath": "previews/q10-2-70mm.png",
+      "previewSha256": "7371b4e115e46f8af814f5b0956cd6d1fec2475002c35e48ffc87bc0baced921",
+      "previewPixels": [
+        265,
+        389
+      ],
+      "densityDpi": 96,
+      "renderedWidthMm": 70.11458333333333,
+      "labelText": [
+        "58^\\circ",
+        "A",
+        "B",
+        "C",
+        "E",
+        "G"
+      ],
+      "embeddedImageCount": 0,
+      "studentViewBox": [
+        0,
+        0,
+        206.304,
+        302.53
+      ]
+    },
+    {
+      "questionNumber": 19,
+      "role": "stem",
+      "studentSvgPath": "figures/q19-1.svg",
+      "studentSvgSha256": "0c1e6d3c4ab1c275f1f87b238b504830a92b5ca24e15af527b5a46bb43ffa0ae",
+      "intendedWidthMm": 70,
+      "previewPath": "previews/q19-1-70mm.png",
+      "previewSha256": "3375db4524124b634b45178755666a417262052dc73e88a36b4741b73e34effb",
+      "previewPixels": [
+        265,
+        177
+      ],
+      "densityDpi": 96,
+      "renderedWidthMm": 70.11458333333333,
+      "labelText": [],
+      "embeddedImageCount": 1,
+      "studentViewBox": [
+        0,
+        0,
+        1536,
+        1024
+      ]
+    },
+    {
+      "questionNumber": 19,
+      "role": "stem",
+      "studentSvgPath": "figures/q19-2.svg",
+      "studentSvgSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+      "intendedWidthMm": 70,
+      "previewPath": "previews/q19-2-70mm.png",
+      "previewSha256": "30897577bba5b73d0191c3a8683bf3f961e7335f7800ee7fe6214df7efc50d45",
+      "previewPixels": [
+        265,
+        217
+      ],
+      "densityDpi": 96,
+      "renderedWidthMm": 70.11458333333333,
+      "labelText": [
+        "45^\\circ",
+        "75^\\circ",
+        "A",
+        "B",
+        "C"
+      ],
+      "embeddedImageCount": 0,
+      "studentViewBox": [
+        0,
+        0,
+        249.9,
+        204.602
+      ]
+    }
+  ],
+  "native70mmProofs": [
+    {
+      "questionNumber": 10,
+      "nativeProofPath": "previews/q10-70mm-proof.svg",
+      "nativeProofSha256": "50b093d762e4dc832401f4fcdb56e8663d7c74697740085f30291e8c01e28fc6",
+      "previewPath": "previews/q10-70mm-proof.png",
+      "previewSha256": "edd18d746466ee1f533644a3ee235cb7a1d4cca3e9a6687a8d46e73825203f1e",
+      "pageWidthMm": 210,
+      "assetWidthMm": 70,
+      "separateAssets": 2
+    },
+    {
+      "questionNumber": 19,
+      "nativeProofPath": "previews/q19-70mm-proof.svg",
+      "nativeProofSha256": "0274b6f59a30e5b53338cd66839b93c9b407052c44fc948c0d0a2e7e4df20b8e",
+      "previewPath": "previews/q19-70mm-proof.png",
+      "previewSha256": "739b0391ced7515e611a7514aac7e17b99a36f75be753d4e0716dbaec93de2ed",
+      "pageWidthMm": 210,
+      "assetWidthMm": 70,
+      "separateAssets": 2
+    }
+  ],
+  "historicalStudentPreviewBindings": [
+    {
+      "questionNumber": 10,
+      "path": "student-preview/q10.png",
+      "sha256": "2f49412a5e947f129984676fd5a820fb13000180b267b2eacdccb234f3a058af"
+    },
+    {
+      "questionNumber": 19,
+      "path": "student-preview/q19.png",
+      "sha256": "3f123c279c2fdf4a1628f4cddf0a6b8054d38f74fd583aa17968d344c5aaa6f8"
+    }
+  ],
+  "authoritativeStudentPreviewBindings": [
+    {
+      "questionNumber": 10,
+      "path": "student-preview-r2/q10.png",
+      "sha256": "bdee4529adf437b63d55603efd632aa2e9c414af8e20397bb667416a0ceb5a14",
+      "layout": "separate70mm-side-by-side-source-order-left-to-right",
+      "viewed": true
+    },
+    {
+      "questionNumber": 19,
+      "path": "student-preview-r2/q19.png",
+      "sha256": "af9e456934a4410755c423552041189c10eef1fda3fef31c9faf298725eb2b6c",
+      "layout": "separate70mm-side-by-side-source-order-left-to-right",
+      "viewed": true
+    }
+  ]
+}
