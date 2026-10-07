@@ -361,14 +361,14 @@ export default function EnglishMakerView({
   );
 
   useEffect(() => {
-    if (!pendingSave && !busy) return;
+    if (!hasUnsavedDraft && !busy) return;
     const warn = (event: BeforeUnloadEvent) => {
       event.preventDefault();
       event.returnValue = "";
     };
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
-  }, [pendingSave, busy]);
+  }, [hasUnsavedDraft, busy]);
 
   // A bank handoff is a one-shot command. Read the latest draft only when that command is handled.
   const acceptBankSeed = useEffectEvent((bankSeed: EnglishBankMakerSeed) => {
@@ -695,10 +695,13 @@ export default function EnglishMakerView({
   }
 
   function cancelPendingSave() {
+    const discardsGeneratedResult = pendingSave?.meta.path === "api";
     setPendingSave(null);
     setSaveFailure(null);
     onNotice(
-      "저장 재시도를 취소했습니다. 작성 중인 입력은 그대로 남아 있습니다.",
+      discardsGeneratedResult
+        ? "제작 결과를 버렸습니다. 제작 조건은 그대로 남아 있습니다."
+        : "저장 재시도를 취소했습니다. 작성 중인 입력은 그대로 남아 있습니다.",
       "status",
     );
   }
@@ -1480,11 +1483,14 @@ export default function EnglishMakerView({
                   <h2>제작 조건</h2>
                   <p role="status" className={s.statusLine}>
                     {aiLink === "ready"
-                      ? "AI 연결됨"
+                      ? "AI 연결됨 · 제작 결과를 확인해 주세요."
                       : aiLink === "waiting"
-                        ? "연결 대기 — AI 연결이 설정되지 않았습니다."
+                        ? "연결 대기 — 설정을 확인한 뒤 다시 생성해 주세요."
                         : "AI 연결 확인 전 — 첫 생성 때 확인합니다."}
                   </p>
+                  {process.env.NODE_ENV === "development" ? (
+                    <p>개발 서버에서는 연결된 구독 CLI로 생성합니다.</p>
+                  ) : null}
                   <p>
                     주제와 조건에 맞는 원문·문항을 만들고 결과를 확인하세요.
                   </p>
@@ -1502,7 +1508,7 @@ export default function EnglishMakerView({
                   <button
                     type="button"
                     className={s.primaryButton}
-                    disabled={busy !== null || aiLink === "waiting"}
+                    disabled={busy !== null}
                     onClick={() => void generateWithApi()}
                   >
                     {busy === "generate" ? (
@@ -1515,6 +1521,21 @@ export default function EnglishMakerView({
                       "원문·문항 생성"
                     )}
                   </button>
+                  {busy === "generate" ? (
+                    <button
+                      type="button"
+                      className={s.quietButton}
+                      onClick={() => {
+                        generation.current?.abort();
+                        onNotice(
+                          "생성 요청을 취소했습니다. 기존 입력과 결과는 남아 있습니다.",
+                          "status",
+                        );
+                      }}
+                    >
+                      생성 취소
+                    </button>
+                  ) : null}
                 </div>
               </>
             ) : null}
@@ -1558,23 +1579,6 @@ export default function EnglishMakerView({
               <p>형식 검사와 교사의 내용 검토는 별개입니다.</p>
             </div>
           )}
-          {busy === "generate" ? (
-            <div className={s.resultActions}>
-              <button
-                type="button"
-                className={s.quietButton}
-                onClick={() => {
-                  generation.current?.abort();
-                  onNotice(
-                    "생성 요청을 취소했습니다. 기존 입력과 결과는 남아 있습니다.",
-                    "status",
-                  );
-                }}
-              >
-                생성 취소
-              </button>
-            </div>
-          ) : null}
           {/* 다른 시험을 보는 동안에는 숨긴다 — 그 시험으로 돌아오면 다시 보인다(묶음은 그대로) */}
           {pendingSave && pendingSave.examId === exam.id ? (
             <div className={s.card}>
@@ -1621,7 +1625,7 @@ export default function EnglishMakerView({
                   disabled={busy !== null}
                   onClick={() => {
                     if (
-                      saveFailure ||
+                      (saveFailure && pendingSave.meta.path !== "api") ||
                       window.confirm(
                         "저장하지 않은 제작 결과를 버리시겠습니까?",
                       )
@@ -1629,7 +1633,9 @@ export default function EnglishMakerView({
                       cancelPendingSave();
                   }}
                 >
-                  {saveFailure ? "저장 재시도 취소" : "결과 버리기"}
+                  {saveFailure && pendingSave.meta.path !== "api"
+                    ? "저장 재시도 취소"
+                    : "결과 버리기"}
                 </button>
               </div>
             </div>
