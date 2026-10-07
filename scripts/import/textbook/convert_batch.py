@@ -89,7 +89,10 @@ with manifest.open("a", encoding="utf-8") as log:
         started = time.time()
         entry = {"path": src, "key": key}
         try:
-            if source.suffix.lower() == ".hwpx":
+            with source.open("rb") as head:
+                is_zip = head.read(2) == b"PK"
+            if source.suffix.lower() == ".hwpx" or is_zip:
+                # 이름만 .hwp 인 HWPX(zip) 가 있다 — 한글로 열면 «Open 실패»(천재 미적분1 중간기말대비 1단원 1회)
                 shutil.copy2(source, out)
             else:
                 shutil.copy2(source, local)
