@@ -42,6 +42,10 @@ import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import type { ExpeditionActivityCallbacks } from "@/components/math-explorers/ExplorerBankActivity";
 import { useLearningSounds } from "./LearningSounds";
 import { learningSoundCue } from "./learningSoundCue";
+import {
+  usePausedFeedback,
+  usePausedQuestionClock,
+} from "./usePausedQuestionClock";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -63,7 +67,8 @@ function remainingRetrySteps(
 
 export function StudentMathSrs({
   expedition,
-}: { expedition?: ExpeditionActivityCallbacks } = {}) {
+  paused = false,
+}: { expedition?: ExpeditionActivityCallbacks; paused?: boolean } = {}) {
   const router = useRouter();
   const { gesture, play, resetStudent } = useLearningSounds();
   const soundEpoch = useRef(0);
@@ -198,9 +203,8 @@ export function StudentMathSrs({
       ? comboToShow(mission, feedbackId)
       : null;
 
-  useEffect(() => {
-    if (!practicing || (!feedbackId && retryFeedback === null)) return;
-    const timer = window.setTimeout(() => {
+  usePausedFeedback(
+    () => {
       if (retryFeedback !== null) {
         if (retryFeedback && retrySteps?.length === 1) {
           setPracticing(false);
@@ -223,9 +227,12 @@ export function StudentMathSrs({
           }
         }
       }
-    }, 1200);
-    return () => window.clearTimeout(timer);
-  }, [feedbackId, retryFeedback, practicing, mission, retrySteps]);
+    },
+    practicing && (feedbackId || retryFeedback !== null)
+      ? `${mission?.id}:${feedbackId ?? "retry"}:${retryTurn}`
+      : null,
+    paused,
+  );
 
   async function retryAnswer(answer: string) {
     if (
@@ -430,7 +437,8 @@ export function StudentMathSrs({
                 <Question
                   key={`${mission.id}:${displayedProblem.id}:${retryTurn}`}
                   problem={displayedProblem}
-                  busy={busy || error?.status === 409}
+                  busy={paused || busy || error?.status === 409}
+                  paused={paused}
                   correct={correct}
                   streak={streak}
                   retry={!!retryStep}
@@ -662,6 +670,7 @@ function Question({
   turnPage,
   onReload,
   onAnswer,
+  paused,
 }: {
   problem: MathSrsPublicProblem;
   busy: boolean;
@@ -672,12 +681,13 @@ function Question({
   turnPage: "true" | undefined;
   onReload: () => void;
   onAnswer: (answer: string, elapsed: number, rating: Rating) => void;
+  paused: boolean;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [submittedAction, setSubmittedAction] = useState<
     "answer" | "give-up" | null
   >(null);
-  const [startedAt] = useState(() => Date.now());
+  const elapsed = usePausedQuestionClock(paused);
   const heading = useRef<HTMLParagraphElement>(null);
   const card = useRef<HTMLElement>(null);
   useAnswerKeys(card);
@@ -692,7 +702,7 @@ function Question({
     setSubmittedAction(answer ? "answer" : "give-up");
     onAnswer(
       answer,
-      Math.min(86_400, Math.max(0, (Date.now() - startedAt) / 1000)),
+      Math.min(86_400, Math.max(0, elapsed())),
       answer ? "good" : "again",
     );
   }

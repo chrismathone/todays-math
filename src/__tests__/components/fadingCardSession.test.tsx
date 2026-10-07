@@ -9,6 +9,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { FadingApp } from "@/components/fading/FadingApp";
 import { FadingCardSessionScreen } from "@/components/fading/FadingCardSessionScreen";
+import { FadingSessionScreen } from "@/components/fading/FadingSessionScreen";
 import { createLocalFadingSource } from "@/lib/fading/local";
 import { fadingTargets, type FadingConcept } from "@/lib/fading/concepts";
 import type { FadingState } from "@/contracts/fadingApi.contract";
@@ -166,6 +167,74 @@ function finishComparison() {
 }
 
 describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
+  it.each([
+    [true, 2],
+    [false, 2],
+    [true, 3],
+    [false, 3],
+  ] as const)(
+    "reports wrong partial step evidence immediately in cards=%s step=%s without ending the main step",
+    async (cards, step) => {
+      const local = createLocalFadingSource({
+        concepts: [concept],
+        today: "2026-10-07",
+        cards,
+        traps: { [concept.id]: [{ text: "내심" }] },
+      });
+      await local.act({ action: "pick", conceptId: concept.id });
+      const opened = await local.act({ action: "open", conceptId: concept.id });
+      const ref = { conceptId: concept.id, sessionId: opened.session!.id };
+      let state = await local.act({
+        action: "read",
+        ...ref,
+        ...(cards ? { seen: "123" } : {}),
+      });
+      if (step === 3)
+        state = await local.act({
+          action: "step",
+          ...ref,
+          step: 2,
+          placements: [],
+          gaveUp: true,
+        });
+      const main = vi.spyOn(local, "act");
+      const evidence = vi.fn();
+      const Screen = cards ? FadingCardSessionScreen : FadingSessionScreen;
+      render(
+        <Screen
+          source={local}
+          state={state}
+          onState={vi.fn()}
+          onReconcile={vi.fn()}
+          onExit={vi.fn()}
+          onEvidence={evidence}
+        />,
+      );
+      const target = erasedTargets(concept, step)[0]!;
+      if (cards) {
+        const targetCard = concept.propositions.findIndex((proposition) =>
+          proposition.pieces.some(
+            (piece) => piece.kind === "target" && piece.target.id === target.id,
+          ),
+        );
+        for (let index = 0; index < targetCard; index++)
+          fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
+      }
+      const wrong = chipTray(concept, step, {
+        seed: state.session!.seed,
+        traps: state.opened!.traps,
+      }).find((chip) => chip.text !== target.text)!;
+      answer(wrong.text);
+      expect(evidence).toHaveBeenCalledExactlyOnceWith({
+        kind: "step",
+        ...ref,
+        step,
+        placements: [{ targetId: target.id, chipId: wrong.id }],
+      });
+      expect(main).not.toHaveBeenCalled();
+      expect((await local.state()).session?.step).toBe(step);
+    },
+  );
   it.each([
     [true, 2],
     [true, 3],

@@ -3,6 +3,7 @@
 import { useId, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import type { FadingState } from "@/contracts/fadingApi.contract";
+import type { FadingRelearnObservation } from "@/contracts/fadingRelearn.contract";
 import { FADING_TYPED_MAX } from "@/contracts/fading.contract";
 import { chipTray } from "@/lib/fading/chips";
 import { erasedTargets, erasureRate } from "@/lib/fading/erasure";
@@ -65,6 +66,9 @@ export type FadingSessionScreenProps = {
   onState: (state: FadingState) => void;
   onReconcile: (state: FadingState, message: string) => void;
   onExit: () => void;
+  paused?: boolean;
+  onEvidence?: (observation: FadingRelearnObservation) => void;
+  onBoundary?: () => void;
 };
 
 const cardStepNames = {
@@ -81,6 +85,9 @@ export function FadingCardSessionScreen({
   onState,
   onReconcile,
   onExit,
+  paused = false,
+  onEvidence,
+  onBoundary,
 }: FadingSessionScreenProps) {
   const content = practice?.content ?? state.opened!;
   const concept = content.concept;
@@ -128,7 +135,7 @@ export function FadingCardSessionScreen({
   const inputId = useId();
   const actions = useFadingSessionActions({ source, onState, onReconcile });
   const stale = !!state.session?.stale && !practice;
-  const disabled = actions.busy || !!actions.failure || !!stageReady;
+  const disabled = paused || actions.busy || !!actions.failure || !!stageReady;
   const visibleStep = compare?.step ?? local.step;
   const inputKind = fadingStepInput(local);
   const blanks = erasedTargets(concept, local.step);
@@ -205,7 +212,11 @@ export function FadingCardSessionScreen({
           ]),
         );
 
-  useFadingPendingScroll(root, pending, filling && !needsSure && !exit);
+  useFadingPendingScroll(
+    root,
+    pending,
+    filling && !needsSure && !exit && !paused,
+  );
   useLayoutEffect(() => {
     if (!focusInput.current || disabled || compare || exit || done) return;
     focusInput.current = false;
@@ -216,12 +227,18 @@ export function FadingCardSessionScreen({
     else input.current?.focus({ preventScroll: true });
   }, [pending, needsSure, disabled, compare, exit, done, cardIndex, wrong]);
   useLayoutEffect(() => {
-    if (!stageReady || inputKind !== "chips" || actions.busy || actions.failure)
+    if (
+      paused ||
+      !stageReady ||
+      inputKind !== "chips" ||
+      actions.busy ||
+      actions.failure
+    )
       return;
     root.current
       ?.querySelector<HTMLButtonElement>('[data-fading-action="true"]')
       ?.focus();
-  }, [stageReady, inputKind, actions.busy, actions.failure]);
+  }, [stageReady, inputKind, actions.busy, actions.failure, paused]);
 
   function position(targetId: string | null) {
     if (!targetId) return;
@@ -257,6 +274,7 @@ export function FadingCardSessionScreen({
       attempts.current = [];
       gaveUp.current = false;
       root.current?.focus({ preventScroll: true });
+      if (!practice) onBoundary?.();
     };
     if (practice) showComparison();
     else
@@ -310,6 +328,14 @@ export function FadingCardSessionScreen({
       return;
     }
     setLocal(next);
+    if (
+      !practice &&
+      cardBlanks.every(
+        (target) =>
+          target.id in next.filled || next.skipped?.includes(target.id),
+      )
+    )
+      onBoundary?.();
     const remaining = blanks.find(
       (target) =>
         !(target.id in next.filled) && !next.skipped?.includes(target.id),
@@ -331,6 +357,13 @@ export function FadingCardSessionScreen({
       const placed = placeAnswer(local, concept, placement, content.traps);
       setActive(placement.targetId);
       attempts.current.push(placement);
+      if (placed.outcome === "wrong" && !practice)
+        onEvidence?.({
+          kind: "step",
+          ...ref,
+          step: local.step as 2 | 3 | 4,
+          placements: [...attempts.current],
+        });
       const text = "text" in placement ? placement.text : placement.chipId;
       const display =
         "text" in placement
@@ -380,6 +413,7 @@ export function FadingCardSessionScreen({
     if (cardIndex < concept.propositions.length - 1) {
       setCardIndex(cardIndex + 1);
       setRevealed(false);
+      if (!practice) onBoundary?.();
       return;
     }
     const next = finishReading(local);
@@ -389,6 +423,7 @@ export function FadingCardSessionScreen({
       setRevealed(false);
       setActive(null);
       focusInput.current = true;
+      if (!practice) onBoundary?.();
     };
     if (practice) advance();
     else
@@ -411,6 +446,16 @@ export function FadingCardSessionScreen({
   function skip() {
     if (disabled || !filling || needsSure) return;
     gaveUp.current = true;
+    if (!practice)
+      onEvidence?.({
+        kind: "step",
+        ...ref,
+        step: local.step as 2 | 3 | 4,
+        placements: [...attempts.current],
+        ...(inputKind === "typed"
+          ? { gaveUpCards: [proposition.id] }
+          : { gaveUp: true }),
+      });
     const next =
       inputKind === "typed"
         ? giveUpCard(local, concept, proposition.id)
@@ -425,6 +470,7 @@ export function FadingCardSessionScreen({
         )?.id ?? null,
       );
       setWrong(null);
+      if (!practice) onBoundary?.();
     }
   }
 
@@ -546,6 +592,7 @@ export function FadingCardSessionScreen({
       if (!stale) setLocal(closeWithRating(local, rating, judged));
       setDone(true);
       setCompare(null);
+      if (!practice) onBoundary?.();
     };
     if (practice) after();
     else
@@ -562,7 +609,7 @@ export function FadingCardSessionScreen({
   }
 
   useFadingKeyboard({
-    disabled: actions.busy || !!actions.failure || exit,
+    disabled: paused || actions.busy || !!actions.failure || exit,
     onChoose: (index) => {
       if (index < 0) return;
       if (local.phase === "reading" && revealed && index < 3)
@@ -609,6 +656,8 @@ export function FadingCardSessionScreen({
       data-fading-session="true"
       data-fading-mode="cards"
       data-step={visibleStep}
+      inert={paused}
+      aria-hidden={paused || undefined}
     >
       <header className={s.sessionHeader}>
         <div className={s.sessionTop}>
