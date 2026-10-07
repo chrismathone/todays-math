@@ -10,7 +10,7 @@ import {
   withAssessments as attachReviewedQuestions,
   type AssessmentTable as ReviewedQuestionTable,
 } from "./assessment";
-import reviewedQuestionData from "./assessments/e5.json";
+import reviewedQuestionData from "./assessments/e5.data.js";
 
 /** 초5 고정 은행. 교재는 용어·차례만 참고하고 설명과 수치는 새로 썼다. */
 export const bank: ConceptBlankBank = {

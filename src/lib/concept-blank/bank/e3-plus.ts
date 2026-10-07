@@ -3,7 +3,7 @@ import {
   withAssessments as attachReviewedQuestions,
   type AssessmentTable as ReviewedQuestionTable,
 } from "./assessment";
-import reviewedQuestionData from "./assessments/e3-plus.json";
+import reviewedQuestionData from "./assessments/e3-plus.data.js";
 
 /**
  * 초3 보강(은행 3차) — 소단원마다 개념 · ○× · 적용이 원래 `e3.ts` 와 합쳐 하 · 중 · 상 10개씩 되게 채운다.

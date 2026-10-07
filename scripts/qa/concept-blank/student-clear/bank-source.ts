@@ -39,11 +39,21 @@ export function attachAssessmentSource(text: string, part: string): string {
   const imports = file.statements.filter(ts.isImportDeclaration);
   const position = imports.at(-1)?.end ?? 0;
   const name = part.replace(/plus$/, "-plus");
-  const added = `\nimport { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";\nimport reviewedQuestionData from "./assessments/${name}.json";\n`;
+  const added = `\nimport { withAssessments as attachReviewedQuestions, type AssessmentTable as ReviewedQuestionTable } from "./assessment";\nimport reviewedQuestionData from "./assessments/${name}.data.js";\n`;
   return (
     text.slice(0, position) +
     added +
     text.slice(position) +
     "\n// 원래 단원·그림·사례 helper가 끝난 뒤 이 파일의 검토한 질문만 붙인다.\nbank.concepts = attachReviewedQuestions(bank, reviewedQuestionData as ReviewedQuestionTable).concepts;\n"
   );
+}
+
+/** A typed ESM bridge avoids inferring thousands of JSON literals in tsc.
+ * withAssessments still validates every actual payload with the shared schema.
+ */
+export function assessmentDataBridge(name: string) {
+  return {
+    javascript: `import data from "./${name}.json";\nexport default data;\n`,
+    declaration: `import type { AssessmentTable } from "../assessment";\ndeclare const data: AssessmentTable;\nexport default data;\n`,
+  };
 }

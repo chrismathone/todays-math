@@ -10,7 +10,7 @@ import {
   withAssessments as attachReviewedQuestions,
   type AssessmentTable as ReviewedQuestionTable,
 } from "./assessment";
-import reviewedQuestionData from "./assessments/m2.json";
+import reviewedQuestionData from "./assessments/m2.data.js";
 
 /**
  * 개념 백지 은행 — 중2. 트랙 cb-m2 (D-150 · 26번 문서 §5).

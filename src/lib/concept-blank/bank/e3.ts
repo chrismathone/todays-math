@@ -4,7 +4,7 @@ import {
   withAssessments as attachReviewedQuestions,
   type AssessmentTable as ReviewedQuestionTable,
 } from "./assessment";
-import reviewedQuestionData from "./assessments/e3.json";
+import reviewedQuestionData from "./assessments/e3.data.js";
 
 /** 초3 고정 문항 은행(D-150). 교육과정 순서이며 모든 뜻·물음은 새로 썼다. */
 export const bank: ConceptBlankBank = {

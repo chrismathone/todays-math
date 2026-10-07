@@ -33,7 +33,7 @@ describe("reviewed table attachment source plan", () => {
       exports: output.exports,
       require: (name: string) => {
         if (name === "./assessment") return { withAssessments };
-        if (name === "./assessments/e3.json") return table;
+        if (name === "./assessments/e3.data.js") return table;
         throw Error("Unexpected module " + name);
       },
     });
@@ -86,7 +86,7 @@ describe("reviewed table attachment source plan", () => {
         : text;
       const after = attachAssessmentSource(original, part);
       expect(after).toContain(
-        `./assessments/${part.replace(/plus$/, "-plus")}.json`,
+        `./assessments/${part.replace(/plus$/, "-plus")}.data.js`,
       );
       expect(() => attachAssessmentSource(after, part)).toThrow("기존");
     }

@@ -367,7 +367,7 @@ describe("ID-bound source prompt editing", () => {
       require: (name: string) => {
         if (name === "./plus") return { plusSection, joinBanks, RETIRED };
         if (name === "./assessment") return { withAssessments };
-        if (name === "./assessments/m2-plus.json")
+        if (name === "./assessments/m2-plus.data.js")
           return {
             default: JSON.parse(
               readFileSync(

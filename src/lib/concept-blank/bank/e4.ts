@@ -8,7 +8,7 @@ import {
   withAssessments as attachReviewedQuestions,
   type AssessmentTable as ReviewedQuestionTable,
 } from "./assessment";
-import reviewedQuestionData from "./assessments/e4.json";
+import reviewedQuestionData from "./assessments/e4.data.js";
 
 /** 수식이 든 글을 새로 쓸 때는 `r` 로 쓴다 — 역슬래시를 그대로 둔다(전수 검토 2026-10-02). */
 const r = String.raw;

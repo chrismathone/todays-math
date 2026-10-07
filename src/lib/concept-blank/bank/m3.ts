@@ -10,7 +10,7 @@ import {
   withAssessments as attachReviewedQuestions,
   type AssessmentTable as ReviewedQuestionTable,
 } from "./assessment";
-import reviewedQuestionData from "./assessments/m3.json";
+import reviewedQuestionData from "./assessments/m3.data.js";
 
 /**
  * 개념 백지 은행 — 중3(D-150 · 26번 문서 §5). 교재는 «어떤 용어가 어느 소단원에 있나»만 참고했고 문장 · 수치 · 그림은 새로 썼다.

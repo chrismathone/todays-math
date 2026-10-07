@@ -81,6 +81,8 @@ describe("reviewable bank file plan", () => {
     expect(result.changes.map((row) => row.file)).toEqual([
       "src/lib/concept-blank/bank/e3.ts",
       "src/lib/concept-blank/bank/assessments/e3.json",
+      "src/lib/concept-blank/bank/assessments/e3.data.js",
+      "src/lib/concept-blank/bank/assessments/e3.data.d.ts",
     ]);
     expect(result.changes[0]!.after).toContain(
       input.plan.definitionChanges[0]!.after,

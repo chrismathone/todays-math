@@ -2,7 +2,7 @@
 import type { ConceptBlankBank } from "@/contracts/conceptBlank.contract";
 import { withAssessments } from "@/lib/concept-blank/bank/assessment";
 import type { ContentApplicationPlan } from "./application";
-import { attachAssessmentSource } from "./bank-source";
+import { assessmentDataBridge, attachAssessmentSource } from "./bank-source";
 import { definitionLiterals, replaceDefinitions } from "./definition-source";
 import {
   validateExamplePromptChanges,
@@ -142,6 +142,19 @@ export function prepareBankSourceChanges(input: {
       before: null,
       after: JSON.stringify(plan.assessmentTables[part], null, 2) + "\n",
     });
+    const bridge = assessmentDataBridge(name);
+    changes.push(
+      {
+        file: `src/lib/concept-blank/bank/assessments/${name}.data.js`,
+        before: null,
+        after: bridge.javascript,
+      },
+      {
+        file: `src/lib/concept-blank/bank/assessments/${name}.data.d.ts`,
+        before: null,
+        after: bridge.declaration,
+      },
+    );
   }
   return { changes, candidateParts };
 }
