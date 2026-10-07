@@ -4,6 +4,7 @@ import type { FadingProposition } from "@/lib/fading/concepts";
 import { FadingMath } from "./FadingMath";
 import { FadingIcon } from "./FadingIcon";
 import s from "./fading.module.css";
+import fill from "./FadingFillCard.module.css";
 
 /** Presentation only: the source chooses the erased targets and accepted answers. */
 export function FadingFillCard({
@@ -34,13 +35,13 @@ export function FadingFillCard({
   const erasedIds = new Set(erased.map((item) => item.id));
   return (
     <article
-      className={`${s.proposition} ${s.singleCard}`}
+      className={`${s.proposition} ${s.singleCard} ${fill.card}`}
       data-fading-sentence={proposition.id}
     >
       <h2 className={s.singleCardHeading}>
         <span className={s.singleCardCaption}>{caption}</span>
       </h2>
-      <div className={s.sentence}>
+      <div className={`${s.sentence} ${fill.sentence}`}>
         {proposition.pieces.map((piece, index) => {
           if (piece.kind === "text")
             return (
@@ -62,11 +63,11 @@ export function FadingFillCard({
             return (
               <span
                 key={target.id}
-                className={`${s.filled} ${typed ? s.typedSlot : s.stableSlot} ${missed.includes(target.id) ? s.missed : ""}`}
+                className={`${s.filled} ${fill.slot} ${fill.written} ${missed.includes(target.id) ? s.missed : ""}`}
                 data-fading-slot={target.id}
               >
                 {typed ? (
-                  <span className={s.typedWritten}>{answer || "[넘김]"}</span>
+                  <span className={fill.answer}>{answer || "[넘김]"}</span>
                 ) : (
                   <FadingMath text={answer} />
                 )}
@@ -76,21 +77,20 @@ export function FadingFillCard({
             <button
               type="button"
               key={target.id}
-              className={`${s.blank} ${typed ? s.typedSlot : s.stableSlot} ${missed.includes(target.id) ? s.missed : ""}`}
+              className={`${s.blank} ${fill.slot} ${missed.includes(target.id) ? s.missed : ""}`}
               aria-label={`빈칸 ${blankIndex}`}
               aria-pressed={active === target.id}
               data-pending={active === target.id}
               data-fading-slot={target.id}
               data-fading-blank={target.id}
+              data-wrong={wrong?.targetId === target.id || undefined}
               data-drag-available={drag?.active || undefined}
               data-drag-over={drag?.over === target.id}
               disabled={disabled}
               onClick={() => onBlank(target.id)}
             >
               {wrong?.targetId === target.id ? (
-                <span className={s.wrongPlaced}>
-                  <FadingMath text={wrong.text} />
-                </span>
+                <FadingMath text={wrong.text} />
               ) : (
                 <>
                   <FadingIcon name="erase" />

@@ -8,6 +8,7 @@ import { FadingMath as ExplorerMath } from "./FadingMath";
 import { chipTray } from "@/lib/fading/chips";
 import { erasedTargets, erasureRate } from "@/lib/fading/erasure";
 import { toPercent } from "@/lib/fading/numbers";
+import { typedKey } from "@/lib/fading/typed";
 import { fadingDayOfDate } from "@/lib/fading/schedule";
 import {
   allowedRatings,
@@ -34,15 +35,12 @@ import { FadingSentenceCaption } from "./FadingSentenceCaption";
 import { FadingSentencePager } from "./FadingSentencePager";
 import { fadingSafeTopic } from "./sentenceTopic";
 import {
-  FadingDraggedChip,
-  useFadingChipDrag,
   useFadingKeyboard,
-  useFadingBlankSize,
   useFadingPendingScroll,
   fadingChipChoices,
-  fadingChipInputText,
 } from "./FadingChipInput";
 import s from "./fading.module.css";
+import fill from "./FadingFillCard.module.css";
 
 function resumed(state: FadingState): FadingSession {
   const remote = state.session!;
@@ -111,7 +109,7 @@ function ExitDialog({
       <p className={s.muted}>
         {practice
           ? "연습 기록은 남지 않습니다."
-          : "마친 단계는 남아 있어요. 다음에 같은 단계부터 이어 할 수 있습니다. 지금 채우던 칩은 다시 골라요."}
+          : "마친 단계는 남아 있어요. 다음에 같은 단계부터 이어 할 수 있습니다. 지금 채우던 답은 다시 입력해요."}
       </p>
       <div className={s.exitProgress}>
         <div className={s.row}>
@@ -193,7 +191,6 @@ export function FadingSessionScreen({
   const [comparisonPlacements, setComparisonPlacements] = useState<
     FadingPlacement[]
   >([]);
-  const [selected, setSelected] = useState<string | null>(null);
   const [typed, setTyped] = useState("");
   const chipInputId = useId();
   const chipInput = useRef<HTMLInputElement>(null);
@@ -301,12 +298,6 @@ export function FadingSessionScreen({
     });
     if (local.phase === "filling") setActiveBlank(nextActive);
   }
-  useFadingBlankSize({
-    root: sessionRoot,
-    targets: blanks,
-    tray,
-    step: local.step,
-  });
   useFadingPendingScroll(
     sessionRoot,
     pendingBlank,
@@ -370,7 +361,6 @@ export function FadingSessionScreen({
     setLocal(next);
     setCompare(result);
     setCanonical(false);
-    setSelected(null);
     setActiveBlank(null);
     setFeedback("");
     if (practice) placements.current = [];
@@ -413,7 +403,6 @@ export function FadingSessionScreen({
     const result = placeChip(local, concept, targetId, chipId, content.traps);
     placements.current.push({ targetId, chipId });
     setLastTarget(targetId);
-    setSelected(null);
     setActiveBlank(null);
     if (!result.correct) {
       setWrong({
@@ -422,7 +411,7 @@ export function FadingSessionScreen({
       });
       setLocal(result.session);
       setFeedback(
-        "맞지 않는 칩이에요. 다른 칩을 골라 주세요. 이 빈칸의 틀림 기록은 남습니다.",
+        "맞지 않는 답이에요. 다시 입력하거나 아직 모르겠어요를 눌러 주세요. 이 빈칸의 틀림 기록은 남습니다.",
       );
       if (local.step === 4 && !practice) {
         restoreMissFocus.current = restoreInputFocus;
@@ -440,17 +429,12 @@ export function FadingSessionScreen({
       setFeedback("");
     }
   }
-  function chooseChip(chipId: string) {
-    if (activeBlank) place(activeBlank, chipId);
-    else setSelected((current) => (current === chipId ? null : chipId));
-  }
   function chooseBlank(targetId: string) {
-    if (selected) place(targetId, selected);
-    else setActiveBlank((current) => (current === targetId ? null : targetId));
+    setActiveBlank((current) => (current === targetId ? null : targetId));
+    chipInput.current?.focus({ preventScroll: true });
   }
   function clearSelection() {
     setActiveBlank(null);
-    setSelected(null);
     setWrong(null);
     setFeedback("");
   }
@@ -481,7 +465,6 @@ export function FadingSessionScreen({
           : 0
         : (current + direction + available.length) % available.length;
     setActiveBlank(available[index]!.id);
-    setSelected(null);
     setTyped("");
     setFeedback("");
     chipInput.current?.focus();
@@ -500,17 +483,14 @@ export function FadingSessionScreen({
       return;
     }
     const restoreInputFocus = document.activeElement === chipInput.current;
-    if (selected && !used.has(selected)) {
-      place(pendingBlank, selected, restoreInputFocus);
-      setTyped("");
-      return;
-    }
-    const text = fadingChipInputText(typed);
+    const text = typedKey(typed);
     const matching = choices.filter(
-      (choice) => choice.chipId && fadingChipInputText(choice.text) === text,
+      (choice) => choice.chipId && typedKey(choice.text) === text,
     );
     if (!text || matching.length !== 1) {
-      setFeedback("지금 고를 수 있는 칩의 글을 입력해 주세요.");
+      setFeedback(
+        "입력한 답을 확인해 주세요. 다시 입력하거나 아직 모르겠어요를 눌러 주세요.",
+      );
       return;
     }
     place(pendingBlank, matching[0]!.chipId!, restoreInputFocus);
@@ -546,20 +526,14 @@ export function FadingSessionScreen({
         ?.click();
       return;
     }
-    const chip = choices[index];
-    const target = pendingBlank;
-    if (chip?.chipId && target) place(target, chip.chipId);
   }
   useFadingKeyboard({
     disabled: disabled || exit,
     onChoose: chooseNumber,
     onAdvance: () => {
-      if (selected && pendingBlank && local.phase === "filling")
-        place(pendingBlank, selected);
-      else
-        sessionRoot.current
-          ?.querySelector<HTMLButtonElement>('[data-fading-action="true"]')
-          ?.click();
+      sessionRoot.current
+        ?.querySelector<HTMLButtonElement>('[data-fading-action="true"]')
+        ?.click();
     },
     onMove: (direction) => {
       if (local.phase !== "filling" || compare || done || stageReady) return;
@@ -573,19 +547,8 @@ export function FadingSessionScreen({
             : remaining.length - 1
           : (current + direction + remaining.length) % remaining.length;
       setActiveBlank(remaining[index]!.id);
-      setSelected(null);
     },
     onClear: clearSelection,
-  });
-  const dragging = useFadingChipDrag({
-    disabled:
-      disabled ||
-      !!stageReady ||
-      !!compare ||
-      done ||
-      exit ||
-      local.phase !== "filling",
-    onPlace: place,
   });
 
   return (
@@ -685,7 +648,7 @@ export function FadingSessionScreen({
       )}
       {done ? (
         <div className={s.summaryScreen}>
-          <div className={s.summaryBadge}>풀이 완료 · 칩으로 문장 채우기</div>
+          <div className={s.summaryBadge}>풀이 완료 · 빈칸 답 입력</div>
           <section className={s.summaryHero}>
             <span className={s.heroBadge}>
               {local.rating
@@ -775,7 +738,7 @@ export function FadingSessionScreen({
             <p>
               {practice
                 ? "연습은 기록과 일정을 바꾸지 않습니다."
-                : "칩을 보고 문장을 채웠어요. 직접 설명해 보는 연습으로 이어 갈 수 있습니다."}
+                : "빈칸에 답을 입력했어요. 직접 설명해 보는 연습으로 이어 갈 수 있습니다."}
             </p>
           </section>
           <button
@@ -863,7 +826,7 @@ export function FadingSessionScreen({
           <p className={s.caps}>자가 평가</p>
           <h1 className={s.heading}>어느 정도 떠올랐나요</h1>
           <p className={s.muted}>
-            칩을 고를 때의 느낌을 평가해 주세요. 다음 복습일을 정하는 데
+            답을 떠올릴 때의 느낌을 평가해 주세요. 다음 복습일을 정하는 데
             쓰입니다.
           </p>
           {state.session?.missedAtFour.length ? (
@@ -920,8 +883,8 @@ export function FadingSessionScreen({
               {local.step === 1
                 ? "문장을 읽고 핵심어의 뜻을 살펴보세요."
                 : local.step === 4
-                  ? "모든 표적을 비웠어요. 칩을 보고 문장을 채워 보세요."
-                  : "칩과 빈칸을 차례로 눌러 문장을 채워 보세요."}
+                  ? "모든 표적을 비웠어요. 답을 떠올려 문장을 채워 보세요."
+                  : "빈칸의 답을 떠올려 입력해 주세요."}
             </p>
           </header>
           {local.phase === "reading" && (
@@ -950,7 +913,7 @@ export function FadingSessionScreen({
                 const p = concept.propositions[i]!;
                 return (
                   <article
-                    className={`${s.proposition} ${s.singleCard}`}
+                    className={`${s.proposition} ${s.singleCard} ${fill.card}`}
                     data-fading-sentence={p.id}
                     key={p.id}
                     data-missed={missedCounts[i]! > 0}
@@ -1016,7 +979,7 @@ export function FadingSessionScreen({
                         </span>
                       )}
                     </h2>
-                    <div className={s.sentence}>
+                    <div className={`${s.sentence} ${fill.sentence}`}>
                       {p.pieces.map((piece, index) => {
                         if (piece.kind === "text")
                           return (
@@ -1048,7 +1011,7 @@ export function FadingSessionScreen({
                           return (
                             <span
                               key={target.id}
-                              className={`${s.filled} ${s.stableSlot} ${missed ? s.missed : ""}`}
+                              className={`${s.filled} ${fill.slot} ${fill.written} ${missed ? s.missed : ""}`}
                               role={missed ? "group" : undefined}
                               aria-label={
                                 missed
@@ -1060,32 +1023,25 @@ export function FadingSessionScreen({
                               <ExplorerMath
                                 text={tray.find((c) => c.id === filled)!.text}
                               />
-                              {missed && (
-                                <span
-                                  className={s.missedMarker}
-                                  aria-hidden="true"
-                                />
-                              )}
                             </span>
                           );
                         return (
                           <button
                             key={target.id}
-                            className={`${s.blank} ${s.stableSlot} ${missed ? s.missed : ""}`}
+                            className={`${s.blank} ${fill.slot} ${missed ? s.missed : ""}`}
                             aria-label={`빈칸 ${blankIndex}${missed ? " · 틀린 기록이 있는 빈칸" : ""}`}
                             aria-pressed={pendingBlank === target.id}
                             data-pending={pendingBlank === target.id}
                             data-fading-slot={target.id}
                             data-fading-blank={target.id}
-                            data-drag-available={!!dragging.drag}
-                            data-drag-over={dragging.over === target.id}
+                            data-wrong={
+                              wrong?.targetId === target.id || undefined
+                            }
                             disabled={disabled}
                             onClick={() => chooseBlank(target.id)}
                           >
                             {wrong?.targetId === target.id ? (
-                              <span className={s.wrongPlaced}>
-                                <ExplorerMath text={wrong.text} />
-                              </span>
+                              <ExplorerMath text={wrong.text} />
                             ) : (
                               <>
                                 <FadingIcon name="erase" />
@@ -1093,12 +1049,6 @@ export function FadingSessionScreen({
                                   빈칸 터치
                                 </span>
                               </>
-                            )}
-                            {missed && (
-                              <span
-                                className={s.missedMarker}
-                                aria-hidden="true"
-                              />
                             )}
                           </button>
                         );
@@ -1120,7 +1070,7 @@ export function FadingSessionScreen({
                           <span className={s.wrongChip}>
                             <ExplorerMath text={wrong.text} />
                           </span>
-                          <strong>맞지 않는 칩</strong>
+                          <strong>맞지 않는 답</strong>
                           <button
                             disabled={disabled}
                             onClick={() => {
@@ -1129,7 +1079,7 @@ export function FadingSessionScreen({
                             }}
                             className={s.danger}
                           >
-                            다시 고르기
+                            다시 입력하기
                           </button>
                         </div>
                       )}
@@ -1151,30 +1101,17 @@ export function FadingSessionScreen({
               )}
             </section>
             {local.phase === "filling" && (
-              <aside className={`${s.card} ${s.tray}`} aria-label="칩 고르기">
-                <div className={s.row}>
-                  <h2 className={s.subheading}>문장을 채우는 칩</h2>
-                  <span className={s.code}>
-                    {pendingBlank
-                      ? visiblePending
-                        ? `빈칸 [${blanks.findIndex((t) => t.id === pendingBlank) + 1}] 입력 대기 중`
-                        : "이 문장에는 입력할 빈칸이 없어요"
-                      : "빈칸을 골라 주세요"}
-                  </span>
-                </div>
-                <p className={s.muted} style={{ marginTop: 10 }}>
-                  칩과 빈칸을 눌러 고르거나 칩을 빈칸으로 끌어 넣으세요.
-                </p>
+              <section className={s.typedInput} aria-label="빈칸 답 입력">
                 <form
                   className={s.chipInput}
-                  aria-label="칩 글로 입력"
+                  aria-label="빈칸 답 입력"
                   onSubmit={(event) => {
                     event.preventDefault();
                     submitTypedChip();
                   }}
                 >
                   <label htmlFor={chipInputId} className={s.small}>
-                    칩 글 입력
+                    빈칸 답 입력
                   </label>
                   <div>
                     <input
@@ -1184,13 +1121,12 @@ export function FadingSessionScreen({
                       value={typed}
                       disabled={disabled || !!stageReady}
                       autoComplete="off"
-                      placeholder="칩 글을 입력하고 Enter"
+                      placeholder="빈칸 답을 쓰고 Enter"
                       onFocus={() => {
                         nativeTab.current = false;
                       }}
                       onChange={(event) => {
                         setTyped(event.target.value);
-                        setSelected(null);
                         nativeTab.current = false;
                       }}
                       onKeyDown={(event) => {
@@ -1220,95 +1156,16 @@ export function FadingSessionScreen({
                         disabled ||
                         !!stageReady ||
                         !visiblePending ||
-                        (!typed.trim() && !selected)
+                        !typed.trim()
                       }
                     >
                       넣기
                     </button>
                   </div>
                 </form>
-                <div className={s.chips}>
-                  {choices.map((choice, index) =>
-                    choice.chipId ? (
-                      <button
-                        key={choice.id}
-                        className={s.chip}
-                        data-fading-chip="true"
-                        data-dragging={dragging.drag?.chipId === choice.chipId}
-                        disabled={disabled || !!stageReady}
-                        aria-pressed={selected === choice.chipId}
-                        aria-label={`칩 ${choice.text}`}
-                        onKeyDown={(event) => {
-                          if (cycleBlank(event)) return;
-                          if (event.key === "Escape") {
-                            event.preventDefault();
-                            cancelChipKeyboard();
-                            return;
-                          }
-                          if (
-                            event.nativeEvent.isComposing ||
-                            event.nativeEvent.keyCode === 229 ||
-                            (event.key !== "Enter" && event.key !== " ") ||
-                            !pendingBlank
-                          )
-                            return;
-                          event.preventDefault();
-                          if (event.repeat) return;
-                          const button = event.currentTarget;
-                          const index = Array.from(
-                            sessionRoot.current!.querySelectorAll(
-                              "[data-fading-chip]",
-                            ),
-                          ).indexOf(button);
-                          place(pendingBlank, selected ?? choice.chipId!, true);
-                          requestAnimationFrame(() => {
-                            if (button.isConnected && !button.disabled) return;
-                            const remaining =
-                              sessionRoot.current?.querySelectorAll<HTMLButtonElement>(
-                                "[data-fading-chip]:not(:disabled)",
-                              );
-                            const next =
-                              remaining?.[
-                                Math.min(index, remaining.length - 1)
-                              ];
-                            (
-                              next ??
-                              sessionRoot.current?.querySelector<HTMLButtonElement>(
-                                '[data-fading-action="true"]:not(:disabled)',
-                              )
-                            )?.focus();
-                          });
-                        }}
-                        {...dragging.handlers(
-                          choice.chipId,
-                          choice.text,
-                          false,
-                        )}
-                        onClick={() => {
-                          nativeTab.current = false;
-                          if (!dragging.consumeClick())
-                            chooseChip(choice.chipId!);
-                        }}
-                      >
-                        <span className={s.chipDot} />
-                        <span className={s.chipNumber} aria-hidden="true">
-                          {index + 1}
-                        </span>
-                        <span
-                          className={s.chipText}
-                          data-fading-chip-text={choice.id}
-                        >
-                          <ExplorerMath text={choice.text} />
-                        </span>
-                      </button>
-                    ) : null,
-                  )}
-                </div>
                 <p className={`${s.small} ${s.keyboardHint}`}>
-                  Tab·Shift+Tab 빈칸 이동 · 글을 입력하고 Enter로 넣기 · 칩에서
-                  Enter·Space로 넣기 · 입력란 밖 ← → 빈칸 이동 · 숫자키로 넣기
-                  {choices.length > 9 && " · 0은 10번, Shift+숫자는 11번부터"}
-                  {" · Backspace 선택 취소 · Esc 선택 취소 후 일반 Tab 이동"}
+                  Tab·Shift+Tab 빈칸 이동 · Enter 입력 · 입력란 밖 ← → 빈칸 이동
+                  · Esc 다음 Tab은 초점 이동
                 </p>
                 <div
                   role="status"
@@ -1316,20 +1173,13 @@ export function FadingSessionScreen({
                   className={s.feedback}
                   data-error={!!wrong || (!!feedback && !stageReady)}
                 >
-                  {(!visiblePending && pendingBlank ? offCardCue : feedback) ||
-                    (saving ? (
-                      "저장 중…"
-                    ) : selected ? (
-                      <ExplorerMath
-                        text={`선택한 칩: ${choices.find((choice) => choice.chipId === selected)?.text} · Enter로 현재 빈칸에 넣으세요.`}
-                      />
-                    ) : activeBlank ? (
-                      "넣을 칩을 골라 주세요."
-                    ) : (
-                      ""
-                    ))}
+                  {saving
+                    ? "저장 중…"
+                    : !visiblePending && pendingBlank
+                      ? offCardCue
+                      : feedback}
                 </div>
-              </aside>
+              </section>
             )}
           </div>
           <div className={s.actions}>
@@ -1391,7 +1241,6 @@ export function FadingSessionScreen({
           onExit={onExit}
         />
       )}
-      <FadingDraggedChip drag={dragging.drag} />
     </div>
   );
 }
