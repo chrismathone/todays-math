@@ -28,7 +28,7 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 type RouteContext = { params: Promise<{ id: string }> };
 
 async function handleGet(_request: NextRequest, { params }: RouteContext) {
-  const gate = await requireStudent({ active: true });
+  const gate = await requireStudent({ active: true, menu: "lectures" });
   if (gate.response) return gate.response;
 
   const { id } = await params;

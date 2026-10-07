@@ -64,7 +64,7 @@ export async function studentTextbookRoute(
     !sameOriginMutation(request)
   )
     return noStore(crossSiteError());
-  const gate = await requireStudent({ active: true });
+  const gate = await requireStudent({ active: true, menu: "textbook" });
   if (gate.response) return noStore(gate.response);
   const expectedStudent = request.headers.get("x-student-id");
   if (expectedStudent !== null && expectedStudent !== gate.student.studentId)

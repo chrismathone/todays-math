@@ -1,0 +1,50 @@
+.shell {
+  --student-content-width: 1600px;
+  min-height: 100dvh;
+  background: var(--math-atelier-bg, #f7f5f0);
+  color: var(--learn-ink, #192f52);
+}
+
+.navigation,
+.content {
+  width: min(100%, var(--student-content-width));
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.navigation {
+  padding-top: 16px;
+}
+
+.content {
+  padding-top: 24px;
+  padding-bottom: 48px;
+}
+
+.content [data-student-module-content] {
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  background: transparent;
+}
+
+.content [data-student-module-content] > main {
+  padding: 0;
+}
+
+.shell:has([data-student-practice="true"]) .navigation {
+  display: none;
+}
+
+.shell:has([data-student-practice="true"]) > nav {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .navigation {
+    display: none;
+  }
+  .content {
+    padding: 16px 12px calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+}

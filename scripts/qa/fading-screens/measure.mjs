@@ -235,7 +235,19 @@ async function actionable() {
   for (let i = 0; i < (await actions.count()); i++) {
     const action = actions.nth(i);
     if (!(await action.isVisible())) continue;
-    await action.scrollIntoViewIfNeeded();
+    await action.evaluate((el) =>
+      el.scrollIntoView({
+        block: "center",
+        inline: "nearest",
+        behavior: "instant",
+      }),
+    );
+    await page.evaluate(
+      () =>
+        new Promise((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        ),
+    );
     const exposed = await action.evaluate((el) => {
       const r = el.getBoundingClientRect();
       const top = document.elementFromPoint(
@@ -251,7 +263,17 @@ async function actionable() {
 
 const results = [];
 async function measure(name, capture = false) {
+  await page.waitForFunction(
+    () => !document.querySelector('[data-fading-math-ready="false"]'),
+    { timeout: 120000 },
+  );
   await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve)),
+      ),
+  );
   const row = {
     name,
     width: page.viewportSize().width,
@@ -265,7 +287,8 @@ async function measure(name, capture = false) {
     row.overflow ||
     row.smallControls.length ||
     row.smallText.length ||
-    row.ink.failures.length
+    row.ink.failures.length ||
+    row.coveredActions.length
   ) {
     await page.evaluate(() => scrollTo(0, 0));
     await page.screenshot({
@@ -291,6 +314,16 @@ try {
     resolve(output, "samples.json"),
     JSON.stringify(samples, null, 2),
   );
+  await page.goto(`${base}/dev/fading?scene=step1&concept=${samples[0].id}`, {
+    waitUntil: "networkidle",
+  });
+  await ready();
+  while (!(await page.locator(".katex").count())) {
+    const next = page.getByRole("button", { name: "다음 문장", exact: true });
+    if (!(await next.isEnabled()))
+      throw new Error("은행 표본에 KaTeX 양성 대조가 없습니다.");
+    await next.click();
+  }
   // 判정자 양성 표본: 실제 KaTeX를 좁은 자 안에 일부러 가둬 잉크를 놓치지 않는지 본다.
   await page.evaluate(() => {
     const math = document.querySelector(".katex");
@@ -330,7 +363,25 @@ try {
           throw new Error(
             `은행 표본이 측정 중 바뀌었습니다: ${sample.id} → ${actual}`,
           );
-        await measure(`step${step}-${sample.id}`, sample === samples[0]);
+        const previous = page.getByRole("button", {
+          name: "이전 문장",
+          exact: true,
+        });
+        while (await previous.isEnabled()) await previous.click();
+        let sentence = 1;
+        const next = page.getByRole("button", {
+          name: "다음 문장",
+          exact: true,
+        });
+        do {
+          await measure(
+            `step${step}-${sample.id}-sentence${sentence}`,
+            sample === samples[0],
+          );
+          if (!(await next.isEnabled())) break;
+          await next.click();
+          sentence++;
+        } while (true);
       }
     for (const scene of [
       "first",

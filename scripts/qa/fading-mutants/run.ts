@@ -42,6 +42,10 @@ const TESTS = [
   "Source",
   "Traps",
   "Figures",
+  "Compat",
+  "Typed",
+  "Cards",
+  "ContentGuard",
 ]
   .map(TEST)
   .concat(ROUTES, TEACHER_ROUTES, CONSOLE);
@@ -65,6 +69,8 @@ const FIRST: Record<string, string> = {
   "fading/figures.ts": TEST("Figures"),
   "fading/enabled.ts": ROUTES,
   "math-srs/serverStore.ts": ROUTES,
+  "fading/typed.ts": TEST("Typed"),
+  "fading/cards.ts": TEST("Cards"),
   "fading/teacher.ts": TEST("Teacher"),
   "fading/teacherRoutes.ts": TEACHER_ROUTES,
   "accountRouteAccess.ts": TEACHER_ROUTES,

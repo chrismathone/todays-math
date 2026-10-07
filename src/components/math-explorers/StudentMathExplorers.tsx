@@ -3,7 +3,20 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { normalizeStudentReturnTo } from "@/lib/learn/studentReturnTo";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import type { FadingSource } from "@/lib/fading/source";
+import type { FadingRelearnSource } from "@/lib/fading/relearnSource";
+import { createApiFadingRelearnSource } from "@/components/fading/apiRelearnSource";
+import { useFadingRelearn } from "@/components/fading/useFadingRelearn";
+import { FadingRelearnModal } from "@/components/fading/FadingRelearnCheck";
+import type { ExplorerMemoryHomeOptions } from "./ExplorerConceptMemory";
 import type {
   ExplorerAction,
   ExplorerFeedback,
@@ -55,6 +68,7 @@ import {
 import s from "./math-explorers.module.css";
 
 const ExplorerCardDialog = dynamic(() => import("./ExplorerCardDialog"));
+const ExplorerConceptMemory = dynamic(() => import("./ExplorerConceptMemory"));
 const ExplorerSupplementDialog = dynamic(
   () => import("./ExplorerSupplementDialog"),
 );
@@ -110,7 +124,22 @@ const CHEST_RELOADED = "다른 화면에서 기록이 바뀌어 최신 기록을
 export default function StudentMathExplorers({
   initialView,
   journeyTheme,
-}: { initialView?: "collection"; journeyTheme?: JourneyThemeId } = {}) {
+  conceptMemoryEnabled = false,
+  fadingSource,
+  fadingRelearnSource,
+  initialState,
+  preview = false,
+}: {
+  initialView?: "collection";
+  journeyTheme?: JourneyThemeId;
+  /** The server controls availability; the client does not read rollout flags. */
+  conceptMemoryEnabled?: boolean;
+  fadingSource?: FadingSource;
+  fadingRelearnSource?: FadingRelearnSource;
+  initialState?: ExplorerState;
+  /** A local concept source plus an explorer snapshot; old actions cannot save. */
+  preview?: boolean;
+} = {}) {
   // 테마 소품(상자 · 기지 · 별) — 효과 · 은행 미션까지 한 벌로 따른다.
   return (
     <LearningMotionScope>
@@ -120,6 +149,11 @@ export default function StudentMathExplorers({
             key={initialView ?? "expedition"}
             initialView={initialView}
             journeyTheme={journeyTheme}
+            conceptMemoryEnabled={conceptMemoryEnabled}
+            fadingSource={fadingSource}
+            fadingRelearnSource={fadingRelearnSource}
+            initialState={initialState}
+            preview={preview}
           />
         </JourneyArtProvider>
       </LearningSoundsProvider>
@@ -130,9 +164,19 @@ export default function StudentMathExplorers({
 function ExplorerGame({
   initialView,
   journeyTheme,
+  conceptMemoryEnabled,
+  fadingSource,
+  fadingRelearnSource,
+  initialState,
+  preview,
 }: {
   initialView?: "collection";
   journeyTheme?: JourneyThemeId;
+  conceptMemoryEnabled: boolean;
+  fadingSource?: FadingSource;
+  fadingRelearnSource?: FadingRelearnSource;
+  initialState?: ExplorerState;
+  preview: boolean;
 }) {
   const router = useRouter();
   const { gesture, play, resetStudent } = useLearningSounds();
@@ -143,8 +187,38 @@ function ExplorerGame({
     confirmed: false,
     played: false,
   });
-  const [state, setState] = useState<ExplorerState | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [state, setState] = useState<ExplorerState | null>(
+    initialState ?? null,
+  );
+  const relearnSource = useMemo(
+    () =>
+      fadingRelearnSource ??
+      (!preview && !fadingSource && conceptMemoryEnabled && state?.student.id
+        ? createApiFadingRelearnSource({ studentId: state.student.id })
+        : undefined),
+    [
+      fadingRelearnSource,
+      preview,
+      fadingSource,
+      conceptMemoryEnabled,
+      state?.student.id,
+    ],
+  );
+  const relearn = useFadingRelearn(relearnSource, (failure) => {
+    if (failure.code === "UNAUTHORIZED") router.replace("/learn/login");
+    else if (
+      failure.code === "CONFLICT" &&
+      failure.message === STUDENT_CHANGED_MESSAGE
+    )
+      refresh();
+    else if (
+      failure.code === "FORBIDDEN" &&
+      failure.message === STUDENT_MUST_CHANGE_MESSAGE
+    )
+      router.replace("/learn/password");
+  });
+  const [loading, setLoading] = useState(!initialState);
+  const [inConceptMemory, setInConceptMemory] = useState(false);
   const [error, setError] = useState<Failure | null>(null);
   const [reload, setReload] = useState(0);
   const [busy, setBusy] = useState(false);
@@ -192,7 +266,7 @@ function ExplorerGame({
   const chestEffects = useRef(0);
   const effectChest = useRef<string | null>(null);
   /** The last server state: queued chest saves send its revision. */
-  const latest = useRef<ExplorerState | null>(null);
+  const latest = useRef<ExplorerState | null>(initialState ?? null);
   const inFlight = useRef<AbortController | null>(null);
   const lastRequest = useRef<ExplorerRequest | null>(null);
   const pending = useRef(false);
@@ -263,6 +337,11 @@ function ExplorerGame({
   }
 
   useEffect(() => {
+    if (initialState && reload === 0) {
+      resetStudent(initialState.student.id);
+      return;
+    }
+    if (preview) return;
     const controller = new AbortController();
     let timeout: ReturnType<typeof setTimeout> | undefined;
     let current = true;
@@ -353,10 +432,11 @@ function ExplorerGame({
       controller.abort();
       clearTimeout(timeout);
     };
-  }, [reload, router, resetStudent]);
+  }, [reload, router, resetStudent, initialState, preview]);
 
   async function send(action: ExplorerAction, sameRequest?: ExplorerRequest) {
-    if (!state || pending.current || claimQueue.current.length) return;
+    if (preview || !state || pending.current || claimQueue.current.length)
+      return;
     const soundTurn = soundEpoch.current;
     if (
       action.type === "start" ||
@@ -373,7 +453,7 @@ function ExplorerGame({
     setError(null);
     const input = sameRequest ?? {
       requestId: crypto.randomUUID(),
-      expectedRevision: state.revision,
+      expectedRevision: latest.current?.revision ?? state.revision,
       studentId: state.student.id,
       action,
     };
@@ -476,6 +556,7 @@ function ExplorerGame({
           setCorrect(null);
           setBusy(false);
           pending.current = false;
+          relearn.boundary();
           if (action.type === "supplement-answer") {
             // 한 장이 끝나면(모음 · 못 모음) 홈으로 — 도감에서 시작했으면 도감을 다시 연다.
             if (!data.supplements?.activity) {
@@ -551,7 +632,7 @@ function ExplorerGame({
   // save takes that chest's star back and says so under its row. The line keeps
   // saving after the screen is left — those chests were already shown opened.
   function claimChest(chestId: string) {
-    if (!state || pending.current) return;
+    if (preview || !state || pending.current) return;
     const chest = state.chests.find((item) => item.id === chestId);
     if (!chest?.ready || chest.claimed) return;
     if (claimQueue.current.some((claim) => claim.chestId === chestId)) return;
@@ -786,20 +867,21 @@ function ExplorerGame({
     setDetailId(card.id);
   }
   function refresh() {
-    if (busy) return;
+    if (busy || preview) return;
     soundEpoch.current++;
     tileSound.current.confirmed = false;
     setLoading(true);
     setReload((value) => value + 1);
   }
   function resume() {
-    if (busy) return;
+    if (busy || preview) return;
     gesture();
     setPracticing(true);
     window.scrollTo({ top: 0, behavior: "instant" });
   }
 
   function openReview(review: MathExpeditionReview) {
+    if (preview) return;
     setReviewChoices(null);
     if (review.kind === "explorers") {
       void send({
@@ -858,245 +940,352 @@ function ExplorerGame({
     void send({ type: "supplement-start", cardId });
   }
 
-  if (bankKind)
+  function renderHome(
+    conceptMemory?: ReactNode,
+    options?: ExplorerMemoryHomeOptions,
+  ) {
+    if (!state) return null;
     return (
-      <ExplorerBankActivity
-        kind={bankKind}
-        onExit={exitBank}
-        onComplete={exitBank}
-        onConfirmedAnswer={(studentId) => {
-          if (
-            tileSound.current.studentId === studentId &&
-            tileSound.current.sawIncomplete
-          )
-            tileSound.current.confirmed = true;
+      <ExplorerHome
+        state={state}
+        journeyTheme={journeyTheme}
+        conceptMemory={conceptMemory}
+        readOnly={preview}
+        dailyStartAllowed={options?.dailyExplorerAllowed}
+        dailyStartNote={options?.dailyExplorerNote}
+        busy={busy || !!error || preview}
+        claims={claims}
+        chestNotices={chestNotices}
+        chestEffect={<ChestRewardEffect key={effectKey} stars={chestStars} />}
+        onCloseBase={() => setChestNotices({})}
+        onSheetChange={sheetChanged}
+        baseFailure={baseFailure}
+        onAction={(action) =>
+          action.type === "chest"
+            ? claimChest(action.chestId)
+            : void send(action)
+        }
+        onResume={() => void startExplorerAfterMemory()}
+        onStart={() =>
+          void startExplorerAfterMemory({ type: "expedition-start" })
+        }
+        onRetry={() =>
+          void startExplorerAfterMemory({ type: "retry-unresolved" })
+        }
+        onInspect={inspect}
+        onReviewDay={reviewDay}
+        initialView={supReturn ? "collection" : initialView}
+        onCloseView={() => {
+          setSupReturn(false);
+          if (initialView) {
+            const from = normalizeStudentReturnTo(
+              new URL(window.location.href).searchParams.get("fromTextbook"),
+            );
+            router.replace(
+              from.startsWith("/learn/textbook/")
+                ? `/learn?${new URLSearchParams({ fromTextbook: from })}`
+                : "/learn",
+            );
+          }
+        }}
+        onStartSupplement={(cardId) => startSupplement(cardId, false)}
+        onInspectSupplement={(cardId) => {
+          setSolution(null);
+          setSupDetailId(cardId);
         }}
       />
     );
+  }
+
+  async function reconcileExplorerAfterMemory() {
+    if (preview) return false;
+    const studentId = latest.current?.student.id;
+    const next = await readLatest();
+    if (!alive.current) return false;
+    if (
+      next &&
+      next.student.id === studentId &&
+      latest.current?.student.id === studentId
+    ) {
+      if (next.revision >= (latest.current?.revision ?? 0)) {
+        latest.current = next;
+        setState(next);
+      }
+      return true;
+    } else {
+      setError({
+        status: next ? 409 : 0,
+        message: next
+          ? STUDENT_CHANGED_MESSAGE
+          : "탐험 기록을 확인하지 못했어요. 최신 기록을 불러와 주세요.",
+      });
+      return false;
+    }
+  }
+
+  async function startExplorerAfterMemory(action?: ExplorerAction) {
+    if (preview || busy || pending.current) return;
+    if (conceptMemoryEnabled && !(await reconcileExplorerAfterMemory())) return;
+    if (action) await send(action);
+    else resume();
+  }
+
+  if (bankKind)
+    return (
+      <>
+        <div
+          inert={!!relearn.active}
+          aria-hidden={!!relearn.active || undefined}
+        >
+          <ExplorerBankActivity
+            kind={bankKind}
+            paused={!!relearn.active}
+            onExit={exitBank}
+            onComplete={exitBank}
+            onConfirmedAnswer={(studentId) => {
+              if (studentId === state?.student.id) relearn.boundary();
+              if (
+                tileSound.current.studentId === studentId &&
+                tileSound.current.sawIncomplete
+              )
+                tileSound.current.confirmed = true;
+            }}
+          />
+        </div>
+        <FadingRelearnModal controller={relearn} />
+      </>
+    );
 
   return (
-    <StudentReviewPage
-      kind="explorers"
-      student={state?.student ?? null}
-      practicing={inPractice || inSupplement || !state}
-      boardReady={!!state}
-      practiceTitle="수학 탐험"
-      practicePageClassName={s.practicePage}
-      practiceMainClassName={s.practiceMain}
-    >
-      {(inPractice || inSupplement) && error ? (
-        <div className={s.practiceError} role="alert">
-          <p>
-            {error.status === 409
-              ? "기록이 바뀌었어요. 최신 기록을 불러와 주세요."
-              : error.message}
-          </p>
-          <button
-            type="button"
-            disabled={busy}
-            onClick={() =>
-              error.request
-                ? void send(error.request.action, error.request)
-                : refresh()
-            }
-          >
-            {error.request ? "같은 요청 다시 시도" : "최신 기록 불러오기"}
-          </button>
-        </div>
-      ) : (
-        <StudentReviewStatus
-          loading={loading}
-          error={error}
-          busy={busy || saving}
-          onReload={refresh}
-          onRetry={
-            error?.request
-              ? () => void send(error.request!.action, error.request!)
-              : undefined
-          }
-        />
-      )}
-      {state && !loading ? (
-        inSupplement && supplement?.activity && supplement.session ? (
-          // 보충 한 장 — 본 카드와 같은 풀이 틀(§8.19). 행동만 보충 행동으로 바꿔 보낸다.
-          <ExplorerPractice
-            activity={supplement.activity}
-            session={{
-              title: supplement.session.title,
-              index: supplement.session.index,
-              total: supplement.session.total,
-              round: supplement.session.round,
-              reviewOnly: false,
-            }}
-            progressLabel={supplement.session.title}
-            units={state.units}
-            busy={busy || !!error || loading}
-            correct={correct}
-            eventKey={effectKey}
-            feedbackMessage={feedbackMessage}
-            onAction={(action) =>
-              void send(
-                action.type === "read"
-                  ? {
-                      type: "supplement-read",
-                      questionId: action.questionId,
-                    }
-                  : action.type === "answer"
-                    ? {
-                        type: "supplement-answer",
-                        questionId: action.questionId,
-                        choiceIds: action.choiceIds,
-                      }
-                    : action,
-              )
-            }
-            onHome={exitSupplement}
-          />
-        ) : inPractice && state.currentActivity && state.session ? (
-          introKind && showIntro ? (
-            <ExplorerSessionIntro
-              kind={introKind}
-              session={state.session}
-              units={state.units}
-              busy={busy || !!error || loading}
-              onStart={startAfterIntro}
-              onHome={exitPractice}
-            />
-          ) : attachedWorkshop ? (
-            <ExplorerWorkshop
-              workshop={workshop}
-              session={state.session}
-              busy={busy || !!error || loading}
-              correct={correct}
-              eventKey={effectKey}
-              onAction={(action) => void send(action)}
-              onHome={exitPractice}
-            />
-          ) : (
-            <ExplorerPractice
-              activity={state.currentActivity}
-              session={state.session}
-              units={state.units}
-              busy={busy || !!error || loading}
-              correct={correct}
-              eventKey={effectKey}
-              feedbackMessage={feedbackMessage}
-              onAction={(action) => void send(action)}
-              onHome={exitPractice}
-            />
-          )
-        ) : (
-          <ExplorerHome
-            state={state}
-            journeyTheme={journeyTheme}
-            busy={busy || !!error}
-            claims={claims}
-            chestNotices={chestNotices}
-            chestEffect={
-              <ChestRewardEffect key={effectKey} stars={chestStars} />
-            }
-            onCloseBase={() => setChestNotices({})}
-            onSheetChange={sheetChanged}
-            baseFailure={baseFailure}
-            onAction={(action) =>
-              action.type === "chest"
-                ? claimChest(action.chestId)
-                : void send(action)
-            }
-            onResume={resume}
-            onStart={() => void send({ type: "expedition-start" })}
-            onRetry={() => void send({ type: "retry-unresolved" })}
-            onInspect={inspect}
-            onReviewDay={reviewDay}
-            initialView={supReturn ? "collection" : initialView}
-            onCloseView={() => {
-              setSupReturn(false);
-              if (initialView) {
-                const from = normalizeStudentReturnTo(
-                  new URL(window.location.href).searchParams.get(
-                    "fromTextbook",
-                  ),
-                );
-                router.replace(
-                  from.startsWith("/learn/textbook/")
-                    ? `/learn?${new URLSearchParams({ fromTextbook: from })}`
-                    : "/learn",
-                );
-              }
-            }}
-            onStartSupplement={(cardId) => startSupplement(cardId, false)}
-            onInspectSupplement={(cardId) => {
-              setSolution(null);
-              setSupDetailId(cardId);
-            }}
-          />
-        )
-      ) : null}
-      {state && detail ? (
-        <ExplorerCardDialog
-          card={detail}
-          state={state}
-          solution={solution}
-          workshopSolution={workshopSolution}
-          busy={busy || saving}
-          onInspect={inspect}
-          onSolution={() => void send({ type: "solution", cardId: detail.id })}
-          onWorkshopSolution={() => void send({ type: "lab-solution" })}
-          onSetGoal={() => void send({ type: "goal", unitId: detail.unitId })}
-          onClose={() => {
-            setDetailId(null);
-            setSolution(null);
-            setWorkshopSolution(null);
-          }}
-        />
-      ) : null}
-      {state && supDetailId ? (
-        <ExplorerSupplementDialog
-          cardId={supDetailId}
-          state={state}
-          solution={solution}
-          busy={busy || saving}
-          locked={supplementLocked}
-          onStart={() => startSupplement(supDetailId, true)}
-          onSolution={() =>
-            void send({ type: "supplement-solution", cardId: supDetailId })
-          }
-          onClose={() => {
-            setSupDetailId(null);
-            setSolution(null);
-          }}
-        />
-      ) : null}
-      {reviewChoices ? (
-        <ExplorerSheet title="지난 학습 다시 풀기" onClose={closeReview}>
-          <div className={s.settingUnits}>
-            {reviewChoices.map((review) => (
+    <>
+      <div inert={!!relearn.active}>
+        <StudentReviewPage
+          kind="explorers"
+          student={state?.student ?? null}
+          practicing={inPractice || inSupplement || inConceptMemory || !state}
+          boardReady={!!state}
+          practiceTitle="수학 탐험"
+          practicePageClassName={s.practicePage}
+          practiceMainClassName={s.practiceMain}
+        >
+          {(inPractice || inSupplement) && error ? (
+            <div className={s.practiceError} role="alert">
+              <p>
+                {error.status === 409
+                  ? "기록이 바뀌었어요. 최신 기록을 불러와 주세요."
+                  : error.message}
+              </p>
               <button
                 type="button"
-                key={`${review.kind}:${review.dayId}`}
-                onClick={() => openReview(review)}
-                disabled={busy || saving}
+                disabled={busy}
+                onClick={() =>
+                  error.request
+                    ? void send(error.request.action, error.request)
+                    : refresh()
+                }
               >
-                <span>{review.title}</span>
-                <small>
-                  {review.subtitle} · {review.reviewCount}문제
-                </small>
+                {error.request ? "같은 요청 다시 시도" : "최신 기록 불러오기"}
               </button>
-            ))}
-          </div>
-        </ExplorerSheet>
-      ) : null}
-      {replay && replay.kind !== "explorers" ? (
-        <StudentReplayDialog
-          kind={replay.kind}
-          step={replayStep}
-          dayId={replay.dayId}
-          dayTitle={replay.title}
-          total={replay.reviewCount}
-          onClose={closeReview}
-        />
-      ) : null}
-      <TileRewardEffect stars={tileStars} />
-    </StudentReviewPage>
+            </div>
+          ) : (
+            <StudentReviewStatus
+              loading={loading}
+              error={error}
+              busy={busy || saving}
+              onReload={refresh}
+              onRetry={
+                error?.request
+                  ? () => void send(error.request!.action, error.request!)
+                  : undefined
+              }
+            />
+          )}
+          {state && !loading ? (
+            inSupplement && supplement?.activity && supplement.session ? (
+              // 보충 한 장 — 본 카드와 같은 풀이 틀(§8.19). 행동만 보충 행동으로 바꿔 보낸다.
+              <ExplorerPractice
+                activity={supplement.activity}
+                session={{
+                  title: supplement.session.title,
+                  index: supplement.session.index,
+                  total: supplement.session.total,
+                  round: supplement.session.round,
+                  reviewOnly: false,
+                }}
+                progressLabel={supplement.session.title}
+                units={state.units}
+                busy={busy || !!error || loading}
+                correct={correct}
+                eventKey={effectKey}
+                feedbackMessage={feedbackMessage}
+                onAction={(action) =>
+                  void send(
+                    action.type === "read"
+                      ? {
+                          type: "supplement-read",
+                          questionId: action.questionId,
+                        }
+                      : action.type === "answer"
+                        ? {
+                            type: "supplement-answer",
+                            questionId: action.questionId,
+                            choiceIds: action.choiceIds,
+                          }
+                        : action,
+                  )
+                }
+                onHome={exitSupplement}
+              />
+            ) : inPractice && state.currentActivity && state.session ? (
+              introKind && showIntro ? (
+                <ExplorerSessionIntro
+                  kind={introKind}
+                  session={state.session}
+                  units={state.units}
+                  busy={busy || !!error || loading}
+                  onStart={startAfterIntro}
+                  onHome={exitPractice}
+                />
+              ) : attachedWorkshop ? (
+                <ExplorerWorkshop
+                  workshop={workshop}
+                  session={state.session}
+                  busy={busy || !!error || loading}
+                  correct={correct}
+                  eventKey={effectKey}
+                  onAction={(action) => void send(action)}
+                  onHome={exitPractice}
+                />
+              ) : (
+                <ExplorerPractice
+                  activity={state.currentActivity}
+                  session={state.session}
+                  units={state.units}
+                  busy={busy || !!error || loading}
+                  correct={correct}
+                  eventKey={effectKey}
+                  feedbackMessage={feedbackMessage}
+                  onAction={(action) => void send(action)}
+                  onHome={exitPractice}
+                />
+              )
+            ) : conceptMemoryEnabled ? (
+              <ExplorerConceptMemory
+                key={state.student.id}
+                source={fadingSource}
+                relearnController={relearn}
+                studentId={state.student.id}
+                preview={preview}
+                busy={busy || saving || !!error}
+                onSessionChange={setInConceptMemory}
+                onExit={() => void reconcileExplorerAfterMemory()}
+                onExplorerActivity={async (activity) => {
+                  if (!(await reconcileExplorerAfterMemory())) return;
+                  if (
+                    activity.start === "continue" &&
+                    activity.source.route === "memory"
+                  )
+                    resume();
+                  else
+                    await send({
+                      type:
+                        activity.source.route === "repair"
+                          ? "retry-unresolved"
+                          : "expedition-start",
+                    });
+                }}
+                onAccessFailure={(failure) => {
+                  if (failure.code === "UNAUTHORIZED")
+                    router.replace("/learn/login");
+                  else if (
+                    failure.code === "CONFLICT" &&
+                    failure.message === STUDENT_CHANGED_MESSAGE
+                  )
+                    refresh();
+                  else if (
+                    failure.code === "FORBIDDEN" &&
+                    failure.message === STUDENT_MUST_CHANGE_MESSAGE
+                  )
+                    router.replace("/learn/password");
+                }}
+                renderHome={renderHome}
+              />
+            ) : (
+              renderHome()
+            )
+          ) : null}
+          {state && detail ? (
+            <ExplorerCardDialog
+              card={detail}
+              state={state}
+              solution={solution}
+              workshopSolution={workshopSolution}
+              busy={busy || saving}
+              onInspect={inspect}
+              onSolution={() =>
+                void send({ type: "solution", cardId: detail.id })
+              }
+              onWorkshopSolution={() => void send({ type: "lab-solution" })}
+              onSetGoal={() =>
+                void send({ type: "goal", unitId: detail.unitId })
+              }
+              onClose={() => {
+                setDetailId(null);
+                setSolution(null);
+                setWorkshopSolution(null);
+              }}
+            />
+          ) : null}
+          {state && supDetailId ? (
+            <ExplorerSupplementDialog
+              cardId={supDetailId}
+              state={state}
+              solution={solution}
+              busy={busy || saving}
+              locked={supplementLocked}
+              onStart={() => startSupplement(supDetailId, true)}
+              onSolution={() =>
+                void send({ type: "supplement-solution", cardId: supDetailId })
+              }
+              onClose={() => {
+                setSupDetailId(null);
+                setSolution(null);
+              }}
+            />
+          ) : null}
+          {reviewChoices ? (
+            <ExplorerSheet title="지난 학습 다시 풀기" onClose={closeReview}>
+              <div className={s.settingUnits}>
+                {reviewChoices.map((review) => (
+                  <button
+                    type="button"
+                    key={`${review.kind}:${review.dayId}`}
+                    onClick={() => openReview(review)}
+                    disabled={busy || saving}
+                  >
+                    <span>{review.title}</span>
+                    <small>
+                      {review.subtitle} · {review.reviewCount}문제
+                    </small>
+                  </button>
+                ))}
+              </div>
+            </ExplorerSheet>
+          ) : null}
+          {replay && replay.kind !== "explorers" ? (
+            <StudentReplayDialog
+              kind={replay.kind}
+              step={replayStep}
+              dayId={replay.dayId}
+              dayTitle={replay.title}
+              total={replay.reviewCount}
+              onClose={closeReview}
+            />
+          ) : null}
+          <TileRewardEffect stars={tileStars} />
+        </StudentReviewPage>
+      </div>
+      <FadingRelearnModal controller={relearn} />
+    </>
   );
 }

@@ -151,9 +151,16 @@ test("저장하지 않은 수정 — 계속 편집 · 버리고 이동 · 저장
   // ① 완성 보기에서 다른 구획 — 묻고, 계속 편집이면 그대로다
   await body(page).fill("고친 문장");
   await page.getByRole("button", { name: "완성 교재 보기" }).click();
-  await page.getByRole("button", { name: "연습" }).click();
+  // 구획은 «내용 고르기» 창에서 고른다(D-159) — 띠는 다른 구획을 읽지만 원고는 덮지 않는다.
+  await page.getByRole("button", { name: "내용 고르기" }).click();
+  await page
+    .getByRole("dialog", { name: "내용 고르기" })
+    .getByRole("button", { name: "연습", exact: true })
+    .click();
   await expect(prompt(page)).toBeVisible();
-  expect(world.count("GET", `/sections/${ids.sectionB}`)).toBe(0);
+  await expect(page.locator("[data-book-preview-where]")).toHaveText(
+    "약수와 배수 › 도입",
+  );
   await prompt(page).getByRole("button", { name: "계속 편집" }).click();
   await expect(prompt(page)).toHaveCount(0);
   await openDetail(page);
@@ -374,6 +381,92 @@ test("개념은 저장되고 구획 연결이 실패하면 — 그 상태를 남
   clean(world, errors);
 });
 
+test("완성 보기 — 교재 전체를 한 띠로 옆으로 넘겨 보고, 쪽을 누르면 크게 본다 · 내용 고르기로 옮겨 간다 (D-159)", async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const { world, errors } = await start(page);
+  const preview = page.getByRole("region", { name: "미리보기", exact: true });
+  const strip = preview.getByRole("region", { name: "교재 지면" });
+  // 두 구획을 다 조판하면 안내 줄이 «조판 n/m 구획» 에서 «N쪽» 으로 바뀐다.
+  await expect(preview.getByText(/넘겨 보고.*· \d+쪽$/)).toBeVisible();
+  // 합성 교재의 첫 구획은 시작 면이 맞지 않아 조판되지 않는다 — 그 자리에는 까닭이 적히고, 누를 수 없다.
+  const items = strip.locator("[data-strip-key]");
+  await expect(items).toHaveCount(2);
+  await expect(items.nth(0)).toContainText("홀수 1쪽에서 시작합니다");
+  await expect(items.nth(0).getByRole("button")).toHaveCount(0);
+  // 조판된 구획은 줄여 그린 A4(띠의 배율 0.46)다 — 비율은 그대로다.
+  const papers = strip.locator(".tb-paper");
+  await expect(papers).toHaveCount(1);
+  const paper = await papers.first().evaluate((el) => {
+    const r = el.getBoundingClientRect();
+    return { w: r.width, h: r.height };
+  });
+  expect(paper.w).toBeGreaterThan(350);
+  expect(paper.w).toBeLessThan(380);
+  expect(Math.abs(paper.h / paper.w - 297 / 210)).toBeLessThan(0.01);
+  // 띠의 쪽은 옆으로 나란히, 같은 크기로 놓인다(조판하지 못한 자리도 한 쪽 크기다).
+  const boxes = await items.evaluateAll((els) =>
+    els.map((el) => {
+      const r = el.firstElementChild!.getBoundingClientRect();
+      return { x: r.x, y: r.y, w: r.width, h: r.height };
+    }),
+  );
+  expect(boxes[1]!.x).toBeGreaterThan(boxes[0]!.x + boxes[0]!.w - 1);
+  expect(Math.abs(boxes[1]!.y - boxes[0]!.y)).toBeLessThan(2);
+  expect(Math.abs(boxes[1]!.w - boxes[0]!.w)).toBeLessThan(2);
+  expect(Math.abs(boxes[1]!.h - boxes[0]!.h)).toBeLessThan(2);
+  // 지면의 글이 줄여진 지면 안에 있다 — 지면만 줄고 글이 밖으로 새지 않는다.
+  const inside = await strip.getByText("연습 구획의 글").evaluate((el) => {
+    const sheet = el.closest(".tb-paper")!.getBoundingClientRect();
+    const text = el.getBoundingClientRect();
+    return (
+      text.left >= sheet.left - 1 &&
+      text.right <= sheet.right + 1 &&
+      text.top >= sheet.top - 1 &&
+      text.bottom <= sheet.bottom + 1
+    );
+  });
+  expect(inside).toBe(true);
+  // 쪽 사이의 이동은 넘김과 크게 보기뿐이다.
+  for (const name of ["이전 쪽", "다음 쪽", "맞춤", "넓게"])
+    await expect(
+      preview.getByRole("button", { name, exact: true }),
+    ).toHaveCount(0);
+  await page.screenshot({
+    path: testInfo.outputPath("complete-preview-1440.png"),
+    fullPage: true,
+  });
+
+  // 쪽을 누르면 크게 — Esc 로 닫으면 누른 쪽으로 초점이 돌아온다.
+  const opener = preview.getByRole("button", { name: "연습 1쪽 확대" });
+  await opener.click();
+  const enlarged = page.getByRole("dialog", { name: "지면 확대 보기" });
+  await expect(enlarged).toBeVisible();
+  const big = (await enlarged.locator(".tb-paper").first().boundingBox())!;
+  expect(big.width).toBeGreaterThan(paper.w * 1.5);
+  await page.screenshot({
+    path: testInfo.outputPath("complete-preview-enlarged.png"),
+  });
+  await page.keyboard.press("Escape");
+  await expect(enlarged).toBeHidden();
+  await expect(opener).toBeFocused();
+
+  // 내용 고르기 — 창에서 고르면 닫히고 «지금» 이 그 구획이 된다.
+  await preview.getByRole("button", { name: "내용 고르기" }).click();
+  const picker = page.getByRole("dialog", { name: "내용 고르기" });
+  await expect(picker).toBeVisible();
+  await page.screenshot({
+    path: testInfo.outputPath("complete-preview-picker.png"),
+  });
+  await picker.getByRole("button", { name: "연습", exact: true }).click();
+  await expect(picker).toBeHidden();
+  await expect(preview.locator("[data-book-preview-where]")).toHaveText(
+    "약수와 배수 › 연습",
+  );
+  clean(world, errors);
+});
+
 for (const width of [320, 390]) {
   test(`가로 넘침 없음 — ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 800 });
@@ -391,9 +484,7 @@ for (const width of [320, 390]) {
       });
 
     // 완성 보기
-    await expect(
-      page.getByRole("button", { name: "세부 편집" }),
-    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "세부 편집" })).toBeVisible();
     expect(await overflow(), "완성 보기").toBeLessThanOrEqual(1);
     await shot("preview");
 

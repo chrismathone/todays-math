@@ -21,7 +21,11 @@ import type {
 
 // 라우터는 한 개체여야 한다 — 부를 때마다 새 개체면 불러오기 효과가 끝없이 다시 돈다.
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 
 const student = { id: "student-intro", name: "학생", className: "테스트반" };
 type Session = NonNullable<ExplorerState["session"]>;

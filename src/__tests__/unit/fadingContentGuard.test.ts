@@ -20,12 +20,14 @@ import {
 } from "@/lib/fading/actions";
 import { chipFits, chipTray, type FadingTrap } from "@/lib/fading/chips";
 import {
+  FADING_MAX_PROPOSITIONS,
   buildFadingConcepts,
   fadingConceptDigest,
   fadingTargets,
   proposeFadingGroups,
   type FadingConcept,
 } from "@/lib/fading/concepts";
+import { FADING_GROUPS } from "@/lib/fading/groups";
 import { fadingContentKey, fadingSessionToken } from "@/lib/fading/contentKey";
 import { erasedTargets, type FadingStep } from "@/lib/fading/erasure";
 import { placeChip, startFadingSession } from "@/lib/fading/session";
@@ -711,6 +713,35 @@ describe("평가의 지문 — 4단계를 푼 내용으로 적는다", () => {
   });
 });
 
+describe("옛 틀림과 지금 표적을 합쳐도 상한에 닿지 않는다 — 잘라 내는 일은 일어나지 않는다", () => {
+  // 표적 id 는 «문장 id#몇째»다. 묶음은 다섯 문장 이하이고(얼린 표), 문장마다 핵심어는 넷 이하다(은행 계약).
+  // 그래서 묶음 구성이 그대로인 동안 한 개념이 가질 수 있는 표적 id 는 모두 20개 이하다 — 옛 문장의 틀림을 합쳐도 같다.
+  // 이 셈이 깨지면(상한 · 묶음 크기 · 핵심어 수 가운데 하나가 바뀌면) 상한에서 자르는 일이 실제로 생기므로 여기서 운다.
+  it("묶음 다섯 문장 × 핵심어 넷 = 저장 칸의 상한", () => {
+    expect(FADING_MAX_PROPOSITIONS * 4).toBe(FADING_TARGETS_MAX);
+  });
+
+  it("얼린 묶음은 모두 다섯 문장 이하이고, 은행의 뜻 문장은 모두 핵심어가 넷 이하다", async () => {
+    const { CONCEPT_BLANK_BANK } = await import("@/lib/concept-blank/bank");
+    for (const members of Object.values(FADING_GROUPS))
+      expect(members.length).toBeLessThanOrEqual(FADING_MAX_PROPOSITIONS);
+    const concepts = buildFadingConcepts(
+      CONCEPT_BLANK_BANK.concepts,
+      FADING_GROUPS,
+    );
+    expect(concepts.length).toBeGreaterThan(2000);
+    for (const c of concepts) {
+      for (const p of c.propositions) {
+        const targets = p.pieces.filter((piece) => piece.kind === "target");
+        expect(targets.length).toBeLessThanOrEqual(4);
+      }
+      // 이 개념이 가질 수 있는 표적 id 전부(문장마다 #1 ~ #4).
+      const universe = c.propositions.length * 4;
+      expect(universe).toBeLessThanOrEqual(FADING_TARGETS_MAX);
+    }
+  });
+});
+
 describe("4단계의 틀림은 문장이 고쳐져도 남는다 — «4단계에서 틀리면 다시뿐»", () => {
   const SEED = 3;
 
@@ -733,7 +764,9 @@ describe("4단계의 틀림은 문장이 고쳐져도 남는다 — «4단계에
     expect(fadingRatingsFor(done.session!)).toEqual(["again"]);
   });
 
-  it("지금 표적의 틀림은 표적 차례로 앞에, 옛 틀림은 적힌 차례로 뒤에 — 상한을 넘기지 않는다", () => {
+  // 아래 둘은 위의 셈 밖 — 묶음 구성이 바뀌어(문장이 빠지고 들어와) 옛 틀림이 다른 문장의 것일 때만 생긴다.
+  // 그때도 저장 칸을 깨지 않는다: 지금 표적이 먼저이고, 넘친 옛 틀림은 잘린다(보존했다고 말하지 않는다 — 틀림이 남아 «다시»뿐인 것만 지킨다).
+  it("묶음 구성이 바뀐 예외 — 지금 표적의 틀림이 먼저, 넘친 옛 틀림은 잘리고 저장 칸은 깨지지 않는다", () => {
     const at4 = solvedThrough(NEW_SHAPE, 3, SEED);
     const stale = Array.from(
       { length: FADING_TARGETS_MAX },
@@ -777,7 +810,7 @@ describe("4단계의 틀림은 문장이 고쳐져도 남는다 — «4단계에
     ).toBe(1);
   });
 
-  it("옛 틀림으로 칸이 다 찼으면 새 틀림은 더 적지 않는다 — 저장 칸의 상한을 넘기지 않고, 평가는 이미 «다시»뿐", () => {
+  it("묶음 구성이 바뀐 예외 — 옛 틀림으로 칸이 다 찼으면 새 틀림은 더 적지 않는다(평가는 이미 «다시»뿐)", () => {
     const at4 = solvedThrough(NEW_SHAPE, 3, SEED);
     const stale = Array.from(
       { length: FADING_TARGETS_MAX },

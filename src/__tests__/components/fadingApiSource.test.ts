@@ -57,4 +57,63 @@ describe("학생 API 소스", () => {
       cache: "no-store",
     });
   });
+  it("일일 계획도 로컬과 같은 계약을 사용하며 명시한 분량을 전한다", async () => {
+    const local = createLocalFadingSource({
+      concepts: [],
+      today: "2026-10-07",
+    });
+    const data = await local.dailyPlan!({ quota: 20 });
+    const fetcher = vi.fn(async () => new Response(JSON.stringify({ data })));
+    vi.stubGlobal("fetch", fetcher);
+    const source = createApiFadingSource({ studentId: "student-scope" });
+    expect(await source.dailyPlan!({ quota: 20 })).toEqual(data);
+    expect(fetcher).toHaveBeenCalledWith("/api/learn/fading/daily?quota=20", {
+      cache: "no-store",
+      headers: { "x-student-id": "student-scope" },
+    });
+  });
+  it("읽기와 쓰기 모두 화면을 연 학생을 묶어 다른 로그인에 이어 쓰지 않는다", async () => {
+    const fetcher = vi.fn(
+      async () =>
+        new Response(
+          JSON.stringify({
+            error: {
+              code: "CONFLICT",
+              message: "로그인한 학생이 바뀌었어요. 다시 불러와 주세요.",
+            },
+          }),
+          { status: 409 },
+        ),
+    );
+    vi.stubGlobal("fetch", fetcher);
+    const source = createApiFadingSource({ studentId: "student-before" });
+    const calls = [
+      () => source.state(),
+      () => source.catalog("초3"),
+      () => source.concept("test-concept"),
+      () => source.dailyPlan!(),
+      () => source.act({ action: "pick", conceptId: "test-concept" }),
+    ];
+    for (const call of calls)
+      await expect(call()).rejects.toMatchObject({
+        code: "CONFLICT",
+        status: 409,
+      });
+    expect(fetcher).toHaveBeenCalledTimes(5);
+    for (const [, options] of fetcher.mock.calls as unknown as [
+      string,
+      RequestInit,
+    ][])
+      expect(options.headers).toMatchObject({
+        "x-student-id": "student-before",
+      });
+    const requests = fetcher.mock.calls as unknown as [string, RequestInit][];
+    expect(requests.at(-1)?.[1]).toMatchObject({
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-student-id": "student-before",
+      },
+    });
+  });
 });

@@ -327,6 +327,10 @@ function SoundSetting() {
 export default function ExplorerHome({
   state,
   journeyTheme,
+  conceptMemory,
+  readOnly = false,
+  dailyStartAllowed,
+  dailyStartNote,
   busy,
   claims = NO_CLAIMS,
   chestNotices = NO_NOTICES,
@@ -348,6 +352,12 @@ export default function ExplorerHome({
   state: ExplorerState;
   /** 진도판 테마 — 학원 전체 한 벌, 관리자가 고른다(없으면 지금 판). */
   journeyTheme?: JourneyThemeId;
+  /** Inline concept memory; its schedule and results belong to its own source. */
+  conceptMemory?: ReactNode;
+  /** Read-only previews keep their action names instead of pretending to load. */
+  readOnly?: boolean;
+  dailyStartAllowed?: boolean;
+  dailyStartNote?: string;
   busy: boolean;
   /** Chests pressed and shown as opened while their saves are on the way. */
   claims?: readonly string[];
@@ -467,7 +477,10 @@ export default function ExplorerHome({
 
   return (
     // 순서는 미션 → 지도 → 도구 → 다시 살펴볼 개념 — 넓은 PC 의 두 열은 CSS 만 바꾼다(explorer-home-atelier).
-    <div className={`${s.expeditionHome} ${a.home}`} data-explorer-home="true">
+    <div
+      className={`${s.expeditionHome} ${a.home} ${conceptMemory ? a.withMemory : ""}`}
+      data-explorer-home="true"
+    >
       <section
         className={`${s.todayMission} ${a.mission}`}
         aria-labelledby="today-mission-title"
@@ -480,7 +493,9 @@ export default function ExplorerHome({
               ? "다시 걷는 여정"
               : complete && !active
                 ? "오늘의 한 칸 완료"
-                : "오늘의 한 칸"}
+                : dailyStartAllowed === undefined
+                  ? "오늘의 한 칸"
+                  : "탐험의 한 칸"}
           </span>
           <span>
             {answered} / {goal}{" "}
@@ -520,13 +535,21 @@ export default function ExplorerHome({
             {prerequisiteContext.reason}
           </p>
         ) : null}
+        {dailyStartAllowed === false && dailyStartNote ? (
+          <p className={`${s.missionRetry} ${a.retry}`} role="status">
+            {dailyStartNote}
+          </p>
+        ) : null}
         {activeReview || active || pendingRetry || !complete ? (
           <button
             type="button"
-            className={s.primary}
+            className={
+              dailyStartAllowed === undefined ? s.primary : s.secondary
+            }
             disabled={
               busy ||
               saving ||
+              dailyStartAllowed === false ||
               (!activeReview && !pendingRetry && unavailable) ||
               (!activeReview &&
                 !active &&
@@ -537,7 +560,7 @@ export default function ExplorerHome({
             data-expedition-retry={pendingRetry ? "true" : undefined}
             onClick={activeReview ? onResume : pendingRetry ? onRetry : onStart}
           >
-            {busy
+            {busy && !readOnly
               ? "준비하고 있어요…"
               : activeReview
                 ? "지난 학습 이어하기"
@@ -545,7 +568,9 @@ export default function ExplorerHome({
                   ? "남은 문제 다시 풀기"
                   : active
                     ? "이어서 탐험하기"
-                    : "오늘의 탐험 시작"}
+                    : dailyStartAllowed === undefined
+                      ? "오늘의 탐험 시작"
+                      : "탐험 문제 시작"}
             <span aria-hidden="true"> →</span>
           </button>
         ) : (
@@ -565,6 +590,12 @@ export default function ExplorerHome({
           />
         ) : null}
       </section>
+
+      {conceptMemory ? (
+        <div className={a.memory} data-explorer-home-part="concept-memory">
+          {conceptMemory}
+        </div>
+      ) : null}
 
       <section
         className={`${s.journeyPanel} ${a.journey}`}

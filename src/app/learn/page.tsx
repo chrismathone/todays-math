@@ -23,14 +23,8 @@ export default async function LearnHomePage({
   ]);
   if (!student) redirect("/learn/login");
   if (student.mustChangePassword) redirect("/learn/password");
-  // 서버 문이 켜져 있으면 학생의 첫 화면은 «오늘의 기억»이다(원장님 2026-10-06). 주소에 딸린 것이 없는 들어오기만 돌린다 —
-  // 도감(`view`)과 교재에서 넘어온 길(`fromTextbook`)은 교재 개념백지가 아직 이 화면에 기대고 있어 그대로 둔다.
-  if (
-    fadingEnabled() &&
-    query.view === undefined &&
-    query.fromTextbook === undefined
-  )
-    redirect("/learn/fading");
+  // 탐험이 학생의 기본 화면이다. 새 개념 복습은 이 화면 안에서 열며,
+  // 기존 진도·풀이 기록과 새 복습 기록은 각자의 저장 경로를 유지한다.
   const view = query.view === "collection" ? "collection" : undefined;
   // 진도판 테마(학원 전체 한 벌) — 읽다 실패해도 학생 첫 화면은 지금 판으로 뜬다.
   const { theme } = await readJourneyTheme().catch(() => ({
@@ -48,6 +42,7 @@ export default async function LearnHomePage({
         key={view ?? "home"}
         initialView={view}
         journeyTheme={theme}
+        conceptMemoryEnabled={fadingEnabled()}
       />
     </>
   );

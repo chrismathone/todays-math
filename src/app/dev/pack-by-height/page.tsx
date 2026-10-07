@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
+import { notFound } from "next/navigation";
 import { connection } from "next/server";
 
 import { packProblemsLegacy } from "../../../../scripts/qa/legacy/printPack-20260821";
@@ -10,6 +11,7 @@ import type {
   TestPrintProblem,
 } from "@/components/print/types";
 import { db } from "@/lib/db";
+import { devPageVisible } from "@/lib/devPageAccess";
 import { JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 import { assessOverflowRisk, seatCapacities } from "@/lib/printOverflow";
 import { packProblems } from "@/lib/printPack";
@@ -86,6 +88,10 @@ function readCache(): { rows: Row[] | null; why: string | null } {
 
 export default async function PackByHeightPage() {
   await connection();
+  // 프록시가 `/dev/` 를 공개로 둔다 — production 에서는 **로그인한 원장에게만** 연다
+  // (`src/lib/devPageAccess.ts`). 로그인 없는 요청은 캐시 · DB 를 읽기 전에 여기서 끝난다.
+  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+
   const { rows, why } = readCache();
 
   /**

@@ -37,7 +37,12 @@ export default async function FadingDevPage({
       bankSize={bankSize}
       traps={traps}
       figures={figures}
-      options={{ scene, conceptId, preview: params.preview === "1" }}
+      options={{
+        scene,
+        conceptId,
+        preview: params.preview === "1",
+        cards: params.cards === "1",
+      }}
     />
   );
 }

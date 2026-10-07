@@ -31,6 +31,7 @@ vi.mock("@/lib/ai/transformer", () => ({
 import { POST as adoptRoute } from "@/app/api/problems/transform/adopt/route";
 import { deriveQuestionType } from "@/lib/ai/questionType";
 import { POST as transformRoute } from "@/app/api/problems/transform/route";
+import { AI_BUSY_MESSAGE, resetAiAdmission } from "@/lib/aiAdmission";
 import { errorResponseSchema } from "@/contracts/common.contract";
 import {
   problemTransformAdoptResponseSchema,
@@ -659,5 +660,48 @@ describe("POST /api/problems/transform/adopt — 채택분만 넣는다", () => 
     } finally {
       createManySpy.mockRestore();
     }
+  });
+});
+
+describe("🔴 한 사람이 동시에 띄우는 변형은 둘까지 (2026-10-07 검수)", () => {
+  const call = () =>
+    transformRoute(
+      jsonRequest("http://localhost/api/problems/transform", {
+        originProblemId: MOCK_PROBLEMS[0]!.id,
+        count: 1,
+      }),
+    );
+
+  it("셋째 요청은 AI 를 부르지 않고 429 — 앞의 것이 실패로 끝나도 자리는 돌아온다", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    resetAiAdmission();
+    let fail!: (error: Error) => void;
+    mockTransformProblem.mockReturnValue(
+      new Promise<never>((_, reject) => {
+        fail = reject;
+      }),
+    );
+
+    const first = call();
+    const second = call();
+    await vi.waitFor(() =>
+      expect(mockTransformProblem).toHaveBeenCalledTimes(2),
+    );
+
+    const third = await call();
+    expect(third.status).toBe(429);
+    expect(errorResponseSchema.parse(await third.json()).error.message).toBe(
+      AI_BUSY_MESSAGE,
+    );
+    expect(mockTransformProblem).toHaveBeenCalledTimes(2);
+
+    fail(new AiGenerationError("upstream"));
+    expect((await first).status).toBe(502);
+    expect((await second).status).toBe(502);
+
+    mockTransformProblem.mockRejectedValueOnce(new AiGenerationError("again"));
+    expect((await call()).status).toBe(502);
+    expect(mockTransformProblem).toHaveBeenCalledTimes(3);
+    log.mockRestore();
   });
 });

@@ -55,19 +55,16 @@ export function SrsWorkspaceView({
 }
 
 function EnabledSrsWorkspaceView({
-  fadingGate,
   branchId,
   legacy,
   source,
   preview = loadPreview,
 }: SrsWorkspaceViewProps) {
   const id = useId();
-  const [tab, setTab] = useState<Tab>(
-    fadingGate === "on" ? "fading" : "legacy",
-  );
+  const [tab, setTab] = useState<Tab>("legacy");
   const [opened, setOpened] = useState({
-    legacy: fadingGate !== "on",
-    fading: fadingGate === "on",
+    legacy: true,
+    fading: false,
   });
   const buttons = useRef<Array<HTMLButtonElement | null>>([]);
   const readers = useMemo(

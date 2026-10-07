@@ -26,6 +26,35 @@ sessions where they help finish this task.
 
 # Student SRS redesign ("오늘의 기억") — who owns what
 
+**Owner direction updated 2026-10-07:** the existing **StudentMathExplorers**
+(journey, progress, problem practice and review) is the student SRS base.
+Integrate the new recall/typed-cloze flow into that experience; do not replace
+it with the separate v2 home or redirect `/learn` to `/learn/fading`.
+Preserve both record domains and keep the standalone fading source usable.
+The daily engine combines spaced review, prerequisite checks and progress;
+a configured base quota (for example 20) may grow to **20+n** for necessary
+same-session relearning after **1 minute / 5 minutes**. These short repeats
+must not double-update long-term FSRS. Read
+`docs/planning/srs-explorer-integration-20261007.md`. These newer decisions
+override the replacement/navigation/drop plan below; the data ownership,
+authentication and compatibility requirements still apply.
+
+**Student menus (2026-10-07):** default to exploration and its collection.
+Branch managers may grant lectures, textbook QR learning and English listening
+per student in the student account panel. All additional menus default off.
+Use `studentLearningMenuPolicy.ts` and the authenticated per-student setting;
+enforce optional-module access in both proxy and route handlers.
+The existing `app_setting` table is server-only (RLS enabled, browser roles
+revoked); do not grant direct browser access to these authorization settings.
+
+**Minute relearning compatibility:** `fading.relearn` is optional, persisted
+separately from long-term FSRS and expedition credits. Main containing
+`11fdbf48d` is the reader floor: after activation, never run older code against
+the shared database or roll production back before that commit. The writer
+gate `MATH_FADING_RELEARN` is open when unset or `on`, and closed otherwise.
+The reader floor was verified in production at `7c9e9a4b8` (2026-10-07,
+GitHub deployment 6900206486) before this default was enabled.
+
 On 2026-10-06 the user split this work: **Codex owns the design** (screens,
 components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
 (concept data contract, schedule, session rules, numbers, storage, tests).

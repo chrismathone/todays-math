@@ -676,6 +676,28 @@ describe("administrator changes and activity integrity", () => {
       ],
     });
   });
+  it("🔴 accepts but does not store UI telemetry from an account that is not approved", async () => {
+    // 가입은 열려 있다 — 승인받지 않은 계정이 요청마다 50줄씩 끝없이 쌓을 수 있었다(2026-10-07 검수).
+    // 화면의 기록기가 재시도 · 오류로 번지지 않게 응답은 승인 계정과 같은 204 다.
+    for (const approvalStatus of ["pending", "rejected"] as const) {
+      login({ approvalStatus });
+      const response = await activity(
+        request("POST", {
+          ownerId: userId,
+          events: [
+            {
+              id: crypto.randomUUID(),
+              action: "click",
+              label: "승인 대기",
+              path: "/approval-pending",
+            },
+          ],
+        }),
+      );
+      expect(response.status).toBe(204);
+    }
+    expect(mocks.audit.createMany).not.toHaveBeenCalled();
+  });
   it("rejects foreign-owner or forged confirmed-action telemetry", async () => {
     expect(
       (

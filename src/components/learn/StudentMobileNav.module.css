@@ -1,8 +1,40 @@
 .nav {
   display: none;
 }
+.desktop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.desktop .tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 18px;
+  border: 1px solid var(--learn-track, #dce5f1);
+  border-radius: 12px;
+  color: var(--learn-muted, #647998);
+  background: var(--learn-surface, #fff);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.desktop .tab svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.desktop .tab[aria-current="page"] {
+  color: var(--learn-accent, #3159df);
+  background: var(--learn-soft, #edf2ff);
+  border-color: var(--learn-accent, #3159df);
+}
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .nav {
     position: fixed;
     z-index: 20;
@@ -10,13 +42,17 @@
     bottom: 0;
     left: 0;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    width: min(100%, 480px);
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    width: min(100%, 600px);
     margin: 0 auto;
     padding: 7px 8px calc(7px + env(safe-area-inset-bottom, 0px));
     border-top: 1px solid var(--learn-track);
     background: var(--learn-surface);
     box-shadow: 0 -8px 28px rgb(20 36 61 / 7%);
+  }
+  .nav.desktop {
+    display: none;
   }
 
   .tab {

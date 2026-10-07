@@ -26,7 +26,11 @@ import {
 
 const controls = vi.hoisted(() => ({ self: true }));
 const router = vi.hoisted(() => ({ replace: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 vi.mock("@/components/math-srs/courseApi", () => ({
   getCourseState: vi.fn(),
   startCourse: vi.fn(),

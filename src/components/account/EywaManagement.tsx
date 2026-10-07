@@ -27,9 +27,12 @@ const labels: Record<string, string> = {
   activation_requires_enabled: "원본 연동이 꺼져 있어 복구를 시작하지 않습니다",
   activation_requires_healthy_binding:
     "원본 상태 또는 기준 시점이 맞지 않아 복구를 시작하지 않습니다",
-  snapshot_not_applied: "스냅샷을 적용하지 못했습니다. 계정은 바꾸지 않았습니다",
-  archive_owner_conflict: "보관 담당자가 이미 바뀌었습니다. 최신 연결을 다시 읽으세요",
-  invalid_archive_owner: "같은 지점의 승인된 교사만 보관 담당자로 지정할 수 있습니다",
+  snapshot_not_applied:
+    "스냅샷을 적용하지 못했습니다. 계정은 바꾸지 않았습니다",
+  archive_owner_conflict:
+    "보관 담당자가 이미 바뀌었습니다. 최신 연결을 다시 읽으세요",
+  invalid_archive_owner:
+    "같은 지점의 승인된 교사만 보관 담당자로 지정할 수 있습니다",
 };
 const applicationLabel: Record<string, string> = {
   received: "수신 완료",
@@ -44,6 +47,36 @@ function clearSecret(form: HTMLFormElement) {
   if (password instanceof HTMLInputElement) password.value = "";
 }
 
+function Pager({
+  window,
+  busy,
+  onPage,
+}: {
+  window: Status["pages"]["events"];
+  busy: boolean;
+  onPage: (page: number) => void;
+}) {
+  return (
+    <p>
+      {window.from}–{window.to} / 총 {window.total}건{" "}
+      <button
+        type="button"
+        disabled={busy || window.page <= 1}
+        onClick={() => onPage(window.page - 1)}
+      >
+        이전
+      </button>
+      <button
+        type="button"
+        disabled={busy || window.to >= window.total}
+        onClick={() => onPage(window.page + 1)}
+      >
+        다음
+      </button>
+    </p>
+  );
+}
+
 export function EywaManagement({
   initial,
   operator,
@@ -55,13 +88,20 @@ export function EywaManagement({
 }) {
   const busyRef = useRef(false);
   const [status, setStatus] = useState(initial);
-  const [pages, setPages] = useState<Pages>({ events: 1, accounts: 1, reviews: 1 });
+  const [pages, setPages] = useState<Pages>({
+    events: 1,
+    accounts: 1,
+    reviews: 1,
+  });
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
-  const [stopTarget, setStopTarget] = useState<{ id: string; count: number } | null>(
-    null,
-  );
-  const endpoint = operator ? "/api/admin/eywa-sync" : "/api/account/eywa-managed";
+  const [stopTarget, setStopTarget] = useState<{
+    id: string;
+    count: number;
+  } | null>(null);
+  const endpoint = operator
+    ? "/api/admin/eywa-sync"
+    : "/api/account/eywa-managed";
 
   async function load(next: Pages = pages) {
     if (busyRef.current) return false;
@@ -73,7 +113,9 @@ export function EywaManagement({
         accountsPage: String(next.accounts),
         reviewsPage: String(next.reviews),
       });
-      const response = await fetch(`${endpoint}?${params}`, { cache: "no-store" });
+      const response = await fetch(`${endpoint}?${params}`, {
+        cache: "no-store",
+      });
       if (!response.ok) return false;
       setStatus((await response.json()) as Status);
       setPages(next);
@@ -87,7 +129,8 @@ export function EywaManagement({
   }
 
   async function mutate(body: unknown) {
-    if (busyRef.current) return { ok: false as const, code: "busy", result: null };
+    if (busyRef.current)
+      return { ok: false as const, code: "busy", result: null };
     busyRef.current = true;
     setBusy(true);
     setMessage("");
@@ -101,7 +144,9 @@ export function EywaManagement({
       if (!response.ok) {
         const code =
           result && typeof result === "object" && "error" in result
-            ? String((result as { error?: { code?: string } }).error?.code ?? "")
+            ? String(
+                (result as { error?: { code?: string } }).error?.code ?? "",
+              )
             : "";
         setMessage(
           labels[code] ??
@@ -127,28 +172,6 @@ export function EywaManagement({
       ok
         ? "목록을 다시 읽었습니다."
         : "목록을 다시 읽지 못했습니다. 표시 중인 범위는 그대로입니다.",
-    );
-  }
-
-  function pager(kind: keyof Pages, window: Status["pages"]["events"]) {
-    return (
-      <p>
-        {window.from}–{window.to} / 총 {window.total}건{" "}
-        <button
-          type="button"
-          disabled={busy || window.page <= 1}
-          onClick={() => void load({ ...pages, [kind]: window.page - 1 })}
-        >
-          이전
-        </button>
-        <button
-          type="button"
-          disabled={busy || window.to >= window.total}
-          onClick={() => void load({ ...pages, [kind]: window.page + 1 })}
-        >
-          다음
-        </button>
-      </p>
     );
   }
 
@@ -323,8 +346,8 @@ export function EywaManagement({
                       return;
                     }
                     const restored = Number(
-                      (outcome.result as { restored?: number } | null)?.restored ??
-                        0,
+                      (outcome.result as { restored?: number } | null)
+                        ?.restored ?? 0,
                     );
                     setMessage(
                       restored > 0
@@ -409,7 +432,9 @@ export function EywaManagement({
                   });
                   if (outcome.ok) {
                     event.currentTarget.reset();
-                    setMessage("연결을 종료했습니다. 종료한 계정은 이 복구로 풀지 않습니다.");
+                    setMessage(
+                      "연결을 종료했습니다. 종료한 계정은 이 복구로 풀지 않습니다.",
+                    );
                     await load();
                   }
                 }}
@@ -418,7 +443,9 @@ export function EywaManagement({
                   <input type="checkbox" required /> 이 연결의 모든 관리 선생님
                   접근을 중지합니다.
                 </label>{" "}
-                <button disabled={busy || !!binding.retiredAt}>연결 종료</button>
+                <button disabled={busy || !!binding.retiredAt}>
+                  연결 종료
+                </button>
               </form>
               <form
                 onSubmit={async (event) => {
@@ -442,9 +469,9 @@ export function EywaManagement({
                 <h3>보관 담당자 지정</h3>
                 <p>
                   담당자가 없는 반은 이 교사에게 접근 권한이 생깁니다. 이미
-                  담당자가 있는 반은 옮기지 않습니다. 승인되지 않았거나 정지·삭제된
-                  계정은 지정되지 않으며, 원인을 고치기 전에 다시 지정하면 같은
-                  이유로 실패합니다.
+                  담당자가 있는 반은 옮기지 않습니다. 승인되지 않았거나
+                  정지·삭제된 계정은 지정되지 않으며, 원인을 고치기 전에 다시
+                  지정하면 같은 이유로 실패합니다.
                 </p>
                 <label>
                   같은 지점의 교사 계정 ID
@@ -463,7 +490,11 @@ export function EywaManagement({
           <h2>최근 동기화 처리</h2>
           <p>계정 확인 대기 {status.pendingAccountChecks}건</p>
           <p>관계 충돌 검토 {status.pages.reviews.total}건</p>
-          {pager("events", status.pages.events)}
+          <Pager
+            window={status.pages.events}
+            busy={busy}
+            onPage={(page) => void load({ ...pages, events: page })}
+          />
           <table>
             <thead>
               <tr>
@@ -488,7 +519,11 @@ export function EywaManagement({
               ))}
             </tbody>
           </table>
-          {pager("reviews", status.pages.reviews)}
+          <Pager
+            window={status.pages.reviews}
+            busy={busy}
+            onPage={(page) => void load({ ...pages, reviews: page })}
+          />
           {status.relationReviews.map((review) => {
             const details = review.details as {
               conflicts?: { entity: string; sourceId: string; code: string }[];
@@ -503,10 +538,13 @@ export function EywaManagement({
                 </summary>
                 <p>검토 ID {review.id}</p>
                 <p>
-                  사건 {linked.eventId ?? "없음"} · 연결 {linked.bindingId ?? "없음"} ·
-                  스냅샷 {linked.snapshotId ?? "없음"}
+                  사건 {linked.eventId ?? "없음"} · 연결{" "}
+                  {linked.bindingId ?? "없음"} · 스냅샷{" "}
+                  {linked.snapshotId ?? "없음"}
                 </p>
-                <p>{linked.recorded ? `사유 ${linked.reason}` : "사유 미기록"}</p>
+                <p>
+                  {linked.recorded ? `사유 ${linked.reason}` : "사유 미기록"}
+                </p>
                 <p>
                   보류 학생 {details.deferredStudents ?? 0}명 · 미확정 진도{" "}
                   {details.unresolvedProgress ?? 0}건
@@ -535,7 +573,13 @@ export function EywaManagement({
           지정하세요.
         </p>
       ) : null}
-      {operator ? pager("accounts", status.pages.accounts) : null}
+      {operator ? (
+        <Pager
+          window={status.pages.accounts}
+          busy={busy}
+          onPage={(page) => void load({ ...pages, accounts: page })}
+        />
+      ) : null}
       {!status.accounts.length ? (
         <p>확인할 연결이 없습니다.</p>
       ) : (
@@ -544,7 +588,8 @@ export function EywaManagement({
           return (
             <section key={account.id}>
               <h3>
-                {account.sourceName} · {labels[account.status] ?? account.status}
+                {account.sourceName} ·{" "}
+                {labels[account.status] ?? account.status}
               </h3>
               <p>
                 에이와: {account.sourceEmail}
@@ -552,7 +597,8 @@ export function EywaManagement({
                 오늘의수학: {account.localName ?? "연결 계정 없음"} ·{" "}
                 {account.localEmail ?? "—"}
               </p>
-              {account.localEmail && account.localEmail !== account.sourceEmail ? (
+              {account.localEmail &&
+              account.localEmail !== account.sourceEmail ? (
                 <p>
                   로그인 이메일이 원본 이메일과 다릅니다. 기존 로그인 이메일은
                   유지됩니다.
@@ -565,7 +611,8 @@ export function EywaManagement({
                   .join(" · ")}
               </p>
               <small>
-                원본 ID {account.sourceUserId} · 계정 ID {account.userId ?? "없음"}
+                원본 ID {account.sourceUserId} · 계정 ID{" "}
+                {account.userId ?? "없음"}
               </small>
               {["candidate", "conflict"].includes(account.status) &&
               account.userId &&

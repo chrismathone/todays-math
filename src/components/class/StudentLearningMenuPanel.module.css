@@ -1,0 +1,78 @@
+.panel {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #d4dce8;
+}
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.note,
+.error {
+  margin: 0;
+  font-size: 12px;
+  color: #596c86;
+}
+.error {
+  color: #b42318;
+}
+.options {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+}
+.legend {
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #596c86;
+}
+.option {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 44px;
+  font-size: 13px;
+}
+.panel .option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  flex: 0 0 18px;
+  margin: 0;
+  padding: 0;
+  accent-color: #3159df;
+}
+.option input:focus-visible,
+.button:focus-visible {
+  outline: 2px solid #3159df;
+  outline-offset: 3px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.button {
+  justify-self: start;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #3159df;
+  border-radius: 8px;
+  background: #3159df;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+.button:hover:enabled {
+  background: #274bbf;
+}
+.button:disabled {
+  opacity: 0.5;
+}

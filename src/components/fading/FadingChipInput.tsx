@@ -34,6 +34,7 @@ export function useFadingKeyboard({
       event.altKey ||
       event.metaKey ||
       event.isComposing ||
+      event.keyCode === 229 ||
       document.querySelector('dialog[open], [role="dialog"]')
     )
       return;
@@ -54,7 +55,7 @@ export function useFadingKeyboard({
         (digit === "0" ? 9 : Number(digit) - 1) + (event.shiftKey ? 10 : 0),
       );
     } else if (
-      event.key === "Enter" &&
+      (event.key === "Enter" || event.key === " ") &&
       !(target instanceof Element && target.closest("button,a"))
     ) {
       event.preventDefault();

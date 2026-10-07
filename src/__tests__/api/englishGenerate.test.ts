@@ -34,6 +34,7 @@ vi.mock("@/lib/ownership", () => ({
 }));
 
 import { POST } from "@/app/api/english/generate/route";
+import { AI_BUSY_MESSAGE, resetAiAdmission } from "@/lib/aiAdmission";
 import { errorResponseSchema } from "@/contracts/common.contract";
 import { englishGenerateResponseSchema } from "@/contracts/english.contract";
 import { forbiddenError, notFoundError } from "@/lib/apiResponse";
@@ -324,5 +325,34 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     expect(text).not.toContain(passage);
     expect(text).not.toContain("passage-data");
     expect(mockCreate).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe("🔴 한 사람이 동시에 띄우는 생성은 둘까지 (2026-10-07 검수)", () => {
+  it("셋째 요청은 모델을 부르지 않고 429 — 앞의 것이 실패로 끝나도 자리는 돌아온다", async () => {
+    resetAiAdmission();
+    let fail!: (error: Error) => void;
+    mockCreate.mockReturnValue(
+      new Promise<never>((_, reject) => {
+        fail = reject;
+      }),
+    );
+
+    const first = call(body);
+    const second = call(body);
+    await vi.waitFor(() => expect(mockCreate).toHaveBeenCalledTimes(2));
+
+    const third = await call(body);
+    expect(third.status).toBe(429);
+    expect((await errorOf(third)).message).toBe(AI_BUSY_MESSAGE);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+
+    fail(new Error("upstream"));
+    expect((await first).status).toBe(502);
+    expect((await second).status).toBe(502);
+
+    mockCreate.mockReset().mockRejectedValue(new Error("again"));
+    expect((await call(body)).status).toBe(502);
+    expect(mockCreate).toHaveBeenCalled();
   });
 });

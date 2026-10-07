@@ -206,6 +206,8 @@ beforeEach(() => {
   vi.setSystemTime(DAY1);
   vi.stubEnv("AUTH_URL", base);
   vi.stubEnv("MATH_FADING", "on");
+  // 카드 풀이의 문은 값이 없으면 켜짐이다 — 칩 풀이를 보는 시험은 명시적 `off` 로 돈다(카드 풀이는 아래 묶음이 따로 본다).
+  vi.stubEnv("MATH_FADING_CARDS", "off");
 });
 afterEach(() => {
   vi.useRealTimers();
@@ -1029,5 +1031,194 @@ describe("서버 없이 도는 길(`createLocalFadingSource`)은 학생 API 와 
     const again = await both({ action: "pick", conceptId: first! });
     expect(again.revision).toBe(picked.revision);
     expect((await local.state()).revision).toBe(picked.revision);
+  });
+});
+
+describe("카드 풀이의 하위 문(`MATH_FADING_CARDS`)", () => {
+  /** 저장된 열린 풀이 — 학생 기록 한 줄에서 꺼낸다. */
+  const storedSession = () =>
+    parseSrsState(f.rows.get(f.studentId)!.payload).fading!.session;
+
+  it("학생 라우트의 문이 `on` 이 아니면 카드 문이 켜져 있어도 네 길이 닫혀 있고 아무것도 쓰지 않는다", async () => {
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    for (const parent of ["off", "read"]) {
+      vi.stubEnv("MATH_FADING", parent);
+      expect((await read()).status).toBe(404);
+      expect(
+        (await postRaw({ action: "pick", conceptId: "m2-01-01-c1" })).status,
+      ).toBe(404);
+    }
+    expect(f.writes).toBe(0);
+  });
+
+  it("열린 칩 풀이는 문이 켜진 뒤에도 칩으로 끝난다 — 새 풀이만 카드 풀이다", async () => {
+    const [first] = await someConcepts();
+    let view = await act({ action: "open", conceptId: first! });
+    expect(view.session).not.toHaveProperty("mode");
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    view = await act({ action: "open", conceptId: first! });
+    expect(view.session).not.toHaveProperty("mode");
+    expect(storedSession()).not.toHaveProperty("mode");
+    const { view: rated } = await toRating(first!);
+    expect(rated.session).toMatchObject({ phase: "rating", missedAtFour: [] });
+    expect(rated.session).not.toHaveProperty("mode");
+  });
+
+  it("명시적으로 끄면(`off`) 칩 풀이 — 처음부터 평가까지 응답 · 저장 칸에 카드 풀이의 칸이 하나도 없다", async () => {
+    const [first] = await someConcepts();
+    expect(await state(await read())).not.toHaveProperty("mode");
+    const { view, sessionId } = await toRating(first!);
+    expect(Object.keys(view.session!).sort()).toEqual(
+      [
+        "conceptId",
+        "id",
+        "missedAtFour",
+        "phase",
+        "ratings",
+        "seed",
+        "startStep",
+        "step",
+      ].sort(),
+    );
+    // 4단계를 마친 풀이의 «푼 내용의 지문»은 카드 풀이 이전부터 쓰던 칸이다(D1).
+    expect(Object.keys(storedSession()!).sort()).toEqual(
+      [
+        "conceptId",
+        "digest",
+        "id",
+        "missedAtFour",
+        "phase",
+        "seed",
+        "startStep",
+      ].sort(),
+    );
+    const detail = fadingConceptResponseSchema.parse(
+      await (await concept(first!)).json(),
+    ).data;
+    expect(detail).not.toHaveProperty("mode");
+    await act({
+      action: "rate",
+      conceptId: first!,
+      sessionId,
+      rating: "good",
+      requestId: uuid(41),
+    });
+    const stored = parseSrsState(f.rows.get(f.studentId)!.payload).fading!
+      .concepts[first!]!;
+    expect(stored).not.toHaveProperty("marks");
+  });
+
+  it("값이 없으면 켜짐 — 새 풀이가 카드 풀이다 · 4단계는 글로 쓰고, 모르는 글은 대조를 기다리고, 칩은 409 다 · 서버 없이 도는 길과 응답이 같다", async () => {
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    const [first] = await someConcepts();
+    const fresh = { sessionId: uuid(0), seed: 0 };
+    const local = createLocalFadingSource({
+      concepts: fadingCatalog(),
+      today: "2026-10-06",
+      defaultGrade: "중2",
+      traps: fadingTrapMap(fadingCatalog()),
+      figures: fadingFigureMap(fadingCatalog(), CONCEPT_BLANK_BANK.figures),
+      fresh: () => fresh,
+      cards: true,
+    });
+    const both = async (action: FadingAction) => {
+      const server = await act(action);
+      if (action.action === "open" && server.session)
+        Object.assign(fresh, {
+          sessionId: storedSession()!.id,
+          seed: server.session.seed,
+        });
+      expect(await local.act(action)).toStrictEqual(server);
+      return server;
+    };
+    expect((await state(await read())).mode).toBe("cards");
+    let view = await both({ action: "open", conceptId: first! });
+    expect(view.session!.mode).toBe("cards");
+    expect(storedSession()).toMatchObject({ mode: "cards" });
+    const sessionId = view.session!.id;
+    const content = view.opened!.concept as FadingConcept;
+    const seen = "3".repeat(content.propositions.length);
+    view = await both({ action: "read", conceptId: first!, sessionId, seen });
+    expect(storedSession()!.seen).toBe(seen);
+    for (const step of [2, 3] as const)
+      view = await both({
+        action: "step",
+        conceptId: first!,
+        sessionId,
+        step,
+        placements: placements(
+          content,
+          step,
+          view.session!.seed,
+          false,
+          view.opened!.traps,
+        ),
+      });
+    // 옛 화면의 칩은 4단계에서 받지 않는다.
+    expect(
+      await code(
+        await postRaw({
+          action: "step",
+          conceptId: first!,
+          sessionId,
+          step: 4,
+          placements: placements(
+            content,
+            4,
+            view.session!.seed,
+            false,
+            view.opened!.traps,
+          ),
+        }),
+      ),
+    ).toEqual([409, "CONFLICT"]);
+    const targets = erasedTargets(content, 4);
+    const [odd, ...rest] = targets;
+    view = await both({
+      action: "step",
+      conceptId: first!,
+      sessionId,
+      step: 4,
+      placements: [
+        { targetId: odd!.id, text: "어느 답도 아닌 글" },
+        ...rest.map((t) => ({ targetId: t.id, text: t.text })),
+      ],
+    });
+    expect(view.session).toMatchObject({
+      phase: "rating",
+      missedAtFour: [],
+      unjudged: [{ targetId: odd!.id, text: "어느 답도 아닌 글" }],
+    });
+    // 다시 읽어도 같은 대조가 선다.
+    expect((await state(await read())).session!.unjudged).toEqual(
+      view.session!.unjudged,
+    );
+    expect(
+      await code(
+        await postRaw({
+          action: "rate",
+          conceptId: first!,
+          sessionId,
+          rating: "good",
+          requestId: uuid(42),
+        }),
+      ),
+    ).toEqual([409, "CONFLICT"]);
+    const done = await both({
+      action: "rate",
+      conceptId: first!,
+      sessionId,
+      rating: "good",
+      requestId: uuid(42),
+      judged: { [odd!.id]: "same" },
+    });
+    expect(done.receipt).toMatchObject({ rating: "good" });
+    const stored = parseSrsState(f.rows.get(f.studentId)!.payload).fading!
+      .concepts[first!]!;
+    expect(stored.marks).toEqual({ digest: stored.digest, seen });
+    const detail = fadingConceptResponseSchema.parse(
+      await (await concept(first!)).json(),
+    ).data;
+    expect(detail.mode).toBe("cards");
   });
 });

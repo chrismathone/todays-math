@@ -16,6 +16,8 @@ export function createWorkspaceFadingPreview(
   return {
     concepts,
     today,
+    // Preview the new card flow in memory; this does not change the live rollout gate.
+    cards: true,
     traps: fadingTrapMap(concepts),
     figures: fadingFigureMap(concepts, CONCEPT_BLANK_BANK.figures),
   };

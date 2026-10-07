@@ -4,18 +4,13 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import s from "./StudentMobileNav.module.css";
+import { useStudentChrome } from "./StudentChromeContext";
 
 const tabs = [
   { href: "/learn", label: "탐험", icon: "compass" },
   { href: "/learn?view=collection", label: "도감", icon: "book" },
   { href: "/learn/lectures", label: "강의", icon: "play" },
-  { href: "/learn/english-listening", label: "영어듣기", icon: "headphones" },
-] as const;
-/** 서버 문이 켜져 있을 때 — «탐험 · 도감» 자리에 «오늘의 기억» 하나가 선다(그 앱 안에서는 이 메뉴를 그리지 않는다). */
-const fadingTabs = [
-  { href: "/learn/fading", label: "오늘의 기억", icon: "compass" },
-  tabs[2],
-  tabs[3],
+  { href: "/learn/english-listening", label: "영어 듣기", icon: "headphones" },
 ] as const;
 
 function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
@@ -58,19 +53,21 @@ function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
 
 export function StudentMobileNav({
   previewPath,
-  fading = false,
+  desktop = false,
 }: {
   previewPath?: string;
-  /** 서버 문이 켜져 있다(`fadingEnabled()` — 서버에서 읽어 내려 준다). */
+  desktop?: boolean;
+  /** Kept for older preview callers; concept recall now lives inside exploration. */
   fading?: boolean;
 }) {
+  const chrome = useStudentChrome();
   const actualPathname = usePathname();
   const searchParams = useSearchParams();
   const pathname = previewPath ?? actualPathname;
   const collection = !previewPath && searchParams.get("view") === "collection";
   const lectures =
     pathname === "/learn/lectures" || pathname.startsWith("/learn/watch/");
-  const listening =
+  const english =
     pathname === "/learn/english-listening" ||
     pathname.startsWith("/learn/english-listening/");
   if (
@@ -82,30 +79,45 @@ export function StudentMobileNav({
     return null;
 
   return (
-    <nav className={s.nav} aria-label="학생 학습 메뉴">
-      {(fading ? fadingTabs : tabs).map((tab) => {
-        const current =
-          tab.icon === "headphones"
-            ? listening
-            : tab.icon === "play"
+    <nav
+      className={`${s.nav} ${desktop ? s.desktop : ""}`}
+      aria-label="학생 학습 메뉴"
+      data-student-global-nav="true"
+    >
+      {tabs
+        .filter(
+          (tab) =>
+            (tab.icon !== "play" || chrome.enabled.includes("lectures")) &&
+            (tab.icon !== "headphones" ||
+              chrome.enabled.includes("english-listening")),
+        )
+        .map((tab) => {
+          const current =
+            tab.icon === "play"
               ? lectures
               : tab.icon === "book"
-                ? collection && !listening
-                : // «오늘의 기억» 탭은 그 앱 밖에서만 보이므로 지금 쪽이 될 일이 없다.
-                  !fading && !lectures && !collection && !listening;
-        return (
-          <Link
-            key={tab.href}
-            href={tab.href}
-            prefetch={false}
-            className={s.tab}
-            aria-current={current ? "page" : undefined}
-          >
-            <TabIcon name={tab.icon} />
-            <span>{tab.label}</span>
-          </Link>
-        );
-      })}
+                ? collection
+                : tab.icon === "headphones"
+                  ? english
+                  : !lectures && !collection && !english;
+          return (
+            <Link
+              key={tab.href}
+              href={tab.href}
+              prefetch={false}
+              aria-disabled={chrome.preview || undefined}
+              tabIndex={chrome.preview ? -1 : undefined}
+              onClick={
+                chrome.preview ? (event) => event.preventDefault() : undefined
+              }
+              className={s.tab}
+              aria-current={current ? "page" : undefined}
+            >
+              <TabIcon name={tab.icon} />
+              <span>{tab.label}</span>
+            </Link>
+          );
+        })}
     </nav>
   );
 }

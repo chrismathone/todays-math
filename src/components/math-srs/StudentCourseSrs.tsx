@@ -39,7 +39,8 @@ type Action = {
 
 export default function StudentCourseSrs({
   expedition,
-}: { expedition?: ExpeditionActivityCallbacks } = {}) {
+  paused: checkPaused = false,
+}: { expedition?: ExpeditionActivityCallbacks; paused?: boolean } = {}) {
   const router = useRouter();
   const { gesture, play, resetStudent } = useLearningSounds();
   const soundEpoch = useRef(0);
@@ -185,7 +186,8 @@ export default function StudentCourseSrs({
     });
   }
 
-  const blocked = busy || loading || (!!error && error.status !== 400);
+  const blocked =
+    checkPaused || busy || loading || (!!error && error.status !== 400);
   const practice = practicing && state?.session;
   const summary = state?.summary;
   const recommendation = summary?.recommendation;
