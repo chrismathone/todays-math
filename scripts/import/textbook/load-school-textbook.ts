@@ -549,13 +549,15 @@ function buildRowsOf(
   >();
   const unitsOf = (grade: string) => {
     if (!unitLists.has(grade)) {
+      // 차시 목록은 과목마다 같다 — 그 과목을 처음 검토한 폴더에만 있을 수 있다(묶음마다 검토 폴더가 여럿)
+      const dir = set.reviews.find((review) =>
+        existsSync(join(DIR, review, "units", `${grade}.json`)),
+      );
+      if (!dir) throw new Error(`차시 목록이 없다 — ${grade}`);
       unitLists.set(
         grade,
         JSON.parse(
-          readFileSync(
-            join(DIR, set.reviews[0]!, "units", `${grade}.json`),
-            "utf8",
-          ),
+          readFileSync(join(DIR, dir, "units", `${grade}.json`), "utf8"),
         ),
       );
     }
