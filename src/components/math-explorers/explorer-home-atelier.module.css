@@ -231,4 +231,18 @@ dialog.sheet button.soundPreview:disabled {
     grid-row: 3;
     margin: 0;
   }
+  div.home.withMemory {
+    grid-template-rows: auto auto auto auto 1fr;
+  }
+  .home.withMemory .memory {
+    grid-column: 1;
+    grid-row: 2;
+    min-width: 0;
+  }
+  .home.withMemory .tools {
+    grid-row: 3;
+  }
+  .home.withMemory .review {
+    grid-row: 4;
+  }
 }

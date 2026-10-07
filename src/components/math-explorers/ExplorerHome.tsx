@@ -327,6 +327,8 @@ function SoundSetting() {
 export default function ExplorerHome({
   state,
   journeyTheme,
+  conceptMemory,
+  readOnly = false,
   busy,
   claims = NO_CLAIMS,
   chestNotices = NO_NOTICES,
@@ -348,6 +350,10 @@ export default function ExplorerHome({
   state: ExplorerState;
   /** 진도판 테마 — 학원 전체 한 벌, 관리자가 고른다(없으면 지금 판). */
   journeyTheme?: JourneyThemeId;
+  /** Inline concept memory; its schedule and results belong to its own source. */
+  conceptMemory?: ReactNode;
+  /** Read-only previews keep their action names instead of pretending to load. */
+  readOnly?: boolean;
   busy: boolean;
   /** Chests pressed and shown as opened while their saves are on the way. */
   claims?: readonly string[];
@@ -467,7 +473,10 @@ export default function ExplorerHome({
 
   return (
     // 순서는 미션 → 지도 → 도구 → 다시 살펴볼 개념 — 넓은 PC 의 두 열은 CSS 만 바꾼다(explorer-home-atelier).
-    <div className={`${s.expeditionHome} ${a.home}`} data-explorer-home="true">
+    <div
+      className={`${s.expeditionHome} ${a.home} ${conceptMemory ? a.withMemory : ""}`}
+      data-explorer-home="true"
+    >
       <section
         className={`${s.todayMission} ${a.mission}`}
         aria-labelledby="today-mission-title"
@@ -537,7 +546,7 @@ export default function ExplorerHome({
             data-expedition-retry={pendingRetry ? "true" : undefined}
             onClick={activeReview ? onResume : pendingRetry ? onRetry : onStart}
           >
-            {busy
+            {busy && !readOnly
               ? "준비하고 있어요…"
               : activeReview
                 ? "지난 학습 이어하기"
@@ -565,6 +574,12 @@ export default function ExplorerHome({
           />
         ) : null}
       </section>
+
+      {conceptMemory ? (
+        <div className={a.memory} data-explorer-home-part="concept-memory">
+          {conceptMemory}
+        </div>
+      ) : null}
 
       <section
         className={`${s.journeyPanel} ${a.journey}`}

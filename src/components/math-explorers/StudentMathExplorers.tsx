@@ -3,7 +3,14 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { normalizeStudentReturnTo } from "@/lib/learn/studentReturnTo";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import type { FadingSource } from "@/lib/fading/source";
 import type {
   ExplorerAction,
   ExplorerFeedback,
@@ -55,6 +62,7 @@ import {
 import s from "./math-explorers.module.css";
 
 const ExplorerCardDialog = dynamic(() => import("./ExplorerCardDialog"));
+const ExplorerConceptMemory = dynamic(() => import("./ExplorerConceptMemory"));
 const ExplorerSupplementDialog = dynamic(
   () => import("./ExplorerSupplementDialog"),
 );
@@ -110,7 +118,20 @@ const CHEST_RELOADED = "다른 화면에서 기록이 바뀌어 최신 기록을
 export default function StudentMathExplorers({
   initialView,
   journeyTheme,
-}: { initialView?: "collection"; journeyTheme?: JourneyThemeId } = {}) {
+  conceptMemoryEnabled = false,
+  fadingSource,
+  initialState,
+  preview = false,
+}: {
+  initialView?: "collection";
+  journeyTheme?: JourneyThemeId;
+  /** The server controls availability; the client does not read rollout flags. */
+  conceptMemoryEnabled?: boolean;
+  fadingSource?: FadingSource;
+  initialState?: ExplorerState;
+  /** A local concept source plus an explorer snapshot; old actions cannot save. */
+  preview?: boolean;
+} = {}) {
   // 테마 소품(상자 · 기지 · 별) — 효과 · 은행 미션까지 한 벌로 따른다.
   return (
     <LearningMotionScope>
@@ -120,6 +141,10 @@ export default function StudentMathExplorers({
             key={initialView ?? "expedition"}
             initialView={initialView}
             journeyTheme={journeyTheme}
+            conceptMemoryEnabled={conceptMemoryEnabled}
+            fadingSource={fadingSource}
+            initialState={initialState}
+            preview={preview}
           />
         </JourneyArtProvider>
       </LearningSoundsProvider>
@@ -130,9 +155,17 @@ export default function StudentMathExplorers({
 function ExplorerGame({
   initialView,
   journeyTheme,
+  conceptMemoryEnabled,
+  fadingSource,
+  initialState,
+  preview,
 }: {
   initialView?: "collection";
   journeyTheme?: JourneyThemeId;
+  conceptMemoryEnabled: boolean;
+  fadingSource?: FadingSource;
+  initialState?: ExplorerState;
+  preview: boolean;
 }) {
   const router = useRouter();
   const { gesture, play, resetStudent } = useLearningSounds();
@@ -143,8 +176,11 @@ function ExplorerGame({
     confirmed: false,
     played: false,
   });
-  const [state, setState] = useState<ExplorerState | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [state, setState] = useState<ExplorerState | null>(
+    initialState ?? null,
+  );
+  const [loading, setLoading] = useState(!initialState);
+  const [inConceptMemory, setInConceptMemory] = useState(false);
   const [error, setError] = useState<Failure | null>(null);
   const [reload, setReload] = useState(0);
   const [busy, setBusy] = useState(false);
@@ -192,7 +228,7 @@ function ExplorerGame({
   const chestEffects = useRef(0);
   const effectChest = useRef<string | null>(null);
   /** The last server state: queued chest saves send its revision. */
-  const latest = useRef<ExplorerState | null>(null);
+  const latest = useRef<ExplorerState | null>(initialState ?? null);
   const inFlight = useRef<AbortController | null>(null);
   const lastRequest = useRef<ExplorerRequest | null>(null);
   const pending = useRef(false);
@@ -263,6 +299,11 @@ function ExplorerGame({
   }
 
   useEffect(() => {
+    if (initialState && reload === 0) {
+      resetStudent(initialState.student.id);
+      return;
+    }
+    if (preview) return;
     const controller = new AbortController();
     let timeout: ReturnType<typeof setTimeout> | undefined;
     let current = true;
@@ -353,10 +394,11 @@ function ExplorerGame({
       controller.abort();
       clearTimeout(timeout);
     };
-  }, [reload, router, resetStudent]);
+  }, [reload, router, resetStudent, initialState, preview]);
 
   async function send(action: ExplorerAction, sameRequest?: ExplorerRequest) {
-    if (!state || pending.current || claimQueue.current.length) return;
+    if (preview || !state || pending.current || claimQueue.current.length)
+      return;
     const soundTurn = soundEpoch.current;
     if (
       action.type === "start" ||
@@ -551,7 +593,7 @@ function ExplorerGame({
   // save takes that chest's star back and says so under its row. The line keeps
   // saving after the screen is left — those chests were already shown opened.
   function claimChest(chestId: string) {
-    if (!state || pending.current) return;
+    if (preview || !state || pending.current) return;
     const chest = state.chests.find((item) => item.id === chestId);
     if (!chest?.ready || chest.claimed) return;
     if (claimQueue.current.some((claim) => claim.chestId === chestId)) return;
@@ -786,20 +828,21 @@ function ExplorerGame({
     setDetailId(card.id);
   }
   function refresh() {
-    if (busy) return;
+    if (busy || preview) return;
     soundEpoch.current++;
     tileSound.current.confirmed = false;
     setLoading(true);
     setReload((value) => value + 1);
   }
   function resume() {
-    if (busy) return;
+    if (busy || preview) return;
     gesture();
     setPracticing(true);
     window.scrollTo({ top: 0, behavior: "instant" });
   }
 
   function openReview(review: MathExpeditionReview) {
+    if (preview) return;
     setReviewChoices(null);
     if (review.kind === "explorers") {
       void send({
@@ -858,6 +901,76 @@ function ExplorerGame({
     void send({ type: "supplement-start", cardId });
   }
 
+  function renderHome(conceptMemory?: ReactNode) {
+    if (!state) return null;
+    return (
+      <ExplorerHome
+        state={state}
+        journeyTheme={journeyTheme}
+        conceptMemory={conceptMemory}
+        readOnly={preview}
+        busy={busy || !!error || preview}
+        claims={claims}
+        chestNotices={chestNotices}
+        chestEffect={<ChestRewardEffect key={effectKey} stars={chestStars} />}
+        onCloseBase={() => setChestNotices({})}
+        onSheetChange={sheetChanged}
+        baseFailure={baseFailure}
+        onAction={(action) =>
+          action.type === "chest"
+            ? claimChest(action.chestId)
+            : void send(action)
+        }
+        onResume={resume}
+        onStart={() => void send({ type: "expedition-start" })}
+        onRetry={() => void send({ type: "retry-unresolved" })}
+        onInspect={inspect}
+        onReviewDay={reviewDay}
+        initialView={supReturn ? "collection" : initialView}
+        onCloseView={() => {
+          setSupReturn(false);
+          if (initialView) {
+            const from = normalizeStudentReturnTo(
+              new URL(window.location.href).searchParams.get("fromTextbook"),
+            );
+            router.replace(
+              from.startsWith("/learn/textbook/")
+                ? `/learn?${new URLSearchParams({ fromTextbook: from })}`
+                : "/learn",
+            );
+          }
+        }}
+        onStartSupplement={(cardId) => startSupplement(cardId, false)}
+        onInspectSupplement={(cardId) => {
+          setSolution(null);
+          setSupDetailId(cardId);
+        }}
+      />
+    );
+  }
+
+  async function reconcileExplorerAfterMemory() {
+    if (preview) return;
+    const studentId = latest.current?.student.id;
+    const next = await readLatest();
+    if (!alive.current) return;
+    if (
+      next &&
+      next.student.id === studentId &&
+      latest.current?.student.id === studentId
+    ) {
+      latest.current = next;
+      setState(next);
+    } else {
+      setError({
+        status: next ? 409 : 0,
+        message: next
+          ? STUDENT_CHANGED_MESSAGE
+          : "탐험 기록을 확인하지 못했어요. 최신 기록을 불러와 주세요.",
+      });
+    }
+  }
+
   if (bankKind)
     return (
       <ExplorerBankActivity
@@ -878,7 +991,7 @@ function ExplorerGame({
     <StudentReviewPage
       kind="explorers"
       student={state?.student ?? null}
-      practicing={inPractice || inSupplement || !state}
+      practicing={inPractice || inSupplement || inConceptMemory || !state}
       boardReady={!!state}
       practiceTitle="수학 탐험"
       practicePageClassName={s.practicePage}
@@ -985,51 +1098,27 @@ function ExplorerGame({
               onHome={exitPractice}
             />
           )
-        ) : (
-          <ExplorerHome
-            state={state}
-            journeyTheme={journeyTheme}
-            busy={busy || !!error}
-            claims={claims}
-            chestNotices={chestNotices}
-            chestEffect={
-              <ChestRewardEffect key={effectKey} stars={chestStars} />
-            }
-            onCloseBase={() => setChestNotices({})}
-            onSheetChange={sheetChanged}
-            baseFailure={baseFailure}
-            onAction={(action) =>
-              action.type === "chest"
-                ? claimChest(action.chestId)
-                : void send(action)
-            }
-            onResume={resume}
-            onStart={() => void send({ type: "expedition-start" })}
-            onRetry={() => void send({ type: "retry-unresolved" })}
-            onInspect={inspect}
-            onReviewDay={reviewDay}
-            initialView={supReturn ? "collection" : initialView}
-            onCloseView={() => {
-              setSupReturn(false);
-              if (initialView) {
-                const from = normalizeStudentReturnTo(
-                  new URL(window.location.href).searchParams.get(
-                    "fromTextbook",
-                  ),
-                );
-                router.replace(
-                  from.startsWith("/learn/textbook/")
-                    ? `/learn?${new URLSearchParams({ fromTextbook: from })}`
-                    : "/learn",
-                );
-              }
+        ) : conceptMemoryEnabled ? (
+          <ExplorerConceptMemory
+            key={state.student.id}
+            source={fadingSource}
+            preview={preview}
+            busy={busy || saving || !!error}
+            onSessionChange={setInConceptMemory}
+            onExit={() => void reconcileExplorerAfterMemory()}
+            onAccessFailure={(failure) => {
+              if (failure.code === "UNAUTHORIZED")
+                router.replace("/learn/login");
+              else if (
+                failure.code === "FORBIDDEN" &&
+                failure.message === STUDENT_MUST_CHANGE_MESSAGE
+              )
+                router.replace("/learn/password");
             }}
-            onStartSupplement={(cardId) => startSupplement(cardId, false)}
-            onInspectSupplement={(cardId) => {
-              setSolution(null);
-              setSupDetailId(cardId);
-            }}
+            renderHome={renderHome}
           />
+        ) : (
+          renderHome()
         )
       ) : null}
       {state && detail ? (

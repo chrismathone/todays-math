@@ -1,0 +1,186 @@
+.panel {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--math-atelier-line, #dee4ea);
+  border-radius: 20px;
+  background: var(--math-atelier-surface, #fff);
+  color: var(--math-atelier-ink, #203653);
+  box-shadow: 0 6px 24px rgb(32 54 83 / 0.05);
+  overflow-wrap: anywhere;
+}
+.panel :is(h2, h3, p) {
+  margin: 0;
+}
+.panel h2 {
+  font-size: 20px;
+  line-height: 1.45;
+}
+.panel h3 {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.eyebrow {
+  color: var(--learn-accent, #3159df);
+  font-size: 13px;
+  font-weight: 750;
+}
+.streak {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef3ff;
+  font-size: 13px;
+  font-weight: 700;
+}
+.panel .note,
+.note {
+  margin-top: 8px;
+  color: var(--math-atelier-muted, #52627a);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 16px;
+  font-size: 14px;
+}
+.summary strong {
+  margin-left: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.panel :is(button, input, select) {
+  min-height: 44px;
+  border: 1px solid var(--math-atelier-line, #dee4ea);
+  border-radius: 10px;
+  font: inherit;
+}
+.panel button {
+  padding: 9px 13px;
+  background: #fff;
+  color: var(--math-atelier-ink, #203653);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.panel button.primary {
+  border-color: var(--learn-accent, #3159df);
+  background: var(--learn-accent, #3159df);
+  color: #fff;
+}
+.panel button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.panel :is(button, input, select):focus-visible {
+  outline: 3px solid var(--learn-accent, #3159df);
+  outline-offset: 3px;
+}
+.panel .result {
+  margin-top: 12px;
+  color: var(--math-atelier-done, #167052);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.failure {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff0df;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.failure button {
+  justify-self: start;
+}
+.catalog {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--math-atelier-line, #dee4ea);
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.filters label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+.filters label:last-child {
+  flex: 1 1 180px;
+}
+.filters :is(input, select) {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  color: inherit;
+  background: #fff;
+}
+.unit {
+  margin-top: 18px;
+}
+.concepts {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.concept {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--math-atelier-line, #dee4ea);
+  border-radius: 12px;
+}
+.concept > div {
+  flex: 1 1 180px;
+  min-width: 0;
+}
+.concept strong {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.concept button {
+  flex: none;
+}
+.session.session {
+  --f-bg: var(--math-atelier-bg, #f5f7fa);
+  --f-ink: var(--math-atelier-ink, #203653);
+  --f-muted: var(--math-atelier-muted, #52627a);
+  --f-line: var(--math-atelier-line, #dee4ea);
+  --f-paper: var(--math-atelier-surface, #fff);
+  min-height: 0;
+  border-radius: 20px;
+}
+@media (max-width: 360px) {
+  .panel {
+    padding: 16px;
+    border-radius: 18px;
+  }
+  .actions > button {
+    width: 100%;
+  }
+}
