@@ -1,0 +1,468 @@
+{
+  "version": 2,
+  "batchId": "exam-twin-bumil-2025-2-mid-v2",
+  "directive": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-1.md",
+  "status": "planned-not-authored",
+  "schoolAlias": {
+    "actual": "범일중",
+    "display": "새봄누리중학교",
+    "role": "fictional-display-alias-only"
+  },
+  "curriculum": {
+    "sourceExam": "2015",
+    "target": "2015",
+    "grade": "중3",
+    "sourceExamSemester": 2,
+    "republicationTo2022": "requires-separate-review"
+  },
+  "questions": [
+    {
+      "n": 1,
+      "modes": [
+        "structure"
+      ],
+      "problemTypeProposal": "개념",
+      "newPresentation": "계수와 그래프의 성질을 대응시키는 분류표에서 비어 있는 두 칸에 들어갈 그래프 카드를 한 쌍으로 고른다. 부호·폭·대칭·증감 조건을 함께 사용하도록 서로 다른 성질의 두 빈칸을 설계한다.",
+      "delta": "원문은 식 다섯 개와 옳은 설명 하나를 고르는 목록이다. 새 문항은 두 성질 조건을 만족하는 대상의 대응 관계를 완성하며, 보기 또한 설명문이 아닌 카드 쌍이다.",
+      "parameterProposal": "계수 집합의 부호와 절댓값 순서를 유지하면서 {3,-1/3,-1/5,-3,1/2}를 검토한다.",
+      "figureMethod": "none",
+      "figurePlan": "식/계수 표는 본문 조판. 원본 이미지 없음.",
+      "solutionPlan": "각 조건에 대해 a의 부호·절댓값·y축 대칭과 x>0에서의 증감을 대조하고 다섯 보기 쌍 모두 판정한다.",
+      "checks": [
+        "빈칸 두 개의 대응이 유일",
+        "계수 0 제외",
+        "위/아래로 볼록 용어",
+        "추가 논리 퍼즐 부담이 목표 난이도를 바꾸면 단순화"
+      ]
+    },
+    {
+      "n": 2,
+      "modes": [
+        "structure",
+        "inverse-target"
+      ],
+      "problemTypeProposal": "계산",
+      "newPresentation": "평행이동 후의 좌표 기록과 원래 포물선을 함께 주고, 이동 기록표의 방향과 거리를 완성하게 한다. 새 그림은 꼭짓점의 y좌표를 답으로 노출하지 않는다.",
+      "delta": "원문은 그림의 이동량을 읽어 점의 y좌표 k를 구한다. 새 문항은 점의 좌표로 이동량을 역으로 결정하여 방향·거리 쌍을 고른다.",
+      "parameterProposal": "원래 식 y=2x², 이동 후 지나는 점 (-2,5). 이동량 q는 y=2x²+q에 대입해 새로 계산.",
+      "figureMethod": "engine",
+      "figurePlan": "curveGraph로 원래/이동 후 포물선을 구별. 미지 q와 정답 눈금을 노출하지 않으며 점은 정확히 곡선 위에 배치.",
+      "solutionPlan": "이동 후 식에 주어진 점을 대입해 q를 구하고 부호를 방향, 절댓값을 이동 거리로 해석.",
+      "checks": [
+        "q와 이동 거리 |q| 구별",
+        "정답이 그림 눈금으로 유출되지 않음",
+        "정의역은 실수이며 추가 제한 없음"
+      ]
+    },
+    {
+      "n": 3,
+      "modes": [
+        "structure",
+        "inverse-target"
+      ],
+      "problemTypeProposal": "계산",
+      "newPresentation": "축과 꼭짓점의 위치, y절편을 좌표 기록표로 주고 다른 x에서의 좌표 기록 한 칸을 복구하게 한다.",
+      "delta": "원문은 축·x축 위 꼭짓점·다른 점으로 y절편을 구한다. 새 문항은 y절편으로 계수를 결정한 뒤 다른 점의 y좌표를 구한다.",
+      "parameterProposal": "축 x=-2, 꼭짓점은 x축 위, y절편 (0,20), 목표 점 (-3,t).",
+      "figureMethod": "none",
+      "figurePlan": "좌표 기록표는 새 본문 데이터로 조판. 인위적인 생활 소재를 붙이지 않는다.",
+      "solutionPlan": "y=a(x+2)²를 세우고 4a=20을 풀어 목표 좌표를 계산.",
+      "checks": [
+        "a≠0",
+        "y절편과 축 조건을 동시에 충족",
+        "좌표의 음수 값을 길이로 바꾸지 않음"
+      ]
+    },
+    {
+      "n": 4,
+      "modes": [
+        "structure",
+        "representation"
+      ],
+      "problemTypeProposal": "개념",
+      "newPresentation": "포물선 자료에서 계수의 부호를 판단하고 그 부호 조건을 만족하는 일차함수의 개략 그래프를 다섯 그림 중 고르게 한다.",
+      "delta": "원문은 지나지 않는 사분면 이름을 고른다. 새 문항은 부호 정보에서 직선 그림의 가능한 배치를 선택한다.",
+      "parameterProposal": "y=ax²-6x-b, 원문과 같은 a>0,b<0 관계를 유지하되 실제 그릴 계수는 사후 선택·검산. 목표 직선 y=-ax+b.",
+      "figureMethod": "engine",
+      "figurePlan": "stem curveGraph 1개 + linearGraph 보기 5개를 새로 제작. 보기별 1..5 대응을 명시하고 각 그림이 수치 계수 확정이 아닌 부호 관계를 표현함을 검수.",
+      "solutionPlan": "포물선의 볼록 방향·y절편에서 a,b 부호를 구한 뒤 직선 기울기·절편을 다섯 그림과 대조.",
+      "checks": [
+        "a>0,b<0 부호가 실제 그림과 일치",
+        "정확히 하나의 보기가 부호 조건 충족",
+        "좌표축·사분면·절편의 부호 검수",
+        "그림이 특정 계수 값만 강제하지 않음"
+      ]
+    },
+    {
+      "n": 5,
+      "modes": [
+        "structure"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "포물선의 축 위 점과 y=0인 두 점으로 만든 삼각형의 밑변·높이·넓이를 기록한 계산표 중 올바른 행을 고른다.",
+      "delta": "넓이 숫자 하나를 바로 고르는 원문 대신 그래프의 점 역할을 정의한 뒤 세 계산량의 일관성을 함께 판단한다.",
+      "parameterProposal": "y=-x²+4x+5. A는 꼭짓점, B,C는 x축 교점. 중간 값을 본문에서 미리 알려주지 않는다.",
+      "figureMethod": "engine",
+      "figurePlan": "curveGraph와 삼각형 선분을 같은 좌표 데이터에서 제작; 뿌리·꼭짓점·축척 검산.",
+      "solutionPlan": "완전제곱과 인수분해로 꼭짓점·두 교점을 구하고 좌표 차로 밑변, x축까지 수직거리로 높이를 정해 넓이 계산.",
+      "checks": [
+        "서로 다른 두 실근",
+        "밑변·높이는 양수",
+        "축 위 점과 꼭짓점이 같은 점",
+        "근과 계수의 관계·미분 금지"
+      ]
+    },
+    {
+      "n": 6,
+      "modes": [
+        "structure",
+        "representation"
+      ],
+      "problemTypeProposal": "개념",
+      "newPresentation": "공통 예각을 가진 세 직각삼각형의 변들을 대응표에 넣고 같은 삼각비가 되는 길이비로 채워진 행을 고른다.",
+      "delta": "원문의 개별 등식/삼각비 설명 중 하나 선택에서 세 도형의 빗변·높이·밑변을 동시에 대응시키는 표로 전환.",
+      "parameterProposal": "세 크기는 변경하되 동일 예각과 직각 위치를 유지. 점 이름 전체를 일관된 새 집합으로 바꿈.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 points/segments/angles로 같은 기울기의 세 직각삼각형을 새 좌표에서 작도; 표의 선분 표기와 점 이름 동기화.",
+      "solutionPlan": "예각 기준 빗변·대변·인접변을 식별하고 sin/cos/tan 정의로 다섯 행을 검토.",
+      "checks": [
+        "빗변은 양수이고 가장 김",
+        "공통각 동일",
+        "직각 표시와 점 대응 정확",
+        "세 비의 정의가 같은 각 기준"
+      ]
+    },
+    {
+      "n": 7,
+      "modes": [
+        "structure",
+        "representation"
+      ],
+      "problemTypeProposal": "계산",
+      "newPresentation": "중근을 구하는 방정식 카드와 그 값이 직각삼각형의 대변/빗변 비임을 나타내는 도형 카드를 연결하여 마지막 cos÷tan 연산칸을 채운다.",
+      "delta": "원문은 근을 sin A라고 바로 지정한다. 새 문항은 같은 양수 비를 두 선분 길이로 표현하고 그 비를 삼각비 정의에 연결한다.",
+      "parameterProposal": "25x²-30x+9=0의 중근을 길이비로 지정. 각은 예각, 빗변>대변>0. 원문과 다른 3:5 관계.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 직각삼각형에서 대변/빗변만 표시; 나머지 길이는 피타고라스로 도출, 답을 표시하지 않음.",
+      "solutionPlan": "완전제곱으로 중근을 정하고 예각의 삼각비·피타고라스 관계로 cos와 tan을 계산.",
+      "checks": [
+        "0<중근<1",
+        "길이를 변수의 음수해로 해석하지 않음",
+        "삼각함수 항등식의 상위학년 일반화 대신 직각삼각형 정의로 설명",
+        "분모 0 없음",
+        "公式2015 삼각비 사이 관계 제외 조항의 평가 의도 충돌을 심사; 정당한 대상학년 평가/풀이가 없으면 제외, 불명은 보류"
+      ]
+    },
+    {
+      "n": 8,
+      "modes": [
+        "structure"
+      ],
+      "problemTypeProposal": "계산",
+      "newPresentation": "특수각 계산 카드 다섯 개를 크기순으로 놓은 결과표를 완성하고, 가장 큰 값을 갖는 카드와 해당 계산값이 올바른 쌍을 고른다.",
+      "delta": "최댓값 카드 번호만 묻는 원문에서 계산값과 순위의 대응을 판단하는 표로 전환. 소재는 순수 수학 카드로 유지.",
+      "parameterProposal": "30°,45°,60°,0°,90° 범위에서 곱·나눗셈 계수 변경. 다섯 표시값의 중복 및 최대값 동률을 코드로 걸러낸다.",
+      "figureMethod": "none",
+      "figurePlan": "새 계산 카드/값 표는 본문 조판.",
+      "solutionPlan": "다섯 식을 특수각의 삼각비로 모두 계산하고 제곱근의 크기를 중학교 방법으로 비교.",
+      "checks": [
+        "tan 90° 등장 금지",
+        "분모 0 없음",
+        "다섯 보기 모두 검토",
+        "삼각함수 덧셈정리 금지",
+        "값 비교의 독해 부담 검토"
+      ]
+    },
+    {
+      "n": 9,
+      "modes": [
+        "structure",
+        "representation"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "사분원의 좌표/수선/접선 길이를 읽어 측정표를 완성한 뒤 길이 차와 곱을 나타내는 계산칸의 값을 구한다.",
+      "delta": "원문이 sin/cos/tan 식을 직접 주는 방식에서 그래프의 두 점·선분 길이를 동일 관계의 입력으로 쓰는 방식으로 전환.",
+      "parameterProposal": "반지름 1, 각 54°. 표시값은 sin/cos/tan을 각 소수 둘째 자리로 산출한 자료로 새로 정의; 표시값으로 계산하고 최종 반올림.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 사분원·수선·x=1 접선; 표시값은 코드의 반올림 데이터와 일치시키되 내부 좌표는 실제 각 데이터 사용.",
+      "solutionPlan": "세 길이를 각각 삼각비로 읽고 표에 주어진 근삿값을 사용해 차와 곱을 계산.",
+      "checks": [
+        "계산은 표시된 근삿값 기준임을 명시",
+        "접선 교점 존재",
+        "길이 차의 부호 확인",
+        "최종 반올림 자리 동일",
+        "도(degree) 표기; 학생용 라디안 금지"
+      ]
+    },
+    {
+      "n": 10,
+      "modes": [
+        "context",
+        "structure",
+        "inverse-target"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "체육관 외벽 환기창의 높이와 관측자의 눈높이·올려본각을 작업 기록표로 주고, 관측 지점에서 벽까지 필요한 수평거리를 구한다.",
+      "delta": "석탑 높이의 직접 계산에서 새 시설의 관측 위치를 역산하는 작업 상황으로 전환. 관측자 이름도 바꾸고 원본 풍경은 쓰지 않는다.",
+      "parameterProposal": "환기창 9.6m, 눈높이 1.6m, 각 58°, tan 표 1.6003. 거리는 (9.6-1.6)/1.6003을 계산 후 소수 첫째 자리로 반올림.",
+      "figureMethod": "imagegen-plus-engine",
+      "figurePlan": "내장 imagegen으로 새 체육관 벽·관측자 삽화를 제작. 수평선·수직선·58°·미지 거리·눈높이/총높이는 검산된 벡터/조판으로 결합. sin/cos/tan 표는 새 table spec.",
+      "solutionPlan": "총높이에서 눈높이를 빼고 직각삼각형의 tan 관계를 세워 수평거리를 역산.",
+      "checks": [
+        "총높이>눈높이>0",
+        "0<각<90°",
+        "tan 표의 정밀도와 반올림 명시",
+        "관측 지면 수평·벽 수직 조건",
+        "Unit/family 03 대 17 보류 해결 전 적재 금지"
+      ]
+    },
+    {
+      "n": 11,
+      "modes": [
+        "structure",
+        "representation"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "분할된 직각삼각형의 조건을 도형과 길이비 기록으로 제시하고 AC:BC를 간단히 나타낸 값을 고르게 한다. 기록에 필요한 보조 길이는 학생이 유도한다.",
+      "delta": "tan15°를 직접 묻는 원문에서 같은 직각삼각형의 두 점이 정하는 선분 길이의 비를 묻는다. 비를 알기 위한 이등변 보조 관계는 그대로 필요.",
+      "parameterProposal": "BD=5, ∠ABD=15°, ∠ADC=30°, B-D-C 일직선, ∠C=90°. 새 점 이름 사용 여부는 도형과 본문 함께 결정.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 B-D-C 공선과 15°/30°를 좌표로 검증. 수선·각/길이 표시는 변경된 데이터 기준.",
+      "solutionPlan": "△ABD의 두 각이 같음을 찾아 AD=BD를 얻고 30° 직각삼각형과 피타고라스/변의 비로 목표를 유도.",
+      "checks": [
+        "D가 B,C 사이에 존재",
+        "길이 양수",
+        "덧셈정리·반각공식·사인/코사인 법칙 금지",
+        "현재 family10이 보조 구성까지 덮는지 보류"
+      ]
+    },
+    {
+      "n": 12,
+      "modes": [
+        "structure"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "공통 대각선으로 나눈 두 영역의 면적 기록표를 완성한 계산식 중 바르게 작성된 것을 고른다. 필요한 대각선 길이를 표에 미리 제공하지 않는다.",
+      "delta": "사각형 전체 넓이를 바로 고르는 원문에서 두 부분의 넓이와 합의 대응을 검토하는 계산표로 전환.",
+      "parameterProposal": "BC=12cm, DC=5cm, ∠CAB=45°, ∠ACD=60°, ∠B=90° 관계 유지.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 두 삼각형이 공통 AC를 정확히 공유하도록 작도. 합쳐진 사각형이 단순하고 영역이 겹치지 않음 확인.",
+      "solutionPlan": "첫 직각삼각형에서 AC를 구하고 둘째 삼각형에 수선을 내려 높이를 계산하여 두 넓이 합산.",
+      "checks": [
+        "새 삼각형 실제 존재",
+        "영역 겹침/뒤집힘 없음",
+        "일반 sin넓이공식을 상위학년 도구로 제시하지 않고 수선으로 도출",
+        "공통 대각선 길이 일치"
+      ]
+    },
+    {
+      "n": 13,
+      "modes": [
+        "structure",
+        "representation"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "원뿔의 축을 포함하는 단면 측정자료에서 반지름·높이·부피가 함께 맞는 기록 행을 고른다.",
+      "delta": "부피 숫자만 고르는 원문에서 단면의 두 길이와 입체의 부피를 대응시키는 기록표로 전환.",
+      "parameterProposal": "모선 8cm, 모선과 밑면의 각 30°. r,h는 같은 직각 단면에서 도출.",
+      "figureMethod": "engine",
+      "figurePlan": "기존 m3Trig 입체 작도 경로/v2 단면 결합 재사용. cone의 r,h를 임의로 넣지 않고 모선/각에서 산출한 값과 연결; 숨은선·30° 표시 검수.",
+      "solutionPlan": "직각 단면에서 삼각비로 r,h를 구하고 중1 원뿔 부피식에 대입.",
+      "checks": [
+        "r²+h²=모선²",
+        "모선>r>0,h>0",
+        "부피 단위 cm³",
+        "공간 좌표/벡터 풀이 금지"
+      ]
+    },
+    {
+      "n": 14,
+      "modes": [
+        "structure",
+        "representation"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "접기 전과 후의 두 작도와 길이 보존 기록을 주고, 접는 선과 겹쳐진 선분의 각에 대한 길이비를 구하는 계산표를 완성한다.",
+      "delta": "한 장의 접힌 그림에서 tan x를 고르는 원문을 접기 전후 대응과 같은 길이를 먼저 정리하는 두 그림/기록 구조로 전환.",
+      "parameterProposal": "띠 폭 AB=3, AP=12. A,C의 겹침과 PQ의 반사축 관계를 유지하며 바뀐 직사각형 전체 치수도 작도에서 결정.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 반사 전후 점 좌표 두 장. PQ는 AC의 수직이등분선, A의 반사상이 C임을 코드로 확인; 접힌 변을 임의 회전시키지 않음.",
+      "solutionPlan": "접기에서 길이·각 보존을 밝혀 보조 길이를 정하고 직각삼각형의 변의 비로 목표를 구함.",
+      "checks": [
+        "접기 도형 실제 존재",
+        "반사 후 A=C",
+        "폭·보조 길이 양수",
+        "반각공식 대신 합동·이등변·직각삼각형 풀이",
+        "접기family 미확인 상태 유지"
+      ]
+    },
+    {
+      "n": 15,
+      "modes": [
+        "context",
+        "structure",
+        "inverse-target"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "원형 전시 안내판의 둘레와 남은 조각의 현 길이를 기록해 두었을 때 작은 활 쪽에서 현 중앙과 원둘레 사이의 수직거리를 복구한다.",
+      "delta": "깨진 접시의 현·활높이로 둘레를 구하는 원문에서 새 대상의 둘레·현으로 작은 활높이를 역산한다.",
+      "parameterProposal": "원 둘레 15πcm, 현 길이 12cm, 0<활높이<반지름인 작은 활을 명시.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 원/현/중점/수직거리 및 단순 조각 경계. 원본 접시 사진을 최종 그림에 복사하지 않음.",
+      "solutionPlan": "둘레에서 반지름을 정하고 현의 수직이등분선 성질·피타고라스로 중심에서 현까지의 거리와 작은 활높이를 계산.",
+      "checks": [
+        "현길이<지름",
+        "0<활높이<R로 큰 활 해 배제",
+        "길이 단위 일치",
+        "임의 음수 제곱근 해를 길이로 채택하지 않음",
+        "원문과 목표 난이도 비교"
+      ]
+    },
+    {
+      "n": 16,
+      "modes": [
+        "structure"
+      ],
+      "problemTypeProposal": "개념",
+      "newPresentation": "원 안의 두 현을 검사하는 기록표에서 현의 길이 관계와 삼각형의 꼭지각이 함께 맞는 행을 고른다.",
+      "delta": "꼭지각 하나의 선택에서 중심거리→같은 현→같은 밑각의 연결 기록을 완성하는 구조로 전환.",
+      "parameterProposal": "중심거리 OM=ON, 직각 수선 조건 유지; ∠ABC=65°.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 원 위 A,B,C와 중심 O, 현의 중점 M,N을 새로 작도; 실제 같은 중심거리, 내각 합, 표시 각 검산.",
+      "solutionPlan": "중심에서 거리가 같은 현의 길이 동일→이등변삼각형→내각 합으로 꼭지각 계산.",
+      "checks": [
+        "OM=ON 실제 좌표 일치",
+        "M,N은 수선의 발",
+        "세 내각 양수·합180°",
+        "같은 현인지 지름인지 혼동 방지"
+      ]
+    },
+    {
+      "n": 17,
+      "modes": [
+        "context",
+        "structure"
+      ],
+      "problemTypeProposal": "활용",
+      "newPresentation": "직사각형 창틀의 세 변에 닿는 원형 장식과 꼭짓점에서 그은 접선 지지대의 작업도면을 주고 지지대가 나누는 삼각형 영역의 넓이를 구한다.",
+      "delta": "기하 조건만 나열된 원문의 대상과 행동을 창틀·장식·지지대의 자연스러운 설치 상황으로 전환; 재료 장식은 수학 조건을 추가하지 않음.",
+      "parameterProposal": "높이 6cm, 폭 9cm. 원은 위/오른쪽/아래 변에 접하고 왼쪽 위 꼭짓점에서 아래 변으로 그은 접선. M은 아래 변 위.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 원과 직사각형의 접점·지지대 접점 모두 실제 접선 좌표에서 산출. 사진/원본 크롭 사용 안 함.",
+      "solutionPlan": "같은 외부점의 접선 길이 관계와 직각삼각형 피타고라스로 밑변을 정해 넓이 계산.",
+      "checks": [
+        "원은 지정 세 변에 접함",
+        "지지대는 원을 관통하지 않음",
+        "M은 실제 아래 변 구간 안",
+        "넓이 단위 cm²",
+        "새 소재의 설치 조건이 추가 개념을 요구하지 않음"
+      ]
+    },
+    {
+      "n": 18,
+      "modes": [
+        "structure"
+      ],
+      "problemTypeProposal": "서술형",
+      "newPresentation": "계수를 복구하는 기록지에 점 조건과 꼭짓점의 직선 위 조건을 서로 다른 두 자료칸으로 제시하고, 두 칸을 연결하는 방정식과 계수의 합을 서술하도록 한다.",
+      "delta": "긴 한 문장의 조건 나열/결과 요구에서 자료별 조건을 식으로 복구하고 함께 만족시키는 계수를 찾는 기록 구조로 전환. 조건식이나 꼭짓점 좌표는 미리 주지 않음.",
+      "parameterProposal": "y=ax²-2ax+b, a≠0, 점(-1,14), 꼭짓점이 y=-2x+8 위.",
+      "figureMethod": "none",
+      "figurePlan": "그림 없이 새 자료 기록지 조판; 불필요한 생활 소재 없음.",
+      "solutionPlan": "완전제곱으로 꼭짓점을 (1,b-a)로 구해 직선에 대입, 다른 점 조건과 연립해 a+b를 산출.",
+      "checks": [
+        "a≠0",
+        "연립식 해 유일",
+        "두 원조건 재대입",
+        "미분/상위학년 함수 최대최소 금지",
+        "꼭짓점 직선제약family 보류"
+      ]
+    },
+    {
+      "n": 19,
+      "modes": [
+        "context",
+        "structure"
+      ],
+      "problemTypeProposal": "서술형",
+      "newPresentation": "공원 관리자가 두 관측 표식과 급수 시설의 위치를 확인하기 위해 만든 위치도와 각도·거리 기록을 주고, 두 번째 관측 표식에서 시설까지의 거리를 보고하도록 한다.",
+      "delta": "텐트 두 개·캠핑장 식수대에서 공원 관측 위치·시설의 조사 상황으로 전환. 한 문장 발문 대신 위치도와 조사 기록의 두 자료를 연결.",
+      "parameterProposal": "두 표식 사이80m, ∠A=45°, ∠B=75°. 표식/시설 역할은 A,B,C와 새 삽화에 일관되게 대응.",
+      "figureMethod": "imagegen-plus-engine",
+      "figurePlan": "내장 imagegen으로 공원 표식/시설의 새 삽화를 제작. 삼각형 위치·80m·45°/75°·점 라벨은 정확한 벡터 데이터로 별도 결합; 나무 삽화는 길이의 근거가 아님.",
+      "solutionPlan": "나머지 각을 구하고 적절한 수선을 내려 30°/45°/60° 직각삼각형과 길이·닮음 관계로 목표 선분을 계산.",
+      "checks": [
+        "세 각 합180°",
+        "수선의 발 위치 확인",
+        "그림 축척/각과 실제 조건 일치",
+        "사인/코사인 법칙·75° 덧셈정리 금지",
+        "중3 정당한 수선 풀이가 없으면 제외"
+      ]
+    },
+    {
+      "n": 20,
+      "modes": [
+        "structure",
+        "representation"
+      ],
+      "problemTypeProposal": "서술형",
+      "newPresentation": "반원의 영역을 현과 호로 구분한 새 도면과 영역 기록칸을 주고, 작은 중심 삼각형과 해당 부채꼴의 관계를 이용해 지정된 활꼴 넓이를 서술한다.",
+      "delta": "한 장의 색칠 영역을 바로 묻는 원문에서 도면의 영역 경계와 면적 계산 기록을 연결하는 구조로 전환. 수선을 통한 삼각형 넓이 도출은 학생에게 남긴다.",
+      "parameterProposal": "반지름6cm, ∠ABC=30°, AB는 지름. 영역은 반드시 C-B의 작은 호와 현 CB 사이로 명시.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 arcs/regions로 120°의 CB 부채꼴에서 OCB 삼각형을 뺀 경계 사슬을 정확히 닫고 채색; 반원 밖 영역 제외.",
+      "solutionPlan": "원주각→대응 중심각, 부채꼴 넓이에서 수선·특수각 삼각비로 구한 중심 삼각형 넓이를 뺌.",
+      "checks": [
+        "호 AC와 CB 혼동 금지",
+        "넓이 양수이며 반원 넓이 이하",
+        "수선 풀이; sin넓이공식 암기/라디안 금지",
+        "중심각/활꼴 복합family 보류",
+        "학생용 해설에서 sin120° 사용 금지; 수선을 내려 60°로 계산"
+      ]
+    },
+    {
+      "n": 21,
+      "modes": [
+        "structure",
+        "inverse-target"
+      ],
+      "problemTypeProposal": "서술형",
+      "newPresentation": "양 끝 수직 접선과 공통 접선의 측정 기록에서 오른쪽 높이와 지름을 주고 누락된 왼쪽 접선 높이를 복구하도록 한다.",
+      "delta": "왼쪽 높이→오른쪽 높이의 원문 방향을 뒤집고, 점/접점 대응을 기록표와 새 도형에 연결한다.",
+      "parameterProposal": "지름 AB=10cm, 오른쪽 BC=25/8cm, 왼쪽 AD 미지. E는 공통 접선 CD의 실제 접점.",
+      "figureMethod": "engine",
+      "figurePlan": "v2 반원·양끝 접선·공통 접선과 E를 정확한 접선 좌표에서 산출. 미지 AD의 값을 그림에 노출하지 않음.",
+      "solutionPlan": "같은 외부점의 접선 길이로 CD=AD+BC를 세우고 직각삼각형 피타고라스 관계를 전개하여 AD 역산.",
+      "checks": [
+        "양끝 높이 양수",
+        "공통 접선 존재·E가 선분 CD 위",
+        "AD·BC=(AB/2)²를 원리에서 유도",
+        "모든 접점/수직 관계 검산",
+        "실제 원 조건 재대입"
+      ]
+    }
+  ],
+  "supersedes": ".qa-artifacts/exam-resume-20261008/bumil-twin-v1/design-input.json",
+  "changeHistory": [
+    {
+      "fromVersion": 1,
+      "changes": [
+        "Official achievement standards and restrictions linked; candidate approval still pending",
+        "Q11 equality corrected from AB=BD to AD=BD before authoring",
+        "Source-year and anonymized school identity held for attestation",
+        "Q7 excluded from first authoring group pending prohibited-ratio assessment review"
+      ]
+    }
+  ],
+  "curriculumEvidencePath": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+  "sourceIdentityReview": {
+    "status": "pending-attestation",
+    "nominalSourceSchool": "범일중",
+    "nominalExamYear": 2025,
+    "observations": [
+      "PDF header2025; editorial footer26년",
+      "Filename school범일중; document anonymizedBI중"
+    ],
+    "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+  }
+}

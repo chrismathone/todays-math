@@ -1,0 +1,3766 @@
+{
+  "version": 2,
+  "kind": "source-bound-curriculum-and-taxonomy-proposals-not-approval",
+  "batchId": "exam-twin-bumil-2025-2-mid-v2",
+  "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+  "bankEvidence": {
+    "path": ".qa-artifacts/exam-resume-20261008/bank-read-20261008.json",
+    "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+    "capturedAt": "2026-10-07 15:57:15.290971+00",
+    "predicate": "중3; pool=shared; review_status=approved; direct_use_allowed=true; btrim(answer)<>''; answer<>'(정답 없음)'; family_key IS NOT NULL"
+  },
+  "officialEvidence": {
+    "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+    "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+    "usedStandardCount": 28,
+    "standardApprovalScope": "texts-found-and-crosschecked; item mapping remains expert proposal",
+    "amendmentChain": "post-2020 full audit not claimed"
+  },
+  "sourceIdentityReview": {
+    "status": "pending-attestation",
+    "nominalSourceSchool": "범일중",
+    "nominalExamYear": 2025,
+    "observations": [
+      "PDF header2025; editorial footer26년",
+      "Filename school범일중; document anonymizedBI중"
+    ],
+    "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+  },
+  "preservedVersions": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/preparation.json",
+      "status": "superseded-plan-not-authored-not-approved",
+      "limitation": "Q11 plan equality was AB=BD; corrected to AD=BD in v2"
+    }
+  ],
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q01",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-1",
+      "sourceContentSha256": "7330d1796e68c77ec6b43fcf969bc579043b89fb5cf86e6ce71358c19ce40009",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑴|06",
+        "currentUnit": {
+          "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수와 그래프",
+          "semester": 1,
+          "orderIndex": 478,
+          "problemCodePrefix": "J30401"
+        },
+        "currentRegistryMatch": {
+          "key": "3-1|이차함수의 그래프 ⑴|06",
+          "grade": "중3",
+          "unitSection": "이차함수와 그래프",
+          "rpmBook": "3-1",
+          "rpmMinor": "이차함수의 그래프 ⑴",
+          "rpmType": "06",
+          "rpmTitle": "이차함수 의 그래프의 성질"
+        },
+        "liveCount": 12,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "양수·음수 계수, 절댓값에 따른 폭, 대칭과 증가·감소를 함께 판정하므로 y=ax² 그래프의 성질 유형이다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수03-09",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4146,
+            "record_offset_in_uncompressed_stream": 210185,
+            "extracted_paragraph_1based": 849
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-10",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-01",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4122,
+            "record_offset_in_uncompressed_stream": 209259,
+            "extracted_paragraph_1based": 843
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-02",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "계수의 부호·절댓값과 그래프의 방향·폭·대칭·증감. 보기의 y=x 만남은 공통점 (0,0)을 직접 대입하여 판단한다.",
+      "changedQuestionMethodPlan": "각 조건에 대해 a의 부호·절댓값·y축 대칭과 x>0에서의 증감을 대조하고 다섯 보기 쌍 모두 판정한다.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure"
+        ],
+        "delta": "원문은 식 다섯 개와 옳은 설명 하나를 고르는 목록이다. 새 문항은 두 성질 조건을 만족하는 대상의 대응 관계를 완성하며, 보기 또한 설명문이 아닌 카드 쌍이다.",
+        "constraints": [
+          "빈칸 두 개의 대응이 유일",
+          "계수 0 제외",
+          "위/아래로 볼록 용어",
+          "추가 논리 퍼즐 부담이 목표 난이도를 바꾸면 단순화"
+        ]
+      },
+      "specificGradeHold": "일반적인 직선-포물선 위치 관계나 판별식 이론을 요구하는 변형은 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q02",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-2",
+      "sourceContentSha256": "d9a7dbce062b869cfdc44a9eb886053a88d578987dbcc9bb7def356e183bc9d7",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑴|09",
+        "currentUnit": {
+          "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수와 그래프",
+          "semester": 1,
+          "orderIndex": 478,
+          "problemCodePrefix": "J30401"
+        },
+        "currentRegistryMatch": {
+          "key": "3-1|이차함수의 그래프 ⑴|09",
+          "grade": "중3",
+          "unitSection": "이차함수와 그래프",
+          "rpmBook": "3-1",
+          "rpmMinor": "이차함수의 그래프 ⑴",
+          "rpmType": "09",
+          "rpmTitle": "이차함수 의 그래프"
+        },
+        "liveCount": 19,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "a=2가 이미 주어지고 y축 평행이동량을 꼭짓점에서 읽어 함숫값을 구한다. 미지의 a를 별도 점으로 정하는 ⑴11보다 ⑴09의 수직 평행이동 절차에 가깝다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수03-09",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4146,
+            "record_offset_in_uncompressed_stream": 210185,
+            "extracted_paragraph_1based": 849
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-10",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-01",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-02",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "그림의 꼭짓점과 수직 평행이동량을 읽고 y=ax²+q에 좌표를 대입한다.",
+      "changedQuestionMethodPlan": "이동 후 식에 주어진 점을 대입해 q를 구하고 부호를 방향, 절댓값을 이동 거리로 해석.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "delta": "원문은 그림의 이동량을 읽어 점의 y좌표 k를 구한다. 새 문항은 점의 좌표로 이동량을 역으로 결정하여 방향·거리 쌍을 고른다.",
+        "constraints": [
+          "q와 이동 거리 |q| 구별",
+          "정답이 그림 눈금으로 유출되지 않음",
+          "정의역은 실수이며 추가 제한 없음"
+        ]
+      },
+      "specificGradeHold": "본문에서 빠진 그래프의 꼭짓점 눈금이 필수 조건이다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 3,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q03",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-3",
+      "sourceContentSha256": "f7ee190e7954eae8043432f151f71985f10011ebf808a3a49888b8961fa5d2a1",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑴|14",
+        "currentUnit": {
+          "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수와 그래프",
+          "semester": 1,
+          "orderIndex": 478,
+          "problemCodePrefix": "J30401"
+        },
+        "currentRegistryMatch": {
+          "key": "3-1|이차함수의 그래프 ⑴|14",
+          "grade": "중3",
+          "unitSection": "이차함수와 그래프",
+          "rpmBook": "3-1",
+          "rpmMinor": "이차함수의 그래프 ⑴",
+          "rpmType": "14",
+          "rpmTitle": "이차함수의 식 구하기"
+        },
+        "liveCount": 24,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "x축 위의 꼭짓점과 축을 이용해 y=a(x-p)²로 놓고 다른 한 점으로 a를 정한다. 일반형 완전제곱보다 수평 이동형 식 결정이 주된 절차다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수03-10",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-01",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-02",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "축과 꼭짓점에서 y=a(x-p)²+q를 구성하고 주어진 점, x=0을 차례로 대입한다.",
+      "changedQuestionMethodPlan": "y=a(x+2)²를 세우고 4a=20을 풀어 목표 좌표를 계산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "delta": "원문은 축·x축 위 꼭짓점·다른 점으로 y절편을 구한다. 새 문항은 y절편으로 계수를 결정한 뒤 다른 점의 y좌표를 구한다.",
+        "constraints": [
+          "a≠0",
+          "y절편과 축 조건을 동시에 충족",
+          "좌표의 음수 값을 길이로 바꾸지 않음"
+        ]
+      },
+      "specificGradeHold": "도함수·최적화·포물선의 초점/준선 이론은 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 4,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q04",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-4",
+      "sourceContentSha256": "10ab18dd65de059e4ea7117da630f0f3501e4f7df1ace4c0747236cc1d3782ff",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑵|09",
+        "currentUnit": {
+          "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수 y=ax^2+bx+c의 그래프",
+          "semester": 1,
+          "orderIndex": 479,
+          "problemCodePrefix": "J30402"
+        },
+        "currentRegistryMatch": {
+          "key": "3-1|이차함수의 그래프 ⑵|09",
+          "grade": "중3",
+          "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+          "rpmBook": "3-1",
+          "rpmMinor": "이차함수의 그래프 ⑵",
+          "rpmType": "09",
+          "rpmTitle": "이차함수 의 그래프에서 의 부호"
+        },
+        "liveCount": 11,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "포물선의 볼록 방향과 y절편에서 계수 부호를 알아내는 것이 핵심이다. 이후 직선의 사분면 판단은 그 부호를 쓰는 후속 절차다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수03-10",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-06",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4126,
+            "record_offset_in_uncompressed_stream": 209427,
+            "extracted_paragraph_1based": 844
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-01",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4122,
+            "record_offset_in_uncompressed_stream": 209259,
+            "extracted_paragraph_1based": 843
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-12",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "그림의 볼록 방향과 y절편에서 a와 b의 부호를 읽어 일차함수의 기울기·절편과 사분면을 판단한다.",
+      "changedQuestionMethodPlan": "포물선의 볼록 방향·y절편에서 a,b 부호를 구한 뒤 직선 기울기·절편을 다섯 그림과 대조.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "delta": "원문은 지나지 않는 사분면 이름을 고른다. 새 문항은 부호 정보에서 직선 그림의 가능한 배치를 선택한다.",
+        "constraints": [
+          "a>0,b<0 부호가 실제 그림과 일치",
+          "정확히 하나의 보기가 부호 조건 충족",
+          "좌표축·사분면·절편의 부호 검수",
+          "그림이 특정 계수 값만 강제하지 않음"
+        ]
+      },
+      "specificGradeHold": "원점과 축 교차가 식과 일치해야 하며 추측한 그림이나 판별식 설명은 허용하지 않는다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 5,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q05",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-5",
+      "sourceContentSha256": "9d7184823e0d2561574b0c2944dcb5e5ad2429613d8e467c42504f80545adeb7",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑵|08",
+        "currentUnit": {
+          "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수 y=ax^2+bx+c의 그래프",
+          "semester": 1,
+          "orderIndex": 479,
+          "problemCodePrefix": "J30402"
+        },
+        "currentRegistryMatch": {
+          "key": "3-1|이차함수의 그래프 ⑵|08",
+          "grade": "중3",
+          "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+          "rpmBook": "3-1",
+          "rpmMinor": "이차함수의 그래프 ⑵",
+          "rpmType": "08",
+          "rpmTitle": "이차함수의 그래프와 삼각형의 넓이"
+        },
+        "liveCount": 22,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "꼭짓점과 x축 두 교점으로 만든 삼각형의 밑변·높이를 구한다. 넓이의 최대를 묻지 않아 최댓값·최솟값 단원이 아니다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수03-10",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-13",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3964,
+            "record_offset_in_uncompressed_stream": 201786,
+            "extracted_paragraph_1based": 809
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-12",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-01",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "6수03-06",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "완전제곱식으로 꼭짓점을 구하고 y=0인 이차방정식을 인수분해하여 밑변·높이와 삼각형 넓이를 계산한다.",
+      "changedQuestionMethodPlan": "완전제곱과 인수분해로 꼭짓점·두 교점을 구하고 좌표 차로 밑변, x축까지 수직거리로 높이를 정해 넓이 계산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure"
+        ],
+        "delta": "넓이 숫자 하나를 바로 고르는 원문 대신 그래프의 점 역할을 정의한 뒤 세 계산량의 일관성을 함께 판단한다.",
+        "constraints": [
+          "서로 다른 두 실근",
+          "밑변·높이는 양수",
+          "축 위 점과 꼭짓점이 같은 점",
+          "근과 계수의 관계·미분 금지"
+        ]
+      },
+      "specificGradeHold": "일반 직선과 이차함수의 교점 이론, 근과 계수의 관계, 미분 또는 정적분은 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 6,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q06",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-6",
+      "sourceContentSha256": "463f8baedf5ae2fed8172af0118542eafc45ec1a8a4dcb1cba7de406ac603113",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "familyKey": "mid:3-2|삼각비|01",
+        "currentUnit": {
+          "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 뜻",
+          "semester": 2,
+          "orderIndex": 481,
+          "problemCodePrefix": "J30501"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비|01",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "01",
+          "rpmTitle": "삼각비의 값"
+        },
+        "liveCount": 24,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "같은 예각의 대변·이웃변·빗변을 식별해 sin·cos·tan의 정의를 적용하는 문제다. 닮음은 비가 일정함을 설명하지만 기존 04/05는 빗변 수선과 대응각 이동을 요구하여 이 문항의 핵심 절차와 다르다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-17",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-13",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4316,
+            "record_offset_in_uncompressed_stream": 218218,
+            "extracted_paragraph_1based": 885
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-14",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4320,
+            "record_offset_in_uncompressed_stream": 218380,
+            "extracted_paragraph_1based": 886
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "각이 같은 직각삼각형에서 대응하는 빗변·높이·밑변을 확인하고 각 삼각비의 정의를 직접 적용한다.",
+      "changedQuestionMethodPlan": "예각 기준 빗변·대변·인접변을 식별하고 sin/cos/tan 정의로 다섯 행을 검토.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "delta": "원문의 개별 등식/삼각비 설명 중 하나 선택에서 세 도형의 빗변·높이·밑변을 동시에 대응시키는 표로 전환.",
+        "constraints": [
+          "빗변은 양수이고 가장 김",
+          "공통각 동일",
+          "직각 표시와 점 대응 정확",
+          "세 비의 정의가 같은 각 기준"
+        ]
+      },
+      "specificGradeHold": "그림의 직각 B,D,F와 대응 점을 확인한다. 삼각비 사이의 공식으로 설명하지 않는다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 7,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q07",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-7",
+      "sourceContentSha256": "017ec2b4d6558273a223961c431db61ccb051d33de3a7f6ea3f67da4586c0df3",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "familyKey": "mid:3-2|삼각비|03",
+        "currentUnit": {
+          "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 뜻",
+          "semester": 2,
+          "orderIndex": 481,
+          "problemCodePrefix": "J30501"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비|03",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "03",
+          "rpmTitle": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기"
+        },
+        "liveCount": 24,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "이차방정식은 주어진 sin A를 결정하는 보조 조건이고 주 절차는 한 삼각비로 다른 삼각비를 구하는 것이다. 두 근 중 범위로 고르는 131X는 이 중근 조건과 다르다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수02-13",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3964,
+            "record_offset_in_uncompressed_stream": 201786,
+            "extracted_paragraph_1based": 809
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-17",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-12",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-16",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4333,
+            "record_offset_in_uncompressed_stream": 218866,
+            "extracted_paragraph_1based": 889
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수01-07",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3776,
+            "record_offset_in_uncompressed_stream": 192865,
+            "extracted_paragraph_1based": 768
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수01-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "완전제곱으로 방정식을 풀고 sin A=2/3을 빗변 3, 대변 2인 직각삼각형으로 해석한다. 피타고라스로 나머지 변을 구해 cos A와 tan A를 각각 정의로 계산한다.",
+      "changedQuestionMethodPlan": "완전제곱으로 중근을 정하고 예각의 삼각비·피타고라스 관계로 cos와 tan을 계산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "delta": "원문은 근을 sin A라고 바로 지정한다. 새 문항은 같은 양수 비를 두 선분 길이로 표현하고 그 비를 삼각비 정의에 연결한다.",
+        "constraints": [
+          "0<중근<1",
+          "길이를 변수의 음수해로 해석하지 않음",
+          "삼각함수 항등식의 상위학년 일반화 대신 직각삼각형 정의로 설명",
+          "분모 0 없음",
+          "公式2015 삼각비 사이 관계 제외 조항의 평가 의도 충돌을 심사; 정당한 대상학년 평가/풀이가 없으면 제외, 불명은 보류"
+        ]
+      },
+      "specificGradeHold": "삼각비 사이의 관계를 다루지 않는다는 제한과 충돌할 소지가 있다. 도형을 통한 해석도 자동 승인이 아니며 교과 검토자가 평가 의도를 확인해야 한다. sin²A+cos²A=1, tan A=sin A/cos A를 공식으로 사용하면 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 8,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q08",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-8",
+      "sourceContentSha256": "0c929304dd97121656bd6c8a41b8ae692ed7266a437c0df6f40bb097b65161c6",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "familyKey": "mid:3-2|삼각비|13",
+        "currentUnit": {
+          "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 값",
+          "semester": 2,
+          "orderIndex": 482,
+          "problemCodePrefix": "J30502"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비|13",
+          "grade": "중3",
+          "unitSection": "삼각비의 값",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "13",
+          "rpmTitle": "의 삼각비의 값"
+        },
+        "liveCount": 18,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "0°·90°와 30°·45°·60°의 알려진 값을 대입해 식을 계산한다. 기존 14/15는 각의 구간에 따른 대소·부호 판단이 핵심이어서 계산 후 선택지 비교라는 겉형식만으로 선택하지 않는다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-17",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수01-09",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3784,
+            "record_offset_in_uncompressed_stream": 193153,
+            "extracted_paragraph_1based": 770
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수01-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-12",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "30°,45°,60°의 직각삼각형에서 얻은 값과 0°,90°의 정의 가능한 값을 직접 대입하여 근호 식의 값을 비교한다.",
+      "changedQuestionMethodPlan": "다섯 식을 특수각의 삼각비로 모두 계산하고 제곱근의 크기를 중학교 방법으로 비교.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure"
+        ],
+        "delta": "최댓값 카드 번호만 묻는 원문에서 계산값과 순위의 대응을 판단하는 표로 전환. 소재는 순수 수학 카드로 유지.",
+        "constraints": [
+          "tan 90° 등장 금지",
+          "분모 0 없음",
+          "다섯 보기 모두 검토",
+          "삼각함수 덧셈정리 금지",
+          "값 비교의 독해 부담 검토"
+        ]
+      },
+      "specificGradeHold": "삼각비 항등식으로 정리하지 않는다. 0°~90°라 하여 tan90°나 0으로 나누기를 허용하지 않는다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 9,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q09",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-9",
+      "sourceContentSha256": "6addbf376a1d0bae2f1d667e7692722f528d8a2d4877d555f2ed003d9a4d6ceb",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "familyKey": "mid:3-2|삼각비|12",
+        "currentUnit": {
+          "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 값",
+          "semester": 2,
+          "orderIndex": 482,
+          "problemCodePrefix": "J30502"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비|12",
+          "grade": "중3",
+          "unitSection": "삼각비의 값",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "12",
+          "rpmTitle": "사분원을 이용하여 삼각비의 값 구하기"
+        },
+        "liveCount": 20,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "반지름 1 사분원의 세 선분 길이로 sin·cos·tan을 읽는 절차가 기존 12와 일치한다. 최종 곱·차는 읽은 값의 후속 계산이다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-17",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-02",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "반지름 1인 사분원의 직각삼각형·접선 도형에 표시된 길이로 sin55°,cos55°,tan55°를 각각 읽고 산술 및 반올림을 수행한다.",
+      "changedQuestionMethodPlan": "세 길이를 각각 삼각비로 읽고 표에 주어진 근삿값을 사용해 차와 곱을 계산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "delta": "원문이 sin/cos/tan 식을 직접 주는 방식에서 그래프의 두 점·선분 길이를 동일 관계의 입력으로 쓰는 방식으로 전환.",
+        "constraints": [
+          "계산은 표시된 근삿값 기준임을 명시",
+          "접선 교점 존재",
+          "길이 차의 부호 확인",
+          "최종 반올림 자리 동일",
+          "도(degree) 표기; 학생용 라디안 금지"
+        ]
+      },
+      "specificGradeHold": "초안에 길이 표시 0.57,0.82,1.43과 사분원 그림이 빠져 있다. 일반 단위원, 라디안, 사분면별 삼각함수 이론은 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 10,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q10",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-10",
+      "sourceContentSha256": "65593e3d19187b6219ba9336e8a6d2b2a7e879c15bd83e8e71d709fd1ac2b993",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "실생활의 올려본각 높이 문제이면서 비특수각 58°의 표 값과 눈높이 보정이 필수다. 기존 활용03과 표 활용17이 서로 다른 Unit에 등록되어 있어 주 단원 선택을 보류한다.",
+        "candidates": [
+          {
+            "registryKey": "3-2|삼각비의 활용|03",
+            "registryTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴",
+            "section": "삼각비의 활용",
+            "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "family": "mid:3-2|삼각비의 활용|03",
+            "confidence": "low",
+            "evidence": "생활 장면과 올려본각 높이 절차는 일치하지만 현재 엔진은 특수각·지면 관측형이다.",
+            "sameUnitLiveCount": 24,
+            "currentUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|삼각비의 활용|03",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "03",
+              "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+            },
+            "currentLiveCount": 24
+          },
+          {
+            "registryKey": "3-2|삼각비|17",
+            "registryTitle": "삼각비의 표를 이용하여 변의 길이 구하기",
+            "section": "삼각비의 값",
+            "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "family": "mid:3-2|삼각비|17",
+            "confidence": "low",
+            "evidence": "비특수각 표에서 변의 길이를 구하는 절차는 일치하지만 생활 높이·눈높이 보정은 현재 엔진에 없다.",
+            "sameUnitLiveCount": 20,
+            "currentUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|삼각비|17",
+              "grade": "중3",
+              "unitSection": "삼각비의 값",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비",
+              "rpmType": "17",
+              "rpmTitle": "삼각비의 표를 이용하여 변의 길이 구하기"
+            },
+            "currentLiveCount": 20
+          }
+        ]
+      },
+      "standards": [
+        {
+          "code": "9수04-18",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-17",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-02",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "수평거리·눈높이·높이 차를 직각삼각형으로 구성하고 제공된 표의 tan58° 값으로 계산한 뒤 눈높이를 더한다.",
+      "changedQuestionMethodPlan": "총높이에서 눈높이를 빼고 직각삼각형의 tan 관계를 세워 수평거리를 역산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "delta": "석탑 높이의 직접 계산에서 새 시설의 관측 위치를 역산하는 작업 상황으로 전환. 관측자 이름도 바꾸고 원본 풍경은 쓰지 않는다.",
+        "constraints": [
+          "총높이>눈높이>0",
+          "0<각<90°",
+          "tan 표의 정밀도와 반올림 명시",
+          "관측 지면 수평·벽 수직 조건",
+          "Unit/family 03 대 17 보류 해결 전 적재 금지"
+        ]
+      },
+      "specificGradeHold": "표 tan58°=1.6003과 m 단위 및 반올림 자리가 조건이다. 현행 live family는 부모 작업에서 확인해야 한다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 11,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q11",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-11",
+      "sourceContentSha256": "6a46ae922a34c384d8a24c6b9567f3518bb55930ba97644c8d6a0a1494102e3c",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "pending",
+        "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "familyKey": null,
+        "currentUnit": {
+          "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 값",
+          "semester": 2,
+          "orderIndex": 482,
+          "problemCodePrefix": "J30502"
+        },
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "15°를 직접 특수각 표에 대입할 수 없고 보조 이등변삼각형을 찾아 30° 직각삼각형 길이와 결합해야 한다. 기존 특수각 변 길이 유형만으로 이 핵심 보조 구성까지 같은 family라고 확신하기 어렵다.",
+        "candidates": [
+          {
+            "registryKey": "3-2|삼각비|10",
+            "registryTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기",
+            "section": "삼각비의 값",
+            "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "family": "mid:3-2|삼각비|10",
+            "confidence": "low",
+            "evidence": "특수각 삼각비로 변의 길이를 구하는 부분은 일치하지만 이등변 관계를 거쳐 15°의 비를 도출하는 단계가 추가된다.",
+            "sameUnitLiveCount": 20,
+            "currentUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|삼각비|10",
+              "grade": "중3",
+              "unitSection": "삼각비의 값",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비",
+              "rpmType": "10",
+              "rpmTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기"
+            },
+            "currentLiveCount": 20
+          }
+        ]
+      },
+      "standards": [
+        {
+          "code": "9수04-18",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-17",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4272,
+            "record_offset_in_uncompressed_stream": 216602,
+            "extracted_paragraph_1based": 874
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4300,
+            "record_offset_in_uncompressed_stream": 217636,
+            "extracted_paragraph_1based": 881
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수01-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "그림의 B-D-C 공선·D의 내부 위치와 직각 C를 확인한다. 각의 합으로 ∠BAD=∠ABD=15°를 얻어 AD=BD인 이등변삼각형을 만들고 직각삼각형 ADC의 30° 값에서 AC,DC를 구한다. BC=BD+DC로 tan15°를 정의한다.",
+      "changedQuestionMethodPlan": "△ABD의 두 각이 같음을 찾아 AD=BD를 얻고 30° 직각삼각형과 피타고라스/변의 비로 목표를 유도.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "delta": "tan15°를 직접 묻는 원문에서 같은 직각삼각형의 두 점이 정하는 선분 길이의 비를 묻는다. 비를 알기 위한 이등변 보조 관계는 그대로 필요.",
+        "constraints": [
+          "D가 B,C 사이에 존재",
+          "길이 양수",
+          "덧셈정리·반각공식·사인/코사인 법칙 금지",
+          "현재 family10이 보조 구성까지 덮는지 보류"
+        ]
+      },
+      "specificGradeHold": "15°가 있다는 이유만으로 상위 학년 문항이라고 단정하지 않는다. 덧셈/뺄셈·반각 공식이나 sin법칙은 제외; 합법적 도형 경로와 복잡도 검토가 필요하다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 12,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q12",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-12",
+      "sourceContentSha256": "e2590bd5a6113fd693dd09ed231a6afb94aa3205ca06475d2f33afba7e6d7303",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "familyKey": "mid:3-2|삼각비의 활용|10",
+        "currentUnit": {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비의 활용|10",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "10",
+          "rpmTitle": "다각형의 넓이"
+        },
+        "liveCount": 18,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "대각선 AC로 나눈 두 삼각형의 넓이를 합하는 기존 다각형 넓이10의 절차다. 사각형 넓이라는 제목의 12는 두 대각선의 길이와 끼인각을 쓰는 다른 절차다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-18",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-17",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "6수03-06",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수01-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "그림의 ∠ABC=90°를 확인하고 대각선 AC로 둘로 나눈다. ABC의 45° 삼각비로 길이를 얻고 A에서 DC에 수선을 내려 60°인 직각삼각형의 높이로 ADC 넓이를 구한다.",
+      "changedQuestionMethodPlan": "첫 직각삼각형에서 AC를 구하고 둘째 삼각형에 수선을 내려 높이를 계산하여 두 넓이 합산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure"
+        ],
+        "delta": "사각형 전체 넓이를 바로 고르는 원문에서 두 부분의 넓이와 합의 대응을 검토하는 계산표로 전환.",
+        "constraints": [
+          "새 삼각형 실제 존재",
+          "영역 겹침/뒤집힘 없음",
+          "일반 sin넓이공식을 상위학년 도구로 제시하지 않고 수선으로 도출",
+          "공통 대각선 길이 일치"
+        ]
+      },
+      "specificGradeHold": "일반 삼각형의 넓이 공식 1/2 ab sin C를 암기식으로 쓰지 않고 수선·높이를 제시한다. 그림의 직각 누락은 보류.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 13,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q13",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-13",
+      "sourceContentSha256": "8b7cfc79e6a7f3f240658147d667322e488e4a5ad4e837703a89685645a91d5f",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "familyKey": "mid:3-2|삼각비의 활용|02",
+        "currentUnit": {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비의 활용|02",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "02",
+          "rpmTitle": "입체도형에서 직각삼각형의 변의 길이의 활용"
+        },
+        "liveCount": 22,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "원뿔의 축을 포함하는 단면에서 모선·반지름·높이의 직각삼각형을 이용한다. 부피는 이렇게 정한 길이를 쓰는 마지막 계산이며 입체도형 변 길이 절차가 주 개념이다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-18",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-09",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4292,
+            "record_offset_in_uncompressed_stream": 217366,
+            "extracted_paragraph_1based": 879
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-17",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-08",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4288,
+            "record_offset_in_uncompressed_stream": 217232,
+            "extracted_paragraph_1based": 878
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "6수03-08",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3445,
+            "record_offset_in_uncompressed_stream": 177155,
+            "extracted_paragraph_1based": 693
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "원뿔의 축을 포함하는 단면에서 모선·반지름·높이와 명시된 30°를 직각삼각형으로 읽고 원뿔 부피를 계산한다.",
+      "changedQuestionMethodPlan": "직각 단면에서 삼각비로 r,h를 구하고 중1 원뿔 부피식에 대입.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "delta": "부피 숫자만 고르는 원문에서 단면의 두 길이와 입체의 부피를 대응시키는 기록표로 전환.",
+        "constraints": [
+          "r²+h²=모선²",
+          "모선>r>0,h>0",
+          "부피 단위 cm³",
+          "공간 좌표/벡터 풀이 금지"
+        ]
+      },
+      "specificGradeHold": "공간에서 직선과 평면이 이루는 각을 일반 정사영/벡터로 정의하는 새 표현은 제외. 단면의 30°와 직각을 명시해야 한다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 14,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q14",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-14",
+      "sourceContentSha256": "d85d7968d03bd611708edd8a7a8a8e41f21d66a76aa480cd9f2fe29d6f4b8eec",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "pending",
+        "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "familyKey": null,
+        "currentUnit": {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "종이띠 접기의 반사·길이 보존과 접는 선의 각 관계가 필수다. 현재 삼각비 등록 제목·절차에서 같은 접기 구조를 확인하지 못해 단순 직각삼각형 family로 고정하지 않는다.",
+        "candidates": [
+          {
+            "registryKey": "3-2|삼각비의 활용|01",
+            "registryTitle": "직각삼각형의 변의 길이 구하기",
+            "section": "삼각비의 활용",
+            "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "family": "mid:3-2|삼각비의 활용|01",
+            "confidence": "low",
+            "evidence": "최종 직각삼각형 길이 계산은 관련되지만 접기에서 보조 길이와 각을 만드는 핵심 단계가 없다.",
+            "sameUnitLiveCount": 24,
+            "currentUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|삼각비의 활용|01",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "01",
+              "rpmTitle": "직각삼각형의 변의 길이 구하기"
+            },
+            "currentLiveCount": 24
+          }
+        ]
+      },
+      "standards": [
+        {
+          "code": "9수04-18",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-04",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4264,
+            "record_offset_in_uncompressed_stream": 216294,
+            "extracted_paragraph_1based": 872
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-12",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4308,
+            "record_offset_in_uncompressed_stream": 217962,
+            "extracted_paragraph_1based": 883
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-16",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4333,
+            "record_offset_in_uncompressed_stream": 218866,
+            "extracted_paragraph_1based": 889
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3916,
+            "record_offset_in_uncompressed_stream": 199888,
+            "extracted_paragraph_1based": 797
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수01-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "접기 합동으로 PA=PC, QA=QC와 ∠APQ=∠CPQ를 얻는다. 원래 직사각형의 직각에 피타고라스를 적용하여 가로 길이와 Q의 위치를 구하고 P에서 BC에 내린 수선의 직각삼각형에서 tan x를 정의한다.",
+      "changedQuestionMethodPlan": "접기에서 길이·각 보존을 밝혀 보조 길이를 정하고 직각삼각형의 변의 비로 목표를 구함.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "delta": "한 장의 접힌 그림에서 tan x를 고르는 원문을 접기 전후 대응과 같은 길이를 먼저 정리하는 두 그림/기록 구조로 전환.",
+        "constraints": [
+          "접기 도형 실제 존재",
+          "반사 후 A=C",
+          "폭·보조 길이 양수",
+          "반각공식 대신 합동·이등변·직각삼각형 풀이",
+          "접기family 미확인 상태 유지"
+        ]
+      },
+      "specificGradeHold": "Q의 원래 변 위 위치와 부호를 확인하고 복잡한 도형/계산 평가 제한을 별도 검토한다. 반각·벡터 반사·좌표회전 공식은 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 15,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q15",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-15",
+      "sourceContentSha256": "6336b2123cb52285fe64a62a0bf54ccefcd8f45f198719b6a47e22857693ae4a",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "familyKey": "mid:3-2|원과 직선|03",
+        "currentUnit": {
+          "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원과 현",
+          "semester": 2,
+          "orderIndex": 484,
+          "problemCodePrefix": "J30601"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|원과 직선|03",
+          "grade": "중3",
+          "unitSection": "원과 현",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "03",
+          "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우"
+        },
+        "liveCount": 16,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "남은 원의 일부에서 현 길이와 활의 높이로 반지름을 복원하는 유형03과 일치한다. 원주 계산은 반지름 복원 뒤의 단순 후속 단계다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-19",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4353,
+            "record_offset_in_uncompressed_stream": 219558,
+            "extracted_paragraph_1based": 894
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-16",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4333,
+            "record_offset_in_uncompressed_stream": 218866,
+            "extracted_paragraph_1based": 889
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3916,
+            "record_offset_in_uncompressed_stream": 199888,
+            "extracted_paragraph_1based": 797
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "6수03-08",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3445,
+            "record_offset_in_uncompressed_stream": 177155,
+            "extracted_paragraph_1based": 693
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "중심에서 현에 내린 수선은 현을 이등분한다. 현의 반길이·활의 높이와 반지름으로 직각삼각형을 구성해 반지름을 구한 뒤 원주를 계산한다.",
+      "changedQuestionMethodPlan": "둘레에서 반지름을 정하고 현의 수직이등분선 성질·피타고라스로 중심에서 현까지의 거리와 작은 활높이를 계산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "delta": "깨진 접시의 현·활높이로 둘레를 구하는 원문에서 새 대상의 둘레·현으로 작은 활높이를 역산한다.",
+        "constraints": [
+          "현길이<지름",
+          "0<활높이<R로 큰 활 해 배제",
+          "길이 단위 일치",
+          "임의 음수 제곱근 해를 길이로 채택하지 않음",
+          "원문과 목표 난이도 비교"
+        ]
+      },
+      "specificGradeHold": "그림의 현 길이와 활의 높이는 초안에 없다. 저해상도 측정 라벨을 원본 자료로 다시 대조해야 한다. 할선/접선의 거듭제곱 정리는 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 16,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q16",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-16",
+      "sourceContentSha256": "2a0a3a6ab32cdaae436229cea0c6c7139a73ec1f9e483b76d7c828b3914be911",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "familyKey": "mid:3-2|원과 직선|18A",
+        "currentUnit": {
+          "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원과 현",
+          "semester": 2,
+          "orderIndex": 484,
+          "problemCodePrefix": "J30601"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|원과 직선|18A",
+          "grade": "중3",
+          "unitSection": "원과 현",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "18A",
+          "rpmTitle": "중심에서 같은 거리에 있는 두 현"
+        },
+        "liveCount": 16,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "중심에서 같은 거리에 있는 두 현의 길이가 같다는 성질을 쓰고 이등변삼각형의 각을 판정한다. 기존 18A의 주 개념과 일치한다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-19",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4353,
+            "record_offset_in_uncompressed_stream": 219558,
+            "extracted_paragraph_1based": 894
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-04",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4264,
+            "record_offset_in_uncompressed_stream": 216294,
+            "extracted_paragraph_1based": 872
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4300,
+            "record_offset_in_uncompressed_stream": 217636,
+            "extracted_paragraph_1based": 881
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4272,
+            "record_offset_in_uncompressed_stream": 216602,
+            "extracted_paragraph_1based": 874
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "중심에서 같은 거리의 두 현이 같음을 수선·반지름과 직각삼각형 합동으로 설명하고 이등변삼각형의 밑각 및 내각 합을 쓴다.",
+      "changedQuestionMethodPlan": "중심에서 거리가 같은 현의 길이 동일→이등변삼각형→내각 합으로 꼭지각 계산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure"
+        ],
+        "delta": "꼭지각 하나의 선택에서 중심거리→같은 현→같은 밑각의 연결 기록을 완성하는 구조로 전환.",
+        "constraints": [
+          "OM=ON 실제 좌표 일치",
+          "M,N은 수선의 발",
+          "세 내각 양수·합180°",
+          "같은 현인지 지름인지 혼동 방지"
+        ]
+      },
+      "specificGradeHold": "A,B,C가 원 위, O가 중심이며 수선의 발이 현 위임을 그림과 새 본문에 명시한다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 17,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q17",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-17",
+      "sourceContentSha256": "2b007899a695221616d16af68f17a9987f1a9d6b6f61646713e51db1c1d6aa90",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "familyKey": "mid:3-2|원과 직선|16",
+        "currentUnit": {
+          "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원의 접선",
+          "semester": 2,
+          "orderIndex": 485,
+          "problemCodePrefix": "J30602"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|원과 직선|16",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "16",
+          "rpmTitle": "원에 외접하는 사각형의 응용"
+        },
+        "liveCount": 42,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "직사각형의 세 변과 한 꼭짓점에서 그은 사선 접선의 구조가 기존16과 같다. 접선 길이 관계와 직각삼각형 길이를 결합한 뒤 넓이를 구한다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-19",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4353,
+            "record_offset_in_uncompressed_stream": 219558,
+            "extracted_paragraph_1based": 894
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-12",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4308,
+            "record_offset_in_uncompressed_stream": 217962,
+            "extracted_paragraph_1based": 883
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-16",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4333,
+            "record_offset_in_uncompressed_stream": 218866,
+            "extracted_paragraph_1based": 889
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3916,
+            "record_offset_in_uncompressed_stream": 199888,
+            "extracted_paragraph_1based": 797
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "6수03-06",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "세 변에 대한 반지름의 수직성과 같은 외부 점의 접선 길이를 이용해 AM과 BM 관계를 세운다. 직각삼각형 ABM의 피타고라스로 BM을 구해 넓이를 계산한다.",
+      "changedQuestionMethodPlan": "같은 외부점의 접선 길이 관계와 직각삼각형 피타고라스로 밑변을 정해 넓이 계산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "context",
+          "structure"
+        ],
+        "delta": "기하 조건만 나열된 원문의 대상과 행동을 창틀·장식·지지대의 자연스러운 설치 상황으로 전환; 재료 장식은 수학 조건을 추가하지 않음.",
+        "constraints": [
+          "원은 지정 세 변에 접함",
+          "지지대는 원을 관통하지 않음",
+          "M은 실제 아래 변 구간 안",
+          "넓이 단위 cm²",
+          "새 소재의 설치 조건이 추가 개념을 요구하지 않음"
+        ]
+      },
+      "specificGradeHold": "M은 AM 접선과 BC의 교점이라는 의미와 접점 E,F,G,H의 대응을 재제작 그림/본문에 보존해야 한다. 원의 방정식·원과 비례는 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 18,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q18",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-18",
+      "sourceContentSha256": "f4deafdc27156f764d585406d49164f2b783b0fa234d2f03c57ba8450da08819",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "pending",
+        "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "familyKey": null,
+        "currentUnit": {
+          "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수 y=ax^2+bx+c의 그래프",
+          "semester": 1,
+          "orderIndex": 479,
+          "problemCodePrefix": "J30402"
+        },
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "완전제곱으로 얻는 미지 꼭짓점이 직선 위에 있다는 제약과 다른 점 조건을 함께 이용하는 계수 결정 문제다. 기존02는 꼭짓점·축 계산, 10은 꼭짓점 좌표가 이미 주어지는 형태여서 이 복합 제약까지 어느 family에 속하는지 보류한다.",
+        "candidates": [
+          {
+            "registryKey": "3-1|이차함수의 그래프 ⑵|02",
+            "registryTitle": "이차함수 의 그래프의 꼭짓점과 축",
+            "section": "이차함수 y=ax^2+bx+c의 그래프",
+            "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+            "family": "mid:3-1|이차함수의 그래프 ⑵|02",
+            "confidence": "low",
+            "evidence": "꼭짓점의 대수적 표현은 일치하지만 직선 위 제약으로 계수를 결정하는 단계가 추가된다.",
+            "sameUnitLiveCount": 21,
+            "currentUnit": {
+              "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+              "grade": "중3",
+              "chapter": "4. 이차함수",
+              "section": "이차함수 y=ax^2+bx+c의 그래프",
+              "semester": 1,
+              "orderIndex": 479,
+              "problemCodePrefix": "J30402"
+            },
+            "currentRegistryMatch": {
+              "key": "3-1|이차함수의 그래프 ⑵|02",
+              "grade": "중3",
+              "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+              "rpmBook": "3-1",
+              "rpmMinor": "이차함수의 그래프 ⑵",
+              "rpmType": "02",
+              "rpmTitle": "이차함수 의 그래프의 꼭짓점과 축"
+            },
+            "currentLiveCount": 21
+          },
+          {
+            "registryKey": "3-1|이차함수의 그래프 ⑵|10",
+            "registryTitle": "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때",
+            "section": "이차함수 y=ax^2+bx+c의 그래프",
+            "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+            "family": "mid:3-1|이차함수의 그래프 ⑵|10",
+            "confidence": "low",
+            "evidence": "꼭짓점과 다른 한 점으로 계수를 결정하지만 이 문항은 꼭짓점 좌표를 먼저 직선 제약에서 도출해야 한다.",
+            "sameUnitLiveCount": 22,
+            "currentUnit": {
+              "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+              "grade": "중3",
+              "chapter": "4. 이차함수",
+              "section": "이차함수 y=ax^2+bx+c의 그래프",
+              "semester": 1,
+              "orderIndex": 479,
+              "problemCodePrefix": "J30402"
+            },
+            "currentRegistryMatch": {
+              "key": "3-1|이차함수의 그래프 ⑵|10",
+              "grade": "중3",
+              "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+              "rpmBook": "3-1",
+              "rpmMinor": "이차함수의 그래프 ⑵",
+              "rpmType": "10",
+              "rpmTitle": "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때"
+            },
+            "currentLiveCount": 22
+          }
+        ]
+      },
+      "standards": [
+        {
+          "code": "9수03-10",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-12",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-11",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3948,
+            "record_offset_in_uncompressed_stream": 201216,
+            "extracted_paragraph_1based": 805
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수03-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4122,
+            "record_offset_in_uncompressed_stream": 209259,
+            "extracted_paragraph_1based": 843
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-02",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "y=a(x-1)²+(b-a)로 고쳐 꼭짓점을 읽는다. 꼭짓점과 주어진 점의 대입으로 a,b에 대한 두 일차식을 만들고 연립일차방정식으로 푼다.",
+      "changedQuestionMethodPlan": "완전제곱으로 꼭짓점을 (1,b-a)로 구해 직선에 대입, 다른 점 조건과 연립해 a+b를 산출.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure"
+        ],
+        "delta": "긴 한 문장의 조건 나열/결과 요구에서 자료별 조건을 식으로 복구하고 함께 만족시키는 계수를 찾는 기록 구조로 전환. 조건식이나 꼭짓점 좌표는 미리 주지 않음.",
+        "constraints": [
+          "a≠0",
+          "연립식 해 유일",
+          "두 원조건 재대입",
+          "미분/상위학년 함수 최대최소 금지",
+          "꼭짓점 직선제약family 보류"
+        ]
+      },
+      "specificGradeHold": "꼭짓점 좌표가 직선 위라는 대입 관계로 처리한다. 일반 직선-포물선 교점/접선 이론이나 미분은 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 19,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q19",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-19",
+      "sourceContentSha256": "1ca06e12a9b63387b3a827941c62d93ebb4b2eaf02f6e6db743f71608a6afb96",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "familyKey": "mid:3-2|삼각비의 활용|05",
+        "currentUnit": {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비의 활용|05",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "05",
+          "rpmTitle": "일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우"
+        },
+        "liveCount": 24,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "한 변 AB와 그 양 끝 A,B의 각이 주어져 다른 변 BC를 구하는 일반 삼각형 유형05와 일치한다. 풍경 그림은 문제의 주 절차를 바꾸지 않는다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-18",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-17",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4272,
+            "record_offset_in_uncompressed_stream": 216602,
+            "extracted_paragraph_1based": 874
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4300,
+            "record_offset_in_uncompressed_stream": 217636,
+            "extracted_paragraph_1based": 881
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수01-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "B에서 AC에 수선을 내린다. AB를 빗변으로 하는 45° 직각삼각형과 C의 내각 60°인 직각삼각형을 차례로 사용해 BC를 구한다.",
+      "changedQuestionMethodPlan": "나머지 각을 구하고 적절한 수선을 내려 30°/45°/60° 직각삼각형과 길이·닮음 관계로 목표 선분을 계산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "context",
+          "structure"
+        ],
+        "delta": "텐트 두 개·캠핑장 식수대에서 공원 관측 위치·시설의 조사 상황으로 전환. 한 문장 발문 대신 위치도와 조사 기록의 두 자료를 연결.",
+        "constraints": [
+          "세 각 합180°",
+          "수선의 발 위치 확인",
+          "그림 축척/각과 실제 조건 일치",
+          "사인/코사인 법칙·75° 덧셈정리 금지",
+          "중3 정당한 수선 풀이가 없으면 제외"
+        ]
+      },
+      "specificGradeHold": "75°의 sin/cos/tan 값을 공식으로 구할 필요가 없다. 높이의 발이 선분 AC 위라는 위치와 사인법칙/각의 덧셈 배제를 확인한다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 20,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q20",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-20",
+      "sourceContentSha256": "79e3387af8eda6fe66ce2e9702721e383ba01baedc6b004676c6089e39ea6693",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "pending",
+        "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+        "familyKey": null,
+        "currentUnit": {
+          "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원주각",
+          "semester": 2,
+          "orderIndex": 486,
+          "problemCodePrefix": "J30603"
+        },
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "색칠 영역은 호 CB와 현 CB 사이의 활꼴이다. 원주각으로 중심각을 결정하고 부채꼴에서 삼각형을 빼는 절차까지 필요한데 등록06/10은 각·변·삼각비 문제여서 같은 family인지 확신하기 어렵다.",
+        "candidates": [
+          {
+            "registryKey": "3-2|원주각|06",
+            "registryTitle": "원주각의 성질과 삼각비의 값",
+            "section": "원주각",
+            "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "family": "mid:3-2|원주각|06",
+            "confidence": "low",
+            "evidence": "원주각과 삼각비를 함께 쓰는 부분은 관련되지만 부채꼴-삼각형의 활꼴 넓이 절차가 확인되지 않았다.",
+            "sameUnitLiveCount": 26,
+            "currentUnit": {
+              "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+              "grade": "중3",
+              "chapter": "6. 원의 성질",
+              "section": "원주각",
+              "semester": 2,
+              "orderIndex": 486,
+              "problemCodePrefix": "J30603"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|원주각|06",
+              "grade": "중3",
+              "unitSection": "원주각",
+              "rpmBook": "3-2",
+              "rpmMinor": "원주각",
+              "rpmType": "06",
+              "rpmTitle": "원주각의 성질과 삼각비의 값"
+            },
+            "currentLiveCount": 26
+          },
+          {
+            "registryKey": "3-2|원주각|10",
+            "registryTitle": "반원에 대한 원주각의 크기의 응용",
+            "section": "원주각",
+            "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "family": "mid:3-2|원주각|10",
+            "confidence": "low",
+            "evidence": "반원 원주각 응용이라는 개념은 관련되지만 색칠 활꼴 넓이의 핵심 절차까지 일치한다고 확정할 수 없다.",
+            "sameUnitLiveCount": 28,
+            "currentUnit": {
+              "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+              "grade": "중3",
+              "chapter": "6. 원의 성질",
+              "section": "원주각",
+              "semester": 2,
+              "orderIndex": 486,
+              "problemCodePrefix": "J30603"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|원주각|10",
+              "grade": "중3",
+              "unitSection": "원주각",
+              "rpmBook": "3-2",
+              "rpmMinor": "원주각",
+              "rpmType": "10",
+              "rpmTitle": "반원에 대한 원주각의 크기의 응용"
+            },
+            "currentLiveCount": 28
+          }
+        ]
+      },
+      "standards": [
+        {
+          "code": "9수04-18",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-06",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4276,
+            "record_offset_in_uncompressed_stream": 216736,
+            "extracted_paragraph_1based": 875
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-10",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4300,
+            "record_offset_in_uncompressed_stream": 217636,
+            "extracted_paragraph_1based": 881
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-17",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "6수03-06",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "6수03-08",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3445,
+            "record_offset_in_uncompressed_stream": 177155,
+            "extracted_paragraph_1based": 693
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "OBC의 두 반지름이 같으므로 중심각을 내각 합으로 얻는다. C에서 지름에 수선을 내려 60° 직각삼각형의 높이로 삼각형 OBC 넓이를 계산하고 부채꼴 넓이에서 뺀다.",
+      "changedQuestionMethodPlan": "원주각→대응 중심각, 부채꼴 넓이에서 수선·특수각 삼각비로 구한 중심 삼각형 넓이를 뺌.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "delta": "한 장의 색칠 영역을 바로 묻는 원문에서 도면의 영역 경계와 면적 계산 기록을 연결하는 구조로 전환. 수선을 통한 삼각형 넓이 도출은 학생에게 남긴다.",
+        "constraints": [
+          "호 AC와 CB 혼동 금지",
+          "넓이 양수이며 반원 넓이 이하",
+          "수선 풀이; sin넓이공식 암기/라디안 금지",
+          "중심각/활꼴 복합family 보류",
+          "학생용 해설에서 sin120° 사용 금지; 수선을 내려 60°로 계산"
+        ]
+      },
+      "specificGradeHold": "그림의 음영은 활꼴(호 BC와 현 BC 사이)이다. sin120° 등 90° 밖의 삼각비, 적분, 높이를 생략한 상위 학년 공식은 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 21,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-v2-q21",
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-21",
+      "sourceContentSha256": "d3fcd3d376cc3fd415b847fff83307b3a86684e4af394d33e766a371cdfab1bd",
+      "source": "transformed",
+      "originProblemId": null,
+      "nativeProvenance": "blocked-until-exam-twin-read-contract-support",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "familyKey": "mid:3-2|원과 직선|11",
+        "currentUnit": {
+          "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원의 접선",
+          "semester": 2,
+          "orderIndex": 485,
+          "problemCodePrefix": "J30602"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|원과 직선|11",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "11",
+          "rpmTitle": "반원에서의 접선"
+        },
+        "liveCount": 46,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "지름 양끝의 수직 접선과 공통 접선 CD를 가진 반원 구조가 유형11과 정확히 일치한다. 같은 외부점의 접선 길이와 직각삼각형 관계로 다른 높이를 정한다.",
+        "candidates": []
+      },
+      "standards": [
+        {
+          "code": "9수04-19",
+          "role": "primary-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4353,
+            "record_offset_in_uncompressed_stream": 219558,
+            "extracted_paragraph_1based": 894
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-16",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4333,
+            "record_offset_in_uncompressed_stream": 218866,
+            "extracted_paragraph_1based": 889
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수04-12",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4308,
+            "record_offset_in_uncompressed_stream": 217962,
+            "extracted_paragraph_1based": 883
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        },
+        {
+          "code": "9수02-05",
+          "role": "prerequisite-proposal",
+          "sourceId": "moe-2020-236-math-hwp",
+          "hwpLocator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3916,
+            "record_offset_in_uncompressed_stream": 199888,
+            "extracted_paragraph_1based": 797
+          },
+          "pdfLocator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "status": "expert-proposal-not-candidate-approval"
+        }
+      ],
+      "sourceMethodProposal": "같은 외부 점 D,C의 두 접선 길이를 각각 같게 놓아 CD=DA+CB를 얻는다. 평행한 AD,BC 사이 수평거리 AB와 높이 차로 직각삼각형을 만든 뒤 피타고라스와 일차방정식을 쓴다.",
+      "changedQuestionMethodPlan": "같은 외부점의 접선 길이로 CD=AD+BC를 세우고 직각삼각형 피타고라스 관계를 전개하여 AD 역산.",
+      "transformedRepresentationAndTarget": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "delta": "왼쪽 높이→오른쪽 높이의 원문 방향을 뒤집고, 점/접점 대응을 기록표와 새 도형에 연결한다.",
+        "constraints": [
+          "양끝 높이 양수",
+          "공통 접선 존재·E가 선분 CD 위",
+          "AD·BC=(AB/2)²를 원리에서 유도",
+          "모든 접점/수직 관계 검산",
+          "실제 원 조건 재대입"
+        ]
+      },
+      "specificGradeHold": "A,B는 지름의 양끝 접점, E는 CD 위의 접점이라는 순서를 확인한다. 접선-할선의 곱이나 원과 비례 성질로 바꾸면 제외.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    }
+  ]
+}

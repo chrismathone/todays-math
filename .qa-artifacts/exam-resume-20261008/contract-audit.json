@@ -1322,8 +1322,8 @@
     "priority": "highest_mandatory",
     "referenceCase": {
       "examYear": 2025,
-      "grade": "?3",
-      "subject": "??",
+      "grade": "중3",
+      "subject": "수학",
       "appliedEdition": "2015",
       "decisionBasis": "grade-specific phased rollout; no blanket 2022 assumption"
     },
@@ -2643,5 +2643,11 @@
     "independent twin answer/solution proof",
     "rights/similarity state",
     "native truthful external-reference twin provenance"
+  ],
+  "integrationCorrections": [
+    {
+      "scope": "curriculumGate.referenceCase grade/subject text",
+      "reason": "restore actual Korean labels from referenced source and owner directive; no scope or approval change"
+    }
   ]
 }
