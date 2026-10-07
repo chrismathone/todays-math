@@ -84,6 +84,10 @@ import {
   tidyHwpNotation,
 } from "../../../src/lib/import/schoolTextbook/hwpNotation";
 import {
+  blatantWords,
+  createRenamer,
+} from "../../../src/lib/import/schoolTextbook/neutralNames";
+import {
   fingerprintOf,
   planRefresh,
   type RefreshColumns,
@@ -220,6 +224,8 @@ export interface LoadRow {
    * 문항을 버리지 않고 잠가 두는 까닭: 은행에서 보고 고칠 수 있고, 고친 뒤 `--refresh` 로 풀린다.
    */
   hold: string[];
+  /** 다른 이름으로 바꾼 것(«천재 → 지우») — 원장에 남긴다 */
+  renamed: string[];
   /** 지면 검토가 본 글의 지문 — 검토 뒤에 글이 바뀌면 그 검토는 버린다 */
   checkKey: string;
   /** 지면 검토가 읽을 해설 후보 — 교과서 풀이(쓸 수 있는 꼴이면), 없으면 첫 검토자가 쓴 것. 실을 해설과 다를 수 있다 */
@@ -281,6 +287,22 @@ function textFlaws(name: string, text: string): string[] {
  * 손질한 뒤에도 남은 한글 수식 낱말은 `hwpLeftovers` 가 세고, 그런 문항은 출제에서 잠근다.
  */
 const tidy = tidyHwpNotation;
+
+/** 문항이 나온 책의 출판사 — 폴더 이름을 못 읽으면 빈 글(이름 바꾸기를 하지 않는다) */
+function publisherOf(source: Prepared): string {
+  try {
+    return parseSourceBook({ bookFolder: source.book, grade: source.grade })
+      .publisher;
+  } catch {
+    return "";
+  }
+}
+
+/** 글에 남은 출판사의 온 이름 — 없으면 null */
+function blatantNote(...texts: Array<string | null>): string | null {
+  const words = blatantWords(texts.filter(Boolean).join(" "));
+  return words.length > 0 ? `출판사 이름이 글에 있다 ${words.join(" ")}` : null;
+}
 
 /** 손질로도 못 고친 표기 — 없으면 null */
 function leftoverNote(name: string, text: string): string | null {
@@ -463,15 +485,27 @@ function buildRows(): {
       .join("\n");
     const finish = finished.get(review.id);
     // 본문 머리에 붙은 문항 번호(«01다음을 …») · 배점 표시(«[4점]»)는 걷는다 — 손질한 쪽 · 안 한 쪽에 같이 건다
-    const content = unsplit(cleanContent(tidy(finish?.content ?? kept)));
+    const cleaned = unsplit(cleanContent(tidy(finish?.content ?? kept)));
     // 🔴 마무리 손질은 글자를 안 바꾼다 — 빈칸을 접어 견줘서, 다르면 그 문항은 싣지 않는다
     const squeezed = (text: string) =>
       cleanContent(tidy(text)).replace(/\s+/g, "");
-    if (squeezed(content) !== squeezed(kept)) {
+    if (squeezed(cleaned) !== squeezed(kept)) {
       skip("마무리 손질이 본문의 글자를 바꿨다");
       continue;
     }
-    answer = tidy(answer);
+    // ── 이름 — 출판사를 드러내는 사람 · 학교 이름은 다른 이름으로(원장님 2026-10-08 · `neutralNames.ts`) ──
+    // 한 문항의 글 전부(본문 · 정답 · 해설 후보들)에 같은 이름을 쓴다. 지면 검토의 지문은 **바꾼 뒤의 글**로 낸다 —
+    // 이름이 바뀐 문항은 앞 회차의 판정이 낡아 다시 검토받는다.
+    const found = checks.get(review.id);
+    const renamer = createRenamer(publisherOf(source), [
+      cleaned,
+      answer,
+      source.solution,
+      reviewerSolution,
+      found?.newSolution,
+    ]);
+    const content = renamer.fix(cleaned);
+    answer = renamer.fix(tidy(answer));
 
     // ── 해설 — 후보 하나를 정하고, 지면 검토가 «이 문항의 풀이다»라고 한 것만 싣는다 ──
     // 🔴 교과서 풀이 칸은 첫 검토가 읽지 않았다(답만 맞췄다). 2026-10-07 에 그 칸을 그대로 실었더니 «다음 문항의 본문» ·
@@ -483,10 +517,10 @@ function buildRows(): {
       textFlaws("해설", text).length === 0 && hwpLeftovers(text).length === 0;
     const textbook =
       !review.needSolution && source.solution && !source.solutionFigure
-        ? unsplit(tidy(finish?.solution ?? source.solution))
+        ? renamer.fix(unsplit(tidy(finish?.solution ?? source.solution)))
         : null;
     const firstWritten = reviewerSolution?.trim()
-      ? tidy(reviewerSolution)
+      ? renamer.fix(tidy(reviewerSolution))
       : null;
     const candidate: {
       text: string;
@@ -498,7 +532,6 @@ function buildRows(): {
           ? { text: firstWritten, from: "ai" }
           : null;
     const checkKey = checkKeyOf(content, answer, candidate?.text ?? null);
-    const found = checks.get(review.id);
     // 검토 뒤에 글이 바뀌었으면 그 검토는 다른 글에 대한 것이다 — 없는 것으로 친다
     const check = found?.key === checkKey ? found : undefined;
 
@@ -510,7 +543,7 @@ function buildRows(): {
     if (check && check.solution !== "keep") {
       // 후보가 이 문항의 풀이가 아니거나 없었다 — 지면 검토자가 쓴 것만 쓴다(못 쓸 꼴이면 해설 없이 잠근다)
       const rewritten = check.newSolution?.trim()
-        ? tidy(check.newSolution)
+        ? renamer.fix(tidy(check.newSolution))
         : null;
       solution = rewritten && usable(rewritten) ? rewritten : null;
       solutionSource = solution ? "ai" : "none";
@@ -519,6 +552,8 @@ function buildRows(): {
     for (const note of [
       leftoverNote("본문", content),
       leftoverNote("정답", answer),
+      // 바꾸지 못한 출판사의 온 이름(«천재교육 교과서 87쪽»)이 글에 있으면 잠근다
+      blatantNote(content, answer, solution),
       check?.content === "flaw"
         ? `지면 검토: ${check.contentWhy ?? "지면에 낼 꼴이 아니다"}`
         : null,
@@ -587,6 +622,7 @@ function buildRows(): {
       questionNumber: source.number,
       verified,
       hold,
+      renamed: renamer.renamed(),
       checkKey,
       candidateSolution: candidate?.text ?? null,
       candidateFrom: candidate?.from ?? null,
@@ -854,7 +890,12 @@ async function main(): Promise<void> {
         (reason) =>
           reason
             .replace(/(남은 표기) .*/, "$1")
+            .replace(/(출판사 이름이 글에 있다) .*/, "$1")
             .replace(/(지면 검토): .*/, "$1"),
+      ),
+      이름을_바꾼_문항: tally(
+        loadable.flatMap((row) => row.renamed),
+        (renamed) => renamed,
       ),
       답을_확인한_길: tally(loadable, (row) =>
         row.verified.replace(/\(.*\)/, ""),
