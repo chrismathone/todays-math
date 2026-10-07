@@ -1,0 +1,4818 @@
+{
+  "evidence": [
+    {
+      "id": "e5-1-3-2-c2",
+      "contentHash": "24985334ff7ed0e594c46d4d08679123d704da90251d2fc74f8e7c0270c3631a",
+      "packet": "cohort-2026-10-06T12-39-13-282Z-0",
+      "inputHash": "8eaebb62b2f5b34c8f93f9476868adbe9ac0051c47b2ccfceacc5da017a3fb08",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-3-c1",
+      "contentHash": "5d8c71f11f441001491bfb292433531314b13dd4d572b7a71e10ccebf248105c",
+      "packet": "cohort-2026-10-06T12-39-13-282Z-0",
+      "inputHash": "8eaebb62b2f5b34c8f93f9476868adbe9ac0051c47b2ccfceacc5da017a3fb08",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-5-c6",
+      "contentHash": "3b2827ba8461eb8b364c750033ac6985b905897dae0ee26d9ce8073e2c4e9c08",
+      "packet": "cohort-2026-10-06T13-13-14-351Z-1",
+      "inputHash": "57bd6a478e9bb2fb96ce99ef524c4ef2dd442327f8a1785b452edb5f5fca371d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-1-1-xc25",
+      "contentHash": "3c7c9606460f96e855e525086e7d99e6c160aa9c93f36c62706306a647061737",
+      "packet": "cohort-2026-10-06T13-13-14-351Z-1",
+      "inputHash": "57bd6a478e9bb2fb96ce99ef524c4ef2dd442327f8a1785b452edb5f5fca371d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-1-c3",
+      "contentHash": "01583276efa4091f51bc737bf7b6d0f9b0bcd7bc2a22a5b14995dfcb40af4ca4",
+      "packet": "cohort-2026-10-06T13-27-46-780Z-0",
+      "inputHash": "fdc84d1ecf9c30461cd04d496f18a06c130f0e50afc67a50087cf1dda4e9eb47",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-5-c2",
+      "contentHash": "86ce0d6284ce8d59c4789f804ea79f94a1398cb5faa9b49da0ae373094518f56",
+      "packet": "cohort-2026-10-06T13-27-46-780Z-0",
+      "inputHash": "fdc84d1ecf9c30461cd04d496f18a06c130f0e50afc67a50087cf1dda4e9eb47",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '0보다 큰 수'만 조건이라 아래 자리가 모두 0인 경우(같음)와 아닌 경우(작음)가 갈림. '작다'와 '작거나 같다' 중 어느 것이 정답인지 정해지지 않고 자리 조건도 없음",
+        "1차의 C revise에는 동의하지 않는다. '0보다 큰 수를 버림한 값은 원래 수보다 작거나 같다'는 수학적으로 정확하고 정답이 하나로 정해진다. '작다'만 쓰면 아래 자리가 모두 0인 경우에 틀린다."
+      ]
+    },
+    {
+      "id": "e6-1-2-4-c2",
+      "contentHash": "2120af5bf8fab385acd62413c3544bd1f845968a9005f455cf920f3ba0369d7e",
+      "packet": "cohort-2026-10-06T13-27-46-805Z-1",
+      "inputHash": "71f6027ddc38b20b444fe97637229e4494c2188a1b35aee9429e07973fc9dc85",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '바탕으로 삼은 □'이어서 답이 다각형·면·도형 등으로 열려 있다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "coreAfter는 '꼭대기 점에 닿지 않는 면'이라는 구별 기준을 넣었는데 B와 C에는 반영되지 않았다. B는 '다각형 모양의 면 1개'만 요구하는데 옆면(삼각형)도 다각형이라 밑면을 다른 면과 구별하지 못한다. C는 불명확한 원문 '바탕으로 삼은 □' 그대로라 답이 다각형·면·도형 등으로 열려 있다."
+      ]
+    },
+    {
+      "id": "e6-1-2-4-c3",
+      "contentHash": "c46a7935cf312c0763d70e2f56455ae1cfffd1f8de8e6da7b0db0a011df4451b",
+      "packet": "cohort-2026-10-06T13-27-46-805Z-1",
+      "inputHash": "71f6027ddc38b20b444fe97637229e4494c2188a1b35aee9429e07973fc9dc85",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-1-c3",
+      "contentHash": "6be872ca82fdaa741e26ad7c3dc536600296bcbdad13ee5542a06841f84b47dc",
+      "packet": "cohort-2026-10-06T13-27-46-805Z-1",
+      "inputHash": "71f6027ddc38b20b444fe97637229e4494c2188a1b35aee9429e07973fc9dc85",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-2-c1",
+      "contentHash": "730a4c7fa9eeea772e603564f104b92f1ca8d9c1346e6d9272252d35eac40151",
+      "packet": "cohort-2026-10-06T13-27-46-805Z-1",
+      "inputHash": "71f6027ddc38b20b444fe97637229e4494c2188a1b35aee9429e07973fc9dc85",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-4-c3",
+      "contentHash": "9a60eba421bc521b504e4d75bcfb0ce4a3303c6b1b8a651eeb8dc7df7ff436ae",
+      "packet": "cohort-2026-10-06T13-57-26-384Z-0",
+      "inputHash": "c0d2074fefc16126f0005480fb32e9b6895b7471e178c9a4ba6436ebb679b9af",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-4-2-c3",
+      "contentHash": "faa4bbd1f53b2a30222216a612ed1a1c0c9c7839dcbaea116b020ca78c1557c8",
+      "packet": "cohort-2026-10-06T13-57-26-405Z-1",
+      "inputHash": "ccc6e64063a543547e70b6cb0bb3e7c69d81709bc2eb583e5015e25f9da40c4f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-4-4-c2",
+      "contentHash": "f178518b21995ea73e7d6e37c3d9a3d0943771fa6371825f821ba5ae0513478e",
+      "packet": "cohort-2026-10-06T13-57-26-405Z-1",
+      "inputHash": "ccc6e64063a543547e70b6cb0bb3e7c69d81709bc2eb583e5015e25f9da40c4f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-4-5-c4",
+      "contentHash": "edbd93a7481fbc4680a5ad0b651156621d700a76aefa37fddab6d9599edbb8cc",
+      "packet": "cohort-2026-10-06T13-57-26-405Z-1",
+      "inputHash": "ccc6e64063a543547e70b6cb0bb3e7c69d81709bc2eb583e5015e25f9da40c4f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-2-c2",
+      "contentHash": "8e65e94756420be07d49a71863f8f644bed0f356ad624169ebd2fa47ada9992a",
+      "packet": "cohort-2026-10-06T13-57-26-405Z-1",
+      "inputHash": "ccc6e64063a543547e70b6cb0bb3e7c69d81709bc2eb583e5015e25f9da40c4f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 첫 빈칸 '1, 2, 3처럼 □ 수'의 답이 자연수·여러·서로 다른·변하는 등으로 갈려 범위가 정해지지 않는다. 기호가 여러 값을 나타낸다는 개념을 묻는지 수의 종류를 묻는지 불분명하다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 '1, 2, 3처럼 □ 수'는 '여러' 외에 '자연수', '서로 다른', '변하는' 등 다른 개념의 답이 자연스럽게 나와, 기호가 여러 값을 나타낸다는 개념을 묻는지 수의 종류를 묻는지 불분명하다. coreAfter 교정은 수학적으로 옳다."
+      ]
+    },
+    {
+      "id": "e6-1-5-1-c2",
+      "contentHash": "6867d1299db2a722b22fbfe3f3446bf89bbd7229da705b48f8c29f94cb0cc16b",
+      "packet": "cohort-2026-10-06T14-05-29-094Z-0",
+      "inputHash": "ab25cc7534412e998ca5a8a32cb1ebdef8ad1e0f5009d6a4761309893f29498d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 첫 anyOf에 '전체'가 있다. 질문은 '몇 퍼센트'인데 '전체'만 쓰면 100%라는 수가 없는데도 충족된다. 기준을 '100%'로 한정해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-3-3-c1",
+      "contentHash": "c978a71a3c896c5fe5c126a74dcd7d9fa40269eab07d994de1458b37c87cdc27",
+      "packet": "cohort-2026-10-06T14-05-29-094Z-0",
+      "inputHash": "ab25cc7534412e998ca5a8a32cb1ebdef8ad1e0f5009d6a4761309893f29498d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 첫 requiredIdeas에 '규칙에 따라 따라 변한다'는 오타(중복)가 있다. 질문은 전체 사탕 수가 '어떻게 되는지'인데 정답이 '규칙에 따라 변한다'라는 정의 문구에 고정되어 있어, '늘어난다'처럼 옳은 답과 어긋날 수 있다."
+      ]
+    },
+    {
+      "id": "e6-1-6-1-c4",
+      "contentHash": "625b7ead4a5ce8b679c9bf5a8c2c7b49ae9b72fedb1354e68bab2676bec40ee6",
+      "packet": "cohort-2026-10-06T14-05-29-125Z-1",
+      "inputHash": "8e9278e68153ef53f952fe8265a7f30de79de69ef56da872a6a0a2a29d7c3560",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-1-3-c3",
+      "contentHash": "dded85ebffdccb2c0082f7eb33c57227a8106ed46dc6059ee964c52b8701bd0b",
+      "packet": "cohort-2026-10-06T14-20-31-739Z-0",
+      "inputHash": "a3bdaec9a078ef90db1694b740c3d9ade872abc7aa5be2251033515455a092c9",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-1-c1",
+      "contentHash": "031d1b2c3da45c79992efdd4c92ef2d7dc86a827b118271e91b12e746c61d5bf",
+      "packet": "cohort-2026-10-06T14-34-51-647Z-0",
+      "inputHash": "ccdeb46d2ecc4ffd188f9c4b40fae28e5ff3b8090d2686c0996bb204d765a1ab",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음의 '같은 물체를 서로 다른 쪽에서 보면'이 곧 필수 내용(보는 쪽이 달라지면 모양이 달라 보인다)이다. 물음 문구를 되풀이하는 것만으로 기준이 채워진다. 물음에서 원인을 빼고 학생이 스스로 쓰게 하거나, 구체 장면에서 달라지는 점을 묻도록 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-c2",
+      "contentHash": "dfe342ffe560b60e64dba353c13f5b2dbfa38ae5d0295b2d3af93bfdbb2b7d3e",
+      "packet": "cohort-2026-10-06T14-34-51-647Z-0",
+      "inputHash": "ccdeb46d2ecc4ffd188f9c4b40fae28e5ff3b8090d2686c0996bb204d765a1ab",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-5-c1",
+      "contentHash": "2fd4d0a9508ca91052ade67f9b88cb7286bdab9282a1c64ed80647d3c0076ada",
+      "packet": "cohort-2026-10-06T14-48-08-375Z-0",
+      "inputHash": "12d82fb762a6db305d28a2a76e73f52fe30430cf1d9ff6cf143416bf7f6c54bd",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B: 물음이 '층별'로 나타낸다고 이미 말하는데, 인정 답 '같은 층에 있는 쌓기나무의 자리'는 이 말의 반복이다. 변별되는 내용은 '같은 높이'뿐이므로 두 번째 대안을 삭제해야 한다. C: 문장이 '한 층의 모양은'으로 시작하므로 인정 답 '같은 층'은 문구 복사만으로 맞는다. '같은 높이'만 인정하도록 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-5-c3",
+      "contentHash": "b2d1b227643610f20a124e6e52dc329c7a7517332a969925767d04486d0d3a4b",
+      "packet": "cohort-2026-10-06T14-48-08-375Z-0",
+      "inputHash": "12d82fb762a6db305d28a2a76e73f52fe30430cf1d9ff6cf143416bf7f6c54bd",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-6-c1",
+      "contentHash": "cb0f7279ca9a5d2786e436938bfd7c3e3042e77f93899efc7e60ac9a5f4d747e",
+      "packet": "cohort-2026-10-06T14-48-08-375Z-0",
+      "inputHash": "12d82fb762a6db305d28a2a76e73f52fe30430cf1d9ff6cf143416bf7f6c54bd",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-4-2-c1",
+      "contentHash": "350712f31f0346ec2d76d29c49aa736a8f73f3f2ed35c98a54e10a76e23ecb88",
+      "packet": "cohort-2026-10-06T14-48-08-375Z-0",
+      "inputHash": "12d82fb762a6db305d28a2a76e73f52fe30430cf1d9ff6cf143416bf7f6c54bd",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-4-4-c3",
+      "contentHash": "c353c02c58e13c0f8d1176874752f2b76d319108a0f202c9e5b5a3d1e89070aa",
+      "packet": "cohort-2026-10-06T14-48-08-375Z-0",
+      "inputHash": "12d82fb762a6db305d28a2a76e73f52fe30430cf1d9ff6cf143416bf7f6c54bd",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-5-1-c4",
+      "contentHash": "4855396101a2367831d3ea0ade13ce0f6616e2434668915e5d8f7885896423a8",
+      "packet": "cohort-2026-10-06T15-03-34-553Z-0",
+      "inputHash": "cf545d26bdf114209ee90b9fae1ac13088ad95f9490abf84d4b4e7a9ec61772f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 범위를 어떤 기준으로 말해야 하는지 정해지지 않음. 3과 4 사이, 3.1과 3.2 사이 등 서로 다른 구간이 모두 맞아 답의 범위가 불명확. 연속한 두 자연수 사이처럼 조건 지정 필요",
+        "blind-C: 3, 4 외에 3.1, 3.2 등 다른 값도 참이 되어 답이 하나로 정해지지 않음. 정수 조건 등 명시 필요",
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "'어느 수 사이'가 하나로 정해지지 않는다. 3과 4 사이 외에 2와 5 사이, 3.1과 3.2 사이도 참이다. B와 C 모두 '연속한 두 자연수 사이', '가장 좁은 정수 범위'처럼 조건을 정해야 한다. 지금의 C는 3, 4 외의 값도 맞게 되어 답이 하나로 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e5-1-1-1-xc4",
+      "contentHash": "019e622483b578558120ce412611531bd416598d7ed0229f69608236f139f5b9",
+      "packet": "cohort-2026-10-06T15-03-34-553Z-0",
+      "inputHash": "cf545d26bdf114209ee90b9fae1ac13088ad95f9490abf84d4b4e7a9ec61772f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-1-1-xc5",
+      "contentHash": "b5d6f853222a8df55d0554388455ebb1a49e8d532643654d04067ffa74fa3cb0",
+      "packet": "cohort-2026-10-06T15-03-34-553Z-0",
+      "inputHash": "cf545d26bdf114209ee90b9fae1ac13088ad95f9490abf84d4b4e7a9ec61772f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-1-1-xc8",
+      "contentHash": "47a1aa321ead7a3d0dd278225b002058131a350ab37ca95279ea3030be2932f4",
+      "packet": "cohort-2026-10-06T15-03-34-553Z-0",
+      "inputHash": "cf545d26bdf114209ee90b9fae1ac13088ad95f9490abf84d4b4e7a9ec61772f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-6-2-c1",
+      "contentHash": "04ec674e0f2db781be843a72e95afa1748b56b4b282ab9f871346f70bce2635a",
+      "packet": "cohort-2026-10-06T15-03-34-598Z-1",
+      "inputHash": "b51d29ef0af15545fa0701507f09bb9da28ad728d00fc81c2eca3aac96c54fd4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 밑면을 떼어 내고 펼친 전개도라고 해서 밑면이 포함되는지 모호하다. 직사각형 1개만인지 원 2개를 포함해 3개인지 갈린다.",
+        "blind-C: 원 하나라는 낱말이 없고 두 번째 빈칸에 수량이 필요한지 정해지지 않았다. 도형 이름의 순서도 정해지지 않는다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: '두 밑면을 떼어 내고 옆면을 펼친 전개도'라는 표현이 모호하다. 밑면을 떼어 냈다면 직사각형 1개만 남는지 원 2개를 포함하는지 갈린다. source의 '밑면 둘레를 조금만 남기고 자른다'와도 맞지 않는다. 정답 '직사각형 1개와 원 2개'와 물음의 상황이 어긋난다."
+      ]
+    },
+    {
+      "id": "e6-2-6-2-c2",
+      "contentHash": "3ea761bcdd75057294b3b4c9e00c9ad6b9e6fa8ca11218c112d6566188ba9d55",
+      "packet": "cohort-2026-10-06T15-03-34-598Z-1",
+      "inputHash": "b51d29ef0af15545fa0701507f09bb9da28ad728d00fc81c2eca3aac96c54fd4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 답인 밑면 둘레가 문장에 그대로 나와 있어 베껴 쓰게 된다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 문장에 '밑면 둘레와 맞닿는 변'이 이미 있어, 빈칸에 '밑면 둘레'를 그대로 베껴 써도 같은 뜻이라 정답이 된다. 원주라는 용어를 묻는 것도 아니고 변별력이 없다."
+      ]
+    },
+    {
+      "id": "e6-2-6-2-c3",
+      "contentHash": "d5ffad05da9d26a963b94b6a12086883b554290d913e39b65bcb87e79c680e5f",
+      "packet": "cohort-2026-10-06T15-03-34-598Z-1",
+      "inputHash": "b51d29ef0af15545fa0701507f09bb9da28ad728d00fc81c2eca3aac96c54fd4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 필수 기준 2의 anyOf에 '두 밑면 사이 거리가 높이이기 때문이다'가 섞여 있다. 이는 물음(짧거나 길면 다시 접을 때 어떻게 되는지)과 다른 내용인데 같은 기준을 충족시킨다. '짧으면'만 쓰거나 '길면'만 써도 통과해, 물음이 요구한 두 경우를 모두 확인하지 못한다."
+      ]
+    },
+    {
+      "id": "e6-2-6-3-c4",
+      "contentHash": "9e8627f0ce37571cd8518bf89050605f67ee43af963df97d2500a8ae0d78f9e4",
+      "packet": "cohort-2026-10-06T15-03-34-598Z-1",
+      "inputHash": "b51d29ef0af15545fa0701507f09bb9da28ad728d00fc81c2eca3aac96c54fd4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-1-2-xc17",
+      "contentHash": "9e224666e8b1b58f480348c247b81e22d7321415d105655b1fb8a0e8d285b428",
+      "packet": "cohort-2026-10-06T15-16-56-199Z-0",
+      "inputHash": "9fa182b6a41a463174c84e289892d10296e5a33f1dc6363af586009de4e2563c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-1-2-xc1",
+      "contentHash": "e867a9c756c56ea43a57abbda480310b6cbacaced949c27b1ed53f39801b4672",
+      "packet": "cohort-2026-10-06T15-16-56-199Z-0",
+      "inputHash": "9fa182b6a41a463174c84e289892d10296e5a33f1dc6363af586009de4e2563c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-1-2-xc25",
+      "contentHash": "3d9446d99346e6a38b8a2fe3a78f0d4d8b59fa64344e4ca4a7225a3ea3268b15",
+      "packet": "cohort-2026-10-06T15-16-56-199Z-0",
+      "inputHash": "9fa182b6a41a463174c84e289892d10296e5a33f1dc6363af586009de4e2563c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-1-2-xc26",
+      "contentHash": "f450c833fed15e924bb58796d6e636a604401a1158942051bed104a1f74eea25",
+      "packet": "cohort-2026-10-06T15-16-56-199Z-0",
+      "inputHash": "9fa182b6a41a463174c84e289892d10296e5a33f1dc6363af586009de4e2563c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-1-2-xc11",
+      "contentHash": "af5fe137770493caa47c0d8c59737b627e12aacfd19ed359576fbc52dee90d30",
+      "packet": "cohort-2026-10-06T15-16-56-199Z-0",
+      "inputHash": "9fa182b6a41a463174c84e289892d10296e5a33f1dc6363af586009de4e2563c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: requiredIdeas의 둘째 대안 '두 분수의 크기가 같다'는 물음의 '두 결과가 같은 까닭'에서 '두 결과가 같다'를 되풀이한 것이다. 까닭 없이 전제만 써도 필수 항목이 충족된다. 필수 항목은 '2/6과 4/12를 약분하면 모두 1/3이 된다(같은 분수의 약분 전 모양이다)'로 한정해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-1-2-xc12",
+      "contentHash": "3cd8e8d7166473ab8fdc79595eb6b13e35ce260a6a5a3b70b4cd63a26fa66bdc",
+      "packet": "cohort-2026-10-06T15-16-56-223Z-1",
+      "inputHash": "38b19649cfd221b0b5e2f26ee22c2f7a4d0dbaf6a675e2b15664e9b80944a740",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 두 번째 빈칸은 '미리/먼저' 같은 문법 복원 성격이 강하고, 첫 빈칸의 '같은 수'도 범위가 흐릿하다. 빈칸을 하나로 줄이고 무엇을 채우는지 분명히 해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc2",
+      "contentHash": "e954e8a2cb8a3c0870810ef5acbf61b1d6ad480da6765b2069634fae7b620baf",
+      "packet": "cohort-2026-10-06T15-16-56-223Z-1",
+      "inputHash": "38b19649cfd221b0b5e2f26ee22c2f7a4d0dbaf6a675e2b15664e9b80944a740",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 문장 앞에서 덧셈·뺄셈·곱셈·나눗셈·괄호를 모두 나열하고 괄호 안, 곱셈과 나눗셈을 이미 말하므로, 남은 {덧셈과 뺄셈}은 소거만으로 채워진다. 같은 세 단계 차례를 c2에서 다룬다고 하므로 중복이기도 하다. 소거로 풀리지 않는 빈칸으로 바꾸거나 제외해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-1-2-xc19",
+      "contentHash": "12d12bc69b33cc7bdf04ac4caae935794d7b25f2160d2ad8155b57825d3aecfe",
+      "packet": "cohort-2026-10-06T15-16-56-223Z-1",
+      "inputHash": "38b19649cfd221b0b5e2f26ee22c2f7a4d0dbaf6a675e2b15664e9b80944a740",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: requiredIdeas의 대안 '4/6를 2로 약분하면 2/3이다'는 약분해도 크기가 같다는 바로 그 사실을 결론으로 되풀이하는 순환 설명이다. 크기가 같은 까닭으로 인정하면 안 되고, 조각을 2배로 나누면 개수도 2배(2/2=1을 곱함)라는 설명만 필수로 남겨야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc10",
+      "contentHash": "4a8f39fa3e2d2e81742151662847288a8a58f62cbef1e6dd0f46ff5149c41752",
+      "packet": "cohort-2026-10-06T15-16-56-223Z-1",
+      "inputHash": "38b19649cfd221b0b5e2f26ee22c2f7a4d0dbaf6a675e2b15664e9b80944a740",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-1-c3",
+      "contentHash": "4e26a8dd5d1f4eea66738edc8228dc7aced718a92c672d5113d6435b3d8c05f3",
+      "packet": "cohort-2026-10-06T15-30-23-094Z-0",
+      "inputHash": "ea21746324364872f0e07f84fed5cdd4da218a18c9acc2ef0ed10f3fef6aa186",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-4-c2",
+      "contentHash": "b10f2c150d992e30850547a9ea107892d3c3beaa3faffa92184be866af5249e0",
+      "packet": "cohort-2026-10-06T15-30-23-127Z-1",
+      "inputHash": "08a8ec7efcd1735998a6e1ed91cf2ddeb52d718b710a876b8c773913c137191b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: coreReason이 '만들 때 바탕으로 삼은'을 불명확하다고 했는데 C 문장이 그 표현을 그대로 쓰고 있다. 빈칸 '다각형 한 면'도 모양과 개수를 한꺼번에 묻는다. C를 coreAfter 문장에 맞춰 다시 만들어야 한다. coreAfter 자체('꼭대기 점에 닿지 않는 다각형 모양의 면 1개')는 수학적으로 옳다."
+      ]
+    },
+    {
+      "id": "e6-1-2-4-c3",
+      "contentHash": "fba9be15d14051abcc1cbeb1631c1648de299d68e5b561c012574204efc8ea15",
+      "packet": "cohort-2026-10-06T15-30-23-127Z-1",
+      "inputHash": "08a8ec7efcd1735998a6e1ed91cf2ddeb52d718b710a876b8c773913c137191b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 물음이 '밑면의 변과 꼭대기 점을 이용해'라고 핵심 대상을 이미 주었다. requiredIdea 둘째 항목은 물음 문구를 되풀이하는 것만으로 충족된다."
+      ]
+    },
+    {
+      "id": "e5-1-3-2-c2",
+      "contentHash": "5eefbe562f3eb450777e70b5c008416ee11ab6f791a0ebc8a3278cd702941d88",
+      "packet": "cohort-2026-10-06T15-30-23-127Z-1",
+      "inputHash": "08a8ec7efcd1735998a6e1ed91cf2ddeb52d718b710a876b8c773913c137191b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 물음이 '한 가지 수만 나타내는지 여러 수를 나타낼 수 있는지'라고 선택지를 주었다. requiredIdea 첫째 항목은 물음의 '여러 수를 나타낼 수 있다'를 그대로 쓰면 충족된다. coreAfter 교정(양의 값 → 여러 수)은 옳다."
+      ]
+    },
+    {
+      "id": "e6-1-3-1-c3",
+      "contentHash": "91a850bcb8dce9616f4a7b4242760972921ef2ad04a939c3059415c3891d153f",
+      "packet": "cohort-2026-10-06T15-30-23-127Z-1",
+      "inputHash": "08a8ec7efcd1735998a6e1ed91cf2ddeb52d718b710a876b8c773913c137191b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 둘째 빈칸 '8÷4=□'의 답 2가 바로 뒤 '0.1이 2개씩'에 이미 나와 있어 노출된다. 셋째 빈칸도 단순 계산이다."
+      ]
+    },
+    {
+      "id": "e6-1-3-2-c1",
+      "contentHash": "15d7195db8ddb19ae9ea97fc79ea0b24ba6213c114001e3a8cbfc34f03557d46",
+      "packet": "cohort-2026-10-06T15-41-33-039Z-0",
+      "inputHash": "2172c304551c9780e7816a939e06f4ff9c38eb802053968ac519396f7b95530b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "일반 설명 교정의 독립 검토가 통과하지 않음",
+        "coreReason은 '그'를 고친다고 하지만 coreAfter가 null이라 교정문이 없다. coreAfter를 쓰거나 coreReason을 지워야 한다. source 자체는 수학적으로 옳다."
+      ]
+    },
+    {
+      "id": "e5-1-3-3-c1",
+      "contentHash": "0ccc1acdb4f867afce07afb2202c5b613a1495cc38b873f91ef2d5fc95b46a60",
+      "packet": "cohort-2026-10-06T15-41-33-039Z-0",
+      "inputHash": "2172c304551c9780e7816a939e06f4ff9c38eb802053968ac519396f7b95530b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 빈칸이 서로 다른 개념 둘이다. {6}은 증가량이고 {대응}은 용어다. 게다가 6은 문장 앞에 이미 나와 있다."
+      ]
+    },
+    {
+      "id": "e6-1-3-4-c3",
+      "contentHash": "90624594815ffab2e9d89a16db612746a9b36973da82d13697a20108745d7ed9",
+      "packet": "cohort-2026-10-06T15-41-33-039Z-0",
+      "inputHash": "2172c304551c9780e7816a939e06f4ff9c38eb802053968ac519396f7b95530b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '□가 된다'가 열려 있다(다른 수/더 큰 수/10배).",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '0.04에서 0.4로 바뀌어 {  }가 된다'가 열려 있다. '다른 수', '더 큰 수', '10배'가 모두 가능한데 accepted는 '열 배' 하나뿐이다. 1차가 '다른 수'를 쓴 것이 그 증거다."
+      ]
+    },
+    {
+      "id": "e6-1-4-2-c3",
+      "contentHash": "76d9f99ba07abec00199041bb1a5c62e908feb24dfb6b8089dd973361ae0a3b4",
+      "packet": "cohort-2026-10-06T15-41-33-069Z-1",
+      "inputHash": "377beb80b01972e108be0ea5a60166fe39426a0a8e3338318ba25fbd4f2bb2e9",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 둘째 빈칸 '같은'의 답이 바로 앞 문구 '두 수가 같은 비'에 그대로 있어 베낄 수 있다. 첫째 빈칸 5:3도 3:5를 뒤집기만 하면 되므로, 문장 복원 수준에 그친다."
+      ]
+    },
+    {
+      "id": "e6-1-4-4-c2",
+      "contentHash": "d00fea5aead6b37c188f9307c7af602b9e5e87f36d2999a374aafa2db99f3ea5",
+      "packet": "cohort-2026-10-06T15-41-33-069Z-1",
+      "inputHash": "377beb80b01972e108be0ea5a60166fe39426a0a8e3338318ba25fbd4f2bb2e9",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 '걸린 시간'이 같은 문장의 '같은 시간당 거리'에서 그대로 드러난다. '시간당'이라는 말 때문에 나누는 양을 고민할 필요가 없어 노출이다."
+      ]
+    },
+    {
+      "id": "e6-1-4-5-c4",
+      "contentHash": "3ba7b464075dea7f41537db8a22d337f3295c40d5612ee4cf8d64c2a958e80e4",
+      "packet": "cohort-2026-10-06T15-41-33-069Z-1",
+      "inputHash": "377beb80b01972e108be0ea5a60166fe39426a0a8e3338318ba25fbd4f2bb2e9",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 '크면'이 같은 문장의 '1보다 크고'에서 그대로 드러난다. 원래 빈칸이던 조건절 '기준량보다 크면'을 낱말 하나로 줄여 문법 복원 수준이 되었다."
+      ]
+    },
+    {
+      "id": "e6-1-5-1-c2",
+      "contentHash": "929af38f1c4107fcca7af9c6d8808fc3a908a40f06f4d38524a650d8c1239119",
+      "packet": "cohort-2026-10-06T15-52-37-719Z-0",
+      "inputHash": "8d9eafdb12c92322b2a5a5187fc0e13177f5527cd81bafccf9fd46fcb03f5fc9",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 첫 필수 anyOf에 '전체'가 들어 있다. 물음 문구('전체의 몇 퍼센트')를 그대로 베끼기만 해도 만족되고, '전체'는 $100\\%$와 같은 뜻도 아니다. '전체'를 빼고 $100\\%$/백 퍼센트만 인정해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-5-c6",
+      "contentHash": "ac3d3324f8aa7fda559d87cb7f0de70493a3d082a1a8bec01e1a772b3d014a27",
+      "packet": "cohort-2026-10-06T15-52-37-754Z-1",
+      "inputHash": "5c59f4828fd54d8353e54851775639f16668a91ff8b1a6e1070e6c721a9205bf",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B의 둘째 필수 idea에 '두 밑변 사이의 거리'와 '가장 짧은 길이'가 같은 대안으로 묶여 있다. 앞의 것은 물음의 '두 밑변 사이'를 되풀이할 뿐 '수직으로 잰다'는 요구를 채우지 않는다. 뒤의 것은 교과서의 수직 개념과 다른 표현이다. 이 둘을 빼고 '밑변에 수직(직각)'만 남겨야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-6-1-c4",
+      "contentHash": "fce6b720f640f67c8111ad0e2a4afb5ed5c0d2e8e7c03445beb6d16c4356df9f",
+      "packet": "cohort-2026-10-06T15-52-37-754Z-1",
+      "inputHash": "5c59f4828fd54d8353e54851775639f16668a91ff8b1a6e1070e6c721a9205bf",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B의 '모서리 길이의 합은 길이를 더한 값이다'는 물음의 '모서리 길이의 합'을 되풀이한 동어반복이라 복사만으로 만족된다. 실제 변별 요소는 단위뿐이다. C의 둘째 빈칸 '길이를 더한 값'도 바로 앞 '모서리 길이의 합'을 복사한 것이다. 첫째 빈칸도 '면들의'에서 거의 도출된다."
+      ]
+    },
+    {
+      "id": "e5-2-1-5-c2",
+      "contentHash": "5d4180e20592b0152174eb8a13e27afc4db646dcd331572ae17cd7644d25be34",
+      "packet": "cohort-2026-10-06T15-52-37-754Z-1",
+      "inputHash": "5c59f4828fd54d8353e54851775639f16668a91ff8b1a6e1070e6c721a9205bf",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 아래 자리가 모두 0인 수(예: 2300)는 버림해도 같은데, 단순히 '작다'라고 쓴 학생 답을 정오 판정하기 모호하다. '크지 않다'로 하거나 아래 자리가 0이 아닌 조건을 넣어야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-1-3-c3",
+      "contentHash": "4ed05c749efb09769596f5137a37250dbe40d7475530ca82c63fe8d31f0ad278",
+      "packet": "cohort-2026-10-06T16-01-23-361Z-0",
+      "inputHash": "707c997fc5a37907d3c8ea14ec4f1600bec062c66ef6f9c79a0912804fb9ac4b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음은 몫이 커지는지 작아지는지와 그 까닭만 묻는데, requiredIdeas 세 번째에 별도 필수로 '4'가 있다. 요구하지 않은 값이며, 두 번째 anyOf의 '2 안에는 4번 들어간다'와도 겹친다. 필수 항목에서 빼거나 물음에서 몫을 구하라고 요구해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-c1",
+      "contentHash": "f46e84060ff85388d067c0987398191eeab99d4f2407c324c09f071a992112a0",
+      "packet": "cohort-2026-10-06T16-01-23-386Z-1",
+      "inputHash": "28fee1a01414f82c9c38d6b08b6c57a2c58de769b6ff542792d4d86d32fefaa8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음이 '서로 다른 쪽에서 보면'이라 하고, 이유로 '보는 쪽(방향)이 달라지기 때문'을 요구하는 requiredIdeas는 물음의 조건을 되풀이한 것이다. 물음 문구를 옮기기만 해도 기준이 충족된다. 보이는 면이 바뀐다는 식으로 더 구체적인 이유를 요구하거나 B를 제외해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-c2",
+      "contentHash": "67fb54ca1000950bb1c5697eef99df9a5536592e92dc070f3996c2bdb924e6fe",
+      "packet": "cohort-2026-10-06T16-01-23-386Z-1",
+      "inputHash": "28fee1a01414f82c9c38d6b08b6c57a2c58de769b6ff542792d4d86d32fefaa8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸 답이 바로 뒤 문장의 '그 기준'에 그대로 나와 베끼기가 되고, 무엇을 정하는지(앞쪽, 기준 방향 등)가 하나로 정해지지 않는다. 무엇을 정하는지 구체적으로 묻도록 고쳐야 한다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 {앞쪽}은 문장의 '위·앞·옆' 및 뒤의 '그 기준'과 얽혀 있다. 답이 '앞쪽'인지 '기준'인지 하나로 정해지지 않는다. acceptedAnswers에 '앞면', '기준 방향'까지 섞여 있어 서로 다른 답이 함께 인정된다. 무엇을 먼저 정하는지(앞쪽)를 하나로 묻도록 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-5-c1",
+      "contentHash": "7202fc05cb91236ec9967ff3d85d62a6e256b06f202c388c8cf85ed028ae9881",
+      "packet": "cohort-2026-10-06T16-09-43-277Z-0",
+      "inputHash": "9937ef71bc6d776b03e0531203e8a3e2f40ba3fba6f9637f5beb890190fd1ce3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 인정 답에 '같은 층'이 있는데 주어가 '한 층의 모양'이라 '한 층의 모양은 같은 층에 놓인…'처럼 말만 반복해도 정답이 되는 순환 정의다. '같은 높이'를 묻는 구조로 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-5-c3",
+      "contentHash": "c4a4f709b045540daf4a5f5b88065e4c892677571b52c46557a2b779f79f5ac6",
+      "packet": "cohort-2026-10-06T16-09-43-277Z-0",
+      "inputHash": "9937ef71bc6d776b03e0531203e8a3e2f40ba3fba6f9637f5beb890190fd1ce3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음이 '공중에 뜬 쌓기나무 없이 쌓을 때'라는 조건을 이미 주어, '바로 아래에 무엇이 있어야 하는가'의 답이 물음의 '쌓기나무'를 되풀이하는 것만으로 충족된다. 아래 칸이 비어 있어도 되는지 판단하게 하는 등 질문을 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-4-2-c1",
+      "contentHash": "94d1567948d63a9dcd001b4b08b86a947d641a065669b5e25d6bc1d799f7d106",
+      "packet": "cohort-2026-10-06T16-09-43-277Z-0",
+      "inputHash": "9937ef71bc6d776b03e0531203e8a3e2f40ba3fba6f9637f5beb890190fd1ce3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 첫 빈칸 답 '2:3'이 바로 뒤 문장 '2와 3의 공약수는'에 그대로 노출되어 있다."
+      ]
+    },
+    {
+      "id": "e6-2-4-4-c3",
+      "contentHash": "354ef05744c238e6a01c153eb474e0967c547a0ad7f8a1e00c404646d499f1cd",
+      "packet": "cohort-2026-10-06T16-09-43-300Z-1",
+      "inputHash": "99935fe8d6f3a75332dca56f770e02630fe93311fe04728fff56c5cf2febad90",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 구하는 미지수와 빈칸 기호가 모두 □여서 '이때 □는 □이다'가 헷갈린다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 문장이 미지수 기호 □를 그대로 쓴다. 빈칸 표시와 겹쳐 '□×5=60 … 이때 □는 □이다'로 읽혀 무엇을 묻는지 흐려진다(같은 묶음의 xc19·xc20은 □ 기호를 피했다). 미지수를 x 등으로 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-5-1-c4",
+      "contentHash": "2fbe43cbc67b6e2867e8b789a4516351555ae43f00399097dd6066d18ac0084b",
+      "packet": "cohort-2026-10-06T16-09-43-300Z-1",
+      "inputHash": "99935fe8d6f3a75332dca56f770e02630fe93311fe04728fff56c5cf2febad90",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '□배보다 길고 □배보다 짧다'는 2와 4, 3과 3.2 등도 참이라 3과 4로 정해지지 않는다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B의 '지름의 몇 배쯤인지, 어느 수 사이인지 범위'와 C의 '지름의 □배보다는 길고 □배보다는 짧다'는 2와 4, 3과 3.2 등도 참이다. 필수 아이디어 3과 4가 유일하게 정해지지 않는다. '연속한 두 자연수 사이'처럼 조건을 걸어야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-5-6-c1",
+      "contentHash": "8e8f2fca5646fb7b902df74db8f3e5377154c8c7b4a0f1b1399bf571710fc98a",
+      "packet": "cohort-2026-10-06T16-21-22-274Z-0",
+      "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B와 C가 '모서리를 잘라'로만 쓰여 모든 모서리를 자르는 것으로 읽힐 수 있다. 면이 이어진 채 일부 모서리만 자른다는 core 교정과 맞지 않는다. 그 요소가 B requiredIdeas와 C 문장에 없다."
+      ]
+    },
+    {
+      "id": "e6-2-6-2-c1",
+      "contentHash": "e9897abc2f1924fa5fd7198f49a3a40daaefe45c6ab05ff9d6db8899489fe10d",
+      "packet": "cohort-2026-10-06T16-21-22-274Z-0",
+      "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: '밑면을 떼어 내고'라는 조건과 '전개도는 몇 개로 이루어져'라는 물음이 맞지 않는다. 직사각형 1개인지 원 2개+직사각형 1개인지 답이 갈린다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음이 '두 밑면을 떼어 내고'라고 하면서 전개도가 몇 개 도형인지 묻는다. 밑면을 떼면 직사각형 1개뿐인데 참고답은 직사각형 1개와 원 2개이다. 조건과 답이 모순된다."
+      ]
+    },
+    {
+      "id": "e6-2-6-2-c2",
+      "contentHash": "abb0f124a36c210ecc7776ec399b7b7e558b54363bb2fa95dcdb081c3166411f",
+      "packet": "cohort-2026-10-06T16-21-22-274Z-0",
+      "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 문장에 이미 '밑면 둘레'가 있어 그대로 옮겨 쓰면 답이 된다. 원주라는 개념을 확인하지 못한다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 문장에 이미 '밑면 둘레'가 있어 그대로 옮기면 같은 뜻이므로 정답이 된다. 인정 답은 '원주'뿐이라 채점 기준이 일관되지 않고, 용어 확인 외에 이해를 묻지 못한다."
+      ]
+    },
+    {
+      "id": "e6-2-6-2-c3",
+      "contentHash": "5580ff8dfb09fd31de0287d1b439253e591be36ea3dbd4cae1178ae93fdac909",
+      "packet": "cohort-2026-10-06T16-21-22-274Z-0",
+      "inputHash": "7572edeec42d6f8d793f9461a5ae775b238ab77317c6f426062530a7749fa12d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B 필수 관념의 anyOf에 '두 밑면 사이 거리가 높이이기 때문이다'가 들어 있다. 이는 짧거나 길면 어떻게 되는지라는 물음의 답이 아니다. C 빈칸 '높이'는 같은 문장의 '높이 방향 변'을 그대로 옮기면 정답이 된다."
+      ]
+    },
+    {
+      "id": "e6-2-6-3-c4",
+      "contentHash": "b90a11eb63e2180ae1cfb18b9977fbdced958dbfe47b6bf5e10074707f53367e",
+      "packet": "cohort-2026-10-06T16-21-22-297Z-1",
+      "inputHash": "b485d2619edb83cb587969cf86c15ffc58f9f9a2e7d51b1d1308d42556a3bcb1",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 둘째 필수 '뾰족한 점/꼭대기의 점'은 지워도 '옆면이 모여 끝나는 점'으로 정의가 옳으므로 독립 필수가 아니다. 한 개념을 두 기준으로 쪼갰다. 하나로 합쳐야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-1-1-xc4",
+      "contentHash": "9f96bf1aab1767c5349fd2ac604fc3b085dc058219ac0699260e0858fc0d8e7a",
+      "packet": "cohort-2026-10-06T16-21-22-297Z-1",
+      "inputHash": "b485d2619edb83cb587969cf86c15ffc58f9f9a2e7d51b1d1308d42556a3bcb1",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 제외 사유가 'B 제외'뿐이라 C를 뺄 근거가 없다. '괄호 안의 계산을 맨 먼저'는 {안의 계산} 빈칸으로 충분히 출제할 수 있다."
+      ]
+    },
+    {
+      "id": "e5-1-1-1-xc5",
+      "contentHash": "15b10396efaf83cc514a0e140feb11f34854d52ddb971fd343a61a5dedfbf192",
+      "packet": "cohort-2026-10-06T16-21-22-297Z-1",
+      "inputHash": "b485d2619edb83cb587969cf86c15ffc58f9f9a2e7d51b1d1308d42556a3bcb1",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 제외 사유 '학생 지면에 표시 그림이 없어'는 {차례 번호} 빈칸형 문장에 해당하지 않는다. C를 뺄 근거가 부실하다."
+      ]
+    },
+    {
+      "id": "e5-1-1-1-xc8",
+      "contentHash": "14764414579414a3925266302dde6ffb275d29137bd4551f45f234c38eaadd92",
+      "packet": "cohort-2026-10-06T16-29-47-782Z-0",
+      "inputHash": "c1baf0a566594aae91d92391d1fe7a4f36205fcd0711d9eff65996f36f0e69c8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B 제외 사유가 'B 제외. 대체는 e5-1-1-1-c5이다.'뿐이어서 이 항목을 왜 못 만드는지 설명이 없다. C 제외 사유는 B 문구를 그대로 복사한 것이라 C를 제외하는 이유가 되지 못한다. '괄호 한 쌍' 빈칸은 C로 만들 수 있다."
+      ]
+    },
+    {
+      "id": "e6-1-1-1-xc25",
+      "contentHash": "3666dcd601cccc1624d1c1f9d2fd6bef8001a1a8cd9408f1d3d369db7923855f",
+      "packet": "cohort-2026-10-06T16-29-47-782Z-0",
+      "inputHash": "c1baf0a566594aae91d92391d1fe7a4f36205fcd0711d9eff65996f36f0e69c8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-1-2-xc1",
+      "contentHash": "52ea90074c279a3b59641122d86281cc478ceabad8371f1d472298b8db4803e3",
+      "packet": "cohort-2026-10-06T16-29-47-805Z-1",
+      "inputHash": "a4bcbede22785addf614c4421aac04ef3ac09f900d4f47688c23ec962fbbfb48",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음이 '한 명이 마신 양을 구하는 식'이라고 이미 말한다. 그래서 requiredIdeas의 '한 명이 마신 양'과 '물을 4명이 똑같이 나눈다'는 물음 문구를 베끼기만 해도 충족된다. 핵심인 '똑같이 나눈 한 몫'의 뜻을 따로 확인하지 못한다. 식의 상황 설명을 빼고 식 3/5÷4만 주어 의미를 묻거나, 물음에서 '한 명이 마신 양'이라는 표현을 없애야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-1-2-xc11",
+      "contentHash": "6fe9959549be1b1103eef104eb59d5e2447b3b333d0f0d8d297a969680387ccc",
+      "packet": "cohort-2026-10-06T16-29-47-805Z-1",
+      "inputHash": "a4bcbede22785addf614c4421aac04ef3ac09f900d4f47688c23ec962fbbfb48",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 빈칸 {같다}는 바로 다음 문장 '약분하면 같은 분수가 된다'에서 그대로 알 수 있어 답이 노출된다. 두 방법의 결과가 같다는 핵심이 그 문장에 이미 들어 있다. 뒤 문장을 빼거나 다른 표현으로 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-1-2-xc12",
+      "contentHash": "d91a226abe0fc5a8cd357184df109edc12c6b78f40318a8b99cd27a97a44ab47",
+      "packet": "cohort-2026-10-06T16-29-47-805Z-1",
+      "inputHash": "a4bcbede22785addf614c4421aac04ef3ac09f900d4f47688c23ec962fbbfb48",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 둘째 빈칸이 '□ 약분한 뒤'라는 어색한 문장 안에 있어 어떤 말을 넣어야 하는지 정해지지 않는다. '곱하기 전에', '먼저', '곱한 뒤에' 모두 가능해 보인다. 문장 구조를 바꾸어 빈칸의 요구를 구체화해야 한다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 둘째 빈칸 {분수의 크기가 같으므로}는 '분수의 크기가 같으므로 약분한 뒤 계산해도 몫은 같다'는 긴 이유절이다. 어떤 말을 넣어야 하는지 정해지지 않고, 어순상 '곱하기 전에', '먼저'도 들어갈 수 있다. 실제로 1차 블라인드 답이 '먼저'였다. 또 이유절이 바로 뒤 '몫은 같다'를 되풀이하는 순환 표현이다. 첫 빈칸도 '공약수'만 쓴 답이 인정되지 않는다. 빈칸을 짧은 핵심어로 줄이고 문장 구조를 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc17",
+      "contentHash": "79001d3f10740bdb7787dc18fbfc7cacfc9174e450af05fdf7ef9c6620936e66",
+      "packet": "cohort-2026-10-06T16-38-40-725Z-0",
+      "inputHash": "64e8c15c6ff477fd876498b4fb0e8d5b26a652cfb8d745f59d95bd308c8f374d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 제외 사유가 'B 제외: c1·c2와 중복'뿐이라 C를 왜 뺐는지 설명하지 않는다. C 제외 근거를 따로 적거나 C를 복원해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-1-2-xc19",
+      "contentHash": "9c4fdb8130dc66285e293936002aab6e74b08883bf32208fdb9f64d626cd2f2b",
+      "packet": "cohort-2026-10-06T16-38-40-725Z-0",
+      "inputHash": "64e8c15c6ff477fd876498b4fb0e8d5b26a652cfb8d745f59d95bd308c8f374d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B의 두 번째 anyOf '4/6을 2로 약분하면 2/3'은 '같은 수로 나누어도 크기가 같다'는 같은 사실을 되풀이한 것이다. 크기가 같은 까닭이 되지 못하는 순환 설명이므로 첫째 대안(조각 수 2배)만 남겨야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc25",
+      "contentHash": "635d415c2dc348870ab30164537733f570ca7f968daed51acad0af4e47f732de",
+      "packet": "cohort-2026-10-06T16-38-40-725Z-0",
+      "inputHash": "64e8c15c6ff477fd876498b4fb0e8d5b26a652cfb8d745f59d95bd308c8f374d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 사유가 'xc11·xc26과 중복'인데, xc26은 분배법칙이라 '괄호 유무로 값이 달라짐'과 다른 개념이다. 실제로 겹치는 xc20·xc21을 근거로 들어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc26",
+      "contentHash": "0e9f90940aa9bd1a07baa9f7fd760ac18a13cb0989884f9818666a8d6f967f20",
+      "packet": "cohort-2026-10-06T16-38-40-725Z-0",
+      "inputHash": "64e8c15c6ff477fd876498b4fb0e8d5b26a652cfb8d745f59d95bd308c8f374d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-1-3-xc2",
+      "contentHash": "de782b391cdf40e07c4d8f2e7bad9c7b1e1919e4ba1139125d4eef476087206f",
+      "packet": "cohort-2026-10-06T16-38-40-725Z-0",
+      "inputHash": "64e8c15c6ff477fd876498b4fb0e8d5b26a652cfb8d745f59d95bd308c8f374d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 정답 '덧셈과 뺄셈'은 같은 문장 앞부분의 '덧셈, 뺄셈, 곱셈, 나눗셈과 괄호' 나열에서 곱셈·나눗셈을 이미 언급했으므로 남은 것을 소거하면 풀린다. 계산 차례를 이해하지 않아도 정답이 된다."
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc10",
+      "contentHash": "1aa933493c8e79fbcd8676a40c167bc9af1658b5e3d77b6456b3d1af7f704099",
+      "packet": "cohort-2026-10-06T16-38-40-746Z-1",
+      "inputHash": "e1d0dcbf6a16e8cd3fe9e34ab0e95f96e1d69598cf14afd862a0468859517d63",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B와 C를 모두 제외하는 이유가 '점검 행동이라 가치가 낮음'뿐이라 부실하다. '가치가 낮음'은 주관적 판단이다. 이 항목은 '식의 계산 개수와 끝낸 계산 개수가 같으면 누락이 없다'는 옳은 수학 내용이어서 C 빈칸('같다')을 만들 수 있다. 계산 개수를 세어 누락을 확인하는 방법을 묻는 B도 가능하다. 구체적 제외 근거를 쓰거나 문항을 만들어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-1-3-xc25",
+      "contentHash": "369ddf1845044dffbc3d244638099a995735589b32bb10650029422867cee291",
+      "packet": "cohort-2026-10-06T17-08-59-695Z-0",
+      "inputHash": "c1b0bed7a96ec045f0d8a58faff7c681a9b425cab84f7700b3435362a2804875",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 참고답이 24÷2×4=48을 '기호는 두고 수만 바꾼' 예라고 했는데, 이는 기호만 바꾼 식이다(수만 바꾸면 24×4÷2). 요구하지 않은 설명이면서 서술과 예가 어긋나므로 삭제하거나 바로잡아야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc5",
+      "contentHash": "f46920a9741e1c945891dc13c2e7a4f96f90b47321a30bedcf120c9a01b43ffc",
+      "packet": "cohort-2026-10-06T17-08-59-695Z-0",
+      "inputHash": "c1b0bed7a96ec045f0d8a58faff7c681a9b425cab84f7700b3435362a2804875",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '밑면의 □와 같다'에 변의 수 외에 꼭짓점의 수·각의 수도 참이어서 인정 답이 하나로 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc6",
+      "contentHash": "dbe67342e60bbc8cad7490c7943d8d73fce1192e41c2cb51a51c98a806c728aa",
+      "packet": "cohort-2026-10-06T17-08-59-695Z-0",
+      "inputHash": "c1b0bed7a96ec045f0d8a58faff7c681a9b425cab84f7700b3435362a2804875",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '□으로 만난다'에서 모서리로 만난다도 참이라 수직과 모서리로 답이 갈린다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '□으로 만난다'에 수직 외에 '모서리로 만난다'도 참이라 답이 갈린다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc8",
+      "contentHash": "b23baf163bc256ec079f733a1c9b08adf409450e87b63078a655e3a3aa4951f1",
+      "packet": "cohort-2026-10-06T17-08-59-695Z-0",
+      "inputHash": "c1b0bed7a96ec045f0d8a58faff7c681a9b425cab84f7700b3435362a2804875",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '삼각형, 사각형은 □'에 평면도형 외에 다각형도 참이라 인정 답이 갈린다."
+      ]
+    },
+    {
+      "id": "e5-1-2-1-xc6",
+      "contentHash": "9898d3864db6c01118a729fa9a8efc709959267da588e84d2d2f316e37769deb",
+      "packet": "cohort-2026-10-06T17-08-59-695Z-0",
+      "inputHash": "c1b0bed7a96ec045f0d8a58faff7c681a9b425cab84f7700b3435362a2804875",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B·C 모두 제외 이유가 'c2와 중복'뿐이다. c2가 '2를 몇 배 한 수=2의 배수'라는 정의를 같은 수준으로 다루는지 밝히지 않아 제외 근거가 부실하다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc13",
+      "contentHash": "349eda4e269ebb77a3c0ab7118ef34e67c9bfb585c234007e02b402c0a4e3295",
+      "packet": "cohort-2026-10-06T17-08-59-695Z-0",
+      "inputHash": "c1b0bed7a96ec045f0d8a58faff7c681a9b425cab84f7700b3435362a2804875",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 정답이 되는 경우가 여러 가지(합동이 아닐 때, 옆면이 직사각형이 아닐 때 등)인데 어느 것을 요구하는지 정해지지 않는다.",
+        "blind-C: 빈칸에 합동이 아니면, 옆면이 직사각형이 아니면 등 여러 답이 가능하다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B·C 모두 '평행한 두 면을 밑면으로 정할 수 없는 경우'에 합동이 아닐 때 외에 옆면이 직사각형이 아닐 때도 있어 답이 하나로 정해지지 않는다. C의 인정 답도 '크기가 다르면' 등 일부만 허용한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-1-xc12",
+      "contentHash": "0f92116e6e7bb62c2166b72ea06f1fbe76fb967571303a7415592176e19ddf60",
+      "packet": "cohort-2026-10-06T17-08-59-695Z-0",
+      "inputHash": "c1b0bed7a96ec045f0d8a58faff7c681a9b425cab84f7700b3435362a2804875",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 이유가 'B만 제외한다'뿐이라 왜 제외하는지 설명이 없다. xc4가 같은 내용을 다룬다는 점이나 B 가치가 낮은 이유를 적어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-1-xc14",
+      "contentHash": "5c7a2d97cf8837377a6f9afb28ada561865a49d07ce31cac921b50686a202f73",
+      "packet": "cohort-2026-10-06T17-08-59-695Z-0",
+      "inputHash": "c1b0bed7a96ec045f0d8a58faff7c681a9b425cab84f7700b3435362a2804875",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 이유가 'B만 제외한다'뿐이라 왜 제외하는지 설명이 없다. xc3이 '1로 나누면 나누어떨어진다'를 이미 다룬다는 점을 근거로 적어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-1-xc15",
+      "contentHash": "25b3e6469abc870cfa7e365f41ca168ef1b1fbf946cbb9294a71b01cdce8c923",
+      "packet": "cohort-2026-10-06T17-08-59-714Z-1",
+      "inputHash": "c292eaf732edd7e7b9e76572bf300c6040d9cbec7bdb842f2cd618f036e7e50c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "제외 이유가 'xc4와 중복'이라는 지목뿐이다. 이 자료만으로는 xc4가 같은 내용을 다루는지 확인할 수 없다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc19",
+      "contentHash": "693e5f4cc331622bd67962bc55a488bd938fe29ecf687a1201e342cddbff31aa",
+      "packet": "cohort-2026-10-06T17-08-59-714Z-1",
+      "inputHash": "c292eaf732edd7e7b9e76572bf300c6040d9cbec7bdb842f2cd618f036e7e50c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B: 물음의 '밑면이 삼각형인 각기둥'만 복사해도 첫 필수 기준 '삼각형 두 면'이 만족된다. 실제 평가는 직사각형 면이 서로 평행하지 않다는 것뿐이다. C: 빈칸 '삼각형 두 면'이 같은 문장의 '밑면이 삼각형인'에서 복원되어 답이 노출된다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc20",
+      "contentHash": "4ec167368d846705213b0afe96a2bcea69db4630488cd3981e96cf711c6a0fbe",
+      "packet": "cohort-2026-10-06T17-08-59-714Z-1",
+      "inputHash": "c292eaf732edd7e7b9e76572bf300c6040d9cbec7bdb842f2cd618f036e7e50c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '밑면의 꼭짓점'이 한 밑면(5개)인지 두 밑면 전체(10개)인지 정해지지 않아 답이 둘로 갈린다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '밑면의 꼭짓점'이 한 밑면(5개)인지 두 밑면 전체(10개)인지 정해지지 않아 첫 빈칸이 5와 10으로 갈린다. 뒤의 '옆면도 5개'와도 어긋날 수 있다. '한 밑면의'를 명시해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc22",
+      "contentHash": "730abc62be971af39a59e39b22f8b91b17e6a641e2c0d5a45cd992beedd93b59",
+      "packet": "cohort-2026-10-06T17-08-59-714Z-1",
+      "inputHash": "c292eaf732edd7e7b9e76572bf300c6040d9cbec7bdb842f2cd618f036e7e50c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '옆면을 이루는 □'에 직사각형, 사각형, 면 등이 모두 들어갈 수 있고 '이으면'도 모호해 답이 하나로 정해지지 않는다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '옆면을 이루는 □들을 이으면'에 직사각형, 사각형, 면이 모두 들어가 정답이 하나로 정해지지 않는다. '이으면'도 모호하다."
+      ]
+    },
+    {
+      "id": "e5-1-2-1-xc21",
+      "contentHash": "bf5bfa5ecb3a9fcde352e84564ebb024a5ecd3897613a68fb5eb68e2d3007a78",
+      "packet": "cohort-2026-10-06T17-08-59-714Z-1",
+      "inputHash": "c292eaf732edd7e7b9e76572bf300c6040d9cbec7bdb842f2cd618f036e7e50c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-1-xc24",
+      "contentHash": "1b2e3f0b03f44acf09d4ed57b163b3e59810f06bc49bf9fc2a2a812cc6c8deff",
+      "packet": "cohort-2026-10-06T17-08-59-714Z-1",
+      "inputHash": "c292eaf732edd7e7b9e76572bf300c6040d9cbec7bdb842f2cd618f036e7e50c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 제외 이유가 'B만 제외한다'는 되풀이와 대체 문항 나열뿐이다. 왜 백지 질문이 불가능한지(약속이라 설명 요구가 안 된다 등) 설명이 없어 이유가 부실하다."
+      ]
+    },
+    {
+      "id": "e6-1-2-2-xc4",
+      "contentHash": "f52aeb7a627476ea13f67925f2c3fbf4738533e17b3bb9af83b11afa14b3ba18",
+      "packet": "cohort-2026-10-06T17-08-59-714Z-1",
+      "inputHash": "c292eaf732edd7e7b9e76572bf300c6040d9cbec7bdb842f2cd618f036e7e50c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: '세 가지 구성 요소'가 면·모서리·꼭짓점인지 밑면·옆면·높이인지 정해지지 않아 답이 둘로 갈린다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: '세 가지 구성 요소'가 면·모서리·꼭짓점인지 밑면·옆면·높이인지 정해지지 않아 정답이 둘로 갈린다. 용어 나열만 요구해 개념 이해도 묻지 못한다."
+      ]
+    },
+    {
+      "id": "e6-1-2-2-xc9",
+      "contentHash": "64389ce898da73c48e225712d0b1ba429b233dedf647f30c5e59899f3167b088",
+      "packet": "cohort-2026-10-06T17-08-59-714Z-1",
+      "inputHash": "c292eaf732edd7e7b9e76572bf300c6040d9cbec7bdb842f2cd618f036e7e50c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '6×{2}=12'에서 곱 12가 이미 주어져 있어 12÷6으로 답 2가 바로 나온다. 밑면이 두 개라는 개념 없이도 채울 수 있다."
+      ]
+    },
+    {
+      "id": "e5-1-2-2-xc24",
+      "contentHash": "24703a9e7beaac0fc32ff7644c94ec24695873c51e6b9f64cd9644acb4439dd8",
+      "packet": "cohort-2026-10-06T17-19-06-077Z-1",
+      "inputHash": "2c47144d8102e948f034e7691fc57a9810701b2eab6de894eb3c4630fe789fb2",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 빈칸 문제 아님. B는 통과하나 같은 개념의 C와 짝을 이룰 때 문제 없음(B 자체는 이상 없음)",
+        "blind-C: 뒤 문장의 '다음 약수 9'가 첫 빈칸 답 9을 그대로 알려 준다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B: '언제 멈추어도 약수를 모두 찾은 것인지'는 '언제 멈추면 모두 찾은 것인지'가 아니라 '아무 때 멈추어도 되는가'로 읽힌다. 그래서 '아니다'로 답하는 것이 자연스럽고 기준(멈추는 때)과 어긋난다. 물음 문구를 고쳐야 한다. C: 둘째 문장 '다음 약수 9의 짝'이 첫 빈칸 답 9를 그대로 드러내고, 첫 문장 '5와'가 둘째 빈칸 답 5를 드러낸다. 두 빈칸 모두 문장에서 옮겨 쓰면 된다."
+      ]
+    },
+    {
+      "id": "e6-1-2-3-xc5",
+      "contentHash": "31b2c4dc50373a8a87cf8f174e530ccfb616221b923c7ad628cb92a5f43483ed",
+      "packet": "cohort-2026-10-06T17-19-06-077Z-1",
+      "inputHash": "2c47144d8102e948f034e7691fc57a9810701b2eab6de894eb3c4630fe789fb2",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 물음 '옆면 직사각형들을 한 줄로 이어 붙이면 ... 어떤 모양'에 이미 '직사각형'이 들어 있어 답 노출이다. 물음 문구를 옮기는 것만으로 기준이 거의 충족된다."
+      ]
+    },
+    {
+      "id": "e6-1-2-3-xc7",
+      "contentHash": "3d79a2c22493c055814d98cd13e74200147eb73ef01a25304e3ecc7133bf3448",
+      "packet": "cohort-2026-10-06T17-19-06-077Z-1",
+      "inputHash": "2c47144d8102e948f034e7691fc57a9810701b2eab6de894eb3c4630fe789fb2",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-3-xc3",
+      "contentHash": "b5f79f3f305d7294260f827d2d2b0bb2cff1ed9e6d2d24429c5fe05d368606b0",
+      "packet": "cohort-2026-10-06T17-19-06-077Z-1",
+      "inputHash": "2c47144d8102e948f034e7691fc57a9810701b2eab6de894eb3c4630fe789fb2",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 빈칸 '공약수'가 첫 문장 '두 수의 공약수이다'에 그대로 나온다. 둘째 문장 빈칸은 첫 문장 단어를 옮기면 되므로 지문 답 베끼기이다."
+      ]
+    },
+    {
+      "id": "e6-1-2-3-xc11",
+      "contentHash": "288983410d316720209a5e83ace74d0b960103f779db4654e397c06dc67a0eb0",
+      "packet": "cohort-2026-10-06T17-19-06-077Z-1",
+      "inputHash": "2c47144d8102e948f034e7691fc57a9810701b2eab6de894eb3c4630fe789fb2",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-3-xc12",
+      "contentHash": "df3b72d687284c3df5e9c2ac7cff898b986fc64c6c883e1f538f3efc7a427dbe",
+      "packet": "cohort-2026-10-06T17-19-06-077Z-1",
+      "inputHash": "2c47144d8102e948f034e7691fc57a9810701b2eab6de894eb3c4630fe789fb2",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 문장에 있는 수가 5cm 하나뿐이고 빈칸 답이 이 수 그대로다. 맞닿는 선분의 길이가 같다는 내용은 이미 문장에 쓰여 있으므로 지문의 수를 옮기면 되고, 이해를 확인하지 못한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc11",
+      "contentHash": "4356673f756c56504804ff1f9b812f3aaa5d8c3e138537a115901e28c33d7641",
+      "packet": "cohort-2026-10-06T17-19-06-077Z-1",
+      "inputHash": "2c47144d8102e948f034e7691fc57a9810701b2eab6de894eb3c4630fe789fb2",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 앞 문장 '공약수는 1뿐이다'의 1을 둘째 문장 빈칸 '최대공약수는 {1}'에 그대로 옮기면 된다. 지문 답 베끼기이고 약수 목록에서 최대공약수를 고르는 과정이 없다."
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc12",
+      "contentHash": "d2cf5c9e51cf1035206fe7389e1e74b9a6b24fa94f481aa2c9695c896ec911d9",
+      "packet": "cohort-2026-10-06T17-19-06-077Z-1",
+      "inputHash": "2c47144d8102e948f034e7691fc57a9810701b2eab6de894eb3c4630fe789fb2",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 첫 문장 '6이 18과 30의 공약수인지'에 빈칸 '공약수'가 그대로 나온다. 지문 답 베끼기이다."
+      ]
+    },
+    {
+      "id": "e6-1-2-3-xc25",
+      "contentHash": "ee5f8764e07739f5f1970cecded8225696be105fd4f1a1e1ed9f47053bbda3a7",
+      "packet": "cohort-2026-10-06T17-28-49-150Z-0",
+      "inputHash": "bbc599b5ced451a51fe1dbfa788d4258ceb1f603fa60b38cbdab096fead3e06a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-4-xc17",
+      "contentHash": "fcf2482a7235f12799fc4774af020557af3e44fb1a47ce8ec20ab302a0525df3",
+      "packet": "cohort-2026-10-06T17-28-49-194Z-1",
+      "inputHash": "cc4020168cbf79a991f7cce09e6c4ba02b60df89441ce32dddf90e489da756bf",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-4-xc18",
+      "contentHash": "f0fda0edea378c08126b7392c0aaf01a5c90ab470a97e9718041c782dfcfa039",
+      "packet": "cohort-2026-10-06T17-28-49-194Z-1",
+      "inputHash": "cc4020168cbf79a991f7cce09e6c4ba02b60df89441ce32dddf90e489da756bf",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 앞 문장에 '몫이 3과 5가 된다'가 있고 둘째 빈칸 {5}가 그 값을 그대로 되풀이한다. 답이 노출돼 8로 한 번에 나눈 몫을 계산할 필요가 없다."
+      ]
+    },
+    {
+      "id": "e5-1-2-5-xc12",
+      "contentHash": "6e215f902e1431a3e90a64c4d646f710e7149ebfd12e8135883d5980de50ce2a",
+      "packet": "cohort-2026-10-07T05-02-39-034Z-1",
+      "inputHash": "45f93fb04ab8325d335edddf0143ab2bb5340068d760b994892ea9f4634007da",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 바로 앞 지문에 6, 12, 18이 나열되어 있어 첫 항 6을 베끼면 답이 된다. 공배수를 나열하지 않고 묻거나 다른 수 쌍을 써야 한다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "바로 앞에 '6, 12, 18, …'이 나열되어 있어 첫 항 6을 베끼면 정답이다. 공배수는 끝없이 많다는 점도 전혀 확인하지 못한다. 공배수를 나열하지 않고 최소공배수만 묻거나 수 쌍을 바꾸어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-5-xc17",
+      "contentHash": "dd27c521ced3cc81f14185e6e9dbe48351c27b4aea47993956432167dfeacd9c",
+      "packet": "cohort-2026-10-07T05-02-39-034Z-1",
+      "inputHash": "45f93fb04ab8325d335edddf0143ab2bb5340068d760b994892ea9f4634007da",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-1-xc1",
+      "contentHash": "b60db0065ad81b337251c4b93d44546029b6b61d4c662c0ec2c9c5c3a41194a6",
+      "packet": "cohort-2026-10-07T05-02-39-034Z-1",
+      "inputHash": "45f93fb04ab8325d335edddf0143ab2bb5340068d760b994892ea9f4634007da",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸의 답 1/10이 바로 앞 절 '8.4는 84의 1/10배이므로'에 그대로 있어 베끼면 된다. '몫도 같은 배로 작게 한다'는 핵심 개념은 확인되지 않고, 남는 4.2는 8.4÷2를 바로 계산해도 나온다. 앞 절에서 배수를 숨기거나 몫이 어떻게 변하는지를 직접 묻는 문장으로 바꾸어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-5-xc21",
+      "contentHash": "d0e85a75d7007d55a00e1bcf60ed23ab5701506ac874fb0389c441996d2e93a5",
+      "packet": "cohort-2026-10-07T05-02-39-034Z-1",
+      "inputHash": "45f93fb04ab8325d335edddf0143ab2bb5340068d760b994892ea9f4634007da",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C에 '$12+1={13}$'처럼 수식 안에 중괄호가 있어 빈칸인지 아닌지 불분명하다. 빈칸이라면 acceptedAnswers에 없다. 빈칸이 아니라면 12+1=13을 그대로 보여 주어 답을 노출한다. 의도한 빈칸 하나(공배수)만 남기고 식의 중괄호를 정리해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-5-xc22",
+      "contentHash": "a58ca4bfbff403b5198056d440d034987bd1d92b7d53c9ff6ec3f4c0907d531c",
+      "packet": "cohort-2026-10-07T05-02-39-034Z-1",
+      "inputHash": "45f93fb04ab8325d335edddf0143ab2bb5340068d760b994892ea9f4634007da",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C에 '$12-1={11}$'처럼 수식 안에 중괄호가 있어 빈칸인지 불분명하다. 빈칸이라면 acceptedAnswers에 없다. 빈칸이 아니라면 최소공배수 12를 보이고 11도 노출한다. 의도한 빈칸 하나(공배수)만 남기고 중괄호를 정리해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-5-xc23",
+      "contentHash": "916d555665c4dcc55f558d869b3211136e8ce73fb62fbaad91afb7eca4d547b9",
+      "packet": "cohort-2026-10-07T05-02-39-034Z-1",
+      "inputHash": "45f93fb04ab8325d335edddf0143ab2bb5340068d760b994892ea9f4634007da",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸의 답 5가 바로 앞 구절 '각각 5를 곱한'에 그대로 있어 베끼면 된다. 최소공배수도 같은 수만큼 곱해진다는 개념은 확인하지 못하고, 둘째 칸 30은 10과 15의 최소공배수를 직접 구해도 나온다. 곱한 수를 숨기거나 12와 18에 3을 곱하는 식의 다른 수로 바꾸어야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-c3",
+      "contentHash": "f467a502d6d277c723355c04143243b8b35ddd3f8c0c19b0bcd8a64a196a3c97",
+      "packet": "cohort-2026-10-07T05-13-26-702Z-0",
+      "inputHash": "eeea1c2b85209a93e7554e9c4edb50e06f501b2c377ceb46c9a7ddae90a58ccb",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '둘레를 잇는'이 낯선 표현이다. 빈칸에 '면'과 '직사각형' 둘 다 들어갈 수 있어 답 범위가 불분명하다",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸에 '면'과 '직사각형 면'이 모두 들어갈 수 있는데 인정 답에는 '면'이 없다. '둘레를 잇는'도 어색해서 빈칸이 무엇을 묻는지 분명하지 않다."
+      ]
+    },
+    {
+      "id": "e6-1-3-2-c1",
+      "contentHash": "3a1693c4ef5bfaea37075fd79266bc2860d720dd90d231c7fca3491b4fcb0d4d",
+      "packet": "cohort-2026-10-07T05-13-26-702Z-0",
+      "inputHash": "eeea1c2b85209a93e7554e9c4edb50e06f501b2c377ceb46c9a7ddae90a58ccb",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "일반 설명 교정의 독립 검토가 통과하지 않음",
+        "coreReason은 원문 '그보다 큰 수'의 '그'가 불분명하다고 하지만 coreAfter가 null이다. 교정문이 없어 수정이 실행되지 않았다. 교정문을 제시하거나(예: '0보다 큰 수를 그 수보다 큰 수로 나누면') 사유를 삭제해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-6-xc3",
+      "contentHash": "f5e47a7ec42e861f812563ee33e2b91657670ac33492f6ba993dc593b62c666a",
+      "packet": "cohort-2026-10-07T05-13-26-702Z-0",
+      "inputHash": "eeea1c2b85209a93e7554e9c4edb50e06f501b2c377ceb46c9a7ddae90a58ccb",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 '2는 두 쌍 함께 있다. 함께 있는 수로 2×2=□'라고 써서 핵심 규칙(쌍의 수만큼 곱한다)을 문장에서 알려 준다. 빈칸 {4}는 2×2의 단순 계산이라 개념을 확인하지 못한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-4-c3",
+      "contentHash": "2f677e986769d893cc58366a09fb8d1f980b6293717ec709824a64b9a0a6f6ce",
+      "packet": "cohort-2026-10-07T05-13-26-702Z-0",
+      "inputHash": "eeea1c2b85209a93e7554e9c4edb50e06f501b2c377ceb46c9a7ddae90a58ccb",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸에 '다른 수', '1.4', '더 큰 수', '10배인 수' 등이 모두 들어갈 수 있어 답이 정해지지 않는다"
+      ]
+    },
+    {
+      "id": "e5-1-2-6-xc10",
+      "contentHash": "b1506b64e1831c69ee98e5402c5404b579ba9b9acc0616b662e35c0a8742f1d8",
+      "packet": "cohort-2026-10-07T05-13-26-702Z-0",
+      "inputHash": "eeea1c2b85209a93e7554e9c4edb50e06f501b2c377ceb46c9a7ddae90a58ccb",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 이유가 부실하다. '두 수가 같은 경우의 까닭은 xc25에서 다룬다'고 하나 e5-1-2-5-xc25는 공배수 문제 상황 항목이라 근거가 맞지 않는다. '같은 두 수의 최소공배수가 그 수인 까닭'은 '그 수의 1배가 가장 작은 공배수'로 설명할 수 있어 B를 만들 수 있다."
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc26",
+      "contentHash": "21367b89263c5f49d3638a58a14dbb34e153ffeca0e83aa8fd24b93357a0dde4",
+      "packet": "cohort-2026-10-07T05-21-14-576Z-0",
+      "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 뒤 구절 '60+{12}'가 앞 빈칸 '더한'을 알려 준다. 나머지 빈칸 12와 72는 단순 계산이어서 분배법칙 이해를 확인하지 못한다."
+      ]
+    },
+    {
+      "id": "e6-2-4-4-c3",
+      "contentHash": "f0d84644af67a2a366c457d45724e96c5b918b650b39fd373b7f6ba719916b36",
+      "packet": "cohort-2026-10-07T05-21-14-576Z-0",
+      "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-1-xc1",
+      "contentHash": "0c9cf4ba6df47965ebcd1e56ed661055308883c26d9b8ea8e50285ec204c144a",
+      "packet": "cohort-2026-10-07T05-21-14-576Z-0",
+      "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 문장에 '다리가 4개인 의자'가 있어 빈칸 {4}를 그대로 옮기면 맞다. 변화 규칙을 찾는 활동이 되지 못한다."
+      ]
+    },
+    {
+      "id": "e6-2-6-2-c1",
+      "contentHash": "6124f2536b1d58f711a5fa3d1fee1ecb59a81eea92ef6f190b4aef0b1b8677a6",
+      "packet": "cohort-2026-10-07T05-21-14-626Z-1",
+      "inputHash": "2811342c79d0545a9e4e88dcd137fe4d9b09331961805b6ed1627298622deb6c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 밑면이 2개인데 '□ 하나와 □가'라서 빈칸에 들어갈 도형의 순서와 개수가 모호함(원 하나와 직사각형으로도 읽힘)."
+      ]
+    },
+    {
+      "id": "e6-2-6-2-c3",
+      "contentHash": "1c8edce906fb2c32761fd5a7edb0f2324a0792cb250da9db9200b11b69a65305",
+      "packet": "cohort-2026-10-07T05-21-14-626Z-1",
+      "inputHash": "2811342c79d0545a9e4e88dcd137fe4d9b09331961805b6ed1627298622deb6c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 지문의 '높이 방향 변'에서 답 '높이'를 그대로 베낄 수 있음.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 지문의 '높이 방향 변'에서 답 '높이'를 그대로 베낄 수 있어 이해를 확인하지 못한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-2-xc13",
+      "contentHash": "5048e840a1911c45271d28ec8f3384d0b6ffe13d75fb1b589a7a2f8c72710c48",
+      "packet": "cohort-2026-10-07T05-30-30-012Z-0",
+      "inputHash": "fbb201b244eeda658f3a49644f976b0098b825cbc72978c3bc2ee4e22a5e5a06",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: '같은 양을 더 많은 몫으로 나눈다'는 표현이 낯설고 몫(quotient)과 헷갈린다. '더 많은 묶음(사람)으로'처럼 바꾸어야 한다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: '같은 양을 더 많은 몫으로 나눈다'는 표현이 틀렸다. 몫(결과)은 나누는 수가 커질수록 작아지므로 '더 많은 몫'은 뜻이 어긋난다. 또 이 문구가 물음에 들어 있어서 requiredIdeas 2번이 물음 문구를 베끼기만 해도 충족된다. '더 많은 묶음(사람)으로 똑같이 나누면'처럼 고치되, 까닭은 학생이 쓰게 해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-2-xc24",
+      "contentHash": "a6b1cc636249a6b13e21b783684bcdc708657da7763b8ee06bbab924ef93c518",
+      "packet": "cohort-2026-10-07T05-30-30-012Z-0",
+      "inputHash": "fbb201b244eeda658f3a49644f976b0098b825cbc72978c3bc2ee4e22a5e5a06",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "일반 설명 교정의 독립 검토가 통과하지 않음",
+        "core: coreReason은 원문 '몇 배이면 …같은 배'가 모호하다고 하는데 coreAfter가 null이라 교정문이 없다. 'k배이면 쓴 답도 실제 몫의 k배'처럼 교정문을 주거나 coreReason을 지워야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-1-xc21",
+      "contentHash": "0194af829d1d1c5a335d15f329a06458cdc69b8c2e1e2a29185613db348b6284",
+      "packet": "cohort-2026-10-07T05-30-30-012Z-0",
+      "inputHash": "fbb201b244eeda658f3a49644f976b0098b825cbc72978c3bc2ee4e22a5e5a06",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-2-xc8",
+      "contentHash": "05ef66e8d9e79c0f81068c92b3a281f6449c1711a23b237fe313357a38f53802",
+      "packet": "cohort-2026-10-07T05-30-30-012Z-0",
+      "inputHash": "fbb201b244eeda658f3a49644f976b0098b825cbc72978c3bc2ee4e22a5e5a06",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-2-xc12",
+      "contentHash": "db40dd647351c5cec1c3cfaf5462cbd23fdd45ed2a8e57e74e002c1ace6e54d3",
+      "packet": "cohort-2026-10-07T05-30-30-050Z-1",
+      "inputHash": "1f8ac34116e7787185c8b1ba5e03ffa57a4b8dbfb98f0e7c22ab6349ad2d3183",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음이 '좋은 점 한 가지'로 열려 있고 requiredIdeas에 '규칙을 짧고 분명하게 나타낼 수 있다'가 대안으로 섞여 있다. 이는 목표인 '표에 없는 짝을 바로 구함'과 다른 개념의 답이다. 물음을 '표를 더 이어 쓰지 않고도 알 수 있는 점'으로 좁히고 그 대안은 삭제해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-4-xc16",
+      "contentHash": "ef7ccab9a5e757a3e2308d888eb85c3033771a9a3a661cf9770366d248c01764",
+      "packet": "cohort-2026-10-07T05-30-30-050Z-1",
+      "inputHash": "1f8ac34116e7787185c8b1ba5e03ffa57a4b8dbfb98f0e7c22ab6349ad2d3183",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-3-xc1",
+      "contentHash": "d4cfe4e44396005b701311e986ebfc0dca5103c00103110bd19081aec07f7621",
+      "packet": "cohort-2026-10-07T05-30-30-050Z-1",
+      "inputHash": "1f8ac34116e7787185c8b1ba5e03ffa57a4b8dbfb98f0e7c22ab6349ad2d3183",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '□으로 대응한다'만으로는 곱셈·규칙·비례 등 여러 답이 가능해 하나로 정해지지 않는다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 문장 '물건 수와 전체 값은 □으로 대응한다'만으로는 곱셈·규칙·비례·일대일 등 여러 답이 가능해 하나로 정해지지 않는다. 한 개의 값을 곱한다는 단서(예: 물건 수에 한 개의 값을 □하면 전체 값)를 문장에 넣어야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-5-xc6",
+      "contentHash": "afdb7557021aad8fb31c076a1f14059c838f973e72c8cd55812b167c8b8315d0",
+      "packet": "cohort-2026-10-07T05-30-30-050Z-1",
+      "inputHash": "1f8ac34116e7787185c8b1ba5e03ffa57a4b8dbfb98f0e7c22ab6349ad2d3183",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-5-xc11",
+      "contentHash": "c19415e270d870398e209a3ee742db08abc4a523c69255c1cee6b2516ef4bb34",
+      "packet": "cohort-2026-10-07T05-40-40-815Z-0",
+      "inputHash": "8f04b7a113c0e52d02d88a270bc5da87d9ba6cb46502a11c6cfcf2497edab96a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 수치나 식이 없어 '무엇을 확인하는가'의 답 범위가 정해지지 않고(계산 과정/소수점/자릿수 등), 까닭도 열려 있음",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B의 물음이 '소수점 위치만 보면 부족하다'고 말해 소수점 위치를 이미 알려 줍니다. 그래서 필수 기준 '소수점 위치를 다시 확인한다'는 문구만 따라 써도 충족됩니다. 물음이 요구한 까닭은 requiredIdeas에 없고, '무엇을 확인하는가'의 범위(계산 과정, 자릿수 등)도 정해져 있지 않습니다."
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc27",
+      "contentHash": "9823840d8c199ca53031b5fe29a0032e8487dfe654d1d6764854daae84f7ac9c",
+      "packet": "cohort-2026-10-07T05-40-40-848Z-1",
+      "inputHash": "08a3bc4c1a6910312c48d271b0fd5a2918ecab0d54b11a16aa90aba81ecb9df3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸이 '크다' 같은 서술어만 요구해 핵심인 7(만큼)을 써야 하는지 불분명함. 얼마만큼 큰지 쓰라고 명시 필요.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 '앞 날짜보다 ( )'는 '크다'만 써도 자연스러워 핵심인 7(만큼)을 써야 하는지 알 수 없다. 인정 답은 '7 크다'류뿐이므로 얼마만큼 큰지 쓰라고 명시해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-4-1-xc4",
+      "contentHash": "da9e5d2375abddef189d7e32f603e28a7d259dd70cefe6ee26b35937f628e545",
+      "packet": "cohort-2026-10-07T05-40-40-848Z-1",
+      "inputHash": "08a3bc4c1a6910312c48d271b0fd5a2918ecab0d54b11a16aa90aba81ecb9df3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B·C 제외 사유가 'xc25로 대체'뿐이라 어떤 내용이 겹치는지 알 수 없고, 대체 ID의 내용도 확인되지 않는다. C의 사유는 'B 제외' 문구를 그대로 복사해 C를 제외할 근거가 되지 못한다. 겹치는 내용이나 제외 이유를 구체적으로 써야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-4-1-xc5",
+      "contentHash": "9b91d29f276120e6dafbbaaaf38d05f7c2b5b8fc4f6bc76b109730fb9cc32201",
+      "packet": "cohort-2026-10-07T05-40-40-848Z-1",
+      "inputHash": "08a3bc4c1a6910312c48d271b0fd5a2918ecab0d54b11a16aa90aba81ecb9df3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-1-xc10",
+      "contentHash": "bec70a9e6dc8acd9e2c49731a09da27a7c09fbd787f9661fa88cad195554b856",
+      "packet": "cohort-2026-10-07T05-40-40-848Z-1",
+      "inputHash": "08a3bc4c1a6910312c48d271b0fd5a2918ecab0d54b11a16aa90aba81ecb9df3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 '더하지 말고 ( ) 한다'는 '곱해야'만 인정하지만 분모와 분자를 같은 수로 나누어도 크기가 같은 분수가 된다. '나누어야'도 참이라 정답이 하나로 정해지지 않는다. '같은 수를 더하면 크기가 같지 않다'를 묻는 쪽으로 좁혀야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-2-4-xc18",
+      "contentHash": "8147c213fed5136309d4085ceb1d0aed25a3b776469d8fdbbaa9c35292983d9b",
+      "packet": "cohort-2026-10-07T05-50-17-594Z-0",
+      "inputHash": "d22649588aafce21e47fcebc0808b3b223184639e88000380ddd77ddcbf06e96",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 문장 앞부분에 '몫이 3과 5가 된다'가 이미 있어 둘째 빈칸 {5}가 그대로 노출된다. 빈칸이 베끼기로 풀린다."
+      ]
+    },
+    {
+      "id": "e6-1-4-3-xc24",
+      "contentHash": "95870e5dd243301aab5ce5aaebd3b22caa6e238b9d3f18079750b662f92eb3f7",
+      "packet": "cohort-2026-10-07T05-50-17-627Z-1",
+      "inputHash": "c6e9ec5c75d7e09888b66e6c2da399763023568a77422193f3835c60bd7d7343",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음의 뒷부분 '비교하는 양 0과 기준량 5의 비율'이 앞 물음('어떤 경우에 비율이 0인가')의 답인 '비교하는 양이 0'을 그대로 드러낸다."
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc9",
+      "contentHash": "25448e7b72e533b6d165cf9e3108b79569cd77b9da30e2f1d9d66efdfa7a99e2",
+      "packet": "cohort-2026-10-07T05-50-17-627Z-1",
+      "inputHash": "c6e9ec5c75d7e09888b66e6c2da399763023568a77422193f3835c60bd7d7343",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 약분에 1을 쓰는지 정해지지 않았다. '쓸 수 있는 수'에 1을 넣어 1, 2, 4라고 답해도 되는지 불분명하다. 1보다 큰 수로 한정해야 한다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음에 1을 약분에 쓰지 않는다는 단서가 없는데 필수 아이디어는 '1을 뺀 공약수'를 요구한다. '공약수 1, 2, 4'라고 답한 학생이 부당하게 감점될 수 있다."
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc10",
+      "contentHash": "596173809da125209f7982bc407570436bff2511b441cdd042aea4c26770b85a",
+      "packet": "cohort-2026-10-07T05-50-17-627Z-1",
+      "inputHash": "c6e9ec5c75d7e09888b66e6c2da399763023568a77422193f3835c60bd7d7343",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 1을 센다는 조건이 없어 3개와 4개가 모두 가능하다. 공약수가 4개로 주어져 있어 4개로 답하기 쉽다. 약분할 때 1은 쓰지 않는다는 조건이나 '1보다 큰'이라는 단서가 필요하다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 공약수 1, 2, 3, 6을 나열한 뒤 개수를 물으면서 1을 제외한다는 조건이 없어 3개와 4개가 모두 가능하다. '1보다 큰'이라는 단서가 필요하다."
+      ]
+    },
+    {
+      "id": "e5-1-2-1-xc21",
+      "contentHash": "3c29bf1c1e60099b07048ce62084f6a1e09d8c2aa7e1c1a5df374a4cafac8c23",
+      "packet": "cohort-2026-10-07T06-02-44-302Z-0",
+      "inputHash": "04b866f31cf0faf4d7d4ede6151be65f74e5ba6c4842d1bd5337865cc05491e4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "일반 설명 교정의 독립 검토가 통과하지 않음",
+        "C에 '가장 큰 수는 48'을 넣어 48÷6=8로 답 {8}이 드러난다. core는 e5-1-2-5-xc14와 달리 '몫'이 나머지를 따로 구한 정수 몫이라는 점과 1부터 세는 범위를 원문에서 교정하지 않았는데, B·C는 모두 그 전제에 기대고 있다."
+      ]
+    },
+    {
+      "id": "e5-1-2-5-xc17",
+      "contentHash": "55ea03b8f8a7fdc864d2543da829e245aa81e579d539a7e122fa488de3ca213f",
+      "packet": "cohort-2026-10-07T06-02-44-302Z-0",
+      "inputHash": "04b866f31cf0faf4d7d4ede6151be65f74e5ba6c4842d1bd5337865cc05491e4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 둘째 대안 '큰 수를 한 배 이상 한 수라…'는 문장이 비문이고 뜻이 불분명해 채점 기준으로 쓸 수 없다."
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc24",
+      "contentHash": "0839b74c2b8fcae6fc2a1d82a4b51f9b28eea23ecbaf0379b0b5f89e36129a62",
+      "packet": "cohort-2026-10-07T06-02-44-302Z-0",
+      "inputHash": "04b866f31cf0faf4d7d4ede6151be65f74e5ba6c4842d1bd5337865cc05491e4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 문장이 '1시간은 60분이므로'라고 먼저 말하고 빈칸 {60}을 묻는다. 같은 수를 옮겨 쓰면 되므로 답이 노출된다."
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc25",
+      "contentHash": "30b1b1c3ccd5d5120cf4ca3a8232078f8c64101b26572ee20dd5ad5a9f0479a0",
+      "packet": "cohort-2026-10-07T06-02-44-302Z-0",
+      "inputHash": "04b866f31cf0faf4d7d4ede6151be65f74e5ba6c4842d1bd5337865cc05491e4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 {5}는 같은 문장의 '5로 약분한'에서 옮겨 쓰면 되어 답이 노출된다. {곱해}는 동사 활용 복원이다."
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc27",
+      "contentHash": "efb0c78ddc8de044a9458225af75427109f79d8def0820d55aa880de635f3801",
+      "packet": "cohort-2026-10-07T06-02-44-302Z-0",
+      "inputHash": "04b866f31cf0faf4d7d4ede6151be65f74e5ba6c4842d1bd5337865cc05491e4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '기약분수는 □이다'가 '하나뿐', '더 약분되지 않는 분수' 등으로 열려 있어 요구가 구체적이지 않음",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C '기약분수는 □이다'가 '하나뿐', '더 약분되지 않는 분수' 등 참인 답으로 열려 있어 요구가 구체적이지 않다."
+      ]
+    },
+    {
+      "id": "e5-1-4-3-xc5",
+      "contentHash": "5cca7a14ea65061fa678f88bf7ee78db02e7f31c46b222bc591a0315c76eb68b",
+      "packet": "cohort-2026-10-07T06-02-44-302Z-0",
+      "inputHash": "04b866f31cf0faf4d7d4ede6151be65f74e5ba6c4842d1bd5337865cc05491e4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 {6}은 문장에 이미 나온 3/6, 2/6의 분모를 옮겨 쓰면 되어 답이 노출된다. {같아진다}도 앞 문장의 결론 반복이다."
+      ]
+    },
+    {
+      "id": "e5-1-4-3-xc20",
+      "contentHash": "26ec7b0d27aa8acb9585706f221d2d7bd6e79f0a36245ae0a8b1748c6bc358dd",
+      "packet": "cohort-2026-10-07T06-02-44-353Z-1",
+      "inputHash": "401d777944183f2ebb71008650c8d6120eb423f1f583ff55f3a8b26a7aed51e3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 '배수'가 같은 문장의 바로 앞 구절 '6의 배수이지만 4의 {배수}'와 평행 구조라 복사로 채워진다(답 노출)."
+      ]
+    },
+    {
+      "id": "e6-1-5-1-xc2",
+      "contentHash": "4ac4cdea7e5811b11aa5fdb863b14cdd126f3c6739b01001e65e72897888e978",
+      "packet": "cohort-2026-10-07T06-12-02-649Z-0",
+      "inputHash": "44ab24cae8f85714e4692cbcc232b85c802edc18be1b0f5e2f5982601fb8dc18",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 인정 답에 '25%'가 있어 물음의 25%를 그대로 베껴도 정답이 된다. 분수로 바꾸는 판단을 요구하려면 25%를 인정 답에서 빼거나 변환을 요구해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-4-4-xc9",
+      "contentHash": "ac746330e2f438daf95ac385e588503e29f0111913acd5ccde1502019cf07242",
+      "packet": "cohort-2026-10-07T06-12-02-649Z-0",
+      "inputHash": "44ab24cae8f85714e4692cbcc232b85c802edc18be1b0f5e2f5982601fb8dc18",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-4-xc14",
+      "contentHash": "10dd8dd2da2fa7c9f7c2bb32b4912200950f77c9a03e53c38314a99714c81609",
+      "packet": "cohort-2026-10-07T06-12-02-649Z-0",
+      "inputHash": "44ab24cae8f85714e4692cbcc232b85c802edc18be1b0f5e2f5982601fb8dc18",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-4-xc15",
+      "contentHash": "b274c999cba054c8af95d91c1137a8265a96a0bdc9b647bbe090dc9bc4e40cda",
+      "packet": "cohort-2026-10-07T06-12-02-683Z-1",
+      "inputHash": "42b04170e7bcb52e94206882d87a3774acdc8503a208129e6c202400682db054",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 {아니다}는 '~것은 □'에 서술어를 채우는 문법 복원이다. 분모가 다를 때 조각 크기가 달라 분자만으로 비교할 수 없다는 개념을 묻지 않는다."
+      ]
+    },
+    {
+      "id": "e6-1-5-1-xc23",
+      "contentHash": "7223d6572b9f6abc30005fff1a88ba7e1667a3e1ee5602a4e1b5bd0b66f6809f",
+      "packet": "cohort-2026-10-07T06-12-02-683Z-1",
+      "inputHash": "42b04170e7bcb52e94206882d87a3774acdc8503a208129e6c202400682db054",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 둘째 대안 '같은 길이 띠를 나란히 보기 때문이다'는 물음 문구('같은 길이의 띠그래프를 위아래로 나란히 놓으면')를 그대로 옮겨도 만족된다. 요구해야 할 이유는 '전체 길이가 같아 조각 길이를 직접 맞대어 비교할 수 있음'이다. core 교정('같은 길이의')은 타당하다."
+      ]
+    },
+    {
+      "id": "e6-1-5-2-xc6",
+      "contentHash": "d4c124f9b907fb9f1718c2d3b4c4bae2b253395a20c715ff4c0e8a65233f2d62",
+      "packet": "cohort-2026-10-07T06-12-02-683Z-1",
+      "inputHash": "42b04170e7bcb52e94206882d87a3774acdc8503a208129e6c202400682db054",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 {20}은 같은 문장 앞의 '학생 20명'을 복사하면 맞는다. 합이 전체와 같아진다는 개념을 묻지 않고 답이 노출된다."
+      ]
+    },
+    {
+      "id": "e5-1-4-5-xc4",
+      "contentHash": "f4d2c958cec1724811a9c6a2dd4a899bb76d7eab28b439138077b1deacd368ac",
+      "packet": "cohort-2026-10-07T06-12-02-683Z-1",
+      "inputHash": "42b04170e7bcb52e94206882d87a3774acdc8503a208129e6c202400682db054",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-5-xc5",
+      "contentHash": "f3cb3027783b15b4eaaa2fbcb1f577f3ebfcea54557462a075f15c88ff8aef74",
+      "packet": "cohort-2026-10-07T06-12-02-683Z-1",
+      "inputHash": "42b04170e7bcb52e94206882d87a3774acdc8503a208129e6c202400682db054",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-1-xc1",
+      "contentHash": "1a64ad7cd0bebb7f5aad8920a22d106f872689740619728ea37f0d87593bd3d5",
+      "packet": "cohort-2026-10-07T06-24-18-573Z-0",
+      "inputHash": "9a3a67e2798f2b08c62003e605df87d5bfef89f6cf5401af24b30ab2acba03aa",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 답 4가 문장 앞부분 '다리가 4개인'에 이미 나와 있어 읽고 베끼는 것만으로 채워짐",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 정답 4가 문장 앞의 '다리가 4개인'에 그대로 나와 있어 읽고 베끼기만 해도 채워진다."
+      ]
+    },
+    {
+      "id": "e5-1-4-5-xc16",
+      "contentHash": "bd666dac235449c63dccfa506ada639860cc2e424cf60ed5f1c53b324a0de682",
+      "packet": "cohort-2026-10-07T06-24-18-573Z-0",
+      "inputHash": "9a3a67e2798f2b08c62003e605df87d5bfef89f6cf5401af24b30ab2acba03aa",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 첫 칸 정답 3이 같은 문장의 '0.3의 3은'에서 그대로 보인다. 둘째 칸도 '1/10이 3개'에서 바로 나와 개념을 몰라도 채울 수 있다."
+      ]
+    },
+    {
+      "id": "e6-1-5-3-xc3",
+      "contentHash": "b310149d3f6de5354d849e19335bd22c1582dbe48e5861c82254898edbd83d6f",
+      "packet": "cohort-2026-10-07T06-24-18-573Z-0",
+      "inputHash": "9a3a67e2798f2b08c62003e605df87d5bfef89f6cf5401af24b30ab2acba03aa",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 요구 기준 '전체의 30%이다'가 물음의 '30%라고 적혀 있다'를 그대로 다시 쓴 것이라, 물음을 베끼기만 해도 기준이 만족된다."
+      ]
+    },
+    {
+      "id": "e6-1-5-3-xc8",
+      "contentHash": "c97614665c3ddd5625b7a4c12e94ad43854a3aa208686722d62483f173791cd0",
+      "packet": "cohort-2026-10-07T06-24-18-573Z-0",
+      "inputHash": "9a3a67e2798f2b08c62003e605df87d5bfef89f6cf5401af24b30ab2acba03aa",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '원의 □에서 나뉜다'가 중심·둘레 중 무엇인지 불분명함('나뉜다'는 중심에서 만난다는 뜻과 바로 이어지지 않음)",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '원의 □에서 나뉜다'에 둘레(경계)도 들어갈 수 있고 '나뉜다'가 중심에서 만난다는 뜻과 바로 이어지지 않아 정답이 하나로 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e5-1-4-5-xc25",
+      "contentHash": "3ee5e7b0e41fcf95feb6176f15a53b003c21b7c5143e40342b3adff6e5ff0fcd",
+      "packet": "cohort-2026-10-07T06-24-18-611Z-1",
+      "inputHash": "3780fd3dcc6b3d974941e31c3fe5b3c69978fc95d49add2561d5f8883558ad44",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 첫 빈칸 {3/5}가 같은 문장 뒤쪽의 '0.6과 3/5의 크기'에 그대로 노출되어 답이 드러남. 약분 결과를 문장에 쓰지 않는 형태로 고쳐야 함."
+      ]
+    },
+    {
+      "id": "e6-1-5-4-xc5",
+      "contentHash": "18ea48ca8c8d00c71ddb655b0ab42fa358c655e50ab703cc744af3d0efee9a28",
+      "packet": "cohort-2026-10-07T06-24-18-611Z-1",
+      "inputHash": "3780fd3dcc6b3d974941e31c3fe5b3c69978fc95d49add2561d5f8883558ad44",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 물음의 '비율이 달라지지 않는 까닭'에 대해 '각 조각이 전체에서 차지하는 크기가 같기 때문'은 같은 말을 되풀이한 순환 답이라 물음 문구 복사만으로 만족됨. 실제 근거를 요구하도록 고쳐야 함."
+      ]
+    },
+    {
+      "id": "e6-1-5-4-xc8",
+      "contentHash": "0cd61dd92e4e3fb62ee45c8d2c6ff21bfd206cdcad9f90ccfef047da244985bf",
+      "packet": "cohort-2026-10-07T06-24-18-611Z-1",
+      "inputHash": "3780fd3dcc6b3d974941e31c3fe5b3c69978fc95d49add2561d5f8883558ad44",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 물음 본문의 '모든 항목이 합쳐 원 전체를 이루도록'이 곧 필수 이유 '항목들이 합쳐 원 전체가 된다'이므로 문구 복사만으로 만족됨."
+      ]
+    },
+    {
+      "id": "e5-1-3-2-xc8",
+      "contentHash": "ba7ab3082deb8de051761b2c65f5b26a87aecc6788443e27418d5b8e7b75439e",
+      "packet": "cohort-2026-10-07T06-32-05-830Z-0",
+      "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 ★는 문장에 '사탕 수만 ★로 바꾸어'라고 이미 나와 있어 그대로 옮기면 정답이다(답 노출). 실제로 판단하는 칸은 '같다' 하나뿐이다."
+      ]
+    },
+    {
+      "id": "e6-1-5-4-xc13",
+      "contentHash": "3200786ed9e31913edc2e6c7dbd5f3278435eb23ec80889d82bfa64f435fd7dd",
+      "packet": "cohort-2026-10-07T06-32-05-830Z-0",
+      "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C에 12.4%와 11.6%가 제시되어 있어 두 수만 보고도 '같지 않다'가 드러난다(답 노출). 반올림 어림값의 뜻을 판단하는 칸이 아니다."
+      ]
+    },
+    {
+      "id": "e6-1-5-4-xc14",
+      "contentHash": "0cc1b13b23d633ff760f60bc2f8ea7cd40f013cd3c2254a514d1b587f5c155b8",
+      "packet": "cohort-2026-10-07T06-32-05-830Z-0",
+      "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 두 번째 필수 기준 중 '한 조각이 25%이다'는 물음의 '25% 자리'를 되풀이해도 충족된다. 까닭은 '4등분이므로 1/4=25%'로 요구해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-5-4-xc15",
+      "contentHash": "a54c9b3ecf6b0221ec4a8afbb482b02f8e4d4b5f918e060ffee684ed3ef30b3c",
+      "packet": "cohort-2026-10-07T06-32-05-830Z-0",
+      "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "두 그래프를 그릴 수 있는 표는 '항목별 자료의 수'를 정리한 표여도 된다. 그래서 '백분율'만 정답으로 정하면 정답 범위가 맞지 않는다. B와 C 모두 '백분율 표' 조건을 물음에 명시해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-5-4-xc18",
+      "contentHash": "dd35516f6d5c5b4a7fc654e675874f8aff8141520a6cfe59b215d98b79333d81",
+      "packet": "cohort-2026-10-07T06-32-05-830Z-0",
+      "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: '조각의 크기와 함께 무엇이 서로 맞는지'가 구체적이지 않다. 백분율 합계, 항목 이름, 눈금 등 답이 여러 갈래로 갈린다.",
+        "blind-C: '원의 □의 크기'에 조각, 넓이, 각도 등 여러 말이 들어갈 수 있다. 초6에서 쓰는 용어가 정해져 있지 않다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B '조각의 크기와 함께 무엇이'는 단수로 묻는데 필수 답은 항목 이름과 백분율 둘이고, 백분율의 합 100% 등 다른 답도 가능하다. C '원의 □의 크기'에는 조각, 부분, 부채꼴, 넓이, 각도 등이 들어갈 수 있다."
+      ]
+    },
+    {
+      "id": "e6-1-5-4-xc23",
+      "contentHash": "d09c734c1e94bde8c9a084c6d89f7a127e6fcd57dc64227398d8933b974f4612",
+      "packet": "cohort-2026-10-07T06-32-05-830Z-0",
+      "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C '각 항목의 □은 변하지 않는다'에는 백분율 외에 각도, 항목 수 등 참인 말이 들어갈 수 있어 정답 범위가 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e6-1-5-4-xc25",
+      "contentHash": "1dd17325faf393b851a4574fe7efef245899714d30d87d9912473501f5ea45e7",
+      "packet": "cohort-2026-10-07T06-32-05-830Z-0",
+      "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 필수 기준 1(과일 조사에 알맞다)은 물음 문장 '전체 학생 중 각 과일을 고른 학생의 비율'을 그대로 옮기면 충족된다. 필수 기준 2의 두 대안(합의 뜻 / 비교 목적)은 서로 다른 개념이다. 참고답의 '키 합으로 원그래프를 그릴 수는 있다'는 출처 '하나의 전체를 이루는 자료라야'와도 어긋난다."
+      ]
+    },
+    {
+      "id": "e5-1-4-1-xc5",
+      "contentHash": "4c6f5288e152438fe93816c8005f9a9a070addfbda99373479dae0481a8bf2a4",
+      "packet": "cohort-2026-10-07T06-32-05-830Z-0",
+      "inputHash": "081b58b50388b4857ea430445f16212696f99e6c4f80d864143e774391f82882",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 두 번째 칸 '분자에도 {2}를 곱해야'의 2는 앞의 '분모에만 2를 곱한'에서 그대로 옮기면 된다(답 노출)."
+      ]
+    },
+    {
+      "id": "e6-1-5-5-xc20",
+      "contentHash": "e8b4a812a590f20eef6cb421da0af83620143baa57d160ed8655d71defc826e1",
+      "packet": "cohort-2026-10-07T06-32-05-861Z-1",
+      "inputHash": "9007dee2a63781f183d31e75950a1fbce62ec0f0b480136de613524cb506e2ca",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 막대그래프로 알아낸 것이 전체 수인지 항목별 수량인지 정해지지 않아 빈칸 답이 여럿이다. 전체 수와 100%로 한정되게 써야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-5-5-xc21",
+      "contentHash": "e3b9102a0afd9e50b0c83f942195facfb4b3a2afee56849435539658d0c57a77",
+      "packet": "cohort-2026-10-07T06-32-05-861Z-1",
+      "inputHash": "9007dee2a63781f183d31e75950a1fbce62ec0f0b480136de613524cb506e2ca",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas의 둘째 anyOf가 띄어쓰기 없이 붙은 깨진 문장('$100$과$110$을$90$에서부터그리면…')이라 채점 기준으로 쓰기 어렵다. 또 물음이 '수량의 비율을 판단하면 막대 사이의 차이에'라고 비율과 차이를 섞어 물어 무엇을 답해야 하는지 흐릿하다. 물음을 하나로 정리하고 기준 문장을 복원해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc24",
+      "contentHash": "acaa67e3ec685643080082775fa1c7e491ccd49b7ab3d3fba1f90e85db40942b",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 60이 바로 앞 '1시간은 60분이므로'에 이미 있어 그대로 베낄 수 있다. 1차 pass는 놓친 것이다."
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc25",
+      "contentHash": "572dc7707731231b0c565f21162fb369bde039c96607e7e4ffcbdab8e4c952d2",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 첫 빈칸 5가 문제 앞부분의 '5로 약분'에 이미 나와 있어 베끼기가 되고, 둘째 칸은 문법 복원에 그친다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 5는 '5로 약분'에서 베낀 것이고, 둘째 빈칸 '곱해'는 문법 복원에 가깝다. 1차 판단에 동의한다."
+      ]
+    },
+    {
+      "id": "e6-1-6-1-xc9",
+      "contentHash": "f93994d2c122e2ab30f4de22b3d65f75b91b09ec6d8da2fe10902620032618db",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 필수 기준 '옆면의 넓이를 구한다'는 물음 문구 '옆면의 넓이와 밑면의 넓이로 나누어'를 복사해도 충족된다. 실질 내용은 '두 밑면(2배)을 더한다' 하나뿐이다."
+      ]
+    },
+    {
+      "id": "e5-1-4-3-xc5",
+      "contentHash": "c98c58d35cffc8392925198e2d7d688c4ff9e2fecb67a7009ae47efa84c6e12b",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 6이 같은 문장의 '3/6과 2/6'에 그대로 나와 있고, 둘째 빈칸 '같아진다'는 '똑같이 6등분'의 반복이다."
+      ]
+    },
+    {
+      "id": "e5-1-4-4-xc9",
+      "contentHash": "0b9ed50874c75985649a0dff0a59931b3a9e0ab8d59c7949b6d7695c91bd9bae",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸이 무엇과 비교하는지 밝히지 않아 '분자가 분모보다 크다' 같은 답도 나올 수 있다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸이 비교 대상을 밝히지 않아 '1보다 크다' 외에 '분자가 분모의 절반보다 크다' 같은 답도 나올 수 있다."
+      ]
+    },
+    {
+      "id": "e5-1-4-4-xc14",
+      "contentHash": "737f57827f470bfc064bad667fc7de5900def6d977351f5d7f6deb4719291dc0",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B 물음 '분모가 어떤 경우에 더 통분하지 않고'가 비문이고, '두 분수의 분모를 살펴보려'가 답(분모가 같아지는 경우)을 거의 알려 준다. C 첫 빈칸 3/4가 바로 뒤 '3/4의 크기'에 그대로 있어 베낄 수 있다."
+      ]
+    },
+    {
+      "id": "e6-1-6-1-xc16",
+      "contentHash": "05306eaf647e8fa0cbbd992c921fd0a9c7837bb3df6723c3b4b7e5d59c47f0d9",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 첫 빈칸 200이 바로 뒤 식 '200×50'에 그대로 나와 있어 베끼기가 된다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 200이 바로 뒤 식 '200×50'에 그대로 나와 있어 베끼기가 된다."
+      ]
+    },
+    {
+      "id": "e5-1-4-5-xc4",
+      "contentHash": "75ec5c5f24c7d528ce71d8447c166cd8d117610caba60f8ec765471ee3918110",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 47이 같은 문장 '47/100'의 분자를 그대로 베낀 것이다. 나머지 두 빈칸만 실질 문항이다."
+      ]
+    },
+    {
+      "id": "e5-1-4-5-xc5",
+      "contentHash": "ab071878fd49c78ed0a377fcf0611031215365c12d6dc18a93b2be02b10998a2",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 5와 0.5가 바로 뒤 '5/10'에서 읽어 낼 수 있어(1×5=5, 5/10=0.5) 곱하는 수를 따지지 않아도 채워진다."
+      ]
+    },
+    {
+      "id": "e5-1-4-5-xc16",
+      "contentHash": "0e77ebf0eb3dbf9719ef05f467d7bdb831b6c118df8bcc3b18946d3667daf3fa",
+      "packet": "cohort-2026-10-07T06-58-35-763Z-0",
+      "inputHash": "d75f4675e400530eb175320cba45be2401f95bca962949575ad5083c47f7c66a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 3이 같은 문장 '0.3의 3은'의 숫자를 그대로 베낀 것이고, 3/10도 '1/10이 3개'에서 조립된다."
+      ]
+    },
+    {
+      "id": "e6-1-6-2-xc6",
+      "contentHash": "2ec8786ff09ea3f741944323109883a8e7c77c60979626e01ce9312d11477cde",
+      "packet": "cohort-2026-10-07T06-58-35-794Z-1",
+      "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '□만큼의 cm³'가 낯설고, 빈칸이 수인지 말(개수)인지 불분명하다."
+      ]
+    },
+    {
+      "id": "e6-1-6-2-xc15",
+      "contentHash": "47be457695ff6d8399259b167af319e212097828fb28e21a5467d30c52ce8f51",
+      "packet": "cohort-2026-10-07T06-58-35-794Z-1",
+      "inputHash": "ab76245ce61522a13dc090eb2e068c003009d0b5f1c8bc5db469d19ff240671d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 두 직육면체의 밑면 넓이 등 비교할 조건·그림이 없어 '어느 쪽'을 정할 수 없다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 비교할 두 직육면체의 자료나 그림이 없어 '어느 쪽'을 정할 수 없다. 필수 답 '밑면의 넓이가 더 큰 쪽'은 일반 설명을 되풀이한 것이다. 구체적인 밑면 넓이 등을 물음에 주어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-5-3-xc4",
+      "contentHash": "8b1e6c2e30b104c0865c11cda608700c6578888e2bf36b4142166f7a1a078134",
+      "packet": "cohort-2026-10-07T07-08-16-339Z-0",
+      "inputHash": "9f66fb98d340d0904c72a93b9648caf219687bebf660f2dc7d4e09579be928f3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B의 requiredIdeas 두 anyOf 문자열이 띄어쓰기 없이 깨져 있어 채점 기준으로 읽기 어렵다. 또 '분모·분자가 곱으로 통분할 때보다 작거나 같다'는 서술은 두 분모가 서로소여서 곱과 같아지면 편해지는 점이 없으므로, '무엇이 편해지는지'라는 질문 전제와 맞지 않는다. 필수 아이디어는 '최소공배수가 가장 작은 공통분모라 더 작은 수로 계산하고 약분이 덜 필요하다'처럼 한 가지로 명확히 써야 한다. 원문의 핵심 '수가 작아 간단'과 약분 언급 여부도 정해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-5-3-xc8",
+      "contentHash": "441a72dba0f896908a80fce931c988035e993c1b11d4cb048df70c1435dea3a0",
+      "packet": "cohort-2026-10-07T07-08-16-339Z-0",
+      "inputHash": "9f66fb98d340d0904c72a93b9648caf219687bebf660f2dc7d4e09579be928f3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 이유 '자명한 문장이라 제외'는 부실하다. 중복 ID나 대체 ID 근거가 없다. 크기가 같은 두 분수의 차가 0인 까닭(모양이 달라도 같은 수)을 묻는 B는 충분히 만들 수 있다."
+      ]
+    },
+    {
+      "id": "e5-1-5-3-xc17",
+      "contentHash": "bdd4ebb570edf7347bb047f932720b3abd56d251e7da81abf1678ea7d0805cce",
+      "packet": "cohort-2026-10-07T07-08-16-339Z-0",
+      "inputHash": "9f66fb98d340d0904c72a93b9648caf219687bebf660f2dc7d4e09579be928f3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 이유 '단순 연산 선택이라 가치가 낮아 C로만 확인'은 부실하다. 중복 ID도 대체 ID도 제시하지 않았다. '얼마나 더 많은가'가 왜 뺄셈인지(큰 수=작은 수+차)를 설명하게 하는 B는 만들 수 있다."
+      ]
+    },
+    {
+      "id": "e6-2-1-1-xc19",
+      "contentHash": "fc3ba46e614a5aba4083822d7d82ed4814bdb1070cebff9e41e182f4854b3c4c",
+      "packet": "cohort-2026-10-07T07-08-16-359Z-1",
+      "inputHash": "0e7c671252433596308c3e02db805df63e24c9125dd040132eb6a722503cafb3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 필수 2번 '분수의 크기가 같다/같은 수이다'는 물음의 전제(크기가 같은 분수로 바꾼다)를 복사해도 충족된다. 핵심 까닭인 '몫은 두 수의 크기(배 관계)만으로 정해진다'를 필수로 해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-5-4-xc1",
+      "contentHash": "8993c47a4c5e62968ca84bd062236b8adf36872ad3b137d853bb19dbc0cb2202",
+      "packet": "cohort-2026-10-07T07-08-16-359Z-1",
+      "inputHash": "0e7c671252433596308c3e02db805df63e24c9125dd040132eb6a722503cafb3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 '빼고'는 같은 문장의 앞 절 '자연수 부분끼리 뺀 뒤'와 병렬이라 문법 복원만으로 채워진다. 수학 개념(분모 유지)을 확인하지 못한다."
+      ]
+    },
+    {
+      "id": "e6-2-1-2-xc4",
+      "contentHash": "8948dab1ad62c5eb251fcee6f2dc4629959a4670b2e247c2c4f87f6f6818424f",
+      "packet": "cohort-2026-10-07T07-08-16-359Z-1",
+      "inputHash": "0e7c671252433596308c3e02db805df63e24c9125dd040132eb6a722503cafb3",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-1-2-xc24",
+      "contentHash": "3a342d021feb8550af77fac676db63bc3b6897beb48253e5f125edf19fb0f1c0",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 문장 앞부분에 '큰 분모'가 이미 나와 빈칸 답이 노출된다."
+      ]
+    },
+    {
+      "id": "e6-2-1-2-xc26",
+      "contentHash": "40d712832ee5a9ad3de3e3874b7b2f8ecc435b9ec02354e4e361a1f2a41b341b",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 같은 문장 앞에 '세로'가 이미 나와 답이 노출되고, 가로를 빼면 남는 것을 고르는 문제가 된다."
+      ]
+    },
+    {
+      "id": "e6-2-1-3-xc2",
+      "contentHash": "aa4be520d66d93907de6096af500488d32923cf75268e129f3fe58d634406d05",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 둘째 빈칸 '4×{5}=20'은 20÷4나 분모 복사만으로 채워져 분모를 곱한다는 개념이 필요 없다."
+      ]
+    },
+    {
+      "id": "e6-2-1-3-xc4",
+      "contentHash": "dd44d606f19234c1e105475a8e8b422f481c6f6731ef4447a1b3c6526ad135ab",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 빈칸 18과 2는 바로 앞에 보인 18/3÷2/3의 분자를 베끼면 되어 답이 노출된다."
+      ]
+    },
+    {
+      "id": "e5-1-5-4-xc19",
+      "contentHash": "8ef74e1e9edaab8d7c206e816b8306ce07deb8dfd55172837535ca73fad9e32e",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 첫 requiredIdea가 띄어쓰기 없는 한 문자열이라 기준으로 읽기 어렵다. 세 경우를 조건과 결론으로 나누어 다시 써야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-1-3-xc6",
+      "contentHash": "774407bf43df30aaca78afc562c67d11c52546dc5f19d127bb2c77cfbbf8e215",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '묶음 수가 많아져'가 둘째 빈칸 '크다'를 노출한다."
+      ]
+    },
+    {
+      "id": "e5-1-5-4-xc20",
+      "contentHash": "e0bf0ed80a442374c05ae5108b7eb9bafe5f0670b5e5e39c96831dc276203798",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 다음 문장 '차는 달라지지 않는다'가 빈칸 '같다'를 알려 주는 이분 선택이다."
+      ]
+    },
+    {
+      "id": "e5-1-5-4-xc28",
+      "contentHash": "18b274ca5a9fc619ec0f2a0b69aa15b885ac4f9995fc89a91fe71b218198be80",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 셋째 requiredIdea의 두 대안이 띄어쓰기 없는 문자열이라 기준으로 읽기 어렵다. 각 수가 가까운 자연수로 바뀌는 이유를 나누어 다시 써야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-1-xc6",
+      "contentHash": "d8ac54cab477beecbf288557f96662b3497c2618b8a8f735a4133c05cad54c7f",
+      "packet": "cohort-2026-10-07T07-16-00-569Z-0",
+      "inputHash": "80774286e7f143a2e0b9fac91538a98e9294667a6c3be9c536da1d08ae720c0f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B·C 제외 이유가 '자명하다'와 '대체 ID 미확인'뿐이라 부실하다. 대체 문항이 없어 이 개념은 평가되지 않은 채 남는다."
+      ]
+    },
+    {
+      "id": "e5-1-6-1-xc12",
+      "contentHash": "d1ec2d009ca59db0b3d1c42717ba52815ca4d07ffca3cfd4cc1d2f710401687e",
+      "packet": "cohort-2026-10-07T07-16-00-594Z-1",
+      "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '둘 다 {28}cm로 서로 {같다}'에서 '둘 다'가 두 번째 빈칸 답 '같다'를 노출한다. 그 빈칸은 수학적 판단을 요구하지 않는다."
+      ]
+    },
+    {
+      "id": "e5-1-6-1-xc16",
+      "contentHash": "0f7395af40a4b40f73e2af9381c853032f70a8cee0a994bd481165ac783d4933",
+      "packet": "cohort-2026-10-07T07-16-00-594Z-1",
+      "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 세 번째 requiredIdea가 띄어쓰기 없이 붙은 문자열('각길이가양수이고합이…')이라 읽기 어렵다. 두 번째 idea(합이 10cm)와도 중복되므로 정리해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-1-xc21",
+      "contentHash": "ade2152692be85877b3491a7d02872605124845781fa50377578ecfb950e9693",
+      "packet": "cohort-2026-10-07T07-16-00-594Z-1",
+      "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 같은 문장의 '2배로 늘려'에서 수 '2'를 그대로 복사하면 정답이 된다. 한 변이 3cm에서 6cm가 될 때 둘레가 12cm에서 {24}cm가 되는 식으로 계산이 필요한 빈칸이어야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-1-5-xc13",
+      "contentHash": "9ed691b965f57b236b1744cf9f1390988430d23d8ccc7d26051cbca057635475",
+      "packet": "cohort-2026-10-07T07-16-00-594Z-1",
+      "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 같은 문장 뒷부분 '몫은 1보다 작다'의 '작다'를 따라 쓰면 '작으면'이 된다. 병렬 구조가 답을 노출한다."
+      ]
+    },
+    {
+      "id": "e6-2-1-5-xc16",
+      "contentHash": "912fa46df70678dd73559bf647b28a5f0e44c0fcff8fd3e4293661a50fcfd8da",
+      "packet": "cohort-2026-10-07T07-16-00-594Z-1",
+      "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 같은 문장 뒷부분 '몫은 1보다 크다'의 '크다'를 따라 쓰면 '크면'이 된다. 병렬 구조가 답을 노출한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-2-xc3",
+      "contentHash": "6284829e8bd7517f54cc34c044ebd2b280370082d620b4b69b3d8d14a5ef4e7a",
+      "packet": "cohort-2026-10-07T07-16-00-594Z-1",
+      "inputHash": "c712e2f8b81c11d7fb90de5437520b9a85c1dbdbb6b0d9b661c046459e85db94",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 빈칸 '12'가 같은 문장 끝의 '12cm²'에 그대로 나와 베끼면 풀린다."
+      ]
+    },
+    {
+      "id": "e5-1-6-2-xc6",
+      "contentHash": "27ad665c095cf76bca73b3c86eb5a8139d76041179b2f96e5b176144c180da15",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B·C 제외 사유가 '대체: xc9'뿐이라 왜 불필요한지(어떤 내용이 xc9와 겹치는지) 설명이 없다. 중복 근거를 구체적으로 적어야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-2-1-xc5",
+      "contentHash": "095c1c559dc21c940fa7143cc9e6ab4531edbb4009fe939cd590ed0bf49c1919",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 '한'은 바로 앞 구절 '0.9의 소수점을 오른쪽으로 한 자리 옮기므로'를 베끼면 맞는 답이라 '같은 자리만큼 옮긴다'는 개념을 확인하지 못한다. 앞 구절에서 자리 수를 드러내지 않도록 바꾸어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-2-xc7",
+      "contentHash": "96265e718877a42139ce9f4141f94def8be32860b13e627a9a451611599631a0",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 사유가 '대체: xc3, c4'뿐이고 중복 내용이 무엇인지 적혀 있지 않다."
+      ]
+    },
+    {
+      "id": "e5-1-6-2-xc10",
+      "contentHash": "48eb5708aa57ba712fe50425322fd22acefec44af767fd99134a63c64dfbe0fc",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 첫 항목의 띄어쓰기가 모두 지워져 있어 읽기 어렵다. 한 문장에 두 가지 대안이 이어져 있다. 띄어쓰기를 복원하고 대안을 정리해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-2-xc18",
+      "contentHash": "b4e99e868ad2d0fab458d139ca29b22b1497160f4ee17a0c0100124909270c96",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 {2}는 같은 문장의 '가로만 2배로 늘리면'의 2를 베끼면 맞는 답이다. 정사각형 xc19의 C처럼 계산·추론이 필요하게 바꾸어야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-2-xc20",
+      "contentHash": "0b0267de36ae493dc8949a651f117d5be6db00dfb123a2bc09ebc2ccfdfb2bcb",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 첫 항목의 띄어쓰기가 모두 지워져 있고, 한 항목에 순서쌍 5개와 넓이 5개가 뭉쳐 있어 판정 기준으로 읽기 어렵다. 항목을 정리하고 띄어쓰기를 복원해야 한다. core 교정(차이가 작을수록 넓이가 크다)은 합이 일정할 때 넓이=(합²−차²)/4이므로 타당하다."
+      ]
+    },
+    {
+      "id": "e5-1-6-2-xc23",
+      "contentHash": "da323e6c4f5315117f1850be283731af584170909e7e1a360a6b5a834e345d24",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 사유가 '대체: xc1, xc13'뿐이고 왜 불필요한지 설명이 없다."
+      ]
+    },
+    {
+      "id": "e6-2-2-2-xc8",
+      "contentHash": "8a41f951830ffba156fb007cc78f3be9f93829b4b47be9b489af39c1fa72f8bf",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-2-xc25",
+      "contentHash": "9b5a43fe4b95132aba9358f044e4c4bdbc7e439841dd6811ee2c370e13df26d4",
+      "packet": "cohort-2026-10-07T07-23-59-554Z-0",
+      "inputHash": "a9e851ed9f593ce995cb536c2dc95705e06f8fdd2da38bb1903c6fe108c83ada",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 사유가 '대체: xc10'뿐이다. xc10 B는 넓이÷가로로 세로를 구하는 것만 묻고 '넓이에서 가로를 빼는 잘못'은 묻지 않는다. 겹친다는 근거가 없다."
+      ]
+    },
+    {
+      "id": "e6-2-2-2-xc15",
+      "contentHash": "5a79ad60a7e65701754d650790a39fc82b2b9b1a52c6cf167be34a8726deba3e",
+      "packet": "cohort-2026-10-07T07-23-59-576Z-1",
+      "inputHash": "a4a5c96f978ba43237c05eaa8a676073fbd0f4a6956b67baacce4b58a145f15a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '서로 □ 배로'는 '서로 다른 배로'를 복원해야 하는 어색한 문장이다. '0보다 큰'도 불필요하다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 '서로 {다른} 배로'는 문법을 복원하는 칸에 가깝고, '0보다 큰 2.4이므로'는 불필요한 조건이다. 실질 수학 칸은 4 하나뿐이다. 두 수를 다른 배로 키워 몫이 달라진다는 개념을 직접 묻도록 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-2-4-xc12",
+      "contentHash": "0e45084c4f701e440e7682312cc6e3d6ffb8c1ed89b39ac02022b3b219a7fbfa",
+      "packet": "cohort-2026-10-07T07-31-25-533Z-0",
+      "inputHash": "0e3fdddb9d1ecf272df15cffc86ee10124c46289143f93ee20573d9383ab5c1d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 값이 같으면 3도 맞는 답으로 볼 수 있다. 그러나 원문의 요점은 남길 자리의 0을 쓰는 것이고, acceptedAnswers는 3.0만 허용한다. 문장에 '소수 첫째 자리까지 나타내면 3.□'처럼 0을 써야 한다는 조건이 없다."
+      ]
+    },
+    {
+      "id": "e6-2-2-4-xc19",
+      "contentHash": "2e87f1c3771ba7d1243477d3f4e65375b3313bfdbd9b134eceda0b874aadb944",
+      "packet": "cohort-2026-10-07T07-31-25-533Z-0",
+      "inputHash": "0e3fdddb9d1ecf272df15cffc86ee10124c46289143f93ee20573d9383ab5c1d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '항상 {0.05} 이하'는 0.1 이하, 1 이하도 참이므로 답이 하나로 정해지지 않는다. '가장 작은 값으로 □ 이하'처럼 최소 상한을 묻는 조건이 필요하다."
+      ]
+    },
+    {
+      "id": "e5-1-6-4-xc5",
+      "contentHash": "1507b929bcf96f5c62cc6ca418ba00d45050fd0f4074454f83a1df0aa2260483",
+      "packet": "cohort-2026-10-07T07-31-25-533Z-0",
+      "inputHash": "0e3fdddb9d1ecf272df15cffc86ee10124c46289143f93ee20573d9383ab5c1d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 평행사변형은 네 변 모두 밑변이 될 수 있어 4로 볼 수 있다. 평행한 변 쌍 기준으로는 2라 답이 갈린다. '변의 개수'인지 '쌍의 개수'인지 조건이 없다."
+      ]
+    },
+    {
+      "id": "e6-2-2-4-xc25",
+      "contentHash": "01f6f34778566f605237bc37f5d3ae990e5ffd92fb0298b73b2dacf7dd54b3cf",
+      "packet": "cohort-2026-10-07T07-31-25-533Z-0",
+      "inputHash": "0e3fdddb9d1ecf272df15cffc86ee10124c46289143f93ee20573d9383ab5c1d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 둘째 빈칸은 예시 하나(0.049→0.001)만 보면 '작아진다'가 자연스럽다. 정답 '작아지거나 같아진다'의 '같아진다'는 문장에서 도출되지 않고, '작아진다'는 인정 목록에 없다. 답이 하나로 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e5-1-6-4-xc9",
+      "contentHash": "4212af6cd275f885ca9696af595cb61886a05136dad8a9cedc4c249b2e916189",
+      "packet": "cohort-2026-10-07T07-31-25-533Z-0",
+      "inputHash": "0e3fdddb9d1ecf272df15cffc86ee10124c46289143f93ee20573d9383ab5c1d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: requiredIdeas 첫 anyOf가 '밑변×높이=넓이이므로넓이를밑변으로나누면높이이다'처럼 띄어쓰기 없이 붙어 있어 기준 문장으로 읽히지 않는다. 문장을 정리해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-4-xc13",
+      "contentHash": "b169964d470f9f46b010c7006f332450640c7d42ff2a79796b484bf9f453fd88",
+      "packet": "cohort-2026-10-07T07-31-25-533Z-0",
+      "inputHash": "0e3fdddb9d1ecf272df15cffc86ee10124c46289143f93ee20573d9383ab5c1d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 둔각삼각형은 가장 긴 변을 밑변으로 하면 높이가 안에도 그려진다. '안에도 밖에도'가 참이라 답이 하나로 정해지지 않는다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '둔각삼각형은 높이가 삼각형 {밖에} 그려질 수 있다'에서 가장 긴 변을 밑변으로 하면 높이가 안에 그려지므로 '안에'도 참이다. 빈칸 답이 하나로 정해지지 않는다. '둔각을 이루는 변을 밑변으로 하면'처럼 조건을 붙여야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-2-5-xc17",
+      "contentHash": "927c4fba727281f2d5247a48ad431c8c731bac03085c924fbb23e716569f1096",
+      "packet": "cohort-2026-10-07T07-31-25-533Z-0",
+      "inputHash": "0e3fdddb9d1ecf272df15cffc86ee10124c46289143f93ee20573d9383ab5c1d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-1-xc4",
+      "contentHash": "9b88903ad60e78e0afc3e0bec991f39df2d6190a3207ae4927ef727b2d3ca4f1",
+      "packet": "cohort-2026-10-07T07-31-25-556Z-1",
+      "inputHash": "6ff6e57bc0f56a8641f4866aeb196570d75d0bc40463fcabb59d4614292b0213",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: '쌓기나무에 대해 무엇을 나타내는지'가 낯설고, 놓인 자리, 윗면, 한 줄(기둥) 등 답이 갈려 요구가 구체적이지 않다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: '보이는 칸 하나하나는 쌓기나무에 대해 무엇을 나타내는지'가 모호하다. 놓인 자리, 맨 위 쌓기나무의 윗면, 한 줄(기둥) 모두 맞는 답인데 기준은 '바닥 자리'만 인정한다. e6-2-3-1-xc12 B와 목표도 겹친다. '이 칸은 쌓기나무가 있는 어디를 나타내는가'처럼 요구를 좁혀야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc6",
+      "contentHash": "46f6864777ab3e1a5e771f2dc6b26b0d59b55c9ea8c9cd626541ab4404588e65",
+      "packet": "cohort-2026-10-07T07-31-25-556Z-1",
+      "inputHash": "6ff6e57bc0f56a8641f4866aeb196570d75d0bc40463fcabb59d4614292b0213",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: '한 가지 이상' 쓰라는 열린 물음인데 인정 기준이 세 가지 단서(좌우 순서, 가려짐, 원근에 따른 크기)로 닫혀 있다. 보이는 면 같은 다른 타당한 답이 기준에서 빠진다. 원근에 따른 크기는 원 설명에 없는 단서다. 물음을 '좌우 순서와 가려진 부분'으로 좁히거나 인정 범위를 일반화해야 한다."
+      ]
+    },
+    {
+      "id": "e5-1-6-5-xc5",
+      "contentHash": "f13f782ba32448874cd703e2f7b0750129a76017c919dec16fde7aea0365cb75",
+      "packet": "cohort-2026-10-07T07-31-25-556Z-1",
+      "inputHash": "6ff6e57bc0f56a8641f4866aeb196570d75d0bc40463fcabb59d4614292b0213",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B/C 제외 이유는 그림이 필요하다는 것이다. 그런데 goal은 '둘러싼 직사각형의 가로·세로와 대각선의 관계는 xc14에서 다룬다'고 하고, xc14도 B/C가 모두 제외라 이 개념을 평가하는 항목이 없다. 순환 참조다. 대각선 길이를 수로 주고 글로 서술하면 출제할 수 있으므로 제외 이유도 약하다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc8",
+      "contentHash": "c713d54db77e7108a4c7f5607978fad1d3133b98ea32d324c590006bbf1cb883",
+      "packet": "cohort-2026-10-07T07-31-25-556Z-1",
+      "inputHash": "6ff6e57bc0f56a8641f4866aeb196570d75d0bc40463fcabb59d4614292b0213",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '각기둥을 밑면이 바닥에 닿게 놓고 위에서 보면 □과 같은 모양'의 정답 '밑면'이 같은 문장 앞에 이미 있다. 문구를 복사하면 맞는 항목이다. 정답을 문장 밖에서 추론하게 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc13",
+      "contentHash": "45b540d13523b5c30168550a8eee39434d11d08116c5645cedfcf7ff37ffb06d",
+      "packet": "cohort-2026-10-07T07-31-25-556Z-1",
+      "inputHash": "6ff6e57bc0f56a8641f4866aeb196570d75d0bc40463fcabb59d4614292b0213",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 같아지는 경우를 포함해야 하는지 단어 하나만으로 정해지지 않아 '작다/적다'와 '작거나 같다'로 답이 갈린다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc15",
+      "contentHash": "9fdc3beaa8d50d3829e53cb2eb3c5668582d7034f76c288f078828326697c1a8",
+      "packet": "cohort-2026-10-07T07-31-25-556Z-1",
+      "inputHash": "6ff6e57bc0f56a8641f4866aeb196570d75d0bc40463fcabb59d4614292b0213",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-1-xc18",
+      "contentHash": "e410e8f15a20ef998f29f4087e9930b8bf071ea0af779e19a606105ebc74f784",
+      "packet": "cohort-2026-10-07T07-38-16-440Z-0",
+      "inputHash": "4604b61f8782552fdec1e76bca7f49228f6a4e05bf2a2d44b6d947b580467ecc",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 빈칸 답 4는 같은 문장의 '4개'를 그대로 옮기면 맞는다. 좌우 한 줄은 가려지지 않는다는 개념을 묻지 못하므로, 개수 대신 가려짐 여부나 칸 수의 이유를 묻도록 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc21",
+      "contentHash": "c7f4558b21308360b0f0f882b3eed31961c9461ee4573d4010d9f6a9222a13a5",
+      "packet": "cohort-2026-10-07T07-38-16-440Z-0",
+      "inputHash": "4604b61f8782552fdec1e76bca7f49228f6a4e05bf2a2d44b6d947b580467ecc",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "core는 '각 방향에서 다른 쌓기나무가 가리고 있다'로 고쳤다. 가리는 쌓기나무가 바로 옆에 붙어 있지 않아도 안 보일 수 있다. B와 C는 여전히 '둘러싸여'를 정답으로 삼아 이 교정과 맞지 않는다. 방향별로 가려진다는 뜻으로 맞추어야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc22",
+      "contentHash": "8f8215fedd3dd013f39aba5f326fbf104329d0f0d5fad27f105a7ca6c8d3f3a0",
+      "packet": "cohort-2026-10-07T07-38-16-440Z-0",
+      "inputHash": "4604b61f8782552fdec1e76bca7f49228f6a4e05bf2a2d44b6d947b580467ecc",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸 답이 '같은'인지 '3×3'인지 불분명하다. 크기를 구체적으로 묻도록 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-2-xc2",
+      "contentHash": "b17b356e5d4b2e8c5c8094145ad5c25ffec9f647e55d2417ab1b1fa58b270bef",
+      "packet": "cohort-2026-10-07T07-38-16-440Z-0",
+      "inputHash": "4604b61f8782552fdec1e76bca7f49228f6a4e05bf2a2d44b6d947b580467ecc",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 초6이 배우지 않은 중학교 용어(겨냥도)를 묻는다. 학생에게 보이는 지문만으로는 답을 복원할 수 없다."
+      ]
+    },
+    {
+      "id": "e6-2-3-2-xc9",
+      "contentHash": "f64494e376df1ada389fde338d3567607acc5eeba3166c6129d2d0eb8a4c9723",
+      "packet": "cohort-2026-10-07T07-38-16-440Z-0",
+      "inputHash": "4604b61f8782552fdec1e76bca7f49228f6a4e05bf2a2d44b6d947b580467ecc",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-2-xc12",
+      "contentHash": "f6021d6fe39df4577de9764e7d6a7ad192c831922cdc064ad1d44c6be5535f5d",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 1은 질문 전제(보이는 모양이 주어짐)를 되풀이하며, 대안 '조건에 맞게 한다'만으로 충족된다. 질문은 받침 조건을 요구하지 않는다. 필수는 '가려진 자리를 최대한 채운다' 하나로 정리해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-2-xc13",
+      "contentHash": "c69cf7447701c959432fbd56c9fb6391067b458bc12a3549c3cacbaa28f78b1e",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸이 문장 완성(문법 복원) 수준이고 '무엇을 알 수 있는지' 범위가 구체적이지 않음",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 '있는지 없는지'는 문장 완성(문법 복원) 수준이다. 무엇을 알 수 있는지(자리의 유무 vs 개수)가 구체적이지 않아 '몇 개인지' 같은 오답이 가능하다."
+      ]
+    },
+    {
+      "id": "e5-2-1-1-xc13",
+      "contentHash": "62c8dd8c55035a4c28fe37fd23ee47c821fcc600c0160792863e6dfb25d8924c",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 2의 대안 '15보다 큰 수는 범위에 들어가지 않는다'는 물음 문구('더 큰 수가 범위에 없는 까닭')를 그대로 복사해도 충족된다. 실제 이유는 '이하는 그 수와 같거나 작은 수뿐'이다. C 둘째 빈칸 '않기'는 부정어 문법 복원일 뿐 평가 내용이 없다."
+      ]
+    },
+    {
+      "id": "e5-2-1-1-xc14",
+      "contentHash": "dec63a1594958fe90e05c3975b7a741c9593a581974682015cf95a6c4636075b",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 3과 7은 물음의 '3 이상 7 이하'에서 그대로 복사되고 '사이'는 문법 완성이다. 색칠한 점(●)이라는 핵심 개념은 이미 문장에 노출되어 있어 평가 내용이 없다."
+      ]
+    },
+    {
+      "id": "e6-2-3-2-xc18",
+      "contentHash": "00be4ead853a763bf314dfc1814e6b28de9572527c29f4d7ce3d095d6ef960e3",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 가려진 것이 없으면 같을 수 있어 '적다'와 '적거나 같다' 중 정답 범위가 확정되지 않음",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 '적다'와 '적거나 같다' 중 정답 범위가 확정되지 않는다. 가려진 것이 없으면 같으므로, '적거나 같다' 요구를 문장에 드러내거나 허용 답을 정해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-3-xc1",
+      "contentHash": "fa0e3d5ccfa8a9576027c66616df0908617e7dd9c855b4b277c3efe38997e026",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '세로줄'이라는 말 때문에 '세로'라고 답할 수 있어 요구하는 방향이 구체적이지 않음",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 '세로줄'이라는 말 때문에 '세로'로도 답할 수 있다(위에서 본 그림에서는 세로가 앞뒤 방향과 겹침). 정답 범위가 앞뒤 하나로 확정되지 않는다."
+      ]
+    },
+    {
+      "id": "e6-2-3-3-xc2",
+      "contentHash": "7d405e905ec9e14a7d9170252fff0854d0093f6072afd4c1aa300403840dda5b",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '세로줄'과 방향 대비 때문에 '세로로 놓인'처럼 답할 수 있어 정답 범위가 정해지지 않음",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 '세로줄'과의 대비 때문에 '세로로 놓인' 같은 답이 가능하다. 앞에서 본 경우와의 대조 없이는 '좌우'만 정답이 되는 근거가 없다."
+      ]
+    },
+    {
+      "id": "e5-2-1-2-xc8",
+      "contentHash": "ccfa132e83a18a172c25ad0ed3a0c1e3a2f493f9084a7d0d4b9b06727c2cf738",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 대안 문자열이 띄어쓰기가 깨졌고('$0$도$3$보다작지만...'), '옳지않다'도 같은 문제다. 0을 예로 든 문구는 자연수 맥락에서 부적절하고 채점하기 어렵다. C는 소수가 들어간다는 핵심을 문장에서 먼저 말하고 빈칸 '작은'(미만의 뜻)만 묻는다. 학습 목표와 평가 내용이 어긋난다."
+      ]
+    },
+    {
+      "id": "e5-2-1-2-xc15",
+      "contentHash": "415ffccb5ce245a4ec6195ba8e15ae7407eff84a310d6b1f1204f4e635e8dc8e",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 '7, 8, 9, …'를 먼저 나열해 놓고 빈칸 7을 묻는다. 나열된 첫 수를 복사하면 답이 나오는 답 노출이라, 초과를 '1 큰 수 이상'으로 바꾸는 개념을 평가하지 못한다."
+      ]
+    },
+    {
+      "id": "e5-2-1-2-xc16",
+      "contentHash": "8146628c04467983a98ef8a54b79d06f952b6bce19b73ce7dbc66e570e355877",
+      "packet": "cohort-2026-10-07T07-38-16-476Z-1",
+      "inputHash": "04e0abade07f53b8cddbd8672d1bb3a94af9bb4394a7241bed5319830097d76a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 '1, 2, …, 9'를 먼저 나열해 놓고 빈칸 9를 묻는다. 나열된 마지막 수를 복사하면 답이 나오는 답 노출이라, 미만을 '1 작은 수 이하'로 바꾸는 개념을 평가하지 못한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-3-xc14",
+      "contentHash": "9e6f4457b136ef28bca30f93c8aa356aff015a2c187aa448e7b61e592cf05554",
+      "packet": "cohort-2026-10-07T07-46-16-262Z-0",
+      "inputHash": "a9134a9d6e72180e1e35e10fa70d7849a484a40d59984470ea9f608ada68affd",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: '어떤 두 가지'가 열려 있어 답 범위가 불명확하다. 앞·옆 높이를 각각 맞추는 두 가지로 쓸 수도 있고 위 칸마다 1개를 포함할 수도 있어, 지켜야 할 두 가지를 특정하는 조건이 필요하다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: '어떤 두 가지'가 열려 있다. 앞·옆 높이를 각각 맞추는 두 가지로 쓸 수도 있고 '칸마다 1개'를 포함할 수도 있다. 지켜야 할 두 조건(위에서 보이는 칸마다 1개 이상, 앞·옆에서 보이는 각 줄의 높이를 맞춤)을 특정하는 문구가 필요하다. '필요한 만큼만 쌓는다'는 요구하지 않은 설명이다."
+      ]
+    },
+    {
+      "id": "e6-2-3-3-xc23",
+      "contentHash": "483a662bc4bcc073e6f0adfee437f40195ca951fd3e49ec1a0c98dd792c13e7c",
+      "packet": "cohort-2026-10-07T07-46-16-262Z-0",
+      "inputHash": "a9134a9d6e72180e1e35e10fa70d7849a484a40d59984470ea9f608ada68affd",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 마지막 '없으면 어떻게 되는지'가 열려 있다. 놓을 수 없다는 것까지인지, 각 줄의 최고 높이를 서로 다른 칸에 따로 놓아야 한다는 것까지인지 요구가 구체적이지 않다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: '그 칸이 위에서 본 모양에 없으면 어떻게 되는지'가 열려 있다. 위에서 본 모양에 없는 칸에는 당연히 쌓기나무를 둘 수 없으므로 '둘 수 없다'는 문구만 되풀이해도 맞는 답이 된다. 요구가 '그 칸에는 못 둔다'까지인지, '각 줄의 최고 높이를 서로 다른 칸에 따로 놓아야 한다'까지인지 구체화해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-4-xc3",
+      "contentHash": "940db8cbd697cf49bf269f9f974be350c7aabee6ab73cea027fdf1a3bb0def0b",
+      "packet": "cohort-2026-10-07T07-46-16-262Z-0",
+      "inputHash": "a9134a9d6e72180e1e35e10fa70d7849a484a40d59984470ea9f608ada68affd",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-5-xc9",
+      "contentHash": "641e29b98741a888234b76f4356101f1177ca2653266138236cb975629880685",
+      "packet": "cohort-2026-10-07T07-46-16-283Z-1",
+      "inputHash": "8186fcdbe030f76469143f72ee222700e0038bf0922d0553dcd44df9093c5f52",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B·C: 물음과 문장이 이미 '같은 위치의 칸'이라고 말하는데 정답 '같은 자리'는 그 환언일 뿐이다. 문구 복사만으로 만족되며 위에서 보면 한 기둥(한 칸)에 겹쳐 쌓인다는 내용을 확인하지 못한다. 요구하는 내용을 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-5-xc10",
+      "contentHash": "739206de22e3fd057e6186d9f6eaefa236483ea77d397af7366a03c01529c15e",
+      "packet": "cohort-2026-10-07T07-46-16-283Z-1",
+      "inputHash": "8186fcdbe030f76469143f72ee222700e0038bf0922d0553dcd44df9093c5f52",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 빈칸 '칸이 있는'이 같은 문장 앞부분의 '2층 모양에 칸이 있는'을 그대로 복사하면 채워진다. '공중에 뜬 쌓기나무 없음'을 이해하지 않아도 맞힐 수 있다."
+      ]
+    },
+    {
+      "id": "e5-2-1-4-xc23",
+      "contentHash": "cee3ed45540e8b1b363a05fd354d33abc960084bd988296dbdb307ed83a95642",
+      "packet": "cohort-2026-10-07T07-55-00-673Z-0",
+      "inputHash": "6d7f2eff7dcd67c49e607efc39c8217b917a4e750211f5f6e5f8892554b93e3c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B의 requiredIdeas 둘째 anyOf가 공백이 지워져 읽기 어렵고, 서로 다른 두 주장(아래 두 자리 00/01~99 설명과 '다음 백 단위' 설명)을 대안으로 묶었다. 둘째 문장은 뜻이 불분명해서 채점 기준으로 쓸 수 없다. '99'와 '차가 100이면 이미 더 작은 백의 배수로 올림된다'처럼 하나로 다시 써야 한다. C의 둘째 빈칸 '항상 {100}보다 작다'는 200이나 1000도 참이라 유일하지 않다. '가장 작은 수' 같은 한정이 필요하다."
+      ]
+    },
+    {
+      "id": "e6-2-3-6-xc8",
+      "contentHash": "e894b19a46101d36c6180d4644c0b790cc16a43015af95ed2017946f8b9b9c66",
+      "packet": "cohort-2026-10-07T07-55-00-673Z-0",
+      "inputHash": "6d7f2eff7dcd67c49e607efc39c8217b917a4e750211f5f6e5f8892554b93e3c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-5-xc19",
+      "contentHash": "d8af023ddb555971b7f69c893fce22c72f03d29a8c6531e7eb235418a26e95dc",
+      "packet": "cohort-2026-10-07T07-55-00-673Z-0",
+      "inputHash": "6d7f2eff7dcd67c49e607efc39c8217b917a4e750211f5f6e5f8892554b93e3c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B의 셋째 requiredIdea가 공백 없이 붙어 읽기 어렵고, 세 가지 주장(300 그대로, 399까지, 400부터 제외)을 한 필수에 묶었다. 둘째 필수(가장 작은 수 300, 가장 큰 수 399)는 첫째(300 이상 400 미만)에서 바로 나오므로 독립 필수로 보기 어렵다. 필수 기준을 정리해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-6-xc27",
+      "contentHash": "53319e480e8447d8761d948a63f8c850a9385893f6061eef6422e8cc186f4f0f",
+      "packet": "cohort-2026-10-07T07-55-00-699Z-1",
+      "inputHash": "6371fa9d4f5eaf7f03d682029003af36fbedea7733787855c6f5eb1b7f883c3b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 빈칸 '다른'은 '돌리고 뒤집어도 꼭 맞게 겹쳐지지 않는'이라는 판단 기준이 문장에 이미 있어 어휘 복원에 그친다. 빈칸을 겹쳐지지 않음(판단 기준)으로 옮겨야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-1-5-xc24",
+      "contentHash": "e2b1ed7224b4af8810ca842c2a36b4b9ffe1a678b2ffd5be8eef5b76daccf58a",
+      "packet": "cohort-2026-10-07T07-55-00-699Z-1",
+      "inputHash": "6371fa9d4f5eaf7f03d682029003af36fbedea7733787855c6f5eb1b7f883c3b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 어떤 버림 결과인지 맥락이 없고, 빈칸이 '범위', '이상과 미만', '수직선' 등으로 갈려 답이 하나로 정해지지 않는다",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 어떤 버림 결과인지 맥락이 없다. '범위', '이상과 미만', '수직선' 등 정답이 갈려 하나로 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e5-2-1-5-xc25",
+      "contentHash": "ce5ecbe01df237490c0bd45e49e70db8e0b5c102f7b0ee82f2d80dfdd9a42632",
+      "packet": "cohort-2026-10-07T07-55-00-699Z-1",
+      "inputHash": "6371fa9d4f5eaf7f03d682029003af36fbedea7733787855c6f5eb1b7f883c3b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 첫 빈칸 {2.3}은 바로 앞 '2.3이 되는 수는'을 그대로 옮기는 것이라 변별력이 없다. 핵심 개념은 '미만'과 2.4뿐이다. core 교정(한 단위 0.1, 0.01)은 수학적으로 옳다."
+      ]
+    },
+    {
+      "id": "e6-2-4-1-xc18",
+      "contentHash": "53865c5637c4271fe986ffcd6868a28c18621fb24dd5f11ecb5710056782e87e",
+      "packet": "cohort-2026-10-07T07-55-00-699Z-1",
+      "inputHash": "6371fa9d4f5eaf7f03d682029003af36fbedea7733787855c6f5eb1b7f883c3b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음이 이미 '나누는 수는 0이 될 수 없다'고 결론을 밝혔다. requiredIdea '0으로 나눌 수 없다'는 그 되풀이라 답이 노출되고 문구 복사로 만족된다."
+      ]
+    },
+    {
+      "id": "e5-2-1-6-xc11",
+      "contentHash": "1c76a213da8cd8b4885aca56c20cdf40d7debfd106a329e819c35e62a4d9b7b9",
+      "packet": "cohort-2026-10-07T07-55-00-699Z-1",
+      "inputHash": "6371fa9d4f5eaf7f03d682029003af36fbedea7733787855c6f5eb1b7f883c3b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '□으로 □한 값' 두 빈칸의 형태가 모호해 '올림으로 올림한'처럼 중복되고 두 번째 빈칸이 단순 어휘 복원이 된다"
+      ]
+    },
+    {
+      "id": "e5-2-1-6-xc17",
+      "contentHash": "8461739ed6a39155b14a3a9d0b1f77337336a9c70c63c8e9513cca312edf99bd",
+      "packet": "cohort-2026-10-07T07-55-00-699Z-1",
+      "inputHash": "6371fa9d4f5eaf7f03d682029003af36fbedea7733787855c6f5eb1b7f883c3b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 둘째·셋째가 '…설명과 맞는 예'라는 메타 서술이어서 구체 기준이 아니다. 셋째 문자열은 띄어쓰기가 모두 빠져 읽기 어렵다. '5 이상이면 올림(커짐)', '5 미만이면 버림(작아짐)'을 구체적으로 써야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-2-1-xc1",
+      "contentHash": "0fe0df82698c2cc2c21529c6f9b8f7450a2cbe24acb26a01efb584bed8d4a8f0",
+      "packet": "cohort-2026-10-07T07-55-00-699Z-1",
+      "inputHash": "6371fa9d4f5eaf7f03d682029003af36fbedea7733787855c6f5eb1b7f883c3b",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 첫째·둘째 문자열의 띄어쓰기가 모두 빠져 있다. C 첫 빈칸 {3}은 식의 '×3'을 그대로 옮긴 것이라 변별력이 없고, 개념은 '더한' 하나뿐이다."
+      ]
+    },
+    {
+      "id": "e6-2-4-3-xc6",
+      "contentHash": "e3b5604b2685e995d8e22554ce9d2b3c6522b6ebc01aad07bb9f25966e4d56af",
+      "packet": "cohort-2026-10-07T08-02-45-178Z-0",
+      "inputHash": "ce233d79b41ebbc7dedf5b313744d8fb6fea720bb8d6a943d8f6e3103edc450c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '한 비와 □마다'의 빈칸이 '비율이 같은 비'인지 '곱하는 수'인지 불분명해 답이 정해지지 않는다",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '한 비와 {비율이 같은 비}마다'의 빈칸이 '또 다른 비', '곱하는 수' 등으로도 채워져 답이 하나로 정해지지 않는다. 예시 1:3=2:6, 1:3=3:9만으로는 '비율이 같은'이라는 조건이 유도되지 않는다."
+      ]
+    },
+    {
+      "id": "e6-2-4-3-xc14",
+      "contentHash": "83c428ad086910e77e77d240e74f06a4dee7be57b12de8ff4d2d4b0617891e80",
+      "packet": "cohort-2026-10-07T08-02-45-178Z-0",
+      "inputHash": "ce233d79b41ebbc7dedf5b313744d8fb6fea720bb8d6a943d8f6e3103edc450c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '비도 □ 비례식으로'만으로는 빈칸의 조건(비율이 같으면)이 정해지지 않는다. '자연수 비처럼' 등도 가능하다",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '소수나 분수가 있는 비도 {비율이 같으면}'의 빈칸이 '자연수 비로 바꾸어 같으면', '간단히 하여 같으면' 등으로도 채워져 정답이 하나로 정해지지 않는다. 문맥에 '비율'이 단서로 나오지 않는다."
+      ]
+    },
+    {
+      "id": "e5-2-2-2-xc4",
+      "contentHash": "96c3ffdbf103f38ec3e2d51aaa034cfc412bd6b6736c0d4c276fdd9a87282120",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 이유 '단순 계산 정리 행동'은 부실하다. 같은 방법(약분·기약분수로 정리)을 e5-2-2-3-xc4에서는 B로 묻고 있어 기준이 어긋난다. '곱을 간단히 정리하는 방법'을 설명시키는 B가 가능하다."
+      ]
+    },
+    {
+      "id": "e5-2-2-2-xc5",
+      "contentHash": "15b36dc56d20cd14c8e6a9be8d70915ff26c78319cb49f451b63f080c5b46aef",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름"
+      ]
+    },
+    {
+      "id": "e5-2-2-2-xc6",
+      "contentHash": "3df233c4843e6da242f9ba8b87c628f3a6f618b6691aad7fe00dadda56891258",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 이유 '자명한 확인'은 부실하다. 같은 구조의 e5-2-2-3-xc8에서는 B를 묻고 있어 기준이 어긋난다."
+      ]
+    },
+    {
+      "id": "e5-2-2-2-xc7",
+      "contentHash": "00546e9fff11ec295a0b8e70d146acd2f2a0d9d755f8772b5d607360e347bd44",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름"
+      ]
+    },
+    {
+      "id": "e5-2-2-2-xc12",
+      "contentHash": "8d4d6fc246424fa8ab2c1a21479f056a68cb609509ede492c7f76fb890c6b3f6",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름"
+      ]
+    },
+    {
+      "id": "e6-2-4-4-xc14",
+      "contentHash": "6e3520578763f916228792e0f49d971934d048ac5ee949ce13d92448dc3689dd",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 둘째 requiredIdeas anyOf가 서로 다른 내용을 묶고 있다. '비율이 같으면 두 곱도 같다'와 '그런 수는 12 하나뿐'은 같은 뜻의 대안이 아니다. 두 개의 독립 기준으로 나누거나 하나만 남겨야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-4-4-xc18",
+      "contentHash": "854282456d2ffac621cac1777e6a5e34ebe010a293b36d5b47c6133aaa363c44",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 '비례식'은 같은 문장의 '비례식에서'를 그대로 베끼면 정답이 된다. 가운데 두 수를 바꿔도 두 곱이 같다는 이해를 묻지 못한다."
+      ]
+    },
+    {
+      "id": "e6-2-4-5-xc6",
+      "contentHash": "1fbed6d3f5c4fac9be8c4496134a8c44e67ed99719fb659db5cc3cec5a6a8b8a",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-4-5-xc13",
+      "contentHash": "3a326259251648d4b6d951f2274a133a1f122195bb29e34d0d3a9676697c67b9",
+      "packet": "cohort-2026-10-07T08-02-45-202Z-1",
+      "inputHash": "b3dfe6bdb5a71049cb5b70867381785cd99c1cdbbc9f4e93b85cef715dd295ee",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 마지막 문장 '두 항이 같은 비로 나누면 차는 얼마인가요?'가 뜻이 불분명하고 앞 요구와 겹침.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 마지막 문장 '두 항이 같은 비로 나누면 차는 얼마인가요?'는 뜻이 불분명하다. 20을 2:3으로 나누는 앞 요구와 다른 개념(1:1일 때 차 0)을 한 문제에 섞고 있다. 한 개념으로 정리해야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-2-3-xc13",
+      "contentHash": "bf2242cf552679385226f95b31537c2b85f893aa7714e3278f690f569a6ca54d",
+      "packet": "cohort-2026-10-07T08-10-39-173Z-0",
+      "inputHash": "9989218fbac7b164d302e95cb496fd4d98062492595d69d688c7bac3549a584d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 문장에서 '더한'이 틀렸다고 알려 주어 정답이 거의 드러나고, 두 번째 빈칸은 것/값/수 중 무엇이든 되는 어휘 채우기다. 분모의 곱 값 10 등 수학적 관계를 묻도록 바꿔야 한다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 첫 빈칸 {곱한}은 바로 뒤 문장 '분모끼리 더한 1/7은 틀린 답'에서 답이 드러난다. 더하기가 틀렸다는 말을 들으면 곱하기가 남아 어휘만 채우면 된다. 이 빈칸을 없애고 분모의 곱 {10} 같은 수학 관계만 묻거나, 틀린 연산이 무엇인지 알려 주지 않도록 문장을 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-2-3-xc20",
+      "contentHash": "4c5402842e8d0a66e4d72a2473243b0006d3f777bf8018d27be1a75b07a022c6",
+      "packet": "cohort-2026-10-07T08-10-39-173Z-0",
+      "inputHash": "9989218fbac7b164d302e95cb496fd4d98062492595d69d688c7bac3549a584d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 두 빈칸이 모두 {큰}이고, 앞 구절 '곱을 가장 크게 하려면'의 '크게'를 활용형으로 바꿔 쓰면 맞는다. 어떤 분수를 고르는지는 확인하지 않고 문법만 복원한다. 1/2, 3/4, 2/3 중 곱이 가장 큰 두 수 {3/4}과 {2/3}를 고르게 하는 식으로 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-1-1-xc25",
+      "contentHash": "fc45f88da8bdfcbcc7b70cee6cab9bbd91ee0bd52627a132671b62410a828c38",
+      "packet": "cohort-2026-10-07T08-10-39-173Z-0",
+      "inputHash": "9989218fbac7b164d302e95cb496fd4d98062492595d69d688c7bac3549a584d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 문구 '원의 개수를 나누어지는 수로 하여'와 '원마다 3칸'이 이미 4÷3을 알려 준다. 첫 필수 요소 '4÷3'이 지문을 읽기만 해도 나와 답이 노출된다. 이 힌트를 빼고, 그림 상황에서 나눗셈식을 스스로 세우게 한 뒤 한 칸 1/3이 4칸이라 4/3임을 설명하게 해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-1-2-xc12",
+      "contentHash": "64799ddd64379aa6275d90b807dc5cebf380264f1c5ee441adc081d147d2afbc",
+      "packet": "cohort-2026-10-07T08-10-39-173Z-0",
+      "inputHash": "9989218fbac7b164d302e95cb496fd4d98062492595d69d688c7bac3549a584d",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '같은 □'가 수/자연수/공약수 중 무엇이든 되는 일반 명사 채우기라 수학적 관계를 가리지 못한다. 공약수(1이 아닌 공약수)로 나눈다는 점을 구체화해야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-3-1-xc13",
+      "contentHash": "d1feaa52d9db60a972e8a43b6c147f0ea091c44a2ff28fda0f798f30e12fd39e",
+      "packet": "cohort-2026-10-07T08-10-39-192Z-1",
+      "inputHash": "4de22b70cf853e01587dd975ef2a591cc755bb098e3ef3190333047cc4ae099c",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '가로의 길이가 같고 {세로}의 길이도 같으면'은 짝말 '가로-세로'를 채우는 문법 복원일 뿐이다. 직사각형의 합동이 두 변으로 정해진다는 수학 판단을 묻지 않는다."
+      ]
+    },
+    {
+      "id": "e5-2-3-1-xc23",
+      "contentHash": "094708775e57e54711095534cf6df440b2f41e65c3587ac2fa994953d47cc9f7",
+      "packet": "cohort-2026-10-07T08-17-44-212Z-0",
+      "inputHash": "6790f2886088b4b5bd160d17af4d1fda53ae058dde07352d616be86fbf27f853",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B requiredIdeas 두 번째 anyOf 문자열이 띄어쓰기 없이 붙어 있어 채점 매칭이 불가능하다. 또 '한 변이 같아도 가장 작은 각이 다를 수 있다'와 '각을 모두 같게 맞출 수 없다'가 서로 다른 표현으로 한 기준에 섞여 있다. 띄어쓰기를 복원하고 '각의 크기가 달라 완전히 겹치지 않는다'로 단일화해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc13",
+      "contentHash": "f7a485e3db18efe98f1ff20fd9bd10a1d920f60bc1e19129e686b2df835c3ae6",
+      "packet": "cohort-2026-10-07T08-17-44-212Z-0",
+      "inputHash": "6790f2886088b4b5bd160d17af4d1fda53ae058dde07352d616be86fbf27f853",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음의 '두 면의 모양과 크기에 대하여 설명하시오'가 답(모양이나 크기가 다를 때/합동이 아닐 때)을 거의 노출한다. 이 힌트를 지우고 '평행 외에 어떤 조건이 더 필요한가'만 묻도록 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-2-1-xc22",
+      "contentHash": "fa270c804b3bd27f7df5ad9ff9282e8fa54dfc5c5355a22eb7ba7ddaa1142344",
+      "packet": "cohort-2026-10-07T08-17-44-212Z-0",
+      "inputHash": "6790f2886088b4b5bd160d17af4d1fda53ae058dde07352d616be86fbf27f853",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '옆면을 이루는 □'는 직사각형, 사각형, 면 등 여러 말이 참이 되어 답이 하나로 정해지지 않고 용어 회상에 그침. 예: '옆면의 밑면과 맞닿은 변의 길이를 모두 더하면 밑면의 □와 같다.'(답: 둘레)로 구체화.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C '옆면을 이루는 □'에는 직사각형, 사각형, 면 등이 모두 참이라 답이 하나로 정해지지 않고 용어 회상에 그친다. 예: '옆면의 밑면과 맞닿은 변의 길이를 모두 더하면 밑면의 □와 같다.'(답: 둘레)로 구체화한다."
+      ]
+    },
+    {
+      "id": "e6-1-2-3-xc7",
+      "contentHash": "2b6922fd579c5873bd29638fe0039efe3e4f4a1b4b5f3d60b133ffb67a2f889a",
+      "packet": "cohort-2026-10-07T08-17-44-212Z-0",
+      "inputHash": "6790f2886088b4b5bd160d17af4d1fda53ae058dde07352d616be86fbf27f853",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 까닭 기준 '다르면 한 모서리로 맞붙지 못한다'는 물음의 '한 모서리로 완전히 맞붙는'을 되풀이한 것이라 문구 복사만으로 만족된다. 구체적 전개도(예: 밑면 변이 3cm인 사각기둥)에서 어느 선분끼리 길이가 같아야 하는지 묻도록 바꾼다."
+      ]
+    },
+    {
+      "id": "e6-1-2-3-xc11",
+      "contentHash": "1b6b5d1a96d4781b7b50c8ef6bb5738524592c7dfc5fa93fa329a60fdcf5070a",
+      "packet": "cohort-2026-10-07T08-17-44-212Z-0",
+      "inputHash": "6790f2886088b4b5bd160d17af4d1fda53ae058dde07352d616be86fbf27f853",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 물음에 '접었을 때 한 점에서 만난다'가 이미 있어 답 '하나의 꼭짓점'이 문구 재진술이다. 예: 삼각기둥 전개도에서 같은 꼭짓점이 되는 점들의 묶음이 몇 개인지, 또는 입체의 꼭짓점이 몇 개인지 세게 한다."
+      ]
+    },
+    {
+      "id": "e6-2-5-3-xc6",
+      "contentHash": "240e6a082932ef12d0776d3c4ceb7ebdab1722f35727c7236aa3f7ffb524f56c",
+      "packet": "cohort-2026-10-07T08-17-44-212Z-0",
+      "inputHash": "6790f2886088b4b5bd160d17af4d1fda53ae058dde07352d616be86fbf27f853",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸 '나머지'는 '일부는 … 있고 □는 … 있다'의 짝 어휘 복원에 그쳐 걸친 칸의 개념을 확인하지 못한다. 예: '테두리 선이 칸 안을 □ 칸이 걸친 칸이다'처럼 개념을 묻도록 고친다."
+      ]
+    },
+    {
+      "id": "e5-2-3-2-xc22",
+      "contentHash": "da9c207483c700c7ec454a4afc69e482be6b12d943019c6c5b70924691de1da8",
+      "packet": "cohort-2026-10-07T08-17-44-234Z-1",
+      "inputHash": "bf110b631834c2d91816be8f1a7ba43103c2b7669b0b2a9bf66bc9713c46b9f6",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 빈칸 '변'은 앞의 '한 변의 양 끝'을 그대로 반복하면 채워지므로 합동·대응점 판단 없이 문법 복원만으로 풀린다."
+      ]
+    },
+    {
+      "id": "e6-1-2-3-xc25",
+      "contentHash": "cf594e9e19fb80c91b10c1e305320f145813a26ec55dc9da9693308ab8140469",
+      "packet": "cohort-2026-10-07T08-25-17-562Z-0",
+      "inputHash": "5ec2d909094fdb783e4c1c533b75737eb2513d2d23b93578a18e45ab592531c4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸 앞 수식어가 이웃한, 다른, 옆 등 여러 말로 채워져 답이 하나로 정해지지 않음. 수식어 조건을 구체화해야 함.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 빈칸 '겹치는'이 '접었을 때 ___ 면과 빈틈 없이'라는 문맥에서 하나로 정해지지 않는다. 이웃한, 다른, 옆 등 여러 말이 들어갈 수 있다. 또 '겹치는 면과 빈틈 없이'는 '겹침과 빈틈이 없이'를 어색하게 옮긴 문장이라 뜻이 흐려진다. '접었을 때 겹치는 부분도 빈틈도 없이'처럼 문장을 고쳐 빈칸이 가리키는 내용을 하나로 정해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-2-4-xc17",
+      "contentHash": "93d765bc7f7efc0b7d956c3c75df42b366e32f9344bfe5de65e79068b3e051a1",
+      "packet": "cohort-2026-10-07T08-25-17-562Z-0",
+      "inputHash": "5ec2d909094fdb783e4c1c533b75737eb2513d2d23b93578a18e45ab592531c4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 합동도 이등변삼각형도 참이라 답이 둘이고, 합동은 앞의 모양과 크기가 같아를 되풀이하는 말이 됨. 빈칸이 가리키는 대상을 하나로 정해야 함.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 '모양과 크기가 같아 모두 ___이다'에서 '합동'은 앞 구절(모양과 크기가 같다)을 이름으로 되풀이하는 말일 뿐이다. 이 문장에서는 '이등변삼각형'도 참이라 답이 둘이다. 빈칸이 합동이라는 용어를 묻는지 옆면의 모양을 묻는지 정해야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-3-4-xc2",
+      "contentHash": "83c7a5c3ce640f439804d065ef0fb37b04e65ed56c72ca53467687360c5bdde0",
+      "packet": "cohort-2026-10-07T08-25-17-562Z-0",
+      "inputHash": "5ec2d909094fdb783e4c1c533b75737eb2513d2d23b93578a18e45ab592531c4",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 각도로 답할지 한 바퀴의 반이라고 답할지 정해지지 않고, 한 바퀴의 반이라고 써도 참이 되는 되풀이 표현이 됨. 단위나 형식을 지정해야 함.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 '반 바퀴는 ___만큼 돌리는 것이다'는 단위와 형식이 정해져 있지 않다. '한 바퀴의 반'이라고 써도 참이어서 되풀이 표현이 되고, 키는 180°뿐이라 답이 하나로 정해지지 않는다. '반 바퀴는 ___도만큼 돌리는 것이다'처럼 각도를 묻는다고 밝혀야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-3-4-xc23",
+      "contentHash": "0c293a1283dab472863224aa6044e8a709d2e6312aaec52834d88e9f7ac7a451",
+      "packet": "cohort-2026-10-07T08-25-17-578Z-1",
+      "inputHash": "ed4d7fa928355431b9a988a4ba82690bc092a711038d6d1ee58e6252ca51e2b8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 마지막 문장 '한 바퀴 돌려 겹치는 것은 모든 도형에서 같다'가 수학적으로 어색하다. 의도는 '모든 도형에서 일어난다'이므로 표현을 고쳐야 한다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 마지막 문장 '한 바퀴 돌려 겹치는 것은 모든 도형에서 같다'가 수학적으로 부정확하다. 의도는 '모든 도형이 한 바퀴 돌리면 겹친다'인데 '같다'는 무엇이 같은지 알 수 없다. 이 문장이 '반 바퀴'를 소거법으로 고르게 하는 단서도 된다. 문장을 '한 바퀴 돌리면 어떤 도형이든 처음과 겹친다'로 고치고, 단서가 되지 않게 빈칸 구성을 다시 해야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-2-xc24",
+      "contentHash": "ec1d919875012c199bf03bb120a0ac27e8ec7a60d1bab8c9575966c35bcabf8f",
+      "packet": "cohort-2026-10-07T08-48-40-255Z-0",
+      "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "일반 설명 교정의 독립 검토가 통과하지 않음",
+        "coreAfter가 null인데 coreReason에는 '원문의 몇 배이면 …같은 배가 모호해 분명히 한다'는 수정 의도가 적혀 있어 서로 모순된다. 수정이 필요하면 coreAfter를 작성해야 하고, 필요 없으면 coreReason을 지워야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-4-xc16",
+      "contentHash": "b5c201723d43d4ee3fe28eb6372219e3b3639a75d27339333203878f6fb49674",
+      "packet": "cohort-2026-10-07T08-48-40-255Z-0",
+      "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 빈칸 '지워도'는 바로 앞 절 '지울 수 없지만'의 동사를 활용형으로 되풀이하면 채워진다. 0의 위치에 따른 크기 차이를 몰라도 맞힐 수 있어 문법 복원일 뿐이다. 빈칸을 '크기가 □'처럼 결과를 묻거나, 두 경우의 크기 변화를 구체적으로 묻도록 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-5-xc6",
+      "contentHash": "acbc8d894f2eb7950bf8e51da0cc92a4b66b79b2b45099837a3c60004c1433a9",
+      "packet": "cohort-2026-10-07T08-48-40-255Z-0",
+      "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 첫 빈칸은 '잘못' 같은 말로 문법만 복원해도 맞아 보인다. 소수점이 어느 쪽으로 몇 칸 옮겨졌는지처럼 구체적으로 물어야 한다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 빈칸 '잘못'은 '소수점 위치가 □되었다'의 활용형을 채우는 문법 복원이다. 둘째 빈칸 '없다'도 '비슷하지만 … 할 수 □'라는 접속 구조에서 정해진다. 2.52가 어림값 25보다 소수점이 어느 쪽으로 몇 칸 움직인 값인지 같은 수학 내용을 묻도록 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-1-3-5-xc11",
+      "contentHash": "3e5b4e3f037827ca50069f19395de00256329175817c23048f97d483b063f1e4",
+      "packet": "cohort-2026-10-07T08-48-40-255Z-0",
+      "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-B: 어느 계산 결과인지 예가 없고 '무엇을 다시 확인'과 '소수점 위치만 보면 부족한 까닭'이 막연해 답 범위가 정해지지 않는다.",
+        "B의 실제 결정과 2차 판정이 다름",
+        "B에 구체적 예가 없고, '무엇을 다시 확인'과 '소수점 위치만 보면 부족한 까닭'이 막연해 답 범위가 정해지지 않는다. 필수 요소 '소수점 위치를 다시 확인한다'는 문제 문구 '소수점 위치만 보면'을 되풀이한 것이다. 어림값과 크게 다른 구체적인 계산 결과를 제시하고 무엇이 얼마나 다른지 판단하게 해야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-4-4-xc1",
+      "contentHash": "1c1b16c62d42d985c5f11bd565f6582aa546d5019299c477bcb76cd32f9e8aa7",
+      "packet": "cohort-2026-10-07T08-48-40-255Z-0",
+      "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 필수 요소 anyOf의 둘째 대안 '1배와 0.5배를 더한다'는 문제에 이미 주어진 1.5=1+0.5를 되풀이한 것이다. 이 대안만으로 충족되어, 핵심인 '0.5배=절반'으로 바꾸는 단계가 검사되지 않는다. 대안을 '그 수의 절반을 더한다'로 한정하거나 0.5배가 절반임을 쓰게 해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-1-2-xc4",
+      "contentHash": "e3421fd22ee7f4b8d581858c237f8d4a1444b8307c59c0e1a1d3c2f24d2a57c3",
+      "packet": "cohort-2026-10-07T08-48-40-284Z-1",
+      "inputHash": "035ceffa7fe9a17e3c8a94f59ae33fe1db47e792221a4c9deb0584b688e8213e",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '두 분모'의 값이 문항에 없어 □에 들어갈 수를 정할 수 없다. 분모(예: 4와 6)를 제시해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-2-2-xc8",
+      "contentHash": "6d620d8f674638088f2e62c2de57d9411f5614b6a6ddcbe7f8dc68edefbacd1b",
+      "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+      "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 요구 조건이 '몫이 안 바뀌게'뿐이라 '같은 배'와 '100배' 중 무엇을 묻는지 정해지지 않는다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 조건이 '몫이 안 바뀌게'뿐이라 '같은 배'와 '100배'가 모두 답이 된다. 무엇을 묻는지 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e5-2-4-5-xc25",
+      "contentHash": "a38ad253f5b26d541bdd8c0725a5fbc03ac4fcd8b32c24bcd6cdf8860ba92b78",
+      "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+      "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 문장이 두 곱 0.10, 0.100과 '다르지만'을 이미 보여 준다. 빈칸 '0.1'은 끝의 0을 지우면 되고 '같다'는 '모두 0.1로'에서 바로 복원되므로 개념 확인이 아니라 문법 복원이다."
+      ]
+    },
+    {
+      "id": "e6-2-2-5-xc17",
+      "contentHash": "97048b3338788e6ff8e17919c9315e40eccc9ec99d453554219a97f98b67c953",
+      "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+      "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸이 '것이다'로 끝나는 서술 전체라 표현 범위가 열려 있고, 무엇을 써야 하는지 구체적이지 않다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc6",
+      "contentHash": "476724d7f003322cca150748d32ed8d48c29b8a22c7467fdea330cce23635641",
+      "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+      "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: '한 가지 이상 쓰시오'라서 좌우 순서와 가려짐이라는 서로 다른 개념을 anyOf에 한꺼번에 담았다. anyOf는 같은 내용의 대안이어야 하는데 여러 개념의 답을 방치하고 있다. 하나의 개념으로 한정해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc8",
+      "contentHash": "7e2751fd28608fd379af0bc094754caca95bdd674e13361f19cba3837f52683a",
+      "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+      "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B: requiredIdeas의 '위에서 본 모양이 삼각형이다'는 물음의 '삼각형으로 보이려면'을 되풀이해도 충족되어, 밑면과의 관계를 묻는 요구가 사라진다. C: 정답 '밑면'은 앞 구절 '밑면이 바닥에 닿게'를 복사한 것이다. 위에서 본 모양은 윗면과도 같은데 '윗면'은 인정 답에 없다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc15",
+      "contentHash": "82cc86413ecca49111d631a4613c0a3d9fd6400c9b3914b0f57be77cb25fd77c",
+      "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+      "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: requiredIdeas '앞이나 옆에서는 가장 높은 곳의 높이가 보인다'는 물음 전제 '앞이나 옆에서 본 모양으로는 알 수 있다'를 바꿔 쓴 말이라 복사만으로 충족된다. 까닭(각 줄의 가장 높은 층이 가려지지 않고 드러남)을 구체적으로 요구해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc21",
+      "contentHash": "b524d0abddd8616c6268846e5a1d38b7981bd23b99317f2397cce7252b90ecac",
+      "packet": "cohort-2026-10-07T08-57-39-605Z-1",
+      "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸에 '붙어', '둘러싸', '가리고' 등 여러 낱말이 들어갈 수 있어 답 범위가 정해지지 않고, 수학적 관계 선택 없이 낱말 복원에 가깝다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C 빈칸이 '가리고' 외에 '막고·둘러싸고·붙어' 등 서로 다른 낱말로도 채워질 수 있다. 문장에 구분 단서가 없어 개념 선택이 아니라 낱말 복원이 된다."
+      ]
+    },
+    {
+      "id": "e6-2-3-1-xc22",
+      "contentHash": "81f73cd7e36e9b7d52f92b673637e4b72e7f37ed1e9bed12894f650ae2f9cd7d",
+      "packet": "cohort-2026-10-07T08-57-39-605Z-1",
+      "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 한 모서리에 쌓은 개수 조건이 빠져 크기를 정할 수 없고, '같은' 같은 답도 참이 되어 답이 하나로 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e6-2-3-2-xc9",
+      "contentHash": "5da8bfd28c096bf139019202eed740852e2584038e95babffab5ed4fad9f3f27",
+      "packet": "cohort-2026-10-07T08-57-39-605Z-1",
+      "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C '어느 □에 몇 □ 놓았는지'의 '자리·개'는 문장 틀만으로 정해진다. 위치와 개수라는 개념이 문장에 이미 드러나 있어 낱말 복원에 그친다."
+      ]
+    },
+    {
+      "id": "e6-2-3-2-xc12",
+      "contentHash": "af0ba8c8be925ae328250424a9d475745699174d380116731a639b6709560375",
+      "packet": "cohort-2026-10-07T08-57-39-605Z-1",
+      "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 핵심 답 '최대한 많이 놓는다'는 물음 '가장 많은 개수를 구하려면'의 되풀이(동어반복)이다. '조건에 맞게 한다'는 너무 막연해서 채점 기준이 되지 못한다. 가려진 자리의 높이를 정하는 구체 기준이 없다."
+      ]
+    },
+    {
+      "id": "e6-2-3-2-xc13",
+      "contentHash": "f0982e9165103597687b596afd3d484394a63fd3b6483dd86c301b3455d858a5",
+      "packet": "cohort-2026-10-07T08-57-39-605Z-1",
+      "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸에 '있는지 없는지'와 '몇 개'가 모두 들어갈 수 있어 요구가 구체적이지 않고 답 범위가 정해지지 않는다."
+      ]
+    },
+    {
+      "id": "e6-2-3-3-xc23",
+      "contentHash": "6a346c8ec23bdc91ad34e9dbb16152548cd06e740b7e4ba802309085c86ed28c",
+      "packet": "cohort-2026-10-07T08-57-39-605Z-1",
+      "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 둘째 물음 '그 칸이 위에서 본 모양에 없으면 어떻게 되는지'의 답 '쌓기나무를 둘 수 없다'는 전제의 되풀이다. 최고 줄이 하나씩일 때 그 교차 칸이 없으면 앞·옆 모양을 동시에 만족하는 쌓기가 불가능하다. 이 점이 빠져 물음과 기준이 모호하다."
+      ]
+    },
+    {
+      "id": "e6-2-3-4-xc3",
+      "contentHash": "3078cfd47b079f4e225fd3c39f7985c7ed3c4c3acde6a9b3efefd08b6902ee54",
+      "packet": "cohort-2026-10-07T08-57-39-605Z-1",
+      "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 둘째 필수 '각 칸의 수가 그 칸에 쌓인 개수(높이)이므로'는 물음 본문 '각 칸에 쌓인 개수가 적혀 있을 때'에 이미 있는 전제다. 복사만으로 만족된다."
+      ]
+    },
+    {
+      "id": "e6-2-3-6-xc8",
+      "contentHash": "05bf27896324389b79b03d8db0ec596307636e4eaaecc74afead2a0a170a0518",
+      "packet": "cohort-2026-10-07T09-06-25-656Z-0",
+      "inputHash": "c3551998733a897159e9e36c8084b7b09a835a5f54845c96339c2d3aa32d8deb",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 식 '5+3+1='을 문장에 이미 주어 '층별 개수를 더한다'는 방법이 노출된다. 빈칸은 단순 덧셈 계산뿐이라 개념 확인이 되지 않는다."
+      ]
+    },
+    {
+      "id": "e6-2-4-5-xc6",
+      "contentHash": "1a16e89b3e396827a7e332942e3d0ba36ede661b80bab2ce5e25abe0b022fbc5",
+      "packet": "cohort-2026-10-07T09-13-59-191Z-0",
+      "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 문장이 '비가 8:12일 때 가장 간단한 비'만 묻는 단순 약분이다. 비례배분, 처음 비와 같다는 원 개념이 전혀 나오지 않아 목표를 확인하지 못한다."
+      ]
+    },
+    {
+      "id": "e5-2-5-3-xc23",
+      "contentHash": "9d5f0f613e4d0b82ef533ab85ed0b86cafc4a638252337c46d5423f68ca6d0fd",
+      "packet": "cohort-2026-10-07T09-13-59-191Z-0",
+      "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '평행하지 않은 두 면은 언제나 ___으로 만난다'에서 '수직'뿐 아니라 '모서리'로 만난다도 참이다. 서로 다른 개념의 답이 가능한데 인정 답은 수직 하나뿐이다. 1차 블라인드 답도 '모서리'였다."
+      ]
+    },
+    {
+      "id": "e5-2-5-4-xc10",
+      "contentHash": "2ee0593712bf7adedca49569a75f01290fafeee44fe1b860689803f38e77cb46",
+      "packet": "cohort-2026-10-07T09-13-59-191Z-0",
+      "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '서로 평행한 모서리는 겨냥도에서도 서로 {평행}하게'의 빈칸이 바로 앞 낱말의 되풀이다. 겨냥도 작도 원리를 판단하지 않고 낱말 복사만으로 답이 나온다."
+      ]
+    },
+    {
+      "id": "e5-2-5-4-xc27",
+      "contentHash": "c15406f36a64d91debd5e81ec3742453d76f5af13d68b872e112f0e46f13329f",
+      "packet": "cohort-2026-10-07T09-13-59-211Z-1",
+      "inputHash": "1a8b597c6a0f74068b685eb5ff276827cf199dbee55fbb15e3413fe2cf1cce28",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: 물음은 '무엇의 자리를 먼저 정하고 점선을 어떻게 긋는지'만 묻는데, 세 번째 requiredIdea '같은 방향의 실선과 평행하고 길이가 같게'는 묻지 않은 설명이다. 두 번째·세 번째 requiredIdea가 띄어쓰기 없는 문자열이어서 채점 표현도 불안정하다. 세 번째 requiredIdea를 삭제하고 두 번째를 정상 문장으로 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-5-5-xc7",
+      "contentHash": "529dd0703ef03e7b82831d8b0dafc6151bdfd42da48ecc7b067a6149291051fc",
+      "packet": "cohort-2026-10-07T09-13-59-211Z-1",
+      "inputHash": "1a8b597c6a0f74068b685eb5ff276827cf199dbee55fbb15e3413fe2cf1cce28",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '□으로 만난다'에는 '모서리로 만난다'도 참이라 직각만 정답이 되지 않는다. '접으면 두 면 사이의 각이 □이 된다'처럼 각의 크기를 묻도록 고친다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '접으면 □으로 만난다'에 '모서리로'도 참이어서 '수직'만 정답이 되지 않는다. '접으면 두 면 사이의 각이 □이 된다'처럼 각의 크기를 묻도록 고쳐야 한다. '직각'도 같은 뜻으로 인정해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-6-2-xc6",
+      "contentHash": "7b9deaaf67faf6f0dd4bf963cac7740167b0f5285f1297ede1bb1794317a0705",
+      "packet": "cohort-2026-10-07T09-22-15-400Z-0",
+      "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B의 두 번째 필수 요소 '하나씩'은 질문이 요구하지 않은 내용이다. 질문은 '어느 두 변에 붙는가'와 '그 변의 길이'만 묻는다. '마주 보는 두 변에 붙고 길이는 밑면 둘레와 같다'만 써도 의미가 옳으므로 '하나씩'은 독립 필수가 아니다. 필수 요소에서 빼거나 질문에 명시해야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-5-5-xc15",
+      "contentHash": "6e4277f9d72b6a665828296e0b49af45722dbdb742c06265f857f19350a6d0ac",
+      "packet": "cohort-2026-10-07T09-22-15-400Z-0",
+      "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸에 밑면·바닥·기준·아래 등 어떤 말을 넣어도 참이라 수학적 관계를 적용해 답이 정해지지 않는다. 어떤 면을 어떻게 놓는지 구체적 조건이 필요하다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C의 빈칸 '한 면을 □으로 정하고'에는 기준, 바닥, 아래 등 어떤 말을 넣어도 참이 된다. 수학적 관계를 적용해 '밑면'이 정해지지 않는다. 인정 답 목록도 밑면·바닥·바닥면뿐이다. 어떤 면을 어떻게 놓는지 구체적 조건이 필요하다."
+      ]
+    },
+    {
+      "id": "e5-2-5-6-xc5",
+      "contentHash": "8964269a81bfb792249f2f7c7468cb84fe996028763715f1559eaf8d2812cfe6",
+      "packet": "cohort-2026-10-07T09-22-15-400Z-0",
+      "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸이 쌍의 수인지 다른 말인지 정해져 있지 않고 저절로·반드시 등도 넣을 수 있다. 마주 보는 면이 몇 쌍 생기는지 묻는 식으로 구체화해야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-5-6-xc9",
+      "contentHash": "3dca4c2e9d965d8e362742c78667895a30d4598b055484fc5c247456d9c575e4",
+      "packet": "cohort-2026-10-07T09-22-15-400Z-0",
+      "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B의 '접었을 때 면과 맞닿는 선분이 각각 어떠해야 하는지'는 문장이 불분명하다. 질문이 선분의 조건만 묻는 것처럼 읽히는데, 참고답과 필수 기준은 '겹치는 면이 없다'와 '맞닿는 선분의 길이가 같다' 두 가지를 모두 요구한다. 질문이 요구하지 않은 내용을 필수로 삼은 셈이다. 전개도가 되기 위한 두 조건(겹치지 않음, 맞닿는 변의 길이가 같음)을 쓰라고 명시해야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-6-3-xc11",
+      "contentHash": "67a6b1e96a7df5f796118a2e1dd07ea73b3b14d5e96c67a36b99b3abb8c4dac7",
+      "packet": "cohort-2026-10-07T09-22-15-400Z-0",
+      "inputHash": "96b41c6e05305181cf0aca02fbfc439a044bda070c2ef4568ffb4afcc5bf18c8",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C는 모선의 정의 문장에서 이름 '모선'을 묻는 용어 회상이다. 원문 개념인 '세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변이 모선이다'를 전혀 다루지 않아 ID의 목표와 어긋난다. 앞에서 본 삼각형의 맥락을 넣어 그 두 변이 무엇인지 묻도록 바꿔야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-5-6-xc12",
+      "contentHash": "95bdb46e4568d26342a85b6f0506d99ffc830e583de8c393d627de41bbce0bc2",
+      "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+      "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸에 실선, 테두리, 7개, 바깥쪽 선 등 여러 종류의 답이 들어갈 수 있어 요구가 구체적이지 않다."
+      ]
+    },
+    {
+      "id": "e5-2-5-6-xc13",
+      "contentHash": "6a804aaef8e9a8f24fb3debe6a4ee90d4a1cd820e945fe622b015c9fe97876b5",
+      "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+      "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: '다른 면 □'에 들어갈 내용(개수인지 이웃한 면인지 어떤 면인지)이 정해지지 않아 답 범위가 열려 있다."
+      ]
+    },
+    {
+      "id": "e5-2-5-6-xc14",
+      "contentHash": "b7c9a555b63a64b21c263945e5b8dbf792022c3a44685e16ecbba23fd15cbbd0",
+      "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+      "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "C의 실제 결정과 2차 판정이 다름",
+        "B·C 둘 다 제외했는데 이유가 '그림 없이 이해하기 어렵다, 대체 ID 없음'뿐이다. 이 ID의 개념(밑면을 가운데 두고 옆면 4개를 펼친 뒤 나머지 밑면을 맞은편 변에 붙이는 전개도)은 어느 문항에서도 확인되지 않는다. 글만으로도 B(나머지 밑면은 어느 변에 붙이는가)와 C를 만들 수 있으므로 제외 이유가 부실하다."
+      ]
+    },
+    {
+      "id": "e5-2-5-6-xc24",
+      "contentHash": "321b27f8c82c7bed97e3b16a82800dbded0b522c098ef90273ae60eddc4b7750",
+      "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+      "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B 제외 이유가 맞지 않는다. xc16 B는 옆면 띠의 가로 방향 길이가 밑면의 둘레와 같다는 것만 묻고, 이 ID의 개념인 '띠의 세로 길이=직육면체의 높이'는 묻지 않는다. 같은 문항이 다룬다는 근거가 없으므로, 제외하려면 올바른 근거를 쓰거나 B를 새로 만들어야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-5-6-xc27",
+      "contentHash": "db229a79d1fe11e7f842ed1be0f77b54345252a10dea749eb1f97587119e7b9a",
+      "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+      "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: 둘째 빈칸 {7}쌍은 같은 문장 앞의 '자른 모서리 7개'를 그대로 베끼면 맞는다. '자른 모서리 1개=맞붙는 선분 짝 1쌍'이라는 관계를 알지 못해도 답이 나오므로 7쌍이 변별되지 않는다. 짝의 수를 테두리 선분 수 14개에서 구하게 하는 식으로 바꾸어야 한다."
+      ]
+    },
+    {
+      "id": "e5-2-6-1-xc2",
+      "contentHash": "2eec9882402f9d8b6801566f120043fd018904dee74407bdbe0a0555805077bf",
+      "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+      "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "B의 실제 결정과 2차 판정이 다름",
+        "B: requiredIdeas 셋째 항목이 '8개통에서2개통으로3개옮겨모두5개로만든다'처럼 띄어쓰기가 깨진 문자열이다. 물음은 방법 설명과 평균만 요구하는데 특정 이동량(8→2, 3개)까지 필수로 요구한다. 첫째와 둘째 항목으로 충분하므로 셋째 항목은 삭제하거나 정상 문장으로 고쳐야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-6-4-xc7",
+      "contentHash": "e94722c8c7eb67ff87b127173a60bf9ee29114a4786a2ca309787c41fe9c0295",
+      "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+      "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "blind-C: 빈칸이 앞 문장의 서술어를 복원하는 것뿐이어서 수학적 관계를 적용하지 않는다.",
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '어느 방향으로 밀어도 잘 {굴러간다}'는 앞 문장의 서술어를 복원할 뿐이다. 중심에서 닿는 점까지 거리가 같다는 구의 성질을 적용하지 않아도 채워진다. 수학적 관계를 묻는 빈칸(예: 중심에서 바닥에 닿는 점까지의 거리가 □)으로 바꾸어야 한다."
+      ]
+    },
+    {
+      "id": "e6-2-6-4-xc25",
+      "contentHash": "d8f60155b88d47e50660f41e360a821bf9748f3c69ee4fe8b18199af287a5f55",
+      "packet": "cohort-2026-10-07T09-22-15-421Z-1",
+      "inputHash": "828678d860a5733ea76ac4fc52d44d88677d2d19657f59c7af19c6a95f12f481",
+      "blindProvider": "claude",
+      "blindModel": "sonnet",
+      "keyProvider": "claude",
+      "keyModel": "sonnet",
+      "accepted": false,
+      "issues": [
+        "C의 실제 결정과 2차 판정이 다름",
+        "C: '원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}'의 빈칸은 앞 절의 '밑면이 있다'를 부정해 붙인 것이다. 구의 성질을 몰라도 대조 구조만으로 채워지는 문법 복원이다. B도 제외되어 이 ID에서 남은 평가가 이것뿐이므로, 구에 평평한 면·꼭짓점이 없다는 점과 연결한 빈칸으로 바꾸어야 한다."
+      ]
+    }
+  ],
+  "invalidPackets": [],
+  "totalValidatedEvidenceCount": 11917
+}

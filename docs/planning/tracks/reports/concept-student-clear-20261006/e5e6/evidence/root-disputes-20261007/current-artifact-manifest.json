@@ -1,0 +1,58 @@
+{
+  "rootLibraries": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\student-clear-integration-20261006\\scripts\\qa\\concept-blank\\student-clear\\proposals.ts",
+      "sha256": "225b77083752370679cac9f584eb3ad2ce18debe651ac7bba9f39aaba50a69b2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\student-clear-integration-20261006\\scripts\\qa\\concept-blank\\student-clear\\editorial.ts",
+      "sha256": "dd01cc9353620c10b57b78ad8856202447858408943e882f0f9430f8a21887b2"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\student-clear-integration-20261006\\src\\contracts\\conceptBlank.contract.ts",
+      "sha256": "70e27e15f5f8d87386f632da04e88261d034c25a91312bb338a40f8a0f783a78"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\student-clear-integration-20261006\\src\\lib\\concept-blank\\notation.ts",
+      "sha256": "68cc277e9685e4e1d18a86fb9ceda80eb4203606634c4f7bc7dd0b450cdbe3f6"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\student-clear-integration-20261006\\src\\lib\\concept-blank\\audit.ts",
+      "sha256": "5a8131af2cb2ed924f5b153b9477efbe12f8c2f7801738ec5cf4cfc5dcaab1cf"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "D:\\tmp\\concept-student-clear-20261006\\baseline.json",
+      "sha256": "418e1f5267457a82175fd114b9dcd7e4b893de8a7d883ebbe0d41155012e81bb"
+    },
+    {
+      "path": "D:\\tmp\\concept-student-clear-20261006\\e5e6.json",
+      "sha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172"
+    },
+    {
+      "path": "D:\\tmp\\concept-student-clear-20261006\\current-negative-amendments.json",
+      "sha256": "7e03fe2a8bf47e251e4c9aae648f8373c72f60f0cd1e93ab31954a7a22225f4b"
+    }
+  ],
+  "currentArtifacts": [
+    {
+      "file": "audit.json",
+      "sha256": "87b46117afd2c129268f62a6f1b75be97f5f7aef9f7855139ec6274ccd19077b",
+      "crlfLines": 316372,
+      "lfLines": 316372
+    },
+    {
+      "file": "partial-audit.json",
+      "sha256": "2745855889b66efd46f9e83e070322630636df6480c89e03e8bdeb162b12199b",
+      "crlfLines": 316374,
+      "lfLines": 316374
+    },
+    {
+      "file": "codex-final-editorial.json",
+      "sha256": "7581f5192ae15627d03cde9f57c9702033082dcc22d8275283b6cecf2ae27c16",
+      "crlfLines": 50804,
+      "lfLines": 50804
+    }
+  ]
+}
