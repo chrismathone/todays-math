@@ -3,9 +3,9 @@
 import type { EnglishExam } from "@/contracts/english.contract";
 
 import { examLabel } from "./englishClient";
-import s from "./EnglishStudio.module.css";
+import s from "./EnglishExamPicker.module.css";
 
-/** 학교 칩 + 시험 고르기(`학년 · 이름`) — 세 뷰가 같은 것을 그린다. 고른 칩은 옅은 코발트 면 + 테두리(시안 C) */
+/** 학교와 시험을 한 영역에서 고른다. 모든 영어 뷰에서 같은 선택 동작을 쓴다. */
 export default function EnglishExamPicker({
   exams,
   exam,
@@ -18,36 +18,62 @@ export default function EnglishExamPicker({
   const schools = [...new Set(exams.map((item) => item.school))];
   const ofSchool = exams.filter((item) => item.school === exam.school);
   return (
-    <div className={s.pickerRow}>
-      <div className={s.chips} role="group" aria-label="학교">
-        {schools.map((school) => (
-          <button
-            key={school}
-            type="button"
-            className={s.chip}
-            aria-pressed={school === exam.school}
-            onClick={() => {
-              if (school === exam.school) return;
-              const first = exams.find((item) => item.school === school);
+    <section className={s.context} aria-label="학교와 시험 선택">
+      <div className={s.schoolField}>
+        <span className={s.label}>학교</span>
+        {schools.length > 3 ? (
+          <select
+            className={s.examSelect}
+            aria-label="학교 고르기"
+            value={exam.school}
+            onChange={(event) => {
+              const first = exams.find(
+                (item) => item.school === event.target.value,
+              );
               if (first) onSelect(first.id);
             }}
           >
-            {school}
-          </button>
-        ))}
+            {schools.map((school) => (
+              <option key={school} value={school}>
+                {school}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <div className={s.schools} role="group" aria-label="학교">
+            {schools.map((school) => (
+              <button
+                key={school}
+                type="button"
+                className={s.chip}
+                aria-pressed={school === exam.school}
+                onClick={() => {
+                  if (school === exam.school) return;
+                  const first = exams.find((item) => item.school === school);
+                  if (first) onSelect(first.id);
+                }}
+              >
+                {school}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
-      <select
-        className={s.examSelect}
-        aria-label="시험 고르기"
-        value={exam.id}
-        onChange={(event) => onSelect(event.target.value)}
-      >
-        {ofSchool.map((item) => (
-          <option key={item.id} value={item.id}>
-            {examLabel(item)}
-          </option>
-        ))}
-      </select>
-    </div>
+      <label className={s.examField}>
+        <span className={s.label}>시험</span>
+        <select
+          className={s.examSelect}
+          aria-label="시험 고르기"
+          value={exam.id}
+          onChange={(event) => onSelect(event.target.value)}
+        >
+          {ofSchool.map((item) => (
+            <option key={item.id} value={item.id}>
+              {examLabel(item)}
+            </option>
+          ))}
+        </select>
+      </label>
+    </section>
   );
 }

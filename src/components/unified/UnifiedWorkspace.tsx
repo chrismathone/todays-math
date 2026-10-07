@@ -1338,30 +1338,34 @@ function UnifiedWorkspaceContent({
               <kbd>Ctrl K</kbd>
             </button>
           )}
-          {currentUser && (
-            <div className={s.accountSlot}>
-              <WorkspaceAccount user={currentUser} />
-            </div>
-          )}
-          {product === "english" && (
-            <button
-              type="button"
-              className={s.maximizeButton}
-              aria-pressed={workspaceMaximized}
-              title={
-                workspaceMaximized
-                  ? "화면 복원 (Esc)"
-                  : "메뉴를 숨기고 작업 화면 최대화"
-              }
-              onClick={() => setEnglishMaximized((value) => !value)}
-            >
-              <Icon
-                name={workspaceMaximized ? "restore" : "maximize"}
-                size={17}
-              />
-              {workspaceMaximized ? "화면 복원" : "화면 최대화"}
-            </button>
-          )}
+          <div className={s.topbarActions}>
+            {currentUser && (
+              <div className={s.accountSlot}>
+                <WorkspaceAccount user={currentUser} />
+              </div>
+            )}
+            {product === "english" && (
+              <button
+                type="button"
+                className={s.maximizeButton}
+                aria-pressed={workspaceMaximized}
+                title={
+                  workspaceMaximized
+                    ? "화면 복원 (Esc)"
+                    : "메뉴를 숨기고 작업 화면 최대화"
+                }
+                onClick={() => setEnglishMaximized((value) => !value)}
+              >
+                <Icon
+                  name={workspaceMaximized ? "restore" : "maximize"}
+                  size={17}
+                />
+                <span className={s.maximizeLabel}>
+                  {workspaceMaximized ? "화면 복원" : "화면 최대화"}
+                </span>
+              </button>
+            )}
+          </div>
         </header>
         <div className={s.notifications}>
           {hasMenus &&

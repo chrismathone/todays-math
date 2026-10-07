@@ -1,8 +1,47 @@
+.root {
+  min-width: 0;
+  font-size: var(--text-body, 14px);
+  line-height: 1.5;
+  container: resource-bank / inline-size;
+}
+.root .tabs {
+  margin-bottom: 16px;
+}
+.root :is(button, input, select, textarea) {
+  min-width: 0;
+  max-width: 100%;
+}
+.root button {
+  font-size: var(--text-body, 14px);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.root :is(h2, h3) {
+  overflow-wrap: anywhere;
+}
 .layout {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.5fr);
   align-items: start;
-  gap: 20px;
+  gap: 24px;
+}
+.catalog {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--e-line);
+  border-radius: var(--card-radius, 12px);
+  background: var(--learn-surface);
+}
+.listHeading {
+  margin: 0;
+  font-size: var(--text-section, 18px);
+  font-weight: 650;
+}
+.resultCount {
+  margin: 8px 0 16px;
+  color: var(--e-muted);
+  font-size: var(--text-caption, 12px);
+  font-variant-numeric: tabular-nums;
 }
 .list,
 .usage {
@@ -13,6 +52,9 @@
 .list {
   max-height: min(60vh, 40rem);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  border-top: 1px solid var(--e-line-soft);
 }
 .list > li + li,
 .usage > li + li {
@@ -20,19 +62,29 @@
 }
 .rowButton {
   width: 100%;
+  min-height: var(--control-height, 44px);
   display: grid;
   gap: 8px;
   padding: 16px;
-  border: 0;
-  border-radius: var(--control-radius, 8px);
+  border: 1px solid transparent;
+  border-radius: 0;
   background: transparent;
   color: var(--e-ink);
   font: inherit;
   text-align: left;
 }
-.rowButton:hover,
+.rowButton:enabled:hover,
 .rowButton[aria-pressed="true"] {
   background: var(--e-soft);
+}
+.rowButton[aria-pressed="true"] {
+  border-color: var(--e-accent);
+}
+.rowButton:enabled {
+  cursor: pointer;
+}
+.rowButton:disabled {
+  cursor: default;
 }
 .rowButton strong {
   overflow-wrap: anywhere;
@@ -44,10 +96,10 @@
 }
 .detail {
   min-width: 0;
-  padding: 22px;
+  padding: 24px;
   border: 1px solid var(--e-line);
   border-radius: var(--card-radius, 12px);
-  background: white;
+  background: var(--learn-surface);
 }
 .detail h2,
 .detail h3 {
@@ -55,42 +107,55 @@
   overflow-wrap: anywhere;
 }
 .detail h2 {
-  font-size: 20px;
+  font-size: var(--text-section, 18px);
 }
 .detail h3 {
   font-size: var(--text-body, 14px);
 }
 .passage {
-  margin: 20px 0;
-  padding: 18px;
-  border: 1px solid var(--e-line-soft);
-  border-radius: var(--control-radius, 8px);
+  margin: 24px 0;
+  padding: 16px 0;
+  border-block: 1px solid var(--e-line-soft);
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   font: inherit;
   line-height: 1.8;
 }
 .filters,
+.toolbar,
 .actions,
 .pagination {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
+}
+.toolbar {
+  justify-content: flex-end;
+  margin-bottom: 16px;
 }
 .filters {
-  margin: 0 0 18px;
+  margin: 0 0 24px;
   align-items: end;
+  gap: 16px;
+}
+.filters,
+.listeningFilters {
+  padding: 16px;
+  border: 1px solid var(--e-line);
+  border-radius: var(--card-radius, 12px);
+  background: var(--learn-surface);
 }
 .filters > label {
   flex: 1 1 120px;
+  min-width: 0;
   margin-bottom: 0;
 }
 .filters > label:first-child {
   flex: 2 1 220px;
 }
 .listeningFilterContainer {
-  container-type: inline-size;
+  container: listening-filters / inline-size;
 }
 .listeningFilters {
   display: grid;
@@ -99,8 +164,8 @@
     minmax(88px, 0.6fr) minmax(78px, 0.6fr) auto;
   grid-template-areas: "query grade source year round actions";
   align-items: end;
-  gap: 10px;
-  margin: 0 0 18px;
+  gap: 16px;
+  margin: 0 0 16px;
 }
 .listeningFilters > label {
   min-width: 0;
@@ -129,9 +194,10 @@
   grid-area: actions;
   display: flex;
   justify-content: end;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
-@container (max-width: 860px) {
+@container listening-filters (max-width: 1040px) {
   .listeningFilters {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-areas:
@@ -139,7 +205,7 @@
       "year round actions actions";
   }
 }
-@container (max-width: 580px) {
+@container listening-filters (max-width: 680px) {
   .listeningFilters {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
@@ -150,7 +216,7 @@
   }
 }
 .actions {
-  margin-top: 14px;
+  margin-top: 16px;
 }
 .pagination {
   justify-content: space-between;
@@ -159,12 +225,12 @@
 .section {
   border-top: 1px solid var(--e-line-soft);
   margin-top: 24px;
-  padding-top: 20px;
+  padding-top: 24px;
 }
 .fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 14px;
+  gap: 0 16px;
 }
 .note {
   color: var(--e-muted);
@@ -191,31 +257,40 @@
 .usage li {
   padding: 12px 0;
 }
-.root :is(button, input, select, textarea, a):focus-visible {
-  outline: 2px solid var(--e-accent);
+.root
+  :is(button, input, select, textarea, a, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--learn-focus);
   outline-offset: 3px;
 }
-@media (max-width: 900px) {
-  .layout {
-    grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
-    gap: 14px;
-  }
+.root .rowButton:focus-visible {
+  outline-offset: -3px;
+}
+@container resource-bank (max-width: 900px) {
   .detail {
     padding: 16px;
   }
 }
-@media (max-width: 680px) {
+@container resource-bank (max-width: 760px) {
   .list {
     max-height: 18rem;
   }
   .layout,
   .fields {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .actions > button {
     flex: 1 1 auto;
   }
-  .passage {
-    padding: 12px;
+  .filters > label:first-child {
+    flex-basis: 100%;
+  }
+}
+@container resource-bank (max-width: 420px) {
+  .filters > label {
+    flex-basis: 100%;
+  }
+  .listeningFilters {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "query" "grade" "source" "year" "round" "actions";
   }
 }

@@ -62,6 +62,8 @@ describe("English bank search and composition", () => {
       await screen.findByRole("checkbox", { name: "현재 페이지 전체 선택" }),
     );
     fireEvent.click(screen.getByRole("button", { name: /선택 담기/ }));
+    expect(screen.getByRole("button", { name: "2번 위로" })).not.toBeVisible();
+    fireEvent.click(screen.getByText("목록·순서 확인"));
     fireEvent.click(screen.getByRole("button", { name: "2번 위로" }));
     fireEvent.click(screen.getByRole("button", { name: "시험지 미리보기" }));
     expect(await screen.findByRole("dialog")).toHaveTextContent(
@@ -88,6 +90,7 @@ describe("English bank search and composition", () => {
     fireEvent.click(screen.getByRole("button", { name: "시험지 미리보기" }));
     expect(await screen.findByText(/담은 문항의 원본이 변경/)).toBeVisible();
     expect(screen.queryByRole("dialog")).toBeNull();
+    fireEvent.click(screen.getByText("목록·순서 확인"));
     expect(
       within(
         screen.getByRole("complementary", { name: "담은 문제" }),
@@ -125,6 +128,7 @@ describe("English bank search and composition", () => {
     ).toBeVisible();
     expect(queries.at(-1)?.get("q")).toBe("no match");
     expect(queries.at(-1)?.get("grade")).toBe("중3");
+    fireEvent.click(screen.getByText("목록·순서 확인"));
     expect(
       within(
         screen.getByRole("complementary", { name: "담은 문제" }),

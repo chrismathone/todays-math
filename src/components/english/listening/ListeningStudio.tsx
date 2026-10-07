@@ -27,6 +27,7 @@ import {
   listeningRequest,
 } from "./listeningClient";
 import { uploadListeningAudio } from "./listeningUpload";
+import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import s from "./ListeningTeacherWorkspace.module.css";
 import tabs from "../EnglishTabs.module.css";
 
@@ -352,21 +353,23 @@ export default function ListeningStudio({
     : null;
   const busy = active && Boolean(pending);
   return (
-    <section className={s.studio} aria-label="영어듣기 스튜디오">
+    <section
+      className={`${s.studio} ${s.workspace}`}
+      aria-label="영어듣기 스튜디오"
+    >
       <div className={s.workspace}>
-        <header className={s.heading}>
-          <div>
-            <p className={s.eyebrow}>오늘의 영어 · 교사</p>
-            <h1>영어듣기</h1>
-            <p className={s.muted}>
-              듣기 자료를 준비하고 수업·학습·짧은 연습평가에 사용합니다.
-            </p>
-          </div>
+        <WorkspacePageHeader
+          title="영어듣기"
+          description="듣기 자료를 준비하고 수업·학습·짧은 연습평가에 사용합니다."
+        >
           <button type="button" disabled={busy} onClick={() => beginEdit(null)}>
             새 자료 만들기
           </button>
-        </header>
-        <nav className={tabs.tabs} aria-label="영어듣기 영역">
+        </WorkspacePageHeader>
+        <nav
+          className={`${tabs.tabs} ${s.areaTabs}`}
+          aria-label="영어듣기 영역"
+        >
           {(
             [
               ["materials", "듣기 자료"],
@@ -482,13 +485,11 @@ export default function ListeningStudio({
             selected ? (
               <>
                 <div className={s.documentHeading}>
-                  <p className={s.eyebrow}>
-                    저장된 자료 · 개정 {selected.revision}
-                  </p>
                   <h2>{selected.document.title || "제목 없는 초안"}</h2>
-                  <p className={s.muted}>
+                  <p className={s.eyebrow}>
                     {selected.document.level ?? "수준 미지정"} ·{" "}
-                    {selected.document.groups.length}묶음
+                    {selected.document.groups.length}묶음 · 개정{" "}
+                    {selected.revision}
                   </p>
                 </div>
                 <dl className={s.metadata}>

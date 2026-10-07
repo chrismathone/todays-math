@@ -8,6 +8,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+# Workspace design entrypoint
+
+Before changing teacher/admin workspace UI, read the standalone specification
+[DESIGN.md](DESIGN.md) and the [menu implementation map](docs/design/workspace-ui-rules-20261008.md).
+DESIGN.md owns shared tokens, composition, states, responsive behavior and review
+criteria; the menu map owns current files, feature boundaries and remaining differences.
+Use the current Math workroom as the English alignment reference; distinguish
+observed implementation from unification decisions. `Workroom.module.css` is
+the active shell stylesheet; `Workspace.module.css` is legacy. Preserve the
+documented student-app and print exceptions.
+
 # Orca — default parallel workflow
 
 If work can be split into independent sessions, do that with Orca by default

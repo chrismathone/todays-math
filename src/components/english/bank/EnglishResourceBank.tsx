@@ -77,7 +77,7 @@ export default function EnglishResourceBank({
           <div
             role="tablist"
             aria-label="자료 종류"
-            className={s.tabs}
+            className={`${s.tabs} ${b.tabs}`}
             onKeyDown={(event) => {
               if (
                 !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)
