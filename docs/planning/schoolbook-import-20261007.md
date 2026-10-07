@@ -15,10 +15,11 @@
 | 것 | 자리 |
 |---|---|
 | 원본 | `G:\중등교과서` · `G:\고등교과서` — 2022 개정 출판사 자료 54권 · HWP 5,493편(중3 폴더는 비어 있다) |
-| 변환본 · 추출 결과 | **저장소 밖** `E:\todays-math-textbook-import\`(hwpx 4.1GB · `extract2/` · `prepared/` · `review/`) — 다시 만들 수 있다 |
-| 추출 도구 | `scripts/import/textbook/`(README 에 길 · 규칙) — triage → convert_batch → extract → prepare → review |
+| 변환본 · 추출 결과 | **저장소 밖** `E:\todays-math-textbook-import\`(hwpx 4.1GB · `extract2/` · `prepared2/` · `review/` ~ `review4/` · `final/` · `final-check-pilot/` · `final-check/` · `final-check-2/` · `load/`) — 추출 · 준비는 다시 만들 수 있다. 🔴 **검토자의 출력(`review*/out` · `final-check*/out`)과 `load/refresh-*.json`(제자리 갱신의 고치기 전 값)은 다시 못 만든다** |
+| 추출 도구 | `scripts/import/textbook/`(README 에 길 · 규칙) — triage → convert_batch → extract → prepare → review → finalize → final-check → load |
 | DB 모델 | `source_book` → `source_material` → `problem.source_material_id` · `problem_source = school_textbook` · `unit.semester` (07 D-161) |
-| 못 붙인 문항 보고서 | `docs/planning/tracks/reports/textbook-import-20261007/unmapped.md` |
+| 문항의 손질 규칙 | `src/lib/import/schoolTextbook/` — `sourceMeta.ts`(책 · 자료 메타데이터) · `hwpNotation.ts`(수식 안의 표기 · 본문에 섞인 글 · 남은 낱말 세기) · `unsplitWords.ts`(끊긴 낱말) · `checkKey.ts`(지면 검토가 묶이는 지문) |
+| 보고서 | `docs/planning/tracks/reports/textbook-import-20261007/` — `unmapped.md`(정답을 못 붙인 문항 7,624) · `not-loaded.md`(답은 붙었지만 못 실었거나 잠가 둔 문항) |
 
 ## 2. 길
 
@@ -27,10 +28,13 @@ HWP ─(한글 COM · 창 없음)→ HWPX ─ hwpx_flow.py → 문단의 흐름(
   ─ segment.py → 문항 · 묶음 · 정답 칸 ─ extract.py → problems.jsonl (정답 짝짓기 · 문지기)
   ─ prepare.py → 글만으로 완결된 문항 고르기 · 줄 잇기 · 수식 LaTeX(기출 이관과 같은 변환기 · 잔재 고침 · 제품 렌더러 판정)
   ─ review/ → 검토자가 **정답 없이** 풀고 단원 · 유형 · 난이도 · 해설을 붙인다 ─ collect.py → 출판사 정답과 대조
-  ─ (적재기) → source_book · source_material · problem
+  ─ finalize.py → 검토가 끝난 글의 줄 잇기(글자를 안 바꾸는 것만)
+  ─ load-school-textbook.ts → 표기 손질(hwpNotation) · 문(제품 렌더러 · 죽은 역슬래시 · 남은 낱말) · 계획(`load/plan.json`)
+  ─ final-check/ → 검토자가 **실을 글 그대로**를 읽는다: 본문이 지면에 낼 꼴인가 · 해설 후보가 이 문항의 풀이인가
+  ─ load-school-textbook.ts --check … [--apply | --refresh --apply] → source_book · source_material · problem
 ```
 
-글자를 지어내는 자리는 **검토 단계의 해설 하나**뿐이다(교과서 해설이 없거나 답만 적힌 문항). 나머지는 결정적이다.
+글자를 지어내는 자리는 **해설 하나**뿐이다(교과서 해설이 없거나 · 답만 적혔거나 · 그 문항의 풀이가 아닌 문항). 나머지는 결정적이다.
 
 ## 3. 잰 것 (2026-10-07)
 
@@ -43,6 +47,12 @@ HWP ─(한글 COM · 창 없음)→ HWPX ─ hwpx_flow.py → 문단의 흐름(
 | 수식 변환 뒤 렌더가 안 되는 것(싣지 않는다) | 37 |
 | 검토 묶음 | 170묶음 · 6,618문항 · 해설을 새로 쓸 것 2,789 |
 | 시범 검토 넷(160문항) | 바로 일치 140 · 다름 9 · 실을 수 없음 10 · 답 없음 1 |
+| 첫 검토(정답 없이 풀기) | 일치 5,463 · 다름 807 · 실을 수 없음 336 · 답 없음 12 → 둘째 검토: 같은 값 401 · 검토자가 옳다 157 · 정답지가 옳다 16 · **정답지가 이 문항의 답이 아니다 214** · 못 가름 19 |
+| 본문이 바뀐 문항의 재검토 | 213 + 16 + 4문항(수식의 몫 규칙을 고친 뒤) |
+| **실은 문항** | **6,124** — 책 29 · 자료 1,273 · 중1 2,663 · 중2 1,446 · 공통수학1 568 · 대수 464 · 공통수학2 363 · 확률과 통계 310 · 미적분1 299 · 기하 8 |
+| 지면 검토(§8) | 세 회차 6,292 판정 — 본문 흠 213 · 해설 후보 그대로 5,752 · 다시 씀 530 · 후보 없음 10 |
+| **출제에 쓰는 문항** | **6,006** · 잠가 둔 문항 118 · 해설: 교과서 3,151 · 검토자가 쓴 것 2,971 · 없음 2 |
+| 검토에 쓴 것 | 전부 구독 모델(Sonnet · 둘째 검토만 Opus) — 첫 검토 1,750만 토큰 · 지면 검토 970만 토큰. 유료 API 0 |
 
 ## 4. 🔴 «답 9,785» 는 믿을 수 없는 숫자였다 — 표본을 읽고 찾은 결함
 
@@ -86,8 +96,48 @@ HWP ─(한글 COM · 창 없음)→ HWPX ─ hwpx_flow.py → 문단의 흐름(
 
 ## 7. 아직 안 한 것
 
-- 적재기(책 · 자료 메타데이터 파서 · 문항 적재 · 되돌리기 원장)
-- 문제은행 화면에서 출판사 · 자료 종류 · 학기로 거르기 — D-07, 시안 먼저
-- 그림 · 한글 도형 · 자료 표가 든 문항(약 5,000) — 원장님 «그림은 마지막에 따로»
-- 정답이 그림인 책(YBM 고등) · PDF 정답책/지도서 · 교과서 본문 문제 · zip 안의 HWP
-- 못 붙인 문항 보고서(`unmapped.md`)는 **첫 판 기준**이다 — 고친 추출로 다시 내야 한다
+- 문제은행 화면에서 출판사 · 자료 종류 · 학기로 거르기 — D-07, 시안 먼저. 지금은 출처 «교과서»로만 거를 수 있다
+- 그림 · 한글 도형 · 자료 표가 든 문항(6,020 — `not-loaded.md` §1) — 원장님 «그림은 마지막에 따로»
+- 잠가 둔 118문항(`not-loaded.md` §3) — 본문에 지시문이 빠진 것(같이 쓰는 발문을 못 가져왔다) · 밑줄 · 보기가 없는 것 ·
+  출판사 원본의 오타 · 보기 겹침 · **정답 의심 넷**. 고치려면 원본을 봐야 한다
+- 정답을 못 붙인 7,624문항(`unmapped.md`) — 정답이 그림인 책(YBM 고등) · PDF 정답책/지도서 · 풀이만 있는 것
+- 교과서 본문 문제 · zip 안의 HWP · 차시가 없는 22문항(초등 내용의 진단 평가)
+- 고등 선택 과목의 `unit.semester` 는 NULL 이다(학교마다 다르다) — 교과서 문항 1,081개가 «학기 없음»
+
+## 8. 🔴 실은 뒤에 찾은 것 — «답이 맞다»와 «지면에 낼 수 있다»는 다른 물음이었다 (2026-10-07 밤)
+
+6,121문항을 `approved` · 바로 쓸 수 있음으로 실은 직후, **들어간 것을 제품의 조회 조건으로 다시 읽은** 표본 여섯 가운데 하나가
+`$\lim _{x->4}$` · `$f\prime (4)$` 였다. 싣기 전에 읽은 표본 28개는 답이 전부 맞았고, 그것으로 갈음한 것이 모자랐다.
+
+| 흠 | 얼마나 | 왜 문을 지났나 |
+|---|---|---|
+| 수식 안에 한글 수식 낱말이 그대로(`boldx` · `x->4` · `SMALLPROD` · `10LEN<100` · `5timesa` · `16DEGRMC` …) | 약 500문항 | 제품 렌더러는 모르는 낱말을 **오류 없이 기울어진 글자로** 그린다. 변환 정본은 띄어 쓴 낱말만 안다 |
+| 교과서 풀이 칸이 그 문항의 풀이가 아니다(다음 문항의 본문 · 답을 끼워 넣은 문제지 · 줄이 붙어 못 읽는 식 · 답만) | 3,652칸 가운데 약 500 | **아무도 읽지 않았다** — 첫 검토 묶음에 풀이를 넣지 않았다 |
+| 본문에 섞인 글(단원 제목 · 문항 번호 · 배점 · 출처 표지) · 빠진 지시문 · 빠진 밑줄 | 약 300 | 첫 검토의 물음은 «풀 수 있나 · 답이 무엇인가»였다 |
+
+한 일, 차례대로:
+
+1. **전부 잠갔다** — `direct_use_allowed = false`(`hold-school-textbook.ts`). 은행에는 보이고 출제에는 안 뽑힌다. 지우지 않으니 번호 · id 가 그대로다.
+   시험지 · 바구니에 담긴 것은 0 이었다.
+2. **표기 손질** — `hwpNotation.ts`. 값은 안 바꾸는 규칙만, 규칙마다 실제 예를 시험에 둔다. 손질 뒤에도 남은 낱말은 `hwpLeftovers` 가 세고 그런 문항은 잠근다.
+3. **제자리 갱신** — 적재기 `--refresh`. 실린 문항의 본문 · 정답 · 해설 · 해설의 출처 · 잠금 다섯 칸을 계획에 맞춘다. 회차마다 고치기 전 값을 새 원장에(`load/refresh-<시각>.json`).
+4. **지면 검토** — `final-check/`. 검토자가 **실을 글 그대로**를 읽고 ① 본문 · 정답이 지면에 낼 꼴인가(`ok` · `flaw`) ② 해설 후보가 이 문항의 풀이인가
+   (`keep` · `replace` + 새 해설 · `none` + 새 해설)를 낸다. 시범 4묶음에 알려진 흠 넷을 넣어 전부 잡는 것을 본 뒤 전체를 돌렸다.
+   판정은 글의 지문(`checkKey` — 빈칸 · 줄바꿈은 뺀 글자)에 묶인다. 검토 뒤에 글자가 바뀌면 그 판정은 버리고 잠근다.
+5. **검토자가 짚은 꼴을 규칙으로** — 본문에 섞인 유형 제목 · 단원 제목 + 번호 · 배점 · 출처 표지, 전각 기호, 부호만 감싼 근호, 단위. 글이 바뀐 165문항만 다시 검토했다.
+6. **끊긴 낱말** — 줄 끝에서 끊겼다 빈칸으로 이어진 «거 리는» · «방향으 로»(58자리)를 붙였다. 사전은 검토자가 쓴 해설이다.
+
+풀린 것은 **지면 검토가 본문 `ok` 를 내고, 해설이 정해지고, 남은 낱말이 없는 문항**뿐이다(6,006). 문항마다 잠그는 까닭은 계획의 `hold` 에 있다.
+
+적재기를 다시 돌릴 때(다음 판 · 다른 기계):
+
+```bash
+ARGS="--prepared prepared2 --review review --review review2 --review review3 --review review4 --check final-check-pilot --check final-check --check final-check-2"
+npx tsx --env-file=.env scripts/import/textbook/load-school-textbook.ts 'E:\todays-math-textbook-import' $ARGS --refresh   # 바뀔 것이 0 이어야 한다
+npx tsx --env-file=.env scripts/import/textbook/census.ts                                                                # DB 에 들어간 것
+python scripts/import/textbook/report_load.py 'E:\todays-math-textbook-import' docs/planning/tracks/reports/textbook-import-20261007/not-loaded.md
+```
+
+🔴 손질 규칙(`hwpNotation.ts` · `unsplitWords.ts`)을 고치면 **글자가 바뀐 문항의 지면 검토가 낡아 잠긴다** — 드라이런의 «잠그는 문항»을 보고,
+`final-check/check_batches.py` 로 그 문항만 묶어 다시 검토한 뒤 `--check` 에 그 폴더를 더한다. 빈칸만 바뀌는 손질은 판정을 낡게 하지 않는다.
+🔴 지문의 셈(`checkKey.ts` ↔ `check_collect.py` 의 `check_key`)은 두 쪽이 같아야 한다 — 두 시험이 같은 값을 쥐고 있다.
