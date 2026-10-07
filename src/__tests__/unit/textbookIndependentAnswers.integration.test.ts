@@ -74,7 +74,7 @@ async function pdfText(browser: Browser, bytes: Uint8Array): Promise<string> {
         }
         return rows.join("\n");
       } finally {
-        await document.destroy();
+        await document.loadingTask.destroy();
       }
     }, RESOURCE_ORIGIN);
   } finally {

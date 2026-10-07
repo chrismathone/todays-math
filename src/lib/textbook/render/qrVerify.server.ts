@@ -194,7 +194,7 @@ export async function verifyPdfQrPixels(
               pdfPage.cleanup();
             }
           } finally {
-            await document.destroy();
+            await document.loadingTask.destroy();
           }
           return { checks, rasters };
         },
