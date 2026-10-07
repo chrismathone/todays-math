@@ -90,6 +90,9 @@ def test_an_operator_word_stuck_between_digits_and_brackets_is_spaced_out():
     # 이미 띄어 쓴 것 · 글자 사이의 것은 그대로
     assert pre_convert("$6 div x$") == "$6 div x$"
     assert pre_convert("$a div b$") == "$a div b$"
+    # 몫을 묶은 **뒤에** 띄운다 — 분모는 원문의 띄어쓰기까지다(1/(3×5) 이지 1/3 × 5 가 아니다)
+    assert pre_convert("$1 over 3times5 + 1 over 5times7$") == "$1 over {3 times 5} + 1 over {5 times 7}$"
+    assert pre_convert("$2^3times2$") == "$2^{3 times 2}$"
 
 
 def test_backslash_letters_become_upright_groups():

@@ -137,6 +137,7 @@ const KIND_PHRASES: ReadonlyArray<readonly [string, SourceMaterialKind]> = [
   ["소단원 확인하기", "소단원 평가"],
   ["소단원 문제", "소단원 평가"],
   ["대단원 평가 문제", "대단원 평가"],
+  ["대단원 문제", "대단원 평가"],
   ["대단원 종합 문제", "대단원 평가"],
   ["대단원 마무리 문제", "대단원 평가"],
   ["대단원 마무리", "대단원 평가"],
@@ -172,7 +173,8 @@ const THREE_LEVELS = new RegExp(
 const TWO_LEVELS = new RegExp(`${HEAD}${N}${SEP}(\\d{1,2})(?!\\d|${SEP}\\d)`);
 /** `1단원` · `4_단원 평가` — 「소단원 · 중단원 · 대단원」의 단원이 아니라 숫자 바로 뒤의 단원 */
 const CHAPTER_WORD = /(\d{1,2})\s*_?\s*단원/;
-const ROMAN_ALONE = new RegExp(`${HEAD}([${ROMAN}])(?=[_.\\s)]|$)`);
+/** `Ⅰ_대단원 평가` · `Ⅰ. 수와 연산` · `Ⅵ-A. 확률`(같은 대단원의 A · B 형) */
+const ROMAN_ALONE = new RegExp(`${HEAD}([${ROMAN}])(?=[_.\\s)]|-[A-Z]|$)`);
 /** `_2_방정식과부등식` — 밑줄 사이에 홀로 선 수. 파일 일련번호(`_01_YBM…`)가 앞에 있어 **마지막 것**을 쓴다 */
 const BETWEEN_UNDERSCORES = /_(\d{1,2})(?=_)/g;
 

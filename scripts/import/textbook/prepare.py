@@ -252,8 +252,12 @@ def unglue_operators(script: str) -> str:
 
 
 def pre_convert(text: str) -> str:
-    """변환 앞 — `$…$` 안의 한글 수식만 고친다."""
-    return re.sub(r"\$([^$]*)\$", lambda m: "$" + brace_over(brace_roots(brace_scripts(unglue_operators(roman_escapes(m.group(1)))))) + "$", text)
+    """변환 앞 — `$…$` 안의 한글 수식만 고친다.
+
+    🔴 차례가 있다 — 몫을 묶는 셋(첨자 · 제곱근 · 분수)이 **먼저**, 붙은 낱말 띄우기가 **나중**이다.
+    몫은 원문의 띄어쓰기로 정해진다: `1 over 3times5` 의 분모는 `3times5` 한 덩이다. 먼저 띄우면 분모가 `3` 이 된다
+    (셋째 묶음의 검토자가 «분모 3×5 가 1/3 × 5 로 뽑혔다»로 짚었다 — 띄우기를 앞에 둔 지 한 시간 만이다)."""
+    return re.sub(r"\$([^$]*)\$", lambda m: "$" + unglue_operators(brace_over(brace_roots(brace_scripts(roman_escapes(m.group(1)))))) + "$", text)
 
 
 #: 줄 머리의 사용자 영역 글자 — 기호 글꼴의 «답» 표시 · 글머리표(뜻을 가진 글자가 아니다). 줄 가운데 것은 남긴다(뒤에서 걸린다)

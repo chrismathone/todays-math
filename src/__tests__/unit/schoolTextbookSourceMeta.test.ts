@@ -553,6 +553,20 @@ describe("parseSourceMaterial — 파일 이름 → 자료 종류 · 교과서 �
       middleNo: 3,
       levelRaw: "기본",
     });
+    // NE능률 «[대단원 문제] Ⅵ-A. 확률» — A · B 형으로 나뉜 대단원 문제(종류도 단원 번호도 못 읽고 있었다)
+    expect(
+      material(
+        G(
+          "중2",
+          "NE능률 중학 수학2 (권오남) (22개정)\\평가자료\\대단원 문제\\[대단원 문제] Ⅵ-A. 확률.hwp",
+        ),
+      ),
+    ).toMatchObject({
+      kind: "대단원 평가",
+      kindRaw: "대단원 문제",
+      chapterNo: 6,
+      middleNo: null,
+    });
     const advanced = material(
       G(
         "중2",

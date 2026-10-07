@@ -187,10 +187,30 @@ function textFlaws(name: string, text: string): string[] {
   return flaws;
 }
 
-/** 수식 안의 줄바꿈은 빈칸으로 — 변환기가 긴 식을 줄 바꿔 낸 것이다(뜻은 같다). 그 밖은 건드리지 않는다. */
+/**
+ * 수식 안의 표기만 고친다 — 값은 그대로다(`finalize.py` 의 `tidy_math` 와 같은 손질 — 그쪽은 본문 · 교과서 풀이에,
+ * 이쪽은 정답과 검토자가 쓴 해설에 건다).
+ *   · 줄바꿈은 빈칸으로(변환기가 긴 식을 줄 바꿔 낸 것)
+ *   · `+-` 는 ±(한글 수식의 그 낱말을 변환이 놓쳤다)
+ *   · `\mathrm{A}B` 는 `\mathrm{AB}`(곧은 글자는 띄어쓰기까지다)
+ */
+function tidyMath(math: string): string {
+  let out = math
+    .replace(/\s*\n\s*/g, " ")
+    .replace(/\+-(?=\s*[\d\\a-zA-Z(])/g, "\\pm ");
+  for (;;) {
+    const next = out.replace(
+      /\\mathrm\{([A-Za-z]+)\}([A-Za-z]+)/g,
+      "\\mathrm{$1$2}",
+    );
+    if (next === out) return out;
+    out = next;
+  }
+}
+
 function tidy(text: string): string {
   return text
-    .replace(/\$[^$]*\$/g, (math) => math.replace(/\s*\n\s*/g, " "))
+    .replace(/\$[^$]*\$/g, tidyMath)
     .split("\n")
     .map((line) => line.trimEnd())
     .join("\n")
@@ -248,6 +268,15 @@ function buildRows(): {
     }
   }
   const reviewed = [...winner.values()].map((entry) => entry.review);
+  // 마무리 손질(`finalize.py`) — 있으면 본문 · 교과서 풀이는 그것을 쓴다(줄 잇기 · 표기. 글자는 같다)
+  const finalPath = join(DIR, "final", "final.jsonl");
+  const finished = new Map(
+    existsSync(finalPath)
+      ? readJsonl<{ id: string; content: string; solution: string | null }>(
+          finalPath,
+        ).map((row) => [row.id, row])
+      : [],
+  );
   const unitLists = new Map<
     string,
     Array<{ u: number; chapter: string; section: string }>
@@ -344,19 +373,25 @@ function buildRows(): {
 
     // ── 본문 — 검토자가 «문항이 아닌 줄»이라 한 줄을 뺀다(글자는 고치지 않는다) ──
     const drop = new Set(review.drop ?? []);
-    const content = tidy(
-      source.content
-        .split("\n")
-        .filter((_line, index) => !drop.has(index))
-        .join("\n"),
-    );
+    const kept = source.content
+      .split("\n")
+      .filter((_line, index) => !drop.has(index))
+      .join("\n");
+    const finish = finished.get(review.id);
+    const content = tidy(finish?.content ?? kept);
+    // 🔴 마무리 손질은 글자를 안 바꾼다 — 빈칸을 접어 견줘서, 다르면 그 문항은 싣지 않는다
+    const squeezed = (text: string) => tidy(text).replace(/\s+/g, "");
+    if (squeezed(content) !== squeezed(kept)) {
+      skip("마무리 손질이 본문의 글자를 바꿨다");
+      continue;
+    }
     answer = tidy(answer);
 
     // ── 해설 — 교과서 것이 있으면 그것, 없거나 답만 적혀 있으면 검토자가 쓴 것 ──
     let solution: string | null = null;
     let solutionSource: LoadRow["solutionSource"] = "none";
     if (!review.needSolution && source.solution && !source.solutionFigure) {
-      solution = tidy(source.solution);
+      solution = tidy(finish?.solution ?? source.solution);
       solutionSource = "original";
     } else if (reviewerSolution?.trim()) {
       solution = tidy(reviewerSolution);
