@@ -1,0 +1,30 @@
+{
+  "reader": "Root Codex direct final question/answer/criteria reading",
+  "inputFile": "root-e5e6-final-1960-1980-input.json",
+  "inputSha256": "11a72d46e4c014574f6f5b4efdda655ba3815cbbb57f0d5205a9406406230b4a",
+  "scope": "e5e6 sourceIndex 1960 through 1979",
+  "isIndependentClaudeReview": false,
+  "isProductionReleaseApproval": false,
+  "rows": [
+    {"id":"e6-1-4-4-xc25","bVerdict":"adopt","cVerdict":"revise","reason":"B는 설탕20g이 들어 있는 전체100g과 설탕10g이 들어 있는 전체200g을 분명히 구별해 기준300g·비교30g·비율0.1을 요청한다. C의 '설탕물100g에 설탕20g, 설탕물200g에 설탕10g을 섞으면'은 설탕을 추가로 넣는 양으로도 읽힌다. 각각 설탕이 들어 있는 전체 설탕물이라는 뜻을 명시하여 전체300g인지330g인지 추정하지 않게 해야 한다."},
+    {"id":"e6-1-4-4-xc26","bVerdict":"adopt","cVerdict":"adopt","reason":"인구 총수와 밀도의 차이는 실제 두 마을을 비교하는xc23·xc11에서 다루므로 두 형식만 제외하는 이유가 있다."},
+    {"id":"e6-1-4-4-xc27","bVerdict":"adopt","cVerdict":"adopt","reason":"두 경우의 전체 시간당 평균 거리90÷2=135÷3=45를 계산하고 같은 빠르기라는 비교를 설명한다. C도 두 값이 같다는 결론을 수치로 확인한다."},
+    {"id":"e6-1-4-5-xc4","bVerdict":"adopt","cVerdict":"revise","reason":"B는45%의45/100과 기준량100이라는 까닭을 요청한다. C는 백분율을 무엇으로 나타낼 수 있는지 범위를 정하지 않는데, 분수·소수·비율처럼 수학적으로 옳은 다른 표현도 가능하며 목표 답은 '분모가100인분수'라는 긴 구절이다. 실제 백분율을 주고 분수의 분모나 동치 분수를 쓰게 하는 짧고 명확한 물음으로 바꿔야 한다."},
+    {"id":"e6-1-4-5-xc5","bVerdict":"adopt","cVerdict":"adopt","reason":"100%가 비율1과 전체에 해당한다는 두 의미를 B가 요청하고 C는 그 비율값1을 묻는다."},
+    {"id":"e6-1-4-5-xc6","bVerdict":"adopt","cVerdict":"adopt","reason":"50%는 절반이고80의 절반40이라는 일반 뜻과 실제 값을 요청한다. C도50/100의 동치 절반·1/2를 쓸 수 있다."},
+    {"id":"e6-1-4-5-xc7","bVerdict":"adopt","cVerdict":"adopt","reason":"3:4에서 기준4·75%와 뒤 양이라는 일반 기준을 명시적으로 묻는다. C도 기준이 되는 비의 위치를 답하는 약속 문장이다."},
+    {"id":"e6-1-4-5-xc8","bVerdict":"adopt","cVerdict":"adopt","reason":"1%의100등분 중 하나라는 뜻과200에서의2를 요청한다. C는 같은100등분 조건에서 하나라는 짧은 답을 쓴다."},
+    {"id":"e6-1-4-5-xc9","bVerdict":"adopt","cVerdict":"adopt","reason":"7/20을35/100으로 바꾸어35%로 읽는 분모 이용 방법과 값을 요청한다. C는3/25의 분자·분모를4배 하고12%가 되는 실제 과정을 묻는다."},
+    {"id":"e6-1-4-5-xc11","bVerdict":"adopt","cVerdict":"adopt","reason":"전체를 겹치지 않게 나눈 모든 부분의 합100%와 까닭, 안경 쓰지 않은60%를 모두 요청한다. C도 전체를 나눈 모든 부분이라는 조건을 갖춘다."},
+    {"id":"e6-1-4-5-xc12","bVerdict":"adopt","cVerdict":"adopt","reason":"0.6과60%는 같은 관계의 두 표현이며 실제 양은 변하지 않는다는 뜻을 이유와 함께 요청한다. C도 표시 숫자와 실제 양을 구별한다."},
+    {"id":"e6-1-4-5-xc13","bVerdict":"adopt","cVerdict":"adopt","reason":"35%를 기준1의 비율로 나타내는100으로 나누기·까닭·0.35를 요청한다. C의80%에서100과0.8은 정확하며 같은 값의 분수 표현도 허용한다."},
+    {"id":"e6-1-4-5-xc14","bVerdict":"adopt","cVerdict":"adopt","reason":"0~0.01미만의 비율을0%~1%미만으로 바꾸고0.003=0.3% 예를 계산하도록 한다. C의 범위도 양끝 포함/미포함이 정확하다."},
+    {"id":"e6-1-4-5-xc15","bVerdict":"adopt","cVerdict":"adopt","reason":"두 양에 같은 양수를 곱해도 비율이 같다는 이유와15/60=25%를 요청한다. C도 그 실제 값을 계산한다."},
+    {"id":"e6-1-4-5-xc16","bVerdict":"adopt","cVerdict":"adopt","reason":"같은 비교량30에서 기준50·200의60%·15%를 계산하고 기준량을 밝힐 필요를 대조한다. C의 추상 반복은xc21의 구체 두 반 비교로 대신한다."},
+    {"id":"e6-1-4-5-xc17","bVerdict":"adopt","cVerdict":"adopt","reason":"백분율의 공통 기준100을 이용해60%보다62.5%가 크다는 방법·까닭·5/8 결론을 요청한다. C는 제시된 두 비율 중 큰 값을 판단하는 물음이다."},
+    {"id":"e6-1-4-5-xc19","bVerdict":"adopt","cVerdict":"adopt","reason":"처음50에서65로 증가할 때 전체130%와 증가 부분30%를 구별하는 요청과 기준이 맞는다. C도130%에서100%를 뺀30%가 증가한 양을 나타냄을 확인한다."},
+    {"id":"e6-1-4-5-xc20","bVerdict":"adopt","cVerdict":"adopt","reason":"30이20%일 때1%분량1.5를 구하고100배 해 기준150을 찾는 방법을 요청한다. C도1%의 뜻과150 계산이 분명하다."},
+    {"id":"e6-1-4-5-xc21","bVerdict":"adopt","cVerdict":"adopt","reason":"20명중50%는10명,100명중30%는30명이라 B의 학생 수 비교와 기준량 차이 설명이 맞는다. C는 백분율이 큰A와 실제 수가 큰B를 따로 판단한다."},
+    {"id":"e6-1-4-5-xc22","bVerdict":"adopt","cVerdict":"adopt","reason":"같은200명에서1%인2명에45−30=15를 곱해 차30명을 구하고 기준이 같아야 한다는 이유도 요청한다. C는2명과30명의 실제 계산값을 묻는다."}
+  ]
+}
