@@ -16,6 +16,15 @@ const eslintConfig = defineConfig([
       "affordance/no-false-affordance": "error",
     },
   },
+  {
+    // `.cjs` 는 CommonJS 다 — `require()` 가 유일한 불러오기다. lint-staged 가 `*.{ts,tsx}` 만 봐서
+    // 추적되는 시안 렌더 스크립트(`docs/planning/mockups/*.cjs`)의 6건이 커밋에서는 안 걸리고
+    // `npm run lint` 에서만 빨갰다(2026-10-07 검수).
+    files: ["**/*.cjs"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
@@ -48,6 +57,10 @@ const eslintConfig = defineConfig([
     // 그 안의 `.cjs` 탐침 `require()` 152건이 이 폴더가 있는 컴퓨터에서만 lint 를 빨갛게 했다
     // (2026-09-19 main 병합 검수 — 추적 파일의 오류는 0).
     ".qa-artifacts/**",
+    // 또 같은 뿌리 — `output/` 은 내려받은 원본 · 산출물을 두는 로컬 폴더다(추적 0 · `.git/info/exclude`).
+    // 2026-10-07 검수에서 `npm run lint` 오류 355건 가운데 347건이 `output/listening-assessments/` 의
+    // 남의 스크립트였고, 추적 파일의 진짜 오류 8건이 그 뒤에 묻혀 있었다.
+    "output/**",
   ]),
 ]);
 

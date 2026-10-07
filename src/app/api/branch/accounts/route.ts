@@ -1,10 +1,10 @@
+import { randomBytes } from "node:crypto";
 import { hash } from "bcryptjs";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { recordAudit } from "@/lib/audit";
-import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 const createSchema = z.strictObject({
@@ -84,7 +84,9 @@ async function handlePost(request: Request) {
       },
       { status: 403 },
     );
-  const initialPassword = BRANCH_INITIAL_PASSWORD;
+  // 발급마다 새로 뽑아 이 응답에 한 번만 싣는다 — 관리 콘솔의 발급(`api/admin/users/[id]/password`)과 같은 꼴.
+  // 고정 기본값이던 때는 직원 계정에 강제 변경 · 실패 잠금이 없어 이메일만 알면 들어올 수 있었다(2026-10-07 검수).
+  const initialPassword = randomBytes(12).toString("base64url");
   try {
     const user = await db.user.create({
       data: {

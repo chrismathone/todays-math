@@ -75,12 +75,19 @@ describe("표 · RLS · 권한", () => {
           AND grantee IN ('anon', 'authenticated', 'PUBLIC')`,
     );
     expect(rows).toEqual([]);
-    // 대조군: 걷지 않은 기존 표에는 그 기본 권한이 실제로 붙어 있다(REVOKE 시험이 헛돌지 않는다)
-    const control = await db.query(
-      `SELECT 1 FROM information_schema.role_table_grants
-        WHERE table_schema = 'public' AND table_name = 'app_setting' AND grantee = 'anon'`,
-    );
-    expect(control.rows.length).toBeGreaterThan(0);
+    // 대조군: 하네스의 «새 표는 다 준다»가 살아 있다 — 지금 만든 표에 그 기본 권한이 실제로 붙는다(REVOKE 시험이 헛돌지 않는다).
+    // 🔴 기존 표를 대조군으로 삼지 않는다 — `app_setting` 을 쓰다가, 그 표가 서버 전용이 된 날
+    //    (2026-10-07 `…022000_app_setting_server_only`) 제품은 멀쩡한데 이 시험만 빨개졌다.
+    await db.query(`CREATE TABLE "grant_control_probe" ("id" integer)`);
+    try {
+      const control = await db.query(
+        `SELECT 1 FROM information_schema.role_table_grants
+          WHERE table_schema = 'public' AND table_name = 'grant_control_probe' AND grantee = 'anon'`,
+      );
+      expect(control.rows.length).toBeGreaterThan(0);
+    } finally {
+      await db.query(`DROP TABLE "grant_control_probe"`);
+    }
   });
 
   it("시각 기본값은 세션 시간대에 기대지 않는다 — 전부 UTC 로 적는다", async () => {

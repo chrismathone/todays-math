@@ -325,6 +325,8 @@ const EXISTING_STUDENT_SERVER_EDGES = new Set([
   // «오늘의 기억»의 학생 페이지(2026-10-06) — 다른 학생 서버 페이지와 같은 세션 읽기 하나다(문이 꺼져 있으면 그 전에 404).
   "src/app/learn/fading/page.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/layout.tsx → src/lib/learn/studentRequest.ts",
+  // 학생별 추가 메뉴(2026-10-07) — 세션 학생 자신의 허용 메뉴를 읽는 server-only 설정 읽기 하나다(관문도 같은 함수를 부른다).
+  "src/app/learn/layout.tsx → src/lib/learn/studentLearningMenusStore.ts",
   "src/app/learn/layout.tsx → src/lib/learn/testConsoleServer.ts",
   "src/app/learn/lectures/page.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/math-explorers/page.tsx → src/lib/learn/studentRequest.ts",

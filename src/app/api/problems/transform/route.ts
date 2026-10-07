@@ -19,6 +19,7 @@ import {
   AiGenerationError,
 } from "@/lib/ai/errors";
 import { transformProblem } from "@/lib/ai/transformer";
+import { AI_BUSY_MESSAGE, admitAiWork } from "@/lib/aiAdmission";
 import {
   jsonError,
   jsonOk,
@@ -78,6 +79,10 @@ async function handlePost(request: NextRequest) {
       : ((await db.problem.findUnique({ where: { id: mainRef.id } })) ?? asked);
 
   const figureRequired = originNeedsFigure(origin);
+
+  // 한 사람이 동시에 띄우는 유료 호출은 둘까지 — 생성(`generate`)과 같은 자리를 나눠 쓴다(2026-10-07 검수).
+  const release = admitAiWork("problems", session.id);
+  if (!release) return jsonError("AI_GENERATION_FAILED", AI_BUSY_MESSAGE, 429);
 
   try {
     const candidates = await transformProblem({
@@ -161,6 +166,8 @@ async function handlePost(request: NextRequest) {
       );
     }
     throw error;
+  } finally {
+    release();
   }
 }
 

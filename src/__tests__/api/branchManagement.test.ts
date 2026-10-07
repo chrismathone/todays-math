@@ -143,12 +143,12 @@ beforeEach(() => {
 });
 
 describe("지점 계정 발급과 반 배정", () => {
-  it("지점장은 소속 지점의 강사 계정을 기본 비밀번호로 만든다", async () => {
+  it("지점장은 소속 지점의 강사 계정을 발급마다 새로 뽑은 임시 비밀번호로 만든다", async () => {
     const response = await post("teacher");
     expect(response.status).toBe(201);
     const { data } = await response.json();
     expect(data.email).toBe("new@example.com");
-    expect(data.initialPassword).toBe("q1w2e3r4");
+    expect(data.initialPassword).toMatch(/^[-_A-Za-z0-9]{16}$/);
     const saved = state.create.mock.calls[0][0].data;
     expect(saved).toMatchObject({
       branchId: state.account.branchId,
@@ -157,6 +157,23 @@ describe("지점 계정 발급과 반 배정", () => {
       isSuperAdmin: false,
     });
     expect(await compare(data.initialPassword, saved.passwordHash)).toBe(true);
+  });
+
+  it("🔴 임시 비밀번호는 고정값이 아니다 — 발급마다 다르고, 옛 기본값으로는 못 들어온다", async () => {
+    // 2026-10-07 검수: 모든 지점 직원 계정이 같은 기본 비밀번호로 발급돼 이메일만 알면 로그인됐다
+    // (강제 변경 · 실패 잠금이 직원 계정에는 없다). 원장 · 관리자 발급은 관리 권한까지 열렸다.
+    const first = (await (await post("owner")).json()).data;
+    const second = (await (await post("owner")).json()).data;
+    expect(first.initialPassword).not.toBe(second.initialPassword);
+    for (const call of state.create.mock.calls)
+      expect(await compare("q1w2e3r4", call[0].data.passwordHash)).toBe(false);
+  });
+
+  it("임시 비밀번호는 응답에 한 번만 — 감사 기록에는 안 남는다", async () => {
+    const { data } = await (await post("teacher")).json();
+    expect(JSON.stringify(state.audit.mock.calls)).not.toContain(
+      data.initialPassword,
+    );
   });
 
   it("지점 관리자는 원장·관리자 계정을 만들 수 없다", async () => {

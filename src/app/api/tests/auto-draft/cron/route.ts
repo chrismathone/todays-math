@@ -18,6 +18,7 @@ import type { NextRequest } from "next/server";
 
 import { autoDraftRunResponseSchema } from "@/contracts/dailyAutoTest.contract";
 import { jsonError, jsonOk } from "@/lib/apiResponse";
+import { cronSecretMatches } from "@/lib/cronSecret";
 import { kstDateOf } from "@/lib/kstDate";
 import { resolveAutoDraftOwner } from "@/lib/tests/autoDraftOwner";
 import { runAutoDraft } from "@/lib/tests/runAutoDraft";
@@ -33,7 +34,7 @@ async function handleGet(request: NextRequest) {
       "CRON_SECRET 이 설정되지 않았습니다.",
       503,
     );
-  if (request.headers.get("authorization") !== `Bearer ${secret}`)
+  if (!cronSecretMatches(request, secret))
     return jsonError("UNAUTHORIZED", "cron 시크릿이 다릅니다.", 401);
 
   // 🔴 소유자를 못 찾으면 **오류로 끝낸다.** 조용한 0건은 「매일 도는데 아무것도 안 나오는」
