@@ -844,6 +844,48 @@ describe("선수 개념 — 근거는 그 개념 자신의 기록이고 원천�
     expect(checked.buckets.prerequisite).toEqual({ planned: 3, done: 3 });
   });
 
+  it("기록이 없을 뿐인 선수 개념은 탐험의 한 덩이를 밀어내지 않는다 — 근거가 있는 것만 덩이보다 먼저다", () => {
+    const input = {
+      today: TODAY,
+      concepts: bank(before),
+      workload: workload(),
+      prerequisite: basis(ids),
+    };
+    // 분량 10: 탐험의 10문제가 들어가고, 기록이 없는 선수 개념(3칸)은 남은 칸이 없어 내지 않는다.
+    const tight = build({ ...input, fading: emptyFading(), quota: 10 });
+    expect(keys(tight)).toEqual([`practice:${TODAY}`]);
+    expect(tight.activities[0]).toMatchObject({
+      state: "todo",
+      start: "start",
+    });
+    expect(tight.counts.total).toBe(10);
+    // 안내에는 그대로 실린다 — 계획에 못 넣었다고 연결을 숨기지 않는다.
+    expect(tight.prerequisite!.links[0]!.evidence.fading.status).toBe(
+      "unassessed",
+    );
+    // 분량 13: 덩이 다음에 하나가 들어간다. 놓는 차례는 확인이 문제보다 먼저다.
+    const room = build({ ...input, fading: emptyFading(), quota: 13 });
+    expect(keys(room)).toEqual(["recall:pre-1", `practice:${TODAY}`]);
+    expect(room.counts.total).toBe(13);
+    // «다시»로 끝난 선수 개념(근거가 있다)은 복습 차례라 덩이보다 먼저 칸을 잡는다 — 남은 7칸에 10문제는 못 들어간다.
+    const weak = build({
+      ...input,
+      fading: fading({
+        "pre-1": rated({ step: 3, lapses: 1, dueOn: "2026-10-06" }),
+      }),
+      quota: 10,
+    });
+    expect(weak.activities[0]).toMatchObject({
+      key: "recall:pre-1",
+      bucket: "prerequisite",
+      reason: { code: "prerequisite-weak" },
+    });
+    expect(weak.activities.find((a) => a.kind === "practice")).toMatchObject({
+      state: "blocked",
+      reason: { code: "over-budget" },
+    });
+  });
+
   it("은행에 없는 개념은 안내에서도 뺀다 — 지어내지 않는다", () => {
     const plan = build({
       today: TODAY,

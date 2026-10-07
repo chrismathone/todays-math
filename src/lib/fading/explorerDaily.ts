@@ -39,11 +39,14 @@ import { fadingProgressOf } from "./state";
  * 분량은 **넘지 않는 합계**이고 정해 둔 비율이 없다. 넣는 차례가 곧 우선순위다:
  *   1. 풀던 것(열린 풀이 · 풀던 탐험) — 빚진 것이라 분량을 넘어도 낸다.
  *   2. **복습일이 된 개념**, 망각 위험(일정 계산기의 추정 — 떠올릴 확률의 나머지)이 큰 것부터. 밀린 날 수가 아니다.
- *      복습이 분량을 다 쓰면 그 뒤는 0 이다. 학생이 «오늘 전부»를 고른 날은 분량을 넘어도 전부 낸다(학생이 고른 분량이다).
- *   3. **확인이 필요한 선수 개념** — 받은 안내(`prerequisite` — 적혀 있는 연결뿐이다)의 개념 가운데 확인한 기록이 없는 것을
- *      연결마다 하루에 하나. 그 개념 **자신의** 풀이라 그 개념의 복습일만 정해진다 — 오늘 배울 것의 기록은 건드리지 않는다.
+ *      받은 안내(`prerequisite` — 적혀 있는 연결뿐이다)의 선수 개념 가운데 근거가 있는 것(«다시»로 끝났거나 복습일이 된 것)도
+ *      이 차례에 같이 든다. 복습이 분량을 다 쓰면 그 뒤는 0 이다. 학생이 «오늘 전부»를 고른 날은 분량을 넘어도 전부 낸다.
+ *   3. **탐험의 한 덩이** — 남은 칸에 통째로 들어갈 때만.
+ *   4. **확인한 기록이 없는 선수 개념** — 연결마다 하루에 하나. 필요한지 아직 모르는 것이라 탐험의 덩이를 밀어내지 않는다.
+ *      그 개념 **자신의** 풀이라 그 개념의 복습일만 정해진다 — 오늘 배울 것의 기록은 건드리지 않는다.
  *      읽어 보기만 하는 것은 칸을 쓰지 않는다(안내에만 실린다).
- *   4. **새 진도** — 탐험의 한 덩이(남은 칸에 통째로 들어갈 때만) → 학생이 골라 둔 개념 → 오늘 진도 소단원의 아직 고르지 않은 개념.
+ *   5. **새 개념** — 학생이 골라 둔 것 → 오늘 진도 소단원의 아직 고르지 않은 것.
+ *   놓는 차례(`activities`)는 따로다: 풀던 것 → 복습 → 선수 개념 → 새 개념 → 탐험의 덩이(확인과 개념을 문제보다 먼저 한다).
  *
  * - 칸의 단위는 «물음 하나»다 — 묶음 하나는 그 명제 수만큼(3 ~ 5칸) 차지한다. 묶음은 쪼개지 않는다(복습일이 묶음 하나에 하나다) —
  *   남은 칸에 안 들어가면 미룬다(`held`). 네 단계의 되풀이를 곱해 세지 않는다.
@@ -290,18 +293,24 @@ export function buildFadingDailyPlan(input: {
     );
   }
 
+  // 탐험의 한 덩이 뒤에 넣는 것들(아래에서 덩이를 낸 뒤에 차례대로 낸다) — 기록이 없는 선수 개념 → 골라 둔 개념 → 오늘 진도의 새 개념.
+  const late: FadingDailyActivity[] = [];
+  const queued = (id: string) =>
+    pool.has(`recall:${id}`) || late.some((a) => a.key === `recall:${id}`);
+
   // 선수 개념 가운데 확인한 기록이 없는 것 — 연결마다 하루에 하나(오늘 그 연결의 개념을 처음 평가했으면 더 내지 않는다).
+  // 근거가 있는 선수 개념(«다시»로 끝났거나 복습일이 된 것)은 위의 복습 차례에 이미 들어 있다. 기록이 없을 뿐인 것은
+  // 필요한지 알 수 없으니 탐험의 한 덩이를 밀어내지 않는다 — 덩이 다음, 다른 새 개념보다는 먼저다.
   for (const link of links) {
     const checkedToday = link.conceptIds.some((id) => {
       const stored = fading.concepts[id];
       return stored?.reviewedOn === today && stored.reviews === 1;
     });
-    const id = link.conceptIds.find((conceptId) => {
-      const key = `recall:${conceptId}`;
-      return !fading.concepts[conceptId]?.reviews && !pool.has(key);
-    });
+    const id = link.conceptIds.find(
+      (conceptId) => !fading.concepts[conceptId]?.reviews && !queued(conceptId),
+    );
     if (checkedToday || id === undefined) continue;
-    offer(
+    late.push(
       recall(id, {
         bucket: "prerequisite",
         state: "todo",
@@ -313,10 +322,8 @@ export function buildFadingDailyPlan(input: {
   }
 
   // 새 진도의 개념 — 골라 둔 것(풀다 만 것 먼저), 그다음 오늘 진도 소단원의 아직 고르지 않은 것(은행 차례 · 하 → 중 → 상).
-  // 탐험의 한 덩이를 먼저 넣은 뒤에 넣는다(아래 `late`).
-  const late: FadingDailyActivity[] = [];
   for (const id of queue.unrated) {
-    if (id === session?.conceptId || pool.has(`recall:${id}`)) continue;
+    if (id === session?.conceptId || queued(id)) continue;
     late.push(
       recall(id, {
         bucket: "progress",
@@ -341,9 +348,7 @@ export function buildFadingDailyPlan(input: {
         (a.id < b.id ? -1 : 1),
     );
   for (const concept of fresh) {
-    if (pool.has(`recall:${concept.id}`)) continue;
-    if (late.some((activity) => activity.key === `recall:${concept.id}`))
-      continue;
+    if (queued(concept.id)) continue;
     late.push(
       recall(concept.id, {
         bucket: "progress",

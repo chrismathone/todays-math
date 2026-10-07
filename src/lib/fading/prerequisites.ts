@@ -231,7 +231,7 @@ export function fadingPrerequisiteBasis(
       const sections = cardSections.get(card.id) ?? [];
       const sectionKeys = sections
         .map(sectionKeyOfBridgeSection)
-        .filter((key): key is string => !!key && key !== resolved.sectionKey);
+        .filter((key): key is string => !!key);
       const courseSectionIds = sections.filter((id) => !!getCourseSection(id));
       links.push({
         via: "card-link",
