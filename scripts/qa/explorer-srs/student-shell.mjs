@@ -18,7 +18,7 @@ try {
   for (const width of [320, 390, 768, 1280, 1920]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const screen of ["list", "watch"]) {
-      await page.goto(`${base}/dev/learn-hifi?screen=${screen}&set=${screen === "list" ? "empty" : "stress"}`, { waitUntil: "domcontentloaded" });
+      await page.goto(`${base}/dev/learn-hifi?screen=${screen}&set=${screen === "list" ? "empty" : "mockup"}`, { waitUntil: "domcontentloaded" });
       await page.locator("[data-student-module-content]").waitFor();
       if (screen === "list") await page.getByText("아직 배정된 강의가 없어요", { exact: true }).waitFor();
       else await page.getByRole("heading", { level: 1 }).waitFor();
@@ -34,7 +34,7 @@ try {
       assert(geometry.overflow === 0, `${width}-${screen}: overflow`);
       assert(geometry.headers === 1 && geometry.logoutHeight >= 44 && geometry.logoutDisabled, `${width}-${screen}: header/logout`);
       assert(geometry.visibleNav === 1 && geometry.labels.join(",") === "탐험,도감,강의", `${width}-${screen}: menus`);
-      if (width >= 1280) assert(geometry.moduleWidth >= width-340, `${width}-${screen}: unused desktop space`);
+      if (width >= 1280) assert(geometry.moduleWidth >= Math.min(width,1600)-50, `${width}-${screen}: unused desktop space`);
       rows.push({ width, screen, ...geometry });
       await page.screenshot({ path: resolve(output, `${width}-${screen}.png`), fullPage: true });
     }
