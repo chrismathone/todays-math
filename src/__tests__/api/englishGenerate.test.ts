@@ -11,14 +11,37 @@
  * 표본 지문은 우리가 지은 짧은 글이다.
  */
 import { NextRequest } from "next/server";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
 
-const { mockCreate, mockSession, mockRequireOwned } = vi.hoisted(() => ({
+const {
+  mockCreate,
+  mockSession,
+  mockRequireOwned,
+  mockCli,
+  mockModels,
+  mockBankReference,
+  mockBankExam,
+} = vi.hoisted(() => ({
   mockCreate: vi.fn(),
   mockSession: vi.fn(),
   mockRequireOwned: vi.fn(),
+  mockCli: vi.fn(),
+  mockModels: vi.fn(),
+  mockBankReference: vi.fn(),
+  mockBankExam: vi.fn(),
+}));
+
+vi.mock("@/lib/dev-ai/cli", () => ({ runSubscriptionCli: mockCli }));
+vi.mock("@/lib/dev-ai/cli-models", async (original) => ({
+  ...(await original<object>()),
+  readCliModelSettings: mockModels,
+}));
+vi.mock("@/lib/english/bank/service", async (original) => ({
+  ...(await original<object>()),
+  validateBankReference: mockBankReference,
+  ownedBankExam: mockBankExam,
 }));
 
 vi.mock("openai", () => ({
@@ -40,6 +63,8 @@ import { englishGenerateResponseSchema } from "@/contracts/english.contract";
 import { forbiddenError, notFoundError } from "@/lib/apiResponse";
 import { ERROR_LOG_ROUTE } from "@/lib/errorLog/withErrorLog";
 import { NOT_FOUND_ID, USER_TEACHER_ID } from "@/mocks/data";
+import { buildEnglishSystemPrompt } from "@/lib/ai/prompts/englishExam";
+import { EnglishBankError } from "@/lib/english/bank/policy";
 
 const ORIGIN = "http://localhost";
 const EXAM_ID = "20000000-0000-4000-8000-000000000001";
@@ -99,16 +124,27 @@ function request(
   {
     origin = ORIGIN,
     site = "same-origin",
-  }: { origin?: string; site?: string } = {},
+    url = ORIGIN,
+    host,
+    signal,
+  }: {
+    origin?: string | null;
+    site?: string;
+    url?: string;
+    host?: string;
+    signal?: AbortSignal;
+  } = {},
 ) {
-  return new NextRequest(`${ORIGIN}/api/english/generate`, {
+  return new NextRequest(`${url}/api/english/generate`, {
     method: "POST",
     headers: {
-      origin,
+      ...(origin === null ? {} : { origin }),
+      ...(host ? { host } : {}),
       "sec-fetch-site": site,
       "content-type": "application/json",
     },
     body: typeof payload === "string" ? payload : JSON.stringify(payload),
+    signal,
   });
 }
 
@@ -123,6 +159,15 @@ async function errorOf(response: Response) {
 
 beforeEach(() => {
   mockCreate.mockReset();
+  mockCli.mockReset().mockResolvedValue(JSON.stringify(draft));
+  mockModels.mockReset().mockResolvedValue({
+    models: ["sonnet"],
+    defaultModel: "sonnet",
+    efforts: {},
+  });
+  mockBankReference.mockReset();
+  mockBankExam.mockReset();
+  resetAiAdmission();
   mockSession.mockReset().mockResolvedValue(teacher);
   // 학년은 본문 어디에도 없는 값으로 — 라우트가 «중1» 을 박아 넣어도 초록이던 구멍(리드 검토 D3)
   mockRequireOwned.mockReset().mockResolvedValue({
@@ -135,7 +180,9 @@ beforeEach(() => {
   // OpenAI 키가 있으면 영어는 luna 로 간다 — 이 파일은 DeepSeek 경로를 본다
   vi.stubEnv("OPENAI_API_KEY", "");
   vi.stubEnv("ENGLISH_AI_VENDOR", "");
+  vi.stubEnv("DEV_AI_CODEX_HOME", "");
 });
+afterEach(() => vi.unstubAllEnvs());
 
 describe("POST /api/english/generate — 문지기 순서", () => {
   it("라우트 틀을 지난다 — withErrorLog 표지", () => {
@@ -326,6 +373,324 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     expect(text).not.toContain("passage-data");
     expect(mockCreate).toHaveBeenCalledTimes(2);
   });
+});
+
+describe("English development subscription generation — no paid fallback", () => {
+  beforeEach(() => {
+    vi.stubEnv("NODE_ENV", "development");
+    vi.stubEnv("DEV_AI_MODE", "subscription-cli");
+    vi.stubEnv("DEV_AI_PROVIDER", "claude");
+    // Both paid providers are configured: any accidental fallback is observable.
+    vi.stubEnv("OPENAI_API_KEY", "test-openai-key");
+  });
+
+  afterEach(() => expect(mockCreate).not.toHaveBeenCalled());
+
+  it.each(["claude", "codex"])(
+    "uses %s CLI with the same prompt, grade, validator and legacy source",
+    async (provider) => {
+      vi.stubEnv("DEV_AI_PROVIDER", provider);
+      const model = provider === "claude" ? "sonnet" : "gpt-6-sol";
+      mockModels.mockResolvedValue({
+        models: [model],
+        defaultModel: model,
+        efforts: {},
+      });
+      // Invalid API configuration must not even be consulted in development.
+      vi.stubEnv("ENGLISH_AI_VENDOR", "invalid-api-vendor");
+      const response = await call(body);
+      expect(response.status).toBe(200);
+      const result = englishGenerateResponseSchema.parse(await response.json());
+      expect(result.model).toEqual({
+        name: `${provider}-cli/${model}`,
+        promptVersion: "v7",
+      });
+      expect(result.data.source).toBe("deepseek");
+      expect(result.data.questions).toHaveLength(1);
+      expect(mockCli).toHaveBeenCalledOnce();
+      expect(mockCli).toHaveBeenCalledWith(
+        expect.objectContaining({
+          provider,
+          model,
+          signal: expect.any(AbortSignal),
+        }),
+      );
+      const prompt = mockCli.mock.calls[0]![0].prompt as string;
+      expect(prompt).toContain(buildEnglishSystemPrompt());
+      expect(prompt).toContain("대상 학년: 고3");
+      expect(prompt).toContain(passage);
+    },
+  );
+
+  it("labels an unknown CLI default honestly instead of naming an API model", async () => {
+    mockModels.mockResolvedValue({ models: ["sonnet"], efforts: {} });
+    const result = englishGenerateResponseSchema.parse(
+      await (await call(body)).json(),
+    );
+    expect(result.model.name).toBe("claude-cli/default");
+    expect(mockCli.mock.calls[0]![0]).not.toHaveProperty("model");
+  });
+
+  it.each([
+    ["DEV_AI_MODE", undefined],
+    ["DEV_AI_MODE", ""],
+    ["DEV_AI_MODE", "off"],
+    ["DEV_AI_MODE", "model-api"],
+    ["DEV_AI_PROVIDER", undefined],
+    ["DEV_AI_PROVIDER", ""],
+    ["DEV_AI_PROVIDER", "unknown"],
+    ["DEV_AI_PROVIDER", "grok"],
+    ["DEV_AI_PROVIDER", "antigravity"],
+  ])("fails closed for %s=%s even with paid API keys", async (key, value) => {
+    vi.stubEnv(key!, value);
+    const response = await call(body);
+    expect(response.status).toBe(503);
+    expect((await errorOf(response)).message).toContain("구독 AI");
+    expect(mockCli).not.toHaveBeenCalled();
+    expect(mockModels).not.toHaveBeenCalled();
+  });
+
+  it("sanitizes model configuration failures before invoking the CLI", async () => {
+    mockModels.mockRejectedValue(new Error("private-profile-path test-secret"));
+    const response = await call(body);
+    expect(response.status).toBe(503);
+    expect(await response.text()).not.toMatch(
+      /private-profile-path|test-secret/,
+    );
+    expect(mockCli).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    "login-required",
+    "timeout",
+    "not-installed",
+    "quota-exceeded",
+    "launch-failed",
+  ])(
+    "returns a sanitized failure for CLI %s without retry or API fallback",
+    async (reason) => {
+      mockCli.mockRejectedValue(
+        new Error(`${reason}: secret-token ${passage}`),
+      );
+      const response = await call(body);
+      expect(response.status).toBe(502);
+      const text = await response.text();
+      expect(text).toContain("구독 CLI");
+      expect(text).not.toContain("secret-token");
+      expect(text).not.toContain(passage);
+      expect(mockCli).toHaveBeenCalledOnce();
+    },
+  );
+
+  it.each([
+    { origin: null },
+    { origin: "https://evil.example" },
+    { site: "cross-site" },
+    { url: "http://192.168.1.2:3000", origin: "http://192.168.1.2:3000" },
+    { url: "https://public.example", origin: "https://public.example" },
+    { host: "public.example" },
+    { host: "public.example@localhost", origin: ORIGIN },
+    {
+      url: "http://localhost:3000",
+      host: "127.0.0.1:4000",
+      origin: "http://127.0.0.1:4000",
+    },
+    {
+      url: "http://localhost:3000",
+      host: "127.0.0.1:3000",
+      origin: "http://localhost:3000",
+    },
+  ])(
+    "rejects nonlocal or nonmatching origin before ownership/CLI: %j",
+    async (options) => {
+      const response = await call(body, options);
+      expect(response.status).toBe(403);
+      expect((await errorOf(response)).code).toBe("FORBIDDEN");
+      expect(mockRequireOwned).not.toHaveBeenCalled();
+      expect(mockModels).not.toHaveBeenCalled();
+      expect(mockCli).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each(["localhost", "127.0.0.1", "[::1]"])(
+    "accepts exact %s loopback origin after Next URL normalization",
+    async (host) => {
+      const response = await call(body, {
+        url: "http://localhost:3000",
+        host: `${host}:3000`,
+        origin: `http://${host}:3000`,
+      });
+      expect(response.status).toBe(200);
+      expect(mockCli).toHaveBeenCalledOnce();
+    },
+  );
+
+  it("retains session, request-contract and exam ownership checks before CLI setup", async () => {
+    mockSession.mockResolvedValueOnce(null);
+    expect((await call(body)).status).toBe(401);
+    expect((await call("not-json")).status).toBe(400);
+    mockRequireOwned.mockResolvedValueOnce({
+      ok: false,
+      response: forbiddenError(),
+    });
+    expect((await call(body)).status).toBe(403);
+    mockRequireOwned.mockResolvedValueOnce({
+      ok: false,
+      response: notFoundError("시험"),
+    });
+    expect((await call(body)).status).toBe(404);
+    expect(mockModels).not.toHaveBeenCalled();
+    expect(mockCli).not.toHaveBeenCalled();
+  });
+
+  it("validates bank permissions, mode and reference before any CLI setup", async () => {
+    const passageRef = {
+      passageId: EXAM_ID,
+      textRevision: 1,
+      snapshotHash: "a".repeat(64),
+    };
+    const bankBody = { ...body, passageRef };
+    expect((await call(bankBody)).status).toBe(403);
+    mockSession.mockResolvedValue({
+      ...teacher,
+      menus: ["english-bank", "english-maker"],
+    });
+    expect(
+      (await call({ ...bankBody, mode: "new", topic: "plants" })).status,
+    ).toBe(409);
+    expect(mockBankReference).not.toHaveBeenCalled();
+    mockBankReference.mockRejectedValueOnce(
+      new EnglishBankError("RIGHTS_REQUIRED"),
+    );
+    expect((await call(bankBody)).status).toBe(409);
+    expect(mockBankExam).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ id: teacher.id }),
+      EXAM_ID,
+    );
+    expect(mockBankReference).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ id: teacher.id }),
+      passageRef,
+      passage,
+      "api",
+    );
+    expect(mockModels).not.toHaveBeenCalled();
+    expect(mockCli).not.toHaveBeenCalled();
+    expect((await call(bankBody)).status).toBe(200);
+  });
+
+  it("uses CLI for the parse retry and pins its model for feedback refinement", async () => {
+    const invalid = {
+      ...draft,
+      questions: [
+        {
+          ...draft.questions[0],
+          options: draft.questions[0]!.options.slice(0, 4),
+        },
+      ],
+    };
+    mockCli
+      .mockReset()
+      .mockResolvedValueOnce("not-json")
+      .mockResolvedValueOnce(JSON.stringify(invalid))
+      .mockResolvedValueOnce(JSON.stringify(draft));
+    const response = await call(body);
+    expect(response.status).toBe(200);
+    expect(mockModels).toHaveBeenCalledOnce();
+    expect(mockCli).toHaveBeenCalledTimes(3);
+    for (const [input] of mockCli.mock.calls)
+      expect(input.model).toBe("sonnet");
+    expect(mockCli.mock.calls[2]![0].prompt).toContain("지적된 문항만");
+    expect(mockCli.mock.calls[2]![0].prompt).toContain("5개");
+  });
+
+  it("rejects changed original text after one refinement and returns validation issues", async () => {
+    mockCli.mockResolvedValue(
+      JSON.stringify({ ...draft, passage: `${passage} Extra sentence.` }),
+    );
+    const response = await call(body);
+    expect(response.status).toBe(502);
+    const error = await errorOf(response);
+    expect(error.code).toBe("ENGLISH_DRAFT_REJECTED");
+    expect(JSON.stringify(error.details)).toContain("원문 유지");
+    expect(mockCli).toHaveBeenCalledTimes(2);
+  });
+
+  it("passes cancellation to the CLI and releases admission after abort", async () => {
+    const controller = new AbortController();
+    mockCli.mockImplementationOnce(
+      ({ signal }: { signal: AbortSignal }) =>
+        new Promise((_, reject) => {
+          signal.addEventListener(
+            "abort",
+            () => reject(new Error("private cancellation detail")),
+            { once: true },
+          );
+        }),
+    );
+    const pending = call(body, { signal: controller.signal });
+    await vi.waitFor(() => expect(mockCli).toHaveBeenCalledOnce());
+    controller.abort();
+    expect(mockCli.mock.calls[0]![0].signal.aborted).toBe(true);
+    const response = await pending;
+    expect(response.status).toBe(499);
+    expect(await response.text()).toBe("");
+    expect((await call(body)).status).toBe(200);
+  });
+
+  it("does not start the CLI for an already cancelled request", async () => {
+    const controller = new AbortController();
+    controller.abort();
+    expect((await call(body, { signal: controller.signal })).status).toBe(499);
+    expect(mockModels).not.toHaveBeenCalled();
+    expect(mockCli).not.toHaveBeenCalled();
+  });
+
+  it("limits concurrent CLI generation and returns admission after failure", async () => {
+    let fail!: (error: Error) => void;
+    const pending = new Promise<never>((_, reject) => {
+      fail = reject;
+    });
+    mockCli.mockReturnValue(pending);
+    const first = call(body);
+    const second = call(body);
+    await vi.waitFor(() => expect(mockCli).toHaveBeenCalledTimes(2));
+    expect((await call(body)).status).toBe(429);
+    fail(new Error("CLI failure"));
+    expect((await first).status).toBe(502);
+    expect((await second).status).toBe(502);
+    mockCli.mockResolvedValue(JSON.stringify(draft));
+    expect((await call(body)).status).toBe(200);
+  });
+});
+
+describe("English production generation keeps the existing API transport", () => {
+  it.each(["openai", "deepseek"])(
+    "uses %s and ignores enabled development CLI settings",
+    async (vendor) => {
+      vi.stubEnv("NODE_ENV", "production");
+      vi.stubEnv("DEV_AI_MODE", "subscription-cli");
+      vi.stubEnv("DEV_AI_PROVIDER", "claude");
+      vi.stubEnv("ENGLISH_AI_VENDOR", vendor);
+      vi.stubEnv("OPENAI_API_KEY", "test-openai-key");
+      vi.stubEnv("AUTH_URL", "https://school.example");
+      mockCreate.mockResolvedValue(aiTextResponse(JSON.stringify(draft)));
+      const response = await call(body, {
+        url: "https://school.example",
+        origin: "https://school.example",
+      });
+      expect(response.status).toBe(200);
+      const result = englishGenerateResponseSchema.parse(await response.json());
+      expect(result.model.name).toBe(
+        vendor === "openai" ? "gpt-6-luna" : "deepseek-v4-pro",
+      );
+      expect(result.data.source).toBe("deepseek");
+      expect(mockCreate).toHaveBeenCalledOnce();
+      expect(mockCli).not.toHaveBeenCalled();
+      expect(mockModels).not.toHaveBeenCalled();
+    },
+  );
 });
 
 describe("🔴 한 사람이 동시에 띄우는 생성은 둘까지 (2026-10-07 검수)", () => {

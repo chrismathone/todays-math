@@ -8,6 +8,32 @@
 >
 > 같은 날 관리자 아닌 계정(`test_t`)의 상태판이 «연결 확인 중»에서 멈췄다 — 계정 관문(`src/lib/accountRouteAccess.ts`)이 `/api/dev/**` 를 **관리자만** 열어 두어 403 이었다. 이 다리는 운영의 `/api/studio/ai` 와 같은 기능이라 **development 빌드에서 이 한 경로만** 같은 메뉴(`studio`)로 연다. `/dev/unified` 화면과 나머지 `/api/dev/**` 는 그대로 관리자만.
 
+## 영어 지문·문제 생성 — 개발은 구독 CLI
+
+`POST /api/english/generate`도 `NODE_ENV=development`에서는 기존 Math 구독 어댑터
+`src/lib/dev-ai/cli.ts`의 `runSubscriptionCli`를 사용한다(Claude의 `-p` 실행 포함).
+`DEV_AI_MODE=subscription-cli`와 `DEV_AI_PROVIDER=claude` 또는 `codex`가 필요하다.
+설정 없음·비활성화·지원하지 않는 제공자는 503이며, 로그인·설치·한도·실행 실패는
+생성 실패로 끝난다. **개발 영어 생성은 API 키가 있어도 OpenAI/DeepSeek로 자동 전환하지 않는다.**
+이 경로에는 자료 제작 상태판의 수동 `model-api` 선택도 적용되지 않는다.
+
+세션, 요청 계약, 시험 소유권, 자료은행 이용 권한·원문 참조, 사용자별 동시 생성 제한을
+유지한다. 개발 요청은 Math와 같은 `rejectDevAiRequest`를 거쳐 loopback URL과 실제 Host,
+브라우저의 정확한 동일 출처를 확인한다. 요청 취소는 같은 `AbortSignal`로 CLI에 전달하고,
+취소 응답은 499, 그 밖의 오류 응답에는 원문·CLI 출력·프로필 경로·인증 정보를 넣지 않는다.
+
+`src/lib/english/subscriptionTransport.ts`가 전송만 주입하므로 JSON 파싱 재시도, 초안 모양
+정리, 결정적 검증, 예산 안의 한 번 고쳐 쓰기는 운영과 같다. CLI 설정에서 고른 모델/별칭을
+요청 동안 고정해 생성·재시도·고쳐 쓰기에 넘기고, 응답 `model.name`에는 `claude-cli/sonnet`
+같은 실제 제공자와 선택 모델을 남긴다. 설정에 모델이 없으면 `claude-cli/default` 또는
+`codex-cli/default`로 표시한다. 이는 CLI 기본 모델이라는 뜻이며, 문자열 응답만 주는 기존
+어댑터가 보고하지 않는 실제 해석 모델명을 추정하지 않는다. `promptVersion`은 기존 영어
+프롬프트 판, 초안 `source`는 DB 호환을 위해 기존 `deepseek` 값이다. DB 마이그레이션은 없다.
+
+운영 빌드의 공급자 선택(`ENGLISH_AI_VENDOR`·기존 API 키), 모델 메타데이터와 오류 처리는
+기존 API 경로 그대로다. 개발 구독 설정은 운영 경로를 CLI로 바꾸지 않는다. 검증은 SDK·CLI
+응답을 모킹한 라우트/생성 시험으로 수행하며 실제 모델 호출·인증 변경·DB 접속은 포함하지 않는다.
+
 ## Jev 도형 수정 빠른 길 — TypeSafe 직접 API
 
 서버 환경에 `TYPESAFE_API_KEY`를 설정하면 도형 수정(`figure-edit`)의 빠른 길이 켜진다. `src/lib/jev/client.ts`가 native `fetch`로 `POST https://api.typesafe.ai/v1/systemone`에 Bearer 인증과 `{ model: "jev-latest", state, questions }`를 보낸다. `AI_GATEWAY_API_KEY`·`VERCEL_OIDC_TOKEN`은 이 경로를 켜거나 인증하지 않는다. 키는 `NEXT_PUBLIC_`로 노출하지 않는다. `STUDIO_AI_JEV=off`로 끌 수 있고, Vitest 안에서는 `STUDIO_AI_JEV=on`을 명시한 모의 호출 시험만 켠다. [TypeSafe HTTP 계약](https://docs.typesafe.ai/api).
