@@ -8,6 +8,7 @@ export const ENGLISH_VIEWS = [
   "english",
   "english-maker",
   "english-library",
+  "english-questions",
 ] as const;
 export type EnglishView = (typeof ENGLISH_VIEWS)[number];
 
@@ -15,7 +16,11 @@ export const isEnglishView = (value: string): value is EnglishView =>
   (ENGLISH_VIEWS as readonly string[]).includes(value);
 
 export const englishViewMenu = (view: EnglishView): WorkspaceMenu =>
-  view === "english" ? "english-school" : view;
+  view === "english"
+    ? "english-school"
+    : view === "english-questions"
+      ? "english-library"
+      : view;
 
 /** 셸 알림 줄 — `role="status"` / `"alert"` (토스트 없음). 기본은 status */
 export type EnglishNotice = (

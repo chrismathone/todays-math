@@ -187,12 +187,23 @@ const mathNav: NavItem[] = [
 ];
 /** 오늘의 영어 옆 메뉴 — 기존 내신 작업과 승인된 영어듣기. */
 const englishNav: NavItem[] = [
-  { id: "english", label: "학교별 내신 대비", short: "내신", icon: "school" },
-  { id: "english-maker", label: "문제 만들기", short: "만들기", icon: "pen" },
+  { id: "english", label: "오늘의 작업", short: "오늘", icon: "school" },
+  {
+    id: "english-questions",
+    label: "시험지 만들기",
+    short: "시험지",
+    icon: "pen",
+  },
+  {
+    id: "english-maker",
+    label: "AI 문제 제작",
+    short: "AI 제작",
+    icon: "spark",
+  },
   {
     id: "english-library",
-    label: "문제 보관함",
-    short: "보관함",
+    label: "내 문제 세트",
+    short: "문제 세트",
     icon: "folder",
   },
   {
@@ -420,6 +431,21 @@ function UnifiedWorkspaceContent({
     setNoticeError(error);
   }, []);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [englishMaximized, setEnglishMaximized] = useState(false);
+  const workspaceMaximized = product === "english" && englishMaximized;
+  useEffect(() => {
+    if (!workspaceMaximized) return;
+    const restore = (event: KeyboardEvent) => {
+      if (
+        event.key === "Escape" &&
+        !event.defaultPrevented &&
+        !document.querySelector('dialog[open], [aria-modal="true"]')
+      )
+        setEnglishMaximized(false);
+    };
+    window.addEventListener("keydown", restore);
+    return () => window.removeEventListener("keydown", restore);
+  }, [workspaceMaximized]);
   /**
    * 「되돌리기」 한 칸 — 뺀 문제를 다시 담거나(`remove`), 「순서 초기화」 직전의
    * 차례로 되돌린다(`order`). 알림 줄의 단추 하나가 둘을 다 맡는다.
@@ -996,6 +1022,7 @@ function UnifiedWorkspaceContent({
     <div
       className={s.workspace}
       data-sidebar-collapsed={sidebarCollapsed}
+      data-maximized={workspaceMaximized}
       data-authenticated={Boolean(currentUser)}
       data-menu-count={availableNav.length}
       // 영어일 때만 붙는 표지(D-148 · 05 §8.23 ⑷) — 접힌 옆 메뉴의 마크·딱지 배치가 이것을 본다. 수학은 표지 없이 기준 그대로
@@ -1039,7 +1066,7 @@ function UnifiedWorkspaceContent({
           }}
         />
       )}
-      <aside className={s.sidebar}>
+      <aside className={s.sidebar} hidden={workspaceMaximized}>
         <div className={s.productMenu} ref={pickerRef}>
           <div className={s.sideHeader}>
             {products.length > 1 ? (
@@ -1315,6 +1342,25 @@ function UnifiedWorkspaceContent({
             <div className={s.accountSlot}>
               <WorkspaceAccount user={currentUser} />
             </div>
+          )}
+          {product === "english" && (
+            <button
+              type="button"
+              className={s.maximizeButton}
+              aria-pressed={workspaceMaximized}
+              title={
+                workspaceMaximized
+                  ? "화면 복원 (Esc)"
+                  : "메뉴를 숨기고 작업 화면 최대화"
+              }
+              onClick={() => setEnglishMaximized((value) => !value)}
+            >
+              <Icon
+                name={workspaceMaximized ? "restore" : "maximize"}
+                size={17}
+              />
+              {workspaceMaximized ? "화면 복원" : "화면 최대화"}
+            </button>
           )}
         </header>
         <div className={s.notifications}>

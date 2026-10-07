@@ -2322,17 +2322,18 @@
         }
         .bank-filter-box {
           display: flex;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
           align-items: center;
-          gap: 12px;
-          padding: 14px;
+          gap: 10px;
+          padding: 10px 12px;
           background: #fff;
           border: 1px solid var(--line);
           border-radius: 10px;
         }
         .search-wrap {
-          flex: 1 1 300px;
-          height: 43px;
+          flex: 1 1 240px;
+          min-width: 160px;
+          height: 36px;
           border-color: #b8c4d6;
         }
         .search-wrap input {
@@ -2341,7 +2342,9 @@
         .quick-filters {
           display: flex;
           gap: 9px;
-          width: 100%;
+          flex: 0 1 550px;
+          min-width: 380px;
+          width: auto;
         }
         .quick-filters label {
           display: flex;
@@ -2365,6 +2368,30 @@
         }
         .quick-filters label:nth-child(2) {
           flex: 1.5;
+        }
+        .workspace-maximize {
+          margin-left: auto;
+          min-height: 34px;
+        }
+        .shell-maximized .shell-sidebar,
+        .shell-maximized .proposal,
+        .shell-maximized .top-account,
+        .shell-maximized .quick-search {
+          display: none;
+        }
+        body.shell-maximized {
+          --shell-width: 0px;
+        }
+        .shell-maximized .topbar {
+          margin-left: 0;
+          height: 44px;
+          padding: 0 20px;
+        }
+        .shell-maximized .workspace {
+          margin-left: 0;
+        }
+        .shell-maximized .split-work {
+          height: calc(100dvh - 330px);
         }
         .search-meta {
           min-height: 50px;
@@ -3053,6 +3080,7 @@
             display: block;
           }
           .bank-filter-box {
+            flex-wrap: wrap;
             padding: 11px;
             gap: 9px;
             border-radius: 8px;
@@ -3065,6 +3093,9 @@
             font-size: 12px;
           }
           .quick-filters {
+            min-width: 0;
+            flex-basis: 100%;
+            width: 100%;
             flex-wrap: wrap;
             gap: 8px;
           }
@@ -3877,6 +3908,14 @@
         <svg><use href="#i-search" /></svg><span>문제 · 원문 빠르게 찾기</span
         ><kbd>/</kbd></button
       ><span class="top-account">한빛고 <span class="avatar">김</span></span>
+      <button
+        class="btn workspace-maximize"
+        data-action="maximize"
+        aria-pressed="false"
+        title="메뉴를 숨기고 작업 화면 최대화"
+      >
+        ⛶ 화면 최대화
+      </button>
     </header>
     <main class="workspace">
       <section id="libraryView" aria-label="문제은행">
@@ -5662,6 +5701,15 @@
             target.textContent = collapsed ? "»" : "«";
             break;
           }
+          case "maximize": {
+            const maximized = document.body.classList.toggle("shell-maximized");
+            target.setAttribute("aria-pressed", String(maximized));
+            target.textContent = maximized ? "⛶ 화면 복원" : "⛶ 화면 최대화";
+            target.title = maximized
+              ? "화면 복원 (Esc)"
+              : "메뉴를 숨기고 작업 화면 최대화";
+            break;
+          }
         }
       });
       document.addEventListener("change", (event) => {
@@ -5724,6 +5772,16 @@
         $("#filtersHost").append($("#filters")),
       );
       document.addEventListener("keydown", (event) => {
+        if (
+          event.key === "Escape" &&
+          document.body.classList.contains("shell-maximized") &&
+          !$("dialog[open]") &&
+          !$("#splitWork").classList.contains("show-detail")
+        ) {
+          event.preventDefault();
+          $('[data-action="maximize"]').click();
+          return;
+        }
         if (
           event.key === "/" &&
           !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) &&
