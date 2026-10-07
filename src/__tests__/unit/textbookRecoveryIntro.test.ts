@@ -289,7 +289,8 @@ describe("all 72 chapters on an even and on an odd start", () => {
     expect(layouts).toEqual({ "left+right": 72, single: 72 });
     expect(pages).toBe(216);
     expect(goals).toBe(720);
-  });
+    // 144 renders take about 10s alone and 21–27s beside other heavy files — past the default 20s.
+  }, 60_000);
 
   it("places a spread at 16mm as two 254mm faces and a single page at its measured height", () => {
     const exchange = introBook([longest]);
