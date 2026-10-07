@@ -1,0 +1,122 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "A": [
+      30,
+      30
+    ],
+    "B": [
+      30,
+      138
+    ],
+    "C": [
+      192,
+      138
+    ],
+    "D": [
+      192,
+      30
+    ],
+    "O": [
+      138,
+      84
+    ],
+    "E": [
+      138,
+      30
+    ],
+    "H": [
+      192,
+      84
+    ],
+    "G": [
+      138,
+      138
+    ],
+    "M": [
+      111,
+      138
+    ],
+    "F": [
+      94.8,
+      116.4
+    ]
+  },
+  "circles": {
+    "ornamentCircle": {
+      "center": "O",
+      "radius": 54
+    }
+  },
+  "segments": {
+    "frameAB": [
+      "A",
+      "B"
+    ],
+    "frameBC": [
+      "B",
+      "C"
+    ],
+    "frameCD": [
+      "C",
+      "D"
+    ],
+    "frameDA": [
+      "D",
+      "A"
+    ],
+    "supportAM": [
+      "A",
+      "M"
+    ]
+  },
+  "regions": {
+    "leftSupportTriangle": {
+      "boundary": [
+        {
+          "seg": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "seg": [
+            "B",
+            "M"
+          ]
+        },
+        {
+          "seg": [
+            "M",
+            "A"
+          ]
+        }
+      ],
+      "fill": "#f2f2f2"
+    }
+  },
+  "angles": {
+    "rightABM": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "M"
+      ],
+      "right": true,
+      "radius": 10
+    }
+  },
+  "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "O": "O",
+    "E": "E",
+    "F": "F",
+    "G": "G",
+    "H": "H",
+    "M": "M"
+  }
+}

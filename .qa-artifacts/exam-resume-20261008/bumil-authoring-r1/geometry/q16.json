@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q16",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "원 $\\mathrm{O}$ 위의 세 점 $\\mathrm{A},\\mathrm{B},\\mathrm{C}$를 이은 도형에 대하여 다음과 같은 수선 검사 기록을 얻었다.\n\n∘ $\\mathrm{M}$은 현 $\\overline{AB}$ 위, $\\mathrm{N}$은 현 $\\overline{AC}$ 위의 점이다.\n∘ $\\overline{OM}\\perp\\overline{AB}$, $\\overline{ON}\\perp\\overline{AC}$이고 $\\overline{OM}=\\overline{ON}$이다.\n∘ $\\angle ABC=65^\\circ$이다.\n\n이 기록으로 알 수 있는 현의 길이 관계와 $\\angle BAC$의 크기를 차례로 적은 것으로 옳은 것은?",
+  "choices": [
+    "$\\overline{AB}=\\overline{BC}$, $50^\\circ$",
+    "$\\overline{AB}=\\overline{AC}$, $65^\\circ$",
+    "$\\overline{AC}=\\overline{BC}$, $50^\\circ$",
+    "$\\overline{AB}=\\overline{AC}$, $50^\\circ$",
+    "$\\overline{AB}=\\overline{AC}$, $115^\\circ$"
+  ],
+  "answer": "④",
+  "solution": "한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같으므로 $\\overline{OM}=\\overline{ON}$에서 $\\overline{AB}=\\overline{AC}$이다.\n따라서 삼각형 $\\mathrm{ABC}$는 $\\overline{AB},\\overline{AC}$를 같은 두 변으로 하는 이등변삼각형이다. 두 밑각의 크기가 같으므로 $\\angle ACB=\\angle ABC=65^\\circ$이다.\n삼각형의 세 내각의 크기의 합은 $180^\\circ$이므로 $\\angle BAC=180^\\circ-65^\\circ-65^\\circ=50^\\circ$이다.\n그러므로 현의 길이 관계가 $\\overline{AB}=\\overline{AC}$이고 꼭지각이 $50^\\circ$인 ④가 정답이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "center": "O",
+    "circlePoints": [
+      "A",
+      "B",
+      "C"
+    ],
+    "M": "현 AB 위의 수선의 발",
+    "N": "현 AC 위의 수선의 발",
+    "perpendiculars": [
+      "OM ⟂ AB",
+      "ON ⟂ AC"
+    ],
+    "distanceRelation": "OM = ON",
+    "givenAngleABC": "65°",
+    "target": "같은 길이의 두 현과 ∠BAC의 크기를 함께 기록한 보기"
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.figure-spec.json",
+      "svgPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.svg",
+      "intendedWidthMm": 58,
+      "specSha256": "9d860f61252cd19b1ad520cfc660dbf664093926dbfc477789c6ed72c054df25",
+      "renderMode": "local-renderFigureSpec-strict",
+      "svgSha256": "24e796e88d8ba1f5c3f3db7b03900fed1c11076c1ce875d8a71ee10f31b7e196",
+      "renderResult": {
+        "ok": true,
+        "strict": true,
+        "localOnly": true,
+        "typeset": true,
+        "droppedDimensions": []
+      }
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure"
+    ],
+    "before": "같은 중심거리인 두 현과 한 밑각을 주고 꼭지각의 값 하나를 고른다.",
+    "after": "수선 검사 기록으로부터 현의 길이 관계와 꼭지각을 동시에 기록한 행을 고른다. 단순 각도 목록을 관계·각도의 짝으로 바꾸었다.",
+    "sharedConcept": "중심에서 같은 거리에 있는 두 현, 이등변삼각형의 밑각, 삼각형의 내각의 합",
+    "sharedProcedure": "OM=ON → AB=AC → ∠ABC=∠ACB → 내각 합으로 ∠BAC 계산"
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-04",
+      "9수04-10",
+      "9수04-05"
+    ],
+    "allowedProcedure": [
+      "한 원의 중심에서 같은 거리에 있는 현의 길이는 같음",
+      "이등변삼각형의 두 밑각은 같음",
+      "삼각형의 내각의 합 180°",
+      "다섯 관계·각도 기록의 정오 판정"
+    ],
+    "forbiddenAvoided": [
+      "접선-할선 또는 할선-할선의 거듭제곱 정리",
+      "원과 비례에 관한 곱의 정리",
+      "원의 방정식·좌표를 이용한 학생용 접점 계산",
+      "사인 법칙·코사인 법칙",
+      "90° 밖의 삼각비·일반 삼각함수·삼각형의 사인 넓이 공식",
+      "부채꼴 라디안 공식",
+      "미분·벡터"
+    ],
+    "status": "author-proposed",
+    "standardEvidence": [
+      {
+        "code": "9수04-19",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4353,
+          "record_offset_in_uncompressed_stream": 219558,
+          "extracted_paragraph_1based": 894
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-04",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4264,
+          "record_offset_in_uncompressed_stream": 216294,
+          "extracted_paragraph_1based": 872
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-10",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4300,
+          "record_offset_in_uncompressed_stream": 217636,
+          "extracted_paragraph_1based": 881
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4272,
+          "record_offset_in_uncompressed_stream": 216602,
+          "extracted_paragraph_1based": 874
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "gradeBandCaveat": "9수 성취기준은 중1~중3 학년군이며, 중3 지정은 v2의 중3 Unit/live family 제안과 함께 검토해야 한다. 학년군 코드만으로 개별 학년 승인으로 간주하지 않는다.",
+    "surfaces": {
+      "content": {
+        "status": "author-proposed",
+        "evidence": "원 위의 점·현·중심거리·수선과 예각만 제시한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "현 길이의 같음과 각도 값의 짝 다섯 개. 순서·점 대응을 고정해 해석한다."
+      },
+      "figure": {
+        "status": "author-proposed",
+        "evidence": "정원·같은 중심거리의 수선·직각·주어진 65°만 표시한다. 답인 두 현의 등변 표시는 넣지 않는다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "다섯 행 중 하나를 나타내는 원문자."
+      },
+      "solution": {
+        "status": "author-proposed",
+        "evidence": "같은 중심거리의 현 성질, 이등변삼각형의 밑각, 내각 합만 사용한다."
+      },
+      "requiredProcedure": {
+        "status": "author-proposed",
+        "evidence": "원과 직선의 성질에서 각 관계로 이어지는 중학교 절차."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중학교 기본 도형·이등변삼각형·삼각형의 내각의 합."
+      }
+    },
+    "gate": {
+      "scope": [
+        "content",
+        "choices",
+        "figure",
+        "answer",
+        "solution",
+        "requiredProcedure",
+        "prerequisites"
+      ],
+      "outOfGrade": "reject",
+      "unclear": "hold",
+      "independentGradeApproval": false
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-16",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 16,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "2a0a3a6ab32cdaae436229cea0c6c7139a73ec1f9e483b76d7c828b3914be911",
+    "sourceObservation": "OM⊥AB, ON⊥AC, OM=ON, ∠ABC=70°이며 ∠BAC를 묻는다.",
+    "sharedConceptProcedure": "같은 중심거리로 AB=AC를 얻고 두 밑각 및 삼각형 내각의 합을 사용한다.",
+    "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q16",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+    "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "answerFreeContentSha256": "2a0a3a6ab32cdaae436229cea0c6c7139a73ec1f9e483b76d7c828b3914be911",
+    "referenceFigures": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q16.png",
+        "sha256": "990e5c91a9b4a8b501342c68553033b06e4a0505e1a59bc00fb1f439e95d23e7",
+        "role": "source-reference-only"
+      }
+    ],
+    "sourceAnswersSolutionsAccessed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "개념",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "familyKey": "mid:3-2|원과 직선|18A",
+      "currentUnit": {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      "currentRegistryMatch": {
+        "key": "3-2|원과 직선|18A",
+        "grade": "중3",
+        "unitSection": "원과 현",
+        "rpmBook": "3-2",
+        "rpmMinor": "원과 직선",
+        "rpmType": "18A",
+        "rpmTitle": "중심에서 같은 거리에 있는 두 현"
+      },
+      "liveCount": 16,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "중심에서 같은 거리에 있는 두 현의 길이가 같다는 성질을 쓰고 이등변삼각형의 각을 판정한다. 기존 18A의 주 개념과 일치한다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수04-19",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4353,
+          "record_offset_in_uncompressed_stream": 219558,
+          "extracted_paragraph_1based": 894
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-04",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4264,
+          "record_offset_in_uncompressed_stream": 216294,
+          "extracted_paragraph_1based": 872
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-10",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4300,
+          "record_offset_in_uncompressed_stream": 217636,
+          "extracted_paragraph_1based": 881
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4272,
+          "record_offset_in_uncompressed_stream": 216602,
+          "extracted_paragraph_1based": 874
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "한 원의 중심에서 같은 거리에 있는 현의 길이는 같음 → 이등변삼각형의 두 밑각은 같음 → 삼각형의 내각의 합 180° → 다섯 관계·각도 기록의 정오 판정",
+    "curriculumSpecificHold": "새 후보 전체의 학년 적합성·Unit/live family·생성 규칙 및 출처의 별도 검수 전이며 승인되지 않았다.",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": []
+    },
+    "authoringStatus": "author-proposed",
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate",
+      "candidateDisplayOccurrences": 0
+    }
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "gradeCurriculum": "pending",
+    "equivalentConceptAndMethod": "pending",
+    "distinctPresentation": "pending",
+    "naturalKorean": "pending",
+    "mathematicalCorrectness": "pending",
+    "figure": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  },
+  "directUseAllowed": false
+}
