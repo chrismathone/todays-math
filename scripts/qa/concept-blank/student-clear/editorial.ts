@@ -184,9 +184,15 @@ export function verifyEditorialRow(
     )
       issues.push("형식 결정과 직접 읽기 기록 불일치");
   } else {
+    // Some middle-scope records use "exclude" to adopt a form-specific exclusion.
+    // It is a settled editorial decision only when the actual authoring decision agrees.
+    const adopted = (form: "b" | "c") =>
+      ledger[`${form}Verdict`] === "keep" ||
+      (raw[`${form}Decision`] === "exclude" &&
+        ledger[`${form}Verdict`] === "exclude");
     if (
-      ledger.bVerdict !== "keep" ||
-      ledger.cVerdict !== "keep" ||
+      !adopted("b") ||
+      !adopted("c") ||
       !text(ledger.bReason) ||
       !text(ledger.cReason) ||
       !text(ledger.reader) ||

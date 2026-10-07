@@ -38,6 +38,47 @@ const keyed = (): Parameters<typeof verifyIndependentRow>[2] => [
 ];
 
 describe("student-clear content-bound evidence", () => {
+  it("accepts a directly adopted middle form exclusion only when the actual decision agrees", () => {
+    const row = {
+      ...draft,
+      sourceIndex: 0,
+      bDecision: "exclude",
+      bQuestion: null,
+      bReason:
+        "같은 성질을 확인하는 다른 명확한 B 물음이 있어 이 형식만 제외한다.",
+      cMarkedSentence: original.definition,
+      cAcceptedAnswers: [["$1$"]],
+      proposalFingerprint: "",
+    };
+    row.proposalFingerprint = workerFingerprint("middle", row);
+    const ledger = {
+      id: row.id,
+      sourceIndex: 0,
+      learningRole: row.learningRole,
+      proposalFingerprint: row.proposalFingerprint,
+      bVerdict: "exclude",
+      cVerdict: "keep",
+      bReason: row.bReason,
+      cReason: "십 한 개라는 수를 쓰는 물음은 분명하다.",
+      reader: "Codex direct reading",
+      readAt: "2026-10-07T05:05:00Z",
+    };
+    expect(
+      verifyEditorialRow(
+        "middle",
+        row,
+        normalizeProposal(row, original)!,
+        ledger,
+      ),
+    ).toEqual([]);
+    expect(
+      verifyEditorialRow("middle", row, normalizeProposal(row, original)!, {
+        ...ledger,
+        cVerdict: "exclude",
+      }),
+    ).toContain("최종 질문·답·기준을 직접 읽고 남긴 개별 채택 기록 없음");
+  });
+
   it("uses assembled current questions and anyOf draft C alternatives", () => {
     const row = normalizeProposal(
       {
