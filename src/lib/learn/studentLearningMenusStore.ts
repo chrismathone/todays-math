@@ -5,6 +5,7 @@ import type { AppSettingTable } from "@/lib/journeyThemeStore";
 import { uuidSchema } from "@/contracts/common.contract";
 import {
   storedStudentLearningMenusSchema,
+  studentLearningMenusSchema,
   type StudentOptionalMenu,
 } from "@/contracts/studentLearningMenus.contract";
 
@@ -41,3 +42,25 @@ export async function readStudentLearningMenus(
 }
 
 export const getStudentLearningMenus = cache(readStudentLearningMenus);
+
+/** Replace only this student's grants. An empty list closes all optional menus. */
+export async function writeStudentLearningMenus(
+  studentId: string,
+  enabled: readonly StudentOptionalMenu[],
+  actorId: string,
+  table: Pick<AppSettingTable, "upsert"> = (
+    db as unknown as { appSetting: AppSettingTable }
+  ).appSetting,
+): Promise<{ enabled: StudentOptionalMenu[]; updatedAt: string }> {
+  const key = studentLearningMenusKey(studentId);
+  const value = {
+    version: 1 as const,
+    enabled: studentLearningMenusSchema.parse(enabled),
+  };
+  const row = await table.upsert({
+    where: { key },
+    create: { key, value, updatedById: actorId },
+    update: { value, updatedById: actorId },
+  });
+  return { enabled: value.enabled, updatedAt: row.updatedAt.toISOString() };
+}
