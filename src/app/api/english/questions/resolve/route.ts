@@ -3,8 +3,9 @@ import {
   englishQuestionBankResolveRequestSchema,
   englishQuestionBankResolveResponseSchema,
 } from "@/contracts/englishQuestionBank.contract";
-import { jsonOk, validationError } from "@/lib/apiResponse";
+import { validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { bankJsonResponse } from "@/lib/english/bankJsonResponse";
 import {
   questionBankErrorResponse,
   readQuestionBankBody,
@@ -21,11 +22,9 @@ export async function POST(request: Request) {
       await readQuestionBankBody(request),
     );
     if (!input.success) return validationError(input.error);
-    const response = jsonOk(englishQuestionBankResolveResponseSchema, {
+    return bankJsonResponse(englishQuestionBankResolveResponseSchema, {
       data: await resolveEnglishBankQuestions(db, gate.session, input.data),
     });
-    response.headers.set("Cache-Control", "private, no-store");
-    return response;
   } catch (error) {
     if (error instanceof ZodError) return validationError(error);
     return questionBankErrorResponse(error);
