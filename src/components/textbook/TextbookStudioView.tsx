@@ -65,6 +65,7 @@ import {
   LectureLink,
   ObservationForm,
   Outline,
+  PreviewModeButtons,
   PreviewPane,
   PublishPanel,
   ReissuePanel,
@@ -74,6 +75,10 @@ import {
   paperInput,
   sectionStructureProblem,
 } from "@/components/textbook/parts";
+import {
+  BookPreview,
+  type BookPreviewCache,
+} from "@/components/textbook/bookPreview";
 import { SectionMeasure } from "@/components/textbook/measuredPreview";
 import { buildSectionPreview } from "@/components/textbook/previewModel";
 import { simpleSectionLabels } from "@/components/textbook/simpleNavigation";
@@ -220,6 +225,14 @@ export function TextbookStudioView({
     edition && loadedMaterial?.editionId === edition.editionId
       ? loadedMaterial.value
       : null;
+  /** 완성 보기의 띠가 측정해 둔 구획 — 판본이나 미리보기 재료가 바뀌면 버린다 */
+  const bookCache = useMemo<BookPreviewCache>(
+    () => new Map(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [edition?.editionId, loadedMaterial],
+  );
+  /** 완성 보기의 띠를 넘기다 맨 앞에 보이는 구획 — «세부 편집»이 그 구획에서 열린다 */
+  const visibleSection = useRef<string | null>(null);
   const [measuredPages, setMeasuredPages] = useState<MeasuredPageRef[]>([]);
   const [spreadIndex, setSpreadIndex] = useState<number | null>(null);
   const [seenMeasureKey, setSeenMeasureKey] = useState<string | null>(null);
@@ -1663,6 +1676,24 @@ export function TextbookStudioView({
     nextMeasuredSpread(measuredPages, spreadIndex, 1) !== null ||
     (sectionIndex >= 0 && sectionIndex < sectionOrder.length - 1);
 
+  /** 완성 보기의 띠 아래에 두는 구획 정답 메모 — 지면 밖의 글이다(PDF 에 인쇄되지 않는다) */
+  const simpleAnswerNote = (() => {
+    if (!draft) return null;
+    const input = paperInput(
+      draft,
+      audience,
+      audience === "teacher" ? mode : "student",
+      zoom,
+      pageLabel,
+    );
+    return input.answerPlacement === "sheet" && input.answer ? (
+      <div className={styles.note} role="note" aria-label="구획 정답 메모">
+        <p>구획 정답 메모 · PDF에 인쇄되지 않음</p>
+        <p>{input.answer}</p>
+      </div>
+    ) : null;
+  })();
+
   const previewPanel = draft ? (
     <>
       {audience === "teacher" &&
@@ -2066,48 +2097,53 @@ export function TextbookStudioView({
       ) : null}
       {edition && simplePreview ? (
         <div className={styles.stack}>
-          <div className={styles.row}>
+          <div className={styles.simpleHead}>
             <h2>{edition.title}</h2>
-            <button
-              type="button"
-              className={styles.button}
-              onClick={() => {
-                setSimplePreview(false);
-                setMode("draft");
-                setPane("manuscript");
-              }}
-            >
-              세부 편집
-            </button>
-            {!locked ? (
+            <div className={styles.row}>
               <button
                 type="button"
-                className={styles.primary}
-                disabled={busy || publishUnknown}
-                aria-describedby={`pdf-publish-note-${edition.editionId}`}
-                onClick={() => void makeSimplePdf()}
+                className={styles.button}
+                onClick={() => {
+                  setSimplePreview(false);
+                  setMode("draft");
+                  setPane("manuscript");
+                  // 띠를 넘기다 보던 구획에서 편집이 열린다 — 저장 안 한 수정이 있으면 이동 가드가 먼저 묻는다.
+                  const seen = visibleSection.current;
+                  if (seen && seen !== draft?.sectionId) selectSection(seen);
+                }}
               >
-                {busy ? "PDF를 만들고 있습니다…" : "PDF 만들기"}
+                세부 편집
               </button>
-            ) : null}
-            {published ? (
-              <>
-                <a
+              {!locked ? (
+                <button
+                  type="button"
                   className={styles.primary}
-                  href={`/api/textbook/editions/${edition.editionId}/pdf?kind=student`}
-                  download
+                  disabled={busy || publishUnknown}
+                  aria-describedby={`pdf-publish-note-${edition.editionId}`}
+                  onClick={() => void makeSimplePdf()}
                 >
-                  학생용 PDF 내려받기
-                </a>
-                <a
-                  className={styles.button}
-                  href={`/api/textbook/editions/${edition.editionId}/pdf?kind=answers`}
-                  download
-                >
-                  해설 PDF 내려받기
-                </a>
-              </>
-            ) : null}
+                  {busy ? "PDF를 만들고 있습니다…" : "PDF 만들기"}
+                </button>
+              ) : null}
+              {published ? (
+                <>
+                  <a
+                    className={styles.primary}
+                    href={`/api/textbook/editions/${edition.editionId}/pdf?kind=student`}
+                    download
+                  >
+                    학생용 PDF 내려받기
+                  </a>
+                  <a
+                    className={styles.button}
+                    href={`/api/textbook/editions/${edition.editionId}/pdf?kind=answers`}
+                    download
+                  >
+                    해설 PDF 내려받기
+                  </a>
+                </>
+              ) : null}
+            </div>
           </div>
           {!locked ? (
             <p
@@ -2124,28 +2160,45 @@ export function TextbookStudioView({
             </p>
           ) : null}
           {issues.length ? <ReviewTable issues={issues} /> : null}
-          <nav className={styles.simpleSections} aria-label="교재 내용">
-            {edition.units.map((unit) => (
-              <div key={unit.unitKey}>
-                <strong>{unit.title}</strong>
-                <div className={styles.row}>
-                  {unit.sections.map((section) => (
-                    <button
-                      type="button"
-                      key={section.sectionId}
-                      className={styles.button}
-                      aria-pressed={draft?.sectionId === section.sectionId}
-                      disabled={busy}
-                      onClick={() => selectSection(section.sectionId)}
-                    >
-                      {sectionLabels.get(section.sectionId) ?? section.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </nav>
-          {previewPanel}
+          {draft &&
+          audience === "teacher" &&
+          draft.templateKey.startsWith("auto-lesson") ? (
+            <p className={styles.muted}>
+              개념 원고 준비됨 · 어휘와 수업 흐름은 전체 편집 검수 전
+            </p>
+          ) : null}
+          {/* 교재 전체를 한 띠로 옆으로 넘겨 본다 — 구획 단추 벽 · 이전/다음 · 배율 단추를 대신한다 */}
+          <BookPreview
+            api={api}
+            edition={edition}
+            variant={previewVariant}
+            material={material}
+            materialReady={loadedMaterial?.editionId === edition.editionId}
+            labels={sectionLabels}
+            currentSectionId={draft?.sectionId ?? null}
+            seed={
+              draft
+                ? {
+                    section: draft,
+                    conceptSource,
+                    conceptRevision,
+                    dirty: workDirty,
+                  }
+                : null
+            }
+            cache={bookCache}
+            disabled={busy}
+            modes={
+              audience === "teacher" ? (
+                <PreviewModeButtons current={mode} onMode={setMode} />
+              ) : null
+            }
+            footer={simpleAnswerNote}
+            onPick={selectSection}
+            onVisibleSection={(sectionId) => {
+              visibleSection.current = sectionId;
+            }}
+          />
         </div>
       ) : null}
       {edition && !simplePreview ? (
