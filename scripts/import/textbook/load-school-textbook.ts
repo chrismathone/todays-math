@@ -61,8 +61,14 @@
  *    지문 원장이 없으면 고치지 않는다 — `--refresh --adopt` 는 지금 DB 를 기준으로 삼는다(아무도 손대지 않은 것이 확실할 때만).
  * 전부를 한꺼번에 잠그거나 목록으로 푸는 일은 `hold-school-textbook.ts`, 실린 것을 세는 일은 `census.ts`.
  */
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
-import { join } from "node:path";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+} from "node:fs";
+import { dirname, join } from "node:path";
 
 import { PrismaClient } from "@prisma/client";
 
@@ -78,6 +84,11 @@ import {
   parseSourceMaterial,
 } from "../../../src/lib/import/schoolTextbook/sourceMeta";
 import { checkKeyOf } from "../../../src/lib/import/schoolTextbook/checkKey";
+import {
+  choiceIndexOf,
+  countMarkers,
+  dropFigureMarkers,
+} from "../../../src/lib/import/schoolTextbook/figurePlacement";
 import {
   cleanContent,
   hwpLeftovers,
@@ -103,11 +114,44 @@ const optionValues = (name: string): string[] =>
   process.argv.flatMap((arg, index) =>
     arg === name && process.argv[index + 1] ? [process.argv[index + 1]!] : [],
   );
-const PREPARED_DIR = optionValues("--prepared")[0] ?? "prepared";
-const REVIEW_DIRS =
-  optionValues("--review").length > 0 ? optionValues("--review") : ["review"];
+/**
+ * 문항의 묶음 하나 — 준비 폴더 · 그 글을 본 검토 폴더들 · 마무리 손질 · (그림 문항이면) 그림 폴더.
+ * 글 문항과 그림 문항은 준비 폴더가 다르다. 묶음을 따로 돌리면 `--refresh` 가 다른 묶음의 문항을 «계획에 없다»로 잠그므로
+ * **한 번에 다 준다**: `--sets load/sets.json`(`{ "sets": [...], "checks": [...] }`). 뒤 묶음이 앞 묶음을 이긴다 —
+ * 단, 뒤 묶음이 그 문항을 실을 수 없다고 하면 앞 묶음의 줄이 남는다(글 문항으로 실린 줄을 그림 검토가 지우지 않는다).
+ */
+interface LoadSet {
+  prepared: string;
+  reviews: string[];
+  /** `finalize.py` 가 낸 폴더(없으면 손질 없이) */
+  final?: string;
+  /** `figures.py --export` 가 낸 폴더(`meta.jsonl` · `img/`) */
+  figures?: string;
+}
+const SETS_FILE = optionValues("--sets")[0];
+const SETS_CONFIG = SETS_FILE
+  ? (JSON.parse(readFileSync(join(DIR ?? ".", SETS_FILE), "utf8")) as {
+      sets: LoadSet[];
+      checks?: string[];
+    })
+  : null;
+const SETS: LoadSet[] = SETS_CONFIG?.sets ?? [
+  {
+    prepared: optionValues("--prepared")[0] ?? "prepared",
+    reviews:
+      optionValues("--review").length > 0
+        ? optionValues("--review")
+        : ["review"],
+    final: "final",
+  },
+];
 /** 지면 검토 폴더들(`final-check/collect.py` 의 `checked.jsonl`) — 뒤에 준 폴더가 이긴다 */
-const CHECK_DIRS = optionValues("--check");
+const CHECK_DIRS = SETS_CONFIG?.checks ?? optionValues("--check");
+/** `--copy-figures` — 계획의 그림 파일을 저장소(`public/figures/tb/`)에 놓는다. 그 커밋이 배포된 **뒤에** 문항을 싣는다 */
+const COPY_FIGURES = process.argv.includes("--copy-figures");
+/** 그림 파일이 놓이는 자리 — 저장소의 `public/figures/tb/<자료>/<문항>-<n>.png` → 주소 `/figures/tb/…` */
+const FIGURE_PUBLIC_DIR = join(process.cwd(), "public", "figures", "tb");
+const FIGURE_URL_PREFIX = "/figures/tb/";
 const APPLY = process.argv.includes("--apply");
 const REVERT = process.argv.includes("--revert");
 const REFRESH = process.argv.includes("--refresh");
@@ -192,6 +236,32 @@ interface Reviewed {
   format?: string;
   solution?: string | null;
   needSolution?: boolean;
+  /** 그림 문항 — 검토자가 «이 문항의 그림이 아니다»라고 한 그림의 번호(1부터) */
+  noFigure?: number[];
+}
+/** `figures.py --export` 가 낸 한 줄 — 문항에 딸린 그림 파일들(본문의 `[그림]` 차례대로) */
+interface FigureMeta {
+  id: string;
+  figures: Array<{
+    file: string;
+    mm: number;
+    sha: string;
+    px?: [number, number];
+  }>;
+}
+/** 실을 그림 하나 */
+export interface LoadFigure {
+  /** 꺼내 둔 파일(작업 폴더) */
+  source: string;
+  /** 저장소 `public/figures/tb/` 아래의 자리 */
+  path: string;
+  /** 문항이 가리키는 주소 — `/figures/tb/…` */
+  url: string;
+  width: number;
+  height: number;
+  /** 원본 지면에서의 폭(mm) — 한글 파일에 적힌 보이는 크기 */
+  mm: number;
+  sha: string;
 }
 interface Judged {
   id: string;
@@ -226,6 +296,10 @@ export interface LoadRow {
   hold: string[];
   /** 다른 이름으로 바꾼 것(«천재 → 지우») — 원장에 남긴다 */
   renamed: string[];
+  /** 그림 문항의 그림들 — 본문의 `[그림]` 차례대로. 글 문항은 빈 배열 */
+  figures: LoadFigure[];
+  /** 그림마다 «몇 번 보기의 그림인가»(0 은 발문). 짝을 모르면 빈 배열(`Problem.choiceFigureIndex` 의 규칙) */
+  choiceFigureIndex: number[];
   /** 지면 검토가 본 글의 지문 — 검토 뒤에 글이 바뀌면 그 검토는 버린다 */
   checkKey: string;
   /** 지면 검토가 읽을 해설 후보 — 교과서 풀이(쓸 수 있는 꼴이면), 없으면 첫 검토자가 쓴 것. 실을 해설과 다를 수 있다 */
@@ -304,6 +378,37 @@ function blatantNote(...texts: Array<string | null>): string | null {
   return words.length > 0 ? `출판사 이름이 글에 있다 ${words.join(" ")}` : null;
 }
 
+/**
+ * 계획의 줄 → DB 에 쓰는 칸들(본문 · 정답 · 해설 · 해설의 출처 · 잠금 + 그림 다섯).
+ * 넣기 · 제자리 갱신 · 지문이 전부 이 함수를 쓴다 — 칸을 따로 적으면 한쪽만 바뀐다.
+ * 지면에 낼 꼴이 아직 아닌 문항은 잠근다(`hold`) — 은행에는 보이고 출제에는 안 뽑힌다.
+ */
+function columnsOfRow(row: LoadRow): RefreshColumns {
+  return {
+    content: row.content,
+    answer: row.answer,
+    solution: row.solution,
+    solutionSource: row.solutionSource,
+    directUseAllowed: row.hold.length === 0,
+    figureUrls: row.figures.map((figure) => figure.url),
+    figureDims: row.figures.flatMap((figure) => [figure.width, figure.height]),
+    figureSourceMm: row.figures.map((figure) => figure.mm),
+    choiceFigureIndex: row.choiceFigureIndex,
+    figureSource: row.figures.length > 0 ? "source" : null,
+  };
+}
+
+/**
+ * 그림 파일이 저장소에 있는가 — 없는 줄의 열쇠들.
+ * 🔴 DB 는 즉시 최신인데 그림 파일은 밀어야 간다(20번 문서 2026-08-20). 그림 문항은 파일이 **배포된 뒤에** 싣는다.
+ *    여기서는 «이 작업본에 파일이 있는가»까지만 본다 — 배포됐는지는 돌리는 사람이 본다.
+ */
+function missingFigureFiles(rows: LoadRow[]): string[] {
+  return rows
+    .filter((row) => row.figures.some((figure) => !existsSync(figure.path)))
+    .map((row) => row.externalId);
+}
+
 /** 손질로도 못 고친 표기 — 없으면 null */
 function leftoverNote(name: string, text: string): string | null {
   const words = hwpLeftovers(text);
@@ -315,23 +420,86 @@ interface Skip {
   reason: string;
 }
 
+type Books = Map<string, SourceBookInput>;
+type Materials = Map<string, SourceMaterialInput & { bookKey: string }>;
+
+/** 모든 묶음이 같이 쓰는 것 — 지면 검토의 판정 · 끊긴 낱말을 붙이는 사전 · 책과 자료 */
+interface Shared {
+  checks: Map<string, Checked>;
+  unsplit: (text: string) => string;
+  books: Books;
+  materials: Materials;
+}
+
 function buildRows(): {
   rows: LoadRow[];
   skipped: Skip[];
-  books: Map<string, SourceBookInput>;
-  materials: Map<string, SourceMaterialInput & { bookKey: string }>;
+  books: Books;
+  materials: Materials;
 } {
+  // 지면 검토 — 실으려는 «그 글»을 읽은 판정. 뒤에 준 폴더가 이긴다
+  const checks = new Map<string, Checked>();
+  for (const dir of CHECK_DIRS)
+    for (const row of readJsonl<Checked>(join(DIR, dir, "checked.jsonl")))
+      checks.set(row.id, row);
+  // 끊겼다 이어진 낱말을 붙일 사전 — 검토자가 쓴 해설(줄 끝에서 끊긴 적이 없는 글). 모든 묶음의 것을 같이 쓴다
+  const written: string[] = [];
+  for (const set of SETS)
+    for (const dir of set.reviews)
+      for (const review of readJsonl<Reviewed>(
+        join(DIR, dir, "reviewed.jsonl"),
+      ))
+        if (review.solution) written.push(review.solution);
+  for (const check of checks.values())
+    if (check.newSolution) written.push(check.newSolution);
+  const vocabulary = buildVocabulary(written);
+  const shared: Shared = {
+    checks,
+    unsplit: (text) => unsplitWords(text, vocabulary),
+    books: new Map(),
+    materials: new Map(),
+  };
+
+  // 묶음마다 짓고 합친다 — 뒤 묶음의 줄이 이긴다. 뒤 묶음이 «실을 수 없다»고 한 문항은 앞 묶음의 줄이 남는다
+  const rows = new Map<string, LoadRow>();
+  const skips = new Map<string, Skip>();
+  for (const set of SETS) {
+    const built = buildRowsOf(set, shared);
+    for (const row of built.rows) rows.set(row.externalId, row);
+    for (const skip of built.skipped) skips.set(skip.externalId, skip);
+  }
+  return {
+    rows: [...rows.values()],
+    skipped: [...skips.values()].filter((skip) => !rows.has(skip.externalId)),
+    books: shared.books,
+    materials: shared.materials,
+  };
+}
+
+function buildRowsOf(
+  set: LoadSet,
+  shared: Shared,
+): { rows: LoadRow[]; skipped: Skip[] } {
+  const { checks, unsplit, books, materials } = shared;
   const prepared = new Map(
-    readJsonl<Prepared>(join(DIR, PREPARED_DIR, "prepared.jsonl")).map(
+    readJsonl<Prepared>(join(DIR, set.prepared, "prepared.jsonl")).map(
       (row) => [row.id, row],
     ),
+  );
+  // 그림 문항 — 문항에 딸린 그림 파일들(본문의 `[그림]` 차례대로)
+  const figureMeta = new Map<string, FigureMeta>(
+    set.figures
+      ? readJsonl<FigureMeta>(join(DIR, set.figures, "meta.jsonl")).map(
+          (row) => [row.id, row],
+        )
+      : [],
   );
   // 검토 폴더들 — 뒤에 준 폴더가 이긴다. 둘째 검토는 **그 검토와 같은 폴더의 것**만 본다
   const winner = new Map<
     string,
     { review: Reviewed; judged: Judged | undefined; lines: string[] }
   >();
-  for (const dir of REVIEW_DIRS) {
+  for (const dir of set.reviews) {
     const judgedPath = join(DIR, dir, "judged.jsonl");
     const judgedHere = new Map(
       existsSync(judgedPath)
@@ -361,23 +529,10 @@ function buildRows(): {
     }
   }
   const reviewed = [...winner.values()].map((entry) => entry.review);
-  // 지면 검토 — 실으려는 «그 글»을 읽은 판정. 뒤에 준 폴더가 이긴다
-  const checks = new Map<string, Checked>();
-  for (const dir of CHECK_DIRS)
-    for (const row of readJsonl<Checked>(join(DIR, dir, "checked.jsonl")))
-      checks.set(row.id, row);
-  // 끊겼다 이어진 낱말을 붙일 사전 — 검토자가 쓴 해설(줄 끝에서 끊긴 적이 없는 글)
-  const vocabulary = buildVocabulary([
-    ...reviewed.flatMap((review) => (review.solution ? [review.solution] : [])),
-    ...[...checks.values()].flatMap((check) =>
-      check.newSolution ? [check.newSolution] : [],
-    ),
-  ]);
-  const unsplit = (text: string): string => unsplitWords(text, vocabulary);
   // 마무리 손질(`finalize.py`) — 있으면 본문 · 교과서 풀이는 그것을 쓴다(줄 잇기 · 표기. 글자는 같다)
-  const finalPath = join(DIR, "final", "final.jsonl");
+  const finalPath = set.final ? join(DIR, set.final, "final.jsonl") : "";
   const finished = new Map(
-    existsSync(finalPath)
+    finalPath && existsSync(finalPath)
       ? readJsonl<{ id: string; content: string; solution: string | null }>(
           finalPath,
         ).map((row) => [row.id, row])
@@ -393,7 +548,7 @@ function buildRows(): {
         grade,
         JSON.parse(
           readFileSync(
-            join(DIR, REVIEW_DIRS[0]!, "units", `${grade}.json`),
+            join(DIR, set.reviews[0]!, "units", `${grade}.json`),
             "utf8",
           ),
         ),
@@ -404,11 +559,6 @@ function buildRows(): {
 
   const rows: LoadRow[] = [];
   const skipped: Skip[] = [];
-  const books = new Map<string, SourceBookInput>();
-  const materials = new Map<
-    string,
-    SourceMaterialInput & { bookKey: string }
-  >();
   const seen = new Set<string>();
 
   for (const review of reviewed) {
@@ -504,7 +654,65 @@ function buildRows(): {
       reviewerSolution,
       found?.newSolution,
     ]);
-    const content = renamer.fix(cleaned);
+    let content = renamer.fix(cleaned);
+
+    // ── 그림 — 본문의 `[그림]` 차례가 곧 그림 파일의 차례다(`figurePlacement.ts`) ──────────
+    const meta = figureMeta.get(review.id);
+    let figures: LoadFigure[] = [];
+    let choiceFigureIndex: number[] = [];
+    const figureNotes: string[] = [];
+    if (meta) {
+      if (countMarkers(source.content) !== meta.figures.length) {
+        skip("본문의 [그림] 표지와 그림 파일의 수가 다르다");
+        continue;
+      }
+      // 빠지는 그림 둘 — 검토자가 뺀 줄에 있던 것 · 검토자가 «이 문항의 그림이 아니다»(장식 · 다른 문항의 그림)라고 한 것
+      const inDroppedLine = new Set<number>();
+      let ordinal = 0;
+      source.content.split("\n").forEach((line, index) => {
+        for (let n = countMarkers(line); n > 0; n -= 1) {
+          ordinal += 1;
+          if (drop.has(index)) inDroppedLine.add(ordinal);
+        }
+      });
+      const notMine = new Set(review.noFigure ?? []);
+      const remaining = meta.figures
+        .map((figure, index) => ({ figure, ordinal: index + 1 }))
+        .filter((item) => !inDroppedLine.has(item.ordinal));
+      if (countMarkers(content) !== remaining.length) {
+        skip("손질한 본문의 [그림] 표지와 그림의 수가 다르다");
+        continue;
+      }
+      content = dropFigureMarkers(
+        content,
+        new Set(
+          remaining.flatMap((item, index) =>
+            notMine.has(item.ordinal) ? [index + 1] : [],
+          ),
+        ),
+      );
+      const kept = remaining.filter((item) => !notMine.has(item.ordinal));
+      if (kept.some((item) => !item.figure.px)) {
+        skip("그림을 꺼내지 않았다 — figures.py --export");
+        continue;
+      }
+      figures = kept.map(({ figure }) => ({
+        source: join(DIR, set.figures!, "img", ...figure.file.split("/")),
+        path: join(FIGURE_PUBLIC_DIR, ...figure.file.split("/")),
+        url: FIGURE_URL_PREFIX + figure.file,
+        width: figure.px![0],
+        height: figure.px![1],
+        mm: figure.mm,
+        sha: figure.sha,
+      }));
+      const index = choiceIndexOf(content);
+      // 🔴 짝을 모르면 아무 그림이나 ① 에 붙이지 않는다 — 빈 배열(«모른다»)로 싣고 잠근다
+      if (index === null) figureNotes.push("보기 그림의 짝을 알 수 없다");
+      else choiceFigureIndex = index;
+    } else if (countMarkers(content) > 0) {
+      skip("본문에 [그림] 표지가 있는데 그림이 없다");
+      continue;
+    }
     answer = renamer.fix(tidy(answer));
 
     // ── 해설 — 후보 하나를 정하고, 지면 검토가 «이 문항의 풀이다»라고 한 것만 싣는다 ──
@@ -531,7 +739,12 @@ function buildRows(): {
         : firstWritten && usable(firstWritten)
           ? { text: firstWritten, from: "ai" }
           : null;
-    const checkKey = checkKeyOf(content, answer, candidate?.text ?? null);
+    const checkKey = checkKeyOf(
+      content,
+      answer,
+      candidate?.text ?? null,
+      figures.map((figure) => figure.sha),
+    );
     // 검토 뒤에 글이 바뀌었으면 그 검토는 다른 글에 대한 것이다 — 없는 것으로 친다
     const check = found?.key === checkKey ? found : undefined;
 
@@ -550,6 +763,7 @@ function buildRows(): {
     }
     if (!solution) hold.push("해설이 없다");
     for (const note of [
+      ...figureNotes,
       leftoverNote("본문", content),
       leftoverNote("정답", answer),
       // 바꾸지 못한 출판사의 온 이름(«천재교육 교과서 87쪽»)이 글에 있으면 잠근다
@@ -623,12 +837,14 @@ function buildRows(): {
       verified,
       hold,
       renamed: renamer.renamed(),
+      figures,
+      choiceFigureIndex,
       checkKey,
       candidateSolution: candidate?.text ?? null,
       candidateFrom: candidate?.from ?? null,
     });
   }
-  return { rows, skipped, books, materials };
+  return { rows, skipped };
 }
 
 function tally<T>(
@@ -696,6 +912,11 @@ async function refresh(
       solution: true,
       solutionSource: true,
       directUseAllowed: true,
+      figureUrls: true,
+      figureDims: true,
+      figureSourceMm: true,
+      choiceFigureIndex: true,
+      figureSource: true,
     },
   });
   if (ADOPT) {
@@ -707,15 +928,7 @@ async function refresh(
     for (const row of saved) {
       const want = plan.get(row.externalId ?? "");
       const same =
-        want &&
-        fingerprintOf(row) ===
-          fingerprintOf({
-            content: want.content,
-            answer: want.answer,
-            solution: want.solution,
-            solutionSource: want.solutionSource,
-            directUseAllowed: want.hold.length === 0,
-          });
+        want && fingerprintOf(row) === fingerprintOf(columnsOfRow(want));
       if (same) {
         written.set(row.externalId ?? "", fingerprintOf(row));
         adopted += 1;
@@ -737,14 +950,7 @@ async function refresh(
     new Map(
       loadable.map((row) => [
         row.externalId,
-        {
-          content: row.content,
-          answer: row.answer,
-          solution: row.solution,
-          solutionSource: row.solutionSource,
-          directUseAllowed: row.hold.length === 0,
-          hold: row.hold,
-        },
+        { ...columnsOfRow(row), hold: row.hold },
       ]),
     ),
     written,
@@ -804,6 +1010,14 @@ async function refresh(
       `사람이 고친 문항 ${foreign.length} — 건드리지 않는다: ${foreign.slice(0, 8).join(" ")}${foreign.length > 8 ? " …" : ""}`,
     );
   if (changes.length === 0) return;
+  const changed = new Set(changes.map((change) => change.externalId));
+  const withoutFiles = missingFigureFiles(
+    loadable.filter((row) => changed.has(row.externalId)),
+  );
+  if (withoutFiles.length > 0)
+    throw new Error(
+      `그림 파일이 저장소에 없는 문항 ${withoutFiles.length} — --copy-figures 로 놓고, 그 커밋이 배포된 뒤에 고친다`,
+    );
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   const ledgerPath = join(OUT, `refresh-${stamp}.json`);
   // 원장을 먼저 쓴다 — 고치다 끊겨도 «무엇을 고치려 했나»가 남는다
@@ -893,6 +1107,8 @@ async function main(): Promise<void> {
             .replace(/(출판사 이름이 글에 있다) .*/, "$1")
             .replace(/(지면 검토): .*/, "$1"),
       ),
+      그림_문항: loadable.filter((row) => row.figures.length > 0).length,
+      그림: loadable.reduce((sum, row) => sum + row.figures.length, 0),
       이름을_바꾼_문항: tally(
         loadable.flatMap((row) => row.renamed),
         (renamed) => renamed,
@@ -921,6 +1137,25 @@ async function main(): Promise<void> {
     console.log(JSON.stringify(summary, null, 1));
     console.log(`계획: ${PLAN}`);
 
+    if (COPY_FIGURES) {
+      // 계획의 그림 파일을 저장소에 놓는다(잠긴 문항의 것도 — 은행에서는 보인다). DB 는 안 건드린다
+      let copied = 0;
+      let kept = 0;
+      for (const row of loadable)
+        for (const figure of row.figures) {
+          if (existsSync(figure.path)) {
+            kept += 1;
+            continue;
+          }
+          mkdirSync(dirname(figure.path), { recursive: true });
+          copyFileSync(figure.source, figure.path);
+          copied += 1;
+        }
+      console.log(
+        `\n그림 파일 — 새로 놓은 것 ${copied} · 이미 있던 것 ${kept} → ${FIGURE_PUBLIC_DIR}\n커밋해서 main 에 배포한 뒤에 문항을 싣는다.`,
+      );
+      return;
+    }
     if (REFRESH) return await refresh(prisma, loadable);
 
     if (!APPLY) {
@@ -929,6 +1164,12 @@ async function main(): Promise<void> {
       );
       return;
     }
+
+    const withoutFiles = missingFigureFiles(fresh);
+    if (withoutFiles.length > 0)
+      throw new Error(
+        `그림 파일이 저장소에 없는 문항 ${withoutFiles.length} — --copy-figures 로 놓고, 그 커밋이 배포된 뒤에 싣는다(${withoutFiles.slice(0, 3).join(" ")} …)`,
+      );
 
     // ── 책 → 자료 → 문항 ────────────────────────────────────────────────
     const bookId = new Map<string, string>();
@@ -963,18 +1204,14 @@ async function main(): Promise<void> {
           difficulty: row.difficulty,
           problemType: row.problemType,
           questionType: row.questionType,
-          content: row.content,
-          answer: row.answer,
-          solution: row.solution,
-          solutionSource: row.solutionSource,
+          // 본문 · 정답 · 해설 · 잠금 · 그림 — `--refresh` 가 맞추는 칸들과 같은 함수에서 온다
+          ...columnsOfRow(row),
           externalId: row.externalId,
           sourceFile: row.sourceFile,
           examId: row.materialKey,
           questionNumber: row.questionNumber,
           // 검토자가 정답 없이 풀어 출판사 정답과 맞춘 문항만 여기까지 온다
           reviewStatus: "approved" as const,
-          // 지면에 낼 꼴이 아직 아닌 문항은 잠근다(`hold`) — 은행에는 보이고 출제에는 안 뽑힌다
-          directUseAllowed: row.hold.length === 0,
           pool: "shared" as const,
           sourceMaterialId: materialId.get(row.materialKey)!,
         })),
@@ -987,16 +1224,7 @@ async function main(): Promise<void> {
     // 이번에 넣은 문항의 지문 — `--refresh` 가 «내가 쓴 값»으로 알아본다
     const written = readWritten();
     for (const row of fresh)
-      written.set(
-        row.externalId,
-        fingerprintOf({
-          content: row.content,
-          answer: row.answer,
-          solution: row.solution,
-          solutionSource: row.solutionSource,
-          directUseAllowed: row.hold.length === 0,
-        }),
-      );
+      written.set(row.externalId, fingerprintOf(columnsOfRow(row)));
     if (fresh.length > 0) writeWritten(written);
     const saved = await prisma.problem.findMany({
       where: { externalId: { in: loadable.map((row) => row.externalId) } },

@@ -36,14 +36,18 @@ _BROKEN_ESCAPES = (
 )
 
 
-def check_key(content: str, answer: str, solution: str | None) -> str:
+def check_key(content: str, answer: str, solution: str | None, figures: list[str] | None = None) -> str:
     """검토자가 본 글의 지문 — 적재기(`src/lib/import/schoolTextbook/checkKey.ts`)와 **같은 셈**이다.
 
     빈칸 · 줄바꿈은 넣지 않는다(끊긴 낱말을 붙이는 손질은 판정이 본 것을 바꾸지 않는다).
     🔴 두 쪽의 시험이 같은 예 · 같은 값을 쥐고 있다 — 한쪽만 바꾸면 모든 판정이 «다른 글»로 읽혀 전부 잠긴다.
     """
     squeeze = lambda text: re.sub("[ \t\r\n]+", "", text)  # noqa: E731
-    joined = "\n::\n".join(squeeze(text) for text in (content, answer, solution or ""))
+    parts = [squeeze(text) for text in (content, answer, solution or "")]
+    if figures:
+        # 그림이 딸린 문항 — 그림 파일들의 지문도 넣는다(그림이 없으면 전과 같은 값이다)
+        parts.append(",".join(figures))
+    joined = "\n::\n".join(parts)
     return hashlib.sha1(joined.encode("utf-8")).hexdigest()[:16]
 
 
@@ -130,7 +134,7 @@ def main() -> None:
                     counts[field][record[field]] = counts[field].get(record[field], 0) + 1
                 # 지문은 검토자가 **본 글**(묶음)에서 낸다
                 item = items[key["i"] - 1]
-                seen = check_key("\n".join(item["lines"]), item["answer"], "\n".join(item["solution"]) if item["solution"] else None)
+                seen = check_key("\n".join(item["lines"]), item["answer"], "\n".join(item["solution"]) if item["solution"] else None, key.get("figureKeys"))
                 out.write(json.dumps({"id": key["id"], "key": seen, "batch": name, "i": key["i"], **record}, ensure_ascii=False) + "\n")
     print(f"묶음 {done}/{len(index)} · 판정 {sum(counts['content'].values())} · 못 쓴 덩이 {missing}")
     print("  본문:", json.dumps(counts["content"], ensure_ascii=False))

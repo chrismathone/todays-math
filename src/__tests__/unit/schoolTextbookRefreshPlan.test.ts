@@ -117,6 +117,44 @@ describe("planRefresh", () => {
     expect(touched.foreign).toEqual(["tb-1"]);
   });
 
+  it("그림의 칸이 바뀌면 고친다 — 그림이 없는 문항의 지문은 그림 칸이 생기기 전과 같다", () => {
+    // 글 문항으로 실린 줄에 그림이 붙는다(번호가 있는 첫 문단의 그림을 전에는 버렸다)
+    const row = saved("tb-1", { directUseAllowed: true });
+    const figure = {
+      figureUrls: ["/figures/tb/abc/tb-1-1.png"],
+      figureDims: [400, 300],
+      figureSourceMm: [36.7],
+      choiceFigureIndex: [0],
+      figureSource: "source",
+    };
+    const result = planRefresh(
+      [row],
+      new Map([
+        ["tb-1", want({ content: `${base.content} [그림]`, ...figure })],
+      ]),
+      new Map([["tb-1", fingerprintOf(row)]]),
+    );
+    expect(result.changes).toHaveLength(1);
+    expect(result.changes[0]!.after).toMatchObject(figure);
+    // 그림만 다른 두 줄은 다른 지문
+    expect(fingerprintOf({ ...base, ...figure })).not.toBe(
+      fingerprintOf({ ...base, ...figure, figureDims: [400, 301] }),
+    );
+    // 빈 그림 칸은 칸이 없는 것과 같다 — 이미 쥐고 있는 글 문항의 지문이 그대로 맞는다
+    expect(
+      fingerprintOf({
+        ...base,
+        figureUrls: [],
+        figureDims: [],
+        figureSourceMm: [],
+        choiceFigureIndex: [],
+        figureSource: null,
+      }),
+    ).toBe(fingerprintOf(base));
+    // 그림 칸이 생기기 전의 값(커밋 1a4df6c67 의 셈) — 바뀌면 지문 원장 6,124줄이 전부 «사람이 고친 문항»으로 읽힌다
+    expect(fingerprintOf(base)).toBe("d1b795b4cadd956c");
+  });
+
   it("지문은 다섯 칸의 글자가 다 같을 때만 같다", () => {
     const fingerprint = fingerprintOf(base);
     expect(fingerprintOf({ ...base })).toBe(fingerprint);
