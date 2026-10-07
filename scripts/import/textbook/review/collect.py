@@ -32,8 +32,25 @@ FORMATS = {"객관식", "단답형", "서술형"}
 CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩"
 
 
+#: 역슬래시가 제어 문자로 깨진 LaTeX 명령 — 검토자가 파일을 쓸 때 `\times` 의 `\t` 가 탭으로, `\frac` 의 `\f` 가
+#: 쪽 넘김으로 들어간 것(170묶음 가운데 6묶음 · 91자리). 뒤따르는 글자가 그 명령의 나머지일 때만 되살린다.
+_BROKEN_ESCAPES = (
+    ("\t", "t", r"imes|heta|an(?![a-z])|ext|riangle|o(?![a-z])|au|herefore|frac|ilde"),
+    ("\x0c", "f", r"rac|orall|rown"),
+    ("\x08", "b", r"egin|ar(?![a-z])|eta|igcirc|oxed|inom|ecause|ullet|ot(?![a-z])"),
+    ("\r", "r", r"ight|ho(?![a-z])|ightarrow"),
+)
+
+
+def repair_escapes(text: str) -> str:
+    for control, letter, tails in _BROKEN_ESCAPES:
+        text = re.sub(re.escape(control) + rf"(?={tails})", lambda _m, letter=letter: "\\" + letter, text)
+    return text
+
+
 def parse_output(text: str) -> dict[int, dict]:
     """`### i` 덩이들 → {i: {ok, why, drop, answer, unit, unit2, type, level, format, solution}}"""
+    text = repair_escapes(text)
     blocks: dict[int, dict] = {}
     for chunk in re.split(r"(?m)^###\s*", text):
         head = re.match(r"(\d+)\s*\n", chunk)
@@ -56,7 +73,7 @@ def parse_output(text: str) -> dict[int, dict]:
 def fold(answer: str) -> str:
     """표기를 접는다 — 뜻이 같은 답이 같은 글자가 되게. 값은 건드리지 않는다."""
     s = answer
-    s = s.replace("\\dfrac", "\\frac").replace("\\tfrac", "\\frac")
+    s = s.replace("\\dfrac", "\\frac").replace("\\tfrac", "\\frac").replace("\\ ", "")
     s = re.sub(r"\\(?:left|right|displaystyle|,|;|!|:|quad|qquad)(?![a-zA-Z])", "", s)
     s = re.sub(r"\\(?:mathrm|text|mathit|rm|operatorname)\s*\{([^{}]*)\}", r"\1", s)
     s = re.sub(r"\\frac\{([^{}]*)\}\{([^{}]*)\}", r"(\1)/(\2)", s)
@@ -86,8 +103,59 @@ _UNIT_TAIL = re.compile(r"(?<=[\d)a-zA-Z])(?:개|명|원|번|회|점|살|쪽|장
 _VAR_HEAD = re.compile(r"(?:^|(?<=[,⑴-⒇]))[a-zA-Z]=")
 
 
+_PART = re.compile(r"[⑴-⒇]")
+_OX = {"○": "○", "◯": "○", "O": "○", "o": "○", "\\bigcirc": "○", "bigcirc": "○", "×": "×", "X": "×", "x": "×"}
+
+
+def _parts(folded: str) -> list[str] | None:
+    """소문항 번호로 가른 조각들 — 번호가 없으면 통째로 하나. 번호가 ⑴ 부터 차례로 서 있을 때만 가른다."""
+    marks = _PART.findall(folded)
+    if not marks:
+        return [folded]
+    if marks != [chr(0x2474 + i) for i in range(len(marks))] or not folded.startswith("⑴"):
+        return None
+    return [piece for piece in _PART.split(folded)[1:]]
+
+
+def _ox(piece: str) -> str | None:
+    """○ · × 로만 된 답이면 그 표기를 하나로 — «O» · «◯» · `bigcirc`(변환이 놓친 한글 수식 낱말) · «X»."""
+    return _OX.get(piece.strip(",.()"))
+
+
+def _tail_value(piece: str) -> str:
+    """등식 사슬의 마지막 값 — «(-24)×5/2=-60» 의 «-60». 정답지가 계산 과정을 끝까지 적은 자료가 있다."""
+    tail = piece.rsplit("=", 1)[-1]
+    tail = re.sub(r"^\(([^()]*)\)$", r"\1", tail)  # «=(+31)» 의 괄호
+    return re.sub(r"^\+(?=[\d(\\a-zA-Z])", "", tail)
+
+
+def _items(piece: str) -> list[str] | None:
+    """괄호 밖 쉼표로 가른 항목들(차례 없이 견준다) — 항목이 둘 넘을 때만."""
+    out, depth, current = [], 0, ""
+    for ch in piece:
+        if ch in "([{":
+            depth += 1
+        elif ch in ")]}":
+            depth -= 1
+        if ch == "," and depth == 0:
+            out.append(current)
+            current = ""
+        else:
+            current += ch
+    out.append(current)
+    return sorted(out) if len(out) >= 2 and all(out) else None
+
+
+def _value(piece: str) -> str:
+    return _VAR_HEAD.sub("", _UNIT_TAIL.sub("", piece))
+
+
 def same_answer(mine: str, theirs: str) -> str | None:
-    """같으면 그 근거(`exact` · `choice` · `folded` · `value`), 다르면 None."""
+    """같으면 그 근거, 다르면 None.
+
+    `exact` 글자 그대로 · `choice` 보기 번호 · `folded` 표기를 접으면 같다 · `value` 단위 · «x=» 를 떼면 같다 ·
+    `tail` 정답지가 등식 사슬이고 그 마지막 값이 같다 · `ox` ○× 표기 · `set` 쉼표로 늘어놓은 항목이 차례만 다르다.
+    소문항이 있으면 **모든 소문항**이 같아야 한다."""
     if not mine.strip() or not theirs.strip():
         return None
     if mine.strip() == theirs.strip():
@@ -99,11 +167,26 @@ def same_answer(mine: str, theirs: str) -> str | None:
     x, y = fold(mine), fold(theirs)
     if x == y:
         return "folded"
-    x2, y2 = _UNIT_TAIL.sub("", x), _UNIT_TAIL.sub("", y)
-    x2, y2 = _VAR_HEAD.sub("", x2), _VAR_HEAD.sub("", y2)
-    if x2 and x2 == y2:
-        return "value"
-    return None
+    xs, ys = _parts(x), _parts(y)
+    if xs is None or ys is None or len(xs) != len(ys):
+        return None
+    how = "folded"
+    for p, q in zip(xs, ys):
+        if p == q:
+            continue
+        if _value(p) and _value(p) == _value(q):
+            how = "value"
+        elif _ox(p) and _ox(p) == _ox(q):
+            how = "ox"
+        elif "=" in q and _value(_tail_value(q)) == _value(p) and _value(p):
+            how = "tail"
+        elif _items(p) and _items(p) == _items(q):
+            how = "set"
+        elif _items(_value(p)) and _items(_value(p)) == _items(_value(q)):
+            how = "set"
+        else:
+            return None
+    return how
 
 
 def main() -> None:
