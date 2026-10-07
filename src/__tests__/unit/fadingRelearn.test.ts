@@ -919,6 +919,98 @@ describe("증거 → 대기열 — 단계의 넣기 차례(열린 풀이를 다�
     ).toBe("답을 쓰는 단계가 아닙니다.");
   });
 
+  it("4단계에서 그 자리에 적어 둔 틀림은 보낸 차례에 없어도 든다 — 화면이 차례를 덜 보내도 서버에 적힌 틀림은 빠지지 않는다", () => {
+    let s = toStep4();
+    s = reportFadingMiss(s, A, sid(s), { targetId: "a2#1", text: "중점" });
+    const done = observeFadingRelearn(s, A, trace(s, A, 4, []), T0);
+    expect(
+      done.fading.relearn!.items.map((i) => [
+        i.propositionId,
+        i.origin,
+        i.dueAt,
+      ]),
+    ).toEqual([["a2", "missed", T0 + MIN]]);
+  });
+
+  it("이 풀이에서 틀려 들었다가 다 확인하고 나간 명제는, 평가 때 «답을 본 직후»로 다시 들지 않는다", () => {
+    const first = afterStep2();
+    let state = observeFadingRelearn(
+      first.state,
+      A,
+      trace(first.state, A, 2, first.placements),
+      T0,
+    ).fading;
+    // 풀이를 열어 둔 채 그 명제의 확인을 두 번 맞혀 대기열에서 내보낸다.
+    state = gradeFadingRelearn(
+      state,
+      A,
+      attempt(state, A, proposition2, 10),
+      T0 + MIN,
+    ).fading;
+    state = gradeFadingRelearn(
+      state,
+      A,
+      attempt(state, A, proposition2, 11),
+      T0 + MIN + FIVE,
+    ).fading;
+    expect(state.relearn!.items).toEqual([]);
+    // 3 · 4단계를 안 틀리고 마치고 «좋음»으로 닫는다(처음 배운 풀이).
+    state = rate(step4(step23(state, A, 3).state, A), A, "good", DAY1, 2);
+    const done = observeFadingRelearn(
+      state,
+      A,
+      { kind: "rated", conceptId: A.id, requestId: uuid(2) },
+      T0 + 7 * MIN,
+    );
+    expect(done.applied).toEqual({
+      entered: 2,
+      updated: 0,
+      skipped: 0,
+      duplicate: false,
+    });
+    expect(
+      done.fading.relearn!.items.map((i) => [i.propositionId, i.origin]),
+    ).toEqual(
+      A.propositions
+        .filter((p) => p.id !== proposition2)
+        .map((p) => [p.id, "exposed"]),
+    );
+  });
+
+  it("«답을 본 직후»는 새 줄로만 든다 — 이미 대기열에 있는 줄의 단계 · 확인 시각 · 틀림의 수를 건드리지 않는다", () => {
+    const first = afterStep2();
+    let state = observeFadingRelearn(
+      first.state,
+      A,
+      trace(first.state, A, 2, first.placements),
+      T0,
+    ).fading;
+    state = gradeFadingRelearn(
+      state,
+      A,
+      attempt(state, A, proposition2, 10),
+      T0 + MIN,
+    ).fading;
+    // 그 풀이의 열쇠가 걷힌 뒤다(다른 개념을 풀다 돌아와 이어 푼 풀이) — 평가는 그 명제를 «아직 세지 않은 것»으로 본다.
+    state = { ...state, relearn: { ...state.relearn!, seen: [] } };
+    const kept = item(state, proposition2);
+    expect(kept).toMatchObject({ stage: "confirm", fails: 1, checks: 1 });
+    state = rate(step4(step23(state, A, 3).state, A), A, "good", DAY1, 2);
+    const done = observeFadingRelearn(
+      state,
+      A,
+      { kind: "rated", conceptId: A.id, requestId: uuid(2) },
+      T0 + 2 * MIN,
+    );
+    expect(done.applied).toEqual({
+      entered: 2,
+      updated: 0,
+      skipped: 0,
+      duplicate: false,
+    });
+    expect(item(done.fading, proposition2)).toBe(kept);
+  });
+
   it("칩 풀이: 4단계의 틀림을 그 자리에서 세어 두었으면 «다시»가 나머지 명제를 `lapsed` 로 끌고 들어가지 않는다", () => {
     let s = toStep4(false);
     const moves = chips(A, 4, s.session!.seed, [erasedTargets(A, 4)[0]!.id]);
@@ -1054,6 +1146,15 @@ describe("증거 → 대기열 — 단계의 넣기 차례(열린 풀이를 다�
       dueAt: T0 + 40_000 + MIN,
       since: T0,
     });
+    // 두 단계의 증거를 다 센 뒤에 3단계의 차례가 다시 와도(가장 뒤에 센 단계와 견준다) 그대로다.
+    const replayed = observeFadingRelearn(
+      state,
+      A,
+      trace(state, A, 3, third.placements),
+      T0 + 50_000,
+    );
+    expect(replayed.fading).toBe(state);
+    expect(replayed.applied.duplicate).toBe(true);
     // 4단계의 틀림은 (그 자리에서 알리지 못했고) 평가 때의 진단으로 처음 닿는다.
     state = rate(step4(state, A, { wrong: [target2] }), A, "again", DAY1, 2);
     const done = observeFadingRelearn(
