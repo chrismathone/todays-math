@@ -22,7 +22,11 @@ import type {
 } from "@/contracts/mathExpedition.contract";
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 vi.mock("@/components/math-explorers/ExplorerBankActivity", () => ({
   default: ({ onComplete }: { onComplete: () => void }) => (
     <section aria-label="은행 활동">

@@ -80,6 +80,11 @@ beforeEach(() => {
     async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = String(input);
       const method = init?.method ?? "GET";
+      // Account-flow assertions track account calls; learning-menu behavior has its own suite.
+      if (url.endsWith("/learning-menus"))
+        return json({
+          data: { enabled: [], canManage: true, updatedAt: null },
+        });
       calls.push({
         method,
         url,
