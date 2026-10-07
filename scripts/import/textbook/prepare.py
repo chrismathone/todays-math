@@ -251,13 +251,25 @@ def unglue_operators(script: str) -> str:
     return _GLUED_OPERATOR.sub(lambda m: f" {m.group(1)} ", script)
 
 
+#: 글자에 붙은 기하 낱말 — `OVERLINEAD` · `overlineAB` · `DYADAB` · `ARCHAB`. 변환 정본은 띄어 쓴 소문자 낱말만 안다.
+#: 안 띄우면 `OVERLINEAD=OVERLINEAF` 의 `OVER` 가 분수의 «over»로 읽혀 `\frac{=}{LINEAF}` 가 된다(그림 문항에서 찾았다).
+_GLUED_GEOMETRY = re.compile(r"(?<![A-Za-z\\])(overline|OVERLINE|dyad|DYAD|arch|ARCH)([A-Z]{1,4})(?![A-Za-z])")
+_UPPER_GEOMETRY = re.compile(r"(?<![A-Za-z\\])(OVERLINE|DYAD|ARCH)(?![A-Za-z])")
+
+
+def unglue_geometry(script: str) -> str:
+    """`OVERLINEAD` → `overline{rm AD}` · 띄어 쓴 대문자 낱말은 소문자로(`ARCH AB` → `arch AB`)."""
+    script = _GLUED_GEOMETRY.sub(lambda m: f"{m.group(1).lower()}{{rm {m.group(2)}}}", script)
+    return _UPPER_GEOMETRY.sub(lambda m: m.group(1).lower(), script)
+
+
 def pre_convert(text: str) -> str:
     """변환 앞 — `$…$` 안의 한글 수식만 고친다.
 
     🔴 차례가 있다 — 몫을 묶는 셋(첨자 · 제곱근 · 분수)이 **먼저**, 붙은 낱말 띄우기가 **나중**이다.
     몫은 원문의 띄어쓰기로 정해진다: `1 over 3times5` 의 분모는 `3times5` 한 덩이다. 먼저 띄우면 분모가 `3` 이 된다
     (셋째 묶음의 검토자가 «분모 3×5 가 1/3 × 5 로 뽑혔다»로 짚었다 — 띄우기를 앞에 둔 지 한 시간 만이다)."""
-    return re.sub(r"\$([^$]*)\$", lambda m: "$" + unglue_operators(brace_over(brace_roots(brace_scripts(roman_escapes(m.group(1)))))) + "$", text)
+    return re.sub(r"\$([^$]*)\$", lambda m: "$" + unglue_operators(brace_over(brace_roots(brace_scripts(roman_escapes(unglue_geometry(m.group(1))))))) + "$", text)
 
 
 #: 줄 머리의 사용자 영역 글자 — 기호 글꼴의 «답» 표시 · 글머리표(뜻을 가진 글자가 아니다). 줄 가운데 것은 남긴다(뒤에서 걸린다)
@@ -339,6 +351,11 @@ def main() -> None:
     )
     if not fixed.exists():
         raise SystemExit(f"잔재 고침이 결과를 못 냈다 — {out_dir / 'fix.log'}")
+    if "--tidy" in sys.argv:
+        # 표기 손질 — 검토자가 읽는 글이 실을 글이게(`tidy-pieces.ts` 머리)
+        tidied = out_dir / "pieces_tidy.json"
+        run(["npx", "tsx", "scripts/import/textbook/tidy-pieces.ts", str(fixed), str(tidied)], out_dir / "tidy.log")
+        fixed = tidied
     text_of = {piece["id"]: piece["text"] for piece in json.loads(fixed.read_text(encoding="utf-8"))}
     bad: dict[str, list[str]] = {}
     for line in (out_dir / "fix.log").read_text(encoding="utf-8").splitlines():

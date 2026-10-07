@@ -144,7 +144,7 @@ import io  # noqa: E402
 
 from PIL import Image  # noqa: E402
 
-from figures import fate_of, is_flat, place_markers, render, route_of  # noqa: E402
+from figures import clip_box, fate_of, is_flat, place_markers, render, route_of  # noqa: E402
 
 
 def fig(width_mm: float, height_mm: float, **over) -> dict:
@@ -198,7 +198,7 @@ def test_a_picture_is_rendered_as_it_shows_on_the_page():
     data = png(400, 200)
     assert render(data, fig(50, 25)).size == (400, 200)
     assert render(data, fig(50, 25)).mode == "L"
-    # 잘라 보이기 — 단위는 1픽셀이 75
+    # 잘라 보이기 — 해상도가 안 적힌 그림은 96dpi(1픽셀이 75)로 본다
     assert render(data, fig(50, 25, clip=[0, 0, 300 * 75, 200 * 75])).size == (300, 200)
     # 그림 전체와 한 픽셀 차이면 자르지 않는다
     assert render(data, fig(50, 25, clip=[0, 0, 399 * 75, 200 * 75])).size == (400, 200)
@@ -211,3 +211,19 @@ def test_a_picture_is_rendered_as_it_shows_on_the_page():
 def test_a_one_colour_box_is_flat():
     assert is_flat(Image.new("RGB", (300, 200), (190, 200, 210))) is True
     assert is_flat(Image.open(io.BytesIO(png(300, 200)))) is False
+
+
+def test_the_unit_of_a_clip_follows_the_resolution_of_the_picture():
+    """🔴 300dpi 그림(272×111 픽셀)의 «전체»가 [0, 0, 6540, 2640] 으로 적혀 있다 — 1픽셀이 24 다.
+    75 로 읽으면 왼쪽 위 87×35 픽셀만 남아 빈 그림이 된다(천재 중2 «수직선 위에 바르게 나타낸 것은?»의 보기 다섯 장)."""
+    assert clip_box((272, 111), [0, 0, 6540, 2640], (300, 300)) is None
+    # 같은 그림을 정말 반으로 자른 것
+    assert clip_box((272, 111), [0, 0, 3264, 2664], (300, 300)) == (0, 0, 136, 111)
+    # 96dpi 그림 — 1픽셀이 75
+    assert clip_box((1365, 1819), [0, 0, 102360, 136440], (96, 96)) is None
+    assert clip_box((400, 200), [75 * 100, 0, 75 * 400, 75 * 200], None) == (100, 0, 400, 200)
+    # 해상도를 모르는데 값이 그림 밖으로 나간다 — 단위를 믿지 않고 자르지 않는다
+    assert clip_box((272, 111), [0, 0, 60000, 24000], None) is None
+    # 해상도를 모르고 가로 세로 비가 그림과 같다 — 전체를 다른 단위로 적은 것
+    assert clip_box((272, 111), [0, 0, 6528, 2664], None) is None
+    assert clip_box((400, 200), None, (96, 96)) is None

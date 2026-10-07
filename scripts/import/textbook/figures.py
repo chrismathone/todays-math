@@ -68,8 +68,9 @@ STRIP_MM = 4
 FLAT_STDDEV = 6
 #: 꺼내는 그림의 가로 상한(픽셀) — 인쇄 폭 상한 70mm 에서 360dpi 다
 EXPORT_MAX_WIDTH = 1000
-#: 잘라 보이기 값의 단위 — 그림 1픽셀이 75
-CLIP_UNIT = 75
+#: 잘라 보이기 값의 단위는 HWPUNIT(1/7200 인치)이고, 그림의 **제 크기**(픽셀 ÷ 해상도)를 잰 것이다 —
+#: 96dpi 그림이면 1픽셀이 75, 300dpi 그림이면 24. 해상도가 안 적힌 그림은 96 으로 본다.
+DEFAULT_DPI = 96
 
 _TOKEN = re.compile(r"\[\[FIG:(\d+)\]\]")
 MARKER = "[그림]"
@@ -90,18 +91,47 @@ def open_image(data: bytes) -> Image.Image:
     return image.convert("RGB")
 
 
+def clip_box(size: tuple[int, int], clip, dpi) -> tuple[int, int, int, int] | None:
+    """잘라 보이기 값 → 픽셀 상자. 그림 전체면(또는 단위를 믿을 수 없으면) None — 자르지 않는다.
+
+    🔴 단위를 그림 1픽셀 = 75 로 박아 뒀다가 300dpi 그림(1픽셀 = 24)의 «전체»를 왼쪽 위 3분의 1로 잘랐다 —
+    보기 그림 다섯 장이 빈 그림 · 화살표 조각으로 나갔고, 시범 검토자가 «비어 있다»로 짚었다(2026-10-08).
+    """
+    if not clip:
+        return None
+    width, height = size
+    try:
+        dpi_x, dpi_y = (float(value) for value in dpi)
+    except (TypeError, ValueError):
+        dpi_x = dpi_y = 0.0
+    unit_x = 7200 / dpi_x if dpi_x >= 30 else 7200 / DEFAULT_DPI
+    unit_y = 7200 / dpi_y if dpi_y >= 30 else 7200 / DEFAULT_DPI
+    left, top, right, bottom = clip[0] / unit_x, clip[1] / unit_y, clip[2] / unit_x, clip[3] / unit_y
+    # 상자가 그림 밖으로 나가면 단위가 안 맞는 것이다 — 값을 믿지 않는다
+    if right > width + 2 or bottom > height + 2:
+        return None
+    box = (max(0, round(left)), max(0, round(top)), min(width, round(right)), min(height, round(bottom)))
+    # 그림 전체와 두 픽셀 안쪽 차이면 자르지 않는다(값의 반올림)
+    if box[0] <= 2 and box[1] <= 2 and width - box[2] <= 2 and height - box[3] <= 2:
+        return None
+    # 해상도를 모르는 그림 — 왼 · 위가 0 이고 가로 세로 비가 그림과 같으면 «전체를 다른 단위로 적은 것»이다
+    if dpi_x < 30 and clip[0] == 0 and clip[1] == 0:
+        ratio_x, ratio_y = clip[2] / width, clip[3] / height
+        if abs(ratio_x - ratio_y) <= 0.02 * max(ratio_x, ratio_y):
+            return None
+    if box[2] - box[0] < 4 or box[3] - box[1] < 4:
+        return None
+    return box
+
+
 def render(data: bytes, fig: dict) -> Image.Image:
     """지면에 보이는 꼴로 — 잘라 보이기 · 뒤집기 · 돌리기 · 회색 · 가로 상한."""
+    source = Image.open(io.BytesIO(data))
+    dpi = source.info.get("dpi")
     image = open_image(data)
-    clip = fig.get("clip")
-    if clip:
-        left, top, right, bottom = (round(value / CLIP_UNIT) for value in clip)
-        box = (max(0, left), max(0, top), min(image.width, right), min(image.height, bottom))
-        # 그림 전체와 한두 픽셀 차이면 자르지 않는다(값의 반올림)
-        if box[2] - box[0] >= 4 and box[3] - box[1] >= 4 and (
-            box[0] > 1 or box[1] > 1 or image.width - box[2] > 1 or image.height - box[3] > 1
-        ):
-            image = image.crop(box)
+    box = clip_box(image.size, fig.get("clip"), dpi)
+    if box:
+        image = image.crop(box)
     flip_h, flip_v = fig.get("flip") or (False, False)
     if flip_h:
         image = ImageOps.mirror(image)
@@ -255,7 +285,9 @@ def main() -> None:
                 skipped[f"이미 실린 문항 — {route}"] += 1
                 kept_brief = [{"k": f["k"], "bin": f["bin"], "mm": [to_mm(f["w"]), to_mm(f["h"])], "grouped": f["grouped"]} for f in kept]
                 loaded_out.write(json.dumps({"id": rid, "key": row["key"], "route": route, "kept": kept_brief, "shapeList": row.get("shapeList")}, ensure_ascii=False) + chr(10))
-                continue
+                # 진짜 그림이 있던 문항은 그림 문항의 길로 다시 보낸다 — 실린 줄을 그림과 함께 제자리에서 고친다
+                if route != "figure":
+                    continue
             content = place_markers(row["contentFig"], {fig["k"] for fig in kept}) if row.get("contentFig") else row["content"]
             if route in ("figure", "text") and len(content) > CONTENT_MAX:
                 route = "long"
