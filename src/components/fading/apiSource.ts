@@ -5,7 +5,7 @@ const contracts = () => import("@/contracts/fadingApi.contract");
 const FAILED = "처리하지 못했습니다. 다시 시도하세요.";
 export const FADING_OFFLINE = "연결되지 않았습니다. 다시 시도하세요.";
 
-async function request<T>(
+export async function requestFading<T>(
   url: string,
   parse: (json: unknown) => Promise<T>,
   body?: unknown,
@@ -88,7 +88,7 @@ export function createApiFadingSource({
     url: string,
     parse: (json: unknown) => Promise<T>,
     body?: unknown,
-  ) => request(url, parse, body, studentId);
+  ) => requestFading(url, parse, body, studentId);
   return {
     state: () =>
       scoped(
