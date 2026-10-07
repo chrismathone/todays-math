@@ -7,7 +7,7 @@
 - Next.js 16 (App Router) + TypeScript + React 19
 - Tailwind CSS v4
 - Prisma + PostgreSQL, Zod
-- Auth.js (이메일/구글), Claude API, KaTeX
+- Auth.js (이메일/비밀번호 — 소셜 로그인 없음), DeepSeek API(문제 생성·변형), KaTeX
 
 ## 시작하기
 
