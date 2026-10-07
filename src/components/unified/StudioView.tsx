@@ -211,7 +211,8 @@ function releaseSession(session: StudioSession) {
   for (const loading of session.loadingPdfs)
     void loading.destroy().catch(() => {});
   session.loadingPdfs.clear();
-  for (const pdf of session.documents) void pdf.destroy().catch(() => {});
+  for (const pdf of session.documents)
+    void pdf.loadingTask.destroy().catch(() => {});
   session.documents.clear();
 }
 
@@ -920,7 +921,7 @@ export default function StudioView({
           });
           resources.loadingPdfs.delete(loading);
           if (stale()) {
-            await pdf.destroy().catch(() => {});
+            await pdf.loadingTask.destroy().catch(() => {});
             return;
           }
           resources.documents.add(pdf);

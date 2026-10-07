@@ -287,7 +287,9 @@
   text-decoration: none;
   cursor: pointer;
 }
-.accountButton:hover { background: #213655; }
+.accountButton:hover {
+  background: #213655;
+}
 .profileMenu {
   position: relative;
 }
@@ -372,6 +374,45 @@
 .main {
   margin-left: 240px;
   min-height: 100dvh;
+}
+.maximizeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex-shrink: 0;
+  min-height: 34px;
+  padding: 6px 11px;
+  border: 1px solid #cbd5e3;
+  background: #fff;
+  color: #415979;
+  white-space: nowrap;
+}
+.workspace[data-maximized="true"] .sidebar {
+  display: none;
+}
+.workspace[data-maximized="true"][data-sidebar-collapsed] .main {
+  margin-left: 0;
+}
+.workspace[data-maximized="true"] .topbar {
+  height: 44px;
+  padding: 0 20px;
+}
+.workspace[data-maximized="true"] {
+  --workspace-sticky-inset: 44px;
+}
+.workspace[data-maximized="true"] .topbar .searchTrigger,
+.workspace[data-maximized="true"] .topbar .accountSlot {
+  display: none;
+}
+.workspace[data-maximized="true"] .maximizeButton {
+  margin-left: auto;
+}
+.workspace[data-maximized="true"] .notifications {
+  top: 48px;
+}
+.workspace[data-maximized="true"] .skipLink {
+  left: 20px;
 }
 .topbar {
   position: sticky;
@@ -1843,7 +1884,8 @@
   }
   /* 접힘 + **영어일 때만**: 마크(딱지 «영»)를 접기 단추 위에 세운다 — 수학 접힘은 기준 그대로(05 §8.23 ⑷
    * «수학은 지금 모습 그대로»). 수학에서 접힌 채 제품을 바꾸려면 펼친 뒤 고른다 */
-  .workspace[data-sidebar-collapsed="true"][data-product="english"] .sideHeader {
+  .workspace[data-sidebar-collapsed="true"][data-product="english"]
+    .sideHeader {
     flex-direction: column;
     gap: 4px;
   }

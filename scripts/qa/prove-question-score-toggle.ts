@@ -261,7 +261,7 @@ async function main() {
           pdfText,
           pdfHtmlBytes: pdfHtml.length,
         });
-        await pdf.destroy();
+        await pdf.loadingTask.destroy();
         await writeFile(
           path.join(output, "evidence.json"),
           JSON.stringify(evidence, null, 2),

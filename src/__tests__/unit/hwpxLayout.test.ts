@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { collectHwpxLayout } from "@/lib/export/hwpxLayout";
+import { renderKatexSafe } from "@/components/math/editor/katexRender";
 
 describe("HWPX body layout", () => {
   beforeEach(() => {
@@ -302,7 +303,7 @@ describe("HWPX 줄바꿈된 인라인 수식 — 자리는 첫 줄 조각", () =
         if (this.matches("[data-unified-paper]"))
           return new DOMRect(0, 0, 794, 1123);
         if (this.matches(".katex")) return new DOMRect(17, 105, 59, 40);
-        if (this.matches(".strut")) return new DOMRect(44, 105, 0, 16);
+        if (this.matches(".katex-strut")) return new DOMRect(44, 105, 0, 16);
         return new DOMRect(0, 0, 700, 20);
       },
     );
@@ -317,10 +318,13 @@ describe("HWPX 줄바꿈된 인라인 수식 — 자리는 첫 줄 조각", () =
       },
     );
     const source = document.createElement("div");
-    source.innerHTML = `<section data-unified-paper><p><span class="katex" data-export-tex="y%20%3D%203x%5E2"><span class="katex-html"><span class="base"><span class="strut"></span></span></span></span></p></section>`;
+    source.innerHTML = `<section data-unified-paper><p>${renderKatexSafe("y=3x^2", false)}</p></section>`;
     document.body.append(source);
     const page = (await collectHwpxLayout(source)).pages[0]!;
     const equation = page.objects.find((object) => object.type === "equation");
+    // The actual KaTeX strut supplies the first line's baseline; the enclosing
+    // formula bottom (125) would silently move the exported equation down.
     expect(equation).toMatchObject({ x: 44, y: 105, w: 30, h: 20 });
+    expect(equation?.baseline).toBeCloseTo(120.8056, 4);
   });
 });

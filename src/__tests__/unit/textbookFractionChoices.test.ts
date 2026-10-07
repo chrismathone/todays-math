@@ -443,7 +443,7 @@ describe("what the rows must not change", () => {
 describe("the clearance rule handed to the page CSS", () => {
   it("adds room only around formulas inside a problem's choice rows", () => {
     expect(FRACTION_CHOICE_CSS).toBe(
-      `.tb-problem .${CHOICE_ROW_CLASS} .katex .base{margin-block:${CHOICE_FORMULA_CLEARANCE_EM}em}`,
+      `.tb-problem .${CHOICE_ROW_CLASS} .katex .katex-base{margin-block:${CHOICE_FORMULA_CLEARANCE_EM}em}`,
     );
     expect(FRACTION_CHOICE_CSS).not.toMatch(/<\/style/i);
     // One rule: no font size, no line height and nothing outside the rows.

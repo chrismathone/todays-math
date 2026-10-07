@@ -1,0 +1,5888 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>문제은행 · 오늘의 영어 — D안</title>
+    <style>
+      :root {
+        --ink: #252735;
+        --muted: #6b6d7e;
+        --line: #e5e6ed;
+        --soft: #f7f8fb;
+        --violet: #5a46c8;
+        --violet-light: #f1eefa;
+        --green: #37715d;
+        --amber: #966523;
+        --radius: 7px;
+        --font: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #fff;
+        color: var(--ink);
+        font: 13px/1.55 var(--font);
+        letter-spacing: -0.025em;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+        color: inherit;
+      }
+      button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      button,
+      a,
+      input,
+      select,
+      summary {
+        touch-action: manipulation;
+      }
+      button {
+        border: 0;
+        background: none;
+      }
+      input,
+      select,
+      textarea {
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        background: #fff;
+      }
+      input[type="checkbox"] {
+        accent-color: var(--violet);
+        width: 15px;
+        height: 15px;
+        margin: 0;
+        flex-shrink: 0;
+      }
+      input[type="search"]::-webkit-search-cancel-button {
+        cursor: pointer;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1 {
+        font-size: 27px;
+        letter-spacing: -1.2px;
+        font-weight: 750;
+      }
+      h2 {
+        font-size: 18px;
+        letter-spacing: -0.6px;
+      }
+      h3 {
+        font-size: 14px;
+      }
+      svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #8975e7;
+        outline-offset: 3px;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 2px solid #8975e7;
+        outline-offset: 2px;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .small {
+        font-size: 11px;
+      }
+      .flex {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .between {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 36px;
+        padding: 8px 12px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+        white-space: nowrap;
+        font-weight: 600;
+      }
+      .btn:hover {
+        background: var(--soft);
+        border-color: #c6c7d3;
+      }
+      .btn.primary {
+        background: var(--violet);
+        border-color: var(--violet);
+        color: #fff;
+      }
+      .btn.primary:hover {
+        background: #4938b2;
+      }
+      .btn.subtle {
+        background: var(--violet-light);
+        color: #513daf;
+        border-color: transparent;
+      }
+      .btn.quiet {
+        border-color: transparent;
+        color: var(--muted);
+      }
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 5px;
+        flex-shrink: 0;
+      }
+      .icon-btn:hover {
+        background: #efeff5;
+      }
+      .text-btn {
+        color: var(--violet);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 10px;
+        padding: 3px 7px;
+        line-height: 1.45;
+        border-radius: 4px;
+        white-space: nowrap;
+        font-weight: 600;
+      }
+      .badge.complete {
+        color: var(--green);
+        background: #edf5f1;
+      }
+      .badge.review {
+        color: var(--amber);
+        background: #fbf3e5;
+      }
+      .badge.draft {
+        color: var(--muted);
+        background: #f0f1f4;
+      }
+      .tag {
+        display: inline-flex;
+        padding: 3px 7px;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        color: #5f6172;
+        font-size: 11px;
+      }
+      .proposal {
+        height: 27px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 26px;
+        background: #f5f4fa;
+        color: #696478;
+        font-size: 10px;
+        border-bottom: 1px solid #eceaf3;
+      }
+      .proposal b {
+        font-weight: 600;
+        color: #5e536f;
+      }
+      .topbar {
+        height: 65px;
+        display: flex;
+        align-items: center;
+        gap: 42px;
+        padding: 0 26px;
+        border-bottom: 1px solid var(--line);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 750;
+        letter-spacing: -0.7px;
+        white-space: nowrap;
+      }
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 33px;
+        background: var(--violet);
+        color: #fff;
+        border-radius: 8px;
+        font:
+          italic 27px Georgia,
+          serif;
+        letter-spacing: -3px;
+        padding-right: 3px;
+      }
+      .global-nav {
+        display: flex;
+        align-self: stretch;
+        gap: 26px;
+      }
+      .nav-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 550;
+        padding: 0 1px;
+        white-space: nowrap;
+      }
+      .nav-item[aria-current="page"] {
+        color: var(--violet);
+        font-weight: 700;
+      }
+      .nav-item[aria-current="page"]:after {
+        position: absolute;
+        content: "";
+        height: 3px;
+        background: var(--violet);
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      .nav-item:hover {
+        color: var(--violet);
+      }
+      .account {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .avatar {
+        width: 29px;
+        height: 29px;
+        border: 1px solid #dedee9;
+        background: #f7f7fb;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 11px;
+      }
+      .workspace {
+        padding: 0 26px;
+      }
+      .page-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 27px 0 22px;
+      }
+      .heading-copy {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-bottom: 4px;
+      }
+      .count-pill {
+        border-radius: 12px;
+        background: #eeecf7;
+        padding: 1px 9px;
+        color: var(--violet);
+        font-weight: 650;
+        font-size: 12px;
+      }
+      .page-heading p {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .heading-actions {
+        display: flex;
+        gap: 9px;
+      }
+      .library {
+        display: grid;
+        grid-template-columns: 169px minmax(0, 1fr) 280px;
+        gap: 22px;
+        align-items: start;
+      }
+      .filters {
+        position: sticky;
+        top: 16px;
+        padding: 9px 18px 16px 0;
+      }
+      .filter-top {
+        margin-bottom: 21px;
+      }
+      .filter-top h2 {
+        font-size: 13px;
+      }
+      .filter-section {
+        border: 0;
+        border-top: 1px solid var(--line);
+        margin: 0 0 20px;
+        padding: 17px 0 0;
+      }
+      .filter-section legend {
+        float: left;
+        font-size: 12px;
+        font-weight: 700;
+        width: 100%;
+        margin-bottom: 11px;
+      }
+      .filter-options {
+        clear: both;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+      .filter-choice {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .filter-choice .facet-count {
+        margin-left: auto;
+        font-size: 11px;
+        color: #7e8090;
+        font-variant-numeric: tabular-nums;
+      }
+      .more-types {
+        display: block;
+        margin: 9px 0 0 22px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .filter-note {
+        border-left: 2px solid #e3dff7;
+        padding-left: 10px;
+        color: #7a7689;
+        font-size: 11px;
+        line-height: 1.7;
+        margin-top: 26px;
+      }
+      .bank-main {
+        min-width: 0;
+      }
+      .search-wrap {
+        height: 45px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid #c9c7d7;
+        border-radius: 7px;
+        padding: 0 13px;
+        box-shadow: 0 1px 2px #25273506;
+      }
+      .search-wrap svg {
+        color: #6c687d;
+      }
+      .search-wrap input {
+        min-width: 0;
+        width: 100%;
+        border: 0;
+        outline: 0;
+        background: none;
+        font-size: 13px;
+        height: 100%;
+        box-shadow: none;
+      }
+      .search-wrap:focus-within {
+        border-color: var(--violet);
+        box-shadow: 0 0 0 2px #5a46c815;
+      }
+      .key-hint {
+        font-size: 10px;
+        border: 1px solid var(--line);
+        padding: 1px 5px;
+        border-radius: 3px;
+        color: #92909e;
+      }
+      .search-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 49px;
+        gap: 10px;
+      }
+      .applied {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .filter-chip {
+        padding: 3px 7px;
+        font-size: 10px;
+        background: var(--violet-light);
+        color: #5d48b9;
+        border-radius: 4px;
+        display: flex;
+        gap: 7px;
+        align-items: center;
+      }
+      .filter-chip svg {
+        width: 11px;
+        height: 11px;
+      }
+      .sort {
+        border: 0;
+        padding: 4px 0;
+        background: #fff;
+        color: var(--muted);
+        font-size: 11px;
+        max-width: 110px;
+      }
+      .split-work {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: grid;
+        grid-template-columns: 268px minmax(0, 1fr);
+        height: calc(100vh - 344px);
+        min-height: 620px;
+        overflow: hidden;
+      }
+      .results-pane {
+        border-right: 1px solid var(--line);
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: #fcfcfd;
+      }
+      .results-toolbar {
+        height: 44px;
+        padding: 0 14px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        background: #fff;
+        flex-shrink: 0;
+      }
+      .results-toolbar strong {
+        font-weight: 700;
+      }
+      .question-list {
+        overflow: auto;
+        overscroll-behavior: contain;
+      }
+      .question-row {
+        position: relative;
+        border-bottom: 1px solid #e8e9ef;
+        padding: 16px 13px 14px 15px;
+        display: flex;
+        gap: 10px;
+        background: #fff;
+      }
+      .question-row:hover {
+        background: #f9f8fd;
+      }
+      .question-row.selected {
+        background: #f2effc;
+      }
+      .question-row.selected:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--violet);
+      }
+      .row-check {
+        padding-top: 4px;
+      }
+      .row-content {
+        display: block;
+        min-width: 0;
+        text-align: left;
+        padding: 0;
+        flex: 1;
+      }
+      .row-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+        margin-bottom: 7px;
+      }
+      .row-type {
+        font-weight: 700;
+        font-size: 12px;
+      }
+      .row-title {
+        font-size: 12px;
+        line-height: 1.55;
+        letter-spacing: -0.3px;
+        margin: 0 0 7px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .row-bottom {
+        font-size: 10px;
+        color: #7e7a8d;
+        display: flex;
+        gap: 7px;
+        align-items: center;
+      }
+      .row-bottom .in-tray {
+        color: #6650bb;
+        margin-left: auto;
+      }
+      .detail-pane {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        overflow: hidden;
+      }
+      .detail-top {
+        padding: 17px 20px 0;
+        flex-shrink: 0;
+      }
+      .detail-id {
+        font-size: 10px;
+        color: #7a7688;
+        letter-spacing: 0.2px;
+      }
+      .detail-title {
+        font-size: 17px;
+        font-weight: 750;
+        letter-spacing: -0.7px;
+        margin: 8px 0 11px;
+      }
+      .detail-tabs {
+        display: flex;
+        gap: 22px;
+        border-bottom: 1px solid var(--line);
+        margin-top: 16px;
+      }
+      .detail-tab {
+        font-size: 12px;
+        padding: 0 0 11px;
+        position: relative;
+        color: #767283;
+      }
+      .detail-tab[aria-selected="true"] {
+        font-weight: 700;
+        color: var(--violet);
+      }
+      .detail-tab[aria-selected="true"]:after {
+        content: "";
+        height: 2px;
+        background: var(--violet);
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+      }
+      .detail-scroll {
+        flex: 1;
+        min-height: 0;
+        overflow: auto;
+        padding: 22px 20px;
+      }
+      .question-prompt {
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.7;
+        margin-bottom: 14px;
+        word-break: keep-all;
+      }
+      .passage {
+        font:
+          15px/1.83 Georgia,
+          "Times New Roman",
+          serif;
+        letter-spacing: 0;
+        color: #393745;
+        background: #fafafd;
+        border: 1px solid #e8e6ef;
+        border-radius: 5px;
+        padding: 17px 18px;
+        margin-bottom: 18px;
+        overflow-wrap: anywhere;
+      }
+      .passage .blank {
+        display: inline-block;
+        border-bottom: 1px solid #5e5279;
+        min-width: 125px;
+        text-align: center;
+        color: #6a5b83;
+        line-height: 1.35;
+      }
+      .choices {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .choices li {
+        display: flex;
+        gap: 9px;
+        font-size: 12px;
+        line-height: 1.6;
+        letter-spacing: 0;
+      }
+      .choice-num {
+        color: #85818e;
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+      .answer-block {
+        margin-top: 23px;
+        border-top: 1px solid var(--line);
+        padding-top: 15px;
+      }
+      .answer-block summary {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        list-style: none;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .answer-block summary::-webkit-details-marker {
+        display: none;
+      }
+      .answer-content {
+        background: #f8f6fd;
+        border-radius: 5px;
+        padding: 13px;
+        margin-top: 12px;
+        font-size: 12px;
+        line-height: 1.8;
+        color: #60576f;
+      }
+      .answer-content strong {
+        color: var(--violet);
+        display: block;
+        margin-bottom: 4px;
+      }
+      .detail-footer {
+        padding: 13px 20px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .detail-footer .btn {
+        font-size: 12px;
+      }
+      .source-label {
+        font-size: 10px;
+        color: #83808d;
+      }
+      .source-heading {
+        font:
+          23px/1.25 Georgia,
+          serif;
+        letter-spacing: -0.5px;
+        margin: 11px 0 20px;
+      }
+      .source-meta {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .source-copy {
+        font:
+          16px/1.9 Georgia,
+          serif;
+        letter-spacing: 0;
+        color: #484251;
+      }
+      .source-copy p + p {
+        margin-top: 15px;
+      }
+      .tray {
+        position: sticky;
+        top: 16px;
+        background: #fafafd;
+        border: 1px solid #dddce8;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .tray-head {
+        padding: 17px 17px 15px;
+        border-bottom: 1px solid var(--line);
+        background: #f5f4fa;
+      }
+      .tray-head h2 {
+        font-size: 14px;
+      }
+      .tray-head p {
+        font-size: 10px;
+        color: #7b748c;
+        margin-top: 4px;
+      }
+      .tray-context {
+        padding: 16px 17px 14px;
+        border-bottom: 1px solid var(--line);
+      }
+      .tray-context .school {
+        font-size: 11px;
+        color: #706b7e;
+        margin-bottom: 7px;
+      }
+      .exam-title {
+        font-size: 14px;
+        font-weight: 700;
+        display: block;
+      }
+      .tray-context .tags {
+        display: flex;
+        gap: 6px;
+        margin-top: 10px;
+      }
+      .tray-list {
+        padding: 5px 12px;
+        max-height: 380px;
+        overflow: auto;
+      }
+      .tray-item {
+        display: flex;
+        gap: 10px;
+        padding: 14px 4px;
+        border-bottom: 1px solid var(--line);
+        align-items: flex-start;
+      }
+      .tray-item:last-child {
+        border: 0;
+      }
+      .tray-number {
+        font-size: 11px;
+        color: #7d758e;
+        padding-top: 2px;
+        font-variant-numeric: tabular-nums;
+      }
+      .tray-item-copy {
+        min-width: 0;
+        flex: 1;
+      }
+      .tray-item-copy strong {
+        font-size: 12px;
+      }
+      .tray-item-copy p {
+        font-size: 10px;
+        color: #7e778c;
+        margin-top: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .tray-controls {
+        display: flex;
+        gap: 3px;
+        margin-top: 6px;
+      }
+      .tray-controls button {
+        width: 24px;
+        height: 23px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        display: grid;
+        place-items: center;
+      }
+      .tray-controls svg {
+        width: 12px;
+        height: 12px;
+      }
+      .tray-controls button:hover {
+        border-color: #a496ce;
+        color: var(--violet);
+      }
+      .tray-remove {
+        color: #a09aaa;
+        width: 23px;
+        height: 24px;
+      }
+      .tray-remove svg {
+        width: 13px;
+      }
+      .tray-summary {
+        padding: 16px 17px;
+        border-top: 1px solid var(--line);
+        margin-top: 5px;
+        font-size: 11px;
+        color: #736c82;
+      }
+      .tray-summary strong {
+        color: var(--ink);
+        font-size: 13px;
+      }
+      .type-distribution {
+        display: flex;
+        height: 4px;
+        gap: 3px;
+        margin: 13px 0 10px;
+      }
+      .type-distribution i {
+        background: #8d80c7;
+        border-radius: 1px;
+        flex: 1;
+      }
+      .type-distribution i:nth-child(2n) {
+        background: #b6abdf;
+      }
+      .type-distribution i:nth-child(3n) {
+        background: #ddd7ed;
+      }
+      .tray-actions {
+        padding: 0 17px 17px;
+      }
+      .tray-actions .btn {
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+      .tray-footnote {
+        padding: 12px 17px;
+        border-top: 1px solid var(--line);
+        font-size: 10px;
+        color: #878091;
+        line-height: 1.65;
+      }
+      .right-column {
+        min-width: 0;
+        position: sticky;
+        top: 16px;
+      }
+      .selection-bar {
+        margin-top: 10px;
+        border: 1px solid #d3caee;
+        border-radius: 7px;
+        padding: 10px 13px;
+        background: #f5f2fd;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+      }
+      .selection-bar .btn {
+        min-height: 30px;
+        font-size: 11px;
+        padding: 5px 10px;
+      }
+      .empty {
+        padding: 50px 20px;
+        text-align: center;
+        color: #807b8c;
+        font-size: 12px;
+      }
+      .empty strong {
+        display: block;
+        color: #514b60;
+        margin: 8px 0;
+      }
+      .empty .btn {
+        margin-top: 16px;
+      }
+      .mobile-controls,
+      .mobile-back,
+      .mobile-tray {
+        display: none;
+      }
+      .footer-note {
+        font-size: 10px;
+        color: #9793a1;
+        padding: 12px 0 14px;
+        margin-left: 191px;
+      }
+      .secondary-view {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 32px 0 70px;
+      }
+      .secondary-heading {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        gap: 15px;
+      }
+      .secondary-heading p {
+        color: var(--muted);
+        margin-top: 5px;
+      }
+      .resource-layout {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        min-height: 650px;
+      }
+      .resource-list {
+        padding: 18px;
+        border-right: 1px solid var(--line);
+        background: #fcfcfe;
+      }
+      .resource-card {
+        padding: 19px 16px;
+        border: 1px solid #cec6e6;
+        background: #f4f1fc;
+        border-radius: 6px;
+        margin-top: 17px;
+        text-align: left;
+        width: 100%;
+      }
+      .resource-card strong {
+        font-size: 14px;
+        display: block;
+        margin: 10px 0 4px;
+      }
+      .resource-card p {
+        font:
+          13px Georgia,
+          serif;
+        letter-spacing: 0;
+        color: #797182;
+        margin-bottom: 15px;
+      }
+      .resource-document {
+        padding: 35px 42px;
+      }
+      .resource-document .source-copy {
+        max-width: 610px;
+      }
+      .resource-actions {
+        margin-top: 28px;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      .listening-layout {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .audio-setup {
+        padding: 34px;
+        border-right: 1px solid var(--line);
+      }
+      .audio-placeholder {
+        margin: 25px 0;
+        background: #f8f7fc;
+        border: 1px dashed #d4cde6;
+        padding: 35px 20px;
+        text-align: center;
+        border-radius: 8px;
+      }
+      .audio-placeholder svg {
+        width: 34px;
+        height: 34px;
+        color: #9a8bc1;
+        margin-bottom: 10px;
+      }
+      .audio-placeholder h3 {
+        font-size: 15px;
+        margin: 5px 0;
+      }
+      .audio-placeholder p {
+        font-size: 12px;
+        color: #82778f;
+        margin-bottom: 20px;
+      }
+      .audio-file-label {
+        cursor: pointer;
+      }
+      .audio-preview {
+        width: 100%;
+        margin-top: 20px;
+      }
+      .listening-guide {
+        padding: 34px;
+        background: #fcfcfe;
+      }
+      .guide-row {
+        padding: 20px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .guide-row p {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 7px;
+        line-height: 1.8;
+      }
+      .field-label {
+        display: block;
+        font-weight: 650;
+        font-size: 12px;
+        margin: 18px 0 8px;
+      }
+      .field {
+        width: 100%;
+        min-height: 39px;
+        padding: 9px 11px;
+      }
+      .notice {
+        font-size: 11px;
+        line-height: 1.8;
+        padding: 12px 14px;
+        background: #f5f3fa;
+        color: #766986;
+        border-radius: 5px;
+        margin-top: 18px;
+      }
+      .dialog {
+        border: 0;
+        padding: 0;
+        color: var(--ink);
+        box-shadow: 0 15px 80px #27203c33;
+      }
+      .dialog::backdrop {
+        background: #211d3e55;
+        backdrop-filter: blur(2px);
+      }
+      .dialog-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 19px 24px;
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+        gap: 15px;
+      }
+      .dialog-header p {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .drawer {
+        position: fixed;
+        inset: 0 0 0 auto;
+        margin: 0;
+        width: 520px;
+        max-width: 100vw;
+        max-height: 100dvh;
+        height: 100dvh;
+        display: none;
+        flex-direction: column;
+      }
+      .drawer[open] {
+        display: flex;
+      }
+      .dialog-body {
+        padding: 22px 24px;
+        overflow: auto;
+        flex: 1;
+        min-height: 0;
+      }
+      .dialog-bottom {
+        border-top: 1px solid var(--line);
+        padding: 17px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        gap: 10px;
+      }
+      .mode-switch {
+        display: flex;
+        background: #f4f3f8;
+        padding: 4px;
+        gap: 3px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+      }
+      .mode-switch button {
+        padding: 9px 5px;
+        flex: 1;
+        font-size: 12px;
+        border-radius: 4px;
+      }
+      .mode-switch button.active {
+        background: #fff;
+        box-shadow: 0 1px 3px #30264b15;
+        color: var(--violet);
+        font-weight: 700;
+      }
+      .source-mini {
+        padding: 15px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        margin: 10px 0 18px;
+      }
+      .source-mini strong {
+        font-size: 12px;
+      }
+      .source-mini p {
+        font:
+          13px/1.7 Georgia,
+          serif;
+        letter-spacing: 0;
+        color: #7b7089;
+        margin-top: 5px;
+      }
+      .two-fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .type-picker {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 7px;
+      }
+      .type-option {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        font-size: 11px;
+        padding: 10px 8px;
+      }
+      .type-option:has(input:checked) {
+        border-color: #b4a6df;
+        background: #f7f3ff;
+        color: #654bab;
+      }
+      .drawer-step {
+        font-size: 11px;
+        color: #82768e;
+        margin-bottom: 10px;
+      }
+      .draft-card {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        margin-bottom: 14px;
+        overflow: hidden;
+      }
+      .draft-card-header {
+        padding: 12px 14px;
+        background: #faf9fd;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .draft-card-body {
+        padding: 14px;
+      }
+      .draft-card-body .passage {
+        font-size: 13px;
+        margin: 10px 0;
+        padding: 12px;
+      }
+      .draft-card-body .choices {
+        font-size: 11px;
+        gap: 5px;
+      }
+      .draft-card-body .choices li {
+        font-size: 11px;
+      }
+      .draft-card-body .question-prompt {
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+      .draft-card-body .answer-content {
+        font-size: 11px;
+      }
+      .drawer-error {
+        font-size: 11px;
+        color: #a24c4c;
+        margin-top: 10px;
+        min-height: 18px;
+      }
+      .preview-dialog {
+        width: min(1160px, 96vw);
+        height: 92dvh;
+        max-width: 96vw;
+        max-height: 96dvh;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .preview-dialog[open] {
+        display: flex;
+        flex-direction: column;
+      }
+      .preview-tools {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .preview-tools .btn {
+        font-size: 11px;
+      }
+      .preview-body {
+        overflow: auto;
+        background: #eaeaf0;
+        padding: 28px;
+        flex: 1;
+      }
+      .paper {
+        width: 794px;
+        min-height: 1123px;
+        background: #fff;
+        margin: 0 auto 24px;
+        padding: 54px 59px;
+        box-shadow: 0 3px 15px #30254512;
+        position: relative;
+      }
+      .paper:last-child {
+        margin-bottom: 0;
+      }
+      .paper-overline {
+        font-size: 11px;
+        color: #737080;
+        text-align: center;
+      }
+      .paper h2 {
+        text-align: center;
+        font-size: 25px;
+        margin: 13px 0 21px;
+        letter-spacing: -1px;
+      }
+      .paper-meta {
+        border-top: 2px solid #403c4f;
+        border-bottom: 1px solid #7c7787;
+        display: flex;
+        justify-content: space-between;
+        padding: 11px 0;
+        font-size: 11px;
+        margin-bottom: 25px;
+      }
+      .paper-question {
+        padding-bottom: 18px;
+        margin-bottom: 16px;
+        border-bottom: 1px solid #e9e6ee;
+        break-inside: avoid;
+      }
+      .paper-question:last-of-type {
+        border: 0;
+      }
+      .paper-question .passage {
+        background: #fff;
+        border-color: #dad7e1;
+        font-size: 14px;
+        line-height: 1.7;
+        padding: 14px;
+      }
+      .paper-question .choices li {
+        font-size: 12px;
+      }
+      .paper-question .question-prompt {
+        font-size: 13px;
+      }
+      .paper-footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 25px;
+        font-size: 10px;
+        color: #938a9e;
+      }
+      .paper .answer-content {
+        font-size: 11px;
+        line-height: 1.7;
+      }
+      .paper .write-space {
+        height: 55px;
+        border-bottom: 1px solid #ccc;
+      }
+      .preview-mode {
+        display: flex;
+        padding: 3px;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+      }
+      .preview-mode button {
+        padding: 6px 10px;
+        font-size: 11px;
+        border-radius: 3px;
+      }
+      .preview-mode .active {
+        background: var(--violet-light);
+        color: var(--violet);
+        font-weight: 700;
+      }
+      .preview-tip {
+        font-size: 11px;
+        color: #777082;
+        text-align: center;
+        margin-bottom: 17px;
+      }
+      .compact-dialog {
+        border-radius: 9px;
+        width: 400px;
+        max-width: calc(100vw - 28px);
+      }
+      .compact-dialog .tray {
+        border: 0;
+        border-radius: 0;
+      }
+      .filter-dialog {
+        width: 350px;
+        max-height: 88dvh;
+        border-radius: 9px;
+      }
+      .filter-dialog .filters {
+        padding: 22px;
+        position: static;
+      }
+      .filter-dialog .dialog-body {
+        padding: 0;
+        max-height: 65dvh;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 23px;
+        transform: translateX(-50%);
+        background: #33294c;
+        color: white;
+        padding: 11px 18px;
+        border-radius: 7px;
+        font-size: 12px;
+        z-index: 20;
+        box-shadow: 0 3px 20px #20162a1a;
+        max-width: 90vw;
+        pointer-events: none;
+      }
+      .write-space {
+        height: 55px;
+        border-bottom: 1px solid var(--line);
+      }
+      @media (min-width: 1600px) {
+        .workspace {
+          max-width: 1600px;
+          margin: auto;
+        }
+        .library {
+          grid-template-columns: 180px minmax(0, 1fr) 300px;
+        }
+        .split-work {
+          grid-template-columns: 300px minmax(0, 1fr);
+        }
+      }
+      @media (max-width: 1250px) {
+        .topbar {
+          gap: 24px;
+        }
+        .global-nav {
+          gap: 18px;
+        }
+        .library {
+          grid-template-columns: 148px minmax(0, 1fr) 247px;
+          gap: 15px;
+        }
+        .split-work {
+          grid-template-columns: 225px minmax(0, 1fr);
+        }
+        .detail-top,
+        .detail-scroll {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .detail-footer {
+          padding: 12px;
+        }
+        .detail-footer .source-label {
+          display: none;
+        }
+        .account .account-name {
+          display: none;
+        }
+        .workspace {
+          padding: 0 20px;
+        }
+        .question-row {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+        .row-check {
+          display: none;
+        }
+        .tray-head,
+        .tray-context,
+        .tray-summary {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+      }
+      @media (max-width: 1050px) {
+        .library {
+          grid-template-columns: 150px minmax(0, 1fr);
+        }
+        .right-column {
+          display: none;
+        }
+        .mobile-tray {
+          display: flex;
+          position: fixed;
+          bottom: 18px;
+          right: 20px;
+          z-index: 3;
+          box-shadow: 0 4px 20px #50436c33;
+          gap: 13px;
+        }
+        .mobile-tray .count-pill {
+          background: #ffffff26;
+          color: white;
+        }
+        .split-work {
+          grid-template-columns: 240px minmax(0, 1fr);
+        }
+        .account {
+          display: none;
+        }
+        .global-nav {
+          gap: 25px;
+        }
+        .footer-note {
+          padding-bottom: 75px;
+        }
+      }
+      @media (max-width: 760px) {
+        .proposal {
+          height: 25px;
+          padding: 0 16px;
+          font-size: 9px;
+        }
+        .proposal .prototype-note {
+          display: none;
+        }
+        .topbar {
+          height: auto;
+          min-height: 107px;
+          display: block;
+          padding: 15px 16px 0;
+        }
+        .brand {
+          font-size: 17px;
+        }
+        .brand-mark {
+          width: 27px;
+          height: 28px;
+          font-size: 24px;
+        }
+        .global-nav {
+          height: 49px;
+          gap: 24px;
+          overflow-x: auto;
+          margin-top: 5px;
+          scrollbar-width: none;
+        }
+        .nav-item {
+          font-size: 12px;
+          flex-shrink: 0;
+        }
+        .nav-item svg {
+          display: none;
+        }
+        .workspace {
+          padding: 0 16px;
+        }
+        .page-heading {
+          padding: 23px 0 19px;
+          align-items: flex-start;
+        }
+        .page-heading h1 {
+          font-size: 24px;
+        }
+        .page-heading p {
+          font-size: 11px;
+          max-width: 220px;
+          line-height: 1.8;
+        }
+        .heading-actions .btn.quiet {
+          display: none;
+        }
+        .heading-actions .btn {
+          font-size: 11px;
+          min-height: 33px;
+          padding: 7px 9px;
+          gap: 4px;
+        }
+        .heading-actions .btn svg {
+          width: 14px;
+        }
+        .heading-copy {
+          gap: 9px;
+        }
+        .library {
+          display: block;
+        }
+        .filters-host {
+          display: none;
+        }
+        .search-wrap {
+          height: 43px;
+        }
+        .key-hint {
+          display: none;
+        }
+        .search-wrap input {
+          font-size: 12px;
+        }
+        .search-meta {
+          min-height: 50px;
+          gap: 6px;
+        }
+        .search-meta .sort {
+          font-size: 10px;
+          max-width: 93px;
+        }
+        .mobile-controls {
+          display: inline-flex;
+          font-size: 11px;
+          align-items: center;
+          gap: 5px;
+          border: 1px solid var(--line);
+          border-radius: 4px;
+          padding: 5px 8px;
+          white-space: nowrap;
+        }
+        .mobile-controls svg {
+          width: 13px;
+          height: 13px;
+        }
+        .applied {
+          flex: 1;
+        }
+        .filter-chip {
+          font-size: 10px;
+          padding: 4px 7px;
+        }
+        .split-work {
+          display: block;
+          min-height: 0;
+          height: auto;
+          overflow: visible;
+          border-radius: 7px;
+          margin-bottom: 6px;
+        }
+        .results-pane {
+          border: 0;
+          overflow: visible;
+          border-radius: 7px;
+        }
+        .results-toolbar {
+          height: 42px;
+          font-size: 11px;
+          border-radius: 7px 7px 0 0;
+        }
+        .question-list {
+          max-height: none;
+          overflow: visible;
+        }
+        .question-row {
+          padding: 16px 15px;
+          gap: 12px;
+        }
+        .row-check {
+          display: block;
+        }
+        .row-title {
+          font-size: 13px;
+          line-height: 1.6;
+        }
+        .row-type {
+          font-size: 12px;
+        }
+        .row-bottom {
+          font-size: 11px;
+        }
+        .row-top {
+          margin-bottom: 8px;
+        }
+        .badge {
+          font-size: 10px;
+        }
+        .detail-pane {
+          display: none;
+          position: fixed;
+          inset: 0;
+          z-index: 10;
+        }
+        .show-detail .detail-pane {
+          display: flex;
+        }
+        .mobile-back {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          padding: 14px 16px;
+          border-bottom: 1px solid var(--line);
+          text-align: left;
+          font-size: 12px;
+          flex-shrink: 0;
+        }
+        .mobile-back svg {
+          width: 16px;
+        }
+        .detail-top {
+          padding: 18px 21px 0;
+        }
+        .detail-scroll {
+          padding: 21px;
+          overscroll-behavior: contain;
+        }
+        .detail-title {
+          font-size: 19px;
+        }
+        .detail-footer {
+          padding: 13px 20px max(15px, env(safe-area-inset-bottom));
+        }
+        .detail-footer .source-label {
+          display: block;
+        }
+        .detail-footer .btn {
+          min-height: 40px;
+        }
+        .detail-tabs {
+          margin-top: 18px;
+        }
+        .passage {
+          font-size: 16px;
+          padding: 18px;
+        }
+        .choices li {
+          font-size: 13px;
+        }
+        .mobile-tray {
+          bottom: 16px;
+          right: 16px;
+          left: 16px;
+          padding: 12px 15px;
+          justify-content: space-between;
+          min-height: 49px;
+        }
+        .mobile-tray .flex {
+          gap: 8px;
+        }
+        .footer-note {
+          margin-left: 0;
+          padding-top: 15px;
+          padding-bottom: 95px;
+          line-height: 1.7;
+          font-size: 9px;
+        }
+        .selection-bar {
+          position: fixed;
+          bottom: 78px;
+          left: 16px;
+          right: 16px;
+          z-index: 4;
+          box-shadow: 0 4px 25px #63527112;
+        }
+        .secondary-view {
+          padding-top: 23px;
+        }
+        .secondary-heading h1 {
+          font-size: 23px;
+        }
+        .secondary-heading p {
+          font-size: 11px;
+        }
+        .secondary-heading .btn {
+          font-size: 11px;
+        }
+        .resource-layout {
+          display: block;
+        }
+        .resource-list {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          padding: 16px;
+        }
+        .resource-card {
+          margin-top: 11px;
+          padding: 12px;
+        }
+        .resource-card strong {
+          margin: 7px 0 4px;
+        }
+        .resource-card p {
+          margin-bottom: 10px;
+        }
+        .resource-document {
+          padding: 24px 20px;
+        }
+        .source-copy {
+          font-size: 15px;
+        }
+        .resource-actions {
+          flex-direction: column;
+        }
+        .listening-layout {
+          display: block;
+        }
+        .audio-setup,
+        .listening-guide {
+          padding: 22px;
+        }
+        .audio-setup {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .dialog-header {
+          padding: 17px 18px;
+        }
+        .dialog-header h2 {
+          font-size: 17px;
+        }
+        .dialog-body {
+          padding: 18px;
+        }
+        .dialog-bottom {
+          padding: 15px 18px;
+        }
+        .type-picker {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .type-option {
+          padding: 9px 6px;
+          font-size: 10px;
+          gap: 5px;
+        }
+        .type-option input {
+          width: 13px;
+          height: 13px;
+        }
+        .mode-switch button {
+          font-size: 11px;
+        }
+        .preview-dialog {
+          width: 100vw;
+          max-width: 100vw;
+          height: 100dvh;
+          max-height: 100dvh;
+          border-radius: 0;
+          margin: 0;
+        }
+        .preview-dialog .dialog-header {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+        .preview-tools {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .preview-body {
+          padding: 15px 12px;
+        }
+        .paper {
+          width: 100%;
+          min-height: 0;
+          padding: 25px 19px;
+          margin-bottom: 17px;
+        }
+        .paper h2 {
+          font-size: 19px;
+        }
+        .paper-overline {
+          font-size: 9px;
+        }
+        .paper-meta {
+          font-size: 8px;
+          gap: 7px;
+        }
+        .paper-question .passage {
+          font-size: 12px;
+          line-height: 1.7;
+          padding: 11px;
+        }
+        .paper-question .choices li {
+          font-size: 11px;
+        }
+        .paper-question .question-prompt {
+          font-size: 12px;
+        }
+        .paper .answer-content {
+          font-size: 10px;
+        }
+        .preview-tip {
+          font-size: 10px;
+        }
+        .compact-dialog .tray-list {
+          max-height: 45dvh;
+        }
+        .filter-dialog {
+          max-width: calc(100vw - 32px);
+        }
+        .toast {
+          bottom: 80px;
+          white-space: normal;
+          text-align: center;
+          width: max-content;
+        }
+        .dialog-bottom .small {
+          max-width: 150px;
+        }
+        .drawer .dialog-bottom .btn {
+          font-size: 12px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      @media print {
+        body > * {
+          display: none !important;
+        }
+        body > #previewDialog {
+          display: block !important;
+          position: static !important;
+          width: 100% !important;
+          height: auto !important;
+          max-width: none !important;
+          max-height: none !important;
+          margin: 0 !important;
+          border: 0 !important;
+          overflow: visible !important;
+          box-shadow: none !important;
+        }
+        #previewDialog .dialog-header,
+        .preview-tip {
+          display: none !important;
+        }
+        .preview-body {
+          overflow: visible !important;
+          padding: 0 !important;
+          background: #fff !important;
+        }
+        .paper {
+          width: 210mm !important;
+          min-height: 297mm !important;
+          margin: 0 !important;
+          padding: 15mm !important;
+          box-shadow: none !important;
+          break-after: page;
+          page-break-after: always;
+        }
+        .paper:last-child {
+          break-after: auto;
+          page-break-after: auto;
+        }
+        .paper h2 {
+          font-size: 24px !important;
+        }
+        .paper-meta {
+          font-size: 11px !important;
+        }
+        .paper-question .passage {
+          font-size: 14px !important;
+          line-height: 1.7 !important;
+        }
+        .paper-question .choices li,
+        .paper-question .question-prompt {
+          font-size: 12px !important;
+        }
+        .paper .answer-content {
+          font-size: 11px !important;
+        }
+        dialog::backdrop {
+          display: none !important;
+        }
+      }
+
+      @media screen {
+        :root {
+          --ink: #172b4d;
+          --muted: #596c86;
+          --line: #dce3ed;
+          --soft: #f4f6fa;
+          --violet: #5146bf;
+          --violet-light: #efedfc;
+          --shell-width: 240px;
+        }
+        body {
+          background: #f4f6fa;
+          font-size: 14px;
+        }
+        .proposal {
+          margin-left: var(--shell-width);
+          font-size: 11px;
+          padding: 0 24px;
+          height: 26px;
+          background: #f1f3f8;
+          color: #667389;
+        }
+        .proposal b {
+          color: #59677e;
+          font-weight: 500;
+        }
+        .shell-sidebar {
+          position: fixed;
+          inset: 0 auto 0 0;
+          width: var(--shell-width);
+          padding: 20px 16px;
+          background: #14243d;
+          color: #b9c7dd;
+          z-index: 6;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+        }
+        .shell-brand-row {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          min-height: 44px;
+        }
+        .product-switch {
+          min-width: 0;
+          position: relative;
+          flex: 1;
+        }
+        .product-switch summary {
+          list-style: none;
+          cursor: pointer;
+        }
+        .product-switch summary::-webkit-details-marker {
+          display: none;
+        }
+        .brand {
+          color: #fff;
+          gap: 9px;
+          font-size: 21px;
+          letter-spacing: -0.9px;
+        }
+        .brand-name {
+          white-space: nowrap;
+        }
+        .brand small {
+          font-size: 16px;
+          color: #92a9cc;
+        }
+        .math-mark {
+          position: relative;
+          display: block;
+          width: 33px;
+          height: 36px;
+          flex: none;
+        }
+        .math-mark svg {
+          width: 33px;
+          height: 36px;
+        }
+        .math-mark i {
+          position: absolute;
+          right: -3px;
+          bottom: -2px;
+          font-style: normal;
+          font-size: 10px;
+          letter-spacing: 0;
+          background: #5146bf;
+          border: 1px solid #14243d;
+          border-radius: 3px;
+          padding: 1px 3px;
+        }
+        .collapse-nav {
+          font-size: 22px;
+          color: #a2b4d1;
+          width: 25px;
+          flex: none;
+        }
+        .collapse-nav:hover {
+          background: #304362;
+        }
+        .product-options {
+          position: absolute;
+          z-index: 10;
+          top: 48px;
+          left: 0;
+          width: 220px;
+          border: 1px solid #c8d3e3;
+          box-shadow: 0 6px 20px #06183322;
+          background: #fff;
+          border-radius: 8px;
+          padding: 8px;
+          color: var(--ink);
+        }
+        .product-options > strong,
+        .product-options > span {
+          display: block;
+          padding: 10px 8px;
+          font-size: 13px;
+        }
+        .product-options > strong {
+          background: #f0edfc;
+          border-radius: 5px;
+        }
+        .product-options strong span {
+          float: right;
+          color: var(--violet);
+          font-size: 11px;
+        }
+        .product-options small {
+          display: block;
+          color: var(--muted);
+          font-size: 11px;
+          margin-top: 4px;
+        }
+        .shell-new {
+          margin: 24px 0 23px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          min-height: 44px;
+          border: 1px solid #7884ed;
+          background: #5262d3;
+          color: #fff;
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 650;
+        }
+        .shell-new:hover {
+          background: #6071e2;
+        }
+        .nav-caption {
+          font-size: 12px;
+          color: #899cb9;
+          margin: 0 12px 11px;
+        }
+        .global-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          align-self: auto;
+          height: auto;
+          overflow: visible;
+          margin: 0;
+        }
+        .nav-item {
+          min-height: 44px;
+          padding: 0 12px;
+          color: #b9c7dd;
+          font-size: 14px;
+          gap: 11px;
+          border-radius: 8px;
+        }
+        .nav-item svg {
+          color: #8ca1c4;
+        }
+        .nav-item[aria-current="page"] {
+          background: #304362;
+          color: #fff;
+          font-weight: 600;
+        }
+        .nav-item[aria-current="page"] svg {
+          color: #bab3fb;
+        }
+        .nav-item[aria-current="page"]:after {
+          display: none;
+        }
+        .nav-item:hover {
+          background: #213655;
+          color: white;
+        }
+        .nav-item b {
+          margin-left: auto;
+          background: #3a5486;
+          border-radius: 4px;
+          padding: 1px 6px;
+          color: #fff;
+          font-size: 12px;
+        }
+        .side-draft {
+          margin: 27px 2px 0;
+          padding: 13px 12px 4px;
+          background: #1a2c48;
+          border: 1px solid #304260;
+          border-radius: 9px;
+        }
+        .side-draft > div {
+          display: flex;
+          justify-content: space-between;
+          font-size: 12px;
+          color: #97adcf;
+        }
+        .side-draft strong {
+          display: block;
+          color: #e0e8f7;
+          font-size: 14px;
+          margin-top: 12px;
+        }
+        .side-draft button {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          min-height: 44px;
+          color: #adb6fa;
+          font-size: 13px;
+        }
+        .shell-profile {
+          margin-top: auto;
+          padding: 20px 7px 0;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          font-size: 12px;
+        }
+        .shell-profile small {
+          display: block;
+          color: #8b9cba;
+          margin-top: 3px;
+        }
+        .profile-avatar {
+          width: 33px;
+          height: 33px;
+          border-radius: 9px;
+          background: #364b6b;
+          display: grid;
+          place-items: center;
+          color: #e0e9fa;
+        }
+        .topbar {
+          margin-left: var(--shell-width);
+          height: 60px;
+          padding: 0 24px;
+          gap: 22px;
+          background: #fff;
+          position: relative;
+        }
+        .breadcrumb {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 13px;
+          white-space: nowrap;
+        }
+        .breadcrumb > span {
+          color: #8290a6;
+        }
+        .quick-search {
+          margin-left: auto;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: #74839b;
+          border: 1px solid #dce3ed;
+          background: #fafbfe;
+          border-radius: 7px;
+          font-size: 12px;
+          min-height: 36px;
+          padding: 0 12px;
+        }
+        .quick-search kbd {
+          border: 1px solid #dce3ed;
+          border-radius: 4px;
+          font-size: 11px;
+          padding: 0 5px;
+        }
+        .top-account {
+          display: flex;
+          align-items: center;
+          gap: 11px;
+          font-size: 12px;
+          white-space: nowrap;
+        }
+        .workspace {
+          margin-left: var(--shell-width);
+          max-width: none;
+          padding: 0 20px;
+        }
+        .page-heading {
+          padding: 22px 0 15px;
+          align-items: flex-start;
+        }
+        .page-heading h1 {
+          font-size: 24px;
+          line-height: 1.3;
+          letter-spacing: -0.8px;
+        }
+        .page-heading p {
+          font-size: 13px;
+          margin-top: 5px;
+        }
+        .btn {
+          min-height: 40px;
+          font-size: 13px;
+          border-radius: 7px;
+        }
+        .heading-actions .btn {
+          min-height: 42px;
+        }
+        .heading-actions .quiet {
+          display: none;
+        }
+        .build-steps {
+          display: flex;
+          gap: 25px;
+          list-style: none;
+          margin: 0 0 18px;
+          padding: 0;
+          font-size: 12px;
+          color: #6e7e94;
+        }
+        .build-steps li {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+        }
+        .build-steps li[aria-current] {
+          color: var(--violet);
+          font-weight: 700;
+        }
+        .build-steps li span {
+          width: 21px;
+          height: 21px;
+          border: 1px solid #cdd5e2;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          font-size: 11px;
+        }
+        .build-steps li[aria-current] span {
+          border-color: var(--violet);
+          background: var(--violet);
+          color: white;
+        }
+        .library {
+          grid-template-columns: minmax(0, 1fr) 246px;
+          gap: 16px;
+        }
+        .filters-host {
+          display: none;
+        }
+        .bank-filter-box {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 12px;
+          background: #fff;
+          border: 1px solid var(--line);
+          border-radius: 10px;
+        }
+        .search-wrap {
+          flex: 1 1 240px;
+          min-width: 160px;
+          height: 36px;
+          border-color: #b8c4d6;
+        }
+        .search-wrap input {
+          font-size: 13px;
+        }
+        .quick-filters {
+          display: flex;
+          gap: 9px;
+          flex: 0 1 550px;
+          min-width: 380px;
+          width: auto;
+        }
+        .quick-filters label {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          flex: 1;
+          min-width: 0;
+        }
+        .quick-filters label > span {
+          font-size: 12px;
+          color: var(--muted);
+          white-space: nowrap;
+        }
+        .quick-filters select {
+          height: 36px;
+          border-color: #cbd5e3;
+          padding: 0 8px;
+          min-width: 0;
+          width: 100%;
+          font-size: 12px;
+        }
+        .quick-filters label:nth-child(2) {
+          flex: 1.5;
+        }
+        .workspace-maximize {
+          margin-left: auto;
+          min-height: 34px;
+        }
+        .shell-maximized .shell-sidebar,
+        .shell-maximized .proposal,
+        .shell-maximized .top-account,
+        .shell-maximized .quick-search {
+          display: none;
+        }
+        body.shell-maximized {
+          --shell-width: 0px;
+        }
+        .shell-maximized .topbar {
+          margin-left: 0;
+          height: 44px;
+          padding: 0 20px;
+        }
+        .shell-maximized .workspace {
+          margin-left: 0;
+        }
+        .shell-maximized .split-work {
+          height: calc(100dvh - 330px);
+        }
+        .search-meta {
+          min-height: 50px;
+          gap: 8px;
+        }
+        .mobile-controls {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 9px;
+          background: #fff;
+          border: 1px solid #cbd5e3;
+          border-radius: 6px;
+          font-size: 12px;
+          white-space: nowrap;
+        }
+        .mobile-controls svg {
+          width: 15px;
+        }
+        .applied {
+          flex: 1;
+        }
+        .filter-chip {
+          font-size: 12px;
+        }
+        .sort {
+          font-size: 12px;
+        }
+        .split-work {
+          grid-template-columns: 236px minmax(0, 1fr);
+          height: calc(100dvh - 414px);
+          min-height: 560px;
+          border-radius: 9px;
+        }
+        .row-type {
+          font-size: 13px;
+        }
+        .row-title {
+          font-size: 13px;
+        }
+        .row-bottom {
+          font-size: 11px;
+        }
+        .row-source {
+          display: block;
+          font-size: 11px;
+          color: #66748a;
+          margin-bottom: 6px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .question-row {
+          padding: 14px 12px;
+        }
+        .results-toolbar {
+          height: 44px;
+          font-size: 12px;
+        }
+        .text-btn {
+          font-size: 12px;
+        }
+        .detail-top {
+          padding: 16px 18px 0;
+        }
+        .detail-title {
+          font-size: 17px;
+        }
+        .detail-id,
+        .source-label {
+          font-size: 11px;
+          color: #64748b;
+        }
+        .detail-scroll {
+          padding: 18px;
+        }
+        .detail-tabs {
+          margin-top: 13px;
+        }
+        .detail-tab {
+          font-size: 13px;
+        }
+        .source-meta {
+          margin-bottom: 11px;
+        }
+        .tag,
+        .badge {
+          font-size: 11px;
+        }
+        .detail-footer {
+          padding: 12px 15px;
+        }
+        .detail-footer .source-label {
+          max-width: 145px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .detail-footer .btn {
+          font-size: 12px;
+        }
+        .passage {
+          font-size: 15px;
+          line-height: 1.8;
+          padding: 15px;
+        }
+        .choices li {
+          font-size: 12px;
+        }
+        .answer-content {
+          font-size: 12px;
+        }
+        .right-column {
+          top: 16px;
+        }
+        .tray {
+          position: static;
+          border-color: #cbd5e3;
+          border-radius: 10px;
+          background: #fff;
+        }
+        .tray-head {
+          background: #fff;
+          padding: 16px;
+        }
+        .tray-head h2 {
+          font-size: 16px;
+        }
+        .tray-head p {
+          font-size: 12px;
+        }
+        .tray-context {
+          padding: 14px 16px;
+          background: #f7f8fc;
+        }
+        .tray-context .school {
+          font-size: 12px;
+        }
+        .tray-list {
+          max-height: 340px;
+        }
+        .tray-item-copy strong {
+          font-size: 13px;
+        }
+        .tray-item-copy p {
+          font-size: 11px;
+        }
+        .tray-controls button {
+          width: 28px;
+          height: 27px;
+        }
+        .tray-summary {
+          font-size: 12px;
+          padding: 15px 16px;
+        }
+        .tray-footnote {
+          font-size: 11px;
+        }
+        .tray-actions {
+          padding: 0 16px 12px;
+        }
+        .tray-actions .btn {
+          font-size: 12px;
+        }
+        .tray-remove {
+          width: 24px;
+        }
+        .tray-item {
+          gap: 8px;
+        }
+        .tray-number {
+          font-size: 12px;
+        }
+        .tray-head .count-pill {
+          background: #edf2ff;
+          color: #3159df;
+        }
+        .footer-note {
+          margin-left: 0;
+          font-size: 11px;
+          padding: 14px 0 20px;
+        }
+        .drawer {
+          width: 600px;
+        }
+        .dialog-header h2 {
+          font-size: 19px;
+        }
+        .dialog-header p,
+        .dialog-bottom .small {
+          font-size: 12px;
+        }
+        .dialog-bottom {
+          flex-wrap: wrap;
+        }
+        .dialog-body .small {
+          font-size: 12px;
+        }
+        .field-label {
+          font-size: 13px;
+        }
+        .mode-switch button {
+          font-size: 13px;
+          min-height: 40px;
+        }
+        .field {
+          font-size: 13px;
+        }
+        .source-mini strong {
+          font-size: 13px;
+        }
+        .field-help {
+          font-size: 12px;
+          color: var(--muted);
+          margin-top: 9px;
+        }
+        .count-field {
+          margin-top: 12px;
+        }
+        .count-field .field {
+          width: 124px;
+        }
+        .type-option {
+          font-size: 12px;
+          min-height: 40px;
+        }
+        .ai-scope {
+          padding: 15px;
+          margin-top: 23px;
+          border: 1px solid #dbd8ee;
+          border-radius: 8px;
+          background: #f7f6fc;
+        }
+        .ai-scope strong {
+          font-size: 13px;
+        }
+        .ai-scope p {
+          font-size: 12px;
+          line-height: 1.8;
+          margin: 6px 0;
+          color: #554e75;
+        }
+        .ai-scope > span {
+          font-size: 12px;
+          color: var(--muted);
+        }
+        .notice {
+          font-size: 12px;
+        }
+        .unsupported-request {
+          margin-top: 16px;
+          border: 1px solid #d9bb83;
+          background: #fff9ec;
+          padding: 14px;
+          border-radius: 7px;
+          font-size: 12px;
+        }
+        .unsupported-request p {
+          margin: 8px 0;
+          line-height: 1.8;
+        }
+        .unsupported-request .btn {
+          font-size: 12px;
+          margin-top: 6px;
+        }
+        .draft-workflow {
+          display: flex;
+          gap: 6px;
+          align-items: center;
+          flex-wrap: wrap;
+          margin: 12px 0 18px;
+          font-size: 11px;
+          color: #645a7c;
+        }
+        .draft-workflow span {
+          padding: 5px 8px;
+          border: 1px solid #ddd7ed;
+          border-radius: 4px;
+          background: #f8f6fc;
+        }
+        .draft-summary {
+          border: 1px solid var(--line);
+          border-radius: 8px;
+          padding: 16px;
+          margin-bottom: 18px;
+        }
+        .draft-summary h3 {
+          font-size: 16px;
+        }
+        .draft-summary p {
+          font-size: 12px;
+          color: var(--muted);
+          margin: 7px 0;
+        }
+        .draft-summary .tags {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+        .review-tabs {
+          display: flex;
+          gap: 7px;
+          border-bottom: 1px solid var(--line);
+          margin: 20px 0 16px;
+          padding-bottom: 10px;
+        }
+        .review-tabs button {
+          font-size: 12px;
+          padding: 7px 10px;
+          min-height: 36px;
+          border-radius: 5px;
+        }
+        .review-tabs button.active {
+          background: var(--violet-light);
+          color: var(--violet);
+          font-weight: 700;
+        }
+        .review-callout {
+          border: 1px solid #e1c993;
+          background: #fffaef;
+          padding: 13px;
+          border-radius: 6px;
+          margin-bottom: 16px;
+          font-size: 12px;
+          color: #796027;
+        }
+        .review-callout p {
+          margin: 7px 0;
+          line-height: 1.8;
+        }
+        .review-callout.done {
+          border-color: #cadfd3;
+          background: #f1f7f4;
+          color: #3e6754;
+        }
+        .check-row {
+          display: flex;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 10px 0;
+          border-bottom: 1px solid var(--line);
+          font-size: 12px;
+        }
+        .check-row span {
+          color: var(--muted);
+        }
+        .review-note {
+          font-size: 12px;
+          line-height: 1.8;
+          color: var(--muted);
+          margin: 12px 0;
+        }
+        .teacher-state {
+          border: 1px solid var(--line);
+          border-radius: 6px;
+          padding: 14px;
+          margin-top: 18px;
+        }
+        .teacher-state .btn {
+          font-size: 12px;
+          margin-top: 10px;
+        }
+        .teacher-state p {
+          font-size: 12px;
+          line-height: 1.7;
+          margin-top: 6px;
+        }
+        .bank-origin {
+          font-size: 11px;
+          margin-bottom: 12px;
+          color: #6f7189;
+        }
+        .draft-save-option {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          font-size: 12px;
+        }
+        .draft-card-body .passage {
+          font-size: 14px;
+        }
+        .draft-card-body .choices li {
+          font-size: 12px;
+        }
+        .draft-card-header .small {
+          margin-left: 6px;
+        }
+        .resource-layout {
+          grid-template-columns: 290px minmax(0, 1fr);
+        }
+        .resource-document {
+          padding: 28px;
+        }
+        .resource-list .resource-card {
+          margin-top: 12px;
+          border-color: var(--line);
+          background: #fff;
+        }
+        .resource-list .resource-card[aria-current="true"] {
+          background: var(--violet-light);
+          border-color: #b9b0e2;
+        }
+        .resource-card p {
+          line-height: 1.5;
+        }
+        .resource-card .badge {
+          margin-top: 8px;
+        }
+        .source-copy {
+          font-size: 16px;
+          line-height: 1.85;
+        }
+        .source-links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin: 18px 0;
+        }
+        .shell-collapsed {
+          --shell-width: 72px;
+        }
+        .shell-collapsed .shell-sidebar {
+          padding: 20px 8px;
+        }
+        .shell-collapsed .brand-name,
+        .shell-collapsed .shell-new span,
+        .shell-collapsed .nav-item span,
+        .shell-collapsed .nav-caption,
+        .shell-collapsed .side-draft,
+        .shell-collapsed .shell-profile,
+        .shell-collapsed .nav-item b {
+          display: none;
+        }
+        .shell-collapsed .shell-brand-row {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .shell-collapsed .collapse-nav {
+          width: 40px;
+        }
+        .shell-collapsed .nav-item {
+          justify-content: center;
+          padding: 0;
+        }
+        .shell-collapsed .shell-new {
+          margin-top: 16px;
+        }
+        .filter-dialog .filter-choice {
+          font-size: 13px;
+        }
+        .filter-dialog .filters {
+          padding: 20px;
+        }
+        .filter-dialog .filter-section legend {
+          font-size: 13px;
+        }
+        .filter-dialog .facet-count {
+          font-size: 12px;
+        }
+        .filter-dialog .filter-note {
+          font-size: 12px;
+        }
+        .mobile-tray {
+          display: none;
+        }
+        @media (min-width: 1600px) {
+          .library {
+            grid-template-columns: minmax(0, 1fr) 280px;
+          }
+          .split-work {
+            grid-template-columns: 280px minmax(0, 1fr);
+          }
+        }
+        @media (max-width: 1220px) and (min-width: 761px) {
+          :root {
+            --shell-width: 206px;
+          }
+          .shell-sidebar {
+            padding-inline: 12px;
+          }
+          .brand {
+            font-size: 19px;
+          }
+          .collapse-nav {
+            width: 20px;
+          }
+          .library {
+            grid-template-columns: minmax(0, 1fr);
+          }
+          .right-column {
+            display: none;
+          }
+          .split-work {
+            grid-template-columns: 260px minmax(0, 1fr);
+          }
+          .mobile-tray {
+            display: flex;
+            left: auto;
+            right: 20px;
+            bottom: 16px;
+            max-width: 420px;
+          }
+          .footer-note {
+            padding-bottom: 80px;
+          }
+          .top-account {
+            display: none;
+          }
+          .shell-collapsed {
+            --shell-width: 72px;
+          }
+        }
+        @media (max-width: 760px) {
+          :root,
+          .shell-collapsed {
+            --shell-width: 0px;
+          }
+          .proposal {
+            margin: 0;
+            padding: 0 16px;
+            height: 25px;
+            font-size: 10px;
+          }
+          .shell-sidebar,
+          .shell-collapsed .shell-sidebar {
+            position: relative;
+            width: 100%;
+            height: 65px;
+            padding: 0 16px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            overflow: visible;
+          }
+          .shell-brand-row {
+            width: auto;
+            gap: 0;
+          }
+          .brand,
+          .shell-collapsed .brand {
+            font-size: 20px;
+          }
+          .brand-name,
+          .shell-collapsed .brand-name {
+            display: block;
+          }
+          .math-mark {
+            width: 29px;
+          }
+          .math-mark svg {
+            width: 29px;
+          }
+          .collapse-nav,
+          .nav-caption,
+          .side-draft,
+          .shell-profile {
+            display: none;
+          }
+          .shell-new,
+          .shell-collapsed .shell-new {
+            margin: 0;
+            min-height: 38px;
+            padding: 0 10px;
+            gap: 6px;
+            font-size: 12px;
+            background: #2e4773;
+            border-color: #49608c;
+          }
+          .shell-new span {
+            display: none;
+          }
+          .shell-new:after {
+            content: "AI 제작";
+          }
+          .global-nav {
+            position: fixed;
+            inset: auto 0 0;
+            z-index: 8;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 2px;
+            padding: 5px 5px max(8px, env(safe-area-inset-bottom));
+            background: #fff;
+            border-top: 1px solid #d5dfed;
+            box-shadow: 0 -3px 14px #152f5906;
+          }
+          .nav-item,
+          .shell-collapsed .nav-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            min-height: 52px;
+            padding: 5px 0;
+            font-size: 10px;
+            color: #596c86;
+            white-space: normal;
+            line-height: 1.3;
+          }
+          .nav-item span,
+          .shell-collapsed .nav-item span {
+            display: block;
+          }
+          .nav-item[data-nav="ai"] span {
+            font-size: 0;
+          }
+          .nav-item[data-nav="ai"] span:after {
+            content: "AI 제작";
+            font-size: 11px;
+          }
+          .nav-item svg {
+            display: block;
+            width: 19px;
+            height: 19px;
+            color: #788da9;
+          }
+          .nav-item[aria-current="page"] {
+            background: #efedfc;
+            color: var(--violet);
+          }
+          .nav-item[aria-current="page"] svg {
+            color: var(--violet);
+          }
+          .nav-item b {
+            display: none;
+          }
+          .topbar {
+            margin: 0;
+            height: 48px;
+            min-height: 0;
+            padding: 0 16px;
+            display: flex;
+            gap: 10px;
+          }
+          .breadcrumb {
+            font-size: 12px;
+          }
+          .quick-search {
+            width: 34px;
+            height: 34px;
+            min-height: 34px;
+            padding: 0;
+            justify-content: center;
+          }
+          .quick-search span,
+          .quick-search kbd,
+          .top-account {
+            display: none;
+          }
+          .workspace {
+            margin: 0;
+            padding: 0 16px;
+          }
+          .page-heading {
+            padding: 22px 0 16px;
+          }
+          .page-heading h1 {
+            font-size: 24px;
+          }
+          .page-heading p {
+            font-size: 12px;
+            max-width: 235px;
+            margin-top: 6px;
+          }
+          .heading-actions .btn {
+            min-height: 36px;
+            font-size: 11px;
+            padding: 8px;
+          }
+          .heading-actions .btn svg {
+            width: 15px;
+          }
+          .build-steps {
+            gap: 18px;
+            margin-bottom: 18px;
+            font-size: 11px;
+          }
+          .build-steps li {
+            gap: 5px;
+          }
+          .build-steps li span {
+            width: 19px;
+            height: 19px;
+          }
+          .library {
+            display: block;
+          }
+          .bank-filter-box {
+            flex-wrap: wrap;
+            padding: 11px;
+            gap: 9px;
+            border-radius: 8px;
+          }
+          .search-wrap {
+            height: 42px;
+            flex-basis: 100%;
+          }
+          .search-wrap input {
+            font-size: 12px;
+          }
+          .quick-filters {
+            min-width: 0;
+            flex-basis: 100%;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 8px;
+          }
+          .quick-filters label {
+            gap: 5px;
+            flex-basis: 40%;
+          }
+          .quick-filters label > span {
+            font-size: 11px;
+          }
+          .quick-filters select {
+            font-size: 11px;
+            height: 35px;
+          }
+          .quick-filters label:nth-child(2) {
+            order: 3;
+            flex-basis: 100%;
+          }
+          .search-meta {
+            gap: 6px;
+            min-height: 50px;
+          }
+          .mobile-controls {
+            font-size: 11px;
+            padding: 5px 6px;
+          }
+          .filter-chip {
+            font-size: 11px;
+          }
+          .sort {
+            font-size: 11px;
+            max-width: 92px;
+          }
+          .split-work {
+            display: block;
+            height: auto;
+            min-height: 0;
+          }
+          .question-row {
+            padding: 15px 14px;
+          }
+          .row-source {
+            font-size: 11px;
+          }
+          .row-top {
+            margin-bottom: 7px;
+          }
+          .row-bottom {
+            font-size: 11px;
+          }
+          .detail-pane {
+            z-index: 12;
+          }
+          .detail-top {
+            padding: 18px 21px 0;
+          }
+          .detail-scroll {
+            padding: 21px;
+          }
+          .detail-footer {
+            padding: 12px 18px max(16px, env(safe-area-inset-bottom));
+          }
+          .detail-footer .source-label {
+            max-width: 155px;
+          }
+          .detail-footer .btn {
+            min-height: 42px;
+          }
+          .mobile-back {
+            font-size: 13px;
+            padding: 15px 18px;
+          }
+          .question-prompt {
+            font-size: 14px;
+          }
+          .passage {
+            font-size: 16px;
+            line-height: 1.85;
+          }
+          .choices li {
+            font-size: 13px;
+          }
+          .mobile-tray {
+            display: flex;
+            position: fixed;
+            left: 16px;
+            right: 16px;
+            bottom: 80px;
+            min-height: 46px;
+            z-index: 5;
+            border-radius: 8px;
+          }
+          .selection-bar {
+            bottom: 134px;
+          }
+          .footer-note {
+            font-size: 11px;
+            padding: 16px 0 155px;
+            line-height: 1.8;
+          }
+          .drawer {
+            width: 100vw;
+          }
+          .dialog-header p {
+            font-size: 12px;
+            max-width: 280px;
+          }
+          .dialog-header h2 {
+            font-size: 18px;
+          }
+          .dialog-body {
+            padding: 18px;
+          }
+          .field-label {
+            font-size: 12px;
+          }
+          .mode-switch button {
+            font-size: 12px;
+          }
+          .type-picker {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          .type-option {
+            font-size: 11px;
+            gap: 5px;
+            padding: 9px 7px;
+          }
+          .notice {
+            font-size: 11px;
+          }
+          .ai-scope p {
+            line-height: 1.9;
+          }
+          .review-tabs {
+            gap: 3px;
+          }
+          .review-tabs button {
+            font-size: 11px;
+            padding: 7px 8px;
+          }
+          .draft-workflow {
+            font-size: 10px;
+            gap: 4px;
+          }
+          .draft-workflow span {
+            padding: 4px 6px;
+          }
+          .draft-card-body .passage {
+            font-size: 14px;
+          }
+          .dialog-bottom {
+            gap: 9px;
+            align-items: center;
+          }
+          .dialog-bottom .small {
+            font-size: 11px;
+            max-width: 135px;
+          }
+          .dialog-bottom .btn {
+            font-size: 12px;
+            min-height: 42px;
+          }
+          .draft-save-option {
+            font-size: 11px;
+            width: 100%;
+          }
+          .resource-layout {
+            display: block;
+          }
+          .resource-document {
+            padding: 23px 20px;
+          }
+          .source-copy {
+            font-size: 15px;
+          }
+          .secondary-view {
+            padding-bottom: 100px;
+          }
+          .toast {
+            bottom: 138px;
+          }
+          .filter-dialog {
+            width: 350px;
+          }
+          .preview-dialog .dialog-header {
+            position: relative;
+          }
+          .preview-dialog .icon-btn {
+            position: absolute;
+            top: 16px;
+            right: 12px;
+          }
+          .preview-tools {
+            justify-content: flex-start;
+          }
+          .preview-dialog .preview-body {
+            padding-bottom: 30px;
+          }
+        }
+      }
+      .paper .bank-origin {
+        font-size: 10px;
+        line-height: 1.5;
+        color: #68758a;
+        margin: 0 0 8px;
+      }
+
+      /* D: the maker shares the workspace shell and uses normal page scrolling. */
+      .maker-view {
+        padding-bottom: 40px;
+      }
+      .maker-heading {
+        padding: 18px 0 22px;
+      }
+      .maker-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0;
+        margin-bottom: 12px;
+      }
+      .maker-heading h1 {
+        font-size: 26px;
+        letter-spacing: -0.8px;
+      }
+      .maker-heading p {
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .maker-retained {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .maker-steps {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+        padding: 0 0 18px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .maker-steps li {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+      }
+      .maker-steps li > span {
+        display: grid;
+        place-items: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #e7ebf2;
+        font-size: 12px;
+      }
+      .maker-steps [aria-current="step"] {
+        color: var(--violet);
+        font-weight: 700;
+      }
+      .maker-steps [aria-current="step"] > span {
+        color: #fff;
+        background: var(--violet);
+      }
+      .maker-workspace {
+        display: grid;
+        grid-template-columns: minmax(330px, 370px) minmax(0, 1fr);
+        align-items: start;
+        gap: 22px;
+      }
+      .maker-settings,
+      .maker-results {
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+      .maker-settings {
+        padding: 22px;
+      }
+      .maker-section-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+      .maker-section-heading h2 {
+        font-size: 16px;
+      }
+      .maker-section-heading > span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .maker-settings .mode-switch {
+        margin-bottom: 23px;
+      }
+      .maker-settings .type-picker {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .maker-settings .type-option {
+        font-size: 12px;
+      }
+      .maker-settings .field {
+        width: 100%;
+      }
+      .maker-settings .count-field .field {
+        width: 105px;
+      }
+      .maker-settings textarea {
+        resize: vertical;
+        min-height: 92px;
+      }
+      .maker-settings .two-fields {
+        gap: 10px;
+      }
+      .maker-settings .notice {
+        margin-top: 22px;
+      }
+      .maker-build {
+        width: 100%;
+        margin-top: 8px;
+      }
+      .maker-local-note {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 12px;
+        text-align: center;
+      }
+      .maker-empty,
+      #aiDrafts {
+        padding: 28px 32px;
+      }
+      .maker-empty {
+        min-height: 740px;
+      }
+      .maker-empty > h3 {
+        font-size: 30px;
+        line-height: 1.45;
+        letter-spacing: -1px;
+        font-weight: 650;
+        margin: 36px 0 18px;
+      }
+      .maker-intro {
+        max-width: 54ch;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+      .maker-brief {
+        margin: 28px 0;
+        border-top: 2px solid #b7afd9;
+        border-bottom: 1px solid var(--line);
+      }
+      .maker-brief > div {
+        display: grid;
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 16px;
+        padding: 13px 0;
+        border-bottom: 1px solid #edf0f5;
+      }
+      .maker-brief > div:last-child {
+        border-bottom: 0;
+      }
+      .maker-brief dt {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .maker-brief dd {
+        margin: 0;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+      }
+      .maker-next-reading > h3 {
+        font-size: 15px;
+      }
+      .maker-next-reading ol {
+        padding-left: 20px;
+        margin: 18px 0;
+      }
+      .maker-next-reading li {
+        padding: 0 0 17px 8px;
+      }
+      .maker-next-reading li::marker {
+        color: var(--violet);
+      }
+      .maker-next-reading strong {
+        font-size: 13px;
+      }
+      .maker-next-reading p {
+        font-size: 12px;
+        line-height: 1.8;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .maker-example-note {
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.9;
+      }
+      .maker-results .draft-summary {
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 0 0 22px;
+        border-radius: 0;
+      }
+      .maker-results .draft-summary h3 {
+        font-size: 23px;
+      }
+      .maker-results .review-tabs {
+        margin-top: 24px;
+        gap: 10px;
+      }
+      .maker-results .review-tabs button {
+        font-size: 13px;
+        min-height: 42px;
+      }
+      .maker-results .draft-card {
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        margin-bottom: 26px;
+      }
+      .maker-results .draft-card-header {
+        background: #f5f7fb;
+        padding: 14px 16px;
+      }
+      .maker-results .draft-card-body {
+        padding: 18px 0;
+      }
+      .maker-results .question-prompt {
+        font-size: 15px;
+      }
+      .maker-question-copy,
+      .maker-review-copy {
+        min-width: 0;
+      }
+      .maker-review-copy {
+        margin-top: 20px;
+      }
+      .maker-results .passage,
+      .maker-results .source-copy {
+        font-size: 17px;
+        line-height: 1.95;
+        width: 100%;
+        max-width: 78ch;
+      }
+      .maker-results .passage {
+        padding: 20px 24px;
+        margin: 16px 0;
+      }
+      .maker-results .choices,
+      .maker-results .answer-block,
+      .maker-results .review-callout {
+        max-width: 78ch;
+      }
+      .maker-results .choices li,
+      .maker-results .answer-content {
+        font-size: 14px;
+      }
+      .maker-results .review-callout {
+        font-size: 13px;
+      }
+      .maker-save {
+        border-top: 1px solid var(--line);
+        padding: 22px 32px;
+        display: flex;
+        gap: 18px;
+        justify-content: space-between;
+        align-items: center;
+        background: #fafbfe;
+        border-radius: 0 0 8px 8px;
+      }
+      .maker-save p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 5px 0 12px;
+      }
+      .maker-save .btn {
+        flex-shrink: 0;
+      }
+      .maker-results .empty {
+        padding: 32px 0;
+        text-align: left;
+      }
+      .maker-results .empty .btn {
+        margin-top: 12px;
+      }
+      .maker-results .review-note {
+        max-width: 78ch;
+      }
+      .maker-view [tabindex="-1"] {
+        scroll-margin-top: 24px;
+      }
+      @media (min-width: 1800px) {
+        .maker-workspace {
+          grid-template-columns: 420px minmax(0, 1fr);
+          gap: 30px;
+        }
+        .maker-settings {
+          padding: 28px;
+        }
+        .maker-empty,
+        #aiDrafts {
+          padding: 36px 48px;
+        }
+        .maker-empty {
+          min-height: 800px;
+        }
+        .maker-results .draft-card-body {
+          display: grid;
+          grid-template-columns: minmax(0, 1.55fr) minmax(290px, 1fr);
+          gap: 32px;
+          align-items: start;
+        }
+        .maker-review-copy {
+          border-left: 1px solid var(--line);
+          padding-left: 28px;
+          margin: 0;
+        }
+        .maker-review-copy .answer-block {
+          margin-top: 0;
+        }
+        .maker-brief,
+        .maker-next-reading,
+        .maker-example-note {
+          max-width: 780px;
+        }
+      }
+      @media (min-width: 761px) and (max-width: 1190px) {
+        .maker-workspace {
+          grid-template-columns: minmax(280px, 330px) minmax(0, 1fr);
+          gap: 14px;
+        }
+        .maker-settings,
+        .maker-empty,
+        #aiDrafts {
+          padding: 20px;
+        }
+        .maker-retained {
+          display: none;
+        }
+        .maker-save {
+          flex-direction: column;
+          align-items: stretch;
+          padding: 20px;
+        }
+      }
+      @media (max-width: 1000px) {
+        .maker-workspace {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .maker-empty {
+          min-height: 0;
+        }
+      }
+      @media (max-width: 760px) {
+        .maker-view {
+          padding-bottom: 110px;
+        }
+        .maker-heading {
+          padding: 18px 0;
+        }
+        .maker-heading h1 {
+          font-size: 24px;
+        }
+        .maker-heading .between {
+          display: block;
+        }
+        .maker-heading p {
+          font-size: 12px;
+          line-height: 1.8;
+        }
+        .maker-retained {
+          display: block;
+          margin-top: 10px;
+          font-size: 11px;
+        }
+        .maker-steps {
+          gap: 14px;
+          justify-content: space-between;
+          font-size: 11px;
+        }
+        .maker-steps li {
+          gap: 5px;
+        }
+        .maker-steps li > span {
+          width: 20px;
+          height: 20px;
+          font-size: 10px;
+          flex-shrink: 0;
+        }
+        .maker-workspace {
+          gap: 20px;
+        }
+        .maker-settings,
+        .maker-empty,
+        #aiDrafts {
+          padding: 20px 18px;
+        }
+        .maker-section-heading {
+          margin-bottom: 18px;
+        }
+        .maker-settings .type-picker {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .maker-settings .type-option {
+          min-height: 44px;
+        }
+        .maker-settings .field {
+          font-size: 16px;
+        }
+        .maker-settings .two-fields .field {
+          font-size: 14px;
+        }
+        .maker-empty > h3 {
+          font-size: 26px;
+          margin-top: 24px;
+        }
+        .maker-brief > div {
+          grid-template-columns: 65px minmax(0, 1fr);
+          gap: 12px;
+        }
+        .maker-results .review-tabs {
+          gap: 2px;
+        }
+        .maker-results .review-tabs button {
+          font-size: 12px;
+          padding: 8px;
+        }
+        .maker-results .draft-summary h3 {
+          font-size: 20px;
+        }
+        .maker-results .passage,
+        .maker-results .source-copy {
+          font-size: 16px;
+        }
+        .maker-results .passage {
+          padding: 16px;
+        }
+        .maker-results .draft-card-header {
+          padding: 12px;
+        }
+        .maker-results .draft-card-header .small {
+          display: block;
+          margin: 4px 0 0;
+        }
+        .maker-save {
+          padding: 20px 18px;
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .maker-save .btn,
+        .maker-build {
+          min-height: 46px;
+        }
+        .maker-view [tabindex="-1"] {
+          scroll-margin-top: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg
+      aria-hidden="true"
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+    >
+      <defs>
+        <symbol id="i-search" viewBox="0 0 24 24">
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="m16 16 4.5 4.5" />
+        </symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24">
+          <path d="M12 5v14M5 12h14" />
+        </symbol>
+        <symbol id="i-x" viewBox="0 0 24 24">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24">
+          <path
+            d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3ZM20 2v4M18 4h4"
+          />
+        </symbol>
+        <symbol id="i-book" viewBox="0 0 24 24">
+          <path
+            d="M4 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-3H4V4ZM13 7a3 3 0 0 1 3-3h5v14h-5a3 3 0 0 0-3 3"
+          />
+        </symbol>
+        <symbol id="i-folder" viewBox="0 0 24 24">
+          <path d="M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v10H3V6Z" />
+        </symbol>
+        <symbol id="i-headphones" viewBox="0 0 24 24">
+          <path
+            d="M4 15v-4a8 8 0 0 1 16 0v4M4 12h3v8H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2ZM20 12h-3v8h3a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Z"
+          />
+        </symbol>
+        <symbol id="i-sheet" viewBox="0 0 24 24">
+          <path d="M6 3h9l4 4v14H6V3ZM14 3v5h5M9 12h7M9 16h7" />
+        </symbol>
+        <symbol id="i-filter" viewBox="0 0 24 24">
+          <path d="M4 7h16M4 17h16" />
+          <circle cx="9" cy="7" r="2" fill="white" />
+          <circle cx="15" cy="17" r="2" fill="white" />
+        </symbol>
+        <symbol id="i-up" viewBox="0 0 24 24">
+          <path d="m6 15 6-6 6 6" />
+        </symbol>
+        <symbol id="i-down" viewBox="0 0 24 24">
+          <path d="m6 9 6 6 6-6" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path d="M4 12h15m-6-6 6 6-6 6" />
+        </symbol>
+        <symbol id="i-left" viewBox="0 0 24 24">
+          <path d="M20 12H5m6-6-6 6 6 6" />
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24">
+          <path d="m5 12 4 4L19 6" />
+        </symbol>
+        <symbol id="i-print" viewBox="0 0 24 24">
+          <path d="M7 8V3h10v5M7 18H3V9h18v9h-4M7 14h10v7H7v-7ZM17 11h1" />
+        </symbol>
+      </defs>
+    </svg>
+    <div class="proposal">
+      <b>D 선택안 · 오늘의 수학 공통 구성 · 예시 데이터</b
+      ><span class="prototype-note"
+        >디자인 시안 · 변경 내용은 이 화면에서만 유지됩니다</span
+      >
+    </div>
+    <aside class="shell-sidebar" aria-label="작업실 탐색">
+      <div class="shell-brand-row">
+        <details class="product-switch">
+          <summary class="brand" aria-label="제품 안내">
+            <span class="math-mark" aria-hidden="true"
+              ><svg viewBox="0 0 64 64">
+                <path
+                  fill="currentColor"
+                  stroke="none"
+                  d="M6 10L23 14Q27 15 30 18V54L23 50L6 46Q4 45.5 4 43.5V12Q4 9.5 6 10Z"
+                />
+                <path
+                  fill="currentColor"
+                  stroke="none"
+                  fill-rule="evenodd"
+                  d="M34 18Q37 15 41 14L58 10Q60 9.5 60 12V43.5Q60 45.5 58 46L41 50L34 54Z M44 22H50V28H56V34H50V40H44V34H38V28H44Z"
+                /></svg
+              ><i>영</i></span
+            ><span class="brand-name">오늘의 영어 <small>⌄</small></span>
+          </summary>
+          <div class="product-options">
+            <strong>오늘의 영어 <span>선택됨</span></strong
+            ><span
+              >오늘의 수학
+              <small>기존 작업실 · 이 시안에서 이동 불가</small></span
+            >
+          </div>
+        </details>
+        <button
+          class="icon-btn collapse-nav"
+          data-action="collapse-nav"
+          aria-label="왼쪽 메뉴 접기"
+          aria-expanded="true"
+        >
+          «
+        </button>
+      </div>
+      <button class="shell-new" data-action="new-ai">
+        <svg><use href="#i-plus" /></svg><span>AI로 새 자료 만들기</span>
+      </button>
+      <p class="nav-caption">오늘의 영어</p>
+      <nav class="global-nav" aria-label="작업실 메뉴">
+        <button
+          class="nav-item"
+          data-nav="library"
+          aria-current="page"
+          title="시험지 만들기"
+        >
+          <svg><use href="#i-book" /></svg><span>시험지 만들기</span>
+        </button>
+        <button class="nav-item" data-nav="ai" title="AI 문제 제작">
+          <svg><use href="#i-spark" /></svg><span>AI 문제 제작</span>
+        </button>
+        <button class="nav-item" data-nav="resources" title="자료은행">
+          <svg><use href="#i-folder" /></svg><span>자료은행</span>
+        </button>
+        <button class="nav-item" data-nav="listening" title="영어듣기">
+          <svg><use href="#i-headphones" /></svg><span>영어듣기</span>
+        </button>
+      </nav>
+      <div class="side-draft">
+        <div><span>현재 시험지</span><b id="sideTrayCount">3문항</b></div>
+        <strong>2학기 중간고사</strong
+        ><button data-action="preview">
+          편집 이어가기 <svg><use href="#i-arrow" /></svg>
+        </button>
+      </div>
+      <div class="shell-profile">
+        <span class="profile-avatar">김</span>
+        <div><strong>김선생 · 한빛고</strong><small>교사 작업공간</small></div>
+      </div>
+    </aside>
+    <header class="topbar">
+      <div class="breadcrumb">
+        <span>작업실</span><span aria-hidden="true">›</span
+        ><strong id="viewCrumb">문제은행</strong>
+      </div>
+      <button class="quick-search" data-action="quick-search">
+        <svg><use href="#i-search" /></svg><span>문제 · 원문 빠르게 찾기</span
+        ><kbd>/</kbd></button
+      ><span class="top-account">한빛고 <span class="avatar">김</span></span>
+      <button
+        class="btn workspace-maximize"
+        data-action="maximize"
+        aria-pressed="false"
+        title="메뉴를 숨기고 작업 화면 최대화"
+      >
+        ⛶ 화면 최대화
+      </button>
+    </header>
+    <main class="workspace">
+      <section id="libraryView" aria-label="문제은행">
+        <div class="page-heading">
+          <div>
+            <div class="heading-copy">
+              <h1>문제은행</h1>
+              <span class="count-pill" id="totalCount">14</span>
+            </div>
+            <p>필요한 문제를 찾고, 나만의 시험지로 구성하세요.</p>
+          </div>
+          <div class="heading-actions">
+            <button class="btn quiet" data-action="resources">
+              <svg><use href="#i-folder" /></svg>원문 자료 보기</button
+            ><button class="btn primary" data-action="ai">
+              <svg><use href="#i-spark" /></svg>AI 문제 제작
+            </button>
+          </div>
+        </div>
+        <ol class="build-steps" aria-label="시험지 만드는 순서">
+          <li><span>1</span> 범위 설정</li>
+          <li aria-current="step"><span>2</span> 문제 선택</li>
+          <li><span>3</span> 시험지 구성</li>
+        </ol>
+        <div class="library">
+          <div class="filters-host" id="filtersHost">
+            <aside class="filters" id="filters" aria-label="문항 필터"></aside>
+          </div>
+          <section class="bank-main" aria-label="문항 검색 결과와 상세">
+            <div class="bank-filter-box">
+              <label class="search-wrap"
+                ><svg><use href="#i-search" /></svg
+                ><span class="sr-only">문항, 원문 제목, 유형 검색</span
+                ><input
+                  id="searchInput"
+                  type="search"
+                  placeholder="문항 내용, 원문 제목, 유형으로 검색"
+                  autocomplete="off"
+                /><span class="key-hint" aria-hidden="true">/</span></label
+              >
+              <div class="quick-filters">
+                <label
+                  ><span>학년</span
+                  ><select id="gradeQuick">
+                    <option value="">전체 학년</option>
+                    <option>중3</option>
+                    <option selected>고1</option>
+                    <option>고2</option>
+                  </select></label
+                ><label
+                  ><span>원문</span
+                  ><select id="sourceQuick"></select></label
+                ><label
+                  ><span>검토 상태</span
+                  ><select id="statusQuick">
+                    <option value="">전체 상태</option>
+                    <option>초안</option>
+                    <option>검토 중</option>
+                    <option>검토 완료</option>
+                  </select></label
+                >
+              </div>
+            </div>
+            <div class="search-meta">
+              <button class="mobile-controls" data-action="filters">
+                <svg><use href="#i-filter" /></svg>상세 필터
+              </button>
+              <div class="applied" id="appliedFilters"></div>
+              <label
+                ><span class="sr-only">문항 정렬</span
+                ><select class="sort" id="sortSelect">
+                  <option value="id">문항 번호순</option>
+                  <option value="status">검토 완료순</option>
+                  <option value="type">유형 이름순</option>
+                </select></label
+              >
+            </div>
+            <div class="split-work" id="splitWork">
+              <section class="results-pane" aria-label="문항 목록">
+                <div class="results-toolbar">
+                  <span id="resultCount" aria-live="polite"></span
+                  ><button class="text-btn" id="selectAll">전체 선택</button>
+                </div>
+                <div class="question-list" id="questionList"></div>
+              </section>
+              <article
+                class="detail-pane"
+                id="detailPane"
+                aria-label="선택 문항 상세"
+              ></article>
+            </div>
+            <div class="selection-bar" id="selectionBar" hidden>
+              <span id="selectionText"></span>
+              <div class="flex">
+                <button class="text-btn" data-action="clear-selection">
+                  해제</button
+                ><button class="btn primary" data-action="add-selected">
+                  <svg><use href="#i-plus" /></svg>선택 문항 담기
+                </button>
+              </div>
+            </div>
+          </section>
+          <aside class="right-column" aria-label="시험지 구성">
+            <div class="tray" id="desktopTray"></div>
+          </aside>
+        </div>
+        <p class="footer-note">
+          기본 예시 문항 14개로 시작하는 시안입니다. 검토 상태는 예시이며, 실제
+          저장·배정은 연결되어 있지 않습니다.
+        </p>
+      </section>
+      <section
+        id="resourcesView"
+        class="secondary-view"
+        aria-label="자료은행"
+        hidden
+      ></section>
+      <section
+        id="listeningView"
+        class="secondary-view"
+        aria-label="듣기"
+        hidden
+      >
+        <div class="secondary-heading">
+          <div>
+            <h1>듣기</h1>
+            <p>음원을 확인하고, 대본과 문항을 함께 준비하세요.</p>
+          </div>
+          <button class="btn" data-action="library">문제은행</button>
+        </div>
+        <div class="listening-layout">
+          <div class="audio-setup">
+            <div class="between">
+              <h2>수업 음원</h2>
+              <span class="badge draft" id="audioStatus">음원 연결 필요</span>
+            </div>
+            <div class="audio-placeholder">
+              <svg><use href="#i-headphones" /></svg>
+              <h3>먼저 음원을 선택하세요</h3>
+              <p>보유한 오디오 파일을 이 화면에서 확인합니다.</p>
+              <label class="btn audio-file-label" for="audioFile"
+                ><svg><use href="#i-plus" /></svg>내 음원 선택</label
+              ><input
+                type="file"
+                id="audioFile"
+                accept="audio/*,.mp3,.wav,.m4a,.ogg"
+                class="sr-only"
+              />
+              <p id="audioFileName" style="margin: 15px 0 0">
+                선택한 파일 없음
+              </p>
+              <audio
+                class="audio-preview"
+                id="audioPreview"
+                controls
+                hidden
+              ></audio>
+            </div>
+            <p class="muted small">
+              파일은 서버에 업로드되지 않습니다. 새로고침하면 선택이 해제됩니다.
+            </p>
+            <p class="drawer-error" id="audioError" role="status"></p>
+          </div>
+          <div class="listening-guide">
+            <h2>수업 준비</h2>
+            <div class="guide-row">
+              <h3>음원 확인</h3>
+              <p>선택한 파일을 직접 듣고 수업에 사용할 구간을 확인하세요.</p>
+            </div>
+            <div class="guide-row">
+              <h3>대본과 문항 연결</h3>
+              <p>대본 편집과 듣기 문항 연결은 이 시안에서 지원하지 않습니다.</p>
+            </div>
+            <div class="guide-row">
+              <h3>학생에게 배정</h3>
+              <p>
+                음원·대본·문항 검토 후 진행하는 단계입니다. 현재는 배정 기능이
+                연결되어 있지 않습니다.
+              </p>
+            </div>
+            <div class="notice">
+              샘플 음원은 제공하지 않습니다. 재생은 직접 선택한 파일이 있을 때만
+              가능합니다.
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="aiView" class="maker-view" aria-labelledby="aiTitle" hidden>
+        <div class="maker-heading">
+          <button
+            class="text-btn maker-back"
+            id="aiReturn"
+            data-action="ai-return"
+          >
+            <svg><use href="#i-left" /></svg><span>문제은행으로</span>
+          </button>
+          <div class="between">
+            <div>
+              <h1 id="aiTitle" tabindex="-1">AI 문제 제작</h1>
+              <p>원문을 준비하고, 문항을 검토한 뒤 문제은행에 저장하세요.</p>
+            </div>
+            <span class="maker-retained"
+              >작성 중인 조건은 화면을 옮겨도 유지됩니다.</span
+            >
+          </div>
+        </div>
+        <ol class="maker-steps" aria-label="AI 문제 제작 순서">
+          <li id="makerStep1" aria-current="step">
+            <span>1</span>원문·문항 제작
+          </li>
+          <li id="makerStep2"><span>2</span>확인할 항목</li>
+          <li id="makerStep3"><span>3</span>은행 저장</li>
+        </ol>
+        <div class="maker-workspace">
+          <section
+            class="maker-settings"
+            id="aiSettings"
+            aria-labelledby="aiSettingsTitle"
+          >
+            <div class="maker-section-heading">
+              <h2 id="aiSettingsTitle" tabindex="-1">제작 조건</h2>
+              <span>원문 1개 기준</span>
+            </div>
+            <div class="mode-switch" aria-label="제작 시작점">
+              <button data-mode="original" aria-pressed="false">
+                기존 원문으로</button
+              ><button class="active" data-mode="new" aria-pressed="true">
+                AI로 원문부터
+              </button>
+            </div>
+            <div id="existingSourceFields" hidden>
+              <label class="field-label" for="aiSource">원문 자료</label
+              ><select id="aiSource" class="field"></select>
+              <div id="aiSourceSummary" class="source-mini"></div>
+            </div>
+            <div id="newSourceFields">
+              <div class="between">
+                <h3>어떤 자료가 필요한가요?</h3>
+                <button class="text-btn" data-action="sample-request">
+                  예시 조건 채우기
+                </button>
+              </div>
+              <label class="field-label" for="aiPurpose">수업 목적</label
+              ><select id="aiPurpose" class="field">
+                <option>내신 대비</option>
+                <option>수업 활동</option>
+                <option>읽기 연습</option></select
+              ><label class="field-label" for="aiTopic"
+                >원문의 주제와 요청</label
+              ><textarea id="aiTopic" class="field" rows="3">
+학교에서 함께 물건을 고치는 수리 모임</textarea>
+              <div class="two-fields">
+                <div>
+                  <label class="field-label" for="aiLevel">대상 수준</label
+                  ><select id="aiLevel" class="field">
+                    <option>고1 · 보통</option>
+                    <option>중3 · 쉬움</option>
+                    <option>고2 · 심화</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label" for="aiLength">원문 분량</label
+                  ><select id="aiLength" class="field">
+                    <option>120–160단어</option>
+                    <option>80–120단어</option>
+                    <option>180–220단어</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="between count-field">
+              <label class="field-label" for="aiCount">문항 수</label
+              ><select id="aiCount" class="field" aria-describedby="aiError">
+                <option value="3">3문항</option>
+                <option value="4" selected>4문항</option>
+                <option value="5">5문항</option>
+                <option value="6">6문항</option>
+                <option value="7">7문항</option>
+                <option value="8">8문항</option>
+              </select>
+            </div>
+            <div class="between">
+              <span class="field-label">우선 포함할 유형</span
+              ><span class="small muted" id="typeHint">4개 선택</span>
+            </div>
+            <div class="type-picker" id="aiTypes"></div>
+            <p class="field-help">
+              나머지는 원문에 맞는 유형으로 채우는 흐름입니다.
+            </p>
+            <div class="notice">
+              시안 체험: 새 원문은 ‘함께 고치는 토요일’의 준비된 예시입니다.
+              임의 요청으로 실제 생성하지 않습니다. 기존 원문 모드는 선택한
+              원문에 연결된 예시를 사용합니다.
+            </div>
+            <div
+              class="unsupported-request"
+              id="unsupportedRequest"
+              hidden
+              role="status"
+            >
+              <strong>이 요청의 생성 결과는 제공되지 않습니다.</strong>
+              <p id="unsupportedText"></p>
+              <p>
+                입력한 조건을 반영한 결과처럼 보여 주지 않습니다. 준비된
+                조건으로 바꾸어 체험할 수 있습니다.
+              </p>
+              <button class="btn" data-action="sample-request">
+                수리 모임 예시 조건으로 바꾸기
+              </button>
+            </div>
+            <p class="drawer-error" id="aiError" role="status"></p>
+
+            <button class="btn primary maker-build" id="aiNext">
+              <svg><use href="#i-spark" /></svg>원문·문항 제작 예시 보기
+            </button>
+            <p class="maker-local-note">
+              이 시안은 새로고침하면 작성 내용이 초기화됩니다.
+            </p>
+          </section>
+          <section class="maker-results" aria-label="원문·문항 제작 결과">
+            <div id="aiEmpty" class="maker-empty">
+              <div class="maker-section-heading">
+                <h2>제작할 자료</h2>
+                <span>아직 제작 전</span>
+              </div>
+              <h3>한 편의 원문에서,<br />수업에 쓸 문항까지.</h3>
+              <p class="maker-intro">
+                조건을 정하면 이곳에서 원문과 문항, 정답·해설을 함께 확인합니다.
+                확인이 필요한 항목을 살핀 뒤 은행에 초안으로 저장하세요.
+              </p>
+              <dl class="maker-brief" id="aiBrief"></dl>
+              <div class="maker-next-reading">
+                <h3>결과를 확인하는 순서</h3>
+                <ol>
+                  <li>
+                    <strong>원문과 문항을 함께 읽기</strong>
+                    <p>선택한 유형과 정답의 근거가 원문에 맞는지 확인합니다.</p>
+                  </li>
+                  <li>
+                    <strong>확인할 항목 검토하기</strong>
+                    <p>
+                      서술형의 인정 답안처럼 교사의 판단이 필요한 부분을 먼저
+                      살핍니다.
+                    </p>
+                  </li>
+                  <li>
+                    <strong>원문과 연결해 은행에 저장하기</strong>
+                    <p>
+                      원문 버전을 유지한 초안으로 저장하고, 필요하면 현재
+                      시험지에 이어 담습니다.
+                    </p>
+                  </li>
+                </ol>
+              </div>
+              <p class="maker-example-note">
+                사전에 준비된 예시로 체험하는 화면입니다. 새 원문은 ‘함께 고치는
+                토요일’, 기존 원문은 선택한 자료에 연결된 문항 예시를
+                사용합니다.
+              </p>
+            </div>
+            <div id="aiDrafts" hidden></div>
+            <div class="maker-save" id="aiSaveBar" hidden>
+              <div>
+                <strong>은행에 초안으로 저장</strong>
+                <p id="aiSaveNote"></p>
+                <label class="draft-save-option"
+                  ><input type="checkbox" id="saveAndAdd" checked />저장 후 담은
+                  문제에도 추가</label
+                >
+              </div>
+              <button class="btn primary" id="aiSave">
+                <svg><use href="#i-plus" /></svg>은행에 초안 저장
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <button
+      class="btn primary mobile-tray"
+      id="mobileTrayButton"
+      data-action="tray"
+    >
+      <span class="flex"
+        ><svg><use href="#i-sheet" /></svg>담은 문제
+        <span class="count-pill" id="mobileTrayCount">3</span></span
+      ><span>열기 <span aria-hidden="true">↗</span></span>
+    </button>
+    <dialog
+      class="dialog preview-dialog"
+      id="previewDialog"
+      aria-labelledby="previewTitle"
+    >
+      <div class="dialog-header">
+        <div>
+          <h2 id="previewTitle">A4 미리보기</h2>
+          <p id="previewSubtitle">2학기 중간고사</p>
+        </div>
+        <div class="preview-tools">
+          <div class="preview-mode" aria-label="인쇄 대상">
+            <button class="active" data-preview="student" aria-pressed="true">
+              학생용</button
+            ><button data-preview="teacher" aria-pressed="false">교사용</button>
+          </div>
+          <button class="btn" data-action="print">
+            <svg><use href="#i-print" /></svg>인쇄</button
+          ><button
+            class="icon-btn"
+            data-close="previewDialog"
+            aria-label="미리보기 닫기"
+          >
+            <svg><use href="#i-x" /></svg>
+          </button>
+        </div>
+      </div>
+      <div class="preview-body">
+        <p class="preview-tip">
+          A4 · 한 페이지 2문항 · 모바일에서는 읽기 좋은 크기로 표시합니다.
+        </p>
+        <div id="papers"></div>
+      </div>
+    </dialog>
+    <dialog
+      class="dialog compact-dialog"
+      id="trayDialog"
+      aria-labelledby="mobileTrayTitle"
+    >
+      <div class="dialog-header">
+        <h2 id="mobileTrayTitle">담은 문제</h2>
+        <button
+          class="icon-btn"
+          data-close="trayDialog"
+          aria-label="담은 문제 닫기"
+        >
+          <svg><use href="#i-x" /></svg>
+        </button>
+      </div>
+      <div class="tray" id="mobileTrayContent"></div>
+    </dialog>
+    <dialog
+      class="dialog filter-dialog"
+      id="filterDialog"
+      aria-labelledby="filterDialogTitle"
+    >
+      <div class="dialog-header">
+        <h2 id="filterDialogTitle">검색 필터</h2>
+        <button
+          class="icon-btn"
+          data-close="filterDialog"
+          aria-label="필터 닫기"
+        >
+          <svg><use href="#i-x" /></svg>
+        </button>
+      </div>
+      <div class="dialog-body" id="mobileFiltersHost"></div>
+      <div class="dialog-bottom">
+        <span class="muted small">선택한 조건이 바로 적용됩니다.</span
+        ><button class="btn primary" data-close="filterDialog">
+          결과 보기
+        </button>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script>
+      "use strict";
+      // Standalone design prototype: all data and state stay in this tab.
+      const $ = (s, root = document) => root.querySelector(s);
+      const $$ = (s, root = document) => [...root.querySelectorAll(s)];
+      const esc = (s) =>
+        String(s).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const icon = (name) =>
+        `<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
+      const source = {
+        title: "도시의 작은 정원",
+        english: "Small gardens, big changes",
+        paragraphs: [
+          "For years, an empty lot between two apartment buildings collected rubbish. Last spring, Mina and her neighbors decided to turn it into a garden. They brought old wooden boxes, filled them with soil, and planted vegetables. At first, only five people came to help.",
+          "As the plants grew, more neighbors joined them. Some shared seeds; others taught children how to water the plants. People who had never spoken to each other began exchanging stories. By the end of summer, the garden had produced fresh food, but its most valuable harvest was a stronger sense of community.",
+        ],
+      };
+      const fullPassage = source.paragraphs.join(" ");
+      const blankPassage =
+        'For years, an empty lot between two apartment buildings collected rubbish. Last spring, Mina and her neighbors turned it into a garden. As the plants grew, more neighbors joined them. People who had never spoken to each other began exchanging stories. By the end of summer, the garden had produced fresh food, but its most valuable harvest was <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.';
+      const baseQuestions = [
+        {
+          id: "Q-001",
+          type: "주제",
+          grade: "고1",
+          status: "검토 완료",
+          title: "작은 정원이 이웃에게 가져온 변화",
+          prompt: "다음 글의 주제로 가장 적절한 것은?",
+          passage: fullPassage,
+          choices: [
+            "The benefits of moving to a quieter city",
+            "How a shared garden brought neighbors together",
+            "The best season for growing vegetables",
+            "Why children should avoid gardening",
+            "How to sell vegetables to local shops",
+          ],
+          answer: "② How a shared garden brought neighbors together",
+          evidence:
+            "함께 정원을 가꾸면서 대화를 나누지 않던 이웃들이 이야기를 나눴고, 마지막 문장에서 가장 값진 수확을 공동체 의식이라고 설명합니다.",
+        },
+        {
+          id: "Q-002",
+          type: "내용 일치",
+          grade: "고1",
+          status: "검토 완료",
+          title: "정원의 시작과 이웃들의 참여",
+          prompt: "다음 글의 내용과 일치하는 것은?",
+          passage: fullPassage,
+          choices: [
+            "The lot was next to a school.",
+            "Mina began the garden in winter.",
+            "Only children were allowed to help.",
+            "Neighbors used old wooden boxes for planting.",
+            "The garden produced no food.",
+          ],
+          answer: "④ Neighbors used old wooden boxes for planting.",
+          evidence:
+            "첫 문단의 “They brought old wooden boxes, filled them with soil”에서 오래된 나무 상자를 가져와 흙을 채웠다고 했습니다.",
+        },
+        {
+          id: "Q-003",
+          type: "어법",
+          grade: "고1",
+          status: "검토 완료",
+          title: "주어와 동사의 수 일치",
+          prompt: "다음 밑줄 친 부분을 어법에 맞게 고치시오.",
+          passage:
+            "As the plants grew, more neighbors joined the garden. Some shared seeds, and others taught children. The garden <u>have brought</u> people closer together.",
+          answer: "have brought → has brought",
+          evidence:
+            "주어 The garden은 3인칭 단수이므로 현재완료 형태에서 has brought를 씁니다.",
+        },
+        {
+          id: "Q-004",
+          type: "빈칸 추론",
+          grade: "고1",
+          status: "검토 완료",
+          title: "정원의 가장 값진 수확은 무엇일까",
+          prompt: "다음 글의 빈칸에 들어갈 말로 가장 적절한 것은?",
+          passage: blankPassage,
+          choices: [
+            "a plan to build more apartments",
+            "a chance to earn more money",
+            "a stronger sense of community",
+            "a way to grow plants without water",
+            "a reason to spend less time outside",
+          ],
+          answer: "③ a stronger sense of community",
+          evidence:
+            "이전에는 말을 나누지 않던 이웃들이 정원에서 이야기를 나누기 시작했습니다. 음식보다 값진 수확은 이웃 사이의 유대, 즉 공동체 의식입니다.",
+        },
+        {
+          id: "Q-005",
+          type: "문장 삽입",
+          grade: "고1",
+          status: "검토 중",
+          title: "시간의 흐름에 맞는 문장 위치",
+          prompt: "주어진 문장이 들어가기에 가장 적절한 곳은?",
+          passage:
+            "<em>주어진 문장: Next, they filled the boxes with soil.</em><br><br>Mina and her neighbors first collected old wooden boxes. 〔A〕 After the soil was in place, they planted vegetables in the boxes. 〔B〕 The plants grew, and the neighbors picked fresh vegetables at the end of summer. 〔C〕",
+          choices: ["〔A〕", "〔B〕", "〔C〕"],
+          answer: "① 〔A〕",
+          evidence:
+            "나무 상자를 모은 다음 흙을 채워야 합니다. 뒤 문장의 “After the soil was in place”는 흙을 채우는 주어진 문장을 앞에 요구하므로 〔A〕가 알맞습니다.",
+        },
+        {
+          id: "Q-006",
+          type: "서술형",
+          grade: "고1",
+          status: "검토 완료",
+          title: "가장 값진 수확의 의미 설명하기",
+          prompt:
+            "글에서 “its most valuable harvest”가 의미하는 것을 우리말로 쓰시오.",
+          passage: source.paragraphs[1],
+          answer: "이웃 사이에 형성된 더 강한 공동체 의식.",
+          evidence:
+            "마지막 문장에서 “its most valuable harvest was a stronger sense of community”라고 직접 설명합니다. 식량의 양이 아니라 이웃 간 유대를 답해야 합니다.",
+        },
+        {
+          id: "Q-007",
+          type: "어휘",
+          grade: "중3",
+          status: "검토 완료",
+          title: "문맥 속 harvest의 의미",
+          prompt: "다음 글에서 harvest가 가리키는 의미로 가장 적절한 것은?",
+          passage:
+            "The garden produced fresh food, but its most valuable <u>harvest</u> was a stronger sense of community.",
+          choices: [
+            "a useful result of an activity",
+            "a tool used for digging",
+            "a place to buy vegetables",
+            "a kind of wooden box",
+            "a period without rain",
+          ],
+          answer: "① a useful result of an activity",
+          evidence:
+            "여기서 harvest는 채소 수확을 넘어 정원 활동이 가져온 유익한 결과, 즉 공동체 의식을 가리킵니다.",
+        },
+        {
+          id: "Q-008",
+          type: "언급 없음",
+          grade: "고1",
+          status: "검토 중",
+          title: "글에 나오지 않은 정보 찾기",
+          prompt: "다음 글에서 언급되지 않은 것은?",
+          passage: fullPassage,
+          choices: [
+            "The location of the empty lot",
+            "When the garden project began",
+            "The exact amount of money spent",
+            "What the neighbors planted",
+            "How many people first helped",
+          ],
+          answer: "③ The exact amount of money spent",
+          evidence:
+            "위치, 시작 시기, 심은 작물, 처음 참여한 인원은 모두 나옵니다. 정원 조성에 든 정확한 비용은 제시되어 있지 않습니다.",
+        },
+        {
+          id: "Q-009",
+          type: "해석",
+          grade: "고1",
+          status: "검토 중",
+          title: "관계절을 포함한 문장 해석",
+          prompt: "다음 문장을 자연스러운 우리말로 해석하시오.",
+          passage:
+            "People who had never spoken to each other began exchanging stories.",
+          answer:
+            "서로 말을 나눈 적이 없던 사람들이 이야기를 주고받기 시작했다.",
+          evidence:
+            "who had never spoken to each other는 People을 수식하며, began exchanging은 주고받기 시작했다는 뜻입니다.",
+        },
+        {
+          id: "Q-010",
+          type: "영영풀이",
+          grade: "중3",
+          status: "검토 완료",
+          title: "community를 설명하는 문장",
+          prompt: "밑줄 친 낱말의 영영풀이로 가장 적절한 것은?",
+          passage:
+            "The garden helped create a stronger sense of <u>community</u>.",
+          choices: [
+            "a machine that carries water",
+            "a group of people who share a place or interests",
+            "a vegetable grown in a wooden box",
+            "a period of unusually hot weather",
+            "a story that is not true",
+          ],
+          answer: "② a group of people who share a place or interests",
+          evidence:
+            "community는 장소나 관심사 등을 공유하는 사람들의 집단, 즉 공동체를 뜻합니다.",
+        },
+        {
+          id: "Q-011",
+          type: "공통 빈칸",
+          grade: "고2",
+          status: "검토 중",
+          title: "두 문장에 공통으로 들어갈 동사",
+          prompt: "두 빈칸에 공통으로 들어갈 단어로 가장 적절한 것은?",
+          passage:
+            'Some neighbors <span class="blank">&nbsp;</span> seeds with children.<br>People who work together often <span class="blank">&nbsp;</span> their ideas.',
+          choices: ["share", "water", "build", "plant", "meet"],
+          answer: "① share",
+          evidence:
+            "share seeds는 씨앗을 나누다, share ideas는 생각을 공유하다는 의미입니다. 두 문장의 복수 주어와도 일치합니다.",
+        },
+        {
+          id: "Q-012",
+          type: "문장 전환",
+          grade: "고2",
+          status: "초안",
+          title: "능동태를 수동태로 바꾸기",
+          prompt:
+            "다음 문장을 The neighbors로 시작하는 수동태 문장으로 바꾸시오.",
+          passage: "The garden brought the neighbors together.",
+          answer: "The neighbors were brought together by the garden.",
+          evidence:
+            "목적어 the neighbors가 주어가 되고, 과거시제 brought는 were brought로 바뀝니다.",
+        },
+        {
+          id: "Q-013",
+          type: "단어 배열",
+          grade: "고1",
+          status: "검토 완료",
+          title: "이웃의 참여를 나타내는 문장 완성",
+          prompt: "주어진 단어를 모두 한 번씩 사용하여 문장을 완성하시오.",
+          passage: "neighbors / more / them / joined",
+          answer: "More neighbors joined them.",
+          evidence:
+            "주어 More neighbors, 동사 joined, 목적어 them의 순서로 배열합니다.",
+        },
+        {
+          id: "Q-014",
+          type: "원문 복원",
+          grade: "고1",
+          status: "초안",
+          title: "함께 일하는 이웃들의 모습 복원",
+          prompt: "우리말 뜻을 참고하여 원문의 빈칸을 채우시오.",
+          passage:
+            '그 식물들이 자라면서, 더 많은 이웃들이 그들과 함께했다.<br><br>As the plants <span class="blank">①</span>, more neighbors <span class="blank">②</span> them.',
+          answer: "① grew  ② joined",
+          evidence:
+            "원문의 “As the plants grew, more neighbors joined them.”을 복원하는 문항입니다.",
+        },
+      ];
+      Object.assign(source, {
+        id: "TXT-001",
+        version: 1,
+        family: "garden",
+        origin: "직접 창작 예시",
+        tags: ["환경", "공동체"],
+        grade: "고1",
+        status: "검토 완료",
+      });
+      const repairSource = {
+        id: "TXT-002",
+        version: 1,
+        family: "repair",
+        title: "함께 고치는 토요일",
+        english: "A Saturday for repair",
+        origin: "AI 원문 제작 예시",
+        grade: "고1",
+        status: "초안",
+        tags: ["자원 절약", "협력", "생활 속 실천"],
+        paragraphs: [
+          "At Hanbit High School, Jina noticed that students often threw away broken objects. A loose wheel could send a suitcase to the rubbish bin, and a damaged cable could end the life of a lamp. She wondered whether a small repair club could change this habit.",
+          "On the first Saturday, students brought six broken objects to school. A local volunteer showed them how to check simple problems safely. The students repaired four objects and took the other two to a professional. They also wrote short guides explaining what they had learned.",
+          "The club did not promise to fix everything. Instead, it helped students pause before buying something new. By sharing skills and asking for help when needed, they discovered that caring for things could also bring people together.",
+        ],
+      };
+      const repairPassage = repairSource.paragraphs.join(" ");
+      const repairTemplates = [
+        {
+          type: "주제",
+          title: "물건을 고치며 배우는 태도와 관계",
+          prompt: "다음 글의 주제로 가장 적절한 것은?",
+          passage: repairPassage,
+          choices: [
+            "Why students should always buy new objects",
+            "How repairing things can encourage thoughtful habits and cooperation",
+            "The fastest way to become a professional repair worker",
+            "Why schools should stop inviting volunteers",
+            "How to sell repaired objects for a high price",
+          ],
+          answer:
+            "② How repairing things can encourage thoughtful habits and cooperation",
+          evidence:
+            "새로 사기 전 생각하는 태도와 기술을 공유하며 사람들을 연결하는 수리 모임의 역할이 글의 중심입니다.",
+        },
+        {
+          type: "내용 일치",
+          title: "수리 모임의 첫 토요일",
+          prompt: "다음 글의 내용과 일치하는 것은?",
+          passage: repairPassage,
+          choices: [
+            "Jina started a club to sell new lamps.",
+            "A volunteer promised to fix every object.",
+            "The students repaired all six objects.",
+            "Two objects were taken to a professional.",
+            "The students kept their repair experience secret.",
+          ],
+          answer: "④ Two objects were taken to a professional.",
+          evidence:
+            "두 번째 문단에서 학생들이 네 개를 고치고 나머지 두 개는 전문가에게 가져갔다고 했습니다.",
+        },
+        {
+          type: "어법",
+          title: "동아리의 역할을 설명하는 현재형",
+          prompt: "다음 밑줄 친 부분을 어법에 맞게 고치시오.",
+          passage:
+            "The repair club <u>help</u> students think before buying something new.",
+          answer: "help → helps",
+          evidence:
+            "주어 The repair club이 3인칭 단수이고 현재의 일반적인 역할을 설명하므로 helps가 알맞습니다.",
+        },
+        {
+          type: "빈칸 추론",
+          title: "함께 고치는 일이 만드는 변화",
+          prompt: "다음 글의 빈칸에 들어갈 말로 가장 적절한 것은?",
+          passage: repairSource.paragraphs
+            .slice(1)
+            .join(" ")
+            .replace(
+              "bring people together",
+              '<span class="blank">&nbsp;</span>',
+            ),
+          choices: [
+            "make every object last forever",
+            "remove the need for professional help",
+            "bring people together",
+            "stop students from learning new skills",
+            "make buying new things more important",
+          ],
+          answer: "③ bring people together",
+          evidence:
+            "기술을 나누고 필요할 때 도움을 구하는 협력의 흐름이므로 사람들을 연결한다는 내용이 알맞습니다.",
+        },
+        {
+          type: "문장 삽입",
+          title: "남은 두 물건을 처리한 과정",
+          prompt: "주어진 문장이 들어가기에 가장 적절한 곳은?",
+          passage:
+            "<em>주어진 문장: They took these two objects to a professional.</em><br><br>The students brought six broken objects to the club. They repaired four, but two still did not work. 〔A〕 The students then wrote guides about the objects they had repaired. 〔B〕 A week later, they shared the guides with another class. 〔C〕",
+          choices: ["〔A〕", "〔B〕", "〔C〕"],
+          answer: "① 〔A〕",
+          evidence:
+            "these two objects는 바로 앞의 고치지 못한 두 물건을 가리킵니다. 이 물건을 처리한 다음 안내문을 작성하는 흐름입니다.",
+        },
+        {
+          type: "서술형",
+          title: "새 물건을 사기 전에 생각할 것",
+          prompt: "동아리가 학생들에게 길러 준 태도를 우리말로 쓰시오.",
+          passage: repairSource.paragraphs[2],
+          answer:
+            "새로 사기 전에 고쳐 쓸 수 있는지 생각하고, 필요할 때 도움을 구하는 태도.",
+          evidence:
+            "“pause before buying something new”와 “asking for help when needed”가 답의 근거입니다.",
+          reviewIssue:
+            "‘고쳐 쓰기’와 ‘도움 구하기’를 어느 범위까지 정답으로 인정할지 채점 기준을 확인하세요.",
+          suggestion:
+            "새로 사기 전에 수리 가능성을 생각한다는 핵심 의미를 포함하면 인정합니다. 도움을 구한다는 표현은 보충 근거로 봅니다.",
+        },
+        {
+          type: "어휘",
+          title: "문맥 속 pause의 의미",
+          prompt: "밑줄 친 pause의 의미로 가장 적절한 것은?",
+          passage:
+            "The club helped students <u>pause</u> before buying something new.",
+          choices: [
+            "stop briefly to think",
+            "pay a higher price",
+            "throw something away",
+            "repair without help",
+            "finish a task faster",
+          ],
+          answer: "① stop briefly to think",
+          evidence:
+            "물건을 새로 사기 전에 잠시 멈춰 생각한다는 의미로 쓰였습니다.",
+        },
+        {
+          type: "언급 없음",
+          title: "수리 모임에서 확인할 수 없는 정보",
+          prompt: "다음 글에서 언급되지 않은 것은?",
+          passage: repairPassage,
+          choices: [
+            "The number of objects brought to the first meeting",
+            "Who showed students how to check simple problems",
+            "The number of objects repaired by students",
+            "The exact cost of professional repairs",
+            "What students wrote after the activity",
+          ],
+          answer: "④ The exact cost of professional repairs",
+          evidence:
+            "처음 가져온 수, 도운 사람, 고친 수, 작성한 안내문은 나옵니다. 전문가에게 지불한 정확한 비용은 나오지 않습니다.",
+        },
+        {
+          type: "해석",
+          title: "배운 내용을 설명하는 관계절",
+          prompt: "다음 문장을 자연스러운 우리말로 해석하시오.",
+          passage:
+            "They also wrote short guides explaining what they had learned.",
+          answer: "그들은 자신들이 배운 것을 설명하는 짧은 안내문도 썼다.",
+          evidence:
+            "explaining what they had learned는 guides를 꾸미며 안내문에 담긴 내용을 설명합니다.",
+        },
+        {
+          type: "영영풀이",
+          title: "volunteer의 의미 확인",
+          prompt: "밑줄 친 낱말의 영영풀이로 가장 적절한 것은?",
+          passage:
+            "A local <u>volunteer</u> showed them how to check simple problems safely.",
+          choices: [
+            "a person who offers to help without being paid",
+            "a tool for repairing electrical cables",
+            "an object that cannot be repaired",
+            "a person who refuses to share skills",
+            "a guide written by a professional",
+          ],
+          answer: "① a person who offers to help without being paid",
+          evidence:
+            "volunteer는 보수를 받지 않고 자발적으로 도움을 주는 사람을 뜻합니다.",
+        },
+        {
+          type: "공통 빈칸",
+          title: "배움을 기록하는 공통 동사",
+          prompt: "두 빈칸에 공통으로 들어갈 단어로 가장 적절한 것은?",
+          passage:
+            'Students often <span class="blank">&nbsp;</span> short guides after the club.<br>Jina likes to <span class="blank">&nbsp;</span> about what she has learned.',
+          choices: ["repair", "write", "throw", "meet", "buy"],
+          answer: "② write",
+          evidence:
+            "write guides는 안내문을 쓰다, write about은 ~에 대해 쓰다라는 뜻으로 두 빈칸에 모두 알맞습니다.",
+        },
+        {
+          type: "문장 전환",
+          title: "고친 물건을 주어로 문장 바꾸기",
+          prompt: "다음 문장을 Four objects로 시작하는 수동태로 바꾸시오.",
+          passage: "The students repaired four objects.",
+          answer: "Four objects were repaired by the students.",
+          evidence:
+            "복수 목적어 four objects를 주어로 옮기고 과거 수동태 were repaired를 사용합니다.",
+        },
+        {
+          type: "단어 배열",
+          title: "새 물건을 사기 전의 행동",
+          prompt: "주어진 단어를 모두 한 번씩 사용하여 문장을 완성하시오.",
+          passage: "before / buying / paused / they / something new",
+          answer: "They paused before buying something new.",
+          evidence:
+            "주어 They, 동사 paused 뒤에 before buying something new를 붙여 사기 전에 잠시 멈췄다는 뜻을 만듭니다.",
+        },
+        {
+          type: "원문 복원",
+          title: "기술을 나누고 도움을 구하는 모습",
+          prompt: "우리말 뜻을 참고하여 원문의 빈칸을 채우시오.",
+          passage:
+            '기술을 나누고 필요할 때 도움을 구함으로써<br><br>By <span class="blank">①</span> skills and <span class="blank">②</span> for help when needed',
+          answer: "① sharing  ② asking",
+          evidence:
+            "원문 마지막 문장의 “By sharing skills and asking for help when needed”를 복원합니다.",
+        },
+      ];
+      const sources = [source],
+        questions = baseQuestions.map((q) => ({
+          ...q,
+          sourceId: source.id,
+          sourceVersion: source.version,
+          tags: [q.type, ...source.tags],
+        })),
+        types = baseQuestions.map((q) => q.type);
+      const state = {
+        view: "library",
+        selected: "Q-004",
+        grades: new Set(["고1"]),
+        types: new Set(),
+        statuses: new Set(),
+        sourceFilter: "",
+        checks: new Set(),
+        query: "",
+        sort: "id",
+        tab: "question",
+        tray: ["Q-001", "Q-003", "Q-006"],
+        preview: "student",
+        aiMode: "new",
+        aiStep: "settings",
+        aiReturn: "library",
+        aiRequest: null,
+        aiSaved: false,
+        drafts: [],
+        draftTab: "focus",
+        draftSource: null,
+        resourceSource: source.id,
+        saveAndAdd: true,
+      };
+      let toastTimer, audioUrl, lastDialogTrigger;
+      const getQ = (id) => questions.find((q) => q.id === id),
+        getSource = (id) =>
+          sources.find((s) => s.id === id) ||
+          (state.draftSource?.id === id ? state.draftSource : null),
+        sourceOf = (q) => getSource(q.sourceId);
+      const statusClass = (s) =>
+          s === "검토 완료" ? "complete" : s === "검토 중" ? "review" : "draft",
+        badge = (s) => `<span class="badge ${statusClass(s)}">${esc(s)}</span>`;
+      function notify(message) {
+        $("#toast").textContent = message;
+        $("#toast").hidden = false;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => ($("#toast").hidden = true), 2600);
+      }
+      function filtered(exclude) {
+        const query = state.query.trim().toLowerCase();
+        return questions
+          .filter((q) => {
+            const src = sourceOf(q);
+            return (
+              (exclude === "grades" ||
+                !state.grades.size ||
+                state.grades.has(q.grade)) &&
+              (exclude === "types" ||
+                !state.types.size ||
+                state.types.has(q.type)) &&
+              (exclude === "statuses" ||
+                !state.statuses.size ||
+                state.statuses.has(q.status)) &&
+              (!state.sourceFilter || state.sourceFilter === q.sourceId) &&
+              (!query ||
+                [
+                  q.id,
+                  q.type,
+                  q.title,
+                  q.prompt,
+                  q.passage,
+                  ...(q.choices || []),
+                  q.answer,
+                  src.title,
+                  src.english,
+                  ...q.tags,
+                ]
+                  .join(" ")
+                  .toLowerCase()
+                  .includes(query))
+            );
+          })
+          .sort((a, b) =>
+            state.sort === "type"
+              ? a.type.localeCompare(b.type, "ko")
+              : state.sort === "status"
+                ? ["검토 완료", "검토 중", "초안"].indexOf(a.status) -
+                  ["검토 완료", "검토 중", "초안"].indexOf(b.status)
+                : a.id.localeCompare(b.id),
+          );
+      }
+      function renderFacetCounts() {
+        $$("#filters input[data-filter]").forEach((input) => {
+          const key = input.dataset.filter;
+          input.closest("label").querySelector(".facet-count").textContent =
+            filtered(key).filter(
+              (q) =>
+                q[
+                  key === "grades"
+                    ? "grade"
+                    : key === "types"
+                      ? "type"
+                      : "status"
+                ] === input.value,
+            ).length;
+        });
+      }
+      function renderFilters() {
+        const groups = [
+          ["학년", "grades", ["중3", "고1", "고2"]],
+          ["문항 유형", "types", types],
+          ["검토 상태", "statuses", ["검토 완료", "검토 중", "초안"]],
+        ];
+        $("#filters").innerHTML =
+          `<div class="between filter-top"><h2>필터</h2><button class="text-btn" data-action="reset-filters">초기화</button></div>` +
+          groups
+            .map(
+              ([label, key, items]) =>
+                `<fieldset class="filter-section"><legend>${label}</legend><div class="filter-options">${items.map((v, i) => `<label class="filter-choice" ${key === "types" && i > 5 && !state.types.has(v) ? "data-extra-type hidden" : ""}><input type="checkbox" data-filter="${key}" value="${v}" ${state[key].has(v) ? "checked" : ""}><span>${v}</span><span class="facet-count"></span></label>`).join("")}</div>${key === "types" ? '<button class="more-types" data-action="more-types" aria-expanded="false">유형 8개 더 보기 ＋</button>' : ""}</fieldset>`,
+            )
+            .join("") +
+          '<p class="filter-note">같은 항목은 하나라도 일치, 다른 항목은 모두 일치하는 문항을 찾습니다.</p>';
+        renderFacetCounts();
+      }
+      function renderApplied() {
+        $("#appliedFilters").innerHTML =
+          ["grades", "types", "statuses"]
+            .flatMap((key) =>
+              [...state[key]].map(
+                (v) =>
+                  `<button class="filter-chip" data-remove-filter="${key}" data-value="${v}" aria-label="${v} 필터 해제">${v}${icon("x")}</button>`,
+              ),
+            )
+            .join("") +
+            (state.sourceFilter
+              ? `<button class="filter-chip" data-action="clear-source">${esc(getSource(state.sourceFilter).title)}${icon("x")}</button>`
+              : "") || '<span class="muted small">전체 문항</span>';
+        for (const [id, key] of [
+          ["gradeQuick", "grades"],
+          ["statusQuick", "statuses"],
+        ]) {
+          const el = $("#" + id);
+          $("option[data-multiple]", el)?.remove();
+          if (state[key].size > 1) {
+            const op = new Option(`${state[key].size}개 선택`, "multiple");
+            op.dataset.multiple = "true";
+            el.add(op);
+            el.value = "multiple";
+          } else el.value = [...state[key]][0] || "";
+        }
+        $("#sourceQuick").innerHTML =
+          '<option value="">전체 원문</option>' +
+          sources
+            .map(
+              (s) =>
+                `<option value="${s.id}" ${s.id === state.sourceFilter ? "selected" : ""}>${esc(s.title)}</option>`,
+            )
+            .join("");
+      }
+      function renderList() {
+        const found = filtered();
+        $("#totalCount").textContent = questions.length;
+        $("#resultCount").innerHTML =
+          `검색 결과 <strong>${found.length}</strong>문항`;
+        $("#selectAll").disabled = !found.length;
+        $("#selectAll").textContent =
+          found.length && found.every((q) => state.checks.has(q.id))
+            ? "전체 해제"
+            : "전체 선택";
+        $("#questionList").innerHTML = found.length
+          ? found
+              .map(
+                (q) =>
+                  `<div class="question-row ${state.selected === q.id ? "selected" : ""}"><label class="row-check"><input type="checkbox" data-check="${q.id}" aria-label="${q.id} ${q.type} 선택" ${state.checks.has(q.id) ? "checked" : ""}></label><button class="row-content" data-question="${q.id}" aria-label="${q.id} ${q.type}: ${q.title}" ${state.selected === q.id ? 'aria-current="true"' : ""}><span class="row-top"><span class="row-type">${q.type}</span>${badge(q.status)}</span><span class="row-title">${q.title}</span><span class="row-source">${esc(sourceOf(q).title)}</span><span class="row-bottom"><span>${q.id}</span><span>·</span><span>${q.grade}</span>${state.tray.includes(q.id) ? '<span class="in-tray">담음 ✓</span>' : ""}</span></button></div>`,
+              )
+              .join("")
+          : `<div class="empty">${icon("search")}<strong>조건에 맞는 문항이 없습니다</strong><p>검색어를 바꾸거나 필터를 줄여 보세요.</p><button class="btn" data-action="reset-search">검색 조건 초기화</button><button class="text-btn" data-action="ai" style="display:block;margin:15px auto">필요한 문항 제작하기</button></div>`;
+        renderApplied();
+        $("#selectionBar").hidden = !state.checks.size;
+        $("#selectionText").textContent = `${state.checks.size}문항 선택`;
+        renderFacetCounts();
+      }
+      function questionHTML(q, o = {}) {
+        const src = sourceOf(q);
+        return `${o.source ? `<p class="bank-origin">원문 ${esc(src.title)} · ${src.id} v${q.sourceVersion}</p>` : ""}<p class="question-prompt">${o.number ? `${o.number}. ` : ""}${esc(q.prompt)}</p><div class="passage" lang="en">${q.passage}</div>${q.choices ? `<ol class="choices">${q.choices.map((c, i) => `<li><span class="choice-num">${["①", "②", "③", "④", "⑤"][i]}</span><span lang="en">${esc(c)}</span></li>`).join("")}</ol>` : '<div class="write-space" aria-label="서술형 답안 공간"></div>'}`;
+      }
+      function answerHTML(q) {
+        return `<div class="answer-content"><strong>정답 ${esc(q.answer)}</strong><p>${esc(q.evidence)}</p>${q.reviewResolved && q.suggestion ? `<p><b>확인한 채점 기준</b> ${esc(q.suggestion)}</p>` : ""}</div>`;
+      }
+      function issueHTML(q, i, bank = false) {
+        return !q.reviewIssue
+          ? ""
+          : `<div class="review-callout ${q.reviewResolved ? "done" : ""}"><strong>${q.reviewResolved ? "확인한 항목" : "집중 검토 · 채점 기준"}</strong><p>${esc(q.reviewIssue)}</p><p><b>제안</b> ${esc(q.suggestion)}</p><button class="btn" ${bank ? `data-resolve-bank="${q.id}"` : `data-resolve-draft="${i}"`} ${q.reviewResolved ? "disabled" : ""}>${q.reviewResolved ? (q.status === "검토 완료" ? "항목 확인됨 · 교사 확정 완료" : "항목 확인됨 · 최종 확정 전") : "이 채점 기준으로 확인"}</button></div>`;
+      }
+      function teacherHTML(q) {
+        return !q.aiPrepared
+          ? ""
+          : `<section class="teacher-state"><div class="between"><strong>점검과 교사 확정</strong>${badge(q.status)}</div><p>AI 자체 점검: ${q.reviewIssue && !q.reviewResolved ? "채점 기준 확인 필요" : "추가 확인 항목 없음"} <span class="muted">(예시 결과)</span></p><p>형식과 근거 확인은 교사 확정과 구분합니다.</p>${issueHTML(q, null, true)}${q.status === "검토 완료" ? '<p style="color:var(--green)">교사가 이 화면에서 검토 완료로 표시했습니다.</p>' : `<button class="btn subtle" data-confirm="${q.id}" ${q.reviewIssue && !q.reviewResolved ? "disabled" : ""}>교사 검토 완료로 표시</button><p class="small muted">원문·문항·정답·해설을 검토한 뒤 확정하세요.</p>`}</section>`;
+      }
+      function renderDetail() {
+        const q = getQ(state.selected);
+        if (!q) {
+          $("#detailPane").innerHTML =
+            '<div class="empty"><strong>문항을 선택하세요</strong><p>원문과 정답을 함께 확인할 수 있습니다.</p></div>';
+          return;
+        }
+        const src = sourceOf(q);
+        $("#detailPane").innerHTML =
+          `<button class="mobile-back" data-action="back-list">${icon("left")}검색 결과로 돌아가기</button><div class="detail-top"><div class="between"><span class="detail-id">${q.id} / ${q.type}</span>${badge(q.status)}</div><h2 class="detail-title">${q.title}</h2><div class="source-meta"><span class="tag">${q.grade}</span>${src.tags
+            .slice(0, 2)
+            .map((t) => `<span class="tag">${esc(t)}</span>`)
+            .join(
+              "",
+            )}</div><div class="detail-tabs" role="tablist" aria-label="문항과 원문"><button class="detail-tab" id="questionTab" role="tab" aria-controls="detailContent" aria-selected="${state.tab === "question"}" data-tab="question">문항 · 정답</button><button class="detail-tab" id="sourceTab" role="tab" aria-controls="detailContent" aria-selected="${state.tab === "source"}" data-tab="source">연결 원문</button></div></div><div class="detail-scroll" id="detailContent" role="tabpanel" aria-labelledby="${state.tab === "question" ? "questionTab" : "sourceTab"}">${state.tab === "question" ? questionHTML(q) + `<details class="answer-block" open><summary>정답과 해설 ${icon("down")}</summary>${answerHTML(q)}</details>` + teacherHTML(q) : `<span class="source-label">${src.id} · 원문 v${q.sourceVersion} · ${esc(src.origin)}</span><h3 class="source-heading">${esc(src.english)}</h3><p class="muted" style="margin-bottom:16px">${esc(src.title)}</p><div class="source-copy" lang="en">${src.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div><div class="source-links"><button class="btn" data-source-nav="${src.id}">자료은행에서 보기</button><button class="btn subtle" data-ai-source="${src.id}">이 원문으로 더 만들기</button></div><div class="notice">이 원문에 연결된 문항 ${questions.filter((item) => item.sourceId === src.id).length}개 · ${esc(src.origin)}</div>`}</div><div class="detail-footer"><span class="source-label" title="${esc(src.title)}">원문 · ${esc(src.title)}</span><button class="btn ${state.tray.includes(q.id) ? "subtle" : "primary"}" data-add="${q.id}" ${state.tray.includes(q.id) ? "disabled" : ""}>${icon(state.tray.includes(q.id) ? "check" : "plus")}${state.tray.includes(q.id) ? "담은 문제" : "문제 담기"}</button></div>`;
+      }
+      function renderTray() {
+        const picked = state.tray.map(getQ),
+          typeCount = new Set(picked.map((q) => q.type)).size,
+          sourceCount = new Set(picked.map((q) => q.sourceId)).size;
+        const html = `<div class="tray-head"><div class="between"><h2>담은 문제</h2><span class="count-pill">${picked.length}</span></div><p>순서를 정하고 시험지로 만드세요</p></div><div class="tray-context"><div class="school">한빛고 · 고1</div><span class="exam-title">2학기 중간고사</span><div class="tags"><span class="tag">영어</span><span class="tag">A4</span></div></div><div class="tray-list">${picked.length ? picked.map((q, i) => `<div class="tray-item"><span class="tray-number">${String(i + 1).padStart(2, "0")}</span><div class="tray-item-copy"><button class="text-btn" style="padding:0;text-align:left;color:var(--ink)" data-tray-question="${q.id}"><strong>${q.type}</strong></button><p title="${esc(sourceOf(q).title)}">${esc(sourceOf(q).title)}</p><div class="tray-controls"><button data-move="${q.id}" data-direction="-1" aria-label="${q.id} 위로 이동" ${i === 0 ? "disabled" : ""}>${icon("up")}</button><button data-move="${q.id}" data-direction="1" aria-label="${q.id} 아래로 이동" ${i === picked.length - 1 ? "disabled" : ""}>${icon("down")}</button>${q.status !== "검토 완료" ? badge(q.status) : ""}</div></div><button class="icon-btn tray-remove" data-remove="${q.id}" aria-label="${q.id} 구성에서 제거">${icon("x")}</button></div>`).join("") : '<div class="empty"><strong>담은 문제가 없습니다</strong><p>문항을 골라 담아 보세요.</p></div>'}</div><div class="tray-summary"><div class="between"><span>현재 구성</span><strong>${picked.length}문항 <span class="muted small">/ ${typeCount}유형</span></strong></div><div class="type-distribution" aria-hidden="true">${[...new Set(picked.map((q) => q.type))].map(() => "<i></i>").join("")}</div><span>원문 ${sourceCount}개 · 검토 완료 ${picked.filter((q) => q.status === "검토 완료").length}문항</span></div><div class="tray-actions"><button class="btn primary" data-action="preview" ${!picked.length ? "disabled" : ""}>${icon("sheet")}시험지 · A4 미리보기</button><button class="btn" data-action="ai">${icon("spark")}AI로 부족한 문제 채우기</button></div><div class="tray-footnote">이 화면에서 구성 중 · 새로고침하면 초기화<br>미확정 문항은 출력 전 검토가 필요합니다.</div>`;
+        $("#desktopTray").innerHTML = html;
+        $("#mobileTrayContent").innerHTML = html;
+        $("#mobileTrayCount").textContent = picked.length;
+        $("#sideTrayCount").textContent = `${picked.length}문항`;
+      }
+      function addQuestions(ids) {
+        const fresh = ids.filter((id) => !state.tray.includes(id));
+        state.tray.push(...fresh);
+        renderTray();
+        renderList();
+        renderDetail();
+        notify(
+          fresh.length
+            ? `${fresh.length}문항을 담았습니다.`
+            : "선택한 문항은 이미 담겨 있습니다.",
+        );
+      }
+      function renderResources() {
+        const selected = getSource(state.resourceSource) || sources[0];
+        state.resourceSource = selected.id;
+        $("#resourcesView").innerHTML =
+          `<div class="secondary-heading"><div><h1>자료은행</h1><p>원문과 연결 문항을 함께 관리하세요.</p></div><button class="btn primary" data-action="new-ai">${icon("spark")}AI로 원문부터</button></div><div class="resource-layout"><aside class="resource-list"><div class="between"><strong>원문 자료</strong><span class="muted small">${sources.length}개</span></div>${sources.map((src) => `<button class="resource-card" data-resource="${src.id}" aria-current="${selected.id === src.id}"><span class="tag">${src.id} · v${src.version}</span><strong>${esc(src.title)}</strong><p>${esc(src.english)}</p><div class="between"><span class="small muted">${esc(src.origin)}</span><span class="small">${questions.filter((q) => q.sourceId === src.id).length}문항</span></div>${badge(src.status)}</button>`).join("")}<div class="notice">원문을 선택하면 연결된 문항을 확인하고 같은 원문으로 더 만들 수 있습니다.</div></aside><article class="resource-document"><div class="between"><span class="tag">${selected.id} · 원문 v${selected.version}</span><span class="muted small">${esc(selected.origin)}</span></div><h2 class="source-heading" style="font-size:30px;margin-top:24px" tabindex="-1" id="resourceTitle">${esc(selected.english)}</h2><p class="muted" style="margin-bottom:25px">${esc(selected.title)}</p><div class="source-copy" lang="en">${selected.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div><div class="source-links">${selected.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div><div class="resource-actions"><button class="btn primary" data-ai-source="${selected.id}">${icon("spark")}이 원문으로 제작</button><button class="btn" data-source-questions="${selected.id}">연결 문항 ${questions.filter((q) => q.sourceId === selected.id).length}개 보기</button></div><p class="small muted" style="margin-top:20px">원문은 문항과 별도로 보관되며, 문항마다 연결 원문과 버전이 유지됩니다.</p></article></div>`;
+      }
+      function showView(view) {
+        // A full view never inherits an open modal or the mobile detail focus trap.
+        $$("dialog[open]").forEach((dialog) => dialog.close());
+        if ($("#splitWork").classList.contains("show-detail"))
+          mobileDetail(false);
+        state.view = view;
+        ["library", "resources", "listening", "ai"].forEach(
+          (name) => ($(`#${name}View`).hidden = name !== view),
+        );
+        $$(".nav-item").forEach((b) => {
+          if (b.dataset.nav === view) b.setAttribute("aria-current", "page");
+          else b.removeAttribute("aria-current");
+        });
+        $("#viewCrumb").textContent = {
+          library: "문제은행",
+          resources: "자료은행",
+          listening: "영어듣기",
+          ai: "AI 문제 제작",
+        }[view];
+        document.title = `${$("#viewCrumb").textContent} · 오늘의 영어 — D안`;
+        $("#mobileTrayButton").hidden = view !== "library";
+        if (view === "resources") renderResources();
+        const heading = $(`#${view}View h1`);
+        heading?.setAttribute("tabindex", "-1");
+        heading?.focus({ preventScroll: true });
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+      function openDialog(id) {
+        lastDialogTrigger = document.activeElement;
+        const dialog = $("#" + id);
+        $$("dialog[open]").forEach((open) => {
+          if (open !== dialog) open.close();
+        });
+        if (!dialog.open) dialog.showModal();
+      }
+      function closeDialog(id) {
+        $("#" + id).close();
+        if (lastDialogTrigger?.isConnected) lastDialogTrigger.focus();
+      }
+      function setAIMode(mode) {
+        state.aiMode = mode;
+        $$("[data-mode]").forEach((b) => {
+          b.classList.toggle("active", b.dataset.mode === mode);
+          b.setAttribute("aria-pressed", b.dataset.mode === mode);
+        });
+        $("#existingSourceFields").hidden = mode !== "original";
+        $("#newSourceFields").hidden = mode !== "new";
+        $("#unsupportedRequest").hidden = true;
+        $("#aiError").textContent = "";
+        updateAIWorkspace();
+      }
+      function updateAISourceSummary() {
+        const src = getSource($("#aiSource").value) || source;
+        $("#aiSourceSummary").innerHTML =
+          `<strong>${esc(src.english)}</strong><p>${esc(src.paragraphs[0].split(". ")[0])}.</p><span class="small muted">${src.id} · v${src.version} · ${esc(src.origin)}</span>`;
+        updateAIWorkspace();
+      }
+      function openAI(mode = state.aiMode, sourceId) {
+        if (state.view !== "ai") state.aiReturn = state.view;
+        const selectedSource =
+          sourceId || $("#aiSource").value || state.sourceFilter || source.id;
+        $("#aiSource").innerHTML = sources
+          .map(
+            (src) =>
+              `<option value="${src.id}" ${src.id === selectedSource ? "selected" : ""}>${esc(src.title)}</option>`,
+          )
+          .join("");
+        setAIMode(mode);
+        updateAISourceSummary();
+        $("#aiReturn span").textContent = {
+          library: "문제은행으로",
+          resources: "자료은행으로",
+          listening: "영어듣기로",
+        }[state.aiReturn];
+        showView("ai");
+      }
+      function aiRequestKey() {
+        return JSON.stringify([
+          state.aiMode,
+          ...(state.aiMode === "new"
+            ? [
+                $("#aiPurpose").value,
+                $("#aiTopic").value.trim(),
+                $("#aiLevel").value,
+                $("#aiLength").value,
+              ]
+            : [$("#aiSource").value]),
+          $("#aiCount").value,
+          $$("#aiTypes input:checked").map((input) => input.value),
+        ]);
+      }
+      function updateAIWorkspace() {
+        const src = getSource($("#aiSource").value) || source;
+        const chosen = $$("#aiTypes input:checked").map((input) => input.value);
+        const ready =
+          state.drafts.length > 0 && state.aiRequest === aiRequestKey();
+        const pending = state.drafts.filter(
+          (q) => q.reviewIssue && !q.reviewResolved,
+        ).length;
+        state.aiStep = ready ? "drafts" : "settings";
+        $("#aiEmpty").hidden = ready;
+        $("#aiDrafts").hidden = !ready;
+        $("#aiSaveBar").hidden = !ready;
+        const rows =
+          state.aiMode === "new"
+            ? [
+                ["시작점", "새 원문부터 제작"],
+                ["수업", `${$("#aiPurpose").value} · ${$("#aiLevel").value}`],
+                [
+                  "원문",
+                  $("#aiTopic").value.trim() || "주제와 요청을 입력하세요",
+                ],
+                ["분량", $("#aiLength").value],
+              ]
+            : [
+                ["시작점", "기존 원문으로 제작"],
+                ["원문", src.title],
+                ["연결", `${src.id} · 원문 v${src.version} · ${src.grade}`],
+              ];
+        rows.push([
+          "문항",
+          `${$("#aiCount").value}문항 · ${chosen.length ? chosen.join(", ") : "원문에 맞는 유형"}`,
+        ]);
+        $("#aiBrief").innerHTML = rows
+          .map(
+            ([label, value]) =>
+              `<div><dt>${label}</dt><dd>${esc(value)}</dd></div>`,
+          )
+          .join("");
+        [1, 2, 3].forEach((step) => {
+          const current = !ready ? 1 : pending ? 2 : 3;
+          $(`#makerStep${step}`).toggleAttribute(
+            "aria-current",
+            step === current,
+          );
+          if (step === current)
+            $(`#makerStep${step}`).setAttribute("aria-current", "step");
+        });
+        $("#aiNext").innerHTML =
+          icon("spark") +
+          (ready ? "제작 결과 예시로 이동" : "원문·문항 제작 예시 보기");
+        $("#aiSave").disabled = state.aiSaved;
+        $("#aiSave").innerHTML =
+          icon(state.aiSaved ? "check" : "plus") +
+          (state.aiSaved ? "은행 저장 완료" : "은행에 초안 저장");
+        $("#saveAndAdd").disabled = state.aiSaved;
+        $("#aiSaveNote").textContent = state.aiSaved
+          ? "원문과 연결된 초안을 저장했습니다. 문제은행에서 이어서 확인하세요."
+          : `${pending ? `확인할 항목 ${pending}개가 남아 있습니다. ` : ""}교사 최종 확정 전의 초안으로 저장됩니다.`;
+      }
+      function renderAITypes() {
+        $("#aiTypes").innerHTML = types
+          .map(
+            (type) =>
+              `<label class="type-option"><input type="checkbox" value="${type}" ${["주제", "내용 일치", "빈칸 추론", "서술형"].includes(type) ? "checked" : ""}>${type}</label>`,
+          )
+          .join("");
+      }
+      function fillSampleRequest() {
+        $("#aiPurpose").value = "내신 대비";
+        $("#aiTopic").value = "학교에서 함께 물건을 고치는 수리 모임";
+        $("#aiLevel").value = "고1 · 보통";
+        $("#aiLength").value = "120–160단어";
+        $("#unsupportedRequest").hidden = true;
+        $("#aiError").textContent = "";
+        updateAIWorkspace();
+        $("#aiTopic").focus();
+      }
+      function buildDrafts() {
+        if (state.drafts.length && state.aiRequest === aiRequestKey()) {
+          focusMaker("aiResultTitle");
+          return;
+        }
+        const chosen = $$("#aiTypes input:checked").map((e) => e.value),
+          count = Number($("#aiCount").value);
+        $("#aiError").textContent = "";
+        if (chosen.length > count) {
+          $("#aiError").textContent =
+            "우선 포함할 유형이 문항 수보다 많습니다. 유형을 줄이거나 문항 수를 늘리세요.";
+          $("#aiCount").focus();
+          return;
+        }
+        if (state.aiMode === "new") {
+          const supported =
+            $("#aiPurpose").value === "내신 대비" &&
+            $("#aiTopic").value.trim() ===
+              "학교에서 함께 물건을 고치는 수리 모임" &&
+            $("#aiLevel").value === "고1 · 보통" &&
+            $("#aiLength").value === "120–160단어";
+          if (!supported) {
+            $("#unsupportedRequest").hidden = false;
+            $("#unsupportedText").textContent =
+              `입력한 요청: ${$("#aiPurpose").value} / ${$("#aiTopic").value.trim() || "주제 미입력"} / ${$("#aiLevel").value} / ${$("#aiLength").value}`;
+            $("#unsupportedRequest").scrollIntoView({ block: "nearest" });
+            $("#unsupportedRequest button").focus({ preventScroll: true });
+            return;
+          }
+        }
+        state.draftSource =
+          state.aiMode === "new"
+            ? repairSource
+            : getSource($("#aiSource").value);
+        const templates =
+          state.draftSource.family === "repair"
+            ? repairTemplates
+            : baseQuestions;
+        const ordered = [
+          ...chosen,
+          ...types.filter((t) => !chosen.includes(t)),
+        ].slice(0, count);
+        state.drafts = ordered.map((type) => {
+          const q = templates.find((q) => q.type === type);
+          return {
+            ...q,
+            id: undefined,
+            grade: state.draftSource.grade,
+            status: "초안",
+            sourceId: state.draftSource.id,
+            sourceVersion: state.draftSource.version,
+            tags: [type, ...state.draftSource.tags],
+            aiPrepared: true,
+            reviewIssue:
+              q.reviewIssue ||
+              (type === "서술형"
+                ? "모범 답안과 의미가 같은 표현을 어느 범위까지 인정할지 확인하세요."
+                : undefined),
+            suggestion:
+              q.suggestion ||
+              (type === "서술형"
+                ? "이웃 사이의 유대 또는 공동체 의식이라는 핵심 의미가 포함된 답을 인정합니다."
+                : undefined),
+            reviewResolved: false,
+          };
+        });
+        state.aiStep = "drafts";
+        state.draftTab = state.drafts.some((q) => q.reviewIssue)
+          ? "focus"
+          : "all";
+        state.aiRequest = aiRequestKey();
+        state.aiSaved = false;
+        renderDrafts();
+        updateAIWorkspace();
+        focusMaker("aiResultTitle");
+      }
+      function focusMaker(id) {
+        const heading = $("#" + id);
+        heading.focus({ preventScroll: true });
+        heading.scrollIntoView({ block: "start", behavior: "instant" });
+      }
+      function renderDrafts() {
+        const src = state.draftSource,
+          pending = state.drafts.filter(
+            (q) => q.reviewIssue && !q.reviewResolved,
+          ).length,
+          words = src.paragraphs.join(" ").split(/\s+/).length,
+          show =
+            state.draftTab === "focus"
+              ? state.drafts
+                  .map((q, i) => ({ q, i }))
+                  .filter(({ q }) => q.reviewIssue && !q.reviewResolved)
+              : state.drafts.map((q, i) => ({ q, i }));
+        $("#aiDrafts").innerHTML =
+          `<div class="maker-section-heading"><h2 id="aiResultTitle" tabindex="-1">원문·문항 제작 결과</h2><button class="text-btn" data-action="ai-back">조건 수정</button></div><p class="review-note">사전에 준비된 원문·문항과 점검 예시입니다. 입력한 요청으로 실제 생성하거나 자동 판정한 결과가 아닙니다.</p><div class="draft-summary"><div class="between"><h3>${esc(src.title)}</h3>${badge("초안")}</div><p>${esc(src.english)} · ${src.grade} · ${words}단어</p><p>${src.id} · 원문 v${src.version} · 문항 ${state.drafts.length}개 연결</p><div class="tags">${src.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div></div><div class="check-row"><strong>AI 자체 점검 · 예시</strong><span>${pending ? `${pending}문항 확인 필요` : "추가 확인 항목 없음"}</span></div><div class="check-row"><strong>교사 최종 확정</strong><span>아직 확정하지 않음</span></div><div class="review-tabs" aria-label="제작 결과 보기"><button class="${state.draftTab === "focus" ? "active" : ""}" data-draft-tab="focus" aria-pressed="${state.draftTab === "focus"}">확인할 항목 ${pending}</button><button class="${state.draftTab === "all" ? "active" : ""}" data-draft-tab="all" aria-pressed="${state.draftTab === "all"}">전체 문항 ${state.drafts.length}</button><button class="${state.draftTab === "source" ? "active" : ""}" data-draft-tab="source" aria-pressed="${state.draftTab === "source"}">원문·점검</button></div>${state.draftTab === "source" ? `<div class="source-copy" lang="en">${src.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div><div class="notice">${src.id} · v${src.version} · ${esc(src.origin)}<br>원문과 문항이 같은 연결 정보로 은행에 저장됩니다.</div><div class="check-row"><strong>형식 점검 예시</strong><span>문항·보기·정답 필수값 확인</span></div><div class="check-row"><strong>근거 점검 예시</strong><span>문항별 정답·해설과 원문 비교</span></div><p class="review-note">자체 점검 결과는 교사의 확정 기록을 대신하지 않습니다.</p>` : show.length ? show.map(({ q, i }) => `<article class="draft-card"><div class="draft-card-header"><strong>${i + 1}. ${q.type}<span class="small muted">교사 확정 전</span></strong>${badge("초안")}</div><div class="draft-card-body"><div class="maker-question-copy">${questionHTML(q)}</div><aside class="maker-review-copy" aria-label="문항 검토">${issueHTML(q, i)}<details class="answer-block" ${state.draftTab === "focus" ? "open" : ""}><summary>정답·근거 보기 ${icon("down")}</summary>${answerHTML(q)}</details><p class="review-note">자체 점검 예시: ${q.reviewIssue && !q.reviewResolved ? "채점 기준 확인 필요" : "추가 확인 항목 없음"}</p></aside></div></article>`).join("") : '<div class="empty"><strong>확인할 항목이 없습니다</strong><p>전체 문항과 원문은 언제든 확인할 수 있습니다.</p><button class="btn" data-draft-tab="all">전체 문항 보기</button></div>'}`;
+      }
+      function saveDrafts() {
+        if (
+          state.aiSaved ||
+          !state.drafts.length ||
+          state.aiRequest !== aiRequestKey()
+        )
+          return;
+        const src = state.draftSource;
+        if (!sources.some((s) => s.id === src.id))
+          sources.push({
+            ...src,
+            paragraphs: [...src.paragraphs],
+            tags: [...src.tags],
+          });
+        const first = questions.length + 1,
+          ids = [];
+        state.drafts.forEach((q, i) => {
+          const id = `Q-${String(first + i).padStart(3, "0")}`;
+          ids.push(id);
+          questions.push({ ...q, id, status: "초안" });
+        });
+        if (state.saveAndAdd) state.tray.push(...ids);
+        state.grades.clear();
+        state.types.clear();
+        state.statuses = new Set(["초안"]);
+        state.sourceFilter = src.id;
+        state.query = "";
+        $("#searchInput").value = "";
+        state.selected = ids[0];
+        state.tab = "question";
+        state.checks.clear();
+        renderFilters();
+        renderList();
+        renderDetail();
+        renderTray();
+        state.aiSaved = true;
+        updateAIWorkspace();
+        showView("library");
+        notify(
+          `원문에 연결한 ${ids.length}문항을 초안으로 저장${state.saveAndAdd ? "하고 담았습니다." : "했습니다."}`,
+        );
+      }
+      function renderPreview() {
+        const picked = state.tray.map(getQ),
+          teacher = state.preview === "teacher",
+          pages = [];
+        let shortPage = [];
+        const flush = () => {
+          if (shortPage.length) {
+            pages.push(shortPage);
+            shortPage = [];
+          }
+        };
+        // Keep the prepared long passages on their own A4 sheet. Short items pair up.
+        picked.forEach((q, index) => {
+          const item = { q, number: index + 1 };
+          const long =
+            teacher || q.passage.replace(/<[^>]*>/g, "").length > 400;
+          if (long) {
+            flush();
+            pages.push([item]);
+          } else {
+            shortPage.push(item);
+            if (shortPage.length === 2) flush();
+          }
+        });
+        flush();
+        const pageCount = pages.length,
+          pending = picked.filter((q) => q.status !== "검토 완료").length;
+        $("#previewSubtitle").textContent =
+          `한빛고 · ${picked.length}문항 · ${pageCount}쪽${pending ? ` · 미확정 ${pending}문항 포함` : ""}`;
+        $(".preview-tip").textContent = teacher
+          ? "A4 · 연결 원문과 정답·해설 포함 · 한 페이지 1문항"
+          : "A4 · 긴 지문은 1문항, 짧은 문항은 최대 2문항 · 원문 연결 유지";
+        $$("#previewDialog [data-preview]").forEach((b) => {
+          b.classList.toggle("active", b.dataset.preview === state.preview);
+          b.setAttribute("aria-pressed", b.dataset.preview === state.preview);
+        });
+        $("#papers").innerHTML = pages
+          .map(
+            (items, page) =>
+              `<article class="paper"><p class="paper-overline">한빛고등학교 · 1학년 영어</p><h2>2학기 중간고사</h2><div class="paper-meta"><span>${teacher ? "교사용 · 정답 및 해설" : "학생용 · 문제지"}</span><span>반 ______ 번호 ______ 이름 ______________</span></div>${items.map(({ q, number }) => `<section class="paper-question" data-source-id="${q.sourceId}">${questionHTML(q, { number, source: true })}${teacher ? answerHTML(q) : ""}</section>`).join("")}<div class="paper-footer"><span>오늘의 영어 · 시안용 예시 문항</span><span>${page + 1} / ${pageCount}</span></div></article>`,
+          )
+          .join("");
+      }
+      function resetFilters(searchToo = false) {
+        state.grades.clear();
+        state.types.clear();
+        state.statuses.clear();
+        state.sourceFilter = "";
+        if (searchToo) {
+          state.query = "";
+          $("#searchInput").value = "";
+        }
+        renderFilters();
+        refreshSearch();
+      }
+      function refreshSearch() {
+        const found = filtered();
+        if (!found.some((q) => q.id === state.selected)) {
+          state.selected = found[0]?.id || null;
+          state.tab = "question";
+          renderDetail();
+        }
+        renderList();
+      }
+      function mobileDetail(open) {
+        $("#splitWork").classList.toggle("show-detail", open);
+        document.body.style.overflow = open ? "hidden" : "";
+        $$(
+          ".proposal,.shell-sidebar,.topbar,.page-heading,.build-steps,.filters-host,.bank-filter-box,.search-meta,.results-pane,.right-column,.selection-bar,.footer-note,#mobileTrayButton",
+        ).forEach((el) => (el.inert = open));
+        if (open) {
+          $("#detailPane").setAttribute("role", "dialog");
+          $("#detailPane").setAttribute("aria-modal", "true");
+          $(".mobile-back").focus();
+        } else {
+          $("#detailPane").removeAttribute("role");
+          $("#detailPane").removeAttribute("aria-modal");
+          $(`[data-question="${state.selected}"]`)?.focus();
+        }
+      }
+      function selectQuestion(id) {
+        state.selected = id;
+        state.tab = "question";
+        renderList();
+        renderDetail();
+        if (matchMedia("(max-width:760px)").matches) mobileDetail(true);
+        else $(`[data-question="${id}"]`)?.focus();
+      }
+      function showSourceQuestions(id) {
+        if ($("#splitWork").classList.contains("show-detail"))
+          mobileDetail(false);
+        resetFilters(true);
+        state.sourceFilter = id;
+        refreshSearch();
+        showView("library");
+      }
+      document.addEventListener("click", (event) => {
+        const target = event.target.closest("button");
+        if (!target) return;
+        const d = target.dataset;
+        if (d.nav) {
+          if (d.nav === "ai") openAI();
+          else showView(d.nav);
+          return;
+        }
+        if (d.close) {
+          closeDialog(d.close);
+          return;
+        }
+        if (d.question) {
+          selectQuestion(d.question);
+          return;
+        }
+        if (d.trayQuestion) {
+          if ($("#trayDialog").open) $("#trayDialog").close();
+          showView("library");
+          resetFilters(true);
+          selectQuestion(d.trayQuestion);
+          return;
+        }
+        if (d.tab) {
+          state.tab = d.tab;
+          renderDetail();
+          $(`[data-tab="${d.tab}"]`).focus();
+          return;
+        }
+        if (d.add) {
+          addQuestions([d.add]);
+          if ($("#splitWork").classList.contains("show-detail"))
+            $(".mobile-back").focus();
+          return;
+        }
+        if (d.remove) {
+          state.tray = state.tray.filter((id) => id !== d.remove);
+          renderTray();
+          renderList();
+          renderDetail();
+          return;
+        }
+        if (d.move) {
+          const i = state.tray.indexOf(d.move),
+            j = i + Number(d.direction);
+          if (j >= 0 && j < state.tray.length) {
+            [state.tray[i], state.tray[j]] = [state.tray[j], state.tray[i]];
+            const host = target.closest("#mobileTrayContent")
+              ? "#mobileTrayContent"
+              : "#desktopTray";
+            renderTray();
+            $(
+              `${host} [data-move="${d.move}"][data-direction="${d.direction}"]`,
+            )?.focus();
+          }
+          return;
+        }
+        if (d.removeFilter) {
+          state[d.removeFilter].delete(d.value);
+          renderFilters();
+          refreshSearch();
+          return;
+        }
+        if (d.mode) {
+          setAIMode(d.mode);
+          return;
+        }
+        if (d.preview) {
+          state.preview = d.preview;
+          renderPreview();
+          return;
+        }
+        if (d.resource) {
+          state.resourceSource = d.resource;
+          renderResources();
+          return;
+        }
+        if (d.sourceNav) {
+          if ($("#splitWork").classList.contains("show-detail"))
+            mobileDetail(false);
+          state.resourceSource = d.sourceNav;
+          showView("resources");
+          return;
+        }
+        if (d.sourceQuestions) {
+          showSourceQuestions(d.sourceQuestions);
+          return;
+        }
+        if (d.aiSource) {
+          openAI("original", d.aiSource);
+          return;
+        }
+        if (d.draftTab) {
+          state.draftTab = d.draftTab;
+          renderDrafts();
+          $(`[data-draft-tab="${d.draftTab}"]`).focus();
+          return;
+        }
+        if (d.resolveDraft !== undefined) {
+          state.drafts[Number(d.resolveDraft)].reviewResolved = true;
+          const top = $("#aiDrafts").scrollTop;
+          renderDrafts();
+          $("#aiDrafts").scrollTop = top;
+          updateAIWorkspace();
+          $('[data-draft-tab="focus"]').focus();
+          return;
+        }
+        if (d.resolveBank) {
+          getQ(d.resolveBank).reviewResolved = true;
+          const top = $("#detailContent").scrollTop;
+          renderDetail();
+          $("#detailContent").scrollTop = top;
+          return;
+        }
+        if (d.confirm) {
+          const q = getQ(d.confirm);
+          if (q.reviewIssue && !q.reviewResolved) return;
+          q.status = "검토 완료";
+          renderTray();
+          renderList();
+          renderDetail();
+          notify("교사 검토 완료로 표시했습니다.");
+          return;
+        }
+        switch (d.action) {
+          case "library":
+          case "resources":
+            showView(d.action);
+            break;
+          case "ai":
+            openAI();
+            break;
+          case "new-ai":
+            openAI("new");
+            break;
+          case "sample-request":
+            fillSampleRequest();
+            break;
+          case "ai-back":
+            focusMaker("aiSettingsTitle");
+            break;
+          case "ai-return":
+            showView(state.aiReturn);
+            break;
+          case "reset-filters":
+            resetFilters();
+            break;
+          case "reset-search":
+            resetFilters(true);
+            break;
+          case "clear-source":
+            state.sourceFilter = "";
+            refreshSearch();
+            break;
+          case "more-types": {
+            const expanded = target.getAttribute("aria-expanded") === "true";
+            $$("[data-extra-type]").forEach((e) => (e.hidden = expanded));
+            target.setAttribute("aria-expanded", !expanded);
+            target.textContent = expanded
+              ? "유형 8개 더 보기 ＋"
+              : "유형 접기 −";
+            break;
+          }
+          case "clear-selection":
+            state.checks.clear();
+            renderList();
+            break;
+          case "add-selected": {
+            const ids = [...state.checks];
+            state.checks.clear();
+            addQuestions(ids);
+            break;
+          }
+          case "back-list":
+            mobileDetail(false);
+            break;
+          case "tray":
+            openDialog("trayDialog");
+            break;
+          case "filters":
+            $("#mobileFiltersHost").append($("#filters"));
+            openDialog("filterDialog");
+            break;
+          case "preview":
+            if (!state.tray.length) return;
+            if ($("#trayDialog").open) $("#trayDialog").close();
+            renderPreview();
+            openDialog("previewDialog");
+            break;
+          case "print":
+            window.print();
+            break;
+          case "quick-search":
+            showView("library");
+            $("#searchInput").focus();
+            break;
+          case "collapse-nav": {
+            const collapsed = document.body.classList.toggle("shell-collapsed");
+            target.setAttribute("aria-expanded", !collapsed);
+            target.setAttribute(
+              "aria-label",
+              collapsed ? "왼쪽 메뉴 펼치기" : "왼쪽 메뉴 접기",
+            );
+            target.textContent = collapsed ? "»" : "«";
+            break;
+          }
+          case "maximize": {
+            const maximized = document.body.classList.toggle("shell-maximized");
+            target.setAttribute("aria-pressed", String(maximized));
+            target.textContent = maximized ? "⛶ 화면 복원" : "⛶ 화면 최대화";
+            target.title = maximized
+              ? "화면 복원 (Esc)"
+              : "메뉴를 숨기고 작업 화면 최대화";
+            break;
+          }
+        }
+      });
+      document.addEventListener("change", (event) => {
+        const input = event.target;
+        if (input.dataset.filter) {
+          const set = state[input.dataset.filter];
+          input.checked ? set.add(input.value) : set.delete(input.value);
+          refreshSearch();
+        }
+        if (input.dataset.check) {
+          input.checked
+            ? state.checks.add(input.dataset.check)
+            : state.checks.delete(input.dataset.check);
+          renderList();
+          $(`[data-check="${input.dataset.check}"]`).focus();
+        }
+        if (input.closest("#aiTypes")) {
+          $("#typeHint").textContent =
+            `${$$("#aiTypes input:checked").length}개 선택`;
+          $("#aiError").textContent = "";
+        }
+        if (input.id === "saveAndAdd") state.saveAndAdd = input.checked;
+        if (input.closest("#aiSettings")) updateAIWorkspace();
+      });
+      $("#aiSettings").addEventListener("input", updateAIWorkspace);
+      $("#searchInput").addEventListener("input", (event) => {
+        state.query = event.target.value;
+        refreshSearch();
+      });
+      $("#sortSelect").addEventListener("change", (event) => {
+        state.sort = event.target.value;
+        renderList();
+      });
+      $("#gradeQuick").addEventListener("change", (e) => {
+        state.grades = new Set(e.target.value ? [e.target.value] : []);
+        renderFilters();
+        refreshSearch();
+      });
+      $("#statusQuick").addEventListener("change", (e) => {
+        state.statuses = new Set(e.target.value ? [e.target.value] : []);
+        renderFilters();
+        refreshSearch();
+      });
+      $("#sourceQuick").addEventListener("change", (e) => {
+        state.sourceFilter = e.target.value;
+        refreshSearch();
+      });
+      $("#aiSource").addEventListener("change", updateAISourceSummary);
+      $("#selectAll").addEventListener("click", () => {
+        const found = filtered(),
+          all = found.every((q) => state.checks.has(q.id));
+        found.forEach((q) =>
+          all ? state.checks.delete(q.id) : state.checks.add(q.id),
+        );
+        renderList();
+      });
+      $("#aiNext").addEventListener("click", buildDrafts);
+      $("#aiSave").addEventListener("click", saveDrafts);
+      $("#filterDialog").addEventListener("close", () =>
+        $("#filtersHost").append($("#filters")),
+      );
+      document.addEventListener("keydown", (event) => {
+        if (
+          event.key === "Escape" &&
+          document.body.classList.contains("shell-maximized") &&
+          !$("dialog[open]") &&
+          !$("#splitWork").classList.contains("show-detail")
+        ) {
+          event.preventDefault();
+          $('[data-action="maximize"]').click();
+          return;
+        }
+        if (
+          event.key === "/" &&
+          !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) &&
+          !$("dialog[open]") &&
+          !$("#splitWork").classList.contains("show-detail")
+        ) {
+          event.preventDefault();
+          showView("library");
+          $("#searchInput").focus();
+        }
+        if (
+          event.key === "Escape" &&
+          $("#splitWork").classList.contains("show-detail") &&
+          !$("dialog[open]")
+        ) {
+          event.preventDefault();
+          mobileDetail(false);
+        }
+        if (
+          event.key === "Tab" &&
+          $("#splitWork").classList.contains("show-detail")
+        ) {
+          const f = $$(
+              'button:not(:disabled),summary,[tabindex="0"]',
+              $("#detailPane"),
+            ),
+            first = f[0],
+            last = f.at(-1);
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+        if (
+          event.target.matches("[role=tab]") &&
+          ["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)
+        ) {
+          event.preventDefault();
+          state.tab = state.tab === "question" ? "source" : "question";
+          if (event.key === "Home") state.tab = "question";
+          if (event.key === "End") state.tab = "source";
+          renderDetail();
+          $(`[data-tab="${state.tab}"]`).focus();
+        }
+      });
+      $$("dialog").forEach((dialog) =>
+        dialog.addEventListener("click", (event) => {
+          if (event.target !== dialog) return;
+          const b = dialog.getBoundingClientRect();
+          if (
+            event.clientX < b.left ||
+            event.clientX > b.right ||
+            event.clientY < b.top ||
+            event.clientY > b.bottom
+          )
+            dialog.close();
+        }),
+      );
+      $("#audioFile").addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+        $("#audioError").textContent = "";
+        if (
+          !file.type.startsWith("audio/") &&
+          !/\.(mp3|wav|m4a|ogg)$/i.test(file.name)
+        ) {
+          $("#audioError").textContent = "오디오 파일을 선택하세요.";
+          return;
+        }
+        if (audioUrl) URL.revokeObjectURL(audioUrl);
+        audioUrl = URL.createObjectURL(file);
+        $("#audioPreview").src = audioUrl;
+        $("#audioPreview").hidden = false;
+        $("#audioFileName").textContent = file.name;
+        $("#audioStatus").textContent = "내 음원 선택됨";
+        $("#audioStatus").className = "badge complete";
+      });
+      $("#audioPreview").addEventListener("error", () => {
+        $("#audioError").textContent =
+          "이 브라우저에서 재생할 수 없는 파일입니다. 다른 오디오 파일을 선택하세요.";
+        $("#audioStatus").textContent = "재생 확인 필요";
+        $("#audioStatus").className = "badge review";
+      });
+      matchMedia("(min-width:761px)").addEventListener("change", (e) => {
+        if (e.matches) {
+          if ($("#splitWork").classList.contains("show-detail"))
+            mobileDetail(false);
+          if ($("#filterDialog").open) $("#filterDialog").close();
+        }
+      });
+      window.addEventListener("beforeunload", () => {
+        if (audioUrl) URL.revokeObjectURL(audioUrl);
+      });
+      renderFilters();
+      renderList();
+      renderDetail();
+      renderTray();
+      renderAITypes();
+    </script>
+  </body>
+</html>

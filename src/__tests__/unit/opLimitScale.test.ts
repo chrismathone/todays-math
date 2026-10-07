@@ -7,13 +7,14 @@
  * 잡지는 않는가** 셋을 본다. ㉢ 이 없으면 «다 줄이면 되지»로 넓혔을 때 $x^2$ 이
  * 같이 작아지는데 아무도 모른다.
  *
- * 실제 조상 사슬은 실측했다(KaTeX 0.16):
- *   ∫   → base > mop > msupsub > … > sizing.reset-size6.size3
- *   ∑·lim → base > mop.op-limits > … > sizing.reset-size6.size3
- *   x^2 → base > mord > msupsub > … > sizing.reset-size6.size3
+ * 실제 조상 사슬은 실측했다(KaTeX 0.18):
+ *   ∫   → katex-base > mop > msupsub > … > katex-sizing.reset-size6.size3
+ *   ∑·lim → katex-base > mop.op-limits > … > katex-sizing.reset-size6.size3
+ *   x^2 → katex-base > mord > msupsub > … > katex-sizing.reset-size6.size3
  */
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import katex from "katex";
 
 import { describe, expect, it } from "vitest";
 
@@ -24,7 +25,7 @@ const CSS = readFileSync(
 
 /** `.katex .mop …{ font-size: … }` 규칙 본문만 잘라 낸다. */
 function opLimitBlock(): string {
-  const at = CSS.indexOf(".katex .mop .sizing");
+  const at = CSS.indexOf(".katex .mop .katex-sizing");
   expect(at, "연산자 첨자 축소 규칙이 globals.css 에 없다").toBeGreaterThan(-1);
   const end = CSS.indexOf("}", at);
   return CSS.slice(at, end + 1);
@@ -52,9 +53,25 @@ describe("연산자 첨자 축소 (∫ ∑ lim)", () => {
 
   it("∫ 와 ∑·lim 두 배치를 모두 덮는다", () => {
     // ∫ 는 .mop > .msupsub, ∑·lim 은 .mop.op-limits — 둘 다 «.mop 안» 이므로
-    // 자손 선택자여야 한다. `.mop > .sizing` 처럼 직계로 좁히면 한쪽이 빠진다.
+    // 자손 선택자여야 한다. `.mop > .katex-sizing` 처럼 직계로 좁히면 한쪽이 빠진다.
     const selector = opLimitBlock();
-    expect(selector).not.toMatch(/\.mop\s*>\s*\.sizing/);
-    expect(selector).toMatch(/\.katex\s+\.mop\s+\.sizing/);
+    expect(selector).not.toMatch(/\.mop\s*>\s*\.katex-sizing/);
+    expect(selector).toMatch(/\.katex\s+\.mop\s+\.katex-sizing/);
+  });
+
+  it("the production selector matches rendered operator limits and leaves powers alone", () => {
+    const block = opLimitBlock();
+    const selector = block.slice(0, block.indexOf("{"));
+    const root = document.createElement("div");
+    for (const tex of [
+      String.raw`\int_0^1 x\,dx`,
+      String.raw`\sum_{k=1}^n k`,
+      String.raw`\lim_{x\to 0} x`,
+    ]) {
+      root.innerHTML = katex.renderToString(tex, { displayMode: true });
+      expect(root.querySelectorAll(selector).length, tex).toBeGreaterThan(0);
+    }
+    root.innerHTML = katex.renderToString(String.raw`x^2+a_n`);
+    expect(root.querySelectorAll(selector)).toHaveLength(0);
   });
 });

@@ -1,5 +1,5 @@
 /**
- * 🔴 RED → 🟢 — «학교별 내신 대비» 뷰 (D-148 · 25 §1.2 · 시안 hifi-d148-english-switch.html C 안 본문).
+ * 🔴 RED → 🟢 — «오늘의 작업» 뷰 (D-148 · 25 §1.2 · 시안 hifi-d148-english-switch.html C 안 본문).
  *
  * 구현: src/components/english/EnglishStudio.tsx · EnglishPrepView.tsx
  * 뒷단: MSW `src/mocks/handlers/english.ts` (base 의 라우트가 워크트리에 없어도 화면 시험은 돈다)
@@ -70,7 +70,7 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-describe("[EnglishStudio] 학교별 내신 대비", () => {
+describe("[EnglishStudio] 오늘의 작업", () => {
   it("픽스처 세트 둘은 검증기를 지난다 (표본이 규칙 밖이면 화면 시험이 헛돈다)", () => {
     for (const set of ENGLISH_MOCK_SETS)
       expect(
@@ -88,10 +88,12 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     const requests = requestLog();
     render(<Harness log={log} />);
     expect(
-      await screen.findByRole("heading", { name: "학교별 내신 대비" }),
+      await screen.findByRole("heading", { name: "오늘의 작업" }),
     ).toBeVisible();
     expect(
-      screen.getByText("학교의 출제 흐름에 맞춰, 이번 시험을 준비하세요."),
+      screen.getByText(
+        "시험 범위와 자료를 정리하고, 필요한 문제를 준비하세요.",
+      ),
     ).toBeVisible();
 
     // 학교 칩 — 고른 칩은 aria-pressed
@@ -164,7 +166,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     // 뷰를 오가도 시험 목록은 다시 읽지 않는다
     fireEvent.click(sets.getByRole("button", { name: "전체 보기" }));
     expect(currentView()).toBe("english-library");
-    await screen.findByRole("heading", { name: "문제 보관함" });
+    await screen.findByRole("heading", { name: "내 문제 세트" });
     expect(
       requests.seen.filter(
         (r) => r.method === "GET" && r.url === "/api/english/exams",
@@ -176,7 +178,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
   it("학교 칩을 바꾸면 그 학교의 시험이 골라지고 localStorage 에 남는다", async () => {
     const log = makeLog();
     const view = render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "경명여자중학교" }));
     expect(screen.getByRole("combobox", { name: "시험 고르기" })).toHaveValue(
       ENGLISH_EXAM_B_ID,
@@ -200,7 +202,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
   it("«새 시험 등록» 창에서 등록하면 그 시험이 골라진다", async () => {
     const log = makeLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(
       within(screen.getByRole("banner")).getByRole("button", {
         name: "새 시험 등록",
@@ -241,7 +243,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     const log = makeLog();
     const requests = requestLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(
       within(screen.getByRole("banner")).getByRole("button", {
         name: "새 시험 등록",
@@ -258,7 +260,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
 
   it("자료 종류는 방향키와 Home/End로 선택하고 선택한 탭만 Tab으로 방문한다", async () => {
     render(<Harness log={makeLog()} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "자료 추가" }));
     const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
     const file = dialog.getByRole("tab", { name: "파일 업로드" });
@@ -296,7 +298,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
   it("지문 직접 입력으로 자료를 더하면 목록과 단계 수가 바뀐다", async () => {
     const log = makeLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "자료 추가" }));
     const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
     fireEvent.click(dialog.getByRole("tab", { name: "지문 직접 입력" }));
@@ -331,7 +333,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     const log = makeLog();
     const requests = requestLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "자료 추가" }));
     const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
     const big = new File(["x"], "기출.pdf", { type: "application/pdf" });
@@ -354,7 +356,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     const log = makeLog();
     const requests = requestLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "자료 추가" }));
     const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
     fireEvent.change(dialog.getByLabelText("파일"), {
@@ -401,7 +403,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
       return realFetch(input, init);
     });
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "자료 추가" }));
     const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
     fireEvent.change(dialog.getByLabelText("파일"), {
@@ -427,7 +429,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
   it("자료 삭제는 확인 창을 지난다", async () => {
     const log = makeLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(
       await screen.findByRole("button", { name: "2025-2 중간 기출.pdf 삭제" }),
     );
@@ -468,7 +470,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
       ),
     );
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "설정 수정" }));
     const dialog = within(screen.getByRole("dialog", { name: "출제 설정" }));
     fireEvent.click(dialog.getByRole("checkbox", { name: "어법" }));
@@ -489,7 +491,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
   it("시험 삭제는 딸린 자료·세트가 지워짐을 알리고 확인 뒤 지운다", async () => {
     const log = makeLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(screen.getByRole("button", { name: "시험 삭제" }));
     const dialog = screen.getByRole("dialog", { name: "시험을 삭제할까요?" });
     expect(dialog).toHaveTextContent(/자료.*세트.*지워집니다/);
@@ -511,7 +513,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
   it("세트 카드의 «열기»는 보관함 편집 화면으로 가고 «목록»으로 돌아온다", async () => {
     const log = makeLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(
       await screen.findByRole("button", {
         name: "협력의 가치 · 외부지문 기본 훈련 열기",
@@ -522,28 +524,26 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     ).toHaveValue("협력의 가치 · 외부지문 기본 훈련");
     expect(currentView()).toBe("english-library");
     expect(
-      screen.queryByRole("heading", { name: "학교별 내신 대비" }),
+      screen.queryByRole("heading", { name: "오늘의 작업" }),
     ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "목록" }));
     expect(
-      await screen.findByRole("heading", { name: "문제 보관함" }),
+      await screen.findByRole("heading", { name: "내 문제 세트" }),
     ).toBeVisible();
   });
 
-  it("«학교 맞춤 문제 만들기»는 만들기 뷰로 가고, 뿌리가 머리를 그린 아래에 세 길 탭이 선다", async () => {
+  it("«학교 맞춤 문제 만들기»는 전체 AI 제작 화면으로 이동한다", async () => {
     // 트랙 시절의 자리표(«준비 중»)는 병합 때 ai 트랙의 실제 화면으로 바뀌었다(25 §11.1) — 머리는 뿌리, 탭부터가 화면
     const log = makeLog();
     render(<Harness log={log} />);
-    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    await screen.findByRole("heading", { name: "오늘의 작업" });
     fireEvent.click(
       screen.getByRole("button", { name: "학교 맞춤 문제 만들기" }),
     );
     expect(currentView()).toBe("english-maker");
+    expect(await screen.findByLabelText("AI로 원문부터")).toBeVisible();
     expect(
-      await screen.findByRole("tablist", { name: "문제 만들기 방법" }),
-    ).toBeVisible();
-    expect(
-      screen.getAllByRole("heading", { name: "문제 만들기" }),
+      screen.getAllByRole("heading", { name: "AI 문제 제작" }),
     ).toHaveLength(1);
   });
 
@@ -616,9 +616,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     expect(
       await screen.findByRole("button", { name: "정화중학교" }),
     ).toHaveAttribute("aria-pressed", "true");
-    expect(
-      screen.getByRole("heading", { name: "학교별 내신 대비" }),
-    ).toBeVisible();
+    expect(screen.getByRole("heading", { name: "오늘의 작업" })).toBeVisible();
     // 목록을 다시 읽다 또 실패해도 방금 등록한 시험은 남는다
     await waitFor(() =>
       expect(log.notices.at(-1)).toEqual({
@@ -694,7 +692,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
         openSetId={ENGLISH_SET_DRAFT_ID}
       />,
     );
-    await screen.findByRole("heading", { name: "문제 만들기" });
+    await screen.findByRole("heading", { name: "AI 문제 제작" });
     expect(
       requests.seen.some(
         (request) =>
@@ -718,7 +716,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     );
     expect(log.setOpened).toHaveBeenCalledOnce();
     expect(
-      await screen.findByRole("heading", { name: "학교별 내신 대비" }),
+      await screen.findByRole("heading", { name: "오늘의 작업" }),
     ).toBeVisible();
   });
 });

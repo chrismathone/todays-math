@@ -45,6 +45,7 @@ import EnglishDialog from "./EnglishDialog";
 import EnglishEditor from "./EnglishEditor";
 import EnglishExamPicker from "./EnglishExamPicker";
 import EnglishLibraryView from "./EnglishLibraryView";
+import EnglishQuestionBank from "./EnglishQuestionBank";
 import EnglishMakerView from "./EnglishMakerView";
 import EnglishPrepView from "./EnglishPrepView";
 import {
@@ -95,16 +96,21 @@ function PersistentView({
 
 const HEADERS: Record<EnglishView, { title: string; description: string }> = {
   english: {
-    title: "학교별 내신 대비",
-    description: "학교의 출제 흐름에 맞춰, 이번 시험을 준비하세요.",
+    title: "오늘의 작업",
+    description: "시험 범위와 자료를 정리하고, 필요한 문제를 준비하세요.",
   },
   "english-maker": {
-    title: "문제 만들기",
-    description: "이번 시험의 자료로 학교에 맞는 문제를 만듭니다.",
+    title: "AI 문제 제작",
+    description:
+      "새 원문부터 문항과 해설까지 만들고, 결과를 확인해 저장하세요.",
   },
   "english-library": {
-    title: "문제 보관함",
+    title: "내 문제 세트",
     description: "이 시험의 문제 세트를 찾고, 열어 검토합니다.",
+  },
+  "english-questions": {
+    title: "시험지 만들기",
+    description: "문제은행에서 문항을 찾아 수업에 맞게 구성하세요.",
   },
 };
 
@@ -139,6 +145,7 @@ export default function EnglishStudio({
     Record<string, Load<EnglishSetSummary[]> | undefined>
   >({});
   const [editor, setEditor] = useState<EditorSeed | null>(null);
+  const [bankVersion, setBankVersion] = useState(0);
   const [readyBankSeed, setReadyBankSeed] = useState<EnglishBankMakerSeed>();
   const examsVersion = useRef(0);
   const inflight = useRef(new Set<string>());
@@ -304,6 +311,7 @@ export default function EnglishStudio({
   );
   const refreshSets = useCallback(
     (id: string) => {
+      setBankVersion((version) => version + 1);
       setSets((current) => ({ ...current, [id]: { status: "loading" } }));
       void loadSets(id);
     },
@@ -428,208 +436,234 @@ export default function EnglishStudio({
 
   return (
     <div className={s.studio}>
-      {!exam ? (
-        <>
-          <WorkspacePageHeader
-            title={header.title}
-            description={header.description}
-          >
-            {canSchool && (
-              <button
-                type="button"
-                className={w.primaryButton}
-                onClick={onNewExam}
-              >
-                <Icon name="plus" size={18} />새 시험 등록
-              </button>
-            )}
-          </WorkspacePageHeader>
-          <section className={`${s.card} ${s.empty}`}>
-            <h2>
-              {canSchool ? "첫 시험을 등록해 주세요" : "등록된 시험이 없습니다"}
-            </h2>
-            <p>
-              {canSchool
-                ? "학교 · 학년 · 시험 이름을 적으면 자료와 문제 세트를 모을 자리가 생깁니다."
-                : "학교별 내신 대비 권한이 있는 계정에서 시험을 등록해 주세요."}
-            </p>
-            {canSchool && (
-              <button
-                type="button"
-                className={w.primaryButton}
-                onClick={onNewExam}
-              >
-                새 시험 등록
-                <Icon name="arrow" size={18} />
-              </button>
-            )}
-          </section>
-        </>
-      ) : (
-        <>
-          {canLibrary && editor && (
-            <div hidden={view !== "english-library"}>
-              <EnglishEditor
-                key={editor.id}
-                setId={editor.id}
-                initialSet={editor.set}
-                exam={
-                  examList.find((item) => item.id === editor.examId) ?? exam
-                }
-                onBack={() => setEditor(null)}
-                onNotice={(message) => onNotice(message)}
-                onSaved={(saved) => {
-                  setEditor((current) =>
-                    current?.id === saved.id
-                      ? { ...current, set: saved }
-                      : current,
-                  );
-                  setSets((current) => {
-                    const list = current[saved.examId];
-                    if (!list || list.status !== "ready") return current;
-                    const {
-                      passage: _passage,
-                      questions: _questions,
-                      ...summary
-                    } = saved;
-                    void _passage;
-                    void _questions;
-                    return {
-                      ...current,
-                      [saved.examId]: {
-                        status: "ready",
-                        data: list.data.map((item) =>
-                          item.id === saved.id ? summary : item,
-                        ),
-                      },
-                    };
-                  });
-                  onNotice("저장했습니다.");
-                }}
-                onDeleted={(id) => {
-                  setSets((current) => {
-                    const list = current[editor.examId];
-                    if (!list || list.status !== "ready") return current;
-                    return {
-                      ...current,
-                      [editor.examId]: {
-                        status: "ready",
-                        data: list.data.filter((item) => item.id !== id),
-                      },
-                    };
-                  });
-                  setEditor(null);
-                  onNotice("문제 세트를 삭제했습니다.");
-                }}
-              />
-            </div>
-          )}
-          {canSchool && (
-            <PersistentView active={view === "english"}>
-              <EnglishPrepView
-                exam={exam}
-                exams={examList}
-                onSelectExam={selectExam}
-                onNewExam={onNewExam}
-                materials={materialsLoad ?? { status: "loading" }}
-                onRetryMaterials={() => refreshMaterials(exam.id)}
-                sets={setsLoad ?? { status: "loading" }}
-                onRetrySets={() => refreshSets(exam.id)}
-                onMaterialAdded={(material) => {
-                  setMaterials((current) => {
-                    const list = current[material.examId];
-                    return {
-                      ...current,
-                      [material.examId]: {
-                        status: "ready",
-                        data: [
-                          material,
-                          ...(list?.status === "ready" ? list.data : []),
-                        ],
-                      },
-                    };
-                  });
-                  onNotice("자료를 더했습니다.");
-                }}
-                onMaterialRemoved={(id) => {
-                  setMaterials((current) => {
-                    const list = current[exam.id];
-                    if (!list || list.status !== "ready") return current;
-                    return {
-                      ...current,
-                      [exam.id]: {
-                        status: "ready",
-                        data: list.data.filter((item) => item.id !== id),
-                      },
-                    };
-                  });
-                  onNotice("자료를 삭제했습니다.");
-                }}
-                onExamChange={(next) => {
-                  patchExam(next);
-                  onNotice("출제 설정을 저장했습니다.");
-                }}
-                onExamDeleted={(id) => {
-                  const remaining = examList.filter((item) => item.id !== id);
-                  setExams({ status: "ready", data: remaining });
-                  selectExam(remaining[0]?.id ?? null);
-                  onNotice("시험을 삭제했습니다.");
-                }}
-                onOpenSet={openSet}
-                onNavigate={onNavigate}
-                canMake={canMake}
-                canLibrary={canLibrary}
-              />
-            </PersistentView>
-          )}
-          {canLibrary && (
-            <PersistentView active={view === "english-library" && !editor}>
-              <EnglishLibraryView
-                exam={exam}
-                exams={examList}
-                onSelectExam={selectExam}
-                sets={setsLoad ?? { status: "loading" }}
-                onRefresh={() => refreshSets(exam.id)}
-                onOpen={openSet}
-                onMake={canMake ? () => onNavigate("english-maker") : undefined}
-              />
-            </PersistentView>
-          )}
-          {canMake && (
-            <PersistentView active={view === "english-maker"}>
-              <WorkspacePageHeader
-                title={HEADERS["english-maker"].title}
-                description={HEADERS["english-maker"].description}
-              />
-              <EnglishExamPicker
-                exams={examList}
-                exam={exam}
-                onSelect={selectExam}
-              />
-              <EnglishMakerView
-                exam={exam}
-                bankSeed={
-                  readyBankSeed?.requestId === bankSeed?.requestId
-                    ? readyBankSeed
-                    : undefined
-                }
-                onBankSeedAccepted={acceptBankSeed}
-                onBankSeedHandled={onBankSeedHandled}
-                materials={
-                  materialsLoad?.status === "ready" ? materialsLoad.data : []
-                }
-                onSaved={(id) => {
-                  refreshSets(exam.id);
-                  if (canLibrary && callbacks.current.view === "english-maker")
-                    openSet(id);
-                  else onNotice("문제 세트를 저장했습니다.");
-                }}
-                onNotice={(message, tone) => onNotice(message, tone)}
-              />
-            </PersistentView>
-          )}
-        </>
+      {canLibrary && (
+        <PersistentView active={view === "english-questions"}>
+          <EnglishQuestionBank
+            exams={examList}
+            refreshKey={bankVersion}
+            onMake={canMake ? () => onNavigate("english-maker") : undefined}
+            onOpenSet={(item) => {
+              selectExam(item.examId);
+              setEditor({ id: item.setId, examId: item.examId });
+              onNavigate("english-library");
+            }}
+          />
+        </PersistentView>
       )}
+      <div hidden={view === "english-questions"}>
+        {!exam ? (
+          <>
+            <WorkspacePageHeader
+              title={header.title}
+              description={header.description}
+            >
+              {canSchool && (
+                <button
+                  type="button"
+                  className={w.primaryButton}
+                  onClick={onNewExam}
+                >
+                  <Icon name="plus" size={18} />새 시험 등록
+                </button>
+              )}
+            </WorkspacePageHeader>
+            <section className={`${s.card} ${s.empty}`}>
+              <h2>
+                {canSchool
+                  ? "첫 시험을 등록해 주세요"
+                  : "등록된 시험이 없습니다"}
+              </h2>
+              <p>
+                {canSchool
+                  ? "학교 · 학년 · 시험 이름을 적으면 자료와 문제 세트를 모을 자리가 생깁니다."
+                  : "학교별 내신 대비 권한이 있는 계정에서 시험을 등록해 주세요."}
+              </p>
+              {canSchool && (
+                <button
+                  type="button"
+                  className={w.primaryButton}
+                  onClick={onNewExam}
+                >
+                  새 시험 등록
+                  <Icon name="arrow" size={18} />
+                </button>
+              )}
+            </section>
+          </>
+        ) : (
+          <>
+            {canLibrary && editor && (
+              <div hidden={view !== "english-library"}>
+                <EnglishEditor
+                  key={editor.id}
+                  setId={editor.id}
+                  initialSet={editor.set}
+                  exam={
+                    examList.find((item) => item.id === editor.examId) ?? exam
+                  }
+                  onBack={() => setEditor(null)}
+                  onNotice={(message) => onNotice(message)}
+                  onSaved={(saved) => {
+                    setBankVersion((version) => version + 1);
+                    setEditor((current) =>
+                      current?.id === saved.id
+                        ? { ...current, set: saved }
+                        : current,
+                    );
+                    setSets((current) => {
+                      const list = current[saved.examId];
+                      if (!list || list.status !== "ready") return current;
+                      const {
+                        passage: _passage,
+                        questions: _questions,
+                        ...summary
+                      } = saved;
+                      void _passage;
+                      void _questions;
+                      return {
+                        ...current,
+                        [saved.examId]: {
+                          status: "ready",
+                          data: list.data.map((item) =>
+                            item.id === saved.id ? summary : item,
+                          ),
+                        },
+                      };
+                    });
+                    onNotice("저장했습니다.");
+                  }}
+                  onDeleted={(id) => {
+                    setBankVersion((version) => version + 1);
+                    setSets((current) => {
+                      const list = current[editor.examId];
+                      if (!list || list.status !== "ready") return current;
+                      return {
+                        ...current,
+                        [editor.examId]: {
+                          status: "ready",
+                          data: list.data.filter((item) => item.id !== id),
+                        },
+                      };
+                    });
+                    setEditor(null);
+                    onNotice("문제 세트를 삭제했습니다.");
+                  }}
+                />
+              </div>
+            )}
+            {canSchool && (
+              <PersistentView active={view === "english"}>
+                <EnglishPrepView
+                  exam={exam}
+                  exams={examList}
+                  onSelectExam={selectExam}
+                  onNewExam={onNewExam}
+                  materials={materialsLoad ?? { status: "loading" }}
+                  onRetryMaterials={() => refreshMaterials(exam.id)}
+                  sets={setsLoad ?? { status: "loading" }}
+                  onRetrySets={() => refreshSets(exam.id)}
+                  onMaterialAdded={(material) => {
+                    setMaterials((current) => {
+                      const list = current[material.examId];
+                      return {
+                        ...current,
+                        [material.examId]: {
+                          status: "ready",
+                          data: [
+                            material,
+                            ...(list?.status === "ready" ? list.data : []),
+                          ],
+                        },
+                      };
+                    });
+                    onNotice("자료를 더했습니다.");
+                  }}
+                  onMaterialRemoved={(id) => {
+                    setMaterials((current) => {
+                      const list = current[exam.id];
+                      if (!list || list.status !== "ready") return current;
+                      return {
+                        ...current,
+                        [exam.id]: {
+                          status: "ready",
+                          data: list.data.filter((item) => item.id !== id),
+                        },
+                      };
+                    });
+                    onNotice("자료를 삭제했습니다.");
+                  }}
+                  onExamChange={(next) => {
+                    patchExam(next);
+                    onNotice("출제 설정을 저장했습니다.");
+                  }}
+                  onExamDeleted={(id) => {
+                    setBankVersion((version) => version + 1);
+                    const remaining = examList.filter((item) => item.id !== id);
+                    setExams({ status: "ready", data: remaining });
+                    selectExam(remaining[0]?.id ?? null);
+                    onNotice("시험을 삭제했습니다.");
+                  }}
+                  onOpenSet={openSet}
+                  onNavigate={onNavigate}
+                  canMake={canMake}
+                  canLibrary={canLibrary}
+                />
+              </PersistentView>
+            )}
+            {canLibrary && (
+              <PersistentView active={view === "english-library" && !editor}>
+                <EnglishLibraryView
+                  exam={exam}
+                  exams={examList}
+                  onSelectExam={selectExam}
+                  sets={setsLoad ?? { status: "loading" }}
+                  onRefresh={() => refreshSets(exam.id)}
+                  onOpen={openSet}
+                  onMake={
+                    canMake ? () => onNavigate("english-maker") : undefined
+                  }
+                />
+              </PersistentView>
+            )}
+            {canMake && (
+              <PersistentView active={view === "english-maker"}>
+                <WorkspacePageHeader
+                  title={HEADERS["english-maker"].title}
+                  description={HEADERS["english-maker"].description}
+                />
+                <EnglishExamPicker
+                  exams={examList}
+                  exam={exam}
+                  onSelect={selectExam}
+                />
+                <EnglishMakerView
+                  exam={exam}
+                  bankSeed={
+                    readyBankSeed?.requestId === bankSeed?.requestId
+                      ? readyBankSeed
+                      : undefined
+                  }
+                  onBankSeedAccepted={acceptBankSeed}
+                  onBankSeedHandled={onBankSeedHandled}
+                  materials={
+                    materialsLoad?.status === "ready" ? materialsLoad.data : []
+                  }
+                  onSaved={(id) => {
+                    refreshSets(exam.id);
+                    if (
+                      canLibrary &&
+                      callbacks.current.view === "english-maker"
+                    )
+                      openSet(id);
+                    else onNotice("문제 세트를 저장했습니다.");
+                  }}
+                  onNotice={(message, tone) => onNotice(message, tone)}
+                />
+              </PersistentView>
+            )}
+          </>
+        )}
+      </div>
       {newExamDialog}
     </div>
   );

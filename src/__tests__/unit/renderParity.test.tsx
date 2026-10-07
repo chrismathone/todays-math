@@ -152,8 +152,47 @@ const FIXTURE = path.join(
 
 const DUMP = Boolean(process.env.PARITY_DUMP);
 
+// KaTeX 0.18 prefixes these internal classes. Keep the pre-upgrade hashes as
+// evidence that only those class tokens changed; text, MathML, geometry, styles
+// and all other markup still have to match byte for byte. Production selectors
+// are checked against the actual new output by opLimitScale and fraction choices.
+const RENAMED_KATEX_CLASSES = new Set([
+  "base",
+  "strut",
+  "sizing",
+  "accent",
+  "stretchy",
+  "overlay",
+  "overline",
+  "underline",
+  "vbox",
+  "thinbox",
+  "rule",
+  "root",
+  "smash",
+  "sout",
+  "tag",
+  "newline",
+  "inner",
+  "fix",
+  "hline",
+  "hdashline",
+]);
+
 function sha256(value: string): string {
-  return createHash("sha256").update(value, "utf8").digest("hex");
+  const compatible = value.replace(
+    /class="([^"]*)"/g,
+    (_match, classes: string) =>
+      `class="${classes
+        .split(" ")
+        .map((name) =>
+          name.startsWith("katex-") && RENAMED_KATEX_CLASSES.has(name.slice(6))
+            ? name.slice(6)
+            : name,
+        )
+        .join(" ")}"`,
+  );
+  return createHash("sha256").update(compatible, "utf8").digest("hex");
 }
 
 function readExpected(): Record<string, string> {
