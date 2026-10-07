@@ -1,0 +1,101 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "A": [
+      30,
+      180
+    ],
+    "B": [
+      210,
+      180
+    ],
+    "O": [
+      120,
+      180
+    ],
+    "D": [
+      30,
+      36
+    ],
+    "C": [
+      210,
+      123.75
+    ],
+    "E": [
+      159.43820224719101,
+      99.10112359550561
+    ]
+  },
+  "circles": {
+    "semicircleSupport": {
+      "center": "O",
+      "radius": 90,
+      "draw": false
+    }
+  },
+  "arcs": {
+    "upperSemicircle": {
+      "circle": "semicircleSupport",
+      "from": "B",
+      "to": "A",
+      "dir": "ccw"
+    }
+  },
+  "segments": {
+    "diameterAB": [
+      "A",
+      "B"
+    ],
+    "leftTangentAD": [
+      "A",
+      "D"
+    ],
+    "rightTangentBC": [
+      "B",
+      "C"
+    ],
+    "commonTangentCD": [
+      "C",
+      "D"
+    ]
+  },
+  "angles": {
+    "rightDAB": {
+      "vertex": "A",
+      "points": [
+        "D",
+        "B"
+      ],
+      "right": true,
+      "radius": 12
+    },
+    "rightABC": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "C"
+      ],
+      "right": true,
+      "radius": 12
+    }
+  },
+  "dimensions": {
+    "dimBC": {
+      "points": [
+        "B",
+        "C"
+      ],
+      "label": "25/8 cm",
+      "side": "auto"
+    }
+  },
+  "labels": {
+    "A": "A",
+    "B": "B",
+    "O": "O",
+    "C": "C",
+    "D": "D",
+    "E": "E"
+  }
+}
