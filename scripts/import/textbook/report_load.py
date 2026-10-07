@@ -144,7 +144,9 @@ def main() -> None:
     ]
     held_rows = sum(1 for row in plan["rows"] if row["hold"])
     open_rows = len(plan["rows"]) - held_rows
-    not_rendered = len(text_only) - len(plan["rows"]) - len(skipped)
+    text_ids = {external_id(p) for p in text_only}
+    not_rendered = sum(1 for rid, row in prepared.items() if rid in text_ids and row.get("bad"))
+    in_db = sum(1 for row in plan["rows"] if row["externalId"] in codes)
 
     lines: list[str] = []
     add = lines.append
@@ -159,11 +161,12 @@ def main() -> None:
     add(f"| 정답이 붙은 문항 | {len(answered):,} | 평가 자료 · 물음이 있는 것 |")
     add(f"| − 실을 길이 아직 없는 문항 | {len(deferred):,} | 아래 1 — 그리지 못한 도형 · 붙은 문항 · «풀이 참조» · 그림을 못 잡은 것 |")
     add(f"| = 글 문항 · 그림 문항 | {len(text_only):,} | 그림 · 자료 표 · 라벨 묶음은 그림으로 붙였다 |")
-    add(f"| − 수식이 그려지지 않아 검토에 못 올린 문항 | {max(0, not_rendered):,} | 변환이 실패한 것 |")
+    add(f"| − 수식이 그려지지 않아 검토에 못 올린 문항 | {not_rendered:,} | 변환이 실패한 것 |")
     add(f"| − 검토에서 빠진 문항 | {len(skipped):,} | 아래 2 |")
     add(f"| = **문제은행에 실은 문항** | **{len(plan['rows']):,}** | 출처 «교과서»(`school_textbook`) · 그림이 붙은 문항 {sum(1 for row in plan['rows'] if row.get('figures')):,} |")
     add(f"| 　그 가운데 출제에 쓰는 문항 | {open_rows:,} | 지면 검토를 지났다 |")
     add(f"| 　그 가운데 잠가 둔 문항 | {held_rows:,} | 아래 3 — 은행에는 보이고 출제에는 안 뽑힌다 |")
+    add(f"| 　그 가운데 **지금 DB 에 들어간 것** | {in_db:,} | 나머지 {len(plan['rows']) - in_db:,} 은 그림 문항 — 그림을 외부 저장소에 게시한 뒤에 싣는다(10-handoff §0-ZS) |")
     add("")
 
     add("## 1. 실을 길이 아직 없는 문항")
