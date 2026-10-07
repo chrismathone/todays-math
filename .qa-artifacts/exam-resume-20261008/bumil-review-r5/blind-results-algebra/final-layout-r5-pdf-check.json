@@ -1,0 +1,32 @@
+{
+  "path": "student-preview-r5/student-paper.pdf",
+  "sha256": "3ddcdb87b08df42fa06d0b57909a6daab55aba8a84cce740f3a0f686cbb3e739",
+  "pageCount": 2,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "mediaBoxPoints": [
+        594.95996,
+        841.91998
+      ],
+      "mediaBoxMm": [
+        209.88865255555555,
+        297.0106596111111
+      ],
+      "A4WithinToleranceMm": 0.2
+    },
+    {
+      "pageNumber": 2,
+      "mediaBoxPoints": [
+        594.95996,
+        841.91998
+      ],
+      "mediaBoxMm": [
+        209.88865255555555,
+        297.0106596111111
+      ],
+      "A4WithinToleranceMm": 0.2
+    }
+  ],
+  "method": "local pypdf page count and MediaBox; supplied PDF page PNGs visually inspected"
+}
