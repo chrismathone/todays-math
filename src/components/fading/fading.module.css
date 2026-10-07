@@ -5,6 +5,7 @@
 }
 .root {
   position: relative;
+  --f-content-width: 1600px;
   --f-bg: #f8f9ff;
   --f-paper: #fff;
   --f-soft: #eff4ff;
@@ -730,7 +731,9 @@
 }
 .session {
   padding: 0 16px 24px;
-  max-width: 1280px;
+  max-width: var(--f-content-width);
+  width: 100%;
+  margin-inline: auto;
 }
 .sessionHeader {
   display: grid;
@@ -1319,7 +1322,7 @@
 .top {
   padding: 0 16px;
   height: 64px;
-  max-width: 1280px;
+  max-width: var(--f-content-width);
   border: 0;
   box-shadow: 0 1px 8px #0000000a;
   gap: 8px;
@@ -1363,7 +1366,7 @@
   font-size: 12px;
 }
 .shell {
-  max-width: 1280px;
+  max-width: var(--f-content-width);
   padding: 16px 16px 96px;
 }
 .home {
@@ -1790,12 +1793,17 @@
 }
 .preview {
   width: 100%;
-  max-width: 1280px;
-  height: max(360px, min(840px, 75dvh));
+  max-width: 1600px;
+  height: max(360px, calc(100dvh - 96px));
   margin: auto;
   border: 1px solid #dce4f2;
   border-radius: 12px;
   overflow: clip;
+}
+@media (max-width: 767px) {
+  .preview {
+    height: max(360px, calc(100dvh - 140px));
+  }
 }
 @container fading-app (max-width: 1023px) {
   .sessionGrid {
@@ -2848,6 +2856,35 @@
     align-self: center;
     margin: 0;
     z-index: 1;
+  }
+  .sessionGrid:has(> .figureCard) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+  .sessionGrid > .figureCard {
+    grid-row: 1;
+    position: static;
+    align-self: stretch;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 12px;
+  }
+  .sessionGrid > .figureCard > .figureCanvas {
+    align-items: center;
+  }
+  .sessionGrid > .figureCard .figureCanvas > svg {
+    max-width: 480px;
+    max-height: 360px;
+  }
+  .sessionGrid:has(> .figureCard) > .propositions {
+    grid-row: 1;
+  }
+  .sessionGrid:has(.ankiCard) > .propositions {
+    display: grid;
+    align-content: stretch;
+  }
+  .sessionGrid:has(.ankiCard) .ankiCard {
+    height: 100%;
   }
   .homeColumns:not(:has(.homeMain)) {
     grid-template-columns: minmax(0, 1fr);

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useEffectEvent, useRef } from "react";
 import type { FadingConcept, FadingProposition } from "@/lib/fading/concepts";
 import { FadingMath } from "./FadingMath";
 import { FadingConceptLabel } from "./FadingConceptLabel";
@@ -59,6 +60,29 @@ export function FadingAnkiCard({
   onReveal: () => void;
   onSeen: (value: "1" | "2" | "3") => void;
 }) {
+  const revealButton = useRef<HTMLButtonElement>(null);
+  const reveal = useEffectEvent(onReveal);
+  useEffect(() => {
+    if (revealed || disabled) return;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const schedule = () => {
+      clearTimeout(timer);
+      if (document.visibilityState === "hidden") return;
+      timer = setTimeout(() => {
+        if (!document.querySelector('dialog[open], [role="dialog"]')) reveal();
+      }, 5000);
+    };
+    schedule();
+    document.addEventListener("visibilitychange", schedule);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", schedule);
+    };
+  }, [proposition.id, revealed, disabled]);
+  useEffect(() => {
+    if (!revealed && !disabled)
+      revealButton.current?.focus({ preventScroll: true });
+  }, [proposition.id, revealed, disabled]);
   return (
     <article
       className={`${s.proposition} ${s.singleCard} ${s.ankiCard}`}
@@ -98,7 +122,11 @@ export function FadingAnkiCard({
       ) : (
         <>
           <p className={s.muted}>이 용어의 뜻과 문장을 먼저 떠올려 보세요.</p>
+          <p className={s.small}>
+            5초 뒤 자동으로 문장을 보여줘요 · Enter·Space로 바로 보기
+          </p>
           <button
+            ref={revealButton}
             type="button"
             className={s.primary}
             data-fading-action="true"

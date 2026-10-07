@@ -1,5 +1,6 @@
 import {
   cleanup,
+  act,
   fireEvent,
   render,
   screen,
@@ -16,7 +17,11 @@ import { FadingFillCard } from "@/components/fading/FadingFillCard";
 vi.mock("@/components/math-explorers/ExplorerMath", () => ({
   ExplorerMath: ({ text }: { text: string }) => <>{text}</>,
 }));
-afterEach(cleanup);
+afterEach(() => {
+  cleanup();
+  vi.useRealTimers();
+  vi.restoreAllMocks();
+});
 
 const concept: FadingConcept = {
   id: "card-view-test",
@@ -40,6 +45,93 @@ const concept: FadingConcept = {
 };
 
 describe("카드 앞뒤와 묶음 대조", () => {
+  it("앞면은 5초 뒤 문장만 공개하고 사전 확인은 대신 고르지 않는다", () => {
+    vi.useFakeTimers();
+    vi.spyOn(document, "visibilityState", "get").mockReturnValue("visible");
+    const onReveal = vi.fn();
+    const onSeen = vi.fn();
+    render(
+      <FadingAnkiCard
+        proposition={concept.propositions[0]!}
+        revealed={false}
+        disabled={false}
+        onReveal={onReveal}
+        onSeen={onSeen}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "문장 보기" })).toHaveFocus();
+    act(() => vi.advanceTimersByTime(4999));
+    expect(onReveal).not.toHaveBeenCalled();
+    act(() => vi.advanceTimersByTime(1));
+    expect(onReveal).toHaveBeenCalledOnce();
+    expect(onSeen).not.toHaveBeenCalled();
+  });
+
+  it("새 카드에는 새 5초를 주고, 뒷면과 비활성화 중에는 자동 공개하지 않는다", () => {
+    vi.useFakeTimers();
+    vi.spyOn(document, "visibilityState", "get").mockReturnValue("visible");
+    const onReveal = vi.fn();
+    const props = {
+      revealed: false,
+      disabled: false,
+      onReveal,
+      onSeen: vi.fn(),
+    };
+    const view = render(
+      <FadingAnkiCard {...props} proposition={concept.propositions[0]!} />,
+    );
+    act(() => vi.advanceTimersByTime(4000));
+    view.rerender(
+      <FadingAnkiCard {...props} proposition={concept.propositions[1]!} />,
+    );
+    act(() => vi.advanceTimersByTime(4000));
+    expect(onReveal).not.toHaveBeenCalled();
+    view.rerender(
+      <FadingAnkiCard
+        {...props}
+        proposition={concept.propositions[1]!}
+        disabled
+      />,
+    );
+    act(() => vi.advanceTimersByTime(6000));
+    expect(onReveal).not.toHaveBeenCalled();
+    view.rerender(
+      <FadingAnkiCard
+        {...props}
+        proposition={concept.propositions[1]!}
+        revealed
+      />,
+    );
+    act(() => vi.advanceTimersByTime(6000));
+    expect(onReveal).not.toHaveBeenCalled();
+  });
+
+  it("페이지를 떠나 있으면 공개하지 않고 돌아왔을 때 다시 5초를 준다", () => {
+    vi.useFakeTimers();
+    const visibility = vi
+      .spyOn(document, "visibilityState", "get")
+      .mockReturnValue("visible");
+    const onReveal = vi.fn();
+    render(
+      <FadingAnkiCard
+        proposition={concept.propositions[0]!}
+        revealed={false}
+        disabled={false}
+        onReveal={onReveal}
+        onSeen={vi.fn()}
+      />,
+    );
+    act(() => vi.advanceTimersByTime(4000));
+    visibility.mockReturnValue("hidden");
+    fireEvent(document, new Event("visibilitychange"));
+    act(() => vi.advanceTimersByTime(6000));
+    expect(onReveal).not.toHaveBeenCalled();
+    visibility.mockReturnValue("visible");
+    fireEvent(document, new Event("visibilitychange"));
+    act(() => vi.advanceTimersByTime(5000));
+    expect(onReveal).toHaveBeenCalledOnce();
+  });
+
   it("직접 쓰는 빈칸에는 답의 글이나 길이를 DOM에 넣지 않는다", () => {
     const onBlank = vi.fn();
     const { container } = render(
