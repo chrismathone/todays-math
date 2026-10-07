@@ -1,0 +1,285 @@
+{
+  "source_id": "s5",
+  "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+  "question_anchor_count": 21,
+  "selected_question_numbers": [
+    2,
+    3,
+    15,
+    21
+  ],
+  "selected_note_subtrees_skipped": 4,
+  "stop_offset_after_q21_picture": 99382,
+  "answer_or_solution_records_decoded": false,
+  "questions": [
+    {
+      "question_number": 2,
+      "paragraphs": [
+        {
+          "offset": 16747,
+          "text": "그림은 이차함수  의 그래프를  축의 방향으로 평행이동한 그래프이다. 이 그래프가 점  를 지날 때, 수  의 값은? [ 점]"
+        },
+        {
+          "offset": 18654,
+          "text": "①   ②"
+        },
+        {
+          "offset": 19084,
+          "text": "③   ④"
+        },
+        {
+          "offset": 19512,
+          "text": "⑤"
+        }
+      ],
+      "equations": [
+        {
+          "offset": 17353,
+          "script": "y=2x ^{2}"
+        },
+        {
+          "offset": 17511,
+          "script": "y"
+        },
+        {
+          "offset": 17653,
+          "script": "(-1,~k)"
+        },
+        {
+          "offset": 17807,
+          "script": "k"
+        },
+        {
+          "offset": 17949,
+          "script": "4"
+        },
+        {
+          "offset": 18830,
+          "script": "-6"
+        },
+        {
+          "offset": 18974,
+          "script": "-4"
+        },
+        {
+          "offset": 19260,
+          "script": "-2"
+        },
+        {
+          "offset": 19404,
+          "script": "2"
+        },
+        {
+          "offset": 19652,
+          "script": "4"
+        }
+      ],
+      "pictures": [
+        {
+          "offset": 18531,
+          "stream": "BinData/BIN0002.bmp",
+          "file": "s5-hwp-q2-figure.png",
+          "width": 140,
+          "height": 149,
+          "decompressed_bmp_sha256": "0af60590c936f8095970bcd5cfffef7d36899fc29eb8a87fef09dc58f829dcc7",
+          "rgb_pixels_sha256": "796ccbafd2d6a567a77040ec69a419ea233cac0146efd83debec341bb7c8cd99",
+          "png_sha256": "27f57a2d62675ec77ff15e6365f90a9100dbb1f38049748e4fc4aaf00f4eca5c"
+        }
+      ]
+    },
+    {
+      "question_number": 3,
+      "paragraphs": [
+        {
+          "offset": 20176,
+          "text": "다음은 어떤 이차함수의 그래프에 대한 성질이다. 이 이차함수가  축과 만나는 점의 좌표는? [ 점]"
+        },
+        {
+          "offset": 21421,
+          "text": "∘ 꼭짓점이  축 위에 있다."
+        },
+        {
+          "offset": 21695,
+          "text": "∘ 축의 방정식은  이다."
+        },
+        {
+          "offset": 21971,
+          "text": "∘ 점  을 지나는 포물선이다."
+        },
+        {
+          "offset": 22824,
+          "text": "①   ②"
+        },
+        {
+          "offset": 23330,
+          "text": "③   ④"
+        },
+        {
+          "offset": 23858,
+          "text": "⑤"
+        }
+      ],
+      "equations": [
+        {
+          "offset": 20674,
+          "script": "y"
+        },
+        {
+          "offset": 20816,
+          "script": "4"
+        },
+        {
+          "offset": 21587,
+          "script": "x"
+        },
+        {
+          "offset": 21857,
+          "script": "x=-2"
+        },
+        {
+          "offset": 22139,
+          "script": "(-3,~3)"
+        },
+        {
+          "offset": 23000,
+          "script": "LEFT ( 0,~-18 RIGHT )"
+        },
+        {
+          "offset": 23182,
+          "script": "LEFT ( 0,~-12 RIGHT )"
+        },
+        {
+          "offset": 23506,
+          "script": "LEFT ( 0,~ {12} over {25} RIGHT )"
+        },
+        {
+          "offset": 23712,
+          "script": "LEFT ( 0,~12 RIGHT )"
+        },
+        {
+          "offset": 23998,
+          "script": "LEFT ( 0,~18 RIGHT )"
+        }
+      ],
+      "pictures": []
+    },
+    {
+      "question_number": 15,
+      "paragraphs": [
+        {
+          "offset": 66795,
+          "text": "원 모양 접시의 깨진 조각을 그림과 같이 측정하였다. 이때, 원래 원 모양 접시의 둘레의 길이는? [ 점]"
+        },
+        {
+          "offset": 68072,
+          "text": "①   ②"
+        },
+        {
+          "offset": 68534,
+          "text": "③   ④"
+        },
+        {
+          "offset": 69008,
+          "text": "⑤"
+        }
+      ],
+      "equations": [
+        {
+          "offset": 67367,
+          "script": "4"
+        },
+        {
+          "offset": 68248,
+          "script": "6pi`rmcm"
+        },
+        {
+          "offset": 68404,
+          "script": "8 pi ` rm cm"
+        },
+        {
+          "offset": 68710,
+          "script": "10 pi ` rm cm"
+        },
+        {
+          "offset": 68876,
+          "script": "12 pi ` rm cm"
+        },
+        {
+          "offset": 69148,
+          "script": "16 pi ` rm cm"
+        }
+      ],
+      "pictures": [
+        {
+          "offset": 67949,
+          "stream": "BinData/BIN000C.bmp",
+          "file": "s5-hwp-q15-figure.png",
+          "width": 149,
+          "height": 116,
+          "decompressed_bmp_sha256": "710f7cb43705106c8b5a7f24a5c1c3157ccbcba629fe1ccbd1abf089ce6a5aa3",
+          "rgb_pixels_sha256": "35f4702fa4352e217dae79175f441a59c5f3f019b83dfdf38b23436e9c0b2789",
+          "png_sha256": "7e7a2776fd4f3c2a5fc999cdd33949b27d0797bfa6b6867b526fc3f6503ec895"
+        }
+      ]
+    },
+    {
+      "question_number": 21,
+      "paragraphs": [
+        {
+          "offset": 93328,
+          "text": "[서술형  ] 그림에서  는 반원  의 접선이고, 세 점  는 그 접점이다.  ,  일 때,  의 길이를 구하시오."
+        },
+        {
+          "offset": 98634,
+          "text": "[총  점, 부분 점수 있음]"
+        }
+      ],
+      "equations": [
+        {
+          "offset": 97486,
+          "script": "4"
+        },
+        {
+          "offset": 97628,
+          "script": "rm {bar{AD}} ,~ {bar{BC}} ,~ {bar{CD}}"
+        },
+        {
+          "offset": 97844,
+          "script": "rmO"
+        },
+        {
+          "offset": 97990,
+          "script": "rmA,~B,~E"
+        },
+        {
+          "offset": 98148,
+          "script": "rm {bar{AD}} =10`cm"
+        },
+        {
+          "offset": 98326,
+          "script": "rm {bar{AB}} =12`cm"
+        },
+        {
+          "offset": 98504,
+          "script": "rm {bar{CB}}"
+        },
+        {
+          "offset": 98800,
+          "script": "8"
+        }
+      ],
+      "pictures": [
+        {
+          "offset": 99382,
+          "stream": "BinData/BIN0011.bmp",
+          "file": "s5-hwp-q21-figure.png",
+          "width": 170,
+          "height": 130,
+          "decompressed_bmp_sha256": "df13d950a468361c04b6532e1216668ed4b7c8e4877c8b7614cd5a239d44a463",
+          "rgb_pixels_sha256": "61ec3b38ab7f617b0195676552dd75f8df6b2caa064fb427363fd69dccf369d2",
+          "png_sha256": "8f16c62b5d93ea8c6af29df4d68d1bfa77e93df4dfdaffef59ee463bc6b8a6d1"
+        }
+      ]
+    }
+  ]
+}
