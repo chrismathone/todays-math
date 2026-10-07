@@ -25,6 +25,7 @@ import { PrismaClient } from "@prisma/client";
 // Node 네이티브 TS 실행(strip-types)은 상대 경로에 확장자 명시가 필수
 import { CURRICULUM_UNITS } from "./seed-data/units.ts";
 import { buildUnitCodePrefixes } from "../src/lib/problemCode.ts";
+import { semesterOfUnit } from "../src/lib/curriculum/unitSemester.ts";
 
 const prisma = new PrismaClient();
 
@@ -47,6 +48,9 @@ async function seedUnits(): Promise<void> {
       section: unit.section,
       orderIndex: unit.orderIndex,
       problemCodePrefix: unit.prefix,
+      // 차시의 학기(D-160) — 규칙은 `semesterOfUnit` 한 곳. 이미 차시가 든 DB 는
+      // scripts/qa/apply-source-material-migration.ts 가 같은 규칙으로 채웠다.
+      semester: semesterOfUnit(unit.grade, unit.chapter),
     })),
   });
   console.log(

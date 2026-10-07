@@ -61,6 +61,7 @@
   --src-middle: #b645a4; /* [중]   중등 엔진      — 문항 출처 */
   --src-past-exam: #90325d; /* [기]   기출 추출      — 문항 출처 */
   --src-workbook: #d13559; /* [문]   문제집 추출    — 문항 출처 */
+  --src-school-textbook: #0078b7; /* [교]   교과서 추출    — 문항 출처 (D-160) */
   --src-ai: #7a4920; /* [AI]  AI 생성        — 문항 출처 */
   --src-ai-transformed: #1400fa; /* 변    AI 변형        — 문항 출처 */
   --src-mcq: #5f5521; /* [객]   객관식         — 형식 */
@@ -145,6 +146,7 @@
      ⚠️ 2026-08-27 원장님 지시로 «글자색 → 면색»으로 바뀌었다(05 §8.6 갱신). */
   --color-src-past-exam: var(--src-past-exam);
   --color-src-workbook: var(--src-workbook);
+  --color-src-school-textbook: var(--src-school-textbook);
   --color-src-elem: var(--src-elem);
   --color-src-middle: var(--src-middle);
   --color-src-ai: var(--src-ai);

@@ -65,6 +65,8 @@ const SHAPES = {
   기출: { ...BLANK, source: "past_exam" },
   /** 3,526건 — RPM 교재 이관본. `originProblemId` 가 **널인 것**이 판별자다. */
   문제집: { ...BLANK, source: "transformed" },
+  /** 교과서 출판사 자료 이관본(D-160, 2026-10-07) — 출처 값이 곧 갈래다. 2026-08-25 실측에는 없던 값. */
+  교과서: { ...BLANK, source: "school_textbook" },
   /** 0건 — AI 가 우리 문항을 변형한 것. `transformed` 인데 원본을 가리킨다. */
   AI변형: {
     ...BLANK,
@@ -96,6 +98,7 @@ describe("[출처] 문항 출처 판정 — 기록된 컬럼으로 가른다", (
   it.each([
     ["기출", SHAPES.기출, "past_exam"],
     ["문제집", SHAPES.문제집, "workbook"],
+    ["교과서", SHAPES.교과서, "school_textbook"],
     ["AI변형", SHAPES.AI변형, "ai_transformed"],
     ["AI생성", SHAPES.AI생성, "ai"],
     ["초등", SHAPES.초등, "elem_engine"],
@@ -121,10 +124,11 @@ describe("[출처] 문항 출처 판정 — 기록된 컬럼으로 가른다", (
   });
 
   // 반대쪽 모집단: **분류가 되는 갈래에서 미분류가 나오면 안 된다.**
-  it("분류되는 여섯 모양에서 미분류가 나오지 않는다", () => {
+  it("분류되는 일곱 모양에서 미분류가 나오지 않는다", () => {
     const 분류됨 = [
       SHAPES.기출,
       SHAPES.문제집,
+      SHAPES.교과서,
       SHAPES.AI변형,
       SHAPES.AI생성,
       SHAPES.초등,
@@ -137,6 +141,36 @@ describe("[출처] 문항 출처 판정 — 기록된 컬럼으로 가른다", (
   it("미분류 갈래가 살아 있다 — 실측 764건의 모양이 그대로 미분류를 낸다", () => {
     expect(classifyOrigin(SHAPES.옛수동)).toBe("unknown");
     expect(CENSUS.origin.unknown).toBeGreaterThan(0);
+  });
+
+  // 🔴 교과서는 **출처 값 하나로** 정해진다(D-160). 다른 칸이 이 판정을 바꾸면 열쇠가 둘이 된 것이다 —
+  //    엔진 표지가 붙어도, 원본을 가리켜도 교과서 문항은 교과서 문항이다.
+  it("교과서는 출처 값만으로 정해진다 — 무리 표지 · 원본 참조가 판정을 못 바꾼다", () => {
+    expect(classifyOrigin({ ...SHAPES.교과서, familyKey: "mid:x|y|01" })).toBe(
+      "school_textbook",
+    );
+    expect(
+      classifyOrigin({
+        ...SHAPES.교과서,
+        familyKey: "solo:11111111-2222-4333-8444-555555555555",
+      }),
+    ).toBe("school_textbook");
+    expect(
+      classifyOrigin({
+        ...SHAPES.교과서,
+        originProblemId: "00000000-0000-4000-8000-00000000a001",
+      }),
+    ).toBe("school_textbook");
+    // 문제집(RPM)과 섞이지 않는다 — 둘은 화면에서 다른 라벨이다([교] · [문])
+    expect(provenanceBadges(SHAPES.교과서)[0]).toMatchObject({
+      axis: "origin",
+      text: "교",
+      name: "교과서 추출",
+    });
+    expect(provenanceBadges(SHAPES.문제집)[0]).toMatchObject({
+      axis: "origin",
+      text: "문",
+    });
   });
 });
 
@@ -412,7 +446,7 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
       ...FIGURE_ORIGINS.map((k) => badgeOf("figure", k)),
       ...PROBLEM_FORMATS.map((k) => badgeOf("format", k)),
     ];
-    expect(전량).toHaveLength(15);
+    expect(전량).toHaveLength(16);
     for (const badge of 전량) {
       // 대괄호를 벗겼다(원장님 2026-08-27 배지 지시) — 이제 «글자가 있다」만 본다.
       expect(badge.text).toMatch(/^[^\[\]]+$/);
@@ -423,11 +457,11 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
   });
 
   /**
-   * 🔴 원장님 지시의 본문 — **이름 붙은 갈래 열둘은 색이 전부 달라야 한다.**
+   * 🔴 원장님 지시의 본문 — **이름 붙은 갈래 열셋은 색이 전부 달라야 한다.**
    * 「모른다」 셋은 뜻이 같으므로 한 색을 같이 쓴다. 색값 자체는
    * `provenancePalette.test.ts` 가 `globals.css` 를 읽어 대비·ΔE 로 잰다.
    */
-  it("이름 붙은 열두 갈래의 색 클래스가 서로 다르다", () => {
+  it("이름 붙은 열세 갈래의 색 클래스가 서로 다르다", () => {
     const 이름붙은 = [
       ...PROBLEM_ORIGINS.filter((k) => k !== "unknown").map((k) =>
         badgeOf("origin", k),
@@ -439,8 +473,8 @@ describe("[라벨] 원장님 지시 「색상 전부 다르게」", () => {
         badgeOf("format", k),
       ),
     ].map((b) => b.className);
-    expect(이름붙은).toHaveLength(12);
-    expect(new Set(이름붙은).size).toBe(12);
+    expect(이름붙은).toHaveLength(13);
+    expect(new Set(이름붙은).size).toBe(13);
   });
 
   it("세 축의 「모른다」는 같은 색을 쓴다 — 모른다는 분류가 아니다", () => {
@@ -497,6 +531,8 @@ function shapeFor(axis: string, kind: string): Partial<ProvenanceInput> {
         return { source: "past_exam" };
       case "workbook":
         return { source: "transformed" };
+      case "school_textbook":
+        return { source: "school_textbook" };
       case "ai":
         return { source: "ai_generated" };
       case "ai_transformed":

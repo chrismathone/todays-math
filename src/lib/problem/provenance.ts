@@ -11,7 +11,7 @@
  * ## 축이 셋이고, 셋은 직교한다
  *
  * ```
- *   문항 출처 — 문항 «본문»을 무엇이 만들었나    [기] [문] [초] [중] [AI] [?]
+ *   문항 출처 — 문항 «본문»을 무엇이 만들었나    [기] [문] [교] [초] [중] [AI] [?]
  *   형식      — 「보기를 고르는가 써서 내는가」   [객] [서] [?형식]
  *   그림 출처 — 문항에 붙은 «그림»은 어디서 왔나  [도] [SVG] [스캔] (없으면 라벨 없음)
  * ```
@@ -97,6 +97,12 @@ export function answerIsChoiceNumber(answer: string): boolean {
 export type ProblemOrigin =
   | "past_exam"
   | "workbook"
+  /**
+   * 교과서 — 출판사가 교과서에 딸려 낸 평가 · 수업 자료에서 옮긴 것 — `[교]`.
+   * 원장님 지시 2026-10-07 「문제를 전부 추출해서 문제은행에 넣고 싶은데 '교과서 라벨'을 붙여서」(D-160).
+   * 문제집 `[문]` 과 다른 갈래다 — 출판사 · 저자 · 자료 종류가 `SourceMaterial` 에 기록돼 있다.
+   */
+  | "school_textbook"
   | "elem_engine"
   | "middle_engine"
   | "ai"
@@ -181,6 +187,9 @@ const SCAN_PREFIX = "/figures/";
  */
 export function classifyOrigin(problem: ProvenanceInput): ProblemOrigin {
   if (problem.source === "ai_generated") return "ai";
+  // 교과서는 **출처 값이 곧 갈래**다(D-160) — `transformed` 처럼 다른 칸을 같이 봐야 갈리지 않는다.
+  // 그래서 맨 앞에서 정한다: 무리 표지나 원본 참조가 붙어 있어도 이 판정은 안 바뀐다.
+  if (problem.source === "school_textbook") return "school_textbook";
   if (problem.source === "transformed") {
     // 원본이 우리 DB 에 있으면 **우리 문항을 변형한 것** = AI 변형(D-22 경로).
     // 없으면 교재 이관본이다 — 교재 원본은 애초에 우리 DB 에 없다.
@@ -624,6 +633,11 @@ const ORIGIN_BADGE: Readonly<Record<ProblemOrigin, BadgeFace>> = {
     text: "문",
     name: "문제집 추출",
     className: "bg-src-workbook",
+  },
+  school_textbook: {
+    text: "교",
+    name: "교과서 추출",
+    className: "bg-src-school-textbook",
   },
   elem_engine: {
     text: "초",

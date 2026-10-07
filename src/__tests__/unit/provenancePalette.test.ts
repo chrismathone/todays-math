@@ -214,13 +214,13 @@ describe("[출처 팔레트] 토큰이 실제로 연결되어 있는가", () => 
 });
 
 describe("[출처 팔레트] 원장님 지시 「색상 전부 다르게」 — 재서 지킨다", () => {
-  it("열두 갈래의 색값이 서로 다른 문자열이다", () => {
+  it("열세 갈래의 색값이 서로 다른 문자열이다", () => {
     const hexes = NAMED.map((k) => NAMED_HEX.get(k)!.toLowerCase());
-    expect(hexes).toHaveLength(12);
-    expect(new Set(hexes).size).toBe(12);
+    expect(hexes).toHaveLength(13);
+    expect(new Set(hexes).size).toBe(13);
   });
 
-  it(`열두 갈래가 서로 ΔE2000 >= ${MIN_DELTA_E} 떨어져 있다`, () => {
+  it(`열세 갈래가 서로 ΔE2000 >= ${MIN_DELTA_E} 떨어져 있다`, () => {
     const 가까운짝: string[] = [];
     for (let i = 0; i < NAMED.length; i += 1) {
       for (let j = i + 1; j < NAMED.length; j += 1) {
@@ -273,7 +273,7 @@ describe("[출처 팔레트] 05 §6.1 대비 · §2.2 명도 계단이 아님", 
    * **분류**축이라 계단이면 안 된다 — 곁눈질로 「이게 더 나아간 상태」로 읽힌다.
    * 그래서 여덟 색을 한 띠 안에 가둔다(실측 4.81~7.49, 폭 1.56배).
    */
-  it("열한 색의 대비가 한 띠 안에 있다 — 계단을 만들지 않는다", () => {
+  it("열세 색의 대비가 한 띠 안에 있다 — 계단을 만들지 않는다", () => {
     const ratios = NAMED.map((k) => contrastOnWhite(NAMED_HEX.get(k)!));
     const span = Math.max(...ratios) / Math.min(...ratios);
     expect(span).toBeLessThan(2);
