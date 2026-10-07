@@ -1,0 +1,798 @@
+{
+  "rows": [
+    {
+      "id": "e5-1-6-1-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "도형의 둘레는 도형의 어느 부분의 길이를 말하는지 쓰고, 삼각형이나 사각형 같은 다각형에서는 둘레를 어떻게 구하는지 설명하시오.",
+      "bAnswer": "둘레는 도형의 테두리를 한 바퀴 돈 길이이다. 다각형에서는 모든 변의 길이를 더해서 구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "테두리를 한 바퀴 돈 길이",
+            "가장자리 전체의 길이",
+            "도형을 둘러싼 선의 길이"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 변의 길이를 더한다",
+            "변의 길이의 합"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 테두리 전체의 길이이며 다각형에서는 변의 길이의 합임을 말한다.",
+      "bReason": "제목 '둘레'만으로는 답의 범위가 없어 뜻과 다각형에서 구하는 방법 두 가지로 좁혔다.",
+      "cDecision": "revise",
+      "cAfter": "도형의 테두리를 한 바퀴 돈 길이를 그 도형의 {둘레}라고 한다.",
+      "cReason": "원문 빈칸 '길이의 합'은 '길이'라고 써도 맞아 채점이 흔들리므로 용어 '둘레'를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-c2",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정다각형의 둘레는 변의 길이를 하나씩 더하지 않고 곱셈 한 번으로 구할 수 있습니다. 어떤 두 수를 곱하는지 쓰고, 그렇게 구할 수 있는 까닭을 정다각형의 변의 특징으로 설명하시오.",
+      "bAnswer": "한 변의 길이와 변의 수를 곱한다. 정다각형은 변의 길이가 모두 같아서, 같은 길이를 변의 수만큼 더하는 것과 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변의 길이에 변의 수를 곱한다",
+            "(한 변의 길이)×(변의 수)"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 길이가 모두 같다",
+            "같은 길이를 변의 수만큼 더하는 것이다"
+          ]
+        }
+      ],
+      "bGoal": "정다각형 둘레 식을 변의 길이가 모두 같다는 성질과 연결한다.",
+      "bReason": "공식 이름만 묻는 대신 곱하는 두 수와 근거가 되는 변의 성질을 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "정다각형은 변의 길이가 모두 같으므로 둘레는 (한 변의 길이)$\\times$({변의 수})로 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수",
+            "변의 개수"
+          ]
+        }
+      ],
+      "cReason": "식 전체를 빈칸으로 두면 표기까지 외워 써야 하므로 핵심인 '변의 수'만 비웠다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-c3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 가로와 세로의 길이를 알 때 둘레를 구하는 방법을 쓰고, 가로와 세로를 한 번씩만 더하면 둘레가 되지 않는 까닭을 설명하시오.",
+      "bAnswer": "가로와 세로를 더한 값에 2를 곱한다. 직사각형에는 가로와 길이가 같은 변이 2개, 세로와 길이가 같은 변이 2개 있어서 가로와 세로를 두 번씩 더해야 하기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(가로+세로)×2",
+            "가로×2+세로×2",
+            "가로와 세로를 두 번씩 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로와 같은 변이 2개, 세로와 같은 변이 2개 있다",
+            "마주 보는 변의 길이가 같아 네 변을 모두 더해야 한다"
+          ]
+        }
+      ],
+      "bGoal": "직사각형 둘레 식에서 2배를 하는 까닭을 네 변의 구성으로 설명한다.",
+      "bReason": "원문의 '2배'가 어디서 나오는지를 변의 개수로 설명하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "가로와 세로의 합을 2배 한다는 핵심 하나만 짧게 묻고 답이 '2배'로 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-c4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "평행사변형은 이웃한 두 변의 길이만 알아도 둘레를 구할 수 있습니다. 그 까닭을 평행사변형의 변의 성질로 설명하고, 이웃한 두 변이 $5\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$인 평행사변형의 둘레를 구하시오.",
+      "bAnswer": "평행사변형은 마주 보는 두 변의 길이가 같아서 나머지 두 변도 5 cm, 7 cm이다. 그래서 둘레는 (5+7)×2=24(cm)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마주 보는 변의 길이가 같다",
+            "나머지 두 변도 이웃한 두 변과 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "24 cm"
+          ]
+        }
+      ],
+      "bGoal": "마주 보는 변의 길이가 같다는 성질로 평행사변형의 둘레를 구한다.",
+      "bReason": "xc9와 같은 내용이므로 근거와 계산을 이 문항에 모았다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "이웃한 두 변의 합을 2배 한다는 절차를 '2배' 한 낱말로 확인한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-c5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "마름모는 한 변의 길이만 알아도 둘레를 구할 수 있습니다. 구하는 방법과 그렇게 할 수 있는 까닭을 설명하시오.",
+      "bAnswer": "한 변의 길이에 4를 곱한다. 마름모는 네 변의 길이가 모두 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변의 길이에 4를 곱한다",
+            "한 변의 길이를 4번 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 변의 길이가 모두 같다"
+          ]
+        }
+      ],
+      "bGoal": "마름모의 둘레 식을 네 변의 길이가 같다는 성질과 연결한다.",
+      "bReason": "방법과 근거 두 가지를 질문에 명시했고 답은 질문에 드러내지 않았다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "네 변의 길이가 같다는 조건이 문장에 있고 곱하는 수 4만 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-c6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 같은 두 직사각형은 넓이도 항상 같습니까? 가로 $2\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 가로 $1\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 둘레를 각각 구하고, 한 변이 $1\\,\\mathrm{cm}$인 정사각형이 각각 몇 개 들어가는지 비교하여 설명하시오.",
+      "bAnswer": "항상 같은 것은 아니다. 두 직사각형의 둘레는 모두 12 cm이지만, 한 변이 1 cm인 정사각형이 앞의 것에는 8개, 뒤의 것에는 5개 들어가므로 넓이가 다르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 같지는 않다",
+            "넓이는 다를 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 둘 다 12 cm"
+          ]
+        },
+        {
+          "anyOf": [
+            "정사각형이 8개와 5개 들어간다",
+            "넓이가 8과 5로 다르다"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 같아도 넓이는 다를 수 있음을 직접 구한 예로 보인다.",
+      "bReason": "이 소단원에서는 넓이 공식을 아직 배우지 않았을 수 있어 1 cm 정사각형의 개수로 비교하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $2\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 가로 $1\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 둘레는 둘 다 {$12$}$\\,\\mathrm{cm}$이다. 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 채우면 앞의 것은 $8$개, 뒤의 것은 {$5$}개가 들어가므로 두 직사각형의 넓이는 서로 {다르다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "12"
+          ]
+        },
+        {
+          "anyOf": [
+            "5"
+          ]
+        },
+        {
+          "anyOf": [
+            "다르다",
+            "같지 않다"
+          ]
+        }
+      ],
+      "cReason": "원문은 바로 뒤 문장이 '넓이는 다르다'고 알려 주어 빈칸 답을 베끼게 되므로 직접 구해 판단하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "정다각형은 어떤 다각형인지 변과 각에 대한 조건을 모두 써서 설명하시오. 또 네 변의 길이가 모두 같은 마름모가 항상 정다각형인 것은 아닌 까닭을 쓰시오.",
+      "bAnswer": "정다각형은 변의 길이가 모두 같고 각의 크기도 모두 같은 다각형이다. 마름모는 변의 길이는 모두 같지만 각의 크기가 모두 같지 않을 수 있어서 항상 정다각형인 것은 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "변의 길이가 모두 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각의 크기가 모두 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "마름모는 각의 크기가 모두 같지 않을 수 있다",
+            "마름모는 네 각이 모두 직각이 아닐 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "정다각형의 두 조건을 모두 말하고 한 조건만 맞는 도형과 구별한다.",
+      "bReason": "변의 조건만 쓰고 각의 조건을 빠뜨리기 쉬워 마름모를 반례로 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "정다각형은 {변}의 길이가 모두 같고 {각}의 크기가 모두 같은 다각형이다.",
+      "cReason": "원문은 긴 구절 빈칸 두 개의 순서가 바뀌어도 맞아 채점이 모호하므로 낱말 하나씩으로 고정했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "모든 변의 길이를 더해 둘레를 구하는 방법을 확인한다.",
+      "bReason": "c1의 B가 둘레의 뜻과 변의 길이를 모두 더하는 방법을 이미 묻고, 3+4+5는 단순 계산이다.",
+      "exclusionReason": "B는 e5-1-6-1-c1과 중복된다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "더하는 대상이 '모든 변의 길이'임을 짧게 묻는 문장으로 쓸모가 있다.",
+      "synonymNotes": "'변의 길이', '모든 변'도 같은 뜻으로 인정한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc3",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정삼각형의 둘레를 한 변의 길이의 3배로 구한다.",
+      "bReason": "c2의 정다각형 둘레를 변이 3개인 경우에 적용한 것이라 서술형으로 물을 새 내용이 없다.",
+      "exclusionReason": "B는 e5-1-6-1-c2의 특수한 경우로 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "한 변의 길이가 $6\\,\\mathrm{cm}$인 정삼각형의 둘레는 $6\\times${$3$}$=${$18$}$(\\mathrm{cm})$이다.",
+      "cReason": "식 전체를 빈칸으로 쓰게 하는 대신 실제 길이로 곱하는 수와 결과를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc4",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정사각형의 둘레를 한 변의 길이의 4배로 구한다.",
+      "bReason": "c2와 c5의 B에서 같은 식과 근거를 이미 설명하게 한다.",
+      "exclusionReason": "B는 e5-1-6-1-c2, e5-1-6-1-c5와 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "한 변의 길이가 $9\\,\\mathrm{cm}$인 정사각형의 둘레는 $9\\times${$4$}$=${$36$}$(\\mathrm{cm})$이다.",
+      "cReason": "식 표기를 통째로 쓰는 빈칸을 실제 계산의 짧은 수 두 개로 바꾸었다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc5",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정육각형의 둘레를 한 변의 길이의 6배로 구한다.",
+      "bReason": "변의 수만 6으로 바뀐 c2의 적용이라 별도 서술형의 가치가 낮다.",
+      "exclusionReason": "B는 e5-1-6-1-c2의 특수한 경우로 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "한 변의 길이가 $5\\,\\mathrm{cm}$인 정육각형의 둘레는 $5\\times${$6$}$=${$30$}$(\\mathrm{cm})$이다.",
+      "cReason": "원문은 앞에 '변이 6개'라고 알려 준 뒤 식 전체를 쓰게 하므로 도형 이름에서 변의 수를 떠올려 계산하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc6",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "둘레를 길이의 단위로 나타냄을 안다.",
+      "bReason": "둘레가 길이라는 점은 c1에서 다루고, 단위 이름을 대는 것만으로는 설명할 내용이 없다.",
+      "exclusionReason": "B와 C 모두 자명한 내용이다. 넓이의 단위를 배운 뒤 그것과 견주는 문항으로 다루는 편이 낫다(대체 ID는 이 소단원 안에서 확인되지 않음).",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답 'cm, m'은 mm, km 등 다른 길이 단위도 맞아 한 가지로 정해지지 않는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc7",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "직사각형에서 마주 보는 변의 길이가 같음을 확인한다.",
+      "bReason": "c3의 B가 이 성질을 둘레 식의 까닭으로 이미 요구한다.",
+      "exclusionReason": "B는 e5-1-6-1-c3의 근거 부분과 중복된다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "직사각형 둘레 식의 바탕이 되는 성질을 '같다' 한 낱말로 확인하는 짧은 문장이다.",
+      "synonymNotes": "'같습니다', '똑같다'도 인정한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc8",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정다각형의 이름에서 변의 수를 알아내 둘레 계산에 쓴다.",
+      "bReason": "변의 수를 세어 곱한다는 내용은 c2의 B와 같다.",
+      "exclusionReason": "B는 e5-1-6-1-c2와 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "정팔각형은 변이 {$8$}개이므로 한 변의 길이가 $3\\,\\mathrm{cm}$이면 둘레는 {$24$}$\\,\\mathrm{cm}$이다.",
+      "cReason": "'곱한다'는 c2와 겹치므로 도형 이름에서 변의 수를 읽어 계산하는 문장으로 바꾸었다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc9",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "마주 보는 변의 길이가 같아 이웃한 두 변만으로 둘레를 구할 수 있음을 안다.",
+      "bReason": "같은 근거와 같은 수(5 cm, 7 cm)의 계산을 c4의 B에 넣었다.",
+      "exclusionReason": "B는 e5-1-6-1-c4와 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "평행사변형에서 마주 보는 두 변의 길이는 서로 {같다}. 그래서 이웃한 두 변의 길이만 알면 둘레를 구할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '길이가 같아'는 문장 중간의 어미까지 맞춰야 해서 성질만 답하도록 문장을 나누었다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정다각형의 둘레와 변의 수를 알 때 한 변의 길이를 구하는 방법을 쓰고, 그렇게 구할 수 있는 까닭을 설명하시오. 또 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이를 구하시오.",
+      "bAnswer": "둘레를 변의 수로 나눈다. 정다각형은 변의 길이가 모두 같아서 둘레를 변의 수만큼 똑같이 나눈 것이 한 변이기 때문이다. 정오각형의 한 변은 40÷5=8(cm)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레를 변의 수로 나눈다",
+            "둘레÷변의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 길이가 모두 같다",
+            "둘레는 한 변의 길이에 변의 수를 곱한 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "8 cm"
+          ]
+        }
+      ],
+      "bGoal": "정다각형의 둘레에서 거꾸로 한 변의 길이를 구하고 그 근거를 말한다.",
+      "bReason": "나눗셈을 쓰는 까닭을 변의 길이가 같다는 성질과 연결하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "정다각형의 한 변의 길이는 둘레를 {변의 수}로 나누어 구한다. 둘레가 $40\\,\\mathrm{cm}$인 정오각형의 한 변의 길이는 {$8$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수",
+            "변의 개수"
+          ]
+        },
+        {
+          "anyOf": [
+            "8"
+          ]
+        }
+      ],
+      "cReason": "'변의 수로 나누면'이라는 구절 빈칸을 낱말과 계산값으로 나누었다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 둘레와 가로의 길이를 알 때 세로의 길이를 구하는 방법을 순서대로 설명하고, 둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형의 세로를 구하시오.",
+      "bAnswer": "둘레를 2로 나누면 가로와 세로의 합이 되고, 여기서 가로를 빼면 세로이다. 30÷2=15, 15-9=6이므로 세로는 6 cm이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레를 2로 나눈 값에서 가로를 뺀다",
+            "둘레에서 가로의 2배를 뺀 뒤 2로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "6 cm"
+          ]
+        }
+      ],
+      "bGoal": "직사각형의 둘레 식을 거꾸로 써서 모르는 변의 길이를 구한다.",
+      "bReason": "두 가지 풀이 순서를 모두 인정하도록 방법만 묻고 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "둘레가 $30\\,\\mathrm{cm}$, 가로가 $9\\,\\mathrm{cm}$인 직사각형에서 가로와 세로의 합은 $30\\div2=${$15$}$(\\mathrm{cm})$이므로 세로는 {$6$}$\\,\\mathrm{cm}$이다.",
+      "cReason": "'가로를 빼면'이라는 구절 대신 둘레의 절반이 가로와 세로의 합임을 실제 수로 확인하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc12",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정사각형과 마름모의 둘레를 같은 식으로 구함을 안다.",
+      "bReason": "네 변의 길이가 같아 4를 곱한다는 설명은 c5의 B와 같다.",
+      "exclusionReason": "B는 e5-1-6-1-c5와 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "한 변의 길이가 $7\\,\\mathrm{cm}$인 정사각형의 둘레와 한 변의 길이가 $7\\,\\mathrm{cm}$인 마름모의 둘레는 둘 다 {$28$}$\\,\\mathrm{cm}$로 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "28"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '같은 방법'은 뜻이 막연하므로 한 변의 길이가 같으면 둘레도 같다는 것을 수로 확인하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 둘레를 구하는 두 식 (가로)$\\times2+$(세로)$\\times2$와 ((가로)$+$(세로))$\\times2$는 값이 같습니다. 두 식이 각각 직사각형의 네 변을 어떻게 묶어서 더한 것인지 설명하시오.",
+      "bAnswer": "앞의 식은 가로 2개를 묶고 세로 2개를 묶어서 더한 것이다. 뒤의 식은 가로 1개와 세로 1개를 한 묶음으로 하여 그런 묶음 2개를 더한 것이다. 둘 다 네 변을 모두 더한 것이므로 값이 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 식은 가로끼리 2개, 세로끼리 2개를 묶어 더한 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒤의 식은 가로 하나와 세로 하나를 묶은 것이 2묶음이다"
+          ]
+        }
+      ],
+      "bGoal": "두 식이 같은 네 변을 다르게 묶어 더한 것임을 설명한다.",
+      "bReason": "c3는 2배의 까닭을 묻고, 이 문항은 묶는 방법을 지정해 두 식의 관계를 묻도록 구별했다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $7\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 둘레는 $7\\times2+3\\times2=${$20$}$(\\mathrm{cm})$이고, $(7+3)\\times${$2$}로 구해도 값이 같다.",
+      "cReason": "괄호가 겹친 식 전체를 빈칸으로 쓰게 하면 표기 암기가 되므로 수를 넣어 두 식의 값이 같음을 확인하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 같은 정다각형들에서 변의 수가 많아지면 한 변의 길이는 어떻게 되는지 쓰고, 그 까닭을 한 변의 길이를 구하는 계산과 관련지어 설명하시오. 또 둘레가 $24\\,\\mathrm{cm}$인 정삼각형과 정육각형의 한 변의 길이를 각각 구하시오.",
+      "bAnswer": "한 변의 길이는 짧아진다. 같은 둘레를 더 큰 수로 나누면 몫이 작아지기 때문이다. 정삼각형의 한 변은 24÷3=8(cm), 정육각형의 한 변은 24÷6=4(cm)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변의 길이가 짧아진다",
+            "한 변의 길이가 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 둘레를 더 큰 수로 나누게 된다",
+            "같은 길이를 더 많은 변으로 똑같이 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "8 cm와 4 cm"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 일정할 때 변의 수와 한 변의 길이의 관계를 나눗셈으로 설명한다.",
+      "bReason": "결론만 외우지 않도록 나누는 수가 커진다는 근거와 수 예를 함께 요구했다.",
+      "cDecision": "revise",
+      "cAfter": "둘레가 같으면 변의 수가 많은 정다각형일수록 한 변의 길이가 {짧다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "짧다",
+            "짧아진다",
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '한 변이 짧다'는 구절 전체를 써야 해서 비교하는 낱말 하나만 남겼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc15",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "변의 길이가 m와 cm로 섞여 주어진 도형의 둘레를 구할 때 변의 길이를 더하기 전에 먼저 해야 할 일을 쓰고, 가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레는 몇 cm인지 구하시오.",
+      "bAnswer": "길이를 같은 단위로 바꾼다. 1 m=100 cm이므로 둘레는 (100+40)×2=280(cm)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 단위로 바꾼다",
+            "단위를 하나로 맞춘다"
+          ]
+        },
+        {
+          "anyOf": [
+            "280 cm"
+          ]
+        }
+      ],
+      "bGoal": "단위가 다른 길이를 같은 단위로 고친 뒤 둘레를 구한다.",
+      "bReason": "1+40으로 잘못 더하는 오류를 겨냥해 먼저 할 일과 실제 계산을 함께 물었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $1\\,\\mathrm{m}$, 세로 $40\\,\\mathrm{cm}$인 직사각형의 둘레를 $\\mathrm{cm}$로 구하려면 먼저 $1\\,\\mathrm{m}$를 {$100$}$\\,\\mathrm{cm}$로 바꾼다. 둘레는 $(100+40)\\times2=${$280$}$(\\mathrm{cm})$이다.",
+      "cReason": "'같은 단위로 바꾼'이라는 구절을 외우게 하는 대신 실제로 단위를 바꾸어 계산하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 한 가지뿐입니까? 가로와 세로의 합이 얼마여야 하는지 쓰고, 가로와 세로의 길이가 서로 다른 직사각형의 예를 두 가지 드시오.",
+      "bAnswer": "한 가지뿐이 아니다. 가로와 세로의 합이 10 cm이면 되므로, 예를 들어 가로 6 cm·세로 4 cm, 가로 7 cm·세로 3 cm인 직사각형이 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 가지가 아니다",
+            "여러 가지가 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로와 세로의 합이 10 cm"
+          ]
+        },
+        {
+          "anyOf": [
+            "합이 10 cm가 되는 가로·세로 쌍 두 가지"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 정해져도 가로와 세로의 합만 정해질 뿐 직사각형은 여러 가지임을 보인다.",
+      "bReason": "'여러 가지'라는 말만 답하지 않도록 조건(합 10 cm)과 예 두 가지를 요구했다.",
+      "cDecision": "revise",
+      "cAfter": "둘레가 $20\\,\\mathrm{cm}$인 직사각형은 가로와 세로의 합이 {$10$}$\\,\\mathrm{cm}$이면 되므로, 가로 $6\\,\\mathrm{cm}$·세로 $4\\,\\mathrm{cm}$, 가로 $7\\,\\mathrm{cm}$·세로 {$3$}$\\,\\mathrm{cm}$처럼 여러 가지가 있다.",
+      "cReason": "원문 빈칸 '여러 가지'는 수학 내용 없이 낱말만 맞히게 되어 합의 조건과 예를 채우게 했다.",
+      "synonymNotes": "B의 예는 합이 10 cm인 쌍이면 모두 정답이다. 5 cm·5 cm인 정사각형도 직사각형이므로 인정한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc17",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 꼭 맞게 붙여 직사각형을 만들었습니다. 이 직사각형의 둘레는 두 정사각형의 둘레를 더한 값과 같은지 다른지 쓰고, 그 까닭을 맞닿은 변과 관련지어 설명한 뒤 직사각형의 둘레를 구하시오.",
+      "bAnswer": "다르다(더 짧다). 맞닿은 변은 도형의 안쪽에 있어 테두리가 아니므로 둘레에 들어가지 않는다. 두 정사각형의 둘레의 합 24 cm에서 맞닿은 변 2개(6 cm)가 빠져 18 cm이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다르다",
+            "두 둘레의 합보다 짧다"
+          ]
+        },
+        {
+          "anyOf": [
+            "맞닿은 변은 테두리가 아니다",
+            "맞닿은 변은 안쪽에 있어 둘레에 넣지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "18 cm"
+          ]
+        }
+      ],
+      "bGoal": "이어 붙이면 맞닿은 변이 둘레에서 빠진다는 것을 예로 설명한다.",
+      "bReason": "두 둘레를 그냥 더하는 오류를 직접 비교하게 하고 설명할 대상을 맞닿은 변으로 정했다.",
+      "cDecision": "revise",
+      "cAfter": "한 변이 $3\\,\\mathrm{cm}$인 정사각형 두 개를 한 변끼리 붙여 만든 직사각형은 가로 {$6$}$\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$이므로 둘레는 {$18$}$\\,\\mathrm{cm}$이다. 맞닿은 변은 테두리가 아니므로 둘레에 넣지 않는다.",
+      "cReason": "'둘레에서 빠진다'는 구절 빈칸을 붙인 도형의 실제 변의 길이와 둘레를 구하는 빈칸으로 바꾸었다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "길이가 $36\\,\\mathrm{cm}$인 철사를 남김없이, 겹치지 않게 써서 정육각형을 만들었습니다. 철사의 길이는 이 정육각형의 무엇과 같은지 쓰고, 한 변의 길이를 구하는 과정을 설명하시오.",
+      "bAnswer": "철사의 길이는 정육각형의 둘레와 같다. 정육각형은 길이가 같은 변이 6개이므로 한 변은 36÷6=6(cm)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "36÷6=6이므로 6 cm",
+            "둘레를 6으로 나누어 6 cm"
+          ]
+        }
+      ],
+      "bGoal": "철사 상황에서 철사의 길이가 둘레임을 알아보고 한 변의 길이를 구한다.",
+      "bReason": "상황을 둘레로 바꾸어 읽는 것이 목표이므로 조건을 갖춘 장면과 구할 것을 함께 제시했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "'남김없이'라는 조건이 문장에 있고 철사의 길이가 둘레라는 연결을 한 낱말로 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc19",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "한 변이 $6\\,\\mathrm{cm}$인 정사각형을 만든 끈을 풀어서 남김없이, 겹치지 않게 정삼각형 하나를 만들었습니다. 두 도형에서 서로 같은 것은 무엇인지 쓰고, 정삼각형의 한 변의 길이를 구하는 과정을 설명하시오.",
+      "bAnswer": "두 도형의 둘레가 같다. 정사각형의 둘레는 6×4=24(cm)이고, 정삼각형의 둘레도 24 cm이므로 한 변은 24÷3=8(cm)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레가 같다",
+            "끈의 길이가 같아 둘레가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 24 cm"
+          ]
+        },
+        {
+          "anyOf": [
+            "8 cm"
+          ]
+        }
+      ],
+      "bGoal": "같은 끈으로 만든 두 도형의 둘레가 같음을 이용해 다른 도형의 변을 구한다.",
+      "bReason": "둘레를 구하고 다시 나누는 두 단계를 설명하게 하여 단순 계산 문항이 되지 않게 했다.",
+      "cDecision": "revise",
+      "cAfter": "같은 끈을 남김없이, 겹치지 않게 테두리로 쓴 두 도형은 모양이 달라도 {둘레}가 같다.",
+      "cReason": "빈칸을 '둘레가 같다' 구절에서 낱말 '둘레'로 줄였고 조건은 그대로 두었다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 한 귀퉁이를 작은 직사각형 모양으로 잘라 내어 ㄱ자 모양 도형을 만들었습니다. 이 도형의 둘레는 처음 직사각형의 둘레와 비교하여 어떠한지 쓰고, 잘려 없어진 변과 새로 생긴 변의 길이를 비교하여 까닭을 설명하시오.",
+      "bAnswer": "처음 직사각형의 둘레와 같은 26 cm이다. 잘려 없어진 가로 부분과 세로 부분의 길이만큼 안쪽에 길이가 같은 새 변이 두 개 생기기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 직사각형의 둘레와 같다",
+            "26 cm로 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "없어진 변의 길이와 새로 생긴 변의 길이가 같다",
+            "잘린 만큼 같은 길이의 변이 새로 생긴다"
+          ]
+        }
+      ],
+      "bGoal": "귀퉁이를 잘라도 둘레가 변하지 않는 까닭을 변의 길이를 비교해 설명한다.",
+      "bReason": "잘라 내면 둘레가 줄어든다고 생각하기 쉬워 비교할 대상을 없어진 변과 새 변으로 정해 주었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형의 한 귀퉁이를 직사각형 모양으로 잘라 낸 ㄱ자 도형의 둘레는 처음 직사각형의 둘레와 {같은} {$26$}$\\,\\mathrm{cm}$이다. 잘려 없어진 두 변의 길이만큼 새 변이 생기기 때문이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        },
+        {
+          "anyOf": [
+            "26"
+          ]
+        }
+      ],
+      "cReason": "원문은 빈칸 답 '둘레'가 같은 문장에 그대로 나와 베낄 수 있으므로 비교 결과와 값을 답하게 했다.",
+      "exampleNeeded": true,
+      "exampleReason": "글만으로는 잘린 모양을 떠올리기 어렵다. 가로 8 cm, 세로 5 cm 직사각형의 오른쪽 위 귀퉁이에서 가로 3 cm, 세로 2 cm 직사각형을 잘라 낸 ㄱ자 도형 그림이 필요하며, 없어진 변은 점선으로, 새로 생긴 두 변은 굵은 선으로 표시한다."
+    },
+    {
+      "id": "e5-1-6-1-xc21",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정사각형의 한 변의 길이를 2배로 늘려 새 정사각형을 만들면 둘레는 처음의 몇 배가 되는지 쓰고, 그 까닭을 네 변의 길이와 관련지어 설명하시오.",
+      "bAnswer": "2배가 된다. 네 변이 모두 2배씩 길어지므로 네 변의 길이의 합도 2배가 되기 때문이다. 예를 들어 한 변이 3 cm에서 6 cm가 되면 둘레는 12 cm에서 24 cm가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "2배"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 변이 모두 2배가 되어 합도 2배가 된다",
+            "(한 변×2)×4는 (한 변×4)×2와 같다"
+          ]
+        }
+      ],
+      "bGoal": "한 변의 길이가 2배가 되면 둘레도 2배가 되는 까닭을 설명한다.",
+      "bReason": "4배라고 잘못 답하기 쉬운 내용이라 배수와 근거를 함께 물었고, 예는 선택 사항이라 필수 기준에서 뺐다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "조건과 결과가 한 문장에 분명하고 답이 수 하나(2)로 정해진다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc22",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "울타리 길이를 구하는 상황이 둘레를 구하는 것임을 알아본다.",
+      "bReason": "상황을 둘레로 읽는 판단은 xc18의 B에서 하고, 남는 것은 (12+8)×2 계산 하나뿐이다.",
+      "exclusionReason": "B는 e5-1-6-1-xc18과 같은 유형이고 단순 계산이다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $12\\,\\mathrm{m}$, 세로 $8\\,\\mathrm{m}$인 직사각형 모양 밭의 가장자리를 따라 한 바퀴 치는 울타리의 길이는 밭의 {둘레}와 같으므로 {$40$}$\\,\\mathrm{m}$이다.",
+      "cReason": "원문은 '땅 둘레에'라는 말에 빈칸 답이 이미 들어 있어 '가장자리를 따라 한 바퀴'로 풀어 쓰고 값도 구하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc23",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정다각형의 둘레와 한 변의 길이를 알 때 어떤 정다각형인지 알아내는 방법을 설명하고, 한 변이 $4\\,\\mathrm{cm}$, 둘레가 $28\\,\\mathrm{cm}$인 정다각형의 이름을 쓰시오.",
+      "bAnswer": "둘레를 한 변의 길이로 나누면 변의 수가 나온다. 28÷4=7이므로 변이 7개인 정칠각형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레를 한 변의 길이로 나누어 변의 수를 구한다",
+            "한 변의 길이에 몇을 곱해야 둘레가 되는지 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정칠각형"
+          ]
+        }
+      ],
+      "bGoal": "둘레와 한 변의 길이로 변의 수를 구해 정다각형의 이름을 정한다.",
+      "bReason": "제목만으로는 무엇이 주어지는지 알 수 없어 조건을 질문에 넣고 방법과 예의 답을 함께 요구했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "나눗셈의 몫이 무엇을 뜻하는지를 '변의 수' 한 낱말로 묻는 분명한 문장이다.",
+      "synonymNotes": "'변의 개수'도 인정한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-1-xc24",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 사각형의 둘레를 각각 구해 길이를 비교한다.",
+      "bReason": "'각각 구해 비교한다'는 당연한 행동 안내라 설명할 개념이 없고, 계산은 c4·c5로 충분하다.",
+      "exclusionReason": "B는 자명한 절차 안내이며 계산은 e5-1-6-1-c4, e5-1-6-1-c5와 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "한 변이 $6\\,\\mathrm{cm}$인 마름모의 둘레는 {$24$}$\\,\\mathrm{cm}$, 이웃한 두 변이 $5\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 평행사변형의 둘레는 {$26$}$\\,\\mathrm{cm}$이므로 {평행사변형}의 둘레가 더 길다.",
+      "cReason": "'둘레를 각각 구해'라는 구절을 외우는 대신 두 둘레를 실제로 구해 비교하게 했다.",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "c6은 넓이 공식을 배우기 전 소단원에 있어 B와 C 모두 한 변이 1 cm인 정사각형의 개수로 넓이를 비교하게 했으며, 배치 순서 확인이 필요하다.",
+    "xc3·xc4·xc5·xc8·xc12는 c2·c5의 적용이라 B를 제외하고 C만 수 계산 문장으로 남겼고, xc20은 ㄱ자 도형 그림이 있어야 한다."
+  ]
+}

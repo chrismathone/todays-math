@@ -1,0 +1,3979 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T08:04:27.912799+00:00",
+  "rows": [
+    {
+      "id": "e5-2-6-3-xc9",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "절반이 칠해진 회전판에서 그 색에 멈출 가능성이 반반임을 안다.",
+      "bReason": "절반을 칠하면 반반이라는 관계는 xc16의 B에서 칸 수와 까닭까지 묻는다.",
+      "exclusionReason": "B 제외: xc16(가능성이 $\\frac{1}{2}$인 회전판 만들기)과 같은 관계이다. 대체 ID: e5-2-6-3-xc16.",
+      "cDecision": "keep",
+      "cAfter": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 {반반이다}.",
+      "cReason": "각 칸에 멈출 가능성이 같다는 조건과 절반이라는 정보가 모두 문장에 있다.",
+      "synonymNotes": "'반반', '반반이다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1610,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc9",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "절반을 칠한 회전판",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 {반반이다}.",
+        "studentC": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 □.",
+        "answers": [
+          "반반이다"
+        ]
+      },
+      "sourceFingerprint": "73ba2abdef9f925bdd31b49c41b58ded93ca1c3e08302d0161ffa0ad75edae86",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 {반반이다}.",
+      "cFrozenStudentSentence": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 □.",
+      "cProposedAnswers": [
+        "반반이다"
+      ],
+      "cStudentAfter": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반반이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 {반반이다}.",
+      "cStudentSentence": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "반반이다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각 칸에 멈출 가능성이 같은 회전판에서 전체 칸의 절반이 빨간색이면, 빨간색에 멈출 가능성은 {반반이다}.",
+        "acceptedAnswers": [
+          [
+            "반반이다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc16(가능성이 $\\frac{1}{2}$인 회전판 만들기)과 같은 관계이다. 대체 ID: e5-2-6-3-xc16."
+      },
+      "proposalFingerprint": "37149b92019eda6194c5b775f835b763d92e756440bfea509274f629c1f47f08",
+      "questionRevision": "planning-e5e6-20261006-37149b92019e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc10",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "흰 공만 들어 있는 주머니에서 공 한 개를 꺼낼 때 검은 공이 나올 가능성을 말과 수로 각각 나타내고, 그 까닭을 설명하시오.",
+      "bAnswer": "말로는 불가능하다, 수로는 $0$이다. 주머니에 검은 공이 없어 검은 공은 절대로 나올 수 없기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "불가능하다",
+            "불가능"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "주머니에 검은 공이 없다",
+            "검은 공은 절대로 나올 수 없다"
+          ]
+        }
+      ],
+      "bGoal": "없는 결과의 가능성을 '불가능하다'와 $0$으로 나타내고 근거를 댄다.",
+      "bReason": "말 표현과 수 표현을 함께 연결하게 해 xc3의 내용까지 맡겼다.",
+      "cDecision": "keep",
+      "cAfter": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 {$0$}이다.",
+      "cReason": "'흰 공만'이라는 조건이 분명하고 답이 수 하나이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1611,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc10",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "없는 공을 꺼낼 가능성",
+        "kind": "성질",
+        "level": "중",
+        "definition": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 {$0$}이다.",
+        "studentC": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 □이다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "sourceFingerprint": "668c0feb67417e7d48480a7597830e577b4240409d81c7cba56fb58f9c85f8d9",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 {$0$}이다.",
+      "cFrozenStudentSentence": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 □이다.",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 {$0$}이다.",
+      "cStudentSentence": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "흰 공만 들어 있는 주머니에서 공 한 개를 꺼낼 때 검은 공이 나올 가능성을 말과 수로 각각 나타내고, 그 까닭을 설명하시오.",
+        "answer": "말로는 불가능하다, 수로는 $0$이다. 주머니에 검은 공이 없어 검은 공은 절대로 나올 수 없기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "불가능하다",
+              "불가능"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "주머니에 검은 공이 없다",
+              "검은 공은 절대로 나올 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "흰 공만 든 주머니에서 검은 공을 꺼낼 가능성은 수로 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4b3def613b32473f677d78357e885823900da8648c40c69ae834d691df2e6d7a",
+      "questionRevision": "planning-e5e6-20261006-4b3def613b32",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc11",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "가능성을 $0$부터 $1$까지의 수로 나타낼 때, 그 수의 크기와 일이 일어나기 쉬운 정도는 어떤 관계인지 쓰시오.",
+      "bAnswer": "수가 클수록(즉 $1$에 가까울수록) 일이 일어나기 쉽고, 수가 작을수록(즉 $0$에 가까울수록) 일어나기 어렵다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수가 클수록 일어나기 쉽다",
+            "$1$에 가까울수록 일어나기 쉽다",
+            "수가 작을수록 일어나기 어렵다",
+            "$0$에 가까울수록 일어나기 어렵다"
+          ]
+        }
+      ],
+      "bGoal": "가능성을 나타낸 수가 클수록 일어나기 쉽다는 관계를 쓴다.",
+      "bReason": "제목을 그대로 쓰지 않고 수의 크기와 일어나기 쉬운 정도의 관계로 물음을 좁혔다.",
+      "cDecision": "revise",
+      "cAfter": "수로 나타낸 가능성이 $0$에 가까울수록 그 일은 일어나기 {어렵고}, $1$에 가까울수록 일어나기 {쉽다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "어렵고",
+            "어렵다",
+            "힘들고"
+          ]
+        },
+        {
+          "anyOf": [
+            "쉽다",
+            "쉬움"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '$1$에 가까울수록'은 긴 구절이라 양 끝을 대비해 짧은 낱말로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1612,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc11",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "수로 나타낸 가능성의 크기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "수로 나타낸 가능성이 {$1$에 가까울수록} 그 일이 일어나기 쉽다.",
+        "studentC": "수로 나타낸 가능성이 □ 그 일이 일어나기 쉽다.",
+        "answers": [
+          "$1$에 가까울수록"
+        ]
+      },
+      "sourceFingerprint": "6f17a77b14d9a8845f3b511b14b4a007de45206573104c919b4594162fce9d76",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "어렵고",
+        "쉽다"
+      ],
+      "cStudentAfter": "수로 나타낸 가능성이 $0$에 가까울수록 그 일은 일어나기 □, $1$에 가까울수록 일어나기 □.",
+      "cMarkedSentence": "수로 나타낸 가능성이 $0$에 가까울수록 그 일은 일어나기 {어렵고}, $1$에 가까울수록 일어나기 {쉽다}.",
+      "cStudentSentence": "수로 나타낸 가능성이 $0$에 가까울수록 그 일은 일어나기 □, $1$에 가까울수록 일어나기 □.",
+      "cSlotAnswers": [
+        {
+          "key": "어렵고",
+          "equivalents": [
+            "어렵다",
+            "힘들고"
+          ]
+        },
+        {
+          "key": "쉽다",
+          "equivalents": [
+            "쉬움"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가능성을 $0$부터 $1$까지의 수로 나타낼 때, 그 수의 크기와 일이 일어나기 쉬운 정도는 어떤 관계인지 쓰시오.",
+        "answer": "수가 클수록(즉 $1$에 가까울수록) 일이 일어나기 쉽고, 수가 작을수록(즉 $0$에 가까울수록) 일어나기 어렵다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수가 클수록 일어나기 쉽다",
+              "$1$에 가까울수록 일어나기 쉽다",
+              "수가 작을수록 일어나기 어렵다",
+              "$0$에 가까울수록 일어나기 어렵다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수로 나타낸 가능성이 $0$에 가까울수록 그 일은 일어나기 {어렵고}, $1$에 가까울수록 일어나기 {쉽다}.",
+        "acceptedAnswers": [
+          [
+            "어렵고",
+            "어렵다",
+            "힘들고"
+          ],
+          [
+            "쉽다",
+            "쉬움"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "50e397de745ce9ec7ec0ae0842d000a41dd827fa92a2cac0399eb41798beea31",
+      "questionRevision": "planning-e5e6-20261006-50e397de745c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc12",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 색 공의 개수가 같으면 한 색을 꺼낼 가능성이 $\\frac{1}{2}$임을 안다.",
+      "bReason": "개수가 같으면 반반이라는 관계는 xc20의 B에서 구체적인 개수와 까닭으로 묻는다.",
+      "exclusionReason": "B 제외: xc20(반반으로 만들기)과 같은 관계의 앞뒤이다. 대체 ID: e5-2-6-3-xc20.",
+      "cDecision": "keep",
+      "cAfter": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 {$\\frac{1}{2}$}이다.",
+      "cReason": "두 색만 있고 뽑힐 가능성이 같으며 개수가 같다는 조건이 모두 있어 수 하나로 답할 수 있다.",
+      "synonymNotes": "$\\frac{1}{2}$과 $0.5$는 같은 값으로 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1613,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc12",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "개수가 같은 두 색 공",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 {$\\frac{1}{2}$}이다.",
+        "studentC": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 □이다.",
+        "answers": [
+          "$\\frac{1}{2}$"
+        ]
+      },
+      "sourceFingerprint": "11f2cc88497bebc4df72b7b12da375f396ec6fb5a3a58cc6e1eb4b1ab1fe7815",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 {$\\frac{1}{2}$}이다.",
+      "cFrozenStudentSentence": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 □이다.",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 {$\\frac{1}{2}$}이다.",
+      "cStudentSentence": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 두 색 공의 개수가 같으면 정한 한 색을 꺼낼 가능성은 {$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc20(반반으로 만들기)과 같은 관계의 앞뒤이다. 대체 ID: e5-2-6-3-xc20."
+      },
+      "proposalFingerprint": "305f9309270e801e7068ca4426f3e0091ec68e5a1913a56ee3cc623a22ae0aec",
+      "questionRevision": "planning-e5e6-20261006-305f9309270e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "빨간 공 $7$개와 파란 공 $3$개만 들어 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서 공 한 개를 꺼낸다. 빨간 공을 꺼낼 가능성은 반반과 비교하여 어떠한지 쓰고, 공의 개수를 이용해 까닭을 설명하시오.",
+      "bAnswer": "반반보다 높다. 빨간 공 $7$개가 전체 $10$개의 절반인 $5$개보다 많기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반반보다 높다",
+            "반반보다 크다",
+            "$\\frac{1}{2}$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빨간 공이 전체의 절반보다 많다",
+            "빨간 공이 파란 공보다 많다"
+          ]
+        }
+      ],
+      "bGoal": "더 많은 색을 꺼낼 가능성이 반반보다 높음을 개수로 설명한다.",
+      "bReason": "일반 문장을 실제 개수가 있는 상황으로 바꿔 근거를 대게 했다.",
+      "cDecision": "keep",
+      "cAfter": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 {높다}.",
+      "cReason": "필요한 조건이 모두 있고 반반과 비교하는 낱말 하나로 답하는 유용한 비교 문항이다.",
+      "synonymNotes": "'높다', '크다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1614,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc13",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "한쪽이 많은 두 색 공",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 {높다}.",
+        "studentC": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 □.",
+        "answers": [
+          "높다"
+        ]
+      },
+      "sourceFingerprint": "79e0d90fc3ff239790acbec13ac4544bf874456db4eb1938d450c989aab92aca",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 {높다}.",
+      "cFrozenStudentSentence": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 □.",
+      "cProposedAnswers": [
+        "높다"
+      ],
+      "cStudentAfter": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "높다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 {높다}.",
+      "cStudentSentence": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "높다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "빨간 공 $7$개와 파란 공 $3$개만 들어 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서 공 한 개를 꺼낸다. 빨간 공을 꺼낼 가능성은 반반과 비교하여 어떠한지 쓰고, 공의 개수를 이용해 까닭을 설명하시오.",
+        "answer": "반반보다 높다. 빨간 공 $7$개가 전체 $10$개의 절반인 $5$개보다 많기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반반보다 높다",
+              "반반보다 크다",
+              "$\\frac{1}{2}$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "빨간 공이 전체의 절반보다 많다",
+              "빨간 공이 파란 공보다 많다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 한 색 공이 다른 색 공보다 많으면 그 색을 꺼낼 가능성은 반반보다 {높다}.",
+        "acceptedAnswers": [
+          [
+            "높다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "77ceb49ad9a8eecaa20cb9b43433bcf9ff5e6b796d81801d93f6b3e84059eaaf",
+      "questionRevision": "planning-e5e6-20261006-77ceb49ad9a8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 일이 일어날 가능성이 '확실하다'일 때, 그 일이 일어나지 않을 가능성을 말로 나타내고 까닭을 쓰시오.",
+      "bAnswer": "불가능하다. 그 일은 반드시 일어나므로 일어나지 않는 경우가 없기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "불가능하다",
+            "불가능"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 일은 반드시 일어난다",
+            "일어나지 않는 경우가 없다"
+          ]
+        }
+      ],
+      "bGoal": "확실한 일이 일어나지 않을 가능성이 불가능함을 뜻에서 끌어낸다.",
+      "bReason": "'반대'라는 편집용 말 대신 '일어나지 않을 가능성'으로 풀어 물었다.",
+      "cDecision": "keep",
+      "cAfter": "확실한 일이 일어나지 않을 가능성은 {불가능하다}.",
+      "cReason": "확실한 일이 일어나지 않을 가능성을 표현 하나로 답하는 짧은 문항이다.",
+      "synonymNotes": "'불가능', '불가능하다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1615,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc14",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "확실한 일의 반대",
+        "kind": "성질",
+        "level": "중",
+        "definition": "확실한 일이 일어나지 않을 가능성은 {불가능하다}.",
+        "studentC": "확실한 일이 일어나지 않을 가능성은 □.",
+        "answers": [
+          "불가능하다"
+        ]
+      },
+      "sourceFingerprint": "5f6c84ab0f695e7a707dd210cc2042f4248d7893f24f72423ee96a42a8bc86d3",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "확실한 일이 일어나지 않을 가능성은 {불가능하다}.",
+      "cFrozenStudentSentence": "확실한 일이 일어나지 않을 가능성은 □.",
+      "cProposedAnswers": [
+        "불가능하다"
+      ],
+      "cStudentAfter": "확실한 일이 일어나지 않을 가능성은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "불가능하다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "확실한 일이 일어나지 않을 가능성은 {불가능하다}.",
+      "cStudentSentence": "확실한 일이 일어나지 않을 가능성은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "불가능하다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 일이 일어날 가능성이 '확실하다'일 때, 그 일이 일어나지 않을 가능성을 말로 나타내고 까닭을 쓰시오.",
+        "answer": "불가능하다. 그 일은 반드시 일어나므로 일어나지 않는 경우가 없기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "불가능하다",
+              "불가능"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 일은 반드시 일어난다",
+              "일어나지 않는 경우가 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "확실한 일이 일어나지 않을 가능성은 {불가능하다}.",
+        "acceptedAnswers": [
+          [
+            "불가능하다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "28e57d640cafcb2c3100797b6fefce0e85e3e0469bb3f448560e802de2e08235",
+      "questionRevision": "planning-e5e6-20261006-28e57d640caf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc15",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "반반인 일은 일어나지 않을 가능성도 반반임을 안다.",
+      "bReason": "낱말 하나로 끝나는 내용이고 '반반'의 뜻은 c2의 B에서 이미 설명하게 한다.",
+      "exclusionReason": "B 제외: 답이 한 낱말로 끝나 C로 충분하다. 대체 ID: e5-2-6-3-c2, e5-2-6-3-xc14.",
+      "cDecision": "keep",
+      "cAfter": "가능성이 반반인 일은 일어나지 않을 가능성도 {반반이다}.",
+      "cReason": "반반인 일이 일어나지 않을 가능성을 표현 하나로 답하는 분명한 문항이다.",
+      "synonymNotes": "'반반', '반반이다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1616,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc15",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "반반인 일의 반대",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가능성이 반반인 일은 일어나지 않을 가능성도 {반반이다}.",
+        "studentC": "가능성이 반반인 일은 일어나지 않을 가능성도 □.",
+        "answers": [
+          "반반이다"
+        ]
+      },
+      "sourceFingerprint": "cba84a719c1e662a1043bd0776b6f25234c9c6afca7265cf954fdbb960da05aa",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "가능성이 반반인 일은 일어나지 않을 가능성도 {반반이다}.",
+      "cFrozenStudentSentence": "가능성이 반반인 일은 일어나지 않을 가능성도 □.",
+      "cProposedAnswers": [
+        "반반이다"
+      ],
+      "cStudentAfter": "가능성이 반반인 일은 일어나지 않을 가능성도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반반이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가능성이 반반인 일은 일어나지 않을 가능성도 {반반이다}.",
+      "cStudentSentence": "가능성이 반반인 일은 일어나지 않을 가능성도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "반반이다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가능성이 반반인 일은 일어나지 않을 가능성도 {반반이다}.",
+        "acceptedAnswers": [
+          [
+            "반반이다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 답이 한 낱말로 끝나 C로 충분하다. 대체 ID: e5-2-6-3-c2, e5-2-6-3-xc14."
+      },
+      "proposalFingerprint": "144534b2d70d65b0e599233a10fb26c058ef7c62866221a5c27faaaa14ffadb9",
+      "questionRevision": "planning-e5e6-20261006-144534b2d70d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc16",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "크기가 같은 $6$칸으로 나눈 회전판이 있다. 화살이 빨간색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 몇 칸을 빨간색으로 칠해야 하는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "$3$칸을 칠한다. 전체 칸의 절반이 빨간색이어야 빨간색에 멈출 가능성이 반반이 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$칸"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 칸의 절반을 칠해야 한다",
+            "빨간색 칸과 나머지 칸의 수가 같아야 한다"
+          ]
+        }
+      ],
+      "bGoal": "가능성이 $\\frac{1}{2}$가 되려면 전체 칸의 절반을 칠해야 함을 적용한다.",
+      "bReason": "그림 없이도 풀 수 있게 칸 수를 주고 xc9의 내용까지 함께 맡겼다.",
+      "cDecision": "revise",
+      "cAfter": "크기가 같은 $8$칸으로 나눈 회전판에서 화살이 빨간색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 {$4$}칸을 빨간색으로 칠한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '전체 칸의 절반'은 긴 구절이라 실제 칸 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1617,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc16",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성이 반반인 회전판 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각 칸에 멈출 가능성이 같은 짝수 개의 칸으로 나눈 회전판에서, 한 색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 {전체 칸의 절반}을 그 색으로 칠한다.",
+        "studentC": "각 칸에 멈출 가능성이 같은 짝수 개의 칸으로 나눈 회전판에서, 한 색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 □을 그 색으로 칠한다.",
+        "answers": [
+          "전체 칸의 절반"
+        ]
+      },
+      "sourceFingerprint": "c3c805935dd5f52d52a85979775291d177687b866b3c5234ab2216537fd7cca9",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "크기가 같은 $8$칸으로 나눈 회전판에서 화살이 빨간색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 □칸을 빨간색으로 칠한다.",
+      "cMarkedSentence": "크기가 같은 $8$칸으로 나눈 회전판에서 화살이 빨간색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 {$4$}칸을 빨간색으로 칠한다.",
+      "cStudentSentence": "크기가 같은 $8$칸으로 나눈 회전판에서 화살이 빨간색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 □칸을 빨간색으로 칠한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": [
+            "네"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "크기가 같은 $6$칸으로 나눈 회전판이 있다. 화살이 빨간색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 몇 칸을 빨간색으로 칠해야 하는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "$3$칸을 칠한다. 전체 칸의 절반이 빨간색이어야 빨간색에 멈출 가능성이 반반이 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$칸"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 칸의 절반을 칠해야 한다",
+              "빨간색 칸과 나머지 칸의 수가 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "크기가 같은 $8$칸으로 나눈 회전판에서 화살이 빨간색에 멈출 가능성을 $\\frac{1}{2}$로 만들려면 {$4$}칸을 빨간색으로 칠한다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "네"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2ed38fb7acdd077f0802a953bd62c9ab9fc08ebdca38f6fd6cbaf2c9d5a3451a",
+      "questionRevision": "planning-e5e6-20261006-2ed38fb7acdd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc17",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "가능성이 $1$이 되려면 회전판 전체가 그 색이어야 함을 안다.",
+      "bReason": "전체를 칠하면 확실하다는 것은 자명해 서술형으로 설명할 거리가 없다.",
+      "exclusionReason": "B 제외: 자명한 한 낱말 답이며 회전판 만들기는 xc16에서 다룬다. 대체 ID: e5-2-6-3-xc16.",
+      "cDecision": "keep",
+      "cAfter": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 {전체}를 파란색으로 칠한다.",
+      "cReason": "가능성 $1$과 회전판 전체를 연결하는 짧은 낱말 문항이다.",
+      "synonymNotes": "'전체', '전부', '모두' 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1618,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc17",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성이 $1$인 회전판 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 {전체}를 파란색으로 칠한다.",
+        "studentC": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 □를 파란색으로 칠한다.",
+        "answers": [
+          "전체"
+        ]
+      },
+      "sourceFingerprint": "b96f82805817ef8f92832e92845b0178238681cbba941169440fe6405e37996a",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 {전체}를 파란색으로 칠한다.",
+      "cFrozenStudentSentence": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 □를 파란색으로 칠한다.",
+      "cProposedAnswers": [
+        "전체"
+      ],
+      "cStudentAfter": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 □를 파란색으로 칠한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "전체"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 {전체}를 파란색으로 칠한다.",
+      "cStudentSentence": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 □를 파란색으로 칠한다.",
+      "cSlotAnswers": [
+        {
+          "key": "전체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "화살이 파란색에 멈출 가능성이 $1$이 되려면 회전판 {전체}를 파란색으로 칠한다.",
+        "acceptedAnswers": [
+          [
+            "전체"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 자명한 한 낱말 답이며 회전판 만들기는 xc16에서 다룬다. 대체 ID: e5-2-6-3-xc16."
+      },
+      "proposalFingerprint": "211a0eb8f1c60c83fefa415090a88d100ff1a64cb95722c6abbf13813ccc78e2",
+      "questionRevision": "planning-e5e6-20261006-211a0eb8f1c6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc18",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 일이 일어날 가능성을 수로 나타낸 값이 $2$가 될 수 있는지 답하고, 확실한 일의 가능성을 나타내는 수를 이용해 까닭을 설명하시오.",
+      "bAnswer": "될 수 없다. 반드시 일어나는 확실한 일의 가능성이 $1$이고, 그보다 가능성이 더 높은 일은 없으므로 $1$보다 큰 수는 나오지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "될 수 없다",
+            "$2$는 나올 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "확실한 일의 가능성이 $1$이고 그보다 가능성이 높은 일은 없다",
+            "가능성을 나타내는 가장 큰 수가 $1$이다"
+          ]
+        }
+      ],
+      "bGoal": "가능성을 나타내는 수가 $1$을 넘지 않는 까닭을 확실한 일과 연결한다.",
+      "bReason": "범위를 외우게 하지 않고 $2$라는 구체적인 값으로 판단과 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 일이 일어날 가능성을 수로 나타낼 때 가장 작은 수는 {$0$}이고 가장 큰 수는 {$1$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '$1$보다 큰'은 구절 맞히기라 범위의 양 끝 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1619,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc18",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성을 나타내는 수의 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가능성을 수로 나타내면 $0$보다 작거나 {$1$보다 큰} 수는 나오지 않는다.",
+        "studentC": "가능성을 수로 나타내면 $0$보다 작거나 □ 수는 나오지 않는다.",
+        "answers": [
+          "$1$보다 큰"
+        ]
+      },
+      "sourceFingerprint": "f78dbcd1e875f26980d8e6275270f3d9484607b1fa818d132497207d12151db5",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "$0$",
+        "$1$"
+      ],
+      "cStudentAfter": "어떤 일이 일어날 가능성을 수로 나타낼 때 가장 작은 수는 □이고 가장 큰 수는 □이다.",
+      "cMarkedSentence": "어떤 일이 일어날 가능성을 수로 나타낼 때 가장 작은 수는 {$0$}이고 가장 큰 수는 {$1$}이다.",
+      "cStudentSentence": "어떤 일이 일어날 가능성을 수로 나타낼 때 가장 작은 수는 □이고 가장 큰 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 일이 일어날 가능성을 수로 나타낸 값이 $2$가 될 수 있는지 답하고, 확실한 일의 가능성을 나타내는 수를 이용해 까닭을 설명하시오.",
+        "answer": "될 수 없다. 반드시 일어나는 확실한 일의 가능성이 $1$이고, 그보다 가능성이 더 높은 일은 없으므로 $1$보다 큰 수는 나오지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "될 수 없다",
+              "$2$는 나올 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "확실한 일의 가능성이 $1$이고 그보다 가능성이 높은 일은 없다",
+              "가능성을 나타내는 가장 큰 수가 $1$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 일이 일어날 가능성을 수로 나타낼 때 가장 작은 수는 {$0$}이고 가장 큰 수는 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "583e54f6f7ba0a2e4c55b32e93810782ebff63fc794ae40849aa6a4037d504ea",
+      "questionRevision": "planning-e5e6-20261006-583e54f6f7ba",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "앞면과 뒷면이 나올 가능성이 같은 동전을 아주 많이 던질 때, 앞면이 나온 횟수는 던진 횟수와 비교하여 대체로 어느 정도가 되는지 쓰시오. 또 $100$번 던지면 앞면이 반드시 $50$번 나오는지도 답하시오.",
+      "bAnswer": "앞면이 나온 횟수는 대체로 던진 횟수의 절반쯤이 된다. 하지만 $100$번 던져도 반드시 $50$번 나오는 것은 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "던진 횟수의 절반쯤이 된다",
+            "던진 횟수의 $\\frac{1}{2}$에 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반드시 $50$번 나오는 것은 아니다",
+            "아니다"
+          ]
+        }
+      ],
+      "bGoal": "많이 던지면 절반쯤이 되지만 꼭 절반은 아님을 구분한다.",
+      "bReason": "'대체로'와 '반드시'의 차이를 두 물음으로 나누어 답의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "앞면과 뒷면이 나올 가능성이 같은 동전을 $1000$번 던지면 앞면이 나온 횟수는 대체로 {$500$}번에 가깝다. 하지만 꼭 그만큼 나온다는 뜻은 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$500$"
+          ]
+        }
+      ],
+      "cReason": "원문은 바로 뒤 문장의 '절반'을 베끼면 답이 되므로 실제 횟수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1620,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc19",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "여러 번 던져 볼 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "앞면과 뒷면이 나올 가능성이 같은 동전을 아주 많이 던지면 앞면이 나온 횟수는 대체로 던진 횟수의 {절반쯤}이 된다. 꼭 절반이 된다는 뜻은 아니다.",
+        "studentC": "앞면과 뒷면이 나올 가능성이 같은 동전을 아주 많이 던지면 앞면이 나온 횟수는 대체로 던진 횟수의 □이 된다. 꼭 절반이 된다는 뜻은 아니다.",
+        "answers": [
+          "절반쯤"
+        ]
+      },
+      "sourceFingerprint": "4ba486416440546bd17f2bba70d6451cc18b49c2c8c76d5b26bd6f4e0511d7e7",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "$500$"
+      ],
+      "cStudentAfter": "앞면과 뒷면이 나올 가능성이 같은 동전을 $1000$번 던지면 앞면이 나온 횟수는 대체로 □번에 가깝다. 하지만 꼭 그만큼 나온다는 뜻은 아니다.",
+      "cMarkedSentence": "앞면과 뒷면이 나올 가능성이 같은 동전을 $1000$번 던지면 앞면이 나온 횟수는 대체로 {$500$}번에 가깝다. 하지만 꼭 그만큼 나온다는 뜻은 아니다.",
+      "cStudentSentence": "앞면과 뒷면이 나올 가능성이 같은 동전을 $1000$번 던지면 앞면이 나온 횟수는 대체로 □번에 가깝다. 하지만 꼭 그만큼 나온다는 뜻은 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "$500$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞면과 뒷면이 나올 가능성이 같은 동전을 아주 많이 던질 때, 앞면이 나온 횟수는 던진 횟수와 비교하여 대체로 어느 정도가 되는지 쓰시오. 또 $100$번 던지면 앞면이 반드시 $50$번 나오는지도 답하시오.",
+        "answer": "앞면이 나온 횟수는 대체로 던진 횟수의 절반쯤이 된다. 하지만 $100$번 던져도 반드시 $50$번 나오는 것은 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "던진 횟수의 절반쯤이 된다",
+              "던진 횟수의 $\\frac{1}{2}$에 가깝다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반드시 $50$번 나오는 것은 아니다",
+              "아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "앞면과 뒷면이 나올 가능성이 같은 동전을 $1000$번 던지면 앞면이 나온 횟수는 대체로 {$500$}번에 가깝다. 하지만 꼭 그만큼 나온다는 뜻은 아니다.",
+        "acceptedAnswers": [
+          [
+            "$500$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7155b362bf12fa55a211cb380c61a77a25534520d111cbd94bf9727bbc9615fc",
+      "questionRevision": "planning-e5e6-20261006-7155b362bf12",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc20",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "빨간 공 $5$개와 파란 공 $3$개만 들어 있고 어느 공이나 뽑힐 가능성이 같은 주머니가 있다. 파란 공만 더 넣어서 빨간 공을 꺼낼 가능성을 반반으로 만들려면 파란 공을 몇 개 더 넣어야 하는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "$2$개를 더 넣는다. 빨간 공과 파란 공의 개수가 $5$개씩으로 같아야 빨간 공을 꺼낼 가능성이 반반이 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 색 공의 개수가 같아야 한다",
+            "빨간 공이 전체의 절반이 되어야 한다"
+          ]
+        }
+      ],
+      "bGoal": "두 색 공의 개수를 같게 맞추면 가능성이 반반이 됨을 적용한다.",
+      "bReason": "편집용 제목 대신 실제 개수가 있는 상황을 주고 xc12의 관계까지 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "빨간 공과 파란 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 빨간 공을 꺼낼 가능성이 반반이 되려면 빨간 공과 파란 공의 개수가 {같아야} 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같아야",
+            "똑같아야",
+            "같게 되어야"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '두 색 공의 개수를 같게'는 긴 구절이라 핵심 낱말만 답하게 줄였다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1621,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc20",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "반반으로 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 정한 한 색을 꺼낼 가능성을 반반으로 하려면 {두 색 공의 개수를 같게} 맞춘다.",
+        "studentC": "두 색 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 정한 한 색을 꺼낼 가능성을 반반으로 하려면 □ 맞춘다.",
+        "answers": [
+          "두 색 공의 개수를 같게"
+        ]
+      },
+      "sourceFingerprint": "b9839f1a87ab7116baa2c7430ef3c140b8f52c23b18054cc341dbd8a35b8ba8a",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "같아야"
+      ],
+      "cStudentAfter": "빨간 공과 파란 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 빨간 공을 꺼낼 가능성이 반반이 되려면 빨간 공과 파란 공의 개수가 □ 한다.",
+      "cMarkedSentence": "빨간 공과 파란 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 빨간 공을 꺼낼 가능성이 반반이 되려면 빨간 공과 파란 공의 개수가 {같아야} 한다.",
+      "cStudentSentence": "빨간 공과 파란 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 빨간 공을 꺼낼 가능성이 반반이 되려면 빨간 공과 파란 공의 개수가 □ 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "같아야",
+          "equivalents": [
+            "똑같아야",
+            "같게 되어야"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "빨간 공 $5$개와 파란 공 $3$개만 들어 있고 어느 공이나 뽑힐 가능성이 같은 주머니가 있다. 파란 공만 더 넣어서 빨간 공을 꺼낼 가능성을 반반으로 만들려면 파란 공을 몇 개 더 넣어야 하는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "$2$개를 더 넣는다. 빨간 공과 파란 공의 개수가 $5$개씩으로 같아야 빨간 공을 꺼낼 가능성이 반반이 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 색 공의 개수가 같아야 한다",
+              "빨간 공이 전체의 절반이 되어야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "빨간 공과 파란 공만 있고 어느 공이나 뽑힐 가능성이 같은 주머니에서, 빨간 공을 꺼낼 가능성이 반반이 되려면 빨간 공과 파란 공의 개수가 {같아야} 한다.",
+        "acceptedAnswers": [
+          [
+            "같아야",
+            "똑같아야",
+            "같게 되어야"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b2891ce812e085fb5ea284b4a2bfc55818c5017e0e96c8ba136cebf62ca35ec8",
+      "questionRevision": "planning-e5e6-20261006-b2891ce812e0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc21",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "흰 공 $4$개만 든 주머니에 검은 공 $4$개를 더 넣는다. 어느 공이나 뽑힐 가능성이 같다고 할 때, 검은 공을 넣기 전과 넣은 후에 흰 공을 꺼낼 가능성을 각각 수로 나타내시오. 또 이것으로 주어진 조건과 가능성 사이에 대해 알 수 있는 점을 쓰시오.",
+      "bAnswer": "넣기 전은 $1$, 넣은 후는 $\\frac{1}{2}$이다. 같은 일이라도 주어진 조건이 바뀌면 가능성이 달라질 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넣기 전은 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "넣은 후는 $\\frac{1}{2}$",
+            "넣은 후는 $0.5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "조건이 바뀌면 가능성이 달라질 수 있다",
+            "같은 일이라도 상황에 따라 가능성이 달라진다"
+          ]
+        }
+      ],
+      "bGoal": "같은 일의 가능성이 조건에 따라 달라짐을 예로 확인하고 일반화한다.",
+      "bReason": "'조건'이라는 추상적인 말을 공을 넣기 전후의 비교로 드러냈다.",
+      "cDecision": "revise",
+      "cAfter": "어느 공이나 뽑힐 가능성이 같은 주머니에 흰 공만 들어 있으면 흰 공을 꺼낼 가능성은 수로 {$1$}이다. 이 주머니에 검은 공을 흰 공과 같은 개수만큼 넣으면 흰 공을 꺼낼 가능성은 {$\\frac{1}{2}$}이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$0.5$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '달라질 수 있다'는 추상적인 말 맞히기라 조건이 바뀌는 실제 상황의 값으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1622,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc21",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "조건과 가능성",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 일이라도 주어진 조건이 바뀌면 가능성이 {달라질 수 있다}.",
+        "studentC": "같은 일이라도 주어진 조건이 바뀌면 가능성이 □.",
+        "answers": [
+          "달라질 수 있다"
+        ]
+      },
+      "sourceFingerprint": "8ea15378c5e3ef0b3e9ff71c627de37f3db902a5b867fdb45b9d9dedc0fa73dd",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "어느 공이나 뽑힐 가능성이 같은 주머니에 흰 공만 들어 있으면 흰 공을 꺼낼 가능성은 수로 □이다. 이 주머니에 검은 공을 흰 공과 같은 개수만큼 넣으면 흰 공을 꺼낼 가능성은 □이 된다.",
+      "cMarkedSentence": "어느 공이나 뽑힐 가능성이 같은 주머니에 흰 공만 들어 있으면 흰 공을 꺼낼 가능성은 수로 {$1$}이다. 이 주머니에 검은 공을 흰 공과 같은 개수만큼 넣으면 흰 공을 꺼낼 가능성은 {$\\frac{1}{2}$}이 된다.",
+      "cStudentSentence": "어느 공이나 뽑힐 가능성이 같은 주머니에 흰 공만 들어 있으면 흰 공을 꺼낼 가능성은 수로 □이다. 이 주머니에 검은 공을 흰 공과 같은 개수만큼 넣으면 흰 공을 꺼낼 가능성은 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$0.5$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "흰 공 $4$개만 든 주머니에 검은 공 $4$개를 더 넣는다. 어느 공이나 뽑힐 가능성이 같다고 할 때, 검은 공을 넣기 전과 넣은 후에 흰 공을 꺼낼 가능성을 각각 수로 나타내시오. 또 이것으로 주어진 조건과 가능성 사이에 대해 알 수 있는 점을 쓰시오.",
+        "answer": "넣기 전은 $1$, 넣은 후는 $\\frac{1}{2}$이다. 같은 일이라도 주어진 조건이 바뀌면 가능성이 달라질 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넣기 전은 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넣은 후는 $\\frac{1}{2}$",
+              "넣은 후는 $0.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "조건이 바뀌면 가능성이 달라질 수 있다",
+              "같은 일이라도 상황에 따라 가능성이 달라진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어느 공이나 뽑힐 가능성이 같은 주머니에 흰 공만 들어 있으면 흰 공을 꺼낼 가능성은 수로 {$1$}이다. 이 주머니에 검은 공을 흰 공과 같은 개수만큼 넣으면 흰 공을 꺼낼 가능성은 {$\\frac{1}{2}$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$\\frac{1}{2}$",
+            "$0.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7b21d879a49baf9370de1104695813e5819a07c8c06f1bbc7ba81a63ebfa62f2",
+      "questionRevision": "planning-e5e6-20261006-7b21d879a49b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc22",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "가능성이 $1$인 일은 할 때마다 일어남을 안다.",
+      "bReason": "'확실하다'의 뜻(c3)과 수 $1$(c5)을 합친 내용이라 새로 설명할 것이 없다.",
+      "exclusionReason": "B 제외: c3과 c5의 B와 중복된다. 대체 ID: e5-2-6-3-c3, e5-2-6-3-c5.",
+      "cDecision": "keep",
+      "cAfter": "가능성이 $1$인 일은 몇 번을 해도 {언제나} 일어난다.",
+      "cReason": "가능성 $1$을 '몇 번을 해도'라는 반복 상황과 연결하는 짧은 낱말 문항이다.",
+      "synonymNotes": "'언제나', '항상', '반드시', '매번' 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1623,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc22",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "확실한 일과 결과",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가능성이 $1$인 일은 몇 번을 해도 {언제나} 일어난다.",
+        "studentC": "가능성이 $1$인 일은 몇 번을 해도 □ 일어난다.",
+        "answers": [
+          "언제나"
+        ]
+      },
+      "sourceFingerprint": "6bdba3697a6df7b4f56095f2209f5771b8078f2c694584ce43dafc237c2e4c31",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "가능성이 $1$인 일은 몇 번을 해도 {언제나} 일어난다.",
+      "cFrozenStudentSentence": "가능성이 $1$인 일은 몇 번을 해도 □ 일어난다.",
+      "cProposedAnswers": [
+        "언제나"
+      ],
+      "cStudentAfter": "가능성이 $1$인 일은 몇 번을 해도 □ 일어난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "언제나"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가능성이 $1$인 일은 몇 번을 해도 {언제나} 일어난다.",
+      "cStudentSentence": "가능성이 $1$인 일은 몇 번을 해도 □ 일어난다.",
+      "cSlotAnswers": [
+        {
+          "key": "언제나",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가능성이 $1$인 일은 몇 번을 해도 {언제나} 일어난다.",
+        "acceptedAnswers": [
+          [
+            "언제나"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: c3과 c5의 B와 중복된다. 대체 ID: e5-2-6-3-c3, e5-2-6-3-c5."
+      },
+      "proposalFingerprint": "191ef153911f3c1e9a8d262293d9a9a07159a2395d50f157d1bd272f9ce1c26d",
+      "questionRevision": "planning-e5e6-20261006-191ef153911f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc23",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "가능성이 $0$인 일은 여러 번 해도 일어나지 않음을 안다.",
+      "bReason": "'불가능하다'의 뜻(c4)과 수 $0$(c5, xc10)을 합친 내용이라 새로 설명할 것이 없다.",
+      "exclusionReason": "B 제외: c4와 xc10의 B와 중복된다. 대체 ID: e5-2-6-3-c4, e5-2-6-3-xc10.",
+      "cDecision": "keep",
+      "cAfter": "가능성이 $0$인 일은 몇 번을 해도 {한 번도} 일어나지 않는다.",
+      "cReason": "가능성 $0$을 '몇 번을 해도'라는 반복 상황과 연결하는 짧은 낱말 문항이다.",
+      "synonymNotes": "'한 번도', '절대로', '전혀' 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1624,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc23",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "불가능한 일과 결과",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가능성이 $0$인 일은 몇 번을 해도 {한 번도} 일어나지 않는다.",
+        "studentC": "가능성이 $0$인 일은 몇 번을 해도 □ 일어나지 않는다.",
+        "answers": [
+          "한 번도"
+        ]
+      },
+      "sourceFingerprint": "14c5853bf97f5557eb812fac45f34b0fcca475b8e18a900d1ff79b628ddf1822",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "가능성이 $0$인 일은 몇 번을 해도 {한 번도} 일어나지 않는다.",
+      "cFrozenStudentSentence": "가능성이 $0$인 일은 몇 번을 해도 □ 일어나지 않는다.",
+      "cProposedAnswers": [
+        "한 번도"
+      ],
+      "cStudentAfter": "가능성이 $0$인 일은 몇 번을 해도 □ 일어나지 않는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한 번도"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가능성이 $0$인 일은 몇 번을 해도 {한 번도} 일어나지 않는다.",
+      "cStudentSentence": "가능성이 $0$인 일은 몇 번을 해도 □ 일어나지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "한 번도",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가능성이 $0$인 일은 몇 번을 해도 {한 번도} 일어나지 않는다.",
+        "acceptedAnswers": [
+          [
+            "한 번도"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: c4와 xc10의 B와 중복된다. 대체 ID: e5-2-6-3-c4, e5-2-6-3-xc10."
+      },
+      "proposalFingerprint": "0c2a8aa046163cd8e0791e91ac922054840c3ae507054d3044cc59b4197ee81e",
+      "questionRevision": "planning-e5e6-20261006-0c2a8aa04616",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 '홀수 또는 짝수의 눈이 나올' 가능성을 수로 나타내고, 그 까닭을 설명하시오.",
+      "bAnswer": "$1$이다. 주사위의 모든 눈은 홀수이거나 짝수이므로 어떤 눈이 나와도 이 일이 반드시 일어나기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 눈이 홀수이거나 짝수이다",
+            "어떤 눈이 나와도 이 일이 일어난다"
+          ]
+        }
+      ],
+      "bGoal": "두 경우가 모든 결과를 덮으면 가능성이 $1$임을 설명한다.",
+      "bReason": "편집용 제목 '둘 중 하나는 반드시'를 쓰지 않고 실제 일과 근거를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 {$1$}이다.",
+      "cReason": "주사위와 '홀수나 짝수'라는 조건이 분명하고 답이 수 하나이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1625,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-3-xc24",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "둘 중 하나는 반드시",
+        "kind": "성질",
+        "level": "상",
+        "definition": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 {$1$}이다.",
+        "studentC": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 □이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "dd9b0bcbe97bfc6dcbecb7f0aa34269f928e8440eeb7477b0bf48117d81cd9aa",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 {$1$}이다.",
+      "cFrozenStudentSentence": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 □이다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 {$1$}이다.",
+      "cStudentSentence": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$부터 $6$까지의 눈이 있는 주사위를 한 번 굴릴 때 '홀수 또는 짝수의 눈이 나올' 가능성을 수로 나타내고, 그 까닭을 설명하시오.",
+        "answer": "$1$이다. 주사위의 모든 눈은 홀수이거나 짝수이므로 어떤 눈이 나와도 이 일이 반드시 일어나기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 눈이 홀수이거나 짝수이다",
+              "어떤 눈이 나와도 이 일이 일어난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주사위를 굴려 홀수나 짝수의 눈이 나올 가능성은 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d85e86c815e93f0ff5dbc428eb3989887bcd43321f27e1f4dd814e4c46d5e260",
+      "questionRevision": "planning-e5e6-20261006-d85e86c815e9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc1",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$1$을 자연수로 나눈 몫을 분수로 나타내면 분자와 분모는 각각 무엇이 되는지 쓰고, $1\\div7$의 몫이 그렇게 되는 까닭을 똑같이 나눈다는 뜻으로 설명하세요.",
+      "bAnswer": "분자는 $1$, 분모는 나누는 수가 된다. $1\\div7$은 $1$을 똑같이 $7$로 나눈 것 중의 하나이므로 $\\frac{1}{7}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자는 $1$, 분모는 나누는 수",
+            "$1\\div7=\\frac{1}{7}$처럼 분자 $1$, 분모 $7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$을 똑같이 $7$로 나눈 것 중의 하나",
+            "전체를 $7$등분한 것 중 $1$부분"
+          ]
+        }
+      ],
+      "bGoal": "$1\\div$(자연수)의 몫이 단위분수가 되는 까닭을 등분의 뜻으로 설명한다.",
+      "bReason": "원문 예의 까닭 묻기를 살리되 분자와 분모가 무엇인지는 질문에서 알려 주지 않았다.",
+      "cDecision": "keep",
+      "cAfter": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 {나누는 수}인 분수이다.",
+      "cReason": "분모 자리에 나누는 수가 온다는 한 가지만 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'나눈 수', '나누는 자연수'도 같은 뜻으로 인정한다.",
+      "sourceIndex": 1626,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc1",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "$1\\div$(자연수)의 몫",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 {나누는 수}인 분수이다.",
+        "example": {
+          "prompt": "$1\\div7$의 몫이 $\\frac{1}{7}$인 까닭은?",
+          "answer": "$1$을 일곱으로 나눈 하나라서"
+        },
+        "studentC": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 □인 분수이다.",
+        "answers": [
+          "나누는 수"
+        ]
+      },
+      "sourceFingerprint": "4a1046a5192da3f1aa9da74b5c4e321489cdca25484293b2fd080b46efd75bfb",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cFrozenDefinition": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 {나누는 수}인 분수이다.",
+      "cFrozenStudentSentence": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 □인 분수이다.",
+      "cProposedAnswers": [
+        "나누는 수"
+      ],
+      "cStudentAfter": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 □인 분수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누는 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 {나누는 수}인 분수이다.",
+      "cStudentSentence": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 □인 분수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누는 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$을 자연수로 나눈 몫을 분수로 나타내면 분자와 분모는 각각 무엇이 되는지 쓰고, $1\\div7$의 몫이 그렇게 되는 까닭을 똑같이 나눈다는 뜻으로 설명하세요.",
+        "answer": "분자는 $1$, 분모는 나누는 수가 된다. $1\\div7$은 $1$을 똑같이 $7$로 나눈 것 중의 하나이므로 $\\frac{1}{7}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자는 $1$, 분모는 나누는 수",
+              "$1\\div7=\\frac{1}{7}$처럼 분자 $1$, 분모 $7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$을 똑같이 $7$로 나눈 것 중의 하나",
+              "전체를 $7$등분한 것 중 $1$부분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$을 똑같이 몇으로 나눈 한 몫은 분자가 $1$이고 분모가 {나누는 수}인 분수이다.",
+        "acceptedAnswers": [
+          [
+            "나누는 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bb0be821f56fe98ee5e276da4f20e9958caadd36b6994068a189349d1e5204a1",
+      "questionRevision": "planning-e5e6-20261006-bb0be821f56f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc2",
+      "learningRole": "naming",
+      "bDecision": "revise",
+      "bPrompt": "$3\\div4$에서 나누어지는 수와 나누는 수는 각각 어느 수인지 쓰고, 똑같이 나누는 상황에서 두 수가 각각 무엇을 나타내는지 쓰세요.",
+      "bAnswer": "나누어지는 수는 $3$으로 나눌 전체 양을, 나누는 수는 $4$로 똑같이 나누는 부분의 수(사람 수)를 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수는 $3$, 나누는 수는 $4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$은 나눌 전체 양",
+            "나누어지는 수는 전체 양"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$는 똑같이 나누는 부분의 수",
+            "나누는 수는 나누어 가지는 사람 수",
+            "나누는 수는 몇으로 나누는지"
+          ]
+        }
+      ],
+      "bGoal": "나눗셈식에서 두 수의 이름과 뜻을 구분한다.",
+      "bReason": "두 용어는 짝으로 물어야 구분이 드러나므로 xc3의 내용까지 한 질문에 묶었다.",
+      "cDecision": "revise",
+      "cAfter": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 전체 양을 나타내는 $3$을 {나누어지는 수}라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어지는 수",
+            "나뉘는 수"
+          ]
+        }
+      ],
+      "cReason": "'나누는 대상이 되는 전체 양'은 외우기 어려운 긴 구절이라 상황을 주고 용어를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1627,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc2",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나누어지는 수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "똑같이 나누는 상황에서 {나누는 대상이 되는 전체 양}을 나타내는 수이다. $3\\div4$에서는 $3$이다.",
+        "studentC": "똑같이 나누는 상황에서 □을 나타내는 수이다. $3\\div4$에서는 $3$이다.",
+        "answers": [
+          "나누는 대상이 되는 전체 양"
+        ]
+      },
+      "sourceFingerprint": "e27beea7b5be0c99361387029dabb3514b28a381dc613cdfb3c9584d6e0e1cbd",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "나누어지는 수"
+      ],
+      "cStudentAfter": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 전체 양을 나타내는 $3$을 □라고 한다.",
+      "cMarkedSentence": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 전체 양을 나타내는 $3$을 {나누어지는 수}라고 한다.",
+      "cStudentSentence": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 전체 양을 나타내는 $3$을 □라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어지는 수",
+          "equivalents": [
+            "나뉘는 수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\div4$에서 나누어지는 수와 나누는 수는 각각 어느 수인지 쓰고, 똑같이 나누는 상황에서 두 수가 각각 무엇을 나타내는지 쓰세요.",
+        "answer": "나누어지는 수는 $3$으로 나눌 전체 양을, 나누는 수는 $4$로 똑같이 나누는 부분의 수(사람 수)를 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수는 $3$, 나누는 수는 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$은 나눌 전체 양",
+              "나누어지는 수는 전체 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$는 똑같이 나누는 부분의 수",
+              "나누는 수는 나누어 가지는 사람 수",
+              "나누는 수는 몇으로 나누는지"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 전체 양을 나타내는 $3$을 {나누어지는 수}라고 한다.",
+        "acceptedAnswers": [
+          [
+            "나누어지는 수",
+            "나뉘는 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0c6a35c1affd4c89e9024523e20d51b092f769bb78091d9bc76b14fba4c32d4f",
+      "questionRevision": "planning-e5e6-20261006-0c6a35c1affd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc3",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "나누는 수가 몇으로 나누는지를 나타냄을 안다.",
+      "bReason": "xc2의 질문이 나누는 수의 위치와 뜻을 이미 함께 묻는다.",
+      "exclusionReason": "B는 xc2와 중복이다(대체: e6-1-1-1-xc2).",
+      "cDecision": "revise",
+      "cAfter": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 나누어 먹는 사람 수를 나타내는 $4$를 {나누는 수}라고 한다.",
+      "cReason": "'전체를 몇 몫으로 나누는지'는 긴 구절이라 상황에서 용어를 답하도록 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1628,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc3",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나누는 수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "똑같이 나누는 상황에서 {전체를 몇 몫으로 나누는지}를 나타내는 수이다. $3\\div4$에서는 $4$이다.",
+        "studentC": "똑같이 나누는 상황에서 □를 나타내는 수이다. $3\\div4$에서는 $4$이다.",
+        "answers": [
+          "전체를 몇 몫으로 나누는지"
+        ]
+      },
+      "sourceFingerprint": "bc89fd57bbf15cb27e3bddf9e547e1266600e554f50db7e3d0a48b24a45df5c1",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "나누는 수"
+      ],
+      "cStudentAfter": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 나누어 먹는 사람 수를 나타내는 $4$를 □라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누는 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 나누어 먹는 사람 수를 나타내는 $4$를 {나누는 수}라고 한다.",
+      "cStudentSentence": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 나누어 먹는 사람 수를 나타내는 $4$를 □라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누는 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "피자 $3$판을 $4$명이 똑같이 나누어 먹는 양을 구하는 식 $3\\div4$에서, 나누어 먹는 사람 수를 나타내는 $4$를 {나누는 수}라고 한다.",
+        "acceptedAnswers": [
+          [
+            "나누는 수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc2와 중복이다(대체: e6-1-1-1-xc2)."
+      },
+      "proposalFingerprint": "4da320e6149cdc479845a820e7ab94ebc318fb0da812c1e8c29ab0ac33a9f6dd",
+      "questionRevision": "planning-e5e6-20261006-4da320e6149c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc4",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "몫을 분수로 쓸 때 분자가 나누어지는 수임을 안다.",
+      "bReason": "분자 자리 규칙은 c2가, 그 까닭은 xc12가 이미 묻는다.",
+      "exclusionReason": "B는 c2의 절반을 다시 묻는 중복이다(대체: e6-1-1-1-c2, e6-1-1-1-xc12).",
+      "cDecision": "revise",
+      "cAfter": "$2\\div9$의 몫을 분모가 $9$인 분수로 나타내면 분자는 {$2$}이다.",
+      "cReason": "'몫을 나누는 수를 분모로 한 분수로'는 읽기 어려워 실제 식에서 분자 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1629,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc4",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "몫을 바로 분수로 나타낼 때의 분자",
+        "kind": "방법",
+        "level": "하",
+        "definition": "몫을 나누는 수를 분모로 한 분수로 나타내면 {나누어지는 수}가 분자가 된다.",
+        "example": {
+          "prompt": "$2\\div9$의 몫을 분모가 $9$인 분수로 나타내면 분자가 $2$인 까닭은?",
+          "answer": "$\\frac{1}{9}$이 $2$개 모인 수라서"
+        },
+        "studentC": "몫을 나누는 수를 분모로 한 분수로 나타내면 □가 분자가 된다.",
+        "answers": [
+          "나누어지는 수"
+        ]
+      },
+      "sourceFingerprint": "bd7c3c5049b330416fc9bd1b8ae62f64d445f3e71d9ad0c59176c5d73d60a172",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "$2\\div9$의 몫을 분모가 $9$인 분수로 나타내면 분자는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2\\div9$의 몫을 분모가 $9$인 분수로 나타내면 분자는 {$2$}이다.",
+      "cStudentSentence": "$2\\div9$의 몫을 분모가 $9$인 분수로 나타내면 분자는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2\\div9$의 몫을 분모가 $9$인 분수로 나타내면 분자는 {$2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c2의 절반을 다시 묻는 중복이다(대체: e6-1-1-1-c2, e6-1-1-1-xc12)."
+      },
+      "proposalFingerprint": "ef7fcdba48087146478bb7fc93e36051fb0592ee4fbf06d6aa29fb1ecf74ebdc",
+      "questionRevision": "planning-e5e6-20261006-ef7fcdba4808",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "몫을 분수로 쓸 때 분모가 나누는 수임을 안다.",
+      "bReason": "분모 자리 규칙은 c2가 이미 묻고 xc4와도 짝으로 겹친다.",
+      "exclusionReason": "B는 c2의 나머지 절반을 다시 묻는 중복이다(대체: e6-1-1-1-c2).",
+      "cDecision": "revise",
+      "cAfter": "$5\\div8$의 몫을 분자가 $5$인 분수로 나타내면 분모는 {$8$}이다.",
+      "cReason": "조건절이 겹친 원문 대신 실제 식에서 분모 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1630,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc5",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "몫을 바로 분수로 나타낼 때의 분모",
+        "kind": "방법",
+        "level": "하",
+        "definition": "몫을 나누어지는 수를 분자로 한 분수로 나타내면 {나누는 수}가 분모가 된다.",
+        "example": {
+          "prompt": "$5\\div8$의 몫을 분자가 $5$인 분수로 나타내면 분모가 $8$인 까닭은?",
+          "answer": "$\\frac{1}{8}$ 조각이 $5$개 모여서"
+        },
+        "studentC": "몫을 나누어지는 수를 분자로 한 분수로 나타내면 □가 분모가 된다.",
+        "answers": [
+          "나누는 수"
+        ]
+      },
+      "sourceFingerprint": "f1f3f0132930f358b87475f6d843c76b012deee02baa57ae0c0e182a70aff6ae",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "$8$"
+      ],
+      "cStudentAfter": "$5\\div8$의 몫을 분자가 $5$인 분수로 나타내면 분모는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$5\\div8$의 몫을 분자가 $5$인 분수로 나타내면 분모는 {$8$}이다.",
+      "cStudentSentence": "$5\\div8$의 몫을 분자가 $5$인 분수로 나타내면 분모는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$5\\div8$의 몫을 분자가 $5$인 분수로 나타내면 분모는 {$8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c2의 나머지 절반을 다시 묻는 중복이다(대체: e6-1-1-1-c2)."
+      },
+      "proposalFingerprint": "23dc1f90e9f9e862d5e48479201590ab9cf93265b387724c6aa9eb37af591dfb",
+      "questionRevision": "planning-e5e6-20261006-23dc1f90e9f9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc7",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$2\\div3$은 몫이 자연수로 나누어떨어지지 않습니다. 이런 나눗셈의 몫은 어떤 수로 나타낼 수 있는지 쓰고, $2\\div3$의 몫을 쓰세요.",
+      "bAnswer": "분수로 나타낼 수 있다. $2\\div3=\\frac{2}{3}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수로 나타낼 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "나누어떨어지지 않는 나눗셈의 몫도 분수로 쓸 수 있음을 안다.",
+      "bReason": "제목만으로는 무엇을 답할지 알 수 없어 나타내는 수의 종류와 예의 몫을 묻도록 좁혔다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\div3$처럼 자연수로 나누어떨어지지 않는 나눗셈의 몫도 {분수}로 나타낼 수 있다.",
+      "cReason": "빈칸 '나누어떨어지지 않아도'는 문장 연결 구절이라 핵심어인 분수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1631,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc7",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나누어떨어지지 않는 나눗셈의 몫",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$2\\div3$처럼 자연수 몫으로 {나누어떨어지지 않아도} 몫을 분수로 나타낼 수 있다.",
+        "studentC": "$2\\div3$처럼 자연수 몫으로 □ 몫을 분수로 나타낼 수 있다.",
+        "answers": [
+          "나누어떨어지지 않아도"
+        ]
+      },
+      "sourceFingerprint": "953eb9fb83cf65a56bb2808903131a456f45644b87bc8cb9015e7ee423821912",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "분수"
+      ],
+      "cStudentAfter": "$2\\div3$처럼 자연수로 나누어떨어지지 않는 나눗셈의 몫도 □로 나타낼 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2\\div3$처럼 자연수로 나누어떨어지지 않는 나눗셈의 몫도 {분수}로 나타낼 수 있다.",
+      "cStudentSentence": "$2\\div3$처럼 자연수로 나누어떨어지지 않는 나눗셈의 몫도 □로 나타낼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2\\div3$은 몫이 자연수로 나누어떨어지지 않습니다. 이런 나눗셈의 몫은 어떤 수로 나타낼 수 있는지 쓰고, $2\\div3$의 몫을 쓰세요.",
+        "answer": "분수로 나타낼 수 있다. $2\\div3=\\frac{2}{3}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수로 나타낼 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\div3$처럼 자연수로 나누어떨어지지 않는 나눗셈의 몫도 {분수}로 나타낼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fcb6a0d2ffbebd15eb3b34bdcb391803f3b05c041983fb9fc5b835e2be0c621e",
+      "questionRevision": "planning-e5e6-20261006-fcb6a0d2ffbe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "피자 $1$판을 $4$조각으로 잘랐는데 조각의 크기가 서로 다릅니다. 이때 한 조각의 양을 $1\\div4$의 몫이라고 할 수 없는 까닭을 쓰세요.",
+      "bAnswer": "나눗셈의 몫은 전체를 똑같은 크기로 나누었을 때 한 부분의 양이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 똑같은 크기로 나눈 한 부분의 양이다",
+            "크기가 같게 나누어야 나눗셈의 몫이 된다"
+          ]
+        }
+      ],
+      "bGoal": "나눗셈의 몫에는 똑같이 나눈다는 조건이 필요함을 설명한다.",
+      "bReason": "'똑같이 나누기'를 그대로 물으면 자명하므로 조건이 깨진 상황으로 필요성을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "피자 $1$판을 $4$조각으로 나누어 한 조각의 양이 $\\frac{1}{4}$판이 되게 하려면, 조각들의 크기가 서로 {같아야 한다}.",
+      "cReason": "전체를 빈칸으로 나누어야 한다는 열린 답 범위를 제거한다. 구체적인 피자와 한 조각의 양을 주고 조각들의 크기에 필요한 조건을 답하게 한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'같은 크기', '똑같이'도 같은 뜻으로 인정한다.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같아야 한다",
+            "똑같아야 한다",
+            "동일해야 한다"
+          ]
+        }
+      ],
+      "independentFeedbackEvidence": {
+        "file": "evidence/independent-amendments-e5e6.json",
+        "capturedReviewedHash": "16fc34ce12b7ee28205809b9cce43ba196f1e56a8c8c1237d32945939386cce9",
+        "capturedInputHash": "2589dfab3cc9cc72214b2f3d765f1a15dad35b8d7240fd730fcd845334323f93",
+        "cohort": "cohort-2026-10-06T13-13-14-276Z-0",
+        "resolution": "전체를 빈칸으로 나누어야 한다는 열린 답 범위를 제거한다. 구체적인 피자와 한 조각의 양을 주고 조각들의 크기에 필요한 조건을 답하게 한다.",
+        "laterProposalNeedsNewReview": true
+      },
+      "sourceIndex": 1632,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc8",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "똑같이 나누기",
+        "kind": "정의",
+        "level": "하",
+        "definition": "나눗셈으로 한 몫을 구하려면 전체를 {똑같은 크기}로 나누어야 한다.",
+        "studentC": "나눗셈으로 한 몫을 구하려면 전체를 □로 나누어야 한다.",
+        "answers": [
+          "똑같은 크기"
+        ]
+      },
+      "sourceFingerprint": "12602e55f3175f7d17d381960ea2fb4bb585888671d7230392bed1bced39dd81",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같아야 한다"
+      ],
+      "cStudentAfter": "피자 $1$판을 $4$조각으로 나누어 한 조각의 양이 $\\frac{1}{4}$판이 되게 하려면, 조각들의 크기가 서로 □.",
+      "cMarkedSentence": "피자 $1$판을 $4$조각으로 나누어 한 조각의 양이 $\\frac{1}{4}$판이 되게 하려면, 조각들의 크기가 서로 {같아야 한다}.",
+      "cStudentSentence": "피자 $1$판을 $4$조각으로 나누어 한 조각의 양이 $\\frac{1}{4}$판이 되게 하려면, 조각들의 크기가 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같아야 한다",
+          "equivalents": [
+            "똑같아야 한다",
+            "동일해야 한다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "피자 $1$판을 $4$조각으로 잘랐는데 조각의 크기가 서로 다릅니다. 이때 한 조각의 양을 $1\\div4$의 몫이라고 할 수 없는 까닭을 쓰세요.",
+        "answer": "나눗셈의 몫은 전체를 똑같은 크기로 나누었을 때 한 부분의 양이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 똑같은 크기로 나눈 한 부분의 양이다",
+              "크기가 같게 나누어야 나눗셈의 몫이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "피자 $1$판을 $4$조각으로 나누어 한 조각의 양이 $\\frac{1}{4}$판이 되게 하려면, 조각들의 크기가 서로 {같아야 한다}.",
+        "acceptedAnswers": [
+          [
+            "같아야 한다",
+            "똑같아야 한다",
+            "동일해야 한다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "29abbc7ed52014bce877a9071d74054baa40459bd007bf087718917c55b999d1",
+      "questionRevision": "planning-e5e6-20261006-29abbc7ed520",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc9",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "단위분수는 어떤 분수인지 쓰고, $1\\div6$의 몫을 단위분수로 쓰세요.",
+      "bAnswer": "분자가 $1$인 분수이다. $1\\div6=\\frac{1}{6}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자가 $1$인 분수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "단위분수의 뜻을 알고 $1\\div$(자연수)의 몫과 연결한다.",
+      "bReason": "단위분수는 이미 배운 정식 용어라 뜻을 바로 묻고 이 단원의 나눗셈과 잇는다.",
+      "cDecision": "keep",
+      "cAfter": "분자가 {$1$}인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+      "cReason": "분자가 $1$이라는 정의의 핵심 하나만 묻고 뒤 예시가 뜻을 뒷받침한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1633,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc9",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "단위분수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "분자가 {$1$}인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+        "studentC": "분자가 □인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "04f168fc6cd0bc2b702dcdb853feae4bb67096b7ee7eac1996323271a983100b",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cFrozenDefinition": "분자가 {$1$}인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+      "cFrozenStudentSentence": "분자가 □인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "분자가 □인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분자가 {$1$}인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+      "cStudentSentence": "분자가 □인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "단위분수는 어떤 분수인지 쓰고, $1\\div6$의 몫을 단위분수로 쓰세요.",
+        "answer": "분자가 $1$인 분수이다. $1\\div6=\\frac{1}{6}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자가 $1$인 분수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분자가 {$1$}인 분수를 단위분수라 한다. $1\\div6$의 몫 $\\frac{1}{6}$도 단위분수이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3e3e4a8b40da67eca3c0c535db27b209e60c8d1f28e0390b2135758bf786fa7a",
+      "questionRevision": "planning-e5e6-20261006-3e3e4a8b40da",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc10",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "나누어지는 수가 나누는 수보다 작은 (자연수)$\\div$(자연수)의 몫은 $1$과 견주어 어떠한지 쓰고, $4\\div9$의 몫을 분수로 나타내어 분자와 분모의 크기로 까닭을 설명하세요.",
+      "bAnswer": "몫은 $1$보다 작다. $4\\div9=\\frac{4}{9}$이고 분자 $4$가 분모 $9$보다 작은 진분수이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $1$보다 작다",
+            "몫은 진분수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{9}$는 분자가 분모보다 작다",
+            "$4$가 $9$보다 작아서 진분수이다"
+          ]
+        }
+      ],
+      "bGoal": "나누어지는 수가 더 작으면 몫이 $1$보다 작은 진분수임을 설명한다.",
+      "bReason": "제목이 결론을 알려 주므로 조건만 주고 $1$과의 비교와 까닭을 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작고}, 분수로 나타내면 {진분수}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작고",
+            "작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "진분수"
+          ]
+        }
+      ],
+      "cReason": "원문은 진분수라는 용어만 물어 $1$과의 크기 비교를 빈칸으로 더했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1634,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc10",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "몫이 $1$보다 작은 나눗셈",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누어지는 수가 나누는 수보다 작으면 몫은 {진분수}가 된다.",
+        "example": {
+          "prompt": "$4\\div9$의 몫이 진분수인 까닭은?",
+          "answer": "분자 $4$가 분모 $9$보다 작아서"
+        },
+        "studentC": "나누어지는 수가 나누는 수보다 작으면 몫은 □가 된다.",
+        "answers": [
+          "진분수"
+        ]
+      },
+      "sourceFingerprint": "f33216dbe876e9ead50bb7e9c8f1465c2b4467e8a031f1a33e6c365beca79279",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "작고",
+        "진분수"
+      ],
+      "cStudentAfter": "나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 □, 분수로 나타내면 □이다.",
+      "cMarkedSentence": "나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작고}, 분수로 나타내면 {진분수}이다.",
+      "cStudentSentence": "나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 □, 분수로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작고",
+          "equivalents": [
+            "작다"
+          ]
+        },
+        {
+          "key": "진분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어지는 수가 나누는 수보다 작은 (자연수)$\\div$(자연수)의 몫은 $1$과 견주어 어떠한지 쓰고, $4\\div9$의 몫을 분수로 나타내어 분자와 분모의 크기로 까닭을 설명하세요.",
+        "answer": "몫은 $1$보다 작다. $4\\div9=\\frac{4}{9}$이고 분자 $4$가 분모 $9$보다 작은 진분수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $1$보다 작다",
+              "몫은 진분수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{9}$는 분자가 분모보다 작다",
+              "$4$가 $9$보다 작아서 진분수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작고}, 분수로 나타내면 {진분수}이다.",
+        "acceptedAnswers": [
+          [
+            "작고",
+            "작다"
+          ],
+          [
+            "진분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "296b02ce8a709727a3677dbf78e1bab5101ff0db891c70cdbf0d942a060098b4",
+      "questionRevision": "planning-e5e6-20261006-296b02ce8a70",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$7\\div3$처럼 나누어지는 수가 나누는 수보다 큰 나눗셈의 몫이 $1$보다 큰 까닭을 설명하고, $7\\div3$의 몫을 가분수와 대분수로 각각 쓰세요.",
+      "bAnswer": "$7$ 안에 $3$이 한 번 넘게 들어가기(분자가 분모보다 크기) 때문이다. $7\\div3=\\frac{7}{3}=2\\frac{1}{3}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누는 수가 한 번 넘게 들어간다",
+            "분수로 쓰면 분자가 분모보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "나누어지는 수가 더 클 때 몫이 $1$보다 큰 까닭과 두 가지 분수 표기를 안다.",
+      "bReason": "원문 예의 까닭 묻기에 가분수와 대분수 표기를 함께 요구해 정의의 범위를 담았다.",
+      "cDecision": "revise",
+      "cAfter": "$7\\div3$의 몫을 가분수로 쓰면 {$\\frac{7}{3}$}이고, 대분수로 쓰면 {$2\\frac{1}{3}$}이다.",
+      "cReason": "분수의 종류 이름을 임의로 고르는 빈칸 대신 실제 몫을 지정한 두 형식으로 나타내게 하여 답 범위를 분명히 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{7}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "independentFeedbackEvidence": {
+        "file": "evidence/independent-amendments-e5e6.json",
+        "capturedReviewedHash": "2fc3960e28ef86896fb80835a1a02fdeb2247600b62deed0356435aad271dbe7",
+        "capturedInputHash": "2589dfab3cc9cc72214b2f3d765f1a15dad35b8d7240fd730fcd845334323f93",
+        "cohort": "cohort-2026-10-06T13-13-14-276Z-0",
+        "resolution": "분수의 종류 이름을 임의로 고르는 빈칸 대신 실제 몫을 지정한 두 형식으로 나타내게 하여 답 범위를 분명히 한다.",
+        "laterProposalNeedsNewReview": true
+      },
+      "sourceIndex": 1635,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc11",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "몫이 $1$보다 큰 나눗셈",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누어지는 수가 나누는 수보다 크고 나누어떨어지지 않으면 몫은 {가분수}이고, {대분수}로 바꾸어 쓸 수 있다.",
+        "example": {
+          "prompt": "$7\\div3$의 몫이 $1$보다 큰 까닭은?",
+          "answer": "$3$이 한 번 넘게 들어가서"
+        },
+        "studentC": "나누어지는 수가 나누는 수보다 크고 나누어떨어지지 않으면 몫은 □이고, □로 바꾸어 쓸 수 있다.",
+        "answers": [
+          "가분수",
+          "대분수"
+        ]
+      },
+      "sourceFingerprint": "23ed5fa947924e2762b4620a79023d2d4d37cb6770c9327d70b7a390b5b1dee1",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{7}{3}$",
+        "$2\\frac{1}{3}$"
+      ],
+      "cStudentAfter": "$7\\div3$의 몫을 가분수로 쓰면 □이고, 대분수로 쓰면 □이다.",
+      "cMarkedSentence": "$7\\div3$의 몫을 가분수로 쓰면 {$\\frac{7}{3}$}이고, 대분수로 쓰면 {$2\\frac{1}{3}$}이다.",
+      "cStudentSentence": "$7\\div3$의 몫을 가분수로 쓰면 □이고, 대분수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{7}{3}$",
+          "equivalents": []
+        },
+        {
+          "key": "$2\\frac{1}{3}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7\\div3$처럼 나누어지는 수가 나누는 수보다 큰 나눗셈의 몫이 $1$보다 큰 까닭을 설명하고, $7\\div3$의 몫을 가분수와 대분수로 각각 쓰세요.",
+        "answer": "$7$ 안에 $3$이 한 번 넘게 들어가기(분자가 분모보다 크기) 때문이다. $7\\div3=\\frac{7}{3}=2\\frac{1}{3}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수가 한 번 넘게 들어간다",
+              "분수로 쓰면 분자가 분모보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{1}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7\\div3$의 몫을 가분수로 쓰면 {$\\frac{7}{3}$}이고, 대분수로 쓰면 {$2\\frac{1}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{7}{3}$"
+          ],
+          [
+            "$2\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b0fda8acaf5545eda6ff250e31e05c9b65f26c5b910ab3c6e7a720aa571b7997",
+      "questionRevision": "planning-e5e6-20261006-b0fda8acaf55",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "(자연수)$\\div$(자연수)의 몫은 $1\\div$(나누는 수)의 몫이 몇 개 모인 수로 볼 수 있는지 쓰고, 이를 이용해 $7\\div10$의 몫을 설명하세요.",
+      "bAnswer": "나누어지는 수만큼 모인 수이다. $1\\div10=\\frac{1}{10}$이고 $7\\div10$은 $\\frac{1}{10}$이 $7$개이므로 $\\frac{7}{10}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수만큼 모인 수",
+            "나누어지는 수와 같은 개수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{10}$이 $7$개라서 $\\frac{7}{10}$",
+            "$\\frac{1}{10}\\times7=\\frac{7}{10}$"
+          ]
+        }
+      ],
+      "bGoal": "몫을 단위분수가 몇 개 모인 수로 보고 분수가 되는 까닭을 설명한다.",
+      "bReason": "c2의 규칙이 성립하는 이유를 묻는 문항으로 제목의 편집용 표현을 풀어 썼다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\div10=\\frac{1}{10}$이므로 $7\\div10$의 몫은 $\\frac{1}{10}$이 {$7$}개 모인 수이다.",
+      "cReason": "'$1$을 나누는 수로 나눈 단위분수가 나누어지는 수만큼'은 맥락 없이 읽기 어려워 실제 식으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1636,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc12",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "몫을 단위분수의 개수로 보기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "(자연수)$\\div$(자연수)의 몫은 $1$을 나누는 수로 나눈 단위분수가 {나누어지는 수만큼} 모인 수이다.",
+        "example": {
+          "prompt": "$7\\div10$의 몫이 $\\frac{7}{10}$인 까닭을 $\\frac{1}{10}$로 설명하면?",
+          "answer": "$\\frac{1}{10}$이 $7$개 모인 수라서"
+        },
+        "studentC": "(자연수)$\\div$(자연수)의 몫은 $1$을 나누는 수로 나눈 단위분수가 □ 모인 수이다.",
+        "answers": [
+          "나누어지는 수만큼"
+        ]
+      },
+      "sourceFingerprint": "459b56b22809b6e224f7216f43ca26be2d458f48b3ca0b83627a9d481c71ce8d",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "$7$"
+      ],
+      "cStudentAfter": "$1\\div10=\\frac{1}{10}$이므로 $7\\div10$의 몫은 $\\frac{1}{10}$이 □개 모인 수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\div10=\\frac{1}{10}$이므로 $7\\div10$의 몫은 $\\frac{1}{10}$이 {$7$}개 모인 수이다.",
+      "cStudentSentence": "$1\\div10=\\frac{1}{10}$이므로 $7\\div10$의 몫은 $\\frac{1}{10}$이 □개 모인 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "(자연수)$\\div$(자연수)의 몫은 $1\\div$(나누는 수)의 몫이 몇 개 모인 수로 볼 수 있는지 쓰고, 이를 이용해 $7\\div10$의 몫을 설명하세요.",
+        "answer": "나누어지는 수만큼 모인 수이다. $1\\div10=\\frac{1}{10}$이고 $7\\div10$은 $\\frac{1}{10}$이 $7$개이므로 $\\frac{7}{10}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수만큼 모인 수",
+              "나누어지는 수와 같은 개수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{10}$이 $7$개라서 $\\frac{7}{10}$",
+              "$\\frac{1}{10}\\times7=\\frac{7}{10}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\div10=\\frac{1}{10}$이므로 $7\\div10$의 몫은 $\\frac{1}{10}$이 {$7$}개 모인 수이다.",
+        "acceptedAnswers": [
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "96c6132892d6062fc7fb8af07051936fc4195457dcb350bbe5b1c3ebf2779cdb",
+      "questionRevision": "planning-e5e6-20261006-96c6132892d6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc13",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "나누어지는 수와 나누는 수가 같은 자연수일 때 몫은 얼마인지 쓰고, $4\\div4$의 몫을 분수로 나타내어 확인하세요.",
+      "bAnswer": "몫은 $1$이다. $4\\div4=\\frac{4}{4}=1$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "같은 수끼리 나눈 몫은 분자와 분모가 같은 분수로 $1$임을 안다.",
+      "bReason": "원문 예의 오답 설명 대신 일반 결과와 분수 표기 확인으로 좁혔다.",
+      "cDecision": "keep",
+      "cAfter": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 {$1$}과 같다.",
+      "cReason": "분자와 분모가 같은 분수가 $1$이라는 결론 하나를 짧게 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1637,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc13",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나누어지는 수와 나누는 수가 같은 나눗셈",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 {$1$}과 같다.",
+        "example": {
+          "prompt": "$4\\div4$의 몫을 $\\frac{1}{4}$이라 하면 왜 틀린가?",
+          "answer": "$\\frac{1}{4}$은 $1\\div4$의 몫이라서"
+        },
+        "studentC": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 □과 같다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "ff1254675e616f3948ef0d0d4d20f1a5fb415e31ba03cfbf630550b567ff3330",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cFrozenDefinition": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 {$1$}과 같다.",
+      "cFrozenStudentSentence": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 □과 같다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 □과 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 {$1$}과 같다.",
+      "cStudentSentence": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 □과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어지는 수와 나누는 수가 같은 자연수일 때 몫은 얼마인지 쓰고, $4\\div4$의 몫을 분수로 나타내어 확인하세요.",
+        "answer": "몫은 $1$이다. $4\\div4=\\frac{4}{4}=1$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누어지는 수와 나누는 수가 같으면 몫은 분자와 분모가 같은 분수이고, 이는 {$1$}과 같다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ca822856a13ff8ddd648aa92fdf48dd40d92749b6a9aad4edefeec7c812cc98a",
+      "questionRevision": "planning-e5e6-20261006-ca822856a13f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc14",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "나눗셈의 몫이 맞는지 곱셈으로 확인하려면 몫에 무엇을 곱했을 때 어떤 수가 나와야 하는지 쓰고, $3\\div4=\\frac{3}{4}$을 확인하는 곱셈식을 쓰세요.",
+      "bAnswer": "몫에 나누는 수를 곱하면 나누어지는 수가 나와야 한다. $\\frac{3}{4}\\times4=3$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫에 나누는 수를 곱하면 나누어지는 수가 나온다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}\\times4=3$",
+            "$4\\times\\frac{3}{4}=3$"
+          ]
+        }
+      ],
+      "bGoal": "나눗셈과 곱셈의 관계로 분수 몫을 검산한다.",
+      "bReason": "검산 방법을 일반 관계와 실제 곱셈식으로 함께 답하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$3\\div4=\\frac{3}{4}$이 맞는지 확인하려면 $\\frac{3}{4}\\times${$4$}를 계산하여 {$3$}이 나오는지 본다.",
+      "cReason": "용어만 나열한 원문은 맥락 없이 이해하기 어려워 실제 나눗셈식과 확인할 곱셈식을 제시했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1638,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc14",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "곱셈으로 몫 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "몫에 {나누는 수}를 곱하면 나누어지는 수가 나와야 한다. 한 몫을 나눈 수만큼 다시 모으면 처음 전체가 되기 때문이다.",
+        "studentC": "몫에 □를 곱하면 나누어지는 수가 나와야 한다. 한 몫을 나눈 수만큼 다시 모으면 처음 전체가 되기 때문이다.",
+        "answers": [
+          "나누는 수"
+        ]
+      },
+      "sourceFingerprint": "2db45d2c0ec6c90ccb6be1a43be8e6e93d71b03580eaef0fded1ee2daa68835c",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$3$"
+      ],
+      "cStudentAfter": "$3\\div4=\\frac{3}{4}$이 맞는지 확인하려면 $\\frac{3}{4}\\times$□를 계산하여 □이 나오는지 본다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$3\\div4=\\frac{3}{4}$이 맞는지 확인하려면 $\\frac{3}{4}\\times${$4$}를 계산하여 {$3$}이 나오는지 본다.",
+      "cStudentSentence": "$3\\div4=\\frac{3}{4}$이 맞는지 확인하려면 $\\frac{3}{4}\\times$□를 계산하여 □이 나오는지 본다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나눗셈의 몫이 맞는지 곱셈으로 확인하려면 몫에 무엇을 곱했을 때 어떤 수가 나와야 하는지 쓰고, $3\\div4=\\frac{3}{4}$을 확인하는 곱셈식을 쓰세요.",
+        "answer": "몫에 나누는 수를 곱하면 나누어지는 수가 나와야 한다. $\\frac{3}{4}\\times4=3$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫에 나누는 수를 곱하면 나누어지는 수가 나온다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}\\times4=3$",
+              "$4\\times\\frac{3}{4}=3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\div4=\\frac{3}{4}$이 맞는지 확인하려면 $\\frac{3}{4}\\times${$4$}를 계산하여 {$3$}이 나오는지 본다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "551f84280c72b0f138b1a59a6021065113b499079adb278c53329c4d03bb4067",
+      "questionRevision": "planning-e5e6-20261006-551f84280c72",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc15",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수를 자연수로 나누는 것은 그 수에 어떤 분수를 곱하는 것과 같은지 쓰고, $7\\div8$을 곱셈식으로 나타내세요.",
+      "bAnswer": "분자가 $1$이고 분모가 나누는 수인 분수를 곱하는 것과 같다. $7\\div8=7\\times\\frac{1}{8}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자가 $1$이고 분모가 나누는 수인 분수",
+            "$1\\div$(나누는 수)의 몫인 단위분수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\times\\frac{1}{8}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수로 나누기를 단위분수 곱하기로 바꾼다.",
+      "bReason": "원문 예는 곱셈식을 미리 보여 주므로 학생이 곱할 분수를 직접 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 수를 $8$로 나누는 것은 그 수에 {$\\frac{1}{8}$}을 곱하는 것과 같다.",
+      "cReason": "분모 $8$을 앞 문장에서 그대로 복사하는 빈칸 대신 곱할 수 전체를 쓰게 한다. 나누는 수라는 역할 이름을 맥락 없이 복원하게 하지 않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{8}$",
+            "$\\frac{2}{16}$",
+            "$0.125$"
+          ]
+        }
+      ],
+      "independentFeedbackEvidence": {
+        "file": "evidence/independent-amendments-e5e6.json",
+        "capturedReviewedHash": "22a3ba8bd1eae450f4f73e01f8af9fb9daf9fce38961da2285437e38cd5aca29",
+        "capturedInputHash": "57bd6a478e9bb2fb96ce99ef524c4ef2dd442327f8a1785b452edb5f5fca371d",
+        "cohort": "cohort-2026-10-06T13-13-14-351Z-1",
+        "resolution": "분모 $8$을 앞 문장에서 그대로 복사하는 빈칸 대신 곱할 수 전체를 쓰게 한다. 나누는 수라는 역할 이름을 맥락 없이 복원하게 하지 않는다.",
+        "laterProposalNeedsNewReview": true
+      },
+      "sourceIndex": 1639,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc15",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나눗셈을 곱셈으로 나타내기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "어떤 수를 자연수로 나누는 것은 그 수에 분자가 $1$이고 {분모가 나누는 수}인 분수를 곱하는 것과 같다.",
+        "example": {
+          "prompt": "$7\\div8$이 $7\\times\\frac{1}{8}$과 같은 까닭은?",
+          "answer": "한 몫이 전체의 $\\frac{1}{8}$이라서"
+        },
+        "studentC": "어떤 수를 자연수로 나누는 것은 그 수에 분자가 $1$이고 □인 분수를 곱하는 것과 같다.",
+        "answers": [
+          "분모가 나누는 수"
+        ]
+      },
+      "sourceFingerprint": "a96bee69358368b28d87f4ae60e37852d45207b746a406e46856f8d31e81c884",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{8}$"
+      ],
+      "cStudentAfter": "어떤 수를 $8$로 나누는 것은 그 수에 □을 곱하는 것과 같다.",
+      "cMarkedSentence": "어떤 수를 $8$로 나누는 것은 그 수에 {$\\frac{1}{8}$}을 곱하는 것과 같다.",
+      "cStudentSentence": "어떤 수를 $8$로 나누는 것은 그 수에 □을 곱하는 것과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{8}$",
+          "equivalents": [
+            "$\\frac{2}{16}$",
+            "$0.125$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수를 자연수로 나누는 것은 그 수에 어떤 분수를 곱하는 것과 같은지 쓰고, $7\\div8$을 곱셈식으로 나타내세요.",
+        "answer": "분자가 $1$이고 분모가 나누는 수인 분수를 곱하는 것과 같다. $7\\div8=7\\times\\frac{1}{8}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자가 $1$이고 분모가 나누는 수인 분수",
+              "$1\\div$(나누는 수)의 몫인 단위분수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7\\times\\frac{1}{8}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수를 $8$로 나누는 것은 그 수에 {$\\frac{1}{8}$}을 곱하는 것과 같다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{8}$",
+            "$\\frac{2}{16}$",
+            "$0.125$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5839c8289bd09f8ba19da4614c39f5b9c1b09eef9b1a5e1e6820408e00945616",
+      "questionRevision": "planning-e5e6-20261006-5839c8289bd0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "분수를 (자연수)$\\div$(자연수)의 몫으로 볼 때 분자와 분모는 각각 나눗셈식의 어느 자리에 오는지 쓰고, $\\frac{7}{12}$을 나눗셈식으로 나타내세요.",
+      "bAnswer": "분자는 나누어지는 수, 분모는 나누는 수 자리에 온다. $\\frac{7}{12}=7\\div12$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자는 나누어지는 수, 분모는 나누는 수",
+            "분자를 분모로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\div12$"
+          ]
+        }
+      ],
+      "bGoal": "분수를 거꾸로 나눗셈식으로 나타낸다.",
+      "bReason": "c2와 방향이 반대인 변환이라 따로 묻되 자리 관계를 말로도 쓰게 했다.",
+      "cDecision": "keep",
+      "cAfter": "분수는 {분자}를 {분모}로 나눈 나눗셈의 몫으로 볼 수 있다.",
+      "cReason": "분자를 분모로 나눈다는 순서를 배운 낱말 두 개로 묻는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1640,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc16",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "분수를 나눗셈의 몫으로 보기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분수는 {분자}를 {분모}로 나눈 나눗셈의 몫으로 볼 수 있다.",
+        "example": {
+          "prompt": "$\\frac{7}{12}$의 분자와 분모를 그대로 써서 (자연수)$\\div$(자연수)의 몫으로 나타내면?",
+          "answer": "$7\\div12$의 몫"
+        },
+        "studentC": "분수는 □를 □로 나눈 나눗셈의 몫으로 볼 수 있다.",
+        "answers": [
+          "분자",
+          "분모"
+        ]
+      },
+      "sourceFingerprint": "67a01885ee1c40b3ebe1049aa1d1e0be73900ed7e86f524a593f34f47d430ece",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cFrozenDefinition": "분수는 {분자}를 {분모}로 나눈 나눗셈의 몫으로 볼 수 있다.",
+      "cFrozenStudentSentence": "분수는 □를 □로 나눈 나눗셈의 몫으로 볼 수 있다.",
+      "cProposedAnswers": [
+        "분자",
+        "분모"
+      ],
+      "cStudentAfter": "분수는 □를 □로 나눈 나눗셈의 몫으로 볼 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분자"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분수는 {분자}를 {분모}로 나눈 나눗셈의 몫으로 볼 수 있다.",
+      "cStudentSentence": "분수는 □를 □로 나눈 나눗셈의 몫으로 볼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "분자",
+          "equivalents": []
+        },
+        {
+          "key": "분모",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수를 (자연수)$\\div$(자연수)의 몫으로 볼 때 분자와 분모는 각각 나눗셈식의 어느 자리에 오는지 쓰고, $\\frac{7}{12}$을 나눗셈식으로 나타내세요.",
+        "answer": "분자는 나누어지는 수, 분모는 나누는 수 자리에 온다. $\\frac{7}{12}=7\\div12$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자는 나누어지는 수, 분모는 나누는 수",
+              "분자를 분모로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7\\div12$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분수는 {분자}를 {분모}로 나눈 나눗셈의 몫으로 볼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "분자"
+          ],
+          [
+            "분모"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1e7aeccaf41e61bfed443d2985bc14e6503ec15122879c758f9e59583b6636c8",
+      "questionRevision": "planning-e5e6-20261006-1e7aeccaf41e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$11\\div4$의 몫을 대분수로 나타내는 방법을, 자연수 부분과 분자가 각각 어떻게 정해지는지 넣어 설명하세요.",
+      "bAnswer": "$11\\div4$는 몫이 $2$, 나머지가 $3$이다. 몫 $2$를 자연수 부분, 나머지 $3$을 분자, 나누는 수 $4$를 분모로 하여 $2\\frac{3}{4}$으로 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분은 $11\\div4$의 자연수 몫 $2$",
+            "$4$가 $2$번 들어가서 자연수 부분이 $2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 나머지 $3$",
+            "남은 $3$이 분자"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수 몫과 나머지로 대분수 몫을 만든다.",
+      "bReason": "원문 예는 답을 준 뒤 뜻만 물으므로 학생이 방법을 직접 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$11\\div4$는 몫이 $2$이고 나머지가 $3$이므로, 대분수로 나타내면 자연수 부분은 {$2$}, 분자는 {$3$}, 분모는 {$4$}이다.",
+      "cReason": "'들어가는 횟수'와 '남은 수'는 임의 표현이라 배운 몫과 나머지로 값을 답하게 했다.",
+      "coreAfter": "두 자연수의 나눗셈에서 나누어지는 수가 더 크고 나누어떨어지지 않으면, 나머지가 있는 나눗셈의 {몫}을 자연수 부분으로, {나머지}를 분자로, 나누는 수를 분모로 하여 대분수로 쓴다.",
+      "coreReason": "'들어가는 횟수'와 '남은 수'는 학생이 배운 몫과 나머지라는 용어로 쓰는 편이 분명하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "현재 유효한 몫·나머지 두 표적을 유지한다. 들어가는 횟수·남은 수 대신 배운 용어를 쓰고 두 자연수라는 일반 적용 범위를 밝힌다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1641,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc17",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "몫을 대분수로 나타내는 방법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "나누어지는 수가 더 크고 나누어떨어지지 않으면, 나누는 수가 {들어가는 횟수}를 자연수 부분으로, {남은 수}를 분자로, 나누는 수를 분모로 하여 대분수로 쓴다.",
+        "example": {
+          "prompt": "$11\\div4$의 몫 $2\\frac{3}{4}$에서 $2$와 $3$은 각각 무엇을 나타내는가?",
+          "answer": "$4$가 들어간 횟수와 남은 수"
+        },
+        "studentC": "나누어지는 수가 더 크고 나누어떨어지지 않으면, 나누는 수가 □를 자연수 부분으로, □를 분자로, 나누는 수를 분모로 하여 대분수로 쓴다.",
+        "answers": [
+          "들어가는 횟수",
+          "남은 수"
+        ]
+      },
+      "sourceFingerprint": "68c1364213f3b567b04f5abd4245d1389f37c96243b295556ea02571ba560a02",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$2$",
+        "$3$",
+        "$4$"
+      ],
+      "cStudentAfter": "$11\\div4$는 몫이 $2$이고 나머지가 $3$이므로, 대분수로 나타내면 자연수 부분은 □, 분자는 □, 분모는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$11\\div4$는 몫이 $2$이고 나머지가 $3$이므로, 대분수로 나타내면 자연수 부분은 {$2$}, 분자는 {$3$}, 분모는 {$4$}이다.",
+      "cStudentSentence": "$11\\div4$는 몫이 $2$이고 나머지가 $3$이므로, 대분수로 나타내면 자연수 부분은 □, 분자는 □, 분모는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$11\\div4$의 몫을 대분수로 나타내는 방법을, 자연수 부분과 분자가 각각 어떻게 정해지는지 넣어 설명하세요.",
+        "answer": "$11\\div4$는 몫이 $2$, 나머지가 $3$이다. 몫 $2$를 자연수 부분, 나머지 $3$을 분자, 나누는 수 $4$를 분모로 하여 $2\\frac{3}{4}$으로 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분은 $11\\div4$의 자연수 몫 $2$",
+              "$4$가 $2$번 들어가서 자연수 부분이 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 나머지 $3$",
+              "남은 $3$이 분자"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{3}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$11\\div4$는 몫이 $2$이고 나머지가 $3$이므로, 대분수로 나타내면 자연수 부분은 {$2$}, 분자는 {$3$}, 분모는 {$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7bcff8f15723ec263658ef69587466c1bd01a3b78c4e5cb0e726145211946f8b",
+      "questionRevision": "planning-e5e6-20261006-7bcff8f15723",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "나누는 수가 같은 두 나눗셈에서 나누어지는 수가 더 큰 쪽의 몫은 다른 쪽과 견주어 어떠한지 쓰고, $3\\div7$과 $5\\div7$의 몫을 분수로 나타내어 견주세요.",
+      "bAnswer": "나누어지는 수가 더 큰 쪽의 몫이 더 크다. $\\frac{3}{7}<\\frac{5}{7}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수가 큰 쪽의 몫이 더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{7}<\\frac{5}{7}$",
+            "$5\\div7$의 몫 $\\frac{5}{7}$가 $\\frac{3}{7}$보다 크다"
+          ]
+        }
+      ],
+      "bGoal": "나누는 수가 같을 때 몫의 크기를 분모가 같은 분수로 견준다.",
+      "bReason": "c3의 배 관계와 달리 크기 비교가 목표라 분모가 같은 분수 비교를 예로 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "$3\\div7$의 몫은 $5\\div7$의 몫보다 {작다}.",
+      "cReason": "몫인 분수도라는 어색한 말과 크-의 어미 복원을 제거한다. 나누는 수가 같은 실제 두 식에서 크기 방향을 판단하게 한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'커질수록', '크면'도 같은 뜻으로 인정한다.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        }
+      ],
+      "independentFeedbackEvidence": {
+        "file": "evidence/independent-amendments-e5e6.json",
+        "capturedReviewedHash": "f84bcdd199e2051612e7a761274f2015173a8c321603315b0fa38ff72d14a9b0",
+        "capturedInputHash": "57bd6a478e9bb2fb96ce99ef524c4ef2dd442327f8a1785b452edb5f5fca371d",
+        "cohort": "cohort-2026-10-06T13-13-14-351Z-1",
+        "resolution": "몫인 분수도라는 어색한 말과 크-의 어미 복원을 제거한다. 나누는 수가 같은 실제 두 식에서 크기 방향을 판단하게 한다.",
+        "laterProposalNeedsNewReview": true
+      },
+      "sourceIndex": 1642,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc18",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나누는 수가 같을 때 몫의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누는 수가 같으면 나누어지는 수가 {클수록} 몫인 분수도 크다.",
+        "studentC": "나누는 수가 같으면 나누어지는 수가 □ 몫인 분수도 크다.",
+        "answers": [
+          "클수록"
+        ]
+      },
+      "sourceFingerprint": "3a3f95299ebb3ff4f9466b3c616c8f2ed0b343091198eebee9fdc99d686eb325",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bRequiredIdeas[1].anyOf[1]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$3\\div7$의 몫은 $5\\div7$의 몫보다 □.",
+      "cMarkedSentence": "$3\\div7$의 몫은 $5\\div7$의 몫보다 {작다}.",
+      "cStudentSentence": "$3\\div7$의 몫은 $5\\div7$의 몫보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누는 수가 같은 두 나눗셈에서 나누어지는 수가 더 큰 쪽의 몫은 다른 쪽과 견주어 어떠한지 쓰고, $3\\div7$과 $5\\div7$의 몫을 분수로 나타내어 견주세요.",
+        "answer": "나누어지는 수가 더 큰 쪽의 몫이 더 크다. $\\frac{3}{7}<\\frac{5}{7}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수가 큰 쪽의 몫이 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{7}<\\frac{5}{7}$",
+              "$5\\div7$의 몫 $\\frac{5}{7}$가 $\\frac{3}{7}$보다 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\div7$의 몫은 $5\\div7$의 몫보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "더 작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "af3d34e6fd7c01d69345339ea46908d97162f9bb653924deab080bafd2ad59ed",
+      "questionRevision": "planning-e5e6-20261006-af3d34e6fd7c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "나누어지는 수가 같을 때 나누는 수가 커지면 몫은 어떻게 되는지 쓰고, 같은 양을 더 많은 부분으로 똑같이 나눈다는 뜻으로 까닭을 설명하세요.",
+      "bAnswer": "몫은 작아진다. 같은 양을 더 많은 부분으로 똑같이 나누면 한 부분의 양이 줄어들기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 많은 부분으로 나누면 한 부분의 양이 줄어든다",
+            "나누어 가지는 사람이 많을수록 한 사람 몫이 적다"
+          ]
+        }
+      ],
+      "bGoal": "나누는 수가 커지면 몫이 작아지는 까닭을 등분의 뜻으로 설명한다.",
+      "bReason": "일반 관계와 까닭을 분명히 물었으므로 계산 예는 따로 붙이지 않았다.",
+      "cDecision": "revise",
+      "cAfter": "같은 자연수를 자연수로 나눌 때, 나누는 수가 커질수록 몫은 {작아진다}.",
+      "cReason": "뒤의 비교 예가 앞 빈칸의 방향을 알려 주는 부분을 제거하고 자연수 나눗셈이라는 대상을 문장에 넣는다. 짧고 유용한 일반 크기 비교는 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'작다', '줄어든다'도 같은 뜻으로 인정한다.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작아진다",
+            "더 작아진다",
+            "줄어든다"
+          ]
+        }
+      ],
+      "independentFeedbackEvidence": {
+        "file": "evidence/independent-amendments-e5e6.json",
+        "capturedReviewedHash": "3797cf3916f8ba957576170c8ba328747dc882f3ff898b6d18af9e6a8785e4f7",
+        "capturedInputHash": "57bd6a478e9bb2fb96ce99ef524c4ef2dd442327f8a1785b452edb5f5fca371d",
+        "cohort": "cohort-2026-10-06T13-13-14-351Z-1",
+        "resolution": "뒤의 비교 예가 앞 빈칸의 방향을 알려 주는 부분을 제거하고 자연수 나눗셈이라는 대상을 문장에 넣는다. 짧고 유용한 일반 크기 비교는 유지한다.",
+        "laterProposalNeedsNewReview": true
+      },
+      "sourceIndex": 1643,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc19",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나누는 수가 커질 때의 몫",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누어지는 수가 같으면 나누는 수가 클수록 몫은 {작아진다}. $3\\div4$의 몫은 $3\\div5$의 몫보다 크다.",
+        "studentC": "나누어지는 수가 같으면 나누는 수가 클수록 몫은 □. $3\\div4$의 몫은 $3\\div5$의 몫보다 크다.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "sourceFingerprint": "83ae59dfdf280b93364034172c3bb9f916b51a4ef0aed97bdf8ae3a8303da7a7",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작아진다"
+      ],
+      "cStudentAfter": "같은 자연수를 자연수로 나눌 때, 나누는 수가 커질수록 몫은 □.",
+      "cMarkedSentence": "같은 자연수를 자연수로 나눌 때, 나누는 수가 커질수록 몫은 {작아진다}.",
+      "cStudentSentence": "같은 자연수를 자연수로 나눌 때, 나누는 수가 커질수록 몫은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아진다",
+          "equivalents": [
+            "더 작아진다",
+            "줄어든다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어지는 수가 같을 때 나누는 수가 커지면 몫은 어떻게 되는지 쓰고, 같은 양을 더 많은 부분으로 똑같이 나눈다는 뜻으로 까닭을 설명하세요.",
+        "answer": "몫은 작아진다. 같은 양을 더 많은 부분으로 똑같이 나누면 한 부분의 양이 줄어들기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "더 많은 부분으로 나누면 한 부분의 양이 줄어든다",
+              "나누어 가지는 사람이 많을수록 한 사람 몫이 적다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 자연수를 자연수로 나눌 때, 나누는 수가 커질수록 몫은 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다",
+            "더 작아진다",
+            "줄어든다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9a2cbf3c0f6901c92d00f239961241e4f529109ac28ce423916a5ba5d6e306fa",
+      "questionRevision": "planning-e5e6-20261006-9a2cbf3c0f69",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$3\\div4$의 몫을 두 가지로 설명하세요. ① $1$을 똑같이 $4$로 나눈 것 중의 하나를 이용한 설명, ② $3$을 한꺼번에 똑같이 $4$로 나눈다는 설명.",
+      "bAnswer": "① $1$을 똑같이 $4$로 나눈 것 중의 하나인 $\\frac{1}{4}$이 $3$개 모인 양이다. ② $3$을 똑같이 $4$로 나눈 것 중의 한 부분의 양이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$이 $3$개 모인 양",
+            "$1\\div4$의 몫이 $3$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$을 똑같이 $4$로 나눈 것 중 한 부분",
+            "$3$ 전체의 $\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "$\\frac{3}{4}$을 단위분수 $3$개와 $3$의 $4$등분 한 부분이라는 두 뜻으로 본다.",
+      "bReason": "편집용 제목 대신 두 관점의 출발점을 각각 지정해 답의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "$3\\div4$의 몫은 $\\frac{1}{4}$이 {$3$}개 모인 양이고, $3$을 똑같이 {$4$}로 나눈 것 중의 하나와 같다.",
+      "cReason": "빈칸 '넷으로 나눈 한 몫'은 긴 구절이고 한글 수 표기가 섞여 숫자 값으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1644,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc20",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "두 가지로 보는 $3\\div4$",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$3\\div4$는 $1$을 넷으로 나눈 조각 {셋}을 모은 양이자, $3$을 통째로 {넷으로 나눈 한 몫}이다.",
+        "studentC": "$3\\div4$는 $1$을 넷으로 나눈 조각 □을 모은 양이자, $3$을 통째로 □이다.",
+        "answers": [
+          "셋",
+          "넷으로 나눈 한 몫"
+        ]
+      },
+      "sourceFingerprint": "2418b4bae4a4eb97f27f8eff6036d4a5567407c6efb4594238b4b4940c71b731",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$4$"
+      ],
+      "cStudentAfter": "$3\\div4$의 몫은 $\\frac{1}{4}$이 □개 모인 양이고, $3$을 똑같이 □로 나눈 것 중의 하나와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$3\\div4$의 몫은 $\\frac{1}{4}$이 {$3$}개 모인 양이고, $3$을 똑같이 {$4$}로 나눈 것 중의 하나와 같다.",
+      "cStudentSentence": "$3\\div4$의 몫은 $\\frac{1}{4}$이 □개 모인 양이고, $3$을 똑같이 □로 나눈 것 중의 하나와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\div4$의 몫을 두 가지로 설명하세요. ① $1$을 똑같이 $4$로 나눈 것 중의 하나를 이용한 설명, ② $3$을 한꺼번에 똑같이 $4$로 나눈다는 설명.",
+        "answer": "① $1$을 똑같이 $4$로 나눈 것 중의 하나인 $\\frac{1}{4}$이 $3$개 모인 양이다. ② $3$을 똑같이 $4$로 나눈 것 중의 한 부분의 양이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$이 $3$개 모인 양",
+              "$1\\div4$의 몫이 $3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$을 똑같이 $4$로 나눈 것 중 한 부분",
+              "$3$ 전체의 $\\frac{1}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\div4$의 몫은 $\\frac{1}{4}$이 {$3$}개 모인 양이고, $3$을 똑같이 {$4$}로 나눈 것 중의 하나와 같다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "62c3490a9f0f1fd16cef4e98cd71d424df10571187424d42fb133d82e1979fd4",
+      "questionRevision": "planning-e5e6-20261006-62c3490a9f0f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc21",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "나누어지는 수와 나누는 수에 $0$이 아닌 같은 수를 곱하면 몫은 어떻게 되는지 쓰고, $2\\div3$과 $4\\div6$의 몫을 분수로 나타내어 확인하세요.",
+      "bAnswer": "몫은 변하지 않는다. $2\\div3=\\frac{2}{3}$, $4\\div6=\\frac{4}{6}=\\frac{2}{3}$로 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 변하지 않는다",
+            "몫이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{6}=\\frac{2}{3}$",
+            "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 같은 분수"
+          ]
+        }
+      ],
+      "bGoal": "두 수를 같은 배로 하면 몫이 같음을 크기가 같은 분수로 확인한다.",
+      "bReason": "$0$ 제외 조건을 질문에 넣고 약분으로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\div3$의 나누어지는 수와 나누는 수를 모두 {$2$}배 하면 $4\\div6$이 되고, 두 나눗셈의 몫은 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "'같은 배'보다 실제 배수와 몫이 같다는 결론을 답하는 편이 목표에 맞다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1645,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc21",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "몫이 같은 두 나눗셈",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$2\\div3$과 $4\\div6$은 나누는 수와 나누어지는 수를 모두 {같은 배}로 늘린 것이라 몫이 같다.",
+        "studentC": "$2\\div3$과 $4\\div6$은 나누는 수와 나누어지는 수를 모두 □로 늘린 것이라 몫이 같다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "sourceFingerprint": "aeb89bd4b99d6b5e63c8b4adabbe36e8cceb7fa8fe6f042526451f1975964c6d",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$2$",
+        "같다"
+      ],
+      "cStudentAfter": "$2\\div3$의 나누어지는 수와 나누는 수를 모두 □배 하면 $4\\div6$이 되고, 두 나눗셈의 몫은 서로 □.",
+      "cMarkedSentence": "$2\\div3$의 나누어지는 수와 나누는 수를 모두 {$2$}배 하면 $4\\div6$이 되고, 두 나눗셈의 몫은 서로 {같다}.",
+      "cStudentSentence": "$2\\div3$의 나누어지는 수와 나누는 수를 모두 □배 하면 $4\\div6$이 되고, 두 나눗셈의 몫은 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어지는 수와 나누는 수에 $0$이 아닌 같은 수를 곱하면 몫은 어떻게 되는지 쓰고, $2\\div3$과 $4\\div6$의 몫을 분수로 나타내어 확인하세요.",
+        "answer": "몫은 변하지 않는다. $2\\div3=\\frac{2}{3}$, $4\\div6=\\frac{4}{6}=\\frac{2}{3}$로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 변하지 않는다",
+              "몫이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{6}=\\frac{2}{3}$",
+              "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 같은 분수"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\div3$의 나누어지는 수와 나누는 수를 모두 {$2$}배 하면 $4\\div6$이 되고, 두 나눗셈의 몫은 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c077bce6424af58e42669aab30446e01df0ad648db6db6e3ae0f46772d34d871",
+      "questionRevision": "planning-e5e6-20261006-c077bce6424a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc22",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$7\\div2$를 몫 $3$, 나머지 $1$로 끝내지 않고 남김없이 나눈 몫을 구하려면 나머지 $1$을 어떻게 해야 하는지 설명하고, 그 몫을 대분수로 쓰세요.",
+      "bAnswer": "나머지 $1$도 $2$로 똑같이 나누어 $\\frac{1}{2}$을 만들고 $3$에 더한다. 몫은 $3\\frac{1}{2}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나머지 $1$도 $2$로 똑같이 나눈다",
+            "남은 $1$을 나누어 $\\frac{1}{2}$씩 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "bGoal": "나머지를 다시 나누는 수로 나누어 대분수 몫을 얻는다.",
+      "bReason": "원문 예는 답을 보여 주고 까닭만 물으므로 나머지 처리 방법과 결과를 학생이 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$7\\div2$를 남김없이 나누려면 몫 $3$을 구하고 남은 {$1$}도 {$2$}로 똑같이 나누어 $3$에 더한다.",
+      "cReason": "빈칸 '나누는 수로 똑같이 나누어'는 긴 구절이라 실제 식에서 나머지와 나누는 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1646,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc22",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나머지까지 나누기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "남은 나머지도 {나누는 수로 똑같이 나누어} 이미 나눈 한 몫에 더하면, 남김없이 나눈 몫을 나타낼 수 있다.",
+        "example": {
+          "prompt": "$7\\div2$를 몫 $3$, 나머지 $1$로 끝내지 않고 $3\\frac{1}{2}$로 쓰는 까닭은?",
+          "answer": "남은 $1$도 둘로 나누어 주어서"
+        },
+        "studentC": "남은 나머지도 □ 이미 나눈 한 몫에 더하면, 남김없이 나눈 몫을 나타낼 수 있다.",
+        "answers": [
+          "나누는 수로 똑같이 나누어"
+        ]
+      },
+      "sourceFingerprint": "6eda64aa48f7974505fc6fdcbeeadfc72e485971c5fac3a9128143107ba55659",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$2$"
+      ],
+      "cStudentAfter": "$7\\div2$를 남김없이 나누려면 몫 $3$을 구하고 남은 □도 □로 똑같이 나누어 $3$에 더한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$7\\div2$를 남김없이 나누려면 몫 $3$을 구하고 남은 {$1$}도 {$2$}로 똑같이 나누어 $3$에 더한다.",
+      "cStudentSentence": "$7\\div2$를 남김없이 나누려면 몫 $3$을 구하고 남은 □도 □로 똑같이 나누어 $3$에 더한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7\\div2$를 몫 $3$, 나머지 $1$로 끝내지 않고 남김없이 나눈 몫을 구하려면 나머지 $1$을 어떻게 해야 하는지 설명하고, 그 몫을 대분수로 쓰세요.",
+        "answer": "나머지 $1$도 $2$로 똑같이 나누어 $\\frac{1}{2}$을 만들고 $3$에 더한다. 몫은 $3\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 $1$도 $2$로 똑같이 나눈다",
+              "남은 $1$을 나누어 $\\frac{1}{2}$씩 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7\\div2$를 남김없이 나누려면 몫 $3$을 구하고 남은 {$1$}도 {$2$}로 똑같이 나누어 $3$에 더한다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "286fa595979a4b3b6929b6b1c9d33ee36784a1634ea41520a0feeec3f74e32f7",
+      "questionRevision": "planning-e5e6-20261006-286fa595979a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "(자연수)$\\div$(자연수)의 몫을 분수로 썼을 때 자연수로 고칠 수 있으려면 나누어지는 수와 나누는 수가 어떤 관계여야 하는지 쓰고, $15\\div5$로 확인하세요.",
+      "bAnswer": "나누어지는 수가 나누는 수의 배수여야 한다. $15$는 $5$의 배수이므로 $\\frac{15}{5}=3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수가 나누는 수의 배수",
+            "나누는 수가 나누어지는 수의 약수",
+            "나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{15}{5}=3$",
+            "$15\\div5=3$"
+          ]
+        }
+      ],
+      "bGoal": "몫이 자연수가 되는 조건을 배수와 약수 관계로 말한다.",
+      "bReason": "초5에서 배운 배수와 약수로 답할 수 있어 관계를 묻고 예로 확인하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "나누어지는 수가 나누는 수의 {배수}이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+      "cReason": "배수라는 배운 용어 하나로 조건을 묻는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "빈칸 자리에는 '배수'만 맞고 '약수'는 방향이 반대라 오답이다.",
+      "sourceIndex": 1647,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc23",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "몫이 자연수가 되는 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누어지는 수가 나누는 수의 {배수}이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+        "example": {
+          "prompt": "$15\\div5$의 몫 $\\frac{15}{5}$를 자연수로 고칠 수 있는 까닭은?",
+          "answer": "$15$가 $5$의 배수라서"
+        },
+        "studentC": "나누어지는 수가 나누는 수의 □이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+        "answers": [
+          "배수"
+        ]
+      },
+      "sourceFingerprint": "cd8aaaa6633c46d2d495aec86fe8a6189c06386af77a3ca6da97f550350a2cc8",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cFrozenDefinition": "나누어지는 수가 나누는 수의 {배수}이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+      "cFrozenStudentSentence": "나누어지는 수가 나누는 수의 □이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+      "cProposedAnswers": [
+        "배수"
+      ],
+      "cStudentAfter": "나누어지는 수가 나누는 수의 □이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나누어지는 수가 나누는 수의 {배수}이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+      "cStudentSentence": "나누어지는 수가 나누는 수의 □이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "(자연수)$\\div$(자연수)의 몫을 분수로 썼을 때 자연수로 고칠 수 있으려면 나누어지는 수와 나누는 수가 어떤 관계여야 하는지 쓰고, $15\\div5$로 확인하세요.",
+        "answer": "나누어지는 수가 나누는 수의 배수여야 한다. $15$는 $5$의 배수이므로 $\\frac{15}{5}=3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수가 나누는 수의 배수",
+              "나누는 수가 나누어지는 수의 약수",
+              "나누어떨어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{15}{5}=3$",
+              "$15\\div5=3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누어지는 수가 나누는 수의 {배수}이면 나누어떨어져서 분수로 쓴 몫을 자연수로 고칠 수 있다.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fab53244d7cb52cb682570c07d16bad1bc23d543a06705e8e435818a909aafc2",
+      "questionRevision": "planning-e5e6-20261006-fab53244d7cb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc24",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "서로 다른 두 자연수로 만든 나눗셈에서 나누어지는 수와 나누는 수를 맞바꾸면 몫이 같은지 다른지 쓰고, $2\\div5$와 $5\\div2$의 몫을 $1$과 견주어 설명하세요.",
+      "bAnswer": "몫이 다르다. $2\\div5=\\frac{2}{5}$는 $1$보다 작고 $5\\div2=\\frac{5}{2}$는 $1$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 다르다",
+            "몫이 달라진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\div5$의 몫은 $1$보다 작고 $5\\div2$의 몫은 $1$보다 크다",
+            "$\\frac{2}{5}<1<\\frac{5}{2}$"
+          ]
+        }
+      ],
+      "bGoal": "나눗셈은 두 수의 순서를 바꾸면 몫이 달라짐을 $1$과 견주어 보인다.",
+      "bReason": "원문 예의 설명 방식을 살려 순서가 중요하다는 일반 관계를 먼저 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 {달라진다}. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 {크다}.",
+      "cReason": "'서로 다른' 조건이 문장에 들어 있고 두 빈칸이 짧은 비교어다.",
+      "exampleNeeded": false,
+      "synonymNotes": "첫 빈칸은 '다르다', '바뀐다'도 같은 뜻으로 인정한다.",
+      "sourceIndex": 1648,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc24",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "두 수의 자리를 맞바꾼 나눗셈",
+        "kind": "성질",
+        "level": "상",
+        "definition": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 {달라진다}. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 {크다}.",
+        "example": {
+          "prompt": "$2\\div5$와 $5\\div2$의 몫이 같지 않음을 $1$과 견주어 설명하면?",
+          "answer": "하나는 $1$보다 작고 하나는 크다"
+        },
+        "studentC": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 □. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 □.",
+        "answers": [
+          "달라진다",
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "c39ae9e911eccf20ad672538e04fa28445b02bca1fb720ccabf8564ffce3ed61",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cFrozenDefinition": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 {달라진다}. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 {크다}.",
+      "cFrozenStudentSentence": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 □. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 □.",
+      "cProposedAnswers": [
+        "달라진다",
+        "크다"
+      ],
+      "cStudentAfter": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 □. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "달라진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 {달라진다}. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 {크다}.",
+      "cStudentSentence": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 □. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "달라진다",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 다른 두 자연수로 만든 나눗셈에서 나누어지는 수와 나누는 수를 맞바꾸면 몫이 같은지 다른지 쓰고, $2\\div5$와 $5\\div2$의 몫을 $1$과 견주어 설명하세요.",
+        "answer": "몫이 다르다. $2\\div5=\\frac{2}{5}$는 $1$보다 작고 $5\\div2=\\frac{5}{2}$는 $1$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 다르다",
+              "몫이 달라진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\div5$의 몫은 $1$보다 작고 $5\\div2$의 몫은 $1$보다 크다",
+              "$\\frac{2}{5}<1<\\frac{5}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서로 다른 두 자연수는 나누어지는 수와 나누는 수의 자리를 맞바꾸면 몫이 {달라진다}. 한쪽 몫이 $1$보다 작으면 다른 쪽 몫은 $1$보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "달라진다"
+          ],
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b77e1324e0e7a05f3af4779d4877edcb7e01697bbca46000e32028e0d4b8861a",
+      "questionRevision": "planning-e5e6-20261006-b77e1324e0e7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-xc25",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1$을 나타내는 원 $4$개를 각각 똑같이 $3$칸으로 나누고 원마다 한 칸씩 색칠했습니다. 색칠한 부분 전체가 어떤 나눗셈의 몫을 나타내는지 쓰고, 한 칸의 크기와 칸 수로 그 몫을 구하세요.",
+      "bAnswer": "$4\\div3$의 몫이다. 한 칸은 $\\frac{1}{3}$이고 $4$칸이므로 $\\frac{4}{3}$($=1\\frac{1}{3}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4\\div3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$이 $4$칸이라 $\\frac{4}{3}$",
+            "$\\frac{1}{3}$이 $4$개이므로 $1\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "등분한 그림 설명을 나눗셈식과 분수 몫으로 읽는다.",
+      "bReason": "원문 예는 나눗셈식을 미리 알려 주므로 글로 그림을 설명하고 식과 몫을 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\div3$을 그림으로 나타내려면 $1$을 나타내는 원을 {$4$}개 그리고, 원마다 똑같이 {$3$}칸으로 나누어 한 칸씩 색칠한다.",
+      "cReason": "빈칸 '나누는 수만큼 똑같이 나누어'는 긴 구절이라 구체적인 식에서 원의 수와 칸 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "exampleReason": "글만으로 풀 수 있지만 $3$등분한 원 $4$개에 한 칸씩 색칠한 그림을 곁들이면 더 좋다.",
+      "sourceIndex": 1649,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-1-xc25",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "term": "나눗셈의 몫을 그림으로 나타내기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "(자연수)$\\div$(자연수)를 그림으로 나타내려면 $1$을 나타내는 도형을 나누어지는 수만큼 그리고, 도형마다 {나누는 수만큼 똑같이 나누어} 한 칸씩 모은다.",
+        "example": {
+          "prompt": "$1$을 나타내는 원 $4$개를 각각 $3$등분해 한 칸씩 색칠하면 $4\\div3$의 몫이다. 색칠한 칸의 크기와 수는?",
+          "answer": "$\\frac{1}{3}$ 크기로 $4$칸"
+        },
+        "studentC": "(자연수)$\\div$(자연수)를 그림으로 나타내려면 $1$을 나타내는 도형을 나누어지는 수만큼 그리고, 도형마다 □ 한 칸씩 모은다.",
+        "answers": [
+          "나누는 수만큼 똑같이 나누어"
+        ]
+      },
+      "sourceFingerprint": "04119650f042274afab0ecb7e41074ea59819c68a4e00a55d38b00f1f8bc4468",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$3$"
+      ],
+      "cStudentAfter": "$4\\div3$을 그림으로 나타내려면 $1$을 나타내는 원을 □개 그리고, 원마다 똑같이 □칸으로 나누어 한 칸씩 색칠한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$4\\div3$을 그림으로 나타내려면 $1$을 나타내는 원을 {$4$}개 그리고, 원마다 똑같이 {$3$}칸으로 나누어 한 칸씩 색칠한다.",
+      "cStudentSentence": "$4\\div3$을 그림으로 나타내려면 $1$을 나타내는 원을 □개 그리고, 원마다 똑같이 □칸으로 나누어 한 칸씩 색칠한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$을 나타내는 원 $4$개를 각각 똑같이 $3$칸으로 나누고 원마다 한 칸씩 색칠했습니다. 색칠한 부분 전체가 어떤 나눗셈의 몫을 나타내는지 쓰고, 한 칸의 크기와 칸 수로 그 몫을 구하세요.",
+        "answer": "$4\\div3$의 몫이다. 한 칸은 $\\frac{1}{3}$이고 $4$칸이므로 $\\frac{4}{3}$($=1\\frac{1}{3}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4\\div3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$이 $4$칸이라 $\\frac{4}{3}$",
+              "$\\frac{1}{3}$이 $4$개이므로 $1\\frac{1}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4\\div3$을 그림으로 나타내려면 $1$을 나타내는 원을 {$4$}개 그리고, 원마다 똑같이 {$3$}칸으로 나누어 한 칸씩 색칠한다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aa18c9740a1ac847e9d3d83171a9c11da35e44a17fbea55b48539dd07de46fe2",
+      "questionRevision": "planning-e5e6-20261006-aa18c9740a1a",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,581 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-2-5-c4",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 꼭대기에 있는 꼭짓점은 몇 개인지 쓰고, 이 꼭짓점에 어떤 면들이 모이는지 쓰시오.",
+      "bAnswer": "$1$개이고, 모든 옆면이 이 꼭짓점에 모인다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$개",
+            "한 개",
+            "하나"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 옆면이 모인다",
+            "옆면들이 만난다",
+            "옆면이 모두 만난다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "각뿔의 꼭대기 꼭짓점이 한 개이며 옆면이 모두 모이는 점임을 안다.",
+      "bReason": "'꼭대기 한 점' 구절 암기 대신 개수와 옆면의 관계를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "$1$개",
+            "한"
+          ]
+        }
+      ],
+      "cReason": "인정 답은 입력 표현이다.1개는 표시문장의개와겹쳐보여도 한 개라는 같은 수를 뜻하므로 수치입력대안으로 보존한다. 실제표시정답은1이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-input-alias-values.json",
+      "codexFinalAmendedFromFingerprint": "be80b29054c021646f2a720ce661b9b7fa60aaaa946a1509905aab57a0773f2f",
+      "sourceIndex": 225,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "각뿔의 꼭짓점",
+        "definition": "각뿔의 꼭짓점은 밑면 밖에서 모든 옆면이 모이는 {꼭대기 한 점}이다.",
+        "studentC": "각뿔의 꼭짓점은 밑면 밖에서 모든 옆면이 모이는 □이다.",
+        "answers": [
+          "꼭대기 한 점"
+        ]
+      },
+      "sourceFingerprint": "024c849e8ddcb5906abf70a207a422f9cf21ffe6d4a5affa27eb4f257a9fc64a",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 □개이다.",
+      "cMarkedSentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+      "cStudentSentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "$1$개",
+            "한"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 꼭대기에 있는 꼭짓점은 몇 개인지 쓰고, 이 꼭짓점에 어떤 면들이 모이는지 쓰시오.",
+        "answer": "$1$개이고, 모든 옆면이 이 꼭짓점에 모인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$개",
+              "한 개",
+              "하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 옆면이 모인다",
+              "옆면들이 만난다",
+              "옆면이 모두 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "$1$개",
+            "한"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3aa1829d7737c8b9241f002dcaeb65a5e8bbb50714cb51c67a69e43707cd2c0e",
+      "questionRevision": "planning-e5e6-20261006-3aa1829d7737",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "$0.3\\div2$를 계산하면 몫의 $0.1$ 자리에 $1$이 쓰이고 $0.1$짜리 $1$개가 남는다. 다음 자리를 계속 나누려면 남은 것을 어떤 단위 몇 개로 바꾸어야 하는지 쓰고, 그렇게 바꿀 수 있는 까닭과 $0.3\\div2$의 몫을 쓰시오.",
+      "bAnswer": "$0.01$짜리 $10$개로 바꾼다. $0.1$은 $0.01$이 $10$개와 같기 때문이다. $10\\div2=5$이므로 몫은 $0.15$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.01$짜리 $10$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.1$은 $0.01$이 $10$개와 같다",
+            "$0.1=0.01\\times10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.15$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "남은 $0.1$을 더 작은 단위로 바꾸어 계속 나누는 과정을 설명한다.",
+      "bReason": "단위 바꾸기와 그 까닭을 한 예로 묻되 일반 개념도 함께 요구한다.",
+      "cDecision": "revise",
+      "cAfter": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$",
+            "$10$개",
+            "열"
+          ]
+        }
+      ],
+      "cReason": "열개와10개는 같은 개수의 입력답이다. 표시정답10뒤의개는 유지하고 단위포함입력을 배제하지 않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-input-alias-values.json",
+      "codexFinalAmendedFromFingerprint": "88cf3216b6e956eeae82e94e8b5ee0d078699875cb93bb43d2ad0ece8df90a20",
+      "sourceIndex": 236,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-3-c3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "남은 $0.1$짜리 $1$개의 단위 바꾸기",
+        "definition": "$0.1$짜리 $1$개가 남았을 때 이를 {$0.01$짜리 $10$개}로 바꾸면 다음 자리의 나눗셈을 할 수 있다.",
+        "studentC": "$0.1$짜리 $1$개가 남았을 때 이를 □로 바꾸면 다음 자리의 나눗셈을 할 수 있다.",
+        "answers": [
+          "$0.01$짜리 $10$개"
+        ]
+      },
+      "sourceFingerprint": "4435d634045dfa439409876b1231f5979fe9740e7faad24af487d2190f04ff45",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$0.15$"
+      ],
+      "cStudentAfter": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 □개로 바꾸어 나누고, 몫은 □이다.",
+      "cMarkedSentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+      "cStudentSentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 □개로 바꾸어 나누고, 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": [
+            "$10$개",
+            "열"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.3\\div2$를 계산하면 몫의 $0.1$ 자리에 $1$이 쓰이고 $0.1$짜리 $1$개가 남는다. 다음 자리를 계속 나누려면 남은 것을 어떤 단위 몇 개로 바꾸어야 하는지 쓰고, 그렇게 바꿀 수 있는 까닭과 $0.3\\div2$의 몫을 쓰시오.",
+        "answer": "$0.01$짜리 $10$개로 바꾼다. $0.1$은 $0.01$이 $10$개와 같기 때문이다. $10\\div2=5$이므로 몫은 $0.15$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.01$짜리 $10$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$은 $0.01$이 $10$개와 같다",
+              "$0.1=0.01\\times10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.15$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "$10$개",
+            "열"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c22ce53fd155601e4388a7849d8ecec100b2fbb5fd2af1c9599094a4de61d319",
+      "questionRevision": "planning-e5e6-20261006-c22ce53fd155",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "$2$시간에 $90\\,\\mathrm{km}$를 가는 자동차의 기준량을 $1$시간으로 맞추려면 비교하는 양을 어떻게 구하는지 설명하고, 그 값을 구하시오.",
+      "bAnswer": "기준량 $2$시간을 $1$시간으로 맞추려면 비교하는 양 $90\\,\\mathrm{km}$도 $2$로 나눈다. $90\\div2=45$이므로 $45\\,\\mathrm{km}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비교하는 양을 기준량이 나뉜 수만큼 나눈다",
+            "$90\\,\\mathrm{km}$를 $2$로 나눈다",
+            "$90\\div2$를 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$45\\,\\mathrm{km}$",
+            "$45$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "기준량을 1로 맞춘 값을 나눗셈으로 구하는 방법을 안다.",
+      "bReason": "'단위량에 대한 크기'라는 이름 대신 구체적 자동차 상황에서 방법을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 {$45$}$\\,\\mathrm{km}$가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$45$",
+            "$45\\,\\mathrm{km}$"
+          ]
+        }
+      ],
+      "cReason": "45와45km는 주어진km단위에서 같은 거리의 입력답이다. 단위포함답을 표시문장의문자열대입만으로 오답처리하지 않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-input-alias-values.json",
+      "codexFinalAmendedFromFingerprint": "efdb2ef4903bfdb77f7acbe4d195b6aa06635cfd51c210531b43633f438272c3",
+      "sourceIndex": 254,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-4-c1",
+        "section": "초6::1-4 비와 비율::1-4-4 비율이 사용되는 경우",
+        "level": "하",
+        "kind": "정의",
+        "term": "단위량에 대한 크기",
+        "definition": "단위량에 대한 크기는 {기준량을 $1$만큼으로} 맞추었을 때의 {비교하는 양}이다.",
+        "studentC": "단위량에 대한 크기는 □ 맞추었을 때의 □이다.",
+        "answers": [
+          "기준량을 $1$만큼으로",
+          "비교하는 양"
+        ]
+      },
+      "sourceFingerprint": "c28c8f97c8dec2fd0fc28ffd5311eadcaa861b5260ce2da209d1265929ff0a3d",
+      "draftEvidence": "evidence/section-072-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$45$"
+      ],
+      "cStudentAfter": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 □$\\,\\mathrm{km}$가 된다.",
+      "cMarkedSentence": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 {$45$}$\\,\\mathrm{km}$가 된다.",
+      "cStudentSentence": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 □$\\,\\mathrm{km}$가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$45$",
+          "equivalents": [
+            "$45\\,\\mathrm{km}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2$시간에 $90\\,\\mathrm{km}$를 가는 자동차의 기준량을 $1$시간으로 맞추려면 비교하는 양을 어떻게 구하는지 설명하고, 그 값을 구하시오.",
+        "answer": "기준량 $2$시간을 $1$시간으로 맞추려면 비교하는 양 $90\\,\\mathrm{km}$도 $2$로 나눈다. $90\\div2=45$이므로 $45\\,\\mathrm{km}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양을 기준량이 나뉜 수만큼 나눈다",
+              "$90\\,\\mathrm{km}$를 $2$로 나눈다",
+              "$90\\div2$를 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$45\\,\\mathrm{km}$",
+              "$45$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 {$45$}$\\,\\mathrm{km}$가 된다.",
+        "acceptedAnswers": [
+          [
+            "$45$",
+            "$45\\,\\mathrm{km}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1aef05fc242013a23ee8703aee15e99fe46f9ebade109fb6bc31f855116eebc6",
+      "questionRevision": "planning-e5e6-20261006-1aef05fc2420",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프에서 항목별 백분율은 전체와 항목의 수를 어떻게 이용해 나타낸 값인가? 전체 수와 항목의 수가 각각 기준량인지 비교하는 양인지도 말하시오.",
+      "bAnswer": "전체 수를 $100$으로 보았을 때 항목의 수가 얼마에 해당하는지 나타낸 값이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체를 $100$으로 본다",
+            "전체 수를 $100$으로 보았을 때의 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "항목의 수가 그중 얼마인지 나타낸다",
+            "항목 수에 해당하는 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 수는 기준량이고 항목의 수는 비교하는 양이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "백분율을 기준량과 비교하는 양의 관계로 이해한다.",
+      "bReason": "정의와 두 양의 역할을 함께 물어 용어를 알게 한다.",
+      "cDecision": "revise",
+      "cAfter": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 {$25$}$\\%$이다. 이때 기준량은 {전체 수}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25$",
+            "$25\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 수",
+            "전체",
+            "$200$명"
+          ]
+        }
+      ],
+      "cReason": "25와25퍼센트는 이 백분율입력에서 같은 값을 나타낸다. 슬롯뒤의표시기호때문에 단위포함입력답을 배제하지 않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-input-alias-values.json",
+      "codexFinalAmendedFromFingerprint": "22df5bf11725a4cf19f7cd86dd82356b0e4600e979240ae40121e1779d0afd29",
+      "sourceIndex": 267,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-2-c1",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "level": "하",
+        "kind": "정의",
+        "term": "항목별 백분율의 뜻",
+        "definition": "항목별 백분율은 {전체 수를 $100$으로} 보았을 때 {항목의 수가 얼마}에 해당하는지 나타낸 것이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+        "studentC": "항목별 백분율은 □ 보았을 때 □에 해당하는지 나타낸 것이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+        "answers": [
+          "전체 수를 $100$으로",
+          "항목의 수가 얼마"
+        ]
+      },
+      "sourceFingerprint": "cdfeccfeb49b8c8af8dac5b35a04bb16dfa02f3007cdc03ac9000453cedd00b4",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$25$",
+        "전체 수"
+      ],
+      "cStudentAfter": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 □$\\%$이다. 이때 기준량은 □이다.",
+      "cMarkedSentence": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 {$25$}$\\%$이다. 이때 기준량은 {전체 수}이다.",
+      "cStudentSentence": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 □$\\%$이다. 이때 기준량은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$25$",
+          "equivalents": [
+            "$25\\%$"
+          ]
+        },
+        {
+          "key": "전체 수",
+          "equivalents": [
+            "전체",
+            "$200$명"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠그래프에서 항목별 백분율은 전체와 항목의 수를 어떻게 이용해 나타낸 값인가? 전체 수와 항목의 수가 각각 기준량인지 비교하는 양인지도 말하시오.",
+        "answer": "전체 수를 $100$으로 보았을 때 항목의 수가 얼마에 해당하는지 나타낸 값이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체를 $100$으로 본다",
+              "전체 수를 $100$으로 보았을 때의 크기"
+            ]
+          },
+          {
+            "anyOf": [
+              "항목의 수가 그중 얼마인지 나타낸다",
+              "항목 수에 해당하는 크기"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 수는 기준량이고 항목의 수는 비교하는 양이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 {$25$}$\\%$이다. 이때 기준량은 {전체 수}이다.",
+        "acceptedAnswers": [
+          [
+            "$25$",
+            "$25\\%$"
+          ],
+          [
+            "전체 수",
+            "전체",
+            "$200$명"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "afc5bf0a5e0418c496ad62d82809e7e4e6f5a14d0757427afda8894a256074c5",
+      "questionRevision": "planning-e5e6-20261006-afc5bf0a5e04",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "항목의 백분율이 앞에서부터 $30\\%$, $45\\%$, $25\\%$일 때, 띠그래프의 띠에 조각의 경계를 어떤 방법으로 표시하는지 설명하고 두 경계의 위치를 구하시오.",
+      "bAnswer": "앞에서부터 백분율을 차례로 더한 위치에 경계를 표시한다. 첫째 경계는 $30\\%$, 둘째 경계는 $30+45=75$이므로 $75\\%$ 위치이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞에서부터 백분율을 차례로 더한 위치에 표시한다",
+            "누적한 합의 위치에 경계를 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30\\%$",
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$75\\%$",
+            "$75$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "백분율을 누적하여 띠의 경계를 정하는 방법을 안다.",
+      "bReason": "예를 붙여 방법을 말하게 하고 값도 확인하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 {$75$}$\\%$ 위치이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$75$",
+            "$75\\%$"
+          ]
+        }
+      ],
+      "cReason": "누적경계75와75퍼센트는 이입력에서같은위치를뜻하므로 둘다 인정한다. 표시정답75와입력의단위포함표현을 구분한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-input-alias-values.json",
+      "codexFinalAmendedFromFingerprint": "666142a5f5c7ba0fcc9ce12bd66302cc33e6d72379b5371cf54a21b72dc106f4",
+      "sourceIndex": 268,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-2-c2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "level": "중",
+        "kind": "방법",
+        "term": "띠의 경계 정하기",
+        "definition": "앞에서부터 차지한 백분율을 {차례로 더한 위치}에 조각의 경계를 표시한다.",
+        "studentC": "앞에서부터 차지한 백분율을 □에 조각의 경계를 표시한다.",
+        "answers": [
+          "차례로 더한 위치"
+        ]
+      },
+      "sourceFingerprint": "61bf672d486c139a471250c134ad822d4eb8b2a5551d7098f6f535660fd91bc5",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$75$"
+      ],
+      "cStudentAfter": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 □$\\%$ 위치이다.",
+      "cMarkedSentence": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 {$75$}$\\%$ 위치이다.",
+      "cStudentSentence": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 □$\\%$ 위치이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$75$",
+          "equivalents": [
+            "$75\\%$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "항목의 백분율이 앞에서부터 $30\\%$, $45\\%$, $25\\%$일 때, 띠그래프의 띠에 조각의 경계를 어떤 방법으로 표시하는지 설명하고 두 경계의 위치를 구하시오.",
+        "answer": "앞에서부터 백분율을 차례로 더한 위치에 경계를 표시한다. 첫째 경계는 $30\\%$, 둘째 경계는 $30+45=75$이므로 $75\\%$ 위치이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞에서부터 백분율을 차례로 더한 위치에 표시한다",
+              "누적한 합의 위치에 경계를 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30\\%$",
+              "$30$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$75\\%$",
+              "$75$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 {$75$}$\\%$ 위치이다.",
+        "acceptedAnswers": [
+          [
+            "$75$",
+            "$75\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a557fff9fe35ea5128fcc67419728a96c0cf09647a2fc02209c42bdac908503a",
+      "questionRevision": "planning-e5e6-20261006-a557fff9fe35",
+      "requiresIndependentReview": true
+    }
+  ]
+}

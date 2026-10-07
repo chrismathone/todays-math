@@ -1,0 +1,744 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-06T14:18:10.272767+00:00",
+  "auditSha256": "1cee2cf6478e3be131f5795e4238830d0ece9a0915b00ec4f00ace964e39b378",
+  "scope": "Actual amended final questions and answers for direct rereading; capture is not a verdict.",
+  "rows": [
+    {
+      "id": "e5-1-2-2-c2",
+      "sourceIndex": 15,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "어떤 자연수의 약수를 곱셈식으로 찾으려고 한다. 그 자연수를 어떤 꼴의 식으로 나타내면 되는지, 그 식에서 어느 수가 약수인지 쓰시오. $15$를 예로 보이시오.",
+        "answer": "그 자연수를 두 자연수의 곱으로 나타내면, 곱하는 두 수가 모두 그 자연수의 약수이다. 예를 들어 $15=3\\times5$이므로 $3$과 $5$는 $15$의 약수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 자연수를 두 자연수의 곱으로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱하는 두 수가 모두 그 자연수의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15=3\\times5$에서 $3$과 $5$는 $15$의 약수이다",
+              "$15=1\\times15$에서 $1$과 $15$는 $15$의 약수이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "자연수를 두 자연수의 곱으로 나타내면 곱하는 두 수가 약수가 됨을 방법으로 말한다.",
+      "bReason": "최종 직접 읽기에서 예를 하나 요구하는 질문과 모든 약수를 요구하는 기준이 어긋났다. 두 자연수의 곱과 두 인수의 약수 관계를 묻고, $15$의 올바른 곱셈식 한 가지를 인정한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$27$을 두 자연수의 곱 $3\\times$ {$9$}로 나타내면, 곱하는 두 수는 모두 $27$의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "약수"
+          ]
+        ]
+      },
+      "cStudentSentence": "$27$을 두 자연수의 곱 $3\\times$ □로 나타내면, 곱하는 두 수는 모두 $27$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원문 빈칸 '두 자연수의 곱'은 긴 구절이라 문장만 보고 떠올리기 어렵다. 실제 수를 곱으로 나타내는 계산 하나와 낱말 하나로 줄였다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "11e95767675a7c074675295b98636c086993c2facb1c1e419cbdd4524d638514",
+      "proposalFingerprint": "fce8b16b58f6958ed7e19e5dd393592d81ce214c6f9de74297f15e3bba94d69b",
+      "questionRevision": "planning-e5e6-20261006-fce8b16b58f6",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-2-3-c1",
+      "sourceIndex": 17,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 자연수의 공약수는 어떤 수를 말하는지 설명하고, $12$와 $18$의 공약수를 모두 쓰시오.",
+        "answer": "두 수의 공약수는 두 수에 공통으로 들어 있는 약수, 곧 두 수 모두의 약수인 수이다. $12$의 약수는 $1, 2, 3, 4, 6, 12$, $18$의 약수는 $1, 2, 3, 6, 9, 18$이므로 공약수는 $1, 2, 3, 6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수에 공통으로 들어 있는 약수",
+              "두 수 모두의 약수인 수",
+              "두 수를 모두 나누어떨어지게 하는 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1, 2, 3, 6$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "공약수를 '두 수에 공통인 약수'로 말하고, 실제 두 수에서 빠짐없이 찾는다.",
+      "bReason": "공통 약수와 두 수를 모두 나누어떨어지게 하는 수는 같은 뜻이다. 뜻이 맞아도 특정 낱말을 쓰지 않아 탈락하지 않도록 약수라는 말 사용을 강제하는 질문 조건을 제거했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$12$의 약수는 $1, 2, 3, 4, 6, 12$이고 $18$의 약수는 $1, 2, 3, 6, 9, 18$이다. 두 수의 약수에 공통으로 들어 있는 $1, 2, 3, 6$을 $12$와 $18$의 {공약수}라고 한다.",
+        "acceptedAnswers": [
+          [
+            "공약수"
+          ]
+        ]
+      },
+      "cStudentSentence": "$12$의 약수는 $1, 2, 3, 4, 6, 12$이고 $18$의 약수는 $1, 2, 3, 6, 9, 18$이다. 두 수의 약수에 공통으로 들어 있는 $1, 2, 3, 6$을 $12$와 $18$의 □라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "답 '함께 나타나는 수'는 편집자가 고른 구절이라 '공통인 수', '둘 다에 있는 수'와 구분해 채점할 수 없다. 실제 약수 목록을 보여 주고 용어를 답하게 했다. '여러 자연수'는 두 수의 예로 좁혔지만 개념 범위는 같다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ea8ea0acf49ba3a3365ac02a99b1bb2bfc7c1becd7b93e6e50efd13230b07dd8",
+      "proposalFingerprint": "d586bf227adf99412e46114807338fcb255e425f62c067ad35f52ee94ad40faa",
+      "questionRevision": "planning-e5e6-20261006-d586bf227adf",
+      "draftEvidence": "evidence/section-005-draft.json",
+      "rubricEvidence": "evidence/section-005-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-2-5-c2",
+      "sourceIndex": 24,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "최소공배수란 어떤 수인지 설명하고, $4$와 $10$의 최소공배수를 구하세요.",
+        "answer": "두 수의 공배수 가운데 가장 작은 수이다. $4$와 $10$의 공배수는 $20,\\ 40,\\ \\cdots$이므로 최소공배수는 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 공배수 가운데 가장 작은 수",
+              "공배수 중 제일 작은 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $10$의 최소공배수는 $20$",
+              "$20$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "최소공배수를 '공배수 중 가장 작은 수'로 정의하고 실제로 구한다.",
+      "bReason": "정식 개념명이므로 뜻과 구하기를 함께 묻는다. 예는 공배수를 직접 늘어놓아야 답이 나오는 수로 골랐다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$6$과 $8$의 최소공배수는 {$24$}이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$6$과 $8$의 최소공배수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "최소공배수의 답 $24$가 바로 앞의 정렬된 공배수 목록에 이미 나와 있었다. 풀이 목록을 제거하고 실제 두 수의 최소공배수를 구하게 하며 일반 정의는 B에 남긴다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "7ab89042ae67971a02e569dddaef0613eb7a4d0e142c113a08a2518dee4a80e2",
+      "proposalFingerprint": "9e449e328e429cf8643947fa94c15365858bca6356d1271f556c87b664960872",
+      "questionRevision": "planning-e5e6-20261006-9e449e328e42",
+      "draftEvidence": "evidence/section-007-draft.json",
+      "rubricEvidence": "evidence/section-007-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-2-6-c2",
+      "sourceIndex": 27,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 수를 나란히 쓰고 $1$보다 큰 공약수로 더 나눌 수 없을 때까지 함께 나누었다. 이때 어떤 수들을 곱하면 최소공배수가 되는지 설명하고, 이 방법으로 $12$와 $18$의 최소공배수를 구하시오.",
+        "answer": "나눈 공약수들과 마지막에 남은 두 몫을 모두 곱한다. $12$와 $18$을 $2$로 나누면 $6$과 $9$, 다시 $3$으로 나누면 $2$와 $3$이 남으므로 최소공배수는 $2\\times3\\times2\\times3=36$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눈 공약수들과 마지막에 남은 두 수를 모두 곱한다",
+              "나눈 공약수들과 마지막 두 몫을 모두 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$와 $18$의 최소공배수는 $36$이다",
+              "$36$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "함께 나누는 방법에서 최소공배수를 만드는 수들이 무엇인지 알고 계산한다.",
+      "bReason": "곱할 대상이 원문의 핵심이므로 나누는 조건은 질문에 주고 곱할 수들을 학생이 말하게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$18$과 $24$를 공약수 $2$로 나누면 $9$와 $12$, 다시 공약수 $3$으로 나누면 $3$과 $4$가 남는다. 나눈 공약수 $2$, $3$과 마지막에 남은 두 수를 모두 {곱하면} 최소공배수 {$72$}가 된다.",
+        "acceptedAnswers": [
+          [
+            "곱하면",
+            "곱해서",
+            "곱하여"
+          ],
+          [
+            "$72$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$18$과 $24$를 공약수 $2$로 나누면 $9$와 $12$, 다시 공약수 $3$으로 나누면 $3$과 $4$가 남는다. 나눈 공약수 $2$, $3$과 마지막에 남은 두 수를 모두 □ 최소공배수 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱하면",
+          "equivalents": [
+            "곱해서",
+            "곱하여"
+          ]
+        },
+        {
+          "key": "$72$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "곱한다를 넣으면 뒤의 최소공배수가 된다와 이어지지 않는다. 연결 어미가 실제 학생 문장에 들어맞는 동의 표현만 남기고 공약수와 마지막 몫의 곱 $72$를 유지했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "22d03d63c68df2d4919e5285ddb855ec86bc7b3e2ed497c79f09927907a09bab",
+      "proposalFingerprint": "787bd4b492d93b192ffdc827a1e5b39cf1ec78035e2cfba488c5699df8cabcfa",
+      "questionRevision": "planning-e5e6-20261006-787bd4b492d9",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-2-6-c3",
+      "sourceIndex": 28,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "서로 다른 두 자연수의 최소공배수가 두 수 중 큰 수와 같아지는 것은 두 수가 어떤 관계일 때인지 쓰고, $4$와 $12$로 그 까닭을 설명하시오.",
+        "answer": "큰 수가 작은 수의 배수일 때(작은 수가 큰 수의 약수일 때)이다. $12$는 $4$의 배수이면서 $12$의 배수 중 가장 작은 수이므로, $12$보다 작은 공배수가 없어 최소공배수는 $12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 수가 작은 수의 배수이다",
+              "작은 수가 큰 수의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$는 $4$의 배수이고 $12$보다 작은 자연수 $12$의 배수는 없다",
+              "$12$는 두 수의 공배수이고 이보다 작은 두 수의 공배수는 없다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "한 수가 다른 수의 배수일 때 최소공배수가 큰 수가 되는 조건과 까닭을 설명한다.",
+      "bReason": "두 번째 독립 검토대로 질문을 베끼면 충족되는 최소공배수 $12$ 단독 기준을 제거한다. 두 수의 배수 관계와 실제 예에서 왜 더 작은 공배수가 없는지만 필수로 둔다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "두 자연수 중 큰 수가 작은 수의 {배수}이면 두 수의 최소공배수는 {큰} 수이다. 예를 들어 $5$와 $15$의 최소공배수는 {$15$}이다.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "큰",
+            "더 큰"
+          ],
+          [
+            "$15$"
+          ]
+        ]
+      },
+      "cStudentSentence": "두 자연수 중 큰 수가 작은 수의 □이면 두 수의 최소공배수는 □ 수이다. 예를 들어 $5$와 $15$의 최소공배수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "큰",
+          "equivalents": [
+            "더 큰"
+          ]
+        },
+        {
+          "key": "$15$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "큰 수라는 대체 답 뒤에 문장의 수가 다시 붙는 오류를 제거했다. 배수 관계, 큰 수 조건과 실제 최소공배수는 각각 구별하여 유지한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "c7252f4cfca04dfd1b869c7d6e8b31de534141c5e700c3d61dc7ff6f95a69e1d",
+      "proposalFingerprint": "c5fb41e56b0177a7e452d9ead3f0b9c0d930ec37821dc6eecec983868df1c9c7",
+      "questionRevision": "planning-e5e6-20261006-c5fb41e56b01",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-3-1-c1",
+      "sourceIndex": 29,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 양 사이의 '대응 관계'란 어떤 관계인지 설명해 보세요. 그리고 다리가 $4$개인 의자의 수와 의자 다리의 수가 대응 관계인 까닭을, 의자가 $1$개, $2$개, $3$개일 때의 다리 수를 들어 말해 보세요.",
+        "answer": "한 양의 값에 다른 양의 값이 일정한 규칙에 따라 짝지어지는 관계이다. 의자가 $1$개, $2$개, $3$개일 때 다리는 $4$개, $8$개, $12$개로, 다리 수가 언제나 의자 수에 $4$를 곱한 값으로 짝지어지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 양의 값에 다른 양의 값이 일정한 규칙에 따라 짝지어지는 관계이다",
+              "두 양의 값이 일정한 규칙으로 짝이 되는 관계이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "의자가 $1$개, $2$개, $3$개일 때 다리는 $4$개, $8$개, $12$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다리 수는 언제나 의자 수에 $4$를 곱한 값이다",
+              "다리 수는 의자 수의 $4$배로 짝지어진다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "대응 관계를 '일정한 규칙으로 짝지어짐'으로 말하고 실제 두 양에서 그 규칙을 짚는다.",
+      "bReason": "정식 용어라 뜻을 직접 물을 수 있다. 정의만 외우지 않도록 의자·다리 예로 규칙을 확인하게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "의자 수가 $1$, $2$, $3$일 때 다리 수가 $4$, $8$, $12$인 것처럼, 한 양의 값에 다른 양의 값이 일정한 {규칙}에 따라 짝지어지는 관계를 대응 관계라고 한다.",
+        "acceptedAnswers": [
+          [
+            "규칙"
+          ]
+        ]
+      },
+      "cStudentSentence": "의자 수가 $1$, $2$, $3$일 때 다리 수가 $4$, $8$, $12$인 것처럼, 한 양의 값에 다른 양의 값이 일정한 □에 따라 짝지어지는 관계를 대응 관계라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "규칙",
+          "equivalents": []
+        }
+      ],
+      "cReason": "문장 앞에 일정한이 있으므로 일정한 규칙을 넣으면 말이 중복된다. 의자와 다리의 짝을 보여 주는 실제 예와 규칙의 뜻은 유지하고 문장에 맞는 정답만 인정한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ef2af309319fd91bf2efd8d24d202ef6bbabe29dff27887120118b4250f0f9ab",
+      "proposalFingerprint": "409f495561bd96e7a18999b77422a8e92b11a50cc9cd666c953f81593e386ba0",
+      "questionRevision": "planning-e5e6-20261006-409f495561bd",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-3-1-c2",
+      "sourceIndex": 30,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 양의 대응 관계를 표로 나타낼 때 서로 짝인 값을 표의 어디에 적는지, 그렇게 적으면 무엇을 알아보기 쉬운지 설명해 보세요. 세발자전거 수 $1$, $2$, $3$과 바퀴 수를 예로 드세요.",
+        "answer": "서로 짝인 두 값을 같은 열의 위아래 칸이나 같은 행의 옆 칸에 놓는다. 그러면 어떤 값끼리 짝인지 보면서 두 양 사이의 규칙을 찾기 쉽다. 예를 들어 세발자전거 수가 $1$, $2$, $3$일 때 바퀴 수 $3$, $6$, $9$를 각각 짝지어 적는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 짝인 두 값을 같은 열의 위아래 칸에 적는다",
+              "서로 짝인 두 값을 같은 행의 옆 칸에 적는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "짝인 값을 한눈에 보고 두 양 사이의 규칙을 찾기 쉽다",
+              "짝을 확인하며 규칙을 찾기 쉽다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세발자전거 수 $1$, $2$, $3$과 바퀴 수 $3$, $6$, $9$를 각각 짝지어 적는다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "두 양의 값을 짝지어 표에 놓는 방법과 규칙을 찾는 데 도움이 되는 까닭을 실제 예로 설명한다.",
+      "bReason": "질문에서 표 방향을 정하지 않았으므로 위아래 배치만 강제하지 않는다. 짝인 값의 위치와 규칙을 알아보는 목적을 각각 묻고, 학생이 정한 가로 또는 세로 배치를 모두 인정한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "세발자전거 한 대에는 바퀴가 $3$개 있다. 아래 표에서 $\\square$는 아직 쓰지 않은 바퀴 수를 나타낸다. $\\begin{array}{c|ccc}\\text{세발자전거 수}&1&2&3\\\\\\hline\\text{바퀴 수}&3&\\square&9\\end{array}$ $\\square$에 알맞은 수는 {$6$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "cStudentSentence": "세발자전거 한 대에는 바퀴가 $3$개 있다. 아래 표에서 $\\square$는 아직 쓰지 않은 바퀴 수를 나타낸다. $\\begin{array}{c|ccc}\\text{세발자전거 수}&1&2&3\\\\\\hline\\text{바퀴 수}&3&\\square&9\\end{array}$ $\\square$에 알맞은 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "기존 C는 바퀴 수 목록에 이미 제시된 $6$을 옮기는 문항이었다. 실제 표를 수식으로 제시하고 아직 비어 있는 한 짝의 값을 구하게 했다. 대응표라는 임의 이름이나 보이지 않는 표를 전제하지 않는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ee6e2d469675bef300481429a2a0c2320d49668108b31cb1d7fc1372f268083a",
+      "proposalFingerprint": "bfa8d2f83e1e0ac55894f87718c901e051b281acdbc44040826e21b88084120c",
+      "questionRevision": "planning-e5e6-20261006-bfa8d2f83e1e",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-3-1-c3",
+      "sourceIndex": 31,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 양의 값을 짝지어 적은 표에서 규칙을 하나 찾았을 때 그 규칙이 맞는지 어떻게 확인하는지 설명해 보세요. 그리고 $\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $4$, $5$인 표에서 '$\\square$에 $3$을 곱하면 $\\triangle$'가 맞는 규칙인지 확인해 보세요.",
+        "answer": "한 짝에만 맞춰 보지 말고 표의 다른 짝에도 모두 넣어 본다. $1\\times3=3$은 맞지만 $2\\times3=6$은 $4$와 다르고 $3\\times3=9$도 $5$와 다르므로 제시된 규칙은 틀렸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 짝에만 맞춰 보지 않고 표의 다른 짝에도 넣어 본다",
+              "여러 짝에 넣어 모두 맞는지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "'$\\square$에 $3$을 곱하면 $\\triangle$'는 틀린 규칙이다",
+              "이 규칙은 맞지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\times3=6$이 $4$와 다르다",
+              "$3\\times3=9$가 $5$와 다르다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "찾은 규칙을 여러 짝에 넣어 확인하는 방법을 실제 표에서 실행한다.",
+      "bReason": "대응표라는 이름을 알고 있어야 읽히는 표현을 풀어 썼다. 질문이 요구한 규칙 확인 방법과 반례만 답에 남기고 묻지 않은 새 규칙 찾기는 제거했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $4$, $5$이다. '$\\square$에 $3$을 곱한다'는 첫 번째 짝에는 맞지만, 두 번째 짝에 넣으면 $2\\times3=${$6$}이 되어 $4$와 다르다. 그래서 규칙은 여러 짝에 넣어 확인한다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $4$, $5$이다. '$\\square$에 $3$을 곱한다'는 첫 번째 짝에는 맞지만, 두 번째 짝에 넣으면 $2\\times3=$□이 되어 $4$와 다르다. 그래서 규칙은 여러 짝에 넣어 확인한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원 빈칸 '다른 쌍에도'는 외울 까닭이 없는 구절이다. 다른 짝에 넣어 어긋남을 계산으로 확인하는 문장으로 바꿨다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "6dea42902d9ab128d5ee6ca92e52256394c42184467692935e6d3cbb45223fc5",
+      "proposalFingerprint": "b733481cb29cd3afb4091cc57436a6feefb5e60b7003169ed44d61a08378a013",
+      "questionRevision": "planning-e5e6-20261006-b733481cb29c",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-3-2-c1",
+      "sourceIndex": 32,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 양 사이의 대응 관계를 기호를 사용한 식으로 나타내려면 무엇을 기호로 정하고 무엇을 식으로 쓰는지 설명하시오. 또 세발자전거 수와 바퀴 수 사이의 대응 관계를 기호를 정하여 식으로 나타내시오.",
+        "answer": "두 양을 각각 서로 다른 기호로 정하고, 두 양 사이의 규칙을 그 기호와 등호를 써서 식으로 쓴다. 예: 세발자전거 수를 $\\square$, 바퀴 수를 $\\triangle$라 하면 $\\square\\times3=\\triangle$ (또는 $\\triangle\\div3=\\square$).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 양을 각각 서로 다른 기호로 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 양 사이의 규칙을 기호와 등호를 사용한 식으로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "학생이 정한 기호로 세발자전거 수에 $3$을 곱한 값이 바퀴 수와 같다는 식을 쓴다",
+              "학생이 정한 기호로 바퀴 수를 $3$으로 나눈 값이 세발자전거 수와 같다는 식을 쓴다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "두 양을 기호로 정하고 규칙을 식으로 옮기는 전체 방법을 설명한다.",
+      "bReason": "학생이 기호를 정하라는 질문이므로 정답의 사각형과 삼각형을 그대로 쓰도록 채점하지 않는다. 두 양의 뜻을 정하고 실제 세발자전거와 바퀴의 관계를 등식으로 나타낸 의미를 인정한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "과자가 한 상자에 $3$개씩 들어 있다. 상자 수를 $\\bigcirc$, 과자 수를 $\\triangle$처럼 서로 다른 {기호}로 나타내면, 두 양 사이의 대응 관계를 $\\bigcirc\\times3=\\triangle$와 같은 {식}으로 나타낼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "기호"
+          ],
+          [
+            "식"
+          ]
+        ]
+      },
+      "cStudentSentence": "과자가 한 상자에 $3$개씩 들어 있다. 상자 수를 $\\bigcirc$, 과자 수를 $\\triangle$처럼 서로 다른 □로 나타내면, 두 양 사이의 대응 관계를 $\\bigcirc\\times3=\\triangle$와 같은 □으로 나타낼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "기호",
+          "equivalents": []
+        },
+        {
+          "key": "식",
+          "equivalents": []
+        }
+      ],
+      "cReason": "기호·식 두 낱말은 유지하되, 빈칸 표시 □가 수학 기호 $\\square$와 겹쳐 보여 기호를 ○로 바꾸고 상황을 붙였다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "dc39205c6186b64e105bd759930c0ba030891144f7b798f755fa39c9883792d2",
+      "proposalFingerprint": "7c84bdb374d915e893459f0b1f849600a6688ab7a78993d68fca21c7f525bb73",
+      "questionRevision": "planning-e5e6-20261006-7c84bdb374d9",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-3-2-c2",
+      "sourceIndex": 33,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "의자 한 개의 다리가 $4$개일 때 $\\square\\times4=\\triangle$에서 $\\square$는 의자 수를 나타냅니다. $\\square$가 한 가지 수만 나타내는지 여러 수를 나타낼 수 있는지 쓰고, $\\square$가 $2$일 때와 $5$일 때 $\\triangle$의 값을 각각 구하시오.",
+        "answer": "$\\square$는 의자 수가 될 수 있는 여러 수($1$, $2$, $3$, …)를 나타낼 수 있다. $\\square$가 $2$이면 $\\triangle$는 $8$, $\\square$가 $5$이면 $\\triangle$는 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기호는 한 수로 정해져 있지 않고 그 양이 될 수 있는 여러 수를 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle=8$",
+              "$\\triangle$는 $8$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle=20$",
+              "$\\triangle$는 $20$이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "기호가 정해진 한 수가 아니라 그 양이 될 수 있는 여러 수를 나타냄을 안다.",
+      "bReason": "'기호의 뜻'만으로는 답의 범위가 없어, 의자 수라는 구체적 양과 두 값을 주어 여러 수가 들어감을 확인하게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "의자 한 개에는 다리가 $4$개 있다. 의자 수를 $\\bigcirc$, 다리 수를 $\\triangle$라 하면 $\\bigcirc\\times4=\\triangle$이다. $\\bigcirc$가 $5$일 때 $\\triangle$는 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "cStudentSentence": "의자 한 개에는 다리가 $4$개 있다. 의자 수를 $\\bigcirc$, 다리 수를 $\\triangle$라 하면 $\\bigcirc\\times4=\\triangle$이다. $\\bigcirc$가 $5$일 때 $\\triangle$는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "여러 수 자리에는 자연수 등 다른 사실도 들어갈 수 있어 답 범위가 불명확했다. 기호 두 개가 나타내는 양을 모두 밝히고 구체적인 값 $20$만 구하게 했다. 기호가 여러 값을 나타낸다는 일반 의미는 B와 학습 설명에 남는다.",
+      "coreAfter": "대응 관계를 나타낸 식에서 기호는 정해진 한 수만을 뜻하지 않고, 그 기호가 나타내는 양이 될 수 있는 여러 수를 나타낸다.",
+      "coreReason": "'맡은 양의 값'은 '양수'로 잘못 읽힐 수 있고 초5에게 뜻이 불분명하다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "660955080b1b3487c30355006dc7bfa52f4dc3f3621117a8d6b5e819ff5919af",
+      "proposalFingerprint": "db0858592eab284af9712bd3f2984e92c63e8b4a345963232071c7a1440ff78c",
+      "questionRevision": "planning-e5e6-20261006-db0858592eab",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-3-3-c1",
+      "sourceIndex": 35,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "한 봉지에 든 사탕 수가 모두 같을 때, 봉지 수가 한 봉지 늘면 전체 사탕 수는 얼마나 늘어나는지 설명하시오. 한 봉지에 $6$개씩일 때 $2$봉지와 $3$봉지의 전체 사탕 수를 각각 쓰시오.",
+        "answer": "한 봉지가 늘 때마다 한 봉지에 든 사탕 수만큼 늘어난다. 한 봉지에 $6$개씩이면 $2$봉지는 $12$개, $3$봉지는 $18$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "봉지가 하나 늘 때마다 한 봉지에 든 사탕 수만큼 전체 사탕 수가 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$봉지는 $12$개",
+              "$6\\times2=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$봉지는 $18$개",
+              "$6\\times3=18$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "한 양이 변하면 다른 양이 따라 변하는 관계를 사탕 봉지 상황에서 말한다.",
+      "bReason": "전체 사탕 수도 따라 변한다는 막연한 답 대신 한 봉지 늘 때의 변화량을 설명하게 했다. 같은 양이 든 봉지라는 조건, 일반 변화 관계와 실제 두 값이 모두 질문 및 기준에 대응한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "한 봉지에 사탕이 $6$개씩 들어 있을 때 봉지 수가 $1$ 늘면 전체 사탕 수는 {$6$}개 늘어난다. 이처럼 한 양이 변할 때 다른 양이 일정한 규칙으로 따라 변하는 관계를 {대응} 관계라고 한다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "대응",
+            "대응하는"
+          ]
+        ]
+      },
+      "cStudentSentence": "한 봉지에 사탕이 $6$개씩 들어 있을 때 봉지 수가 $1$ 늘면 전체 사탕 수는 □개 늘어난다. 이처럼 한 양이 변할 때 다른 양이 일정한 규칙으로 따라 변하는 관계를 □ 관계라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "대응",
+          "equivalents": [
+            "대응하는"
+          ]
+        }
+      ],
+      "cReason": "'대응하는 두 양'이라는 구절 전체를 외워 쓰게 하는 빈칸이라 변화량과 '대응'이라는 낱말만 묻도록 나눴다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "681b4b82e01919294e4cd69712f4bdef3b57a3a71ee239e4f3564d648cf70bee",
+      "proposalFingerprint": "066a872f712e413b0fde6626f13323d2aae980bd21ad5f3f90611d94108b7037",
+      "questionRevision": "planning-e5e6-20261006-066a872f712e",
+      "draftEvidence": "evidence/section-011-draft.json",
+      "rubricEvidence": "evidence/section-011-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-4-1-c3",
+      "sourceIndex": 39,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "같은 전체에서 같은 양을 나타내는 두 분수의 이름은 C로 확인하고, B의 같은 전체 조건은 xc1에서 설명한다.",
+      "bReason": "첫 B는 크기가 같다는 말을 나타내는 양이 같다고 다시 쓰게 하여 독립적인 설명 목표가 약하다. 같은 전체 조건의 이유는 e5-1-4-1-xc1 B가 구체적으로 묻고 같은 크기 성질은 c1·c2에서 확인한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "크기가 같은 피자 두 판이 있다. 한 판의 $\\frac{1}{2}$과 다른 판의 $\\frac{2}{4}$를 먹었을 때, 먹은 양은 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "같습니다"
+          ]
+        ]
+      },
+      "cStudentSentence": "크기가 같은 피자 두 판이 있다. 한 판의 $\\frac{1}{2}$과 다른 판의 $\\frac{2}{4}$를 먹었을 때, 먹은 양은 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "같습니다"
+          ]
+        }
+      ],
+      "cReason": "같은 양이라는 설명을 크기가 같은 분수라는 긴 이름으로 되풀이하는 빈칸을 실제 분수 비교로 바꿨다. 전체 크기가 같다는 조건을 밝히고 서로 다른 두 분수가 나타내는 먹은 양을 비교한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B: 독립 검토가 지적한 뜻 반복이며, 의미 있는 전체 크기 조건은 e5-1-4-1-xc1 B가 설명한다. C의 정의 확인·일반 학습 설명·ID는 보존한다.",
+      "questionExclusions": {
+        "term": "B: 독립 검토가 지적한 뜻 반복이며, 의미 있는 전체 크기 조건은 e5-1-4-1-xc1 B가 설명한다. C의 정의 확인·일반 학습 설명·ID는 보존한다."
+      },
+      "sourceFingerprint": "b0c1565fa3faff3eb497115019a1c9af84ae1409f4595a86fc226374c850a791",
+      "proposalFingerprint": "8acda9b3cf8d6ff2bab7f97bc2305abfb032b8cf6abd21441c1b47b5c9673c57",
+      "questionRevision": "planning-e5e6-20261006-8acda9b3cf8d",
+      "draftEvidence": "evidence/section-012-draft.json",
+      "rubricEvidence": "evidence/section-012-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    }
+  ]
+}

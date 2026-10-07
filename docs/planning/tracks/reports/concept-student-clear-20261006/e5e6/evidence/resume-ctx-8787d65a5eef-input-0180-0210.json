@@ -1,0 +1,3168 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T05:01:53.533102+00:00",
+  "rows": [
+    {
+      "id": "e5-2-5-5-c2",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도는 어떤 모양의 면 몇 개로 이루어져 있는지, 그 면들의 크기는 서로 어떠한지 쓰시오.",
+      "bAnswer": "정사각형 $6$개로 이루어져 있고, $6$개의 크기는 모두 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개",
+            "여섯 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "크기가 모두 같다",
+            "모두 합동이다"
+          ]
+        }
+      ],
+      "bGoal": "전개도 면의 모양·개수·크기를 정육면체의 면과 연결한다.",
+      "bReason": "모양, 개수, 크기 세 가지를 질문 안에서 직접 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 전개도에는 크기가 같은 {정사각형}이 {$6$}개 들어 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$",
+            "여섯"
+          ]
+        }
+      ],
+      "cReason": "원문은 긴 구절 전체가 빈칸이라 모양과 개수의 두 짧은 빈칸으로 나눴다.",
+      "exampleNeeded": false,
+      "sourceIndex": 180,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-5-c2",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "정육면체 전개도의 면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정육면체의 전개도에는 {같은 크기의 정사각형 $6$개}가 들어 있다.",
+        "studentC": "정육면체의 전개도에는 □가 들어 있다.",
+        "answers": [
+          "같은 크기의 정사각형 $6$개"
+        ]
+      },
+      "sourceFingerprint": "6997a0906b67688c75d8177c1dbcd01521d855c7a86d067682f8c03e375488db",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "cProposedAnswers": [
+        "정사각형",
+        "$6$"
+      ],
+      "cStudentAfter": "정육면체의 전개도에는 크기가 같은 □이 □개 들어 있다.",
+      "cMarkedSentence": "정육면체의 전개도에는 크기가 같은 {정사각형}이 {$6$}개 들어 있다.",
+      "cStudentSentence": "정육면체의 전개도에는 크기가 같은 □이 □개 들어 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "정사각형",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": [
+            "여섯"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 전개도는 어떤 모양의 면 몇 개로 이루어져 있는지, 그 면들의 크기는 서로 어떠한지 쓰시오.",
+        "answer": "정사각형 $6$개로 이루어져 있고, $6$개의 크기는 모두 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$개",
+              "여섯 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "크기가 모두 같다",
+              "모두 합동이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체의 전개도에는 크기가 같은 {정사각형}이 {$6$}개 들어 있다.",
+        "acceptedAnswers": [
+          [
+            "정사각형"
+          ],
+          [
+            "$6$",
+            "여섯"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f8fcb00f61e1da908afb5d71db82475230bc4170a1c5bf6585edd7653652facb",
+      "questionRevision": "planning-e5e6-20261006-f8fcb00f61e1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-5-c3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정사각형 $6$개가 변끼리 이어진 그림이 정육면체의 전개도인지 확인하려고 한다. 머릿속으로 접어 볼 때 무엇을 살펴보아야 하는지 설명하시오.",
+      "bAnswer": "접었을 때 서로 겹치는 면이 없는지 살펴본다. 겹치는 면이 있으면 정육면체의 전개도가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "접었을 때 겹치는 면이 없는지 본다",
+            "면 $6$개가 겹치지 않고 정육면체의 여섯 면이 되는지 본다",
+            "빈 곳 없이 여섯 면이 모두 생기는지 본다"
+          ]
+        }
+      ],
+      "bGoal": "면의 수만이 아니라 접었을 때 겹침 여부로 전개도를 판별한다.",
+      "bReason": "결론인 '겹치면'을 질문에 드러내지 않고 확인할 내용을 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 {겹치면} 정육면체의 전개도가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹치면",
+            "겹쳐지면",
+            "포개지면"
+          ]
+        }
+      ],
+      "cReason": "빈칸을 '겹치면' 한 낱말로 줄이고 접는 상황을 문장에 분명히 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 181,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-5-c3",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "전개도 확인",
+        "kind": "방법",
+        "level": "상",
+        "definition": "여섯 정사각형이 이어져 있어도 접을 때 {면이 겹치면} 정육면체 전개도가 아니다.",
+        "studentC": "여섯 정사각형이 이어져 있어도 접을 때 □ 정육면체 전개도가 아니다.",
+        "answers": [
+          "면이 겹치면"
+        ]
+      },
+      "sourceFingerprint": "3d88414663aa3ad67dbf8badef2df0eaf047d73948f360e578915356040e934f",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "cProposedAnswers": [
+        "겹치면"
+      ],
+      "cStudentAfter": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 □ 정육면체의 전개도가 아니다.",
+      "cMarkedSentence": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 {겹치면} 정육면체의 전개도가 아니다.",
+      "cStudentSentence": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 □ 정육면체의 전개도가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "겹치면",
+          "equivalents": [
+            "겹쳐지면",
+            "포개지면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형 $6$개가 변끼리 이어진 그림이 정육면체의 전개도인지 확인하려고 한다. 머릿속으로 접어 볼 때 무엇을 살펴보아야 하는지 설명하시오.",
+        "answer": "접었을 때 서로 겹치는 면이 없는지 살펴본다. 겹치는 면이 있으면 정육면체의 전개도가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "접었을 때 겹치는 면이 없는지 본다",
+              "면 $6$개가 겹치지 않고 정육면체의 여섯 면이 되는지 본다",
+              "빈 곳 없이 여섯 면이 모두 생기는지 본다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 {겹치면} 정육면체의 전개도가 아니다.",
+        "acceptedAnswers": [
+          [
+            "겹치면",
+            "겹쳐지면",
+            "포개지면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "885d25d42b8fa6f575ad9e8031746c20f717790be664a64393b3612072ae2664",
+      "questionRevision": "planning-e5e6-20261006-885d25d42b8f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-6-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 전개도는 직육면체를 어떻게 하여 나타낸 그림인지 쓰시오.",
+      "bAnswer": "직육면체의 모서리를 잘라서 평면 위에 펼친 그림이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직육면체의 모서리를 잘라 평면 위에 펼친 그림",
+            "직육면체를 펼쳐서 평면에 나타낸 그림"
+          ]
+        }
+      ],
+      "bGoal": "전개도가 입체를 잘라 펼친 그림임을 말한다.",
+      "bReason": "익숙한 정식 용어이므로 어떻게 만든 그림인지로 좁혀 물었다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 모서리를 잘라서 평면 위에 펼친 그림을 직육면체의 {전개도}라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "전개도"
+          ]
+        }
+      ],
+      "cReason": "'연결을 남겨'는 학생에게 낯선 말이고 빈칸 답에 '직육면체의'까지 요구할 필요가 없다.",
+      "coreAfter": "직육면체의 일부 모서리를 잘라 여섯 면이 이어진 채로 평면 위에 펼친 그림이 {직육면체의 전개도}이다.",
+      "coreReason": "'연결을 남겨'가 무엇을 남기는지 불분명한 표현이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "직육면체의 전개도라는 정식 이름 표적을 보존한다. 연결을 남긴다는 말을 여섯 면이 이어진 상태로 풀고 모든 모서리를 자른다는 오해를 피한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 182,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-6-c1",
+        "section": "초5::2-5 직육면체::2-5-6 직육면체의 전개도",
+        "term": "직육면체의 전개도",
+        "kind": "정의",
+        "level": "하",
+        "definition": "직육면체의 여섯 면을 연결을 남겨 평면에 펼친 그림이 {직육면체의 전개도}이다.",
+        "studentC": "직육면체의 여섯 면을 연결을 남겨 평면에 펼친 그림이 □이다.",
+        "answers": [
+          "직육면체의 전개도"
+        ]
+      },
+      "sourceFingerprint": "77002e27dc45101252ee8dd4ebba896437ceb595f5541348656a859190768036",
+      "draftEvidence": "evidence/section-052-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "전개도"
+      ],
+      "cStudentAfter": "직육면체의 모서리를 잘라서 평면 위에 펼친 그림을 직육면체의 □라고 한다.",
+      "cMarkedSentence": "직육면체의 모서리를 잘라서 평면 위에 펼친 그림을 직육면체의 {전개도}라고 한다.",
+      "cStudentSentence": "직육면체의 모서리를 잘라서 평면 위에 펼친 그림을 직육면체의 □라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "전개도",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 전개도는 직육면체를 어떻게 하여 나타낸 그림인지 쓰시오.",
+        "answer": "직육면체의 모서리를 잘라서 평면 위에 펼친 그림이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직육면체의 모서리를 잘라 평면 위에 펼친 그림",
+              "직육면체를 펼쳐서 평면에 나타낸 그림"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 모서리를 잘라서 평면 위에 펼친 그림을 직육면체의 {전개도}라고 한다.",
+        "acceptedAnswers": [
+          [
+            "전개도"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a855ba6348ce0f9be263c5149b2435ec1de1b216b6f085ac9aa331eca5c68200",
+      "questionRevision": "planning-e5e6-20261006-a855ba6348ce",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-6-c2",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 서로 마주 보는 두 면의 모양과 크기는 어떤 관계인지 쓰시오.",
+      "bAnswer": "모양과 크기가 서로 같다(합동이다).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모양과 크기가 같다",
+            "서로 합동이다"
+          ]
+        }
+      ],
+      "bGoal": "마주 보는 면이 합동임을 말한다.",
+      "bReason": "편집용 제목 대신 대상(마주 보는 두 면)과 답 범위(모양과 크기)를 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 서로 마주 보는 두 면은 모양과 크기가 같으므로 서로 {합동}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '합동인 직사각형'은 긴 구절이라 핵심 낱말 하나로 줄였다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'모양과 크기가 같다'와 '합동'은 같은 답으로 인정한다.",
+      "sourceIndex": 183,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-6-c2",
+        "section": "초5::2-5 직육면체::2-5-6 직육면체의 전개도",
+        "term": "마주 보는 면의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체를 접어 만들면 서로 마주 보는 면은 {합동인 직사각형}이다.",
+        "studentC": "직육면체를 접어 만들면 서로 마주 보는 면은 □이다.",
+        "answers": [
+          "합동인 직사각형"
+        ]
+      },
+      "sourceFingerprint": "c63d879c31eaef121f08508a7c0659f9f2ff01315c336839f7108d2261da5bc8",
+      "draftEvidence": "evidence/section-052-draft.json",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "직육면체에서 서로 마주 보는 두 면은 모양과 크기가 같으므로 서로 □이다.",
+      "cMarkedSentence": "직육면체에서 서로 마주 보는 두 면은 모양과 크기가 같으므로 서로 {합동}이다.",
+      "cStudentSentence": "직육면체에서 서로 마주 보는 두 면은 모양과 크기가 같으므로 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 서로 마주 보는 두 면의 모양과 크기는 어떤 관계인지 쓰시오.",
+        "answer": "모양과 크기가 서로 같다(합동이다).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모양과 크기가 같다",
+              "서로 합동이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체에서 서로 마주 보는 두 면은 모양과 크기가 같으므로 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "96c94d45e77393c5c37827a71c01a91c3735dc9cf7c3a2cb7aa6c16234e1e2b0",
+      "questionRevision": "planning-e5e6-20261006-96c94d45e773",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-6-c3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "전개도를 접어 직육면체를 만들 때, 만나서 한 모서리가 되는 두 선분의 길이는 어떤 관계여야 하는지 쓰시오.",
+      "bAnswer": "두 선분의 길이가 서로 같아야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 선분의 길이가 같다",
+            "길이가 서로 같아야 한다"
+          ]
+        }
+      ],
+      "bGoal": "맞닿는 선분의 길이가 같아야 함을 안다.",
+      "bReason": "어떤 선분끼리의 관계인지 질문 안에 밝혔다.",
+      "cDecision": "revise",
+      "cAfter": "전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "같아야 한다"
+          ]
+        }
+      ],
+      "cReason": "'길이가 같아야'라는 어미까지 맞추게 하는 빈칸을 낱말 하나로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 184,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-6-c3",
+        "section": "초5::2-5 직육면체::2-5-6 직육면체의 전개도",
+        "term": "전개도 모서리 맞추기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "접어서 한 모서리가 될 두 선분은 {길이가 같아야} 틈 없이 맞닿는다.",
+        "studentC": "접어서 한 모서리가 될 두 선분은 □ 틈 없이 맞닿는다.",
+        "answers": [
+          "길이가 같아야"
+        ]
+      },
+      "sourceFingerprint": "352cc2ebd0e0c657917e1178665a2412bfb4978870a4e2dee2de0074d1494abf",
+      "draftEvidence": "evidence/section-052-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 □.",
+      "cMarkedSentence": "전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 {같다}.",
+      "cStudentSentence": "전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "같아야 한다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도를 접어 직육면체를 만들 때, 만나서 한 모서리가 되는 두 선분의 길이는 어떤 관계여야 하는지 쓰시오.",
+        "answer": "두 선분의 길이가 서로 같아야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 선분의 길이가 같다",
+              "길이가 서로 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "같아야 한다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0484aa2768d6b5b433078f285580dfcaaf1463b832b3c79d53d54b7f74e06f31",
+      "questionRevision": "planning-e5e6-20261006-0484aa2768d6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "여러 자료의 평균은 자료의 값을 어떻게 했을 때의 값을 뜻하는지 설명하시오.",
+      "bAnswer": "자료의 값을 모두 모아 자료의 개수만큼 고르게 나누었을 때 한 몫이 되는 값이다.",
+      "bGoal": "평균을 '모아서 개수만큼 고르게 나눈 한 몫'이라는 뜻으로 말한다.",
+      "bReason": "제목만으로는 답의 범위가 없어, 값을 어떻게 한 결과인지로 좁혀 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자료의 값을 모두 모아 자료의 개수만큼 고르게 나눈 한 몫",
+            "자료의 값을 모두 같게 고르게 만들었을 때의 값",
+            "자료의 값을 모두 더해 자료의 개수로 나눈 값"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "자료의 값을 모두 모아 자료의 개수만큼 {고르게} 나누었을 때 한 몫의 크기를 {평균}이라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "고르게",
+            "똑같이",
+            "같게"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균"
+          ]
+        }
+      ],
+      "cReason": "'고르게 나누었을 때'라는 긴 구절 대신 핵심 낱말 두 개만 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 185,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-1-c1",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균",
+        "kind": "정의",
+        "level": "하",
+        "definition": "여러 양을 모두 모아 원래 개수만큼 {고르게 나누었을 때} 한 몫의 크기가 평균이다.",
+        "studentC": "여러 양을 모두 모아 원래 개수만큼 □ 한 몫의 크기가 평균이다.",
+        "answers": [
+          "고르게 나누었을 때"
+        ]
+      },
+      "sourceFingerprint": "2ab180c600d2f58fda9334f256f62569ff0e7bee30ff1b952ac1cd0930b11b83",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "고르게",
+        "평균"
+      ],
+      "cStudentAfter": "자료의 값을 모두 모아 자료의 개수만큼 □ 나누었을 때 한 몫의 크기를 □이라고 한다.",
+      "cMarkedSentence": "자료의 값을 모두 모아 자료의 개수만큼 {고르게} 나누었을 때 한 몫의 크기를 {평균}이라고 한다.",
+      "cStudentSentence": "자료의 값을 모두 모아 자료의 개수만큼 □ 나누었을 때 한 몫의 크기를 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "고르게",
+          "equivalents": [
+            "똑같이",
+            "같게"
+          ]
+        },
+        {
+          "key": "평균",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "여러 자료의 평균은 자료의 값을 어떻게 했을 때의 값을 뜻하는지 설명하시오.",
+        "answer": "자료의 값을 모두 모아 자료의 개수만큼 고르게 나누었을 때 한 몫이 되는 값이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자료의 값을 모두 모아 자료의 개수만큼 고르게 나눈 한 몫",
+              "자료의 값을 모두 같게 고르게 만들었을 때의 값",
+              "자료의 값을 모두 더해 자료의 개수로 나눈 값"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자료의 값을 모두 모아 자료의 개수만큼 {고르게} 나누었을 때 한 몫의 크기를 {평균}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "고르게",
+            "똑같이",
+            "같게"
+          ],
+          [
+            "평균"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e81a3f67faac5c0bd257c0b94206394254b2da1bee8083a801849cb1e4edb9a9",
+      "questionRevision": "planning-e5e6-20261006-e81a3f67faac",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "여러 자료의 평균을 계산으로 구하는 방법을 설명하고, $3$, $5$, $10$의 평균을 구하시오.",
+      "bAnswer": "자료의 값을 모두 더한 다음 자료의 개수로 나눈다. $(3+5+10)\\div 3=6$이므로 평균은 $6$이다.",
+      "bGoal": "합을 자료의 개수로 나누는 계산 절차를 말하고 적용한다.",
+      "bReason": "'평균을 구하는 식'만으로는 부족해 절차와 적용 예를 함께 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자료의 값을 모두 더해 자료의 개수로 나눈다",
+            "(자료의 합)$\\div$(자료의 개수)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "자료의 값을 모두 더한 다음 {자료의 개수}로 나누면 평균을 구할 수 있다.",
+      "cReason": "합을 무엇으로 나누는지 짧게 묻는 문장이라 그대로 쓸 수 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'자료의 수', '개수'도 같은 답으로 인정할 만하다.",
+      "sourceIndex": 186,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-1-c2",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "평균을 구하는 식",
+        "kind": "공식",
+        "level": "중",
+        "definition": "자료의 값을 모두 더한 다음 {자료의 개수}로 나누면 평균을 구할 수 있다.",
+        "studentC": "자료의 값을 모두 더한 다음 □로 나누면 평균을 구할 수 있다.",
+        "answers": [
+          "자료의 개수"
+        ]
+      },
+      "sourceFingerprint": "3f6bffefe922bd459f6bb9784799b2b9a7e0e01912e4697d7ebb8bd99f4ca49b",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cFrozenDefinition": "자료의 값을 모두 더한 다음 {자료의 개수}로 나누면 평균을 구할 수 있다.",
+      "cFrozenStudentSentence": "자료의 값을 모두 더한 다음 □로 나누면 평균을 구할 수 있다.",
+      "cProposedAnswers": [
+        "자료의 개수"
+      ],
+      "cStudentAfter": "자료의 값을 모두 더한 다음 □로 나누면 평균을 구할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자료의 개수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자료의 값을 모두 더한 다음 {자료의 개수}로 나누면 평균을 구할 수 있다.",
+      "cStudentSentence": "자료의 값을 모두 더한 다음 □로 나누면 평균을 구할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "자료의 개수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "여러 자료의 평균을 계산으로 구하는 방법을 설명하고, $3$, $5$, $10$의 평균을 구하시오.",
+        "answer": "자료의 값을 모두 더한 다음 자료의 개수로 나눈다. $(3+5+10)\\div 3=6$이므로 평균은 $6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자료의 값을 모두 더해 자료의 개수로 나눈다",
+              "(자료의 합)$\\div$(자료의 개수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자료의 값을 모두 더한 다음 {자료의 개수}로 나누면 평균을 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "자료의 개수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "55a808a668127a01d8ab2fe47b77c7752aae04100eaf511181c4c3978706fd0a",
+      "questionRevision": "planning-e5e6-20261006-55a808a66812",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "자료에 $0$이 들어 있을 때 평균을 구하려면 자료의 개수를 어떻게 세어야 하는지 설명하고, 네 번의 점수 $0$, $4$, $6$, $10$의 평균을 구하시오.",
+      "bAnswer": "$0$도 한 개의 자료이므로 개수에 넣어 $4$개로 센다. $(0+4+6+10)\\div 4=5$이므로 평균은 $5$이다.",
+      "bGoal": "$0$인 자료도 개수에 넣어 평균을 구한다.",
+      "bReason": "$0$을 빼고 $3$으로 나누는 흔한 오류를 확인하도록 구체적 자료를 붙였다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$도 자료 한 개로 세어 개수에 넣는다",
+            "자료의 개수는 $4$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 {$4$}이고, 평균은 {$5$}이다.",
+      "cReason": "'개수에 넣는다'는 구절을 맞히기 어려워 실제 개수와 평균을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 187,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-1-c3",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "$0$인 자료 포함",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자료에 $0$이 들어 있어도 한 개의 자료이므로 평균을 구할 때 {개수에 넣는다}.",
+        "studentC": "자료에 $0$이 들어 있어도 한 개의 자료이므로 평균을 구할 때 □.",
+        "answers": [
+          "개수에 넣는다"
+        ]
+      },
+      "sourceFingerprint": "4f218762eeaeea1365cd1d317ce98cc7d70e1593d479066531502109c34836ce",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$5$"
+      ],
+      "cStudentAfter": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 □이고, 평균은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 {$4$}이고, 평균은 {$5$}이다.",
+      "cStudentSentence": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 □이고, 평균은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료에 $0$이 들어 있을 때 평균을 구하려면 자료의 개수를 어떻게 세어야 하는지 설명하고, 네 번의 점수 $0$, $4$, $6$, $10$의 평균을 구하시오.",
+        "answer": "$0$도 한 개의 자료이므로 개수에 넣어 $4$개로 센다. $(0+4+6+10)\\div 4=5$이므로 평균은 $5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$도 자료 한 개로 세어 개수에 넣는다",
+              "자료의 개수는 $4$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 {$4$}이고, 평균은 {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "477e14f764b6df20ae986fe8214ba71d6dea075abdb8e3f87ca125251fea4fa0",
+      "questionRevision": "planning-e5e6-20261006-477e14f764b6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-c1",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자료의 평균과 자료의 개수를 알 때 자료 전체의 합은 어떻게 구하는지 쓰고, 그렇게 구할 수 있는 까닭을 평균을 구하는 방법과 연결하여 설명하시오. 또 자료 $4$개의 평균이 $7$일 때 자료 전체의 합을 구하시오.",
+      "bAnswer": "평균에 자료의 개수를 곱한다. 평균은 전체 합을 개수로 나눈 값이므로 거꾸로 평균에 개수를 곱하면 전체 합이 된다. 예에서 전체 합은 $7\\times4=28$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균에 자료의 개수를 곱한다",
+            "(평균)$\\times$(자료의 개수)"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균은 전체 합을 개수로 나눈 값이므로 거꾸로 곱하면 합이 된다",
+            "모든 자료를 평균으로 고르게 하면 평균이 개수만큼 있는 것과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$28$"
+          ]
+        }
+      ],
+      "bGoal": "평균과 개수로 전체 합을 되찾는 방법과 그 까닭을 설명한다.",
+      "bReason": "원제목은 편집용이므로 조건(평균, 개수)과 답의 범위(방법, 까닭, 예의 값)를 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "자료 $4$개의 평균이 $6$이면 자료 전체의 합은 (평균)$\\times$({자료의 개수})$=6\\times4=${$24$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자료의 개수",
+            "개수",
+            "자료의 수",
+            "자료 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cReason": "원문은 식 전체를 한 빈칸에 쓰게 해 표기 부담이 크므로 곱하는 대상과 계산값으로 나누었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 188,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-2-c1",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "평균으로 전체 합 구하기",
+        "kind": "공식",
+        "level": "중",
+        "definition": "평균을 알면 {(평균)$\\times$(자료의 개수)}로 전체 자료의 합을 되찾을 수 있다.",
+        "studentC": "평균을 알면 □로 전체 자료의 합을 되찾을 수 있다.",
+        "answers": [
+          "(평균)$\\times$(자료의 개수)"
+        ]
+      },
+      "sourceFingerprint": "fb2a45022a43511bd426ce1d6675a0e68fe764374c88236ca5c83b6073758c77",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "자료의 개수",
+        "$24$"
+      ],
+      "cStudentAfter": "자료 $4$개의 평균이 $6$이면 자료 전체의 합은 (평균)$\\times$(□)$=6\\times4=$□이다.",
+      "cMarkedSentence": "자료 $4$개의 평균이 $6$이면 자료 전체의 합은 (평균)$\\times$({자료의 개수})$=6\\times4=${$24$}이다.",
+      "cStudentSentence": "자료 $4$개의 평균이 $6$이면 자료 전체의 합은 (평균)$\\times$(□)$=6\\times4=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "자료의 개수",
+          "equivalents": [
+            "개수",
+            "자료의 수",
+            "자료 수"
+          ]
+        },
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료의 평균과 자료의 개수를 알 때 자료 전체의 합은 어떻게 구하는지 쓰고, 그렇게 구할 수 있는 까닭을 평균을 구하는 방법과 연결하여 설명하시오. 또 자료 $4$개의 평균이 $7$일 때 자료 전체의 합을 구하시오.",
+        "answer": "평균에 자료의 개수를 곱한다. 평균은 전체 합을 개수로 나눈 값이므로 거꾸로 평균에 개수를 곱하면 전체 합이 된다. 예에서 전체 합은 $7\\times4=28$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균에 자료의 개수를 곱한다",
+              "(평균)$\\times$(자료의 개수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 전체 합을 개수로 나눈 값이므로 거꾸로 곱하면 합이 된다",
+              "모든 자료를 평균으로 고르게 하면 평균이 개수만큼 있는 것과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$28$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자료 $4$개의 평균이 $6$이면 자료 전체의 합은 (평균)$\\times$({자료의 개수})$=6\\times4=${$24$}이다.",
+        "acceptedAnswers": [
+          [
+            "자료의 개수",
+            "개수",
+            "자료의 수",
+            "자료 수"
+          ],
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "44b3981d2beca6748c3b736cba9b124cdd4a175e565e4af24154b9e33a01e5a5",
+      "questionRevision": "planning-e5e6-20261006-44b3981d2bec",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-c2",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자료 여러 개의 평균을 알고, 그중 한 개만 빼고 나머지 값을 모두 알 때 모르는 값 하나를 구하는 방법을 설명하시오. 또 네 수의 평균이 $8$이고 세 수가 $6$, $9$, $10$일 때 나머지 한 수를 구하시오.",
+      "bAnswer": "평균에 개수를 곱해 전체 합을 구한 뒤 아는 값들의 합을 뺀다. 예에서 전체 합은 $8\\times4=32$, 아는 세 수의 합은 $25$이므로 나머지 한 수는 $32-25=7$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균에 개수를 곱해 전체 합을 구하고 아는 값들의 합을 뺀다",
+            "평균보다 넘치는 양과 모자란 양이 같아지도록 모르는 값을 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "bGoal": "평균으로 전체 합을 구해 모르는 값 하나를 찾는 절차를 설명한다.",
+      "bReason": "모르는 값이 하나뿐이라는 조건과 구하는 순서를 묻도록 했고, 넘치고 모자란 양으로 구하는 방법도 인정한다.",
+      "cDecision": "revise",
+      "cAfter": "네 수의 평균이 $5$이고 세 수가 $3$, $4$, $5$이면, 네 수의 합은 {$20$}이고 세 수의 합은 $12$이므로 나머지 한 수는 {$8$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '이미 아는 값들의 합'은 긴 구절 암기라서 실제 수로 전체 합과 남은 값을 구하게 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 189,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-2-c2",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "모르는 자료 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "모르는 값이 하나뿐이면, 평균으로 구한 전체 합에서 {이미 아는 값들의 합}을 빼어 그 값을 구한다.",
+        "studentC": "모르는 값이 하나뿐이면, 평균으로 구한 전체 합에서 □을 빼어 그 값을 구한다.",
+        "answers": [
+          "이미 아는 값들의 합"
+        ]
+      },
+      "sourceFingerprint": "9f9b7b651ee7147bf68d0385b0edfaa712efcf8ba30ce9b10d726be0bd382324",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "$20$",
+        "$8$"
+      ],
+      "cStudentAfter": "네 수의 평균이 $5$이고 세 수가 $3$, $4$, $5$이면, 네 수의 합은 □이고 세 수의 합은 $12$이므로 나머지 한 수는 □이다.",
+      "cMarkedSentence": "네 수의 평균이 $5$이고 세 수가 $3$, $4$, $5$이면, 네 수의 합은 {$20$}이고 세 수의 합은 $12$이므로 나머지 한 수는 {$8$}이다.",
+      "cStudentSentence": "네 수의 평균이 $5$이고 세 수가 $3$, $4$, $5$이면, 네 수의 합은 □이고 세 수의 합은 $12$이므로 나머지 한 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료 여러 개의 평균을 알고, 그중 한 개만 빼고 나머지 값을 모두 알 때 모르는 값 하나를 구하는 방법을 설명하시오. 또 네 수의 평균이 $8$이고 세 수가 $6$, $9$, $10$일 때 나머지 한 수를 구하시오.",
+        "answer": "평균에 개수를 곱해 전체 합을 구한 뒤 아는 값들의 합을 뺀다. 예에서 전체 합은 $8\\times4=32$, 아는 세 수의 합은 $25$이므로 나머지 한 수는 $32-25=7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균에 개수를 곱해 전체 합을 구하고 아는 값들의 합을 뺀다",
+              "평균보다 넘치는 양과 모자란 양이 같아지도록 모르는 값을 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "네 수의 평균이 $5$이고 세 수가 $3$, $4$, $5$이면, 네 수의 합은 {$20$}이고 세 수의 합은 $12$이므로 나머지 한 수는 {$8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "687adce1b126740282ef02a3c03d6d569c78d1a73632df2d73f90941fb79dffe",
+      "questionRevision": "planning-e5e6-20261006-687adce1b126",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-c3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자료 개수가 다른 두 모둠을 합친 전체의 평균은 무엇을 무엇으로 나누어 구하는지 쓰시오. 또 $2$명의 평균이 $10$점인 모둠과 $3$명의 평균이 $5$점인 모둠을 합친 평균을 구하고, 이 값이 두 평균을 더해 $2$로 나눈 값과 같은지 쓰시오.",
+      "bAnswer": "두 모둠 자료의 전체 합을 전체 개수로 나눈다. 예에서 전체 합은 $20+15=35$점, 전체 사람 수는 $5$명이므로 합친 평균은 $35\\div5=7$점이다. 두 평균을 더해 $2$로 나눈 값은 $7.5$점이므로 같지 않다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 합을 전체 개수로 나눈다",
+            "두 모둠의 합을 더한 값을 두 모둠의 개수를 더한 값으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$점",
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같지 않다",
+            "$7.5$점과 다르다"
+          ]
+        }
+      ],
+      "bGoal": "개수가 다른 두 모둠을 합친 평균은 전체 합과 전체 개수로 구함을 예로 확인한다.",
+      "bReason": "원문의 '두 평균만 더해 나누지 말고'라는 결론을 미리 주지 않고 예에서 직접 견주어 보게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$4$명의 평균이 $6$점인 모둠과 $6$명의 평균이 $11$점인 모둠을 합친 평균은, 전체 점수의 합 {$90$}점을 전체 사람 수 {$10$}명으로 나눈 {$9$}점이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$90$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '전체 합과 전체 개수'는 구절 암기에 가까워 실제 두 모둠의 수로 합, 개수, 평균을 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 190,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-2-c3",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "서로 다른 개수의 평균",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자료 개수가 다른 두 모둠을 합칠 때는 두 평균만 더해 나누지 말고 {전체 합과 전체 개수}를 쓴다.",
+        "studentC": "자료 개수가 다른 두 모둠을 합칠 때는 두 평균만 더해 나누지 말고 □를 쓴다.",
+        "answers": [
+          "전체 합과 전체 개수"
+        ]
+      },
+      "sourceFingerprint": "53df3ad5a75e655c3394ec0fdf213769f88ccc41f0877d889d911734a8c70c1f",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "cProposedAnswers": [
+        "$90$",
+        "$10$",
+        "$9$"
+      ],
+      "cStudentAfter": "$4$명의 평균이 $6$점인 모둠과 $6$명의 평균이 $11$점인 모둠을 합친 평균은, 전체 점수의 합 □점을 전체 사람 수 □명으로 나눈 □점이다.",
+      "cMarkedSentence": "$4$명의 평균이 $6$점인 모둠과 $6$명의 평균이 $11$점인 모둠을 합친 평균은, 전체 점수의 합 {$90$}점을 전체 사람 수 {$10$}명으로 나눈 {$9$}점이다.",
+      "cStudentSentence": "$4$명의 평균이 $6$점인 모둠과 $6$명의 평균이 $11$점인 모둠을 합친 평균은, 전체 점수의 합 □점을 전체 사람 수 □명으로 나눈 □점이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$90$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료 개수가 다른 두 모둠을 합친 전체의 평균은 무엇을 무엇으로 나누어 구하는지 쓰시오. 또 $2$명의 평균이 $10$점인 모둠과 $3$명의 평균이 $5$점인 모둠을 합친 평균을 구하고, 이 값이 두 평균을 더해 $2$로 나눈 값과 같은지 쓰시오.",
+        "answer": "두 모둠 자료의 전체 합을 전체 개수로 나눈다. 예에서 전체 합은 $20+15=35$점, 전체 사람 수는 $5$명이므로 합친 평균은 $35\\div5=7$점이다. 두 평균을 더해 $2$로 나눈 값은 $7.5$점이므로 같지 않다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 합을 전체 개수로 나눈다",
+              "두 모둠의 합을 더한 값을 두 모둠의 개수를 더한 값으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$점",
+              "$7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같지 않다",
+              "$7.5$점과 다르다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4$명의 평균이 $6$점인 모둠과 $6$명의 평균이 $11$점인 모둠을 합친 평균은, 전체 점수의 합 {$90$}점을 전체 사람 수 {$10$}명으로 나눈 {$9$}점이다.",
+        "acceptedAnswers": [
+          [
+            "$90$"
+          ],
+          [
+            "$10$"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "182823e90b5b57ecf944e7a8043db69c2cfbeba3a2803477f3ad01fddc660dbe",
+      "questionRevision": "planning-e5e6-20261006-182823e90b5b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "수학에서 어떤 일의 '가능성'이란 무엇을 나타내는 말인지 쓰시오.",
+      "bAnswer": "어떤 일이 일어나기를 기대할 수 있는 정도(일어날 만한 정도)를 나타내는 말이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떤 일이 일어날 만한 정도",
+            "어떤 일이 일어나기를 기대할 수 있는 정도",
+            "어떤 일이 얼마나 일어날 것 같은지를 나타낸 것"
+          ]
+        }
+      ],
+      "bGoal": "가능성이 '일이 일어날 만한 정도'라는 뜻임을 자기 말로 쓴다.",
+      "bReason": "제목만으로는 물음이 되지 않아 익숙한 개념명의 뜻을 좁혀 묻는 완전한 질문으로 바꿨다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 일이 일어나기를 기대할 수 있는 정도를 {가능성}이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가능성"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '일어날 만한 정도'는 그대로 외우기 어려운 긴 구절이라 용어를 답하게 뒤집었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 191,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-3-c1",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성",
+        "kind": "정의",
+        "level": "하",
+        "definition": "앞으로 어떤 일이 {일어날 만한 정도}를 가능성이라 한다.",
+        "studentC": "앞으로 어떤 일이 □를 가능성이라 한다.",
+        "answers": [
+          "일어날 만한 정도"
+        ]
+      },
+      "sourceFingerprint": "822ec1a6cc49f195a93c9bbe4684d39ab0b3c600e7ef743a12b657c2783482a7",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "가능성"
+      ],
+      "cStudentAfter": "어떤 일이 일어나기를 기대할 수 있는 정도를 □이라 한다.",
+      "cMarkedSentence": "어떤 일이 일어나기를 기대할 수 있는 정도를 {가능성}이라 한다.",
+      "cStudentSentence": "어떤 일이 일어나기를 기대할 수 있는 정도를 □이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "가능성",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "수학에서 어떤 일의 '가능성'이란 무엇을 나타내는 말인지 쓰시오.",
+        "answer": "어떤 일이 일어나기를 기대할 수 있는 정도(일어날 만한 정도)를 나타내는 말이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어떤 일이 일어날 만한 정도",
+              "어떤 일이 일어나기를 기대할 수 있는 정도",
+              "어떤 일이 얼마나 일어날 것 같은지를 나타낸 것"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 일이 일어나기를 기대할 수 있는 정도를 {가능성}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "가능성"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dfb8232d4886af611ea4bf5deb366570378fab9fe4885907a5bf8825e38d21fd",
+      "questionRevision": "planning-e5e6-20261006-dfb8232d4886",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-c2",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "가능성을 말로 나타낼 때 '반반이다'는 어떤 경우에 쓰는 말인지 설명하고, 가능성이 반반인 일을 하나 쓰시오.",
+      "bAnswer": "일어날 가능성과 일어나지 않을 가능성이 같을 때 쓴다. 예: 동전을 던질 때 앞면이 나오는 일.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일어날 가능성과 일어나지 않을 가능성이 같은 경우",
+            "일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도",
+            "가능성이 절반인 경우"
+          ]
+        },
+        {
+          "anyOf": [
+            "동전을 던질 때 앞면이 나오는 일",
+            "주사위를 굴릴 때 짝수의 눈이 나오는 일",
+            "가능성이 반반인 알맞은 예 하나"
+          ]
+        }
+      ],
+      "bGoal": "'반반이다'가 가운데 정도의 가능성임을 설명하고 예와 연결한다.",
+      "bReason": "편집용 제목 '가능성의 정도' 대신 실제로 묻는 표현 '반반이다'를 질문에 드러냈다.",
+      "cDecision": "keep",
+      "cAfter": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘{반반이다}’라고 한다.",
+      "cReason": "가운데 정도라는 설명에서 '반반이다'를 떠올리는 짧고 분명한 낱말 문항이다.",
+      "synonymNotes": "'반반', '반반이다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 192,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-3-c2",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성의 정도",
+        "kind": "방법",
+        "level": "중",
+        "definition": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘{반반이다}’라고 한다.",
+        "studentC": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘□’라고 한다.",
+        "answers": [
+          "반반이다"
+        ]
+      },
+      "sourceFingerprint": "f0563c7ff27657db391b28dc345bca556fab21b7a4644d3d6c15a8bf2d88fd41",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘{반반이다}’라고 한다.",
+      "cFrozenStudentSentence": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘□’라고 한다.",
+      "cProposedAnswers": [
+        "반반이다"
+      ],
+      "cStudentAfter": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘□’라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반반이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘{반반이다}’라고 한다.",
+      "cStudentSentence": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘□’라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "반반이다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가능성을 말로 나타낼 때 '반반이다'는 어떤 경우에 쓰는 말인지 설명하고, 가능성이 반반인 일을 하나 쓰시오.",
+        "answer": "일어날 가능성과 일어나지 않을 가능성이 같을 때 쓴다. 예: 동전을 던질 때 앞면이 나오는 일.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "일어날 가능성과 일어나지 않을 가능성이 같은 경우",
+              "일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도",
+              "가능성이 절반인 경우"
+            ]
+          },
+          {
+            "anyOf": [
+              "동전을 던질 때 앞면이 나오는 일",
+              "주사위를 굴릴 때 짝수의 눈이 나오는 일",
+              "가능성이 반반인 알맞은 예 하나"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가능성을 말로 나타낼 때, 일어날 것 같기도 하고 아닐 것 같기도 한 가운데 정도는 ‘{반반이다}’라고 한다.",
+        "acceptedAnswers": [
+          [
+            "반반이다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "24e740f99f640359547c7c22b2e4ba396180a438413cc125a6feaff5b18b7ed6",
+      "questionRevision": "planning-e5e6-20261006-24e740f99f64",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-c3",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "어떤 일이 일어날 가능성이 '확실하다'는 것은 어떤 뜻인지 쓰시오.",
+      "bAnswer": "주어진 조건에서 그 일이 반드시 일어난다는 뜻이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 일이 반드시 일어난다",
+            "그 일이 언제나 일어난다",
+            "그 일이 일어나지 않는 경우가 없다"
+          ]
+        }
+      ],
+      "bGoal": "'확실하다'가 반드시 일어난다는 뜻임을 쓴다.",
+      "bReason": "가능성을 나타내는 정식 표현의 뜻을 좁혀 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "주어진 조건에서 어떤 일이 반드시 일어나면, 그 일이 일어날 가능성은 ‘{확실하다}’라고 말한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "확실하다",
+            "확실"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '반드시 생기면'은 말투까지 맞혀야 하는 구절이라 가능성 표현을 답하게 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 193,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-3-c3",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "확실하다",
+        "kind": "정의",
+        "level": "하",
+        "definition": "주어진 조건에서 어떤 일이 {반드시 생기면} 확실하다고 말한다.",
+        "studentC": "주어진 조건에서 어떤 일이 □ 확실하다고 말한다.",
+        "answers": [
+          "반드시 생기면"
+        ]
+      },
+      "sourceFingerprint": "0e2999fa0d3c6be4582e133525cb089780c9e4b1d1a0997382c6e136929e7f68",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "확실하다"
+      ],
+      "cStudentAfter": "주어진 조건에서 어떤 일이 반드시 일어나면, 그 일이 일어날 가능성은 ‘□’라고 말한다.",
+      "cMarkedSentence": "주어진 조건에서 어떤 일이 반드시 일어나면, 그 일이 일어날 가능성은 ‘{확실하다}’라고 말한다.",
+      "cStudentSentence": "주어진 조건에서 어떤 일이 반드시 일어나면, 그 일이 일어날 가능성은 ‘□’라고 말한다.",
+      "cSlotAnswers": [
+        {
+          "key": "확실하다",
+          "equivalents": [
+            "확실"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 일이 일어날 가능성이 '확실하다'는 것은 어떤 뜻인지 쓰시오.",
+        "answer": "주어진 조건에서 그 일이 반드시 일어난다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 일이 반드시 일어난다",
+              "그 일이 언제나 일어난다",
+              "그 일이 일어나지 않는 경우가 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주어진 조건에서 어떤 일이 반드시 일어나면, 그 일이 일어날 가능성은 ‘{확실하다}’라고 말한다.",
+        "acceptedAnswers": [
+          [
+            "확실하다",
+            "확실"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ab0835a51be5b1f76aa7ec15bd7fc04ced2f96e2de3b1cf80b444a8394b43ecb",
+      "questionRevision": "planning-e5e6-20261006-ab0835a51be5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-c4",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "어떤 일이 일어날 가능성이 '불가능하다'는 것은 어떤 뜻인지 쓰시오.",
+      "bAnswer": "주어진 조건에서 그 일이 절대로 일어나지 않는다는 뜻이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 일이 절대로 일어나지 않는다",
+            "그 일이 한 번도 일어날 수 없다",
+            "그 일이 일어나는 경우가 없다"
+          ]
+        }
+      ],
+      "bGoal": "'불가능하다'가 절대로 일어나지 않는다는 뜻임을 쓴다.",
+      "bReason": "c3과 짝이 되는 표현이지만 뜻이 반대라 따로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "주어진 조건에서 어떤 일이 절대로 일어나지 않으면, 그 일이 일어날 가능성은 ‘{불가능하다}’라고 말한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "불가능하다",
+            "불가능"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '절대로 생기지 않으면'은 긴 구절 암기라 가능성 표현을 답하게 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 194,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-3-c4",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "불가능하다",
+        "kind": "정의",
+        "level": "하",
+        "definition": "주어진 조건에서 어떤 일이 {절대로 생기지 않으면} 불가능하다고 말한다.",
+        "studentC": "주어진 조건에서 어떤 일이 □ 불가능하다고 말한다.",
+        "answers": [
+          "절대로 생기지 않으면"
+        ]
+      },
+      "sourceFingerprint": "5d50e041d1e256d8694eccc4d17c1a6fe3ce2d0060c38a69194067d77cf89f7a",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "불가능하다"
+      ],
+      "cStudentAfter": "주어진 조건에서 어떤 일이 절대로 일어나지 않으면, 그 일이 일어날 가능성은 ‘□’라고 말한다.",
+      "cMarkedSentence": "주어진 조건에서 어떤 일이 절대로 일어나지 않으면, 그 일이 일어날 가능성은 ‘{불가능하다}’라고 말한다.",
+      "cStudentSentence": "주어진 조건에서 어떤 일이 절대로 일어나지 않으면, 그 일이 일어날 가능성은 ‘□’라고 말한다.",
+      "cSlotAnswers": [
+        {
+          "key": "불가능하다",
+          "equivalents": [
+            "불가능"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 일이 일어날 가능성이 '불가능하다'는 것은 어떤 뜻인지 쓰시오.",
+        "answer": "주어진 조건에서 그 일이 절대로 일어나지 않는다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 일이 절대로 일어나지 않는다",
+              "그 일이 한 번도 일어날 수 없다",
+              "그 일이 일어나는 경우가 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주어진 조건에서 어떤 일이 절대로 일어나지 않으면, 그 일이 일어날 가능성은 ‘{불가능하다}’라고 말한다.",
+        "acceptedAnswers": [
+          [
+            "불가능하다",
+            "불가능"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e25ae7a7e299cee6b80e8647a74031e0f06fa1507851b871f8ee6f0cadcfcbe7",
+      "questionRevision": "planning-e5e6-20261006-e25ae7a7e299",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-c5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "가능성이 '불가능하다', '반반이다', '확실하다'인 일을 수로 나타내면 각각 얼마인지 쓰시오.",
+      "bAnswer": "불가능하다는 $0$, 반반이다는 $\\frac{1}{2}$, 확실하다는 $1$로 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "불가능하다는 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "반반이다는 $\\frac{1}{2}$",
+            "반반이다는 $0.5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "확실하다는 $1$"
+          ]
+        }
+      ],
+      "bGoal": "세 가지 말 표현과 수 $0$, $\\frac{1}{2}$, $1$을 짝짓는다.",
+      "bReason": "세 표현과 수의 대응 전체를 한 번에 떠올리게 하는 것이 이 행의 목표이다.",
+      "cDecision": "keep",
+      "cAfter": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+      "cReason": "세 빈칸이 모두 짧은 수이고 문장 안의 말 표현과 하나씩 짝지어진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 195,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-3-c5",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성을 수로 표현하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+        "studentC": "불가능한 일은 □, 반반인 일은 □, 확실한 일은 □로 가능성을 나타낸다.",
+        "answers": [
+          "$0$",
+          "$\\frac{1}{2}$",
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "721bc7cae36c9d9266acd52ff41f5c5c866bd0b90d0c5d6f877daf8c0de9756d",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cFrozenDefinition": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+      "cFrozenStudentSentence": "불가능한 일은 □, 반반인 일은 □, 확실한 일은 □로 가능성을 나타낸다.",
+      "cProposedAnswers": [
+        "$0$",
+        "$\\frac{1}{2}$",
+        "$1$"
+      ],
+      "cStudentAfter": "불가능한 일은 □, 반반인 일은 □, 확실한 일은 □로 가능성을 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+      "cStudentSentence": "불가능한 일은 □, 반반인 일은 □, 확실한 일은 □로 가능성을 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가능성이 '불가능하다', '반반이다', '확실하다'인 일을 수로 나타내면 각각 얼마인지 쓰시오.",
+        "answer": "불가능하다는 $0$, 반반이다는 $\\frac{1}{2}$, 확실하다는 $1$로 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "불가능하다는 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "반반이다는 $\\frac{1}{2}$",
+              "반반이다는 $0.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "확실하다는 $1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7dea7356782ac182764fa3c81a41036cee25e7db78cc5d213fe12346e973a22f",
+      "questionRevision": "planning-e5e6-20261006-7dea7356782a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-c6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "동전을 던질 때 앞면이 나올 가능성은 반반이다. 이 동전을 $2$번 던지면 앞면과 뒷면이 반드시 $1$번씩 나오는지 답하고, 나올 수 있는 결과를 예로 들어 까닭을 설명하시오.",
+      "bAnswer": "반드시 $1$번씩 나오는 것은 아니다. 앞면만 $2$번 나오거나 뒷면만 $2$번 나올 수도 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반드시 $1$번씩 나오는 것은 아니다",
+            "아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞면만 $2$번 나올 수도 있다",
+            "뒷면만 $2$번 나올 수도 있다",
+            "같은 면이 $2$번 모두 나올 수도 있다"
+          ]
+        }
+      ],
+      "bGoal": "가능성이 반반이어도 실제 결과가 꼭 절반씩 나오지는 않음을 예로 설명한다.",
+      "bReason": "'가능성이 반반인 일'이라는 추상적인 말을 동전 $2$번 던지기로 구체화했다.",
+      "cDecision": "revise",
+      "cAfter": "앞면이 나올 가능성이 반반인 동전을 $2$번 던져도 앞면이 꼭 $1$번만 나오는 것은 아니다. 앞면이 한 번도 안 나오거나 {$2$}번 모두 나올 수도 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        }
+      ],
+      "cReason": "원문은 '두 가지 결과'가 무엇인지 화면에서 알 수 없어 동전 상황과 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 196,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-3-c6",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성과 한 번의 결과",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가능성이 반반인 일을 두 번 해 보아도 두 가지 결과가 반드시 {한 번씩} 나오지는 않는다.",
+        "studentC": "가능성이 반반인 일을 두 번 해 보아도 두 가지 결과가 반드시 □ 나오지는 않는다.",
+        "answers": [
+          "한 번씩"
+        ]
+      },
+      "sourceFingerprint": "93aac80ae48ed4aa26d3e0919f580b511140c484b00f2e565a5b0033e4a07c08",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "앞면이 나올 가능성이 반반인 동전을 $2$번 던져도 앞면이 꼭 $1$번만 나오는 것은 아니다. 앞면이 한 번도 안 나오거나 □번 모두 나올 수도 있다.",
+      "cMarkedSentence": "앞면이 나올 가능성이 반반인 동전을 $2$번 던져도 앞면이 꼭 $1$번만 나오는 것은 아니다. 앞면이 한 번도 안 나오거나 {$2$}번 모두 나올 수도 있다.",
+      "cStudentSentence": "앞면이 나올 가능성이 반반인 동전을 $2$번 던져도 앞면이 꼭 $1$번만 나오는 것은 아니다. 앞면이 한 번도 안 나오거나 □번 모두 나올 수도 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "동전을 던질 때 앞면이 나올 가능성은 반반이다. 이 동전을 $2$번 던지면 앞면과 뒷면이 반드시 $1$번씩 나오는지 답하고, 나올 수 있는 결과를 예로 들어 까닭을 설명하시오.",
+        "answer": "반드시 $1$번씩 나오는 것은 아니다. 앞면만 $2$번 나오거나 뒷면만 $2$번 나올 수도 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반드시 $1$번씩 나오는 것은 아니다",
+              "아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞면만 $2$번 나올 수도 있다",
+              "뒷면만 $2$번 나올 수도 있다",
+              "같은 면이 $2$번 모두 나올 수도 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "앞면이 나올 가능성이 반반인 동전을 $2$번 던져도 앞면이 꼭 $1$번만 나오는 것은 아니다. 앞면이 한 번도 안 나오거나 {$2$}번 모두 나올 수도 있다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f2090e87ab01169f9abae36489c46cccfe6080eabdc82dbc44517a2d90c60a2e",
+      "questionRevision": "planning-e5e6-20261006-f2090e87ab01",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "전체를 몇 부분으로 똑같이 나누는 나눗셈에서 몫은 무엇의 양을 나타내는 수인지 쓰세요.",
+      "bAnswer": "똑같이 나눈 것 중 한 부분의 양(한 사람이 받는 양)을 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "똑같이 나눈 한 부분의 양",
+            "한 사람이 받는 양",
+            "한 묶음의 양"
+          ]
+        }
+      ],
+      "bGoal": "똑같이 나누는 상황에서 몫이 한 부분의 양임을 말한다.",
+      "bReason": "제목 '몫'만으로는 답의 범위가 없어 똑같이 나누는 상황과 물을 대상을 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "주스 $3$ $\\mathrm{L}$를 $4$명이 똑같이 나누어 마실 때, $3\\div4$의 몫은 {한} 명이 마시는 주스의 양을 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한",
+            "$1$"
+          ]
+        }
+      ],
+      "cReason": "'한 부분의 양'은 통째로 외워야 하는 구절이라 실제 상황에서 짧은 낱말로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 197,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-1-c1",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "level": "하",
+        "kind": "정의",
+        "term": "몫",
+        "definition": "똑같이 나누었을 때 {한 부분의 양}을 나타내는 수가 몫이다.",
+        "studentC": "똑같이 나누었을 때 □을 나타내는 수가 몫이다.",
+        "answers": [
+          "한 부분의 양"
+        ]
+      },
+      "sourceFingerprint": "4fd94883a2f886f53afde50b861768b07150a46610e20d99c60564b1843e0918",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "한"
+      ],
+      "cStudentAfter": "주스 $3$ $\\mathrm{L}$를 $4$명이 똑같이 나누어 마실 때, $3\\div4$의 몫은 □ 명이 마시는 주스의 양을 나타낸다.",
+      "cMarkedSentence": "주스 $3$ $\\mathrm{L}$를 $4$명이 똑같이 나누어 마실 때, $3\\div4$의 몫은 {한} 명이 마시는 주스의 양을 나타낸다.",
+      "cStudentSentence": "주스 $3$ $\\mathrm{L}$를 $4$명이 똑같이 나누어 마실 때, $3\\div4$의 몫은 □ 명이 마시는 주스의 양을 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "한",
+          "equivalents": [
+            "$1$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체를 몇 부분으로 똑같이 나누는 나눗셈에서 몫은 무엇의 양을 나타내는 수인지 쓰세요.",
+        "answer": "똑같이 나눈 것 중 한 부분의 양(한 사람이 받는 양)을 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "똑같이 나눈 한 부분의 양",
+              "한 사람이 받는 양",
+              "한 묶음의 양"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주스 $3$ $\\mathrm{L}$를 $4$명이 똑같이 나누어 마실 때, $3\\div4$의 몫은 {한} 명이 마시는 주스의 양을 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "한",
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "53e2db000bb9f7232cbf25be79e1122abb8cfbbdc02fed268d7e69831d0da48e",
+      "questionRevision": "planning-e5e6-20261006-53e2db000bb9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-c2",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "(자연수)$\\div$(자연수)의 몫을 분수로 나타낼 때 나누어지는 수와 나누는 수를 각각 분수의 어느 자리에 쓰는지 설명하고, $3\\div5$의 몫을 분수로 쓰세요.",
+      "bAnswer": "나누어지는 수를 분자에, 나누는 수를 분모에 쓴다. $3\\div5=\\frac{3}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수는 분자",
+            "앞의 수가 분자"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수는 분모",
+            "뒤의 수가 분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "두 수가 분자와 분모 중 어느 자리로 가는지 알고 몫을 분수로 쓴다.",
+      "bReason": "이 소단원의 중심 방법이므로 일반 규칙과 예 하나를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "(자연수)$\\div$(자연수)의 몫을 분수로 나타내면 나누어지는 수는 {분자}, 나누는 수는 {분모}가 된다.",
+      "cReason": "원문 빈칸은 '나누어지는 수를 분자' 같은 구절 전체라 핵심 낱말인 분자와 분모만 비웠다.",
+      "exampleNeeded": false,
+      "sourceIndex": 198,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-1-c2",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "level": "중",
+        "kind": "방법",
+        "term": "자연수 나눗셈의 분수 표현",
+        "definition": "자연수끼리 나눈 몫은 {나누어지는 수를 분자}, {나누는 수를 분모}로 놓은 분수와 같다.",
+        "studentC": "자연수끼리 나눈 몫은 □, □로 놓은 분수와 같다.",
+        "answers": [
+          "나누어지는 수를 분자",
+          "나누는 수를 분모"
+        ]
+      },
+      "sourceFingerprint": "1fe7d0347977c61ab5b2a5f232e1b37f746ecdb26104fce357ffb4a38ade4eb0",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "cProposedAnswers": [
+        "분자",
+        "분모"
+      ],
+      "cStudentAfter": "(자연수)$\\div$(자연수)의 몫을 분수로 나타내면 나누어지는 수는 □, 나누는 수는 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분자"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "(자연수)$\\div$(자연수)의 몫을 분수로 나타내면 나누어지는 수는 {분자}, 나누는 수는 {분모}가 된다.",
+      "cStudentSentence": "(자연수)$\\div$(자연수)의 몫을 분수로 나타내면 나누어지는 수는 □, 나누는 수는 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "분자",
+          "equivalents": []
+        },
+        {
+          "key": "분모",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "(자연수)$\\div$(자연수)의 몫을 분수로 나타낼 때 나누어지는 수와 나누는 수를 각각 분수의 어느 자리에 쓰는지 설명하고, $3\\div5$의 몫을 분수로 쓰세요.",
+        "answer": "나누어지는 수를 분자에, 나누는 수를 분모에 쓴다. $3\\div5=\\frac{3}{5}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수는 분자",
+              "앞의 수가 분자"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수는 분모",
+              "뒤의 수가 분모"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "(자연수)$\\div$(자연수)의 몫을 분수로 나타내면 나누어지는 수는 {분자}, 나누는 수는 {분모}가 된다.",
+        "acceptedAnswers": [
+          [
+            "분자"
+          ],
+          [
+            "분모"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e3ca8d87bf977ac74e257d8da1772c2b074fce5b6200b14086e6bb568f8557d4",
+      "questionRevision": "planning-e5e6-20261006-e3ca8d87bf97",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-1-c3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "나누는 수는 그대로 두고 나누어지는 수만 몇 배로 늘리면 몫은 어떻게 변하는지 쓰고, $1\\div4$와 $3\\div4$의 몫을 분수로 나타내어 확인하세요.",
+      "bAnswer": "몫도 같은 배가 된다. $1\\div4=\\frac{1}{4}$, $3\\div4=\\frac{3}{4}$이고 $\\frac{3}{4}$은 $\\frac{1}{4}$의 $3$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫도 같은 배가 된다",
+            "몫도 그만큼 배로 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$은 $\\frac{1}{4}$의 $3$배",
+            "$\\frac{1}{4}\\times3=\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "나누어지는 수가 몇 배가 되면 몫도 같은 배가 됨을 분수로 확인한다.",
+      "bReason": "제목이 결론을 짐작하게 하므로 변화의 방향을 스스로 쓰고 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\div4$의 몫은 {$\\frac{1}{4}$}이고, 나누는 수를 그대로 두고 $1$을 $3$배 한 $3\\div4$의 몫은 {$\\frac{3}{4}$}이다.",
+      "cReason": "검토가 지적한 $3$배→빈칸 $3$의 직접 복사를 제거한다. 실제 두 나눗셈의 몫을 계산하게 하고 일반 같은 배 관계는 B에서 설명한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$",
+            "$0.25$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$",
+            "$0.75$"
+          ]
+        }
+      ],
+      "independentFeedbackEvidence": {
+        "file": "evidence/independent-amendments-e5e6.json",
+        "capturedReviewedHash": "ba3769ace1e20f192a28a8a13850b89b5f96eac52378f1e07743e23156a02628",
+        "capturedInputHash": "2589dfab3cc9cc72214b2f3d765f1a15dad35b8d7240fd730fcd845334323f93",
+        "cohort": "cohort-2026-10-06T13-13-14-276Z-0",
+        "resolution": "검토가 지적한 $3$배→빈칸 $3$의 직접 복사를 제거한다. 실제 두 나눗셈의 몫을 계산하게 하고 일반 같은 배 관계는 B에서 설명한다.",
+        "laterProposalNeedsNewReview": true
+      },
+      "sourceIndex": 199,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-1-c3",
+        "section": "초6::1-1 분수의 나눗셈::1-1-1 (자연수)÷(자연수)의 몫을 분수로 나타내기",
+        "level": "상",
+        "kind": "성질",
+        "term": "나누어지는 수가 몇 배가 될 때의 몫",
+        "definition": "나누는 수가 그대로일 때 나누어지는 수가 몇 배가 되면 몫도 {같은 배}가 된다. 나눌 양이 늘어난 만큼 한 몫도 늘기 때문이다.",
+        "studentC": "나누는 수가 그대로일 때 나누어지는 수가 몇 배가 되면 몫도 □가 된다. 나눌 양이 늘어난 만큼 한 몫도 늘기 때문이다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "sourceFingerprint": "905920e37b815c1db77eb4fbeb87a5b62c92dc9090879a8ddbffc9a411ed3476",
+      "draftEvidence": "evidence/section-056-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{4}$",
+        "$\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "$1\\div4$의 몫은 □이고, 나누는 수를 그대로 두고 $1$을 $3$배 한 $3\\div4$의 몫은 □이다.",
+      "cMarkedSentence": "$1\\div4$의 몫은 {$\\frac{1}{4}$}이고, 나누는 수를 그대로 두고 $1$을 $3$배 한 $3\\div4$의 몫은 {$\\frac{3}{4}$}이다.",
+      "cStudentSentence": "$1\\div4$의 몫은 □이고, 나누는 수를 그대로 두고 $1$을 $3$배 한 $3\\div4$의 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": [
+            "$0.25$"
+          ]
+        },
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": [
+            "$0.75$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누는 수는 그대로 두고 나누어지는 수만 몇 배로 늘리면 몫은 어떻게 변하는지 쓰고, $1\\div4$와 $3\\div4$의 몫을 분수로 나타내어 확인하세요.",
+        "answer": "몫도 같은 배가 된다. $1\\div4=\\frac{1}{4}$, $3\\div4=\\frac{3}{4}$이고 $\\frac{3}{4}$은 $\\frac{1}{4}$의 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫도 같은 배가 된다",
+              "몫도 그만큼 배로 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$은 $\\frac{1}{4}$의 $3$배",
+              "$\\frac{1}{4}\\times3=\\frac{3}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\div4$의 몫은 {$\\frac{1}{4}$}이고, 나누는 수를 그대로 두고 $1$을 $3$배 한 $3\\div4$의 몫은 {$\\frac{3}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$",
+            "$0.25$"
+          ],
+          [
+            "$\\frac{3}{4}$",
+            "$0.75$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e80f4deb07ac2b6968725295fa0c528357d93a4ffba85c69db8cca3817619e44",
+      "questionRevision": "planning-e5e6-20261006-e80f4deb07ac",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}$ $\\mathrm{L}$의 주스를 $3$명에게 똑같이 나누어 주었습니다. 한 사람이 받은 주스는 처음 주스의 몇 분의 일인지 쓰고, 그렇게 생각한 까닭을 설명하시오.",
+      "bAnswer": "처음 주스의 $\\frac{1}{3}$이다. 처음 양을 크기가 같은 세 부분으로 나누고 한 사람이 한 부분을 받았기 때문이다. 한 사람이 받은 양은 $\\frac{1}{4}$ $\\mathrm{L}$지만, 처음 양에 대한 비율은 $\\frac{1}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 주스 양의 $\\frac{1}{3}$이다",
+            "처음 주스 양을 $1$로 보면 한 사람이 받은 양은 $\\frac{1}{3}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 양을 크기가 같은 세 부분으로 나누어 한 사람이 한 부분을 받았기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "분수 양을 자연수만큼 똑같이 나눈 한 몫이 처음 양의 몇 분의 일인지 설명한다.",
+      "bReason": "처음 양과 1 L의 구별이 필요한 목표이다. 대상을 주스로 정하고 처음 주스에 대한 부분을 묻는다고 명시한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}$ $\\mathrm{L}$의 주스를 $4$명에게 똑같이 나누면, 한 사람은 처음 주스 양의 {$\\frac{1}{4}$}을 받는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$",
+            "$0.25$"
+          ]
+        }
+      ],
+      "cReason": "'분모로 하는 단위분수'라는 임의의 긴 구절 대신 처음 양의 몇 분의 일인지 분수로 답하게 한다. 주스가 실제로 몇 L인지 묻는 문장과 구별한다.",
+      "exampleNeeded": false,
+      "coreAfter": "어떤 양을 똑같이 나눌 때, 한 몫이 처음 양에서 차지하는 부분을 분수로 나타낼 수 있다. 이 분수의 분자는 {$1$}이고, 분모는 {똑같이 나눈 부분의 수}이다.",
+      "coreReason": "원문 '처음 양의 나누는 수를 분모로 하는 단위분수만큼'은 연결이 길고 기준 양을 읽기 어렵다. 일반적인 등분 관계를 두 문장으로 나누어 설명하며 실제 L 양과 처음 양에 대한 분수를 구별한다.",
+      "synonymNotes": "처음 양의 1/4과 한 사람이 받은 1/6 L는 서로 다른 답이다. 단위가 없는 비율 질문에 L 양을 정답으로 인정하지 않는다.",
+      "editorialOwner": "Codex",
+      "codexRubricReview": "Direct deletion and copying review: only requested mathematical meanings are required; alternatives are separate strings.",
+      "coreTargetReason": "이미 표지가 있는 현 제안을 유지한다. 원문 한 긴 구절을 분자1과 등분 개수라는 두 명확한 관계로 나누며, 절대량과 처음 양에 대한 분수의 구별을 보존한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 200,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-2-c1",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "한 몫은 처음 양의 몇 분의 일인가",
+        "definition": "분수만큼의 양을 자연수로 똑같이 나눈 한 몫은 처음 양의 나누는 수를 {분모로 하는 단위분수}만큼이다. 셋으로 나누면 처음 양의 $\\frac{1}{3}$이다.",
+        "studentC": "분수만큼의 양을 자연수로 똑같이 나눈 한 몫은 처음 양의 나누는 수를 □만큼이다. 셋으로 나누면 처음 양의 $\\frac{1}{3}$이다.",
+        "answers": [
+          "분모로 하는 단위분수"
+        ]
+      },
+      "sourceFingerprint": "86c84811cbafc21faaf125af788f78997d906e3731a35a632728ad76a6d1b454",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{4}$"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}$ $\\mathrm{L}$의 주스를 $4$명에게 똑같이 나누면, 한 사람은 처음 주스 양의 □을 받는다.",
+      "cMarkedSentence": "$\\frac{2}{3}$ $\\mathrm{L}$의 주스를 $4$명에게 똑같이 나누면, 한 사람은 처음 주스 양의 {$\\frac{1}{4}$}을 받는다.",
+      "cStudentSentence": "$\\frac{2}{3}$ $\\mathrm{L}$의 주스를 $4$명에게 똑같이 나누면, 한 사람은 처음 주스 양의 □을 받는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": [
+            "$0.25$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}$ $\\mathrm{L}$의 주스를 $3$명에게 똑같이 나누어 주었습니다. 한 사람이 받은 주스는 처음 주스의 몇 분의 일인지 쓰고, 그렇게 생각한 까닭을 설명하시오.",
+        "answer": "처음 주스의 $\\frac{1}{3}$이다. 처음 양을 크기가 같은 세 부분으로 나누고 한 사람이 한 부분을 받았기 때문이다. 한 사람이 받은 양은 $\\frac{1}{4}$ $\\mathrm{L}$지만, 처음 양에 대한 비율은 $\\frac{1}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 주스 양의 $\\frac{1}{3}$이다",
+              "처음 주스 양을 $1$로 보면 한 사람이 받은 양은 $\\frac{1}{3}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 양을 크기가 같은 세 부분으로 나누어 한 사람이 한 부분을 받았기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}$ $\\mathrm{L}$의 주스를 $4$명에게 똑같이 나누면, 한 사람은 처음 주스 양의 {$\\frac{1}{4}$}을 받는다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$",
+            "$0.25$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1835ab170ec33700107feba08aa7e25f34599e3e94aa19e11605eda587cb188e",
+      "questionRevision": "planning-e5e6-20261006-1835ab170ec3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\div4$를 $\\frac{2}{3}\\times\\frac{1}{4}$로 바꾸어 계산해도 되는 까닭을 나눗셈의 뜻으로 설명하시오. 몫도 구하시오.",
+      "bAnswer": "$4$로 똑같이 나눈 한 몫은 $\\frac{2}{3}$의 $\\frac{1}{4}$이고, 어떤 양의 $\\frac{1}{4}$은 $\\frac{1}{4}$을 곱해서 구하기 때문이다. 몫은 $\\frac{2}{3}\\times\\frac{1}{4}=\\frac{2}{12}=\\frac{1}{6}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 몫은 처음 양의 $\\frac{1}{4}$이다",
+            "$4$로 나눈 몫은 처음 양의 $4$분의 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어떤 양의 $\\frac{1}{4}$은 $\\frac{1}{4}$을 곱해 구한다",
+            "몇 분의 일은 곱셈으로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "$\\frac{2}{12}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "나눗셈을 단위분수 곱셈으로 바꾸는 까닭을 한 몫의 뜻으로 설명한다.",
+      "bReason": "추상적인 '몇 분의 일' 문장 대신 실제 식으로 까닭과 몫을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{5}\\div2$의 한 몫은 $\\frac{3}{5}$의 $\\frac{1}{2}$이므로 $\\frac{3}{5}\\div2=\\frac{3}{5}\\times$ {$\\frac{1}{2}$} $=$ {$\\frac{3}{10}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$2$분의 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{10}$",
+            "$10$분의 $3$"
+          ]
+        }
+      ],
+      "cReason": "맥락 없이 '곱해서'만 묻던 문장을 실제 식의 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 201,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-2-c2",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "나눗셈을 곱셈으로 바꿀 수 있는 까닭",
+        "definition": "자연수로 나눈 한 몫은 처음 양의 '(나누는 수)분의 일'이고, 어떤 양의 몇 분의 일은 그 단위분수를 {곱해서} 구하므로 나눗셈을 곱셈으로 바꿀 수 있다.",
+        "studentC": "자연수로 나눈 한 몫은 처음 양의 '(나누는 수)분의 일'이고, 어떤 양의 몇 분의 일은 그 단위분수를 □ 구하므로 나눗셈을 곱셈으로 바꿀 수 있다.",
+        "answers": [
+          "곱해서"
+        ]
+      },
+      "sourceFingerprint": "928b0cbad95ca9204ccc4a4d0e2d354b6ae543c651e0fda87bab2713ffe1f927",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$",
+        "$\\frac{3}{10}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{5}\\div2$의 한 몫은 $\\frac{3}{5}$의 $\\frac{1}{2}$이므로 $\\frac{3}{5}\\div2=\\frac{3}{5}\\times$ □ $=$ □이다.",
+      "cMarkedSentence": "$\\frac{3}{5}\\div2$의 한 몫은 $\\frac{3}{5}$의 $\\frac{1}{2}$이므로 $\\frac{3}{5}\\div2=\\frac{3}{5}\\times$ {$\\frac{1}{2}$} $=$ {$\\frac{3}{10}$}이다.",
+      "cStudentSentence": "$\\frac{3}{5}\\div2$의 한 몫은 $\\frac{3}{5}$의 $\\frac{1}{2}$이므로 $\\frac{3}{5}\\div2=\\frac{3}{5}\\times$ □ $=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$2$분의 $1$"
+          ]
+        },
+        {
+          "key": "$\\frac{3}{10}$",
+          "equivalents": [
+            "$10$분의 $3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}\\div4$를 $\\frac{2}{3}\\times\\frac{1}{4}$로 바꾸어 계산해도 되는 까닭을 나눗셈의 뜻으로 설명하시오. 몫도 구하시오.",
+        "answer": "$4$로 똑같이 나눈 한 몫은 $\\frac{2}{3}$의 $\\frac{1}{4}$이고, 어떤 양의 $\\frac{1}{4}$은 $\\frac{1}{4}$을 곱해서 구하기 때문이다. 몫은 $\\frac{2}{3}\\times\\frac{1}{4}=\\frac{2}{12}=\\frac{1}{6}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 몫은 처음 양의 $\\frac{1}{4}$이다",
+              "$4$로 나눈 몫은 처음 양의 $4$분의 $1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "어떤 양의 $\\frac{1}{4}$은 $\\frac{1}{4}$을 곱해 구한다",
+              "몇 분의 일은 곱셈으로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$",
+              "$\\frac{2}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{5}\\div2$의 한 몫은 $\\frac{3}{5}$의 $\\frac{1}{2}$이므로 $\\frac{3}{5}\\div2=\\frac{3}{5}\\times$ {$\\frac{1}{2}$} $=$ {$\\frac{3}{10}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$",
+            "$2$분의 $1$"
+          ],
+          [
+            "$\\frac{3}{10}$",
+            "$10$분의 $3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0e9caf7445037581cdbf3c7dfc0f1d94d00b91b44bf41701a75843cd379c1e09",
+      "questionRevision": "planning-e5e6-20261006-0e9caf744503",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}\\div2$를 계산할 때 분모 $4$에 $2$를 곱하는 까닭을 $\\frac{1}{4}$ 한 조각을 생각해 설명하시오. 몫도 쓰시오.",
+      "bAnswer": "$\\frac{1}{4}$ 한 조각을 $2$로 똑같이 나누면 한 조각이 $\\frac{1}{8}$이 되므로 분모에 $2$를 곱한다. 이런 조각이 $3$개 있으므로 몫은 $\\frac{3}{8}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$ 조각을 $2$로 똑같이 나누면 $\\frac{1}{8}$ 조각이 된다",
+            "조각을 더 잘게 나누어 분모가 $4\\times2$가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 조각이 $3$개이다",
+            "분자 $3$만큼 모은다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{8}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "분모에 나누는 수를 곱하는 까닭을 조각을 더 잘게 나누는 활동으로 이해한다.",
+      "bReason": "단위분수 조각이라는 말은 3학년 수준이므로 질문에 대상과 수를 직접 주었다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 {$\\frac{1}{8}$}이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ {$\\frac{3}{8}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{8}$",
+            "$8$분의 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{8}$",
+            "$8$분의 $3$"
+          ]
+        }
+      ],
+      "cReason": "긴 설명 문장 대신 짧은 값 두 개로 조각 관계를 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 202,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-2-c3",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "분모에 나누는 수를 곱하는 까닭",
+        "definition": "분모에 나누는 자연수를 곱하는 것은 단위분수 조각 하나를 그 수만큼 {똑같이 나누는 것}이다. 이렇게 나눈 작은 조각을 원래 분자만큼 모으면 한 몫이다.",
+        "studentC": "분모에 나누는 자연수를 곱하는 것은 단위분수 조각 하나를 그 수만큼 □이다. 이렇게 나눈 작은 조각을 원래 분자만큼 모으면 한 몫이다.",
+        "answers": [
+          "똑같이 나누는 것"
+        ]
+      },
+      "sourceFingerprint": "f602781a275cd19bca6ad56aa4295f35d928ef83cb371098491839c2f07bcbcf",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{8}$",
+        "$\\frac{3}{8}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 □이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ □이다.",
+      "cMarkedSentence": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 {$\\frac{1}{8}$}이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ {$\\frac{3}{8}$}이다.",
+      "cStudentSentence": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 □이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{8}$",
+          "equivalents": [
+            "$8$분의 $1$"
+          ]
+        },
+        {
+          "key": "$\\frac{3}{8}$",
+          "equivalents": [
+            "$8$분의 $3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}\\div2$를 계산할 때 분모 $4$에 $2$를 곱하는 까닭을 $\\frac{1}{4}$ 한 조각을 생각해 설명하시오. 몫도 쓰시오.",
+        "answer": "$\\frac{1}{4}$ 한 조각을 $2$로 똑같이 나누면 한 조각이 $\\frac{1}{8}$이 되므로 분모에 $2$를 곱한다. 이런 조각이 $3$개 있으므로 몫은 $\\frac{3}{8}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$ 조각을 $2$로 똑같이 나누면 $\\frac{1}{8}$ 조각이 된다",
+              "조각을 더 잘게 나누어 분모가 $4\\times2$가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 조각이 $3$개이다",
+              "분자 $3$만큼 모은다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{8}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 {$\\frac{1}{8}$}이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ {$\\frac{3}{8}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{8}$",
+            "$8$분의 $1$"
+          ],
+          [
+            "$\\frac{3}{8}$",
+            "$8$분의 $3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fcd769e3975a3a35e3d065fe2147406e9acf902a9e8f422a5daa280bbf6b12e7",
+      "questionRevision": "planning-e5e6-20261006-fcd769e3975a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "$2\\frac{1}{3}$처럼 쓰는 분수는 어떤 수와 어떤 수가 합쳐진 양을 나타내나요?",
+      "bAnswer": "자연수 $2$와 진분수 $\\frac{1}{3}$을 더한 양을 함께 적은 수이다.",
+      "bGoal": "대분수가 자연수와 진분수의 합을 한꺼번에 쓴 수임을 안다.",
+      "bReason": "이름을 외우게 하지 않고 대분수의 구성을 묻는다. 이름 묻기는 C가 맡는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수와 진분수를 더한 양",
+            "자연수 $2$와 진분수 $\\frac{1}{3}$의 합",
+            "$2+\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "자연수와 진분수를 더한 양을 함께 적은 분수를 {대분수}라 한다.",
+      "cReason": "자연수와 진분수의 합이라는 정의에서 이름을 답하는 짧은 낱말 문항이고 학년 수준에 맞는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 203,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-3-c1",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "대분수",
+        "definition": "자연수와 진분수를 더한 양을 함께 적은 분수를 {대분수}라 한다.",
+        "studentC": "자연수와 진분수를 더한 양을 함께 적은 분수를 □라 한다.",
+        "answers": [
+          "대분수"
+        ]
+      },
+      "sourceFingerprint": "f4c114ab03739555346d818bd29fb5981ace553ffc77ce17c49124a04c0e415d",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cFrozenDefinition": "자연수와 진분수를 더한 양을 함께 적은 분수를 {대분수}라 한다.",
+      "cFrozenStudentSentence": "자연수와 진분수를 더한 양을 함께 적은 분수를 □라 한다.",
+      "cProposedAnswers": [
+        "대분수"
+      ],
+      "cStudentAfter": "자연수와 진분수를 더한 양을 함께 적은 분수를 □라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자연수와 진분수를 더한 양을 함께 적은 분수를 {대분수}라 한다.",
+      "cStudentSentence": "자연수와 진분수를 더한 양을 함께 적은 분수를 □라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "대분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2\\frac{1}{3}$처럼 쓰는 분수는 어떤 수와 어떤 수가 합쳐진 양을 나타내나요?",
+        "answer": "자연수 $2$와 진분수 $\\frac{1}{3}$을 더한 양을 함께 적은 수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수와 진분수를 더한 양",
+              "자연수 $2$와 진분수 $\\frac{1}{3}$의 합",
+              "$2+\\frac{1}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자연수와 진분수를 더한 양을 함께 적은 분수를 {대분수}라 한다.",
+        "acceptedAnswers": [
+          [
+            "대분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "eb476cbc847f9576f0bac35c170049c330adb591bdc20b83b627fe00876aa737",
+      "questionRevision": "planning-e5e6-20261006-eb476cbc847f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "$1\\frac{1}{2}\\div3$은 $1\\frac{1}{2}$이 나타내는 양을 가지고 어떤 양을 구하는 계산인가요? 계산 결과도 쓰세요.",
+      "bAnswer": "$1\\frac{1}{2}$을 $3$몫으로 똑같이 나눌 때 한 몫의 양이고, 그 양은 $\\frac{1}{2}$이다.",
+      "bGoal": "나눗셈이 똑같이 나눈 한 몫의 양을 구하는 일임을 안다.",
+      "bReason": "나눗셈 의미를 구체 식으로 묻고 몫까지 확인하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "똑같이 나눈 한 몫의 양",
+            "똑같이 나눈 한 묶음의 양"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 {한 몫의 양}이다.",
+      "cReason": "나눗셈을 한 몫의 양으로 이해하는 짧은 낱말 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "한 몫, 한 묶음의 양, 똑같이 나눈 한 개의 양 모두 가능",
+      "sourceIndex": 204,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-3-c2",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "(대분수)$\\div$(자연수)",
+        "definition": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 {한 몫의 양}이다.",
+        "studentC": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 □이다.",
+        "answers": [
+          "한 몫의 양"
+        ]
+      },
+      "sourceFingerprint": "cb2468d54cd0ba0998514c5b64e5bf753f63965a7a3cc4dd9959ebe7d46b49ea",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 {한 몫의 양}이다.",
+      "cFrozenStudentSentence": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 □이다.",
+      "cProposedAnswers": [
+        "한 몫의 양"
+      ],
+      "cStudentAfter": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한 몫의 양"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 {한 몫의 양}이다.",
+      "cStudentSentence": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "한 몫의 양",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\frac{1}{2}\\div3$은 $1\\frac{1}{2}$이 나타내는 양을 가지고 어떤 양을 구하는 계산인가요? 계산 결과도 쓰세요.",
+        "answer": "$1\\frac{1}{2}$을 $3$몫으로 똑같이 나눌 때 한 몫의 양이고, 그 양은 $\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "똑같이 나눈 한 몫의 양",
+              "똑같이 나눈 한 묶음의 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$\\frac{3}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 {한 몫의 양}이다.",
+        "acceptedAnswers": [
+          [
+            "한 몫의 양"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c3f5646e9744262520d8bc937c3208ebf4f4257a4cc38ed4f3046ba57e5c8a6c",
+      "questionRevision": "planning-e5e6-20261006-c3f5646e9744",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "$4\\frac{2}{3}\\div2$를 계산할 때 자연수 부분과 분수 부분을 따로 나누어 더해도 되는 까닭을 설명하고, 몫을 구하세요.",
+      "bAnswer": "대분수는 자연수 부분 $4$와 분수 부분 $\\frac{2}{3}$의 합이다. 전체를 똑같이 나눈 한 몫은 각 부분의 한 몫을 합한 것과 같다. $4\\div2=2$, $\\frac{2}{3}\\div2=\\frac{1}{3}$이므로 몫은 $2\\frac{1}{3}$이다.",
+      "bGoal": "합을 나눈 한 몫이 각 부분의 한 몫의 합이 되는 까닭을 안다.",
+      "bReason": "방법이 아니라 까닭을 설명하게 하고 예의 정확한 답도 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대분수는 자연수 부분과 분수 부분의 합이다",
+            "$4\\frac{2}{3}=4+\\frac{2}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 부분을 나눈 몫을 더하면 전체의 한 몫이다",
+            "두 부분의 한 몫을 합하면 전체를 똑같이 나눈 한 몫이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{3}$",
+            "$\\frac{7}{3}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$4\\frac{2}{3}\\div2$에서 $4\\div2={}$ {$2$}, $\\frac{2}{3}\\div2={}$ {$\\frac{1}{3}$}이고, 두 몫을 더하면 {$2\\frac{1}{3}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$",
+            "$\\frac{2}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{3}$",
+            "$\\frac{7}{3}$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 암기 대신 두 부분을 나눈 몫과 합을 직접 계산하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 205,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-3-c3",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "두 부분으로 갈라 나누어도 되는 까닭",
+        "definition": "대분수는 자연수 부분과 분수 부분의 합이므로, 전체를 똑같이 나눈 한 몫은 {두 부분을 각각 나눈 몫의 합}과 같다.",
+        "studentC": "대분수는 자연수 부분과 분수 부분의 합이므로, 전체를 똑같이 나눈 한 몫은 □과 같다.",
+        "answers": [
+          "두 부분을 각각 나눈 몫의 합"
+        ]
+      },
+      "sourceFingerprint": "fe9a3785d9bdc18ec87895bcadadd7d0d49fa1add6d57b4bce53b6f17e03bc01",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$\\frac{1}{3}$",
+        "$2\\frac{1}{3}$"
+      ],
+      "cStudentAfter": "$4\\frac{2}{3}\\div2$에서 $4\\div2={}$ □, $\\frac{2}{3}\\div2={}$ □이고, 두 몫을 더하면 □이다.",
+      "cMarkedSentence": "$4\\frac{2}{3}\\div2$에서 $4\\div2={}$ {$2$}, $\\frac{2}{3}\\div2={}$ {$\\frac{1}{3}$}이고, 두 몫을 더하면 {$2\\frac{1}{3}$}이다.",
+      "cStudentSentence": "$4\\frac{2}{3}\\div2$에서 $4\\div2={}$ □, $\\frac{2}{3}\\div2={}$ □이고, 두 몫을 더하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{3}$",
+          "equivalents": [
+            "$\\frac{2}{6}$"
+          ]
+        },
+        {
+          "key": "$2\\frac{1}{3}$",
+          "equivalents": [
+            "$\\frac{7}{3}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$4\\frac{2}{3}\\div2$를 계산할 때 자연수 부분과 분수 부분을 따로 나누어 더해도 되는 까닭을 설명하고, 몫을 구하세요.",
+        "answer": "대분수는 자연수 부분 $4$와 분수 부분 $\\frac{2}{3}$의 합이다. 전체를 똑같이 나눈 한 몫은 각 부분의 한 몫을 합한 것과 같다. $4\\div2=2$, $\\frac{2}{3}\\div2=\\frac{1}{3}$이므로 몫은 $2\\frac{1}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대분수는 자연수 부분과 분수 부분의 합이다",
+              "$4\\frac{2}{3}=4+\\frac{2}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 부분을 나눈 몫을 더하면 전체의 한 몫이다",
+              "두 부분의 한 몫을 합하면 전체를 똑같이 나눈 한 몫이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{1}{3}$",
+              "$\\frac{7}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4\\frac{2}{3}\\div2$에서 $4\\div2={}$ {$2$}, $\\frac{2}{3}\\div2={}$ {$\\frac{1}{3}$}이고, 두 몫을 더하면 {$2\\frac{1}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$\\frac{1}{3}$",
+            "$\\frac{2}{6}$"
+          ],
+          [
+            "$2\\frac{1}{3}$",
+            "$\\frac{7}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ad960451d3b20ef82eb8148d80347a8d8ce9f8cadc03a8490a0ca6f5dbe4f7ed",
+      "questionRevision": "planning-e5e6-20261006-ad960451d3b2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "각기둥은 어떤 입체도형인가? 두 밑면 사이의 관계와 옆면의 모양을 들어 설명하시오.",
+      "bAnswer": "서로 평행하고 합동인 두 다각형 면(밑면)이 있고, 나머지 면(옆면)은 모두 직사각형인 입체도형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면이 평행하고 합동인 다각형이다",
+            "마주 보는 두 면의 모양과 크기가 같고 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면이 모두 직사각형이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "각기둥의 정의를 밑면 조건과 옆면 조건으로 나누어 말하게 한다.",
+      "bReason": "원문 '둘레의 짝인 변을 이어'는 학생이 그리기 어려운 표현이라 밑면·옆면 조건으로 풀어 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 {직사각형}인 입체도형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cReason": "원문 C는 '둘레의 짝인 변'이 모호해 옆면 모양을 묻는 문장으로 바꾼다.",
+      "exampleNeeded": false,
+      "coreAfter": "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 {직사각형}인 입체도형이다.",
+      "coreReason": "'둘레의 짝인 변을 직사각형으로 이어'는 학년에 맞지 않고 불명확하다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "직사각형이라는 원문 표적을 보존한다. 짝인 변을 이어 만든다는 불분명한 설명 대신 두 밑면과 나머지 면의 일반 성질로 정의한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 206,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-1-c1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "level": "하",
+        "kind": "정의",
+        "term": "각기둥",
+        "definition": "같은 다각형 두 장을 평행하게 놓고, 둘레의 짝인 변을 {직사각형}으로 이어 만든 입체가 각기둥이다.",
+        "studentC": "같은 다각형 두 장을 평행하게 놓고, 둘레의 짝인 변을 □으로 이어 만든 입체가 각기둥이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "7d5ce161ad3667e8f7f74783fbb907b3dd7bd8d7b68ff32f6aa2c6c6df1efdef",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 □인 입체도형이다.",
+      "cMarkedSentence": "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 {직사각형}인 입체도형이다.",
+      "cStudentSentence": "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 □인 입체도형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥은 어떤 입체도형인가? 두 밑면 사이의 관계와 옆면의 모양을 들어 설명하시오.",
+        "answer": "서로 평행하고 합동인 두 다각형 면(밑면)이 있고, 나머지 면(옆면)은 모두 직사각형인 입체도형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면이 평행하고 합동인 다각형이다",
+              "마주 보는 두 면의 모양과 크기가 같고 평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면이 모두 직사각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 {직사각형}인 입체도형이다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "340994ba324beb5e80f73c90f156685a8864305d61f53f766e14fc3d35c8d5f8",
+      "questionRevision": "planning-e5e6-20261006-340994ba324b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "각기둥에서 밑면은 어떤 면인가? 두 밑면의 위치 관계와 모양 관계를 들어 설명하시오.",
+      "bAnswer": "기둥의 양 끝에 있는, 서로 평행하고 합동인 두 다각형 면이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 평행하다",
+            "마주 보며 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "합동이다",
+            "모양과 크기가 같다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "밑면을 위치가 아니라 평행·합동이라는 성질로 설명하게 한다.",
+      "bReason": "c2의 긴 구절을 외우게 하지 않고 두 조건을 설명하게 하며 xc2와 겹치므로 이 행에 모은다.",
+      "cDecision": "revise",
+      "cAfter": "각기둥에서 서로 {평행}하고 {합동}인 두 다각형 면을 밑면이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평행"
+          ]
+        },
+        {
+          "anyOf": [
+            "합동",
+            "모양과 크기가 같은"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 두 개의 핵심 조건 빈칸으로 나눈다.",
+      "exampleNeeded": false,
+      "sourceIndex": 207,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-1-c2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "level": "하",
+        "kind": "정의",
+        "term": "밑면",
+        "definition": "각기둥에서 기둥의 양 끝을 막는 {합동인 다각형 두 면}을 밑면이라 한다.",
+        "studentC": "각기둥에서 기둥의 양 끝을 막는 □을 밑면이라 한다.",
+        "answers": [
+          "합동인 다각형 두 면"
+        ]
+      },
+      "sourceFingerprint": "4bf574eaca720ccd03c23a549e66d240572f32c25d38c48179f192d8aa6a1010",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cProposedAnswers": [
+        "평행",
+        "합동"
+      ],
+      "cStudentAfter": "각기둥에서 서로 □하고 □인 두 다각형 면을 밑면이라 한다.",
+      "cMarkedSentence": "각기둥에서 서로 {평행}하고 {합동}인 두 다각형 면을 밑면이라 한다.",
+      "cStudentSentence": "각기둥에서 서로 □하고 □인 두 다각형 면을 밑면이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "평행",
+          "equivalents": []
+        },
+        {
+          "key": "합동",
+          "equivalents": [
+            "모양과 크기가 같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥에서 밑면은 어떤 면인가? 두 밑면의 위치 관계와 모양 관계를 들어 설명하시오.",
+        "answer": "기둥의 양 끝에 있는, 서로 평행하고 합동인 두 다각형 면이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 평행하다",
+              "마주 보며 평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합동이다",
+              "모양과 크기가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥에서 서로 {평행}하고 {합동}인 두 다각형 면을 밑면이라 한다.",
+        "acceptedAnswers": [
+          [
+            "평행"
+          ],
+          [
+            "합동",
+            "모양과 크기가 같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bf75beee7324e41f83fc426b509a3d031ef7fa3e2ccd6bb41412a493209a77ec",
+      "questionRevision": "planning-e5e6-20261006-bf75beee7324",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "각기둥에서 옆면은 어떤 면인가? 밑면과의 관계와 모양을 말하시오.",
+      "bAnswer": "두 밑면의 둘레를 이어 주는 면이고, 모양은 직사각형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 아닌 면이다",
+            "두 밑면 사이를 둘러싼다",
+            "두 밑면의 둘레를 잇는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "직사각형이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "옆면을 밑면과 대비하여 위치와 모양으로 말하게 한다.",
+      "bReason": "밑면을 알아야 옆면이 정해지므로 두 관계를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+      "cReason": "밑면과 연결해 옆면 모양을 묻는 짧고 명확한 낱말 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 208,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-1-c3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "level": "중",
+        "kind": "정의",
+        "term": "옆면",
+        "definition": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+        "studentC": "각기둥에서 두 밑면의 둘레를 잇는 □ 하나하나를 옆면이라 한다.",
+        "answers": [
+          "직사각형 면"
+        ]
+      },
+      "sourceFingerprint": "02bf61d33763cd60c7daf6ac27b01b0bd64ee68ff14d86599641e2c7f0ce98c1",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+      "cFrozenStudentSentence": "각기둥에서 두 밑면의 둘레를 잇는 □ 하나하나를 옆면이라 한다.",
+      "cProposedAnswers": [
+        "직사각형 면"
+      ],
+      "cStudentAfter": "각기둥에서 두 밑면의 둘레를 잇는 □ 하나하나를 옆면이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형 면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+      "cStudentSentence": "각기둥에서 두 밑면의 둘레를 잇는 □ 하나하나를 옆면이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형 면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥에서 옆면은 어떤 면인가? 밑면과의 관계와 모양을 말하시오.",
+        "answer": "두 밑면의 둘레를 이어 주는 면이고, 모양은 직사각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 아닌 면이다",
+              "두 밑면 사이를 둘러싼다",
+              "두 밑면의 둘레를 잇는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직사각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+        "acceptedAnswers": [
+          [
+            "직사각형 면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d8b6e007fbf2adc157ad434891a1ee90bcdec1e0ddc8d9a85565844879b7584c",
+      "questionRevision": "planning-e5e6-20261006-d8b6e007fbf2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-c4",
+      "bDecision": "revise",
+      "bPrompt": "각기둥을 옆으로 눕혀 놓았다. 바닥에 닿은 면이 밑면이라고 할 수 있는가? 밑면을 정하는 기준을 말하시오.",
+      "bAnswer": "아니다. 밑면은 놓인 방향과 관계없이 서로 평행하고 합동인 두 다각형 면으로 정하므로, 눕혀도 밑면은 그대로이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바닥에 닿는 면이 밑면인 것은 아니다",
+            "놓인 방향으로 밑면이 정해지지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행하고 합동인 두 면이 밑면이다",
+            "마주 보는 합동인 두 다각형 면이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "흔한 오개념(바닥 면=밑면)을 평행·합동 기준으로 바로잡는다.",
+      "bReason": "자세를 바꿔도 밑면이 변하지 않는 이유를 말로 설명할 수 있다.",
+      "cDecision": "revise",
+      "cAfter": "각기둥을 눕혀도 밑면은 {그대로이다}. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "그대로이다",
+            "바뀌지 않는다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "'바뀌지 않는다'만 강요하지 않고 같은 뜻의 답을 허용한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "바뀌지 않는다/변하지 않는다/그대로이다는 같은 답이다.",
+      "sourceIndex": 209,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-1-c4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "level": "상",
+        "kind": "성질",
+        "term": "밑면의 위치",
+        "definition": "각기둥을 눕혀도 밑면은 {바뀌지 않는다}. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+        "studentC": "각기둥을 눕혀도 밑면은 □. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+        "answers": [
+          "바뀌지 않는다"
+        ]
+      },
+      "sourceFingerprint": "c928f0c3379c4a749126aeeb40d65329f09772041a70ef804fc20141d523d9be",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cProposedAnswers": [
+        "그대로이다"
+      ],
+      "cStudentAfter": "각기둥을 눕혀도 밑면은 □. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+      "cMarkedSentence": "각기둥을 눕혀도 밑면은 {그대로이다}. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+      "cStudentSentence": "각기둥을 눕혀도 밑면은 □. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "그대로이다",
+          "equivalents": [
+            "바뀌지 않는다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥을 옆으로 눕혀 놓았다. 바닥에 닿은 면이 밑면이라고 할 수 있는가? 밑면을 정하는 기준을 말하시오.",
+        "answer": "아니다. 밑면은 놓인 방향과 관계없이 서로 평행하고 합동인 두 다각형 면으로 정하므로, 눕혀도 밑면은 그대로이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바닥에 닿는 면이 밑면인 것은 아니다",
+              "놓인 방향으로 밑면이 정해지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행하고 합동인 두 면이 밑면이다",
+              "마주 보는 합동인 두 다각형 면이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥을 눕혀도 밑면은 {그대로이다}. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+        "acceptedAnswers": [
+          [
+            "그대로이다",
+            "바뀌지 않는다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5351e0397ec805be3c980d80bb210685286773c0da9c8df02019b8ea52e734f0",
+      "questionRevision": "planning-e5e6-20261006-5351e0397ec8",
+      "requiresIndependentReview": true
+    }
+  ]
+}

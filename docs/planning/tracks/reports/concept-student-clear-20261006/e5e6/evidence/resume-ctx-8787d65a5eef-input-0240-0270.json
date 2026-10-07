@@ -1,0 +1,3235 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T05:05:29.542430+00:00",
+  "rows": [
+    {
+      "id": "e6-1-3-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "$7\\div2$를 자연수끼리 나누면 몫 $3$이고 $1$이 남는다. 남은 $1$까지 계속 나누어 몫을 소수로 나타내려면 어떻게 계산하는지 설명하고, 몫을 쓰시오.",
+      "bAnswer": "몫 $3$ 뒤에 소수점을 찍고 남은 $1$ 옆에 $0$을 내려 $10\\div2=5$를 계산한다. 몫은 $3.5$이다.",
+      "bGoal": "나머지를 소수점 아래 계산으로 이어 가는 절차를 안다.",
+      "bReason": "'소수점 아래 자리로 바꾼다'는 말만으로는 막연해서 $7\\div2$의 실제 계산 절차를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫에 소수점을 찍고 남은 수 뒤에 $0$을 내려 계속 나눈다",
+            "남은 $1$을 $10$으로 보고 $2$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $3.5$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$7\\div2$에서 자연수 몫 $3$ 다음에 남은 $1$을 계속 나누려면 몫에 소수점을 찍고 나머지 뒤에 {$0$}을 내려 $10\\div2$를 계산한다. 그러면 몫은 {$3.5$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$",
+            "영"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.5$"
+          ]
+        }
+      ],
+      "cReason": "'남은 양'이라는 막연한 말을 실제 나눗셈 식의 내림 계산으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 240,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-5-c1",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "level": "하",
+        "kind": "방법",
+        "term": "자연수 몫을 소수로 쓰기",
+        "definition": "자연수끼리 나누고 남은 양은 {소수점 아래} 자리로 바꾸어 계산을 이어 갈 수 있다.",
+        "studentC": "자연수끼리 나누고 남은 양은 □ 자리로 바꾸어 계산을 이어 갈 수 있다.",
+        "answers": [
+          "소수점 아래"
+        ]
+      },
+      "sourceFingerprint": "36983965174bd3e73bb1f97e9be1690022761381a774c343b662b0c1fba329f0",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "cProposedAnswers": [
+        "$0$",
+        "$3.5$"
+      ],
+      "cStudentAfter": "$7\\div2$에서 자연수 몫 $3$ 다음에 남은 $1$을 계속 나누려면 몫에 소수점을 찍고 나머지 뒤에 □을 내려 $10\\div2$를 계산한다. 그러면 몫은 □이다.",
+      "cMarkedSentence": "$7\\div2$에서 자연수 몫 $3$ 다음에 남은 $1$을 계속 나누려면 몫에 소수점을 찍고 나머지 뒤에 {$0$}을 내려 $10\\div2$를 계산한다. 그러면 몫은 {$3.5$}이다.",
+      "cStudentSentence": "$7\\div2$에서 자연수 몫 $3$ 다음에 남은 $1$을 계속 나누려면 몫에 소수점을 찍고 나머지 뒤에 □을 내려 $10\\div2$를 계산한다. 그러면 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": [
+            "영"
+          ]
+        },
+        {
+          "key": "$3.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7\\div2$를 자연수끼리 나누면 몫 $3$이고 $1$이 남는다. 남은 $1$까지 계속 나누어 몫을 소수로 나타내려면 어떻게 계산하는지 설명하고, 몫을 쓰시오.",
+        "answer": "몫 $3$ 뒤에 소수점을 찍고 남은 $1$ 옆에 $0$을 내려 $10\\div2=5$를 계산한다. 몫은 $3.5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫에 소수점을 찍고 남은 수 뒤에 $0$을 내려 계속 나눈다",
+              "남은 $1$을 $10$으로 보고 $2$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $3.5$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7\\div2$에서 자연수 몫 $3$ 다음에 남은 $1$을 계속 나누려면 몫에 소수점을 찍고 나머지 뒤에 {$0$}을 내려 $10\\div2$를 계산한다. 그러면 몫은 {$3.5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$",
+            "영"
+          ],
+          [
+            "$3.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5af63bc0fa796b0dcabb894bcfeb85ab113c343c85d23d896aa96b70ff7e2bc1",
+      "questionRevision": "planning-e5e6-20261006-5af63bc0fa79",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-c2",
+      "bDecision": "revise",
+      "bPrompt": "$397\\div8$의 정확한 몫을 구하기 전에 몫의 크기를 대강 알아보려고 한다. 어떻게 하면 되는지 설명하고, 어림한 몫을 쓰시오.",
+      "bAnswer": "계산하기 쉬운 가까운 수 $400$으로 바꾸어 $400\\div8=50$으로 계산한다. 몫은 약 $50$이다.",
+      "bGoal": "가까운 쉬운 수로 바꾸어 몫의 크기를 어림하는 방법을 안다.",
+      "bReason": "원문은 '대략적인 크기'라는 말이라 구체적인 나눗셈으로 어림 절차를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "계산하기 쉬운 가까운 수로 바꾸어 나눈다",
+            "$397$을 $400$으로 바꾸어 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어림한 몫은 약 $50$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$397\\div8$의 몫을 어림하려면 $397$을 계산하기 편한 가까운 수 {$400$}으로 바꾸어 $400\\div8=$ {$50$}쯤으로 예상한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$400$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50$"
+          ]
+        }
+      ],
+      "cReason": "빈칸이 '몫의 대략적인 크기'라는 긴 구절이라 실제 어림 수와 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 241,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-5-c2",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "level": "중",
+        "kind": "방법",
+        "term": "몫 어림하기",
+        "definition": "계산하기 편한 가까운 수로 바꾸어 {몫의 대략적인 크기}를 먼저 예상할 수 있다.",
+        "studentC": "계산하기 편한 가까운 수로 바꾸어 □를 먼저 예상할 수 있다.",
+        "answers": [
+          "몫의 대략적인 크기"
+        ]
+      },
+      "sourceFingerprint": "f3f5edf83e3757c81257894ee3fbdd779a47a0c6c2b37151b0228f9f2f01ce30",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "cProposedAnswers": [
+        "$400$",
+        "$50$"
+      ],
+      "cStudentAfter": "$397\\div8$의 몫을 어림하려면 $397$을 계산하기 편한 가까운 수 □으로 바꾸어 $400\\div8=$ □쯤으로 예상한다.",
+      "cMarkedSentence": "$397\\div8$의 몫을 어림하려면 $397$을 계산하기 편한 가까운 수 {$400$}으로 바꾸어 $400\\div8=$ {$50$}쯤으로 예상한다.",
+      "cStudentSentence": "$397\\div8$의 몫을 어림하려면 $397$을 계산하기 편한 가까운 수 □으로 바꾸어 $400\\div8=$ □쯤으로 예상한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$400$",
+          "equivalents": []
+        },
+        {
+          "key": "$50$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$397\\div8$의 정확한 몫을 구하기 전에 몫의 크기를 대강 알아보려고 한다. 어떻게 하면 되는지 설명하고, 어림한 몫을 쓰시오.",
+        "answer": "계산하기 쉬운 가까운 수 $400$으로 바꾸어 $400\\div8=50$으로 계산한다. 몫은 약 $50$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "계산하기 쉬운 가까운 수로 바꾸어 나눈다",
+              "$397$을 $400$으로 바꾸어 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "어림한 몫은 약 $50$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$397\\div8$의 몫을 어림하려면 $397$을 계산하기 편한 가까운 수 {$400$}으로 바꾸어 $400\\div8=$ {$50$}쯤으로 예상한다.",
+        "acceptedAnswers": [
+          [
+            "$400$"
+          ],
+          [
+            "$50$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bc601b72884f375ee76e5e3579895396f94b5ccffb27e681163198cde9873b2b",
+      "questionRevision": "planning-e5e6-20261006-bc601b72884f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-5-c3",
+      "bDecision": "revise",
+      "bPrompt": "$735\\div5$의 몫을 $14.7$이라고 썼다. 소수점을 바르게 찍었는지 곱셈으로 확인하는 방법을 설명하고, 이 몫이 맞는지 판단하시오.",
+      "bAnswer": "몫에 나누는 수를 곱해 나누어지는 수와 비교한다. $14.7\\times5=73.5$로 $735$와 달라 소수점이 잘못되었다. 바른 몫은 $147$이다.",
+      "bGoal": "몫×나누는 수로 소수점 위치를 검산하는 방법을 안다.",
+      "bReason": "'나눌 수'라는 낱말보다 실제 곱셈 검산을 하고 판단하는 능력을 묻는 것이 유용하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫에 나누는 수를 곱해 나누어지는 수와 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14.7\\times5=73.5$이므로 $735$와 달라 틀렸다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$735\\div5$의 몫을 $14.7$이라고 잘못 썼다. 곱셈으로 확인하면 $14.7\\times5=${$73.5$}가 되어 처음 수 $735$와 다르다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$73.5$"
+          ]
+        }
+      ],
+      "cReason": "첫 초안은 $5$를 수식 안에 표시해 실제 빈칸이 되지 않았고 두 기대 답이 처음 식에 모두 있었다. 잘못 찍은 소수점과 확인 곱셈을 제시하여 새로운 곱을 계산하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexReview": "원문과 실제 제안 질문·답·기준을 직접 대조하여 빈칸 범위·사실 조건·형식 제외를 개별 교정함.",
+      "sourceIndex": 242,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-5-c3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-5 (자연수)÷(자연수), 어림셈하여 몫의 소수점 위치 확인하기",
+        "level": "상",
+        "kind": "방법",
+        "term": "소수점 위치 검토",
+        "definition": "몫에 나누는 수를 곱한 값이 {나눌 수}와 맞는지 확인하면 소수점을 잘못 찍은 것을 찾을 수 있다.",
+        "studentC": "몫에 나누는 수를 곱한 값이 □와 맞는지 확인하면 소수점을 잘못 찍은 것을 찾을 수 있다.",
+        "answers": [
+          "나눌 수"
+        ]
+      },
+      "sourceFingerprint": "973997785d07ed91bce1735ec5059a7920b52da12c53563759f689555017cafc",
+      "draftEvidence": "evidence/section-068-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$73.5$"
+      ],
+      "cStudentAfter": "$735\\div5$의 몫을 $14.7$이라고 잘못 썼다. 곱셈으로 확인하면 $14.7\\times5=$□가 되어 처음 수 $735$와 다르다.",
+      "cMarkedSentence": "$735\\div5$의 몫을 $14.7$이라고 잘못 썼다. 곱셈으로 확인하면 $14.7\\times5=${$73.5$}가 되어 처음 수 $735$와 다르다.",
+      "cStudentSentence": "$735\\div5$의 몫을 $14.7$이라고 잘못 썼다. 곱셈으로 확인하면 $14.7\\times5=$□가 되어 처음 수 $735$와 다르다.",
+      "cSlotAnswers": [
+        {
+          "key": "$73.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$735\\div5$의 몫을 $14.7$이라고 썼다. 소수점을 바르게 찍었는지 곱셈으로 확인하는 방법을 설명하고, 이 몫이 맞는지 판단하시오.",
+        "answer": "몫에 나누는 수를 곱해 나누어지는 수와 비교한다. $14.7\\times5=73.5$로 $735$와 달라 소수점이 잘못되었다. 바른 몫은 $147$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫에 나누는 수를 곱해 나누어지는 수와 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14.7\\times5=73.5$이므로 $735$와 달라 틀렸다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$735\\div5$의 몫을 $14.7$이라고 잘못 썼다. 곱셈으로 확인하면 $14.7\\times5=${$73.5$}가 되어 처음 수 $735$와 다르다.",
+        "acceptedAnswers": [
+          [
+            "$73.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c1bc8224b7f2d841b15f3e73a10c4d287d953360618fdf35df22cb85bb1728e9",
+      "questionRevision": "planning-e5e6-20261006-c1bc8224b7f2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "두 수를 비교할 때 뺄셈으로는 무엇을, 나눗셈으로는 무엇을 알 수 있는지 각각 설명하시오.",
+      "bAnswer": "뺄셈으로는 한 수가 다른 수보다 얼마나 더 많은지(차이)를 알 수 있고, 나눗셈으로는 한 수가 다른 수의 몇 배인지를 알 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "뺄셈은 얼마나 더 많은지(차이)를 알려 준다",
+            "뺄셈은 두 수의 차를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눗셈은 몇 배인지를 알려 준다",
+            "나눗셈은 한 수가 다른 수의 몇 배인지 구한다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "뺄셈 비교와 나눗셈 비교가 각각 어떤 정보를 주는지 구별한다.",
+      "bReason": "원문은 정의형이므로 두 비교의 의미를 모두 묻는 질문으로 완성했다.",
+      "cDecision": "keep",
+      "cAfter": "두 수는 뺄셈으로 {얼마나 차이 나는지}, 나눗셈으로 {몇 배인지} 비교할 수 있다.",
+      "cReason": "짧고 명확한 낱말 대응 문장이라 원문 그대로 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 243,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-1-c1",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "level": "하",
+        "kind": "방법",
+        "term": "두 수 비교하기(뺄셈·나눗셈)",
+        "definition": "두 수는 뺄셈으로 {얼마나 차이 나는지}, 나눗셈으로 {몇 배인지} 비교할 수 있다.",
+        "studentC": "두 수는 뺄셈으로 □, 나눗셈으로 □ 비교할 수 있다.",
+        "answers": [
+          "얼마나 차이 나는지",
+          "몇 배인지"
+        ]
+      },
+      "sourceFingerprint": "bb8e7cc9c6f088f70ed298539e49cca13ab5a2b51cae012c494cf094d66ca8c7",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "cFrozenDefinition": "두 수는 뺄셈으로 {얼마나 차이 나는지}, 나눗셈으로 {몇 배인지} 비교할 수 있다.",
+      "cFrozenStudentSentence": "두 수는 뺄셈으로 □, 나눗셈으로 □ 비교할 수 있다.",
+      "cProposedAnswers": [
+        "얼마나 차이 나는지",
+        "몇 배인지"
+      ],
+      "cStudentAfter": "두 수는 뺄셈으로 □, 나눗셈으로 □ 비교할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "얼마나 차이 나는지"
+          ]
+        },
+        {
+          "anyOf": [
+            "몇 배인지"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 수는 뺄셈으로 {얼마나 차이 나는지}, 나눗셈으로 {몇 배인지} 비교할 수 있다.",
+      "cStudentSentence": "두 수는 뺄셈으로 □, 나눗셈으로 □ 비교할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "얼마나 차이 나는지",
+          "equivalents": []
+        },
+        {
+          "key": "몇 배인지",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수를 비교할 때 뺄셈으로는 무엇을, 나눗셈으로는 무엇을 알 수 있는지 각각 설명하시오.",
+        "answer": "뺄셈으로는 한 수가 다른 수보다 얼마나 더 많은지(차이)를 알 수 있고, 나눗셈으로는 한 수가 다른 수의 몇 배인지를 알 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "뺄셈은 얼마나 더 많은지(차이)를 알려 준다",
+              "뺄셈은 두 수의 차를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눗셈은 몇 배인지를 알려 준다",
+              "나눗셈은 한 수가 다른 수의 몇 배인지 구한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 수는 뺄셈으로 {얼마나 차이 나는지}, 나눗셈으로 {몇 배인지} 비교할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "얼마나 차이 나는지"
+          ],
+          [
+            "몇 배인지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9fc391c3e80c68b173b16047a6a890580a30c6f80b7462a1e2601a68260b3b2a",
+      "questionRevision": "planning-e5e6-20261006-9fc391c3e80c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "$6$과 $3$, $8$과 $5$에서 각각 두 수의 차를 구하고, 앞 수가 뒤 수의 몇 배인지도 구하시오. 차가 같으면 몇 배도 같다고 할 수 있는지 말하시오.",
+      "bAnswer": "두 경우 차는 모두 $3$이다. $6$은 $3$의 $2$배, $8$은 $5$의 $\\frac{8}{5}$배($1.6$배)로 서로 다르다. 따라서 차가 같아도 몇 배는 같다고 할 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 차가 모두 $3$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$배와 $\\frac{8}{5}$배로 서로 다르다",
+            "$2$배와 $1.6$배로 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "차가 같아도 몇 배는 같지 않을 수 있다",
+            "차가 같다고 몇 배가 같은 것은 아니다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "차가 같아도 몇 배는 다를 수 있음을 계산으로 확인한다.",
+      "bReason": "차와 배가 서로 다른 비교임을 구체적 두 쌍으로 드러내는 좋은 문항이다.",
+      "cDecision": "revise",
+      "cAfter": "$6$은 $3$의 {$2$}배이고 $8$은 $5$의 {$1.6$}배이므로, 두 경우 차는 모두 $3$으로 같아도 몇 배인지는 {다르다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.6$",
+            "$\\frac{8}{5}$",
+            "$1\\frac{3}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "다르다",
+            "같지 않다",
+            "서로 다르다"
+          ]
+        }
+      ],
+      "cReason": "'서로 다르다' 한 구절만 맞히기보다 실제 배를 계산해 비교하게 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 244,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-1-c2",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "level": "중",
+        "kind": "성질",
+        "term": "차와 배의 구별",
+        "definition": "$6$과 $3$, $8$과 $5$의 차는 모두 $3$이지만, 앞 수가 뒤 수의 몇 배인지는 {서로 다르다}.",
+        "studentC": "$6$과 $3$, $8$과 $5$의 차는 모두 $3$이지만, 앞 수가 뒤 수의 몇 배인지는 □.",
+        "answers": [
+          "서로 다르다"
+        ]
+      },
+      "sourceFingerprint": "bebb9abd3869d4fbbebdb1f402044d55b1f09a26de96412bf6260462b20d2706",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$1.6$",
+        "다르다"
+      ],
+      "cStudentAfter": "$6$은 $3$의 □배이고 $8$은 $5$의 □배이므로, 두 경우 차는 모두 $3$으로 같아도 몇 배인지는 □.",
+      "cMarkedSentence": "$6$은 $3$의 {$2$}배이고 $8$은 $5$의 {$1.6$}배이므로, 두 경우 차는 모두 $3$으로 같아도 몇 배인지는 {다르다}.",
+      "cStudentSentence": "$6$은 $3$의 □배이고 $8$은 $5$의 □배이므로, 두 경우 차는 모두 $3$으로 같아도 몇 배인지는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$1.6$",
+          "equivalents": [
+            "$\\frac{8}{5}$",
+            "$1\\frac{3}{5}$"
+          ]
+        },
+        {
+          "key": "다르다",
+          "equivalents": [
+            "같지 않다",
+            "서로 다르다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6$과 $3$, $8$과 $5$에서 각각 두 수의 차를 구하고, 앞 수가 뒤 수의 몇 배인지도 구하시오. 차가 같으면 몇 배도 같다고 할 수 있는지 말하시오.",
+        "answer": "두 경우 차는 모두 $3$이다. $6$은 $3$의 $2$배, $8$은 $5$의 $\\frac{8}{5}$배($1.6$배)로 서로 다르다. 따라서 차가 같아도 몇 배는 같다고 할 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 차가 모두 $3$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$배와 $\\frac{8}{5}$배로 서로 다르다",
+              "$2$배와 $1.6$배로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "차가 같아도 몇 배는 같지 않을 수 있다",
+              "차가 같다고 몇 배가 같은 것은 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6$은 $3$의 {$2$}배이고 $8$은 $5$의 {$1.6$}배이므로, 두 경우 차는 모두 $3$으로 같아도 몇 배인지는 {다르다}.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$1.6$",
+            "$\\frac{8}{5}$",
+            "$1\\frac{3}{5}$"
+          ],
+          [
+            "다르다",
+            "같지 않다",
+            "서로 다르다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d7b610c9e32ee07ea03e1eff01f3c5e4ce5417ea3b55c54b3c30bf57b4c6f1a2",
+      "questionRevision": "planning-e5e6-20261006-d7b610c9e32e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "두 양을 같은 배로 늘리면 두 양의 차와 한 양이 다른 양의 몇 배인지는 각각 어떻게 되는지 설명하시오. $2$와 $4$를 각각 $3$배로 늘린 수로 확인하시오.",
+      "bAnswer": "차는 커질 수 있고 몇 배는 변하지 않는다. $2$와 $4$의 차는 $2$, $6$과 $12$의 차는 $6$으로 커지지만 $4$는 $2$의 $2$배, $12$는 $6$의 $2$배로 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차는 커질 수 있다",
+            "차도 같은 배로 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몇 배는 변하지 않는다",
+            "몇 배는 그대로 $2$배이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "같은 배로 늘려도 몇 배는 유지되고 차는 달라짐을 이해한다.",
+      "bReason": "비와 비율로 이어지는 핵심 성질이며 확인용 예를 질문에 포함했다.",
+      "cDecision": "keep",
+      "cAfter": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 {변하지 않는다}.",
+      "cReason": "같은 배로 늘릴 때의 조건이 분명하고 답이 '변하지 않는다/같다'로 명확해 원문 유지.",
+      "exampleNeeded": false,
+      "sourceIndex": 245,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-1-c3",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "level": "상",
+        "kind": "성질",
+        "term": "같은 배로 늘리기",
+        "definition": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 {변하지 않는다}.",
+        "studentC": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 □.",
+        "answers": [
+          "변하지 않는다"
+        ]
+      },
+      "sourceFingerprint": "aa422e7bef9aa87504e0acbd1aba1e5aada4c2dadf5988d9a42cc12ad1600110",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "cFrozenDefinition": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 {변하지 않는다}.",
+      "cFrozenStudentSentence": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 □.",
+      "cProposedAnswers": [
+        "변하지 않는다"
+      ],
+      "cStudentAfter": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 {변하지 않는다}.",
+      "cStudentSentence": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "변하지 않는다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 양을 같은 배로 늘리면 두 양의 차와 한 양이 다른 양의 몇 배인지는 각각 어떻게 되는지 설명하시오. $2$와 $4$를 각각 $3$배로 늘린 수로 확인하시오.",
+        "answer": "차는 커질 수 있고 몇 배는 변하지 않는다. $2$와 $4$의 차는 $2$, $6$과 $12$의 차는 $6$으로 커지지만 $4$는 $2$의 $2$배, $12$는 $6$의 $2$배로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "차는 커질 수 있다",
+              "차도 같은 배로 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몇 배는 변하지 않는다",
+              "몇 배는 그대로 $2$배이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 양을 같은 배로 늘리면 차는 커질 수 있지만, 한 양이 다른 양의 몇 배인지는 {변하지 않는다}.",
+        "acceptedAnswers": [
+          [
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d25498a4209a54a3aef3aa3904e8dfe10e0fedfc4cbaab5aaeae97030d7aa03e",
+      "questionRevision": "planning-e5e6-20261006-d25498a4209a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "두 양이 서로 몇 배 관계인지 나타내려면 두 수를 어떻게 써야 하는가? 이렇게 쓴 것을 무엇이라 부르는가?",
+      "bAnswer": "두 수를 순서를 정해 기호 $:$로 연결하여 쓴다. 이렇게 쓴 것을 비라고 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 순서를 정해서 쓴다",
+            "앞과 뒤의 순서를 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "기호 $:$로 연결한다",
+            "콜론으로 연결한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "비가 두 양의 배 관계를 순서 있는 두 수로 나타낸 것임을 안다.",
+      "bReason": "정의를 묻되 질문에 기호나 이름을 알려 주지 않아 단순 낱말 빈칸보다 낫다.",
+      "cDecision": "keep",
+      "cAfter": "두 양의 배 관계를 나타내려고 순서를 정해 {콜론($:$)}으로 연결한 것이 비이다.",
+      "cReason": "기호 이름 하나를 묻는 짧은 문장이고 조건이 문장 안에 완결되어 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "콜론과 $:$ 모두 같은 답이다.",
+      "sourceIndex": 246,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-2-c1",
+        "section": "초6::1-4 비와 비율::1-4-2 비",
+        "level": "하",
+        "kind": "정의",
+        "term": "비",
+        "definition": "두 양의 배 관계를 나타내려고 순서를 정해 {콜론($:$)}으로 연결한 것이 비이다.",
+        "studentC": "두 양의 배 관계를 나타내려고 순서를 정해 □으로 연결한 것이 비이다.",
+        "answers": [
+          "콜론($:$)"
+        ]
+      },
+      "sourceFingerprint": "851f7d6e24bf643d85bbdcc9b8aecbea1b18419fa6c4b5294ff87f3dbdffa545",
+      "draftEvidence": "evidence/section-070-draft.json",
+      "cFrozenDefinition": "두 양의 배 관계를 나타내려고 순서를 정해 {콜론($:$)}으로 연결한 것이 비이다.",
+      "cFrozenStudentSentence": "두 양의 배 관계를 나타내려고 순서를 정해 □으로 연결한 것이 비이다.",
+      "cProposedAnswers": [
+        "콜론($:$)"
+      ],
+      "cStudentAfter": "두 양의 배 관계를 나타내려고 순서를 정해 □으로 연결한 것이 비이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "콜론($:$)"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 양의 배 관계를 나타내려고 순서를 정해 {콜론($:$)}으로 연결한 것이 비이다.",
+      "cStudentSentence": "두 양의 배 관계를 나타내려고 순서를 정해 □으로 연결한 것이 비이다.",
+      "cSlotAnswers": [
+        {
+          "key": "콜론($:$)",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 양이 서로 몇 배 관계인지 나타내려면 두 수를 어떻게 써야 하는가? 이렇게 쓴 것을 무엇이라 부르는가?",
+        "answer": "두 수를 순서를 정해 기호 $:$로 연결하여 쓴다. 이렇게 쓴 것을 비라고 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 순서를 정해서 쓴다",
+              "앞과 뒤의 순서를 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기호 $:$로 연결한다",
+              "콜론으로 연결한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 양의 배 관계를 나타내려고 순서를 정해 {콜론($:$)}으로 연결한 것이 비이다.",
+        "acceptedAnswers": [
+          [
+            "콜론($:$)"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d9cb3702e4d6ac9f1788c1a145cdd96d006be91c0eb3d3081c7bd271ad5f0f83",
+      "questionRevision": "planning-e5e6-20261006-d9cb3702e4d6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "비 $3:5$를 어떻게 읽는지 쓰고, 이 비에서 어느 수를 어느 수와 비교하는지 설명하시오.",
+      "bAnswer": "'$3$ 대 $5$'라고 읽는다. 앞의 수 $3$을 뒤의 수 $5$와 비교한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$ 대 $5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞의 수 $3$을 뒤의 수 $5$와 비교한다",
+            "$3$을 $5$와 비교한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "비를 읽는 방법과 비교 순서를 구체적인 비에 적용한다.",
+      "bReason": "예가 질문 안에 있어 읽기와 비교 순서를 함께 확인할 수 있다.",
+      "cDecision": "keep",
+      "cAfter": "비는 기호 $:$의 앞의 수부터 {'대'}를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+      "cReason": "읽을 때 넣는 낱말 하나를 묻는 짧은 낱말 문장이고 조건이 완결되어 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 247,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-2-c2",
+        "section": "초6::1-4 비와 비율::1-4-2 비",
+        "level": "중",
+        "kind": "방법",
+        "term": "비를 읽는 법",
+        "definition": "비는 기호 $:$의 앞의 수부터 {'대'}를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+        "studentC": "비는 기호 $:$의 앞의 수부터 □를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+        "answers": [
+          "'대'"
+        ]
+      },
+      "sourceFingerprint": "312177df840a88a4d7fcb0b4e9e414132ece0815420faf2537442d194dfdffbf",
+      "draftEvidence": "evidence/section-070-draft.json",
+      "cFrozenDefinition": "비는 기호 $:$의 앞의 수부터 {'대'}를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+      "cFrozenStudentSentence": "비는 기호 $:$의 앞의 수부터 □를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+      "cProposedAnswers": [
+        "'대'"
+      ],
+      "cStudentAfter": "비는 기호 $:$의 앞의 수부터 □를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "'대'"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "비는 기호 $:$의 앞의 수부터 {'대'}를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+      "cStudentSentence": "비는 기호 $:$의 앞의 수부터 □를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "'대'",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $3:5$를 어떻게 읽는지 쓰고, 이 비에서 어느 수를 어느 수와 비교하는지 설명하시오.",
+        "answer": "'$3$ 대 $5$'라고 읽는다. 앞의 수 $3$을 뒤의 수 $5$와 비교한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$ 대 $5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 수 $3$을 뒤의 수 $5$와 비교한다",
+              "$3$을 $5$와 비교한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비는 기호 $:$의 앞의 수부터 {'대'}를 넣어 읽으며, 앞의 수를 뒤의 수와 비교한다는 순서를 담고 있다.",
+        "acceptedAnswers": [
+          [
+            "'대'"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3e32d3a584b6e349b4d266fdcbd0c421654d4c1757eebc4e04798401c77708c9",
+      "questionRevision": "planning-e5e6-20261006-3e32d3a584b6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "두 양을 비로 나타낼 때 기준으로 삼는 양을 서로 바꾸면 비를 이루는 두 수의 자리는 어떻게 되는가? 또 $3:5$와 $4:4$는 기준을 바꾸면 각각 처음 비와 같은지 다른지 쓰시오.",
+      "bAnswer": "비교하는 수와 기준이 되는 수의 자리가 서로 바뀐다. $3:5$는 $5:3$이 되어 처음 비와 다른 비이고, $4:4$는 바꾸어도 $4:4$로 같은 비이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 자리가 서로 바뀐다",
+            "앞의 수와 뒤의 수가 바뀐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3:5$는 바꾸면 $5:3$이 되어 다른 비이다",
+            "$3:5$와 $5:3$은 서로 다른 비이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4:4$는 바꾸어도 같은 비이다",
+            "$4:4$는 그대로 $4:4$이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "기준을 바꾸면 두 수의 자리가 바뀌고, 두 수가 같을 때만 같은 비가 됨을 구분한다.",
+      "bReason": "일반 관계를 먼저 묻고 서로 다른 수와 같은 수 두 예를 모두 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "기준으로 삼는 양을 바꾸면 비 $3:5$는 {$5:3$}이 되고, 두 수가 같은 비 $4:4$는 바꾸어도 {같은} 비이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5:3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "cReason": "긴 문구 외우기를 짧은 값과 낱말 빈칸으로 바꾸어 자리 바뀜과 같은 비 조건을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 248,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-2-c3",
+        "section": "초6::1-4 비와 비율::1-4-2 비",
+        "level": "상",
+        "kind": "성질",
+        "term": "비교하는 순서와 비",
+        "definition": "기준으로 삼는 양을 바꾸면 비교하는 수와 기준이 되는 수의 {자리가 바뀐다}. 두 수가 다르면 서로 다른 비가 되고, 두 수가 같으면 같은 비가 된다.",
+        "studentC": "기준으로 삼는 양을 바꾸면 비교하는 수와 기준이 되는 수의 □. 두 수가 다르면 서로 다른 비가 되고, 두 수가 같으면 같은 비가 된다.",
+        "answers": [
+          "자리가 바뀐다"
+        ]
+      },
+      "sourceFingerprint": "789a6e62bf739cdb6b775cc6dada4af89a8cd3c22624bb6275e8198dc136cfdc",
+      "draftEvidence": "evidence/section-070-draft.json",
+      "cProposedAnswers": [
+        "$5:3$",
+        "같은"
+      ],
+      "cStudentAfter": "기준으로 삼는 양을 바꾸면 비 $3:5$는 □이 되고, 두 수가 같은 비 $4:4$는 바꾸어도 □ 비이다.",
+      "cMarkedSentence": "기준으로 삼는 양을 바꾸면 비 $3:5$는 {$5:3$}이 되고, 두 수가 같은 비 $4:4$는 바꾸어도 {같은} 비이다.",
+      "cStudentSentence": "기준으로 삼는 양을 바꾸면 비 $3:5$는 □이 되고, 두 수가 같은 비 $4:4$는 바꾸어도 □ 비이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5:3$",
+          "equivalents": []
+        },
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 양을 비로 나타낼 때 기준으로 삼는 양을 서로 바꾸면 비를 이루는 두 수의 자리는 어떻게 되는가? 또 $3:5$와 $4:4$는 기준을 바꾸면 각각 처음 비와 같은지 다른지 쓰시오.",
+        "answer": "비교하는 수와 기준이 되는 수의 자리가 서로 바뀐다. $3:5$는 $5:3$이 되어 처음 비와 다른 비이고, $4:4$는 바꾸어도 $4:4$로 같은 비이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 자리가 서로 바뀐다",
+              "앞의 수와 뒤의 수가 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3:5$는 바꾸면 $5:3$이 되어 다른 비이다",
+              "$3:5$와 $5:3$은 서로 다른 비이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4:4$는 바꾸어도 같은 비이다",
+              "$4:4$는 그대로 $4:4$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "기준으로 삼는 양을 바꾸면 비 $3:5$는 {$5:3$}이 되고, 두 수가 같은 비 $4:4$는 바꾸어도 {같은} 비이다.",
+        "acceptedAnswers": [
+          [
+            "$5:3$"
+          ],
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3bf0ee44bab38db1ca81f55ea97d9f903cd9e9a14924deb7d40c13b338a3e810",
+      "questionRevision": "planning-e5e6-20261006-3bf0ee44bab3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "전체 학생 $25$명 중 안경을 쓴 학생이 $5$명이다. 안경 쓴 학생 수를 전체 학생 수와 견주는 비율에서 기준량은 어느 수인지 쓰고, 기준량이 어떤 양인지 설명하시오.",
+      "bAnswer": "기준량은 $25$(전체 학생 수)이다. 기준량은 두 양을 나누어 비교할 때 기준으로 정한 양이다.",
+      "bGoal": "비교 상황에서 기준으로 삼는 양을 찾고 그 뜻을 말한다.",
+      "bReason": "정의 문장만 외우게 하면 '기준량=기준'이 되풀이되므로 구체적 상황에서 고르게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$25$",
+            "$25$명",
+            "전체 학생 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "비교할 때 기준으로 삼는 양",
+            "기준이 되는 양",
+            "기준으로 정한 양"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "전체 학생 $25$명 중 안경을 쓴 학생이 $5$명일 때, 안경 쓴 학생 수를 전체 학생 수와 견주는 비율에서 기준량은 {$25$}명이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '기준으로 정한 양'은 용어를 되풀이할 뿐이라 실제 수를 고르게 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 249,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-3-c1",
+        "section": "초6::1-4 비와 비율::1-4-3 비율",
+        "level": "하",
+        "kind": "정의",
+        "term": "기준량",
+        "definition": "두 양을 나누어 비교할 때 {기준으로 정한 양}이 기준량이다.",
+        "studentC": "두 양을 나누어 비교할 때 □이 기준량이다.",
+        "answers": [
+          "기준으로 정한 양"
+        ]
+      },
+      "sourceFingerprint": "e13ca86334eb2f8484f97bdb31db861aaaf1ba8e3c9768f152ba393f1b1bc1d0",
+      "draftEvidence": "evidence/section-071-draft.json",
+      "cProposedAnswers": [
+        "$25$"
+      ],
+      "cStudentAfter": "전체 학생 $25$명 중 안경을 쓴 학생이 $5$명일 때, 안경 쓴 학생 수를 전체 학생 수와 견주는 비율에서 기준량은 □명이다.",
+      "cMarkedSentence": "전체 학생 $25$명 중 안경을 쓴 학생이 $5$명일 때, 안경 쓴 학생 수를 전체 학생 수와 견주는 비율에서 기준량은 {$25$}명이다.",
+      "cStudentSentence": "전체 학생 $25$명 중 안경을 쓴 학생이 $5$명일 때, 안경 쓴 학생 수를 전체 학생 수와 견주는 비율에서 기준량은 □명이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$25$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체 학생 $25$명 중 안경을 쓴 학생이 $5$명이다. 안경 쓴 학생 수를 전체 학생 수와 견주는 비율에서 기준량은 어느 수인지 쓰고, 기준량이 어떤 양인지 설명하시오.",
+        "answer": "기준량은 $25$(전체 학생 수)이다. 기준량은 두 양을 나누어 비교할 때 기준으로 정한 양이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$25$",
+              "$25$명",
+              "전체 학생 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교할 때 기준으로 삼는 양",
+              "기준이 되는 양",
+              "기준으로 정한 양"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전체 학생 $25$명 중 안경을 쓴 학생이 $5$명일 때, 안경 쓴 학생 수를 전체 학생 수와 견주는 비율에서 기준량은 {$25$}명이다.",
+        "acceptedAnswers": [
+          [
+            "$25$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bbdce5f132c41ee66a45ae9f4185af4038db69e51e192ad52cda0ae88cec8343",
+      "questionRevision": "planning-e5e6-20261006-bbdce5f132c4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "슛을 $20$번 던져 $8$번 골이 들어갔다. 골 수를 슛 수와 견주는 비율에서 비교하는 양은 어느 수인지 쓰고, 비교하는 양이 어떤 양인지 설명하시오.",
+      "bAnswer": "비교하는 양은 $8$(골 수)이다. 비교하는 양은 기준량에 견주어 몇 배인지 알아보려는 대상인 양이다.",
+      "bGoal": "기준량과 구별하여 비교하는 양을 찾고 뜻을 말한다.",
+      "bReason": "기준량 문항과 다른 상황을 써서 두 양의 역할을 구별하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$8$",
+            "$8$번",
+            "골 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "알아보려는 대상인 양",
+            "기준량에 견주어 알아보려는 양",
+            "기준량과 견주는 대상인 양"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "슛 $20$번 중 골이 $8$번일 때, 골 수를 슛 수와 견주는 비율에서 비교하는 양은 {$8$}번이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cReason": "'대상인 양'은 모호하므로 실제 수에서 비교하는 양을 고르게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 250,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-3-c2",
+        "section": "초6::1-4 비와 비율::1-4-3 비율",
+        "level": "하",
+        "kind": "정의",
+        "term": "비교하는 양",
+        "definition": "기준량에 견주어 몇 배인지 알아보려는 {대상인 양}이 비교하는 양이다.",
+        "studentC": "기준량에 견주어 몇 배인지 알아보려는 □이 비교하는 양이다.",
+        "answers": [
+          "대상인 양"
+        ]
+      },
+      "sourceFingerprint": "71d182f93e23581a15d8b4cdca3f7134c6298a814ab4dc32628fb52718a21bc2",
+      "draftEvidence": "evidence/section-071-draft.json",
+      "cProposedAnswers": [
+        "$8$"
+      ],
+      "cStudentAfter": "슛 $20$번 중 골이 $8$번일 때, 골 수를 슛 수와 견주는 비율에서 비교하는 양은 □번이다.",
+      "cMarkedSentence": "슛 $20$번 중 골이 $8$번일 때, 골 수를 슛 수와 견주는 비율에서 비교하는 양은 {$8$}번이다.",
+      "cStudentSentence": "슛 $20$번 중 골이 $8$번일 때, 골 수를 슛 수와 견주는 비율에서 비교하는 양은 □번이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "슛을 $20$번 던져 $8$번 골이 들어갔다. 골 수를 슛 수와 견주는 비율에서 비교하는 양은 어느 수인지 쓰고, 비교하는 양이 어떤 양인지 설명하시오.",
+        "answer": "비교하는 양은 $8$(골 수)이다. 비교하는 양은 기준량에 견주어 몇 배인지 알아보려는 대상인 양이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$8$",
+              "$8$번",
+              "골 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "알아보려는 대상인 양",
+              "기준량에 견주어 알아보려는 양",
+              "기준량과 견주는 대상인 양"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "슛 $20$번 중 골이 $8$번일 때, 골 수를 슛 수와 견주는 비율에서 비교하는 양은 {$8$}번이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5f65f2f11516a37d4c3a81eb12893f460e46c18fc3bd5a0dda31ab7c5b10e563",
+      "questionRevision": "planning-e5e6-20261006-5f65f2f11516",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "기준량이 $4$이고 비교하는 양이 $3$일 때, 비율은 무엇을 나타내는지 설명하고 이 비율을 분수로 쓰시오.",
+      "bAnswer": "비율은 기준량을 $1$로 보았을 때 비교하는 양이 얼마인지(기준량의 몇 배인지) 나타낸 값이다. 이 경우 $\\frac{3}{4}$이다.",
+      "bGoal": "비율이 기준량을 1로 볼 때 비교하는 양의 크기임을 이해한다.",
+      "bReason": "뜻과 간단한 값을 함께 물어 정의를 실제 수로 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기준량을 $1$로 보았을 때 비교하는 양이 얼마인지",
+            "비교하는 양이 기준량의 몇 배인지"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$",
+            "$0.75$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "기준량이 $4$이고 비교하는 양이 $3$일 때, 기준량을 $1$로 보면 비교하는 양은 {$\\frac{3}{4}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$",
+            "$0.75$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절 암기에 가까워 비율의 뜻을 값으로 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 251,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-3-c3",
+        "section": "초6::1-4 비와 비율::1-4-3 비율",
+        "level": "중",
+        "kind": "정의",
+        "term": "비율",
+        "definition": "기준량을 $1$만큼으로 보았을 때 {비교하는 양이 얼마인지} 나타낸 값이 비율이다.",
+        "studentC": "기준량을 $1$만큼으로 보았을 때 □ 나타낸 값이 비율이다.",
+        "answers": [
+          "비교하는 양이 얼마인지"
+        ]
+      },
+      "sourceFingerprint": "ac8d753d6a48ea65bdca83076625fbbfbd47c4b7014f880b85430c74738b488e",
+      "draftEvidence": "evidence/section-071-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "기준량이 $4$이고 비교하는 양이 $3$일 때, 기준량을 $1$로 보면 비교하는 양은 □이다.",
+      "cMarkedSentence": "기준량이 $4$이고 비교하는 양이 $3$일 때, 기준량을 $1$로 보면 비교하는 양은 {$\\frac{3}{4}$}이다.",
+      "cStudentSentence": "기준량이 $4$이고 비교하는 양이 $3$일 때, 기준량을 $1$로 보면 비교하는 양은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": [
+            "$0.75$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "기준량이 $4$이고 비교하는 양이 $3$일 때, 비율은 무엇을 나타내는지 설명하고 이 비율을 분수로 쓰시오.",
+        "answer": "비율은 기준량을 $1$로 보았을 때 비교하는 양이 얼마인지(기준량의 몇 배인지) 나타낸 값이다. 이 경우 $\\frac{3}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량을 $1$로 보았을 때 비교하는 양이 얼마인지",
+              "비교하는 양이 기준량의 몇 배인지"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$",
+              "$0.75$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "기준량이 $4$이고 비교하는 양이 $3$일 때, 기준량을 $1$로 보면 비교하는 양은 {$\\frac{3}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{4}$",
+            "$0.75$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2edc9026c37af85cacb5814463dba26f68c1c13815c8a3b911b4ed058865335e",
+      "questionRevision": "planning-e5e6-20261006-2edc9026c37a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-3-c4",
+      "bDecision": "revise",
+      "bPrompt": "기준량이 $0$보다 클 때 비율을 구하는 방법을 쓰고, 그 방법이 맞는 까닭을 비교하는 양과 기준량의 관계로 설명하시오. 기준량이 $8$, 비교하는 양이 $6$이면 비율은 얼마인지도 쓰시오.",
+      "bAnswer": "비교하는 양을 기준량으로 나누어 구한다. 비율은 비교하는 양이 기준량의 몇 배인지 나타내기 때문이다. 이 경우 $6\\div8=\\frac{3}{4}$이다.",
+      "bGoal": "비율 구하는 식과 그 까닭을 배 관계로 설명한다.",
+      "bReason": "식 암기만이 아니라 나눗셈이 되는 이유와 예의 값까지 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비교하는 양을 기준량으로 나눈다",
+            "비교하는 양$\\div$기준량"
+          ]
+        },
+        {
+          "anyOf": [
+            "비교하는 양이 기준량의 몇 배인지 나타내므로",
+            "기준량을 $1$로 볼 때 비교하는 양이 얼마인지 나타내므로"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$",
+            "$0.75$",
+            "$\\frac{6}{8}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "기준량이 $8$, 비교하는 양이 $6$인 비율은 $6\\div$ {$8$}$=$ {$\\frac{3}{4}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$",
+            "$0.75$",
+            "$\\frac{6}{8}$"
+          ]
+        }
+      ],
+      "cReason": "두 빈칸 문장 대신 실제 식에서 무엇으로 나누는지 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 252,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-3-c4",
+        "section": "초6::1-4 비와 비율::1-4-3 비율",
+        "level": "중",
+        "kind": "공식",
+        "term": "비율을 구하는 식",
+        "definition": "기준량이 $0$보다 클 때, 비율은 비교하는 양이 기준량의 {몇 배인지} 나타내므로 {비교하는 양을 기준량으로 나누어} 구한다.",
+        "studentC": "기준량이 $0$보다 클 때, 비율은 비교하는 양이 기준량의 □ 나타내므로 □ 구한다.",
+        "answers": [
+          "몇 배인지",
+          "비교하는 양을 기준량으로 나누어"
+        ]
+      },
+      "sourceFingerprint": "301557eb0a38b2a0a177005d238ed14f10e1246f4538f4ed5a37126b6154a200",
+      "draftEvidence": "evidence/section-071-draft.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "기준량이 $8$, 비교하는 양이 $6$인 비율은 $6\\div$ □$=$ □이다.",
+      "cMarkedSentence": "기준량이 $8$, 비교하는 양이 $6$인 비율은 $6\\div$ {$8$}$=$ {$\\frac{3}{4}$}이다.",
+      "cStudentSentence": "기준량이 $8$, 비교하는 양이 $6$인 비율은 $6\\div$ □$=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": [
+            "$0.75$",
+            "$\\frac{6}{8}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "기준량이 $0$보다 클 때 비율을 구하는 방법을 쓰고, 그 방법이 맞는 까닭을 비교하는 양과 기준량의 관계로 설명하시오. 기준량이 $8$, 비교하는 양이 $6$이면 비율은 얼마인지도 쓰시오.",
+        "answer": "비교하는 양을 기준량으로 나누어 구한다. 비율은 비교하는 양이 기준량의 몇 배인지 나타내기 때문이다. 이 경우 $6\\div8=\\frac{3}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양을 기준량으로 나눈다",
+              "비교하는 양$\\div$기준량"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 양이 기준량의 몇 배인지 나타내므로",
+              "기준량을 $1$로 볼 때 비교하는 양이 얼마인지 나타내므로"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$",
+              "$0.75$",
+              "$\\frac{6}{8}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "기준량이 $8$, 비교하는 양이 $6$인 비율은 $6\\div$ {$8$}$=$ {$\\frac{3}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$\\frac{3}{4}$",
+            "$0.75$",
+            "$\\frac{6}{8}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c9dd9da7237a42fd6c1e0e22e2415782cd622aece74b7fd1cad4eec141e6f7c1",
+      "questionRevision": "planning-e5e6-20261006-c9dd9da7237a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-3-c5",
+      "bDecision": "revise",
+      "bPrompt": "같은 양 $6$을 기준량 $12$와 견줄 때와 기준량 $3$과 견줄 때의 비율을 각각 구하고, 비교하는 양이 같아도 기준량이 바뀌면 비율이 어떻게 되는지 쓰시오.",
+      "bAnswer": "기준량 $12$일 때 $\\frac{6}{12}=\\frac{1}{2}$, 기준량 $3$일 때 $\\frac{6}{3}=2$이다. 기준량이 바뀌면 비율도 달라질 수 있다.",
+      "bGoal": "기준량에 따라 같은 양의 비율이 달라짐을 수로 확인한다.",
+      "bReason": "추상적 문장 대신 두 기준량의 비율을 구해 차이를 직접 보게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$0.5$",
+            "$\\frac{6}{12}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$",
+            "$\\frac{6}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "비율이 달라질 수 있다",
+            "비율이 달라진다",
+            "비율이 같지 않다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "비교하는 양이 $6$으로 같을 때, 기준량이 $12$이면 비율은 {$\\frac{1}{2}$}이고 기준량이 $3$이면 비율은 {$2$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$0.5$",
+            "$\\frac{6}{12}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$",
+            "$\\frac{6}{3}$"
+          ]
+        }
+      ],
+      "cReason": "'달라질 수 있다' 암기 대신 같은 양의 두 비율을 계산하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 253,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-3-c5",
+        "section": "초6::1-4 비와 비율::1-4-3 비율",
+        "level": "상",
+        "kind": "성질",
+        "term": "기준량이 바뀔 때",
+        "definition": "같은 양을 비교하더라도 기준량을 바꾸면 {비율도 달라질 수 있다}.",
+        "studentC": "같은 양을 비교하더라도 기준량을 바꾸면 □.",
+        "answers": [
+          "비율도 달라질 수 있다"
+        ]
+      },
+      "sourceFingerprint": "7c146a16fe2c1036ec9034bbf4bf069f610fb55eea8f0126f619c3f8ac41f9d9",
+      "draftEvidence": "evidence/section-071-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$",
+        "$2$"
+      ],
+      "cStudentAfter": "비교하는 양이 $6$으로 같을 때, 기준량이 $12$이면 비율은 □이고 기준량이 $3$이면 비율은 □이다.",
+      "cMarkedSentence": "비교하는 양이 $6$으로 같을 때, 기준량이 $12$이면 비율은 {$\\frac{1}{2}$}이고 기준량이 $3$이면 비율은 {$2$}이다.",
+      "cStudentSentence": "비교하는 양이 $6$으로 같을 때, 기준량이 $12$이면 비율은 □이고 기준량이 $3$이면 비율은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$0.5$",
+            "$\\frac{6}{12}$"
+          ]
+        },
+        {
+          "key": "$2$",
+          "equivalents": [
+            "$\\frac{6}{3}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 양 $6$을 기준량 $12$와 견줄 때와 기준량 $3$과 견줄 때의 비율을 각각 구하고, 비교하는 양이 같아도 기준량이 바뀌면 비율이 어떻게 되는지 쓰시오.",
+        "answer": "기준량 $12$일 때 $\\frac{6}{12}=\\frac{1}{2}$, 기준량 $3$일 때 $\\frac{6}{3}=2$이다. 기준량이 바뀌면 비율도 달라질 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$0.5$",
+              "$\\frac{6}{12}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$",
+              "$\\frac{6}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 달라질 수 있다",
+              "비율이 달라진다",
+              "비율이 같지 않다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비교하는 양이 $6$으로 같을 때, 기준량이 $12$이면 비율은 {$\\frac{1}{2}$}이고 기준량이 $3$이면 비율은 {$2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$",
+            "$0.5$",
+            "$\\frac{6}{12}$"
+          ],
+          [
+            "$2$",
+            "$\\frac{6}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "94f8e95fdaf38b2ae6c1dcd9ed44bda9cd68f1dc064407af5f4488038abd8fc2",
+      "questionRevision": "planning-e5e6-20261006-94f8e95fdaf3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "$2$시간에 $90\\,\\mathrm{km}$를 가는 자동차의 기준량을 $1$시간으로 맞추려면 비교하는 양을 어떻게 구하는지 설명하고, 그 값을 구하시오.",
+      "bAnswer": "기준량 $2$시간을 $1$시간으로 맞추려면 비교하는 양 $90\\,\\mathrm{km}$도 $2$로 나눈다. $90\\div2=45$이므로 $45\\,\\mathrm{km}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비교하는 양을 기준량이 나뉜 수만큼 나눈다",
+            "$90\\,\\mathrm{km}$를 $2$로 나눈다",
+            "$90\\div2$를 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$45\\,\\mathrm{km}$",
+            "$45$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "기준량을 1로 맞춘 값을 나눗셈으로 구하는 방법을 안다.",
+      "bReason": "'단위량에 대한 크기'라는 이름 대신 구체적 자동차 상황에서 방법을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 {$45$}$\\,\\mathrm{km}$가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$45$",
+            "$45\\,\\mathrm{km}$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 '맞추었을 때의'가 어색해 의미를 알기 어려워 실제 값을 구하게 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 254,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-4-c1",
+        "section": "초6::1-4 비와 비율::1-4-4 비율이 사용되는 경우",
+        "level": "하",
+        "kind": "정의",
+        "term": "단위량에 대한 크기",
+        "definition": "단위량에 대한 크기는 {기준량을 $1$만큼으로} 맞추었을 때의 {비교하는 양}이다.",
+        "studentC": "단위량에 대한 크기는 □ 맞추었을 때의 □이다.",
+        "answers": [
+          "기준량을 $1$만큼으로",
+          "비교하는 양"
+        ]
+      },
+      "sourceFingerprint": "c28c8f97c8dec2fd0fc28ffd5311eadcaa861b5260ce2da209d1265929ff0a3d",
+      "draftEvidence": "evidence/section-072-draft.json",
+      "cProposedAnswers": [
+        "$45$"
+      ],
+      "cStudentAfter": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 □$\\,\\mathrm{km}$가 된다.",
+      "cMarkedSentence": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 {$45$}$\\,\\mathrm{km}$가 된다.",
+      "cStudentSentence": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 □$\\,\\mathrm{km}$가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$45$",
+          "equivalents": [
+            "$45\\,\\mathrm{km}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2$시간에 $90\\,\\mathrm{km}$를 가는 자동차의 기준량을 $1$시간으로 맞추려면 비교하는 양을 어떻게 구하는지 설명하고, 그 값을 구하시오.",
+        "answer": "기준량 $2$시간을 $1$시간으로 맞추려면 비교하는 양 $90\\,\\mathrm{km}$도 $2$로 나눈다. $90\\div2=45$이므로 $45\\,\\mathrm{km}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양을 기준량이 나뉜 수만큼 나눈다",
+              "$90\\,\\mathrm{km}$를 $2$로 나눈다",
+              "$90\\div2$를 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$45\\,\\mathrm{km}$",
+              "$45$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "기준량이 $2$시간, 비교하는 양이 $90\\,\\mathrm{km}$일 때 기준량을 $1$시간으로 맞추면 비교하는 양은 {$45$}$\\,\\mathrm{km}$가 된다.",
+        "acceptedAnswers": [
+          [
+            "$45$",
+            "$45\\,\\mathrm{km}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1aef05fc242013a23ee8703aee15e99fe46f9ebade109fb6bc31f855116eebc6",
+      "questionRevision": "planning-e5e6-20261006-1aef05fc2420",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "자동차가 $3$시간에 $180\\,\\mathrm{km}$를 갔다. 한 시간에 간 거리를 구하는 방법을 어떤 두 양으로 계산하는지 설명하고 값을 구하시오.",
+      "bAnswer": "이동 거리를 걸린 시간으로 나눈다. $180\\div3=60$이므로 한 시간에 $60\\,\\mathrm{km}$를 간 것이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "이동 거리를 걸린 시간으로 나눈다",
+            "간 거리$\\div$걸린 시간",
+            "$180\\div3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60\\,\\mathrm{km}$",
+            "$60$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "빠르기를 시간당 거리로 나타내는 나눗셈 방법을 안다.",
+      "bReason": "거리를 어느 양으로 나눌지 계산 방법과 예의 값을 함께 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "움직임의 빠르기를 비교하려면 이동 거리를 {걸린 시간}으로 나누어 같은 시간당 거리를 본다.",
+      "cReason": "이동 거리를 무엇으로 나누는지 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 255,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-4-c2",
+        "section": "초6::1-4 비와 비율::1-4-4 비율이 사용되는 경우",
+        "level": "중",
+        "kind": "방법",
+        "term": "거리와 시간의 비율",
+        "definition": "움직임의 빠르기를 비교하려면 이동 거리를 {걸린 시간}으로 나누어 같은 시간당 거리를 본다.",
+        "studentC": "움직임의 빠르기를 비교하려면 이동 거리를 □으로 나누어 같은 시간당 거리를 본다.",
+        "answers": [
+          "걸린 시간"
+        ]
+      },
+      "sourceFingerprint": "fbcad151c9592b1a3c0fcb01004998b5aff93c8520f821528be2343795c5d779",
+      "draftEvidence": "evidence/section-072-draft.json",
+      "cFrozenDefinition": "움직임의 빠르기를 비교하려면 이동 거리를 {걸린 시간}으로 나누어 같은 시간당 거리를 본다.",
+      "cFrozenStudentSentence": "움직임의 빠르기를 비교하려면 이동 거리를 □으로 나누어 같은 시간당 거리를 본다.",
+      "cProposedAnswers": [
+        "걸린 시간"
+      ],
+      "cStudentAfter": "움직임의 빠르기를 비교하려면 이동 거리를 □으로 나누어 같은 시간당 거리를 본다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "걸린 시간"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "움직임의 빠르기를 비교하려면 이동 거리를 {걸린 시간}으로 나누어 같은 시간당 거리를 본다.",
+      "cStudentSentence": "움직임의 빠르기를 비교하려면 이동 거리를 □으로 나누어 같은 시간당 거리를 본다.",
+      "cSlotAnswers": [
+        {
+          "key": "걸린 시간",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자동차가 $3$시간에 $180\\,\\mathrm{km}$를 갔다. 한 시간에 간 거리를 구하는 방법을 어떤 두 양으로 계산하는지 설명하고 값을 구하시오.",
+        "answer": "이동 거리를 걸린 시간으로 나눈다. $180\\div3=60$이므로 한 시간에 $60\\,\\mathrm{km}$를 간 것이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "이동 거리를 걸린 시간으로 나눈다",
+              "간 거리$\\div$걸린 시간",
+              "$180\\div3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\,\\mathrm{km}$",
+              "$60$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "움직임의 빠르기를 비교하려면 이동 거리를 {걸린 시간}으로 나누어 같은 시간당 거리를 본다.",
+        "acceptedAnswers": [
+          [
+            "걸린 시간"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "539395be61ccb1e669c78582c508d99aaaec3a20c367a94e44ebb982fcb92d1e",
+      "questionRevision": "planning-e5e6-20261006-539395be61cc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "한 자동차는 $30$분에 $20\\,\\mathrm{km}$를 갔고, 다른 자동차는 $1$시간에 $50\\,\\mathrm{km}$를 갔다. 두 자동차의 $20\\div30$과 $50\\div1$을 그대로 비교하면 안 되는 까닭과 비교 전에 해야 할 일을 설명하시오.",
+      "bAnswer": "기준량의 단위가 분과 시간으로 서로 달라서 그대로 비교하면 안 된다. 먼저 단위를 같게 맞춘 뒤 비교해야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기준량의 단위가 서로 다르다",
+            "한쪽은 분이고 다른 쪽은 시간이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "단위를 같게 맞춘 뒤 비교한다",
+            "분을 시간으로 또는 시간을 분으로 바꾼다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "비율을 비교하기 전에 기준량의 단위를 맞춰야 함을 이해한다.",
+      "bReason": "'기준으로 삼은 양의 뜻'이라는 추상 표현 대신 단위가 다른 구체적 상황을 쓴다.",
+      "cDecision": "revise",
+      "cAfter": "$30$분에 $20\\,\\mathrm{km}$와 $1$시간에 $50\\,\\mathrm{km}$의 빠르기를 비교하려면 먼저 기준량의 {단위}를 같게 맞춰야 한다. $1$시간은 {$60$}분이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "단위"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "cReason": "'뜻이 맞는지'가 학생에게 모호해 단위가 다른 구체적 비교로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 256,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-4-c3",
+        "section": "초6::1-4 비와 비율::1-4-4 비율이 사용되는 경우",
+        "level": "상",
+        "kind": "방법",
+        "term": "비율 비교의 조건",
+        "definition": "두 비율을 견주기 전에는 기준으로 삼은 양의 뜻과 {단위}가 서로 맞는지 확인해야 한다.",
+        "studentC": "두 비율을 견주기 전에는 기준으로 삼은 양의 뜻과 □가 서로 맞는지 확인해야 한다.",
+        "answers": [
+          "단위"
+        ]
+      },
+      "sourceFingerprint": "884c94b70bff5e9a7c60be5c251e77ddcc7b7015b803f779a54a29fd4a6bd909",
+      "draftEvidence": "evidence/section-072-draft.json",
+      "cProposedAnswers": [
+        "단위",
+        "$60$"
+      ],
+      "cStudentAfter": "$30$분에 $20\\,\\mathrm{km}$와 $1$시간에 $50\\,\\mathrm{km}$의 빠르기를 비교하려면 먼저 기준량의 □를 같게 맞춰야 한다. $1$시간은 □분이다.",
+      "cMarkedSentence": "$30$분에 $20\\,\\mathrm{km}$와 $1$시간에 $50\\,\\mathrm{km}$의 빠르기를 비교하려면 먼저 기준량의 {단위}를 같게 맞춰야 한다. $1$시간은 {$60$}분이다.",
+      "cStudentSentence": "$30$분에 $20\\,\\mathrm{km}$와 $1$시간에 $50\\,\\mathrm{km}$의 빠르기를 비교하려면 먼저 기준량의 □를 같게 맞춰야 한다. $1$시간은 □분이다.",
+      "cSlotAnswers": [
+        {
+          "key": "단위",
+          "equivalents": []
+        },
+        {
+          "key": "$60$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 자동차는 $30$분에 $20\\,\\mathrm{km}$를 갔고, 다른 자동차는 $1$시간에 $50\\,\\mathrm{km}$를 갔다. 두 자동차의 $20\\div30$과 $50\\div1$을 그대로 비교하면 안 되는 까닭과 비교 전에 해야 할 일을 설명하시오.",
+        "answer": "기준량의 단위가 분과 시간으로 서로 달라서 그대로 비교하면 안 된다. 먼저 단위를 같게 맞춘 뒤 비교해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량의 단위가 서로 다르다",
+              "한쪽은 분이고 다른 쪽은 시간이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위를 같게 맞춘 뒤 비교한다",
+              "분을 시간으로 또는 시간을 분으로 바꾼다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$30$분에 $20\\,\\mathrm{km}$와 $1$시간에 $50\\,\\mathrm{km}$의 빠르기를 비교하려면 먼저 기준량의 {단위}를 같게 맞춰야 한다. $1$시간은 {$60$}분이다.",
+        "acceptedAnswers": [
+          [
+            "단위"
+          ],
+          [
+            "$60$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7bc8cc5a8c548b83386d21cd4b8b35418d8b31c96f52caeb3a85dc7eb60423c8",
+      "questionRevision": "planning-e5e6-20261006-7bc8cc5a8c54",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "백분율은 기준량을 얼마로 보았을 때 어떤 양의 크기를 나타낸 것인지 쓰시오.",
+      "bAnswer": "기준량을 $100$으로 보았을 때 비교하는 양의 크기를 나타낸 것이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기준량을 $100$으로 본다",
+            "기준량이 $100$일 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "비교하는 양의 크기를 나타낸다",
+            "비교하는 양이 얼마인지 나타낸다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "백분율이 기준량 $100$ 대비 비교하는 양임을 정의로 말한다.",
+      "bReason": "제목만 묻지 않고 기준량의 값과 나타내는 대상 두 가지를 직접 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "기준량을 $100$만큼으로 보았을 때 {비교하는 양의 크기}를 나타낸 것이 백분율이다.",
+      "cReason": "빈칸이 비교하는 양이라는 핵심 한 가지이고 기준량 $100$ 조건이 문장에 있어 짧고 유용하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 257,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-5-c1",
+        "section": "초6::1-4 비와 비율::1-4-5 백분율",
+        "level": "하",
+        "kind": "정의",
+        "term": "백분율",
+        "definition": "기준량을 $100$만큼으로 보았을 때 {비교하는 양의 크기}를 나타낸 것이 백분율이다.",
+        "studentC": "기준량을 $100$만큼으로 보았을 때 □를 나타낸 것이 백분율이다.",
+        "answers": [
+          "비교하는 양의 크기"
+        ]
+      },
+      "sourceFingerprint": "e0db14c6223a72ef8f2497a60942e4f00713050cb68b69d8eb5e7b5deb2c7c64",
+      "draftEvidence": "evidence/section-073-draft.json",
+      "cFrozenDefinition": "기준량을 $100$만큼으로 보았을 때 {비교하는 양의 크기}를 나타낸 것이 백분율이다.",
+      "cFrozenStudentSentence": "기준량을 $100$만큼으로 보았을 때 □를 나타낸 것이 백분율이다.",
+      "cProposedAnswers": [
+        "비교하는 양의 크기"
+      ],
+      "cStudentAfter": "기준량을 $100$만큼으로 보았을 때 □를 나타낸 것이 백분율이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비교하는 양의 크기"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "기준량을 $100$만큼으로 보았을 때 {비교하는 양의 크기}를 나타낸 것이 백분율이다.",
+      "cStudentSentence": "기준량을 $100$만큼으로 보았을 때 □를 나타낸 것이 백분율이다.",
+      "cSlotAnswers": [
+        {
+          "key": "비교하는 양의 크기",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "백분율은 기준량을 얼마로 보았을 때 어떤 양의 크기를 나타낸 것인지 쓰시오.",
+        "answer": "기준량을 $100$으로 보았을 때 비교하는 양의 크기를 나타낸 것이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량을 $100$으로 본다",
+              "기준량이 $100$일 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 양의 크기를 나타낸다",
+              "비교하는 양이 얼마인지 나타낸다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "기준량을 $100$만큼으로 보았을 때 {비교하는 양의 크기}를 나타낸 것이 백분율이다.",
+        "acceptedAnswers": [
+          [
+            "비교하는 양의 크기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ccd9f5df7828e5c119f0569d8d0a754e8b053073670d4f8187f6bdb5885f6ecb",
+      "questionRevision": "planning-e5e6-20261006-ccd9f5df7828",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-5-c2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "기호 $\\%$와 읽기 이름 확인이다.",
+      "bReason": "기호 모양과 읽는 소리만 외우는 낱말 문항이라 평가 B의 가치가 낮다.",
+      "exclusionReason": "기호와 읽는 법의 단순 암기이며 C가 충분히 다룬다. 개념 대체는 e6-1-4-5-c1.",
+      "cDecision": "keep",
+      "cAfter": "백분율의 숫자 뒤에는 {$\\%$}를 붙이며, 이 기호를 {퍼센트}라고 읽는다.",
+      "cReason": "기호와 읽는 법을 묻는 짧은 낱말 문장으로 조건이 명확해 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 258,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-5-c2",
+        "section": "초6::1-4 비와 비율::1-4-5 백분율",
+        "level": "하",
+        "kind": "방법",
+        "term": "$\\%$",
+        "definition": "백분율의 숫자 뒤에는 {$\\%$}를 붙이며, 이 기호를 {퍼센트}라고 읽는다.",
+        "studentC": "백분율의 숫자 뒤에는 □를 붙이며, 이 기호를 □라고 읽는다.",
+        "answers": [
+          "$\\%$",
+          "퍼센트"
+        ]
+      },
+      "sourceFingerprint": "709e9a43295d1d0521e0d069be96de30bd68508acf0db806a4ea92b1e999e5dc",
+      "draftEvidence": "evidence/section-073-draft.json",
+      "cFrozenDefinition": "백분율의 숫자 뒤에는 {$\\%$}를 붙이며, 이 기호를 {퍼센트}라고 읽는다.",
+      "cFrozenStudentSentence": "백분율의 숫자 뒤에는 □를 붙이며, 이 기호를 □라고 읽는다.",
+      "cProposedAnswers": [
+        "$\\%$",
+        "퍼센트"
+      ],
+      "cStudentAfter": "백분율의 숫자 뒤에는 □를 붙이며, 이 기호를 □라고 읽는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "퍼센트"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "백분율의 숫자 뒤에는 {$\\%$}를 붙이며, 이 기호를 {퍼센트}라고 읽는다.",
+      "cStudentSentence": "백분율의 숫자 뒤에는 □를 붙이며, 이 기호를 □라고 읽는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\%$",
+          "equivalents": []
+        },
+        {
+          "key": "퍼센트",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "백분율의 숫자 뒤에는 {$\\%$}를 붙이며, 이 기호를 {퍼센트}라고 읽는다.",
+        "acceptedAnswers": [
+          [
+            "$\\%$"
+          ],
+          [
+            "퍼센트"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "기호와 읽는 법의 단순 암기이며 C가 충분히 다룬다. 개념 대체는 e6-1-4-5-c1."
+      },
+      "proposalFingerprint": "c06d518d1d53525b1d992ccbec8a521a097e7396d64275df425fb646e445c535",
+      "questionRevision": "planning-e5e6-20261006-c06d518d1d53",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-5-c3",
+      "bDecision": "revise",
+      "bPrompt": "비율을 백분율로 나타낼 때 비율에 어떤 계산을 하고 무엇을 붙이는지 쓰고, 기준량을 $1$ 대신 $100$으로 볼 때 비교하는 양이 어떻게 되는지로 그 까닭을 설명하시오. 또 비율 $\\frac{3}{5}$은 몇 $\\%$인지 구하시오.",
+      "bAnswer": "비율에 $100$을 곱한 수 뒤에 $\\%$를 붙인다. 기준량을 $100$으로 보면 비교하는 양도 $100$배로 보기 때문이다. $\\frac{3}{5}\\times100=60$이므로 $60\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율에 $100$을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "수 뒤에 $\\%$를 붙인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "기준량이 $100$배가 되면 비교하는 양도 $100$배가 된다",
+            "기준량과 비교하는 양을 모두 $100$배로 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60\\%$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "비율을 백분율로 바꾸는 방법과 $100$배를 곱하는 까닭을 말한다.",
+      "bReason": "방법과 까닭을 함께 묻고 예의 정확한 답을 포함해 일반 설명과 연결한다.",
+      "cDecision": "revise",
+      "cAfter": "비율 $0.35$를 백분율로 나타내려면 $0.35$에 {$100$}을 곱한 수 뒤에 $\\%$를 붙이므로 {$35$}$\\%$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35$"
+          ]
+        }
+      ],
+      "cReason": "원문의 긴 구절 빈칸 대신 실제 비율 $0.35$로 곱할 수와 결과를 짧게 묻는다.",
+      "exampleNeeded": false,
+      "codexFormatRepairEvidence": "evidence/section-073-format-repairs.json",
+      "sourceIndex": 259,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-5-c3",
+        "section": "초6::1-4 비와 비율::1-4-5 백분율",
+        "level": "중",
+        "kind": "방법",
+        "term": "비율을 백분율로 바꾸기",
+        "definition": "기준량을 $1$에서 $100$으로 볼 때 {비교하는 양도 $100$배}로 보기 때문에, 비율에 {$100$을 곱한} 수 뒤에 $\\%$를 붙인다.",
+        "studentC": "기준량을 $1$에서 $100$으로 볼 때 □로 보기 때문에, 비율에 □ 수 뒤에 $\\%$를 붙인다.",
+        "answers": [
+          "비교하는 양도 $100$배",
+          "$100$을 곱한"
+        ]
+      },
+      "sourceFingerprint": "238e521303bd1b6fc4f23e89a7b63fbe039c9aa345b42e1c9e02e308c753bcf8",
+      "draftEvidence": "evidence/section-073-draft.json",
+      "cProposedAnswers": [
+        "$100$",
+        "$35$"
+      ],
+      "cStudentAfter": "비율 $0.35$를 백분율로 나타내려면 $0.35$에 □을 곱한 수 뒤에 $\\%$를 붙이므로 □$\\%$이다.",
+      "cMarkedSentence": "비율 $0.35$를 백분율로 나타내려면 $0.35$에 {$100$}을 곱한 수 뒤에 $\\%$를 붙이므로 {$35$}$\\%$이다.",
+      "cStudentSentence": "비율 $0.35$를 백분율로 나타내려면 $0.35$에 □을 곱한 수 뒤에 $\\%$를 붙이므로 □$\\%$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        },
+        {
+          "key": "$35$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비율을 백분율로 나타낼 때 비율에 어떤 계산을 하고 무엇을 붙이는지 쓰고, 기준량을 $1$ 대신 $100$으로 볼 때 비교하는 양이 어떻게 되는지로 그 까닭을 설명하시오. 또 비율 $\\frac{3}{5}$은 몇 $\\%$인지 구하시오.",
+        "answer": "비율에 $100$을 곱한 수 뒤에 $\\%$를 붙인다. 기준량을 $100$으로 보면 비교하는 양도 $100$배로 보기 때문이다. $\\frac{3}{5}\\times100=60$이므로 $60\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율에 $100$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수 뒤에 $\\%$를 붙인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준량이 $100$배가 되면 비교하는 양도 $100$배가 된다",
+              "기준량과 비교하는 양을 모두 $100$배로 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\%$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비율 $0.35$를 백분율로 나타내려면 $0.35$에 {$100$}을 곱한 수 뒤에 $\\%$를 붙이므로 {$35$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ],
+          [
+            "$35$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "876c1d0353281e524b6214a8e35593edc1412b31560ac8c77e0fd940032f3040",
+      "questionRevision": "planning-e5e6-20261006-876c1d035328",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-5-c4",
+      "bDecision": "revise",
+      "bPrompt": "비교하는 양이 기준량보다 크면 비율은 $1$과, 백분율은 $100\\%$와 비교해 어떤 값이 되는지 쓰고 그 까닭을 설명하시오. 기준량이 $20$, 비교하는 양이 $30$일 때 백분율도 구하시오.",
+      "bAnswer": "비율은 $1$보다 크고 백분율은 $100\\%$를 넘는다. 비교하는 양을 기준량으로 나눈 값이 $1$보다 크기 때문이다. $\\frac{30}{20}=1.5$이므로 $150\\%$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율이 $1$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "백분율이 $100\\%$를 넘는다",
+            "백분율이 $100\\%$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비교하는 양이 기준량보다 커서 나눈 값이 $1$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$150\\%$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "비교하는 양과 기준량의 크기 비교로 백분율이 $100\\%$를 넘는 이유를 설명한다.",
+      "bReason": "비교 관계와 이유를 묻고 $150\\%$ 예로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "비교하는 양이 기준량보다 {크면} 비율은 $1$보다 크고, 백분율은 $100\\%$를 넘는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크면",
+            "큰 경우",
+            "더 크면"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 크다/작다 비교 낱말 하나만 묻는 명확한 비교 문장이 된다.",
+      "exampleNeeded": false,
+      "codexFormatRepairEvidence": "evidence/section-073-format-repairs.json",
+      "sourceIndex": 260,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-5-c4",
+        "section": "초6::1-4 비와 비율::1-4-5 백분율",
+        "level": "상",
+        "kind": "성질",
+        "term": "$100\\%$를 넘는 비율",
+        "definition": "{비교하는 양이 기준량보다 크면} 비율은 $1$보다 크고, 백분율은 $100\\%$를 넘는다.",
+        "studentC": "□ 비율은 $1$보다 크고, 백분율은 $100\\%$를 넘는다.",
+        "answers": [
+          "비교하는 양이 기준량보다 크면"
+        ]
+      },
+      "sourceFingerprint": "5314d9bd4e5673e7de3cdef020f82cd2cf4b579aec6af4e541e605460420fbf9",
+      "draftEvidence": "evidence/section-073-draft.json",
+      "cProposedAnswers": [
+        "크면"
+      ],
+      "cStudentAfter": "비교하는 양이 기준량보다 □ 비율은 $1$보다 크고, 백분율은 $100\\%$를 넘는다.",
+      "cMarkedSentence": "비교하는 양이 기준량보다 {크면} 비율은 $1$보다 크고, 백분율은 $100\\%$를 넘는다.",
+      "cStudentSentence": "비교하는 양이 기준량보다 □ 비율은 $1$보다 크고, 백분율은 $100\\%$를 넘는다.",
+      "cSlotAnswers": [
+        {
+          "key": "크면",
+          "equivalents": [
+            "큰 경우",
+            "더 크면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비교하는 양이 기준량보다 크면 비율은 $1$과, 백분율은 $100\\%$와 비교해 어떤 값이 되는지 쓰고 그 까닭을 설명하시오. 기준량이 $20$, 비교하는 양이 $30$일 때 백분율도 구하시오.",
+        "answer": "비율은 $1$보다 크고 백분율은 $100\\%$를 넘는다. 비교하는 양을 기준량으로 나눈 값이 $1$보다 크기 때문이다. $\\frac{30}{20}=1.5$이므로 $150\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "백분율이 $100\\%$를 넘는다",
+              "백분율이 $100\\%$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 양이 기준량보다 커서 나눈 값이 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$150\\%$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비교하는 양이 기준량보다 {크면} 비율은 $1$보다 크고, 백분율은 $100\\%$를 넘는다.",
+        "acceptedAnswers": [
+          [
+            "크면",
+            "큰 경우",
+            "더 크면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dc0d4953d7ae1998808a08e2df50595b9c31510345227992e5e8276ec25fbb17",
+      "questionRevision": "planning-e5e6-20261006-dc0d4953d7ae",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-6-c1",
+      "bDecision": "revise",
+      "bPrompt": "원래 가격이 $20000$원인 물건을 $5000$원 깎아 주었다. 할인율을 구하는 방법을 설명하고 값을 쓰시오.",
+      "bAnswer": "깎아 준 금액을 원래 가격으로 나눈 비율을 백분율로 나타낸다. $\\frac{5000}{20000}\\times100=25\\%$이다.",
+      "bGoal": "할인율에서 기준량(원래 가격)과 비교하는 양(깎아 준 금액)을 구분해 구한다.",
+      "bReason": "정의 문장을 외우는 대신 실제 금액으로 기준과 비교 대상을 구분하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "깎아 준 금액을 원래 가격으로 나눈다",
+            "원래 가격이 기준이고 깎아 준 금액이 비교하는 양이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25\\%$",
+            "$25$퍼센트"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "원래 가격 중 {깎아 준 금액}이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+      "cReason": "원래 가격 중 무엇의 몫인지 묻는 짧은 정의 문장이고 조건이 명확하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "깎아 준 금액은 할인된 금액, 할인액도 가능하다.",
+      "sourceIndex": 261,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-6-c1",
+        "section": "초6::1-4 비와 비율::1-4-6 백분율이 사용되는 경우",
+        "level": "하",
+        "kind": "정의",
+        "term": "할인율",
+        "definition": "원래 가격 중 {깎아 준 금액}이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+        "studentC": "원래 가격 중 □이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+        "answers": [
+          "깎아 준 금액"
+        ]
+      },
+      "sourceFingerprint": "0a85bb1231205e0eb22ddcddb29984be6004a7d0ef97c95e326014c8b6ac0634",
+      "draftEvidence": "evidence/section-074-draft.json",
+      "cFrozenDefinition": "원래 가격 중 {깎아 준 금액}이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+      "cFrozenStudentSentence": "원래 가격 중 □이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+      "cProposedAnswers": [
+        "깎아 준 금액"
+      ],
+      "cStudentAfter": "원래 가격 중 □이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "깎아 준 금액"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원래 가격 중 {깎아 준 금액}이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+      "cStudentSentence": "원래 가격 중 □이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+      "cSlotAnswers": [
+        {
+          "key": "깎아 준 금액",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원래 가격이 $20000$원인 물건을 $5000$원 깎아 주었다. 할인율을 구하는 방법을 설명하고 값을 쓰시오.",
+        "answer": "깎아 준 금액을 원래 가격으로 나눈 비율을 백분율로 나타낸다. $\\frac{5000}{20000}\\times100=25\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "깎아 준 금액을 원래 가격으로 나눈다",
+              "원래 가격이 기준이고 깎아 준 금액이 비교하는 양이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25\\%$",
+              "$25$퍼센트"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원래 가격 중 {깎아 준 금액}이 차지하는 몫을 백분율로 쓴 것이 할인율이다.",
+        "acceptedAnswers": [
+          [
+            "깎아 준 금액"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f377aab83366687d93b6ac2eca88a38d4026ffd86dd39ad8afa89e1ea6d6a9da",
+      "questionRevision": "planning-e5e6-20261006-f377aab83366",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-6-c2",
+      "bDecision": "revise",
+      "bPrompt": "전체 양의 어떤 백분율에 해당하는 양을 구하는 방법을 설명하고, 이 방법으로 $300$의 $20\\%$를 구하시오.",
+      "bAnswer": "백분율을 $100$으로 나눈 비율을 전체 양에 곱한다. $300\\times\\frac{20}{100}=60$이다.",
+      "bGoal": "백분율을 비율로 바꾸어 전체에 곱하는 방법을 안다.",
+      "bReason": "방법을 말하고 예에서 정확히 적용하는지 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "백분율을 $100$으로 나눈 비율을 곱한다",
+            "$\\frac{20}{100}$을 곱한다",
+            "$0.2$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$200$의 $30\\%$는 $200$에 $30$을 {$100$}으로 나눈 값을 곱해 구하고, 그 값은 {$60$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$",
+            "백"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "cReason": "뒤 문장에 의지하지 않고 실제 수로 곱셈 방법을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 262,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-6-c2",
+        "section": "초6::1-4 비와 비율::1-4-6 백분율이 사용되는 경우",
+        "level": "중",
+        "kind": "방법",
+        "term": "전체의 몇 $\\%$에 해당하는 양 구하기",
+        "definition": "전체를 $100$으로 보았을 때 주어진 백분율만큼 차지하는 양을 구하려면, 전체 양에 백분율의 수를 {$100$}으로 나눈 값을 곱한다. 나눈 값은 전체를 $1$로 볼 때 차지하는 비율이다.",
+        "studentC": "전체를 $100$으로 보았을 때 주어진 백분율만큼 차지하는 양을 구하려면, 전체 양에 백분율의 수를 □으로 나눈 값을 곱한다. 나눈 값은 전체를 $1$로 볼 때 차지하는 비율이다.",
+        "answers": [
+          "$100$"
+        ]
+      },
+      "sourceFingerprint": "ad3badbc068e40f4571f509c7fba33f16437f2dc93a893ad1340b3aabb59539b",
+      "draftEvidence": "evidence/section-074-draft.json",
+      "cProposedAnswers": [
+        "$100$",
+        "$60$"
+      ],
+      "cStudentAfter": "$200$의 $30\\%$는 $200$에 $30$을 □으로 나눈 값을 곱해 구하고, 그 값은 □이다.",
+      "cMarkedSentence": "$200$의 $30\\%$는 $200$에 $30$을 {$100$}으로 나눈 값을 곱해 구하고, 그 값은 {$60$}이다.",
+      "cStudentSentence": "$200$의 $30\\%$는 $200$에 $30$을 □으로 나눈 값을 곱해 구하고, 그 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": [
+            "백"
+          ]
+        },
+        {
+          "key": "$60$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체 양의 어떤 백분율에 해당하는 양을 구하는 방법을 설명하고, 이 방법으로 $300$의 $20\\%$를 구하시오.",
+        "answer": "백분율을 $100$으로 나눈 비율을 전체 양에 곱한다. $300\\times\\frac{20}{100}=60$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "백분율을 $100$으로 나눈 비율을 곱한다",
+              "$\\frac{20}{100}$을 곱한다",
+              "$0.2$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$200$의 $30\\%$는 $200$에 $30$을 {$100$}으로 나눈 값을 곱해 구하고, 그 값은 {$60$}이다.",
+        "acceptedAnswers": [
+          [
+            "$100$",
+            "백"
+          ],
+          [
+            "$60$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a8ca7c36abf24e3557d277ec1915581c79d0d847944644c3934a51a31aaf09e4",
+      "questionRevision": "planning-e5e6-20261006-a8ca7c36abf2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-6-c3",
+      "bDecision": "revise",
+      "bPrompt": "두 반에서 안경 쓴 학생의 비율이 모두 $20\\%$이다. 한 반은 $50$명, 다른 반은 $100$명이라면 안경 쓴 학생은 각각 몇 명인지 구하고, 안경 쓴 학생 수가 같다고 할 수 있는지 이유와 함께 설명하시오.",
+      "bAnswer": "각각 $10$명, $20$명이다. 비율이 같아도 전체 학생 수가 다르므로 실제 학생 수는 같지 않다.",
+      "bGoal": "같은 비율이라도 전체 크기가 다르면 실제 양이 달라짐을 이해한다.",
+      "bReason": "추상적 성질을 구체적 두 전체로 확인하고 이유를 기준량으로 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$명과 $20$명"
+          ]
+        },
+        {
+          "anyOf": [
+            "같지 않다",
+            "같다고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 학생 수가 다르다",
+            "기준량이 다르다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "두 반의 안경 쓴 학생 비율이 모두 $20\\%$여도 {전체 학생 수}가 다르면 안경 쓴 학생 수는 다를 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "전체 학생 수",
+            "전체 인원",
+            "전체 수",
+            "기준량",
+            "반 전체의 크기"
+          ]
+        }
+      ],
+      "cReason": "'전체 크기'만 강요하지 않고 같은 뜻의 대답을 허용하며 학생이 아는 말로 풀어 쓴다.",
+      "exampleNeeded": false,
+      "synonymNotes": "전체 크기, 전체 수, 기준량은 같은 뜻이다.",
+      "sourceIndex": 263,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-4-6-c3",
+        "section": "초6::1-4 비와 비율::1-4-6 백분율이 사용되는 경우",
+        "level": "상",
+        "kind": "성질",
+        "term": "비율과 실제 양",
+        "definition": "두 집단의 비율이 같아도 {전체 크기}가 다르면 그 비율에 해당하는 실제 양은 다를 수 있다.",
+        "studentC": "두 집단의 비율이 같아도 □가 다르면 그 비율에 해당하는 실제 양은 다를 수 있다.",
+        "answers": [
+          "전체 크기"
+        ]
+      },
+      "sourceFingerprint": "5088eb773ab0422e63669aa4bff09c600e9aae9c863dce95b16e4aa96883bad1",
+      "draftEvidence": "evidence/section-074-draft.json",
+      "cProposedAnswers": [
+        "전체 학생 수"
+      ],
+      "cStudentAfter": "두 반의 안경 쓴 학생 비율이 모두 $20\\%$여도 □가 다르면 안경 쓴 학생 수는 다를 수 있다.",
+      "cMarkedSentence": "두 반의 안경 쓴 학생 비율이 모두 $20\\%$여도 {전체 학생 수}가 다르면 안경 쓴 학생 수는 다를 수 있다.",
+      "cStudentSentence": "두 반의 안경 쓴 학생 비율이 모두 $20\\%$여도 □가 다르면 안경 쓴 학생 수는 다를 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "전체 학생 수",
+          "equivalents": [
+            "전체 인원",
+            "전체 수",
+            "기준량",
+            "반 전체의 크기"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 반에서 안경 쓴 학생의 비율이 모두 $20\\%$이다. 한 반은 $50$명, 다른 반은 $100$명이라면 안경 쓴 학생은 각각 몇 명인지 구하고, 안경 쓴 학생 수가 같다고 할 수 있는지 이유와 함께 설명하시오.",
+        "answer": "각각 $10$명, $20$명이다. 비율이 같아도 전체 학생 수가 다르므로 실제 학생 수는 같지 않다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$명과 $20$명"
+            ]
+          },
+          {
+            "anyOf": [
+              "같지 않다",
+              "같다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 학생 수가 다르다",
+              "기준량이 다르다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 반의 안경 쓴 학생 비율이 모두 $20\\%$여도 {전체 학생 수}가 다르면 안경 쓴 학생 수는 다를 수 있다.",
+        "acceptedAnswers": [
+          [
+            "전체 학생 수",
+            "전체 인원",
+            "전체 수",
+            "기준량",
+            "반 전체의 크기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "34541b8cfdb07822530597950cee50c686d4574a8c5d1e9ba239ea072f2e3081",
+      "questionRevision": "planning-e5e6-20261006-34541b8cfdb0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프는 어떤 그래프인가? 전체와 항목별 비율을 띠 하나에 어떻게 나타내는지 설명하시오.",
+      "bAnswer": "전체를 띠 하나로 보고, 항목별 비율에 맞게 띠의 길이를 나누어 나타낸 그래프이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체를 띠 하나로 나타낸다",
+            "띠 전체가 전체를 뜻한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "항목 비율에 맞게 띠를 나눈다",
+            "항목 비율만큼 길이를 차지하게 한다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "띠그래프의 구성 원리(띠 전체=전체, 조각 길이=비율)를 말로 설명한다.",
+      "bReason": "제목만 묻지 않고 전체와 비율을 어떻게 표현하는지 설명하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 {길이를 나눈 그림}이 띠그래프이다.",
+      "cReason": "띠를 비율에 맞게 나눈다는 핵심을 짧게 채우는 정의 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 264,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-1-c1",
+        "section": "초6::1-5 여러 가지 그래프::1-5-1 띠그래프",
+        "level": "하",
+        "kind": "정의",
+        "term": "띠그래프",
+        "definition": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 {길이를 나눈 그림}이 띠그래프이다.",
+        "studentC": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 □이 띠그래프이다.",
+        "answers": [
+          "길이를 나눈 그림"
+        ]
+      },
+      "sourceFingerprint": "28f41a1ab9f29518554d12f10cea0a958022bd449bb0239d274025196edc8540",
+      "draftEvidence": "evidence/section-075-draft.json",
+      "cFrozenDefinition": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 {길이를 나눈 그림}이 띠그래프이다.",
+      "cFrozenStudentSentence": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 □이 띠그래프이다.",
+      "cProposedAnswers": [
+        "길이를 나눈 그림"
+      ],
+      "cStudentAfter": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 □이 띠그래프이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "길이를 나눈 그림"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 {길이를 나눈 그림}이 띠그래프이다.",
+      "cStudentSentence": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 □이 띠그래프이다.",
+      "cSlotAnswers": [
+        {
+          "key": "길이를 나눈 그림",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠그래프는 어떤 그래프인가? 전체와 항목별 비율을 띠 하나에 어떻게 나타내는지 설명하시오.",
+        "answer": "전체를 띠 하나로 보고, 항목별 비율에 맞게 띠의 길이를 나누어 나타낸 그래프이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체를 띠 하나로 나타낸다",
+              "띠 전체가 전체를 뜻한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "항목 비율에 맞게 띠를 나눈다",
+              "항목 비율만큼 길이를 차지하게 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전체를 띠 하나로 잡고, 항목별 비율에 맞추어 {길이를 나눈 그림}이 띠그래프이다.",
+        "acceptedAnswers": [
+          [
+            "길이를 나눈 그림"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "edcbf88296e3d855c9bcd2abe914397640b32bc1dfa960841d8d8ccb1dbacc7a",
+      "questionRevision": "planning-e5e6-20261006-edcbf88296e3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프에서 띠의 처음부터 끝까지는 전체의 몇 퍼센트를 나타내는가? 띠의 각 조각은 무엇을 나타내는지도 말하시오.",
+      "bAnswer": "띠 전체는 $100\\%$를 나타내고, 각 조각은 전체 중 그 항목이 차지하는 부분(비율)을 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100\\%$",
+            "백 퍼센트",
+            "전체"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 중 한 항목의 부분",
+            "항목의 비율"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "띠 전체가 $100\\%$이고 조각은 그 일부임을 이해한다.",
+      "bReason": "기준이 되는 전체와 조각의 의미를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "띠의 처음부터 끝까지는 {$100\\%$}이며, 각 조각은 전체 중 일부를 나타낸다.",
+      "cReason": "띠 전체가 $100\\%$라는 기본 사실을 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 265,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-1-c2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-1 띠그래프",
+        "level": "중",
+        "kind": "성질",
+        "term": "띠그래프의 전체",
+        "definition": "띠의 처음부터 끝까지는 {$100\\%$}이며, 각 조각은 전체 중 일부를 나타낸다.",
+        "studentC": "띠의 처음부터 끝까지는 □이며, 각 조각은 전체 중 일부를 나타낸다.",
+        "answers": [
+          "$100\\%$"
+        ]
+      },
+      "sourceFingerprint": "50f4866df6c73123448227e1c78304bdd8338132c8aaee15b821af2554e205e7",
+      "draftEvidence": "evidence/section-075-draft.json",
+      "cFrozenDefinition": "띠의 처음부터 끝까지는 {$100\\%$}이며, 각 조각은 전체 중 일부를 나타낸다.",
+      "cFrozenStudentSentence": "띠의 처음부터 끝까지는 □이며, 각 조각은 전체 중 일부를 나타낸다.",
+      "cProposedAnswers": [
+        "$100\\%$"
+      ],
+      "cStudentAfter": "띠의 처음부터 끝까지는 □이며, 각 조각은 전체 중 일부를 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100\\%$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "띠의 처음부터 끝까지는 {$100\\%$}이며, 각 조각은 전체 중 일부를 나타낸다.",
+      "cStudentSentence": "띠의 처음부터 끝까지는 □이며, 각 조각은 전체 중 일부를 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100\\%$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠그래프에서 띠의 처음부터 끝까지는 전체의 몇 퍼센트를 나타내는가? 띠의 각 조각은 무엇을 나타내는지도 말하시오.",
+        "answer": "띠 전체는 $100\\%$를 나타내고, 각 조각은 전체 중 그 항목이 차지하는 부분(비율)을 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100\\%$",
+              "백 퍼센트",
+              "전체"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 중 한 항목의 부분",
+              "항목의 비율"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "띠의 처음부터 끝까지는 {$100\\%$}이며, 각 조각은 전체 중 일부를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$100\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2feb325c998de89dbd97037d745c59239ea501a773f1bfcd272013869b5eb514",
+      "questionRevision": "planning-e5e6-20261006-2feb325c998d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "같은 띠그래프에서 한 항목의 비율이 다른 항목의 몇 배이면 조각의 길이는 어떤 관계인가? $10\\%$인 항목과 $30\\%$인 항목의 조각 길이를 비교해 설명하시오.",
+      "bAnswer": "비율이 몇 배이면 길이도 같은 배이다. $30\\%$ 조각의 길이는 $10\\%$ 조각 길이의 $3$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율이 몇 배이면 길이도 같은 배",
+            "길이의 배가 비율의 배와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$배",
+            "세 배"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "조각 길이가 비율에 정비례함을 예로 확인한다.",
+      "bReason": "일반 관계와 구체적 비교 결과를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "같은 띠그래프에서 $20\\%$인 항목의 조각 길이는 $10\\%$인 항목의 조각 길이의 {$2$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        }
+      ],
+      "cReason": "원문은 '두 배'가 빈칸 앞에 이미 나와 베끼기 쉬워 구체적인 두 비율로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 266,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-1-c3",
+        "section": "초6::1-5 여러 가지 그래프::1-5-1 띠그래프",
+        "level": "상",
+        "kind": "성질",
+        "term": "띠 조각의 길이",
+        "definition": "같은 띠 안에서 비율이 두 배인 항목은 차지하는 {길이도 두 배}이다.",
+        "studentC": "같은 띠 안에서 비율이 두 배인 항목은 차지하는 □이다.",
+        "answers": [
+          "길이도 두 배"
+        ]
+      },
+      "sourceFingerprint": "67e9fbd8e345dd7eb2898047fb724f7fe8f02fde4de20b422f4ba6ee5bd75fe3",
+      "draftEvidence": "evidence/section-075-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "같은 띠그래프에서 $20\\%$인 항목의 조각 길이는 $10\\%$인 항목의 조각 길이의 □배이다.",
+      "cMarkedSentence": "같은 띠그래프에서 $20\\%$인 항목의 조각 길이는 $10\\%$인 항목의 조각 길이의 {$2$}배이다.",
+      "cStudentSentence": "같은 띠그래프에서 $20\\%$인 항목의 조각 길이는 $10\\%$인 항목의 조각 길이의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 띠그래프에서 한 항목의 비율이 다른 항목의 몇 배이면 조각의 길이는 어떤 관계인가? $10\\%$인 항목과 $30\\%$인 항목의 조각 길이를 비교해 설명하시오.",
+        "answer": "비율이 몇 배이면 길이도 같은 배이다. $30\\%$ 조각의 길이는 $10\\%$ 조각 길이의 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 몇 배이면 길이도 같은 배",
+              "길이의 배가 비율의 배와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$배",
+              "세 배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 띠그래프에서 $20\\%$인 항목의 조각 길이는 $10\\%$인 항목의 조각 길이의 {$2$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "64c639239c258d91ea448a27467928c4ace8a016e5884c004ad243c659d15334",
+      "questionRevision": "planning-e5e6-20261006-64c639239c25",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프에서 항목별 백분율은 전체와 항목의 수를 어떻게 이용해 나타낸 값인가? 전체 수와 항목의 수가 각각 기준량인지 비교하는 양인지도 말하시오.",
+      "bAnswer": "전체 수를 $100$으로 보았을 때 항목의 수가 얼마에 해당하는지 나타낸 값이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체를 $100$으로 본다",
+            "전체 수를 $100$으로 보았을 때의 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "항목의 수가 그중 얼마인지 나타낸다",
+            "항목 수에 해당하는 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 수는 기준량이고 항목의 수는 비교하는 양이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "백분율을 기준량과 비교하는 양의 관계로 이해한다.",
+      "bReason": "정의와 두 양의 역할을 함께 물어 용어를 알게 한다.",
+      "cDecision": "revise",
+      "cAfter": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 {$25$}$\\%$이다. 이때 기준량은 {전체 수}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25$",
+            "$25\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 수",
+            "전체",
+            "$200$명"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 암기 대신 값을 구하고 기준량을 고르게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 267,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-2-c1",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "level": "하",
+        "kind": "정의",
+        "term": "항목별 백분율의 뜻",
+        "definition": "항목별 백분율은 {전체 수를 $100$으로} 보았을 때 {항목의 수가 얼마}에 해당하는지 나타낸 것이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+        "studentC": "항목별 백분율은 □ 보았을 때 □에 해당하는지 나타낸 것이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+        "answers": [
+          "전체 수를 $100$으로",
+          "항목의 수가 얼마"
+        ]
+      },
+      "sourceFingerprint": "cdfeccfeb49b8c8af8dac5b35a04bb16dfa02f3007cdc03ac9000453cedd00b4",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "cProposedAnswers": [
+        "$25$",
+        "전체 수"
+      ],
+      "cStudentAfter": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 □$\\%$이다. 이때 기준량은 □이다.",
+      "cMarkedSentence": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 {$25$}$\\%$이다. 이때 기준량은 {전체 수}이다.",
+      "cStudentSentence": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 □$\\%$이다. 이때 기준량은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$25$",
+          "equivalents": [
+            "$25\\%$"
+          ]
+        },
+        {
+          "key": "전체 수",
+          "equivalents": [
+            "전체",
+            "$200$명"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠그래프에서 항목별 백분율은 전체와 항목의 수를 어떻게 이용해 나타낸 값인가? 전체 수와 항목의 수가 각각 기준량인지 비교하는 양인지도 말하시오.",
+        "answer": "전체 수를 $100$으로 보았을 때 항목의 수가 얼마에 해당하는지 나타낸 값이다. 전체 수가 기준량이고 항목의 수가 비교하는 양이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체를 $100$으로 본다",
+              "전체 수를 $100$으로 보았을 때의 크기"
+            ]
+          },
+          {
+            "anyOf": [
+              "항목의 수가 그중 얼마인지 나타낸다",
+              "항목 수에 해당하는 크기"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 수는 기준량이고 항목의 수는 비교하는 양이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전체가 $200$명이고 한 항목이 $50$명일 때 항목별 백분율은 {$25$}$\\%$이다. 이때 기준량은 {전체 수}이다.",
+        "acceptedAnswers": [
+          [
+            "$25$",
+            "$25\\%$"
+          ],
+          [
+            "전체 수",
+            "전체",
+            "$200$명"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "afc5bf0a5e0418c496ad62d82809e7e4e6f5a14d0757427afda8894a256074c5",
+      "questionRevision": "planning-e5e6-20261006-afc5bf0a5e04",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "항목의 백분율이 앞에서부터 $30\\%$, $45\\%$, $25\\%$일 때, 띠그래프의 띠에 조각의 경계를 어떤 방법으로 표시하는지 설명하고 두 경계의 위치를 구하시오.",
+      "bAnswer": "앞에서부터 백분율을 차례로 더한 위치에 경계를 표시한다. 첫째 경계는 $30\\%$, 둘째 경계는 $30+45=75$이므로 $75\\%$ 위치이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞에서부터 백분율을 차례로 더한 위치에 표시한다",
+            "누적한 합의 위치에 경계를 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30\\%$",
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$75\\%$",
+            "$75$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "백분율을 누적하여 띠의 경계를 정하는 방법을 안다.",
+      "bReason": "예를 붙여 방법을 말하게 하고 값도 확인하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 {$75$}$\\%$ 위치이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$75$",
+            "$75\\%$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절이라 누적 계산 값으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 268,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-2-c2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "level": "중",
+        "kind": "방법",
+        "term": "띠의 경계 정하기",
+        "definition": "앞에서부터 차지한 백분율을 {차례로 더한 위치}에 조각의 경계를 표시한다.",
+        "studentC": "앞에서부터 차지한 백분율을 □에 조각의 경계를 표시한다.",
+        "answers": [
+          "차례로 더한 위치"
+        ]
+      },
+      "sourceFingerprint": "61bf672d486c139a471250c134ad822d4eb8b2a5551d7098f6f535660fd91bc5",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "cProposedAnswers": [
+        "$75$"
+      ],
+      "cStudentAfter": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 □$\\%$ 위치이다.",
+      "cMarkedSentence": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 {$75$}$\\%$ 위치이다.",
+      "cStudentSentence": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 □$\\%$ 위치이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$75$",
+          "equivalents": [
+            "$75\\%$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "항목의 백분율이 앞에서부터 $30\\%$, $45\\%$, $25\\%$일 때, 띠그래프의 띠에 조각의 경계를 어떤 방법으로 표시하는지 설명하고 두 경계의 위치를 구하시오.",
+        "answer": "앞에서부터 백분율을 차례로 더한 위치에 경계를 표시한다. 첫째 경계는 $30\\%$, 둘째 경계는 $30+45=75$이므로 $75\\%$ 위치이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞에서부터 백분율을 차례로 더한 위치에 표시한다",
+              "누적한 합의 위치에 경계를 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30\\%$",
+              "$30$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$75\\%$",
+              "$75$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "앞에서부터 $30\\%$, $45\\%$, $25\\%$ 순서로 띠를 나눌 때 둘째 경계는 띠의 앞에서부터 {$75$}$\\%$ 위치이다.",
+        "acceptedAnswers": [
+          [
+            "$75$",
+            "$75\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a557fff9fe35ea5128fcc67419728a96c0cf09647a2fc02209c42bdac908503a",
+      "questionRevision": "planning-e5e6-20261006-a557fff9fe35",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프를 다 그린 뒤 각 조각이 빈틈없이 띠를 채우는지 확인할 때, 반올림하지 않은 항목별 백분율의 합은 얼마여야 하는지 말하시오.",
+      "bAnswer": "합이 $100\\%$여야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100\\%$",
+            "$100$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "띠 전체가 $100\\%$임을 이용해 그래프를 검토한다.",
+      "bReason": "검토 기준이 되는 합을 묻는 짧은 문항이다.",
+      "cDecision": "keep",
+      "cAfter": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 {$100\\%$}인지 살핀다.",
+      "cReason": "반올림 전 비율의 합이라는 조건이 있어 빈칸 $100\\%$가 명확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 269,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-2-c3",
+        "section": "초6::1-5 여러 가지 그래프::1-5-2 띠그래프로 나타내기",
+        "level": "상",
+        "kind": "방법",
+        "term": "띠그래프 검토",
+        "definition": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 {$100\\%$}인지 살핀다.",
+        "studentC": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 □인지 살핀다.",
+        "answers": [
+          "$100\\%$"
+        ]
+      },
+      "sourceFingerprint": "d4cd81822aaa077ae6714523bb6a94f234d26af1d23f12de92ad0e1bda0a43bc",
+      "draftEvidence": "evidence/section-076-draft.json",
+      "cFrozenDefinition": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 {$100\\%$}인지 살핀다.",
+      "cFrozenStudentSentence": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 □인지 살핀다.",
+      "cProposedAnswers": [
+        "$100\\%$"
+      ],
+      "cStudentAfter": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 □인지 살핀다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100\\%$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 {$100\\%$}인지 살핀다.",
+      "cStudentSentence": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 □인지 살핀다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100\\%$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠그래프를 다 그린 뒤 각 조각이 빈틈없이 띠를 채우는지 확인할 때, 반올림하지 않은 항목별 백분율의 합은 얼마여야 하는지 말하시오.",
+        "answer": "합이 $100\\%$여야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100\\%$",
+              "$100$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모든 조각이 빈틈없이 띠를 채우는지 보고, 반올림하지 않은 비율의 합이 {$100\\%$}인지 살핀다.",
+        "acceptedAnswers": [
+          [
+            "$100\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0b6c447ba24fca13eda799add0a1bba86e4da3d4e65f129768569c7fd4025ed5",
+      "questionRevision": "planning-e5e6-20261006-0b6c447ba24f",
+      "requiresIndependentReview": true
+    }
+  ]
+}

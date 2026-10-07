@@ -1,0 +1,1246 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-3-1-xc8",
+      "bDecision": "revise",
+      "bPrompt": "옆면이 직사각형인 삼각기둥을 위에서 내려다볼 때 삼각형으로 보이려면 어떻게 놓아야 하는지 쓰시오. 그렇게 놓았을 때 위에서 본 모양과 밑면은 어떤 관계인지도 설명하시오.",
+      "bAnswer": "밑면이 바닥에 닿게 놓는다. 그러면 위에서 본 모양은 밑면과 같은 모양(삼각형)이다.",
+      "bGoal": "각기둥을 어떻게 놓느냐에 따라 위에서 본 모양이 달라짐을 안다.",
+      "bReason": "놓는 방법과 밑면과의 관계를 모두 묻는다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 바닥에 닿게 놓는다",
+            "밑면을 바닥에 두고 세운다"
+          ]
+        },
+        {
+          "anyOf": [
+            "위에서 본 모양이 밑면과 같다",
+            "위에서 본 모양이 삼각형이다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "옆면이 직사각형인 각기둥을 밑면이 바닥에 닿게 놓고 위에서 보면 {밑면}과 같은 모양으로 보인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면",
+            "아래 밑면",
+            "바닥에 닿은 면"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절을 외우게 한다. 밑면이라는 한 낱말을 묻고 놓는 조건은 문장에 둔다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "048df82b3120967e0074eba5d9452dff170c31f9bcd932bfb82cb2603998e3d9",
+      "sourceIndex": 2301,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc8",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "밑면이 삼각형인 각기둥을 위에서 보면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "밑면이 삼각형인 각기둥을 {밑면이 바닥에 닿게 놓고} 위에서 보면 삼각형으로 보인다.",
+        "studentC": "밑면이 삼각형인 각기둥을 □ 위에서 보면 삼각형으로 보인다.",
+        "answers": [
+          "밑면이 바닥에 닿게 놓고"
+        ]
+      },
+      "sourceFingerprint": "52e3da7aa7c3d16075953786e4574cf78b3f30191e0aa19a301988e311198db9",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "밑면"
+      ],
+      "cStudentAfter": "옆면이 직사각형인 각기둥을 밑면이 바닥에 닿게 놓고 위에서 보면 □과 같은 모양으로 보인다.",
+      "cMarkedSentence": "옆면이 직사각형인 각기둥을 밑면이 바닥에 닿게 놓고 위에서 보면 {밑면}과 같은 모양으로 보인다.",
+      "cStudentSentence": "옆면이 직사각형인 각기둥을 밑면이 바닥에 닿게 놓고 위에서 보면 □과 같은 모양으로 보인다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면",
+          "equivalents": [
+            "아래 밑면",
+            "바닥에 닿은 면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "옆면이 직사각형인 삼각기둥을 위에서 내려다볼 때 삼각형으로 보이려면 어떻게 놓아야 하는지 쓰시오. 그렇게 놓았을 때 위에서 본 모양과 밑면은 어떤 관계인지도 설명하시오.",
+        "answer": "밑면이 바닥에 닿게 놓는다. 그러면 위에서 본 모양은 밑면과 같은 모양(삼각형)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 바닥에 닿게 놓는다",
+              "밑면을 바닥에 두고 세운다"
+            ]
+          },
+          {
+            "anyOf": [
+              "위에서 본 모양이 밑면과 같다",
+              "위에서 본 모양이 삼각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "옆면이 직사각형인 각기둥을 밑면이 바닥에 닿게 놓고 위에서 보면 {밑면}과 같은 모양으로 보인다.",
+        "acceptedAnswers": [
+          [
+            "밑면",
+            "아래 밑면",
+            "바닥에 닿은 면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3654bce896fa05ddf60ad2cad88d0b0c8a610b8d554f62bcdf7935fb312d74ff",
+      "questionRevision": "planning-e5e6-20261006-3654bce896fa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-xc10",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 앞에서 본 모양과 뒤에서 본 모양을 비교하면 어떤 관계가 있는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "서로 좌우가 바뀐 모양이다. 앞과 뒤는 반대쪽이라 왼쪽과 오른쪽이 서로 바뀌어 보이기 때문이다.",
+      "bGoal": "앞과 뒤에서 본 모양은 좌우가 서로 바뀐다는 것을 이해한다.",
+      "bReason": "두 모양의 관계와 원인(반대쪽에서 봄)을 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "좌우가 서로 바뀐 모양이다",
+            "왼쪽과 오른쪽이 서로 바뀐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반대쪽에서 보기 때문이다",
+            "마주 보는 쪽에서 보기 때문에 왼쪽과 오른쪽이 반대가 된다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무로 쌓은 모양을 앞에서 본 모양과 뒤에서 본 모양은 {좌우}가 서로 바뀐 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "좌우",
+            "왼쪽과 오른쪽",
+            "오른쪽과 왼쪽"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 '좌우가 바뀐'을 빈칸으로 두지 않고 핵심 낱말 '좌우'만 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "4ecef69b81e24d61c8f1747a95fc3c2a14fac782769e7b46b87bea94289678df",
+      "sourceIndex": 2303,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc10",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "앞과 뒤에서 본 모양",
+        "kind": "성질",
+        "level": "중",
+        "definition": "앞에서 본 모양과 뒤에서 본 모양은 {좌우가 바뀐} 모양이다.",
+        "studentC": "앞에서 본 모양과 뒤에서 본 모양은 □ 모양이다.",
+        "answers": [
+          "좌우가 바뀐"
+        ]
+      },
+      "sourceFingerprint": "6f3ecf3e77817fb3eca30fef794ba41a999a3367b32e63c8ae98038fd38f8f5e",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "좌우"
+      ],
+      "cStudentAfter": "쌓기나무로 쌓은 모양을 앞에서 본 모양과 뒤에서 본 모양은 □가 서로 바뀐 모양이다.",
+      "cMarkedSentence": "쌓기나무로 쌓은 모양을 앞에서 본 모양과 뒤에서 본 모양은 {좌우}가 서로 바뀐 모양이다.",
+      "cStudentSentence": "쌓기나무로 쌓은 모양을 앞에서 본 모양과 뒤에서 본 모양은 □가 서로 바뀐 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "좌우",
+          "equivalents": [
+            "왼쪽과 오른쪽",
+            "오른쪽과 왼쪽"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무로 쌓은 모양을 앞에서 본 모양과 뒤에서 본 모양을 비교하면 어떤 관계가 있는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "서로 좌우가 바뀐 모양이다. 앞과 뒤는 반대쪽이라 왼쪽과 오른쪽이 서로 바뀌어 보이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "좌우가 서로 바뀐 모양이다",
+              "왼쪽과 오른쪽이 서로 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반대쪽에서 보기 때문이다",
+              "마주 보는 쪽에서 보기 때문에 왼쪽과 오른쪽이 반대가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무로 쌓은 모양을 앞에서 본 모양과 뒤에서 본 모양은 {좌우}가 서로 바뀐 모양이다.",
+        "acceptedAnswers": [
+          [
+            "좌우",
+            "왼쪽과 오른쪽",
+            "오른쪽과 왼쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9c558da091d85f522e5d0d394a1177e386776dacf045503e80ba0657e871b862",
+      "questionRevision": "planning-e5e6-20261006-9c558da091d8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "왼쪽 옆과 오른쪽 옆에서 본 모양의 관계를 안다.",
+      "bReason": "xc10의 반대쪽에서 본 모양 관계와 같은 사실이라 B를 따로 둘 필요가 낮다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무로 쌓은 모양을 왼쪽 옆에서 본 모양과 오른쪽 옆에서 본 모양은 서로 {좌우가 바뀐} 모양이다.",
+      "cReason": "왼쪽과 오른쪽 옆을 비교하는 짧은 낱말 빈칸이고 xc10과 대상이 달라 유지한다.",
+      "exclusionReason": "B는 e6-2-3-1-xc10과 중복이다. 대체: e6-2-3-1-xc10.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "49c5ca70b3daee242210fb91c045ac00f11379d44002046a8aa15b126cc7727e",
+      "sourceIndex": 2304,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc11",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "왼쪽과 오른쪽에서 본 모양",
+        "kind": "성질",
+        "level": "중",
+        "definition": "왼쪽 옆에서 본 모양과 오른쪽 옆에서 본 모양도 서로 {좌우가 바뀐} 모양이다.",
+        "studentC": "왼쪽 옆에서 본 모양과 오른쪽 옆에서 본 모양도 서로 □ 모양이다.",
+        "answers": [
+          "좌우가 바뀐"
+        ]
+      },
+      "sourceFingerprint": "55541c800be2dbc344af5067db808a48768f07d07f73b7615268d7e75fe3e94e",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "좌우가 바뀐"
+      ],
+      "cStudentAfter": "쌓기나무로 쌓은 모양을 왼쪽 옆에서 본 모양과 오른쪽 옆에서 본 모양은 서로 □ 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "좌우가 바뀐"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "쌓기나무로 쌓은 모양을 왼쪽 옆에서 본 모양과 오른쪽 옆에서 본 모양은 서로 {좌우가 바뀐} 모양이다.",
+      "cStudentSentence": "쌓기나무로 쌓은 모양을 왼쪽 옆에서 본 모양과 오른쪽 옆에서 본 모양은 서로 □ 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "좌우가 바뀐",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "쌓기나무로 쌓은 모양을 왼쪽 옆에서 본 모양과 오른쪽 옆에서 본 모양은 서로 {좌우가 바뀐} 모양이다.",
+        "acceptedAnswers": [
+          [
+            "좌우가 바뀐"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e6-2-3-1-xc10과 중복이다. 대체: e6-2-3-1-xc10."
+      },
+      "proposalFingerprint": "117d38048f89beae17ec5ceb056f9a4583a3881837c929a269b56a2e508b7c2e",
+      "questionRevision": "planning-e5e6-20261006-117d38048f89",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-xc15",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양에서 위에서 본 모양만으로는 가장 높은 곳이 몇 층인지 알 수 없습니다. 앞이나 옆에서 본 모양으로는 이것을 알 수 있는 까닭을 설명하세요.",
+      "bAnswer": "앞이나 옆에서는 가장 높게 쌓은 곳의 높이가 가려져 없어지지 않고 보이므로, 가장 높은 곳이 몇 층인지 알 수 있다.",
+      "bGoal": "어느 방향의 모양이 높이를 보여 주는지 안다.",
+      "bReason": "가려진 각 자리의 높이까지 알 수 있다는 오해를 피하고 전체의 가장 높은 층수로 질문 범위를 한정한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞이나 옆에서는 가장 높은 곳의 높이가 보인다",
+            "앞이나 옆에서 보이는 가장 높은 층이 전체의 가장 높은 층이다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc16 C와 같은 사실을 반대로 묻는 문장이다.",
+      "exclusionReason": "C는 e6-2-3-1-xc16과 중복이다. 대체: e6-2-3-1-xc16.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "9534be7b13ffce1f097c62a8fd3bd646f46724b93904fd4a3f68ece9db9750c8",
+      "sourceIndex": 2308,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc15",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "높이를 알 수 있는 방향",
+        "kind": "성질",
+        "level": "중",
+        "definition": "쌓은 높이는 위에서 본 모양으로는 알 수 없고 {앞이나 옆}에서 본 모양으로 알 수 있다.",
+        "studentC": "쌓은 높이는 위에서 본 모양으로는 알 수 없고 □에서 본 모양으로 알 수 있다.",
+        "answers": [
+          "앞이나 옆"
+        ]
+      },
+      "sourceFingerprint": "692a990208190d6202503f108f33cfa1c89c0220f0852b77a82e317476111bdf",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "쌓기나무로 쌓은 모양에서 위에서 본 모양만으로는 가장 높은 곳이 몇 층인지 알 수 없습니다. 앞이나 옆에서 본 모양으로는 이것을 알 수 있는 까닭을 설명하세요.",
+        "answer": "앞이나 옆에서는 가장 높게 쌓은 곳의 높이가 가려져 없어지지 않고 보이므로, 가장 높은 곳이 몇 층인지 알 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞이나 옆에서는 가장 높은 곳의 높이가 보인다",
+              "앞이나 옆에서 보이는 가장 높은 층이 전체의 가장 높은 층이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 e6-2-3-1-xc16과 중복이다. 대체: e6-2-3-1-xc16."
+      },
+      "proposalFingerprint": "05547e1b227ce199d6c4a422d975bdf507c7369003baf224cc0059d241c832c3",
+      "questionRevision": "planning-e5e6-20261006-05547e1b227c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무가 있습니다. 이 쌓기나무가 각 방향에서 보이지 않는 까닭을 다른 쌓기나무와의 관계로 설명하세요.",
+      "bAnswer": "각 방향에서 다른 쌓기나무가 가리고 있기 때문이다. 바로 이웃한 모든 자리가 채워져 있어야 하는 것은 아니다.",
+      "bGoal": "어느 방향에서도 보이지 않는 쌓기나무의 위치를 설명한다.",
+      "bReason": "바로 이웃한 모든 자리가 막혀 있다는 잘못된 필요조건을 없애고 각 방향의 시야가 가려진다는 원리를 묻는다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위, 앞, 뒤, 왼쪽, 오른쪽에서 다른 쌓기나무가 가린다",
+            "보는 방향마다 다른 쌓기나무 뒤에 가려져 있다"
+          ]
+        }
+      ],
+      "coreAfter": "위, 앞, 뒤, 왼쪽, 오른쪽에서 보아도 안 보이는 쌓기나무는, 각 방향에서 다른 쌓기나무가 {가리고 있다}.",
+      "coreReason": "'어느 방향'의 범위가 불분명하다. 아래쪽은 바닥이라 보이지 않으므로 방향을 위, 앞, 뒤, 옆으로 분명히 했다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 {가리고} 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가리고",
+            "막고"
+          ]
+        }
+      ],
+      "cReason": "둘러싸여 있다는 물리적 접촉의 오해 대신 시야를 가리는 관계를 짧은 말로 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "둘러싸여라는 원문 표적은 바로 옆에 맞닿은 나무를 뜻하는 것으로 오독된다. 멀리 있는 나무가 시야를 가릴 수도 있으므로 다섯 관찰 방향과 가림이라는 실제 일반 조건으로 고친다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "ca72e27799328774aae0a200c9e11108458eb0fe315281d3f62f182a4041cf17",
+      "sourceIndex": 2314,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc21",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "어느 쪽에서도 안 보이는 쌓기나무",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어느 방향에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 {둘러싸여} 있다.",
+        "studentC": "어느 방향에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 □ 있다.",
+        "answers": [
+          "둘러싸여"
+        ]
+      },
+      "sourceFingerprint": "922a5f15fceca4d28a596b96de1fc992a6055c42307e885250c9eb40e257dd6b",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가리고"
+      ],
+      "cStudentAfter": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 □ 있다.",
+      "cMarkedSentence": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 {가리고} 있다.",
+      "cStudentSentence": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "가리고",
+          "equivalents": [
+            "막고"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무가 있습니다. 이 쌓기나무가 각 방향에서 보이지 않는 까닭을 다른 쌓기나무와의 관계로 설명하세요.",
+        "answer": "각 방향에서 다른 쌓기나무가 가리고 있기 때문이다. 바로 이웃한 모든 자리가 채워져 있어야 하는 것은 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위, 앞, 뒤, 왼쪽, 오른쪽에서 다른 쌓기나무가 가린다",
+              "보는 방향마다 다른 쌓기나무 뒤에 가려져 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 {가리고} 있다.",
+        "acceptedAnswers": [
+          [
+            "가리고",
+            "막고"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6a529d5883660fb112246149283dae1cd3efce8a3c80da4a4418dc3096d00808",
+      "questionRevision": "planning-e5e6-20261006-6a529d588366",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-xc22",
+      "bDecision": "revise",
+      "bPrompt": "한 모서리에 쌓기나무를 $3$개씩 쌓아 정육면체 모양을 만들었다. 위, 앞, 옆에서 본 모양은 각각 어떤 모양인지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "모두 가로 $3$칸, 세로 $3$칸으로 크기가 같은 정사각형이다. 가로, 세로, 높이로 쌓은 개수가 모두 $3$개로 같기 때문이다.",
+      "bGoal": "정육면체 모양으로 쌓으면 세 방향 모양이 같은 정사각형임을 이해한다.",
+      "bReason": "구체적인 예에서 일반 이유(세 방향 개수가 같음)를 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모두 크기가 같은 정사각형이다",
+            "$3\\times3$ 칸 정사각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로, 세로, 높이로 쌓은 개수가 같다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "정육면체 모양으로 쌓은 쌓기나무를 위, 앞, 옆에서 본 모양은 모두 {같은} 크기의 정사각형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "cReason": "원문은 긴 구절이라 같은 크기를 묻는 낱말 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "739b3ce147abef875bad5a716b53ff5e19c99451da225b5f1a11a56dfb4d47b6",
+      "sourceIndex": 2315,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc22",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "정육면체 모양으로 쌓은 쌓기나무",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정육면체 모양으로 쌓은 쌓기나무는 위, 앞, 옆에서 본 모양이 {모두 같은 크기의 정사각형}이다.",
+        "studentC": "정육면체 모양으로 쌓은 쌓기나무는 위, 앞, 옆에서 본 모양이 □이다.",
+        "answers": [
+          "모두 같은 크기의 정사각형"
+        ]
+      },
+      "sourceFingerprint": "7237e335112aad0e7ec8fed0215ffddb7b30f20e083f9de18af2acc95e218578",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같은"
+      ],
+      "cStudentAfter": "정육면체 모양으로 쌓은 쌓기나무를 위, 앞, 옆에서 본 모양은 모두 □ 크기의 정사각형이다.",
+      "cMarkedSentence": "정육면체 모양으로 쌓은 쌓기나무를 위, 앞, 옆에서 본 모양은 모두 {같은} 크기의 정사각형이다.",
+      "cStudentSentence": "정육면체 모양으로 쌓은 쌓기나무를 위, 앞, 옆에서 본 모양은 모두 □ 크기의 정사각형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 모서리에 쌓기나무를 $3$개씩 쌓아 정육면체 모양을 만들었다. 위, 앞, 옆에서 본 모양은 각각 어떤 모양인지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "모두 가로 $3$칸, 세로 $3$칸으로 크기가 같은 정사각형이다. 가로, 세로, 높이로 쌓은 개수가 모두 $3$개로 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모두 크기가 같은 정사각형이다",
+              "$3\\times3$ 칸 정사각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로, 세로, 높이로 쌓은 개수가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체 모양으로 쌓은 쌓기나무를 위, 앞, 옆에서 본 모양은 모두 {같은} 크기의 정사각형이다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e3431cb801d9570b3fe6b8da4b7bd07188008e283fdd8844f476d32c1136d441",
+      "questionRevision": "planning-e5e6-20261006-e3431cb801d9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-xc25",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 앞에서 보니 어느 줄이 $3$층으로 보였습니다. 이 줄의 앞뒤 자리 중 $3$층으로 쌓인 자리가 반드시 있는지 쓰고, 그렇게 생각한 까닭을 설명하세요.",
+      "bAnswer": "반드시 있다. 앞에서 보이는 그 줄의 높이는 앞뒤 자리 중 가장 높게 쌓은 층수이므로, 적어도 한 자리는 $3$층으로 쌓여 있다.",
+      "bGoal": "앞에서 본 높이에서 뒤쪽 자리의 최대 높이를 추론한다.",
+      "bReason": "아무 사실이나 쓰라는 넓은 범위를 3층 자리의 존재와 그 근거로 좁혔다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "적어도 한 자리가 $3$층이다",
+            "반드시 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 줄에서 보이는 높이는 앞뒤 자리 중 가장 높은 층수이다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 앞에서 보니 어느 줄이 $3$층으로 보였다. 그 줄의 앞뒤 자리 중 적어도 {한} 곳은 $3$층으로 쌓여 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한",
+            "$1$",
+            "하나의"
+          ]
+        }
+      ],
+      "cReason": "한 곳 이상 곳처럼 이어지지 않는 대체답을 없애 존재하는 자리의 최소 수를 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "e3cc324f13ab9ec251938255bfa76a8d3b83f072fe35c101c0426e9c8d9bdbd2",
+      "sourceIndex": 2318,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc25",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "가장 높은 줄과 기둥",
+        "kind": "성질",
+        "level": "상",
+        "definition": "앞에서 본 모양의 어느 줄이 몇 층이면 그 줄에 {그만큼 쌓은 자리가 적어도 하나} 있다.",
+        "studentC": "앞에서 본 모양의 어느 줄이 몇 층이면 그 줄에 □ 있다.",
+        "answers": [
+          "그만큼 쌓은 자리가 적어도 하나"
+        ]
+      },
+      "sourceFingerprint": "8ee4602794dbf1653dc7d79eeffc35bacd3afc9c75c2b8f2bc575b3fabedb927",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "한"
+      ],
+      "cStudentAfter": "쌓기나무를 앞에서 보니 어느 줄이 $3$층으로 보였다. 그 줄의 앞뒤 자리 중 적어도 □ 곳은 $3$층으로 쌓여 있다.",
+      "cMarkedSentence": "쌓기나무를 앞에서 보니 어느 줄이 $3$층으로 보였다. 그 줄의 앞뒤 자리 중 적어도 {한} 곳은 $3$층으로 쌓여 있다.",
+      "cStudentSentence": "쌓기나무를 앞에서 보니 어느 줄이 $3$층으로 보였다. 그 줄의 앞뒤 자리 중 적어도 □ 곳은 $3$층으로 쌓여 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "한",
+          "equivalents": [
+            "$1$",
+            "하나의"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무로 쌓은 모양을 앞에서 보니 어느 줄이 $3$층으로 보였습니다. 이 줄의 앞뒤 자리 중 $3$층으로 쌓인 자리가 반드시 있는지 쓰고, 그렇게 생각한 까닭을 설명하세요.",
+        "answer": "반드시 있다. 앞에서 보이는 그 줄의 높이는 앞뒤 자리 중 가장 높게 쌓은 층수이므로, 적어도 한 자리는 $3$층으로 쌓여 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "적어도 한 자리가 $3$층이다",
+              "반드시 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 줄에서 보이는 높이는 앞뒤 자리 중 가장 높은 층수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 앞에서 보니 어느 줄이 $3$층으로 보였다. 그 줄의 앞뒤 자리 중 적어도 {한} 곳은 $3$층으로 쌓여 있다.",
+        "acceptedAnswers": [
+          [
+            "한",
+            "$1$",
+            "하나의"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c37fdaf5aa8905ac013575f90edfd826979071f6410b426ade405e3a6db9d787",
+      "questionRevision": "planning-e5e6-20261006-c37fdaf5aa89",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-xc9",
+      "bDecision": "revise",
+      "bPrompt": "쌓은 모양과 똑같이 쌓으려면 쌓기나무에 대해 무엇을 알아야 하는지 쓰시오.",
+      "bAnswer": "각 쌓기나무를 놓은 자리(위치)와 그 자리에 쌓은 개수를 알아야 한다.",
+      "bGoal": "똑같이 쌓는 데 필요한 정보가 위치와 개수임을 말한다.",
+      "bReason": "필요한 정보를 직접 묻는 질문으로 바꿨다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓기나무를 놓은 위치",
+            "놓은 자리"
+          ]
+        },
+        {
+          "anyOf": [
+            "쌓은 개수",
+            "그 자리의 층수"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "똑같이 쌓으려면 쌓기나무를 어느 {자리}에 몇 {개} 놓았는지 알아야 한다.",
+      "cReason": "위치와 개수를 두 빈칸으로 나누어 각각 하나의 뜻만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자리",
+            "위치",
+            "곳"
+          ]
+        },
+        {
+          "anyOf": [
+            "개",
+            "층"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "6228399dea5f3205ab9c4554450582941af84dd047f39b2545da7c3220628923",
+      "sourceIndex": 2328,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-2-xc9",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "term": "똑같이 쌓으려면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "쌓은 모양과 똑같이 쌓으려면 쌓기나무의 {위치와 개수}를 모두 알아야 한다.",
+        "studentC": "쌓은 모양과 똑같이 쌓으려면 쌓기나무의 □를 모두 알아야 한다.",
+        "answers": [
+          "위치와 개수"
+        ]
+      },
+      "sourceFingerprint": "518719554daeddf4601a2a1521d8d3806003b08e29e73804388ac0f6fe42b8cf",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "자리",
+        "개"
+      ],
+      "cStudentAfter": "똑같이 쌓으려면 쌓기나무를 어느 □에 몇 □ 놓았는지 알아야 한다.",
+      "cMarkedSentence": "똑같이 쌓으려면 쌓기나무를 어느 {자리}에 몇 {개} 놓았는지 알아야 한다.",
+      "cStudentSentence": "똑같이 쌓으려면 쌓기나무를 어느 □에 몇 □ 놓았는지 알아야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "자리",
+          "equivalents": [
+            "위치",
+            "곳"
+          ]
+        },
+        {
+          "key": "개",
+          "equivalents": [
+            "층"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓은 모양과 똑같이 쌓으려면 쌓기나무에 대해 무엇을 알아야 하는지 쓰시오.",
+        "answer": "각 쌓기나무를 놓은 자리(위치)와 그 자리에 쌓은 개수를 알아야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓기나무를 놓은 위치",
+              "놓은 자리"
+            ]
+          },
+          {
+            "anyOf": [
+              "쌓은 개수",
+              "그 자리의 층수"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "똑같이 쌓으려면 쌓기나무를 어느 {자리}에 몇 {개} 놓았는지 알아야 한다.",
+        "acceptedAnswers": [
+          [
+            "자리",
+            "위치",
+            "곳"
+          ],
+          [
+            "개",
+            "층"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "89d4cf0d76dd1da602a5d2291cc26eb9b029a9a2f7cbc06bcba2fdc2a0c6cef1",
+      "questionRevision": "planning-e5e6-20261006-89d4cf0d76dd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-xc10",
+      "bDecision": "revise",
+      "bPrompt": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓을 때 위층의 쌓기나무 개수와 바로 아래층의 쌓기나무 개수 사이에는 어떤 관계가 있는지 쓰시오. 위층에 $5$개가 있다면 아래층에는 적어도 몇 개가 있어야 하는지도 쓰시오.",
+      "bAnswer": "아래층은 위층보다 적을 수 없다(위층과 같거나 더 많다). 위층 쌓기나무마다 받치는 쌓기나무가 하나씩 필요하므로 아래층에는 적어도 $5$개가 있어야 한다.",
+      "bGoal": "위층을 받치려면 아래층이 적어도 같은 수여야 함을 안다.",
+      "bReason": "일반 관계를 먼저 묻고 예의 정확한 답도 정했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "아래층은 위층보다 적을 수 없다",
+            "아래층이 위층과 같거나 더 많다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개",
+            "적어도 $5$개"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓으면, 아래층의 쌓기나무 수는 위층의 쌓기나무 수보다 {적을} 수 없다.",
+      "cReason": "어색한 '□의 쌓기나무' 대신 비교 방향을 묻는 짧은 문장으로 바꿨다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "적을",
+            "작을"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "91a4185d5b221789063e5df2bceb3e41779940698c7a56daf905c6787249805f",
+      "sourceIndex": 2329,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-2-xc10",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "term": "아래층에 있어야 하는 개수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "위층에 놓인 쌓기나무 수만큼 그 아래층에도 {적어도 같은 수}의 쌓기나무가 있다.",
+        "studentC": "위층에 놓인 쌓기나무 수만큼 그 아래층에도 □의 쌓기나무가 있다.",
+        "answers": [
+          "적어도 같은 수"
+        ]
+      },
+      "sourceFingerprint": "96a469748d0e5d5c4f9fc8451f9453e54fcd60827f701860d8f2e6be787134e3",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "적을"
+      ],
+      "cStudentAfter": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓으면, 아래층의 쌓기나무 수는 위층의 쌓기나무 수보다 □ 수 없다.",
+      "cMarkedSentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓으면, 아래층의 쌓기나무 수는 위층의 쌓기나무 수보다 {적을} 수 없다.",
+      "cStudentSentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓으면, 아래층의 쌓기나무 수는 위층의 쌓기나무 수보다 □ 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "적을",
+          "equivalents": [
+            "작을"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓을 때 위층의 쌓기나무 개수와 바로 아래층의 쌓기나무 개수 사이에는 어떤 관계가 있는지 쓰시오. 위층에 $5$개가 있다면 아래층에는 적어도 몇 개가 있어야 하는지도 쓰시오.",
+        "answer": "아래층은 위층보다 적을 수 없다(위층과 같거나 더 많다). 위층 쌓기나무마다 받치는 쌓기나무가 하나씩 필요하므로 아래층에는 적어도 $5$개가 있어야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "아래층은 위층보다 적을 수 없다",
+              "아래층이 위층과 같거나 더 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개",
+              "적어도 $5$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓으면, 아래층의 쌓기나무 수는 위층의 쌓기나무 수보다 {적을} 수 없다.",
+        "acceptedAnswers": [
+          [
+            "적을",
+            "작을"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "16dc288a55372c5f1067e93556416ce2bd388a10f680cb7ac78e9709f81a7fe3",
+      "questionRevision": "planning-e5e6-20261006-16dc288a5537",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 놓을 수 있는 자리와 높이의 범위가 정해져 있고 보이는 모양도 주어졌을 때, 가장 많은 개수를 구하려면 가려진 자리를 어떻게 해야 하는지 쓰시오.",
+      "bAnswer": "보이는 모양과 받침 조건을 지키는 범위 안에서 가려진 자리에 쌓기나무를 최대한 많이 채운다.",
+      "bGoal": "가장 많은 개수를 구할 때 조건을 지키며 최대한 채우는 방법을 안다.",
+      "bReason": "조건을 지킨다는 말과 최대한 채운다는 말을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보이는 모양과 받침 조건을 지킨다",
+            "조건에 맞게 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가려진 자리를 최대한 채운다",
+            "가능한 한 많이 놓는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "exclude",
+      "cAfter": "가장 많은 개수를 구할 때는 보이는 모양을 {지키면서} 가려진 자리를 가능한 만큼 {최대한} 채운다.",
+      "cReason": "보이는 모양을 지키면서 최대한이라는 긴 답을 쓰게 하고 같은 뜻을 문장에 반복하므로, 명확한 자리·높이 조건을 갖춘 B에서만 다룬다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "지키면서",
+            "지키며"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대한",
+            "가능한 한 많이",
+            "가득"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "exclusionReason": "C는 긴 구절과 반복되는 최대 표현으로 답을 쉽게 복사하므로 B에서만 평가한다.",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "9c815cc811575241a9e2706ea08d0f30510cd0f3b107774af8f82e37e4a48b34",
+      "sourceIndex": 2331,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-2-xc12",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "term": "가장 많은 개수 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "놓을 수 있는 자리와 높이의 범위가 정해져 있을 때, {보이는 모양과 받침 조건}을 지키며 가려진 자리를 {최대한 채워} 가장 많은 개수를 구한다.",
+        "studentC": "놓을 수 있는 자리와 높이의 범위가 정해져 있을 때, □을 지키며 가려진 자리를 □ 가장 많은 개수를 구한다.",
+        "answers": [
+          "보이는 모양과 받침 조건",
+          "최대한 채워"
+        ]
+      },
+      "sourceFingerprint": "1035596abdcae470c8f486c0851256668ca84c0e202ee0c0d19117fb9b25b84a",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "쌓기나무를 놓을 수 있는 자리와 높이의 범위가 정해져 있고 보이는 모양도 주어졌을 때, 가장 많은 개수를 구하려면 가려진 자리를 어떻게 해야 하는지 쓰시오.",
+        "answer": "보이는 모양과 받침 조건을 지키는 범위 안에서 가려진 자리에 쌓기나무를 최대한 많이 채운다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "보이는 모양과 받침 조건을 지킨다",
+              "조건에 맞게 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가려진 자리를 최대한 채운다",
+              "가능한 한 많이 놓는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 긴 구절과 반복되는 최대 표현으로 답을 쉽게 복사하므로 B에서만 평가한다."
+      },
+      "proposalFingerprint": "32b83187ad2348a7ca754f60ee19a03faedec2ff591cfcbb91e0adb95bd18c50",
+      "questionRevision": "planning-e5e6-20261006-32b83187ad23",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-xc13",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 쌓은 모양의 그림과 위에서 본 모양을 함께 보면 그림에서 가려진 자리에 대해 무엇을 알 수 있는지 쓰시오.",
+      "bAnswer": "위에서 본 모양은 쌓기나무가 놓인 자리를 알려 주므로, 가려진 자리에 쌓기나무가 있는지 없는지 알 수 있다.",
+      "bGoal": "위에서 본 모양으로 가려진 자리의 유무를 판단한다.",
+      "bReason": "두 그림을 함께 보는 이유를 가려진 자리의 유무로 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가려진 자리에 쌓기나무가 있는지 없는지 알 수 있다",
+            "가려진 자리가 비었는지 알 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "위에서 본 모양과 함께 보면 가려진 자리에 쌓기나무가 {있는지 없는지} 알 수 있다.",
+      "cReason": "무엇이 가려졌는지 문장에 밝혀 빈칸의 뜻을 분명히 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "있는지 없는지",
+            "있는지",
+            "놓여 있는지"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "44339bff6837fe1983c30dd429f921d3a9d30342e6d9b1583f1ea73af5cc02ef",
+      "sourceIndex": 2332,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-2-xc13",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "term": "위에서 본 모양과 함께 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "그림과 위에서 본 모양을 함께 보면 가려진 자리가 {있는지 없는지} 알 수 있다.",
+        "studentC": "그림과 위에서 본 모양을 함께 보면 가려진 자리가 □ 알 수 있다.",
+        "answers": [
+          "있는지 없는지"
+        ]
+      },
+      "sourceFingerprint": "ab79dc5785d361cffdeac1f1c1461c6a886bf782a8c72591f32b79d20eea1f3d",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "있는지 없는지"
+      ],
+      "cStudentAfter": "위에서 본 모양과 함께 보면 가려진 자리에 쌓기나무가 □ 알 수 있다.",
+      "cMarkedSentence": "위에서 본 모양과 함께 보면 가려진 자리에 쌓기나무가 {있는지 없는지} 알 수 있다.",
+      "cStudentSentence": "위에서 본 모양과 함께 보면 가려진 자리에 쌓기나무가 □ 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "있는지 없는지",
+          "equivalents": [
+            "있는지",
+            "놓여 있는지"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무를 쌓은 모양의 그림과 위에서 본 모양을 함께 보면 그림에서 가려진 자리에 대해 무엇을 알 수 있는지 쓰시오.",
+        "answer": "위에서 본 모양은 쌓기나무가 놓인 자리를 알려 주므로, 가려진 자리에 쌓기나무가 있는지 없는지 알 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가려진 자리에 쌓기나무가 있는지 없는지 알 수 있다",
+              "가려진 자리가 비었는지 알 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "위에서 본 모양과 함께 보면 가려진 자리에 쌓기나무가 {있는지 없는지} 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "있는지 없는지",
+            "있는지",
+            "놓여 있는지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "02e79732d50d8c77741cb721e653e65e734fe14d990d8d051d869506c4836cd1",
+      "questionRevision": "planning-e5e6-20261006-02e79732d50d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-xc21",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무가 모두 바로 아래의 쌓기나무 위에 놓일 때, 위층과 바로 아래층의 개수가 같으면 위층의 쌓기나무는 아래층 쌓기나무 위에 어떻게 놓여 있는지 설명하시오.",
+      "bAnswer": "아래층의 모든 쌓기나무 위에 위층의 쌓기나무가 하나씩 놓여 있다.",
+      "bGoal": "두 층의 개수가 같을 때 아래층 쌓기나무 하나마다 위층 하나가 있음을 설명한다.",
+      "bReason": "받침 조건을 문장에 넣어 맥락 없이도 풀 수 있게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "아래층의 모든 쌓기나무 위에 하나씩 있다",
+            "아래층과 위층이 하나씩 짝지어진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓았다. 이웃한 두 층의 개수가 같으면, 아래층의 쌓기나무 {모두} 위에 위층의 쌓기나무가 하나씩 있다.",
+      "cReason": "긴 구절 대신 모두라는 범위 낱말만 빈칸으로 둔다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모두",
+            "전부"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "fc8240d5fd3bfbcce36144074629a331a43f0614d3b9b0220da44ddf604526e0",
+      "sourceIndex": 2338,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-2-xc21",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "term": "이웃한 두 층의 개수가 같을 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "위층과 바로 아래층의 개수가 같으면 아래층의 모든 쌓기나무 위에 위층의 쌓기나무가 {하나씩 있다}.",
+        "studentC": "위층과 바로 아래층의 개수가 같으면 아래층의 모든 쌓기나무 위에 위층의 쌓기나무가 □.",
+        "answers": [
+          "하나씩 있다"
+        ]
+      },
+      "sourceFingerprint": "52ea0df2346f027424bc2a60c6af19d91160f9009eb1f196557c52a908578263",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "모두"
+      ],
+      "cStudentAfter": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓았다. 이웃한 두 층의 개수가 같으면, 아래층의 쌓기나무 □ 위에 위층의 쌓기나무가 하나씩 있다.",
+      "cMarkedSentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓았다. 이웃한 두 층의 개수가 같으면, 아래층의 쌓기나무 {모두} 위에 위층의 쌓기나무가 하나씩 있다.",
+      "cStudentSentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓았다. 이웃한 두 층의 개수가 같으면, 아래층의 쌓기나무 □ 위에 위층의 쌓기나무가 하나씩 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "모두",
+          "equivalents": [
+            "전부"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무가 모두 바로 아래의 쌓기나무 위에 놓일 때, 위층과 바로 아래층의 개수가 같으면 위층의 쌓기나무는 아래층 쌓기나무 위에 어떻게 놓여 있는지 설명하시오.",
+        "answer": "아래층의 모든 쌓기나무 위에 위층의 쌓기나무가 하나씩 놓여 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "아래층의 모든 쌓기나무 위에 하나씩 있다",
+              "아래층과 위층이 하나씩 짝지어진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각 쌓기나무를 바로 아래 쌓기나무 위에 하나씩 올려놓았다. 이웃한 두 층의 개수가 같으면, 아래층의 쌓기나무 {모두} 위에 위층의 쌓기나무가 하나씩 있다.",
+        "acceptedAnswers": [
+          [
+            "모두",
+            "전부"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c187c0a2bb6dc72df7e3d57baca851a22796eb30b2487ecd9f3a1d940c7ee00b",
+      "questionRevision": "planning-e5e6-20261006-c187c0a2bb6d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-xc23",
+      "bDecision": "revise",
+      "bPrompt": "앞에서 본 그림만으로는 뒤쪽 바닥 자리에 쌓기나무가 놓여 있는지 알 수 없습니다. 위에서 본 그림을 함께 보면 그 자리가 비어 있는지 확인할 수 있는 까닭을 설명하세요.",
+      "bAnswer": "위에서 본 그림은 쌓기나무가 놓인 바닥 자리를 모두 보여 주므로, 뒤쪽 자리에도 쌓기나무가 있는지 확인할 수 있다.",
+      "bGoal": "가려진 자리를 다른 방향의 그림으로 확인하는 방법을 안다.",
+      "bReason": "다른 방향이면 무조건 알 수 있다는 범위를 줄여, 뒤쪽 바닥 자리의 유무를 보여 주는 위쪽 그림의 기능을 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위에서 본 그림은 쌓기나무가 놓인 바닥 자리를 보여 준다",
+            "위에서는 뒤쪽 바닥 자리에도 쌓기나무가 있는지 보인다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 앞에서 본 그림만으로는 뒤쪽 바닥 자리가 비어 있는지 알 수 없다. 그 자리에도 쌓기나무가 있는지 확인하려면 {위}에서 본 그림을 함께 본다.",
+      "cReason": "문장의 앞이 아닌 다른이라는 쉬운 반대말 대신 바닥 자리의 유무를 확인할 수 있는 방향을 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "위",
+            "위쪽"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+      "codexFinalAmendedFromFingerprint": "84ee2723a612f994f917b005bbd1491af9bb50b5daebbf24de5f969415bd42d3",
+      "sourceIndex": 2339,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-2-xc23",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "term": "가려진 자리를 확인하는 방법",
+        "kind": "방법",
+        "level": "상",
+        "definition": "뒤쪽 자리가 비었는지는 {다른 방향}에서 본 그림으로 확인한다.",
+        "studentC": "뒤쪽 자리가 비었는지는 □에서 본 그림으로 확인한다.",
+        "answers": [
+          "다른 방향"
+        ]
+      },
+      "sourceFingerprint": "a81fe38f732e30a728ee0c22c19fb6c8f0dff3442dd9ca3a0936abe4ecaa1fdf",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "위"
+      ],
+      "cStudentAfter": "쌓기나무를 앞에서 본 그림만으로는 뒤쪽 바닥 자리가 비어 있는지 알 수 없다. 그 자리에도 쌓기나무가 있는지 확인하려면 □에서 본 그림을 함께 본다.",
+      "cMarkedSentence": "쌓기나무를 앞에서 본 그림만으로는 뒤쪽 바닥 자리가 비어 있는지 알 수 없다. 그 자리에도 쌓기나무가 있는지 확인하려면 {위}에서 본 그림을 함께 본다.",
+      "cStudentSentence": "쌓기나무를 앞에서 본 그림만으로는 뒤쪽 바닥 자리가 비어 있는지 알 수 없다. 그 자리에도 쌓기나무가 있는지 확인하려면 □에서 본 그림을 함께 본다.",
+      "cSlotAnswers": [
+        {
+          "key": "위",
+          "equivalents": [
+            "위쪽"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞에서 본 그림만으로는 뒤쪽 바닥 자리에 쌓기나무가 놓여 있는지 알 수 없습니다. 위에서 본 그림을 함께 보면 그 자리가 비어 있는지 확인할 수 있는 까닭을 설명하세요.",
+        "answer": "위에서 본 그림은 쌓기나무가 놓인 바닥 자리를 모두 보여 주므로, 뒤쪽 자리에도 쌓기나무가 있는지 확인할 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위에서 본 그림은 쌓기나무가 놓인 바닥 자리를 보여 준다",
+              "위에서는 뒤쪽 바닥 자리에도 쌓기나무가 있는지 보인다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 앞에서 본 그림만으로는 뒤쪽 바닥 자리가 비어 있는지 알 수 없다. 그 자리에도 쌓기나무가 있는지 확인하려면 {위}에서 본 그림을 함께 본다.",
+        "acceptedAnswers": [
+          [
+            "위",
+            "위쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "090623c926169bc855697cef8e9f2f1d4f719a441395bf6e6faf7c60f5f6d45b",
+      "questionRevision": "planning-e5e6-20261006-090623c92616",
+      "requiresIndependentReview": true
+    }
+  ]
+}

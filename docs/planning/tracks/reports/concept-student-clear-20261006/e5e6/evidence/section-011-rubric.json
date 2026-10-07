@@ -1,0 +1,823 @@
+{
+  "rows": [
+    {
+      "id": "e5-1-3-3-c1",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "봉지 수가 변하면 전체 사탕 수도 규칙에 따라 따라 변한다",
+            "봉지 수가 정해지면 전체 사탕 수도 정해진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$봉지는 $12$개",
+            "$6\\times2=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$봉지는 $18$개",
+            "$6\\times3=18$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "대응",
+            "대응하는"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-c2",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "묶음 수에 한 묶음의 수를 곱한다",
+            "(묶음 수)$\\times$(한 묶음의 수)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square\\times12=\\triangle$",
+            "$12\\times\\square=\\triangle$",
+            "$\\triangle\\div12=\\square$",
+            "$\\triangle=\\square\\times12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱한",
+            "곱하는",
+            "곱해서 얻은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc1",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$300$원, $600$원, $900$원"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square\\times300=\\triangle$",
+            "$300\\times\\square=\\triangle$",
+            "$\\triangle\\div300=\\square$",
+            "$\\triangle=\\square\\times300$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱셈",
+            "곱하기"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc2",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 사람의 나이 차는 변하지 않는다",
+            "나이 차는 해가 지나도 일정하다",
+            "나이 차는 항상 $3$살이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square+3=\\triangle$",
+            "$3+\\square=\\triangle$",
+            "$\\triangle-3=\\square$",
+            "$\\triangle=\\square+3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$+$",
+            "더하기",
+            "더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc3",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 양에서 쓴 양을 뺀다",
+            "전체에서 쓴 양을 빼면 남은 양이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20-\\square=\\triangle$",
+            "$20-\\triangle=\\square$",
+            "$\\square+\\triangle=20$",
+            "$\\triangle=20-\\square$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "뺀",
+            "빼서 얻은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc4",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 수를 하나(한 상자)에 든 수로 나눈다",
+            "전체 수÷한 상자에 든 수=상자 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square\\div8=\\triangle$",
+            "$\\triangle\\times8=\\square$",
+            "$8\\times\\triangle=\\square$",
+            "$\\triangle=\\square\\div8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어",
+            "나눠서",
+            "나누면",
+            "나눈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc5",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "수만 바뀐 곱셈 대응식 쓰기로 c2·xc1과 중복이다.",
+      "exclusionReason": "B 제외: 같은 구조의 곱셈 대응식 쓰기는 e5-1-3-3-c2, e5-1-3-3-xc1이 대체한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$300$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc6",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "'적어 둔다'는 행동 안내라 따로 설명할 수학 의미가 적다.",
+      "exclusionReason": "B 제외: 기호가 나타내는 양 밝히기는 e5-1-3-3-xc23, e5-1-3-3-xc26이 대체한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "상자"
+          ]
+        },
+        {
+          "anyOf": [
+            "사과"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc8",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "팔찌가 $1$개 늘 때마다 구슬은 $12$개씩 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square\\times12=\\triangle$",
+            "$12\\times\\square=\\triangle$",
+            "$\\triangle\\div12=\\square$",
+            "$\\triangle=\\square\\times12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$48$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc9",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "'이것', '저것'만 쓴 메타 조언이라 대상 없이 설명을 물을 수 없다.",
+      "exclusionReason": "B·C 모두 제외: 하나 늘 때의 변화로 관계를 찾는 내용은 e5-1-3-3-xc8이 대체한다.",
+      "cDecision": "exclude",
+      "cReason": "빈칸 답이 단원 이름을 되받아 쓰는 것이라 이해를 확인하지 못한다."
+    },
+    {
+      "id": "e5-1-3-3-xc10",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 양이 정해지면 다른 양이 하나로 정해져야 한다",
+            "한 양에 다른 양이 한 가지로만 대응해야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "㉡",
+            "㉡ 우리 반 학생의 나이와 키"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 나이에도 키가 여러 가지일 수 있다",
+            "나이가 같아도 키가 사람마다 다르다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "하나",
+            "한 가지",
+            "하나의 값",
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "있고",
+            "있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없고"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc11",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남은 양은 줄어든다",
+            "남은 양이 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 수에서 빼는 수가 커지면 차가 작아진다",
+            "빼는 수가 커지면 남은 값이 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4000$원에서 $3500$원으로 바뀐다",
+            "$5000-1000=4000$이고 $5000-1500=3500$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "줄어든다",
+            "작아진다",
+            "적어진다",
+            "감소한다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc12",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\square-5=\\triangle$",
+            "$\\triangle+5=\\square$",
+            "$\\triangle=\\square-5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 시각의 차 $5$가 늘 같다",
+            "$15-10=5$이므로 언제나 $5$만큼 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17$시",
+            "같은 날 $17$시"
+          ]
+        }
+      ],
+      "coreAfter": "두 곳의 날짜가 같을 때, 한 곳의 시계가 가리키는 시각이 다른 곳보다 언제나 일정한 시간만큼 작으면, 그 시각은 다른 곳의 시각에서 그 시간 차를 뺀 값이다.",
+      "coreReason": "'늦은 시각'은 일상에서 더 나중 시각을 뜻해 더 큰 수로 오해하기 쉽다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "뺀",
+            "빼서 얻은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc13",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\square\\times400=\\triangle$",
+            "$400\\times\\square=\\triangle$",
+            "$\\triangle=\\square\\times400$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\triangle\\div400=\\square$",
+            "$\\square=\\triangle\\div400$"
+          ]
+        },
+        {
+          "anyOf": [
+            "낸 값을 한 개의 값 $400$으로 나누어 개수를 구한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$400$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc14",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 상황 모두 $\\square\\times4=\\triangle$",
+            "$4\\times\\square=\\triangle$",
+            "$\\triangle\\div4=\\square$"
+          ]
+        },
+        {
+          "anyOf": [
+            "상황이 달라도 두 양 사이의 규칙이 같으면 같은 식으로 나타낼 수 있다",
+            "한 양이 다른 양의 $4$배인 관계가 같아 같은 식이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "있고",
+            "있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없고"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc16",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나타낼 수 없다",
+            "쓸 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "하루에 자라는 길이가 날마다 달라 일정하지 않다",
+            "날수에 곱할 수가 하나로 정해지지 않는다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "일정",
+            "똑같",
+            "동일"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없고"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc17",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\square\\times1000=\\triangle$",
+            "$1000\\times\\square=\\triangle$",
+            "$\\triangle\\div1000=\\square$",
+            "$\\triangle=\\square\\times1000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 병의 양 $1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾸어 곱한다",
+            "전체 양과 같은 단위인 $\\mathrm{mL}$로 맞춘다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\mathrm{mL}$",
+            "밀리리터"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4000$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc19",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쓰면 안 된다",
+            "쓸 수 없다",
+            "$\\square\\times3=\\triangle$로 나타낼 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "셋째 짝 $3$과 $10$이 식과 맞지 않는다",
+            "$3\\times3=9$인데 표에는 $10$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "표의 모든 짝이 같은 규칙에 맞는지 확인한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없고",
+            "쓸 수 없다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc21",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가 가게는 $\\square\\times300$, 나 가게는 $\\square\\times350$",
+            "가 가게 $300\\times\\square$, 나 가게 $350\\times\\square$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 수에 더 작은 수를 곱한 값이 더 작다",
+            "한 개 값이 더 싸면 개수가 같을 때 전체 값도 더 적다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가 가게가 항상 더 싸다",
+            "가 가게"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가",
+            "가 가게"
+          ]
+        },
+        {
+          "anyOf": [
+            "$200$",
+            "$200$원"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc23",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 양이 다른 양의 $6$배가 되는 상황",
+            "한 묶음이 $6$개씩인 상황"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square$와 $\\triangle$가 나타내는 두 양을 상황에 맞게 구체적으로 밝힌다"
+          ]
+        },
+        {
+          "anyOf": [
+            "수를 넣어 식과 맞는지 확인한다",
+            "$\\square$에 수를 넣어 $\\triangle$가 $6$배인지 확인한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "귤"
+          ]
+        },
+        {
+          "anyOf": [
+            "상자"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc25",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2.5$는 넣을 수 없다",
+            "$\\square$에 $2.5$를 넣으면 안 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "하나씩 세는 양이라 $0$이나 자연수만 들어간다",
+            "$2.5$대는 없으므로 $0$ 또는 자연수만 가능하다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "없다",
+            "없고"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc26",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$대, $6$개를 넣으면 $6\\times3=18\\ne2$이므로 맞지 않는다",
+            "대입하면 식이 성립하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square\\times3=\\triangle$",
+            "$3\\times\\square=\\triangle$",
+            "$\\triangle\\div3=\\square$",
+            "$\\triangle=\\square\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 기호가 나타내는 양을 다시 확인한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "㉠",
+            "$\\square\\times3=\\triangle$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc27",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\square+7=\\triangle$",
+            "$7+\\square=\\triangle$",
+            "$\\triangle-7=\\square$",
+            "$\\triangle=\\square+7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "일주일은 $7$일이라 같은 요일이 $7$일마다 돌아온다"
+          ]
+        },
+        {
+          "anyOf": [
+            "달이 바뀌면 날짜가 $1$부터 다시 시작한다",
+            "다음 달로 넘어가면 날짜가 다시 시작해 식이 맞지 않는다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$ 크다",
+            "$7$만큼 크다",
+            "$7$ 많다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-3-3-xc28",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\square\\times3=\\triangle$",
+            "$3\\times\\square=\\triangle$",
+            "$\\triangle\\div3=\\square$",
+            "$\\triangle=\\square\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$층에서 $5$층까지 올라간 층수는 $4$층이다",
+            "$4$층을 올라간다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\,\\mathrm{m}$",
+            "$4\\times3=12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ]
+    }
+  ]
+}

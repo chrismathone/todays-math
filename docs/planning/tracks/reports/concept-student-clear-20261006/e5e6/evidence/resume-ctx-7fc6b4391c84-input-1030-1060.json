@@ -1,0 +1,3106 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:09:38.125027+00:00",
+  "rows": [
+    {
+      "id": "e5-1-6-5-xc6",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "넓이에 필요한 길이는 c1과 c7의 방법 설명에서 이미 확인한다.",
+      "bReason": "'넓이에 필요한 길이 고르기'는 편집용 제목이고, 답이 c1·c7의 답 일부와 같다.",
+      "cDecision": "revise",
+      "cAfter": "마름모의 넓이는 두 {대각선}의 길이로, 사다리꼴의 넓이는 윗변, 아랫변과 {높이}로 구할 수 있다.",
+      "cReason": "두 도형을 대비하는 짧은 문장은 쓸모가 있어 사다리꼴 쪽에도 빈칸 하나를 두었다.",
+      "exclusionReason": "B만 제외. 대체: e5-1-6-5-c1, e5-1-6-5-c7.",
+      "exampleNeeded": false,
+      "sourceIndex": 1030,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc6",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "넓이에 필요한 길이 고르기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "마름모는 {대각선}의 길이로, 사다리꼴은 두 밑변과 높이로 넓이를 구한다.",
+        "studentC": "마름모는 □의 길이로, 사다리꼴은 두 밑변과 높이로 넓이를 구한다.",
+        "answers": [
+          "대각선"
+        ]
+      },
+      "sourceFingerprint": "7c0a00263840334721102d698fe6231c377e673ec4509d8a8a947fd086b55ffb",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "대각선",
+        "높이"
+      ],
+      "cStudentAfter": "마름모의 넓이는 두 □의 길이로, 사다리꼴의 넓이는 윗변, 아랫변과 □로 구할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대각선"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "마름모의 넓이는 두 {대각선}의 길이로, 사다리꼴의 넓이는 윗변, 아랫변과 {높이}로 구할 수 있다.",
+      "cStudentSentence": "마름모의 넓이는 두 □의 길이로, 사다리꼴의 넓이는 윗변, 아랫변과 □로 구할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "대각선",
+          "equivalents": []
+        },
+        {
+          "key": "높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "마름모의 넓이는 두 {대각선}의 길이로, 사다리꼴의 넓이는 윗변, 아랫변과 {높이}로 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "대각선"
+          ],
+          [
+            "높이"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 대체: e5-1-6-5-c1, e5-1-6-5-c7."
+      },
+      "proposalFingerprint": "4de5d9bed5f362ab95763e0cfa1cb436e71270f8b6f0f0b91547e3c0b2719ce0",
+      "questionRevision": "planning-e5e6-20261006-4de5d9bed5f3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc7",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "마름모의 넓이와 한 대각선의 길이를 알 때 다른 대각선의 길이를 구하는 방법을 설명하고, 넓이가 $30\\,\\mathrm{cm} ^2$, 한 대각선이 $10\\,\\mathrm{cm}$인 마름모의 다른 대각선의 길이를 구하시오.",
+      "bAnswer": "넓이에 $2$를 곱하면 두 대각선의 곱이 되므로, 그 값을 아는 대각선의 길이로 나눈다. $30 \\times 2 \\div 10 = 6$($\\mathrm{cm}$)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이에 $2$를 곱한 뒤 아는 대각선으로 나눈다",
+            "넓이$\\times 2 \\div$(한 대각선)",
+            "두 대각선의 곱은 넓이의 $2$배이므로 그것을 한 대각선으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\,\\mathrm{cm}$",
+            "$6$"
+          ]
+        }
+      ],
+      "bGoal": "넓이에서 거꾸로 대각선의 길이를 구한다.",
+      "bReason": "원문 예의 수를 써서 방법과 값을 함께 답하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $30\\,\\mathrm{cm} ^2$이고 한 대각선이 $10\\,\\mathrm{cm}$인 마름모에서 두 대각선의 곱은 $30 \\times 2 =${$60$}이므로, 다른 대각선은 $60 \\div 10 =${$6$}($\\mathrm{cm}$)이다.",
+      "cReason": "'다른 대각선'은 문맥에서 바로 나오는 답이라 계산 단계를 채우게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1031,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc7",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "마름모의 넓이로 대각선 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "마름모의 넓이에 $2$를 곱한 뒤 한 대각선으로 나누면 {다른 대각선}이 된다.",
+        "example": {
+          "prompt": "넓이 $30\\,\\mathrm{cm}^2$, 한 대각선 $10\\,\\mathrm{cm}$인 마름모의 다른 대각선은?",
+          "answer": "$6\\,\\mathrm{cm}$"
+        },
+        "studentC": "마름모의 넓이에 $2$를 곱한 뒤 한 대각선으로 나누면 □이 된다.",
+        "answers": [
+          "다른 대각선"
+        ]
+      },
+      "sourceFingerprint": "f5a9ba3f55579efcab458e5f5754e34a6f60214d5970239858fbf29998e5cbb7",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$60$",
+        "$6$"
+      ],
+      "cStudentAfter": "넓이가 $30\\,\\mathrm{cm} ^2$이고 한 대각선이 $10\\,\\mathrm{cm}$인 마름모에서 두 대각선의 곱은 $30 \\times 2 =$□이므로, 다른 대각선은 $60 \\div 10 =$□($\\mathrm{cm}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "넓이가 $30\\,\\mathrm{cm} ^2$이고 한 대각선이 $10\\,\\mathrm{cm}$인 마름모에서 두 대각선의 곱은 $30 \\times 2 =${$60$}이므로, 다른 대각선은 $60 \\div 10 =${$6$}($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "넓이가 $30\\,\\mathrm{cm} ^2$이고 한 대각선이 $10\\,\\mathrm{cm}$인 마름모에서 두 대각선의 곱은 $30 \\times 2 =$□이므로, 다른 대각선은 $60 \\div 10 =$□($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$60$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "마름모의 넓이와 한 대각선의 길이를 알 때 다른 대각선의 길이를 구하는 방법을 설명하고, 넓이가 $30\\,\\mathrm{cm} ^2$, 한 대각선이 $10\\,\\mathrm{cm}$인 마름모의 다른 대각선의 길이를 구하시오.",
+        "answer": "넓이에 $2$를 곱하면 두 대각선의 곱이 되므로, 그 값을 아는 대각선의 길이로 나눈다. $30 \\times 2 \\div 10 = 6$($\\mathrm{cm}$)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이에 $2$를 곱한 뒤 아는 대각선으로 나눈다",
+              "넓이$\\times 2 \\div$(한 대각선)",
+              "두 대각선의 곱은 넓이의 $2$배이므로 그것을 한 대각선으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\,\\mathrm{cm}$",
+              "$6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $30\\,\\mathrm{cm} ^2$이고 한 대각선이 $10\\,\\mathrm{cm}$인 마름모에서 두 대각선의 곱은 $30 \\times 2 =${$60$}이므로, 다른 대각선은 $60 \\div 10 =${$6$}($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$60$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9aca4d693cd30346b86c413c9eba99f9445f5140092993180ab2c3a45b977a00",
+      "questionRevision": "planning-e5e6-20261006-9aca4d693cd3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc8",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "사다리꼴의 넓이, 윗변, 아랫변을 알 때 높이를 구하는 방법을 설명하고, 넓이가 $40\\,\\mathrm{cm} ^2$, 윗변이 $3\\,\\mathrm{cm}$, 아랫변이 $7\\,\\mathrm{cm}$인 사다리꼴의 높이를 구하시오.",
+      "bAnswer": "넓이에 $2$를 곱한 뒤 윗변과 아랫변의 합으로 나눈다. $40 \\times 2 \\div$($3 + 7$)$= 8$($\\mathrm{cm}$)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이에 $2$를 곱한 뒤 두 밑변의 합으로 나눈다",
+            "넓이$\\times 2 \\div$(윗변$+$아랫변)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\,\\mathrm{cm}$",
+            "$8$"
+          ]
+        }
+      ],
+      "bGoal": "넓이에서 거꾸로 사다리꼴의 높이를 구한다.",
+      "bReason": "원문 예를 붙여 방법이 실제 계산으로 이어지게 했다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $40\\,\\mathrm{cm} ^2$, 윗변이 $3\\,\\mathrm{cm}$, 아랫변이 $7\\,\\mathrm{cm}$인 사다리꼴의 높이는 $40 \\times${$2$}$\\div$($3 + 7$)$=${$8$}($\\mathrm{cm}$)이다.",
+      "cReason": "'두 밑변의 합으로'라는 구절 암기 대신 식의 수와 결과를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1032,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc8",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "사다리꼴의 넓이로 높이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "사다리꼴의 넓이에 $2$를 곱한 뒤 {두 밑변의 합으로} 나누면 높이가 된다.",
+        "example": {
+          "prompt": "넓이 $40\\,\\mathrm{cm}^2$, 윗변 $3\\,\\mathrm{cm}$, 아랫변 $7\\,\\mathrm{cm}$인 사다리꼴의 높이는?",
+          "answer": "$8\\,\\mathrm{cm}$"
+        },
+        "studentC": "사다리꼴의 넓이에 $2$를 곱한 뒤 □ 나누면 높이가 된다.",
+        "answers": [
+          "두 밑변의 합으로"
+        ]
+      },
+      "sourceFingerprint": "d15ef2539ab68e901294c732ba7c10e7a7d0dce8de95c712883ba57bcfbd6fe4",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$8$"
+      ],
+      "cStudentAfter": "넓이가 $40\\,\\mathrm{cm} ^2$, 윗변이 $3\\,\\mathrm{cm}$, 아랫변이 $7\\,\\mathrm{cm}$인 사다리꼴의 높이는 $40 \\times$□$\\div$($3 + 7$)$=$□($\\mathrm{cm}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "넓이가 $40\\,\\mathrm{cm} ^2$, 윗변이 $3\\,\\mathrm{cm}$, 아랫변이 $7\\,\\mathrm{cm}$인 사다리꼴의 높이는 $40 \\times${$2$}$\\div$($3 + 7$)$=${$8$}($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "넓이가 $40\\,\\mathrm{cm} ^2$, 윗변이 $3\\,\\mathrm{cm}$, 아랫변이 $7\\,\\mathrm{cm}$인 사다리꼴의 높이는 $40 \\times$□$\\div$($3 + 7$)$=$□($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사다리꼴의 넓이, 윗변, 아랫변을 알 때 높이를 구하는 방법을 설명하고, 넓이가 $40\\,\\mathrm{cm} ^2$, 윗변이 $3\\,\\mathrm{cm}$, 아랫변이 $7\\,\\mathrm{cm}$인 사다리꼴의 높이를 구하시오.",
+        "answer": "넓이에 $2$를 곱한 뒤 윗변과 아랫변의 합으로 나눈다. $40 \\times 2 \\div$($3 + 7$)$= 8$($\\mathrm{cm}$)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이에 $2$를 곱한 뒤 두 밑변의 합으로 나눈다",
+              "넓이$\\times 2 \\div$(윗변$+$아랫변)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$",
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $40\\,\\mathrm{cm} ^2$, 윗변이 $3\\,\\mathrm{cm}$, 아랫변이 $7\\,\\mathrm{cm}$인 사다리꼴의 높이는 $40 \\times${$2$}$\\div$($3 + 7$)$=${$8$}($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c2c458ce70249536a3367edf308bc48693be4c694cc1235cae0c349355dbdf54",
+      "questionRevision": "planning-e5e6-20261006-c2c458ce7024",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc9",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "윗변과 아랫변을 더하는 순서는 넓이에 영향이 없다는 점은 따로 평가하지 않는다.",
+      "bReason": "덧셈 순서를 바꾸어도 합이 같다는 저학년 내용이라 서술할 거리가 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'바꾸어 넣어도'는 문장을 완성하는 어절일 뿐 수학 내용을 확인하지 못한다.",
+      "exclusionReason": "자명한 문장이다. 사다리꼴의 넓이 방법은 e5-1-6-5-c7이 다룬다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1033,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc9",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "윗변과 아랫변을 바꾸어도 같은 넓이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사다리꼴의 넓이는 윗변과 아랫변을 {바꾸어 넣어도} 같다.",
+        "studentC": "사다리꼴의 넓이는 윗변과 아랫변을 □ 같다.",
+        "answers": [
+          "바꾸어 넣어도"
+        ]
+      },
+      "sourceFingerprint": "d1abddbbe395550649d1f06dbe1b750c4d98770d92631a3b71b7de06ce50a389",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "자명한 문장이다. 사다리꼴의 넓이 방법은 e5-1-6-5-c7이 다룬다.",
+        "cloze": "자명한 문장이다. 사다리꼴의 넓이 방법은 e5-1-6-5-c7이 다룬다."
+      },
+      "proposalFingerprint": "ac73a27b26c70ac78b3bb220ae33cb188cec7cff92320343d7037af3b6cc748a",
+      "questionRevision": "planning-e5e6-20261006-ac73a27b26c7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc10",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정사각형의 넓이를 대각선의 길이로 구할 수 있는 까닭을 정사각형과 마름모의 관계로 설명하고, 한 대각선이 $6\\,\\mathrm{cm}$인 정사각형의 넓이를 구하시오.",
+      "bAnswer": "정사각형은 네 변의 길이가 모두 같아 마름모이기도 하므로 두 대각선의 곱을 $2$로 나누어 넓이를 구할 수 있다. 두 대각선이 모두 $6\\,\\mathrm{cm}$이므로 $6 \\times 6 \\div 2 = 18$($\\mathrm{cm} ^2$)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형은 마름모이다",
+            "정사각형은 네 변의 길이가 같아 마름모라고 할 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18\\,\\mathrm{cm} ^2$",
+            "$18$"
+          ]
+        }
+      ],
+      "bGoal": "정사각형이 마름모임을 근거로 대각선으로 넓이를 구한다.",
+      "bReason": "설명할 관계(정사각형과 마름모)를 지정하고 원문 예의 수로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형은 네 변의 길이가 모두 같으므로 {마름모}이기도 하다. 그래서 한 대각선이 $6\\,\\mathrm{cm}$인 정사각형의 넓이는 $6 \\times 6 \\div 2 =${$18$}($\\mathrm{cm} ^2$)이다.",
+      "cReason": "'두 대각선의 곱'은 바로 뒤 '÷2'에서 유도되는 구절이라 관계와 계산값을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1034,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc10",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "정사각형을 마름모로 보기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형은 네 변이 같아 마름모이므로 {두 대각선의 곱}$\\div2$로도 넓이를 구할 수 있다.",
+        "example": {
+          "prompt": "대각선이 $6\\,\\mathrm{cm}$인 정사각형의 넓이는?",
+          "answer": "$18\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "정사각형은 네 변이 같아 마름모이므로 □$\\div2$로도 넓이를 구할 수 있다.",
+        "answers": [
+          "두 대각선의 곱"
+        ]
+      },
+      "sourceFingerprint": "f72dba53632226e5c0263b06a17cc7d4526e1c3f7912aa12d735972134e2dc0f",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "마름모",
+        "$18$"
+      ],
+      "cStudentAfter": "정사각형은 네 변의 길이가 모두 같으므로 □이기도 하다. 그래서 한 대각선이 $6\\,\\mathrm{cm}$인 정사각형의 넓이는 $6 \\times 6 \\div 2 =$□($\\mathrm{cm} ^2$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "마름모"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정사각형은 네 변의 길이가 모두 같으므로 {마름모}이기도 하다. 그래서 한 대각선이 $6\\,\\mathrm{cm}$인 정사각형의 넓이는 $6 \\times 6 \\div 2 =${$18$}($\\mathrm{cm} ^2$)이다.",
+      "cStudentSentence": "정사각형은 네 변의 길이가 모두 같으므로 □이기도 하다. 그래서 한 대각선이 $6\\,\\mathrm{cm}$인 정사각형의 넓이는 $6 \\times 6 \\div 2 =$□($\\mathrm{cm} ^2$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "마름모",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형의 넓이를 대각선의 길이로 구할 수 있는 까닭을 정사각형과 마름모의 관계로 설명하고, 한 대각선이 $6\\,\\mathrm{cm}$인 정사각형의 넓이를 구하시오.",
+        "answer": "정사각형은 네 변의 길이가 모두 같아 마름모이기도 하므로 두 대각선의 곱을 $2$로 나누어 넓이를 구할 수 있다. 두 대각선이 모두 $6\\,\\mathrm{cm}$이므로 $6 \\times 6 \\div 2 = 18$($\\mathrm{cm} ^2$)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형은 마름모이다",
+              "정사각형은 네 변의 길이가 같아 마름모라고 할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18\\,\\mathrm{cm} ^2$",
+              "$18$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형은 네 변의 길이가 모두 같으므로 {마름모}이기도 하다. 그래서 한 대각선이 $6\\,\\mathrm{cm}$인 정사각형의 넓이는 $6 \\times 6 \\div 2 =${$18$}($\\mathrm{cm} ^2$)이다.",
+        "acceptedAnswers": [
+          [
+            "마름모"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "458da6d2cdc3377a0e17a28b47fb748c20ce37bdf0997d29cad3a21a5e6aa829",
+      "questionRevision": "planning-e5e6-20261006-458da6d2cdc3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대각선이 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모의 넓이를 $8 \\times 6 = 48$($\\mathrm{cm} ^2$)라고 구했다. 무엇이 잘못되었는지 쓰고 바른 넓이를 구하시오.",
+      "bAnswer": "두 대각선의 곱은 마름모 넓이의 $2$배이므로 $2$로 나누어야 한다. 바른 넓이는 $8 \\times 6 \\div 2 = 24$($\\mathrm{cm} ^2$)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$로 나누지 않았다",
+            "두 대각선의 곱은 마름모 넓이의 $2$배이다",
+            "곱한 값의 절반이 넓이이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24\\,\\mathrm{cm} ^2$",
+            "$24$"
+          ]
+        }
+      ],
+      "bGoal": "마름모의 넓이에서 2로 나누기를 빠뜨린 잘못을 찾아 고친다.",
+      "bReason": "제목이 답을 말해 버리므로 잘못된 풀이를 보여 주고 스스로 찾게 했다.",
+      "cDecision": "keep",
+      "cAfter": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 {$2$배}가 되는 잘못이다.",
+      "cReason": "두 대각선의 곱이 바른 넓이의 몇 배인지 짧게 답하는 문장이라 그대로 쓸 만하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1035,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc11",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "마름모 넓이에서 $2$로 나누기를 빠뜨리는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 {$2$배}가 되는 잘못이다.",
+        "studentC": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 □가 되는 잘못이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "679c7ca11f78b4ed3af380f70e9a9d188af29eb966b7760554a072852f153961",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cFrozenDefinition": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 {$2$배}가 되는 잘못이다.",
+      "cFrozenStudentSentence": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 □가 되는 잘못이다.",
+      "cProposedAnswers": [
+        "$2$배"
+      ],
+      "cStudentAfter": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 □가 되는 잘못이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 {$2$배}가 되는 잘못이다.",
+      "cStudentSentence": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 □가 되는 잘못이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대각선이 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모의 넓이를 $8 \\times 6 = 48$($\\mathrm{cm} ^2$)라고 구했다. 무엇이 잘못되었는지 쓰고 바른 넓이를 구하시오.",
+        "answer": "두 대각선의 곱은 마름모 넓이의 $2$배이므로 $2$로 나누어야 한다. 바른 넓이는 $8 \\times 6 \\div 2 = 24$($\\mathrm{cm} ^2$)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$로 나누지 않았다",
+              "두 대각선의 곱은 마름모 넓이의 $2$배이다",
+              "곱한 값의 절반이 넓이이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24\\,\\mathrm{cm} ^2$",
+              "$24$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "마름모의 넓이를 두 대각선의 곱으로만 구하면 바른 넓이의 {$2$배}가 되는 잘못이다.",
+        "acceptedAnswers": [
+          [
+            "$2$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "40abee7ef4a0986e591248e820ebc24131f293880b7b0ac0b7457021d4d74b3d",
+      "questionRevision": "planning-e5e6-20261006-40abee7ef4a0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc12",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대각선으로 나눈 두 삼각형의 밑변과 높이는 xc15에서 함께 설명한다.",
+      "bReason": "xc15의 질문이 나누는 방법과 두 삼각형의 밑변·높이를 모두 물어 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "사다리꼴을 대각선 하나로 나누면 삼각형 {$2$}개가 되고, 두 삼각형의 밑변을 각각 윗변과 아랫변으로 보면 두 삼각형의 {높이}는 서로 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이"
+          ]
+        }
+      ],
+      "cReason": "두 삼각형의 높이가 같다는 핵심을 빈칸으로 옮겼다.",
+      "exclusionReason": "B만 제외. 대체: e5-1-6-5-xc15.",
+      "exampleNeeded": false,
+      "sourceIndex": 1036,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc12",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "사다리꼴을 두 삼각형으로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "사다리꼴을 {대각선으로} 나누면 밑변이 윗변과 아랫변이고 높이가 같은 두 삼각형이 된다.",
+        "studentC": "사다리꼴을 □ 나누면 밑변이 윗변과 아랫변이고 높이가 같은 두 삼각형이 된다.",
+        "answers": [
+          "대각선으로"
+        ]
+      },
+      "sourceFingerprint": "92dc747191bfd3e290b7f76fecdfbfe08f132311dbfe513f0b0d2b792c33ab9b",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "높이"
+      ],
+      "cStudentAfter": "사다리꼴을 대각선 하나로 나누면 삼각형 □개가 되고, 두 삼각형의 밑변을 각각 윗변과 아랫변으로 보면 두 삼각형의 □는 서로 같다.",
+      "cMarkedSentence": "사다리꼴을 대각선 하나로 나누면 삼각형 {$2$}개가 되고, 두 삼각형의 밑변을 각각 윗변과 아랫변으로 보면 두 삼각형의 {높이}는 서로 같다.",
+      "cStudentSentence": "사다리꼴을 대각선 하나로 나누면 삼각형 □개가 되고, 두 삼각형의 밑변을 각각 윗변과 아랫변으로 보면 두 삼각형의 □는 서로 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        },
+        {
+          "key": "높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "사다리꼴을 대각선 하나로 나누면 삼각형 {$2$}개가 되고, 두 삼각형의 밑변을 각각 윗변과 아랫변으로 보면 두 삼각형의 {높이}는 서로 같다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ],
+          [
+            "높이"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 대체: e5-1-6-5-xc15."
+      },
+      "proposalFingerprint": "409646870351f098901f413009a285b548bf3731739c2a43c8eaf23ae3997905",
+      "questionRevision": "planning-e5e6-20261006-409646870351",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc13",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "마름모를 두 대각선으로 나누면 어떤 삼각형이 몇 개 생기는가? 이 삼각형들의 모양과 크기를 서로 비교하여 쓰시오.",
+      "bAnswer": "직각삼각형이 $4$개 생기고, 네 삼각형은 모양과 크기가 모두 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직각삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$개",
+            "네 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "모양과 크기가 모두 같다",
+            "서로 합동이다",
+            "넓이가 모두 같다"
+          ]
+        }
+      ],
+      "bGoal": "마름모가 두 대각선으로 같은 직각삼각형 4개로 나뉨을 말한다.",
+      "bReason": "삼각형의 종류, 개수, 크기 비교로 답의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "마름모를 두 대각선으로 나누면 모양과 크기가 같은 {직각}삼각형 {$4$}개가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직각"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        }
+      ],
+      "cReason": "'직각삼각형 네 개'라는 한 덩어리 빈칸을 종류와 개수로 나누었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1037,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc13",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "마름모를 네 삼각형으로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "마름모를 두 대각선으로 나누면 크기가 같은 {직각삼각형 네 개}가 된다.",
+        "studentC": "마름모를 두 대각선으로 나누면 크기가 같은 □가 된다.",
+        "answers": [
+          "직각삼각형 네 개"
+        ]
+      },
+      "sourceFingerprint": "108dadda0e61a178f7ff047ca908b7962f82987600e911ee8b1cc8e553449e27",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "직각",
+        "$4$"
+      ],
+      "cStudentAfter": "마름모를 두 대각선으로 나누면 모양과 크기가 같은 □삼각형 □개가 된다.",
+      "cMarkedSentence": "마름모를 두 대각선으로 나누면 모양과 크기가 같은 {직각}삼각형 {$4$}개가 된다.",
+      "cStudentSentence": "마름모를 두 대각선으로 나누면 모양과 크기가 같은 □삼각형 □개가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "직각",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": [
+            "네"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "마름모를 두 대각선으로 나누면 어떤 삼각형이 몇 개 생기는가? 이 삼각형들의 모양과 크기를 서로 비교하여 쓰시오.",
+        "answer": "직각삼각형이 $4$개 생기고, 네 삼각형은 모양과 크기가 모두 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$개",
+              "네 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "모양과 크기가 모두 같다",
+              "서로 합동이다",
+              "넓이가 모두 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "마름모를 두 대각선으로 나누면 모양과 크기가 같은 {직각}삼각형 {$4$}개가 된다.",
+        "acceptedAnswers": [
+          [
+            "직각"
+          ],
+          [
+            "$4$",
+            "네"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bf7bb28a0f6441684ac1cd8122b6abfb498957997ddec61b5fa0d7fed8c77d20",
+      "questionRevision": "planning-e5e6-20261006-bf7bb28a0f64",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc14",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": "그림의 마름모를 둘러싼 직사각형을 보시오. 직사각형의 가로와 세로는 마름모의 어떤 길이와 각각 같은지 쓰시오. 마름모와 직사각형의 넓이가 어떤 관계인지, 그림의 삼각형들을 비교하여 설명하시오.",
+      "bAnswer": "직사각형의 가로는 마름모의 가로 방향 대각선, 세로는 세로 방향 대각선의 길이와 같다. 직사각형 안의 같은 크기 직각삼각형 $8$개 중 마름모가 $4$개를 차지하므로, 마름모의 넓이는 직사각형 넓이의 절반이다.",
+      "bRequiredIdeas": [],
+      "bGoal": "둘러싼 직사각형의 길이와 삼각형 조각으로 마름모 넓이 공식의 까닭을 설명한다.",
+      "bReason": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다.",
+      "cDecision": "exclude",
+      "cAfter": "그림의 직사각형의 넓이는 $24\\,\\mathrm{cm}^2$이다. 안쪽 마름모의 넓이는 이 넓이의 {절반}이므로 {$12$} $\\mathrm{cm}^2$이다.",
+      "cAcceptedAnswers": [],
+      "cReason": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다.",
+      "exampleNeeded": true,
+      "exampleReason": "diagrams/e5-1-6-5-xc14-proposal.svg를 B와 C에 반드시 함께 보여야 한다. 가로 6 cm·세로 4 cm 직사각형의 각 변 한가운데를 마름모 꼭짓점으로 잡고 두 대각선을 그린다. 같은 크기 내부 4개·외부 4개 삼각형이 보이도록 대각선과 꼭짓점 접점을 표시한다. 현재 글·수식 전용 B/C에는 적용하지 않는다. 코디네이터의 2026-10-06 계약 결정에 따라 두 형식 제외이며, 이 그림 연구는 별도 지원 검토용이다.",
+      "requiredDiagramPaths": [
+        "diagrams/e5-1-6-5-xc14-proposal.svg"
+      ],
+      "diagramRequiredFor": [
+        "B",
+        "C"
+      ],
+      "editorialOwner": "Codex",
+      "codexRubricReview": "Direct deletion and copying review: only requested mathematical meanings are required; alternatives are separate strings.",
+      "diagramResearchProposal": {
+        "bPrompt": "그림의 마름모를 둘러싼 직사각형을 보시오. 직사각형의 가로와 세로는 마름모의 어떤 길이와 각각 같은지 쓰시오. 마름모와 직사각형의 넓이가 어떤 관계인지, 그림의 삼각형들을 비교하여 설명하시오.",
+        "bAnswer": "직사각형의 가로는 마름모의 가로 방향 대각선, 세로는 세로 방향 대각선의 길이와 같다. 직사각형 안의 같은 크기 직각삼각형 8개 중 마름모가 4개를 차지하므로, 마름모의 넓이는 직사각형 넓이의 절반이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형의 가로는 마름모의 가로 방향 대각선과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직사각형의 세로는 마름모의 세로 방향 대각선과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마름모는 직사각형 넓이의 절반이다",
+              "직사각형의 넓이는 마름모 넓이의 두 배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 크기 삼각형 8개 중 4개가 마름모 안에 있다",
+              "마름모 안쪽 삼각형들의 넓이의 합과 바깥쪽 삼각형들의 넓이의 합이 같다"
+            ]
+          }
+        ],
+        "cAfter": "그림의 직사각형의 넓이는 $24\\,\\mathrm{cm}^2$이다. 안쪽 마름모의 넓이는 이 넓이의 {절반}이므로 {$12$} $\\mathrm{cm}^2$이다.",
+        "cAcceptedAnswers": [
+          {
+            "anyOf": [
+              "절반",
+              "반",
+              "$\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$",
+              "12"
+            ]
+          }
+        ]
+      },
+      "exclusionReason": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다.",
+      "sourceIndex": 1038,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc14",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "마름모 넓이 공식의 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "마름모의 두 대각선과 평행한 변들로 네 꼭짓점에 꼭 맞게 둘러싼 직사각형의 넓이는 두 대각선의 곱이고, 마름모의 넓이는 그 {절반}이다.",
+        "studentC": "마름모의 두 대각선과 평행한 변들로 네 꼭짓점에 꼭 맞게 둘러싼 직사각형의 넓이는 두 대각선의 곱이고, 마름모의 넓이는 그 □이다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "sourceFingerprint": "fb19d30f9df86f74672aa0c7be91f3c55d51a6fc731bd55e06b6192bb49055fd",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다.",
+        "cloze": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다."
+      },
+      "proposalFingerprint": "f92865c04067f5ea6051511591c398817ce9fbfcc5b6bf640e61ef57ad0df197",
+      "questionRevision": "planning-e5e6-20261006-f92865c04067",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc15",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "사다리꼴에 대각선 하나를 그어 두 삼각형으로 나누었다. 두 삼각형의 밑변과 높이는 각각 사다리꼴의 어떤 길이인지 쓰고, 이것으로 사다리꼴의 넓이를 구하는 방법을 설명하시오.",
+      "bAnswer": "한 삼각형의 밑변은 윗변, 다른 삼각형의 밑변은 아랫변이고, 두 삼각형의 높이는 모두 사다리꼴의 높이이다. 그래서 넓이는 (윗변)$\\times$(높이)$\\div 2$와 (아랫변)$\\times$(높이)$\\div 2$를 더한 값이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 삼각형의 밑변은 윗변과 아랫변이다",
+            "한 삼각형의 밑변은 윗변, 다른 삼각형의 밑변은 아랫변"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 삼각형의 높이는 사다리꼴의 높이와 같다",
+            "높이는 둘 다 사다리꼴의 높이"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 삼각형의 넓이를 더한다",
+            "(윗변)$\\times$(높이)$\\div 2 +$(아랫변)$\\times$(높이)$\\div 2$",
+            "(윗변$+$아랫변)$\\times$(높이)$\\div 2$"
+          ]
+        }
+      ],
+      "bGoal": "두 삼각형의 넓이의 합으로 사다리꼴의 넓이를 설명한다.",
+      "bReason": "xc12의 나누기와 이 행의 넓이 합을 한 질문으로 묶었다.",
+      "cDecision": "revise",
+      "cAfter": "윗변 $3\\,\\mathrm{cm}$, 아랫변 $7\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 사다리꼴을 대각선으로 나눈 두 삼각형의 넓이는 $3 \\times 4 \\div 2 =${$6$}($\\mathrm{cm} ^2$)와 $7 \\times 4 \\div 2 =${$14$}($\\mathrm{cm} ^2$)이고, 사다리꼴의 넓이는 그 합인 {$20$} $\\mathrm{cm} ^2$이다.",
+      "cReason": "식 전체를 빈칸에 쓰게 하면 바로 앞 식을 베끼게 되어 수로 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1039,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc15",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "삼각형으로 보는 사다리꼴 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "사다리꼴을 두 삼각형으로 나누면 넓이는 (윗변)$\\times$(높이)$\\div2$와 {(아랫변)$\\times$(높이)$\\div2$}의 합이다.",
+        "studentC": "사다리꼴을 두 삼각형으로 나누면 넓이는 (윗변)$\\times$(높이)$\\div2$와 □의 합이다.",
+        "answers": [
+          "(아랫변)$\\times$(높이)$\\div2$"
+        ]
+      },
+      "sourceFingerprint": "44e75cce28e2f5845227fcfe59eb1a4bc98d6bb35d5fc861e9ec578d25825567",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$14$",
+        "$20$"
+      ],
+      "cStudentAfter": "윗변 $3\\,\\mathrm{cm}$, 아랫변 $7\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 사다리꼴을 대각선으로 나눈 두 삼각형의 넓이는 $3 \\times 4 \\div 2 =$□($\\mathrm{cm} ^2$)와 $7 \\times 4 \\div 2 =$□($\\mathrm{cm} ^2$)이고, 사다리꼴의 넓이는 그 합인 □ $\\mathrm{cm} ^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "윗변 $3\\,\\mathrm{cm}$, 아랫변 $7\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 사다리꼴을 대각선으로 나눈 두 삼각형의 넓이는 $3 \\times 4 \\div 2 =${$6$}($\\mathrm{cm} ^2$)와 $7 \\times 4 \\div 2 =${$14$}($\\mathrm{cm} ^2$)이고, 사다리꼴의 넓이는 그 합인 {$20$} $\\mathrm{cm} ^2$이다.",
+      "cStudentSentence": "윗변 $3\\,\\mathrm{cm}$, 아랫변 $7\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 사다리꼴을 대각선으로 나눈 두 삼각형의 넓이는 $3 \\times 4 \\div 2 =$□($\\mathrm{cm} ^2$)와 $7 \\times 4 \\div 2 =$□($\\mathrm{cm} ^2$)이고, 사다리꼴의 넓이는 그 합인 □ $\\mathrm{cm} ^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$14$",
+          "equivalents": []
+        },
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사다리꼴에 대각선 하나를 그어 두 삼각형으로 나누었다. 두 삼각형의 밑변과 높이는 각각 사다리꼴의 어떤 길이인지 쓰고, 이것으로 사다리꼴의 넓이를 구하는 방법을 설명하시오.",
+        "answer": "한 삼각형의 밑변은 윗변, 다른 삼각형의 밑변은 아랫변이고, 두 삼각형의 높이는 모두 사다리꼴의 높이이다. 그래서 넓이는 (윗변)$\\times$(높이)$\\div 2$와 (아랫변)$\\times$(높이)$\\div 2$를 더한 값이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 삼각형의 밑변은 윗변과 아랫변이다",
+              "한 삼각형의 밑변은 윗변, 다른 삼각형의 밑변은 아랫변"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 삼각형의 높이는 사다리꼴의 높이와 같다",
+              "높이는 둘 다 사다리꼴의 높이"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 삼각형의 넓이를 더한다",
+              "(윗변)$\\times$(높이)$\\div 2 +$(아랫변)$\\times$(높이)$\\div 2$",
+              "(윗변$+$아랫변)$\\times$(높이)$\\div 2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "윗변 $3\\,\\mathrm{cm}$, 아랫변 $7\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 사다리꼴을 대각선으로 나눈 두 삼각형의 넓이는 $3 \\times 4 \\div 2 =${$6$}($\\mathrm{cm} ^2$)와 $7 \\times 4 \\div 2 =${$14$}($\\mathrm{cm} ^2$)이고, 사다리꼴의 넓이는 그 합인 {$20$} $\\mathrm{cm} ^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$14$"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3f278bc144f65df42d2b90e5a0cda090f507df9a19eaf3789b71319ab0f7ae77",
+      "questionRevision": "planning-e5e6-20261006-3f278bc144f6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "평행사변형을 윗변과 아랫변의 길이가 같은 사다리꼴로 보고 사다리꼴의 넓이 구하는 방법을 쓰면, 평행사변형의 넓이 구하는 방법과 어떤 관계가 되는지 식으로 설명하시오.",
+      "bAnswer": "(밑변$+$밑변)$\\times$(높이)$\\div 2$는 (밑변)$\\times 2 \\times$(높이)$\\div 2$이므로 (밑변)$\\times$(높이)가 되어 평행사변형의 넓이 구하는 방법과 같아진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "윗변과 아랫변 자리에 모두 밑변을 넣는다",
+            "(밑변$+$밑변)$\\times$(높이)$\\div 2$",
+            "두 밑변의 합이 밑변의 $2$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "(밑변)$\\times$(높이)와 같아진다",
+            "평행사변형의 넓이 구하는 방법과 같다"
+          ]
+        }
+      ],
+      "bGoal": "사다리꼴의 넓이 식이 평행사변형의 경우 (밑변)×(높이)가 됨을 보인다.",
+      "bReason": "결론 식을 질문에 쓰지 않고 두 방법의 관계를 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "밑변 $5\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 평행사변형을 윗변과 아랫변이 모두 $5\\,\\mathrm{cm}$인 사다리꼴로 보면 넓이는 ($5 + 5$)$\\times 4 \\div 2 =${$20$}($\\mathrm{cm} ^2$)이고, 이는 (밑변)$\\times$({높이})로 구한 값과 같다.",
+      "cReason": "'(밑변)×(높이)' 식 전체를 쓰는 빈칸은 부담이 커 수로 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1040,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc16",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "평행사변형과 사다리꼴 공식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형을 윗변과 아랫변이 같은 사다리꼴로 보면 공식이 {(밑변)$\\times$(높이)}와 같아진다.",
+        "studentC": "평행사변형을 윗변과 아랫변이 같은 사다리꼴로 보면 공식이 □와 같아진다.",
+        "answers": [
+          "(밑변)$\\times$(높이)"
+        ]
+      },
+      "sourceFingerprint": "e68bae15f2b26dc718091596b119570f5f37cc44eabf93cb50eee0f7816351ca",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$20$",
+        "높이"
+      ],
+      "cStudentAfter": "밑변 $5\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 평행사변형을 윗변과 아랫변이 모두 $5\\,\\mathrm{cm}$인 사다리꼴로 보면 넓이는 ($5 + 5$)$\\times 4 \\div 2 =$□($\\mathrm{cm} ^2$)이고, 이는 (밑변)$\\times$(□)로 구한 값과 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑변 $5\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 평행사변형을 윗변과 아랫변이 모두 $5\\,\\mathrm{cm}$인 사다리꼴로 보면 넓이는 ($5 + 5$)$\\times 4 \\div 2 =${$20$}($\\mathrm{cm} ^2$)이고, 이는 (밑변)$\\times$({높이})로 구한 값과 같다.",
+      "cStudentSentence": "밑변 $5\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 평행사변형을 윗변과 아랫변이 모두 $5\\,\\mathrm{cm}$인 사다리꼴로 보면 넓이는 ($5 + 5$)$\\times 4 \\div 2 =$□($\\mathrm{cm} ^2$)이고, 이는 (밑변)$\\times$(□)로 구한 값과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        },
+        {
+          "key": "높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평행사변형을 윗변과 아랫변의 길이가 같은 사다리꼴로 보고 사다리꼴의 넓이 구하는 방법을 쓰면, 평행사변형의 넓이 구하는 방법과 어떤 관계가 되는지 식으로 설명하시오.",
+        "answer": "(밑변$+$밑변)$\\times$(높이)$\\div 2$는 (밑변)$\\times 2 \\times$(높이)$\\div 2$이므로 (밑변)$\\times$(높이)가 되어 평행사변형의 넓이 구하는 방법과 같아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "윗변과 아랫변 자리에 모두 밑변을 넣는다",
+              "(밑변$+$밑변)$\\times$(높이)$\\div 2$",
+              "두 밑변의 합이 밑변의 $2$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "(밑변)$\\times$(높이)와 같아진다",
+              "평행사변형의 넓이 구하는 방법과 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑변 $5\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 평행사변형을 윗변과 아랫변이 모두 $5\\,\\mathrm{cm}$인 사다리꼴로 보면 넓이는 ($5 + 5$)$\\times 4 \\div 2 =${$20$}($\\mathrm{cm} ^2$)이고, 이는 (밑변)$\\times$({높이})로 구한 값과 같다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ],
+          [
+            "높이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5800812c97da2b7b15ccfb7397bd6bb56432f6ddbdcfc024eb78d354fd6a44c6",
+      "questionRevision": "planning-e5e6-20261006-5800812c97da",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc17",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "사다리꼴의 윗변이 점점 짧아져 한 점이 되면 어떤 도형이 되는가? 이때 사다리꼴의 넓이 구하는 식에서 윗변을 $0$으로 놓으면 어떤 식이 되는지 쓰시오.",
+      "bAnswer": "삼각형이 된다. ($0 +$아랫변)$\\times$(높이)$\\div 2$는 (아랫변)$\\times$(높이)$\\div 2$이므로 삼각형의 넓이 (밑변)$\\times$(높이)$\\div 2$와 같은 식이 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "(아랫변)$\\times$(높이)$\\div 2$",
+            "(밑변)$\\times$(높이)$\\div 2$",
+            "삼각형의 넓이 구하는 식과 같다"
+          ]
+        }
+      ],
+      "bGoal": "윗변이 0인 경우 사다리꼴의 넓이 식이 삼각형의 넓이 식이 됨을 설명한다.",
+      "bReason": "'윗변을 0으로 본다'가 갑작스러워 윗변이 한 점으로 줄어드는 상황을 먼저 제시했다.",
+      "cDecision": "revise",
+      "cAfter": "사다리꼴의 넓이 식 (윗변$+$아랫변)$\\times$(높이)$\\div 2$에서 윗변을 $0$으로 놓으면 (아랫변)$\\times$(높이)$\\div 2$가 되어 {삼각형}의 넓이를 구하는 식과 같아진다.",
+      "cReason": "'삼각형의 넓이 공식'이라는 구절 대신 도형 이름 하나를 답하게 하고 중간 식을 보여 주었다.",
+      "coreAfter": "사다리꼴의 넓이 식에서 윗변을 $0$으로 놓으면 {삼각형의 넓이 식}과 같아진다. 이는 윗변이 한 점으로 줄어든 모양을 생각한 것이다.",
+      "coreReason": "윗변이 0인 사다리꼴은 실제로는 없으므로 한 점으로 줄어든 경우라는 설명이 필요하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원문 삼각형의 넓이 공식 표적을 같은 뜻의 넓이 식으로 유지한다. 윗변0인 실제 사다리꼴이 있다고 단정하지 않고 식과 한 점으로 줄어든 모양을 구분한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1041,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc17",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "삼각형과 사다리꼴 공식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "윗변을 $0$으로 보면 사다리꼴의 넓이 공식은 {삼각형의 넓이 공식}과 같아진다.",
+        "studentC": "윗변을 $0$으로 보면 사다리꼴의 넓이 공식은 □과 같아진다.",
+        "answers": [
+          "삼각형의 넓이 공식"
+        ]
+      },
+      "sourceFingerprint": "e1ae703f11e17526af779a655133d2f367c217a5bcf3b792336deab39abbf598",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "삼각형"
+      ],
+      "cStudentAfter": "사다리꼴의 넓이 식 (윗변$+$아랫변)$\\times$(높이)$\\div 2$에서 윗변을 $0$으로 놓으면 (아랫변)$\\times$(높이)$\\div 2$가 되어 □의 넓이를 구하는 식과 같아진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "사다리꼴의 넓이 식 (윗변$+$아랫변)$\\times$(높이)$\\div 2$에서 윗변을 $0$으로 놓으면 (아랫변)$\\times$(높이)$\\div 2$가 되어 {삼각형}의 넓이를 구하는 식과 같아진다.",
+      "cStudentSentence": "사다리꼴의 넓이 식 (윗변$+$아랫변)$\\times$(높이)$\\div 2$에서 윗변을 $0$으로 놓으면 (아랫변)$\\times$(높이)$\\div 2$가 되어 □의 넓이를 구하는 식과 같아진다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사다리꼴의 윗변이 점점 짧아져 한 점이 되면 어떤 도형이 되는가? 이때 사다리꼴의 넓이 구하는 식에서 윗변을 $0$으로 놓으면 어떤 식이 되는지 쓰시오.",
+        "answer": "삼각형이 된다. ($0 +$아랫변)$\\times$(높이)$\\div 2$는 (아랫변)$\\times$(높이)$\\div 2$이므로 삼각형의 넓이 (밑변)$\\times$(높이)$\\div 2$와 같은 식이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "(아랫변)$\\times$(높이)$\\div 2$",
+              "(밑변)$\\times$(높이)$\\div 2$",
+              "삼각형의 넓이 구하는 식과 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사다리꼴의 넓이 식 (윗변$+$아랫변)$\\times$(높이)$\\div 2$에서 윗변을 $0$으로 놓으면 (아랫변)$\\times$(높이)$\\div 2$가 되어 {삼각형}의 넓이를 구하는 식과 같아진다.",
+        "acceptedAnswers": [
+          [
+            "삼각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "670a57cd87f9877c673074af9db680e4e9543db91a6ea385eb9486ba45966f15",
+      "questionRevision": "planning-e5e6-20261006-670a57cd87f9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc18",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "마름모를 잘라 붙여 넓이가 같은 직사각형으로 바꾸려고 한다. 직사각형의 세로를 한 대각선의 길이와 같게 하면 가로는 다른 대각선의 길이와 어떤 관계인지 쓰고, 두 대각선이 $8\\,\\mathrm{cm}$(가로), $6\\,\\mathrm{cm}$(세로)인 마름모로 확인하시오.",
+      "bAnswer": "가로는 다른 대각선 길이의 절반이다. 세로 $6\\,\\mathrm{cm}$, 가로 $8 \\div 2 = 4$($\\mathrm{cm}$)인 직사각형의 넓이는 $4 \\times 6 = 24$($\\mathrm{cm} ^2$)로, 마름모의 넓이 $8 \\times 6 \\div 2 = 24$($\\mathrm{cm} ^2$)와 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로는 다른 대각선의 절반이다",
+            "다른 대각선을 $2$로 나눈 길이"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로 $4\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$",
+            "$4 \\times 6 = 24$",
+            "넓이가 $24\\,\\mathrm{cm} ^2$로 같다"
+          ]
+        }
+      ],
+      "bGoal": "마름모와 넓이가 같은 직사각형의 가로·세로를 대각선과 연결한다.",
+      "bReason": "일반 관계를 먼저 묻고 구체적인 길이로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "두 대각선이 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모의 넓이는 가로가 $8\\,\\mathrm{cm}$의 절반인 {$4$} $\\mathrm{cm}$, 세로가 {$6$} $\\mathrm{cm}$인 직사각형의 넓이와 같다.",
+      "cReason": "'한 대각선의 절반'이라는 구절을 그대로 쓰게 하기보다 실제 길이를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1042,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc18",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "넓이가 같은 마름모와 직사각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "마름모의 넓이는 가로가 {한 대각선의 절반}, 세로가 다른 대각선인 직사각형의 넓이와 같다.",
+        "studentC": "마름모의 넓이는 가로가 □, 세로가 다른 대각선인 직사각형의 넓이와 같다.",
+        "answers": [
+          "한 대각선의 절반"
+        ]
+      },
+      "sourceFingerprint": "6d4f12b932a58251e98656a5476438c99882692f534cfebce92f136c4d78661b",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$6$"
+      ],
+      "cStudentAfter": "두 대각선이 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모의 넓이는 가로가 $8\\,\\mathrm{cm}$의 절반인 □ $\\mathrm{cm}$, 세로가 □ $\\mathrm{cm}$인 직사각형의 넓이와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 대각선이 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모의 넓이는 가로가 $8\\,\\mathrm{cm}$의 절반인 {$4$} $\\mathrm{cm}$, 세로가 {$6$} $\\mathrm{cm}$인 직사각형의 넓이와 같다.",
+      "cStudentSentence": "두 대각선이 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모의 넓이는 가로가 $8\\,\\mathrm{cm}$의 절반인 □ $\\mathrm{cm}$, 세로가 □ $\\mathrm{cm}$인 직사각형의 넓이와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "마름모를 잘라 붙여 넓이가 같은 직사각형으로 바꾸려고 한다. 직사각형의 세로를 한 대각선의 길이와 같게 하면 가로는 다른 대각선의 길이와 어떤 관계인지 쓰고, 두 대각선이 $8\\,\\mathrm{cm}$(가로), $6\\,\\mathrm{cm}$(세로)인 마름모로 확인하시오.",
+        "answer": "가로는 다른 대각선 길이의 절반이다. 세로 $6\\,\\mathrm{cm}$, 가로 $8 \\div 2 = 4$($\\mathrm{cm}$)인 직사각형의 넓이는 $4 \\times 6 = 24$($\\mathrm{cm} ^2$)로, 마름모의 넓이 $8 \\times 6 \\div 2 = 24$($\\mathrm{cm} ^2$)와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로는 다른 대각선의 절반이다",
+              "다른 대각선을 $2$로 나눈 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로 $4\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$",
+              "$4 \\times 6 = 24$",
+              "넓이가 $24\\,\\mathrm{cm} ^2$로 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 대각선이 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모의 넓이는 가로가 $8\\,\\mathrm{cm}$의 절반인 {$4$} $\\mathrm{cm}$, 세로가 {$6$} $\\mathrm{cm}$인 직사각형의 넓이와 같다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "29c2e34f67ecf993962fc8789574ba21d105c735a18a89e30984846490394ded",
+      "questionRevision": "planning-e5e6-20261006-29c2e34f67ec",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc19",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "사다리꼴의 넓이, 높이, 윗변을 알 때 아랫변을 구하는 순서를 설명하고, 넓이가 $36\\,\\mathrm{cm} ^2$, 높이가 $6\\,\\mathrm{cm}$, 윗변이 $4\\,\\mathrm{cm}$인 사다리꼴의 아랫변을 구하시오.",
+      "bAnswer": "넓이에 $2$를 곱해 높이로 나누면 두 밑변의 합이 되고, 거기서 윗변을 빼면 아랫변이다. $36 \\times 2 \\div 6 = 12$, $12 - 4 = 8$($\\mathrm{cm}$)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이$\\times 2 \\div$높이로 두 밑변의 합을 구한다",
+            "넓이에 $2$를 곱해 높이로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑변의 합에서 윗변을 뺀다",
+            "$12 - 4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\,\\mathrm{cm}$",
+            "$8$"
+          ]
+        }
+      ],
+      "bGoal": "넓이에서 두 밑변의 합을 구한 뒤 아랫변을 찾는다.",
+      "bReason": "두 단계가 모두 드러나도록 순서를 설명하게 하고 원문 예로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $36\\,\\mathrm{cm} ^2$, 높이가 $6\\,\\mathrm{cm}$, 윗변이 $4\\,\\mathrm{cm}$인 사다리꼴에서 두 밑변의 합은 $36 \\times 2 \\div 6 =${$12$}($\\mathrm{cm}$)이므로 아랫변은 $12 - 4 =${$8$}($\\mathrm{cm}$)이다.",
+      "cReason": "'윗변을 빼어'라는 어절보다 두 단계의 값을 채우는 편이 방법을 확인하기 좋다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1043,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc19",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "사다리꼴의 아랫변 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "넓이, 높이, 윗변을 알면 두 밑변의 합을 구한 뒤 {윗변을 빼어} 아랫변을 찾는다.",
+        "example": {
+          "prompt": "넓이 $36\\,\\mathrm{cm}^2$, 높이 $6\\,\\mathrm{cm}$, 윗변 $4\\,\\mathrm{cm}$인 사다리꼴의 아랫변은?",
+          "answer": "$8\\,\\mathrm{cm}$"
+        },
+        "studentC": "넓이, 높이, 윗변을 알면 두 밑변의 합을 구한 뒤 □ 아랫변을 찾는다.",
+        "answers": [
+          "윗변을 빼어"
+        ]
+      },
+      "sourceFingerprint": "59e84d340cc36728be26d14fea860878d0b589e774ac29add0816d622761c9db",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$8$"
+      ],
+      "cStudentAfter": "넓이가 $36\\,\\mathrm{cm} ^2$, 높이가 $6\\,\\mathrm{cm}$, 윗변이 $4\\,\\mathrm{cm}$인 사다리꼴에서 두 밑변의 합은 $36 \\times 2 \\div 6 =$□($\\mathrm{cm}$)이므로 아랫변은 $12 - 4 =$□($\\mathrm{cm}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "넓이가 $36\\,\\mathrm{cm} ^2$, 높이가 $6\\,\\mathrm{cm}$, 윗변이 $4\\,\\mathrm{cm}$인 사다리꼴에서 두 밑변의 합은 $36 \\times 2 \\div 6 =${$12$}($\\mathrm{cm}$)이므로 아랫변은 $12 - 4 =${$8$}($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "넓이가 $36\\,\\mathrm{cm} ^2$, 높이가 $6\\,\\mathrm{cm}$, 윗변이 $4\\,\\mathrm{cm}$인 사다리꼴에서 두 밑변의 합은 $36 \\times 2 \\div 6 =$□($\\mathrm{cm}$)이므로 아랫변은 $12 - 4 =$□($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사다리꼴의 넓이, 높이, 윗변을 알 때 아랫변을 구하는 순서를 설명하고, 넓이가 $36\\,\\mathrm{cm} ^2$, 높이가 $6\\,\\mathrm{cm}$, 윗변이 $4\\,\\mathrm{cm}$인 사다리꼴의 아랫변을 구하시오.",
+        "answer": "넓이에 $2$를 곱해 높이로 나누면 두 밑변의 합이 되고, 거기서 윗변을 빼면 아랫변이다. $36 \\times 2 \\div 6 = 12$, $12 - 4 = 8$($\\mathrm{cm}$)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이$\\times 2 \\div$높이로 두 밑변의 합을 구한다",
+              "넓이에 $2$를 곱해 높이로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑변의 합에서 윗변을 뺀다",
+              "$12 - 4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$",
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $36\\,\\mathrm{cm} ^2$, 높이가 $6\\,\\mathrm{cm}$, 윗변이 $4\\,\\mathrm{cm}$인 사다리꼴에서 두 밑변의 합은 $36 \\times 2 \\div 6 =${$12$}($\\mathrm{cm}$)이므로 아랫변은 $12 - 4 =${$8$}($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2a498f91a0403b5ef5be7ca80bd07cd6b7ab68e924ef693c75ab9dfa3c63b397",
+      "questionRevision": "planning-e5e6-20261006-2a498f91a040",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc20",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "넓이를 한 번에 구하기 어려운 복잡한 모양의 도형이 있다. 이 도형을 나누어 넓이를 구하는 방법을 설명하고, 나눌 때 지켜야 할 점을 쓰시오.",
+      "bAnswer": "삼각형, 직사각형, 사다리꼴처럼 넓이를 구할 수 있는 도형들로 겹치지 않게 나눈 뒤, 각 부분의 넓이를 모두 더한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이를 구할 수 있는 도형으로 나눈다",
+            "삼각형이나 사각형으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "겹치지 않게 나눈다",
+            "겹치거나 빠지는 부분이 없게 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 부분의 넓이를 더한다",
+            "나눈 도형의 넓이를 모두 합한다"
+          ]
+        }
+      ],
+      "bGoal": "복잡한 도형을 나누어 부분 넓이의 합으로 구하는 방법을 말한다.",
+      "bReason": "방법과 '겹치지 않게'라는 조건을 함께 답하도록 범위를 정했다.",
+      "cDecision": "keep",
+      "cAfter": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 {더해} 전체 넓이를 구한다.",
+      "cReason": "겹치지 않게 나눈다는 조건이 문장에 있고 빈칸은 '더해' 한 낱말이라 그대로 둔다.",
+      "exampleNeeded": false,
+      "synonymNotes": "C의 답 '더해'는 '합해', '더하여'도 같은 답이다.",
+      "sourceIndex": 1044,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc20",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "나누어 넓이 더하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 {더해} 전체 넓이를 구한다.",
+        "studentC": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 □ 전체 넓이를 구한다.",
+        "answers": [
+          "더해"
+        ]
+      },
+      "sourceFingerprint": "0b06a69826d6ee6aef911bd750cf0198ae5f8caa4cf90fe2085060d5a1f2583c",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cFrozenDefinition": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 {더해} 전체 넓이를 구한다.",
+      "cFrozenStudentSentence": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 □ 전체 넓이를 구한다.",
+      "cProposedAnswers": [
+        "더해"
+      ],
+      "cStudentAfter": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 □ 전체 넓이를 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더해"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 {더해} 전체 넓이를 구한다.",
+      "cStudentSentence": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 □ 전체 넓이를 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "더해",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "넓이를 한 번에 구하기 어려운 복잡한 모양의 도형이 있다. 이 도형을 나누어 넓이를 구하는 방법을 설명하고, 나눌 때 지켜야 할 점을 쓰시오.",
+        "answer": "삼각형, 직사각형, 사다리꼴처럼 넓이를 구할 수 있는 도형들로 겹치지 않게 나눈 뒤, 각 부분의 넓이를 모두 더한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이를 구할 수 있는 도형으로 나눈다",
+              "삼각형이나 사각형으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겹치지 않게 나눈다",
+              "겹치거나 빠지는 부분이 없게 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 부분의 넓이를 더한다",
+              "나눈 도형의 넓이를 모두 합한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "복잡한 도형을 넓이를 구할 수 있는 도형들로 겹치지 않게 나누면, 각 부분의 넓이를 모두 {더해} 전체 넓이를 구한다.",
+        "acceptedAnswers": [
+          [
+            "더해"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1f8188576936078b7149cce349f573e2185b4d8538f536dcfbc8c01e30a9e153",
+      "questionRevision": "planning-e5e6-20261006-1f8188576936",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc21",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "두 대각선의 길이가 서로 같은 마름모는 어떤 사각형인가? 이 사각형의 네 각의 크기가 어떠한지도 쓰시오.",
+      "bAnswer": "정사각형이다. 네 변의 길이가 모두 같고 네 각이 모두 직각이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 각이 모두 직각이다",
+            "네 각이 모두 $90 ^\\circ$이다",
+            "네 각의 크기가 모두 같다"
+          ]
+        }
+      ],
+      "bGoal": "두 대각선의 길이가 같은 마름모가 정사각형임을 안다.",
+      "bReason": "도형 이름만 묻지 않고 그 사각형의 각의 특징도 함께 답하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "대각선 두 개가 길이까지 같은 마름모는 {정사각형}이다.",
+      "cReason": "두 대각선의 길이가 같다는 조건이 분명하고 답이 도형 이름 하나라 그대로 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1045,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc21",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "대각선이 같은 마름모",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대각선 두 개가 길이까지 같은 마름모는 {정사각형}이다.",
+        "studentC": "대각선 두 개가 길이까지 같은 마름모는 □이다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "sourceFingerprint": "42e3eeb1211dbd7087ca245e934f6cb5e709f934e6b943bf92196ebecc516feb",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cFrozenDefinition": "대각선 두 개가 길이까지 같은 마름모는 {정사각형}이다.",
+      "cFrozenStudentSentence": "대각선 두 개가 길이까지 같은 마름모는 □이다.",
+      "cProposedAnswers": [
+        "정사각형"
+      ],
+      "cStudentAfter": "대각선 두 개가 길이까지 같은 마름모는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대각선 두 개가 길이까지 같은 마름모는 {정사각형}이다.",
+      "cStudentSentence": "대각선 두 개가 길이까지 같은 마름모는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대각선의 길이가 서로 같은 마름모는 어떤 사각형인가? 이 사각형의 네 각의 크기가 어떠한지도 쓰시오.",
+        "answer": "정사각형이다. 네 변의 길이가 모두 같고 네 각이 모두 직각이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각이 모두 직각이다",
+              "네 각이 모두 $90 ^\\circ$이다",
+              "네 각의 크기가 모두 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대각선 두 개가 길이까지 같은 마름모는 {정사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "정사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "788e759ff8f161cfc7055c8426df8a544c3dbfcf1513ed4f75cf1ba1cdfc4e96",
+      "questionRevision": "planning-e5e6-20261006-788e759ff8f1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc22",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "마름모의 한 대각선은 그대로 두고 다른 대각선만 $2$배로 늘리면 넓이는 어떻게 변하는지 넓이 구하는 방법과 관련지어 설명하고, 두 대각선이 $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모에서 $6\\,\\mathrm{cm}$를 $12\\,\\mathrm{cm}$로 늘려 확인하시오.",
+      "bAnswer": "두 대각선의 곱이 $2$배가 되므로 넓이도 $2$배가 된다. $4 \\times 6 \\div 2 = 12$($\\mathrm{cm} ^2$)에서 $4 \\times 12 \\div 2 = 24$($\\mathrm{cm} ^2$)로 $2$배가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이도 $2$배가 된다",
+            "넓이가 $2$배로 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 대각선의 곱이 $2$배가 되기 때문",
+            "곱하는 수 하나가 $2$배가 되면 곱도 $2$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\,\\mathrm{cm} ^2$에서 $24\\,\\mathrm{cm} ^2$가 된다",
+            "$4 \\times 12 \\div 2 = 24$"
+          ]
+        }
+      ],
+      "bGoal": "한 대각선이 2배가 되면 넓이도 2배가 됨을 식으로 설명한다.",
+      "bReason": "변화의 까닭을 넓이 구하는 방법과 연결하고 수로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "마름모의 한 대각선은 그대로 두고 다른 대각선만 $2$배로 늘리면 넓이는 {$2$}배가 된다.",
+      "cReason": "원문 빈칸 '넓이'는 맥락상 뻔해서 몇 배가 되는지를 묻게 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1046,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc22",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "한 대각선을 $2$배로 늘릴 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "마름모의 한 대각선만 $2$배로 늘리면 {넓이}도 $2$배가 된다.",
+        "studentC": "마름모의 한 대각선만 $2$배로 늘리면 □도 $2$배가 된다.",
+        "answers": [
+          "넓이"
+        ]
+      },
+      "sourceFingerprint": "b541458d8069c5960224f5c7c66fe9860f10cfe3f9ebb34b049c89bc63899969",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "마름모의 한 대각선은 그대로 두고 다른 대각선만 $2$배로 늘리면 넓이는 □배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "마름모의 한 대각선은 그대로 두고 다른 대각선만 $2$배로 늘리면 넓이는 {$2$}배가 된다.",
+      "cStudentSentence": "마름모의 한 대각선은 그대로 두고 다른 대각선만 $2$배로 늘리면 넓이는 □배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "마름모의 한 대각선은 그대로 두고 다른 대각선만 $2$배로 늘리면 넓이는 어떻게 변하는지 넓이 구하는 방법과 관련지어 설명하고, 두 대각선이 $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 마름모에서 $6\\,\\mathrm{cm}$를 $12\\,\\mathrm{cm}$로 늘려 확인하시오.",
+        "answer": "두 대각선의 곱이 $2$배가 되므로 넓이도 $2$배가 된다. $4 \\times 6 \\div 2 = 12$($\\mathrm{cm} ^2$)에서 $4 \\times 12 \\div 2 = 24$($\\mathrm{cm} ^2$)로 $2$배가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이도 $2$배가 된다",
+              "넓이가 $2$배로 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선의 곱이 $2$배가 되기 때문",
+              "곱하는 수 하나가 $2$배가 되면 곱도 $2$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\,\\mathrm{cm} ^2$에서 $24\\,\\mathrm{cm} ^2$가 된다",
+              "$4 \\times 12 \\div 2 = 24$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "마름모의 한 대각선은 그대로 두고 다른 대각선만 $2$배로 늘리면 넓이는 {$2$}배가 된다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4770546a14ef7b13cd6fba53c2bf21c1075b9b6bd4bb1935f4275c422eada188",
+      "questionRevision": "planning-e5e6-20261006-4770546a14ef",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "수직선에 ‘$5$ 이상인 수’의 범위를 나타내려고 한다. $5$의 자리에는 어떤 표시를 하고 선은 어느 쪽으로 긋는지 쓰고, 선을 그 방향으로 긋는 까닭을 설명하시오.",
+      "bAnswer": "$5$에 색칠한 점(●)을 찍고 오른쪽으로 선을 긋는다. 수직선에서는 오른쪽으로 갈수록 수가 커지고, $5$ 이상인 수는 $5$와 그보다 큰 수이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$에 색칠한 점을 찍는다",
+            "$5$에 ●를 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "오른쪽으로 선을 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "오른쪽이 큰 수 쪽이다",
+            "$5$보다 큰 수가 $5$의 오른쪽에 있다"
+          ]
+        }
+      ],
+      "bGoal": "이상의 범위를 수직선에 나타내는 방법과 방향의 까닭을 설명한다.",
+      "bReason": "점 표시만 외우지 않도록 선의 방향과 그 까닭까지 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "수직선에 ‘$5$ 이상인 수’를 나타낼 때는 $5$에 색칠한 점(●)을 찍고 {오른쪽}으로 선을 긋는다. $5$에 색칠한 점을 찍는 것은 $5$가 범위에 {들어가기} 때문이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "오른쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "들어가기",
+            "포함되기"
+          ]
+        }
+      ],
+      "cReason": "‘색칠한 점’은 아직 빈 점과 견줄 맥락이 없어 임의 구절이 되므로 방향과 점의 뜻을 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1047,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc3",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이상을 수직선에 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "이상은 기준 수에 {색칠한 점}을 찍고 오른쪽으로 선을 긋는다.",
+        "studentC": "이상은 기준 수에 □을 찍고 오른쪽으로 선을 긋는다.",
+        "answers": [
+          "색칠한 점"
+        ]
+      },
+      "sourceFingerprint": "f9ee72c0c7800ca364c589eea6e547095ffbea0d999e4078f5be9a29dde9b4d9",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "오른쪽",
+        "들어가기"
+      ],
+      "cStudentAfter": "수직선에 ‘$5$ 이상인 수’를 나타낼 때는 $5$에 색칠한 점(●)을 찍고 □으로 선을 긋는다. $5$에 색칠한 점을 찍는 것은 $5$가 범위에 □ 때문이다.",
+      "cMarkedSentence": "수직선에 ‘$5$ 이상인 수’를 나타낼 때는 $5$에 색칠한 점(●)을 찍고 {오른쪽}으로 선을 긋는다. $5$에 색칠한 점을 찍는 것은 $5$가 범위에 {들어가기} 때문이다.",
+      "cStudentSentence": "수직선에 ‘$5$ 이상인 수’를 나타낼 때는 $5$에 색칠한 점(●)을 찍고 □으로 선을 긋는다. $5$에 색칠한 점을 찍는 것은 $5$가 범위에 □ 때문이다.",
+      "cSlotAnswers": [
+        {
+          "key": "오른쪽",
+          "equivalents": []
+        },
+        {
+          "key": "들어가기",
+          "equivalents": [
+            "포함되기"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "수직선에 ‘$5$ 이상인 수’의 범위를 나타내려고 한다. $5$의 자리에는 어떤 표시를 하고 선은 어느 쪽으로 긋는지 쓰고, 선을 그 방향으로 긋는 까닭을 설명하시오.",
+        "answer": "$5$에 색칠한 점(●)을 찍고 오른쪽으로 선을 긋는다. 수직선에서는 오른쪽으로 갈수록 수가 커지고, $5$ 이상인 수는 $5$와 그보다 큰 수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5$에 색칠한 점을 찍는다",
+              "$5$에 ●를 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽으로 선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽이 큰 수 쪽이다",
+              "$5$보다 큰 수가 $5$의 오른쪽에 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수직선에 ‘$5$ 이상인 수’를 나타낼 때는 $5$에 색칠한 점(●)을 찍고 {오른쪽}으로 선을 긋는다. $5$에 색칠한 점을 찍는 것은 $5$가 범위에 {들어가기} 때문이다.",
+        "acceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "들어가기",
+            "포함되기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8d9b3edab9605b7bcdf9ae6f2bf81dee10b7318f5602ab8a52595c5a66086153",
+      "questionRevision": "planning-e5e6-20261006-8d9b3edab960",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "수직선에 ‘$8$ 이하인 수’의 범위를 나타내려고 한다. $8$의 자리에는 어떤 표시를 하고 선은 어느 쪽으로 긋는지 쓰고, 선을 그 방향으로 긋는 까닭을 설명하시오.",
+      "bAnswer": "$8$에 색칠한 점(●)을 찍고 왼쪽으로 선을 긋는다. 수직선에서는 왼쪽으로 갈수록 수가 작아지고, $8$ 이하인 수는 $8$과 그보다 작은 수이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$8$에 색칠한 점을 찍는다",
+            "$8$에 ●를 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "왼쪽으로 선을 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "왼쪽이 작은 수 쪽이다",
+            "$8$보다 작은 수가 $8$의 왼쪽에 있다"
+          ]
+        }
+      ],
+      "bGoal": "이하의 범위를 수직선에 나타내는 방법과 방향의 까닭을 설명한다.",
+      "bReason": "이상과 방향이 반대인 점이 드러나도록 이하만 따로 까닭과 함께 물었다.",
+      "cDecision": "keep",
+      "cAfter": "이하는 기준 수에 색칠한 점을 찍고 {왼쪽}으로 선을 긋는다.",
+      "cReason": "이하일 때 선의 방향을 낱말 하나로 묻는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1048,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc4",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이하를 수직선에 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "이하는 기준 수에 색칠한 점을 찍고 {왼쪽}으로 선을 긋는다.",
+        "studentC": "이하는 기준 수에 색칠한 점을 찍고 □으로 선을 긋는다.",
+        "answers": [
+          "왼쪽"
+        ]
+      },
+      "sourceFingerprint": "4bd39dc5eb6fab7c58cb482a177dca0f29ca6ff80327f1fb1fecda0092d8c250",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cFrozenDefinition": "이하는 기준 수에 색칠한 점을 찍고 {왼쪽}으로 선을 긋는다.",
+      "cFrozenStudentSentence": "이하는 기준 수에 색칠한 점을 찍고 □으로 선을 긋는다.",
+      "cProposedAnswers": [
+        "왼쪽"
+      ],
+      "cStudentAfter": "이하는 기준 수에 색칠한 점을 찍고 □으로 선을 긋는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "왼쪽"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "이하는 기준 수에 색칠한 점을 찍고 {왼쪽}으로 선을 긋는다.",
+      "cStudentSentence": "이하는 기준 수에 색칠한 점을 찍고 □으로 선을 긋는다.",
+      "cSlotAnswers": [
+        {
+          "key": "왼쪽",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "수직선에 ‘$8$ 이하인 수’의 범위를 나타내려고 한다. $8$의 자리에는 어떤 표시를 하고 선은 어느 쪽으로 긋는지 쓰고, 선을 그 방향으로 긋는 까닭을 설명하시오.",
+        "answer": "$8$에 색칠한 점(●)을 찍고 왼쪽으로 선을 긋는다. 수직선에서는 왼쪽으로 갈수록 수가 작아지고, $8$ 이하인 수는 $8$과 그보다 작은 수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$8$에 색칠한 점을 찍는다",
+              "$8$에 ●를 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "왼쪽으로 선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "왼쪽이 작은 수 쪽이다",
+              "$8$보다 작은 수가 $8$의 왼쪽에 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "이하는 기준 수에 색칠한 점을 찍고 {왼쪽}으로 선을 긋는다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b6ad6c5062ea2a2069234832ec165249b7e8a1dc54cb9e1ab5840f5bb42b56e1",
+      "questionRevision": "planning-e5e6-20261006-b6ad6c5062ea",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc6",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘$10$명 이하 입장’이라고 쓰인 곳에 $10$명이 함께 들어갈 수 있는지, $11$명이 함께 들어갈 수 있는지 각각 쓰고, ‘이하’의 뜻을 써서 까닭을 설명하시오.",
+      "bAnswer": "$10$명은 들어갈 수 있고 $11$명은 들어갈 수 없다. $10$명 이하는 $10$명과 같거나 그보다 적은 인원인데, $10$은 여기에 들어가고 $11$은 $10$보다 크기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$명은 들어갈 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$명은 들어갈 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이하는 그 수와 같거나 작은 수이다",
+            "$10$은 포함되고 $11$은 $10$보다 크다"
+          ]
+        }
+      ],
+      "bGoal": "생활 속 인원 제한에서 이하의 경계를 판단한다.",
+      "bReason": "원문 예는 11명만 다루므로 꼭 10명인 경우까지 함께 판단하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$10$명 이하 입장’인 곳에는 $10$명이 함께 들어갈 수 {있고}, $11$명은 함께 들어갈 수 {없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "있고",
+            "있으며"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ],
+      "cReason": "‘그 수까지’는 외울 낱말이 아니어서 경계 인원을 직접 판단하는 문장으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1049,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc6",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "‘이하’로 정한 인원",
+        "kind": "방법",
+        "level": "하",
+        "definition": "‘몇 명 이하’로 정한 인원은 {그 수까지} 들어갈 수 있고, 그 수를 하나라도 넘으면 들어갈 수 없다.",
+        "example": {
+          "prompt": "‘$10$명 이하 입장’인 곳에 $11$명이 함께 못 들어가는 까닭은?",
+          "answer": "$11$이 $10$보다 커서"
+        },
+        "studentC": "‘몇 명 이하’로 정한 인원은 □ 들어갈 수 있고, 그 수를 하나라도 넘으면 들어갈 수 없다.",
+        "answers": [
+          "그 수까지"
+        ]
+      },
+      "sourceFingerprint": "d6e907383207097783992f8cf8e01ae704e0d44cf65d0d40e943c9f899b285a9",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "있고",
+        "없다"
+      ],
+      "cStudentAfter": "‘$10$명 이하 입장’인 곳에는 $10$명이 함께 들어갈 수 □, $11$명은 함께 들어갈 수 □.",
+      "cMarkedSentence": "‘$10$명 이하 입장’인 곳에는 $10$명이 함께 들어갈 수 {있고}, $11$명은 함께 들어갈 수 {없다}.",
+      "cStudentSentence": "‘$10$명 이하 입장’인 곳에는 $10$명이 함께 들어갈 수 □, $11$명은 함께 들어갈 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "있고",
+          "equivalents": [
+            "있으며"
+          ]
+        },
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$10$명 이하 입장’이라고 쓰인 곳에 $10$명이 함께 들어갈 수 있는지, $11$명이 함께 들어갈 수 있는지 각각 쓰고, ‘이하’의 뜻을 써서 까닭을 설명하시오.",
+        "answer": "$10$명은 들어갈 수 있고 $11$명은 들어갈 수 없다. $10$명 이하는 $10$명과 같거나 그보다 적은 인원인데, $10$은 여기에 들어가고 $11$은 $10$보다 크기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$명은 들어갈 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$명은 들어갈 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이하는 그 수와 같거나 작은 수이다",
+              "$10$은 포함되고 $11$은 $10$보다 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$10$명 이하 입장’인 곳에는 $10$명이 함께 들어갈 수 {있고}, $11$명은 함께 들어갈 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "있고",
+            "있으며"
+          ],
+          [
+            "없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5084048663327f009d55c486e00c5d5b26d1f38ca7bfbe4e1f78d74a4a21774f",
+      "questionRevision": "planning-e5e6-20261006-508404866332",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc7",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "기준이 되는 수가 범위에 들어간다는 것을 확인한다.",
+      "bReason": "‘기준이 되는 수’라는 이름을 되묻는 것뿐이고 내용은 c1·c2의 B와 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "‘$12$ 이상인 수’에서 범위를 가르는 기준이 되는 수는 {$12$}이고, 이 수는 범위에 {들어간다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "들어간다",
+            "포함된다"
+          ]
+        }
+      ],
+      "cReason": "긴 용어를 그대로 쓰게 하는 대신 실제 범위에서 기준 수를 찾고 포함 여부를 답하게 했다.",
+      "exclusionReason": "B 제외: 용어 이름 암기뿐이며 기준 수 포함 여부는 e5-2-1-1-c1, e5-2-1-1-c2에서 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1050,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc7",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "기준이 되는 수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "이상과 이하에서 범위를 가르는 수를 {기준이 되는 수}라 하며, 그 수는 범위에 들어간다.",
+        "studentC": "이상과 이하에서 범위를 가르는 수를 □라 하며, 그 수는 범위에 들어간다.",
+        "answers": [
+          "기준이 되는 수"
+        ]
+      },
+      "sourceFingerprint": "ec76b3a97a8e7a97e7642182c7ed8fecff280e5290f2c4f7304d423a14b8674a",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "들어간다"
+      ],
+      "cStudentAfter": "‘$12$ 이상인 수’에서 범위를 가르는 기준이 되는 수는 □이고, 이 수는 범위에 □.",
+      "cMarkedSentence": "‘$12$ 이상인 수’에서 범위를 가르는 기준이 되는 수는 {$12$}이고, 이 수는 범위에 {들어간다}.",
+      "cStudentSentence": "‘$12$ 이상인 수’에서 범위를 가르는 기준이 되는 수는 □이고, 이 수는 범위에 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "들어간다",
+          "equivalents": [
+            "포함된다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "‘$12$ 이상인 수’에서 범위를 가르는 기준이 되는 수는 {$12$}이고, 이 수는 범위에 {들어간다}.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "들어간다",
+            "포함된다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 용어 이름 암기뿐이며 기준 수 포함 여부는 e5-2-1-1-c1, e5-2-1-1-c2에서 묻는다."
+      },
+      "proposalFingerprint": "d9b0d9c799f3c3a6f1a9427e933bcc4e864e5d517a21eac7e03c08761b6e47d1",
+      "questionRevision": "planning-e5e6-20261006-d9b0d9c799f3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "‘$3$ 이상인 수’에는 $3$, $4$, $5$ 같은 자연수만 들어가는지, $3.5$ 같은 수도 들어가는지 쓰고, 그렇게 판단한 까닭을 설명하시오.",
+      "bAnswer": "$3.5$ 같은 소수도 들어간다. $3.5$는 $3$보다 큰 수이고, $3$ 이상인 수는 $3$과 같거나 큰 모든 수이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3.5$도 들어간다",
+            "자연수가 아닌 수도 들어간다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.5$는 $3$보다 크다",
+            "$3$과 같거나 큰 수는 모두 들어간다"
+          ]
+        }
+      ],
+      "bGoal": "수의 범위에 자연수 아닌 수도 들어감을 크기 비교로 설명한다.",
+      "bReason": "범위를 자연수로만 생각하는 오해를 바로잡도록 판단과 까닭을 함께 묻게 했다.",
+      "cDecision": "keep",
+      "cAfter": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 {소수}도 들어간다.",
+      "cReason": "3.5라는 예가 문장 안에 있어 맥락 없이도 ‘소수’를 답할 수 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1051,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc8",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "범위에 들어가는 소수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 {소수}도 들어간다.",
+        "studentC": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 □도 들어간다.",
+        "answers": [
+          "소수"
+        ]
+      },
+      "sourceFingerprint": "5a34a6522637c4d6bb4632b361a3ee1648964381b46c81e1367d9f72ffd81aef",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cFrozenDefinition": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 {소수}도 들어간다.",
+      "cFrozenStudentSentence": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 □도 들어간다.",
+      "cProposedAnswers": [
+        "소수"
+      ],
+      "cStudentAfter": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 □도 들어간다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "소수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 {소수}도 들어간다.",
+      "cStudentSentence": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 □도 들어간다.",
+      "cSlotAnswers": [
+        {
+          "key": "소수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$3$ 이상인 수’에는 $3$, $4$, $5$ 같은 자연수만 들어가는지, $3.5$ 같은 수도 들어가는지 쓰고, 그렇게 판단한 까닭을 설명하시오.",
+        "answer": "$3.5$ 같은 소수도 들어간다. $3.5$는 $3$보다 큰 수이고, $3$ 이상인 수는 $3$과 같거나 큰 모든 수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3.5$도 들어간다",
+              "자연수가 아닌 수도 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.5$는 $3$보다 크다",
+              "$3$과 같거나 큰 수는 모두 들어간다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3$ 이상인 수에는 자연수뿐 아니라 $3.5$ 같은 {소수}도 들어간다.",
+        "acceptedAnswers": [
+          [
+            "소수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "03b60ce4ad5d6085d3af484919bd7a94cb1100ae29d64202e8fbc54c9c6753d3",
+      "questionRevision": "planning-e5e6-20261006-03b60ce4ad5d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc9",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "이상과 이하를 함께 쓴 범위에 두 끝 수가 모두 들어감을 안다.",
+      "bReason": "함께 쓴 범위의 뜻은 c3, 자연수 개수는 xc11의 B에서 이미 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "‘$3$ 이상 $7$ 이하인 수’에는 $3$과 $7$이 모두 {들어간다}. 이 범위의 자연수 중 가장 작은 수는 {$3$}, 가장 큰 수는 {$7$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "들어간다",
+            "포함된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "cReason": "‘두 수를 모두 포함한’이라는 긴 구절 대신 포함 여부와 양 끝 수를 짧게 답하게 했다.",
+      "exclusionReason": "B 제외: e5-2-1-1-c3(범위의 뜻), e5-2-1-1-xc11(자연수 개수)과 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1052,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc9",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이상과 이하를 함께 쓰기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "‘$3$ 이상 $7$ 이하’는 $3$부터 $7$까지 {두 수를 모두 포함한} 범위이다.",
+        "example": {
+          "prompt": "$3$ 이상 $7$ 이하인 자연수는 몇 개인가?",
+          "answer": "$5$개"
+        },
+        "studentC": "‘$3$ 이상 $7$ 이하’는 $3$부터 $7$까지 □ 범위이다.",
+        "answers": [
+          "두 수를 모두 포함한"
+        ]
+      },
+      "sourceFingerprint": "5b9eaeb832b8825cf8cbc4aa8fff543f55a401daec6fc03cef462222c24a94cf",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "들어간다",
+        "$3$",
+        "$7$"
+      ],
+      "cStudentAfter": "‘$3$ 이상 $7$ 이하인 수’에는 $3$과 $7$이 모두 □. 이 범위의 자연수 중 가장 작은 수는 □, 가장 큰 수는 □이다.",
+      "cMarkedSentence": "‘$3$ 이상 $7$ 이하인 수’에는 $3$과 $7$이 모두 {들어간다}. 이 범위의 자연수 중 가장 작은 수는 {$3$}, 가장 큰 수는 {$7$}이다.",
+      "cStudentSentence": "‘$3$ 이상 $7$ 이하인 수’에는 $3$과 $7$이 모두 □. 이 범위의 자연수 중 가장 작은 수는 □, 가장 큰 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "들어간다",
+          "equivalents": [
+            "포함된다"
+          ]
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "‘$3$ 이상 $7$ 이하인 수’에는 $3$과 $7$이 모두 {들어간다}. 이 범위의 자연수 중 가장 작은 수는 {$3$}, 가장 큰 수는 {$7$}이다.",
+        "acceptedAnswers": [
+          [
+            "들어간다",
+            "포함된다"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: e5-2-1-1-c3(범위의 뜻), e5-2-1-1-xc11(자연수 개수)과 중복된다."
+      },
+      "proposalFingerprint": "e4d85b15007374f5929f190e0b93e71e65ab1b34b960643a706bc84b77cf7983",
+      "questionRevision": "planning-e5e6-20261006-e4d85b150073",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc10",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "이상은 큰 쪽, 이하는 작은 쪽의 수임을 구별한다.",
+      "bReason": "‘방향’은 추상적인 말이고 내용은 c1·c2의 뜻과 xc3·xc4의 수직선 방향에서 이미 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$20$, $25$, $30$ 중에서 ‘$25$ 이상인 수’는 $25$와 {$30$}이고, ‘$25$ 이하인 수’는 $25$와 {$20$}이다.",
+      "cReason": "‘큰 쪽으로 이어진다’는 표현이 막연해 같은 기준 수로 이상과 이하를 견주어 고르게 했다.",
+      "exclusionReason": "B 제외: e5-2-1-1-c1, e5-2-1-1-c2, e5-2-1-1-xc3, e5-2-1-1-xc4와 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1053,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc10",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이상과 이하의 방향",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이상은 기준 수보다 {큰 쪽}, 이하는 작은 쪽으로 이어진다.",
+        "studentC": "이상은 기준 수보다 □, 이하는 작은 쪽으로 이어진다.",
+        "answers": [
+          "큰 쪽"
+        ]
+      },
+      "sourceFingerprint": "ebbc2ae0598a1fcc1df69e496acd7e95ed7b28f9dafa05dc5e181ad94f4543c6",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "$30$",
+        "$20$"
+      ],
+      "cStudentAfter": "$20$, $25$, $30$ 중에서 ‘$25$ 이상인 수’는 $25$와 □이고, ‘$25$ 이하인 수’는 $25$와 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$20$, $25$, $30$ 중에서 ‘$25$ 이상인 수’는 $25$와 {$30$}이고, ‘$25$ 이하인 수’는 $25$와 {$20$}이다.",
+      "cStudentSentence": "$20$, $25$, $30$ 중에서 ‘$25$ 이상인 수’는 $25$와 □이고, ‘$25$ 이하인 수’는 $25$와 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        },
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$20$, $25$, $30$ 중에서 ‘$25$ 이상인 수’는 $25$와 {$30$}이고, ‘$25$ 이하인 수’는 $25$와 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: e5-2-1-1-c1, e5-2-1-1-c2, e5-2-1-1-xc3, e5-2-1-1-xc4와 중복된다."
+      },
+      "proposalFingerprint": "a832c8a67ba522d6fac266e90cc792110e262d40662e7775a2ffd876899b7960",
+      "questionRevision": "planning-e5e6-20261006-a832c8a67ba5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "‘$3$ 이상 $7$ 이하인 자연수’는 모두 몇 개인지 쓰시오. 그리고 그 개수가 두 수의 차 $7 - 3$과 같지 않은 까닭을 설명하시오.",
+      "bAnswer": "$3$, $4$, $5$, $6$, $7$로 $5$개이다. $7 - 3 = 4$는 $3$ 다음부터 $7$까지의 수만 센 것인데, $3$도 범위에 들어가므로 $1$개가 더 많다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 끝 수가 모두 들어가서 차보다 $1$개 더 많다",
+            "차는 $3$을 빼고 센 개수이므로 $3$을 더 세어야 한다",
+            "차는 수 사이의 간격 수이고 수의 개수는 간격보다 $1$ 많다"
+          ]
+        }
+      ],
+      "bGoal": "양 끝을 포함한 범위의 자연수 개수가 차보다 1 많은 까닭을 설명한다.",
+      "bReason": "규칙을 질문에서 알려 주지 않고 구체적 범위에서 차와 개수가 다른 까닭을 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$12$ 이상 $20$ 이하인 자연수의 개수는 두 수의 차 $20-12=$ {$8$}보다 $1$ 많은 {$9$}개이다.",
+      "cReason": "‘1개 더 많다’를 통째로 쓰게 하는 대신 실제 범위에서 차와 개수를 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1054,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc11",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이상과 이하 사이의 자연수 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "작은 자연수 이상 큰 자연수 이하인 범위에 든 자연수는 두 수의 차보다 {$1$개 더 많다}.",
+        "studentC": "작은 자연수 이상 큰 자연수 이하인 범위에 든 자연수는 두 수의 차보다 □.",
+        "answers": [
+          "$1$개 더 많다"
+        ]
+      },
+      "sourceFingerprint": "2a28fc122b7194ed5ac545863ca8ce2b3621b093fa84903d1c4625a9abbf240d",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$9$"
+      ],
+      "cStudentAfter": "$12$ 이상 $20$ 이하인 자연수의 개수는 두 수의 차 $20-12=$ □보다 $1$ 많은 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$12$ 이상 $20$ 이하인 자연수의 개수는 두 수의 차 $20-12=$ {$8$}보다 $1$ 많은 {$9$}개이다.",
+      "cStudentSentence": "$12$ 이상 $20$ 이하인 자연수의 개수는 두 수의 차 $20-12=$ □보다 $1$ 많은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$3$ 이상 $7$ 이하인 자연수’는 모두 몇 개인지 쓰시오. 그리고 그 개수가 두 수의 차 $7 - 3$과 같지 않은 까닭을 설명하시오.",
+        "answer": "$3$, $4$, $5$, $6$, $7$로 $5$개이다. $7 - 3 = 4$는 $3$ 다음부터 $7$까지의 수만 센 것인데, $3$도 범위에 들어가므로 $1$개가 더 많다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 끝 수가 모두 들어가서 차보다 $1$개 더 많다",
+              "차는 $3$을 빼고 센 개수이므로 $3$을 더 세어야 한다",
+              "차는 수 사이의 간격 수이고 수의 개수는 간격보다 $1$ 많다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12$ 이상 $20$ 이하인 자연수의 개수는 두 수의 차 $20-12=$ {$8$}보다 $1$ 많은 {$9$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "eaf878e17c58ab4e82e1678e87b505a0cc08a64302743e75eb12bf39584171c6",
+      "questionRevision": "planning-e5e6-20261006-eaf878e17c58",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "‘$8$ 이상인 자연수’ 중에서 가장 작은 수와 가장 큰 수를 각각 말할 수 있는지 쓰고, 말할 수 없는 것이 있다면 그 까닭을 설명하시오.",
+      "bAnswer": "가장 작은 수는 $8$이다. 가장 큰 수는 말할 수 없다. 어떤 수를 골라도 그보다 $1$ 큰 수가 또 $8$ 이상인 자연수이므로 끝없이 커지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 작은 수는 $8$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 큰 수는 없다",
+            "가장 큰 수는 말할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "끝없이 커진다",
+            "어떤 수를 골라도 더 큰 수가 있다"
+          ]
+        }
+      ],
+      "bGoal": "이상으로만 정한 범위는 아래쪽 끝만 있고 위쪽 끝이 없음을 설명한다.",
+      "bReason": "결론을 알려 주지 않고 가장 작은 수와 견주어 스스로 판단하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 {없다}.",
+      "cReason": "위쪽 끝을 제한하지 않았다는 조건이 문장에 있어 ‘없다’를 분명히 답할 수 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1055,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc12",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이상으로만 정한 범위",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 {없다}.",
+        "example": {
+          "prompt": "$8$ 이상인 자연수 가운데 가장 큰 수를 말할 수 없는 까닭은?",
+          "answer": "끝없이 커져서"
+        },
+        "studentC": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 □.",
+        "answers": [
+          "없다"
+        ]
+      },
+      "sourceFingerprint": "257e56c05837210c90936d8c3697faf12db616fbb1dbee220c18890e26af4b63",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cFrozenDefinition": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 {없다}.",
+      "cFrozenStudentSentence": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 □.",
+      "cProposedAnswers": [
+        "없다"
+      ],
+      "cStudentAfter": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 {없다}.",
+      "cStudentSentence": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$8$ 이상인 자연수’ 중에서 가장 작은 수와 가장 큰 수를 각각 말할 수 있는지 쓰고, 말할 수 없는 것이 있다면 그 까닭을 설명하시오.",
+        "answer": "가장 작은 수는 $8$이다. 가장 큰 수는 말할 수 없다. 어떤 수를 골라도 그보다 $1$ 큰 수가 또 $8$ 이상인 자연수이므로 끝없이 커지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 수는 $8$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 큰 수는 없다",
+              "가장 큰 수는 말할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝없이 커진다",
+              "어떤 수를 골라도 더 큰 수가 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "이상으로만 정해 위쪽 끝을 제한하지 않은 수의 범위에는 가장 큰 수가 {없다}.",
+        "acceptedAnswers": [
+          [
+            "없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9257ffd2140650b844d1e95ddbed32966b5005bad9ba3e9ca419e13796bfb0e5",
+      "questionRevision": "planning-e5e6-20261006-9257ffd21406",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "‘$15$ 이하인 수’ 중에서 가장 큰 수는 무엇인지 쓰고, 그보다 더 큰 수가 이 범위에 없는 까닭을 설명하시오.",
+      "bAnswer": "$15$이다. $15$ 이하인 수는 $15$와 같거나 작은 수이므로 $15$는 들어가고, $15$보다 큰 수는 들어가지 않기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$보다 큰 수는 범위에 들어가지 않는다",
+            "이하는 그 수와 같거나 작은 수뿐이다"
+          ]
+        }
+      ],
+      "bGoal": "이하의 범위에서 기준 수가 가장 큰 수가 되는 까닭을 말한다.",
+      "bReason": "‘기준이 되는 수’라는 용어 대신 실제 수로 가장 큰 수와 까닭을 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$15$ 이하인 수’ 중에서 가장 큰 수는 {$15$}이다. $15$보다 큰 수는 이 범위에 들어가지 {않기} 때문이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "않기",
+            "못하기"
+          ]
+        }
+      ],
+      "cReason": "긴 용어를 답으로 쓰게 하는 대신 구체적 범위에서 가장 큰 수를 찾게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1056,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc13",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이하로 정한 범위의 가장 큰 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이하로 정한 범위에서 가장 큰 수는 {기준이 되는 수}이다.",
+        "studentC": "이하로 정한 범위에서 가장 큰 수는 □이다.",
+        "answers": [
+          "기준이 되는 수"
+        ]
+      },
+      "sourceFingerprint": "e00bda4fd6f4d0271a98a78961d5a38f1efe44e34ad1ad9ce363fe1e94967444",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "$15$",
+        "않기"
+      ],
+      "cStudentAfter": "‘$15$ 이하인 수’ 중에서 가장 큰 수는 □이다. $15$보다 큰 수는 이 범위에 들어가지 □ 때문이다.",
+      "cMarkedSentence": "‘$15$ 이하인 수’ 중에서 가장 큰 수는 {$15$}이다. $15$보다 큰 수는 이 범위에 들어가지 {않기} 때문이다.",
+      "cStudentSentence": "‘$15$ 이하인 수’ 중에서 가장 큰 수는 □이다. $15$보다 큰 수는 이 범위에 들어가지 □ 때문이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        },
+        {
+          "key": "않기",
+          "equivalents": [
+            "못하기"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$15$ 이하인 수’ 중에서 가장 큰 수는 무엇인지 쓰고, 그보다 더 큰 수가 이 범위에 없는 까닭을 설명하시오.",
+        "answer": "$15$이다. $15$ 이하인 수는 $15$와 같거나 작은 수이므로 $15$는 들어가고, $15$보다 큰 수는 들어가지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$15$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15$보다 큰 수는 범위에 들어가지 않는다",
+              "이하는 그 수와 같거나 작은 수뿐이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$15$ 이하인 수’ 중에서 가장 큰 수는 {$15$}이다. $15$보다 큰 수는 이 범위에 들어가지 {않기} 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ],
+          [
+            "않기",
+            "못하기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "09b0ccdf29bf5290518aa25952a5c81ed7e1b84cae68c6118b41f1a5e5c30176",
+      "questionRevision": "planning-e5e6-20261006-09b0ccdf29bf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc14",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "수직선에 ‘$3$ 이상 $7$ 이하인 수’의 범위를 나타내는 방법을 설명하시오. $3$과 $7$의 자리에 하는 표시와 선을 긋는 부분을 모두 쓰시오.",
+      "bAnswer": "$3$과 $7$에 각각 색칠한 점(●)을 찍고, 두 점 사이를 선으로 잇는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$과 $7$에 모두 색칠한 점을 찍는다",
+            "$3$과 $7$에 ●를 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 점 사이를 선으로 잇는다",
+            "$3$부터 $7$까지 선을 긋는다"
+          ]
+        }
+      ],
+      "bGoal": "양 끝이 포함된 범위를 수직선에 나타내는 절차를 말한다.",
+      "bReason": "‘작은 수, 큰 수’가 막연해 실제 수를 넣고 답할 범위를 표시와 선으로 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "수직선에 ‘$3$ 이상 $7$ 이하인 수’를 나타낼 때는 {$3$}과 {$7$}에 색칠한 점(●)을 찍고 두 점 {사이}를 선으로 잇는다.",
+      "cReason": "‘모두 색칠한 점’이라는 구절 대신 점을 찍을 자리와 선을 긋는 부분을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1057,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc14",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이상과 이하를 함께 나타낸 수직선",
+        "kind": "방법",
+        "level": "중",
+        "definition": "작은 수 이상 큰 수 이하인 범위를 나타낼 때는 두 기준 수에 {모두 색칠한 점}을 찍고 그 사이를 잇는다.",
+        "studentC": "작은 수 이상 큰 수 이하인 범위를 나타낼 때는 두 기준 수에 □을 찍고 그 사이를 잇는다.",
+        "answers": [
+          "모두 색칠한 점"
+        ]
+      },
+      "sourceFingerprint": "b0e764d0fc1b7ee10b28b77bdaa98ac1817e4b2520cc7067a8decc03704a699c",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$7$",
+        "사이"
+      ],
+      "cStudentAfter": "수직선에 ‘$3$ 이상 $7$ 이하인 수’를 나타낼 때는 □과 □에 색칠한 점(●)을 찍고 두 점 □를 선으로 잇는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "사이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수직선에 ‘$3$ 이상 $7$ 이하인 수’를 나타낼 때는 {$3$}과 {$7$}에 색칠한 점(●)을 찍고 두 점 {사이}를 선으로 잇는다.",
+      "cStudentSentence": "수직선에 ‘$3$ 이상 $7$ 이하인 수’를 나타낼 때는 □과 □에 색칠한 점(●)을 찍고 두 점 □를 선으로 잇는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "사이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "수직선에 ‘$3$ 이상 $7$ 이하인 수’의 범위를 나타내는 방법을 설명하시오. $3$과 $7$의 자리에 하는 표시와 선을 긋는 부분을 모두 쓰시오.",
+        "answer": "$3$과 $7$에 각각 색칠한 점(●)을 찍고, 두 점 사이를 선으로 잇는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$과 $7$에 모두 색칠한 점을 찍는다",
+              "$3$과 $7$에 ●를 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점 사이를 선으로 잇는다",
+              "$3$부터 $7$까지 선을 긋는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수직선에 ‘$3$ 이상 $7$ 이하인 수’를 나타낼 때는 {$3$}과 {$7$}에 색칠한 점(●)을 찍고 두 점 {사이}를 선으로 잇는다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$7$"
+          ],
+          [
+            "사이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e9fe514fbc46688eb8134a57ce0f9838fcfad46e8b1de29f2c727044b7a9c653",
+      "questionRevision": "planning-e5e6-20261006-e9fe514fbc46",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc15",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "이상과 이하에서 기준 수가 범위에 들어감을 기억한다.",
+      "bReason": "‘이렇게 기억한다’는 암기 요령일 뿐 새 내용이 없고 c1·c2와 완전히 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "‘들어간다고 기억한다’는 c1·c2의 ‘포함’을 말만 바꿔 되풀이한 문장이다.",
+      "exclusionReason": "B·C 모두 제외: 기준 수 포함은 e5-2-1-1-c1, e5-2-1-1-c2에서 다룬다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1058,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc15",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "기준 수가 들어가는지 기억하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "범위에 기준 수가 들어가는지 헷갈리면 ‘이상, 이하’는 {들어간다}고 기억한다.",
+        "studentC": "범위에 기준 수가 들어가는지 헷갈리면 ‘이상, 이하’는 □고 기억한다.",
+        "answers": [
+          "들어간다"
+        ]
+      },
+      "sourceFingerprint": "4a643dda888ee809da38558cfcab9e8b8f356a071e240b07ac3ffd229c460ab5",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 모두 제외: 기준 수 포함은 e5-2-1-1-c1, e5-2-1-1-c2에서 다룬다.",
+        "cloze": "B·C 모두 제외: 기준 수 포함은 e5-2-1-1-c1, e5-2-1-1-c2에서 다룬다."
+      },
+      "proposalFingerprint": "1b82ec4206748b0f4f4c1fb0cba9ca6267664bbbc3ab8a13a221263d8a874c42",
+      "questionRevision": "planning-e5e6-20261006-1b82ec420674",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘$90$점 이상은 수’라고 정했다. 꼭 $90$점을 받은 학생과 $89$점을 받은 학생이 각각 수를 받는지 쓰고, ‘이상’의 뜻을 써서 까닭을 설명하시오.",
+      "bAnswer": "$90$점은 수를 받고 $89$점은 받지 못한다. $90$점 이상은 $90$점과 같거나 높은 점수인데, $90$은 여기에 들어가고 $89$는 $90$보다 작기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$90$점은 수를 받는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$89$점은 수를 받지 못한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이상은 그 수와 같거나 큰 수이다",
+            "$90$은 포함되고 $89$는 $90$보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "등급 기준에서 이상의 경계 점수를 판단한다.",
+      "bReason": "원문 예는 예/아니요만 물어 경계 바로 아래 점수와 까닭을 더했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$90$점 이상은 수’일 때 $89$점, $90$점, $95$점 중에서 수를 받는 점수는 {$90$}점과 {$95$}점이다.",
+      "cReason": "‘그 등급’은 문장을 되풀이하는 답이라 실제 점수를 골라 경계를 판단하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1059,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc16",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "점수로 등급 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "‘$90$점 이상은 수’처럼 기준 점수 이상이면 {그 등급}에 들어간다.",
+        "example": {
+          "prompt": "$90$점 이상이 수일 때 $90$점은 수인가?",
+          "answer": "그렇다"
+        },
+        "studentC": "‘$90$점 이상은 수’처럼 기준 점수 이상이면 □에 들어간다.",
+        "answers": [
+          "그 등급"
+        ]
+      },
+      "sourceFingerprint": "91b6f3d61870e04795b3e148b0d793f9cd93c820dac0ed943424da360aa4ac36",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "$90$",
+        "$95$"
+      ],
+      "cStudentAfter": "‘$90$점 이상은 수’일 때 $89$점, $90$점, $95$점 중에서 수를 받는 점수는 □점과 □점이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$90$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$95$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘$90$점 이상은 수’일 때 $89$점, $90$점, $95$점 중에서 수를 받는 점수는 {$90$}점과 {$95$}점이다.",
+      "cStudentSentence": "‘$90$점 이상은 수’일 때 $89$점, $90$점, $95$점 중에서 수를 받는 점수는 □점과 □점이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$90$",
+          "equivalents": []
+        },
+        {
+          "key": "$95$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$90$점 이상은 수’라고 정했다. 꼭 $90$점을 받은 학생과 $89$점을 받은 학생이 각각 수를 받는지 쓰고, ‘이상’의 뜻을 써서 까닭을 설명하시오.",
+        "answer": "$90$점은 수를 받고 $89$점은 받지 못한다. $90$점 이상은 $90$점과 같거나 높은 점수인데, $90$은 여기에 들어가고 $89$는 $90$보다 작기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$90$점은 수를 받는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$89$점은 수를 받지 못한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이상은 그 수와 같거나 큰 수이다",
+              "$90$은 포함되고 $89$는 $90$보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$90$점 이상은 수’일 때 $89$점, $90$점, $95$점 중에서 수를 받는 점수는 {$90$}점과 {$95$}점이다.",
+        "acceptedAnswers": [
+          [
+            "$90$"
+          ],
+          [
+            "$95$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7f7ec9aa3da84d4ee6ced895564f0a7525d3e5a9d400f427c5ef4dd2629e83ff",
+      "questionRevision": "planning-e5e6-20261006-7f7ec9aa3da8",
+      "requiresIndependentReview": true
+    }
+  ]
+}

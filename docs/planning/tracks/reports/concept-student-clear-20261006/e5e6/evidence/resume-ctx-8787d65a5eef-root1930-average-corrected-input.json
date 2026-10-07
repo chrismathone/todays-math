@@ -1,0 +1,240 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-4-4-xc10",
+      "bDecision": "revise",
+      "bPrompt": "걸린 시간과 간 거리가 모두 다른 두 자동차의 평균적인 빠르기를 어떻게 견주는지 설명하시오. $3$시간에 $210\\,\\mathrm{km}$를 간 차와 $2$시간에 $150\\,\\mathrm{km}$를 간 차 중 평균적으로 더 빠른 차도 쓰시오.",
+      "bAnswer": "한 시간에 평균적으로 간 거리로 견준다. 앞 차는 $210\\div3=70$, 뒤 차는 $150\\div2=75$이므로 뒤의 차가 평균적으로 더 빠르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 시간에 평균적으로 간 거리로 견준다",
+            "걸린 시간을 같게 맞춘 거리로 견준다",
+            "시간에 대한 거리의 비율을 구해 견준다"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒤의 차",
+            "$2$시간에 $150\\,\\mathrm{km}$를 간 차"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "시간과 거리가 모두 다른 경우 시간당 거리로 빠르기를 견준다.",
+      "bReason": "시간과전체거리만으로순간의빠르기는알수없어평균빠르기비교임을질문·답에명시한다. 비교방법과빠른차만요청하고중간값은필수채점하지않는다.",
+      "cDecision": "revise",
+      "cAfter": "$3$시간에 $210\\,\\mathrm{km}$, $2$시간에 $150\\,\\mathrm{km}$를 간 두 차가 한 시간에 평균적으로 간 거리는 각각 {$70\\,\\mathrm{km}$}, {$75\\,\\mathrm{km}$}이므로 뒤의 차가 평균적으로 더 빠르다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$70\\,\\mathrm{km}$",
+            "$70$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$75\\,\\mathrm{km}$",
+            "$75$"
+          ]
+        }
+      ],
+      "cReason": "한시간당거리가실제매시간동일한거리라는뜻이아닌평균임을명시한다.70km·75km의계산을남긴다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1930-average.json",
+      "codexFinalAmendedFromFingerprint": "d4624c2f3239bff6fb875b017ad8046af13fdc520c158e8e52c1998c9ed95704",
+      "sourceIndex": 1949,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-4-xc10",
+        "section": "초6::1-4 비와 비율::1-4-4 비율이 사용되는 경우",
+        "term": "두 자동차의 빠르기 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 차의 빠르기는 걸린 시간을 {한 시간으로 맞춘 거리}로 견준다. $3$시간에 $210\\,\\mathrm{km}$, $2$시간에 $150\\,\\mathrm{km}$를 갔다면 뒤의 차가 더 빠르다.",
+        "studentC": "두 차의 빠르기는 걸린 시간을 □로 견준다. $3$시간에 $210\\,\\mathrm{km}$, $2$시간에 $150\\,\\mathrm{km}$를 갔다면 뒤의 차가 더 빠르다.",
+        "answers": [
+          "한 시간으로 맞춘 거리"
+        ]
+      },
+      "sourceFingerprint": "da8adbd547ad85856fc7a723d51cff61d2baabc3a1d81145631444f07b6a7157",
+      "draftEvidence": "evidence/section-072-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$70\\,\\mathrm{km}$",
+        "$75\\,\\mathrm{km}$"
+      ],
+      "cStudentAfter": "$3$시간에 $210\\,\\mathrm{km}$, $2$시간에 $150\\,\\mathrm{km}$를 간 두 차가 한 시간에 평균적으로 간 거리는 각각 □, □이므로 뒤의 차가 평균적으로 더 빠르다.",
+      "cMarkedSentence": "$3$시간에 $210\\,\\mathrm{km}$, $2$시간에 $150\\,\\mathrm{km}$를 간 두 차가 한 시간에 평균적으로 간 거리는 각각 {$70\\,\\mathrm{km}$}, {$75\\,\\mathrm{km}$}이므로 뒤의 차가 평균적으로 더 빠르다.",
+      "cStudentSentence": "$3$시간에 $210\\,\\mathrm{km}$, $2$시간에 $150\\,\\mathrm{km}$를 간 두 차가 한 시간에 평균적으로 간 거리는 각각 □, □이므로 뒤의 차가 평균적으로 더 빠르다.",
+      "cSlotAnswers": [
+        {
+          "key": "$70\\,\\mathrm{km}$",
+          "equivalents": [
+            "$70$"
+          ]
+        },
+        {
+          "key": "$75\\,\\mathrm{km}$",
+          "equivalents": [
+            "$75$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "걸린 시간과 간 거리가 모두 다른 두 자동차의 평균적인 빠르기를 어떻게 견주는지 설명하시오. $3$시간에 $210\\,\\mathrm{km}$를 간 차와 $2$시간에 $150\\,\\mathrm{km}$를 간 차 중 평균적으로 더 빠른 차도 쓰시오.",
+        "answer": "한 시간에 평균적으로 간 거리로 견준다. 앞 차는 $210\\div3=70$, 뒤 차는 $150\\div2=75$이므로 뒤의 차가 평균적으로 더 빠르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 시간에 평균적으로 간 거리로 견준다",
+              "걸린 시간을 같게 맞춘 거리로 견준다",
+              "시간에 대한 거리의 비율을 구해 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒤의 차",
+              "$2$시간에 $150\\,\\mathrm{km}$를 간 차"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3$시간에 $210\\,\\mathrm{km}$, $2$시간에 $150\\,\\mathrm{km}$를 간 두 차가 한 시간에 평균적으로 간 거리는 각각 {$70\\,\\mathrm{km}$}, {$75\\,\\mathrm{km}$}이므로 뒤의 차가 평균적으로 더 빠르다.",
+        "acceptedAnswers": [
+          [
+            "$70\\,\\mathrm{km}$",
+            "$70$"
+          ],
+          [
+            "$75\\,\\mathrm{km}$",
+            "$75$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "645a689f45650d1d82759de47d0e1f5f93afe904672c913dd3e06a09e68306e3",
+      "questionRevision": "planning-e5e6-20261006-645a689f4565",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-4-xc11",
+      "bDecision": "revise",
+      "bPrompt": "넓이가 서로 다른 두 마을의 붐비는 정도를 어떻게 견주는지 설명하시오. 넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을 중 더 붐비는 곳도 쓰시오.",
+      "bAnswer": "넓이 $1$만큼에 평균적으로 사는 사람 수로 견준다. $900\\div2=450$, $1200\\div3=400$이므로 앞 마을이 평균적으로 더 붐빈다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 넓이에 해당하는 평균 인구로 견준다",
+            "넓이 $1$당 평균 인구로 견준다",
+            "인구$\\div$넓이로 견준다"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞 마을",
+            "$2\\,\\mathrm{km}^2$에 $900$명인 마을"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "넓이가 다른 마을을 단위 넓이당 인구로 견준다.",
+      "bReason": "넓이별사람수는평균값임을모범답에명시한다. 질문이요청한비교방법과더붐비는마을만평가하고중간450·400을추가필수로강요하지않는다.",
+      "cDecision": "revise",
+      "cAfter": "넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을의 $1\\,\\mathrm{km}^2$당 평균 인구는 각각 {$450$}명, {$400$}명이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$450$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$400$"
+          ]
+        }
+      ],
+      "cReason": "단위넓이의인구는그마을의평균값임을C에도명시한다. 실제두평균450·400의계산을남긴다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1930-average.json",
+      "codexFinalAmendedFromFingerprint": "447df42884502f282c4d6df78cd7864100ec9f22d3d1677f94305197ea966138",
+      "sourceIndex": 1950,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-4-xc11",
+        "section": "초6::1-4 비와 비율::1-4-4 비율이 사용되는 경우",
+        "term": "두 마을의 붐비는 정도 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "붐비는 정도는 {같은 넓이에 해당하는 인구}로 견준다. 넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을에서는 앞 마을이 더 붐빈다.",
+        "studentC": "붐비는 정도는 □로 견준다. 넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을에서는 앞 마을이 더 붐빈다.",
+        "answers": [
+          "같은 넓이에 해당하는 인구"
+        ]
+      },
+      "sourceFingerprint": "405e81a58b0daa39702f4ae13cd666b29aff2ca2d90a819045bd1fccf8e5cabe",
+      "draftEvidence": "evidence/section-072-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$450$",
+        "$400$"
+      ],
+      "cStudentAfter": "넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을의 $1\\,\\mathrm{km}^2$당 평균 인구는 각각 □명, □명이다.",
+      "cMarkedSentence": "넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을의 $1\\,\\mathrm{km}^2$당 평균 인구는 각각 {$450$}명, {$400$}명이다.",
+      "cStudentSentence": "넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을의 $1\\,\\mathrm{km}^2$당 평균 인구는 각각 □명, □명이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$450$",
+          "equivalents": []
+        },
+        {
+          "key": "$400$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "넓이가 서로 다른 두 마을의 붐비는 정도를 어떻게 견주는지 설명하시오. 넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을 중 더 붐비는 곳도 쓰시오.",
+        "answer": "넓이 $1$만큼에 평균적으로 사는 사람 수로 견준다. $900\\div2=450$, $1200\\div3=400$이므로 앞 마을이 평균적으로 더 붐빈다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 넓이에 해당하는 평균 인구로 견준다",
+              "넓이 $1$당 평균 인구로 견준다",
+              "인구$\\div$넓이로 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞 마을",
+              "$2\\,\\mathrm{km}^2$에 $900$명인 마을"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을의 $1\\,\\mathrm{km}^2$당 평균 인구는 각각 {$450$}명, {$400$}명이다.",
+        "acceptedAnswers": [
+          [
+            "$450$"
+          ],
+          [
+            "$400$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c2a3cb87954066251015be0492241d991a63fe4db5c2a22a0e55db4c8131cbd9",
+      "questionRevision": "planning-e5e6-20261006-c2a3cb879540",
+      "requiresIndependentReview": true
+    }
+  ]
+}

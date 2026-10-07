@@ -1,0 +1,125 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-4-1-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$9$가 $6$의 자연수 배가 아닐 때에도 몇 배인지 나타낼 수 있는지 말하고, 나타낼 수 있다면 어떻게 나타내는지 설명하시오.",
+      "bAnswer": "나타낼 수 있다. $9\\div6$의 값을 소수나 분수로 쓰면 $1.5$배 또는 $\\frac{3}{2}$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눈값을분수나소수로쓰면몇배인지나타낼수있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$",
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "자연수가 아닌 몇 배를 분수나 소수로 나타낸다.",
+      "bReason": "초6이 아는 소수·분수로 답하게 하며 예의 정확한 값도 포함했다.",
+      "cDecision": "revise",
+      "cAfter": "$9$가 $6$의 몇 배인지 분수로 나타내면 {$\\frac{3}{2}$}배이고, 소수로 나타내면 {$1.5$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$"
+          ]
+        }
+      ],
+      "cReason": "추상적 낱말 대신 실제 값을 쓰게 해 자연수 배가 아닌 경우를 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-sentence-1899.json",
+      "codexFinalAmendedFromFingerprint": "a7f7546af454ef9754d7c4516ef4108060dcd92730096c8d6b61c5df4be992f3",
+      "sourceIndex": 1899,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc12",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "자연수가 아닌 몇 배",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나눗셈으로 비교한 값은 나누어떨어지지 않아도 {소수나 분수}로 나타낼 수 있다.",
+        "example": {
+          "prompt": "$9$가 $6$의 자연수 배가 아니어도 몇 배인지 나타낼 수 있는 까닭은?",
+          "answer": "나눈 값을 소수나 분수로 써서"
+        },
+        "studentC": "나눗셈으로 비교한 값은 나누어떨어지지 않아도 □로 나타낼 수 있다.",
+        "answers": [
+          "소수나 분수"
+        ]
+      },
+      "sourceFingerprint": "1c905a80f997ef9c0be02016d6b8d214ddf2d820cfa2f286cb5f25a5f7f759d1",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{2}$",
+        "$1.5$"
+      ],
+      "cStudentAfter": "$9$가 $6$의 몇 배인지 분수로 나타내면 □배이고, 소수로 나타내면 □배이다.",
+      "cMarkedSentence": "$9$가 $6$의 몇 배인지 분수로 나타내면 {$\\frac{3}{2}$}배이고, 소수로 나타내면 {$1.5$}배이다.",
+      "cStudentSentence": "$9$가 $6$의 몇 배인지 분수로 나타내면 □배이고, 소수로 나타내면 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{2}$",
+          "equivalents": [
+            "$1\\frac{1}{2}$"
+          ]
+        },
+        {
+          "key": "$1.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$9$가 $6$의 자연수 배가 아닐 때에도 몇 배인지 나타낼 수 있는지 말하고, 나타낼 수 있다면 어떻게 나타내는지 설명하시오.",
+        "answer": "나타낼 수 있다. $9\\div6$의 값을 소수나 분수로 쓰면 $1.5$배 또는 $\\frac{3}{2}$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눈값을분수나소수로쓰면몇배인지나타낼수있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.5$",
+              "$\\frac{3}{2}$",
+              "$1\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$9$가 $6$의 몇 배인지 분수로 나타내면 {$\\frac{3}{2}$}배이고, 소수로 나타내면 {$1.5$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ],
+          [
+            "$1.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ad8db4b52eb0e99969fa9fda488eae2c126f03a297cfee3573a9e55c9e602d2f",
+      "questionRevision": "planning-e5e6-20261006-ad8db4b52eb0",
+      "requiresIndependentReview": true
+    }
+  ]
+}

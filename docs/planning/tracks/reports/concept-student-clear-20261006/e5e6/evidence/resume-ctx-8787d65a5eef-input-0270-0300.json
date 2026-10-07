@@ -1,0 +1,3227 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T05:08:15.568476+00:00",
+  "rows": [
+    {
+      "id": "e6-1-5-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "원그래프는 원을 어떻게 나누어 자료를 나타내는지 설명하시오.",
+      "bAnswer": "원 전체를 전체로 정하고, 각 항목이 전체에서 차지하는 비율만큼 원을 나누어 나타낸다.",
+      "bGoal": "원그래프가 비율 크기에 맞게 원을 나눈 그래프임을 설명한다.",
+      "bReason": "정의 문장 전체를 외우게 하지 않고 원을 나누는 기준을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 항목의 비율(크기)만큼 원을 나눈다",
+            "항목이 전체에서 차지하는 비율에 맞게 원을 조각으로 나눈다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "원그래프는 원 하나를 전체로 정하고, 각 항목의 {비율}만큼 원을 나누어 나타낸 그래프이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비율",
+            "백분율",
+            "$\\%$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 핵심 낱말 '비율' 하나로 줄여 개념 이해를 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 270,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-3-c1",
+        "section": "초6::1-5 여러 가지 그래프::1-5-3 원그래프",
+        "level": "하",
+        "kind": "정의",
+        "term": "원그래프",
+        "definition": "원 하나를 전체로 정하고 {각 항목의 비율만큼 원을 나누어} 나타낸 그래프이다.",
+        "studentC": "원 하나를 전체로 정하고 □ 나타낸 그래프이다.",
+        "answers": [
+          "각 항목의 비율만큼 원을 나누어"
+        ]
+      },
+      "sourceFingerprint": "f3e18512d487481de190f4bde2700b12315dcb3d82ef916f5043d70daf842205",
+      "draftEvidence": "evidence/section-077-draft.json",
+      "cProposedAnswers": [
+        "비율"
+      ],
+      "cStudentAfter": "원그래프는 원 하나를 전체로 정하고, 각 항목의 □만큼 원을 나누어 나타낸 그래프이다.",
+      "cMarkedSentence": "원그래프는 원 하나를 전체로 정하고, 각 항목의 {비율}만큼 원을 나누어 나타낸 그래프이다.",
+      "cStudentSentence": "원그래프는 원 하나를 전체로 정하고, 각 항목의 □만큼 원을 나누어 나타낸 그래프이다.",
+      "cSlotAnswers": [
+        {
+          "key": "비율",
+          "equivalents": [
+            "백분율",
+            "$\\%$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원그래프는 원을 어떻게 나누어 자료를 나타내는지 설명하시오.",
+        "answer": "원 전체를 전체로 정하고, 각 항목이 전체에서 차지하는 비율만큼 원을 나누어 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 항목의 비율(크기)만큼 원을 나눈다",
+              "항목이 전체에서 차지하는 비율에 맞게 원을 조각으로 나눈다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원그래프는 원 하나를 전체로 정하고, 각 항목의 {비율}만큼 원을 나누어 나타낸 그래프이다.",
+        "acceptedAnswers": [
+          [
+            "비율",
+            "백분율",
+            "$\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6e71d1dfbf27538927989a025ac53e52cd53ba09da2c44090c4eb119f38c795a",
+      "questionRevision": "planning-e5e6-20261006-6e71d1dfbf27",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프와 원그래프는 항목의 수 자체가 아니라 무엇을 보여 주는 그래프인지 쓰시오.",
+      "bAnswer": "각 항목이 전체에서 차지하는 비율(백분율)을 보여 준다.",
+      "bGoal": "띠·원그래프가 전체에 대한 비율을 보여 주는 그래프임을 안다.",
+      "bReason": "'비율그래프'라는 편집용 이름 대신 두 그래프의 공통 목적을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체에서 차지하는 비율",
+            "전체에 대한 비율",
+            "각 항목의 백분율"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cReason": "'수 자체보다 □'의 대비가 분명하고 답이 전체에 대한 비율로 정해져 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 271,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-3-c2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-3 원그래프",
+        "level": "중",
+        "kind": "정의",
+        "term": "비율그래프",
+        "definition": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+        "studentC": "항목의 수 자체보다 □을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+        "answers": [
+          "전체에서 차지하는 몫"
+        ]
+      },
+      "sourceFingerprint": "3c6698c4405f512f0018c6689c8d608cd519177c89a190a95d4c294e2d4878a5",
+      "draftEvidence": "evidence/section-077-draft.json",
+      "cFrozenDefinition": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cFrozenStudentSentence": "항목의 수 자체보다 □을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cProposedAnswers": [
+        "전체에서 차지하는 몫"
+      ],
+      "cStudentAfter": "항목의 수 자체보다 □을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "전체에서 차지하는 몫"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cStudentSentence": "항목의 수 자체보다 □을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cSlotAnswers": [
+        {
+          "key": "전체에서 차지하는 몫",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠그래프와 원그래프는 항목의 수 자체가 아니라 무엇을 보여 주는 그래프인지 쓰시오.",
+        "answer": "각 항목이 전체에서 차지하는 비율(백분율)을 보여 준다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체에서 차지하는 비율",
+              "전체에 대한 비율",
+              "각 항목의 백분율"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+        "acceptedAnswers": [
+          [
+            "전체에서 차지하는 몫"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "37cc55741ce638b7af7f779e865e562496e6c02ce2901cab4a8403087cbf6a80",
+      "questionRevision": "planning-e5e6-20261006-37cc55741ce6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "한 원그래프에서 항목 A의 비율이 항목 B의 비율보다 클 때, 두 조각의 넓이를 어떻게 비교할 수 있는지 쓰고 그 까닭을 쓰시오.",
+      "bAnswer": "A 조각이 B 조각보다 넓다. 각 조각의 넓이는 그 항목의 비율만큼 원을 나눈 것이기 때문이다.",
+      "bGoal": "비율과 조각 넓이가 함께 커짐을 까닭과 함께 설명한다.",
+      "bReason": "결과만 쓰지 않고 넓이가 비율로 정해지는 관계를 말하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "A 조각의 넓이가 더 크다",
+            "A 조각이 B 조각보다 더 넓다"
+          ]
+        },
+        {
+          "anyOf": [
+            "조각의 넓이는 비율만큼 원을 나눈 것이다",
+            "비율이 클수록 원에서 더 많은 부분을 차지한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 {넓이}도 크다.",
+      "cReason": "같은 원 안에서 비율이 큰 항목일수록 조각이 넓다는 비교가 명확하고 답이 '넓이'로 정해져 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 272,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-3-c3",
+        "section": "초6::1-5 여러 가지 그래프::1-5-3 원그래프",
+        "level": "상",
+        "kind": "성질",
+        "term": "원의 조각과 비율",
+        "definition": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 {넓이}도 크다.",
+        "studentC": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 □도 크다.",
+        "answers": [
+          "넓이"
+        ]
+      },
+      "sourceFingerprint": "d760142aae9d439f6abd61338b365f2a941040aed71448f9ea1e516a3f069354",
+      "draftEvidence": "evidence/section-077-draft.json",
+      "cFrozenDefinition": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 {넓이}도 크다.",
+      "cFrozenStudentSentence": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 □도 크다.",
+      "cProposedAnswers": [
+        "넓이"
+      ],
+      "cStudentAfter": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 □도 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "넓이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 {넓이}도 크다.",
+      "cStudentSentence": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 □도 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "넓이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 원그래프에서 항목 A의 비율이 항목 B의 비율보다 클 때, 두 조각의 넓이를 어떻게 비교할 수 있는지 쓰고 그 까닭을 쓰시오.",
+        "answer": "A 조각이 B 조각보다 넓다. 각 조각의 넓이는 그 항목의 비율만큼 원을 나눈 것이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "A 조각의 넓이가 더 크다",
+              "A 조각이 B 조각보다 더 넓다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각의 넓이는 비율만큼 원을 나눈 것이다",
+              "비율이 클수록 원에서 더 많은 부분을 차지한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 원 안에서는 비율이 큰 항목일수록 조각이 차지하는 {넓이}도 크다.",
+        "acceptedAnswers": [
+          [
+            "넓이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6e9f020e2dd329a5453397c85d4f3f17bc5d627af6ed1b0063c6367d5baa9657",
+      "questionRevision": "planning-e5e6-20261006-6e9f020e2dd3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "항목별 자료의 수가 주어졌을 때 원그래프를 그리려면, 각 항목에서 먼저 무엇을 구해야 하나요? 그것으로 원의 조각 크기를 어떻게 정하는지도 말해 보세요.",
+      "bAnswer": "전체에 대한 각 항목의 백분율을 구한다. 그 백분율만큼 원의 눈금을 차지하게 조각의 크기를 정한다.",
+      "bGoal": "원그래프를 그리기 전에 항목별 백분율을 먼저 구해야 한다는 순서를 안다.",
+      "bReason": "원문 제목 '원그래프 준비'를 쓰지 않고 구할 값과 쓰임을 함께 묻는 질문으로 바꿨다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 항목의 백분율을 구한다",
+            "각 항목의 비율을 백분율로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "백분율만큼 원의 눈금으로 조각 크기를 정한다",
+            "백분율에 맞게 눈금을 차지하게 나눈다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "자료의 각 항목이 전체에서 차지하는 정도를 {백분율}로 나타낸 뒤, 원의 눈금을 이용해 조각의 크기를 정한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "백분율",
+            "비율",
+            "$\\%$"
+          ]
+        }
+      ],
+      "cReason": "□이 무엇의 값인지 불분명해서 전체에 대한 정도라는 맥락을 붙이고 '비율'도 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 273,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-4-c1",
+        "section": "초6::1-5 여러 가지 그래프::1-5-4 원그래프로 나타내기",
+        "level": "하",
+        "kind": "방법",
+        "term": "원그래프 준비",
+        "definition": "항목마다 {백분율}을 구한 뒤, 원의 눈금을 이용해 조각의 크기를 정한다.",
+        "studentC": "항목마다 □을 구한 뒤, 원의 눈금을 이용해 조각의 크기를 정한다.",
+        "answers": [
+          "백분율"
+        ]
+      },
+      "sourceFingerprint": "615900693073f6a97805a3e7ac73589798b8a2255df9e8c3a79d302f783a805d",
+      "draftEvidence": "evidence/section-078-draft.json",
+      "cProposedAnswers": [
+        "백분율"
+      ],
+      "cStudentAfter": "자료의 각 항목이 전체에서 차지하는 정도를 □로 나타낸 뒤, 원의 눈금을 이용해 조각의 크기를 정한다.",
+      "cMarkedSentence": "자료의 각 항목이 전체에서 차지하는 정도를 {백분율}로 나타낸 뒤, 원의 눈금을 이용해 조각의 크기를 정한다.",
+      "cStudentSentence": "자료의 각 항목이 전체에서 차지하는 정도를 □로 나타낸 뒤, 원의 눈금을 이용해 조각의 크기를 정한다.",
+      "cSlotAnswers": [
+        {
+          "key": "백분율",
+          "equivalents": [
+            "비율",
+            "$\\%$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "항목별 자료의 수가 주어졌을 때 원그래프를 그리려면, 각 항목에서 먼저 무엇을 구해야 하나요? 그것으로 원의 조각 크기를 어떻게 정하는지도 말해 보세요.",
+        "answer": "전체에 대한 각 항목의 백분율을 구한다. 그 백분율만큼 원의 눈금을 차지하게 조각의 크기를 정한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 항목의 백분율을 구한다",
+              "각 항목의 비율을 백분율로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "백분율만큼 원의 눈금으로 조각 크기를 정한다",
+              "백분율에 맞게 눈금을 차지하게 나눈다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자료의 각 항목이 전체에서 차지하는 정도를 {백분율}로 나타낸 뒤, 원의 눈금을 이용해 조각의 크기를 정한다.",
+        "acceptedAnswers": [
+          [
+            "백분율",
+            "비율",
+            "$\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e0813a892ce47afc1ee65f7715e7df05cca7cb694750ddb3ec2cdda8999a9c2f",
+      "questionRevision": "planning-e5e6-20261006-e0813a892ce4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "원의 둘레를 똑같은 크기로 나눈 눈금이 있습니다. 눈금 한 칸이 나타내는 백분율은 어떻게 구하나요? 눈금이 $50$칸이면 한 칸은 몇 $\\%$인가요?",
+      "bAnswer": "원 전체 $100\\%$를 칸 수로 나눈다. $100\\div50=2$이므로 한 칸은 $2\\%$이다.",
+      "bGoal": "원 전체를 똑같은 칸으로 나눌 때 한 칸의 백분율을 구하는 방법을 안다.",
+      "bReason": "방법과 함께 $50$칸 예를 묻고, 계산값 하나만 묻지 않도록 일반 방법을 먼저 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100\\%$를 칸 수로 나눈다",
+            "전체를 칸 수로 똑같이 나눈 값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\%$",
+            "$2$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "원 전체 $100\\%$를 똑같은 눈금 $25$칸으로 나누면 한 칸은 {$4\\%$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4\\%$",
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 숫자 하나로 바꿔 $100\\%$를 칸 수로 나누는 계산을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 274,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-4-c2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-4 원그래프로 나타내기",
+        "level": "중",
+        "kind": "방법",
+        "term": "원그래프 눈금 한 칸의 백분율",
+        "definition": "원의 둘레를 똑같이 나눈 눈금 한 칸은 {$100\\%$를 칸 수로 나눈} 백분율이다. $100$칸이면 한 칸이 $1\\%$이다.",
+        "studentC": "원의 둘레를 똑같이 나눈 눈금 한 칸은 □ 백분율이다. $100$칸이면 한 칸이 $1\\%$이다.",
+        "answers": [
+          "$100\\%$를 칸 수로 나눈"
+        ]
+      },
+      "sourceFingerprint": "f30d54c9f150900960244d4bced6e62ae11e8702c39787ddc2e9ab2faf5d8649",
+      "draftEvidence": "evidence/section-078-draft.json",
+      "cProposedAnswers": [
+        "$4\\%$"
+      ],
+      "cStudentAfter": "원 전체 $100\\%$를 똑같은 눈금 $25$칸으로 나누면 한 칸은 □이다.",
+      "cMarkedSentence": "원 전체 $100\\%$를 똑같은 눈금 $25$칸으로 나누면 한 칸은 {$4\\%$}이다.",
+      "cStudentSentence": "원 전체 $100\\%$를 똑같은 눈금 $25$칸으로 나누면 한 칸은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4\\%$",
+          "equivalents": [
+            "$4$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 둘레를 똑같은 크기로 나눈 눈금이 있습니다. 눈금 한 칸이 나타내는 백분율은 어떻게 구하나요? 눈금이 $50$칸이면 한 칸은 몇 $\\%$인가요?",
+        "answer": "원 전체 $100\\%$를 칸 수로 나눈다. $100\\div50=2$이므로 한 칸은 $2\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100\\%$를 칸 수로 나눈다",
+              "전체를 칸 수로 똑같이 나눈 값이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\%$",
+              "$2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원 전체 $100\\%$를 똑같은 눈금 $25$칸으로 나누면 한 칸은 {$4\\%$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4\\%$",
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "312f943552b80a6614d8c5099705e6c5fc70d9779eb724184ebf27320230fc3c",
+      "questionRevision": "planning-e5e6-20261006-312f943552b8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "원그래프에서 나눈 조각마다 어떤 두 가지를 적어야 하나요? 그렇게 적으면 무엇을 알 수 있나요?",
+      "bAnswer": "항목 이름과 백분율을 적는다. 각 조각이 무엇을 나타내는지와 얼마나 차지하는지를 함께 알 수 있다.",
+      "bGoal": "원그래프 조각에 항목 이름과 백분율을 함께 적는 까닭을 안다.",
+      "bReason": "두 표시 항목과 그 쓰임을 묻는 정의형 질문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항목 이름",
+            "항목의 이름",
+            "무엇인지 나타내는 이름"
+          ]
+        },
+        {
+          "anyOf": [
+            "백분율",
+            "비율",
+            "퍼센트"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cReason": "두 빈칸이 이름과 백분율로 짧고 학생이 알 수 있어 원문을 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "백분율은 비율이나 퍼센트로 말해도 된다.",
+      "sourceIndex": 275,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-4-c3",
+        "section": "초6::1-5 여러 가지 그래프::1-5-4 원그래프로 나타내기",
+        "level": "상",
+        "kind": "방법",
+        "term": "원그래프의 자료 표시",
+        "definition": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+        "studentC": "나눈 조각에는 □과 □을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+        "answers": [
+          "항목 이름",
+          "백분율"
+        ]
+      },
+      "sourceFingerprint": "765a9d8c20f5ab28450a077ec32e442d0e5d2ad300de5364e6b971721b7d3e39",
+      "draftEvidence": "evidence/section-078-draft.json",
+      "cFrozenDefinition": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cFrozenStudentSentence": "나눈 조각에는 □과 □을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cProposedAnswers": [
+        "항목 이름",
+        "백분율"
+      ],
+      "cStudentAfter": "나눈 조각에는 □과 □을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "항목 이름"
+          ]
+        },
+        {
+          "anyOf": [
+            "백분율"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cStudentSentence": "나눈 조각에는 □과 □을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "항목 이름",
+          "equivalents": []
+        },
+        {
+          "key": "백분율",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원그래프에서 나눈 조각마다 어떤 두 가지를 적어야 하나요? 그렇게 적으면 무엇을 알 수 있나요?",
+        "answer": "항목 이름과 백분율을 적는다. 각 조각이 무엇을 나타내는지와 얼마나 차지하는지를 함께 알 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항목 이름",
+              "항목의 이름",
+              "무엇인지 나타내는 이름"
+            ]
+          },
+          {
+            "anyOf": [
+              "백분율",
+              "비율",
+              "퍼센트"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+        "acceptedAnswers": [
+          [
+            "항목 이름"
+          ],
+          [
+            "백분율"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "76540cc81eac52b0d86017cc2b7432dea9b210f7ed4871d45f7473488f530e47",
+      "questionRevision": "planning-e5e6-20261006-76540cc81eac",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-c1",
+      "bDecision": "keep",
+      "bPrompt": "막대그래프와 띠그래프는 각각 어떤 내용을 비교할 때 알맞은가?",
+      "bAnswer": "막대그래프는 항목별 수량의 크기를 비교할 때, 띠그래프는 전체에서 각 항목이 차지하는 비율을 비교할 때 알맞다.",
+      "bGoal": "두 그래프의 쓰임 차이를 구분한다.",
+      "bReason": "수량 비교와 비율 비교라는 핵심 구분을 한 질문으로 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "막대그래프는 항목별 수량의 크기를 비교할 때",
+            "막대그래프는 각 항목의 수나 양을 견줄 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "띠그래프는 전체에서 각 항목이 차지하는 비율을 비교할 때",
+            "띠그래프는 전체에 대한 백분율을 볼 때"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+      "cReason": "두 쓰임을 짝지어 비교하는 짧은 문장이고 조건이 명확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 276,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-5-c1",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "level": "하",
+        "kind": "방법",
+        "term": "막대그래프와 띠그래프 비교",
+        "definition": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+        "studentC": "□는 막대그래프, □은 띠그래프로 비교하기 좋다.",
+        "answers": [
+          "항목별 수의 크기",
+          "전체 안의 비율"
+        ]
+      },
+      "sourceFingerprint": "263a40bb904fee5ac5dc200fcb236d0237ed47d177a4a05e7915e0f1bc349c3e",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "cFrozenDefinition": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+      "cFrozenStudentSentence": "□는 막대그래프, □은 띠그래프로 비교하기 좋다.",
+      "cProposedAnswers": [
+        "항목별 수의 크기",
+        "전체 안의 비율"
+      ],
+      "cStudentAfter": "□는 막대그래프, □은 띠그래프로 비교하기 좋다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "항목별 수의 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 안의 비율"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+      "cStudentSentence": "□는 막대그래프, □은 띠그래프로 비교하기 좋다.",
+      "cSlotAnswers": [
+        {
+          "key": "항목별 수의 크기",
+          "equivalents": []
+        },
+        {
+          "key": "전체 안의 비율",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "막대그래프와 띠그래프는 각각 어떤 내용을 비교할 때 알맞은가?",
+        "answer": "막대그래프는 항목별 수량의 크기를 비교할 때, 띠그래프는 전체에서 각 항목이 차지하는 비율을 비교할 때 알맞다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "막대그래프는 항목별 수량의 크기를 비교할 때",
+              "막대그래프는 각 항목의 수나 양을 견줄 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "띠그래프는 전체에서 각 항목이 차지하는 비율을 비교할 때",
+              "띠그래프는 전체에 대한 백분율을 볼 때"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+        "acceptedAnswers": [
+          [
+            "항목별 수의 크기"
+          ],
+          [
+            "전체 안의 비율"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7da968c56b94b7737f97c448e9c0cae94cf3edb2400cf4f9a07d752ee8d0e25a",
+      "questionRevision": "planning-e5e6-20261006-7da968c56b94",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-c2",
+      "bDecision": "keep",
+      "bPrompt": "하루 동안 시각마다 잰 기온처럼 시간이 지남에 따라 값이 오르내리는 모습을 살피기 좋은 그래프는 무엇인가? 그 그래프는 자료를 어떻게 나타내는지도 쓰시오.",
+      "bAnswer": "꺾은선그래프이다. 시간에 따른 값을 점으로 찍고 그 점들을 선으로 이어 나타낸다.",
+      "bGoal": "변화를 나타내는 그래프와 그 표현 방식을 안다.",
+      "bReason": "시간에 따른 오르내림이라는 상황에서 그래프를 고르고 모양까지 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꺾은선그래프"
+          ]
+        },
+        {
+          "anyOf": [
+            "점을 찍어 선으로 잇는다",
+            "점들을 선분으로 이어 나타낸다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "시간 순서에 따른 수의 오르내림은 점들을 이은 {꺾은선그래프}로 살피기 좋다.",
+      "cReason": "변화를 보는 그래프 이름을 묻는 짧은 문장이며 답이 문장 앞부분에서 베껴지지 않는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 277,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-5-c2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "level": "중",
+        "kind": "방법",
+        "term": "변화를 나타내는 그래프",
+        "definition": "시간 순서에 따른 수의 오르내림은 점들을 이은 {꺾은선그래프}로 살피기 좋다.",
+        "studentC": "시간 순서에 따른 수의 오르내림은 점들을 이은 □로 살피기 좋다.",
+        "answers": [
+          "꺾은선그래프"
+        ]
+      },
+      "sourceFingerprint": "1393fd2087f9cfd99ef7c566a3a782f9921b4cd594453803620f09873b2585dc",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "cFrozenDefinition": "시간 순서에 따른 수의 오르내림은 점들을 이은 {꺾은선그래프}로 살피기 좋다.",
+      "cFrozenStudentSentence": "시간 순서에 따른 수의 오르내림은 점들을 이은 □로 살피기 좋다.",
+      "cProposedAnswers": [
+        "꺾은선그래프"
+      ],
+      "cStudentAfter": "시간 순서에 따른 수의 오르내림은 점들을 이은 □로 살피기 좋다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꺾은선그래프"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "시간 순서에 따른 수의 오르내림은 점들을 이은 {꺾은선그래프}로 살피기 좋다.",
+      "cStudentSentence": "시간 순서에 따른 수의 오르내림은 점들을 이은 □로 살피기 좋다.",
+      "cSlotAnswers": [
+        {
+          "key": "꺾은선그래프",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "하루 동안 시각마다 잰 기온처럼 시간이 지남에 따라 값이 오르내리는 모습을 살피기 좋은 그래프는 무엇인가? 그 그래프는 자료를 어떻게 나타내는지도 쓰시오.",
+        "answer": "꺾은선그래프이다. 시간에 따른 값을 점으로 찍고 그 점들을 선으로 이어 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꺾은선그래프"
+            ]
+          },
+          {
+            "anyOf": [
+              "점을 찍어 선으로 잇는다",
+              "점들을 선분으로 이어 나타낸다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "시간 순서에 따른 수의 오르내림은 점들을 이은 {꺾은선그래프}로 살피기 좋다.",
+        "acceptedAnswers": [
+          [
+            "꺾은선그래프"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "11b195d55a18233644497e7c18e362706aad57bf5e45f10cf1bc08f6d9c183a2",
+      "questionRevision": "planning-e5e6-20261006-11b195d55a18",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-c3",
+      "bDecision": "keep",
+      "bPrompt": "서로 다른 두 집단에서 한 항목의 비율이 더 크면 그 항목의 실제 인원도 항상 더 많은가? 실제 인원이 무엇에 따라 정해지는지 함께 설명하시오.",
+      "bAnswer": "항상 더 많은 것은 아니다. 실제 인원은 전체 수와 비율에 따라 정해지므로, 비율이 커도 전체 수가 작으면 인원이 더 적을 수 있다.",
+      "bGoal": "비율이 크다고 실제 인원이 많다고 단정하지 않는다.",
+      "bReason": "비율과 전체 수의 관계를 일반적으로 묻는 핵심 오개념 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 더 많은 것은 아니다",
+            "비율이 커도 인원이 더 적을 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 수와 비율에 따라 정해진다",
+            "전체 수와 비율을 곱해 정해진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "서로 다른 집단의 실제 인원은 {비율과 전체 수}에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+      "cReason": "실제 인원이 비율과 전체 수에 달려 있다는 조건을 정확히 짚는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 278,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-5-c3",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "level": "상",
+        "kind": "성질",
+        "term": "집단 사이 비율 비교",
+        "definition": "서로 다른 집단의 실제 인원은 {비율과 전체 수}에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+        "studentC": "서로 다른 집단의 실제 인원은 □에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+        "answers": [
+          "비율과 전체 수"
+        ]
+      },
+      "sourceFingerprint": "1e6070dfb3593157d2224a7d7e9b3886e8d65224c457c76560dec91b25d279d3",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "cFrozenDefinition": "서로 다른 집단의 실제 인원은 {비율과 전체 수}에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+      "cFrozenStudentSentence": "서로 다른 집단의 실제 인원은 □에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+      "cProposedAnswers": [
+        "비율과 전체 수"
+      ],
+      "cStudentAfter": "서로 다른 집단의 실제 인원은 □에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비율과 전체 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 다른 집단의 실제 인원은 {비율과 전체 수}에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+      "cStudentSentence": "서로 다른 집단의 실제 인원은 □에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "비율과 전체 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 다른 두 집단에서 한 항목의 비율이 더 크면 그 항목의 실제 인원도 항상 더 많은가? 실제 인원이 무엇에 따라 정해지는지 함께 설명하시오.",
+        "answer": "항상 더 많은 것은 아니다. 실제 인원은 전체 수와 비율에 따라 정해지므로, 비율이 커도 전체 수가 작으면 인원이 더 적을 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 더 많은 것은 아니다",
+              "비율이 커도 인원이 더 적을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 수와 비율에 따라 정해진다",
+              "전체 수와 비율을 곱해 정해진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서로 다른 집단의 실제 인원은 {비율과 전체 수}에 따라 정해지므로, 비율이 크다고 실제 인원도 언제나 더 많은 것은 아니다.",
+        "acceptedAnswers": [
+          [
+            "비율과 전체 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "12b6757679593a43a198e88ab7e3f82e40dcfdff0b8b5a6b2babccc9ce566e6f",
+      "questionRevision": "planning-e5e6-20261006-12b675767959",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "직육면체 같은 입체의 겉넓이는 무엇이고, 어떻게 구하나요?",
+      "bAnswer": "입체의 겉을 이루는 모든 면의 넓이를 각각 구해 모두 더한 값이다.",
+      "bGoal": "겉넓이의 뜻과 구하는 기본 방법을 설명한다.",
+      "bReason": "제목만 설명하는 형태 대신 '무엇이고 어떻게 구하나'로 범위를 좁혔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "겉을 이루는 모든 면의 넓이를 구한다",
+            "겉면 전체의 넓이를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 넓이들을 모두 더한다",
+            "넓이의 합이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "입체의 겉을 이루는 면마다 넓이를 구해 {모두 더한 값}이 겉넓이이다.",
+      "cReason": "면마다 넓이를 구한 뒤 '모두 더한 값'을 답하게 하는 짧고 명확한 정의 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 279,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-1-c1",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-1 직육면체의 겉넓이 구하는 방법",
+        "level": "하",
+        "kind": "정의",
+        "term": "겉넓이",
+        "definition": "입체의 겉을 이루는 면마다 넓이를 구해 {모두 더한 값}이 겉넓이이다.",
+        "studentC": "입체의 겉을 이루는 면마다 넓이를 구해 □이 겉넓이이다.",
+        "answers": [
+          "모두 더한 값"
+        ]
+      },
+      "sourceFingerprint": "09dffc1607a8d18d01ed6365e8e7b6ef3e73d70d847fad28fb13878ec6a6c565",
+      "draftEvidence": "evidence/section-080-draft.json",
+      "cFrozenDefinition": "입체의 겉을 이루는 면마다 넓이를 구해 {모두 더한 값}이 겉넓이이다.",
+      "cFrozenStudentSentence": "입체의 겉을 이루는 면마다 넓이를 구해 □이 겉넓이이다.",
+      "cProposedAnswers": [
+        "모두 더한 값"
+      ],
+      "cStudentAfter": "입체의 겉을 이루는 면마다 넓이를 구해 □이 겉넓이이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모두 더한 값"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "입체의 겉을 이루는 면마다 넓이를 구해 {모두 더한 값}이 겉넓이이다.",
+      "cStudentSentence": "입체의 겉을 이루는 면마다 넓이를 구해 □이 겉넓이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "모두 더한 값",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체 같은 입체의 겉넓이는 무엇이고, 어떻게 구하나요?",
+        "answer": "입체의 겉을 이루는 모든 면의 넓이를 각각 구해 모두 더한 값이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겉을 이루는 모든 면의 넓이를 구한다",
+              "겉면 전체의 넓이를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 넓이들을 모두 더한다",
+              "넓이의 합이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "입체의 겉을 이루는 면마다 넓이를 구해 {모두 더한 값}이 겉넓이이다.",
+        "acceptedAnswers": [
+          [
+            "모두 더한 값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fcffea0061fbcd8d0b7ba890ff0f9f66d2f5e40c1097ac9b622926d1e2c6e10e",
+      "questionRevision": "planning-e5e6-20261006-fcffea0061fb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 겉넓이를 여섯 면을 하나씩 모두 구하지 않고 더 짧게 구하는 방법을 쓰고, 그 방법이 가능한 이유를 설명하세요.",
+      "bAnswer": "마주 보는 두 면의 넓이가 같으므로, 한 꼭짓점에서 만나는 세 면의 넓이를 더해 $2$배 한다.",
+      "bGoal": "마주 보는 면의 넓이가 같음을 이용한 지름길 방법과 근거를 설명한다.",
+      "bReason": "방법과 이유를 함께 묻되 '세 면', '두 배'는 질문에 노출하지 않았다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마주 보는 면의 넓이가 서로 같다",
+            "넓이가 같은 면이 짝을 이룬다"
+          ]
+        },
+        {
+          "anyOf": [
+            "서로 다른 세 면의 넓이를 더해 $2$배 한다",
+            "한 꼭짓점에서 만나는 세 면의 넓이의 합에 $2$를 곱한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "한 꼭짓점에서 만나는 세 면의 넓이가 $6\\ \\mathrm{cm}^2$, $8\\ \\mathrm{cm}^2$, $12\\ \\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times${$2$}$=${$52$}$\\ \\mathrm{cm}^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두",
+            "$2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$52$"
+          ]
+        }
+      ],
+      "cReason": "원문의 '□ 한다'는 두 배/$2$배 표현이 갈려 모호하므로 실제 수로 합과 곱하는 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 280,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-1-c2",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-1 직육면체의 겉넓이 구하는 방법",
+        "level": "중",
+        "kind": "방법",
+        "term": "직육면체의 겉넓이",
+        "definition": "직육면체에는 같은 넓이의 면이 짝을 이루므로 한 꼭짓점에서 만나는 세 면의 넓이를 더해 {두 배} 한다.",
+        "studentC": "직육면체에는 같은 넓이의 면이 짝을 이루므로 한 꼭짓점에서 만나는 세 면의 넓이를 더해 □ 한다.",
+        "answers": [
+          "두 배"
+        ]
+      },
+      "sourceFingerprint": "5a730759663a640dc311e5b8fdd473e0e4a2b32ab4d2648930177c3c802a8bb3",
+      "draftEvidence": "evidence/section-080-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$52$"
+      ],
+      "cStudentAfter": "한 꼭짓점에서 만나는 세 면의 넓이가 $6\\ \\mathrm{cm}^2$, $8\\ \\mathrm{cm}^2$, $12\\ \\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times$□$=$□$\\ \\mathrm{cm}^2$이다.",
+      "cMarkedSentence": "한 꼭짓점에서 만나는 세 면의 넓이가 $6\\ \\mathrm{cm}^2$, $8\\ \\mathrm{cm}^2$, $12\\ \\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times${$2$}$=${$52$}$\\ \\mathrm{cm}^2$이다.",
+      "cStudentSentence": "한 꼭짓점에서 만나는 세 면의 넓이가 $6\\ \\mathrm{cm}^2$, $8\\ \\mathrm{cm}^2$, $12\\ \\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times$□$=$□$\\ \\mathrm{cm}^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두",
+            "$2$배"
+          ]
+        },
+        {
+          "key": "$52$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 겉넓이를 여섯 면을 하나씩 모두 구하지 않고 더 짧게 구하는 방법을 쓰고, 그 방법이 가능한 이유를 설명하세요.",
+        "answer": "마주 보는 두 면의 넓이가 같으므로, 한 꼭짓점에서 만나는 세 면의 넓이를 더해 $2$배 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 면의 넓이가 서로 같다",
+              "넓이가 같은 면이 짝을 이룬다"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 다른 세 면의 넓이를 더해 $2$배 한다",
+              "한 꼭짓점에서 만나는 세 면의 넓이의 합에 $2$를 곱한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 꼭짓점에서 만나는 세 면의 넓이가 $6\\ \\mathrm{cm}^2$, $8\\ \\mathrm{cm}^2$, $12\\ \\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times${$2$}$=${$52$}$\\ \\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두",
+            "$2$배"
+          ],
+          [
+            "$52$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1de28571d7be8cc828070076aec4d033472fe90cfcd9eecbde41123af9b53e66",
+      "questionRevision": "planning-e5e6-20261006-1de28571d7be",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 겉넓이를 구하는 방법을 쓰고, 그렇게 구할 수 있는 이유를 설명하세요.",
+      "bAnswer": "정육면체의 여섯 면은 모두 넓이가 같으므로, 한 면의 넓이에 $6$을 곱해 구한다.",
+      "bGoal": "여섯 면이 같다는 성질로 정육면체 겉넓이 식을 설명한다.",
+      "bReason": "공식 암기 대신 방법과 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "여섯 면의 넓이가 모두 같다",
+            "여섯 면이 모두 합동이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 면의 넓이에 $6$을 곱한다",
+            "한 면의 넓이$\\times6$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "정육면체는 여섯 면이 모두 같으므로 {한 면의 넓이}에 {$6$}을 곱해 겉넓이를 구한다.",
+      "cReason": "'한 면의 넓이'와 '$6$'을 구분해 채우는 짧은 공식 문장이고 조건(여섯 면이 모두 같음)이 문장에 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 281,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-1-c3",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-1 직육면체의 겉넓이 구하는 방법",
+        "level": "중",
+        "kind": "공식",
+        "term": "정육면체의 겉넓이",
+        "definition": "정육면체는 여섯 면이 모두 같으므로 {한 면의 넓이}에 {$6$}을 곱해 겉넓이를 구한다.",
+        "studentC": "정육면체는 여섯 면이 모두 같으므로 □에 □을 곱해 겉넓이를 구한다.",
+        "answers": [
+          "한 면의 넓이",
+          "$6$"
+        ]
+      },
+      "sourceFingerprint": "90fa3a067290dea671b63439a29d998bf74741140cb0dc64ce81e2bfc5187927",
+      "draftEvidence": "evidence/section-080-draft.json",
+      "cFrozenDefinition": "정육면체는 여섯 면이 모두 같으므로 {한 면의 넓이}에 {$6$}을 곱해 겉넓이를 구한다.",
+      "cFrozenStudentSentence": "정육면체는 여섯 면이 모두 같으므로 □에 □을 곱해 겉넓이를 구한다.",
+      "cProposedAnswers": [
+        "한 면의 넓이",
+        "$6$"
+      ],
+      "cStudentAfter": "정육면체는 여섯 면이 모두 같으므로 □에 □을 곱해 겉넓이를 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한 면의 넓이"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체는 여섯 면이 모두 같으므로 {한 면의 넓이}에 {$6$}을 곱해 겉넓이를 구한다.",
+      "cStudentSentence": "정육면체는 여섯 면이 모두 같으므로 □에 □을 곱해 겉넓이를 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "한 면의 넓이",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 겉넓이를 구하는 방법을 쓰고, 그렇게 구할 수 있는 이유를 설명하세요.",
+        "answer": "정육면체의 여섯 면은 모두 넓이가 같으므로, 한 면의 넓이에 $6$을 곱해 구한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "여섯 면의 넓이가 모두 같다",
+              "여섯 면이 모두 합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 면의 넓이에 $6$을 곱한다",
+              "한 면의 넓이$\\times6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체는 여섯 면이 모두 같으므로 {한 면의 넓이}에 {$6$}을 곱해 겉넓이를 구한다.",
+        "acceptedAnswers": [
+          [
+            "한 면의 넓이"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8299fffebc3cd320d5d439d412a2f5086d52978cbb51ff50cfe18925079374bd",
+      "questionRevision": "planning-e5e6-20261006-8299fffebc3c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-1-c4",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 겉넓이와 모서리 길이의 합은 각각 무엇을 더한 값이며, 어떤 종류의 단위로 나타내나요?",
+      "bAnswer": "겉넓이는 면의 넓이를 더한 값이라 $\\mathrm{cm}^2$ 같은 넓이 단위를 쓰고, 모서리 길이의 합은 길이를 더한 값이라 $\\mathrm{cm}$ 같은 길이 단위를 쓴다.",
+      "bGoal": "넓이의 합과 길이의 합을 구별하고 단위를 연결한다.",
+      "bReason": "자주 하는 혼동을 구별하게 하며 단위 종류만 요구해 암기 부담을 줄였다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "겉넓이는 면의 넓이를 더한 값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "겉넓이는 $\\mathrm{cm}^2$ 같은 넓이 단위를 쓴다",
+            "겉넓이는 제곱 단위를 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 길이의 합은 길이를 더한 값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 길이의 합은 $\\mathrm{cm}$ 같은 길이 단위를 쓴다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "겉넓이는 면들의 {넓이를 더한 값}이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 {길이를 더한 값}이므로 센티미터 같은 단위를 쓴다.",
+      "cReason": "넓이를 더한 값과 길이를 더한 값을 단위와 연결해 구별하는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 282,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-1-c4",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-1 직육면체의 겉넓이 구하는 방법",
+        "level": "상",
+        "kind": "성질",
+        "term": "겉넓이와 모서리 길이의 합 구별",
+        "definition": "겉넓이는 면들의 {넓이를 더한 값}이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 {길이를 더한 값}이므로 센티미터 같은 단위를 쓴다.",
+        "studentC": "겉넓이는 면들의 □이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 □이므로 센티미터 같은 단위를 쓴다.",
+        "answers": [
+          "넓이를 더한 값",
+          "길이를 더한 값"
+        ]
+      },
+      "sourceFingerprint": "e9fdb9caae129fa4a4efd3059c1a8fd5cd1f35619adb8cf731754b42cfe4b7b9",
+      "draftEvidence": "evidence/section-080-draft.json",
+      "cFrozenDefinition": "겉넓이는 면들의 {넓이를 더한 값}이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 {길이를 더한 값}이므로 센티미터 같은 단위를 쓴다.",
+      "cFrozenStudentSentence": "겉넓이는 면들의 □이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 □이므로 센티미터 같은 단위를 쓴다.",
+      "cProposedAnswers": [
+        "넓이를 더한 값",
+        "길이를 더한 값"
+      ],
+      "cStudentAfter": "겉넓이는 면들의 □이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 □이므로 센티미터 같은 단위를 쓴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "넓이를 더한 값"
+          ]
+        },
+        {
+          "anyOf": [
+            "길이를 더한 값"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "겉넓이는 면들의 {넓이를 더한 값}이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 {길이를 더한 값}이므로 센티미터 같은 단위를 쓴다.",
+      "cStudentSentence": "겉넓이는 면들의 □이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 □이므로 센티미터 같은 단위를 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "넓이를 더한 값",
+          "equivalents": []
+        },
+        {
+          "key": "길이를 더한 값",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 겉넓이와 모서리 길이의 합은 각각 무엇을 더한 값이며, 어떤 종류의 단위로 나타내나요?",
+        "answer": "겉넓이는 면의 넓이를 더한 값이라 $\\mathrm{cm}^2$ 같은 넓이 단위를 쓰고, 모서리 길이의 합은 길이를 더한 값이라 $\\mathrm{cm}$ 같은 길이 단위를 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겉넓이는 면의 넓이를 더한 값이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이는 $\\mathrm{cm}^2$ 같은 넓이 단위를 쓴다",
+              "겉넓이는 제곱 단위를 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 길이의 합은 길이를 더한 값이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 길이의 합은 $\\mathrm{cm}$ 같은 길이 단위를 쓴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "겉넓이는 면들의 {넓이를 더한 값}이므로 제곱센티미터 같은 단위를 쓰고, 모서리 길이의 합은 {길이를 더한 값}이므로 센티미터 같은 단위를 쓴다.",
+        "acceptedAnswers": [
+          [
+            "넓이를 더한 값"
+          ],
+          [
+            "길이를 더한 값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "047a780441c8ee5b769d5f7af12b1b599d5556af58838817ff5be98af84e644e",
+      "questionRevision": "planning-e5e6-20261006-047a780441c8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "입체의 부피는 그 입체의 무엇을 나타내는 크기인가?",
+      "bAnswer": "입체가 차지하는 공간의 크기이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "입체가 차지하는 공간의 크기",
+            "입체가 공간을 얼마만큼 차지하는지 나타내는 크기"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "부피가 길이나 넓이가 아니라 공간의 크기임을 안다.",
+      "bReason": "원문은 정의 문장이므로 무엇을 나타내는지 묻는 질문으로 바꾼다.",
+      "cDecision": "keep",
+      "cAfter": "입체가 {얼마만큼의 공간}을 차지하는지 나타내는 크기가 부피이다.",
+      "cReason": "입체가 차지하는 것이 공간이라는 핵심 낱말 하나만 묻는 짧은 정의라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 283,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-2-c1",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "level": "하",
+        "kind": "정의",
+        "term": "부피",
+        "definition": "입체가 {얼마만큼의 공간}을 차지하는지 나타내는 크기가 부피이다.",
+        "studentC": "입체가 □을 차지하는지 나타내는 크기가 부피이다.",
+        "answers": [
+          "얼마만큼의 공간"
+        ]
+      },
+      "sourceFingerprint": "545df9065b5c9c84ea7cf078d6c1dd50fe35cae8c087e7d1575bece581d31c86",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "cFrozenDefinition": "입체가 {얼마만큼의 공간}을 차지하는지 나타내는 크기가 부피이다.",
+      "cFrozenStudentSentence": "입체가 □을 차지하는지 나타내는 크기가 부피이다.",
+      "cProposedAnswers": [
+        "얼마만큼의 공간"
+      ],
+      "cStudentAfter": "입체가 □을 차지하는지 나타내는 크기가 부피이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "얼마만큼의 공간"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "입체가 {얼마만큼의 공간}을 차지하는지 나타내는 크기가 부피이다.",
+      "cStudentSentence": "입체가 □을 차지하는지 나타내는 크기가 부피이다.",
+      "cSlotAnswers": [
+        {
+          "key": "얼마만큼의 공간",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "입체의 부피는 그 입체의 무엇을 나타내는 크기인가?",
+        "answer": "입체가 차지하는 공간의 크기이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "입체가 차지하는 공간의 크기",
+              "입체가 공간을 얼마만큼 차지하는지 나타내는 크기"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "입체가 {얼마만큼의 공간}을 차지하는지 나타내는 크기가 부피이다.",
+        "acceptedAnswers": [
+          [
+            "얼마만큼의 공간"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d48b35f4b35f1ba47f2119cf55fdd92ab70da592d337d195283169cc1a458352",
+      "questionRevision": "planning-e5e6-20261006-d48b35f4b35f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "가로와 세로가 각각 같은 두 직육면체의 부피를 비교하려면 무엇을 비교하면 되는가? 또 어느 쪽의 부피가 더 큰지 말하시오.",
+      "bAnswer": "높이를 비교한다. 높이가 큰 쪽의 부피가 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "높이를 비교한다",
+            "높이만 비교하면 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이가 큰 쪽이 부피가 더 크다",
+            "더 높은 쪽의 부피가 더 크다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "밑면의 가로·세로가 같을 때 높이로 부피를 비교한다.",
+      "bReason": "조건(가로·세로 같음)을 질문에 두고 비교 기준과 결과를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "두 직육면체의 가로와 세로가 각각 같다면 {높이가 큰 쪽}의 부피가 더 크다.",
+      "cReason": "가로·세로가 같다는 조건이 문장에 있어 높이가 큰 쪽이라는 답이 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "높이가 큰 쪽, 더 높은 쪽 모두 정답이다.",
+      "sourceIndex": 284,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-2-c2",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "level": "중",
+        "kind": "방법",
+        "term": "직육면체의 부피 직접 비교",
+        "definition": "두 직육면체의 가로와 세로가 각각 같다면 {높이가 큰 쪽}의 부피가 더 크다.",
+        "studentC": "두 직육면체의 가로와 세로가 각각 같다면 □의 부피가 더 크다.",
+        "answers": [
+          "높이가 큰 쪽"
+        ]
+      },
+      "sourceFingerprint": "b5b5f3ce90e34b3e08a65ae376215db34ad6e610f0a53ec2dbcd9289d9daedc1",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "cFrozenDefinition": "두 직육면체의 가로와 세로가 각각 같다면 {높이가 큰 쪽}의 부피가 더 크다.",
+      "cFrozenStudentSentence": "두 직육면체의 가로와 세로가 각각 같다면 □의 부피가 더 크다.",
+      "cProposedAnswers": [
+        "높이가 큰 쪽"
+      ],
+      "cStudentAfter": "두 직육면체의 가로와 세로가 각각 같다면 □의 부피가 더 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "높이가 큰 쪽"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 직육면체의 가로와 세로가 각각 같다면 {높이가 큰 쪽}의 부피가 더 크다.",
+      "cStudentSentence": "두 직육면체의 가로와 세로가 각각 같다면 □의 부피가 더 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "높이가 큰 쪽",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로와 세로가 각각 같은 두 직육면체의 부피를 비교하려면 무엇을 비교하면 되는가? 또 어느 쪽의 부피가 더 큰지 말하시오.",
+        "answer": "높이를 비교한다. 높이가 큰 쪽의 부피가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "높이를 비교한다",
+              "높이만 비교하면 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 큰 쪽이 부피가 더 크다",
+              "더 높은 쪽의 부피가 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 직육면체의 가로와 세로가 각각 같다면 {높이가 큰 쪽}의 부피가 더 크다.",
+        "acceptedAnswers": [
+          [
+            "높이가 큰 쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f2fc144d65e3ab2c741054b500c06e123070ecb5eaa7cd6eaccdcbef444a015a",
+      "questionRevision": "planning-e5e6-20261006-f2fc144d65e3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "부피를 재는 기본 단위로 모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 어떻게 쓰고, 어떻게 읽는가?",
+      "bAnswer": "$1\\,\\mathrm{cm}^3$라 쓰고 $1$ 세제곱센티미터라고 읽는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{cm}^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$ 세제곱센티미터",
+            "일 세제곱센티미터"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "bGoal": "단위 부피의 기호와 읽는 법을 연결한다.",
+      "bReason": "정육면체가 단위가 되는 약속과 표기를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 {$1\\,\\mathrm{cm}^3$}로 정한다.",
+      "cReason": "단위 정육면체의 조건이 명확하고 빈칸이 단위 하나라 짧고 유용하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 285,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-2-c3",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "level": "하",
+        "kind": "단위",
+        "term": "$1\\,\\mathrm{cm}^3$",
+        "definition": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 {$1\\,\\mathrm{cm}^3$}로 정한다.",
+        "studentC": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 □로 정한다.",
+        "answers": [
+          "$1\\,\\mathrm{cm}^3$"
+        ]
+      },
+      "sourceFingerprint": "dfea4418a199acd5240456def503295b1b50ef1c7f982703523a17704afa350e",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "cFrozenDefinition": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 {$1\\,\\mathrm{cm}^3$}로 정한다.",
+      "cFrozenStudentSentence": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 □로 정한다.",
+      "cProposedAnswers": [
+        "$1\\,\\mathrm{cm}^3$"
+      ],
+      "cStudentAfter": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 □로 정한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 {$1\\,\\mathrm{cm}^3$}로 정한다.",
+      "cStudentSentence": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 □로 정한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1\\,\\mathrm{cm}^3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "부피를 재는 기본 단위로 모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 어떻게 쓰고, 어떻게 읽는가?",
+        "answer": "$1\\,\\mathrm{cm}^3$라 쓰고 $1$ 세제곱센티미터라고 읽는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{cm}^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$ 세제곱센티미터",
+              "일 세제곱센티미터"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 {$1\\,\\mathrm{cm}^3$}로 정한다.",
+        "acceptedAnswers": [
+          [
+            "$1\\,\\mathrm{cm}^3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "879161f96ce0e66c2a71c6bc427c1b3047a2828e90ec6175660aeab4c6f58b72",
+      "questionRevision": "planning-e5e6-20261006-879161f96ce0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-c4",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 부피를 구하려면 밑면에서 알아야 하는 값과 그 밖에 알아야 하는 길이는 각각 무엇이며, 이 둘로 어떻게 계산하는가?",
+      "bAnswer": "밑면의 넓이와 높이를 알아야 하고, 밑면의 넓이에 높이를 곱한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 넓이",
+            "바닥 면의 넓이"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한다",
+            "곱해서 구한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "밑면의 넓이에 높이를 곱하는 부피 구하는 방법을 말한다.",
+      "bReason": "공식 이름을 직접 주지 않고 필요한 두 양과 계산을 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 부피는 {밑면의 넓이}에 {높이}를 곱해 구한다.",
+      "cReason": "두 빈칸이 공식의 핵심 대상이고 각각 답이 하나로 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 286,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-2-c4",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "level": "중",
+        "kind": "공식",
+        "term": "직육면체의 부피",
+        "definition": "직육면체의 부피는 {밑면의 넓이}에 {높이}를 곱해 구한다.",
+        "studentC": "직육면체의 부피는 □에 □를 곱해 구한다.",
+        "answers": [
+          "밑면의 넓이",
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "35077b84cef953cf5ca9739a6895c8d3deee35687969a2ea634b450e3e9b2a3f",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "cFrozenDefinition": "직육면체의 부피는 {밑면의 넓이}에 {높이}를 곱해 구한다.",
+      "cFrozenStudentSentence": "직육면체의 부피는 □에 □를 곱해 구한다.",
+      "cProposedAnswers": [
+        "밑면의 넓이",
+        "높이"
+      ],
+      "cStudentAfter": "직육면체의 부피는 □에 □를 곱해 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면의 넓이"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 부피는 {밑면의 넓이}에 {높이}를 곱해 구한다.",
+      "cStudentSentence": "직육면체의 부피는 □에 □를 곱해 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면의 넓이",
+          "equivalents": []
+        },
+        {
+          "key": "높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 부피를 구하려면 밑면에서 알아야 하는 값과 그 밖에 알아야 하는 길이는 각각 무엇이며, 이 둘로 어떻게 계산하는가?",
+        "answer": "밑면의 넓이와 높이를 알아야 하고, 밑면의 넓이에 높이를 곱한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 넓이",
+              "바닥 면의 넓이"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱한다",
+              "곱해서 구한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 부피는 {밑면의 넓이}에 {높이}를 곱해 구한다.",
+        "acceptedAnswers": [
+          [
+            "밑면의 넓이"
+          ],
+          [
+            "높이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "893b4420ebc4a3042843ab1587c6edc2067e4a80850d33f60518e4b297e1a0af",
+      "questionRevision": "planning-e5e6-20261006-893b4420ebc4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-c5",
+      "bDecision": "revise",
+      "bPrompt": "한 모서리의 길이가 $4\\,\\mathrm{cm}$인 정육면체의 부피를 가로·세로·높이 사이의 관계를 이용해 구하는 방법을 설명하고, 부피를 구하시오.",
+      "bAnswer": "정육면체는 가로·세로·높이가 모두 같으므로 한 모서리의 길이를 세 번 곱한다. $4\\times4\\times4=64$이므로 부피는 $64\\,\\mathrm{cm}^3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로·세로·높이가 모두 같다",
+            "세 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 모서리의 길이를 세 번 곱한다",
+            "같은 수를 세 번 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$64\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "세 길이가 같다는 성질로 정육면체 부피를 구한다.",
+      "bReason": "일반 방법을 먼저 묻고 예의 값을 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 {세 번 곱한 값}이 부피이다.",
+      "cReason": "세 길이가 같다는 조건에서 세 번 곱한다는 결론이 이어지는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 287,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-2-c5",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "level": "중",
+        "kind": "공식",
+        "term": "정육면체의 부피",
+        "definition": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 {세 번 곱한 값}이 부피이다.",
+        "studentC": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 □이 부피이다.",
+        "answers": [
+          "세 번 곱한 값"
+        ]
+      },
+      "sourceFingerprint": "65277bf973fcac24652d5108ed94569537d749c4225a0f51f81e4d2f18012532",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "cFrozenDefinition": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 {세 번 곱한 값}이 부피이다.",
+      "cFrozenStudentSentence": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 □이 부피이다.",
+      "cProposedAnswers": [
+        "세 번 곱한 값"
+      ],
+      "cStudentAfter": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 □이 부피이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 번 곱한 값"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 {세 번 곱한 값}이 부피이다.",
+      "cStudentSentence": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 □이 부피이다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 번 곱한 값",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 모서리의 길이가 $4\\,\\mathrm{cm}$인 정육면체의 부피를 가로·세로·높이 사이의 관계를 이용해 구하는 방법을 설명하고, 부피를 구하시오.",
+        "answer": "정육면체는 가로·세로·높이가 모두 같으므로 한 모서리의 길이를 세 번 곱한다. $4\\times4\\times4=64$이므로 부피는 $64\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로·세로·높이가 모두 같다",
+              "세 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 모서리의 길이를 세 번 곱한다",
+              "같은 수를 세 번 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$64\\,\\mathrm{cm}^3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체는 가로·세로·높이가 같으므로 한 모서리의 길이를 {세 번 곱한 값}이 부피이다.",
+        "acceptedAnswers": [
+          [
+            "세 번 곱한 값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "da5d00d38797bf7a753a22ed4babd3a29ebf6f58a407e15d6b13ab5a1edd0d06",
+      "questionRevision": "planning-e5e6-20261006-da5d00d38797",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-c6",
+      "bDecision": "revise",
+      "bPrompt": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채운다. 층으로 나누어 쌓기나무를 세는 방법을 설명하고, 한 층의 개수와 층 수가 직육면체의 각각 어느 값에서 나오는지 말해 부피를 구하시오.",
+      "bAnswer": "한 층에 $5\\times3=15$개이고 층 수는 높이인 $4$층이다. 한 층의 개수는 밑면의 넓이를 나타내는 수이고 층 수는 높이를 나타내는 수이다. $15\\times4=60$이므로 부피는 $60\\,\\mathrm{cm}^3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 층의 개수는 밑면의 넓이를 나타내는 수와 같다",
+            "한 층에 $15$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "층 수는 높이를 나타내는 수와 같다",
+            "$4$층"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면의 넓이와 높이를 곱하는 까닭을 쌓기나무 층으로 설명한다.",
+      "bReason": "공식의 이유를 구체적 수치와 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ {$15$}개씩 {$4$}층이므로 부피는 $15\\times4=$ {$60$}$\\,\\mathrm{cm}^3$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 암기 대신 실제 수로 층별 세기를 확인하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 288,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-2-c6",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "level": "상",
+        "kind": "성질",
+        "term": "부피 공식의 까닭",
+        "definition": "세 모서리를 센티미터로 잰 값이 자연수이면, $1\\,\\mathrm{cm}^3$ 쌓기나무의 {한 층 개수에 층수를 곱한 수}가 부피의 수이다. 한 층 개수는 밑면 넓이를 제곱센티미터로 잰 수이고, 층수는 높이를 센티미터로 잰 수이다.",
+        "studentC": "세 모서리를 센티미터로 잰 값이 자연수이면, $1\\,\\mathrm{cm}^3$ 쌓기나무의 □가 부피의 수이다. 한 층 개수는 밑면 넓이를 제곱센티미터로 잰 수이고, 층수는 높이를 센티미터로 잰 수이다.",
+        "answers": [
+          "한 층 개수에 층수를 곱한 수"
+        ]
+      },
+      "sourceFingerprint": "7c7bb15d82e087ecf8119897d387e210cf380d0f7b3d435a5a2294396b91844f",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "cProposedAnswers": [
+        "$15$",
+        "$4$",
+        "$60$"
+      ],
+      "cStudentAfter": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ □개씩 □층이므로 부피는 $15\\times4=$ □$\\,\\mathrm{cm}^3$이다.",
+      "cMarkedSentence": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ {$15$}개씩 {$4$}층이므로 부피는 $15\\times4=$ {$60$}$\\,\\mathrm{cm}^3$이다.",
+      "cStudentSentence": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ □개씩 □층이므로 부피는 $15\\times4=$ □$\\,\\mathrm{cm}^3$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$60$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채운다. 층으로 나누어 쌓기나무를 세는 방법을 설명하고, 한 층의 개수와 층 수가 직육면체의 각각 어느 값에서 나오는지 말해 부피를 구하시오.",
+        "answer": "한 층에 $5\\times3=15$개이고 층 수는 높이인 $4$층이다. 한 층의 개수는 밑면의 넓이를 나타내는 수이고 층 수는 높이를 나타내는 수이다. $15\\times4=60$이므로 부피는 $60\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 층의 개수는 밑면의 넓이를 나타내는 수와 같다",
+              "한 층에 $15$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "층 수는 높이를 나타내는 수와 같다",
+              "$4$층"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\,\\mathrm{cm}^3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ {$15$}개씩 {$4$}층이므로 부피는 $15\\times4=$ {$60$}$\\,\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "$60$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "941788c91e6e74473b23aa5e6421ed507940a629eaf1978647d4c3525acbc4be",
+      "questionRevision": "planning-e5e6-20261006-941788c91e6e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "부피를 나타내는 단위 $1\\,\\mathrm{m}^3$는 어떤 도형 한 개의 부피를 기준으로 정한 것인지, 그 도형의 크기를 포함해 설명하시오.",
+      "bAnswer": "한 모서리의 길이가 $1\\,\\mathrm{m}$인 정육면체 한 개의 부피이다.",
+      "bGoal": "$1\\,\\mathrm{m}^3$가 어떤 정육면체의 부피인지 기준을 설명한다.",
+      "bReason": "원문은 단위의 정의 자체이지만 학생 B에서는 도형과 모서리 길이를 모두 말하게 해야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정육면체",
+            "모든 모서리의 길이가 같은 입체도형"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 모서리가 $1\\,\\mathrm{m}$",
+            "한 모서리가 $100\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 {$1\\,\\mathrm{m}$}인 {정육면체} 한 개의 부피이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{m}$",
+            "$100\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육면체"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 도형과 길이를 한 덩어리로 가려 문장이 어색하므로 길이와 도형 이름으로 나눈다.",
+      "exampleNeeded": false,
+      "sourceIndex": 289,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-3-c1",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "level": "하",
+        "kind": "단위",
+        "term": "$1\\,\\mathrm{m}^3$",
+        "definition": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 {$1\\,\\mathrm{m}$인 정육면체} 한 개의 부피이다.",
+        "studentC": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 □ 한 개의 부피이다.",
+        "answers": [
+          "$1\\,\\mathrm{m}$인 정육면체"
+        ]
+      },
+      "sourceFingerprint": "907e5e3e91d17555519ec527d74cbd4a8a76fe28436af8586d188a1e5364e9bb",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "cProposedAnswers": [
+        "$1\\,\\mathrm{m}$",
+        "정육면체"
+      ],
+      "cStudentAfter": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 □인 □ 한 개의 부피이다.",
+      "cMarkedSentence": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 {$1\\,\\mathrm{m}$}인 {정육면체} 한 개의 부피이다.",
+      "cStudentSentence": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 □인 □ 한 개의 부피이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1\\,\\mathrm{m}$",
+          "equivalents": [
+            "$100\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "key": "정육면체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "부피를 나타내는 단위 $1\\,\\mathrm{m}^3$는 어떤 도형 한 개의 부피를 기준으로 정한 것인지, 그 도형의 크기를 포함해 설명하시오.",
+        "answer": "한 모서리의 길이가 $1\\,\\mathrm{m}$인 정육면체 한 개의 부피이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정육면체",
+              "모든 모서리의 길이가 같은 입체도형"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 모서리가 $1\\,\\mathrm{m}$",
+              "한 모서리가 $100\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 {$1\\,\\mathrm{m}$}인 {정육면체} 한 개의 부피이다.",
+        "acceptedAnswers": [
+          [
+            "$1\\,\\mathrm{m}$",
+            "$100\\,\\mathrm{cm}$"
+          ],
+          [
+            "정육면체"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d389b21caf97f4d8ebf3b4299ca9f82a05bc292bb1f404bec8930e851de24535",
+      "questionRevision": "planning-e5e6-20261006-d389b21caf97",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체를 한 모서리가 $1\\,\\mathrm{cm}$인 쌓기나무로 빈틈없이 채우려 한다. 쌓기나무가 한 층에 몇 개 들어가고 몇 층이 되는지 구해 이 정육면체의 부피가 몇 $\\mathrm{cm}^3$인지 설명하시오.",
+      "bAnswer": "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 한 층에 $100\\times100=10000$개씩 $100$층이다. 모두 $10000\\times100=1000000$개이므로 부피는 $1000000\\,\\mathrm{cm}^3$이다.",
+      "bGoal": "$1\\,\\mathrm{m}^3$가 $1000000\\,\\mathrm{cm}^3$가 되는 과정을 쌓기나무 개수로 설명한다.",
+      "bReason": "두 빈칸을 층 구조와 총 부피의 한 과정으로 묻는 편이 의미 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 층에 $10000$개",
+            "한 층에 $100\\times100$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$층"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1000000\\,\\mathrm{cm}^3$",
+            "$1000000$개"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 한 층에는 $1\\,\\mathrm{cm}^3$ 쌓기나무가 {$10000$}개 놓이고 {$100$}층이 쌓이므로 부피는 {$1000000$}$\\,\\mathrm{cm}^3$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1000000$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 개수·층수·부피의 짧은 수 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 290,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-3-c2",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "level": "중",
+        "kind": "성질",
+        "term": "$1\\,\\mathrm{m}^3$와 $1\\,\\mathrm{cm}^3$의 관계",
+        "definition": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체에는 $1\\,\\mathrm{cm}^3$ 쌓기나무가 {한 층에 $10000$개씩 $100$층} 들어가므로 부피가 {$1000000\\,\\mathrm{cm}^3$}이다.",
+        "studentC": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체에는 $1\\,\\mathrm{cm}^3$ 쌓기나무가 □ 들어가므로 부피가 □이다.",
+        "answers": [
+          "한 층에 $10000$개씩 $100$층",
+          "$1000000\\,\\mathrm{cm}^3$"
+        ]
+      },
+      "sourceFingerprint": "32ce2dee54967a89a09f7897e0abcc44663692b20aa4649df1db10da0f5f074b",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "cProposedAnswers": [
+        "$10000$",
+        "$100$",
+        "$1000000$"
+      ],
+      "cStudentAfter": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 한 층에는 $1\\,\\mathrm{cm}^3$ 쌓기나무가 □개 놓이고 □층이 쌓이므로 부피는 □$\\,\\mathrm{cm}^3$이다.",
+      "cMarkedSentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 한 층에는 $1\\,\\mathrm{cm}^3$ 쌓기나무가 {$10000$}개 놓이고 {$100$}층이 쌓이므로 부피는 {$1000000$}$\\,\\mathrm{cm}^3$이다.",
+      "cStudentSentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 한 층에는 $1\\,\\mathrm{cm}^3$ 쌓기나무가 □개 놓이고 □층이 쌓이므로 부피는 □$\\,\\mathrm{cm}^3$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10000$",
+          "equivalents": []
+        },
+        {
+          "key": "$100$",
+          "equivalents": []
+        },
+        {
+          "key": "$1000000$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체를 한 모서리가 $1\\,\\mathrm{cm}$인 쌓기나무로 빈틈없이 채우려 한다. 쌓기나무가 한 층에 몇 개 들어가고 몇 층이 되는지 구해 이 정육면체의 부피가 몇 $\\mathrm{cm}^3$인지 설명하시오.",
+        "answer": "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 한 층에 $100\\times100=10000$개씩 $100$층이다. 모두 $10000\\times100=1000000$개이므로 부피는 $1000000\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 층에 $10000$개",
+              "한 층에 $100\\times100$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$층"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1000000\\,\\mathrm{cm}^3$",
+              "$1000000$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 한 층에는 $1\\,\\mathrm{cm}^3$ 쌓기나무가 {$10000$}개 놓이고 {$100$}층이 쌓이므로 부피는 {$1000000$}$\\,\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$10000$"
+          ],
+          [
+            "$100$"
+          ],
+          [
+            "$1000000$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "17b3747398ccd6e336b82dda42935d0709407d26e92e7c5016add92cd7d31567",
+      "questionRevision": "planning-e5e6-20261006-17b3747398cc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "$2\\,\\mathrm{m}^3$와 $1500000\\,\\mathrm{cm}^3$ 중 어느 부피가 더 큰지 알아보려면 어떻게 해야 하는지 쓰고, 실제로 비교하시오.",
+      "bAnswer": "두 부피의 단위를 같게 맞춘 뒤 수를 비교한다. $2\\,\\mathrm{m}^3=2000000\\,\\mathrm{cm}^3$이므로 $2\\,\\mathrm{m}^3$가 더 크다.",
+      "bGoal": "다른 부피 단위를 비교하는 절차와 실제 결과를 말한다.",
+      "bReason": "방법만 묻지 않고 구체적 수로 비교까지 하게 해 이해를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "단위를 같게 맞춘다",
+            "한 단위로 통일한다",
+            "$\\mathrm{cm}^3$로 바꾼다",
+            "$\\mathrm{m}^3$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\,\\mathrm{m}^3$가 더 크다",
+            "$2000000\\,\\mathrm{cm}^3$가 더 크다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$3\\,\\mathrm{m}^3$와 $2500000\\,\\mathrm{cm}^3$를 비교하려면 $3\\,\\mathrm{m}^3=${$3000000$}$\\,\\mathrm{cm}^3$로 바꾸어 비교한다. 더 큰 부피는 {$3\\,\\mathrm{m}^3$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3000000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{m}^3$",
+            "$3000000\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "cReason": "'통일한 뒤'는 표현이 다양해질 수 있어 실제 변환값과 비교 결과로 확인한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'통일한다', '같게 맞춘다', '같은 단위로 바꾼다'는 같은 뜻이다.",
+      "sourceIndex": 291,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-3-c3",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "level": "상",
+        "kind": "방법",
+        "term": "부피 단위 맞추기",
+        "definition": "$\\mathrm{m}^3$와 $\\mathrm{cm}^3$를 비교할 때에는 한쪽 단위로 {통일한 뒤} 수의 크기를 비교한다.",
+        "studentC": "$\\mathrm{m}^3$와 $\\mathrm{cm}^3$를 비교할 때에는 한쪽 단위로 □ 수의 크기를 비교한다.",
+        "answers": [
+          "통일한 뒤"
+        ]
+      },
+      "sourceFingerprint": "3e2d57365f14706aedaea1c2d68e0fa4eaae60c2684ae2c04a7b578800d077c8",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "cProposedAnswers": [
+        "$3000000$",
+        "$3\\,\\mathrm{m}^3$"
+      ],
+      "cStudentAfter": "$3\\,\\mathrm{m}^3$와 $2500000\\,\\mathrm{cm}^3$를 비교하려면 $3\\,\\mathrm{m}^3=$□$\\,\\mathrm{cm}^3$로 바꾸어 비교한다. 더 큰 부피는 □이다.",
+      "cMarkedSentence": "$3\\,\\mathrm{m}^3$와 $2500000\\,\\mathrm{cm}^3$를 비교하려면 $3\\,\\mathrm{m}^3=${$3000000$}$\\,\\mathrm{cm}^3$로 바꾸어 비교한다. 더 큰 부피는 {$3\\,\\mathrm{m}^3$}이다.",
+      "cStudentSentence": "$3\\,\\mathrm{m}^3$와 $2500000\\,\\mathrm{cm}^3$를 비교하려면 $3\\,\\mathrm{m}^3=$□$\\,\\mathrm{cm}^3$로 바꾸어 비교한다. 더 큰 부피는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3000000$",
+          "equivalents": []
+        },
+        {
+          "key": "$3\\,\\mathrm{m}^3$",
+          "equivalents": [
+            "$3000000\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2\\,\\mathrm{m}^3$와 $1500000\\,\\mathrm{cm}^3$ 중 어느 부피가 더 큰지 알아보려면 어떻게 해야 하는지 쓰고, 실제로 비교하시오.",
+        "answer": "두 부피의 단위를 같게 맞춘 뒤 수를 비교한다. $2\\,\\mathrm{m}^3=2000000\\,\\mathrm{cm}^3$이므로 $2\\,\\mathrm{m}^3$가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "단위를 같게 맞춘다",
+              "한 단위로 통일한다",
+              "$\\mathrm{cm}^3$로 바꾼다",
+              "$\\mathrm{m}^3$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\,\\mathrm{m}^3$가 더 크다",
+              "$2000000\\,\\mathrm{cm}^3$가 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\,\\mathrm{m}^3$와 $2500000\\,\\mathrm{cm}^3$를 비교하려면 $3\\,\\mathrm{m}^3=${$3000000$}$\\,\\mathrm{cm}^3$로 바꾸어 비교한다. 더 큰 부피는 {$3\\,\\mathrm{m}^3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3000000$"
+          ],
+          [
+            "$3\\,\\mathrm{m}^3$",
+            "$3000000\\,\\mathrm{cm}^3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9ab6bd263809a090bc8a87306cfdfe72bd8b4ffa7fac11263d2a5ec9450ad7e0",
+      "questionRevision": "planning-e5e6-20261006-9ab6bd263809",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수는 $0$이 아니다. 나눗셈에서 분자와 분모 중 어떤 수끼리 나누어 몫을 구하나요? $\\frac{6}{7}\\div\\frac{2}{7}$를 예로 들어 몫까지 쓰세요.",
+      "bAnswer": "두 분수의 분자끼리 나눕니다. $6\\div2=3$이므로 몫은 $3$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자끼리 나눈다",
+            "분자를 서로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $3$",
+            "$6\\div2=3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "분모가 같은 분수의 나눗셈을 분자끼리의 나눗셈으로 바꾸어 계산한다.",
+      "bReason": "일반 방법의 진분수·가분수 표현과0이 아닌 나누는 수 조건을 문장에 명시한다. 분자·분모 중 나눌 대상과 실제 몫3을 묻는 범위는 유지한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{8}\\div\\frac{2}{8}$를 계산하면 {$2.5$}이다.",
+      "cReason": "원문 배 관계·조각의개수라는 추상적인 구절을 구체적인 같은 분모 분수의 몫으로 바꾼다. 계산 결과는 소수·가분수·대분수의 같은 값으로 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2.5$",
+            "$\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "rootPhotoAmendmentEvidence": "evidence/root-supplemental-fraction-verdicts-original.json",
+      "amendedFromProposalFingerprint": "969eb41493f356afa73e26b4e48b3b7f7ca836be6a159af02b0701f58dea75ac",
+      "coreAfter": "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수가 $0$이 아니면, 두 분수의 {분자}끼리 나누어 몫을 구한다.",
+      "coreTargetReason": "분자라는 원문 표적과 진분수·가분수 표현 및0 아닌 제수 조건은 보존한다. 배 관계·조각의개수라는 추상어 대신 분수 나눗셈의 몫을 구하는 일반 방법을 직접 말한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 292,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-1-c1",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "분모가 같은 (분수)$\\div$(분수)",
+        "definition": "진분수나 가분수로 나타낸 두 수의 분모가 같고 나누는 수가 $0$이 아니면, 두 수의 배 관계는 조각의 개수인 {분자}끼리 나누어 구한다.",
+        "studentC": "진분수나 가분수로 나타낸 두 수의 분모가 같고 나누는 수가 $0$이 아니면, 두 수의 배 관계는 조각의 개수인 □끼리 나누어 구한다.",
+        "answers": [
+          "분자"
+        ]
+      },
+      "sourceFingerprint": "037a03e2d84f46dee607fea3f45fa23095c8ca6b70c310ca964271d28eb274c9",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2.5$"
+      ],
+      "cStudentAfter": "$\\frac{5}{8}\\div\\frac{2}{8}$를 계산하면 □이다.",
+      "cMarkedSentence": "$\\frac{5}{8}\\div\\frac{2}{8}$를 계산하면 {$2.5$}이다.",
+      "cStudentSentence": "$\\frac{5}{8}\\div\\frac{2}{8}$를 계산하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2.5$",
+          "equivalents": [
+            "$\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수는 $0$이 아니다. 나눗셈에서 분자와 분모 중 어떤 수끼리 나누어 몫을 구하나요? $\\frac{6}{7}\\div\\frac{2}{7}$를 예로 들어 몫까지 쓰세요.",
+        "answer": "두 분수의 분자끼리 나눕니다. $6\\div2=3$이므로 몫은 $3$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자끼리 나눈다",
+              "분자를 서로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $3$",
+              "$6\\div2=3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{8}\\div\\frac{2}{8}$를 계산하면 {$2.5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2.5$",
+            "$\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "686ed7243023c90efaf267cab957ac90038e49f797d415845c9854d3b241b3ba",
+      "questionRevision": "planning-e5e6-20261006-686ed7243023",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-2-1-1-c1",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "진·가분수표현과0아닌제수조건을명시해분자끼리나누는방법및6÷2=3을묻는다. C는배관계·조각비유대신5/8÷2/8=2.5의명확한값을묻고같은분수형태대안도인정한다. 일반설명의원문분자표적은보존한다.",
+        "sourceIndex": 292,
+        "proposalFingerprintReviewed": "686ed7243023c90efaf267cab957ac90038e49f797d415845c9854d3b241b3ba",
+        "inputEvidence": "evidence/final-editorial-amendments-013.json",
+        "learningRole": "procedure",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "일반 방법의 진분수·가분수 표현과0이 아닌 나누는 수 조건을 문장에 명시한다. 분자·분모 중 나눌 대상과 실제 몫3을 묻는 범위는 유지한다.",
+        "cSourceReason": "원문 배 관계·조각의개수라는 추상적인 구절을 구체적인 같은 분모 분수의 몫으로 바꾼다. 계산 결과는 소수·가분수·대분수의 같은 값으로 인정한다.",
+        "recordedAfterDirectReading": "2026-10-06T17:35:36.764835+00:00"
+      }
+    },
+    {
+      "id": "e6-2-1-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "분모가 같은 두 분수에서 분자끼리 나눈 값이 자연수가 아닐 때, 몫을 분수로 어떻게 나타내나요? $\\frac{5}{9}\\div\\frac{2}{9}$를 예로 들어 몫을 쓰세요.",
+      "bAnswer": "나누어지는 분수의 분자를 분자로, 나누는 분수의 분자를 분모로 씁니다. $\\frac{5}{9}\\div\\frac{2}{9}=\\frac{5}{2}\\left(=2\\frac{1}{2}\\right)$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 분수의 분자가 몫의 분자",
+            "나누어지는 분수의 분자를 분자로 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 분수의 분자가 몫의 분모",
+            "나누는 분수의 분자를 분모로 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "나누어떨어지지 않는 분자끼리의 나눗셈을 분수로 나타낸다.",
+      "bReason": "분자와 분모에 각각 어떤 수를 쓰는지가 핵심이라 방법과 예의 값을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "분모가 같은 $\\frac{7}{11}\\div\\frac{3}{11}$은 분자끼리 $7\\div3$을 하므로 몫은 {$\\frac{7}{3}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{7}{3}$",
+            "$2\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "cReason": "빈칸 '나누는 분수'는 맥락 없이 답하기 어려워 실제 식에서 몫을 쓰게 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 293,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-1-c2",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "분자끼리 나누어떨어지지 않는 경우",
+        "definition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같다고 하자. 분자끼리 나눈 값이 자연수가 아니면, 몫은 나누어지는 분수의 분자를 분자로, {나누는 분수}의 분자를 분모로 써서 나타낸다.",
+        "studentC": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같다고 하자. 분자끼리 나눈 값이 자연수가 아니면, 몫은 나누어지는 분수의 분자를 분자로, □의 분자를 분모로 써서 나타낸다.",
+        "answers": [
+          "나누는 분수"
+        ]
+      },
+      "sourceFingerprint": "95a0b37fdfc05db0086190544ab61793f192eb3b42afe644afe65e92546e1e69",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{7}{3}$"
+      ],
+      "cStudentAfter": "분모가 같은 $\\frac{7}{11}\\div\\frac{3}{11}$은 분자끼리 $7\\div3$을 하므로 몫은 □이다.",
+      "cMarkedSentence": "분모가 같은 $\\frac{7}{11}\\div\\frac{3}{11}$은 분자끼리 $7\\div3$을 하므로 몫은 {$\\frac{7}{3}$}이다.",
+      "cStudentSentence": "분모가 같은 $\\frac{7}{11}\\div\\frac{3}{11}$은 분자끼리 $7\\div3$을 하므로 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{7}{3}$",
+          "equivalents": [
+            "$2\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 같은 두 분수에서 분자끼리 나눈 값이 자연수가 아닐 때, 몫을 분수로 어떻게 나타내나요? $\\frac{5}{9}\\div\\frac{2}{9}$를 예로 들어 몫을 쓰세요.",
+        "answer": "나누어지는 분수의 분자를 분자로, 나누는 분수의 분자를 분모로 씁니다. $\\frac{5}{9}\\div\\frac{2}{9}=\\frac{5}{2}\\left(=2\\frac{1}{2}\\right)$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 분수의 분자가 몫의 분자",
+              "나누어지는 분수의 분자를 분자로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 분수의 분자가 몫의 분모",
+              "나누는 분수의 분자를 분모로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{2}$",
+              "$2\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 같은 $\\frac{7}{11}\\div\\frac{3}{11}$은 분자끼리 $7\\div3$을 하므로 몫은 {$\\frac{7}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{7}{3}$",
+            "$2\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "06c358f5e9b1f4013d37ad1581afe285869892c8996fe737ded5a31838a0553d",
+      "questionRevision": "planning-e5e6-20261006-06c358f5e9b1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{5}\\div\\frac{2}{5}$와 $\\frac{3}{7}\\div\\frac{2}{7}$의 몫을 비교하시오. 분자는 그대로 두고 두 분수의 같은 분모를 함께 바꾸었을 때, 몫이 어떻게 되는지와 그 까닭을 쓰시오.",
+      "bAnswer": "두 식의 몫은 모두 $\\frac{3}{2}$으로 같다. 첫 식은 $\\frac{1}{5}$이 $3$개인 양을 $2$개인 양으로 나누고, 둘째 식은 $\\frac{1}{7}$이 $3$개인 양을 $2$개인 양으로 나눈다. 각 식에서는 두 분수의 한 조각 크기가 같고 개수의 관계가 $3$ 대 $2$로 같아, 같은 분모를 함께 바꾸어도 몫은 변하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 식의 몫은 같다",
+            "공통분모만 함께 바꾸어도 몫은 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 식에서 한 조각의 크기가 같고 개수의 관계가 $3$ 대 $2$로 같다",
+            "두 수를 같은 배로 바꾸므로 두 수 사이의 배 관계가 변하지 않는다",
+            "두 식 모두 $3$ $\\div$ $2$로 계산할 수 있기 때문이다",
+            "두 식 모두 분자 $3$을 분자 $2$로 나누어 계산하기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "분자들을 그대로 두고 공통분모만 함께 바꾸는 두 분수 나눗셈에서 몫이 변하지 않는 관계를 설명한다.",
+      "bReason": "편집 제목 '분모와 몫'만으로는 바꾸는 수와 답 범위가 없다. 같은 분자의 두 실제 식을 주어 몫의 관계와 같은 크기의 단위로 개수를 비교하는 이유를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{5}\\div\\frac{2}{5}$의 몫은 {$\\frac{3}{2}$}이고, $\\frac{3}{7}\\div\\frac{2}{7}$의 몫은 {$\\frac{3}{2}$}이다.",
+      "cReason": "두 번째 독립 검토는 옳다/틀리다 판정만 요구하면 추측으로 맞힐 수 있고 답 형식도 열려 있다고 지적했다. 두 실제 나눗셈의 몫을 직접 계산하는 짧은 빈칸으로 바꾸어 같은 공통분모를 바꾼 두 식을 확인한다.",
+      "exampleNeeded": false,
+      "studentLabel": "같은 분모를 함께 바꾸었을 때의 몫",
+      "synonymNotes": "C는 틀리다/옳지 않다/맞지 않다가 같은 판단이다. B에서는 몫이 같다/변하지 않는다는 관계를 인정하고 두 분수 각각의 값이 같다는 설명은 인정하지 않는다.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$",
+            "$1.5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$",
+            "$1.5$"
+          ]
+        }
+      ],
+      "codexRubricReview": "Direct deletion and copying review: only requested mathematical meanings are required; alternatives are separate strings.",
+      "independentFeedbackEvidence": {
+        "file": "evidence/independent-amendments-e5e6.json",
+        "capturedReviewedHash": "a8c646d8467e9dbf08ebefcf440fd2ed68218e0000b086dc623beaedb0b2627f",
+        "capturedInputHash": "8eaebb62b2f5b34c8f93f9476868adbe9ac0051c47b2ccfceacc5da017a3fb08",
+        "cohort": "cohort-2026-10-06T12-39-13-282Z-0",
+        "resolution": "둘째 wave의 판정 형태·추측 문제를 두 실제 몫 빈칸으로 교정했다. B에는 질문하지 않은 몫 수치를 필수로 추가하지 않는다.",
+        "laterProposalNeedsNewReview": true
+      },
+      "sourceIndex": 294,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-1-c3",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "분모와 몫",
+        "definition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같을 때, 두 분자는 그대로 두고 공통분모만 다른 자연수로 바꾸어도 몫은 {같다}. 같은 크기의 조각끼리 개수를 견주기 때문이다.",
+        "studentC": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같을 때, 두 분자는 그대로 두고 공통분모만 다른 자연수로 바꾸어도 몫은 □. 같은 크기의 조각끼리 개수를 견주기 때문이다.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "92287a125e047b8e98dd2724fb2eee47261ee0dd17640a8c11d7984c82fe5902",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{3}{2}$",
+        "$\\frac{3}{2}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{5}\\div\\frac{2}{5}$의 몫은 □이고, $\\frac{3}{7}\\div\\frac{2}{7}$의 몫은 □이다.",
+      "cMarkedSentence": "$\\frac{3}{5}\\div\\frac{2}{5}$의 몫은 {$\\frac{3}{2}$}이고, $\\frac{3}{7}\\div\\frac{2}{7}$의 몫은 {$\\frac{3}{2}$}이다.",
+      "cStudentSentence": "$\\frac{3}{5}\\div\\frac{2}{5}$의 몫은 □이고, $\\frac{3}{7}\\div\\frac{2}{7}$의 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{2}$",
+          "equivalents": [
+            "$1\\frac{1}{2}$",
+            "$1.5$"
+          ]
+        },
+        {
+          "key": "$\\frac{3}{2}$",
+          "equivalents": [
+            "$1\\frac{1}{2}$",
+            "$1.5$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{5}\\div\\frac{2}{5}$와 $\\frac{3}{7}\\div\\frac{2}{7}$의 몫을 비교하시오. 분자는 그대로 두고 두 분수의 같은 분모를 함께 바꾸었을 때, 몫이 어떻게 되는지와 그 까닭을 쓰시오.",
+        "answer": "두 식의 몫은 모두 $\\frac{3}{2}$으로 같다. 첫 식은 $\\frac{1}{5}$이 $3$개인 양을 $2$개인 양으로 나누고, 둘째 식은 $\\frac{1}{7}$이 $3$개인 양을 $2$개인 양으로 나눈다. 각 식에서는 두 분수의 한 조각 크기가 같고 개수의 관계가 $3$ 대 $2$로 같아, 같은 분모를 함께 바꾸어도 몫은 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 식의 몫은 같다",
+              "공통분모만 함께 바꾸어도 몫은 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 식에서 한 조각의 크기가 같고 개수의 관계가 $3$ 대 $2$로 같다",
+              "두 수를 같은 배로 바꾸므로 두 수 사이의 배 관계가 변하지 않는다",
+              "두 식 모두 $3$ $\\div$ $2$로 계산할 수 있기 때문이다",
+              "두 식 모두 분자 $3$을 분자 $2$로 나누어 계산하기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{5}\\div\\frac{2}{5}$의 몫은 {$\\frac{3}{2}$}이고, $\\frac{3}{7}\\div\\frac{2}{7}$의 몫은 {$\\frac{3}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$",
+            "$1.5$"
+          ],
+          [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$",
+            "$1.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f41861d7e61fe343a5d6310b9ccb9c305e9256c24ed3e88959f547d45f2a569c",
+      "questionRevision": "planning-e5e6-20261006-f41861d7e61f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 통분할 때, 분수의 무엇을 바꾸고 무엇은 그대로 두는지 쓰시오.",
+      "bAnswer": "두 분수의 분모를 같게 바꾸고, 분수의 크기(값)는 그대로 둔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모를 같게 고친다",
+            "분모를 같은 수로 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수의 크기(값)는 변하지 않는다",
+            "크기는 그대로 둔다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "통분이 크기는 두고 분모만 같게 바꾸는 일임을 설명한다.",
+      "bReason": "제목만 묻지 않고 바뀌는 것과 그대로인 것을 나누어 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 {같게} 고치는 일이다.",
+      "cReason": "크기를 그대로 둔다는 조건과 분모를 같게 한다는 핵심이 한 문장에 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 295,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-2-c1",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "통분",
+        "definition": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 {같게} 고치는 일이다.",
+        "studentC": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 □ 고치는 일이다.",
+        "answers": [
+          "같게"
+        ]
+      },
+      "sourceFingerprint": "8821b536ce5750bd6a063e5130edaac45b6ee15f78949c5f4de4d57b818ddab6",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "cFrozenDefinition": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 {같게} 고치는 일이다.",
+      "cFrozenStudentSentence": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 □ 고치는 일이다.",
+      "cProposedAnswers": [
+        "같게"
+      ],
+      "cStudentAfter": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 □ 고치는 일이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같게"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 {같게} 고치는 일이다.",
+      "cStudentSentence": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 □ 고치는 일이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같게",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수를 통분할 때, 분수의 무엇을 바꾸고 무엇은 그대로 두는지 쓰시오.",
+        "answer": "두 분수의 분모를 같게 바꾸고, 분수의 크기(값)는 그대로 둔다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모를 같게 고친다",
+              "분모를 같은 수로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수의 크기(값)는 변하지 않는다",
+              "크기는 그대로 둔다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "통분은 두 분수의 크기를 그대로 두고, 서로 다른 분모를 {같게} 고치는 일이다.",
+        "acceptedAnswers": [
+          [
+            "같게"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7e1d05017afc730ac9162afe6fda03bef63114f123d9bed76e2b24f63b8eacf5",
+      "questionRevision": "planning-e5e6-20261006-7e1d05017afc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수의 나눗셈을 분자끼리 나누어 풀려면 먼저 무엇을 해야 하는지 쓰고, $\\frac{3}{4}\\div\\frac{5}{6}$의 몫을 구하시오.",
+      "bAnswer": "먼저 통분하여 분모를 같게 한다. $\\frac{3}{4}\\div\\frac{5}{6}=\\frac{9}{12}\\div\\frac{10}{12}=9\\div10=\\frac{9}{10}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분하여 분모를 같게 한다",
+            "분모를 같게 만든 뒤 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $\\frac{9}{10}$이다",
+            "$\\frac{9}{10}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "통분 후 분자끼리 나누는 계산 절차를 수행한다.",
+      "bReason": "방법과 구체적 계산을 함께 확인하되 일반 절차가 중심이다.",
+      "cDecision": "keep",
+      "cAfter": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 {통분}하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+      "cReason": "나누는 수가 $0$이 아니라는 조건이 있고 빈칸이 절차의 첫 단계로 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 296,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-2-c2",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "분모가 다른 (분수)$\\div$(분수)",
+        "definition": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 {통분}하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+        "studentC": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 □하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+        "answers": [
+          "통분"
+        ]
+      },
+      "sourceFingerprint": "720325d27cfc8ad06563072a8fec7aebf837d7e3aba9c165aaf638267d46d39a",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "cFrozenDefinition": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 {통분}하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+      "cFrozenStudentSentence": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 □하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+      "cProposedAnswers": [
+        "통분"
+      ],
+      "cStudentAfter": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 □하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 {통분}하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+      "cStudentSentence": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 □하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "통분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수의 나눗셈을 분자끼리 나누어 풀려면 먼저 무엇을 해야 하는지 쓰고, $\\frac{3}{4}\\div\\frac{5}{6}$의 몫을 구하시오.",
+        "answer": "먼저 통분하여 분모를 같게 한다. $\\frac{3}{4}\\div\\frac{5}{6}=\\frac{9}{12}\\div\\frac{10}{12}=9\\div10=\\frac{9}{10}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "통분하여 분모를 같게 한다",
+              "분모를 같게 만든 뒤 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $\\frac{9}{10}$이다",
+              "$\\frac{9}{10}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "진분수나 가분수로 나타낸 두 수의 분모가 다르고 나누는 수가 $0$이 아니면, 먼저 {통분}하여 조각의 크기를 맞춘 뒤 분자끼리 나눌 수 있다.",
+        "acceptedAnswers": [
+          [
+            "통분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e229783cd7d869a1b030307831a9a8fc0b337c2d70c16c090b94938c3dc0cc86",
+      "questionRevision": "planning-e5e6-20261006-e229783cd7d8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 분자끼리 바로 나누지 않고 먼저 통분해야 하는 까닭을, 분자가 나타내는 것과 조각의 크기를 이용해 설명하시오. (나누는 수는 $0$이 아니다.)",
+      "bAnswer": "분자는 같은 크기의 조각이 몇 개인지를 나타낸다. 조각의 크기가 같아야 조각의 개수끼리 나눈 것이 두 분수의 몫이 되므로 먼저 통분한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자는 같은 크기 조각의 개수이다",
+            "분자는 조각이 몇 개인지를 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "조각의 크기가 같아야 개수끼리 나눌 수 있다",
+            "조각 크기가 같아야 분자끼리 나눈 것이 몫이 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "통분이 필요한 까닭을 조각 크기를 맞추는 것으로 설명한다.",
+      "bReason": "왜 통분하는지 어떤 관계로 설명할지 지정해 막연한 '왜'를 피한다.",
+      "cDecision": "keep",
+      "cAfter": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 {같게} 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+      "cReason": "한 조각의 크기를 같게 맞추어야 한다는 조건이 단순하고 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 297,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-2-c3",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "통분하는 까닭",
+        "definition": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 {같게} 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+        "studentC": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 □ 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+        "answers": [
+          "같게"
+        ]
+      },
+      "sourceFingerprint": "c43641e17751f4a40455d4a821c28a7973523ba63d587ac4cb39d93899710deb",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "cFrozenDefinition": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 {같게} 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+      "cFrozenStudentSentence": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 □ 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+      "cProposedAnswers": [
+        "같게"
+      ],
+      "cStudentAfter": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 □ 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같게"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 {같게} 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+      "cStudentSentence": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 □ 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "같게",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수를 분자끼리 바로 나누지 않고 먼저 통분해야 하는 까닭을, 분자가 나타내는 것과 조각의 크기를 이용해 설명하시오. (나누는 수는 $0$이 아니다.)",
+        "answer": "분자는 같은 크기의 조각이 몇 개인지를 나타낸다. 조각의 크기가 같아야 조각의 개수끼리 나눈 것이 두 분수의 몫이 되므로 먼저 통분한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자는 같은 크기 조각의 개수이다",
+              "분자는 조각이 몇 개인지를 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각의 크기가 같아야 개수끼리 나눌 수 있다",
+              "조각 크기가 같아야 분자끼리 나눈 것이 몫이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 다른 두 진분수나 가분수의 나눗셈에서 분자끼리 나누려면, 먼저 통분하여 한 조각의 크기를 {같게} 맞추어야 한다. 단, 나누는 수는 $0$이 아니다.",
+        "acceptedAnswers": [
+          [
+            "같게"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c4bacc30710efae59d26e89013a3d1dd8bfd87b37215e9eb78acb357f2d49357",
+      "questionRevision": "planning-e5e6-20261006-c4bacc30710e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "자연수를 크기가 같은 분수로 나타내는 방법을 설명하시오. 이 방법으로 $4$는 어떤 분수가 되는지도 쓰시오.",
+      "bAnswer": "자연수를 분자로 쓰고 분모를 $1$로 쓴다. $4=\\frac{4}{1}$이다.",
+      "bGoal": "자연수를 분모가 $1$인 분수로 바꾸는 방법을 말한다.",
+      "bReason": "제목만 묻지 않고 방법과 구체적 값을 함께 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수를 분자로 쓴다",
+            "자연수가 분자가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모를 $1$로 쓴다",
+            "분모는 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{1}$",
+            "$4=\\frac{4}{1}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cReason": "분모 $1$만 묻는 짧고 정확한 문장이라 그대로 쓴다.",
+      "exampleNeeded": false,
+      "sourceIndex": 298,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-3-c1",
+        "section": "초6::2-1 분수의 나눗셈::2-1-3 (자연수)÷(분수) 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "자연수를 분수로 고치기",
+        "definition": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+        "studentC": "자연수는 그 자연수를 분자로 쓰고 □을 분모로 쓰면 크기가 같은 분수가 된다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "4bfbc7d33ac2c6143d3b71b75add1921e33ccc8909106d2693ef9c19039dc34f",
+      "draftEvidence": "evidence/section-085-draft.json",
+      "cFrozenDefinition": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cFrozenStudentSentence": "자연수는 그 자연수를 분자로 쓰고 □을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "자연수는 그 자연수를 분자로 쓰고 □을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cStudentSentence": "자연수는 그 자연수를 분자로 쓰고 □을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수를 크기가 같은 분수로 나타내는 방법을 설명하시오. 이 방법으로 $4$는 어떤 분수가 되는지도 쓰시오.",
+        "answer": "자연수를 분자로 쓰고 분모를 $1$로 쓴다. $4=\\frac{4}{1}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수를 분자로 쓴다",
+              "자연수가 분자가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모를 $1$로 쓴다",
+              "분모는 $1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{1}$",
+              "$4=\\frac{4}{1}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f97a7d743e828748a6263f6be0aca3a79aa564b87edfa410423932c647c2df37",
+      "questionRevision": "planning-e5e6-20261006-f97a7d743e82",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "$1$ 안에 $\\frac{1}{4}$이 몇 번 들어가는지 이용하여 $3\\div\\frac{1}{4}$을 구하는 방법을 설명하고 몫을 쓰시오.",
+      "bAnswer": "$1$ 안에 $\\frac{1}{4}$이 $4$번 들어가므로 $3$ 안에는 $3\\times4=12$번 들어간다. 몫은 $12$이다.",
+      "bGoal": "단위분수로 나누면 분모를 곱하게 되는 까닭을 설명한다.",
+      "bReason": "곱셈으로 바꾸는 이유를 '들어가는 횟수'로 묻고 예의 정답도 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$ 안에 $\\frac{1}{4}$이 $4$번 들어간다",
+            "$1$ 안에 분모만큼 들어간다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$에 $4$를 곱한다",
+            "$3\\times4$를 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "$1$ 안에 단위분수는 {분모}의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+      "cReason": "단위분수가 $1$ 안에 들어가는 수가 분모임을 묻는 짧은 문장이며 조건이 명확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 299,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-3-c2",
+        "section": "초6::2-1 분수의 나눗셈::2-1-3 (자연수)÷(분수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "단위분수로 나누기",
+        "definition": "$1$ 안에 단위분수는 {분모}의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+        "studentC": "$1$ 안에 단위분수는 □의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+        "answers": [
+          "분모"
+        ]
+      },
+      "sourceFingerprint": "3861ff35851970a01285427d6b9589ba09c80c35d11ae78e0253e236b7776438",
+      "draftEvidence": "evidence/section-085-draft.json",
+      "cFrozenDefinition": "$1$ 안에 단위분수는 {분모}의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+      "cFrozenStudentSentence": "$1$ 안에 단위분수는 □의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+      "cProposedAnswers": [
+        "분모"
+      ],
+      "cStudentAfter": "$1$ 안에 단위분수는 □의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분모"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1$ 안에 단위분수는 {분모}의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+      "cStudentSentence": "$1$ 안에 단위분수는 □의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "분모",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$ 안에 $\\frac{1}{4}$이 몇 번 들어가는지 이용하여 $3\\div\\frac{1}{4}$을 구하는 방법을 설명하고 몫을 쓰시오.",
+        "answer": "$1$ 안에 $\\frac{1}{4}$이 $4$번 들어가므로 $3$ 안에는 $3\\times4=12$번 들어간다. 몫은 $12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$ 안에 $\\frac{1}{4}$이 $4$번 들어간다",
+              "$1$ 안에 분모만큼 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$에 $4$를 곱한다",
+              "$3\\times4$를 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$ 안에 단위분수는 {분모}의 수만큼 들어가므로, 어떤 양을 단위분수로 나누면 그 양에 그 수를 곱한 값이 된다.",
+        "acceptedAnswers": [
+          [
+            "분모"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "35f5b20b3cc31324b60f28d18f09270329408277a690775b63c5d57cbd2fd059",
+      "questionRevision": "planning-e5e6-20261006-35f5b20b3cc3",
+      "requiresIndependentReview": true
+    }
+  ]
+}

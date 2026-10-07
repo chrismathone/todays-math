@@ -1,0 +1,529 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "frozenAt": "2026-10-06T13:45:07.938249+00:00",
+  "auditSha256": "018ad7a9fe1a61e36eef3d88ac77592fad38ef139130e4188fdbb92e9e7859cf",
+  "scope": "All final proposed B/C questions, answers, criteria, canonical/equivalent C answers, roles and reasons in original source order. Input capture is not proof of reading.",
+  "method": "Eight individually identified corrections after direct final reading, captured for reread; immutable original remains",
+  "rows": [
+    {
+      "id": "e5-1-1-1-c1",
+      "sourceIndex": 0,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "덧셈과 뺄셈만 섞여 있고 괄호가 없는 식은 어떤 차례로 계산하는지 쓰고, 그 방법으로 $32-15+8$을 계산하시오.",
+        "answer": "왼쪽(앞)에서부터 차례로 계산한다. $32-15=17$, $17+8=25$이므로 값은 $25$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "왼쪽에서부터 차례로 계산한다",
+              "앞에서부터 차례로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "괄호 없는 덧셈·뺄셈 혼합식을 왼쪽부터 차례로 계산하는 방법을 말하고 실제 식에 적용한다.",
+      "bReason": "최종 직접 질문·답·기준 대조에서 계산 과정을 별도로 요구하지만 기준은 규칙과 값만 평가하는 불일치를 찾았다. 방법 설명과 실제 계산값을 묻도록 질문을 좁혀 그 두 학습 의미와 맞춘다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "덧셈·뺄셈만 있고 괄호가 없으면 {왼쪽}의 계산부터 차례로 한다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽",
+            "앞",
+            "앞쪽"
+          ]
+        ]
+      },
+      "cStudentSentence": "덧셈·뺄셈만 있고 괄호가 없으면 □의 계산부터 차례로 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "왼쪽",
+          "equivalents": [
+            "앞",
+            "앞쪽"
+          ]
+        }
+      ],
+      "cReason": "'덧셈·뺄셈만', '괄호 없음' 조건이 문장에 다 있고 답이 방향 낱말 하나라서 계산 차례 규칙을 묻는 목표가 분명하다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "fede3047cc04077a2618fd615a2412d029fd2d1fa690293f8c49ee1d1086dd9b",
+      "proposalFingerprint": "55c2fbcde4a9638c1a509a2b0e001542e2476858f5c5c7920eea53ad51627e88",
+      "questionRevision": "planning-e5e6-20261006-55c2fbcde4a9",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-1-1-c2",
+      "sourceIndex": 1,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "덧셈과 뺄셈이 섞여 있고 괄호가 있는 식에서는 어느 부분을 먼저 계산하는지 쓰고, $43-(15+8)$을 계산하시오.",
+        "answer": "괄호 안을 먼저 계산한다. $15+8=23$, $43-23=20$이므로 값은 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 안을 먼저 계산한다",
+              "괄호 속을 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "괄호가 있는 덧셈·뺄셈 식에서 괄호 안을 먼저 계산하는 차례를 말하고 적용한다.",
+      "bReason": "최종 직접 질문·답·기준 대조에서 계산 과정을 별도로 요구하지만 기준은 규칙과 값만 평가하는 불일치를 찾았다. 방법 설명과 실제 계산값을 묻도록 질문을 좁혀 그 두 학습 의미와 맞춘다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "덧셈·뺄셈 식에 괄호가 보이면 {괄호 안}의 값을 먼저 구한다.",
+        "acceptedAnswers": [
+          [
+            "괄호 안",
+            "괄호 속",
+            "괄호 안의 식"
+          ]
+        ]
+      },
+      "cStudentSentence": "덧셈·뺄셈 식에 괄호가 보이면 □의 값을 먼저 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "괄호 안",
+          "equivalents": [
+            "괄호 속",
+            "괄호 안의 식"
+          ]
+        }
+      ],
+      "cReason": "덧셈·뺄셈 식에 괄호가 있다는 조건이 분명하고, 답이 '괄호 안'이라는 짧은 말이라 그대로 쓸 수 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ec9e4a39991a7300e85fae9f13e64a50b0c7355a995cc79b93acbfb63bd7daf4",
+      "proposalFingerprint": "cf4f0926b73d99990596ff99cb7775dada28e018a91409cac18fd79f1554cc93",
+      "questionRevision": "planning-e5e6-20261006-cf4f0926b73d",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-1-1-c3",
+      "sourceIndex": 2,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "곱셈과 나눗셈만 섞여 있고 괄호가 없는 식은 어떤 차례로 계산하는지 쓰고, 그 방법으로 $48\\div6\\times2$를 계산하시오.",
+        "answer": "왼쪽(앞)에서부터 차례로 계산한다. $48\\div6=8$, $8\\times2=16$이므로 값은 $16$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "왼쪽에서부터 차례로 계산한다",
+              "앞에서부터 차례로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "괄호 없는 곱셈·나눗셈 혼합식을 왼쪽부터 차례로 계산하는 방법을 말하고 적용한다.",
+      "bReason": "최종 직접 질문·답·기준 대조에서 계산 과정을 별도로 요구하지만 기준은 규칙과 값만 평가하는 불일치를 찾았다. 방법 설명과 실제 계산값을 묻도록 질문을 좁혀 그 두 학습 의미와 맞춘다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "곱셈·나눗셈만 있고 괄호가 없으면 {왼쪽}에서부터 계산을 이어 간다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽",
+            "앞",
+            "앞쪽"
+          ]
+        ]
+      },
+      "cStudentSentence": "곱셈·나눗셈만 있고 괄호가 없으면 □에서부터 계산을 이어 간다.",
+      "cSlotAnswers": [
+        {
+          "key": "왼쪽",
+          "equivalents": [
+            "앞",
+            "앞쪽"
+          ]
+        }
+      ],
+      "cReason": "'곱셈·나눗셈만', '괄호 없음' 조건이 있고 답이 방향 낱말 하나라 규칙 확인에 알맞다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "e5a29b767658bf8e7eb0606a0c828fea0b59b6156050868e1904947469963655",
+      "proposalFingerprint": "96aa44c7562bf9fbb3f110b2edf5955f46b0cbc60ad730f9222407ef23cf4350",
+      "questionRevision": "planning-e5e6-20261006-96aa44c7562b",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-1-1-c4",
+      "sourceIndex": 3,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "곱셈과 나눗셈이 섞여 있고 괄호가 있는 식에서는 어느 부분을 먼저 계산하는지 쓰고, $72\\div(4\\times2)$를 계산하시오.",
+        "answer": "괄호 안을 먼저 계산한다. $4\\times2=8$, $72\\div8=9$이므로 값은 $9$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 안을 먼저 계산한다",
+              "괄호 속을 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "괄호가 있는 곱셈·나눗셈 식에서 괄호 안을 먼저 계산하고 그 값으로 나머지를 계산한다.",
+      "bReason": "최종 직접 질문·답·기준 대조에서 계산 과정을 별도로 요구하지만 기준은 규칙과 값만 평가하는 불일치를 찾았다. 방법 설명과 실제 계산값을 묻도록 질문을 좁혀 그 두 학습 의미와 맞춘다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "곱셈·나눗셈 식 $40\\div(2\\times4)$에서 먼저 계산하는 부분은 {$2\\times4$}이고, 식의 값은 {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2\\times4$",
+            "$(2\\times4)$",
+            "괄호 안"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "cStudentSentence": "곱셈·나눗셈 식 $40\\div(2\\times4)$에서 먼저 계산하는 부분은 □이고, 식의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2\\times4$",
+          "equivalents": [
+            "$(2\\times4)$",
+            "괄호 안"
+          ]
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'하나의 값으로 바꾼 뒤'라는 말이 추상적이고 c2와 답이 똑같아, 실제 식에서 먼저 계산할 부분과 값을 쓰게 바꾸었다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "210d4f817eb827a8ee70900a322b19b7a2248e39bf28f91b9cec0fe14083ef8f",
+      "proposalFingerprint": "9a0341f3c06e6e64027ff710a24ab320a8e24eb76c676be7cbc643b134c67fd2",
+      "questionRevision": "planning-e5e6-20261006-9a0341f3c06e",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-1-3-c1",
+      "sourceIndex": 8,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 괄호가 없는 식은 어떤 차례로 계산하는지 쓰고, 그 차례대로 $30-12\\div3\\times2+4$를 계산하시오.",
+        "answer": "곱셈과 나눗셈을 먼저 앞에서부터 계산하고, 그다음에 덧셈과 뺄셈을 앞에서부터 계산한다. $12\\div3=4$, $4\\times2=8$, $30-8=22$, $22+4=26$이므로 값은 $26$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱셈과 나눗셈을 먼저 계산하고 그다음 덧셈과 뺄셈을 계산한다",
+              "나눗셈과 곱셈을 먼저, 덧셈과 뺄셈을 나중에 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱셈과 나눗셈끼리, 덧셈과 뺄셈끼리는 각각 앞에서부터 계산한다",
+              "곱셈·나눗셈끼리도 왼쪽부터, 덧셈·뺄셈끼리도 왼쪽부터 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$26$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "괄호가 없는 사칙 혼합식의 계산 차례를 말하고 실제 식에 적용한다.",
+      "bReason": "최종 직접 대조에서 전체 계산 차례를 묻는데 같은 단계 연산의 앞에서부터라는 의미가 기준에 빠짐을 확인했다. 단계의 우선 차례와 단계 안의 차례를 별개의 필수 의미로 두고 실제 값도 확인한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 괄호가 없는 식에서는 {곱셈과 나눗셈}을 먼저 계산하고, 그다음에 덧셈과 뺄셈을 계산한다.",
+        "acceptedAnswers": [
+          [
+            "곱셈과 나눗셈",
+            "나눗셈과 곱셈",
+            "곱셈·나눗셈",
+            "$\\times$와 $\\div$"
+          ]
+        ]
+      },
+      "cStudentSentence": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 괄호가 없는 식에서는 □을 먼저 계산하고, 그다음에 덧셈과 뺄셈을 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱셈과 나눗셈",
+          "equivalents": [
+            "나눗셈과 곱셈",
+            "곱셈·나눗셈",
+            "$\\times$와 $\\div$"
+          ]
+        }
+      ],
+      "cReason": "원문은 '괄호가 없으면'만 있어 어떤 식인지 드러나지 않고 '앞서 구하고'도 어색하다. 대상 식을 문장에 넣고 빈칸은 그대로 둔다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "7b3bc8e0b02e910acedfa83838d4e902b0fcd0abe73aefb69ca8d0dbd9a049c6",
+      "proposalFingerprint": "57c14291a6d3d154cf28a10a1404306460d103a1ffaf60559ea5ee77022f1f98",
+      "questionRevision": "planning-e5e6-20261006-57c14291a6d3",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-1-3-c2",
+      "sourceIndex": 9,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 괄호 ( )가 있는 식은 어떤 차례로 계산하는지 쓰고, 그 차례대로 $40-(6+2)\\times3\\div4$를 계산하시오.",
+        "answer": "괄호 안을 가장 먼저 계산하고, 그다음에 곱셈과 나눗셈을 앞에서부터, 마지막으로 덧셈과 뺄셈을 앞에서부터 계산한다. $6+2=8$, $8\\times3=24$, $24\\div4=6$, $40-6=34$이므로 값은 $34$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 안을 가장 먼저 계산한다",
+              "( ) 안을 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그다음 곱셈과 나눗셈, 마지막으로 덧셈과 뺄셈을 계산한다",
+              "괄호 다음 곱셈·나눗셈, 그다음 덧셈·뺄셈 순서로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱셈과 나눗셈끼리, 덧셈과 뺄셈끼리는 각각 앞에서부터 계산한다",
+              "곱셈·나눗셈끼리도 왼쪽부터, 덧셈·뺄셈끼리도 왼쪽부터 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$34$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "괄호가 있는 사칙 혼합식의 세 단계 차례(괄호 안 → 곱셈·나눗셈 → 덧셈·뺄셈)를 말하고 적용한다.",
+      "bReason": "최종 직접 대조에서 전체 계산 차례를 묻는데 같은 단계 연산의 앞에서부터라는 의미가 기준에 빠짐을 확인했다. 단계의 우선 차례와 단계 안의 차례를 별개의 필수 의미로 두고 실제 값도 확인한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$40-(6+2)\\times3\\div4$처럼 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 괄호 ( )가 있는 식은 {괄호 안}을 가장 먼저 계산한다. 이 식의 값은 {$34$}이다.",
+        "acceptedAnswers": [
+          [
+            "괄호 안",
+            "괄호 속",
+            "( ) 안",
+            "괄호 안의 식",
+            "$6+2$"
+          ],
+          [
+            "$34$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$40-(6+2)\\times3\\div4$처럼 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 괄호 ( )가 있는 식은 □을 가장 먼저 계산한다. 이 식의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "괄호 안",
+          "equivalents": [
+            "괄호 속",
+            "( ) 안",
+            "괄호 안의 식",
+            "$6+2$"
+          ]
+        },
+        {
+          "key": "$34$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "학생 지면에는 '괄호'라는 말이 없고 '네 계산', '계산 순서를 따른다'도 모호해 빈칸을 채울 근거가 없다. 식을 보여 주고 규칙과 값을 묻는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "180e274f40076715b7de6128941a2047e78263b0edb459377cdf1174f0c661ec",
+      "proposalFingerprint": "5b3e52c6681cf4f2c9fa940d2b28dc6655222ecff17d5bffaea6310323de952d",
+      "questionRevision": "planning-e5e6-20261006-5b3e52c6681c",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-1-3-c3",
+      "sourceIndex": 10,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "괄호가 없는 식에서 곱셈과 나눗셈만 이어져 있을 때는 어느 쪽부터 계산하는지 쓰고, $72\\div8\\times3$을 계산하시오.",
+        "answer": "앞(왼쪽)에서부터 차례로 계산한다. $72\\div8=9$, $9\\times3=27$이므로 값은 $27$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞에서부터 차례로 계산한다",
+              "왼쪽부터 차례로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$27$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "곱셈과 나눗셈이 이어진 부분은 앞에서부터 계산함을 알고 적용한다.",
+      "bReason": "최종 직접 대조에서 질문하지 않은 잘못된 계산 예를 모범답안에서 제거했다. 곱셈·나눗셈의 앞에서부터 규칙과 요청한 실제 값만 답한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "괄호가 없는 식에서 곱셈과 나눗셈이 이어져 있으면 {앞}에서부터 차례로 계산한다. 그래서 $72\\div8\\times3$의 값은 {$27$}이다.",
+        "acceptedAnswers": [
+          [
+            "앞",
+            "왼쪽",
+            "앞쪽"
+          ],
+          [
+            "$27$"
+          ]
+        ]
+      },
+      "cStudentSentence": "괄호가 없는 식에서 곱셈과 나눗셈이 이어져 있으면 □에서부터 차례로 계산한다. 그래서 $72\\div8\\times3$의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "앞",
+          "equivalents": [
+            "왼쪽",
+            "앞쪽"
+          ]
+        },
+        {
+          "key": "$27$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'우선순위가 같은'은 초5에게 낯설다. '기호의 순서를 바꾸지 않는다'는 뜻이 모호하고 xc25(기호와 함께 자리 바꾸기)와 충돌해 보여 뺐다. 계산 확인 빈칸을 더했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "48fb72f09888984c6c9d3dadcfffe0fd86448901c1f2291df1072b251e1b1ef7",
+      "proposalFingerprint": "d96807648a6a96e4e9b9611412308a76a5c15bb40519d838987c0bb06fe8171e",
+      "questionRevision": "planning-e5e6-20261006-d96807648a6a",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-2-1-c2",
+      "sourceIndex": 12,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "어떤 자연수의 배수는 그 수를 어떻게 하여 만든 수인지 설명하고, $6$의 배수를 작은 것부터 $4$개 쓰시오.",
+        "answer": "그 수를 $1$배, $2$배, $3$배, …… 한 수(그 수에 자연수를 곱한 수)가 배수이다. $6$의 배수는 작은 것부터 $6$, $12$, $18$, $24$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 수에 자연수를 곱한 수",
+              "그 수를 $1$배, $2$배, $3$배, ... 한 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$, $12$, $18$, $24$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "배수의 뜻을 '자연수를 곱한 수'로 말하고 작은 배수부터 늘어놓는다.",
+      "bReason": "배수는 익숙한 정식 개념명이므로 만드는 방법으로 좁혀 묻고, $6$의 배수로 확인하게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "어떤 자연수를 $1$배, $2$배, $3$배, …… 한 수를 그 수의 {배수}라고 한다. 그 자연수가 $4$이면 차례로 $4$, $8$, {$12$}, $16$, ……이다.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "cStudentSentence": "어떤 자연수를 $1$배, $2$배, $3$배, …… 한 수를 그 수의 □라고 한다. 그 자연수가 $4$이면 차례로 $4$, $8$, □, $16$, ……이다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "최종 실제 C 읽기에서 첫 빈칸의 답 배수가 바로 다음 문장에 드러남을 확인했다. 그 이름 반복을 제거하고 정의와 실제 $4$의 다음 값을 묻는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "d8f065547aaf919c0f7fea001d3b317b6b823801ab344d4e320cfe0798edaa25",
+      "proposalFingerprint": "89b4e060eb67511782b2c8d343b1d444832b5cc0497ed19178d17e671168af9a",
+      "questionRevision": "planning-e5e6-20261006-89b4e060eb67",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    }
+  ]
+}

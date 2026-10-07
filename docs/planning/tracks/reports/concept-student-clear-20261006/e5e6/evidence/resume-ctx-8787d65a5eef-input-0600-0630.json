@@ -1,0 +1,3389 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T06:03:00.474608+00:00",
+  "rows": [
+    {
+      "id": "e5-1-2-5-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "문제 상황에서 공배수·최소공배수를 써야 함을 알아보기. xc7·xc18·xc19의 B가 실제 상황으로 다룬다.",
+      "bReason": "추상적인 유형 판단이라 범위가 불분명하고 xc7, xc18, xc19와 겹친다.",
+      "studentLabel": "남김없이 묶을 수 있는 가장 적은 수",
+      "cDecision": "revise",
+      "cAfter": "연필을 $6$자루씩 묶어도 $8$자루씩 묶어도 남지 않으려면 연필 수는 $6$과 $8$의 {공배수}여야 하고, 그중 가장 적은 연필 수는 $6$과 $8$의 {최소공배수}인 {$24$}자루이다.",
+      "cReason": "원문은 상황 없이 추상적인 말로만 쓰여 있다. 다른 문항에 없는 묶음 상황으로 바꾸고, 공배수와 최소공배수를 한 문장에서 구분하게 했다.",
+      "exclusionReason": "구체적 상황 문항과 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "첫 빈칸 '공배수'와 둘째 빈칸 '최소공배수'는 서로 바꿔 쓸 수 없다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-007-rubric.json",
+      "sourceIndex": 600,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-5-xc25",
+        "section": "초5::1-2 약수와 배수::1-2-5 공배수와 최소공배수",
+        "term": "공배수를 쓰는 문제 알아보기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "구하는 양이 여러 수 각각의 배수여야 하는 문제에서 {공배수}를 쓰고, 그 가운데 가장 작은 양을 구할 때 최소공배수를 쓴다.",
+        "studentC": "구하는 양이 여러 수 각각의 배수여야 하는 문제에서 □를 쓰고, 그 가운데 가장 작은 양을 구할 때 최소공배수를 쓴다.",
+        "answers": [
+          "공배수"
+        ]
+      },
+      "sourceFingerprint": "70833cf41e8513818dfd956d8c8f81ddb1403957e792f3a5974a41b3459b9599",
+      "draftEvidence": "evidence/section-007-draft.json",
+      "cProposedAnswers": [
+        "공배수",
+        "최소공배수",
+        "$24$"
+      ],
+      "cStudentAfter": "연필을 $6$자루씩 묶어도 $8$자루씩 묶어도 남지 않으려면 연필 수는 $6$과 $8$의 □여야 하고, 그중 가장 적은 연필 수는 $6$과 $8$의 □인 □자루이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "최소공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "연필을 $6$자루씩 묶어도 $8$자루씩 묶어도 남지 않으려면 연필 수는 $6$과 $8$의 {공배수}여야 하고, 그중 가장 적은 연필 수는 $6$과 $8$의 {최소공배수}인 {$24$}자루이다.",
+      "cStudentSentence": "연필을 $6$자루씩 묶어도 $8$자루씩 묶어도 남지 않으려면 연필 수는 $6$과 $8$의 □여야 하고, 그중 가장 적은 연필 수는 $6$과 $8$의 □인 □자루이다.",
+      "cSlotAnswers": [
+        {
+          "key": "공배수",
+          "equivalents": []
+        },
+        {
+          "key": "최소공배수",
+          "equivalents": []
+        },
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "연필을 $6$자루씩 묶어도 $8$자루씩 묶어도 남지 않으려면 연필 수는 $6$과 $8$의 {공배수}여야 하고, 그중 가장 적은 연필 수는 $6$과 $8$의 {최소공배수}인 {$24$}자루이다.",
+        "acceptedAnswers": [
+          [
+            "공배수"
+          ],
+          [
+            "최소공배수"
+          ],
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "구체적 상황 문항과 중복된다."
+      },
+      "proposalFingerprint": "f0151feee00179849073aa8143fde467f6b77ff9d0528c28c245845f971c578e",
+      "questionRevision": "planning-e5e6-20261006-f0151feee001",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-5-xc26",
+      "bDecision": "revise",
+      "bPrompt": "두 수의 공배수를 작은 것부터 늘어놓았을 때 이웃한 두 공배수의 차가 얼마씩인지, 공배수와 최소공배수의 관계로 설명하세요. $6$과 $8$의 공배수를 작은 것부터 세 개 써서 확인하세요.",
+      "bAnswer": "공배수는 최소공배수의 $1$배, $2$배, $3$배, …이므로 이웃한 공배수의 차는 항상 최소공배수와 같다. $6$과 $8$의 공배수는 $24,\\ 48,\\ 72$이고 차는 모두 $24$이다.",
+      "bGoal": "이웃한 공배수의 차가 최소공배수임을 '공배수 = 최소공배수의 배수'로 설명한다.",
+      "bReason": "소스에 예가 없어 '간격'이 무엇인지 알기 어렵다. 실제 공배수를 늘어놓아 차를 확인하게 했다.",
+      "studentLabel": "이웃한 공배수의 차",
+      "cDecision": "revise",
+      "cAfter": "두 수의 공배수를 작은 것부터 늘어놓으면 이웃한 두 공배수의 차는 언제나 두 수의 {최소공배수}와 같다.",
+      "cReason": "문장과 답은 좋다. 다만 '언제나 □이다'는 '같다', '일정' 같은 답도 떠올리게 한다. '두 수의 □와 같다'로 조금만 고쳐 답을 하나로 정했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "정답은 '최소공배수'이다. '가장 작은 공배수'는 같은 뜻이므로 인정할 수 있다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "이웃한 두 공배수의 차는 항상 최소공배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "공배수는 최소공배수의 $1$배, $2$배, $3$배, $\\cdots$이다",
+            "공배수는 최소공배수의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$, $48$, $72$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최소공배수",
+            "가장 작은 공배수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-007-rubric.json",
+      "sourceIndex": 601,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-5-xc26",
+        "section": "초5::1-2 약수와 배수::1-2-5 공배수와 최소공배수",
+        "term": "공배수 사이의 간격",
+        "kind": "성질",
+        "level": "상",
+        "definition": "공배수를 작은 것부터 늘어놓으면 이웃한 두 공배수의 차는 언제나 {최소공배수}이다.",
+        "studentC": "공배수를 작은 것부터 늘어놓으면 이웃한 두 공배수의 차는 언제나 □이다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "sourceFingerprint": "9961931e624dfa0982f997d9a35ec5a38dbadb47ec58337dd3622d1e422a6999",
+      "draftEvidence": "evidence/section-007-draft.json",
+      "cProposedAnswers": [
+        "최소공배수"
+      ],
+      "cStudentAfter": "두 수의 공배수를 작은 것부터 늘어놓으면 이웃한 두 공배수의 차는 언제나 두 수의 □와 같다.",
+      "cMarkedSentence": "두 수의 공배수를 작은 것부터 늘어놓으면 이웃한 두 공배수의 차는 언제나 두 수의 {최소공배수}와 같다.",
+      "cStudentSentence": "두 수의 공배수를 작은 것부터 늘어놓으면 이웃한 두 공배수의 차는 언제나 두 수의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "최소공배수",
+          "equivalents": [
+            "가장 작은 공배수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수의 공배수를 작은 것부터 늘어놓았을 때 이웃한 두 공배수의 차가 얼마씩인지, 공배수와 최소공배수의 관계로 설명하세요. $6$과 $8$의 공배수를 작은 것부터 세 개 써서 확인하세요.",
+        "answer": "공배수는 최소공배수의 $1$배, $2$배, $3$배, …이므로 이웃한 공배수의 차는 항상 최소공배수와 같다. $6$과 $8$의 공배수는 $24,\\ 48,\\ 72$이고 차는 모두 $24$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "이웃한 두 공배수의 차는 항상 최소공배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "공배수는 최소공배수의 $1$배, $2$배, $3$배, $\\cdots$이다",
+              "공배수는 최소공배수의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$, $48$, $72$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 수의 공배수를 작은 것부터 늘어놓으면 이웃한 두 공배수의 차는 언제나 두 수의 {최소공배수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "최소공배수",
+            "가장 작은 공배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bc54b7870f402d05c0e7080c8a5b5629a7a4fe98b53cfa310546a13d7feae60e",
+      "questionRevision": "planning-e5e6-20261006-bc54b7870f40",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-5-xc27",
+      "bDecision": "revise",
+      "bPrompt": "두 수의 공배수 가운데 어떤 수보다 큰 가장 작은 수를 찾을 때 최소공배수를 어떻게 이용하는지 설명하고, $8$과 $12$의 공배수 가운데 $50$보다 큰 가장 작은 수를 구하세요.",
+      "bAnswer": "공배수는 최소공배수의 배수이므로, 최소공배수의 배수를 작은 것부터 살펴 처음으로 그 수보다 커지는 수를 찾는다. $8$과 $12$의 최소공배수는 $24$이고, $24,\\ 48,\\ 72$ 가운데 처음으로 $50$보다 큰 수는 $72$이다.",
+      "bGoal": "정해진 범위에서 가장 작은 공배수를 최소공배수의 배수로 찾는다.",
+      "bReason": "소스 예는 '$18$의 배수에서 찾는 까닭'만 묻고 실제로 찾지는 않는다. 방법을 말하고 범위 안의 수를 구하게 했다.",
+      "studentLabel": "어떤 수보다 큰 가장 작은 공배수",
+      "cDecision": "revise",
+      "cAfter": "$6$과 $9$의 공배수 가운데 가장 작은 세 자리 수는 {$108$}이다.",
+      "cReason": "첫 초안은 최소공배수의 답 $18$을 뒤 식에 직접 드러냈고, $108$의 중괄호는 수식 안에 있어 실제 빈칸이 아니었다. 두 수와 세 자리 조건을 보존하고 실제로 구할 값 하나를 빈칸으로 정한다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "최소공배수의 배수를 작은 것부터 살펴 처음으로 그 수보다 커지는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$72$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-007-rubric.json",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$108$"
+          ]
+        }
+      ],
+      "codexReview": "실제 원문 및 첫 제안 학생 지면을 직접 읽은 뒤 정답 복사와 구체적 조건을 개별 교정함.",
+      "sourceIndex": 602,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-5-xc27",
+        "section": "초5::1-2 약수와 배수::1-2-5 공배수와 최소공배수",
+        "term": "범위 안의 가장 작은 공배수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정해진 범위에 공배수가 있으면, 그 범위의 가장 작은 공배수는 최소공배수를 거듭 더해 가다 {그 범위에 처음 들어오는 수}이다.",
+        "example": {
+          "prompt": "$6$과 $9$의 공배수 가운데 가장 작은 세 자리 수를 $18$의 배수에서 찾는 까닭은?",
+          "answer": "공배수는 $18$의 배수라서"
+        },
+        "studentC": "정해진 범위에 공배수가 있으면, 그 범위의 가장 작은 공배수는 최소공배수를 거듭 더해 가다 □이다.",
+        "answers": [
+          "그 범위에 처음 들어오는 수"
+        ]
+      },
+      "sourceFingerprint": "a723c44f35c24408c976a6a4c4bef0f9d12c85080cf7f181ead29da78528fd6b",
+      "draftEvidence": "evidence/section-007-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$108$"
+      ],
+      "cStudentAfter": "$6$과 $9$의 공배수 가운데 가장 작은 세 자리 수는 □이다.",
+      "cMarkedSentence": "$6$과 $9$의 공배수 가운데 가장 작은 세 자리 수는 {$108$}이다.",
+      "cStudentSentence": "$6$과 $9$의 공배수 가운데 가장 작은 세 자리 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$108$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수의 공배수 가운데 어떤 수보다 큰 가장 작은 수를 찾을 때 최소공배수를 어떻게 이용하는지 설명하고, $8$과 $12$의 공배수 가운데 $50$보다 큰 가장 작은 수를 구하세요.",
+        "answer": "공배수는 최소공배수의 배수이므로, 최소공배수의 배수를 작은 것부터 살펴 처음으로 그 수보다 커지는 수를 찾는다. $8$과 $12$의 최소공배수는 $24$이고, $24,\\ 48,\\ 72$ 가운데 처음으로 $50$보다 큰 수는 $72$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "최소공배수의 배수를 작은 것부터 살펴 처음으로 그 수보다 커지는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$72$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6$과 $9$의 공배수 가운데 가장 작은 세 자리 수는 {$108$}이다.",
+        "acceptedAnswers": [
+          [
+            "$108$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bb57af932c4ef13a505b152aa02698573c6fadd44e4d294dcddc9f317bb5d9bd",
+      "questionRevision": "planning-e5e6-20261006-bb57af932c4e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc1",
+      "bDecision": "revise",
+      "bPrompt": "배수를 늘어놓아 최소공배수를 구할 때 두 수의 배수를 작은 것부터 차례로 적는 까닭을, 처음 겹치는 수의 크기와 관련지어 설명하시오.",
+      "bAnswer": "작은 것부터 빠짐없이 적으면 처음 겹치는 수보다 작은 공배수는 없다. 그래서 처음 겹치는 수가 공배수 중 가장 작은 수, 곧 최소공배수가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 것부터 적으면 처음 겹치는 수보다 작은 공배수는 없다",
+            "작은 것부터 차례로 적었으므로 처음 겹치기 전에는 공배수가 나오지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그래서 처음 겹치는 수가 가장 작은 공배수, 곧 최소공배수이다"
+          ]
+        }
+      ],
+      "bGoal": "작은 것부터 적는 순서가 '최소'를 보장하는 까닭을 이해한다.",
+      "bReason": "원문 예의 '작은 것부터 적는 까닭'이 c1의 절차와 구별되는 내용이라 이것만 묻도록 했다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '두 수의 배수'는 첫 행동만 채우는 자명한 답이고 c1의 C가 같은 절차를 실제 목록으로 확인한다.",
+      "exclusionReason": "C 제외: 절차의 첫 단계만 묻는 사소한 빈칸. 대체 e5-1-2-6-c1.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 603,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc1",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "배수를 작은 것부터 적기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "최소공배수를 구하려면 먼저 {두 수의 배수}를 작은 것부터 적어 나간다.",
+        "example": {
+          "prompt": "$6$과 $10$의 배수를 작은 것부터 적는 까닭은?",
+          "answer": "처음 겹치는 수가 최소라서"
+        },
+        "studentC": "최소공배수를 구하려면 먼저 □를 작은 것부터 적어 나간다.",
+        "answers": [
+          "두 수의 배수"
+        ]
+      },
+      "sourceFingerprint": "450c8dfd70ed346a19516db0085c93b037370db5be0368dee5bb5f384747e3e9",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "배수를 늘어놓아 최소공배수를 구할 때 두 수의 배수를 작은 것부터 차례로 적는 까닭을, 처음 겹치는 수의 크기와 관련지어 설명하시오.",
+        "answer": "작은 것부터 빠짐없이 적으면 처음 겹치는 수보다 작은 공배수는 없다. 그래서 처음 겹치는 수가 공배수 중 가장 작은 수, 곧 최소공배수가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "작은 것부터 적으면 처음 겹치는 수보다 작은 공배수는 없다",
+              "작은 것부터 차례로 적었으므로 처음 겹치기 전에는 공배수가 나오지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그래서 처음 겹치는 수가 가장 작은 공배수, 곧 최소공배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C 제외: 절차의 첫 단계만 묻는 사소한 빈칸. 대체 e5-1-2-6-c1."
+      },
+      "proposalFingerprint": "800f5169be27d99054b633b4ef12e943aa2a56880370292296cdc52f0528f232",
+      "questionRevision": "planning-e5e6-20261006-800f5169be27",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc2",
+      "bDecision": "revise",
+      "bPrompt": "두 수를 곱셈식으로 나타내어 최소공배수를 구할 때 어떤 수들을 어떻게 곱하는지 설명하고, $18=2\\times3\\times3$, $30=2\\times3\\times5$를 이용해 $18$과 $30$의 최소공배수를 구하시오.",
+      "bAnswer": "두 식에 함께 있는 수는 짝지어 한 번씩만 곱하고, 짝 없이 남은 수는 모두 곱한다. 함께 있는 $2$와 $3$을 한 번씩 곱하고 남은 $3$과 $5$를 곱하면 $2\\times3\\times3\\times5=90$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 식에 함께 있는 수는 짝지어 한 번씩만 곱한다",
+            "함께 있는 수는 한 쌍마다 하나씩 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "짝 없이 남은 수는 모두 곱한다",
+            "각각에만 남은 수도 모두 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$과 $30$의 최소공배수는 $90$이다",
+            "$90$"
+          ]
+        }
+      ],
+      "bGoal": "곱셈식에서 함께 있는 수와 남은 수를 가려 최소공배수를 구한다.",
+      "bReason": "'작은 수들의 곱으로 끝까지'는 초5에게 모호하므로 다 나타낸 곱셈식을 주고 곱하는 규칙을 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$12=2\\times2\\times3$, $30=2\\times3\\times5$에서 두 식에 함께 있는 수는 $2$와 {$3$}이다. 함께 있는 수는 한 번씩만 곱하고 남은 $2$와 $5$도 모두 곱하면 최소공배수는 {$60$}이다.",
+      "cReason": "'함께 있는 수'는 '공통인 수' 등으로도 쓸 수 있는 구절이라 실제 식에서 그 수와 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "coreAfter": "두 수 각각을 $1$보다 큰 자연수 두 개의 곱으로 더 나타낼 수 없을 때까지 쪼갠다. 두 곱셈식에 {함께 있는 수}는 같은 수끼리 짝지어 한 쌍마다 한 번 곱하고, 짝 없이 남은 수도 모두 곱하면 최소공배수이다.",
+      "coreReason": "원문 '한 번씩만'은 같은 수가 두 쌍 함께 있을 때도 한 번만 곱하라는 뜻으로 읽혀 틀린 값이 나올 수 있다.",
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "함께 있는 수라는 원문 표적을 보존한다. 같은 인수가 여러 번 있을 때 각각 짝지어 한 번씩 곱하는 정확한 방법을 쓰며1을 통한 끝없는 분해는 제외한다. 더 쪼갤 수 없다는 말은1보다 큰 자연수 두 개의 곱으로 더 나타낼 수 없다는 종료 조건으로 풀었다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 604,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc2",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "곱셈식으로 최소공배수 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수를 작은 수들의 곱으로 끝까지 나타낸 뒤 {함께 있는 수}는 한 번씩만, 남은 수는 모두 곱하면 최소공배수가 된다.",
+        "example": {
+          "prompt": "두 수를 $3\\times4$, $3\\times6$까지만 나타내면 함께 있는 수를 놓칠 수 있는 까닭은?",
+          "answer": "$4$와 $6$에 공약수 $2$가 남아서"
+        },
+        "studentC": "두 수를 작은 수들의 곱으로 끝까지 나타낸 뒤 □는 한 번씩만, 남은 수는 모두 곱하면 최소공배수가 된다.",
+        "answers": [
+          "함께 있는 수"
+        ]
+      },
+      "sourceFingerprint": "d8ee92f87ae6beac824939416d0c682ec62a553390cd178eb67913e306887965",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$60$"
+      ],
+      "cStudentAfter": "$12=2\\times2\\times3$, $30=2\\times3\\times5$에서 두 식에 함께 있는 수는 $2$와 □이다. 함께 있는 수는 한 번씩만 곱하고 남은 $2$와 $5$도 모두 곱하면 최소공배수는 □이다.",
+      "cMarkedSentence": "$12=2\\times2\\times3$, $30=2\\times3\\times5$에서 두 식에 함께 있는 수는 $2$와 {$3$}이다. 함께 있는 수는 한 번씩만 곱하고 남은 $2$와 $5$도 모두 곱하면 최소공배수는 {$60$}이다.",
+      "cStudentSentence": "$12=2\\times2\\times3$, $30=2\\times3\\times5$에서 두 식에 함께 있는 수는 $2$와 □이다. 함께 있는 수는 한 번씩만 곱하고 남은 $2$와 $5$도 모두 곱하면 최소공배수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$60$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수를 곱셈식으로 나타내어 최소공배수를 구할 때 어떤 수들을 어떻게 곱하는지 설명하고, $18=2\\times3\\times3$, $30=2\\times3\\times5$를 이용해 $18$과 $30$의 최소공배수를 구하시오.",
+        "answer": "두 식에 함께 있는 수는 짝지어 한 번씩만 곱하고, 짝 없이 남은 수는 모두 곱한다. 함께 있는 $2$와 $3$을 한 번씩 곱하고 남은 $3$과 $5$를 곱하면 $2\\times3\\times3\\times5=90$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 식에 함께 있는 수는 짝지어 한 번씩만 곱한다",
+              "함께 있는 수는 한 쌍마다 하나씩 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "짝 없이 남은 수는 모두 곱한다",
+              "각각에만 남은 수도 모두 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$과 $30$의 최소공배수는 $90$이다",
+              "$90$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12=2\\times2\\times3$, $30=2\\times3\\times5$에서 두 식에 함께 있는 수는 $2$와 {$3$}이다. 함께 있는 수는 한 번씩만 곱하고 남은 $2$와 $5$도 모두 곱하면 최소공배수는 {$60$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$60$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7299cfbe0b4fba8d5a544c13c4b447da64e573cd92a2014f8afe2c96605bd88a",
+      "questionRevision": "planning-e5e6-20261006-7299cfbe0b4f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc3",
+      "bDecision": "revise",
+      "bPrompt": "$12=2\\times2\\times3$, $20=2\\times2\\times5$처럼 두 곱셈식에 같은 수가 두 개씩 함께 있을 때, 최소공배수를 구하려면 그 수를 몇 번 곱해야 하는지 까닭과 함께 쓰고, $12$와 $20$의 최소공배수를 구하시오.",
+      "bAnswer": "$2$를 두 번 곱해야 한다. 두 수 모두 $2\\times2$가 들어 있으므로 최소공배수에도 $2\\times2$가 있어야 두 수의 배수가 된다. $2$를 한 번만 곱한 $2\\times3\\times5=30$은 $12$의 배수도 $20$의 배수도 아니다. 최소공배수는 $2\\times2\\times3\\times5=60$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "함께 있는 $2$를 두 번 곱해야 한다",
+            "$2$를 쌍의 수만큼 곱한다",
+            "$2\\times2$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수 모두 $2\\times2$를 가져야 두 수의 배수가 된다",
+            "$2$를 한 번만 곱하면 $12$나 $20$의 배수가 되지 못한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$와 $20$의 최소공배수는 $60$이다",
+            "$60$"
+          ]
+        }
+      ],
+      "bGoal": "같은 수가 여러 쌍 함께 있으면 쌍의 수만큼 곱해야 함을 이해한다.",
+      "bReason": "원문 예의 '$2$가 두 개씩'을 실제 식 $12$, $20$으로 보여 주고 횟수와 까닭을 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$8=2\\times2\\times2$, $12=2\\times2\\times3$에서 $2$는 두 식에 두 쌍 함께 있다. 함께 있는 수로 $2\\times2=$ {$4$}를 곱하고 남은 $2$와 $3$도 곱하면 최소공배수는 {$24$}이다.",
+      "cReason": "'한 쌍마다 하나씩'이라는 말만으로는 뜻이 잡히지 않아 두 쌍이 있는 식에서 계산값을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 605,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc3",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "함께 있는 수는 한 번만",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수를 더 쪼갤 수 없는 수들의 곱으로 나타냈을 때 {두 수에 함께 있는 수}는 한 쌍마다 하나씩만 곱한다.",
+        "example": {
+          "prompt": "두 수에 $2$가 각각 두 개씩 있을 때 함께 있는 $2$를 하나만 곱하면 안 되는 까닭은?",
+          "answer": "두 수 모두 $2\\times2$가 필요해서"
+        },
+        "studentC": "두 수를 더 쪼갤 수 없는 수들의 곱으로 나타냈을 때 □는 한 쌍마다 하나씩만 곱한다.",
+        "answers": [
+          "두 수에 함께 있는 수"
+        ]
+      },
+      "sourceFingerprint": "c2af22bb5418c7918e7fa29a520fc5ad3462cb78c269b1f6ff9d16a3b0654c74",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$24$"
+      ],
+      "cStudentAfter": "$8=2\\times2\\times2$, $12=2\\times2\\times3$에서 $2$는 두 식에 두 쌍 함께 있다. 함께 있는 수로 $2\\times2=$ □를 곱하고 남은 $2$와 $3$도 곱하면 최소공배수는 □이다.",
+      "cMarkedSentence": "$8=2\\times2\\times2$, $12=2\\times2\\times3$에서 $2$는 두 식에 두 쌍 함께 있다. 함께 있는 수로 $2\\times2=$ {$4$}를 곱하고 남은 $2$와 $3$도 곱하면 최소공배수는 {$24$}이다.",
+      "cStudentSentence": "$8=2\\times2\\times2$, $12=2\\times2\\times3$에서 $2$는 두 식에 두 쌍 함께 있다. 함께 있는 수로 $2\\times2=$ □를 곱하고 남은 $2$와 $3$도 곱하면 최소공배수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$12=2\\times2\\times3$, $20=2\\times2\\times5$처럼 두 곱셈식에 같은 수가 두 개씩 함께 있을 때, 최소공배수를 구하려면 그 수를 몇 번 곱해야 하는지 까닭과 함께 쓰고, $12$와 $20$의 최소공배수를 구하시오.",
+        "answer": "$2$를 두 번 곱해야 한다. 두 수 모두 $2\\times2$가 들어 있으므로 최소공배수에도 $2\\times2$가 있어야 두 수의 배수가 된다. $2$를 한 번만 곱한 $2\\times3\\times5=30$은 $12$의 배수도 $20$의 배수도 아니다. 최소공배수는 $2\\times2\\times3\\times5=60$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "함께 있는 $2$를 두 번 곱해야 한다",
+              "$2$를 쌍의 수만큼 곱한다",
+              "$2\\times2$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수 모두 $2\\times2$를 가져야 두 수의 배수가 된다",
+              "$2$를 한 번만 곱하면 $12$나 $20$의 배수가 되지 못한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$와 $20$의 최소공배수는 $60$이다",
+              "$60$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$8=2\\times2\\times2$, $12=2\\times2\\times3$에서 $2$는 두 식에 두 쌍 함께 있다. 함께 있는 수로 $2\\times2=$ {$4$}를 곱하고 남은 $2$와 $3$도 곱하면 최소공배수는 {$24$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2b8c6b5c702788281235eb22785f1941283e7773c0215fab447e36fe00b2ce5a",
+      "questionRevision": "planning-e5e6-20261006-2b8c6b5c7027",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "방법이 여럿 있다는 안내 문장으로 독립된 학습 목표가 없다.",
+      "bReason": "방법 이름을 나열하는 안내 문장이라 설명할 관계가 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '곱셈식'은 방법 이름 하나를 맞히는 것이라 개념 확인이 되지 않는다.",
+      "exclusionReason": "독립 학습 목표가 없고 각 방법은 다른 항목에서 확인한다.",
+      "exampleNeeded": false,
+      "learningRole": "naming",
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 606,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc4",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "최소공배수를 구하는 여러 방법",
+        "kind": "방법",
+        "level": "하",
+        "definition": "최소공배수는 배수를 늘어놓거나 {곱셈식}을 이용하는 등 여러 방법으로 구한다.",
+        "studentC": "최소공배수는 배수를 늘어놓거나 □을 이용하는 등 여러 방법으로 구한다.",
+        "answers": [
+          "곱셈식"
+        ]
+      },
+      "sourceFingerprint": "4c7740579d064eaca5e649699eb2ebd3fbe729f60b835cccb7abbba4f7cf1954",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "독립 학습 목표가 없고 각 방법은 다른 항목에서 확인한다.",
+        "cloze": "독립 학습 목표가 없고 각 방법은 다른 항목에서 확인한다."
+      },
+      "proposalFingerprint": "2bbfc177a5dc7ddfa35031e02de13ed3a08d30c4cefe32531390f6f40033740e",
+      "questionRevision": "planning-e5e6-20261006-2bbfc177a5dc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc5",
+      "bDecision": "revise",
+      "bPrompt": "구한 수가 두 자연수의 최소공배수가 맞는지 나눗셈으로 확인하는 방법을 설명하고, $9$와 $12$의 최소공배수를 $36$이라고 한 답이 맞는지 그 방법으로 확인하시오.",
+      "bAnswer": "구한 수를 두 수로 각각 나누어 둘 다 나누어떨어지는지(공배수인지) 보고, 두 몫의 공약수가 $1$뿐인지(더 작은 공배수가 없는지) 본다. $36\\div9=4$, $36\\div12=3$으로 둘 다 나누어떨어지고 $4$와 $3$의 공약수는 $1$뿐이므로 $36$이 맞다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구한 수를 두 수로 각각 나누어 둘 다 나누어떨어지는지 확인한다",
+            "구한 수가 두 수의 공배수인지 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 몫의 공약수가 $1$뿐인지 확인한다",
+            "더 작은 공배수가 없는지 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36\\div9=4$, $36\\div12=3$이고 $4$와 $3$의 공약수가 $1$뿐이므로 $36$은 최소공배수가 맞다",
+            "$36$은 맞는 최소공배수이다"
+          ]
+        }
+      ],
+      "bGoal": "공배수인지와 가장 작은지 두 가지를 확인해 최소공배수를 검산한다.",
+      "bReason": "원문의 두 확인 단계를 학생이 스스로 말하고 $36$으로 적용하도록 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$4$와 $6$의 최소공배수를 $12$라고 구했다. $12\\div4=$ {$3$}, $12\\div6=$ {$2$}로 둘 다 나누어떨어지고, 두 몫의 공약수가 {$1$}뿐이므로 $12$는 최소공배수가 맞다.",
+      "cReason": "'둘 다 나누어떨어지는지'는 문장 일부를 외워 쓰는 빈칸이라 실제 검산의 몫과 조건을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 607,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc5",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "구한 최소공배수 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "구한 수를 두 수로 각각 나누어 {둘 다 나누어떨어지는지} 보고, 두 몫의 공약수가 $1$뿐인지도 확인한다.",
+        "studentC": "구한 수를 두 수로 각각 나누어 □ 보고, 두 몫의 공약수가 $1$뿐인지도 확인한다.",
+        "answers": [
+          "둘 다 나누어떨어지는지"
+        ]
+      },
+      "sourceFingerprint": "33601c1b02d2c154250a3477b50dd237b6ea63183d60a4d3069bc1c6affc8e89",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$2$",
+        "$1$"
+      ],
+      "cStudentAfter": "$4$와 $6$의 최소공배수를 $12$라고 구했다. $12\\div4=$ □, $12\\div6=$ □로 둘 다 나누어떨어지고, 두 몫의 공약수가 □뿐이므로 $12$는 최소공배수가 맞다.",
+      "cMarkedSentence": "$4$와 $6$의 최소공배수를 $12$라고 구했다. $12\\div4=$ {$3$}, $12\\div6=$ {$2$}로 둘 다 나누어떨어지고, 두 몫의 공약수가 {$1$}뿐이므로 $12$는 최소공배수가 맞다.",
+      "cStudentSentence": "$4$와 $6$의 최소공배수를 $12$라고 구했다. $12\\div4=$ □, $12\\div6=$ □로 둘 다 나누어떨어지고, 두 몫의 공약수가 □뿐이므로 $12$는 최소공배수가 맞다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "구한 수가 두 자연수의 최소공배수가 맞는지 나눗셈으로 확인하는 방법을 설명하고, $9$와 $12$의 최소공배수를 $36$이라고 한 답이 맞는지 그 방법으로 확인하시오.",
+        "answer": "구한 수를 두 수로 각각 나누어 둘 다 나누어떨어지는지(공배수인지) 보고, 두 몫의 공약수가 $1$뿐인지(더 작은 공배수가 없는지) 본다. $36\\div9=4$, $36\\div12=3$으로 둘 다 나누어떨어지고 $4$와 $3$의 공약수는 $1$뿐이므로 $36$이 맞다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구한 수를 두 수로 각각 나누어 둘 다 나누어떨어지는지 확인한다",
+              "구한 수가 두 수의 공배수인지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫의 공약수가 $1$뿐인지 확인한다",
+              "더 작은 공배수가 없는지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36\\div9=4$, $36\\div12=3$이고 $4$와 $3$의 공약수가 $1$뿐이므로 $36$은 최소공배수가 맞다",
+              "$36$은 맞는 최소공배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4$와 $6$의 최소공배수를 $12$라고 구했다. $12\\div4=$ {$3$}, $12\\div6=$ {$2$}로 둘 다 나누어떨어지고, 두 몫의 공약수가 {$1$}뿐이므로 $12$는 최소공배수가 맞다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f29c26cbb3617bcb07c238b0d1075c9d290354f9502d5931a8744dec81edcf90",
+      "questionRevision": "planning-e5e6-20261006-f29c26cbb361",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "나란히 쓰고 함께 나누는 방법의 시작 동작만 담고 있다.",
+      "bReason": "나란히 쓰고 함께 나누는 시작 동작만 담아 다른 항목과 중복된다.",
+      "cDecision": "keep",
+      "cAfter": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 {공약수}로 함께 나누어 나간다.",
+      "cReason": "두 수를 '함께' 나누는 수가 공약수라는 낱말 하나를 확인하는 짧은 문장이라 그대로 쓸 만하다.",
+      "exclusionReason": "공약수로 나누는 방법 전체는 c2, 나누는 수의 조건은 xc18에서 다룬다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'두 수의 공약수', '$1$보다 큰 공약수'도 정답으로 인정.",
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수",
+            "두 수의 공약수",
+            "$1$보다 큰 공약수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 608,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc6",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "나란히 쓰고 함께 나누어 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 {공약수}로 함께 나누어 나간다.",
+        "studentC": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 □로 함께 나누어 나간다.",
+        "answers": [
+          "공약수"
+        ]
+      },
+      "sourceFingerprint": "414246c53ed68cbef0bd21a7f3d29574f13a824728e151226544d2629d9fe1ba",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cFrozenDefinition": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 {공약수}로 함께 나누어 나간다.",
+      "cFrozenStudentSentence": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 □로 함께 나누어 나간다.",
+      "cProposedAnswers": [
+        "공약수"
+      ],
+      "cStudentAfter": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 □로 함께 나누어 나간다.",
+      "cMarkedSentence": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 {공약수}로 함께 나누어 나간다.",
+      "cStudentSentence": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 □로 함께 나누어 나간다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": [
+            "두 수의 공약수",
+            "$1$보다 큰 공약수"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "최소공배수를 구하는 한 방법으로, 두 수를 나란히 쓰고 {공약수}로 함께 나누어 나간다.",
+        "acceptedAnswers": [
+          [
+            "공약수",
+            "두 수의 공약수",
+            "$1$보다 큰 공약수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "공약수로 나누는 방법 전체는 c2, 나누는 수의 조건은 xc18에서 다룬다."
+      },
+      "proposalFingerprint": "cdbffb6f0ebf82cdb72f2627e57c2708392d1d82426c8b44e933d22ead85a4fd",
+      "questionRevision": "planning-e5e6-20261006-cdbffb6f0ebf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "배수 적기→공배수 찾기→가장 작은 것 고르기의 차례는 c1의 절차와 같다.",
+      "bReason": "배수 적기, 공배수 찾기, 가장 작은 것 고르기의 차례는 c1과 같다.",
+      "cDecision": "revise",
+      "cAfter": "$6$의 배수 $6,12,18,24,30,36$과 $9$의 배수 $9,18,27,36$에서 공배수를 작은 것부터 쓰면 {$18$}, {$36$}이다. 이 가운데 가장 {작은} 수가 최소공배수이다.",
+      "cReason": "공배수 두 값의 쓰는 순서를 정하여 빈칸별 정답 그룹과 학생에게 보이는 응답 범위를 맞춘다.",
+      "exclusionReason": "c1 B와 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "앞의 두 빈칸은 $18$, $36$의 순서가 바뀌어도 인정.",
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "editorialOwner": "Codex",
+      "codexReview": "미리 읽은 실제 제안 지면에서 발견한 답 복사·서로 다른 유효 답·중복을 개별 수정했다. 전체 최종 질문/답/기준 판정은 별도 진행한다.",
+      "sourceIndex": 609,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc7",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "최소공배수를 구하는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "배수 적기, 공배수 찾기, {가장 작은 공배수 고르기}의 차례로 최소공배수를 구한다.",
+        "studentC": "배수 적기, 공배수 찾기, □의 차례로 최소공배수를 구한다.",
+        "answers": [
+          "가장 작은 공배수 고르기"
+        ]
+      },
+      "sourceFingerprint": "5945b30723fff2d9fd551e8e6e815ae2ce5f14055de401fee754b67561f153ee",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$18$",
+        "$36$",
+        "작은"
+      ],
+      "cStudentAfter": "$6$의 배수 $6,12,18,24,30,36$과 $9$의 배수 $9,18,27,36$에서 공배수를 작은 것부터 쓰면 □, □이다. 이 가운데 가장 □ 수가 최소공배수이다.",
+      "cMarkedSentence": "$6$의 배수 $6,12,18,24,30,36$과 $9$의 배수 $9,18,27,36$에서 공배수를 작은 것부터 쓰면 {$18$}, {$36$}이다. 이 가운데 가장 {작은} 수가 최소공배수이다.",
+      "cStudentSentence": "$6$의 배수 $6,12,18,24,30,36$과 $9$의 배수 $9,18,27,36$에서 공배수를 작은 것부터 쓰면 □, □이다. 이 가운데 가장 □ 수가 최소공배수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$18$",
+          "equivalents": []
+        },
+        {
+          "key": "$36$",
+          "equivalents": []
+        },
+        {
+          "key": "작은",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$6$의 배수 $6,12,18,24,30,36$과 $9$의 배수 $9,18,27,36$에서 공배수를 작은 것부터 쓰면 {$18$}, {$36$}이다. 이 가운데 가장 {작은} 수가 최소공배수이다.",
+        "acceptedAnswers": [
+          [
+            "$18$"
+          ],
+          [
+            "$36$"
+          ],
+          [
+            "작은"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c1 B와 중복된다."
+      },
+      "proposalFingerprint": "0b3b26ee91ccbea214f04f2882a908367a6970e0c248f4338f9ce6f0b6c1be52",
+      "questionRevision": "planning-e5e6-20261006-0b3b26ee91cc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한쪽에만 남은 수도 곱해야 한다는 내용이다.",
+      "bReason": "남은 수도 곱한다는 규칙은 xc2, 빠뜨리면 안 되는 까닭은 xc14에서 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "$12=2\\times2\\times3$, $28=2\\times2\\times7$에서 함께 있는 $2\\times2$를 곱한 뒤, $12$에만 남은 {$3$}과 $28$에만 남은 {$7$}도 곱해야 최소공배수 {$84$}가 된다.",
+      "cReason": "'각자에게만 남은 수'는 편집용 표현이라 실제 식에서 남은 수를 찾아 곱하게 했다.",
+      "exclusionReason": "xc2·xc14 B와 중복된다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$84$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 610,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc8",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "곱셈식에서 각자 남은 수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 곱셈식을 더 쪼갤 수 없게 나타내어 짝지었을 때, 함께 있는 수 말고 {각자에게만 남은 수}도 최소공배수에 곱해 넣는다.",
+        "example": {
+          "prompt": "한쪽에 $2$가 두 개, 다른 쪽에 한 개 있을 때 남은 $2$도 곱하는 까닭은?",
+          "answer": "$2$가 두 개 필요한 수가 있어서"
+        },
+        "studentC": "두 곱셈식을 더 쪼갤 수 없게 나타내어 짝지었을 때, 함께 있는 수 말고 □도 최소공배수에 곱해 넣는다.",
+        "answers": [
+          "각자에게만 남은 수"
+        ]
+      },
+      "sourceFingerprint": "8b94acfd9e3a3005f2897b3b95bdf14f83893ef3a870c1177d3f6202b3cd5bbc",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$7$",
+        "$84$"
+      ],
+      "cStudentAfter": "$12=2\\times2\\times3$, $28=2\\times2\\times7$에서 함께 있는 $2\\times2$를 곱한 뒤, $12$에만 남은 □과 $28$에만 남은 □도 곱해야 최소공배수 □가 된다.",
+      "cMarkedSentence": "$12=2\\times2\\times3$, $28=2\\times2\\times7$에서 함께 있는 $2\\times2$를 곱한 뒤, $12$에만 남은 {$3$}과 $28$에만 남은 {$7$}도 곱해야 최소공배수 {$84$}가 된다.",
+      "cStudentSentence": "$12=2\\times2\\times3$, $28=2\\times2\\times7$에서 함께 있는 $2\\times2$를 곱한 뒤, $12$에만 남은 □과 $28$에만 남은 □도 곱해야 최소공배수 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "$84$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$12=2\\times2\\times3$, $28=2\\times2\\times7$에서 함께 있는 $2\\times2$를 곱한 뒤, $12$에만 남은 {$3$}과 $28$에만 남은 {$7$}도 곱해야 최소공배수 {$84$}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$7$"
+          ],
+          [
+            "$84$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc2·xc14 B와 중복된다."
+      },
+      "proposalFingerprint": "9ce3fa96bfcc6fffcdcbb16ce8a59bdb62b934ae71ca1045432b50b054216d55",
+      "questionRevision": "planning-e5e6-20261006-9ce3fa96bfcc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc9",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수를 곱한 수는 그 두 수의 약수·배수 중 무엇이 되는지 쓰고, 이를 이용해 최소공배수와 두 수의 곱의 크기를 비교하여 설명하시오. $4$와 $6$으로 확인하시오.",
+      "bAnswer": "두 수의 곱은 두 수 각각의 배수이므로 두 수의 공배수이다. 최소공배수는 공배수 중 가장 작은 수이므로 두 수의 곱과 같거나 그보다 작다. $4\\times6=24$는 공배수이고 최소공배수 $12$는 $24$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 곱은 두 수의 공배수이다",
+            "두 수의 곱은 두 수 각각의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최소공배수는 공배수 중 가장 작은 수이므로 두 수의 곱보다 클 수 없다",
+            "최소공배수는 두 수의 곱과 같거나 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$와 $6$의 곱은 $24$이고 최소공배수 $12$는 $24$보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "두 수의 곱이 공배수임을 근거로 최소공배수의 범위를 설명한다.",
+      "bReason": "결론 '크지 않다'를 질문에서 말하지 않고 곱이 공배수라는 관계부터 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$6\\times9=54$는 $6$의 배수이면서 $9$의 배수이므로 $6$과 $9$의 {공배수}이다. 최소공배수는 공배수 중 가장 {작은} 수이므로 $54$보다 클 수 없다.",
+      "cReason": "'두 수의 곱보다 크지 않다'는 긴 결론 구절이라 근거가 되는 낱말 두 개를 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은",
+            "가장 작은"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 611,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc9",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "두 수의 곱을 넘지 않는 최소공배수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 수의 곱은 공배수이므로 최소공배수는 {두 수의 곱보다 크지 않다}.",
+        "example": {
+          "prompt": "$4$와 $6$의 최소공배수가 $24$보다 클 수 없는 까닭은?",
+          "answer": "$24$가 이미 두 수의 공배수이다"
+        },
+        "studentC": "두 수의 곱은 공배수이므로 최소공배수는 □.",
+        "answers": [
+          "두 수의 곱보다 크지 않다"
+        ]
+      },
+      "sourceFingerprint": "019b067ee05c551d30b1ef26d8c62916e402b720a21123a87656b09c0d950f7d",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "공배수",
+        "작은"
+      ],
+      "cStudentAfter": "$6\\times9=54$는 $6$의 배수이면서 $9$의 배수이므로 $6$과 $9$의 □이다. 최소공배수는 공배수 중 가장 □ 수이므로 $54$보다 클 수 없다.",
+      "cMarkedSentence": "$6\\times9=54$는 $6$의 배수이면서 $9$의 배수이므로 $6$과 $9$의 {공배수}이다. 최소공배수는 공배수 중 가장 {작은} 수이므로 $54$보다 클 수 없다.",
+      "cStudentSentence": "$6\\times9=54$는 $6$의 배수이면서 $9$의 배수이므로 $6$과 $9$의 □이다. 최소공배수는 공배수 중 가장 □ 수이므로 $54$보다 클 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "공배수",
+          "equivalents": []
+        },
+        {
+          "key": "작은",
+          "equivalents": [
+            "가장 작은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수를 곱한 수는 그 두 수의 약수·배수 중 무엇이 되는지 쓰고, 이를 이용해 최소공배수와 두 수의 곱의 크기를 비교하여 설명하시오. $4$와 $6$으로 확인하시오.",
+        "answer": "두 수의 곱은 두 수 각각의 배수이므로 두 수의 공배수이다. 최소공배수는 공배수 중 가장 작은 수이므로 두 수의 곱과 같거나 그보다 작다. $4\\times6=24$는 공배수이고 최소공배수 $12$는 $24$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 곱은 두 수의 공배수이다",
+              "두 수의 곱은 두 수 각각의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 공배수 중 가장 작은 수이므로 두 수의 곱보다 클 수 없다",
+              "최소공배수는 두 수의 곱과 같거나 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $6$의 곱은 $24$이고 최소공배수 $12$는 $24$보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6\\times9=54$는 $6$의 배수이면서 $9$의 배수이므로 $6$과 $9$의 {공배수}이다. 최소공배수는 공배수 중 가장 {작은} 수이므로 $54$보다 클 수 없다.",
+        "acceptedAnswers": [
+          [
+            "공배수"
+          ],
+          [
+            "작은",
+            "가장 작은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6e7a32e6a218a1592c53a7912f0849f97b4d2f47dd0e67b12a72ba4fee93daa0",
+      "questionRevision": "planning-e5e6-20261006-6e7a32e6a218",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc10",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "같은 두 수의 최소공배수는 그 수라는 단순한 사실이다.",
+      "bReason": "같은 두 수의 최소공배수는 그 수라는 자명한 한 줄 사실이다.",
+      "cDecision": "revise",
+      "cAfter": "$7$과 $7$의 공배수는 $7$의 배수인 $7, 14, 21$, …이므로 최소공배수는 {$7$}이다. 이처럼 같은 두 수의 최소공배수는 그 수와 {같다}.",
+      "cReason": "'그 수 자신'은 '그 수', '자기 자신' 등 표현이 여럿이라 값과 '같다'로 답하게 했다.",
+      "exclusionReason": "한 줄 사실이며 두 수가 같은 경우의 까닭은 xc25에서 다룬다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "같은 수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 612,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc10",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "같은 두 수의 최소공배수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "같은 두 수의 최소공배수는 {그 수 자신}이다.",
+        "example": {
+          "prompt": "$7$과 $7$의 최소공배수가 $7$인 까닭은?",
+          "answer": "$7$의 $1$배가 가장 작아서"
+        },
+        "studentC": "같은 두 수의 최소공배수는 □이다.",
+        "answers": [
+          "그 수 자신"
+        ]
+      },
+      "sourceFingerprint": "a90b47c85ed3a1f97fd42952b7f816bb9614d133e9bb6d6aa1c14add0064c78d",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$7$",
+        "같다"
+      ],
+      "cStudentAfter": "$7$과 $7$의 공배수는 $7$의 배수인 $7, 14, 21$, …이므로 최소공배수는 □이다. 이처럼 같은 두 수의 최소공배수는 그 수와 □.",
+      "cMarkedSentence": "$7$과 $7$의 공배수는 $7$의 배수인 $7, 14, 21$, …이므로 최소공배수는 {$7$}이다. 이처럼 같은 두 수의 최소공배수는 그 수와 {같다}.",
+      "cStudentSentence": "$7$과 $7$의 공배수는 $7$의 배수인 $7, 14, 21$, …이므로 최소공배수는 □이다. 이처럼 같은 두 수의 최소공배수는 그 수와 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다",
+            "같은 수이다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$7$과 $7$의 공배수는 $7$의 배수인 $7, 14, 21$, …이므로 최소공배수는 {$7$}이다. 이처럼 같은 두 수의 최소공배수는 그 수와 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$7$"
+          ],
+          [
+            "같다",
+            "똑같다",
+            "같은 수이다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "한 줄 사실이며 두 수가 같은 경우의 까닭은 xc25에서 다룬다."
+      },
+      "proposalFingerprint": "dfaa7525c1c132f4359f2505bd9b5d3c65cce50cfb547b866518a1f0a5d5b574",
+      "questionRevision": "planning-e5e6-20261006-dfaa7525c1c1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc11",
+      "bDecision": "revise",
+      "bPrompt": "$24$와 $36$을 공약수로 함께 나누면 $2$로 나누어 $12$와 $18$, 다시 $2$로 나누어 $6$과 $9$, $3$으로 나누어 $2$와 $3$이 남는다. 이 과정에서 최대공약수와 최소공배수는 각각 어떤 수들을 곱해 구하는지 설명하고 두 값을 구하시오.",
+      "bAnswer": "최대공약수는 나눈 공약수들만 곱한 $2\\times2\\times3=12$이다. 최소공배수는 나눈 공약수들에 마지막 두 몫까지 곱한 $2\\times2\\times3\\times2\\times3=72$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "최대공약수는 나눈 공약수들만 곱한 $2\\times2\\times3=12$이다",
+            "최대공약수는 $12$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최소공배수는 나눈 공약수들과 마지막 두 몫 $2$, $3$까지 곱한 $12\\times2\\times3=72$이다",
+            "최소공배수는 $72$이다"
+          ]
+        }
+      ],
+      "bGoal": "한 번의 나눗셈 과정에서 최대공약수와 최소공배수에 쓰이는 수의 차이를 구별한다.",
+      "bReason": "c2와 달리 두 값을 견주는 것이 이 행의 목표라 나눗셈 과정을 주고 곱할 수의 차이를 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$18$과 $27$을 공약수 $3$으로 두 번 함께 나누면 $2$와 $3$이 남는다. 최대공약수는 $3\\times3=$ {$9$}이고, 여기에 남은 두 몫 $2$와 $3$까지 곱한 {$54$}가 최소공배수이다.",
+      "cReason": "'마지막 두 몫까지'라는 구절 대신 같은 과정에서 나오는 두 값을 계산하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$54$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 613,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc11",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "최대공약수와 최소공배수를 함께 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 몫의 공약수가 $1$뿐일 때까지 함께 나누면, 나눈 공약수를 곱한 것이 최대공약수이고 거기에 {마지막 두 몫까지} 곱하면 최소공배수이다.",
+        "studentC": "두 몫의 공약수가 $1$뿐일 때까지 함께 나누면, 나눈 공약수를 곱한 것이 최대공약수이고 거기에 □ 곱하면 최소공배수이다.",
+        "answers": [
+          "마지막 두 몫까지"
+        ]
+      },
+      "sourceFingerprint": "404e045e15a9159ba0fd28d0edc8a0a0d6bf90e65b2583878fbac7d6e224fac5",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$9$",
+        "$54$"
+      ],
+      "cStudentAfter": "$18$과 $27$을 공약수 $3$으로 두 번 함께 나누면 $2$와 $3$이 남는다. 최대공약수는 $3\\times3=$ □이고, 여기에 남은 두 몫 $2$와 $3$까지 곱한 □가 최소공배수이다.",
+      "cMarkedSentence": "$18$과 $27$을 공약수 $3$으로 두 번 함께 나누면 $2$와 $3$이 남는다. 최대공약수는 $3\\times3=$ {$9$}이고, 여기에 남은 두 몫 $2$와 $3$까지 곱한 {$54$}가 최소공배수이다.",
+      "cStudentSentence": "$18$과 $27$을 공약수 $3$으로 두 번 함께 나누면 $2$와 $3$이 남는다. 최대공약수는 $3\\times3=$ □이고, 여기에 남은 두 몫 $2$와 $3$까지 곱한 □가 최소공배수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "$54$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$24$와 $36$을 공약수로 함께 나누면 $2$로 나누어 $12$와 $18$, 다시 $2$로 나누어 $6$과 $9$, $3$으로 나누어 $2$와 $3$이 남는다. 이 과정에서 최대공약수와 최소공배수는 각각 어떤 수들을 곱해 구하는지 설명하고 두 값을 구하시오.",
+        "answer": "최대공약수는 나눈 공약수들만 곱한 $2\\times2\\times3=12$이다. 최소공배수는 나눈 공약수들에 마지막 두 몫까지 곱한 $2\\times2\\times3\\times2\\times3=72$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "최대공약수는 나눈 공약수들만 곱한 $2\\times2\\times3=12$이다",
+              "최대공약수는 $12$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 나눈 공약수들과 마지막 두 몫 $2$, $3$까지 곱한 $12\\times2\\times3=72$이다",
+              "최소공배수는 $72$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$18$과 $27$을 공약수 $3$으로 두 번 함께 나누면 $2$와 $3$이 남는다. 최대공약수는 $3\\times3=$ {$9$}이고, 여기에 남은 두 몫 $2$와 $3$까지 곱한 {$54$}가 최소공배수이다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "$54$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "75503aab75ffe3bf98c67acd9a0840660a0749b3f42b4deb1c778369d8673469",
+      "questionRevision": "planning-e5e6-20261006-75503aab75ff",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc12",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수의 공약수가 $1$뿐일 때 최소공배수를 간단히 구하는 방법을 쓰고, 그 방법이 맞는 까닭을 $8=2\\times2\\times2$, $9=3\\times3$으로 설명하시오.",
+      "bAnswer": "두 수를 곱하면 된다. $8$과 $9$의 곱셈식에는 함께 있는 수가 없어서 한 번만 곱할 수가 없고 모든 수를 다 곱해야 하므로, 최소공배수는 $8\\times9=72$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수를 곱한다",
+            "두 수의 곱이 최소공배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱셈식에 함께 있는 수가 없어서 모든 수를 다 곱해야 한다",
+            "겹치는 수가 없어 빼고 곱할 수가 없다"
+          ]
+        }
+      ],
+      "bGoal": "공약수가 $1$뿐인 두 수의 최소공배수가 곱과 같은 까닭을 곱셈식으로 설명한다.",
+      "bReason": "답인 '두 수를 곱한다'를 질문에 넣지 않고 곱셈식으로 까닭의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "$4$와 $9$처럼 두 수의 공약수가 {$1$}뿐이면 최소공배수는 두 수의 {곱}과 같다. $4$와 $9$의 최소공배수는 {$36$}이다.",
+      "cReason": "'곱셈식을 보지 않고'는 맥락 없이 이해하기 어려워 조건·관계·값을 짧게 답하도록 바꿨다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱",
+            "곱한 값",
+            "곱셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 614,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc12",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "공약수가 $1$뿐일 때 빨리 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 수의 공약수가 $1$뿐이면 곱셈식을 보지 않고 {두 수를 곱해} 최소공배수를 구한다.",
+        "example": {
+          "prompt": "$8$과 $9$의 최소공배수를 곱으로 바로 구할 수 있는 까닭은?",
+          "answer": "두 수의 공약수가 $1$뿐이다"
+        },
+        "studentC": "두 수의 공약수가 $1$뿐이면 곱셈식을 보지 않고 □ 최소공배수를 구한다.",
+        "answers": [
+          "두 수를 곱해"
+        ]
+      },
+      "sourceFingerprint": "578458abec69022268196e752fed8348d2e5ed866f1b388bffbbaf7ab72a0f8e",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "곱",
+        "$36$"
+      ],
+      "cStudentAfter": "$4$와 $9$처럼 두 수의 공약수가 □뿐이면 최소공배수는 두 수의 □과 같다. $4$와 $9$의 최소공배수는 □이다.",
+      "cMarkedSentence": "$4$와 $9$처럼 두 수의 공약수가 {$1$}뿐이면 최소공배수는 두 수의 {곱}과 같다. $4$와 $9$의 최소공배수는 {$36$}이다.",
+      "cStudentSentence": "$4$와 $9$처럼 두 수의 공약수가 □뿐이면 최소공배수는 두 수의 □과 같다. $4$와 $9$의 최소공배수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "곱",
+          "equivalents": [
+            "곱한 값",
+            "곱셈"
+          ]
+        },
+        {
+          "key": "$36$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수의 공약수가 $1$뿐일 때 최소공배수를 간단히 구하는 방법을 쓰고, 그 방법이 맞는 까닭을 $8=2\\times2\\times2$, $9=3\\times3$으로 설명하시오.",
+        "answer": "두 수를 곱하면 된다. $8$과 $9$의 곱셈식에는 함께 있는 수가 없어서 한 번만 곱할 수가 없고 모든 수를 다 곱해야 하므로, 최소공배수는 $8\\times9=72$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수를 곱한다",
+              "두 수의 곱이 최소공배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 곱셈식에 함께 있는 수가 없어서 모든 수를 다 곱해야 한다",
+              "겹치는 수가 없어 빼고 곱할 수가 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4$와 $9$처럼 두 수의 공약수가 {$1$}뿐이면 최소공배수는 두 수의 {곱}과 같다. $4$와 $9$의 최소공배수는 {$36$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "곱",
+            "곱한 값",
+            "곱셈"
+          ],
+          [
+            "$36$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1b4a6bf259d79115713fd50c8ce8493a8a0781822f0f32c11256718be97bf93e",
+      "questionRevision": "planning-e5e6-20261006-1b4a6bf259d7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc13",
+      "bDecision": "revise",
+      "bPrompt": "$6=2\\times3$과 $10=2\\times5$에는 $2$가 함께 있다. $2\\times3\\times5$와 $2\\times2\\times3\\times5$가 각각 $6$과 $10$의 공배수인지 확인하고, 함께 있는 $2$를 두 번 곱한 수가 최소공배수가 아닌 까닭을 설명하시오.",
+      "bAnswer": "$2\\times3\\times5=30$과 $2\\times2\\times3\\times5=60$은 모두 $6$과 $10$의 공배수이다. $2$를 한 번만 곱한 $30$이 이미 두 수의 배수이므로, $2$를 한 번 더 곱한 $60$은 더 큰 공배수여서 가장 작은 공배수가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$30$과 $60$은 모두 $6$과 $10$의 공배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$를 한 번만 곱한 $30$이 이미 공배수이고 $60$은 그보다 크므로 최소가 아니다",
+            "$60$은 더 큰 공배수라서 가장 작은 공배수가 아니다"
+          ]
+        }
+      ],
+      "bGoal": "함께 있는 수를 한 번만 곱해도 공배수가 되므로 두 번 곱하면 최소가 아님을 설명한다.",
+      "bReason": "원문 예의 식을 그대로 쓰되 두 곱을 직접 비교해 까닭을 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$10=2\\times5$, $14=2\\times7$에서 함께 있는 $2$를 한 번만 곱한 $2\\times5\\times7=$ {$70$}은 이미 두 수의 공배수이다. $2$를 두 번 곱한 {$140$}도 공배수이지만 $70$보다 {크므로} 최소공배수가 아니다.",
+      "cReason": "'최소가 아닌 더 큰 공배수'는 임의의 긴 구절이라 두 공배수의 값과 크기 비교로 나누었다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'크므로'는 '커서', '크기 때문에' 등 허용.",
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$70$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$140$"
+          ]
+        },
+        {
+          "anyOf": [
+            "크므로",
+            "커서",
+            "크기 때문에"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 615,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc13",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "함께 있는 수를 한 번만 곱하는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "함께 있는 $1$보다 큰 수는 한 번만 곱해도 곱한 값이 두 수의 배수가 되므로, 두 번 곱하면 {최소가 아닌 더 큰 공배수}가 된다.",
+        "example": {
+          "prompt": "$2\\times3$과 $2\\times5$에서 $2$를 두 번 곱한 수가 최소공배수가 아닌 까닭은?",
+          "answer": "$2\\times3\\times5$로 충분해서"
+        },
+        "studentC": "함께 있는 $1$보다 큰 수는 한 번만 곱해도 곱한 값이 두 수의 배수가 되므로, 두 번 곱하면 □가 된다.",
+        "answers": [
+          "최소가 아닌 더 큰 공배수"
+        ]
+      },
+      "sourceFingerprint": "6d738a050c8e598e1e3ac7b2503789cf6afdb6e695a408afd9e7d6ce062c9129",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$70$",
+        "$140$",
+        "크므로"
+      ],
+      "cStudentAfter": "$10=2\\times5$, $14=2\\times7$에서 함께 있는 $2$를 한 번만 곱한 $2\\times5\\times7=$ □은 이미 두 수의 공배수이다. $2$를 두 번 곱한 □도 공배수이지만 $70$보다 □ 최소공배수가 아니다.",
+      "cMarkedSentence": "$10=2\\times5$, $14=2\\times7$에서 함께 있는 $2$를 한 번만 곱한 $2\\times5\\times7=$ {$70$}은 이미 두 수의 공배수이다. $2$를 두 번 곱한 {$140$}도 공배수이지만 $70$보다 {크므로} 최소공배수가 아니다.",
+      "cStudentSentence": "$10=2\\times5$, $14=2\\times7$에서 함께 있는 $2$를 한 번만 곱한 $2\\times5\\times7=$ □은 이미 두 수의 공배수이다. $2$를 두 번 곱한 □도 공배수이지만 $70$보다 □ 최소공배수가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "$70$",
+          "equivalents": []
+        },
+        {
+          "key": "$140$",
+          "equivalents": []
+        },
+        {
+          "key": "크므로",
+          "equivalents": [
+            "커서",
+            "크기 때문에"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6=2\\times3$과 $10=2\\times5$에는 $2$가 함께 있다. $2\\times3\\times5$와 $2\\times2\\times3\\times5$가 각각 $6$과 $10$의 공배수인지 확인하고, 함께 있는 $2$를 두 번 곱한 수가 최소공배수가 아닌 까닭을 설명하시오.",
+        "answer": "$2\\times3\\times5=30$과 $2\\times2\\times3\\times5=60$은 모두 $6$과 $10$의 공배수이다. $2$를 한 번만 곱한 $30$이 이미 두 수의 배수이므로, $2$를 한 번 더 곱한 $60$은 더 큰 공배수여서 가장 작은 공배수가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$30$과 $60$은 모두 $6$과 $10$의 공배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$를 한 번만 곱한 $30$이 이미 공배수이고 $60$은 그보다 크므로 최소가 아니다",
+              "$60$은 더 큰 공배수라서 가장 작은 공배수가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10=2\\times5$, $14=2\\times7$에서 함께 있는 $2$를 한 번만 곱한 $2\\times5\\times7=$ {$70$}은 이미 두 수의 공배수이다. $2$를 두 번 곱한 {$140$}도 공배수이지만 $70$보다 {크므로} 최소공배수가 아니다.",
+        "acceptedAnswers": [
+          [
+            "$70$"
+          ],
+          [
+            "$140$"
+          ],
+          [
+            "크므로",
+            "커서",
+            "크기 때문에"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d6994d731ca04e6aeb51e29fa7979bb2b5d87cdfc7b7d70efa0245100d4d6664",
+      "questionRevision": "planning-e5e6-20261006-d6994d731ca0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc14",
+      "bDecision": "revise",
+      "bPrompt": "$20=2\\times2\\times5$와 $30=2\\times3\\times5$의 최소공배수를 구하면서 두 식에 함께 있는 $2$와 $5$만 곱해 $10$이라고 답했다. 이 답이 틀린 까닭을 배수의 뜻으로 설명하고, 빠뜨린 수를 넣어 최소공배수를 바르게 구하시오.",
+      "bAnswer": "$10$은 $20$의 배수도 $30$의 배수도 아니므로 공배수가 될 수 없다. $20$에만 남은 $2$와 $30$에만 남은 $3$을 빠뜨렸으므로 이것까지 곱하면 최소공배수는 $2\\times5\\times2\\times3=60$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$은 $20$의 배수가 아니므로 공배수가 아니다",
+            "$10$은 $20$과 $30$의 배수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "짝 없이 남은 $2$와 $3$도 곱해야 한다",
+            "$20$에만 남은 $2$와 $30$에만 남은 $3$을 빠뜨렸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$과 $30$의 최소공배수는 $60$이다",
+            "$60$"
+          ]
+        }
+      ],
+      "bGoal": "남은 수를 빠뜨리면 공배수조차 되지 않음을 오답 분석으로 이해한다.",
+      "bReason": "원문 예는 한 수가 다른 수의 배수라 양쪽에 남은 수가 있는 $20$, $30$으로 바꾸었다.",
+      "cDecision": "revise",
+      "cAfter": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 $12$에만 남은 $2$를 빠뜨리고 $2\\times3\\times3=18$을 구하면, $18$은 {$12$}의 배수가 아니므로 두 수의 {공배수}가 아니다.",
+      "cReason": "'그 수의 배수가 되지 못해'는 '그 수'가 무엇인지 지면에서 알 수 없어 실제 수로 바꾸었다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "공배수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 616,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc14",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "남은 수를 빠뜨리는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "더 쪼갤 수 없는 수들의 곱으로 나타내어 짝지었을 때 짝 없이 남은 수를 빠뜨리면, 곱한 값이 {그 수의 배수가 되지 못해} 공배수가 아니다.",
+        "example": {
+          "prompt": "$2\\times2\\times3$과 $2\\times3$의 최소공배수를 $2\\times3$이라고 하면 안 되는 까닭은?",
+          "answer": "$6$은 $2\\times2\\times3$의 배수가 아니다"
+        },
+        "studentC": "더 쪼갤 수 없는 수들의 곱으로 나타내어 짝지었을 때 짝 없이 남은 수를 빠뜨리면, 곱한 값이 □ 공배수가 아니다.",
+        "answers": [
+          "그 수의 배수가 되지 못해"
+        ]
+      },
+      "sourceFingerprint": "f887cec0f71954502eec7ed28043a5efec9de265c9a08ab4deaa39f23e8d25e6",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "공배수"
+      ],
+      "cStudentAfter": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 $12$에만 남은 $2$를 빠뜨리고 $2\\times3\\times3=18$을 구하면, $18$은 □의 배수가 아니므로 두 수의 □가 아니다.",
+      "cMarkedSentence": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 $12$에만 남은 $2$를 빠뜨리고 $2\\times3\\times3=18$을 구하면, $18$은 {$12$}의 배수가 아니므로 두 수의 {공배수}가 아니다.",
+      "cStudentSentence": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 $12$에만 남은 $2$를 빠뜨리고 $2\\times3\\times3=18$을 구하면, $18$은 □의 배수가 아니므로 두 수의 □가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "공배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$20=2\\times2\\times5$와 $30=2\\times3\\times5$의 최소공배수를 구하면서 두 식에 함께 있는 $2$와 $5$만 곱해 $10$이라고 답했다. 이 답이 틀린 까닭을 배수의 뜻으로 설명하고, 빠뜨린 수를 넣어 최소공배수를 바르게 구하시오.",
+        "answer": "$10$은 $20$의 배수도 $30$의 배수도 아니므로 공배수가 될 수 없다. $20$에만 남은 $2$와 $30$에만 남은 $3$을 빠뜨렸으므로 이것까지 곱하면 최소공배수는 $2\\times5\\times2\\times3=60$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$은 $20$의 배수가 아니므로 공배수가 아니다",
+              "$10$은 $20$과 $30$의 배수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "짝 없이 남은 $2$와 $3$도 곱해야 한다",
+              "$20$에만 남은 $2$와 $30$에만 남은 $3$을 빠뜨렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$과 $30$의 최소공배수는 $60$이다",
+              "$60$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 $12$에만 남은 $2$를 빠뜨리고 $2\\times3\\times3=18$을 구하면, $18$은 {$12$}의 배수가 아니므로 두 수의 {공배수}가 아니다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "공배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9599a0865fab7b99735a95edc5d5708f9abd73170580e3166782a4e8876cd475",
+      "questionRevision": "planning-e5e6-20261006-9599a0865fab",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc15",
+      "bDecision": "revise",
+      "bPrompt": "두 수 중 큰 수의 배수만 차례로 살펴서 최소공배수를 찾는 방법을 설명하고, 그 방법으로 $9$와 $15$의 최소공배수를 구하시오. 그렇게 찾은 수가 가장 작은 공배수인 까닭도 쓰시오.",
+      "bAnswer": "큰 수의 배수를 작은 것부터 차례로 작은 수로 나누어 보고, 처음으로 나누어떨어지는 수를 찾는다. $15$와 $30$은 $9$로 나누어떨어지지 않고 $45\\div9=5$이므로 최소공배수는 $45$이다. 공배수는 모두 $15$의 배수인데 $45$보다 작은 $15$의 배수 중에는 $9$의 배수가 없기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 수의 배수를 작은 것부터 차례로 작은 수로 나누어 처음 나누어떨어지는 수를 찾는다",
+            "큰 수의 배수 중 작은 수의 배수가 처음 되는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$와 $15$의 최소공배수는 $45$이다",
+            "$45$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$45$보다 작은 $15$의 배수 $15$, $30$은 $9$의 배수가 아니므로 $45$가 가장 작은 공배수이다",
+            "공배수는 큰 수의 배수이므로 큰 수의 배수만 차례로 보면 가장 작은 공배수를 찾는다"
+          ]
+        }
+      ],
+      "bGoal": "큰 수의 배수만 시험해도 최소공배수를 찾을 수 있는 방법과 까닭을 설명한다.",
+      "bReason": "원문 예의 $9$, $15$를 써서 방법과 '처음'이 최소인 까닭을 함께 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$8$과 $12$의 최소공배수를 구하려고 큰 수 $12$의 배수 $12, 24, 36$을 차례로 $8$로 나누어 보면, 처음으로 나누어떨어지는 수는 {$24$}이고 이 수가 두 수의 {최소공배수}이다.",
+      "cReason": "원문 지면은 '큰 수', '작은 수'가 어떤 두 수인지 드러나지 않아 실제 수를 넣었다.",
+      "exampleNeeded": false,
+      "coreAfter": "두 수 중 큰 수에 $1$, $2$, $3$, …을 차례로 곱해 가며 작은 수로 처음 나누어떨어지는 수를 찾으면, 그 수가 두 수의 {최소공배수}이다.",
+      "coreReason": "원문은 $1$, $2$, $3$만 곱하는 것으로 읽혀 $3$배 안에 답이 없는 경우($7$과 $10$ 등)에 맞지 않는다.",
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "최소공배수",
+            "가장 작은 공배수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "최소공배수라는 원문 표적을 보존하고1·2·3에서 끝나지 않고 계속 배수를 찾는 일반 방법을 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 617,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc15",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "큰 수의 배수를 차례로 시험하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "큰 수에 $1$, $2$, $3$을 차례로 곱해 보며 작은 수로 처음 나누어떨어지는 수를 찾으면 {최소공배수}이다.",
+        "example": {
+          "prompt": "$9$와 $15$의 최소공배수를 찾으려고 $15,\\ 30,\\ 45$를 차례로 $9$로 나누어 본다. 처음 나누어떨어지는 $45$가 최소공배수인 까닭은?",
+          "answer": "$15$, $30$은 $9$의 배수가 아니라서"
+        },
+        "studentC": "큰 수에 $1$, $2$, $3$을 차례로 곱해 보며 작은 수로 처음 나누어떨어지는 수를 찾으면 □이다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "sourceFingerprint": "e7c328237ef87f93d2ef437740cac4b6b8137df1f23d11415a9fabf861efccf5",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$24$",
+        "최소공배수"
+      ],
+      "cStudentAfter": "$8$과 $12$의 최소공배수를 구하려고 큰 수 $12$의 배수 $12, 24, 36$을 차례로 $8$로 나누어 보면, 처음으로 나누어떨어지는 수는 □이고 이 수가 두 수의 □이다.",
+      "cMarkedSentence": "$8$과 $12$의 최소공배수를 구하려고 큰 수 $12$의 배수 $12, 24, 36$을 차례로 $8$로 나누어 보면, 처음으로 나누어떨어지는 수는 {$24$}이고 이 수가 두 수의 {최소공배수}이다.",
+      "cStudentSentence": "$8$과 $12$의 최소공배수를 구하려고 큰 수 $12$의 배수 $12, 24, 36$을 차례로 $8$로 나누어 보면, 처음으로 나누어떨어지는 수는 □이고 이 수가 두 수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "최소공배수",
+          "equivalents": [
+            "가장 작은 공배수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수 중 큰 수의 배수만 차례로 살펴서 최소공배수를 찾는 방법을 설명하고, 그 방법으로 $9$와 $15$의 최소공배수를 구하시오. 그렇게 찾은 수가 가장 작은 공배수인 까닭도 쓰시오.",
+        "answer": "큰 수의 배수를 작은 것부터 차례로 작은 수로 나누어 보고, 처음으로 나누어떨어지는 수를 찾는다. $15$와 $30$은 $9$로 나누어떨어지지 않고 $45\\div9=5$이므로 최소공배수는 $45$이다. 공배수는 모두 $15$의 배수인데 $45$보다 작은 $15$의 배수 중에는 $9$의 배수가 없기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 수의 배수를 작은 것부터 차례로 작은 수로 나누어 처음 나누어떨어지는 수를 찾는다",
+              "큰 수의 배수 중 작은 수의 배수가 처음 되는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$와 $15$의 최소공배수는 $45$이다",
+              "$45$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$45$보다 작은 $15$의 배수 $15$, $30$은 $9$의 배수가 아니므로 $45$가 가장 작은 공배수이다",
+              "공배수는 큰 수의 배수이므로 큰 수의 배수만 차례로 보면 가장 작은 공배수를 찾는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$8$과 $12$의 최소공배수를 구하려고 큰 수 $12$의 배수 $12, 24, 36$을 차례로 $8$로 나누어 보면, 처음으로 나누어떨어지는 수는 {$24$}이고 이 수가 두 수의 {최소공배수}이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "최소공배수",
+            "가장 작은 공배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "872382ca2346bbcb072e02fff97d6f6233ee519e1b2dd4b9d8f8a3640e008ecf",
+      "questionRevision": "planning-e5e6-20261006-872382ca2346",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc16",
+      "bDecision": "revise",
+      "bPrompt": "$8$과 $12$의 최소공배수를 배수를 늘어놓는 방법과 공약수로 함께 나누는 방법으로 각각 구하고, 두 결과를 비교해 알 수 있는 점을 쓰시오.",
+      "bAnswer": "배수를 늘어놓으면 $8, 16, 24$와 $12, 24$에서 처음 겹치는 수가 $24$이다. 함께 나누면 $2$로 나누어 $4$와 $6$, 다시 $2$로 나누어 $2$와 $3$이 남아 $2\\times2\\times2\\times3=24$이다. 방법이 달라도 최소공배수는 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "배수를 늘어놓아 $8, 16, 24$와 $12, 24$에서 처음 겹치는 수 $24$를 구한다",
+            "배수를 늘어놓는 방법으로 $24$를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "공약수로 함께 나누어 $2\\times2\\times2\\times3=24$를 구한다",
+            "공약수로 나누는 방법으로 $24$를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "방법이 달라도 최소공배수는 같다",
+            "두 방법의 결과가 같다"
+          ]
+        }
+      ],
+      "bGoal": "두 방법으로 직접 구해 결과가 같음을 확인한다.",
+      "bReason": "'같다'는 결론만 말하게 하면 자명하므로 두 방법을 직접 써서 비교하도록 했다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '같다'는 생각 없이도 맞히는 자명한 답이고 같은 내용을 B에서 계산으로 확인한다.",
+      "exclusionReason": "C 제외: 자명한 한 낱말 빈칸. 같은 행의 B가 대신한다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 618,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc16",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "방법이 달라도 같은 최소공배수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "배수를 늘어놓아도, 곱셈식이나 공약수로 나누어도 최소공배수는 {같다}.",
+        "studentC": "배수를 늘어놓아도, 곱셈식이나 공약수로 나누어도 최소공배수는 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "4bbb501884e65c0383696765961ba7bb89d032219a419bd4388aaf89a5f13d93",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "$8$과 $12$의 최소공배수를 배수를 늘어놓는 방법과 공약수로 함께 나누는 방법으로 각각 구하고, 두 결과를 비교해 알 수 있는 점을 쓰시오.",
+        "answer": "배수를 늘어놓으면 $8, 16, 24$와 $12, 24$에서 처음 겹치는 수가 $24$이다. 함께 나누면 $2$로 나누어 $4$와 $6$, 다시 $2$로 나누어 $2$와 $3$이 남아 $2\\times2\\times2\\times3=24$이다. 방법이 달라도 최소공배수는 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "배수를 늘어놓아 $8, 16, 24$와 $12, 24$에서 처음 겹치는 수 $24$를 구한다",
+              "배수를 늘어놓는 방법으로 $24$를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "공약수로 함께 나누어 $2\\times2\\times2\\times3=24$를 구한다",
+              "공약수로 나누는 방법으로 $24$를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "방법이 달라도 최소공배수는 같다",
+              "두 방법의 결과가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C 제외: 자명한 한 낱말 빈칸. 같은 행의 B가 대신한다."
+      },
+      "proposalFingerprint": "0f78fc0bdd83e58322f3df784eecde7b8f857c62dbb40ca512740fdd01b74387",
+      "questionRevision": "planning-e5e6-20261006-0f78fc0bdd83",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc17",
+      "bDecision": "revise",
+      "bPrompt": "두 수를 곱셈식으로 나타냈을 때 최대공약수와 최소공배수는 각각 어떤 수들을 곱해 구하는지 비교하여 설명하고, $18=2\\times3\\times3$, $24=2\\times2\\times2\\times3$으로 두 값을 구하시오.",
+      "bAnswer": "최대공약수는 두 식에 함께 있는 수만 곱하고, 최소공배수는 거기에 한쪽에만 남은 수까지 모두 곱한다. 함께 있는 수는 $2$와 $3$이므로 최대공약수는 $2\\times3=6$이고, $18$에 남은 $3$과 $24$에 남은 $2\\times2$까지 곱하면 최소공배수는 $6\\times3\\times2\\times2=72$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "최대공약수는 두 식에 함께 있는 수만 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최소공배수는 함께 있는 수에 한쪽에만 남은 수까지 모두 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수는 $6$이다",
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "최소공배수는 $72$이다",
+            "$72$"
+          ]
+        }
+      ],
+      "bGoal": "곱셈식에서 최대공약수와 최소공배수를 만드는 수의 차이를 비교한다.",
+      "bReason": "xc2와 구별되도록 두 값을 만드는 수를 견주는 데 초점을 두었다.",
+      "cDecision": "revise",
+      "cAfter": "$20=2\\times2\\times5$, $30=2\\times3\\times5$에서 함께 있는 수만 곱한 $2\\times5=$ {$10$}이 최대공약수이고, 여기에 $20$에만 남은 $2$와 $30$에만 남은 $3$까지 곱한 {$60$}이 최소공배수이다.",
+      "cReason": "'각자에게만 남은 수'라는 구절 대신 같은 식에서 두 값을 구해 차이를 보게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 619,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc17",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "곱셈식으로 보는 최대공약수와 최소공배수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수를 더 쪼갤 수 없는 수들의 곱으로 나타내면, 함께 있는 수만 곱한 것이 최대공약수이고 거기에 {각자에게만 남은 수}까지 곱하면 최소공배수이다.",
+        "studentC": "두 수를 더 쪼갤 수 없는 수들의 곱으로 나타내면, 함께 있는 수만 곱한 것이 최대공약수이고 거기에 □까지 곱하면 최소공배수이다.",
+        "answers": [
+          "각자에게만 남은 수"
+        ]
+      },
+      "sourceFingerprint": "1ba3ce72366c880d2388b94ede6425bbe86fab86817b236f5e5f8f70233d1e1a",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$60$"
+      ],
+      "cStudentAfter": "$20=2\\times2\\times5$, $30=2\\times3\\times5$에서 함께 있는 수만 곱한 $2\\times5=$ □이 최대공약수이고, 여기에 $20$에만 남은 $2$와 $30$에만 남은 $3$까지 곱한 □이 최소공배수이다.",
+      "cMarkedSentence": "$20=2\\times2\\times5$, $30=2\\times3\\times5$에서 함께 있는 수만 곱한 $2\\times5=$ {$10$}이 최대공약수이고, 여기에 $20$에만 남은 $2$와 $30$에만 남은 $3$까지 곱한 {$60$}이 최소공배수이다.",
+      "cStudentSentence": "$20=2\\times2\\times5$, $30=2\\times3\\times5$에서 함께 있는 수만 곱한 $2\\times5=$ □이 최대공약수이고, 여기에 $20$에만 남은 $2$와 $30$에만 남은 $3$까지 곱한 □이 최소공배수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$60$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수를 곱셈식으로 나타냈을 때 최대공약수와 최소공배수는 각각 어떤 수들을 곱해 구하는지 비교하여 설명하고, $18=2\\times3\\times3$, $24=2\\times2\\times2\\times3$으로 두 값을 구하시오.",
+        "answer": "최대공약수는 두 식에 함께 있는 수만 곱하고, 최소공배수는 거기에 한쪽에만 남은 수까지 모두 곱한다. 함께 있는 수는 $2$와 $3$이므로 최대공약수는 $2\\times3=6$이고, $18$에 남은 $3$과 $24$에 남은 $2\\times2$까지 곱하면 최소공배수는 $6\\times3\\times2\\times2=72$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "최대공약수는 두 식에 함께 있는 수만 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 함께 있는 수에 한쪽에만 남은 수까지 모두 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수는 $6$이다",
+              "$6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 $72$이다",
+              "$72$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20=2\\times2\\times5$, $30=2\\times3\\times5$에서 함께 있는 수만 곱한 $2\\times5=$ {$10$}이 최대공약수이고, 여기에 $20$에만 남은 $2$와 $30$에만 남은 $3$까지 곱한 {$60$}이 최소공배수이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$60$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7336f59cdd6bd3f4565202e61126bf437b13c30feccdbf2a1044f91f44f58f30",
+      "questionRevision": "planning-e5e6-20261006-7336f59cdd6b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc18",
+      "bDecision": "revise",
+      "bPrompt": "두 수를 나란히 쓰고 함께 나눌 때 나누는 수는 어떤 수여야 하는지 쓰고, $9$와 $12$를 $2$로 함께 나눌 수 없는 까닭을 설명하시오. $9$와 $12$를 함께 나눌 수 있는 $1$보다 큰 수도 쓰시오.",
+      "bAnswer": "두 수를 모두 나누어떨어지게 하는 수, 곧 두 수의 공약수여야 한다. $2$는 $12$의 약수이지만 $9$의 약수가 아니어서 $9$가 나누어떨어지지 않는다. 함께 나눌 수 있는 $1$보다 큰 수는 $3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 공약수여야 한다",
+            "두 수를 모두 나누어떨어지게 하는 수여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$는 $9$의 약수가 아니다",
+            "$9$는 $2$로 나누어떨어지지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "함께 나눌 수 있는 $1$보다 큰 수는 $3$이다",
+            "$3$"
+          ]
+        }
+      ],
+      "bGoal": "함께 나누는 수가 공약수여야 하는 조건을 실제 수로 판단한다.",
+      "bReason": "원문 예의 $9$, $12$를 살려 조건과 반례, 맞는 수를 모두 답하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$10$과 $15$를 함께 나눌 수 있는 $1$보다 큰 수는 두 수의 공약수인 {$5$}뿐이다. $3$은 {$10$}의 약수가 아니므로 함께 나누는 수로 쓸 수 없다.",
+      "cReason": "'공약수' 낱말 확인은 xc6 C가 맡으므로 여기서는 실제 수로 조건을 적용하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 620,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc18",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "함께 나누는 수의 조건",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수를 함께 나누는 수는 반드시 {두 수의 공약수}여야 한다.",
+        "example": {
+          "prompt": "$9$와 $12$를 $2$로 함께 나눌 수 없는 까닭은?",
+          "answer": "$2$가 $9$의 약수가 아니라서"
+        },
+        "studentC": "두 수를 함께 나누는 수는 반드시 □여야 한다.",
+        "answers": [
+          "두 수의 공약수"
+        ]
+      },
+      "sourceFingerprint": "f305e93a6d987892491e29825e17830903d05f9e8a6b866352d94505a11af577",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$10$"
+      ],
+      "cStudentAfter": "$10$과 $15$를 함께 나눌 수 있는 $1$보다 큰 수는 두 수의 공약수인 □뿐이다. $3$은 □의 약수가 아니므로 함께 나누는 수로 쓸 수 없다.",
+      "cMarkedSentence": "$10$과 $15$를 함께 나눌 수 있는 $1$보다 큰 수는 두 수의 공약수인 {$5$}뿐이다. $3$은 {$10$}의 약수가 아니므로 함께 나누는 수로 쓸 수 없다.",
+      "cStudentSentence": "$10$과 $15$를 함께 나눌 수 있는 $1$보다 큰 수는 두 수의 공약수인 □뿐이다. $3$은 □의 약수가 아니므로 함께 나누는 수로 쓸 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수를 나란히 쓰고 함께 나눌 때 나누는 수는 어떤 수여야 하는지 쓰고, $9$와 $12$를 $2$로 함께 나눌 수 없는 까닭을 설명하시오. $9$와 $12$를 함께 나눌 수 있는 $1$보다 큰 수도 쓰시오.",
+        "answer": "두 수를 모두 나누어떨어지게 하는 수, 곧 두 수의 공약수여야 한다. $2$는 $12$의 약수이지만 $9$의 약수가 아니어서 $9$가 나누어떨어지지 않는다. 함께 나눌 수 있는 $1$보다 큰 수는 $3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 공약수여야 한다",
+              "두 수를 모두 나누어떨어지게 하는 수여야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 $9$의 약수가 아니다",
+              "$9$는 $2$로 나누어떨어지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "함께 나눌 수 있는 $1$보다 큰 수는 $3$이다",
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10$과 $15$를 함께 나눌 수 있는 $1$보다 큰 수는 두 수의 공약수인 {$5$}뿐이다. $3$은 {$10$}의 약수가 아니므로 함께 나누는 수로 쓸 수 없다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cb1cd8c77d2292348177c37d95ee1ca9f18f5fc7f55497832c185e91c167ec2e",
+      "questionRevision": "planning-e5e6-20261006-cb1cd8c77d22",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$10=2\\times5$, $15=3\\times5$이다. 두 수의 곱 $10\\times15$와 두 수의 최소공배수를 각각 곱셈식으로 나타내어 비교하고, 최소공배수가 두 수의 곱보다 작은 까닭을 설명하시오.",
+      "bAnswer": "$10\\times15=2\\times5\\times3\\times5=150$이고 최소공배수는 $2\\times3\\times5=30$이다. 두 수의 곱에는 함께 있는 $5$가 두 번 들어가지만 최소공배수에는 한 번만 곱하므로 그만큼 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 곱은 $2\\times5\\times3\\times5=150$이고 최소공배수는 $2\\times3\\times5=30$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱에는 함께 있는 $5$가 두 번 들어가지만 최소공배수에는 한 번만 들어간다"
+          ]
+        }
+      ],
+      "bGoal": "두 수의 곱과 최소공배수의 곱셈식을 견주어 차이가 생기는 까닭을 찾는다.",
+      "bReason": "xc13과 겹치지 않게 두 수의 곱과 최소공배수를 견주는 관점으로 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$6=2\\times3$, $15=3\\times5$에서 두 수의 곱 $90$에는 함께 있는 $3$이 {두} 번 곱해져 있지만 최소공배수에는 한 번만 곱하므로, 최소공배수는 $90\\div3=$ {$30$}이다.",
+      "cReason": "'두 번 곱하지 않기'는 문장 조각이라 횟수와 그 결과 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'두'는 '$2$'도 인정.",
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두",
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 621,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc19",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "최소공배수가 곱보다 작아지는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 수에 함께 있는 수를 {두 번 곱하지 않기} 때문에 최소공배수는 두 수의 곱보다 작아질 수 있다.",
+        "studentC": "두 수에 함께 있는 수를 □ 때문에 최소공배수는 두 수의 곱보다 작아질 수 있다.",
+        "answers": [
+          "두 번 곱하지 않기"
+        ]
+      },
+      "sourceFingerprint": "d057d343ba4b723a4f3f7fc1a2eaa346ede209188e3070bcae6e23cd90f48789",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "두",
+        "$30$"
+      ],
+      "cStudentAfter": "$6=2\\times3$, $15=3\\times5$에서 두 수의 곱 $90$에는 함께 있는 $3$이 □ 번 곱해져 있지만 최소공배수에는 한 번만 곱하므로, 최소공배수는 $90\\div3=$ □이다.",
+      "cMarkedSentence": "$6=2\\times3$, $15=3\\times5$에서 두 수의 곱 $90$에는 함께 있는 $3$이 {두} 번 곱해져 있지만 최소공배수에는 한 번만 곱하므로, 최소공배수는 $90\\div3=$ {$30$}이다.",
+      "cStudentSentence": "$6=2\\times3$, $15=3\\times5$에서 두 수의 곱 $90$에는 함께 있는 $3$이 □ 번 곱해져 있지만 최소공배수에는 한 번만 곱하므로, 최소공배수는 $90\\div3=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "두",
+          "equivalents": [
+            "$2$"
+          ]
+        },
+        {
+          "key": "$30$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$10=2\\times5$, $15=3\\times5$이다. 두 수의 곱 $10\\times15$와 두 수의 최소공배수를 각각 곱셈식으로 나타내어 비교하고, 최소공배수가 두 수의 곱보다 작은 까닭을 설명하시오.",
+        "answer": "$10\\times15=2\\times5\\times3\\times5=150$이고 최소공배수는 $2\\times3\\times5=30$이다. 두 수의 곱에는 함께 있는 $5$가 두 번 들어가지만 최소공배수에는 한 번만 곱하므로 그만큼 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 곱은 $2\\times5\\times3\\times5=150$이고 최소공배수는 $2\\times3\\times5=30$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱에는 함께 있는 $5$가 두 번 들어가지만 최소공배수에는 한 번만 들어간다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6=2\\times3$, $15=3\\times5$에서 두 수의 곱 $90$에는 함께 있는 $3$이 {두} 번 곱해져 있지만 최소공배수에는 한 번만 곱하므로, 최소공배수는 $90\\div3=$ {$30$}이다.",
+        "acceptedAnswers": [
+          [
+            "두",
+            "$2$"
+          ],
+          [
+            "$30$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c5dfd2605839460d346611617e08c9a0efddb2dcd396a33d77609536b818e7f9",
+      "questionRevision": "planning-e5e6-20261006-c5dfd2605839",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc20",
+      "bDecision": "revise",
+      "bPrompt": "$12$와 $18$을 공약수 $3$으로 나누면 몫은 $4$와 $6$이다. $3\\times4\\times6$을 최소공배수라고 하면 틀리는 까닭을 두 몫 $4$와 $6$의 공약수와 관련지어 설명하고, 최대공약수로 나눈 몫을 이용해 최소공배수를 바르게 구하시오.",
+      "bAnswer": "몫 $4$와 $6$에 공약수 $2$가 남아 있어 $3$은 최대공약수가 아니고, $3\\times4\\times6=72$는 공배수이지만 가장 작지 않다. 최대공약수는 $3\\times2=6$이고 $6$으로 나눈 몫은 $2$와 $3$이므로 최소공배수는 $6\\times2\\times3=36$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫 $4$와 $6$에 공약수 $2$가 남아 있어 $3$은 최대공약수가 아니므로 $3\\times4\\times6$은 최소공배수가 아니다",
+            "두 몫에 $1$보다 큰 공약수가 있으면 그 수는 최대공약수로 나눈 몫이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수 $6$으로 나눈 몫 $2$, $3$을 이용한 최소공배수는 $6\\times2\\times3=36$이다",
+            "$36$"
+          ]
+        }
+      ],
+      "bGoal": "최대공약수로 나눈 몫이어야 '최대공약수×두 몫'이 최소공배수가 됨을 이해한다.",
+      "bReason": "원문 예가 짚는 '$3$은 최대공약수가 아니다'를 살려 조건이 깨지면 어떻게 되는지 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$20$과 $28$의 최대공약수는 $4$이고, 두 수를 $4$로 나눈 몫은 차례로 {$5$}, {$7$}이다. 최소공배수는 최대공약수와 두 몫의 곱인 {$140$}이다.",
+      "cReason": "빈칸이 공식 구절 전체라 외워 쓰게 되므로 몫과 최소공배수를 실제로 구하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$140$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 622,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc20",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "몫으로 최소공배수 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 수를 최대공약수로 나눈 몫을 알면 최소공배수는 {최대공약수와 두 몫의 곱}이다.",
+        "example": {
+          "prompt": "$12$와 $18$을 공약수 $3$으로 나눈 몫 $4$, $6$에 공약수 $2$가 있다. $3$이 최대공약수가 아닌 까닭은?",
+          "answer": "더 큰 $3\\times2=6$도 공약수라서"
+        },
+        "studentC": "두 수를 최대공약수로 나눈 몫을 알면 최소공배수는 □이다.",
+        "answers": [
+          "최대공약수와 두 몫의 곱"
+        ]
+      },
+      "sourceFingerprint": "08b46b52c6692ff498e00693998a3bda3019147b62715fbc085b58c333ed143a",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$7$",
+        "$140$"
+      ],
+      "cStudentAfter": "$20$과 $28$의 최대공약수는 $4$이고, 두 수를 $4$로 나눈 몫은 차례로 □, □이다. 최소공배수는 최대공약수와 두 몫의 곱인 □이다.",
+      "cMarkedSentence": "$20$과 $28$의 최대공약수는 $4$이고, 두 수를 $4$로 나눈 몫은 차례로 {$5$}, {$7$}이다. 최소공배수는 최대공약수와 두 몫의 곱인 {$140$}이다.",
+      "cStudentSentence": "$20$과 $28$의 최대공약수는 $4$이고, 두 수를 $4$로 나눈 몫은 차례로 □, □이다. 최소공배수는 최대공약수와 두 몫의 곱인 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "$140$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$12$와 $18$을 공약수 $3$으로 나누면 몫은 $4$와 $6$이다. $3\\times4\\times6$을 최소공배수라고 하면 틀리는 까닭을 두 몫 $4$와 $6$의 공약수와 관련지어 설명하고, 최대공약수로 나눈 몫을 이용해 최소공배수를 바르게 구하시오.",
+        "answer": "몫 $4$와 $6$에 공약수 $2$가 남아 있어 $3$은 최대공약수가 아니고, $3\\times4\\times6=72$는 공배수이지만 가장 작지 않다. 최대공약수는 $3\\times2=6$이고 $6$으로 나눈 몫은 $2$와 $3$이므로 최소공배수는 $6\\times2\\times3=36$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫 $4$와 $6$에 공약수 $2$가 남아 있어 $3$은 최대공약수가 아니므로 $3\\times4\\times6$은 최소공배수가 아니다",
+              "두 몫에 $1$보다 큰 공약수가 있으면 그 수는 최대공약수로 나눈 몫이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수 $6$으로 나눈 몫 $2$, $3$을 이용한 최소공배수는 $6\\times2\\times3=36$이다",
+              "$36$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20$과 $28$의 최대공약수는 $4$이고, 두 수를 $4$로 나눈 몫은 차례로 {$5$}, {$7$}이다. 최소공배수는 최대공약수와 두 몫의 곱인 {$140$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$7$"
+          ],
+          [
+            "$140$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fdb69e498ce36d289af6f766f4bd6c48b320cd7fed8e72fc776471884543803a",
+      "questionRevision": "planning-e5e6-20261006-fdb69e498ce3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc21",
+      "bDecision": "revise",
+      "bPrompt": "$6=2\\times3$이고 $30=2\\times3\\times5$이다. $6$과 어떤 수의 최소공배수가 $30$일 때, 어떤 수의 곱셈식에 반드시 들어 있어야 하는 수는 무엇인지 까닭과 함께 쓰고, 어떤 수가 될 수 있는 수를 모두 구하시오.",
+      "bAnswer": "$5$가 들어 있어야 한다. 최소공배수의 곱셈식에 있는 수는 두 수 중 적어도 한쪽에 있어야 하는데 $6$에는 $5$가 없기 때문이다. 어떤 수는 $30$의 약수 중 $5$의 배수인 $5$, $10$, $15$, $30$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떤 수의 곱셈식에 $5$가 반드시 들어 있어야 한다",
+            "어떤 수는 $5$의 배수여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$에는 $5$가 없기 때문이다",
+            "최소공배수에 있는 수는 두 수 중 한쪽에는 있어야 하는데 $6$에는 $5$가 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어떤 수는 $5$, $10$, $15$, $30$이다"
+          ]
+        }
+      ],
+      "bGoal": "최소공배수의 곱셈식에서 한 수에 없는 수가 다른 수에 있어야 함을 이용해 모르는 수를 찾는다.",
+      "bReason": "원문 예의 결론 '$5$의 배수'를 질문에서 말하지 않고 학생이 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$4=2\\times2$와 어떤 수의 최소공배수가 $28=2\\times2\\times7$이다. $4$의 곱셈식에 없는 {$7$}은 어떤 수의 곱셈식에 반드시 들어 있어야 하므로, 어떤 수는 $7$, {$14$}, $28$ 중 하나이다.",
+      "cReason": "원문은 '한 수', '없는 수'가 무엇인지 알 수 없는 추상 문장이라 실제 수로 풀었다.",
+      "exampleNeeded": false,
+      "coreAfter": "두 수 각각을 $1$보다 큰 자연수 두 개의 곱으로 더 나타낼 수 없을 때까지 쪼갠다. 최소공배수의 곱셈식에 있는 수가 한쪽 식에 없으면 {다른 쪽 식에 들어 있어야} 한다.",
+      "coreReason": "원문은 '한 수에 없는 수'가 최소공배수의 곱셈식에 있는 수를 가리킨다는 점이 드러나지 않는다.",
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "다른 수에 들어 있어야라는 원문 표적을 다른 쪽 곱셈식으로 명확히 지목한다. 최소공배수의 어떤 인수인지와 비교할 두 곱셈식도 먼저 제시한다. 더 쪼갤 수 없다는 말은1보다 큰 자연수 두 개의 곱으로 더 나타낼 수 없다는 종료 조건으로 풀었다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 623,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc21",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "최소공배수에서 한 수에 없는 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "최소공배수를 더 쪼갤 수 없는 수들의 곱으로 나타냈을 때 한 수에 없는 수는 {다른 수에 들어 있어야} 한다.",
+        "example": {
+          "prompt": "$6$과 $\\square$의 최소공배수가 $30$일 때 $\\square$가 $5$의 배수여야 하는 까닭은?",
+          "answer": "$6$에는 $5$가 없어서"
+        },
+        "studentC": "최소공배수를 더 쪼갤 수 없는 수들의 곱으로 나타냈을 때 한 수에 없는 수는 □ 한다.",
+        "answers": [
+          "다른 수에 들어 있어야"
+        ]
+      },
+      "sourceFingerprint": "c2e0b02d7c2a41e837e060fa384b59aa9ce2400c414cb7497a45b828d8164309",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$7$",
+        "$14$"
+      ],
+      "cStudentAfter": "$4=2\\times2$와 어떤 수의 최소공배수가 $28=2\\times2\\times7$이다. $4$의 곱셈식에 없는 □은 어떤 수의 곱셈식에 반드시 들어 있어야 하므로, 어떤 수는 $7$, □, $28$ 중 하나이다.",
+      "cMarkedSentence": "$4=2\\times2$와 어떤 수의 최소공배수가 $28=2\\times2\\times7$이다. $4$의 곱셈식에 없는 {$7$}은 어떤 수의 곱셈식에 반드시 들어 있어야 하므로, 어떤 수는 $7$, {$14$}, $28$ 중 하나이다.",
+      "cStudentSentence": "$4=2\\times2$와 어떤 수의 최소공배수가 $28=2\\times2\\times7$이다. $4$의 곱셈식에 없는 □은 어떤 수의 곱셈식에 반드시 들어 있어야 하므로, 어떤 수는 $7$, □, $28$ 중 하나이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "$14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6=2\\times3$이고 $30=2\\times3\\times5$이다. $6$과 어떤 수의 최소공배수가 $30$일 때, 어떤 수의 곱셈식에 반드시 들어 있어야 하는 수는 무엇인지 까닭과 함께 쓰고, 어떤 수가 될 수 있는 수를 모두 구하시오.",
+        "answer": "$5$가 들어 있어야 한다. 최소공배수의 곱셈식에 있는 수는 두 수 중 적어도 한쪽에 있어야 하는데 $6$에는 $5$가 없기 때문이다. 어떤 수는 $30$의 약수 중 $5$의 배수인 $5$, $10$, $15$, $30$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어떤 수의 곱셈식에 $5$가 반드시 들어 있어야 한다",
+              "어떤 수는 $5$의 배수여야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$에는 $5$가 없기 때문이다",
+              "최소공배수에 있는 수는 두 수 중 한쪽에는 있어야 하는데 $6$에는 $5$가 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "어떤 수는 $5$, $10$, $15$, $30$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4=2\\times2$와 어떤 수의 최소공배수가 $28=2\\times2\\times7$이다. $4$의 곱셈식에 없는 {$7$}은 어떤 수의 곱셈식에 반드시 들어 있어야 하므로, 어떤 수는 $7$, {$14$}, $28$ 중 하나이다.",
+        "acceptedAnswers": [
+          [
+            "$7$"
+          ],
+          [
+            "$14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fc279b5ce515a3a5253afb8b2cf5827336c389ee15489193c9c5e0e075f59c0f",
+      "questionRevision": "planning-e5e6-20261006-fc279b5ce515",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc22",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수를 $4$로 나누면 $3$이 남고 $6$으로 나누면 $5$가 남는다. 이 수에 얼마를 더하면 $4$와 $6$의 공배수가 되는지 까닭과 함께 설명하고, 이런 수 중 가장 작은 수를 구하시오.",
+      "bAnswer": "$1$을 더하면 된다. $4$로 나누어 $3$이 남는 수는 $4$의 배수보다 $1$ 모자라고, $6$으로 나누어 $5$가 남는 수는 $6$의 배수보다 $1$ 모자라기 때문이다. 가장 작은 공배수가 $12$이므로 가장 작은 수는 $12-1=11$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$로 나누어 $3$이 남는 수도 $6$으로 나누어 $5$가 남는 수도 각각 배수보다 $1$ 모자란다",
+            "두 경우 모두 배수보다 $1$만큼 모자라기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은 수는 $11$이다",
+            "$11$"
+          ]
+        }
+      ],
+      "bGoal": "나머지가 달라도 똑같이 모자라는 수를 더해 공배수로 바꾸어 생각한다.",
+      "bReason": "원문 예의 결론 '$1$을 더하면'을 학생이 찾도록 하고 가장 작은 수까지 구하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 수를 $5$로 나누면 $3$이 남고 $7$로 나누면 $5$가 남는다. 이 수에 {$2$}를 더하면 $5$와 $7$의 {공배수}가 되므로, 이런 수 중 가장 작은 수는 $35-2=$ {$33$}이다.",
+      "cReason": "'나누는 수와 나머지의 차'는 맥락 없이 어려워 실제 나눗셈 조건에서 더할 수와 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "coreAfter": "어떤 수를 두 수로 각각 나눴을 때, (나누는 수)$-$(나머지)가 두 번 모두 같으면, 어떤 수에 그 차를 더한 수는 {두 수의 공배수}이다.",
+      "coreReason": "원문은 무엇을 두 수로 나누는지와 어디에 차를 더하는지가 빠져 있다.",
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$33$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "두 수의 공배수라는 원문 표적을 보존하고 무엇을 나누고 어느 수에 차를 더하는지 명시한다. 나머지가 달라도 적용되는 공배수 관계는 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 624,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc22",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "나머지는 달라도 똑같이 모자라는 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 수로 나눈 나머지가 서로 달라도 나누는 수와 나머지의 차가 같으면, 그 차만큼 더한 수가 {두 수의 공배수}이다.",
+        "example": {
+          "prompt": "$4$로 나누면 $3$, $6$으로 나누면 $5$가 남는 수에 $1$을 더하면 공배수가 되는 까닭은?",
+          "answer": "둘 다 $1$만 모자라서"
+        },
+        "studentC": "두 수로 나눈 나머지가 서로 달라도 나누는 수와 나머지의 차가 같으면, 그 차만큼 더한 수가 □이다.",
+        "answers": [
+          "두 수의 공배수"
+        ]
+      },
+      "sourceFingerprint": "073a7ed209c75c6dd0d9c197624285aab52fb76b6fd638caac98733a3897c003",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "공배수",
+        "$33$"
+      ],
+      "cStudentAfter": "어떤 수를 $5$로 나누면 $3$이 남고 $7$로 나누면 $5$가 남는다. 이 수에 □를 더하면 $5$와 $7$의 □가 되므로, 이런 수 중 가장 작은 수는 $35-2=$ □이다.",
+      "cMarkedSentence": "어떤 수를 $5$로 나누면 $3$이 남고 $7$로 나누면 $5$가 남는다. 이 수에 {$2$}를 더하면 $5$와 $7$의 {공배수}가 되므로, 이런 수 중 가장 작은 수는 $35-2=$ {$33$}이다.",
+      "cStudentSentence": "어떤 수를 $5$로 나누면 $3$이 남고 $7$로 나누면 $5$가 남는다. 이 수에 □를 더하면 $5$와 $7$의 □가 되므로, 이런 수 중 가장 작은 수는 $35-2=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "공배수",
+          "equivalents": []
+        },
+        {
+          "key": "$33$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수를 $4$로 나누면 $3$이 남고 $6$으로 나누면 $5$가 남는다. 이 수에 얼마를 더하면 $4$와 $6$의 공배수가 되는지 까닭과 함께 설명하고, 이런 수 중 가장 작은 수를 구하시오.",
+        "answer": "$1$을 더하면 된다. $4$로 나누어 $3$이 남는 수는 $4$의 배수보다 $1$ 모자라고, $6$으로 나누어 $5$가 남는 수는 $6$의 배수보다 $1$ 모자라기 때문이다. 가장 작은 공배수가 $12$이므로 가장 작은 수는 $12-1=11$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$로 나누어 $3$이 남는 수도 $6$으로 나누어 $5$가 남는 수도 각각 배수보다 $1$ 모자란다",
+              "두 경우 모두 배수보다 $1$만큼 모자라기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 수는 $11$이다",
+              "$11$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수를 $5$로 나누면 $3$이 남고 $7$로 나누면 $5$가 남는다. 이 수에 {$2$}를 더하면 $5$와 $7$의 {공배수}가 되므로, 이런 수 중 가장 작은 수는 $35-2=$ {$33$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "공배수"
+          ],
+          [
+            "$33$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cc7ff961a5427ed937cec9dd86486c773994ba47087926eebe46c21eca69a802",
+      "questionRevision": "planning-e5e6-20261006-cc7ff961a542",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc23",
+      "bDecision": "revise",
+      "bPrompt": "$14$와 $15$의 최소공배수는 $210$이다. 배수를 늘어놓는 방법으로 $210$을 찾으려면 $14$의 배수를 몇 번째까지 적어야 하는지 구하고, 이런 두 수에는 어떤 방법이 더 편리한지 까닭과 함께 쓰시오.",
+      "bAnswer": "$210\\div14=15$이므로 $14$의 배수를 $15$번째까지 적어야 한다. 적을 배수가 너무 많으므로 곱셈식을 이용하는 방법이 편리하다. $14=2\\times7$, $15=3\\times5$에는 함께 있는 수가 없어 $14\\times15=210$으로 바로 구할 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$14$의 배수를 $15$번째까지 적어야 한다",
+            "$210\\div14=15$이므로 $15$번째 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "적어야 할 배수가 많아 번거롭다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈식을 이용하는 방법이 더 편리하다",
+            "공약수로 함께 나누는 방법이 더 편리하다",
+            "두 수를 곱하는 방법이 더 편리하다"
+          ]
+        }
+      ],
+      "bGoal": "처음 겹치는 배수가 멀리 있을 때 알맞은 방법을 고르고 까닭을 말한다.",
+      "bReason": "원문 예의 '열 개 넘게'를 학생이 직접 세어 방법 선택의 근거로 삼게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$9$와 $20$의 최소공배수 $180$은 $9$의 {$20$}번째 배수이자 $20$의 {$9$}번째 배수이므로, 배수를 늘어놓기보다 곱셈식으로 구하는 것이 빠르다.",
+      "cReason": "'배수를 늘어놓기보다'는 문장 연결 구절이라 번거로움의 근거인 '몇 번째 배수'를 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 625,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc23",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "큰 수는 곱셈식으로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "배수를 여러 개 적어야 처음 겹치는 두 수는 {배수를 늘어놓기보다} 곱셈식으로 나타내 구하는 것이 빠르다.",
+        "example": {
+          "prompt": "$14$와 $15$의 최소공배수는 $210$이다. 배수를 늘어놓아 찾기가 번거로운 까닭은?",
+          "answer": "열 개 넘게 적어야 처음 겹쳐서"
+        },
+        "studentC": "배수를 여러 개 적어야 처음 겹치는 두 수는 □ 곱셈식으로 나타내 구하는 것이 빠르다.",
+        "answers": [
+          "배수를 늘어놓기보다"
+        ]
+      },
+      "sourceFingerprint": "7b5eef1e082192d1bd6e6030d62dd62430f4c1c5360c443033792a3525dda5ee",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$20$",
+        "$9$"
+      ],
+      "cStudentAfter": "$9$와 $20$의 최소공배수 $180$은 $9$의 □번째 배수이자 $20$의 □번째 배수이므로, 배수를 늘어놓기보다 곱셈식으로 구하는 것이 빠르다.",
+      "cMarkedSentence": "$9$와 $20$의 최소공배수 $180$은 $9$의 {$20$}번째 배수이자 $20$의 {$9$}번째 배수이므로, 배수를 늘어놓기보다 곱셈식으로 구하는 것이 빠르다.",
+      "cStudentSentence": "$9$와 $20$의 최소공배수 $180$은 $9$의 □번째 배수이자 $20$의 □번째 배수이므로, 배수를 늘어놓기보다 곱셈식으로 구하는 것이 빠르다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$14$와 $15$의 최소공배수는 $210$이다. 배수를 늘어놓는 방법으로 $210$을 찾으려면 $14$의 배수를 몇 번째까지 적어야 하는지 구하고, 이런 두 수에는 어떤 방법이 더 편리한지 까닭과 함께 쓰시오.",
+        "answer": "$210\\div14=15$이므로 $14$의 배수를 $15$번째까지 적어야 한다. 적을 배수가 너무 많으므로 곱셈식을 이용하는 방법이 편리하다. $14=2\\times7$, $15=3\\times5$에는 함께 있는 수가 없어 $14\\times15=210$으로 바로 구할 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$14$의 배수를 $15$번째까지 적어야 한다",
+              "$210\\div14=15$이므로 $15$번째 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "적어야 할 배수가 많아 번거롭다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱셈식을 이용하는 방법이 더 편리하다",
+              "공약수로 함께 나누는 방법이 더 편리하다",
+              "두 수를 곱하는 방법이 더 편리하다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$9$와 $20$의 최소공배수 $180$은 $9$의 {$20$}번째 배수이자 $20$의 {$9$}번째 배수이므로, 배수를 늘어놓기보다 곱셈식으로 구하는 것이 빠르다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "016efaad3f82afb45b7afd4ef7113606e68f046f8ba9515051e9c5e68d4b70ea",
+      "questionRevision": "planning-e5e6-20261006-016efaad3f82",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc24",
+      "bDecision": "revise",
+      "bPrompt": "$6$과 $8$의 공배수 $48$을 $6$과 $8$로 각각 나눈 몫은 $8$과 $6$이고, 두 몫에는 공약수 $2$가 있다. 이 사실로 $48$보다 작은 공배수를 어떻게 찾을 수 있는지 설명하고, $48$이 최소공배수인지 판단하시오.",
+      "bAnswer": "두 몫이 모두 $2$로 나누어떨어지므로 $48\\div2=24$도 $6$과 $8$로 나누어떨어진다($24\\div6=4$, $24\\div8=3$). $48$보다 작은 공배수 $24$가 있으므로 $48$은 최소공배수가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$48$을 두 몫의 공약수 $2$로 나눈 $24$도 $6$과 $8$의 공배수이다",
+            "$24$는 $6$과 $8$로 모두 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$48$보다 작은 공배수 $24$가 있으므로 $48$은 최소공배수가 아니다",
+            "$48$은 최소공배수가 아니다"
+          ]
+        }
+      ],
+      "bGoal": "두 몫에 $1$보다 큰 공약수가 있으면 더 작은 공배수가 있음을 설명한다.",
+      "bReason": "xc5가 확인 방법 전체를 묻으므로 여기서는 몫의 공약수가 왜 기준이 되는지만 좁혀 물었다.",
+      "cDecision": "keep",
+      "cAfter": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 {$1$뿐}이어야 최소공배수이다.",
+      "cReason": "이미 공배수인 수가 가장 작은지 가르는 조건을 '$1$뿐'이라는 짧은 답으로 묻는 완결된 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$1$', '$1$밖에 없어야', '$1$ 하나뿐'도 인정.",
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$뿐",
+            "$1$",
+            "$1$밖에 없어야",
+            "$1$ 하나뿐"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 626,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc24",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "최소공배수를 몫으로 확인하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 {$1$뿐}이어야 최소공배수이다.",
+        "studentC": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 □이어야 최소공배수이다.",
+        "answers": [
+          "$1$뿐"
+        ]
+      },
+      "sourceFingerprint": "fca1d60fdbaf9a1086de5e1530ab91eb8b3216ef399dd5d7d59a845c3f372eab",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cFrozenDefinition": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 {$1$뿐}이어야 최소공배수이다.",
+      "cFrozenStudentSentence": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 □이어야 최소공배수이다.",
+      "cProposedAnswers": [
+        "$1$뿐"
+      ],
+      "cStudentAfter": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 □이어야 최소공배수이다.",
+      "cMarkedSentence": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 {$1$뿐}이어야 최소공배수이다.",
+      "cStudentSentence": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 □이어야 최소공배수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$뿐",
+          "equivalents": [
+            "$1$",
+            "$1$밖에 없어야",
+            "$1$ 하나뿐"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6$과 $8$의 공배수 $48$을 $6$과 $8$로 각각 나눈 몫은 $8$과 $6$이고, 두 몫에는 공약수 $2$가 있다. 이 사실로 $48$보다 작은 공배수를 어떻게 찾을 수 있는지 설명하고, $48$이 최소공배수인지 판단하시오.",
+        "answer": "두 몫이 모두 $2$로 나누어떨어지므로 $48\\div2=24$도 $6$과 $8$로 나누어떨어진다($24\\div6=4$, $24\\div8=3$). $48$보다 작은 공배수 $24$가 있으므로 $48$은 최소공배수가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$48$을 두 몫의 공약수 $2$로 나눈 $24$도 $6$과 $8$의 공배수이다",
+              "$24$는 $6$과 $8$로 모두 나누어떨어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$48$보다 작은 공배수 $24$가 있으므로 $48$은 최소공배수가 아니다",
+              "$48$은 최소공배수가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구한 공배수를 두 수로 나눈 두 몫의 공약수가 {$1$뿐}이어야 최소공배수이다.",
+        "acceptedAnswers": [
+          [
+            "$1$뿐",
+            "$1$",
+            "$1$밖에 없어야",
+            "$1$ 하나뿐"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "23454d8736bc3cde5f62a6457485cb44b6971355fbe49567902be145c3d23e70",
+      "questionRevision": "planning-e5e6-20261006-23454d8736bc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc25",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수의 최대공약수와 최소공배수가 같아지는 것은 두 수가 어떤 경우인지 쓰고, 최대공약수·최소공배수의 크기를 두 수와 비교하여 그 까닭을 설명하시오. $6$과 $6$, $4$와 $6$으로 확인하시오.",
+      "bAnswer": "두 수가 같을 때이다. 최대공약수는 두 수 중 작은 수보다 클 수 없고 최소공배수는 큰 수보다 작을 수 없으므로, 둘이 같으려면 작은 수와 큰 수가 같아야 한다. $6$과 $6$은 둘 다 $6$이고, $4$와 $6$은 최대공약수 $2$, 최소공배수 $12$로 다르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수가 같을 때이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수는 작은 수보다 클 수 없고 최소공배수는 큰 수보다 작을 수 없다",
+            "최대공약수 $\\le$ 작은 수 $\\le$ 큰 수 $\\le$ 최소공배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$과 $6$은 최대공약수와 최소공배수가 모두 $6$이고, $4$와 $6$은 $2$와 $12$로 다르다"
+          ]
+        }
+      ],
+      "bGoal": "최대공약수와 최소공배수의 크기 범위로 두 값이 같아지는 경우를 추론한다.",
+      "bReason": "막연히 '왜'가 아니라 두 수와의 크기 비교로 설명하도록 지정하고 같은 경우·다른 경우를 견주게 했다.",
+      "cDecision": "revise",
+      "cAfter": "두 자연수의 최대공약수와 최소공배수가 같으면 두 수는 서로 {같다}. 예를 들어 최대공약수와 최소공배수가 모두 $9$인 두 수는 $9$와 {$9$}이다.",
+      "cReason": "'두 수가 같은'은 구절 빈칸이라 낱말 '같다'와 실제 수로 확인하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "같은 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 627,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc25",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "최소공배수와 최대공약수가 같을 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 수의 최소공배수와 최대공약수가 같으면 {두 수가 같은} 경우이다.",
+        "studentC": "두 수의 최소공배수와 최대공약수가 같으면 □ 경우이다.",
+        "answers": [
+          "두 수가 같은"
+        ]
+      },
+      "sourceFingerprint": "01bcf327c265cf4b66fdea81726cece29b5545d8be830009889685362310fae4",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "같다",
+        "$9$"
+      ],
+      "cStudentAfter": "두 자연수의 최대공약수와 최소공배수가 같으면 두 수는 서로 □. 예를 들어 최대공약수와 최소공배수가 모두 $9$인 두 수는 $9$와 □이다.",
+      "cMarkedSentence": "두 자연수의 최대공약수와 최소공배수가 같으면 두 수는 서로 {같다}. 예를 들어 최대공약수와 최소공배수가 모두 $9$인 두 수는 $9$와 {$9$}이다.",
+      "cStudentSentence": "두 자연수의 최대공약수와 최소공배수가 같으면 두 수는 서로 □. 예를 들어 최대공약수와 최소공배수가 모두 $9$인 두 수는 $9$와 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "같은 수이다"
+          ]
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수의 최대공약수와 최소공배수가 같아지는 것은 두 수가 어떤 경우인지 쓰고, 최대공약수·최소공배수의 크기를 두 수와 비교하여 그 까닭을 설명하시오. $6$과 $6$, $4$와 $6$으로 확인하시오.",
+        "answer": "두 수가 같을 때이다. 최대공약수는 두 수 중 작은 수보다 클 수 없고 최소공배수는 큰 수보다 작을 수 없으므로, 둘이 같으려면 작은 수와 큰 수가 같아야 한다. $6$과 $6$은 둘 다 $6$이고, $4$와 $6$은 최대공약수 $2$, 최소공배수 $12$로 다르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수가 같을 때이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수는 작은 수보다 클 수 없고 최소공배수는 큰 수보다 작을 수 없다",
+              "최대공약수 $\\le$ 작은 수 $\\le$ 큰 수 $\\le$ 최소공배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과 $6$은 최대공약수와 최소공배수가 모두 $6$이고, $4$와 $6$은 $2$와 $12$로 다르다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 자연수의 최대공약수와 최소공배수가 같으면 두 수는 서로 {같다}. 예를 들어 최대공약수와 최소공배수가 모두 $9$인 두 수는 $9$와 {$9$}이다.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "같은 수이다"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dc8cd3bcb17967fd85a935ec2775d0ac75b52f94ef3e61d0e20802e92a14b5f6",
+      "questionRevision": "planning-e5e6-20261006-dc8cd3bcb179",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc26",
+      "bDecision": "revise",
+      "bPrompt": "두 알람이 지금 함께 울렸고 하나는 $8$분마다, 다른 하나는 $12$분마다 울린다. 다음에 처음으로 함께 울릴 때까지 걸리는 시간은 $8$과 $12$의 무엇을 구하면 되는지 까닭과 함께 설명하고, 몇 분 뒤인지 구하시오.",
+      "bAnswer": "최소공배수를 구하면 된다. 한 알람은 $8$의 배수만큼 지난 때마다, 다른 알람은 $12$의 배수만큼 지난 때마다 울리므로 함께 울리는 때는 공배수만큼 지난 때이고, 그중 처음은 가장 작은 공배수이다. $24$분 뒤이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "최소공배수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 알람은 간격의 배수만큼 지난 때 울리므로 함께 울리는 때는 공배수이고 처음은 가장 작은 공배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$분 뒤이다",
+            "$24$분"
+          ]
+        }
+      ],
+      "bGoal": "되풀이되는 두 일이 처음 다시 겹치는 때를 최소공배수로 해석한다.",
+      "bReason": "원문 예의 알람 상황을 써서 '무엇을 구하는지'와 까닭, 값을 모두 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "두 버스가 지금 함께 출발했고 한 버스는 $6$분마다, 다른 버스는 $9$분마다 출발한다. 다음에 처음으로 함께 출발할 때까지의 시간은 $6$과 $9$의 {최소공배수}인 {$18$}분이다.",
+      "cReason": "'두 일', '간격'은 초5에게 추상적이라 버스 상황으로 풀고 개념명과 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최소공배수",
+            "가장 작은 공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 628,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc26",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "생활 문제에서 최소공배수 알아보기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 일이 같은 때 시작해 일정한 간격으로 되풀이될 때, 그 뒤 처음 다시 함께 일어날 때까지의 시간은 두 간격의 {최소공배수}이다.",
+        "example": {
+          "prompt": "지금 함께 울린 두 알람이 $8$분, $12$분마다 울린다. 다음에 함께 울릴 때까지의 시간이 최소공배수인 까닭은?",
+          "answer": "두 간격의 배수가 처음 겹쳐서"
+        },
+        "studentC": "두 일이 같은 때 시작해 일정한 간격으로 되풀이될 때, 그 뒤 처음 다시 함께 일어날 때까지의 시간은 두 간격의 □이다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "sourceFingerprint": "063796e8645ccfc737b53c692ed749c57316e65b1b8e06d0ee175288c1d3b5e0",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "최소공배수",
+        "$18$"
+      ],
+      "cStudentAfter": "두 버스가 지금 함께 출발했고 한 버스는 $6$분마다, 다른 버스는 $9$분마다 출발한다. 다음에 처음으로 함께 출발할 때까지의 시간은 $6$과 $9$의 □인 □분이다.",
+      "cMarkedSentence": "두 버스가 지금 함께 출발했고 한 버스는 $6$분마다, 다른 버스는 $9$분마다 출발한다. 다음에 처음으로 함께 출발할 때까지의 시간은 $6$과 $9$의 {최소공배수}인 {$18$}분이다.",
+      "cStudentSentence": "두 버스가 지금 함께 출발했고 한 버스는 $6$분마다, 다른 버스는 $9$분마다 출발한다. 다음에 처음으로 함께 출발할 때까지의 시간은 $6$과 $9$의 □인 □분이다.",
+      "cSlotAnswers": [
+        {
+          "key": "최소공배수",
+          "equivalents": [
+            "가장 작은 공배수"
+          ]
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 알람이 지금 함께 울렸고 하나는 $8$분마다, 다른 하나는 $12$분마다 울린다. 다음에 처음으로 함께 울릴 때까지 걸리는 시간은 $8$과 $12$의 무엇을 구하면 되는지 까닭과 함께 설명하고, 몇 분 뒤인지 구하시오.",
+        "answer": "최소공배수를 구하면 된다. 한 알람은 $8$의 배수만큼 지난 때마다, 다른 알람은 $12$의 배수만큼 지난 때마다 울리므로 함께 울리는 때는 공배수만큼 지난 때이고, 그중 처음은 가장 작은 공배수이다. $24$분 뒤이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "최소공배수를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 알람은 간격의 배수만큼 지난 때 울리므로 함께 울리는 때는 공배수이고 처음은 가장 작은 공배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$분 뒤이다",
+              "$24$분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 버스가 지금 함께 출발했고 한 버스는 $6$분마다, 다른 버스는 $9$분마다 출발한다. 다음에 처음으로 함께 출발할 때까지의 시간은 $6$과 $9$의 {최소공배수}인 {$18$}분이다.",
+        "acceptedAnswers": [
+          [
+            "최소공배수",
+            "가장 작은 공배수"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "549fc07d451b1d1addb53a3f25199d516bbc9047df3287a0d3be25469b489f3b",
+      "questionRevision": "planning-e5e6-20261006-549fc07d451b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-6-xc27",
+      "bDecision": "revise",
+      "bPrompt": "$4$일마다 오는 사람과 $6$일마다 오는 사람이 오늘 만났다. 두 사람이 다시 만나는 날은 며칠마다 돌아오는지 까닭과 함께 설명하고, 오늘 이후 두 번째로 만나는 날은 며칠 뒤인지 구하시오.",
+      "bAnswer": "만나는 날은 $4$와 $6$의 공배수만큼 지난 날이고, 공배수는 최소공배수 $12$의 배수이므로 $12$일마다 만난다. 첫 번째는 $12$일 뒤, 두 번째는 $12\\times2=24$일 뒤이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "만나는 날은 $4$와 $6$의 공배수만큼 지난 날이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최소공배수인 $12$일마다 만난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 번째로 만나는 날은 $24$일 뒤이다",
+            "$24$일 뒤"
+          ]
+        }
+      ],
+      "bGoal": "함께 일어나는 때가 최소공배수마다 되풀이됨을 이용해 두 번째 때를 구한다.",
+      "bReason": "원문 예의 '$12\\times2$'를 질문에서 빼고 되풀이되는 간격부터 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$6$일마다, $8$일마다 오는 두 사람이 오늘 만났다. 두 사람은 $6$과 $8$의 최소공배수인 {$24$}일마다 다시 만나므로, 오늘 뒤 두 번째로 만나는 날은 {$48$}일 뒤이다.",
+      "cReason": "'최소공배수의 $2$배'라는 구절 대신 실제 상황에서 간격과 두 번째 때를 계산하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$48$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-008-rubric.json",
+      "sourceIndex": 629,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-6-xc27",
+        "section": "초5::1-2 약수와 배수::1-2-6 최소공배수 구하는 방법",
+        "term": "함께 일어난 뒤 두 번째로 함께 일어나는 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "함께 일어난 뒤 다시 함께 일어나는 때는 최소공배수마다 오므로 그 뒤 두 번째는 {최소공배수의 $2$배}만큼 뒤이다.",
+        "example": {
+          "prompt": "$4$일, $6$일마다 오는 두 사람이 오늘 만났다. 오늘 뒤 두 번째로 만나는 날이 $12\\times2$일 뒤인 까닭은?",
+          "answer": "$12$일마다 만나서"
+        },
+        "studentC": "함께 일어난 뒤 다시 함께 일어나는 때는 최소공배수마다 오므로 그 뒤 두 번째는 □만큼 뒤이다.",
+        "answers": [
+          "최소공배수의 $2$배"
+        ]
+      },
+      "sourceFingerprint": "5e463a66a2c2dc8d6d3f5c0d6db80e2b9121b30c1a1f4bec683491f75c1e922a",
+      "draftEvidence": "evidence/section-008-draft.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$48$"
+      ],
+      "cStudentAfter": "$6$일마다, $8$일마다 오는 두 사람이 오늘 만났다. 두 사람은 $6$과 $8$의 최소공배수인 □일마다 다시 만나므로, 오늘 뒤 두 번째로 만나는 날은 □일 뒤이다.",
+      "cMarkedSentence": "$6$일마다, $8$일마다 오는 두 사람이 오늘 만났다. 두 사람은 $6$과 $8$의 최소공배수인 {$24$}일마다 다시 만나므로, 오늘 뒤 두 번째로 만나는 날은 {$48$}일 뒤이다.",
+      "cStudentSentence": "$6$일마다, $8$일마다 오는 두 사람이 오늘 만났다. 두 사람은 $6$과 $8$의 최소공배수인 □일마다 다시 만나므로, 오늘 뒤 두 번째로 만나는 날은 □일 뒤이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$48$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$4$일마다 오는 사람과 $6$일마다 오는 사람이 오늘 만났다. 두 사람이 다시 만나는 날은 며칠마다 돌아오는지 까닭과 함께 설명하고, 오늘 이후 두 번째로 만나는 날은 며칠 뒤인지 구하시오.",
+        "answer": "만나는 날은 $4$와 $6$의 공배수만큼 지난 날이고, 공배수는 최소공배수 $12$의 배수이므로 $12$일마다 만난다. 첫 번째는 $12$일 뒤, 두 번째는 $12\\times2=24$일 뒤이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "만나는 날은 $4$와 $6$의 공배수만큼 지난 날이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수인 $12$일마다 만난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 번째로 만나는 날은 $24$일 뒤이다",
+              "$24$일 뒤"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6$일마다, $8$일마다 오는 두 사람이 오늘 만났다. 두 사람은 $6$과 $8$의 최소공배수인 {$24$}일마다 다시 만나므로, 오늘 뒤 두 번째로 만나는 날은 {$48$}일 뒤이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$48$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "58a786773595571eaa76b908c56ff9c26e313728d1e8cf9da69c6f07da027d08",
+      "questionRevision": "planning-e5e6-20261006-58a786773595",
+      "requiresIndependentReview": true
+    }
+  ]
+}

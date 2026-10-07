@@ -1,0 +1,455 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-4-3-xc19",
+      "bDecision": "revise",
+      "bPrompt": "같은 전체를 나타내는 분수의 분모와 분자에 $1$보다 큰 같은 자연수를 곱해 통분해도 분수의 크기가 변하지 않는 까닭을 설명하세요. $\\frac{1}{3}$만큼 색칠한 그림을 $\\frac{4}{12}$로 고칠 때 전체 조각의 수, 색칠한 조각의 수, 색칠한 부분의 크기가 각각 어떻게 되는지 말해 보세요.",
+      "bAnswer": "같은 전체에서 조각 하나하나를 똑같이 더 잘게 나누면 전체 조각의 수와 색칠한 조각의 수가 같은 배만큼 늘어날 뿐 색칠한 부분의 크기는 그대로이다. $\\frac{1}{3}$의 각 조각을 $4$개씩으로 나누면 전체는 $12$조각, 색칠한 부분은 $4$조각이 되어 $\\frac{4}{12}$이지만 색칠한 부분의 크기는 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 조각의 수와 색칠한 조각의 수가 모두 같은 배만큼 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$의 각 조각을 $4$개씩 나누면 $12$조각 중 $4$조각이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "조각을 더 잘게 나눌 뿐 색칠한 부분의 크기는 그대로이므로 분수의 크기는 변하지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "같은 수를 곱해도 크기가 그대로인 까닭을 조각 나누기로 설명한다.",
+      "bReason": "규칙을 되풀이해 말하는 답을 막으려고 조각의 수 변화라는 설명 방법을 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "통분은 각 분수의 분모와 분자에 $0$이 아닌 {같은} 수를 {곱하는} 것이므로 분수의 크기는 변하지 않는다.",
+      "cReason": "'같은 수를 곱하는' 구절을 두 낱말로 나누고 0이 아닌 수라는 조건을 문장에 밝혔다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱하는",
+            "곱한"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0760-0790.json",
+      "codexFinalAmendedFromFingerprint": "08bf1357e658404bb508eb3aae5a4ac30126dd8ba1da0032b883bafc47a22957",
+      "sourceIndex": 766,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc19",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "통분해도 크기가 그대로인 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "통분은 분모와 분자에 {같은 수를 곱하는} 일이라 분수의 크기가 변하지 않는다.",
+        "studentC": "통분은 분모와 분자에 □ 일이라 분수의 크기가 변하지 않는다.",
+        "answers": [
+          "같은 수를 곱하는"
+        ]
+      },
+      "sourceFingerprint": "39c3717ab1d790525fdeb6d6b4f1cf74b5935def7988bba7117627f596c8cbbf",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같은",
+        "곱하는"
+      ],
+      "cStudentAfter": "통분은 각 분수의 분모와 분자에 $0$이 아닌 □ 수를 □ 것이므로 분수의 크기는 변하지 않는다.",
+      "cMarkedSentence": "통분은 각 분수의 분모와 분자에 $0$이 아닌 {같은} 수를 {곱하는} 것이므로 분수의 크기는 변하지 않는다.",
+      "cStudentSentence": "통분은 각 분수의 분모와 분자에 $0$이 아닌 □ 수를 □ 것이므로 분수의 크기는 변하지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        },
+        {
+          "key": "곱하는",
+          "equivalents": [
+            "곱한"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 전체를 나타내는 분수의 분모와 분자에 $1$보다 큰 같은 자연수를 곱해 통분해도 분수의 크기가 변하지 않는 까닭을 설명하세요. $\\frac{1}{3}$만큼 색칠한 그림을 $\\frac{4}{12}$로 고칠 때 전체 조각의 수, 색칠한 조각의 수, 색칠한 부분의 크기가 각각 어떻게 되는지 말해 보세요.",
+        "answer": "같은 전체에서 조각 하나하나를 똑같이 더 잘게 나누면 전체 조각의 수와 색칠한 조각의 수가 같은 배만큼 늘어날 뿐 색칠한 부분의 크기는 그대로이다. $\\frac{1}{3}$의 각 조각을 $4$개씩으로 나누면 전체는 $12$조각, 색칠한 부분은 $4$조각이 되어 $\\frac{4}{12}$이지만 색칠한 부분의 크기는 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 조각의 수와 색칠한 조각의 수가 모두 같은 배만큼 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$의 각 조각을 $4$개씩 나누면 $12$조각 중 $4$조각이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각을 더 잘게 나눌 뿐 색칠한 부분의 크기는 그대로이므로 분수의 크기는 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "통분은 각 분수의 분모와 분자에 $0$이 아닌 {같은} 수를 {곱하는} 것이므로 분수의 크기는 변하지 않는다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ],
+          [
+            "곱하는",
+            "곱한"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2952a7a8792df1894c16d0562eefafe86ec7edbf2fa5bd21f9bbf9603e8639f7",
+      "questionRevision": "planning-e5e6-20261006-2952a7a8792d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc7",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "$0$과 $1$을 차례로 왼쪽에서 오른쪽에 표시한 수직선에 $0$보다 큰 두 분수를 나타냈습니다. 두 분수의 위치를 보고 어느 분수가 더 큰지 어떻게 알 수 있나요?",
+      "bAnswer": "더 오른쪽에 있는 분수가 더 크다. 예를 들어 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 오른쪽에 있으므로 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "오른쪽에 있는 분수가 더 크다",
+            "왼쪽에 있는 분수가 더 작다",
+            "$0$에서 더 멀리 있는 분수가 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "수직선에서의 위치와 분수의 크기 관계를 말한다.",
+      "bReason": "수직선의 방향 조건을 질문에 넣고 위치와 크기의 관계만 짧게 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 {오른쪽}에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 {크다}.",
+      "cReason": "'오른쪽에 있는'이라는 구절 대신 방향 낱말과 비교 결과를 쓰게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0760-0790.json",
+      "codexFinalAmendedFromFingerprint": "8ca974ed620492acdfdb888d535179109e21da5694b34b2523ba533bf2669c36",
+      "sourceIndex": 781,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc7",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "수직선에서 견주기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "수직선에서 {오른쪽에 있는} 분수가 더 크다.",
+        "example": {
+          "prompt": "수직선에서 $\\frac{3}{4}$과 $\\frac{1}{4}$ 중 오른쪽에 있는 수는?",
+          "answer": "$\\frac{3}{4}$"
+        },
+        "studentC": "수직선에서 □ 분수가 더 크다.",
+        "answers": [
+          "오른쪽에 있는"
+        ]
+      },
+      "sourceFingerprint": "a6314b8995dc4abe557a7b9daa7aebeacd11beef96dff5c85e5121e4013fe502",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "오른쪽",
+        "크다"
+      ],
+      "cStudentAfter": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 □에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "오른쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 {오른쪽}에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 {크다}.",
+      "cStudentSentence": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 □에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 □.",
+      "cSlotAnswers": [
+        {
+          "key": "오른쪽",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$과 $1$을 차례로 왼쪽에서 오른쪽에 표시한 수직선에 $0$보다 큰 두 분수를 나타냈습니다. 두 분수의 위치를 보고 어느 분수가 더 큰지 어떻게 알 수 있나요?",
+        "answer": "더 오른쪽에 있는 분수가 더 크다. 예를 들어 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 오른쪽에 있으므로 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽에 있는 분수가 더 크다",
+              "왼쪽에 있는 분수가 더 작다",
+              "$0$에서 더 멀리 있는 분수가 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 {오른쪽}에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 {크다}.",
+        "acceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1bf20938bfc97bb1e6a9dbc718813fd7852768e50170ec3950599deea1d07e45",
+      "questionRevision": "planning-e5e6-20261006-1bf20938bfc9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc9",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분자가 분모보다 큰 가분수는 $1$과 비교하면 어떠한가요? 또 분자와 분모가 같은 가분수는 $1$과 비교하면 어떠한가요? $\\frac{7}{5}$과 $\\frac{5}{5}$를 예로 들어 설명하세요.",
+      "bAnswer": "분자가 분모보다 큰 가분수는 $1$보다 크고, 분자와 분모가 같은 가분수는 $1$과 같다. $\\frac{5}{5}=1$이고 $\\frac{7}{5}$은 $\\frac{5}{5}$보다 $\\frac{2}{5}$만큼 더 크므로 $1$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{5}{5}=1$이고 $\\frac{7}{5}$은 $\\frac{5}{5}$보다 커서 $1$보다 크다",
+            "분자와 분모가 같으면 전체 하나이고 $\\frac{7}{5}$은 전체 하나보다 $\\frac{2}{5}$ 더 많다"
+          ]
+        }
+      ],
+      "bGoal": "가분수 중 $1$보다 큰 경우와 $1$과 같은 경우를 구분한다.",
+      "bReason": "가분수에는 분자와 분모가 같은 경우도 있으므로 두 경우를 나누어 물었다.",
+      "cDecision": "keep",
+      "cAfter": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+      "cReason": "'분자가 분모보다 큰'이라는 조건이 있어 수학적으로 정확하고 답이 짧다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0760-0790.json",
+      "codexFinalAmendedFromFingerprint": "dd8bec5b4e54a11ee167b372c7aff5aa05fa661f7d6bbdc6ac37803da2277d44",
+      "sourceIndex": 783,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc9",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "가분수와 $1$",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+        "example": {
+          "prompt": "$\\frac{7}{5}$과 $1$ 중 큰 수는?",
+          "answer": "$\\frac{7}{5}$"
+        },
+        "studentC": "분자가 분모보다 큰 가분수는 □.",
+        "answers": [
+          "$1$보다 크다"
+        ]
+      },
+      "sourceFingerprint": "8e26d62d3241320dc58ec2d72f8e09f65b89b383210d3316b4a70a9ac4404eca",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+      "cFrozenStudentSentence": "분자가 분모보다 큰 가분수는 □.",
+      "cProposedAnswers": [
+        "$1$보다 크다"
+      ],
+      "cStudentAfter": "분자가 분모보다 큰 가분수는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$보다 크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+      "cStudentSentence": "분자가 분모보다 큰 가분수는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$보다 크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분자가 분모보다 큰 가분수는 $1$과 비교하면 어떠한가요? 또 분자와 분모가 같은 가분수는 $1$과 비교하면 어떠한가요? $\\frac{7}{5}$과 $\\frac{5}{5}$를 예로 들어 설명하세요.",
+        "answer": "분자가 분모보다 큰 가분수는 $1$보다 크고, 분자와 분모가 같은 가분수는 $1$과 같다. $\\frac{5}{5}=1$이고 $\\frac{7}{5}$은 $\\frac{5}{5}$보다 $\\frac{2}{5}$만큼 더 크므로 $1$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{5}{5}=1$이고 $\\frac{7}{5}$은 $\\frac{5}{5}$보다 커서 $1$보다 크다",
+              "분자와 분모가 같으면 전체 하나이고 $\\frac{7}{5}$은 전체 하나보다 $\\frac{2}{5}$ 더 많다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+        "acceptedAnswers": [
+          [
+            "$1$보다 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ebf22a6540a729af634efb18e6f882d9a78f288e31e2a7dc87f54165ed54c692",
+      "questionRevision": "planning-e5e6-20261006-ebf22a6540a7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc14",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 분수 중 하나를 약분한 뒤 두 분수의 분모를 살펴보려 합니다. 분모가 어떤 경우에 더 통분하지 않고 분자만으로 크기를 비교할 수 있나요? $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기를 약분을 이용해 비교하세요.",
+      "bAnswer": "약분한 뒤 두 분수의 분모가 같아지면 분자만으로 비교할 수 있다. $\\frac{6}{8}$을 $2$로 약분하면 $\\frac{3}{4}$이므로 두 분수의 크기는 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분한 뒤 두 분수의 분모가 같아지는 경우"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 분수의 크기가 같다",
+            "$\\frac{6}{8}=\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "약분으로 분모가 같아지면 바로 비교할 수 있음을 안다.",
+      "bReason": "'~할 때가 있다'는 막연한 말을 어떤 경우인지와 실제 비교로 구체화했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{6}{8}$을 약분하면 {$\\frac{3}{4}$}이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 {같다}.",
+      "cReason": "'통분하지 않고'는 외울 구절이 아니므로 약분한 결과와 비교 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0760-0790.json",
+      "codexFinalAmendedFromFingerprint": "cfe48788cb8fbc6a488d530b335d2d9be0d7ecdafa8f478a539d8651c27a3b8b",
+      "sourceIndex": 788,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc14",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "약분하여 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모가 큰 분수를 약분하면 {통분하지 않고} 견줄 수 있을 때가 있다.",
+        "example": {
+          "prompt": "$\\frac{6}{8}$과 $\\frac{3}{4}$의 크기를 견주면?",
+          "answer": "같다"
+        },
+        "studentC": "분모가 큰 분수를 약분하면 □ 견줄 수 있을 때가 있다.",
+        "answers": [
+          "통분하지 않고"
+        ]
+      },
+      "sourceFingerprint": "621037d8a890281e675c6b4409d55cc9e636b56a3a02bf9127373c2b1bab4d4a",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{4}$",
+        "같다"
+      ],
+      "cStudentAfter": "$\\frac{6}{8}$을 약분하면 □이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{6}{8}$을 약분하면 {$\\frac{3}{4}$}이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 {같다}.",
+      "cStudentSentence": "$\\frac{6}{8}$을 약분하면 □이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 분수 중 하나를 약분한 뒤 두 분수의 분모를 살펴보려 합니다. 분모가 어떤 경우에 더 통분하지 않고 분자만으로 크기를 비교할 수 있나요? $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기를 약분을 이용해 비교하세요.",
+        "answer": "약분한 뒤 두 분수의 분모가 같아지면 분자만으로 비교할 수 있다. $\\frac{6}{8}$을 $2$로 약분하면 $\\frac{3}{4}$이므로 두 분수의 크기는 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "약분한 뒤 두 분수의 분모가 같아지는 경우"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 분수의 크기가 같다",
+              "$\\frac{6}{8}=\\frac{3}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{6}{8}$을 약분하면 {$\\frac{3}{4}$}이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{4}$"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6016d0f1ce0d11af1854ad24f0e7d058641b33b7a611fc45feff6d029ae6b686",
+      "questionRevision": "planning-e5e6-20261006-6016d0f1ce0d",
+      "requiresIndependentReview": true
+    }
+  ]
+}

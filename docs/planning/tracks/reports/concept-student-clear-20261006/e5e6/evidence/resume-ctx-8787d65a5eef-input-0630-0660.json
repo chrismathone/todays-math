@@ -1,0 +1,3131 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T06:11:31.040940+00:00",
+  "rows": [
+    {
+      "id": "e5-1-3-1-xc1",
+      "bDecision": "revise",
+      "bPrompt": "세발자전거가 $1$대, $2$대, $3$대로 늘어날 때 따라서 변하는 양을 하나 찾아 쓰고, 그 양이 각각 얼마가 되는지와 $1$대 늘 때마다 얼마씩 변하는지 말해 보세요.",
+      "bAnswer": "예: 바퀴 수. $3$개, $6$개, $9$개가 되고 세발자전거가 $1$대 늘 때마다 $3$개씩 늘어난다. (페달 수 $2$, $4$, $6$처럼 세발자전거 수에 따라 변하는 다른 양도 정답이다. 탄 사람의 이름처럼 수로 따라 변하지 않는 것은 답이 아니다.)",
+      "bGoal": "한 양이 변할 때 함께 변하는 양을 찾고 변하는 모습을 수로 말한다.",
+      "bReason": "원 예시는 둘 중 고르기라 너무 쉽다. 스스로 양을 찾고 값의 변화를 말하게 했다.",
+      "studentLabel": "함께 변하는 두 양 찾기",
+      "cDecision": "revise",
+      "cAfter": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 {$4$}개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+      "cReason": "빈칸 '따라 변하는'은 표현을 맞히는 문제가 된다. 함께 변하는 모습을 수로 확인하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B는 열린 답이다. 세발자전거 수에 따라 일정하게 변하는 양이면 인정한다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바퀴 수",
+            "페달 수",
+            "세발자전거 수에 따라 변하는 양"
+          ]
+        },
+        {
+          "anyOf": [
+            "바퀴 수가 $3$개, $6$개, $9$개가 된다",
+            "페달 수가 $2$개, $4$개, $6$개가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "세발자전거가 $1$대 늘 때마다 바퀴 수는 $3$개씩 늘어난다",
+            "세발자전거가 $1$대 늘 때마다 페달 수는 $2$개씩 늘어난다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 630,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc1",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "함께 변하는 두 양",
+        "kind": "정의",
+        "level": "하",
+        "definition": "의자 수와 다리 수처럼 한쪽이 변하면 다른 쪽도 {따라 변하는} 두 양을 살펴본다.",
+        "example": {
+          "prompt": "세발자전거 수가 늘 때 함께 느는 것은? (바퀴 수, 탄 사람의 이름)",
+          "answer": "바퀴 수"
+        },
+        "studentC": "의자 수와 다리 수처럼 한쪽이 변하면 다른 쪽도 □ 두 양을 살펴본다.",
+        "answers": [
+          "따라 변하는"
+        ]
+      },
+      "sourceFingerprint": "9f4be5a68e2ef38173dc0c415211f2e4fb4b3bf9a950172cf513dffa933ad992",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 □개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+      "cMarkedSentence": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 {$4$}개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+      "cStudentSentence": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 □개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세발자전거가 $1$대, $2$대, $3$대로 늘어날 때 따라서 변하는 양을 하나 찾아 쓰고, 그 양이 각각 얼마가 되는지와 $1$대 늘 때마다 얼마씩 변하는지 말해 보세요.",
+        "answer": "예: 바퀴 수. $3$개, $6$개, $9$개가 되고 세발자전거가 $1$대 늘 때마다 $3$개씩 늘어난다. (페달 수 $2$, $4$, $6$처럼 세발자전거 수에 따라 변하는 다른 양도 정답이다. 탄 사람의 이름처럼 수로 따라 변하지 않는 것은 답이 아니다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바퀴 수",
+              "페달 수",
+              "세발자전거 수에 따라 변하는 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "바퀴 수가 $3$개, $6$개, $9$개가 된다",
+              "페달 수가 $2$개, $4$개, $6$개가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세발자전거가 $1$대 늘 때마다 바퀴 수는 $3$개씩 늘어난다",
+              "세발자전거가 $1$대 늘 때마다 페달 수는 $2$개씩 늘어난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "다리가 $4$개인 의자가 $1$개 늘 때마다 다리 수는 {$4$}개씩 늘어난다. 이처럼 한 양이 변하면 다른 양도 따라 변하는 두 양을 살펴본다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "85501bdde1f55eea2b5bd2d885bc2b5f4ecb854324869c3dbc985c9cf123d953",
+      "questionRevision": "planning-e5e6-20261006-85501bdde1f5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc2",
+      "bDecision": "revise",
+      "bPrompt": "세발자전거 $2$대와 바퀴 $6$개가 '대응한다'는 말은 무슨 뜻인지 설명하고, 세발자전거 $5$대에 대응하는 바퀴 수를 구해 보세요.",
+      "bAnswer": "세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이라는 뜻이다. 세발자전거 $5$대에 대응하는 바퀴 수는 $15$개이다.",
+      "bGoal": "'대응한다'를 두 값이 짝이 된다는 뜻으로 말하고 다른 짝을 찾는다.",
+      "bReason": "c1은 관계 전체의 뜻을, 이 문항은 값 하나와 값 하나가 짝이 된다는 말의 뜻을 묻도록 나눴다.",
+      "studentLabel": "'대응한다'는 말의 뜻",
+      "cDecision": "revise",
+      "cAfter": "세발자전거 $2$대의 바퀴는 $6$개이다. 이때 세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이 되는 것을 $2$와 $6$이 {대응}한다고 한다.",
+      "cReason": "원 빈칸 '짝지어지는'은 '짝이 되는' 등 표현이 여럿 가능하다. 실제 짝을 보여 주고 용어 '대응'을 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'대응'만 정답. '짝'은 뜻은 맞지만 문장에 이미 있으므로 용어를 요구한다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이라는 뜻이다",
+            "$2$대와 $6$개가 짝지어진다는 뜻이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$개",
+            "$15$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 631,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc2",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "대응한다는 말",
+        "kind": "정의",
+        "level": "하",
+        "definition": "한 양의 값 하나에 다른 양의 값이 하나씩 {짝지어지는} 것을 대응한다고 한다.",
+        "example": {
+          "prompt": "세발자전거 $2$대와 바퀴 $6$개가 ‘대응한다’는 말의 뜻은?",
+          "answer": "$2$대와 $6$개가 짝이라는 뜻"
+        },
+        "studentC": "한 양의 값 하나에 다른 양의 값이 하나씩 □ 것을 대응한다고 한다.",
+        "answers": [
+          "짝지어지는"
+        ]
+      },
+      "sourceFingerprint": "34ce7f064fb4f7b2e1eae667682212f3bd58906a1794124e6447c598e1e88438",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "대응"
+      ],
+      "cStudentAfter": "세발자전거 $2$대의 바퀴는 $6$개이다. 이때 세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이 되는 것을 $2$와 $6$이 □한다고 한다.",
+      "cMarkedSentence": "세발자전거 $2$대의 바퀴는 $6$개이다. 이때 세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이 되는 것을 $2$와 $6$이 {대응}한다고 한다.",
+      "cStudentSentence": "세발자전거 $2$대의 바퀴는 $6$개이다. 이때 세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이 되는 것을 $2$와 $6$이 □한다고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세발자전거 $2$대와 바퀴 $6$개가 '대응한다'는 말은 무슨 뜻인지 설명하고, 세발자전거 $5$대에 대응하는 바퀴 수를 구해 보세요.",
+        "answer": "세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이라는 뜻이다. 세발자전거 $5$대에 대응하는 바퀴 수는 $15$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이라는 뜻이다",
+              "$2$대와 $6$개가 짝지어진다는 뜻이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15$개",
+              "$15$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "세발자전거 $2$대의 바퀴는 $6$개이다. 이때 세발자전거 수 $2$와 바퀴 수 $6$이 서로 짝이 되는 것을 $2$와 $6$이 {대응}한다고 한다.",
+        "acceptedAnswers": [
+          [
+            "대응"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b9abea980f40fed3e9e1ee63eac12debf78e7437ecd970ded7571f934e1d98eb",
+      "questionRevision": "planning-e5e6-20261006-b9abea980f40",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "표의 위아래 칸에 짝을 적는다는 내용은 c2에서 다룬다.",
+      "bReason": "표의 위아래 칸에 짝을 적는다는 내용이 c2와 같아 따로 확인할 새 의미가 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '위아래 칸'은 표의 모양을 가리키는 말일 뿐이다. 표를 옆으로 그리면 달라지므로 외울 가치가 낮다.",
+      "exclusionReason": "c2와 중복이다. 대체: e5-1-3-1-c2.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 632,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc3",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "짝을 표로 적기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 양의 값을 표의 {위아래 칸}에 차례로 적으면 짝을 한눈에 볼 수 있다.",
+        "example": {
+          "prompt": "사각형 수와 꼭짓점 수를 표로 적을 때 위아래 칸에 놓이는 두 수의 관계는?",
+          "answer": "서로 짝이 되는 값이다"
+        },
+        "studentC": "두 양의 값을 표의 □에 차례로 적으면 짝을 한눈에 볼 수 있다.",
+        "answers": [
+          "위아래 칸"
+        ]
+      },
+      "sourceFingerprint": "c7853395f5ac13dcd32745ce4e5bd587cb81f9ac0c71fbff5e8bfeae9ea8e9df",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c2와 중복이다. 대체: e5-1-3-1-c2.",
+        "cloze": "c2와 중복이다. 대체: e5-1-3-1-c2."
+      },
+      "proposalFingerprint": "b384bdd7dee3d5da2b009d307843927a1e4cb0ec994ce8c30bf8e4d4f53ecf4c",
+      "questionRevision": "planning-e5e6-20261006-b384bdd7dee3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc4",
+      "bDecision": "revise",
+      "bPrompt": "대응표에서 한 양이 $1$씩 커질 때 다른 양이 얼마씩 늘어나는지 어떻게 알아내는지 설명하고, 오리 수 $1$, $2$, $3$에 다리 수 $2$, $4$, $6$이 짝지어진 표에서 그 수를 구해 보세요.",
+      "bAnswer": "다른 양의 다음 값에서 앞의 값을 뺀다. $4 - 2 = 2$, $6 - 4 = 2$이므로 오리가 $1$마리 늘 때마다 다리 수는 $2$씩 늘어난다.",
+      "bGoal": "이웃한 값의 차로 늘어나는 양을 구한다.",
+      "bReason": "원 예시는 '까닭'만 막연히 묻는다. 구하는 방법과 실제 값을 함께 묻도록 좁혔다.",
+      "studentLabel": "얼마씩 늘어나는지 알아보기",
+      "cDecision": "revise",
+      "cAfter": "탁자 수가 $1$, $2$, $3$일 때 의자 수는 $6$, $12$, $18$이다. 탁자가 $1$개 늘 때마다 의자는 {$6$}개씩 늘어난다. 이 수는 다음 값에서 앞의 값을 빼면 알 수 있다.",
+      "cReason": "원문은 조건이 길고 추상적이어서 초5가 예 없이 읽기 어렵다. 실제 수로 차를 구하게 하고 방법은 뒤 문장에 남겼다. 뒤 문장에 답이 드러나지 않는다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 양의 다음 값에서 앞의 값을 뺀다",
+            "이웃한 두 값의 차를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4-2=2$, $6-4=2$이므로 $2$씩 늘어난다",
+            "다리 수는 $2$씩 늘어난다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 633,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc4",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "얼마씩 늘어나는지 보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 양이 $1$씩 늘 때 다른 양이 일정하게 늘어나는 대응 관계에서는, 늘어난 양을 알기 위해 다음 값에서 앞의 값을 {뺀다}. 이 차를 보면 규칙을 찾기 쉽다.",
+        "example": {
+          "prompt": "오리 수와 다리 수의 관계를 살필 때 오리가 한 마리 늘어나는 경우를 보는 까닭은?",
+          "answer": "한 마리에 느는 수를 알려고"
+        },
+        "studentC": "한 양이 $1$씩 늘 때 다른 양이 일정하게 늘어나는 대응 관계에서는, 늘어난 양을 알기 위해 다음 값에서 앞의 값을 □. 이 차를 보면 규칙을 찾기 쉽다.",
+        "answers": [
+          "뺀다"
+        ]
+      },
+      "sourceFingerprint": "db6b2d3250b2e85b3d63c97551784ed9de4c5967ad6d3668901f474d2276e591",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$6$"
+      ],
+      "cStudentAfter": "탁자 수가 $1$, $2$, $3$일 때 의자 수는 $6$, $12$, $18$이다. 탁자가 $1$개 늘 때마다 의자는 □개씩 늘어난다. 이 수는 다음 값에서 앞의 값을 빼면 알 수 있다.",
+      "cMarkedSentence": "탁자 수가 $1$, $2$, $3$일 때 의자 수는 $6$, $12$, $18$이다. 탁자가 $1$개 늘 때마다 의자는 {$6$}개씩 늘어난다. 이 수는 다음 값에서 앞의 값을 빼면 알 수 있다.",
+      "cStudentSentence": "탁자 수가 $1$, $2$, $3$일 때 의자 수는 $6$, $12$, $18$이다. 탁자가 $1$개 늘 때마다 의자는 □개씩 늘어난다. 이 수는 다음 값에서 앞의 값을 빼면 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대응표에서 한 양이 $1$씩 커질 때 다른 양이 얼마씩 늘어나는지 어떻게 알아내는지 설명하고, 오리 수 $1$, $2$, $3$에 다리 수 $2$, $4$, $6$이 짝지어진 표에서 그 수를 구해 보세요.",
+        "answer": "다른 양의 다음 값에서 앞의 값을 뺀다. $4 - 2 = 2$, $6 - 4 = 2$이므로 오리가 $1$마리 늘 때마다 다리 수는 $2$씩 늘어난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다른 양의 다음 값에서 앞의 값을 뺀다",
+              "이웃한 두 값의 차를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4-2=2$, $6-4=2$이므로 $2$씩 늘어난다",
+              "다리 수는 $2$씩 늘어난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "탁자 수가 $1$, $2$, $3$일 때 의자 수는 $6$, $12$, $18$이다. 탁자가 $1$개 늘 때마다 의자는 {$6$}개씩 늘어난다. 이 수는 다음 값에서 앞의 값을 빼면 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "32ca37ba223e7958fd55195c3c906e28edc28e69ec42ee7fde7b225f9e8476a3",
+      "questionRevision": "planning-e5e6-20261006-32ca37ba223e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "형이 동생보다 언제나 $3$살 많습니다. 동생의 나이로 형의 나이를 구하는 규칙을 말하고, 동생이 $9$살일 때와 $15$살일 때 형의 나이를 구해 보세요.",
+      "bAnswer": "동생의 나이에 $3$을 더하면 형의 나이이다. 동생이 $9$살이면 형은 $12$살, $15$살이면 $18$살이다.",
+      "bGoal": "차가 일정한 두 양에서 작은 쪽으로 큰 쪽을 구하는 덧셈 규칙을 말한다.",
+      "bReason": "원 예시의 물음을 살렸다. 값 두 개에 적용하게 해 규칙이 언제나 성립함을 확인하게 했다.",
+      "studentLabel": "더해서 구하는 대응 관계",
+      "cDecision": "revise",
+      "cAfter": "형의 나이가 언제나 동생보다 $3$살 많으면, 형의 나이는 동생의 나이에 $3$을 {더한} 값이다. 동생이 $9$살일 때 형은 {$12$}살이다.",
+      "cReason": "원 빈칸 '덧셈'은 '동생=형−3'으로 보면 '뺄셈'도 맞아 답이 하나로 정해지지 않는다. 어느 나이로 어느 나이를 구하는지 밝히고 계산값도 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'더한', '더해서 얻은'은 같은 답.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "동생의 나이에 $3$을 더하면 형의 나이이다",
+            "형의 나이 $=$ 동생의 나이 $+3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$살",
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$살",
+            "$18$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더한",
+            "더해서 얻은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 634,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc5",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "덧셈으로 짝지어지는 두 양",
+        "kind": "정의",
+        "level": "하",
+        "definition": "형의 나이가 언제나 동생보다 $3$살 많으면 두 나이는 {덧셈} 규칙으로 대응한다.",
+        "example": {
+          "prompt": "형이 동생보다 $3$살 많을 때 형의 나이를 동생 나이로 나타내는 말은?",
+          "answer": "동생 나이에 $3$을 더한다"
+        },
+        "studentC": "형의 나이가 언제나 동생보다 $3$살 많으면 두 나이는 □ 규칙으로 대응한다.",
+        "answers": [
+          "덧셈"
+        ]
+      },
+      "sourceFingerprint": "276dcbd7061f4adb251b964e91f8920a3b0e0ac6f4f7e8152715d747bb864888",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "더한",
+        "$12$"
+      ],
+      "cStudentAfter": "형의 나이가 언제나 동생보다 $3$살 많으면, 형의 나이는 동생의 나이에 $3$을 □ 값이다. 동생이 $9$살일 때 형은 □살이다.",
+      "cMarkedSentence": "형의 나이가 언제나 동생보다 $3$살 많으면, 형의 나이는 동생의 나이에 $3$을 {더한} 값이다. 동생이 $9$살일 때 형은 {$12$}살이다.",
+      "cStudentSentence": "형의 나이가 언제나 동생보다 $3$살 많으면, 형의 나이는 동생의 나이에 $3$을 □ 값이다. 동생이 $9$살일 때 형은 □살이다.",
+      "cSlotAnswers": [
+        {
+          "key": "더한",
+          "equivalents": [
+            "더해서 얻은"
+          ]
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "형이 동생보다 언제나 $3$살 많습니다. 동생의 나이로 형의 나이를 구하는 규칙을 말하고, 동생이 $9$살일 때와 $15$살일 때 형의 나이를 구해 보세요.",
+        "answer": "동생의 나이에 $3$을 더하면 형의 나이이다. 동생이 $9$살이면 형은 $12$살, $15$살이면 $18$살이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "동생의 나이에 $3$을 더하면 형의 나이이다",
+              "형의 나이 $=$ 동생의 나이 $+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$살",
+              "$12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$살",
+              "$18$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "형의 나이가 언제나 동생보다 $3$살 많으면, 형의 나이는 동생의 나이에 $3$을 {더한} 값이다. 동생이 $9$살일 때 형은 {$12$}살이다.",
+        "acceptedAnswers": [
+          [
+            "더한",
+            "더해서 얻은"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7888124d6cf5b27ff14719d1c9710a63baa700b98306633267028703e385a608",
+      "questionRevision": "planning-e5e6-20261006-7888124d6cf5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc6",
+      "bDecision": "revise",
+      "bPrompt": "의자 하나에 다리가 $4$개씩 있습니다. 의자 수로 다리 수를 구하는 규칙을 말하고, 그런 규칙이 되는 까닭을 '의자 하나마다'라는 말을 넣어 설명해 보세요. 의자가 $7$개일 때 다리 수도 구하세요.",
+      "bAnswer": "의자 수에 $4$를 곱하면 다리 수이다. 의자 하나마다 다리가 $4$개씩 있어서 $4$를 의자 수만큼 더하는 것과 같기 때문이다. 의자가 $7$개이면 다리는 $28$개이다.",
+      "bGoal": "'하나마다 같은 수씩'인 상황이 곱셈 규칙이 되는 까닭을 말한다.",
+      "bReason": "원 예시는 '곱셈으로 대응하는 까닭'이라고 결론을 먼저 알려 준다. 규칙도 학생이 직접 말하게 했다.",
+      "studentLabel": "곱해서 구하는 대응 관계",
+      "cDecision": "revise",
+      "cAfter": "의자 하나에 다리가 $4$개씩 있으면, 다리 수는 의자 수에 $4$를 {곱한} 값이다. 의자가 $7$개일 때 다리는 {$28$}개이다.",
+      "cReason": "'딸려 있는 양', '개수에 그 수를 곱한'은 뜻이 흐리고 길다. 실제 상황으로 풀어 연산 낱말과 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'곱한', '곱해서 얻은'은 같은 답. '4배 한'도 인정할 수 있다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "의자 수에 $4$를 곱하면 다리 수이다",
+            "다리 수 $=$ 의자 수 $\\times4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "의자 하나마다 다리가 $4$개씩 있기 때문이다",
+            "의자 하나마다 $4$개씩이어서 $4$를 의자 수만큼 더하는 것과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$28$개",
+            "$28$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱한",
+            "곱해서 얻은",
+            "$4$배 한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$28$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 635,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc6",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "곱셈으로 짝지어지는 두 양",
+        "kind": "정의",
+        "level": "하",
+        "definition": "하나마다 같은 수만큼 딸려 있는 양은 {개수에 그 수를 곱한} 값으로 대응한다.",
+        "example": {
+          "prompt": "다리가 $4$개인 의자의 수와 다리 수가 곱셈으로 대응하는 까닭은?",
+          "answer": "의자마다 다리가 $4$개씩이라서"
+        },
+        "studentC": "하나마다 같은 수만큼 딸려 있는 양은 □ 값으로 대응한다.",
+        "answers": [
+          "개수에 그 수를 곱한"
+        ]
+      },
+      "sourceFingerprint": "6d806b68039e278e6b3cc79cb8d4c3909510164f49d9568b7dd714ac15de456c",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "곱한",
+        "$28$"
+      ],
+      "cStudentAfter": "의자 하나에 다리가 $4$개씩 있으면, 다리 수는 의자 수에 $4$를 □ 값이다. 의자가 $7$개일 때 다리는 □개이다.",
+      "cMarkedSentence": "의자 하나에 다리가 $4$개씩 있으면, 다리 수는 의자 수에 $4$를 {곱한} 값이다. 의자가 $7$개일 때 다리는 {$28$}개이다.",
+      "cStudentSentence": "의자 하나에 다리가 $4$개씩 있으면, 다리 수는 의자 수에 $4$를 □ 값이다. 의자가 $7$개일 때 다리는 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱한",
+          "equivalents": [
+            "곱해서 얻은",
+            "$4$배 한"
+          ]
+        },
+        {
+          "key": "$28$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "의자 하나에 다리가 $4$개씩 있습니다. 의자 수로 다리 수를 구하는 규칙을 말하고, 그런 규칙이 되는 까닭을 '의자 하나마다'라는 말을 넣어 설명해 보세요. 의자가 $7$개일 때 다리 수도 구하세요.",
+        "answer": "의자 수에 $4$를 곱하면 다리 수이다. 의자 하나마다 다리가 $4$개씩 있어서 $4$를 의자 수만큼 더하는 것과 같기 때문이다. 의자가 $7$개이면 다리는 $28$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "의자 수에 $4$를 곱하면 다리 수이다",
+              "다리 수 $=$ 의자 수 $\\times4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "의자 하나마다 다리가 $4$개씩 있기 때문이다",
+              "의자 하나마다 $4$개씩이어서 $4$를 의자 수만큼 더하는 것과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$28$개",
+              "$28$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "의자 하나에 다리가 $4$개씩 있으면, 다리 수는 의자 수에 $4$를 {곱한} 값이다. 의자가 $7$개일 때 다리는 {$28$}개이다.",
+        "acceptedAnswers": [
+          [
+            "곱한",
+            "곱해서 얻은",
+            "$4$배 한"
+          ],
+          [
+            "$28$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a1d776f00383f5db054c714beb290a023dbec4608aedf60c8b5812e82b8ce020",
+      "questionRevision": "planning-e5e6-20261006-a1d776f00383",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc7",
+      "bDecision": "revise",
+      "bPrompt": "누나가 나보다 언제나 $3$살 많습니다. 누나의 나이로 내 나이를 구하는 규칙을 말하고, 누나가 $14$살일 때와 $20$살일 때 내 나이를 구해 보세요.",
+      "bAnswer": "누나의 나이에서 $3$을 빼면 내 나이이다. 누나가 $14$살이면 나는 $11$살, $20$살이면 $17$살이다.",
+      "bGoal": "차가 일정한 두 양에서 큰 쪽으로 작은 쪽을 구하는 뺄셈 규칙을 말한다.",
+      "bReason": "xc5와 방향이 반대인 경우다. 큰 쪽 값을 알 때 작은 쪽을 구하는 말로 분명히 했다.",
+      "studentLabel": "빼서 구하는 대응 관계",
+      "cDecision": "revise",
+      "cAfter": "누나가 나보다 언제나 $3$살 많으면, 내 나이는 누나의 나이에서 $3$을 {뺀} 값이다. 누나가 $14$살일 때 나는 {$11$}살이다.",
+      "cReason": "'작은 쪽은 큰 쪽에서 그 수를 뺀 값'은 가리키는 말이 많아 읽기 어렵다. 나이 상황으로 풀어 썼다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'뺀', '빼서 얻은'은 같은 답.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "누나의 나이에서 $3$을 빼면 내 나이이다",
+            "내 나이 $=$ 누나의 나이 $-3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$살",
+            "$11$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17$살",
+            "$17$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "뺀",
+            "빼서 얻은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 636,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc7",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "뺄셈으로 짝지어지는 두 양",
+        "kind": "정의",
+        "level": "하",
+        "definition": "한 양이 다른 양보다 언제나 같은 수만큼 크면, 작은 쪽은 큰 쪽에서 {그 수를 뺀} 값으로 대응한다.",
+        "example": {
+          "prompt": "누나가 나보다 $3$살 많을 때 내 나이를 누나 나이로 나타내는 말은?",
+          "answer": "누나 나이에서 $3$을 뺀다"
+        },
+        "studentC": "한 양이 다른 양보다 언제나 같은 수만큼 크면, 작은 쪽은 큰 쪽에서 □ 값으로 대응한다.",
+        "answers": [
+          "그 수를 뺀"
+        ]
+      },
+      "sourceFingerprint": "6c29c29f09317da48d5b719b3e6b8081ff7a2fbc73c65d9d06b30503a69d5489",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "뺀",
+        "$11$"
+      ],
+      "cStudentAfter": "누나가 나보다 언제나 $3$살 많으면, 내 나이는 누나의 나이에서 $3$을 □ 값이다. 누나가 $14$살일 때 나는 □살이다.",
+      "cMarkedSentence": "누나가 나보다 언제나 $3$살 많으면, 내 나이는 누나의 나이에서 $3$을 {뺀} 값이다. 누나가 $14$살일 때 나는 {$11$}살이다.",
+      "cStudentSentence": "누나가 나보다 언제나 $3$살 많으면, 내 나이는 누나의 나이에서 $3$을 □ 값이다. 누나가 $14$살일 때 나는 □살이다.",
+      "cSlotAnswers": [
+        {
+          "key": "뺀",
+          "equivalents": [
+            "빼서 얻은"
+          ]
+        },
+        {
+          "key": "$11$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "누나가 나보다 언제나 $3$살 많습니다. 누나의 나이로 내 나이를 구하는 규칙을 말하고, 누나가 $14$살일 때와 $20$살일 때 내 나이를 구해 보세요.",
+        "answer": "누나의 나이에서 $3$을 빼면 내 나이이다. 누나가 $14$살이면 나는 $11$살, $20$살이면 $17$살이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "누나의 나이에서 $3$을 빼면 내 나이이다",
+              "내 나이 $=$ 누나의 나이 $-3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$살",
+              "$11$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$17$살",
+              "$17$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "누나가 나보다 언제나 $3$살 많으면, 내 나이는 누나의 나이에서 $3$을 {뺀} 값이다. 누나가 $14$살일 때 나는 {$11$}살이다.",
+        "acceptedAnswers": [
+          [
+            "뺀",
+            "빼서 얻은"
+          ],
+          [
+            "$11$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "709b6b2b87fb761048057850f9f965521157e418f364675a9dbfa48a021905e7",
+      "questionRevision": "planning-e5e6-20261006-709b6b2b87fb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "규칙을 말로 나타내는 활동은 xc5, xc6, xc7, xc10의 질문이 이미 요구한다.",
+      "bReason": "'말로 설명할 수 있다'는 행동 설명이라 물을 수학 의미가 없고, 규칙을 말하게 하는 다른 문항과 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '말로'는 수학 개념이 아니라 행동을 가리키는 낱말이다. 맞혀도 배우는 것이 없다.",
+      "exclusionReason": "사소한 문장이며 중복이다. 대체: e5-1-3-1-xc6, e5-1-3-1-xc10.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 637,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc9",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "규칙을 말로 설명하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "찾은 규칙은 ‘의자 수에 $4$를 곱하면 다리 수’처럼 {말로} 설명할 수 있다.",
+        "studentC": "찾은 규칙은 ‘의자 수에 $4$를 곱하면 다리 수’처럼 □ 설명할 수 있다.",
+        "answers": [
+          "말로"
+        ]
+      },
+      "sourceFingerprint": "d07b1bf5afac345f7d4e77147e08b88e25cb2da7c4a8cd4c04b77906809a9dcb",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "사소한 문장이며 중복이다. 대체: e5-1-3-1-xc6, e5-1-3-1-xc10.",
+        "cloze": "사소한 문장이며 중복이다. 대체: e5-1-3-1-xc6, e5-1-3-1-xc10."
+      },
+      "proposalFingerprint": "95d0be960828ea1068709632fc6dbc9bf3c4553aaf3e8808cb8fccb5f86c7631",
+      "questionRevision": "planning-e5e6-20261006-95d0be960828",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc10",
+      "bDecision": "revise",
+      "bPrompt": "의자 하나에 다리가 $4$개씩 있습니다. 한 친구가 의자 수와 다리 수의 규칙을 '$4$를 곱한다'라고만 말했습니다. 이 말에 빠진 것이 무엇인지 설명하고, 빠진 것을 넣어 규칙을 다시 말해 보세요.",
+      "bAnswer": "어느 양에 $4$를 곱해서 어느 양이 되는지가 빠졌다. '의자 수에 $4$를 곱하면 다리 수이다'라고 말해야 한다.",
+      "bGoal": "규칙을 말할 때 어느 양으로 어느 양을 구하는지 밝혀야 함을 안다.",
+      "bReason": "'기준이 되는 양'은 초5에게 추상적인 말이다. 불완전한 말을 고치는 과제로 바꿔 같은 내용을 묻는다.",
+      "studentLabel": "어느 양으로 어느 양을 구하는지 밝히기",
+      "cDecision": "revise",
+      "cAfter": "의자 하나에 다리가 $4$개씩 있을 때 규칙은 '{의자} 수에 $4$를 곱하면 {다리} 수이다'이다. 이처럼 어느 양으로 어느 양을 구하는지 밝혀 말한다.",
+      "cReason": "빈칸 '기준'은 뜻을 몰라도 채울 수 있는 말이다. 두 양의 자리를 직접 정하게 해 방향을 생각하도록 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "순서가 중요하다. '다리, 의자' 순으로 쓰면 오답이다(다리 수에 4를 곱하면 의자 수가 아님).",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어느 양에 $4$를 곱해서 어느 양이 되는지가 빠졌다",
+            "곱하는 양과 구하는 양이 무엇인지 밝히지 않았다"
+          ]
+        },
+        {
+          "anyOf": [
+            "의자 수에 $4$를 곱하면 다리 수이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "의자"
+          ]
+        },
+        {
+          "anyOf": [
+            "다리"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 638,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc10",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "기준이 되는 양 정하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "대응 관계를 설명할 때는 어느 양을 {기준}으로 다른 양을 구하는지 정해 말한다.",
+        "example": {
+          "prompt": "의자 수로 다리 수를 구할 때와 다리 수로 의자 수를 구할 때 기준이 되는 양은 각각 무엇인가?",
+          "answer": "의자 수, 다리 수"
+        },
+        "studentC": "대응 관계를 설명할 때는 어느 양을 □으로 다른 양을 구하는지 정해 말한다.",
+        "answers": [
+          "기준"
+        ]
+      },
+      "sourceFingerprint": "5483b0d851ecebba4191d5abaed066a3afee82caa712843cc832e6ab01d86df6",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "의자",
+        "다리"
+      ],
+      "cStudentAfter": "의자 하나에 다리가 $4$개씩 있을 때 규칙은 '□ 수에 $4$를 곱하면 □ 수이다'이다. 이처럼 어느 양으로 어느 양을 구하는지 밝혀 말한다.",
+      "cMarkedSentence": "의자 하나에 다리가 $4$개씩 있을 때 규칙은 '{의자} 수에 $4$를 곱하면 {다리} 수이다'이다. 이처럼 어느 양으로 어느 양을 구하는지 밝혀 말한다.",
+      "cStudentSentence": "의자 하나에 다리가 $4$개씩 있을 때 규칙은 '□ 수에 $4$를 곱하면 □ 수이다'이다. 이처럼 어느 양으로 어느 양을 구하는지 밝혀 말한다.",
+      "cSlotAnswers": [
+        {
+          "key": "의자",
+          "equivalents": []
+        },
+        {
+          "key": "다리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "의자 하나에 다리가 $4$개씩 있습니다. 한 친구가 의자 수와 다리 수의 규칙을 '$4$를 곱한다'라고만 말했습니다. 이 말에 빠진 것이 무엇인지 설명하고, 빠진 것을 넣어 규칙을 다시 말해 보세요.",
+        "answer": "어느 양에 $4$를 곱해서 어느 양이 되는지가 빠졌다. '의자 수에 $4$를 곱하면 다리 수이다'라고 말해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어느 양에 $4$를 곱해서 어느 양이 되는지가 빠졌다",
+              "곱하는 양과 구하는 양이 무엇인지 밝히지 않았다"
+            ]
+          },
+          {
+            "anyOf": [
+              "의자 수에 $4$를 곱하면 다리 수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "의자 하나에 다리가 $4$개씩 있을 때 규칙은 '{의자} 수에 $4$를 곱하면 {다리} 수이다'이다. 이처럼 어느 양으로 어느 양을 구하는지 밝혀 말한다.",
+        "acceptedAnswers": [
+          [
+            "의자"
+          ],
+          [
+            "다리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dec2076435b68cc7af8a6d4879542cfc76cfa9f4591abbb98fdddbfc3c2cb1df",
+      "questionRevision": "planning-e5e6-20261006-dec2076435b6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc11",
+      "bDecision": "revise",
+      "bPrompt": "의자 하나에 다리가 $4$개씩 있을 때 '의자 수에 $4$를 곱하면 다리 수이다'라는 규칙이 있습니다. 이 규칙을 다리 수를 알 때 의자 수를 구하는 말로 바꾸어 보세요. 계산이 무엇으로 바뀌는지와 그 까닭도 설명하세요.",
+      "bAnswer": "'다리 수를 $4$로 나누면 의자 수이다.' 곱셈이 나눗셈으로 바뀐다. 어떤 수에 $4$를 곱한 값을 다시 $4$로 나누면 처음 수가 되기 때문이다.",
+      "bGoal": "같은 대응 관계를 반대 방향으로 말하면 곱셈이 나눗셈으로 바뀜을 설명한다.",
+      "bReason": "원문은 두 문장을 모두 보여 주고 '거꾸로도'만 묻는다. 반대 방향 문장을 학생이 직접 만들게 했다.",
+      "studentLabel": "규칙을 반대 방향으로 말하기",
+      "cDecision": "revise",
+      "cAfter": "'의자 수에 $4$를 곱하면 다리 수이다'는 '다리 수를 $4$로 {나누면} 의자 수이다'로 바꾸어 말할 수 있다.",
+      "cReason": "빈칸 '거꾸로도'는 외울 내용이 아니다. 곱셈과 나눗셈이 짝을 이루는 관계가 드러나도록 빈칸을 연산 낱말로 옮겼다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'나누면', '나눈 값이'처럼 나눗셈을 뜻하면 정답.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다리 수를 $4$로 나누면 의자 수이다",
+            "의자 수 $=$ 다리 수 $\\div4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈이 나눗셈으로 바뀐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어떤 수에 $4$를 곱한 값을 다시 $4$로 나누면 처음 수가 되기 때문이다",
+            "곱셈과 나눗셈은 서로 반대되는 계산이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누면",
+            "나눈 값이"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 639,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc11",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "거꾸로도 말할 수 있는 대응",
+        "kind": "성질",
+        "level": "중",
+        "definition": "‘의자 수에 $4$를 곱하면 다리 수’는 ‘다리 수를 $4$로 나누면 의자 수’로 {거꾸로도} 말할 수 있다.",
+        "studentC": "‘의자 수에 $4$를 곱하면 다리 수’는 ‘다리 수를 $4$로 나누면 의자 수’로 □ 말할 수 있다.",
+        "answers": [
+          "거꾸로도"
+        ]
+      },
+      "sourceFingerprint": "eff7db6ce790bee63c565a7745f0405404cd334182f7d6b48dcedfd929ea94b0",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "나누면"
+      ],
+      "cStudentAfter": "'의자 수에 $4$를 곱하면 다리 수이다'는 '다리 수를 $4$로 □ 의자 수이다'로 바꾸어 말할 수 있다.",
+      "cMarkedSentence": "'의자 수에 $4$를 곱하면 다리 수이다'는 '다리 수를 $4$로 {나누면} 의자 수이다'로 바꾸어 말할 수 있다.",
+      "cStudentSentence": "'의자 수에 $4$를 곱하면 다리 수이다'는 '다리 수를 $4$로 □ 의자 수이다'로 바꾸어 말할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누면",
+          "equivalents": [
+            "나눈 값이"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "의자 하나에 다리가 $4$개씩 있을 때 '의자 수에 $4$를 곱하면 다리 수이다'라는 규칙이 있습니다. 이 규칙을 다리 수를 알 때 의자 수를 구하는 말로 바꾸어 보세요. 계산이 무엇으로 바뀌는지와 그 까닭도 설명하세요.",
+        "answer": "'다리 수를 $4$로 나누면 의자 수이다.' 곱셈이 나눗셈으로 바뀐다. 어떤 수에 $4$를 곱한 값을 다시 $4$로 나누면 처음 수가 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다리 수를 $4$로 나누면 의자 수이다",
+              "의자 수 $=$ 다리 수 $\\div4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱셈이 나눗셈으로 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "어떤 수에 $4$를 곱한 값을 다시 $4$로 나누면 처음 수가 되기 때문이다",
+              "곱셈과 나눗셈은 서로 반대되는 계산이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "'의자 수에 $4$를 곱하면 다리 수이다'는 '다리 수를 $4$로 {나누면} 의자 수이다'로 바꾸어 말할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "나누면",
+            "나눈 값이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "05296da334e90b3ab3cff38e7be8ca808e90769c462c0d0bfab87e4adb4e9c95",
+      "questionRevision": "planning-e5e6-20261006-05296da334e9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $6$, $9$입니다. 한 친구가 '$\\triangle$가 $3$씩 늘어나니까 규칙은 $\\square$에 $3$을 더하면 $\\triangle$이다'라고 했습니다. 이 말이 맞는지 짝에 넣어 확인하고 맞는 규칙을 말해 보세요. '$\\triangle$가 얼마씩 늘어나는지'와 '$\\square$와 $\\triangle$ 사이의 규칙'이 어떻게 다른지도 설명하세요.",
+      "bAnswer": "틀리다. $1 + 3 = 4$인데 $\\triangle$는 $3$이다. 맞는 규칙은 '$\\square$에 $3$을 곱하면 $\\triangle$'이다($1 \\times 3 = 3$, $2 \\times 3 = 6$, $3 \\times 3 = 9$). '$3$씩 늘어난다'는 $\\triangle$의 앞뒤 값끼리의 변화이고, 규칙은 서로 짝인 $\\square$와 $\\triangle$ 사이의 관계이므로 짝에 직접 넣어 확인해야 한다.",
+      "bGoal": "늘어나는 양과 두 양 사이의 규칙을 구별한다.",
+      "bReason": "원 예시(1→4, 2→5, 3→6)는 규칙만 묻는다. '3씩 늘면 3을 더한다'는 흔한 오해를 직접 바로잡게 했다.",
+      "studentLabel": "늘어나는 수와 규칙 구별하기",
+      "cDecision": "revise",
+      "cAfter": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $6$, $9$이면 $\\triangle$는 $3$씩 늘어난다. 그러나 $1+3=4$는 $\\triangle$의 값 $3$과 다르므로 규칙은 '$\\square$에 $3$을 더한다'가 아니고 '$\\square$에 $3$을 {곱한다}'이다.",
+      "cReason": "원문은 '덧셈인지 곱셈인지'에서 뒤 낱말만 채우게 해 짝맞추기에 그친다. 실제 표에서 덧셈이 아님을 확인하고 곱셈으로 판단하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'곱한다', '곱하면 △'는 같은 답.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "틀리다",
+            "맞지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1+3=4$이고 $\\triangle$는 $3$이므로 어긋난다",
+            "$2+3=5$이고 $\\triangle$는 $6$이므로 어긋난다",
+            "$3+3=6$이고 $\\triangle$는 $9$이므로 어긋난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square$에 $3$을 곱하면 $\\triangle$이다",
+            "$\\triangle$ $=$ $\\square$ $\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$씩 늘어난다는 것은 $\\triangle$의 이웃한 값끼리의 변화이고 규칙은 짝인 $\\square$와 $\\triangle$ 사이의 관계이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱한다",
+            "곱하면"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 640,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc12",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "늘어나는 양만으로 가리지 않기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 양이 $1$씩 늘 때 다른 양도 일정하게 늘어도, 규칙이 덧셈인지 {곱셈인지} 따로 살펴야 한다.",
+        "example": {
+          "prompt": "$1\\to4$, $2\\to5$, $3\\to6$의 규칙은?",
+          "answer": "$3$을 더한다"
+        },
+        "studentC": "한 양이 $1$씩 늘 때 다른 양도 일정하게 늘어도, 규칙이 덧셈인지 □ 따로 살펴야 한다.",
+        "answers": [
+          "곱셈인지"
+        ]
+      },
+      "sourceFingerprint": "d7b984027989ec24e9f779cb00685f8002e8863207d198a9f01e78a654746360",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "곱한다"
+      ],
+      "cStudentAfter": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $6$, $9$이면 $\\triangle$는 $3$씩 늘어난다. 그러나 $1+3=4$는 $\\triangle$의 값 $3$과 다르므로 규칙은 '$\\square$에 $3$을 더한다'가 아니고 '$\\square$에 $3$을 □'이다.",
+      "cMarkedSentence": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $6$, $9$이면 $\\triangle$는 $3$씩 늘어난다. 그러나 $1+3=4$는 $\\triangle$의 값 $3$과 다르므로 규칙은 '$\\square$에 $3$을 더한다'가 아니고 '$\\square$에 $3$을 {곱한다}'이다.",
+      "cStudentSentence": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $6$, $9$이면 $\\triangle$는 $3$씩 늘어난다. 그러나 $1+3=4$는 $\\triangle$의 값 $3$과 다르므로 규칙은 '$\\square$에 $3$을 더한다'가 아니고 '$\\square$에 $3$을 □'이다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱한다",
+          "equivalents": [
+            "곱하면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $6$, $9$입니다. 한 친구가 '$\\triangle$가 $3$씩 늘어나니까 규칙은 $\\square$에 $3$을 더하면 $\\triangle$이다'라고 했습니다. 이 말이 맞는지 짝에 넣어 확인하고 맞는 규칙을 말해 보세요. '$\\triangle$가 얼마씩 늘어나는지'와 '$\\square$와 $\\triangle$ 사이의 규칙'이 어떻게 다른지도 설명하세요.",
+        "answer": "틀리다. $1 + 3 = 4$인데 $\\triangle$는 $3$이다. 맞는 규칙은 '$\\square$에 $3$을 곱하면 $\\triangle$'이다($1 \\times 3 = 3$, $2 \\times 3 = 6$, $3 \\times 3 = 9$). '$3$씩 늘어난다'는 $\\triangle$의 앞뒤 값끼리의 변화이고, 규칙은 서로 짝인 $\\square$와 $\\triangle$ 사이의 관계이므로 짝에 직접 넣어 확인해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "틀리다",
+              "맞지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1+3=4$이고 $\\triangle$는 $3$이므로 어긋난다",
+              "$2+3=5$이고 $\\triangle$는 $6$이므로 어긋난다",
+              "$3+3=6$이고 $\\triangle$는 $9$이므로 어긋난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square$에 $3$을 곱하면 $\\triangle$이다",
+              "$\\triangle$ $=$ $\\square$ $\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$씩 늘어난다는 것은 $\\triangle$의 이웃한 값끼리의 변화이고 규칙은 짝인 $\\square$와 $\\triangle$ 사이의 관계이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $3$, $6$, $9$이면 $\\triangle$는 $3$씩 늘어난다. 그러나 $1+3=4$는 $\\triangle$의 값 $3$과 다르므로 규칙은 '$\\square$에 $3$을 더한다'가 아니고 '$\\square$에 $3$을 {곱한다}'이다.",
+        "acceptedAnswers": [
+          [
+            "곱한다",
+            "곱하면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0c6b5057f7495a4702039220f635fb5eb07006baec2366ff9251aa58d040cbb7",
+      "questionRevision": "planning-e5e6-20261006-0c6b5057f749",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc13",
+      "bDecision": "revise",
+      "bPrompt": "두 사람의 나이는 해마다 변합니다. 그래도 두 나이 사이에서 변하지 않는 것이 무엇인지 말하고, 올해 내가 $11$살, 누나가 $14$살일 때 $5$년 뒤 두 사람의 나이로 확인해 보세요.",
+      "bAnswer": "두 나이의 차는 변하지 않는다. 올해 $14 - 11 = 3$이고, $5$년 뒤에는 나 $16$살, 누나 $19$살로 $19 - 16 = 3$이다. 그래서 '내 나이에 $3$을 더하면 누나 나이'라는 규칙이 해가 지나도 성립한다.",
+      "bGoal": "함께 같은 만큼 늘어나는 두 양은 차가 일정함을 확인한다.",
+      "bReason": "xc5·xc7은 규칙을 말하는 문항이다. 이 문항은 그 규칙이 계속 성립하는 까닭(차가 일정함)을 묻도록 구분했다.",
+      "studentLabel": "해가 지나도 변하지 않는 것",
+      "cDecision": "revise",
+      "cAfter": "올해 나는 $11$살, 누나는 $14$살이다. $5$년 뒤에도 두 사람의 나이의 {차}는 $3$살로 변하지 않는다. 이런 두 양은 덧셈이나 뺄셈 규칙으로 대응한다.",
+      "cReason": "빈칸 '차가 그대로'는 표현이 다양해 채점이 어렵다. 실제 나이를 주고 '차' 한 낱말을 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'차', '차이'는 같은 답.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 나이의 차는 변하지 않는다",
+            "나이 차가 일정하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$년 뒤 나는 $16$살, 누나는 $19$살이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$19-16=3$으로 올해 차 $3$과 같다",
+            "$5$년 뒤에도 차는 $3$살이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "차",
+            "차이"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 641,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc13",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "변하지 않는 나이 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 사람의 나이처럼 해가 지나도 {차가 그대로}인 두 양은 덧셈이나 뺄셈 규칙으로 대응한다.",
+        "studentC": "두 사람의 나이처럼 해가 지나도 □인 두 양은 덧셈이나 뺄셈 규칙으로 대응한다.",
+        "answers": [
+          "차가 그대로"
+        ]
+      },
+      "sourceFingerprint": "89d8c39fade35084b55e4f97a9148ae7d33cc0474a7766a364e820aaa0703d2c",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "차"
+      ],
+      "cStudentAfter": "올해 나는 $11$살, 누나는 $14$살이다. $5$년 뒤에도 두 사람의 나이의 □는 $3$살로 변하지 않는다. 이런 두 양은 덧셈이나 뺄셈 규칙으로 대응한다.",
+      "cMarkedSentence": "올해 나는 $11$살, 누나는 $14$살이다. $5$년 뒤에도 두 사람의 나이의 {차}는 $3$살로 변하지 않는다. 이런 두 양은 덧셈이나 뺄셈 규칙으로 대응한다.",
+      "cStudentSentence": "올해 나는 $11$살, 누나는 $14$살이다. $5$년 뒤에도 두 사람의 나이의 □는 $3$살로 변하지 않는다. 이런 두 양은 덧셈이나 뺄셈 규칙으로 대응한다.",
+      "cSlotAnswers": [
+        {
+          "key": "차",
+          "equivalents": [
+            "차이"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 사람의 나이는 해마다 변합니다. 그래도 두 나이 사이에서 변하지 않는 것이 무엇인지 말하고, 올해 내가 $11$살, 누나가 $14$살일 때 $5$년 뒤 두 사람의 나이로 확인해 보세요.",
+        "answer": "두 나이의 차는 변하지 않는다. 올해 $14 - 11 = 3$이고, $5$년 뒤에는 나 $16$살, 누나 $19$살로 $19 - 16 = 3$이다. 그래서 '내 나이에 $3$을 더하면 누나 나이'라는 규칙이 해가 지나도 성립한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 나이의 차는 변하지 않는다",
+              "나이 차가 일정하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$년 뒤 나는 $16$살, 누나는 $19$살이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$19-16=3$으로 올해 차 $3$과 같다",
+              "$5$년 뒤에도 차는 $3$살이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "올해 나는 $11$살, 누나는 $14$살이다. $5$년 뒤에도 두 사람의 나이의 {차}는 $3$살로 변하지 않는다. 이런 두 양은 덧셈이나 뺄셈 규칙으로 대응한다.",
+        "acceptedAnswers": [
+          [
+            "차",
+            "차이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bfe4cfe8dfaf643c901a022e91fb8d157814b2b1fa779b1f7a8efa4628f2cb0a",
+      "questionRevision": "planning-e5e6-20261006-bfe4cfe8dfaf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc15",
+      "bDecision": "revise",
+      "bPrompt": "삼각형 $2$개를 서로 떨어뜨려 놓을 때와 한 변이 꼭 맞닿게 이어 붙일 때(맞닿은 변은 한 번만 셉니다)의 변의 수를 각각 구해 보세요. 그리고 삼각형 수와 변의 수 사이의 규칙을 말하기 전에 무엇을 정해야 하는지 설명해 보세요.",
+      "bAnswer": "떨어뜨려 놓으면 $3 + 3 = 6$개, 이어 붙이면 맞닿은 변을 한 번만 세므로 $5$개이다. 놓는 방법과 겹친 변을 세는 방법에 따라 변의 수가 달라지므로, 도형을 어떻게 놓고 변을 어떻게 셀지 먼저 정해야 한다.",
+      "bGoal": "같은 도형 수라도 놓는 방법과 세는 방법에 따라 대응하는 값이 달라짐을 안다.",
+      "bReason": "원 예시를 살렸다. 두 경우를 직접 비교하게 해 '먼저 정해야 하는 것'을 스스로 찾게 했다.",
+      "studentLabel": "도형을 이어 붙일 때 변의 수",
+      "cDecision": "revise",
+      "cAfter": "삼각형 $2$개를 떨어뜨려 놓으면 변은 모두 $6$개이다. 한 변이 꼭 맞닿게 이어 붙이고 맞닿은 변을 한 번만 세면 변은 {$5$}개이다. 그래서 도형을 놓는 방법과 변을 세는 방법을 먼저 정한다.",
+      "cReason": "긴 구절 두 개('도형을 놓는 방법', '변을 세는 기준')를 통째로 외우게 하는 빈칸이다. 그 구절이 왜 필요한지 수로 확인하게 바꿨다.",
+      "exampleNeeded": false,
+      "exampleReason": "글만으로 풀 수 있다. 가능하면 삼각형 2개를 떨어뜨린 그림과 한 변을 붙인 그림(마름모 모양)을 나란히 넣으면 더 좋다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "떨어뜨려 놓으면 $3+3=6$개이다",
+            "떨어뜨려 놓으면 $6$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이어 붙이면 맞닿은 변을 한 번만 세어 $5$개이다",
+            "이어 붙이면 $5$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "도형을 놓는 방법과 변을 세는 방법을 먼저 정해야 한다",
+            "놓는 방법과 겹친 변을 세는 기준에 따라 변의 수가 달라지므로 먼저 정한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 642,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc15",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "도형을 놓는 방법과 변 세기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "도형 수와 변의 수의 관계를 말하려면 {도형을 놓는 방법}과 {변을 세는 기준}을 먼저 정해야 한다.",
+        "example": {
+          "prompt": "삼각형 두 개가 한 변을 함께 쓴다. 겹친 변을 한 번만 셀 때 변의 수를 $3+3$으로 구하면 안 되는 까닭은?",
+          "answer": "함께 쓰는 변을 두 번 세어서"
+        },
+        "studentC": "도형 수와 변의 수의 관계를 말하려면 □과 □을 먼저 정해야 한다.",
+        "answers": [
+          "도형을 놓는 방법",
+          "변을 세는 기준"
+        ]
+      },
+      "sourceFingerprint": "6a7766039c25ff513b260df125421567ec5964a3980d69685dbce72e195a9d5b",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "삼각형 $2$개를 떨어뜨려 놓으면 변은 모두 $6$개이다. 한 변이 꼭 맞닿게 이어 붙이고 맞닿은 변을 한 번만 세면 변은 □개이다. 그래서 도형을 놓는 방법과 변을 세는 방법을 먼저 정한다.",
+      "cMarkedSentence": "삼각형 $2$개를 떨어뜨려 놓으면 변은 모두 $6$개이다. 한 변이 꼭 맞닿게 이어 붙이고 맞닿은 변을 한 번만 세면 변은 {$5$}개이다. 그래서 도형을 놓는 방법과 변을 세는 방법을 먼저 정한다.",
+      "cStudentSentence": "삼각형 $2$개를 떨어뜨려 놓으면 변은 모두 $6$개이다. 한 변이 꼭 맞닿게 이어 붙이고 맞닿은 변을 한 번만 세면 변은 □개이다. 그래서 도형을 놓는 방법과 변을 세는 방법을 먼저 정한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각형 $2$개를 서로 떨어뜨려 놓을 때와 한 변이 꼭 맞닿게 이어 붙일 때(맞닿은 변은 한 번만 셉니다)의 변의 수를 각각 구해 보세요. 그리고 삼각형 수와 변의 수 사이의 규칙을 말하기 전에 무엇을 정해야 하는지 설명해 보세요.",
+        "answer": "떨어뜨려 놓으면 $3 + 3 = 6$개, 이어 붙이면 맞닿은 변을 한 번만 세므로 $5$개이다. 놓는 방법과 겹친 변을 세는 방법에 따라 변의 수가 달라지므로, 도형을 어떻게 놓고 변을 어떻게 셀지 먼저 정해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "떨어뜨려 놓으면 $3+3=6$개이다",
+              "떨어뜨려 놓으면 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이어 붙이면 맞닿은 변을 한 번만 세어 $5$개이다",
+              "이어 붙이면 $5$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도형을 놓는 방법과 변을 세는 방법을 먼저 정해야 한다",
+              "놓는 방법과 겹친 변을 세는 기준에 따라 변의 수가 달라지므로 먼저 정한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각형 $2$개를 떨어뜨려 놓으면 변은 모두 $6$개이다. 한 변이 꼭 맞닿게 이어 붙이고 맞닿은 변을 한 번만 세면 변은 {$5$}개이다. 그래서 도형을 놓는 방법과 변을 세는 방법을 먼저 정한다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9164274a74816601621f6ab5561f822e9aa5f886ca9509c2dec08d787c57c441",
+      "questionRevision": "planning-e5e6-20261006-9164274a7481",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "대응표에서 $\\triangle$의 값 하나가 빈칸일 때 그 빈칸을 어떻게 채우는지 설명해 보세요. 그리고 $\\square$가 $2$, $3$, $5$이고 그 아래 $\\triangle$가 차례로 $8$, $12$, (빈칸)인 표의 빈칸을 구해 보세요.",
+      "bAnswer": "다른 짝들에서 규칙을 찾은 뒤, 빈칸과 짝인 $\\square$의 값에 그 규칙을 적용한다. $2 \\times 4 = 8$, $3 \\times 4 = 12$이므로 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이고, 빈칸은 짝인 $5$에 $4$를 곱한 $20$이다.",
+      "bGoal": "빈칸을 옆 칸의 흐름이 아니라 짝인 값에 규칙을 적용해 채운다.",
+      "bReason": "원 예시는 답을 질문에 넣고 까닭만 묻는다. □가 3에서 5로 건너뛰는 표를 써서 8, 12 다음을 16으로 잇는 실수를 드러나게 했다.",
+      "studentLabel": "대응표의 빈칸 채우기",
+      "cDecision": "revise",
+      "cAfter": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 {$5$}에 $4$를 곱한 {$20$}이다.",
+      "cReason": "빈칸 '짝이 되는 값'은 추상적인 말이다. 짝인 값을 실제로 고르고 계산하게 바꿨다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 짝에서 규칙을 찾아 빈칸과 짝인 $\\square$의 값에 적용한다",
+            "빈칸과 짝인 값에 규칙을 적용해 채운다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$",
+            "$5\\times4=20$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 643,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc16",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "대응표의 빈칸 채우기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "대응표의 빈칸은 찾은 규칙을 그 칸의 {짝이 되는 값}에 적용해 채운다.",
+        "example": {
+          "prompt": "대응표의 빈칸을 채울 때 찾은 규칙을 빈칸과 짝이 되는 값에 적용하는 까닭은?",
+          "answer": "규칙이 짝인 두 값의 관계라서"
+        },
+        "studentC": "대응표의 빈칸은 찾은 규칙을 그 칸의 □에 적용해 채운다.",
+        "answers": [
+          "짝이 되는 값"
+        ]
+      },
+      "sourceFingerprint": "11f0a90b5b5e8ae4e3f95a3d7672e4307783bb505740157bcaad1a1b7b3cb1ae",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$20$"
+      ],
+      "cStudentAfter": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 □에 $4$를 곱한 □이다.",
+      "cMarkedSentence": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 {$5$}에 $4$를 곱한 {$20$}이다.",
+      "cStudentSentence": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 □에 $4$를 곱한 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대응표에서 $\\triangle$의 값 하나가 빈칸일 때 그 빈칸을 어떻게 채우는지 설명해 보세요. 그리고 $\\square$가 $2$, $3$, $5$이고 그 아래 $\\triangle$가 차례로 $8$, $12$, (빈칸)인 표의 빈칸을 구해 보세요.",
+        "answer": "다른 짝들에서 규칙을 찾은 뒤, 빈칸과 짝인 $\\square$의 값에 그 규칙을 적용한다. $2 \\times 4 = 8$, $3 \\times 4 = 12$이므로 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이고, 빈칸은 짝인 $5$에 $4$를 곱한 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다른 짝에서 규칙을 찾아 빈칸과 짝인 $\\square$의 값에 적용한다",
+              "빈칸과 짝인 값에 규칙을 적용해 채운다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$",
+              "$5\\times4=20$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square$가 $2$, $3$, $5$일 때 $\\triangle$는 차례로 $8$, $12$, (빈칸)이고 규칙은 '$\\square$에 $4$를 곱하면 $\\triangle$'이다. 빈칸은 그 칸과 짝인 $\\square$의 값 {$5$}에 $4$를 곱한 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ea44061349d3df0162335602746c23a6d8c1832bf4185dd0ed5f3081ee7b4fa6",
+      "questionRevision": "planning-e5e6-20261006-ea44061349d3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "나이와 키는 둘 다 자라면서 변합니다. 나이와 키 사이의 관계가 의자 수와 다리 수(의자 하나에 다리 $4$개) 사이의 관계와 어떻게 다른지, 한 양을 알 때 다른 양을 계산으로 구할 수 있는지를 따져 설명해 보세요.",
+      "bAnswer": "의자 수를 알면 $4$를 곱해 다리 수를 언제나 구할 수 있다. 그러나 키는 사람마다, 해마다 늘어나는 양이 달라서 나이를 알아도 일정한 규칙으로 구할 수 없다. 그래서 나이와 키는 규칙을 찾아 나타내는 대응 관계로 보지 않는다.",
+      "bGoal": "함께 변해도 일정한 규칙이 없으면 대응 관계로 다루지 않음을 구별한다.",
+      "bReason": "대응 관계가 아닌 예를 다루는 유일한 문항이다. 판단할 기준을 질문에 주고 두 상황을 비교하게 했다.",
+      "studentLabel": "함께 변하지만 규칙이 없는 두 양",
+      "cDecision": "revise",
+      "cAfter": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 {규칙}이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+      "cReason": "'이 단원의 대응 관계로 다루지 않는다'는 학생 지면에 맞지 않는 편집자 말투다. 규칙이 없다는 것이 무슨 뜻인지 풀어 썼다. 빈칸은 c1과 같지만 대응 관계가 아닌 예에서 묻는 것이라 남겼다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'규칙', '일정한 규칙' 모두 정답.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "의자 수에 $4$를 곱해 다리 수를 언제나 구할 수 있다",
+            "의자 수를 알면 다리 수가 계산으로 정해진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나이를 알아도 키를 일정한 규칙으로 계산해 구할 수 없다",
+            "키가 늘어나는 양이 사람마다 해마다 달라 일정한 규칙이 없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "규칙",
+            "일정한 규칙"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 644,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc17",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "규칙이 없는 두 양",
+        "kind": "성질",
+        "level": "중",
+        "definition": "키와 나이처럼 함께 변해도 {일정한 규칙}이 없으면 이 단원의 대응 관계로 다루지 않는다.",
+        "studentC": "키와 나이처럼 함께 변해도 □이 없으면 이 단원의 대응 관계로 다루지 않는다.",
+        "answers": [
+          "일정한 규칙"
+        ]
+      },
+      "sourceFingerprint": "3e4199ab2e570a45b9f42339d4bf702adebd1916b3b449e5c722c1adc36976be",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "규칙"
+      ],
+      "cStudentAfter": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 □이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+      "cMarkedSentence": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 {규칙}이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+      "cStudentSentence": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 □이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "규칙",
+          "equivalents": [
+            "일정한 규칙"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나이와 키는 둘 다 자라면서 변합니다. 나이와 키 사이의 관계가 의자 수와 다리 수(의자 하나에 다리 $4$개) 사이의 관계와 어떻게 다른지, 한 양을 알 때 다른 양을 계산으로 구할 수 있는지를 따져 설명해 보세요.",
+        "answer": "의자 수를 알면 $4$를 곱해 다리 수를 언제나 구할 수 있다. 그러나 키는 사람마다, 해마다 늘어나는 양이 달라서 나이를 알아도 일정한 규칙으로 구할 수 없다. 그래서 나이와 키는 규칙을 찾아 나타내는 대응 관계로 보지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "의자 수에 $4$를 곱해 다리 수를 언제나 구할 수 있다",
+              "의자 수를 알면 다리 수가 계산으로 정해진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나이를 알아도 키를 일정한 규칙으로 계산해 구할 수 없다",
+              "키가 늘어나는 양이 사람마다 해마다 달라 일정한 규칙이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나이와 키는 함께 변하지만 나이가 $1$살 늘 때 키가 늘어나는 양은 해마다 다르다. 이렇게 일정한 {규칙}이 없으면 나이만 알고 키를 계산으로 구할 수 없다.",
+        "acceptedAnswers": [
+          [
+            "규칙",
+            "일정한 규칙"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e3491a99bd31bb1b2c15fa7227b241600933b32e2936d7c4c74d121950fad5c2",
+      "questionRevision": "planning-e5e6-20261006-e3491a99bd31",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc18",
+      "bDecision": "revise",
+      "bPrompt": "빈 물통에 $1$분에 $3\\,\\mathrm{L}$씩 물을 받습니다. 받은 시간(분)으로 받은 물의 양($\\mathrm{L}$)을 구하는 규칙을 말하고, 그 규칙이 성립하려면 $1$분마다 나오는 물의 양이 어때야 하는지 설명해 보세요. $5$분 동안 받은 물의 양도 구하세요.",
+      "bAnswer": "받은 시간(분)에 $3$을 곱하면 받은 물의 양($\\mathrm{L}$)이다. $1$분마다 나오는 물의 양이 언제나 $3\\,\\mathrm{L}$로 같아야 한다. $5$분 동안 받은 물은 $15\\,\\mathrm{L}$이다.",
+      "bGoal": "시간에 따라 일정하게 늘어나는 양을 곱셈 규칙으로 나타내고 '일정하게'라는 조건을 안다.",
+      "bReason": "원 예시의 규칙 말하기를 살렸다. 원문 조건 '일정한 빠르기'를 학생이 직접 말하게 했다.",
+      "studentLabel": "시간에 따라 일정하게 늘어나는 양",
+      "cDecision": "revise",
+      "cAfter": "빈 물통에 $1$분에 $3\\,\\mathrm{L}$씩 일정하게 물을 받으면, 받은 물의 양($\\mathrm{L}$)은 받은 시간(분)에 $3$을 {곱한} 값이다. $5$분 동안 받은 물은 {$15$}$\\,\\mathrm{L}$이다.",
+      "cReason": "빈칸 '곱셈'만으로는 어느 양에 무엇을 곱하는지 알 수 없고 '나눗셈'도 반대 방향으로는 맞다. 방향을 밝히고 빈 통에서 시작한다는 조건을 넣었다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'곱한', '곱해서 얻은'은 같은 답.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "받은 시간(분)에 $3$을 곱하면 받은 물의 양($\\mathrm{L}$)이다",
+            "물의 양 $=$ 시간 $\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$분마다 나오는 물의 양이 언제나 $3\\,\\mathrm{L}$로 같아야 한다",
+            "물이 일정한 빠르기로 나와야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15\\,\\mathrm{L}$",
+            "$15$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱한",
+            "곱해서 얻은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 645,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc18",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "시간과 함께 변하는 양",
+        "kind": "방법",
+        "level": "중",
+        "definition": "일정한 빠르기로 물을 받으면 받은 시간과 물의 양은 {곱셈} 규칙으로 대응한다.",
+        "example": {
+          "prompt": "$1$분에 $3\\,\\mathrm{L}$씩 받을 때 받은 물의 양을 시간으로 나타내는 말은?",
+          "answer": "받은 시간(분)에 $3$을 곱한다"
+        },
+        "studentC": "일정한 빠르기로 물을 받으면 받은 시간과 물의 양은 □ 규칙으로 대응한다.",
+        "answers": [
+          "곱셈"
+        ]
+      },
+      "sourceFingerprint": "0bc9c1633e25c9d6aa44fe445063fcce46f4a5aaa341c9ee446da18d1af32112",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "곱한",
+        "$15$"
+      ],
+      "cStudentAfter": "빈 물통에 $1$분에 $3\\,\\mathrm{L}$씩 일정하게 물을 받으면, 받은 물의 양($\\mathrm{L}$)은 받은 시간(분)에 $3$을 □ 값이다. $5$분 동안 받은 물은 □$\\,\\mathrm{L}$이다.",
+      "cMarkedSentence": "빈 물통에 $1$분에 $3\\,\\mathrm{L}$씩 일정하게 물을 받으면, 받은 물의 양($\\mathrm{L}$)은 받은 시간(분)에 $3$을 {곱한} 값이다. $5$분 동안 받은 물은 {$15$}$\\,\\mathrm{L}$이다.",
+      "cStudentSentence": "빈 물통에 $1$분에 $3\\,\\mathrm{L}$씩 일정하게 물을 받으면, 받은 물의 양($\\mathrm{L}$)은 받은 시간(분)에 $3$을 □ 값이다. $5$분 동안 받은 물은 □$\\,\\mathrm{L}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱한",
+          "equivalents": [
+            "곱해서 얻은"
+          ]
+        },
+        {
+          "key": "$15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "빈 물통에 $1$분에 $3\\,\\mathrm{L}$씩 물을 받습니다. 받은 시간(분)으로 받은 물의 양($\\mathrm{L}$)을 구하는 규칙을 말하고, 그 규칙이 성립하려면 $1$분마다 나오는 물의 양이 어때야 하는지 설명해 보세요. $5$분 동안 받은 물의 양도 구하세요.",
+        "answer": "받은 시간(분)에 $3$을 곱하면 받은 물의 양($\\mathrm{L}$)이다. $1$분마다 나오는 물의 양이 언제나 $3\\,\\mathrm{L}$로 같아야 한다. $5$분 동안 받은 물은 $15\\,\\mathrm{L}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "받은 시간(분)에 $3$을 곱하면 받은 물의 양($\\mathrm{L}$)이다",
+              "물의 양 $=$ 시간 $\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$분마다 나오는 물의 양이 언제나 $3\\,\\mathrm{L}$로 같아야 한다",
+              "물이 일정한 빠르기로 나와야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15\\,\\mathrm{L}$",
+              "$15$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "빈 물통에 $1$분에 $3\\,\\mathrm{L}$씩 일정하게 물을 받으면, 받은 물의 양($\\mathrm{L}$)은 받은 시간(분)에 $3$을 {곱한} 값이다. $5$분 동안 받은 물은 {$15$}$\\,\\mathrm{L}$이다.",
+        "acceptedAnswers": [
+          [
+            "곱한",
+            "곱해서 얻은"
+          ],
+          [
+            "$15$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f4f49ee47a39e008f05197a4281e5c95772178d5eff2aea7a5ff6e9c349e5baa",
+      "questionRevision": "planning-e5e6-20261006-f4f49ee47a39",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "대응표에서 $\\square$의 값이 $3$, $1$, $5$로 크기 순서대로 놓여 있지 않고, 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$입니다. 이런 표에서 어떤 수끼리 비교해야 규칙을 찾을 수 있는지 설명하고 규칙을 말해 보세요.",
+      "bAnswer": "옆 칸의 수끼리 얼마씩 변하는지 보지 말고, 위아래로 짝인 $\\square$와 $\\triangle$끼리 비교한다. $3$과 $9$, $1$과 $3$, $5$와 $15$를 보면 규칙은 '$\\square$에 $3$을 곱하면 $\\triangle$'이다.",
+      "bGoal": "순서가 섞인 표에서도 짝인 값끼리 비교해 규칙을 찾는다.",
+      "bReason": "원 예시의 수를 썼다. 규칙만 묻지 않고 '어떤 수끼리 비교하는지'를 먼저 설명하게 했다.",
+      "studentLabel": "순서가 섞인 대응표에서 규칙 찾기",
+      "cDecision": "revise",
+      "cAfter": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 {$3$}을 곱하면 $\\triangle$'이다.",
+      "cReason": "빈칸 '같은 칸끼리'는 뜻이 부정확하다(같은 칸이 아니라 같은 세로줄의 위아래 칸). 짝끼리 비교해 규칙의 수를 구하게 바꿨다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위아래로 짝인 $\\square$와 $\\triangle$끼리 비교한다",
+            "순서와 상관없이 짝인 두 수끼리 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square$에 $3$을 곱하면 $\\triangle$이다",
+            "$\\triangle$ $=$ $\\square$ $\\times3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 646,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc19",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "차례가 뒤섞인 대응표",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대응표의 값이 차례대로 놓여 있지 않아도 {같은 칸끼리} 짝지어 규칙을 찾는다.",
+        "example": {
+          "prompt": "$\\square$가 $3,\\ 1,\\ 5$일 때 $\\triangle$가 $9,\\ 3,\\ 15$이면 규칙은?",
+          "answer": "$\\square$에 $3$을 곱한다"
+        },
+        "studentC": "대응표의 값이 차례대로 놓여 있지 않아도 □ 짝지어 규칙을 찾는다.",
+        "answers": [
+          "같은 칸끼리"
+        ]
+      },
+      "sourceFingerprint": "0ee90e963fa6feca1f2fec5063372dc35e8d6461627765e7baa35b2bb5d50f53",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 □을 곱하면 $\\triangle$'이다.",
+      "cMarkedSentence": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 {$3$}을 곱하면 $\\triangle$'이다.",
+      "cStudentSentence": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 □을 곱하면 $\\triangle$'이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대응표에서 $\\square$의 값이 $3$, $1$, $5$로 크기 순서대로 놓여 있지 않고, 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$입니다. 이런 표에서 어떤 수끼리 비교해야 규칙을 찾을 수 있는지 설명하고 규칙을 말해 보세요.",
+        "answer": "옆 칸의 수끼리 얼마씩 변하는지 보지 말고, 위아래로 짝인 $\\square$와 $\\triangle$끼리 비교한다. $3$과 $9$, $1$과 $3$, $5$와 $15$를 보면 규칙은 '$\\square$에 $3$을 곱하면 $\\triangle$'이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위아래로 짝인 $\\square$와 $\\triangle$끼리 비교한다",
+              "순서와 상관없이 짝인 두 수끼리 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square$에 $3$을 곱하면 $\\triangle$이다",
+              "$\\triangle$ $=$ $\\square$ $\\times3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square$가 $3$, $1$, $5$이고 그 아래 칸의 $\\triangle$가 차례로 $9$, $3$, $15$이다. $\\square$가 크기 순서대로 놓여 있지 않아도 위아래로 짝인 두 수끼리 비교하면 규칙은 '$\\square$에 {$3$}을 곱하면 $\\triangle$'이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c9e552d36e306031d0bec05e37c1cdc0ed2290839dcea88257440589c896030d",
+      "questionRevision": "planning-e5e6-20261006-c9e552d36e30",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc20",
+      "bDecision": "revise",
+      "bPrompt": "$\\square$가 $1$일 때 $\\triangle$가 $2$인 짝 하나만 알고 있습니다. 이 짝에 맞는 덧셈 규칙과 곱셈 규칙을 하나씩 말하고, 둘 중 어느 것이 맞는지 정하려면 무엇을 더 알아야 하는지 설명해 보세요.",
+      "bAnswer": "'$\\square$에 $1$을 더한다'($1 + 1 = 2$)와 '$\\square$에 $2$를 곱한다'($1 \\times 2 = 2$)가 모두 맞는다. 한 짝만으로는 정할 수 없으므로 다른 짝을 더 알아야 한다. $\\square$가 $2$일 때 $\\triangle$가 $3$이면 덧셈 규칙이고, $4$이면 곱셈 규칙이다.",
+      "bGoal": "한 짝만으로는 규칙이 하나로 정해지지 않음을 예로 보인다.",
+      "bReason": "원 예시를 살렸다. 거기에 '무엇을 더 알아야 하는지'를 붙여 일반 판단까지 묻는다. c3는 확인하는 방법, 이 문항은 한 짝으로 부족한 까닭이다.",
+      "studentLabel": "짝 하나에 맞는 규칙이 여럿일 때",
+      "cDecision": "revise",
+      "cAfter": "$\\square$가 $1$일 때 $\\triangle$가 $2$인 한 쌍만 보면 '$\\square$에 $1$을 더한다'와 '$\\square$에 {$2$}를 곱한다'가 모두 맞는다. 그래서 다른 짝을 더 보고 규칙을 정한다.",
+      "cReason": "빈칸 '둘 다 맞아'는 말투를 맞히는 문제가 된다. 같은 짝에 맞는 곱셈 규칙의 수를 직접 찾게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\square$에 $1$을 더하면 $\\triangle$이다",
+            "$\\triangle$ $=$ $\\square$ $+1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square$에 $2$를 곱하면 $\\triangle$이다",
+            "$\\triangle$ $=$ $\\square$ $\\times2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 짝만으로는 정할 수 없어 다른 짝을 더 알아야 한다",
+            "다른 짝에도 넣어 확인해야 한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 647,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc20",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "한 쌍에 맞는 두 규칙",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 쌍만 보면 덧셈 규칙과 곱셈 규칙이 {둘 다 맞아} 보일 수 있으므로 짝을 더 본다.",
+        "example": {
+          "prompt": "$1\\to2$ 한 쌍에 맞는 덧셈 규칙과 곱셈 규칙을 하나씩 말하시오.",
+          "answer": "$1$을 더한다, $2$를 곱한다"
+        },
+        "studentC": "한 쌍만 보면 덧셈 규칙과 곱셈 규칙이 □ 보일 수 있으므로 짝을 더 본다.",
+        "answers": [
+          "둘 다 맞아"
+        ]
+      },
+      "sourceFingerprint": "69681f581818b0c9ef02ccd907f42b2de3f07af8934a9fdd8b6318b6c3fd2e7a",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "$\\square$가 $1$일 때 $\\triangle$가 $2$인 한 쌍만 보면 '$\\square$에 $1$을 더한다'와 '$\\square$에 □를 곱한다'가 모두 맞는다. 그래서 다른 짝을 더 보고 규칙을 정한다.",
+      "cMarkedSentence": "$\\square$가 $1$일 때 $\\triangle$가 $2$인 한 쌍만 보면 '$\\square$에 $1$을 더한다'와 '$\\square$에 {$2$}를 곱한다'가 모두 맞는다. 그래서 다른 짝을 더 보고 규칙을 정한다.",
+      "cStudentSentence": "$\\square$가 $1$일 때 $\\triangle$가 $2$인 한 쌍만 보면 '$\\square$에 $1$을 더한다'와 '$\\square$에 □를 곱한다'가 모두 맞는다. 그래서 다른 짝을 더 보고 규칙을 정한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\square$가 $1$일 때 $\\triangle$가 $2$인 짝 하나만 알고 있습니다. 이 짝에 맞는 덧셈 규칙과 곱셈 규칙을 하나씩 말하고, 둘 중 어느 것이 맞는지 정하려면 무엇을 더 알아야 하는지 설명해 보세요.",
+        "answer": "'$\\square$에 $1$을 더한다'($1 + 1 = 2$)와 '$\\square$에 $2$를 곱한다'($1 \\times 2 = 2$)가 모두 맞는다. 한 짝만으로는 정할 수 없으므로 다른 짝을 더 알아야 한다. $\\square$가 $2$일 때 $\\triangle$가 $3$이면 덧셈 규칙이고, $4$이면 곱셈 규칙이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\square$에 $1$을 더하면 $\\triangle$이다",
+              "$\\triangle$ $=$ $\\square$ $+1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square$에 $2$를 곱하면 $\\triangle$이다",
+              "$\\triangle$ $=$ $\\square$ $\\times2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 짝만으로는 정할 수 없어 다른 짝을 더 알아야 한다",
+              "다른 짝에도 넣어 확인해야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square$가 $1$일 때 $\\triangle$가 $2$인 한 쌍만 보면 '$\\square$에 $1$을 더한다'와 '$\\square$에 {$2$}를 곱한다'가 모두 맞는다. 그래서 다른 짝을 더 보고 규칙을 정한다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3e8093da06057eded19c8843e1ab620a7a023adc7cd0a20453b8b1e07c500ede",
+      "questionRevision": "planning-e5e6-20261006-3e8093da0605",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc21",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "'한 양이 정해지면 다른 양이 하나로 정해지는지'의 판단은 xc17에서 나이와 키, 의자와 다리를 비교하며 다룬다.",
+      "bReason": "한 양이 정해지면 다른 양이 하나로 정해지는지 가리는 일은 xc17이 이미 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "한 상자에 달걀이 $10$개씩 들어 있으면 상자가 $3$개일 때 달걀 수는 {$30$}개 하나로 정해진다. 이렇게 한 양이 정해지면 다른 양이 하나로 정해지는지 살펴 대응 관계를 찾는다.",
+      "cReason": "빈칸 '하나로 정해지는지'는 긴 구절이라 외우기 어렵다. '하나로 정해진다'는 뜻을 실제 값으로 겪게 하고 판단 기준은 읽을 문장으로 남겼다.",
+      "exclusionReason": "B만 제외한다. 대체: e5-1-3-1-xc17, e5-1-3-1-xc1.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 648,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc21",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "생활 속에서 대응 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "생활에서 대응 관계를 찾을 때는 한쪽이 정해지면 다른 쪽이 {하나로 정해지는지} 살핀다.",
+        "studentC": "생활에서 대응 관계를 찾을 때는 한쪽이 정해지면 다른 쪽이 □ 살핀다.",
+        "answers": [
+          "하나로 정해지는지"
+        ]
+      },
+      "sourceFingerprint": "41b7c9cb2691d9eed70f2d8ff2cb845cfd875541ac66752ac2e18f7541ef9107",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$30$"
+      ],
+      "cStudentAfter": "한 상자에 달걀이 $10$개씩 들어 있으면 상자가 $3$개일 때 달걀 수는 □개 하나로 정해진다. 이렇게 한 양이 정해지면 다른 양이 하나로 정해지는지 살펴 대응 관계를 찾는다.",
+      "cMarkedSentence": "한 상자에 달걀이 $10$개씩 들어 있으면 상자가 $3$개일 때 달걀 수는 {$30$}개 하나로 정해진다. 이렇게 한 양이 정해지면 다른 양이 하나로 정해지는지 살펴 대응 관계를 찾는다.",
+      "cStudentSentence": "한 상자에 달걀이 $10$개씩 들어 있으면 상자가 $3$개일 때 달걀 수는 □개 하나로 정해진다. 이렇게 한 양이 정해지면 다른 양이 하나로 정해지는지 살펴 대응 관계를 찾는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 상자에 달걀이 $10$개씩 들어 있으면 상자가 $3$개일 때 달걀 수는 {$30$}개 하나로 정해진다. 이렇게 한 양이 정해지면 다른 양이 하나로 정해지는지 살펴 대응 관계를 찾는다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체: e5-1-3-1-xc17, e5-1-3-1-xc1."
+      },
+      "proposalFingerprint": "c001a14be542dda302dc12c81230540b7c60b225d28f2ecf184aeed5cc27db37",
+      "questionRevision": "planning-e5e6-20261006-c001a14be542",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc22",
+      "bDecision": "revise",
+      "bPrompt": "'$\\square$에 $5$를 더하면 $\\triangle$'인 대응 관계에서 $\\triangle$의 값만 알고 있습니다. $\\square$의 값을 어떻게 구하는지 설명하고, $\\triangle$가 $12$일 때 $\\square$의 값을 구해 보세요.",
+      "bAnswer": "더한 $5$를 다시 빼면 된다. 곧 $\\triangle$에서 $5$를 빼면 $\\square$이다. $\\triangle$가 $12$이면 $\\square$는 $12 - 5 = 7$이다.",
+      "bGoal": "규칙을 반대로 써서 짝의 다른 쪽 값을 구한다.",
+      "bReason": "'기준이 되는 양'이라는 말을 빼고 실제 규칙을 주었다. xc11이 곱셈·나눗셈이라 여기서는 덧셈·뺄셈으로 값을 구하게 했다.",
+      "studentLabel": "규칙을 반대로 써서 값 구하기",
+      "cDecision": "revise",
+      "cAfter": "'$\\square$에 $5$를 더하면 $\\triangle$'인 대응 관계에서 $\\triangle$가 $12$이면 $\\square$는 $12$에서 $5$를 {뺀} 값인 {$7$}이다.",
+      "cReason": "빈칸 '기준이 되는 양'은 초5가 떠올리기 어려운 말이다. 반대로 계산하는 연산과 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'뺀', '빼서 얻은'은 같은 답.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\triangle$에서 $5$를 빼면 $\\square$이다",
+            "더한 $5$를 다시 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12-5=7$이므로 $\\square$는 $7$이다",
+            "$7$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "뺀",
+            "빼서 얻은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 649,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc22",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "규칙을 거꾸로 적용하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "다른 양의 값을 알면 규칙을 거꾸로 적용해 {기준이 되는 양}의 값을 구한다.",
+        "studentC": "다른 양의 값을 알면 규칙을 거꾸로 적용해 □의 값을 구한다.",
+        "answers": [
+          "기준이 되는 양"
+        ]
+      },
+      "sourceFingerprint": "610fc35a11beb1780835b0a73dbe212b2e907351f66c300993a19adb457e37c4",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "뺀",
+        "$7$"
+      ],
+      "cStudentAfter": "'$\\square$에 $5$를 더하면 $\\triangle$'인 대응 관계에서 $\\triangle$가 $12$이면 $\\square$는 $12$에서 $5$를 □ 값인 □이다.",
+      "cMarkedSentence": "'$\\square$에 $5$를 더하면 $\\triangle$'인 대응 관계에서 $\\triangle$가 $12$이면 $\\square$는 $12$에서 $5$를 {뺀} 값인 {$7$}이다.",
+      "cStudentSentence": "'$\\square$에 $5$를 더하면 $\\triangle$'인 대응 관계에서 $\\triangle$가 $12$이면 $\\square$는 $12$에서 $5$를 □ 값인 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "뺀",
+          "equivalents": [
+            "빼서 얻은"
+          ]
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "'$\\square$에 $5$를 더하면 $\\triangle$'인 대응 관계에서 $\\triangle$의 값만 알고 있습니다. $\\square$의 값을 어떻게 구하는지 설명하고, $\\triangle$가 $12$일 때 $\\square$의 값을 구해 보세요.",
+        "answer": "더한 $5$를 다시 빼면 된다. 곧 $\\triangle$에서 $5$를 빼면 $\\square$이다. $\\triangle$가 $12$이면 $\\square$는 $12 - 5 = 7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\triangle$에서 $5$를 빼면 $\\square$이다",
+              "더한 $5$를 다시 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12-5=7$이므로 $\\square$는 $7$이다",
+              "$7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "'$\\square$에 $5$를 더하면 $\\triangle$'인 대응 관계에서 $\\triangle$가 $12$이면 $\\square$는 $12$에서 $5$를 {뺀} 값인 {$7$}이다.",
+        "acceptedAnswers": [
+          [
+            "뺀",
+            "빼서 얻은"
+          ],
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0b95a1204012259501e893b8ef9a6f90bb2848a561973e1170a4caec1aa9db0f",
+      "questionRevision": "planning-e5e6-20261006-0b95a1204012",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc23",
+      "bDecision": "revise",
+      "bPrompt": "$1$시간은 $60$분입니다. 같은 길이의 시간을 '시간'으로 나타낸 수와 '분'으로 나타낸 수 사이의 규칙을 말하고, 그런 규칙이 되는 까닭을 설명해 보세요. $3$시간과 $7$시간은 각각 몇 분인지도 구하세요.",
+      "bAnswer": "시간으로 나타낸 수에 $60$을 곱하면 분으로 나타낸 수이다(분으로 나타낸 수를 $60$으로 나누면 시간으로 나타낸 수). $1$시간마다 $60$분씩이기 때문이다. $3$시간은 $180$분, $7$시간은 $420$분이다.",
+      "bGoal": "단위를 바꾸는 일도 '1마다 같은 수씩'인 곱셈 규칙임을 안다.",
+      "bReason": "원 예시의 물음을 살렸다. 까닭과 계산을 붙여 xc6의 '하나마다 같은 수씩'과 같은 구조임을 스스로 보게 했다.",
+      "studentLabel": "시간과 분 사이의 규칙",
+      "cDecision": "revise",
+      "cAfter": "$1$시간은 $60$분이므로, 같은 길이의 시간을 분으로 나타낸 수는 시간으로 나타낸 수에 {$60$}을 곱한 값이다. $3$시간은 {$180$}분이다.",
+      "cReason": "'단위를 바꾸는 두 양'은 무엇을 가리키는지 알기 어렵다. 빈칸 '곱셈'도 방향에 따라 '나눗셈'이 된다. 시간과 분으로 구체화했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "시간으로 나타낸 수에 $60$을 곱하면 분으로 나타낸 수이다",
+            "분으로 나타낸 수를 $60$으로 나누면 시간으로 나타낸 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$시간마다 $60$분씩이기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$시간은 $180$분이다",
+            "$180$분"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$시간은 $420$분이다",
+            "$420$분"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$180$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 650,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc23",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "단위를 바꾸는 두 양",
+        "kind": "방법",
+        "level": "상",
+        "definition": "단위를 바꾸는 두 양도 {곱셈} 규칙으로 대응한다.",
+        "example": {
+          "prompt": "$1$시간이 $60$분일 때 시간으로 잰 수와 분으로 잰 수 사이의 규칙은?",
+          "answer": "시간 수에 $60$을 곱하면 분 수이다"
+        },
+        "studentC": "단위를 바꾸는 두 양도 □ 규칙으로 대응한다.",
+        "answers": [
+          "곱셈"
+        ]
+      },
+      "sourceFingerprint": "2cb2ea257355203a58bdfa2f67cbf52d141390fd61bc5fc63a062e18da8bdaec",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$60$",
+        "$180$"
+      ],
+      "cStudentAfter": "$1$시간은 $60$분이므로, 같은 길이의 시간을 분으로 나타낸 수는 시간으로 나타낸 수에 □을 곱한 값이다. $3$시간은 □분이다.",
+      "cMarkedSentence": "$1$시간은 $60$분이므로, 같은 길이의 시간을 분으로 나타낸 수는 시간으로 나타낸 수에 {$60$}을 곱한 값이다. $3$시간은 {$180$}분이다.",
+      "cStudentSentence": "$1$시간은 $60$분이므로, 같은 길이의 시간을 분으로 나타낸 수는 시간으로 나타낸 수에 □을 곱한 값이다. $3$시간은 □분이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$60$",
+          "equivalents": []
+        },
+        {
+          "key": "$180$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$시간은 $60$분입니다. 같은 길이의 시간을 '시간'으로 나타낸 수와 '분'으로 나타낸 수 사이의 규칙을 말하고, 그런 규칙이 되는 까닭을 설명해 보세요. $3$시간과 $7$시간은 각각 몇 분인지도 구하세요.",
+        "answer": "시간으로 나타낸 수에 $60$을 곱하면 분으로 나타낸 수이다(분으로 나타낸 수를 $60$으로 나누면 시간으로 나타낸 수). $1$시간마다 $60$분씩이기 때문이다. $3$시간은 $180$분, $7$시간은 $420$분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "시간으로 나타낸 수에 $60$을 곱하면 분으로 나타낸 수이다",
+              "분으로 나타낸 수를 $60$으로 나누면 시간으로 나타낸 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$시간마다 $60$분씩이기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$시간은 $180$분이다",
+              "$180$분"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$시간은 $420$분이다",
+              "$420$분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$시간은 $60$분이므로, 같은 길이의 시간을 분으로 나타낸 수는 시간으로 나타낸 수에 {$60$}을 곱한 값이다. $3$시간은 {$180$}분이다.",
+        "acceptedAnswers": [
+          [
+            "$60$"
+          ],
+          [
+            "$180$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e693e6118a89405e08fdd42e3ce412e006c6a5dd8e364f759eab96eafd71244a",
+      "questionRevision": "planning-e5e6-20261006-e693e6118a89",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc24",
+      "bDecision": "revise",
+      "bPrompt": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같습니다. 서울 시각으로 그 도시의 시각을 구하는 규칙을 말하고, 서울이 오후 $8$시일 때와 밤 $12$시 $30$분(자정에서 $30$분 지난 때)일 때 그 도시의 시각을 구해 보세요.",
+      "bAnswer": "서울 시각에서 $1$시간을 빼면 그 도시의 시각이다. 서울이 오후 $8$시이면 그 도시는 오후 $7$시이다. 서울이 밤 $12$시 $30$분이면 그 도시는 전날 밤 $11$시 $30$분으로, 날짜가 하루 앞이다.",
+      "bGoal": "시각 차가 일정한 두 도시의 시각을 뺄셈 규칙으로 구하고 날짜가 바뀌는 경우를 안다.",
+      "bReason": "원 예시의 규칙 말하기를 살렸다. 원문의 '날짜가 달라질 수도 있다'는 자정 무렵의 한 경우로 확인하게 했다.",
+      "studentLabel": "두 도시의 시각",
+      "cDecision": "revise",
+      "cAfter": "서울이 오후 $3$시일 때 어느 도시는 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 {$7$}시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 {뺀} 시각이다.",
+      "cReason": "빈칸 '그 차만큼 더하거나 뺀'은 길고 줄표 뒤 덧붙임까지 있어 읽기 어렵다. 한 도시 예로 줄였다. 날짜가 바뀌는 경우는 B에서 다루고 C는 같은 날 안으로 한정했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'뺀'만 정답이다. '늦은'은 뜻이 두 가지로 읽혀 쓰지 않았다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서울 시각에서 $1$시간을 빼면 그 도시의 시각이다",
+            "서울보다 $1$시간 이른 시각이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "오후 $7$시"
+          ]
+        },
+        {
+          "anyOf": [
+            "전날 밤 $11$시 $30$분",
+            "날짜가 하루 앞선 밤 $11$시 $30$분"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "뺀",
+            "빼서 얻은"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 651,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc24",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "두 도시의 시각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 도시의 시각 차가 일정하면 한 도시의 시각은 다른 도시의 시각에 {그 차만큼 더하거나 뺀} 값이다 — 날짜가 달라질 수도 있다.",
+        "example": {
+          "prompt": "서울이 오후 $3$시일 때 오후 $2$시인 도시의 시각을 서울 시각으로 나타내는 말은?",
+          "answer": "서울 시각에서 $1$시간을 뺀다"
+        },
+        "studentC": "두 도시의 시각 차가 일정하면 한 도시의 시각은 다른 도시의 시각에 □ 값이다 — 날짜가 달라질 수도 있다.",
+        "answers": [
+          "그 차만큼 더하거나 뺀"
+        ]
+      },
+      "sourceFingerprint": "cb8b06ba0ee69abf22e02be6fed591eb9f4ba7e74e94c817d336aa98f34fe115",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$7$",
+        "뺀"
+      ],
+      "cStudentAfter": "서울이 오후 $3$시일 때 어느 도시는 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 □시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 □ 시각이다.",
+      "cMarkedSentence": "서울이 오후 $3$시일 때 어느 도시는 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 {$7$}시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 {뺀} 시각이다.",
+      "cStudentSentence": "서울이 오후 $3$시일 때 어느 도시는 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 □시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 □ 시각이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "뺀",
+          "equivalents": [
+            "빼서 얻은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서울이 오후 $3$시일 때 어느 도시는 같은 날 오후 $2$시이고, 두 도시의 시각 차는 언제나 같습니다. 서울 시각으로 그 도시의 시각을 구하는 규칙을 말하고, 서울이 오후 $8$시일 때와 밤 $12$시 $30$분(자정에서 $30$분 지난 때)일 때 그 도시의 시각을 구해 보세요.",
+        "answer": "서울 시각에서 $1$시간을 빼면 그 도시의 시각이다. 서울이 오후 $8$시이면 그 도시는 오후 $7$시이다. 서울이 밤 $12$시 $30$분이면 그 도시는 전날 밤 $11$시 $30$분으로, 날짜가 하루 앞이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서울 시각에서 $1$시간을 빼면 그 도시의 시각이다",
+              "서울보다 $1$시간 이른 시각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "오후 $7$시"
+            ]
+          },
+          {
+            "anyOf": [
+              "전날 밤 $11$시 $30$분",
+              "날짜가 하루 앞선 밤 $11$시 $30$분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서울이 오후 $3$시일 때 어느 도시는 오후 $2$시이고, 두 도시의 시각 차는 언제나 같다. 서울이 오후 $8$시이면 그 도시는 오후 {$7$}시이다. 이 도시의 시각은 서울 시각에서 $1$시간을 {뺀} 시각이다.",
+        "acceptedAnswers": [
+          [
+            "$7$"
+          ],
+          [
+            "뺀",
+            "빼서 얻은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "88e9c27e5da75926b736b8d5b7261babb28c0d1f907689c9f2c2933af3e9771a",
+      "questionRevision": "planning-e5e6-20261006-88e9c27e5da7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "첫 짝이 같아도 규칙이 다를 수 있다는 내용은 xc20의 '한 짝에 맞는 규칙이 둘'과 같은 생각이다.",
+      "bReason": "첫 짝이 같아도 규칙이 다를 수 있다는 생각은 xc20의 '한 짝에 맞는 규칙이 여럿'과 같다.",
+      "cDecision": "revise",
+      "cAfter": "가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 첫 짝은 같지만 가의 규칙은 '$\\square$에 $2$를 {더한다}'이고 나의 규칙은 '$\\square$에 $2$를 {곱한다}'이다.",
+      "cReason": "빈칸 '같은 수에 대응하는 다음 값'은 외울 수 없는 구절이다. 두 표의 규칙을 직접 가려내는 문장으로 바꿔 B 대신 C에서 연습하게 했다.",
+      "exclusionReason": "B만 제외한다. 대체: e5-1-3-1-xc20.",
+      "exampleNeeded": false,
+      "synonymNotes": "'더한다/더하면 △', '곱한다/곱하면 △' 모두 인정.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더한다",
+            "더하면"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한다",
+            "곱하면"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 652,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc25",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "첫 짝이 같은 두 대응표",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 표의 첫 짝이 같아도 {같은 수에 대응하는 다음 값}이 다르면 규칙이 다르다.",
+        "example": {
+          "prompt": "가: $2\\to4$, $3\\to5$ / 나: $2\\to4$, $3\\to6$의 규칙이 다른 까닭은?",
+          "answer": "$3$에 대응하는 값이 달라서"
+        },
+        "studentC": "두 표의 첫 짝이 같아도 □이 다르면 규칙이 다르다.",
+        "answers": [
+          "같은 수에 대응하는 다음 값"
+        ]
+      },
+      "sourceFingerprint": "054ff5f269e18cb890bd72bc6e530d6d124e798914a3efc69d975e5acb2add6c",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "더한다",
+        "곱한다"
+      ],
+      "cStudentAfter": "가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 첫 짝은 같지만 가의 규칙은 '$\\square$에 $2$를 □'이고 나의 규칙은 '$\\square$에 $2$를 □'이다.",
+      "cMarkedSentence": "가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 첫 짝은 같지만 가의 규칙은 '$\\square$에 $2$를 {더한다}'이고 나의 규칙은 '$\\square$에 $2$를 {곱한다}'이다.",
+      "cStudentSentence": "가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 첫 짝은 같지만 가의 규칙은 '$\\square$에 $2$를 □'이고 나의 규칙은 '$\\square$에 $2$를 □'이다.",
+      "cSlotAnswers": [
+        {
+          "key": "더한다",
+          "equivalents": [
+            "더하면"
+          ]
+        },
+        {
+          "key": "곱한다",
+          "equivalents": [
+            "곱하면"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $5$이고, 나 표는 $\\square$가 $2$, $3$일 때 $\\triangle$가 $4$, $6$이다. 첫 짝은 같지만 가의 규칙은 '$\\square$에 $2$를 {더한다}'이고 나의 규칙은 '$\\square$에 $2$를 {곱한다}'이다.",
+        "acceptedAnswers": [
+          [
+            "더한다",
+            "더하면"
+          ],
+          [
+            "곱한다",
+            "곱하면"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체: e5-1-3-1-xc20."
+      },
+      "proposalFingerprint": "a4ca4f35b749d9b5fe346208ba1c6eaf7e838d5ac7f64649dfecd49507819877",
+      "questionRevision": "planning-e5e6-20261006-a4ca4f35b749",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc26",
+      "bDecision": "revise",
+      "bPrompt": "의자 수 $1$, $2$, $3$에 다리 수 $4$, $8$, $12$가 짝지어진 표가 있습니다. 표에 없는 의자 $25$개의 다리 수를 표를 끝까지 이어 쓰지 않고 구하는 방법을 설명하고 답을 구하세요. 이 방법을 쓰려면 어떤 조건이 필요한지도 말해 보세요.",
+      "bAnswer": "표에서 찾은 규칙 '의자 수에 $4$를 곱하면 다리 수'를 $25$에 적용한다. $25 \\times 4 = 100$이므로 $100$개이다. $25$개의 의자도 모두 다리가 $4$개씩이어서 같은 규칙이 계속 성립해야 한다.",
+      "bGoal": "찾은 규칙을 표 밖의 값에 적용하고, 규칙이 계속 성립한다는 조건을 안다.",
+      "bReason": "예시가 없던 행이다. 표와 큰 값을 주고 원문 조건 '같은 관계가 성립하면'을 학생이 말하게 했다.",
+      "studentLabel": "표에 없는 값 구하기",
+      "cDecision": "revise",
+      "cAfter": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이고 이 규칙이 계속 이어진다. $\\square$가 $25$일 때의 $\\triangle$는 표에 없어도 $25$에 {$4$}를 곱해 {$100$}으로 구할 수 있다.",
+      "cReason": "빈칸 '같은 관계가 성립하면'은 조건을 통째로 외우게 한다. 조건은 문장에 남기고 실제 적용을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "표에서 찾은 규칙 '의자 수에 $4$를 곱하면 다리 수'를 $25$에 적용한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25\\times4=100$이므로 $100$개이다",
+            "$100$개",
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25$개의 의자도 같은 규칙이 계속 성립해야 한다",
+            "의자마다 다리가 $4$개씩이어야 한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 653,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc26",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "표에 없는 큰 값 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "표에 없는 값에도 {같은 관계가 성립하면} 찾은 규칙을 적용해 구할 수 있다.",
+        "studentC": "표에 없는 값에도 □ 찾은 규칙을 적용해 구할 수 있다.",
+        "answers": [
+          "같은 관계가 성립하면"
+        ]
+      },
+      "sourceFingerprint": "7e0e6c3bdc929980e3e3dfd21ff117853ed4d5de358f0c119849266d564ffe07",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$100$"
+      ],
+      "cStudentAfter": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이고 이 규칙이 계속 이어진다. $\\square$가 $25$일 때의 $\\triangle$는 표에 없어도 $25$에 □를 곱해 □으로 구할 수 있다.",
+      "cMarkedSentence": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이고 이 규칙이 계속 이어진다. $\\square$가 $25$일 때의 $\\triangle$는 표에 없어도 $25$에 {$4$}를 곱해 {$100$}으로 구할 수 있다.",
+      "cStudentSentence": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이고 이 규칙이 계속 이어진다. $\\square$가 $25$일 때의 $\\triangle$는 표에 없어도 $25$에 □를 곱해 □으로 구할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$100$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "의자 수 $1$, $2$, $3$에 다리 수 $4$, $8$, $12$가 짝지어진 표가 있습니다. 표에 없는 의자 $25$개의 다리 수를 표를 끝까지 이어 쓰지 않고 구하는 방법을 설명하고 답을 구하세요. 이 방법을 쓰려면 어떤 조건이 필요한지도 말해 보세요.",
+        "answer": "표에서 찾은 규칙 '의자 수에 $4$를 곱하면 다리 수'를 $25$에 적용한다. $25 \\times 4 = 100$이므로 $100$개이다. $25$개의 의자도 모두 다리가 $4$개씩이어서 같은 규칙이 계속 성립해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "표에서 찾은 규칙 '의자 수에 $4$를 곱하면 다리 수'를 $25$에 적용한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25\\times4=100$이므로 $100$개이다",
+              "$100$개",
+              "$100$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25$개의 의자도 같은 규칙이 계속 성립해야 한다",
+              "의자마다 다리가 $4$개씩이어야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 $4$, $8$, $12$이고 이 규칙이 계속 이어진다. $\\square$가 $25$일 때의 $\\triangle$는 표에 없어도 $25$에 {$4$}를 곱해 {$100$}으로 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "58a478cc5169d604e2316a88cc0e4c5cc1e94e18a9f19009bc0aae7878007255",
+      "questionRevision": "planning-e5e6-20261006-58a478cc5169",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-1-xc27",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "어느 양으로 어느 양을 구하는지 밝히는 일은 xc10에서 다룬다.",
+      "bReason": "'먼저 정해지는 양', '규칙의 방향'은 편집자식 표현이고 어느 양으로 어느 양을 구하는지는 xc10과 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '규칙의 방향'은 교과서에 없는 말이어서 문장만 보고 떠올릴 수 없고, 뜻도 xc10과 같다.",
+      "exclusionReason": "추상적인 풀이 요령이며 중복이다. 대체: e5-1-3-1-xc10, e5-1-3-1-xc11.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-009-rubric.json",
+      "sourceIndex": 654,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-1-xc27",
+        "section": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
+        "term": "먼저 정해지는 양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "‘공책 수에 따라 값이 정해진다’처럼 먼저 정해지는 양을 알면 {규칙의 방향}을 바로 잡을 수 있다.",
+        "studentC": "‘공책 수에 따라 값이 정해진다’처럼 먼저 정해지는 양을 알면 □을 바로 잡을 수 있다.",
+        "answers": [
+          "규칙의 방향"
+        ]
+      },
+      "sourceFingerprint": "2230a1ec7111f9ee6a43c84a723cdda2c124e24e089322a8a419f7642c329b44",
+      "draftEvidence": "evidence/section-009-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "추상적인 풀이 요령이며 중복이다. 대체: e5-1-3-1-xc10, e5-1-3-1-xc11.",
+        "cloze": "추상적인 풀이 요령이며 중복이다. 대체: e5-1-3-1-xc10, e5-1-3-1-xc11."
+      },
+      "proposalFingerprint": "8f31d8ee427bf9a26d985c488f173efb92c1af70b34dd73216950a88effb3f27",
+      "questionRevision": "planning-e5e6-20261006-8f31d8ee427b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-2-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "식을 쓰기 전에 각 기호가 나타내는 양을 정해야 함을 안다.",
+      "bReason": "단순 행동 지침이며 기호를 정하는 일은 c1, 뜻이 바뀌면 틀린다는 점은 xc11에서 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "의자 한 개의 다리는 $4$개이다. 의자 수와 다리 수 사이의 대응 관계를 $\\bigcirc\\times4=\\triangle$로 나타냈다면 $\\bigcirc$는 {의자 수}, $\\triangle$는 {다리 수}를 나타낸다.",
+      "cReason": "빈칸 '어떤 양'은 내용 없는 구절이라, 4배 관계를 따져 각 기호가 나타내는 양을 직접 판단하게 했다.",
+      "exclusionReason": "c1·xc11과 중복",
+      "exampleNeeded": false,
+      "synonymNotes": "'의자의 수', '의자 개수', '다리의 수' 등 같은 양을 가리키는 표현 허용.",
+      "learningRole": "definition",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "의자 수",
+            "의자의 수",
+            "의자 개수"
+          ]
+        },
+        {
+          "anyOf": [
+            "다리 수",
+            "다리의 수",
+            "다리 개수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "sourceIndex": 655,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-2-xc1",
+        "section": "초5::1-3 대응 관계::1-3-2 대응 관계를 식으로 나타내기",
+        "term": "기호가 나타내는 양 밝히기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "식을 쓰기 전에 어느 기호가 {어떤 양}을 나타내는지 먼저 밝힌다.",
+        "example": {
+          "prompt": "의자 수를 $\\square$, 다리 수를 $\\triangle$라 할 때 $\\triangle$가 나타내는 것은?",
+          "answer": "다리 수"
+        },
+        "studentC": "식을 쓰기 전에 어느 기호가 □을 나타내는지 먼저 밝힌다.",
+        "answers": [
+          "어떤 양"
+        ]
+      },
+      "sourceFingerprint": "fb6883b3b90611ad0aebbbbd86d72f4e744b38df69825188d797cd07ec1288e7",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "cProposedAnswers": [
+        "의자 수",
+        "다리 수"
+      ],
+      "cStudentAfter": "의자 한 개의 다리는 $4$개이다. 의자 수와 다리 수 사이의 대응 관계를 $\\bigcirc\\times4=\\triangle$로 나타냈다면 $\\bigcirc$는 □, $\\triangle$는 □를 나타낸다.",
+      "cMarkedSentence": "의자 한 개의 다리는 $4$개이다. 의자 수와 다리 수 사이의 대응 관계를 $\\bigcirc\\times4=\\triangle$로 나타냈다면 $\\bigcirc$는 {의자 수}, $\\triangle$는 {다리 수}를 나타낸다.",
+      "cStudentSentence": "의자 한 개의 다리는 $4$개이다. 의자 수와 다리 수 사이의 대응 관계를 $\\bigcirc\\times4=\\triangle$로 나타냈다면 $\\bigcirc$는 □, $\\triangle$는 □를 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "의자 수",
+          "equivalents": [
+            "의자의 수",
+            "의자 개수"
+          ]
+        },
+        {
+          "key": "다리 수",
+          "equivalents": [
+            "다리의 수",
+            "다리 개수"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "의자 한 개의 다리는 $4$개이다. 의자 수와 다리 수 사이의 대응 관계를 $\\bigcirc\\times4=\\triangle$로 나타냈다면 $\\bigcirc$는 {의자 수}, $\\triangle$는 {다리 수}를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "의자 수",
+            "의자의 수",
+            "의자 개수"
+          ],
+          [
+            "다리 수",
+            "다리의 수",
+            "다리 개수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c1·xc11과 중복"
+      },
+      "proposalFingerprint": "c3562848b055682cefb050e3172289d9a9bc3b47a12c6ed8b0bb6600e140d340",
+      "questionRevision": "planning-e5e6-20261006-c3562848b055",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-2-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "몇 개씩 있는 관계를 곱셈식으로 나타낸다.",
+      "bReason": "곱셈 관계를 식으로 세우는 것은 c1의 세발자전거 예와 xc27에서 이미 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "한 봉지에 사탕이 $6$개씩 들어 있다. 봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$라 할 때 두 양 사이의 대응 관계를 식으로 나타내면 $\\bigcirc$ {$\\times$} {$6$} $=\\triangle$이다.",
+      "cReason": "식 전체 꼴 '(한 양)×(곱하는 수)=(다른 양)'을 통째로 쓰게 하는 빈칸은 길고 외우기식이라, 실제 상황에서 연산과 수만 채우게 했다.",
+      "exclusionReason": "c1·xc27과 목표 중복",
+      "exampleNeeded": false,
+      "synonymNotes": "연산 빈칸은 '×', '곱하기' 허용.",
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\times$",
+            "곱하기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "sourceIndex": 656,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-2-xc2",
+        "section": "초5::1-3 대응 관계::1-3-2 대응 관계를 식으로 나타내기",
+        "term": "곱셈 규칙을 식으로 쓰기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 양에 일정한 수를 곱해 다른 양이 되면 {(한 양)$\\times$(곱하는 수)$=$(다른 양)}의 꼴로 식을 쓴다.",
+        "example": {
+          "prompt": "한 봉지에 사탕이 $6$개씩 들어 있다. 봉지 수 $\\square$와 사탕 수 $\\triangle$의 식은?",
+          "answer": "$\\square\\times6=\\triangle$"
+        },
+        "studentC": "한 양에 일정한 수를 곱해 다른 양이 되면 □의 꼴로 식을 쓴다.",
+        "answers": [
+          "(한 양)$\\times$(곱하는 수)$=$(다른 양)"
+        ]
+      },
+      "sourceFingerprint": "526b65c181e8cf8d9091524311bb5ff3304612602cee1bb3d79e7e5f1636f620",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "cProposedAnswers": [
+        "$\\times$",
+        "$6$"
+      ],
+      "cStudentAfter": "한 봉지에 사탕이 $6$개씩 들어 있다. 봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$라 할 때 두 양 사이의 대응 관계를 식으로 나타내면 $\\bigcirc$ □ □ $=\\triangle$이다.",
+      "cMarkedSentence": "한 봉지에 사탕이 $6$개씩 들어 있다. 봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$라 할 때 두 양 사이의 대응 관계를 식으로 나타내면 $\\bigcirc$ {$\\times$} {$6$} $=\\triangle$이다.",
+      "cStudentSentence": "한 봉지에 사탕이 $6$개씩 들어 있다. 봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$라 할 때 두 양 사이의 대응 관계를 식으로 나타내면 $\\bigcirc$ □ □ $=\\triangle$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\times$",
+          "equivalents": [
+            "곱하기"
+          ]
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 봉지에 사탕이 $6$개씩 들어 있다. 봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$라 할 때 두 양 사이의 대응 관계를 식으로 나타내면 $\\bigcirc$ {$\\times$} {$6$} $=\\triangle$이다.",
+        "acceptedAnswers": [
+          [
+            "$\\times$",
+            "곱하기"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c1·xc27과 목표 중복"
+      },
+      "proposalFingerprint": "25e9deb6fc39948b6c75eb53937a78452280efa930e91c0d298ac45a995e8174",
+      "questionRevision": "planning-e5e6-20261006-25e9deb6fc39",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-2-xc3",
+      "bDecision": "revise",
+      "bPrompt": "한 양이 다른 양보다 언제나 같은 수만큼 큰 대응 관계는 어떤 계산을 사용한 식으로 나타내는지 설명하시오. 또 형이 동생보다 언제나 $3$살 많을 때 동생 나이 $\\square$와 형 나이 $\\triangle$ 사이의 대응 관계를 식으로 나타내시오.",
+      "bAnswer": "작은 양에 두 양의 차를 더하면 큰 양이 되므로 덧셈식으로 나타낸다(큰 양에서 차를 빼는 뺄셈식도 된다). $\\square+3=\\triangle$ (또는 $\\triangle-3=\\square$).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 양에 두 양의 차를 더하면 큰 양이 된다",
+            "큰 양에서 두 양의 차를 빼면 작은 양이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square+3=\\triangle$",
+            "$\\triangle-3=\\square$"
+          ]
+        }
+      ],
+      "bGoal": "차가 일정한 두 양의 관계를 덧셈(뺄셈)식으로 나타낸다.",
+      "bReason": "제목만으로는 조건이 없어, 차가 일정한 관계라는 조건과 나이 예를 주고 식의 방향을 판단하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "형은 동생보다 언제나 $3$살 많다. 동생 나이를 $\\bigcirc$, 형 나이를 $\\triangle$라 하면 $\\bigcirc$ {$+$} {$3$} $=\\triangle$이다.",
+      "cReason": "'(작은 양)+(차)=(큰 양)' 전체를 쓰게 하는 긴 빈칸 대신, 어느 쪽에 더해야 하는지 판단하는 연산과 수 빈칸으로 줄였다.",
+      "exampleNeeded": false,
+      "synonymNotes": "연산 빈칸은 '+', '더하기' 허용.",
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$+$",
+            "더하기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "sourceIndex": 657,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-2-xc3",
+        "section": "초5::1-3 대응 관계::1-3-2 대응 관계를 식으로 나타내기",
+        "term": "덧셈 규칙을 식으로 쓰기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 양이 다른 양보다 언제나 같은 수만큼 크면 {(작은 양)$+$(차)$=$(큰 양)}의 꼴로 식을 쓴다.",
+        "example": {
+          "prompt": "형 나이 $\\triangle$가 동생 나이 $\\square$보다 언제나 $3$ 많을 때의 식은?",
+          "answer": "$\\square+3=\\triangle$"
+        },
+        "studentC": "한 양이 다른 양보다 언제나 같은 수만큼 크면 □의 꼴로 식을 쓴다.",
+        "answers": [
+          "(작은 양)$+$(차)$=$(큰 양)"
+        ]
+      },
+      "sourceFingerprint": "33c13188fb99440b7834e167b928ba8da7eb29f6dfae5e4fc4508c4945eea52b",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "cProposedAnswers": [
+        "$+$",
+        "$3$"
+      ],
+      "cStudentAfter": "형은 동생보다 언제나 $3$살 많다. 동생 나이를 $\\bigcirc$, 형 나이를 $\\triangle$라 하면 $\\bigcirc$ □ □ $=\\triangle$이다.",
+      "cMarkedSentence": "형은 동생보다 언제나 $3$살 많다. 동생 나이를 $\\bigcirc$, 형 나이를 $\\triangle$라 하면 $\\bigcirc$ {$+$} {$3$} $=\\triangle$이다.",
+      "cStudentSentence": "형은 동생보다 언제나 $3$살 많다. 동생 나이를 $\\bigcirc$, 형 나이를 $\\triangle$라 하면 $\\bigcirc$ □ □ $=\\triangle$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$+$",
+          "equivalents": [
+            "더하기"
+          ]
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 양이 다른 양보다 언제나 같은 수만큼 큰 대응 관계는 어떤 계산을 사용한 식으로 나타내는지 설명하시오. 또 형이 동생보다 언제나 $3$살 많을 때 동생 나이 $\\square$와 형 나이 $\\triangle$ 사이의 대응 관계를 식으로 나타내시오.",
+        "answer": "작은 양에 두 양의 차를 더하면 큰 양이 되므로 덧셈식으로 나타낸다(큰 양에서 차를 빼는 뺄셈식도 된다). $\\square+3=\\triangle$ (또는 $\\triangle-3=\\square$).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "작은 양에 두 양의 차를 더하면 큰 양이 된다",
+              "큰 양에서 두 양의 차를 빼면 작은 양이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square+3=\\triangle$",
+              "$\\triangle-3=\\square$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "형은 동생보다 언제나 $3$살 많다. 동생 나이를 $\\bigcirc$, 형 나이를 $\\triangle$라 하면 $\\bigcirc$ {$+$} {$3$} $=\\triangle$이다.",
+        "acceptedAnswers": [
+          [
+            "$+$",
+            "더하기"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "581e367770a508c7be15bf23e4215e8fd1eb86ad8370edddf1a01f22e6f0dffe",
+      "questionRevision": "planning-e5e6-20261006-581e367770a5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-2-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "기호에 수를 넣는 것이 그 양이 그 수일 때를 알아보는 것임을 안다.",
+      "bReason": "기호에 수를 넣어 다른 양을 구하는 내용은 c2와 xc12에서 이미 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "$\\bigcirc\\times6=\\triangle$에서 $\\bigcirc$는 봉지 수, $\\triangle$는 사탕 수이다. $\\bigcirc$에 $3$을 넣으면 봉지가 {$3$}개일 때 사탕이 {$18$}개임을 알 수 있다.",
+      "cReason": "'양의 값을 정해'는 맥락 없이 채울 수 없는 구절이라, 수를 넣는 것이 어떤 경우를 뜻하는지 실제 식과 수로 답하게 했다.",
+      "exclusionReason": "c2·xc12와 목표 중복",
+      "exampleNeeded": false,
+      "coreAfter": "대응 관계를 나타낸 식의 한 기호에 수를 넣으면, 그 기호가 나타내는 양의 {값이 정해진다}. 그 값을 사용해 다른 양의 값도 구할 수 있다.",
+      "coreReason": "'양의 값을 정해'가 '양수'로 읽힐 수 있고 무엇을 하는지 초5에게 불분명하다.",
+      "learningRole": "definition",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "양의 값을 정해라는 불분명한 원문 구절을 값이 정해진다는 일반 대입 의미로 풀었다. 양수로 오독하지 않도록 양과 값의 문장 관계를 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 658,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-2-xc6",
+        "section": "초5::1-3 대응 관계::1-3-2 대응 관계를 식으로 나타내기",
+        "term": "대응식에 수 넣기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대응식의 한 기호에 수를 넣는 것은 그 기호가 나타내는 {양의 값을 정해} 두 양의 관계를 살피는 것이다.",
+        "example": {
+          "prompt": "$\\square\\times6=\\triangle$에서 $\\square$에 $3$을 넣는다는 것은 무슨 뜻인가?",
+          "answer": "$\\square$의 양이 $3$일 때를 본다"
+        },
+        "studentC": "대응식의 한 기호에 수를 넣는 것은 그 기호가 나타내는 □ 두 양의 관계를 살피는 것이다.",
+        "answers": [
+          "양의 값을 정해"
+        ]
+      },
+      "sourceFingerprint": "7fc0fed9e5cb8d1c5d7ecf0cf26b50e3a3cda38b3d31e9c039f6717fb9253639",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$18$"
+      ],
+      "cStudentAfter": "$\\bigcirc\\times6=\\triangle$에서 $\\bigcirc$는 봉지 수, $\\triangle$는 사탕 수이다. $\\bigcirc$에 $3$을 넣으면 봉지가 □개일 때 사탕이 □개임을 알 수 있다.",
+      "cMarkedSentence": "$\\bigcirc\\times6=\\triangle$에서 $\\bigcirc$는 봉지 수, $\\triangle$는 사탕 수이다. $\\bigcirc$에 $3$을 넣으면 봉지가 {$3$}개일 때 사탕이 {$18$}개임을 알 수 있다.",
+      "cStudentSentence": "$\\bigcirc\\times6=\\triangle$에서 $\\bigcirc$는 봉지 수, $\\triangle$는 사탕 수이다. $\\bigcirc$에 $3$을 넣으면 봉지가 □개일 때 사탕이 □개임을 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\bigcirc\\times6=\\triangle$에서 $\\bigcirc$는 봉지 수, $\\triangle$는 사탕 수이다. $\\bigcirc$에 $3$을 넣으면 봉지가 {$3$}개일 때 사탕이 {$18$}개임을 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c2·xc12와 목표 중복"
+      },
+      "proposalFingerprint": "72aec9b0d418d9537bead3d9af78d012876e2b6765f5ed18aefdcc6d3e43f3e6",
+      "questionRevision": "planning-e5e6-20261006-72aec9b0d418",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-2-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응 관계를 나타낸 식이 기호와 등호로 규칙을 쓴 것임을 안다.",
+      "bReason": "식의 뜻을 말하는 정의로 c1의 답과 사실상 같다.",
+      "cDecision": "revise",
+      "cAfter": "두 양 사이의 대응 관계를 $\\bigcirc\\times3=\\triangle$처럼 식으로 나타낼 때에는 두 양을 나타내는 기호와, 양쪽이 같음을 나타내는 {등호}를 쓴다.",
+      "cReason": "원문은 주어가 없어 학생 화면에서 무엇을 설명하는 문장인지 알 수 없으므로, 대상과 등호의 역할을 문장에 넣었다.",
+      "exclusionReason": "c1과 정의 반복",
+      "exampleNeeded": false,
+      "synonymNotes": "'등호', '=', '같다 기호' 허용.",
+      "learningRole": "definition",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "등호",
+            "$=$",
+            "같다 기호"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "sourceIndex": 659,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-2-xc7",
+        "section": "초5::1-3 대응 관계::1-3-2 대응 관계를 식으로 나타내기",
+        "term": "대응 관계를 나타낸 식",
+        "kind": "정의",
+        "level": "하",
+        "definition": "두 양을 짝짓는 규칙을 기호와 {등호}를 써서 하나의 식으로 쓴 것이다.",
+        "studentC": "두 양을 짝짓는 규칙을 기호와 □를 써서 하나의 식으로 쓴 것이다.",
+        "answers": [
+          "등호"
+        ]
+      },
+      "sourceFingerprint": "57c70db88bf0b750950e2374a2248eab591782a06fdba89dd009ab3b6e469ae1",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "cProposedAnswers": [
+        "등호"
+      ],
+      "cStudentAfter": "두 양 사이의 대응 관계를 $\\bigcirc\\times3=\\triangle$처럼 식으로 나타낼 때에는 두 양을 나타내는 기호와, 양쪽이 같음을 나타내는 □를 쓴다.",
+      "cMarkedSentence": "두 양 사이의 대응 관계를 $\\bigcirc\\times3=\\triangle$처럼 식으로 나타낼 때에는 두 양을 나타내는 기호와, 양쪽이 같음을 나타내는 {등호}를 쓴다.",
+      "cStudentSentence": "두 양 사이의 대응 관계를 $\\bigcirc\\times3=\\triangle$처럼 식으로 나타낼 때에는 두 양을 나타내는 기호와, 양쪽이 같음을 나타내는 □를 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "등호",
+          "equivalents": [
+            "$=$",
+            "같다 기호"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 양 사이의 대응 관계를 $\\bigcirc\\times3=\\triangle$처럼 식으로 나타낼 때에는 두 양을 나타내는 기호와, 양쪽이 같음을 나타내는 {등호}를 쓴다.",
+        "acceptedAnswers": [
+          [
+            "등호",
+            "$=$",
+            "같다 기호"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c1과 정의 반복"
+      },
+      "proposalFingerprint": "4cafcfd88fe2fec80a4082add556a2d9f74f9c4a54e7a2f2c543b834d323fc92",
+      "questionRevision": "planning-e5e6-20261006-4cafcfd88fe2",
+      "requiresIndependentReview": true
+    }
+  ]
+}

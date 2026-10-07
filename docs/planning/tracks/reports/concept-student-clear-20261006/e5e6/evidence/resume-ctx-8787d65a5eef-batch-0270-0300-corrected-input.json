@@ -1,0 +1,831 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-5-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "띠그래프와 원그래프는 항목의 수 자체가 아니라 무엇을 보여 주는 그래프인지 쓰시오.",
+      "bAnswer": "각 항목이 전체에서 차지하는 비율(백분율)을 보여 준다.",
+      "bGoal": "띠·원그래프가 전체에 대한 비율을 보여 주는 그래프임을 안다.",
+      "bReason": "'비율그래프'라는 편집용 이름 대신 두 그래프의 공통 목적을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체에서 차지하는 비율",
+            "전체에 대한 비율",
+            "각 항목의 백분율"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cReason": "각 항목이 전체에서 차지하는 몫과 비율은 이 문장의 같은 부분 크기다. 뜻이 같은 자연스러운 설명을 입력 대안으로 함께 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "전체에서 차지하는 몫",
+            "전체에서 차지하는 비율",
+            "전체에 대한 비율"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0270-0300.json",
+      "codexFinalAmendedFromFingerprint": "37cc55741ce638b7af7f779e865e562496e6c02ce2901cab4a8403087cbf6a80",
+      "sourceIndex": 271,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-3-c2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-3 원그래프",
+        "level": "중",
+        "kind": "정의",
+        "term": "비율그래프",
+        "definition": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+        "studentC": "항목의 수 자체보다 □을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+        "answers": [
+          "전체에서 차지하는 몫"
+        ]
+      },
+      "sourceFingerprint": "3c6698c4405f512f0018c6689c8d608cd519177c89a190a95d4c294e2d4878a5",
+      "draftEvidence": "evidence/section-077-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cFrozenStudentSentence": "항목의 수 자체보다 □을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cProposedAnswers": [
+        "전체에서 차지하는 몫"
+      ],
+      "cStudentAfter": "항목의 수 자체보다 □을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cMarkedSentence": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cStudentSentence": "항목의 수 자체보다 □을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+      "cSlotAnswers": [
+        {
+          "key": "전체에서 차지하는 몫",
+          "equivalents": [
+            "전체에서 차지하는 비율",
+            "전체에 대한 비율"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "띠그래프와 원그래프는 항목의 수 자체가 아니라 무엇을 보여 주는 그래프인지 쓰시오.",
+        "answer": "각 항목이 전체에서 차지하는 비율(백분율)을 보여 준다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체에서 차지하는 비율",
+              "전체에 대한 비율",
+              "각 항목의 백분율"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "항목의 수 자체보다 {전체에서 차지하는 몫}을 보여 주는 그래프이며, 띠그래프와 원그래프가 이에 속한다.",
+        "acceptedAnswers": [
+          [
+            "전체에서 차지하는 몫",
+            "전체에서 차지하는 비율",
+            "전체에 대한 비율"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aa2c40e52939abd8d82586206f2746443bd3c1b661d1881ca8fb64801d3dc73f",
+      "questionRevision": "planning-e5e6-20261006-aa2c40e52939",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "원그래프에서 나눈 조각마다 어떤 두 가지를 적어야 하나요? 그렇게 적으면 무엇을 알 수 있나요?",
+      "bAnswer": "항목 이름과 백분율을 적는다. 각 조각이 무엇을 나타내는지와 얼마나 차지하는지를 함께 알 수 있다.",
+      "bGoal": "원그래프 조각에 항목 이름과 백분율을 함께 적는 까닭을 안다.",
+      "bReason": "무엇을 적는지뿐 아니라 적어서 무엇을 아는지도 질문에서 요청한다. 항목과 부분크기를 함께 읽는 목적을 해당 요청 의미로 추가한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항목 이름",
+            "항목의 이름",
+            "무엇인지 나타내는 이름"
+          ]
+        },
+        {
+          "anyOf": [
+            "백분율",
+            "비율",
+            "퍼센트"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 조각이 어떤 항목이고 전체의 얼마를 차지하는지 알 수 있다",
+            "조각의 뜻과 전체에서 차지하는 크기를 알 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cReason": "두 빈칸이 이름과 백분율로 짧고 학생이 알 수 있어 원문을 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "백분율은 비율이나 퍼센트로 말해도 된다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0270-0300.json",
+      "codexFinalAmendedFromFingerprint": "76540cc81eac52b0d86017cc2b7432dea9b210f7ed4871d45f7473488f530e47",
+      "sourceIndex": 275,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-4-c3",
+        "section": "초6::1-5 여러 가지 그래프::1-5-4 원그래프로 나타내기",
+        "level": "상",
+        "kind": "방법",
+        "term": "원그래프의 자료 표시",
+        "definition": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+        "studentC": "나눈 조각에는 □과 □을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+        "answers": [
+          "항목 이름",
+          "백분율"
+        ]
+      },
+      "sourceFingerprint": "765a9d8c20f5ab28450a077ec32e442d0e5d2ad300de5364e6b971721b7d3e39",
+      "draftEvidence": "evidence/section-078-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cFrozenStudentSentence": "나눈 조각에는 □과 □을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cProposedAnswers": [
+        "항목 이름",
+        "백분율"
+      ],
+      "cStudentAfter": "나눈 조각에는 □과 □을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "항목 이름"
+          ]
+        },
+        {
+          "anyOf": [
+            "백분율"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cStudentSentence": "나눈 조각에는 □과 □을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "항목 이름",
+          "equivalents": []
+        },
+        {
+          "key": "백분율",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원그래프에서 나눈 조각마다 어떤 두 가지를 적어야 하나요? 그렇게 적으면 무엇을 알 수 있나요?",
+        "answer": "항목 이름과 백분율을 적는다. 각 조각이 무엇을 나타내는지와 얼마나 차지하는지를 함께 알 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항목 이름",
+              "항목의 이름",
+              "무엇인지 나타내는 이름"
+            ]
+          },
+          {
+            "anyOf": [
+              "백분율",
+              "비율",
+              "퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 조각이 어떤 항목이고 전체의 얼마를 차지하는지 알 수 있다",
+              "조각의 뜻과 전체에서 차지하는 크기를 알 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나눈 조각에는 {항목 이름}과 {백분율}을 적어 크기와 뜻을 함께 읽을 수 있게 한다.",
+        "acceptedAnswers": [
+          [
+            "항목 이름"
+          ],
+          [
+            "백분율"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a0d64d6fa9ba2cbd3d35a55b55b16f8f5d28c59f8fbba9e1735b5e357c8eec92",
+      "questionRevision": "planning-e5e6-20261006-a0d64d6fa9ba",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-5-c1",
+      "bDecision": "keep",
+      "bPrompt": "막대그래프와 띠그래프는 각각 어떤 내용을 비교할 때 알맞은가?",
+      "bAnswer": "막대그래프는 항목별 수량의 크기를 비교할 때, 띠그래프는 전체에서 각 항목이 차지하는 비율을 비교할 때 알맞다.",
+      "bGoal": "두 그래프의 쓰임 차이를 구분한다.",
+      "bReason": "수량 비교와 비율 비교라는 핵심 구분을 한 질문으로 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "막대그래프는 항목별 수량의 크기를 비교할 때",
+            "막대그래프는 각 항목의 수나 양을 견줄 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "띠그래프는 전체에서 각 항목이 차지하는 비율을 비교할 때",
+            "띠그래프는 전체에 대한 백분율을 볼 때"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+      "cReason": "막대그래프의 항목수량과 띠그래프의 전체에 대한 비율을 구별하면서 각 뜻의 자연스러운 대안을 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "항목별 수의 크기",
+            "항목별 수량",
+            "각 항목의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 안의 비율",
+            "전체에 대한 비율",
+            "각 항목이 전체에서 차지하는 비율"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0270-0300.json",
+      "codexFinalAmendedFromFingerprint": "7da968c56b94b7737f97c448e9c0cae94cf3edb2400cf4f9a07d752ee8d0e25a",
+      "sourceIndex": 276,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-5-5-c1",
+        "section": "초6::1-5 여러 가지 그래프::1-5-5 여러 가지 그래프 비교하기",
+        "level": "하",
+        "kind": "방법",
+        "term": "막대그래프와 띠그래프 비교",
+        "definition": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+        "studentC": "□는 막대그래프, □은 띠그래프로 비교하기 좋다.",
+        "answers": [
+          "항목별 수의 크기",
+          "전체 안의 비율"
+        ]
+      },
+      "sourceFingerprint": "263a40bb904fee5ac5dc200fcb236d0237ed47d177a4a05e7915e0f1bc349c3e",
+      "draftEvidence": "evidence/section-079-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+      "cFrozenStudentSentence": "□는 막대그래프, □은 띠그래프로 비교하기 좋다.",
+      "cProposedAnswers": [
+        "항목별 수의 크기",
+        "전체 안의 비율"
+      ],
+      "cStudentAfter": "□는 막대그래프, □은 띠그래프로 비교하기 좋다.",
+      "cMarkedSentence": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+      "cStudentSentence": "□는 막대그래프, □은 띠그래프로 비교하기 좋다.",
+      "cSlotAnswers": [
+        {
+          "key": "항목별 수의 크기",
+          "equivalents": [
+            "항목별 수량",
+            "각 항목의 수"
+          ]
+        },
+        {
+          "key": "전체 안의 비율",
+          "equivalents": [
+            "전체에 대한 비율",
+            "각 항목이 전체에서 차지하는 비율"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "막대그래프와 띠그래프는 각각 어떤 내용을 비교할 때 알맞은가?",
+        "answer": "막대그래프는 항목별 수량의 크기를 비교할 때, 띠그래프는 전체에서 각 항목이 차지하는 비율을 비교할 때 알맞다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "막대그래프는 항목별 수량의 크기를 비교할 때",
+              "막대그래프는 각 항목의 수나 양을 견줄 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "띠그래프는 전체에서 각 항목이 차지하는 비율을 비교할 때",
+              "띠그래프는 전체에 대한 백분율을 볼 때"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "{항목별 수의 크기}는 막대그래프, {전체 안의 비율}은 띠그래프로 비교하기 좋다.",
+        "acceptedAnswers": [
+          [
+            "항목별 수의 크기",
+            "항목별 수량",
+            "각 항목의 수"
+          ],
+          [
+            "전체 안의 비율",
+            "전체에 대한 비율",
+            "각 항목이 전체에서 차지하는 비율"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5faf275f3b8ce38d4e611f6d0ac4928e818a23b0657dd4ec9a25d399d88dc38f",
+      "questionRevision": "planning-e5e6-20261006-5faf275f3b8c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 겉넓이를 여섯 면을 하나씩 모두 구하지 않고 더 짧게 구하는 방법을 쓰고, 그 방법이 가능한 이유를 설명하세요.",
+      "bAnswer": "마주 보는 두 면의 넓이가 같으므로, 한 꼭짓점에서 만나는 세 면의 넓이를 더해 $2$배 한다.",
+      "bGoal": "마주 보는 면의 넓이가 같음을 이용한 지름길 방법과 근거를 설명한다.",
+      "bReason": "서로 다른 세 면이면 마주 보는 두 면을 같이 고를 수도 있어 겉넓이 공식이 틀린다. 한 꼭짓점에서 만나는 세 면이나 각 마주보는 쌍의 한 면씩으로 올바른 선택을 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마주 보는 면의 넓이가 서로 같다",
+            "넓이가 같은 면이 짝을 이룬다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 꼭짓점에서 만나는 세 면의 넓이의 합에 $2$를 곱한다",
+            "마주 보는 세 쌍의 면에서 한 면씩 골라 넓이를 더하고 $2$배 한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 한 꼭짓점에서 만나는 세 면의 넓이가 $6\\,\\mathrm{cm}^2$, $8\\,\\mathrm{cm}^2$, $12\\,\\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times$ {$2$} $=$ {$52$}$\\,\\mathrm{cm}^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두",
+            "$2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$52$"
+          ]
+        }
+      ],
+      "cReason": "C 한 문장에 직육면체라는 대상을 명시하여 세 면을 두 배하는 방법이 다른 입체에도 적용되는 것으로 읽히지 않게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0270-0300.json",
+      "codexFinalAmendedFromFingerprint": "1de28571d7be8cc828070076aec4d033472fe90cfcd9eecbde41123af9b53e66",
+      "sourceIndex": 280,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-1-c2",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-1 직육면체의 겉넓이 구하는 방법",
+        "level": "중",
+        "kind": "방법",
+        "term": "직육면체의 겉넓이",
+        "definition": "직육면체에는 같은 넓이의 면이 짝을 이루므로 한 꼭짓점에서 만나는 세 면의 넓이를 더해 {두 배} 한다.",
+        "studentC": "직육면체에는 같은 넓이의 면이 짝을 이루므로 한 꼭짓점에서 만나는 세 면의 넓이를 더해 □ 한다.",
+        "answers": [
+          "두 배"
+        ]
+      },
+      "sourceFingerprint": "5a730759663a640dc311e5b8fdd473e0e4a2b32ab4d2648930177c3c802a8bb3",
+      "draftEvidence": "evidence/section-080-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$52$"
+      ],
+      "cStudentAfter": "직육면체에서 한 꼭짓점에서 만나는 세 면의 넓이가 $6\\,\\mathrm{cm}^2$, $8\\,\\mathrm{cm}^2$, $12\\,\\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times$ □ $=$ □$\\,\\mathrm{cm}^2$이다.",
+      "cMarkedSentence": "직육면체에서 한 꼭짓점에서 만나는 세 면의 넓이가 $6\\,\\mathrm{cm}^2$, $8\\,\\mathrm{cm}^2$, $12\\,\\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times$ {$2$} $=$ {$52$}$\\,\\mathrm{cm}^2$이다.",
+      "cStudentSentence": "직육면체에서 한 꼭짓점에서 만나는 세 면의 넓이가 $6\\,\\mathrm{cm}^2$, $8\\,\\mathrm{cm}^2$, $12\\,\\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times$ □ $=$ □$\\,\\mathrm{cm}^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두",
+            "$2$배"
+          ]
+        },
+        {
+          "key": "$52$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 겉넓이를 여섯 면을 하나씩 모두 구하지 않고 더 짧게 구하는 방법을 쓰고, 그 방법이 가능한 이유를 설명하세요.",
+        "answer": "마주 보는 두 면의 넓이가 같으므로, 한 꼭짓점에서 만나는 세 면의 넓이를 더해 $2$배 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 면의 넓이가 서로 같다",
+              "넓이가 같은 면이 짝을 이룬다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 꼭짓점에서 만나는 세 면의 넓이의 합에 $2$를 곱한다",
+              "마주 보는 세 쌍의 면에서 한 면씩 골라 넓이를 더하고 $2$배 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체에서 한 꼭짓점에서 만나는 세 면의 넓이가 $6\\,\\mathrm{cm}^2$, $8\\,\\mathrm{cm}^2$, $12\\,\\mathrm{cm}^2$이면 겉넓이는 $(6+8+12)\\times$ {$2$} $=$ {$52$}$\\,\\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두",
+            "$2$배"
+          ],
+          [
+            "$52$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "838a071dac6b0d8157b5384aaa694655475b65f497b48cf295caca58fd82b23b",
+      "questionRevision": "planning-e5e6-20261006-838a071dac6b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-2-c6",
+      "bDecision": "revise",
+      "bPrompt": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채운다. 층으로 나누어 쌓기나무를 세는 방법을 설명하고, 한 층의 개수와 층 수가 직육면체의 각각 어느 값에서 나오는지 말해 부피를 구하시오.",
+      "bAnswer": "한 층에 $5\\times3=15$개이고 층 수는 높이인 $4$층이다. 한 층의 개수는 밑면의 넓이를 나타내는 수이고 층 수는 높이를 나타내는 수이다. $15\\times4=60$이므로 부피는 $60\\,\\mathrm{cm}^3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 층에 $5\\times3=15$개이고 이는 밑면 넓이를 나타내는 수이다",
+            "밑면의 가로와 세로를 곱한 $15$개가 한 층이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이 $4\\,\\mathrm{cm}$이므로 $4$층이다",
+            "층 수 $4$는 높이를 나타내는 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면의 넓이와 높이를 곱하는 까닭을 쌓기나무 층으로 설명한다.",
+      "bReason": "질문은 한 층 개수와 층수가 어느 길이·넓이에서 나오는지를 요청한다.15개·4층 숫자만으로 그 관계설명을 대신하지 않게 각각 밑면넓이와높이를 연결한다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ {$15$}개씩 {$4$}층이므로 부피는 $15\\times4=$ {$60$}$\\,\\mathrm{cm}^3$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 암기 대신 실제 수로 층별 세기를 확인하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0270-0300.json",
+      "codexFinalAmendedFromFingerprint": "941788c91e6e74473b23aa5e6421ed507940a629eaf1978647d4c3525acbc4be",
+      "sourceIndex": 288,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-2-c6",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-2 직육면체의 부피 비교와 직육면체의 부피 구하는 방법",
+        "level": "상",
+        "kind": "성질",
+        "term": "부피 공식의 까닭",
+        "definition": "세 모서리를 센티미터로 잰 값이 자연수이면, $1\\,\\mathrm{cm}^3$ 쌓기나무의 {한 층 개수에 층수를 곱한 수}가 부피의 수이다. 한 층 개수는 밑면 넓이를 제곱센티미터로 잰 수이고, 층수는 높이를 센티미터로 잰 수이다.",
+        "studentC": "세 모서리를 센티미터로 잰 값이 자연수이면, $1\\,\\mathrm{cm}^3$ 쌓기나무의 □가 부피의 수이다. 한 층 개수는 밑면 넓이를 제곱센티미터로 잰 수이고, 층수는 높이를 센티미터로 잰 수이다.",
+        "answers": [
+          "한 층 개수에 층수를 곱한 수"
+        ]
+      },
+      "sourceFingerprint": "7c7bb15d82e087ecf8119897d387e210cf380d0f7b3d435a5a2294396b91844f",
+      "draftEvidence": "evidence/section-081-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$15$",
+        "$4$",
+        "$60$"
+      ],
+      "cStudentAfter": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ □개씩 □층이므로 부피는 $15\\times4=$ □$\\,\\mathrm{cm}^3$이다.",
+      "cMarkedSentence": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ {$15$}개씩 {$4$}층이므로 부피는 $15\\times4=$ {$60$}$\\,\\mathrm{cm}^3$이다.",
+      "cStudentSentence": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ □개씩 □층이므로 부피는 $15\\times4=$ □$\\,\\mathrm{cm}^3$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$60$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채운다. 층으로 나누어 쌓기나무를 세는 방법을 설명하고, 한 층의 개수와 층 수가 직육면체의 각각 어느 값에서 나오는지 말해 부피를 구하시오.",
+        "answer": "한 층에 $5\\times3=15$개이고 층 수는 높이인 $4$층이다. 한 층의 개수는 밑면의 넓이를 나타내는 수이고 층 수는 높이를 나타내는 수이다. $15\\times4=60$이므로 부피는 $60\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 층에 $5\\times3=15$개이고 이는 밑면 넓이를 나타내는 수이다",
+              "밑면의 가로와 세로를 곱한 $15$개가 한 층이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이 $4\\,\\mathrm{cm}$이므로 $4$층이다",
+              "층 수 $4$는 높이를 나타내는 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\,\\mathrm{cm}^3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ {$15$}개씩 {$4$}층이므로 부피는 $15\\times4=$ {$60$}$\\,\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "$60$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e293219b5ba02fc3b72735efcc570156cb97d22b2553d4c44851127ce784a213",
+      "questionRevision": "planning-e5e6-20261006-e293219b5ba0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-6-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "부피를 나타내는 단위 $1\\,\\mathrm{m}^3$는 어떤 도형 한 개의 부피를 기준으로 정한 것인지, 그 도형의 크기를 포함해 설명하시오.",
+      "bAnswer": "한 모서리의 길이가 $1\\,\\mathrm{m}$인 정육면체 한 개의 부피이다.",
+      "bGoal": "$1\\,\\mathrm{m}^3$가 어떤 정육면체의 부피인지 기준을 설명한다.",
+      "bReason": "모든 모서리 길이가 같음만으로는 정육면체가 아니고 정사면체도 해당된다. 도형종류 대안은 정육면체의 올바른 설명으로 고친다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정육면체",
+            "크기가 같은 정사각형 여섯 면으로 둘러싸인 도형"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 모서리가 $1\\,\\mathrm{m}$",
+            "한 모서리가 $100\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 {$1\\,\\mathrm{m}$}인 {정육면체} 한 개의 부피이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{m}$",
+            "$100\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육면체"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 도형과 길이를 한 덩어리로 가려 문장이 어색하므로 길이와 도형 이름으로 나눈다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0270-0300.json",
+      "codexFinalAmendedFromFingerprint": "d389b21caf97f4d8ebf3b4299ca9f82a05bc292bb1f404bec8930e851de24535",
+      "sourceIndex": 289,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-6-3-c1",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "level": "하",
+        "kind": "단위",
+        "term": "$1\\,\\mathrm{m}^3$",
+        "definition": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 {$1\\,\\mathrm{m}$인 정육면체} 한 개의 부피이다.",
+        "studentC": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 □ 한 개의 부피이다.",
+        "answers": [
+          "$1\\,\\mathrm{m}$인 정육면체"
+        ]
+      },
+      "sourceFingerprint": "907e5e3e91d17555519ec527d74cbd4a8a76fe28436af8586d188a1e5364e9bb",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1\\,\\mathrm{m}$",
+        "정육면체"
+      ],
+      "cStudentAfter": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 □인 □ 한 개의 부피이다.",
+      "cMarkedSentence": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 {$1\\,\\mathrm{m}$}인 {정육면체} 한 개의 부피이다.",
+      "cStudentSentence": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 □인 □ 한 개의 부피이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1\\,\\mathrm{m}$",
+          "equivalents": [
+            "$100\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "key": "정육면체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "부피를 나타내는 단위 $1\\,\\mathrm{m}^3$는 어떤 도형 한 개의 부피를 기준으로 정한 것인지, 그 도형의 크기를 포함해 설명하시오.",
+        "answer": "한 모서리의 길이가 $1\\,\\mathrm{m}$인 정육면체 한 개의 부피이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정육면체",
+              "크기가 같은 정사각형 여섯 면으로 둘러싸인 도형"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 모서리가 $1\\,\\mathrm{m}$",
+              "한 모서리가 $100\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\,\\mathrm{m}^3$는 한 모서리의 길이가 {$1\\,\\mathrm{m}$}인 {정육면체} 한 개의 부피이다.",
+        "acceptedAnswers": [
+          [
+            "$1\\,\\mathrm{m}$",
+            "$100\\,\\mathrm{cm}$"
+          ],
+          [
+            "정육면체"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e5c968839a8188678531e391314392e36afb99b8394d8ca00eb7bb333ad2621a",
+      "questionRevision": "planning-e5e6-20261006-e5c968839a81",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "자연수를 분모가 $1$인 분수로 나타내려면 분자에는 무엇을 쓰는지 설명하시오. 이 방법으로 $4$를 분수로 쓰시오.",
+      "bAnswer": "자연수를 분자로 쓰고 분모를 $1$로 쓴다. $4=\\frac{4}{1}$이다.",
+      "bGoal": "자연수를 분모가 $1$인 분수로 바꾸는 방법을 말한다.",
+      "bReason": "그냥 크기가 같은 분수라면4를8/2 등으로 나타내는 방법도 맞다. 원래 목표인 분모1표현을 조건으로 정하고 질문에 주어진 분모1을 다시 말하는 것을 필수채점하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수를 분자로 쓴다",
+            "자연수가 분자가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{1}$",
+            "$4=\\frac{4}{1}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cReason": "분모 $1$만 묻는 짧고 정확한 문장이라 그대로 쓴다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0270-0300.json",
+      "codexFinalAmendedFromFingerprint": "f97a7d743e828748a6263f6be0aca3a79aa564b87edfa410423932c647c2df37",
+      "sourceIndex": 298,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-3-c1",
+        "section": "초6::2-1 분수의 나눗셈::2-1-3 (자연수)÷(분수) 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "자연수를 분수로 고치기",
+        "definition": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+        "studentC": "자연수는 그 자연수를 분자로 쓰고 □을 분모로 쓰면 크기가 같은 분수가 된다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "4bfbc7d33ac2c6143d3b71b75add1921e33ccc8909106d2693ef9c19039dc34f",
+      "draftEvidence": "evidence/section-085-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cFrozenStudentSentence": "자연수는 그 자연수를 분자로 쓰고 □을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "자연수는 그 자연수를 분자로 쓰고 □을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cStudentSentence": "자연수는 그 자연수를 분자로 쓰고 □을 분모로 쓰면 크기가 같은 분수가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수를 분모가 $1$인 분수로 나타내려면 분자에는 무엇을 쓰는지 설명하시오. 이 방법으로 $4$를 분수로 쓰시오.",
+        "answer": "자연수를 분자로 쓰고 분모를 $1$로 쓴다. $4=\\frac{4}{1}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수를 분자로 쓴다",
+              "자연수가 분자가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{1}$",
+              "$4=\\frac{4}{1}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자연수는 그 자연수를 분자로 쓰고 {$1$}을 분모로 쓰면 크기가 같은 분수가 된다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c412e6f15b2ae7e18b3a6a0f9d52a91b59c7a209270b28b11e33989ff3aa538e",
+      "questionRevision": "planning-e5e6-20261006-c412e6f15b2a",
+      "requiresIndependentReview": true
+    }
+  ]
+}

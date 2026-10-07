@@ -1,0 +1,7 @@
+{
+  "name": "section-058",
+  "message": "CliCallError: claude 오류",
+  "detail": "dit\":null},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":529,\"result\":\"API Error: 529 Overloaded. This is a server-side issue, usually temporary — try again in a moment. If it persists, check https://status.claude.com.\",\"type\":\"result\",\"duration_ms\":83712,\"uuid\":\"cab98020-b7f6-400a-bd75-c7a1d4902ae6\",\"queued_turn_count\":0,\"result_index\":0}\n",
+  "at": "2026-10-06T12:44:53.652Z",
+  "inputPath": "evidence/section-058-input.md"
+}

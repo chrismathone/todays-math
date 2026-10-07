@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="270" viewBox="0 0 760 270">
+  <style>text { font-family: 'Malgun Gothic', sans-serif; font-size: 17px; fill: #182329; } .edge {stroke:#182329;stroke-width:2.5;fill:none} .cut {stroke:#182329;stroke-width:2;stroke-dasharray:6 4;fill:none}</style>
+  <rect width="760" height="270" fill="white"/>
+  <text x="125" y="35">옮기기 전</text><text x="510" y="35">옮긴 뒤</text>
+  <polygon points="40,210 232,210 304,90 112,90" fill="#e8edf1"/>
+  <polygon points="40,210 112,210 112,90" fill="#a9d4c3"/>
+  <polygon points="40,210 232,210 304,90 112,90" class="edge"/>
+  <path d="M112 90 V210" class="cut"/>
+  <path d="M112 199 H123 V210" class="edge"/>
+  <text x="120" y="155">5 cm</text><text x="112" y="239">8 cm</text>
+  <path d="M340 150 H395 M385 142 L395 150 L385 158" class="edge"/>
+  <rect x="470" y="90" width="192" height="120" fill="#e8edf1"/>
+  <polygon points="590,210 662,210 662,90" fill="#a9d4c3"/>
+  <rect x="470" y="90" width="192" height="120" class="edge"/>
+  <path d="M590 210 L662 90" class="cut"/>
+</svg>

@@ -1,0 +1,1141 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-5-4-xc7",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "차의 분수 부분을 약분해 간단히 쓴다.",
+      "bReason": "기약분수 확인과 공약수로 나누는 원리는 약분 및 진분수 계산 문항에서 다룬다. 이 항목은 대분수의 차에 그 조건을 적용하는 C를 남긴다.",
+      "exclusionReason": "B로는 사소한 마무리 행동",
+      "cDecision": "revise",
+      "cAfter": "대분수의 차에서 분수 부분의 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분}하여 간단히 쓴다.",
+      "cReason": "약분이가능한조건을보여기약분수도항상다시약분한다는오해를없앤다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "d6e3b11ba219585154343e3a40ae067839885e2c69dfee53196d736855985f1d",
+      "sourceIndex": 912,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc7",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "대분수의 차를 간단히",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수의 차도 분수 부분을 {약분}하여 간단히 쓴다.",
+        "example": {
+          "prompt": "$4\\frac{7}{10}-2\\frac{1}{5}$을 계산하시오.",
+          "answer": "$2\\frac{1}{2}$"
+        },
+        "studentC": "대분수의 차도 분수 부분을 □하여 간단히 쓴다.",
+        "answers": [
+          "약분"
+        ]
+      },
+      "sourceFingerprint": "e4ce7bbe818633407764cb615ee8ee0e72ae87379de02be576c62ac83153ac85",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "약분"
+      ],
+      "cStudentAfter": "대분수의 차에서 분수 부분의 분모와 분자에 $1$보다 큰 공약수가 있으면 □하여 간단히 쓴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수의 차에서 분수 부분의 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분}하여 간단히 쓴다.",
+      "cStudentSentence": "대분수의 차에서 분수 부분의 분모와 분자에 $1$보다 큰 공약수가 있으면 □하여 간단히 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "약분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "대분수의 차에서 분수 부분의 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분}하여 간단히 쓴다.",
+        "acceptedAnswers": [
+          [
+            "약분"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B로는 사소한 마무리 행동"
+      },
+      "proposalFingerprint": "022732c1c0a7bb2bf67f0745986eef6c10c48e32a909fad5301e6d64021a4aca",
+      "questionRevision": "planning-e5e6-20261006-022732c1c0a7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분수 부분이 서로 같은 두 대분수에서 큰 수에서 작은 수를 빼면 차는 어떤 수가 되는지 분수 부분끼리의 차를 이용해 설명하고, $5\\frac{2}{7}-3\\frac{2}{7}$를 계산하시오.",
+      "bAnswer": "분수 부분끼리 빼면 $0$이 되어 자연수 부분의 차만 남으므로 차는 자연수이다. $5\\frac{2}{7}-3\\frac{2}{7}=2$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분끼리 빼면 $0$이다",
+            "분수 부분이 없어지고 자연수 부분의 차만 남는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분이 같으면 차가 자연수가 되는 까닭을 설명한다.",
+      "bReason": "성질만 외우지 않고 분수 부분의 차가 0이라는 근거를 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\frac{2}{7}-3\\frac{2}{7}$처럼 분수 부분이 같은 서로 다른 두 대분수에서 큰 수에서 작은 수를 빼면, 분수 부분의 차가 {$0$}이므로 전체 차는 {자연수}이다.",
+      "cReason": "문장 맨 앞 조건 구절을 빈칸으로 두면 답을 떠올리기 어려워 결과 쪽을 묻게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "b9d0f6fdcd2923e0991b34d8ba68ec7edff084195486e67a93a573a311c0b063",
+      "sourceIndex": 913,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc8",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "차가 자연수일 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "{분수 부분이 같은} 서로 다른 두 대분수의 차는 자연수이다.",
+        "example": {
+          "prompt": "$5\\frac{2}{7}-3\\frac{2}{7}$는?",
+          "answer": "$2$"
+        },
+        "studentC": "□ 서로 다른 두 대분수의 차는 자연수이다.",
+        "answers": [
+          "분수 부분이 같은"
+        ]
+      },
+      "sourceFingerprint": "8556ac1084af8d2becb4d3c36b4fd031d1cd7674c2f749cb6a5ffc7d9b57cb8e",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$0$",
+        "자연수"
+      ],
+      "cStudentAfter": "$5\\frac{2}{7}-3\\frac{2}{7}$처럼 분수 부분이 같은 서로 다른 두 대분수에서 큰 수에서 작은 수를 빼면, 분수 부분의 차가 □이므로 전체 차는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$5\\frac{2}{7}-3\\frac{2}{7}$처럼 분수 부분이 같은 서로 다른 두 대분수에서 큰 수에서 작은 수를 빼면, 분수 부분의 차가 {$0$}이므로 전체 차는 {자연수}이다.",
+      "cStudentSentence": "$5\\frac{2}{7}-3\\frac{2}{7}$처럼 분수 부분이 같은 서로 다른 두 대분수에서 큰 수에서 작은 수를 빼면, 분수 부분의 차가 □이므로 전체 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "자연수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수 부분이 서로 같은 두 대분수에서 큰 수에서 작은 수를 빼면 차는 어떤 수가 되는지 분수 부분끼리의 차를 이용해 설명하고, $5\\frac{2}{7}-3\\frac{2}{7}$를 계산하시오.",
+        "answer": "분수 부분끼리 빼면 $0$이 되어 자연수 부분의 차만 남으므로 차는 자연수이다. $5\\frac{2}{7}-3\\frac{2}{7}=2$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분끼리 빼면 $0$이다",
+              "분수 부분이 없어지고 자연수 부분의 차만 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5\\frac{2}{7}-3\\frac{2}{7}$처럼 분수 부분이 같은 서로 다른 두 대분수에서 큰 수에서 작은 수를 빼면, 분수 부분의 차가 {$0$}이므로 전체 차는 {자연수}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "711b2fc3dc14b21701edf4862c594924b88159ee5a0d98068a7da5bcca9d3475",
+      "questionRevision": "planning-e5e6-20261006-711b2fc3dc14",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 대분수를 뺄 때, 통분해 보니 분수 부분끼리 뺄 수 없었다. 처음부터 끝까지 어떤 차례로 계산하는지 설명하고 $5\\frac{1}{4}-2\\frac{2}{3}$를 계산하시오.",
+      "bAnswer": "먼저 통분하고 자연수 부분에서 $1$을 받아내린 뒤 자연수끼리, 분수끼리 뺀다. $5\\frac{1}{4}=5\\frac{3}{12}=4+\\frac{15}{12}$로 바꾸어 생각한다. 자연수 부분은 $4-2=2$, 분수 부분은 $\\frac{15}{12}-\\frac{8}{12}=\\frac{7}{12}$이므로 차는 $2\\frac{7}{12}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분을 먼저 한다",
+            "분모를 먼저 같게 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수부분에서$1$을받아내린다",
+            "$5\\frac{3}{12}=4+\\frac{15}{12}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수부분끼리, 분수부분끼리각각뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "통분, 받아내림, 부분끼리 빼기의 전체 차례를 설명하고 적용한다.",
+      "bReason": "받아내림까지 포함한 전체 순서를 묻는 행은 이 행뿐이다.",
+      "cDecision": "revise",
+      "cAfter": "분모가 다른 대분수를 뺄 때는 먼저 분수 부분의 분모를 같게 하는 {통분}을 하고, 분수 부분끼리 뺄 수 없으면 자연수 부분에서 $1$을 {받아내린} 뒤 자연수 부분과 분수 부분을 각각 뺀다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분"
+          ]
+        },
+        {
+          "anyOf": [
+            "받아내린",
+            "받아내림한",
+            "빌려 온"
+          ]
+        }
+      ],
+      "cReason": "'통분' 한 칸만으로는 xc2와 겹치므로 차례의 두 단계를 모두 확인하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "0d1241b9d03aa5da67e74ea09d1b2f11c99df15bbdef776a57099da22d8781c8",
+      "sourceIndex": 915,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc10",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "대분수 뺄셈의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 다른 대분수를 뺄 때는 먼저 분수 부분의 분모를 같게 하는 {통분}을 하고, 필요하면 받아내린 뒤 자연수 부분과 분수 부분을 각각 뺀다.",
+        "studentC": "분모가 다른 대분수를 뺄 때는 먼저 분수 부분의 분모를 같게 하는 □을 하고, 필요하면 받아내린 뒤 자연수 부분과 분수 부분을 각각 뺀다.",
+        "answers": [
+          "통분"
+        ]
+      },
+      "sourceFingerprint": "a08c7a30115f5599a9c0f62c54a0dd64d19fab371181f6ff8135da7a1f4012ac",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "통분",
+        "받아내린"
+      ],
+      "cStudentAfter": "분모가 다른 대분수를 뺄 때는 먼저 분수 부분의 분모를 같게 하는 □을 하고, 분수 부분끼리 뺄 수 없으면 자연수 부분에서 $1$을 □ 뒤 자연수 부분과 분수 부분을 각각 뺀다.",
+      "cMarkedSentence": "분모가 다른 대분수를 뺄 때는 먼저 분수 부분의 분모를 같게 하는 {통분}을 하고, 분수 부분끼리 뺄 수 없으면 자연수 부분에서 $1$을 {받아내린} 뒤 자연수 부분과 분수 부분을 각각 뺀다.",
+      "cStudentSentence": "분모가 다른 대분수를 뺄 때는 먼저 분수 부분의 분모를 같게 하는 □을 하고, 분수 부분끼리 뺄 수 없으면 자연수 부분에서 $1$을 □ 뒤 자연수 부분과 분수 부분을 각각 뺀다.",
+      "cSlotAnswers": [
+        {
+          "key": "통분",
+          "equivalents": []
+        },
+        {
+          "key": "받아내린",
+          "equivalents": [
+            "받아내림한",
+            "빌려 온"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 대분수를 뺄 때, 통분해 보니 분수 부분끼리 뺄 수 없었다. 처음부터 끝까지 어떤 차례로 계산하는지 설명하고 $5\\frac{1}{4}-2\\frac{2}{3}$를 계산하시오.",
+        "answer": "먼저 통분하고 자연수 부분에서 $1$을 받아내린 뒤 자연수끼리, 분수끼리 뺀다. $5\\frac{1}{4}=5\\frac{3}{12}=4+\\frac{15}{12}$로 바꾸어 생각한다. 자연수 부분은 $4-2=2$, 분수 부분은 $\\frac{15}{12}-\\frac{8}{12}=\\frac{7}{12}$이므로 차는 $2\\frac{7}{12}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "통분을 먼저 한다",
+              "분모를 먼저 같게 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수부분에서$1$을받아내린다",
+              "$5\\frac{3}{12}=4+\\frac{15}{12}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수부분끼리, 분수부분끼리각각뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{7}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 다른 대분수를 뺄 때는 먼저 분수 부분의 분모를 같게 하는 {통분}을 하고, 분수 부분끼리 뺄 수 없으면 자연수 부분에서 $1$을 {받아내린} 뒤 자연수 부분과 분수 부분을 각각 뺀다.",
+        "acceptedAnswers": [
+          [
+            "통분"
+          ],
+          [
+            "받아내린",
+            "받아내림한",
+            "빌려 온"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c16821b29b0939c2c41cba08dc249e19e2bb78a0c1e80e799d326390fdc1e349",
+      "questionRevision": "planning-e5e6-20261006-c16821b29b09",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대분수에서 자연수 부분의 $1$을 받아내려 분수 부분에 합치면 자연수 부분과 분자는 각각 어떻게 달라지는지 설명하고, $4\\frac{2}{5}$를 그렇게 바꾸어 쓰시오.",
+      "bAnswer": "자연수 부분은 $1$ 작아지고 분자는 분모만큼 커진다. $4\\frac{2}{5}=3+\\frac{7}{5}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분은 $1$ 작아진다",
+            "자연수 부분이 $4$에서 $3$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 분모만큼 커진다",
+            "분자가 $5$ 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3+\\frac{7}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "받아내린 뒤 대분수의 꼴이 어떻게 바뀌는지 말하고 써 본다.",
+      "bReason": "까닭은 xc20에서 묻기로 하고 여기서는 달라지는 꼴에 집중했다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\frac{2}{5}$에서 $1$을 받아내리면 자연수 부분은 {$3$}이 되고, $1=\\frac{5}{5}$이므로 분자는 $2+5=${$7$}이 된다.",
+      "cReason": "'분모만큼 커진다'는 구절 대신 실제 수의 변화를 쓰게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "e36fd7c4d537071dfd07613b79fd6304905050adcebc1fa654fd66088cc7d8ed",
+      "sourceIndex": 917,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc12",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "받아내린 꼴",
+        "kind": "방법",
+        "level": "중",
+        "definition": "대분수에서 $1$을 받아내리면 자연수 부분은 $1$ 작아지고 분수 부분의 분자는 {분모만큼 커진다}.",
+        "example": {
+          "prompt": "$4\\frac{2}{5}$를 $3\\frac{7}{5}$로 바꿀 때 분자가 $5$ 커지는 까닭은?",
+          "answer": "$1$이 $\\frac{5}{5}$라서"
+        },
+        "studentC": "대분수에서 $1$을 받아내리면 자연수 부분은 $1$ 작아지고 분수 부분의 분자는 □.",
+        "answers": [
+          "분모만큼 커진다"
+        ]
+      },
+      "sourceFingerprint": "b53ad4f702c47bd5a5bb58dd1ecb4402c85db4ce3b635317ad0d0008592b3260",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$7$"
+      ],
+      "cStudentAfter": "$4\\frac{2}{5}$에서 $1$을 받아내리면 자연수 부분은 □이 되고, $1=\\frac{5}{5}$이므로 분자는 $2+5=$□이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$4\\frac{2}{5}$에서 $1$을 받아내리면 자연수 부분은 {$3$}이 되고, $1=\\frac{5}{5}$이므로 분자는 $2+5=${$7$}이 된다.",
+      "cStudentSentence": "$4\\frac{2}{5}$에서 $1$을 받아내리면 자연수 부분은 □이 되고, $1=\\frac{5}{5}$이므로 분자는 $2+5=$□이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수에서 자연수 부분의 $1$을 받아내려 분수 부분에 합치면 자연수 부분과 분자는 각각 어떻게 달라지는지 설명하고, $4\\frac{2}{5}$를 그렇게 바꾸어 쓰시오.",
+        "answer": "자연수 부분은 $1$ 작아지고 분자는 분모만큼 커진다. $4\\frac{2}{5}=3+\\frac{7}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분은 $1$ 작아진다",
+              "자연수 부분이 $4$에서 $3$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 분모만큼 커진다",
+              "분자가 $5$ 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3+\\frac{7}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4\\frac{2}{5}$에서 $1$을 받아내리면 자연수 부분은 {$3$}이 되고, $1=\\frac{5}{5}$이므로 분자는 $2+5=${$7$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9986c03e629427c206a0819065239e710921c38b70b91e5ac0865af37b061a77",
+      "questionRevision": "planning-e5e6-20261006-9986c03e6294",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc13",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 학생이 $5\\frac{1}{6}-2\\frac{5}{6}$를 $3\\frac{4}{6}$라고 계산했다. 분수 부분을 어떻게 잘못 뺐는지 설명하고 바르게 계산하시오.",
+      "bAnswer": "$\\frac{1}{6}-\\frac{5}{6}$를 해야 하는데 거꾸로 $\\frac{5}{6}-\\frac{1}{6}$를 계산했다. $5\\frac{1}{6}=4+\\frac{7}{6}$으로 받아내리면 자연수 부분의 차는 $2$, 분수 부분의 차는 $\\frac{2}{6}$이므로 $2\\frac{1}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분을 거꾸로 뺐다",
+            "$\\frac{5}{6}-\\frac{1}{6}$로 계산했다",
+            "빼는 수의 분수 부분에서 빼지는 수의 분수 부분을 뺐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{3}$",
+            "$2\\frac{2}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분을 거꾸로 뺀 오류를 찾아 받아내림으로 고친다.",
+      "bReason": "원문 예의 오답 상황을 그대로 쓰고 바른 답까지 구하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\frac{1}{6}-2\\frac{5}{6}$에서 자연수 부분의 $1$을 받아내리면 $5\\frac{1}{6}=4+${$\\frac{7}{6}$}이다. 자연수 부분과 분수 부분을 각각 빼면 차는 {$2\\frac{1}{3}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{7}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{3}$",
+            "$2\\frac{2}{6}$"
+          ]
+        }
+      ],
+      "cReason": "'큰 쪽에서 작은 쪽을 거꾸로 빼면'은 임의의 긴 구절이라 바른 계산 과정으로 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "b44f42b87a1503f2d3bc35267304cd2f3248b0c971bfeca26c3c03a313dca327",
+      "sourceIndex": 918,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc13",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "거꾸로 빼는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분수 부분에서 뺄 수 없다고 {큰 쪽에서 작은 쪽을 거꾸로 빼면} 다른 뺄셈이 되어 틀린다 — 자연수 부분에서 $1$을 받아내려야 한다.",
+        "example": {
+          "prompt": "$5\\frac{1}{6}-2\\frac{5}{6}$를 $3\\frac{4}{6}$라고 하면 틀리는 까닭은?",
+          "answer": "$\\frac{5}{6}-\\frac{1}{6}$로 거꾸로 빼서"
+        },
+        "studentC": "분수 부분에서 뺄 수 없다고 □ 다른 뺄셈이 되어 틀린다 — 자연수 부분에서 $1$을 받아내려야 한다.",
+        "answers": [
+          "큰 쪽에서 작은 쪽을 거꾸로 빼면"
+        ]
+      },
+      "sourceFingerprint": "7bb897f61d150e4f5f208c4099293bfa46a4ae9e94c2148edc40b11320869936",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{7}{6}$",
+        "$2\\frac{1}{3}$"
+      ],
+      "cStudentAfter": "$5\\frac{1}{6}-2\\frac{5}{6}$에서 자연수 부분의 $1$을 받아내리면 $5\\frac{1}{6}=4+$□이다. 자연수 부분과 분수 부분을 각각 빼면 차는 □이다.",
+      "cMarkedSentence": "$5\\frac{1}{6}-2\\frac{5}{6}$에서 자연수 부분의 $1$을 받아내리면 $5\\frac{1}{6}=4+${$\\frac{7}{6}$}이다. 자연수 부분과 분수 부분을 각각 빼면 차는 {$2\\frac{1}{3}$}이다.",
+      "cStudentSentence": "$5\\frac{1}{6}-2\\frac{5}{6}$에서 자연수 부분의 $1$을 받아내리면 $5\\frac{1}{6}=4+$□이다. 자연수 부분과 분수 부분을 각각 빼면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{7}{6}$",
+          "equivalents": []
+        },
+        {
+          "key": "$2\\frac{1}{3}$",
+          "equivalents": [
+            "$2\\frac{2}{6}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 학생이 $5\\frac{1}{6}-2\\frac{5}{6}$를 $3\\frac{4}{6}$라고 계산했다. 분수 부분을 어떻게 잘못 뺐는지 설명하고 바르게 계산하시오.",
+        "answer": "$\\frac{1}{6}-\\frac{5}{6}$를 해야 하는데 거꾸로 $\\frac{5}{6}-\\frac{1}{6}$를 계산했다. $5\\frac{1}{6}=4+\\frac{7}{6}$으로 받아내리면 자연수 부분의 차는 $2$, 분수 부분의 차는 $\\frac{2}{6}$이므로 $2\\frac{1}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분을 거꾸로 뺐다",
+              "$\\frac{5}{6}-\\frac{1}{6}$로 계산했다",
+              "빼는 수의 분수 부분에서 빼지는 수의 분수 부분을 뺐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{1}{3}$",
+              "$2\\frac{2}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5\\frac{1}{6}-2\\frac{5}{6}$에서 자연수 부분의 $1$을 받아내리면 $5\\frac{1}{6}=4+${$\\frac{7}{6}$}이다. 자연수 부분과 분수 부분을 각각 빼면 차는 {$2\\frac{1}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{7}{6}$"
+          ],
+          [
+            "$2\\frac{1}{3}$",
+            "$2\\frac{2}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "749b25337933006c962b87702a4460bbed9cd22679145d079341b501a9d9dead",
+      "questionRevision": "planning-e5e6-20261006-749b25337933",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 학생이 $5-2\\frac{1}{3}$을 $3\\frac{1}{3}$이라고 답했다. 이 답이 틀렸음을 $5-2=3$과 견주어 설명하고 바르게 계산하시오.",
+      "bAnswer": "$2$보다 큰 수를 뺐으므로 차는 $3$보다 작아야 하는데 $3\\frac{1}{3}$은 $3$보다 크다. 바르게 계산하면 $5-2-\\frac{1}{3}=3-\\frac{1}{3}=2\\frac{2}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$보다 큰 수를 빼므로 차는 $3$보다 작아야 한다",
+            "$\\frac{1}{3}$을 더 빼야 하는데 오히려 더했다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수에서 대분수를 뺀 차의 크기를 어림해 오답을 가려내고 고친다.",
+      "bReason": "원문 예의 '3보다 작아야 하는 까닭'을 실제 오답 판단으로 이었다.",
+      "cDecision": "revise",
+      "cAfter": "$5-2\\frac{1}{3}$은 $5$에서 $2$보다 큰 수를 빼는 것이므로 차는 $3$보다 {작다}. 바르게 계산하면 차는 {$2\\frac{2}{3}$}이다.",
+      "cReason": "'분수 부분을 빼지 않고 더한 것'은 긴 구절이라 크기 비교와 바른 값으로 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "f06a10016ef78c7043fe3669910e70c5ef5f0d1b38d31b1f2073360129c6c0da",
+      "sourceIndex": 923,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc18",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "자연수에서 대분수를 뺄 때의 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수에서 대분수를 뺄 때 자연수끼리만 빼고 분수 부분을 그대로 붙이면 {분수 부분을 빼지 않고 더한 것}이 되어 틀린다.",
+        "example": {
+          "prompt": "$5-2\\frac{1}{3}$이 $3$보다 작아야 하는 까닭은?",
+          "answer": "$2$보다 큰 수를 빼서"
+        },
+        "studentC": "자연수에서 대분수를 뺄 때 자연수끼리만 빼고 분수 부분을 그대로 붙이면 □이 되어 틀린다.",
+        "answers": [
+          "분수 부분을 빼지 않고 더한 것"
+        ]
+      },
+      "sourceFingerprint": "b1d3408e8f5fcd1316df360de40475c73418251c21e20a53260c0652678c1189",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작다",
+        "$2\\frac{2}{3}$"
+      ],
+      "cStudentAfter": "$5-2\\frac{1}{3}$은 $5$에서 $2$보다 큰 수를 빼는 것이므로 차는 $3$보다 □. 바르게 계산하면 차는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$5-2\\frac{1}{3}$은 $5$에서 $2$보다 큰 수를 빼는 것이므로 차는 $3$보다 {작다}. 바르게 계산하면 차는 {$2\\frac{2}{3}$}이다.",
+      "cStudentSentence": "$5-2\\frac{1}{3}$은 $5$에서 $2$보다 큰 수를 빼는 것이므로 차는 $3$보다 □. 바르게 계산하면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        },
+        {
+          "key": "$2\\frac{2}{3}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 학생이 $5-2\\frac{1}{3}$을 $3\\frac{1}{3}$이라고 답했다. 이 답이 틀렸음을 $5-2=3$과 견주어 설명하고 바르게 계산하시오.",
+        "answer": "$2$보다 큰 수를 뺐으므로 차는 $3$보다 작아야 하는데 $3\\frac{1}{3}$은 $3$보다 크다. 바르게 계산하면 $5-2-\\frac{1}{3}=3-\\frac{1}{3}=2\\frac{2}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$보다 큰 수를 빼므로 차는 $3$보다 작아야 한다",
+              "$\\frac{1}{3}$을 더 빼야 하는데 오히려 더했다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{2}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5-2\\frac{1}{3}$은 $5$에서 $2$보다 큰 수를 빼는 것이므로 차는 $3$보다 {작다}. 바르게 계산하면 차는 {$2\\frac{2}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ],
+          [
+            "$2\\frac{2}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "16a06dd1b98919254a32f8d49d7b5aa32072cd42adc8abf08fb6215b870fbb5e",
+      "questionRevision": "planning-e5e6-20261006-16a06dd1b989",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수의 뺄셈에서 분수 부분을 비교하면, 전체 차가 자연수 부분끼리의 차보다 큰지, 작은지, 같은지 알 수 있습니다. 분수 부분의 크기 관계에 따라 세 경우를 설명하고, $6\\frac{1}{4}-2\\frac{3}{4}$은 $4$보다 큰지 작은지 판단하세요.",
+      "bAnswer": "빼지는 수의 분수 부분이 더 크면 전체 차는 자연수 부분의 차보다 크고, 더 작으면 작고, 같으면 같다. $\\frac{1}{4}<\\frac{3}{4}$이므로 주어진 식의 차는 $4$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빼지는수의분수부분이더크면자연수부분차보다크고더작으면작으며같으면같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$보다 작다",
+            "$3\\frac{1}{2}$이라서 $4$보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분의 크기 비교로 차의 크기를 어림한다.",
+      "bReason": "원문에 예가 없어 판단 기준과 구체적 식을 함께 넣었다.",
+      "cDecision": "keep",
+      "cAfter": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 {작다}.",
+      "cReason": "비교 조건이 문장에 다 있고 '작다' 한 낱말로 답하는 분명한 비교 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "277341b953374bfa344e1720caaafd55970a6633e13357c5093a6f15daf9ab6c",
+      "sourceIndex": 924,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc19",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "차의 크기 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 {작다}.",
+        "studentC": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "84b471901f3cb161c27ff15eab29ae431f418ed89f78ce072f1d2d8df6069d8b",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 {작다}.",
+      "cFrozenStudentSentence": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 □.",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 {작다}.",
+      "cStudentSentence": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대분수의 뺄셈에서 분수 부분을 비교하면, 전체 차가 자연수 부분끼리의 차보다 큰지, 작은지, 같은지 알 수 있습니다. 분수 부분의 크기 관계에 따라 세 경우를 설명하고, $6\\frac{1}{4}-2\\frac{3}{4}$은 $4$보다 큰지 작은지 판단하세요.",
+        "answer": "빼지는 수의 분수 부분이 더 크면 전체 차는 자연수 부분의 차보다 크고, 더 작으면 작고, 같으면 같다. $\\frac{1}{4}<\\frac{3}{4}$이므로 주어진 식의 차는 $4$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "빼지는수의분수부분이더크면자연수부분차보다크고더작으면작으며같으면같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$보다 작다",
+              "$3\\frac{1}{2}$이라서 $4$보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ad7204f8bfeadada298e16d7301feaf307aa32b36295ec7f612e0ef602fd1335",
+      "questionRevision": "planning-e5e6-20261006-ad7204f8bfea",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$2\\frac{1}{4}$을 $1+\\frac{5}{4}$로 바꾸어 써도 수의 크기가 달라지지 않는 까닭을 $1$을 분수로 나타내어 설명하세요.",
+      "bAnswer": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}=1+\\frac{4}{4}+\\frac{1}{4}=1+\\frac{5}{4}$로 같은 수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1=\\frac{4}{4}$이다",
+            "자연수 $1$은 $\\frac{1}{4}$이 $4$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1+\\frac{4}{4}+\\frac{1}{4}$로 나타낼 수 있어 같은 수이다",
+            "$\\frac{4}{4}$와 $\\frac{1}{4}$을 합하면 $\\frac{5}{4}$이다"
+          ]
+        }
+      ],
+      "bGoal": "받아내려도 수의 크기가 그대로인 까닭을 설명한다.",
+      "bReason": "원문에 예가 없어 구체적인 대분수로 근거를 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}$과 $1+\\frac{5}{4}$는 크기가 {같다}. 그래서 받아내림을 해도 뺄셈의 차는 달라지지 않는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "'크기는 그대로' 구절 대신 구체적인 두 수의 크기 관계를 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "c22e6c6c726276c9d4471d062ba9a77af4cbec552cd3bd050e4fcb67d6c18141",
+      "sourceIndex": 925,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc20",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "받아내릴 수 있는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자연수 $1$을 떼어 분수로 바꾸어도 대분수의 {크기는 그대로}이므로 받아내림을 할 수 있다.",
+        "studentC": "자연수 $1$을 떼어 분수로 바꾸어도 대분수의 □이므로 받아내림을 할 수 있다.",
+        "answers": [
+          "크기는 그대로"
+        ]
+      },
+      "sourceFingerprint": "8b978e8dd84d0a6e38f2b710950d64c9a7853bedba95ad6be298ab9da3a31a72",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}$과 $1+\\frac{5}{4}$는 크기가 □. 그래서 받아내림을 해도 뺄셈의 차는 달라지지 않는다.",
+      "cMarkedSentence": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}$과 $1+\\frac{5}{4}$는 크기가 {같다}. 그래서 받아내림을 해도 뺄셈의 차는 달라지지 않는다.",
+      "cStudentSentence": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}$과 $1+\\frac{5}{4}$는 크기가 □. 그래서 받아내림을 해도 뺄셈의 차는 달라지지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2\\frac{1}{4}$을 $1+\\frac{5}{4}$로 바꾸어 써도 수의 크기가 달라지지 않는 까닭을 $1$을 분수로 나타내어 설명하세요.",
+        "answer": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}=1+\\frac{4}{4}+\\frac{1}{4}=1+\\frac{5}{4}$로 같은 수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1=\\frac{4}{4}$이다",
+              "자연수 $1$은 $\\frac{1}{4}$이 $4$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1+\\frac{4}{4}+\\frac{1}{4}$로 나타낼 수 있어 같은 수이다",
+              "$\\frac{4}{4}$와 $\\frac{1}{4}$을 합하면 $\\frac{5}{4}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}$과 $1+\\frac{5}{4}$는 크기가 {같다}. 그래서 받아내림을 해도 뺄셈의 차는 달라지지 않는다.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fe607f3537aca7a706a5dd1a1dd39f5b914b9d7d62565742c82bfddef89cb308",
+      "questionRevision": "planning-e5e6-20261006-fe607f3537ac",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "여러 수 가운데 두 수를 골라 뺄 때 차가 가장 크게 되려면 어떤 두 수를 골라야 하는지 설명하고, $2\\frac{1}{3}$, $4\\frac{1}{2}$, $1\\frac{5}{6}$ 중 두 수로 만들 수 있는 가장 큰 차를 구하시오.",
+      "bAnswer": "가장 큰 수에서 가장 작은 수를 뺀다. $4\\frac{1}{2}-1\\frac{5}{6}=\\frac{27}{6}-\\frac{11}{6}=\\frac{16}{6}=2\\frac{2}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 수에서 가장 작은 수를 뺀다",
+            "$4\\frac{1}{2}$에서 $1\\frac{5}{6}$를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{2}{3}$",
+            "$2\\frac{4}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "차를 가장 크게 하는 두 수를 고르고 받아내림 있는 뺄셈으로 구한다.",
+      "bReason": "원문 예는 값만 물어 고르는 기준도 함께 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "여러 수 중에서 두 수를 골라 차를 가장 크게 하려면 {가장 큰} 수에서 {가장 작은} 수를 뺀다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 큰",
+            "제일 큰"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은",
+            "제일 작은"
+          ]
+        }
+      ],
+      "cReason": "원문에는 '여러 수 중 두 수를 고른다'는 상황이 빠져 있어 보충했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "5d72fe68c1d36314c365dfb3d4943f9e8a361146312118e2da1bc8a85716cecc",
+      "sourceIndex": 926,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc23",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "차를 가장 크게 하는 두 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "차를 가장 크게 하려면 빼지는 수는 {가장 큰 수}, 빼는 수는 가장 작은 수로 고른다.",
+        "example": {
+          "prompt": "$2\\frac{1}{3}$, $4\\frac{1}{2}$, $1\\frac{5}{6}$ 중 두 수의 차가 가장 클 때 그 차는?",
+          "answer": "$2\\frac{2}{3}$"
+        },
+        "studentC": "차를 가장 크게 하려면 빼지는 수는 □, 빼는 수는 가장 작은 수로 고른다.",
+        "answers": [
+          "가장 큰 수"
+        ]
+      },
+      "sourceFingerprint": "7eef0407097cb914aa2c123ea93887580df7b1a19a300afdd66a71ddf4b9f6a1",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가장 큰",
+        "가장 작은"
+      ],
+      "cStudentAfter": "여러 수 중에서 두 수를 골라 차를 가장 크게 하려면 □ 수에서 □ 수를 뺀다.",
+      "cMarkedSentence": "여러 수 중에서 두 수를 골라 차를 가장 크게 하려면 {가장 큰} 수에서 {가장 작은} 수를 뺀다.",
+      "cStudentSentence": "여러 수 중에서 두 수를 골라 차를 가장 크게 하려면 □ 수에서 □ 수를 뺀다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 큰",
+          "equivalents": [
+            "제일 큰"
+          ]
+        },
+        {
+          "key": "가장 작은",
+          "equivalents": [
+            "제일 작은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "여러 수 가운데 두 수를 골라 뺄 때 차가 가장 크게 되려면 어떤 두 수를 골라야 하는지 설명하고, $2\\frac{1}{3}$, $4\\frac{1}{2}$, $1\\frac{5}{6}$ 중 두 수로 만들 수 있는 가장 큰 차를 구하시오.",
+        "answer": "가장 큰 수에서 가장 작은 수를 뺀다. $4\\frac{1}{2}-1\\frac{5}{6}=\\frac{27}{6}-\\frac{11}{6}=\\frac{16}{6}=2\\frac{2}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 수에서 가장 작은 수를 뺀다",
+              "$4\\frac{1}{2}$에서 $1\\frac{5}{6}$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{2}{3}$",
+              "$2\\frac{4}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "여러 수 중에서 두 수를 골라 차를 가장 크게 하려면 {가장 큰} 수에서 {가장 작은} 수를 뺀다.",
+        "acceptedAnswers": [
+          [
+            "가장 큰",
+            "제일 큰"
+          ],
+          [
+            "가장 작은",
+            "제일 작은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2280b616cb3f1990ceb1d8115e5af12a1e96c983a6d643138999abd312cd0139",
+      "questionRevision": "planning-e5e6-20261006-2280b616cb3f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc28",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$4\\frac{7}{8}-1\\frac{1}{9}$의 두 대분수를 각각 가장 가까운 자연수로 바꾸어 차를 어림하려 합니다. 각각 어떤 자연수로 바꾸는지와 그 까닭을 설명하고 어림한 차를 쓰세요.",
+      "bAnswer": "두 수를 각각 가까운 자연수로 바꾸어 뺀다. $4\\frac{7}{8}$은 $5$에, $1\\frac{1}{9}$은 $1$에 가까우므로 약 $5-1=4$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4\\frac{7}{8}$은 $5$에 가깝고 $1\\frac{1}{9}$은 $1$에 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{8}$은$1$에가깝고$\\frac{1}{9}$은$0$에가깝기때문이다",
+            "각대분수와고른자연수의거리가이웃한다른자연수까지의거리보다작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약 $4$",
+            "$4$쯤"
+          ]
+        }
+      ],
+      "bGoal": "가까운 자연수로 바꾸어 대분수의 차를 어림한다.",
+      "bReason": "원문 예는 까닭만 물어 어림 방법과 결과를 함께 답하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+      "cReason": "어림할 때 대분수를 무엇으로 바꾸는지 짧은 말로 확인하는 문장이다.",
+      "synonymNotes": "'가장 가까운 자연수'도 인정",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0910-0940.json",
+      "codexFinalAmendedFromFingerprint": "45dbe26b4c4d43013472f6255c8abf12ab3aaaadb4a727439685489815ba894b",
+      "sourceIndex": 931,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc28",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "자연수로 차 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+        "example": {
+          "prompt": "$4\\frac{7}{8}-1\\frac{1}{9}$을 $5-1$로 어림하는 까닭은?",
+          "answer": "$5$와 $1$에 가까운 두 수라서"
+        },
+        "studentC": "대분수의 차는 두 수를 각각 □로 바꾸어 빼면 어림할 수 있다.",
+        "answers": [
+          "가까운 자연수"
+        ]
+      },
+      "sourceFingerprint": "84d7ba6205e2f1dcec93c6ddc7494bf6d897547ba7dec3610b4db9389721b3bc",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+      "cFrozenStudentSentence": "대분수의 차는 두 수를 각각 □로 바꾸어 빼면 어림할 수 있다.",
+      "cProposedAnswers": [
+        "가까운 자연수"
+      ],
+      "cStudentAfter": "대분수의 차는 두 수를 각각 □로 바꾸어 빼면 어림할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가까운 자연수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+      "cStudentSentence": "대분수의 차는 두 수를 각각 □로 바꾸어 빼면 어림할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "가까운 자연수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$4\\frac{7}{8}-1\\frac{1}{9}$의 두 대분수를 각각 가장 가까운 자연수로 바꾸어 차를 어림하려 합니다. 각각 어떤 자연수로 바꾸는지와 그 까닭을 설명하고 어림한 차를 쓰세요.",
+        "answer": "두 수를 각각 가까운 자연수로 바꾸어 뺀다. $4\\frac{7}{8}$은 $5$에, $1\\frac{1}{9}$은 $1$에 가까우므로 약 $5-1=4$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4\\frac{7}{8}$은 $5$에 가깝고 $1\\frac{1}{9}$은 $1$에 가깝다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{8}$은$1$에가깝고$\\frac{1}{9}$은$0$에가깝기때문이다",
+              "각대분수와고른자연수의거리가이웃한다른자연수까지의거리보다작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약 $4$",
+              "$4$쯤"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가까운 자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "37f50b2f49cbfcb683a79183a48c58ab4765f20e6047dff207a9f2d6820a06e1",
+      "questionRevision": "planning-e5e6-20261006-37f50b2f49cb",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-5-1-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 '면'은 어떤 부분을 가리키는지 설명해 보세요.",
+      "bAnswer": "직육면체를 둘러싸고 있는 직사각형 모양의 평평한 부분 하나하나이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직육면체를 둘러싸고 있는 평평한 부분",
+            "직육면체의 겉을 이루는 직사각형 모양의 부분"
+          ]
+        }
+      ],
+      "bGoal": "면이 직육면체를 둘러싼 평평한 부분임을 자기 말로 설명한다.",
+      "bReason": "면의 뜻을 묻는 질문에 선분으로 둘러싸인 부분만으로는 평면도형 일반과 구별되지 않는다. 직육면체의 겉을 이루는 평평한 부분이라는 실제 요청 의미로 대안을 좁힌다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체를 둘러싸고 있는 직사각형 모양의 평평한 부분 하나하나를 {면}이라 한다.",
+      "cReason": "원문 답 '직사각형 부분'은 임의 구절이어서 용어 '면'을 답하게 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0150-0180.json",
+      "codexFinalAmendedFromFingerprint": "d28fb7d54d050620fc3e186821429a40aee32f9621033b257512fc12f44e3682",
+      "sourceIndex": 162,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-1-c1",
+        "section": "초5::2-5 직육면체::2-5-1 직사각형 6개로 둘러싸인 도형",
+        "term": "면",
+        "kind": "정의",
+        "level": "하",
+        "definition": "직육면체의 겉을 이루는 납작한 {직사각형 부분} 하나를 면이라 한다.",
+        "studentC": "직육면체의 겉을 이루는 납작한 □ 하나를 면이라 한다.",
+        "answers": [
+          "직사각형 부분"
+        ]
+      },
+      "sourceFingerprint": "74fdb7dc09ee25594e5f68640394fe278aea48404684d0797828d4245d164bb3",
+      "draftEvidence": "evidence/section-047-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "면"
+      ],
+      "cStudentAfter": "직육면체를 둘러싸고 있는 직사각형 모양의 평평한 부분 하나하나를 □이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체를 둘러싸고 있는 직사각형 모양의 평평한 부분 하나하나를 {면}이라 한다.",
+      "cStudentSentence": "직육면체를 둘러싸고 있는 직사각형 모양의 평평한 부분 하나하나를 □이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 '면'은 어떤 부분을 가리키는지 설명해 보세요.",
+        "answer": "직육면체를 둘러싸고 있는 직사각형 모양의 평평한 부분 하나하나이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직육면체를 둘러싸고 있는 평평한 부분",
+              "직육면체의 겉을 이루는 직사각형 모양의 부분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체를 둘러싸고 있는 직사각형 모양의 평평한 부분 하나하나를 {면}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b9b5c94ae104ad480d9812aa237aa6b98a7091f0a946f9aa3e36c3c3c19913a1",
+      "questionRevision": "planning-e5e6-20261006-b9b5c94ae104",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "정육면체는 어떤 도형인지, 둘러싼 면의 모양과 개수를 넣어 설명하시오.",
+      "bAnswer": "크기가 같은 정사각형 $6$개로 둘러싸인 도형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "크기가 같은 정사각형으로 둘러싸여 있다",
+            "면은 모두 같은 크기의 정사각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면이 $6$개이다",
+            "정사각형 $6$개"
+          ]
+        }
+      ],
+      "bGoal": "정육면체를 면의 모양과 개수로 정의한다.",
+      "bReason": "정육면체의 면 모양을 말할 때 같은 크기라는 원래 정의를 빠뜨리지 않도록 의미 기준을 명시한다. 면의 수와는 별도로 평가한다.",
+      "cDecision": "keep",
+      "cAfter": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 {정육면체}라 한다.",
+      "cReason": "같은 크기의 정사각형 여섯 장이라는 조건이 모두 있어 이름 하나만 답하면 되는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0150-0180.json",
+      "codexFinalAmendedFromFingerprint": "4a5605522a449c1a8fbbe40de97f501722d3db79341fc582c0bca08c41aec0f2",
+      "sourceIndex": 168,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-2-c1",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체",
+        "kind": "정의",
+        "level": "하",
+        "definition": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 {정육면체}라 한다.",
+        "studentC": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 □라 한다.",
+        "answers": [
+          "정육면체"
+        ]
+      },
+      "sourceFingerprint": "9135f87152a948d5961e125af12dace76c190de6954e59b6ae430a1584e4544e",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 {정육면체}라 한다.",
+      "cFrozenStudentSentence": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 □라 한다.",
+      "cProposedAnswers": [
+        "정육면체"
+      ],
+      "cStudentAfter": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 □라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정육면체"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 {정육면체}라 한다.",
+      "cStudentSentence": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 □라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "정육면체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체는 어떤 도형인지, 둘러싼 면의 모양과 개수를 넣어 설명하시오.",
+        "answer": "크기가 같은 정사각형 $6$개로 둘러싸인 도형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 같은 정사각형으로 둘러싸여 있다",
+              "면은 모두 같은 크기의 정사각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면이 $6$개이다",
+              "정사각형 $6$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 크기의 정사각형 여섯 장으로 겉을 둘러싼 입체를 {정육면체}라 한다.",
+        "acceptedAnswers": [
+          [
+            "정육면체"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d138ee5356c4a07c1aeeb8f1b793d72ba6ddc8b6f0030b4ac718f795e1be2f4e",
+      "questionRevision": "planning-e5e6-20261006-d138ee5356c4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-4-c2",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 겨냥도를 그릴 때 보이는 모서리와 보이지 않는 모서리를 각각 어떤 선으로 그리는지 쓰시오.",
+      "bAnswer": "보이는 모서리는 실선으로, 보이지 않는 모서리는 점선으로 그린다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보이는 모서리는 실선으로 그린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "보이지 않는 모서리는 점선으로 그린다",
+            "가려진 모서리는 점선으로 그린다"
+          ]
+        }
+      ],
+      "bGoal": "보이는 모서리와 보이지 않는 모서리를 선의 종류로 구별해 그리는 방법을 말한다.",
+      "bReason": "제목 '선 구별'만으로는 물음이 되지 않아 두 종류의 모서리와 선을 짝짓게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 겨냥도를 그릴 때, 보이는 모서리는 {실선}, 가려져 안 보이는 모서리는 {점선}으로 그린다.",
+      "cReason": "모서리의 선 종류는 겨냥도에서의 약속이다. 숨은 제목 없이 읽는 C 문장에도 직육면체의 겨냥도를 그린다는 대상을 명시한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "실선"
+          ]
+        },
+        {
+          "anyOf": [
+            "점선"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0150-0180.json",
+      "codexFinalAmendedFromFingerprint": "1c13d3ae981f5ea96051b3cb673b06cbc3c313a5a8e12d80ae6c23dce8fa640c",
+      "sourceIndex": 177,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-4-c2",
+        "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+        "term": "겨냥도의 선 구별",
+        "kind": "방법",
+        "level": "중",
+        "definition": "겉에서 보이는 모서리는 {실선}, 가려져 안 보이는 모서리는 {점선}으로 그린다.",
+        "studentC": "겉에서 보이는 모서리는 □, 가려져 안 보이는 모서리는 □으로 그린다.",
+        "answers": [
+          "실선",
+          "점선"
+        ]
+      },
+      "sourceFingerprint": "f47ac0fa1a2204ba9df16849118e347ca92dbed083249dc5b6d848e7f8233bcb",
+      "draftEvidence": "evidence/section-050-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "실선",
+        "점선"
+      ],
+      "cStudentAfter": "직육면체의 겨냥도를 그릴 때, 보이는 모서리는 □, 가려져 안 보이는 모서리는 □으로 그린다.",
+      "cMarkedSentence": "직육면체의 겨냥도를 그릴 때, 보이는 모서리는 {실선}, 가려져 안 보이는 모서리는 {점선}으로 그린다.",
+      "cStudentSentence": "직육면체의 겨냥도를 그릴 때, 보이는 모서리는 □, 가려져 안 보이는 모서리는 □으로 그린다.",
+      "cSlotAnswers": [
+        {
+          "key": "실선",
+          "equivalents": []
+        },
+        {
+          "key": "점선",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 겨냥도를 그릴 때 보이는 모서리와 보이지 않는 모서리를 각각 어떤 선으로 그리는지 쓰시오.",
+        "answer": "보이는 모서리는 실선으로, 보이지 않는 모서리는 점선으로 그린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "보이는 모서리는 실선으로 그린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "보이지 않는 모서리는 점선으로 그린다",
+              "가려진 모서리는 점선으로 그린다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 겨냥도를 그릴 때, 보이는 모서리는 {실선}, 가려져 안 보이는 모서리는 {점선}으로 그린다.",
+        "acceptedAnswers": [
+          [
+            "실선"
+          ],
+          [
+            "점선"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "068961b3d8f72455a7cec69fd744bef6f2ffc5480f9024b22b846defa4a8a9f8",
+      "questionRevision": "planning-e5e6-20261006-068961b3d8f7",
+      "requiresIndependentReview": true
+    }
+  ]
+}
