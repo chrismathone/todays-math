@@ -36,6 +36,7 @@ import {
   englishQuestionBankResolveResponseSchema,
 } from "@/contracts/englishQuestionBank.contract";
 import { errorResponseSchema } from "@/contracts/common.contract";
+import { ENGLISH_BANK_JSON_CHUNK_BYTES } from "@/lib/english/bankJsonResponse";
 import {
   BANK_BRANCH,
   BANK_OTHER_BRANCH,
@@ -90,6 +91,67 @@ afterEach(() => vi.unstubAllEnvs());
 afterAll(async () => {
   await fixture.pg.close();
 });
+
+async function largeBank() {
+  await fixture.pg.exec("DELETE FROM english_question_set");
+  const unicode = "가😀";
+  const passage = `  ${unicode.repeat(7998)}\n`;
+  const saved = [];
+  for (let set = 0; set < 4; set++) {
+    const setId = bankId(700 + set);
+    const questions = Array.from({ length: 20 }, (_, index) => ({
+      ...bankQuestion(
+        `  Set ${set} question ${index}\n${unicode.repeat(3980)} 😀`,
+      ),
+      answer: ` ${unicode.repeat(995)} `,
+      explanation: ` ${unicode.repeat(1995)} \n`,
+      evidence: unicode.repeat(1995),
+    }));
+    await fixture.set(setId, bankId(100), { passage, questions });
+    saved.push(
+      ...questions.map((question, questionIndex) => ({
+        setId,
+        questionIndex,
+        passage,
+        question,
+      })),
+    );
+  }
+  return saved;
+}
+
+async function readBankStream(response: Response) {
+  expect(response.status).toBe(200);
+  expect(response.headers.get("content-type")).toBe(
+    "application/json; charset=utf-8",
+  );
+  expect(response.headers.get("cache-control")).toBe("private, no-store");
+  expect(response.headers.has("content-length")).toBe(false);
+  const reader = response.body!.getReader();
+  const decoder = new TextDecoder("utf-8", { fatal: true });
+  const parts: string[] = [];
+  let bytes = 0;
+  let chunks = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      expect(value.byteLength).toBeGreaterThan(0);
+      expect(value.byteLength).toBeLessThanOrEqual(
+        ENGLISH_BANK_JSON_CHUNK_BYTES,
+      );
+      bytes += value.byteLength;
+      chunks++;
+      parts.push(decoder.decode(value, { stream: true }));
+    }
+    parts.push(decoder.decode());
+  } finally {
+    reader.releaseLock();
+  }
+  expect(chunks).toBeGreaterThan(1);
+  expect(bytes).toBeGreaterThan(4.5 * 1024 * 1024);
+  return JSON.parse(parts.join(""));
+}
 
 describe("GET /api/english/questions and POST /resolve", () => {
   it("requires authentication and library grants before reading storage", async () => {
@@ -325,6 +387,62 @@ describe("GET /api/english/questions and POST /resolve", () => {
         questionIndex,
       })),
     ).toEqual(items);
+  });
+
+  it("streams a page above 4.5 MiB in bounded UTF-8 chunks with exact Unicode, whitespace and SQL order", async () => {
+    const saved = await largeBank();
+    const response = await get("?pageSize=50");
+    expect(fixture.calls).toHaveLength(1);
+    const { data } = englishQuestionBankResponseSchema.parse(
+      await readBankStream(response),
+    );
+    expect(data).toMatchObject({ total: 80, page: 1, pageSize: 50 });
+    expect(
+      data.items.map(({ setId, questionIndex, passage, question }) => ({
+        setId,
+        questionIndex,
+        passage,
+        question,
+      })),
+    ).toEqual(saved.slice(0, 50));
+    expect(fixture.calls).toHaveLength(1);
+  });
+
+  it("streams all 80 resolved references above 4.5 MiB with exact Unicode and request order from one snapshot", async () => {
+    const saved = (await largeBank()).reverse();
+    const response = await post(
+      saved.map(({ setId, questionIndex }) => ref(setId, 1, questionIndex)),
+    );
+    expect(fixture.calls).toHaveLength(1);
+    const { data } = englishQuestionBankResolveResponseSchema.parse(
+      await readBankStream(response),
+    );
+    expect(
+      data.map(({ setId, questionIndex, passage, question }) => ({
+        setId,
+        questionIndex,
+        passage,
+        question,
+      })),
+    ).toEqual(saved);
+    expect(fixture.calls).toHaveLength(1);
+  });
+
+  it("returns only the complete error body when the last reference in a large batch is stale", async () => {
+    const saved = await largeBank();
+    const items = saved.map(({ setId, questionIndex }) =>
+      ref(setId, 1, questionIndex),
+    );
+    items[items.length - 1]!.revision = 2;
+    const response = await post(items);
+    expect(response.status).toBe(409);
+    const text = await response.text();
+    expect(errorResponseSchema.parse(JSON.parse(text)).error.code).toBe(
+      "REVISION_MISMATCH",
+    );
+    expect(text).not.toContain('"data"');
+    expect(text).not.toContain(saved[0]!.question.prompt);
+    expect(fixture.calls).toHaveLength(1);
   });
 
   it("never strips unsupported V2 fields or coerces malformed saved questions", async () => {
