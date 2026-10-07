@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "observerId": "orca-codex-exam-twin-author-algebra-20261008",
+  "scope": "student-only-final-layout-addendum",
+  "authoritativeVisualReference": "student-preview-r5",
+  "supersedesVisualReference": [
+    "student-preview",
+    "student-preview-r2",
+    "other-layout-only-predecessors"
+  ],
+  "predecessorLayoutApproval": "unapproved-history",
+  "studentInput": {
+    "path": "blind/student-problems.json",
+    "sha256": "b0a75b81b9618e1450fc90dad49f17ad4a043dd45c6ed557dfc28407b03d3212",
+    "unchanged": true
+  },
+  "questions": [
+    {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+      "studentFigures": [
+        {
+          "path": "blind/figures/q10-1.svg",
+          "sha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+          "intendedWidthMm": 70,
+          "sourceOrder": 1
+        },
+        {
+          "path": "blind/figures/q10-2.svg",
+          "sha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+          "intendedWidthMm": 70,
+          "sourceOrder": 2
+        }
+      ],
+      "solvePath": "solve/q10.json",
+      "solveFileSha256": "737f631552889b80bbcb8e6c8a8c625f693aeb9629ee6eb96909c8519a994004",
+      "solveDigest": "29182eecaced72f34f0bc88be8b19e5816661fcb940c194bd18d18623ff74226",
+      "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+      "solveStatus": "solved",
+      "studentQuestionPreview": {
+        "path": "student-preview-r5/q10.png",
+        "sha256": "bdee4529adf437b63d55603efd632aa2e9c414af8e20397bb667416a0ceb5a14",
+        "viewed": true
+      },
+      "pdfPagePreview": {
+        "path": "student-preview-r5/pdf-page-1.png",
+        "sha256": "ca41f56c8943c6c02109beca0567480ab1126c5c1aff52557e22c592490e5001",
+        "viewed": true,
+        "pageNumber": 1
+      },
+      "observedAllChoicesOnSamePage": true,
+      "observedChoiceCount": 5,
+      "observedStandaloneTitle": false,
+      "observedClipping": false,
+      "observedFigureOrder": "scene-left-diagram-right",
+      "figuresAtDeclaredWidthMm": 70
+    },
+    {
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+      "studentFigures": [
+        {
+          "path": "blind/figures/q19-1.svg",
+          "sha256": "0c1e6d3c4ab1c275f1f87b238b504830a92b5ca24e15af527b5a46bb43ffa0ae",
+          "intendedWidthMm": 70,
+          "sourceOrder": 1
+        },
+        {
+          "path": "blind/figures/q19-2.svg",
+          "sha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+          "intendedWidthMm": 70,
+          "sourceOrder": 2
+        }
+      ],
+      "solvePath": "solve/q19.json",
+      "solveFileSha256": "0d3a426e5f2dd651cf16605d54f61b090f5db6050f8afe081a3afabfee92f72a",
+      "solveDigest": "e2800ff85f56aec92277f838f130e3a912fd3583b534e338c6f48dabdefca3bb",
+      "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+      "solveStatus": "solved",
+      "studentQuestionPreview": {
+        "path": "student-preview-r5/q19.png",
+        "sha256": "af9e456934a4410755c423552041189c10eef1fda3fef31c9faf298725eb2b6c",
+        "viewed": true
+      },
+      "pdfPagePreview": {
+        "path": "student-preview-r5/pdf-page-2.png",
+        "sha256": "4393488c78c744f3134962e7ca7ae4326b38ff3d929fd0d9b6094b5fb64cf6ed",
+        "viewed": true,
+        "pageNumber": 2
+      },
+      "observedAllChoicesOnSamePage": null,
+      "observedChoiceCount": 0,
+      "observedStandaloneTitle": false,
+      "observedClipping": false,
+      "observedFigureOrder": "scene-left-diagram-right",
+      "figuresAtDeclaredWidthMm": 70
+    }
+  ],
+  "pdf": {
+    "path": "student-preview-r5/student-paper.pdf",
+    "sha256": "3ddcdb87b08df42fa06d0b57909a6daab55aba8a84cce740f3a0f686cbb3e739",
+    "pageCount": 2,
+    "pages": [
+      {
+        "pageNumber": 1,
+        "mediaBoxPoints": [
+          594.95996,
+          841.91998
+        ],
+        "mediaBoxMm": [
+          209.88865255555555,
+          297.0106596111111
+        ],
+        "A4WithinToleranceMm": 0.2
+      },
+      {
+        "pageNumber": 2,
+        "mediaBoxPoints": [
+          594.95996,
+          841.91998
+        ],
+        "mediaBoxMm": [
+          209.88865255555555,
+          297.0106596111111
+        ],
+        "A4WithinToleranceMm": 0.2
+      }
+    ],
+    "method": "local pypdf page count and MediaBox; supplied PDF page PNGs visually inspected",
+    "checkArtifactPath": "final-layout-r5-pdf-check.json",
+    "checkArtifactSha256": "5ccb1350a0736bddb1c06dbbf1bce98c5e7f0c2e2bfb248539ea39aa83c309c2"
+  },
+  "native70mmProofs": [
+    {
+      "questionNumber": 10,
+      "nativeProofPath": "previews/q10-70mm-proof.svg",
+      "nativeProofSha256": "50b093d762e4dc832401f4fcdb56e8663d7c74697740085f30291e8c01e28fc6",
+      "previewPath": "previews/q10-70mm-proof.png",
+      "previewSha256": "edd18d746466ee1f533644a3ee235cb7a1d4cca3e9a6687a8d46e73825203f1e",
+      "pageWidthMm": 210,
+      "assetWidthMm": 70,
+      "separateAssets": 2
+    },
+    {
+      "questionNumber": 19,
+      "nativeProofPath": "previews/q19-70mm-proof.svg",
+      "nativeProofSha256": "0274b6f59a30e5b53338cd66839b93c9b407052c44fc948c0d0a2e7e4df20b8e",
+      "previewPath": "previews/q19-70mm-proof.png",
+      "previewSha256": "739b0391ced7515e611a7514aac7e17b99a36f75be753d4e0716dbaec93de2ed",
+      "pageWidthMm": 210,
+      "assetWidthMm": 70,
+      "separateAssets": 2
+    }
+  ],
+  "blindSolveFilesChanged": false,
+  "mathOrAnswerChanged": false,
+  "finalLayoutStatus": "visually-observed-no-orphan-title-choice-or-clipping",
+  "rendererNativeFrameCompatibility": "parent-owned-separate-record",
+  "productionParityClaimed": false,
+  "physicalPaperPrintTestPerformed": false,
+  "authorPrivateFilesRead": false
+}
